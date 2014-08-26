@@ -21,6 +21,9 @@
 #include "config.h"
 #endif
 
+#include <winpr/windows.h>
+
+
 #include <time.h>
 #include <openssl/des.h>
 #include <openssl/md4.h>

@@ -46,9 +46,6 @@
     <Filter Include="Source Files\libwinpr\file">
       <UniqueIdentifier>{5663f566-6469-483a-844c-014bf461f8c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\libwinpr\framework">
-      <UniqueIdentifier>{eb37d2d2-d550-4d22-9a47-b4446fb44f3f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\libwinpr\handle">
       <UniqueIdentifier>{13d57c99-b866-4f34-b96c-374a6b6f7eb6}</UniqueIdentifier>
     </Filter>
@@ -184,6 +181,15 @@
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{ef473d75-2516-46af-8c8d-4a29e98558da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\libwinpr\sspi\Schannel">
+      <UniqueIdentifier>{70889b6a-0fc7-42f5-9559-7650f92d84bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\sspi\NTLM">
+      <UniqueIdentifier>{fc792ba1-339a-4245-b9d7-2bb8299880ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\sspi\Negotiate">
+      <UniqueIdentifier>{d2701d8e-6cf1-40ea-afda-f8491554b477}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libwinpr\asn1\asn1.c">
@@ -243,13 +249,7 @@
     <ClCompile Include="libwinpr\file\pattern.c">
       <Filter>Source Files\libwinpr\file</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\framework\config.c">
-      <Filter>Source Files\libwinpr\framework</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\handle\handle.c">
-      <Filter>Source Files\libwinpr\handle</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\handle\table.c">
       <Filter>Source Files\libwinpr\handle</Filter>
     </ClCompile>
     <ClCompile Include="libwinpr\heap\heap.c">
@@ -287,18 +287,6 @@
     </ClCompile>
     <ClCompile Include="libwinpr\pipe\pipe.c">
       <Filter>Source Files\libwinpr\pipe</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_callback.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_callback_cleanup.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_callback_environment.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_cleanup_group.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
     </ClCompile>
     <ClCompile Include="libwinpr\pool\pool_io.c">
       <Filter>Source Files\libwinpr\pool</Filter>
@@ -391,9 +379,6 @@
       <Filter>Source Files\libwinpr\synch</Filter>
     </ClCompile>
     <ClCompile Include="libwinpr\synch\srw.c">
-      <Filter>Source Files\libwinpr\synch</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\synch\synch.c">
       <Filter>Source Files\libwinpr\synch</Filter>
     </ClCompile>
     <ClCompile Include="libwinpr\synch\timer.c">
@@ -534,8 +519,53 @@
     <ClCompile Include="libwinpr\wtsapi\wtsapi.c">
       <Filter>Source Files\libwinpr\wtsapi</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\wtsapi\wtsrpc_c.c">
-      <Filter>Source Files\libwinpr\wtsapi</Filter>
+    <ClCompile Include="libwinpr\pool\callback.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\callback_cleanup.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\callback_environment.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\cleanup_group.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\Schannel\schannel.c">
+      <Filter>Source Files\libwinpr\sspi\Schannel</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\Schannel\schannel_openssl.c">
+      <Filter>Source Files\libwinpr\sspi\Schannel</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_av_pairs.c">
+      <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_compute.c">
+      <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_message.c">
+      <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_ntlm.c">
+      <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\Negotiate\negotiate.c">
+      <Filter>Source Files\libwinpr\sspi\Negotiate</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\sspi_winpr.c">
+      <Filter>Source Files\libwinpr\sspi</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\sspi_export.c">
+      <Filter>Source Files\libwinpr\sspi</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\debug.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\ini.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\ssl.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

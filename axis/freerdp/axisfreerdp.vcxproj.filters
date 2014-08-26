@@ -389,12 +389,6 @@
     <ClCompile Include="libfreerdp\codec\jpeg.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\codec\mppc_dec.c">
-      <Filter>Source Files\libfreerdp\codec</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\codec\mppc_enc.c">
-      <Filter>Source Files\libfreerdp\codec</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\codec\nsc.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
@@ -431,111 +425,6 @@
     <ClCompile Include="libfreerdp\codec\rfx_sse2.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\common\addin.c">
-      <Filter>Source Files\libfreerdp\common</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\common\settings.c">
-      <Filter>Source Files\libfreerdp\common</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_activation.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_capabilities.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_certificate.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_channel.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_connection.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_errinfo.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_extension.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_fastpath.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_freerdp.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_gcc.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_graphics.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_info.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_input.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_license.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_listener.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_mcs.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_message.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_nego.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_nla.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_orders.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_peer.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_rdp.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_redirection.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_security.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_settings.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_surface.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_tcp.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_timezone.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_tpdu.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_tpkt.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_transport.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_update.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_window.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\core\gateway\http.c">
       <Filter>Source Files\libfreerdp\core\gateway</Filter>
     </ClCompile>
@@ -566,30 +455,6 @@
     <ClCompile Include="libfreerdp\core\gateway\tsg.c">
       <Filter>Source Files\libfreerdp\core\gateway</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\crypto\base64.c">
-      <Filter>Source Files\libfreerdp\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\crypto\ber.c">
-      <Filter>Source Files\libfreerdp\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\crypto\certificate.c">
-      <Filter>Source Files\libfreerdp\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\crypto\crypto.c">
-      <Filter>Source Files\libfreerdp\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\crypto\der.c">
-      <Filter>Source Files\libfreerdp\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\crypto\er.c">
-      <Filter>Source Files\libfreerdp\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\crypto\per.c">
-      <Filter>Source Files\libfreerdp\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\crypto\tls.c">
-      <Filter>Source Files\libfreerdp\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\framework\framework.c">
       <Filter>Source Files\libfreerdp\framework</Filter>
     </ClCompile>
@@ -602,42 +467,6 @@
     <ClCompile Include="libfreerdp\gdi\8bpp.c">
       <Filter>Source Files\libfreerdp\gdi</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\bitmap.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\brush.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\clipping.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\dc.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\drawing.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\graphics.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\line.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\palette.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\pen.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\region.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\shape.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\locale\keyboard.c">
       <Filter>Source Files\libfreerdp\locale</Filter>
     </ClCompile>
@@ -645,9 +474,6 @@
       <Filter>Source Files\libfreerdp\locale</Filter>
     </ClCompile>
     <ClCompile Include="libfreerdp\locale\locale.c">
-      <Filter>Source Files\libfreerdp\locale</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\locale\timezone.c">
       <Filter>Source Files\libfreerdp\locale</Filter>
     </ClCompile>
     <ClCompile Include="libfreerdp\locale\xkb_layout_ids.c">
@@ -701,18 +527,6 @@
     <ClCompile Include="libfreerdp\primitives\prim_sign_opt.c">
       <Filter>Source Files\libfreerdp\primitives</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\rail\icon.c">
-      <Filter>Source Files\libfreerdp\rail</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\rail\rail.c">
-      <Filter>Source Files\libfreerdp\rail</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\rail\window.c">
-      <Filter>Source Files\libfreerdp\rail</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\rail\window_list.c">
-      <Filter>Source Files\libfreerdp\rail</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\utils\utils_bitmap.c">
       <Filter>Source Files\libfreerdp\utils</Filter>
     </ClCompile>
@@ -754,6 +568,207 @@
     </ClCompile>
     <ClCompile Include="libfreerdp\utils\utils_uds.c">
       <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\common\assistance.c">
+      <Filter>Source Files\libfreerdp\common</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\common\common_addin.c">
+      <Filter>Source Files\libfreerdp\common</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\common\common_settings.c">
+      <Filter>Source Files\libfreerdp\common</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\activation.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\autodetect.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\bulk.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\capabilities.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\certificate.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\channels.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\client.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\connection.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\errinfo.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\fastpath.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\freerdp.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\gcc.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\graphics.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\heartbeat.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\info.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\input.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\license.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\listener.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\mcs.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\message.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\metrics.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\multitransport.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\nego.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\nla.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\orders.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\peer.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\rdp.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\redirection.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\security.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\server.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\settings.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\surface.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\tcp.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\timezone.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\tpdu.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\tpkt.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\transport.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\update.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\window.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\crypto\crypto_base64.c">
+      <Filter>Source Files\libfreerdp\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\crypto\crypto_ber.c">
+      <Filter>Source Files\libfreerdp\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\crypto\crypto_certificate.c">
+      <Filter>Source Files\libfreerdp\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\crypto\crypto_crypto.c">
+      <Filter>Source Files\libfreerdp\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\crypto\crypto_der.c">
+      <Filter>Source Files\libfreerdp\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\crypto\crypto_er.c">
+      <Filter>Source Files\libfreerdp\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\crypto\crypto_per.c">
+      <Filter>Source Files\libfreerdp\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\crypto\crypto_tls.c">
+      <Filter>Source Files\libfreerdp\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_bitmap.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_brush.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_clipping.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_dc.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_drawing.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_gdi.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_graphics.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_line.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_palette.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_pen.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_region.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_shape.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\locale\locale_timezone.c">
+      <Filter>Source Files\libfreerdp\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\rail\rail_icon.c">
+      <Filter>Source Files\libfreerdp\rail</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\rail\rail_rail.c">
+      <Filter>Source Files\libfreerdp\rail</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\rail\rail_window.c">
+      <Filter>Source Files\libfreerdp\rail</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\rail\rail_window_list.c">
+      <Filter>Source Files\libfreerdp\rail</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
