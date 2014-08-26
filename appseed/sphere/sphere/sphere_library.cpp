@@ -8,7 +8,7 @@ namespace sphere
    library::library(sp(::axis::application) papp) :
       element(papp),
       ::axis::library(papp,0, "app"),
-      ::axis::single_application_library < application > (papp, "app"),
+      ::aura::single_application_library < application > (papp, "app"),
       ::filehandler::library(papp),
       ::filehandler::menu_library(papp)
    {
@@ -73,7 +73,7 @@ namespace sphere
          return new ::filehandler::application();
       }
 
-      return ::axis::single_application_library < application >::get_new_app(pszAppId);
+      return ::aura::single_application_library < application >::get_new_app(pszAppId);
 
    }*/
 

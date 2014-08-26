@@ -6,7 +6,7 @@ namespace sphere
 
 
    class CLASS_DECL_sphere library :
-      virtual public ::axis::single_application_library < application >,
+      virtual public ::aura::single_application_library < application >,
       virtual public ::filehandler::menu_library
    {
    public:
