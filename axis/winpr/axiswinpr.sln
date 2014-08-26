@@ -11,8 +11,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axis", "..\..\appseed\axis\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axisopenssl", "..\openssl\axisopenssl.vcxproj", "{29676444-4D0F-4DD0-9104-0499D94DA2C9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axiswinpr2", "libwinpr\axiswinpr2.vcxproj", "{2175082F-F23D-4356-806D-FC4D3C762E26}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		basis|Android = basis|Android
@@ -203,48 +201,6 @@ Global
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|Win32.Build.0 = static_basis|Win32
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|x64.ActiveCfg = static_basis|x64
 		{29676444-4D0F-4DD0-9104-0499D94DA2C9}.static_basis|x64.Build.0 = static_basis|x64
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.basis|Android.ActiveCfg = basis|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.basis|Android.Build.0 = basis|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.basis|Android.Deploy.0 = basis|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.basis|Win32.ActiveCfg = basis|Win32
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.basis|Win32.Build.0 = basis|Win32
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.basis|x64.ActiveCfg = basis|x64
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.basis|x64.Build.0 = basis|x64
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.codeanalysis|Android.ActiveCfg = codeanalysis|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.codeanalysis|Android.Build.0 = codeanalysis|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.codeanalysis|Android.Deploy.0 = codeanalysis|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.codeanalysis|Win32.Build.0 = codeanalysis|Win32
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.codeanalysis|x64.ActiveCfg = codeanalysis|x64
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.codeanalysis|x64.Build.0 = codeanalysis|x64
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.memdleak|Android.ActiveCfg = memdleak|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.memdleak|Android.Build.0 = memdleak|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.memdleak|Android.Deploy.0 = memdleak|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.memdleak|Win32.ActiveCfg = memdleak|Win32
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.memdleak|Win32.Build.0 = memdleak|Win32
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.memdleak|x64.ActiveCfg = memdleak|x64
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.memdleak|x64.Build.0 = memdleak|x64
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.no_precompiled_header|Android.ActiveCfg = basis|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.no_precompiled_header|Android.Build.0 = basis|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.no_precompiled_header|Android.Deploy.0 = basis|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.no_precompiled_header|Win32.ActiveCfg = basis|Win32
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.no_precompiled_header|Win32.Build.0 = basis|Win32
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.no_precompiled_header|x64.ActiveCfg = basis|x64
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.no_precompiled_header|x64.Build.0 = basis|x64
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.profiler|Android.ActiveCfg = profiler|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.profiler|Android.Build.0 = profiler|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.profiler|Android.Deploy.0 = profiler|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.profiler|Win32.ActiveCfg = profiler|Win32
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.profiler|Win32.Build.0 = profiler|Win32
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.profiler|x64.ActiveCfg = profiler|x64
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.profiler|x64.Build.0 = profiler|x64
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.static_basis|Android.ActiveCfg = basis|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.static_basis|Android.Build.0 = basis|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.static_basis|Android.Deploy.0 = basis|Android
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.static_basis|Win32.ActiveCfg = basis|Win32
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.static_basis|Win32.Build.0 = basis|Win32
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.static_basis|x64.ActiveCfg = basis|x64
-		{2175082F-F23D-4356-806D-FC4D3C762E26}.static_basis|x64.Build.0 = basis|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
