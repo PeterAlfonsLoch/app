@@ -791,6 +791,18 @@
     <ClCompile Include="libfreerdp\utils\utils_ringbuffer.c">
       <Filter>Source Files\libfreerdp\utils</Filter>
     </ClCompile>
+    <ClCompile Include="libfreerdp\primitives\prim_16to32bpp.c">
+      <Filter>Source Files\libfreerdp\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\primitives\prim_16to32bpp_opt.c">
+      <Filter>Source Files\libfreerdp\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\primitives\prim_YCoCg.c">
+      <Filter>Source Files\libfreerdp\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\primitives\prim_YCoCg_opt.c">
+      <Filter>Source Files\libfreerdp\primitives</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="axisfreerdp.def">
