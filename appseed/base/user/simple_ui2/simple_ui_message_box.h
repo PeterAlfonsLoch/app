@@ -1,4 +1,4 @@
-#include "framework.h"
+#pragma once
 
 
 namespace simple_ui

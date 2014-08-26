@@ -20,7 +20,7 @@
 #ifndef __LIBRAIL_H
 #define __LIBRAIL_H
 
-#include "framework.h"
+#include "axisfreerdp.h"
 
 #include <freerdp/utils/debug.h>
 

@@ -20,7 +20,9 @@
 #ifndef FREERDP_UTILS_DEBUG_H
 #define FREERDP_UTILS_DEBUG_H
 
-#include "framework.h"
+
+#include "axisfreerdp.h"
+
 
 #define DEBUG_NULL(fmt, ...) do { } while (0)
 

@@ -20,7 +20,7 @@
 #ifndef FREERDP_CHANNEL_DISP_CLIENT_MAIN_H
 #define FREERDP_CHANNEL_DISP_CLIENT_MAIN_H
 
-#include "framework.h"
+#include "client/channels.h"
 
 #include <freerdp/dvc.h>
 #include <freerdp/types.h>

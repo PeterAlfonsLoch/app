@@ -21,7 +21,7 @@
 #ifndef __NSC_TYPES_H
 #define __NSC_TYPES_H
 
-#include "framework.h"
+#include "axisfreerdp.h"
 
 #include <winpr/crt.h>
 #include <winpr/wlog.h>

@@ -20,7 +20,7 @@
 #ifndef __RFX_TYPES_H
 #define __RFX_TYPES_H
 
-#include "framework.h"
+#include "axisfreerdp.h"
 
 #include <winpr/crt.h>
 #include <winpr/pool.h>

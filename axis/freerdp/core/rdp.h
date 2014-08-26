@@ -20,7 +20,7 @@
 #ifndef __RDP_H
 #define __RDP_H
 
-#include "framework.h"
+#include "axisfreerdp.h"
 
 #include "mcs.h"
 #include "tpkt.h"

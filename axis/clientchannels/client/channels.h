@@ -37,7 +37,7 @@
 #include <freerdp/client/drdynvc.h>
 #include <freerdp/channels/channels.h>
 
-#include "framework.h"
+#include "client/channels.h"
 
 #define CHANNEL_MAX_COUNT 30
 

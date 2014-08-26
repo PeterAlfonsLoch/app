@@ -20,7 +20,7 @@
 #ifndef __TSMF_TYPES_H
 #define __TSMF_TYPES_H
 
-#include "framework.h"
+#include "client/channels.h"
 
 #include <freerdp/dvc.h>
 #include <freerdp/types.h>

@@ -20,7 +20,7 @@
 #ifndef FREERDP_CORE_RTS_H
 #define FREERDP_CORE_RTS_H
 
-#include "framework.h"
+#include "axisfreerdp.h"
 
 #include "rpc.h"
 

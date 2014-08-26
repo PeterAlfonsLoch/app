@@ -20,7 +20,7 @@
 #ifndef __LIBLOCALE_H
 #define __LIBLOCALE_H
 
-#include "framework.h"
+#include "axisfreerdp.h"
 
 #include <freerdp/utils/debug.h>
 

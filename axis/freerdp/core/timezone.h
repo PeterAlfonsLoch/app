@@ -22,7 +22,7 @@
 
 #include "rdp.h"
 
-#include "framework.h"
+#include "axisfreerdp.h"
 
 #include <freerdp/freerdp.h>
 #include <freerdp/locale/timezone.h>

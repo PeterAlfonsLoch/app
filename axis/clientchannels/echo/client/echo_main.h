@@ -20,7 +20,7 @@
 #ifndef __ECHO_MAIN_H
 #define __ECHO_MAIN_H
 
-#include "framework.h"
+#include "client/channels.h"
 
 #include <freerdp/dvc.h>
 #include <freerdp/types.h>
