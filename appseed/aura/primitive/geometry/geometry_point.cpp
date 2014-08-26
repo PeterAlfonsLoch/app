@@ -190,6 +190,11 @@ pointd::pointd(double initX, double initY) throw()
    { x = (double) initX; y = (double) initY; }
 pointd::pointd(POINTD initPt) throw()
    { *(POINTD*)this = initPt; }
+pointd::pointd(POINT initPt) throw()
+{
+   x = (double) initPt.x;
+   y = (double) initPt.y;
+}
 pointd::pointd(SIZED initSize) throw()
    { *(SIZED*)this = initSize; }
 pointd::pointd(__point64 pt) throw()

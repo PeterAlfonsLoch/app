@@ -168,6 +168,7 @@ public:
    pointd(double initX, double initY) throw();
    // create from another pointd
    pointd(POINTD initPt) throw();
+   pointd(POINT initPt) throw();
    pointd(const POINTD * pinitPt) throw();
    pointd(__point64 initPt) throw();
    pointd(const __point64 * pinitPt) throw();

@@ -84,12 +84,20 @@ namespace draw2d
       //virtual int32_t GetRegionData(LPRGNDATA lpRgnData, int32_t nCount) const;
 //#endif
 
-      bool internal_contains(LPPOINT lppt);
-      bool internal_rect_contains(LPPOINT lppt);
-      bool internal_oval_contains(LPPOINT lppt);
-      bool internal_polygon_contains(LPPOINT lppt);
-      bool internal_poly_polygon_contains(LPPOINT lppt);
-      bool internal_combine_contains(LPPOINT lppt);
+      bool internal_contains(POINT pt) { return internal_contains(pointd(pt));  }
+      bool internal_rect_contains(POINT pt){ return internal_rect_contains(pointd(pt)); }
+      bool internal_oval_contains(POINT pt){ return internal_oval_contains(pointd(pt)); }
+      bool internal_polygon_contains(POINT pt){ return internal_polygon_contains(pointd(pt)); }
+      bool internal_poly_polygon_contains(POINT pt){ return internal_poly_polygon_contains(pointd(pt)); }
+      bool internal_combine_contains(POINT pt){ return internal_combine_contains(pointd(pt)); }
+
+
+      bool internal_contains(POINTD pt);
+      bool internal_rect_contains(POINTD pt);
+      bool internal_oval_contains(POINTD pt);
+      bool internal_polygon_contains(POINTD pt);
+      bool internal_poly_polygon_contains(POINTD pt);
+      bool internal_combine_contains(POINTD pt);
 
       virtual void max_bounding_box(LPRECT lpRect) const;
       virtual void max_bounding_box_rect(LPRECT lpRect) const;
