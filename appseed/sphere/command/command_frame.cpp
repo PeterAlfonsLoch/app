@@ -8,8 +8,9 @@ namespace command
    frame::frame(sp(::axis::application) papp) :
       element(papp),
       simple_frame_window(papp),
-      ::message_queue(papp)
+      m_spqueue(allocer())
    {
+
       m_pimagelist = NULL;
       m_iFrameData = 10;
       m_dataid = "::ca2::command::frame";
@@ -20,15 +21,15 @@ namespace command
 
       m_dataidWindow = "WindowData";
       m_bMoveDrag = true;
+
    }
+
 
    frame::~frame()
    {
+
    }
 
-
-   /////////////////////////////////////////////////////////////////////////////
-   // frame diagnostics
 
    #ifdef DEBUG
    void frame::assert_valid() const
@@ -273,7 +274,7 @@ namespace command
          return;
 	   }
 
-      if(!message_queue::create_message_queue("::ca2::fontopus::message_wnd::command"))
+      if(!m_spqueue->create_message_queue("::ca2::fontopus::message_wnd::command", this))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;

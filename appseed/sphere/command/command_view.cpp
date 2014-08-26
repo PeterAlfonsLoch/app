@@ -123,7 +123,7 @@ namespace command
       rectClient.deflate(2, 2);
       int32_t iW = rectClient.width() / 2;
       int32_t iH = rectClient.height() / 2;
-      iH = min(iH, 120);
+      iH = MIN(iH, 120);
       double r = (double) iW / (double) iH;
       double rScreen = (double) rectDesktop.width() / (double) rectDesktop.height();
       if(r < rScreen)
