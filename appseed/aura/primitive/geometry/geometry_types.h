@@ -179,6 +179,8 @@ inline CLASS_DECL_AURA POINT & offset(POINT & pt, LONG x, LONG y)
 
 CLASS_DECL_AURA bool polygon_contains(LPPOINT lppt, LPPOINT lpptPolygon, int iCount);
 
+CLASS_DECL_AURA bool polygon_contains(LPPOINTD lppt,LPPOINTD lpptPolygon,int iCount);
+
 
 inline CLASS_DECL_AURA POINT & top_left(LPRECT lpcrect)
 {
