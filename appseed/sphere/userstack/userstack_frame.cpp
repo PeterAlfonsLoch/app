@@ -8,8 +8,9 @@ namespace userstack
    frame::frame(sp(::axis::application) papp) :
       element(papp),
       simple_frame_window(papp),
-      ::message_queue(papp)
+      m_spqueue(allocer())
    {
+
       m_pdocument = NULL;
       m_iFrameData = 10;
       m_dataid = "ca2::frame";
@@ -28,12 +29,16 @@ namespace userstack
 
    }
 
+
    frame::~frame()
    {
+
    }
+
 
    void frame::_001OnCreate(signal_details * pobj)
    {
+
       SCAST_PTR(::message::create, pcreate, pobj);
 
       m_bWindowFrame = GetTypedParent < ::plugin::host_interaction >() == NULL;
@@ -41,7 +46,7 @@ namespace userstack
       if(pobj->previous())
          return;
 
-      if(!message_queue::create_message_queue("::ca2::fontopus::message_wnd::bergedge::" + System.get_local_mutex_id()))
+      if(!m_spqueue->create_message_queue("::ca2::fontopus::message_wnd::bergedge::" + System.get_local_mutex_id(), this))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
@@ -440,7 +445,7 @@ namespace userstack
          if(pmsg->message != WM_KICKIDLE)
          {
             ::smart_pointer < ::message::base > spbase;
-            spbase = get_base(pmsg);
+            spbase = Application.get_base(pmsg);
             pre_translate_message(spbase);
             if(!spbase->m_bRet)
             {
