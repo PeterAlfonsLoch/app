@@ -28,7 +28,7 @@ namespace base
 
 #endif
 
-      m_pbaseapp              = this;
+      m_pauraapp              = this;
 
       if(m_pauraapp != NULL)
       {
@@ -50,7 +50,7 @@ namespace base
 
 #ifdef WINDOWS
 
-         m_hinstance             = m_pbaseapp->m_hinstance;
+         m_hinstance             = m_pauraapp->m_hinstance;
 
 #endif
 
