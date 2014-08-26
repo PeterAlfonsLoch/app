@@ -42,7 +42,7 @@ namespace base
    void system::construct(const char * pszAppId)
    {
 
-      ::aura::application::construct(pszAppId);
+      ::base::application::construct(pszAppId);
 
    }
 
@@ -130,6 +130,8 @@ namespace base
 
       m_paxissession = m_pbasesession;
 
+      m_paurasession = m_pbasesession;
+
       if(m_pbasesession == NULL)
          return false;
 
@@ -170,7 +172,7 @@ namespace base
    bool system::initialize2()
    {
 
-      if(!::aura::application::initialize2())
+      if(!::base::application::initialize2())
          return false;
 
       return true;
@@ -240,7 +242,7 @@ namespace base
       try
       {
 
-         bOk = ::aura::application::finalize();
+         bOk = ::base::application::finalize();
 
       }
       catch(...)
@@ -396,7 +398,7 @@ namespace base
       try
       {
 
-         iRet = ::aura::application::exit_instance();
+         iRet = ::base::application::exit_instance();
 
       }
       catch(...)
@@ -479,7 +481,7 @@ namespace base
 
 
 
-      ::aura::application::exit_instance();
+      ::base::application::exit_instance();
 
 #ifdef METROWIN
       m_pdevicecontext = nullptr;

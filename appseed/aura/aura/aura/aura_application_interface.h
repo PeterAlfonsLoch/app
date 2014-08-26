@@ -7,9 +7,6 @@ namespace aura
 
    class CLASS_DECL_AURA application_interface:
       virtual public ::thread,
-      virtual public ::aura::live_object,
-      virtual public command_target_interface,
-      virtual public request_interface,
       virtual public int_scalar_source
    {
    public:

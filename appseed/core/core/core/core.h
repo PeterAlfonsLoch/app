@@ -951,9 +951,6 @@ class Ex1FactoryImpl;
 #include "core/math/calculator/calculator.h"
 
 
-#include "net/http/http_output_stream.h"
-
-
 
 
 
@@ -968,7 +965,6 @@ class Ex1FactoryImpl;
 
 
 #include "core_stra.h"
-#include "net/net_url_domain.h"
 
 
 #include "core_service.h"
@@ -1128,6 +1124,12 @@ class form_view;
 
 
 #include "core/core/plugin/plugin.h"
+
+
+
+
+#include "app/appseed/core/user/user/user_inline.h"
+
 
 
 

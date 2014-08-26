@@ -1024,7 +1024,7 @@ namespace axis
       if(!::aura::session::process_initialize())
          return false;
 
-      if(!::aura::application::process_initialize())
+      if(!::axis::application::process_initialize())
          return false;
 
       m_spuser = create_user();
@@ -1050,7 +1050,7 @@ namespace axis
       if(!::aura::session::initialize1())
          return false;
 
-      if(!::aura::application::initialize1())
+      if(!::axis::application::initialize1())
          return false;
 
       m_puserstrcontext = canew(::user::str_context(this));
@@ -1079,7 +1079,7 @@ namespace axis
       if(!::aura::session::initialize2())
          return false;
 
-      if(!::aura::application::initialize2())
+      if(!::axis::application::initialize2())
          return false;
 
       fill_locale_schema(*str_context()->m_plocaleschema);
@@ -1096,7 +1096,7 @@ namespace axis
       if(!::aura::session::initialize_instance())
          return false;
 
-      if(!::aura::application::initialize_instance())
+      if(!::axis::application::initialize_instance())
          return false;
 
       return true;
@@ -1110,7 +1110,7 @@ namespace axis
       if(!::aura::session::initialize())
          return false;
 
-      if(!::aura::application::initialize())
+      if(!::axis::application::initialize())
          return false;
 
       if(!is_installing() && !is_uninstalling())
@@ -1140,7 +1140,7 @@ namespace axis
       try
       {
 
-         bOk = ::aura::application::finalize();
+         bOk = ::axis::application::finalize();
 
       }
       catch(...)
@@ -1182,7 +1182,7 @@ namespace axis
 
       }
 
-      ::aura::application::exit_instance();
+      ::axis::application::exit_instance();
 
       ::aura::session::exit_instance();
 

@@ -345,6 +345,9 @@
     <Filter Include="Header Files\user\wndfrm\frame">
       <UniqueIdentifier>{fe769cb1-523c-4018-a3ee-cf60483555c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\framework">
+      <UniqueIdentifier>{cd6b8308-5d61-435e-a104-178ece7cf89a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -1562,9 +1565,6 @@
     <ClInclude Include="user\user\user_xfplayer_view_lines.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user1.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\userex_userex.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
@@ -1972,6 +1972,12 @@
     </ClInclude>
     <ClInclude Include="core\core\core_util1.h">
       <Filter>Header Files\core\install</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aaa_want_to_remove_user1.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\framework.h">
+      <Filter>Header Files\framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3094,9 +3100,6 @@
     <ClCompile Include="core\core\core_timer_listener.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_simple_app.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_Timer.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
@@ -3234,6 +3237,9 @@
     </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_simple_app.cpp">
+      <Filter>Source Files\core\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -119,7 +119,7 @@ namespace axis
    void system::construct(const char * pszAppId)
    {
 
-      ::aura::application::construct(pszAppId);
+      ::axis::application::construct(pszAppId);
 
    }
 
@@ -143,7 +143,7 @@ namespace axis
          return false;
 
 
-      if(!::aura::application::process_initialize())
+      if(!::axis::application::process_initialize())
          return false;
 
 
@@ -181,7 +181,7 @@ namespace axis
       if(!::aura::system::initialize2())
          return false;
 
-      if(!::aura::application::initialize2())
+      if(!::axis::application::initialize2())
          return false;
 
 
@@ -196,7 +196,7 @@ namespace axis
       if(!::aura::system::initialize_instance())
          return false;
 
-      if(!::aura::application::initialize_instance())
+      if(!::axis::application::initialize_instance())
          return false;
 
       return true;
@@ -217,7 +217,7 @@ namespace axis
       try
       {
 
-         bOk = ::aura::application::finalize();
+         bOk = ::axis::application::finalize();
 
       }
       catch(...)
@@ -258,7 +258,7 @@ namespace axis
       try
       {
 
-         iRet = ::aura::application::exit_instance();
+         iRet = ::axis::application::exit_instance();
 
       }
       catch(...)

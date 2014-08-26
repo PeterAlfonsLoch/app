@@ -28,7 +28,7 @@ namespace base
 
 #endif
 
-      m_pauraapp              = this;
+      m_pbaseapp              = this;
 
       if(m_pauraapp != NULL)
       {
@@ -723,7 +723,7 @@ namespace base
    void application::SetCurrentHandles()
    {
 
-      ::aura::application::SetCurrentHandles();
+      ::axis::application::SetCurrentHandles();
 
 
       if(is_installing() || is_uninstalling())
@@ -2219,7 +2219,7 @@ namespace base
       m_bBaseProcessInitializeResult = false;
 
 
-      if(!::aura::application::process_initialize())
+      if(!::axis::application::process_initialize())
          return false;
       
 
@@ -2401,7 +2401,7 @@ namespace base
 
       m_dwAlive = ::get_tick_count();
 
-      if(!::aura::application::initialize1())
+      if(!::axis::application::initialize1())
          return false;
 
       m_bBaseInitialize1Result = true;
