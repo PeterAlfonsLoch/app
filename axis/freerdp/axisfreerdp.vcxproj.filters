@@ -521,45 +521,6 @@
     <ClCompile Include="libfreerdp\primitives\prim_sign_opt.c">
       <Filter>Source Files\libfreerdp\primitives</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_bitmap.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_event.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_msusb.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_passphrase.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_pcap.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_profiler.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_rail.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_signal.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_stopwatch.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_svc_plugin.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_tcp.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_time.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_uds.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\common\assistance.c">
       <Filter>Source Files\libfreerdp\common</Filter>
     </ClCompile>
@@ -737,9 +698,6 @@
     <ClCompile Include="libfreerdp\codec\zgfx.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\utils\utils_ringbuffer.c">
-      <Filter>Source Files\libfreerdp\utils</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\primitives\prim_16to32bpp.c">
       <Filter>Source Files\libfreerdp\primitives</Filter>
     </ClCompile>
@@ -802,6 +760,48 @@
     </ClCompile>
     <ClCompile Include="libfreerdp\rail\rail_window_list.c">
       <Filter>Source Files\libfreerdp\rail</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_bitmap.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_event.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_msusb.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_passphrase.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_pcap.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_profiler.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_rail.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_ringbuffer.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_signal.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_stopwatch.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_svc_plugin.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_tcp.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_time.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\utils\utils_uds.c">
+      <Filter>Source Files\libfreerdp\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
