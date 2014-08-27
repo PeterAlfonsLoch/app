@@ -28,7 +28,7 @@
 #include <winpr/crt.h>
 #include <freerdp/utils/debug.h>
 
-#ifndef _WIN32
+/*#ifndef _WIN32
 #include <sys/time.h>
 #else
 #include <time.h>
@@ -43,7 +43,7 @@ int gettimeofday(struct timeval* tp, void* tz)
 	tp->tv_usec = timebuffer.millitm * 1000;
 	return 0;
 }
-#endif
+#endif*/
 
 #include <freerdp/types.h>
 #include <freerdp/utils/pcap.h>
