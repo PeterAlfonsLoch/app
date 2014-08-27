@@ -710,42 +710,6 @@
     <ClCompile Include="libfreerdp\crypto\crypto_tls.c">
       <Filter>Source Files\libfreerdp\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi_bitmap.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi_brush.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi_clipping.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi_dc.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi_drawing.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi_gdi.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi_graphics.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi_line.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi_palette.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi_pen.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi_region.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\gdi\gdi_shape.c">
-      <Filter>Source Files\libfreerdp\gdi</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\locale\locale_timezone.c">
       <Filter>Source Files\libfreerdp\locale</Filter>
     </ClCompile>
@@ -802,6 +766,42 @@
     </ClCompile>
     <ClCompile Include="libfreerdp\primitives\prim_YCoCg_opt.c">
       <Filter>Source Files\libfreerdp\primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_bitmap.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_brush.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_clipping.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_dc.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_drawing.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_gdi.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_graphics.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_line.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_palette.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_pen.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_region.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\gdi\gdi_shape.c">
+      <Filter>Source Files\libfreerdp\gdi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
