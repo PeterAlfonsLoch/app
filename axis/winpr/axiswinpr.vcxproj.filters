@@ -190,6 +190,12 @@
     <Filter Include="Source Files\libwinpr\sspi\Negotiate">
       <UniqueIdentifier>{d2701d8e-6cf1-40ea-afda-f8491554b477}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\libwinpr\smartcard">
+      <UniqueIdentifier>{69c6ff69-c990-4ffd-be95-dd19f773a537}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\smartcard">
+      <UniqueIdentifier>{c38da6b6-19cb-4699-b729-437b7ed7e6e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libwinpr\asn1\asn1.c">
@@ -573,6 +579,21 @@
     <ClCompile Include="libwinpr\utils\collections\HashTable.c">
       <Filter>Source Files\libwinpr\utils\collections</Filter>
     </ClCompile>
+    <ClCompile Include="libwinpr\smartcard\smartcard.c">
+      <Filter>Source Files\libwinpr\smartcard</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\smartcard\smartcard_inspect.c">
+      <Filter>Source Files\libwinpr\smartcard</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\smartcard\smartcard_link.c">
+      <Filter>Source Files\libwinpr\smartcard</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\smartcard\smartcard_pcsc.c">
+      <Filter>Source Files\libwinpr\smartcard</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\smartcard\smartcard_winscard.c">
+      <Filter>Source Files\libwinpr\smartcard</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libwinpr\crt\utf.h">
@@ -871,6 +892,18 @@
     </ClInclude>
     <ClInclude Include="..\..\include\winpr\wtypes.h">
       <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\smartcard\smartcard_winscard.h">
+      <Filter>Header Files\libwinpr\smartcard</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\smartcard\smartcard_pcsc.h">
+      <Filter>Header Files\libwinpr\smartcard</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\smartcard\smartcard_inspect.h">
+      <Filter>Header Files\libwinpr\smartcard</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\smartcard\smartcard.h">
+      <Filter>Header Files\libwinpr\smartcard</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

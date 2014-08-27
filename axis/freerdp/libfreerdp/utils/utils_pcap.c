@@ -27,6 +27,7 @@
 
 #include <winpr/crt.h>
 #include <freerdp/utils/debug.h>
+#include <freerdp/freerdp.h>
 
 #ifndef _WIN32
 #include <sys/time.h>

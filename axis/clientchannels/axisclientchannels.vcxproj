@@ -139,6 +139,7 @@
     <ClCompile Include="channels\rdpdr\client\rdpdr_main.c" />
     <ClCompile Include="channels\rdpei\client\rdpei_common.c" />
     <ClCompile Include="channels\rdpei\client\rdpei_main.c" />
+    <ClCompile Include="channels\rdpgfx\client\rdpgfx_codec.c" />
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_common.c" />
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c" />
     <ClCompile Include="channels\rdpsnd\client\rdpsnd_main.c" />
@@ -146,13 +147,14 @@
     <ClCompile Include="channels\serial\client\serial_main.c" />
     <ClCompile Include="channels\smartcard\client\smartcard_main.c" />
     <ClCompile Include="channels\smartcard\client\smartcard_operations.c" />
+    <ClCompile Include="channels\smartcard\client\smartcard_pack.c" />
     <ClCompile Include="channels\tsmf\client\tsmf_audio.c" />
     <ClCompile Include="channels\tsmf\client\tsmf_codec.c" />
     <ClCompile Include="channels\tsmf\client\tsmf_decoder.c" />
     <ClCompile Include="channels\tsmf\client\tsmf_ifman.c" />
     <ClCompile Include="channels\tsmf\client\tsmf_main.c" />
     <ClCompile Include="channels\tsmf\client\tsmf_media.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">

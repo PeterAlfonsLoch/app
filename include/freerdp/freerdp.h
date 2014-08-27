@@ -255,6 +255,10 @@ FREERDP_API BOOL freerdp_focus_required(freerdp* instance);
 FREERDP_API UINT32 freerdp_get_last_error(rdpContext* context);
 FREERDP_API void freerdp_set_last_error(rdpContext* context, UINT32 lastError);
 
+#ifdef _WIN32
+FREERDP_API int gettimeofday(struct timeval* tp,void* tz);
+#endif
+
 #ifdef __cplusplus
 }
 #endif

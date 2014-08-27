@@ -116,6 +116,11 @@
     <ClCompile Include="libwinpr\rpc\ndr_union.c" />
     <ClCompile Include="libwinpr\rpc\rpc.c" />
     <ClCompile Include="libwinpr\security\security.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_inspect.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_link.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_pcsc.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_winscard.c" />
     <ClCompile Include="libwinpr\sspicli\sspicli.c" />
     <ClCompile Include="libwinpr\sspi\CredSSP\credssp.c" />
     <ClCompile Include="libwinpr\sspi\Negotiate\negotiate.c" />
@@ -269,6 +274,10 @@
     <ClInclude Include="libwinpr\rpc\ndr_structure.h" />
     <ClInclude Include="libwinpr\rpc\ndr_union.h" />
     <ClInclude Include="libwinpr\security\security.h" />
+    <ClInclude Include="libwinpr\smartcard\smartcard.h" />
+    <ClInclude Include="libwinpr\smartcard\smartcard_inspect.h" />
+    <ClInclude Include="libwinpr\smartcard\smartcard_pcsc.h" />
+    <ClInclude Include="libwinpr\smartcard\smartcard_winscard.h" />
     <ClInclude Include="libwinpr\sspi\CredSSP\credssp.h" />
     <ClInclude Include="libwinpr\sspi\sspi.h" />
     <ClInclude Include="libwinpr\synch\synch.h" />
