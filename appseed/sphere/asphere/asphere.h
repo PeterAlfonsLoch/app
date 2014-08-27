@@ -2,7 +2,7 @@
 
 
 
-#include "app/appseed/core/core.h"
+#include "core/core/core.h"
 
 
 
