@@ -133,3 +133,36 @@ bool aura_term()
 }
 
 
+
+
+void dappy(const char * psz)
+{
+
+   //printf("app._ : %s : %s\n",_argv[2],psz);
+   //printf("hello!!    : %s\n",psz);
+   //::OutputDebugString("hello!!    : " + string(psz) + "\n");
+
+}
+
+
+
+BOOL freerdp_authenticate(char** username,char** password,char** domain, const char * pszTitle)
+{
+
+   string strUsername;
+
+   string strPassword;
+
+
+   if(App(::get_thread_app()).get_cred(null_rect(),strUsername,strPassword,"freerdp",pszTitle,true) != "ok")
+      return FALSE;
+
+
+   *username = strdup(strUsername);
+
+   *password = strdup(strPassword);
+
+   return TRUE;
+
+}
+

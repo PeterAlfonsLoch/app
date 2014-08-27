@@ -23,6 +23,8 @@
 #include "config.h"
 #endif
 
+#include "axis/axis/axis.h"
+
 #include <winpr/windows.h>
 
 #include <winpr/crt.h>
@@ -468,7 +470,10 @@ static CREDUI_INFOA wfUiInfo =
 
 BOOL wf_authenticate(freerdp* instance, char** username, char** password, char** domain)
 {
-	BOOL fSave;
+   
+   return freerdp_authenticate(username,password,domain, instance->);
+
+/*	BOOL fSave;
 	DWORD status;
 	DWORD dwFlags;
 	char UserName[CREDUI_MAX_USERNAME_LENGTH + 1];
@@ -505,7 +510,7 @@ BOOL wf_authenticate(freerdp* instance, char** username, char** password, char**
 
 	*password = _strdup(Password);
 
-	return TRUE;
+	return TRUE;*/
 }
 
 BOOL wf_verify_certificate(freerdp* instance, char* subject, char* issuer, char* fingerprint)

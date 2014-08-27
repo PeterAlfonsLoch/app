@@ -2043,39 +2043,7 @@ namespace axis
 
 
 
-#if defined(MACOS)
+CLASS_DECL_AXIS BOOL freerdp_authenticate(char** username,char** password,char** domain)
+{
 
-void openURL(const string &url_str);
-
-
-void openURL(const string &url_str) {
-   CFURLRef url = CFURLCreateWithBytes (
-      NULL,                        // allocator
-      (UInt8*)url_str.c_str(),     // URLBytes
-      url_str.length(),            // length
-      kCFStringEncodingASCII,      // encoding
-      NULL                         // baseURL
-      );
-   LSOpenCFURLRef(url,0);
-   CFRelease(url);
 }
-
-#elif defined(APPLE_IOS)
-
-void openURL(const string &url_str);
-
-
-void openURL(const string &url_str) {
-   CFURLRef url = CFURLCreateWithBytes (
-      NULL,                        // allocator
-      (UInt8*)url_str.c_str(),     // URLBytes
-      url_str.length(),            // length
-      kCFStringEncodingASCII,      // encoding
-      NULL                         // baseURL
-      );
-   //    LSOpenCFURLRef(url,0);
-   CFRelease(url);
-}
-
-
-#endif

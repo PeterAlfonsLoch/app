@@ -289,3 +289,115 @@ string url_encode_dup(const char * psz)
 
 
 
+
+
+
+#if defined(MACOS)
+
+void openURL(const string &url_str);
+
+
+void openURL(const string &url_str) {
+   CFURLRef url = CFURLCreateWithBytes(
+      NULL,                        // allocator
+      (UInt8*)url_str.c_str(),     // URLBytes
+      url_str.length(),            // length
+      kCFStringEncodingASCII,      // encoding
+      NULL                         // baseURL
+      );
+   LSOpenCFURLRef(url,0);
+   CFRelease(url);
+}
+
+#elif defined(APPLE_IOS)
+
+void openURL(const string &url_str);
+
+
+void openURL(const string &url_str) {
+   CFURLRef url = CFURLCreateWithBytes(
+      NULL,                        // allocator
+      (UInt8*)url_str.c_str(),     // URLBytes
+      url_str.length(),            // length
+      kCFStringEncodingASCII,      // encoding
+      NULL                         // baseURL
+      );
+   //    LSOpenCFURLRef(url,0);
+   CFRelease(url);
+}
+
+
+#endif
+
+
+
+
+
+
+open_url::open_url(sp(::aura::application) papp,const string & strLink,const string & pszTarget) :
+   element(papp)
+{
+
+   m_strLink = strLink;
+
+   m_strTarget = pszTarget;
+
+}
+
+
+
+
+static bool open_url::start(sp(::aura::application) papp,const string & strLink,const string & strTarget)
+{
+
+   return __begin_thread(papp,thread_proc_open_url,new open_url(papp,strLink,pszTarget)) != FALSE;
+
+}
+
+
+uint32_t c_cdecl open_url::thread_proc(void * p)
+{
+
+   open_url * popenurl = (open_url *)p;
+
+   if(!popenurl->open())
+      return -1;
+
+   return 0;
+}
+
+bool open_url::open()
+{
+   string strLink = m_strLink;
+   string pszTarget = m_strTarget;
+#ifdef WINDOWSEX
+   string strUrl = strLink;
+   if(!::str::begins_ci(strUrl,"http://")
+      && !::str::begins_ci(strUrl,"https://"))
+   {
+      strUrl = "http://" + strUrl;
+   }
+   ::ShellExecuteA(NULL,"open",strUrl,NULL,NULL,SW_SHOW);
+   return true;
+#elif defined METROWIN
+#pragma push_macro("System")
+#undef System
+   ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(strLink);
+   ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions();
+   options->TreatAsUntrusted = false;
+   bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri,options));
+
+   return success;
+
+#pragma pop_macro("System")
+#elif defined(LINUX)
+   ::system("xdg-open " + strLink);
+   return true;
+#elif defined(APPLEOS)
+   openURL(strLink);
+   return true;
+#else
+   throw not_implemented(get_thread_app());
+#endif
+
+}
