@@ -72,9 +72,32 @@
     <ClCompile Include="client\common\cmdline.c" />
     <ClCompile Include="client\common\compatibility.c" />
     <ClCompile Include="client\common\file.c" />
+    <ClCompile Include="client\Windows\wf_cliprdr.c" />
+    <ClCompile Include="client\Windows\wf_cliprdr_DataObject.c" />
+    <ClCompile Include="client\Windows\wf_cliprdr_EnumFORMATETC.c" />
+    <ClCompile Include="client\Windows\wf_cliprdr_Stream.c" />
+    <ClCompile Include="client\Windows\wf_event.c" />
+    <ClCompile Include="client\Windows\wf_floatbar.c" />
+    <ClCompile Include="client\Windows\wf_gdi.c" />
+    <ClCompile Include="client\Windows\wf_graphics.c" />
+    <ClCompile Include="client\Windows\wf_interface.c" />
+    <ClCompile Include="client\Windows\wf_rail.c" />
+    <ClCompile Include="client\Windows\wf_window.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client\common\compatibility.h" />
+    <ClInclude Include="client\Windows\resource.h" />
+    <ClInclude Include="client\Windows\wf_cliprdr.h" />
+    <ClInclude Include="client\Windows\wf_cliprdr_DataObject.h" />
+    <ClInclude Include="client\Windows\wf_cliprdr_EnumFORMATETC.h" />
+    <ClInclude Include="client\Windows\wf_cliprdr_Stream.h" />
+    <ClInclude Include="client\Windows\wf_event.h" />
+    <ClInclude Include="client\Windows\wf_floatbar.h" />
+    <ClInclude Include="client\Windows\wf_gdi.h" />
+    <ClInclude Include="client\Windows\wf_graphics.h" />
+    <ClInclude Include="client\Windows\wf_interface.h" />
+    <ClInclude Include="client\Windows\wf_rail.h" />
+    <ClInclude Include="client\Windows\wf_window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>axisrdpclient</ProjectName>

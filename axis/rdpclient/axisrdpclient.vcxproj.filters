@@ -1,12 +1,120 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="client\common\client.c" />
-    <ClCompile Include="client\common\cmdline.c" />
-    <ClCompile Include="client\common\compatibility.c" />
-    <ClCompile Include="client\common\file.c" />
+    <ClCompile Include="client\Windows\wf_cliprdr.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_cliprdr_DataObject.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_cliprdr_EnumFORMATETC.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_cliprdr_Stream.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_event.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_floatbar.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_gdi.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_graphics.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_interface.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_rail.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_window.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\client.c">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\cmdline.c">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\compatibility.c">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\file.c">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="client\common\compatibility.h" />
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{52dc9b9c-367a-49af-b02c-23e875b209ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{99127199-b5d0-413f-b560-2acd51bd13c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client">
+      <UniqueIdentifier>{75cfe8d4-38fa-4f4f-abcb-8b19add99151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client">
+      <UniqueIdentifier>{87e2334e-f295-46d2-b055-06b6170108ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\Windows">
+      <UniqueIdentifier>{a21b1435-2916-4b45-bfe1-5328cd24fcaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client\Windows">
+      <UniqueIdentifier>{09f730c3-2384-4bf7-b45c-323de7c08049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client\common">
+      <UniqueIdentifier>{71f79fdb-b5bd-462d-ab38-5ed0e53ce0cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\common">
+      <UniqueIdentifier>{eefe6b62-6d7a-48bc-bb9b-469302937777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\client\Windows\NewFilter1">
+      <UniqueIdentifier>{6c85b06a-6d9b-4e6f-90fc-a0f6bfaaa4fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="client\common\compatibility.h">
+      <Filter>Header Files\client\common</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\resource.h">
+      <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_cliprdr.h">
+      <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_cliprdr_DataObject.h">
+      <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_cliprdr_EnumFORMATETC.h">
+      <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_cliprdr_Stream.h">
+      <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_event.h">
+      <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_floatbar.h">
+      <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_gdi.h">
+      <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_graphics.h">
+      <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_interface.h">
+      <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_rail.h">
+      <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="client\Windows\wf_window.h">
+      <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
