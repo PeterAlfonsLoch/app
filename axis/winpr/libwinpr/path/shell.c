@@ -273,7 +273,7 @@ char* GetKnownSubPath(int id, const char* path)
 
 char* GetEnvironmentPath(char* name)
 {
-	char* env = NULL;
+	char* env;
 	DWORD nSize;
 
 	nSize = GetEnvironmentVariableA(name, NULL, 0);

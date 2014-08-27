@@ -199,7 +199,7 @@ struct _NTLM_CHALLENGE_MESSAGE
 	UINT32 NegotiateFlags;
 	BYTE ServerChallenge[8];
 	BYTE Reserved[8];
-   NTLM_VERSION_INFO Version;
+	NTLM_VERSION_INFO Version;
 	NTLM_MESSAGE_FIELDS TargetName;
 	NTLM_MESSAGE_FIELDS TargetInfo;
 };
