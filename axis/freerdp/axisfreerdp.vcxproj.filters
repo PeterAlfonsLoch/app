@@ -710,18 +710,6 @@
     <ClCompile Include="libfreerdp\crypto\crypto_tls.c">
       <Filter>Source Files\libfreerdp\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\rail\rail_icon.c">
-      <Filter>Source Files\libfreerdp\rail</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\rail\rail_rail.c">
-      <Filter>Source Files\libfreerdp\rail</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\rail\rail_window.c">
-      <Filter>Source Files\libfreerdp\rail</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\rail\rail_window_list.c">
-      <Filter>Source Files\libfreerdp\rail</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\codec\clear.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
@@ -802,6 +790,18 @@
     </ClCompile>
     <ClCompile Include="libfreerdp\locale\locale_timezone.c">
       <Filter>Source Files\libfreerdp\locale</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\rail\rail_icon.c">
+      <Filter>Source Files\libfreerdp\rail</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\rail\rail_rail.c">
+      <Filter>Source Files\libfreerdp\rail</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\rail\rail_window.c">
+      <Filter>Source Files\libfreerdp\rail</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\rail\rail_window_list.c">
+      <Filter>Source Files\libfreerdp\rail</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
