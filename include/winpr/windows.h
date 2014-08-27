@@ -32,7 +32,6 @@
 #include <windows.h>
 #include <ws2tcpip.h>
 
-
 #endif
 
 #endif /* WINPR_WINDOWS_H */

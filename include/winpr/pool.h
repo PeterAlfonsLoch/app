@@ -153,7 +153,7 @@ typedef VOID (*PTP_WIN32_IO_CALLBACK)(PTP_CALLBACK_INSTANCE Instance, PVOID Cont
 
 #endif
 
-#if (!defined(_WIN32) || ((defined(_WIN32) && (_WIN32_WINNT < 0x0601) && !defined(_THREADPOOLAPISET_H_))))
+#if (!defined(_WIN32) || ((defined(_WIN32) && (_WIN32_WINNT < 0x0601))))
 #define WINPR_THREAD_POOL	1
 #endif
 

@@ -292,12 +292,10 @@ WINPR_API BOOL PathFileExistsW(LPCWSTR pszPath);
 }
 #endif
 
-#ifndef _WIN32
 #ifdef UNICODE
 #define PathFileExists	PathFileExistsW
 #else
 #define PathFileExists	PathFileExistsA
-#endif
 #endif
 
 #endif /* WINPR_PATH_H */
