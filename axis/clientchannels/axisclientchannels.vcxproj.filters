@@ -353,14 +353,14 @@
     <ClCompile Include="channels\tsmf\client\tsmf_media.c">
       <Filter>Source Files\channels\tsmf</Filter>
     </ClCompile>
-    <ClCompile Include="channels\client\addin.c">
-      <Filter>Source Files\channels\client</Filter>
-    </ClCompile>
     <ClCompile Include="channels\smartcard\client\smartcard_pack.c">
       <Filter>Source Files\channels\smartcard</Filter>
     </ClCompile>
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_codec.c">
       <Filter>Source Files\channels\rdpgfx</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\client\addin.c">
+      <Filter>Source Files\channels\client</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
