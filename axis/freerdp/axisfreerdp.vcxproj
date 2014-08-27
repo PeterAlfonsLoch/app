@@ -53,7 +53,7 @@
   <PropertyGroup Label="Globals">
     <ProjectName>axisfreerdp</ProjectName>
     <ProjectGuid>{E0D54AEC-E0A5-475B-8A02-8758BDD686E1}</ProjectGuid>
-    <RootNamespace>basefreerdp</RootNamespace>
+    <RootNamespace>axisfreerdp</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">

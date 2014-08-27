@@ -271,21 +271,29 @@ char* GetKnownSubPath(int id, const char* path)
 	return subPath;
 }
 
-char* GetEnvironmentPath(char* name)
+
+char * GetEnvironmentPath(char* name)
 {
-	char* env;
+
+	char * env = NULL;
+
 	DWORD nSize;
 
 	nSize = GetEnvironmentVariableA(name, NULL, 0);
 
 	if (nSize)
 	{
+
 		env = (LPSTR) malloc(nSize);
+
 		nSize = GetEnvironmentVariableA(name, env, nSize);
+
 	}
 
 	return env;
+
 }
+
 
 char* GetEnvironmentSubPath(char* name, const char* path)
 {

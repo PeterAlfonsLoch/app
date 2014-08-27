@@ -124,10 +124,10 @@
     <ClCompile Include="libwinpr\sspicli\sspicli.c" />
     <ClCompile Include="libwinpr\sspi\CredSSP\credssp.c" />
     <ClCompile Include="libwinpr\sspi\Negotiate\negotiate.c" />
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_ntlm.c" />
     <ClCompile Include="libwinpr\sspi\NTLM\ntlm_av_pairs.c" />
     <ClCompile Include="libwinpr\sspi\NTLM\ntlm_compute.c" />
     <ClCompile Include="libwinpr\sspi\NTLM\ntlm_message.c" />
-    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_ntlm.c" />
     <ClCompile Include="libwinpr\sspi\Schannel\schannel.c" />
     <ClCompile Include="libwinpr\sspi\Schannel\schannel_openssl.c" />
     <ClCompile Include="libwinpr\sspi\sspi.c" />
