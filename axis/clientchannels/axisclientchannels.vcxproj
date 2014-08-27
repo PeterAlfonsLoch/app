@@ -114,8 +114,10 @@
   <ItemGroup>
     <ClCompile Include="channels\audin\client\audin_main.c" />
     <ClCompile Include="channels\client\addin.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+      </ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="channels\client\tables.c" />
     <ClCompile Include="channels\cliprdr\client\cliprdr_format.c" />
     <ClCompile Include="channels\cliprdr\client\cliprdr_main.c" />
     <ClCompile Include="channels\disp\client\disp_main.c" />

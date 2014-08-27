@@ -362,5 +362,8 @@
     <ClCompile Include="channels\client\addin.c">
       <Filter>Source Files\channels\client</Filter>
     </ClCompile>
+    <ClCompile Include="channels\client\tables.c">
+      <Filter>Source Files\channels\client</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
