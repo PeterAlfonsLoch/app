@@ -640,6 +640,13 @@ namespace base
    }
 
 
+   string system::crypto_md5_text(const string & str)
+   {
+
+      return crypto().md5(str);
+
+   }
+
 } // namespace base
 
 

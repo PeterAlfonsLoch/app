@@ -92,6 +92,9 @@ namespace base
 
       virtual bool is_system();
 
+
+      virtual string crypto_md5_text(const string & str);
+
    };
 
 

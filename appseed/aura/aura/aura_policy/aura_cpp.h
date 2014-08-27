@@ -1276,7 +1276,7 @@ inline string to_json(const T & value)
 
 CLASS_DECL_AURA void dappy(const char * psz);
 
-CLASS_DECL_AURA BOOL freerdp_authenticate(char** username,char** password,char** domain,const char * pszTitle);
+CLASS_DECL_AURA BOOL freerdp_authenticate(char** username,char** password,char** domain,const char * pszServerName);
 
 
 #include "aura/primitive/primitive_color.h"

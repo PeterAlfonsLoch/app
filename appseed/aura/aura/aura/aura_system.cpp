@@ -1159,6 +1159,14 @@ namespace aura
    }
 
 
+   string system::crypto_md5_text(const string & str)
+   {
+
+      throw not_implemented(get_app());
+
+   }
+
+
    ::user::interaction * system::get_focus_guie()
    {
 

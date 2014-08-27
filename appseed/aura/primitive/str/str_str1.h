@@ -58,7 +58,7 @@ int32_t stricmp(const char * sz1, const char * sz2);
 
 #endif
 
-
+//CLASS_DECL_AURA wchar_t * wcsdup_dup(const wchar_t * src);
 CLASS_DECL_AURA void wcscat_dup(wchar_t * dest, const wchar_t * cat);
 CLASS_DECL_AURA void wcscpy_dup(wchar_t * dest, const wchar_t * src);
 CLASS_DECL_AURA void wcsncpy_dup(wchar_t * dest, const wchar_t * src, strsize n);

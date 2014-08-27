@@ -296,6 +296,8 @@ namespace aura
 
       virtual string dir_appmatter_locator(sp(::aura::application) papp);
 
+      virtual string crypto_md5_text(const string & str);
+
    };
 
 

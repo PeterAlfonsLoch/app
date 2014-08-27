@@ -347,10 +347,10 @@ open_url::open_url(sp(::aura::application) papp,const string & strLink,const str
 
 
 
-static bool open_url::start(sp(::aura::application) papp,const string & strLink,const string & strTarget)
+bool open_url::start(sp(::aura::application) papp,const string & strLink,const string & strTarget)
 {
 
-   return __begin_thread(papp,thread_proc_open_url,new open_url(papp,strLink,pszTarget)) != FALSE;
+   return __begin_thread(papp,&thread_proc,new open_url(papp,strLink,strTarget)) != FALSE;
 
 }
 

@@ -314,8 +314,8 @@ void wf_add_system_menu(wfContext* wfc)
 	item_info.cbSize = sizeof(MENUITEMINFO);
 	item_info.wID = SYSCOMMAND_ID_SMARTSIZING;
 	item_info.fType = MFT_STRING;
-	item_info.dwTypeData = _wcsdup(_T("Smart sizing"));
-	item_info.cch = (UINT) _wcslen(_T("Smart sizing"));
+	item_info.dwTypeData = strdup("Smart sizing");
+   item_info.cch = (UINT)strlen(item_info.dwTypeData);
 	item_info.dwItemData = (ULONG_PTR) wfc;
 
 	InsertMenuItem(hMenu, 6, TRUE, &item_info);
@@ -471,7 +471,7 @@ static CREDUI_INFOA wfUiInfo =
 BOOL wf_authenticate(freerdp* instance, char** username, char** password, char** domain)
 {
    
-   return freerdp_authenticate(username,password,domain, instance->);
+   return freerdp_authenticate(username,password,domain,instance->context->settings->ServerHostname);
 
 /*	BOOL fSave;
 	DWORD status;

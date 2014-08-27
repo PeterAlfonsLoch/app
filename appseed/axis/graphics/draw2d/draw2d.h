@@ -55,6 +55,19 @@ namespace draw2d
 
 
 
+#if defined(CUBE)
+
+
+void draw2d_factory_exchange(sp(application) papp);
+
+
+#endif
+
+
+
+
+
+
 
 
 
@@ -83,6 +96,9 @@ namespace user
 
 #include "user/user/user_draw_context.h"
 #include "draw2d_graphics.h"
+
+
+
 
 
 

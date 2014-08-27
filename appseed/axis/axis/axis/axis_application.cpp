@@ -1,41 +1,6 @@
 #include "framework.h"
 
 
-#if defined(CUBE)
-
-
-void draw2d_factory_exchange(sp(application) papp);
-
-
-#endif
-
-
-#if defined(APPLEOS)
-
-void openURL(const string &url_str);
-
-#endif
-
-#if defined(LINUX)
-#ifdef _GNU_SOURCE
-#undef _GNU_SOURCE
-#endif
-#define _GNU_SOURCE
-#define __USE_GNU
-#include <link.h>
-#elif defined(APPLEOS)
-#include <dlfcn.h>
-#endif
-
-
-void dappy(const char * psz)
-{
-
-   //printf("app._ : %s : %s\n",_argv[2],psz);
-   //printf("hello!!    : %s\n",psz);
-   //::OutputDebugString("hello!!    : " + string(psz) + "\n");
-
-}
 
 
 namespace axis
@@ -2042,8 +2007,3 @@ namespace axis
 
 
 
-
-CLASS_DECL_AXIS BOOL freerdp_authenticate(char** username,char** password,char** domain)
-{
-
-}
