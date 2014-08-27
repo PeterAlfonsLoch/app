@@ -146,30 +146,3 @@ void dappy(const char * psz)
 
 
 
-BOOL freerdp_authenticate(char** username,char** password,char** domain,const char * pszServerName)
-{
-
-   string strUsername;
-
-   string strPassword;
-
-   string strToken;
-
-   strToken = Sys(::get_thread_app()).crypto_md5_text(pszServerName);
-
-   string strTitle;
-
-   strTitle = "Enter Credentials for : " + string(pszServerName);
-
-   if(App(::get_thread_app()).get_cred(null_rect(),strUsername,strPassword, strToken, strTitle,true) != "ok")
-      return FALSE;
-
-
-   *username = strdup(strUsername);
-
-   *password = strdup(strPassword);
-
-   return TRUE;
-
-}
-

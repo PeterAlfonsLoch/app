@@ -14,10 +14,9 @@ CLASS_DECL_AURA bool url_query_get_param_dup(string & strParam,const char * pszK
 
 #if defined(APPLEOS)
 
-void openURL(const string &url_str);
+CLASS_DECL_AURA void openURL(const string &url_str);
 
 #endif
-
 
 
 

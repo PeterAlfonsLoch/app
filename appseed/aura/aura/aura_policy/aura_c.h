@@ -70,3 +70,10 @@
 CLASS_DECL_AURA int get_aura_init();
 CLASS_DECL_AURA int_bool defer_aura_init();
 CLASS_DECL_AURA int_bool defer_aura_term();
+
+BEGIN_EXTERN_C
+
+CLASS_DECL_AURA int_bool freerdp_authenticate(char** username,char** password,char** domain,const char * pszServerName);
+
+
+END_EXTERN_C

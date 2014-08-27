@@ -1165,7 +1165,7 @@ int ftruncate(int file, file_size len)
 
 
 
-int_bool ensure_file_size(int32_t fd, size_t iSize)
+int_bool ensure_file_size_fd(int32_t fd, size_t iSize)
 {
 
    if(ftruncate(fd, iSize) == -1)
@@ -1178,12 +1178,12 @@ int_bool ensure_file_size(int32_t fd, size_t iSize)
 int_bool ensure_file_size(FILE * file, size_t iSize)
 {
 
-   return ensure_file_size(fileno(file), iSize);
+   return ensure_file_size_fd(fileno(file), iSize);
 
 }
 
 
-int_bool ensure_file_size(HANDLE h, uint64_t iSize)
+int_bool ensure_file_size_handle(HANDLE h, uint64_t iSize)
 {
 
    DWORD dwHi;
@@ -1259,7 +1259,7 @@ int_bool file_set_length(const char * pszName, size_t iSize)
    if(h == INVALID_HANDLE_VALUE)
       return false;
 
-   if(!ensure_file_size(h, iSize))
+   if(!ensure_file_size_handle(h, iSize))
    {
 
       ::CloseHandle(h);

@@ -58,7 +58,7 @@ namespace draw2d
 #if defined(CUBE)
 
 
-void draw2d_factory_exchange(sp(application) papp);
+void draw2d_factory_exchange(sp(::aura::application) papp);
 
 
 #endif

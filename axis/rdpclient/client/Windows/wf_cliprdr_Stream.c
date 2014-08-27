@@ -20,6 +20,9 @@
 #include "wf_cliprdr.h"
 #include "wf_cliprdr_Stream.h"
 
+#define IStream_AddRef(This) 	   ((This)->lpVtbl->AddRef(This))
+
+
 HRESULT STDMETHODCALLTYPE CliprdrStream_QueryInterface(IStream *This, REFIID riid, void **ppvObject)
 {
 	CliprdrStream *instance = (CliprdrStream *)This;

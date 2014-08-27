@@ -22,6 +22,9 @@
 #include "wf_cliprdr_DataObject.h"
 #include "wf_cliprdr_EnumFORMATETC.h"
 
+#define IDataObject_AddRef(This) 	   ((This)->lpVtbl->AddRef(This))
+#define IDataObject_Release(This) 	   ((This)->lpVtbl->Release(This))
+
 static int cliprdr_lookup_format(CliprdrDataObject *instance, FORMATETC *pFormatEtc)
 {
 	int i;
@@ -322,7 +325,7 @@ BOOL wf_create_file_obj(cliprdrContext *cliprdr, IDataObject **ppDataObject)
 	if(!ppDataObject)
 		return FALSE;
 
-	fmtetc[0].cfFormat        = RegisterClipboardFormatW(CFSTR_FILEDESCRIPTORW);
+	fmtetc[0].cfFormat        = RegisterClipboardFormat(CFSTR_FILEDESCRIPTORW);
 	fmtetc[0].dwAspect        = DVASPECT_CONTENT;
 	fmtetc[0].lindex          = 0;
 	fmtetc[0].ptd             = NULL;
@@ -331,7 +334,7 @@ BOOL wf_create_file_obj(cliprdrContext *cliprdr, IDataObject **ppDataObject)
 	stgmeds[0].hGlobal        = NULL;
 	stgmeds[0].pUnkForRelease = NULL;
 
-	fmtetc[1].cfFormat        = RegisterClipboardFormatW(CFSTR_FILECONTENTS);
+	fmtetc[1].cfFormat        = RegisterClipboardFormat(CFSTR_FILECONTENTS);
 	fmtetc[1].dwAspect        = DVASPECT_CONTENT;
 	fmtetc[1].lindex          = 0;
 	fmtetc[1].ptd             = NULL;
@@ -340,7 +343,7 @@ BOOL wf_create_file_obj(cliprdrContext *cliprdr, IDataObject **ppDataObject)
 	stgmeds[1].pstm           = NULL;
 	stgmeds[1].pUnkForRelease = NULL;
 
-	fmtetc[2].cfFormat        = RegisterClipboardFormatW(CFSTR_PREFERREDDROPEFFECT);
+	fmtetc[2].cfFormat        = RegisterClipboardFormat(CFSTR_PREFERREDDROPEFFECT);
 	fmtetc[2].dwAspect        = DVASPECT_CONTENT;
 	fmtetc[2].lindex          = 0;
 	fmtetc[2].ptd             = NULL;

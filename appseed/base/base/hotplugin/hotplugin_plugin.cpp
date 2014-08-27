@@ -841,7 +841,7 @@ namespace hotplugin
 
          uint_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
-         ensure_file_size(m_hfileBitmap, size);
+         ensure_file_size_handle(m_hfileBitmap, size);
 #ifdef METROWIN
          m_hfilemapBitmap = CreateFileMappingFromApp(
             m_hfileBitmap,
