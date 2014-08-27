@@ -115,6 +115,15 @@
     <Filter Include="Source Files\channels\tsmf">
       <UniqueIdentifier>{5a5bbf6e-da17-4a30-a946-b1a1e4be3359}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\channels\audin\winmm">
+      <UniqueIdentifier>{5ff49877-cb0e-45b5-8565-a1e30792750e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\channels\encomsp">
+      <UniqueIdentifier>{68fb77ee-6a74-4b60-99d4-d53d558aa085}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\channels\remdesk">
+      <UniqueIdentifier>{99d42a8c-f8aa-4769-8db4-482447a99760}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="axisclientchannels.def" />
@@ -364,6 +373,15 @@
     </ClCompile>
     <ClCompile Include="channels\client\tables.c">
       <Filter>Source Files\channels\client</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\audin\client\winmm\audin_winmm.c">
+      <Filter>Source Files\channels\audin\winmm</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\encomsp\client\encomsp_main.c">
+      <Filter>Source Files\channels\encomsp</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\remdesk\client\remdesk_main.c">
+      <Filter>Source Files\channels\remdesk</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

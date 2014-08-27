@@ -138,6 +138,13 @@ static int TERMINATING = 0;
 static void _tsmf_presentation_free(TSMF_PRESENTATION *presentation);
 static void _tsmf_stream_free(TSMF_STREAM *stream);
 
+#ifdef _WIN32
+
+#define snprintf _snprintf
+
+#endif
+
+
 static UINT64 get_current_time(void)
 {
 	struct timeval tp;
@@ -935,7 +942,7 @@ TSMF_STREAM *tsmf_stream_find_by_id(TSMF_PRESENTATION *presentation, UINT32 stre
 	UINT32 index;
 	UINT32 count;
 	BOOL found = FALSE;
-	TSMF_STREAM *stream;
+	TSMF_STREAM *stream = NULL;
 	ArrayList_Lock(presentation->stream_list);
 	count = ArrayList_Count(presentation->stream_list);
 

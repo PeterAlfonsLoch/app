@@ -31,7 +31,7 @@
 
 #define XMD_H
 
-#include <jpeglib.h>
+#include <freeimage/Source/LibJPEG/jpeglib.h>
 
 struct mydata_decomp
 {

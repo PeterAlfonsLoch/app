@@ -26,6 +26,12 @@
 
 #include <winpr/stream.h>
 
+/* Ignore GCC attributes if this is not GCC */
+#ifndef __GNUC__
+#define __attribute__(x) /* __attribute__(x) */
+#endif
+
+
 /* a safer free helper */
 #define zfree(p) do { if (p != NULL) {free(p); p = NULL;} } while (0)
 

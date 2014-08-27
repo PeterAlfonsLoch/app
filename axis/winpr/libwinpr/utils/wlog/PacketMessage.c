@@ -35,7 +35,7 @@
 #include <sys/timeb.h>
 #include <winpr/windows.h>
 
-static int gettimeofday(struct timeval* tp, void* tz)
+int gettimeofday(struct timeval* tp, void* tz)
 {
 	struct _timeb timebuffer;
 	_ftime(&timebuffer);

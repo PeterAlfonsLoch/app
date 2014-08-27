@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="channels\audin\client\audin_main.c" />
+    <ClCompile Include="channels\audin\client\winmm\audin_winmm.c" />
     <ClCompile Include="channels\client\addin.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
       </ExcludedFromBuild>
@@ -127,6 +128,7 @@
     <ClCompile Include="channels\drive\client\drive_main.c" />
     <ClCompile Include="channels\drive\client\statvfs.c" />
     <ClCompile Include="channels\echo\client\echo_main.c" />
+    <ClCompile Include="channels\encomsp\client\encomsp_main.c" />
     <ClCompile Include="channels\parallel\client\parallel_main.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -146,6 +148,7 @@
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c" />
     <ClCompile Include="channels\rdpsnd\client\rdpsnd_main.c" />
     <ClCompile Include="channels\rdpsnd\client\winmm\rdpsnd_winmm.c" />
+    <ClCompile Include="channels\remdesk\client\remdesk_main.c" />
     <ClCompile Include="channels\serial\client\serial_main.c" />
     <ClCompile Include="channels\smartcard\client\smartcard_main.c" />
     <ClCompile Include="channels\smartcard\client\smartcard_operations.c" />

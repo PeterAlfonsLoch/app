@@ -125,7 +125,19 @@ static INLINE UINT16 __lzcnt16(UINT16 x) {
 
 #endif
 
-#ifndef _WIN32
+#ifdef _WIN32
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+   WINPR_API int gettimeofday(struct timeval* tp,void* tz);
+
+#ifdef __cplusplus
+}
+#endif
+
+#else
 
 #define CopyMemory(Destination, Source, Length)		memcpy((Destination), (Source), (Length))
 #define MoveMemory(Destination, Source, Length)		memmove((Destination), (Source), (Length))
@@ -177,6 +189,8 @@ WINPR_API errno_t wmemmove_s(WCHAR* dest, size_t numberOfElements, const WCHAR* 
 #ifdef __cplusplus
 }
 #endif
+
+
 
 
 #endif
