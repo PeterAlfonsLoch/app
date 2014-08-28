@@ -24,10 +24,19 @@
 
 #include "wf_interface.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 CLASS_DECL_RDPCLIENT HBITMAP wf_create_dib(wfContext* wfc,int width,int height,int bpp,BYTE* data,BYTE** pdata);
 CLASS_DECL_RDPCLIENT wfBitmap* wf_image_new(wfContext* wfc,int width,int height,int bpp,BYTE* data);
 CLASS_DECL_RDPCLIENT void wf_image_free(wfBitmap* image);
 
 CLASS_DECL_RDPCLIENT void wf_register_graphics(rdpGraphics* graphics);
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
 
 #endif /* WF_GRAPHICS */
