@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-void dappy(const char * psz);
+//void dappy(const char * psz);
 
 #ifdef WINDOWSEX
 

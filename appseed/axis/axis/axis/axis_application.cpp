@@ -171,7 +171,7 @@ namespace axis
       SCAST_PTR(::message::base,pbase,pobj);
 
       sp(::user::frame_window) pTopFrameWnd;
-      ::user::interaction * pMainWnd;
+      //::user::interaction * pMainWnd;
       ::user::interaction * pMsgWnd;
       switch(code)
       {

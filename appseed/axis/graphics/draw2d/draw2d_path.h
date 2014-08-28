@@ -152,6 +152,8 @@ namespace draw2d
       virtual bool add_line(point p);
       virtual bool add_line(pointd p);
 
+      virtual bool add_move(double x,double y);
+      virtual bool add_move(pointd p);
       virtual bool add_move(int32_t x, int32_t y);
       virtual bool add_move(point p);
 

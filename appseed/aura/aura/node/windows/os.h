@@ -19,21 +19,6 @@ CLASS_DECL_AURA void __throw_last_cleanup();
 CLASS_DECL_AURA void __try_cleanup();
 
 
-namespace windows
-{
-   
-
-   class interaction_impl;
-
-
-} // namespace windows
-
-
-
-// interaction_impl creation hooking
-CLASS_DECL_AURA bool hook_window_create(::windows::interaction_impl * pwindow);
-CLASS_DECL_AURA bool unhook_window_create();
-CLASS_DECL_AURA void reset_message_cache();
 
 
 #include "win1.h"

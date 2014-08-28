@@ -155,7 +155,16 @@ namespace draw2d
 
    }
 
-   bool path::add_move(int32_t x, int32_t y)
+   
+   bool path::add_move(int32_t x,int32_t y)
+   {
+      
+      return add_move((double)x,(double)y);
+
+   }
+
+
+   bool path::add_move(double x, double y)
    {
 
       element e;
@@ -171,7 +180,6 @@ namespace draw2d
       m_pt.y = y;
 
       m_bUpdated = false;
-
 
       return true;
 
@@ -383,6 +391,13 @@ namespace draw2d
    {
 
       return add_move(p.x, p.y);
+
+   }
+
+   bool path::add_move(pointd p)
+   {
+
+      return add_move(p.x,p.y);
 
    }
 
