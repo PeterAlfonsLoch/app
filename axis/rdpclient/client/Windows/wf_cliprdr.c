@@ -596,10 +596,10 @@ void wf_cliprdr_init(wfContext* wfc, rdpChannels* channels)
 	cliprdr->file_names = (wchar_t **)calloc(1, cliprdr->file_array_size * sizeof(wchar_t *));
 	cliprdr->fileDescriptor = (FILEDESCRIPTORW **)calloc(1, cliprdr->file_array_size * sizeof(FILEDESCRIPTORW *));
 
-	cliprdr->response_data_event = CreateEvent(NULL, TRUE, FALSE, L"response_data_event");
+	cliprdr->response_data_event = CreateEventW(NULL, TRUE, FALSE, L"response_data_event");
 	assert(cliprdr->response_data_event != NULL);
 
-	cliprdr->req_fevent = CreateEvent(NULL, TRUE, FALSE, L"request_filecontents_event");
+	cliprdr->req_fevent = CreateEventW(NULL, TRUE, FALSE, L"request_filecontents_event");
 	cliprdr->ID_FILEDESCRIPTORW = RegisterClipboardFormatW(CFSTR_FILEDESCRIPTORW);
 	cliprdr->ID_FILECONTENTS = RegisterClipboardFormatW(CFSTR_FILECONTENTS);
 	cliprdr->ID_PREFERREDDROPEFFECT = RegisterClipboardFormatW(CFSTR_PREFERREDDROPEFFECT);
@@ -715,7 +715,7 @@ static FILEDESCRIPTORW *wf_cliprdr_get_file_descriptor(WCHAR* file_name, int pat
 
 	fd->dwFlags = FD_ATTRIBUTES | FD_FILESIZE | FD_WRITESTIME | FD_PROGRESSUI;
 
-	fd->dwFileAttributes = GetFileAttributes(file_name);
+	fd->dwFileAttributes = GetFileAttributesW(file_name);
 
 	if (!GetFileTime(hFile, NULL, NULL, &fd->ftLastWriteTime))
 	{
@@ -756,14 +756,14 @@ static void wf_cliprdr_add_to_file_arrays(cliprdrContext *cliprdr, WCHAR *full_f
 
 static void wf_cliprdr_traverse_directory(cliprdrContext *cliprdr, wchar_t *Dir, int pathLen)
 {
-	WIN32_FIND_DATA FindFileData;
+	WIN32_FIND_DATAW FindFileData;
 	HANDLE hFind;
 	wchar_t DirSpec[MAX_PATH];
 
-	StringCchCopy(DirSpec,MAX_PATH,Dir);
-	StringCchCat(DirSpec,MAX_PATH,TEXT("\\*"));
+	StringCchCopyW(DirSpec,MAX_PATH,Dir);
+	StringCchCatW(DirSpec,MAX_PATH,L"\\*");
 
-	hFind = FindFirstFile(DirSpec,&FindFileData);
+	hFind = FindFirstFileW(DirSpec,&FindFileData);
 
 	if(hFind == INVALID_HANDLE_VALUE)
 	{
@@ -785,9 +785,9 @@ static void wf_cliprdr_traverse_directory(cliprdrContext *cliprdr, wchar_t *Dir,
 		{
 			wchar_t DirAdd[MAX_PATH];
 
-			StringCchCopy(DirAdd,MAX_PATH,Dir);
-			StringCchCat(DirAdd,MAX_PATH,TEXT("\\"));
-			StringCchCat(DirAdd,MAX_PATH,FindFileData.cFileName);
+			StringCchCopyW(DirAdd,MAX_PATH,Dir);
+			StringCchCatW(DirAdd,MAX_PATH,TEXT("\\"));
+			StringCchCatW(DirAdd,MAX_PATH,FindFileData.cFileName);
 			wf_cliprdr_add_to_file_arrays(cliprdr, DirAdd, pathLen);
 			wf_cliprdr_traverse_directory(cliprdr, DirAdd, pathLen);
 		}
@@ -795,9 +795,9 @@ static void wf_cliprdr_traverse_directory(cliprdrContext *cliprdr, wchar_t *Dir,
 		{
 			WCHAR fileName[MAX_PATH];
 
-			StringCchCopy(fileName,MAX_PATH,Dir);
-			StringCchCat(fileName,MAX_PATH,TEXT("\\"));
-			StringCchCat(fileName,MAX_PATH,FindFileData.cFileName);
+			StringCchCopyW(fileName,MAX_PATH,Dir);
+			StringCchCatW(fileName,MAX_PATH,TEXT("\\"));
+			StringCchCatW(fileName,MAX_PATH,FindFileData.cFileName);
 
 			wf_cliprdr_add_to_file_arrays(cliprdr, fileName, pathLen);
 		}
