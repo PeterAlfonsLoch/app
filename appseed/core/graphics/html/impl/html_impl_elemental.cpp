@@ -208,13 +208,13 @@ namespace html
 
 //         e_tag etag = m_pelemental->m_etag;
 
-         int cxMax = 0;
+         float cxMax = 0.f;
 
-         int cxMaxMax = 0;
+         float cxMaxMax = 0.f;
 
-         int cxMin = 0;
+         float cxMin = 0.f;
 
-         int cxMinMax = 0;
+         float cxMinMax = 0.f;
 
          for (index i = 0; i < m_pelemental->m_elementalptra.get_count(); i++)
          {
@@ -443,9 +443,9 @@ namespace html
          }
 
 
-         int iTotalMax = 0;
+         float fTotalMax = 0;
 
-         int iTotalMin = 0;
+         float fTotalMin = 0;
 
          elemental * pelemental = get_first_sibling();
 
@@ -456,24 +456,24 @@ namespace html
 
             iCount++;
 
-            iTotalMax += pelemental->m_cxMax;
+            fTotalMax += pelemental->m_cxMax;
 
-            iTotalMin += pelemental->m_cxMin;
+            fTotalMin += pelemental->m_cxMin;
 
             pelemental = pelemental->get_next_sibling();
 
          }
 
-         if (iTotalMax < m_pelemental->m_pparent->m_pimpl->m_bound.get_cx())
+         if (fTotalMax < m_pelemental->m_pparent->m_pimpl->m_bound.get_cx())
          {
 
-            m_box.set_cx(m_cxMax + (m_pelemental->m_pparent->m_pimpl->m_bound.get_cx() - iTotalMax) / iCount);
+            m_box.set_cx(m_cxMax + (m_pelemental->m_pparent->m_pimpl->m_bound.get_cx() - fTotalMax) / iCount);
 
          }
-         else if (iTotalMin < m_pelemental->m_pparent->m_pimpl->m_bound.get_cx())
+         else if (fTotalMin < m_pelemental->m_pparent->m_pimpl->m_bound.get_cx())
          {
 
-            m_box.set_cx(m_cxMin + (m_pelemental->m_pparent->m_pimpl->m_bound.get_cx() - iTotalMin) / iCount);
+            m_box.set_cx(m_cxMin + (m_pelemental->m_pparent->m_pimpl->m_bound.get_cx() - fTotalMin) / iCount);
 
          }
          else
@@ -593,9 +593,9 @@ namespace html
 
          string str = m_pelemental->m_strBody;
 
-         int cx = m_box.get_cx();
+         float cx = m_box.get_cx();
 
-         int cy = m_box.get_cy();
+         float cy = m_box.get_cy();
 
          m_box.set_cx(cx);
 

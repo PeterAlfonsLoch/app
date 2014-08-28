@@ -1,10 +1,6 @@
 #include "framework.h"
 
 
-void dappy(const char * psz);
-
-
-
 #include "ft2build.h"
 #include FT_FREETYPE_H
 

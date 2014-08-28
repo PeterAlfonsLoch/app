@@ -1,17 +1,6 @@
 #include "framework.h"
 
 
-
-void dappy(const char * psz)
-{
-
-   //printf("app._ : %s : %s\n",_argv[2],psz);
-   //printf("hello!!    : %s\n",psz);
-   //::OutputDebugString("hello!!    : " + string(psz) + "\n");
-
-}
-
-
 namespace base
 {
 

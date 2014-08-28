@@ -31,6 +31,9 @@ namespace process
    };
 
 
+   typedef sp(process) process_sp;
+
+
 } // namespace process
 
 

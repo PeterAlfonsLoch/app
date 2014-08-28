@@ -4849,7 +4849,7 @@ namespace draw2d_direct2d
       CustomTextRenderer * pr = new CustomTextRenderer(GetD2D1Factory1(),m_prendertarget.Get(),get_os_pen_brush(ppen));
 
 
-      playout->Draw(NULL, pr, path.m_x, path.m_y);
+      playout->Draw(NULL, pr, (FLOAT) path.m_x, (FLOAT) path.m_y);
 
 
       delete pr;

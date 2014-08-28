@@ -252,9 +252,9 @@ namespace draw2d_direct2d
    {
       
        const D2D1_ELLIPSE ellipse = D2D1::Ellipse(
-            D2D1::Point2F((m_x2 + m_x1) / 2.f, (m_y2 + m_y1) / 2.f),
-            (m_x2 - m_x1) / 2.f,
-            (m_y2 - m_y1) / 2.f
+            D2D1::Point2F((FLOAT) (m_x2 + m_x1) / 2.f, (FLOAT) (m_y2 + m_y1) / 2.f),
+            (FLOAT)(m_x2 - m_x1) / 2.f,
+            (FLOAT)(m_y2 - m_y1) / 2.f
             );
 
       ID2D1EllipseGeometry * pgeometry = NULL;
@@ -301,7 +301,7 @@ namespace draw2d_direct2d
 
       ::draw2d::path_sp path(allocer());
 
-      point_array pa;
+      pointd_array pa;
 
       /*if(m_efillmode == ::draw2d::fill_mode_alternate)
       {
@@ -320,7 +320,7 @@ namespace draw2d_direct2d
          pa.remove_all();
          for(int j = 0; j < jCount; j++)
          {
-            pa.add(point(m_lppoints[n].x, m_lppoints[n].y));
+            pa.add(pointd(m_lppoints[n].x, m_lppoints[n].y));
             n++;
          }
          path->begin_figure(true, m_efillmode);
