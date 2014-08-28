@@ -19,6 +19,8 @@
 #ifndef __WF_CLIPRDR_H
 #define __WF_CLIPRDR_H
 
+#include "../../freerdp_rdpclient_setup.h"
+
 #define CINTERFACE
 #define COBJMACROS
 
@@ -78,19 +80,19 @@ extern "C" {
       FILEDESCRIPTORW **fileDescriptor;
    };
 
-   void wf_cliprdr_init(wfContext* wfc,rdpChannels* channels);
-   void wf_cliprdr_uninit(wfContext* wfc);
-   void wf_process_cliprdr_event(wfContext* wfc,wMessage* event);
-   BOOL wf_cliprdr_process_selection_notify(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
-   BOOL wf_cliprdr_process_selection_request(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
-   BOOL wf_cliprdr_process_selection_clear(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
-   BOOL wf_cliprdr_process_property_notify(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
-   void wf_cliprdr_check_owner(wfContext* wfc);
+   CLASS_DECL_RDPCLIENT void wf_cliprdr_init(wfContext* wfc,rdpChannels* channels);
+   CLASS_DECL_RDPCLIENT void wf_cliprdr_uninit(wfContext* wfc);
+   CLASS_DECL_RDPCLIENT void wf_process_cliprdr_event(wfContext* wfc,wMessage* event);
+   CLASS_DECL_RDPCLIENT BOOL wf_cliprdr_process_selection_notify(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
+   CLASS_DECL_RDPCLIENT BOOL wf_cliprdr_process_selection_request(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
+   CLASS_DECL_RDPCLIENT BOOL wf_cliprdr_process_selection_clear(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
+   CLASS_DECL_RDPCLIENT BOOL wf_cliprdr_process_property_notify(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
+   CLASS_DECL_RDPCLIENT void wf_cliprdr_check_owner(wfContext* wfc);
 
-   int cliprdr_send_data_request(cliprdrContext *cliprdr,UINT32 format);
-   int cliprdr_send_lock(cliprdrContext *cliprdr);
-   int cliprdr_send_unlock(cliprdrContext *cliprdr);
-   int cliprdr_send_request_filecontents(cliprdrContext *cliprdr,void *streamid,
+   CLASS_DECL_RDPCLIENT int cliprdr_send_data_request(cliprdrContext *cliprdr,UINT32 format);
+   CLASS_DECL_RDPCLIENT int cliprdr_send_lock(cliprdrContext *cliprdr);
+   CLASS_DECL_RDPCLIENT int cliprdr_send_unlock(cliprdrContext *cliprdr);
+   CLASS_DECL_RDPCLIENT int cliprdr_send_request_filecontents(cliprdrContext *cliprdr,void *streamid,
       int index,int flag,DWORD positionhigh,
       DWORD positionlow,ULONG request);
 
