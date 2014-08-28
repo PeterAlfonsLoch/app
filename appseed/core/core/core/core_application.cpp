@@ -1627,7 +1627,7 @@ namespace core
 
                      uint32_t dwExitCode;
                      string str;
-                     ::process::process process(allocer());
+                     ::process::process_sp process(allocer());
                      bool bOk = true;
                      if(!process.create_child_process(strPath,false,System.dir().name(strPath)))
                      {
