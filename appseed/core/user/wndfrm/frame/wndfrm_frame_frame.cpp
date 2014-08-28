@@ -28,6 +28,7 @@ namespace user
 
             m_iControlBoxRight = 0;
             m_bControlBoxAlignRight = true;
+            m_bInitialControlBoxPosition = true;
 
          }
 
@@ -582,8 +583,10 @@ namespace user
             int iControlBoxHeight = m_spcontrolbox->calc_control_box_height();
 
 
-            if (bInitialControlBoxPosition)
+            if(m_bInitialControlBoxPosition || bInitialControlBoxPosition)
             {
+
+               m_bInitialControlBoxPosition = false;
 
                int iControlBoxWidthFullScreen = m_spcontrolbox->calc_control_box_full_screen_width();
                int iControlBoxWidthZoomed = m_spcontrolbox->calc_control_box_zoomed_width();

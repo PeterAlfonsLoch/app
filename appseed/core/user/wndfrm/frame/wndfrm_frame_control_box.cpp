@@ -217,6 +217,10 @@ namespace user
 
                         GetWindowRect(rectWindow);
 
+                        rectWindow.left =MIN(rectWindow.left,rectWindow.right);
+                        rectWindow.bottom =MIN(rectWindow.top,rectWindow.bottom);
+
+
                         if (ptCursor.x >= rectWindow.left && ptCursor.y <= rectWindow.right && ptCursor.y == 0)
                         {
 
@@ -241,6 +245,9 @@ namespace user
                   rect rectWindow;
 
                   GetWindowRect(rectWindow);
+
+                  rectWindow.left =MIN(rectWindow.left,rectWindow.right);
+                  rectWindow.bottom =MIN(rectWindow.top,rectWindow.bottom);
 
                   point pt(0, 0);
 

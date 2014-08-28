@@ -186,6 +186,13 @@ namespace user
 
                eappearanceRestore = m_eappearanceBefore;
 
+               if(m_eappearanceBefore == m_eappearance)
+               {
+                  
+                  eappearanceRestore = AppearanceNormal;
+
+               }
+
             }
             else
             {
