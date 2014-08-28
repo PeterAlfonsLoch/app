@@ -161,7 +161,7 @@ typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
 typedef ULONG_PTR SIZE_T;
 typedef unsigned int ULONG32;
 typedef unsigned __int64 ULONG64;
-typedef wchar_t UNICODE;
+typedef wchar_t BYEWINDOWS_UNICODE;
 typedef unsigned short USHORT;
 #define VOID void
 typedef void *PVOID, *LPVOID;
@@ -193,13 +193,13 @@ typedef struct _LUID
 typedef GUID IID;
 typedef IID* REFIID;
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define _T(x)	L ## x
 #else
 #define _T(x)	x
 #endif
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 typedef LPWSTR PTSTR;
 typedef LPWSTR LPTCH;
 typedef LPWSTR LPTSTR;

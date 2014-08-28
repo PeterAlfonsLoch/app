@@ -212,7 +212,7 @@ int credssp_ntlm_client_init(rdpCredssp* credssp)
 	spn = (SEC_CHAR*) malloc(length + 1);
 	sprintf(spn, "%s%s", TERMSRV_SPN_PREFIX, settings->ServerHostname);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 	credssp->ServicePrincipalName = (LPTSTR) malloc(length * 2 + 2);
 	MultiByteToWideChar(CP_UTF8, 0, spn, length,
 		(LPWSTR) credssp->ServicePrincipalName, length);
@@ -464,7 +464,7 @@ int credssp_server_authenticate(rdpCredssp* credssp)
 			return 0;
 		}
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 		pInitSecurityInterface = (INIT_SECURITY_INTERFACE) GetProcAddress(hSSPI, "InitSecurityInterfaceW");
 #else
 		pInitSecurityInterface = (INIT_SECURITY_INTERFACE) GetProcAddress(hSSPI, "InitSecurityInterfaceA");
@@ -1302,7 +1302,7 @@ LPTSTR credssp_make_spn(const char* ServiceClass, const char* hostname)
 	LPTSTR ServiceClassX = NULL;
 	LPTSTR ServicePrincipalName = NULL;
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 	ConvertToUnicode(CP_UTF8, 0, hostname, -1, &hostnameX, 0);
 	ConvertToUnicode(CP_UTF8, 0, ServiceClass, -1, &ServiceClassX, 0);
 #else

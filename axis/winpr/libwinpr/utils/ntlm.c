@@ -39,7 +39,7 @@
 
 /**
  * Define NTOWFv1(Password, User, Domain) as
- * 	MD4(UNICODE(Password))
+ * 	MD4(BYEWINDOWS_UNICODE(Password))
  * EndDefine
  */
 
@@ -76,8 +76,8 @@ BYTE* NTOWFv1A(LPSTR Password, UINT32 PasswordLength, BYTE* NtHash)
 
 /**
  * Define NTOWFv2(Password, User, Domain) as
- * 	HMAC_MD5(MD4(UNICODE(Password)),
- * 		UNICODE(ConcatenationOf(UpperCase(User), Domain)))
+ * 	HMAC_MD5(MD4(BYEWINDOWS_UNICODE(Password)),
+ * 		BYEWINDOWS_UNICODE(ConcatenationOf(UpperCase(User), Domain)))
  * EndDefine
  */
 

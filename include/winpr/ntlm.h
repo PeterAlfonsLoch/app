@@ -47,7 +47,7 @@ WINPR_API BYTE* NTOWFv2FromHashA(BYTE* NtHashV1, LPSTR User, UINT32 UserLength,
 }
 #endif
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define NTOWFv1 		NTOWFv1W
 #define NTOWFv2 		NTOWFv2W
 #define NTOWFv2FromHash		NTOWFv2FromHashW

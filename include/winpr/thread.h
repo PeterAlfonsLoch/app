@@ -76,7 +76,7 @@ typedef struct _STARTUPINFOW
 	HANDLE hStdError;
 } STARTUPINFOW, *LPSTARTUPINFOW;
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 typedef STARTUPINFOW	STARTUPINFO;
 typedef LPSTARTUPINFOW	LPSTARTUPINFO;
 #else
@@ -122,7 +122,7 @@ WINPR_API BOOL CreateProcessWithTokenW(HANDLE hToken, DWORD dwLogonFlags,
 		LPCWSTR lpApplicationName, LPWSTR lpCommandLine, DWORD dwCreationFlags, LPVOID lpEnvironment,
 		LPCWSTR lpCurrentDirectory, LPSTARTUPINFOW lpStartupInfo, LPPROCESS_INFORMATION lpProcessInformation);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CreateProcess		CreateProcessW
 #define CreateProcessAsUser	CreateProcessAsUserW
 #define CreateProcessWithLogon	CreateProcessWithLogonW
@@ -146,7 +146,7 @@ WINPR_API BOOL TerminateProcess(HANDLE hProcess, UINT uExitCode);
 
 WINPR_API LPWSTR* CommandLineToArgvW(LPCWSTR lpCmdLine, int* pNumArgs);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CommandLineToArgv	CommandLineToArgvW
 #else
 #define CommandLineToArgv	CommandLineToArgvA

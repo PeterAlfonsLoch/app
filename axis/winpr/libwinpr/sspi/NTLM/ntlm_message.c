@@ -827,7 +827,7 @@ SECURITY_STATUS ntlm_read_AuthenticateMessage(NTLM_CONTEXT* context, PSecBuffer 
 
 	if (message->UserName.Len > 0)
 	{
-		credentials->identity.User = (UINT16*) malloc(message->UserName.Len);
+		credentials->identity.User = (unsigned char*) malloc(message->UserName.Len);
 
 		if (!credentials->identity.User)
 			return SEC_E_INTERNAL_ERROR;
@@ -838,7 +838,7 @@ SECURITY_STATUS ntlm_read_AuthenticateMessage(NTLM_CONTEXT* context, PSecBuffer 
 
 	if (message->DomainName.Len > 0)
 	{
-		credentials->identity.Domain = (UINT16*) malloc(message->DomainName.Len);
+      credentials->identity.Domain = (unsigned char*)malloc(message->DomainName.Len);
 
 		if (!credentials->identity.Domain)
 			return SEC_E_INTERNAL_ERROR;

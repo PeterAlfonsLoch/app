@@ -27,9 +27,9 @@ namespace windows
 
 
 // interaction_impl creation hooking
-CLASS_DECL_AURA bool hook_window_create(::windows::interaction_impl * pwindow);
-CLASS_DECL_AURA bool unhook_window_create();
-CLASS_DECL_AURA void reset_message_cache();
+CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow);
+CLASS_DECL_AXIS bool unhook_window_create();
+CLASS_DECL_AXIS void reset_message_cache();
 
 
 

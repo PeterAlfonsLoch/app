@@ -29,13 +29,13 @@
 
 #else
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 typedef WCHAR TCHAR;
 #else
 typedef CHAR TCHAR;
 #endif
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define _tprintf	wprintf
 #define _tcslen		_wcslen
 #define _tcsdup		_wcsdup

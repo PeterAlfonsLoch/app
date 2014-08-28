@@ -325,7 +325,7 @@ int sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, const char* user, co
 	if (identity->User)
 		free(identity->User);
 
-	identity->User = (UINT16*) NULL;
+   identity->User = (unsigned char*)NULL;
 	identity->UserLength = 0;
 
 	if (user)
@@ -341,7 +341,7 @@ int sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, const char* user, co
 	if (identity->Domain)
 		free(identity->Domain);
 
-	identity->Domain = (UINT16*) NULL;
+   identity->Domain = (unsigned char*)NULL;
 	identity->DomainLength = 0;
 
 	if (domain)
@@ -398,7 +398,7 @@ int sspi_CopyAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, SEC_WINNT_AUTH_IDEN
 
 	if (identity->UserLength > 0)
 	{
-		identity->User = (UINT16*) malloc((identity->UserLength + 1) * sizeof(WCHAR));
+      identity->User = (unsigned char*)malloc((identity->UserLength + 1) * sizeof(WCHAR));
 
 		if (!identity->User)
 			return -1;
@@ -411,7 +411,7 @@ int sspi_CopyAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, SEC_WINNT_AUTH_IDEN
 
 	if (identity->DomainLength > 0)
 	{
-		identity->Domain = (UINT16*) malloc((identity->DomainLength + 1) * sizeof(WCHAR));
+      identity->Domain = (unsigned char*)malloc((identity->DomainLength + 1) * sizeof(WCHAR));
 
 		if (!identity->Domain)
 			return -1;
@@ -427,7 +427,7 @@ int sspi_CopyAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, SEC_WINNT_AUTH_IDEN
 
 	if (identity->PasswordLength > 0)
 	{
-		identity->Password = (UINT16*) malloc((identity->PasswordLength + 1) * sizeof(WCHAR));
+      identity->Password = (unsigned char*)malloc((identity->PasswordLength + 1) * sizeof(WCHAR));
 
 		if (!identity->Password)
 			return -1;

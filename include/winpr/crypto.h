@@ -485,7 +485,7 @@ WINPR_API HCERTSTORE CertOpenSystemStoreA(HCRYPTPROV_LEGACY hProv, LPCSTR szSubs
 
 WINPR_API BOOL CertCloseStore(HCERTSTORE hCertStore, DWORD dwFlags);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CertOpenSystemStore	CertOpenSystemStoreW
 #else
 #define CertOpenSystemStore	CertOpenSystemStoreA
@@ -509,7 +509,7 @@ DWORD CertGetNameStringA(PCCERT_CONTEXT pCertContext, DWORD dwType,
 }
 #endif
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CertGetNameString	CertGetNameStringW
 #else
 #define CertGetNameString	CertGetNameStringA
@@ -595,7 +595,7 @@ BOOL CryptStringToBinaryA(LPCSTR pszString, DWORD cchString, DWORD dwFlags, BYTE
 BOOL CryptBinaryToStringW(CONST BYTE* pbBinary, DWORD cbBinary, DWORD dwFlags, LPWSTR pszString, DWORD* pcchString);
 BOOL CryptBinaryToStringA(CONST BYTE* pbBinary, DWORD cbBinary, DWORD dwFlags, LPSTR pszString, DWORD* pcchString);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CryptStringToBinary	CryptStringToBinaryW
 #define CryptBinaryToString	CryptBinaryToStringW
 #else

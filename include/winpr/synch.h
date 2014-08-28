@@ -52,7 +52,7 @@ WINPR_API HANDLE OpenMutexW(DWORD dwDesiredAccess, BOOL bInheritHandle,LPCWSTR l
 
 WINPR_API BOOL ReleaseMutex(HANDLE hMutex);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CreateMutex	CreateMutexW
 #define CreateMutexEx	CreateMutexExW
 #define OpenMutex	OpenMutexW
@@ -70,7 +70,7 @@ WINPR_API HANDLE CreateSemaphoreW(LPSECURITY_ATTRIBUTES lpSemaphoreAttributes, L
 WINPR_API HANDLE OpenSemaphoreA(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCSTR lpName);
 WINPR_API HANDLE OpenSemaphoreW(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCWSTR lpName);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CreateSemaphore		CreateSemaphoreW
 #define OpenSemaphore		OpenSemaphoreW
 #else
@@ -94,7 +94,7 @@ WINPR_API HANDLE OpenEventW(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCWSTR 
 WINPR_API BOOL SetEvent(HANDLE hEvent);
 WINPR_API BOOL ResetEvent(HANDLE hEvent);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CreateEvent		CreateEventW
 #define CreateEventEx		CreateEventExW
 #define OpenEvent		OpenEventW
@@ -236,7 +236,7 @@ WINPR_API HANDLE OpenWaitableTimerW(DWORD dwDesiredAccess, BOOL bInheritHandle, 
 
 WINPR_API BOOL CancelWaitableTimer(HANDLE hTimer);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CreateWaitableTimer		CreateWaitableTimerW
 #define CreateWaitableTimerEx		CreateWaitableTimerExW
 #define OpenWaitableTimer		OpenWaitableTimerW
@@ -343,7 +343,7 @@ WINPR_API HANDLE CreateFileDescriptorEventA(LPSECURITY_ATTRIBUTES lpEventAttribu
 WINPR_API HANDLE CreateWaitObjectEvent(LPSECURITY_ATTRIBUTES lpEventAttributes,
 		BOOL bManualReset, BOOL bInitialState, void* pObject);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CreateFileDescriptorEvent	CreateFileDescriptorEventW
 #else
 #define CreateFileDescriptorEvent	CreateFileDescriptorEventA

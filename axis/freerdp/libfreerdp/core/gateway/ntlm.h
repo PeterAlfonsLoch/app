@@ -56,13 +56,13 @@ struct rdp_ntlm
 	SecBuffer outputBuffer[2];
 	BOOL haveContext;
 	BOOL haveInputBuffer;
-	LPTSTR ServicePrincipalName;
+	LPWSTR ServicePrincipalName;
 	SecBufferDesc inputBufferDesc;
 	SecBufferDesc outputBufferDesc;
 	CredHandle credentials;
 	BOOL confidentiality;
-	SecPkgInfo* pPackageInfo;
-	SecurityFunctionTable* table;
+	SecPkgInfoW* pPackageInfo;
+	SecurityFunctionTableW* table;
 	SEC_WINNT_AUTH_IDENTITY identity;
 	SecPkgContext_Sizes ContextSizes;
 	SecPkgContext_Bindings* Bindings;

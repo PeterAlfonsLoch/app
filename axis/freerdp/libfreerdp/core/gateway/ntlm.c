@@ -49,15 +49,15 @@ BOOL ntlm_client_init(rdpNtlm* ntlm, BOOL http, char* user, char* domain, char* 
 #ifdef WITH_NATIVE_SSPI
 	{
 		HMODULE hSSPI;
-		INIT_SECURITY_INTERFACE InitSecurityInterface;
+		INIT_SECURITY_INTERFACE_W InitSecurityInterface;
 		PSecurityFunctionTable pSecurityInterface = NULL;
 
 		hSSPI = LoadLibrary(_T("secur32.dll"));
 
-#ifdef UNICODE
-		InitSecurityInterface = (INIT_SECURITY_INTERFACE) GetProcAddress(hSSPI, "InitSecurityInterfaceW");
+#ifdef BYEWINDOWS_UNICODE
+		InitSecurityInterface = (INIT_SECURITY_INTERFACE_W) GetProcAddress(hSSPI, "InitSecurityInterfaceW");
 #else
-		InitSecurityInterface = (INIT_SECURITY_INTERFACE) GetProcAddress(hSSPI, "InitSecurityInterfaceA");
+		InitSecurityInterface = (INIT_SECURITY_INTERFACE_A) GetProcAddress(hSSPI, "InitSecurityInterfaceA");
 #endif
 		ntlm->table = (*InitSecurityInterface)();
 	}
@@ -67,7 +67,7 @@ BOOL ntlm_client_init(rdpNtlm* ntlm, BOOL http, char* user, char* domain, char* 
 
 	sspi_SetAuthIdentity(&(ntlm->identity), user, domain, password);
 
-	status = ntlm->table->QuerySecurityPackageInfo(NTLMSP_NAME, &ntlm->pPackageInfo);
+	status = ntlm->table->QuerySecurityPackageInfoW(NTLMSP_NAME, &ntlm->pPackageInfo);
 
 	if (status != SEC_E_OK)
 	{
@@ -77,7 +77,7 @@ BOOL ntlm_client_init(rdpNtlm* ntlm, BOOL http, char* user, char* domain, char* 
 
 	ntlm->cbMaxToken = ntlm->pPackageInfo->cbMaxToken;
 
-	status = ntlm->table->AcquireCredentialsHandle(NULL, NTLMSP_NAME,
+	status = ntlm->table->AcquireCredentialsHandleW(NULL, NTLMSP_NAME,
 			SECPKG_CRED_OUTBOUND, NULL, &ntlm->identity, NULL, NULL, &ntlm->credentials, &ntlm->expiration);
 
 	if (status != SEC_E_OK)
@@ -116,43 +116,51 @@ BOOL ntlm_client_init(rdpNtlm* ntlm, BOOL http, char* user, char* domain, char* 
 	return TRUE;
 }
 
-BOOL ntlm_client_make_spn(rdpNtlm* ntlm, LPCTSTR ServiceClass, char* hostname)
+BOOL ntlm_client_make_spn(rdpNtlm* ntlm, LPCTSTR ServiceClassParam, char* hostname)
 {
 	int length;
 	DWORD status;
 	DWORD SpnLength;
-	LPTSTR hostnameX;
+	LPWSTR hostnameX;
+   LPWSTR ServiceClass;
+   
 
 	length = 0;
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 	length = strlen(hostname);
-	hostnameX = (LPWSTR) malloc((length + 1)* sizeof(TCHAR));
+	hostnameX = (LPWSTR) malloc((length + 1)* sizeof(WCHAR));
 	MultiByteToWideChar(CP_UTF8, 0, hostname, length, hostnameX, length);
 	hostnameX[length] = 0;
+
+   length = strlen(ServiceClassParam);
+   ServiceClass = (LPWSTR)malloc((length + 1)* sizeof(WCHAR));
+   MultiByteToWideChar(CP_UTF8,0,ServiceClassParam,length,ServiceClass,length);
+   ServiceClass[length] = 0;
+
 #else
 	hostnameX = hostname;
 #endif
 
 	if (!ServiceClass)
 	{
-		ntlm->ServicePrincipalName = (LPTSTR) _tcsdup(hostnameX);
+		ntlm->ServicePrincipalName = (LPWSTR) _wcsdup(hostnameX);
 		if (!ntlm->ServicePrincipalName)
 			return FALSE;
 		return TRUE;
 	}
 
 	SpnLength = 0;
-	status = DsMakeSpn(ServiceClass, hostnameX, NULL, 0, NULL, &SpnLength, NULL);
+	status = DsMakeSpnW(ServiceClass, hostnameX, NULL, 0, NULL, &SpnLength, NULL);
 
 	if (status != ERROR_BUFFER_OVERFLOW)
 		return FALSE;
 
-	ntlm->ServicePrincipalName = (LPTSTR) malloc(SpnLength * sizeof(TCHAR));
+	ntlm->ServicePrincipalName = (LPWSTR) malloc(SpnLength * sizeof(WCHAR));
 	if (!ntlm->ServicePrincipalName)
 		return FALSE;
 
-	status = DsMakeSpn(ServiceClass, hostnameX, NULL, 0, NULL, &SpnLength, ntlm->ServicePrincipalName);
+	status = DsMakeSpnW(ServiceClass, hostnameX, NULL, 0, NULL, &SpnLength, ntlm->ServicePrincipalName);
 
 	if (status != ERROR_SUCCESS)
 		return FALSE;
@@ -239,7 +247,7 @@ BOOL ntlm_authenticate(rdpNtlm* ntlm)
 		return FALSE;
 	}
 
-	status = ntlm->table->InitializeSecurityContext(&ntlm->credentials,
+	status = ntlm->table->InitializeSecurityContextW(&ntlm->credentials,
 			(ntlm->haveContext) ? &ntlm->context : NULL,
 			(ntlm->ServicePrincipalName) ? ntlm->ServicePrincipalName : NULL,
 			ntlm->fContextReq, 0, SECURITY_NATIVE_DREP,
@@ -252,7 +260,7 @@ BOOL ntlm_authenticate(rdpNtlm* ntlm)
 		if (ntlm->table->CompleteAuthToken != NULL)
 			ntlm->table->CompleteAuthToken(&ntlm->context, &ntlm->outputBufferDesc);
 
-		if (ntlm->table->QueryContextAttributes(&ntlm->context, SECPKG_ATTR_SIZES, &ntlm->ContextSizes) != SEC_E_OK)
+		if (ntlm->table->QueryContextAttributesW(&ntlm->context, SECPKG_ATTR_SIZES, &ntlm->ContextSizes) != SEC_E_OK)
 		{
 			DEBUG_WARN( "QueryContextAttributes SECPKG_ATTR_SIZES failure\n");
 			return FALSE;

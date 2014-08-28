@@ -52,7 +52,7 @@ WINPR_API HMODULE GetModuleHandleW(LPCWSTR lpModuleName);
 WINPR_API DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize);
 WINPR_API DWORD GetModuleFileNameW(HMODULE hModule, LPWSTR lpFilename, DWORD nSize);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define LoadLibrary		LoadLibraryW
 #define LoadLibraryEx		LoadLibraryExW
 #define GetModuleHandle		GetModuleHandleW
