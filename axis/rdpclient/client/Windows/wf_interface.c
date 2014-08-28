@@ -471,7 +471,7 @@ static CREDUI_INFOA wfUiInfo =
 BOOL wf_authenticate(freerdp* instance, char** username, char** password, char** domain)
 {
    
-   return freerdp_authenticate(username,password,domain,instance->context->settings->ServerHostname);
+   return freerdp_authenticate(instance, username,password,domain,instance->context->settings->ServerHostname);
 
 /*	BOOL fSave;
 	DWORD status;
@@ -903,6 +903,10 @@ DWORD WINAPI wf_keyboard_thread(LPVOID lpParam)
 	wfc = (wfContext*) lpParam;
 	assert(NULL != wfc);
 
+
+   return 0;
+
+
 	hook_handle = SetWindowsHookEx(WH_KEYBOARD_LL, wf_ll_kbd_proc, wfc->hInstance, 0);
 
 	if (hook_handle)
@@ -1117,7 +1121,7 @@ void wfreerdp_client_global_init(void)
 	WSAStartup(0x101, &wsaData);
 
 #if defined(WITH_DEBUG) || defined(_DEBUG)
-	wf_create_console();
+	//wf_create_console();
 #endif
 
 	freerdp_register_addin_provider(freerdp_channels_load_static_addin_entry, 0);

@@ -83,6 +83,7 @@
     <ClCompile Include="client\Windows\wf_interface.c" />
     <ClCompile Include="client\Windows\wf_rail.c" />
     <ClCompile Include="client\Windows\wf_window.c" />
+    <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client\common\compatibility.h" />
@@ -98,6 +99,9 @@
     <ClInclude Include="client\Windows\wf_interface.h" />
     <ClInclude Include="client\Windows\wf_rail.h" />
     <ClInclude Include="client\Windows\wf_window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axisrdpclient.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>axisrdpclient</ProjectName>

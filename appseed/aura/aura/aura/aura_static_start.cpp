@@ -18,6 +18,9 @@ namespace str
 
 } // namespace str
 
+
+extern ::map < void *, void *,::aura::application *, ::aura::application * > * g_pmapAura;
+
 extern string_map < INT_PTR,INT_PTR > * g_pmapLibrary;
 
 extern plex_heap_alloc_array * g_pheap;
@@ -149,6 +152,8 @@ namespace aura
          g_pmutexSystemHeap = new mutex();
    
          g_pmutgen = new mutex();
+
+         g_pmapAura =new ::map < void *,void *,::aura::application *,::aura::application * >;
    
          //g_pmutexTrace = new mutex();
    
@@ -354,6 +359,10 @@ namespace aura
          //delete g_pmutexTrace;
    
          //g_pmutexTrace = NULL;
+
+         delete g_pmapAura;
+
+         g_pmapAura = NULL;
    
          delete g_pmutgen;
    

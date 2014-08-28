@@ -134,6 +134,9 @@ struct wf_context
 	int yMaxScroll;       // maximum vertical scroll value
 	cliprdrContext *cliprdr_context;
 	FloatBar* floatbar;
+   void * m_pview;
+   int m_bOk;
+   void * m_pauraapp;
 };
 typedef struct wf_context wfContext;
 

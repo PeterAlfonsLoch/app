@@ -146,3 +146,19 @@ void dappy(const char * psz)
 
 
 
+
+::map < void *,void *,::aura::application *,::aura::application * > * g_pmapAura = NULL;
+
+void set_aura(void * p,::aura::application * papp)
+{
+
+   g_pmapAura->set_at(p,papp);
+
+}
+
+::aura::application * get_aura(void * p)
+{
+
+   return g_pmapAura->operator [](p);
+
+}

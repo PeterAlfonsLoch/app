@@ -1666,6 +1666,8 @@ namespace user
       m_pimpl = new ::user::interaction_child(get_app());
       m_pimpl->m_pui = this;
       m_pthread = ::get_thread();
+      if(m_pthread == NULL)
+         m_pthread = get_app();
       if(!m_pimpl->create_window(rect, pparent,id))
       {
          m_pthread = NULL;
@@ -1694,6 +1696,9 @@ namespace user
       sp(interaction_impl_base) pimplNew = NULL;
 
       m_pthread = ::get_thread();
+      if(m_pthread == NULL)
+         m_pthread = get_app();
+
 
 #if defined(WINDOWSEX) || defined(LINUX)
       if(pParentWnd == NULL || pParentWnd->get_safe_handle() == (oswindow)HWND_MESSAGE)
@@ -1794,6 +1799,9 @@ namespace user
       }
       m_signalptra.remove_all();
       m_pthread = ::get_thread();
+      if(m_pthread == NULL)
+         m_pthread = get_app();
+
 #if !defined(METROWIN) && !defined(APPLE_IOS)
       if(pParentWnd == NULL)
       {
@@ -2781,6 +2789,14 @@ namespace user
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
 
+      ::thread * pthread = ::get_thread();
+
+      if(pthread == NULL)
+      {
+
+         pthread = m_pthread;
+
+      }
 
       for(;;)
       {
@@ -2801,7 +2817,7 @@ namespace user
                bShowIdle = FALSE;
             }
 
-            ::get_thread()->step_timer();
+            pthread->step_timer();
 
             // call on_idle while in bIdle state
             if(!(dwFlags & MLF_NOIDLEMSG) && puieParent != NULL && lIdleCount == 0)
@@ -2816,14 +2832,14 @@ namespace user
             bIdle = FALSE;
             }*/
 
-            ::get_thread()->m_dwAlive = ::get_tick_count();
+            pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_dwAlive = ::get_thread()->m_dwAlive;
+               pappThis1->m_dwAlive = pthread->m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_dwAlive = ::get_thread()->m_dwAlive;
+               pappThis2->m_dwAlive = pthread->m_dwAlive;
             }
             if(pliveobject != NULL)
             {
@@ -2835,6 +2851,9 @@ namespace user
          // phase2: pump messages while available
          do
          {
+
+            pthread->pump_message();
+
             if(!ContinueModal(iLevel))
                goto ExitModal;
 
@@ -2863,7 +2882,7 @@ namespace user
          } while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE);
 
 
-         ::get_thread()->step_timer();
+         pthread->step_timer();
 
          if(!ContinueModal(iLevel))
             goto ExitModal;
@@ -3313,6 +3332,9 @@ namespace user
       m_pimpl->m_pui = this;
 
       m_pthread = ::get_thread();
+      if(m_pthread == NULL)
+         m_pthread = get_app();
+
 
       if(!m_pimpl->create_message_queue(pszName))
       {

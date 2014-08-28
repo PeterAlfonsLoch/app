@@ -39,7 +39,7 @@ static HWND g_focus_hWnd;
 #define Y_POS(lParam) ((UINT16) ((lParam >> 16) & 0xFFFF))
 
 BOOL wf_scale_blt(wfContext* wfc, HDC hdc, int x, int y, int w, int h, HDC hdcSrc, int x1, int y1, DWORD rop);
-void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, UINT16 flags, UINT16 x, UINT16 y);
+__declspec(dllexport) void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, UINT16 flags, UINT16 x, UINT16 y);
 
 static BOOL g_flipping_in;
 static BOOL g_flipping_out;
