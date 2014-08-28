@@ -20,6 +20,16 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
+
+#define IDataObject_Release(This) 	   ((This)->lpVtbl->Release(This))
+#define IDataObject_GetData(This, Arg1, Arg2) 	   ((This)->lpVtbl->GetData(This, Arg1, Arg2))
+#define IStream_Release(This) 	   ((This)->lpVtbl->Release(This))
+#define IStream_Stat(This, Arg1, Arg2) 	   ((This)->lpVtbl->Stat(This, Arg1, Arg2))
+#define IStream_Read(This, Arg1, Arg2, Arg3) 	   ((This)->lpVtbl->Read(This, Arg1, Arg2, Arg3))
+#define IStream_Seek(This, Arg1, Arg2, Arg3) 	   ((This)->lpVtbl->Seek(This, Arg1, Arg2, Arg3))
+#define IDataObject_EnumFormatEtc(This, Arg1, Arg2) 	   ((This)->lpVtbl->EnumFormatEtc(This, Arg1, Arg2))
+#define IEnumFORMATETC_Next(This, Arg1, Arg2, Arg3) 	   ((This)->lpVtbl->Next(This, Arg1, Arg2, Arg3))
+
 #include <assert.h>
 #include <winpr/crt.h>
 

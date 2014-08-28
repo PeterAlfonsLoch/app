@@ -25,6 +25,7 @@
 #define IDataObject_AddRef(This) 	   ((This)->lpVtbl->AddRef(This))
 #define IDataObject_Release(This) 	   ((This)->lpVtbl->Release(This))
 
+
 static int cliprdr_lookup_format(CliprdrDataObject *instance, FORMATETC *pFormatEtc)
 {
 	int i;

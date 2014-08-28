@@ -1,6 +1,8 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
+#include "freerdp_rdpclient_setup.h"
+
 #define FREERDP_DATA_PATH "${FREERDP_DATA_PATH}"
 #define FREERDP_KEYMAP_PATH "${FREERDP_KEYMAP_PATH}"
 #define FREERDP_PLUGIN_PATH "${FREERDP_PLUGIN_PATH}"
@@ -88,3 +90,6 @@
 #define WITH_DEBUG_XV
 #define WITH_DEBUG_ANDROID_JNI
 #endif
+
+
+

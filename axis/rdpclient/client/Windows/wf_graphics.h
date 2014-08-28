@@ -20,12 +20,14 @@
 #ifndef __WF_GRAPHICS_H
 #define __WF_GRAPHICS_H
 
+#include "../freerdp_rdpclient_setup.h"
+
 #include "wf_interface.h"
 
-HBITMAP wf_create_dib(wfContext* wfc, int width, int height, int bpp, BYTE* data, BYTE** pdata);
-wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, BYTE* data);
-void wf_image_free(wfBitmap* image);
+CLASS_DECL_RDPCLIENT HBITMAP wf_create_dib(wfContext* wfc,int width,int height,int bpp,BYTE* data,BYTE** pdata);
+CLASS_DECL_RDPCLIENT wfBitmap* wf_image_new(wfContext* wfc,int width,int height,int bpp,BYTE* data);
+CLASS_DECL_RDPCLIENT void wf_image_free(wfBitmap* image);
 
-void wf_register_graphics(rdpGraphics* graphics);
+CLASS_DECL_RDPCLIENT void wf_register_graphics(rdpGraphics* graphics);
 
 #endif /* WF_GRAPHICS */

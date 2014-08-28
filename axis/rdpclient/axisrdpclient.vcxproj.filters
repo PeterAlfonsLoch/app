@@ -78,9 +78,6 @@
     <Filter Include="Header Files\client\Windows\NewFilter1">
       <UniqueIdentifier>{6c85b06a-6d9b-4e6f-90fc-a0f6bfaaa4fd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\NewFilter1">
-      <UniqueIdentifier>{a97d6b60-799e-4170-b25a-6ba07e20c145}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client\common\compatibility.h">
@@ -121,6 +118,12 @@
     </ClInclude>
     <ClInclude Include="client\Windows\wf_window.h">
       <Filter>Header Files\client\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freerdp_rdpclient_setup.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
