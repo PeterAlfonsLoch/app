@@ -316,7 +316,7 @@ void sspi_SecureHandleFree(SecHandle* handle)
 	free(handle);
 }
 
-int sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, const char* user, const char* domain, const char* password)
+int sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY_W* identity, const char* user, const char* domain, const char* password)
 {
 	int status;
 
@@ -325,7 +325,7 @@ int sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, const char* user, co
 	if (identity->User)
 		free(identity->User);
 
-   identity->User = (unsigned char*)NULL;
+   identity->User = (unsigned short*)NULL;
 	identity->UserLength = 0;
 
 	if (user)
@@ -341,7 +341,7 @@ int sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, const char* user, co
 	if (identity->Domain)
 		free(identity->Domain);
 
-   identity->Domain = (unsigned char*)NULL;
+   identity->Domain = (unsigned short*)NULL;
 	identity->DomainLength = 0;
 
 	if (domain)
@@ -373,7 +373,7 @@ int sspi_SetAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, const char* user, co
 	return 1;
 }
 
-int sspi_CopyAuthIdentity(SEC_WINNT_AUTH_IDENTITY* identity, SEC_WINNT_AUTH_IDENTITY* srcIdentity)
+int sspi_CopyAuthIdentity(SEC_WINNT_AUTH_IDENTITY_W* identity, SEC_WINNT_AUTH_IDENTITY_W* srcIdentity)
 {
 	int status;
 

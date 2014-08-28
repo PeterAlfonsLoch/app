@@ -412,6 +412,10 @@ CLASS_DECL_AURA int_bool freerdp_authenticate(freerdp * instance, char** usernam
 
    string strUsername;
 
+   string strUser;
+
+   string strDomain;
+
    string strPassword;
 
    string strToken;
@@ -422,11 +426,29 @@ CLASS_DECL_AURA int_bool freerdp_authenticate(freerdp * instance, char** usernam
 
    strTitle = "Enter Credentials for : " + string(pszServerName);
 
-   if(App(papp).get_cred(null_rect(),strUsername,strPassword,strToken,strTitle,true) != "ok")
-      return FALSE;
+   //if(App(papp).get_cred(null_rect(),strUsername,strPassword,strToken,strTitle,true) != "ok")
+     // return FALSE;
 
+   strUsername = "netnode@ca2.cc";
+   strPassword = "2.ptYm8LCgcl";
 
-   *username = strdup(strUsername);
+   
+   index iFind = strUsername.find('/');
+
+   if(iFind > 0)
+   {
+      strUser = strUsername.Mid(iFind + 1);
+      strDomain = strUsername.Left(iFind);
+   }
+   else
+   {
+      strUser = strUsername;
+   }
+
+   *username = strdup(strUser);
+
+   if(strDomain.has_char())
+      *domain = strdup(strDomain);
 
    *password = strdup(strPassword);
 

@@ -260,7 +260,7 @@ SECURITY_STATUS SEC_ENTRY ntlm_AcquireCredentialsHandleW(SEC_WCHAR* pszPrincipal
 		void* pvGetKeyArgument, PCredHandle phCredential, PTimeStamp ptsExpiry)
 {
 	SSPI_CREDENTIALS* credentials;
-	SEC_WINNT_AUTH_IDENTITY* identity;
+	SEC_WINNT_AUTH_IDENTITY_W* identity;
 
 	if ((fCredentialUse != SECPKG_CRED_OUTBOUND) &&
 		(fCredentialUse != SECPKG_CRED_INBOUND) &&
@@ -278,7 +278,7 @@ SECURITY_STATUS SEC_ENTRY ntlm_AcquireCredentialsHandleW(SEC_WCHAR* pszPrincipal
 	credentials->pGetKeyFn = pGetKeyFn;
 	credentials->pvGetKeyArgument = pvGetKeyArgument;
 
-	identity = (SEC_WINNT_AUTH_IDENTITY*) pAuthData;
+	identity = (SEC_WINNT_AUTH_IDENTITY_W*) pAuthData;
 
 	if (identity)
 		sspi_CopyAuthIdentity(&(credentials->identity), identity);
@@ -294,7 +294,7 @@ SECURITY_STATUS SEC_ENTRY ntlm_AcquireCredentialsHandleA(SEC_CHAR* pszPrincipal,
 		void* pvGetKeyArgument, PCredHandle phCredential, PTimeStamp ptsExpiry)
 {
 	SSPI_CREDENTIALS* credentials;
-	SEC_WINNT_AUTH_IDENTITY* identity;
+	SEC_WINNT_AUTH_IDENTITY_W* identity;
 
 	if ((fCredentialUse != SECPKG_CRED_OUTBOUND) &&
 		(fCredentialUse != SECPKG_CRED_INBOUND) &&
@@ -312,7 +312,7 @@ SECURITY_STATUS SEC_ENTRY ntlm_AcquireCredentialsHandleA(SEC_CHAR* pszPrincipal,
 	credentials->pGetKeyFn = pGetKeyFn;
 	credentials->pvGetKeyArgument = pvGetKeyArgument;
 
-	identity = (SEC_WINNT_AUTH_IDENTITY*) pAuthData;
+	identity = (SEC_WINNT_AUTH_IDENTITY_W*) pAuthData;
 
 	if (identity)
 		sspi_CopyAuthIdentity(&(credentials->identity), identity);

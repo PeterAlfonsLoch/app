@@ -62,7 +62,7 @@ BOOL ntlm_client_init(rdpNtlm* ntlm, BOOL http, char* user, char* domain, char* 
 		ntlm->table = (*InitSecurityInterface)();
 	}
 #else
-	ntlm->table = InitSecurityInterface();
+	ntlm->table = InitSecurityInterfaceW();
 #endif
 
 	sspi_SetAuthIdentity(&(ntlm->identity), user, domain, password);

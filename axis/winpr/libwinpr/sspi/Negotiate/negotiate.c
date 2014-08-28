@@ -291,7 +291,7 @@ SECURITY_STATUS SEC_ENTRY negotiate_AcquireCredentialsHandleW(SEC_WCHAR* pszPrin
 		void* pvGetKeyArgument, PCredHandle phCredential, PTimeStamp ptsExpiry)
 {
 	SSPI_CREDENTIALS* credentials;
-	SEC_WINNT_AUTH_IDENTITY* identity;
+	SEC_WINNT_AUTH_IDENTITY_W* identity;
 
 	if ((fCredentialUse != SECPKG_CRED_OUTBOUND) &&
 		(fCredentialUse != SECPKG_CRED_INBOUND) &&
@@ -343,7 +343,7 @@ SECURITY_STATUS SEC_ENTRY negotiate_AcquireCredentialsHandleA(SEC_CHAR* pszPrinc
 	credentials->pGetKeyFn = pGetKeyFn;
 	credentials->pvGetKeyArgument = pvGetKeyArgument;
 
-	identity = (SEC_WINNT_AUTH_IDENTITY*) pAuthData;
+	identity = (SEC_WINNT_AUTH_IDENTITY_W*) pAuthData;
 
 	if (identity)
 		sspi_CopyAuthIdentity(&(credentials->identity), identity);

@@ -186,7 +186,7 @@ int credssp_ntlm_client_init(rdpCredssp* credssp)
 #endif
 
 #ifdef WITH_DEBUG_NLA
-	DEBUG_MSG("User: %s Domain: %s Password: %s\n",
+	DEBUG_MSG("User: %S Domain: %S Password: %S\n",
 		(char*) credssp->identity.User, (char*) credssp->identity.Domain, (char*) credssp->identity.Password);
 #endif
 
@@ -456,7 +456,7 @@ int credssp_server_authenticate(rdpCredssp* credssp)
 		HMODULE hSSPI;
 		INIT_SECURITY_INTERFACE_W pInitSecurityInterface;
 
-		hSSPI = LoadLibrary(credssp->SspiModule);
+		hSSPI = LoadLibraryW(credssp->SspiModule);
 
 		if (!hSSPI)
 		{
@@ -1390,7 +1390,7 @@ rdpCredssp* credssp_new(freerdp* instance, rdpTransport* transport, rdpSettings*
 
 				if (status == ERROR_SUCCESS)
 				{
-					credssp->SspiModule = (LPTSTR) malloc(dwSize + sizeof(TCHAR));
+					credssp->SspiModule = (LPWSTR) malloc(dwSize + sizeof(WCHAR));
 
 					status = RegQueryValueEx(hKey, _T("SspiModule"), NULL, &dwType,
 							(BYTE*) credssp->SspiModule, &dwSize);

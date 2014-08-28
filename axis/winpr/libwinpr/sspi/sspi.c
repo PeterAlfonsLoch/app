@@ -71,7 +71,7 @@ BOOL ShouldUseNativeSspi()
 BOOL InitializeSspiModule_Native(void)
 {
 	INIT_SECURITY_INTERFACE_W pInitSecurityInterfaceW;
-	INIT_SECURITY_INTERFACE_A pInitSecurityInterfaceA;
+	//INIT_SECURITY_INTERFACE_A pInitSecurityInterfaceA;
 
 	g_SspiModule = LoadLibraryA("secur32.dll");
 
@@ -82,13 +82,13 @@ BOOL InitializeSspiModule_Native(void)
 		return FALSE;
 
 	pInitSecurityInterfaceW = (INIT_SECURITY_INTERFACE_W) GetProcAddress(g_SspiModule, "InitSecurityInterfaceW");
-	pInitSecurityInterfaceA = (INIT_SECURITY_INTERFACE_A) GetProcAddress(g_SspiModule, "InitSecurityInterfaceA");
+	//pInitSecurityInterfaceA = (INIT_SECURITY_INTERFACE_A) GetProcAddress(g_SspiModule, "InitSecurityInterfaceA");
 
 	if (pInitSecurityInterfaceW)
 		g_SspiW = pInitSecurityInterfaceW();
 
-	if (pInitSecurityInterfaceA)
-		g_SspiA = pInitSecurityInterfaceA();
+	//if (pInitSecurityInterfaceA)
+		//g_SspiA = pInitSecurityInterfaceA();
 
 	return TRUE;
 }
@@ -113,11 +113,12 @@ void InitializeSspiModule(DWORD flags)
 	else if (flags && (flags & SSPI_INTERFACE_WINPR))
 	{
 		g_SspiW = winpr_InitSecurityInterfaceW();
-		g_SspiA = winpr_InitSecurityInterfaceA();
+		//g_SspiA = winpr_InitSecurityInterfaceA();
 		status = TRUE;
 	}
 
-	if (!status && ShouldUseNativeSspi())
+	//if (!status && ShouldUseNativeSspi())
+   if(FALSE)
 	{
 		status = InitializeSspiModule_Native();
 	}
@@ -125,7 +126,7 @@ void InitializeSspiModule(DWORD flags)
 	if (!status)
 	{
 		g_SspiW = winpr_InitSecurityInterfaceW();
-		g_SspiA = winpr_InitSecurityInterfaceA();
+		//g_SspiA = winpr_InitSecurityInterfaceA();
 	}
 }
 

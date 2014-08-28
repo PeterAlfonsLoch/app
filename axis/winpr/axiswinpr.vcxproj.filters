@@ -348,9 +348,6 @@
     <ClCompile Include="libwinpr\security\security.c">
       <Filter>Source Files\libwinpr\security</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\sspi\sspi.c">
-      <Filter>Source Files\libwinpr\sspi</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\sspi\CredSSP\credssp.c">
       <Filter>Source Files\libwinpr\sspi\CredSSP</Filter>
     </ClCompile>
@@ -558,12 +555,6 @@
     <ClCompile Include="libwinpr\sspi\Negotiate\negotiate.c">
       <Filter>Source Files\libwinpr\sspi\Negotiate</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\sspi\sspi_winpr.c">
-      <Filter>Source Files\libwinpr\sspi</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\sspi\sspi_export.c">
-      <Filter>Source Files\libwinpr\sspi</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\utils\debug.c">
       <Filter>Source Files\libwinpr\utils</Filter>
     </ClCompile>
@@ -593,6 +584,15 @@
     </ClCompile>
     <ClCompile Include="libwinpr\smartcard\smartcard_winscard.c">
       <Filter>Source Files\libwinpr\smartcard</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\sspi_winpr.c">
+      <Filter>Source Files\libwinpr\sspi</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\sspi.c">
+      <Filter>Source Files\libwinpr\sspi</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\sspi_export.c">
+      <Filter>Source Files\libwinpr\sspi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

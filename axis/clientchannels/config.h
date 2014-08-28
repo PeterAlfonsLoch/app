@@ -35,7 +35,7 @@
 #define WITH_SSE2
 //#define WITH_NEON
 //#define WITH_IPP
-#define WITH_NATIVE_SSPI
+//#define WITH_NATIVE_SSPI
 #define WITH_JPEG
 #define WITH_WIN8
 #define WITH_RDPSND_DSOUND

@@ -42,7 +42,7 @@ struct rdp_credssp
 	int recv_seq_num;
 	freerdp* instance;
 	CtxtHandle context;
-	LPTSTR SspiModule;
+	LPWSTR SspiModule;
 	rdpSettings* settings;
 	rdpTransport* transport;
 	SecBuffer negoToken;
@@ -52,7 +52,7 @@ struct rdp_credssp
 	SecBuffer ts_credentials;
 	CryptoRc4 rc4_seal_state;
 	LPWSTR ServicePrincipalName;
-	SEC_WINNT_AUTH_IDENTITY identity;
+	SEC_WINNT_AUTH_IDENTITY_W identity;
 	PSecurityFunctionTableW table;
 	SecPkgContext_Sizes ContextSizes;
 };

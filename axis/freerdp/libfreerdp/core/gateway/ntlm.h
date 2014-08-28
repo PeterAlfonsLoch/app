@@ -63,7 +63,7 @@ struct rdp_ntlm
 	BOOL confidentiality;
 	SecPkgInfoW* pPackageInfo;
 	SecurityFunctionTableW* table;
-	SEC_WINNT_AUTH_IDENTITY identity;
+	SEC_WINNT_AUTH_IDENTITY_W identity;
 	SecPkgContext_Sizes ContextSizes;
 	SecPkgContext_Bindings* Bindings;
 };
