@@ -3951,6 +3951,8 @@ namespace user
       UNREFERENCED_PARAMETER(lparam);
       UNREFERENCED_PARAMETER(lresult);
 
+      if(::user::interaction_base::on_simple_command(ecommand,lparam,lresult))
+         return true;
 
       switch(ecommand)
       {

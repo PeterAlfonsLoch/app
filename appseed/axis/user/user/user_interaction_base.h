@@ -64,7 +64,8 @@ namespace user
          simple_command_load_window_rect,
          simple_command_update_frame_title,
          simple_command_set_edit_file,
-         simple_command_layout
+         simple_command_layout,
+         simple_command_full_screen
 
       };
 

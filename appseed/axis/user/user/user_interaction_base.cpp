@@ -1958,7 +1958,14 @@ namespace user
    bool interaction_base::on_simple_command(e_simple_command ecommand,lparam lparam,LRESULT & lresult)
    {
 
-      throw interface_only_exception(get_app());
+      if(ecommand == simple_command_full_screen)
+      {
+         
+         WfiFullScreen();
+
+         return true;
+
+      }
 
       return false;
 

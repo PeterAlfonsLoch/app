@@ -241,6 +241,7 @@ BOOL wf_pre_connect(freerdp* instance)
 	if (wfc->fullscreen)
 		wfc->fs_toggle = 1;
 	wfc->sw_gdi = settings->SoftwareGdi;
+   //wfc->sw_gdi = TRUE;
 
 	wfc->clrconv = (HCLRCONV) malloc(sizeof(CLRCONV));
 	ZeroMemory(wfc->clrconv, sizeof(CLRCONV));
