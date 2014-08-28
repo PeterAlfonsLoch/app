@@ -88,7 +88,7 @@ struct wf_context
 	HICON icon;
 	HWND hWndParent;
 	HINSTANCE hInstance;
-	WNDCLASSEX wndClass;
+	WNDCLASSEXW wndClass;
 	LPCWSTR wndClassName;
 	HCURSOR hDefaultCursor;
 

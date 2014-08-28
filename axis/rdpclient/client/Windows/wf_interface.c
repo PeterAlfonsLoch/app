@@ -1173,7 +1173,7 @@ int wfreerdp_client_start(rdpContext* context)
 	wfc->hInstance = hInstance;
 	wfc->cursor = LoadCursor(NULL, IDC_ARROW);
 	wfc->icon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
-	wfc->wndClassName = _tcsdup(_T("FreeRDP"));
+	wfc->wndClassName = _wcsdup(L("FreeRDP"));
 
 	wfc->wndClass.cbSize = sizeof(WNDCLASSEX);
 	wfc->wndClass.style = CS_HREDRAW | CS_VREDRAW;
