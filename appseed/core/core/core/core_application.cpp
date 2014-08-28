@@ -1629,7 +1629,7 @@ namespace core
                      string str;
                      ::process::process_sp process(allocer());
                      bool bOk = true;
-                     if(!process.create_child_process(strPath,false,System.dir().name(strPath)))
+                     if(!process->create_child_process(strPath,false,System.dir().name(strPath)))
                      {
                         bOk = false;
                      }
@@ -1637,7 +1637,7 @@ namespace core
                      {
                         int32_t i;
                         i = 1;
-                        while(!process.has_exited(&dwExitCode))
+                        while(!process->has_exited(&dwExitCode))
                         {
                            i++;
                         }

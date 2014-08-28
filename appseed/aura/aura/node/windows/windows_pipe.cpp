@@ -13,6 +13,7 @@ namespace windows
 
       m_hRead = NULL;
       m_hWrite = NULL;
+      m_pchBuf = NULL;
 
 
    }
