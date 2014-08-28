@@ -112,11 +112,11 @@ namespace draw2d
       };
 
 
-      array < element >      m_elementa;
-      bool                          m_bFill;
-      ::draw2d::e_fill_mode             m_efillmode;
-      bool                          m_bHasPoint;
-      point                         m_pt;
+      array < element >                m_elementa;
+      bool                             m_bFill;
+      ::draw2d::e_fill_mode            m_efillmode;
+      bool                             m_bHasPoint;
+      pointd                           m_pt;
 
 
       path();
@@ -125,7 +125,7 @@ namespace draw2d
 
 
       virtual bool has_current_point();
-      virtual point last_point();
+      virtual pointd last_point();
 
 
 

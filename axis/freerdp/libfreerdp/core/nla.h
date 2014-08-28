@@ -51,14 +51,14 @@ struct rdp_credssp
 	SecBuffer PublicKey;
 	SecBuffer ts_credentials;
 	CryptoRc4 rc4_seal_state;
-	LPTSTR ServicePrincipalName;
+	LPWSTR ServicePrincipalName;
 	SEC_WINNT_AUTH_IDENTITY identity;
-	PSecurityFunctionTable table;
+	PSecurityFunctionTableW table;
 	SecPkgContext_Sizes ContextSizes;
 };
 
 int credssp_authenticate(rdpCredssp* credssp);
-LPTSTR credssp_make_spn(const char* ServiceClass, const char* hostname);
+LPWSTR credssp_make_spn(const char* ServiceClass, const char* hostname);
 
 rdpCredssp* credssp_new(freerdp* instance, rdpTransport* transport, rdpSettings* settings);
 void credssp_free(rdpCredssp* credssp);

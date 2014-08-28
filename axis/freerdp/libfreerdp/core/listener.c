@@ -139,7 +139,7 @@ static BOOL freerdp_listener_open(freerdp_listener* instance, const char* bind_a
 		if (status != 0)
 		{
 #ifdef _WIN32
-			_tprintf(L"bind() failed with error: %u\n", WSAGetLastError());
+			wprintf(L"bind() failed with error: %u\n", WSAGetLastError());
 			WSACleanup();
 #else
 			DEBUG_WARN("bind");

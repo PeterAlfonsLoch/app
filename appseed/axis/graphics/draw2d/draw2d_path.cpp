@@ -115,7 +115,7 @@ namespace draw2d
 
    }
 
-   point path::last_point()
+   pointd path::last_point()
    {
 
       if(!m_bHasPoint)

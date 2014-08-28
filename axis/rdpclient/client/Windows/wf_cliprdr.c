@@ -31,8 +31,13 @@
 
 #include "wf_cliprdr.h"
 
+#ifndef _WIN32
 extern BOOL WINAPI AddClipboardFormatListener(_In_ HWND hwnd);
 extern BOOL WINAPI RemoveClipboardFormatListener(_In_  HWND hwnd);
+#endif
+
+#undef __TEXT
+#define __TEXT(quote) L##quote      // r_winnt
 
 #define WM_CLIPRDR_MESSAGE  (WM_USER + 156)
 #define OLE_SETCLIPBOARD    1

@@ -55,7 +55,7 @@ struct rdp_win_printer
 struct rdp_win_print_job
 {
 	rdpPrintJob printjob;
-	DOC_INFO_1 di;
+	DOC_INFO_1W di;
 	DWORD handle;
 
 	void* printjob_object;

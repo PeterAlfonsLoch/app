@@ -85,7 +85,7 @@
 #define WITH_DEBUG_CREDSSP
 #endif
 
-#define NLA_PKG_NAME	NEGOSSP_NAME
+#define NLA_PKG_NAME	NEGOSSP_NAME_W
 
 #define TERMSRV_SPN_PREFIX	"TERMSRV/"
 
@@ -249,7 +249,7 @@ int credssp_client_authenticate(rdpCredssp* credssp)
 	SECURITY_STATUS status;
 	CredHandle credentials;
 	TimeStamp expiration;
-	PSecPkgInfo pPackageInfo;
+	PSecPkgInfoW pPackageInfo;
 	SecBuffer input_buffer;
 	SecBuffer output_buffer;
 	SecBufferDesc input_buffer_desc;
@@ -265,7 +265,7 @@ int credssp_client_authenticate(rdpCredssp* credssp)
 
 	credssp->table = InitSecurityInterfaceEx(0);
 
-	status = credssp->table->QuerySecurityPackageInfo(NLA_PKG_NAME, &pPackageInfo);
+	status = credssp->table->QuerySecurityPackageInfoW(NLA_PKG_NAME, &pPackageInfo);
 
 	if (status != SEC_E_OK)
 	{
@@ -275,7 +275,7 @@ int credssp_client_authenticate(rdpCredssp* credssp)
 
 	cbMaxToken = pPackageInfo->cbMaxToken;
 
-	status = credssp->table->AcquireCredentialsHandle(NULL, NLA_PKG_NAME,
+	status = credssp->table->AcquireCredentialsHandleW(NULL, NLA_PKG_NAME,
 			SECPKG_CRED_OUTBOUND, NULL, &credssp->identity, NULL, NULL, &credentials, &expiration);
 
 	if (status != SEC_E_OK)
@@ -310,7 +310,7 @@ int credssp_client_authenticate(rdpCredssp* credssp)
 		output_buffer.cbBuffer = cbMaxToken;
 		output_buffer.pvBuffer = malloc(output_buffer.cbBuffer);
 
-		status = credssp->table->InitializeSecurityContext(&credentials,
+		status = credssp->table->InitializeSecurityContextW(&credentials,
 				(have_context) ? &credssp->context : NULL,
 				credssp->ServicePrincipalName, fContextReq, 0,
 				SECURITY_NATIVE_DREP, (have_input_buffer) ? &input_buffer_desc : NULL,
@@ -337,7 +337,7 @@ int credssp_client_authenticate(rdpCredssp* credssp)
 		{
 			have_pub_key_auth = TRUE;
 
-			if (credssp->table->QueryContextAttributes(&credssp->context, SECPKG_ATTR_SIZES, &credssp->ContextSizes) != SEC_E_OK)
+			if (credssp->table->QueryContextAttributesW(&credssp->context, SECPKG_ATTR_SIZES, &credssp->ContextSizes) != SEC_E_OK)
 			{
 				DEBUG_WARN( "QueryContextAttributes SECPKG_ATTR_SIZES failure\n");
 				return 0;
@@ -437,7 +437,7 @@ int credssp_server_authenticate(rdpCredssp* credssp)
 	SECURITY_STATUS status;
 	CredHandle credentials;
 	TimeStamp expiration;
-	PSecPkgInfo pPackageInfo;
+	PSecPkgInfoW pPackageInfo;
 	SecBuffer input_buffer;
 	SecBuffer output_buffer;
 	SecBufferDesc input_buffer_desc;
@@ -454,7 +454,7 @@ int credssp_server_authenticate(rdpCredssp* credssp)
 	if (credssp->SspiModule)
 	{
 		HMODULE hSSPI;
-		INIT_SECURITY_INTERFACE pInitSecurityInterface;
+		INIT_SECURITY_INTERFACE_W pInitSecurityInterface;
 
 		hSSPI = LoadLibrary(credssp->SspiModule);
 
@@ -465,7 +465,7 @@ int credssp_server_authenticate(rdpCredssp* credssp)
 		}
 
 #ifdef BYEWINDOWS_UNICODE
-		pInitSecurityInterface = (INIT_SECURITY_INTERFACE) GetProcAddress(hSSPI, "InitSecurityInterfaceW");
+		pInitSecurityInterface = (INIT_SECURITY_INTERFACE_W) GetProcAddress(hSSPI, "InitSecurityInterfaceW");
 #else
 		pInitSecurityInterface = (INIT_SECURITY_INTERFACE) GetProcAddress(hSSPI, "InitSecurityInterfaceA");
 #endif
@@ -477,7 +477,7 @@ int credssp_server_authenticate(rdpCredssp* credssp)
 		credssp->table = InitSecurityInterfaceEx(0);
 	}
 
-	status = credssp->table->QuerySecurityPackageInfo(NLA_PKG_NAME, &pPackageInfo);
+	status = credssp->table->QuerySecurityPackageInfoW(NLA_PKG_NAME, &pPackageInfo);
 
 	if (status != SEC_E_OK)
 	{
@@ -487,7 +487,7 @@ int credssp_server_authenticate(rdpCredssp* credssp)
 
 	cbMaxToken = pPackageInfo->cbMaxToken;
 
-	status = credssp->table->AcquireCredentialsHandle(NULL, NLA_PKG_NAME,
+	status = credssp->table->AcquireCredentialsHandleW(NULL, NLA_PKG_NAME,
 			SECPKG_CRED_INBOUND, NULL, NULL, NULL, NULL, &credentials, &expiration);
 
 	if (status != SEC_E_OK)
@@ -585,7 +585,7 @@ int credssp_server_authenticate(rdpCredssp* credssp)
 		{
 			have_pub_key_auth = TRUE;
 
-			if (credssp->table->QueryContextAttributes(&credssp->context, SECPKG_ATTR_SIZES, &credssp->ContextSizes) != SEC_E_OK)
+			if (credssp->table->QueryContextAttributesW(&credssp->context, SECPKG_ATTR_SIZES, &credssp->ContextSizes) != SEC_E_OK)
 			{
 				DEBUG_WARN( "QueryContextAttributes SECPKG_ATTR_SIZES failure\n");
 				return 0;
@@ -854,7 +854,7 @@ void credssp_read_ts_password_creds(rdpCredssp* credssp, wStream* s)
 	ber_read_contextual_tag(s, 0, &length, TRUE);
 	ber_read_octet_string_tag(s, &length);
 	credssp->identity.DomainLength = (UINT32) length;
-	credssp->identity.Domain = (UINT16*) malloc(length);
+	credssp->identity.Domain = (unsigned char *) malloc(length);
 	CopyMemory(credssp->identity.Domain, Stream_Pointer(s), credssp->identity.DomainLength);
 	Stream_Seek(s, credssp->identity.DomainLength);
 	credssp->identity.DomainLength /= 2;
@@ -863,7 +863,7 @@ void credssp_read_ts_password_creds(rdpCredssp* credssp, wStream* s)
 	ber_read_contextual_tag(s, 1, &length, TRUE);
 	ber_read_octet_string_tag(s, &length);
 	credssp->identity.UserLength = (UINT32) length;
-	credssp->identity.User = (UINT16*) malloc(length);
+   credssp->identity.User = (unsigned char *)malloc(length);
 	CopyMemory(credssp->identity.User, Stream_Pointer(s), credssp->identity.UserLength);
 	Stream_Seek(s, credssp->identity.UserLength);
 	credssp->identity.UserLength /= 2;
@@ -872,7 +872,7 @@ void credssp_read_ts_password_creds(rdpCredssp* credssp, wStream* s)
 	ber_read_contextual_tag(s, 2, &length, TRUE);
 	ber_read_octet_string_tag(s, &length);
 	credssp->identity.PasswordLength = (UINT32) length;
-	credssp->identity.Password = (UINT16*) malloc(length);
+   credssp->identity.Password = (unsigned char *)malloc(length);
 	CopyMemory(credssp->identity.Password, Stream_Pointer(s), credssp->identity.PasswordLength);
 	Stream_Seek(s, credssp->identity.PasswordLength);
 	credssp->identity.PasswordLength /= 2;
@@ -1294,13 +1294,13 @@ void credssp_buffer_free(rdpCredssp* credssp)
 	sspi_SecBufferFree(&credssp->authInfo);
 }
 
-LPTSTR credssp_make_spn(const char* ServiceClass, const char* hostname)
+LPWSTR credssp_make_spn(const char* ServiceClass, const char* hostname)
 {
 	DWORD status;
 	DWORD SpnLength;
-	LPTSTR hostnameX = NULL;
-	LPTSTR ServiceClassX = NULL;
-	LPTSTR ServicePrincipalName = NULL;
+	LPWSTR hostnameX = NULL;
+	LPWSTR ServiceClassX = NULL;
+	LPWSTR ServicePrincipalName = NULL;
 
 #ifdef BYEWINDOWS_UNICODE
 	ConvertToUnicode(CP_UTF8, 0, hostname, -1, &hostnameX, 0);
@@ -1312,7 +1312,7 @@ LPTSTR credssp_make_spn(const char* ServiceClass, const char* hostname)
 
 	if (!ServiceClass)
 	{
-		ServicePrincipalName = (LPTSTR) _tcsdup(hostnameX);
+		ServicePrincipalName = (LPWSTR) _wcsdup(hostnameX);
 		free(ServiceClassX);
 		free(hostnameX);
 
@@ -1320,7 +1320,7 @@ LPTSTR credssp_make_spn(const char* ServiceClass, const char* hostname)
 	}
 
 	SpnLength = 0;
-	status = DsMakeSpn(ServiceClassX, hostnameX, NULL, 0, NULL, &SpnLength, NULL);
+	status = DsMakeSpnW(ServiceClassX, hostnameX, NULL, 0, NULL, &SpnLength, NULL);
 
 	if (status != ERROR_BUFFER_OVERFLOW)
 	{
@@ -1333,7 +1333,7 @@ LPTSTR credssp_make_spn(const char* ServiceClass, const char* hostname)
 	if (!ServicePrincipalName)
 		return NULL;
 
-	status = DsMakeSpn(ServiceClassX, hostnameX, NULL, 0, NULL, &SpnLength, ServicePrincipalName);
+	status = DsMakeSpnW(ServiceClassX, hostnameX, NULL, 0, NULL, &SpnLength, ServicePrincipalName);
 
 	if (status != ERROR_SUCCESS)
 	{

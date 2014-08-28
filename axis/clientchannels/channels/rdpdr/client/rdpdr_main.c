@@ -181,7 +181,7 @@ LRESULT CALLBACK hotplug_proc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 static void* drive_hotplug_thread_func(void* arg)
 {
 	rdpdrPlugin *rdpdr;
-	WNDCLASSEX wnd_cls;
+	WNDCLASSEXW wnd_cls;
 	HWND hwnd;
 	MSG msg;
 	BOOL bRet;
@@ -203,7 +203,7 @@ static void* drive_hotplug_thread_func(void* arg)
 	wnd_cls.lpszClassName = L"DRIVE_HOTPLUG";
 	wnd_cls.hInstance     = NULL;
 	wnd_cls.hIconSm       = LoadIcon(NULL, IDI_APPLICATION);
-	RegisterClassEx(&wnd_cls);
+	RegisterClassExW(&wnd_cls);
 
 	/* create window */
 	hwnd = CreateWindowEx(0, L"DRIVE_HOTPLUG", NULL,
