@@ -89,7 +89,7 @@ struct wf_context
 	HWND hWndParent;
 	HINSTANCE hInstance;
 	WNDCLASSEX wndClass;
-	LPCTSTR wndClassName;
+	LPCWSTR wndClassName;
 	HCURSOR hDefaultCursor;
 
 	HWND hwnd;

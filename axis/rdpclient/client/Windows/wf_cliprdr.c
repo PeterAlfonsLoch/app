@@ -771,7 +771,7 @@ static void wf_cliprdr_traverse_directory(cliprdrContext *cliprdr, wchar_t *Dir,
 		return;
 	}
 
-	while(FindNextFile(hFind, &FindFileData))
+	while(FindNextFileW(hFind, &FindFileData))
 	{
 		if((FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0
 			&& wcscmp(FindFileData.cFileName,L".") == 0

@@ -349,7 +349,7 @@ static void tsmf_sample_playback_video(TSMF_SAMPLE *sample)
 				(sample->end_time >= presentation->audio_start_time ||
 				 sample->end_time < stream->last_end_time))
 		{
-			USleep((stream->next_start_time - t) / 10);
+			USleep((DWORD) ((stream->next_start_time - t) / 10));
 		}
 
 		stream->next_start_time = t + sample->duration - 50000;
