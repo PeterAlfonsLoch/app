@@ -405,7 +405,7 @@ bool open_url::open()
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_AURA int_bool freerdp_authenticate(freerdp * instance, char** username,char** password,char** domain,const char * pszServerName)
+CLASS_DECL_AURA int_bool freerdp_authenticate(freerdp * instance, char** username,char** password,char** domain, const char * pszServerName)
 {
 
    ::aura::application * papp = ::get_aura(instance);
@@ -426,13 +426,9 @@ CLASS_DECL_AURA int_bool freerdp_authenticate(freerdp * instance, char** usernam
 
    strTitle = "Enter Credentials for : " + string(pszServerName);
 
-   //if(App(papp).get_cred(null_rect(),strUsername,strPassword,strToken,strTitle,true) != "ok")
-     // return FALSE;
+   if(App(papp).get_cred(null_rect(),strUsername,strPassword,strToken,strTitle,true) != "ok")
+      return FALSE;
 
-   strUsername = "netnode@ca2.cc";
-   strPassword = "2.ptYm8LCgcl";
-
-   
    index iFind = strUsername.find('/');
 
    if(iFind > 0)

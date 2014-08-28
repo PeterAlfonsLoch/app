@@ -471,7 +471,7 @@ static CREDUI_INFOA wfUiInfo =
 BOOL wf_authenticate(freerdp* instance, char** username, char** password, char** domain)
 {
    
-   return freerdp_authenticate(instance, username,password,domain,instance->context->settings->ServerHostname);
+   return freerdp_authenticate(instance,username,password,domain,instance->context->settings->ServerHostname);
 
 /*	BOOL fSave;
 	DWORD status;
