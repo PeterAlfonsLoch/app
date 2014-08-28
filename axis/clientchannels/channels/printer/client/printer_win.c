@@ -172,7 +172,7 @@ static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, cons
 	rdpWinPrinter* win_printer;
 	wchar_t wname[256];
 	DWORD needed;
-	PRINTER_INFO_2 *prninfo=NULL;
+	PRINTER_INFO_2W *prninfo=NULL;
 	size_t charsConverted;
 
 	win_printer = (rdpWinPrinter*) calloc(1, sizeof(rdpWinPrinter));
@@ -189,7 +189,7 @@ static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, cons
 	OpenPrinterW(wname, &(win_printer->hPrinter), NULL);
 
 	GetPrinterW(win_printer->hPrinter, 2, (LPBYTE) prninfo, 0, &needed);
-	prninfo = (PRINTER_INFO_2*) GlobalAlloc(GPTR,needed);
+	prninfo = (PRINTER_INFO_2W*) GlobalAlloc(GPTR,needed);
 	GetPrinterW(win_printer->hPrinter, 2, (LPBYTE) prninfo, needed, &needed);
 
 	win_printer->printer.driver = malloc(1000);
@@ -205,7 +205,7 @@ static rdpPrinter** printer_win_enum_printers(rdpPrinterDriver* driver)
 	int i;
 	char pname[1000];
 	size_t charsConverted;
-	PRINTER_INFO_2* prninfo = NULL;
+	PRINTER_INFO_2W* prninfo = NULL;
 	DWORD needed, returned;
 
 	/* find required size for the buffer */
@@ -213,10 +213,10 @@ static rdpPrinter** printer_win_enum_printers(rdpPrinterDriver* driver)
 
 
 	/* allocate array of PRINTER_INFO structures */
-	prninfo = (PRINTER_INFO_2*) GlobalAlloc(GPTR,needed);
+	prninfo = (PRINTER_INFO_2W*) GlobalAlloc(GPTR,needed);
  
 	/* call again */
-	if (!EnumPrinters(PRINTER_ENUM_LOCAL|PRINTER_ENUM_CONNECTIONS, NULL, 2, (LPBYTE) prninfo, needed, &needed, &returned))
+	if (!EnumPrintersW(PRINTER_ENUM_LOCAL|PRINTER_ENUM_CONNECTIONS, NULL, 2, (LPBYTE) prninfo, needed, &needed, &returned))
 	{
 
 	}
