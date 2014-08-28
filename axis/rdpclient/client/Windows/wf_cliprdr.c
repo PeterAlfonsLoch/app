@@ -470,7 +470,7 @@ static LRESULT CALLBACK cliprdr_proc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM 
 }
 static int create_cliprdr_window(cliprdrContext *cliprdr)
 {
-	WNDCLASSEX wnd_cls;
+	WNDCLASSEXW wnd_cls;
 
 	ZeroMemory(&wnd_cls, sizeof(WNDCLASSEX));
 	wnd_cls.cbSize        = sizeof(WNDCLASSEX);
@@ -485,9 +485,9 @@ static int create_cliprdr_window(cliprdrContext *cliprdr)
 	wnd_cls.lpszClassName = L"ClipboardHiddenMessageProcessor";
 	wnd_cls.hInstance     = GetModuleHandle(NULL);
 	wnd_cls.hIconSm       = NULL;
-	RegisterClassEx(&wnd_cls);
+	RegisterClassExW(&wnd_cls);
 
-	cliprdr->hwndClipboard = CreateWindowEx(WS_EX_LEFT,
+	cliprdr->hwndClipboard = CreateWindowExW(WS_EX_LEFT,
 		L"ClipboardHiddenMessageProcessor",
 		L"rdpclip",
 		0, 0, 0, 0, 0, HWND_MESSAGE, NULL, GetModuleHandle(NULL), cliprdr);

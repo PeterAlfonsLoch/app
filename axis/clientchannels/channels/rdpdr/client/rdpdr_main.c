@@ -206,7 +206,7 @@ static void* drive_hotplug_thread_func(void* arg)
 	RegisterClassExW(&wnd_cls);
 
 	/* create window */
-	hwnd = CreateWindowEx(0, L"DRIVE_HOTPLUG", NULL,
+	hwnd = CreateWindowExW(0, L"DRIVE_HOTPLUG", NULL,
 			0, 0, 0, 0, 0,
 			NULL, NULL, NULL, NULL);
 	SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)rdpdr);

@@ -213,7 +213,7 @@ int credssp_ntlm_client_init(rdpCredssp* credssp)
 	sprintf(spn, "%s%s", TERMSRV_SPN_PREFIX, settings->ServerHostname);
 
 #ifdef BYEWINDOWS_UNICODE
-	credssp->ServicePrincipalName = (LPTSTR) malloc(length * 2 + 2);
+	credssp->ServicePrincipalName = (LPWSTR) malloc(length * 2 + 2);
 	MultiByteToWideChar(CP_UTF8, 0, spn, length,
 		(LPWSTR) credssp->ServicePrincipalName, length);
 	free(spn);
@@ -1329,7 +1329,7 @@ LPWSTR credssp_make_spn(const char* ServiceClass, const char* hostname)
 		return NULL;
 	}
 
-	ServicePrincipalName = (LPTSTR) malloc(SpnLength * sizeof(TCHAR));
+	ServicePrincipalName = (LPWSTR) malloc(SpnLength * sizeof(WCHAR));
 	if (!ServicePrincipalName)
 		return NULL;
 

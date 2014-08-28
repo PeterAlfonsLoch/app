@@ -186,11 +186,11 @@ static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, cons
 	win_printer->printer.Free = printer_win_free_printer;
 
 	swprintf(wname, 256, L"%hs", name);
-	OpenPrinter(wname, &(win_printer->hPrinter), NULL);
+	OpenPrinterW(wname, &(win_printer->hPrinter), NULL);
 
-	GetPrinter(win_printer->hPrinter, 2, (LPBYTE) prninfo, 0, &needed);
+	GetPrinterW(win_printer->hPrinter, 2, (LPBYTE) prninfo, 0, &needed);
 	prninfo = (PRINTER_INFO_2*) GlobalAlloc(GPTR,needed);
-	GetPrinter(win_printer->hPrinter, 2, (LPBYTE) prninfo, needed, &needed);
+	GetPrinterW(win_printer->hPrinter, 2, (LPBYTE) prninfo, needed, &needed);
 
 	win_printer->printer.driver = malloc(1000);
 	wcstombs_s(&charsConverted, win_printer->printer.driver, 1000, prninfo->pDriverName, _TRUNCATE);
