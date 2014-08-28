@@ -20,7 +20,7 @@
 #ifndef __WF_GRAPHICS_H
 #define __WF_GRAPHICS_H
 
-#include "../freerdp_rdpclient_setup.h"
+#include "../../freerdp_rdpclient_setup.h"
 
 #include "wf_interface.h"
 
