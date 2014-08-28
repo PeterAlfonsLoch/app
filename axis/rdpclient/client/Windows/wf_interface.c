@@ -1173,7 +1173,7 @@ int wfreerdp_client_start(rdpContext* context)
 	wfc->hInstance = hInstance;
 	wfc->cursor = LoadCursor(NULL, IDC_ARROW);
 	wfc->icon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
-	wfc->wndClassName = _wcsdup(L("FreeRDP"));
+	wfc->wndClassName = _wcsdup(L"FreeRDP");
 
 	wfc->wndClass.cbSize = sizeof(WNDCLASSEX);
 	wfc->wndClass.style = CS_HREDRAW | CS_VREDRAW;
@@ -1187,7 +1187,7 @@ int wfreerdp_client_start(rdpContext* context)
 	wfc->wndClass.hInstance = hInstance;
 	wfc->wndClass.hIcon = wfc->icon;
 	wfc->wndClass.hIconSm = wfc->icon;
-	RegisterClassEx(&(wfc->wndClass));
+	RegisterClassExW(&(wfc->wndClass));
 
 	wfc->keyboardThread = CreateThread(NULL, 0, wf_keyboard_thread, (void*) wfc, 0, &wfc->keyboardThreadId);
 
