@@ -177,7 +177,7 @@ static void oc_pack_adv(oc_pack_buf *_b,int32_t _bits){
 static size_t oc_huff_node_size(int32_t _nbits){
   size_t size;
   size=_ogg_offsetof(oc_huff_node,nodes);
-  if(_nbits>0)size+=sizeof(oc_huff_node *)*(numeric_info::get_unitary_value < size_t > () << _nbits);
+  if(_nbits>0)size+=sizeof(oc_huff_node *)*(numeric_info < size_t >::get_unitary_value() << _nbits);
   return size;
 }
 
@@ -381,7 +381,7 @@ static void oc_huff_node_fill(oc_huff_node **_nodes,
   else{
     _level--;
     oc_huff_node_fill(_nodes,_binode->nodes[0],_level,_depth,_storage);
-    _nodes += numeric_info::get_unitary_value < uint_ptr > () <<_level;
+    _nodes += numeric_info < uint_ptr >::get_unitary_value() << _level;
     oc_huff_node_fill(_nodes,_binode->nodes[1],_level,_depth,_storage);
   }
 }
