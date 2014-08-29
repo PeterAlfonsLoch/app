@@ -27,5 +27,5 @@
 #endif
 
 CHARGUESS_API int CharGuessInit(void);
-const char* GuessChardet(const char *str);
+CHARGUESS_API const char* GuessChardet(const char *str);
 int CharGuessDone(void);
