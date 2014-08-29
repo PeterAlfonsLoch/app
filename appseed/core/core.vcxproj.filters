@@ -902,9 +902,6 @@
     <ClInclude Include="database\simpledb\simpledb_table.h">
       <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
-    <ClInclude Include="database\simpledb\sqlite_set.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
     <ClInclude Include="database\simpledb\veiev_post.h">
       <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>

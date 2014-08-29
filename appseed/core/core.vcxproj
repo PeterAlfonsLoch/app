@@ -1695,7 +1695,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="database\simpledb\simpledb_socket.h" />
     <ClInclude Include="database\simpledb\simpledb_socket_thread.h" />
     <ClInclude Include="database\simpledb\simpledb_table.h" />
-    <ClInclude Include="database\simpledb\sqlite_set.h" />
     <ClInclude Include="database\simpledb\veiev_post.h" />
     <ClInclude Include="filesystem\filehandler\filehandler.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_handler.h" />
