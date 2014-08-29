@@ -2186,7 +2186,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_UTF8Prober.cpp" />
     <ClCompile Include="core\plugin\plugin_history.cpp" />
     <ClCompile Include="core\plugin\plugin_host_interaction.cpp" />
     <ClCompile Include="core\plugin\plugin_instance.cpp" />
