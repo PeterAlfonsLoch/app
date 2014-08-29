@@ -3242,6 +3242,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClInclude Include="database\sqlite\sqlite_base.h" />
+    <ClInclude Include="database\sqlite\sqlite_set.h" />
     <ClInclude Include="filesystem\file\file_edit_buffer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
