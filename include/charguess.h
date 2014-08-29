@@ -28,6 +28,6 @@
 
 typedef void * charguess;
 
-CHARGUESS_API int CharGuessInit(void);
+CHARGUESS_API charguess CharGuessInit(void);
 CHARGUESS_API const char* GuessChardet(const char *str);
 CHARGUESS_API int CharGuessDone(void);
