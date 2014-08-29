@@ -5,28 +5,33 @@
 namespace message
 {
 
-
-#ifdef WINDOWS
-
-   bool dispatch::igui_RelayEvent(LPMESSAGE lpmsg)
+   dispatch::SignalArray::SignalArray()
    {
-      switch(lpmsg->message)
-      {
-      case message_pos_create:
-         return OnWndMsgPosCreate();
-         break;
-      default:
-         return false;
-      }
-      return 0;
+
    }
 
-#endif
 
-   bool dispatch::OnWndMsgPosCreate()
-   {
-      return true;
-   }
+//#ifdef WINDOWS
+//
+//   bool dispatch::igui_RelayEvent(LPMESSAGE lpmsg)
+//   {
+//      switch(lpmsg->message)
+//      {
+//      case message_pos_create:
+//         return OnWndMsgPosCreate();
+//         break;
+//      default:
+//         return false;
+//      }
+//      return 0;
+//   }
+//
+//#endif
+//
+//   bool dispatch::OnWndMsgPosCreate()
+//   {
+//      return true;
+//   }
 
    sp(::message::base) dispatch::get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam)
    {
@@ -61,9 +66,7 @@ namespace message
 
 #endif
 
-   dispatch::dispatch()// :
-      //         m_pevOk(NULL),
-      //       m_pmutex(NULL)
+   dispatch::dispatch()
    {
 
       m_pfnDispatchWindowProc    = &dispatch::_start_user_message_handler;
@@ -73,6 +76,14 @@ namespace message
 
    dispatch::~dispatch()
    {
+
+   }
+
+
+   void dispatch::message_handler(signal_details * pobj)
+   {
+
+      (this->*m_pfnDispatchWindowProc)(pobj);
 
    }
 

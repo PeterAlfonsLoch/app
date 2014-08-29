@@ -123,8 +123,9 @@ namespace message
          pfn);
    }
 
-   inline void dispatch::SignalArray::
-      GetSignalsByMessage(dispatch::SignalPtrArray & signalptra,UINT uiMessage,UINT uiCode,UINT uiId)
+
+
+   inline void dispatch::SignalArray::GetSignalsByMessage(dispatch::SignalPtrArray & signalptra,UINT uiMessage,UINT uiCode,UINT uiId)
    {
          for(int32_t i = 0; i < this->get_size(); i++)
          {

@@ -64,21 +64,29 @@ namespace message
          public spa(Signal)
       {
       public:
+
+         SignalArray();
          virtual ~SignalArray();
+
          void GetSignalsByMessage(SignalPtrArray & signalptra,UINT uiMessage,UINT uiCode,UINT uiId);
          Signal * GetSignalByMessage(UINT uiMessage,UINT uiCode,UINT uiIdStart,UINT uiIdEnd);
-         };
+
+      };
+
+
+      int32_t                       m_iHandling;
+      SignalArray                   m_signala;
+      class ::signal                m_signalInstallMessageHandling;
+      void (dispatch::           *  m_pfnDispatchWindowProc)(signal_details * pobj);
 
 
       dispatch();
       virtual ~dispatch();
 
-
-      virtual void _on_start_user_message_handler();
-
       virtual sp(::aura::application) calc_app();
 
       sp(::message::base) get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam);
+
       sp(::message::base) get_base(LPMESSAGE lpmsg);
 
 #ifdef LINUX
@@ -90,47 +98,7 @@ namespace message
       void RemoveMessageHandler(signalizable* psignalizable);
 
       template < class T >
-      bool AddMessageHandler(
-         UINT message,
-         UINT uiCode,
-         UINT uiIdStart,
-         UINT uiIdEnd,
-         T * psignalizable,
-         void (T::*pfn)(signal_details *),
-         bool bAddUnique = true)
-      {
-         Signal * psignal = m_signala.GetSignalByMessage(message,uiCode,uiIdStart,uiIdEnd);
-         // If not found a existing Signal, create one
-         if(psignal == NULL)
-         {
-            psignal = canew(Signal);
-            psignal->m_uiMessage = message;
-            psignal->m_uiCode = uiCode;
-            psignal->m_uiIdStart = uiIdStart;
-            psignal->m_uiIdEnd = uiIdEnd;
-            psignal->m_eprototype = GetMessagePrototype(message,0);
-            psignal->m_psignal = canew(class ::signal());
-            psignal->m_psignal->connect(psignalizable,pfn);
-            HandlerItem <T> * pitem = canew(HandlerItem < T >);
-            pitem->m_psignalizable = psignalizable;
-            psignal->m_handlera.add(pitem);
-            m_signala.add(psignal);
-         }
-         else
-         {
-            if(bAddUnique && psignal->m_psignal->is_connected(psignalizable,pfn))
-               return true;
-            // If a matching Signal is found, connect to
-            // this signal.
-            psignal->m_psignal->connect(psignalizable,pfn);
-            HandlerItem <T> * pitem = canew(HandlerItem<T>);
-            pitem->m_psignalizable = psignalizable;
-            psignal->m_handlera.add(pitem);
-         }
-         m_iHandling++;
-         return true;
-      }
-
+      bool AddMessageHandler(UINT message, UINT uiCode, UINT uiIdStart, UINT uiIdEnd, T * psignalizable, void (T::*pfn)(signal_details *), bool bAddUnique = true);
 
       virtual e_prototype GetMessagePrototype(UINT uiMessage,UINT uiCode);
 
@@ -138,31 +106,75 @@ namespace message
 
       virtual void _001ClearMessageHandling();
 
-      int32_t                    m_iHandling;
-      SignalArray                m_signala;
-      class ::signal               m_signalInstallMessageHandling;
-      //         sp(manual_reset_event)     m_pevOk;
-      //         sp(mutex)                  m_pmutex;
+      virtual void message_handler(signal_details * pobj);
+
+      virtual void _on_start_user_message_handler();
 
       virtual void _start_user_message_handler(signal_details * pobj);
 
-      void (dispatch::*m_pfnDispatchWindowProc)(signal_details * pobj);
-
       virtual void _user_message_handler(signal_details * pobj);
-      //bool _iguimessageDispatchCommandMessage(::aura::command * pcommand, bool & b);
-      // return TRUE to stop routing
-#ifdef WINDOWS
-      virtual bool igui_RelayEvent(LPMESSAGE lpmsg);
-#endif
+
+
+
+//#ifdef WINDOWS
+//      virtual bool igui_RelayEvent(LPMESSAGE lpmsg);
+//#endif
       virtual bool OnWndMsgPosCreate();
 
 
-      //         inline manual_reset_event * dispatch_event_ok() { if(m_pevOk != NULL) return m_pevOk; m_pevOk = canew(manual_reset_event(NULL)); return m_pevOk; }
-      //         inline mutex * dispatch_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = canew(::mutex(NULL)); return m_pmutex; }
    };
 
 
+
+
+   template < class T >
+   bool dispatch::AddMessageHandler(
+      UINT message,
+      UINT uiCode,
+      UINT uiIdStart,
+      UINT uiIdEnd,
+      T * psignalizable,
+      void (T::*pfn)(signal_details *),
+      bool bAddUnique = true)
+   {
+      Signal * psignal = m_signala.GetSignalByMessage(message,uiCode,uiIdStart,uiIdEnd);
+      // If not found a existing Signal, create one
+      if(psignal == NULL)
+      {
+         psignal = canew(Signal);
+         psignal->m_uiMessage = message;
+         psignal->m_uiCode = uiCode;
+         psignal->m_uiIdStart = uiIdStart;
+         psignal->m_uiIdEnd = uiIdEnd;
+         psignal->m_eprototype = GetMessagePrototype(message,0);
+         psignal->m_psignal = canew(class ::signal());
+         psignal->m_psignal->connect(psignalizable,pfn);
+         HandlerItem <T> * pitem = canew(HandlerItem < T >);
+         pitem->m_psignalizable = psignalizable;
+         psignal->m_handlera.add(pitem);
+         m_signala.add(psignal);
+      }
+      else
+      {
+         if(bAddUnique && psignal->m_psignal->is_connected(psignalizable,pfn))
+            return true;
+         // If a matching Signal is found, connect to
+         // this signal.
+         psignal->m_psignal->connect(psignalizable,pfn);
+         HandlerItem <T> * pitem = canew(HandlerItem<T>);
+         pitem->m_psignalizable = psignalizable;
+         psignal->m_handlera.add(pitem);
+      }
+      m_iHandling++;
+      return true;
+   }
+
+
+
 } // namespace message
+
+
+
 
 
 

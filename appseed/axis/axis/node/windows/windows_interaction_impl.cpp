@@ -1392,7 +1392,7 @@ namespace windows
          }
          return;
       }
-      (this->*m_pfnDispatchWindowProc)(pobj);
+      ::user::interaction_impl::message_handler(pobj);
       if(pobj->m_bRet)
          return;
       if(m_pui != NULL)

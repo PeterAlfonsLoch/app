@@ -417,8 +417,9 @@ namespace user
 
    void interaction_impl::message_handler(signal_details * pobj)
    {
-      UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception(get_app());
+      
+      ::command_target::message_handler(pobj);
+
    }
 
 

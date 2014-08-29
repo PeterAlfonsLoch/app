@@ -2979,7 +2979,7 @@ namespace aura
    void application::process_message(signal_details * pobj)
    {
 
-      message_handler(m_pthreadimpl,pobj);
+      message_handler(pobj);
 
    }
 
