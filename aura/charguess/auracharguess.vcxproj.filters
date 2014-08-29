@@ -15,6 +15,9 @@
     <Filter Include="Header Files\cpp">
       <UniqueIdentifier>{d7888f66-c8b2-4c3f-9d17-eaf17f252184}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\framework">
+      <UniqueIdentifier>{3151d847-ff5f-4305-b784-7fcb7fc81d13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="auracharguess.def">
