@@ -731,21 +731,6 @@
     <ClInclude Include="database\database_set.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
-    <ClInclude Include="database\database_server.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_selection_item.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_selection.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_key.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_id.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
     <ClInclude Include="axis\policy\policy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
