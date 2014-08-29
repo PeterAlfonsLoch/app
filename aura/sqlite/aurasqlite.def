@@ -1,4 +1,4 @@
-LIBRARY "axisbsdiff"
+LIBRARY "aurasqlite"
 
 EXPORTS
 
