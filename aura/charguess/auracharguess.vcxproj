@@ -330,9 +330,9 @@ copy Source\FreeImage.h Dist
     <ClCompile Include="cpp\UTF8Prober.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\charguess.h" />
     <ClInclude Include="cpp\big5Prober.h" />
     <ClInclude Include="cpp\charDistribution.h" />
-    <ClInclude Include="cpp\charguess.h" />
     <ClInclude Include="cpp\charsetProber.h" />
     <ClInclude Include="cpp\codingStateMachine.h" />
     <ClInclude Include="cpp\config.h" />

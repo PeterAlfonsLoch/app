@@ -99,9 +99,6 @@
     <ClInclude Include="cpp\charDistribution.h">
       <Filter>Header Files\cpp</Filter>
     </ClInclude>
-    <ClInclude Include="cpp\charguess.h">
-      <Filter>Header Files\cpp</Filter>
-    </ClInclude>
     <ClInclude Include="cpp\charsetProber.h">
       <Filter>Header Files\cpp</Filter>
     </ClInclude>
@@ -155,6 +152,9 @@
     </ClInclude>
     <ClInclude Include="cpp\UTF8Prober.h">
       <Filter>Header Files\cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\charguess.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
