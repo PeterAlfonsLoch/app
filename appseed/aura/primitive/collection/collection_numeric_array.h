@@ -108,11 +108,11 @@ public:
       while(iUpperBound - iLowerBound >= 8)
       {
          iCompare = this->element_at(iIndex) - t;
-         if(iCompare == ::numeric_info::get_null_value < TYPE > ())
+         if(iCompare == ::numeric_info < TYPE > ::get_null_value())
          {
             return true;
          }
-         else if(iCompare > (typename ::numeric_info::offset < TYPE >::TYPE) ::numeric_info::get_null_value < TYPE > ())
+         else if(iCompare > (typename ::numeric_info < TYPE >::OFFSET_TYPE) ::numeric_info < TYPE > ::get_null_value())
          {
             iUpperBound = iIndex - 1;
             if(iUpperBound < 0)
@@ -138,7 +138,7 @@ public:
          iCompare = this->element_at(iIndex) - t;
          if(iCompare == ::numeric_info::get_null_value < TYPE > ())
             return true;
-         else if(iCompare < (typename ::numeric_info::offset < TYPE >::TYPE) ::numeric_info::get_null_value < TYPE > ())
+         else if(iCompare < (typename ::numeric_info < TYPE >::OFFSET_TYPE) ::numeric_info < TYPE >::get_null_value ())
             iIndex++;
          else
             break;
