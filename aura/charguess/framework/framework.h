@@ -1,3 +1,6 @@
+#pragma once
+
+
 #include "pkgInt.h"
 #include "SBCharsetProber.h"
 #include "SBCSGroupProber.h"
