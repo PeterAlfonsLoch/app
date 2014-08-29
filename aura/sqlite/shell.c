@@ -362,8 +362,8 @@ static void shellstaticFunc(
 
 /*
 ** This routine reads a line of text from FILE in, stores
-** the text in memory obtained from malloc() and returns a pointer
-** to the text.  NULL is returned at end of file, or if malloc()
+** the text in memory obtained from memory_alloc() and returns a pointer
+** to the text.  NULL is returned at end of file, or if memory_alloc()
 ** fails.
 **
 ** If zLine is not NULL then it is a malloced buffer returned from
@@ -376,12 +376,12 @@ static char *local_getline(char *zLine, FILE *in){
   while( 1 ){
     if( n+100>nLine ){
       nLine = nLine*2 + 100;
-      zLine = realloc(zLine, nLine);
+      zLine = memory_realloc(zLine, nLine);
       if( zLine==0 ) return 0;
     }
     if( fgets(&zLine[n], nLine - n, in)==0 ){
       if( n==0 ){
-        free(zLine);
+        memory_free(zLine);
         return 0;
       }
       zLine[n] = 0;
@@ -408,7 +408,7 @@ static char *local_getline(char *zLine, FILE *in){
 ** If zPrior is not NULL then it is a buffer from a prior call to this
 ** routine that can be reused.
 **
-** The result is stored in space obtained from malloc() and must either
+** The result is stored in space obtained from memory_alloc() and must either
 ** be freed by the caller or else passed back into this routine via the
 ** zPrior argument for reuse.
 */
@@ -420,7 +420,7 @@ static char *one_input_line(FILE *in, char *zPrior, int isContinuation){
   }else{
     zPrompt = isContinuation ? continuePrompt : mainPrompt;
 #if defined(HAVE_READLINE)
-    free(zPrior);
+    memory_free(zPrior);
     zResult = readline(zPrompt);
     if( zResult && *zResult ) add_history(zResult);
 #else
@@ -469,7 +469,7 @@ struct callback_data {
                          ** .explain ON */
   char outfile[FILENAME_MAX]; /* Filename for *out */
   const char *zDbFilename;    /* name of the database file */
-  char *zFreeOnClose;         /* Filename to free when closing */
+  char *zFreeOnClose;         /* Filename to memory_free when closing */
   const char *zVfs;           /* Name of VFS to use */
   sqlite3_stmt *pStmt;   /* Current statement if any. */
   FILE *pLog;            /* Write log output here */
@@ -933,7 +933,7 @@ static void set_table_name(struct callback_data *p, const char *zName){
   char *z;
 
   if( p->zDestTable ){
-    free(p->zDestTable);
+    memory_free(p->zDestTable);
     p->zDestTable = 0;
   }
   if( zName==0 ) return;
@@ -945,7 +945,7 @@ static void set_table_name(struct callback_data *p, const char *zName){
     }
   }
   if( needQuote ) n += 2;
-  z = p->zDestTable = malloc( n+1 );
+  z = p->zDestTable = memory_alloc( n+1 );
   if( z==0 ){
     fprintf(stderr,"Error: out of memory\n");
     exit(1);
@@ -961,8 +961,8 @@ static void set_table_name(struct callback_data *p, const char *zName){
 }
 
 /* zIn is either a pointer to a NULL-terminated string in memory obtained
-** from malloc(), or a NULL pointer. The string pointed to by zAppend is
-** added to zIn, and the result returned in memory obtained from malloc().
+** from memory_alloc(), or a NULL pointer. The string pointed to by zAppend is
+** added to zIn, and the result returned in memory obtained from memory_alloc().
 ** zIn, if it was not NULL, is freed.
 **
 ** If the third argument, quote, is not '\0', then it is used as a 
@@ -982,7 +982,7 @@ static char *appendText(char *zIn, char const *zAppend, char quote){
     }
   }
 
-  zIn = (char *)realloc(zIn, len);
+  zIn = (char *)memory_realloc(zIn, len);
   if( !zIn ){
     return 0;
   }
@@ -1496,7 +1496,7 @@ static int dump_callback(void *pArg, int nArg, char **azArg, char **azCol){
     zTableInfo = appendText(zTableInfo, ");", 0);
 
     rc = sqlite3_prepare_v2(p->db, zTableInfo, -1, &pTableInfo, 0);
-    free(zTableInfo);
+    memory_free(zTableInfo);
     if( rc!=SQLITE_OK || !pTableInfo ){
       return 1;
     }
@@ -1507,7 +1507,7 @@ static int dump_callback(void *pArg, int nArg, char **azArg, char **azCol){
     zTmp = appendText(zTmp, zTable, '"');
     if( zTmp ){
       zSelect = appendText(zSelect, zTmp, '\'');
-      free(zTmp);
+      memory_free(zTmp);
     }
     zSelect = appendText(zSelect, " || ' VALUES(' || ", 0);
     rc = sqlite3_step(pTableInfo);
@@ -1525,7 +1525,7 @@ static int dump_callback(void *pArg, int nArg, char **azArg, char **azCol){
     }
     rc = sqlite3_finalize(pTableInfo);
     if( rc!=SQLITE_OK || nRow==0 ){
-      free(zSelect);
+      memory_free(zSelect);
       return 1;
     }
     zSelect = appendText(zSelect, "|| ')' FROM  ", 0);
@@ -1536,7 +1536,7 @@ static int dump_callback(void *pArg, int nArg, char **azArg, char **azCol){
       zSelect = appendText(zSelect, " ORDER BY rowid DESC", 0);
       run_table_dump_query(p, zSelect, 0);
     }
-    free(zSelect);
+    memory_free(zSelect);
   }
   return 0;
 }
@@ -1564,7 +1564,7 @@ static int run_schema_dump_query(
       sqlite3_free(zErr);
       zErr = 0;
     }
-    zQ2 = malloc( len+100 );
+    zQ2 = memory_alloc( len+100 );
     if( zQ2==0 ) return rc;
     sqlite3_snprintf(len+100, zQ2, "%s ORDER BY rowid DESC", zQuery);
     rc = sqlite3_exec(p->db, zQ2, dump_callback, p, &zErr);
@@ -1574,7 +1574,7 @@ static int run_schema_dump_query(
       rc = SQLITE_CORRUPT;
     }
     sqlite3_free(zErr);
-    free(zQ2);
+    memory_free(zQ2);
   }
   return rc;
 }
@@ -3586,7 +3586,7 @@ static int process_input(struct callback_data *p, FILE *in){
     nLine = strlen30(zLine);
     if( nSql+nLine+2>=nAlloc ){
       nAlloc = nSql+nLine+100;
-      zSql = realloc(zSql, nAlloc);
+      zSql = memory_realloc(zSql, nAlloc);
       if( zSql==0 ){
         fprintf(stderr, "Error: out of memory\n");
         exit(1);
@@ -3643,9 +3643,9 @@ static int process_input(struct callback_data *p, FILE *in){
     if( !_all_whitespace(zSql) ){
       fprintf(stderr, "Error: incomplete SQL: %s\n", zSql);
     }
-    free(zSql);
+    memory_free(zSql);
   }
-  free(zLine);
+  memory_free(zLine);
   return errCnt>0;
 }
 
@@ -3691,7 +3691,7 @@ static char *find_home_dir(void){
     zPath = getenv("HOMEPATH");
     if( zDrive && zPath ){
       n = strlen30(zDrive) + strlen30(zPath) + 1;
-      home_dir = malloc( n );
+      home_dir = memory_alloc( n );
       if( home_dir==0 ) return 0;
       sqlite3_snprintf(n, home_dir, "%s%s", zDrive, zPath);
       return home_dir;
@@ -3704,7 +3704,7 @@ static char *find_home_dir(void){
 
   if( home_dir ){
     int n = strlen30(home_dir) + 1;
-    char *z = malloc( n );
+    char *z = memory_alloc( n );
     if( z ) memcpy(z, home_dir, n);
     home_dir = z;
   }
@@ -3877,7 +3877,7 @@ int main(int argc, char **argv){
 
   /* Do an initial pass through the command-line argument to locate
   ** the name of the database file, the name of the initialization file,
-  ** the size of the alternative malloc heap,
+  ** the size of the alternative memory_alloc heap,
   ** and the first command to execute.
   */
   for(i=1; i<argc; i++){
@@ -3919,7 +3919,7 @@ int main(int argc, char **argv){
       zSize = cmdline_option_value(argc, argv, ++i);
       szHeap = integerValue(zSize);
       if( szHeap>0x7fff0000 ) szHeap = 0x7fff0000;
-      sqlite3_config(SQLITE_CONFIG_HEAP, malloc((int)szHeap), (int)szHeap, 64);
+      sqlite3_config(SQLITE_CONFIG_HEAP, memory_alloc((int)szHeap), (int)szHeap, 64);
 #endif
 #ifdef SQLITE_ENABLE_VFSTRACE
     }else if( strcmp(z,"-vfstrace")==0 ){
@@ -4112,7 +4112,7 @@ int main(int argc, char **argv){
       zHome = find_home_dir();
       if( zHome ){
         nHistory = strlen30(zHome) + 20;
-        if( (zHistory = malloc(nHistory))!=0 ){
+        if( (zHistory = memory_alloc(nHistory))!=0 ){
           sqlite3_snprintf(nHistory, zHistory,"%s/.sqlite_history", zHome);
         }
       }
@@ -4123,7 +4123,7 @@ int main(int argc, char **argv){
       if( zHistory ){
         stifle_history(100);
         write_history(zHistory);
-        free(zHistory);
+        memory_free(zHistory);
       }
     }else{
       rc = process_input(&data, stdin);

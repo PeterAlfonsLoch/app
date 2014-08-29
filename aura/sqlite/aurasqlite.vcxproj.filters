@@ -11,24 +11,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axisbsdiff.def">
+    <ClInclude Include="libbsdiff.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sqlite3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\sqlite3ext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="aurasqlite.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="libbsdiff.c">
+    <ClCompile Include="shell.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bsdiff_bspatch.cpp">
+    <ClCompile Include="sqlite3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bsdiff_bsdiff.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="libbsdiff.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

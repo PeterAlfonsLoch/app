@@ -403,7 +403,7 @@ SQLITE_API int sqlite3_exec(
 #define SQLITE_ABORT        4   /* Callback routine requested an abort */
 #define SQLITE_BUSY         5   /* The database file is locked */
 #define SQLITE_LOCKED       6   /* A table in the database is locked */
-#define SQLITE_NOMEM        7   /* A malloc() failed */
+#define SQLITE_NOMEM        7   /* A memory_alloc() failed */
 #define SQLITE_READONLY     8   /* Attempt to write a readonly database */
 #define SQLITE_INTERRUPT    9   /* Operation terminated by sqlite3_interrupt()*/
 #define SQLITE_IOERR       10   /* Some kind of disk I/O error occurred */
@@ -1397,7 +1397,7 @@ SQLITE_API int sqlite3_db_config(sqlite3*, int op, ...);
 ** conditions.
 **
 ** The xMalloc, xRealloc, and xFree methods must work like the
-** malloc(), realloc() and free() functions from the standard C library.
+** memory_alloc(), memory_realloc() and memory_free() functions from the standard C library.
 ** ^SQLite guarantees that the second argument to
 ** xRealloc is always a value returned by a prior call to xRoundup.
 **
@@ -1494,7 +1494,7 @@ struct sqlite3_mem_methods {
 ** In this mode (which is the default when SQLite is compiled with
 ** [SQLITE_THREADSAFE=1]) the SQLite library will itself serialize access
 ** to [database connections] and [prepared statements] so that the
-** application is free to use the same [database connection] or the
+** application is memory_free to use the same [database connection] or the
 ** same [prepared statement] in different threads at the same time.
 ** ^If SQLite is compiled with
 ** the [SQLITE_THREADSAFE | SQLITE_THREADSAFE=0] compile-time option then
@@ -1578,7 +1578,7 @@ struct sqlite3_mem_methods {
 ** There are three arguments: An 8-byte aligned pointer to the memory,
 ** the number of bytes in the memory buffer, and the minimum allocation size.
 ** ^If the first pointer (the memory pointer) is NULL, then SQLite reverts
-** to using its default memory allocator (the system malloc() implementation),
+** to using its default memory allocator (the system memory_alloc() implementation),
 ** undoing any prior invocation of [SQLITE_CONFIG_MALLOC].  ^If the
 ** memory pointer is not NULL and either [SQLITE_ENABLE_MEMSYS3] or
 ** [SQLITE_ENABLE_MEMSYS5] are defined, then the alternative memory
@@ -2294,11 +2294,11 @@ SQLITE_API char *sqlite3_vsnprintf(int,char*,const char*, va_list);
 ** The SQLite core uses these three routines for all of its own
 ** internal memory allocation needs. "Core" in the previous sentence
 ** does not include operating-system specific VFS implementation.  The
-** Windows VFS uses native malloc() and free() for some operations.
+** Windows VFS uses native memory_alloc() and memory_free() for some operations.
 **
 ** ^The sqlite3_malloc() routine returns a pointer to a block
 ** of memory at least N bytes in length, where N is the parameter.
-** ^If sqlite3_malloc() is unable to obtain sufficient free
+** ^If sqlite3_malloc() is unable to obtain sufficient memory_free
 ** memory, it returns a NULL pointer.  ^If the parameter N to
 ** sqlite3_malloc() is zero or negative then sqlite3_malloc() returns
 ** a NULL pointer.
@@ -2342,7 +2342,7 @@ SQLITE_API char *sqlite3_vsnprintf(int,char*,const char*, va_list);
 ** is no longer provided.  Only built-in memory allocators can be used.
 **
 ** Prior to SQLite version 3.7.10, the Windows OS interface layer called
-** the system malloc() and free() directly when converting
+** the system memory_alloc() and memory_free() directly when converting
 ** filenames between the UTF-8 encoding used by SQLite
 ** and whatever filename encoding is used by the particular Windows
 ** installation.  Memory allocation errors were detected, but
@@ -3404,7 +3404,7 @@ typedef struct sqlite3_context sqlite3_context;
 ** ^The sqlite3_bind_* routines return [SQLITE_OK] on success or an
 ** [error code] if anything goes wrong.
 ** ^[SQLITE_RANGE] is returned if the parameter
-** index is out of range.  ^[SQLITE_NOMEM] is returned if malloc() fails.
+** index is out of range.  ^[SQLITE_NOMEM] is returned if memory_alloc() fails.
 **
 ** See also: [sqlite3_bind_parameter_count()],
 ** [sqlite3_bind_parameter_name()], and [sqlite3_bind_parameter_index()].
@@ -4299,7 +4299,7 @@ SQLITE_API sqlite3 *sqlite3_context_db_handle(sqlite3_context*);
 ** ^After each call to sqlite3_set_auxdata(C,N,P,X) where X is not NULL,
 ** SQLite will invoke the destructor function X with parameter P exactly
 ** once, when the metadata is discarded.
-** SQLite is free to discard the metadata at any time, including: <ul>
+** SQLite is memory_free to discard the metadata at any time, including: <ul>
 ** <li> when the corresponding function parameter changes, or
 ** <li> when [sqlite3_reset()] or [sqlite3_finalize()] is called for the
 **      SQL statement, or
@@ -4713,13 +4713,13 @@ SQLITE_API int sqlite3_sleep(int);
 ** it to point to memory obtained from [sqlite3_malloc].  ^Furthermore,
 ** the [temp_store_directory pragma] always assumes that any string
 ** that this variable points to is held in memory obtained from 
-** [sqlite3_malloc] and the pragma may attempt to free that memory
+** [sqlite3_malloc] and the pragma may attempt to memory_free that memory
 ** using [sqlite3_free].
 ** Hence, if this variable is modified directly, either it should be
 ** made NULL or made to point to memory obtained from [sqlite3_malloc]
 ** or else the use of the [temp_store_directory pragma] should be avoided.
 ** Except when requested by the [temp_store_directory pragma], SQLite
-** does not free the memory that sqlite3_temp_directory points to.  If
+** does not memory_free the memory that sqlite3_temp_directory points to.  If
 ** the application wants that memory to be freed, it must do
 ** so itself, taking care to only do so after all [database connection]
 ** objects have been destroyed.
@@ -4770,7 +4770,7 @@ SQLITE_API SQLITE_EXTERN char *sqlite3_temp_directory;
 ** it to point to memory obtained from [sqlite3_malloc].  ^Furthermore,
 ** the [data_store_directory pragma] always assumes that any string
 ** that this variable points to is held in memory obtained from 
-** [sqlite3_malloc] and the pragma may attempt to free that memory
+** [sqlite3_malloc] and the pragma may attempt to memory_free that memory
 ** using [sqlite3_free].
 ** Hence, if this variable is modified directly, either it should be
 ** made NULL or made to point to memory obtained from [sqlite3_malloc]
@@ -4990,7 +4990,7 @@ SQLITE_API int sqlite3_enable_shared_cache(int);
 /*
 ** CAPI3REF: Attempt To Free Heap Memory
 **
-** ^The sqlite3_release_memory() interface attempts to free N bytes
+** ^The sqlite3_release_memory() interface attempts to memory_free N bytes
 ** of heap memory by deallocating non-essential memory allocations
 ** held by the database library.   Memory used to cache database
 ** pages to improve performance is an example of non-essential memory.
@@ -5006,7 +5006,7 @@ SQLITE_API int sqlite3_release_memory(int);
 /*
 ** CAPI3REF: Free Memory Used By A Database Connection
 **
-** ^The sqlite3_db_release_memory(D) interface attempts to free as much heap
+** ^The sqlite3_db_release_memory(D) interface attempts to memory_free as much heap
 ** memory as possible from database connection D. Unlike the
 ** [sqlite3_release_memory()] interface, this interface is in effect even
 ** when the [SQLITE_ENABLE_MEMORY_MANAGEMENT] compile-time option is
@@ -5180,7 +5180,7 @@ SQLITE_API int sqlite3_table_column_metadata(
 ** [sqlite3_load_extension()] interface shall attempt to
 ** fill *pzErrMsg with error message text stored in memory
 ** obtained from [sqlite3_malloc()]. The calling function
-** should free this memory by calling [sqlite3_free()].
+** should memory_free this memory by calling [sqlite3_free()].
 **
 ** ^Extension loading must be enabled using
 ** [sqlite3_enable_load_extension()] prior to calling this API,
@@ -5377,7 +5377,7 @@ struct sqlite3_module {
 **
 ** ^The idxNum and idxPtr values are recorded and passed into the
 ** [xFilter] method.
-** ^[sqlite3_free()] is used to free idxPtr if and only if
+** ^[sqlite3_free()] is used to memory_free idxPtr if and only if
 ** needToFreeIdxPtr is true.
 **
 ** ^The orderByConsumed means that output from [xFilter]/[xNext] will occur in
@@ -6335,13 +6335,13 @@ SQLITE_API int sqlite3_db_status(sqlite3*, int op, int *pCur, int *pHiwtr, int r
 ** checked out.</dd>)^
 **
 ** [[SQLITE_DBSTATUS_LOOKASIDE_HIT]] ^(<dt>SQLITE_DBSTATUS_LOOKASIDE_HIT</dt>
-** <dd>This parameter returns the number malloc attempts that were 
+** <dd>This parameter returns the number memory_alloc attempts that were 
 ** satisfied using lookaside memory. Only the high-water value is meaningful;
 ** the current value is always zero.)^
 **
 ** [[SQLITE_DBSTATUS_LOOKASIDE_MISS_SIZE]]
 ** ^(<dt>SQLITE_DBSTATUS_LOOKASIDE_MISS_SIZE</dt>
-** <dd>This parameter returns the number malloc attempts that might have
+** <dd>This parameter returns the number memory_alloc attempts that might have
 ** been satisfied using lookaside memory but failed due to the amount of
 ** memory requested being larger than the lookaside slot size.
 ** Only the high-water value is meaningful;
@@ -6349,7 +6349,7 @@ SQLITE_API int sqlite3_db_status(sqlite3*, int op, int *pCur, int *pHiwtr, int r
 **
 ** [[SQLITE_DBSTATUS_LOOKASIDE_MISS_FULL]]
 ** ^(<dt>SQLITE_DBSTATUS_LOOKASIDE_MISS_FULL</dt>
-** <dd>This parameter returns the number malloc attempts that might have
+** <dd>This parameter returns the number memory_alloc attempts that might have
 ** been satisfied using lookaside memory but failed due to all lookaside
 ** memory already being in use.
 ** Only the high-water value is meaningful;
@@ -6671,8 +6671,8 @@ struct sqlite3_pcache_page {
 **
 ** [[the xShrink() page cache method]]
 ** ^SQLite invokes the xShrink() method when it wants the page cache to
-** free up as much of heap memory as possible.  The page cache implementation
-** is not obligated to free any memory, but well-behaved implementations should
+** memory_free up as much of heap memory as possible.  The page cache implementation
+** is not obligated to memory_free any memory, but well-behaved implementations should
 ** do their best.
 */
 typedef struct sqlite3_pcache_methods2 sqlite3_pcache_methods2;
@@ -7465,7 +7465,7 @@ struct sqlite3_rtree_query_info {
   int nParam;                       /* Number of function parameters */
   sqlite3_rtree_dbl *aParam;        /* value of function parameters */
   void *pUser;                      /* callback can use this, if desired */
-  void (*xDelUser)(void*);          /* function to free pUser */
+  void (*xDelUser)(void*);          /* function to memory_free pUser */
   sqlite3_rtree_dbl *aCoord;        /* Coordinates of node or entry to check */
   unsigned int *anQueue;            /* Number of pending entries in the queue */
   int nCoord;                       /* Number of coordinates */
