@@ -73,3 +73,16 @@ extern "C" void CharGuessDestroy(charguess_det p)
    }
 
 }
+
+
+
+
+
+#ifdef _DEBUG
+
+void _debug_charguess()
+{
+   string strCharGuest = charguess("\"Carlos é brasileiro\" está escrito em um código de página latino?")();
+}
+
+#endif

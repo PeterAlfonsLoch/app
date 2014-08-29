@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>auracharguess</ProjectName>
-    <ProjectGuid>{424F72D6-053A-41C5-BE03-3B0BD535F1EB}</ProjectGuid>
+    <ProjectGuid>{AC6A52B4-C049-439C-88FF-5A262D968C8F}</ProjectGuid>
     <RootNamespace>auracharguess</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
