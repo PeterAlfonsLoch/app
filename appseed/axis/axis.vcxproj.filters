@@ -854,6 +854,9 @@
     <ClInclude Include="database\sqlite\sqlite_set.h">
       <Filter>Header Files\database\sqlite</Filter>
     </ClInclude>
+    <ClInclude Include="database\sqlite\sqlite.h">
+      <Filter>Header Files\database\sqlite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
