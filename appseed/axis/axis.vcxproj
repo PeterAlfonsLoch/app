@@ -3268,6 +3268,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\os\windows\windows_os.cpp" />
     <ClCompile Include="axis\os\windows\windows_simple_app.cpp" />
     <ClCompile Include="axis\os\windows\windows_window_gdi.cpp" />
+    <ClCompile Include="database\database\database_application.cpp" />
+    <ClCompile Include="database\database\database_base.cpp" />
+    <ClCompile Include="database\database\database_client.cpp" />
+    <ClCompile Include="database\database\database_definition.cpp" />
     <ClCompile Include="database\database_application.cpp" />
     <ClCompile Include="database\database_base.cpp" />
     <ClCompile Include="database\database_client.cpp" />

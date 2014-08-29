@@ -1375,6 +1375,18 @@
     <ClCompile Include="axis\os\windows\windows_os.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
+    <ClCompile Include="database\database\database_application.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_base.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_client.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_definition.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="base.def">
