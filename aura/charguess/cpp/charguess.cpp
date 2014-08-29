@@ -29,7 +29,7 @@ extern "C" charguess_det CharGuessInit()
    nsUniversalDetector* det = new nsUniversalDetector;
 
 	if (det != NULL)
-      return (charguess) det;
+      return (charguess_det) det;
 	else
 		return NULL;
 
