@@ -2296,33 +2296,6 @@
     <ClCompile Include="core\windows\os_library_initialize.cpp">
       <Filter>Source Files\core\windows</Filter>
     </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_EUCTWProber.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_GB2312Prober.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_jpCntx.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_LangBulgarianModel.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_LangCyrillicModel.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_LangGreekModel.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_LangHungarianModel.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_LangThaiModel.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_Latin1Prober.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
     <ClCompile Include="core\libcharguess\libcharguess_MBCSGroupProber.cpp">
       <Filter>Source Files\core\libcharguess</Filter>
     </ClCompile>

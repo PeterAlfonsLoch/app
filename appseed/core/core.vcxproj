@@ -2186,15 +2186,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_EUCTWProber.cpp" />
-    <ClCompile Include="core\libcharguess\libcharguess_GB2312Prober.cpp" />
-    <ClCompile Include="core\libcharguess\libcharguess_jpCntx.cpp" />
-    <ClCompile Include="core\libcharguess\libcharguess_LangBulgarianModel.cpp" />
-    <ClCompile Include="core\libcharguess\libcharguess_LangCyrillicModel.cpp" />
-    <ClCompile Include="core\libcharguess\libcharguess_LangGreekModel.cpp" />
-    <ClCompile Include="core\libcharguess\libcharguess_LangHungarianModel.cpp" />
-    <ClCompile Include="core\libcharguess\libcharguess_LangThaiModel.cpp" />
-    <ClCompile Include="core\libcharguess\libcharguess_Latin1Prober.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_MBCSGroupProber.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_MBCSSM.cpp" />
     <ClCompile Include="core\libcharguess\libcharguess_SBCharsetProber.cpp" />
