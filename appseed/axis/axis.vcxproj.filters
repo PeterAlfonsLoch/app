@@ -1402,6 +1402,24 @@
     <ClCompile Include="database\database\database_server.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
+    <ClCompile Include="database\database\database_event_change.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_field_definition.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_set.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_stringhelper.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_update_hint.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_user_interaction.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="base.def">
