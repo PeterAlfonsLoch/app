@@ -302,12 +302,7 @@ copy Source\FreeImage.h Dist
     <ClInclude Include="libbsdiff.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="aurasqlite.def" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="shell.c" />
-    <ClCompile Include="sqlite3.c" />
-    <ClCompile Include="version.c" />
+    <None Include="auracharguess.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
