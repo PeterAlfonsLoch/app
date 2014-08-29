@@ -2296,30 +2296,6 @@
     <ClCompile Include="core\windows\os_library_initialize.cpp">
       <Filter>Source Files\core\windows</Filter>
     </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_big5Prober.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_charDistribution.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_charguess.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_EscCharsetProber.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_EscSM.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_EUCJPProber.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_EUCKRProber.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
     <ClCompile Include="core\libcharguess\libcharguess_EUCTWProber.cpp">
       <Filter>Source Files\core\libcharguess</Filter>
     </ClCompile>
