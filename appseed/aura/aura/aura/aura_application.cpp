@@ -2976,4 +2976,12 @@ namespace aura
    }
 
 
+   void application::process_message(signal_details * pobj)
+   {
+
+      message_handler(m_pthreadimpl,pobj);
+
+   }
+
+
 } // namespace aura
