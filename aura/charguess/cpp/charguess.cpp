@@ -53,4 +53,7 @@ extern "C" int CharGuessDone(void)
 {
 	if (det)
 		delete det;
+
+   return 0;
+
 }
