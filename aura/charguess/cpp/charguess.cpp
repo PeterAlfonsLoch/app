@@ -23,7 +23,7 @@
 
 
 
-extern "C" charguess CharGuessInit()
+extern "C" charguess_det CharGuessInit()
 {
 
    nsUniversalDetector* det = new nsUniversalDetector;
@@ -35,7 +35,7 @@ extern "C" charguess CharGuessInit()
 
 }
 
-const char* GuessChardet(charguess * p, const string & str)
+const char* GuessChardet(charguess_det p,const string & str)
 {
    
    nsUniversalDetector* det = (nsUniversalDetector*) p;
@@ -48,14 +48,14 @@ const char* GuessChardet(charguess * p, const string & str)
 
 }
 
-extern "C" const char* GuessChardet(charguess * p,const char *str)
+extern "C" const char* GuessChardet(charguess_det p,const char *str)
 {
    
    return GuessChardet(p,(const string &)str);
 
 }
 
-extern "C" void CharGuessDestroy(charguess * p)
+extern "C" void CharGuessDestroy(charguess_det p)
 {
 
    try
