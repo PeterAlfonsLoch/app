@@ -26,6 +26,6 @@
 #define CHARGUESS_API  CLASS_DECL_IMPORT
 #endif
 
-int CharGuessInit(void);
+CHARGUESS_API int CharGuessInit(void);
 const char* GuessChardet(const char *str);
 int CharGuessDone(void);
