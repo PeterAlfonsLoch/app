@@ -851,6 +851,18 @@
     <ClInclude Include="database\database\database_client.h">
       <Filter>Header Files\database\database</Filter>
     </ClInclude>
+    <ClInclude Include="database\database\database_database.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_definition.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_field_definition.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_id.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">

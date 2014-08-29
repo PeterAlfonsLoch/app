@@ -2641,6 +2641,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="database\database\database_base.h" />
     <ClInclude Include="database\database\database_change_event.h" />
     <ClInclude Include="database\database\database_client.h" />
+    <ClInclude Include="database\database\database_database.h" />
+    <ClInclude Include="database\database\database_definition.h" />
+    <ClInclude Include="database\database\database_field_definition.h" />
+    <ClInclude Include="database\database\database_id.h" />
     <ClInclude Include="database\database_base.h" />
     <ClInclude Include="database\database_change_event.h" />
     <ClInclude Include="database\database_client.h" />
