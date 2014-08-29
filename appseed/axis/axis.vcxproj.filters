@@ -839,6 +839,18 @@
     <ClInclude Include="primitive\data\data_tree_item.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
+    <ClInclude Include="database\database\database.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_base.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_change_event.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_client.h">
+      <Filter>Header Files\database\database</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
