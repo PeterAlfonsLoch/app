@@ -716,21 +716,6 @@
     <ClInclude Include="axis\os\cross\windows\windows_pshpack8.h">
       <Filter>Header Files\axis\os\cross\windows</Filter>
     </ClInclude>
-    <ClInclude Include="database\database_user_interaction.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_update_hint.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_template.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_stringhelper.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_set.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
     <ClInclude Include="axis\policy\policy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
