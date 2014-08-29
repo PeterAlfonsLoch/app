@@ -3944,6 +3944,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ResourceCompile Include="axis.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\aura\sqlite\aurasqlite.vcxproj">
+      <Project>{424f72d6-053a-41c5-be03-3b0bd535f1eb}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
