@@ -2216,7 +2216,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="database\simpledb\simpledb_simpledb.cpp" />
     <ClCompile Include="database\simpledb\simpledb_socket.cpp" />
     <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_sqlite_database.cpp" />
     <ClCompile Include="database\simpledb\simpledb_sqlite_dataset.cpp" />
     <ClCompile Include="database\simpledb\simpledb_stra_set.cpp" />
     <ClCompile Include="database\simpledb\simpledb_str_set.cpp" />
