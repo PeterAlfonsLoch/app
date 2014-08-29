@@ -37,7 +37,7 @@ extern "C" charguess CharGuessInit()
 
 }
 
-extern "C" const char* GuessChardet(charguess * p, const string & str)
+const char* GuessChardet(charguess * p, const string & str)
 {
    
    nsUniversalDetector* det = (nsUniversalDetector*) p;

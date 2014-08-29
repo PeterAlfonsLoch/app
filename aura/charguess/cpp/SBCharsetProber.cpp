@@ -18,8 +18,8 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include <stdio.h>
 #include "SBCharsetProber.h"
+#include <stdio.h>
 
 nsProbingState nsSingleByteCharSetProber::HandleData(const char* aBuf, PRUint32 aLen)
 {
