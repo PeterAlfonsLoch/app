@@ -1262,7 +1262,7 @@ stop_run:
 void thread_impl::message_handler(signal_details * pobj)
 {
 
-   Application.message_handler(this,pobj);
+   Application.message_handler(pobj);
 
 }
 
