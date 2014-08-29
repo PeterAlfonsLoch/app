@@ -2296,9 +2296,6 @@
     <ClCompile Include="core\windows\os_library_initialize.cpp">
       <Filter>Source Files\core\windows</Filter>
     </ClCompile>
-    <ClCompile Include="core\libcharguess\libcharguess_MBCSGroupProber.cpp">
-      <Filter>Source Files\core\libcharguess</Filter>
-    </ClCompile>
     <ClCompile Include="core\libcharguess\libcharguess_MBCSSM.cpp">
       <Filter>Source Files\core\libcharguess</Filter>
     </ClCompile>
