@@ -27,11 +27,14 @@
 
 extern "C" charguess CharGuessInit()
 {
+
    nsUniversalDetector* det = new nsUniversalDetector;
+
 	if (det != NULL)
       return (charguess) det;
 	else
 		return NULL;
+
 }
 
 extern "C" const char* GuessChardet(charguess * p, const char *str)
@@ -50,10 +53,19 @@ extern "C" const char* GuessChardet(charguess * p, const char *str)
 
 extern "C" void CharGuessDestroy(charguess * p)
 {
-   
-   nsUniversalDetector* det = (nsUniversalDetector*)p;
 
-   if (det != NULL)
-		delete det;
+   try
+   {
+
+      nsUniversalDetector* det = (nsUniversalDetector*)p;
+
+      if(det != NULL)
+         delete det;
+
+   }
+   catch(...)
+   {
+
+   }
 
 }
