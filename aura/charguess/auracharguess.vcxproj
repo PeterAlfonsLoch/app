@@ -329,6 +329,29 @@ copy Source\FreeImage.h Dist
     <ClCompile Include="cpp\universal.cpp" />
     <ClCompile Include="cpp\UTF8Prober.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cpp\big5Prober.h" />
+    <ClInclude Include="cpp\charDistribution.h" />
+    <ClInclude Include="cpp\charguess.h" />
+    <ClInclude Include="cpp\charsetProber.h" />
+    <ClInclude Include="cpp\codingStateMachine.h" />
+    <ClInclude Include="cpp\config.h" />
+    <ClInclude Include="cpp\EscCharsetProber.h" />
+    <ClInclude Include="cpp\EUCJPProber.h" />
+    <ClInclude Include="cpp\EUCKRProber.h" />
+    <ClInclude Include="cpp\EUCTWProber.h" />
+    <ClInclude Include="cpp\GB2312Prober.h" />
+    <ClInclude Include="cpp\jpCntx.h" />
+    <ClInclude Include="cpp\Latin1Prober.h" />
+    <ClInclude Include="cpp\MBCSGroupProber.h" />
+    <ClInclude Include="cpp\pkgInt.h" />
+    <ClInclude Include="cpp\SBCharsetProber.h" />
+    <ClInclude Include="cpp\SBCSGroupProber.h" />
+    <ClInclude Include="cpp\SJISProber.h" />
+    <ClInclude Include="cpp\types.h" />
+    <ClInclude Include="cpp\universal.h" />
+    <ClInclude Include="cpp\UTF8Prober.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
