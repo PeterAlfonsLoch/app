@@ -31,7 +31,7 @@ namespace dynamic_source
       strsp(script)::pair * ppair = m_map.PLookup(strName);
 
       if(ppair != NULL)
-         return (script *) ppair->second;
+         return (script *) ppair->m_element2;
 
       sp(script) pscript = new ds_script(get_app());
 
@@ -61,7 +61,7 @@ namespace dynamic_source
       if(ppair != NULL)
       {
 
-         ppair->second = pscript;
+         ppair->m_element2 = pscript;
 
          return pscript;
 
