@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "charguess.h"
+
 #include "pkgInt.h"
 #include "SBCharsetProber.h"
 #include "SBCSGroupProber.h"
