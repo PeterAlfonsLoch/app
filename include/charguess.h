@@ -36,3 +36,19 @@ CHARGUESS_API void CharGuessDestroy(charguess * p);
 
 
 END_EXTERN_C
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
