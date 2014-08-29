@@ -34,7 +34,7 @@ extern "C" charguess CharGuessInit(void)
 
 extern "C" const char* GuessChardet(charguest * p, const char *str)
 {
-   nsUniversalDetector* det = p;
+   nsUniversalDetector* det = (nsUniversalDetector*) p;
 	const char* tmp;
 
 	if (!det)
