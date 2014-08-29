@@ -39,6 +39,11 @@ END_EXTERN_C
 
 
 
+#ifdef cplusplus
+
+CHARGUESS_API const char * GuessChardet(charguess * p,const string & str);
+
+#endif
 
 
 
