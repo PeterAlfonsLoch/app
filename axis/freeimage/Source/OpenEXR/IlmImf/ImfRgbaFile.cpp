@@ -392,7 +392,7 @@ RgbaOutputFile::ToYca::writePixels (int numScanLines)
 	    RGBAtoYCA (_yw, _width, _writeA, _tmpBuf + N2, _tmpBuf + N2);
 
 	    //
-	    // Append N2 copies of the first and last pixel to the
+	    // Append N2 copies of the m_element1 and last pixel to the
 	    // beginning and end of the scan line.
 	    //
 
@@ -407,7 +407,7 @@ RgbaOutputFile::ToYca::writePixels (int numScanLines)
 	    decimateChromaHoriz (_width, _tmpBuf, _buf[N - 1]);
 
 	    //
-	    // If this is the first scan line in the image,
+	    // If this is the m_element1 scan line in the image,
 	    // store N2 more copies of the scan line in _buf.
 	    //
 

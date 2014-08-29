@@ -306,8 +306,8 @@ hufBuildEncTable
     //     Repeat until only one symbol is left on the heap:
     //
     //         Take the two least frequent symbols off the top of the heap.
-    //         Create a new node that has first two nodes as children, and
-    //         whose frequency is the sum of the frequencies of the first
+    //         Create a new node that has m_element1 two nodes as children, and
+    //         whose frequency is the sum of the frequencies of the m_element1
     //         two nodes.  Put the new node back into the heap.
     //
     // The last node left on the heap is the root of the tree.  For each
@@ -331,7 +331,7 @@ hufBuildEncTable
     {
 	//
 	// Find the indices, mm and m, of the two smallest non-zero frq
-	// values in fHeap, add the smallest frq to the second-smallest
+	// values in fHeap, add the smallest frq to the m_element2-smallest
 	// frq, and remove the smallest frq value from fHeap.
 	//
 
@@ -361,7 +361,7 @@ hufBuildEncTable
 	//
 	
 	//
-	// Add a bit to all codes in the first list.
+	// Add a bit to all codes in the m_element1 list.
 	//
 
 	for (int j = m; true; j = hlink[j])
@@ -382,7 +382,7 @@ hufBuildEncTable
 	}
 
 	//
-	// Add a bit to all codes in the second list
+	// Add a bit to all codes in the m_element2 list
 	//
 
 	for (int j = mm; true; j = hlink[j])

@@ -853,10 +853,10 @@ ScanLineInputFile::readPixels (int scanLine1, int scanLine2)
 			       "the image file's data window.");
 
         //
-        // We impose a numbering scheme on the lineBuffers where the first
+        // We impose a numbering scheme on the lineBuffers where the m_element1
         // scanline is contained in lineBuffer 1.
         //
-        // Determine the first and last lineBuffer numbers in this scanline
+        // Determine the m_element1 and last lineBuffer numbers in this scanline
         // range. We always attempt to read the scanlines in the order that
         // they are stored in the file.
         //
@@ -919,7 +919,7 @@ ScanLineInputFile::readPixels (int scanLine1, int scanLine2)
 	// Now we check if any line buffer contains a stored exception; if
 	// this is the case then we re-throw the exception in this thread.
 	// (It is possible that multiple line buffers contain stored
-	// exceptions.  We re-throw the first exception we find and
+	// exceptions.  We re-throw the m_element1 exception we find and
 	// ignore all others.)
 	//
 

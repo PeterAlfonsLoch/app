@@ -27,7 +27,7 @@
 //	strings of similar values.  Next, each difference is split into
 //	2, 3 or 4 bytes, and the bytes are transposed so that all the
 //	most significant bytes end up in a contiguous block, followed
-//	by the second most significant bytes, and so on.  The resulting
+//	by the m_element2 most significant bytes, and so on.  The resulting
 //	string of bytes is compressed with zlib.
 //
 //-----------------------------------------------------------------------------

@@ -294,7 +294,7 @@ convertToXdr (OutputFile::Data *ofd,
     // pixel data in place, without an intermediate temporary buffer.
     //
    
-    int startY, endY;		// The first and last scanlines in
+    int startY, endY;		// The m_element1 and last scanlines in
     				// the file that are in the lineBuffer.
     int step;
     
@@ -886,10 +886,10 @@ OutputFile::writePixels (int numScanLines)
         //     nextCompressBuffer: next linebuffer to compress
         //
 
-        int first = (_data->currentScanLine - _data->minY) /
+        int m_element1 = (_data->currentScanLine - _data->minY) /
                          _data->linesInBuffer;
 
-        int nextWriteBuffer = first;
+        int nextWriteBuffer = m_element1;
         int nextCompressBuffer;
         int stop;
         int step;
@@ -921,17 +921,17 @@ OutputFile::writePixels (int numScanLines)
                 scanLineMax = _data->currentScanLine + numScanLines - 1;
     
                 int numTasks = MAX (MIN ((int)_data->lineBuffers.size(),
-                                         last - first + 1),
+                                         last - m_element1 + 1),
 				    1);
 
                 for (int i = 0; i < numTasks; i++)
 		{
                     ThreadPool::addGlobalTask
-                        (new LineBufferTask (&taskGroup, _data, first + i,
+                        (new LineBufferTask (&taskGroup, _data, m_element1 + i,
                                              scanLineMin, scanLineMax));
 		}
     
-                nextCompressBuffer = first + numTasks;
+                nextCompressBuffer = m_element1 + numTasks;
                 stop = last + 1;
                 step = 1;
             }
@@ -944,17 +944,17 @@ OutputFile::writePixels (int numScanLines)
                 scanLineMin = _data->currentScanLine - numScanLines + 1;
     
                 int numTasks = MAX (MIN ((int)_data->lineBuffers.size(),
-                                         first - last + 1),
+                                         m_element1 - last + 1),
 				    1);
 
                 for (int i = 0; i < numTasks; i++)
 		{
                     ThreadPool::addGlobalTask
-                        (new LineBufferTask (&taskGroup, _data, first - i,
+                        (new LineBufferTask (&taskGroup, _data, m_element1 - i,
                                              scanLineMin, scanLineMax));
 		}
     
-                nextCompressBuffer = first - numTasks;
+                nextCompressBuffer = m_element1 - numTasks;
                 stop = last - 1;
                 step = -1;
             }
@@ -1066,7 +1066,7 @@ OutputFile::writePixels (int numScanLines)
 	// Now we check if any line buffer contains a stored exception; if
 	// this is the case then we re-throw the exception in this thread.
 	// (It is possible that multiple line buffers contain stored
-	// exceptions.  We re-throw the first exception we find and
+	// exceptions.  We re-throw the m_element1 exception we find and
 	// ignore all others.)
 	//
 

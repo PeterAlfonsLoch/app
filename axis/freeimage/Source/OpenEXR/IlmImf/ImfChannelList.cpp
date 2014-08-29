@@ -64,7 +64,7 @@ ChannelList::operator [] (const char name[])
     if (i == _map.end())
 	THROW (Iex::ArgExc, "Cannot find image channel \"" << name << "\".");
 
-    return i->second;
+    return i->m_element2;
 }
 
 
@@ -76,7 +76,7 @@ ChannelList::operator [] (const char name[]) const
     if (i == _map.end())
 	THROW (Iex::ArgExc, "Cannot find image channel \"" << name << "\".");
 
-    return i->second;
+    return i->m_element2;
 }
 
 
@@ -98,7 +98,7 @@ Channel *
 ChannelList::findChannel (const char name[])
 {
     ChannelMap::iterator i = _map.find (name);
-    return (i == _map.end())? 0: &i->second;
+    return (i == _map.end())? 0: &i->m_element2;
 }
 
 
@@ -106,7 +106,7 @@ const Channel *
 ChannelList::findChannel (const char name[]) const
 {
     ChannelMap::const_iterator i = _map.find (name);
-    return (i == _map.end())? 0: &i->second;
+    return (i == _map.end())? 0: &i->m_element2;
 }
 
 
@@ -201,28 +201,28 @@ ChannelList::layers (set <string> &layerNames) const
 
 void
 ChannelList::channelsInLayer (const string &layerName,
-			      Iterator &first,
+			      Iterator &m_element1,
 			      Iterator &last)
 {
-    channelsWithPrefix (layerName + '.', first, last);
+    channelsWithPrefix (layerName + '.', m_element1, last);
 }
 
 
 void
 ChannelList::channelsInLayer (const string &layerName,
-			      ConstIterator &first,
+			      ConstIterator &m_element1,
 			      ConstIterator &last) const
 {
-    channelsWithPrefix (layerName + '.', first, last);
+    channelsWithPrefix (layerName + '.', m_element1, last);
 }
 
 
 void		
 ChannelList::channelsWithPrefix (const char prefix[],
-				 Iterator &first,
+				 Iterator &m_element1,
 				 Iterator &last)
 {
-    first = last = _map.lower_bound (prefix);
+    m_element1 = last = _map.lower_bound (prefix);
     int n = strlen (prefix);
 
     while (last != Iterator (_map.end()) &&
@@ -235,10 +235,10 @@ ChannelList::channelsWithPrefix (const char prefix[],
 
 void
 ChannelList::channelsWithPrefix (const char prefix[],
-				 ConstIterator &first,
+				 ConstIterator &m_element1,
 				 ConstIterator &last) const
 {
-    first = last = _map.lower_bound (prefix);
+    m_element1 = last = _map.lower_bound (prefix);
     int n = strlen (prefix);
 
     while (last != ConstIterator (_map.end()) &&
@@ -251,19 +251,19 @@ ChannelList::channelsWithPrefix (const char prefix[],
 
 void		
 ChannelList::channelsWithPrefix (const string &prefix,
-				 Iterator &first,
+				 Iterator &m_element1,
 				 Iterator &last)
 {
-    return channelsWithPrefix (prefix.c_str(), first, last);
+    return channelsWithPrefix (prefix.c_str(), m_element1, last);
 }
 
 
 void
 ChannelList::channelsWithPrefix (const string &prefix,
-				 ConstIterator &first,
+				 ConstIterator &m_element1,
 				 ConstIterator &last) const
 {
-    return channelsWithPrefix (prefix.c_str(), first, last);
+    return channelsWithPrefix (prefix.c_str(), m_element1, last);
 }
 
 

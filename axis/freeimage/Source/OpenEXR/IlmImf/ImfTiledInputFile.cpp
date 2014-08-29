@@ -273,7 +273,7 @@ readTileData (TiledInputFile::Data *ifd,
         ifd->is->seekg (tileOffset);
 
     //
-    // Read the first few bytes of the tile (the header).
+    // Read the m_element1 few bytes of the tile (the header).
     // Verify that the tile coordinates and the level number
     // are correct.
     //
@@ -332,7 +332,7 @@ readNextTileData (TiledInputFile::Data *ifd,
     //
 
     //
-    // Read the first few bytes of the tile (the header).
+    // Read the m_element1 few bytes of the tile (the header).
     //
 
     Xdr::read <StreamIO> (*ifd->is, dx);
@@ -923,7 +923,7 @@ TiledInputFile::readTiles (int dx1, int dx2, int dy1, int dy2, int lx, int ly)
 			       "as pixel data destination.");
         
         //
-        // Determine the first and last tile coordinates in both dimensions.
+        // Determine the m_element1 and last tile coordinates in both dimensions.
         // We always attempt to read the range of tiles in the order that
         // they are stored in the file.
         //
@@ -988,7 +988,7 @@ TiledInputFile::readTiles (int dx1, int dx2, int dy1, int dy2, int lx, int ly)
 	// Now we check if any tile buffer contains a stored exception; if
 	// this is the case then we re-throw the exception in this thread.
 	// (It is possible that multiple tile buffers contain stored
-	// exceptions.  We re-throw the first exception we find and
+	// exceptions.  We re-throw the m_element1 exception we find and
 	// ignore all others.)
 	//
 

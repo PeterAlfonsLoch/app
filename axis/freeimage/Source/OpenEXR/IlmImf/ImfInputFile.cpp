@@ -164,7 +164,7 @@ bufferedReadPixels (InputFile::Data* ifd, int scanLine1, int scanLine2)
     int maxDy = (maxY - ifd->minY) / ifd->tFile->tileYSize();
 
     //
-    // Figure out which one is first in the file so we can read without seeking
+    // Figure out which one is m_element1 in the file so we can read without seeking
     //
 
     int yStart, yEnd, yStep;
