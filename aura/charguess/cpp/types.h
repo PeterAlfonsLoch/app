@@ -17,7 +17,7 @@
     License along with this library; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
-
+#include "aura/aura/aura.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -34,8 +34,8 @@ typedef char PRBool;
 #define PR_TRUE  1
 #define nsnull   NULL
 
-#define PR_MALLOC malloc
-#define PR_FREEIF free
+#define PR_MALLOC memory_alloc
+#define PR_FREEIF memory_free
 
 
 #define NS_ASSERTION(a,b) { if (!(a)) { puts(b); abort(); } }
