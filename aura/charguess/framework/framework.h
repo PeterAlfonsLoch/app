@@ -2,6 +2,9 @@
 
 
 #include "charguess.h"
+#include <string.h>
+
+
 
 #include "pkgInt.h"
 #include "SBCharsetProber.h"
