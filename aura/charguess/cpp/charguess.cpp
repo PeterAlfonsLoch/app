@@ -23,7 +23,7 @@
 
 
 
-extern "C" charguess CharGuessInit(void)
+extern "C" charguess CharGuessInit()
 {
    nsUniversalDetector* det = new nsUniversalDetector;
 	if (det != NULL)
