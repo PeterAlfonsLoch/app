@@ -1,5 +1,7 @@
 #include "framework.h"
 
+#include "sqlite.h"
+
 #ifdef LINUX
 #include <unistd.h>
 #endif
