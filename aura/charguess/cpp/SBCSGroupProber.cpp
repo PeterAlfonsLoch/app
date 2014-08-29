@@ -18,8 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include "SBCharsetProber.h"
-#include "SBCSGroupProber.h"
+#include "framework.h"
 
 
 nsSBCSGroupProber::nsSBCSGroupProber()
