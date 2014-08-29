@@ -29,7 +29,7 @@ namespace backview
 
       m_pthreadHighestPriority   = new thread(get_app());
       m_pthreadHighestPriority->SetMain(this);
-      m_pthreadHighestPriority->begin(::aura::scheduling_priority_highest);
+      m_pthreadHighestPriority->begin(::multithreading::priority_highest);
 
       m_bPendingLayout = true;
 

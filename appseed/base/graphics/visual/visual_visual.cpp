@@ -126,7 +126,7 @@ namespace visual
       if(!::aura::departament::initialize())
          return false;
 
-      __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::aura::scheduling_priority_highest);
+      __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::multithreading::priority_highest);
 
       return true;
 

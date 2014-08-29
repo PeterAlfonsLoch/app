@@ -1625,7 +1625,7 @@ void thread_impl::set_priority(int32_t priority)
 int32_t thread_impl::priority()
 {
 
-   return ::aura::scheduling_priority_normal;
+   return ::multithreading::priority_normal;
 
 }
 

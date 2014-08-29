@@ -90,14 +90,14 @@ CLASS_DECL_AURA DWORD get_current_thread_id();
 
 
 
-CLASS_DECL_AURA thread* __begin_thread(sp(::aura::application) papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority = ::aura::scheduling_priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+CLASS_DECL_AURA thread* __begin_thread(sp(::aura::application) papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority = ::multithreading::priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_AURA thread* __begin_thread(sp(::coretype) pThreadClass,
 int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
 uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread(sp(::aura::application) papp,int32_t epriority = ::aura::scheduling_priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
+THREAD_TYPE * __begin_thread(sp(::aura::application) papp,int32_t epriority = ::multithreading::priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
    pthread->begin(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);

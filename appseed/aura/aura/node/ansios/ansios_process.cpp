@@ -52,7 +52,7 @@ namespace ansios
 
 #ifdef LINUX
 
-      if(iCa2Priority != (int32_t) ::aura::scheduling_priority_none)
+      if(iCa2Priority != (int32_t) ::multithreading::priority_none)
       {
 
          int32_t iPolicy = SCHED_OTHER;
@@ -95,7 +95,7 @@ namespace ansios
 
 #ifdef APPLEOS
 
-      if(iCa2Priority != (int32_t) ::aura::scheduling_priority_none)
+      if(iCa2Priority != (int32_t) ::multithreading::priority_none)
       {
 
          int32_t iOsPriority = process_get_os_priority(iCa2Priority);

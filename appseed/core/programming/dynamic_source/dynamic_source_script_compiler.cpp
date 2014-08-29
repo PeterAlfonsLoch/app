@@ -491,7 +491,7 @@ namespace dynamic_source
 
       ::process::process process(get_app());
 
-      process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat), ::aura::scheduling_priority_highest);
+      process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat), ::multithreading::priority_highest);
 
       uint32_t dwStart = ::get_tick_count();
       uint32_t dwExitCode;
@@ -1041,7 +1041,7 @@ namespace dynamic_source
 
          ::process::process process(get_app());
 
-         process.create_child_process(strCmd, false, System.dir().element("stage\\front"), ::aura::scheduling_priority_highest);
+         process.create_child_process(strCmd, false, System.dir().element("stage\\front"), ::multithreading::priority_highest);
 
 
          uint32_t dwExitCode;
@@ -1112,7 +1112,7 @@ namespace dynamic_source
       ::process::process process(get_app());
 
 
-      process.create_child_process(strCmd, false, System.dir().name(strCmd), ::aura::scheduling_priority_highest);
+      process.create_child_process(strCmd, false, System.dir().name(strCmd), ::multithreading::priority_highest);
 
       uint32_t dwExitCode;
       while(true)
