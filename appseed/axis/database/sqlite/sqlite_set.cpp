@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "sqlite3.h"
+
 
 namespace sqlite
 {
