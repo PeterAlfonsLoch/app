@@ -1294,21 +1294,6 @@
     <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="database\database_user_interaction.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_update_hint.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_stringhelper.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_set.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_server.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_gdi.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>

@@ -3283,11 +3283,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="database\database\database_stringhelper.cpp" />
     <ClCompile Include="database\database\database_update_hint.cpp" />
     <ClCompile Include="database\database\database_user_interaction.cpp" />
-    <ClCompile Include="database\database_server.cpp" />
-    <ClCompile Include="database\database_set.cpp" />
-    <ClCompile Include="database\database_stringhelper.cpp" />
-    <ClCompile Include="database\database_update_hint.cpp" />
-    <ClCompile Include="database\database_user_interaction.cpp" />
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
