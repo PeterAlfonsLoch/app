@@ -28,4 +28,4 @@
 
 CHARGUESS_API int CharGuessInit(void);
 CHARGUESS_API const char* GuessChardet(const char *str);
-int CharGuessDone(void);
+CHARGUESS_API int CharGuessDone(void);
