@@ -31,8 +31,8 @@ typedef void * charguess_det;
 BEGIN_EXTERN_C
 
 CHARGUESS_API charguess_det CharGuessInit(void);
-CHARGUESS_API const char * GuessChardet(charguess_det * p,const char *str);
-CHARGUESS_API void CharGuessDestroy(charguess_det * p);
+CHARGUESS_API const char * GuessChardet(charguess_det p,const char *str);
+CHARGUESS_API void CharGuessDestroy(charguess_det p);
 
 
 END_EXTERN_C
@@ -44,30 +44,49 @@ END_EXTERN_C
 CHARGUESS_API const char * GuessChardet(charguess_det * p,const string & str);
 
 
-CHARGUESS_API class charguess
+class CHARGUESS_API charguess
 {
 public:
 
-   charguess_det * m_pdet;
+   charguess_det     m_pdet;
+   string            m_strDet;
 
-   charguess();
-   ~charguess();
+   charguess()
+   {
+      m_pdet = CharGuessInit();
+   }
+   charguess(const string & str)
+   {
+      m_pdet = CharGuessInit();
+      det(str);
+   }
+   ~charguess()
+   {
+      CharGuessDestroy(m_pdet);
+   }
 
 
+   string det(const string & str)
+   {
+      return m_strDet = GuessChardet(m_pdet,str);
+   }
 
-
+   string operator () (void) { return m_strDet; }
 
 
 };
 
+#ifdef _DEBUG
+inline void _debug_charguess()
+{
+   string strCharGuest = charguess("\"Carlos é brasileiro\" está escrito em um código de página latino?")();
+}
 
 #endif
 
 
 
-
-
-
+#endif // cplusplus
 
 
 
