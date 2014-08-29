@@ -18,10 +18,12 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+#include "aura/aura/aura.h"
+
 #if defined(_AURA_CHARGUESS)
-#define SQLITE_API  CLASS_DECL_EXPORT
+#define CHARGUESS_API  CLASS_DECL_EXPORT
 #else
-#define SQLITE_API  CLASS_DECL_IMPORT
+#define CHARGUESS_API  CLASS_DECL_IMPORT
 #endif
 
 int CharGuessInit(void);
