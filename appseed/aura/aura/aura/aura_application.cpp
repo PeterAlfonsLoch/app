@@ -2870,11 +2870,10 @@ namespace aura
    }
 
    
-   void application::message_handler(::thread_impl * pimpl,signal_details * pobj)
+   void application::message_handler(signal_details * pobj)
    {
 
-      UNREFERENCED_PARAMETER(pimpl);
-      UNREFERENCED_PARAMETER(pobj);
+
 
    }
 
