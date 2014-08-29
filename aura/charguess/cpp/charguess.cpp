@@ -21,19 +21,20 @@
 #include "universal.h"
 #include "string.h"
 
-nsUniversalDetector* det;
 
-extern "C" int CharGuessInit(void)
+
+extern "C" charguess CharGuessInit(void)
 {
-	det = new nsUniversalDetector;
-	if (det)
-		return 0;
+   nsUniversalDetector* det = new nsUniversalDetector;
+	if (det != NULL)
+      return (charguess) det;
 	else
-		return -1;
+		return NULL;
 }
 
 extern "C" const char* GuessChardet(const char *str)
 {
+   nsUniversalDetector* det
 	const char* tmp;
 
 	if (!det)
