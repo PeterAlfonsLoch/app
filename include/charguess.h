@@ -71,8 +71,9 @@ public:
       return m_strDet = GuessChardet(m_pdet,str);
    }
 
-   string operator () (void) { return m_strDet; }
+   uint32_t operator () (void) { return get_code_page(m_strDet); }
 
+   static uint32_t get_code_page(const string & strDet);
 
 };
 

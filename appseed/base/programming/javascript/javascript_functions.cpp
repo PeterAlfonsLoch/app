@@ -27,7 +27,7 @@
 
 #ifdef DEBUG
 #	ifdef _MSC_VER
-#		define new AXIS_NEW
+#		define new AURA_NEW
 #	endif
 #endif
 

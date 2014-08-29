@@ -725,24 +725,6 @@
     <ClInclude Include="axis\os\cross\windows\windows_pshpack8.h">
       <Filter>Header Files\axis\os\cross\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\policy\policy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\policy\policy_c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\policy\policy_cpp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\policy\policy_objc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\policy\policy_objcpp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\policy\policy_winrt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_value.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -1398,9 +1380,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

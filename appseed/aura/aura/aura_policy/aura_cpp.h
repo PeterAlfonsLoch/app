@@ -834,11 +834,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "filesystem/file/file_edit_buffer.h"
 
 
-
-#include "aura/aura/process/process_pipe.h"
-#include "aura/aura/process/process_bidi_pipe.h"
-#include "aura/aura/process/process_process.h"
-#include "aura/aura/process/process_departament.h"
+#include "aura/aura/process/process.h"
 
 
 
@@ -862,7 +858,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "aura/install/install_trace.h"
 
 
-#define new AXIS_NEW
+#define new AURA_NEW
 
 
 #include "aura_system_trace.h"

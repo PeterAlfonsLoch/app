@@ -489,15 +489,15 @@ namespace dynamic_source
 
       bool bTimeout = false;
 
-      ::process::process process(get_app());
+      ::process::process_sp process(allocer());
 
-      process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat), ::multithreading::priority_highest);
+      process->create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat), ::multithreading::priority_highest);
 
       uint32_t dwStart = ::get_tick_count();
       uint32_t dwExitCode;
       while(true)
       {
-         if(process.has_exited(&dwExitCode))
+         if(process->has_exited(&dwExitCode))
             break;
          Sleep(100);
          if(::get_tick_count() - dwStart > 5 * 60 * 1000) // 5 minutes
@@ -1039,15 +1039,15 @@ namespace dynamic_source
          //Application.file().put_contents_utf8(strCmd, str);
          Application.file().put_contents(strCmd, str);
 
-         ::process::process process(get_app());
+         ::process::process_sp process(allocer());
 
-         process.create_child_process(strCmd, false, System.dir().element("stage\\front"), ::multithreading::priority_highest);
+         process->create_child_process(strCmd, false, System.dir().element("stage\\front"), ::multithreading::priority_highest);
 
 
          uint32_t dwExitCode;
          while(true)
          {
-            if(process.has_exited(&dwExitCode))
+            if(process->has_exited(&dwExitCode))
                break;
             Sleep(100);
          }
@@ -1109,15 +1109,15 @@ namespace dynamic_source
       //Application.file().put_contents_utf8(strCmd, str);
       Application.file().put_contents(strCmd, str);
 
-      ::process::process process(get_app());
+      ::process::process_sp process(allocer());
 
 
-      process.create_child_process(strCmd, false, System.dir().name(strCmd), ::multithreading::priority_highest);
+      process->create_child_process(strCmd, false, System.dir().name(strCmd), ::multithreading::priority_highest);
 
       uint32_t dwExitCode;
       while(true)
       {
-         if(process.has_exited(&dwExitCode))
+         if(process->has_exited(&dwExitCode))
             break;
          Sleep(100);
       }

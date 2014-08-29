@@ -539,6 +539,9 @@
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
     </Manifest>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">
     <ClCompile>
@@ -1531,7 +1534,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp" />
     <ClCompile Include="user\wndfrm\wndfrm_interaction.cpp" />
     <ClCompile Include="user\wndfrm\wndfrm_wndfrm.cpp" />
-    <ClInclude Include="..\filesystem\file\file_transfer_stream.h" />
     <ClInclude Include="core\android\os.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
@@ -1601,14 +1603,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_types.h" />
     <ClInclude Include="core\core\core_util.h" />
     <ClInclude Include="core\core\core_util1.h" />
-    <ClInclude Include="core\os\os.h" />
-    <ClInclude Include="core\os\os_cross_windows.h" />
-    <ClInclude Include="core\os\os_cross_windows_crt.h" />
-    <ClInclude Include="core\os\os_cross_windows_guid_def.h" />
-    <ClInclude Include="core\os\os_cross_windows_internals.h" />
-    <ClInclude Include="core\os\os_cross_windows_shared_memory.h" />
-    <ClInclude Include="core\os\os_cross_windows_time.h" />
-    <ClInclude Include="core\os\os_cross_windows_winnt.h" />
     <ClInclude Include="core\platform\bergedge\bergedge.h" />
     <ClInclude Include="core\platform\bergedge\bergedge_document.h" />
     <ClInclude Include="core\platform\bergedge\bergedge_form_callback.h" />
@@ -1729,7 +1723,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\file\file_bitl_encoder.h" />
     <ClInclude Include="filesystem\file\file_bitm_decoder.h" />
     <ClInclude Include="filesystem\file\file_bitm_encoder.h" />
-    <ClInclude Include="filesystem\file\file_buffer.h" />
     <ClInclude Include="filesystem\file\file_clustered_file_stream.h" />
     <ClInclude Include="filesystem\file\file_clustered_input_stream.h" />
     <ClInclude Include="filesystem\file\file_dynamic_buffer.h" />
@@ -1829,7 +1822,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CompileAsCppHeader</CompileAs>
     </ClCompile>
-    <ClInclude Include="framework.h" />
     <ClInclude Include="framework\framework.h" />
     <ClInclude Include="graphics\backview\backview.h" />
     <ClInclude Include="graphics\backview\backview_enum.h" />
@@ -1875,7 +1867,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="graphics\html\html_ex.h" />
     <ClInclude Include="graphics\html\html_file.h" />
     <ClInclude Include="graphics\html\html_font.h" />
-    <ClInclude Include="graphics\html\html_form.h" />
     <ClInclude Include="graphics\html\html_html.h" />
     <ClInclude Include="graphics\html\html_html2.h" />
     <ClInclude Include="graphics\html\html_lite\html_lite.h" />
@@ -1906,26 +1897,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="graphics\html\impl\html_impl_table_elemental.h" />
     <ClInclude Include="graphics\html\impl\html_impl_table_row.h" />
     <ClInclude Include="graphics\html\impl\html_impl_text.h" />
-    <ClInclude Include="graphics\visual\visual.h" />
-    <ClInclude Include="graphics\visual\visual_api.h" />
-    <ClInclude Include="graphics\visual\visual_buffered_graphics.h" />
-    <ClInclude Include="graphics\visual\visual_const.h" />
-    <ClInclude Include="graphics\visual\visual_cursor.h" />
-    <ClInclude Include="graphics\visual\visual_dib.h" />
-    <ClInclude Include="graphics\visual\visual_dib_pal.h" />
-    <ClInclude Include="graphics\visual\visual_fastblur.h" />
-    <ClInclude Include="graphics\visual\visual_font.h" />
-    <ClInclude Include="graphics\visual\visual_font_central.h" />
-    <ClInclude Include="graphics\visual\visual_FreeImageFileProc.h" />
-    <ClInclude Include="graphics\visual\visual_glyph.h" />
-    <ClInclude Include="graphics\visual\visual_glyph_set.h" />
-    <ClInclude Include="graphics\visual\visual_graphics_extension.h" />
-    <ClInclude Include="graphics\visual\visual_icon.h" />
-    <ClInclude Include="graphics\visual\visual_image_list.h" />
-    <ClInclude Include="graphics\visual\visual_imaging.h" />
-    <ClInclude Include="graphics\visual\visual_rgb_quad_array.h" />
-    <ClInclude Include="graphics\visual\visual_visual.h" />
-    <ClInclude Include="graphics\visual\visual_water_routine.h" />
     <ClInclude Include="math\binary_operation.h" />
     <ClInclude Include="math\calculator\calculator.h" />
     <ClInclude Include="math\calculator\calculator_calculator.h" />
@@ -1961,9 +1932,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\usermail\usermail_item.h" />
     <ClInclude Include="net\usernet\usernet.h" />
     <ClInclude Include="net\usernet\usernet_network_configuration.h" />
-    <ClInclude Include="os\os.h" />
-    <ClInclude Include="os\os_cross_windows.h" />
-    <ClInclude Include="os\os_windows_defs.h" />
     <ClInclude Include="primitive\datetime\datetime.h" />
     <ClInclude Include="primitive\datetime\datetime_calendar.h" />
     <ClInclude Include="primitive\datetime\datetime_calendar_interface.h" />
@@ -2013,7 +1981,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\simple\simple_status_bar.h" />
     <ClInclude Include="user\simple\simple_tab_control.h" />
     <ClInclude Include="user\simple\simple_tab_view.h" />
-    <ClInclude Include="user\simple\simple_tool_bar.h" />
+    <ClInclude Include="user\simple\simple_toolbar.h" />
     <ClInclude Include="user\simple\simple_tree_view.h" />
     <ClInclude Include="user\simple\simple.h" />
     <ClInclude Include="user\userex\userex_keyboard_layout.h" />
@@ -2029,7 +1997,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_check_box.h" />
     <ClInclude Include="user\user\user_combo_box.h" />
     <ClInclude Include="user\user\user_combo_list.h" />
-    <ClInclude Include="user\user\user_control_event.h" />
     <ClInclude Include="user\user\user_control_property.h" />
     <ClInclude Include="user\user\user_core.h" />
     <ClInclude Include="user\user\user_data_exchange.h" />
@@ -2046,9 +2013,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_front_end_schema.h" />
     <ClInclude Include="user\user\user_image_manager.h" />
     <ClInclude Include="user\user\user_inline.h" />
-    <ClInclude Include="user\user\user_interaction.h" />
-    <ClInclude Include="user\user\user_keyboard.h" />
-    <ClInclude Include="user\user\user_keyboard_layout.h" />
     <ClInclude Include="user\user\user_keyboard_layout_cfg.h" />
     <ClInclude Include="user\user\user_list.h" />
     <ClInclude Include="user\user\user_list_cache.h" />
@@ -2075,7 +2039,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user_static_control.h" />
     <ClInclude Include="user\user\user_statusbar.h" />
     <ClInclude Include="user\user\user_step_slider.h" />
-    <ClInclude Include="user\user\user_str.h" />
     <ClInclude Include="user\user\user_tab.h" />
     <ClInclude Include="user\user\user_tab_callback.h" />
     <ClInclude Include="user\user\user_tab_view.h" />
@@ -2520,6 +2483,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <None Include="user\user\user_interaction.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\aura\charguess\auracharguess.vcxproj">
+      <Project>{ac6a52b4-c049-439c-88ff-5a262d968c8f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\axis\bsdiff\axisbsdiff.vcxproj">
       <Project>{3a2c59ed-a76d-41d8-abbb-2666f0a599b8}</Project>
     </ProjectReference>

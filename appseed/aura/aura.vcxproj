@@ -570,6 +570,9 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../app/appseed/base/</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">
     <ClCompile>
@@ -1641,7 +1644,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_application_signal_details.h" />
     <ClInclude Include="aura\aura\aura_async.h" />
     <ClInclude Include="aura\aura\aura_auto_pointer.h" />
-    <ClInclude Include="aura\aura\aura_bidi_pipe.h" />
     <ClInclude Include="aura\aura\aura_command.h" />
     <ClInclude Include="aura\aura\aura_command_target.h" />
     <ClInclude Include="aura\aura\aura_common.h" />
@@ -3838,7 +3840,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="multithreading\multithreading_manual_reset_event.h" />
     <ClInclude Include="multithreading\multithreading_multi_lock.h" />
     <ClInclude Include="multithreading\multithreading_mutex.h" />
-    <ClInclude Include="multithreading\multithreading_plain_service.h" />
     <ClInclude Include="multithreading\multithreading_retry_multi_lock.h" />
     <ClInclude Include="multithreading\multithreading_retry_single_lock.h" />
     <ClInclude Include="multithreading\multithreading_semaphore.h" />
@@ -3850,7 +3851,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="multithreading\multithreading_sync_object.h" />
     <ClInclude Include="multithreading\multithreading_thread.h" />
     <ClInclude Include="multithreading\multithreading_thread_os.h" />
-    <ClInclude Include="multithreading\multithreading_thread_pool.h" />
     <ClInclude Include="multithreading\multithreading_waitable.h" />
     <ClInclude Include="multithreading\multithreading_wait_result.h" />
     <ClInclude Include="primitive\primitive_id.h" />
@@ -3862,7 +3862,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\primitive_shared_memory.h" />
     <ClInclude Include="primitive\primitive_var.h" />
     <ClInclude Include="primitive\primitive_virtual_memory.h" />
-    <ClInclude Include="primitive\primitive_wstringtou.h" />
     <ClInclude Include="user\colorertake5\colorertake5.h" />
     <ClInclude Include="user\colorertake5\colorertake5_base_editor.h" />
     <ClInclude Include="user\colorertake5\colorertake5_colorertake5.h" />

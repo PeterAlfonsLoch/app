@@ -456,6 +456,9 @@
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
     </Manifest>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">
     <ClCompile>

@@ -2141,8 +2141,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Todo.txt" />
-    <Text Include="Whatsnew.txt" />
     <Text Include="Source\LibJPEG\coderules.txt">
       <Filter>Source\LibJPEG</Filter>
     </Text>

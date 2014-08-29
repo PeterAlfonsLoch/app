@@ -130,9 +130,6 @@
     <Filter Include="Header Files\libwinpr\crypto">
       <UniqueIdentifier>{fd956c13-5750-4a8d-a591-ef144d945779}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\libwinpr\framework">
-      <UniqueIdentifier>{ec230579-5791-438b-bac1-d1b786f21466}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\libwinpr\handle">
       <UniqueIdentifier>{7c7d16e3-765d-4de8-ad00-e2d913cd9d19}</UniqueIdentifier>
     </Filter>
@@ -601,9 +598,6 @@
     </ClInclude>
     <ClInclude Include="libwinpr\crypto\crypto.h">
       <Filter>Header Files\libwinpr\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\framework\framework.h">
-      <Filter>Header Files\libwinpr\framework</Filter>
     </ClInclude>
     <ClInclude Include="libwinpr\handle\handle.h">
       <Filter>Header Files\libwinpr\handle</Filter>

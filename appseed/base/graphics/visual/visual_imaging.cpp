@@ -8,7 +8,7 @@
 //#include <gdiplus.h>
 #undef min
 #undef max
-#define new AXIS_NEW
+#define new AURA_NEW
 
 
 //void fastblur(::draw2d::dib * pimg, int32_t radius);

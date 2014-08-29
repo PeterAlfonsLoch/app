@@ -18,15 +18,6 @@
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{d8559929-e173-4228-989d-58f584272e64}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\compress">
-      <UniqueIdentifier>{502ec854-5739-4e84-aa4d-09b2c87c4402}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\compress\7z">
-      <UniqueIdentifier>{94d0d7de-6338-47c7-800a-f1273eca331f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\compress\rar">
-      <UniqueIdentifier>{bafa941d-6dc4-409c-9cd0-ee71c82b4a93}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\compress\7z">
       <UniqueIdentifier>{8c588445-15a0-436e-9a0b-7e2910735739}</UniqueIdentifier>
     </Filter>
@@ -60,12 +51,6 @@
     <Filter Include="Source Files\compress\crypto">
       <UniqueIdentifier>{92a9349d-bc31-49af-bce5-eceada38f70d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\compress\crypto">
-      <UniqueIdentifier>{2478059a-cebb-423e-acc6-72cd827ace32}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\compress\compress">
-      <UniqueIdentifier>{5beb4c25-3470-40ae-a8cf-4ff862d939bf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\simple">
       <UniqueIdentifier>{551953ea-1f97-418b-9a12-55207c62a9d0}</UniqueIdentifier>
     </Filter>
@@ -92,9 +77,6 @@
     </Filter>
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{28024641-f58f-44d6-88a1-5d8e3b99563c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\visual">
-      <UniqueIdentifier>{e0a85981-b461-4e22-9ec1-5025800ca06d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\graphics\gcom">
       <UniqueIdentifier>{34972fbd-1eed-4d9e-b3c8-680eee3e128f}</UniqueIdentifier>
@@ -174,9 +156,6 @@
     <Filter Include="Header Files\database\simpledb">
       <UniqueIdentifier>{700dad5b-3669-45be-ae72-19ee8d83251d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\database\simpledb\cfg">
-      <UniqueIdentifier>{5e6631e0-ce3c-4493-967b-477273efe14a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\core">
       <UniqueIdentifier>{afafef36-ef8f-43c3-986e-c6d3d79971c3}</UniqueIdentifier>
     </Filter>
@@ -194,9 +173,6 @@
     </Filter>
     <Filter Include="Header Files\core\windows">
       <UniqueIdentifier>{8c4d47f3-cd5a-48eb-95e4-2fcc0cc0769d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\os">
-      <UniqueIdentifier>{cdc5a44f-a86f-4733-9b61-8fc16259d054}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\core\install">
       <UniqueIdentifier>{c09a6b2b-5c02-4df3-ba4b-8131a8aa1e40}</UniqueIdentifier>
@@ -317,9 +293,6 @@
     </Filter>
     <Filter Include="Source Files\core\platform\platform">
       <UniqueIdentifier>{3512c41c-c826-4d7d-b3b5-d9062c889088}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\filemanager\NewFilter1">
-      <UniqueIdentifier>{0e89a8f5-d88f-4edc-a840-9366d954f787}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user\wndfrm">
       <UniqueIdentifier>{e4c16e44-2368-45d0-9c4b-74a6e9917542}</UniqueIdentifier>
@@ -455,9 +428,6 @@
     <ClInclude Include="user\simple\simple_tab_view.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\simple_tool_bar.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\simple_tree_view.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -560,66 +530,6 @@
     <ClInclude Include="user\simple\simple.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\visual\visual.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_api.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_buffered_graphics.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_const.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_cursor.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_dib.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_dib_pal.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_fastblur.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_font.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_font_central.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_FreeImageFileProc.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_glyph.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_glyph_set.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_graphics_extension.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_icon.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_image_list.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_imaging.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_rgb_quad_array.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_visual.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\visual_water_routine.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -710,9 +620,6 @@
     <ClInclude Include="graphics\html\html_font.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\html_form.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\html\html_html.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
@@ -766,36 +673,6 @@
     </ClInclude>
     <ClInclude Include="graphics\html\html2.h">
       <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator_calculator.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_element.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_parser.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_scanner.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_token.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_element.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_parser.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_scanner.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_token.h">
-      <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
     <ClInclude Include="math\calculator\numeric_value.h">
       <Filter>Header Files\math\calculator</Filter>
@@ -898,30 +775,6 @@
     </ClInclude>
     <ClInclude Include="database\simpledb\veiev_post.h">
       <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="core\os\os.h">
-      <Filter>Header Files\core\os</Filter>
-    </ClInclude>
-    <ClInclude Include="core\os\os_cross_windows.h">
-      <Filter>Header Files\core\os</Filter>
-    </ClInclude>
-    <ClInclude Include="core\os\os_cross_windows_crt.h">
-      <Filter>Header Files\core\os</Filter>
-    </ClInclude>
-    <ClInclude Include="core\os\os_cross_windows_guid_def.h">
-      <Filter>Header Files\core\os</Filter>
-    </ClInclude>
-    <ClInclude Include="core\os\os_cross_windows_internals.h">
-      <Filter>Header Files\core\os</Filter>
-    </ClInclude>
-    <ClInclude Include="core\os\os_cross_windows_shared_memory.h">
-      <Filter>Header Files\core\os</Filter>
-    </ClInclude>
-    <ClInclude Include="core\os\os_cross_windows_time.h">
-      <Filter>Header Files\core\os</Filter>
-    </ClInclude>
-    <ClInclude Include="core\os\os_cross_windows_winnt.h">
-      <Filter>Header Files\core\os</Filter>
     </ClInclude>
     <ClInclude Include="core\api\api.h">
       <Filter>Header Files\core\api</Filter>
@@ -1103,20 +956,8 @@
     <ClInclude Include="filesystem\file\file_clustered_input_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_stream_binder.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os.h">
-      <Filter>Header Files\core\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_cross_windows.h">
-      <Filter>Header Files\core\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_windows_defs.h">
-      <Filter>Header Files\core\os</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_locked_in_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -1141,9 +982,6 @@
     </ClInclude>
     <ClInclude Include="net\hi5\hi5_twit.h">
       <Filter>Header Files\net\hi5</Filter>
-    </ClInclude>
-    <ClInclude Include="..\filesystem\file\file_transfer_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="core\service\service_plain_service.h">
       <Filter>Header Files\core\service</Filter>
@@ -1298,9 +1136,6 @@
     <ClInclude Include="user\user\user_combo_list.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_control_event.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_control_property.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -1344,15 +1179,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_inline.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_interaction.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_keyboard.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_keyboard_layout.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_keyboard_layout_cfg.h">
@@ -1425,9 +1251,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_step_slider.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_str.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_tab.h">
@@ -1580,9 +1403,6 @@
     <ClInclude Include="graphics\html\elemental\html_elemental_image.h">
       <Filter>Header Files\graphics\html\elemental</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -1717,12 +1537,6 @@
     </ClInclude>
     <ClInclude Include="core\core\core_timer.h">
       <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_parser_exception.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_parser_exception.h">
-      <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_manager_template.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
@@ -1888,6 +1702,45 @@
     </ClInclude>
     <ClInclude Include="framework\framework.h">
       <Filter>Header Files\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator_calculator.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\datetime_element.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\datetime_parser.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\datetime_parser_exception.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\datetime_scanner.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\datetime_token.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\numeric_element.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\numeric_parser.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\numeric_parser_exception.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\numeric_scanner.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\numeric_token.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_toolbar.h">
+      <Filter>Header Files\user\simple</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

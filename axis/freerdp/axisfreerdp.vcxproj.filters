@@ -19,9 +19,6 @@
     <Filter Include="Header Files\libfreerdp\core">
       <UniqueIdentifier>{4bdc50db-aa32-4e60-9668-9f19945976a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\libfreerdp\framework">
-      <UniqueIdentifier>{f9b68fcc-0b5f-4c96-af7a-c10d037db7c4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\libfreerdp\gdi">
       <UniqueIdentifier>{1e8c84ec-ff4e-4d67-91ae-bac763450fa0}</UniqueIdentifier>
     </Filter>
@@ -129,16 +126,10 @@
     <ClInclude Include="libfreerdp\core\certificate.h">
       <Filter>Header Files\libfreerdp\core</Filter>
     </ClInclude>
-    <ClInclude Include="libfreerdp\core\channel.h">
-      <Filter>Header Files\libfreerdp\core</Filter>
-    </ClInclude>
     <ClInclude Include="libfreerdp\core\connection.h">
       <Filter>Header Files\libfreerdp\core</Filter>
     </ClInclude>
     <ClInclude Include="libfreerdp\core\errinfo.h">
-      <Filter>Header Files\libfreerdp\core</Filter>
-    </ClInclude>
-    <ClInclude Include="libfreerdp\core\extension.h">
       <Filter>Header Files\libfreerdp\core</Filter>
     </ClInclude>
     <ClInclude Include="libfreerdp\core\fastpath.h">
@@ -209,9 +200,6 @@
     </ClInclude>
     <ClInclude Include="libfreerdp\core\window.h">
       <Filter>Header Files\libfreerdp\core</Filter>
-    </ClInclude>
-    <ClInclude Include="libfreerdp\framework\framework.h">
-      <Filter>Header Files\libfreerdp\framework</Filter>
     </ClInclude>
     <ClInclude Include="libfreerdp\gdi\gdi.h">
       <Filter>Header Files\libfreerdp\gdi</Filter>
@@ -341,6 +329,27 @@
     </ClInclude>
     <ClInclude Include="..\..\include\freerdp\window.h">
       <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="libfreerdp\core\server.h">
+      <Filter>Header Files\libfreerdp\core</Filter>
+    </ClInclude>
+    <ClInclude Include="libfreerdp\core\multitransport.h">
+      <Filter>Header Files\libfreerdp\core</Filter>
+    </ClInclude>
+    <ClInclude Include="libfreerdp\core\heartbeat.h">
+      <Filter>Header Files\libfreerdp\core</Filter>
+    </ClInclude>
+    <ClInclude Include="libfreerdp\core\client.h">
+      <Filter>Header Files\libfreerdp\core</Filter>
+    </ClInclude>
+    <ClInclude Include="libfreerdp\core\channels.h">
+      <Filter>Header Files\libfreerdp\core</Filter>
+    </ClInclude>
+    <ClInclude Include="libfreerdp\core\bulk.h">
+      <Filter>Header Files\libfreerdp\core</Filter>
+    </ClInclude>
+    <ClInclude Include="libfreerdp\core\autodetect.h">
+      <Filter>Header Files\libfreerdp\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

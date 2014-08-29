@@ -626,12 +626,6 @@
     <ClInclude Include="filesystem\fs\fs_set.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
-    <ClInclude Include="base\compress\compress_bzip_stream.h">
-      <Filter>Header Files\base\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\compress_gzip_stream.h">
-      <Filter>Header Files\base\compress</Filter>
-    </ClInclude>
     <ClInclude Include="base\compress\compress_compress.h">
       <Filter>Header Files\base\compress</Filter>
     </ClInclude>
@@ -842,13 +836,7 @@
     <ClInclude Include="base\node\windows\os.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\windows\win.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\windows\windows_dir.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_exception.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\node\windows\windows_factory_exchange.h">
@@ -861,9 +849,6 @@
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\node\windows\windows_ip_enum.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_simple_hold_handle.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\node\android\android.h">
@@ -924,9 +909,6 @@
       <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
     <ClInclude Include="base\node\ansios\ansios.h">
-      <Filter>Header Files\base\node\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\ansios\ansios_thread_impl.h">
       <Filter>Header Files\base\node\ansios</Filter>
     </ClInclude>
     <ClInclude Include="base\node\android\android_crypto.h">
@@ -1868,6 +1850,9 @@
     </None>
     <None Include="base\base\base.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

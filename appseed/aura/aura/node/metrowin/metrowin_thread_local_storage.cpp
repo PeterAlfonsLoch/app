@@ -12,7 +12,7 @@ void * no_track_object::operator new(size_t nSize, const char *, int)
 {
    return no_track_object::operator new(nSize);
 }
-#define new AXIS_NEW
+#define new AURA_NEW
 void no_track_object::operator delete(void * pObject, const char *, int)
 {
    if (pObject != NULL)
@@ -29,7 +29,7 @@ void * no_track_object::operator new(size_t nSize)
       throw memory_exception(NULL);
    return p;
 }
-#define new AXIS_NEW
+#define new AURA_NEW
 
 void no_track_object::operator delete(void * p)
 {
@@ -91,7 +91,7 @@ thread_slot_data * thread_local_storage::get_slot_data()
    }
    return pdata;
 }
-#define new AXIS_NEW
+#define new AURA_NEW
 
 
 thread_slot_data::thread_slot_data()

@@ -147,6 +147,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
     <Midl>
@@ -3408,8 +3411,6 @@ copy Source\FreeImage.h Dist
     <Text Include="Source\LibJPEG\structure.txt" />
     <Text Include="Source\LibJPEG\usage.txt" />
     <Text Include="Source\LibJPEG\wizard.txt" />
-    <Text Include="Todo.txt" />
-    <Text Include="Whatsnew.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="axisfreeimage.def" />

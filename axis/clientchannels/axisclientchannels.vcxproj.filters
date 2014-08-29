@@ -52,9 +52,6 @@
     <Filter Include="Header Files\channels\rdpsnd">
       <UniqueIdentifier>{feb42c70-18f2-41f1-90d0-88c0422ca62e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\channels\serial">
-      <UniqueIdentifier>{e09def27-b77a-4f23-824b-e426ef9168c9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\channels\smartcard">
       <UniqueIdentifier>{02708433-9353-43a4-9754-43142681fcae}</UniqueIdentifier>
     </Filter>
@@ -135,18 +132,6 @@
     <ClInclude Include="channels\client\addin.h">
       <Filter>Header Files\channels\client</Filter>
     </ClInclude>
-    <ClInclude Include="channels\client\channels.h">
-      <Filter>Header Files\channels\client</Filter>
-    </ClInclude>
-    <ClInclude Include="channels\client\framework.h">
-      <Filter>Header Files\channels\client</Filter>
-    </ClInclude>
-    <ClInclude Include="channels\client\init.h">
-      <Filter>Header Files\channels\client</Filter>
-    </ClInclude>
-    <ClInclude Include="channels\client\open.h">
-      <Filter>Header Files\channels\client</Filter>
-    </ClInclude>
     <ClInclude Include="channels\client\tables.h">
       <Filter>Header Files\channels\client</Filter>
     </ClInclude>
@@ -221,12 +206,6 @@
     </ClInclude>
     <ClInclude Include="channels\rdpsnd\client\rdpsnd_main.h">
       <Filter>Header Files\channels\rdpsnd</Filter>
-    </ClInclude>
-    <ClInclude Include="channels\serial\client\serial_constants.h">
-      <Filter>Header Files\channels\serial</Filter>
-    </ClInclude>
-    <ClInclude Include="channels\serial\client\serial_tty.h">
-      <Filter>Header Files\channels\serial</Filter>
     </ClInclude>
     <ClInclude Include="channels\smartcard\client\smartcard_main.h">
       <Filter>Header Files\channels\smartcard</Filter>

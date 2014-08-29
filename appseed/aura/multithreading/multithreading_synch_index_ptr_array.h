@@ -43,7 +43,7 @@ public:
    }
 #undef new
    DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new AXIS_NEW
+#define new AURA_NEW
 
 };
 

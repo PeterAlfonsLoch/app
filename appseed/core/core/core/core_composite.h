@@ -133,4 +133,4 @@ namespace core
 } // namespace core
 
 
-#define new AXIS_NEW
+#define new AURA_NEW

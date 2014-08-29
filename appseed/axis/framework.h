@@ -6,6 +6,6 @@
 #include "axis/axis/axis/axis.h"
 
 
-#define new AXIS_NEW
+#define new AURA_NEW
 
 

@@ -6,7 +6,7 @@
 #include <gdiplus.h>
 #undef min
 #undef max
-#define new AXIS_NEW
+#define new AURA_NEW
 #include <ddeml.h>
 
 void __term_threading();

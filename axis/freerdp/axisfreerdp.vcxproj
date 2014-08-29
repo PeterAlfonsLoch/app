@@ -370,6 +370,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">
     <Midl>
@@ -1157,20 +1160,24 @@
     <ClInclude Include="libfreerdp\codec\rfx_sse2.h" />
     <ClInclude Include="libfreerdp\codec\rfx_types.h" />
     <ClInclude Include="libfreerdp\core\activation.h" />
+    <ClInclude Include="libfreerdp\core\autodetect.h" />
+    <ClInclude Include="libfreerdp\core\bulk.h" />
     <ClInclude Include="libfreerdp\core\capabilities.h" />
     <ClInclude Include="libfreerdp\core\certificate.h" />
-    <ClInclude Include="libfreerdp\core\channel.h" />
+    <ClInclude Include="libfreerdp\core\channels.h" />
+    <ClInclude Include="libfreerdp\core\client.h" />
     <ClInclude Include="libfreerdp\core\connection.h" />
     <ClInclude Include="libfreerdp\core\errinfo.h" />
-    <ClInclude Include="libfreerdp\core\extension.h" />
     <ClInclude Include="libfreerdp\core\fastpath.h" />
     <ClInclude Include="libfreerdp\core\gcc.h" />
+    <ClInclude Include="libfreerdp\core\heartbeat.h" />
     <ClInclude Include="libfreerdp\core\info.h" />
     <ClInclude Include="libfreerdp\core\input.h" />
     <ClInclude Include="libfreerdp\core\license.h" />
     <ClInclude Include="libfreerdp\core\listener.h" />
     <ClInclude Include="libfreerdp\core\mcs.h" />
     <ClInclude Include="libfreerdp\core\message.h" />
+    <ClInclude Include="libfreerdp\core\multitransport.h" />
     <ClInclude Include="libfreerdp\core\nego.h" />
     <ClInclude Include="libfreerdp\core\nla.h" />
     <ClInclude Include="libfreerdp\core\orders.h" />
@@ -1178,6 +1185,7 @@
     <ClInclude Include="libfreerdp\core\rdp.h" />
     <ClInclude Include="libfreerdp\core\redirection.h" />
     <ClInclude Include="libfreerdp\core\security.h" />
+    <ClInclude Include="libfreerdp\core\server.h" />
     <ClInclude Include="libfreerdp\core\surface.h" />
     <ClInclude Include="libfreerdp\core\tcp.h" />
     <ClInclude Include="libfreerdp\core\timezone.h" />
@@ -1186,7 +1194,6 @@
     <ClInclude Include="libfreerdp\core\transport.h" />
     <ClInclude Include="libfreerdp\core\update.h" />
     <ClInclude Include="libfreerdp\core\window.h" />
-    <ClInclude Include="libfreerdp\framework\framework.h" />
     <ClInclude Include="libfreerdp\gdi\gdi.h" />
     <ClInclude Include="libfreerdp\gdi\graphics.h" />
     <ClInclude Include="libfreerdp\locale\keyboard_sun.h" />

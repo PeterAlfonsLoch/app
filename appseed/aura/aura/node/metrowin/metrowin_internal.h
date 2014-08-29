@@ -5,7 +5,7 @@
 #include <GdiPlus.h>
 #include <Gdipluseffects.h>
 
-#define new AXIS_NEW
+#define new AURA_NEW
 
 #include <wincrypt.h>
 

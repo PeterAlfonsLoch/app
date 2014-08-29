@@ -82,7 +82,43 @@ extern "C" void CharGuessDestroy(charguess_det p)
 
 void _debug_charguess()
 {
-   string strCharGuest = charguess("\"Carlos é brasileiro\" está escrito em um código de página latino?")();
+   uint32_t uiCodePage = charguess("\"Carlos é brasileiro\" está escrito em um código de página latino?")();
 }
 
 #endif
+
+
+
+
+
+uint32_t charguess::get_code_page(const string & str)
+{
+   if(str.is_empty())
+   {
+      return 0;
+   }
+   else if(!str.CompareNoCase("Shift_JIS"))
+   {
+      return 932;
+   }
+   else if(!str.CompareNoCase("Big5"))
+   {
+      return 950;
+   }
+   else if(!str.CompareNoCase("gb18030"))
+   {
+      return 936;
+   }
+   else if(!str.CompareNoCase("windows-1252"))
+   {
+      return 1252;
+   }
+   else if(!str.CompareNoCase("UTF-8"))
+   {
+      return CP_UTF8;
+   }
+   else
+   {
+      return 0;
+   }
+}

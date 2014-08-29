@@ -257,7 +257,6 @@
     <ClInclude Include="..\..\include\winpr\wtypes.h" />
     <ClInclude Include="libwinpr\crt\utf.h" />
     <ClInclude Include="libwinpr\crypto\crypto.h" />
-    <ClInclude Include="libwinpr\framework\framework.h" />
     <ClInclude Include="libwinpr\handle\handle.h" />
     <ClInclude Include="libwinpr\io\io.h" />
     <ClInclude Include="libwinpr\nt\nt.h" />
@@ -620,6 +619,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">
     <Midl>

@@ -1,9 +1,12 @@
 #include "framework.h"
+#include "charguess.h"
+
+
 
 #ifdef WINDOWS
 #undef new
 //#include <GdiPlus.h>
-#define new AXIS_NEW
+#define new AURA_NEW
 #endif
 
 
@@ -90,7 +93,6 @@ namespace core
          m_bProcessInitialize       = false;
          m_bProcessInitializeResult = false;
 
-         m_bLibCharGuess            = false;
          m_puserstr                 = NULL;
 
          m_pparserfactory           = NULL;
@@ -620,11 +622,6 @@ namespace core
 
       __wait_threading_count(::millis((5000) * 8));
 
-      if(m_bLibCharGuess)
-      {
-         m_bLibCharGuess = false;
-         LibCharGuess::Done();
-      }
 
 
       int32_t iRet = 0;
@@ -685,12 +682,6 @@ namespace core
       }
       catch(...)
       {
-      }
-
-      if(m_bLibCharGuess)
-      {
-         m_bLibCharGuess = false;
-         LibCharGuess::Done();
       }
 
 
@@ -1001,14 +992,11 @@ namespace core
 
 
 
-   uint32_t system::guess_code_page(const char * pszText)
+   uint32_t system::guess_code_page(const string & str)
    {
-      if(!m_bLibCharGuess)
-      {
-         LibCharGuess::Init();
-         m_bLibCharGuess = true;
-      }
-      return LibCharGuess::GuessCodePage(pszText);
+
+      return charguess(str)();
+
    }
 
 

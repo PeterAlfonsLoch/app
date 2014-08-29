@@ -67,7 +67,7 @@ struct ConstructDestruct
    { 
 #undef new
       new (pObject) TYPE; 
-#define new AXIS_NEW
+#define new AURA_NEW
    }
    static void Destruct(TYPE * pObject)
    {

@@ -23,7 +23,7 @@ sp(element) creatable_factory_item < CREATABLE_TYPE > ::create(sp(::aura::applic
 
    CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(papp);
 
-#define new AXIS_NEW
+#define new AURA_NEW
 
    ::dereference_no_delete(pt);
 
@@ -74,7 +74,7 @@ sp(element) cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(element) pobjec
 
    CLONEABLE_TYPE * pt = ::new (pv) CLONEABLE_TYPE(*ptSrc);
 
-#define new AXIS_NEW
+#define new AURA_NEW
 
    ::dereference_no_delete(pt);
 

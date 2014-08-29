@@ -277,7 +277,7 @@ struct memory_state;
 
 
 
-#define new AXIS_NEW
+#define new AURA_NEW
 
 
 
@@ -773,19 +773,6 @@ namespace core
 
 // memory primitives
 #include "core/primitive/primitive_shared_file.h"
-
-
-
-
-
-#include "core/core/libcharguess/libcharguess.h"
-
-
-
-
-
-
-
 
 
 #include "core_types.h"

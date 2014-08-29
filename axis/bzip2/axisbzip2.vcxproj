@@ -33,7 +33,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bzip_stream.h" />
-    <ClInclude Include="bzlib.h" />
     <ClInclude Include="bzlib_private.h" />
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +218,9 @@
       <Command>
       </Command>
     </PreLinkEvent>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
     <Midl>

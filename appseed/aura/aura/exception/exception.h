@@ -137,7 +137,7 @@ void ::core::DoForAllClasses(void (c_cdecl *pfn)(sp(type) pClass,
 #else
 
 // non-DEBUG_ALLOC version that assume everything is OK
-#define AXIS_NEW new
+#define AURA_NEW new
 #define __check_memory() TRUE
 #define __is_memory_block(p, nBytes) TRUE
 #define __enable_memory_tracking(bTrack) FALSE
@@ -178,7 +178,7 @@ extern CLASS_DECL_AURA bool g_bTraceEnabled;
 
 #ifdef DEBUG
 #define DEBUG_NOTE __FILE__
-#define AXIS_NEW new(DEBUG_NOTE, __LINE__)
+#define AURA_NEW new(DEBUG_NOTE, __LINE__)
 #define THREAD_NOTE __get_thread_note()
 #define SET_THREAD_NOTE(x) __set_thread_note(x);
 #else

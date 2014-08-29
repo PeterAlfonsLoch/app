@@ -48,10 +48,6 @@ namespace core
       bool                                         m_bProcessInitializeResult;
 
 
-      bool                                         m_bLibCharGuess;
-
-
-
       bool                                         m_bDoNotExitIfNoApplications;
 
       strid_map < ::aura::library * >              m_idmapCreateViewLibrary;
@@ -152,7 +148,7 @@ namespace core
 
 
 
-      uint32_t guess_code_page(const char * pszText);
+      uint32_t guess_code_page(const string & str);
 
 #ifdef METROWIN
 

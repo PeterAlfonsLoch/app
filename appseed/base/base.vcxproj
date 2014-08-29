@@ -570,6 +570,9 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../app/appseed/base/</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">
     <ClCompile>
@@ -1642,9 +1645,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base\base_static_start.h" />
     <ClInclude Include="base\base\base_system.h" />
     <ClInclude Include="base\compress\compress.h" />
-    <ClInclude Include="base\compress\compress_bzip_stream.h" />
     <ClInclude Include="base\compress\compress_compress.h" />
-    <ClInclude Include="base\compress\compress_gzip_stream.h" />
     <ClInclude Include="base\compress\zip\api.h" />
     <ClInclude Include="base\compress\zip\crypt.h" />
     <ClInclude Include="base\compress\zip\File.h" />
@@ -1976,32 +1977,15 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="base\node\ansios\ansios_thread_impl.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="base\node\node.h" />
     <ClInclude Include="base\node\windows\os.h" />
-    <ClInclude Include="base\node\windows\win.h" />
     <ClInclude Include="base\node\windows\windows_crypto.h" />
     <ClInclude Include="base\node\windows\windows_dir.h" />
-    <ClInclude Include="base\node\windows\windows_exception.h" />
     <ClInclude Include="base\node\windows\windows_factory_exchange.h" />
     <ClInclude Include="base\node\windows\windows_file_set.h" />
     <ClInclude Include="base\node\windows\windows_file_system.h" />
     <ClInclude Include="base\node\windows\windows_ip_enum.h" />
     <ClInclude Include="base\node\windows\windows_port_forward.h" />
-    <ClInclude Include="base\node\windows\windows_simple_hold_handle.h" />
     <ClInclude Include="base\os\android\android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>

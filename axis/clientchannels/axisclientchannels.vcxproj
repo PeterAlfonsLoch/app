@@ -70,10 +70,6 @@
   <ItemGroup>
     <ClInclude Include="channels\audin\client\audin_main.h" />
     <ClInclude Include="channels\client\addin.h" />
-    <ClInclude Include="channels\client\channels.h" />
-    <ClInclude Include="channels\client\framework.h" />
-    <ClInclude Include="channels\client\init.h" />
-    <ClInclude Include="channels\client\open.h" />
     <ClInclude Include="channels\client\tables.h" />
     <ClInclude Include="channels\cliprdr\client\cliprdr_format.h" />
     <ClInclude Include="channels\cliprdr\client\cliprdr_main.h" />
@@ -99,8 +95,6 @@
     <ClInclude Include="channels\rdpgfx\client\rdpgfx_common.h" />
     <ClInclude Include="channels\rdpgfx\client\rdpgfx_main.h" />
     <ClInclude Include="channels\rdpsnd\client\rdpsnd_main.h" />
-    <ClInclude Include="channels\serial\client\serial_constants.h" />
-    <ClInclude Include="channels\serial\client\serial_tty.h" />
     <ClInclude Include="channels\smartcard\client\smartcard_main.h" />
     <ClInclude Include="channels\tsmf\client\tsmf_audio.h" />
     <ClInclude Include="channels\tsmf\client\tsmf_codec.h" />
@@ -480,6 +474,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">
     <Midl>

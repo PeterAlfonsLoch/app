@@ -20,7 +20,7 @@
 #undef new
 #include "message_base.h"
 //#include "message_user.h"
-#define new AXIS_NEW
+#define new AURA_NEW
 #include "message.inl"
 
 

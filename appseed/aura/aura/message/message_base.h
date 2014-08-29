@@ -40,4 +40,4 @@ namespace message
 } // namespace message
 
 
-#define new AXIS_NEW
+#define new AURA_NEW
