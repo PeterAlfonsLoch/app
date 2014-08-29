@@ -1381,6 +1381,9 @@
     <ClCompile Include="database\sqlite\sqlite_base.cpp">
       <Filter>Source Files\database\sqlite</Filter>
     </ClCompile>
+    <ClCompile Include="database\sqlite\sqlite_set.cpp">
+      <Filter>Source Files\database\sqlite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="base.def">
