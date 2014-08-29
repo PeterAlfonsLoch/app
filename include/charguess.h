@@ -18,7 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#if defined(_AURA_SQLITE)
+#if defined(_AURA_CHARGUESS)
 #define SQLITE_API  CLASS_DECL_EXPORT
 #else
 #define SQLITE_API  CLASS_DECL_IMPORT
