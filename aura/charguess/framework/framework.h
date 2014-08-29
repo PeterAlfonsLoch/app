@@ -22,4 +22,15 @@
 #include "Latin1Prober.h"
 #include "MBCSGroupProber.h"
 
-#include "big5Prober.h"
+
+
+
+#include "JISFreq.tab"
+#include "Big5Freq.tab"
+#include "EUCKRFreq.tab"
+#include "EUCTWFreq.tab"
+#include "GB2312Freq.tab"
+
+
+
+

@@ -20,11 +20,7 @@
 
 #include "framework.h"
 
-#include "JISFreq.tab"
-#include "Big5Freq.tab"
-#include "EUCKRFreq.tab"
-#include "EUCTWFreq.tab"
-#include "GB2312Freq.tab"
+
 
 #define SURE_YES 0.99f
 #define SURE_NO  0.01f
