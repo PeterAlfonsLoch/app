@@ -2636,7 +2636,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\policy\policy_objc.h" />
     <ClInclude Include="axis\policy\policy_objcpp.h" />
     <ClInclude Include="axis\policy\policy_winrt.h" />
-    <ClInclude Include="database\database.h" />
     <ClInclude Include="database\database\database.h" />
     <ClInclude Include="database\database\database_base.h" />
     <ClInclude Include="database\database\database_change_event.h" />
@@ -2654,12 +2653,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="database\database\database_template.h" />
     <ClInclude Include="database\database\database_update_hint.h" />
     <ClInclude Include="database\database\database_user_interaction.h" />
-    <ClInclude Include="database\database_base.h" />
-    <ClInclude Include="database\database_change_event.h" />
-    <ClInclude Include="database\database_client.h" />
-    <ClInclude Include="database\database_database.h" />
-    <ClInclude Include="database\database_definition.h" />
-    <ClInclude Include="database\database_field_definition.h" />
     <ClInclude Include="database\database_id.h" />
     <ClInclude Include="database\database_key.h" />
     <ClInclude Include="database\database_selection.h" />

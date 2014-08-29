@@ -746,27 +746,6 @@
     <ClInclude Include="database\database_id.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
-    <ClInclude Include="database\database_field_definition.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_definition.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_database.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_client.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_change_event.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_base.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
     <ClInclude Include="axis\policy\policy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
