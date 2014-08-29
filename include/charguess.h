@@ -26,13 +26,13 @@
 #define CHARGUESS_API  CLASS_DECL_IMPORT
 #endif
 
-typedef void * charguess;
+typedef void * charguess_det;
 
 BEGIN_EXTERN_C
 
-CHARGUESS_API charguess CharGuessInit(void);
-CHARGUESS_API const char * GuessChardet(charguess * p, const char *str);
-CHARGUESS_API void CharGuessDestroy(charguess * p);
+CHARGUESS_API charguess_det CharGuessInit(void);
+CHARGUESS_API const char * GuessChardet(charguess_det * p,const char *str);
+CHARGUESS_API void CharGuessDestroy(charguess_det * p);
 
 
 END_EXTERN_C
@@ -41,7 +41,25 @@ END_EXTERN_C
 
 #ifdef cplusplus
 
-CHARGUESS_API const char * GuessChardet(charguess * p,const string & str);
+CHARGUESS_API const char * GuessChardet(charguess_det * p,const string & str);
+
+
+CHARGUESS_API class charguess
+{
+public:
+
+   charguess_det * m_pdet;
+
+   charguess();
+   ~charguess();
+
+
+
+
+
+
+};
+
 
 #endif
 
