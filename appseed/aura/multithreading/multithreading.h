@@ -24,6 +24,52 @@ CLASS_DECL_AURA void do_events();
 CLASS_DECL_AURA void do_events(const duration & duration);
 
 
+
+namespace multithreading
+{
+
+
+   enum e_priority
+   {
+
+      priority_none              = -1,
+      priority_idle 	            = 1,
+      priority_lowest 	         = 48,
+      priority_below_normal,
+      priority_normal,
+      priority_above_normal,
+      priority_highest,
+      priority_time_critical     = 99
+
+   };
+
+   CLASS_DECL_AURA bool set_priority(int32_t priority);
+
+   CLASS_DECL_AURA int32_t riority();
+
+
+   inline int32_t get_priority_none()
+   {
+
+      return priority_none;
+
+   }
+
+
+   inline int32_t get_priority_normal()
+   {
+
+      return priority_normal;
+
+   }
+
+
+} // namespace multithreading
+
+
+
+
+
 #include "multithreading_sync_object.h"
 #include "multithreading_event_base.h"
 #include "multithreading_event_collection.h"

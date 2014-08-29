@@ -1,51 +1,6 @@
 #pragma once
 
 
-
-
-namespace aura
-{
-
-
-	enum e_scheduling_priority
-   {
-
-      scheduling_priority_none    = -1,
-		scheduling_priority_idle 	= 1,
-		scheduling_priority_lowest 	= 48,
-		scheduling_priority_below_normal,
-		scheduling_priority_normal,
-		scheduling_priority_above_normal,
-		scheduling_priority_highest,
-		scheduling_priority_time_critical = 99
-
-	};
-
-	CLASS_DECL_AURA bool set_thread_priority(int32_t priority);
-
-	CLASS_DECL_AURA int32_t thread_priority();
-
-
-} // namespace aura
-
-
-inline int32_t get_scheduling_priority_none()
-{
-
-      return ::aura::scheduling_priority_none;
-
-}
-
-
-inline int32_t get_scheduling_priority_normal()
-{
-
-      return ::aura::scheduling_priority_normal;
-
-}
-
-
-
 class CLASS_DECL_AURA os_thread :
    virtual public object
 {
