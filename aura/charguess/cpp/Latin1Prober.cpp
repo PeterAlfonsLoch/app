@@ -18,8 +18,8 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include "Latin1Prober.h"
-#include "types.h"
+#include "framework.h"
+
 
 #define UDF    0        // undefined
 #define OTH    1        //other
