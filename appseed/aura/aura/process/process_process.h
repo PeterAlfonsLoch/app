@@ -19,7 +19,7 @@ namespace process
       virtual ~process();
 
 
-      virtual bool create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir = NULL,int32_t iPriorityClass = ::get_scheduling_priority_none());
+      virtual bool create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir = NULL,int32_t iPriorityClass = ::multithreading::get_priority_none());
 
       virtual uint32_t wait_until_exit(int32_t iWaitMax = 0);
       virtual bool has_exited(uint32_t * pdwExitCode = NULL);
