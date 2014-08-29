@@ -222,48 +222,33 @@ namespace axis
 
       virtual bool get_temp_file_name(string & str,const char * pszName,const char * pszExtension);
 
-
-
-
-
       virtual void assert_valid() const;
+
       virtual void dump(dump_context & dumpcontext) const;
 
       virtual ::visual::icon * set_icon(object * pobject,::visual::icon * picon,bool bBigIcon);
+
       virtual ::visual::icon * get_icon(object * pobject,bool bBigIcon) const;
 
       virtual bool final_handle_exception(::exception::exception & e);
 
-
-
-
       virtual void on_service_request(sp(::create_context) pcreatecontext);
-
 
       virtual string get_mutex_name_gen();
 
       virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
+
       virtual void on_exclusive_instance_local_conflict();
 
-
-
       virtual void draw2d_factory_exchange();
-
 
       virtual void on_request(sp(::create_context) pcreatecontext);
 
       virtual bool defer_initialize_twf();
 
-
-
       virtual bool assert_user_logged_in();
 
-      //virtual bool init_main_data(::aura::main_init_data * pdata);
-
-      //virtual bool set_main_init_data(::aura::main_init_data * pdata);
-
       virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
-
 
       virtual void process_message(signal_details * pobj);
 
