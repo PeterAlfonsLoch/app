@@ -186,6 +186,9 @@
     <Filter Include="Header Files\database\database">
       <UniqueIdentifier>{06558f64-95d7-4ec0-81d1-5502727314ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\database\database">
+      <UniqueIdentifier>{abcdef4b-6e71-4a3d-9d71-24462964903d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\draw2d\draw2d.h">
