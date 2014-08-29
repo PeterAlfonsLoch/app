@@ -201,9 +201,6 @@
     <Filter Include="Header Files\core\install">
       <UniqueIdentifier>{c09a6b2b-5c02-4df3-ba4b-8131a8aa1e40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\libcharguess">
-      <UniqueIdentifier>{34a1d4e3-976f-490f-8bf4-2cf982f5e037}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\core\os">
       <UniqueIdentifier>{d3860369-4c94-40b9-bc4a-300baea8cfd8}</UniqueIdentifier>
     </Filter>
