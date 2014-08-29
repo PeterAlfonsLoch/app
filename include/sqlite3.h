@@ -49,10 +49,11 @@ extern "C" {
 # define SQLITE_EXTERN extern
 #endif
 
-#ifndef SQLITE_API
-# define SQLITE_API
+#if defined(_AURA_SQLITE)
+#define SQLITE_API  CLASS_DECL_EXPORT
+#else
+#define SQLITE_API  CLASS_DECL_IMPORT
 #endif
-
 
 /*
 ** These no-op macros are used in front of interfaces to mark those
