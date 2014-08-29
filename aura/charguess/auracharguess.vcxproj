@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>aurasqlite</ProjectName>
+    <ProjectName>auracharguess</ProjectName>
     <ProjectGuid>{424F72D6-053A-41C5-BE03-3B0BD535F1EB}</ProjectGuid>
-    <RootNamespace>aurasqlite</RootNamespace>
+    <RootNamespace>auracharguess</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
