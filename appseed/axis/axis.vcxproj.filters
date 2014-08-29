@@ -192,7 +192,7 @@
     <Filter Include="Source Files\database\sqlite">
       <UniqueIdentifier>{d6fd16d7-620f-4fd1-8e53-4b3afd1030e1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\database\sqlit">
+    <Filter Include="Header Files\database\sqlite">
       <UniqueIdentifier>{f0d65683-66e5-47f0-b31c-aeb2d6be1747}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
