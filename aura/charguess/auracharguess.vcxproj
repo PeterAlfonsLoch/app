@@ -355,6 +355,7 @@ copy Source\FreeImage.h Dist
     <ClInclude Include="cpp\types.h" />
     <ClInclude Include="cpp\universal.h" />
     <ClInclude Include="cpp\UTF8Prober.h" />
+    <ClInclude Include="framework\framework.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

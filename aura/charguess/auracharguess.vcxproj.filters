@@ -165,5 +165,8 @@
     <ClInclude Include="..\..\include\charguess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="framework\framework.h">
+      <Filter>Header Files\framework</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
