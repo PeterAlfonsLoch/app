@@ -15,7 +15,7 @@ void sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE, m_bMultiKey >::add_pair(ARG
 
    while(true)
    {
-      if(compare(key,pnode->first))
+      if(compare(key,pnode->m_element1))
       {
 
          if(pnode->left == NULL)
@@ -34,7 +34,7 @@ void sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE, m_bMultiKey >::add_pair(ARG
          }
 
       }
-      else if(m_bMultiKey || compare(pnode->first, key))
+      else if(m_bMultiKey || compare(pnode->m_element1, key))
       {
 
          if(pnode->right == NULL)
@@ -56,7 +56,7 @@ void sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE, m_bMultiKey >::add_pair(ARG
       else
       {
          
-         pnode->second = newValue;
+         pnode->m_element2 = newValue;
 
          return;
 
@@ -72,7 +72,7 @@ template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE, bo
 void sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE, m_bMultiKey >::insert(const pair < KEY,VALUE > & pair)
 {
 
-   add_pair(pair.first,pair.second);
+   add_pair(pair.m_element1,pair.m_element2);
 
 }
 
