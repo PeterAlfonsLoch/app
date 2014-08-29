@@ -32,9 +32,9 @@ extern "C" charguess CharGuessInit(void)
 		return NULL;
 }
 
-extern "C" const char* GuessChardet(const char *str)
+extern "C" const char* GuessChardet(charguest * p, const char *str)
 {
-   nsUniversalDetector* det
+   nsUniversalDetector* det = p;
 	const char* tmp;
 
 	if (!det)
