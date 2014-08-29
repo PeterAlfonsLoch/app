@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "database/database_id.h"
-
-
 class CLASS_DECL_CORE db_stra_set :
    public ::database::client
 {

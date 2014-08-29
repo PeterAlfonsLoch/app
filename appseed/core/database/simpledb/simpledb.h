@@ -21,9 +21,6 @@
 #include "simpledb_service.h"
 
 
-#include "sqlite_set.h"
-#include "sqlite_base.h"
-
 #include "db_set.h"
 
 #include "im_post.h"
