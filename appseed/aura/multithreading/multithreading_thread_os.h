@@ -22,7 +22,6 @@ namespace aura
 	};
 
 	CLASS_DECL_AURA bool set_thread_priority(int32_t priority);
-	CLASS_DECL_AURA bool set_priority_class(int32_t priority);
 
 	CLASS_DECL_AURA int32_t thread_priority();
 

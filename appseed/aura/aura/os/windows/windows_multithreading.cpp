@@ -394,22 +394,16 @@ uint32_t thread_layer::proc(void * lp)
 }
 
 
-namespace aura
+namespace multithreading
 {
 
-   bool set_thread_priority(int32_t priority)
+   bool set_priority(int32_t priority)
    {
 
       return (::SetThreadPriority(::GetCurrentThread(),get_os_thread_priority(priority)) != 0);
    }
 
-   bool set_priority_class(int32_t priority)
-   {
-
-      return (::SetPriorityClass(::GetCurrentProcess(),get_os_priority_class(priority)) != 0);
-   }
-
-   int32_t thread_priority()
+   int32_t priority()
    {
       return ::GetThreadPriority(::GetCurrentThread());
    }

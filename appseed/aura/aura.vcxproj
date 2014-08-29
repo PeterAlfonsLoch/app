@@ -2675,6 +2675,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\os\windows\windows_simple_hold_handle.h" />
     <ClInclude Include="aura\os\windows\windows_utils.h" />
     <ClInclude Include="aura\os\windows\windows_windows.h" />
+    <ClInclude Include="aura\process\process.h" />
     <ClInclude Include="aura\process\process_bidi_pipe.h" />
     <ClInclude Include="aura\process\process_departament.h" />
     <ClInclude Include="aura\process\process_pipe.h" />

@@ -284,3 +284,28 @@ bool load_modules_diff(stringa & straOld, stringa & straNew, const char * pszExc
    return true;
 
 }
+
+
+namespace process
+{
+
+
+   bool set_priority(int32_t priority)
+   {
+
+      return (::SetPriorityClass(::GetCurrentProcess(),get_os_priority_class(priority)) != 0);
+
+
+   }
+
+
+} // namespace process
+
+
+
+
+
+
+
+
+
