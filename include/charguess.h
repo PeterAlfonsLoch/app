@@ -28,6 +28,11 @@
 
 typedef void * charguess;
 
+BEGIN_EXTERN_C
+
 CHARGUESS_API charguess CharGuessInit(void);
 CHARGUESS_API string GuessChardet(charguess * p, const char *str);
 CHARGUESS_API void CharGuessDestroy(charguess * p);
+
+
+END_EXTERN_C
