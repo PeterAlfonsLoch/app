@@ -2230,9 +2230,6 @@
     <ClCompile Include="database\simpledb\simpledb_str_set.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_sqlite_dataset.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
