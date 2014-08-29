@@ -159,7 +159,7 @@ namespace sqlite
       exec_res.record_header.remove_all();
       exec_res.records.remove_all();
       //if ((strncmp("select",sql,6) == 0) || (strncmp("SELECT",sql,6) == 0))
-      if((m_iLastResult = db->setErr(sqlite3_exec((::sqlite3::sqlite3 *) handle(),sql,&callback,&exec_res,&errmsg))) == SQLITE_OK)
+      if((m_iLastResult = db->setErr(sqlite3_exec((sqlite3 *) handle(),sql,&callback,&exec_res,&errmsg))) == SQLITE_OK)
       {
          m_strQueryErrorMessage = "";
          m_strDatabaseErrorMessage = "";
@@ -216,7 +216,7 @@ namespace sqlite
 
       close();
 
-      if(db->setErr(sqlite3_exec((::sqlite3::sqlite3 *) handle(),query,&callback,&result,&errmsg)) == SQLITE_OK)
+      if(db->setErr(sqlite3_exec((sqlite3 *) handle(),query,&callback,&result,&errmsg)) == SQLITE_OK)
       {
          m_strQueryErrorMessage = "";
          m_strDatabaseErrorMessage = "";
