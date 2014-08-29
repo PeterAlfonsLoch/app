@@ -393,6 +393,8 @@ namespace aura
 
       virtual void process_message(signal_details * pobj);
 
+      virtual void message_handler(signal_details * pobj);
+
    };
 
 
