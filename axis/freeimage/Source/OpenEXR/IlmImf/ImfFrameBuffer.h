@@ -268,14 +268,14 @@ FrameBuffer::Iterator::operator ++ (int)
 inline const char *
 FrameBuffer::Iterator::name () const
 {
-    return *_i->first;
+    return *_i->m_element1;
 }
 
 
 inline Slice &	
 FrameBuffer::Iterator::slice () const
 {
-    return _i->second;
+    return _i->m_element2;
 }
 
 
@@ -320,13 +320,13 @@ FrameBuffer::ConstIterator::operator ++ (int)
 inline const char *
 FrameBuffer::ConstIterator::name () const
 {
-    return *_i->first;
+    return *_i->m_element1;
 }
 
 inline const Slice &	
 FrameBuffer::ConstIterator::slice () const
 {
-    return _i->second;
+    return _i->m_element2;
 }
 
 

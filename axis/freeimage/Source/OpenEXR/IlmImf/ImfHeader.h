@@ -463,14 +463,14 @@ Header::Iterator::operator ++ (int)
 inline const char *
 Header::Iterator::name () const
 {
-    return *_i->first;
+    return *_i->m_element1;
 }
 
 
 inline Attribute &	
 Header::Iterator::attribute () const
 {
-    return *_i->second;
+    return *_i->m_element2;
 }
 
 
@@ -515,14 +515,14 @@ Header::ConstIterator::operator ++ (int)
 inline const char *
 Header::ConstIterator::name () const
 {
-    return *_i->first;
+    return *_i->m_element1;
 }
 
 
 inline const Attribute &	
 Header::ConstIterator::attribute () const
 {
-    return *_i->second;
+    return *_i->m_element2;
 }
 
 
@@ -593,7 +593,7 @@ T *
 Header::findTypedAttribute (const char name[])
 {
     AttributeMap::iterator i = _map.find (name);
-    return (i == _map.end())? 0: dynamic_cast <T*> (i->second);
+    return (i == _map.end())? 0: dynamic_cast <T*> (i->m_element2);
 }
 
 
@@ -602,7 +602,7 @@ const T *
 Header::findTypedAttribute (const char name[]) const
 {
     AttributeMap::const_iterator i = _map.find (name);
-    return (i == _map.end())? 0: dynamic_cast <const T*> (i->second);
+    return (i == _map.end())? 0: dynamic_cast <const T*> (i->m_element2);
 }
 
 
