@@ -189,6 +189,9 @@
     <Filter Include="Source Files\database\database">
       <UniqueIdentifier>{abcdef4b-6e71-4a3d-9d71-24462964903d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\database\sqlite">
+      <UniqueIdentifier>{d6fd16d7-620f-4fd1-8e53-4b3afd1030e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\draw2d\draw2d.h">
