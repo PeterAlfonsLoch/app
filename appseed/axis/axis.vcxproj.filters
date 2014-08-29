@@ -1324,21 +1324,6 @@
     <ClCompile Include="database\database_field_definition.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="database\database_event_change.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_definition.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_client.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_base.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database_application.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_gdi.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>

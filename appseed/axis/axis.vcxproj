@@ -3283,11 +3283,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="database\database\database_stringhelper.cpp" />
     <ClCompile Include="database\database\database_update_hint.cpp" />
     <ClCompile Include="database\database\database_user_interaction.cpp" />
-    <ClCompile Include="database\database_application.cpp" />
-    <ClCompile Include="database\database_base.cpp" />
-    <ClCompile Include="database\database_client.cpp" />
-    <ClCompile Include="database\database_definition.cpp" />
-    <ClCompile Include="database\database_event_change.cpp" />
     <ClCompile Include="database\database_field_definition.cpp" />
     <ClCompile Include="database\database_id.cpp" />
     <ClCompile Include="database\database_key.cpp" />
