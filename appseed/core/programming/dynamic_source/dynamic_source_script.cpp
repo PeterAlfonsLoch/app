@@ -447,7 +447,7 @@ namespace dynamic_source
          try
          {
 
-            ::aura::set_thread_priority(::multithreading::priority_highest);
+            ::multithreading::set_priority(::multithreading::priority_highest);
 
          }
          catch(...)
@@ -497,7 +497,7 @@ namespace dynamic_source
          try
          {
 
-            ::aura::set_thread_priority(::multithreading::priority_normal);
+            ::multithreading::set_priority(::multithreading::priority_normal);
 
          }
          catch(...)
