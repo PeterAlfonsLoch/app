@@ -34,16 +34,17 @@ extern "C" charguess CharGuessInit(void)
 
 extern "C" const char* GuessChardet(charguess * p, const char *str)
 {
+   
    nsUniversalDetector* det = (nsUniversalDetector*) p;
-	const char* tmp;
 
 	det->Reset();
 	det->HandleData(str, strlen(str));
 	det->DataEnd();
-	tmp = det->GetCharset();
+	
+   return det->GetCharset();
 
-	return tmp;
 }
+
 
 extern "C" int CharGuessDone(charguess * p)
 {
