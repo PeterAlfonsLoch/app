@@ -346,13 +346,13 @@ namespace sockets
          socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
          while(ppair != NULL)
          {
-            if(ppair->second != NULL)
+            if(ppair->m_element2 != NULL)
             {
-               //TRACE("tmout sckt(%d):\"%s\"", ppair->first, ppair->second->oprop("meta_info").get_string());
+               //TRACE("tmout sckt(%d):\"%s\"", ppair->m_element1, ppair->m_element2->oprop("meta_info").get_string());
 
-               SOCKET s = ppair->first;
+               SOCKET s = ppair->m_element1;
 
-               sp(class socket) psocket = ppair->second;
+               sp(class socket) psocket = ppair->m_element2;
 
                TRACE("tmout sckt(%d):remote_address=\"%s\""          , s, psocket->GetRemoteAddress().get_display_number().c_str());
 //               TRACE("tmout sckt(%d):remote_canonical_name=\"%s\""   , s, psocket->GetRemoteAddress().get_canonical_name());
@@ -761,7 +761,7 @@ namespace sockets
                   if(tcp -> RetryClientConnect())
                   {
 
-                     SOCKET nn = socket; //(*it3).first;
+                     SOCKET nn = socket; //(*it3).m_element1;
                      tcp -> SetRetryClientConnect(false);
                      //TRACE("close() before retry client connect\n");
                      p -> close(); // removes from m_fds_retry
@@ -826,7 +826,7 @@ namespace sockets
                   else
                   if (tcp && p -> IsConnected() && tcp -> Reconnect())
                   {
-                     //SOCKET nn = *it; //(*it3).first;
+                     //SOCKET nn = *it; //(*it3).m_element1;
    //TRACE(" close(2) fd %d\n", socket);
                      p -> SetCloseAndDelete(false);
                      tcp -> SetIsReconnect();
@@ -971,7 +971,7 @@ namespace sockets
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         if (p0 == ppair->second)
+         if (p0 == ppair->m_element2)
             return true;
          ppair = m_sockets.PGetNextAssoc(ppair);
       }
@@ -1155,7 +1155,7 @@ namespace sockets
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         pool_socket *pools = dynamic_cast<pool_socket *>(ppair->second.m_p);
+         pool_socket *pools = dynamic_cast<pool_socket *>(ppair->m_element2.m_p);
          if (pools)
          {
             if (pools -> GetSocketType() == type &&
@@ -1163,7 +1163,7 @@ namespace sockets
    // %!             pools -> GetClientRemoteAddress() &&
                 pools -> GetClientRemoteAddress() == ad)
             {
-               m_sockets.remove_key(ppair->first);
+               m_sockets.remove_key(ppair->m_element1);
                pools -> SetRetain(); // avoid close in socket destructor
                return pools; // Caller is responsible that this socket is deleted
             }
@@ -1198,10 +1198,10 @@ namespace sockets
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         if(ppair->second == p)
+         if(ppair->m_element2 == p)
          {
             log(p, "remove", -1, "socket destructor called while still in use", ::aura::log::level_warning);
-            m_sockets.remove_key(ppair->first);
+            m_sockets.remove_key(ppair->m_element1);
             return;
          }
          ppair = m_sockets.PGetNextAssoc(ppair);
@@ -1209,10 +1209,10 @@ namespace sockets
       socket_map::pair * ppair2 = m_add.PGetFirstAssoc();
       while(ppair2 != NULL)
       {
-         if (ppair2->second == p)
+         if (ppair2->m_element2 == p)
          {
             log(p, "remove", -2, "socket destructor called while still in use", ::aura::log::level_warning);
-            m_add.remove_key(ppair2->first);
+            m_add.remove_key(ppair2->m_element1);
             return;
          }
          ppair2 = m_add.PGetNextAssoc(ppair2);
@@ -1349,7 +1349,7 @@ namespace sockets
          socket_bool::pair * ppair = m_trigger_dst[id].PGetFirstAssoc();
          while(ppair != NULL);
          {
-            sp(socket) dst = ppair->first;
+            sp(socket) dst = ppair->m_element1;
             if (Valid(dst))
             {
                dst->OnTrigger(id, data);

@@ -145,11 +145,11 @@ namespace http
 
       string_map < pac * >::pair * ppair = m_mapPac.PLookup(pszUrl);
 
-      if(ppair == NULL || (::get_tick_count() - ppair->second->m_dwLastChecked) > (84 * 1000))
+      if(ppair == NULL || (::get_tick_count() - ppair->m_element2->m_dwLastChecked) > (84 * 1000))
       {
          if(ppair != NULL)
          {
-            delete ppair->second;
+            delete ppair->m_element2;
             m_mapPac.remove_key(pszUrl);
          }
 
@@ -184,10 +184,10 @@ namespace http
             return NULL;
       }
 
-      if(ppair->second->m_strAutoConfigScript.is_empty())
+      if(ppair->m_element2->m_strAutoConfigScript.is_empty())
          return NULL;
 
-      return ppair->second;
+      return ppair->m_element2;
 
    }
 
@@ -206,11 +206,11 @@ namespace http
 
       string_map < ::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
 
-      if(ppair == NULL || (::get_tick_count() - ppair->second->m_dwLastChecked) > (84 * 1000))
+      if(ppair == NULL || (::get_tick_count() - ppair->m_element2->m_dwLastChecked) > (84 * 1000))
       {
          if(ppair != NULL)
          {
-            delete ppair->second;
+            delete ppair->m_element2;
             m_mapPac.remove_key(pszUrl);
          }
 
@@ -228,7 +228,7 @@ namespace http
 
       }
 
-      return ppair->second;
+      return ppair->m_element2;
 
    }
 

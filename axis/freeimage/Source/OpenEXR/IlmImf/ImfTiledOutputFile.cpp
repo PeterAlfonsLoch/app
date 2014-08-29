@@ -277,7 +277,7 @@ TiledOutputFile::Data::~Data ()
     //
     
     for (TileMap::iterator i = tileMap.begin(); i != tileMap.end(); ++i)
-	delete i->second;
+	delete i->m_element2;
 
     for (size_t i = 0; i < tileBuffers.size(); i++)
         delete tileBuffers[i];
@@ -512,12 +512,12 @@ bufferedTileWrite (TiledOutputFile::Data *ofd,
             //
 
             writeTileData (ofd,
-			   i->first.dx, i->first.dy,
-			   i->first.lx, i->first.ly,
-			   i->second->pixelData,
-			   i->second->pixelDataSize);
+			   i->m_element1.dx, i->m_element1.dy,
+			   i->m_element1.lx, i->m_element1.ly,
+			   i->m_element2->pixelData,
+			   i->m_element2->pixelDataSize);
 
-            delete i->second;
+            delete i->m_element2;
             ofd->tileMap.erase (i);
             
             //
@@ -888,7 +888,7 @@ TiledOutputFile::initialize (const Header &header)
 			  _data->numXLevels, _data->numYLevels);       
     
     //
-    // Determine the first tile coordinate that we will be writing
+    // Determine the m_element1 tile coordinate that we will be writing
     // if the file is not RANDOM_Y.
     //
     
@@ -1080,7 +1080,7 @@ TiledOutputFile::writeTiles (int dx1, int dx2, int dy1, int dy2,
 	    throw Iex::ArgExc ("Tile coordinates are invalid.");
 
         //
-        // Determine the first and last tile coordinates in both dimensions
+        // Determine the m_element1 and last tile coordinates in both dimensions
         // based on the file's lineOrder
         //
                                
@@ -1226,7 +1226,7 @@ TiledOutputFile::writeTiles (int dx1, int dx2, int dy1, int dy2,
 	// Now we check if any tile buffer contains a stored exception; if
 	// this is the case then we re-throw the exception in this thread.
 	// (It is possible that multiple tile buffers contain stored
-	// exceptions.  We re-throw the first exception we find and
+	// exceptions.  We re-throw the m_element1 exception we find and
 	// ignore all others.)
 	//
 

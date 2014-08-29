@@ -118,7 +118,7 @@ Attribute::newAttribute (const char typeName[])
 	THROW (Iex::ArgExc, "Cannot create image file attribute of "
 			    "unknown type \"" << typeName << "\".");
 
-    return (i->second)();
+    return (i->m_element2)();
 }
 
 

@@ -685,14 +685,14 @@ namespace file
          if(ppair == NULL)
             return false;
 
-         if(::get_tick_count() > ppair->second.m_dwLastCheck + m_dwTimeOut)
+         if(::get_tick_count() > ppair->m_element2.m_dwLastCheck + m_dwTimeOut)
          {
             return false;
          }
 
-         bIsDir = ppair->second.m_bIsDir;
+         bIsDir = ppair->m_element2.m_bIsDir;
 
-         dwLastError = ppair->second.m_dwError;
+         dwLastError = ppair->m_element2.m_dwError;
 
          return true;
 
@@ -716,14 +716,14 @@ namespace file
          if(ppair == NULL)
             return false;
 
-         if(::get_tick_count() > ppair->second.m_dwLastCheck + m_dwTimeOut)
+         if(::get_tick_count() > ppair->m_element2.m_dwLastCheck + m_dwTimeOut)
          {
             return false;
          }
 
-         bIsDir = ppair->second.m_bIsDir;
+         bIsDir = ppair->m_element2.m_bIsDir;
 
-         dwLastError = ppair->second.m_dwError;
+         dwLastError = ppair->m_element2.m_dwError;
 
          return true;
 

@@ -1503,7 +1503,7 @@ BOOL TagLib::addMetadataModel(MDMODEL md_model, TagInfo *tag_table) {
 TagLib::~TagLib() {
 	// delete metadata models
 	for(TABLEMAP::iterator i = _table_map.begin(); i != _table_map.end(); i++) {
-		TAGINFO *info_map = (*i).second;
+		TAGINFO *info_map = (*i).m_element2;
 		delete info_map;
 	}
 }
@@ -1584,7 +1584,7 @@ int TagLib::getTagID(MDMODEL md_model, const char *key) {
 
 		TAGINFO *info_map = (TAGINFO*)_table_map[md_model];
 		for(TAGINFO::iterator i = info_map->begin(); i != info_map->end(); i++) {
-			const TagInfo *info = (*i).second;
+			const TagInfo *info = (*i).m_element2;
 			if(info && (strcmp(info->fieldname, key) == 0)) {
 				return (int)info->tag;
 			}

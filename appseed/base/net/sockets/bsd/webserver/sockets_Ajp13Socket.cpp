@@ -289,7 +289,7 @@ namespace sockets
                Utility::ncmap<int32_t>::const_iterator it2 = dynamic_cast < application_interface * >(::get_app())->m_pajpbasesocketinit->ResponseHeader.find( __id(set_cookie) );
                if (it2 != dynamic_cast < application_interface * >(::get_app())->m_pajpbasesocketinit->ResponseHeader.end())
                {
-                  put_integer(msg, ptr, it2 -> second);
+                  put_integer(msg, ptr, it2 -> m_element2);
                }
                else
                {

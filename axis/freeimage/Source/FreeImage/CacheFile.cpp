@@ -133,7 +133,7 @@ CacheFile::lockBlock(int nr) {
 		PageMapIt it = m_page_map.find(nr);
 
 		if (it != m_page_map.end()) {
-			m_current_block = *(it->second);
+			m_current_block = *(it->m_element2);
 
 			// the block is swapped out to disc. load it back
 			// and remove the block from the cache. it might get cached
@@ -145,7 +145,7 @@ CacheFile::lockBlock(int nr) {
 				fseek(m_file, m_current_block->nr * BLOCK_SIZE, SEEK_SET);
 				fread(m_current_block->data, BLOCK_SIZE, 1, m_file);
 
-				m_page_cache_mem.splice(m_page_cache_mem.begin(), m_page_cache_disk, it->second);
+				m_page_cache_mem.splice(m_page_cache_mem.begin(), m_page_cache_disk, it->m_element2);
 				m_page_map[nr] = m_page_cache_mem.begin();
 			}
 

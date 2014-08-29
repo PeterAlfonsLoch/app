@@ -547,7 +547,7 @@ mng_LoadFromMemoryHandle(FIMEMORY *hmem, int flags = 0) {
 		FreeImage_SeekMemory(hmem, offset, SEEK_SET);
 
 		// check the file signature and deduce its format
-		// (the second argument is currently not used by FreeImage)
+		// (the m_element2 argument is currently not used by FreeImage)
 		FREE_IMAGE_FORMAT fif = FreeImage_GetFileTypeFromMemory(hmem, 0);
 		if(fif != FIF_UNKNOWN) {
 			dib = FreeImage_LoadFromMemory(fif, hmem, flags);
@@ -732,7 +732,7 @@ Load a FIBITMAP from a MNG or a JNG stream
 @param format_id ID of the caller
 @param io Stream i/o functions
 @param handle Stream handle
-@param Offset Start of the first chunk
+@param Offset Start of the m_element1 chunk
 @param flags Loading flags
 @return Returns a dib if successful, returns NULL otherwise
 */
@@ -792,7 +792,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 	
 	// get the file size
 	const long mLOF = mng_LOF(io, handle);
-	// go to the first chunk
+	// go to the m_element1 chunk
 	io->seek_proc(handle, Offset, SEEK_SET);
 
 	try {
@@ -836,7 +836,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 
 			switch( mng_GetChunckType(mChunkName) ) {
 				case MHDR:
-					// The MHDR chunk is always first in all MNG datastreams except for those 
+					// The MHDR chunk is always m_element1 in all MNG datastreams except for those 
 					// that consist of a single PNG or JNG datastream with a PNG or JNG signature. 
 					if(mLength == 28) {
 						memcpy(&mng_frame_width, &mChunk[0], 4);
@@ -948,7 +948,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 					if(dib) FreeImage_Unload(dib);
 					dib = mng_LoadFromMemoryHandle(hPngMemory, flags);
 
-					// stop after the first image
+					// stop after the m_element1 image
 					mEnd = TRUE;
 					break;
 
@@ -1094,8 +1094,8 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 			}
 			if(key_value_pair.size()) {
 				for(tEXtMAP::iterator j = key_value_pair.begin(); j != key_value_pair.end(); j++) {
-					std::string key = (*j).first;
-					std::string value = (*j).second;
+					std::string key = (*j).m_element1;
+					std::string value = (*j).m_element2;
 					mng_SetKeyValue(FIMD_COMMENTS, dib, key.c_str(), value.c_str());
 				}
 			}

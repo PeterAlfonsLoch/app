@@ -82,7 +82,7 @@ static void init_keys(const char* passwd, uint32_t * pkeys,const uint32_t * pcrc
 #ifdef INCLUDECRYPTINGCODE_IFCRYPTALLOWED
 
 #define RAND_HEAD_LEN  12
-   /* "last resort" source for second part of crypt seed pattern */
+   /* "last resort" source for m_element2 part of crypt seed pattern */
 #  ifndef ZCR_SEED2
 #    define ZCR_SEED2 3141592654UL     /* use PI as default pattern */
 #  endif

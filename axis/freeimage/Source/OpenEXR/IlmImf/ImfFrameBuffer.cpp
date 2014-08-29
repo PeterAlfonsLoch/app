@@ -72,7 +72,7 @@ FrameBuffer::operator [] (const char name[])
 	       "Cannot find frame buffer slice \"" << name << "\".");
     }
 
-    return i->second;
+    return i->m_element2;
 }
 
 
@@ -87,7 +87,7 @@ FrameBuffer::operator [] (const char name[]) const
 	       "Cannot find frame buffer slice \"" << name << "\".");
     }
 
-    return i->second;
+    return i->m_element2;
 }
 
 
@@ -109,7 +109,7 @@ Slice *
 FrameBuffer::findSlice (const char name[])
 {
     SliceMap::iterator i = _map.find (name);
-    return (i == _map.end())? 0: &i->second;
+    return (i == _map.end())? 0: &i->m_element2;
 }
 
 
@@ -117,7 +117,7 @@ const Slice *
 FrameBuffer::findSlice (const char name[]) const
 {
     SliceMap::const_iterator i = _map.find (name);
-    return (i == _map.end())? 0: &i->second;
+    return (i == _map.end())? 0: &i->m_element2;
 }
 
 

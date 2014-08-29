@@ -563,9 +563,9 @@ FreeImage_CloseMultiBitmap(FIMULTIBITMAP *bitmap, int flags) {
 			// delete the last open bitmaps
 
 			while (!header->locked_pages.empty()) {
-				FreeImage_Unload(header->locked_pages.begin()->first);
+				FreeImage_Unload(header->locked_pages.begin()->m_element1);
 
-				header->locked_pages.erase(header->locked_pages.begin()->first);
+				header->locked_pages.erase(header->locked_pages.begin()->m_element1);
 			}
 
 			// get rid of the IO structure
@@ -732,7 +732,7 @@ FreeImage_LockPage(FIMULTIBITMAP *bitmap, int page) {
 		// only lock if the page wasn't locked before...
 
 		for (std::map<FIBITMAP *, int>::iterator i = header->locked_pages.begin(); i != header->locked_pages.end(); ++i) {
-			if (i->second == page) {
+			if (i->m_element2 == page) {
 				return NULL;
 			}
 		}
@@ -874,7 +874,7 @@ FreeImage_GetLockedPageNumbers(FIMULTIBITMAP *bitmap, int *pages, int *count) {
 			int c = 0;
 
 			for (std::map<FIBITMAP *, int>::iterator i = header->locked_pages.begin(); i != header->locked_pages.end(); ++i) {
-				pages[c] = i->second;
+				pages[c] = i->m_element2;
 
 				c++;
 

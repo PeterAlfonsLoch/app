@@ -147,11 +147,11 @@ PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, c
 PluginNode *
 PluginList::FindNodeFromFormat(const char *format) {
 	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
-		const char *the_format = ((*i).second->m_format != NULL) ? (*i).second->m_format : (*i).second->m_plugin->format_proc();
+		const char *the_format = ((*i).m_element2->m_format != NULL) ? (*i).m_element2->m_format : (*i).m_element2->m_plugin->format_proc();
 
-		if ((*i).second->m_enabled) {
+		if ((*i).m_element2->m_enabled) {
 			if (FreeImage_stricmp(the_format, format) == 0) {
-				return (*i).second;
+				return (*i).m_element2;
 			}
 		}
 	}
@@ -162,11 +162,11 @@ PluginList::FindNodeFromFormat(const char *format) {
 PluginNode *
 PluginList::FindNodeFromMime(const char *mime) {
    for(std::map<int,PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
-		const char *the_mime = ((*i).second->m_plugin->mime_proc != NULL) ? (*i).second->m_plugin->mime_proc() : "";
+		const char *the_mime = ((*i).m_element2->m_plugin->mime_proc != NULL) ? (*i).m_element2->m_plugin->mime_proc() : "";
 
-		if ((*i).second->m_enabled) {
+		if ((*i).m_element2->m_enabled) {
 			if ((the_mime != NULL) && (strcmp(the_mime, mime) == 0)) {
-				return (*i).second;
+				return (*i).m_element2;
 			}
 		}
 	}
@@ -179,7 +179,7 @@ PluginList::FindNodeFromFIF(int node_id) {
    std::map<int,PluginNode *>::iterator i = m_plugin_map.find(node_id);
 
 	if (i != m_plugin_map.end()) {
-		return (*i).second;
+		return (*i).m_element2;
 	}
 
 	return NULL;
@@ -198,12 +198,12 @@ PluginList::IsEmpty() const {
 PluginList::~PluginList() {
    for(std::map<int,PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 #ifdef _WIN32
-		if ((*i).second->m_instance != NULL) {
-			FreeLibrary((HINSTANCE)(*i).second->m_instance);
+		if ((*i).m_element2->m_instance != NULL) {
+			FreeLibrary((HINSTANCE)(*i).m_element2->m_instance);
 		}
 #endif
-		delete (*i).second->m_plugin;
-		delete ((*i).second);
+		delete (*i).m_element2->m_plugin;
+		delete ((*i).m_element2);
 	}
 }
 

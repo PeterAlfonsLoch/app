@@ -269,7 +269,7 @@ protected:
     double doubleData; ///< The contents of this variable if it is a double
     int32_t flags; ///< the flags determine the type of the variable - int32_t/double/string/etc
     JSCallback jsCallback; ///< Callback for native functions
-    void *jsCallbackUserData; ///< user data passed as second argument to native functions
+    void *jsCallbackUserData; ///< user data passed as m_element2 argument to native functions
 
     void init(); ///< initialisation of data members
 

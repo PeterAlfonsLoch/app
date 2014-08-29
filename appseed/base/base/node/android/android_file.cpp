@@ -1169,7 +1169,7 @@ break;
 }
 if (*lpsz != '\0')
 {
-// it is a UNC name, find second slash past '\\'
+// it is a UNC name, find m_element2 slash past '\\'
 ASSERT(IsDirSep(lpsz[0]));
 ASSERT(IsDirSep(lpsz[1]));
 lpsz += 2;
@@ -1510,7 +1510,7 @@ void CLASS_DECL_BASE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
    }
    if (*lpsz != '\0')
    {
-      // it is a UNC name, find second slash past '\\'
+      // it is a UNC name, find m_element2 slash past '\\'
       ASSERT(IsDirSep(lpsz[0]));
       ASSERT(IsDirSep(lpsz[1]));
       lpsz += 2;
@@ -1555,7 +1555,7 @@ void CLASS_DECL_BASE vfxGetRoot(const wchar_t * lpszPath, string& strRoot)
    }
    if (*lpsz != '\0')
    {
-      // it is a UNC name, find second slash past '\\'
+      // it is a UNC name, find m_element2 slash past '\\'
       ASSERT(IsDirSep(lpsz[0]));
       ASSERT(IsDirSep(lpsz[1]));
       lpsz += 2;

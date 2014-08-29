@@ -131,7 +131,7 @@ namespace sockets
          /*for (std::map<string,list<string> >::iterator it = m_fields.begin(); it != m_fields.end(); it++)
          {
             string name = (*it).first;
-            list<string>& ref = (*it).second;
+            list<string>& ref = (*it).m_element2;
             if (body.get_length())
             {
                body += '&';

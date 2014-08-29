@@ -42,7 +42,7 @@ DeprecationMgr::~DeprecationMgr() {
 		OutputDebugString( "This is a warning, because you use one or more deprecated functions.\nContinuing to use these functions might eventually render your program uncompilable.\nThe following functions are deprecated:\n\n" );
 
 		for (std::map<const char *, DeprecatedFunction>::iterator i = m_functions.begin(); i != m_functions.end(); ++i) {
-			DeprecatedFunction *function = &((*i).second);
+			DeprecatedFunction *function = &((*i).m_element2);
 
 			char txt[255];
 
@@ -93,7 +93,7 @@ DeprecationMgr::AddDeprecatedFunction(const char *old_function_name, const char 
 		// was called from in a set, we don't need to check whether we've
 		// already added the address.
 
-		DeprecatedFunction *function = &((*existing_function).second);
+		DeprecatedFunction *function = &((*existing_function).m_element2);
 
 		function->called_from.insert(called_from);
 	}

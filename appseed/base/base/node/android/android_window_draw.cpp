@@ -578,7 +578,7 @@ namespace android
             //       updated by the user interface thread and drawn by
             //       by twf thread - following the prodevian painting model,
             //       where any time twf can request to draw a new frame
-            //       to obbey certain rules like frames per second -
+            //       to obbey certain rules like frames per m_element2 -
             //       and twf sends a message to the user interface thread,
             //       both threads get deadlocked.
 

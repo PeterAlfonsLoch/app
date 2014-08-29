@@ -215,11 +215,11 @@ class ChannelList
     void		layers (std::set <std::string> &layerNames) const;
 
     void		channelsInLayer (const std::string &layerName,
-	    				 Iterator &first,
+	    				 Iterator &m_element1,
 					 Iterator &last);
 
     void		channelsInLayer (const std::string &layerName,
-	    				 ConstIterator &first,
+	    				 ConstIterator &m_element1,
 					 ConstIterator &last) const;
 
 
@@ -236,19 +236,19 @@ class ChannelList
     //-------------------------------------------------------------------
 
     void			channelsWithPrefix (const char prefix[],
-						    Iterator &first,
+						    Iterator &m_element1,
 						    Iterator &last);
 
     void			channelsWithPrefix (const char prefix[],
-						    ConstIterator &first,
+						    ConstIterator &m_element1,
 						    ConstIterator &last) const;
 
     void			channelsWithPrefix (const std::string &prefix,
-						    Iterator &first,
+						    Iterator &m_element1,
 						    Iterator &last);
 
     void			channelsWithPrefix (const std::string &prefix,
-						    ConstIterator &first,
+						    ConstIterator &m_element1,
 						    ConstIterator &last) const;
 
     //------------
@@ -350,14 +350,14 @@ ChannelList::Iterator::operator ++ (int)
 inline const char *
 ChannelList::Iterator::name () const
 {
-    return *_i->first;
+    return *_i->m_element1;
 }
 
 
 inline Channel &	
 ChannelList::Iterator::channel () const
 {
-    return _i->second;
+    return _i->m_element2;
 }
 
 
@@ -402,13 +402,13 @@ ChannelList::ConstIterator::operator ++ (int)
 inline const char *
 ChannelList::ConstIterator::name () const
 {
-    return *_i->first;
+    return *_i->m_element1;
 }
 
 inline const Channel &	
 ChannelList::ConstIterator::channel () const
 {
-    return _i->second;
+    return _i->m_element2;
 }
 
 

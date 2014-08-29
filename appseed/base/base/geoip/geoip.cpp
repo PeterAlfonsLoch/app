@@ -350,7 +350,7 @@ void _setup_segments(GeoIP * gi) {
             gi->databaseType == (char) GEOIP_ORG_EDITION ||
             gi->databaseType == (char) GEOIP_ISP_EDITION ||
             gi->databaseType == (char) GEOIP_ASNUM_EDITION) {
-               /* City/Org Editions have two segments, read offset of second segment */
+               /* City/Org Editions have two segments, read offset of m_element2 segment */
                gi->databaseSegments = (uint32_t *) malloc(sizeof(int32_t));
                gi->databaseSegments[0] = 0;
                silence = fread(buf, SEGMENT_RECORD_LENGTH, 1, gi->GeoIPDatabase);
@@ -381,8 +381,8 @@ int32_t _check_mtime(GeoIP *gi) {
 #if !defined(_WIN32)
    struct timeval t;
 
-   /* stat only has second granularity, so don't
-   call it more than once a second */
+   /* stat only has m_element2 granularity, so don't
+   call it more than once a m_element2 */
    gettimeofday(&t, NULL);
    if (t.tv_sec == gi->last_mtime_check){
       return 0;
@@ -392,8 +392,8 @@ int32_t _check_mtime(GeoIP *gi) {
    FILETIME ft;
    ULONGLONG t;
 
-   /* stat only has second granularity, so don't
-   call it more than once a second */
+   /* stat only has m_element2 granularity, so don't
+   call it more than once a m_element2 */
    GetSystemTimeAsFileTime(&ft);
    t = FILETIME_TO_USEC(ft) / 1000 / 1000;
    if (t == natural(gi->last_mtime_check))

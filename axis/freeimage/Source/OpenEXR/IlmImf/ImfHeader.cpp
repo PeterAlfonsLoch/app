@@ -209,7 +209,7 @@ Header::Header (const Header &other): _map()
 	 i != other._map.end();
 	 ++i)
     {
-	insert (*i->first, *i->second);
+	insert (*i->m_element1, *i->m_element2);
     }
 }
 
@@ -220,7 +220,7 @@ Header::~Header ()
 	 i != _map.end();
 	 ++i)
     {
-	 delete i->second;
+	 delete i->m_element2;
     }
 }
 
@@ -234,7 +234,7 @@ Header::operator = (const Header &other)
 	     i != _map.end();
 	     ++i)
 	{
-	     delete i->second;
+	     delete i->m_element2;
 	}
 
 	_map.erase (_map.begin(), _map.end());
@@ -243,7 +243,7 @@ Header::operator = (const Header &other)
 	     i != other._map.end();
 	     ++i)
 	{
-	    insert (*i->first, *i->second);
+	    insert (*i->m_element1, *i->m_element2);
 	}
     }
 
@@ -275,15 +275,15 @@ Header::insert (const char name[], const Attribute &attribute)
     }
     else
     {
-	if (strcmp (i->second->typeName(), attribute.typeName()))
+	if (strcmp (i->m_element2->typeName(), attribute.typeName()))
 	    THROW (Iex::TypeExc, "Cannot assign a value of "
 				 "type \"" << attribute.typeName() << "\" "
 				 "to image attribute \"" << name << "\" of "
-				 "type \"" << i->second->typeName() << "\".");
+				 "type \"" << i->m_element2->typeName() << "\".");
 
 	Attribute *tmp = attribute.copy();
-	delete i->second;
-	i->second = tmp;
+	delete i->m_element2;
+	i->m_element2 = tmp;
     }
 }
 
@@ -303,7 +303,7 @@ Header::operator [] (const char name[])
     if (i == _map.end())
 	THROW (Iex::ArgExc, "Cannot find image attribute \"" << name << "\".");
 
-    return *i->second;
+    return *i->m_element2;
 }
 
 
@@ -315,7 +315,7 @@ Header::operator [] (const char name[]) const
     if (i == _map.end())
 	THROW (Iex::ArgExc, "Cannot find image attribute \"" << name << "\".");
 
-    return *i->second;
+    return *i->m_element2;
 }
 
 
@@ -984,11 +984,11 @@ Header::readFrom (IStream &is, int &version)
 	    // Read the attribute's new value from the file.
 	    //
 
-	    if (strncmp (i->second->typeName(), typeName, sizeof (typeName)))
+	    if (strncmp (i->m_element2->typeName(), typeName, sizeof (typeName)))
 		THROW (Iex::InputExc, "Unexpected type for image attribute "
 				      "\"" << name << "\".");
 
-	    i->second->readValueFrom (is, size, version);
+	    i->m_element2->readValueFrom (is, size, version);
 	}
 	else
 	{

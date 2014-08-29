@@ -153,7 +153,7 @@ namespace sockets
 
       // LineProtocol
       bool                    m_bLineProtocol; ///< Line protocol mode flag
-      bool                    m_skip_c; ///< Skip second char of CRLF or LFCR sequence in OnRead
+      bool                    m_skip_c; ///< Skip m_element2 char of CRLF or LFCR sequence in OnRead
       char                    m_c; ///< First char in CRLF or LFCR sequence
       string                  m_line; ///< Current line in line protocol mode
 
