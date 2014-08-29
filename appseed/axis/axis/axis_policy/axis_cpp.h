@@ -423,7 +423,8 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis/user/simple_ui/simple_ui_style.h"
 #include "axis/user/simple_ui/simple_ui_interaction.h"
-#include "axis/database/database.h"
+#include "axis/database/database/database.h"
+#include "axis/database/sqlite/sqlite.h"
 #include "user/user/user_document_data_map.h"
 #include "user/user/user_document.h"
 #include "user/user/user_impact.h"
