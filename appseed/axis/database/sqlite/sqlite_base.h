@@ -9,7 +9,7 @@ namespace sqlite
 
    ******************************************************************/
 
-   class CLASS_DECL_CORE base :
+   class CLASS_DECL_AXIS base :
       public ::database::base
    {
    protected:
