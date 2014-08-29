@@ -1698,8 +1698,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="database\simpledb\sqlite_base.h" />
     <ClInclude Include="database\simpledb\sqlite_set.h" />
     <ClInclude Include="database\simpledb\veiev_post.h" />
-    <ClInclude Include="database\sqlite\sqlite.h" />
-    <ClInclude Include="database\sqlite\sqlite3.h" />
     <ClInclude Include="filesystem\filehandler\filehandler.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_handler.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_library.h" />
@@ -2272,7 +2270,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="database\simpledb\simpledb_str_set.cpp" />
     <ClCompile Include="database\simpledb\simpledb_table.cpp" />
     <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp" />
-    <ClCompile Include="database\sqlite\sqlite3.cpp" />
     <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp" />
     <ClCompile Include="filesystem\filehandler\filehandler_library.cpp" />
     <ClCompile Include="filesystem\filehandler\filehandler_menu_library.cpp" />

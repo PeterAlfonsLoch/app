@@ -171,12 +171,6 @@
     <Filter Include="Source Files\database\simpledb">
       <UniqueIdentifier>{6748dbeb-c727-4385-ac6a-84cf939743e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\database\sqlite">
-      <UniqueIdentifier>{394e5bd0-2fd5-4c28-a5bb-7a8199a45834}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\sqlite">
-      <UniqueIdentifier>{5c24f7cb-6f41-4b5c-ad00-a2ec3b4ff316}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\database\simpledb">
       <UniqueIdentifier>{700dad5b-3669-45be-ae72-19ee8d83251d}</UniqueIdentifier>
     </Filter>
@@ -916,12 +910,6 @@
     </ClInclude>
     <ClInclude Include="database\simpledb\veiev_post.h">
       <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\sqlite\sqlite.h">
-      <Filter>Header Files\database\sqlite</Filter>
-    </ClInclude>
-    <ClInclude Include="database\sqlite\sqlite3.h">
-      <Filter>Header Files\database\sqlite</Filter>
     </ClInclude>
     <ClInclude Include="core\os\os.h">
       <Filter>Header Files\core\os</Filter>
@@ -2307,9 +2295,6 @@
     </ClCompile>
     <ClCompile Include="programming\dynamic_source\dynamic_source_script_manager.cpp">
       <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="database\sqlite\sqlite3.cpp">
-      <Filter>Source Files\database\sqlite</Filter>
     </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp">
       <Filter>Source Files\database\simpledb</Filter>
