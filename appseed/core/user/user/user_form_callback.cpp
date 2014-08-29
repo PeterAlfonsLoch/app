@@ -17,7 +17,7 @@ namespace user
       while (ppair != NULL)
       {
          
-         ppair->second->DestroyWindow();
+         ppair->m_element2->DestroyWindow();
 
          ppair = m_mapview.PGetNextAssoc(ppair);
 
