@@ -50,8 +50,9 @@ extern "C" const char* GuessChardet(charguest * p, const char *str)
 	return tmp;
 }
 
-extern "C" int CharGuessDone(void)
+extern "C" int CharGuessDone(charguess * p)
 {
+   nsUniversalDetector* det = (nsUniversalDetector*)p;
 	if (det)
 		delete det;
 
