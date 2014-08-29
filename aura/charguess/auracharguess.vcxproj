@@ -297,17 +297,37 @@ copy Source\FreeImage.h Dist
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\sqlite3.h" />
-    <ClInclude Include="..\..\include\sqlite3ext.h" />
-    <ClInclude Include="libbsdiff.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="auracharguess.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cpp\big5Prober.cpp" />
+    <ClCompile Include="cpp\charDistribution.cpp" />
+    <ClCompile Include="cpp\charguess.cpp" />
+    <ClCompile Include="cpp\EscCharsetProber.cpp" />
+    <ClCompile Include="cpp\EscSM.cpp" />
+    <ClCompile Include="cpp\EUCJPProber.cpp" />
+    <ClCompile Include="cpp\EUCKRProber.cpp" />
+    <ClCompile Include="cpp\EUCTWProber.cpp" />
+    <ClCompile Include="cpp\GB2312Prober.cpp" />
+    <ClCompile Include="cpp\jpCntx.cpp" />
+    <ClCompile Include="cpp\LangBulgarianModel.cpp" />
+    <ClCompile Include="cpp\LangCyrillicModel.cpp" />
+    <ClCompile Include="cpp\LangGreekModel.cpp" />
+    <ClCompile Include="cpp\LangHungarianModel.cpp" />
+    <ClCompile Include="cpp\LangThaiModel.cpp" />
+    <ClCompile Include="cpp\Latin1Prober.cpp" />
+    <ClCompile Include="cpp\MBCSGroupProber.cpp" />
+    <ClCompile Include="cpp\MBCSSM.cpp" />
+    <ClCompile Include="cpp\SBCharsetProber.cpp" />
+    <ClCompile Include="cpp\SBCSGroupProber.cpp" />
+    <ClCompile Include="cpp\SJISProber.cpp" />
+    <ClCompile Include="cpp\universal.cpp" />
+    <ClCompile Include="cpp\UTF8Prober.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
