@@ -53,7 +53,7 @@ namespace user
          strid_map < str_schema > ::pair * ppair = PLookup(idSchema);
          if (ppair == NULL)
             return NULL;
-         return &ppair->second;
+         return &ppair->m_element2;
       }
 
 
@@ -82,7 +82,7 @@ namespace user
          strid_map < str_locale > ::pair * ppair = PLookup(idLocale);
          if (ppair == NULL)
             return NULL;
-         return &ppair->second;
+         return &ppair->m_element2;
       }
 
 
