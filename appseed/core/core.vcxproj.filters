@@ -198,9 +198,6 @@
     <Filter Include="Header Files\core\os">
       <UniqueIdentifier>{cdc5a44f-a86f-4733-9b61-8fc16259d054}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\core\libcharguess">
-      <UniqueIdentifier>{7b7c2c1f-7213-497e-9a3f-2adb146b5724}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\core\install">
       <UniqueIdentifier>{c09a6b2b-5c02-4df3-ba4b-8131a8aa1e40}</UniqueIdentifier>
     </Filter>
@@ -928,72 +925,6 @@
     </ClInclude>
     <ClInclude Include="core\os\os_cross_windows_winnt.h">
       <Filter>Header Files\core\os</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\big5Prober.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\charDistribution.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\charguess.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\charsetProber.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\codingStateMachine.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\config.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\EscCharsetProber.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\EUCJPProber.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\EUCKRProber.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\EUCTWProber.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\GB2312Prober.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\jpCntx.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\Latin1Prober.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\libcharguess.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\MBCSGroupProber.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\pkgInt.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\SBCharsetProber.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\SBCSGroupProber.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\SJISProber.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\types.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\universal.h">
-      <Filter>Header Files\core\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="core\libcharguess\UTF8Prober.h">
-      <Filter>Header Files\core\libcharguess</Filter>
     </ClInclude>
     <ClInclude Include="core\api\api.h">
       <Filter>Header Files\core\api</Filter>

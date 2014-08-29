@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>aurasqlite</ProjectName>
-    <ProjectGuid>{3A2C59ED-A76D-41D8-ABBB-2666F0A599B8}</ProjectGuid>
+    <ProjectGuid>{424F72D6-053A-41C5-BE03-3B0BD535F1EB}</ProjectGuid>
     <RootNamespace>aurasqlite</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
