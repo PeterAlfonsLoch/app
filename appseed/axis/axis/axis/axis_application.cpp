@@ -2003,6 +2003,49 @@ namespace axis
    }
 
 
+   void application::process_message(signal_details * pobj)
+   {
+
+      sp(::message::base) pbase = pobj;
+
+      if(pbase.is_null() || pbase->m_pwnd == NULL)
+      {
+
+         try
+         {
+
+            message_handler(pobj);
+
+         }
+         catch(...)
+         {
+
+            TRACE("application::process_message : error processing application thread message");
+
+         }
+
+         return;
+
+      }
+
+      try
+      {
+
+         pbase->m_pwnd->message_handler(pobj);
+
+         
+      }
+      catch(...)
+      {
+
+         TRACE("application::process_message : error processing window message");
+
+      }
+
+
+   }
+
+
 } // namespace axis
 
 
