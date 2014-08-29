@@ -35,22 +35,22 @@ public:
 
       node(const KEY & element1)
       {
-         first = element1;
+         m_element1 = element1;
          left = NULL;
          right = NULL;
       }
 
       node(const KEY & element1,const VALUE & element2)
       {
-         first = element1;
-         second = element2;
+         m_element1 = element1;
+         m_element2 = element2;
          left = NULL;
          right = NULL;
       }
       node(const pair < KEY,VALUE > & pair)
       {
-         first = pair.m_element1;
-         second = pair.m_element2;
+         m_element1 = pair.m_element1;
+         m_element2 = pair.m_element2;
          left = NULL;
          right = NULL;
       }
@@ -59,9 +59,9 @@ public:
       void copy_value(const pair < KEY,VALUE > & key)
       {
 
-         first = key.m_element1;
+         m_element1 = key.m_element1;
 
-         second = key.m_element2;
+         m_element2 = key.m_element2;
 
       }
 
@@ -381,7 +381,7 @@ public:
    ::count remove_key(ARG_KEY key);
    void erase(iterator it);
    ::count erase(const KEY & key);
-   void erase ( iterator first, iterator last );
+   void erase ( iterator m_element1, iterator last );
    void remove_all();
    void clear();
 
@@ -963,7 +963,7 @@ sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::find_node(ARG_KEY 
       else
       {
 
-         // in this ordinary tree, the highest nodes are the first ones inserted, even for multi key
+         // in this ordinary tree, the highest nodes are the m_element1 ones inserted, even for multi key
          break;
 
       }
@@ -1158,13 +1158,13 @@ bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::contains
 }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::erase(iterator first, iterator last)
+void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::erase(iterator m_element1, iterator last)
 {
 
-   if(first.m_pmap != this || last.m_pmap != this)
+   if(m_element1.m_pmap != this || last.m_pmap != this)
       return;
 
-   node * pnode = first.m_pnode;
+   node * pnode = m_element1.m_pnode;
 
    node * pnodeNext;
 
@@ -1620,8 +1620,8 @@ public:
    class node
    {
    public:
-      const string first;
-      T * second;
+      const string m_element1;
+      T * m_element2;
    };
 
    bool Lookup(string key, T * & rValue) const
