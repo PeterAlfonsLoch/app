@@ -15,6 +15,8 @@
 
 #include "aura/aura/aura.h"
 
+#include "sqlite3.h"
+
 #if (defined(_WIN32) || defined(WIN32)) && !defined(_CRT_SECURE_NO_WARNINGS)
 /* This needs to come before any includes for MSVC compiler */
 #define _CRT_SECURE_NO_WARNINGS

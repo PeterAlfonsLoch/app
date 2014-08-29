@@ -307,6 +307,7 @@ copy Source\FreeImage.h Dist
   <ItemGroup>
     <ClCompile Include="shell.c" />
     <ClCompile Include="sqlite3.c" />
+    <ClCompile Include="version.c" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
