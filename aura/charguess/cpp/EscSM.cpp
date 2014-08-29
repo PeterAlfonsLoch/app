@@ -18,7 +18,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include "codingStateMachine.h"
+#include "framework.h"
 
 static PRUint32 HZ_cls[ 256 / 8 ] = {
 PCK4BITS(1,0,0,0,0,0,0,0),  // 00 - 07 
