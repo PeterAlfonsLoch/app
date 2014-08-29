@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "core.h"
+#include "core/core/core.h"
 
 
 #if defined(_CA2_MATH_DLL)
