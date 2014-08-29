@@ -102,11 +102,11 @@ namespace sqlite
    int32_t base::connect()
    {
       disconnect();
-      if(sqlite3_open(db, (::sqlite3::sqlite3 * *) &conn) == SQLITE_OK)
+      if(sqlite3_open(db, (sqlite3 * *) &conn) == SQLITE_OK)
       {
          //cout << "Connected!\n";
          char* err = NULL;
-         if(setErr(sqlite3_exec((::sqlite3::sqlite3 *) getHandle(),"PRAGMA empty_result_callbacks=ON",NULL,NULL,&err)) != SQLITE_OK)
+         if(setErr(sqlite3_exec((sqlite3 *) getHandle(),"PRAGMA empty_result_callbacks=ON",NULL,NULL,&err)) != SQLITE_OK)
          {
             fprintf(stderr,"Error: %s",err);
             throw database::DbErrors(getErrorMsg());
@@ -119,7 +119,7 @@ namespace sqlite
 
    void base::disconnect() {
       if (active == false) return;
-      sqlite3_close((::sqlite3::sqlite3 *) conn);
+      sqlite3_close((sqlite3 *) conn);
       active = false;
    };
 
@@ -142,19 +142,19 @@ namespace sqlite
       database::result_set res;
       char sqlcmd[512];
       sprintf(sqlcmd,"select nextid from %s where seq_name = '%s'",sequence_table.c_str(), sname);
-      if ((last_err = sqlite3_exec((::sqlite3::sqlite3 *) getHandle(),sqlcmd,&callback,&res,NULL) != SQLITE_OK)) {
+      if ((last_err = sqlite3_exec((sqlite3 *) getHandle(),sqlcmd,&callback,&res,NULL) != SQLITE_OK)) {
          return DB_UNEXPECTED_RESULT;
       }
       if (res.records.get_size() == 0) {
          id = 1;
          sprintf(sqlcmd,"insert into %s (nextid,seq_name) values (%d,'%s')",sequence_table.c_str(),id,sname);
-         if ((last_err = sqlite3_exec((::sqlite3::sqlite3 *) conn,sqlcmd,NULL,NULL,NULL)) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
+         if ((last_err = sqlite3_exec((sqlite3 *) conn,sqlcmd,NULL,NULL,NULL)) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
          return id;
       }
       else {
          id = res.records[0][0].int32() + 1;
          sprintf(sqlcmd,"update %s set nextid=%d where seq_name = '%s'",sequence_table.c_str(),id,sname);
-         if ((last_err = sqlite3_exec((::sqlite3::sqlite3 *) conn,sqlcmd,NULL,NULL,NULL)) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
+         if ((last_err = sqlite3_exec((sqlite3 *) conn,sqlcmd,NULL,NULL,NULL)) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
          return id;
       }
       return DB_UNEXPECTED_RESULT;
@@ -168,7 +168,7 @@ namespace sqlite
 
       if (active)
       {
-         sqlite3_exec((::sqlite3::sqlite3 *) conn,"begin",NULL,NULL,NULL);
+         sqlite3_exec((sqlite3 *) conn,"begin",NULL,NULL,NULL);
          _in_transaction = true;
       }
 
@@ -179,7 +179,7 @@ namespace sqlite
 
       if (active)
       {
-         sqlite3_exec((::sqlite3::sqlite3 *) conn,"commit",NULL,NULL,NULL);
+         sqlite3_exec((sqlite3 *) conn,"commit",NULL,NULL,NULL);
          _in_transaction = false;
       }
 
@@ -190,7 +190,7 @@ namespace sqlite
 
       if (active)
       {
-         sqlite3_exec((::sqlite3::sqlite3 *) conn,"rollback",NULL,NULL,NULL);
+         sqlite3_exec((sqlite3 *) conn,"rollback",NULL,NULL,NULL);
          _in_transaction = false;
       }
 
