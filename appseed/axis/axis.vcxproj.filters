@@ -1387,6 +1387,21 @@
     <ClCompile Include="database\database\database_definition.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
+    <ClCompile Include="database\database\database_id.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_key.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_selection.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_selection_item.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_server.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="base.def">
