@@ -68,7 +68,7 @@ namespace sqlite
             char* err=NULL;
             set::parse_sql(query);
             //cout << "Executing: "<<query<<"\n\n";
-            if (db->setErr(sqlite3_exec((::sqlite3::sqlite3 *) this->handle(),query,NULL,NULL,&err))!=SQLITE_OK)
+            if (db->setErr(sqlite3_exec((sqlite3 *) this->handle(),query,NULL,NULL,&err))!=SQLITE_OK)
             {
                fprintf(stderr,"Error: %s",err);
                throw database::DbErrors(db->getErrorMsg());
