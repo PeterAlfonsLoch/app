@@ -1,5 +1,5 @@
-#include "types.h"
-#include "jpCntx.h"
+#include "framework.h"
+
 
 //This is hiragana 2-char sequence table, the number in each cell represents its frequency category
 char jp2CharContext[83][83] = 
