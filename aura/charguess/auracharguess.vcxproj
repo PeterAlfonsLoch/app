@@ -331,6 +331,7 @@ copy Source\FreeImage.h Dist
     <ClCompile Include="cpp\SJISProber.cpp" />
     <ClCompile Include="cpp\universal.cpp" />
     <ClCompile Include="cpp\UTF8Prober.cpp" />
+    <ClCompile Include="framework\framework.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\charguess.h" />

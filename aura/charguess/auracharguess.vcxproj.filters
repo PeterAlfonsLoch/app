@@ -18,6 +18,9 @@
     <Filter Include="Source Files\framework">
       <UniqueIdentifier>{3151d847-ff5f-4305-b784-7fcb7fc81d13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\framework">
+      <UniqueIdentifier>{8cc33fc5-25b9-4ad6-9683-714c10da2f09}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="auracharguess.def">
@@ -93,6 +96,9 @@
     </ClCompile>
     <ClCompile Include="cpp\UTF8Prober.cpp">
       <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\framework.cpp">
+      <Filter>Source Files\framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
