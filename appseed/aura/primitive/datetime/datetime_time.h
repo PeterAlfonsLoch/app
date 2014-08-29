@@ -260,7 +260,7 @@ namespace datetime
    inline time::time( const DBTIMESTAMP& dbts, int32_t nDST ) NOTHROW
    {
       struct tm atm;
-      atm.tm_sec = dbts.second;
+      atm.tm_sec = dbts.m_element2;
       atm.tm_min = dbts.minute;
       atm.tm_hour = dbts.hour;
       atm.tm_mday = dbts.day;

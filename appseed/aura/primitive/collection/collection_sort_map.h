@@ -49,8 +49,8 @@ public:
       }
       node(const pair < KEY,VALUE > & pair)
       {
-         first = pair.first;
-         second = pair.second;
+         first = pair.m_element1;
+         second = pair.m_element2;
          left = NULL;
          right = NULL;
       }
@@ -59,9 +59,9 @@ public:
       void copy_value(const pair < KEY,VALUE > & key)
       {
 
-         first = key.first;
+         first = key.m_element1;
 
-         second = key.second;
+         second = key.m_element2;
 
       }
 
@@ -421,7 +421,7 @@ public:
       node * pnode = NULL;
       while(sort_map.next(pnode) != NULL)
       {
-         set_at(pnode->first, pnode->second);
+         set_at(pnode->m_element1, pnode->m_element2);
       }
    }
 
@@ -467,7 +467,7 @@ public:
 
    inline bool compare(node a,node b) const
    {
-      return compare(a.first,b.first);
+      return compare(a.m_element1,b.m_element1);
    }
 
    inline bool is_equal(node a,node b) const
@@ -599,7 +599,7 @@ sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::sort_map(node
    for(int32_t i = 0; i < iCount; i++)
    {
 
-      set_at(nodes[i].first, nodes[i].second);
+      set_at(nodes[i].m_element1, nodes[i].m_element2);
 
    }
 
@@ -648,7 +648,7 @@ bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::Lookup(A
    if (passoc == NULL)
       return false;
 
-   rValue = passoc->second;
+   rValue = passoc->m_element2;
 
    return TRUE;
 
@@ -686,7 +686,7 @@ VALUE * sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::pget(
    if(p == NULL)
       return NULL;
 
-   return &p->second;
+   return &p->m_element2;
 
 }
 
@@ -710,7 +710,7 @@ VALUE& sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::operat
 
    }
 
-   return pnode->second;  // return new reference
+   return pnode->m_element2;  // return new reference
 
 }
 
@@ -948,13 +948,13 @@ sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::find_node(ARG_KEY 
    while(pnodeSearch != NULL)
    {
 
-      if(compare(key,pnodeSearch->first))
+      if(compare(key,pnodeSearch->m_element1))
       {
 
          pnodeSearch = pnodeSearch->left;
 
       }
-      else if(compare(pnodeSearch->first,key))
+      else if(compare(pnodeSearch->m_element1,key))
       {
 
          pnodeSearch = pnodeSearch->right;
@@ -1030,13 +1030,13 @@ sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::rfind_node(ARG_KEY
    while(pnodeSearch != NULL)
    {
 
-      if(compare(key,pnodeSearch->first))
+      if(compare(key,pnodeSearch->m_element1))
       {
 
          pnodeSearch = pnodeSearch->left;
 
       }
-      else if(compare(pnodeSearch->first,key))
+      else if(compare(pnodeSearch->m_element1,key))
       {
 
          pnodeSearch = pnodeSearch->right;
@@ -1129,7 +1129,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::erase(iterator it)
 {
 
-   remove_key(it->first);
+   remove_key(it->m_element1);
 
 }
 
@@ -1210,8 +1210,8 @@ void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_next
    rNextPosition  = (POSITION) iNext;
 
    // fill in return data
-   rKey           = m_ptra[iRet - 1]->first;
-   rValue         = m_ptra[iRet - 1]->second;
+   rKey           = m_ptra[iRet - 1]->m_element1;
+   rValue         = m_ptra[iRet - 1]->m_element2;
 
 }
 
@@ -1386,7 +1386,7 @@ VALUE sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey > ::
    if(pnode == NULL)
       return valueDefault;
    else
-      return pnode->second;
+      return pnode->m_element2;
 }
 
 
@@ -1405,9 +1405,9 @@ void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::dump(dum
       {
          pnode = PGetNextAssoc(pnode);
          dumpcontext << "\n\t[";
-         dump_elements<KEY>(dumpcontext, &pnode->first, 1);
+         dump_elements<KEY>(dumpcontext, &pnode->m_element1, 1);
          dumpcontext << "] = ";
-         dump_elements<VALUE>(dumpcontext, &pnode->second, 1);
+         dump_elements<VALUE>(dumpcontext, &pnode->m_element2, 1);
       }
    }
 
@@ -1468,8 +1468,8 @@ bool sort_attrib_map < type_map >::operator == (const sort_attrib_map & attribma
    for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
    {
 
-      if(attribmap.m_ptra[i]->first       != this->m_ptra[i]->first
-         || attribmap.m_ptra[i]->second     != this->m_ptra[i]->second)
+      if(attribmap.m_ptra[i]->m_element1       != this->m_ptra[i]->m_element1
+         || attribmap.m_ptra[i]->m_element2     != this->m_ptra[i]->m_element2)
       {
 
          return false;

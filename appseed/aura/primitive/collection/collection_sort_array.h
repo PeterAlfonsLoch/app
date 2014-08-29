@@ -61,7 +61,7 @@ public:
 
          while(passoc != NULL)
          {
-            passoc->second->m_bUpdated = false;
+            passoc->m_element2->m_bUpdated = false;
             passoc = passoc->m_pnext;
          }
 

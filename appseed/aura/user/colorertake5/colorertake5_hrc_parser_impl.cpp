@@ -516,7 +516,7 @@ namespace colorertake5
                }
                else
                {
-                  next->scheme = ppair->second;
+                  next->scheme = ppair->m_element2;
                }
             }
             if (schemeName.has_char()){
@@ -803,11 +803,11 @@ namespace colorertake5
          for(string_map<scheme_impl *>::pair * scheme = schemeHash.PGetFirstAssoc(); scheme != NULL; scheme = schemeHash.PGetNextAssoc(scheme))
          {
 
-            if (!scheme->second->fileType->loadDone) continue;
+            if (!scheme->m_element2->fileType->loadDone) continue;
             file_type_impl *old_parseType = parseType;
-            parseType = scheme->second->fileType;
-            for (strsize sni = 0; sni < scheme->second->nodes.get_size(); sni++){
-               SchemeNode *snode = scheme->second->nodes.element_at(sni);
+            parseType = scheme->m_element2->fileType;
+            for (strsize sni = 0; sni < scheme->m_element2->nodes.get_size(); sni++){
+               SchemeNode *snode = scheme->m_element2->nodes.element_at(sni);
                if (snode->schemeName.has_char() && (snode->type == SNT_SCHEME || snode->type == SNT_INHERIT) && snode->scheme == NULL){
                   string schemeName = qualifyForeignName(snode->schemeName, QNT_SCHEME, true);
                   if (schemeName.has_char())
@@ -819,14 +819,14 @@ namespace colorertake5
                      }
                      else
                      {
-                        snode->scheme = ppair->second;
+                        snode->scheme = ppair->m_element2;
                      }
                   }
                   else
                   {
                      if (errorHandler != NULL)
                      {
-                        errorHandler->error(string("cannot resolve scheme name '")+snode->schemeName+"' in scheme '"+scheme->second->schemeName+"'");
+                        errorHandler->error(string("cannot resolve scheme name '")+snode->schemeName+"' in scheme '"+scheme->m_element2->schemeName+"'");
                      }
                   }
                   //               delete schemeName;
@@ -847,7 +847,7 @@ namespace colorertake5
                            }
                            else
                            {
-                              vt->virtScheme = ppair->second;
+                              vt->virtScheme = ppair->m_element2;
                            }
                         }
 
@@ -855,7 +855,7 @@ namespace colorertake5
                         {
                            if (errorHandler != NULL)
                            {
-                              errorHandler->error(string("cannot virtualize scheme '")+vt->virtSchemeName+"' in scheme '"+scheme->second->schemeName+"'");
+                              errorHandler->error(string("cannot virtualize scheme '")+vt->virtSchemeName+"' in scheme '"+scheme->m_element2->schemeName+"'");
                            }
                         }
                         vt->virtSchemeName.Empty();
@@ -871,10 +871,10 @@ namespace colorertake5
                            }
                            else
                            {
-                              vt->substScheme = ppair->second;
+                              vt->substScheme = ppair->m_element2;
                            }
                         }
-                        else if (errorHandler != NULL) errorHandler->error(string("cannot virtualize using subst-scheme scheme '")+vt->substSchemeName+"' in scheme '"+scheme->second->schemeName+"'");
+                        else if (errorHandler != NULL) errorHandler->error(string("cannot virtualize using subst-scheme scheme '")+vt->substSchemeName+"' in scheme '"+scheme->m_element2->schemeName+"'");
                         vt->substSchemeName.Empty();
                      };
                   };

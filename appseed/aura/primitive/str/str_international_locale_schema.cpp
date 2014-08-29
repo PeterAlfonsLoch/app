@@ -561,7 +561,7 @@ step2:
          ::map < ::id, const ::id &, ::id, const ::id & >::pair * ppair = g_pmapRTL->PLookup(id);
 
          if(ppair != NULL)
-            return ppair->second;
+            return ppair->m_element2;
 
          string str;
 

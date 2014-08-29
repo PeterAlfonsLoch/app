@@ -243,8 +243,8 @@ index property_set::remove_first_value(const char * lpcsz)
    property_map::pair * ppair = m_map.PLookup(idName);
    if(ppair == NULL)
       return 0;
-   m_propertya.remove_at(ppair->second);
-   m_map.remove_key(ppair->first);
+   m_propertya.remove_at(ppair->m_element2);
+   m_map.remove_key(ppair->m_element1);
    return 1;
 }
 

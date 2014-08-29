@@ -497,7 +497,7 @@ DWORD WINAPI ResumeThread(HTHREAD hThread)
    // Start the thread.
    try
    {
-      PendingThreadInfo& info = threadInfo->second;
+      PendingThreadInfo& info = threadInfo->m_element2;
 
       StartThread(info.lpStartAddress,info.lpParameter,info.m_hthread,info.nPriority,info.cbStack);
    }
@@ -537,7 +537,7 @@ int_bool WINAPI SetThreadPriority(HTHREAD hThread,int32_t nCa2Priority)
    }
 
    // Store the new priority.
-   threadInfo->second.nPriority = nCa2Priority;
+   threadInfo->m_element2.nPriority = nCa2Priority;
 
    return TRUE;
 }
@@ -818,7 +818,7 @@ int32_t WINAPI GetThreadPriority(HTHREAD  hthread)
 
    }
 
-   return threadInfo->second.nPriority;
+   return threadInfo->m_element2.nPriority;
 
 }
 
@@ -1277,7 +1277,7 @@ CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread)
       return -1;
 
 
-   return p->second;
+   return p->m_element2;
 
 }
 
@@ -1292,7 +1292,7 @@ CLASS_DECL_AURA HTHREAD  WINAPI get_thread_handle(DWORD dw)
       return NULL;
 
 
-   return p->second;
+   return p->m_element2;
 
 }
 
