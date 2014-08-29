@@ -18,12 +18,8 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#include "universal.h"
+#include "framework.h"
 
-#include "MBCSGroupProber.h"
-#include "SBCSGroupProber.h"
-#include "EscCharsetProber.h"
-#include "Latin1Prober.h"
 
 nsUniversalDetector::nsUniversalDetector()
 {

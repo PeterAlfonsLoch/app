@@ -109,7 +109,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>framework.h;$(ProjectDir)../../../include;$(ProjectDir)../../include;$(ProjectDir)../../..;$(ProjectDir)../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>cpp;framework;$(ProjectDir)../../../include;$(ProjectDir)../../include;$(ProjectDir)../../..;$(ProjectDir)../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_AURA_CHARGUESS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -127,6 +127,9 @@
       <SDLCheck>true</SDLCheck>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -331,7 +334,9 @@ copy Source\FreeImage.h Dist
     <ClCompile Include="cpp\SJISProber.cpp" />
     <ClCompile Include="cpp\universal.cpp" />
     <ClCompile Include="cpp\UTF8Prober.cpp" />
-    <ClCompile Include="framework\framework.cpp" />
+    <ClCompile Include="framework\framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\charguess.h" />
