@@ -1,0 +1,6 @@
+﻿  O sistema não pode encontrar o caminho especificado.
+  'bld_ml64.bat' não é reconhecido como um comando interno
+  ou externo, um programa operável ou um arquivo em lotes.
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets(122,5): error MSB3073: The command "cd ..\..\contrib\masmx64
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets(122,5): error MSB3073: bld_ml64.bat
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets(122,5): error MSB3073: :VCEnd" exited with code 9009.

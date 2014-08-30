@@ -2711,6 +2711,9 @@
     <ClInclude Include="aura\process\process.h">
       <Filter>Header Files\aura\process</Filter>
     </ClInclude>
+    <ClInclude Include="aura\exception\exception_cancel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -4078,6 +4081,9 @@
     <ClCompile Include="aura\process\process_bidi_pipe.cpp">
       <Filter>Source Files\aura\process</Filter>
     </ClCompile>
+    <ClCompile Include="aura\exception\exception_cancel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -4109,12 +4115,6 @@
     </None>
     <None Include="aura\aura\aura_system_xml.inl">
       <Filter>Header Files\aura\aura</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

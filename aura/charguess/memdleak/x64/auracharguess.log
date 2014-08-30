@@ -1,0 +1,51 @@
+﻿  big5Prober.cpp
+cpp\big5Prober.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  charDistribution.cpp
+cpp\charDistribution.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  charguess.cpp
+cpp\charguess.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  EscCharsetProber.cpp
+cpp\EscCharsetProber.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  EscSM.cpp
+cpp\EscSM.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  EUCJPProber.cpp
+cpp\EUCJPProber.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  EUCKRProber.cpp
+cpp\EUCKRProber.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  EUCTWProber.cpp
+cpp\EUCTWProber.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  GB2312Prober.cpp
+cpp\GB2312Prober.cpp(26): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  jpCntx.cpp
+cpp\jpCntx.cpp(1): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  LangBulgarianModel.cpp
+cpp\LangBulgarianModel.cpp(23): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  LangCyrillicModel.cpp
+cpp\LangCyrillicModel.cpp(23): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  LangGreekModel.cpp
+cpp\LangGreekModel.cpp(23): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  LangHungarianModel.cpp
+cpp\LangHungarianModel.cpp(24): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  LangThaiModel.cpp
+cpp\LangThaiModel.cpp(23): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  Latin1Prober.cpp
+cpp\Latin1Prober.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  MBCSGroupProber.cpp
+cpp\MBCSGroupProber.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  MBCSSM.cpp
+cpp\MBCSSM.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  SBCharsetProber.cpp
+cpp\SBCharsetProber.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  SBCSGroupProber.cpp
+cpp\SBCSGroupProber.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  Generating Code...
+  Compiling...
+  SJISProber.cpp
+cpp\SJISProber.cpp(26): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  universal.cpp
+cpp\universal.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  UTF8Prober.cpp
+cpp\UTF8Prober.cpp(21): fatal error C1083: Cannot open include file: 'framework.h': No such file or directory
+  framework.cpp
+z:\netnode\app\aura\charguess\framework\framework.h(4): fatal error C1083: Cannot open include file: 'charguess.h': No such file or directory
+  Generating Code...

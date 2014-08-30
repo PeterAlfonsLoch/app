@@ -1,0 +1,80 @@
+﻿  ftdebug.c
+  autofit.c
+builds\windows\ftdebug.c(44): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  bdf.c
+  ftbzip2.c
+  cff.c
+  ftbase.c
+  ftbitmap.c
+src\bzip2\ftbzip2.c(26): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftcache.c
+src\autofit\autofit.c(20): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftfstype.c
+  ftgasp.c
+  ftglyph.c
+src\cff\cff.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftinit.c
+src\bdf\bdf.c(29): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftgzip.c
+src\base\ftbase.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftlzw.c
+src\base\ftbitmap.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\cache\ftcache.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftstroke.c
+src\base\ftfstype.c(18): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftsystem.c
+  smooth.c
+src\base\ftgasp.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\base\ftglyph.c(31): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftbbox.c
+  ftmm.c
+src\base\ftinit.c(40): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftpfr.c
+src\lzw\ftlzw.c(25): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\gzip\ftgzip.c(23): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\base\ftstroke.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\smooth\smooth.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftsynth.c
+  fttype1.c
+  ftwinfnt.c
+  ftxf86.c
+src\base\ftsystem.c(28): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\base\ftbbox.c(27): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftlcdfil.c
+  ftgxval.c
+src\base\ftmm.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftotval.c
+src\base\ftpfr.c(18): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  ftpatent.c
+src\base\fttype1.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  pcf.c
+src\base\ftgxval.c(28): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\base\ftwinfnt.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  pfr.c
+src\base\ftlcdfil.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  psaux.c
+src\base\ftxf86.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  pshinter.c
+src\base\ftsynth.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  psmodule.c
+src\pcf\pcf.c(31): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\base\ftpatent.c(18): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  raster.c
+src\pshinter\pshinter.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\psaux\psaux.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  sfnt.c
+  truetype.c
+  type1.c
+src\pfr\pfr.c(20): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  type1cid.c
+  type42.c
+src\base\ftotval.c(18): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+  winfnt.c
+src\raster\raster.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\psnames\psmodule.c(19): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\type42\type42.c(20): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\winfonts\winfnt.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\type1\type1.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\sfnt\sfnt.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\truetype\truetype.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
+src\cid\type1cid.c(21): fatal error C1083: Cannot open include file: 'ft2build.h': No such file or directory
