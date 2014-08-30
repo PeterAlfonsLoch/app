@@ -1,7 +1,0 @@
-﻿  shell.c
-shell.c(16): fatal error C1083: Cannot open include file: 'aura/aura/aura.h': No such file or directory
-  sqlite3.c
-sqlite3.c(22): fatal error C1083: Cannot open include file: 'aura/aura/aura.h': No such file or directory
-  version.c
-version.c(1): fatal error C1083: Cannot open include file: 'aura/aura/aura.h': No such file or directory
-  Generating Code...
