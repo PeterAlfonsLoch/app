@@ -667,6 +667,20 @@ namespace user
          pkey->m_bRet = false;
          return;
       }
+      else if(pkey->m_ekey == ::user::key_alt
+         || pkey->m_ekey == ::user::key_escape)
+      {
+         ::user::control_event ev;
+         ev.m_puie         = this;
+         ev.m_eevent       = ::user::event_enter_key;
+         ev.m_actioncontext        = ::action::source_user;
+         if(!BaseOnControlEvent(&ev))
+         {
+            on_action("submit");
+         }
+         pobj->m_bRet      = true;
+         return;
+      }
       else if(pkey->m_ekey == ::user::key_c)
       {
          if(Session.is_key_pressed(::user::key_control))

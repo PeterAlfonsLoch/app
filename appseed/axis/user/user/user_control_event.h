@@ -16,6 +16,7 @@ namespace user
       event_set_check,
       event_timer,
       event_enter_key,
+      event_escape,
       event_tab_key,
       event_key_down,
       event_after_change_text,
