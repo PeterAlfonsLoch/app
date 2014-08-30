@@ -1425,12 +1425,12 @@ void rectd::CenterOf(LPCRECTD lpcrect)
 
 
 
-int64_t rectd::minimum_signed_absolute_dimension(bool bNegativePreference) const throw()
+double rectd::minimum_signed_absolute_dimension(bool bNegativePreference) const throw()
 {
 
-   int64_t w = width();
+   double w = width();
 
-   int64_t h = height();
+   double h = height();
 
    if(abs(w) < abs(h))
    {
