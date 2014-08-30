@@ -371,6 +371,9 @@ namespace simple_ui
 
       if(m_bAutoStockIconPenWidth)
       {
+
+         m_dStockIconPenWidth = rectClient.minimum_dimension()
+
       }
 
 
