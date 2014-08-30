@@ -240,7 +240,7 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">freetype253_D</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded|Win32'">freetype253MT_D</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(ProjectName)</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">freetype253MT_D</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(ProjectName)</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug Singlethreaded|Win32'">freetype253ST_D</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug Singlethreaded|x64'">freetype253ST_D</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">freetype253</TargetName>

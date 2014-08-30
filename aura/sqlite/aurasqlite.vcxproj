@@ -328,10 +328,8 @@ copy Source\FreeImage.h Dist
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy Debug\FreeImaged.dll Dist
-copy Debug\FreeImaged.lib Dist
-copy Source\FreeImage.h Dist
-</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
