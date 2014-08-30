@@ -408,7 +408,7 @@ namespace fontopus
          return;
       }
 
-      m_ptapClose->m_e
+      m_ptapClose->m_estockicon = stock_icon_close;
 
       //m_plabelUser->SetWindowText("e-mail:");
       //m_plabelPassword->SetWindowText("password:");
