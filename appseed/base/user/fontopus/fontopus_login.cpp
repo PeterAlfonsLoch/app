@@ -216,7 +216,7 @@ namespace fontopus
       y += pad + h1 + pad;
       m_ptap->RepositionWindow(x1,y,w2,h1 * 3);;
 
-      m_ptapClose->RepositionWindow(w - 24,0,24,24);
+      m_ptapClose->RepositionWindow(w - 36,12,24,24);
 
 
    }
