@@ -369,6 +369,11 @@ namespace simple_ui
 
       rect rectClient;
 
+      if(m_bAutoStockIconPenWidth)
+      {
+      }
+
+
    }
 
 
