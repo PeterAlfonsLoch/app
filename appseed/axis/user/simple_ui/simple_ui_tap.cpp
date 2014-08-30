@@ -247,7 +247,7 @@ namespace simple_ui
             
             ::draw2d::brush_sp br(allocer());
 
-            br->create_solid(crOut);
+            br->create_solid(crIn);
 
             pgraphics->SelectObject(br);
 
