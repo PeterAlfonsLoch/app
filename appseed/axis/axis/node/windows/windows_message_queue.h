@@ -22,10 +22,9 @@ namespace windows
 
       virtual bool create_message_queue(const char * pszName,::aura::message_queue_listener * plistener = NULL);
 
-
       virtual void message_handler(signal_details * pobj);
-      virtual void message_queue_message_handler(signal_details * pobj);
 
+      virtual void message_queue_message_handler(signal_details * pobj);
 
       virtual bool message_queue_is_initialized();
 
@@ -34,6 +33,8 @@ namespace windows
       virtual bool message_queue_del_timer(uint_ptr uiId);
 
       virtual bool message_queue_destroy();
+
+      void * message_queue::message_queue_get_os_handle()
 
 
    };

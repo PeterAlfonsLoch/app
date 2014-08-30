@@ -90,7 +90,46 @@ namespace windows
    }
 
 
+   void * message_queue::message_queue_get_os_handle()
+   {
+
+      return get_os_data();
+
+   }
+
+
 } // namespace windows
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
