@@ -11,6 +11,7 @@
 #include "exception_base.h"
 
 #include "exception_simple.h"
+#include "exception_cancel.h"
 
 #include "exception_memory.h"
 #include "exception_invalid_argument.h"

@@ -62,9 +62,12 @@ namespace fs
       while(pos != NULL)
       {
          m_fsdatamap.get_next_assoc(pos, strRoot, pdata);
-         if(::str::begins_ci(psz, strRoot))
+         if(pdata.is_set())
          {
-            return pdata;
+            if(::str::begins_ci(psz,strRoot))
+            {
+               return pdata;
+            }
          }
       }
       

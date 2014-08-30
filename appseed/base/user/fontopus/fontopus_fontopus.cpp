@@ -68,8 +68,9 @@ namespace fontopus
             }
             catch(const cancel_exception & e)
             {
-               if(e.m_strMessage == "cancel")
-                  return NULL;
+
+               return NULL;
+
             }
             if(puser != NULL)
                break;
