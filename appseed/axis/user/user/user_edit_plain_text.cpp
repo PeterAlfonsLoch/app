@@ -666,8 +666,7 @@ namespace user
          pkey->m_bRet = false;
          return;
       }
-      else if(pkey->m_ekey == ::user::key_alt
-         || pkey->m_ekey == ::user::key_escape)
+      else if(pkey->m_ekey == ::user::key_escape)
       {
          ::user::control_event ev;
          ev.m_puie         = this;
