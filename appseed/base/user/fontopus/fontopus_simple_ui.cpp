@@ -279,6 +279,12 @@ namespace fontopus
          return "ok";
 
       }
+      else if(idResult == "cancel")
+      {
+
+         return "cancel";
+
+      }
       else
       {
 

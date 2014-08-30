@@ -195,10 +195,19 @@ namespace fontopus
 
       string strPassword;
 
-      if(Application.get_cred(null_rect(),strUsername,strPassword,"ca2","ca2",m_bInteractive) != "ok")
+      string strResult = Application.get_cred(null_rect(),strUsername,strPassword,"ca2","ca2",m_bInteractive);
+
+      if(strResult != "ok")
       {
 
-         delete m_puser;
+         ::aura::del(m_puser);
+
+         if(strResult == "cancel")
+         {
+
+            throw simple_exception(get_app(),"cancel");
+
+         }
 
          return NULL;
 

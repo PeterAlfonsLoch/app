@@ -62,7 +62,15 @@ namespace fontopus
          ::fontopus::user * puser = NULL;
          while(iRetry > 0 && (::get_thread() == NULL || ::get_thread()->m_bRun))
          {
-            puser = login(set);
+            try
+            {
+               puser = login(set);
+            }
+            catch(const cancel_exception & e)
+            {
+               if(e.m_strMessage == "cancel")
+                  return NULL;
+            }
             if(puser != NULL)
                break;
             //bool bOk = false;
