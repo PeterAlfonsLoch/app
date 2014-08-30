@@ -306,7 +306,35 @@ void rect::SubtractRectMinor(LPCRECT lpcrectMajor, LPCRECT lpcrectMinor)
    UNREFERENCED_PARAMETER(lpcrectMinor);
 }
 
+LONG rect::minimum_signed_absolute_dimension() const throw()
+{
 
+   if(abs(width()) < abs(height()))
+   {
+
+      return width();
+
+   }
+   else if(abs(height()) < abs(width()))
+   {
+
+      return height();
+
+   }
+   else
+   {
+
+      return min(width(), height());
+
+   }
+
+
+}
+
+
+LONG rect::maximum_signed_absolute_dimension() const throw()
+{
+}
 
 
 
