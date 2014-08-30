@@ -342,7 +342,7 @@ LONG rect::minimum_signed_absolute_dimension(bool bNegativePreference) const thr
 }
 
 
-LONG rect::minimum_signed_absolute_dimension(bool bPositivePreference) const throw()
+LONG rect::maximum_signed_absolute_dimension(bool bPositivePreference) const throw()
 {
 
    LONG w = width();
