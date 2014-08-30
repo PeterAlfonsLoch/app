@@ -215,7 +215,7 @@ public:
       {
          find = (iL + iU) / 2;
          TYPE tCmp = t - this->element_at(find);
-         if(tCmp == numeric_info::get_null_value  < TYPE >())
+         if(tCmp == numeric_info < TYPE > :: get_null_value ())
          {
             return true;
          }
