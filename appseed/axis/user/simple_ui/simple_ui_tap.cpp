@@ -251,6 +251,12 @@ namespace simple_ui
 
             pgraphics->SelectObject(br);
 
+            ::draw2d::pen_sp pen(allocer());
+
+            pen->create_solid(2.0, crIn);
+
+            pgraphics->SelectObject(pen);
+
             pgraphics->draw_stock_icon(rectClient,m_estockicon);
 
             return;
