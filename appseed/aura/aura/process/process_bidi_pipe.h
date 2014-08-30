@@ -5,17 +5,6 @@ namespace process
 {
 
 
-#ifdef WINDOWS
-
-      void readex();
-
-#endif
-
-
-
-   };
-
-
    class CLASS_DECL_AURA bidi_pipe:
       virtual public ::object
    {
