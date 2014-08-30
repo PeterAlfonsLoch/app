@@ -9,6 +9,7 @@ namespace simple_ui
       element(papp)
    {
 
+      m_estockicon      = stock_icon_none;
       m_id = "submit";
       m_bDown = false;
       m_bMouseMove = false;
@@ -235,6 +236,12 @@ namespace simple_ui
 
 #endif
 
+         }
+
+         if(m_estockicon != stock_icon_nonde)
+         {
+            pd
+            return;
          }
 
          rect rectClient;
