@@ -670,11 +670,11 @@ namespace user
       {
          ::user::control_event ev;
          ev.m_puie         = this;
-         ev.m_eevent       = ::user::event_enter_key;
+         ev.m_eevent       = ::user::event_escape;
          ev.m_actioncontext        = ::action::source_user;
          if(!BaseOnControlEvent(&ev))
          {
-            on_action("submit");
+            on_action("escape");
          }
          pobj->m_bRet      = true;
          return;
