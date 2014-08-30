@@ -366,6 +366,9 @@ namespace simple_ui
 
    void tap::layout()
    {
+
+      rect rectClient;
+
    }
 
 
