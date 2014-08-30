@@ -238,7 +238,7 @@ namespace simple_ui
 
          }
 
-         if(m_estockicon != stock_icon_nonde)
+         if(m_estockicon != stock_icon_none)
          {
             pd
             return;
