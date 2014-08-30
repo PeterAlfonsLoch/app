@@ -11,6 +11,7 @@ namespace simple_ui
    public:
 
 
+      e_stock_icon         m_estockicon;
       bool m_bDown;
       bool m_bMouseMove;
 
