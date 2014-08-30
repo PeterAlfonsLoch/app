@@ -601,6 +601,76 @@ void rect64::SubtractRectMinor(const __rect64 *  lpcrectMajor, const __rect64 * 
 
 
 
+int64_t rect64::minimum_signed_absolute_dimension(bool bNegativePreference) const throw()
+{
+
+   int64_t w = width();
+
+   int64_t h = height();
+
+   if(abs(w) < abs(h))
+   {
+
+      return w;
+
+   }
+   else if(abs(h) < abs(w))
+   {
+
+      return h;
+
+   }
+   else if(bNegativePreference) // absolutely equal, prefer negative ...
+   {
+
+      return MIN(w,h);
+
+   }
+   else // ... otherwise prefer positive
+   {
+
+      return MAX(w,h);
+
+   }
+
+
+}
+
+
+int64_t rect64::minimum_signed_absolute_dimension(bool bPositivePreference) const throw()
+{
+
+   LONG w = width();
+
+   LONG h = height();
+
+   if(abs(w) > abs(h))
+   {
+
+      return w;
+
+   }
+   else if(abs(h) > abs(w))
+   {
+
+      return h;
+
+   }
+   else if(bPositivePreference) // absolutely equal, prefer positive ...
+   {
+
+      return MAX(w,h);
+
+   }
+   else // ... otherwise prefer negative
+   {
+
+      return MIN(w,h);
+
+   }
+
+
+}
 
 
 
