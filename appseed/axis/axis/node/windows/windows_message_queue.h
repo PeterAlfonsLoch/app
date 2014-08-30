@@ -34,7 +34,7 @@ namespace windows
 
       virtual bool message_queue_destroy();
 
-      void * message_queue::message_queue_get_os_handle()
+      virtual void * message_queue::message_queue_get_os_handle();
 
 
    };
