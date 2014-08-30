@@ -66,5 +66,6 @@
 <item code="9" value="key_tab" />
 <item code="189" value="key_hyphen" />
 <item code="187" value="key_equal" />
+<item code="27" value="key_escape" />
 </layout>
 

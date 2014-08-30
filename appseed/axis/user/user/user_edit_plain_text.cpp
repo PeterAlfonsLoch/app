@@ -661,7 +661,8 @@ namespace user
             return;
          }
       }
-      else if(pkey->m_ekey == ::user::key_alt)
+      else if(pkey->m_ekey == ::user::key_alt
+      || pkey->m_ekey == ::user::key_escape)
       {
          pkey->m_bRet = false;
          return;
@@ -1718,6 +1719,9 @@ namespace user
             m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
          }
          RedrawWindow();
+      }
+      else if(pkey->m_ekey == ::user::key_escape)
+      {
       }
       else
       {

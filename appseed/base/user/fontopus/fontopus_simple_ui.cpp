@@ -84,6 +84,14 @@ namespace fontopus
          pobj->m_bRet = true;
 
       }
+      else if(pkey->m_ekey == ::user::key_escape)
+      {
+
+         m_login.on_action("escape");
+
+         pobj->m_bRet = true;
+
+      }
 
    }
 
