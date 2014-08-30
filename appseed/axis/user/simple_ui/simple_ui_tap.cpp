@@ -10,9 +10,9 @@ namespace simple_ui
    {
 
       m_estockicon      = stock_icon_none;
-      m_id = "submit";
-      m_bDown = false;
-      m_bMouseMove = false;
+      m_id              = "submit";
+      m_bDown           = false;
+      m_bMouseMove      = false;
 
    }
 
