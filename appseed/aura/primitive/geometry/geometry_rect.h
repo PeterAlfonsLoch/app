@@ -174,7 +174,7 @@ public:
 
    LONG minimum_dimension() const throw();
    LONG maximum_dimension() const throw();
-   LONG min_dimension() const throw();
+   LONG min_dimension() const throw(){ return minimum_dimension(); }
    LONG max_dimension() const throw();
 
 };
