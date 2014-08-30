@@ -661,8 +661,7 @@ namespace user
             return;
          }
       }
-      else if(pkey->m_ekey == ::user::key_alt
-      || pkey->m_ekey == ::user::key_escape)
+      else if(pkey->m_ekey == ::user::key_alt)
       {
          pkey->m_bRet = false;
          return;
