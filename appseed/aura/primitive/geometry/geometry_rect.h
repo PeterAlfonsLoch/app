@@ -619,8 +619,8 @@ public:
    double minimum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
    double maximum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
 
-   double minimum_signed_absolute_dimension() const throw();
-   double maximum_signed_absolute_dimension() const throw();
+   double minimum_signed_absolute_dimension(bool bNegativePreference = true) const throw();
+   double maximum_signed_absolute_dimension(bool bPositivePreference = true) const throw();
 
 
 };
