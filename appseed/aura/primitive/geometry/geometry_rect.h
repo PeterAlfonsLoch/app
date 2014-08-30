@@ -172,6 +172,9 @@ public:
    void assign(const RECT & rect,e_orientation eorientation) throw();
    void assign_normal(const RECT & rect,e_orientation eorientation) throw();
 
+   LONG minimum_dimension() const throw();
+   LONG minimum_dimension() const throw();
+
 };
 
 /////////////////////////////////////////////////////////////////////////////
