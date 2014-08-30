@@ -249,9 +249,9 @@ namespace simple_ui
 
             br->create_solid(crOut);
 
-            pdc->SelectObject(br);
+            pgraphics->SelectObject(br);
 
-            pdc->draw_stock_icon(rectClient,m_estockicon);
+            pgraphics->draw_stock_icon(rectClient,m_estockicon);
 
             return;
 
