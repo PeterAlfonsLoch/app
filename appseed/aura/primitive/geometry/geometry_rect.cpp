@@ -637,7 +637,7 @@ int64_t rect64::minimum_signed_absolute_dimension(bool bNegativePreference) cons
 }
 
 
-int64_t rect64::minimum_signed_absolute_dimension(bool bPositivePreference) const throw()
+int64_t rect64::maximum_signed_absolute_dimension(bool bPositivePreference) const throw()
 {
 
    LONG w = width();
