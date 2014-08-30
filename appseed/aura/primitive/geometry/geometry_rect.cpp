@@ -328,13 +328,13 @@ LONG rect::minimum_signed_absolute_dimension(bool bNegativePreference) const thr
    else if(bNegativePreference) // absolutely equal, prefer negative ...
    {
 
-      return min(w, h);
+      return MIN(w, h);
 
    }
    else // ... otherwise prefer positive
    {
 
-      return max(w,h);
+      return MAX(w,h);
 
    }
 
@@ -1461,12 +1461,12 @@ double rectd::minimum_signed_absolute_dimension(bool bNegativePreference) const 
 }
 
 
-int64_t rectd::minimum_signed_absolute_dimension(bool bPositivePreference) const throw()
+double rectd::minimum_signed_absolute_dimension(bool bPositivePreference) const throw()
 {
 
-   LONG w = width();
+   double w = width();
 
-   LONG h = height();
+   double h = height();
 
    if(abs(w) > abs(h))
    {
