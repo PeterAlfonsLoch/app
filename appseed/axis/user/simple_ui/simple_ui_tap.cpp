@@ -364,6 +364,9 @@ namespace simple_ui
    }
 
 
+   virtual void layout();
+
+
 } // namespace simple_ui
 
 
