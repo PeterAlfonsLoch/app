@@ -251,8 +251,10 @@ namespace simple_ui
 
             pdc->SelectObject(br);
 
-            pdc->draw_stock_icon(rectClient
+            pdc->draw_stock_icon(rectClient,m_estockicon);
+
             return;
+
          }
 
          int32_t iBorderH = height(&rectClient) / 2;
