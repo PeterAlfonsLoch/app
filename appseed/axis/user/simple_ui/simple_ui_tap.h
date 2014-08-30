@@ -11,6 +11,8 @@ namespace simple_ui
    public:
 
 
+      bool                 m_bAutoStockIconPenWidth;
+      double               m_dStockIconPenWidth;
       e_stock_icon         m_estockicon;
       bool                 m_bDown;
       bool                 m_bMouseMove;
@@ -35,6 +37,8 @@ namespace simple_ui
 
       virtual bool keyboard_focus_is_focusable();
       virtual bool is_hover();
+
+      virtual void layout();
 
    };
 
