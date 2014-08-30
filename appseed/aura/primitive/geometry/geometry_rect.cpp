@@ -1461,7 +1461,7 @@ double rectd::minimum_signed_absolute_dimension(bool bNegativePreference) const 
 }
 
 
-double rectd::minimum_signed_absolute_dimension(bool bPositivePreference) const throw()
+double rectd::maximum_signed_absolute_dimension(bool bPositivePreference) const throw()
 {
 
    double w = width();
