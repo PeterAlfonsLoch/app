@@ -46,7 +46,7 @@
 #pragma once
 
 
-#ifdef _ZLIB_LIBRARY
+#ifdef ZLIB_DLL
 #define CLASS_DECL_ZLIB  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_ZLIB  CLASS_DECL_IMPORT
