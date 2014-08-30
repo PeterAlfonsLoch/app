@@ -398,7 +398,8 @@ namespace fontopus
          || !m_peditUser->create_window(null_rect(),this,"edit_user")
          || !m_plabelPassword->create_window(null_rect(),this,"label_password")
          || !m_ppassword->create_window(null_rect(),this,"password")
-         || !m_ptap->create_window(null_rect(),this,"submit"))
+         || !m_ptap->create_window(null_rect(),this,"submit")
+         || !m_ptapClose->create_window(null_rect(),this,"escape"))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
