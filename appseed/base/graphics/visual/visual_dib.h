@@ -32,6 +32,7 @@ namespace visual
 
    };
 
+
    class CLASS_DECL_BASE dib_sp :
       public ::draw2d::dib_sp
    {
