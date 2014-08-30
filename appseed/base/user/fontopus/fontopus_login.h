@@ -16,6 +16,7 @@ namespace fontopus
       ::simple_ui::label *          m_plabelPassword;
       ::simple_ui::password *       m_ppassword;
       ::simple_ui::tap *            m_ptap;
+      ::simple_ui::tap *            m_ptapClose;
       login **                      m_pploginDeferTranslate;
 
       string                        m_strUsername;
