@@ -372,6 +372,8 @@ namespace simple_ui
 
       rect rectClient;
 
+      GetClientRect(rectClient);
+
       if(m_bAutoStockIconPenWidth)
       {
 
