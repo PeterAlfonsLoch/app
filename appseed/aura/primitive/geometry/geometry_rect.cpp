@@ -364,13 +364,13 @@ LONG rect::minimum_signed_absolute_dimension(bool bPositivePreference) const thr
    else if(bPositivePreference) // absolutely equal, prefer positive ...
    {
 
-      return max(w,h);
+      return MAX(w,h);
 
    }
    else // ... otherwise prefer negative
    {
 
-      return min(w,h);
+      return MIN(w,h);
 
    }
 
