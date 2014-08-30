@@ -216,6 +216,8 @@ namespace fontopus
       y += pad + h1 + pad;
       m_ptap->RepositionWindow(x1,y,w2,h1 * 3);;
 
+      m_ptapClose->RepositionWindow(w - 24,0,24,24);
+
 
    }
 
@@ -405,6 +407,8 @@ namespace fontopus
          pcreate->m_bRet = true;
          return;
       }
+
+      m_ptapClose->m_e
 
       //m_plabelUser->SetWindowText("e-mail:");
       //m_plabelPassword->SetWindowText("password:");
