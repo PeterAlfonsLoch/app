@@ -1620,7 +1620,7 @@ namespace core
                      ::str::begins_eat_ci(strPath,"app_");
                      strPath += ".bat";
 #ifdef OS64BIT
-                     strPath = System.dir().ca2module(
+                     strPath = System.dir().element("nodeapp/stage/install/basis/x64/_std",strPath);
 #else
                      strPath = System.dir().element("nodeapp/stage/install/basis/x86/_std",strPath);
 #endif
