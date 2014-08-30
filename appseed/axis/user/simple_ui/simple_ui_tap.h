@@ -12,8 +12,8 @@ namespace simple_ui
 
 
       e_stock_icon         m_estockicon;
-      bool m_bDown;
-      bool m_bMouseMove;
+      bool                 m_bDown;
+      bool                 m_bMouseMove;
 
 
       tap(sp(::aura::application) papp);
