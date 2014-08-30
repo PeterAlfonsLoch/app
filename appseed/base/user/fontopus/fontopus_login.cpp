@@ -25,6 +25,7 @@ namespace fontopus
       m_plabelPassword     = new ::simple_ui::label(papp);
       m_ppassword          = new ::simple_ui::password(papp);
       m_ptap               = new ::simple_ui::tap(papp);
+      m_ptapClose          = new ::simple_ui::tap(papp);
 
       m_bSelfLayout = false;
 
@@ -77,6 +78,7 @@ namespace fontopus
       ::aura::del(m_plabelPassword);
       ::aura::del(m_ppassword);
       ::aura::del(m_ptap);
+      ::aura::del(m_ptapClose);
 
    }
 
