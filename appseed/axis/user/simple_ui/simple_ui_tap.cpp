@@ -364,7 +364,9 @@ namespace simple_ui
    }
 
 
-   virtual void tap::layout();
+   void tap::layout()
+   {
+   }
 
 
 } // namespace simple_ui
