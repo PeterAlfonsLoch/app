@@ -240,7 +240,14 @@ namespace simple_ui
 
          if(m_estockicon != stock_icon_none)
          {
-            pd
+            
+            ::draw2d::brush_sp br(allocer());
+
+            br->create_solid(crOut);
+
+            pdc->SelectObject(br);
+
+            pdc->
             return;
          }
 
