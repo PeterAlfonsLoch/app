@@ -172,7 +172,7 @@ public:
    void assign(const RECT & rect,e_orientation eorientation) throw();
    void assign_normal(const RECT & rect,e_orientation eorientation) throw();
 
-   LONG minimum_dimension() const throw(){ return min(width(),height()); }
+   LONG minimum_dimension() const throw(){ return MIN(width(),height()); }
    LONG maximum_dimension() const throw(){ return MAX(width(),height()); }
    LONG min_dimension() const throw(){ return minimum_dimension(); }
    LONG max_dimension() const throw(){ return maximum_dimension(); }
