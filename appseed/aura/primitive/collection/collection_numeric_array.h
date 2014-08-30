@@ -219,7 +219,7 @@ public:
          {
             return true;
          }
-         else if(tCmp > numeric_info::get_null_value  < TYPE >())
+         else if(tCmp > numeric_info < TYPE >::get_null_value())
          {
             iL = find + 1;
          }
@@ -231,11 +231,11 @@ public:
       for(; find < this->get_size(); find++)
       {
          TYPE tCmp = t - this->element_at(find);
-         if(tCmp == numeric_info::get_null_value  < TYPE >())
+         if(tCmp == numeric_info < TYPE >::get_null_value())
          {
             return true;
          }
-         else if(tCmp < numeric_info::get_null_value  < TYPE >())
+         else if(tCmp < numeric_info  < TYPE >::get_null_value())
          {
             return false;
          }
