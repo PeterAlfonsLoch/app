@@ -416,7 +416,7 @@ ml64 /Zi /Fo"$(IntDir)gvmat.o" /c "$(ProjectDir)contrib/masmx64/gvmat64.asm"
       <Culture>0x040c</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>..\..\masmx64\gvmat64.obj;..\..\masmx64\inffasx64.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>

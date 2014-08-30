@@ -48,7 +48,7 @@ int32_t  aLen=plain.Length;    // Length is length of unzipped data.
 #include "bzlib.h"
 
 
-#ifdef _BZIP2_LIBRARY
+#ifdef BZ_EXPORT
 #define CLASS_DECL_BZIP2  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_BZIP2  CLASS_DECL_IMPORT
