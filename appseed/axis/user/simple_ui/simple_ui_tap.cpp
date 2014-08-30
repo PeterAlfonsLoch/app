@@ -256,7 +256,7 @@ namespace simple_ui
 
             ::draw2d::pen_sp pen(allocer());
 
-            pen->create_solid(2.0,crBorderOut);
+            pen->create_solid(m_dStockIconPenWidth,crBorderOut);
 
             pgraphics->SelectObject(pen);
 
