@@ -339,6 +339,14 @@ public:
    void assign(const __rect64 * lpcrect,e_orientation eorientation) throw();
    void assign_normal(const __rect64 * lpcrect,e_orientation eorientation) throw();
 
+
+   int64_t minimum_dimension() const throw(){ return MIN(width(),height()); }
+   int64_t maximum_dimension() const throw(){ return MAX(width(),height()); }
+   int64_t min_dimension() const throw(){ return minimum_dimension(); }
+   int64_t max_dimension() const throw(){ return maximum_dimension(); }
+   int64_t min_dim() const throw(){ return min_dimension(); }
+   int64_t max_dim() const throw(){ return max_dimension(); }
+
 };
 
 
