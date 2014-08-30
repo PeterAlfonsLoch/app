@@ -179,6 +179,15 @@ public:
    LONG min_dim() const throw(){ return min_dimension(); }
    LONG max_dim() const throw(){ return max_dimension(); }
 
+   LONG minimum_natural_dimension() const throw(){ return MIN(MAX(0, width()),MAX(0,height())); }
+   LONG maximum_natural_dimension() const throw(){ return MAX(MAX(0, width()),MAX(0, height())); }
+
+   LONG minimum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
+   LONG maximum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
+
+   LONG minimum_signed_absolute_dimension() const throw()
+   LONG maximum_signed_absolute_dimension() const throw()
+
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -346,6 +355,12 @@ public:
    int64_t max_dimension() const throw(){ return maximum_dimension(); }
    int64_t min_dim() const throw(){ return min_dimension(); }
    int64_t max_dim() const throw(){ return max_dimension(); }
+
+   int64_t minimum_natural_dimension() const throw(){ return MIN(MAX(0,width()),MAX(0,height())); }
+   int64_t maximum_natural_dimension() const throw(){ return MAX(MAX(0,width()),MAX(0,height())); }
+
+   int64_t minimum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
+   int64_t maximum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
 
 };
 
@@ -587,6 +602,19 @@ public:
 
    void assign(const tagRECTD * lpcrect,e_orientation eorientation) throw();
    void assign_normal(const tagRECTD * lpcrect,e_orientation eorientation) throw();
+
+   double minimum_dimension() const throw(){ return MIN(width(),height()); }
+   double maximum_dimension() const throw(){ return MAX(width(),height()); }
+   double min_dimension() const throw(){ return minimum_dimension(); }
+   double max_dimension() const throw(){ return maximum_dimension(); }
+   double min_dim() const throw(){ return min_dimension(); }
+   double max_dim() const throw(){ return max_dimension(); }
+
+   double minimum_natural_dimension() const throw(){ return MIN(MAX(0,width()),MAX(0,height())); }
+   double maximum_natural_dimension() const throw(){ return MAX(MAX(0,width()),MAX(0,height())); }
+
+   double minimum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
+   double maximum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
 
 };
 
