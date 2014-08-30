@@ -184,6 +184,10 @@ namespace simple_ui
 
          COLORREF crBorderIn;
 
+         rect rectClient;
+
+         GetClientRect(rectClient);
+
 
          if (is_hover() || m_bDown || m_bMouseMove)
          {
@@ -247,13 +251,9 @@ namespace simple_ui
 
             pdc->SelectObject(br);
 
-            pdc->
+            pdc->draw_stock_icon(rectClient
             return;
          }
-
-         rect rectClient;
-
-         GetClientRect(rectClient);
 
          int32_t iBorderH = height(&rectClient) / 2;
 
