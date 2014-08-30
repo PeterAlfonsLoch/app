@@ -425,11 +425,12 @@ ml64 /Zi /Fo"$(IntDir)gvmat.o" /c "$(ProjectDir)contrib/masmx64/gvmat64.asm"
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)zlibwapi.map</MapFileName>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>$(OutDir)zlibwapi.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <FixedBaseAddress>false</FixedBaseAddress>
     </Link>
     <PreBuildEvent>
       <Command>

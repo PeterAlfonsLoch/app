@@ -1486,6 +1486,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <FixedBaseAddress>false</FixedBaseAddress>
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -2658,6 +2659,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis_policy\axis_c.c">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">framework_c.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="axis\message\message_user.cpp" />
     <ClCompile Include="axis\node\android\android_android.cpp">

@@ -1486,6 +1486,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <FixedBaseAddress>false</FixedBaseAddress>
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -3778,9 +3779,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\os\windows\windows_debug.cpp" />
     <ClCompile Include="aura\os\windows\windows_dll.cpp" />
     <ClCompile Include="aura\os\windows\windows_error.cpp" />
-    <ClCompile Include="aura\os\windows\windows_file_std.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="aura\os\windows\windows_file_watcher.cpp" />
     <ClCompile Include="aura\os\windows\windows_launcher.cpp" />
     <ClCompile Include="aura\os\windows\windows_library.cpp" />
@@ -3792,9 +3790,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\os\windows\windows_simple_app.cpp" />
     <ClCompile Include="aura\os\windows\windows_simple_shell_launcher.cpp" />
     <ClCompile Include="aura\os\windows\windows_small_ipc_channel.cpp" />
-    <ClCompile Include="aura\os\windows\windows_std_file.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="aura\os\windows\windows_time.cpp" />
     <ClCompile Include="aura\os\windows\windows_util.cpp" />
     <ClCompile Include="aura\os\windows\windows_utils.cpp" />
