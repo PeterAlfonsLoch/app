@@ -306,25 +306,35 @@ void rect::SubtractRectMinor(LPCRECT lpcrectMajor, LPCRECT lpcrectMinor)
    UNREFERENCED_PARAMETER(lpcrectMinor);
 }
 
-LONG rect::minimum_signed_absolute_dimension() const throw()
+LONG rect::minimum_signed_absolute_dimension(bool bNegativePreference) const throw()
 {
 
-   if(abs(width()) < abs(height()))
+   LONG w = width();
+
+   LONG h = height();
+
+   if(abs(w) < abs(h))
    {
 
-      return width();
+      return w;
 
    }
-   else if(abs(height()) < abs(width()))
+   else if(abs(h) < abs(w))
    {
 
-      return height();
+      return h;
 
    }
-   else
+   else if(bNegativePreference) // absolutely equal, prefer negative ...
    {
 
-      return min(width(), height());
+      return min(w, h);
+
+   }
+   else // ... otherwise prefer positive
+   {
+
+      return max(w,h);
 
    }
 
@@ -332,8 +342,39 @@ LONG rect::minimum_signed_absolute_dimension() const throw()
 }
 
 
-LONG rect::maximum_signed_absolute_dimension() const throw()
+LONG rect::minimum_signed_absolute_dimension(bool bPositivePreference) const throw()
 {
+
+   LONG w = width();
+
+   LONG h = height();
+
+   if(abs(w) > abs(h))
+   {
+
+      return w;
+
+   }
+   else if(abs(h) > abs(w))
+   {
+
+      return h;
+
+   }
+   else if(bPositivePreference) // absolutely equal, prefer positive ...
+   {
+
+      return max(w,h);
+
+   }
+   else // ... otherwise prefer negative
+   {
+
+      return min(w,h);
+
+   }
+
+
 }
 
 
