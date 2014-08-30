@@ -185,8 +185,8 @@ public:
    LONG minimum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
    LONG maximum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
 
-   LONG minimum_signed_absolute_dimension() const throw()
-   LONG maximum_signed_absolute_dimension() const throw()
+   LONG minimum_signed_absolute_dimension() const throw();
+   LONG maximum_signed_absolute_dimension() const throw();
 
 };
 
@@ -361,6 +361,9 @@ public:
 
    int64_t minimum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
    int64_t maximum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
+
+   int64_t minimum_signed_absolute_dimension() const throw();
+   int64_t maximum_signed_absolute_dimension() const throw();
 
 };
 
@@ -615,6 +618,10 @@ public:
 
    double minimum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
    double maximum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
+
+   double minimum_signed_absolute_dimension() const throw();
+   double maximum_signed_absolute_dimension() const throw();
+
 
 };
 
