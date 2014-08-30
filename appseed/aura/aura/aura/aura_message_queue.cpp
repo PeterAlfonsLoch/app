@@ -91,6 +91,14 @@ namespace aura
    }
 
 
+   void * message_queue::message_queue_get_os_handle()
+   {
+
+      return NULL;
+
+   }
+
+
 } // namespace aura
 
 

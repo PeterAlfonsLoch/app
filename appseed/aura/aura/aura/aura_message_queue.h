@@ -32,6 +32,8 @@ namespace aura
 
       virtual bool message_queue_destroy();
 
+      virtual void * message_queue_get_os_handle();
+
    };
 
 
