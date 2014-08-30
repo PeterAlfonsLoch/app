@@ -9,10 +9,13 @@ namespace simple_ui
       element(papp)
    {
 
-      m_estockicon      = stock_icon_none;
-      m_id              = "submit";
-      m_bDown           = false;
-      m_bMouseMove      = false;
+      m_bAutoStockIconPenWidth   = true;
+      m_dStockIconPenWidth       = 2.0;
+      m_estockicon               = stock_icon_none;
+
+      m_id                       = "submit";
+      m_bDown                    = false;
+      m_bMouseMove               = false;
 
    }
 
@@ -372,10 +375,9 @@ namespace simple_ui
       if(m_bAutoStockIconPenWidth)
       {
 
-         m_dStockIconPenWidth = rectClient.minimum_dimension()
+         m_dStockIconPenWidth = rectClient.minimum_natural_dimension() / 12.5;
 
       }
-
 
    }
 
