@@ -247,13 +247,13 @@ namespace simple_ui
             
             ::draw2d::brush_sp br(allocer());
 
-            br->create_solid(crIn);
+            br->create_solid(crOut);
 
             pgraphics->SelectObject(br);
 
             ::draw2d::pen_sp pen(allocer());
 
-            pen->create_solid(2.0, crIn);
+            pen->create_solid(2.0, crOut);
 
             pgraphics->SelectObject(pen);
 
