@@ -753,8 +753,20 @@ namespace windows
 
    LRESULT interaction_impl::DefWindowProc(UINT nMsg,WPARAM wParam,lparam lParam)
    {
+
+      if(get_handle() == NULL)
+      {
+
+         return 0;
+
+      }
+
       if(m_pfnSuper != NULL)
+      {
+
          return ::CallWindowProc(m_pfnSuper,get_handle(),nMsg,wParam,lParam);
+
+      }
 
       WNDPROC pfnWndProc;
       if((pfnWndProc = *GetSuperWndProcAddr()) == NULL)
