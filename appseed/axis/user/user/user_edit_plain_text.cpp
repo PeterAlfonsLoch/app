@@ -1836,15 +1836,24 @@ namespace user
 
       while(i < m_iaLineIndex.get_size())
       {
+
          iAcc = 0;
+
          iLineCount = 0;
+
          for(; iLineCount < 100 && i < m_iaLineIndex.get_size(); i++, iLineCount++)
          {
+
             iAcc += m_iaLineIndex[i];
+
          }
+
          m_iaCLineIndex.add(iAcc);
+
       }
+
    }
+
 
    void edit_plain_text::_001OnChar(signal_details * pobj)
    {
