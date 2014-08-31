@@ -2336,42 +2336,6 @@
     <ClInclude Include="multithreading\multithreading_thread_impl.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\android\android.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_application.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_factory_exchange.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_file.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_file_set.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_implementation.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_internal.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_os.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_shell.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_stdio_file.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_thread.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android1.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="aura\node\ansios\ansios.h">
       <Filter>Header Files\aura\node\ansios</Filter>
     </ClInclude>
@@ -2711,8 +2675,44 @@
     <ClInclude Include="aura\process\process.h">
       <Filter>Header Files\aura\process</Filter>
     </ClInclude>
+    <ClInclude Include="aura\node\android\android.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android_application.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android_factory_exchange.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android_file.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android_file_set.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android_implementation.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android_internal.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android_os.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android_shell.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android_stdio_file.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android_thread.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\android\android1.h">
+      <Filter>Header Files\aura\node\android</Filter>
+    </ClInclude>
     <ClInclude Include="aura\exception\exception_cancel.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\aura\exception</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4076,7 +4076,7 @@
       <Filter>Source Files\aura\process</Filter>
     </ClCompile>
     <ClCompile Include="aura\exception\exception_cancel.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\aura\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4109,9 +4109,6 @@
     </None>
     <None Include="aura\aura\aura_system_xml.inl">
       <Filter>Header Files\aura\aura</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
