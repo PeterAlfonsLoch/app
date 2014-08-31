@@ -1995,7 +1995,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\userex\userex_userex.h" />
     <ClInclude Include="user\userex\userex_wait_message_dialog.h" />
     <ClInclude Include="user\user\user.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_user1.h" />
     <ClInclude Include="user\user\user_00.h" />
     <ClInclude Include="user\user\user_bitmap_button.h" />
     <ClInclude Include="user\user\user_button.h" />
