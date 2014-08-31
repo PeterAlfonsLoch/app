@@ -35,6 +35,10 @@ public:
    void make_lower();
    void make_upper();
 
+   operator ::count() const {
+      return get_count();
+   }
+
 
    index get_random_index() const;
 
