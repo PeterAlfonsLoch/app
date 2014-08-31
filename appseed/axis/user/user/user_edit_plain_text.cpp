@@ -1542,34 +1542,57 @@ namespace user
 
       for(int32_t i = 0; i < straLines.get_size(); i++)
       {
+
          stra.remove_all();
+
          stra.add_smallest_tokens(straLines[i], m_straSep, FALSE, FALSE);
+
          if(stra.get_size() > 0)
          {
+
             strLine = stra[0];
+
          }
          else
          {
+
             strLine.Empty();
+
          }
+
          strExtent = strLine;
+
          strExtent.replace("\t", "   ");
+
          size size;
+
          size = pdc->GetTextExtent(strExtent);
-         //iLineHeight = MAX(size.cy, size3.cy);
+
          if(py >= y && py < y + iLineHeight)
          {
+
             bFound = true;
+
             break;
+
          }
+
          y += iLineHeight;
+
          iOffset += straLines[i].get_length();
+
       }
+
       int32_t lim2 = 0;
+
       int32_t lim1;
+
       const char * psz = strLine;
+
       const char * pszEnd = psz;
+
       const char * pszPrevious = psz;
+
       for(;; )
       {
          pszPrevious = pszEnd;
