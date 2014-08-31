@@ -645,6 +645,9 @@ namespace html
             brushText->create_solid(ARGB(255, 0, 0, 0));
          }
 
+
+         bool bCaretOn = ((get_tick_count() - m_dwFocustStart) % (m_dwCaretTime * 2)) < m_dwCaretTime;
+
          strsize iSelStart;
          strsize iSelEnd;
          ::size size3;
@@ -747,12 +750,12 @@ namespace html
 
             maxcy = MAX(size1.cy, size2.cy);
             maxcy = MAX(maxcy, size3.cy);
-            if(m_bFocus && m_bCaretOn && i3 == str1.get_length())
+            if(m_bFocus && bCaretOn && i3 == str1.get_length())
             {
                pdc->MoveTo(left + size1.cx, y);
                pdc->LineTo(left + size1.cx, y + maxcy);
             }
-            if(m_bFocus && m_bCaretOn && i3 == (str1.get_length() + str2.get_length()))
+            if(m_bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
             {
                pdc->MoveTo(left + size1.cx + size2.cx, y);
                pdc->LineTo(left + size1.cx + size2.cx, y + maxcy);
