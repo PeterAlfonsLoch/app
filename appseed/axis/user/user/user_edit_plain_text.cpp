@@ -1418,8 +1418,11 @@ namespace user
          iColumn = strLine.get_length();
 
       }
+
       return m_iViewOffset + iOffset + iColumn;
+
    }
+
 
    strsize edit_plain_text::LineXToSel(index iLine, int32_t x)
    {
