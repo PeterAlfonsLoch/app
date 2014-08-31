@@ -3697,9 +3697,6 @@
     <ClCompile Include="aura\os\windows\windows_error.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\windows\windows_file_std.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\windows\windows_launcher.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
@@ -3722,9 +3719,6 @@
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\windows\windows_small_ipc_channel.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\windows\windows_std_file.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\windows\windows_time.cpp">
@@ -4106,9 +4100,6 @@
     </None>
     <None Include="aura\aura\aura_system_xml.inl">
       <Filter>Header Files\aura\aura</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
