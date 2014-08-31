@@ -88,7 +88,7 @@ namespace fontopus
             //System.simple_message_box(NULL, "<h1>You have not logged in!</h1><h2>Exiting</h2>");
             TRACE("<error>You have not logged in! Exiting!</error>");
             //throw string("You have not logged in! Exiting!");
-            debug_box("You have not logged in!","Debug Message",MB_OK);
+            //debug_box("You have not logged in!","Debug Message",MB_OK);
             return NULL;
          }
          m_puser = create_user(puser);
