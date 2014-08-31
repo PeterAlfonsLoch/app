@@ -9,7 +9,13 @@ namespace user
       virtual public signalizable
    {
    public:
+
+
+      DWORD       m_dwFocustStart;
+
+
       virtual ~keyboard_focus();
+
 
       virtual void keyboard_focus_OnTimer(int32_t iTimer);
       virtual void keyboard_focus_OnChar(signal_details * pobj);

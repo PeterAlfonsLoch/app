@@ -36,9 +36,9 @@ namespace user
       bool                          m_bMouseDown;
       point                         m_ptSelStart;
       bool                          m_bFocus;
-      bool                          m_bCaretOn;
-      uint32_t                      m_dwLastCaret;
-      uint32_t                      m_dwCaretTime;
+//      bool                          m_bCaretOn;
+//      uint32_t                      m_dwLastCaret;
+//      uint32_t                      m_dwCaretTime;
       index                         m_iLineOffset;
       stringa                       m_straSep;
       colorertake5::text_lines      m_lines;
