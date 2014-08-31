@@ -1494,32 +1494,52 @@ namespace user
       GetClientRect(rectClient);
 
       px -= rectClient.left;
+
       py -= rectClient.top;
+
       if(m_iLineHeight == 0)
       {
+
          py += m_scrollinfo.m_ptScroll.y;
+
       }
       else
       {
+
          py += m_scrollinfo.m_ptScroll.y % m_iLineHeight;
+
       }
+
       stringa & straLines = m_lines.lines;
+
       strsize iSelStart;
+
       strsize iSelEnd;
+
       _001GetViewSel(iSelStart, iSelEnd);
+
       int32_t lim = 0;
+
       int32_t iLineHeight;
+
       int32_t y = 0;
+
       bool bFound = false;
+
       string strLine;
+
       string strExtent;
+
       size size3;
+
       size3 = pdc->GetTextExtent(unitext("gqYALﾍ"));
 
       iLineHeight = size3.cy;
 
       strsize iOffset = 0;
+
       stringa stra;
+
       for(int32_t i = 0; i < straLines.get_size(); i++)
       {
          stra.remove_all();
