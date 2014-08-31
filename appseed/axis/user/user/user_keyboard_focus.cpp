@@ -57,6 +57,9 @@ namespace user
 
    bool keyboard_focus::keyboard_focus_OnSetFocus()
    {
+
+      m_dwFocustStart = get_tick_count();
+
       // get_keyboard_focus will return the control with focus
 
       // return true to set focus to this control
