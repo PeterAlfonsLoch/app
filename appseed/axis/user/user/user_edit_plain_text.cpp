@@ -1595,32 +1595,49 @@ namespace user
 
       for(;; )
       {
+
          pszPrevious = pszEnd;
+
          pszEnd = ::str::utf8_inc(pszEnd);
+
          lim1 = lim2;
+
          strExtent = string(psz, pszEnd - psz);
+
          strExtent.replace("\t", "   ");
+
          class size size;
+
          class ::size size1 = pdc->GetTextExtent(strLine, (int32_t) strLine.length(), (int32_t) strExtent.length());
+
          class ::size size2 = pdc->GetTextExtent(strLine, strExtent.length());
+
          lim2 = (size1.cx + size2.cx) / 2;
+
          lim = lim2;
-         //lim = (lim2 + lim1) / 2;
-         //lim++;
+
          if(px >= lim1 && px <= (lim2 * 3 + lim1) / 4)
          {
+
             return iOffset + (pszPrevious - psz) + m_iViewOffset;
+
          }
          else if(px >= (lim2 * 3 + lim1) / 4 && px <= lim2)
          {
+
             return iOffset + (pszEnd - psz) + m_iViewOffset;
+
          }
+
          if(pszEnd[0] == '\0')
             break;
 
       }
+
       return (strsize) MIN((strsize)(iOffset + strLine.get_length() + m_iViewOffset), (strsize)m_ptree->m_editfile.get_length());
+
    }
+
 
    void edit_plain_text::_002OnMouseMove(signal_details * pobj)
    {
