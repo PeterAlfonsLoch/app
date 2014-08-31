@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
 
+
 void str_fill(string & str,char ch);
+
 
 namespace user
 {
@@ -11,8 +13,6 @@ namespace user
       ::user::interaction(papp),
       scroll_view(papp),
       colorertake5::base_editor(papp),
-//      m_fastblur(allocer()),
-  //    m_dibBk(allocer()),
       ::data::data_listener(papp),
       m_keymessageLast(papp)
    {
@@ -58,17 +58,12 @@ namespace user
       }
    }
 
+
    void edit_plain_text::install_message_handling(::message::dispatch * pinterface)
    {
+
       scroll_view::install_message_handling(pinterface);
-   /*   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &edit_plain_text::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &edit_plain_text::_001OnSize);
-      IGUI_WIN_MSG_LINK(WM_PAINT, pinterface, this, &edit_plain_text::_001OnPaint);
-      IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &edit_plain_text::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &edit_plain_text::_001OnContextMenu);
-      IGUI_WIN_MSG_LINK(WM_SETCURSOR, pinterface, this, &edit_plain_text::_001OnSetCursor);
-      IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &edit_plain_text::_001OnTimer);
-      IGUI_WIN_MSG_LINK(WM_HSCROLL, pinterface, this, &edit_plain_text::_001OnHScroll);*/
+   
 
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &edit_plain_text::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &edit_plain_text::_002OnLButtonDown);
@@ -89,36 +84,32 @@ namespace user
       connect_update_cmd_ui("edit_focus_paste", &edit_plain_text::_001OnUpdateEditFocusPaste);
       connect_command("edit_focus_paste", &edit_plain_text::_001OnEditFocusPaste);
 
-   /*   IGUI_WIN_MSG_LINK(WM_RBUTTONUP,
-         this,
-         this,
-         &edit_plain_text::_002OnRButtonUp); */
-
    }
-   /////////////////////////////////////////////////////////////////////////////
-   // edit_plain_text drawing
+
 
    void edit_plain_text::OnDraw(::draw2d::graphics * pdcScreen)
    {
+
       UNREFERENCED_PARAMETER(pdcScreen);
+
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-
+   
    void edit_plain_text::_001OnInitialUpdate(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
       _001OnUpdate(::action::source_system);
 
       ::draw2d::memory_graphics pdc(allocer());
+
       _001OnCalcLayout(pdc);
-
-
 
       ThreadProcScrollSize((LPVOID) this);
 
-
    }
+
 
    void edit_plain_text::_001OnDestroy(signal_details * pobj)
    {
@@ -609,105 +600,161 @@ namespace user
 
    }
 
+
    void edit_plain_text::_002OnKeyDown(signal_details * pobj)
    {
+
       SCAST_PTR(::message::key, pkey, pobj)
+
       if(pkey->m_ekey == ::user::key_return)
       {
+
          if(Session.is_key_pressed(::user::key_control) && Session.is_key_pressed(::user::key_alt))
          {
+
             pkey->m_bRet      = false;
+
             return;
+
          }
+
          if((!m_bMultiLine || m_bSendEnterKey) && GetParent() != NULL)
          {
+
             ::user::control_event ev;
+
             ev.m_puie         = this;
+
             ev.m_eevent       = ::user::event_enter_key;
+
             ev.m_actioncontext        = ::action::source_user;
-            if(!BaseOnControlEvent(&ev))
-            {
-               on_action("submit");
-            }
-            pobj->m_bRet      = true;
-            return;
-         }
-      }
-      else if(pkey->m_ekey == ::user::key_tab)
-      {
-         if(Session.is_key_pressed(::user::key_control)
-            && Session.is_key_pressed(::user::key_alt))
-         {
-            pkey->m_bRet      = false;
-            return;
-         }
-         if(!m_bMultiLine)
-         {
-            ::user::control_event ev;
-            ev.m_puie         = this;
-            ev.m_eevent       = ::user::event_tab_key;
-            ev.m_actioncontext        = ::action::source_user;
-            //GetParent()->BaseOnControlEvent(&ev);
-            
 
             if(!BaseOnControlEvent(&ev))
             {
+
+               on_action("submit");
+
+            }
+
+            pobj->m_bRet      = true;
+
+            return;
+
+         }
+
+      }
+      else if(pkey->m_ekey == ::user::key_tab)
+      {
+
+         if(Session.is_key_pressed(::user::key_control) && Session.is_key_pressed(::user::key_alt))
+         {
+
+            pkey->m_bRet      = false;
+
+            return;
+
+         }
+
+         if(!m_bMultiLine)
+         {
+
+            ::user::control_event ev;
+
+            ev.m_puie         = this;
+
+            ev.m_eevent       = ::user::event_tab_key;
+
+            ev.m_actioncontext        = ::action::source_user;
+
+            if(!BaseOnControlEvent(&ev))
+            {
+
                sp(::user::interaction) pui = keyboard_get_next_focusable();
 
                if(pui != NULL)
                   pui->keyboard_set_focus();
 
             }
+
             pkey->m_bRet      = true;
+
             return;
+
          }
+
       }
       else if(pkey->m_ekey == ::user::key_alt)
       {
+
          pkey->m_bRet = false;
+
          return;
+
       }
       else if(pkey->m_ekey == ::user::key_escape)
       {
+
          ::user::control_event ev;
+
          ev.m_puie         = this;
+
          ev.m_eevent       = ::user::event_escape;
+
          ev.m_actioncontext        = ::action::source_user;
+
          if(!BaseOnControlEvent(&ev))
          {
+
             on_action("escape");
+
          }
+
          pobj->m_bRet      = true;
+
          return;
+
       }
       else if(pkey->m_ekey == ::user::key_c)
       {
+
          if(Session.is_key_pressed(::user::key_control))
          {
+
             pkey->m_bRet      = true;
+
             clipboard_copy();
+
             return;
+
          }
+
       }
       else if(pkey->m_ekey == ::user::key_v)
       {
+
          if(Session.is_key_pressed(::user::key_control))
          {
-            pkey->m_bRet      = true;
-            clipboard_paste();
-            return;
-         }
-      }
 
+            pkey->m_bRet      = true;
+
+            clipboard_paste();
+
+            return;
+
+         }
+
+      }
 
       m_keymessageLast = *pkey;
 
-      //m_dwLastKeyWparam = pkey->m_nChar;
-      //m_dwLastKeyLparam = pkey->m_lparam;
       m_bKeyPressed     = true;
+
       key_to_char(&m_keymessageLast);
+
       pkey->m_bRet      = true;
+
    }
+
 
    void edit_plain_text::_002OnKeyUp(signal_details * pobj)
    {
@@ -739,63 +786,85 @@ namespace user
    }
 
 
-
-
-
    void edit_plain_text::_001OnHScroll(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
       if(should_load_full_file())
       {
+
          m_bNeedScrollUpdate = true;
+
       }
       else
       {
+
          m_bGetTextNeedUpdate = true;
+
       }
+
    }
+
 
    void edit_plain_text::pre_translate_message(signal_details * pobj)
    {
+
       SCAST_PTR(::message::base, pbase, pobj);
+
       if(pbase->m_uiMessage == WM_KEYDOWN)
       {
+
          pbase->m_bRet = true;
+
          _001OnKeyDown(pbase);
+
       }
       else if(pbase->m_uiMessage == WM_KEYUP)
       {
+
          pbase->m_bRet = true;
+
          _001OnKeyUp(pbase);
+
       }
       else if(pbase->m_uiMessage == WM_CHAR)
       {
+
          pbase->m_bRet = true;
+
          ::user::interaction::_001OnChar(pbase);
+
       }
+
    }
+
+
    void edit_plain_text::key_to_char(::message::key * pkey)
    {
+
       ::message::key & key = *pkey;
-//      LRESULT lresult = 0;
-      if(
-         key.m_ekey == ::user::key_shift   || key.m_ekey == ::user::key_lshift   || key.m_ekey == ::user::key_rshift
+
+      if(key.m_ekey == ::user::key_shift   || key.m_ekey == ::user::key_lshift   || key.m_ekey == ::user::key_rshift
       || key.m_ekey == ::user::key_control || key.m_ekey == ::user::key_lcontrol || key.m_ekey == ::user::key_rcontrol
       || key.m_ekey == ::user::key_alt     || key.m_ekey == ::user::key_lalt     || key.m_ekey == ::user::key_ralt
          )
       {
+         
          return;
+
       }
 
       if(key.m_ekey == ::user::key_right   || key.m_ekey == ::user::key_up
       || key.m_ekey == ::user::key_left    || key.m_ekey == ::user::key_down)
       {
+         
          _001OnChar(&key);
+
          return;
+
       }
 
-
-      //LRESULT lresult;
       bool bShift = Session.is_key_pressed(::user::key_shift);
 
       if(key.m_nChar < 256 && isalpha((int32_t) key.m_nChar))
@@ -821,19 +890,25 @@ namespace user
    }
 
 
-
    UINT edit_plain_text::ThreadProcScrollSize(LPVOID lpvoid)
    {
+
       edit_plain_text * pview = (edit_plain_text *) lpvoid;
+
       ::data::simple_lock lock(pview->m_ptree);
 
       ::draw2d::graphics_sp graphics(pview->allocer());
+
       graphics->CreateCompatibleDC(NULL);
+
       ::draw2d::graphics * pdc = graphics;
+
       pview->_001OnCalcLayoutProc(pview, pdc);
 
       pview->_001OnUpdate(::action::source_system);
+
       return 0;
+
    }
 
 
@@ -848,12 +923,15 @@ namespace user
       file_size iSize = m_ptree->m_editfile.get_length();
 
       char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
-      m_ptree->m_editfile.seek(0, ::file::seek_begin);
-      m_ptree->m_editfile.read(psz, (::primitive::memory_size) iSize);
-      psz[(::primitive::memory_position) iSize] = '\0';
-      str.ReleaseBuffer();
-  //    str.replace("\n", "\r\n");
 
+      m_ptree->m_editfile.seek(0, ::file::seek_begin);
+
+      m_ptree->m_editfile.read(psz, (::primitive::memory_size) iSize);
+
+      psz[(::primitive::memory_position) iSize] = '\0';
+
+      str.ReleaseBuffer();
+  
    }
 
 
@@ -861,134 +939,226 @@ namespace user
    {
 
       file_position iEnd;
+
       file_position iStart;
+
       if(m_ptree->m_iSelEnd < 0)
       {
+
          if(m_ptree->m_iSelStart < 0)
          {
+
             iEnd = (file_position) m_ptree->m_editfile.get_length();
+
             iStart = 0;
+
          }
          else
          {
+            
             iStart = m_ptree->m_iSelStart;
+
             iEnd = (file_position) m_ptree->m_editfile.get_length();
+
          }
+
       }
       else
       {
+         
          if(m_ptree->m_iSelStart < 0)
          {
+         
             iEnd = m_ptree->m_iSelEnd;
+
             iStart = 0;
+
          }
          else
          {
+            
             iEnd = m_ptree->m_iSelEnd;
+            
             iStart = m_ptree->m_iSelStart;
+
          }
+
       }
+
       if(iEnd < iStart)
       {
+
          file_position iSwap   = iEnd;
+
          iEnd        = iStart;
+
          iStart      = iSwap;
+
       }
+
       file_position iSize = iEnd - iStart;
+
       char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
+
       m_ptree->m_editfile.seek((file_offset) iStart, ::file::seek_begin);
+
       m_ptree->m_editfile.read(psz, (::primitive::memory_size) (iSize));
+
       psz[(::primitive::memory_position)iSize] = '\0';
+
       str.ReleaseBuffer();
+
       str.replace("\n", "\r\n");
+
    }
+
 
    void edit_plain_text::_001SetSelText(const char * psz, ::action::context actioncontext)
    {
+      
       m_ptree->m_editfile.seek(m_ptree->m_iSelStart, ::file::seek_begin);
-       m_ptree->m_editfile.Delete((primitive::memory_size) (m_ptree->m_iSelEnd - m_ptree->m_iSelStart));
+      
+      m_ptree->m_editfile.Delete((primitive::memory_size) (m_ptree->m_iSelEnd - m_ptree->m_iSelStart));
+      
       m_ptree->m_editfile.seek(m_ptree->m_iSelStart, ::file::seek_begin);
+      
       m_ptree->m_editfile.Insert(psz, strlen(psz));
+      
       _001OnUpdate(actioncontext);
+      
       RedrawWindow();
+
    }
+
 
    void edit_plain_text::_001SetSel(strsize iSelStart, strsize iSelEnd)
    {
+      
       m_ptree->m_iSelStart = iSelStart;
+
       m_ptree->m_iSelEnd = iSelEnd;
+
       RedrawWindow();
+
    }
+
 
    void edit_plain_text::_002OnLButtonDown(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::mouse, pmouse, pobj)
+
       point pt = pmouse->m_pt;
+
       ScreenToClient(&pt);
+
       m_bMouseDown = true;
+
       ::draw2d::memory_graphics pdc(allocer());
+
       if(pdc.is_null())
          return;
+
       m_ptree->m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
+
       m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
 
       RedrawWindow();
+
       Session.user()->set_keyboard_focus(this);
+
       Session.user()->set_mouse_focus_LButtonDown(this);
+
       pmouse->m_bRet = true;
+
       pmouse->set_lresult(1);
+
    }
+
 
    void edit_plain_text::_002OnLButtonUp(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::mouse, pmouse, pobj)
+
       point pt = pmouse->m_pt;
+
       ScreenToClient(&pt);
+
       ::draw2d::memory_graphics pdc(allocer());
+
       m_ptree->m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
+
       m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
 
       RedrawWindow();
+
       m_bMouseDown = false;
+
       pmouse->m_bRet = true;
+
       pmouse->set_lresult(1);
-      //System.simple_message_box(m_strText);
+
    }
+
 
    void edit_plain_text::_002OnRButtonDown(signal_details * pobj)
    {
+
       SCAST_PTR(::message::mouse, pmouse, pobj)
+
       point pt = pmouse->m_pt;
+
       ScreenToClient(&pt);
+
       m_bMouseDown = true;
+
       ::draw2d::memory_graphics pdc(allocer());
+
       m_ptree->m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
+
       m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
 
       RedrawWindow();
+
       Session.user()->set_keyboard_focus(this);
+
       Session.user()->set_mouse_focus_RButtonDown(this);
+
       pmouse->m_bRet = true;
+
       pmouse->set_lresult(1);
+
    }
+
 
    void edit_plain_text::_002OnRButtonUp(signal_details * pobj)
    {
+   
       SCAST_PTR(::message::mouse, pmouse, pobj)
+
       point pt = pmouse->m_pt;
+
       ScreenToClient(&pt);
+
       ::draw2d::memory_graphics pdc(allocer());
+
       m_ptree->m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
+
       m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
 
       RedrawWindow();
+
       m_bMouseDown = false;
 
       track_popup_xml_matter_menu("ystem/edit_focus_popup.xml", 0, pobj);
 
       pmouse->set_lresult(1);
+
       pmouse->m_bRet = true;
+
    }
+
 
    void edit_plain_text::_001OnCalcLayoutProc(::user::elemental * pview, ::draw2d::graphics * pdc)
    {
@@ -999,10 +1169,10 @@ namespace user
       
       select_font(pdc);
 
-
       int32_t y = 0;
-///      int32_t i = 1;
+
       pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+
       size size3 = pdc->GetTextExtent(unitext("gqYALﾍ"));
 
       rect rectClient;
@@ -1010,16 +1180,20 @@ namespace user
       GetClientRect(rectClient);
 
       m_iLineHeight = size3.cy;
-      //char buf[4096 + 1];
-      //UINT uiRead;
-      //LPTSTR lpsz;
+
       m_ptree->m_editfile.seek(0, ::file::seek_begin);
+
       y = (int32_t) (m_iLineHeight * m_iaLineIndex.get_size());
+
       if(y <= 0)
+      {
+
          y = 200;
-   //   pview->SetScrollSizes(MM_TEXT,
-     //    m_size);
+
+      }
+   
    }
+
 
    void edit_plain_text::_001OnCalcLayout(::draw2d::graphics * pdc)
    {
@@ -1029,133 +1203,221 @@ namespace user
       select_font(pdc);
 
       stringa & straLines = m_lines.lines;
+
       strsize iSelStart;
+
       strsize iSelEnd;
+
       _001GetViewSel(iSelStart, iSelEnd);
-      //int32_t lim = 0;
+
       int32_t iLineHeight;
-//      int32_t y = 0;
-//      bool bFound = false;
+
       string strLine;
+
       sized size3;
+
       pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+
       pdc->GetTextExtent(size3, unitext("gqYALﾍWM"));
+
       sized size;
+
       m_scrollinfo.m_sizeTotal.cx = 0;
+
       iLineHeight = (int32_t) size3.cy;
+
       for(int32_t i = 0; i < straLines.get_size(); i++)
       {
+
          strLine = straLines[i];
+
          strLine.replace("\t", "   ");
+
          size = (uint32_t) (strLine.get_length() * size3.cx / 8);
-//         maxcy = MAX(size.cy, size3.cy);
+
          if(size.cx > m_scrollinfo.m_sizeTotal.cx)
-            m_scrollinfo.m_sizeTotal.cx = (int32_t) size.cx;
+         {
+
+            m_scrollinfo.m_sizeTotal.cx = (int32_t)size.cx;
+
+         }
 
       }
+
       m_scrollinfo.m_sizeTotal.cy = ((int32_t) m_iaLineIndex.get_count() * iLineHeight);
+
       rect rectClient;
+
       GetClientRect(rectClient);
+
       class size sizePage;
+
       sizePage.cx = rectClient.width();
+
       sizePage.cy = rectClient.height();
+
       m_scrollinfo.m_sizeTotal.cy += sizePage.cy;
+
       m_scrollinfo.m_sizePage = sizePage;
+
    }
+
 
    index edit_plain_text::SelToLine(strsize iSel)
    {
+
       synch_lock sl(m_spmutex);
+
       iSel -= m_iViewOffset;
+
       stringa & straLines = m_lines.lines;
+
       strsize i1;
+
       strsize i2 = 0;
+
       for(index i = 0; i < straLines.get_size(); i++)
       {
+
          i1 = i2;
+
          i2 = i1 + straLines[i].get_length();
-         if(iSel >= i1
-            && iSel <= i2)
+
+         if(iSel >= i1 && iSel <= i2)
          {
+
             return i;
+
          }
+
       }
+
       return -1;
+
    }
+
 
    index edit_plain_text::SelToLineX(strsize iSel, int32_t & x)
    {
+
       synch_lock sl(m_spmutex);
+
       iSel -= m_iViewOffset;
+
       stringa & straLines = m_lines.lines;
+
       strsize i1;
+
       strsize i2 = 0;
+
       for(index i = 0; i < straLines.get_size(); i++)
       {
+
          i1 = i2;
+
          i2 = i1 + straLines[i].get_length();
-         if(iSel >= i1
-            && iSel < i2)
+
+         if(iSel >= i1 && iSel < i2)
          {
+
             ::draw2d::memory_graphics pgraphics(allocer());
 
             select_font(pgraphics);
+
             pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+
             size size1 = pgraphics->GetTextExtent(straLines[i], (int32_t) straLines[i].length(), (int32_t) (iSel - i1));
+
             size size2 = pgraphics->GetTextExtent(straLines[i], (int32_t) iSel - i1);
-
-
 
             x = (size1.cx + size2.cx) / 2;
 
             return i;
+
          }
+
       }
+
       return -1;
+
    }
 
 
    strsize edit_plain_text::LineColumnToSel(index iLine, index iColumn)
    {
+
       synch_lock sl(m_spmutex);
-      //int32_t i1;
-//      int32_t i2 = 0;
+
       while(iLine < 0)
       {
+
          OneLineUp();
+
          if(m_iViewOffset == 0)
          {
+
             iLine = 0;
+
             break;
+
          }
+
          iLine++;
+
       }
+
       stringa & straLines = m_lines.lines;
+
       if(iLine >= straLines.get_size())
       {
+
          return 0;
+
       }
+
       strsize iOffset = 0;
+
       for(int32_t i = 0; i < iLine; i++)
       {
+
          iOffset += straLines[i].get_length();
+
       }
+
       stringa stra;
+
       string strLine;
+
       stra.remove_all();
+
       stra.add_smallest_tokens(straLines[iLine], m_straSep, FALSE, FALSE);
+
       if(stra.get_size() > 0)
       {
+
          strLine = stra[0];
+
       }
       else
       {
+
          strLine.Empty();
+
       }
+
       if(iColumn < 0)
+      {
+
          iColumn = iColumn + 1 + strLine.get_length();
+
+      }
+
       if(iColumn > strLine.get_length())
+      {
+
          iColumn = strLine.get_length();
+
+      }
       return m_iViewOffset + iOffset + iColumn;
    }
 
