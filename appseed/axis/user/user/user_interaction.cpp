@@ -1228,29 +1228,29 @@ namespace user
 
    void interaction::_001OnKeyDown(signal_details * pobj)
    {
-      if(Session.user()->get_keyboard_focus() != this
-         && Session.user()->get_keyboard_focus() != NULL)
-      {
-         Session.user()->get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
-      }
+      //if(Session.user()->get_keyboard_focus() != this
+      //   && Session.user()->get_keyboard_focus() != NULL)
+      //{
+        // Session.user()->get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
+      //}
    }
 
    void interaction::_001OnKeyUp(signal_details * pobj)
    {
-      if(Session.user()->get_keyboard_focus() != this
-         && Session.user()->get_keyboard_focus() != NULL)
-      {
-         Session.user()->get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
-      }
+      //if(Session.user()->get_keyboard_focus() != this
+         ///&& Session.user()->get_keyboard_focus() != NULL)
+      //{
+        // Session.user()->get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
+      //}
    }
 
    void interaction::_001OnChar(signal_details * pobj)
    {
-      if(Session.user()->get_keyboard_focus() != this
-         && Session.user()->get_keyboard_focus() != NULL)
-      {
-         Session.user()->get_keyboard_focus()->keyboard_focus_OnChar(pobj);
-      }
+      //if(Session.user()->get_keyboard_focus() != this
+        // && Session.user()->get_keyboard_focus() != NULL)
+      //{
+        // Session.user()->get_keyboard_focus()->keyboard_focus_OnChar(pobj);
+      //}
    }
 
    void interaction::_001OnTimer(signal_details * pobj)
