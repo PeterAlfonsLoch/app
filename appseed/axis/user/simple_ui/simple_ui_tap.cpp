@@ -288,7 +288,13 @@ namespace simple_ui
 
       }
 
-      simple_ui_draw_text(pgraphics);
+
+      if(m_estockicon == stock_icon_none)
+      {
+
+         simple_ui_draw_text(pgraphics);
+
+      }
 
    }
 
