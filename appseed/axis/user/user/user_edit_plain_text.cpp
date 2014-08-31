@@ -1641,22 +1641,26 @@ namespace user
 
    void edit_plain_text::_002OnMouseMove(signal_details * pobj)
    {
+
       SCAST_PTR(::message::mouse, pmouse, pobj)
-      //pmouse->m_ecursor = ::visual::cursor_text_select;
+      
       point pt = pmouse->m_pt;
+
       ScreenToClient(&pt);
 
       pmouse->m_ecursor = ::visual::cursor_text_select;
 
       if(m_bMouseDown)
       {
+
          ::draw2d::memory_graphics pdc(allocer());
+
          m_ptree->m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
 
-       //  RedrawWindow();
       }
 
    }
+
 
    void edit_plain_text::_001GetViewSel(strsize &iSelStart, strsize &iSelEnd)
    {
