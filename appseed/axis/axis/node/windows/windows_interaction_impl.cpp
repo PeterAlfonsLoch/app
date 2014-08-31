@@ -769,11 +769,22 @@ namespace windows
       }
 
       WNDPROC pfnWndProc;
+
       if((pfnWndProc = *GetSuperWndProcAddr()) == NULL)
+      {
+
          return ::DefWindowProc(get_handle(),nMsg,wParam,lParam);
+
+      }
       else
+      {
+
          return ::CallWindowProc(pfnWndProc,get_handle(),nMsg,wParam,lParam);
+
+      }
+
    }
+
 
    WNDPROC* interaction_impl::GetSuperWndProcAddr()
    {
