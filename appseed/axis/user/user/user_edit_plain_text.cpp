@@ -41,7 +41,6 @@ namespace user
       m_iViewSize          = 1000;
       m_bMouseDown         = false;
       m_dwCaretTime        = 500;
-      m_dwLastCaret        = get_tick_count();
       set_cursor(::visual::cursor_text_select);
 
       m_scrollinfo.m_bVScrollBarEnable = false;
@@ -271,6 +270,8 @@ namespace user
 //      COLORREF crBorder = ca.get_rgb() | (0xff << 24);
       //pdc->Draw3dRect(rectClient, crBorder, crBorder);
 
+      bool bCaretOn = ((get_tick_count() - m_dwFocustStart) % (m_dwCaretTime * 2)) < m_dwCaretTime;
+
       if(m_ptree == NULL)
          return;
 
@@ -452,13 +453,13 @@ namespace user
 
             //maxcy = MAX(size1.cy, size2.cy);
             //maxcy = MAX(maxcy, size3.cy);
-            if(m_bFocus && m_bCaretOn && i3 == str1.get_length())
+            if(m_bFocus && bCaretOn && i3 == str1.get_length())
             {
                pdc->SelectObject(penCaret);
                pdc->MoveTo(left + size1.cx, y);
                pdc->LineTo(left + size1.cx, y + iLineHeight);
             }
-            else if(m_bFocus && m_bCaretOn && i3 == (str1.get_length() + str2.get_length()))
+            else if(m_bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
             {
                pdc->SelectObject(penCaret);
                pdc->MoveTo(left + size2.cx + size1.cx, y);
@@ -1794,8 +1795,6 @@ namespace user
       {
          m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
       }
-      m_dwLastCaret = ::get_tick_count();
-      m_bCaretOn = true;
       }
       RedrawWindow();
 
@@ -1846,16 +1845,16 @@ namespace user
 
    void edit_plain_text::_001OnKeyboardFocusTimer(int32_t iTimer)
    {
-      if(iTimer == 0)
-      {
-         if(m_dwLastCaret + m_dwCaretTime < get_tick_count())
-         {
-            m_dwLastCaret = get_tick_count();
-            m_bCaretOn = !m_bCaretOn;
-            //RedrawWindow();
-            RedrawWindow();
-         }
-      }
+      //if(iTimer == 0)
+      //{
+      //   if(m_dwLastCaret + m_dwCaretTime < get_tick_count())
+      //   {
+      //      m_dwLastCaret = get_tick_count();
+      //      m_bCaretOn = !m_bCaretOn;
+      //      //RedrawWindow();
+      //      RedrawWindow();
+      //   }
+      //}
    }
 
    void edit_plain_text::OneLineUp()
@@ -2334,12 +2333,16 @@ namespace user
       return is_window_enabled() && IsWindowVisible();
    }
 
+   
    bool edit_plain_text::keyboard_focus_OnSetFocus()
    {
-      m_bCaretOn = true;
-      m_dwLastCaret = get_tick_count();
-      SetTimer(100, 100, NULL);
-      RedrawWindow();
+      
+      ::user::scroll_view::keyboard_focus_OnSetFocus();
+
+      //m_bCaretOn = true;
+      //m_dwLastCaret = get_tick_count();
+      //SetTimer(100, 100, NULL);
+      //RedrawWindow();
       return true;
    }
 

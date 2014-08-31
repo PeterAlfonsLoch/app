@@ -82,6 +82,7 @@ namespace simple_ui
          TRACE("Print Job Is Printing page %d",pprintjob->m_iPrintingPage);
       }
 
+      bool bCaretOn = ((get_tick_count() - m_dwFocustStart) % (m_dwCaretTime * 2)) < m_dwCaretTime;
 
 
       //rectClient.deflate(0, 0, 1, 1);
@@ -274,13 +275,13 @@ namespace simple_ui
 
          //maxcy = MAX(size1.cy, size2.cy);
          //maxcy = MAX(maxcy, size3.cy);
-         if(m_bFocus && m_bCaretOn && i3 == str1.get_length())
+         if(m_bFocus && bCaretOn && i3 == str1.get_length())
          {
             pdc->SelectObject(penCaret);
             pdc->MoveTo(left + size1.cx,y);
             pdc->LineTo(left + size1.cx,y + iLineHeight);
          }
-         else if(m_bFocus && m_bCaretOn && i3 == (str1.get_length() + str2.get_length()))
+         else if(m_bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
          {
             pdc->SelectObject(penCaret);
             pdc->MoveTo(left + size2.cx + size1.cx,y);
