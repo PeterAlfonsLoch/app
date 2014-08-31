@@ -42,7 +42,10 @@
 #  endif
 # endif
 
-# include <stddef.h>		/* size_t */
+
+typedef long glong;
+
+# include <stddef.h>		/* glong */
 # include <sys/types.h>		/* ssize_t */
 //# include <idn-int.h>		/* uint32_t */
 
@@ -188,14 +191,14 @@ extern "C"
 
   /* API */
 
-  extern IDNAPI int stringprep_4i (uint32_t * ucs4, size_t * len,
-				   size_t maxucs4len,
+  extern IDNAPI int stringprep_4i (uint32_t * ucs4, glong * len,
+				   glong maxucs4len,
 				   Stringprep_profile_flags flags,
 				   const Stringprep_profile * profile);
-  extern IDNAPI int stringprep_4zi (uint32_t * ucs4, size_t maxucs4len,
+  extern IDNAPI int stringprep_4zi (uint32_t * ucs4, glong maxucs4len,
 				    Stringprep_profile_flags flags,
 				    const Stringprep_profile * profile);
-  extern IDNAPI int stringprep (char *in, size_t maxlen,
+  extern IDNAPI int stringprep (char *in, glong maxlen,
 				Stringprep_profile_flags flags,
 				const Stringprep_profile * profile);
 
@@ -216,11 +219,11 @@ extern "C"
 
   extern IDNAPI uint32_t *stringprep_utf8_to_ucs4 (const char *str,
 						   ssize_t len,
-						   size_t * items_written);
+						   glong * items_written);
   extern IDNAPI char *stringprep_ucs4_to_utf8 (const uint32_t * str,
 					       ssize_t len,
-					       size_t * items_read,
-					       size_t * items_written);
+					       glong * items_read,
+					       glong * items_written);
 
   extern IDNAPI char *stringprep_utf8_nfkc_normalize (const char *str,
 						      ssize_t len);

@@ -1192,10 +1192,10 @@ static const Pr29 pr29[] = {
   {NULL, NULL}
 };
 
-static size_t
+static glong
 first_column (uint32_t c)
 {
-  size_t i, j;
+  glong i, j;
 
   for (i = 0; pr29[i].first; i++)
     for (j = 0; pr29[i].first[j]; j++)
@@ -1206,9 +1206,9 @@ first_column (uint32_t c)
 }
 
 static int
-in_last_column_row (uint32_t c, size_t row)
+in_last_column_row (uint32_t c, glong row)
 {
-  size_t i;
+  glong i;
 
   for (i = 0; pr29[row - 1].last[i]; i++)
     if (c == pr29[row - 1].last[i])
@@ -1217,10 +1217,10 @@ in_last_column_row (uint32_t c, size_t row)
   return 0;
 }
 
-static size_t
+static glong
 combinationclass (uint32_t c)
 {
-  size_t i;
+  glong i;
 
   for (i = 0; nzcc[i]; i++)
     if (c == nzcc[i])
@@ -1244,9 +1244,9 @@ combinationclass (uint32_t c)
  *   implementations).
  **/
 int
-pr29_4 (const uint32_t * in, size_t len)
+pr29_4 (const uint32_t * in, glong len)
 {
-  size_t i, j, k, row;
+  glong i, j, k, row;
 
   /*
    * The problem sequence are of the form:
@@ -1287,7 +1287,7 @@ pr29_4 (const uint32_t * in, size_t len)
 int
 pr29_4z (const uint32_t * in)
 {
-  size_t len;
+  glong len;
 
   for (len = 0; in[len]; len++)
     ;

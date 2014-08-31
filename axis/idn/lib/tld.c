@@ -41,6 +41,8 @@
 /* Get specifications. */
 #include <tld.h>
 
+typedef long glong;
+
 /* Array of built-in domain restriction structures.  See tlds.c.  */
 extern const Tld_table *_tld_tables[];
 
@@ -119,10 +121,10 @@ tld_default_table (const char *tld, const Tld_table ** overrides)
  *   #Tld_rc error code otherwise.
  */
 int
-tld_get_4 (const uint32_t * in, size_t inlen, char **out)
+tld_get_4 (const uint32_t * in, glong inlen, char **out)
 {
   const uint32_t *ipos;
-  size_t olen;
+  glong olen;
 
   *out = NULL;
   if (!in || inlen == 0)
@@ -197,7 +199,7 @@ int
 tld_get_z (const char *in, char **out)
 {
   uint32_t *iucs;
-  size_t i, ilen;
+  glong i, ilen;
   int rc;
 
   ilen = strlen (in);
@@ -277,7 +279,7 @@ _tld_checkchar (uint32_t ch, const Tld_table * tld)
  *   failure conditions.
  */
 int
-tld_check_4t (const uint32_t * in, size_t inlen, size_t * errpos,
+tld_check_4t (const uint32_t * in, glong inlen, glong * errpos,
 	      const Tld_table * tld)
 {
   const uint32_t *ipos;
@@ -319,7 +321,7 @@ tld_check_4t (const uint32_t * in, size_t inlen, size_t * errpos,
  *   failure conditions.
  */
 int
-tld_check_4tz (const uint32_t * in, size_t * errpos, const Tld_table * tld)
+tld_check_4tz (const uint32_t * in, glong * errpos, const Tld_table * tld)
 {
   const uint32_t *ipos = in;
 
@@ -356,7 +358,7 @@ tld_check_4tz (const uint32_t * in, size_t * errpos, const Tld_table * tld)
  *   failure conditions.
  */
 int
-tld_check_4 (const uint32_t * in, size_t inlen, size_t * errpos,
+tld_check_4 (const uint32_t * in, glong inlen, glong * errpos,
 	     const Tld_table ** overrides)
 {
   const Tld_table *tld;
@@ -406,7 +408,7 @@ tld_check_4 (const uint32_t * in, size_t inlen, size_t * errpos,
  *   failure conditions.
  */
 int
-tld_check_4z (const uint32_t * in, size_t * errpos,
+tld_check_4z (const uint32_t * in, glong * errpos,
 	      const Tld_table ** overrides)
 {
   const uint32_t *ipos = in;
@@ -444,10 +446,10 @@ tld_check_4z (const uint32_t * in, size_t * errpos,
  *   failure conditions.
  */
 int
-tld_check_8z (const char *in, size_t * errpos, const Tld_table ** overrides)
+tld_check_8z (const char *in, glong * errpos, const Tld_table ** overrides)
 {
   uint32_t *iucs;
-  size_t ilen;
+  glong ilen;
   int rc;
 
   if (!in)
@@ -489,7 +491,7 @@ tld_check_8z (const char *in, size_t * errpos, const Tld_table ** overrides)
  *   failure conditions.
  */
 int
-tld_check_lz (const char *in, size_t * errpos, const Tld_table ** overrides)
+tld_check_lz (const char *in, glong * errpos, const Tld_table ** overrides)
 {
   char *utf8;
   int rc;

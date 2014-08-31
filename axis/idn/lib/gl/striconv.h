@@ -41,8 +41,8 @@ extern "C" {
    If successful: The resulting string is stored in *RESULTP and its length
    in *LENGTHP.  *RESULTP is set to a freshly allocated memory block, or is
    unchanged if no dynamic memory allocation was necessary.  */
-extern int mem_cd_iconv (const char *src, size_t srclen, iconv_t cd,
-                         char **resultp, size_t *lengthp);
+extern int mem_cd_iconv (const char *src, glong srclen, iconv_t cd,
+                         char **resultp, glong *lengthp);
 
 /* Convert an entire string from one encoding to another, using iconv.
    The original string is the NUL-terminated string starting at SRC.

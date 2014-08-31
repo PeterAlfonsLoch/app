@@ -167,10 +167,10 @@ _GL_WARN_ON_USE (atoll, "atoll is unportable - "
 #   undef calloc
 #   define calloc rpl_calloc
 #  endif
-_GL_FUNCDECL_RPL (calloc, void *, (size_t nmemb, size_t size));
-_GL_CXXALIAS_RPL (calloc, void *, (size_t nmemb, size_t size));
+_GL_FUNCDECL_RPL (calloc, void *, (glong nmemb, glong size));
+_GL_CXXALIAS_RPL (calloc, void *, (glong nmemb, glong size));
 # else
-_GL_CXXALIAS_SYS (calloc, void *, (size_t nmemb, size_t size));
+_GL_CXXALIAS_SYS (calloc, void *, (glong nmemb, glong size));
 # endif
 _GL_CXXALIASWARN (calloc);
 #elif defined GNULIB_POSIXCHECK
@@ -279,10 +279,10 @@ _GL_WARN_ON_USE (grantpt, "grantpt is not portable - "
 #   undef malloc
 #   define malloc rpl_malloc
 #  endif
-_GL_FUNCDECL_RPL (malloc, void *, (size_t size));
-_GL_CXXALIAS_RPL (malloc, void *, (size_t size));
+_GL_FUNCDECL_RPL (malloc, void *, (glong size));
+_GL_CXXALIAS_RPL (malloc, void *, (glong size));
 # else
-_GL_CXXALIAS_SYS (malloc, void *, (size_t size));
+_GL_CXXALIAS_SYS (malloc, void *, (glong size));
 # endif
 _GL_CXXALIASWARN (malloc);
 #elif defined GNULIB_POSIXCHECK && !_GL_USE_STDLIB_ALLOC
@@ -299,10 +299,10 @@ _GL_WARN_ON_USE (malloc, "malloc is not POSIX compliant everywhere - "
 #   undef mbtowc
 #   define mbtowc rpl_mbtowc
 #  endif
-_GL_FUNCDECL_RPL (mbtowc, int, (wchar_t *pwc, const char *s, size_t n));
-_GL_CXXALIAS_RPL (mbtowc, int, (wchar_t *pwc, const char *s, size_t n));
+_GL_FUNCDECL_RPL (mbtowc, int, (wchar_t *pwc, const char *s, glong n));
+_GL_CXXALIAS_RPL (mbtowc, int, (wchar_t *pwc, const char *s, glong n));
 # else
-_GL_CXXALIAS_SYS (mbtowc, int, (wchar_t *pwc, const char *s, size_t n));
+_GL_CXXALIAS_SYS (mbtowc, int, (wchar_t *pwc, const char *s, glong n));
 # endif
 _GL_CXXALIASWARN (mbtowc);
 #endif
@@ -489,13 +489,13 @@ _GL_WARN_ON_USE (ptsname, "ptsname is not portable - "
 #   undef ptsname_r
 #   define ptsname_r rpl_ptsname_r
 #  endif
-_GL_FUNCDECL_RPL (ptsname_r, int, (int fd, char *buf, size_t len));
-_GL_CXXALIAS_RPL (ptsname_r, int, (int fd, char *buf, size_t len));
+_GL_FUNCDECL_RPL (ptsname_r, int, (int fd, char *buf, glong len));
+_GL_CXXALIAS_RPL (ptsname_r, int, (int fd, char *buf, glong len));
 # else
 #  if !@HAVE_PTSNAME_R@
-_GL_FUNCDECL_SYS (ptsname_r, int, (int fd, char *buf, size_t len));
+_GL_FUNCDECL_SYS (ptsname_r, int, (int fd, char *buf, glong len));
 #  endif
-_GL_CXXALIAS_SYS (ptsname_r, int, (int fd, char *buf, size_t len));
+_GL_CXXALIAS_SYS (ptsname_r, int, (int fd, char *buf, glong len));
 # endif
 _GL_CXXALIASWARN (ptsname_r);
 #elif defined GNULIB_POSIXCHECK
@@ -561,11 +561,11 @@ _GL_WARN_ON_USE (srandom, "srandom is unportable - "
 #if @GNULIB_RANDOM@
 # if !@HAVE_RANDOM@
 _GL_FUNCDECL_SYS (initstate, char *,
-                  (unsigned int seed, char *buf, size_t buf_size)
+                  (unsigned int seed, char *buf, glong buf_size)
                   _GL_ARG_NONNULL ((2)));
 # endif
 _GL_CXXALIAS_SYS (initstate, char *,
-                  (unsigned int seed, char *buf, size_t buf_size));
+                  (unsigned int seed, char *buf, glong buf_size));
 _GL_CXXALIASWARN (initstate);
 #elif defined GNULIB_POSIXCHECK
 # undef initstate
@@ -651,21 +651,21 @@ _GL_WARN_ON_USE (srandom_r, "srandom_r is unportable - "
 #   define initstate_r rpl_initstate_r
 #  endif
 _GL_FUNCDECL_RPL (initstate_r, int,
-                  (unsigned int seed, char *buf, size_t buf_size,
+                  (unsigned int seed, char *buf, glong buf_size,
                    struct random_data *rand_state)
                   _GL_ARG_NONNULL ((2, 4)));
 _GL_CXXALIAS_RPL (initstate_r, int,
-                  (unsigned int seed, char *buf, size_t buf_size,
+                  (unsigned int seed, char *buf, glong buf_size,
                    struct random_data *rand_state));
 # else
 #  if !@HAVE_RANDOM_R@
 _GL_FUNCDECL_SYS (initstate_r, int,
-                  (unsigned int seed, char *buf, size_t buf_size,
+                  (unsigned int seed, char *buf, glong buf_size,
                    struct random_data *rand_state)
                   _GL_ARG_NONNULL ((2, 4)));
 #  endif
 _GL_CXXALIAS_SYS (initstate_r, int,
-                  (unsigned int seed, char *buf, size_t buf_size,
+                  (unsigned int seed, char *buf, glong buf_size,
                    struct random_data *rand_state));
 # endif
 _GL_CXXALIASWARN (initstate_r);
@@ -714,10 +714,10 @@ _GL_WARN_ON_USE (setstate_r, "setstate_r is unportable - "
 #   undef realloc
 #   define realloc rpl_realloc
 #  endif
-_GL_FUNCDECL_RPL (realloc, void *, (void *ptr, size_t size));
-_GL_CXXALIAS_RPL (realloc, void *, (void *ptr, size_t size));
+_GL_FUNCDECL_RPL (realloc, void *, (void *ptr, glong size));
+_GL_CXXALIAS_RPL (realloc, void *, (void *ptr, glong size));
 # else
-_GL_CXXALIAS_SYS (realloc, void *, (void *ptr, size_t size));
+_GL_CXXALIAS_SYS (realloc, void *, (void *ptr, glong size));
 # endif
 _GL_CXXALIASWARN (realloc);
 #elif defined GNULIB_POSIXCHECK && !_GL_USE_STDLIB_ALLOC

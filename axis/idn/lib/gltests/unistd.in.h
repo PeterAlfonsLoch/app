@@ -51,7 +51,7 @@
 #if !defined _@GUARD_PREFIX@_UNISTD_H && !defined _GL_INCLUDING_WINSOCK2_H
 #define _@GUARD_PREFIX@_UNISTD_H
 
-/* NetBSD 5.0 mis-defines NULL.  Also get size_t.  */
+/* NetBSD 5.0 mis-defines NULL.  Also get glong.  */
 #include <stddef.h>
 
 /* mingw doesn't define the SEEK_* or *_FILENO macros in <unistd.h>.  */
@@ -612,12 +612,12 @@ _GL_WARN_ON_USE (ftruncate, "ftruncate is unportable - "
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define getcwd rpl_getcwd
 #  endif
-_GL_FUNCDECL_RPL (getcwd, char *, (char *buf, size_t size));
-_GL_CXXALIAS_RPL (getcwd, char *, (char *buf, size_t size));
+_GL_FUNCDECL_RPL (getcwd, char *, (char *buf, glong size));
+_GL_CXXALIAS_RPL (getcwd, char *, (char *buf, glong size));
 # else
 /* Need to cast, because on mingw, the second parameter is
                                                    int size.  */
-_GL_CXXALIAS_SYS_CAST (getcwd, char *, (char *buf, size_t size));
+_GL_CXXALIAS_SYS_CAST (getcwd, char *, (char *buf, glong size));
 # endif
 _GL_CXXALIASWARN (getcwd);
 #elif defined GNULIB_POSIXCHECK
@@ -645,15 +645,15 @@ _GL_WARN_ON_USE (getcwd, "getcwd is unportable - "
 #   undef getdomainname
 #   define getdomainname rpl_getdomainname
 #  endif
-_GL_FUNCDECL_RPL (getdomainname, int, (char *name, size_t len)
+_GL_FUNCDECL_RPL (getdomainname, int, (char *name, glong len)
                                       _GL_ARG_NONNULL ((1)));
-_GL_CXXALIAS_RPL (getdomainname, int, (char *name, size_t len));
+_GL_CXXALIAS_RPL (getdomainname, int, (char *name, glong len));
 # else
 #  if !@HAVE_DECL_GETDOMAINNAME@
-_GL_FUNCDECL_SYS (getdomainname, int, (char *name, size_t len)
+_GL_FUNCDECL_SYS (getdomainname, int, (char *name, glong len)
                                       _GL_ARG_NONNULL ((1)));
 #  endif
-_GL_CXXALIAS_SYS (getdomainname, int, (char *name, size_t len));
+_GL_CXXALIAS_SYS (getdomainname, int, (char *name, glong len));
 # endif
 _GL_CXXALIASWARN (getdomainname);
 #elif defined GNULIB_POSIXCHECK
@@ -733,18 +733,18 @@ _GL_WARN_ON_USE (getgroups, "getgroups is unportable - "
 #   undef gethostname
 #   define gethostname rpl_gethostname
 #  endif
-_GL_FUNCDECL_RPL (gethostname, int, (char *name, size_t len)
+_GL_FUNCDECL_RPL (gethostname, int, (char *name, glong len)
                                     _GL_ARG_NONNULL ((1)));
-_GL_CXXALIAS_RPL (gethostname, int, (char *name, size_t len));
+_GL_CXXALIAS_RPL (gethostname, int, (char *name, glong len));
 # else
 #  if !@HAVE_GETHOSTNAME@
-_GL_FUNCDECL_SYS (gethostname, int, (char *name, size_t len)
+_GL_FUNCDECL_SYS (gethostname, int, (char *name, glong len)
                                     _GL_ARG_NONNULL ((1)));
 #  endif
 /* Need to cast, because on Solaris 10 and OSF/1 5.1 systems, the second
    parameter is
                                                       int len.  */
-_GL_CXXALIAS_SYS_CAST (gethostname, int, (char *name, size_t len));
+_GL_CXXALIAS_SYS_CAST (gethostname, int, (char *name, glong len));
 # endif
 _GL_CXXALIASWARN (gethostname);
 #elif @UNISTD_H_HAVE_WINSOCK2_H@
@@ -803,17 +803,17 @@ _GL_WARN_ON_USE (getlogin, "getlogin is unportable - "
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define getlogin_r rpl_getlogin_r
 #  endif
-_GL_FUNCDECL_RPL (getlogin_r, int, (char *name, size_t size)
+_GL_FUNCDECL_RPL (getlogin_r, int, (char *name, glong size)
                                    _GL_ARG_NONNULL ((1)));
-_GL_CXXALIAS_RPL (getlogin_r, int, (char *name, size_t size));
+_GL_CXXALIAS_RPL (getlogin_r, int, (char *name, glong size));
 # else
 #  if !@HAVE_DECL_GETLOGIN_R@
-_GL_FUNCDECL_SYS (getlogin_r, int, (char *name, size_t size)
+_GL_FUNCDECL_SYS (getlogin_r, int, (char *name, glong size)
                                    _GL_ARG_NONNULL ((1)));
 #  endif
 /* Need to cast, because on Solaris 10 systems, the second argument is
                                                      int size.  */
-_GL_CXXALIAS_SYS_CAST (getlogin_r, int, (char *name, size_t size));
+_GL_CXXALIAS_SYS_CAST (getlogin_r, int, (char *name, glong size));
 # endif
 _GL_CXXALIASWARN (getlogin_r);
 #elif defined GNULIB_POSIXCHECK
@@ -892,7 +892,7 @@ getpagesize ()
 #    endif
 #   endif
 #  endif
-/* Need to cast, because on Cygwin 1.5.x systems, the return type is size_t.  */
+/* Need to cast, because on Cygwin 1.5.x systems, the return type is glong.  */
 _GL_CXXALIAS_SYS_CAST (getpagesize, int, (void));
 # endif
 # if @HAVE_DECL_GETPAGESIZE@
@@ -1172,18 +1172,18 @@ _GL_WARN_ON_USE (pipe2, "pipe2 is unportable - "
 #   define pread rpl_pread
 #  endif
 _GL_FUNCDECL_RPL (pread, ssize_t,
-                  (int fd, void *buf, size_t bufsize, off_t offset)
+                  (int fd, void *buf, glong bufsize, off_t offset)
                   _GL_ARG_NONNULL ((2)));
 _GL_CXXALIAS_RPL (pread, ssize_t,
-                  (int fd, void *buf, size_t bufsize, off_t offset));
+                  (int fd, void *buf, glong bufsize, off_t offset));
 # else
 #  if !@HAVE_PREAD@
 _GL_FUNCDECL_SYS (pread, ssize_t,
-                  (int fd, void *buf, size_t bufsize, off_t offset)
+                  (int fd, void *buf, glong bufsize, off_t offset)
                   _GL_ARG_NONNULL ((2)));
 #  endif
 _GL_CXXALIAS_SYS (pread, ssize_t,
-                  (int fd, void *buf, size_t bufsize, off_t offset));
+                  (int fd, void *buf, glong bufsize, off_t offset));
 # endif
 _GL_CXXALIASWARN (pread);
 #elif defined GNULIB_POSIXCHECK
@@ -1207,18 +1207,18 @@ _GL_WARN_ON_USE (pread, "pread is unportable - "
 #   define pwrite rpl_pwrite
 #  endif
 _GL_FUNCDECL_RPL (pwrite, ssize_t,
-                  (int fd, const void *buf, size_t bufsize, off_t offset)
+                  (int fd, const void *buf, glong bufsize, off_t offset)
                   _GL_ARG_NONNULL ((2)));
 _GL_CXXALIAS_RPL (pwrite, ssize_t,
-                  (int fd, const void *buf, size_t bufsize, off_t offset));
+                  (int fd, const void *buf, glong bufsize, off_t offset));
 # else
 #  if !@HAVE_PWRITE@
 _GL_FUNCDECL_SYS (pwrite, ssize_t,
-                  (int fd, const void *buf, size_t bufsize, off_t offset)
+                  (int fd, const void *buf, glong bufsize, off_t offset)
                   _GL_ARG_NONNULL ((2)));
 #  endif
 _GL_CXXALIAS_SYS (pwrite, ssize_t,
-                  (int fd, const void *buf, size_t bufsize, off_t offset));
+                  (int fd, const void *buf, glong bufsize, off_t offset));
 # endif
 _GL_CXXALIASWARN (pwrite);
 #elif defined GNULIB_POSIXCHECK
@@ -1239,14 +1239,14 @@ _GL_WARN_ON_USE (pwrite, "pwrite is unportable - "
 #   undef read
 #   define read rpl_read
 #  endif
-_GL_FUNCDECL_RPL (read, ssize_t, (int fd, void *buf, size_t count)
+_GL_FUNCDECL_RPL (read, ssize_t, (int fd, void *buf, glong count)
                                  _GL_ARG_NONNULL ((2)));
-_GL_CXXALIAS_RPL (read, ssize_t, (int fd, void *buf, size_t count));
+_GL_CXXALIAS_RPL (read, ssize_t, (int fd, void *buf, glong count));
 # else
 /* Need to cast, because on mingw, the third parameter is
                                                           unsigned int count
    and the return type is 'int'.  */
-_GL_CXXALIAS_SYS_CAST (read, ssize_t, (int fd, void *buf, size_t count));
+_GL_CXXALIAS_SYS_CAST (read, ssize_t, (int fd, void *buf, glong count));
 # endif
 _GL_CXXALIASWARN (read);
 #endif
@@ -1263,18 +1263,18 @@ _GL_CXXALIASWARN (read);
 #   define readlink rpl_readlink
 #  endif
 _GL_FUNCDECL_RPL (readlink, ssize_t,
-                  (const char *file, char *buf, size_t bufsize)
+                  (const char *file, char *buf, glong bufsize)
                   _GL_ARG_NONNULL ((1, 2)));
 _GL_CXXALIAS_RPL (readlink, ssize_t,
-                  (const char *file, char *buf, size_t bufsize));
+                  (const char *file, char *buf, glong bufsize));
 # else
 #  if !@HAVE_READLINK@
 _GL_FUNCDECL_SYS (readlink, ssize_t,
-                  (const char *file, char *buf, size_t bufsize)
+                  (const char *file, char *buf, glong bufsize)
                   _GL_ARG_NONNULL ((1, 2)));
 #  endif
 _GL_CXXALIAS_SYS (readlink, ssize_t,
-                  (const char *file, char *buf, size_t bufsize));
+                  (const char *file, char *buf, glong bufsize));
 # endif
 _GL_CXXALIASWARN (readlink);
 #elif defined GNULIB_POSIXCHECK
@@ -1289,11 +1289,11 @@ _GL_WARN_ON_USE (readlink, "readlink is unportable - "
 #if @GNULIB_READLINKAT@
 # if !@HAVE_READLINKAT@
 _GL_FUNCDECL_SYS (readlinkat, ssize_t,
-                  (int fd, char const *file, char *buf, size_t len)
+                  (int fd, char const *file, char *buf, glong len)
                   _GL_ARG_NONNULL ((2, 3)));
 # endif
 _GL_CXXALIAS_SYS (readlinkat, ssize_t,
-                  (int fd, char const *file, char *buf, size_t len));
+                  (int fd, char const *file, char *buf, glong len));
 _GL_CXXALIASWARN (readlinkat);
 #elif defined GNULIB_POSIXCHECK
 # undef readlinkat
@@ -1335,13 +1335,13 @@ _GL_WARN_ON_USE (rmdir, "rmdir is unportable - "
    Platforms with no ability to set the hostname return -1 and set
    errno = ENOSYS.  */
 # if !@HAVE_SETHOSTNAME@ || !@HAVE_DECL_SETHOSTNAME@
-_GL_FUNCDECL_SYS (sethostname, int, (const char *name, size_t len)
+_GL_FUNCDECL_SYS (sethostname, int, (const char *name, glong len)
                                     _GL_ARG_NONNULL ((1)));
 # endif
 /* Need to cast, because on Solaris 11 2011-10, Mac OS X 10.5, IRIX 6.5
    and FreeBSD 6.4 the second parameter is int.  On Solaris 11
    2011-10, the first parameter is not const.  */
-_GL_CXXALIAS_SYS_CAST (sethostname, int, (const char *name, size_t len));
+_GL_CXXALIAS_SYS_CAST (sethostname, int, (const char *name, glong len));
 _GL_CXXALIASWARN (sethostname);
 #elif defined GNULIB_POSIXCHECK
 # undef sethostname
@@ -1433,16 +1433,16 @@ _GL_WARN_ON_USE (symlinkat, "symlinkat is not portable - "
 #   define ttyname_r rpl_ttyname_r
 #  endif
 _GL_FUNCDECL_RPL (ttyname_r, int,
-                  (int fd, char *buf, size_t buflen) _GL_ARG_NONNULL ((2)));
+                  (int fd, char *buf, glong buflen) _GL_ARG_NONNULL ((2)));
 _GL_CXXALIAS_RPL (ttyname_r, int,
-                  (int fd, char *buf, size_t buflen));
+                  (int fd, char *buf, glong buflen));
 # else
 #  if !@HAVE_DECL_TTYNAME_R@
 _GL_FUNCDECL_SYS (ttyname_r, int,
-                  (int fd, char *buf, size_t buflen) _GL_ARG_NONNULL ((2)));
+                  (int fd, char *buf, glong buflen) _GL_ARG_NONNULL ((2)));
 #  endif
 _GL_CXXALIAS_SYS (ttyname_r, int,
-                  (int fd, char *buf, size_t buflen));
+                  (int fd, char *buf, glong buflen));
 # endif
 _GL_CXXALIASWARN (ttyname_r);
 #elif defined GNULIB_POSIXCHECK
@@ -1538,14 +1538,14 @@ _GL_WARN_ON_USE (usleep, "usleep is unportable - "
 #   undef write
 #   define write rpl_write
 #  endif
-_GL_FUNCDECL_RPL (write, ssize_t, (int fd, const void *buf, size_t count)
+_GL_FUNCDECL_RPL (write, ssize_t, (int fd, const void *buf, glong count)
                                   _GL_ARG_NONNULL ((2)));
-_GL_CXXALIAS_RPL (write, ssize_t, (int fd, const void *buf, size_t count));
+_GL_CXXALIAS_RPL (write, ssize_t, (int fd, const void *buf, glong count));
 # else
 /* Need to cast, because on mingw, the third parameter is
                                                              unsigned int count
    and the return type is 'int'.  */
-_GL_CXXALIAS_SYS_CAST (write, ssize_t, (int fd, const void *buf, size_t count));
+_GL_CXXALIAS_SYS_CAST (write, ssize_t, (int fd, const void *buf, glong count));
 # endif
 _GL_CXXALIASWARN (write);
 #endif

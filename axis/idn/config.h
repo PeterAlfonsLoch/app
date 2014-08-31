@@ -9,7 +9,7 @@
 /* Define to the number of bits in type 'sig_atomic_t'. */
 #undef BITSIZEOF_SIG_ATOMIC_T
 
-/* Define to the number of bits in type 'size_t'. */
+/* Define to the number of bits in type 'glong'. */
 #undef BITSIZEOF_SIZE_T
 
 /* Define to the number of bits in type 'wchar_t'. */
@@ -960,7 +960,7 @@
 #undef SIG_ATOMIC_T_SUFFIX
 
 /* Define to l, ll, u, ul, ull, etc., as suitable for constants of type
-   'size_t'. */
+   'glong'. */
 #undef SIZE_T_SUFFIX
 
 /* If using the C implementation of alloca, define if you know the
@@ -1232,9 +1232,9 @@
 #endif
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
-#undef size_t
+#undef glong
 
-/* Define as a signed type of the same size as size_t. */
+/* Define as a signed type of the same size as glong. */
 #undef ssize_t
 
 /* Define as a marker that can be attached to declarations that might not

@@ -60,11 +60,11 @@ stringprep_find_character_in_table (uint32_t ucs4,
 
 static ssize_t
 stringprep_find_string_in_table (uint32_t * ucs4,
-				 size_t ucs4len,
-				 size_t * tablepos,
+				 glong ucs4len,
+				 glong * tablepos,
 				 const Stringprep_table_element * table)
 {
-  size_t j;
+  glong j;
   ssize_t pos;
 
   for (j = 0; j < ucs4len; j++)
@@ -80,12 +80,12 @@ stringprep_find_string_in_table (uint32_t * ucs4,
 
 static int
 stringprep_apply_table_to_string (uint32_t * ucs4,
-				  size_t * ucs4len,
-				  size_t maxucs4len,
+				  glong * ucs4len,
+				  glong maxucs4len,
 				  const Stringprep_table_element * table)
 {
   ssize_t pos;
-  size_t i, maplen;
+  glong i, maplen;
 
   while ((pos = stringprep_find_string_in_table (ucs4, *ucs4len,
 						 &i, table)) != -1)
@@ -143,13 +143,13 @@ stringprep_apply_table_to_string (uint32_t * ucs4,
  *   #Stringprep_rc error code.
  **/
 int
-stringprep_4i (uint32_t * ucs4, size_t * len, size_t maxucs4len,
+stringprep_4i (uint32_t * ucs4, glong * len, glong maxucs4len,
 	       Stringprep_profile_flags flags,
 	       const Stringprep_profile * profile)
 {
-  size_t i, j;
+  glong i, j;
   ssize_t k;
-  size_t ucs4len = *len;
+  glong ucs4len = *len;
   int rc;
 
   for (i = 0; profile[i].operation; i++)
@@ -224,8 +224,8 @@ stringprep_4i (uint32_t * ucs4, size_t * len, size_t maxucs4len,
 	    int done_prohibited = 0;
 	    int done_ral = 0;
 	    int done_l = 0;
-	    size_t contains_ral = SIZE_MAX;
-	    size_t contains_l = SIZE_MAX;
+	    glong contains_ral = SIZE_MAX;
+	    glong contains_l = SIZE_MAX;
 
 	    for (j = 0; profile[j].operation; j++)
 	      if (profile[j].operation == STRINGPREP_BIDI_PROHIBIT_TABLE)
@@ -281,7 +281,7 @@ stringprep_4i (uint32_t * ucs4, size_t * len, size_t maxucs4len,
 }
 
 static int
-stringprep_4zi_1 (uint32_t * ucs4, size_t ucs4len, size_t maxucs4len,
+stringprep_4zi_1 (uint32_t * ucs4, glong ucs4len, glong maxucs4len,
 		  Stringprep_profile_flags flags,
 		  const Stringprep_profile * profile)
 {
@@ -324,11 +324,11 @@ stringprep_4zi_1 (uint32_t * ucs4, size_t ucs4len, size_t maxucs4len,
  *   #Stringprep_rc error code.
  **/
 int
-stringprep_4zi (uint32_t * ucs4, size_t maxucs4len,
+stringprep_4zi (uint32_t * ucs4, glong maxucs4len,
 		Stringprep_profile_flags flags,
 		const Stringprep_profile * profile)
 {
-  size_t ucs4len;
+  glong ucs4len;
 
   for (ucs4len = 0; ucs4len < maxucs4len && ucs4[ucs4len] != 0; ucs4len++)
     ;
@@ -365,14 +365,14 @@ stringprep_4zi (uint32_t * ucs4, size_t maxucs4len,
  **/
 int
 stringprep (char *in,
-	    size_t maxlen,
+	    glong maxlen,
 	    Stringprep_profile_flags flags,
 	    const Stringprep_profile * profile)
 {
   int rc;
   char *utf8 = NULL;
   uint32_t *ucs4 = NULL;
-  size_t ucs4len, maxucs4len, adducs4len = 50;
+  glong ucs4len, maxucs4len, adducs4len = 50;
 
   do
     {
@@ -448,7 +448,7 @@ stringprep_profile (const char *in,
 {
   const Stringprep_profiles *p;
   char *str = NULL;
-  size_t len = strlen (in) + 1;
+  glong len = strlen (in) + 1;
   int rc;
 
   for (p = &stringprep_profiles[0]; p->name; p++)

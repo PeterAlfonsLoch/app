@@ -56,7 +56,7 @@ void *_alloca (unsigned short);
 #  ifdef  __cplusplus
 extern "C"
 #  endif
-void *alloca (size_t);
+void *alloca (glong);
 # endif
 #endif
 

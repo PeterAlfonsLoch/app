@@ -72,19 +72,19 @@ _GL_CXXALIASWARN (iconv_open);
 #  if !(defined __cplusplus && defined GNULIB_NAMESPACE)
 #   define iconv rpl_iconv
 #  endif
-_GL_FUNCDECL_RPL (iconv, size_t,
+_GL_FUNCDECL_RPL (iconv, glong,
                   (iconv_t cd,
-                   @ICONV_CONST@ char **inbuf, size_t *inbytesleft,
-                   char **outbuf, size_t *outbytesleft));
-_GL_CXXALIAS_RPL (iconv, size_t,
+                   @ICONV_CONST@ char **inbuf, glong *inbytesleft,
+                   char **outbuf, glong *outbytesleft));
+_GL_CXXALIAS_RPL (iconv, glong,
                   (iconv_t cd,
-                   @ICONV_CONST@ char **inbuf, size_t *inbytesleft,
-                   char **outbuf, size_t *outbytesleft));
+                   @ICONV_CONST@ char **inbuf, glong *inbytesleft,
+                   char **outbuf, glong *outbytesleft));
 # else
-_GL_CXXALIAS_SYS (iconv, size_t,
+_GL_CXXALIAS_SYS (iconv, glong,
                   (iconv_t cd,
-                   @ICONV_CONST@ char **inbuf, size_t *inbytesleft,
-                   char **outbuf, size_t *outbytesleft));
+                   @ICONV_CONST@ char **inbuf, glong *inbytesleft,
+                   char **outbuf, glong *outbytesleft));
 # endif
 _GL_CXXALIASWARN (iconv);
 # ifndef ICONV_CONST

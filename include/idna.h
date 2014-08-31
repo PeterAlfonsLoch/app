@@ -42,7 +42,10 @@
 #  endif
 # endif
 
-# include <stddef.h>		/* size_t */
+
+typedef long glong;
+
+# include <stddef.h>		/* glong */
 //////# include <idn-int.h>		/* uint32_t */
 
 # ifdef __cplusplus
@@ -84,10 +87,10 @@ extern "C"
   extern IDNAPI const char *idna_strerror (Idna_rc rc);
 
   /* Core functions */
-  extern IDNAPI int idna_to_ascii_4i (const uint32_t * in, size_t inlen,
+  extern IDNAPI int idna_to_ascii_4i (const uint32_t * in, glong inlen,
 				      char *out, int flags);
-  extern IDNAPI int idna_to_unicode_44i (const uint32_t * in, size_t inlen,
-					 uint32_t * out, size_t * outlen,
+  extern IDNAPI int idna_to_unicode_44i (const uint32_t * in, glong inlen,
+					 uint32_t * out, glong * outlen,
 					 int flags);
 
   /* Wrappers that handle several labels */

@@ -72,6 +72,8 @@
 
 #include "punycode.h"
 
+typedef long glong;
+
 /*** Bootstring parameters for Punycode ***/
 
 enum
@@ -194,16 +196,16 @@ adapt (punycode_uint delta, punycode_uint numpoints, int firsttime)
  *   garbage.
  **/
 int
-punycode_encode (size_t input_length,
+punycode_encode (glong input_length,
 		 const punycode_uint input[],
 		 const unsigned char case_flags[],
-		 size_t * output_length, char output[])
+		 glong * output_length, char output[])
 {
   punycode_uint input_len, n, delta, h, b, bias, j, m, q, k, t;
-  size_t out, max_out;
+  glong out, max_out;
 
   /* The Punycode spec assumes that the input length is the same type */
-  /* of integer as a code point, so we need to convert the size_t to  */
+  /* of integer as a code point, so we need to convert the glong to  */
   /* a punycode_uint, which could overflow.                           */
 
   if (input_length > maxint)
@@ -343,13 +345,13 @@ punycode_encode (size_t input_length,
  *
  **/
 int
-punycode_decode (size_t input_length,
+punycode_decode (glong input_length,
 		 const char input[],
-		 size_t * output_length,
+		 glong * output_length,
 		 punycode_uint output[], unsigned char case_flags[])
 {
   punycode_uint n, out, i, max_out, bias, oldi, w, k, digit, t;
-  size_t b, j, in;
+  glong b, j, in;
 
   /* Initialize the state: */
 
@@ -439,7 +441,7 @@ punycode_decode (size_t input_length,
       output[i++] = n;
     }
 
-  *output_length = (size_t) out;
+  *output_length = (glong) out;
   /* cannot overflow because out <= old value of *output_length */
   return punycode_success;
 }

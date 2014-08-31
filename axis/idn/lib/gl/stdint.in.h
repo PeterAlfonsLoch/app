@@ -525,7 +525,7 @@ typedef int _verify_intmax_size[sizeof (intmax_t) == sizeof (uintmax_t)
                 0@SIG_ATOMIC_T_SUFFIX@)
 
 
-/* size_t limit */
+/* glong limit */
 #undef SIZE_MAX
 #if @APPLE_UNIVERSAL_BUILD@
 # ifdef _LP64

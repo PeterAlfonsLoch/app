@@ -47,7 +47,7 @@
 #define gint16 int16_t
 #define guint16 uint16_t
 #define gunichar uint32_t
-#define gsize size_t
+#define gsize glong
 #define gssize ssize_t
 #define g_malloc malloc
 #define g_free free
@@ -1018,7 +1018,7 @@ stringprep_unichar_to_utf8 (uint32_t c, char *outbuf)
  *               This value must be deallocated by the caller.
  **/
 uint32_t *
-stringprep_utf8_to_ucs4 (const char *str, ssize_t len, size_t * items_written)
+stringprep_utf8_to_ucs4 (const char *str, ssize_t len, glong * items_written)
 {
   return g_utf8_to_ucs4_fast (str, (glong) len, (glong *) items_written);
 }
@@ -1042,7 +1042,7 @@ stringprep_utf8_to_ucs4 (const char *str, ssize_t len, size_t * items_written)
  **/
 char *
 stringprep_ucs4_to_utf8 (const uint32_t * str, ssize_t len,
-			 size_t * items_read, size_t * items_written)
+			 glong * items_read, glong * items_written)
 {
   return g_ucs4_to_utf8 (str, len, (glong *) items_read,
 			 (glong *) items_written);

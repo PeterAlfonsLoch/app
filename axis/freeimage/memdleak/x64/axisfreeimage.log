@@ -1,2 +1,2 @@
 ﻿  FreeImageFramework.cpp
-z:\netnode\app\axis\freeimage\source\freeimage\FreeImageFramework.h(4): fatal error C1083: Cannot open include file: 'axis/axis/axis.h': No such file or directory
+c:\netnode\app\axis\freeimage\source\freeimage\FreeImageFramework.h(4): fatal error C1083: Cannot open include file: 'axis/axis/axis.h': No such file or directory

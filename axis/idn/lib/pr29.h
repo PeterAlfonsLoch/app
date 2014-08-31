@@ -42,12 +42,14 @@
 #  endif
 # endif
 
+typedef long glong;
+
 # ifdef __cplusplus
 extern "C"
 {
 # endif
 
-  /* Get size_t. */
+  /* Get glong. */
 # include <stdlib.h>
 
   /* Get uint32_t. */
@@ -63,7 +65,7 @@ extern "C"
 
   extern IDNAPI const char *pr29_strerror (Pr29_rc rc);
 
-  extern IDNAPI int pr29_4 (const uint32_t * in, size_t len);
+  extern IDNAPI int pr29_4 (const uint32_t * in, glong len);
   extern IDNAPI int pr29_4z (const uint32_t * in);
   extern IDNAPI int pr29_8z (const char *in);
 

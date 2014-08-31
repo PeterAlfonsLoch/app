@@ -78,9 +78,9 @@
  * Return value: Returns 0 on success, or an #Idna_rc error code.
  */
 int
-idna_to_ascii_4i (const uint32_t * in, size_t inlen, char *out, int flags)
+idna_to_ascii_4i (const uint32_t * in, glong inlen, char *out, int flags)
 {
-  size_t len, outlen;
+  glong len, outlen;
   uint32_t *src;		/* XXX don't need to copy data? */
   int rc;
 
@@ -92,7 +92,7 @@ idna_to_ascii_4i (const uint32_t * in, size_t inlen, char *out, int flags)
    */
 
   {
-    size_t i;
+    glong i;
     int inasciirange;
 
     inasciirange = 1;
@@ -173,7 +173,7 @@ step3:
 
   if (flags & IDNA_USE_STD3_ASCII_RULES)
     {
-      size_t i;
+      glong i;
 
       for (i = 0; src[i]; i++)
 	if (src[i] <= 0x2C || src[i] == 0x2E || src[i] == 0x2F ||
@@ -198,7 +198,7 @@ step3:
    */
 
   {
-    size_t i;
+    glong i;
     int inasciirange;
 
     inasciirange = 1;
@@ -222,7 +222,7 @@ step3:
    */
 
   {
-    size_t i;
+    glong i;
     int match;
 
     match = 1;
@@ -275,12 +275,12 @@ step8:
 /* ToUnicode().  May realloc() utf8in.  Will free utf8in unconditionally. */
 static int
 idna_to_unicode_internal (char *utf8in,
-			  uint32_t * out, size_t * outlen, int flags)
+			  uint32_t * out, glong * outlen, int flags)
 {
   int rc;
   char tmpout[64];
-  size_t utf8len = strlen (utf8in) + 1;
-  size_t addlen = 0;
+  glong utf8len = strlen (utf8in) + 1;
+  glong addlen = 0;
 
   /*
    * ToUnicode consists of the following steps:
@@ -290,7 +290,7 @@ idna_to_unicode_internal (char *utf8in,
    */
 
   {
-    size_t i;
+    glong i;
     int inasciirange;
 
     inasciirange = 1;
@@ -428,11 +428,11 @@ step3:
  *   checking it means breaking the standard.
  */
 int
-idna_to_unicode_44i (const uint32_t * in, size_t inlen,
-		     uint32_t * out, size_t * outlen, int flags)
+idna_to_unicode_44i (const uint32_t * in, glong inlen,
+		     uint32_t * out, glong * outlen, int flags)
 {
   int rc;
-  size_t outlensave = *outlen;
+  glong outlensave = *outlen;
   char *p;
 
   p = stringprep_ucs4_to_utf8 (in, (ssize_t) inlen, NULL, NULL);
@@ -516,7 +516,7 @@ idna_to_ascii_4z (const uint32_t * input, char **output, int flags)
 	}
       else
 	{
-	  rc = idna_to_ascii_4i (start, (size_t) (end - start), buf, flags);
+	  rc = idna_to_ascii_4i (start, (glong) (end - start), buf, flags);
 	  if (rc != IDNA_SUCCESS)
 	    {
 	      free (out);
@@ -526,7 +526,7 @@ idna_to_ascii_4z (const uint32_t * input, char **output, int flags)
 
       if (out)
 	{
-	  size_t l = strlen (out) + 1 + strlen (buf) + 1;
+	  glong l = strlen (out) + 1 + strlen (buf) + 1;
 	  char *newp = realloc (out, l);
 	  if (!newp)
 	    {
@@ -539,7 +539,7 @@ idna_to_ascii_4z (const uint32_t * input, char **output, int flags)
 	}
       else
 	{
-	  size_t l = strlen (buf) + 1;
+	  glong l = strlen (buf) + 1;
 	  out = (char *) malloc (l);
 	  if (!out)
 	    return IDNA_MALLOC_ERROR;
@@ -572,7 +572,7 @@ int
 idna_to_ascii_8z (const char *input, char **output, int flags)
 {
   uint32_t *ucs4;
-  size_t ucs4len;
+  glong ucs4len;
   int rc;
 
   ucs4 = stringprep_utf8_to_ucs4 (input, -1, &ucs4len);
@@ -638,9 +638,9 @@ idna_to_unicode_4z4z (const uint32_t * input, uint32_t ** output, int flags)
   const uint32_t *start = input;
   const uint32_t *end;
   uint32_t *buf;
-  size_t buflen;
+  glong buflen;
   uint32_t *out = NULL;
-  size_t outlen = 0;
+  glong outlen = 0;
 
   *output = NULL;
 
@@ -651,13 +651,13 @@ idna_to_unicode_4z4z (const uint32_t * input, uint32_t ** output, int flags)
       for (; *end && !DOTP (*end); end++)
 	;
 
-      buflen = (size_t) (end - start);
+      buflen = (glong) (end - start);
       buf = malloc (sizeof (buf[0]) * (buflen + 1));
       if (!buf)
 	return IDNA_MALLOC_ERROR;
 
       /* don't check return code as per specification! */
-      idna_to_unicode_44i (start, (size_t) (end - start),
+      idna_to_unicode_44i (start, (glong) (end - start),
 			   buf, &buflen, flags);
 
       if (out)
@@ -712,7 +712,7 @@ int
 idna_to_unicode_8z4z (const char *input, uint32_t ** output, int flags)
 {
   uint32_t *ucs4;
-  size_t ucs4len;
+  glong ucs4len;
   int rc;
 
   ucs4 = stringprep_utf8_to_ucs4 (input, -1, &ucs4len);

@@ -42,7 +42,7 @@
 # define _GL_WINDOWS_64_BIT_OFF_T 1
 #endif
 
-/* MSVC 9 defines size_t in <stddef.h>, not in <sys/types.h>.  */
+/* MSVC 9 defines glong in <stddef.h>, not in <sys/types.h>.  */
 /* But avoid namespace pollution on glibc systems.  */
 #if ((defined _WIN32 || defined __WIN32__) && ! defined __CYGWIN__) \
     && ! defined __GLIBC__

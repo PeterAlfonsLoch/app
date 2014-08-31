@@ -219,17 +219,17 @@ _GL_WARN_ON_USE (mbsinit, "mbsinit is unportable - "
 #   undef mbrtowc
 #   define mbrtowc rpl_mbrtowc
 #  endif
-_GL_FUNCDECL_RPL (mbrtowc, size_t,
-                  (wchar_t *pwc, const char *s, size_t n, mbstate_t *ps));
-_GL_CXXALIAS_RPL (mbrtowc, size_t,
-                  (wchar_t *pwc, const char *s, size_t n, mbstate_t *ps));
+_GL_FUNCDECL_RPL (mbrtowc, glong,
+                  (wchar_t *pwc, const char *s, glong n, mbstate_t *ps));
+_GL_CXXALIAS_RPL (mbrtowc, glong,
+                  (wchar_t *pwc, const char *s, glong n, mbstate_t *ps));
 # else
 #  if !@HAVE_MBRTOWC@
-_GL_FUNCDECL_SYS (mbrtowc, size_t,
-                  (wchar_t *pwc, const char *s, size_t n, mbstate_t *ps));
+_GL_FUNCDECL_SYS (mbrtowc, glong,
+                  (wchar_t *pwc, const char *s, glong n, mbstate_t *ps));
 #  endif
-_GL_CXXALIAS_SYS (mbrtowc, size_t,
-                  (wchar_t *pwc, const char *s, size_t n, mbstate_t *ps));
+_GL_CXXALIAS_SYS (mbrtowc, glong,
+                  (wchar_t *pwc, const char *s, glong n, mbstate_t *ps));
 # endif
 _GL_CXXALIASWARN (mbrtowc);
 #elif defined GNULIB_POSIXCHECK
@@ -248,13 +248,13 @@ _GL_WARN_ON_USE (mbrtowc, "mbrtowc is unportable - "
 #   undef mbrlen
 #   define mbrlen rpl_mbrlen
 #  endif
-_GL_FUNCDECL_RPL (mbrlen, size_t, (const char *s, size_t n, mbstate_t *ps));
-_GL_CXXALIAS_RPL (mbrlen, size_t, (const char *s, size_t n, mbstate_t *ps));
+_GL_FUNCDECL_RPL (mbrlen, glong, (const char *s, glong n, mbstate_t *ps));
+_GL_CXXALIAS_RPL (mbrlen, glong, (const char *s, glong n, mbstate_t *ps));
 # else
 #  if !@HAVE_MBRLEN@
-_GL_FUNCDECL_SYS (mbrlen, size_t, (const char *s, size_t n, mbstate_t *ps));
+_GL_FUNCDECL_SYS (mbrlen, glong, (const char *s, glong n, mbstate_t *ps));
 #  endif
-_GL_CXXALIAS_SYS (mbrlen, size_t, (const char *s, size_t n, mbstate_t *ps));
+_GL_CXXALIAS_SYS (mbrlen, glong, (const char *s, glong n, mbstate_t *ps));
 # endif
 _GL_CXXALIASWARN (mbrlen);
 #elif defined GNULIB_POSIXCHECK
@@ -273,20 +273,20 @@ _GL_WARN_ON_USE (mbrlen, "mbrlen is unportable - "
 #   undef mbsrtowcs
 #   define mbsrtowcs rpl_mbsrtowcs
 #  endif
-_GL_FUNCDECL_RPL (mbsrtowcs, size_t,
-                  (wchar_t *dest, const char **srcp, size_t len, mbstate_t *ps)
+_GL_FUNCDECL_RPL (mbsrtowcs, glong,
+                  (wchar_t *dest, const char **srcp, glong len, mbstate_t *ps)
                   _GL_ARG_NONNULL ((2)));
-_GL_CXXALIAS_RPL (mbsrtowcs, size_t,
-                  (wchar_t *dest, const char **srcp, size_t len,
+_GL_CXXALIAS_RPL (mbsrtowcs, glong,
+                  (wchar_t *dest, const char **srcp, glong len,
                    mbstate_t *ps));
 # else
 #  if !@HAVE_MBSRTOWCS@
-_GL_FUNCDECL_SYS (mbsrtowcs, size_t,
-                  (wchar_t *dest, const char **srcp, size_t len, mbstate_t *ps)
+_GL_FUNCDECL_SYS (mbsrtowcs, glong,
+                  (wchar_t *dest, const char **srcp, glong len, mbstate_t *ps)
                   _GL_ARG_NONNULL ((2)));
 #  endif
-_GL_CXXALIAS_SYS (mbsrtowcs, size_t,
-                  (wchar_t *dest, const char **srcp, size_t len,
+_GL_CXXALIAS_SYS (mbsrtowcs, glong,
+                  (wchar_t *dest, const char **srcp, glong len,
                    mbstate_t *ps));
 # endif
 _GL_CXXALIASWARN (mbsrtowcs);
@@ -306,22 +306,22 @@ _GL_WARN_ON_USE (mbsrtowcs, "mbsrtowcs is unportable - "
 #   undef mbsnrtowcs
 #   define mbsnrtowcs rpl_mbsnrtowcs
 #  endif
-_GL_FUNCDECL_RPL (mbsnrtowcs, size_t,
-                  (wchar_t *dest, const char **srcp, size_t srclen, size_t len,
+_GL_FUNCDECL_RPL (mbsnrtowcs, glong,
+                  (wchar_t *dest, const char **srcp, glong srclen, glong len,
                    mbstate_t *ps)
                   _GL_ARG_NONNULL ((2)));
-_GL_CXXALIAS_RPL (mbsnrtowcs, size_t,
-                  (wchar_t *dest, const char **srcp, size_t srclen, size_t len,
+_GL_CXXALIAS_RPL (mbsnrtowcs, glong,
+                  (wchar_t *dest, const char **srcp, glong srclen, glong len,
                    mbstate_t *ps));
 # else
 #  if !@HAVE_MBSNRTOWCS@
-_GL_FUNCDECL_SYS (mbsnrtowcs, size_t,
-                  (wchar_t *dest, const char **srcp, size_t srclen, size_t len,
+_GL_FUNCDECL_SYS (mbsnrtowcs, glong,
+                  (wchar_t *dest, const char **srcp, glong srclen, glong len,
                    mbstate_t *ps)
                   _GL_ARG_NONNULL ((2)));
 #  endif
-_GL_CXXALIAS_SYS (mbsnrtowcs, size_t,
-                  (wchar_t *dest, const char **srcp, size_t srclen, size_t len,
+_GL_CXXALIAS_SYS (mbsnrtowcs, glong,
+                  (wchar_t *dest, const char **srcp, glong srclen, glong len,
                    mbstate_t *ps));
 # endif
 _GL_CXXALIASWARN (mbsnrtowcs);
@@ -341,13 +341,13 @@ _GL_WARN_ON_USE (mbsnrtowcs, "mbsnrtowcs is unportable - "
 #   undef wcrtomb
 #   define wcrtomb rpl_wcrtomb
 #  endif
-_GL_FUNCDECL_RPL (wcrtomb, size_t, (char *s, wchar_t wc, mbstate_t *ps));
-_GL_CXXALIAS_RPL (wcrtomb, size_t, (char *s, wchar_t wc, mbstate_t *ps));
+_GL_FUNCDECL_RPL (wcrtomb, glong, (char *s, wchar_t wc, mbstate_t *ps));
+_GL_CXXALIAS_RPL (wcrtomb, glong, (char *s, wchar_t wc, mbstate_t *ps));
 # else
 #  if !@HAVE_WCRTOMB@
-_GL_FUNCDECL_SYS (wcrtomb, size_t, (char *s, wchar_t wc, mbstate_t *ps));
+_GL_FUNCDECL_SYS (wcrtomb, glong, (char *s, wchar_t wc, mbstate_t *ps));
 #  endif
-_GL_CXXALIAS_SYS (wcrtomb, size_t, (char *s, wchar_t wc, mbstate_t *ps));
+_GL_CXXALIAS_SYS (wcrtomb, glong, (char *s, wchar_t wc, mbstate_t *ps));
 # endif
 _GL_CXXALIASWARN (wcrtomb);
 #elif defined GNULIB_POSIXCHECK
@@ -366,20 +366,20 @@ _GL_WARN_ON_USE (wcrtomb, "wcrtomb is unportable - "
 #   undef wcsrtombs
 #   define wcsrtombs rpl_wcsrtombs
 #  endif
-_GL_FUNCDECL_RPL (wcsrtombs, size_t,
-                  (char *dest, const wchar_t **srcp, size_t len, mbstate_t *ps)
+_GL_FUNCDECL_RPL (wcsrtombs, glong,
+                  (char *dest, const wchar_t **srcp, glong len, mbstate_t *ps)
                   _GL_ARG_NONNULL ((2)));
-_GL_CXXALIAS_RPL (wcsrtombs, size_t,
-                  (char *dest, const wchar_t **srcp, size_t len,
+_GL_CXXALIAS_RPL (wcsrtombs, glong,
+                  (char *dest, const wchar_t **srcp, glong len,
                    mbstate_t *ps));
 # else
 #  if !@HAVE_WCSRTOMBS@
-_GL_FUNCDECL_SYS (wcsrtombs, size_t,
-                  (char *dest, const wchar_t **srcp, size_t len, mbstate_t *ps)
+_GL_FUNCDECL_SYS (wcsrtombs, glong,
+                  (char *dest, const wchar_t **srcp, glong len, mbstate_t *ps)
                   _GL_ARG_NONNULL ((2)));
 #  endif
-_GL_CXXALIAS_SYS (wcsrtombs, size_t,
-                  (char *dest, const wchar_t **srcp, size_t len,
+_GL_CXXALIAS_SYS (wcsrtombs, glong,
+                  (char *dest, const wchar_t **srcp, glong len,
                    mbstate_t *ps));
 # endif
 _GL_CXXALIASWARN (wcsrtombs);
@@ -399,22 +399,22 @@ _GL_WARN_ON_USE (wcsrtombs, "wcsrtombs is unportable - "
 #   undef wcsnrtombs
 #   define wcsnrtombs rpl_wcsnrtombs
 #  endif
-_GL_FUNCDECL_RPL (wcsnrtombs, size_t,
-                  (char *dest, const wchar_t **srcp, size_t srclen, size_t len,
+_GL_FUNCDECL_RPL (wcsnrtombs, glong,
+                  (char *dest, const wchar_t **srcp, glong srclen, glong len,
                    mbstate_t *ps)
                   _GL_ARG_NONNULL ((2)));
-_GL_CXXALIAS_RPL (wcsnrtombs, size_t,
-                  (char *dest, const wchar_t **srcp, size_t srclen, size_t len,
+_GL_CXXALIAS_RPL (wcsnrtombs, glong,
+                  (char *dest, const wchar_t **srcp, glong srclen, glong len,
                    mbstate_t *ps));
 # else
 #  if !@HAVE_WCSNRTOMBS@
-_GL_FUNCDECL_SYS (wcsnrtombs, size_t,
-                  (char *dest, const wchar_t **srcp, size_t srclen, size_t len,
+_GL_FUNCDECL_SYS (wcsnrtombs, glong,
+                  (char *dest, const wchar_t **srcp, glong srclen, glong len,
                    mbstate_t *ps)
                   _GL_ARG_NONNULL ((2)));
 #  endif
-_GL_CXXALIAS_SYS (wcsnrtombs, size_t,
-                  (char *dest, const wchar_t **srcp, size_t srclen, size_t len,
+_GL_CXXALIAS_SYS (wcsnrtombs, glong,
+                  (char *dest, const wchar_t **srcp, glong srclen, glong len,
                    mbstate_t *ps));
 # endif
 _GL_CXXALIASWARN (wcsnrtombs);
@@ -456,22 +456,22 @@ _GL_WARN_ON_USE (wcwidth, "wcwidth is unportable - "
 /* Search N wide characters of S for C.  */
 #if @GNULIB_WMEMCHR@
 # if !@HAVE_WMEMCHR@
-_GL_FUNCDECL_SYS (wmemchr, wchar_t *, (const wchar_t *s, wchar_t c, size_t n)
+_GL_FUNCDECL_SYS (wmemchr, wchar_t *, (const wchar_t *s, wchar_t c, glong n)
                                       _GL_ATTRIBUTE_PURE);
 # endif
   /* On some systems, this function is defined as an overloaded function:
        extern "C++" {
-         const wchar_t * std::wmemchr (const wchar_t *, wchar_t, size_t);
-         wchar_t * std::wmemchr (wchar_t *, wchar_t, size_t);
+         const wchar_t * std::wmemchr (const wchar_t *, wchar_t, glong);
+         wchar_t * std::wmemchr (wchar_t *, wchar_t, glong);
        }  */
 _GL_CXXALIAS_SYS_CAST2 (wmemchr,
-                        wchar_t *, (const wchar_t *, wchar_t, size_t),
-                        const wchar_t *, (const wchar_t *, wchar_t, size_t));
+                        wchar_t *, (const wchar_t *, wchar_t, glong),
+                        const wchar_t *, (const wchar_t *, wchar_t, glong));
 # if ((__GLIBC__ == 2 && __GLIBC_MINOR__ >= 10) && !defined __UCLIBC__) \
      && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 4))
-_GL_CXXALIASWARN1 (wmemchr, wchar_t *, (wchar_t *s, wchar_t c, size_t n));
+_GL_CXXALIASWARN1 (wmemchr, wchar_t *, (wchar_t *s, wchar_t c, glong n));
 _GL_CXXALIASWARN1 (wmemchr, const wchar_t *,
-                   (const wchar_t *s, wchar_t c, size_t n));
+                   (const wchar_t *s, wchar_t c, glong n));
 # else
 _GL_CXXALIASWARN (wmemchr);
 # endif
@@ -488,11 +488,11 @@ _GL_WARN_ON_USE (wmemchr, "wmemchr is unportable - "
 #if @GNULIB_WMEMCMP@
 # if !@HAVE_WMEMCMP@
 _GL_FUNCDECL_SYS (wmemcmp, int,
-                  (const wchar_t *s1, const wchar_t *s2, size_t n)
+                  (const wchar_t *s1, const wchar_t *s2, glong n)
                   _GL_ATTRIBUTE_PURE);
 # endif
 _GL_CXXALIAS_SYS (wmemcmp, int,
-                  (const wchar_t *s1, const wchar_t *s2, size_t n));
+                  (const wchar_t *s1, const wchar_t *s2, glong n));
 _GL_CXXALIASWARN (wmemcmp);
 #elif defined GNULIB_POSIXCHECK
 # undef wmemcmp
@@ -507,10 +507,10 @@ _GL_WARN_ON_USE (wmemcmp, "wmemcmp is unportable - "
 #if @GNULIB_WMEMCPY@
 # if !@HAVE_WMEMCPY@
 _GL_FUNCDECL_SYS (wmemcpy, wchar_t *,
-                  (wchar_t *dest, const wchar_t *src, size_t n));
+                  (wchar_t *dest, const wchar_t *src, glong n));
 # endif
 _GL_CXXALIAS_SYS (wmemcpy, wchar_t *,
-                  (wchar_t *dest, const wchar_t *src, size_t n));
+                  (wchar_t *dest, const wchar_t *src, glong n));
 _GL_CXXALIASWARN (wmemcpy);
 #elif defined GNULIB_POSIXCHECK
 # undef wmemcpy
@@ -526,10 +526,10 @@ _GL_WARN_ON_USE (wmemcpy, "wmemcpy is unportable - "
 #if @GNULIB_WMEMMOVE@
 # if !@HAVE_WMEMMOVE@
 _GL_FUNCDECL_SYS (wmemmove, wchar_t *,
-                  (wchar_t *dest, const wchar_t *src, size_t n));
+                  (wchar_t *dest, const wchar_t *src, glong n));
 # endif
 _GL_CXXALIAS_SYS (wmemmove, wchar_t *,
-                  (wchar_t *dest, const wchar_t *src, size_t n));
+                  (wchar_t *dest, const wchar_t *src, glong n));
 _GL_CXXALIASWARN (wmemmove);
 #elif defined GNULIB_POSIXCHECK
 # undef wmemmove
@@ -543,9 +543,9 @@ _GL_WARN_ON_USE (wmemmove, "wmemmove is unportable - "
 /* Set N wide characters of S to C.  */
 #if @GNULIB_WMEMSET@
 # if !@HAVE_WMEMSET@
-_GL_FUNCDECL_SYS (wmemset, wchar_t *, (wchar_t *s, wchar_t c, size_t n));
+_GL_FUNCDECL_SYS (wmemset, wchar_t *, (wchar_t *s, wchar_t c, glong n));
 # endif
-_GL_CXXALIAS_SYS (wmemset, wchar_t *, (wchar_t *s, wchar_t c, size_t n));
+_GL_CXXALIAS_SYS (wmemset, wchar_t *, (wchar_t *s, wchar_t c, glong n));
 _GL_CXXALIASWARN (wmemset);
 #elif defined GNULIB_POSIXCHECK
 # undef wmemset
@@ -559,9 +559,9 @@ _GL_WARN_ON_USE (wmemset, "wmemset is unportable - "
 /* Return the number of wide characters in S.  */
 #if @GNULIB_WCSLEN@
 # if !@HAVE_WCSLEN@
-_GL_FUNCDECL_SYS (wcslen, size_t, (const wchar_t *s) _GL_ATTRIBUTE_PURE);
+_GL_FUNCDECL_SYS (wcslen, glong, (const wchar_t *s) _GL_ATTRIBUTE_PURE);
 # endif
-_GL_CXXALIAS_SYS (wcslen, size_t, (const wchar_t *s));
+_GL_CXXALIAS_SYS (wcslen, glong, (const wchar_t *s));
 _GL_CXXALIASWARN (wcslen);
 #elif defined GNULIB_POSIXCHECK
 # undef wcslen
@@ -575,10 +575,10 @@ _GL_WARN_ON_USE (wcslen, "wcslen is unportable - "
 /* Return the number of wide characters in S, but at most MAXLEN.  */
 #if @GNULIB_WCSNLEN@
 # if !@HAVE_WCSNLEN@
-_GL_FUNCDECL_SYS (wcsnlen, size_t, (const wchar_t *s, size_t maxlen)
+_GL_FUNCDECL_SYS (wcsnlen, glong, (const wchar_t *s, glong maxlen)
                                    _GL_ATTRIBUTE_PURE);
 # endif
-_GL_CXXALIAS_SYS (wcsnlen, size_t, (const wchar_t *s, size_t maxlen));
+_GL_CXXALIAS_SYS (wcsnlen, glong, (const wchar_t *s, glong maxlen));
 _GL_CXXALIASWARN (wcsnlen);
 #elif defined GNULIB_POSIXCHECK
 # undef wcsnlen
@@ -625,10 +625,10 @@ _GL_WARN_ON_USE (wcpcpy, "wcpcpy is unportable - "
 #if @GNULIB_WCSNCPY@
 # if !@HAVE_WCSNCPY@
 _GL_FUNCDECL_SYS (wcsncpy, wchar_t *,
-                  (wchar_t *dest, const wchar_t *src, size_t n));
+                  (wchar_t *dest, const wchar_t *src, glong n));
 # endif
 _GL_CXXALIAS_SYS (wcsncpy, wchar_t *,
-                  (wchar_t *dest, const wchar_t *src, size_t n));
+                  (wchar_t *dest, const wchar_t *src, glong n));
 _GL_CXXALIASWARN (wcsncpy);
 #elif defined GNULIB_POSIXCHECK
 # undef wcsncpy
@@ -644,10 +644,10 @@ _GL_WARN_ON_USE (wcsncpy, "wcsncpy is unportable - "
 #if @GNULIB_WCPNCPY@
 # if !@HAVE_WCPNCPY@
 _GL_FUNCDECL_SYS (wcpncpy, wchar_t *,
-                  (wchar_t *dest, const wchar_t *src, size_t n));
+                  (wchar_t *dest, const wchar_t *src, glong n));
 # endif
 _GL_CXXALIAS_SYS (wcpncpy, wchar_t *,
-                  (wchar_t *dest, const wchar_t *src, size_t n));
+                  (wchar_t *dest, const wchar_t *src, glong n));
 _GL_CXXALIASWARN (wcpncpy);
 #elif defined GNULIB_POSIXCHECK
 # undef wcpncpy
@@ -678,10 +678,10 @@ _GL_WARN_ON_USE (wcscat, "wcscat is unportable - "
 #if @GNULIB_WCSNCAT@
 # if !@HAVE_WCSNCAT@
 _GL_FUNCDECL_SYS (wcsncat, wchar_t *,
-                  (wchar_t *dest, const wchar_t *src, size_t n));
+                  (wchar_t *dest, const wchar_t *src, glong n));
 # endif
 _GL_CXXALIAS_SYS (wcsncat, wchar_t *,
-                  (wchar_t *dest, const wchar_t *src, size_t n));
+                  (wchar_t *dest, const wchar_t *src, glong n));
 _GL_CXXALIASWARN (wcsncat);
 #elif defined GNULIB_POSIXCHECK
 # undef wcsncat
@@ -713,11 +713,11 @@ _GL_WARN_ON_USE (wcscmp, "wcscmp is unportable - "
 #if @GNULIB_WCSNCMP@
 # if !@HAVE_WCSNCMP@
 _GL_FUNCDECL_SYS (wcsncmp, int,
-                  (const wchar_t *s1, const wchar_t *s2, size_t n)
+                  (const wchar_t *s1, const wchar_t *s2, glong n)
                   _GL_ATTRIBUTE_PURE);
 # endif
 _GL_CXXALIAS_SYS (wcsncmp, int,
-                  (const wchar_t *s1, const wchar_t *s2, size_t n));
+                  (const wchar_t *s1, const wchar_t *s2, glong n));
 _GL_CXXALIASWARN (wcsncmp);
 #elif defined GNULIB_POSIXCHECK
 # undef wcsncmp
@@ -749,11 +749,11 @@ _GL_WARN_ON_USE (wcscasecmp, "wcscasecmp is unportable - "
 #if @GNULIB_WCSNCASECMP@
 # if !@HAVE_WCSNCASECMP@
 _GL_FUNCDECL_SYS (wcsncasecmp, int,
-                  (const wchar_t *s1, const wchar_t *s2, size_t n)
+                  (const wchar_t *s1, const wchar_t *s2, glong n)
                   _GL_ATTRIBUTE_PURE);
 # endif
 _GL_CXXALIAS_SYS (wcsncasecmp, int,
-                  (const wchar_t *s1, const wchar_t *s2, size_t n));
+                  (const wchar_t *s1, const wchar_t *s2, glong n));
 _GL_CXXALIASWARN (wcsncasecmp);
 #elif defined GNULIB_POSIXCHECK
 # undef wcsncasecmp
@@ -786,9 +786,9 @@ _GL_WARN_ON_USE (wcscoll, "wcscoll is unportable - "
    original strings.  */
 #if @GNULIB_WCSXFRM@
 # if !@HAVE_WCSXFRM@
-_GL_FUNCDECL_SYS (wcsxfrm, size_t, (wchar_t *s1, const wchar_t *s2, size_t n));
+_GL_FUNCDECL_SYS (wcsxfrm, glong, (wchar_t *s1, const wchar_t *s2, glong n));
 # endif
-_GL_CXXALIAS_SYS (wcsxfrm, size_t, (wchar_t *s1, const wchar_t *s2, size_t n));
+_GL_CXXALIAS_SYS (wcsxfrm, glong, (wchar_t *s1, const wchar_t *s2, glong n));
 _GL_CXXALIASWARN (wcsxfrm);
 #elif defined GNULIB_POSIXCHECK
 # undef wcsxfrm
@@ -879,10 +879,10 @@ _GL_WARN_ON_USE (wcsrchr, "wcsrchr is unportable - "
    of wide characters not in REJECT.  */
 #if @GNULIB_WCSCSPN@
 # if !@HAVE_WCSCSPN@
-_GL_FUNCDECL_SYS (wcscspn, size_t, (const wchar_t *wcs, const wchar_t *reject)
+_GL_FUNCDECL_SYS (wcscspn, glong, (const wchar_t *wcs, const wchar_t *reject)
                                    _GL_ATTRIBUTE_PURE);
 # endif
-_GL_CXXALIAS_SYS (wcscspn, size_t, (const wchar_t *wcs, const wchar_t *reject));
+_GL_CXXALIAS_SYS (wcscspn, glong, (const wchar_t *wcs, const wchar_t *reject));
 _GL_CXXALIASWARN (wcscspn);
 #elif defined GNULIB_POSIXCHECK
 # undef wcscspn
@@ -897,10 +897,10 @@ _GL_WARN_ON_USE (wcscspn, "wcscspn is unportable - "
    of wide characters in ACCEPT.  */
 #if @GNULIB_WCSSPN@
 # if !@HAVE_WCSSPN@
-_GL_FUNCDECL_SYS (wcsspn, size_t, (const wchar_t *wcs, const wchar_t *accept)
+_GL_FUNCDECL_SYS (wcsspn, glong, (const wchar_t *wcs, const wchar_t *accept)
                                   _GL_ATTRIBUTE_PURE);
 # endif
-_GL_CXXALIAS_SYS (wcsspn, size_t, (const wchar_t *wcs, const wchar_t *accept));
+_GL_CXXALIAS_SYS (wcsspn, glong, (const wchar_t *wcs, const wchar_t *accept));
 _GL_CXXALIASWARN (wcsspn);
 #elif defined GNULIB_POSIXCHECK
 # undef wcsspn
@@ -1003,15 +1003,15 @@ _GL_WARN_ON_USE (wcstok, "wcstok is unportable - "
 #   undef wcswidth
 #   define wcswidth rpl_wcswidth
 #  endif
-_GL_FUNCDECL_RPL (wcswidth, int, (const wchar_t *s, size_t n)
+_GL_FUNCDECL_RPL (wcswidth, int, (const wchar_t *s, glong n)
                                  _GL_ATTRIBUTE_PURE);
-_GL_CXXALIAS_RPL (wcswidth, int, (const wchar_t *s, size_t n));
+_GL_CXXALIAS_RPL (wcswidth, int, (const wchar_t *s, glong n));
 # else
 #  if !@HAVE_WCSWIDTH@
-_GL_FUNCDECL_SYS (wcswidth, int, (const wchar_t *s, size_t n)
+_GL_FUNCDECL_SYS (wcswidth, int, (const wchar_t *s, glong n)
                                  _GL_ATTRIBUTE_PURE);
 #  endif
-_GL_CXXALIAS_SYS (wcswidth, int, (const wchar_t *s, size_t n));
+_GL_CXXALIAS_SYS (wcswidth, int, (const wchar_t *s, glong n));
 # endif
 _GL_CXXALIASWARN (wcswidth);
 #elif defined GNULIB_POSIXCHECK

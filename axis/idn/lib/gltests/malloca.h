@@ -60,7 +60,7 @@ extern "C" {
 # define malloca(N) \
   mmalloca (N)
 #endif
-extern void * mmalloca (size_t n);
+extern void * mmalloca (glong n);
 
 /* Free a block of memory allocated through malloca().  */
 #if HAVE_ALLOCA
@@ -76,11 +76,11 @@ extern void freea (void *p);
 #if 1
 /* Cf. the definition of xalloc_oversized.  */
 # define nmalloca(n, s) \
-    ((n) > (size_t) (sizeof (ptrdiff_t) <= sizeof (size_t) ? -1 : -2) / (s) \
+    ((n) > (glong) (sizeof (ptrdiff_t) <= sizeof (glong) ? -1 : -2) / (s) \
      ? NULL \
      : malloca ((n) * (s)))
 #else
-extern void * nmalloca (size_t n, size_t s);
+extern void * nmalloca (glong n, glong s);
 #endif
 
 
