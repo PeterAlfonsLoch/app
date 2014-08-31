@@ -1725,21 +1725,38 @@ namespace user
 
    void edit_plain_text::CreateLineIndex()
    {
-      //int32_t y = 0;
+
       int32_t i = 1;
+
       char buf[1024 * 256 + 1];
+
       primitive::memory_size uiRead;
+
       char * lpsz;
+
       m_iaLineIndex.remove_all();
+
       m_iaLineEndIndex.remove_all();
+
       m_ptree->m_editfile.seek(0, ::file::seek_begin);
+
       if(m_scrollinfo.m_sizeTotal.cx <= 0)
+      {
+
          m_scrollinfo.m_sizeTotal.cx = 200;
+
+      }
+
       int32_t iLineSize = 0;
+
       char flags[3];
+
       flags[0] = 3;
+
       flags[1] = 1;
+
       flags[2] = 2;
+
       while((uiRead = m_ptree->m_editfile.read(buf, sizeof(buf) - 1)) > 0)
       {
          buf[uiRead] = '\0';
