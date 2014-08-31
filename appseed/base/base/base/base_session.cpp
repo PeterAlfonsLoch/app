@@ -1624,7 +1624,7 @@ namespace base
    ::user::interaction * session::get_focus_guie()
    {
 
-      return ::axis::session::get_active_guie();
+      return ::axis::session::get_focus_guie();
 
    }
 
