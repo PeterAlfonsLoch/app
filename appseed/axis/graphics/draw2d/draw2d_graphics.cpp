@@ -12,14 +12,23 @@ namespace draw2d
 
 
 
-   graphics::graphics()
+   graphics::graphics(sp(::aura::application) papp) :
+      element(papp),
+      m_spmutex(papp)
    {
+
       m_puistrcontext         = NULL;
       m_pdrawcontext          = NULL;
       m_pdibAlphaBlend        = NULL;
       m_pjob                  = NULL;
       m_dFontFactor           = 1.0;
       m_pdib                  = NULL;
+
+   }
+
+
+   graphics::~graphics()
+   {
 
    }
 
