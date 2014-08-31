@@ -80,9 +80,16 @@ extern "C" void CharGuessDestroy(charguess_det p)
 
 #ifdef _DEBUG
 
+#define TEST_LATIN1 "Aucun fichier ou répertoire de ce type"
+#define TEST_UTF8   "æ–™ç†ã«åˆã‚ã›ãŸç¾å‘³ã—ã„ãƒ¯ã‚¤ãƒ³ã®é¸ã³æ–¹ã€‚"
+#define TEST_SJIS   "—¿—‚É‡‚í‚¹‚½”ü–¡‚µ‚¢ƒƒCƒ“‚Ì‘I‚Ñ•ûB"
+#define TEST_JIS    "$BNAM}$K9g$o$;$?H~L#$7$$%o%$%s$NA*$SJ}!#(B"
+
 void _debug_charguess()
 {
+
    uint32_t uiCodePage = charguess("\"Carlos é brasileiro\" está escrito em um código de página latino?")();
+
 }
 
 #endif
