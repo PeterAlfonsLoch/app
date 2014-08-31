@@ -1797,27 +1797,43 @@ namespace user
             }
             else if(*lpsz == '\r')
             {
+
                iLineSize++;
+
                m_iaLineIndex.add(iLineSize);
+
                m_iaLineEndIndex.add(2);
+
                iLineSize = 0;
+
                lpsz++;
+
             }
             else
             {
+
                lpsz++;
+
                iLineSize++;
+
             }
+
          }
 
          i++;
+
       }
+
       m_iaLineIndex.add(iLineSize);
+
       m_iaLineEndIndex.add(0);
 
       ::count iAcc;
+
       ::count iLineCount;
+
       i = 0;
+
       while(i < m_iaLineIndex.get_size())
       {
          iAcc = 0;
