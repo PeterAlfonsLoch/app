@@ -1318,9 +1318,6 @@
     <ClCompile Include="primitive\data\data_tree_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_os.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
@@ -1374,6 +1371,9 @@
     </ClCompile>
     <ClCompile Include="database\sqlite\sqlite_set.cpp">
       <Filter>Source Files\database\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\windows\windows.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3031,7 +3031,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="axis\node\node.cpp" />
-    <ClCompile Include="axis\node\windows\windows.cpp" />
     <ClCompile Include="axis\node\windows\windows_copydesk.cpp" />
     <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp" />
     <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp" />
@@ -3272,6 +3271,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="graphics\visual\visual_const.h" />
     <ClInclude Include="graphics\visual\visual_cursor.h" />
     <ClInclude Include="graphics\visual\visual_icon.h" />
+    <ClCompile Include="axis\os\windows\windows.cpp" />
     <ClCompile Include="axis\os\windows\windows_dll.cpp" />
     <ClCompile Include="axis\os\windows\windows_gdi.cpp" />
     <ClCompile Include="axis\os\windows\windows_os.cpp" />
