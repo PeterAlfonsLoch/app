@@ -247,6 +247,8 @@ namespace simple_ui
 
          if(m_estockicon != stock_icon_none)
          {
+
+            pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
             
             ::draw2d::brush_sp br(allocer());
 
