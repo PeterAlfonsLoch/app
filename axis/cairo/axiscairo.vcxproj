@@ -1032,7 +1032,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);DeprecationManager;OpenEXR;OpenEXR\Half;OpenEXR\Iex;OpenEXR\IlmImf;OpenEXR\Imath;OpenEXR\IlmThread;LibJPEG;LibMNG;LibOpenJPEG;LibPNG;LibTIFF;LibRawLite;FreeImage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;$(ProjectDir)../../include;$(ProjectDir)..;$(ProjectDir);$(ProjectDir)../pixman/pixman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

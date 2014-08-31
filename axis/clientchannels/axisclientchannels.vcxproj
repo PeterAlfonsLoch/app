@@ -125,6 +125,7 @@
     <ClCompile Include="channels\encomsp\client\encomsp_main.c" />
     <ClCompile Include="channels\parallel\client\parallel_main.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="channels\printer\client\printer_main.c" />
     <ClCompile Include="channels\printer\client\printer_win.c" />

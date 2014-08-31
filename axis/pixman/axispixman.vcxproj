@@ -218,8 +218,8 @@ copy Source\FreeImage.h Dist
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);pixman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>

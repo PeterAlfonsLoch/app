@@ -1,4 +1,4 @@
-; _ca2pixman.def : Declares the module parameters for the DLL.
+; axispixman.def : Declares the module parameters for the DLL.
 
 LIBRARY      "axispixman"
 	;DESCRIPTION  '_ca2pixman Windows Dynamic Link Library'

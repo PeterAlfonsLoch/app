@@ -80,6 +80,7 @@
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
     <OutDir>.\Debug\</OutDir>
@@ -208,10 +209,8 @@
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy Debug\FreeImaged.dll Dist
-copy Debug\FreeImaged.lib Dist
-copy Source\FreeImage.h Dist
-</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
@@ -275,7 +274,8 @@ copy Source\FreeImage.h Dist
       <FixedBaseAddress>false</FixedBaseAddress>
     </Link>
     <PostBuildEvent>
-      <Command>$(TargetDir)$(TargetName).pdb</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
