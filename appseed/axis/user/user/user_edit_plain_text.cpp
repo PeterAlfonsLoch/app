@@ -1454,21 +1454,33 @@ namespace user
       synch_lock sl(m_spmutex);
 
       iSel -= m_iViewOffset;
+
       stringa & straLines = m_lines.lines;
+
       strsize i1;
+
       strsize i2 = 0;
+
       for(index i = 0; i < straLines.get_size(); i++)
       {
+
          i1 = i2;
+
          i2 = i1 + straLines[i].get_length();
-         if(iSel >= i1
-            && iSel <= i2)
+
+         if(iSel >= i1 && iSel <= i2)
          {
+
             return iSel - i1;
+
          }
+
       }
+
       return -1;
+
    }
+
 
    strsize edit_plain_text::char_hit_test(::draw2d::graphics * pdc, int32_t px, int32_t py)
    {
