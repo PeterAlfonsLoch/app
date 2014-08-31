@@ -2865,13 +2865,13 @@ namespace user
             }
 
             // show the interaction_impl when certain special messages rec'd
-            if(bShowIdle &&
-               (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
-            {
-               ShowWindow(SW_SHOWNORMAL);
-               UpdateWindow();
-               bShowIdle = FALSE;
-            }
+            //if(bShowIdle &&
+              // (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
+            //{
+              // ShowWindow(SW_SHOWNORMAL);
+               //UpdateWindow();
+               //bShowIdle = FALSE;
+            //}
 
             if(!ContinueModal(iLevel))
                goto ExitModal;
