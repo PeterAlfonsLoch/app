@@ -2513,31 +2513,47 @@ namespace user
 
    void edit_plain_text::keyboard_focus_OnKeyDown(signal_details * pobj)
    {
+
       _002OnKeyDown(pobj);
+
    }
+
 
    void edit_plain_text::keyboard_focus_OnKeyUp(signal_details * pobj)
    {
+
       _002OnKeyUp(pobj);
+
    }
+
 
    void edit_plain_text::keyboard_focus_OnChar(signal_details * pobj)
    {
+
       _002OnChar(pobj);
+
    }
 
 
    void edit_plain_text::_001OnAfterChangeText(::action::context actioncontext)
    {
+
       ::user::control_event ev;
+
       ev.m_puie         = this;
+
       ev.m_eevent       = ::user::event_after_change_text;
+
       ev.m_actioncontext = actioncontext;
+
       BaseOnControlEvent(&ev);
+
    }
+
 
    void edit_plain_text::clipboard_copy()
    {
+
       if(m_bPassword)
          return;
       string str;
