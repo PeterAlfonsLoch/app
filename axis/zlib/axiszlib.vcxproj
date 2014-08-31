@@ -41,9 +41,7 @@
     <ClCompile Include="crc32.c" />
     <ClCompile Include="deflate.c" />
     <ClCompile Include="gzclose.c" />
-    <ClCompile Include="gzip_stream.cpp">
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">_ZLIB_LIBRARY</PreprocessorDefinitions>
-    </ClCompile>
+    <ClCompile Include="gzip_stream.cpp" />
     <ClCompile Include="gzlib.c" />
     <ClCompile Include="gzread.c" />
     <ClCompile Include="gzwrite.c" />
