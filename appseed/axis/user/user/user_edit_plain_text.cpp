@@ -1434,6 +1434,7 @@ namespace user
       select_font(pgraphics);
 
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+
       size size3 = pgraphics->GetTextExtent(unitext("gqYALﾍWM"));
 
       int32_t iLineHeight = size3.cy;
@@ -1442,47 +1443,10 @@ namespace user
 
       strsize iChar = char_hit_test(pgraphics, x, y);
 
-
-
       return iChar;
-/*      while(iLine < 0)
-      {
-         OneLineUp();
-         if(m_iViewOffset == 0)
-         {
-            iLine = 0;
-            break;
-         }
-         iLine++;
-      }
-      stringa & straLines = m_lines.lines;
-      if(iLine >= straLines.get_size())
-      {
-         return 0;
-      }
-      strsize iOffset = 0;
-      for(int32_t i = 0; i < iLine; i++)
-      {
-         iOffset += straLines[i].get_length();
-      }
-      stringa stra;
-      string strLine;
-      stra.remove_all();
-      stra.add_smallest_tokens(straLines[iLine], m_straSep, FALSE, FALSE);
-      if(stra.get_size() > 0)
-      {
-         strLine = stra[0];
-      }
-      else
-      {
-         strLine.Empty();
-      }
-      if(iColumn < 0)
-         iColumn = iColumn + 1 + strLine.get_length();
-      if(iColumn > strLine.get_length())
-         iColumn = strLine.get_length();
-      return m_iViewOffset + iOffset + iColumn;*/
+
    }
+
 
    index edit_plain_text::SelToColumn(strsize iSel)
    {
