@@ -1705,8 +1705,11 @@ namespace user
 
    void edit_plain_text::FileSave()
    {
+
       m_ptree->m_editfile.flush();
+
    }
+
 
    void edit_plain_text::OnFileUpdate()
    {
