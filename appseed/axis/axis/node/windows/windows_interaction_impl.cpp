@@ -1365,24 +1365,35 @@ namespace windows
          message::key * pkey = (::message::key *) pbase;
 
          sp(::user::interaction) puiFocus = Session.user()->get_keyboard_focus();
-         if(puiFocus != NULL
-            && puiFocus->IsWindow())
+         
+         if(puiFocus != NULL && puiFocus->IsWindow())
          {
+         
             puiFocus->send(pkey);
+
             if(pbase->m_bRet)
                return;
+
          }
          else if(!pkey->m_bRet)
          {
+            
             if(m_pui != NULL)
             {
+
                m_pui->_000OnKey(pkey);
+
                if(pbase->m_bRet)
                   return;
+
             }
+
          }
+
          pbase->set_lresult(DefWindowProc(pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
+
          return;
+
       }
       if(pbase->m_uiMessage == ::message::message_event)
       {
