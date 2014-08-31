@@ -1713,10 +1713,15 @@ namespace user
 
    void edit_plain_text::OnFileUpdate()
    {
+
       m_bGetTextNeedUpdate = true;
+
       CreateLineIndex();
+
       m_y = -1;
+
    }
+
 
    void edit_plain_text::CreateLineIndex()
    {
