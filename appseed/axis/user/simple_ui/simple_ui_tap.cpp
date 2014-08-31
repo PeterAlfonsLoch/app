@@ -250,9 +250,11 @@ namespace simple_ui
             
             ::draw2d::brush_sp br(allocer());
 
-            br->create_solid(crBorderOut);
+            br->create_solid(crBorderIn);
 
             pgraphics->SelectObject(br);
+
+            pgraphics->FillRect(rectClient,br);
 
             ::draw2d::pen_sp pen(allocer());
 
