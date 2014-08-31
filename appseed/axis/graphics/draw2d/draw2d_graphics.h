@@ -12,6 +12,7 @@ namespace draw2d
    public:
 
 
+      sp(mutex)                     m_spmutex;
       ::user::str_context *         m_puistrcontext;
       ::user::draw_context *        m_pdrawcontext;
       ::draw2d::dib *               m_pdibAlphaBlend;
@@ -27,11 +28,6 @@ namespace draw2d
       ::draw2d::region_sp           m_spregion;
 
 
-      //::draw2d::pen                 m_penxyz;
-      //::draw2d::brush               m_brushxyz;
-      //::draw2d::font                m_fontxyz;
-      //::draw2d::region              m_regionxyz;
-
       double                        m_x;
       double                        m_y;
 
@@ -39,13 +35,12 @@ namespace draw2d
       e_text_rendering              m_etextrendering;
       double                        m_dFontFactor;
 
-      // advanced use and implementation
       bool                          m_bPrinting;
 
 
+      graphics(sp(::aura::application) papp);
+      virtual ~graphics();
 
-
-      graphics();
 
       virtual bool is_set();
 
@@ -713,6 +708,7 @@ namespace draw2d
 
    };
 
+   
    class CLASS_DECL_AXIS memory_graphics :
       public graphics_sp
    {
@@ -724,39 +720,25 @@ namespace draw2d
    };
 
 
-/*   class CLASS_DECL_AXIS window_graphics :
-      virtual public graphics_sp
-   {
-   public:
-
-      ::window_sp m_pwindow;
-
-      window_graphics(::window_sp pwindow);
-      virtual ~window_graphics();
-
-   };
-
-   class CLASS_DECL_AXIS paint_graphics :
-      virtual public graphics_sp
-   {
-   public:
-
-      ::window_sp    m_pwindow;
-#ifdef WINDOWSEX
-      PAINTSTRUCT       m_ps;
-#endif
-
-      paint_graphics(::window_sp pwindow);
-      virtual ~paint_graphics();
-
-   };*/
-
-
-
 } // namespace axis
-
 
 
 CLASS_DECL_AXIS dump_context & operator<<(dump_context & dumpcontext, SIZE size);
 CLASS_DECL_AXIS dump_context & operator<<(dump_context & dumpcontext, POINT point);
 CLASS_DECL_AXIS dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
