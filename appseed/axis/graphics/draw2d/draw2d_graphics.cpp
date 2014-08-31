@@ -3980,7 +3980,7 @@ namespace draw2d
    
    bool graphics::draw_stock_icon(const RECT & rectParam, e_stock_icon eicon)
    {
-      
+      synch_lock sl(&user_mutex());
       ::draw2d::pen_sp pen(allocer());
       ::draw2d::brush_sp brush(allocer());
       
