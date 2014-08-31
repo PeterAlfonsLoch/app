@@ -1759,25 +1759,41 @@ namespace user
 
       while((uiRead = m_ptree->m_editfile.read(buf, sizeof(buf) - 1)) > 0)
       {
+
          buf[uiRead] = '\0';
+
          lpsz = buf;
+
          while(*lpsz != '\0')
          {
+
             if(*lpsz == '\r' && (*(lpsz + 1)) == '\n')
             {
+
                iLineSize +=2;
+
                m_iaLineIndex.add(iLineSize);
+
                m_iaLineEndIndex.add(3);
+
                iLineSize = 0;
+
                lpsz += 2;
+
             }
             else if(*lpsz == '\n')
             {
+               
                iLineSize++;
+
                m_iaLineIndex.add(iLineSize);
+
                m_iaLineEndIndex.add(1);
+
                iLineSize = 0;
+
                lpsz++;
+
             }
             else if(*lpsz == '\r')
             {
