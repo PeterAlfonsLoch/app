@@ -4175,10 +4175,11 @@ namespace windows
    sp(::user::interaction) interaction_impl::SetCapture(sp(::user::interaction) pinterface)
    {
 
-      ASSERT(::IsWindow(get_handle()));
-
       if(pinterface != NULL)
          m_puiCapture = pinterface;
+
+      if(::IsWindow(get_handle()))
+         return NULL;
 
       return ::windows::interaction_impl::from_handle(::SetCapture(get_handle()));
 
