@@ -524,7 +524,7 @@ namespace draw2d
    point graphics::MoveTo(POINT point)
    {
 
-      synch_lock sl(&user_mutex());
+      synch_lock sl(m_spmutex);
 
       pointd pointd = MoveTo((double)point.x, (double)point.y);
 
@@ -2580,7 +2580,7 @@ namespace draw2d
    point graphics::MoveTo(int32_t x, int32_t y)
    {
 
-      synch_lock sl(&user_mutex());
+      synch_lock sl(m_spmutex);
 
       pointd pointd = MoveTo((double) x, (double) y);
 
@@ -2835,7 +2835,7 @@ namespace draw2d
    int32_t graphics::draw_text(const string & str,const RECT & lpRect,UINT nFormat)
    {
 
-      synch_lock ml(&user_mutex());
+      synch_lock ml(m_spmutex);
 
       size sz = GetTextExtent(str);
 
@@ -2887,7 +2887,7 @@ namespace draw2d
    int32_t graphics::draw_text(const string & str,const RECTD & lpRect,UINT nFormat)
    {
 
-      synch_lock ml(&user_mutex());
+      synch_lock ml(m_spmutex);
 
       size sz = GetTextExtent(str);
 
@@ -3275,7 +3275,7 @@ namespace draw2d
    pointd graphics::MoveTo(double x, double y)
    {
 
-      synch_lock sl(&user_mutex());
+      synch_lock sl(m_spmutex);
 
       double px = m_x;
 
@@ -4007,7 +4007,7 @@ namespace draw2d
    
    bool graphics::draw_stock_icon(const RECT & rectParam, e_stock_icon eicon)
    {
-      synch_lock sl(&user_mutex());
+      synch_lock sl(m_spmutex);
       ::draw2d::pen_sp pen(allocer());
       ::draw2d::brush_sp brush(allocer());
       
