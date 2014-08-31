@@ -1684,16 +1684,24 @@ namespace user
 
    }
 
+
    void edit_plain_text::on_updata_data(::data::simple_data * pdata, int32_t iHint)
    {
+
       if(pdata == m_ptree)
       {
+
          if(iHint == plain_text_tree::update_hint_set_file)
          {
+
             OnFileUpdate();
+
          }
+
       }
+
    }
+
 
    void edit_plain_text::FileSave()
    {
