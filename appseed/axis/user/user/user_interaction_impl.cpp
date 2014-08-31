@@ -276,10 +276,9 @@ namespace user
 
    LRESULT interaction_impl::DefWindowProc(UINT nMsg,WPARAM wParam,lparam lParam)
    {
-      UNREFERENCED_PARAMETER(nMsg);
-      UNREFERENCED_PARAMETER(wParam);
-      UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception(get_app());
+
+      return 0;
+
    }
 
 
