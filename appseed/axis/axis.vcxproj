@@ -1968,7 +1968,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClInclude>
     <ClInclude Include="axis\node\node.h" />
     <ClInclude Include="axis\node\windows\os.h" />
-    <ClInclude Include="axis\node\windows\win.h" />
     <ClInclude Include="axis\node\windows\win1.h" />
     <ClInclude Include="axis\node\windows\windows_copydesk.h" />
     <ClInclude Include="axis\node\windows\windows_factory_exchange.h" />
