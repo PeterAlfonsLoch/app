@@ -24,15 +24,6 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{8832ff75-5113-4095-b832-a6e62e777cfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Binary Files">
-      <UniqueIdentifier>{0e5699d5-e5c9-4fe6-bf50-fdbc06f88940}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\x64">
-      <UniqueIdentifier>{bf6e62f4-c0ee-4267-b9f2-badb91fbfe3f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\x86">
-      <UniqueIdentifier>{8bedbbf7-bbee-4bec-b9ca-3e59352115ef}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net\http">
       <UniqueIdentifier>{87154103-1603-4ede-93b7-a339452693d9}</UniqueIdentifier>
     </Filter>
@@ -724,12 +715,6 @@
     </ClInclude>
     <ClInclude Include="user\fontopus\fontopus_simple_ui.h">
       <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\aaa_want_to_remove_install_window.h">
-      <Filter>Header Files\base\install</Filter>
-    </ClInclude>
-    <ClInclude Include="base\install\aaa_want_to_remove_install2.h">
-      <Filter>Header Files\base\install</Filter>
     </ClInclude>
     <ClInclude Include="base\base\base.h">
       <Filter>Header Files\base\base</Filter>
@@ -2022,20 +2007,9 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcr120d.dll">
-      <Filter>Binary Files\x86</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcp120d.dll">
-      <Filter>Binary Files\x86</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcp120d.dll">
-      <Filter>Binary Files\x64</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcr120d.dll">
-      <Filter>Binary Files\x64</Filter>
-    </CustomBuild>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="base.rc">

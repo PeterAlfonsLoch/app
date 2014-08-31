@@ -1532,9 +1532,6 @@
     <ClInclude Include="core\core\core_util.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_simple_app.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_timer.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -1741,6 +1738,9 @@
     </ClInclude>
     <ClInclude Include="user\simple\simple_toolbar.h">
       <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_simple_app.h">
+      <Filter>Header Files\core\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

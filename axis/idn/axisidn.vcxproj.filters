@@ -57,18 +57,6 @@
     <ClInclude Include="config.h">
       <Filter>Header Files\project-dir</Filter>
     </ClInclude>
-    <ClInclude Include="lib\gltests\alloca.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\c-ctype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\c-strcase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\gettext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lib\gunibreak.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -78,103 +66,16 @@
     <ClInclude Include="lib\gunidecomp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="lib\gl\iconv.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\iconv_open-aix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\iconv_open-hpux.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\iconv_open-osf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\iconv_open-irix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\iconv_open-solaris.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lib\idn-free.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\intprops.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\inttypes.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\locale.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\localename.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\glthread\lock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\macros.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\malloca.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lib\pr29.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="lib\gltests\signature.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\stdbool.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\stddef.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\stdint.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\stdlib.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\striconv.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\string.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lib\stringprep.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="lib\gl\sys_types.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\test-sys_wait.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\glthread\thread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lib\tld.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\unistd.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\unistr.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gl\unitypes.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\verify.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\wchar.in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gltests\glthread\yield.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
