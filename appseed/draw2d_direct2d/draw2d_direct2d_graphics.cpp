@@ -10,7 +10,8 @@ namespace draw2d_direct2d
 
    
    graphics::graphics(sp(::aura::application) papp) :
-      element(papp)
+      element(papp),
+      ::draw2d::graphics(papp)
    {
 
       m_sppen.alloc(allocer());
@@ -38,35 +39,14 @@ namespace draw2d_direct2d
 
    }
 
-   graphics::graphics()
-   {
-
-      m_player    = NULL;
-
-      m_ppathgeometryClip     = NULL;
-
-      m_iType     = 0;
-
-      m_interpolationmode = D2D1_INTERPOLATION_MODE_HIGH_QUALITY_CUBIC;
-
-      m_bitmapinterpolationmode = D2D1_BITMAP_INTERPOLATION_MODE_LINEAR;
-
-      /*      m_bPrinting       = FALSE;
-      m_prendertarget       = NULL;
-      m_prendertarget       = NULL;
-      m_hdc             = NULL;
-      m_ppath           = NULL;
-      m_ppathPaint      = NULL;
-      m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;
-      ;*/
-
-   }
-
 
    void graphics::assert_valid() const
    {
+
       object::assert_valid();
+
    }
+
 
    void graphics::dump(dump_context & dumpcontext) const
    {
@@ -4822,13 +4802,11 @@ namespace draw2d_direct2d
    bool graphics::draw(const ::draw2d::path::string_path & path, ::draw2d::pen * ppen)
    {
 
-
       wstring szOutline(path.m_strText);
 
       IDWriteTextFormat * pformat =(IDWriteTextFormat *) get_os_font(path.m_spfont);
 
       IDWriteFactory * pfactory = TlsGetWriteFactory();
-
 
       IDWriteTextLayout * playout = NULL;
 
@@ -4848,13 +4826,11 @@ namespace draw2d_direct2d
 
       CustomTextRenderer * pr = new CustomTextRenderer(GetD2D1Factory1(),m_prendertarget.Get(),get_os_pen_brush(ppen));
 
-
       playout->Draw(NULL, pr, (FLOAT) path.m_x, (FLOAT) path.m_y);
-
 
       delete pr;
 
-
+      return true;
 
    }
 
