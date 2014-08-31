@@ -511,14 +511,18 @@ namespace draw2d
       return null_point();
    }
 
+   
    point graphics::MoveTo(POINT point)
    {
+
+      synch_lock sl(&user_mutex());
 
       pointd pointd = MoveTo((double)point.x, (double)point.y);
 
       return ::point((int64_t) pointd.x, (int64_t) pointd.y);
 
    }
+
 
    bool graphics::LineTo(POINT point)
    {
@@ -2563,11 +2567,18 @@ namespace draw2d
       return -1;
    }
 
+
    point graphics::MoveTo(int32_t x, int32_t y)
    {
+
+      synch_lock sl(&user_mutex());
+
       pointd pointd = MoveTo((double) x, (double) y);
+
       return point((LONG) pointd.x, (LONG) pointd.y);
+
    }
+
 
    bool graphics::LineTo(int32_t x, int32_t y)
    {
@@ -3252,14 +3263,21 @@ namespace draw2d
    }
 
 
-
    pointd graphics::MoveTo(double x, double y)
    {
+
+      synch_lock sl(&user_mutex());
+
       double px = m_x;
+
       double py = m_y;
+
       m_x = x;
+
       m_y = y;
+
       return pointd(px, py);
+
    }
 
 
