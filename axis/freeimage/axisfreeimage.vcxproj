@@ -260,9 +260,8 @@ copy Source\FreeImage.h Dist
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/FreeImaged.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
-      <ImportLibrary>.\Debug/FreeImaged.lib</ImportLibrary>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>

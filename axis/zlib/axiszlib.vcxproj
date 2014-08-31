@@ -365,7 +365,7 @@ bld_ml32.bat</Command>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(OutDir)zlibwapi.map</MapFileName>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>$(OutDir)zlibwapi.lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <AdditionalLibraryDirectories>$(IntDir)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
