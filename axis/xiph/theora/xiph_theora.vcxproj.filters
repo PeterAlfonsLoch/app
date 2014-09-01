@@ -153,9 +153,6 @@
     <ClInclude Include="huffman.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="idct.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>

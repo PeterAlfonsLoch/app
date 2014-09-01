@@ -252,7 +252,7 @@
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>"$(OutDir)app._.exe" "$(OutDir)app.exe" "app/sphere/userstack" "$(OutDir)app_sphere_userstack.exe"</Command>
-      <Outputs>$(OutDir)sphere_userstack.exe</Outputs>
+      <Outputs>$(OutDir)app_sphere_userstack.exe</Outputs>
       <Inputs>$(OutDir)app.exe</Inputs>
       <TreatOutputAsContent>true</TreatOutputAsContent>
     </CustomBuildStep>
@@ -302,7 +302,7 @@
     <Link>
       <RegisterOutput>false</RegisterOutput>
       <PerUserRedirection>false</PerUserRedirection>
-      <AdditionalDependencies>Gdiplus.lib;WinInet.lib;libmysql.lib;Crypt32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>

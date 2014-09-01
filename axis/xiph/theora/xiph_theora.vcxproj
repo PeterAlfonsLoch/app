@@ -594,7 +594,6 @@
     <ClInclude Include="dequant.h" />
     <ClInclude Include="huffdec.h" />
     <ClInclude Include="huffman.h" />
-    <ClInclude Include="idct.h" />
     <ClInclude Include="ocintrin.h" />
     <ClInclude Include="quant.h" />
     <ClInclude Include="framework.h" />
