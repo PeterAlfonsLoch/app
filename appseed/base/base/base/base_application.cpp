@@ -2386,8 +2386,6 @@ namespace base
 
       m_bBaseInitialize1Result = false;
 
-      m_splicensing = new class ::fontopus::licensing(this);
-
       m_dwAlive = ::get_tick_count();
 
       if(!::axis::application::initialize1())

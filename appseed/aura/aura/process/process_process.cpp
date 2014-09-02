@@ -28,7 +28,7 @@ namespace process
       if(bPiped)
       {
 
-         if(!m_pipe.create(false))
+         if(!m_pipe.create(false, true))
             return false;
 
       }

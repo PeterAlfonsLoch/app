@@ -228,11 +228,8 @@ namespace core
    bool application::initialize1()
    {
 
-      m_splicensing = new class ::fontopus::licensing(this);
-
       if(!::base::application::initialize1())
          return false;
-
 
       m_pwndfrm = canew(::user::wndfrm::wndfrm(this));
 
@@ -240,9 +237,6 @@ namespace core
 
       if(!m_pwndfrm->initialize())
          return false;
-
-
-
 
       if(!is_installing() && !is_uninstalling() && !is_system())
       {

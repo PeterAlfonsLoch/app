@@ -24,8 +24,6 @@ namespace base
       bool                                            m_bBaseInitializeResult;
 
 
-      sp(::fontopus::licensing)                       m_splicensing;
-
       ::http::application                             m_http;
       ::file::dir::application                        m_dir;
       ::file::application                             m_file;

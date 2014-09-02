@@ -269,6 +269,13 @@ namespace base
       if(directrix()->m_varTopicQuery.has_property("uninstall"))
          return true;
 
+      if(&licensing() == NULL)
+      {
+
+         return false;
+
+      }
+
       if(!licensing().has(pszId,bInteractive))
       {
          
@@ -1153,6 +1160,8 @@ namespace base
 
    bool session::initialize1()
    {
+
+      m_splicensing = new class ::fontopus::licensing(this);
 
       m_spfs = canew(::fs::fs(this));
 
