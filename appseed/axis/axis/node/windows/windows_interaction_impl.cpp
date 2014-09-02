@@ -1331,7 +1331,7 @@ namespace windows
          {
             m_pui->_001OnTriggerMouseInside();
          }
-         if(m_puiCapture != NULL)
+         if(::GetCapture() == m_oswindow && m_puiCapture != NULL)
          {
             if(m_puiCapture->m_pimpl != NULL)
             {
@@ -4108,7 +4108,7 @@ namespace windows
       if(pinterface != NULL)
          m_puiCapture = pinterface;
 
-      if(::IsWindow(get_handle()))
+      if(!::IsWindow(get_handle()))
          return NULL;
 
       return ::windows::interaction_impl::from_handle(::SetCapture(get_handle()));
