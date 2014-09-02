@@ -75,6 +75,13 @@ typedef
 #include <stdio.h>
 #endif
 
+#undef small
+
+#ifdef CUBE
+#   define BZ_API(func) func
+#   define BZ_EXTERN 
+
+#else
 #ifdef _WIN32
 #   include <windows.h>
 #   ifdef small
@@ -108,7 +115,7 @@ typedef
 #   define BZ_EXTERN
 #endif
 #endif
-
+#endif
 
 /*-- Core (low-level) library functions --*/
 

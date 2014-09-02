@@ -1,11 +1,11 @@
 #include "framework.h"
 
-namespace std
-{
-
-   const nothrow_t nothrow;
-
-} // namespace std
+//namespace std
+//{
+//
+//   const nothrow_t nothrow;
+//
+//} // namespace std
 
 int32_t ___()
 {

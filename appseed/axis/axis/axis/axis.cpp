@@ -7,25 +7,25 @@ namespace std
 
 } // namespace std
 
-int32_t ___()
-{
-
-   simple_message_box(NULL,"___ library of ca","___ library of ca",MB_ICONINFORMATION | MB_OK);
-
-   return 0;
-
-}
-
-
-
-string_map < INT_PTR,INT_PTR > * g_pmapLibrary = NULL;
-
-string_map < INT_PTR, INT_PTR > & __library()
-{
-   return *g_pmapLibrary;
-}
+//int32_t ___()
+//{
+//
+//   simple_message_box(NULL,"___ library of ca","___ library of ca",MB_ICONINFORMATION | MB_OK);
+//
+//   return 0;
+//
+//}
+//
 
 
+//string_map < INT_PTR,INT_PTR > * g_pmapLibrary = NULL;
+//
+//string_map < INT_PTR, INT_PTR > & __library()
+//{
+//   return *g_pmapLibrary;
+//}
+//
+//
 
 
 
