@@ -279,7 +279,9 @@ namespace draw2d_cairo
 
       bool Polygon(const POINT* lpPoints, int32_t nCount);
       bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount);
-      bool Rectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
+      bool Polygon(const POINTD* lpPoints,int32_t nCount);
+      bool PolyPolygon(const POINTD* lpPoints,const INT* lpPolyCounts,int32_t nCount);
+      bool Rectangle(int32_t x1,int32_t y1,int32_t x2,int32_t y2);
       bool Rectangle(const RECT & lpRect);
       virtual bool DrawRectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool DrawRectangle(const RECT & lpRect);

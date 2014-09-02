@@ -1115,6 +1115,39 @@ synch_lock ml(m_spmutex);
 
    }
 
+   bool graphics::Polygon(const POINTD* pa,int32_t nCount)
+   {
+
+      synch_lock ml(m_spmutex);
+      if(nCount <= 0)
+         return TRUE;
+
+
+      cairo_move_to(m_pdc,pa[0].x,pa[0].y);
+
+      for(int32_t i = 1; i < nCount; i++)
+      {
+
+         cairo_line_to(m_pdc,pa[i].x,pa[i].y);
+
+      }
+
+      return fill_and_draw();
+
+
+
+   }
+
+
+   bool graphics::PolyPolygon(const POINTD* lpPoints,const INT* lpPolyCounts,int32_t nCount)
+   {
+
+      throw not_implemented(get_app());
+      return false;
+      //   ASSERT(get_handle1() != NULL); return ::PolyPolygon(get_handle1(), lpPoints, lpPolyCounts, nCount) != FALSE;
+
+   }
+
    bool graphics::Rectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
