@@ -11,6 +11,7 @@ class CLASS_DECL_AURA point_array :
 public:
    __inline point_array() : array < point >() {}
    __inline point_array(const point_array & pointset) { operator=(pointset); }
+   point_array(const POINTD * lppt,::count c);
    virtual ~point_array();
 
    void offset(int32_t x, int32_t y);
