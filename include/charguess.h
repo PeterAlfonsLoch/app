@@ -20,7 +20,9 @@
 
 #include "aura/aura/aura.h"
 
-#if defined(_AURA_CHARGUESS)
+#if defined(CUBE)
+#define CHARGUESS_API
+#elif defined(_AURA_CHARGUESS)
 #define CHARGUESS_API  CLASS_DECL_EXPORT
 #else
 #define CHARGUESS_API  CLASS_DECL_IMPORT

@@ -49,7 +49,9 @@ extern "C" {
 # define SQLITE_EXTERN extern
 #endif
 
-#if defined(_AURA_SQLITE)
+#if defined(CUBE)
+#define SQLITE_API
+#elif defined(_AURA_SQLITE)
 #define SQLITE_API  CLASS_DECL_EXPORT
 #else
 #define SQLITE_API  CLASS_DECL_IMPORT
