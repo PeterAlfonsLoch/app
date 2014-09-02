@@ -7,6 +7,7 @@ point_array::point_array(const POINTD * lppt,::count c)
    {
       add((int32_t) lppt->x,(int32_t) lppt->y);
       lppt++;
+      c--;
    }
 }
 

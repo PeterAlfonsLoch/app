@@ -14,6 +14,10 @@ public:
    point_array(const POINTD * lppt,::count c);
    virtual ~point_array();
 
+
+   operator POINT * () { return get_data();  }
+   operator ::count() { return count();  }
+
    void offset(int32_t x, int32_t y);
    void offset(class point point);
 

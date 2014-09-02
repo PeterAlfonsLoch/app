@@ -275,6 +275,7 @@ namespace draw2d_direct2d
       bool Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
       bool Pie(const RECT & lpRect, POINT ptStart, POINT ptEnd);
       bool Polygon(const POINT* lpPoints, int nCount);   
+      bool Polygon(const POINTD* lpPoints,int nCount);
       bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount);
       bool Rectangle(int x1, int y1, int x2, int y2);
       bool Rectangle(const RECT & lpRect);

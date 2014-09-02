@@ -1062,7 +1062,24 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount)
+   bool graphics::Polygon(const POINTD* lpPoints,int nCount)
+   {
+
+      ::draw2d::path_sp path(allocer());
+
+      path->begin_figure(get_os_brush(m_spbrush) != NULL,::draw2d::fill_mode_winding);
+
+      path->add_lines(lpPoints,nCount);
+
+      path->end_figure(true);
+
+      return this->path(path);
+
+
+   }
+
+
+   bool graphics::PolyPolygon(const POINT* lpPoints,const INT* lpPolyCounts,int nCount)
    {
 
       throw todo(get_app());
