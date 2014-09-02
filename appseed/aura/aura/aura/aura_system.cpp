@@ -1174,6 +1174,26 @@ namespace aura
 
    }
 
+
+   uint32_t _thread_proc_start_system(void * p)
+   {
+
+      ::aura::system * psystem = (::aura::system *)p;
+
+      return psystem->main();
+
+   }
+
+   CLASS_DECL_AURA void __start_system(::aura::system * psystem)
+   {
+
+      ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
+
+   }
+
+
+
+
 } // namespace aura
 
 
@@ -1181,19 +1201,21 @@ namespace aura
 
 
 
-uint32_t _thread_proc_start_system(void * p)
-{
 
-   ::aura::system * psystem = (::aura::system *)p;
 
-   return psystem->main();
 
-}
 
-CLASS_DECL_AURA void __start_system(::aura::system * psystem)
-{
 
-   ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
 
-}
+
+
+
+
+
+
+
+
+
+
+
 

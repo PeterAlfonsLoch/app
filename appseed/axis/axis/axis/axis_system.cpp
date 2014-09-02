@@ -948,34 +948,25 @@ namespace axis
    }
 
 
-} // namespace axis
+   uint32_t _thread_proc_start_system(void * p)
+   {
 
+      ::axis::system * psystem = (::axis::system *)p;
 
+      return psystem->main();
 
+   }
 
+   CLASS_DECL_AXIS void __start_system(::axis::system * psystem)
+   {
 
+      ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
 
-uint32_t _thread_proc_start_system(void * p)
-{
+   }
 
-   ::axis::system * psystem = (::axis::system *)p;
-
-   return psystem->main();
-
-}
-
-CLASS_DECL_AXIS void __start_system(::axis::system * psystem)
-{
-
-   ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
-
-}
 
 #ifdef METROWIN
 
-
-namespace axis
-{
 
 
    CLASS_DECL_AXIS bool get_window_rect(::axis::system_window ^ pwindow,RECTD * lprect)
@@ -1008,10 +999,19 @@ namespace axis
    }
 
 
+#endif
+
+
 } // namespace axis
 
 
-#endif
+
+
+
+
+
+
+
 
 
 
