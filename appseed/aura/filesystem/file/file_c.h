@@ -1,6 +1,16 @@
 #pragma once
 
 
+
+#if defined(METROWIN) || defined(APPLEOS) || defined(CUBE)
+
+#define MATTER_CACHE_FROM_HTTP_SERVER
+
+#endif
+
+
+
+
 BEGIN_EXTERN_C
 
 

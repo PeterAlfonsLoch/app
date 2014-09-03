@@ -140,28 +140,40 @@ namespace filemanager
 
    sp(manager) manager_template::open_child_list(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, ::filemanager::data * pfilemanagerdata)
    {
+      
       UNREFERENCED_PARAMETER(bMakeVisible);
+
       sp(::create_context) createcontext(allocer());
+
       createcontext->m_bMakeVisible = false;
+
       createcontext->m_puiParent = pwndParent;
+
+      if(pfilemanagerdata == NULL)
+      {
+
+         pfilemanagerdata = new ::filemanager::data(get_app());
+
+      }
+
+      createcontext->oprop("filemanager::data") = pfilemanagerdata;
+
+
+      pfilemanagerdata->m_pmanagertemplate = this;
+      pfilemanagerdata->m_pcallback = &Platform.filemanager();
+      pfilemanagerdata->m_pfilemanager = &Platform.filemanager();
+      pfilemanagerdata->m_iTemplate = m_iTemplate;
+      pfilemanagerdata->m_iDocument = m_iNextDocument++;
+      pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
+
+
       sp(manager) pdoc = (m_pdoctemplateChildList->open_document_file(createcontext));
+
       if (pdoc != NULL)
       {
-         //      pdoc->get_filemanager_data()->m_uiMenuBar = m_uiMenuBar;
-         //      pdoc->get_filemanager_data()->m_uiToolBar = m_uiToolBar;
-         if (pfilemanagerdata == NULL)
-         {
-            pfilemanagerdata = new ::filemanager::data(get_app());
-         }
-         pdoc->set_filemanager_data(pfilemanagerdata);
-         pdoc->get_filemanager_data()->m_pcallback = &Platform.filemanager();
-         pdoc->get_filemanager_data()->m_pfilemanager = &Platform.filemanager();
+
          pdoc->get_filemanager_data()->m_pmanager = pdoc;
          pdoc->get_filemanager_data()->m_pmanagerMain = pdoc;
-         pdoc->get_filemanager_template() = this;
-         pdoc->get_filemanager_data()->m_iTemplate = m_iTemplate;
-         pdoc->get_filemanager_data()->m_iDocument = m_iNextDocument++;
-         pdoc->get_filemanager_data()->m_bTransparentBackground = bTransparentBackground;
 
          //pdoc->CreateViews();
 
