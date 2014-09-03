@@ -27,10 +27,10 @@ namespace numeric_info_internal
       typedef T TYPE;
       typedef T OFFSET_TYPE;
 
-      static inline TYPE maximum(){ throw not_implemented(::get_thread_app()); }
-      static inline TYPE minimum(){ throw not_implemented(::get_thread_app()); }
-      static inline TYPE null(){ throw not_implemented(::get_thread_app()); }
-      static inline TYPE unitary(){ throw not_implemented(::get_thread_app()); }
+      static inline TYPE maximum(){ (TYPE) 0; }
+      static inline TYPE minimum(){ (TYPE) 0; }
+      static inline TYPE null(){ (TYPE) 0; }
+      static inline TYPE unitary(){ (TYPE) 1; }
       static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
 
 
@@ -259,6 +259,14 @@ class numeric_info:
    public numeric_info_internal::numeric_info < T >
 {
 public:
+   
+   typedef numeric_info_internal::numeric_info < T > INTERNAL_INFO;
+   
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE maximum() { return INTERNAL_INFO::maximum(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE minimum() { return INTERNAL_INFO::minimum(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE null() { return INTERNAL_INFO::null(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE unitary() { return INTERNAL_INFO::unitary(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE allset() { return INTERNAL_INFO::allset(); }
 
    static inline typename numeric_info_internal::numeric_info < T >::TYPE get_maximum_value() { return maximum(); }
    static inline typename numeric_info_internal::numeric_info < T >::TYPE get_minimum_value() { return minimum(); }
@@ -278,8 +286,8 @@ public:
    static inline typename numeric_info_internal::numeric_info < T >::TYPE unitary_value() { return get_unitary(); }
    static inline typename numeric_info_internal::numeric_info < T >::TYPE allset_value() { return get_allset(); }
 
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE min() { return minimum(); }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE max() { return maximum(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE min() { return get_minimum_value()(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE max() { return get_maximum_value()(); }
 
    template < typename T2 >
    static inline typename numeric_info_internal::numeric_info < T >::TYPE natural(const T2 & t2) { return MIN(max(), MAX(null(), (T) t2)); }
@@ -290,11 +298,11 @@ public:
 template < typename T, typename T2 >
 inline T clip_assign(T & t, const T2 & t2)
 { 
-   t = MIN(max(),MAX(min(),(T)t2)); 
+   t = MIN(::numeric_info < T >::max(),MAX(::numeric_info < T >::min(),(T)t2));
 }
 
 template < typename T,typename T2 >
 inline T natural_assign(T & t,const T2 & t2)
 {
-   t = MIN(max(),MAX(null(),(T)t2));
+   t = MIN(::numeric_info < T >::max(),MAX(::numeric_info < T >::null(),(T)t2));
 }

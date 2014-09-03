@@ -3,9 +3,20 @@
 <plist version="1.0">
 <dict>
 	<key>SchemeUserState</key>
-	<dict/>
+	<dict>
+		<key>baseopenssl.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>32</integer>
+		</dict>
+	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>07B2729319A01A4600E822E1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9A1B2F8716A2AF5C00875A94</key>
 		<dict>
 			<key>primary</key>

@@ -59,6 +59,9 @@
 #error Not Supported Operational System
 #endif
 
+#undef MIN
+#undef MAX
+
 #define MAX(a, b) (((a) > (b)) ? (a) : (b))
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
 #define LIM(a, min, max) MIN(max, MAX(min, a))

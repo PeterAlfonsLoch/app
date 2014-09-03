@@ -319,7 +319,6 @@
 		9AA5E5F916F7C61B005C45CE /* ImathShear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C35C16E7F600008420D3 /* ImathShear.cpp */; };
 		9AA5E5FA16F7C61B005C45CE /* ImathVec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C35F16E7F600008420D3 /* ImathVec.cpp */; };
 		9AA5E5FB16F7C61B005C45CE /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86CBCB16E8260D008420D3 /* Utilities.cpp */; };
-		9AA5E5FD16F7C61B005C45CE /* lib_ca2zlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEB7ABB16F7BEB20085103B /* lib_ca2zlib.dylib */; };
 		9AA5E5FF16F7C61B005C45CE /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C0B216E7F5FF008420D3 /* CacheFile.h */; };
 		9AA5E60016F7C61B005C45CE /* FreeImageFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C0C816E7F5FF008420D3 /* FreeImageFramework.h */; };
 		9AA5E60116F7C61B005C45CE /* PSDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C0F016E7F5FF008420D3 /* PSDParser.h */; };
@@ -534,7 +533,39 @@
 		9AA5E6D216F7C61B005C45CE /* Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C4C616E7F601008420D3 /* Utilities.h */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9A2EA32819A62C62004DAFFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2EA32219A62C62004DAFFC /* axis.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
+			remoteInfo = base;
+		};
+		9A2EA32A19A62C62004DAFFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2EA32219A62C62004DAFFC /* axis.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
+			remoteInfo = base_ios;
+		};
+		9A2EA32C19A62C62004DAFFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2EA32219A62C62004DAFFC /* axis.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
+			remoteInfo = base_iosTests;
+		};
+		9A9F2D9E19A643C9007AE2C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2EA32219A62C62004DAFFC /* axis.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = axis;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		9A2EA32219A62C62004DAFFC /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../../appseed/axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9A86C0B216E7F5FF008420D3 /* CacheFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheFile.h; sourceTree = "<group>"; };
 		9A86C0B816E7F5FF008420D3 /* BitmapAccess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitmapAccess.cpp; sourceTree = "<group>"; };
 		9A86C0B916E7F5FF008420D3 /* CacheFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CacheFile.cpp; sourceTree = "<group>"; };
@@ -1079,7 +1110,6 @@
 		9A86C4C616E7F601008420D3 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		9A86CBCB16E8260D008420D3 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		9AA5E6D616F7C61B005C45CE /* lib_ca2freeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_ca2freeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AEB7ABB16F7BEB20085103B /* lib_ca2zlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = lib_ca2zlib.dylib; path = "../../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/lib_ca2zlib.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1087,7 +1117,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AA5E5FD16F7C61B005C45CE /* lib_ca2zlib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,7 +1126,7 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
-				9AEB7ABB16F7BEB20085103B /* lib_ca2zlib.dylib */,
+				9A2EA32219A62C62004DAFFC /* axis.xcodeproj */,
 				9AEB768616F7BAA50085103B /* Products */,
 				9A86C0B716E7F5FF008420D3 /* FreeImage */,
 				9A86C10016E7F5FF008420D3 /* FreeImageLib */,
@@ -1119,6 +1148,16 @@
 				9A86C4C616E7F601008420D3 /* Utilities.h */,
 				9AA5E6D616F7C61B005C45CE /* lib_ca2freeimage.dylib */,
 			);
+			sourceTree = "<group>";
+		};
+		9A2EA32319A62C62004DAFFC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A2EA32919A62C62004DAFFC /* libaxis.dylib */,
+				9A2EA32B19A62C62004DAFFC /* libaxis.dylib */,
+				9A2EA32D19A62C62004DAFFC /* base_iosTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9A86C0B716E7F5FF008420D3 /* FreeImage */ = {
@@ -2014,9 +2053,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9AA5E4C216F7C61B005C45CE /* _ca2freeimage */ = {
+		9AA5E4C216F7C61B005C45CE /* axisfreetype */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "_ca2freeimage" */;
+			buildConfigurationList = 9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "axisfreetype" */;
 			buildPhases = (
 				9AA5E4C316F7C61B005C45CE /* Sources */,
 				9AA5E5FC16F7C61B005C45CE /* Frameworks */,
@@ -2025,8 +2064,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A9F2D9F19A643C9007AE2C7 /* PBXTargetDependency */,
 			);
-			name = _ca2freeimage;
+			name = axisfreetype;
 			productName = FreeImage;
 			productReference = 9AA5E6D616F7C61B005C45CE /* lib_ca2freeimage.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
@@ -2040,7 +2080,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
-			buildConfigurationList = 9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "_ca2freeimage" */;
+			buildConfigurationList = 9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "axisfreetype" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2050,12 +2090,43 @@
 			mainGroup = 9A1B2F7D16A2AF5C00875A94;
 			productRefGroup = 9A1B2F7D16A2AF5C00875A94;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9A2EA32319A62C62004DAFFC /* Products */;
+					ProjectRef = 9A2EA32219A62C62004DAFFC /* axis.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				9AA5E4C216F7C61B005C45CE /* _ca2freeimage */,
+				9AA5E4C216F7C61B005C45CE /* axisfreetype */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9A2EA32919A62C62004DAFFC /* libaxis.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxis.dylib;
+			remoteRef = 9A2EA32819A62C62004DAFFC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A2EA32B19A62C62004DAFFC /* libaxis.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libaxis.dylib;
+			remoteRef = 9A2EA32A19A62C62004DAFFC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A2EA32D19A62C62004DAFFC /* base_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			name = base_iosTests.xctest;
+			path = axis_iosTests.xctest;
+			remoteRef = 9A2EA32C19A62C62004DAFFC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9AA5E4C316F7C61B005C45CE /* Sources */ = {
@@ -2379,12 +2450,20 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		9A9F2D9F19A643C9007AE2C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axis;
+			targetProxy = 9A9F2D9E19A643C9007AE2C7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		9A1B2F8A16A2AF5C00875A94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -2423,7 +2502,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -2454,6 +2533,7 @@
 		9AA5E6D416F7C61B005C45CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = _ca2freeimage;
 			};
@@ -2462,6 +2542,7 @@
 		9AA5E6D516F7C61B005C45CE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = _ca2freeimage;
 			};
@@ -2470,7 +2551,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "_ca2freeimage" */ = {
+		9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "axisfreetype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A1B2F8A16A2AF5C00875A94 /* Debug */,
@@ -2479,7 +2560,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "_ca2freeimage" */ = {
+		9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "axisfreetype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AA5E6D416F7C61B005C45CE /* Debug */,

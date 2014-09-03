@@ -115,6 +115,27 @@
 			remoteGlobalIDString = 07B657E1190F3CCB002DAADE;
 			remoteInfo = sphere_ios;
 		};
+		9A2EA39619A63026004DAFFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2EA39019A63026004DAFFC /* axis.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
+			remoteInfo = base;
+		};
+		9A2EA39819A63026004DAFFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2EA39019A63026004DAFFC /* axis.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
+			remoteInfo = base_ios;
+		};
+		9A2EA39A19A63026004DAFFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2EA39019A63026004DAFFC /* axis.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
+			remoteInfo = base_iosTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -140,6 +161,7 @@
 		07B657FC190F3CCC002DAADE /* sphere_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sphere_iosTests-Info.plist"; sourceTree = "<group>"; };
 		07B657FE190F3CCC002DAADE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07B65800190F3CCC002DAADE /* sphere_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sphere_iosTests.m; sourceTree = "<group>"; };
+		9A2EA39019A63026004DAFFC /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libsphere.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsphere.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574D2B16AAB99E000CC4EF /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A574D2C16AAB99E000CC4EF /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
@@ -325,9 +347,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9A2EA39119A63026004DAFFC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A2EA39719A63026004DAFFC /* libaxis.dylib */,
+				9A2EA39919A63026004DAFFC /* libaxis.dylib */,
+				9A2EA39B19A63026004DAFFC /* base_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
+				9A2EA39019A63026004DAFFC /* axis.xcodeproj */,
 				9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */,
 				9ACABEAC17BD04FF004C3F85 /* sphere */,
 				07B657FA190F3CCC002DAADE /* sphere_iosTests */,
@@ -651,6 +684,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9A2EA39119A63026004DAFFC /* Products */;
+					ProjectRef = 9A2EA39019A63026004DAFFC /* axis.xcodeproj */;
+				},
+				{
 					ProductGroup = 078AEEAF191547110091C065 /* Products */;
 					ProjectRef = 9AE6986917BD2ECE009C817D /* draw2d_quartz2d.xcodeproj */;
 				},
@@ -684,6 +721,27 @@
 			fileType = wrapper.cfbundle;
 			path = draw2d_quartz2d_iosTests.xctest;
 			remoteRef = 078AEEC6191547110091C065 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A2EA39719A63026004DAFFC /* libaxis.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxis.dylib;
+			remoteRef = 9A2EA39619A63026004DAFFC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A2EA39919A63026004DAFFC /* libaxis.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libaxis.dylib;
+			remoteRef = 9A2EA39819A63026004DAFFC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A2EA39B19A63026004DAFFC /* base_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = base_iosTests.xctest;
+			remoteRef = 9A2EA39A19A63026004DAFFC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
