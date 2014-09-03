@@ -3463,29 +3463,29 @@ namespace base
    string application::file_as_string(var varFile)
    {
 
-      if(::str::begins_ci(varFile.get_string(),"http://")
-         || ::str::begins_ci(varFile.get_string(),"https://"))
-      {
+      //if(::str::begins_ci(varFile.get_string(),"http://")
+      //   || ::str::begins_ci(varFile.get_string(),"https://"))
+      //{
 
-         ::property_set set(get_app());
+      //   ::property_set set(get_app());
 
-         return http().get(varFile.get_string(),set);
+      //   return http().get(varFile.get_string(),set);
 
-      }
-      else if(varFile.has_property("url") &&
-         (::str::begins_ci(varFile["url"].get_string(),"http://")
-         || ::str::begins_ci(varFile["url"].get_string(),"https://")))
-      {
+      //}
+      //else if(varFile.has_property("url") &&
+      //   (::str::begins_ci(varFile["url"].get_string(),"http://")
+      //   || ::str::begins_ci(varFile["url"].get_string(),"https://")))
+      //{
 
-         ::property_set set(get_app());
+      //   ::property_set set(get_app());
 
-         return http().get(varFile["url"].get_string(),set);
+      //   return http().get(varFile["url"].get_string(),set);
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
          return file().as_string(varFile.get_string());
-      }
+//      }
 
    }
 
