@@ -13,23 +13,6 @@ namespace base
 
       
 
-      //::user::interaction *                                    m_puiMouseMoveCapture;
-      //::user::interaction *                                    m_puiLastLButtonDown;
-
-      //bool                                                     m_bMatterFromHttpCache;
-
-      //bool                                                     m_bSystemSynchronizedCursor;
-      //point                                                    m_ptCursor;
-      //bool                                                     m_bSystemSynchronizedScreen;
-      //rect_array                                               m_rectaMonitor;
-      //rect_array                                               m_rectaWkspace;
-      //index                                                    m_iMainMonitor;
-      //index                                                    m_iMainWkspace;
-
-
-
-      //::core::platform *                                       m_pcoreplatform;
-      //string_map < sp(::aura::application) >                   m_mapApplication;
       sp(::userpresence::userpresence)                         m_puserpresence;
       sp(::ifs)                                                m_pifs;
       sp(::fs::remote_native)                                  m_prfs;
