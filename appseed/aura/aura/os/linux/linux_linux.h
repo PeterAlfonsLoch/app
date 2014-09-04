@@ -10,13 +10,10 @@
 #include "linux_cross_win_file.h"
 #include "linux_file.h"
 #include "linux_file_watcher.h"
-#include "linux_window_xlib.h"
 #include "linux_cross_win_gdi_internal.h"
-#include "linux_windowing.h"
 
 
 #define ENABLE_BINRELOC
-//#include "c_os_binreloc.h"
 
 
 
