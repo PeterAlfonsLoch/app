@@ -64,8 +64,17 @@ namespace user
       }
       else
       {
-         m_scrollinfo.m_bVScroll = m_scrollinfo.m_bVScrollBarEnable && (m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.height()) > (rectClient.height() - m_scrollinfo.m_iScrollHeight);
-         m_scrollinfo.m_bHScroll = m_scrollinfo.m_bHScrollBarEnable && (m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.width()) > (rectClient.width() - m_scrollinfo.m_iScrollWidth);
+         
+         m_scrollinfo.m_bVScroll = m_scrollinfo.m_bVScrollBarEnable && (m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.height()) > (rectClient.height());
+
+         m_scrollinfo.m_bHScroll = m_scrollinfo.m_bHScrollBarEnable && (m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.width()) > (rectClient.width() - (m_scrollinfo.m_bVScroll ? m_scrollinfo.m_iScrollWidth : 0));
+
+         m_scrollinfo.m_bVScroll = m_scrollinfo.m_bVScrollBarEnable && (m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.height()) > (rectClient.height() - (m_scrollinfo.m_bHScroll ? m_scrollinfo.m_iScrollHeight : 0));
+
+         m_scrollinfo.m_bHScroll = m_scrollinfo.m_bHScrollBarEnable && (m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.width()) > (rectClient.width() - (m_scrollinfo.m_bVScroll ? m_scrollinfo.m_iScrollWidth : 0));
+
+         m_scrollinfo.m_bVScroll = m_scrollinfo.m_bVScrollBarEnable && (m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.height()) > (rectClient.height() - (m_scrollinfo.m_bHScroll ? m_scrollinfo.m_iScrollHeight : 0));
+
       }
 
       _001UpdateScrollBars();

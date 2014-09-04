@@ -286,8 +286,8 @@ public:
    static inline typename numeric_info_internal::numeric_info < T >::TYPE unitary_value() { return get_unitary(); }
    static inline typename numeric_info_internal::numeric_info < T >::TYPE allset_value() { return get_allset(); }
 
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE min() { return get_minimum_value()(); }
-   static inline typename numeric_info_internal::numeric_info < T >::TYPE max() { return get_maximum_value()(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE min() { return get_minimum_value(); }
+   static inline typename numeric_info_internal::numeric_info < T >::TYPE max() { return get_maximum_value(); }
 
    template < typename T2 >
    static inline typename numeric_info_internal::numeric_info < T >::TYPE natural(const T2 & t2) { return MIN(max(), MAX(null(), (T) t2)); }
