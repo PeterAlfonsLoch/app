@@ -68,6 +68,9 @@
 			<Add directory="Source/OpenEXR/IlmImf" />
 			<Add directory="Source/OpenEXR/Imath" />
 			<Add directory="Source/OpenEXR" />
+			<Add directory="Source/LibJXR/jxrgluelib" />
+			<Add directory="Source/LibJXR/image/sys" />
+			<Add directory="Source/LibJXR/common/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
