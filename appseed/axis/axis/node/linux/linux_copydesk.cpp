@@ -733,7 +733,7 @@ namespace linux
    {
 
 
-      if(!::aura::copydesk::initialize())
+      if(!::axis::copydesk::initialize())
          return false;
 
       return true;
@@ -746,7 +746,7 @@ namespace linux
 
       bool bOk;
 
-      bOk = ::aura::copydesk::finalize();
+      bOk = ::axis::copydesk::finalize();
 
 //      if(::window_sp::is_set() && ::window_sp::m_p->IsWindow())
       {
