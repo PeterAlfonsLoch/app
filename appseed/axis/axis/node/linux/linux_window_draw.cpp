@@ -328,7 +328,7 @@ namespace linux
 
    UINT window_draw::RedrawProc()
    {
-      if(!create_message_queue("ca2::twf - ca2 Transparent Window Framework"))
+      if(!m_spqueue->create_message_queue("ca2::twf - ca2 Transparent Window Framework", this))
       {
          TRACE("Could not initialize ca2::twf - ca2 Transparent Window Framework!");
          return 0;
@@ -369,7 +369,7 @@ namespace linux
          }
          else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
          {
-            Sleep(max((DWORD) max(0, iUiDataWriteWindowTimeForTheApplicationInThisMachine), (1000 / m_iFramesPerSecond) - m_dwLastDelay));
+            Sleep(MAX((DWORD) MAX(0, iUiDataWriteWindowTimeForTheApplicationInThisMachine), (1000 / m_iFramesPerSecond) - m_dwLastDelay));
          }
          else
          {
