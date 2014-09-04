@@ -55,55 +55,6 @@ WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
 
 
 
-WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
-{
-
-
-
-   single_lock sl(&user_mutex(), true);
-
-   xdisplay xlock(hwnd->display());
-
-   if(!IsWindow(hwnd) || !IsWindowVisible(hwnd))
-      return FALSE;
-
-
-   bool bDestroying = hwnd->m_bDestroying;
-   Display * pdisplay = hwnd->display();
-   Window window = hwnd->window();
-
-
-   if(pdisplay == NULL)
-    return FALSE;
-
-   XWindowAttributes attrs;
-
-
-
-   /* Fill attribute structure with information about root window */
-
-   if(!XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs))
-   {
-      return FALSE;
-   }
-
-   int x;
-   int y;
-   Window child;
-
-   if(!XTranslateCoordinates(hwnd->display(), hwnd->window(), DefaultRootWindow(hwnd->display()), 0, 0, &x, &y, &child))
-   {
-      return FALSE;
-   }
-
-   lprect->left      = x;
-   lprect->top       = y;
-   lprect->right     = x    + attrs.width;
-   lprect->bottom    = y    + attrs.height;
-
-   return TRUE;
-
-}
 
 
 
@@ -118,24 +69,6 @@ int32_t FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
 }
 
 
-HDC BeginPaint(oswindow hwnd, PAINTSTRUCT * ps)
-{
-
-   HDC hdc = GetDC(hwnd);
-
-   GetClientRect(hwnd, &ps->rcPaint);
-
-   return hdc;
-
-}
-
-
-WINBOOL EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
-{
-
-   return ReleaseDC(hwnd, ps->hdc);
-
-}
 
 
 WINBOOL GetCursorPos(LPPOINT lpptCursor)

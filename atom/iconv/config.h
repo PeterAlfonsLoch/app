@@ -1,5 +1,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+#define HAVE_READLINK 1
+
 /* Define to the number of bits in type 'ptrdiff_t'. */
 #undef BITSIZEOF_PTRDIFF_T
 
@@ -1229,10 +1231,10 @@
 #endif
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
-#undef size_t
+//#undef size_t
 
 /* Define as a signed type of the same size as size_t. */
-#undef ssize_t
+//#undef ssize_t
 
 /* Define as a marker that can be attached to declarations that might not
     be used.  This helps to reduce warnings, such as from
@@ -1272,4 +1274,20 @@
 
 
 /* Define as a macro for copying va_list variables. */
-#undef va_copy
+//#undef va_copy
+
+
+
+#define LIBICONV_PLUG
+
+
+
+//
+#define ICONV_CONST
+
+#define LIBDIR "."
+
+#define ENABLE_RELOCATABLE 1
+
+
+#define HAVE_WORKING_O_NOFOLLOW 1

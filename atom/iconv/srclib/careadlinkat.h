@@ -22,6 +22,8 @@
 
 #include <fcntl.h>
 #include <unistd.h>
+typedef long ssize_t;
+typedef __SIZE_TYPE__ size_t;
 
 struct allocator;
 

@@ -1,11 +1,6 @@
-//
-//  windows_user.cpp
-//  c
-//
-//
-//
 #include "framework.h"
-#define LIBICONV_PLUG
+#include "atom/iconv/include/iconv.h"
+
 
 CLASS_DECL_AURA COLORREF GetSysColor(DWORD dw)
 {

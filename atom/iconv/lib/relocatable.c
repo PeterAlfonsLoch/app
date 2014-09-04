@@ -53,7 +53,7 @@
 # include <libcharset.h>
 #endif
 #if DEPENDS_ON_LIBICONV && HAVE_ICONV
-# include <iconv.h>
+#include "atom/iconv/include/iconv.h"
 #endif
 #if DEPENDS_ON_LIBINTL && ENABLE_NLS
 # include <libintl.h>
