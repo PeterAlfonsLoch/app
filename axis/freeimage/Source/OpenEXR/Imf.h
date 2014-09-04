@@ -78,7 +78,7 @@
 #include "Imath/ImathFrustumTest.h"
 #include "Imath/ImathFun.h"
 //#include "Imath/ImathGL.h"
-#include "Imath/ImathGLU.h"
+//#include "Imath/ImathGLU.h"
 
 
 #include "IlmImf/ImfTiledMisc.h"

@@ -315,7 +315,8 @@ FreeImage_OpenMultiBitmap(FREE_IMAGE_FORMAT fif, const char *filename, WINBOOL c
 				return bitmap.release(); // now owned by caller
 			}
 		}
-	} catch (std::bad_alloc &) {
+//	} catch (std::bad_alloc &) {
+	} catch (...) {
 		/** @todo report error */
 	}
 	if (handle)

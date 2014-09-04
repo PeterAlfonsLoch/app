@@ -253,7 +253,7 @@ namespace sort
 
 
    template < class iterator,class COMPARE = ::comparison::less < typename iterator::BASE_TYPE, typename iterator::BASE_ARG_TYPE > >
-   void quick_sort(iterator  & a,iterator  & b)
+   void quick_sort(const iterator & a, const iterator & b)
    {
       typename iterator::BASE_TYPE t;
       raw_array < iterator > stackLowerBound;
