@@ -1213,6 +1213,10 @@ namespace std
    using complex = ::math::complex;
 
 
+   template < typename T > complex < T > pow(const complex < T > & base, const complex < T > & exp) { return ::math::pow(base,exp); }
+   template < typename T > complex < T > sqrt(const complex < T > & x) { return ::math::sqrt(x); }
+
+
    template <class T> const T& min(const T& a,const T& b) { return !(a > b) ? a : b; }
    template <class T> const T& max(const T& a,const T& b) { return !(a < b) ? a : b; }
 
