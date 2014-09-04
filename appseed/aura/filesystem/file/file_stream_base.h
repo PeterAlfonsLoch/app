@@ -103,10 +103,10 @@ namespace file
 
 
 
-      fmtflags flags() const
-		{
-		   return m_fmtflags;
-		}
+      fmtflags flags() const;
+
+
+      fmtflags flags(fmtflags flags);
 
 
       e_iostate rdstate() const
