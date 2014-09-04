@@ -263,17 +263,6 @@ namespace linux
 
    ::user::interaction * application::window_from_os_data_permanent(void * pdata)
    {
-      sp(::user::interaction) pwnd = ::linux::interaction_impl::FromHandlePermanent((oswindow) pdata);
-      if(pwnd != NULL)
-         return pwnd;
-      user::interaction_ptr_array wndptra = System.frames();
-      for(int32_t i = 0; i < wndptra.get_count(); i++)
-      {
-         if(wndptra[i].get_safe_handle() == (oswindow) pdata)
-         {
-            return wndptra(i);
-         }
-      }
       return NULL;
    }
 
