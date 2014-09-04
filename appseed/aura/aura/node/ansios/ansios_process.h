@@ -5,7 +5,7 @@ namespace ansios
 {
 
 
-   class CLASS_DECL_CORE process :
+   class CLASS_DECL_AURA process :
       virtual ::process::process
    {
    public:
@@ -14,7 +14,7 @@ namespace ansios
       int32_t                     m_iPid;
 
 
-      process(sp(::aura::applicaton) papp);
+      process(sp(::aura::application) papp);
       virtual ~process();
 
 
