@@ -19,10 +19,8 @@ CLASS_DECL_LINUX void AfxResetMsgcache();
 #include "linux_factory_exchange.h"
 #include "linux_window_draw.h"
 #include "linux_interaction_impl.h"
-#include "linux_os.h"
 #include "linux_copydesk.h"
 
-#define NULL_REF(class) (*((class *) NULL))
 #define AfxWndProc (*AfxGetAfxWndProc())
 
 #define LNX_WINDOW(pwnd) (dynamic_cast < ::linux::interaction_impl * > (((sp(::user::interaction_impl))(pwnd)).m_p))
