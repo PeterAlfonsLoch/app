@@ -258,7 +258,7 @@ namespace linux
 
    sp(::user::interaction) application::window_from_os_data(void * pdata)
    {
-      return ::linux::interaction_impl::from_handle((oswindow) pdata);
+      return NULL;
    }
 
    sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)

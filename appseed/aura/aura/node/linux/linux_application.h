@@ -160,14 +160,14 @@ namespace linux
 
       virtual void ShowWaitCursor(bool bShow = true);
 
-      sp(::user::interaction) window_from_os_data(void * pdata);
-      sp(::user::interaction) window_from_os_data_permanent(void * pdata);
+      ::user::interaction * window_from_os_data(void * pdata);
+      ::user::interaction * window_from_os_data_permanent(void * pdata);
 
       virtual ::thread * GetThread();
       virtual void set_thread(::thread * pthread);
 
-      virtual sp(::user::interaction) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual sp(::user::interaction) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      virtual ::user::interaction * FindWindow(const char * lpszClassName, const char * lpszWindowName);
+      virtual ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);
