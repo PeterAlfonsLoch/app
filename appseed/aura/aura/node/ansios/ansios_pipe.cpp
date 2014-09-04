@@ -11,7 +11,9 @@ namespace ansios
 {
 
 
-   pipe::pipe(bool bInherit)
+   pipe::pipe(sp(::aura::application) papp) :
+   element(papp),
+   ::process::pipe(papp)
    {
 
       m_pchBuf = NULL;

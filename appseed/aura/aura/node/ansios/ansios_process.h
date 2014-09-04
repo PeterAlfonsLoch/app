@@ -22,7 +22,6 @@ namespace ansios
 
       virtual bool has_exited(uint32_t * pdwExitCode = NULL);
 
-
    };
 
 

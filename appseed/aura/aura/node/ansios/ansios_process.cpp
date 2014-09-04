@@ -39,7 +39,7 @@ namespace ansios
    bool process::create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir,int32_t iCa2Priority)
    {
 
-      if(!::aura::process::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
+      if(!::process::process::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
          return false;
 
       string szCmdline = pszCmdLine;
@@ -180,10 +180,6 @@ namespace ansios
 
    }
 
-   bool process::write(const char * psz)
-   {
-      return m_pipe.m_pipeIn.write(psz);
-   }
 
    string process::read(bool bUntilExit)
    {
