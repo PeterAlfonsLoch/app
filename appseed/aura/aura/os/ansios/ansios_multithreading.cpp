@@ -1274,7 +1274,7 @@ CLASS_DECL_AURA int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,U
    ml.unlock();
 
 #if defined(LINUX) // || defined(ANDROID)
-   if(defer_process_x_message(hthread,lpMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
+   if(aura_defer_process_x_message(hthread,lpMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
       return TRUE;
 #endif
 

@@ -113,6 +113,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 */
 
 
+
 void _c_simple_message_loop()
 {
 
@@ -130,4 +131,43 @@ void _c_simple_message_loop()
 
 }
 
+bool (*g_pfnTranslateMessage)(LPMESSAGE lpmessage) = NULL;
 
+
+bool set_TranslateMessage(bool (*pfn)(LPMESSAGE lpmessage))
+{
+
+   g_pfnTranslateMessage = pfn;
+
+}
+
+LRESULT (*g_pfnDispatchMessage)(LPMESSAGE lpmessage) = NULL;
+
+bool set_DispatchMessage(LRESULT (*pfn)(LPMESSAGE lpmessage))
+{
+
+   g_pfnDispatchMessage = pfn;
+
+}
+
+
+bool TranslateMessage(LPMESSAGE lpmessage)
+{
+
+   if(g_pfnTranslateMessage == NULL)
+      return true;
+
+   return (*g_pfnTranslateMessage)(lpmessage);
+
+}
+
+
+LRESULT DispatchMessage(LPMESSAGE lpmessage)
+{
+
+   if(g_pfnDispatchMessage == NULL)
+      return 0;
+
+   return (*g_pfnDispatchMessage)(lpmessage);
+
+}
