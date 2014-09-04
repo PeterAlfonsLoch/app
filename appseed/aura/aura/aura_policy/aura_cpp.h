@@ -582,7 +582,6 @@ namespace file
 #if defined(LINUX)
 
 #include "aura/os/ansios/ansios.h"
-#include "aura/os/linux/linux_user_impl.h"
 
 #elif defined(METROWIN)
 
