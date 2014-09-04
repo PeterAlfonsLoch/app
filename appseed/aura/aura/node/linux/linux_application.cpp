@@ -333,7 +333,7 @@ namespace linux
    }
 
 
-   ::user::interaction application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   ::user::interaction *  application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
 
       return NULL;
