@@ -629,7 +629,7 @@ namespace linux
 
    copydesk::copydesk(sp(::aura::application) papp) :
       element(papp),
-      ::aura::copydesk(papp)
+      ::axis::copydesk(papp)
    {
    }
 
