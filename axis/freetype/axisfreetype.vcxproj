@@ -2453,9 +2453,6 @@
     <ProjectReference Include="..\openssl\axisopenssl.vcxproj">
       <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\zlib\axiszlib.vcxproj">
-      <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="axisfreetype.def" />

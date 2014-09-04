@@ -386,42 +386,6 @@
     <ClCompile Include="Source\Metadata\XTIFF.cpp">
       <Filter>Source Files\Metadata</Filter>
     </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\Background.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\BSplineRotate.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\Channels.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\ClassicRotate.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\Colors.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\CopyPaste.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\Display.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\Flip.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\JPEGTransform.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\MultigridPoissonSolver.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\Rescale.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\Resize.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LibJPEG\cdjpeg.c">
       <Filter>Source\LibJPEG</Filter>
     </ClCompile>
@@ -1355,6 +1319,42 @@
     <ClCompile Include="Source\FreeImage\FreeImageFramework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\Background.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\BSplineRotate.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\Channels.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\ClassicRotate.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\Colors.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\CopyPaste.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\Display.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\Flip.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\JPEGTransform.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\MultigridPoissonSolver.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\Rescale.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImageToolkit\Resize.cpp">
+      <Filter>Toolkit Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FreeImage.rc">
@@ -1397,9 +1397,6 @@
     </ClInclude>
     <ClInclude Include="Source\Utilities.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\FreeImageToolkit\Resize.h">
-      <Filter>Toolkit Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\LibJPEG\cderror.h">
       <Filter>Source\LibJPEG</Filter>
@@ -2139,53 +2136,17 @@
     <ClInclude Include="Source\FreeImage\FreeImageFramework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\FreeImageToolkit\Resize.h">
+      <Filter>Toolkit Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Source\LibJPEG\coderules.txt">
-      <Filter>Source\LibJPEG</Filter>
-    </Text>
-    <Text Include="Source\LibJPEG\filelist.txt">
-      <Filter>Source\LibJPEG</Filter>
-    </Text>
-    <Text Include="Source\LibJPEG\install.txt">
-      <Filter>Source\LibJPEG</Filter>
-    </Text>
     <Text Include="Source\LibJPEG\jconfig.txt">
       <Filter>Source\LibJPEG</Filter>
     </Text>
-    <Text Include="Source\LibJPEG\libjpeg.txt">
-      <Filter>Source\LibJPEG</Filter>
-    </Text>
-    <Text Include="Source\LibJPEG\structure.txt">
-      <Filter>Source\LibJPEG</Filter>
-    </Text>
-    <Text Include="Source\LibJPEG\usage.txt">
-      <Filter>Source\LibJPEG</Filter>
-    </Text>
-    <Text Include="Source\LibJPEG\wizard.txt">
-      <Filter>Source\LibJPEG</Filter>
-    </Text>
-    <Text Include="Source\LibJPEG\change.log">
-      <Filter>Source\LibJPEG</Filter>
-    </Text>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\LibJPEG\README">
-      <Filter>Source\LibJPEG</Filter>
-    </None>
     <None Include="Source\LibJPEG\jmemdosa.asm">
-      <Filter>Source\LibJPEG</Filter>
-    </None>
-    <None Include="Source\LibJPEG\LibJPEG.2003.vcproj">
-      <Filter>Source\LibJPEG</Filter>
-    </None>
-    <None Include="Source\LibJPEG\LibJPEG.2005.vcproj">
-      <Filter>Source\LibJPEG</Filter>
-    </None>
-    <None Include="Source\LibJPEG\LibJPEG.2008.vcproj">
-      <Filter>Source\LibJPEG</Filter>
-    </None>
-    <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj">
       <Filter>Source\LibJPEG</Filter>
     </None>
     <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj.filters">
@@ -2233,28 +2194,7 @@
     <None Include="Source\LibRawLite\internal\preprocess.pl">
       <Filter>Source\LibRawLite\internal</Filter>
     </None>
-    <None Include="Source\LibTIFF4\ChangeLog">
-      <Filter>Source\LibTIFF4</Filter>
-    </None>
-    <None Include="Source\LibTIFF4\LibTIFF4.2003.vcproj">
-      <Filter>Source\LibTIFF4</Filter>
-    </None>
-    <None Include="Source\LibTIFF4\LibTIFF4.2005.vcproj">
-      <Filter>Source\LibTIFF4</Filter>
-    </None>
-    <None Include="Source\LibTIFF4\LibTIFF4.2008.vcproj">
-      <Filter>Source\LibTIFF4</Filter>
-    </None>
-    <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj">
-      <Filter>Source\LibTIFF4</Filter>
-    </None>
     <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj.filters">
-      <Filter>Source\LibTIFF4</Filter>
-    </None>
-    <None Include="Source\LibTIFF4\tif_config.h.in">
-      <Filter>Source\LibTIFF4</Filter>
-    </None>
-    <None Include="Source\LibTIFF4\tif_config.h-vms">
       <Filter>Source\LibTIFF4</Filter>
     </None>
     <None Include="Source\LibTIFF4\tiffconf.h.in">

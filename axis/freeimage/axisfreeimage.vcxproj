@@ -4750,25 +4750,12 @@ copy Source\FreeImage.h Dist
     <ClInclude Include="Source\FreeImageToolkit\Resize.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Source\LibJPEG\change.log" />
-    <Text Include="Source\LibJPEG\coderules.txt" />
-    <Text Include="Source\LibJPEG\filelist.txt" />
-    <Text Include="Source\LibJPEG\install.txt" />
     <Text Include="Source\LibJPEG\jconfig.txt" />
-    <Text Include="Source\LibJPEG\libjpeg.txt" />
-    <Text Include="Source\LibJPEG\structure.txt" />
-    <Text Include="Source\LibJPEG\usage.txt" />
-    <Text Include="Source\LibJPEG\wizard.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="axisfreeimage.def" />
     <None Include="Source\LibJPEG\jmemdosa.asm" />
-    <None Include="Source\LibJPEG\LibJPEG.2003.vcproj" />
-    <None Include="Source\LibJPEG\LibJPEG.2005.vcproj" />
-    <None Include="Source\LibJPEG\LibJPEG.2008.vcproj" />
-    <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj" />
     <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj.filters" />
-    <None Include="Source\LibJPEG\README" />
     <None Include="Source\LibOpenJPEG\AUTHORS" />
     <None Include="Source\LibOpenJPEG\INSTALL" />
     <None Include="Source\LibOpenJPEG\LibOpenJPEG.2003.vcproj" />
@@ -4783,17 +4770,10 @@ copy Source\FreeImage.h Dist
     <None Include="Source\LibPNG\LibPNG.2008.vcxproj.filters" />
     <None Include="Source\LibRawLite\dcraw\dcraw.1.html" />
     <None Include="Source\LibRawLite\internal\preprocess.pl" />
-    <None Include="Source\LibTIFF4\ChangeLog" />
-    <None Include="Source\LibTIFF4\LibTIFF4.2003.vcproj" />
-    <None Include="Source\LibTIFF4\LibTIFF4.2005.vcproj" />
-    <None Include="Source\LibTIFF4\LibTIFF4.2008.vcproj" />
-    <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj" />
     <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj.filters" />
     <None Include="Source\LibTIFF4\tiffconf.h-vms" />
     <None Include="Source\LibTIFF4\tiffconf.h.in" />
     <None Include="Source\LibTIFF4\tiffvers.h.in" />
-    <None Include="Source\LibTIFF4\tif_config.h-vms" />
-    <None Include="Source\LibTIFF4\tif_config.h.in" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
@@ -4801,9 +4781,6 @@ copy Source\FreeImage.h Dist
     </ProjectReference>
     <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
       <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\zlib\axiszlib.vcxproj">
-      <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
