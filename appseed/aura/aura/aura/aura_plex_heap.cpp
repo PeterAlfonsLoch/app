@@ -128,29 +128,29 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 
 #if !defined(METROWIN) && !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
 
-   int32_t iShareCount = ::get_current_process_maximum_affinity() + 1;
+   uint32_t uiShareCount = ::get_current_process_maximum_affinity() + 1;
 
 #else
 
-   int32_t iShareCount = 0;
+   int32_t uiShareCount = 0;
 
 #endif
 
-   if(iShareCount <= 0)
-      iShareCount = 4;
+   if(uiShareCount == 0)
+      uiShareCount = 4;
 
-   allocate(iShareCount);
+   allocate(uiShareCount);
 
    for(int32_t i = 0; i < get_count(); i++)
    {
       set_at(i, new plex_heap_alloc_sync(nAllocSize + sizeof(int32_t), nBlockSize));
    }
 
-   m_iShareCount = iShareCount;
+   m_uiShareCount = uiShareCount;
    
-   m_iAllocSize = nAllocSize;
+   m_uiAllocSize = nAllocSize;
 
-   m_i = 0;
+   m_ui = 0;
 
 }
 

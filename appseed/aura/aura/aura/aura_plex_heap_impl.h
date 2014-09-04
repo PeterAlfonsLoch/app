@@ -109,15 +109,15 @@ class CLASS_DECL_AURA plex_heap_alloc :
 public:
 
 
-   int32_t                        m_i;
-   int32_t                        m_iShareCount;
-   int32_t                        m_iAllocSize;
+   uint32_t                      m_ui;
+   uint32_t                      m_uiShareCount;
+   uint32_t                      m_uiAllocSize;
 
 
    plex_heap_alloc(UINT nAllocSize, UINT nBlockSize = 64);
    virtual ~plex_heap_alloc();
 
-   inline UINT GetAllocSize() { return m_iAllocSize; }
+   inline UINT GetAllocSize() { return m_uiAllocSize; }
 
    inline void * Alloc();               // return a chunk of primitive::memory of nAllocSize
    inline void Free(void * p);          // free chunk of primitive::memory returned from Alloc
@@ -150,15 +150,15 @@ inline void * plex_heap_alloc::Alloc()
    // just fair well distributed
    // but very important is extremely fast
 
-   int32_t i = m_i % m_iShareCount;
+   uint32_t ui = m_ui % m_uiShareCount;
 
-   m_i++;
+   m_ui++; // changed to unsigned (it was turning negative  by overflow and generating out of bound errors below)
 
-   int32_t * pi = (int32_t *) element_at(i)->Alloc();
+   uint32_t * pui = (uint32_t *) element_at(ui)->Alloc();
 
-   *pi = i;
+   *pui = ui;
 
-   return &pi[1];
+   return &pui[1];
 
 }
 
@@ -168,12 +168,12 @@ inline void plex_heap_alloc::Free(void * p)
    if (p == NULL)
       return;
 
-   int32_t i = ((int32_t *)p)[-1];
+   uint32_t ui = ((uint32_t *)p)[-1];
 
-   if(i >= 0 && i < m_iShareCount)
+   if(ui >= 0 && ui < m_uiShareCount)
    {
 
-      element_at(i)->Free(&((int32_t *)p)[-1]);
+      element_at(ui)->Free(&((uint32_t *)p)[-1]);
 
    }
    else
