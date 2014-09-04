@@ -48,7 +48,7 @@ void showPlugins();
 // Image types test suite
 // ==========================================================
 void testAllocateCloneUnload(const char *lpszPathName);
-BOOL testAllocateCloneUnloadType(FREE_IMAGE_TYPE image_type, unsigned width, unsigned height);
+WINBOOL testAllocateCloneUnloadType(FREE_IMAGE_TYPE image_type, unsigned width, unsigned height);
 void testImageType(unsigned width, unsigned height);
 void testImageTypeTIFF(unsigned width, unsigned height);
 

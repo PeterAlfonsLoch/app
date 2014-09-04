@@ -1,7 +1,7 @@
 // ==========================================================
 // Alpha channel manipulation example
 //
-// Design and implementation by 
+// Design and implementation by
 // - Hervé Drolon
 //
 // This file is part of FreeImage 3
@@ -22,7 +22,7 @@
 //   This example shows how to create a transparent image from any input image
 //   using the greyscale version of the input image as the alpha channel mask.
 //   The alpha channel is set using the FreeImage_SetChannel function.
-// 
+//
 //
 // ==========================================================
 
@@ -65,7 +65,7 @@ FIBITMAP* GenericLoader(const char* lpszPathName, int flag) {
 */
 bool GenericWriter(FIBITMAP* dib, const char* lpszPathName, int flag) {
 	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
-	BOOL bSuccess = FALSE;
+	WINBOOL bSuccess = FALSE;
 
 	if(dib) {
 		// try to guess the file format from the file extension
@@ -87,11 +87,11 @@ bool GenericWriter(FIBITMAP* dib, const char* lpszPathName, int flag) {
 
 /**
 	FreeImage error handler
-	@param fif Format / Plugin responsible for the error 
+	@param fif Format / Plugin responsible for the error
 	@param message Error message
 */
 void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message) {
-	printf("\n*** "); 
+	printf("\n*** ");
 	if(fif != FIF_UNKNOWN) {
 		printf("%s Format\n", FreeImage_GetFormatFromFIF(fif));
 	}
@@ -125,9 +125,9 @@ FIBITMAP* CreateAlphaFromLightness(FIBITMAP *src) {
 	return dst;
 }
 
-int 
+int
 main(int argc, char *argv[]) {
-	
+
 	// call this ONLY when linking with FreeImage as a static library
 #ifdef FREEIMAGE_LIB
 	FreeImage_Initialise();

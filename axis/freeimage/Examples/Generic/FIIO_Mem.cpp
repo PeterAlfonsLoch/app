@@ -18,7 +18,7 @@ FIBITMAP *
 FreeImage_LoadFromMem(FREE_IMAGE_FORMAT fif, fiio_mem_handle *handle, int flags) {
 	FreeImageIO io;
 	SetMemIO(&io);
-	
+
 	if (handle && handle->data) {
 		handle->curpos = 0;
 		return FreeImage_LoadFromHandle(fif, &io, (fi_handle)handle, flags);
@@ -27,7 +27,7 @@ FreeImage_LoadFromMem(FREE_IMAGE_FORMAT fif, fiio_mem_handle *handle, int flags)
 	return NULL;
 }
 
-BOOL
+WINBOOL
 FreeImage_SaveToMem(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, fiio_mem_handle *handle, int flags) {
 	FreeImageIO io;
 	SetMemIO(&io);

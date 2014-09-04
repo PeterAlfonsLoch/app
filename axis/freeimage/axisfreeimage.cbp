@@ -54,19 +54,15 @@
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
-			<Add directory="../../thirdparty/appseed" />
-			<Add directory="../../thirdparty/include" />
 			<Add directory="." />
 			<Add directory=".." />
 			<Add directory="../.." />
-			<Add directory="../ca2" />
-			<Add directory="../../nodeapp/linux" />
-			<Add directory="../../nodeapp/linux/include" />
 			<Add directory="../../.." />
-			<Add directory="../base" />
-			<Add directory="../../../nodeapp/thirdparty/include" />
 			<Add directory="Source" />
 			<Add directory="Source/FreeImage" />
+			<Add directory="../../appseed/axis" />
+			<Add directory="../../appseed/aura" />
+			<Add directory="../../appseed" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -75,6 +71,8 @@
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
+			<Add option="-laura" />
+			<Add option="-laxiszlib" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
@@ -99,9 +97,6 @@
 		<Unit filename="Source/FreeImage/ConversionType.cpp" />
 		<Unit filename="Source/FreeImage/ConversionUINT16.cpp" />
 		<Unit filename="Source/FreeImage/FreeImage.cpp" />
-		<Unit filename="Source/FreeImage/FreeImageC.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/FreeImage/FreeImageFramework.cpp" />
 		<Unit filename="Source/FreeImage/FreeImageFramework.h" />
 		<Unit filename="Source/FreeImage/FreeImageIO.cpp" />

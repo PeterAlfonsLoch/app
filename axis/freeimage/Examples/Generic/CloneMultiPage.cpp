@@ -1,7 +1,7 @@
 // ==========================================================
 // Multipage functions demonstration
 //
-// Design and implementation by 
+// Design and implementation by
 // - Hervé Drolon
 //
 // This file is part of FreeImage 3
@@ -21,9 +21,9 @@
 
 // This sample shows how to clone a multipage TIFF
 //
-// Functions used in this sample : 
-// FreeImage_OpenMultiBitmap, FreeImage_GetPageCount, FreeImage_LockPage, 
-// FreeImage_AppendPage, FreeImage_UnlockPage, FreeImage_CloseMultiBitmap; 
+// Functions used in this sample :
+// FreeImage_OpenMultiBitmap, FreeImage_GetPageCount, FreeImage_LockPage,
+// FreeImage_AppendPage, FreeImage_UnlockPage, FreeImage_CloseMultiBitmap;
 // FreeImage_SetOutputMessage
 //
 // ==========================================================
@@ -48,7 +48,7 @@ void MyMessageFunc(FREE_IMAGE_FORMAT fif, const char *message) {
 
 bool CloneMultiPage(FREE_IMAGE_FORMAT fif, char *input, char *output, int output_flag) {
 
-	BOOL bMemoryCache = TRUE;
+	WINBOOL bMemoryCache = TRUE;
 
 	// Open src file (read-only, use memory cache)
 	FIMULTIBITMAP *src = FreeImage_OpenMultiBitmap(fif, input, FALSE, TRUE, bMemoryCache);
@@ -84,7 +84,7 @@ bool CloneMultiPage(FREE_IMAGE_FORMAT fif, char *input, char *output, int output
 }
 
 
-int 
+int
 main(int argc, char *argv[]) {
 
 	char *input_filename = "images\\input.tif";

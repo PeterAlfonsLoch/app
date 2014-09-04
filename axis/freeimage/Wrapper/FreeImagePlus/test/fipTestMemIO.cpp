@@ -35,15 +35,15 @@ void testSaveMemIO(const char *lpszPathName) {
 	// load a regular file
 	FREE_IMAGE_FORMAT fif = FreeImage_GetFileType(lpszPathName);
 	FIBITMAP *dib = FreeImage_Load(fif, lpszPathName, 0);
-	
+
 	// open a memory handle
 	fipMemoryIO memIO;
 
 	// save the file to memory
 	memIO.save(fif, dib, 0);
 
-	// at this point, memIO contains the entire PNG data in memory. 
-	// the amount of space used by the memory is equal to file_size	
+	// at this point, memIO contains the entire PNG data in memory.
+	// the amount of space used by the memory is equal to file_size
 	long file_size = memIO.tell();
 	assert(file_size != 0);
 
@@ -51,11 +51,11 @@ void testSaveMemIO(const char *lpszPathName) {
 
 	// seek to the start of the memory stream
 	memIO.seek(0L, SEEK_SET);
-	
-	// get the file type	
+
+	// get the file type
 	FREE_IMAGE_FORMAT mem_fif = memIO.getFileType();
-	
-	// load an image from the memory handle 	
+
+	// load an image from the memory handle
 	FIBITMAP *check = memIO.load(mem_fif, 0);
 
 	// save as a regular file
@@ -96,7 +96,7 @@ void testLoadMemIO(const char *lpszPathName) {
 
 				// save as a regular file
 				FreeImage_Save(FIF_PNG, check, "blob.png", PNG_DEFAULT);
-				
+
 				// close the stream (memIO is destroyed)
 			}
 
@@ -141,7 +141,7 @@ void testAcquireMemIO(const char *lpszPathName) {
 Test Loading / Saving from / to a memory stream using fipImage
 */
 void testImageMemIO(const char *lpszPathName) {
-	BOOL bSuccess = FALSE;
+	WINBOOL bSuccess = FALSE;
 
 	fipMemoryIO memIO;
 	fipImage image;
@@ -152,7 +152,7 @@ void testImageMemIO(const char *lpszPathName) {
 		// save the file to a memory stream
 		bSuccess = image.saveToMemory(FIF_PNG, memIO, PNG_DEFAULT);
 		assert(bSuccess);
-		
+
 		// load the file from the memory stream
 		memIO.seek(0L, SEEK_SET);
 		bSuccess = image.loadFromMemory(memIO, 0);

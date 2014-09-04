@@ -47,7 +47,7 @@ void testMemIO(const char *lpszPathName);
 // Multipage test scripts
 
 /// Test multipage loading & saving
-BOOL testCloneMultiPage(const char *input, const char *output, int output_flag);
+WINBOOL testCloneMultiPage(const char *input, const char *output, int output_flag);
 /// Test the above functions
 void testMultiPage(const char *lpszMultiPage);
 
@@ -55,11 +55,11 @@ void testMultiPage(const char *lpszMultiPage);
 // Multipage memory IO test scripts
 
 /// test FreeImage_LoadMultiBitmapFromMemory
-BOOL testLoadMultiBitmapFromMemory(const char *lpszPathName);
+WINBOOL testLoadMultiBitmapFromMemory(const char *lpszPathName);
 /// test FreeImage_SaveMultiBitmapToMemory
-BOOL testSaveMultiBitmapToMemory(const char *input, const char *output, int output_flag);
+WINBOOL testSaveMultiBitmapToMemory(const char *input, const char *output, int output_flag);
 /// test FreeImage_LoadMultiBitmapFromMemory & FreeImage_SaveMultiBitmapToMemory
-BOOL testMemoryStreamMultiPageOpenSave(const char *lpszPathName, char *output, int input_flag, int output_flag);
+WINBOOL testMemoryStreamMultiPageOpenSave(const char *lpszPathName, char *output, int input_flag, int output_flag);
 /// Test the above functions
 void testMultiPageMemory(const char *lpszPathName);
 
@@ -67,11 +67,11 @@ void testMultiPageMemory(const char *lpszPathName);
 // Multipage IO test scripts
 
 /// test multipage stream (opening)
-BOOL testStreamMultiPageOpen(const char *input, int flags);
+WINBOOL testStreamMultiPageOpen(const char *input, int flags);
 /// test multipage stream (save as)
-BOOL testStreamMultiPageSave(const char *input, const char *output, int input_flag, int output_flag);
+WINBOOL testStreamMultiPageSave(const char *input, const char *output, int input_flag, int output_flag);
 /// test multipage stream (open, modify, save as)
-BOOL testStreamMultiPageOpenSave(const char *input, const char *output, int input_flag, int output_flag);
+WINBOOL testStreamMultiPageOpenSave(const char *input, const char *output, int input_flag, int output_flag);
 /// Test the above functions
 void testStreamMultiPage(const char *lpszPathName);
 

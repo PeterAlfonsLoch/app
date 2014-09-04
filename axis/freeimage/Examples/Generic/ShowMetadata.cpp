@@ -1,7 +1,7 @@
 // ==========================================================
 // Simple metadata reader
 //
-// Design and implementation by 
+// Design and implementation by
 // - Hervé Drolon
 //
 // This file is part of FreeImage 3
@@ -20,15 +20,15 @@
 // ==========================================================
 
 //
-//  This example shows how to easily parse all metadata 
-//  contained in a JPEG, TIFF or PNG image. 
-//  Comments, Exif and IPTC/NAA metadata tags are written to a HTML file 
-//  for later reading, and Adobe XMP XML packets are written 
-//  in a file whose extension is '.xmp'. This file can be later 
-//  processed using a XML parser. 
+//  This example shows how to easily parse all metadata
+//  contained in a JPEG, TIFF or PNG image.
+//  Comments, Exif and IPTC/NAA metadata tags are written to a HTML file
+//  for later reading, and Adobe XMP XML packets are written
+//  in a file whose extension is '.xmp'. This file can be later
+//  processed using a XML parser.
 //
-//  Metadata functions showed in this sample : 
-//  FreeImage_GetMetadataCount, FreeImage_FindFirstMetadata, FreeImage_FindNextMetadata, 
+//  Metadata functions showed in this sample :
+//  FreeImage_GetMetadataCount, FreeImage_FindFirstMetadata, FreeImage_FindNextMetadata,
 //  FreeImage_FindCloseMetadata, FreeImage_TagToString, FreeImage_GetMetadata
 //
 // ==========================================================
@@ -77,7 +77,7 @@ FIBITMAP* GenericLoader(const char* lpszPathName, int flag) {
 */
 bool GenericWriter(FIBITMAP* dib, const char* lpszPathName, int flag) {
 	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
-	BOOL bSuccess = FALSE;
+	WINBOOL bSuccess = FALSE;
 
 	if(dib) {
 		// try to guess the file format from the file extension
@@ -99,7 +99,7 @@ bool GenericWriter(FIBITMAP* dib, const char* lpszPathName, int flag) {
 
 /**
 	FreeImage error handler
-	@param fif Format / Plugin responsible for the error 
+	@param fif Format / Plugin responsible for the error
 	@param message Error message
 */
 void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message) {
@@ -169,8 +169,8 @@ void PrintMetadata(iostream& ios, const char *sectionTitle, FIBITMAP *dib, FREE_
 			// convert the tag value to a string
 			const char *value = FreeImage_TagToString(model, tag);
 
-			// print the tag 
-			// note that most tags do not have a description, 
+			// print the tag
+			// note that most tags do not have a description,
 			// especially when the metadata specifications are not available
 			if(FreeImage_GetTagDescription(tag)) {
 				ios << "<TR><TD>" << FreeImage_GetTagKey(tag) << "</TD><TD>" << value << "</TD><TD>" << FreeImage_GetTagDescription(tag) << "</TD></TR>\n";
@@ -184,7 +184,7 @@ void PrintMetadata(iostream& ios, const char *sectionTitle, FIBITMAP *dib, FREE_
 	FreeImage_FindCloseMetadata(mdhandle);
 }
 
-int 
+int
 main(int argc, char *argv[]) {
 	unsigned count;
 
@@ -229,7 +229,7 @@ main(int argc, char *argv[]) {
 		cout << "\nFIMD_COMMENTS (" << count << " data)\n-----------------------------------------\n";
 
 		PrintMetadata(metadataFile, "Comments", dib, FIMD_COMMENTS);
-	}	
+	}
 	if(count = FreeImage_GetMetadataCount(FIMD_EXIF_MAIN, dib)) {
 		cout << "\nFIMD_EXIF_MAIN (" << count << " data)\n-----------------------------------------\n";
 

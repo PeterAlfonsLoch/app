@@ -28,7 +28,7 @@
 
 // ==========================================================
 
-BOOL APIENTRY
+WINBOOL APIENTRY
 DllMain(HANDLE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved) {
 	switch (ul_reason_for_call) {
 		case DLL_PROCESS_ATTACH :
@@ -75,8 +75,8 @@ Description() {
 }
 
 /**
-    Returns a comma separated list of file extensions indicating 
-	what files this plugin can open. no spaces or whatsoever are allowed. 
+    Returns a comma separated list of file extensions indicating
+	what files this plugin can open. no spaces or whatsoever are allowed.
 	The list, being used by FreeImage_GetFIFFromFilename, is usually
 	used as a last resort in finding the type of the bitmap we
 	are dealing with. Best is to check the first few bytes on
@@ -118,7 +118,7 @@ MimeType() {
 	it on the command line, but this can result in a dead DLL if the plugin
 	was not made for the bitmap.
 */
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO &io, fi_handle handle) {
 	return FALSE;
 }
@@ -129,7 +129,7 @@ Validate(FreeImageIO &io, fi_handle handle) {
 	can save a bitmap in the required bitdepth. If it can't the bitmap has to be
 	converted by the user or another plugin has to be chosen.
 */
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
@@ -140,17 +140,17 @@ SupportsExportDepth(int depth) {
 	able to save all non-standard images. The PNG plugin is able to save unsigned 16-bit
 	images.
 */
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (type == FIT_BITMAP) ? TRUE : FALSE;
 }
 
 /**
-	SupportsICCProfiles informs FreeImage that a plugin supports ICC profiles. 
+	SupportsICCProfiles informs FreeImage that a plugin supports ICC profiles.
 	This function returns TRUE if the plugin can load and save a profile.
 	ICC profile information is accessed via freeimage->get_icc_profile_proc(dib)
 */
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsICCProfiles() {
 	return FALSE;
 }
@@ -181,10 +181,10 @@ SupportsICCProfiles() {
 	in the bitmap or if we will load the default one. This parameter is only used if
 	the plugin supports multi-paged bitmaps, e.g. cabinet bitmaps that contain a series
 	of images or pages. If the plugin does support multi-paging, the page parameter
-	can contain either a number higher or equal to 0 to load a certain page, or -1 to 
+	can contain either a number higher or equal to 0 to load a certain page, or -1 to
 	load the default page. If the plugin does not support multi-paging,
 	the page parameter is always -1.
-	
+
 	The fourth parameter (int flags) manipulates the load function to load a bitmap
 	in a certain way. Every plugin has a different flag parameter with different meanings.
 
@@ -200,7 +200,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	return NULL;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	return FALSE;
 }

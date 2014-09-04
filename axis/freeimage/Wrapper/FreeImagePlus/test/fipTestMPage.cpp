@@ -27,14 +27,14 @@ using namespace std;
 // --------------------------------------------------------------------------
 // Multipage test scripts
 
-BOOL testCloneMultiPage(const char *input, const char *output, int output_flag) {
+WINBOOL testCloneMultiPage(const char *input, const char *output, int output_flag) {
 
-	BOOL bMemoryCache = TRUE;
+	WINBOOL bMemoryCache = TRUE;
 
 	fipMultiPage src(bMemoryCache);
 	fipMultiPage dst(bMemoryCache);
 
-	// You MUST declare this before using it. 
+	// You MUST declare this before using it.
 	// We will use the assignement operator, i.e. operator=()
 	fipImage image;
 

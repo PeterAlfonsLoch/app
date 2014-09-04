@@ -1,7 +1,7 @@
 // ==========================================================
 // Batch loader
 //
-// Design and implementation by 
+// Design and implementation by
 // - Floris van den Berg
 // - Hervé Drolon
 //
@@ -29,8 +29,8 @@
 //  receives a file name, for example 'myfile.bmp', and returns
 //  a FREE_IMAGE_TYPE enum which identifies that bitmap.
 //
-//  Functions used in this sample : 
-//  FreeImage_GetFileType, FreeImage_GetFIFFromFilename, FreeImage_FIFSupportsReading, 
+//  Functions used in this sample :
+//  FreeImage_GetFileType, FreeImage_GetFIFFromFilename, FreeImage_FIFSupportsReading,
 //  FreeImage_Load, FreeImage_GetBPP, FreeImage_FIFSupportsWriting, FreeImage_GetFormatFromFIF
 //  FreeImage_FIFSupportsExportBPP, FreeImage_Save, FreeImage_Unload,
 //  FreeImage_SetOutputMessage, FreeImage_GetVersion, FreeImage_GetCopyrightMessage
@@ -81,7 +81,7 @@ FIBITMAP* GenericLoader(const char* lpszPathName, int flag) {
 */
 bool GenericWriter(FIBITMAP* dib, const char* lpszPathName, int flag) {
 	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
-	BOOL bSuccess = FALSE;
+	WINBOOL bSuccess = FALSE;
 
 	if(dib) {
 		// try to guess the file format from the file extension
@@ -103,11 +103,11 @@ bool GenericWriter(FIBITMAP* dib, const char* lpszPathName, int flag) {
 
 /**
 	FreeImage error handler
-	@param fif Format / Plugin responsible for the error 
+	@param fif Format / Plugin responsible for the error
 	@param message Error message
 */
 void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message) {
-	printf("\n*** "); 
+	printf("\n*** ");
 	if(fif != FIF_UNKNOWN) {
 		printf("%s Format\n", FreeImage_GetFormatFromFIF(fif));
 	}
@@ -121,7 +121,7 @@ void FreeImageErrorHandler(FREE_IMAGE_FORMAT fif, const char *message) {
 #define MAX_PATH	260
 #endif
 
-int 
+int
 main(int argc, char *argv[]) {
 
 	const char *input_dir = "d:\\images\\";

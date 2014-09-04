@@ -31,20 +31,20 @@ fipMemoryIO::fipMemoryIO(BYTE *data, DWORD size_in_bytes) {
 	_hmem = FreeImage_OpenMemory(data, size_in_bytes);
 }
 
-fipMemoryIO::~fipMemoryIO() { 
+fipMemoryIO::~fipMemoryIO() {
 	if(_hmem != NULL) {
 		FreeImage_CloseMemory(_hmem);
 	}
 }
 
-void fipMemoryIO::close() { 
+void fipMemoryIO::close() {
 	if(_hmem != NULL) {
 		FreeImage_CloseMemory(_hmem);
 		_hmem = NULL;
 	}
 }
 
-BOOL fipMemoryIO::isValid() const {
+WINBOOL fipMemoryIO::isValid() const {
 	return (_hmem != NULL);
 }
 
@@ -64,11 +64,11 @@ FIMULTIBITMAP* fipMemoryIO::loadMultiPage(FREE_IMAGE_FORMAT fif, int flags) cons
 	return FreeImage_LoadMultiBitmapFromMemory(fif, _hmem, flags);
 }
 
-BOOL fipMemoryIO::save(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, int flags) {
+WINBOOL fipMemoryIO::save(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, int flags) {
 	return FreeImage_SaveToMemory(fif, dib, _hmem, flags);
 }
 
-BOOL fipMemoryIO::saveMultiPage(FREE_IMAGE_FORMAT fif, FIMULTIBITMAP *bitmap, int flags) {
+WINBOOL fipMemoryIO::saveMultiPage(FREE_IMAGE_FORMAT fif, FIMULTIBITMAP *bitmap, int flags) {
 	return FreeImage_SaveMultiBitmapToMemory(fif, bitmap, _hmem, flags);
 }
 
@@ -84,11 +84,11 @@ long fipMemoryIO::tell() const {
 	return FreeImage_TellMemory(_hmem);
 }
 
-BOOL fipMemoryIO::seek(long offset, int origin) {
+WINBOOL fipMemoryIO::seek(long offset, int origin) {
 	return FreeImage_SeekMemory(_hmem, offset, origin);
 }
 
-BOOL fipMemoryIO::acquire(BYTE **data, DWORD *size_in_bytes) {
+WINBOOL fipMemoryIO::acquire(BYTE **data, DWORD *size_in_bytes) {
 	return FreeImage_AcquireMemory(_hmem, data, size_in_bytes);
 }
 

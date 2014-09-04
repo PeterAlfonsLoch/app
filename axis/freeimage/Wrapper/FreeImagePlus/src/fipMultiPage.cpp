@@ -21,7 +21,7 @@
 
 #include "FreeImagePlus.h"
 
-fipMultiPage::fipMultiPage(BOOL keep_cache_in_memory) : _mpage(NULL), _bMemoryCache(keep_cache_in_memory) {
+fipMultiPage::fipMultiPage(WINBOOL keep_cache_in_memory) : _mpage(NULL), _bMemoryCache(keep_cache_in_memory) {
 }
 
 fipMultiPage::~fipMultiPage() {
@@ -31,11 +31,11 @@ fipMultiPage::~fipMultiPage() {
 	}
 }
 
-BOOL fipMultiPage::isValid() const {
+WINBOOL fipMultiPage::isValid() const {
 	return (NULL != _mpage) ? TRUE : FALSE;
 }
 
-BOOL fipMultiPage::open(const char* lpszPathName, BOOL create_new, BOOL read_only, int flags) {
+WINBOOL fipMultiPage::open(const char* lpszPathName, WINBOOL create_new, WINBOOL read_only, int flags) {
 	// try to guess the file format from the filename
 	FREE_IMAGE_FORMAT fif = FreeImage_GetFIFFromFilename(lpszPathName);
 
@@ -45,7 +45,7 @@ BOOL fipMultiPage::open(const char* lpszPathName, BOOL create_new, BOOL read_onl
 	return (NULL != _mpage ) ? TRUE : FALSE;
 }
 
-BOOL fipMultiPage::open(fipMemoryIO& memIO, int flags) {
+WINBOOL fipMultiPage::open(fipMemoryIO& memIO, int flags) {
 	// try to guess the file format from the memory handle
 	FREE_IMAGE_FORMAT fif = memIO.getFileType();
 
@@ -55,7 +55,7 @@ BOOL fipMultiPage::open(fipMemoryIO& memIO, int flags) {
 	return (NULL != _mpage ) ? TRUE : FALSE;
 }
 
-BOOL fipMultiPage::open(FreeImageIO *io, fi_handle handle, int flags) {
+WINBOOL fipMultiPage::open(FreeImageIO *io, fi_handle handle, int flags) {
 	// try to guess the file format from the handle
 	FREE_IMAGE_FORMAT fif = FreeImage_GetFileTypeFromHandle(io, handle, 0);
 
@@ -65,8 +65,8 @@ BOOL fipMultiPage::open(FreeImageIO *io, fi_handle handle, int flags) {
 	return (NULL != _mpage ) ? TRUE : FALSE;
 }
 
-BOOL fipMultiPage::close(int flags) {
-	BOOL bSuccess = FALSE;
+WINBOOL fipMultiPage::close(int flags) {
+	WINBOOL bSuccess = FALSE;
 	if(_mpage) {
 		// close the stream
 		bSuccess = FreeImage_CloseMultiBitmap(_mpage, flags);
@@ -76,8 +76,8 @@ BOOL fipMultiPage::close(int flags) {
 	return bSuccess;
 }
 
-BOOL fipMultiPage::saveToHandle(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle, int flags) const {
-	BOOL bSuccess = FALSE;
+WINBOOL fipMultiPage::saveToHandle(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle, int flags) const {
+	WINBOOL bSuccess = FALSE;
 	if(_mpage) {
 		bSuccess = FreeImage_SaveMultiBitmapToHandle(fif, _mpage, io, handle, flags);
 	}
@@ -85,8 +85,8 @@ BOOL fipMultiPage::saveToHandle(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handl
 	return bSuccess;
 }
 
-BOOL fipMultiPage::saveToMemory(FREE_IMAGE_FORMAT fif, fipMemoryIO& memIO, int flags) const {
-	BOOL bSuccess = FALSE;
+WINBOOL fipMultiPage::saveToMemory(FREE_IMAGE_FORMAT fif, fipMemoryIO& memIO, int flags) const {
+	WINBOOL bSuccess = FALSE;
 	if(_mpage) {
 		bSuccess = memIO.saveMultiPage(fif, _mpage, flags);
 	}
@@ -116,7 +116,7 @@ void fipMultiPage::deletePage(int page) {
 	}
 }
 
-BOOL fipMultiPage::movePage(int target, int source) {
+WINBOOL fipMultiPage::movePage(int target, int source) {
 	return _mpage ? FreeImage_MovePage(_mpage, target, source) : FALSE;
 }
 
@@ -124,7 +124,7 @@ FIBITMAP* fipMultiPage::lockPage(int page) {
 	return _mpage ? FreeImage_LockPage(_mpage, page) : NULL;
 }
 
-void fipMultiPage::unlockPage(fipImage& image, BOOL changed) {
+void fipMultiPage::unlockPage(fipImage& image, WINBOOL changed) {
 	if(_mpage) {
 		FreeImage_UnlockPage(_mpage, image, changed);
 		// clear the image so that it becomes invalid.
@@ -134,7 +134,7 @@ void fipMultiPage::unlockPage(fipImage& image, BOOL changed) {
 	}
 }
 
-BOOL fipMultiPage::getLockedPageNumbers(int *pages, int *count) const {
+WINBOOL fipMultiPage::getLockedPageNumbers(int *pages, int *count) const {
 	return _mpage ? FreeImage_GetLockedPageNumbers(_mpage, pages, count) : FALSE;
 }
 

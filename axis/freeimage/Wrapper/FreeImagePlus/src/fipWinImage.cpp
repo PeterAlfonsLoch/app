@@ -25,14 +25,14 @@
 
 // marker used for clipboard copy / paste
 
-static inline void 
+static inline void
 SET_FREEIMAGE_MARKER(BITMAPINFOHEADER *bmih, FIBITMAP *dib) {
 	// Windows constants goes from 0L to 5L
 	// Add 0xFF to avoid conflicts
 	bmih->biCompression = 0xFF + FreeImage_GetImageType(dib);
 }
 
-static inline FREE_IMAGE_TYPE 
+static inline FREE_IMAGE_TYPE
 GET_FREEIMAGE_MARKER(BITMAPINFOHEADER *bmih) {
 	return (FREE_IMAGE_TYPE)(bmih->biCompression - 0xFF);
 }
@@ -51,7 +51,7 @@ fipWinImage::fipWinImage(FREE_IMAGE_TYPE image_type, unsigned width, unsigned he
 	_tmo_param_4 = 0;
 }
 
-fipWinImage::~fipWinImage() { 
+fipWinImage::~fipWinImage() {
 	if(_bDeleteMe) {
 		FreeImage_Unload(_display_dib);
 	}
@@ -68,7 +68,7 @@ void fipWinImage::clear() {
 	fipImage::clear();
 }
 
-BOOL fipWinImage::isValid() const {
+WINBOOL fipWinImage::isValid() const {
 	return fipImage::isValid();
 }
 
@@ -154,7 +154,7 @@ HANDLE fipWinImage::copyToHandle() const {
 	return hMem;
 }
 
-BOOL fipWinImage::copyFromHandle(HANDLE hMem) {
+WINBOOL fipWinImage::copyFromHandle(HANDLE hMem) {
 	BYTE *lpVoid = NULL;
 	BITMAPINFOHEADER *pHead = NULL;
 	RGBQUAD *pPalette = NULL;
@@ -179,7 +179,7 @@ BOOL fipWinImage::copyFromHandle(HANDLE hMem) {
 		unsigned mask_size = 3 * sizeof(DWORD);
 		memcpy(&bitfields[0], bits, mask_size);
 		bits += mask_size;
-	} 
+	}
 
 	if(lpVoid) {
 
@@ -225,8 +225,8 @@ BOOL fipWinImage::copyFromHandle(HANDLE hMem) {
 	return FALSE;
 }
 
-BOOL fipWinImage::copyFromBitmap(HBITMAP hbmp) {
-	if(hbmp) { 
+WINBOOL fipWinImage::copyFromBitmap(HBITMAP hbmp) {
+	if(hbmp) {
 		int Success;
         BITMAP bm;
 		// Get informations about the bitmap
@@ -234,8 +234,8 @@ BOOL fipWinImage::copyFromBitmap(HBITMAP hbmp) {
 		// Create the image
         setSize(FIT_BITMAP, (WORD)bm.bmWidth, (WORD)bm.bmHeight, (WORD)bm.bmBitsPixel);
 
-		// The GetDIBits function clears the biClrUsed and biClrImportant BITMAPINFO members (dont't know why) 
-		// So we save these infos below. This is needed for palettized images only. 
+		// The GetDIBits function clears the biClrUsed and biClrImportant BITMAPINFO members (dont't know why)
+		// So we save these infos below. This is needed for palettized images only.
 		int nColors = FreeImage_GetColorsUsed(_dib);
 
 		// Create a device context for the bitmap
@@ -247,7 +247,7 @@ BOOL fipWinImage::copyFromBitmap(HBITMAP hbmp) {
 								FreeImage_GetHeight(_dib),	// number of scan lines to copy
 								FreeImage_GetBits(_dib),	// array for bitmap bits
 								FreeImage_GetInfo(_dib),	// bitmap data buffer
-								DIB_RGB_COLORS				// RGB 
+								DIB_RGB_COLORS				// RGB
 								);
 		if(Success == 0) {
 			FreeImage_OutputMessageProc(FIF_UNKNOWN, "Error : GetDIBits failed");
@@ -257,7 +257,7 @@ BOOL fipWinImage::copyFromBitmap(HBITMAP hbmp) {
         ReleaseDC(NULL, dc);
 
 		// restore BITMAPINFO members
-		
+
 		FreeImage_GetInfoHeader(_dib)->biClrUsed = nColors;
 		FreeImage_GetInfoHeader(_dib)->biClrImportant = nColors;
 
@@ -267,7 +267,7 @@ BOOL fipWinImage::copyFromBitmap(HBITMAP hbmp) {
 	return FALSE;
 }
 
-BOOL fipWinImage::copyToClipboard(HWND hWndNewOwner) const {
+WINBOOL fipWinImage::copyToClipboard(HWND hWndNewOwner) const {
 	HANDLE hDIB = copyToHandle();
 
 	if(OpenClipboard(hWndNewOwner)) {
@@ -284,7 +284,7 @@ BOOL fipWinImage::copyToClipboard(HWND hWndNewOwner) const {
 	return TRUE;
 }
 
-BOOL fipWinImage::pasteFromClipboard() {
+WINBOOL fipWinImage::pasteFromClipboard() {
 	if(!IsClipboardFormatAvailable(CF_DIB))
 		return FALSE;
 
@@ -302,7 +302,7 @@ BOOL fipWinImage::pasteFromClipboard() {
 ///////////////////////////////////////////////////////////////////
 // Screen capture
 
-BOOL fipWinImage::captureWindow(HWND hWndApplicationWindow, HWND hWndSelectedWindow) {
+WINBOOL fipWinImage::captureWindow(HWND hWndApplicationWindow, HWND hWndSelectedWindow) {
 	int xScreen, yScreen, xshift, yshift;
 	RECT r;
 
@@ -326,15 +326,15 @@ BOOL fipWinImage::captureWindow(HWND hWndApplicationWindow, HWND hWndSelectedWin
 		   yshift = -r.top;
 		   r.top = 0;
 	}
-	
+
 	int width  = r.right  - r.left;
 	int height = r.bottom - r.top;
 
 	if(width <= 0 || height <= 0)
 		return FALSE;
 
-	// Hide the application window. 
-	ShowWindow(hWndApplicationWindow, SW_HIDE); 
+	// Hide the application window.
+	ShowWindow(hWndApplicationWindow, SW_HIDE);
 	// Bring the window at the top most level
 	SetWindowPos(hWndSelectedWindow, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);
 	// Give enough time to refresh the window
@@ -344,19 +344,19 @@ BOOL fipWinImage::captureWindow(HWND hWndApplicationWindow, HWND hWndSelectedWin
 	HDC dstDC = GetDC(NULL);
     HDC srcDC = GetWindowDC(hWndSelectedWindow); // full window (GetDC(hWndSelectedWindow) = clientarea)
 	HDC memDC = CreateCompatibleDC(dstDC);
-	
+
 	// Copy the screen to the bitmap
 	HBITMAP bm = CreateCompatibleBitmap(dstDC, width, height);
 	HBITMAP oldbm = (HBITMAP)SelectObject(memDC, bm);
 	BitBlt(memDC, 0, 0, width, height, srcDC, xshift, yshift, SRCCOPY);
 
-	// Redraw the application window. 
-	ShowWindow(hWndApplicationWindow, SW_SHOW); 
+	// Redraw the application window.
+	ShowWindow(hWndApplicationWindow, SW_SHOW);
 
 	// Restore the position
 	SetWindowPos(hWndSelectedWindow, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);
 	SetWindowPos(hWndApplicationWindow, HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE|SWP_NOSIZE);
-	
+
 	// Convert the HBITMAP to a FIBITMAP
 	copyFromBitmap(bm);
 
@@ -376,7 +376,7 @@ BOOL fipWinImage::captureWindow(HWND hWndApplicationWindow, HWND hWndSelectedWin
 ///////////////////////////////////////////////////////////////////
 // Painting operations
 
-void fipWinImage::drawEx(HDC hDC, RECT& rcDest, BOOL useFileBkg, RGBQUAD *appBkColor, FIBITMAP *bg) const {
+void fipWinImage::drawEx(HDC hDC, RECT& rcDest, WINBOOL useFileBkg, RGBQUAD *appBkColor, FIBITMAP *bg) const {
 	// Convert to a standard bitmap if needed
 	if(_bHasChanged) {
 		if(_bDeleteMe) {
@@ -387,8 +387,8 @@ void fipWinImage::drawEx(HDC hDC, RECT& rcDest, BOOL useFileBkg, RGBQUAD *appBkC
 
 		FREE_IMAGE_TYPE image_type = getImageType();
 		if(image_type == FIT_BITMAP) {
-			BOOL bHasBackground = FreeImage_HasBackgroundColor(_dib);
-			BOOL bIsTransparent = FreeImage_IsTransparent(_dib);
+			WINBOOL bHasBackground = FreeImage_HasBackgroundColor(_dib);
+			WINBOOL bIsTransparent = FreeImage_IsTransparent(_dib);
 
 			if(!bIsTransparent && (!bHasBackground || !useFileBkg)) {
 				// Copy pointer
@@ -416,7 +416,7 @@ void fipWinImage::drawEx(HDC hDC, RECT& rcDest, BOOL useFileBkg, RGBQUAD *appBkC
 				// Free image of type FIT_DOUBLE
 				FreeImage_Unload(dib_double);
 			} else if((image_type == FIT_RGBF) || (image_type == FIT_RGBAF) || (image_type == FIT_RGB16)) {
-				// Apply a tone mapping algorithm and convert to 24-bit 
+				// Apply a tone mapping algorithm and convert to 24-bit
 				switch(_tmo) {
 					case FITMO_REINHARD05:
 						_display_dib = FreeImage_TmoReinhard05Ex(_dib, _tmo_param_1, _tmo_param_2, _tmo_param_3, _tmo_param_4);
@@ -445,9 +445,9 @@ void fipWinImage::drawEx(HDC hDC, RECT& rcDest, BOOL useFileBkg, RGBQUAD *appBkC
 	}
 
 	// Draw the dib
-	SetStretchBltMode(hDC, COLORONCOLOR);	
-	StretchDIBits(hDC, rcDest.left, rcDest.top, 
-		rcDest.right-rcDest.left, rcDest.bottom-rcDest.top, 
+	SetStretchBltMode(hDC, COLORONCOLOR);
+	StretchDIBits(hDC, rcDest.left, rcDest.top,
+		rcDest.right-rcDest.left, rcDest.bottom-rcDest.top,
 		0, 0, FreeImage_GetWidth(_display_dib), FreeImage_GetHeight(_display_dib),
 		FreeImage_GetBits(_display_dib), FreeImage_GetInfo(_display_dib), DIB_RGB_COLORS, SRCCOPY);
 
