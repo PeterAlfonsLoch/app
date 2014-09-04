@@ -93,6 +93,19 @@ namespace file
 
    }
 
+   file_size stream_base::width() const
+   {
+
+      return m_width;
+
+   }
+
+   file_size stream_base::width(file_size prec)
+   {
+
+      return m_width = prec;
+
+   }
 
 
 } // namespace file

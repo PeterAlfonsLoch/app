@@ -5,6 +5,15 @@ namespace file
 {
 
 
+   class set_width
+   {
+   public:
+
+      ::file_size m_width;
+
+   };
+
+
    class stream_buffer;
 
    typedef sp(stream_buffer) buffer_sp;
@@ -77,6 +86,7 @@ namespace file
       buffer_sp               m_spbuffer;
       e_iostate               m_iostate;
       fmtflags                m_fmtflags;
+      file_size               m_width;
       file_size               m_precision;
 
       stream_base();
@@ -150,6 +160,12 @@ namespace file
       file_size precision() const;
 
       file_size precision(file_size prec);
+
+      file_size width() const;
+
+      file_size width(file_size wide);
+
+      stream_base & operator << (const set_width & w) { width(w.m_width);  }
 
    };
 
