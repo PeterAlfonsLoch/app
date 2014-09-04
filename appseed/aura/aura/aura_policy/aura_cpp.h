@@ -1201,7 +1201,11 @@ namespace std
    using streampos = ::file_position;
    using streamoff = ::file_offset;
 
+#ifndef WINDOWSEX
+
    using bad_alloc = ::memory_exception;
+
+#endif
 
    template <class T> const T& min(const T& a,const T& b) { return !(a > b) ? a : b; }
    template <class T> const T& max(const T& a,const T& b) { return !(a < b) ? a : b; }
