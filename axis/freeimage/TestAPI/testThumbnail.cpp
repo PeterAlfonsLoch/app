@@ -25,13 +25,13 @@
 /**
 Test thumbnail loading
 */
-static BOOL testLoadThumbnail(const char *lpszPathName, int flags) {
+static WINBOOL testLoadThumbnail(const char *lpszPathName, int flags) {
 	FIBITMAP *dib = NULL;
 
 	try {
 		FREE_IMAGE_FORMAT fif = FreeImage_GetFileType(lpszPathName);
 
-		dib = FreeImage_Load(fif, lpszPathName, flags); 
+		dib = FreeImage_Load(fif, lpszPathName, flags);
 		if(!dib) throw(1);
 
 		FIBITMAP *thumbnail = FreeImage_GetThumbnail(dib);
@@ -40,23 +40,23 @@ static BOOL testLoadThumbnail(const char *lpszPathName, int flags) {
 		unsigned t_width = FreeImage_GetWidth(thumbnail);
 		unsigned t_height = FreeImage_GetHeight(thumbnail);
 		printf("... %s contains a thumbnail whose size is %dx%d\n", lpszPathName, t_width, t_height);
-		
-		FreeImage_Unload(dib); 
+
+		FreeImage_Unload(dib);
 
 		return TRUE;
-	} 
-	catch(int) {
-		if(dib) FreeImage_Unload(dib); 
 	}
-	
-	return FALSE; 
+	catch(int) {
+		if(dib) FreeImage_Unload(dib);
+	}
+
+	return FALSE;
 }
 
 /**
 Test thumbnail saving
 */
-static BOOL testSaveThumbnail(const char *lpszPathName, int flags) {
-	BOOL bResult = FALSE;
+static WINBOOL testSaveThumbnail(const char *lpszPathName, int flags) {
+	WINBOOL bResult = FALSE;
 	FIBITMAP *dib = NULL;
 	FIBITMAP *t_clone = NULL;
 	const char *lpszImagePathName = "exif_new_thumb.jpg";
@@ -65,7 +65,7 @@ static BOOL testSaveThumbnail(const char *lpszPathName, int flags) {
 		FREE_IMAGE_FORMAT fif = FreeImage_GetFileType(lpszPathName);
 
 		// load the dib
-		dib = FreeImage_Load(fif, lpszPathName, flags); 
+		dib = FreeImage_Load(fif, lpszPathName, flags);
 		if(!dib) throw(1);
 
 		// get a link to the attached thumbnail
@@ -91,11 +91,11 @@ static BOOL testSaveThumbnail(const char *lpszPathName, int flags) {
 		bResult = FreeImage_Save(fif, dib, lpszImagePathName, 0);
 		assert(bResult);
 
-		// no longer needed		
+		// no longer needed
 		FreeImage_Unload(dib);
 
 		// reload the image and check its thumbnail
-		dib = FreeImage_Load(fif, lpszImagePathName, 0); 
+		dib = FreeImage_Load(fif, lpszImagePathName, 0);
 		if(!dib) throw(1);
 
 		// get a link to the attached thumbnail
@@ -110,20 +110,20 @@ static BOOL testSaveThumbnail(const char *lpszPathName, int flags) {
 		FreeImage_Unload(dib);
 
 		return TRUE;
-	} 
-	catch(int) {
-		if(dib) FreeImage_Unload(dib); 
-		if(t_clone) FreeImage_Unload(t_clone); 
 	}
-	
-	return FALSE; 
+	catch(int) {
+		if(dib) FreeImage_Unload(dib);
+		if(t_clone) FreeImage_Unload(t_clone);
+	}
+
+	return FALSE;
 }
 
 /**
 Thest thumbnail functions
 */
 void testThumbnail(const char *lpszPathName, int flags) {
-	BOOL bResult = FALSE;
+	WINBOOL bResult = FALSE;
 
 	printf("testThumbnail ...\n");
 

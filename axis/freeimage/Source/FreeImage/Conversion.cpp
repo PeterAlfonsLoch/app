@@ -52,40 +52,40 @@
 // ==========================================================
 // Utility functions declared in Utilities.h
 
-BOOL SwapRedBlue32(FIBITMAP* dib) {
+WINBOOL SwapRedBlue32(FIBITMAP* dib) {
 	if(FreeImage_GetImageType(dib) != FIT_BITMAP) {
 		return FALSE;
 	}
-		
+
 	const unsigned bytesperpixel = FreeImage_GetBPP(dib) / 8;
 	if(bytesperpixel > 4 || bytesperpixel < 3) {
 		return FALSE;
 	}
-		
+
 	const unsigned height = FreeImage_GetHeight(dib);
 	const unsigned pitch = FreeImage_GetPitch(dib);
 	const unsigned lineSize = FreeImage_GetLine(dib);
-	
+
 	BYTE* line = FreeImage_GetBits(dib);
 	for(unsigned y = 0; y < height; ++y, line += pitch) {
 		for(BYTE* pixel = line; pixel < line + lineSize ; pixel += bytesperpixel) {
 			INPLACESWAP(pixel[0], pixel[2]);
 		}
 	}
-	
+
 	return TRUE;
 }
 
 // ----------------------------------------------------------
 
-static inline void 
+static inline void
 assignRGB(WORD r, WORD g, WORD b, WORD* out) {
 	out[0] = r;
 	out[1] = g;
 	out[2] = b;
 }
 
-static inline void 
+static inline void
 assignRGB(BYTE r, BYTE g, BYTE b, BYTE* out) {
 	out[FI_RGBA_RED]	= r;
 	out[FI_RGBA_GREEN]	= g;
@@ -99,14 +99,14 @@ CMYK to CMY [0-1]: C,M,Y * (1 - K) + K
 CMY to RGB [0-1]: (1 - C,M,Y)
 
 => R,G,B = (1 - C,M,Y) * (1 - K)
-mapped to [0-MAX_VAL]: 
+mapped to [0-MAX_VAL]:
 (MAX_VAL - C,M,Y) * (MAX_VAL - K) / MAX_VAL
 */
 template <class T>
-static inline void 
+static inline void
 CMYKToRGB(T C, T M, T Y, T K, T* out) {
 	unsigned max_val = std::numeric_limits<T>::maximum();
-	
+
 	unsigned r = (max_val - C) * (max_val - K) / max_val;
 	unsigned g = (max_val - M) * (max_val - K) / max_val;
 	unsigned b = (max_val - Y) * (max_val - K) / max_val;
@@ -120,50 +120,50 @@ CMYKToRGB(T C, T M, T Y, T K, T* out) {
 }
 
 template <class T>
-static void 
+static void
 _convertCMYKtoRGBA(unsigned width, unsigned height, BYTE* line_start, unsigned pitch, unsigned samplesperpixel) {
-	const BOOL hasBlack = (samplesperpixel > 3) ? TRUE : FALSE;
+	const WINBOOL hasBlack = (samplesperpixel > 3) ? TRUE : FALSE;
 	const T MAX_VAL = std::numeric_limits<T>::maximum();
-		
+
 	T K = 0;
 	for(unsigned y = 0; y < height; y++) {
 		T *line = (T*)line_start;
 
 		for(unsigned x = 0; x < width; x++) {
 			if(hasBlack) {
-				K = line[FI_RGBA_ALPHA];			
+				K = line[FI_RGBA_ALPHA];
 				line[FI_RGBA_ALPHA] = MAX_VAL; // TODO write the first extra channel as alpha!
-			}			
-			
+			}
+
 			CMYKToRGB<T>(line[0], line[1], line[2], K, line);
-			
+
 			line += samplesperpixel;
 		}
 		line_start += pitch;
 	}
 }
 
-BOOL 
+WINBOOL
 ConvertCMYKtoRGBA(FIBITMAP* dib) {
 	if(!FreeImage_HasPixels(dib)) {
 		return FALSE;
 	}
-		
+
 	const FREE_IMAGE_TYPE image_type = FreeImage_GetImageType(dib);
 	const unsigned bytesperpixel = FreeImage_GetBPP(dib)/8;
-	
+
 	unsigned channelSize = 1;
 	if (image_type == FIT_RGBA16 || image_type == FIT_RGB16) {
 		channelSize = sizeof(WORD);
 	} else if (!(image_type == FIT_BITMAP && (bytesperpixel > 2))) {
 		return FALSE;
 	}
-				
+
 	const unsigned width = FreeImage_GetWidth(dib);
 	const unsigned height = FreeImage_GetHeight(dib);
 	BYTE *line_start = FreeImage_GetScanLine(dib, 0);
 	const unsigned pitch = FreeImage_GetPitch(dib);
-	
+
 	unsigned samplesperpixel = FreeImage_GetLine(dib) / width / channelSize;
 
 	if(channelSize == sizeof(WORD)) {
@@ -172,7 +172,7 @@ ConvertCMYKtoRGBA(FIBITMAP* dib) {
 		_convertCMYKtoRGBA<BYTE>(width, height, line_start, pitch, samplesperpixel);
 	}
 
-	return TRUE;	
+	return TRUE;
 }
 
 // ----------------------------------------------------------
@@ -180,11 +180,11 @@ ConvertCMYKtoRGBA(FIBITMAP* dib) {
 /**
 CIELab -> XYZ conversion from http://www.easyrgb.com/
 */
-static void 
+static void
 CIELabToXYZ(float L, float a, float b, float *X, float *Y, float *Z) {
 	float pow_3;
-	
-	// CIELab -> XYZ conversion 
+
+	// CIELab -> XYZ conversion
 	// ------------------------
 	float var_Y = (L + 16.F ) / 116.F;
 	float var_X = a / 500.F + var_Y;
@@ -221,7 +221,7 @@ CIELabToXYZ(float L, float a, float b, float *X, float *Y, float *Z) {
 /**
 XYZ -> RGB conversion from http://www.easyrgb.com/
 */
-static void 
+static void
 XYZToRGB(float X, float Y, float Z, float *R, float *G, float *B) {
 	float var_X = X / 100; // X from 0 to  95.047 (Observer = 2°, Illuminant = D65)
 	float var_Y = Y / 100; // Y from 0 to 100.000
@@ -255,7 +255,7 @@ XYZToRGB(float X, float Y, float Z, float *R, float *G, float *B) {
 }
 
 template<class T>
-static void 
+static void
 CIELabToRGB(float L, float a, float b, T *rgb) {
 	float X, Y, Z;
 	float R, G, B;
@@ -263,7 +263,7 @@ CIELabToRGB(float L, float a, float b, T *rgb) {
 
 	CIELabToXYZ(L, a, b, &X, &Y, &Z);
 	XYZToRGB(X, Y, Z, &R, &G, &B);
-	
+
 	// clamp values to [0..max_val]
 	T red	= (T)CLAMP(R * max_val, 0.0F, max_val);
 	T green	= (T)CLAMP(G * max_val, 0.0F, max_val);
@@ -273,48 +273,48 @@ CIELabToRGB(float L, float a, float b, T *rgb) {
 }
 
 template<class T>
-static void 
+static void
 _convertLABtoRGB(unsigned width, unsigned height, BYTE* line_start, unsigned pitch, unsigned samplesperpixel) {
 	const unsigned max_val = std::numeric_limits<T>::maximum();
 	const float sL = 100.F / max_val;
 	const float sa = 256.F / max_val;
 	const float sb = 256.F / max_val;
-	
+
 	for(unsigned y = 0; y < height; y++) {
 		T *line = (T*)line_start;
 
 		for(unsigned x = 0; x < width; x++) {
 			CIELabToRGB(line[0]* sL, line[1]* sa - 128.F, line[2]* sb - 128.F, line);
-			
+
 			line += samplesperpixel;
 		}
 		line_start += pitch;
 	}
 }
 
-BOOL
+WINBOOL
 ConvertLABtoRGB(FIBITMAP* dib) {
 	if(!FreeImage_HasPixels(dib)) {
 		return FALSE;
 	}
-		
+
 	const FREE_IMAGE_TYPE image_type = FreeImage_GetImageType(dib);
 	const unsigned bytesperpixel = FreeImage_GetBPP(dib) / 8;
-	
+
 	unsigned channelSize = 1;
 	if (image_type == FIT_RGBA16 || image_type == FIT_RGB16) {
 		channelSize = sizeof(WORD);
 	} else if (!(image_type == FIT_BITMAP && (bytesperpixel > 2))) {
 		return FALSE;
 	}
-				
+
 	const unsigned width = FreeImage_GetWidth(dib);
 	const unsigned height = FreeImage_GetHeight(dib);
 	BYTE *line_start = FreeImage_GetScanLine(dib, 0);
 	const unsigned pitch = FreeImage_GetPitch(dib);
-	
+
 	unsigned samplesperpixel = FreeImage_GetLine(dib) / width / channelSize;
-			
+
 	if(channelSize == 1) {
 		_convertLABtoRGB<BYTE>(width, height, line_start, pitch, samplesperpixel);
 	}
@@ -322,20 +322,20 @@ ConvertLABtoRGB(FIBITMAP* dib) {
 		_convertLABtoRGB<WORD>(width, height, line_start, pitch, samplesperpixel);
 	}
 
-	return TRUE;	
+	return TRUE;
 }
 
 // ----------------------------------------------------------
 
-FIBITMAP* 
-RemoveAlphaChannel(FIBITMAP* src) { 
+FIBITMAP*
+RemoveAlphaChannel(FIBITMAP* src) {
 
 	if(!FreeImage_HasPixels(src)) {
 		return NULL;
 	}
 
 	const FREE_IMAGE_TYPE image_type = FreeImage_GetImageType(src);
-		
+
 	switch(image_type) {
 		case FIT_BITMAP:
 			if(FreeImage_GetBPP(src) == 32) {
@@ -390,7 +390,7 @@ FreeImage_ColorQuantizeEx(FIBITMAP *dib, FREE_IMAGE_QUANTIZE quantize, int Palet
 				}
 				case FIQ_NNQUANT :
 				{
-					// sampling factor in range 1..30. 
+					// sampling factor in range 1..30.
 					// 1 => slower (but better), 30 => faster. Default value is 1
 					const int sampling = 1;
 
@@ -412,7 +412,7 @@ FreeImage_ColorQuantizeEx(FIBITMAP *dib, FREE_IMAGE_QUANTIZE quantize, int Palet
 // ==========================================================
 
 FIBITMAP * DLL_CALLCONV
-FreeImage_ConvertFromRawBits(BYTE *bits, int width, int height, int pitch, unsigned bpp, unsigned red_mask, unsigned green_mask, unsigned blue_mask, BOOL topdown) {
+FreeImage_ConvertFromRawBits(BYTE *bits, int width, int height, int pitch, unsigned bpp, unsigned red_mask, unsigned green_mask, unsigned blue_mask, WINBOOL topdown) {
 	FIBITMAP *dib = FreeImage_Allocate(width, height, bpp, red_mask, green_mask, blue_mask);
 
 	if (dib != NULL) {
@@ -422,7 +422,7 @@ FreeImage_ConvertFromRawBits(BYTE *bits, int width, int height, int pitch, unsig
 				bits += pitch;
 			}
 		} else {
-			for (int i = 0; i < height; ++i) {			
+			for (int i = 0; i < height; ++i) {
 				memcpy(FreeImage_GetScanLine(dib, i), bits, FreeImage_GetLine(dib));
 				bits += pitch;
 			}
@@ -433,7 +433,7 @@ FreeImage_ConvertFromRawBits(BYTE *bits, int width, int height, int pitch, unsig
 }
 
 void DLL_CALLCONV
-FreeImage_ConvertToRawBits(BYTE *bits, FIBITMAP *dib, int pitch, unsigned bpp, unsigned red_mask, unsigned green_mask, unsigned blue_mask, BOOL topdown) {
+FreeImage_ConvertToRawBits(BYTE *bits, FIBITMAP *dib, int pitch, unsigned bpp, unsigned red_mask, unsigned green_mask, unsigned blue_mask, WINBOOL topdown) {
 	if (FreeImage_HasPixels(dib) && (bits != NULL)) {
 		for (unsigned i = 0; i < FreeImage_GetHeight(dib); ++i) {
 			BYTE *scanline = FreeImage_GetScanLine(dib, topdown ? (FreeImage_GetHeight(dib) - i - 1) : i);

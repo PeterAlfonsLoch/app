@@ -28,7 +28,7 @@
 
 The equation for computing a composited sample value is:<br>
 output = alpha * foreground + (1-alpha) * background<br>
-where alpha and the input and output sample values are expressed as fractions in the range 0 to 1. 
+where alpha and the input and output sample values are expressed as fractions in the range 0 to 1.
 For colour images, the computation is done separately for R, G, and B samples.
 
 @param fg Foreground image
@@ -39,7 +39,7 @@ For colour images, the computation is done separately for R, G, and B samples.
 @see FreeImage_IsTransparent, FreeImage_HasBackgroundColor
 */
 FIBITMAP * DLL_CALLCONV
-FreeImage_Composite(FIBITMAP *fg, BOOL useFileBkg, RGBQUAD *appBkColor, FIBITMAP *bg) {
+FreeImage_Composite(FIBITMAP *fg, WINBOOL useFileBkg, RGBQUAD *appBkColor, FIBITMAP *bg) {
 	if(!FreeImage_HasPixels(fg)) return NULL;
 
 	int width  = FreeImage_GetWidth(fg);
@@ -59,7 +59,7 @@ FreeImage_Composite(FIBITMAP *fg, BOOL useFileBkg, RGBQUAD *appBkColor, FIBITMAP
 
 	int bytespp = (bpp == 8) ? 1 : 4;
 
-	
+
 	int x, y, c;
 	BYTE alpha = 0, not_alpha;
 	BYTE index;
@@ -77,11 +77,11 @@ FreeImage_Composite(FIBITMAP *fg, BOOL useFileBkg, RGBQUAD *appBkColor, FIBITMAP
 	RGBQUAD *pal = FreeImage_GetPalette(fg);
 
 	// retrieve the alpha table from the foreground image
-	BOOL bIsTransparent = FreeImage_IsTransparent(fg);
+	WINBOOL bIsTransparent = FreeImage_IsTransparent(fg);
 	BYTE *trns = FreeImage_GetTransparencyTable(fg);
 
 	// retrieve the background color from the foreground image
-	BOOL bHasBkColor = FALSE;
+	WINBOOL bHasBkColor = FALSE;
 
 	if(useFileBkg && FreeImage_HasBackgroundColor(fg)) {
 		FreeImage_GetBackgroundColor(fg, &bkc);
@@ -180,22 +180,22 @@ FreeImage_Composite(FIBITMAP *fg, BOOL useFileBkg, RGBQUAD *appBkColor, FIBITMAP
 
 	// copy metadata from src to dst
 	FreeImage_CloneMetadata(composite, fg);
-	
-	return composite;	
+
+	return composite;
 }
 
 /**
-Pre-multiplies a 32-bit image's red-, green- and blue channels with it's alpha channel 
-for to be used with e.g. the Windows GDI function AlphaBlend(). 
-The transformation changes the red-, green- and blue channels according to the following equation:  
-channel(x, y) = channel(x, y) * alpha_channel(x, y) / 255  
+Pre-multiplies a 32-bit image's red-, green- and blue channels with it's alpha channel
+for to be used with e.g. the Windows GDI function AlphaBlend().
+The transformation changes the red-, green- and blue channels according to the following equation:
+channel(x, y) = channel(x, y) * alpha_channel(x, y) / 255
 @param dib Input/Output dib to be premultiplied
-@return Returns TRUE on success, FALSE otherwise (e.g. when the bitdepth of the source dib cannot be handled). 
+@return Returns TRUE on success, FALSE otherwise (e.g. when the bitdepth of the source dib cannot be handled).
 */
-BOOL DLL_CALLCONV 
+WINBOOL DLL_CALLCONV
 FreeImage_PreMultiplyWithAlpha(FIBITMAP *dib) {
 	if (!FreeImage_HasPixels(dib)) return FALSE;
-	
+
 	if ((FreeImage_GetBPP(dib) != 32) || (FreeImage_GetImageType(dib) != FIT_BITMAP)) {
 		return FALSE;
 	}

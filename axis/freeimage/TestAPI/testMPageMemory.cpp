@@ -24,7 +24,7 @@
 
 // --------------------------------------------------------------------------
 
-static BOOL 
+static WINBOOL
 extractPagesFromMemory(FREE_IMAGE_FORMAT fif, FIMEMORY *stream) {
 	char filename[256];
 	// open the multipage bitmap stream as read-only
@@ -74,10 +74,10 @@ void testLoadMultiBitmapFromMemory(const char *lpszPathName) {
 				// get the file type
 				FREE_IMAGE_FORMAT fif = FreeImage_GetFileTypeFromMemory(hmem, 0);
 
-				// extract pages 
-				BOOL bSuccess = extractPagesFromMemory(fif, hmem);
+				// extract pages
+				WINBOOL bSuccess = extractPagesFromMemory(fif, hmem);
 				assert(bSuccess);
-		
+
 				// close the stream
 				FreeImage_CloseMemory(hmem);
 
@@ -90,12 +90,12 @@ void testLoadMultiBitmapFromMemory(const char *lpszPathName) {
 
 // --------------------------------------------------------------------------
 
-BOOL testSaveMultiBitmapToMemory(const char *input, const char *output, int output_flag) {
-	BOOL bSuccess;
+WINBOOL testSaveMultiBitmapToMemory(const char *input, const char *output, int output_flag) {
+	WINBOOL bSuccess;
 
-	BOOL bCreateNew = FALSE;
-	BOOL bReadOnly = TRUE;
-	BOOL bMemoryCache = TRUE;
+	WINBOOL bCreateNew = FALSE;
+	WINBOOL bReadOnly = TRUE;
+	WINBOOL bMemoryCache = TRUE;
 
 	// Open src file (read-only, use memory cache)
 	FREE_IMAGE_FORMAT fif = FreeImage_GetFileType(input);
@@ -104,7 +104,7 @@ BOOL testSaveMultiBitmapToMemory(const char *input, const char *output, int outp
 	if(src) {
 		// open and allocate a memory stream
 		FIMEMORY *dst_memory = FreeImage_OpenMemory();
-		
+
 		// save the file to memory
 		bSuccess = FreeImage_SaveMultiBitmapToMemory(fif, src, dst_memory, output_flag);
 		assert(bSuccess);
@@ -125,10 +125,10 @@ BOOL testSaveMultiBitmapToMemory(const char *input, const char *output, int outp
 			fwrite(mem_buffer, sizeof(BYTE), size_in_bytes, stream);
 			fclose(stream);
 		}
-		
+
 		// close and free the memory stream
 		FreeImage_CloseMemory(dst_memory);
-		
+
 		return TRUE;
 	}
 
@@ -137,7 +137,7 @@ BOOL testSaveMultiBitmapToMemory(const char *input, const char *output, int outp
 
 // --------------------------------------------------------------------------
 
-static BOOL  
+static WINBOOL
 loadBuffer(const char *lpszPathName, BYTE **buffer, DWORD *length) {
 	struct stat file_info;
 	int result;
@@ -152,7 +152,7 @@ loadBuffer(const char *lpszPathName, BYTE **buffer, DWORD *length) {
 			if(stream) {
 				*length = (DWORD)fread(*buffer, sizeof(BYTE), file_info.st_size, stream);
 				fclose(stream);
-				
+
 				return TRUE;
 			}
 		}
@@ -161,13 +161,13 @@ loadBuffer(const char *lpszPathName, BYTE **buffer, DWORD *length) {
 	return FALSE;
 }
 
-BOOL testMemoryStreamMultiPageOpenSave(const char *lpszPathName, char *output, int input_flag, int output_flag) {
-	BOOL bSuccess = FALSE;
+WINBOOL testMemoryStreamMultiPageOpenSave(const char *lpszPathName, char *output, int input_flag, int output_flag) {
+	WINBOOL bSuccess = FALSE;
 
 	BYTE *buffer = NULL;
 	DWORD buffer_size = 0;
 
-	// load source stream as a buffer, i.e. 
+	// load source stream as a buffer, i.e.
 	// allocate a memory buffer and load temporary data
 	bSuccess = loadBuffer(lpszPathName, &buffer, &buffer_size);
 	assert(bSuccess);
@@ -210,7 +210,7 @@ BOOL testMemoryStreamMultiPageOpenSave(const char *lpszPathName, char *output, i
 		// open and allocate a memory stream
 		FIMEMORY *dst_stream = FreeImage_OpenMemory();
 		assert(dst_stream);
-		
+
 		// save the file to memory
 		FreeImage_SaveMultiBitmapToMemory(fif, src, dst_stream, output_flag);
 
@@ -223,20 +223,20 @@ BOOL testMemoryStreamMultiPageOpenSave(const char *lpszPathName, char *output, i
 		// at this point, the input buffer is no longer needed
 		// !!! user is responsible for freeing the initial source buffer !!!
 		free(buffer); buffer = NULL;
-		
+
 		// get the dst buffer from the memory stream
 		BYTE *dst_buffer = NULL;
 		DWORD size_in_bytes = 0;
-		
+
 		FreeImage_AcquireMemory(dst_stream, &dst_buffer, &size_in_bytes);
-		
+
 		// save the buffer in a file stream
 		FILE *stream = fopen(output, "wb");
 		if(stream) {
 			fwrite(dst_buffer, sizeof(BYTE), size_in_bytes, stream);
 			fclose(stream);
 		}
-		
+
 		// close and free the memory stream
 		FreeImage_CloseMemory(dst_stream);
 
@@ -253,10 +253,10 @@ BOOL testMemoryStreamMultiPageOpenSave(const char *lpszPathName, char *output, i
 // --------------------------------------------------------------------------
 
 void testMultiPageMemory(const char *lpszPathName) {
-	BOOL bSuccess;
+	WINBOOL bSuccess;
 
 	printf("testMultiPageMemory ...\n");
-	
+
 	// test FreeImage_LoadMultiBitmapFromMemory
 	testLoadMultiBitmapFromMemory(lpszPathName);
 

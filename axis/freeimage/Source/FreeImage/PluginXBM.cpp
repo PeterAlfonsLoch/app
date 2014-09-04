@@ -40,16 +40,16 @@ static const char *ERR_XBM_HEIGHT	= "Invalid height";
 static const char *ERR_XBM_MEMORY	= "Out of memory";
 
 /**
-Get a string from a stream. 
-Read the string from the current stream to the first newline character. 
+Get a string from a stream.
+Read the string from the current stream to the first newline character.
 The result stored in str is appended with a null character.
-@param str Storage location for data 
-@param n Maximum number of characters to read 
+@param str Storage location for data
+@param n Maximum number of characters to read
 @param io Pointer to the FreeImageIO structure
 @param handle Handle to the stream
 @return Returns str. NULL is returned to indicate an error or an end-of-file condition.
 */
-static char* 
+static char*
 readLine(char *str, int n, FreeImageIO *io, fi_handle handle) {
 	char c;
 	int count, i = 0;
@@ -69,7 +69,7 @@ Get a char from the stream
 @param handle Handle to the stream
 @return Returns the next character in the stream
 */
-static int 
+static int
 readChar(FreeImageIO *io, fi_handle handle) {
 	BYTE c;
 	io->read_proc(&c, 1, 1, handle);
@@ -85,7 +85,7 @@ Read an XBM file into a buffer
 @param dataP (return value) Pointer to the bitmap buffer
 @return Returns NULL if OK, returns an error message otherwise
 */
-static const char* 
+static const char*
 readXBMFile(FreeImageIO *io, fi_handle handle, int *widthP, int *heightP, char **dataP) {
 	char line[MAX_LINE], name_and_type[MAX_LINE];
 	char* ptr;
@@ -95,18 +95,18 @@ readXBMFile(FreeImageIO *io, fi_handle handle, int *widthP, int *heightP, char *
 	int bytes, bytes_per_line, padding;
 	int c1, c2, value1, value2;
 	int hex_table[256];
-	BOOL found_declaration;
+	WINBOOL found_declaration;
 	/* in scanning through the bitmap file, we have found the first
 	 line of the C declaration of the array (the "static char ..."
 	 or whatever line)
 	 */
-	BOOL eof;	// we've encountered end of file while searching file
+	WINBOOL eof;	// we've encountered end of file while searching file
 
 	*widthP = *heightP = -1;
 
 	found_declaration = FALSE;    // haven't found it yet; haven't even looked
-	eof = FALSE;                  // haven't encountered end of file yet 
-	
+	eof = FALSE;                  // haven't encountered end of file yet
+
 	while(!found_declaration && !eof) {
 
 		if( readLine(line, MAX_LINE, io, handle) == NULL) {
@@ -142,7 +142,7 @@ readXBMFile(FreeImageIO *io, fi_handle handle, int *widthP, int *heightP, char *
 		}
 	}
 
-	if(!found_declaration) 
+	if(!found_declaration)
 		return( ERR_XBM_DECL );
 
 	if(*widthP == -1 )
@@ -289,7 +289,7 @@ MimeType() {
 	return "image/x-xbitmap";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	char magic[8];
 	if(readLine(magic, 7, io, handle)) {
@@ -299,12 +299,12 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return FALSE;
 }

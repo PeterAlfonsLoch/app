@@ -36,7 +36,7 @@
 // · Palette organisation and encoding
 // · Compression characteristics
 // · Animation encoding
-// For each TypeField value, all relevant image characteristics are 
+// For each TypeField value, all relevant image characteristics are
 // fully specified as part of the WAP documentation.
 // Currently, a simple compact, monochrome image format is defined
 // within the WBMP type space :
@@ -74,7 +74,7 @@ typedef struct tagWBMPHEADER {
 //  The other bits are reserved for future use.
 // - Type 01 - reserved for future use.
 // - Type 10 - reserved for future use.
-// - Type 11 indicates a sequence of parameter/value pairs. These can be used for 
+// - Type 11 indicates a sequence of parameter/value pairs. These can be used for
 // optimisations and special purpose extensions, eg, animation image formats.
 // The parameter size tells the length (1-8 bytes) of the following parameter name.
 // The value size gives the length (1-16 bytes) of the following parameter value.
@@ -112,10 +112,10 @@ multiByteRead(FreeImageIO *io, fi_handle handle) {
 static void
 multiByteWrite(FreeImageIO *io, fi_handle handle, DWORD In) {
 	BYTE Out, k = 1;
-  
+
 	while (In & (0x7F << 7*k))
 		k++;
-  
+
 	while (k > 1) {
 		k--;
 
@@ -143,7 +143,7 @@ readExtHeader(FreeImageIO *io, fi_handle handle, BYTE b) {
 		{
 			DWORD info = multiByteRead(io, handle);
 			break;
-		}		
+		}
 
 		// Type 11: read a sequence of parameter/value pairs.
 
@@ -151,17 +151,17 @@ readExtHeader(FreeImageIO *io, fi_handle handle, BYTE b) {
 		{
 			BYTE sizeParamIdent = (b & 0x70) >> 4;	// Size of Parameter Identifier (in bytes)
 			BYTE sizeParamValue = (b & 0x0F);		// Size of Parameter Value (in bytes)
-			
+
 			BYTE *Ident = (BYTE*)malloc(sizeParamIdent * sizeof(BYTE));
 			BYTE *Value = (BYTE*)malloc(sizeParamValue * sizeof(BYTE));
-		
+
 			io->read_proc(Ident, sizeParamIdent, 1, handle);
 			io->read_proc(Value, sizeParamValue, 1, handle);
-			
+
 			free(Ident);
 			free(Value);
 			break;
-		}		
+		}
 
 		// reserved for future use
 
@@ -206,14 +206,14 @@ MimeType() {
 	return "image/vnd.wap.wbmp";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return (
 		(depth == 1)
 		);
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (type == FIT_BITMAP) ? TRUE : FALSE;
 }
@@ -278,7 +278,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			pal[1].rgbRed = pal[1].rgbGreen = pal[1].rgbBlue = 255;
 
 			// read the bitmap data
-			
+
 			int line = FreeImage_GetLine(dib);
 
 			for (y = 0; y < height; y++) {
@@ -302,7 +302,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	return NULL;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
     BYTE *bits;	// pointer to dib data
 
@@ -320,7 +320,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 			header.Height = (WORD)FreeImage_GetHeight(dib);		// Image height
 
 			multiByteWrite(io, handle, header.TypeField);
-			
+
 			io->write_proc(&header.FixHeaderField, 1, 1, handle);
 
 			multiByteWrite(io, handle, header.Width);

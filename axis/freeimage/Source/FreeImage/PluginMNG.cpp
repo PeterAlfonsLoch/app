@@ -70,7 +70,7 @@ MimeType() {
 	return "video/x-mng";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE mng_signature[8] = { 138, 77, 78, 71, 13, 10, 26, 10 };
 	BYTE signature[8] = { 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -80,22 +80,22 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return (memcmp(mng_signature, signature, MNG_SIGNATURE_SIZE) == 0) ? TRUE : FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsICCProfiles() {
 	return TRUE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsNoPixels() {
 	return FALSE;
 }
@@ -104,7 +104,7 @@ SupportsNoPixels() {
 // ----------------------------------------------------------
 
 static void * DLL_CALLCONV
-Open(FreeImageIO *io, fi_handle handle, BOOL read) {
+Open(FreeImageIO *io, fi_handle handle, WINBOOL read) {
 	return NULL;
 }
 
@@ -120,7 +120,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	if(Validate(io, handle) == FALSE) {
 		return NULL;
 	}
-	
+
 	// parse chunks and decode a jng or mng bitmap
 	return mng_ReadChunks(s_format_id, io, handle, offset, flags);
 }

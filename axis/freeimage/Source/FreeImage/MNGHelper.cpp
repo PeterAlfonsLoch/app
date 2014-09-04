@@ -116,8 +116,8 @@ enum eChunckType {
 };
 
 /**
-Helper for map<key, value> where value is a pointer to a string. 
-Used to store tEXt metadata. 
+Helper for map<key, value> where value is a pointer to a string.
+Used to store tEXt metadata.
 */
 typedef std::map<std::string, std::string> tEXtMAP;
 
@@ -187,7 +187,7 @@ static BYTE mng_zTXt[5]={122,  84,  88, 116, (BYTE) '\0'};
 /**
 Convert a chunk name to a unique ID
 */
-static eChunckType 
+static eChunckType
 mng_GetChunckType(const BYTE *mChunkName) {
 	if(memcmp(mChunkName, mng_MHDR, 4) == 0) {
 		return MHDR;
@@ -256,7 +256,7 @@ mng_SwapLong(DWORD *lp) {
 }
 
 /**
-Returns the size, in bytes, of a FreeImageIO stream, from the current position. 
+Returns the size, in bytes, of a FreeImageIO stream, from the current position.
 */
 static long
 mng_LOF(FreeImageIO *io, fi_handle handle) {
@@ -268,20 +268,20 @@ mng_LOF(FreeImageIO *io, fi_handle handle) {
 }
 
 /**
-Count the number of bytes in a PNG stream, from IHDR to IEND. 
-If successful, the stream position, as given by io->tell_proc(handle), 
-should be the end of the PNG stream at the return of the function. 
+Count the number of bytes in a PNG stream, from IHDR to IEND.
+If successful, the stream position, as given by io->tell_proc(handle),
+should be the end of the PNG stream at the return of the function.
 @param io
 @param handle
 @param inPos
 @param m_TotalBytesOfChunks
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-static BOOL 
+static WINBOOL
 mng_CountPNGChunks(FreeImageIO *io, fi_handle handle, long inPos, unsigned *m_TotalBytesOfChunks) {
 	long mLOF;
 	long mPos;
-	BOOL mEnd = FALSE;
+	WINBOOL mEnd = FALSE;
 	DWORD mLength = 0;
 	BYTE mChunkName[5];
 
@@ -325,13 +325,13 @@ mng_CountPNGChunks(FreeImageIO *io, fi_handle handle, long inPos, unsigned *m_To
 						throw(1);
 					}
 					break;
-				
+
 				case IEND:
-					mEnd = TRUE;		
+					mEnd = TRUE;
 					// the length below includes 4 bytes CRC, but no bytes for Length
 					*m_TotalBytesOfChunks = io->tell_proc(handle) - inPos;
-					break;		
-				
+					break;
+
 				case UNKNOWN_CHUNCK:
 				default:
 					break;
@@ -340,7 +340,7 @@ mng_CountPNGChunks(FreeImageIO *io, fi_handle handle, long inPos, unsigned *m_To
 		} // while(!mEnd)
 
 		return TRUE;
-		
+
 	} catch(int) {
 		return FALSE;
 	}
@@ -355,9 +355,9 @@ Retrieve the position of a chunk in a PNG stream
 @param next_pos [returned value] Start position of the next chunk
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-static BOOL 
+static WINBOOL
 mng_FindChunk(FIMEMORY *hPngMemory, BYTE *chunk_name, long offset, DWORD *start_pos, DWORD *next_pos) {
-	BOOL mEnd = FALSE;
+	WINBOOL mEnd = FALSE;
 	DWORD mLength = 0;
 
 	BYTE *data = NULL;
@@ -374,7 +374,7 @@ mng_FindChunk(FIMEMORY *hPngMemory, BYTE *chunk_name, long offset, DWORD *start_
 	}
 
 	try {
-	
+
 		// skip the signature and/or any following chunk(s)
 		DWORD chunk_pos = offset;
 
@@ -400,7 +400,7 @@ mng_FindChunk(FIMEMORY *hPngMemory, BYTE *chunk_name, long offset, DWORD *start_
 				*next_pos = next_chunk_pos;
 				return TRUE;
 			}
-			
+
 			chunk_pos = next_chunk_pos;
 		}
 
@@ -418,7 +418,7 @@ Remove a chunk located at (start_pos, next_pos) in the PNG stream
 @param next_pos Start position of the next chunk
 @return Returns TRUE if successfull, returns FALSE otherwise
 */
-static BOOL 
+static WINBOOL
 mng_CopyRemoveChunks(FIMEMORY *hPngMemory, DWORD start_pos, DWORD next_pos) {
 	BYTE *data = NULL;
 	DWORD size_in_bytes = 0;
@@ -435,7 +435,7 @@ mng_CopyRemoveChunks(FIMEMORY *hPngMemory, DWORD start_pos, DWORD next_pos) {
 		// not enough space to read a signature(8 bytes) + a chunk(at least 12 bytes)
 		return FALSE;
 	}
-	
+
 	// new file length
 	unsigned buffer_size = size_in_bytes + chunk_length;
 
@@ -463,7 +463,7 @@ Insert a chunk just before the inNextChunkName chunk
 @param next_pos Start position of the next chunk
 @return Returns TRUE if successfull, returns FALSE otherwise
 */
-static BOOL 
+static WINBOOL
 mng_CopyInsertChunks(FIMEMORY *hPngMemory, BYTE *inNextChunkName, BYTE *inInsertChunk, DWORD inChunkLength, DWORD start_pos, DWORD next_pos) {
 	BYTE *data = NULL;
 	DWORD size_in_bytes = 0;
@@ -480,7 +480,7 @@ mng_CopyInsertChunks(FIMEMORY *hPngMemory, BYTE *inNextChunkName, BYTE *inInsert
 		// not enough space to read a signature(8 bytes) + a chunk(at least 12 bytes)
 		return FALSE;
 	}
-	
+
 	// new file length
 	unsigned buffer_size = inChunkLength + size_in_bytes;
 
@@ -505,13 +505,13 @@ mng_CopyInsertChunks(FIMEMORY *hPngMemory, BYTE *inNextChunkName, BYTE *inInsert
 	return TRUE;
 }
 
-static BOOL 
+static WINBOOL
 mng_RemoveChunk(FIMEMORY *hPngMemory, BYTE *chunk_name) {
-	BOOL bResult = FALSE;
+	WINBOOL bResult = FALSE;
 
 	DWORD start_pos = 0;
 	DWORD next_pos = 0;
-	
+
 	bResult = mng_FindChunk(hPngMemory, chunk_name, 8, &start_pos, &next_pos);
 	if(!bResult) return FALSE;
 
@@ -521,13 +521,13 @@ mng_RemoveChunk(FIMEMORY *hPngMemory, BYTE *chunk_name) {
 	return TRUE;
 }
 
-static BOOL 
+static WINBOOL
 mng_InsertChunk(FIMEMORY *hPngMemory, BYTE *inNextChunkName, BYTE *inInsertChunk, unsigned chunk_length) {
-	BOOL bResult = FALSE;
+	WINBOOL bResult = FALSE;
 
 	DWORD start_pos = 0;
 	DWORD next_pos = 0;
-	
+
 	bResult = mng_FindChunk(hPngMemory, inNextChunkName, 8, &start_pos, &next_pos);
 	if(!bResult) return FALSE;
 
@@ -537,7 +537,7 @@ mng_InsertChunk(FIMEMORY *hPngMemory, BYTE *inNextChunkName, BYTE *inInsertChunk
 	return TRUE;
 }
 
-static FIBITMAP* 
+static FIBITMAP*
 mng_LoadFromMemoryHandle(FIMEMORY *hmem, int flags = 0) {
 	long offset = 0;
 	FIBITMAP *dib = NULL;
@@ -553,12 +553,12 @@ mng_LoadFromMemoryHandle(FIMEMORY *hmem, int flags = 0) {
 			dib = FreeImage_LoadFromMemory(fif, hmem, flags);
 		}
 	}
-	
+
 	return dib;
 }
 
 /**
-Write a chunk in a PNG stream from the current position. 
+Write a chunk in a PNG stream from the current position.
 @param chunk_name Name of the chunk
 @param chunk_data Chunk array
 @param length Chunk length
@@ -592,9 +592,9 @@ mng_WriteChunk(BYTE *chunk_name, BYTE *chunk_data, DWORD length, FIMEMORY *hPngM
 }
 
 /**
-Wrap a IDAT chunk as a PNG stream. 
+Wrap a IDAT chunk as a PNG stream.
 The stream has the structure { g_png_signature, IHDR, IDAT, IEND }
-The image is assumed to be a greyscale image. 
+The image is assumed to be a greyscale image.
 
 @param jng_width Image width
 @param jng_height Image height
@@ -603,7 +603,7 @@ The image is assumed to be a greyscale image.
 @param mLength IDAT chunk length
 @param hPngMemory Output memory stream
 */
-static void 
+static void
 mng_WritePNGStream(DWORD jng_width, DWORD jng_height, BYTE jng_alpha_sample_depth, BYTE *mChunk, DWORD mLength, FIMEMORY *hPngMemory) {
 	// PNG grayscale IDAT format
 
@@ -651,7 +651,7 @@ mng_WritePNGStream(DWORD jng_width, DWORD jng_height, BYTE jng_alpha_sample_dept
 // --------------------------------------------------------------------------
 
 /**
-Build and set a FITAG whose type is FIDT_ASCII. 
+Build and set a FITAG whose type is FIDT_ASCII.
 The tag must be destroyed by the caller using FreeImage_DeleteTag.
 @param model Metadata model to be filled
 @param dib Image to be filled
@@ -659,7 +659,7 @@ The tag must be destroyed by the caller using FreeImage_DeleteTag.
 @param value Tag value
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-static BOOL 
+static WINBOOL
 mng_SetKeyValue(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, const char *value) {
 	if(!dib || !key || !value) {
 		return FALSE;
@@ -667,7 +667,7 @@ mng_SetKeyValue(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, const 
 	// create a tag
 	FITAG *tag = FreeImage_CreateTag();
 	if(tag) {
-		BOOL bSuccess = TRUE;
+		WINBOOL bSuccess = TRUE;
 		// fill the tag
 		DWORD tag_length = (DWORD)(strlen(value) + 1);
 		bSuccess &= FreeImage_SetTagKey(tag, key);
@@ -687,13 +687,13 @@ mng_SetKeyValue(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, const 
 }
 
 /**
-Read a tEXt chunk and extract the key/value pair. 
+Read a tEXt chunk and extract the key/value pair.
 @param key_value_pair [returned value] Array of key/value pairs
 @param mChunk Chunk data
 @param mLength Chunk length
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-static BOOL 
+static WINBOOL
 mng_SetMetadata_tEXt(tEXtMAP &key_value_pair, const BYTE *mChunk, DWORD mLength) {
 	std::string key;
 	std::string value;
@@ -736,7 +736,7 @@ Load a FIBITMAP from a MNG or a JNG stream
 @param flags Loading flags
 @return Returns a dib if successful, returns NULL otherwise
 */
-FIBITMAP* 
+FIBITMAP*
 mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, int flags = 0) {
 	DWORD mLength = 0;
 	BYTE mChunkName[5];
@@ -747,7 +747,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 	BYTE *PLTE_file_chunk = NULL;	// whole PLTE chunk (lentgh, name, array, crc)
 	DWORD PLTE_file_size = 0;		// size of PLTE chunk
 
-	BOOL m_HasGlobalPalette = FALSE; // may turn to TRUE in PLTE chunk
+	WINBOOL m_HasGlobalPalette = FALSE; // may turn to TRUE in PLTE chunk
 	unsigned m_TotalBytesOfChunks = 0;
 	FIBITMAP *dib = NULL;
 	FIBITMAP *dib_alpha = NULL;
@@ -781,31 +781,31 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 	DWORD res_y = 2835;	// 72 dpi
 	RGBQUAD rgbBkColor = {0, 0, 0, 0};
 	WORD bk_red, bk_green, bk_blue;
-	BOOL hasBkColor = FALSE;
-	BOOL mHasIDAT = FALSE;
+	WINBOOL hasBkColor = FALSE;
+	WINBOOL mHasIDAT = FALSE;
 
 	tEXtMAP key_value_pair;
 
 	// ---
 
-	BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
-	
+	WINBOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+
 	// get the file size
 	const long mLOF = mng_LOF(io, handle);
 	// go to the m_element1 chunk
 	io->seek_proc(handle, Offset, SEEK_SET);
 
 	try {
-		BOOL mEnd = FALSE;
+		WINBOOL mEnd = FALSE;
 
 		while(mEnd == FALSE) {
 			// start of the chunk
 			LastOffset = io->tell_proc(handle);
 			// read length
-			mLength = 0;			
+			mLength = 0;
 			io->read_proc(&mLength, 1, sizeof(mLength), handle);
 			mng_SwapLong(&mLength);
-			// read name			
+			// read name
 			io->read_proc(&mChunkName[0], 1, 4, handle);
 			mChunkName[4] = '\0';
 
@@ -814,7 +814,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 				if(!mChunk) {
 					FreeImage_OutputMessageProc(format_id, "Error while parsing %s chunk: out of memory", mChunkName);
 					throw (const char*)NULL;
-				}				
+				}
 				Offset = io->tell_proc(handle);
 				if(Offset + (long)mLength > mLOF) {
 					FreeImage_OutputMessageProc(format_id, "Error while parsing %s chunk: unexpected end of file", mChunkName);
@@ -832,12 +832,12 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 			if(crc_check != crc_file) {
 				FreeImage_OutputMessageProc(format_id, "Error while parsing %s chunk: bad CRC", mChunkName);
 				throw (const char*)NULL;
-			}		
+			}
 
 			switch( mng_GetChunckType(mChunkName) ) {
 				case MHDR:
-					// The MHDR chunk is always m_element1 in all MNG datastreams except for those 
-					// that consist of a single PNG or JNG datastream with a PNG or JNG signature. 
+					// The MHDR chunk is always m_element1 in all MNG datastreams except for those
+					// that consist of a single PNG or JNG datastream with a PNG or JNG signature.
 					if(mLength == 28) {
 						memcpy(&mng_frame_width, &mChunk[0], 4);
 						memcpy(&mng_frame_height, &mChunk[4], 4);
@@ -897,7 +897,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 
 				case tRNS:	// Global
 					break;
-					
+
 				case IHDR:
 					Offset = LastOffset;
 					// parse the PNG file and get its file size
@@ -907,7 +907,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 						FreeImage_OutputMessageProc(format_id, "Error while parsing %s chunk: unexpected end of PNG file", mChunkName);
 						break;
 					}
-					
+
 					// wrap the { IHDR, ..., IEND } chunks as a PNG stream
 					if(hPngMemory == NULL) {
 						hPngMemory = FreeImage_OpenMemory();
@@ -924,7 +924,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 						FreeImage_OutputMessageProc(format_id, "Error while parsing %s chunk: out of memory", mChunkName);
 						throw (const char*)NULL;
 					}
-					
+
 					// on calling CountPNGChunks earlier, we were in Offset pos,
 					// go back there
 					io->seek_proc(handle, Offset, SEEK_SET);
@@ -1051,7 +1051,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 					rgbBkColor.rgbBlue = (BYTE)bk_blue;
 					hasBkColor = TRUE;
 					break;
-				
+
 				case tEXt:
 					mng_SetMetadata_tEXt(key_value_pair, mChunk, mLength);
 					break;
@@ -1079,7 +1079,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 				FIBITMAP *dst_alpha = FreeImage_ConvertTo8Bits(dib_alpha);
 				FreeImage_SetChannel(dst, dst_alpha, FICC_ALPHA);
 				FreeImage_Unload(dst_alpha);
-			}			
+			}
 			FreeImage_Unload(dib);
 			dib = dst;
 		}
@@ -1100,7 +1100,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 				}
 			}
 		}
-			
+
 		return dib;
 
 	} catch(const char *text) {
@@ -1129,7 +1129,7 @@ Write a FIBITMAP to a JNG stream
 @param flags Saving flags
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-BOOL 
+WINBOOL
 mng_WriteJNG(int format_id, FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int flags) {
 	DWORD jng_width = 0;
 	DWORD jng_height = 0;
@@ -1223,7 +1223,7 @@ mng_WriteJNG(int format_id, FreeImageIO *io, FIBITMAP *dib, fi_handle handle, in
 		{
 			BYTE *jpeg_data = NULL;
 			DWORD size_in_bytes = 0;
-			
+
 			// get a pointer to the stream buffer
 			FreeImage_AcquireMemory(hJpegMemory, &jpeg_data, &size_in_bytes);
 			// write chunks
@@ -1248,20 +1248,20 @@ mng_WriteJNG(int format_id, FreeImageIO *io, FIBITMAP *dib, fi_handle handle, in
 			FreeImage_Unload(dib_alpha);
 			dib_alpha = NULL;
 			// get the IDAT chunk
-			{		
-				BOOL bResult = FALSE;
+			{
+				WINBOOL bResult = FALSE;
 				DWORD start_pos = 0;
 				DWORD next_pos = 0;
 				long offset = 8;
-				
+
 				do {
 					// find the next IDAT chunk from 'offset' position
 					bResult = mng_FindChunk(hPngMemory, mng_IDAT, offset, &start_pos, &next_pos);
 					if(!bResult) break;
-					
+
 					BYTE *png_data = NULL;
 					DWORD size_in_bytes = 0;
-					
+
 					// get a pointer to the stream buffer
 					FreeImage_AcquireMemory(hPngMemory, &png_data, &size_in_bytes);
 					// write the IDAT chunk
@@ -1284,7 +1284,7 @@ mng_WriteJNG(int format_id, FreeImageIO *io, FIBITMAP *dib, fi_handle handle, in
 			BYTE *jng_data = NULL;
 			DWORD size_in_bytes = 0;
 			FreeImage_AcquireMemory(hJngMemory, &jng_data, &size_in_bytes);
-			io->write_proc(jng_data, 1, size_in_bytes, handle);			
+			io->write_proc(jng_data, 1, size_in_bytes, handle);
 		}
 
 		FreeImage_CloseMemory(hJngMemory);

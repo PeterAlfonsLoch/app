@@ -32,8 +32,8 @@
 #define SET_HI_NIBBLE(byte, n)  byte &= 0x0F, byte |= ((n) << 4)
 #define GET_LO_NIBBLE(byte)     ((byte) & 0x0F)
 #define SET_LO_NIBBLE(byte, n)  byte &= 0xF0, byte |= ((n) & 0x0F)
-#define GET_NIBBLE(cn, byte)    ((cn) ? (GET_HI_NIBBLE(byte)) : (GET_LO_NIBBLE(byte))) 
-#define SET_NIBBLE(cn, byte, n) if (cn) SET_HI_NIBBLE(byte, n); else SET_LO_NIBBLE(byte, n) 
+#define GET_NIBBLE(cn, byte)    ((cn) ? (GET_HI_NIBBLE(byte)) : (GET_LO_NIBBLE(byte)))
+#define SET_NIBBLE(cn, byte, n) if (cn) SET_HI_NIBBLE(byte, n); else SET_LO_NIBBLE(byte, n)
 
 // ----------------------------------------------------------
 
@@ -43,13 +43,13 @@
 @param src Input image to be processed.
 @return Returns TRUE if successful, FALSE otherwise.
 */
-BOOL DLL_CALLCONV 
+WINBOOL DLL_CALLCONV
 FreeImage_Invert(FIBITMAP *src) {
 
 	if (!FreeImage_HasPixels(src)) return FALSE;
-	
+
 	unsigned i, x, y, k;
-	
+
 	const unsigned width = FreeImage_GetWidth(src);
 	const unsigned height = FreeImage_GetHeight(src);
 	const unsigned bpp = FreeImage_GetBPP(src);
@@ -84,7 +84,7 @@ FreeImage_Invert(FIBITMAP *src) {
 				}
 
 				break;
-			}		
+			}
 
 			case 24 :
 			case 32 :
@@ -123,18 +123,18 @@ FreeImage_Invert(FIBITMAP *src) {
 		}
 	}
 	else {
-		// anything else ... 
+		// anything else ...
 		return FALSE;
 	}
-		
+
 	return TRUE;
 }
 
-/** @brief Perfoms an histogram transformation on a 8, 24 or 32-bit image 
+/** @brief Perfoms an histogram transformation on a 8, 24 or 32-bit image
 according to the values of a lookup table (LUT).
 
 The transformation is done as follows.<br>
-Image 8-bit : if the image has a color palette, the LUT is applied to this palette, 
+Image 8-bit : if the image has a color palette, the LUT is applied to this palette,
 otherwise, it is applied to the grey values.<br>
 Image 24-bit & 32-bit : if channel == FICC_RGB, the same LUT is applied to each color
 plane (R,G, and B). Otherwise, the LUT is applied to the specified channel only.
@@ -144,7 +144,7 @@ plane (R,G, and B). Otherwise, the LUT is applied to the specified channel only.
 @return Returns TRUE if successful, FALSE otherwise.
 @see FREE_IMAGE_COLOR_CHANNEL
 */
-BOOL DLL_CALLCONV 
+WINBOOL DLL_CALLCONV
 FreeImage_AdjustCurve(FIBITMAP *src, BYTE *LUT, FREE_IMAGE_COLOR_CHANNEL channel) {
 	unsigned x, y;
 	BYTE *bits = NULL;
@@ -198,7 +198,7 @@ FreeImage_AdjustCurve(FIBITMAP *src, BYTE *LUT, FREE_IMAGE_COLOR_CHANNEL channel
 							bits[FI_RGBA_BLUE]	= LUT[ bits[FI_RGBA_BLUE] ];	// B
 							bits[FI_RGBA_GREEN] = LUT[ bits[FI_RGBA_GREEN] ];	// G
 							bits[FI_RGBA_RED]	= LUT[ bits[FI_RGBA_RED] ];		// R
-							
+
 							bits += bytespp;
 						}
 					}
@@ -209,7 +209,7 @@ FreeImage_AdjustCurve(FIBITMAP *src, BYTE *LUT, FREE_IMAGE_COLOR_CHANNEL channel
 						bits =  FreeImage_GetScanLine(src, y);
 						for(x = 0; x < FreeImage_GetWidth(src); x++) {
 							bits[FI_RGBA_BLUE] = LUT[ bits[FI_RGBA_BLUE] ];		// B
-							
+
 							bits += bytespp;
 						}
 					}
@@ -220,7 +220,7 @@ FreeImage_AdjustCurve(FIBITMAP *src, BYTE *LUT, FREE_IMAGE_COLOR_CHANNEL channel
 						bits =  FreeImage_GetScanLine(src, y);
 						for(x = 0; x < FreeImage_GetWidth(src); x++) {
 							bits[FI_RGBA_GREEN] = LUT[ bits[FI_RGBA_GREEN] ];	// G
-							
+
 							bits += bytespp;
 						}
 					}
@@ -231,19 +231,19 @@ FreeImage_AdjustCurve(FIBITMAP *src, BYTE *LUT, FREE_IMAGE_COLOR_CHANNEL channel
 						bits =  FreeImage_GetScanLine(src, y);
 						for(x = 0; x < FreeImage_GetWidth(src); x++) {
 							bits[FI_RGBA_RED] = LUT[ bits[FI_RGBA_RED] ];		// R
-							
+
 							bits += bytespp;
 						}
 					}
 					break;
-					
+
 				case FICC_ALPHA :
 					if(32 == bpp) {
 						for(y = 0; y < FreeImage_GetHeight(src); y++) {
 							bits =  FreeImage_GetScanLine(src, y);
 							for(x = 0; x < FreeImage_GetWidth(src); x++) {
 								bits[FI_RGBA_ALPHA] = LUT[ bits[FI_RGBA_ALPHA] ];	// A
-								
+
 								bits += bytespp;
 							}
 						}
@@ -263,17 +263,17 @@ FreeImage_AdjustCurve(FIBITMAP *src, BYTE *LUT, FREE_IMAGE_COLOR_CHANNEL channel
 /** @brief Performs gamma correction on a 8, 24 or 32-bit image.
 
 @param src Input image to be processed.
-@param gamma Gamma value to use. A value of 1.0 leaves the image alone, 
+@param gamma Gamma value to use. A value of 1.0 leaves the image alone,
 less than one darkens it, and greater than one lightens it.
 @return Returns TRUE if successful, FALSE otherwise.
 */
-BOOL DLL_CALLCONV 
+WINBOOL DLL_CALLCONV
 FreeImage_AdjustGamma(FIBITMAP *src, double gamma) {
 	BYTE LUT[256];		// Lookup table
 
 	if(!FreeImage_HasPixels(src) || (gamma <= 0))
 		return FALSE;
-	
+
 	// Build the lookup table
 
 	double exponent = 1 / gamma;
@@ -293,18 +293,18 @@ FreeImage_AdjustGamma(FIBITMAP *src, double gamma) {
 
 @param src Input image to be processed.
 @param percentage Where -100 <= percentage <= 100<br>
-A value 0 means no change, less than 0 will make the image darker 
+A value 0 means no change, less than 0 will make the image darker
 and greater than 0 will make the image brighter.
 @return Returns TRUE if successful, FALSE otherwise.
 */
-BOOL DLL_CALLCONV 
+WINBOOL DLL_CALLCONV
 FreeImage_AdjustBrightness(FIBITMAP *src, double percentage) {
 	BYTE LUT[256];		// Lookup table
 	double value;
 
 	if(!FreeImage_HasPixels(src))
 		return FALSE;
-	
+
 	// Build the lookup table
 	const double scale = (100 + percentage) / 100;
 	for(int i = 0; i < 256; i++) {
@@ -319,18 +319,18 @@ FreeImage_AdjustBrightness(FIBITMAP *src, double percentage) {
 
 @param src Input image to be processed.
 @param percentage Where -100 <= percentage <= 100<br>
-A value 0 means no change, less than 0 will decrease the contrast 
+A value 0 means no change, less than 0 will decrease the contrast
 and greater than 0 will increase the contrast of the image.
 @return Returns TRUE if successful, FALSE otherwise.
 */
-BOOL DLL_CALLCONV 
+WINBOOL DLL_CALLCONV
 FreeImage_AdjustContrast(FIBITMAP *src, double percentage) {
 	BYTE LUT[256];		// Lookup table
 	double value;
 
 	if(!FreeImage_HasPixels(src))
 		return FALSE;
-	
+
 	// Build the lookup table
 	const double scale = (100 + percentage) / 100;
 	for(int i = 0; i < 256; i++) {
@@ -343,15 +343,15 @@ FreeImage_AdjustContrast(FIBITMAP *src, double percentage) {
 
 /** @brief Computes image histogram
 
-For 24-bit and 32-bit images, histogram can be computed from red, green, blue and 
-black channels. For 8-bit images, histogram is computed from the black channel. Other 
+For 24-bit and 32-bit images, histogram can be computed from red, green, blue and
+black channels. For 8-bit images, histogram is computed from the black channel. Other
 bit depth is not supported (nothing is done).
 @param src Input image to be processed.
 @param histo Histogram array to fill. <b>The size of 'histo' is assumed to be 256.</b>
 @param channel Color channel to use
 @return Returns TRUE if succesful, returns FALSE if the image bit depth isn't supported.
 */
-BOOL DLL_CALLCONV 
+WINBOOL DLL_CALLCONV
 FreeImage_GetHistogram(FIBITMAP *src, DWORD *histo, FREE_IMAGE_COLOR_CHANNEL channel) {
 	BYTE pixel;
 	BYTE *bits = NULL;
@@ -433,7 +433,7 @@ FreeImage_GetHistogram(FIBITMAP *src, DWORD *histo, FREE_IMAGE_COLOR_CHANNEL cha
 					}
 				}
 				return TRUE;
-				
+
 			default:
 				return FALSE;
 		}
@@ -448,7 +448,7 @@ FreeImage_GetHistogram(FIBITMAP *src, DWORD *histo, FREE_IMAGE_COLOR_CHANNEL cha
 /** @brief Creates a lookup table to be used with FreeImage_AdjustCurve() which
  may adjust brightness and contrast, correct gamma and invert the image with a
  single call to FreeImage_AdjustCurve().
- 
+
  This function creates a lookup table to be used with FreeImage_AdjustCurve()
  which may adjust brightness and contrast, correct gamma and invert the image
  with a single call to FreeImage_AdjustCurve(). If more than one of these image
@@ -457,32 +457,32 @@ FreeImage_GetHistogram(FIBITMAP *src, DWORD *histo, FREE_IMAGE_COLOR_CHANNEL cha
  true for huge images or if performance is an issue. Then, the expensive process
  of iterating over all pixels of an image is performed only once and not up to
  four times.
- 
+
  Furthermore, the lookup table created does not depend on the order, in which
  each single adjustment operation is performed. Due to rounding and byte casting
  issues, it actually matters in which order individual adjustment operations
  are performed. Both of the following snippets most likely produce different
  results:
- 
+
  // snippet 1: contrast, brightness
  FreeImage_AdjustContrast(dib, 15.0);
- FreeImage_AdjustBrightness(dib, 50.0); 
- 
+ FreeImage_AdjustBrightness(dib, 50.0);
+
  // snippet 2: brightness, contrast
  FreeImage_AdjustBrightness(dib, 50.0);
  FreeImage_AdjustContrast(dib, 15.0);
- 
+
  Better and even faster would be snippet 3:
- 
+
  // snippet 3:
  BYTE LUT[256];
- FreeImage_GetAdjustColorsLookupTable(LUT, 50.0, 15.0, 1.0, FALSE); 
+ FreeImage_GetAdjustColorsLookupTable(LUT, 50.0, 15.0, 1.0, FALSE);
  FreeImage_AdjustCurve(dib, LUT, FICC_RGB);
- 
+
  This function is also used internally by FreeImage_AdjustColors(), which does
  not return the lookup table, but uses it to call FreeImage_AdjustCurve() on the
  passed image.
- 
+
  @param LUT Output lookup table to be used with FreeImage_AdjustCurve(). <b>The
  size of 'LUT' is assumed to be 256.</b>
  @param brightness Percentage brightness value where -100 <= brightness <= 100<br>
@@ -500,7 +500,7 @@ FreeImage_GetHistogram(FIBITMAP *src, DWORD *histo, FREE_IMAGE_COLOR_CHANNEL cha
  compared to a blind lookup table.
  */
 int DLL_CALLCONV
-FreeImage_GetAdjustColorsLookupTable(BYTE *LUT, double brightness, double contrast, double gamma, BOOL invert) {
+FreeImage_GetAdjustColorsLookupTable(BYTE *LUT, double brightness, double contrast, double gamma, WINBOOL invert) {
 	double dblLUT[256];
 	double value;
 	int result = 0;
@@ -566,35 +566,35 @@ FreeImage_GetAdjustColorsLookupTable(BYTE *LUT, double brightness, double contra
 
 /** @brief Adjusts an image's brightness, contrast and gamma as well as it may
  optionally invert the image within a single operation.
- 
+
  This function adjusts an image's brightness, contrast and gamma as well as it
  may optionally invert the image within a single operation. If more than one of
  these image display properties need to be adjusted, using this function should
  be preferred over calling each adjustment function separately. That's
  particularly true for huge images or if performance is an issue.
- 
+
  This function relies on FreeImage_GetAdjustColorsLookupTable(), which creates a
  single lookup table, that combines all adjustment operations requested.
- 
+
  Furthermore, the lookup table created by FreeImage_GetAdjustColorsLookupTable()
  does not depend on the order, in which each single adjustment operation is
  performed. Due to rounding and byte casting issues, it actually matters in which
  order individual adjustment operations are performed. Both of the following
  snippets most likely produce different results:
- 
+
  // snippet 1: contrast, brightness
  FreeImage_AdjustContrast(dib, 15.0);
- FreeImage_AdjustBrightness(dib, 50.0); 
- 
+ FreeImage_AdjustBrightness(dib, 50.0);
+
  // snippet 2: brightness, contrast
  FreeImage_AdjustBrightness(dib, 50.0);
  FreeImage_AdjustContrast(dib, 15.0);
- 
+
  Better and even faster would be snippet 3:
- 
+
  // snippet 3:
  FreeImage_AdjustColors(dib, 50.0, 15.0, 1.0, FALSE);
- 
+
  @param dib Input/output image to be processed.
  @param brightness Percentage brightness value where -100 <= brightness <= 100<br>
  A value of 0 means no change, less than 0 will make the image darker and greater
@@ -610,8 +610,8 @@ FreeImage_GetAdjustColorsLookupTable(BYTE *LUT, double brightness, double contra
  @return Returns TRUE on success, FALSE otherwise (e.g. when the bitdeph of the
  source dib cannot be handled).
  */
-BOOL DLL_CALLCONV
-FreeImage_AdjustColors(FIBITMAP *dib, double brightness, double contrast, double gamma, BOOL invert) {
+WINBOOL DLL_CALLCONV
+FreeImage_AdjustColors(FIBITMAP *dib, double brightness, double contrast, double gamma, WINBOOL invert) {
 	BYTE LUT[256];
 
 	if (!FreeImage_HasPixels(dib) || (FreeImage_GetImageType(dib) != FIT_BITMAP)) {
@@ -641,12 +641,12 @@ FreeImage_AdjustColors(FIBITMAP *dib, double brightness, double contrast, double
  palletized images only the palette will be changed.<br>
 
  The function returns the number of pixels changed or zero, if no pixels were
- changed. 
+ changed.
 
  Both arrays <i>srccolors</i> and <i>dstcolors</i> are assumed not to hold less
  than <i>count</i> colors.<br>
 
- For 16-bit images, all colors specified are transparently converted to their 
+ For 16-bit images, all colors specified are transparently converted to their
  proper 16-bit representation (either in RGB555 or RGB565 format, which is
  determined by the image's red- green- and blue-mask).<br>
 
@@ -657,14 +657,14 @@ FreeImage_AdjustColors(FIBITMAP *dib, double brightness, double contrast, double
  @param srccolors Array of colors to be used as the mapping source.
  @param dstcolors Array of colors to be used as the mapping destination.
  @param count The number of colors to be mapped. This is the size of both
- <i>srccolors</i> and <i>dstcolors</i>.  
+ <i>srccolors</i> and <i>dstcolors</i>.
  @param ignore_alpha If TRUE, 32-bit images and colors are treated as 24-bit.
  @param swap If TRUE, source and destination colors are swapped, that is,
- each destination color is also mapped to the corresponding source color.  
- @return Returns the total number of pixels changed. 
+ each destination color is also mapped to the corresponding source color.
+ @return Returns the total number of pixels changed.
  */
 unsigned DLL_CALLCONV
-FreeImage_ApplyColorMapping(FIBITMAP *dib, RGBQUAD *srccolors, RGBQUAD *dstcolors, unsigned count, BOOL ignore_alpha, BOOL swap) {
+FreeImage_ApplyColorMapping(FIBITMAP *dib, RGBQUAD *srccolors, RGBQUAD *dstcolors, unsigned count, WINBOOL ignore_alpha, WINBOOL swap) {
 	unsigned result = 0;
 
 	if (!FreeImage_HasPixels(dib) || (FreeImage_GetImageType(dib) != FIT_BITMAP)) {
@@ -828,26 +828,26 @@ FreeImage_ApplyColorMapping(FIBITMAP *dib, RGBQUAD *srccolors, RGBQUAD *dstcolor
  @param dib Input/output image to be processed.
  @param color_a On of the two colors to be swapped.
  @param color_b The other of the two colors to be swapped.
- @param ignore_alpha If TRUE, 32-bit images and colors are treated as 24-bit. 
- @return Returns the total number of pixels changed. 
+ @param ignore_alpha If TRUE, 32-bit images and colors are treated as 24-bit.
+ @return Returns the total number of pixels changed.
  */
 unsigned DLL_CALLCONV
-FreeImage_SwapColors(FIBITMAP *dib, RGBQUAD *color_a, RGBQUAD *color_b, BOOL ignore_alpha) {
+FreeImage_SwapColors(FIBITMAP *dib, RGBQUAD *color_a, RGBQUAD *color_b, WINBOOL ignore_alpha) {
 	return FreeImage_ApplyColorMapping(dib, color_a, color_b, 1, ignore_alpha, TRUE);
 }
 
-/** @brief Applies palette index mapping for one or several indices on a 1-, 4- 
+/** @brief Applies palette index mapping for one or several indices on a 1-, 4-
  or 8-bit palletized image.
 
  This function maps up to <i>count</i> palette indices specified in
- <i>srcindices</i> to these specified in <i>dstindices</i>. Thereby, index 
+ <i>srcindices</i> to these specified in <i>dstindices</i>. Thereby, index
  <i>srcindices[N]</i>, if present in the image, will be replaced by index
  <i>dstindices[N]</i>. If parameter <i>swap</i> is TRUE, additionally all indices
- specified in <i>dstindices</i> are also mapped to these specified in 
+ specified in <i>dstindices</i> are also mapped to these specified in
  <i>srcindices</i>.<br>
 
  The function returns the number of pixels changed or zero, if no pixels were
- changed. 
+ changed.
 
  Both arrays <i>srcindices</i> and <i>dstindices</i> are assumed not to hold less
  than <i>count</i> indices.<br>
@@ -859,13 +859,13 @@ FreeImage_SwapColors(FIBITMAP *dib, RGBQUAD *color_a, RGBQUAD *color_b, BOOL ign
  @param srcindices Array of palette indices to be used as the mapping source.
  @param dstindices Array of palette indices to be used as the mapping destination.
  @param count The number of palette indices to be mapped. This is the size of both
- <i>srcindices</i> and <i>dstindices</i>.  
+ <i>srcindices</i> and <i>dstindices</i>.
  @param swap If TRUE, source and destination palette indices are swapped, that is,
- each destination index is also mapped to the corresponding source index.  
- @return Returns the total number of pixels changed. 
+ each destination index is also mapped to the corresponding source index.
+ @return Returns the total number of pixels changed.
  */
 unsigned DLL_CALLCONV
-FreeImage_ApplyPaletteIndexMapping(FIBITMAP *dib, BYTE *srcindices,	BYTE *dstindices, unsigned count, BOOL swap) {
+FreeImage_ApplyPaletteIndexMapping(FIBITMAP *dib, BYTE *srcindices,	BYTE *dstindices, unsigned count, WINBOOL swap) {
 	unsigned result = 0;
 
 	if (!FreeImage_HasPixels(dib) || (FreeImage_GetImageType(dib) != FIT_BITMAP)) {
@@ -958,9 +958,9 @@ FreeImage_ApplyPaletteIndexMapping(FIBITMAP *dib, BYTE *srcindices,	BYTE *dstind
  @param dib Input/output image to be processed.
  @param index_a On of the two palette indices to be swapped.
  @param index_b The other of the two palette indices to be swapped.
- @return Returns the total number of pixels changed. 
+ @return Returns the total number of pixels changed.
  */
-unsigned DLL_CALLCONV 
+unsigned DLL_CALLCONV
 FreeImage_SwapPaletteIndices(FIBITMAP *dib, BYTE *index_a, BYTE *index_b) {
 	return FreeImage_ApplyPaletteIndexMapping(dib, index_a, index_b, 1, TRUE);
 }

@@ -17,7 +17,7 @@
 // Use at your own risk!
 // ==========================================================
 
-#ifdef _MSC_VER 
+#ifdef _MSC_VER
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
 #endif
 
@@ -48,7 +48,7 @@ static int s_format_id;
 // ==========================================================
 
 // read in and skip all junk until we find a certain char
-static BOOL
+static WINBOOL
 FindChar(FreeImageIO *io, fi_handle handle, BYTE look_for) {
 	BYTE c;
 	io->read_proc(&c, sizeof(BYTE), 1, handle);
@@ -119,7 +119,7 @@ MimeType() {
 	return "image/x-xpixmap";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	char buffer[256];
 
@@ -133,7 +133,7 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return (
 			(depth == 8) ||
@@ -141,12 +141,12 @@ SupportsExportDepth(int depth) {
 		);
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (type == FIT_BITMAP) ? TRUE : FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -162,9 +162,9 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
     try {
 		char *str;
-		
-		BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
-		
+
+		WINBOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+
 		//find the starting brace
 		if( !FindChar(io, handle,'{') )
 			throw "Could not find starting brace";
@@ -345,7 +345,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
     }
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	if ((dib != NULL) && (handle != NULL)) {
 		char header[] = "/* XPM */\nstatic char *freeimage[] = {\n/* width height num_colors chars_per_pixel */\n\"",

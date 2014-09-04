@@ -3,7 +3,7 @@
 //
 // Design and implementation by
 // - Floris van den Berg (flvdberg@wxs.nl)
-// 
+//
 // Based on pascal code developed by Alex Kwak
 //
 // This file is part of FreeImage 3
@@ -28,7 +28,7 @@
 // Internal functions
 // ==========================================================
 
-static int 
+static int
 clamp(double x) {
 	int a = (int)floor(x + 0.5);
 	return (a < 0) ? 0 : (a > 255) ? 255 : a;
@@ -51,7 +51,7 @@ YUV2RGB(int y, int cb, int cr, int &r, int &g, int &b) {
 	b = clamp(c31 * y + c32 * (cb - 156) + c33 * (cr - 137));
 }
 
-static BOOL
+static WINBOOL
 VerticalOrientation(FreeImageIO *io, fi_handle handle) {
 	char buffer[128];
 
@@ -95,17 +95,17 @@ MimeType() {
 	return "image/x-photo-cd";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -120,13 +120,13 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	const unsigned bpp = 24;
 	int scan_line_add   = 1;
 	int start_scan_line = 0;
-	
+
 	BYTE *y1 = NULL, *y2 = NULL, *cbcr = NULL;
 
-	BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+	WINBOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 	// to make absolute seeks possible we store the current position in the file
-	
+
 	long offset_in_file = io->tell_proc(handle);
 	long seek = 0;
 
@@ -165,7 +165,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 		if (VerticalOrientation(io, handle)) {
 			scan_line_add = -1;
-			start_scan_line = height - 1;		
+			start_scan_line = height - 1;
 		}
 
 		// temporary stuff to load PCD

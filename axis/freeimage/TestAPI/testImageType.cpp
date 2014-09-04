@@ -25,39 +25,39 @@
 // Local test functions
 // ----------------------------------------------------------
 
-BOOL testClone(const char *lpszPathName) {
-	FIBITMAP *dib1 = NULL, *dib2 = NULL; 
+WINBOOL testClone(const char *lpszPathName) {
+	FIBITMAP *dib1 = NULL, *dib2 = NULL;
 
 	try {
 		FREE_IMAGE_FORMAT fif = FreeImage_GetFIFFromFilename(lpszPathName);
 
-		dib1 = FreeImage_Load(fif, lpszPathName, 0); 
+		dib1 = FreeImage_Load(fif, lpszPathName, 0);
 		if(!dib1) throw(1);
-		
-		dib2 = FreeImage_Clone(dib1); 
+
+		dib2 = FreeImage_Clone(dib1);
 		if(!dib2) throw(1);
-		
-		FreeImage_Unload(dib1); 
-		FreeImage_Unload(dib2); 
+
+		FreeImage_Unload(dib1);
+		FreeImage_Unload(dib2);
 
 		return TRUE;
-	} 
-	catch(int) {
-		if(dib1) FreeImage_Unload(dib1); 
-		if(dib2) FreeImage_Unload(dib2); 
 	}
-	
-	return FALSE; 
+	catch(int) {
+		if(dib1) FreeImage_Unload(dib1);
+		if(dib2) FreeImage_Unload(dib2);
+	}
+
+	return FALSE;
 }
 
 void testAllocateCloneUnload(const char *lpszPathName) {
 	printf("testAllocateCloneUnload ...\n");
 
-	BOOL bResult = testClone(lpszPathName);
+	WINBOOL bResult = testClone(lpszPathName);
 	assert(bResult);
 }
 
-BOOL testAllocateCloneUnloadType(FREE_IMAGE_TYPE image_type, unsigned width, unsigned height) {
+WINBOOL testAllocateCloneUnloadType(FREE_IMAGE_TYPE image_type, unsigned width, unsigned height) {
 	FIBITMAP *image = NULL;
 	FIBITMAP *clone = NULL;
 
@@ -170,7 +170,7 @@ BOOL testAllocateCloneUnloadType(FREE_IMAGE_TYPE image_type, unsigned width, uns
 						bits[x].alpha = 128;
 					}
 				}
-				break;	
+				break;
 			case FIT_RGBAF:
 				for(y = 0; y < FreeImage_GetHeight(image); y++) {
 					FIRGBAF *bits = (FIRGBAF *)FreeImage_GetScanLine(image, y);
@@ -184,7 +184,7 @@ BOOL testAllocateCloneUnloadType(FREE_IMAGE_TYPE image_type, unsigned width, uns
 				break;
 		}
 
-		
+
 		// test clone function
 		clone = FreeImage_Clone(image);
 		if(!clone) throw(1);
@@ -292,7 +292,7 @@ BOOL testAllocateCloneUnloadType(FREE_IMAGE_TYPE image_type, unsigned width, uns
 							throw(1);
 					}
 				}
-				break;	
+				break;
 			case FIT_RGBAF:
 				for(y = 0; y < FreeImage_GetHeight(clone); y++) {
 					FIRGBAF *bits = (FIRGBAF *)FreeImage_GetScanLine(clone, y);
@@ -319,10 +319,10 @@ BOOL testAllocateCloneUnloadType(FREE_IMAGE_TYPE image_type, unsigned width, uns
 	return TRUE;
 }
 
-BOOL testLoadSaveConvertImageType(FIBITMAP *src, FREE_IMAGE_TYPE image_type) {
+WINBOOL testLoadSaveConvertImageType(FIBITMAP *src, FREE_IMAGE_TYPE image_type) {
 	FIBITMAP *dst = NULL;
 	FIBITMAP *chk = NULL;
-	BOOL bResult = TRUE;
+	WINBOOL bResult = TRUE;
 
 	try {
 		// convert to type image_type
@@ -363,11 +363,11 @@ BOOL testLoadSaveConvertImageType(FIBITMAP *src, FREE_IMAGE_TYPE image_type) {
 	return TRUE;
 }
 
-BOOL testLoadSaveConvertComplexType(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
+WINBOOL testLoadSaveConvertComplexType(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL channel) {
 	FIBITMAP *dst = NULL;
 	FIBITMAP *chk_double = NULL;
 	FIBITMAP *chk = NULL;
-	BOOL bResult = TRUE;
+	WINBOOL bResult = TRUE;
 
 	try {
 		// convert to type FICOMPLEX
@@ -386,13 +386,13 @@ BOOL testLoadSaveConvertComplexType(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL chan
 		dst = FreeImage_Load(FIF_TIFF, "TestImageType.tif", TIFF_DEFAULT);
 		if(!dst) throw(1);
 
-		
+
 		// convert to type FIT_DOUBLE
 		chk_double = FreeImage_GetComplexChannel(dst, channel);
 		if(!chk_double) throw(1);
 		FreeImage_Unload(dst);
 		dst = NULL;
-		
+
 		// convert to standard bitmap (linear scaling)
 		chk = FreeImage_ConvertToType(chk_double, FIT_BITMAP, TRUE);
 		if(!chk) throw(1);
@@ -420,7 +420,7 @@ BOOL testLoadSaveConvertComplexType(FIBITMAP *src, FREE_IMAGE_COLOR_CHANNEL chan
 // ----------------------------------------------------------
 
 void testImageType(unsigned width, unsigned height) {
-	BOOL bResult = FALSE;
+	WINBOOL bResult = FALSE;
 
 	printf("testImageType ...\n");
 
@@ -452,7 +452,7 @@ void testImageType(unsigned width, unsigned height) {
 
 
 void testImageTypeTIFF(unsigned width, unsigned height) {
-	BOOL bResult = FALSE;
+	WINBOOL bResult = FALSE;
 
 	printf("testImageTypeTIFF ...\n");
 
@@ -465,7 +465,7 @@ void testImageTypeTIFF(unsigned width, unsigned height) {
 	assert(bResult);
 
 	// test load /save / convert
-	// -------------------------	
+	// -------------------------
 
 	bResult = testLoadSaveConvertImageType(src, FIT_BITMAP);
 	assert(bResult);

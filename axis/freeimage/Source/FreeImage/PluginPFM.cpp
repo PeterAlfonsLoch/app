@@ -43,7 +43,7 @@
 /**
 Get a line from a ASCII io stream
 */
-static BOOL 
+static WINBOOL
 pfm_get_line(FreeImageIO *io, fi_handle handle, char *buffer, int length) {
 	int i;
 	memset(buffer, 0, length);
@@ -53,7 +53,7 @@ pfm_get_line(FreeImageIO *io, fi_handle handle, char *buffer, int length) {
 		if(buffer[i] == 0x0A)
 			break;
 	}
-	
+
 	return (i < length) ? TRUE : FALSE;
 }
 
@@ -63,7 +63,7 @@ Get an integer value from the actual position pointed by handle
 static int
 pfm_get_int(FreeImageIO *io, fi_handle handle) {
     char c = 0;
-	BOOL firstchar;
+	WINBOOL firstchar;
 
     // skip forward to start of next number
 
@@ -150,7 +150,7 @@ MimeType() {
 	return "image/x-portable-floatmap";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE pfm_id1[] = { 0x50, 0x46 };
 	BYTE pfm_id2[] = { 0x50, 0x66 };
@@ -167,12 +167,12 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (
 		(type == FIT_FLOAT) ||
@@ -180,7 +180,7 @@ SupportsExportType(FREE_IMAGE_TYPE type) {
 	);
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -198,7 +198,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		return NULL;
 	}
 
-	BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+	WINBOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 	try {
 		FREE_IMAGE_TYPE image_type = FIT_UNKNOWN;
@@ -227,7 +227,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		unsigned height = (unsigned) pfm_get_int(io, handle);
 		float scalefactor = 1;
 
-		BOOL bResult = pfm_get_line(io, handle, line_buffer, PFM_MAXLINE);
+		WINBOOL bResult = pfm_get_line(io, handle, line_buffer, PFM_MAXLINE);
 		if(bResult) {
 			bResult = (sscanf(line_buffer, "%f", &scalefactor) == 1) ? TRUE : FALSE;
 		}
@@ -255,7 +255,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				throw FI_MSG_ERROR_MEMORY;
 			}
 
-			for (unsigned y = 0; y < height; y++) {	
+			for (unsigned y = 0; y < height; y++) {
 				FIRGBF *bits = (FIRGBF*)FreeImage_GetScanLine(dib, height - 1 - y);
 
 				if(io->read_proc(lineBuffer, sizeof(float), lineWidth, handle) != lineWidth) {
@@ -270,7 +270,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 						REVERSEBYTES(channel++, &bits[x].blue);
 					}
 				} else {
-					// LSB					
+					// LSB
 					for (unsigned x = 0; x < width; x++) {
 						bits[x].red		= *channel++;
 						bits[x].green	= *channel++;
@@ -289,7 +289,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				throw FI_MSG_ERROR_MEMORY;
 			}
 
-			for (unsigned y = 0; y < height; y++) {	
+			for (unsigned y = 0; y < height; y++) {
 				float *bits = (float*)FreeImage_GetScanLine(dib, height - 1 - y);
 
 				if(io->read_proc(lineBuffer, sizeof(float), lineWidth, handle) != lineWidth) {
@@ -312,7 +312,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			free(lineBuffer);
 			lineBuffer = NULL;
 		}
-		
+
 		return dib;
 
 	} catch (const char *text)  {
@@ -328,7 +328,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	if(!dib || !handle) return FALSE;
 
@@ -340,7 +340,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 	unsigned width  = FreeImage_GetWidth(dib);
 	unsigned height = FreeImage_GetHeight(dib);
 	unsigned lineWidth = FreeImage_GetLine(dib);
-	
+
 	// save image as Little Endian
 	const float scalefactor = -1.0F;
 
@@ -353,7 +353,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 	switch(image_type) {
 		case FIT_RGBF:
 			magic = 'F';	// RGBF
-			break;	
+			break;
 		case FIT_FLOAT:
 			magic = 'f';	// float greyscale
 			break;
@@ -367,7 +367,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 	io->write_proc(&buffer, (unsigned int)strlen(buffer), 1, handle);
 
 	// Write the image data
-	for (unsigned y = 0; y < height; y++) {	
+	for (unsigned y = 0; y < height; y++) {
 		BYTE *bits = FreeImage_GetScanLine(dib, height - 1 - y);
 		io->write_proc(bits, 1, lineWidth, handle);
 	}

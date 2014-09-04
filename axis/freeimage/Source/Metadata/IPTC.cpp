@@ -19,7 +19,7 @@
 // Use at your own risk!
 // ==========================================================
 
-#ifdef _MSC_VER 
+#ifdef _MSC_VER
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
 #endif
 
@@ -35,7 +35,7 @@ static const char* IPTC_DELIMITER = ";";	// keywords/supplemental category delim
 /**
 	Read and decode IPTC binary data
 */
-BOOL 
+WINBOOL
 read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
 	char defaultKey[16];
 	size_t length = datalen;
@@ -54,8 +54,8 @@ read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
 
 	if(datalen > 8) {
 		if(memcmp(JPEG_AdobeCM_Tag, dataptr, 8) == 0) {
-			// the "Adobe_CM" APP13 segment presumably contains color management information, 
-			// but the meaning of the data is currently unknown. 
+			// the "Adobe_CM" APP13 segment presumably contains color management information,
+			// but the meaning of the data is currently unknown.
 			// If anyone has an idea about what this means, please let me know.
 			return FALSE;
 		}
@@ -221,7 +221,7 @@ read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
 
 // --------------------------------------------------------------------------
 
-static BYTE* 
+static BYTE*
 append_iptc_tag(BYTE *profile, unsigned *profile_size, WORD id, DWORD length, const void *value) {
 	BYTE *buffer = NULL;
 
@@ -250,15 +250,15 @@ append_iptc_tag(BYTE *profile, unsigned *profile_size, WORD id, DWORD length, co
 		*profile_size += (5 + length);
 		free(profile);
 	}
-	
+
 	return buffer;
 }
 
 /**
-Encode IPTC metadata into a binary buffer. 
-The buffer is allocated by the function and must be freed by the caller. 
+Encode IPTC metadata into a binary buffer.
+The buffer is allocated by the function and must be freed by the caller.
 */
-BOOL 
+WINBOOL
 write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size) {
 	FITAG *tag = NULL;
 	FIMETADATA *mdhandle = NULL;
@@ -287,8 +287,8 @@ write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size) {
 
 						// split the tag value
 						std::vector<std::string> output;
-						std::string delimiter = IPTC_DELIMITER;		
-						
+						std::string delimiter = IPTC_DELIMITER;
+
 						size_t offset = 0;
 						size_t delimiterIndex = 0;
 
@@ -318,20 +318,20 @@ write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size) {
 
 				default:
 					if(FreeImage_GetTagType(tag) == FIDT_ASCII) {
-						DWORD length = FreeImage_GetTagLength(tag);	
+						DWORD length = FreeImage_GetTagLength(tag);
 						buffer = append_iptc_tag(buffer, &buffer_size, tag_id, length, FreeImage_GetTagValue(tag));
-					}					
+					}
 					break;
 			}
 
 		} while(FreeImage_FindNextMetadata(mdhandle, &tag));
-		
+
 		FreeImage_FindCloseMetadata(mdhandle);
 
 		// add the DirectoryVersion tag
 		const short version = 0x0200;
 		buffer = append_iptc_tag(buffer, &buffer_size, TAG_RECORD_VERSION, sizeof(version), &version);
-		
+
 		*profile = buffer;
 		*profile_size = buffer_size;
 

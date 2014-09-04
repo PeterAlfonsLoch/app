@@ -42,7 +42,7 @@ static int s_format_id;
 /**
 Read the whole file into memory
 */
-static BOOL
+static WINBOOL
 ReadFileToWebPData(FreeImageIO *io, fi_handle handle, WebPData * const bitstream) {
   uint8_t *raw_data = NULL;
 
@@ -59,7 +59,7 @@ ReadFileToWebPData(FreeImageIO *io, fi_handle handle, WebPData * const bitstream
 	  if(io->read_proc(raw_data, 1, (unsigned)file_length, handle) != file_length) {
 		  throw "Error while reading input stream";
 	  }
-	  
+
 	  // copy pointers (must be released later using free)
 	  bitstream->bytes = raw_data;
 	  bitstream->size = file_length;
@@ -87,7 +87,7 @@ Output function. Should return 1 if writing was successful.
 data/data_size is the segment of data to write, and 'picture' is for
 reference (and so one can make use of picture->custom_ptr).
 */
-static int 
+static int
 WebP_MemoryWriter(const BYTE *data, size_t data_size, const WebPPicture* const picture) {
 	FIMEMORY *hmem = (FIMEMORY*)picture->custom_ptr;
 	return data_size ? (FreeImage_WriteMemory(data, 1, (unsigned)data_size, hmem) == data_size) : 0;
@@ -122,7 +122,7 @@ MimeType() {
 	return "image/webp";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE riff_signature[4] = { 0x52, 0x49, 0x46, 0x46 };
 	BYTE webp_signature[4] = { 0x57, 0x45, 0x42, 0x50 };
@@ -139,25 +139,25 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return (
-		(depth == 24) || 
+		(depth == 24) ||
 		(depth == 32)
 		);
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (type == FIT_BITMAP) ? TRUE : FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsICCProfiles() {
 	return TRUE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -165,7 +165,7 @@ SupportsNoPixels() {
 // ----------------------------------------------------------
 
 static void * DLL_CALLCONV
-Open(FreeImageIO *io, fi_handle handle, BOOL read) {
+Open(FreeImageIO *io, fi_handle handle, WINBOOL read) {
 	WebPMux *mux = NULL;
 	int copy_data = 1;	// 1 : copy data into the mux, 0 : keep a link to local data
 
@@ -192,7 +192,7 @@ Open(FreeImageIO *io, fi_handle handle, BOOL read) {
 			return NULL;
 		}
 	}
-	
+
 	return mux;
 }
 
@@ -222,7 +222,7 @@ DecodeImage(WebPData *webp_image, int flags) {
 
     VP8StatusCode webp_status = VP8_STATUS_OK;
 
-	BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+	WINBOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 	// Main object storing the configuration for advanced decoding
 	WebPDecoderConfig decoder_config;
@@ -247,7 +247,7 @@ DecodeImage(WebPData *webp_image, int flags) {
 
 		// Allocate output dib
 
-		unsigned bpp = bitstream->has_alpha ? 32 : 24;	
+		unsigned bpp = bitstream->has_alpha ? 32 : 24;
 		unsigned width = (unsigned)bitstream->width;
 		unsigned height = (unsigned)bitstream->height;
 
@@ -270,8 +270,8 @@ DecodeImage(WebPData *webp_image, int flags) {
 
 		// ---
 
-		// decode the input stream, taking 'config' into account. 
-		
+		// decode the input stream, taking 'config' into account.
+
 		webp_status = WebPDecode(data, data_size, &decoder_config);
 		if(webp_status != VP8_STATUS_OK) {
 			throw FI_MSG_ERROR_PARSING;
@@ -285,7 +285,7 @@ DecodeImage(WebPData *webp_image, int flags) {
 		switch(bpp) {
 			case 24:
 				for(unsigned y = 0; y < height; y++) {
-					const BYTE *src_bits = src_bitmap + y * src_pitch;						
+					const BYTE *src_bits = src_bitmap + y * src_pitch;
 					BYTE *dst_bits = (BYTE*)FreeImage_GetScanLine(dib, height-1-y);
 					for(unsigned x = 0; x < width; x++) {
 						dst_bits[FI_RGBA_BLUE]	= src_bits[0];	// B
@@ -298,7 +298,7 @@ DecodeImage(WebPData *webp_image, int flags) {
 				break;
 			case 32:
 				for(unsigned y = 0; y < height; y++) {
-					const BYTE *src_bits = src_bitmap + y * src_pitch;						
+					const BYTE *src_bits = src_bitmap + y * src_pitch;
 					BYTE *dst_bits = (BYTE*)FreeImage_GetScanLine(dib, height-1-y);
 					for(unsigned x = 0; x < width; x++) {
 						dst_bits[FI_RGBA_BLUE]	= src_bits[0];	// B
@@ -351,7 +351,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		if(!mux) {
 			throw (1);
 		}
-		
+
 		// gets the feature flags from the mux object
 		uint32_t webp_flags = 0;
 		error_status = WebPMuxGetFeatures(mux, &webp_flags);
@@ -368,7 +368,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			if(!dib) {
 				throw (1);
 			}
-			
+
 			// get ICC profile
 			if(webp_flags & ICCP_FLAG) {
 				error_status = WebPMuxGetChunk(mux, "ICCP", &color_profile);
@@ -389,7 +389,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 						FreeImage_SetTagCount(tag, (DWORD)xmp_metadata.size);
 						FreeImage_SetTagType(tag, FIDT_ASCII);
 						FreeImage_SetTagValue(tag, xmp_metadata.bytes);
-						
+
 						// store the tag
 						FreeImage_SetMetadata(FIMD_XMP, dib, FreeImage_GetTagKey(tag), tag);
 
@@ -430,12 +430,12 @@ Encode a FIBITMAP to a WebP image
 @param flags FreeImage save flags
 @return Returns TRUE if successfull, returns FALSE otherwise
 */
-static BOOL
+static WINBOOL
 EncodeImage(FIMEMORY *hmem, FIBITMAP *dib, int flags) {
 	WebPPicture picture;	// Input buffer
 	WebPConfig config;		// Coding parameters
 
-	BOOL bIsFlipped = FALSE;
+	WINBOOL bIsFlipped = FALSE;
 
 	try {
 		const unsigned width = FreeImage_GetWidth(dib);
@@ -494,7 +494,7 @@ EncodeImage(FIMEMORY *hmem, FIBITMAP *dib, int flags) {
 		}
 
 		// --- Perform encoding ---
-		
+
 		// Invert dib scanlines
 		bIsFlipped = FreeImage_FlipVertical(dib);
 
@@ -554,7 +554,7 @@ EncodeImage(FIMEMORY *hmem, FIBITMAP *dib, int flags) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	WebPMux *mux = NULL;
 	FIMEMORY *hmem = NULL;
@@ -598,7 +598,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		}
 
 		// --- set metadata ---
-		
+
 		// set ICC color profile
 		{
 			FIICCPROFILE *iccProfile = FreeImage_GetICCProfile(dib);
@@ -640,7 +640,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 				}
 			}
 		}
-		
+
 		// get data from mux in WebP RIFF format
 		error_status = WebPMuxAssemble(mux, &output_data);
 		if(error_status != WEBP_MUX_OK) {
@@ -663,7 +663,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		if(hmem) {
 			FreeImage_CloseMemory(hmem);
 		}
-		
+
 		WebPDataClear(&output_data);
 
 		return FALSE;

@@ -1,7 +1,7 @@
 // ==========================================================
 // Sun rasterfile Loader
 //
-// Design and implementation by 
+// Design and implementation by
 // - Hervé Drolon (drolon@infonie.fr)
 //
 // This file is part of FreeImage 3
@@ -60,7 +60,7 @@ typedef struct tagSUNHEADER {
 
 #define RT_OLD			0	// Old format (raw image in 68000 byte order)
 #define RT_STANDARD		1	// Raw image in 68000 byte order
-#define RT_BYTE_ENCODED	2	// Run-length encoding of bytes 
+#define RT_BYTE_ENCODED	2	// Run-length encoding of bytes
 #define RT_FORMAT_RGB	3	// XRGB or RGB instead of XBGR or BGR
 #define RT_FORMAT_TIFF	4	// TIFF <-> standard rasterfile
 #define RT_FORMAT_IFF	5	// IFF (TAAC format) <-> standard rasterfile
@@ -91,7 +91,7 @@ typedef struct tagSUNHEADER {
 // ==========================================================
 
 static void
-ReadData(FreeImageIO *io, fi_handle handle, BYTE *buf, DWORD length, BOOL rle) {
+ReadData(FreeImageIO *io, fi_handle handle, BYTE *buf, DWORD length, WINBOOL rle) {
 	// Read either Run-Length Encoded or normal image data
 
 	static BYTE repchar, remaining= 0;
@@ -123,7 +123,7 @@ ReadData(FreeImageIO *io, fi_handle handle, BYTE *buf, DWORD length, BOOL rle) {
 		}
 	} else {
 		// Normal read
-	
+
 		io->read_proc(buf, length, 1, handle);
 	}
 }
@@ -163,7 +163,7 @@ MimeType() {
 	return "image/x-cmu-raster";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE ras_signature[] = { 0x59, 0xA6, 0x6A, 0x95 };
 	BYTE signature[4] = { 0, 0, 0, 0 };
@@ -173,17 +173,17 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return (memcmp(ras_signature, signature, sizeof(ras_signature)) == 0);
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -195,8 +195,8 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	SUNHEADER header;	// Sun file header
 	WORD linelength;	// Length of raster line in bytes
 	WORD fill;			// Number of fill bytes per raster line
-	BOOL rle;			// TRUE if RLE file
-	BOOL isRGB;			// TRUE if file type is RT_FORMAT_RGB
+	WINBOOL rle;			// TRUE if RLE file
+	WINBOOL isRGB;			// TRUE if file type is RT_FORMAT_RGB
 	BYTE fillchar;
 
 	FIBITMAP *dib = NULL;
@@ -207,7 +207,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		return NULL;
 	}
 
-	BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+	WINBOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 	try {
 		// Read SUN raster header
@@ -284,7 +284,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 		switch(header.maptype) {
 			case RMT_NONE :
-			{				
+			{
 				if (header.depth < 24) {
 					// Create linear color ramp
 
@@ -368,7 +368,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		unsigned pitch = FreeImage_GetPitch(dib);
 
 		// Read the image data
-		
+
 		switch(header.depth) {
 			case 1:
 			case 8:
@@ -472,7 +472,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				break;
 			}
 		}
-		
+
 		return dib;
 
 	} catch (const char *text) {

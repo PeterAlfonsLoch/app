@@ -30,7 +30,7 @@
 
 FI_STRUCT (FIMEMORYHEADER) {
 	/// remember to delete the buffer
-	BOOL delete_me;
+	WINBOOL delete_me;
 	/// file length
 	long filelen;
 	/// buffer size

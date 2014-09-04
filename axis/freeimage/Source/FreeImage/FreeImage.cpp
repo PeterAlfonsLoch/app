@@ -38,7 +38,7 @@ static const char *s_copyright = "This program uses FreeImage, a free, open sour
 #if defined(_WIN32) && !defined(__MINGW32__)
 #ifndef FREEIMAGE_LIB
 
-BOOL APIENTRY
+WINBOOL APIENTRY
 DllMain(HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
 	switch (ul_reason_for_call) {
 		case DLL_PROCESS_ATTACH :
@@ -59,7 +59,7 @@ DllMain(HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
 
 #endif // FREEIMAGE_LIB
 
-#else // !_WIN32 
+#else // !_WIN32
 #ifndef FREEIMAGE_LIB
 
 void FreeImage_SO_Initialise() __attribute__((constructor));
@@ -92,7 +92,7 @@ FreeImage_GetCopyrightMessage() {
 
 //----------------------------------------------------------------------
 
-BOOL DLL_CALLCONV
+WINBOOL DLL_CALLCONV
 FreeImage_IsLittleEndian() {
 	union {
 		DWORD i;
@@ -105,7 +105,7 @@ FreeImage_IsLittleEndian() {
 //----------------------------------------------------------------------
 
 static FreeImage_OutputMessageFunction freeimage_outputmessage_proc = NULL;
-static FreeImage_OutputMessageFunctionStdCall freeimage_outputmessagestdcall_proc = NULL; 
+static FreeImage_OutputMessageFunctionStdCall freeimage_outputmessagestdcall_proc = NULL;
 
 void DLL_CALLCONV
 FreeImage_SetOutputMessage(FreeImage_OutputMessageFunction omf) {
@@ -221,6 +221,6 @@ FreeImage_OutputMessageProc(int fif, const char *fmt, ...) {
 			freeimage_outputmessage_proc((FREE_IMAGE_FORMAT)fif, message);
 
 		if (freeimage_outputmessagestdcall_proc != NULL)
-			freeimage_outputmessagestdcall_proc((FREE_IMAGE_FORMAT)fif, message); 
+			freeimage_outputmessagestdcall_proc((FREE_IMAGE_FORMAT)fif, message);
 	}
 }

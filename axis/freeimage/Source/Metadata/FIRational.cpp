@@ -50,14 +50,14 @@ FIRational::FIRational(LONG n, LONG d) {
 /// Constructor with FITAG
 FIRational::FIRational(const FITAG *tag) {
 	switch(FreeImage_GetTagType((FITAG*)tag)) {
-		case FIDT_RATIONAL:		// 64-bit unsigned fraction 
+		case FIDT_RATIONAL:		// 64-bit unsigned fraction
 		{
 			DWORD *pvalue = (DWORD*)FreeImage_GetTagValue((FITAG*)tag);
 			initialize((LONG)pvalue[0], (LONG)pvalue[1]);
 			break;
 		}
 
-		case FIDT_SRATIONAL:	// 64-bit signed fraction 
+		case FIDT_SRATIONAL:	// 64-bit signed fraction
 		{
 			LONG *pvalue = (LONG*)FreeImage_GetTagValue((FITAG*)tag);
 			initialize((LONG)pvalue[0], (LONG)pvalue[1]);
@@ -139,12 +139,12 @@ LONG FIRational::gcd(LONG a, LONG b) {
 	return a;		// Return GCD of numbers
 }
 
-/// Normalize numerator / denominator 
+/// Normalize numerator / denominator
 void FIRational::normalize() {
 	if (_numerator != 1 && _denominator != 1) {	// Is there something to do?
 		 // Calculate GCD
 		LONG common = gcd(_numerator, _denominator);
-		if (common != 1) { // If GCD is not one			
+		if (common != 1) { // If GCD is not one
 			_numerator /= common;	// Calculate new numerator
 			_denominator /= common;	// Calculate new denominator
 		}
@@ -156,7 +156,7 @@ void FIRational::normalize() {
 }
 
 /// Checks if this rational number is an Integer, either positive or negative
-BOOL FIRational::isInteger() {
+WINBOOL FIRational::isInteger() {
 	if(_denominator == 1 || (_denominator != 0 && (_numerator % _denominator == 0)) || (_denominator == 0 && _numerator == 0))
 		return TRUE;
 	return FALSE;

@@ -33,7 +33,7 @@ Get an integer value from the actual position pointed by handle
 static int
 GetInt(FreeImageIO *io, fi_handle handle) {
     char c = 0;
-	BOOL firstchar;
+	WINBOOL firstchar;
 
     // skip forward to start of next number
 
@@ -88,10 +88,10 @@ GetInt(FreeImageIO *io, fi_handle handle) {
 /**
 Read a WORD value taking into account the endianess issue
 */
-static inline WORD 
+static inline WORD
 ReadWord(FreeImageIO *io, fi_handle handle) {
 	WORD level = 0;
-	io->read_proc(&level, 2, 1, handle); 
+	io->read_proc(&level, 2, 1, handle);
 #ifndef FREEIMAGE_BIGENDIAN
 	SwapShort(&level);	// PNM uses the big endian convention
 #endif
@@ -101,7 +101,7 @@ ReadWord(FreeImageIO *io, fi_handle handle) {
 /**
 Write a WORD value taking into account the endianess issue
 */
-static inline void 
+static inline void
 WriteWord(FreeImageIO *io, fi_handle handle, const WORD value) {
 	WORD level = value;
 #ifndef FREEIMAGE_BIGENDIAN
@@ -146,7 +146,7 @@ MimeType() {
 	return "image/freeimage-pnm";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE pbm_id1[] = { 0x50, 0x31 };
 	BYTE pbm_id2[] = { 0x50, 0x34 };
@@ -179,7 +179,7 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return (
 			(depth == 1) ||
@@ -188,7 +188,7 @@ SupportsExportDepth(int depth) {
 		);
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (
 		(type == FIT_BITMAP)  ||
@@ -197,7 +197,7 @@ SupportsExportType(FREE_IMAGE_TYPE type) {
 	);
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -216,7 +216,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		return NULL;
 	}
 
-	BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+	WINBOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 	try {
 		FREE_IMAGE_TYPE image_type = FIT_BITMAP;	// standard image: 1-, 8-, 24-bit
@@ -228,7 +228,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		io->read_proc(&id_one, 1, 1, handle);
 		io->read_proc(&id_two, 1, 1, handle);
 
-		if ((id_one != 'P') || (id_two < '1') || (id_two > '6')) {			
+		if ((id_one != 'P') || (id_two < '1') || (id_two > '6')) {
 			// signature error
 			throw FI_MSG_ERROR_MAGIC_NUMBER;
 		}
@@ -324,7 +324,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				// write the bitmap data
 
 				if (id_two == '1') {	// ASCII bitmap
-					for (y = 0; y < height; y++) {		
+					for (y = 0; y < height; y++) {
 						BYTE *bits = FreeImage_GetScanLine(dib, height - 1 - y);
 
 						for (x = 0; x < width; x++) {
@@ -337,7 +337,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				}  else {		// Raw bitmap
 					int line = CalculateLine(width, 1);
 
-					for (y = 0; y < height; y++) {	
+					for (y = 0; y < height; y++) {
 						BYTE *bits = FreeImage_GetScanLine(dib, height - 1 - y);
 
 						for (x = 0; x < line; x++) {
@@ -358,7 +358,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					if(id_two == '2') {		// ASCII greymap
 						int level = 0;
 
-						for (y = 0; y < height; y++) {	
+						for (y = 0; y < height; y++) {
 							BYTE *bits = FreeImage_GetScanLine(dib, height - 1 - y);
 
 							for (x = 0; x < width; x++) {
@@ -369,7 +369,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					} else {		// Raw greymap
 						BYTE level = 0;
 
-						for (y = 0; y < height; y++) {		
+						for (y = 0; y < height; y++) {
 							BYTE *bits = FreeImage_GetScanLine(dib, height - 1 - y);
 
 							for (x = 0; x < width; x++) {
@@ -385,7 +385,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					if(id_two == '2') {		// ASCII greymap
 						int level = 0;
 
-						for (y = 0; y < height; y++) {	
+						for (y = 0; y < height; y++) {
 							WORD *bits = (WORD*)FreeImage_GetScanLine(dib, height - 1 - y);
 
 							for (x = 0; x < width; x++) {
@@ -396,7 +396,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					} else {		// Raw greymap
 						WORD level = 0;
 
-						for (y = 0; y < height; y++) {		
+						for (y = 0; y < height; y++) {
 							WORD *bits = (WORD*)FreeImage_GetScanLine(dib, height - 1 - y);
 
 							for (x = 0; x < width; x++) {
@@ -417,7 +417,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					if (id_two == '3') {		// ASCII pixmap
 						int level = 0;
 
-						for (y = 0; y < height; y++) {	
+						for (y = 0; y < height; y++) {
 							BYTE *bits = FreeImage_GetScanLine(dib, height - 1 - y);
 
 							for (x = 0; x < width; x++) {
@@ -434,11 +434,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					}  else {			// Raw pixmap
 						BYTE level = 0;
 
-						for (y = 0; y < height; y++) {	
+						for (y = 0; y < height; y++) {
 							BYTE *bits = FreeImage_GetScanLine(dib, height - 1 - y);
 
 							for (x = 0; x < width; x++) {
-								io->read_proc(&level, 1, 1, handle); 
+								io->read_proc(&level, 1, 1, handle);
 								bits[FI_RGBA_RED] = (BYTE)((255 * (int)level) / maxval);	// R
 
 								io->read_proc(&level, 1, 1, handle);
@@ -458,7 +458,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					if (id_two == '3') {		// ASCII pixmap
 						int level = 0;
 
-						for (y = 0; y < height; y++) {	
+						for (y = 0; y < height; y++) {
 							FIRGB16 *bits = (FIRGB16*)FreeImage_GetScanLine(dib, height - 1 - y);
 
 							for (x = 0; x < width; x++) {
@@ -473,7 +473,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					}  else {			// Raw pixmap
 						WORD level = 0;
 
-						for (y = 0; y < height; y++) {	
+						for (y = 0; y < height; y++) {
 							FIRGB16 *bits = (FIRGB16*)FreeImage_GetScanLine(dib, height - 1 - y);
 
 							for (x = 0; x < width; x++) {
@@ -513,11 +513,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			}
 		}
 	}
-		
+
 	return NULL;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	// ----------------------------------------------------------
 	//   PNM Saving
@@ -540,7 +540,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 	char buffer[256];	// temporary buffer whose size should be enough for what we need
 
 	if(!dib || !handle) return FALSE;
-	
+
 	FREE_IMAGE_TYPE image_type = FreeImage_GetImageType(dib);
 
 	int bpp		= FreeImage_GetBPP(dib);
@@ -558,7 +558,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 				case 1 :
 					magic = 1;	// PBM file (B & W)
 					break;
-				case 8 : 			
+				case 8 :
 					magic = 2;	// PGM file	(Greyscale)
 					break;
 
@@ -570,7 +570,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 					return FALSE;	// Invalid bit depth
 			}
 			break;
-		
+
 		case FIT_UINT16:
 			magic = 2;	// PGM file	(Greyscale)
 			maxval = 65535;
@@ -625,7 +625,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 					for (y = 0; y < height; y++) {
 						// write the scanline to disc
 						BYTE *bits = FreeImage_GetScanLine(dib, height - 1 - y);
-						
+
 						for (x = 0; x < width; x++) {
 							sprintf(buffer, "%3d %3d %3d ", bits[FI_RGBA_RED], bits[FI_RGBA_GREEN], bits[FI_RGBA_BLUE]);
 
@@ -641,7 +641,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 							}
 
 							bits += 3;
-						}					
+						}
 					}
 
 				}
@@ -723,7 +723,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 					}
 				}
 			}
-			
+
 			break;
 		}
 	} // if(FIT_BITMAP)
@@ -781,7 +781,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 			for (y = 0; y < height; y++) {
 				// write the scanline to disc
 				FIRGB16 *bits = (FIRGB16*)FreeImage_GetScanLine(dib, height - 1 - y);
-				
+
 				for (x = 0; x < width; x++) {
 					sprintf(buffer, "%5d %5d %5d ", bits[x].red, bits[x].green, bits[x].blue);
 
@@ -795,7 +795,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 						io->write_proc(&buffer, (unsigned int)strlen(buffer), 1, handle);
 						length = 0;
 					}
-				}					
+				}
 			}
 
 		}

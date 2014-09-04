@@ -23,7 +23,7 @@
 #include  "FreeImageFramework.h"
 //#include "Resize.h"
 
-FIBITMAP * DLL_CALLCONV 
+FIBITMAP * DLL_CALLCONV
 FreeImage_Rescale(FIBITMAP *src, int dst_width, int dst_height, FREE_IMAGE_FILTER filter) {
 	FIBITMAP *dst = NULL;
 
@@ -67,12 +67,12 @@ FreeImage_Rescale(FIBITMAP *src, int dst_width, int dst_height, FREE_IMAGE_FILTE
 
 	// copy metadata from src to dst
 	FreeImage_CloneMetadata(dst, src);
-	
+
 	return dst;
 }
 
 FIBITMAP * DLL_CALLCONV
-FreeImage_MakeThumbnail(FIBITMAP *dib, int max_pixel_size, BOOL convert) {
+FreeImage_MakeThumbnail(FIBITMAP *dib, int max_pixel_size, WINBOOL convert) {
 	FIBITMAP *thumbnail = NULL;
 	int new_width, new_height;
 
@@ -165,6 +165,6 @@ FreeImage_MakeThumbnail(FIBITMAP *dib, int max_pixel_size, BOOL convert) {
 
 	// copy metadata from src to dst
 	FreeImage_CloneMetadata(thumbnail, dib);
-	
+
 	return thumbnail;
 }

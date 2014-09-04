@@ -22,15 +22,15 @@
 
 #include "TestSuite.h"
 
-void  
+void
 testBuildMPage(const char *src_filename, const char *dst_filename, FREE_IMAGE_FORMAT dst_fif, unsigned bpp) {
 	// get the file type
 	FREE_IMAGE_FORMAT src_fif = FreeImage_GetFileType(src_filename);
 	// load the file
-	FIBITMAP *src = FreeImage_Load(src_fif, src_filename, 0); //24bit image 
+	FIBITMAP *src = FreeImage_Load(src_fif, src_filename, 0); //24bit image
 
-	FIMULTIBITMAP *out = FreeImage_OpenMultiBitmap(dst_fif, dst_filename, TRUE, FALSE, FALSE); 
-	for(int size = 16; size <= 48; size += 16 ) { 
+	FIMULTIBITMAP *out = FreeImage_OpenMultiBitmap(dst_fif, dst_filename, TRUE, FALSE, FALSE);
+	for(int size = 16; size <= 48; size += 16 ) {
 		FIBITMAP *rescaled = FreeImage_Rescale(src, size, size, FILTER_CATMULLROM);
 
 		if(FreeImage_GetBPP(rescaled) != bpp) {
@@ -45,57 +45,57 @@ testBuildMPage(const char *src_filename, const char *dst_filename, FREE_IMAGE_FO
 					break;
 			}
 			assert(tmp != NULL);
-			FreeImage_Unload(rescaled); 
+			FreeImage_Unload(rescaled);
 			rescaled = tmp;
 		}
 
-		FreeImage_AppendPage(out, rescaled); 
-		FreeImage_Unload(rescaled); 
-	} 
-	
-	FreeImage_Unload(src); 
-	
-	FreeImage_CloseMultiBitmap(out, 0); 
+		FreeImage_AppendPage(out, rescaled);
+		FreeImage_Unload(rescaled);
+	}
+
+	FreeImage_Unload(src);
+
+	FreeImage_CloseMultiBitmap(out, 0);
 
 }
 
 void testMPageCache(const char *src_filename, const char *dst_filename) {
 
-	BOOL keep_cache_in_memory = FALSE;
+	WINBOOL keep_cache_in_memory = FALSE;
 
 	// get the file type
 	FREE_IMAGE_FORMAT src_fif = FreeImage_GetFileType(src_filename);
 	// load the file
-	FIBITMAP *src = FreeImage_Load(src_fif, src_filename, 0); //24bit image 
+	FIBITMAP *src = FreeImage_Load(src_fif, src_filename, 0); //24bit image
 	assert(src != NULL);
 
 	// convert to 24-bit
 	if(FreeImage_GetBPP(src) != 24) {
 		FIBITMAP *tmp = FreeImage_ConvertTo24Bits(src);
 		assert(tmp != NULL);
-		FreeImage_Unload(src); 
+		FreeImage_Unload(src);
 		src = tmp;
 	}
 
-	FIMULTIBITMAP *out = FreeImage_OpenMultiBitmap(FIF_TIFF, dst_filename, TRUE, FALSE, keep_cache_in_memory); 
+	FIMULTIBITMAP *out = FreeImage_OpenMultiBitmap(FIF_TIFF, dst_filename, TRUE, FALSE, keep_cache_in_memory);
 
 	// attempt to create 16 480X360 images in a 24-bit TIFF multipage file
 	FIBITMAP *rescaled = FreeImage_Rescale(src, 480, 360, FILTER_CATMULLROM);
-	for(int i = 0; i < 16; i++) { 		
-		FreeImage_AppendPage(out, rescaled); 
-	} 
-	FreeImage_Unload(rescaled); 
-	
-	FreeImage_Unload(src); 
-	
-	FreeImage_CloseMultiBitmap(out, 0); 
+	for(int i = 0; i < 16; i++) {
+		FreeImage_AppendPage(out, rescaled);
+	}
+	FreeImage_Unload(rescaled);
+
+	FreeImage_Unload(src);
+
+	FreeImage_CloseMultiBitmap(out, 0);
 }
 
 // --------------------------------------------------------------------------
 
-BOOL testCloneMultiPage(FREE_IMAGE_FORMAT fif, const char *input, const char *output, int output_flag) {
+WINBOOL testCloneMultiPage(FREE_IMAGE_FORMAT fif, const char *input, const char *output, int output_flag) {
 
-	BOOL bMemoryCache = TRUE;
+	WINBOOL bMemoryCache = TRUE;
 
 	// Open src file (read-only, use memory cache)
 	FIMULTIBITMAP *src = FreeImage_OpenMultiBitmap(fif, input, FALSE, TRUE, bMemoryCache);
@@ -134,14 +134,14 @@ BOOL testCloneMultiPage(FREE_IMAGE_FORMAT fif, const char *input, const char *ou
 
 void testLockDeleteMultiPage(const char *input) {
 
-	BOOL bCreateNew = FALSE;
-	BOOL bReadOnly = FALSE;
-	BOOL bMemoryCache = TRUE;
+	WINBOOL bCreateNew = FALSE;
+	WINBOOL bReadOnly = FALSE;
+	WINBOOL bMemoryCache = TRUE;
 
 	// Open src file (read/write, use memory cache)
 	FREE_IMAGE_FORMAT fif = FreeImage_GetFileType(input);
 	FIMULTIBITMAP *src = FreeImage_OpenMultiBitmap(fif, input, bCreateNew, bReadOnly, bMemoryCache);
-	
+
 	if(src) {
 		// get the page count
 		int count = FreeImage_GetPageCount(src);
@@ -159,7 +159,7 @@ void testLockDeleteMultiPage(const char *input) {
 	}
 
 	src = FreeImage_OpenMultiBitmap(fif, input, bCreateNew, bReadOnly, bMemoryCache);
-	
+
 	if(src) {
 		// get the page count
 		int count = FreeImage_GetPageCount(src);

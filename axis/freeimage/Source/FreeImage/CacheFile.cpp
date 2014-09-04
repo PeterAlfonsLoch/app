@@ -22,15 +22,15 @@
 
 #include  "FreeImageFramework.h"
 
-#ifdef _MSC_VER 
+#ifdef _MSC_VER
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
-#endif 
+#endif
 
 //#include "CacheFile.h"
 
 // ----------------------------------------------------------
 
-CacheFile::CacheFile(const std::string filename, BOOL keep_in_memory) :
+CacheFile::CacheFile(const std::string filename, WINBOOL keep_in_memory) :
 m_file(NULL),
 m_filename(filename),
 m_free_pages(),
@@ -45,7 +45,7 @@ m_keep_in_memory(keep_in_memory) {
 CacheFile::~CacheFile() {
 }
 
-BOOL
+WINBOOL
 CacheFile::open() {
 	if ((!m_filename.empty()) && (!m_keep_in_memory)) {
 		m_file = fopen(m_filename.c_str(), "w+b");
@@ -65,12 +65,12 @@ CacheFile::close() {
 		delete [] block->data;
 		delete block;
 	}
-	while (!m_page_cache_mem.empty()) { 
-		Block *block = *m_page_cache_mem.begin(); 
-		m_page_cache_mem.pop_front(); 
-		delete [] block->data; 
-		delete block; 
-	} 
+	while (!m_page_cache_mem.empty()) {
+		Block *block = *m_page_cache_mem.begin();
+		m_page_cache_mem.pop_front();
+		delete [] block->data;
+		delete block;
+	}
 
 	if (m_file) {
 		// close the file
@@ -162,7 +162,7 @@ CacheFile::lockBlock(int nr) {
 	return NULL;
 }
 
-BOOL
+WINBOOL
 CacheFile::unlockBlock(int nr) {
 	if (m_current_block) {
 		m_current_block = NULL;
@@ -173,7 +173,7 @@ CacheFile::unlockBlock(int nr) {
 	return FALSE;
 }
 
-BOOL
+WINBOOL
 CacheFile::deleteBlock(int nr) {
 	if (!m_current_block) {
 		PageMapIt it = m_page_map.find(nr);
@@ -193,7 +193,7 @@ CacheFile::deleteBlock(int nr) {
 	return FALSE;
 }
 
-BOOL
+WINBOOL
 CacheFile::readFile(BYTE *data, int nr, int size) {
 	if ((data) && (size > 0)) {
 		int s = 0;
@@ -227,7 +227,7 @@ CacheFile::writeFile(BYTE *data, int size) {
 		int s = 0;
 		int stored_alloc;
 		int alloc;
-		
+
 		stored_alloc = alloc = allocateBlock();
 
 		do {
@@ -244,7 +244,7 @@ CacheFile::writeFile(BYTE *data, int size) {
 
 			unlockBlock(copy_alloc);
 
-			s += BLOCK_SIZE;			
+			s += BLOCK_SIZE;
 		} while (++count < nr_blocks_required);
 
 		return stored_alloc;

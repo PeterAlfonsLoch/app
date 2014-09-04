@@ -1,7 +1,7 @@
 // ==========================================================
 // EXR Loader and writer
 //
-// Design and implementation by 
+// Design and implementation by
 // - Hervé Drolon (drolon@infonie.fr)
 // - Mihail Naydenov (mnaydenov@users.sourceforge.net)
 //
@@ -143,7 +143,7 @@ MimeType() {
 	return "image/x-exr";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE exr_signature[] = { 0x76, 0x2F, 0x31, 0x01 };
 	BYTE signature[] = { 0, 0, 0, 0 };
@@ -152,12 +152,12 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return (memcmp(exr_signature, signature, 4) == 0);
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (
 		(type == FIT_FLOAT) ||
@@ -166,7 +166,7 @@ SupportsExportType(FREE_IMAGE_TYPE type) {
 	);
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
 }
@@ -176,14 +176,14 @@ SupportsNoPixels() {
 static FIBITMAP * DLL_CALLCONV
 Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	bool bUseRgbaInterface = false;
-	FIBITMAP *dib = NULL;	
+	FIBITMAP *dib = NULL;
 
 	if(!handle) {
 		return NULL;
 	}
 
 	try {
-		BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+		WINBOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 		// save the stream starting point
 		const long stream_start = io->tell_proc(handle);
@@ -194,7 +194,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		// open the file
 		Imf::InputFile file(istream);
 
-		// get file info			
+		// get file info
 		const Imath::Box2i &dataWindow = file.header().dataWindow();
 		int width  = dataWindow.max.x - dataWindow.min.x + 1;
 		int height = dataWindow.max.y - dataWindow.min.y + 1;
@@ -227,7 +227,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 		if(bMixedComponents) {
 			bool bHandled = false;
-			// we may have a RGBZ or RGBAZ image ... 
+			// we may have a RGBZ or RGBAZ image ...
 			if(components > 4) {
 				if(channels.findChannel("R") && channels.findChannel("G") && channels.findChannel("B") && channels.findChannel("A")) {
 					std::string msg = "Warning: converting color model " + exr_color_model + " to RGBA color model";
@@ -244,7 +244,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			}
 			if(!bHandled) {
 				THROW (Iex::InputExc, "Unable to handle mixed component types (color model = " << exr_color_model << ")");
-			} 
+			}
 		}
 
 		switch(pixel_type) {
@@ -260,7 +260,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		// check for supported image color models
 		// --------------------------------------------------------------
 
-		if((components == 1) || (components == 2)) {				
+		if((components == 1) || (components == 2)) {
 			// if the image is gray-alpha (YA), ignore the alpha channel
 			if((components == 1) && channels.findChannel("Y")) {
 				image_type = FIT_FLOAT;
@@ -296,7 +296,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 					image_type = FIT_RGBF;
 					// ignore other channels
-					components = 3;					
+					components = 3;
 				}
 			}
 		}
@@ -316,22 +316,22 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			const Imf::PreviewImage& preview = file.header().previewImage();
 			const unsigned thWidth = preview.width();
 			const unsigned thHeight = preview.height();
-			
+
 			FIBITMAP* thumbnail = FreeImage_Allocate(thWidth, thHeight, 32);
 			if(thumbnail) {
 				const Imf::PreviewRgba *src_line = preview.pixels();
 				BYTE *dst_line = FreeImage_GetScanLine(thumbnail, thHeight - 1);
 				const unsigned dstPitch = FreeImage_GetPitch(thumbnail);
-				
+
 				for (unsigned y = 0; y < thHeight; ++y) {
 					const Imf::PreviewRgba *src_pixel = src_line;
 					RGBQUAD* dst_pixel = (RGBQUAD*)dst_line;
-					
+
 					for(unsigned x = 0; x < thWidth; ++x) {
 						dst_pixel->rgbRed = src_pixel->r;
 						dst_pixel->rgbGreen = src_pixel->g;
 						dst_pixel->rgbBlue = src_pixel->b;
-						dst_pixel->rgbReserved = src_pixel->a;				
+						dst_pixel->rgbReserved = src_pixel->a;
 						src_pixel++;
 						dst_pixel++;
 					}
@@ -356,7 +356,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		const unsigned pitch = FreeImage_GetPitch(dib);		// size of our yStride in bytes
 
 		Imf::PixelType pixelType = Imf::FLOAT;	// load as float data type;
-		
+
 		if(bUseRgbaInterface) {
 			// use the RGBA interface (used when loading RY BY Y images )
 
@@ -448,7 +448,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 /**
 Set the preview image using the dib embedded thumbnail
 */
-static BOOL
+static WINBOOL
 SetPreviewImage(FIBITMAP *dib, Imf::Header& header) {
 	if(!FreeImage_GetThumbnail(dib)) {
 		return FALSE;
@@ -461,33 +461,33 @@ SetPreviewImage(FIBITMAP *dib, Imf::Header& header) {
 	} else {
 		const unsigned thWidth = FreeImage_GetWidth(thumbnail);
 		const unsigned thHeight = FreeImage_GetHeight(thumbnail);
-		
+
 		Imf::PreviewImage preview(thWidth, thHeight);
 
 		// copy thumbnail to 32-bit RGBA preview image
-		
+
 		const BYTE* src_line = FreeImage_GetScanLine(thumbnail, thHeight - 1);
 		Imf::PreviewRgba* dst_line = preview.pixels();
 		const unsigned srcPitch = FreeImage_GetPitch(thumbnail);
-		
+
 		for (unsigned y = 0; y < thHeight; y++) {
 			const RGBQUAD* src_pixel = (RGBQUAD*)src_line;
 			Imf::PreviewRgba* dst_pixel = dst_line;
-			
+
 			for(unsigned x = 0; x < thWidth; x++) {
 				dst_pixel->r = src_pixel->rgbRed;
 				dst_pixel->g = src_pixel->rgbGreen;
 				dst_pixel->b = src_pixel->rgbBlue;
 				dst_pixel->a = src_pixel->rgbReserved;
-				
+
 				src_pixel++;
 				dst_pixel++;
 			}
-			
+
 			src_line -= srcPitch;
 			dst_line += thWidth;
 		}
-		
+
 		header.setPreviewImage(preview);
 	}
 
@@ -497,7 +497,7 @@ SetPreviewImage(FIBITMAP *dib, Imf::Header& header) {
 /**
 Save using EXR_LC compression (works only with RGB[A]F images)
 */
-static BOOL 
+static WINBOOL
 SaveAsEXR_LC(C_OStream& ostream, FIBITMAP *dib, Imf::Header& header, int width, int height) {
 	int x, y;
 	Imf::RgbaChannels rgbaChannels;
@@ -554,10 +554,10 @@ SaveAsEXR_LC(C_OStream& ostream, FIBITMAP *dib, Imf::Header& header, int width, 
 
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	const char *channel_name[4] = { "R", "G", "B", "A" };
-	BOOL bIsFlipped = FALSE;
+	WINBOOL bIsFlipped = FALSE;
 	half *halfData = NULL;
 
 	if(!dib || !handle) return FALSE;
@@ -607,13 +607,13 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		Imath::Box2i dataWindow (Imath::V2i (0, 0), Imath::V2i (width - 1, height - 1));
 		Imath::Box2i displayWindow (Imath::V2i (-dx, -dy), Imath::V2i (width - dx - 1, height - dy - 1));
 
-		Imf::Header header = Imf::Header(displayWindow, dataWindow, 1, 
-			Imath::V2f(0,0), 1, 
-			Imf::INCREASING_Y, compress);        		
+		Imf::Header header = Imf::Header(displayWindow, dataWindow, 1,
+			Imath::V2f(0,0), 1,
+			Imf::INCREASING_Y, compress);
 
 		// handle thumbnail
 		SetPreviewImage(dib, header);
-		
+
 		// check for EXR_LC compression
 		if((flags & EXR_LC) == EXR_LC) {
 			return SaveAsEXR_LC(ostream, dib, header, width, height);
@@ -687,7 +687,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		} else if(pixelType == Imf::FLOAT) {
 			// invert dib scanlines
 			bIsFlipped = FreeImage_FlipVertical(dib);
-		
+
 			bits = FreeImage_GetBits(dib);
 			bytespc = sizeof(float);
 			bytespp = sizeof(float) * components;
@@ -700,7 +700,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 				(char*)(bits),			// base
 				bytespp,				// xStride
 				pitch));				// yStride
-		} else if((image_type == FIT_RGBF) || (image_type == FIT_RGBAF)) {			
+		} else if((image_type == FIT_RGBF) || (image_type == FIT_RGBAF)) {
 			for(int c = 0; c < components; c++) {
 				char *channel_base = (char*)(bits) + c*bytespc;
 				frameBuffer.insert (channel_name[c],// name
@@ -734,7 +734,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		FreeImage_OutputMessageProc(s_format_id, e.what());
 
 		return FALSE;
-	}	
+	}
 }
 
 // ==========================================================

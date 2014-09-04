@@ -130,7 +130,7 @@
 
 #define TAG_MARKER_NOTE		0x927C
 #define TAG_USER_COMMENT	0x9286
-    
+
 // Tag relating to related file information
 
 #define TAG_RELATED_SOUND_FILE			0xA004
@@ -291,7 +291,7 @@
 // Helper functions to deal with the FITAG structure
 // --------------------------------------------------------------------------
 
-/** 
+/**
 Describes the tag format descriptor
 @param type Tag data type
 @return Returns the width of a single element, in bytes
@@ -320,16 +320,16 @@ TagLib& s = TagLib::instance();
 TagInfo *tag_info = s.getTagInfo(EXIF_MAIN, 0x0100);
 </code>
 
-Note on multi-threaded applications : 
+Note on multi-threaded applications :
 
-The singleton pattern must be carefully constructed in multi-threaded applications. 
-If two threads are to execute the creation method at the same time when a singleton 
-does not yet exist, they both must check for an instance of the singleton and then 
+The singleton pattern must be carefully constructed in multi-threaded applications.
+If two threads are to execute the creation method at the same time when a singleton
+does not yet exist, they both must check for an instance of the singleton and then
 only one should create the new one.
-The classic solution to this problem is to use mutual exclusion on the class that 
+The classic solution to this problem is to use mutual exclusion on the class that
 indicates that the object is being instantiated.
-The FreeImage solution is to instantiate the singleton before any other thread is launched, 
-i.e. inside the FreeImage_Initialise function (see Plugin.cpp). 
+The FreeImage solution is to instantiate the singleton before any other thread is launched,
+i.e. inside the FreeImage_Initialise function (see Plugin.cpp).
 */
 
 class TagLib {
@@ -340,9 +340,9 @@ public:
 	*/
 	enum MDMODEL {
 		UNKNOWN,
-		EXIF_MAIN, 
-		EXIF_EXIF, 
-		EXIF_GPS, 
+		EXIF_MAIN,
+		EXIF_EXIF,
+		EXIF_GPS,
 		EXIF_INTEROP,
 		EXIF_MAKERNOTE_CANON,
 		EXIF_MAKERNOTE_CASIOTYPE1,
@@ -386,14 +386,14 @@ private:
 
 	/// Copy constructor (disabled)
 	TagLib(const TagLib&);
-	
-	/** 
+
+	/**
 	Used in the constructor to initialize the tag tables
 	@param md_model Internal metadata model
 	@param tag_table Tag info table
 	@return Returns TRUE if successful, returns FALSE otherwise
 	*/
-	BOOL addMetadataModel(MDMODEL md_model, TagInfo *tag_table);
+	WINBOOL addMetadataModel(MDMODEL md_model, TagInfo *tag_table);
 
 public:
 	/// Destructor
@@ -416,9 +416,9 @@ public:
 	const TagInfo* getTagInfo(MDMODEL md_model, WORD tagID);
 
 	/**
-	Given a tag ID, returns its tag field name. 
-	When the tag is unknown and defaultKey is not NULL, a string such as "Tag 0x1234" is returned. 
-	This string is contained in the provided defaultKey buffer (assumed to be an array of at least 16 chars). 
+	Given a tag ID, returns its tag field name.
+	When the tag is unknown and defaultKey is not NULL, a string such as "Tag 0x1234" is returned.
+	This string is contained in the provided defaultKey buffer (assumed to be an array of at least 16 chars).
 	@param md_model Internal metadata model
 	@param tagID tag ID
 	@param defaultKey Assumed to be an array of 16 chars. If not NULL, build a key for unknown tags
@@ -427,7 +427,7 @@ public:
 	const char* getTagFieldName(MDMODEL md_model, WORD tagID, char *defaultKey);
 
 	/**
-	Given a tag ID, returns its description. 
+	Given a tag ID, returns its description.
 	When the tag has no description, a NULL value is returned.
 	@param md_model Internal metadata model
 	@param tagID tag ID
@@ -436,7 +436,7 @@ public:
 	const char* getTagDescription(MDMODEL md_model, WORD tagID);
 
 	/**
-	Given a tag field name, returns its tag ID. 
+	Given a tag field name, returns its tag ID.
 	When the tag doesn't exists, a value '-1' is returned.
 	@param md_model Internal metadata model
 	@param key tag field name
@@ -471,14 +471,14 @@ extern "C" {
 #endif
 
 // JPEG Exif profile
-BOOL jpeg_read_exif_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned datalen);
-BOOL jpeg_read_exif_profile_raw(FIBITMAP *dib, const BYTE *profile, unsigned length);
-BOOL jpegxr_read_exif_profile(FIBITMAP *dib, const BYTE *profile, unsigned length);
-BOOL jpegxr_read_exif_gps_profile(FIBITMAP *dib, const BYTE *profile, unsigned length);
+WINBOOL jpeg_read_exif_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned datalen);
+WINBOOL jpeg_read_exif_profile_raw(FIBITMAP *dib, const BYTE *profile, unsigned length);
+WINBOOL jpegxr_read_exif_profile(FIBITMAP *dib, const BYTE *profile, unsigned length);
+WINBOOL jpegxr_read_exif_gps_profile(FIBITMAP *dib, const BYTE *profile, unsigned length);
 
 // JPEG / TIFF IPTC profile
-BOOL read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen);
-BOOL write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size);
+WINBOOL read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen);
+WINBOOL write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size);
 
 #if defined(__cplusplus)
 }

@@ -35,13 +35,13 @@ static int s_format_id;
 // ==========================================================
 
 /**
-OpenJPEG Error callback 
+OpenJPEG Error callback
 */
 static void jp2_error_callback(const char *msg, void *client_data) {
 	FreeImage_OutputMessageProc(s_format_id, "Error: %s", msg);
 }
 /**
-OpenJPEG Warning callback 
+OpenJPEG Warning callback
 */
 static void jp2_warning_callback(const char *msg, void *client_data) {
 	FreeImage_OutputMessageProc(s_format_id, "Warning: %s", msg);
@@ -76,7 +76,7 @@ MimeType() {
 	return "image/jp2";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE jp2_signature[] = { 0x00, 0x00, 0x00, 0x0C, 0x6A, 0x50, 0x20, 0x20, 0x0D, 0x0A, 0x87, 0x0A };
 	BYTE signature[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -88,21 +88,21 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return (memcmp(jp2_signature, signature, sizeof(jp2_signature)) == 0);
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return (
 		(depth == 8) ||
-		(depth == 24) || 
+		(depth == 24) ||
 		(depth == 32)
 	);
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (
 		(type == FIT_BITMAP)  ||
 		(type == FIT_UINT16)  ||
-		(type == FIT_RGB16) || 
+		(type == FIT_RGB16) ||
 		(type == FIT_RGBA16)
 	);
 }
@@ -110,7 +110,7 @@ SupportsExportType(FREE_IMAGE_TYPE type) {
 // ----------------------------------------------------------
 
 static void * DLL_CALLCONV
-Open(FreeImageIO *io, fi_handle handle, BOOL read) {
+Open(FreeImageIO *io, fi_handle handle, WINBOOL read) {
 	// create the stream wrapper
 	J2KFIO_t *fio = opj_freeimage_stream_create(io, handle, read);
 	return fio;
@@ -131,7 +131,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	if (handle && fio) {
 		opj_codec_t *d_codec = NULL;	// handle to a decompressor
 		opj_dparameters_t parameters;	// decompression parameters
-		opj_image_t *image = NULL;		// decoded image 
+		opj_image_t *image = NULL;		// decoded image
 
 		FIBITMAP *dib = NULL;
 
@@ -139,13 +139,13 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		if(!Validate(io, handle)) {
 			return NULL;
 		}
-		
-		BOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+
+		WINBOOL header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
 		// get the OpenJPEG stream
 		opj_stream_t *d_stream = fio->stream;
 
-		// set decoding parameters to default values 
+		// set decoding parameters to default values
 		opj_set_default_decoder_parameters(&parameters);
 
 		try {
@@ -153,7 +153,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 			// get a decoder handle
 			d_codec = opj_create_decompress(OPJ_CODEC_JP2);
-			
+
 			// configure the event callbacks
 			// catch events using our callbacks (no local context needed here)
 			opj_set_info_handler(d_codec, NULL, NULL);
@@ -164,7 +164,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			if( !opj_setup_decoder(d_codec, &parameters) ) {
 				throw "Failed to setup the decoder\n";
 			}
-			
+
 			// read the main header of the codestream and if necessary the JP2 boxes
 			if( !opj_read_header(d_stream, d_codec, &image)) {
 				throw "Failed to read the header\n";
@@ -173,7 +173,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			// --- header only mode
 
 			if (header_only) {
-				// create output image 
+				// create output image
 				dib = J2KImageToFIBITMAP(s_format_id, image, header_only);
 				if(!dib) throw "Failed to import JPEG2000 image";
 				// clean-up and return header data
@@ -182,7 +182,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				return dib;
 			}
 
-			// decode the stream and fill the image structure 
+			// decode the stream and fill the image structure
 			if( !( opj_decode(d_codec, d_stream, image) && opj_end_decompress(d_codec, d_stream) ) ) {
 				throw "Failed to decode image!\n";
 			}
@@ -191,7 +191,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			opj_destroy_codec(d_codec);
 			d_codec = NULL;
 
-			// create output image 
+			// create output image
 			dib = J2KImageToFIBITMAP(s_format_id, image, header_only);
 			if(!dib) throw "Failed to import JPEG2000 image";
 
@@ -215,11 +215,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	return NULL;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	J2KFIO_t *fio = (J2KFIO_t*)data;
 	if (dib && handle && fio) {
-		BOOL bSuccess;
+		WINBOOL bSuccess;
 		opj_codec_t *c_codec = NULL;	// handle to a compressor
 		opj_cparameters_t parameters;	// compression parameters
 		opj_image_t *image = NULL;		// image to encode
@@ -238,7 +238,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 				throw "Invalid image size - image is too small";
 			}
 
-			parameters.tcp_numlayers = 0;	
+			parameters.tcp_numlayers = 0;
 			// if no rate entered, apply a 16:1 rate by default
 			if(flags == J2K_DEFAULT) {
 				parameters.tcp_rates[0] = (float)16;
@@ -284,7 +284,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 			// free remaining compression structures
 			opj_destroy_codec(c_codec);
-			
+
 			// free image data
 			opj_image_destroy(image);
 

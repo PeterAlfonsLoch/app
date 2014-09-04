@@ -39,7 +39,7 @@ void testSupportsNoPixels() {
 /**
 Test header only bitmap allocation
 */
-BOOL testHeader(const char *lpszPathName) {
+WINBOOL testHeader(const char *lpszPathName) {
 	int flags = FIF_LOAD_NOPIXELS;
 
 	FIBITMAP *dib1 = NULL, *dib2 = NULL;
@@ -47,23 +47,23 @@ BOOL testHeader(const char *lpszPathName) {
 	try {
 		FREE_IMAGE_FORMAT fif = FreeImage_GetFIFFromFilename(lpszPathName);
 
-		dib1 = FreeImage_Load(fif, lpszPathName, flags); 
+		dib1 = FreeImage_Load(fif, lpszPathName, flags);
 		if(!dib1) throw(1);
-		
-		dib2 = FreeImage_Clone(dib1); 
+
+		dib2 = FreeImage_Clone(dib1);
 		if(!dib2) throw(1);
-		
-		FreeImage_Unload(dib1); 
-		FreeImage_Unload(dib2); 
+
+		FreeImage_Unload(dib1);
+		FreeImage_Unload(dib2);
 
 		return TRUE;
-	} 
-	catch(int) {
-		if(dib1) FreeImage_Unload(dib1); 
-		if(dib2) FreeImage_Unload(dib2); 
 	}
-	
-	return FALSE; 
+	catch(int) {
+		if(dib1) FreeImage_Unload(dib1);
+		if(dib2) FreeImage_Unload(dib2);
+	}
+
+	return FALSE;
 }
 
 /**
@@ -82,8 +82,8 @@ static void ParseMetadata(FIBITMAP *dib, FREE_IMAGE_MDMODEL model) {
 			// convert the tag value to a string
 			const char *value = FreeImage_TagToString(model, tag);
 
-			// print the tag 
-			// note that most tags do not have a description, 
+			// print the tag
+			// note that most tags do not have a description,
 			// especially when the metadata specifications are not available
 			if(FreeImage_GetTagDescription(tag)) {
 				//cout << FreeImage_GetTagKey(tag) << "=" << value << " - " << FreeImage_GetTagDescription(tag) << "\n";
@@ -100,7 +100,7 @@ static void ParseMetadata(FIBITMAP *dib, FREE_IMAGE_MDMODEL model) {
 /**
 Load the header of a bitmap (without pixel data)
 */
-BOOL testHeaderData(const char *lpszPathName) {
+WINBOOL testHeaderData(const char *lpszPathName) {
 	int flags = FIF_LOAD_NOPIXELS;
 
 	FIBITMAP *dib = NULL;
@@ -110,11 +110,11 @@ BOOL testHeaderData(const char *lpszPathName) {
 		FREE_IMAGE_FORMAT fif = FreeImage_GetFIFFromFilename(lpszPathName);
 		assert(FreeImage_FIFSupportsNoPixels(fif) == TRUE);
 
-		dib = FreeImage_Load(fif, lpszPathName, flags); 
+		dib = FreeImage_Load(fif, lpszPathName, flags);
 		if(!dib) throw(1);
 
 		// check that dib does not contains pixels
-		BOOL bHasPixel = FreeImage_HasPixels(dib);
+		WINBOOL bHasPixel = FreeImage_HasPixels(dib);
 		assert(bHasPixel == FALSE);
 
 		// use accessors
@@ -134,22 +134,22 @@ BOOL testHeaderData(const char *lpszPathName) {
 		// you cannot access pixels
 		BYTE *bits = FreeImage_GetBits(dib);
 		assert(bits == NULL);
-		
-		FreeImage_Unload(dib); 
+
+		FreeImage_Unload(dib);
 
 		return TRUE;
-	} 
-	catch(int) {
-		if(dib) FreeImage_Unload(dib); 
 	}
-	
-	return FALSE; 
+	catch(int) {
+		if(dib) FreeImage_Unload(dib);
+	}
+
+	return FALSE;
 }
 
 /**
 Test loading and saving of Exif raw data
 */
-static BOOL 
+static WINBOOL
 testExifRawFile(const char *lpszPathName, int load_flags, int save_flags) {
 	const char *lpszDstPathName = "raw_exif.jpg";
 
@@ -159,12 +159,12 @@ testExifRawFile(const char *lpszPathName, int load_flags, int save_flags) {
 		// load an Exif file (jpeg file)
 		FREE_IMAGE_FORMAT fif = FreeImage_GetFIFFromFilename(lpszPathName);
 
-		dib = FreeImage_Load(fif, lpszPathName, load_flags); 
+		dib = FreeImage_Load(fif, lpszPathName, load_flags);
 		if(!dib) throw(1);
 
 		// check access to raw Exif data
 		FITAG *tag = NULL;
-		BOOL bResult = FreeImage_GetMetadata(FIMD_EXIF_RAW, dib, "ExifRaw", &tag);
+		WINBOOL bResult = FreeImage_GetMetadata(FIMD_EXIF_RAW, dib, "ExifRaw", &tag);
 		if(tag) {
 			const char *key = FreeImage_GetTagKey(tag);
 			WORD id = FreeImage_GetTagID(tag);
@@ -174,16 +174,16 @@ testExifRawFile(const char *lpszPathName, int load_flags, int save_flags) {
 			BYTE *value = (BYTE*)FreeImage_GetTagValue(tag);
 
 			// save as jpeg : Exif data should be preserved
-			FreeImage_Save(fif, dib, lpszDstPathName, save_flags); 
+			FreeImage_Save(fif, dib, lpszDstPathName, save_flags);
 
 			// load and check Exif raw data
 			fif = FreeImage_GetFileType(lpszDstPathName);
 
-			dst = FreeImage_Load(fif, lpszDstPathName, load_flags); 
+			dst = FreeImage_Load(fif, lpszDstPathName, load_flags);
 			if(!dst) throw(1);
 
 			FITAG *dst_tag = NULL;
-			BOOL bResult = FreeImage_GetMetadata(FIMD_EXIF_RAW, dib, "ExifRaw", &dst_tag);
+			WINBOOL bResult = FreeImage_GetMetadata(FIMD_EXIF_RAW, dib, "ExifRaw", &dst_tag);
 			if(dst_tag) {
 				const char *key = FreeImage_GetTagKey(dst_tag);
 				WORD dst_id = FreeImage_GetTagID(dst_tag);
@@ -194,19 +194,19 @@ testExifRawFile(const char *lpszPathName, int load_flags, int save_flags) {
 
 				assert(length == dst_length);
 			}
-			
-			FreeImage_Unload(dst); 
+
+			FreeImage_Unload(dst);
 		}
 
-		FreeImage_Unload(dib); 
+		FreeImage_Unload(dib);
 
 		return TRUE;
-	} 
-	catch(int) {
-		if(dib) FreeImage_Unload(dib); 
 	}
-	
-	return FALSE; 
+	catch(int) {
+		if(dib) FreeImage_Unload(dib);
+	}
+
+	return FALSE;
 }
 
 // Main test functions
@@ -216,12 +216,12 @@ void testHeaderOnly() {
 	const char *src_file_jpg = "exif.jpg";
 	const char *src_file_png = "sample.png";
 
-	BOOL bResult = TRUE;
+	WINBOOL bResult = TRUE;
 
 	printf("testHeaderOnly ...\n");
 
 	testSupportsNoPixels();
-	
+
 	// JPEG plugin
 	bResult = testHeader(src_file_jpg);
 	assert(bResult);
@@ -244,7 +244,7 @@ void testHeaderOnly() {
 void testExifRaw() {
 	const char *src_file_jpg = "exif.jpg";
 
-	BOOL bResult = TRUE;
+	WINBOOL bResult = TRUE;
 
 	printf("testExifRaw ...\n");
 

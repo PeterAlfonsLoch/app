@@ -2,7 +2,7 @@
 // Memory Input/Output functions
 //
 // Design and implementation by
-// - Ryan Rubley <ryan@lostreality.org> 
+// - Ryan Rubley <ryan@lostreality.org>
 // - Hervé Drolon (drolon@infonie.fr)
 //
 // This file is part of FreeImage 3
@@ -31,7 +31,7 @@
 // Open and close a memory handle
 // =====================================================================
 
-FIMEMORY * DLL_CALLCONV 
+FIMEMORY * DLL_CALLCONV
 FreeImage_OpenMemory(BYTE *data, DWORD size_in_bytes) {
 	// allocate a memory handle
 	FIMEMORY *stream = (FIMEMORY*)malloc(sizeof(FIMEMORY));
@@ -43,7 +43,7 @@ FreeImage_OpenMemory(BYTE *data, DWORD size_in_bytes) {
 
 			// initialize the memory header
 			memset(mem_header, 0, sizeof(FIMEMORYHEADER));
-			
+
 			if(data && size_in_bytes) {
 				// wrap a user buffer
 				mem_header->delete_me = FALSE;
@@ -91,7 +91,7 @@ FreeImage_LoadFromMemory(FREE_IMAGE_FORMAT fif, FIMEMORY *stream, int flags) {
 }
 
 
-BOOL DLL_CALLCONV
+WINBOOL DLL_CALLCONV
 FreeImage_SaveToMemory(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, FIMEMORY *stream, int flags) {
 	if (stream) {
 		FreeImageIO io;
@@ -114,7 +114,7 @@ FreeImage_SaveToMemory(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, FIMEMORY *stream, i
 // Memory stream buffer access
 // =====================================================================
 
-BOOL DLL_CALLCONV
+WINBOOL DLL_CALLCONV
 FreeImage_AcquireMemory(FIMEMORY *stream, BYTE **data, DWORD *size_in_bytes) {
 	if (stream) {
 		FIMEMORYHEADER *mem_header = (FIMEMORYHEADER*)(stream->data);
@@ -154,7 +154,7 @@ Moves the memory pointer to a specified location
 @param origin Initial position
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-BOOL DLL_CALLCONV
+WINBOOL DLL_CALLCONV
 FreeImage_SeekMemory(FIMEMORY *stream, long offset, int origin) {
 	FreeImageIO io;
 	SetMemoryIO(&io);
@@ -196,7 +196,7 @@ Reads data from a memory stream
 @param stream Pointer to FIMEMORY structure
 @return Returns the number of full items actually read, which may be less than count if an error occurs
 */
-unsigned DLL_CALLCONV 
+unsigned DLL_CALLCONV
 FreeImage_ReadMemory(void *buffer, unsigned size, unsigned count, FIMEMORY *stream) {
 	FreeImageIO io;
 	SetMemoryIO(&io);
@@ -216,7 +216,7 @@ Writes data to a memory stream.
 @param stream Pointer to FIMEMORY structure
 @return Returns the number of full items actually written, which may be less than count if an error occurs
 */
-unsigned DLL_CALLCONV 
+unsigned DLL_CALLCONV
 FreeImage_WriteMemory(const void *buffer, unsigned size, unsigned count, FIMEMORY *stream) {
 	if (stream != NULL) {
 		FreeImageIO io;

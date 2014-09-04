@@ -5,7 +5,7 @@
 // - Sherman Wilcox
 // - Noam Gat
 //
-// References : 
+// References :
 // ------------
 // - The SGI Image File Format, Version 1.0
 // http://astronomy.swin.edu.au/~pbourke/dataformats/sgirgb/sgiversion.html
@@ -49,18 +49,18 @@ typedef struct tagSGIHeader {
 	/** Number of bytes per pixel channel. Legally 1 or 2. */
 	BYTE bpc;
 	/**
-	Number of dimensions. Legally 1, 2, or 3. 
+	Number of dimensions. Legally 1, 2, or 3.
 	1 means a single row, XSIZE long
 	2 means a single 2D image
 	3 means multiple 2D images
 	*/
-	WORD dimension;	
+	WORD dimension;
 	/** X size in pixels */
 	WORD xsize;
 	/** Y size in pixels */
 	WORD ysize;
 	/**
-	Number of channels. 
+	Number of channels.
 	1 indicates greyscale
 	3 indicates RGB
 	4 indicates RGB and Alpha
@@ -74,8 +74,8 @@ typedef struct tagSGIHeader {
 	char dummy[4];
 	/** Image name. Must be null terminated, therefore at most 79 bytes. */
 	char imagename[80];
-	/** 
-	Colormap ID. 
+	/**
+	Colormap ID.
 	0 - normal mode
 	1 - dithered, 3 mits for red and green, 2 for blue, obsolete
 	2 - index colour, obsolete
@@ -115,7 +115,7 @@ static int s_format_id;
 // ==========================================================
 
 #ifndef FREEIMAGE_BIGENDIAN
-static void 
+static void
 SwapHeader(SGIHeader *header) {
 	SwapShort(&header->magic);
 	SwapShort(&header->dimension);
@@ -128,7 +128,7 @@ SwapHeader(SGIHeader *header) {
 }
 #endif
 
-static int 
+static int
 get_rlechar(FreeImageIO *io, fi_handle handle, RLEStatus *pstatus) {
 	if (!pstatus->cnt) {
 		int cnt = 0;
@@ -191,7 +191,7 @@ MimeType() {
   return "image/x-sgi";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE sgi_signature[2] = { 0x01, 0xDA };
 	BYTE signature[2] = { 0, 0 };
@@ -201,12 +201,12 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return (memcmp(sgi_signature, signature, sizeof(sgi_signature)) == 0);
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
   return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
   return FALSE;
 }
@@ -233,17 +233,17 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		if(sgiHeader.magic != 474) {
 			throw FI_MSG_ERROR_MAGIC_NUMBER;
 		}
-		
-		BOOL bIsRLE = (sgiHeader.storage == 1) ? TRUE : FALSE;
-	
+
+		WINBOOL bIsRLE = (sgiHeader.storage == 1) ? TRUE : FALSE;
+
 		// check for unsupported image types
 		if (sgiHeader.bpc != 1) {
 			// Expected one byte per color component
-			throw SGI_16_BIT_COMPONENTS_NOT_SUPPORTED; 
+			throw SGI_16_BIT_COMPONENTS_NOT_SUPPORTED;
 		}
 		if (sgiHeader.colormap != 0) {
 			// Indexed or dithered images not supported
-			throw SGI_COLORMAPS_NOT_SUPPORTED; 
+			throw SGI_COLORMAPS_NOT_SUPPORTED;
 		}
 
 		// get the width & height
@@ -260,20 +260,20 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		} else {
 			height = sgiHeader.ysize;
 		}
-		
+
 		if(bIsRLE) {
-			// read the Offset Tables 
+			// read the Offset Tables
 			int index_len = height * zsize;
 			pRowIndex = (LONG*)malloc(index_len * sizeof(LONG));
 			if(!pRowIndex) {
 				throw FI_MSG_ERROR_MEMORY;
 			}
-			
+
 			if ((unsigned)index_len != io->read_proc(pRowIndex, sizeof(LONG), index_len, handle)) {
 				throw SGI_EOF_IN_RLE_INDEX;
 			}
-			
-#ifndef FREEIMAGE_BIGENDIAN		
+
+#ifndef FREEIMAGE_BIGENDIAN
 			// Fix byte order in index
 			for (i = 0; i < index_len; i++) {
 				SwapLong((DWORD*)&pRowIndex[i]);
@@ -287,7 +287,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				}
 			}
 		}
-		
+
 		switch(zsize) {
 			case 1:
 				bitcount = 8;
@@ -305,12 +305,12 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			default:
 				throw SGI_INVALID_CHANNEL_COUNT;
 		}
-		
+
 		dib = FreeImage_Allocate(width, height, bitcount);
 		if(!dib) {
 			throw FI_MSG_ERROR_DIB_MEMORY;
 		}
-		
+
 		if (bitcount == 8) {
 			// 8-bit SGI files are grayscale images, so we'll generate
 			// a grayscale palette.
@@ -326,8 +326,8 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		// decode the image
 
 		memset(&my_rle_status, 0, sizeof(RLEStatus));
-		
-		int ns = FreeImage_GetPitch(dib);                                                    
+
+		int ns = FreeImage_GetPitch(dib);
 		BYTE *pStartRow = FreeImage_GetScanLine(dib, 0);
 		int offset_table[] = { 2, 1, 0, 3 };
 		int numChannels = zsize;
@@ -337,13 +337,13 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		if (zsize == 2)
 		{
 			//This is how faked grayscale+alpha works.
-			//First channel goes into first 
+			//First channel goes into first
 			//second channel goes into alpha (4th channel)
 			//Two channels are left empty and will be copied later
 			offset_table[1] = 3;
 			numChannels = 4;
 		}
-		
+
 		LONG *pri = pRowIndex;
 		for (i = 0; i < zsize; i++) {
 			BYTE *pRow = pStartRow + offset_table[i];
@@ -370,7 +370,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				}
 			}
 		}
-		
+
 		if (zsize == 2)
 		{
 			BYTE *pRow = pStartRow;
@@ -402,10 +402,10 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 //   Init
 // ==========================================================
 
-void DLL_CALLCONV 
+void DLL_CALLCONV
 InitSGI(Plugin *plugin, int format_id) {
 	s_format_id = format_id;
-	
+
 	plugin->format_proc = Format;
 	plugin->description_proc = Description;
 	plugin->extension_proc = Extension;

@@ -56,7 +56,7 @@ MimeType() {
 	return "image/vnd.adobe.photoshop";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE psd_id[] = { 0x38, 0x42, 0x50, 0x53 };
 	BYTE signature[4] = { 0, 0, 0, 0 };
@@ -69,25 +69,25 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsICCProfiles() {
 	return TRUE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsNoPixels() {
 	return TRUE;
-} 
+}
 
 // ----------------------------------------------------------
 
@@ -95,7 +95,7 @@ static FIBITMAP * DLL_CALLCONV
 Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	if(handle) {
 		psdParser parser;
-		
+
 		FIBITMAP *dib = parser.Load(io, handle, s_format_id, flags);
 
 		return dib;
@@ -127,5 +127,5 @@ InitPSD(Plugin *plugin, int format_id) {
 	plugin->supports_export_bpp_proc = SupportsExportDepth;
 	plugin->supports_export_type_proc = SupportsExportType;
 	plugin->supports_icc_profiles_proc = SupportsICCProfiles;
-	plugin->supports_no_pixels_proc = SupportsNoPixels; 
+	plugin->supports_no_pixels_proc = SupportsNoPixels;
 }

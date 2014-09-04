@@ -25,16 +25,16 @@
 
 // ----------------------------------------------------------
 // Logarithmic mapping operator
-// Reference: 
-// [1] F. Drago, K. Myszkowski, T. Annen, and N. Chiba, 
-// Adaptive Logarithmic Mapping for Displaying High Contrast Scenes, 
+// Reference:
+// [1] F. Drago, K. Myszkowski, T. Annen, and N. Chiba,
+// Adaptive Logarithmic Mapping for Displaying High Contrast Scenes,
 // Eurographics 2003.
 // ----------------------------------------------------------
 
 /**
 Bias function
 */
-static inline double 
+static inline double
 biasFunction(const double b, const double x) {
 	return pow (x, b);		// pow(x, log(bias)/log(0.5)
 }
@@ -45,7 +45,7 @@ x(6+x)/(6+4x) good if x < 1
 x*(6 + 0.7662x)/(5.9897 + 3.7658x) between 1 and 2
 See http://www.nezumi.demon.co.uk/consult/logx.htm
 */
-static inline double 
+static inline double
 pade_log(const double x) {
 	if(x < 1) {
 		return (x * (6 + x) / (6 + 4 * x));
@@ -64,9 +64,9 @@ Log mapping operator
 @param exposure Exposure parameter (default to 0)
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-static BOOL 
+static WINBOOL
 ToneMappingDrago03(FIBITMAP *dib, const float maxLum, const float avgLum, float biasParam, const float exposure) {
-	const float LOG05 = -0.693147F;	// log(0.5) 
+	const float LOG05 = -0.693147F;	// log(0.5)
 
 	double Lmax, divider, interpol, biasP;
 	unsigned x, y;
@@ -80,13 +80,13 @@ ToneMappingDrago03(FIBITMAP *dib, const float maxLum, const float avgLum, float 
 	const unsigned pitch  = FreeImage_GetPitch(dib);
 
 
-	// arbitrary Bias Parameter 
-	if(biasParam == 0) 
+	// arbitrary Bias Parameter
+	if(biasParam == 0)
 		biasParam = 0.85F;
 
 	// normalize maximum luminance by average luminance
 	Lmax = maxLum / avgLum;
-	
+
 	divider = log10(Lmax+1);
 	biasP = log(biasParam)/LOG05;
 
@@ -115,7 +115,7 @@ ToneMappingDrago03(FIBITMAP *dib, const float maxLum, const float avgLum, float 
 	int i, j;
 
 	unsigned max_width  = width - (width % 3);
-	unsigned max_height = height - (height % 3); 
+	unsigned max_height = height - (height % 3);
 	unsigned fpitch = pitch / sizeof(FIRGBF);
 
 	/**
@@ -134,7 +134,7 @@ ToneMappingDrago03(FIBITMAP *dib, const float maxLum, const float avgLum, float 
 				for(j = 0; j < 3; j++) {
 					index = (y + i)*fpitch + (x + j);
 					image[index].red /= (float)avgLum;
-					image[index].red *= exposure; 
+					image[index].red *= exposure;
 					average += image[index].red;
 				}
 			}
@@ -207,14 +207,14 @@ Custom gamma correction based on the ITU-R BT.709 standard
 @param gammaval Gamma value (2.2 is a good default value)
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-static BOOL 
+static WINBOOL
 REC709GammaCorrection(FIBITMAP *dib, const float gammaval) {
 	if(FreeImage_GetImageType(dib) != FIT_RGBF)
 		return FALSE;
 
 	float slope = 4.5F;
 	float start = 0.018F;
-	
+
 	const float fgamma = (float)((0.45 / gammaval) * 2);
 	if(gammaval >= 2.1F) {
 		start = (float)(0.018 / ((gammaval - 2) * 7.5));
@@ -254,7 +254,7 @@ Apply the Adaptive Logarithmic Mapping operator to a HDR image and convert to 24
 @param exposure Exposure parameter (0 means no correction, 0 in the original paper)
 @return Returns a 24-bit RGB image if successful, returns NULL otherwise
 */
-FIBITMAP* DLL_CALLCONV 
+FIBITMAP* DLL_CALLCONV
 FreeImage_TmoDrago03(FIBITMAP *src, double gamma, double exposure) {
 	float maxLum, minLum, avgLum;
 
@@ -290,6 +290,6 @@ FreeImage_TmoDrago03(FIBITMAP *src, double gamma, double exposure) {
 
 	// copy metadata from src to dst
 	FreeImage_CloneMetadata(dst, src);
-	
+
 	return dst;
 }

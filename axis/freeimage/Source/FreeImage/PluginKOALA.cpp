@@ -42,7 +42,7 @@ typedef struct tagKOALA {
 struct colour_t {
 	int	r;
 	int g;
-	int b;	
+	int b;
 };
 
 #ifdef _WIN32
@@ -112,7 +112,7 @@ MimeType() {
 	return "image/x-koala";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	BYTE koala_signature[] = { 0x00, 0x60 };
 	BYTE signature[2] = { 0, 0 };
@@ -122,12 +122,12 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return (memcmp(koala_signature, signature, sizeof(koala_signature)) == 0);
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return FALSE;
 }
@@ -154,7 +154,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			io->read_proc((BYTE *)&image + 2, 1, 10001 - 2, handle);
 		} else {
 			io->read_proc(&image, 1, 10001, handle);
-		}		
+		}
 
 		// build DIB in memory
 
@@ -192,15 +192,15 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 						case 0: // Background
 							found_color = image.background;
 							break;
-							
+
 						case 1: // Colour 1
 							found_color = image.colour1[colourindex] >> 4;
 							break;
-							
+
 						case 2: // Colour 2
 							found_color = image.colour1[colourindex] & 0xf;
 							break;
-							
+
 						case 3: // Colour 3
 							found_color = image.colour2[colourindex] & 0xf;
 							break;

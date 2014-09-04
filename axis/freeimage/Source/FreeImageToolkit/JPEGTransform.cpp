@@ -89,7 +89,7 @@ ls_jpeg_output_message (j_common_ptr cinfo) {
 // ----------------------------------------------------------
 
 /**
-Build a crop string. 
+Build a crop string.
 
 @param crop Output crop string
 @param left Specifies the left position of the cropped rectangle
@@ -100,7 +100,7 @@ Build a crop string.
 @param height Image height
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-static BOOL
+static WINBOOL
 getCropString(char* crop, int* left, int* top, int* right, int* bottom, int width, int height) {
 	if(!left || !top || !right || !bottom) {
 		return FALSE;
@@ -148,13 +148,13 @@ getCropString(char* crop, int* left, int* top, int* right, int* bottom, int widt
 	return TRUE;
 }
 
-static BOOL
-JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* dst_io, fi_handle dst_handle, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect) {
-	const BOOL onlyReturnCropRect = (dst_io == NULL) || (dst_handle == NULL);
+static WINBOOL
+JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* dst_io, fi_handle dst_handle, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, WINBOOL perfect) {
+	const WINBOOL onlyReturnCropRect = (dst_io == NULL) || (dst_handle == NULL);
 	const long stream_start = onlyReturnCropRect ? 0 : dst_io->tell_proc(dst_handle);
-	BOOL swappedDim = FALSE;
-	BOOL trimH = FALSE;
-	BOOL trimV = FALSE;
+	WINBOOL swappedDim = FALSE;
+	WINBOOL trimH = FALSE;
+	WINBOOL trimV = FALSE;
 
 	// Set up the jpeglib structures
 	jpeg_decompress_struct srcinfo;
@@ -251,7 +251,7 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 
 		// crop option
 		char crop[64];
-		const BOOL hasCrop = getCropString(crop, left, top, right, bottom, swappedDim ? srcinfo.image_height : srcinfo.image_width, swappedDim ? srcinfo.image_width : srcinfo.image_height);
+		const WINBOOL hasCrop = getCropString(crop, left, top, right, bottom, swappedDim ? srcinfo.image_height : srcinfo.image_width, swappedDim ? srcinfo.image_width : srcinfo.image_height);
 
 		if(hasCrop) {
 			if(!jtransform_parse_crop_spec(&transfoptions, crop)) {
@@ -366,8 +366,8 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 //   FreeImage interface
 // ----------------------------------------------------------
 
-BOOL DLL_CALLCONV
-FreeImage_JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* dst_io, fi_handle dst_handle, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect) {
+WINBOOL DLL_CALLCONV
+FreeImage_JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* dst_io, fi_handle dst_handle, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, WINBOOL perfect) {
 	return JPEGTransformFromHandle(src_io, src_handle, dst_io, dst_handle, operation, left, top, right, bottom, perfect);
 }
 
@@ -381,19 +381,19 @@ closeStdIO(fi_handle src_handle, fi_handle dst_handle) {
 	}
 }
 
-static BOOL
+static WINBOOL
 openStdIO(const char* src_file, const char* dst_file, FreeImageIO* dst_io, fi_handle* src_handle, fi_handle* dst_handle) {
 	*src_handle = NULL;
 	*dst_handle = NULL;
-	
+
 	FreeImageIO io;
 	SetDefaultIO (&io);
-	
-	const BOOL isSameFile = (dst_file && (strcmp(src_file, dst_file) == 0)) ? TRUE : FALSE;
-	
+
+	const WINBOOL isSameFile = (dst_file && (strcmp(src_file, dst_file) == 0)) ? TRUE : FALSE;
+
 	FILE* srcp = NULL;
 	FILE* dstp = NULL;
-	
+
 	if(isSameFile) {
 		srcp = fopen(src_file, "r+b");
 		dstp = srcp;
@@ -404,7 +404,7 @@ openStdIO(const char* src_file, const char* dst_file, FreeImageIO* dst_io, fi_ha
 			dstp = fopen(dst_file, "wb");
 		}
 	}
-	
+
 	if(!srcp || (dst_file && !dstp)) {
 		if(!srcp) {
 			FreeImage_OutputMessageProc(FIF_JPEG, "Cannot open \"%s\" for reading", src_file);
@@ -428,7 +428,7 @@ openStdIO(const char* src_file, const char* dst_file, FreeImageIO* dst_io, fi_ha
 	return TRUE;
 }
 
-static BOOL
+static WINBOOL
 openStdIOU(const wchar_t* src_file, const wchar_t* dst_file, FreeImageIO* dst_io, fi_handle* src_handle, fi_handle* dst_handle) {
 #ifdef _WIN32
 
@@ -437,8 +437,8 @@ openStdIOU(const wchar_t* src_file, const wchar_t* dst_file, FreeImageIO* dst_io
 
 	FreeImageIO io;
 	SetDefaultIO (&io);
-	
-	const BOOL isSameFile = (dst_file && (wcscmp(src_file, dst_file) == 0)) ? TRUE : FALSE;
+
+	const WINBOOL isSameFile = (dst_file && (wcscmp(src_file, dst_file) == 0)) ? TRUE : FALSE;
 
 	FILE* srcp = NULL;
 	FILE* dstp = NULL;
@@ -480,102 +480,102 @@ openStdIOU(const wchar_t* src_file, const wchar_t* dst_file, FreeImageIO* dst_io
 #endif // _WIN32
 }
 
-BOOL DLL_CALLCONV
-FreeImage_JPEGTransform(const char *src_file, const char *dst_file, FREE_IMAGE_JPEG_OPERATION operation, BOOL perfect) {
+WINBOOL DLL_CALLCONV
+FreeImage_JPEGTransform(const char *src_file, const char *dst_file, FREE_IMAGE_JPEG_OPERATION operation, WINBOOL perfect) {
 	FreeImageIO io;
 	fi_handle src;
 	fi_handle dst;
-	
+
 	if(!openStdIO(src_file, dst_file, &io, &src, &dst)) {
 		return FALSE;
 	}
-	
-	BOOL ret = JPEGTransformFromHandle(&io, src, &io, dst, operation, NULL, NULL, NULL, NULL, perfect);
+
+	WINBOOL ret = JPEGTransformFromHandle(&io, src, &io, dst, operation, NULL, NULL, NULL, NULL, perfect);
 
 	closeStdIO(src, dst);
 
 	return ret;
 }
 
-BOOL DLL_CALLCONV
+WINBOOL DLL_CALLCONV
 FreeImage_JPEGCrop(const char *src_file, const char *dst_file, int left, int top, int right, int bottom) {
 	FreeImageIO io;
 	fi_handle src;
 	fi_handle dst;
-	
+
 	if(!openStdIO(src_file, dst_file, &io, &src, &dst)) {
 		return FALSE;
 	}
-	
-	BOOL ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, FIJPEG_OP_NONE, &left, &top, &right, &bottom, FALSE);
-	
+
+	WINBOOL ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, FIJPEG_OP_NONE, &left, &top, &right, &bottom, FALSE);
+
 	closeStdIO(src, dst);
-	
+
 	return ret;
 }
 
-BOOL DLL_CALLCONV
-FreeImage_JPEGTransformU(const wchar_t *src_file, const wchar_t *dst_file, FREE_IMAGE_JPEG_OPERATION operation, BOOL perfect) {
+WINBOOL DLL_CALLCONV
+FreeImage_JPEGTransformU(const wchar_t *src_file, const wchar_t *dst_file, FREE_IMAGE_JPEG_OPERATION operation, WINBOOL perfect) {
 	FreeImageIO io;
 	fi_handle src;
 	fi_handle dst;
-	
+
 	if(!openStdIOU(src_file, dst_file, &io, &src, &dst)) {
 		return FALSE;
 	}
-	
-	BOOL ret = JPEGTransformFromHandle(&io, src, &io, dst, operation, NULL, NULL, NULL, NULL, perfect);
-	
+
+	WINBOOL ret = JPEGTransformFromHandle(&io, src, &io, dst, operation, NULL, NULL, NULL, NULL, perfect);
+
 	closeStdIO(src, dst);
 
 	return ret;
 }
 
-BOOL DLL_CALLCONV
+WINBOOL DLL_CALLCONV
 FreeImage_JPEGCropU(const wchar_t *src_file, const wchar_t *dst_file, int left, int top, int right, int bottom) {
 	FreeImageIO io;
 	fi_handle src;
 	fi_handle dst;
-	
+
 	if(!openStdIOU(src_file, dst_file, &io, &src, &dst)) {
 		return FALSE;
 	}
-	
-	BOOL ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, FIJPEG_OP_NONE, &left, &top, &right, &bottom, FALSE);
+
+	WINBOOL ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, FIJPEG_OP_NONE, &left, &top, &right, &bottom, FALSE);
 
 	closeStdIO(src, dst);
 
 	return ret;
 }
 
-BOOL DLL_CALLCONV
-FreeImage_JPEGTransformCombined(const char *src_file, const char *dst_file, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect) {
+WINBOOL DLL_CALLCONV
+FreeImage_JPEGTransformCombined(const char *src_file, const char *dst_file, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, WINBOOL perfect) {
 	FreeImageIO io;
 	fi_handle src;
 	fi_handle dst;
-	
+
 	if(!openStdIO(src_file, dst_file, &io, &src, &dst)) {
 		return FALSE;
 	}
-	
-	BOOL ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, operation, left, top, right, bottom, perfect);
+
+	WINBOOL ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, operation, left, top, right, bottom, perfect);
 
 	closeStdIO(src, dst);
 
 	return ret;
 }
 
-BOOL DLL_CALLCONV
-FreeImage_JPEGTransformCombinedU(const wchar_t *src_file, const wchar_t *dst_file, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect) {
+WINBOOL DLL_CALLCONV
+FreeImage_JPEGTransformCombinedU(const wchar_t *src_file, const wchar_t *dst_file, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, WINBOOL perfect) {
 	FreeImageIO io;
 	fi_handle src;
 	fi_handle dst;
-	
+
 	if(!openStdIOU(src_file, dst_file, &io, &src, &dst)) {
 		return FALSE;
 	}
-	
-	BOOL ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, operation, left, top, right, bottom, perfect);
+
+	WINBOOL ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, operation, left, top, right, bottom, perfect);
 
 	closeStdIO(src, dst);
 
@@ -584,7 +584,7 @@ FreeImage_JPEGTransformCombinedU(const wchar_t *src_file, const wchar_t *dst_fil
 
 // --------------------------------------------------------------------------
 
-static BOOL
+static WINBOOL
 getMemIO(FIMEMORY* src_stream, FIMEMORY* dst_stream, FreeImageIO* dst_io, fi_handle* src_handle, fi_handle* dst_handle) {
 	*src_handle = NULL;
 	*dst_handle = NULL;
@@ -608,16 +608,16 @@ getMemIO(FIMEMORY* src_stream, FIMEMORY* dst_stream, FreeImageIO* dst_io, fi_han
 	return TRUE;
 }
 
-BOOL DLL_CALLCONV
-FreeImage_JPEGTransformCombinedFromMemory(FIMEMORY* src_stream, FIMEMORY* dst_stream, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, BOOL perfect) {
+WINBOOL DLL_CALLCONV
+FreeImage_JPEGTransformCombinedFromMemory(FIMEMORY* src_stream, FIMEMORY* dst_stream, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, WINBOOL perfect) {
 	FreeImageIO io;
 	fi_handle src;
 	fi_handle dst;
-	
+
 	if(!getMemIO(src_stream, dst_stream, &io, &src, &dst)) {
 		return FALSE;
 	}
-	
+
 	return FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, operation, left, top, right, bottom, perfect);
 }
 

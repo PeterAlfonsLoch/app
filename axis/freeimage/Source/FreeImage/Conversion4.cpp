@@ -28,11 +28,11 @@
 
 void DLL_CALLCONV
 FreeImage_ConvertLine1To4(BYTE *target, BYTE *source, int width_in_pixels) {
-	BOOL hinibble = TRUE;
+	WINBOOL hinibble = TRUE;
 	for (int cols = 0; cols < width_in_pixels; cols++){
 		if (hinibble == TRUE){
 			target[cols >> 1] = ((source[cols >> 3] & (0x80 >> (cols & 0x07))) != 0 ? 15 : 0) << 4;
-		} 
+		}
 		else {
 			target[cols >> 1] |= ((source[cols >> 3] & (0x80 >> (cols & 0x07))) != 0 ? 15 : 0);
 		}
@@ -43,7 +43,7 @@ FreeImage_ConvertLine1To4(BYTE *target, BYTE *source, int width_in_pixels) {
 
 void DLL_CALLCONV
 FreeImage_ConvertLine8To4(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) {
-	BOOL hinibble = TRUE;
+	WINBOOL hinibble = TRUE;
 	BYTE index;
 
 	for (int cols = 0; cols < width_in_pixels; cols++){
@@ -61,7 +61,7 @@ FreeImage_ConvertLine8To4(BYTE *target, BYTE *source, int width_in_pixels, RGBQU
 void DLL_CALLCONV
 FreeImage_ConvertLine16To4_555(BYTE *target, BYTE *source, int width_in_pixels) {
 	WORD *bits = (WORD *)source;
-	BOOL hinibble = TRUE;
+	WINBOOL hinibble = TRUE;
 
 	for (int cols = 0; cols < width_in_pixels; cols++) {
 		if (hinibble) {
@@ -75,7 +75,7 @@ FreeImage_ConvertLine16To4_555(BYTE *target, BYTE *source, int width_in_pixels) 
 								(((bits[cols] & FI16_555_BLUE_MASK) >> FI16_555_BLUE_SHIFT) * 0xFF) / 0x1F)
 								>> 4;
 		}
-		
+
 		hinibble = !hinibble;
 	}
 }
@@ -83,7 +83,7 @@ FreeImage_ConvertLine16To4_555(BYTE *target, BYTE *source, int width_in_pixels) 
 void DLL_CALLCONV
 FreeImage_ConvertLine16To4_565(BYTE *target, BYTE *source, int width_in_pixels) {
 	WORD *bits = (WORD *)source;
-	BOOL hinibble = TRUE;
+	WINBOOL hinibble = TRUE;
 
 	for (int cols = 0; cols < width_in_pixels; cols++) {
 		if (hinibble) {
@@ -104,7 +104,7 @@ FreeImage_ConvertLine16To4_565(BYTE *target, BYTE *source, int width_in_pixels) 
 
 void DLL_CALLCONV
 FreeImage_ConvertLine24To4(BYTE *target, BYTE *source, int width_in_pixels) {
-	BOOL hinibble = TRUE;
+	WINBOOL hinibble = TRUE;
 
 	for (int cols = 0; cols < width_in_pixels; cols++) {
 		if (hinibble) {
@@ -120,7 +120,7 @@ FreeImage_ConvertLine24To4(BYTE *target, BYTE *source, int width_in_pixels) {
 
 void DLL_CALLCONV
 FreeImage_ConvertLine32To4(BYTE *target, BYTE *source, int width_in_pixels) {
-	BOOL hinibble = TRUE;
+	WINBOOL hinibble = TRUE;
 
 	for (int cols = 0; cols < width_in_pixels; cols++) {
 		if (hinibble) {
@@ -179,7 +179,7 @@ FreeImage_ConvertTo4Bits(FIBITMAP *dib) {
 
 				}
 				else if(FreeImage_GetColorType(dib) == FIC_MINISWHITE) {
-					
+
 					// Reverse the grayscale palette
 
 					for(int i = 0; i < 16; i++) {
@@ -216,7 +216,7 @@ FreeImage_ConvertTo4Bits(FIBITMAP *dib) {
 						FreeImage_ConvertLine16To4_555(FreeImage_GetScanLine(new_dib, rows), FreeImage_GetScanLine(dib, rows), width);
 					}
 				}
-				
+
 				return new_dib;
 			}
 
@@ -225,7 +225,7 @@ FreeImage_ConvertTo4Bits(FIBITMAP *dib) {
 				// Expand and copy the bitmap data
 
 				for (int rows = 0; rows < height; rows++) {
-					FreeImage_ConvertLine24To4(FreeImage_GetScanLine(new_dib, rows), FreeImage_GetScanLine(dib, rows), width);					
+					FreeImage_ConvertLine24To4(FreeImage_GetScanLine(new_dib, rows), FreeImage_GetScanLine(dib, rows), width);
 				}
 				return new_dib;
 			}

@@ -44,7 +44,7 @@ myTellProc(fi_handle handle) {
 	return ftell((FILE *)handle);
 }
 
-BOOL testStreamMultiPageOpen(const char *input, int flags) {
+WINBOOL testStreamMultiPageOpen(const char *input, int flags) {
 	// initialize your own IO functions
 
 	FreeImageIO io;
@@ -54,10 +54,10 @@ BOOL testStreamMultiPageOpen(const char *input, int flags) {
 	io.seek_proc  = mySeekProc;
 	io.tell_proc  = myTellProc;
 
-	BOOL bSuccess = FALSE;
+	WINBOOL bSuccess = FALSE;
 
 	// Open src stream in read-only mode
-	FILE *file = fopen(input, "r+b");	
+	FILE *file = fopen(input, "r+b");
 	if (file != NULL) {
 		// Open the multi-page file
 		FREE_IMAGE_FORMAT fif = FreeImage_GetFileTypeFromHandle(&io, (fi_handle)file);
@@ -81,11 +81,11 @@ BOOL testStreamMultiPageOpen(const char *input, int flags) {
 
 		return bSuccess;
 	}
-		
+
 	return bSuccess;
 }
 
-BOOL testStreamMultiPageSave(const char *input, const char *output, int input_flag, int output_flag) {
+WINBOOL testStreamMultiPageSave(const char *input, const char *output, int input_flag, int output_flag) {
 	// initialize your own IO functions
 
 	FreeImageIO io;
@@ -95,20 +95,20 @@ BOOL testStreamMultiPageSave(const char *input, const char *output, int input_fl
 	io.seek_proc  = mySeekProc;
 	io.tell_proc  = myTellProc;
 
-	BOOL bCreateNew = FALSE;
-	BOOL bReadOnly = TRUE;
-	BOOL bMemoryCache = TRUE;
+	WINBOOL bCreateNew = FALSE;
+	WINBOOL bReadOnly = TRUE;
+	WINBOOL bMemoryCache = TRUE;
 
 	// Open src file (read-only, use memory cache)
 	FREE_IMAGE_FORMAT fif = FreeImage_GetFileType(input);
 	FIMULTIBITMAP *src = FreeImage_OpenMultiBitmap(fif, input, bCreateNew, bReadOnly, bMemoryCache, input_flag);
-	
+
 	if(src) {
 		// Open dst stream in read/write mode
-		FILE *file = fopen(output, "w+b");	
+		FILE *file = fopen(output, "w+b");
 		if (file != NULL) {
 			// Save the multi-page file to the stream
-			BOOL bSuccess = FreeImage_SaveMultiBitmapToHandle(fif, src, &io, (fi_handle)file, output_flag);
+			WINBOOL bSuccess = FreeImage_SaveMultiBitmapToHandle(fif, src, &io, (fi_handle)file, output_flag);
 			assert(bSuccess);
 
 			// Close the dst stream
@@ -119,7 +119,7 @@ BOOL testStreamMultiPageSave(const char *input, const char *output, int input_fl
 
 			return TRUE;
 		}
-		
+
 		// Close src
 		FreeImage_CloseMultiBitmap(src, 0);
 	}
@@ -127,7 +127,7 @@ BOOL testStreamMultiPageSave(const char *input, const char *output, int input_fl
 	return FALSE;
 }
 
-BOOL testStreamMultiPageOpenSave(const char *input, const char *output, int input_flag, int output_flag) {
+WINBOOL testStreamMultiPageOpenSave(const char *input, const char *output, int input_flag, int output_flag) {
 	// initialize your own IO functions
 
 	FreeImageIO io;
@@ -137,7 +137,7 @@ BOOL testStreamMultiPageOpenSave(const char *input, const char *output, int inpu
 	io.seek_proc  = mySeekProc;
 	io.tell_proc  = myTellProc;
 
-	BOOL bSuccess = FALSE;
+	WINBOOL bSuccess = FALSE;
 
 	// Open src stream in read-only mode
 	FILE *src_file = fopen(input, "r+b");
@@ -169,11 +169,11 @@ BOOL testStreamMultiPageOpenSave(const char *input, const char *output, int inpu
 			FreeImage_Unload(page);
 
 			// Open dst stream in read/write mode
-			FILE *dst_file = fopen(output, "w+b");	
+			FILE *dst_file = fopen(output, "w+b");
 			assert(dst_file);
 			if (dst_file != NULL) {
 				// Save the multi-page file to the stream (modifications are applied)
-				BOOL bSuccess = FreeImage_SaveMultiBitmapToHandle(fif, src, &io, (fi_handle)dst_file, output_flag);
+				WINBOOL bSuccess = FreeImage_SaveMultiBitmapToHandle(fif, src, &io, (fi_handle)dst_file, output_flag);
 				assert(bSuccess);
 
 				// Close the dst stream
@@ -197,8 +197,8 @@ BOOL testStreamMultiPageOpenSave(const char *input, const char *output, int inpu
 // --------------------------------------------------------------------------
 
 void testStreamMultiPage(const char *lpszPathName) {
-	BOOL bSuccess;
-	
+	WINBOOL bSuccess;
+
 	printf("testStreamMultiPage ...\n");
 
 	// test multipage stream (opening)
@@ -208,7 +208,7 @@ void testStreamMultiPage(const char *lpszPathName) {
 	// test multipage stream (save as)
 	bSuccess = testStreamMultiPageSave(lpszPathName, "clone-stream.tif", 0, 0);
 	assert(bSuccess);
-	
+
 	// test multipage stream (open, modify, save as)
 	bSuccess = testStreamMultiPageOpenSave(lpszPathName, "redirect-stream.tif", 0, 0);
 	assert(bSuccess);

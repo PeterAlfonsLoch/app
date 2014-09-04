@@ -26,9 +26,9 @@
 
 // ----------------------------------------------------------
 // Global and/or local tone mapping operator
-// References: 
-// [1] Erik Reinhard and Kate Devlin, 'Dynamic Range Reduction Inspired by Photoreceptor Physiology', 
-//     IEEE Transactions on Visualization and Computer Graphics, 11(1), Jan/Feb 2005. 
+// References:
+// [1] Erik Reinhard and Kate Devlin, 'Dynamic Range Reduction Inspired by Photoreceptor Physiology',
+//     IEEE Transactions on Visualization and Computer Graphics, 11(1), Jan/Feb 2005.
 // [2] Erik Reinhard, 'Parameter estimation for photographic tone reproduction',
 //     Journal of Graphics Tools, vol. 7, no. 1, pp. 45–51, 2003.
 // ----------------------------------------------------------
@@ -44,7 +44,7 @@ Tone mapping operator
 @return Returns TRUE if successful, returns FALSE otherwise
 @see LuminanceFromY
 */
-static BOOL 
+static WINBOOL
 ToneMappingReinhard05(FIBITMAP *dib, FIBITMAP *Y, float f, float m, float a, float c) {
 	float Cav[3];		// channel average
 	float Lav = 0;		// average luminance
@@ -57,7 +57,7 @@ ToneMappingReinhard05(FIBITMAP *dib, FIBITMAP *Y, float f, float m, float a, flo
 	float I_a;		// interpolated pixel light adaptation
 	float k;		// key (low-key means overall dark image, high-key means overall light image)
 
-	// check input parameters 
+	// check input parameters
 
 	if((FreeImage_GetImageType(dib) != FIT_RGBF) || (FreeImage_GetImageType(Y) != FIT_FLOAT)) {
 		return FALSE;
@@ -114,7 +114,7 @@ ToneMappingReinhard05(FIBITMAP *dib, FIBITMAP *Y, float f, float m, float a, flo
 				I_a = Y[x];	// luminance(x, y)
 				for (i = 0; i < 3; i++) {
 					*color /= ( *color + pow(f * I_a, m) );
-					
+
 					max_color = (*color > max_color) ? *color : max_color;
 					min_color = (*color < min_color) ? *color : min_color;
 
@@ -165,7 +165,7 @@ ToneMappingReinhard05(FIBITMAP *dib, FIBITMAP *Y, float f, float m, float a, flo
 					I_g = c * Cav[i] + (1-c) * Lav;
 					I_a = a * I_l + (1-a) * I_g;
 					*color /= ( *color + pow(f * I_a, m) );
-					
+
 					max_color = (*color > max_color) ? *color : max_color;
 					min_color = (*color < min_color) ? *color : min_color;
 
@@ -213,7 +213,7 @@ User parameters control intensity, contrast, and level of adaptation
 @param color_correction Color correction in range [0:1] : default to 0
 @return Returns a 24-bit RGB image if successful, returns NULL otherwise
 */
-FIBITMAP* DLL_CALLCONV 
+FIBITMAP* DLL_CALLCONV
 FreeImage_TmoReinhard05Ex(FIBITMAP *src, double intensity, double contrast, double adaptation, double color_correction) {
 	if(!FreeImage_HasPixels(src)) return NULL;
 
@@ -254,7 +254,7 @@ User parameters control intensity and contrast
 @param contrast Contrast in range [0.3:1) : default to 0
 @return Returns a 24-bit RGB image if successful, returns NULL otherwise
 */
-FIBITMAP* DLL_CALLCONV 
+FIBITMAP* DLL_CALLCONV
 FreeImage_TmoReinhard05(FIBITMAP *src, double intensity, double contrast) {
 	return FreeImage_TmoReinhard05Ex(src, intensity, contrast, 1, 0);
 }

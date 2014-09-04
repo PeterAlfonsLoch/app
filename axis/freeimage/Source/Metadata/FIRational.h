@@ -23,8 +23,8 @@
 #define FIRATIONAL_H
 
 /**
-Helper class to deal with rational numbers. 
-NB: LONG data type is assumed to be a signed 32-bit number. 
+Helper class to deal with rational numbers.
+NB: LONG data type is assumed to be a signed 32-bit number.
 */
 class FIRational {
 private:
@@ -68,7 +68,7 @@ public:
 	}
 
 	/**@name Implicit conversions */
-	//@{	
+	//@{
 	short shortValue() {
 		return (short)truncate();
 	}
@@ -87,7 +87,7 @@ public:
 	//@}
 
 	/// Checks if this rational number is an integer, either positive or negative
-	BOOL isInteger();
+	WINBOOL isInteger();
 
 	/// Convert as "numerator/denominator"
 	std::string toString();
@@ -98,8 +98,8 @@ private:
 
 	/// Calculate GCD
 	LONG gcd(LONG a, LONG b);
-	
-	/// Normalize numerator / denominator 
+
+	/// Normalize numerator / denominator
 	void normalize();
 
 };

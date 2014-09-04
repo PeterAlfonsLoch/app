@@ -207,7 +207,7 @@ SwapHeader(DDSHEADER *header) {
 
 // Get the 4 possible colors for a block
 //
-static void 
+static void
 GetBlockColors (const DXTColBlock &block, Color8888 colors[4], bool isDXT1) {
 	int i;
 	// expand from 565 to 888
@@ -379,9 +379,9 @@ template <class DECODER> void DecodeDXTBlock (BYTE *dstData, const BYTE *srcBloc
 		for (int x = 0; x < bw; x++) {
 			decoder.GetColor (x, y, (Color8888 &)*dst);
 
-#if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_RGB 
+#if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_RGB
 			INPLACESWAP(dst[FI_RGBA_RED], dst[FI_RGBA_BLUE]);
-#endif 
+#endif
 			dst += 4;
 		}
 	}
@@ -402,7 +402,7 @@ LoadRGB (DDSURFACEDESC2 &desc, FreeImageIO *io, fi_handle handle, int page, int 
 	int width = (int)desc.dwWidth & ~3;
 	int height = (int)desc.dwHeight & ~3;
 	int bpp = (int)desc.ddpfPixelFormat.dwRGBBitCount;
-	
+
 	// allocate a new dib
 	FIBITMAP *dib = FreeImage_Allocate (width, height, bpp, desc.ddpfPixelFormat.dwRBitMask,
 		desc.ddpfPixelFormat.dwGBitMask, desc.ddpfPixelFormat.dwBBitMask);
@@ -413,7 +413,7 @@ LoadRGB (DDSURFACEDESC2 &desc, FreeImageIO *io, fi_handle handle, int page, int 
 		// Calculate the number of bytes per pixel (3 for 24-bit or 4 for 32-bit)
 		int bytespp = FreeImage_GetLine(dib) / FreeImage_GetWidth(dib);
 #endif
-	
+
 	// read the file
 	int line   = CalculateLine(width, bpp);
 	int filePitch = (desc.dwFlags & DDSD_PITCH) ? (int)desc.dwPitchOrLinearSize : line;
@@ -429,7 +429,7 @@ LoadRGB (DDSURFACEDESC2 &desc, FreeImageIO *io, fi_handle handle, int page, int 
 		}
 #endif
 	}
-	
+
 	// enable transparency
 	FreeImage_SetTransparent (dib, (desc.ddpfPixelFormat.dwFlags & DDPF_ALPHAPIXELS) ? TRUE : FALSE);
 
@@ -442,7 +442,7 @@ LoadRGB (DDSURFACEDESC2 &desc, FreeImageIO *io, fi_handle handle, int page, int 
 	return dib;
 }
 
-template <class DECODER> static void 
+template <class DECODER> static void
 LoadDXT_Helper (FreeImageIO *io, fi_handle handle, int page, int flags, void *data, FIBITMAP *dib, int width, int height, int line) {
 	typedef typename DECODER::INFO INFO;
 	typedef typename INFO::Block Block;
@@ -522,7 +522,7 @@ LoadDXT (int type, DDSURFACEDESC2 &desc, FreeImageIO *io, fi_handle handle, int 
 			LoadDXT_Helper <DXT_BLOCKDECODER_5> (io, handle, page, flags, data, dib, width, height, line);
 			break;
 	}
-	
+
 	return dib;
 }
 // ==========================================================
@@ -554,7 +554,7 @@ MimeType() {
 	return "image/x-dds";
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	DDSHEADER header;
 	memset(&header, 0, sizeof(header));
@@ -570,12 +570,12 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return TRUE;
 }
 
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return FALSE;
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return FALSE;
 }
@@ -583,7 +583,7 @@ SupportsExportType(FREE_IMAGE_TYPE type) {
 // ----------------------------------------------------------
 
 static void * DLL_CALLCONV
-Open(FreeImageIO *io, fi_handle handle, BOOL read) {
+Open(FreeImageIO *io, fi_handle handle, WINBOOL read) {
 	return NULL;
 }
 
@@ -623,7 +623,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 }
 
 /*
-static BOOL DLL_CALLCONV
+static WINBOOL DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	return FALSE;
 }

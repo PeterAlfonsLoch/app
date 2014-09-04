@@ -34,7 +34,7 @@ public:
 	FIBITMAP* convert(FIBITMAP *src, FREE_IMAGE_TYPE dst_type);
 };
 
-template<class Tdst, class Tsrc> FIBITMAP* 
+template<class Tdst, class Tsrc> FIBITMAP*
 CONVERT_TYPE<Tdst, Tsrc>::convert(FIBITMAP *src, FREE_IMAGE_TYPE dst_type) {
 
 	FIBITMAP *dst = NULL;
@@ -45,12 +45,12 @@ CONVERT_TYPE<Tdst, Tsrc>::convert(FIBITMAP *src, FREE_IMAGE_TYPE dst_type) {
 
 	// allocate dst image
 
-	dst = FreeImage_AllocateT(dst_type, width, height, bpp, 
+	dst = FreeImage_AllocateT(dst_type, width, height, bpp,
 			FreeImage_GetRedMask(src), FreeImage_GetGreenMask(src), FreeImage_GetBlueMask(src));
 	if(!dst) return NULL;
 
 	// convert from src_type to dst_type
-	
+
 	for(unsigned y = 0; y < height; y++) {
 		const Tsrc *src_bits = reinterpret_cast<Tsrc*>(FreeImage_GetScanLine(src, y));
 		Tdst *dst_bits = reinterpret_cast<Tdst*>(FreeImage_GetScanLine(dst, y));
@@ -66,17 +66,17 @@ CONVERT_TYPE<Tdst, Tsrc>::convert(FIBITMAP *src, FREE_IMAGE_TYPE dst_type) {
 
 /** Convert a greyscale image of type Tsrc to a 8-bit grayscale dib.
 	Conversion is done using either a linear scaling from [MIN, MAX] to [0, 255]
-	or a rounding from src_pixel to (BYTE) MIN(255, MAX(0, q)) where int q = int(src_pixel + 0.5); 
+	or a rounding from src_pixel to (BYTE) MIN(255, MAX(0, q)) where int q = int(src_pixel + 0.5);
 */
 template<class Tsrc>
 class CONVERT_TO_BYTE
 {
 public:
-	FIBITMAP* convert(FIBITMAP *src, BOOL scale_linear);
+	FIBITMAP* convert(FIBITMAP *src, WINBOOL scale_linear);
 };
 
-template<class Tsrc> FIBITMAP* 
-CONVERT_TO_BYTE<Tsrc>::convert(FIBITMAP *src, BOOL scale_linear) {
+template<class Tsrc> FIBITMAP*
+CONVERT_TO_BYTE<Tsrc>::convert(FIBITMAP *src, WINBOOL scale_linear) {
 	FIBITMAP *dst = NULL;
 	unsigned x, y;
 
@@ -150,7 +150,7 @@ public:
 	FIBITMAP* convert(FIBITMAP *src);
 };
 
-template<class Tsrc> FIBITMAP* 
+template<class Tsrc> FIBITMAP*
 CONVERT_TO_COMPLEX<Tsrc>::convert(FIBITMAP *src) {
 	FIBITMAP *dst = NULL;
 
@@ -163,7 +163,7 @@ CONVERT_TO_COMPLEX<Tsrc>::convert(FIBITMAP *src) {
 	if(!dst) return NULL;
 
 	// convert from src_type to FIT_COMPLEX
-	
+
 	for(unsigned y = 0; y < height; y++) {
 		const Tsrc *src_bits = reinterpret_cast<Tsrc*>(FreeImage_GetScanLine(src, y));
 		FICOMPLEX *dst_bits = (FICOMPLEX *)FreeImage_GetScanLine(dst, y);
@@ -225,15 +225,15 @@ CONVERT_TO_COMPLEX<double>			convertDoubleToComplex;
 
 /** Convert image of any type to a standard 8-bit greyscale image.
 For standard images, a clone of the input image is returned.
-When the scale_linear parameter is TRUE, conversion is done by scaling linearly 
-each pixel to an integer value between [0..255]. When it is FALSE, conversion is done 
-by rounding each float pixel to an integer between [0..255]. 
-For complex images, the magnitude is extracted as a double image, then converted according to the scale parameter. 
+When the scale_linear parameter is TRUE, conversion is done by scaling linearly
+each pixel to an integer value between [0..255]. When it is FALSE, conversion is done
+by rounding each float pixel to an integer between [0..255].
+For complex images, the magnitude is extracted as a double image, then converted according to the scale parameter.
 @param image Image to convert
 @param scale_linear Linear scaling / rounding switch
 */
 FIBITMAP* DLL_CALLCONV
-FreeImage_ConvertToStandardType(FIBITMAP *src, BOOL scale_linear) {
+FreeImage_ConvertToStandardType(FIBITMAP *src, WINBOOL scale_linear) {
 	FIBITMAP *dst = NULL;
 
 	if(!src) return NULL;
@@ -292,7 +292,7 @@ FreeImage_ConvertToStandardType(FIBITMAP *src, BOOL scale_linear) {
 		// copy metadata from src to dst
 		FreeImage_CloneMetadata(dst, src);
 	}
-	
+
 	return dst;
 }
 
@@ -303,7 +303,7 @@ FreeImage_ConvertToStandardType(FIBITMAP *src, BOOL scale_linear) {
 // ----------------------------------------------------------
 
 FIBITMAP* DLL_CALLCONV
-FreeImage_ConvertToType(FIBITMAP *src, FREE_IMAGE_TYPE dst_type, BOOL scale_linear) {
+FreeImage_ConvertToType(FIBITMAP *src, FREE_IMAGE_TYPE dst_type, WINBOOL scale_linear) {
 	FIBITMAP *dst = NULL;
 
 	if(!FreeImage_HasPixels(src)) return NULL;

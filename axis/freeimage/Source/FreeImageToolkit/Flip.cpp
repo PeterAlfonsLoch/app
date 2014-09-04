@@ -29,7 +29,7 @@ Flip the image horizontally along the vertical axis.
 @param src Input image to be processed.
 @return Returns TRUE if successful, FALSE otherwise.
 */
-BOOL DLL_CALLCONV 
+WINBOOL DLL_CALLCONV
 FreeImage_FlipHorizontal(FIBITMAP *src) {
 	if (!FreeImage_HasPixels(src)) return FALSE;
 
@@ -51,10 +51,10 @@ FreeImage_FlipHorizontal(FIBITMAP *src) {
 
 		switch (FreeImage_GetBPP(src)) {
 			case 1 :
-			{				
+			{
 				for(unsigned x = 0; x < width; x++) {
 					// get pixel at (x, y)
-					BOOL value = (new_bits[x >> 3] & (0x80 >> (x & 0x07))) != 0;
+					WINBOOL value = (new_bits[x >> 3] & (0x80 >> (x & 0x07))) != 0;
 					// set pixel at (new_x, y)
 					unsigned new_x = width - 1 - x;
 					value ? bits[new_x >> 3] |= (0x80 >> (new_x & 0x7)) : bits[new_x >> 3] &= (0xff7f >> (new_x & 0x7));
@@ -76,22 +76,22 @@ FreeImage_FlipHorizontal(FIBITMAP *src) {
 			break;
 
 			case 8:
-			{				
-				BYTE *dst_data = (BYTE*) bits; 				
-				BYTE *src_data = (BYTE*) (new_bits + line - bytespp); 				
-				for(unsigned c = 0; c < width; c++) { 			
-					*dst_data++ = *src_data--;  
-				} 
+			{
+				BYTE *dst_data = (BYTE*) bits;
+				BYTE *src_data = (BYTE*) (new_bits + line - bytespp);
+				for(unsigned c = 0; c < width; c++) {
+					*dst_data++ = *src_data--;
+				}
 			}
 			break;
 
 			case 16:
-			{				
-				WORD *dst_data = (WORD*) bits; 				
-				WORD *src_data = (WORD*) (new_bits + line - bytespp); 				
-				for(unsigned c = 0; c < width; c++) { 			
-					*dst_data++ = *src_data--;  
-				} 
+			{
+				WORD *dst_data = (WORD*) bits;
+				WORD *src_data = (WORD*) (new_bits + line - bytespp);
+				for(unsigned c = 0; c < width; c++) {
+					*dst_data++ = *src_data--;
+				}
 			}
 			break;
 
@@ -101,15 +101,15 @@ FreeImage_FlipHorizontal(FIBITMAP *src) {
 			case 64:
 			case 96:
 			case 128:
-			{				
-				BYTE *dst_data = (BYTE*) bits; 				
-				BYTE *src_data = (BYTE*) (new_bits + line - bytespp); 				
-				for(unsigned c = 0; c < width; c++) { 		
+			{
+				BYTE *dst_data = (BYTE*) bits;
+				BYTE *src_data = (BYTE*) (new_bits + line - bytespp);
+				for(unsigned c = 0; c < width; c++) {
 					for(unsigned k = 0; k < bytespp; k++) {
-						*dst_data++ = src_data[k];  
+						*dst_data++ = src_data[k];
 					}
 					src_data -= bytespp;
-				} 
+				}
 			}
 			break;
 
@@ -128,7 +128,7 @@ Flip the image vertically along the horizontal axis.
 @return Returns TRUE if successful, FALSE otherwise.
 */
 
-BOOL DLL_CALLCONV 
+WINBOOL DLL_CALLCONV
 FreeImage_FlipVertical(FIBITMAP *src) {
 	BYTE *From, *Mid;
 
@@ -144,7 +144,7 @@ FreeImage_FlipVertical(FIBITMAP *src) {
 	if (!Mid) return FALSE;
 
 	From = FreeImage_GetBits(src);
-	
+
 	unsigned line_s = 0;
 	unsigned line_t = (height-1) * pitch;
 

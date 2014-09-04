@@ -20,7 +20,7 @@
 // Use at your own risk!
 // ==========================================================
 
-#ifdef _MSC_VER 
+#ifdef _MSC_VER
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
 #endif
 
@@ -43,7 +43,7 @@
 
 
 struct GIFinfo {
-	BOOL read;
+	WINBOOL read;
 	//only really used when reading
 	size_t global_color_table_offset;
 	int global_color_table_size;
@@ -59,8 +59,8 @@ struct GIFinfo {
 };
 
 struct PageInfo {
-	PageInfo(int d, int l, int t, int w, int h) { 
-		disposal_method = d; left = (WORD)l; top = (WORD)t; width = (WORD)w; height = (WORD)h; 
+	PageInfo(int d, int l, int t, int w, int h) {
+		disposal_method = d; left = (WORD)l; top = (WORD)t; width = (WORD)w; height = (WORD)h;
 	}
 	int disposal_method;
 	WORD left, top, width, height;
@@ -139,10 +139,10 @@ static int g_GifInterlaceIncrement[GIF_INTERLACE_PASSES] = {8, 8, 4, 2};
 // Helpers Functions
 // ==========================================================
 
-static BOOL 
+static WINBOOL
 FreeImage_SetMetadataEx(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, WORD id, FREE_IMAGE_MDTYPE type, DWORD count, DWORD length, const void *value)
 {
-	BOOL bResult = FALSE;
+	WINBOOL bResult = FALSE;
 	FITAG *tag = FreeImage_CreateTag();
 	if(tag) {
 		FreeImage_SetTagKey(tag, key);
@@ -164,7 +164,7 @@ FreeImage_SetMetadataEx(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key
 	return bResult;
 }
 
-static BOOL 
+static WINBOOL
 FreeImage_GetMetadataEx(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, FREE_IMAGE_MDTYPE type, FITAG **tag)
 {
 	if( FreeImage_GetMetadata(model, dib, key, tag) ) {
@@ -179,7 +179,7 @@ StringTable::StringTable()
 {
 	m_buffer = NULL;
 	firstPixelPassed = 0; // Still no pixel read
-	// Maximum number of entries in the map is MAX_LZW_CODE * 256 
+	// Maximum number of entries in the map is MAX_LZW_CODE * 256
 	// (aka 2**12 * 2**8 => a 20 bits key)
 	// This Map could be optmized to only handle MAX_LZW_CODE * 2**(m_bpp)
 	m_strmap = new int[1<<20];
@@ -283,11 +283,11 @@ bool StringTable::Compress(BYTE *buf, int *len)
 		//get the current pixel value
 		char ch = (char)((m_buffer[m_bufferPos] >> m_bufferShift) & mask);
 
-		// The next prefix is : 
+		// The next prefix is :
 		// <the previous LZW code (on 12 bits << 8)> | <the code of the current pixel (on 8 bits)>
 		int nextprefix = (((m_prefix)<<8)&0xFFF00) + (ch & 0x000FF);
 		if(firstPixelPassed) {
-			
+
 			if( m_strmap[nextprefix] > 0) {
 				m_prefix = m_strmap[nextprefix];
 			} else {
@@ -332,7 +332,7 @@ bool StringTable::Compress(BYTE *buf, int *len)
 			if( bufpos - buf == *len ) {
 				return true;
 			}
-		
+
 		} else {
 			// Specific behavior for the first pixel of the whole image
 
@@ -464,39 +464,39 @@ static int s_format_id;
 // Plugin Implementation
 // ==========================================================
 
-static const char * DLL_CALLCONV 
+static const char * DLL_CALLCONV
 Format() {
 	return "GIF";
 }
 
-static const char * DLL_CALLCONV 
+static const char * DLL_CALLCONV
 Description() {
 	return "Graphics Interchange Format";
 }
 
-static const char * DLL_CALLCONV 
+static const char * DLL_CALLCONV
 Extension() {
 	return "gif";
 }
 
-static const char * DLL_CALLCONV 
+static const char * DLL_CALLCONV
 RegExpr() {
 	return "^GIF";
 }
 
-static const char * DLL_CALLCONV 
+static const char * DLL_CALLCONV
 MimeType() {
 	return "image/gif";
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
 	char buf[6];
 	if( io->read_proc(buf, 6, 1, handle) < 1 ) {
 		return FALSE;
 	}
 
-	BOOL bResult = FALSE;
+	WINBOOL bResult = FALSE;
 	if( !strncmp(buf, "GIF", 3) ) {
 		if( buf[3] >= '0' && buf[3] <= '9' && buf[4] >= '0' && buf[4] <= '9' && buf[5] >= 'a' && buf[5] <= 'z' ) {
 			bResult = TRUE;
@@ -508,22 +508,22 @@ Validate(FreeImageIO *io, fi_handle handle) {
 	return bResult;
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return	(depth == 1) ||
 			(depth == 4) ||
 			(depth == 8);
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type) {
 	return (type == FIT_BITMAP) ? TRUE : FALSE;
 }
 
 // ----------------------------------------------------------
 
-static void *DLL_CALLCONV 
-Open(FreeImageIO *io, fi_handle handle, BOOL read) {
+static void *DLL_CALLCONV
+Open(FreeImageIO *io, fi_handle handle, WINBOOL read) {
 	GIFinfo *info = new GIFinfo;
 	if( info == NULL ) {
 		return NULL;
@@ -630,7 +630,7 @@ Open(FreeImageIO *io, fi_handle handle, BOOL read) {
 	return info;
 }
 
-static void DLL_CALLCONV 
+static void DLL_CALLCONV
 Close(FreeImageIO *io, fi_handle handle, void *data) {
 	if( data == NULL ) {
 		return;
@@ -656,7 +656,7 @@ PageCount(FreeImageIO *io, fi_handle handle, void *data) {
 	return (int) info->image_descriptor_offsets.size();
 }
 
-static FIBITMAP * DLL_CALLCONV 
+static FIBITMAP * DLL_CALLCONV
 Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	if( data == NULL ) {
 		return NULL;
@@ -929,7 +929,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 							y += g_GifInterlaceIncrement[interlacepass];
 							if( y >= height && ++interlacepass < GIF_INTERLACE_PASSES ) {
 								y = g_GifInterlaceOffset[interlacepass];
-							} 						
+							}
 						} else {
 							y++;
 						}
@@ -1064,7 +1064,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	return dib;
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	if( data == NULL ) {
 		return FALSE;
@@ -1331,7 +1331,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 				y += g_GifInterlaceIncrement[interlacepass];
 				if( y >= output_height && ++interlacepass < GIF_INTERLACE_PASSES ) {
 					y = g_GifInterlaceOffset[interlacepass];
-				}		
+				}
 			} else {
 				y++;
 			}
@@ -1376,7 +1376,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 //   Init
 // ==========================================================
 
-void DLL_CALLCONV 
+void DLL_CALLCONV
 InitGIF(Plugin *plugin, int format_id) {
 	s_format_id = format_id;
 

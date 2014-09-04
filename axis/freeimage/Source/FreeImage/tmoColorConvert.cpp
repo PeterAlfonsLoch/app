@@ -26,18 +26,18 @@
 
 // ----------------------------------------------------------
 // Convert RGB to and from Yxy, same as in Reinhard et al. SIGGRAPH 2002
-// References : 
+// References :
 // [1] Radiance Home Page [Online] http://radsite.lbl.gov/radiance/HOME.html
-// [2] E. Reinhard, M. Stark, P. Shirley, and J. Ferwerda,  
-//     Photographic Tone Reproduction for Digital Images, ACM Transactions on Graphics, 
-//     21(3):267-276, 2002 (Proceedings of SIGGRAPH 2002). 
-// [3] J. Tumblin and H.E. Rushmeier, 
-//     Tone Reproduction for Realistic Images. IEEE Computer Graphics and Applications, 
+// [2] E. Reinhard, M. Stark, P. Shirley, and J. Ferwerda,
+//     Photographic Tone Reproduction for Digital Images, ACM Transactions on Graphics,
+//     21(3):267-276, 2002 (Proceedings of SIGGRAPH 2002).
+// [3] J. Tumblin and H.E. Rushmeier,
+//     Tone Reproduction for Realistic Images. IEEE Computer Graphics and Applications,
 //     13(6):42-48, 1993.
 // ----------------------------------------------------------
 
 /**
-nominal CRT primaries 
+nominal CRT primaries
 */
 /*
 static const float CIE_x_r = 0.640F;
@@ -70,13 +70,13 @@ static const float CIE_C_bD = ( (1/CIE_y_w) * ( CIE_x_w*(CIE_y_r - CIE_y_g) - CI
 RGB to XYZ (no white balance)
 */
 static const float  RGB2XYZ[3][3] = {
-	{ CIE_x_r*CIE_C_rD / CIE_D, 
-	  CIE_x_g*CIE_C_gD / CIE_D, 
-	  CIE_x_b*CIE_C_bD / CIE_D 
+	{ CIE_x_r*CIE_C_rD / CIE_D,
+	  CIE_x_g*CIE_C_gD / CIE_D,
+	  CIE_x_b*CIE_C_bD / CIE_D
 	},
-	{ CIE_y_r*CIE_C_rD / CIE_D, 
-	  CIE_y_g*CIE_C_gD / CIE_D, 
-	  CIE_y_b*CIE_C_bD / CIE_D 
+	{ CIE_y_r*CIE_C_rD / CIE_D,
+	  CIE_y_g*CIE_C_gD / CIE_D,
+	  CIE_y_b*CIE_C_bD / CIE_D
 	},
 	{ (1 - CIE_x_r-CIE_y_r)*CIE_C_rD / CIE_D,
 	  (1 - CIE_x_g-CIE_y_g)*CIE_C_gD / CIE_D,
@@ -103,14 +103,14 @@ static const float  XYZ2RGB[3][3] = {
 };
 
 /**
-This gives approximately the following matrices : 
+This gives approximately the following matrices :
 
-static const float RGB2XYZ[3][3] = { 
+static const float RGB2XYZ[3][3] = {
 	{ 0.41239083F, 0.35758433F, 0.18048081F },
 	{ 0.21263903F, 0.71516865F, 0.072192319F },
 	{ 0.019330820F, 0.11919473F, 0.95053220F }
 };
-static const float XYZ2RGB[3][3] = { 
+static const float XYZ2RGB[3][3] = {
 	{ 3.2409699F, -1.5373832F, -0.49861079F },
 	{ -0.96924376F, 1.8759676F, 0.041555084F },
 	{ 0.055630036F, -0.20397687F, 1.0569715F }
@@ -128,7 +128,7 @@ On output, pixel->red == Y, pixel->green == x, pixel->blue == y
 @param dib Input RGBF / Output Yxy image
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-BOOL 
+WINBOOL
 ConvertInPlaceRGBFToYxy(FIBITMAP *dib) {
 	float result[3];
 
@@ -138,7 +138,7 @@ ConvertInPlaceRGBFToYxy(FIBITMAP *dib) {
 	const unsigned width  = FreeImage_GetWidth(dib);
 	const unsigned height = FreeImage_GetHeight(dib);
 	const unsigned pitch  = FreeImage_GetPitch(dib);
-	
+
 	BYTE *bits = (BYTE*)FreeImage_GetBits(dib);
 	for(unsigned y = 0; y < height; y++) {
 		FIRGBF *pixel = (FIRGBF*)bits;
@@ -151,10 +151,10 @@ ConvertInPlaceRGBFToYxy(FIBITMAP *dib) {
 			}
 			const float W = result[0] + result[1] + result[2];
 			const float Y = result[1];
-			if(W > 0) { 
-				pixel[x].red   = Y;			    // Y 
-				pixel[x].green = result[0] / W;	// x 
-				pixel[x].blue  = result[1] / W;	// y 	
+			if(W > 0) {
+				pixel[x].red   = Y;			    // Y
+				pixel[x].green = result[0] / W;	// x
+				pixel[x].blue  = result[1] / W;	// y
 			} else {
 				pixel[x].red = pixel[x].green = pixel[x].blue = 0;
 			}
@@ -172,7 +172,7 @@ On input, pixel->red == Y, pixel->green == x, pixel->blue == y
 @param dib Input Yxy / Output RGBF image
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-BOOL 
+WINBOOL
 ConvertInPlaceYxyToRGBF(FIBITMAP *dib) {
 	float result[3];
 	float X, Y, Z;
@@ -188,9 +188,9 @@ ConvertInPlaceYxyToRGBF(FIBITMAP *dib) {
 	for(unsigned y = 0; y < height; y++) {
 		FIRGBF *pixel = (FIRGBF*)bits;
 		for(unsigned x = 0; x < width; x++) {
-			Y = pixel[x].red;	        // Y 
-			result[1] = pixel[x].green;	// x 
-			result[2] = pixel[x].blue;	// y 
+			Y = pixel[x].red;	        // Y
+			result[1] = pixel[x].green;	// x
+			result[2] = pixel[x].blue;	// y
 			if ((Y > EPSILON) && (result[1] > EPSILON) && (result[2] > EPSILON)) {
 				X = (result[1] * Y) / result[2];
 				Z = (X / result[1]) - X - Y;
@@ -226,7 +226,7 @@ On input, pixel->red == Y, pixel->green == x, pixel->blue == y
 @param worldLum Average luminance (world adaptation luminance)
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-BOOL 
+WINBOOL
 LuminanceFromYxy(FIBITMAP *Yxy, float *maxLum, float *minLum, float *worldLum) {
 	if(FreeImage_GetImageType(Yxy) != FIT_RGBF)
 		return FALSE;
@@ -263,10 +263,10 @@ LuminanceFromYxy(FIBITMAP *Yxy, float *maxLum, float *minLum, float *worldLum) {
 }
 
 /**
-Clamp RGBF image highest values to display white, 
+Clamp RGBF image highest values to display white,
 then convert to 24-bit RGB
 */
-FIBITMAP* 
+FIBITMAP*
 ClampConvertRGBFTo24(FIBITMAP *src) {
 	if(FreeImage_GetImageType(src) != FIT_RGBF)
 		return FALSE;
@@ -290,7 +290,7 @@ ClampConvertRGBFTo24(FIBITMAP *src) {
 			const float red   = (src_pixel[x].red > 1)   ? 1 : src_pixel[x].red;
 			const float green = (src_pixel[x].green > 1) ? 1 : src_pixel[x].green;
 			const float blue  = (src_pixel[x].blue > 1)  ? 1 : src_pixel[x].blue;
-			
+
 			dst_pixel[FI_RGBA_RED]   = (BYTE)(255.0F * red   + 0.5F);
 			dst_pixel[FI_RGBA_GREEN] = (BYTE)(255.0F * green + 0.5F);
 			dst_pixel[FI_RGBA_BLUE]  = (BYTE)(255.0F * blue  + 0.5F);
@@ -304,15 +304,15 @@ ClampConvertRGBFTo24(FIBITMAP *src) {
 }
 
 /**
-Extract the luminance channel L from a RGBF image. 
-Luminance is calculated from the sRGB model (RGB2XYZ matrix) 
-using a D65 white point : 
+Extract the luminance channel L from a RGBF image.
+Luminance is calculated from the sRGB model (RGB2XYZ matrix)
+using a D65 white point :
 L = ( 0.2126 * r ) + ( 0.7152 * g ) + ( 0.0722 * b )
-Reference : 
-A Standard Default Color Space for the Internet - sRGB. 
+Reference :
+A Standard Default Color Space for the Internet - sRGB.
 [online] http://www.w3.org/Graphics/Color/sRGB
 */
-FIBITMAP*  
+FIBITMAP*
 ConvertRGBFToY(FIBITMAP *src) {
 	if(FreeImage_GetImageType(src) != FIT_RGBF)
 		return FALSE;
@@ -326,7 +326,7 @@ ConvertRGBFToY(FIBITMAP *src) {
 	const unsigned src_pitch  = FreeImage_GetPitch(src);
 	const unsigned dst_pitch  = FreeImage_GetPitch(dst);
 
-	
+
 	BYTE *src_bits = (BYTE*)FreeImage_GetBits(src);
 	BYTE *dst_bits = (BYTE*)FreeImage_GetBits(dst);
 
@@ -355,7 +355,7 @@ Get the maximum, minimum, average luminance and log average luminance from a Y i
 @return Returns TRUE if successful, returns FALSE otherwise
 @see ConvertRGBFToY, FreeImage_TmoReinhard05Ex
 */
-BOOL 
+WINBOOL
 LuminanceFromY(FIBITMAP *dib, float *maxLum, float *minLum, float *Lav, float *Llav) {
 	if(FreeImage_GetImageType(dib) != FIT_FLOAT)
 		return FALSE;
@@ -414,20 +414,20 @@ static void findMaxMinPercentile(FIBITMAP *Y, float minPrct, float *minLum, floa
 	}
 
 	std::sort(vY.begin(), vY.end());
-	
+
 	*minLum = vY.at( int(minPrct * vY.size()) );
 	*maxLum = vY.at( int(maxPrct * vY.size()) );
 }
 
 /**
 Clipping function<br>
-Remove any extremely bright and/or extremely dark pixels 
-and normalize between 0 and 1. 
+Remove any extremely bright and/or extremely dark pixels
+and normalize between 0 and 1.
 @param Y Input/Output image
 @param minPrct Minimum percentile
 @param maxPrct Maximum percentile
 */
-void 
+void
 NormalizeY(FIBITMAP *Y, float minPrct, float maxPrct) {
 	int x, y;
 	float maxLum, minLum;
@@ -463,7 +463,7 @@ NormalizeY(FIBITMAP *Y, float minPrct, float maxPrct) {
 	}
 	if(maxLum == minLum) return;
 
-	// normalize to range 0..1 
+	// normalize to range 0..1
 	const float divider = maxLum - minLum;
 	BYTE *bits = (BYTE*)FreeImage_GetBits(Y);
 	for(y = 0; y < height; y++) {

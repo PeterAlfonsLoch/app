@@ -53,7 +53,7 @@ static void fmg_restrict(FIBITMAP *UC, FIBITMAP *UF, int nc) {
 
 	const int uc_pitch  = FreeImage_GetPitch(UC) / sizeof(float);
 	const int uf_pitch  = FreeImage_GetPitch(UF) / sizeof(float);
-	
+
 	float *uc_bits = (float*)FreeImage_GetBits(UC);
 	const float *uf_bits = (float*)FreeImage_GetBits(UF);
 
@@ -62,9 +62,9 @@ static void fmg_restrict(FIBITMAP *UC, FIBITMAP *UF, int nc) {
 		float *uc_scan = uc_bits + uc_pitch;
 		for (row_uc = 1, row_uf = 2; row_uc < nc-1; row_uc++, row_uf += 2) {
 			const float *uf_scan = uf_bits + row_uf * uf_pitch;
-			for (col_uc = 1, col_uf = 2; col_uc < nc-1; col_uc++, col_uf += 2) { 
-				// calculate 
-				// UC(row_uc, col_uc) = 
+			for (col_uc = 1, col_uf = 2; col_uc < nc-1; col_uc++, col_uf += 2) {
+				// calculate
+				// UC(row_uc, col_uc) =
 				// 0.5 * UF(row_uf, col_uf) + 0.125 * [ UF(row_uf+1, col_uf) + UF(row_uf-1, col_uf) + UF(row_uf, col_uf+1) + UF(row_uf, col_uf-1) ]
 				float *uc_pixel = uc_scan + col_uc;
 				const float *uf_center = uf_scan + col_uf;
@@ -77,14 +77,14 @@ static void fmg_restrict(FIBITMAP *UC, FIBITMAP *UF, int nc) {
 	const int ncc = 2*nc-1;
 	{
 		/*
-		calculate the following: 
-		for (row_uc = 0, row_uf = 0; row_uc < nc; row_uc++, row_uf += 2) { 
-			UC(row_uc, 0) = UF(row_uf, 0);		
+		calculate the following:
+		for (row_uc = 0, row_uf = 0; row_uc < nc; row_uc++, row_uf += 2) {
+			UC(row_uc, 0) = UF(row_uf, 0);
 			UC(row_uc, nc-1) = UF(row_uf, ncc-1);
 		}
 		*/
 		float *uc_scan = uc_bits;
-		for (row_uc = 0, row_uf = 0; row_uc < nc; row_uc++, row_uf += 2) { 
+		for (row_uc = 0, row_uf = 0; row_uc < nc; row_uc++, row_uf += 2) {
 			const float *uf_scan = uf_bits + row_uf * uf_pitch;
 			uc_scan[0] = uf_scan[0];
 			uc_scan[nc-1] = uf_scan[ncc-1];
@@ -93,7 +93,7 @@ static void fmg_restrict(FIBITMAP *UC, FIBITMAP *UF, int nc) {
 	}
 	{
 		/*
-		calculate the following: 
+		calculate the following:
 		for (col_uc = 0, col_uf = 0; col_uc < nc; col_uc++, col_uf += 2) {
 			UC(0, col_uc) = UF(0, col_uf);
 			UC(nc-1, col_uc) = UF(ncc-1, col_uf);
@@ -111,7 +111,7 @@ static void fmg_restrict(FIBITMAP *UC, FIBITMAP *UF, int nc) {
 }
 
 /**
-Solution of the model problem on the coarsest grid, where h = 1/2 . 
+Solution of the model problem on the coarsest grid, where h = 1/2 .
 The right-hand side is input
 in rhs[0..2][0..2] and the solution is returned in u[0..2][0..2].
 */
@@ -134,16 +134,16 @@ static void fmg_prolongate(FIBITMAP *UF, FIBITMAP *UC, int nf) {
 
 	const int uf_pitch  = FreeImage_GetPitch(UF) / sizeof(float);
 	const int uc_pitch  = FreeImage_GetPitch(UC) / sizeof(float);
-	
+
 	float *uf_bits = (float*)FreeImage_GetBits(UF);
 	const float *uc_bits = (float*)FreeImage_GetBits(UC);
-	
+
 	// do elements that are copies
 	{
 		const int nc = nf/2 + 1;
 
 		float *uf_scan = uf_bits;
-		const float *uc_scan = uc_bits;		
+		const float *uc_scan = uc_bits;
 		for (row_uc = 0; row_uc < nc; row_uc++) {
 			for (col_uc = 0, col_uf = 0; col_uc < nc; col_uc++, col_uf += 2) {
 				// calculate UF(2*row_uc, col_uf) = UC(row_uc, col_uc);
@@ -154,7 +154,7 @@ static void fmg_prolongate(FIBITMAP *UF, FIBITMAP *UC, int nf) {
 		}
 	}
 	// do odd-numbered columns, interpolating vertically
-	{		
+	{
 		for(row_uf = 1; row_uf < nf-1; row_uf += 2) {
 			float *uf_scan = uf_bits + row_uf * uf_pitch;
 			for (col_uf = 0; col_uf < nf; col_uf += 2) {
@@ -187,7 +187,7 @@ static void fmg_relaxation(FIBITMAP *U, FIBITMAP *RHS, int n) {
 
 	const int u_pitch  = FreeImage_GetPitch(U) / sizeof(float);
 	const int rhs_pitch  = FreeImage_GetPitch(RHS) / sizeof(float);
-	
+
 	float *u_bits = (float*)FreeImage_GetBits(U);
 	const float *rhs_bits = (float*)FreeImage_GetBits(RHS);
 
@@ -195,10 +195,10 @@ static void fmg_relaxation(FIBITMAP *U, FIBITMAP *RHS, int n) {
 		float *u_scan = u_bits + u_pitch;
 		const float *rhs_scan = rhs_bits + rhs_pitch;
 		for (row = 1, isw = jsw; row < n-1; row++, isw = 3-isw) {
-			for (col = isw; col < n-1; col += 2) { 
+			for (col = isw; col < n-1; col += 2) {
 				// Gauss-Seidel formula
-				// calculate U(row, col) = 
-				// 0.25 * [ U(row+1, col) + U(row-1, col) + U(row, col+1) + U(row, col-1) - h2 * RHS(row, col) ]		 
+				// calculate U(row, col) =
+				// 0.25 * [ U(row+1, col) + U(row-1, col) + U(row, col+1) + U(row, col-1) - h2 * RHS(row, col) ]
 				float *u_center = u_scan + col;
 				const float *rhs_center = rhs_scan + col;
 				*u_center = *(u_center + u_pitch) + *(u_center - u_pitch) + *(u_center + 1) + *(u_center - 1);
@@ -218,13 +218,13 @@ rhs[0..n-1][0..n-1], while res[0..n-1][0..n-1] is returned.
 static void fmg_residual(FIBITMAP *RES, FIBITMAP *U, FIBITMAP *RHS, int n) {
 	int row, col;
 
-	const float h = 1.0F / (n-1);	
+	const float h = 1.0F / (n-1);
 	const float h2i = 1.0F / (h*h);
 
 	const int res_pitch  = FreeImage_GetPitch(RES) / sizeof(float);
 	const int u_pitch  = FreeImage_GetPitch(U) / sizeof(float);
 	const int rhs_pitch  = FreeImage_GetPitch(RHS) / sizeof(float);
-	
+
 	float *res_bits = (float*)FreeImage_GetBits(RES);
 	const float *u_bits = (float*)FreeImage_GetBits(U);
 	const float *rhs_bits = (float*)FreeImage_GetBits(RHS);
@@ -236,7 +236,7 @@ static void fmg_residual(FIBITMAP *RES, FIBITMAP *U, FIBITMAP *RHS, int n) {
 		const float *rhs_scan = rhs_bits + rhs_pitch;
 		for (row = 1; row < n-1; row++) {
 			for (col = 1; col < n-1; col++) {
-				// calculate RES(row, col) = 
+				// calculate RES(row, col) =
 				// -h2i * [ U(row+1, col) + U(row-1, col) + U(row, col+1) + U(row, col-1) - 4 * U(row, col) ] + RHS(row, col);
 				float *res_center = res_scan + col;
 				const float *u_center = u_scan + col;
@@ -275,7 +275,7 @@ static void fmg_addint(FIBITMAP *UF, FIBITMAP *UC, FIBITMAP *RES, int nf) {
 	fmg_prolongate(RES, UC, nf);
 
 	const int uf_pitch  = FreeImage_GetPitch(UF) / sizeof(float);
-	const int res_pitch  = FreeImage_GetPitch(RES) / sizeof(float);	
+	const int res_pitch  = FreeImage_GetPitch(RES) / sizeof(float);
 
 	float *uf_bits = (float*)FreeImage_GetBits(UF);
 	const float *res_bits = (float*)FreeImage_GetBits(RES);
@@ -297,14 +297,14 @@ The dimension n must be of the form 2^j + 1 for some integer j. (j is actually t
 grid levels used in the solution, called ng below.) ncycle is the number of V-cycles to be
 used at each level.
 */
-static BOOL fmg_mglin(FIBITMAP *U, int n, int ncycle) {
+static WINBOOL fmg_mglin(FIBITMAP *U, int n, int ncycle) {
 	int j, jcycle, jj, jpost, jpre, nf, ngrid;
 
 	FIBITMAP **IRHO = NULL;
 	FIBITMAP **IU   = NULL;
 	FIBITMAP **IRHS = NULL;
 	FIBITMAP **IRES = NULL;
-	
+
 	int ng = 0;		// number of allocated grids
 
 // --------------------------------------------------------------------------
@@ -354,11 +354,11 @@ static BOOL fmg_mglin(FIBITMAP *U, int n, int ncycle) {
 		if(!IRHO[ngrid]) throw(1);
 
 		// ... and fill it by restricting from the fine grid
-		fmg_restrict(IRHO[ngrid], U, nn);	
+		fmg_restrict(IRHO[ngrid], U, nn);
 
 		// similarly allocate storage and fill r.h.s. on all coarse grids.
 		while (nn > 3) {
-			nn = nn/2 + 1; 
+			nn = nn/2 + 1;
 			ngrid--;
 			IRHO[ngrid] = FreeImage_AllocateT(FIT_FLOAT, nn, nn);
 			if(!IRHO[ngrid]) throw(1);
@@ -391,12 +391,12 @@ static BOOL fmg_mglin(FIBITMAP *U, int n, int ncycle) {
 			if(!IRES[j]) throw(1);
 
 			fmg_prolongate(IU[j], IU[j-1], nn);
-			
+
 			// interpolate from coarse grid to next finer grid
 
 			// set up r.h.s.
 			fmg_copyArray(IRHS[j], j != (ngrid - 1) ? IRHO[j] : U);
-			
+
 			// V-cycle loop
 			for (jcycle = 0; jcycle < ncycle; jcycle++) {
 				nf = nn;
@@ -409,18 +409,18 @@ static BOOL fmg_mglin(FIBITMAP *U, int n, int ncycle) {
 					fmg_residual(IRES[jj], IU[jj], IRHS[jj], nf);
 					nf = nf/2 + 1;
 					// restriction of the residual is the next r.h.s.
-					fmg_restrict(IRHS[jj-1], IRES[jj], nf);				
+					fmg_restrict(IRHS[jj-1], IRES[jj], nf);
 					// zero for initial guess in next relaxation
 					fmg_fillArrayWithZeros(IU[jj-1]);
 				}
 				// bottom of V: solve on coarsest grid
-				fmg_solve(IU[0], IRHS[0]); 
-				nf = 3; 
+				fmg_solve(IU[0], IRHS[0]);
+				nf = 3;
 				// upward stroke of V.
-				for (jj = 1; jj <= j; jj++) { 
+				for (jj = 1; jj <= j; jj++) {
 					nf = 2*nf - 1;
 					// use res for temporary storage inside addint
-					fmg_addint(IU[jj], IU[jj-1], IRES[jj], nf);				
+					fmg_addint(IU[jj], IU[jj-1], IRES[jj], nf);
 					// post-smoothing
 					for (jpost = 0; jpost < NPOST; jpost++) {
 						fmg_relaxation(IU[jj], IRHS[jj], nf);
@@ -454,15 +454,15 @@ static BOOL fmg_mglin(FIBITMAP *U, int n, int ncycle) {
 // --------------------------------------------------------------------------
 
 /**
-Poisson solver based on a multigrid algorithm. 
-This routine solves a Poisson equation, remap result pixels to [0..1] and returns the solution. 
-NB: The input image is first stored inside a square image whose size is (2^j + 1)x(2^j + 1) for some integer j, 
-where j is such that 2^j is the nearest larger dimension corresponding to MAX(image width, image height). 
+Poisson solver based on a multigrid algorithm.
+This routine solves a Poisson equation, remap result pixels to [0..1] and returns the solution.
+NB: The input image is first stored inside a square image whose size is (2^j + 1)x(2^j + 1) for some integer j,
+where j is such that 2^j is the nearest larger dimension corresponding to MAX(image width, image height).
 @param Laplacian Laplacian image
 @param ncycle Number of cycles in the multigrid algorithm (usually 2 or 3)
 @return Returns the solved PDE equations if successful, returns NULL otherwise
 */
-FIBITMAP* DLL_CALLCONV 
+FIBITMAP* DLL_CALLCONV
 FreeImage_MultigridPoissonSolver(FIBITMAP *Laplacian, int ncycle) {
 	if(!FreeImage_HasPixels(Laplacian)) return NULL;
 

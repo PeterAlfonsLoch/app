@@ -21,25 +21,25 @@
 // Use at your own risk!
 // ==========================================================
 
-/* 
+/*
 ==========================================================
-This code was taken and adapted from the following reference : 
+This code was taken and adapted from the following reference :
 
-[1] Philippe Thévenaz, Spline interpolation, a C source code 
+[1] Philippe Thévenaz, Spline interpolation, a C source code
 implementation. http://bigwww.epfl.ch/thevenaz/
 
-It implements ideas described in the following papers : 
+It implements ideas described in the following papers :
 
-[2] Unser M., Splines: A Perfect Fit for Signal and Image Processing. 
-IEEE Signal Processing Magazine, vol. 16, no. 6, pp. 22-38, November 1999. 
+[2] Unser M., Splines: A Perfect Fit for Signal and Image Processing.
+IEEE Signal Processing Magazine, vol. 16, no. 6, pp. 22-38, November 1999.
 
 [3] Unser M., Aldroubi A., Eden M., B-Spline Signal Processing: Part I--Theory.
-IEEE Transactions on Signal Processing, vol. 41, no. 2, pp. 821-832, February 1993. 
+IEEE Transactions on Signal Processing, vol. 41, no. 2, pp. 821-832, February 1993.
 
 [4] Unser M., Aldroubi A., Eden M., B-Spline Signal Processing: Part II--Efficient Design and Applications.
 IEEE Transactions on Signal Processing, vol. 41, no. 2, pp. 834-848, February 1993.
 
-========================================================== 
+==========================================================
 */
 
 
@@ -68,7 +68,7 @@ static void	PutRow(double *Image, long y, double *Line, long Width);
 static bool SamplesToCoefficients(double *Image, long Width, long Height, long spline_degree);
 static double InterpolatedValue(double *Bcoeff, long Width, long Height, double x, double y, long spline_degree);
 
-static FIBITMAP * Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x_origin, double y_origin, long spline_degree, BOOL use_mask);
+static FIBITMAP * Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x_origin, double y_origin, long spline_degree, WINBOOL use_mask);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Coefficients routines
@@ -82,7 +82,7 @@ static FIBITMAP * Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double
  @param NbPoles Number of poles
  @param Tolerance Admissible relative error
 */
-static void 
+static void
 ConvertToInterpolationCoefficients(double *c, long DataLength, double *z, long NbPoles,	double Tolerance) {
 	double	Lambda = 1;
 	long	n, k;
@@ -95,26 +95,26 @@ ConvertToInterpolationCoefficients(double *c, long DataLength, double *z, long N
 	for(k = 0L; k < NbPoles; k++) {
 		Lambda = Lambda * (1.0 - z[k]) * (1.0 - 1.0 / z[k]);
 	}
-	// apply the gain 
+	// apply the gain
 	for (n = 0L; n < DataLength; n++) {
 		c[n] *= Lambda;
 	}
-	// loop over all poles 
+	// loop over all poles
 	for (k = 0L; k < NbPoles; k++) {
-		// causal initialization 
+		// causal initialization
 		c[0] = InitialCausalCoefficient(c, DataLength, z[k], Tolerance);
-		// causal recursion 
+		// causal recursion
 		for (n = 1L; n < DataLength; n++) {
 			c[n] += z[k] * c[n - 1L];
 		}
-		// anticausal initialization 
+		// anticausal initialization
 		c[DataLength - 1L] = InitialAntiCausalCoefficient(c, DataLength, z[k]);
-		// anticausal recursion 
+		// anticausal recursion
 		for (n = DataLength - 2L; 0 <= n; n--) {
 			c[n] = z[k] * (c[n + 1L] - c[n]);
 		}
 	}
-} 
+}
 
 /**
  InitialCausalCoefficient
@@ -125,12 +125,12 @@ ConvertToInterpolationCoefficients(double *c, long DataLength, double *z, long N
  @param Tolerance Admissible relative error
  @return
 */
-static double 
+static double
 InitialCausalCoefficient(double	*c, long DataLength, double	z, double Tolerance) {
 	double	Sum, zn, z2n, iz;
 	long	n, Horizon;
 
-	// this initialization corresponds to mirror boundaries 
+	// this initialization corresponds to mirror boundaries
 	Horizon = DataLength;
 	if(Tolerance > 0) {
 		Horizon = (long)ceil(log(Tolerance) / log(fabs(z)));
@@ -146,7 +146,7 @@ InitialCausalCoefficient(double	*c, long DataLength, double	z, double Tolerance)
 		return(Sum);
 	}
 	else {
-		// full loop 
+		// full loop
 		zn = z;
 		iz = 1.0 / z;
 		z2n = pow(z, (double)(DataLength - 1L));
@@ -170,7 +170,7 @@ InitialCausalCoefficient(double	*c, long DataLength, double	z, double Tolerance)
  @param Line Output linear array
  @param Height Length of the line
 */
-static void 
+static void
 GetColumn(double *Image, long Width, long x, double *Line, long Height) {
 	long y;
 
@@ -189,7 +189,7 @@ GetColumn(double *Image, long Width, long x, double *Line, long Height) {
  @param Line Output linear array
  @param Width Length of the line
 */
-static void	
+static void
 GetRow(double *Image, long y, double *Line, long Width) {
 	long	x;
 
@@ -207,7 +207,7 @@ GetRow(double *Image, long y, double *Line, long Width) {
  @param z Actual pole
  @return
 */
-static double 
+static double
 InitialAntiCausalCoefficient(double	*c, long DataLength, double	z) {
 	// this initialization corresponds to mirror boundaries
 	return((z / (z * z - 1.0)) * (z * c[DataLength - 2L] + c[DataLength - 1L]));
@@ -222,7 +222,7 @@ InitialAntiCausalCoefficient(double	*c, long DataLength, double	z) {
  @param Line Input linear array
  @param Height Length of the line and height of the image
 */
-static void	
+static void
 PutColumn(double *Image, long Width, long x, double *Line, long Height) {
 	long	y;
 
@@ -241,7 +241,7 @@ PutColumn(double *Image, long Width, long x, double *Line, long Height) {
  @param Line Input linear array
  @param Width length of the line and width of the image
 */
-static void	
+static void
 PutRow(double *Image, long y, double *Line, long Width) {
 	long	x;
 
@@ -253,11 +253,11 @@ PutRow(double *Image, long y, double *Line, long Width) {
 
 /**
  SamplesToCoefficients.<br>
- Implement the algorithm that converts the image samples into B-spline coefficients. 
- This efficient procedure essentially relies on the three papers cited above; 
- data are processed in-place. 
- Even though this algorithm is robust with respect to quantization, 
- we advocate the use of a floating-point format for the data. 
+ Implement the algorithm that converts the image samples into B-spline coefficients.
+ This efficient procedure essentially relies on the three papers cited above;
+ data are processed in-place.
+ Even though this algorithm is robust with respect to quantization,
+ we advocate the use of a floating-point format for the data.
 
  @param Image Input / Output image (in-place processing)
  @param Width Width of the image
@@ -265,7 +265,7 @@ PutRow(double *Image, long y, double *Line, long Width) {
  @param spline_degree Degree of the spline model
  @return Returns true if success, false otherwise
 */
-static bool	
+static bool
 SamplesToCoefficients(double *Image, long Width, long Height, long spline_degree) {
 	double	*Line;
 	double	Pole[2];
@@ -299,9 +299,9 @@ SamplesToCoefficients(double *Image, long Width, long Height, long spline_degree
 			return false;
 	}
 
-	// convert the image samples into interpolation coefficients 
+	// convert the image samples into interpolation coefficients
 
-	// in-place separable process, along x 
+	// in-place separable process, along x
 	Line = (double *)malloc(Width * sizeof(double));
 	if (Line == NULL) {
 		// Row allocation failed
@@ -314,7 +314,7 @@ SamplesToCoefficients(double *Image, long Width, long Height, long spline_degree
 	}
 	free(Line);
 
-	// in-place separable process, along y 
+	// in-place separable process, along y
 	Line = (double *)malloc(Height * sizeof(double));
 	if (Line == NULL) {
 		// Column allocation failed
@@ -335,8 +335,8 @@ SamplesToCoefficients(double *Image, long Width, long Height, long spline_degree
 
 /**
 Perform the bidimensional interpolation of an image.
-Given an array of spline coefficients, return the value of 
-the underlying continuous spline model, sampled at the location (x, y). 
+Given an array of spline coefficients, return the value of
+the underlying continuous spline model, sampled at the location (x, y).
 The model degree can be 2 (quadratic), 3 (cubic), 4 (quartic), or 5 (quintic).
 
 @param Bcoeff Input B-spline array of coefficients
@@ -345,10 +345,10 @@ The model degree can be 2 (quadratic), 3 (cubic), 4 (quartic), or 5 (quintic).
 @param x x coordinate where to interpolate
 @param y y coordinate where to interpolate
 @param spline_degree Degree of the spline model
-@return Returns the value of the underlying continuous spline model, 
+@return Returns the value of the underlying continuous spline model,
 sampled at the location (x, y)
 */
-static double 
+static double
 InterpolatedValue(double *Bcoeff, long Width, long Height, double x, double y, long spline_degree) {
 	double	*p;
 	double	xWeight[6], yWeight[6];
@@ -507,7 +507,7 @@ InterpolatedValue(double *Bcoeff, long Width, long Height, double x, double y, l
 // FreeImage implementation
 
 
-/** 
+/**
  Image translation and rotation using B-Splines.
 
  @param dib Input 8-bit greyscale image
@@ -520,8 +520,8 @@ InterpolatedValue(double *Bcoeff, long Width, long Height, double x, double y, l
  @param use_mask Whether or not to mask the image
  @return Returns the translated & rotated dib if successful, returns NULL otherwise
 */
-static FIBITMAP * 
-Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x_origin, double y_origin, long spline_degree, BOOL use_mask) {
+static FIBITMAP *
+Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x_origin, double y_origin, long spline_degree, WINBOOL use_mask) {
 	double	*ImageRasterArray;
 	double	p;
 	double	a11, a12, a21, a22;
@@ -534,7 +534,7 @@ Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x
 	if(bpp != 8) {
 		return NULL;
 	}
-	
+
 	int width = FreeImage_GetWidth(dib);
 	int height = FreeImage_GetHeight(dib);
 	switch(spline_degree) {
@@ -603,7 +603,7 @@ Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x
 	// visit all pixels of the output image and assign their value
 	for(y = 0; y < height; y++) {
 		BYTE *dst_bits = FreeImage_GetScanLine(dst, height-1-y);
-		
+
 		x0 = a12 * (double)y + x_shift;
 		y0 = a22 * (double)y + y_shift;
 
@@ -632,7 +632,7 @@ Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x
 	return dst;
 }
 
-/** 
+/**
  Image rotation using a 3rd order (cubic) B-Splines.
 
  @param dib Input dib (8, 24 or 32-bit)
@@ -644,8 +644,8 @@ Rotate8Bit(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x
  @param use_mask Whether or not to mask the image
  @return Returns the translated & rotated dib if successful, returns NULL otherwise
 */
-FIBITMAP * DLL_CALLCONV 
-FreeImage_RotateEx(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x_origin, double y_origin, BOOL use_mask) {
+FIBITMAP * DLL_CALLCONV
+FreeImage_RotateEx(FIBITMAP *dib, double angle, double x_shift, double y_shift, double x_origin, double y_origin, WINBOOL use_mask) {
 
 	int x, y, bpp;
 	int channel, nb_channels;
@@ -717,7 +717,7 @@ FreeImage_RotateEx(FIBITMAP *dib, double angle, double x_shift, double y_shift, 
 
 			// copy metadata from src to dst
 			FreeImage_CloneMetadata(dst, dib);
-			
+
 			return dst;
 		}
 	} catch(int) {

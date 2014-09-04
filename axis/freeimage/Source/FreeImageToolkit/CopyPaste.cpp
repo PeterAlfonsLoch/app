@@ -34,28 +34,28 @@
 
 // ----------------------------------------------------------
 /// 1-bit
-static BOOL Combine1(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
+static WINBOOL Combine1(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
 /// 4-bit
-static BOOL Combine4(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
+static WINBOOL Combine4(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
 /// 8-bit
-static BOOL Combine8(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
+static WINBOOL Combine8(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
 /// 16-bit 555
-static BOOL Combine16_555(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
+static WINBOOL Combine16_555(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
 /// 16-bit 565
-static BOOL Combine16_565(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
+static WINBOOL Combine16_565(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
 /// 24-bit
-static BOOL Combine24(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
+static WINBOOL Combine24(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
 /// 32- bit
-static BOOL Combine32(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
+static WINBOOL Combine32(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha);
 // ----------------------------------------------------------
 
 // ----------------------------------------------------------
 //   1-bit
 // ----------------------------------------------------------
 
-static BOOL 
+static WINBOOL
 Combine1(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha) {
-	BOOL value;
+	WINBOOL value;
 
 	// check the bit depth of src and dst images
 	if((FreeImage_GetBPP(dst_dib) != 1) || (FreeImage_GetBPP(src_dib) != 1)) {
@@ -68,14 +68,14 @@ Combine1(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned 
 	}
 
 	BYTE *dst_bits = FreeImage_GetBits(dst_dib) + ((FreeImage_GetHeight(dst_dib) - FreeImage_GetHeight(src_dib) - y) * FreeImage_GetPitch(dst_dib));
-	BYTE *src_bits = FreeImage_GetBits(src_dib);	
+	BYTE *src_bits = FreeImage_GetBits(src_dib);
 
 	// combine images
 	for(unsigned rows = 0; rows < FreeImage_GetHeight(src_dib); rows++) {
 		for(unsigned cols = 0; cols < FreeImage_GetWidth(src_dib); cols++) {
 			// get bit at (rows, cols) in src image
 			value = (src_bits[cols >> 3] & (0x80 >> (cols & 0x07))) != 0;
-			// set bit at (rows, x+cols) in dst image	
+			// set bit at (rows, x+cols) in dst image
 			value ? dst_bits[(x + cols) >> 3] |= (0x80 >> ((x + cols) & 0x7)) : dst_bits[(x + cols) >> 3] &= (0xFF7F >> ((x + cols) & 0x7));
 		}
 
@@ -90,11 +90,11 @@ Combine1(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned 
 //   4-bit
 // ----------------------------------------------------------
 
-static BOOL 
+static WINBOOL
 Combine4(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha) {
 
 	int swapTable[16];
-	BOOL bOddStart, bOddEnd;
+	WINBOOL bOddStart, bOddEnd;
 
 	// check the bit depth of src and dst images
 	if((FreeImage_GetBPP(dst_dib) != 4) || (FreeImage_GetBPP(src_dib) != 4)) {
@@ -137,7 +137,7 @@ Combine4(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned 
 	}
 
 	BYTE *dst_bits = FreeImage_GetBits(dst_dib) + ((FreeImage_GetHeight(dst_dib) - FreeImage_GetHeight(src_dib) - y) *	FreeImage_GetPitch(dst_dib)) + (x >> 1);
-	BYTE *src_bits = FreeImage_GetBits(src_dib);    
+	BYTE *src_bits = FreeImage_GetBits(src_dib);
 
 	// combine images
 
@@ -162,23 +162,23 @@ Combine4(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned 
 
 	for(unsigned rows = 0; rows < src_height; rows++) {
 		memcpy(buffer, src_bits, src_line);
-		
+
 		// change the values in the temp row to be those from the swap table
-		
+
 		for (unsigned cols = 0; cols < src_line; cols++) {
 			buffer[cols] = (BYTE)((swapTable[HINIBBLE(buffer[cols]) >> 4] << 4) + swapTable[LOWNIBBLE(buffer[cols])]);
 		}
 
-		if (bOddStart) {	
+		if (bOddStart) {
 			buffer[0] = HINIBBLE(dst_bits[0]) + LOWNIBBLE(buffer[0]);
 		}
-		
+
 		if (bOddEnd)	{
 			buffer[src_line - 1] = HINIBBLE(buffer[src_line - 1]) + LOWNIBBLE(dst_bits[src_line - 1]);
 		}
 
 		memcpy(dst_bits, buffer, src_line);
-		
+
 		dst_bits += FreeImage_GetPitch(dst_dib);
 		src_bits += FreeImage_GetPitch(src_dib);
 	}
@@ -193,7 +193,7 @@ Combine4(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned 
 //   8-bit
 // ----------------------------------------------------------
 
-static BOOL 
+static WINBOOL
 Combine8(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha) {
 	// check the bit depth of src and dst images
 	if((FreeImage_GetBPP(dst_dib) != 8) || (FreeImage_GetBPP(src_dib) != 8)) {
@@ -206,7 +206,7 @@ Combine8(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned 
 	}
 
 	BYTE *dst_bits = FreeImage_GetBits(dst_dib) + ((FreeImage_GetHeight(dst_dib) - FreeImage_GetHeight(src_dib) - y) * FreeImage_GetPitch(dst_dib)) + (x);
-	BYTE *src_bits = FreeImage_GetBits(src_dib);	
+	BYTE *src_bits = FreeImage_GetBits(src_dib);
 
 	if(alpha > 255) {
 		// combine images
@@ -219,7 +219,7 @@ Combine8(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned 
 	} else {
 		// alpha blend images
 		for(unsigned rows = 0; rows < FreeImage_GetHeight(src_dib); rows++) {
-			for (unsigned cols = 0; cols < FreeImage_GetLine(src_dib); cols++) {							
+			for (unsigned cols = 0; cols < FreeImage_GetLine(src_dib); cols++) {
 				dst_bits[cols] = (BYTE)(((src_bits[cols] - dst_bits[cols]) * alpha + (dst_bits[cols] << 8)) >> 8);
 			}
 
@@ -235,7 +235,7 @@ Combine8(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned 
 //   16-bit
 // ----------------------------------------------------------
 
-static BOOL 
+static WINBOOL
 Combine16_555(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha) {
 	// check the bit depth of src and dst images
 	if((FreeImage_GetBPP(dst_dib) != 16) || (FreeImage_GetBPP(src_dib) != 16)) {
@@ -248,7 +248,7 @@ Combine16_555(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsi
 	}
 
 	BYTE *dst_bits = FreeImage_GetBits(dst_dib) + ((FreeImage_GetHeight(dst_dib) - FreeImage_GetHeight(src_dib) - y) * FreeImage_GetPitch(dst_dib)) + (x * 2);
-	BYTE *src_bits = FreeImage_GetBits(src_dib);	
+	BYTE *src_bits = FreeImage_GetBits(src_dib);
 
 	if (alpha > 255) {
 		for(unsigned rows = 0; rows < FreeImage_GetHeight(src_dib); rows++) {
@@ -262,7 +262,7 @@ Combine16_555(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsi
 			for(unsigned cols = 0; cols < FreeImage_GetLine(src_dib); cols += 2) {
 				RGBTRIPLE color_s;
 				RGBTRIPLE color_t;
-				
+
 				WORD *tmp1 = (WORD *)&dst_bits[cols];
 				WORD *tmp2 = (WORD *)&src_bits[cols];
 
@@ -295,7 +295,7 @@ Combine16_555(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsi
 	return TRUE;
 }
 
-static BOOL 
+static WINBOOL
 Combine16_565(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha) {
 	// check the bit depth of src and dst images
 	if((FreeImage_GetBPP(dst_dib) != 16) || (FreeImage_GetBPP(src_dib) != 16)) {
@@ -308,7 +308,7 @@ Combine16_565(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsi
 	}
 
 	BYTE *dst_bits = FreeImage_GetBits(dst_dib) + ((FreeImage_GetHeight(dst_dib) - FreeImage_GetHeight(src_dib) - y) * FreeImage_GetPitch(dst_dib)) + (x * 2);
-	BYTE *src_bits = FreeImage_GetBits(src_dib);	
+	BYTE *src_bits = FreeImage_GetBits(src_dib);
 
 	if (alpha > 255) {
 		for(unsigned rows = 0; rows < FreeImage_GetHeight(src_dib); rows++) {
@@ -322,7 +322,7 @@ Combine16_565(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsi
 			for(unsigned cols = 0; cols < FreeImage_GetLine(src_dib); cols += 2) {
 				RGBTRIPLE color_s;
 				RGBTRIPLE color_t;
-				
+
 				WORD *tmp1 = (WORD *)&dst_bits[cols];
 				WORD *tmp2 = (WORD *)&src_bits[cols];
 
@@ -351,7 +351,7 @@ Combine16_565(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsi
 			src_bits += FreeImage_GetPitch(src_dib);
 		}
 	}
-	
+
 	return TRUE;
 }
 
@@ -359,7 +359,7 @@ Combine16_565(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsi
 //   24-bit
 // ----------------------------------------------------------
 
-static BOOL 
+static WINBOOL
 Combine24(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha) {
 	// check the bit depth of src and dst images
 	if((FreeImage_GetBPP(dst_dib) != 24) || (FreeImage_GetBPP(src_dib) != 24)) {
@@ -372,7 +372,7 @@ Combine24(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned
 	}
 
 	BYTE *dst_bits = FreeImage_GetBits(dst_dib) + ((FreeImage_GetHeight(dst_dib) - FreeImage_GetHeight(src_dib) - y) * FreeImage_GetPitch(dst_dib)) + (x * 3);
-	BYTE *src_bits = FreeImage_GetBits(src_dib);	
+	BYTE *src_bits = FreeImage_GetBits(src_dib);
 
 	if(alpha > 255) {
 		// combine images
@@ -385,7 +385,7 @@ Combine24(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned
 	} else {
 		// alpha blend images
 		for(unsigned rows = 0; rows < FreeImage_GetHeight(src_dib); rows++) {
-			for (unsigned cols = 0; cols < FreeImage_GetLine(src_dib); cols++) {							
+			for (unsigned cols = 0; cols < FreeImage_GetLine(src_dib); cols++) {
 				dst_bits[cols] = (BYTE)(((src_bits[cols] - dst_bits[cols]) * alpha + (dst_bits[cols] << 8)) >> 8);
 			}
 
@@ -401,7 +401,7 @@ Combine24(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned
 //   32-bit
 // ----------------------------------------------------------
 
-static BOOL 
+static WINBOOL
 Combine32(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned alpha) {
 	// check the bit depth of src and dst images
 	if((FreeImage_GetBPP(dst_dib) != 32) || (FreeImage_GetBPP(src_dib) != 32)) {
@@ -414,7 +414,7 @@ Combine32(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned
 	}
 
 	BYTE *dst_bits = FreeImage_GetBits(dst_dib) + ((FreeImage_GetHeight(dst_dib) - FreeImage_GetHeight(src_dib) - y) * FreeImage_GetPitch(dst_dib)) + (x * 4);
-	BYTE *src_bits = FreeImage_GetBits(src_dib);	
+	BYTE *src_bits = FreeImage_GetBits(src_dib);
 
 	if (alpha > 255) {
 		// combine images
@@ -443,7 +443,7 @@ Combine32(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y, unsigned
 //   Any type other than FIBITMAP
 // ----------------------------------------------------------
 
-static BOOL 
+static WINBOOL
 CombineSameType(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y) {
 	// check the bit depth of src and dst images
 	if(FreeImage_GetImageType(dst_dib) != FreeImage_GetImageType(src_dib)) {
@@ -457,16 +457,16 @@ CombineSameType(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y) {
 	unsigned dst_width  = FreeImage_GetWidth(dst_dib);
 	unsigned dst_height = FreeImage_GetHeight(dst_dib);
 	unsigned dst_pitch  = FreeImage_GetPitch(dst_dib);
-	
+
 	// check the size of src image
 	if((x + src_width > dst_width) || (y + src_height > dst_height)) {
 		return FALSE;
-	}	
+	}
 
 	BYTE *dst_bits = FreeImage_GetBits(dst_dib) + ((dst_height - src_height - y) * dst_pitch) + (x * (src_line / src_width));
-	BYTE *src_bits = FreeImage_GetBits(src_dib);	
+	BYTE *src_bits = FreeImage_GetBits(src_dib);
 
-	// combine images	
+	// combine images
 	for(unsigned rows = 0; rows < src_height; rows++) {
 		memcpy(dst_bits, src_bits, src_line);
 
@@ -484,16 +484,16 @@ CombineSameType(FIBITMAP *dst_dib, FIBITMAP *src_dib, unsigned x, unsigned y) {
 /**
 Copy a sub part of the current image and returns it as a FIBITMAP*.
 Works with any bitmap type.
-@param left Specifies the left position of the cropped rectangle. 
-@param top Specifies the top position of the cropped rectangle. 
-@param right Specifies the right position of the cropped rectangle. 
-@param bottom Specifies the bottom position of the cropped rectangle. 
+@param left Specifies the left position of the cropped rectangle.
+@param top Specifies the top position of the cropped rectangle.
+@param right Specifies the right position of the cropped rectangle.
+@param bottom Specifies the bottom position of the cropped rectangle.
 @return Returns the subimage if successful, NULL otherwise.
 */
-FIBITMAP * DLL_CALLCONV 
+FIBITMAP * DLL_CALLCONV
 FreeImage_Copy(FIBITMAP *src, int left, int top, int right, int bottom) {
 
-	if(!FreeImage_HasPixels(src)) 
+	if(!FreeImage_HasPixels(src))
 		return NULL;
 
 	// normalize the rectangle
@@ -515,11 +515,11 @@ FreeImage_Copy(FIBITMAP *src, int left, int top, int right, int bottom) {
 	int dst_width = (right - left);
 	int dst_height = (bottom - top);
 
-	FIBITMAP *dst = 
-		FreeImage_AllocateT(FreeImage_GetImageType(src), 
-							dst_width, 
-							dst_height, 
-							bpp, 
+	FIBITMAP *dst =
+		FreeImage_AllocateT(FreeImage_GetImageType(src),
+							dst_width,
+							dst_height,
+							bpp,
 							FreeImage_GetRedMask(src), FreeImage_GetGreenMask(src), FreeImage_GetBlueMask(src));
 
 	if(NULL == dst) return NULL;
@@ -560,7 +560,7 @@ FreeImage_Copy(FIBITMAP *src, int left, int top, int right, int bottom) {
 
 	// copy the bits
 	if(bpp == 1) {
-		BOOL value;
+		WINBOOL value;
 		unsigned y_src, y_dst;
 
 		for(int y = 0; y < dst_height; y++) {
@@ -602,42 +602,42 @@ FreeImage_Copy(FIBITMAP *src, int left, int top, int right, int bottom) {
 
 	// copy metadata from src to dst
 	FreeImage_CloneMetadata(dst, src);
-	
-	// copy transparency table 
+
+	// copy transparency table
 	FreeImage_SetTransparencyTable(dst, FreeImage_GetTransparencyTable(src), FreeImage_GetTransparencyCount(src));
-	
-	// copy background color 
-	RGBQUAD bkcolor; 
+
+	// copy background color
+	RGBQUAD bkcolor;
 	if( FreeImage_GetBackgroundColor(src, &bkcolor) ) {
-		FreeImage_SetBackgroundColor(dst, &bkcolor); 
+		FreeImage_SetBackgroundColor(dst, &bkcolor);
 	}
-	
-	// clone resolution 
-	FreeImage_SetDotsPerMeterX(dst, FreeImage_GetDotsPerMeterX(src)); 
-	FreeImage_SetDotsPerMeterY(dst, FreeImage_GetDotsPerMeterY(src)); 
-	
-	// clone ICC profile 
-	FIICCPROFILE *src_profile = FreeImage_GetICCProfile(src); 
-	FIICCPROFILE *dst_profile = FreeImage_CreateICCProfile(dst, src_profile->data, src_profile->size); 
-	dst_profile->flags = src_profile->flags; 
-	
+
+	// clone resolution
+	FreeImage_SetDotsPerMeterX(dst, FreeImage_GetDotsPerMeterX(src));
+	FreeImage_SetDotsPerMeterY(dst, FreeImage_GetDotsPerMeterY(src));
+
+	// clone ICC profile
+	FIICCPROFILE *src_profile = FreeImage_GetICCProfile(src);
+	FIICCPROFILE *dst_profile = FreeImage_CreateICCProfile(dst, src_profile->data, src_profile->size);
+	dst_profile->flags = src_profile->flags;
+
 	return dst;
 }
 
 /**
 Alpha blend or combine a sub part image with the current image.
-The bit depth of dst bitmap must be greater than or equal to the bit depth of src. 
+The bit depth of dst bitmap must be greater than or equal to the bit depth of src.
 Upper promotion of src is done internally. Supported bit depth equals to 1, 4, 8, 16, 24 or 32.
 @param src Source subimage
-@param left Specifies the left position of the sub image. 
-@param top Specifies the top position of the sub image. 
-@param alpha Alpha blend factor. The source and destination images are alpha blended if 
+@param left Specifies the left position of the sub image.
+@param top Specifies the top position of the sub image.
+@param alpha Alpha blend factor. The source and destination images are alpha blended if
 alpha = 0..255. If alpha > 255, then the source image is combined to the destination image.
 @return Returns TRUE if successful, FALSE otherwise.
 */
-BOOL DLL_CALLCONV 
+WINBOOL DLL_CALLCONV
 FreeImage_Paste(FIBITMAP *dst, FIBITMAP *src, int left, int top, int alpha) {
-	BOOL bResult = FALSE;
+	WINBOOL bResult = FALSE;
 
 	if(!FreeImage_HasPixels(src) || !FreeImage_HasPixels(dst)) return FALSE;
 
@@ -662,7 +662,7 @@ FreeImage_Paste(FIBITMAP *dst, FIBITMAP *src, int left, int top, int alpha) {
 		// check the bit depth of src and dst images
 		unsigned bpp_src = FreeImage_GetBPP(src);
 		unsigned bpp_dst = FreeImage_GetBPP(dst);
-		BOOL isRGB565 = FALSE;
+		WINBOOL isRGB565 = FALSE;
 
 		if ((FreeImage_GetRedMask(dst) == FI16_565_RED_MASK) && (FreeImage_GetGreenMask(dst) == FI16_565_GREEN_MASK) && (FreeImage_GetBlueMask(dst) == FI16_565_BLUE_MASK)) {
 			isRGB565 = TRUE;

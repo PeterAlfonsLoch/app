@@ -44,7 +44,7 @@ FreeImage_ConvertLine1To24(BYTE *target, BYTE *source, int width_in_pixels, RGBQ
 
 void DLL_CALLCONV
 FreeImage_ConvertLine4To24(BYTE *target, BYTE *source, int width_in_pixels, RGBQUAD *palette) {
-	BOOL low_nibble = FALSE;
+	WINBOOL low_nibble = FALSE;
 	int x = 0;
 
 	for (int cols = 0; cols < width_in_pixels; ++cols ) {
@@ -129,7 +129,7 @@ FreeImage_ConvertTo24Bits(FIBITMAP *dib) {
 	if((image_type != FIT_BITMAP) && (image_type != FIT_RGB16) && (image_type != FIT_RGBA16)) {
 		return NULL;
 	}
-	
+
 	const int width = FreeImage_GetWidth(dib);
 	const int height = FreeImage_GetHeight(dib);
 
@@ -150,7 +150,7 @@ FreeImage_ConvertTo24Bits(FIBITMAP *dib) {
 			case 1 :
 			{
 				for (int rows = 0; rows < height; rows++) {
-					FreeImage_ConvertLine1To24(FreeImage_GetScanLine(new_dib, rows), FreeImage_GetScanLine(dib, rows), width, FreeImage_GetPalette(dib));					
+					FreeImage_ConvertLine1To24(FreeImage_GetScanLine(new_dib, rows), FreeImage_GetScanLine(dib, rows), width, FreeImage_GetPalette(dib));
 				}
 				return new_dib;
 			}
@@ -162,7 +162,7 @@ FreeImage_ConvertTo24Bits(FIBITMAP *dib) {
 				}
 				return new_dib;
 			}
-				
+
 			case 8 :
 			{
 				for (int rows = 0; rows < height; rows++) {
@@ -192,7 +192,7 @@ FreeImage_ConvertTo24Bits(FIBITMAP *dib) {
 				return new_dib;
 			}
 		}
-	
+
 	} else if(image_type == FIT_RGB16) {
 		FIBITMAP *new_dib = FreeImage_Allocate(width, height, 24, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
 		if(new_dib == NULL) {
@@ -243,7 +243,7 @@ FreeImage_ConvertTo24Bits(FIBITMAP *dib) {
 			}
 			src_bits += src_pitch;
 			dst_bits += dst_pitch;
-		}		
+		}
 
 		return new_dib;
 	}

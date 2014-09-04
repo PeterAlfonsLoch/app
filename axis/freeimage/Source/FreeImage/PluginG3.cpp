@@ -40,10 +40,10 @@ static int s_format_id;
 #define TIFFhowmany8(x) (((x)&0x07)?((uint32)(x)>>3)+1:(uint32)(x)>>3)
 
 // ==========================================================
-//   libtiff interface 
+//   libtiff interface
 // ==========================================================
 
-static tmsize_t 
+static tmsize_t
 _g3ReadProc(thandle_t handle, void *buf, tmsize_t size) {
 	// returns an error when reading the TIFF header
 	return 0;
@@ -90,7 +90,7 @@ G3GetFileSize(FreeImageIO *io, fi_handle handle) {
     return fileSize;
 }
 
-static BOOL 
+static WINBOOL
 G3ReadFile(FreeImageIO *io, fi_handle handle, uint8 *tif_rawdata, tmsize_t tif_rawdatasize) {
 	return ((tmsize_t)(io->read_proc(tif_rawdata, tif_rawdatasize, 1, handle) * tif_rawdatasize) == tif_rawdatasize);
 }
@@ -99,7 +99,7 @@ G3ReadFile(FreeImageIO *io, fi_handle handle, uint8 *tif_rawdata, tmsize_t tif_r
 // Internal functions
 // ==========================================================
 
-static int 
+static int
 copyFaxFile(FreeImageIO *io, fi_handle handle, TIFF* tifin, uint32 xsize, int stretch, FIMEMORY *memory) {
 	BYTE *rowbuf = NULL;
 	BYTE *refbuf = NULL;
@@ -123,7 +123,7 @@ copyFaxFile(FreeImageIO *io, fi_handle handle, TIFF* tifin, uint32 xsize, int st
 		if (tifin->tif_rawdata == NULL) {
 			throw FI_MSG_ERROR_MEMORY;
 		}
-			
+
 		if(!G3ReadFile(io, handle, tifin->tif_rawdata, tifin->tif_rawdatasize)) {
 			throw "Read error at scanline 0";
 		}
@@ -138,13 +138,13 @@ copyFaxFile(FreeImageIO *io, fi_handle handle, TIFF* tifin, uint32 xsize, int st
 
 		_TIFFmemset(refbuf, 0, linesize);
 		row = 0;
-		badrun = 0;		// current run of bad lines 
+		badrun = 0;		// current run of bad lines
 		while (tifin->tif_rawcc > 0) {
 			ok = (*tifin->tif_decoderow)(tifin, rowbuf, linesize, 0);
 			if (!ok) {
 				badfaxlines++;
 				badrun++;
-				// regenerate line from previous good line 
+				// regenerate line from previous good line
 				_TIFFmemcpy(rowbuf, refbuf, linesize);
 			} else {
 				if (badrun > badfaxrun)
@@ -203,27 +203,27 @@ Format() {
 	return "G3";
 }
 
-static const char * DLL_CALLCONV 
+static const char * DLL_CALLCONV
 Description() {
 	return "Raw fax format CCITT G.3";
 }
 
-static const char * DLL_CALLCONV 
+static const char * DLL_CALLCONV
 Extension() {
 	return "g3";
 }
 
-static const char * DLL_CALLCONV 
+static const char * DLL_CALLCONV
 RegExpr() {
 	return NULL; // there is now reasonable regexp for raw G3
 }
 
-static const char * DLL_CALLCONV 
+static const char * DLL_CALLCONV
 MimeType() {
 	return "image/fax-g3";
 }
 
-static BOOL DLL_CALLCONV 
+static WINBOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return	FALSE;
 }
@@ -245,8 +245,8 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	uint32 xsize = G3_DEFAULT_WIDTH;
 	int compression_in = COMPRESSION_CCITTFAX3;
 	int fillorder_in = FILLORDER_LSB2MSB;
-	uint32 group3options_in = 0;	// 1d-encoded 
-	uint32 group4options_in = 0;	// compressed 
+	uint32 group3options_in = 0;	// 1d-encoded
+	uint32 group4options_in = 0;	// compressed
 	int photometric_in = PHOTOMETRIC_MINISWHITE;
 
 	if(handle==NULL) return NULL;
@@ -254,62 +254,62 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	try {
 		// set default load options
 
-		compression_in = COMPRESSION_CCITTFAX3;			// input is g3-encoded 
-		group3options_in &= ~GROUP3OPT_2DENCODING;		// input is 1d-encoded (g3 only) 
-		fillorder_in = FILLORDER_MSB2LSB;				// input has msb-to-lsb fillorder 
+		compression_in = COMPRESSION_CCITTFAX3;			// input is g3-encoded
+		group3options_in &= ~GROUP3OPT_2DENCODING;		// input is 1d-encoded (g3 only)
+		fillorder_in = FILLORDER_MSB2LSB;				// input has msb-to-lsb fillorder
 
 		/*
 		Original input-related fax2tiff options
 
 		while ((c = getopt(argc, argv, "R:X:o:1234ABLMPUW5678abcflmprsuvwz?")) != -1) {
 			switch (c) {
-					// input-related options 
-				case '3':		// input is g3-encoded 
+					// input-related options
+				case '3':		// input is g3-encoded
 					compression_in = COMPRESSION_CCITTFAX3;
 					break;
-				case '4':		// input is g4-encoded 
+				case '4':		// input is g4-encoded
 					compression_in = COMPRESSION_CCITTFAX4;
 					break;
-				case 'U':		// input is uncompressed (g3 and g4) 
+				case 'U':		// input is uncompressed (g3 and g4)
 					group3options_in |= GROUP3OPT_UNCOMPRESSED;
 					group4options_in |= GROUP4OPT_UNCOMPRESSED;
 					break;
-				case '1':		// input is 1d-encoded (g3 only) 
+				case '1':		// input is 1d-encoded (g3 only)
 					group3options_in &= ~GROUP3OPT_2DENCODING;
 					break;
-				case '2':		// input is 2d-encoded (g3 only) 
+				case '2':		// input is 2d-encoded (g3 only)
 					group3options_in |= GROUP3OPT_2DENCODING;
 					break;
-				case 'P':	// input has not-aligned EOL (g3 only) 
+				case 'P':	// input has not-aligned EOL (g3 only)
 					group3options_in &= ~GROUP3OPT_FILLBITS;
 					break;
-				case 'A':		// input has aligned EOL (g3 only) 
+				case 'A':		// input has aligned EOL (g3 only)
 					group3options_in |= GROUP3OPT_FILLBITS;
 					break;
-				case 'W':		// input has 0 mean white 
+				case 'W':		// input has 0 mean white
 					photometric_in = PHOTOMETRIC_MINISWHITE;
 					break;
-				case 'B':		// input has 0 mean black 
+				case 'B':		// input has 0 mean black
 					photometric_in = PHOTOMETRIC_MINISBLACK;
 					break;
-				case 'L':		// input has lsb-to-msb fillorder 
+				case 'L':		// input has lsb-to-msb fillorder
 					fillorder_in = FILLORDER_LSB2MSB;
 					break;
-				case 'M':		// input has msb-to-lsb fillorder 
+				case 'M':		// input has msb-to-lsb fillorder
 					fillorder_in = FILLORDER_MSB2LSB;
 					break;
-				case 'R':		// input resolution 
+				case 'R':		// input resolution
 					resY = (float) atof(optarg);
 					break;
-				case 'X':		// input width 
+				case 'X':		// input width
 					xsize = (uint32) atoi(optarg);
 					break;
 
-					// output-related options 
-				case 's':		// stretch image by dup'ng scanlines 
+					// output-related options
+				case 's':		// stretch image by dup'ng scanlines
 					stretch = 1;
 					break;
-				case 'v':		// -v for info 
+				case 'v':		// -v for info
 					verbose++;
 					break;
 			}
@@ -320,10 +320,10 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		// open a temporary memory buffer to save decoded scanlines
 		memory = FreeImage_OpenMemory();
 		if(!memory) throw FI_MSG_ERROR_MEMORY;
-		
+
 		// wrap the raw fax file
 		faxTIFF = TIFFClientOpen("(FakeInput)", "w",
-			// TIFFClientOpen() fails if we don't set existing value here 
+			// TIFFClientOpen() fails if we don't set existing value here
 			NULL,
 			_g3ReadProc, _g3WriteProc,
 			_g3SeekProc, _g3CloseProc,
@@ -343,13 +343,13 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		TIFFSetField(faxTIFF, TIFFTAG_YRESOLUTION, resY);
 		TIFFSetField(faxTIFF, TIFFTAG_RESOLUTIONUNIT, RESUNIT_INCH);
 
-		// NB: this must be done after directory info is setup 
+		// NB: this must be done after directory info is setup
 		TIFFSetField(faxTIFF, TIFFTAG_COMPRESSION, compression_in);
 		if (compression_in == COMPRESSION_CCITTFAX3)
 			TIFFSetField(faxTIFF, TIFFTAG_GROUP3OPTIONS, group3options_in);
 		else if (compression_in == COMPRESSION_CCITTFAX4)
 			TIFFSetField(faxTIFF, TIFFTAG_GROUP4OPTIONS, group4options_in);
-		
+
 		resX = 204;
 		if (!stretch) {
 			TIFFGetField(faxTIFF, TIFFTAG_YRESOLUTION, &resY);

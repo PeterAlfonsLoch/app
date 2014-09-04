@@ -20,16 +20,16 @@
 // ==========================================================
 
 // ==========================================================
-// Implementation notes : 
+// Implementation notes :
 // ----------------------
-// The tag info tables declared in this file should probably 
-// be loaded from an XML file. 
-// This would allow internationalization features and also 
-// more extensibility. 
-// Maybe in a future release ? 
+// The tag info tables declared in this file should probably
+// be loaded from an XML file.
+// This would allow internationalization features and also
+// more extensibility.
+// Maybe in a future release ?
 // ==========================================================
 
-#ifdef _MSC_VER 
+#ifdef _MSC_VER
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
 #endif
 
@@ -366,7 +366,7 @@ static TagInfo
     {  0xC200 + 1, (char *) "FocalLength:FocalLength", (char *) NULL},
     {  0xC200 + 2, (char *) "FocalLength:FocalPlaneXSize", (char *) NULL},
     {  0xC200 + 3, (char *) "FocalLength:FocalPlaneYSize", (char *) NULL},
-	
+
 	// Fields under tag 0x0004 (we add 0xC400 to make unique tag id)
     {  0xC400 + 1, (char *) "ShotInfo:AutoISO", (char *) NULL},
 	{  0xC400 + 2, (char *) "ShotInfo:BaseISO", (char *) NULL},
@@ -641,13 +641,13 @@ static TagInfo
     {  0x0280, (char *) "PreviewImage", (char *) NULL},
     {  0x0300, (char *) "PreCaptureFrames", (char *) NULL},
 	{  0x0301, (char *) "WhiteBoard", (char *) NULL},
-    {  0x0302, (char *) "OneTouchWB", (char *) NULL}, 
-	{  0x0303, (char *) "WhiteBalanceBracket", (char *) NULL}, 
-	{  0x0304, (char *) "WhiteBalanceBias", (char *) NULL}, 
-	{  0x0403, (char *) "SceneMode", (char *) NULL}, 
-    {  0x0404, (char *) "SerialNumber", (char *) NULL}, 
-	{  0x0405, (char *) "Firmware", (char *) NULL}, 
-    {  0x0E00, (char *) "PrintIM", (char *) "PrintIM Tags"}, 
+    {  0x0302, (char *) "OneTouchWB", (char *) NULL},
+	{  0x0303, (char *) "WhiteBalanceBracket", (char *) NULL},
+	{  0x0304, (char *) "WhiteBalanceBias", (char *) NULL},
+	{  0x0403, (char *) "SceneMode", (char *) NULL},
+    {  0x0404, (char *) "SerialNumber", (char *) NULL},
+	{  0x0405, (char *) "Firmware", (char *) NULL},
+    {  0x0E00, (char *) "PrintIM", (char *) "PrintIM Tags"},
 	{  0x0F00, (char *) "DataDump", (char *) NULL},
 	{  0x0F01, (char *) "DataDump2", (char *) NULL},
 	{  0x1000, (char *) "ShutterSpeedValue", (char *) NULL},
@@ -759,7 +759,7 @@ static TagInfo
 /**
 There are 3 formats of Nikon's MakerNote. MakerNote of E700/E800/E900/E900S/E910/E950
 starts from ASCII string "Nikon". Data format is the same as IFD, but it starts from
-offset 0x08. This is the same as Olympus except start string. 
+offset 0x08. This is the same as Olympus except start string.
 */
 
 /**
@@ -1477,7 +1477,7 @@ TagLib::TagLib() {
 	addMetadataModel(TagLib::ANIMATION, animation_tag_table);
 }
 
-BOOL TagLib::addMetadataModel(MDMODEL md_model, TagInfo *tag_table) {
+WINBOOL TagLib::addMetadataModel(MDMODEL md_model, TagInfo *tag_table) {
 	// check that the model doesn't already exist
 	if((_table_map.find(md_model) == _table_map.end()) && (tag_table != NULL)) {
 
@@ -1513,14 +1513,14 @@ TagLib * TagLib::s_plib = NULL;
 
 TagLib & TagLib::instance()
 {
-	
+
 	return *s_plib;
 
 }
 
 void TagLib::create_instance()
 {
-   
+
    s_plib = new TagLib;
 
 }
@@ -1538,7 +1538,7 @@ void TagLib::destroy_instance()
 }
 
 
-const TagInfo* 
+const TagInfo*
 TagLib::getTagInfo(MDMODEL md_model, WORD tagID) {
 
 	if(_table_map.find(md_model) != _table_map.end()) {
@@ -1551,7 +1551,7 @@ TagLib::getTagInfo(MDMODEL md_model, WORD tagID) {
 	return NULL;
 }
 
-const char* 
+const char*
 TagLib::getTagFieldName(MDMODEL md_model, WORD tagID, char *defaultKey) {
 
 	const TagInfo *info = getTagInfo(md_model, tagID);
@@ -1567,7 +1567,7 @@ TagLib::getTagFieldName(MDMODEL md_model, WORD tagID, char *defaultKey) {
 	return info->fieldname;
 }
 
-const char* 
+const char*
 TagLib::getTagDescription(MDMODEL md_model, WORD tagID) {
 
 	const TagInfo *info = getTagInfo(md_model, tagID);
@@ -1593,7 +1593,7 @@ int TagLib::getTagID(MDMODEL md_model, const char *key) {
 	return -1;
 }
 
-FREE_IMAGE_MDMODEL 
+FREE_IMAGE_MDMODEL
 TagLib::getFreeImageModel(MDMODEL model) {
 	switch(model) {
 		case EXIF_MAIN:
@@ -1602,7 +1602,7 @@ TagLib::getFreeImageModel(MDMODEL model) {
 		case EXIF_EXIF:
 			return FIMD_EXIF_EXIF;
 
-		case EXIF_GPS: 
+		case EXIF_GPS:
 			return FIMD_EXIF_GPS;
 
 		case EXIF_INTEROP:
