@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "axis/os/linux/linux_window_xlib.h"
 
 
 window_xlib::window_xlib()
