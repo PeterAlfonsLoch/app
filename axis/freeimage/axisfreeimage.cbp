@@ -63,9 +63,11 @@
 			<Add directory="../../appseed/axis" />
 			<Add directory="../../appseed/aura" />
 			<Add directory="../../appseed" />
+			<Add directory="Source/OpenEXR/Half" />
+			<Add directory="Source/OpenEXR/Iex" />
 			<Add directory="Source/OpenEXR/IlmImf" />
 			<Add directory="Source/OpenEXR/Imath" />
-			<Add directory="Source/OpenEXR/Iex" />
+			<Add directory="Source/OpenEXR" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
