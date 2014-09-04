@@ -1074,7 +1074,7 @@ HDC BeginPaint(oswindow hwnd,PAINTSTRUCT * ps);
 
 WINBOOL EndPaint(oswindow hwnd,PAINTSTRUCT * ps);
 
-WINBOOL GetCursorPos(LPPOINT lpptCursor);
+//WINBOOL GetCursorPos(LPPOINT lpptCursor);
 
 WINBOOL SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,int32_t X,int32_t Y,int32_t cx,int32_t cy,UINT uFlags);
 
