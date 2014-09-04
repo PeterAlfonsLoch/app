@@ -161,7 +161,7 @@ class image_list;
 namespace user
 {
 
-   
+
    class interaction;
    class document;
    class frame_window;
@@ -419,23 +419,23 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 
 CLASS_DECL_AURA ::aura::application * get_thread_app();
 
-#include "aura_definition.h"
+#include "aura/aura/aura/aura_definition.h"
 
-#include "aura_action_source.h"
+#include "aura/aura/aura/aura_action_source.h"
 
-#include "aura_new.h"
+#include "aura/aura/aura/aura_new.h"
 
-#include "aura_lparam.h"
-#include "aura_muldiv64.h"
+#include "aura/aura/aura/aura_lparam.h"
+#include "aura/aura/aura/aura_muldiv64.h"
 
-#include "aura_auto_pointer.h"
+#include "aura/aura/aura/aura_auto_pointer.h"
 
-#include "aura_smart_pointer1.h"
-#include "aura_root.h"
-#include "aura_smart_pointer2.h"
+#include "aura/aura/aura/aura_smart_pointer1.h"
+#include "aura/aura/aura/aura_root.h"
+#include "aura/aura/aura/aura_smart_pointer2.h"
 
 
-#include "aura_keep_true.h"
+#include "aura/aura/aura/aura_keep_true.h"
 
 
 namespace file
@@ -460,22 +460,22 @@ namespace file
 #include "aura/primitive/datetime/datetime_duration.h"
 
 
-#include "aura_element.h"
+#include "aura/aura/aura/aura_element.h"
 
-#include "aura_debug.h"
-
-
+#include "aura/aura/aura/aura_debug.h"
 
 
 
 
-#include "aura_class.h"
+
+
+#include "aura/aura/aura/aura_class.h"
 
 #include "aura/primitive/comparison/comparison_md5.h"
 
-#include "aura_conv.h"
+#include "aura/aura/aura/aura_conv.h"
 
-#include "aura_core.h"
+#include "aura/aura/aura/aura_core.h"
 
 #include "aura/primitive/primitive_request_interface.h"
 
@@ -497,16 +497,16 @@ namespace file
 #include "aura/primitive/collection/collection_smart_pointer_array.h"
 
 
-#include "aura_action_context.h"
+#include "aura/aura/aura/aura_action_context.h"
 
 
 
-#include "aura_fixed_alloc.h"
+#include "aura/aura/aura/aura_fixed_alloc.h"
 
 
 
-#include "aura_allocate.h"
-#include "aura_plex.h"
+#include "aura/aura/aura/aura_allocate.h"
+#include "aura/aura/aura/aura_plex.h"
 
 
 #include "aura/primitive/primitive_id.h"
@@ -514,10 +514,10 @@ namespace file
 
 #include "aura/primitive/str/str.h"
 #include "aura/aura/exception/exception.h"
-#include "aura_common.h"
+#include "aura/aura/aura/aura_common.h"
 
 
-#include "aura_library.h"
+#include "aura/aura/aura/aura_library.h"
 
 
 
@@ -559,19 +559,19 @@ namespace file
 #include "aura/primitive/math/math_scalar.h"
 
 
-#include "aura_progress.h"
+#include "aura/aura/aura/aura_progress.h"
 
 
-#include "aura_enum.h"
+#include "aura/aura/aura/aura_enum.h"
 
 
 #include "aura/multithreading/multithreading.h"
 
 
-#include "aura_draw2d.h"
+#include "aura/aura/aura/aura_draw2d.h"
 
 
-#include "aura_gudo.h"
+#include "aura/aura/aura/aura_gudo.h"
 
 
 
@@ -631,7 +631,7 @@ namespace file
 CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
-#include "aura_plex_heap.h"
+#include "aura/aura/aura/aura_plex_heap.h"
 
 #include "aura/primitive/primitive_type.h"
 
@@ -641,15 +641,15 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "user/user/user_keyboard_focus.h"
 //#include "user/user/user_mouse_focus.h"
 //#include "user/user/user_elemental.h"
-#include "aura_flags.h"
+#include "aura/aura/aura/aura_flags.h"
 #include "aura/primitive/primitive_check.h"
 //#include "user/user/user_check_interface.h"
-#include "aura_command.h"
+#include "aura/aura/aura/aura_command.h"
 //#include "graphics/visual/visual_const.h"
 //#include "user/user/user_key_enum.h"
 #include "aura/aura/message/message.h"
 #include "aura/user/user/user_check_interface.h"
-#include "aura_command_target.h"
+#include "aura/aura/aura/aura_command_target.h"
 //#include "user/user/user_schema.h"
 //#include "user/user/user_schema_simple_impl.h"
 //#include "user/user/user_schema_layered_frame.h"
@@ -658,7 +658,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "user/user/user_window_util.h"
 //#include "user/user/user_interaction_base.h"
 //#include "user/user/user_buffer.h"
-#include "aura_keep.h"
+#include "aura/aura/aura/aura_keep.h"
 #include "aura/filesystem/file/file_stream2.h"
 //#include "user/user/user_interaction.h"
 //#include "user/user/user_interaction_impl_base.h"
@@ -686,8 +686,8 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "aura/primitive/data/data_simple_item.h"
 
 #include "aura/primitive/primitive_edit.h"
-#include "aura_departament.h"
-#include "aura_departament_container.h"
+#include "aura/aura/aura/aura_departament.h"
+#include "aura/aura/aura/aura_departament_container.h"
 #include "aura/aura/xml/xml.h"
 //#include "aura/user/simple_ui/simple_ui_style.h"
 //#include "aura/user/simple_ui/simple_ui_interaction.h"
@@ -695,11 +695,11 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "user/user/user_document_data_map.h"
 //#include "user/user/user_document.h"
 //#include "user/user/user_impact.h"
-#include "aura_live_object.h"
-#include "aura_live_signal.h"
+#include "aura/aura/aura/aura_live_object.h"
+#include "aura/aura/aura/aura_live_signal.h"
 #include "aura/multithreading/multithreading_thread.h"
-#include "aura_message_queue_listener.h"
-#include "aura_message_queue.h"
+#include "aura/aura/aura/aura_message_queue_listener.h"
+#include "aura/aura/aura/aura_message_queue.h"
 #include "aura/user/user/user_timer_item.h"
 #include "aura/user/user/user_timer_array.h"
 #include "aura/multithreading/multithreading_thread_impl.h"
@@ -714,8 +714,8 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 #include "aura/user/user/user.h"
 
-#include "aura_log.h"
-#include "aura_trace.h"
+#include "aura/aura/aura/aura_log.h"
+#include "aura/aura/aura/aura_trace.h"
 
 
 
@@ -764,31 +764,31 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "user/user/user_keyboard.h"
 //#include "user/user/user_user.h"
 
-#include "aura_main_init_data.h"
+#include "aura/aura/aura/aura_main_init_data.h"
 
-#include "aura_savings.h"
-
-
-#include "aura_application_interface.h"
-#include "aura_application.h"
+#include "aura/aura/aura/aura_savings.h"
 
 
-#include "aura_gudo_application.inl"
+#include "aura/aura/aura/aura_application_interface.h"
+#include "aura/aura/aura/aura_application.h"
 
 
-#include "aura_application_signal_details.h"
+#include "aura/aura/aura/aura_gudo_application.inl"
 
-#include "aura_session_interface.h"
-#include "aura_platform_interface.h"
-#include "aura_session.h"
+
+#include "aura/aura/aura/aura_application_signal_details.h"
+
+#include "aura/aura/aura/aura_session_interface.h"
+#include "aura/aura/aura/aura_platform_interface.h"
+#include "aura/aura/aura/aura_session.h"
 
 
 
 #include "aura/primitive/primitive_application_bias.h"
 #include "aura/aura/exception/exception_engine.h"
 
-#include "aura_fixed_alloc_impl.h"
-#include "aura_plex_heap_impl.h"
+#include "aura/aura/aura/aura_fixed_alloc_impl.h"
+#include "aura/aura/aura/aura_plex_heap_impl.h"
 #include "aura/primitive/primitive_command_line.h"
 #include "aura/primitive/primitive_command.h"
 #include "aura/user/user/user_create_context.h"
@@ -798,7 +798,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
 
-#include "aura_net.h"
+#include "aura/aura/aura/aura_net.h"
 
 
 
@@ -810,25 +810,25 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/filesystem/file/file_buffered_buffer.h"
 
 
-#include "aura_machine_event_data.h"
-#include "aura_machine_event.h"
-#include "aura_machine_event_central.h"
+#include "aura/aura/aura/aura_machine_event_data.h"
+#include "aura/aura/aura/aura_machine_event.h"
+#include "aura/aura/aura/aura_machine_event_central.h"
 
 #include "aura/primitive/datetime/datetime_value.h"
 
 #include "aura/primitive/str/str_international_locale_schema.h"
 
-#include "aura_id_pool.h"
+#include "aura/aura/aura/aura_id_pool.h"
 
 
-#include "aura_launcher.h"
+#include "aura/aura/aura/aura_launcher.h"
 #ifndef METROWIN
-#include "aura_small_ipc_channel.h"
+#include "aura/aura/aura/aura_small_ipc_channel.h"
 #endif
 
 
-#include "aura_cregexp.h"
-#include "aura_cregexp_util.h"
+#include "aura/aura/aura/aura_cregexp.h"
+#include "aura/aura/aura/aura_cregexp_util.h"
 
 #include "aura/user/colorertake5/colorertake5.h"
 //#include "filesystem/file/file_edit_buffer.h"
@@ -838,11 +838,11 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
 
-#include "aura_core_os.h"
+#include "aura/aura/aura/aura_core_os.h"
 
-#include "aura_system.h"
+#include "aura/aura/aura/aura_system.h"
 
-#include "aura_system_str.h"
+#include "aura/aura/aura/aura_system_str.h"
 
 #include "aura/os/os_process.h"
 
@@ -861,7 +861,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #define new AURA_NEW
 
 
-#include "aura_system_trace.h"
+#include "aura/aura/aura/aura_system_trace.h"
 
 
 
@@ -1017,42 +1017,19 @@ inline void string_format::printf(const char * & s)
 
 
 
-#include "aura_system_smart_pointer.inl"
-#include "aura_system_object.inl"
-#include "aura_system_id.inl"
-#include "aura_system_factory.inl"
-#include "aura_system_primitive_var.inl"
-#include "aura_system_xml.inl"
+#include "aura/aura/aura/aura_system_smart_pointer.inl"
+#include "aura/aura/aura/aura_system_object.inl"
+#include "aura/aura/aura/aura_system_id.inl"
+#include "aura/aura/aura/aura_system_factory.inl"
+#include "aura/aura/aura/aura_system_primitive_var.inl"
+#include "aura/aura/aura/aura_system_xml.inl"
 
 
 
-#include "aura_core_os.h"
+#include "aura/aura/aura/aura_core_os.h"
 
 
-#include "aura_microtimer.h"
-
-
-
-
-
-
-
-
-#include "aura_libc.h"
-
-
-#include "aura_number.h"
-
-
-#include "aura_debug.h"
-
-
-#include "aura_printf.h"
-#include "aura_sprintf.h"
-
-
-
-#include "aura_math.h"
+#include "aura/aura/aura/aura_microtimer.h"
 
 
 
@@ -1061,23 +1038,46 @@ inline void string_format::printf(const char * & s)
 
 
 
-
-#include "aura_file_watcher.h"
-#include "aura_file_watcher_impl.h"
+#include "aura/aura/aura/aura_libc.h"
 
 
-#include "aura_os.h"
+#include "aura/aura/aura/aura_number.h"
+
+
+#include "aura/aura/aura/aura_debug.h"
+
+
+#include "aura/aura/aura/aura_printf.h"
+#include "aura/aura/aura/aura_sprintf.h"
+
+
+
+#include "aura/aura/aura/aura_math.h"
+
+
+
+
+
+
+
+
+
+#include "aura/aura/aura/aura_file_watcher.h"
+#include "aura/aura/aura/aura_file_watcher_impl.h"
+
+
+#include "aura/aura/aura/aura_os.h"
 
 
 #include "aura/multithreading/multithreading_data.h"
 
 
-#include "aura_simple_shell_launcher.h"
+#include "aura/aura/aura/aura_simple_shell_launcher.h"
 
 
-#include "aura_file_watcher_thread.h"
-#include "aura_file_watcher_listener_thread.h"
-#include "aura_async.h"
+#include "aura/aura/aura/aura_file_watcher_thread.h"
+#include "aura/aura/aura/aura_file_watcher_listener_thread.h"
+#include "aura/aura/aura/aura_async.h"
 
 
 //#include "aura/hotplugin/hotplugin.h"
@@ -1085,13 +1085,13 @@ inline void string_format::printf(const char * & s)
 
 
 
-#include "aura_message_loop.h"
+#include "aura/aura/aura/aura_message_loop.h"
 
-#include "aura_url.h"
+#include "aura/aura/aura/aura_url.h"
 
-#include "aura_international.h"
+#include "aura/aura/aura/aura_international.h"
 
-#include "aura_static_start.h"
+#include "aura/aura/aura/aura_static_start.h"
 
 
 
@@ -1115,7 +1115,7 @@ CLASS_DECL_AURA string _ca_get_file_name(const char * psz,bool bCreate = false,i
 CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
-#include "aura_simple_app.h"
+#include "aura/aura/aura/aura_simple_app.h"
 
 
 

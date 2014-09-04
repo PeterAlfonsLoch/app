@@ -13,7 +13,7 @@
 #pragma once
 
 
-#include "aura_cpu_architecture.h"
+#include "aura/aura/aura_cpu_architecture.h"
 
 
 

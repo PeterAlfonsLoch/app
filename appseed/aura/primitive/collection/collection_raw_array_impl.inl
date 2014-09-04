@@ -442,7 +442,7 @@ template<class TYPE, class ARG_TYPE>
          throw memory_exception(get_app());
       ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
 #endif
-      ::count nAllocSize = __max(nNewSize, m_nGrowBy);
+      ::count nAllocSize = MAX(nNewSize, m_nGrowBy);
 //#undef new
       m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
       //memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));

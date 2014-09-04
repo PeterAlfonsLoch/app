@@ -509,7 +509,7 @@ extern my_error_reporter my_charset_error_reporter;
 #define my_b_tell(info) ((info)->pos_in_file + \
 			 (size_t) (*(info)->current_pos - (info)->request_pos))
 
-#define my_b_get_buffer_start(info) (info)->request_pos 
+#define my_b_get_buffer_start(info) (info)->request_pos
 #define my_b_get_bytes_in_buffer(info) (char*) (info)->read_end -   \
   (char*) my_b_get_buffer_start(info)
 #define my_b_get_pos_in_file(info) (info)->pos_in_file
@@ -599,7 +599,7 @@ extern my_bool is_filename_allowed(const char *name, size_t length,
                    my_bool allow_current_dir);
 #else /* _WIN32 */
 # define is_filename_allowed(name, length, allow_cwd) (TRUE)
-#endif /* _WIN32 */ 
+#endif /* _WIN32 */
 
 #ifdef _WIN32
 extern int nt_share_delete(const char *name,myf MyFlags);
@@ -832,6 +832,7 @@ extern my_bool my_gethwaddr(uchar *to);
 extern int my_getncpus();
 
 #ifdef HAVE_SYS_MMAN_H
+#define __USE_GNU
 #include <sys/mman.h>
 
 #ifndef MAP_NOSYNC

@@ -416,7 +416,7 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
          throw memory_exception(get_app());
       ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
 #endif
-      ::count nAllocSize = __max(nNewSize, m_nGrowBy);
+      ::count nAllocSize = MAX(nNewSize, m_nGrowBy);
       m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
       DEFCONSTRUCTOR::construct( m_pData, nNewSize );
       m_nSize = nNewSize;
@@ -511,7 +511,7 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
          throw memory_exception(get_app());
       ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
 #endif
-      ::count nAllocSize = __max(nNewSize, m_nGrowBy);
+      ::count nAllocSize = MAX(nNewSize, m_nGrowBy);
       m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;

@@ -35,22 +35,22 @@ public:
 
       node(const KEY & element1)
       {
-         m_element1 = element1;
+         this->m_element1 = element1;
          left = NULL;
          right = NULL;
       }
 
       node(const KEY & element1,const VALUE & element2)
       {
-         m_element1 = element1;
-         m_element2 = element2;
+         this->m_element1 = element1;
+         this->m_element2 = element2;
          left = NULL;
          right = NULL;
       }
       node(const pair < KEY,VALUE > & pair)
       {
-         m_element1 = pair.m_element1;
-         m_element2 = pair.m_element2;
+         this->m_element1 = pair.m_element1;
+         this->m_element2 = pair.m_element2;
          left = NULL;
          right = NULL;
       }
@@ -59,9 +59,8 @@ public:
       void copy_value(const pair < KEY,VALUE > & key)
       {
 
-         m_element1 = key.m_element1;
-
-         m_element2 = key.m_element2;
+         this->m_element1 = key.m_element1;
+         this->m_element2 = key.m_element2;
 
       }
 
@@ -83,7 +82,7 @@ public:
 
       ::count children_count() const
       {
-         
+
          ::count c = 0;
 
          if(left != NULL)
@@ -101,7 +100,7 @@ public:
 
          if(left != NULL)
          {
-            
+
             left->remove_all();
 
             delete left;
@@ -493,9 +492,9 @@ public:
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
 inline ::count sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_size() const
-{ 
+{
 
-   return this->get_count(); 
+   return this->get_count();
 
 }
 
@@ -522,7 +521,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 inline bool sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::is_empty() const
 {
 
-   return m_pnode == NULL; 
+   return m_pnode == NULL;
 
 }
 
@@ -540,7 +539,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 inline void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::set_at(ARG_KEY key, ARG_VALUE newValue)
 {
 
-   add_pair(key, newValue); 
+   add_pair(key, newValue);
 
 }
 
@@ -549,7 +548,7 @@ template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE
 inline POSITION sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_start_position() const
 {
 
-   return (m_pnode == 0) ? NULL : BEFORE_START_POSITION; 
+   return (m_pnode == 0) ? NULL : BEFORE_START_POSITION;
 
 }
 
@@ -663,7 +662,7 @@ const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >
    if(!find_key(key, i))
       return NULL;
 
-   return m_ptra[i];
+   return this->m_ptra[i];
 
 }
 
@@ -792,7 +791,7 @@ bool sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::remove_node(n
 
    if(pnode == m_pnode)
    {
-      
+
       delete m_pnode;
 
       m_pnode = NULL;
@@ -800,7 +799,7 @@ bool sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::remove_node(n
       return true;
 
    }
-   
+
    if(pnode->left != NULL)
    {
       if(pnode->right != NULL)
@@ -870,7 +869,7 @@ sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::equally_keyed_next
 
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::iterator 
+typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::iterator
 sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::find(ARG_KEY key)
 {
 
@@ -1059,7 +1058,7 @@ sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::rfind_node(ARG_KEY
 
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::iterator 
+typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::iterator
 sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::lower_bound (ARG_KEY k)
 {
 
@@ -1073,7 +1072,7 @@ sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::lower_bound (
 }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::const_iterator 
+typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::const_iterator
 sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::lower_bound (ARG_KEY k) const
 {
 
@@ -1102,7 +1101,7 @@ sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::upper_bound (
 }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::const_iterator 
+typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::const_iterator
 sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::upper_bound (ARG_KEY k) const
 {
 
@@ -1191,7 +1190,7 @@ void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_next
 
    ASSERT_VALID(this);
 
-   ENSURE(m_ptra.get_count() > 0);  // never call on is_empty sort_map
+   ENSURE(this->m_ptra.get_count() > 0);  // never call on is_empty sort_map
 
    index iRet = (index) rNextPosition;
 
@@ -1202,7 +1201,7 @@ void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_next
 
    // find next association
    index iNext = iRet + 1;
-   if(iNext > m_ptra.get_count())
+   if(iNext > this->m_ptra.get_count())
    {
 
    }
@@ -1210,8 +1209,8 @@ void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::get_next
    rNextPosition  = (POSITION) iNext;
 
    // fill in return data
-   rKey           = m_ptra[iRet - 1]->m_element1;
-   rValue         = m_ptra[iRet - 1]->m_element2;
+   rKey           = this->m_ptra[iRet - 1]->m_element1;
+   rValue         = this->m_ptra[iRet - 1]->m_element2;
 
 }
 
@@ -1226,7 +1225,7 @@ sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::next(const typenam
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
 typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node*
-   sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::next(const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node * pnode) 
+   sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::next(const typename sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::node * pnode)
 {
 
    if(pnode->right != NULL)
@@ -1354,7 +1353,7 @@ sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::PGetNextAssoc(cons
 
 
    return next(pnode);
-   
+
 }
 
 
@@ -1666,7 +1665,7 @@ public:
 
    node * PGetNextAssoc(node * & rPnode)
    {
-      return (node *) string_to_ptr::PGetNextAssoc((string_to_ptr::node * &) rPnode);
+      return (node *) string_to_ptr::PGetNextAssoc((node * &) rPnode);
    }
 
 };
@@ -1687,7 +1686,7 @@ typedef CLASS_DECL_AURA sort_string_map < string, const string & > sort_string_t
 inline void sort_map_test()
 {
    sort_string_to_intptr m;
-   
+
    m.insert(pair< string, int_ptr>("Carlos",1));
    m.insert(pair< string,int_ptr>("Carlos",2));
    m.insert(pair< string,int_ptr>("Mummi",2));
@@ -1708,7 +1707,7 @@ inline void sort_map_test()
 
    sort_string_to_intptr::iterator lower = m.lower_bound("Ca2");
    sort_string_to_intptr::iterator upper = m.upper_bound("Ca2");
-   
+
 }
 
 
