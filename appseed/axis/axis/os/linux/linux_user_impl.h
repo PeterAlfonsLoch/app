@@ -1,6 +1,8 @@
 #pragma once
 
 
+int_bool axis_TranslateMessage(const MESSAGE * lpmessage);
+LRESULT axis_DispatchMessage(const MESSAGE * lpmessage);
 
 struct hthread;
 

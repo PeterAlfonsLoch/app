@@ -131,19 +131,19 @@ void _c_simple_message_loop()
 
 }
 
-bool (*g_pfnTranslateMessage)(LPMESSAGE lpmessage) = NULL;
+bool (*g_pfnTranslateMessage)(const LPMESSAGE lpmessage) = NULL;
 
 
-bool set_TranslateMessage(bool (*pfn)(LPMESSAGE lpmessage))
+bool set_TranslateMessage(bool (*pfn)(const LPMESSAGE lpmessage))
 {
 
    g_pfnTranslateMessage = pfn;
 
 }
 
-LRESULT (*g_pfnDispatchMessage)(LPMESSAGE lpmessage) = NULL;
+LRESULT (*g_pfnDispatchMessage)(const LPMESSAGE lpmessage) = NULL;
 
-bool set_DispatchMessage(LRESULT (*pfn)(LPMESSAGE lpmessage))
+bool set_DispatchMessage(LRESULT (*pfn)(const LPMESSAGE lpmessage))
 {
 
    g_pfnDispatchMessage = pfn;
@@ -151,7 +151,7 @@ bool set_DispatchMessage(LRESULT (*pfn)(LPMESSAGE lpmessage))
 }
 
 
-bool TranslateMessage(LPMESSAGE lpmessage)
+bool TranslateMessage(const LPMESSAGE lpmessage)
 {
 
    if(g_pfnTranslateMessage == NULL)
@@ -162,7 +162,7 @@ bool TranslateMessage(LPMESSAGE lpmessage)
 }
 
 
-LRESULT DispatchMessage(LPMESSAGE lpmessage)
+LRESULT DispatchMessage(const LPMESSAGE lpmessage)
 {
 
    if(g_pfnDispatchMessage == NULL)
