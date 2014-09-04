@@ -246,7 +246,25 @@ void __node_term_multithreading()
 
 #if defined(LINUX) // || defined(ANDROID)
 
-bool defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
+bool (* g_pfn_defer_process_x_message)(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek) = NULL;
+
+bool aura_defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek)
+{
+
+   if(g_pfn_defer_process_x_message == NULL)
+      return false;
+
+   return (*g_pfn_defer_process_x_message)(hthread, lpMsg, oswindow, bPeek);
+
+}
+
+void set_defer_process_x_message(bool (* pfn)(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek))
+{
+
+   g_pfn_defer_process_x_message = pfn;
+
+}
+
 
 #endif
 
@@ -1181,7 +1199,7 @@ restart:
 
    }
 
-   if(defer_process_x_message(hthread,lpMsg,oswindow,false))
+   if(aura_defer_process_x_message(hthread,lpMsg,oswindow,false))
       return TRUE;
 
 #endif

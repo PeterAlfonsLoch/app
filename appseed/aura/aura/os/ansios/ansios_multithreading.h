@@ -1,8 +1,16 @@
-#ifndef AXIS_ANSIOS_MULTITHREADING_H
-#define AXIS_ANSIOS_MULTITHREADING_H
+#ifndef AURA_ANSIOS_MULTITHREADING_H
+#define AURA_ANSIOS_MULTITHREADING_H
 
 
 #pragma once
+
+
+#if defined(LINUX) // || defined(ANDROID)
+
+void set_defer_process_x_message(bool (* pfn)(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek));
+
+#endif
+
 
 
 
@@ -70,17 +78,17 @@ union semun {
 class thread_data
 {
 public:
-    
-    
+
+
     pthread_key_t           key;
-    
+
 
     thread_data();
 
 
     void * get();
     void set(void * p);
-    
+
 
 };
 
@@ -141,7 +149,7 @@ public:
 
 
 
-#endif // AXIS_ANSIOS_MULTITHREADING_H
+#endif // AURA_ANSIOS_MULTITHREADING_H
 
 
 

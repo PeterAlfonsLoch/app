@@ -36,7 +36,7 @@ namespace linux
 void __node_aura_factory_exchange(sp(::aura::application) papp)
 {
 
-   linux::factory_exchange factoryexchange(papp);
+   ::linux::aura::factory_exchange factoryexchange(papp);
 
 }
 
