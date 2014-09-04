@@ -1,8 +1,6 @@
 #include "framework.h"
 #include <dirent.h>
 
-using namespace std;
-
 int32_t get_process_pid(const char * procNameParam)
 {
 
