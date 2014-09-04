@@ -35,10 +35,6 @@ CLASS_DECL_LINUX void AfxProcessWndProcException(::exception::base*, ::signal_de
 CLASS_DECL_LINUX void __cdecl __pre_translate_message(::signal_details * pobj);
 
 
-#include "linux_application.h"
-
-
-
 WINBOOL PeekMessage(
     LPMESSAGE lpMsg,
     oswindow hWnd,
