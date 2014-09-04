@@ -1209,8 +1209,8 @@ namespace std
 
 #endif
 
-
-   using complex = ::math::complex;
+   template < typename T > 
+   using complex = ::math::complex < T >;
 
 
    template < typename T > complex < T > pow(const complex < T > & base, const complex < T > & exp) { return ::math::pow(base,exp); }
