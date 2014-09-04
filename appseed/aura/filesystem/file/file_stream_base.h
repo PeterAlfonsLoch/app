@@ -9,6 +9,8 @@ namespace file
    {
    public:
 
+      set_width(::file_size n = 0) { m_width = n; }
+
       ::file_size m_width;
 
    };
