@@ -266,6 +266,16 @@
 		<Unit filename="graphics/visual/visual_cursor.h" />
 		<Unit filename="graphics/visual/visual_icon.cpp" />
 		<Unit filename="graphics/visual/visual_icon.h" />
+		<Unit filename="primitive/data/data_simple_item.cpp" />
+		<Unit filename="primitive/data/data_simple_item.h" />
+		<Unit filename="primitive/data/data_tree.cpp" />
+		<Unit filename="primitive/data/data_tree.h" />
+		<Unit filename="primitive/data/data_tree_item.cpp" />
+		<Unit filename="primitive/data/data_tree_item.h" />
+		<Unit filename="primitive/datetime/datetime_departament.cpp" />
+		<Unit filename="primitive/datetime/datetime_departament.h" />
+		<Unit filename="primitive/datetime/datetime_value.cpp" />
+		<Unit filename="primitive/datetime/datetime_value.h" />
 		<Unit filename="user/simple/simple.h" />
 		<Unit filename="user/simple/simple_scroll_bar.cpp" />
 		<Unit filename="user/simple/simple_scroll_bar.h" />
