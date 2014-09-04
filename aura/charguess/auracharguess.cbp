@@ -24,7 +24,7 @@
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libauracharguessso" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libauracharguess.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/auracharguess" />
 				<Option type="3" />
