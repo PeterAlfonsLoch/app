@@ -181,12 +181,6 @@ namespace ansios
    }
 
 
-   string process::read(bool bUntilExit)
-   {
-      UNREFERENCED_PARAMETER(bUntilExit);
-      return m_pipe.m_pipeOut.read();
-   }
-
    uint32_t process::wait_until_exit(int32_t iWaitMax)
    {
       uint32_t dwExitCode = 0;
