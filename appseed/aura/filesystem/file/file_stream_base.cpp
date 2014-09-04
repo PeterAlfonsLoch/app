@@ -79,14 +79,14 @@ namespace file
    }
 
 
-   fmtflags stream_base::precision() const
+   fmtflags stream_base::flags() const
    {
 
       return m_fmtflags;
 
    }
 
-   fmtflags stream_base::precision(fmtflags flags)
+   fmtflags stream_base::flags(fmtflags flags)
    {
 
       return m_fmtflags = flags;
