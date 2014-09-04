@@ -447,6 +447,7 @@
 		<Unit filename="aura/os/linux/linux_simple_shell_launcher.cpp" />
 		<Unit filename="aura/os/linux/linux_small_ipca_channel.cpp" />
 		<Unit filename="aura/os/linux/linux_time.cpp" />
+		<Unit filename="aura/os/linux/linux_win_base.cpp" />
 		<Unit filename="aura/os/os.h" />
 		<Unit filename="aura/os/os_binreloc.cpp" />
 		<Unit filename="aura/os/os_binreloc.h" />

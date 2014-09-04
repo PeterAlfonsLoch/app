@@ -259,16 +259,12 @@
 		<Unit filename="user/user/user.h" />
 		<Unit filename="user/user/user_buffer.cpp" />
 		<Unit filename="user/user/user_buffer.h" />
-		<Unit filename="user/user/user_check_interface.cpp" />
-		<Unit filename="user/user/user_check_interface.h" />
 		<Unit filename="user/user/user_control.cpp" />
 		<Unit filename="user/user/user_control.h" />
 		<Unit filename="user/user/user_control_bar.cpp" />
 		<Unit filename="user/user/user_control_bar.h" />
 		<Unit filename="user/user/user_control_event.cpp" />
 		<Unit filename="user/user/user_control_event.h" />
-		<Unit filename="user/user/user_create_context.cpp" />
-		<Unit filename="user/user/user_create_context.h" />
 		<Unit filename="user/user/user_document.cpp" />
 		<Unit filename="user/user/user_document.h" />
 		<Unit filename="user/user/user_document_data_map.h" />
@@ -319,7 +315,6 @@
 		<Unit filename="user/user/user_message.h" />
 		<Unit filename="user/user/user_mouse_focus.cpp" />
 		<Unit filename="user/user/user_mouse_focus.h" />
-		<Unit filename="user/user/user_object.h" />
 		<Unit filename="user/user/user_place_holder.cpp" />
 		<Unit filename="user/user/user_place_holder.h" />
 		<Unit filename="user/user/user_place_holder_container.cpp" />
@@ -342,8 +337,8 @@
 		<Unit filename="user/user/user_scroll_view.h" />
 		<Unit filename="user/user/user_server.cpp" />
 		<Unit filename="user/user/user_server.h" />
-		<Unit filename="user/user/user_str.cpp" />
-		<Unit filename="user/user/user_str.h" />
+		<Unit filename="user/user/user_str_context.cpp" />
+		<Unit filename="user/user/user_str_context.h" />
 		<Unit filename="user/user/user_text_interface.cpp" />
 		<Unit filename="user/user/user_text_interface.h" />
 		<Unit filename="user/user/user_user.cpp" />
