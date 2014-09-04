@@ -17,5 +17,5 @@ TARGET throw_cast(SOURCE src)
 
 
 
-
+#define WINBOOL int_bool;
 
