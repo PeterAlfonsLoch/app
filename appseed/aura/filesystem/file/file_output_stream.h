@@ -16,14 +16,14 @@ namespace file
    {
    public:
 
-      
+
       output_stream();
       output_stream(const char * lpszFileName, uint32_t nOpenFlags, sp(::aura::application) papp = ::get_thread_app());
       output_stream(stream_buffer * pwriter);
       output_stream(const output_stream & pwriter);
       virtual ~output_stream();
 
-      
+
       virtual void write(const void *lpBuf, ::primitive::memory_size nCount);
       virtual void write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten);
       template < typename T >
@@ -41,6 +41,8 @@ namespace file
       virtual void flush();
 
       virtual void set_length(file_size len);
+
+      using stream_base::operator<< ;
 
       inline output_stream & operator << (char ch                              ) { write(ch              ); return *this;}
       inline output_stream & operator << (uchar uch                            ) { write(uch             ); return *this;}
