@@ -109,7 +109,7 @@ enum {
 namespace user
 {
 
-   
+
    CLASS_DECL_AXIS void __reposition_window(__SIZEPARENTPARAMS* lpLayout,sp(::user::interaction) oswindow,LPCRECT lpRect);
 
 
@@ -293,7 +293,7 @@ CLASS_DECL_AXIS char * ::core::TaskStringW2A(const wchar_t * lpw);
 #include "user_message.h"
 
 #include "user_printer.h"
-#include "axis_print_job.h"
+#include "axis/axis/axis_print_job.h"
 #include "user_print_job.h"
 
 

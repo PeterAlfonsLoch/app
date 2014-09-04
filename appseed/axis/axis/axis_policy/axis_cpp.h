@@ -384,7 +384,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "axis/graphics/graphics.h"
 
 
-#include "axis_platform_interface.h"
+#include "axis/axis/axis_platform_interface.h"
 
 
 #include "user/user/user_enum.h"
@@ -446,9 +446,9 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "user/user/user_keyboard.h"
 #include "user/user/user_user.h"
 
-#include "axis_application.h"
+#include "axis/axis/axis_application.h"
 
-#include "axis_session.h"
+#include "axis/axis/axis_session.h"
 
 
 #include "user/user/user_create_context.h"
@@ -460,7 +460,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
 #include "axis/user/user/user.h"
-#include "axis_print_job.h"
+#include "axis/axis/axis_print_job.h"
 #include "user/user/user_control_event.h"
 
 #include "user/user/user_control.h"
@@ -488,7 +488,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
 
-#include "axis_core_copydesk.h"
+#include "axis/axis/axis_core_copydesk.h"
 
 
 
@@ -498,16 +498,16 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
 
-#include "axis_static_start.h"
+#include "axis/axis/axis_static_start.h"
 
 
 #include "axis/primitive/datetime/datetime_value.h"
 #include "axis/primitive/datetime/datetime_departament.h"
 
 
-#include "axis_system.h"
+#include "axis/axis/axis_system.h"
 
-#include "axis_simple_app.h"
+#include "axis/axis/axis_simple_app.h"
 
 
 
