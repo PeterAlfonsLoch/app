@@ -31,10 +31,14 @@ namespace linux
       m_pimpl->_001OnFileNew(NULL);
    }
 
-   sp(::user::document) application::_001OpenDocumentFile(var varFile)
+
+   ::user::document * application::_001OpenDocumentFile(var varFile)
    {
+
       return m_pimpl->_001OpenDocumentFile(varFile);
+
    }
+
 
    void application::_001EnableShellOpen()
    {

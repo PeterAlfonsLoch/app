@@ -49,7 +49,7 @@ namespace ansios
    bool pipe::create(bool bBlock, bool bInherit)
    {
 
-      if(!::aura::pipe::create(bBlock,bInherit))
+      if(!::process::pipe::create(bBlock,bInherit))
          return false;
 
       int32_t iFlags = bBlock ? 0 : O_NONBLOCK;
