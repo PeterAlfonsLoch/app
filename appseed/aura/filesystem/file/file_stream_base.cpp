@@ -79,6 +79,22 @@ namespace file
    }
 
 
+   fmtflags stream_base::precision() const
+   {
+
+      return m_fmtflags;
+
+   }
+
+   fmtflags stream_base::precision(fmtflags flags)
+   {
+
+      return m_fmtflags = flags;
+
+   }
+
+
+
    file_size stream_base::precision() const
    {
 
