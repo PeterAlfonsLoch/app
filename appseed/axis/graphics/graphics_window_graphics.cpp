@@ -1,6 +1,8 @@
 #include "framework.h"
 #ifdef WINDOWSEX
 #include "axis/os/windows/windows_window_gdi.h"
+#elif defined (LINUX)
+#include "axis/os/linux/linux_window_xlib.h"
 #endif
 
 window_graphics::window_graphics()
