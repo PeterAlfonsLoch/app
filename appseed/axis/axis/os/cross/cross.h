@@ -35,4 +35,10 @@ typedef struct oswindow_data * oswindow;
 
 
 
+#ifndef WINDOWS
+
+#include "windows/windows.h"
+
+#endif // WINDOWS
+
 
