@@ -756,15 +756,6 @@ namespace linux
 */
    }
 
-   bool os::resolve_link(string & strTarget, const char * pszSource, sp(::user::interaction) puiMessageParentOptional)
-   {
-
-      throw not_implemented(get_app());
-      return false;
-
-//      return vfxResolveShortcut(strTarget, pszSource, puiMessageParentOptional);
-
-   }
 
    void os::raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags)
    {
