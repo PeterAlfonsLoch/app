@@ -14,7 +14,7 @@ CLASS_DECL_LINUX void AfxResetMsgcache();
 #define _AfxHookWindowCreate    AfxHookWindowCreate
 #define _AfxUnhookWindowCreate  AfxUnhookWindowCreate
 
-#include "linux1.h"
+
 #include "implementation.h"
 #include "linux_factory_exchange.h"
 #include "linux_window_draw.h"
