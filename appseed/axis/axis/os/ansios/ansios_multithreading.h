@@ -70,20 +70,25 @@ union semun {
 class thread_data
 {
 public:
-    
-    
+
+
     pthread_key_t           key;
-    
+
 
     thread_data();
 
 
     void * get();
     void set(void * p);
-    
+
 
 };
 
+#if defined(LINUX) // || defined(ANDROID)
+
+bool axis_defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
+
+#endif
 
 
 #endif

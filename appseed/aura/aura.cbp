@@ -67,6 +67,7 @@
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
+			<Add option="-latomiconv" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
@@ -324,20 +325,6 @@
 		<Unit filename="aura/message/message_definition.h" />
 		<Unit filename="aura/message/message_dispatch.cpp" />
 		<Unit filename="aura/message/message_dispatch.h" />
-		<Unit filename="aura/node/android/Kerr/LocalMemory.h" />
-		<Unit filename="aura/node/android/Kerr/kerr.h" />
-		<Unit filename="aura/node/android/android.h" />
-		<Unit filename="aura/node/android/android1.h" />
-		<Unit filename="aura/node/android/android_application.h" />
-		<Unit filename="aura/node/android/android_factory_exchange.h" />
-		<Unit filename="aura/node/android/android_file.h" />
-		<Unit filename="aura/node/android/android_file_set.h" />
-		<Unit filename="aura/node/android/android_implementation.h" />
-		<Unit filename="aura/node/android/android_internal.h" />
-		<Unit filename="aura/node/android/android_os.h" />
-		<Unit filename="aura/node/android/android_shell.h" />
-		<Unit filename="aura/node/android/android_stdio_file.h" />
-		<Unit filename="aura/node/android/android_thread.h" />
 		<Unit filename="aura/node/ansios/ansios.h" />
 		<Unit filename="aura/node/ansios/ansios_pipe.cpp" />
 		<Unit filename="aura/node/ansios/ansios_pipe.h" />
@@ -345,36 +332,6 @@
 		<Unit filename="aura/node/ansios/ansios_process.h" />
 		<Unit filename="aura/node/ansios/ansios_thread_impl.cpp" />
 		<Unit filename="aura/node/ansios/ansios_thread_impl.h" />
-		<Unit filename="aura/node/ios/AppDelegate.h" />
-		<Unit filename="aura/node/ios/RoundViewController.h" />
-		<Unit filename="aura/node/ios/RoundWindow.h" />
-		<Unit filename="aura/node/ios/RoundWindowFrameView.h" />
-		<Unit filename="aura/node/ios/ios.h" />
-		<Unit filename="aura/node/ios/ios_application.h" />
-		<Unit filename="aura/node/ios/ios_copydesk.h" />
-		<Unit filename="aura/node/ios/ios_crypto.h" />
-		<Unit filename="aura/node/ios/ios_dir.h" />
-		<Unit filename="aura/node/ios/ios_factory_exchange.h" />
-		<Unit filename="aura/node/ios/ios_file.h" />
-		<Unit filename="aura/node/ios/ios_file_set.h" />
-		<Unit filename="aura/node/ios/ios_file_system.h" />
-		<Unit filename="aura/node/ios/ios_implementation.h" />
-		<Unit filename="aura/node/ios/ios_internal.h" />
-		<Unit filename="aura/node/ios/ios_ip_enum.h" />
-		<Unit filename="aura/node/ios/ios_m.h" />
-		<Unit filename="aura/node/ios/ios_mm.h" />
-		<Unit filename="aura/node/ios/ios_os.h" />
-		<Unit filename="aura/node/ios/ios_port_forward.h" />
-		<Unit filename="aura/node/ios/ios_printer.h" />
-		<Unit filename="aura/node/ios/ios_shell.h" />
-		<Unit filename="aura/node/ios/ios_state.h" />
-		<Unit filename="aura/node/ios/ios_stdio_file.h" />
-		<Unit filename="aura/node/ios/ios_thread.h" />
-		<Unit filename="aura/node/ios/ios_window.h" />
-		<Unit filename="aura/node/ios/ios_window_draw.h" />
-		<Unit filename="aura/node/ios/ios_window_impl.h" />
-		<Unit filename="aura/node/ios/os.h" />
-		<Unit filename="aura/node/ios/round_window.h" />
 		<Unit filename="aura/node/linux/implementation.h" />
 		<Unit filename="aura/node/linux/linux.h" />
 		<Unit filename="aura/node/linux/linux1.cpp" />
@@ -382,8 +339,6 @@
 		<Unit filename="aura/node/linux/linux2.cpp" />
 		<Unit filename="aura/node/linux/linux_application.cpp" />
 		<Unit filename="aura/node/linux/linux_application.h" />
-		<Unit filename="aura/node/linux/linux_copydesk.cpp" />
-		<Unit filename="aura/node/linux/linux_copydesk.h" />
 		<Unit filename="aura/node/linux/linux_dumpinit.cpp" />
 		<Unit filename="aura/node/linux/linux_error.cpp" />
 		<Unit filename="aura/node/linux/linux_exception.cpp" />
@@ -391,8 +346,6 @@
 		<Unit filename="aura/node/linux/linux_factory_exchange.h" />
 		<Unit filename="aura/node/linux/linux_file.cpp" />
 		<Unit filename="aura/node/linux/linux_file.h" />
-		<Unit filename="aura/node/linux/linux_interaction_impl.cpp" />
-		<Unit filename="aura/node/linux/linux_interaction_impl.h" />
 		<Unit filename="aura/node/linux/linux_internal.h" />
 		<Unit filename="aura/node/linux/linux_main.cpp" />
 		<Unit filename="aura/node/linux/linux_os.cpp" />
@@ -407,100 +360,9 @@
 		<Unit filename="aura/node/linux/linux_thread.h" />
 		<Unit filename="aura/node/linux/linux_trace.cpp" />
 		<Unit filename="aura/node/linux/linux_util.cpp" />
-		<Unit filename="aura/node/linux/linux_window_draw.cpp" />
 		<Unit filename="aura/node/linux/linux_window_draw.h" />
-		<Unit filename="aura/node/macos/RoundWindow.h" />
-		<Unit filename="aura/node/macos/RoundWindowFrameView.h" />
-		<Unit filename="aura/node/macos/mac.h" />
-		<Unit filename="aura/node/macos/mac_application.h" />
-		<Unit filename="aura/node/macos/mac_copydesk.h" />
-		<Unit filename="aura/node/macos/mac_crypto.h" />
-		<Unit filename="aura/node/macos/mac_dir.h" />
-		<Unit filename="aura/node/macos/mac_factory_exchange.h" />
-		<Unit filename="aura/node/macos/mac_file.h" />
-		<Unit filename="aura/node/macos/mac_file_set.h" />
-		<Unit filename="aura/node/macos/mac_file_system.h" />
-		<Unit filename="aura/node/macos/mac_implementation.h" />
-		<Unit filename="aura/node/macos/mac_interaction_impl.h" />
-		<Unit filename="aura/node/macos/mac_internal.h" />
-		<Unit filename="aura/node/macos/mac_ip_enum.h" />
-		<Unit filename="aura/node/macos/mac_mm.h" />
-		<Unit filename="aura/node/macos/mac_os.h" />
-		<Unit filename="aura/node/macos/mac_port_forward.h" />
-		<Unit filename="aura/node/macos/mac_printer.h" />
-		<Unit filename="aura/node/macos/mac_shell.h" />
-		<Unit filename="aura/node/macos/mac_stdio_file.h" />
-		<Unit filename="aura/node/macos/mac_thread.h" />
-		<Unit filename="aura/node/macos/mac_window_draw.h" />
-		<Unit filename="aura/node/macos/round_window.h" />
-		<Unit filename="aura/node/metrowin/metrowin.h" />
-		<Unit filename="aura/node/metrowin/metrowin1.h" />
-		<Unit filename="aura/node/metrowin/metrowin_application.h" />
-		<Unit filename="aura/node/metrowin/metrowin_copydesk.h" />
-		<Unit filename="aura/node/metrowin/metrowin_crypto.h" />
-		<Unit filename="aura/node/metrowin/metrowin_dir.h" />
-		<Unit filename="aura/node/metrowin/metrowin_directx.h" />
-		<Unit filename="aura/node/metrowin/metrowin_directx_application.h" />
-		<Unit filename="aura/node/metrowin/metrowin_exception.h" />
-		<Unit filename="aura/node/metrowin/metrowin_factory_exchange.h" />
-		<Unit filename="aura/node/metrowin/metrowin_file.h" />
-		<Unit filename="aura/node/metrowin/metrowin_file_find.h" />
-		<Unit filename="aura/node/metrowin/metrowin_file_set.h" />
-		<Unit filename="aura/node/metrowin/metrowin_file_system.h" />
-		<Unit filename="aura/node/metrowin/metrowin_folder_watch.h" />
-		<Unit filename="aura/node/metrowin/metrowin_handle.h" />
-		<Unit filename="aura/node/metrowin/metrowin_implementation.h" />
-		<Unit filename="aura/node/metrowin/metrowin_interaction_impl.h" />
-		<Unit filename="aura/node/metrowin/metrowin_internal.h" />
-		<Unit filename="aura/node/metrowin/metrowin_ip_enum.h" />
-		<Unit filename="aura/node/metrowin/metrowin_os.h" />
-		<Unit filename="aura/node/metrowin/metrowin_palette.h" />
-		<Unit filename="aura/node/metrowin/metrowin_pen.h" />
-		<Unit filename="aura/node/metrowin/metrowin_port_forward.h" />
-		<Unit filename="aura/node/metrowin/metrowin_printer.h" />
-		<Unit filename="aura/node/metrowin/metrowin_registry.h" />
-		<Unit filename="aura/node/metrowin/metrowin_resource.h" />
-		<Unit filename="aura/node/metrowin/metrowin_shell.h" />
-		<Unit filename="aura/node/metrowin/metrowin_stdio_file.h" />
-		<Unit filename="aura/node/metrowin/metrowin_thread.h" />
-		<Unit filename="aura/node/metrowin/metrowin_uac_tools.h" />
-		<Unit filename="aura/node/metrowin/metrowin_window_draw.h" />
-		<Unit filename="aura/node/metrowin/net/net_address.h" />
 		<Unit filename="aura/node/node.cpp" />
 		<Unit filename="aura/node/node.h" />
-		<Unit filename="aura/node/windows/os.h" />
-		<Unit filename="aura/node/windows/win1.h" />
-		<Unit filename="aura/node/windows/windows_application.h" />
-		<Unit filename="aura/node/windows/windows_exception.h" />
-		<Unit filename="aura/node/windows/windows_factory_exchange.h" />
-		<Unit filename="aura/node/windows/windows_file.h" />
-		<Unit filename="aura/node/windows/windows_file_find.h" />
-		<Unit filename="aura/node/windows/windows_folder_watch.h" />
-		<Unit filename="aura/node/windows/windows_handle.h" />
-		<Unit filename="aura/node/windows/windows_implementation.h" />
-		<Unit filename="aura/node/windows/windows_os.h" />
-		<Unit filename="aura/node/windows/windows_pipe.h" />
-		<Unit filename="aura/node/windows/windows_printer.h" />
-		<Unit filename="aura/node/windows/windows_process.h" />
-		<Unit filename="aura/node/windows/windows_registry.h" />
-		<Unit filename="aura/node/windows/windows_shell.h" />
-		<Unit filename="aura/node/windows/windows_simple_hold_handle.h" />
-		<Unit filename="aura/node/windows/windows_stdio_file.h" />
-		<Unit filename="aura/node/windows/windows_thread.h" />
-		<Unit filename="aura/node/windows/windows_uac_tools.h" />
-		<Unit filename="aura/os/android/android.h" />
-		<Unit filename="aura/os/android/android_android.h" />
-		<Unit filename="aura/os/android/android_cairo_keep.h" />
-		<Unit filename="aura/os/android/android_cross_win_file.h" />
-		<Unit filename="aura/os/android/android_cross_win_gdi.h" />
-		<Unit filename="aura/os/android/android_cross_win_gdi_internal.h" />
-		<Unit filename="aura/os/android/android_file.h" />
-		<Unit filename="aura/os/android/android_file_watcher.h" />
-		<Unit filename="aura/os/android/android_graphics.h" />
-		<Unit filename="aura/os/android/android_internal.h" />
-		<Unit filename="aura/os/android/android_process.h" />
-		<Unit filename="aura/os/android/android_window_android.h" />
-		<Unit filename="aura/os/android/android_window_impl.h" />
 		<Unit filename="aura/os/ansios/ansios.h" />
 		<Unit filename="aura/os/ansios/ansios_base_file.cpp" />
 		<Unit filename="aura/os/ansios/ansios_cross_win.cpp" />
@@ -554,53 +416,6 @@
 		<Unit filename="aura/os/cross/windows/windows_types.h" />
 		<Unit filename="aura/os/cross/windows/windows_user.h" />
 		<Unit filename="aura/os/cross/windows/windows_winnt.h" />
-		<Unit filename="aura/os/ios/DDInvocationGrabber.h" />
-		<Unit filename="aura/os/ios/NSObject+DDExtensions.h" />
-		<Unit filename="aura/os/ios/UncaughtExceptionHandler.h" />
-		<Unit filename="aura/os/ios/ca_os.h" />
-		<Unit filename="aura/os/ios/ca_os_thread.h" />
-		<Unit filename="aura/os/ios/ios.h" />
-		<Unit filename="aura/os/ios/ios_base_internal.h" />
-		<Unit filename="aura/os/ios/ios_base_mm.h" />
-		<Unit filename="aura/os/ios/ios_cross_win_gdi.h" />
-		<Unit filename="aura/os/ios/ios_file_watcher.h" />
-		<Unit filename="aura/os/ios/ios_gen_1.h" />
-		<Unit filename="aura/os/ios/ios_graphics_mm.h" />
-		<Unit filename="aura/os/ios/ios_implementation.h" />
-		<Unit filename="aura/os/ios/ios_internal.h" />
-		<Unit filename="aura/os/ios/ios_m.h" />
-		<Unit filename="aura/os/ios/ios_mm.h" />
-		<Unit filename="aura/os/ios/ios_multithreading.h" />
-		<Unit filename="aura/os/ios/ios_ns_exception.h" />
-		<Unit filename="aura/os/ios/ios_process.h" />
-		<Unit filename="aura/os/ios/ios_window_boot.h" />
-		<Unit filename="aura/os/ios/ios_window_impl.h" />
-		<Unit filename="aura/os/ios/ios_windowing.h" />
-		<Unit filename="aura/os/ios_copy/DDInvocationGrabber.h" />
-		<Unit filename="aura/os/ios_copy/NSObject+DDExtensions.h" />
-		<Unit filename="aura/os/ios_copy/UncaughtExceptionHandler.h" />
-		<Unit filename="aura/os/ios_copy/ca_mm.h" />
-		<Unit filename="aura/os/ios_copy/ca_os.h" />
-		<Unit filename="aura/os/ios_copy/ca_os_thread.h" />
-		<Unit filename="aura/os/ios_copy/ios.h" />
-		<Unit filename="aura/os/ios_copy/ios_cross_win_gdi.h" />
-		<Unit filename="aura/os/ios_copy/ios_file.h" />
-		<Unit filename="aura/os/ios_copy/ios_file_watcher.h" />
-		<Unit filename="aura/os/ios_copy/ios_graphics_mm.h" />
-		<Unit filename="aura/os/ios_copy/ios_internal.h" />
-		<Unit filename="aura/os/ios_copy/ios_m.h" />
-		<Unit filename="aura/os/ios_copy/ios_mm.h" />
-		<Unit filename="aura/os/ios_copy/ios_mm_boot.h" />
-		<Unit filename="aura/os/ios_copy/ios_mm_window.h" />
-		<Unit filename="aura/os/ios_copy/ios_mm_window_frame_view.h" />
-		<Unit filename="aura/os/ios_copy/ios_ns_exception.h" />
-		<Unit filename="aura/os/ios_copy/ios_process.h" />
-		<Unit filename="aura/os/ios_copy/ios_simple_ui.h" />
-		<Unit filename="aura/os/ios_copy/ios_thread.h" />
-		<Unit filename="aura/os/ios_copy/ios_window.h" />
-		<Unit filename="aura/os/ios_copy/ios_window_boot.h" />
-		<Unit filename="aura/os/ios_copy/ios_window_impl.h" />
-		<Unit filename="aura/os/ios_copy/macos.h" />
 		<Unit filename="aura/os/linux/linux.cpp" />
 		<Unit filename="aura/os/linux/linux.h" />
 		<Unit filename="aura/os/linux/linux_c.c">
@@ -608,12 +423,10 @@
 		</Unit>
 		<Unit filename="aura/os/linux/linux_cross_win_file.cpp" />
 		<Unit filename="aura/os/linux/linux_cross_win_file.h" />
-		<Unit filename="aura/os/linux/linux_cross_win_gdi.cpp" />
 		<Unit filename="aura/os/linux/linux_cross_win_gdi.h" />
 		<Unit filename="aura/os/linux/linux_cross_win_gdi_internal.h" />
 		<Unit filename="aura/os/linux/linux_debug.cpp" />
 		<Unit filename="aura/os/linux/linux_debug.h" />
-		<Unit filename="aura/os/linux/linux_display.cpp" />
 		<Unit filename="aura/os/linux/linux_file.cpp" />
 		<Unit filename="aura/os/linux/linux_file.h" />
 		<Unit filename="aura/os/linux/linux_file_watcher.cpp" />
@@ -627,8 +440,6 @@
 		<Unit filename="aura/os/linux/linux_message_loop.cpp" />
 		<Unit filename="aura/os/linux/linux_multithreading.cpp" />
 		<Unit filename="aura/os/linux/linux_os.cpp" />
-		<Unit filename="aura/os/linux/linux_osdisplay.h" />
-		<Unit filename="aura/os/linux/linux_oswindow.h" />
 		<Unit filename="aura/os/linux/linux_process.cpp" />
 		<Unit filename="aura/os/linux/linux_process.h" />
 		<Unit filename="aura/os/linux/linux_process_pid.cpp" />
@@ -636,45 +447,6 @@
 		<Unit filename="aura/os/linux/linux_simple_shell_launcher.cpp" />
 		<Unit filename="aura/os/linux/linux_small_ipca_channel.cpp" />
 		<Unit filename="aura/os/linux/linux_time.cpp" />
-		<Unit filename="aura/os/linux/linux_user_impl.h" />
-		<Unit filename="aura/os/linux/linux_win_base.cpp" />
-		<Unit filename="aura/os/linux/linux_window_cairo.h" />
-		<Unit filename="aura/os/linux/linux_window_xlib.cpp" />
-		<Unit filename="aura/os/linux/linux_window_xlib.h" />
-		<Unit filename="aura/os/linux/linux_windowing.cpp" />
-		<Unit filename="aura/os/linux/linux_windowing.h" />
-		<Unit filename="aura/os/macos/DDInvocationGrabber.h" />
-		<Unit filename="aura/os/macos/NSObject+DDExtensions.h" />
-		<Unit filename="aura/os/macos/UncaughtExceptionHandler.h" />
-		<Unit filename="aura/os/macos/macos.h" />
-		<Unit filename="aura/os/macos/macos_cross_win_gdi.h" />
-		<Unit filename="aura/os/macos/macos_file.h" />
-		<Unit filename="aura/os/macos/macos_file_watcher.h" />
-		<Unit filename="aura/os/macos/macos_graphics_mm.h" />
-		<Unit filename="aura/os/macos/macos_internal.h" />
-		<Unit filename="aura/os/macos/macos_mm.h" />
-		<Unit filename="aura/os/macos/macos_multithreading.h" />
-		<Unit filename="aura/os/macos/macos_ns_exception.h" />
-		<Unit filename="aura/os/macos/macos_oswindow.h" />
-		<Unit filename="aura/os/macos/macos_process.h" />
-		<Unit filename="aura/os/macos/macos_window_impl.h" />
-		<Unit filename="aura/os/macos/macos_windowing.h" />
-		<Unit filename="aura/os/macos/os.h" />
-		<Unit filename="aura/os/metrowin/ca_os.h" />
-		<Unit filename="aura/os/metrowin/metrowin.h" />
-		<Unit filename="aura/os/metrowin/metrowin_file.h" />
-		<Unit filename="aura/os/metrowin/metrowin_file_watcher.h" />
-		<Unit filename="aura/os/metrowin/metrowin_file_winrt.h" />
-		<Unit filename="aura/os/metrowin/metrowin_gdi_winrt.h" />
-		<Unit filename="aura/os/metrowin/metrowin_internal.h" />
-		<Unit filename="aura/os/metrowin/metrowin_process.h" />
-		<Unit filename="aura/os/metrowin/metrowin_simple_hold_handle.h" />
-		<Unit filename="aura/os/metrowin/metrowin_simple_ui.h" />
-		<Unit filename="aura/os/metrowin/metrowin_sockets.h" />
-		<Unit filename="aura/os/metrowin/metrowin_thread.h" />
-		<Unit filename="aura/os/metrowin/metrowin_thread_winrt.h" />
-		<Unit filename="aura/os/metrowin/metrowin_user_impl.h" />
-		<Unit filename="aura/os/metrowin/metrowin_window_impl.h" />
 		<Unit filename="aura/os/os.h" />
 		<Unit filename="aura/os/os_binreloc.cpp" />
 		<Unit filename="aura/os/os_binreloc.h" />
@@ -683,44 +455,6 @@
 		<Unit filename="aura/os/os_process.cpp" />
 		<Unit filename="aura/os/os_process.h" />
 		<Unit filename="aura/os/os_thread.cpp" />
-		<Unit filename="aura/os/solaris/linux_internal.h" />
-		<Unit filename="aura/os/solaris/solaris.h" />
-		<Unit filename="aura/os/solaris/solaris_cairo_keep.h" />
-		<Unit filename="aura/os/solaris/solaris_cross_win_file.h" />
-		<Unit filename="aura/os/solaris/solaris_cross_win_gdi.h" />
-		<Unit filename="aura/os/solaris/solaris_cross_win_gdi_internal.h" />
-		<Unit filename="aura/os/solaris/solaris_debug.h" />
-		<Unit filename="aura/os/solaris/solaris_file.h" />
-		<Unit filename="aura/os/solaris/solaris_file_watcher.h" />
-		<Unit filename="aura/os/solaris/solaris_graphics.h" />
-		<Unit filename="aura/os/solaris/solaris_http.h" />
-		<Unit filename="aura/os/solaris/solaris_http_lib.h" />
-		<Unit filename="aura/os/solaris/solaris_internal.h" />
-		<Unit filename="aura/os/solaris/solaris_process.h" />
-		<Unit filename="aura/os/solaris/solaris_simple_ui.h" />
-		<Unit filename="aura/os/solaris/solaris_solaris.h" />
-		<Unit filename="aura/os/solaris/solaris_user_impl.h" />
-		<Unit filename="aura/os/solaris/solaris_window_xlib.h" />
-		<Unit filename="aura/os/windows/windows.h" />
-		<Unit filename="aura/os/windows/windows_base_file.h" />
-		<Unit filename="aura/os/windows/windows_base_internal.h" />
-		<Unit filename="aura/os/windows/windows_base_registry.h" />
-		<Unit filename="aura/os/windows/windows_file_watcher.h" />
-		<Unit filename="aura/os/windows/windows_handle.h" />
-		<Unit filename="aura/os/windows/windows_implementation.h" />
-		<Unit filename="aura/os/windows/windows_internal.h" />
-		<Unit filename="aura/os/windows/windows_multithreading.h" />
-		<Unit filename="aura/os/windows/windows_os.h" />
-		<Unit filename="aura/os/windows/windows_port_forward.h" />
-		<Unit filename="aura/os/windows/windows_print_job.h" />
-		<Unit filename="aura/os/windows/windows_printer.h" />
-		<Unit filename="aura/os/windows/windows_process.h" />
-		<Unit filename="aura/os/windows/windows_registry.h" />
-		<Unit filename="aura/os/windows/windows_shell.h" />
-		<Unit filename="aura/os/windows/windows_simple_hold_handle.h" />
-		<Unit filename="aura/os/windows/windows_simple_ui.h" />
-		<Unit filename="aura/os/windows/windows_utils.h" />
-		<Unit filename="aura/os/windows/windows_windows.h" />
 		<Unit filename="aura/process/process.h" />
 		<Unit filename="aura/process/process_bidi_pipe.cpp" />
 		<Unit filename="aura/process/process_bidi_pipe.h" />
@@ -1145,13 +879,7 @@
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/aliases_sysosf1.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/aliases_syssolaris.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/alloca.in.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/allocator.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/allocator.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/areadlink.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/areadlink.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/armscii_8.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/ascii.h" />
@@ -1163,9 +891,6 @@
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/big5hkscs2004.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/big5hkscs2008.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/binary-io.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/c-ctype.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/c-ctype.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/c99.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/canonical.h" />
@@ -1184,12 +909,6 @@
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/canonical_syshpux.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/canonical_sysosf1.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/canonical_syssolaris.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/canonicalize-lgpl.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/careadlinkat.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/careadlinkat.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/ces_big5.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/ces_gbk.h" />
@@ -1258,9 +977,6 @@
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/dec_kanji.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/dosname.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/errno.in.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/error.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/error.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/euc_cn.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/euc_jisx0213.h" />
@@ -1280,18 +996,6 @@
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/gbkext1.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/gbkext2.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/gbkext_inv.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/genaliases.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/genaliases2.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/genflags.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/gentranslit.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/georgian_academy.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/georgian_ps.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/gettext.h" />
@@ -1301,9 +1005,6 @@
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/hkscs2008.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/hp_roman8.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/hz.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/iconv.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/iconv.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/iconv_open1.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/iconv_open2.h" />
@@ -1350,9 +1051,6 @@
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/loop_unicode.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/loop_wchar.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/loops.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/lstat.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/mac_arabic.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/mac_centraleurope.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/mac_croatian.h" />
@@ -1365,71 +1063,26 @@
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/mac_thai.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/mac_turkish.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/mac_ukraine.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/malloca.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/malloca.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/memmove.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/mulelao.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/nextstep.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/pathmax.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/progname.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/progname.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/progreloc.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/pt154.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/read.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/readlink.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/relocatable.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/relocatable.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/relocwrapper.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/riscos1.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/rk1048.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/safe-read.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/safe-read.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/setenv.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/shift_jisx0213.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/signal.in.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/sigprocmask.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/sjis.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/stat.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/stdbool.in.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/stddef.in.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/stdint.in.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/stdio-write.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/stdio.in.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/stdlib.in.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/streq.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/strerror-override.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/strerror-override.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/strerror.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/string.in.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/sys_stat.in.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/tcvn.h" />
@@ -1453,9 +1106,6 @@
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/unitypes.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/uniwidth.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/uniwidth/cjk.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/uniwidth/width.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/unlocked-io.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/utf16.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/utf16be.h" />
@@ -1469,16 +1119,7 @@
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/vietcomb.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/viscii.h" />
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/xalloc.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/xmalloc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/xreadlink.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/aaa_want_to_remove_iconv/xreadlink.h" />
-		<Unit filename="primitive/str/aaa_want_to_remove_iconv/xstrdup.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/str/str.h" />
 		<Unit filename="primitive/str/str_base64.cpp" />
 		<Unit filename="primitive/str/str_base64.h" />
@@ -1534,7 +1175,6 @@
 		<Unit filename="primitive/str/x/x_defines.h" />
 		<Unit filename="primitive/str/x/x_encodings.h" />
 		<Unit filename="primitive/str/x/x_tables.h" />
-		<Unit filename="user/colorertake5/TextConsoleViewer.cpp" />
 		<Unit filename="user/colorertake5/colorertake5.h" />
 		<Unit filename="user/colorertake5/colorertake5_Writer.h" />
 		<Unit filename="user/colorertake5/colorertake5_base_editor.cpp" />

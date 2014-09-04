@@ -246,7 +246,7 @@ void __node_term_multithreading()
 
 #if defined(LINUX) // || defined(ANDROID)
 
-bool defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
+bool axis_defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
 
 #endif
 
