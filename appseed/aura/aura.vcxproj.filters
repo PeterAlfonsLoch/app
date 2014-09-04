@@ -1952,6 +1952,9 @@
     <ClInclude Include="aura\exception\exception_cancel.h">
       <Filter>Header Files\aura\exception</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\math\math_complex.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3347,9 +3350,6 @@
     </None>
     <None Include="aura\aura\aura_system_xml.inl">
       <Filter>Header Files\aura\aura</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

@@ -3465,6 +3465,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\geometry\geometry_point.h" />
     <ClInclude Include="primitive\geometry\geometry_rect.h" />
     <ClInclude Include="primitive\geometry\geometry_size.h" />
+    <ClInclude Include="primitive\math\math_complex.h" />
     <ClInclude Include="primitive\math\math_count.h" />
     <ClInclude Include="primitive\math\math_index.h" />
     <ClInclude Include="primitive\math\math_math.h" />
