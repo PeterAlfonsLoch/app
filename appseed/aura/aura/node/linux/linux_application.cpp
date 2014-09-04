@@ -254,43 +254,6 @@ namespace linux
    void application::ShowWaitCursor(bool bShow)
    {
 
-      single_lock mlUser(&user_mutex(), true);
-
-      single_lock mlOsWindow(::oswindow_data::s_pmutex, true);
-
-      unsigned int uiShape;
-
-      if(bShow)
-      {
-
-         uiShape = XC_watch;
-
-      }
-      else
-      {
-
-         uiShape = XC_arrow;
-
-      }
-
-      for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
-      {
-
-         oswindow window = ::oswindow_data::s_pdataptra->element_at(i);
-
-         if(window->m_bMessageOnlyWindow)
-            continue;
-
-         if(window->display() == NULL)
-            continue;
-
-
-//         Cursor cursor = XCreateFontCursor(window->display(), uiShape);
-
-  //       XDefineCursor(window->display(), window->window(), cursor);
-
-      }
-
    }
 
    sp(::user::interaction) application::window_from_os_data(void * pdata)
