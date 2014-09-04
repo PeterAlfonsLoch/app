@@ -261,7 +261,7 @@ namespace linux
       ::primitive::memory_size readNow;
       while(nCount > 0)
       {
-         readNow = (size_t) min(0x7fffffff, nCount);
+         readNow = (size_t) MIN(0x7fffffff, nCount);
          int32_t iRead = ::read(m_iFile, &((byte *)lpBuf)[pos], readNow);
          if(iRead < 0)
          {
