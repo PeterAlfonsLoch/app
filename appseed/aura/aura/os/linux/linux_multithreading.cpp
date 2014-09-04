@@ -121,7 +121,7 @@ int32_t get_scheduling_priority(int32_t iOsPolicy, const sched_param * pparam)
       iCa2Priority = (((pparam->sched_priority - iOsMin)  * (iCa2Max - iCa2Min)) / (iOsMax - iOsMin)) + iCa2Min;
    }
 
-   iCa2Priority = max(iCa2Min, min(iCa2Max, iCa2Priority));
+   iCa2Priority = MAX(iCa2Min, MIN(iCa2Max, iCa2Priority));
 
    return iCa2Priority;
 
