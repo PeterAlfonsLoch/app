@@ -261,7 +261,7 @@ namespace linux
       return NULL;
    }
 
-   sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
+   ::user::interaction * application::window_from_os_data_permanent(void * pdata)
    {
       sp(::user::interaction) pwnd = ::linux::interaction_impl::FromHandlePermanent((oswindow) pdata);
       if(pwnd != NULL)
