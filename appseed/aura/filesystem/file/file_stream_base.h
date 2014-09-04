@@ -77,7 +77,7 @@ namespace file
       buffer_sp               m_spbuffer;
       e_iostate               m_iostate;
       fmtflags                m_fmtflags;
-
+      file_size               m_precision;
 
       stream_base();
       stream_base(sp(stream_buffer) pbuffer);
@@ -145,6 +145,11 @@ namespace file
 
       using seekable::seek;
       virtual file_position seek(file_offset offset, e_seek eseek);
+
+
+      file_size precision() const;
+
+      file_size precision(file_size prec);
 
    };
 

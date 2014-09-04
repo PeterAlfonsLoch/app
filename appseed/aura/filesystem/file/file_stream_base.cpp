@@ -9,6 +9,8 @@ namespace file
    {
 
       m_iostate = goodbit;
+      m_fmtflags = nofmtflags;
+      m_precision = 0;
 
    }
 
@@ -75,6 +77,22 @@ namespace file
       return fmtflagsOld;
 
    }
+
+
+   file_size stream_base::precision() const
+   {
+
+      return m_precision;
+
+   }
+
+   file_size stream_base::precision(file_size prec)
+   {
+
+      return m_precision = prec;
+
+   }
+
 
 
 } // namespace file
