@@ -143,7 +143,7 @@ namespace file_watcher
 		{
 			if(directory == ppair->m_element2->m_strDirName)
 			{
-				remove_watch(ppair->first);
+				remove_watch(ppair->m_element1);
 				return;
 			}
 		}
