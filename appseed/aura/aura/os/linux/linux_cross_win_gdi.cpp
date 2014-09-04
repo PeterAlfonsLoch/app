@@ -24,22 +24,6 @@ device_context::device_context()
 
 
 
-HDC GetDC(oswindow hwnd)
-{
-
-
-   HDC hdc = new device_context;
-
-   hdc->m_pdisplay      = hwnd->display();
-   hdc->m_window        = hwnd->window();
-   hdc->m_drawable      = (Drawable) (hwnd == NULL || hwnd->window() == NULL ? DefaultRootWindow(hdc->m_pdisplay) : hwnd->window());
-   hdc->m_gc            = XCreateGC(hdc->m_pdisplay, hdc->m_drawable, 0, 0);
-
-   return hdc;
-
-}
-
-
 HDC CreateCompatibleDC(HDC hdcParam)
 {
 
@@ -47,13 +31,6 @@ HDC CreateCompatibleDC(HDC hdcParam)
 
    return hdc;
 
-}
-
-
-HDC GetWindowDC(oswindow hwnd)
-{
-
-   return GetDC(hwnd);
 }
 
 
