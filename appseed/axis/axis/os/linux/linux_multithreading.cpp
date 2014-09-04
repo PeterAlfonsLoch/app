@@ -83,13 +83,6 @@ void process_get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t n
 }
 
 
-int32_t process_get_scheduling_priority(int32_t iOsPolicy, const sched_param * pparam)
-{
-
-   return get_scheduling_priority(iOsPolicy, pparam);
-
-}
-
 
 
 
