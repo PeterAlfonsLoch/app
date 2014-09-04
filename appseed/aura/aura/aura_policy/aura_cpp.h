@@ -1201,6 +1201,8 @@ namespace std
    using streampos = ::file_position;
    using streamoff = ::file_offset;
 
+   using setw = ::file::set_width;
+
 #ifndef WINDOWSEX
 
    using bad_alloc = ::memory_exception;
