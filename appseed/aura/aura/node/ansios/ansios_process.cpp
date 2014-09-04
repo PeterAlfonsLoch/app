@@ -181,23 +181,6 @@ namespace ansios
    }
 
 
-   uint32_t process::wait_until_exit(int32_t iWaitMax)
-   {
-      uint32_t dwExitCode = 0;
-      uint32_t dwStartTime = ::get_tick_count();
-      int32_t i = 1;
-      while(true)
-      {
-         if(has_exited(&dwExitCode))
-            break;
-         if(iWaitMax >= 0 && get_tick_count() > dwStartTime + iWaitMax)
-            break;
-         Sleep(100);
-         i++;
-      }
-      return dwExitCode;
-   }
-
    bool process::has_exited(uint32_t * puiExitCode)
    {
 
