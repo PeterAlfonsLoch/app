@@ -117,7 +117,7 @@ namespace core
 
 
 
-bool defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, bool bPeek)
+bool axis_defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow window, bool bPeek)
 {
 
    if(hthread == NULL)
