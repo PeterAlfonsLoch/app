@@ -169,14 +169,14 @@ namespace axis
       virtual ::user::interaction * get_active_guie();
       virtual ::user::interaction * get_focus_guie();
 
-
+/*
       virtual string get_ca2_module_folder();
       virtual string get_ca2_module_file_path();
       virtual string get_module_folder();
       virtual string get_module_file_path();
       virtual string get_module_title();
       virtual string get_module_name();
-
+*/
 
       virtual string dir_appmatter_locator(sp(::aura::application) papp);
 

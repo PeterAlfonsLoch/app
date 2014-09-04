@@ -67,7 +67,7 @@ namespace axis
       ::aura::system(this),
       m_libraryDraw2d(this)
    {
-      
+
       m_ptwf            = NULL;
 
       m_psimpleui       = NULL;
@@ -94,7 +94,7 @@ namespace axis
          oprop("parent_system") = papp->m_paxissystem;
 
       }
-      
+
 #ifdef WINDOWS
 
       m_pmutexDc           = NULL;
@@ -438,9 +438,9 @@ namespace axis
       return m_monitorinfoa.get_count();
 
 #elif defined(MACOS)
-      
+
       return GetScreenCount();
-      
+
 #else
 
       return 1;
@@ -631,7 +631,7 @@ namespace axis
          return false;
 
       GetWkspaceRect(lprect, iWkspace);
-      
+
 //      lprect->top += ::mac::get_system_main_menu_bar_height();
   //    lprect->bottom -= ::mac::get_system_dock_height();
 
@@ -787,7 +787,7 @@ namespace axis
 
    }
 
-
+/*
 
    string system::get_ca2_module_folder()
    {
@@ -798,87 +798,6 @@ namespace axis
 
    }
 
-
-   string system::get_ca2_module_file_path()
-   {
-
-      string strModuleFileName;
-
-#ifdef WINDOWSEX
-
-      wchar_t lpszModuleFilePath[MAX_PATH + 1];
-
-      if(GetModuleFileNameW(::GetModuleHandleA("core.dll"),lpszModuleFilePath,MAX_PATH + 1))
-      {
-
-         strModuleFileName = lpszModuleFilePath;
-
-      }
-
-#elif defined(METROWIN)
-
-      throw todo(this);
-
-#else
-
-#ifdef LINUX
-
-      {
-
-         void * handle = dlopen("core.so",0);
-
-         if(handle == NULL)
-            return "";
-
-         link_map * plm;
-
-         dlinfo(handle,RTLD_DI_LINKMAP,&plm);
-
-         strModuleFileName = plm->l_name;
-
-         dlclose(handle);
-
-         //         m_strCa2ModuleFolder = dir::name(strModuleFileName);
-
-      }
-
-#else
-
-      {
-
-         char * pszCurDir = getcwd(NULL,0);
-
-         string strCurDir = pszCurDir;
-
-         free(pszCurDir);
-
-         if(Application.file_exists(::dir_path(strCurDir,"core.dylib")))
-         {
-            m_strCa2ModuleFolder = strCurDir;
-            goto finishedCa2Module;
-         }
-
-
-         if(Application.file_exists(::dir_path(m_strModuleFolder,"core.dylib")))
-         {
-            m_strCa2ModuleFolder = m_strModuleFolder;
-            goto finishedCa2Module;
-         }
-
-         strModuleFileName = Application.dir().pathfind(getenv("LD_LIBRARY_PATH"),"core.dylib","rfs"); // readable - normal file - non zero sized
-
-      }
-
-   finishedCa2Module:;
-
-#endif
-
-#endif
-
-      return strModuleFileName;
-
-
-   }
 
 
    string system::get_module_folder()
@@ -939,7 +858,9 @@ namespace axis
 
    }
 
-   
+
+*/
+
    string system::dir_appmatter_locator(sp(::aura::application) papp)
    {
 
