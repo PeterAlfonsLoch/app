@@ -2672,6 +2672,11 @@ DWORD       lPrivate;
 CLASS_DECL_AURA int_bool TranslateMessage(const MESSAGE * pmsg);
 CLASS_DECL_AURA LRESULT DispatchMessage(const MESSAGE * pmsg);
 
+
+
+void set_TranslateMessage(int_bool (*pfn)(const MESSAGE * lpmessage));
+void set_DispatchMessage(LRESULT (*pfn)(const MESSAGE * lpmessage));
+
 CLASS_DECL_AURA int_bool IsRectEmpty(LPCRECT lpcrect);
 
 
