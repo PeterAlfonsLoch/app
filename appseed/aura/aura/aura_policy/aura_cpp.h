@@ -455,6 +455,7 @@ namespace file
 #include "aura/primitive/math/math_static_numeric_info.h"
 #include "aura/primitive/math/math_numeric_info.h"
 #include "aura/primitive/math/math_number.h"
+#include "aura/primitive/math/math_complex.h"
 
 
 #include "aura/primitive/datetime/datetime_duration.h"
