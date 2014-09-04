@@ -6,7 +6,7 @@ namespace ansios
 
 
    class CLASS_DECL_CORE process :
-      virtual ::aura::process
+      virtual ::process::process
    {
    public:
 
