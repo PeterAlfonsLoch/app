@@ -44,10 +44,8 @@ CLASS_DECL_LINUX void AfxTryCleanup();
 #include "linux_factory_exchange.h"
 #include "linux_thread.h"
 #include "linux_os.h"
-#include "linux_copydesk.h"
 
 #define NULL_REF(class) (*((class *) NULL))
-#define AfxWndProc (*AfxGetAfxWndProc())
 
 #define LNX_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < ::thread * >(pthread)))
 
