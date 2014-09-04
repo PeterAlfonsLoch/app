@@ -30,7 +30,6 @@ CLASS_DECL_LINUX void AfxResetMsgcache();
 #define SP_HDC(pgraphics) ((HDC)*(dynamic_cast < ::linux::graphics * > ((::draw2d::graphics *)(pgraphics))))
 #define LNX_DIB(pdib) (dynamic_cast < ::linux::dib * > (dynamic_cast < ::draw2d::dib * >(pdib)))
 
-#include "linux_shell.h"
 
 CLASS_DECL_LINUX void AfxProcessWndProcException(::exception::base*, ::signal_details * pobj);
 CLASS_DECL_LINUX void __cdecl __pre_translate_message(::signal_details * pobj);
