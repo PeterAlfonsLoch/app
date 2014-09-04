@@ -88,9 +88,9 @@ namespace axis
       raw_array < HMONITOR >                       m_hmonitora;
       raw_array < MONITORINFO >                    m_monitorinfoaDesk;
 
-      ::user::schema *                             m_pschemaLayeredFrame;
-
 #endif
+
+      ::user::schema *                             m_pschemaLayeredFrame;
 
 
       system(sp(::aura::application) papp);
@@ -124,7 +124,7 @@ namespace axis
 
 
 
-      
+
       virtual bool process_initialize();
 
       virtual bool initialize2();

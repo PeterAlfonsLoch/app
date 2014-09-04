@@ -117,33 +117,6 @@ namespace axis
       {
 
 
-#if defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
-
-         delete os_thread::s_pptra;
-
-         os_thread::s_pptra = NULL;
-
-         delete os_thread::s_pmutex;
-
-         os_thread::s_pmutex = NULL;
-
-         delete g_pmutexTlsData;
-
-         g_pmutexTlsData = NULL;
-
-         delete g_pmutexPendingThreadsLock;
-
-         g_pmutexPendingThreadsLock = NULL;
-
-         delete g_pmutexThreadIdHandleLock;
-
-         g_pmutexThreadIdHandleLock = NULL;
-
-         delete g_pmutexThreadIdLock;
-
-         g_pmutexThreadIdLock = NULL;
-
-#endif  // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
 #if defined(LINUX)
 
