@@ -1380,7 +1380,7 @@ strsize string::replace(const char * pszOld, const char * pszNew, strsize iStart
       strsize nOldLength = get_length();
       strsize nNewLength = nOldLength+(nReplacementLen-nSourceLen)*nCount;
 
-      char * pszBuffer = GetBuffer( __max( nNewLength, nOldLength ) );
+      char * pszBuffer = GetBuffer( MAX( nNewLength, nOldLength ) );
 
       char * pszStart = pszBuffer + iStart;
       char * pszEnd = pszBuffer+nOldLength;
