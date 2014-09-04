@@ -2057,6 +2057,9 @@
     <ProjectReference Include="..\openssl\axisopenssl.vcxproj">
       <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\zlib\axiszlib.vcxproj">
+      <Project>{34fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="axismysql.def" />

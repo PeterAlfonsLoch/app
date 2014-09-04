@@ -1828,6 +1828,9 @@
     <ProjectReference Include="..\pixman\axispixman.vcxproj">
       <Project>{0a298e22-839b-4d11-b5a7-456ead013c11}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\zlib\axiszlib.vcxproj">
+      <Project>{34fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
