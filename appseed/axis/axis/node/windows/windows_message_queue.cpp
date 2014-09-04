@@ -73,7 +73,6 @@ namespace windows
 
    }
 
-
    bool message_queue::message_queue_del_timer(uint_ptr uiId)
    {
 
@@ -81,6 +80,19 @@ namespace windows
 
    }
 
+   bool message_queue::message_queue_post_message(uint32_t uiMessage,WPARAM wparam,lparam lparam)
+   {
+
+      return post_message(uiMessage,wparam,lparam);
+
+   }
+
+   LRESULT message_queue::message_queue_send_message(uint32_t uiMessage,WPARAM wparam,lparam lparam)
+   {
+
+      return send_message(uiMessage,wparam,lparam);
+
+   }
 
    bool message_queue::message_queue_destroy()
    {
