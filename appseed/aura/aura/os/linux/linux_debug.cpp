@@ -1,9 +1,12 @@
 #include "framework.h"
 
 
+#include <pthread.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdbool.h>
 #include <sys/ptrace.h>
 #include <sys/wait.h>
-#include <unistd.h>
 
 
 
@@ -62,10 +65,6 @@ int32_t gdb_check()
 */
 
 
-#include <pthread.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <sys/ptrace.h>
 
 static void*
 test_trace(void* ignored)
