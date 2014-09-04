@@ -27,6 +27,8 @@
 #ifndef FREEIMAGE_H
 #define FREEIMAGE_H
 
+#include "aura/aura/aura.h"
+
 // Version information ------------------------------------------------------
 
 #define FREEIMAGE_MAJOR_VERSION   3
