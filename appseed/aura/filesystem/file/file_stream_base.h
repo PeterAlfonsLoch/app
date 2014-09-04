@@ -76,12 +76,19 @@ namespace file
 
       buffer_sp               m_spbuffer;
       e_iostate               m_iostate;
+      fmtflags                m_fmtflags;
 
-      
+
       stream_base();
       stream_base(sp(stream_buffer) pbuffer);
       stream_base(const stream_base & stream);
       virtual ~stream_base();
+
+
+      fmtflags flags() const
+		{
+		   return m_fmtflags;
+		}
 
 
       e_iostate rdstate() const
