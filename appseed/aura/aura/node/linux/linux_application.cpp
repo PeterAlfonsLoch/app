@@ -324,14 +324,20 @@ namespace linux
 
    }
 
-   sp(::user::interaction) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+
+   ::user::interaction * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
-      return ::linux::interaction_impl::FindWindow(lpszClassName, lpszWindowName);
+
+      return NULL;
+
    }
 
-   sp(::user::interaction) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+
+   ::user::interaction application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      return ::linux::interaction_impl::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
+
+      return NULL;
+
    }
 
 
