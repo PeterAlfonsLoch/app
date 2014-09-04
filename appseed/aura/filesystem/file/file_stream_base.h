@@ -85,6 +85,12 @@ namespace file
       virtual ~stream_base();
 
 
+
+      fmtflags setf(fmtflags flagsAdd);
+      fmtflags setf(fmtflags flagsAdd, fmtflags flagsRemove);
+
+
+
       fmtflags flags() const
 		{
 		   return m_fmtflags;

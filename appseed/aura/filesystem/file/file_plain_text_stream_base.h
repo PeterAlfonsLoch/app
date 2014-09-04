@@ -15,15 +15,9 @@ namespace file
    public:
 
 
-      fmtflags          m_fmtflags;
-
-
       plain_text_stream_base();
       virtual ~plain_text_stream_base();
 
-
-      fmtflags setf(fmtflags flagsAdd);
-      fmtflags setf(fmtflags flagsAdd, fmtflags flagsRemove);
 
 
 
