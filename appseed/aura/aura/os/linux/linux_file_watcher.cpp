@@ -159,7 +159,7 @@ namespace file_watcher
 			return;
 
 		watch_struct* watch = ppair->m_element2;
-		m_watchmap.remove_key(ppair->first);
+		m_watchmap.remove_key(ppair->m_element1);
 
 		inotify_rm_watch(mFD, watchid);
 
