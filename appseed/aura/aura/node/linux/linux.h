@@ -43,7 +43,6 @@ CLASS_DECL_LINUX void AfxTryCleanup();
 #include "implementation.h"
 #include "linux_factory_exchange.h"
 #include "linux_thread.h"
-#include "linux_interaction_impl.h"
 #include "linux_os.h"
 #include "linux_copydesk.h"
 
