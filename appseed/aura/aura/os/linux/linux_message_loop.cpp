@@ -113,28 +113,6 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 */
 
 
-bool TranslateMessage(LPMESSAGE lpmessage)
-{
-
-   UNREFERENCED_PARAMETER(lpmessage);
-
-   return true;
-
-}
-
-
-LRESULT DispatchMessage(LPMESSAGE lpmessage)
-{
-
-   if(lpmessage->hwnd == NULL)
-      return false;
-
-   return lpmessage->hwnd->get_user_interaction_base()->message_handler(lpmessage);
-
-}
-
-
-
 void _c_simple_message_loop()
 {
 
