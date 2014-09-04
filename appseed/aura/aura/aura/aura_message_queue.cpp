@@ -80,7 +80,7 @@ namespace aura
 
    }
 
-   LRESULT message_queue_send_message(uint32_t uiMessage, WPARAM wparam = 0, lparam lparam = 0)
+   LRESULT message_queue::message_queue_send_message(uint32_t uiMessage, WPARAM wparam = 0, lparam lparam = 0)
    {
 
       throw interface_only_exception(get_app());
