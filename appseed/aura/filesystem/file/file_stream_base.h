@@ -165,7 +165,7 @@ namespace file
 
       file_size width(file_size wide);
 
-      stream_base & operator << (const set_width & w) { width(w.m_width);  }
+      stream_base & operator << (const set_width & w) { width(w.m_width); return *this;  }
 
    };
 
