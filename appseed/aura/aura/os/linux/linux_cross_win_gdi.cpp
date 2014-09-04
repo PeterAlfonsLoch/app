@@ -53,30 +53,6 @@ WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
 }
 
 
-WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
-{
-
-   single_lock sl(&user_mutex(), true);
-
-   XWindowAttributes attrs;
-
-   /* Fill attribute structure with information about root window */
-
-   if(XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs) == 0)
-   {
-
-      return FALSE;
-
-   }
-
-   lprect->left      = 0;
-   lprect->top       = 0;
-   lprect->right     = lprect->left    + attrs.width;
-   lprect->bottom    = lprect->top     + attrs.height;
-
-   return TRUE;
-
-}
 
 
 WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)

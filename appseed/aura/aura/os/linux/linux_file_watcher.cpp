@@ -68,7 +68,7 @@ namespace file_watcher
 		WatchMap::pair * ppair = m_watchmap.PGetFirstAssoc();
 		for(; ppair != NULL; ppair = m_watchmap.PGetNextAssoc(ppair))
 		{
-			delete ppair->second;
+			delete ppair->m_element2;
 		}
 		m_watchmap.remove_all();
 	}

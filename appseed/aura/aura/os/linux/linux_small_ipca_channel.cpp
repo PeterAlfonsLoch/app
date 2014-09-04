@@ -105,7 +105,7 @@ bool small_ipc_tx_channel::send(int32_t message, void * pdata, int32_t len, DWOR
    while(c > 0)
    {
 
-      cSend = min(c, 511);
+      cSend = MIN(c, 511);
 
       memcpy(data.data, &pszMessage[cPos], min(c, 511));
 
