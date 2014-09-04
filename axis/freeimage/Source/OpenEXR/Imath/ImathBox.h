@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2004, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -38,16 +38,16 @@
 
 //-------------------------------------------------------------------
 //
-//	class Imath::Box<class T>
+//	class Imath::Box< class T >
 //	--------------------------------
 //
-//	This class imposes the following requirements on its 
+//	This class imposes the following requirements on its
 //	parameter class:
-//	
+//
 //	1) The class T must implement these operators:
-//			+ - < > <= >= = 
-//	   with the signature (T,T) and the expected 
-//	   return values for a numeric type. 
+//			+ - < > <= >= =
+//	   with the signature (T,T) and the expected
+//	   return values for a numeric type.
 //
 //	2) The class T must implement operator=
 //	   with the signature (T,float and/or double)
@@ -67,7 +67,7 @@
 namespace Imath {
 
 
-template <class T>	
+template < class T >
 class Box
 {
   public:
@@ -83,14 +83,14 @@ class Box
     //	Constructors - an "empty" box is created by default
     //-----------------------------------------------------
 
-    Box (); 
+    Box ();
     Box (const T &point);
     Box (const T &minT, const T &maxT);
 
     //--------------------
     //  Operators:  ==, !=
     //--------------------
-    
+
     bool		operator == (const Box<T> &src) const;
     bool		operator != (const Box<T> &src) const;
 
@@ -101,7 +101,7 @@ class Box
     void		makeEmpty ();
     void		extendBy (const T &point);
     void		extendBy (const Box<T> &box);
-    void		makeInfinite ();    
+    void		makeInfinite ();
 
     //---------------------------------------------------
     //	Query functions - these compute results each time
@@ -142,14 +142,14 @@ typedef Box <V3d> Box3d;
 //  Implementation
 
 
-template <class T>
+template < class T >
 inline Box<T>::Box()
 {
     makeEmpty();
 }
 
 
-template <class T>
+template < class T >
 inline Box<T>::Box (const T &point)
 {
     min = point;
@@ -157,7 +157,7 @@ inline Box<T>::Box (const T &point)
 }
 
 
-template <class T>
+template < class T >
 inline Box<T>::Box (const T &minT, const T &maxT)
 {
     min = minT;
@@ -165,7 +165,7 @@ inline Box<T>::Box (const T &minT, const T &maxT)
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<T>::operator == (const Box<T> &src) const
 {
@@ -173,7 +173,7 @@ Box<T>::operator == (const Box<T> &src) const
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<T>::operator != (const Box<T> &src) const
 {
@@ -181,14 +181,14 @@ Box<T>::operator != (const Box<T> &src) const
 }
 
 
-template <class T>
+template < class T >
 inline void Box<T>::makeEmpty()
 {
     min = T(T::baseTypeMax());
     max = T(T::baseTypeMin());
 }
 
-template <class T>
+template < class T >
 inline void Box<T>::makeInfinite()
 {
     min = T(T::baseTypeMin());
@@ -196,7 +196,7 @@ inline void Box<T>::makeInfinite()
 }
 
 
-template <class T>
+template < class T >
 inline void
 Box<T>::extendBy(const T &point)
 {
@@ -211,7 +211,7 @@ Box<T>::extendBy(const T &point)
 }
 
 
-template <class T>
+template < class T >
 inline void
 Box<T>::extendBy(const Box<T> &box)
 {
@@ -226,7 +226,7 @@ Box<T>::extendBy(const Box<T> &box)
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<T>::intersects(const T &point) const
 {
@@ -240,7 +240,7 @@ Box<T>::intersects(const T &point) const
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<T>::intersects(const Box<T> &box) const
 {
@@ -254,10 +254,10 @@ Box<T>::intersects(const Box<T> &box) const
 }
 
 
-template <class T> 
+template < class T >
 inline T
-Box<T>::size() const 
-{ 
+Box<T>::size() const
+{
     if (isEmpty())
 	return T (0);
 
@@ -265,15 +265,15 @@ Box<T>::size() const
 }
 
 
-template <class T> 
+template < class T >
 inline T
-Box<T>::center() const 
-{ 
+Box<T>::center() const
+{
     return (max + min) / 2;
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<T>::isEmpty() const
 {
@@ -286,7 +286,7 @@ Box<T>::isEmpty() const
     return false;
 }
 
-template <class T>
+template < class T >
 inline bool
 Box<T>::isInfinite() const
 {
@@ -300,7 +300,7 @@ Box<T>::isInfinite() const
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<T>::hasVolume() const
 {
@@ -314,7 +314,7 @@ Box<T>::hasVolume() const
 }
 
 
-template<class T>
+template< class T >
 inline unsigned int
 Box<T>::majorAxis() const
 {
@@ -338,7 +338,7 @@ Box<T>::majorAxis() const
 
 template <typename T> class Box;
 
-template <class T>
+template < class T >
 class Box<Vec2<T> >
 {
   public:
@@ -354,7 +354,7 @@ class Box<Vec2<T> >
     //  Constructors - an "empty" box is created by default
     //-----------------------------------------------------
 
-    Box(); 
+    Box();
     Box (const Vec2<T> &point);
     Box (const Vec2<T> &minT, const Vec2<T> &maxT);
 
@@ -398,14 +398,14 @@ class Box<Vec2<T> >
 //----------------
 //  Implementation
 
-template <class T>
+template < class T >
 inline Box<Vec2<T> >::Box()
 {
     makeEmpty();
 }
 
 
-template <class T>
+template < class T >
 inline Box<Vec2<T> >::Box (const Vec2<T> &point)
 {
     min = point;
@@ -413,7 +413,7 @@ inline Box<Vec2<T> >::Box (const Vec2<T> &point)
 }
 
 
-template <class T>
+template < class T >
 inline Box<Vec2<T> >::Box (const Vec2<T> &minT, const Vec2<T> &maxT)
 {
     min = minT;
@@ -421,7 +421,7 @@ inline Box<Vec2<T> >::Box (const Vec2<T> &minT, const Vec2<T> &maxT)
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec2<T> >::operator ==  (const Box<Vec2<T> > &src) const
 {
@@ -429,7 +429,7 @@ Box<Vec2<T> >::operator ==  (const Box<Vec2<T> > &src) const
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec2<T> >::operator != (const Box<Vec2<T> > &src) const
 {
@@ -437,14 +437,14 @@ Box<Vec2<T> >::operator != (const Box<Vec2<T> > &src) const
 }
 
 
-template <class T>
+template < class T >
 inline void Box<Vec2<T> >::makeEmpty()
 {
     min = Vec2<T>(Vec2<T>::baseTypeMax());
     max = Vec2<T>(Vec2<T>::baseTypeMin());
 }
 
-template <class T>
+template < class T >
 inline void Box<Vec2<T> >::makeInfinite()
 {
     min = Vec2<T>(Vec2<T>::baseTypeMin());
@@ -452,7 +452,7 @@ inline void Box<Vec2<T> >::makeInfinite()
 }
 
 
-template <class T>
+template < class T >
 inline void
 Box<Vec2<T> >::extendBy (const Vec2<T> &point)
 {
@@ -470,7 +470,7 @@ Box<Vec2<T> >::extendBy (const Vec2<T> &point)
 }
 
 
-template <class T>
+template < class T >
 inline void
 Box<Vec2<T> >::extendBy (const Box<Vec2<T> > &box)
 {
@@ -488,7 +488,7 @@ Box<Vec2<T> >::extendBy (const Box<Vec2<T> > &box)
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec2<T> >::intersects (const Vec2<T> &point) const
 {
@@ -500,7 +500,7 @@ Box<Vec2<T> >::intersects (const Vec2<T> &point) const
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec2<T> >::intersects (const Box<Vec2<T> > &box) const
 {
@@ -512,10 +512,10 @@ Box<Vec2<T> >::intersects (const Box<Vec2<T> > &box) const
 }
 
 
-template <class T> 
+template < class T >
 inline Vec2<T>
-Box<Vec2<T> >::size() const 
-{ 
+Box<Vec2<T> >::size() const
+{
     if (isEmpty())
         return Vec2<T> (0);
 
@@ -523,15 +523,15 @@ Box<Vec2<T> >::size() const
 }
 
 
-template <class T> 
+template < class T >
 inline Vec2<T>
-Box<Vec2<T> >::center() const 
-{ 
+Box<Vec2<T> >::center() const
+{
     return (max + min) / 2;
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec2<T> >::isEmpty() const
 {
@@ -542,19 +542,19 @@ Box<Vec2<T> >::isEmpty() const
     return false;
 }
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec2<T> > ::isInfinite() const
 {
     if (min[0] != limits<T>::minimum() || max[0] != limits<T>::maximum() ||
         min[1] != limits<T>::minimum() || max[1] != limits<T>::maximum())
         return false;
-    
+
     return true;
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec2<T> >::hasVolume() const
 {
@@ -566,7 +566,7 @@ Box<Vec2<T> >::hasVolume() const
 }
 
 
-template <class T>
+template < class T >
 inline unsigned int
 Box<Vec2<T> >::majorAxis() const
 {
@@ -580,7 +580,7 @@ Box<Vec2<T> >::majorAxis() const
 }
 
 
-template <class T>
+template < class T >
 class Box<Vec3<T> >
 {
   public:
@@ -596,7 +596,7 @@ class Box<Vec3<T> >
     //  Constructors - an "empty" box is created by default
     //-----------------------------------------------------
 
-    Box(); 
+    Box();
     Box (const Vec3<T> &point);
     Box (const Vec3<T> &minT, const Vec3<T> &maxT);
 
@@ -641,14 +641,14 @@ class Box<Vec3<T> >
 //  Implementation
 
 
-template <class T>
+template < class T >
 inline Box<Vec3<T> >::Box()
 {
     makeEmpty();
 }
 
 
-template <class T>
+template < class T >
 inline Box<Vec3<T> >::Box (const Vec3<T> &point)
 {
     min = point;
@@ -656,7 +656,7 @@ inline Box<Vec3<T> >::Box (const Vec3<T> &point)
 }
 
 
-template <class T>
+template < class T >
 inline Box<Vec3<T> >::Box (const Vec3<T> &minT, const Vec3<T> &maxT)
 {
     min = minT;
@@ -664,7 +664,7 @@ inline Box<Vec3<T> >::Box (const Vec3<T> &minT, const Vec3<T> &maxT)
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec3<T> >::operator == (const Box<Vec3<T> > &src) const
 {
@@ -672,7 +672,7 @@ Box<Vec3<T> >::operator == (const Box<Vec3<T> > &src) const
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec3<T> >::operator != (const Box<Vec3<T> > &src) const
 {
@@ -680,14 +680,14 @@ Box<Vec3<T> >::operator != (const Box<Vec3<T> > &src) const
 }
 
 
-template <class T>
+template < class T >
 inline void Box<Vec3<T> >::makeEmpty()
 {
     min = Vec3<T>(Vec3<T>::baseTypeMax());
     max = Vec3<T>(Vec3<T>::baseTypeMin());
 }
 
-template <class T>
+template < class T >
 inline void Box<Vec3<T> >::makeInfinite()
 {
     min = Vec3<T>(Vec3<T>::baseTypeMin());
@@ -695,7 +695,7 @@ inline void Box<Vec3<T> >::makeInfinite()
 }
 
 
-template <class T>
+template < class T >
 inline void
 Box<Vec3<T> >::extendBy (const Vec3<T> &point)
 {
@@ -719,7 +719,7 @@ Box<Vec3<T> >::extendBy (const Vec3<T> &point)
 }
 
 
-template <class T>
+template < class T >
 inline void
 Box<Vec3<T> >::extendBy (const Box<Vec3<T> > &box)
 {
@@ -743,7 +743,7 @@ Box<Vec3<T> >::extendBy (const Box<Vec3<T> > &box)
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec3<T> >::intersects (const Vec3<T> &point) const
 {
@@ -756,7 +756,7 @@ Box<Vec3<T> >::intersects (const Vec3<T> &point) const
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec3<T> >::intersects (const Box<Vec3<T> > &box) const
 {
@@ -769,10 +769,10 @@ Box<Vec3<T> >::intersects (const Box<Vec3<T> > &box) const
 }
 
 
-template <class T> 
+template < class T >
 inline Vec3<T>
-Box<Vec3<T> >::size() const 
-{ 
+Box<Vec3<T> >::size() const
+{
     if (isEmpty())
         return Vec3<T> (0);
 
@@ -780,15 +780,15 @@ Box<Vec3<T> >::size() const
 }
 
 
-template <class T> 
+template < class T >
 inline Vec3<T>
-Box<Vec3<T> >::center() const 
-{ 
+Box<Vec3<T> >::center() const
+{
     return (max + min) / 2;
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec3<T> >::isEmpty() const
 {
@@ -800,7 +800,7 @@ Box<Vec3<T> >::isEmpty() const
     return false;
 }
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec3<T> >::isInfinite() const
 {
@@ -808,12 +808,12 @@ Box<Vec3<T> >::isInfinite() const
         min[1] != limits<T>::minimum() || max[1] != limits<T>::maximum() ||
         min[2] != limits<T>::minimum() || max[2] != limits<T>::maximum())
         return false;
-    
+
     return true;
 }
 
 
-template <class T>
+template < class T >
 inline bool
 Box<Vec3<T> >::hasVolume() const
 {
@@ -826,7 +826,7 @@ Box<Vec3<T> >::hasVolume() const
 }
 
 
-template <class T>
+template < class T >
 inline unsigned int
 Box<Vec3<T> >::majorAxis() const
 {

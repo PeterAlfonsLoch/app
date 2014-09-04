@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2004, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -68,7 +68,7 @@ class PreviewImage;
 class Header
 {
   public:
-    
+
     //----------------------------------------------------------------
     // Default constructor -- the display window and the data window
     // are both set to Box2i (V2i (0, 0), V2i (width-1, height-1).
@@ -183,17 +183,17 @@ class Header
     Attribute &			operator [] (const std::string &name);
     const Attribute &		operator [] (const std::string &name) const;
 
-    template <class T> T&	typedAttribute (const char name[]);
-    template <class T> const T&	typedAttribute (const char name[]) const;
+    template < class T > T&	typedAttribute (const char name[]);
+    template < class T > const T&	typedAttribute (const char name[]) const;
 
-    template <class T> T&	typedAttribute (const std::string &name);
-    template <class T> const T&	typedAttribute (const std::string &name) const;
+    template < class T > T&	typedAttribute (const std::string &name);
+    template < class T > const T&	typedAttribute (const std::string &name) const;
 
-    template <class T> T*	findTypedAttribute (const char name[]);
-    template <class T> const T*	findTypedAttribute (const char name[]) const;
+    template < class T > T*	findTypedAttribute (const char name[]);
+    template < class T > const T*	findTypedAttribute (const char name[]) const;
 
-    template <class T> T*	findTypedAttribute (const std::string &name);
-    template <class T> const T*	findTypedAttribute (const std::string &name)
+    template < class T > T*	findTypedAttribute (const std::string &name);
+    template < class T > const T*	findTypedAttribute (const std::string &name)
 								       const;
 
     //---------------------------------------------
@@ -323,7 +323,7 @@ class Header
     // sanityCheck() will throw an exception if the width or height of
     // the data window exceeds the maximum image width or height, or
     // if the size of a tile exceeds the maximum tile width or height.
-    // 
+    //
     // At program startup the maximum image and tile width and height
     // are set to zero, meaning that width and height are unlimited.
     //
@@ -443,7 +443,7 @@ Header::Iterator::Iterator (const Header::AttributeMap::iterator &i): _i (i)
 }
 
 
-inline Header::Iterator &		
+inline Header::Iterator &
 Header::Iterator::operator ++ ()
 {
     ++_i;
@@ -451,7 +451,7 @@ Header::Iterator::operator ++ ()
 }
 
 
-inline Header::Iterator 	
+inline Header::Iterator
 Header::Iterator::operator ++ (int)
 {
     Iterator tmp = *this;
@@ -467,7 +467,7 @@ Header::Iterator::name () const
 }
 
 
-inline Attribute &	
+inline Attribute &
 Header::Iterator::attribute () const
 {
     return *_i->m_element2;
@@ -503,7 +503,7 @@ Header::ConstIterator::operator ++ ()
 }
 
 
-inline Header::ConstIterator 		
+inline Header::ConstIterator
 Header::ConstIterator::operator ++ (int)
 {
     ConstIterator tmp = *this;
@@ -519,7 +519,7 @@ Header::ConstIterator::name () const
 }
 
 
-inline const Attribute &	
+inline const Attribute &
 Header::ConstIterator::attribute () const
 {
     return *_i->m_element2;
@@ -544,7 +544,7 @@ operator != (const Header::ConstIterator &x, const Header::ConstIterator &y)
 // Template definitions
 //---------------------
 
-template <class T>
+template < class T >
 T &
 Header::typedAttribute (const char name[])
 {
@@ -558,7 +558,7 @@ Header::typedAttribute (const char name[])
 }
 
 
-template <class T>
+template < class T >
 const T &
 Header::typedAttribute (const char name[]) const
 {
@@ -572,7 +572,7 @@ Header::typedAttribute (const char name[]) const
 }
 
 
-template <class T>
+template < class T >
 T &
 Header::typedAttribute (const std::string &name)
 {
@@ -580,7 +580,7 @@ Header::typedAttribute (const std::string &name)
 }
 
 
-template <class T>
+template < class T >
 const T &
 Header::typedAttribute (const std::string &name) const
 {
@@ -588,7 +588,7 @@ Header::typedAttribute (const std::string &name) const
 }
 
 
-template <class T>
+template < class T >
 T *
 Header::findTypedAttribute (const char name[])
 {
@@ -597,7 +597,7 @@ Header::findTypedAttribute (const char name[])
 }
 
 
-template <class T>
+template < class T >
 const T *
 Header::findTypedAttribute (const char name[]) const
 {
@@ -606,7 +606,7 @@ Header::findTypedAttribute (const char name[]) const
 }
 
 
-template <class T>
+template < class T >
 T *
 Header::findTypedAttribute (const std::string &name)
 {
@@ -614,7 +614,7 @@ Header::findTypedAttribute (const std::string &name)
 }
 
 
-template <class T>
+template < class T >
 const T *
 Header::findTypedAttribute (const std::string &name) const
 {

@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2002, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -52,19 +52,19 @@ namespace Imath {
 //	template class Frustum<T>
 //
 //	The frustum is always located with the eye point at the
-//	origin facing down -Z. This makes the Frustum class 
+//	origin facing down -Z. This makes the Frustum class
 //	compatable with OpenGL (or anything that assumes a camera
-//	looks down -Z, hence with a right-handed coordinate system) 
+//	looks down -Z, hence with a right-handed coordinate system)
 //	but not with RenderMan which assumes the camera looks down
 //	+Z. Additional functions are provided for conversion from
 //	and from various camera coordinate spaces.
 //
 //      nearPlane/farPlane: near/far are keywords used by Microsoft's
 //      compiler, so we use nearPlane/farPlane instead to avoid
-//      issues.  
+//      issues.
 
 
-template<class T>
+template< class T >
 class Frustum
 {
   public:
@@ -83,7 +83,7 @@ class Frustum
     //--------------------
     //  Operators:  ==, !=
     //--------------------
-    
+
     bool                        operator == (const Frustum<T> &src) const;
     bool                        operator != (const Frustum<T> &src) const;
 
@@ -91,9 +91,9 @@ class Frustum
     //  Set functions change the entire state of the Frustum
     //--------------------------------------------------------
 
-    void		set(T nearPlane, T farPlane, 
-			    T left, T right, 
-			    T top, T bottom, 
+    void		set(T nearPlane, T farPlane,
+			    T left, T right,
+			    T top, T bottom,
 			    bool ortho=false);
 
     void		set(T nearPlane, T farPlane, T fovx, T fovy, T aspect);
@@ -108,7 +108,7 @@ class Frustum
     //--------------
     //  Access
     //--------------
-    
+
     bool		orthographic() const	{ return _orthographic; }
     T			nearPlane() const	{ return _nearPlane;	}
     T			hither() const		{ return _nearPlane;	}
@@ -141,10 +141,10 @@ class Frustum
     bool                        degenerate() const;
 
     //-----------------------------------------------------------------------
-    //  Takes a rectangle in the screen space (i.e., -1 <= left <= right <= 1 
+    //  Takes a rectangle in the screen space (i.e., -1 <= left <= right <= 1
     //  and -1 <= bottom <= top <= 1) of this Frustum, and returns a new
     //  Frustum whose near clipping-plane window is that rectangle in local
-    //  space.  
+    //  space.
     //-----------------------------------------------------------------------
 
     Frustum<T>		window(T left, T right, T top, T bottom) const;
@@ -180,7 +180,7 @@ class Frustum
 };
 
 
-template<class T>
+template< class T >
 inline Frustum<T>::Frustum()
 {
     set(T (0.1),
@@ -192,30 +192,30 @@ inline Frustum<T>::Frustum()
 	false);
 }
 
-template<class T>
+template< class T >
 inline Frustum<T>::Frustum(const Frustum &f)
 {
     *this = f;
 }
 
-template<class T>
+template< class T >
 inline Frustum<T>::Frustum(T n, T f, T l, T r, T t, T b, bool o)
 {
     set(n,f,l,r,t,b,o);
 }
 
-template<class T>
+template< class T >
 inline Frustum<T>::Frustum(T nearPlane, T farPlane, T fovx, T fovy, T aspect)
 {
     set(nearPlane,farPlane,fovx,fovy,aspect);
 }
 
-template<class T>
+template< class T >
 Frustum<T>::~Frustum()
 {
 }
 
-template<class T>
+template< class T >
 const Frustum<T> &
 Frustum<T>::operator = (const Frustum &f)
 {
@@ -230,7 +230,7 @@ Frustum<T>::operator = (const Frustum &f)
     return *this;
 }
 
-template <class T>
+template < class T >
 bool
 Frustum<T>::operator == (const Frustum<T> &src) const
 {
@@ -244,14 +244,14 @@ Frustum<T>::operator == (const Frustum<T> &src) const
         _orthographic == src._orthographic;
 }
 
-template <class T>
+template < class T >
 inline bool
 Frustum<T>::operator != (const Frustum<T> &src) const
 {
     return !operator== (src);
 }
 
-template<class T>
+template< class T >
 void Frustum<T>::set(T n, T f, T l, T r, T t, T b, bool o)
 {
     _nearPlane      = n;
@@ -263,7 +263,7 @@ void Frustum<T>::set(T n, T f, T l, T r, T t, T b, bool o)
     _orthographic   = o;
 }
 
-template<class T>
+template< class T >
 void Frustum<T>::modifyNearAndFar(T n, T f)
 {
     if ( _orthographic )
@@ -291,13 +291,13 @@ void Frustum<T>::modifyNearAndFar(T n, T f)
     _farPlane = f;
 }
 
-template<class T>
+template< class T >
 void Frustum<T>::setOrthographic(bool ortho)
 {
     _orthographic   = ortho;
 }
 
-template<class T>
+template< class T >
 void Frustum<T>::set(T nearPlane, T farPlane, T fovx, T fovy, T aspect)
 {
     if (fovx != 0 && fovy != 0)
@@ -324,19 +324,19 @@ void Frustum<T>::set(T nearPlane, T farPlane, T fovx, T fovy, T aspect)
     _orthographic   = false;
 }
 
-template<class T>
+template< class T >
 T Frustum<T>::fovx() const
 {
     return Math<T>::atan2(_right,_nearPlane) - Math<T>::atan2(_left,_nearPlane);
 }
 
-template<class T>
+template< class T >
 T Frustum<T>::fovy() const
 {
     return Math<T>::atan2(_top,_nearPlane) - Math<T>::atan2(_bottom,_nearPlane);
 }
 
-template<class T>
+template< class T >
 T Frustum<T>::aspect() const
 {
     T rightMinusLeft = _right-_left;
@@ -352,7 +352,7 @@ T Frustum<T>::aspect() const
     return rightMinusLeft / topMinusBottom;
 }
 
-template<class T>
+template< class T >
 Matrix44<T> Frustum<T>::projectionMatrix() const
 {
     T rightPlusLeft  = _right+_left;
@@ -438,7 +438,7 @@ Matrix44<T> Frustum<T>::projectionMatrix() const
     }
 }
 
-template<class T>
+template< class T >
 bool Frustum<T>::degenerate() const
 {
     return (_nearPlane == _farPlane) ||
@@ -446,7 +446,7 @@ bool Frustum<T>::degenerate() const
            (_top == _bottom);
 }
 
-template<class T>
+template< class T >
 Frustum<T> Frustum<T>::window(T l, T r, T t, T b) const
 {
     // move it to 0->1 space
@@ -458,14 +458,14 @@ Frustum<T> Frustum<T>::window(T l, T r, T t, T b) const
 }
 
 
-template<class T>
+template< class T >
 Vec2<T> Frustum<T>::screenToLocal(const Vec2<T> &s) const
 {
     return Vec2<T>( _left + (_right-_left) * (1.f+s.x) / 2.f,
 		    _bottom + (_top-_bottom) * (1.f+s.y) / 2.f );
 }
 
-template<class T>
+template< class T >
 Vec2<T> Frustum<T>::localToScreen(const Vec2<T> &p) const
 {
     T leftPlusRight  = _left - T (2) * p.x + _right;
@@ -487,7 +487,7 @@ Vec2<T> Frustum<T>::localToScreen(const Vec2<T> &p) const
 		    bottomPlusTop / bottomMinusTop );
 }
 
-template<class T>
+template< class T >
 Line3<T> Frustum<T>::projectScreenToRay(const Vec2<T> &p) const
 {
     Vec2<T> point = screenToLocal(p);
@@ -498,17 +498,17 @@ Line3<T> Frustum<T>::projectScreenToRay(const Vec2<T> &p) const
 	return Line3<T>( Vec3<T>(0, 0, 0), Vec3<T>(point.x,point.y,-_nearPlane));
 }
 
-template<class T>
+template< class T >
 Vec2<T> Frustum<T>::projectPointToScreen(const Vec3<T> &point) const
 {
     if (orthographic() || point.z == T (0))
 	return localToScreen( Vec2<T>( point.x, point.y ) );
     else
-	return localToScreen( Vec2<T>( point.x * _nearPlane / -point.z, 
+	return localToScreen( Vec2<T>( point.x * _nearPlane / -point.z,
 				       point.y * _nearPlane / -point.z ) );
 }
 
-template<class T>
+template< class T >
 T Frustum<T>::ZToDepth(long zval,long zmin,long zmax) const
 {
     int zdiff = zmax - zmin;
@@ -525,7 +525,7 @@ T Frustum<T>::ZToDepth(long zval,long zmin,long zmax) const
     return normalizedZToDepth(fzval);
 }
 
-template<class T>
+template< class T >
 T Frustum<T>::normalizedZToDepth(T zval) const
 {
     T Zp = zval * 2.0 - 1;
@@ -534,7 +534,7 @@ T Frustum<T>::normalizedZToDepth(T zval) const
     {
         return   -(Zp*(_farPlane-_nearPlane) + (_farPlane+_nearPlane))/2;
     }
-    else 
+    else
     {
 	T farTimesNear = 2 * _farPlane * _nearPlane;
 	T farMinusNear = Zp * (_farPlane - _nearPlane) - _farPlane - _nearPlane;
@@ -552,7 +552,7 @@ T Frustum<T>::normalizedZToDepth(T zval) const
     }
 }
 
-template<class T>
+template< class T >
 long Frustum<T>::DepthToZ(T depth,long zmin,long zmax) const
 {
     long zdiff     = zmax - zmin;
@@ -573,8 +573,8 @@ long Frustum<T>::DepthToZ(T depth,long zmin,long zmax) const
 	T Zp = -farPlusNear/farMinusNear;
 	return long(0.5*(Zp+1)*zdiff) + zmin;
     }
-    else 
-    { 
+    else
+    {
 	// Perspective
 
 	T farTimesNear = 2*_farPlane*_nearPlane;
@@ -600,7 +600,7 @@ long Frustum<T>::DepthToZ(T depth,long zmin,long zmax) const
     }
 }
 
-template<class T>
+template< class T >
 T Frustum<T>::screenRadius(const Vec3<T> &p, T radius) const
 {
     // Derivation:
@@ -627,7 +627,7 @@ T Frustum<T>::screenRadius(const Vec3<T> &p, T radius) const
     return radius * (-_nearPlane / p.z);
 }
 
-template<class T>
+template< class T >
 T Frustum<T>::worldRadius(const Vec3<T> &p, T radius) const
 {
     if (abs(-_nearPlane) > 1 || abs(p.z) < limits<T>::maximum() * abs(-_nearPlane))
@@ -642,7 +642,7 @@ T Frustum<T>::worldRadius(const Vec3<T> &p, T radius) const
     }
 }
 
-template<class T>
+template< class T >
 void Frustum<T>::planes(Plane3<T> p[6])
 {
     //
@@ -675,7 +675,7 @@ void Frustum<T>::planes(Plane3<T> p[6])
 }
 
 
-template<class T>
+template< class T >
 void Frustum<T>::planes(Plane3<T> p[6], const Matrix44<T> &M)
 {
     //

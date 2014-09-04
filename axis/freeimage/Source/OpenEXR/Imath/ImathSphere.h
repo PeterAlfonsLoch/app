@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2002, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -49,7 +49,7 @@
 
 namespace Imath {
 
-template <class T>
+template < class T >
 class Sphere3
 {
   public:
@@ -105,7 +105,7 @@ typedef Sphere3<double> Sphere3d;
 // Implementation
 //---------------
 
-template <class T>
+template < class T >
 void Sphere3<T>::circumscribe(const Box<Vec3<T> > &box)
 {
     center = T(0.5) * (box.min + box.max);
@@ -113,7 +113,7 @@ void Sphere3<T>::circumscribe(const Box<Vec3<T> > &box)
 }
 
 
-template <class T>
+template < class T >
 bool Sphere3<T>::intersectT(const Line3<T> &line, T &t) const
 {
     bool doesIntersect = true;
@@ -155,7 +155,7 @@ bool Sphere3<T>::intersectT(const Line3<T> &line, T &t) const
 }
 
 
-template <class T>
+template < class T >
 bool Sphere3<T>::intersect(const Line3<T> &line, Vec3<T> &intersection) const
 {
     T t;

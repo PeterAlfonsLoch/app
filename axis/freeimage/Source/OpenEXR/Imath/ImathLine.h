@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2002, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -50,14 +50,14 @@
 namespace Imath {
 
 
-template <class T>
+template < class T >
 class Line3
 {
   public:
 
     Vec3<T>			pos;
     Vec3<T>			dir;
-    
+
     //-------------------------------------------------------------
     //	Constructors - default is normalized units along direction
     //-------------------------------------------------------------
@@ -69,7 +69,7 @@ class Line3
     //	State Query/Set
     //------------------
 
-    void			set(const Vec3<T>& point1, 
+    void			set(const Vec3<T>& point1,
 				    const Vec3<T>& point2);
 
     //-------
@@ -101,46 +101,46 @@ typedef Line3<double> Line3d;
 // Implementation
 //---------------
 
-template <class T>
+template < class T >
 inline Line3<T>::Line3(const Vec3<T> &p0, const Vec3<T> &p1)
 {
     set(p0,p1);
 }
 
-template <class T>
+template < class T >
 inline void Line3<T>::set(const Vec3<T> &p0, const Vec3<T> &p1)
 {
     pos = p0; dir = p1-p0;
     dir.normalize();
 }
 
-template <class T>
+template < class T >
 inline Vec3<T> Line3<T>::operator()(T parameter) const
 {
     return pos + dir * parameter;
 }
 
-template <class T>
+template < class T >
 inline T Line3<T>::distanceTo(const Vec3<T>& point) const
 {
     return (closestPointTo(point)-point).length();
 }
 
-template <class T>
+template < class T >
 inline Vec3<T> Line3<T>::closestPointTo(const Vec3<T>& point) const
 {
     return ((point - pos) ^ dir) * dir + pos;
 }
 
-template <class T>
+template < class T >
 inline T Line3<T>::distanceTo(const Line3<T>& line) const
 {
     T d = (dir % line.dir) ^ (line.pos - pos);
     return (d >= 0)? d: -d;
 }
 
-template <class T>
-inline Vec3<T> 
+template < class T >
+inline Vec3<T>
 Line3<T>::closestPointTo(const Line3<T>& line) const
 {
     // Assumes the lines are normalized
@@ -166,7 +166,7 @@ Line3<T>::closestPointTo(const Line3<T>& line) const
     return pos + dir * (num / denom);
 }
 
-template<class T>
+template< class T >
 std::ostream& operator<< (std::ostream &o, const Line3<T> &line)
 {
     return o << "(" << line.pos << ", " << line.dir << ")";

@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2002, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -86,15 +86,15 @@
 #include "half.h"
 
 #include <IlmBaseConfig.h>
-#ifndef ILMBASE_HAVE_LARGE_STACK  
+#ifndef ILMBASE_HAVE_LARGE_STACK
 #include <string.h>     // need this for memset
-#else 
+#else
 #endif
 
 #include <float.h>
 
 
-template <class T>
+template < class T >
 class halfFunction
 {
   public:
@@ -113,9 +113,9 @@ class halfFunction
 		  T nanValue     = 0);
 
 #ifndef ILMBASE_HAVE_LARGE_STACK
-    ~halfFunction () { delete [] _lut; }    
+    ~halfFunction () { delete [] _lut; }
 #endif
-    
+
     //-----------
     // Evaluation
     //-----------
@@ -135,7 +135,7 @@ class halfFunction
 // Implementation
 //---------------
 
-template <class T>
+template < class T >
 template <class Function>
 halfFunction<T>::halfFunction (Function f,
 			       half domainMin,
@@ -149,7 +149,7 @@ halfFunction<T>::halfFunction (Function f,
     _lut = new T[1<<16];
     memset (_lut, 0 , (1<<16) * sizeof(T));
 #endif
-    
+
     for (int i = 0; i < (1 << 16); i++)
     {
 	half x;
@@ -167,7 +167,7 @@ halfFunction<T>::halfFunction (Function f,
 }
 
 
-template <class T>
+template < class T >
 inline T
 halfFunction<T>::operator () (half x) const
 {

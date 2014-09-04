@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2004, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -129,7 +129,7 @@ class Attribute
 // Class template for attributes of a specific type
 //-------------------------------------------------
 
-template <class T>
+template < class T >
 class TypedAttribute: public Attribute
 {
   public:
@@ -157,7 +157,7 @@ class TypedAttribute: public Attribute
     //--------------------------------
 
     virtual const char *		typeName () const;
-    
+
 
     //---------------------------------------------------------
     // Static version of typeName()
@@ -165,7 +165,7 @@ class TypedAttribute: public Attribute
     //---------------------------------------------------------
 
     static const char *			staticTypeName ();
-    
+
 
     //---------------------
     // Make a new attribute
@@ -238,7 +238,7 @@ class TypedAttribute: public Attribute
 // Implementation of TypedAttribute<T>
 //------------------------------------
 
-template <class T>
+template < class T >
 TypedAttribute<T>::TypedAttribute ():
     Attribute (),
     _value (T())
@@ -247,7 +247,7 @@ TypedAttribute<T>::TypedAttribute ():
 }
 
 
-template <class T>
+template < class T >
 TypedAttribute<T>::TypedAttribute (const T &value):
     Attribute (),
     _value (value)
@@ -256,7 +256,7 @@ TypedAttribute<T>::TypedAttribute (const T &value):
 }
 
 
-template <class T>
+template < class T >
 TypedAttribute<T>::TypedAttribute (const TypedAttribute<T> &other):
     Attribute (other),
     _value ()
@@ -265,14 +265,14 @@ TypedAttribute<T>::TypedAttribute (const TypedAttribute<T> &other):
 }
 
 
-template <class T>
+template < class T >
 TypedAttribute<T>::~TypedAttribute ()
 {
     // empty
 }
 
 
-template <class T>
+template < class T >
 inline T &
 TypedAttribute<T>::value ()
 {
@@ -280,7 +280,7 @@ TypedAttribute<T>::value ()
 }
 
 
-template <class T>
+template < class T >
 inline const T &
 TypedAttribute<T>::value () const
 {
@@ -288,15 +288,15 @@ TypedAttribute<T>::value () const
 }
 
 
-template <class T>
-const char *	
+template < class T >
+const char *
 TypedAttribute<T>::typeName () const
 {
     return staticTypeName();
 }
 
 
-template <class T>
+template < class T >
 Attribute *
 TypedAttribute<T>::makeNewAttribute ()
 {
@@ -304,7 +304,7 @@ TypedAttribute<T>::makeNewAttribute ()
 }
 
 
-template <class T>
+template < class T >
 Attribute *
 TypedAttribute<T>::copy () const
 {
@@ -314,31 +314,31 @@ TypedAttribute<T>::copy () const
 }
 
 
-template <class T>
-void		
+template < class T >
+void
 TypedAttribute<T>::writeValueTo (OStream &os, int version) const
 {
     Xdr::write <StreamIO> (os, _value);
 }
 
 
-template <class T>
-void		
+template < class T >
+void
 TypedAttribute<T>::readValueFrom (IStream &is, int size, int version)
 {
     Xdr::read <StreamIO> (is, _value);
 }
 
 
-template <class T>
-void		
+template < class T >
+void
 TypedAttribute<T>::copyValueFrom (const Attribute &other)
 {
     _value = cast(other)._value;
 }
 
 
-template <class T>
+template < class T >
 TypedAttribute<T> *
 TypedAttribute<T>::cast (Attribute *attribute)
 {
@@ -352,7 +352,7 @@ TypedAttribute<T>::cast (Attribute *attribute)
 }
 
 
-template <class T>
+template < class T >
 const TypedAttribute<T> *
 TypedAttribute<T>::cast (const Attribute *attribute)
 {
@@ -366,15 +366,15 @@ TypedAttribute<T>::cast (const Attribute *attribute)
 }
 
 
-template <class T>
-inline TypedAttribute<T> &	
+template < class T >
+inline TypedAttribute<T> &
 TypedAttribute<T>::cast (Attribute &attribute)
 {
     return *cast (&attribute);
 }
 
 
-template <class T>
+template < class T >
 inline const TypedAttribute<T> &
 TypedAttribute<T>::cast (const Attribute &attribute)
 {
@@ -382,7 +382,7 @@ TypedAttribute<T>::cast (const Attribute &attribute)
 }
 
 
-template <class T>
+template < class T >
 inline void
 TypedAttribute<T>::registerAttributeType ()
 {
@@ -390,7 +390,7 @@ TypedAttribute<T>::registerAttributeType ()
 }
 
 
-template <class T>
+template < class T >
 inline void
 TypedAttribute<T>::unRegisterAttributeType ()
 {

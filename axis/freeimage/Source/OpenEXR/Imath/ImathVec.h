@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2004, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -58,14 +58,14 @@
 
 namespace Imath {
 
-template <class T> class Vec2;
-template <class T> class Vec3;
-template <class T> class Vec4;
+template < class T > class Vec2;
+template < class T > class Vec3;
+template < class T > class Vec4;
 
 enum InfException {INF_EXCEPTION};
 
 
-template <class T> class Vec2
+template < class T > class Vec2
 {
   public:
 
@@ -117,7 +117,7 @@ template <class T> class Vec2
     T *			getValue ();
     const T *		getValue () const;
 
-    
+
     //---------
     // Equality
     //---------
@@ -251,7 +251,7 @@ template <class T> class Vec2
 
     //--------------------------------------------------------------
     // Base type -- in templates, which accept a parameter, V, which
-    // could be either a Vec2<T>, a Vec3<T>, or a Vec4<T> you can 
+    // could be either a Vec2<T>, a Vec3<T>, or a Vec4<T> you can
     // refer to T as V::BaseType
     //--------------------------------------------------------------
 
@@ -263,7 +263,7 @@ template <class T> class Vec2
 };
 
 
-template <class T> class Vec3
+template < class T > class Vec3
 {
   public:
 
@@ -463,7 +463,7 @@ template <class T> class Vec3
 
     //--------------------------------------------------------------
     // Base type -- in templates, which accept a parameter, V, which
-    // could be either a Vec2<T>, a Vec3<T>, or a Vec4<T> you can 
+    // could be either a Vec2<T>, a Vec3<T>, or a Vec4<T> you can
     // refer to T as V::BaseType
     //--------------------------------------------------------------
 
@@ -476,7 +476,7 @@ template <class T> class Vec3
 
 
 
-template <class T> class Vec4
+template < class T > class Vec4
 {
   public:
 
@@ -484,7 +484,7 @@ template <class T> class Vec4
     // Access to elements
     //-------------------
 
-    T               x, y, z, w; 
+    T               x, y, z, w;
 
     T &             operator [] (int i);
     const T &       operator [] (int i) const;
@@ -645,7 +645,7 @@ template <class T> class Vec4
 
     //--------------------------------------------------------------
     // Base type -- in templates, which accept a parameter, V, which
-    // could be either a Vec2<T>, a Vec3<T>, or a Vec4<T> you can 
+    // could be either a Vec2<T>, a Vec3<T>, or a Vec4<T> you can
     // refer to T as V::BaseType
     //--------------------------------------------------------------
 
@@ -661,22 +661,22 @@ template <class T> class Vec4
 // Stream output
 //--------------
 
-template <class T>
+template < class T >
 std::ostream &	operator << (std::ostream &s, const Vec2<T> &v);
 
-template <class T>
+template < class T >
 std::ostream &	operator << (std::ostream &s, const Vec3<T> &v);
 
-template <class T>
+template < class T >
 std::ostream &	operator << (std::ostream &s, const Vec4<T> &v);
 
 //----------------------------------------------------
 // Reverse multiplication: S * Vec2<T> and S * Vec3<T>
 //----------------------------------------------------
 
-template <class T> Vec2<T>	operator * (T a, const Vec2<T> &v);
-template <class T> Vec3<T>	operator * (T a, const Vec3<T> &v);
-template <class T> Vec4<T>	operator * (T a, const Vec4<T> &v);
+template < class T > Vec2<T>	operator * (T a, const Vec2<T> &v);
+template < class T > Vec3<T>	operator * (T a, const Vec3<T> &v);
+template < class T > Vec4<T>	operator * (T a, const Vec4<T> &v);
 
 
 //-------------------------
@@ -848,35 +848,35 @@ Vec4<int>::normalizedNonNull () const;
 // Implementation of Vec2:
 //------------------------
 
-template <class T>
+template < class T >
 inline T &
 Vec2<T>::operator [] (int i)
 {
     return (&x)[i];
 }
 
-template <class T>
+template < class T >
 inline const T &
 Vec2<T>::operator [] (int i) const
 {
     return (&x)[i];
 }
 
-template <class T>
+template < class T >
 inline
 Vec2<T>::Vec2 ()
 {
     // empty
 }
 
-template <class T>
+template < class T >
 inline
 Vec2<T>::Vec2 (T a)
 {
     x = y = a;
 }
 
-template <class T>
+template < class T >
 inline
 Vec2<T>::Vec2 (T a, T b)
 {
@@ -884,7 +884,7 @@ Vec2<T>::Vec2 (T a, T b)
     y = b;
 }
 
-template <class T>
+template < class T >
 inline
 Vec2<T>::Vec2 (const Vec2 &v)
 {
@@ -892,7 +892,7 @@ Vec2<T>::Vec2 (const Vec2 &v)
     y = v.y;
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline
 Vec2<T>::Vec2 (const Vec2<S> &v)
@@ -901,7 +901,7 @@ Vec2<T>::Vec2 (const Vec2<S> &v)
     y = T (v.y);
 }
 
-template <class T>
+template < class T >
 inline const Vec2<T> &
 Vec2<T>::operator = (const Vec2 &v)
 {
@@ -910,7 +910,7 @@ Vec2<T>::operator = (const Vec2 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline void
 Vec2<T>::setValue (S a, S b)
@@ -919,7 +919,7 @@ Vec2<T>::setValue (S a, S b)
     y = T (b);
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline void
 Vec2<T>::setValue (const Vec2<S> &v)
@@ -928,7 +928,7 @@ Vec2<T>::setValue (const Vec2<S> &v)
     y = T (v.y);
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline void
 Vec2<T>::getValue (S &a, S &b) const
@@ -937,7 +937,7 @@ Vec2<T>::getValue (S &a, S &b) const
     b = S (y);
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline void
 Vec2<T>::getValue (Vec2<S> &v) const
@@ -946,21 +946,21 @@ Vec2<T>::getValue (Vec2<S> &v) const
     v.y = S (y);
 }
 
-template <class T>
+template < class T >
 inline T *
 Vec2<T>::getValue()
 {
     return (T *) &x;
 }
 
-template <class T>
+template < class T >
 inline const T *
 Vec2<T>::getValue() const
 {
     return (const T *) &x;
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline bool
 Vec2<T>::operator == (const Vec2<S> &v) const
@@ -968,7 +968,7 @@ Vec2<T>::operator == (const Vec2<S> &v) const
     return x == v.x && y == v.y;
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline bool
 Vec2<T>::operator != (const Vec2<S> &v) const
@@ -976,7 +976,7 @@ Vec2<T>::operator != (const Vec2<S> &v) const
     return x != v.x || y != v.y;
 }
 
-template <class T>
+template < class T >
 bool
 Vec2<T>::equalWithAbsError (const Vec2<T> &v, T e) const
 {
@@ -987,7 +987,7 @@ Vec2<T>::equalWithAbsError (const Vec2<T> &v, T e) const
     return true;
 }
 
-template <class T>
+template < class T >
 bool
 Vec2<T>::equalWithRelError (const Vec2<T> &v, T e) const
 {
@@ -998,21 +998,21 @@ Vec2<T>::equalWithRelError (const Vec2<T> &v, T e) const
     return true;
 }
 
-template <class T>
+template < class T >
 inline T
 Vec2<T>::dot (const Vec2 &v) const
 {
     return x * v.x + y * v.y;
 }
 
-template <class T>
+template < class T >
 inline T
 Vec2<T>::operator ^ (const Vec2 &v) const
 {
     return dot (v);
 }
 
-template <class T>
+template < class T >
 inline T
 Vec2<T>::cross (const Vec2 &v) const
 {
@@ -1020,14 +1020,14 @@ Vec2<T>::cross (const Vec2 &v) const
 
 }
 
-template <class T>
+template < class T >
 inline T
 Vec2<T>::operator % (const Vec2 &v) const
 {
     return x * v.y - y * v.x;
 }
 
-template <class T>
+template < class T >
 inline const Vec2<T> &
 Vec2<T>::operator += (const Vec2 &v)
 {
@@ -1036,14 +1036,14 @@ Vec2<T>::operator += (const Vec2 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec2<T>
 Vec2<T>::operator + (const Vec2 &v) const
 {
     return Vec2 (x + v.x, y + v.y);
 }
 
-template <class T>
+template < class T >
 inline const Vec2<T> &
 Vec2<T>::operator -= (const Vec2 &v)
 {
@@ -1052,21 +1052,21 @@ Vec2<T>::operator -= (const Vec2 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec2<T>
 Vec2<T>::operator - (const Vec2 &v) const
 {
     return Vec2 (x - v.x, y - v.y);
 }
 
-template <class T>
+template < class T >
 inline Vec2<T>
 Vec2<T>::operator - () const
 {
     return Vec2 (-x, -y);
 }
 
-template <class T>
+template < class T >
 inline const Vec2<T> &
 Vec2<T>::negate ()
 {
@@ -1075,7 +1075,7 @@ Vec2<T>::negate ()
     return *this;
 }
 
-template <class T>
+template < class T >
 inline const Vec2<T> &
 Vec2<T>::operator *= (const Vec2 &v)
 {
@@ -1084,7 +1084,7 @@ Vec2<T>::operator *= (const Vec2 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline const Vec2<T> &
 Vec2<T>::operator *= (T a)
 {
@@ -1093,21 +1093,21 @@ Vec2<T>::operator *= (T a)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec2<T>
 Vec2<T>::operator * (const Vec2 &v) const
 {
     return Vec2 (x * v.x, y * v.y);
 }
 
-template <class T>
+template < class T >
 inline Vec2<T>
 Vec2<T>::operator * (T a) const
 {
     return Vec2 (x * a, y * a);
 }
 
-template <class T>
+template < class T >
 inline const Vec2<T> &
 Vec2<T>::operator /= (const Vec2 &v)
 {
@@ -1116,7 +1116,7 @@ Vec2<T>::operator /= (const Vec2 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline const Vec2<T> &
 Vec2<T>::operator /= (T a)
 {
@@ -1125,27 +1125,27 @@ Vec2<T>::operator /= (T a)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec2<T>
 Vec2<T>::operator / (const Vec2 &v) const
 {
     return Vec2 (x / v.x, y / v.y);
 }
 
-template <class T>
+template < class T >
 inline Vec2<T>
 Vec2<T>::operator / (T a) const
 {
     return Vec2 (x / a, y / a);
 }
 
-template <class T>
+template < class T >
 T
 Vec2<T>::lengthTiny () const
 {
     T absX = (x >= T (0))? x: -x;
     T absY = (y >= T (0))? y: -y;
-    
+
     T MAX = absX;
 
     if (MAX < absY)
@@ -1166,7 +1166,7 @@ Vec2<T>::lengthTiny () const
     return MAX * Math<T>::sqrt (absX * absX + absY * absY);
 }
 
-template <class T>
+template < class T >
 inline T
 Vec2<T>::length () const
 {
@@ -1178,14 +1178,14 @@ Vec2<T>::length () const
     return Math<T>::sqrt (length2);
 }
 
-template <class T>
+template < class T >
 inline T
 Vec2<T>::length2 () const
 {
     return dot (*this);
 }
 
-template <class T>
+template < class T >
 const Vec2<T> &
 Vec2<T>::normalize ()
 {
@@ -1206,7 +1206,7 @@ Vec2<T>::normalize ()
     return *this;
 }
 
-template <class T>
+template < class T >
 const Vec2<T> &
 Vec2<T>::normalizeExc () throw (Iex::MathExc)
 {
@@ -1220,7 +1220,7 @@ Vec2<T>::normalizeExc () throw (Iex::MathExc)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline
 const Vec2<T> &
 Vec2<T>::normalizeNonNull ()
@@ -1231,7 +1231,7 @@ Vec2<T>::normalizeNonNull ()
     return *this;
 }
 
-template <class T>
+template < class T >
 Vec2<T>
 Vec2<T>::normalized () const
 {
@@ -1243,7 +1243,7 @@ Vec2<T>::normalized () const
     return Vec2 (x / l, y / l);
 }
 
-template <class T>
+template < class T >
 Vec2<T>
 Vec2<T>::normalizedExc () const throw (Iex::MathExc)
 {
@@ -1255,7 +1255,7 @@ Vec2<T>::normalizedExc () const throw (Iex::MathExc)
     return Vec2 (x / l, y / l);
 }
 
-template <class T>
+template < class T >
 inline
 Vec2<T>
 Vec2<T>::normalizedNonNull () const
@@ -1269,35 +1269,35 @@ Vec2<T>::normalizedNonNull () const
 // Implementation of Vec3
 //-----------------------
 
-template <class T>
+template < class T >
 inline T &
 Vec3<T>::operator [] (int i)
 {
     return (&x)[i];
 }
 
-template <class T>
+template < class T >
 inline const T &
 Vec3<T>::operator [] (int i) const
 {
     return (&x)[i];
 }
 
-template <class T>
+template < class T >
 inline
 Vec3<T>::Vec3 ()
 {
     // empty
 }
 
-template <class T>
+template < class T >
 inline
 Vec3<T>::Vec3 (T a)
 {
     x = y = z = a;
 }
 
-template <class T>
+template < class T >
 inline
 Vec3<T>::Vec3 (T a, T b, T c)
 {
@@ -1306,7 +1306,7 @@ Vec3<T>::Vec3 (T a, T b, T c)
     z = c;
 }
 
-template <class T>
+template < class T >
 inline
 Vec3<T>::Vec3 (const Vec3 &v)
 {
@@ -1315,7 +1315,7 @@ Vec3<T>::Vec3 (const Vec3 &v)
     z = v.z;
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline
 Vec3<T>::Vec3 (const Vec3<S> &v)
@@ -1325,7 +1325,7 @@ Vec3<T>::Vec3 (const Vec3<S> &v)
     z = T (v.z);
 }
 
-template <class T>
+template < class T >
 inline const Vec3<T> &
 Vec3<T>::operator = (const Vec3 &v)
 {
@@ -1335,7 +1335,7 @@ Vec3<T>::operator = (const Vec3 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline
 Vec3<T>::Vec3 (const Vec4<S> &v)
@@ -1345,7 +1345,7 @@ Vec3<T>::Vec3 (const Vec4<S> &v)
     z = T (v.z / v.w);
 }
 
-template <class T>
+template < class T >
 template <class S>
 Vec3<T>::Vec3 (const Vec4<S> &v, InfException)
 {
@@ -1359,7 +1359,7 @@ Vec3<T>::Vec3 (const Vec4<S> &v, InfException)
     if (absW < 1)
     {
         T m = baseTypeMax() * absW;
-        
+
         if (vx <= -m || vx >= m || vy <= -m || vy >= m || vz <= -m || vz >= m)
             throw InfPointExc ("Cannot normalize point at infinity.");
     }
@@ -1369,7 +1369,7 @@ Vec3<T>::Vec3 (const Vec4<S> &v, InfException)
     z = vz / vw;
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline void
 Vec3<T>::setValue (S a, S b, S c)
@@ -1379,7 +1379,7 @@ Vec3<T>::setValue (S a, S b, S c)
     z = T (c);
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline void
 Vec3<T>::setValue (const Vec3<S> &v)
@@ -1389,7 +1389,7 @@ Vec3<T>::setValue (const Vec3<S> &v)
     z = T (v.z);
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline void
 Vec3<T>::getValue (S &a, S &b, S &c) const
@@ -1399,7 +1399,7 @@ Vec3<T>::getValue (S &a, S &b, S &c) const
     c = S (z);
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline void
 Vec3<T>::getValue (Vec3<S> &v) const
@@ -1409,21 +1409,21 @@ Vec3<T>::getValue (Vec3<S> &v) const
     v.z = S (z);
 }
 
-template <class T>
+template < class T >
 inline T *
 Vec3<T>::getValue()
 {
     return (T *) &x;
 }
 
-template <class T>
+template < class T >
 inline const T *
 Vec3<T>::getValue() const
 {
     return (const T *) &x;
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline bool
 Vec3<T>::operator == (const Vec3<S> &v) const
@@ -1431,7 +1431,7 @@ Vec3<T>::operator == (const Vec3<S> &v) const
     return x == v.x && y == v.y && z == v.z;
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline bool
 Vec3<T>::operator != (const Vec3<S> &v) const
@@ -1439,7 +1439,7 @@ Vec3<T>::operator != (const Vec3<S> &v) const
     return x != v.x || y != v.y || z != v.z;
 }
 
-template <class T>
+template < class T >
 bool
 Vec3<T>::equalWithAbsError (const Vec3<T> &v, T e) const
 {
@@ -1450,7 +1450,7 @@ Vec3<T>::equalWithAbsError (const Vec3<T> &v, T e) const
     return true;
 }
 
-template <class T>
+template < class T >
 bool
 Vec3<T>::equalWithRelError (const Vec3<T> &v, T e) const
 {
@@ -1461,21 +1461,21 @@ Vec3<T>::equalWithRelError (const Vec3<T> &v, T e) const
     return true;
 }
 
-template <class T>
+template < class T >
 inline T
 Vec3<T>::dot (const Vec3 &v) const
 {
     return x * v.x + y * v.y + z * v.z;
 }
 
-template <class T>
+template < class T >
 inline T
 Vec3<T>::operator ^ (const Vec3 &v) const
 {
     return dot (v);
 }
 
-template <class T>
+template < class T >
 inline Vec3<T>
 Vec3<T>::cross (const Vec3 &v) const
 {
@@ -1484,7 +1484,7 @@ Vec3<T>::cross (const Vec3 &v) const
 		 x * v.y - y * v.x);
 }
 
-template <class T>
+template < class T >
 inline const Vec3<T> &
 Vec3<T>::operator %= (const Vec3 &v)
 {
@@ -1497,7 +1497,7 @@ Vec3<T>::operator %= (const Vec3 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec3<T>
 Vec3<T>::operator % (const Vec3 &v) const
 {
@@ -1506,7 +1506,7 @@ Vec3<T>::operator % (const Vec3 &v) const
 		 x * v.y - y * v.x);
 }
 
-template <class T>
+template < class T >
 inline const Vec3<T> &
 Vec3<T>::operator += (const Vec3 &v)
 {
@@ -1516,14 +1516,14 @@ Vec3<T>::operator += (const Vec3 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec3<T>
 Vec3<T>::operator + (const Vec3 &v) const
 {
     return Vec3 (x + v.x, y + v.y, z + v.z);
 }
 
-template <class T>
+template < class T >
 inline const Vec3<T> &
 Vec3<T>::operator -= (const Vec3 &v)
 {
@@ -1533,21 +1533,21 @@ Vec3<T>::operator -= (const Vec3 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec3<T>
 Vec3<T>::operator - (const Vec3 &v) const
 {
     return Vec3 (x - v.x, y - v.y, z - v.z);
 }
 
-template <class T>
+template < class T >
 inline Vec3<T>
 Vec3<T>::operator - () const
 {
     return Vec3 (-x, -y, -z);
 }
 
-template <class T>
+template < class T >
 inline const Vec3<T> &
 Vec3<T>::negate ()
 {
@@ -1557,7 +1557,7 @@ Vec3<T>::negate ()
     return *this;
 }
 
-template <class T>
+template < class T >
 inline const Vec3<T> &
 Vec3<T>::operator *= (const Vec3 &v)
 {
@@ -1567,7 +1567,7 @@ Vec3<T>::operator *= (const Vec3 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline const Vec3<T> &
 Vec3<T>::operator *= (T a)
 {
@@ -1577,21 +1577,21 @@ Vec3<T>::operator *= (T a)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec3<T>
 Vec3<T>::operator * (const Vec3 &v) const
 {
     return Vec3 (x * v.x, y * v.y, z * v.z);
 }
 
-template <class T>
+template < class T >
 inline Vec3<T>
 Vec3<T>::operator * (T a) const
 {
     return Vec3 (x * a, y * a, z * a);
 }
 
-template <class T>
+template < class T >
 inline const Vec3<T> &
 Vec3<T>::operator /= (const Vec3 &v)
 {
@@ -1601,7 +1601,7 @@ Vec3<T>::operator /= (const Vec3 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline const Vec3<T> &
 Vec3<T>::operator /= (T a)
 {
@@ -1611,28 +1611,28 @@ Vec3<T>::operator /= (T a)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec3<T>
 Vec3<T>::operator / (const Vec3 &v) const
 {
     return Vec3 (x / v.x, y / v.y, z / v.z);
 }
 
-template <class T>
+template < class T >
 inline Vec3<T>
 Vec3<T>::operator / (T a) const
 {
     return Vec3 (x / a, y / a, z / a);
 }
 
-template <class T>
+template < class T >
 T
 Vec3<T>::lengthTiny () const
 {
     T absX = (x >= T (0))? x: -x;
     T absY = (y >= T (0))? y: -y;
     T absZ = (z >= T (0))? z: -z;
-    
+
     T MAX = absX;
 
     if (MAX < absY)
@@ -1657,7 +1657,7 @@ Vec3<T>::lengthTiny () const
     return MAX * Math<T>::sqrt (absX * absX + absY * absY + absZ * absZ);
 }
 
-template <class T>
+template < class T >
 inline T
 Vec3<T>::length () const
 {
@@ -1669,14 +1669,14 @@ Vec3<T>::length () const
     return Math<T>::sqrt (length2);
 }
 
-template <class T>
+template < class T >
 inline T
 Vec3<T>::length2 () const
 {
     return dot (*this);
 }
 
-template <class T>
+template < class T >
 const Vec3<T> &
 Vec3<T>::normalize ()
 {
@@ -1698,7 +1698,7 @@ Vec3<T>::normalize ()
     return *this;
 }
 
-template <class T>
+template < class T >
 const Vec3<T> &
 Vec3<T>::normalizeExc () throw (Iex::MathExc)
 {
@@ -1713,7 +1713,7 @@ Vec3<T>::normalizeExc () throw (Iex::MathExc)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline
 const Vec3<T> &
 Vec3<T>::normalizeNonNull ()
@@ -1725,7 +1725,7 @@ Vec3<T>::normalizeNonNull ()
     return *this;
 }
 
-template <class T>
+template < class T >
 Vec3<T>
 Vec3<T>::normalized () const
 {
@@ -1737,7 +1737,7 @@ Vec3<T>::normalized () const
     return Vec3 (x / l, y / l, z / l);
 }
 
-template <class T>
+template < class T >
 Vec3<T>
 Vec3<T>::normalizedExc () const throw (Iex::MathExc)
 {
@@ -1749,7 +1749,7 @@ Vec3<T>::normalizedExc () const throw (Iex::MathExc)
     return Vec3 (x / l, y / l, z / l);
 }
 
-template <class T>
+template < class T >
 inline
 Vec3<T>
 Vec3<T>::normalizedNonNull () const
@@ -1763,35 +1763,35 @@ Vec3<T>::normalizedNonNull () const
 // Implementation of Vec4
 //-----------------------
 
-template <class T>
+template < class T >
 inline T &
 Vec4<T>::operator [] (int i)
 {
     return (&x)[i];
 }
 
-template <class T>
+template < class T >
 inline const T &
 Vec4<T>::operator [] (int i) const
 {
     return (&x)[i];
 }
 
-template <class T>
+template < class T >
 inline
 Vec4<T>::Vec4 ()
 {
     // empty
 }
 
-template <class T>
+template < class T >
 inline
 Vec4<T>::Vec4 (T a)
 {
     x = y = z = w = a;
 }
 
-template <class T>
+template < class T >
 inline
 Vec4<T>::Vec4 (T a, T b, T c, T d)
 {
@@ -1801,7 +1801,7 @@ Vec4<T>::Vec4 (T a, T b, T c, T d)
     w = d;
 }
 
-template <class T>
+template < class T >
 inline
 Vec4<T>::Vec4 (const Vec4 &v)
 {
@@ -1811,7 +1811,7 @@ Vec4<T>::Vec4 (const Vec4 &v)
     w = v.w;
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline
 Vec4<T>::Vec4 (const Vec4<S> &v)
@@ -1822,7 +1822,7 @@ Vec4<T>::Vec4 (const Vec4<S> &v)
     w = T (v.w);
 }
 
-template <class T>
+template < class T >
 inline const Vec4<T> &
 Vec4<T>::operator = (const Vec4 &v)
 {
@@ -1833,7 +1833,7 @@ Vec4<T>::operator = (const Vec4 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline
 Vec4<T>::Vec4 (const Vec3<S> &v)
@@ -1844,7 +1844,7 @@ Vec4<T>::Vec4 (const Vec3<S> &v)
     w = T (1);
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline bool
 Vec4<T>::operator == (const Vec4<S> &v) const
@@ -1852,7 +1852,7 @@ Vec4<T>::operator == (const Vec4<S> &v) const
     return x == v.x && y == v.y && z == v.z && w == v.w;
 }
 
-template <class T>
+template < class T >
 template <class S>
 inline bool
 Vec4<T>::operator != (const Vec4<S> &v) const
@@ -1860,7 +1860,7 @@ Vec4<T>::operator != (const Vec4<S> &v) const
     return x != v.x || y != v.y || z != v.z || w != v.w;
 }
 
-template <class T>
+template < class T >
 bool
 Vec4<T>::equalWithAbsError (const Vec4<T> &v, T e) const
 {
@@ -1871,7 +1871,7 @@ Vec4<T>::equalWithAbsError (const Vec4<T> &v, T e) const
     return true;
 }
 
-template <class T>
+template < class T >
 bool
 Vec4<T>::equalWithRelError (const Vec4<T> &v, T e) const
 {
@@ -1882,14 +1882,14 @@ Vec4<T>::equalWithRelError (const Vec4<T> &v, T e) const
     return true;
 }
 
-template <class T>
+template < class T >
 inline T
 Vec4<T>::dot (const Vec4 &v) const
 {
     return x * v.x + y * v.y + z * v.z + w * v.w;
 }
 
-template <class T>
+template < class T >
 inline T
 Vec4<T>::operator ^ (const Vec4 &v) const
 {
@@ -1897,7 +1897,7 @@ Vec4<T>::operator ^ (const Vec4 &v) const
 }
 
 
-template <class T>
+template < class T >
 inline const Vec4<T> &
 Vec4<T>::operator += (const Vec4 &v)
 {
@@ -1908,14 +1908,14 @@ Vec4<T>::operator += (const Vec4 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec4<T>
 Vec4<T>::operator + (const Vec4 &v) const
 {
     return Vec4 (x + v.x, y + v.y, z + v.z, w + v.w);
 }
 
-template <class T>
+template < class T >
 inline const Vec4<T> &
 Vec4<T>::operator -= (const Vec4 &v)
 {
@@ -1926,21 +1926,21 @@ Vec4<T>::operator -= (const Vec4 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec4<T>
 Vec4<T>::operator - (const Vec4 &v) const
 {
     return Vec4 (x - v.x, y - v.y, z - v.z, w - v.w);
 }
 
-template <class T>
+template < class T >
 inline Vec4<T>
 Vec4<T>::operator - () const
 {
     return Vec4 (-x, -y, -z, -w);
 }
 
-template <class T>
+template < class T >
 inline const Vec4<T> &
 Vec4<T>::negate ()
 {
@@ -1951,7 +1951,7 @@ Vec4<T>::negate ()
     return *this;
 }
 
-template <class T>
+template < class T >
 inline const Vec4<T> &
 Vec4<T>::operator *= (const Vec4 &v)
 {
@@ -1962,7 +1962,7 @@ Vec4<T>::operator *= (const Vec4 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline const Vec4<T> &
 Vec4<T>::operator *= (T a)
 {
@@ -1973,21 +1973,21 @@ Vec4<T>::operator *= (T a)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec4<T>
 Vec4<T>::operator * (const Vec4 &v) const
 {
     return Vec4 (x * v.x, y * v.y, z * v.z, w * v.w);
 }
 
-template <class T>
+template < class T >
 inline Vec4<T>
 Vec4<T>::operator * (T a) const
 {
     return Vec4 (x * a, y * a, z * a, w * a);
 }
 
-template <class T>
+template < class T >
 inline const Vec4<T> &
 Vec4<T>::operator /= (const Vec4 &v)
 {
@@ -1998,7 +1998,7 @@ Vec4<T>::operator /= (const Vec4 &v)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline const Vec4<T> &
 Vec4<T>::operator /= (T a)
 {
@@ -2009,21 +2009,21 @@ Vec4<T>::operator /= (T a)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline Vec4<T>
 Vec4<T>::operator / (const Vec4 &v) const
 {
     return Vec4 (x / v.x, y / v.y, z / v.z, w / v.w);
 }
 
-template <class T>
+template < class T >
 inline Vec4<T>
 Vec4<T>::operator / (T a) const
 {
     return Vec4 (x / a, y / a, z / a, w / a);
 }
 
-template <class T>
+template < class T >
 T
 Vec4<T>::lengthTiny () const
 {
@@ -2031,7 +2031,7 @@ Vec4<T>::lengthTiny () const
     T absY = (y >= T (0))? y: -y;
     T absZ = (z >= T (0))? z: -z;
     T absW = (w >= T (0))? w: -w;
-    
+
     T MAX = absX;
 
     if (MAX < absY)
@@ -2061,7 +2061,7 @@ Vec4<T>::lengthTiny () const
         Math<T>::sqrt (absX * absX + absY * absY + absZ * absZ + absW * absW);
 }
 
-template <class T>
+template < class T >
 inline T
 Vec4<T>::length () const
 {
@@ -2073,14 +2073,14 @@ Vec4<T>::length () const
     return Math<T>::sqrt (length2);
 }
 
-template <class T>
+template < class T >
 inline T
 Vec4<T>::length2 () const
 {
     return dot (*this);
 }
 
-template <class T>
+template < class T >
 const Vec4<T> &
 Vec4<T>::normalize ()
 {
@@ -2103,7 +2103,7 @@ Vec4<T>::normalize ()
     return *this;
 }
 
-template <class T>
+template < class T >
 const Vec4<T> &
 Vec4<T>::normalizeExc () throw (Iex::MathExc)
 {
@@ -2119,7 +2119,7 @@ Vec4<T>::normalizeExc () throw (Iex::MathExc)
     return *this;
 }
 
-template <class T>
+template < class T >
 inline
 const Vec4<T> &
 Vec4<T>::normalizeNonNull ()
@@ -2132,7 +2132,7 @@ Vec4<T>::normalizeNonNull ()
     return *this;
 }
 
-template <class T>
+template < class T >
 Vec4<T>
 Vec4<T>::normalized () const
 {
@@ -2144,7 +2144,7 @@ Vec4<T>::normalized () const
     return Vec4 (x / l, y / l, z / l, w / l);
 }
 
-template <class T>
+template < class T >
 Vec4<T>
 Vec4<T>::normalizedExc () const throw (Iex::MathExc)
 {
@@ -2156,7 +2156,7 @@ Vec4<T>::normalizedExc () const throw (Iex::MathExc)
     return Vec4 (x / l, y / l, z / l, w / l);
 }
 
-template <class T>
+template < class T >
 inline
 Vec4<T>
 Vec4<T>::normalizedNonNull () const
@@ -2169,21 +2169,21 @@ Vec4<T>::normalizedNonNull () const
 // Stream output implementation
 //-----------------------------
 
-template <class T>
+template < class T >
 std::ostream &
 operator << (std::ostream &s, const Vec2<T> &v)
 {
     return s << '(' << v.x << ' ' << v.y << ')';
 }
 
-template <class T>
+template < class T >
 std::ostream &
 operator << (std::ostream &s, const Vec3<T> &v)
 {
     return s << '(' << v.x << ' ' << v.y << ' ' << v.z << ')';
 }
 
-template <class T>
+template < class T >
 std::ostream &
 operator << (std::ostream &s, const Vec4<T> &v)
 {
@@ -2195,21 +2195,21 @@ operator << (std::ostream &s, const Vec4<T> &v)
 // Implementation of reverse multiplication
 //-----------------------------------------
 
-template <class T>
+template < class T >
 inline Vec2<T>
 operator * (T a, const Vec2<T> &v)
 {
     return Vec2<T> (a * v.x, a * v.y);
 }
 
-template <class T>
+template < class T >
 inline Vec3<T>
 operator * (T a, const Vec3<T> &v)
 {
     return Vec3<T> (a * v.x, a * v.y, a * v.z);
 }
 
-template <class T>
+template < class T >
 inline Vec4<T>
 operator * (T a, const Vec4<T> &v)
 {

@@ -17,7 +17,7 @@ namespace Imath {
 namespace
 {
 
-template<class T>
+template< class T >
 bool
 normalizeOrThrow(Vec2<T> &v)
 {
@@ -40,7 +40,7 @@ normalizeOrThrow(Vec2<T> &v)
 }
 
 
-template<class T>
+template< class T >
 bool
 normalizeOrThrow(Vec3<T> &v)
 {
@@ -63,7 +63,7 @@ normalizeOrThrow(Vec3<T> &v)
 }
 
 
-template<class T>
+template< class T >
 bool
 normalizeOrThrow(Vec4<T> &v)
 {
@@ -90,7 +90,7 @@ normalizeOrThrow(Vec4<T> &v)
 
 // Vec2<short>
 
-template <> 
+template <>
 short
 Vec2<short>::length () const
 {
@@ -159,7 +159,7 @@ Vec2<short>::normalizedNonNull () const
 
 // Vec2<int>
 
-template <> 
+template <>
 int
 Vec2<int>::length () const
 {
@@ -228,7 +228,7 @@ Vec2<int>::normalizedNonNull () const
 
 // Vec3<short>
 
-template <> 
+template <>
 short
 Vec3<short>::length () const
 {
@@ -297,7 +297,7 @@ Vec3<short>::normalizedNonNull () const
 
 // Vec3<int>
 
-template <> 
+template <>
 int
 Vec3<int>::length () const
 {
@@ -366,7 +366,7 @@ Vec3<int>::normalizedNonNull () const
 
 // Vec4<short>
 
-template <> 
+template <>
 short
 Vec4<short>::length () const
 {
@@ -435,7 +435,7 @@ Vec4<short>::normalizedNonNull () const
 
 // Vec4<int>
 
-template <> 
+template <>
 int
 Vec4<int>::length () const
 {

@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2002, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -53,17 +53,17 @@
 //	    C ()		{std::cout << "C::C  (" << this << ")\n";};
 //	    virtual ~C ()	{std::cout << "C::~C (" << this << ")\n";};
 //	};
-// 
+//
 //	int
 //	main ()
 //	{
 //	    Array <C> a(3);
-// 
+//
 //	    C &b = a[1];
 //	    const C &c = a[1];
 //	    C *d = a + 2;
 //	    const C *e = a;
-// 
+//
 //	    return 0;
 //	}
 //
@@ -72,7 +72,7 @@
 namespace Imf {
 
 
-template <class T>
+template < class T >
 class Array
 {
   public:
@@ -119,7 +119,7 @@ class Array
 };
 
 
-template <class T>
+template < class T >
 class Array2D
 {
   public:
@@ -171,7 +171,7 @@ class Array2D
 // Implementation
 //---------------
 
-template <class T>
+template < class T >
 inline void
 Array<T>::resizeErase (long size)
 {
@@ -181,7 +181,7 @@ Array<T>::resizeErase (long size)
 }
 
 
-template <class T>
+template < class T >
 inline void
 Array<T>::resizeEraseUnsafe (long size)
 {
@@ -191,7 +191,7 @@ Array<T>::resizeEraseUnsafe (long size)
 }
 
 
-template <class T>
+template < class T >
 inline
 Array2D<T>::Array2D ():
     _sizeY (0), _data (0)
@@ -200,7 +200,7 @@ Array2D<T>::Array2D ():
 }
 
 
-template <class T>
+template < class T >
 inline
 Array2D<T>::Array2D (long sizeX, long sizeY):
     _sizeY (sizeY), _data (new T[sizeX * sizeY])
@@ -209,7 +209,7 @@ Array2D<T>::Array2D (long sizeX, long sizeY):
 }
 
 
-template <class T>
+template < class T >
 inline
 Array2D<T>::~Array2D ()
 {
@@ -217,15 +217,15 @@ Array2D<T>::~Array2D ()
 }
 
 
-template <class T>
-inline T *	
+template < class T >
+inline T *
 Array2D<T>::operator [] (long x)
 {
     return _data + x * _sizeY;
 }
 
 
-template <class T>
+template < class T >
 inline const T *
 Array2D<T>::operator [] (long x) const
 {
@@ -233,7 +233,7 @@ Array2D<T>::operator [] (long x) const
 }
 
 
-template <class T>
+template < class T >
 inline void
 Array2D<T>::resizeErase (long sizeX, long sizeY)
 {
@@ -244,7 +244,7 @@ Array2D<T>::resizeErase (long sizeX, long sizeY)
 }
 
 
-template <class T>
+template < class T >
 inline void
 Array2D<T>::resizeEraseUnsafe (long sizeX, long sizeY)
 {

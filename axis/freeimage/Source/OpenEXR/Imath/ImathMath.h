@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2002, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -59,7 +59,7 @@
 //	don't know whether to call the single- or the double-precision
 //	version of this function (sqrt() or sqrtf()):
 //
-//	    template <class T>
+//	    template < class T >
 //	    T
 //	    glorp (T x)
 //	    {
@@ -70,7 +70,7 @@
 //	Using the templates in this file, you can make sure that
 //	the appropriate version of the math function is called:
 //
-//	    template <class T>
+//	    template < class T >
 //	    T
 //	    glorp (T x, T y)
 //	    {
@@ -87,10 +87,10 @@
 namespace Imath {
 
 
-template <class T>
+template < class T >
 struct Math
 {
-   static T	acos  (T x)		{return ::acos (double(x));}	
+   static T	acos  (T x)		{return ::acos (double(x));}
    static T	asin  (T x)		{return ::asin (double(x));}
    static T	atan  (T x)		{return ::atan (double(x));}
    static T	atan2 (T x, T y)	{return ::atan2 (double(x), double(y));}
@@ -123,7 +123,7 @@ struct Math
 template <>
 struct Math<float>
 {
-   static float	acos  (float x)			{return ::acosf (x);}	
+   static float	acos  (float x)			{return ::acosf (x);}
    static float	asin  (float x)			{return ::asinf (x);}
    static float	atan  (float x)			{return ::atanf (x);}
    static float	atan2 (float x, float y)	{return ::atan2f (x, y);}
@@ -156,7 +156,7 @@ struct Math<float>
 // Returns 1 for x == 0.
 //--------------------------------------------------------------------------
 
-template <class T>
+template < class T >
 inline T
 sinx_over_x (T x)
 {
@@ -174,19 +174,19 @@ sinx_over_x (T x)
 //
 //	Returns true if x1 is the same as x2 with an absolute error of
 //	no more than e,
-//	
+//
 //	abs (x1 - x2) <= e
 //
 // equalWithRelError (x1, x2, e)
 //
 //	Returns true if x1 is the same as x2 with an relative error of
 //	no more than e,
-//	
+//
 //	abs (x1 - x2) <= e * x1
 //
 //--------------------------------------------------------------------------
 
-template <class T>
+template < class T >
 inline bool
 equalWithAbsError (T x1, T x2, T e)
 {
@@ -194,7 +194,7 @@ equalWithAbsError (T x1, T x2, T e)
 }
 
 
-template <class T>
+template < class T >
 inline bool
 equalWithRelError (T x1, T x2, T e)
 {

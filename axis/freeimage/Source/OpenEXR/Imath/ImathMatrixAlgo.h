@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2002, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -81,11 +81,11 @@ IMATH_EXPORT_CONST M44d identity44d;
 
 //----------------------------------------------------------------------
 // Extract scale, shear, rotation, and translation values from a matrix:
-// 
+//
 // Notes:
 //
 // This implementation follows the technique described in the paper by
-// Spencer W. Thomas in the Graphics Gems II article: "Decomposing a 
+// Spencer W. Thomas in the Graphics Gems II article: "Decomposing a
 // Matrix into Simple Transformations", p. 320.
 //
 // - Some of the functions below have an optional exc parameter
@@ -101,23 +101,23 @@ IMATH_EXPORT_CONST M44d identity44d;
 //	removeScaling (m)	         returns false, m is unchanged
 //      sansScalingAndShear (m)          returns m
 //      removeScalingAndShear (m)        returns false, m is unchanged
-//      extractAndRemoveScalingAndShear (m, s, h)  
-//                                       returns false, m is unchanged, 
+//      extractAndRemoveScalingAndShear (m, s, h)
+//                                       returns false, m is unchanged,
 //                                                      (sh) are invalid
 //      checkForZeroScaleInRow ()        returns false
 //	extractSHRT (m, s, h, r, t)      returns false, (shrt) are invalid
 //
-// - Functions extractEuler(), extractEulerXYZ() and extractEulerZYX() 
-//   assume that the matrix does not include shear or non-uniform scaling, 
-//   but they do not examine the matrix to verify this assumption.  
-//   Matrices with shear or non-uniform scaling are likely to produce 
-//   meaningless results.  Therefore, you should use the 
+// - Functions extractEuler(), extractEulerXYZ() and extractEulerZYX()
+//   assume that the matrix does not include shear or non-uniform scaling,
+//   but they do not examine the matrix to verify this assumption.
+//   Matrices with shear or non-uniform scaling are likely to produce
+//   meaningless results.  Therefore, you should use the
 //   removeScalingAndShear() routine, if necessary, prior to calling
 //   extractEuler...() .
 //
 // - All functions assume that the matrix does not include perspective
-//   transformation(s), but they do not examine the matrix to verify 
-//   this assumption.  Matrices with perspective transformations are 
+//   transformation(s), but they do not examine the matrix to verify
+//   this assumption.  Matrices with perspective transformations are
 //   likely to produce meaningless results.
 //
 //----------------------------------------------------------------------
@@ -127,54 +127,54 @@ IMATH_EXPORT_CONST M44d identity44d;
 // Declarations for 4x4 matrix.
 //
 
-template <class T>  bool        extractScaling 
+template < class T >  bool        extractScaling
                                             (const Matrix44<T> &mat,
 					     Vec3<T> &scl,
 					     bool exc = true);
-  
-template <class T>  Matrix44<T> sansScaling (const Matrix44<T> &mat, 
+
+template < class T >  Matrix44<T> sansScaling (const Matrix44<T> &mat,
 					     bool exc = true);
 
-template <class T>  bool        removeScaling 
-                                            (Matrix44<T> &mat, 
+template < class T >  bool        removeScaling
+                                            (Matrix44<T> &mat,
 					     bool exc = true);
 
-template <class T>  bool        extractScalingAndShear 
+template < class T >  bool        extractScalingAndShear
                                             (const Matrix44<T> &mat,
 					     Vec3<T> &scl,
 					     Vec3<T> &shr,
 					     bool exc = true);
-  
-template <class T>  Matrix44<T> sansScalingAndShear 
-                                            (const Matrix44<T> &mat, 
+
+template < class T >  Matrix44<T> sansScalingAndShear
+                                            (const Matrix44<T> &mat,
 					     bool exc = true);
 
-template <class T>  void        sansScalingAndShear 
+template < class T >  void        sansScalingAndShear
                                             (Matrix44<T> &result,
-                                             const Matrix44<T> &mat, 
+                                             const Matrix44<T> &mat,
 					     bool exc = true);
 
-template <class T>  bool        removeScalingAndShear 
+template < class T >  bool        removeScalingAndShear
                                             (Matrix44<T> &mat,
 					     bool exc = true);
 
-template <class T>  bool        extractAndRemoveScalingAndShear
+template < class T >  bool        extractAndRemoveScalingAndShear
                                             (Matrix44<T> &mat,
 					     Vec3<T>     &scl,
 					     Vec3<T>     &shr,
 					     bool exc = true);
 
-template <class T>  void	extractEulerXYZ 
+template < class T >  void	extractEulerXYZ
                                             (const Matrix44<T> &mat,
 					     Vec3<T> &rot);
 
-template <class T>  void	extractEulerZYX 
+template < class T >  void	extractEulerZYX
                                             (const Matrix44<T> &mat,
 					     Vec3<T> &rot);
 
-template <class T>  Quat<T>	extractQuat (const Matrix44<T> &mat);
+template < class T >  Quat<T>	extractQuat (const Matrix44<T> &mat);
 
-template <class T>  bool	extractSHRT 
+template < class T >  bool	extractSHRT
                                     (const Matrix44<T> &mat,
 				     Vec3<T> &s,
 				     Vec3<T> &h,
@@ -183,7 +183,7 @@ template <class T>  bool	extractSHRT
 				     bool exc /*= true*/,
 				     typename Euler<T>::Order rOrder);
 
-template <class T>  bool	extractSHRT 
+template < class T >  bool	extractSHRT
                                     (const Matrix44<T> &mat,
 				     Vec3<T> &s,
 				     Vec3<T> &h,
@@ -191,7 +191,7 @@ template <class T>  bool	extractSHRT
 				     Vec3<T> &t,
 				     bool exc = true);
 
-template <class T>  bool	extractSHRT 
+template < class T >  bool	extractSHRT
                                     (const Matrix44<T> &mat,
 				     Vec3<T> &s,
 				     Vec3<T> &h,
@@ -203,12 +203,12 @@ template <class T>  bool	extractSHRT
 // Internal utility function.
 //
 
-template <class T>  bool	checkForZeroScaleInRow
-                                            (const T       &scl, 
+template < class T >  bool	checkForZeroScaleInRow
+                                            (const T       &scl,
 					     const Vec3<T> &row,
 					     bool exc = true);
 
-template <class T>  Matrix44<T> outerProduct
+template < class T >  Matrix44<T> outerProduct
                                             ( const Vec4<T> &a,
                                               const Vec4<T> &b);
 
@@ -218,51 +218,51 @@ template <class T>  Matrix44<T> outerProduct
 // vector.
 //
 
-template <class T> Matrix44<T>	rotationMatrix (const Vec3<T> &fromDirection,
+template < class T > Matrix44<T>	rotationMatrix (const Vec3<T> &fromDirection,
 						const Vec3<T> &toDirection);
 
 
 
 //
-// Returns a matrix that rotates the "fromDir" vector 
-// so that it points towards "toDir".  You may also 
-// specify that you want the up vector to be pointing 
+// Returns a matrix that rotates the "fromDir" vector
+// so that it points towards "toDir".  You may also
+// specify that you want the up vector to be pointing
 // in a certain direction "upDir".
 //
 
-template <class T> Matrix44<T>	rotationMatrixWithUpDir 
+template < class T > Matrix44<T>	rotationMatrixWithUpDir
                                             (const Vec3<T> &fromDir,
 					     const Vec3<T> &toDir,
 					     const Vec3<T> &upDir);
 
 
 //
-// Constructs a matrix that rotates the z-axis so that it 
-// points towards "targetDir".  You must also specify 
-// that you want the up vector to be pointing in a 
+// Constructs a matrix that rotates the z-axis so that it
+// points towards "targetDir".  You must also specify
+// that you want the up vector to be pointing in a
 // certain direction "upDir".
 //
 // Notes: The following degenerate cases are handled:
-//        (a) when the directions given by "toDir" and "upDir" 
+//        (a) when the directions given by "toDir" and "upDir"
 //            are parallel or opposite;
 //            (the direction vectors must have a non-zero cross product)
 //        (b) when any of the given direction vectors have zero length
 //
 
-template <class T> void	alignZAxisWithTargetDir 
+template < class T > void	alignZAxisWithTargetDir
                                             (Matrix44<T> &result,
-                                             Vec3<T>      targetDir, 
+                                             Vec3<T>      targetDir,
 					     Vec3<T>      upDir);
 
 
 // Compute an orthonormal direct frame from : a position, an x axis direction and a normal to the y axis
 // If the x axis and normal are perpendicular, then the normal will have the same direction as the z axis.
-// Inputs are : 
+// Inputs are :
 //     -the position of the frame
 //     -the x axis direction of the frame
 //     -a normal to the y axis of the frame
 // Return is the orthonormal frame
-template <class T> Matrix44<T> computeLocalFrame( const Vec3<T>& p,
+template < class T > Matrix44<T> computeLocalFrame( const Vec3<T>& p,
                                                   const Vec3<T>& xDir,
                                                   const Vec3<T>& normal);
 
@@ -275,7 +275,7 @@ template <class T> Matrix44<T> computeLocalFrame( const Vec3<T>& p,
 //     - scale     offset
 //     - frame of reference
 // Output is the offsetted frame
-template <class T> Matrix44<T> addOffset( const Matrix44<T>& inMat,
+template < class T > Matrix44<T> addOffset( const Matrix44<T>& inMat,
                                           const Vec3<T>&     tOffset,
                                           const Vec3<T>&     rOffset,
                                           const Vec3<T>&     sOffset,
@@ -288,8 +288,8 @@ template <class T> Matrix44<T> addOffset( const Matrix44<T>& inMat,
 //      -Matrix A
 //      -Matrix B
 // Return Matrix A with tweaked rotation/scale
-template <class T> Matrix44<T> computeRSMatrix( bool               keepRotateA,
-                                                bool               keepScaleA, 
+template < class T > Matrix44<T> computeRSMatrix( bool               keepRotateA,
+                                                bool               keepScaleA,
                                                 const Matrix44<T>& A,
                                                 const Matrix44<T>& B);
 
@@ -297,60 +297,60 @@ template <class T> Matrix44<T> computeRSMatrix( bool               keepRotateA,
 //----------------------------------------------------------------------
 
 
-// 
+//
 // Declarations for 3x3 matrix.
 //
 
- 
-template <class T>  bool        extractScaling 
+
+template < class T >  bool        extractScaling
                                             (const Matrix33<T> &mat,
 					     Vec2<T> &scl,
 					     bool exc = true);
-  
-template <class T>  Matrix33<T> sansScaling (const Matrix33<T> &mat, 
+
+template < class T >  Matrix33<T> sansScaling (const Matrix33<T> &mat,
 					     bool exc = true);
 
-template <class T>  bool        removeScaling 
-                                            (Matrix33<T> &mat, 
+template < class T >  bool        removeScaling
+                                            (Matrix33<T> &mat,
 					     bool exc = true);
 
-template <class T>  bool        extractScalingAndShear 
+template < class T >  bool        extractScalingAndShear
                                             (const Matrix33<T> &mat,
 					     Vec2<T> &scl,
 					     T &h,
 					     bool exc = true);
-  
-template <class T>  Matrix33<T> sansScalingAndShear 
-                                            (const Matrix33<T> &mat, 
+
+template < class T >  Matrix33<T> sansScalingAndShear
+                                            (const Matrix33<T> &mat,
 					     bool exc = true);
 
-template <class T>  bool        removeScalingAndShear 
+template < class T >  bool        removeScalingAndShear
                                             (Matrix33<T> &mat,
 					     bool exc = true);
 
-template <class T>  bool        extractAndRemoveScalingAndShear
+template < class T >  bool        extractAndRemoveScalingAndShear
                                             (Matrix33<T> &mat,
 					     Vec2<T>     &scl,
 					     T           &shr,
 					     bool exc = true);
 
-template <class T>  void	extractEuler
+template < class T >  void	extractEuler
                                             (const Matrix33<T> &mat,
 					     T       &rot);
 
-template <class T>  bool	extractSHRT (const Matrix33<T> &mat,
+template < class T >  bool	extractSHRT (const Matrix33<T> &mat,
 					     Vec2<T> &s,
 					     T       &h,
 					     T       &r,
 					     Vec2<T> &t,
 					     bool exc = true);
 
-template <class T>  bool	checkForZeroScaleInRow
-                                            (const T       &scl, 
+template < class T >  bool	checkForZeroScaleInRow
+                                            (const T       &scl,
 					     const Vec2<T> &row,
 					     bool exc = true);
 
-template <class T>  Matrix33<T> outerProduct
+template < class T >  Matrix33<T> outerProduct
                                             ( const Vec3<T> &a,
                                               const Vec3<T> &b);
 
@@ -360,7 +360,7 @@ template <class T>  Matrix33<T> outerProduct
 //------------------------------
 
 
-template <class T>
+template < class T >
 bool
 extractScaling (const Matrix44<T> &mat, Vec3<T> &scl, bool exc)
 {
@@ -369,12 +369,12 @@ extractScaling (const Matrix44<T> &mat, Vec3<T> &scl, bool exc)
 
     if (! extractAndRemoveScalingAndShear (M, scl, shr, exc))
 	return false;
-    
+
     return true;
 }
 
 
-template <class T>
+template < class T >
 Matrix44<T>
 sansScaling (const Matrix44<T> &mat, bool exc)
 {
@@ -387,7 +387,7 @@ sansScaling (const Matrix44<T> &mat, bool exc)
 	return mat;
 
     Matrix44<T> M;
-    
+
     M.translate (tran);
     M.rotate (rot);
     M.shear (shr);
@@ -396,7 +396,7 @@ sansScaling (const Matrix44<T> &mat, bool exc)
 }
 
 
-template <class T>
+template < class T >
 bool
 removeScaling (Matrix44<T> &mat, bool exc)
 {
@@ -417,21 +417,21 @@ removeScaling (Matrix44<T> &mat, bool exc)
 }
 
 
-template <class T>
+template < class T >
 bool
-extractScalingAndShear (const Matrix44<T> &mat, 
+extractScalingAndShear (const Matrix44<T> &mat,
 			Vec3<T> &scl, Vec3<T> &shr, bool exc)
 {
     Matrix44<T> M (mat);
 
     if (! extractAndRemoveScalingAndShear (M, scl, shr, exc))
 	return false;
-    
+
     return true;
 }
 
 
-template <class T>
+template < class T >
 Matrix44<T>
 sansScalingAndShear (const Matrix44<T> &mat, bool exc)
 {
@@ -441,12 +441,12 @@ sansScalingAndShear (const Matrix44<T> &mat, bool exc)
 
     if (! extractAndRemoveScalingAndShear (M, scl, shr, exc))
 	return mat;
-    
+
     return M;
 }
 
 
-template <class T>
+template < class T >
 void
 sansScalingAndShear (Matrix44<T> &result, const Matrix44<T> &mat, bool exc)
 {
@@ -458,7 +458,7 @@ sansScalingAndShear (Matrix44<T> &result, const Matrix44<T> &mat, bool exc)
 }
 
 
-template <class T>
+template < class T >
 bool
 removeScalingAndShear (Matrix44<T> &mat, bool exc)
 {
@@ -467,19 +467,19 @@ removeScalingAndShear (Matrix44<T> &mat, bool exc)
 
     if (! extractAndRemoveScalingAndShear (mat, scl, shr, exc))
 	return false;
-    
+
     return true;
 }
 
 
-template <class T>
+template < class T >
 bool
-extractAndRemoveScalingAndShear (Matrix44<T> &mat, 
+extractAndRemoveScalingAndShear (Matrix44<T> &mat,
 				 Vec3<T> &scl, Vec3<T> &shr, bool exc)
 {
     //
     // This implementation follows the technique described in the paper by
-    // Spencer W. Thomas in the Graphics Gems II article: "Decomposing a 
+    // Spencer W. Thomas in the Graphics Gems II article: "Decomposing a
     // Matrix into Simple Transformations", p. 320.
     //
 
@@ -488,7 +488,7 @@ extractAndRemoveScalingAndShear (Matrix44<T> &mat,
     row[0] = Vec3<T> (mat[0][0], mat[0][1], mat[0][2]);
     row[1] = Vec3<T> (mat[1][0], mat[1][1], mat[1][2]);
     row[2] = Vec3<T> (mat[2][0], mat[2][1], mat[2][2]);
-    
+
     T maxVal = 0;
     for (int i=0; i < 3; i++)
 	for (int j=0; j < 3; j++)
@@ -499,8 +499,8 @@ extractAndRemoveScalingAndShear (Matrix44<T> &mat,
     // We normalize the 3x3 matrix here.
     // It was noticed that this can improve numerical stability significantly,
     // especially when many of the upper 3x3 matrix's coefficients are very
-    // close to zero; we correct for this step at the end by multiplying the 
-    // scaling factors by maxVal at the end (shear and rotation are not 
+    // close to zero; we correct for this step at the end by multiplying the
+    // scaling factors by maxVal at the end (shear and rotation are not
     // affected by the normalization).
 
     if (maxVal != 0)
@@ -512,7 +512,7 @@ extractAndRemoveScalingAndShear (Matrix44<T> &mat,
 		row[i] /= maxVal;
     }
 
-    // Compute X scale factor. 
+    // Compute X scale factor.
     scl.x = row[0].length ();
     if (! checkForZeroScaleInRow (scl.x, row[0], exc))
 	return false;
@@ -540,7 +540,7 @@ extractAndRemoveScalingAndShear (Matrix44<T> &mat,
 	return false;
 
     // Normalize 2nd row and correct the XY shear factor for Y scaling.
-    row[1] /= scl.y; 
+    row[1] /= scl.y;
     shr[0] /= scl.y;
 
     // Compute XZ and YZ shears, orthogonalize 3rd row.
@@ -573,13 +573,13 @@ extractAndRemoveScalingAndShear (Matrix44<T> &mat,
     // The upper 3x3 matrix in mat is now a rotation matrix.
     for (int i=0; i < 3; i++)
     {
-	mat[i][0] = row[i][0]; 
-	mat[i][1] = row[i][1]; 
+	mat[i][0] = row[i][0];
+	mat[i][1] = row[i][1];
 	mat[i][2] = row[i][2];
     }
 
-    // Correct the scaling factors for the normalization step that we 
-    // performed above; shear and rotation are not affected by the 
+    // Correct the scaling factors for the normalization step that we
+    // performed above; shear and rotation are not affected by the
     // normalization.
     scl *= maxVal;
 
@@ -587,7 +587,7 @@ extractAndRemoveScalingAndShear (Matrix44<T> &mat,
 }
 
 
-template <class T>
+template < class T >
 void
 extractEulerXYZ (const Matrix44<T> &mat, Vec3<T> &rot)
 {
@@ -603,14 +603,14 @@ extractEulerXYZ (const Matrix44<T> &mat, Vec3<T> &rot)
     j.normalize();
     k.normalize();
 
-    Matrix44<T> M (i[0], i[1], i[2], 0, 
-		   j[0], j[1], j[2], 0, 
-		   k[0], k[1], k[2], 0, 
+    Matrix44<T> M (i[0], i[1], i[2], 0,
+		   j[0], j[1], j[2], 0,
+		   k[0], k[1], k[2], 0,
 		   0,    0,    0,    1);
 
     //
     // Extract the first angle, rot.x.
-    // 
+    //
 
     rot.x = Math<T>::atan2 (M[1][2], M[2][2]);
 
@@ -634,7 +634,7 @@ extractEulerXYZ (const Matrix44<T> &mat, Vec3<T> &rot)
 }
 
 
-template <class T>
+template < class T >
 void
 extractEulerZYX (const Matrix44<T> &mat, Vec3<T> &rot)
 {
@@ -650,14 +650,14 @@ extractEulerZYX (const Matrix44<T> &mat, Vec3<T> &rot)
     j.normalize();
     k.normalize();
 
-    Matrix44<T> M (i[0], i[1], i[2], 0, 
-		   j[0], j[1], j[2], 0, 
-		   k[0], k[1], k[2], 0, 
+    Matrix44<T> M (i[0], i[1], i[2], 0,
+		   j[0], j[1], j[2], 0,
+		   k[0], k[1], k[2], 0,
 		   0,    0,    0,    1);
 
     //
     // Extract the first angle, rot.x.
-    // 
+    //
 
     rot.x = -Math<T>::atan2 (M[1][0], M[0][0]);
 
@@ -681,7 +681,7 @@ extractEulerZYX (const Matrix44<T> &mat, Vec3<T> &rot)
 }
 
 
-template <class T>
+template < class T >
 Quat<T>
 extractQuat (const Matrix44<T> &mat)
 {
@@ -704,21 +704,21 @@ extractQuat (const Matrix44<T> &mat)
      quat.v.x = (mat[1][2] - mat[2][1]) * s;
      quat.v.y = (mat[2][0] - mat[0][2]) * s;
      quat.v.z = (mat[0][1] - mat[1][0]) * s;
-  } 
-  else {      
+  }
+  else {
      // diagonal is negative
      i = 0;
-     if (mat[1][1] > mat[0][0]) 
+     if (mat[1][1] > mat[0][0])
         i=1;
-     if (mat[2][2] > mat[i][i]) 
+     if (mat[2][2] > mat[i][i])
         i=2;
-    
+
      j = nxt[i];
      k = nxt[j];
      s = Math<T>::sqrt ((mat[i][i] - (mat[j][j] + mat[k][k])) + T(1.0));
-      
+
      q[i] = s * T(0.5);
-     if (s != T(0.0)) 
+     if (s != T(0.0))
         s = T(0.5) / s;
 
      q[3] = (mat[j][k] - mat[k][j]) * s;
@@ -734,8 +734,8 @@ extractQuat (const Matrix44<T> &mat)
   return quat;
 }
 
-template <class T>
-bool 
+template < class T >
+bool
 extractSHRT (const Matrix44<T> &mat,
 	     Vec3<T> &s,
 	     Vec3<T> &h,
@@ -766,8 +766,8 @@ extractSHRT (const Matrix44<T> &mat,
     return true;
 }
 
-template <class T>
-bool 
+template < class T >
+bool
 extractSHRT (const Matrix44<T> &mat,
 	     Vec3<T> &s,
 	     Vec3<T> &h,
@@ -778,8 +778,8 @@ extractSHRT (const Matrix44<T> &mat,
     return extractSHRT(mat, s, h, r, t, exc, Imath::Euler<T>::XYZ);
 }
 
-template <class T>
-bool 
+template < class T >
+bool
 extractSHRT (const Matrix44<T> &mat,
 	     Vec3<T> &s,
 	     Vec3<T> &h,
@@ -791,9 +791,9 @@ extractSHRT (const Matrix44<T> &mat,
 }
 
 
-template <class T> 
-bool		
-checkForZeroScaleInRow (const T& scl, 
+template < class T >
+bool
+checkForZeroScaleInRow (const T& scl,
 			const Vec3<T> &row,
 			bool exc /* = true */ )
 {
@@ -812,7 +812,7 @@ checkForZeroScaleInRow (const T& scl,
     return true;
 }
 
-template <class T>
+template < class T >
 Matrix44<T>
 outerProduct (const Vec4<T> &a, const Vec4<T> &b )
 {
@@ -822,7 +822,7 @@ outerProduct (const Vec4<T> &a, const Vec4<T> &b )
                         a.w*b.x, a.w*b.y, a.w*b.z, a.w*b.w);
 }
 
-template <class T>
+template < class T >
 Matrix44<T>
 rotationMatrix (const Vec3<T> &from, const Vec3<T> &to)
 {
@@ -832,16 +832,16 @@ rotationMatrix (const Vec3<T> &from, const Vec3<T> &to)
 }
 
 
-template <class T>
-Matrix44<T>	
+template < class T >
+Matrix44<T>
 rotationMatrixWithUpDir (const Vec3<T> &fromDir,
 			 const Vec3<T> &toDir,
 			 const Vec3<T> &upDir)
 {
     //
-    // The goal is to obtain a rotation matrix that takes 
-    // "fromDir" to "toDir".  We do this in two steps and 
-    // compose the resulting rotation matrices; 
+    // The goal is to obtain a rotation matrix that takes
+    // "fromDir" to "toDir".  We do this in two steps and
+    // compose the resulting rotation matrices;
     //    (a) rotate "fromDir" into the z-axis
     //    (b) rotate the z-axis into "toDir"
     //
@@ -856,7 +856,7 @@ rotationMatrixWithUpDir (const Vec3<T> &fromDir,
 	alignZAxisWithTargetDir (zAxis2FromDir, fromDir, Vec3<T> (0, 1, 0));
 
 	Matrix44<T> fromDir2zAxis  = zAxis2FromDir.transposed ();
-	
+
 	Matrix44<T> zAxis2ToDir( Imath::UNINITIALIZED );
 	alignZAxisWithTargetDir (zAxis2ToDir, toDir, upDir);
 
@@ -865,7 +865,7 @@ rotationMatrixWithUpDir (const Vec3<T> &fromDir,
 }
 
 
-template <class T>
+template < class T >
 void
 alignZAxisWithTargetDir (Matrix44<T> &result, Vec3<T> targetDir, Vec3<T> upDir)
 {
@@ -884,7 +884,7 @@ alignZAxisWithTargetDir (Matrix44<T> &result, Vec3<T> targetDir, Vec3<T> upDir)
 	upDir = Vec3<T> (0, 1, 0);
 
     //
-    // Check for degeneracies.  If the upDir and targetDir are parallel 
+    // Check for degeneracies.  If the upDir and targetDir are parallel
     // or opposite, then compute a new, arbitrary up direction that is
     // not parallel or opposite to the targetDir.
     //
@@ -900,35 +900,35 @@ alignZAxisWithTargetDir (Matrix44<T> &result, Vec3<T> targetDir, Vec3<T> upDir)
     // Compute the x-, y-, and z-axis vectors of the new coordinate system.
     //
 
-    Vec3<T> targetPerpDir = upDir.cross (targetDir);    
+    Vec3<T> targetPerpDir = upDir.cross (targetDir);
     Vec3<T> targetUpDir   = targetDir.cross (targetPerpDir);
-    
+
     //
     // Rotate the x-axis into targetPerpDir (row 0),
     // rotate the y-axis into targetUpDir   (row 1),
     // rotate the z-axis into targetDir     (row 2).
     //
-    
+
     Vec3<T> row[3];
     row[0] = targetPerpDir.normalized ();
     row[1] = targetUpDir  .normalized ();
     row[2] = targetDir    .normalized ();
-    
+
     result.x[0][0] = row[0][0];
     result.x[0][1] = row[0][1];
     result.x[0][2] = row[0][2];
     result.x[0][3] = (T)0;
- 
+
     result.x[1][0] = row[1][0];
     result.x[1][1] = row[1][1];
     result.x[1][2] = row[1][2];
     result.x[1][3] = (T)0;
- 
+
     result.x[2][0] = row[2][0];
     result.x[2][1] = row[2][1];
     result.x[2][2] = row[2][2];
     result.x[2][3] = (T)0;
- 
+
     result.x[3][0] = (T)0;
     result.x[3][1] = (T)0;
     result.x[3][2] = (T)0;
@@ -938,12 +938,12 @@ alignZAxisWithTargetDir (Matrix44<T> &result, Vec3<T> targetDir, Vec3<T> upDir)
 
 // Compute an orthonormal direct frame from : a position, an x axis direction and a normal to the y axis
 // If the x axis and normal are perpendicular, then the normal will have the same direction as the z axis.
-// Inputs are : 
+// Inputs are :
 //     -the position of the frame
 //     -the x axis direction of the frame
 //     -a normal to the y axis of the frame
 // Return is the orthonormal frame
-template <class T>
+template < class T >
 Matrix44<T>
 computeLocalFrame( const Vec3<T>& p,
                    const Vec3<T>& xDir,
@@ -974,7 +974,7 @@ computeLocalFrame( const Vec3<T>& p,
     L[3][1] = p[1];
     L[3][2] = p[2];
     L[3][3] = 1.0;
-    
+
     return L;
 }
 
@@ -987,7 +987,7 @@ computeLocalFrame( const Vec3<T>& p,
 //     - scale     offset
 //     - frame of reference
 // Output is the offsetted frame
-template <class T>
+template < class T >
 Matrix44<T>
 addOffset( const Matrix44<T>& inMat,
            const Vec3<T>&     tOffset,
@@ -1020,16 +1020,16 @@ addOffset( const Matrix44<T>& inMat,
 //      -Matrix A
 //      -Matrix B
 // Return Matrix A with tweaked rotation/scale
-template <class T>
+template < class T >
 Matrix44<T>
 computeRSMatrix( bool               keepRotateA,
-                 bool               keepScaleA, 
-                 const Matrix44<T>& A, 
+                 bool               keepScaleA,
+                 const Matrix44<T>& A,
                  const Matrix44<T>& B)
 {
     Vec3<T> as, ah, ar, at;
     extractSHRT (A, as, ah, ar, at);
-    
+
     Vec3<T> bs, bh, br, bt;
     extractSHRT (B, bs, bh, br, bt);
 
@@ -1044,7 +1044,7 @@ computeRSMatrix( bool               keepRotateA,
     mat.translate (at);
     mat.rotate (ar);
     mat.scale (as);
-    
+
     return mat;
 }
 
@@ -1055,7 +1055,7 @@ computeRSMatrix( bool               keepRotateA,
 //------------------------------
 
 
-template <class T>
+template < class T >
 bool
 extractScaling (const Matrix33<T> &mat, Vec2<T> &scl, bool exc)
 {
@@ -1069,7 +1069,7 @@ extractScaling (const Matrix33<T> &mat, Vec2<T> &scl, bool exc)
 }
 
 
-template <class T>
+template < class T >
 Matrix33<T>
 sansScaling (const Matrix33<T> &mat, bool exc)
 {
@@ -1082,7 +1082,7 @@ sansScaling (const Matrix33<T> &mat, bool exc)
 	return mat;
 
     Matrix33<T> M;
-    
+
     M.translate (tran);
     M.rotate (rot);
     M.shear (shr);
@@ -1091,7 +1091,7 @@ sansScaling (const Matrix33<T> &mat, bool exc)
 }
 
 
-template <class T>
+template < class T >
 bool
 removeScaling (Matrix33<T> &mat, bool exc)
 {
@@ -1112,7 +1112,7 @@ removeScaling (Matrix33<T> &mat, bool exc)
 }
 
 
-template <class T>
+template < class T >
 bool
 extractScalingAndShear (const Matrix33<T> &mat, Vec2<T> &scl, T &shr, bool exc)
 {
@@ -1125,7 +1125,7 @@ extractScalingAndShear (const Matrix33<T> &mat, Vec2<T> &scl, T &shr, bool exc)
 }
 
 
-template <class T>
+template < class T >
 Matrix33<T>
 sansScalingAndShear (const Matrix33<T> &mat, bool exc)
 {
@@ -1135,12 +1135,12 @@ sansScalingAndShear (const Matrix33<T> &mat, bool exc)
 
     if (! extractAndRemoveScalingAndShear (M, scl, shr, exc))
 	return mat;
-    
+
     return M;
 }
 
 
-template <class T>
+template < class T >
 bool
 removeScalingAndShear (Matrix33<T> &mat, bool exc)
 {
@@ -1149,20 +1149,20 @@ removeScalingAndShear (Matrix33<T> &mat, bool exc)
 
     if (! extractAndRemoveScalingAndShear (mat, scl, shr, exc))
 	return false;
-    
+
     return true;
 }
 
-template <class T>
+template < class T >
 bool
-extractAndRemoveScalingAndShear (Matrix33<T> &mat, 
+extractAndRemoveScalingAndShear (Matrix33<T> &mat,
 				 Vec2<T> &scl, T &shr, bool exc)
 {
     Vec2<T> row[2];
 
     row[0] = Vec2<T> (mat[0][0], mat[0][1]);
     row[1] = Vec2<T> (mat[1][0], mat[1][1]);
-    
+
     T maxVal = 0;
     for (int i=0; i < 2; i++)
 	for (int j=0; j < 2; j++)
@@ -1173,8 +1173,8 @@ extractAndRemoveScalingAndShear (Matrix33<T> &mat,
     // We normalize the 2x2 matrix here.
     // It was noticed that this can improve numerical stability significantly,
     // especially when many of the upper 2x2 matrix's coefficients are very
-    // close to zero; we correct for this step at the end by multiplying the 
-    // scaling factors by maxVal at the end (shear and rotation are not 
+    // close to zero; we correct for this step at the end by multiplying the
+    // scaling factors by maxVal at the end (shear and rotation are not
     // affected by the normalization).
 
     if (maxVal != 0)
@@ -1186,7 +1186,7 @@ extractAndRemoveScalingAndShear (Matrix33<T> &mat,
 		row[i] /= maxVal;
     }
 
-    // Compute X scale factor. 
+    // Compute X scale factor.
     scl.x = row[0].length ();
     if (! checkForZeroScaleInRow (scl.x, row[0], exc))
 	return false;
@@ -1195,8 +1195,8 @@ extractAndRemoveScalingAndShear (Matrix33<T> &mat,
     row[0] /= scl.x;
 
     // An XY shear factor will shear the X coord. as the Y coord. changes.
-    // There are 2 combinations (XY, YX), although we only extract the XY 
-    // shear factor because we can effect the an YX shear factor by 
+    // There are 2 combinations (XY, YX), although we only extract the XY
+    // shear factor because we can effect the an YX shear factor by
     // shearing in XY combined with rotations and scales.
     //
     // shear matrix <   1,  YX,  0,
@@ -1213,12 +1213,12 @@ extractAndRemoveScalingAndShear (Matrix33<T> &mat,
 	return false;
 
     // Normalize 2nd row and correct the XY shear factor for Y scaling.
-    row[1] /= scl.y; 
+    row[1] /= scl.y;
     shr    /= scl.y;
 
     // At this point, the upper 2x2 matrix in mat is orthonormal.
     // Check for a coordinate system flip. If the determinant
-    // is -1, then flip the rotation matrix and adjust the scale(Y) 
+    // is -1, then flip the rotation matrix and adjust the scale(Y)
     // and shear(XY) factors to compensate.
     if (row[0][0] * row[1][1] - row[0][1] * row[1][0] < 0)
     {
@@ -1232,8 +1232,8 @@ extractAndRemoveScalingAndShear (Matrix33<T> &mat,
     // The upper 2x2 matrix in mat is now a rotation matrix.
     for (int i=0; i < 2; i++)
     {
-	mat[i][0] = row[i][0]; 
-	mat[i][1] = row[i][1]; 
+	mat[i][0] = row[i][0];
+	mat[i][1] = row[i][1];
     }
 
     scl *= maxVal;
@@ -1242,7 +1242,7 @@ extractAndRemoveScalingAndShear (Matrix33<T> &mat,
 }
 
 
-template <class T>
+template < class T >
 void
 extractEuler (const Matrix33<T> &mat, T &rot)
 {
@@ -1258,14 +1258,14 @@ extractEuler (const Matrix33<T> &mat, T &rot)
 
     //
     // Extract the angle, rot.
-    // 
+    //
 
     rot = - Math<T>::atan2 (j[0], i[0]);
 }
 
 
-template <class T>
-bool 
+template < class T >
+bool
 extractSHRT (const Matrix33<T> &mat,
 	     Vec2<T> &s,
 	     T       &h,
@@ -1288,9 +1288,9 @@ extractSHRT (const Matrix33<T> &mat,
 }
 
 
-template <class T> 
-bool		
-checkForZeroScaleInRow (const T& scl, 
+template < class T >
+bool
+checkForZeroScaleInRow (const T& scl,
 			const Vec2<T> &row,
 			bool exc /* = true */ )
 {
@@ -1310,7 +1310,7 @@ checkForZeroScaleInRow (const T& scl,
 }
 
 
-template <class T>
+template < class T >
 Matrix33<T>
 outerProduct (const Vec3<T> &a, const Vec3<T> &b )
 {
@@ -1321,7 +1321,7 @@ outerProduct (const Vec3<T> &a, const Vec3<T> &b )
 
 
 // Computes the translation and rotation that brings the 'from' points
-// as close as possible to the 'to' points under the Frobenius norm.  
+// as close as possible to the 'to' points under the Frobenius norm.
 // To be more specific, let x be the matrix of 'from' points and y be
 // the matrix of 'to' points, we want to find the matrix A of the form
 //    [ R t ]
@@ -1333,22 +1333,22 @@ template <typename T>
 Imath::M44d
 procrustesRotationAndTranslation (const Imath::Vec3<T>* A,  // From these
                                   const Imath::Vec3<T>* B,  // To these
-                                  const T* weights, 
+                                  const T* weights,
                                   const size_t numPoints,
                                   const bool doScaling = false);
 
 // Unweighted:
 template <typename T>
 Imath::M44d
-procrustesRotationAndTranslation (const Imath::Vec3<T>* A, 
-                                  const Imath::Vec3<T>* B, 
+procrustesRotationAndTranslation (const Imath::Vec3<T>* A,
+                                  const Imath::Vec3<T>* B,
                                   const size_t numPoints,
                                   const bool doScaling = false);
 
 // Compute the SVD of a 3x3 matrix using Jacobi transformations.  This method
 // should be quite accurate (competitive with LAPACK) even for poorly
 // conditioned matrices, and because it has been written specifically for the
-// 3x3/4x4 case it is much faster than calling out to LAPACK.  
+// 3x3/4x4 case it is much faster than calling out to LAPACK.
 //
 // The SVD of a 3x3/4x4 matrix A is defined as follows:
 //     A = U * S * V^T
@@ -1357,7 +1357,7 @@ procrustesRotationAndTranslation (const Imath::Vec3<T>* A,
 // the largest to the smallest.  However, some uses of this function may
 // require that the matrix U*V^T have positive determinant; in this case, we
 // may make the smallest singular value negative to ensure that this is
-// satisfied.  
+// satisfied.
 //
 // Currently only available for single- and double-precision matrices.
 template <typename T>
@@ -1385,7 +1385,7 @@ jacobiSVD (const Imath::Matrix44<T>& A,
 // 	A = V * S * V^T
 // where V is orthonormal and S is the diagonal matrix of eigenvalues.
 // Input matrix A must be symmetric. A is also modified during
-// the computation so that upper diagonal entries of A become zero. 
+// the computation so that upper diagonal entries of A become zero.
 //
 template <typename T>
 void

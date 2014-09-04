@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2002, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -67,7 +67,7 @@ namespace Imath {
 #pragma warning(disable:4244)
 #endif
 
-template <class T>
+template < class T >
 class Quat
 {
   public:
@@ -156,60 +156,60 @@ class Quat
 };
 
 
-template<class T>
+template< class T >
 Quat<T>			slerp (const Quat<T> &q1, const Quat<T> &q2, T t);
 
-template<class T>
+template< class T >
 Quat<T>			slerpShortestArc
                               (const Quat<T> &q1, const Quat<T> &q2, T t);
 
 
-template<class T>
-Quat<T>			squad (const Quat<T> &q1, const Quat<T> &q2, 
+template< class T >
+Quat<T>			squad (const Quat<T> &q1, const Quat<T> &q2,
 			       const Quat<T> &qa, const Quat<T> &qb, T t);
 
-template<class T>
-void			intermediate (const Quat<T> &q0, const Quat<T> &q1, 
+template< class T >
+void			intermediate (const Quat<T> &q0, const Quat<T> &q1,
 				      const Quat<T> &q2, const Quat<T> &q3,
 				      Quat<T> &qa, Quat<T> &qb);
 
-template<class T>
+template< class T >
 Matrix33<T>		operator * (const Matrix33<T> &M, const Quat<T> &q);
 
-template<class T>
+template< class T >
 Matrix33<T>		operator * (const Quat<T> &q, const Matrix33<T> &M);
 
-template<class T>
+template< class T >
 std::ostream &		operator << (std::ostream &o, const Quat<T> &q);
 
-template<class T>
+template< class T >
 Quat<T>			operator * (const Quat<T> &q1, const Quat<T> &q2);
 
-template<class T>
+template< class T >
 Quat<T>			operator / (const Quat<T> &q1, const Quat<T> &q2);
 
-template<class T>
+template< class T >
 Quat<T>			operator / (const Quat<T> &q, T t);
 
-template<class T>
+template< class T >
 Quat<T>			operator * (const Quat<T> &q, T t);
 
-template<class T>
+template< class T >
 Quat<T>			operator * (T t, const Quat<T> &q);
 
-template<class T>
+template< class T >
 Quat<T>			operator + (const Quat<T> &q1, const Quat<T> &q2);
 
-template<class T>
+template< class T >
 Quat<T>			operator - (const Quat<T> &q1, const Quat<T> &q2);
 
-template<class T>
+template< class T >
 Quat<T>			operator ~ (const Quat<T> &q);
 
-template<class T>
+template< class T >
 Quat<T>			operator - (const Quat<T> &q);
 
-template<class T>
+template< class T >
 Vec3<T>			operator * (const Vec3<T> &v, const Quat<T> &q);
 
 
@@ -225,7 +225,7 @@ typedef Quat<double>	Quatd;
 // Implementation
 //---------------
 
-template<class T>
+template< class T >
 inline
 Quat<T>::Quat (): r (1), v (0, 0, 0)
 {
@@ -233,7 +233,7 @@ Quat<T>::Quat (): r (1), v (0, 0, 0)
 }
 
 
-template<class T>
+template< class T >
 template <class S>
 inline
 Quat<T>::Quat (const Quat<S> &q): r (q.r), v (q.v)
@@ -242,7 +242,7 @@ Quat<T>::Quat (const Quat<S> &q): r (q.r), v (q.v)
 }
 
 
-template<class T>
+template< class T >
 inline
 Quat<T>::Quat (T s, T i, T j, T k): r (s), v (i, j, k)
 {
@@ -250,7 +250,7 @@ Quat<T>::Quat (T s, T i, T j, T k): r (s), v (i, j, k)
 }
 
 
-template<class T>
+template< class T >
 inline
 Quat<T>::Quat (T s, Vec3<T> d): r (s), v (d)
 {
@@ -258,14 +258,14 @@ Quat<T>::Quat (T s, Vec3<T> d): r (s), v (d)
 }
 
 
-template<class T>
+template< class T >
 inline Quat<T>
 Quat<T>::identity ()
 {
     return Quat<T>();
 }
 
-template<class T>
+template< class T >
 inline const Quat<T> &
 Quat<T>::operator = (const Quat<T> &q)
 {
@@ -275,7 +275,7 @@ Quat<T>::operator = (const Quat<T> &q)
 }
 
 
-template<class T>
+template< class T >
 inline const Quat<T> &
 Quat<T>::operator *= (const Quat<T> &q)
 {
@@ -286,7 +286,7 @@ Quat<T>::operator *= (const Quat<T> &q)
 }
 
 
-template<class T>
+template< class T >
 inline const Quat<T> &
 Quat<T>::operator *= (T t)
 {
@@ -296,7 +296,7 @@ Quat<T>::operator *= (T t)
 }
 
 
-template<class T>
+template< class T >
 inline const Quat<T> &
 Quat<T>::operator /= (const Quat<T> &q)
 {
@@ -305,7 +305,7 @@ Quat<T>::operator /= (const Quat<T> &q)
 }
 
 
-template<class T>
+template< class T >
 inline const Quat<T> &
 Quat<T>::operator /= (T t)
 {
@@ -315,7 +315,7 @@ Quat<T>::operator /= (T t)
 }
 
 
-template<class T>
+template< class T >
 inline const Quat<T> &
 Quat<T>::operator += (const Quat<T> &q)
 {
@@ -325,7 +325,7 @@ Quat<T>::operator += (const Quat<T> &q)
 }
 
 
-template<class T>
+template< class T >
 inline const Quat<T> &
 Quat<T>::operator -= (const Quat<T> &q)
 {
@@ -335,7 +335,7 @@ Quat<T>::operator -= (const Quat<T> &q)
 }
 
 
-template<class T>
+template< class T >
 inline T &
 Quat<T>::operator [] (int index)
 {
@@ -343,7 +343,7 @@ Quat<T>::operator [] (int index)
 }
 
 
-template<class T>
+template< class T >
 inline T
 Quat<T>::operator [] (int index) const
 {
@@ -351,7 +351,7 @@ Quat<T>::operator [] (int index) const
 }
 
 
-template <class T>
+template < class T >
 template <class S>
 inline bool
 Quat<T>::operator == (const Quat<S> &q) const
@@ -360,7 +360,7 @@ Quat<T>::operator == (const Quat<S> &q) const
 }
 
 
-template <class T>
+template < class T >
 template <class S>
 inline bool
 Quat<T>::operator != (const Quat<S> &q) const
@@ -369,7 +369,7 @@ Quat<T>::operator != (const Quat<S> &q) const
 }
 
 
-template<class T>
+template< class T >
 inline T
 operator ^ (const Quat<T>& q1 ,const Quat<T>& q2)
 {
@@ -377,7 +377,7 @@ operator ^ (const Quat<T>& q1 ,const Quat<T>& q2)
 }
 
 
-template <class T>
+template < class T >
 inline T
 Quat<T>::length () const
 {
@@ -385,7 +385,7 @@ Quat<T>::length () const
 }
 
 
-template <class T>
+template < class T >
 inline Quat<T> &
 Quat<T>::normalize ()
 {
@@ -404,7 +404,7 @@ Quat<T>::normalize ()
 }
 
 
-template <class T>
+template < class T >
 inline Quat<T>
 Quat<T>::normalized () const
 {
@@ -415,7 +415,7 @@ Quat<T>::normalized () const
 }
 
 
-template<class T>
+template< class T >
 inline Quat<T>
 Quat<T>::inverse () const
 {
@@ -430,7 +430,7 @@ Quat<T>::inverse () const
 }
 
 
-template<class T>
+template< class T >
 inline Quat<T> &
 Quat<T>::invert ()
 {
@@ -441,7 +441,7 @@ Quat<T>::invert ()
 }
 
 
-template<class T>
+template< class T >
 inline Vec3<T>
 Quat<T>::rotateVector(const Vec3<T>& original) const
 {
@@ -462,15 +462,15 @@ Quat<T>::rotateVector(const Vec3<T>& original) const
 }
 
 
-template<class T>
-inline T 
+template< class T >
+inline T
 Quat<T>::euclideanInnerProduct (const Quat<T> &q) const
 {
     return r * q.r + v.x * q.v.x + v.y * q.v.y + v.z * q.v.z;
 }
 
 
-template<class T>
+template< class T >
 T
 angle4D (const Quat<T> &q1, const Quat<T> &q2)
 {
@@ -489,7 +489,7 @@ angle4D (const Quat<T> &q1, const Quat<T> &q2)
 }
 
 
-template<class T>
+template< class T >
 Quat<T>
 slerp (const Quat<T> &q1, const Quat<T> &q2, T t)
 {
@@ -522,7 +522,7 @@ slerp (const Quat<T> &q1, const Quat<T> &q2, T t)
 }
 
 
-template<class T>
+template< class T >
 Quat<T>
 slerpShortestArc (const Quat<T> &q1, const Quat<T> &q2, T t)
 {
@@ -539,7 +539,7 @@ slerpShortestArc (const Quat<T> &q1, const Quat<T> &q2, T t)
 }
 
 
-template<class T>
+template< class T >
 Quat<T>
 spline (const Quat<T> &q0, const Quat<T> &q1,
         const Quat<T> &q2, const Quat<T> &q3,
@@ -555,17 +555,17 @@ spline (const Quat<T> &q0, const Quat<T> &q1,
     // Given a set of quaternion keys: q0, q1, q2, q3,
     // this routine does the interpolation between
     // q1 and q2 by constructing two intermediate
-    // quaternions: qa and qb. The qa and qb are 
-    // computed by the intermediate function to 
+    // quaternions: qa and qb. The qa and qb are
+    // computed by the intermediate function to
     // guarantee the continuity of tangents across
     // adjacent cubic segments. The qa represents in-tangent
     // for q1 and the qb represents the out-tangent for q2.
-    // 
-    // The q1 q2 is the cubic segment being interpolated. 
-    // The q0 is from the previous adjacent segment and q3 is 
+    //
+    // The q1 q2 is the cubic segment being interpolated.
+    // The q0 is from the previous adjacent segment and q3 is
     // from the next adjacent segment. The q0 and q3 are used
     // in computing qa and qb.
-    // 
+    //
 
     Quat<T> qa = intermediate (q0, q1, q2);
     Quat<T> qb = intermediate (q1, q2, q3);
@@ -575,7 +575,7 @@ spline (const Quat<T> &q0, const Quat<T> &q1,
 }
 
 
-template<class T>
+template< class T >
 Quat<T>
 squad (const Quat<T> &q1, const Quat<T> &qa,
        const Quat<T> &qb, const Quat<T> &q2,
@@ -585,11 +585,11 @@ squad (const Quat<T> &q1, const Quat<T> &qa,
     // Spherical Quadrangle Interpolation -
     // from Advanced Animation and Rendering
     // Techniques by Watt and Watt, Page 366:
-    // It constructs a spherical cubic interpolation as 
-    // a series of three spherical linear interpolations 
-    // of a quadrangle of unit quaternions. 
-    //     
-  
+    // It constructs a spherical cubic interpolation as
+    // a series of three spherical linear interpolations
+    // of a quadrangle of unit quaternions.
+    //
+
     Quat<T> r1 = slerp (q1, q2, t);
     Quat<T> r2 = slerp (qa, qb, t);
     Quat<T> result = slerp (r1, r2, 2 * t * (1 - t));
@@ -598,17 +598,17 @@ squad (const Quat<T> &q1, const Quat<T> &qa,
 }
 
 
-template<class T>
+template< class T >
 Quat<T>
 intermediate (const Quat<T> &q0, const Quat<T> &q1, const Quat<T> &q2)
 {
     //
     // From advanced Animation and Rendering
     // Techniques by Watt and Watt, Page 366:
-    // computing the inner quadrangle 
+    // computing the inner quadrangle
     // points (qa and qb) to guarantee tangent
     // continuity.
-    // 
+    //
 
     Quat<T> q1inv = q1.inverse();
     Quat<T> c1 = q1inv * q2;
@@ -620,12 +620,12 @@ intermediate (const Quat<T> &q0, const Quat<T> &q1, const Quat<T> &q2)
 }
 
 
-template <class T>
+template < class T >
 inline Quat<T>
 Quat<T>::log () const
 {
     //
-    // For unit quaternion, from Advanced Animation and 
+    // For unit quaternion, from Advanced Animation and
     // Rendering Techniques by Watt and Watt, Page 366:
     //
 
@@ -633,9 +633,9 @@ Quat<T>::log () const
 
     if (theta == 0)
 	return Quat<T> (0, v);
-    
+
     T sintheta = Math<T>::sin (theta);
-    
+
     T k;
     if (abs (sintheta) < 1 && abs (theta) >= limits<T>::maximum() * abs (sintheta))
 	k = 1;
@@ -646,7 +646,7 @@ Quat<T>::log () const
 }
 
 
-template <class T>
+template < class T >
 inline Quat<T>
 Quat<T>::exp () const
 {
@@ -658,7 +658,7 @@ Quat<T>::exp () const
 
     T theta = v.length();
     T sintheta = Math<T>::sin (theta);
-    
+
     T k;
     if (abs (theta) < 1 && abs (sintheta) >= limits<T>::maximum() * abs (theta))
 	k = 1;
@@ -671,7 +671,7 @@ Quat<T>::exp () const
 }
 
 
-template <class T>
+template < class T >
 inline T
 Quat<T>::angle () const
 {
@@ -679,7 +679,7 @@ Quat<T>::angle () const
 }
 
 
-template <class T>
+template < class T >
 inline Vec3<T>
 Quat<T>::axis () const
 {
@@ -687,7 +687,7 @@ Quat<T>::axis () const
 }
 
 
-template <class T>
+template < class T >
 inline Quat<T> &
 Quat<T>::setAxisAngle (const Vec3<T> &axis, T radians)
 {
@@ -697,7 +697,7 @@ Quat<T>::setAxisAngle (const Vec3<T> &axis, T radians)
 }
 
 
-template <class T>
+template < class T >
 Quat<T> &
 Quat<T>::setRotation (const Vec3<T> &from, const Vec3<T> &to)
 {
@@ -772,7 +772,7 @@ Quat<T>::setRotation (const Vec3<T> &from, const Vec3<T> &to)
 }
 
 
-template <class T>
+template < class T >
 void
 Quat<T>::setRotationInternal (const Vec3<T> &f0, const Vec3<T> &t0, Quat<T> &q)
 {
@@ -804,7 +804,7 @@ Quat<T>::setRotationInternal (const Vec3<T> &f0, const Vec3<T> &t0, Quat<T> &q)
 }
 
 
-template<class T>
+template< class T >
 Matrix33<T>
 Quat<T>::toMatrix33() const
 {
@@ -821,7 +821,7 @@ Quat<T>::toMatrix33() const
 		        1 - 2 * (v.y * v.y + v.x * v.x));
 }
 
-template<class T>
+template< class T >
 Matrix44<T>
 Quat<T>::toMatrix44() const
 {
@@ -844,7 +844,7 @@ Quat<T>::toMatrix44() const
 }
 
 
-template<class T>
+template< class T >
 inline Matrix33<T>
 operator * (const Matrix33<T> &M, const Quat<T> &q)
 {
@@ -852,7 +852,7 @@ operator * (const Matrix33<T> &M, const Quat<T> &q)
 }
 
 
-template<class T>
+template< class T >
 inline Matrix33<T>
 operator * (const Quat<T> &q, const Matrix33<T> &M)
 {
@@ -860,7 +860,7 @@ operator * (const Quat<T> &q, const Matrix33<T> &M)
 }
 
 
-template<class T>
+template< class T >
 std::ostream &
 operator << (std::ostream &o, const Quat<T> &q)
 {
@@ -872,7 +872,7 @@ operator << (std::ostream &o, const Quat<T> &q)
 }
 
 
-template<class T>
+template< class T >
 inline Quat<T>
 operator * (const Quat<T> &q1, const Quat<T> &q2)
 {
@@ -881,7 +881,7 @@ operator * (const Quat<T> &q1, const Quat<T> &q2)
 }
 
 
-template<class T>
+template< class T >
 inline Quat<T>
 operator / (const Quat<T> &q1, const Quat<T> &q2)
 {
@@ -889,7 +889,7 @@ operator / (const Quat<T> &q1, const Quat<T> &q2)
 }
 
 
-template<class T>
+template< class T >
 inline Quat<T>
 operator / (const Quat<T> &q, T t)
 {
@@ -897,7 +897,7 @@ operator / (const Quat<T> &q, T t)
 }
 
 
-template<class T>
+template< class T >
 inline Quat<T>
 operator * (const Quat<T> &q, T t)
 {
@@ -905,7 +905,7 @@ operator * (const Quat<T> &q, T t)
 }
 
 
-template<class T>
+template< class T >
 inline Quat<T>
 operator * (T t, const Quat<T> &q)
 {
@@ -913,7 +913,7 @@ operator * (T t, const Quat<T> &q)
 }
 
 
-template<class T>
+template< class T >
 inline Quat<T>
 operator + (const Quat<T> &q1, const Quat<T> &q2)
 {
@@ -921,7 +921,7 @@ operator + (const Quat<T> &q1, const Quat<T> &q2)
 }
 
 
-template<class T>
+template< class T >
 inline Quat<T>
 operator - (const Quat<T> &q1, const Quat<T> &q2)
 {
@@ -929,7 +929,7 @@ operator - (const Quat<T> &q1, const Quat<T> &q2)
 }
 
 
-template<class T>
+template< class T >
 inline Quat<T>
 operator ~ (const Quat<T> &q)
 {
@@ -937,7 +937,7 @@ operator ~ (const Quat<T> &q)
 }
 
 
-template<class T>
+template< class T >
 inline Quat<T>
 operator - (const Quat<T> &q)
 {
@@ -945,7 +945,7 @@ operator - (const Quat<T> &q)
 }
 
 
-template<class T>
+template< class T >
 inline Vec3<T>
 operator * (const Vec3<T> &v, const Quat<T> &q)
 {

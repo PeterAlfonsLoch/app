@@ -21,12 +21,12 @@
 // Use at your own risk!
 // ==========================================================
 
-/* 
+/*
  ============================================================
- References : 
- [1] Paeth A., A Fast Algorithm for General Raster Rotation. 
- Graphics Gems, p. 179, Andrew Glassner editor, Academic Press, 1990. 
- [2] Yariv E., High quality image rotation (rotate by shear). 
+ References :
+ [1] Paeth A., A Fast Algorithm for General Raster Rotation.
+ Graphics Gems, p. 179, Andrew Glassner editor, Academic Press, 1990.
+ [2] Yariv E., High quality image rotation (rotate by shear).
  [Online] http://www.codeproject.com/bitmap/rotatebyshear.asp
  [3] Treskunov A., Fast and high quality true-color bitmap rotation function.
  [Online] http://anton.treskunov.net/Software/doc/fast_and_high_quality_true_color_bitmap_rotation_function.html
@@ -41,9 +41,9 @@
 // --------------------------------------------------------------------------
 
 /**
-Skews a row horizontally (with filtered weights). 
+Skews a row horizontally (with filtered weights).
 Limited to 45 degree skewing only. Filters two adjacent pixels.
-Parameter T can be BYTE, WORD of float. 
+Parameter T can be BYTE, WORD of float.
 @param src Pointer to source image to rotate
 @param dst Pointer to destination image
 @param row Row index
@@ -51,7 +51,7 @@ Parameter T can be BYTE, WORD of float.
 @param dWeight Relative weight of right pixel
 @param bkcolor Background color
 */
-template <class T> void 
+template < class T > void
 HorizontalSkewT(FIBITMAP *src, FIBITMAP *dst, int row, int iOffset, double weight, const void *bkcolor = NULL) {
 	int iXPos;
 
@@ -59,7 +59,7 @@ HorizontalSkewT(FIBITMAP *src, FIBITMAP *dst, int row, int iOffset, double weigh
 	const unsigned dst_width  = FreeImage_GetWidth(dst);
 
 	T pxlSrc[4], pxlLeft[4], pxlOldLeft[4];	// 4 = 4*sizeof(T) MAX
-	
+
 	// background
 	const T pxlBlack[4] = {0, 0, 0, 0 };
 	const T *pxlBkg = static_cast<const T*>(bkcolor); // assume at least bytespp and 4*sizeof(T) MAX
@@ -85,7 +85,7 @@ HorizontalSkewT(FIBITMAP *src, FIBITMAP *dst, int row, int iOffset, double weigh
 	} else {
 		if(iOffset > 0) {
 			memset(dst_bits, 0, iOffset * bytespp);
-		}		
+		}
 		memset(&pxlOldLeft[0], 0, bytespp);
 	}
 
@@ -96,7 +96,7 @@ HorizontalSkewT(FIBITMAP *src, FIBITMAP *dst, int row, int iOffset, double weigh
 		for(unsigned j = 0; j < samples; j++) {
 			pxlLeft[j] = static_cast<T>(pxlBkg[j] + (pxlSrc[j] - pxlBkg[j]) * weight + 0.5);
 		}
-		// check boundaries 
+		// check boundaries
 		iXPos = i + iOffset;
 		if((iXPos >= 0) && (iXPos < (int)dst_width)) {
 			// update left over on source
@@ -110,10 +110,10 @@ HorizontalSkewT(FIBITMAP *src, FIBITMAP *dst, int row, int iOffset, double weigh
 
 		// next pixel in scan
 		src_bits += bytespp;
-	}			
+	}
 
 	// go to rightmost point of skew
-	iXPos = src_width + iOffset; 
+	iXPos = src_width + iOffset;
 
 	if((iXPos >= 0) && (iXPos < (int)dst_width)) {
 		dst_bits = FreeImage_GetScanLine(dst, row) + iXPos * bytespp;
@@ -135,7 +135,7 @@ HorizontalSkewT(FIBITMAP *src, FIBITMAP *dst, int row, int iOffset, double weigh
 }
 
 /**
-Skews a row horizontally (with filtered weights). 
+Skews a row horizontally (with filtered weights).
 Limited to 45 degree skewing only. Filters two adjacent pixels.
 @param src Pointer to source image to rotate
 @param dst Pointer to destination image
@@ -144,7 +144,7 @@ Limited to 45 degree skewing only. Filters two adjacent pixels.
 @param dWeight Relative weight of right pixel
 @param bkcolor Background color
 */
-static void 
+static void
 HorizontalSkew(FIBITMAP *src, FIBITMAP *dst, int row, int iOffset, double dWeight, const void *bkcolor) {
 	FREE_IMAGE_TYPE image_type = FreeImage_GetImageType(src);
 
@@ -172,9 +172,9 @@ HorizontalSkew(FIBITMAP *src, FIBITMAP *dst, int row, int iOffset, double dWeigh
 }
 
 /**
-Skews a column vertically (with filtered weights). 
+Skews a column vertically (with filtered weights).
 Limited to 45 degree skewing only. Filters two adjacent pixels.
-Parameter T can be BYTE, WORD of float. 
+Parameter T can be BYTE, WORD of float.
 @param src Pointer to source image to rotate
 @param dst Pointer to destination image
 @param col Column index
@@ -182,7 +182,7 @@ Parameter T can be BYTE, WORD of float.
 @param dWeight Relative weight of upper pixel
 @param bkcolor Background color
 */
-template <class T> void 
+template < class T > void
 VerticalSkewT(FIBITMAP *src, FIBITMAP *dst, int col, int iOffset, double weight, const void *bkcolor = NULL) {
 	int iYPos;
 
@@ -255,17 +255,17 @@ VerticalSkewT(FIBITMAP *src, FIBITMAP *dst, int col, int iOffset, double weight,
 	if((iYPos >= 0) && (iYPos < (int)dst_height)) {
 		dst_bits = FreeImage_GetScanLine(dst, iYPos) + index;
 
-		// if still in image bounds, put leftovers there				
+		// if still in image bounds, put leftovers there
 		AssignPixel((BYTE*)(dst_bits), (BYTE*)(&pxlOldLeft[0]), bytespp);
 
 		// clear below skewed line with background
 		if(bkcolor) {
-			while(++iYPos < (int)dst_height) {					
+			while(++iYPos < (int)dst_height) {
 				dst_bits += dst_pitch;
 				AssignPixel((BYTE*)(dst_bits), (BYTE*)(bkcolor), bytespp);
 			}
 		} else {
-			while(++iYPos < (int)dst_height) {					
+			while(++iYPos < (int)dst_height) {
 				dst_bits += dst_pitch;
 				memset(dst_bits, 0, bytespp);
 			}
@@ -274,7 +274,7 @@ VerticalSkewT(FIBITMAP *src, FIBITMAP *dst, int col, int iOffset, double weight,
 }
 
 /**
-Skews a column vertically (with filtered weights). 
+Skews a column vertically (with filtered weights).
 Limited to 45 degree skewing only. Filters two adjacent pixels.
 @param src Pointer to source image to rotate
 @param dst Pointer to destination image
@@ -283,7 +283,7 @@ Limited to 45 degree skewing only. Filters two adjacent pixels.
 @param dWeight Relative weight of upper pixel
 @param bkcolor Background color
 */
-static void 
+static void
 VerticalSkew(FIBITMAP *src, FIBITMAP *dst, int col, int iOffset, double dWeight, const void *bkcolor) {
 	FREE_IMAGE_TYPE image_type = FreeImage_GetImageType(src);
 
@@ -308,22 +308,22 @@ VerticalSkew(FIBITMAP *src, FIBITMAP *dst, int col, int iOffset, double dWeight,
 				VerticalSkewT<float>(src, dst, col, iOffset, dWeight, bkcolor);
 				break;
 	}
-} 
+}
 
 /**
-Rotates an image by 90 degrees (counter clockwise). 
+Rotates an image by 90 degrees (counter clockwise).
 Precise rotation, no filters required.<br>
 Code adapted from CxImage (http://www.xdp.it/cximage.htm)
 @param src Pointer to source image to rotate
 @return Returns a pointer to a newly allocated rotated image if successful, returns NULL otherwise
 */
-static FIBITMAP* 
+static FIBITMAP*
 Rotate90(FIBITMAP *src) {
 
 	const unsigned bpp = FreeImage_GetBPP(src);
 
 	const unsigned src_width  = FreeImage_GetWidth(src);
-	const unsigned src_height = FreeImage_GetHeight(src);	
+	const unsigned src_height = FreeImage_GetHeight(src);
 	const unsigned dst_width  = src_height;
 	const unsigned dst_height = src_width;
 
@@ -342,7 +342,7 @@ Rotate90(FIBITMAP *src) {
 			if(bpp == 1) {
 				// speedy rotate for BW images
 
-				BYTE *bsrc  = FreeImage_GetBits(src); 
+				BYTE *bsrc  = FreeImage_GetBits(src);
 				BYTE *bdest = FreeImage_GetBits(dst);
 
 				BYTE *dbitsmax = bdest + dst_height * dst_pitch - 1;
@@ -381,9 +381,9 @@ Rotate90(FIBITMAP *src) {
 
 				// calculate the number of bytes per pixel (1 for 8-bit, 3 for 24-bit or 4 for 32-bit)
 				const unsigned bytespp = FreeImage_GetLine(src) / FreeImage_GetWidth(src);
-				
+
 				// for all image blocks of RBLOCK*RBLOCK pixels
-				
+
 				// x-segment
 				for(unsigned xs = 0; xs < dst_width; xs += RBLOCK) {
 					// y-segment
@@ -435,12 +435,12 @@ Rotate90(FIBITMAP *src) {
 }
 
 /**
-Rotates an image by 180 degrees (counter clockwise). 
+Rotates an image by 180 degrees (counter clockwise).
 Precise rotation, no filters required.
 @param src Pointer to source image to rotate
 @return Returns a pointer to a newly allocated rotated image if successful, returns NULL otherwise
 */
-static FIBITMAP* 
+static FIBITMAP*
 Rotate180(FIBITMAP *src) {
 	int x, y, k, pos;
 
@@ -468,7 +468,7 @@ Rotate180(FIBITMAP *src) {
 						// set bit at (dst_width - x - 1, dst_height - y - 1)
 						pos = dst_width - x - 1;
 						k ? dst_bits[pos >> 3] |= (0x80 >> (pos & 0x7)) : dst_bits[pos >> 3] &= (0xFF7F >> (pos & 0x7));
-					}			
+					}
 				}
 				break;
 			}
@@ -491,8 +491,8 @@ Rotate180(FIBITMAP *src) {
 					// set pixel at (dst_width - x - 1, dst_height - y - 1)
 					AssignPixel(dst_bits, src_bits, bytespp);
 					src_bits += bytespp;
-					dst_bits -= bytespp;					
-				}				
+					dst_bits -= bytespp;
+				}
 			}
 		}
 		break;
@@ -502,20 +502,20 @@ Rotate180(FIBITMAP *src) {
 }
 
 /**
-Rotates an image by 270 degrees (counter clockwise). 
+Rotates an image by 270 degrees (counter clockwise).
 Precise rotation, no filters required.<br>
 Code adapted from CxImage (http://www.xdp.it/cximage.htm)
 @param src Pointer to source image to rotate
 @return Returns a pointer to a newly allocated rotated image if successful, returns NULL otherwise
 */
-static FIBITMAP* 
+static FIBITMAP*
 Rotate270(FIBITMAP *src) {
 	int x2, dlineup;
 
 	const unsigned bpp = FreeImage_GetBPP(src);
 
 	const unsigned src_width  = FreeImage_GetWidth(src);
-	const unsigned src_height = FreeImage_GetHeight(src);	
+	const unsigned src_height = FreeImage_GetHeight(src);
 	const unsigned dst_width  = src_height;
 	const unsigned dst_height = src_width;
 
@@ -528,13 +528,13 @@ Rotate270(FIBITMAP *src) {
 	// get src and dst scan width
 	const unsigned src_pitch  = FreeImage_GetPitch(src);
 	const unsigned dst_pitch  = FreeImage_GetPitch(dst);
-	
+
 	switch(image_type) {
 		case FIT_BITMAP:
 			if(bpp == 1) {
 				// speedy rotate for BW images
-				
-				BYTE *bsrc  = FreeImage_GetBits(src); 
+
+				BYTE *bsrc  = FreeImage_GetBits(src);
 				BYTE *bdest = FreeImage_GetBits(dst);
 				BYTE *dbitsmax = bdest + dst_height * dst_pitch - 1;
 				dlineup = 8 * dst_pitch - dst_width;
@@ -558,7 +558,7 @@ Rotate270(FIBITMAP *src) {
 						}
 					}
 				}
-			} 
+			}
 			else if((bpp == 8) || (bpp == 24) || (bpp == 32)) {
 				// anything other than BW :
 				// This optimized version of rotation rotates image by smaller blocks. It is quite
@@ -627,13 +627,13 @@ Rotate270(FIBITMAP *src) {
 }
 
 /**
-Rotates an image by a given degree in range [-45 .. +45] (counter clockwise) 
+Rotates an image by a given degree in range [-45 .. +45] (counter clockwise)
 using the 3-shear technique.
 @param src Pointer to source image to rotate
 @param dAngle Rotation angle
 @return Returns a pointer to a newly allocated rotated image if successful, returns NULL otherwise
 */
-static FIBITMAP* 
+static FIBITMAP*
 Rotate45(FIBITMAP *src, double dAngle, const void *bkcolor) {
 	const double ROTATE_PI = double(3.1415926535897932384626433832795);
 
@@ -650,9 +650,9 @@ Rotate45(FIBITMAP *src, double dAngle, const void *bkcolor) {
 
 	FREE_IMAGE_TYPE image_type = FreeImage_GetImageType(src);
 
-	// Calc first shear (horizontal) destination image dimensions 
+	// Calc first shear (horizontal) destination image dimensions
 	const unsigned width_1  = src_width + unsigned((double)src_height * fabs(dTan) + 0.5);
-	const unsigned height_1 = src_height; 
+	const unsigned height_1 = src_height;
 
 	// Perform 1st shear (horizontal)
 	// ----------------------------------------------------------------------
@@ -662,8 +662,8 @@ Rotate45(FIBITMAP *src, double dAngle, const void *bkcolor) {
 	if(NULL == dst1) {
 		return NULL;
 	}
-	
-	for(u = 0; u < height_1; u++) {  
+
+	for(u = 0; u < height_1; u++) {
 		double dShear;
 
 		if(dTan >= 0)	{
@@ -693,7 +693,7 @@ Rotate45(FIBITMAP *src, double dAngle, const void *bkcolor) {
 	}
 
 	double dOffset;     // Variable skew offset
-	if(dSinE > 0)	{   
+	if(dSinE > 0)	{
 		// Positive angle
 		dOffset = (src_width - 1.0) * dSinE;
 	}
@@ -736,22 +736,22 @@ Rotate45(FIBITMAP *src, double dAngle, const void *bkcolor) {
 		int iShear = int(floor(dOffset));
 		HorizontalSkew(dst2, dst3, u, iShear, dOffset - double(iShear), bkcolor);
 	}
-	// Free result of 2nd shear    
+	// Free result of 2nd shear
 	FreeImage_Unload(dst2);
 
 	// Return result of 3rd shear
-	return dst3;      
+	return dst3;
 }
 
 /**
-Rotates a 1-, 8-, 24- or 32-bit image by a given angle (given in degree). 
-Angle is unlimited, except for 1-bit images (limited to integer multiples of 90 degree). 
+Rotates a 1-, 8-, 24- or 32-bit image by a given angle (given in degree).
+Angle is unlimited, except for 1-bit images (limited to integer multiples of 90 degree).
 3-shears technique is used.
 @param src Pointer to source image to rotate
 @param dAngle Rotation angle
 @return Returns a pointer to a newly allocated rotated image if successful, returns NULL otherwise
 */
-static FIBITMAP* 
+static FIBITMAP*
 RotateAny(FIBITMAP *src, double dAngle, const void *bkcolor) {
 	if(NULL == src) {
 		return NULL;
@@ -764,29 +764,29 @@ RotateAny(FIBITMAP *src, double dAngle, const void *bkcolor) {
 		dAngle -= 360;
 	}
 	while(dAngle < 0) {
-		// Bring angle to range of [0 .. 360) 
+		// Bring angle to range of [0 .. 360)
 		dAngle += 360;
 	}
 	if((dAngle > 45) && (dAngle <= 135)) {
-		// Angle in (45 .. 135] 
+		// Angle in (45 .. 135]
 		// Rotate image by 90 degrees into temporary image,
-		// so it requires only an extra rotation angle 
+		// so it requires only an extra rotation angle
 		// of -45 .. +45 to complete rotation.
 		image = Rotate90(src);
 		dAngle -= 90;
 	}
-	else if((dAngle > 135) && (dAngle <= 225)) { 
-		// Angle in (135 .. 225] 
+	else if((dAngle > 135) && (dAngle <= 225)) {
+		// Angle in (135 .. 225]
 		// Rotate image by 180 degrees into temporary image,
-		// so it requires only an extra rotation angle 
+		// so it requires only an extra rotation angle
 		// of -45 .. +45 to complete rotation.
 		image = Rotate180(src);
 		dAngle -= 180;
 	}
-	else if((dAngle > 225) && (dAngle <= 315)) { 
-		// Angle in (225 .. 315] 
+	else if((dAngle > 225) && (dAngle <= 315)) {
+		// Angle in (225 .. 315]
 		// Rotate image by 270 degrees into temporary image,
-		// so it requires only an extra rotation angle 
+		// so it requires only an extra rotation angle
 		// of -45 .. +45 to complete rotation.
 		image = Rotate270(src);
 		dAngle -= 270;
@@ -823,7 +823,7 @@ RotateAny(FIBITMAP *src, double dAngle, const void *bkcolor) {
 
 // ==========================================================
 
-FIBITMAP *DLL_CALLCONV 
+FIBITMAP *DLL_CALLCONV
 FreeImage_Rotate(FIBITMAP *dib, double angle, const void *bkcolor) {
 	if(!FreeImage_HasPixels(dib)) return NULL;
 
@@ -836,7 +836,7 @@ FreeImage_Rotate(FIBITMAP *dib, double angle, const void *bkcolor) {
 	try {
 		unsigned bpp = FreeImage_GetBPP(dib);
 		FREE_IMAGE_TYPE image_type = FreeImage_GetImageType(dib);
-		
+
 		switch(image_type) {
 			case FIT_BITMAP:
 				if(bpp == 1) {
@@ -852,10 +852,10 @@ FreeImage_Rotate(FIBITMAP *dib, double angle, const void *bkcolor) {
 					RGBQUAD *dst_pal = FreeImage_GetPalette(dst);
 					if(FreeImage_GetColorType(dib) == FIC_MINISBLACK) {
 						dst_pal[0].rgbRed = dst_pal[0].rgbGreen = dst_pal[0].rgbBlue = 0;
-						dst_pal[1].rgbRed = dst_pal[1].rgbGreen = dst_pal[1].rgbBlue = 255;			
+						dst_pal[1].rgbRed = dst_pal[1].rgbGreen = dst_pal[1].rgbBlue = 255;
 					} else {
 						dst_pal[0].rgbRed = dst_pal[0].rgbGreen = dst_pal[0].rgbBlue = 255;
-						dst_pal[1].rgbRed = dst_pal[1].rgbGreen = dst_pal[1].rgbBlue = 0;			
+						dst_pal[1].rgbRed = dst_pal[1].rgbGreen = dst_pal[1].rgbBlue = 0;
 					}
 
 					// copy metadata from src to dst
@@ -866,20 +866,20 @@ FreeImage_Rotate(FIBITMAP *dib, double angle, const void *bkcolor) {
 				else if((bpp == 8) || (bpp == 24) || (bpp == 32)) {
 					FIBITMAP *dst = RotateAny(dib, angle, bkcolor);
 					if(!dst) throw(1);
-					
+
 					if(bpp == 8) {
 						// copy original palette to rotated bitmap
 						RGBQUAD *src_pal = FreeImage_GetPalette(dib);
 						RGBQUAD *dst_pal = FreeImage_GetPalette(dst);
 						memcpy(&dst_pal[0], &src_pal[0], 256 * sizeof(RGBQUAD));
 
-						// copy transparency table 
+						// copy transparency table
 						FreeImage_SetTransparencyTable(dst, FreeImage_GetTransparencyTable(dib), FreeImage_GetTransparencyCount(dib));
 
-						// copy background color 
-						RGBQUAD bkcolor; 
+						// copy background color
+						RGBQUAD bkcolor;
 						if( FreeImage_GetBackgroundColor(dib, &bkcolor) ) {
-							FreeImage_SetBackgroundColor(dst, &bkcolor); 
+							FreeImage_SetBackgroundColor(dst, &bkcolor);
 						}
 
 					}

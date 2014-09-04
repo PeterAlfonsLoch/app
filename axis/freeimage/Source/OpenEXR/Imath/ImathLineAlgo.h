@@ -2,9 +2,9 @@
 //
 // Copyright (c) 2002, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
-// 
+//
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
 // met:
@@ -16,8 +16,8 @@
 // distribution.
 // *       Neither the name of Industrial Light & Magic nor the names of
 // its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission. 
-// 
+// from this software without specific prior written permission.
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 // "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
 // LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -78,7 +78,7 @@
 namespace Imath {
 
 
-template <class T>
+template < class T >
 bool
 closestPoints
     (const Line3<T>& line1,
@@ -118,7 +118,7 @@ closestPoints
 }
 
 
-template <class T>
+template < class T >
 bool
 intersect
     (const Line3<T> &line,
@@ -223,7 +223,7 @@ intersect
 }
 
 
-template <class T>
+template < class T >
 Vec3<T>
 closestVertex
     (const Vec3<T> &v0,
@@ -233,7 +233,7 @@ closestVertex
 {
     Vec3<T> nearest = v0;
     T neardot       = (v0 - l.closestPointTo(v0)).length2();
-    
+
     T tmp           = (v1 - l.closestPointTo(v1)).length2();
 
     if (tmp < neardot)
@@ -253,7 +253,7 @@ closestVertex
 }
 
 
-template <class T>
+template < class T >
 Vec3<T>
 rotatePoint (const Vec3<T> p, Line3<T> l, T angle)
 {
@@ -276,7 +276,7 @@ rotatePoint (const Vec3<T> p, Line3<T> l, T angle)
     T cosangle = Math<T>::cos(angle);
     T sinangle = Math<T>::sin(angle);
 
-    Vec3<T> r = q + x * radius * cosangle + y * radius * sinangle; 
+    Vec3<T> r = q + x * radius * cosangle + y * radius * sinangle;
 
     return r;
 }
