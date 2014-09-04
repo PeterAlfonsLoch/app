@@ -483,11 +483,6 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "user/user/user_view_creator.h"
 
 
-#include "axis/axis/axis.inl"
-
-
-
-
 #include "axis/axis/axis_core_copydesk.h"
 
 
@@ -522,5 +517,12 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis/user/simple/simple.h"
 #include "axis/user/simple_ui/simple_ui.h"
+
+
+
+
+#include "axis/axis/axis.inl"
+
+
 
 
