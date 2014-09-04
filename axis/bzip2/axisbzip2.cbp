@@ -54,24 +54,10 @@
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
-			<Add directory="../../thirdparty/appseed" />
-			<Add directory="../../thirdparty/include" />
-			<Add directory="." />
 			<Add directory=".." />
 			<Add directory="../.." />
-			<Add directory="../ca2" />
-			<Add directory="../../nodeapp/linux" />
-			<Add directory="../../nodeapp/linux/include" />
+			<Add directory="../../appseed/aura" />
 			<Add directory="../../.." />
-			<Add directory="../base" />
-			<Add directory="base/openssl" />
-			<Add directory="base/openssl/crypto" />
-			<Add directory="base/openssl/ssl" />
-			<Add directory="base/openssl/crypto/asn1" />
-			<Add directory="base/openssl/crypto/evp" />
-			<Add directory="base/openssl/crypto/modes" />
-			<Add directory="base/openssl/include" />
-			<Add directory="../../../nodeapp/thirdparty/include" />
 			<Add directory="../../appseed" />
 			<Add directory="../../appseed/axis" />
 		</Compiler>
@@ -82,7 +68,7 @@
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
-			<Add option="-laxis" />
+			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
