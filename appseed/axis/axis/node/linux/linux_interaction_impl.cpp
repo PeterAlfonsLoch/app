@@ -1,5 +1,7 @@
 #include "framework.h"
 #include <X11/Xatom.h>
+#include "axis/os/linux/linux_window_xlib.h"
+#include "axis/os/linux/linux_windowing.h"
 
 #define TEST 0
 
@@ -103,7 +105,7 @@ namespace linux
    {
 
 /*
-      if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL && m_paxisapp->m_paxissession->m_spuser.is_set())
+      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession->m_spuser.is_set())
       {
 
          if(Session.user()->m_pwindowmap != NULL)
@@ -662,7 +664,7 @@ d.unlock();
          retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
          pdraw->m_wndpaOut.remove(m_pui);
       }
-      m_paxisapp->remove(m_pui);
+      m_pauraapp->remove(m_pui);
       oswindow_remove(m_oswindow->display(), m_oswindow->window());
    }
 
@@ -676,7 +678,7 @@ d.unlock();
    void interaction_impl::_001OnNcDestroy(::signal_details * pobj)
    {
 
-      single_lock sl(m_paxisapp == NULL ? NULL : m_paxisapp->m_pmutex, TRUE);
+      single_lock sl(m_pauraapp == NULL ? NULL : m_pauraapp->m_pmutex, TRUE);
 
       pobj->m_bRet = true;
 
@@ -687,7 +689,7 @@ d.unlock();
       if (pThread != NULL)
       {
 
-         if (pThread->get_active_ui() == this)
+         if (pThread->get_active_ui() == m_pui)
             pThread->set_active_ui(NULL);
 
       }
@@ -811,7 +813,7 @@ d.unlock();
 
       }
 
-      single_lock sl(m_paxisapp == NULL ? NULL : m_paxisapp->m_pmutex, TRUE);
+      single_lock sl(m_pauraapp == NULL ? NULL : m_pauraapp->m_pmutex, TRUE);
       sp(::user::interaction) pWnd;
       oswindow hWndOrig;
       bool bResult;
@@ -1227,15 +1229,15 @@ d.unlock();
 
          Session.on_ui_mouse_message(pmouse);
 
-         if(m_paxisapp->m_paxissession != NULL)
+         if(m_pauraapp->m_paxissession != NULL)
          {
             Session.m_ptCursor = pmouse->m_pt;
          }
 
-         if(m_pui != NULL && m_pui->m_paxisapp->m_paxissession != NULL && m_pui->m_paxisapp->m_paxissession != m_paxisapp->m_paxissession)
+         if(m_pui != NULL && m_pui->m_pauraapp->m_paxissession != NULL && m_pui->m_pauraapp->m_paxissession != m_pauraapp->m_paxissession)
          {
 
-            Sess(m_pui->m_paxisapp->m_paxissession).m_ptCursor = pmouse->m_pt;
+            Sess(m_pui->m_pauraapp->m_paxissession).m_ptCursor = pmouse->m_pt;
 
          }
 
@@ -2103,7 +2105,7 @@ restart_mouse_hover_check:
    sp(::user::interaction) PASCAL interaction_impl::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
    {
 
-      single_lock sl(hWnd->m_paxisapp->m_pmutex, TRUE);
+      single_lock sl(hWnd->m_pauraapp->m_pmutex, TRUE);
 
       for(int32_t i = 0; i < hWnd->m_uiptraChild.get_count(); i++)
       {
@@ -4707,7 +4709,7 @@ if(psurface == g_cairosurface)
 
         UNREFERENCED_PARAMETER(lpfnTimer);
 
-        m_pui->m_paxisapp->set_timer(m_pui, nIDEvent, nElapse);
+        m_pui->m_pauraapp->set_timer(m_pui, nIDEvent, nElapse);
 
         return nIDEvent;
 
@@ -4723,7 +4725,7 @@ if(psurface == g_cairosurface)
 
    return ::user::interaction_impl::KillTimer(nIDEvent);
 
-       m_pui->m_paxisapp->unset_timer(m_pui, nIDEvent);
+       m_pui->m_pauraapp->unset_timer(m_pui, nIDEvent);
 
        return TRUE;
 

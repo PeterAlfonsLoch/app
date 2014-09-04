@@ -30,6 +30,10 @@ namespace aura
 
       virtual bool message_queue_del_timer(uint_ptr uiId);
 
+      virtual bool message_queue_post_message(uint32_t uiMessage, WPARAM wparam = 0, lparam lparam = 0);
+
+      virtual bool message_queue_send_message(uint32_t uiMessage, WPARAM wparam = 0, lparam lparam = 0);
+
       virtual bool message_queue_destroy();
 
       virtual void * message_queue_get_os_handle();

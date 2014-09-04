@@ -1,5 +1,7 @@
 #include "framework.h"
 
+
+
 class keep_event_reset
 {
 public:
@@ -30,7 +32,7 @@ namespace linux
       element(papp),
       ::thread(papp),
       ::user::window_draw(papp),
-      message_queue(papp),
+      m_spqueue(allocer()),
       m_mutexRendering(papp),
       m_mutexRgnUpdate(papp),
       m_semaphoreBuffer(papp),
@@ -92,7 +94,7 @@ namespace linux
    {
       if(!m_bProDevianMode)
       {
-         m_spuiMessage->post_message(WM_USER + 1984 + 1977);
+         m_spqueue->message_queue_post_message(WM_USER + 1984 + 1977);
       }
    }
 
