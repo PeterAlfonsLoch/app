@@ -82,3 +82,10 @@ CLASS_DECL_AURA int_bool freerdp_authenticate(freerdp * instance, char** usernam
 
 
 END_EXTERN_C
+
+
+
+#include "aura/primitive/datetime/datetime_mktime.h"
+
+
+

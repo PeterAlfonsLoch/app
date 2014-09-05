@@ -173,8 +173,6 @@ namespace datetime
                time_t tDiff = difftime(nowUtc, now);*/
 #ifdef WINDOWS
                time = ::datetime::time(_mkgmtime64(&atm));
-#elif defined(ANDROID) || defined(SOLARIS)
-               time = ::datetime::time(my_timegm(&atm));
 #else
                time = ::datetime::time(timegm(&atm));
 #endif
