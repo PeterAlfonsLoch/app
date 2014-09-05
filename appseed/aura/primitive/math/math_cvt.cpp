@@ -32,21 +32,23 @@
 // SUCH DAMAGE.
 // 
 
-#include <math.h>
+#include "framework.h"
 
 //
 // cvt.c - IEEE floating point formatting routines for FreeBSD
 // from GNU libc-4.6.27
 //
 
-char *ccvt_dup(char *buf,int nchar,double arg,int ndigits,int *decpt,int *sign,int eflag)
+#define CVTBUFSIZE  2 * DBL_MAX_10_EXP + 10
+
+char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int eflag)
 {
    int r2;
    double fi,fj;
    char *p,*p1;
 
    if(ndigits < 0) ndigits = 0;
-   if(ndigits >= nchar - 1) ndigits = nchar - 2;
+   if(ndigits >= CVTBUFSIZE - 1) ndigits = CVTBUFSIZE - 2;
    r2 = 0;
    *sign = 0;
    p = &buf[0];
@@ -55,16 +57,16 @@ char *ccvt_dup(char *buf,int nchar,double arg,int ndigits,int *decpt,int *sign,i
       arg = -arg;
    }
    arg = modf(arg,&fi);
-   p1 = &buf[nchar];
+   p1 = &buf[CVTBUFSIZE];
 
    if(fi != 0) {
-      p1 = &buf[nchar];
+      p1 = &buf[CVTBUFSIZE];
       while(fi != 0) {
          fj = modf(fi / 10,&fi);
          *--p1 = (int)((fj + .03) * 10) + '0';
          r2++;
       }
-      while(p1 < &buf[nchar]) *p++ = *p1++;
+      while(p1 < &buf[CVTBUFSIZE]) *p++ = *p1++;
    }
    else if(arg > 0) {
       while((fj = arg * 10) < 1) {
@@ -79,13 +81,13 @@ char *ccvt_dup(char *buf,int nchar,double arg,int ndigits,int *decpt,int *sign,i
       buf[0] = '\0';
       return buf;
    }
-   while(p <= p1 && p < &buf[nchar]) {
+   while(p <= p1 && p < &buf[CVTBUFSIZE]) {
       arg *= 10;
       arg = modf(arg,&fj);
       *p++ = (int)fj + '0';
    }
-   if(p1 >= &buf[nchar]) {
-      buf[nchar - 1] = '\0';
+   if(p1 >= &buf[CVTBUFSIZE]) {
+      buf[CVTBUFSIZE - 1] = '\0';
       return buf;
    }
    p = p1;
@@ -108,16 +110,38 @@ char *ccvt_dup(char *buf,int nchar,double arg,int ndigits,int *decpt,int *sign,i
    return buf;
 }
 
-char *ecvt_dup(char *buf,int nchar, double arg,int ndigits,int *decpt,int *sign)
+int ccvt_dup(char *buf, int nchar, double arg,int ndigits,int *decpt,int *sign,int eflag)
 {
+   
+   char sz[CVTBUFSIZE + 9];
+
+   ccvt_internal(arg,ndigits,decpt,sign,sz,eflag);
+
+   if(strlen(sz) > nchar)
+      return EINVAL;
+
+   strcpy(buf,sz);
+
+   return 0;
+
+}
+
+
+int ecvt_dup(char *buf,int nchar,double arg,int ndigits,int *decpt,int *sign)
+{
+
    return ccvt_dup(buf,nchar, arg,ndigits,decpt,sign,1);
+
 }
 
 
-char *fcvt_dup(char *buf,int nchar, double arg,int ndigits,int *decpt,int *sign)
+int fcvt_dup(char *buf, int nchar,double arg,int ndigits,int *decpt,int *sign)
 {
-   return ccvt_dup(buf,nchar,ndigits,decpt,sign,0);
+
+   return ccvt_dup(buf,nchar,arg,ndigits,decpt,sign,0);
+
 }
+
 
 
 
