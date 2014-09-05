@@ -16,6 +16,7 @@ CLASS_DECL_AURA char * strstr_dup(const char * src, const char * find);
 CLASS_DECL_AURA char * stristr_dup(const char * src, const char * find);
 CLASS_DECL_AURA char * strnstr_dup(const char * src, const char * find, strsize iLen);
 CLASS_DECL_AURA char * strnistr_dup(const char * src, const char * find, strsize iLen);
+CLASS_DECL_AURA void * memmem_dup(const void * src, strsize srclen, const void * find, strsize findlen);
 CLASS_DECL_AURA int32_t stricmp_dup(const char * sz1, const char * sz2);
 CLASS_DECL_AURA int32_t strcmp_dup(const char * sz1, const char * sz2);
 CLASS_DECL_AURA int32_t strnicmp_dup(const char * sz1, const char * sz2, strsize iLen);
@@ -113,6 +114,7 @@ CLASS_DECL_AURA void utf8_to_utf16(wchar_t * pwsz, const char * psz);
 #define strncasecmp strnicmp_dup
 #define strcasestr stristr_dup
 #define strncasestr strnistr_dup
+#define memmem memmem_dup
 
 
 #endif
