@@ -48,6 +48,8 @@ namespace sockets
 
    map < int32_t,int32_t,mutex *,mutex *>  * g_pmapMutex = NULL;
 
+   mutex * g_pmutexMap = NULL;
+
 
    #ifdef LINUX
 // ssl_sigpipe_handle ---------------------------------------------------------
@@ -80,6 +82,8 @@ void ssl_sigpipe_handle( int x ) {
       bio_err = BIO_new_fp(stderr, BIO_NOCLOSE);
 
       g_pmapMutex = new map < int32_t,int32_t,mutex *,mutex *>;
+
+      g_pmutexMap = new mutex(get_app());
 
       /* Global system initialization*/
       SSL_library_init();
@@ -178,6 +182,14 @@ void ssl_sigpipe_handle( int x ) {
 
          g_pmapMutex = NULL;
       }
+
+      if(g_pmutexMap != NULL)
+      {
+         delete g_pmutexMap;
+
+         g_pmutexMap = NULL;
+      }
+
    }
 
 
@@ -202,6 +214,8 @@ void ssl_sigpipe_handle( int x ) {
       UNREFERENCED_PARAMETER(file);
       UNREFERENCED_PARAMETER(line);
 
+
+      synch_lock sl(::sockets::g_pmutexMap);
       
       mutex * pmutex;
       if(!::sockets::g_pmapMutex->Lookup(n,pmutex))
@@ -223,14 +237,9 @@ void ssl_sigpipe_handle( int x ) {
    extern "C" unsigned long SSLInitializer_SSL_id_function()
    {
 #ifdef WIN32
-      if(::get_thread() == NULL)
-         return ::GetCurrentThreadId();
-      if(::get_thread()->m_pthreadimpl == NULL)
-         return ::GetCurrentThreadId();
-      return ::get_thread()->m_pthreadimpl->get_os_int();
+      return ::GetCurrentThreadId();
 #else
       return (unsigned long) (int_ptr) ::pthread_self();
-      //return System.get_thread_id();
 #endif
    }
 
