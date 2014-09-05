@@ -1,4 +1,4 @@
-/* Library for accessing X3F Files 
+/* Library for accessing X3F Files
 ----------------------------------------------------------------
 BSD-style License
 ----------------------------------------------------------------
@@ -48,7 +48,7 @@ BSD-style License
 //#else
 //#include <inttypes.h>
 //#endif
-
+#include "axis/axis/axis.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -410,7 +410,7 @@ extern x3f_return_t x3f_swap_images(x3f_t *x3f_template, x3f_t *x3f_images);
 static int x3f_get1(LibRaw_abstract_datastream *f)
 {
   /* Little endian file */
-  return f->get_char(); 
+  return f->get_char();
 }
 
 static int  x3f_sget2 (uchar *s)
@@ -505,7 +505,7 @@ static void x3f_convert4(void *to, void *from)
   uint16_t *t = (uint16_t *)to;
 
   /* Little endian memory */
-  *t = (uint32_t)((*(f+0)<<0) + (*(f+1)<<8) + (*(f+2)<<16) + (*(f+3)<<24)); 
+  *t = (uint32_t)((*(f+0)<<0) + (*(f+1)<<8) + (*(f+2)<<16) + (*(f+3)<<24));
 }
 
 #define CONV2(_v, _p) do {x3f_conv2(_p, _v);} while (0)
@@ -678,7 +678,7 @@ static x3f_huffman_t *new_huffman(x3f_huffman_t **HUFP)
   }
 
   /* Traverse the directory */
-  for (d=0; d<DS->num_directory_entries; d++) { 
+  for (d=0; d<DS->num_directory_entries; d++) {
     x3f_directory_entry_t *DE = &DS->directory_entry[d];
     x3f_directory_entry_header_t *DEH = &DE->header;
     uint32_t save_dir_pos;
@@ -768,10 +768,10 @@ static char x3f_id_buf[5] = {0,0,0,0,0};
 
 static char *x3f_id(uint32_t id)
 {
-  x3f_id_buf[0] = (id>>0) & 0xff; 
-  x3f_id_buf[1] = (id>>8) & 0xff; 
-  x3f_id_buf[2] = (id>>16) & 0xff; 
-  x3f_id_buf[3] = (id>>24) & 0xff; 
+  x3f_id_buf[0] = (id>>0) & 0xff;
+  x3f_id_buf[1] = (id>>8) & 0xff;
+  x3f_id_buf[2] = (id>>16) & 0xff;
+  x3f_id_buf[3] = (id>>24) & 0xff;
 
   return x3f_id_buf;
 }
@@ -798,7 +798,7 @@ static uint32_t row_offsets_size(x3f_huffman_t *HUF)
 
   DS = &x3f->directory_section;
 
-  for (d=0; d<DS->num_directory_entries; d++) { 
+  for (d=0; d<DS->num_directory_entries; d++) {
     x3f_directory_entry_t *DE = &DS->directory_entry[d];
     x3f_directory_entry_header_t *DEH = &DE->header;
 
@@ -851,10 +851,10 @@ static x3f_directory_entry_t *x3f_get(x3f_t *x3f,
 
   DS = &x3f->directory_section;
 
-  for (d=0; d<DS->num_directory_entries; d++) { 
+  for (d=0; d<DS->num_directory_entries; d++) {
     x3f_directory_entry_t *DE = &DS->directory_entry[d];
     x3f_directory_entry_header_t *DEH = &DE->header;
-    
+
     if (DEH->identifier == type) {
       switch (DEH->identifier) {
       case X3F_SECi:
@@ -979,7 +979,7 @@ static void populate_true_huffman_tree(x3f_hufftree_t *tree,
   for (i=0; i<table->size; i++) {
     x3f_true_huffman_element_t *element = &table->element[i];
     uint32_t length = element->code_size;
-    
+
     if (length != 0) {
       /* add_code_to_tree wants the code right adjusted */
       uint32_t code = ((element->code) >> (8 - length)) & 0xff;
@@ -1004,7 +1004,7 @@ static void populate_huffman_tree(x3f_hufftree_t *tree,
 
     if (element != 0) {
       uint32_t length = HUF_TREE_GET_LENGTH(element);
-      uint32_t code = HUF_TREE_GET_CODE(element); 
+      uint32_t code = HUF_TREE_GET_CODE(element);
       uint32_t value;
 
       /* If we have a valid mapping table - then the value from the
@@ -1084,8 +1084,8 @@ static int32_t get_true_diff(bit_state_t *BS, x3f_hufftree_t *HTP)
     diff = first_bit;
 
     for (i=1; i<bits; i++)
-      diff = (diff << 1) + get_bit(BS); 
-    
+      diff = (diff << 1) + get_bit(BS);
+
     if (first_bit == 0)
       diff -= (1<<bits) - 1;
   }
@@ -1212,12 +1212,12 @@ static void huffman_decode_row(x3f_info_t *I,
       case X3F_IMAGE_RAW_HUFFMAN_10BIT:
         c_fix[color] = (int16_t)c[color] > 0 ? c[color] : 0;
 
-        HUF->x3rgb16.element[3*(row*ID->columns + col) + color] = c_fix[color]; 
+        HUF->x3rgb16.element[3*(row*ID->columns + col) + color] = c_fix[color];
         break;
       case X3F_IMAGE_THUMB_HUFFMAN:
         c_fix[color] = (int8_t)c[color] > 0 ? c[color] : 0;
 
-        HUF->rgb8.element[3*(row*ID->columns + col) + color] = c_fix[color]; 
+        HUF->rgb8.element[3*(row*ID->columns + col) + color] = c_fix[color];
         break;
       default:
 #ifdef DCRAW_VERBOSE
@@ -1261,7 +1261,7 @@ static void simple_decode_row(x3f_info_t *I,
   x3f_image_data_t *ID = &DEH->data_subsection.image_data;
   x3f_huffman_t *HUF = ID->huffman;
 
-  uint32_t *data = (uint32_t *)(ID->data + row*row_stride); 
+  uint32_t *data = (uint32_t *)(ID->data + row*row_stride);
 
   uint16_t c[3] = {0,0,0}, c_fix[3];
   int col;
@@ -1304,12 +1304,12 @@ static void simple_decode_row(x3f_info_t *I,
       case X3F_IMAGE_RAW_HUFFMAN_10BIT:
         c_fix[color] = (int16_t)c[color] > 0 ? c[color] : 0;
 
-        HUF->x3rgb16.element[3*(row*ID->columns + col) + color] = c_fix[color]; 
+        HUF->x3rgb16.element[3*(row*ID->columns + col) + color] = c_fix[color];
         break;
       case X3F_IMAGE_THUMB_HUFFMAN:
         c_fix[color] = (int8_t)c[color] > 0 ? c[color] : 0;
 
-        HUF->rgb8.element[3*(row*ID->columns + col) + color] = c_fix[color]; 
+        HUF->rgb8.element[3*(row*ID->columns + col) + color] = c_fix[color];
         break;
       default:
 #ifdef DCRAW_VERBOSE
@@ -1396,7 +1396,7 @@ static void x3f_load_property_list(x3f_info_t *I, x3f_directory_entry_t *DE)
 
   for (i=0; i<PL->num_properties; i++) {
     x3f_property_t *P = &PL->property_table.element[i];
- 
+
     P->name = ((utf16_t *)PL->data + P->name_offset);
     P->value = ((utf16_t *)PL->data + P->value_offset);
   }
@@ -1431,7 +1431,7 @@ static void x3f_load_true(x3f_info_t *I,
   /* Read image data */
   ID->data_size = read_data_block(&ID->data, I, DE, 0);
 
-  /* TODO: can it be fewer than 8 bits? Maybe taken from TRU->table? */  
+  /* TODO: can it be fewer than 8 bits? Maybe taken from TRU->table? */
   new_huffman_tree(&TRU->tree, 8);
 
   populate_true_huffman_tree(&TRU->tree, &TRU->table);
@@ -1440,9 +1440,9 @@ static void x3f_load_true(x3f_info_t *I,
   /* TODO : we here assume 3 planes - thats not neccessarily right */
   TRU->plane_address[0] = ID->data;
   for (i=1; i<3; i++)
-    TRU->plane_address[i] = 
+    TRU->plane_address[i] =
       TRU->plane_address[i-1] +
-      (((TRU->plane_size.element[i-1] + 15) / 16) * 16); 
+      (((TRU->plane_size.element[i-1] + 15) / 16) * 16);
 
   TRU->x3rgb16.size = ID->columns * ID->rows * 3;
   TRU->x3rgb16.element =
@@ -1500,7 +1500,7 @@ static void x3f_load_huffman(x3f_info_t *I,
   if (use_map_table) {
     int table_size = 1<<bits;
 
-    GET_TABLE(uint16_t,HUF->mapping, GET2, table_size); 
+    GET_TABLE(uint16_t,HUF->mapping, GET2, table_size);
   }
 
   switch (ID->type_format) {
@@ -1544,7 +1544,7 @@ static void x3f_load_image(x3f_info_t *I, x3f_directory_entry_t *DE)
   x3f_image_data_t *ID = &DEH->data_subsection.image_data;
 
   read_data_set_offset(I, DE, X3F_IMAGE_HEADER_SIZE);
-  
+
   switch (ID->type_format) {
   case X3F_IMAGE_RAW_TRUE:
   case X3F_IMAGE_RAW_TRUE_SD1:
@@ -1681,7 +1681,7 @@ static void x3f_load_camf_decode_type4(x3f_camf_t *CAMF)
 #define CAMF_T4_DATA_OFFSET 32
   CAMF->decoding_start = (uint8_t *)CAMF->data + CAMF_T4_DATA_OFFSET;
 
-  /* TODO: can it be fewer than 8 bits? Maybe taken from TRU->table? */  
+  /* TODO: can it be fewer than 8 bits? Maybe taken from TRU->table? */
   new_huffman_tree(&CAMF->tree, 8);
 
   populate_true_huffman_tree(&CAMF->tree, &CAMF->table);
@@ -1720,8 +1720,8 @@ static void x3f_setup_camf_entries(x3f_camf_t *CAMF)
 
     table[i].entry = p;
 
-    table[i].name_address = p + table[i].name_offset; 
-    table[i].value_address = p + table[i].value_offset; 
+    table[i].name_address = p + table[i].name_offset;
+    table[i].value_address = p + table[i].value_offset;
 
     p += table[i].entry_size;
   }
