@@ -21,7 +21,7 @@
 
 #pragma once
 
-#define _AXISTSD_H_
+#define _BASETSD_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -133,8 +133,8 @@ typedef unsigned long ULONG_PTR, *PULONG_PTR;
 typedef ULONG_PTR     DWORD_PTR, *PDWORD_PTR;
 
 #endif
-   
-   
+
+
    //   typedef INT_PTR int_ptr;
    //typedef UINT_PTR uint_ptr;
    typedef LONG_PTR long_ptr;
@@ -232,9 +232,9 @@ inline void *ULongToPtr(ULONG32 ul)
 }
 
 #endif
-   
+
    */
-   
+
 #define HandleToULong(h)        ((ULONG)(ULONG_PTR)(h))
 #define HandleToLong(h)         ((LONG)(LONG_PTR)(h))
 #define ULongToHandle(ul)       ((HANDLE)(ULONG_PTR)(ul))
