@@ -798,6 +798,8 @@
 		<Unit filename="primitive/math/_math.cpp" />
 		<Unit filename="primitive/math/_math.h" />
 		<Unit filename="primitive/math/math_count.h" />
+		<Unit filename="primitive/math/math_cvt.cpp" />
+		<Unit filename="primitive/math/math_cvt_g.cpp" />
 		<Unit filename="primitive/math/math_index.h" />
 		<Unit filename="primitive/math/math_math.cpp" />
 		<Unit filename="primitive/math/math_math.h" />

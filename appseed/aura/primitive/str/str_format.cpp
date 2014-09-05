@@ -344,34 +344,12 @@ bool string_format::parse(const char * & s)
          int negative;
          if(pformat->m_iPrecision >= 0)
          {
-#if defined(ANDROID)
-            //throw 3;
-//             if(fcvt(d, pformat->m_iPrecision, &decimal_point, &negative, sz, sizeof(sz)) == -1)
-             {
-                sprintf(sz, "%f", d);
-                //pformat->append(::str::from(d));
-                //return;
-             }
-#elif defined(APPLEOS)
-
-            char * sz2 = fcvt(d, pformat->m_iPrecision, &decimal_point, &negative);
-
-            if(sz2 == NULL)
-            {
-               pformat->append(::str::from(d));
-               return;
-            }
-
-            strcpy(sz, sz2);
-
-#else
-             if(fcvt_r(d, pformat->m_iPrecision, &decimal_point, &negative, sz, sizeof(sz)) == -1)
+             if(fcvt_dup(sz, sizeof(sz), d, pformat->m_iPrecision, &decimal_point, &negative) != 0)
              {
                 pformat->append(::str::from(d));
                 return;
              }
 
-#endif
              string str(sz);
              string strResult;
 
@@ -398,33 +376,13 @@ bool string_format::parse(const char * & s)
          }
          else
          {
-#ifdef ANDROID
-//             if(ecvt_r(d, sizeof(sz), &decimal_point, &negative, sz, sizeof(sz)) == -1)
-             {
-                sprintf(sz, "%f", d);
-    //            pformat->append(::str::from(d));
-  //              return;
-             }
 
-#elif defined(APPLEOS)
-
-            char * sz2 = ecvt(d, sizeof(sz), &decimal_point, &negative);
-
-            if(sz2 == NULL)
-            {
-               pformat->append(::str::from(d));
-               return;
-            }
-
-            strcpy(sz, sz2);
-
-#else
-             if(ecvt_r(d, sizeof(sz), &decimal_point, &negative, sz, sizeof(sz)) == -1)
+             if(ecvt_dup(sz, sizeof(sz), d, sizeof(sz), &decimal_point, &negative) != 0)
              {
                 pformat->append(::str::from(d));
                 return;
              }
-#endif
+
              string str(sz);
              string strResult;
 
