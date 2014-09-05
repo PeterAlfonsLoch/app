@@ -33,7 +33,7 @@ it under the terms of the one of three licenses as you choose:
 #endif
 #define LIBRAW_LIBRARY_BUILD
 #include "libraw/libraw.h"
-#include "LibRawLite/internal/defines.h"
+#include "internal/defines.h"
 
 #ifdef USE_RAWSPEED
 #include "../RawSpeed/rawspeed_xmldata.cpp"

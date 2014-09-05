@@ -164,7 +164,3 @@ typedef uint64_t UINT64;
 	image[((row) >> shrink)*iwidth + ((col) >> shrink)][fcol(row,col)]
 
 
-#define strcasecmp stricmp
-#define strncasecmp strnicmp
-
-
