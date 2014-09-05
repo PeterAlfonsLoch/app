@@ -193,7 +193,7 @@ inline uint32_t __swap32gen(uint32_t x)
 
 
 
-
+#ifndef BYTE_ORDER
 
 #define LITTLE_ENDIAN	1234
 #define BIG_ENDIAN	4321
@@ -254,7 +254,7 @@ inline uint32_t __swap32gen(uint32_t x)
 #endif /* BYTE_ORDER */
 
 
-
+#endif
 
 
 
