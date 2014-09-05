@@ -184,23 +184,8 @@
 		<Unit filename="Source/FreeImageToolkit/Rescale.cpp" />
 		<Unit filename="Source/FreeImageToolkit/Resize.cpp" />
 		<Unit filename="Source/FreeImageToolkit/Resize.h" />
-		<Unit filename="Source/LibJPEG/ansi2knr.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibJPEG/cderror.h" />
-		<Unit filename="Source/LibJPEG/cdjpeg.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibJPEG/cdjpeg.h" />
-		<Unit filename="Source/LibJPEG/cjpeg.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/ckconfig.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/djpeg.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibJPEG/jaricom.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -334,19 +319,10 @@
 		<Unit filename="Source/LibJPEG/jmemmgr.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibJPEG/jmemname.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jmemnobs.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibJPEG/jmemsys.h" />
 		<Unit filename="Source/LibJPEG/jmorecfg.h" />
 		<Unit filename="Source/LibJPEG/jpegint.h" />
 		<Unit filename="Source/LibJPEG/jpeglib.h" />
-		<Unit filename="Source/LibJPEG/jpegtran.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibJPEG/jquant1.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -357,9 +333,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Source/LibJPEG/jversion.h" />
-		<Unit filename="Source/LibJPEG/libjpeg_example.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibJPEG/rdbmp.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -367,9 +340,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Source/LibJPEG/rdgif.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/rdjpgcom.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Source/LibJPEG/rdppm.c">
@@ -392,9 +362,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Source/LibJPEG/wrgif.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/wrjpgcom.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Source/LibJPEG/wrppm.c">
@@ -557,9 +524,6 @@
 		<Unit filename="Source/LibOpenJPEG/opj_codec.h" />
 		<Unit filename="Source/LibOpenJPEG/opj_config.h" />
 		<Unit filename="Source/LibOpenJPEG/opj_config_private.h" />
-		<Unit filename="Source/LibOpenJPEG/opj_image.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibOpenJPEG/opj_includes.h">
 			<Option compilerVar="C" />
 			<Option compile="1" />
@@ -587,9 +551,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Source/LibOpenJPEG/t1.h" />
-		<Unit filename="Source/LibOpenJPEG/t1_generate_luts.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibOpenJPEG/t1_luts.h" />
 		<Unit filename="Source/LibOpenJPEG/t2.c">
 			<Option compilerVar="CC" />
@@ -650,9 +611,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Source/LibPNG/pngstruct.h" />
-		<Unit filename="Source/LibPNG/pngtest.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibPNG/pngtrans.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -685,12 +643,6 @@
 		<Unit filename="Source/LibRawLite/src/libraw_c_api.cpp" />
 		<Unit filename="Source/LibRawLite/src/libraw_cxx.cpp" />
 		<Unit filename="Source/LibRawLite/src/libraw_datastream.cpp" />
-		<Unit filename="Source/LibTIFF4/mkg3states.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibTIFF4/mkspans.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibTIFF4/t4.h" />
 		<Unit filename="Source/LibTIFF4/tif_aux.c">
 			<Option compilerVar="CC" />
@@ -799,9 +751,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Source/LibTIFF4/tif_tile.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibTIFF4/tif_unix.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Source/LibTIFF4/tif_version.c">
@@ -1053,13 +1002,11 @@
 		<Unit filename="Source/Metadata/TagConversion.cpp" />
 		<Unit filename="Source/Metadata/TagLib.cpp" />
 		<Unit filename="Source/Metadata/XTIFF.cpp" />
-		<Unit filename="Source/OpenEXR/Half/eLut.cpp" />
 		<Unit filename="Source/OpenEXR/Half/eLut.h" />
 		<Unit filename="Source/OpenEXR/Half/half.cpp" />
 		<Unit filename="Source/OpenEXR/Half/half.h" />
 		<Unit filename="Source/OpenEXR/Half/halfFunction.h" />
 		<Unit filename="Source/OpenEXR/Half/halfLimits.h" />
-		<Unit filename="Source/OpenEXR/Half/toFloat.cpp" />
 		<Unit filename="Source/OpenEXR/Half/toFloat.h" />
 		<Unit filename="Source/OpenEXR/Iex/Iex.h" />
 		<Unit filename="Source/OpenEXR/Iex/IexBaseExc.cpp" />
@@ -1203,21 +1150,14 @@
 		<Unit filename="Source/OpenEXR/IlmImf/ImfZipCompressor.cpp" />
 		<Unit filename="Source/OpenEXR/IlmImf/ImfZipCompressor.h" />
 		<Unit filename="Source/OpenEXR/IlmImf/b44ExpLogTable.h" />
-		<Unit filename="Source/OpenEXR/IlmThread/IlmThread.cpp" />
 		<Unit filename="Source/OpenEXR/IlmThread/IlmThread.h" />
-		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadMutex.cpp" />
 		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadMutex.h" />
 		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadMutexPosix.cpp" />
-		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadMutexWin32.cpp" />
 		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadPool.cpp" />
 		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadPool.h" />
 		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadPosix.cpp" />
-		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadSemaphore.cpp" />
 		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadSemaphore.h" />
 		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadSemaphorePosix.cpp" />
-		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadSemaphorePosixCompat.cpp" />
-		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadSemaphoreWin32.cpp" />
-		<Unit filename="Source/OpenEXR/IlmThread/IlmThreadWin32.cpp" />
 		<Unit filename="Source/OpenEXR/Imath/ImathBox.cpp" />
 		<Unit filename="Source/OpenEXR/Imath/ImathBox.h" />
 		<Unit filename="Source/OpenEXR/Imath/ImathBoxAlgo.h" />
