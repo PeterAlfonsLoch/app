@@ -108,6 +108,13 @@ CLASS_DECL_AURA void utf8_to_utf16(wchar_t * pwsz, const char * psz);
 
 #define _strdup strdup
 
+
+#define strcasecmp stricmp_dup
+#define strncasecmp strnicmp_dup
+#define strcasestr stristr_dup
+#define strncasestr strnistr_dup
+
+
 #endif
 
 
@@ -122,6 +129,8 @@ CLASS_DECL_AURA int_bool matches_wildcard_criteria_ci(const char * pszCriteria, 
 
 
 END_EXTERN_C
+
+
 
 
 
