@@ -108,6 +108,12 @@ CLASS_DECL_AURA void utf8_to_utf16(wchar_t * pwsz, const char * psz);
 
 #define _strdup strdup
 
+#undef stricmp
+#undef strnicmp
+
+#define strcasecmp stricmp
+#define strncasecmp strnicmp
+
 #endif
 
 
@@ -126,8 +132,8 @@ END_EXTERN_C
 
 
 
-#define strcasecmp stricmp
-#define strncasecmp strnicmp
+
+
 
 
 

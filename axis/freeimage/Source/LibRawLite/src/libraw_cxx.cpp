@@ -21,6 +21,9 @@ it under the terms of the one of three licenses as you choose:
 
 #include "axis/axis/axis.h"
 
+
+
+
 #include <math.h>
 #include <errno.h>
 #include <float.h>
@@ -46,6 +49,9 @@ it under the terms of the one of three licenses as you choose:
 #include <RawSpeed/CameraMetaData.h>
 #include <RawSpeed/ColorFilterArray.h>
 #endif
+
+#define strcasecmp stricmp
+#define strncasecmp strnicmp
 
 
 #ifdef __cplusplus

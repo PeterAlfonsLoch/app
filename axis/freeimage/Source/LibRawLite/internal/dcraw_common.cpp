@@ -21,6 +21,9 @@ it under the terms of the one of three licenses as you choose:
    for more information
 */
 #include "axis/axis/axis.h"
+
+
+
 #pragma warning (disable : 4309)
 #include <math.h>
 #define CLASS LibRaw::
@@ -30,6 +33,9 @@ it under the terms of the one of three licenses as you choose:
 #include "libraw/libraw.h"
 #include "LibRawLite/internal/defines.h"
 #include "internal/var_defines.h"
+
+
+
 int CLASS fcol (int row, int col)
 {
   static const char filter[16][16] =
