@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <time.h>
 
 
 namespace datetime
@@ -13,7 +14,7 @@ namespace datetime
 
 
 
-
+#if 0
 
 extern "C" CLASS_DECL_AURA time_t timegm(struct tm *tmp)
 {
@@ -26,3 +27,5 @@ extern "C" CLASS_DECL_AURA time_t timegm(struct tm *tmp)
 
 }
 
+
+#endif

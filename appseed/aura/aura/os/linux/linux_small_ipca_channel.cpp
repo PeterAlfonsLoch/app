@@ -4,7 +4,7 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <unistd.h>
-
+#include <pthread.h>
 
 small_ipc_channel_base::small_ipc_channel_base()
 {

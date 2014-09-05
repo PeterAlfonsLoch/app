@@ -739,7 +739,7 @@ namespace datetime
       char szBuffer[maxTimeBufferSize];
 #if defined(LINUX)
       struct tm* ptmTemp = localtime(&m_time);
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
          szBuffer[0] = '\0';
       }
@@ -750,7 +750,7 @@ namespace datetime
 
       struct tm* ptmTemp = localtime(&m_time);
 
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
 
          szBuffer[0] = '\0';
@@ -763,7 +763,7 @@ namespace datetime
 
       errno_t err = _localtime64_s(&ptmTemp, &m_time);
 
-      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, pszFormat, &ptmTemp))
+      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
       {
 
          szBuffer[0] = '\0';
@@ -774,7 +774,7 @@ namespace datetime
 
       struct tm* ptmTemp = localtime(&m_time);
 
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
 
          szBuffer[0] = '\0';
@@ -810,7 +810,7 @@ namespace datetime
 
       struct tm* ptmTemp = gmtime(&m_time);
 
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
 
          szBuffer[0] = '\0';
@@ -823,7 +823,7 @@ namespace datetime
 
       errno_t err = _gmtime64_s(&ptmTemp, &m_time);
 
-      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, pszFormat, &ptmTemp))
+      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
       {
 
          szBuffer[0] = '\0';
@@ -834,7 +834,7 @@ namespace datetime
 
       struct tm* ptmTemp = _gmtime64(&m_time);
 
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
 
          szBuffer[0] = '\0';

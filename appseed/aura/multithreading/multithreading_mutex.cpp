@@ -4,6 +4,7 @@
 #if defined(LINUX) || defined(SOLARIS)
 #include <sys/ipc.h>
 #include <sys/sem.h>
+#include <pthread.h>
 #elif defined(ANDROID)
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -69,14 +70,14 @@ mutex::mutex(sp(::aura::application) papp, bool bInitiallyOwn, const char * pstr
        else
        {
 
-          if (errno != EEXIST) 
+          if (errno != EEXIST)
              throw resource_exception(get_app());
 
           // We're not first.  Try again
 
           m_psem = sem_open(m_strName, 0);
 
-          if (m_psem == SEM_FAILED) 
+          if (m_psem == SEM_FAILED)
              throw resource_exception(get_app());;
 
        }

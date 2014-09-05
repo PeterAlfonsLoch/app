@@ -1,7 +1,8 @@
 #include "framework.h"
-#include <X11/cursorfont.h>
-
+//#include <X11/cursorfont.h>
+#include <sys/time.h>
 #include <link.h>
+#include <pthread.h>
 
 
 namespace linux

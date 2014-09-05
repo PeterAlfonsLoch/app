@@ -4,6 +4,8 @@
 #if defined(LINUX) || defined(APPLEOS)
 #include <sys/ipc.h>
 #include <sys/sem.h>
+#include <pthread.h>
+#include <sys/time.h>
 #endif
 
 
@@ -406,53 +408,53 @@ wait_result event::wait (const duration & durationTimeout)
 
    if(m_bManualEvent)
    {
-      
+
       ((duration & ) durationTimeout).normalize();
 
       pthread_mutex_lock(&m_mutex);
 
       int iSignal = m_iSignalId;
-      
+
       timeval ts1, ts2;
-      
+
       gettimeofday(&ts1, 0);
-      
+
       int error;
 
       int64_t sec = durationTimeout.m_iSeconds;
-      
+
       int64_t nsec = durationTimeout.m_iNanoseconds;
 
       while(!m_bSignaled && iSignal == m_iSignalId)
       {
-      
+
          delay.tv_sec = sec;
 
          delay.tv_nsec = nsec;
 
          error = pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
-         
+
          pthread_mutex_unlock(&m_mutex);
-         
+
          gettimeofday(&ts2,0);
-               
+
          sec -= ts2.tv_sec - ts1.tv_sec;
-         
+
          nsec -= (ts2.tv_usec - ts1.tv_usec) * 1000;
-         
+
          if(nsec < 0)
          {
             nsec  += 1000000000;
             sec   -= 1;
          }
-         
+
          if(sec < 0 || nsec < 0)
          {
-               
+
             return wait_result(wait_result::Timeout);
-                  
+
          }
-         
+
          ts1 = ts2;
 
       }
@@ -661,7 +663,7 @@ bool event::lock(const duration & durationTimeout)
 
    if(m_bManualEvent)
    {
-      
+
       wait(durationTimeout);
 
       return m_bSignaled;

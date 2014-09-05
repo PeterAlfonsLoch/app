@@ -1,5 +1,9 @@
 #include "framework.h"
 
+#if defined(LINUX)
+#include <pthread.h>
+#endif
+
 #ifdef WINDOWS
 
 bool critical_section::Init()

@@ -24,6 +24,8 @@
  */
 
 #include "framework.h"
+#include <sys/time.h>
+#include <time.h>
 
 #define server_start_time 0
 

@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#include <sched.h>
+#include <time.h>
+#include <pthread.h>
 
 CLASS_DECL_AURA void thread_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
 
