@@ -1221,17 +1221,17 @@ CLASS_DECL_AURA void * memmem_dup(const void * src, strsize srclen, const void *
       return NULL;
 
    if(find == NULL)
-      return src;
+      return (void *) src;
 
    if(findlen <= 0)
-      return src;
+      return (void *) src;
 
    strsize i = srclen - findlen;
 
    if(i < 0)
-      return NULL;
+      return (void *) NULL;
 
-   char * psrc = src;
+   char * psrc = (char *) src;
 
    strsize j;
 
@@ -1240,13 +1240,17 @@ CLASS_DECL_AURA void * memmem_dup(const void * src, strsize srclen, const void *
 
       char * pcmp1 = psrc;
 
-      char * pcmp2 = find;
+      char * pcmp2 = (char *) find;
 
       for(j = findlen; j > 0; j--)
       {
 
          if(*pcmp1 != *pcmp2)
             break;
+
+         pcmp1++;
+
+         pcmp2++;
 
       }
 
