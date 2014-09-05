@@ -31,11 +31,11 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "opj_includes.h"
-
 #ifdef __SSE__
 #include <xmmintrin.h>
 #endif
+
+#include "opj_includes.h"
 
 
 /** @defgroup DWT DWT - Implementation of a discrete wavelet transform */
