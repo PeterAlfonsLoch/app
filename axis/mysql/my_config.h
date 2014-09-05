@@ -85,7 +85,11 @@
 /* #undef HAVE_SYS_TIMES_H */
 /* #undef HAVE_SYS_TIME_H */
 #define HAVE_SYS_TYPES_H 1
-/* #undef HAVE_SYS_UN_H */
+
+#ifdef LINUX
+#define HAVE_SYS_UN_H 1
+#endif // LINUX
+
 /* #undef HAVE_SYS_VADVISE_H */
 /* #undef HAVE_TERM_H */
 /* #undef HAVE_TERMBITS_H */
