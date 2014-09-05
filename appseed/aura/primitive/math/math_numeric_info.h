@@ -306,3 +306,11 @@ inline T natural_assign(T & t,const T2 & t2)
 {
    t = MIN(::numeric_info < T >::max(),MAX(::numeric_info < T >::null(),(T)t2));
 }
+
+
+
+template <typename T>
+int sgn(T val)
+{
+   return (::numeric_info < T >::null() < val) - (val < ::numeric_info < T >::null());
+}
