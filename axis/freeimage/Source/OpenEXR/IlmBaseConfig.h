@@ -2,16 +2,18 @@
 // Define and set to 1 if the target system has POSIX thread support
 // and you want OpenEXR to use it for multithreaded file I/O.
 //
-
-#undef HAVE_PTHREAD		// currently disabled in FreeImage
+#ifdef LINUX
+#define HAVE_PTHREAD 1		// currently disabled in FreeImage
+#endif
 
 //
 // Define and set to 1 if the target system supports POSIX semaphores
 // and you want OpenEXR to use them; otherwise, OpenEXR will use its
 // own semaphore implementation.
 //
-
-#undef HAVE_POSIX_SEMAPHORES
+#ifdef LINUX
+#define HAVE_POSIX_SEMAPHORES 1
+#endif
 
 //
 // Define and set to 1 if the target system is a Darwin-based system
