@@ -225,6 +225,12 @@
     <Filter Include="Source Files\aura\process">
       <UniqueIdentifier>{6d592c90-2d43-41e1-a493-c0746f96e320}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\aura\os\cross\ansios">
+      <UniqueIdentifier>{1ed12af4-cb60-48aa-9d69-eaae021eebd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\os\cross\ansios">
+      <UniqueIdentifier>{bdcaf82f-4175-4f90-8c9c-7e1517c5b7aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -1955,6 +1961,12 @@
     <ClInclude Include="primitive\math\math_complex.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
+    <ClInclude Include="aura\os\cross\ansios\ansios.h">
+      <Filter>Header Files\aura\os\cross\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\cross\ansios\ansios_datetime.h">
+      <Filter>Header Files\aura\os\cross\ansios</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3324,6 +3336,12 @@
     </ClCompile>
     <ClCompile Include="primitive\math\math_cvt_g.cpp">
       <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_mktime.c">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\ansios\ansios_datetime.cpp">
+      <Filter>Source Files\aura\os\cross\ansios</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,27 +1,5 @@
 #include "framework.h"
 
-#if defined(ANDROID) || defined(SOLARIS)
-
-time_t
-my_timegm(struct tm *tm)
-{
-   time_t ret;
-   char *tz;
-
-   tz = getenv("TZ");
-   setenv("TZ", "", 1);
-   tzset();
-   ret = mktime(tm);
-   if (tz)
-      setenv("TZ", tz, 1);
-   else
-      unsetenv("TZ");
-   tzset();
-   return ret;
-}
-
-
-#endif
 
 namespace datetime
 {
@@ -114,6 +92,18 @@ namespace datetime
    }
 
 
+   time_t timegm(struct tm *tmp)
+   {
+      
+      static time_t gmtime_offset;
+      
+      tmp->tm_isdst = 0;
+
+      return __mktime_internal(tmp,__gmtime_r,&gmtime_offset);
+
+   }
+
+   
 } // namespace datetime
 
 
