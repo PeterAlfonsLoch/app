@@ -469,7 +469,7 @@
 /* #undef HAVE_DTRACE */
 
 /* Windows stuff, mostly functions, that have Posix analogs but named differently */
-#if !defined(APPLEOS) && !defined(ANDROID)
+#if !defined(APPLEOS) && !defined(ANDROID) && !defined(LINUX)
 #define S_IROTH _S_IREAD
 #define S_IFIFO _S_IFIFO
 #endif
