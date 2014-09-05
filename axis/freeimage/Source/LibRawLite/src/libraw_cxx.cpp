@@ -18,7 +18,9 @@ it under the terms of the one of three licenses as you choose:
    (See file LICENSE.LibRaw.pdf provided in LibRaw distribution archive for details).
 
  */
+
 #include "axis/axis/axis.h"
+
 #include <math.h>
 #include <errno.h>
 #include <float.h>
@@ -2353,7 +2355,7 @@ int LibRaw::unpack_thumb(void)
             ushort *t_thumb = (ushort*)calloc(T.tlength,2);
             ID.input->read(t_thumb,2,T.tlength);
             if ((libraw_internal_data.unpacker_data.order == 0x4949) == (ntohs(0x1234) == 0x1234))
-              _swab ((char*)t_thumb, (char*)t_thumb, T.tlength*2);
+              swab ((char*)t_thumb, (char*)t_thumb, T.tlength*2);
 
             if(T.thumb) free(T.thumb);
             T.thumb = (char *) malloc (T.tlength);

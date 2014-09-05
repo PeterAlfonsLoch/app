@@ -662,7 +662,6 @@
 		<Unit filename="Source/LibRawLite/internal/demosaic_packs.cpp" />
 		<Unit filename="Source/LibRawLite/internal/libraw_bytebuffer.h" />
 		<Unit filename="Source/LibRawLite/internal/libraw_internal_funcs.h" />
-		<Unit filename="Source/LibRawLite/internal/libraw_x3f.cpp" />
 		<Unit filename="Source/LibRawLite/internal/var_defines.h" />
 		<Unit filename="Source/LibRawLite/libraw/libraw.h" />
 		<Unit filename="Source/LibRawLite/libraw/libraw_alloc.h" />
@@ -796,16 +795,7 @@
 		<Unit filename="Source/LibTIFF4/tif_version.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibTIFF4/tif_vms.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibTIFF4/tif_warning.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibTIFF4/tif_win32.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibTIFF4/tif_wince.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Source/LibTIFF4/tif_write.c">
@@ -1200,7 +1190,6 @@
 		<Unit filename="Source/OpenEXR/IlmImf/ImfXdr.h" />
 		<Unit filename="Source/OpenEXR/IlmImf/ImfZipCompressor.cpp" />
 		<Unit filename="Source/OpenEXR/IlmImf/ImfZipCompressor.h" />
-		<Unit filename="Source/OpenEXR/IlmImf/b44ExpLogTable.cpp" />
 		<Unit filename="Source/OpenEXR/IlmImf/b44ExpLogTable.h" />
 		<Unit filename="Source/OpenEXR/IlmThread/IlmThread.cpp" />
 		<Unit filename="Source/OpenEXR/IlmThread/IlmThread.h" />

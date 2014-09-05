@@ -3,6 +3,7 @@
 
 typedef int_ptr strsize;
 
+
 BEGIN_EXTERN_C
 
 CLASS_DECL_AURA void strcat_dup(char * dest, const char * cat);
@@ -123,8 +124,13 @@ CLASS_DECL_AURA int_bool matches_wildcard_criteria_ci(const char * pszCriteria, 
 END_EXTERN_C
 
 
+
+
 #define strcasecmp stricmp
 #define strncasecmp strnicmp
+
+
+
 
 
 
