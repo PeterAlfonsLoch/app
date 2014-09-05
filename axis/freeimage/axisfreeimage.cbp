@@ -51,6 +51,9 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
+			<Add option="-D__ANSI__" />
+			<Add option="-DUSE_JPIP" />
+			<Add option="-DNO_JASPER" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
@@ -71,6 +74,7 @@
 			<Add directory="Source/LibJXR/jxrgluelib" />
 			<Add directory="Source/LibJXR/image/sys" />
 			<Add directory="Source/LibJXR/common/include" />
+			<Add directory="Source/LibJPEG" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -320,12 +324,6 @@
 		</Unit>
 		<Unit filename="Source/LibJPEG/jinclude.h" />
 		<Unit filename="Source/LibJPEG/jmemansi.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jmemdos.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jmemmac.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Source/LibJPEG/jmemmgr.c">
@@ -660,15 +658,10 @@
 		<Unit filename="Source/LibRawLite/dcraw/dcraw.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibRawLite/internal/aahd_demosaic.cpp" />
-		<Unit filename="Source/LibRawLite/internal/dcb_demosaicing.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibRawLite/internal/dcraw_common.cpp" />
 		<Unit filename="Source/LibRawLite/internal/dcraw_fileio.cpp" />
 		<Unit filename="Source/LibRawLite/internal/defines.h" />
 		<Unit filename="Source/LibRawLite/internal/demosaic_packs.cpp" />
-		<Unit filename="Source/LibRawLite/internal/dht_demosaic.cpp" />
 		<Unit filename="Source/LibRawLite/internal/libraw_bytebuffer.h" />
 		<Unit filename="Source/LibRawLite/internal/libraw_internal_funcs.h" />
 		<Unit filename="Source/LibRawLite/internal/libraw_x3f.cpp" />

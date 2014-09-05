@@ -32,7 +32,8 @@
 #include "opj_includes.h"
 
 
-/* 
+
+/*
  * Write CPTR Codestream finder box
  *
  * @param[in] coff offset of j2k codestream
@@ -62,7 +63,7 @@ int opj_write_cidx( int offset, opj_stream_private_t *cio, opj_codestream_info_t
   box = (opj_jp2_box_t *)opj_calloc( 32, sizeof(opj_jp2_box_t));
 
   for (i=0;i<2;i++){
-  
+
     if(i)
       opj_stream_seek(cio,lenp,p_manager);
 
@@ -77,7 +78,7 @@ int opj_write_cidx( int offset, opj_stream_private_t *cio, opj_codestream_info_t
     opj_write_cptr( offset, cstr_info.codestream_size, cio,p_manager);
 
     opj_write_manf( i, num_box, box, cio,p_manager);
-    
+
     num_box = 0;
     box[num_box].length = (OPJ_UINT32)opj_write_mainmhix( offset, cstr_info, cio,p_manager);
     box[num_box].type = JPIP_MHIX;
@@ -86,21 +87,21 @@ int opj_write_cidx( int offset, opj_stream_private_t *cio, opj_codestream_info_t
     box[num_box].length = (OPJ_UINT32)opj_write_tpix( offset, cstr_info, j2klen, cio,p_manager);
     box[num_box].type = JPIP_TPIX;
     num_box++;
-      
+
     box[num_box].length = (OPJ_UINT32)opj_write_thix( offset, cstr_info, cio, p_manager);
     box[num_box].type = JPIP_THIX;
     num_box++;
 
     EPHused = opj_check_EPHuse( offset, cstr_info.marker, cstr_info.marknum, cio,p_manager);
-      
+
     box[num_box].length = (OPJ_UINT32)opj_write_ppix( offset, cstr_info, EPHused, j2klen, cio,p_manager);
     box[num_box].type = JPIP_PPIX;
     num_box++;
-    
+
     box[num_box].length = (OPJ_UINT32)opj_write_phix( offset, cstr_info, EPHused, j2klen, cio,p_manager);
     box[num_box].type = JPIP_PHIX;
     num_box++;
-      
+
     len = (OPJ_UINT32) (opj_stream_tell(cio)-lenp);
     opj_stream_seek(cio, lenp,p_manager);
     opj_write_bytes(l_data_header,len,4);/* L  */
@@ -109,7 +110,7 @@ int opj_write_cidx( int offset, opj_stream_private_t *cio, opj_codestream_info_t
   }
 
   opj_free( box);
-  
+
   return (int)len;
 }
 
@@ -142,9 +143,9 @@ void opj_write_cptr(int coff, int clen, opj_stream_private_t *cio,
 
 
 
-void opj_write_manf(int second, 
-                    int v, 
-                    opj_jp2_box_t *box, 
+void opj_write_manf(int second,
+                    int v,
+                    opj_jp2_box_t *box,
                     opj_stream_private_t *cio,
                     opj_event_mgr_t * p_manager )
 {
@@ -152,7 +153,7 @@ void opj_write_manf(int second,
   int i;
   OPJ_UINT32 len;
   OPJ_OFF_T lenp;
-  
+
   lenp = opj_stream_tell(cio);
   opj_stream_skip( cio, 4, p_manager);             /* L [at the end]     */
   opj_write_bytes( l_data_header, JPIP_MANF, 4);   /* T                  */
@@ -182,7 +183,7 @@ int opj_write_mainmhix( int coff, opj_codestream_info_t cstr_info, opj_stream_pr
   OPJ_UINT32 i;
   OPJ_UINT32 len;
   OPJ_OFF_T lenp;
-  
+
   lenp = opj_stream_tell (cio);
   opj_stream_skip(cio, 4, p_manager);               /* L [at the end]                    */
   opj_write_bytes(l_data_header,JPIP_MHIX,4);       /* MHIX                              */
@@ -206,7 +207,7 @@ int opj_write_mainmhix( int coff, opj_codestream_info_t cstr_info, opj_stream_pr
   opj_write_bytes(l_data_header,len,4);/* L  */
   opj_stream_write_data(cio,l_data_header,4,p_manager);
   opj_stream_seek(cio, lenp+len,p_manager);
-  
+
   return (int)len;
 }
 
@@ -234,6 +235,6 @@ OPJ_BOOL opj_check_EPHuse( int coff, opj_marker_info_t *markers, int marknum, op
 
       break;
       }
-    }    
+    }
   return EPHused;
 }
