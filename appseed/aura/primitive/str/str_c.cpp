@@ -115,19 +115,19 @@ int32_t strnicmp_dup(const char * sz1, const char * sz2, ::count iLen)
    }
 
    int32_t iCmp = 0;
-   
+
    while(iLen > 0)
    {
-      
+
       iCmp = char_to_lower(*sz1) - char_to_lower(*sz2);
-      
+
       if(iCmp != 0)
       {
 
          return iCmp;
 
       }
-      
+
       if(*sz1 == '\0' || *sz2 == '\0')
       {
 
@@ -1210,3 +1210,54 @@ CLASS_DECL_AURA void zero_pad(string & str, count iPad)
       str = "0" + str;
    }
 }*/
+
+
+
+
+CLASS_DECL_AURA void * memmem_dup(const void * src, strsize srclen, const void * find, strsize findlen)
+{
+
+   if(src == NULL)
+      return NULL;
+
+   if(find == NULL)
+      return src;
+
+   if(findlen <= 0)
+      return src;
+
+   strsize i = srclen - findlen;
+
+   if(i < 0)
+      return NULL;
+
+   char * psrc = src;
+
+   strsize j;
+
+   for(; i >= 0; i--)
+   {
+
+      char * pcmp1 = psrc;
+
+      char * pcmp2 = find;
+
+      for(j = findlen; j > 0; j--)
+      {
+
+         if(*pcmp1 != *pcmp2)
+            break;
+
+      }
+
+      if(j <= 0)
+         return psrc;
+
+      psrc++;
+      i--;
+
+   }
+
+   return NULL;
+
+}
