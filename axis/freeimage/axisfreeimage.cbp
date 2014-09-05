@@ -54,6 +54,7 @@
 			<Add option="-D__ANSI__" />
 			<Add option="-DUSE_JPIP" />
 			<Add option="-DNO_JASPER" />
+			<Add option="-DNO_LCMS" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />

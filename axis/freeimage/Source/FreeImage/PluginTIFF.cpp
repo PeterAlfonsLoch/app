@@ -23,6 +23,7 @@
 //
 // Use at your own risk!
 // ==========================================================
+#include  "FreeImageFramework.h"
 
 #ifdef _MSC_VER
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
@@ -35,7 +36,6 @@
 #undef __unix
 #endif
 
-#include  "FreeImageFramework.h"
 //#include "Utilities.h"
 #include "../LibTIFF4/tiffiop.h"
 //#include "../Metadata/FreeImageTag.h"
