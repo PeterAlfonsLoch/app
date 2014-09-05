@@ -2,16 +2,16 @@
 //
 // Copyright © Microsoft Corp.
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // • Redistributions of source code must retain the above copyright notice,
 //   this list of conditions and the following disclaimer.
 // • Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -26,6 +26,9 @@
 //
 //*@@@---@@@@******************************************************************
 #pragma once
+
+#include "axis/axis/axis.h"
+
 
 #include <stddef.h>
 #if defined(__MINGW32__)
@@ -146,7 +149,7 @@ typedef struct tagIOContext
             struct WMPStream* pWS;    // pointer to WMPStream
             long offPacket; // byte offset into stream
 
-            //ULARGE_INTEGER u64Acc; 
+            //ULARGE_INTEGER u64Acc;
 
     //========================================
     // index packet, used for packet retrieval
@@ -159,7 +162,7 @@ typedef struct tagIOContext
 } IOContext;
 
 typedef struct tagMemReadState
-{    
+{
     U8* pbBuf;
     size_t cbBuf;
     size_t cbCur;
@@ -200,7 +203,7 @@ typedef struct tagCWMIQuantizer {
 #if defined(WMP_OPT_QT)
     float f1_QP;
     double d1_QP;
-#endif    
+#endif
 } CWMIQuantizer;
 
 /* temporary bridge between old APIs and streaming APIs */
@@ -352,7 +355,7 @@ typedef struct CWMImageStrCodec {
     //============== tile related info begins here ===========
     // index table
     size_t *pIndexTable;
-  
+
     // current tile position
     size_t cTileRow;
     size_t cTileColumn;
@@ -365,7 +368,7 @@ typedef struct CWMImageStrCodec {
     Bool m_bResetContext;
 
     CWMITile * pTile;
-    
+
     // BitIOs
     BitIOInfo ** m_ppBitIO;
     size_t cNumBitIO;
@@ -423,7 +426,7 @@ typedef struct CWMImageStrCodec {
     ImageDataProc ProcessBottomLeft;
     ImageDataProc ProcessBottom;
     ImageDataProc ProcessBottomRight;
-    
+
 
     //================================
     // 2 MB working window for encoder
@@ -652,7 +655,7 @@ U8 dquantBits(U8);
 #define getBit16    getBits
 #define getBit32    getBits
 #define getBit16s   getBitsS
-#define getBool16(pIO) getBits(pIO, 1)   
+#define getBool16(pIO) getBits(pIO, 1)
 
 U32 peekBits(BitIOInfo* pIO, U32 cBits);
 void flushBits(BitIOInfo* pIO, U32 cBits);

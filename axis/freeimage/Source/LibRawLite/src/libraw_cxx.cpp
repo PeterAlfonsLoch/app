@@ -24,18 +24,18 @@ it under the terms of the one of three licenses as you choose:
 
 
 
-#include <math.h>
-#include <errno.h>
-#include <float.h>
+//#include <math.h>
+//#include <errno.h>
+//#include <float.h>
 //#include <new>
-#include <exception>
-#include <sys/types.h>
+//#include <exception>
+//#include <sys/types.h>
 #include <sys/stat.h>
-#ifndef WIN32
-#include <netinet/in.h>
-#else
+//#ifndef WIN32
+//#include <netinet/in.h>
+//#else
 //#include <winsock2.h>
-#endif
+//#endif
 #define LIBRAW_LIBRARY_BUILD
 #include "libraw/libraw.h"
 #include "internal/defines.h"
@@ -50,8 +50,8 @@ it under the terms of the one of three licenses as you choose:
 #include <RawSpeed/ColorFilterArray.h>
 #endif
 
-#define strcasecmp stricmp
-#define strncasecmp strnicmp
+//#define strcasecmp stricmp
+//#define strncasecmp strnicmp
 
 
 #ifdef __cplusplus

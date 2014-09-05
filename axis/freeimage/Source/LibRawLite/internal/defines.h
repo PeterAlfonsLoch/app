@@ -35,33 +35,33 @@ it under the terms of the one of three licenses as you choose:
 #define _GNU_SOURCE
 #endif
 #define _USE_MATH_DEFINES
-#include <ctype.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <float.h>
-#include <limits.h>
-#include <math.h>
-#include <setjmp.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include <sys/types.h>
-#ifdef __CYGWIN__
-#include <io.h>
-#endif
+//#include <ctype.h>
+//#include <errno.h>
+//#include <fcntl.h>
+//#include <float.h>
+//#include <limits.h>
+//#include <math.h>
+//#include <setjmp.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//#include <time.h>
+//#include <sys/types.h>
+//#ifdef __CYGWIN__
+//#include <io.h>
+//#endif
 #ifdef WIN32
-#include <sys/utime.h>
+//#include <sys/utime.h>
 //#include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
 #define snprintf _snprintf
 #define strcasecmp _stricmp
 #define strncasecmp _strnicmp
 #else
-#include <unistd.h>
-#include <utime.h>
-#include <netinet/in.h>
-#include <stdint.h>
+//#include <unistd.h>
+//#include <utime.h>
+//#include <netinet/in.h>
+//#include <stdint.h>
 
 
 

@@ -2,16 +2,16 @@
 //
 // Copyright © Microsoft Corp.
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // • Redistributions of source code must retain the above copyright notice,
 //   this list of conditions and the following disclaimer.
 // • Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -25,7 +25,7 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //
 //*@@@---@@@@******************************************************************
-#include <stdlib.h>
+//#include <stdlib.h>
 
 #include <JXRGlue.h>
 #include <math.h>
@@ -142,7 +142,7 @@ ERR RGB24_BGR24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStrid
     I32 i = 0, j = 0;
 
     UNREFERENCED_PARAMETER( pFC );
-   
+
     for (i = 0; i < pRect->Height; ++i)
     {
         for (j = 0; j < pRect->Width * 3; j += 3)
@@ -169,7 +169,7 @@ ERR RGB24_BGR32(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStrid
     I32 i = 0, j = 0;
 
     UNREFERENCED_PARAMETER( pFC );
-   
+
     for (i = 0; i < pRect->Height; ++i)
     {
         for (j = 0; j < pRect->Width; j++)
@@ -192,7 +192,7 @@ ERR BGR32_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStrid
     I32 i = 0, j = 0;
 
     UNREFERENCED_PARAMETER( pFC );
-   
+
     for (i = 0; i < pRect->Height; ++i)
     {
         for (j = 0; j < pRect->Width; j++)
@@ -215,7 +215,7 @@ ERR RGB24_Gray8(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStrid
     I32 i = 0, j = 0, k = 0;
 
     UNREFERENCED_PARAMETER( pFC );
-    
+
     for (i = 0; i < pRect->Height; ++i)
     {
         for (j = 0, k = 0; j < pRect->Width * 3; j += 3, ++k)
@@ -223,7 +223,7 @@ ERR RGB24_Gray8(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStrid
             U8 r = pb[j];
             U8 g = pb[j + 1];
             U8 b = pb[j + 2];
-            
+
             pb[k] = r / 4 + g / 2 + b / 8 + 16;
         }
 
@@ -249,7 +249,7 @@ ERR Gray8_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStrid
     I32 i = 0, j = 0, k = 0;
 
     UNREFERENCED_PARAMETER( pFC );
-    
+
     for (i = 0; i < pRect->Height; ++i)
     {
         for (j = pRect->Width - 1, k = 3 * j; 0 <= j; j--, k -= 3)
@@ -260,7 +260,7 @@ ERR Gray8_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStrid
             pb[k + 1] = v;
             pb[k + 2] = v;
         }
-        
+
         pb += cbStride;
     }
 
@@ -280,7 +280,7 @@ ERR RGB48_BGR48(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStrid
     I32 i = 0, j = 0;
 
     UNREFERENCED_PARAMETER( pFC );
-    
+
     Call(PKFormatConverter_Copy(pFC, pRect, pb, cbStride));
 
     for (i = 0; i < pRect->Height; ++i)
@@ -288,7 +288,7 @@ ERR RGB48_BGR48(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStrid
         for (j = 0; j < pRect->Width; j += 3)
         {
             U16* ps = (U16*)pb;
-            
+
             // swap red with blue
             U16 t = ps[j];
             ps[j] = ps[j + 2];
@@ -312,9 +312,9 @@ ERR RGB48_Gray16(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStri
     ERR err = WMP_errSuccess;
 
     I32 i = 0, j = 0, k = 0;
- 
+
     UNREFERENCED_PARAMETER( pFC );
-   
+
     Call(PKFormatConverter_Copy(pFC, pRect, pb, cbStride));
 
     for (i = 0; i < pRect->Height; ++i)
@@ -327,7 +327,7 @@ ERR RGB48_Gray16(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStri
             U16 r = ps[j];
             U16 g = ps[j + 1];
             U16 b = ps[j + 2];
-            
+
             ps[k] = r / 4 + g / 2 + b / 8 + 16;
         }
 
@@ -357,7 +357,7 @@ ERR RGBA128Fixed_RGBA128Float(PKFormatConverter* pFC, const PKRect* pRect, U8* p
         for (x = 0; x < iWidthX4; x++)
             pfltDstPixel[x] = piSrcPixel[x] * fltCvtFactor;
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -380,7 +380,7 @@ ERR RGBA128Float_RGBA128Fixed(PKFormatConverter* pFC, const PKRect* pRect, U8* p
         for (x = 0; x < iWidthX4; x++)
             piDstPixel[x] = (I32) (pfltSrcPixel[x] * fltCvtFactor + 0.5F);
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -404,7 +404,7 @@ ERR RGB96Fixed_RGB96Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U
         for (x = 0; x < iWidthX3; x++)
             pfltDstPixel[x] = piSrcPixel[x] * fltCvtFactor;
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -431,7 +431,7 @@ ERR RGB128Fixed_RGB96Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, 
             pfltDstPixel[3*x+2] = piSrcPixel[4*x+2] * fltCvtFactor;
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -455,7 +455,7 @@ ERR RGB96Float_RGB96Fixed(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U
         for (x = 0; x < iWidthX3; x++)
             piDstPixel[x] = (I32)(pfltSrcPixel[x] * fltCvtFactor + 0.5F);
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -484,7 +484,7 @@ ERR RGB96Float_RGB128Fixed(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, 
             piDstPixel[4*x+3] = 0; // Zero out the alpha channel
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -512,7 +512,7 @@ ERR RGB96Float_RGB128Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, 
             pfltDstPixel[4*x+3] = 0.0F; // Zero out the alpha channel
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -538,7 +538,7 @@ ERR RGB128Float_RGB96Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, 
             pfltDstPixel[3*x+2] = pfltSrcPixel[4*x+2];
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -566,7 +566,7 @@ ERR RGB48Half_RGB64Half(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32
             piDstPixel[4*x+3] = 0; // Zero out the alpha channel
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -592,7 +592,7 @@ ERR RGB64Half_RGB48Half(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32
             piDstPixel[3*x+2] = piSrcPixel[4*x+2];
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -620,7 +620,7 @@ ERR BGR24_BGR32(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStrid
             piDstPixel[4*x+3] = 0; // Zero out the alpha channel
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -646,7 +646,7 @@ ERR BGR32_BGR24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStrid
             piDstPixel[3*x+2] = piSrcPixel[4*x+2];
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -669,7 +669,7 @@ ERR Gray32Fixed_Gray32Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb,
         for (x = 0; x < iWidth; x++)
             pfltDstPixel[x] = piSrcPixel[x] * fltCvtFactor;
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -692,7 +692,7 @@ ERR Gray32Float_Gray32Fixed(PKFormatConverter* pFC, const PKRect* pRect, U8* pb,
         for (x = 0; x < iWidth; x++)
             piDstPixel[x] = (I32)(pfltSrcPixel[x] * fltCvtFactor + 0.5F);
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -717,7 +717,7 @@ ERR Gray16Fixed_Gray32Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb,
         for (x = iWidth - 1; x >= 0; x--)
             pfltDstPixel[x] = piSrcPixel[x] * fltCvtFactor;
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -741,7 +741,7 @@ ERR Gray32Float_Gray16Fixed(PKFormatConverter* pFC, const PKRect* pRect, U8* pb,
         for (x = 0; x < iWidth; x++)
             piDstPixel[x] = (I16)(pfltSrcPixel[x] * fltCvtFactor + 0.5F);
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -765,7 +765,7 @@ ERR RGB48Fixed_RGB96Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U
         for (x = iWidthX3 - 1; x >= 0; x--)
             pfltDstPixel[x] = piSrcPixel[x] * fltCvtFactor;
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -789,7 +789,7 @@ ERR RGB96Float_RGB48Fixed(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U
         for (x = 0; x < iWidthX3; x++)
             piDstPixel[x] = (I16)(pfltSrcPixel[x] * fltCvtFactor + 0.5F);
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -817,7 +817,7 @@ ERR RGB64Fixed_RGB96Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U
             pfltDstPixel[3*x+2] = piSrcPixel[4*x+2] * fltCvtFactor;
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -846,7 +846,7 @@ ERR RGB96Float_RGB64Fixed(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U
             piDstPixel[4*x+3] = 0; // Zero out the alpha channel
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -870,7 +870,7 @@ ERR RGBA64Fixed_RGBA128Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb
         for (x = iWidthX4 - 1; x >= 0; x--)
             pfltDstPixel[x] = piSrcPixel[x] * fltCvtFactor;
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -895,7 +895,7 @@ ERR RGBA128Float_RGBA64Fixed(PKFormatConverter* pFC, const PKRect* pRect, U8* pb
         for (x = 0; x < iWidthX4; x++)
             piDstPixel[x] = (I16)(pfltSrcPixel[x] * fltCvtFactor + 0.5F);
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -949,7 +949,7 @@ ERR RGBE_RGB96Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbS
             }
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1005,7 +1005,7 @@ ERR RGB96Float_RGBE(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbS
             }
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1028,7 +1028,7 @@ ERR RGBA64Half_RGBA128Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb,
         for (x = iWidthX4 - 1; x >= 0; x--)
             pfltDstPixel[x] = Convert_Half_To_Float(piSrcPixel[x]);
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1051,7 +1051,7 @@ ERR RGBA128Float_RGBA64Half(PKFormatConverter* pFC, const PKRect* pRect, U8* pb,
         for (x = 0; x < iWidthX4; x++)
             piDstPixel[x] = Convert_Float_To_Half(pfltSrcPixel[x]);
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1078,7 +1078,7 @@ ERR RGB64Half_RGB96Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U3
             pfltDstPixel[3*x+2] = Convert_Half_To_Float(piSrcPixel[4*x+2]);
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1106,7 +1106,7 @@ ERR RGB96Float_RGB64Half(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U3
             piDstPixel[4*x+3] = 0; // Zero out the alpha channel
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1129,7 +1129,7 @@ ERR RGB48Half_RGB96Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U3
         for (x = iWidthX3 - 1; x >= 0; x--)
             pfltDstPixel[x] = Convert_Half_To_Float(piSrcPixel[x]);
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1152,7 +1152,7 @@ ERR RGB96Float_RGB48Half(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U3
         for (x = 0; x < iWidthX3; x++)
             piDstPixel[x] = Convert_Float_To_Half(pfltSrcPixel[x]);
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1175,7 +1175,7 @@ ERR Gray16Half_Gray32Float(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, 
         for (x = iWidth - 1; x >= 0; x--)
             pfltDstPixel[x] = Convert_Half_To_Float(piSrcPixel[x]);
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1198,7 +1198,7 @@ ERR Gray32Float_Gray16Half(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, 
         for (x = 0; x < iWidth; x++)
             piDstPixel[x] = Convert_Float_To_Half(pfltSrcPixel[x]);
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1229,7 +1229,7 @@ ERR RGB555_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStri
             piDstPixel[3*x+2] = (U8)(b << 3);  // B
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1261,7 +1261,7 @@ ERR RGB101010_RGB48(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbS
             piDstPixel[3*x+2] = (U16)(b << 6);  // B
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1359,7 +1359,7 @@ ERR RGB565_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStri
             piDstPixel[3*x+2] = (U8)(b << 3);  // B
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1418,7 +1418,7 @@ ERR RGBA32_BGRA32(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStr
             piPixel[x+2] = bTemp;
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1464,7 +1464,7 @@ ERR BlackWhite_Gray8(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cb
 			}
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1474,13 +1474,13 @@ ERR Gray16_Gray8(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStri
     I32 i = 0, j = 0;
 
     UNREFERENCED_PARAMETER( pFC );
-    
+
     for (i = 0; i < pRect->Height; ++i)
     {
         for (j = 0; j < pRect->Width; ++j)
         {
             U16 v = ((U16*)pb)[j];
-            
+
             pb[j] = v >> 8;
         }
 
@@ -1570,7 +1570,7 @@ ERR Gray32Float_Gray8(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 c
         for (x = 0; x < iWidth; x++)
         {
             const float v = piSrcPixel[x];
-                
+
             piDstPixel[x] = Convert_Float_To_U8(v);
         }
     }
@@ -1598,7 +1598,7 @@ ERR RGB96Float_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cb
             const float r = piSrcPixel[3*x];
             const float g = piSrcPixel[3*x+1];
             const float b = piSrcPixel[3*x+2];
-                
+
             piDstPixel[3*x] = Convert_Float_To_U8(r);
             piDstPixel[3*x+1] = Convert_Float_To_U8(g);
             piDstPixel[3*x+2] = Convert_Float_To_U8(b);
@@ -1628,7 +1628,7 @@ ERR RGB128Float_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 c
             const float r = piSrcPixel[4*x];
             const float g = piSrcPixel[4*x+1];
             const float b = piSrcPixel[4*x+2];
-                
+
             piDstPixel[3*x] = Convert_Float_To_U8(r);
             piDstPixel[3*x+1] = Convert_Float_To_U8(g);
             piDstPixel[3*x+2] = Convert_Float_To_U8(b);
@@ -1659,7 +1659,7 @@ ERR RGBA128Float_RGBA32(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32
             const float g = piSrcPixel[4*x+1];
             const float b = piSrcPixel[4*x+2];
             const float a = piSrcPixel[4*x+3];
-                
+
             piDstPixel[4*x] = Convert_Float_To_U8(r);
             piDstPixel[4*x+1] = Convert_Float_To_U8(g);
             piDstPixel[4*x+2] = Convert_Float_To_U8(b);
@@ -1742,7 +1742,7 @@ ERR RGB48Fixed_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cb
             pfltDstPixel[3*x+2] = Convert_Float_To_U8(piSrcPixel[3*x+2] * fltCvtFactor);
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1768,7 +1768,7 @@ ERR RGB64Fixed_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cb
             pfltDstPixel[3*x+2] = Convert_Float_To_U8(piSrcPixel[4*x+2] * fltCvtFactor);
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1794,7 +1794,7 @@ ERR RGB96Fixed_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cb
             pfltDstPixel[3*x+2] = Convert_Float_To_U8(piSrcPixel[3*x+2] * fltCvtFactor);
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1820,7 +1820,7 @@ ERR RGB128Fixed_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 c
             pfltDstPixel[3*x+2] = Convert_Float_To_U8(piSrcPixel[4*x+2] * fltCvtFactor);
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1847,7 +1847,7 @@ ERR RGBA64Fixed_RGBA32(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 
             pfltDstPixel[4*x+3] = Convert_AlphaFloat_To_U8(piSrcPixel[4*x+3] * fltCvtFactor);
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1874,7 +1874,7 @@ ERR RGBA128Fixed_RGBA32(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32
             pfltDstPixel[4*x+3] = Convert_AlphaFloat_To_U8(piSrcPixel[4*x+3] * fltCvtFactor);
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1896,7 +1896,7 @@ ERR Gray16Half_Gray8(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cb
         for (x = 0; x < iWidth; x++)
         {
             const U32 v = Convert_Half_To_Float(piSrcPixel[x]);
-                
+
             piDstPixel[x] = Convert_Float_To_U8(*(float*)&v);
         }
     }
@@ -1923,13 +1923,13 @@ ERR RGB48Half_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbS
             const U32 r = Convert_Half_To_Float(piSrcPixel[3*x]);
             const U32 g = Convert_Half_To_Float(piSrcPixel[3*x+1]);
             const U32 b = Convert_Half_To_Float(piSrcPixel[3*x+2]);
-        
+
             pfltDstPixel[3*x] = Convert_Float_To_U8(*(float*)&r);
             pfltDstPixel[3*x+1] = Convert_Float_To_U8(*(float*)&g);
             pfltDstPixel[3*x+2] = Convert_Float_To_U8(*(float*)&b);
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1952,13 +1952,13 @@ ERR RGB64Half_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbS
             const U32 r = Convert_Half_To_Float(piSrcPixel[4*x]);
             const U32 g = Convert_Half_To_Float(piSrcPixel[4*x+1]);
             const U32 b = Convert_Half_To_Float(piSrcPixel[4*x+2]);
-        
+
             pfltDstPixel[3*x] = Convert_Float_To_U8(*(float*)&r);
             pfltDstPixel[3*x+1] = Convert_Float_To_U8(*(float*)&g);
             pfltDstPixel[3*x+2] = Convert_Float_To_U8(*(float*)&b);
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -1982,14 +1982,14 @@ ERR RGBA64Half_RGBA32(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 c
             const U32 g = Convert_Half_To_Float(piSrcPixel[4*x+1]);
             const U32 b = Convert_Half_To_Float(piSrcPixel[4*x+2]);
             const U32 a = Convert_Half_To_Float(piSrcPixel[4*x+3]);
-        
+
             pfltDstPixel[4*x] = Convert_Float_To_U8(*(float*)&r);
             pfltDstPixel[4*x+1] = Convert_Float_To_U8(*(float*)&g);
             pfltDstPixel[4*x+2] = Convert_Float_To_U8(*(float*)&b);
             pfltDstPixel[4*x+3] = Convert_AlphaFloat_To_U8(*(float*)&a);
         }
     }
-    
+
     return WMP_errSuccess;
 }
 
@@ -2029,7 +2029,7 @@ ERR RGBE_RGB24(PKFormatConverter* pFC, const PKRect* pRect, U8* pb, U32 cbStride
     I32 i = 0, j = 0;
 
     UNREFERENCED_PARAMETER( pFC );
-   
+
     for (i = 0; i < pRect->Height; ++i)
     {
         for (j = 0; j < pRect->Width; j++)
@@ -2146,27 +2146,27 @@ static PKPixelConverterInfo s_pcInfo[] = {
     {&GUID_PKPixelFormat16bppGray, &GUID_PKPixelFormat8bppGray, Gray16_Gray8},
     {&GUID_PKPixelFormat48bppRGB, &GUID_PKPixelFormat24bppRGB, RGB48_RGB24},
     {&GUID_PKPixelFormat64bppRGBA, &GUID_PKPixelFormat32bppRGBA, RGBA64_RGBA32},
-    {&GUID_PKPixelFormat32bppGrayFloat, &GUID_PKPixelFormat8bppGray, Gray32Float_Gray8},     
+    {&GUID_PKPixelFormat32bppGrayFloat, &GUID_PKPixelFormat8bppGray, Gray32Float_Gray8},
     {&GUID_PKPixelFormat96bppRGBFloat, &GUID_PKPixelFormat24bppRGB, RGB96Float_RGB24},
     {&GUID_PKPixelFormat128bppRGBFloat, &GUID_PKPixelFormat24bppRGB, RGB128Float_RGB24},
     {&GUID_PKPixelFormat128bppRGBAFloat, &GUID_PKPixelFormat32bppRGBA, RGBA128Float_RGBA32},
-    {&GUID_PKPixelFormat16bppGrayFixedPoint, &GUID_PKPixelFormat8bppGray, Gray16Fixed_Gray8}, 
-    {&GUID_PKPixelFormat32bppGrayFixedPoint, &GUID_PKPixelFormat8bppGray, Gray32Fixed_Gray8},  
+    {&GUID_PKPixelFormat16bppGrayFixedPoint, &GUID_PKPixelFormat8bppGray, Gray16Fixed_Gray8},
+    {&GUID_PKPixelFormat32bppGrayFixedPoint, &GUID_PKPixelFormat8bppGray, Gray32Fixed_Gray8},
     {&GUID_PKPixelFormat48bppRGBFixedPoint, &GUID_PKPixelFormat24bppRGB, RGB48Fixed_RGB24},
     {&GUID_PKPixelFormat64bppRGBFixedPoint, &GUID_PKPixelFormat24bppRGB, RGB64Fixed_RGB24},
     {&GUID_PKPixelFormat96bppRGBFixedPoint, &GUID_PKPixelFormat24bppRGB, RGB96Fixed_RGB24},
-    {&GUID_PKPixelFormat128bppRGBFixedPoint, &GUID_PKPixelFormat24bppRGB, RGB128Fixed_RGB24},   
+    {&GUID_PKPixelFormat128bppRGBFixedPoint, &GUID_PKPixelFormat24bppRGB, RGB128Fixed_RGB24},
     {&GUID_PKPixelFormat64bppRGBAFixedPoint, &GUID_PKPixelFormat32bppRGBA, RGBA64Fixed_RGBA32},
-    {&GUID_PKPixelFormat128bppRGBAFixedPoint, &GUID_PKPixelFormat32bppRGBA, RGBA128Fixed_RGBA32},    
-    {&GUID_PKPixelFormat16bppGrayHalf, &GUID_PKPixelFormat8bppGray, Gray16Half_Gray8},     
+    {&GUID_PKPixelFormat128bppRGBAFixedPoint, &GUID_PKPixelFormat32bppRGBA, RGBA128Fixed_RGBA32},
+    {&GUID_PKPixelFormat16bppGrayHalf, &GUID_PKPixelFormat8bppGray, Gray16Half_Gray8},
     {&GUID_PKPixelFormat48bppRGBHalf, &GUID_PKPixelFormat24bppRGB, RGB48Half_RGB24},
     {&GUID_PKPixelFormat64bppRGBHalf, &GUID_PKPixelFormat24bppRGB, RGB64Half_RGB24},
     {&GUID_PKPixelFormat64bppRGBAHalf, &GUID_PKPixelFormat32bppRGBA, RGBA64Half_RGBA32},
-    {&GUID_PKPixelFormat32bppRGB101010, &GUID_PKPixelFormat24bppRGB, RGB101010_RGB24},    
+    {&GUID_PKPixelFormat32bppRGB101010, &GUID_PKPixelFormat24bppRGB, RGB101010_RGB24},
     {&GUID_PKPixelFormat32bppRGBE, &GUID_PKPixelFormat24bppRGB, RGBE_RGB24}
 };
 
-/* auxiliary data structure and hack to support valid encoding from/to configurations that 
+/* auxiliary data structure and hack to support valid encoding from/to configurations that
 // don't actually require any color conversion. This is a conservative approach, where we
 // include as few formats as necessary to encode situations that we're currently aware of.
 */
@@ -2180,8 +2180,8 @@ typedef struct tagPKPixelConverter2Info
 static PKPixelConverter2Info s_pcInfo2[] = {
 	// This allows us to view an RGBA input file as RGB, for when we create a planar alpha file
 	{&GUID_PKPixelFormat128bppRGBFloat, &GUID_PKPixelFormat128bppRGBAFloat},
-	// 16- and 32-bpp RGB input files are given the "DontCare" GUID, so the next three 
-	// from/to combinations are ok, and allowed on encoding: 
+	// 16- and 32-bpp RGB input files are given the "DontCare" GUID, so the next three
+	// from/to combinations are ok, and allowed on encoding:
 	{&GUID_PKPixelFormatDontCare, &GUID_PKPixelFormat16bppRGB555},
 	{&GUID_PKPixelFormatDontCare, &GUID_PKPixelFormat16bppRGB565},
 	{&GUID_PKPixelFormatDontCare, &GUID_PKPixelFormat32bppBGRA}
@@ -2237,8 +2237,8 @@ ERR PKFormatConverter_InitializeConvert(PKFormatConverter* pFC, const PKPixelFor
                 goto Cleanup;
             }
         }
-        // Bugfix to allow legitimate encoding from/to combinations that don't actually 
-        // involve color conversions. 
+        // Bugfix to allow legitimate encoding from/to combinations that don't actually
+        // involve color conversions.
         for (i = 0; i < sizeof2(s_pcInfo2); ++i)
         {
             PKPixelConverter2Info* pPCI = s_pcInfo2 + i;

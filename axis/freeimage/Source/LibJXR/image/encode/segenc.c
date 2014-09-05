@@ -2,16 +2,16 @@
 //
 // Copyright © Microsoft Corp.
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // • Redistributions of source code must retain the above copyright notice,
 //   this list of conditions and the following disclaimer.
 // • Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -26,8 +26,6 @@
 //
 //*@@@---@@@@******************************************************************
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "strcodec.h"
 #include "encode.h"
 
@@ -70,7 +68,7 @@ static Void EncodeSignificantAbsLevel (UInt iAbsLevel, struct CAdaptiveHuffman *
             assert (iFixed < 30);
             i >>= 1;
         }
-        
+
         pAHexpt->m_iDiscriminant += pAHexpt->m_pDelta[iIndex];
         putBit16z(pOut, pAHexpt->m_pTable[iIndex * 2 + 1], pAHexpt->m_pTable[iIndex * 2 + 2]);
         if (iFixed > 18) {
@@ -249,7 +247,7 @@ __forceinline
 static Int AdaptiveScanZero (const PixelI *pCoeffs, CAdaptiveScan *pScan,
                              Int *pRLCoeffs, const Int iCount)
 {
-    Int k, iRun = 1, iLevel, iNumNonzero = 0; 
+    Int k, iRun = 1, iLevel, iNumNonzero = 0;
 
 	iLevel = pCoeffs[pScan[1].uScan];
     if (iLevel) {
@@ -288,7 +286,7 @@ static Int AdaptiveScanTrim (const PixelI *pCoeffs, CAdaptiveScan *pScan,
                              const Int iModelBits, Int *pRLCoeffs, const Int iCount)
 {
     Int k, iRun = 1, iLevel, iNumNonzero = 0;
-    Int iTemp; 
+    Int iTemp;
     unsigned int iThOff = (1 << iModelBits) - 1, iTh = iThOff * 2 + 1;
 
     iLevel = pCoeffs[pScan[1].uScan];
@@ -357,7 +355,7 @@ static Int AdaptiveScan (const PixelI *pCoeffs, Int *pResidual,
 #endif // USE_GRES_LUT
         ) {
         Int k, iRun = 0, iLevel, iNumNonzero = 0;
-        Int iTemp, iTemp1; 
+        Int iTemp, iTemp1;
         const unsigned int iThOff = (1 << iModelBits) - 1, iTh = iThOff * 2 + 1;
 
         iLevel = pCoeffs[pScan[1].uScan];
@@ -416,7 +414,7 @@ static Int AdaptiveScan (const PixelI *pCoeffs, Int *pResidual,
     }
     else {
         Int k, iRun = 0, iLevel, iNumNonzero = 0;
-        Int iTemp, iTemp1; 
+        Int iTemp, iTemp1;
         const unsigned int iThOff = (1 << iModelBits) - 1, iTh = iThOff * 2 + 1;
 
         iLevel = pCoeffs[pScan[1].uScan];
@@ -622,7 +620,7 @@ Int EncodeMacroblockLowpass (CWMImageStrCodec *pSC, CCodingContext *pContext, In
                     putBits(pIO, abs(aDC[1][k]), iModelBits);
                     if (aBuf[0][k] == 0 && aDC[1][k]) {
                         putBit16z(pIO, (aDC[1][k] < 0), 1);
-                    }                      
+                    }
                     putBits(pIO, abs(aDC[2][k]), iModelBits);
                     if (aBuf[1][k] == 0 && aDC[2][k]) {
                         putBit16z(pIO, (aDC[2][k] < 0), 1);
@@ -698,7 +696,7 @@ static Void EncodeSignificantRun (Int iRun, Int iMaxRun, struct CAdaptiveHuffman
     static const Int aIndex[] = {
         0,1,2,2,3,3,4,4,4,4,4,4,4,4,
         0,1,2,2,3,3,4,4,4,4,0,0,0,0,
-        0,1,2,3,4,4 
+        0,1,2,3,4,4
     };
 
     if (iMaxRun < 5) {
@@ -894,7 +892,7 @@ static Int CodeCoeffs (CWMImageStrCodec * pSC, CCodingContext *pContext,
             writeIS_L2(pSC, pIO);
             if (pIO != pIOFL)
                 writeIS_L2(pSC, pIOFL);
-            
+
             for (iSubblock = 0; iSubblock < 4; iSubblock++, iPattern >>= 1, iIndex ++) {
                 const PixelI *pCoeffs = NULL;
 
@@ -969,7 +967,7 @@ static Int CodeCoeffs (CWMImageStrCodec * pSC, CCodingContext *pContext,
 /*************************************************************************
     CodeCBP
 *************************************************************************/
-static Void CodeCBP (CWMImageStrCodec * pSC, CCodingContext *pContext, 
+static Void CodeCBP (CWMImageStrCodec * pSC, CCodingContext *pContext,
                      Int iMBX, Int iMBY, BitIOInfo *pIO)
 {
     const COLORFORMAT cf = pSC->m_param.cfColorFormat;
@@ -1076,7 +1074,7 @@ static Void CodeCBP (CWMImageStrCodec * pSC, CCodingContext *pContext,
                 static const Int gCode0[16] = { 0,0,1,0, 2,0,1,0, 3,2,3,1, 1,2,3,0 };
                 int val, iChroma = (iCode >> 4);
                 iCode &= 0xf;
-                
+
                 if(cf == YUV_422) {
                     iCodeU = (iChroma & 3);
                     iCodeV = ((iChroma >> 2) & 3);

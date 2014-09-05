@@ -23,16 +23,16 @@ it under the terms of the one of three licenses as you choose:
 #ifndef _LIBRAW_TYPES_H
 #define _LIBRAW_TYPES_H
 
-#include <sys/types.h>
-#ifndef WIN32
-#include <sys/time.h>
-#endif
-#include <stdio.h>
+//#include <sys/types.h>
+//#ifndef WIN32
+//#include <sys/time.h>
+//#endif
+//#include <stdio.h>
 
-#if defined (_OPENMP) 
+#if defined (_OPENMP)
 
-#if defined(WIN32) 
-# if defined (_MSC_VER) && (_MSC_VER >= 1600 || (_MSC_VER == 1500 && _MSC_FULL_VER >= 150030729) ) 
+#if defined(WIN32)
+# if defined (_MSC_VER) && (_MSC_VER >= 1600 || (_MSC_VER == 1500 && _MSC_FULL_VER >= 150030729) )
 /* VS2010+ : OpenMP works OK, VS2008: have tested by cgilles */
 #   define LIBRAW_USE_OPENMP
 #elif defined (__INTEL_COMPILER) && (__INTEL_COMPILER >=910)
@@ -44,7 +44,7 @@ it under the terms of the one of three licenses as you choose:
 /* Not Win32 */
 # elif (defined(__APPLE__) || defined(__MACOSX__)) && defined(_REENTRANT)
 #   undef LIBRAW_USE_OPENMP
-# else 
+# else
 #   define LIBRAW_USE_OPENMP
 # endif
 #endif
@@ -58,15 +58,15 @@ it under the terms of the one of three licenses as you choose:
 extern "C" {
 #endif
 
-#if defined(USE_LCMS)
-#include <lcms.h>
-#elif defined(USE_LCMS2)
-#include <lcms2.h>
-#else
-#ifndef NO_LCMS
-#define NO_LCMS
-#endif
-#endif
+//#if defined(USE_LCMS)
+//#include <lcms.h>
+//#elif defined(USE_LCMS2)
+//#include <lcms2.h>
+//#else
+//#ifndef NO_LCMS
+//#define NO_LCMS
+//#endif
+//#endif
 
 #include "libraw_const.h"
 #include "libraw_version.h"
@@ -138,13 +138,13 @@ typedef struct
 
 typedef struct
 {
-    enum LibRaw_image_formats type; 
+    enum LibRaw_image_formats type;
     ushort      height,
                 width,
                 colors,
                 bits;
-    unsigned int  data_size; 
-    unsigned char data[1]; 
+    unsigned int  data_size;
+    unsigned char data[1];
 }libraw_processed_image_t;
 
 
@@ -166,11 +166,11 @@ typedef struct
 
 typedef struct
 {
-    ushort      raw_height, 
+    ushort      raw_height,
                 raw_width,
-                height, 
-                width, 
-                top_margin, 
+                height,
+                width,
+                top_margin,
                 left_margin;
     ushort      iheight,
                 iwidth;
@@ -189,20 +189,20 @@ struct ph1_t
 
 typedef struct
 {
-  ushort      curve[0x10000]; 
+  ushort      curve[0x10000];
   unsigned    cblack[4];
   unsigned    black;
   unsigned    data_maximum;
   unsigned    maximum;
-  ushort      white[8][8];  
-  float       cam_mul[4]; 
-  float       pre_mul[4]; 
-  float       cmatrix[3][4]; 
-  float       rgb_cam[3][4]; 
-  float       cam_xyz[4][3]; 
+  ushort      white[8][8];
+  float       cam_mul[4];
+  float       pre_mul[4];
+  float       cmatrix[3][4];
+  float       rgb_cam[3][4];
+  float       cam_xyz[4][3];
   struct ph1_t       phase_one_data;
-  float       flash_used; 
-  float       canon_ev; 
+  float       flash_used;
+  float       canon_ev;
   char        model2[64];
   void        *profile;
   unsigned    profile_length;
@@ -212,21 +212,21 @@ typedef struct
 typedef struct
 {
     enum LibRaw_thumbnail_formats tformat;
-    ushort      twidth, 
+    ushort      twidth,
                 theight;
     unsigned    tlength;
     int         tcolors;
-    
+
     char       *thumb;
 }libraw_thumbnail_t;
 
 typedef struct
 {
-    float       iso_speed; 
+    float       iso_speed;
     float       shutter;
     float       aperture;
     float       focal_len;
-    time_t      timestamp; 
+    time_t      timestamp;
     unsigned    shot_order;
     unsigned    gpsdata[32];
     char        desc[512],
@@ -264,7 +264,7 @@ typedef struct
     int         user_sat;       /* -S */
 
     int         med_passes;     /* -m */
-    float       auto_bright_thr; 
+    float       auto_bright_thr;
     float       adjust_maximum_thr;
     int         no_auto_bright; /* -W */
     int         use_fuji_rotate;/* -j */
@@ -275,7 +275,7 @@ typedef struct
     int         afd_noise_thres;
     int         afd_luminance_passes;
     int         afd_chrominance_method;
-    int         afd_luminance_only; 
+    int         afd_luminance_only;
 #endif
     /* DCB parameters */
     int         dcb_iterations;
@@ -323,7 +323,7 @@ typedef struct
   ushort        (*color4_image)[4] ;
   /* alias to 3-color variand decoded by RawSpeed */
   ushort        (*color3_image)[3];
-    
+
   /* Phase One black level data; */
   short  (*ph1_black)[2];
   /* save color and sizes here, too.... */
@@ -346,7 +346,7 @@ typedef struct
   libraw_imgother_t           other;
   libraw_thumbnail_t          thumbnail;
   libraw_rawdata_t            rawdata;
-  void                *parent_class;      
+  void                *parent_class;
 } libraw_data_t;
 
 

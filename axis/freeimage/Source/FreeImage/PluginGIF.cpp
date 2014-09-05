@@ -948,7 +948,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 		}
 
 		if( page == 0 ) {
-			index idx;
+			int idx;
 
 			//Logical Screen Descriptor
 			io->seek_proc(handle, 6, SEEK_SET);

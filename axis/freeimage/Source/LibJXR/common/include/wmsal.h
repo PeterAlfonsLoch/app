@@ -331,7 +331,7 @@ nothing, and do not affect the compiled code.
      read only up to it.
     */
 
-    #define __readableTo(extent)    __declspec("SAL_readableTo("SPECSTRINGIZE(extent)")")
+    #define __readableTo(extent)    __declspec("SAL_readableTo(" SPECSTRINGIZE(extent) ")")
 
     /*
 
@@ -340,14 +340,14 @@ nothing, and do not affect the compiled code.
      Annotates a buffer pointer p as being readable to size elements.
     */
 
-    #define __elem_readableTo(size)   __declspec("SAL_readableTo(elementCount("SPECSTRINGIZE(size)"))")
+    #define __elem_readableTo(size)   __declspec("SAL_readableTo(elementCount(" SPECSTRINGIZE(size) "))")
 
     /*
      __byte_readableTo(size)
 
      Annotates a buffer pointer p as being readable to size bytes.
     */
-    #define __byte_readableTo(size)   __declspec("SAL_readableTo(byteCount("SPECSTRINGIZE(size)"))")
+    #define __byte_readableTo(size)   __declspec("SAL_readableTo(byteCount(" SPECSTRINGIZE(size) "))")
 
     /*
      __writableTo(extent) p
@@ -357,21 +357,21 @@ nothing, and do not affect the compiled code.
      size). For a writer of the buffer, this is an explicit permission to
      write up to that amount, rather than a restriction to write only up to it.
     */
-    #define __writableTo(size)   __declspec("SAL_writableTo("SPECSTRINGIZE(size)")")
+    #define __writableTo(size)   __declspec("SAL_writableTo(" SPECSTRINGIZE(size) ")")
 
     /*
      __elem_writableTo(size)
 
      Annotates a buffer pointer p as being writable to size elements.
     */
-    #define __elem_writableTo(size)   __declspec("SAL_writableTo(elementCount("SPECSTRINGIZE(size)"))")
+    #define __elem_writableTo(size)   __declspec("SAL_writableTo(elementCount(" SPECSTRINGIZE(size) "))")
 
     /*
      __byte_writableTo(size)
 
      Annotates a buffer pointer p as being writable to size bytes.
     */
-    #define __byte_writableTo(size)   __declspec("SAL_writableTo(byteCount("SPECSTRINGIZE(size)"))")
+    #define __byte_writableTo(size)   __declspec("SAL_writableTo(byteCount(" SPECSTRINGIZE(size) "))")
 
     /*
      __deref p
@@ -454,19 +454,19 @@ nothing, and do not affect the compiled code.
      Pre-defined control point categories include: RPC, LPC, DeviceDriver, UserToKernel, ISAPI, COM.
 
     */
-    #define __inner_control_entrypoint(category) __declspec("SAL_entrypoint(controlEntry, "SPECSTRINGIZE(category)")")
+    #define __inner_control_entrypoint(category) __declspec("SAL_entrypoint(controlEntry, " SPECSTRINGIZE(category) ")")
 
     /*
      Pre-defined data entry point categories include: Registry, File, Network.
     */
-    #define __inner_data_entrypoint(category)    __declspec("SAL_entrypoint(dataEntry, "SPECSTRINGIZE(category)")")
+    #define __inner_data_entrypoint(category)    __declspec("SAL_entrypoint(dataEntry, " SPECSTRINGIZE(category) ")")
 
-    #define __inner_success(expr)               __declspec("SAL_success("SPECSTRINGIZE(expr)")")
+    #define __inner_success(expr)               __declspec("SAL_success(" SPECSTRINGIZE(expr) ")")
     #define __inner_checkReturn                 __declspec("SAL_checkReturn")
-    #define __inner_typefix(ctype)              __declspec("SAL_typefix("SPECSTRINGIZE(ctype)")")
+    #define __inner_typefix(ctype)              __declspec("SAL_typefix(" SPECSTRINGIZE(ctype) ")")
     #define __inner_override                    __declspec("__override")
     #define __inner_callback                    __declspec("__callback")
-    #define __inner_blocksOn(resource)          __declspec("SAL_blocksOn("SPECSTRINGIZE(resource)")")
+    #define __inner_blocksOn(resource)          __declspec("SAL_blocksOn(" SPECSTRINGIZE(resource) ")")
     #define __inner_fallthrough_dec             __inline __nothrow void __FallThrough() {}
     #define __inner_fallthrough                 __FallThrough();
 
