@@ -21,7 +21,7 @@ Boston, MA 02111-1307, USA.  */
 mktime.  */
 /* #define DEBUG 1 */
 
-#include "framework_c.h
+#include "framework_c.h"
 
 #ifdef _LIBC
 # define HAVE_LIMITS_H 1
@@ -47,7 +47,7 @@ then it supports leap seconds; otherwise it probably doesn't.  */
 #include <limits.h>
 #endif
 
-#if DEBUG
+#if MKTIME_DEBUG
 #include <stdio.h>
 #if STDC_HEADERS
 #include <stdlib.h>
@@ -303,7 +303,7 @@ time_t *offset;
 weak_alias(mktime,timelocal)
 #endif
 
-#if DEBUG
+#ifdef MKTIME_DEBUG
 
 static int
 not_equal_tm(a,b)
