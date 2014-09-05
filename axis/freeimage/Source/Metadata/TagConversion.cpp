@@ -19,7 +19,7 @@
 // Use at your own risk!
 // ==========================================================
 
-#ifdef _MSC_VER 
+#ifdef _MSC_VER
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
 #endif
 
@@ -33,7 +33,7 @@
 /**
 Convert a tag to a C string
 */
-static const char* 
+static const char*
 ConvertAnyTag(FITAG *tag) {
 	char format[MAX_TEXT_EXTENT];
 	static std::string buffer;
@@ -43,26 +43,26 @@ ConvertAnyTag(FITAG *tag) {
 		return NULL;
 
 	buffer.erase();
-	
+
 	// convert the tag value to a string buffer
 
 	FREE_IMAGE_MDTYPE tag_type = FreeImage_GetTagType(tag);
 	DWORD tag_count = FreeImage_GetTagCount(tag);
 
 	switch(tag_type) {
-		case FIDT_BYTE:		// N x 8-bit unsigned integer 
+		case FIDT_BYTE:		// N x 8-bit unsigned integer
 		{
 			BYTE *pvalue = (BYTE*)FreeImage_GetTagValue(tag);
 
-			sprintf(format, "%ld",	(LONG) pvalue[0]);
+			sprintf(format, "%d",	(LONG) pvalue[0]);
 			buffer += format;
 			for(i = 1; i < tag_count; i++) {
-				sprintf(format, " %ld",	(LONG) pvalue[i]);
+				sprintf(format, " %d",	(LONG) pvalue[i]);
 				buffer += format;
 			}
 			break;
 		}
-		case FIDT_SHORT:	// N x 16-bit unsigned integer 
+		case FIDT_SHORT:	// N x 16-bit unsigned integer
 		{
 			unsigned short *pvalue = (unsigned short *)FreeImage_GetTagValue(tag);
 
@@ -74,43 +74,43 @@ ConvertAnyTag(FITAG *tag) {
 			}
 			break;
 		}
-		case FIDT_LONG:		// N x 32-bit unsigned integer 
+		case FIDT_LONG:		// N x 32-bit unsigned integer
 		{
 			DWORD *pvalue = (DWORD *)FreeImage_GetTagValue(tag);
 
-			sprintf(format, "%lu", pvalue[0]);
+			sprintf(format, "%u", pvalue[0]);
 			buffer += format;
 			for(i = 1; i < tag_count; i++) {
-				sprintf(format, " %lu",	pvalue[i]);
+				sprintf(format, " %u",	pvalue[i]);
 				buffer += format;
 			}
 			break;
 		}
-		case FIDT_RATIONAL: // N x 64-bit unsigned fraction 
+		case FIDT_RATIONAL: // N x 64-bit unsigned fraction
 		{
 			DWORD *pvalue = (DWORD*)FreeImage_GetTagValue(tag);
 
-			sprintf(format, "%ld/%ld", pvalue[0], pvalue[1]);
+			sprintf(format, "%d/%d", pvalue[0], pvalue[1]);
 			buffer += format;
 			for(i = 1; i < tag_count; i++) {
-				sprintf(format, " %ld/%ld", pvalue[2*i], pvalue[2*i+1]);
+				sprintf(format, " %d/%d", pvalue[2*i], pvalue[2*i+1]);
 				buffer += format;
 			}
 			break;
 		}
-		case FIDT_SBYTE:	// N x 8-bit signed integer 
+		case FIDT_SBYTE:	// N x 8-bit signed integer
 		{
 			char *pvalue = (char*)FreeImage_GetTagValue(tag);
 
-			sprintf(format, "%ld",	(LONG) pvalue[0]);
+			sprintf(format, "%d",	(LONG) pvalue[0]);
 			buffer += format;
 			for(i = 1; i < tag_count; i++) {
-				sprintf(format, " %ld",	(LONG) pvalue[i]);
+				sprintf(format, " %d",	(LONG) pvalue[i]);
 				buffer += format;
 			}
 			break;
 		}
-		case FIDT_SSHORT:	// N x 16-bit signed integer 
+		case FIDT_SSHORT:	// N x 16-bit signed integer
 		{
 			short *pvalue = (short *)FreeImage_GetTagValue(tag);
 
@@ -122,31 +122,31 @@ ConvertAnyTag(FITAG *tag) {
 			}
 			break;
 		}
-		case FIDT_SLONG:	// N x 32-bit signed integer 
+		case FIDT_SLONG:	// N x 32-bit signed integer
 		{
 			LONG *pvalue = (LONG *)FreeImage_GetTagValue(tag);
 
-			sprintf(format, "%ld", pvalue[0]);
+			sprintf(format, "%d", pvalue[0]);
 			buffer += format;
 			for(i = 1; i < tag_count; i++) {
-				sprintf(format, " %ld",	pvalue[i]);
+				sprintf(format, " %d",	pvalue[i]);
 				buffer += format;
 			}
 			break;
 		}
-		case FIDT_SRATIONAL:// N x 64-bit signed fraction 
+		case FIDT_SRATIONAL:// N x 64-bit signed fraction
 		{
 			LONG *pvalue = (LONG*)FreeImage_GetTagValue(tag);
 
-			sprintf(format, "%ld/%ld", pvalue[0], pvalue[1]);
+			sprintf(format, "%d/%d", pvalue[0], pvalue[1]);
 			buffer += format;
 			for(i = 1; i < tag_count; i++) {
-				sprintf(format, " %ld/%ld", pvalue[2*i], pvalue[2*i+1]);
+				sprintf(format, " %d/%d", pvalue[2*i], pvalue[2*i+1]);
 				buffer += format;
 			}
 			break;
 		}
-		case FIDT_FLOAT:	// N x 32-bit IEEE floating point 
+		case FIDT_FLOAT:	// N x 32-bit IEEE floating point
 		{
 			float *pvalue = (float *)FreeImage_GetTagValue(tag);
 
@@ -158,7 +158,7 @@ ConvertAnyTag(FITAG *tag) {
 			}
 			break;
 		}
-		case FIDT_DOUBLE:	// N x 64-bit IEEE floating point 
+		case FIDT_DOUBLE:	// N x 64-bit IEEE floating point
 		{
 			double *pvalue = (double *)FreeImage_GetTagValue(tag);
 
@@ -170,7 +170,7 @@ ConvertAnyTag(FITAG *tag) {
 			}
 			break;
 		}
-		case FIDT_IFD:		// N x 32-bit unsigned integer (offset) 
+		case FIDT_IFD:		// N x 32-bit unsigned integer (offset)
 		{
 			DWORD *pvalue = (DWORD *)FreeImage_GetTagValue(tag);
 
@@ -182,7 +182,7 @@ ConvertAnyTag(FITAG *tag) {
 			}
 			break;
 		}
-		case FIDT_PALETTE:	// N x 32-bit RGBQUAD 
+		case FIDT_PALETTE:	// N x 32-bit RGBQUAD
 		{
 			RGBQUAD *pvalue = (RGBQUAD *)FreeImage_GetTagValue(tag);
 
@@ -194,8 +194,8 @@ ConvertAnyTag(FITAG *tag) {
 			}
 			break;
 		}
-		
-		case FIDT_LONG8:	// N x 64-bit unsigned integer 
+
+		case FIDT_LONG8:	// N x 64-bit unsigned integer
 		{
 			UINT64 *pvalue = (UINT64 *)FreeImage_GetTagValue(tag);
 
@@ -212,10 +212,10 @@ ConvertAnyTag(FITAG *tag) {
 		{
 			UINT64 *pvalue = (UINT64 *)FreeImage_GetTagValue(tag);
 
-			sprintf(format, "%X", pvalue[0]);
+			sprintf(format, "%lX", pvalue[0]);
 			buffer += format;
 			for(i = 1; i < tag_count; i++) {
-				sprintf(format, "%X", pvalue[i]);
+				sprintf(format, "%lX", pvalue[i]);
 				buffer += format;
 			}
 			break;
@@ -234,8 +234,8 @@ ConvertAnyTag(FITAG *tag) {
 			break;
 		}
 
-		case FIDT_ASCII:	// 8-bit bytes w/ last byte null 
-		case FIDT_UNDEFINED:// 8-bit untyped data 
+		case FIDT_ASCII:	// 8-bit bytes w/ last byte null
+		case FIDT_UNDEFINED:// 8-bit untyped data
 		default:
 		{
 			int max_size = MIN((int)FreeImage_GetTagLength(tag), (int)MAX_TEXT_EXTENT);
@@ -254,7 +254,7 @@ ConvertAnyTag(FITAG *tag) {
 /**
 Convert a Exif tag to a C string
 */
-static const char* 
+static const char*
 ConvertExifTag(FITAG *tag) {
 	char format[MAX_TEXT_EXTENT];
 	static std::string buffer;
@@ -352,7 +352,7 @@ ConvertExifTag(FITAG *tag) {
 			buffer = r.toString();
 			if(buffer == "1")
 				buffer += " bit/pixel";
-			else 
+			else
 				buffer += " bits/pixel";
 			return buffer.c_str();
 		}
@@ -399,7 +399,7 @@ ConvertExifTag(FITAG *tag) {
 				default:
 					break;
 			}
-		} 
+		}
 		break;
 
 		case TAG_EXPOSURE_TIME:
@@ -548,7 +548,7 @@ ConvertExifTag(FITAG *tag) {
 			}
 		}
 		break;
-			
+
 		case TAG_METERING_MODE:
 		{
 			unsigned short meteringMode = *((unsigned short *)FreeImage_GetTagValue(tag));
@@ -988,7 +988,7 @@ ConvertExifTag(FITAG *tag) {
 /**
 Convert a Exif GPS tag to a C string
 */
-static const char* 
+static const char*
 ConvertExifGPSTag(FITAG *tag) {
 	char format[MAX_TEXT_EXTENT];
 	static std::string buffer;
@@ -1018,7 +1018,7 @@ ConvertExifGPSTag(FITAG *tag) {
 					ss += ((double)pvalue[2] / (double)pvalue[3]) * 60;
 				if(pvalue[5])
 					ss += ((double)pvalue[4] / (double)pvalue[5]);
-				
+
 				// convert to dd:mm:ss.ss
 				dd = (int)(ss / 3600);
 				mm = (int)(ss / 60) - dd * 60;
@@ -1069,7 +1069,7 @@ ConvertExifGPSTag(FITAG *tag) {
 // Tag to string conversion function
 //
 
-const char* DLL_CALLCONV 
+const char* DLL_CALLCONV
 FreeImage_TagToString(FREE_IMAGE_MDMODEL model, FITAG *tag, char *Make) {
 	switch(model) {
 		case FIMD_EXIF_MAIN:

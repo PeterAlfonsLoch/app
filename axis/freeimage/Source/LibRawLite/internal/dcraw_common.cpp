@@ -5079,7 +5079,7 @@ nf: order = 0x4949;
     }
     if ((tag == 0x1011 && len == 9) || tag == 0x20400200)
       {
-        if(!strcasecmp(make,"Olympus"))
+        if(!stricmp(make,"Olympus"))
           {
             int j,k;
             for (i=0; i < 3; i++)
@@ -5124,7 +5124,7 @@ get2_rggb:
       fseek (ifp, i, SEEK_CUR);
       FORC4 sraw_mul[c ^ (c >> 1)] = get2();
     }
-    if(!strcasecmp(make,"Samsung"))
+    if(!stricmp(make,"Samsung"))
       {
         if (tag == 0xa020) // get the full Samsung encryption key
             for (i=0; i<11; i++) SamsungKey[i] = get4();
@@ -6123,7 +6123,7 @@ void CLASS parse_external_jpeg()
   strcpy (jname, ifname);
   jfile = file - ifname + jname;
   jext  = ext  - ifname + jname;
-  if (strcasecmp (ext, ".jpg")) {
+  if (stricmp (ext, ".jpg")) {
     strcpy (jext, isupper(ext[1]) ? ".JPG":".jpg");
     if (isdigit(*file)) {
       memcpy (jfile, file+4, 4);
@@ -6544,7 +6544,7 @@ void CLASS parse_riff()
     memset (&t, 0, sizeof t);
     if (sscanf (date, "%*s %s %d %d:%d:%d %d", month, &t.tm_mday,
 	&t.tm_hour, &t.tm_min, &t.tm_sec, &t.tm_year) == 6) {
-      for (i=0; i < 12 && strcasecmp(mon[i],month); i++);
+      for (i=0; i < 12 && stricmp(mon[i],month); i++);
       t.tm_mon = i;
       t.tm_year -= 1900;
       if (mktime(&t) > 0)
@@ -8162,7 +8162,7 @@ void CLASS identify()
           }
     }
 
-  if (!strcasecmp(make,"Sony") && unique_id)
+  if (!stricmp(make,"Sony") && unique_id)
     {
       for (i=0; i < sizeof sony_unique / sizeof *sony_unique; i++)
         if (unique_id == sony_unique[i].id)
@@ -8425,7 +8425,7 @@ canon_a5:
     goto konica_400z;
   } else if (!strcmp(model,"KD-510Z")) {
     goto konica_510z;
-  } else if (!strcasecmp(make,"Minolta")) {
+  } else if (!stricmp(make,"Minolta")) {
     if (!load_raw && (maximum = 0xfff))
       load_raw = &CLASS unpacked_load_raw;
     if (!strncmp(model,"DiMAGE A",8)) {
@@ -8694,7 +8694,7 @@ konica_400z:
   } else if (!strncasecmp(model,"EasyShare",9)) {
     data_offset = data_offset < 0x15000 ? 0x15000 : 0x17000;
     load_raw = &CLASS packed_load_raw;
-  } else if (!strcasecmp(make,"Kodak")) {
+  } else if (!stricmp(make,"Kodak")) {
     if (filters == UINT_MAX) filters = 0x61616161;
     if (!strncmp(model,"NC2000",6)) {
       width -= 4;

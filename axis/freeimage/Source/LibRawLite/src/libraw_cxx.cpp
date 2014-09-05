@@ -980,7 +980,7 @@ int LibRaw::open_datastream(LibRaw_abstract_datastream *stream)
     if(load_raw == &LibRaw::x3f_load_raw)
     {
         for(int i=0; i< foveon_count;i++)
-            if(!strcasecmp(imgdata.idata.make,foveon_data[i].make) && !strcasecmp(imgdata.idata.model,foveon_data[i].model)
+            if(!stricmp(imgdata.idata.make,foveon_data[i].make) && !stricmp(imgdata.idata.model,foveon_data[i].model)
                 && imgdata.sizes.raw_width == foveon_data[i].raw_width
                 && imgdata.sizes.raw_height == foveon_data[i].raw_height
                 )
@@ -997,7 +997,7 @@ int LibRaw::open_datastream(LibRaw_abstract_datastream *stream)
     float bpp = float(bytes)/float(S.raw_width)/float(S.raw_height);
     float bpp2 = float(bytes)/float(S.width)/float(S.height);
     printf("RawSize: %dx%d data offset: %d data size:%d bpp: %g bpp2: %g\n",S.raw_width,S.raw_height,libraw_internal_data.unpacker_data.data_offset,bytes,bpp,bpp2);
-    if(!strcasecmp(imgdata.idata.make,"Hasselblad") && bpp == 6.0f)
+    if(!stricmp(imgdata.idata.make,"Hasselblad") && bpp == 6.0f)
       {
         load_raw = &LibRaw::hasselblad_full_load_raw;
         S.width = S.raw_width;
@@ -1065,7 +1065,7 @@ void LibRaw::fix_after_rawspeed(int bl)
   else if (load_raw == &LibRaw::sony_load_raw)
     C.maximum = 0x3ff0;
   else if (
-           (load_raw == &LibRaw::sony_arw2_load_raw || (load_raw == &LibRaw::packed_load_raw && !strcasecmp(imgdata.idata.make,"Sony")))
+           (load_raw == &LibRaw::sony_arw2_load_raw || (load_raw == &LibRaw::packed_load_raw && !stricmp(imgdata.idata.make,"Sony")))
            && bl >= (C.black+C.cblack[0])*2
            )
     {
@@ -1278,10 +1278,10 @@ int LibRaw::unpack(void)
         ID.input->seek(libraw_internal_data.unpacker_data.data_offset, SEEK_SET);
 
         unsigned m_save = C.maximum;
-        if(load_raw == &LibRaw::unpacked_load_raw && !strcasecmp(imgdata.idata.make,"Nikon"))
+        if(load_raw == &LibRaw::unpacked_load_raw && !stricmp(imgdata.idata.make,"Nikon"))
           C.maximum=65535;
         (this->*load_raw)();
-        if(load_raw == &LibRaw::unpacked_load_raw && !strcasecmp(imgdata.idata.make,"Nikon"))
+        if(load_raw == &LibRaw::unpacked_load_raw && !stricmp(imgdata.idata.make,"Nikon"))
           C.maximum = m_save;
         if(decoder_info.decoder_flags &  LIBRAW_DECODER_OWNALLOC)
           {
@@ -2699,7 +2699,7 @@ int LibRaw::dcraw_process(void)
     if(0 && load_raw == &LibRaw::x3f_load_raw)
     {
         for(int i=0; i< foveon_count;i++)
-            if(!strcasecmp(imgdata.idata.make,foveon_data[i].make) && !strcasecmp(imgdata.idata.model,foveon_data[i].model))
+            if(!stricmp(imgdata.idata.make,foveon_data[i].make) && !stricmp(imgdata.idata.model,foveon_data[i].model))
             {
                 imgdata.color.maximum = foveon_data[i].white;
                 break;
