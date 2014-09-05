@@ -29,6 +29,11 @@
 
 
 
+#define _swab swab
+
+
+
+
 
 
 
