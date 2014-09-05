@@ -1,6 +1,11 @@
 #include "framework.h"
 
 
+#ifdef LINUX
+#include <time.h>
+#endif
+
+
 namespace datetime
 {
 
@@ -727,6 +732,126 @@ namespace datetime
       return ptm ? ptm->tm_wday + 1 : 0 ;
    }
 
+
+   string time::Format(string & str, const string & strFormat) const
+   {
+
+      char szBuffer[maxTimeBufferSize];
+#if defined(LINUX)
+      struct tm* ptmTemp = localtime(&m_time);
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      {
+         szBuffer[0] = '\0';
+      }
+#elif defined(APPLEOS)
+#if __WORDSIZE != 64
+#pragma error "error: long should 8-byte on APPLEOS"
+#endif
+
+      struct tm* ptmTemp = localtime(&m_time);
+
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      {
+
+         szBuffer[0] = '\0';
+
+      }
+
+#elif _SECURE_TEMPLATE
+
+      struct tm ptmTemp;
+
+      errno_t err = _localtime64_s(&ptmTemp, &m_time);
+
+      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, pszFormat, &ptmTemp))
+      {
+
+         szBuffer[0] = '\0';
+
+      }
+
+#elif defined(ANDROID) || defined(SOLARIS)
+
+      struct tm* ptmTemp = localtime(&m_time);
+
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      {
+
+         szBuffer[0] = '\0';
+
+      }
+
+#else
+
+      struct tm* ptmTemp = _localtime64(&m_time);
+
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      {
+
+         szBuffer[0] = '\0';
+
+      }
+
+#endif
+
+      str = szBuffer;
+
+      return szBuffer;
+
+   }
+
+
+   inline string time::FormatGmt(string & str, const string & strFormat) const
+   {
+
+      char szBuffer[maxTimeBufferSize];
+
+#if defined(LINUX) || defined(APPLEOS)
+
+      struct tm* ptmTemp = gmtime(&m_time);
+
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      {
+
+         szBuffer[0] = '\0';
+
+      }
+
+#elif _SECURE_TEMPLATE
+
+      struct tm ptmTemp;
+
+      errno_t err = _gmtime64_s(&ptmTemp, &m_time);
+
+      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, pszFormat, &ptmTemp))
+      {
+
+         szBuffer[0] = '\0';
+
+      }
+
+#else
+
+      struct tm* ptmTemp = _gmtime64(&m_time);
+
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      {
+
+         szBuffer[0] = '\0';
+
+      }
+
+#endif
+
+      str = szBuffer;
+
+      return szBuffer;
+
+   }
+
+
+
+
    /////////////////////////////////////////////////////////////////////////////
    // file_time_span
    /////////////////////////////////////////////////////////////////////////////
@@ -945,6 +1070,9 @@ namespace datetime
 
 
 
+
+
+
    const ULONGLONG file_time::Millisecond = 10000;
    const ULONGLONG file_time::Second = Millisecond * static_cast<ULONGLONG>(1000);
    const ULONGLONG file_time::Minute = Second * static_cast<ULONGLONG>(60);
@@ -982,7 +1110,7 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time)
 
 ::file::output_stream & operator <<(::file::output_stream & os, ::datetime::time time)
 {
-   
+
    os.write_arbitrary((int64_t) time.m_time);
 
    return os;
@@ -991,7 +1119,7 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time)
 
 ::file::input_stream & operator >>(::file::input_stream & is, ::datetime::time& rtime)
 {
-   
+
    is.read_arbitrary((int64_t &) rtime.m_time);
 
    return is;
@@ -1012,7 +1140,7 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span tim
 
 ::file::output_stream & operator <<(::file::output_stream & os, ::datetime::time_span span)
 {
-   
+
    os.write_arbitrary((int64_t) span.m_timeSpan);
 
    return os;
@@ -1021,7 +1149,7 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span tim
 
 ::file::input_stream & operator >>(::file::input_stream & is, ::datetime::time_span & span)
 {
-   
+
    is.read_arbitrary((int64_t &) span.m_timeSpan);
 
    return is;

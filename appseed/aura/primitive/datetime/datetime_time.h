@@ -139,28 +139,10 @@ namespace datetime
       int32_t GetGmtSecond() const NOTHROW;
       int32_t GetGmtDayOfWeek() const NOTHROW;
 
-      // formatting using "C" strftime
-      template < class tstring >
-      tstring Format(tstring & str, const char * pszFormat ) const;
-      template < class tstring >
-      tstring FormatGmt(tstring & str, const char * pszFormat ) const;
-      /*   template < class tstring >
-      tstring Format(tstring & str, UINT nFormatID ) const;
-      template < class tstring >
-      tstring FormatGmt(tstring & str, UINT nFormatID ) const;*/
-      string Format(const char * pszFormat);
-      string FormatGmt(const char * pszFormat);
-
-#if defined(_AFX) && defined(_UNICODE)
-      // for compatibility with core API 3.x
-      string Format(const char * pFormat) const;
-      string FormatGmt(const char * pFormat) const;
-#endif
-
-#ifdef _AFX
-      //   CArchive& Serialize64(CArchive& ar);
-#endif
-
+      string Format(string & str, const string & strFormat) const;
+      string FormatGmt(string & str, const string & strFormat) const;
+      string Format(const string & strFormat);
+      string FormatGmt(const string & strFormat);
 
    };
 
@@ -273,118 +255,20 @@ namespace datetime
    }
 #endif
 
-   inline string time::Format(const char * pFormat)
+   inline string time::Format(const string & strFormat)
    {
       string str;
-      Format(str, pFormat);
+      Format(str, strFormat);
       return str;
    }
-   inline string time::FormatGmt(const char * pFormat)
+   inline string time::FormatGmt(const string & strFormat)
    {
       string str;
-      FormatGmt(str, pFormat);
+      FormatGmt(str, strFormat);
       return str;
    }
 
-   template < class tstring >
-   inline tstring time::Format(tstring & str, const char * pszFormat) const
-   {
-      if(pszFormat == NULL)
-      {
-         return pszFormat;
-      }
-      char szBuffer[maxTimeBufferSize];
-#if defined(LINUX)
-      struct tm* ptmTemp = localtime(&m_time);
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
-      {
-         szBuffer[0] = '\0';
-      }
-#elif defined(APPLEOS)
-#if __WORDSIZE != 64
-#pragma error "error: long should 8-byte on APPLEOS"
-#endif
-      struct tm* ptmTemp = localtime(&m_time);
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
-      {
-         szBuffer[0] = '\0';
-      }
-#elif _SECURE_TEMPLATE
-      struct tm ptmTemp;
-      errno_t err = _localtime64_s(&ptmTemp, &m_time);
-      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, pszFormat, &ptmTemp))
-      {
-         szBuffer[0] = '\0';
-      }
-#elif defined(ANDROID) || defined(SOLARIS)
-      struct tm* ptmTemp = localtime(&m_time);
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
-      {
-         szBuffer[0] = '\0';
-      }
-#else
-      struct tm* ptmTemp = _localtime64(&m_time);
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
-      {
-         szBuffer[0] = '\0';
-      }
-#endif
-      str = szBuffer;
-      return szBuffer;
-   }
 
-   template < class tstring >
-   inline tstring time::FormatGmt(tstring & str, const char * pszFormat) const
-   {
-      if(pszFormat == NULL)
-      {
-         return pszFormat;
-      }
-
-      char szBuffer[maxTimeBufferSize];
-
-#if defined(LINUX) || defined(APPLEOS)
-      struct tm* ptmTemp = gmtime(&m_time);
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
-      {
-         szBuffer[0] = '\0';
-      }
-#elif _SECURE_TEMPLATE
-      struct tm ptmTemp;
-      errno_t err = _gmtime64_s(&ptmTemp, &m_time);
-      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, pszFormat, &ptmTemp))
-      {
-         szBuffer[0] = '\0';
-      }
-#else
-      struct tm* ptmTemp = _gmtime64(&m_time);
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
-      {
-         szBuffer[0] = '\0';
-      }
-#endif
-      str = szBuffer;
-      return szBuffer;
-   }
-
-
-   /*
-   template < class tstring >
-   inline tstring time::Format(tstring & str, UINT nFormatID) const
-   {
-   string strFormat;
-   ENSURE(strFormat.load_string(nFormatID));
-   return Format(str, strFormat);
-   }
-
-   template < class tstring >
-   inline tstring time::FormatGmt(tstring & str, UINT nFormatID) const
-   {
-   string strFormat;
-   ENSURE(strFormat.load_string(nFormatID));
-   return FormatGmt(str, strFormat);
-   }
-   */
 
 
 } // namespace datetime
@@ -402,7 +286,7 @@ CLASS_DECL_AURA ::file::input_stream & operator >>(::file::input_stream & is, ::
 
 inline CLASS_DECL_AURA ::datetime::time_span operator - (const duration & duration, const ::datetime::time & time)
 {
-   
+
    return ::datetime::time_span(::datetime::time::get_current_time().m_time - duration.GetTimeSpan() - time.m_time);
 
 }

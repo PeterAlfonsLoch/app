@@ -14,6 +14,11 @@
 #include "framework.h"
 
 
+#ifdef LINUX
+#include <sys/time.h>
+#endif
+
+
 namespace aura
 {
 

@@ -77,13 +77,6 @@ CLASS_DECL_AURA HTHREAD GetCurrentThread();
 
 CLASS_DECL_AURA UINT GetCurrentThreadId();
 
-CLASS_DECL_AURA void thread_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
-
-CLASS_DECL_AURA int32_t thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
-
-CLASS_DECL_AURA void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
-
-CLASS_DECL_AURA int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
 

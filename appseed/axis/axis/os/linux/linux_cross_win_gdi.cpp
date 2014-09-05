@@ -274,38 +274,17 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t
 }
 
 
-
 int32_t _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 {
+
    return 0;
-}
-
-
-
-
-
-int xlib_error_handler(Display * d, XErrorEvent * e)
-{
-
-   if(e->request_code == 12) //
-   {
-
-      if(e->error_code == BadValue)
-      {
-
-      }
-
-   }
-
-   char sz[1024];
-
-   XGetErrorText(d, e->error_code, sz, sizeof(sz));
-
-   fputs(sz, stderr);
-
-   abort();
 
 }
+
+
+
+
+
 
 
 
