@@ -1164,7 +1164,7 @@ namespace std
    //}
 
    template < class iterator,class COMPARE = ::comparison::less < typename iterator::BASE_TYPE,typename iterator::BASE_ARG_TYPE > >
-   void sort(iterator  & a,iterator  & b)
+   void sort(const iterator & a, const iterator & b)
    {
       ::sort::quick_sort < iterator,COMPARE >(a,b);
    }
@@ -1210,7 +1210,7 @@ namespace std
 
 #endif
 
-   template < typename T > 
+   template < typename T >
    using complex = ::math::complex < T >;
 
 

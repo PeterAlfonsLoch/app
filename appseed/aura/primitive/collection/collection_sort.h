@@ -100,8 +100,7 @@ namespace sort
    };
 
    template < class TYPE, class ARG_TYPE, class FIRST>
-   void quick_sort(
-      array < TYPE, ARG_TYPE > & a)
+   void quick_sort(array < TYPE, ARG_TYPE > & a)
    {
       TYPE t;
       index_array stackLowerBound;
