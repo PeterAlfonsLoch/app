@@ -490,8 +490,8 @@
 #define popen _popen
 #define pclose _pclose
 #define ssize_t SSIZE_T
-#define strcasecmp _stricmp
-#define strncasecmp _strnicmp
+//#define strcasecmp _stricmp
+//#define strncasecmp _strnicmp
 #define snprintf _snprintf
 #define strtok_r strtok_s
 #define strtoll _strtoi64

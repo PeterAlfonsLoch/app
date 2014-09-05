@@ -3,8 +3,10 @@
 
 #ifdef WINDOWS
 
-#define strcasecmp stricmp
-#define strncasecmp strnicmp
+
+#define strcasecmp _stricmp
+#define strncasecmp _strnicmp
+
 
 #endif
 

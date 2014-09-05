@@ -3684,7 +3684,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_create_context.h" />
     <ClInclude Include="user\user\user_timer_array.h" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_mktime.c" />
+    <ClCompile Include="primitive\datetime\datetime_mktime.c">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="primitive\math\math_cvt.cpp" />
     <ClCompile Include="primitive\math\math_cvt_g.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp" />

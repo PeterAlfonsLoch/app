@@ -21,7 +21,7 @@ Boston, MA 02111-1307, USA.  */
 mktime.  */
 /* #define DEBUG 1 */
 
-#include "framework.h
+#include "framework_c.h
 
 #ifdef _LIBC
 # define HAVE_LIMITS_H 1

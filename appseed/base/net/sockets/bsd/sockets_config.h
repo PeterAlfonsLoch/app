@@ -210,7 +210,7 @@ CLASS_DECL_BASE const char *StrError(int32_t x);
 #ifdef _MSC_VER
 #pragma comment(lib, "wsock32.lib")
 #endif
-#define strcasecmp _stricmp
+//#define strcasecmp _stricmp
 
 
 

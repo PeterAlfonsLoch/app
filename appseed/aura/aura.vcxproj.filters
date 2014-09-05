@@ -198,9 +198,6 @@
     <Filter Include="Source Files\aura\node\ansios">
       <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\data">
-      <UniqueIdentifier>{ddf01975-333f-459f-a6b4-f5e9fdffa7f6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive\data">
       <UniqueIdentifier>{b47f1200-db28-45cf-88cd-eaf066d0e7a1}</UniqueIdentifier>
     </Filter>
@@ -230,6 +227,9 @@
     </Filter>
     <Filter Include="Source Files\aura\os\cross\ansios">
       <UniqueIdentifier>{bdcaf82f-4175-4f90-8c9c-7e1517c5b7aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\datetime\data">
+      <UniqueIdentifier>{ddf01975-333f-459f-a6b4-f5e9fdffa7f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1623,16 +1623,16 @@
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="primitive\data\data_data.h">
-      <Filter>Header Files\primitive\data</Filter>
+      <Filter>Header Files\primitive\datetime\data</Filter>
     </ClInclude>
     <ClInclude Include="primitive\data\data_data_container.h">
-      <Filter>Header Files\primitive\data</Filter>
+      <Filter>Header Files\primitive\datetime\data</Filter>
     </ClInclude>
     <ClInclude Include="primitive\data\data_data_listener.h">
-      <Filter>Header Files\primitive\data</Filter>
+      <Filter>Header Files\primitive\datetime\data</Filter>
     </ClInclude>
     <ClInclude Include="primitive\data\data_item.h">
-      <Filter>Header Files\primitive\data</Filter>
+      <Filter>Header Files\primitive\datetime\data</Filter>
     </ClInclude>
     <ClInclude Include="aura\os\cross\windows\e.h">
       <Filter>Header Files\aura\os\cross\windows</Filter>
