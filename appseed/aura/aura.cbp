@@ -776,9 +776,14 @@
 		<Unit filename="primitive/data/data_data_listener.h" />
 		<Unit filename="primitive/data/data_item.cpp" />
 		<Unit filename="primitive/data/data_item.h" />
+		<Unit filename="primitive/datetime/datetime.cpp" />
 		<Unit filename="primitive/datetime/datetime_c.h" />
 		<Unit filename="primitive/datetime/datetime_duration.cpp" />
 		<Unit filename="primitive/datetime/datetime_duration.h" />
+		<Unit filename="primitive/datetime/datetime_mktime.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="primitive/datetime/datetime_mktime.h" />
 		<Unit filename="primitive/datetime/datetime_time.cpp" />
 		<Unit filename="primitive/datetime/datetime_time.h" />
 		<Unit filename="primitive/datetime/datetime_value.cpp" />
