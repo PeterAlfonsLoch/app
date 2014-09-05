@@ -1250,18 +1250,6 @@
 		<Unit filename="Source/Quantizers.h" />
 		<Unit filename="Source/ToneMapping.h" />
 		<Unit filename="Source/Utilities.h" />
-		<Unit filename="TestAPI/MainTestSuite.cpp" />
-		<Unit filename="TestAPI/testChannels.cpp" />
-		<Unit filename="TestAPI/testHeaderOnly.cpp" />
-		<Unit filename="TestAPI/testImageType.cpp" />
-		<Unit filename="TestAPI/testJPEG.cpp" />
-		<Unit filename="TestAPI/testMPage.cpp" />
-		<Unit filename="TestAPI/testMPageMemory.cpp" />
-		<Unit filename="TestAPI/testMPageStream.cpp" />
-		<Unit filename="TestAPI/testMemIO.cpp" />
-		<Unit filename="TestAPI/testPlugins.cpp" />
-		<Unit filename="TestAPI/testThumbnail.cpp" />
-		<Unit filename="TestAPI/testTools.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
