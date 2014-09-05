@@ -6,6 +6,7 @@
 
 #include "axis/axis/axis.h"
 
+#include "IlmBaseConfig.h"
 
 #include <assert.h>
 #include <errno.h>

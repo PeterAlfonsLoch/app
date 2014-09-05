@@ -7,13 +7,13 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "IlmBaseConfig.h"
+//#include "IlmBaseConfig.h"
 
 #if HAVE_PTHREAD
 
-#include "IlmThread.h"
+//#include "IlmThread.h"
 //#include "Iex.h"
-#include <assert.h>
+//#include <assert.h>
 
 extern "C"
 {

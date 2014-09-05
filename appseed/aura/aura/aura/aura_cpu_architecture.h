@@ -144,5 +144,119 @@ CLASS_DECL_AURA int32_t x86cpuid_GetFirm(const struct Cx86cpuid *p);
 CLASS_DECL_AURA int32_t CPU_Is_InOrder();
 CLASS_DECL_AURA int32_t CPU_Is_Aes_Supported();
 
+
+
+
+inline uint16_t __swap16gen(uint16_t x)
+{
+    return (((x) & 0xff) << 8) |(((x) & 0xff00) >> 8);
+}
+
+inline uint32_t __swap32gen(uint32_t x)
+{
+    return (((x) & 0xff) << 24 |
+    ((x) & 0xff00) << 8 | ((x) & 0xff0000) >> 8 |
+    ((x) & 0xff000000) >> 24);
+}
+
+/*
+ * Define MD_SWAP if you provide swap{16,32}md functions/macros that are
+ * optimized for your architecture,  These will be used for swap{16,32}
+ * unless the argument is a constant and we are using GCC, where we can
+ * take advantage of the CSE phase much better by using the generic version.
+ */
+#ifdef MD_SWAP
+#if __GNUC__
+
+#define swap16(x) ({							\
+	u_int16_t __swap16_x = (x);					\
+									\
+	__builtin_constant_p(x) ? __swap16gen(__swap16_x) :		\
+	    __swap16md(__swap16_x);					\
+})
+
+#define swap32(x) ({							\
+	u_int32_t __swap32_x = (x);					\
+									\
+	__builtin_constant_p(x) ? __swap32gen(__swap32_x) :		\
+	    __swap32md(__swap32_x);					\
+})
+
+#endif /* __GNUC__  */
+
+#else /* MD_SWAP */
+#define swap16 __swap16gen
+#define swap32 __swap32gen
+#endif /* MD_SWAP */
+
+
+
+
+
+
+
+#define LITTLE_ENDIAN	1234
+#define BIG_ENDIAN	4321
+#define PDP_ENDIAN	3412
+
+#ifdef MY_CPU_LE
+#define BYTE_ORDER LITTLE_ENDIAN
+#endif // MY_CPU_LE
+
+#ifdef MY_CPU_BE
+#define BYTE_ORDER BIG_ENDIAN
+#endif // MY_CPU_LE
+
+
+
+#if BYTE_ORDER == LITTLE_ENDIAN
+
+/* Can be overridden by machine/endian.h before inclusion of this file.  */
+#ifndef _QUAD_HIGHWORD
+#define _QUAD_HIGHWORD 1
+#endif
+#ifndef _QUAD_LOWWORD
+#define _QUAD_LOWWORD 0
 #endif
 
+#define htobe16 swap16
+#define htobe32 swap32
+#define betoh16 swap16
+#define betoh32 swap32
+
+#define htole16(x) (x)
+#define htole32(x) (x)
+#define letoh16(x) (x)
+#define letoh32(x) (x)
+
+#endif /* BYTE_ORDER */
+
+#if BYTE_ORDER == BIG_ENDIAN
+
+/* Can be overridden by machine/endian.h before inclusion of this file.  */
+#ifndef _QUAD_HIGHWORD
+#define _QUAD_HIGHWORD 0
+#endif
+#ifndef _QUAD_LOWWORD
+#define _QUAD_LOWWORD 1
+#endif
+
+#define htole16 swap16
+#define htole32 swap32
+#define letoh16 swap16
+#define letoh32 swap32
+
+#define htobe16(x) (x)
+#define htobe32(x) (x)
+#define betoh16(x) (x)
+#define betoh32(x) (x)
+
+#endif /* BYTE_ORDER */
+
+
+
+
+
+
+
+#endif

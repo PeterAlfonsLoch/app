@@ -7,7 +7,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include "IlmBaseConfig.h"
+//#include "IlmBaseConfig.h"
 
 #if HAVE_PTHREAD
 

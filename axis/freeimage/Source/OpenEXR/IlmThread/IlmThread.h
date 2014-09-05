@@ -61,6 +61,7 @@
 
 #include "IlmBaseConfig.h"
 
+/*
 #if defined _WIN32 || defined _WIN64
     #ifdef NOMINMAX
         #undef NOMINMAX
@@ -80,6 +81,13 @@
     #endif
 #else
     #define ILMTHREAD_EXPORT
+#endif
+
+*/
+#ifdef FREEIMAGE_EXPORTS
+   #define ILMTHREAD_EXPORT CLASS_DECL_EXPORT
+#else
+   #define ILMTHREAD_EXPORT CLASS_DECL_IMPORT
 #endif
 
 namespace IlmThread {

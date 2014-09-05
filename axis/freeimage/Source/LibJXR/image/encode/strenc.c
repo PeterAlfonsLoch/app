@@ -2,16 +2,16 @@
 //
 // Copyright © Microsoft Corp.
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // • Redistributions of source code must retain the above copyright notice,
 //   this list of conditions and the following disclaimer.
 // • Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -97,22 +97,22 @@ Int writeTileHeaderDC(CWMImageStrCodec * pSC, BitIOInfo * pIO)
         if((pSC->m_param.uQPMode & 1) != 0){ // not DC uniform
             CWMITile * pTile = pSC->pTile + pSC->cTileColumn;
             size_t i;
-            
+
             pTile->cChModeDC = (U8)(rand() & 3); // channel mode, just for concept proofing!
-            
+
             if(pSC->cTileRow + pSC->cTileColumn == 0) // allocate DC QP info
                 for(iTile = 0; iTile <= pSC->WMISCP.cNumOfSliceMinus1V; iTile ++)
                     if(allocateQuantizer(pSC->pTile[iTile].pQuantizerDC, pSC->m_param.cNumChannels, 1) != ICERR_OK)
                         return ICERR_ERROR;
-            
+
             for(i = 0; i < pSC->m_param.cNumChannels; i ++)
                 pTile->pQuantizerDC[i]->iIndex = (U8)((rand() & 0x2f) + 1); // QP indexes, just for concept proofing!
-            
+
             formatQuantizer(pTile->pQuantizerDC, pTile->cChModeDC, pSC->m_param.cNumChannels, 0, TRUE, pSC->m_param.bScaledArith);
 
             for(i = 0; i < pSC->m_param.cNumChannels; i ++)
                 pTile->pQuantizerDC[i]->iOffset = (pTile->pQuantizerDC[i]->iQP >> 1);
-            
+
             writeQuantizer(pTile->pQuantizerDC, pIO, pTile->cChModeDC, pSC->m_param.cNumChannels, 0);
         }
 
@@ -125,7 +125,7 @@ Int writeTileHeaderDC(CWMImageStrCodec * pSC, BitIOInfo * pIO)
 Int writeTileHeaderLP(CWMImageStrCodec * pSC, BitIOInfo * pIO)
 {
     size_t k = (pSC->m_pNextSC == NULL ? 1U : 2U);
-    
+
     for(; k > 0; k --){
         if(pSC->WMISCP.sbSubband != SB_DC_ONLY && (pSC->m_param.uQPMode & 2) != 0){ // not LP uniform
             CWMITile * pTile = pSC->pTile + pSC->cTileColumn;
@@ -134,12 +134,12 @@ Int writeTileHeaderLP(CWMImageStrCodec * pSC, BitIOInfo * pIO)
             pTile->bUseDC = ((rand() & 1) == 0 ? TRUE : FALSE); // use DC quantizer?
             putBit16(pIO, pTile->bUseDC == TRUE ? 1 : 0, 1);
             pTile->cBitsLP = 0;
-            
+
             pTile->cNumQPLP = (pTile->bUseDC == TRUE ? 1 : (U8)((rand() & 0xf) + 1)); // # of LP QPs
-            
+
             if(pSC->cTileRow > 0)
                 freeQuantizer(pTile->pQuantizerLP);
-            
+
             if(allocateQuantizer(pTile->pQuantizerLP, pSC->m_param.cNumChannels, pTile->cNumQPLP) != ICERR_OK)
                 return ICERR_ERROR;
 
@@ -147,12 +147,12 @@ Int writeTileHeaderLP(CWMImageStrCodec * pSC, BitIOInfo * pIO)
                 useDCQuantizer(pSC, pSC->cTileColumn);
             else{
                 putBit16(pIO, pTile->cNumQPLP - 1, 4);
-                
+
                 pTile->cBitsLP = dquantBits(pTile->cNumQPLP);
-                
+
                 for(i = 0; i < pTile->cNumQPLP; i ++){
                     pTile->cChModeLP[i] = (U8)(rand() & 3); // channel mode, just for concept proofing!
-                    
+
                     for(j = 0; j < pSC->m_param.cNumChannels; j ++)
                         pTile->pQuantizerLP[j][i].iIndex = (U8)((rand() & 0xfe) + 1); // QP indexes, just for concept proofing!
                     formatQuantizer(pTile->pQuantizerLP, pTile->cChModeLP[i], pSC->m_param.cNumChannels, i, TRUE, pSC->m_param.bScaledArith);
@@ -169,7 +169,7 @@ Int writeTileHeaderLP(CWMImageStrCodec * pSC, BitIOInfo * pIO)
 Int writeTileHeaderHP(CWMImageStrCodec * pSC, BitIOInfo * pIO)
 {
     size_t k = (pSC->m_pNextSC == NULL ? 1U : 2U);
-    
+
     for(; k > 0; k --){
         if(pSC->WMISCP.sbSubband != SB_DC_ONLY && pSC->WMISCP.sbSubband != SB_NO_HIGHPASS && (pSC->m_param.uQPMode & 4) != 0){ // not HP uniform
             CWMITile * pTile = pSC->pTile + pSC->cTileColumn;
@@ -178,24 +178,24 @@ Int writeTileHeaderHP(CWMImageStrCodec * pSC, BitIOInfo * pIO)
             pTile->bUseLP = ((rand() & 1) == 0 ? TRUE : FALSE); // use LP quantizer?
             putBit16(pIO, pTile->bUseLP == TRUE ? 1 : 0, 1);
             pTile->cBitsHP = 0;
-            
+
             pTile->cNumQPHP = (pTile->bUseLP == TRUE ? pTile->cNumQPLP : (U8)((rand() & 0xf) + 1)); // # of LP QPs
-            
+
             if(pSC->cTileRow > 0)
                 freeQuantizer(pTile->pQuantizerHP);
-            
+
             if(allocateQuantizer(pTile->pQuantizerHP, pSC->m_param.cNumChannels, pTile->cNumQPHP) != ICERR_OK)
                 return ICERR_ERROR;
-            
+
             if(pTile->bUseLP == TRUE)
                 useLPQuantizer(pSC, pTile->cNumQPHP, pSC->cTileColumn);
             else{
                 putBit16(pIO, pTile->cNumQPHP - 1, 4);
                 pTile->cBitsHP = dquantBits(pTile->cNumQPHP);
-                
+
                 for(i = 0; i < pTile->cNumQPHP; i ++){
                     pTile->cChModeHP[i] = (U8)(rand() & 3); // channel mode, just for concept proofing!
-                    
+
                     for(j = 0; j < pSC->m_param.cNumChannels; j ++)
                         pTile->pQuantizerHP[j][i].iIndex = (U8)((rand() & 0xfe) + 1); // QP indexes, just for concept proofing!
                     formatQuantizer(pTile->pQuantizerHP, pTile->cChModeHP[i], pSC->m_param.cNumChannels, i, FALSE, pSC->m_param.bScaledArith);
@@ -212,10 +212,10 @@ Int writeTileHeaderHP(CWMImageStrCodec * pSC, BitIOInfo * pIO)
 Int encodeMB(CWMImageStrCodec * pSC, Int iMBX, Int iMBY)
 {
     CCodingContext * pContext = &pSC->m_pCodingContext[pSC->cTileColumn];
-    
+
     if(pSC->m_bCtxLeft && pSC->m_bCtxTop && pSC->m_bSecondary == FALSE && pSC->m_param.bTranscode == FALSE){ // write packet headers
         U8 pID = (U8)((pSC->cTileRow * (pSC->WMISCP.cNumOfSliceMinus1V + 1) + pSC->cTileColumn) & 0x1F);
-        
+
         if(pSC->WMISCP.bfBitstreamFormat == SPATIAL) {
             writePacketHeader(pContext->m_pIODC, 0, pID);
             if (pSC->m_param.bTrimFlexbitsFlag)
@@ -242,10 +242,10 @@ Int encodeMB(CWMImageStrCodec * pSC, Int iMBX, Int iMBY)
             }
         }
     }
-    
+
     if(EncodeMacroblockDC(pSC, pContext, iMBX, iMBY) != ICERR_OK)
         return ICERR_ERROR;
-    
+
     if(pSC->WMISCP.sbSubband != SB_DC_ONLY)
         if(EncodeMacroblockLowpass(pSC, pContext, iMBX, iMBY) != ICERR_OK)
             return ICERR_ERROR;
@@ -253,8 +253,8 @@ Int encodeMB(CWMImageStrCodec * pSC, Int iMBX, Int iMBY)
     if(pSC->WMISCP.sbSubband != SB_DC_ONLY && pSC->WMISCP.sbSubband != SB_NO_HIGHPASS)
         if(EncodeMacroblockHighpass(pSC, pContext, iMBX, iMBY) != ICERR_OK)
             return ICERR_ERROR;
-    
-    if(iMBX + 1 == (int) pSC->cmbWidth && (iMBY + 1 == (int) pSC->cmbHeight || 
+
+    if(iMBX + 1 == (int) pSC->cmbWidth && (iMBY + 1 == (int) pSC->cmbHeight ||
         (pSC->cTileRow < pSC->WMISCP.cNumOfSliceMinus1H && iMBY == (int) pSC->WMISCP.uiTileY[pSC->cTileRow + 1] - 1)))
     { // end of a horizontal slice
         size_t k, l;
@@ -267,7 +267,7 @@ Int encodeMB(CWMImageStrCodec * pSC, Int iMBX, Int iMBY)
                 pSC->pIndexTable[pSC->cNumBitIO * pSC->cTileRow + k] = l + getSizeWrite(pSC->m_ppBitIO[k]); // offset
             }
         }
-        
+
         // reset coding contexts
         if(iMBY + 1 != (int) pSC->cmbHeight){
             for(k = 0; k <= pSC->WMISCP.cNumOfSliceMinus1V; k ++)
@@ -325,7 +325,7 @@ static _FORCEINLINE PixelI forwardRGBE (PixelI RGB, PixelI E)
     while (((RGB & 0x80) == 0) && (E > 0)) {
         RGB = (RGB << 1) + iAppend;
         iAppend = 0;
-        E--;    
+        E--;
     }
 
     // result will always be one of 3 cases
@@ -384,11 +384,11 @@ static _FORCEINLINE PixelI float2pixel (float f, const char _c, const unsigned c
         }
         m &= 0x007fffff;
 
-        //for float-22:	    
+        //for float-22:
         _h = (e1 << _lm) + ((m + (1 << (23 - _lm - 1))) >> (23 - _lm));//take 23-bit m, shift (23-lm), get lm-bit m for float22
         s = ((PixelI) x.i) >> 31;
-        //padding to int-32: 
-        _h = (_h ^ s) - s;	
+        //padding to int-32:
+        _h = (_h ^ s) - s;
     }
 
     return _h;
@@ -407,7 +407,7 @@ static _FORCEINLINE PixelI forwardHalf (PixelI hHalf)
 
 
 //================================================================
-// Color Conversion 
+// Color Conversion
 // functions to get image data from input buffer
 // this inlcudes necessary color conversion and boundary padding
 //================================================================
@@ -443,7 +443,7 @@ Int StrIOEncInit(CWMImageStrCodec* pSC)
 #ifdef _WINDOWS_
             pSC->ppTempFile = (TCHAR **)malloc(pSC->cNumBitIO * sizeof(TCHAR *));
             if(pSC->ppTempFile == NULL) return ICERR_ERROR;
-            memset(pSC->ppTempFile, 0, pSC->cNumBitIO * sizeof(TCHAR *)); 
+            memset(pSC->ppTempFile, 0, pSC->cNumBitIO * sizeof(TCHAR *));
 #else
             pSC->ppTempFile = (char **)malloc(pSC->cNumBitIO * sizeof(char *));
             if(pSC->ppTempFile == NULL) return ICERR_ERROR;
@@ -453,7 +453,7 @@ Int StrIOEncInit(CWMImageStrCodec* pSC)
 
         for(i = 0; i < pSC->cNumBitIO; i ++){
             if (pSC->cmbHeight * pSC->cmbWidth * pSC->WMISCP.cChannel >= MAX_MEMORY_SIZE_IN_WORDS) {
-#if defined(_WINDOWS_) || defined(UNDER_CE)  // tmpnam does not exist in VS2005 WinCE CRT              
+#if defined(_WINDOWS_) || defined(UNDER_CE)  // tmpnam does not exist in VS2005 WinCE CRT
                 Bool bUnicode = sizeof(TCHAR) == 2;
                 pSC->ppTempFile[i] = (TCHAR *)malloc(MAX_PATH * sizeof(TCHAR));
                 if(pSC->ppTempFile[i] == NULL) return ICERR_ERROR;
@@ -478,15 +478,18 @@ Int StrIOEncInit(CWMImageStrCodec* pSC)
                     pFilename[cSize] = '\0';
                 }
 
-#else //DPK needs to support ANSI 
+#else //DPK needs to support ANSI
                 pSC->ppTempFile[i] = (char *)malloc(FILENAME_MAX * sizeof(char));
                 if(pSC->ppTempFile[i] == NULL) return ICERR_ERROR;
-
-                if ((pFilename = tmpnam(NULL)) == NULL)
-                    return ICERR_ERROR;                
-                strcpy(pSC->ppTempFile[i], pFilename);
+                char temp[] = "/tmp/fileXXXXXX";
+                int fd;
+                fd = mkstemp(temp);
+                if (fd == 0)
+                    return ICERR_ERROR;
+               close(fd);
+                strcpy(pSC->ppTempFile[i], temp);
 #endif
-                if(CreateWS_File(pSC->ppWStream + i, pFilename, "w+b") != ICERR_OK) return ICERR_ERROR;                
+                if(CreateWS_File(pSC->ppWStream + i, pFilename, "w+b") != ICERR_OK) return ICERR_ERROR;
 
             }
             else {
@@ -556,7 +559,7 @@ Int writeIndexTable(CWMImageStrCodec * pSC)
         BitIOInfo* pIO = pSC->pIOHeader;
         size_t *pTable = pSC->pIndexTable, iSize[4] = { 0 };
         I32 iEntry = (I32)pSC->cNumBitIO * (pSC->WMISCP.cNumOfSliceMinus1H + 1), i, k, l;
-        
+
         // write index table header [0x0001] - 2 bytes
         PUTBITS(pIO, 1, 16);
 
@@ -659,7 +662,7 @@ Int StrIOEncTerm(CWMImageStrCodec* pSC)
             }
         }
     }
-    
+
     writeIndexTable(pSC); // write index table to the header
 
     detachISWrite(pSC, pIO);
@@ -700,7 +703,7 @@ Int StrIOEncTerm(CWMImageStrCodec* pSC)
 			}
         }
 
-        if (pSC->cmbHeight * pSC->cmbWidth * pSC->WMISCP.cChannel >= MAX_MEMORY_SIZE_IN_WORDS){           
+        if (pSC->cmbHeight * pSC->cmbWidth * pSC->WMISCP.cChannel >= MAX_MEMORY_SIZE_IN_WORDS){
             for(i = 0; i < pSC->cNumBitIO; i ++){
                 if(pSC->ppWStream && pSC->ppWStream[i]){
                     if((*(pSC->ppWStream + i))->state.file.pFile){
@@ -874,7 +877,7 @@ Int WriteWMIHeader(CWMImageStrCodec * pSC)
     PUTBITS(pIO, (Int) pII->cfColorFormat, 4); // source color format
     if(BD_1 == pII->bdBitDepth && pSCP->bBlackWhite)
         PUTBITS(pIO, (Int) BD_1alt, 4); // source bit depth
-    else 
+    else
         PUTBITS(pIO, (Int) pII->bdBitDepth, 4); // source bit depth
 
 // 12 - Variable length fields
@@ -902,7 +905,7 @@ Int WriteWMIHeader(CWMImageStrCodec * pSC)
         PUTBITS(pIO, (U32)pCoreParam->cExtraPixelsLeft, 6);
         PUTBITS(pIO, (U32)pCoreParam->cExtraPixelsBottom, 6);
         PUTBITS(pIO, (U32)pCoreParam->cExtraPixelsRight, 6);
-    }    
+    }
     fillToByte(pIO);  // redundant
 
     // write image plane headers
@@ -918,12 +921,12 @@ Int StrEncInit(CWMImageStrCodec* pSC)
     COLORFORMAT cfE = pSC->WMII.cfColorFormat;
     U16 iQPIndexY = 0, iQPIndexYLP = 0, iQPIndexYHP = 0;
 	U16 iQPIndexU = 0, iQPIndexULP = 0, iQPIndexUHP = 0;
-    U16 iQPIndexV = 0, iQPIndexVLP = 0, iQPIndexVHP = 0; 
+    U16 iQPIndexV = 0, iQPIndexVLP = 0, iQPIndexVHP = 0;
     size_t i;
     Bool b32bit = sizeof(size_t) == 4;
 
     /** color transcoding with resolution change **/
-    pSC->m_bUVResolutionChange = (((cfE == CF_RGB || cfE == YUV_444 || cfE == CMYK || cfE == CF_RGBE) && 
+    pSC->m_bUVResolutionChange = (((cfE == CF_RGB || cfE == YUV_444 || cfE == CMYK || cfE == CF_RGBE) &&
 								   (cf == YUV_422 || cf == YUV_420))
 								  || (cfE == YUV_422 && cf == YUV_420)) && !pSC->WMISCP.bYUVData;
 
@@ -954,9 +957,9 @@ Int StrEncInit(CWMImageStrCodec* pSC)
                                         // 101010 == cChMode == 2 == independent (not same) DC, LP, HP
 
         /** lossless or Y component lossless condition: all subbands present, uniform quantization with QPIndex 1 **/
-        pSC->m_param.bScaledArith = !((pSC->m_param.uQPMode & 7) == 0 && 
-									  1 == pSC->WMISCP.uiDefaultQPIndex <= 1 && 
-									  pSC->WMISCP.sbSubband == SB_ALL && 
+        pSC->m_param.bScaledArith = !((pSC->m_param.uQPMode & 7) == 0 &&
+									  1 == pSC->WMISCP.uiDefaultQPIndex <= 1 &&
+									  pSC->WMISCP.sbSubband == SB_ALL &&
 									  pSC->m_bUVResolutionChange == FALSE) &&
                                      !pSC->WMISCP.bUnscaledArith;
         if (BD_32 == pSC->WMII.bdBitDepth || BD_32S == pSC->WMII.bdBitDepth || BD_32F == pSC->WMII.bdBitDepth) {
@@ -969,34 +972,34 @@ Int StrEncInit(CWMImageStrCodec* pSC)
             pSC->WMISCP.uiDefaultQPIndexAlpha : pSC->WMISCP.uiDefaultQPIndex;
 
 		// determine the U,V index
-        iQPIndexU = pSC->WMISCP.uiDefaultQPIndexU!=0? 
-			pSC->WMISCP.uiDefaultQPIndexU: iQPIndexY; 
-        iQPIndexV = pSC->WMISCP.uiDefaultQPIndexV!=0? 
-			pSC->WMISCP.uiDefaultQPIndexV: iQPIndexY; 
+        iQPIndexU = pSC->WMISCP.uiDefaultQPIndexU!=0?
+			pSC->WMISCP.uiDefaultQPIndexU: iQPIndexY;
+        iQPIndexV = pSC->WMISCP.uiDefaultQPIndexV!=0?
+			pSC->WMISCP.uiDefaultQPIndexV: iQPIndexY;
 
 		// determine the QPIndexYLP
         iQPIndexYLP = pSC->m_param.bAlphaChannel && pSC->m_param.cNumChannels == 1 ?
             pSC->WMISCP.uiDefaultQPIndexAlpha :
-            (pSC->WMISCP.uiDefaultQPIndexYLP == 0 ? 
+            (pSC->WMISCP.uiDefaultQPIndexYLP == 0 ?
 			 pSC->WMISCP.uiDefaultQPIndex : pSC->WMISCP.uiDefaultQPIndexYLP); // default to QPIndex if not set
 
 		// determine the QPIndexYHP
         iQPIndexYHP = pSC->m_param.bAlphaChannel && pSC->m_param.cNumChannels == 1 ?
             pSC->WMISCP.uiDefaultQPIndexAlpha :
-            (pSC->WMISCP.uiDefaultQPIndexYHP == 0 ? 
+            (pSC->WMISCP.uiDefaultQPIndexYHP == 0 ?
 			 pSC->WMISCP.uiDefaultQPIndex : pSC->WMISCP.uiDefaultQPIndexYHP); // default to QPIndex if not set
 
 		// determine the U,V LP index
-        iQPIndexULP = pSC->WMISCP.uiDefaultQPIndexULP!=0? 
-			pSC->WMISCP.uiDefaultQPIndexULP: iQPIndexU; 
-        iQPIndexVLP = pSC->WMISCP.uiDefaultQPIndexVLP!=0? 
-			pSC->WMISCP.uiDefaultQPIndexVLP: iQPIndexV; 
+        iQPIndexULP = pSC->WMISCP.uiDefaultQPIndexULP!=0?
+			pSC->WMISCP.uiDefaultQPIndexULP: iQPIndexU;
+        iQPIndexVLP = pSC->WMISCP.uiDefaultQPIndexVLP!=0?
+			pSC->WMISCP.uiDefaultQPIndexVLP: iQPIndexV;
 
 		// determine the U,V HP index
-        iQPIndexUHP = pSC->WMISCP.uiDefaultQPIndexUHP!=0? 
-			pSC->WMISCP.uiDefaultQPIndexUHP: iQPIndexU; 
-        iQPIndexVHP = pSC->WMISCP.uiDefaultQPIndexVHP!=0? 
-			pSC->WMISCP.uiDefaultQPIndexVHP: iQPIndexV; 
+        iQPIndexUHP = pSC->WMISCP.uiDefaultQPIndexUHP!=0?
+			pSC->WMISCP.uiDefaultQPIndexUHP: iQPIndexU;
+        iQPIndexVHP = pSC->WMISCP.uiDefaultQPIndexVHP!=0?
+			pSC->WMISCP.uiDefaultQPIndexVHP: iQPIndexV;
 
 		// clamp the QPIndex - 0 is lossless mode
         if(iQPIndexY < 2)
@@ -1069,7 +1072,7 @@ Int StrEncInit(CWMImageStrCodec* pSC)
     if(pSC->WMISCP.cNumOfSliceMinus1V >= MAX_TILES || AllocateCodingContextEnc (pSC, pSC->WMISCP.cNumOfSliceMinus1V + 1, pSC->WMISCP.uiTrimFlexBits) != ICERR_OK){
         return ICERR_ERROR;
     }
-    
+
     if (pSC->m_bSecondary) {
         pSC->pIOHeader = pSC->m_pNextSC->pIOHeader;
         pSC->m_ppBitIO = pSC->m_pNextSC->m_ppBitIO;
@@ -1111,7 +1114,7 @@ static Int StrEncTerm(CTXSTRCODEC ctxSC)
             StrIOEncTerm(pSC);
 
         FreeCodingContextEnc(pSC);
-        
+
         freeTileInfo(pSC);
 
         pSC->WMISCP.nExpBias -= 128; // reset
@@ -1153,7 +1156,7 @@ U32 validateTiling(U32 * pTile, U32 cNumTile, U32 cNumMB)
             cNumTile = setUniformTiling(pTile, cNumTile, cNumMB);
             break;
         }
-        
+
         cMBs += pTile[i];
 
         if(cMBs >= cNumMB){
@@ -1199,17 +1202,17 @@ Int ValidateArgs(CWMImageInfo* pII, CWMIStrCodecParam *pSCP)
     if(pII->bdBitDepth == BD_5 && (pII->cfColorFormat != CF_RGB || pII->cBitsPerUnit != 16 || pII->cLeadingPadding != 0)){
         printf("Unsupported BD_5 image format!\n");
         return ICERR_ERROR; // BD_5 must be compact RGB!
-    }   
+    }
     if(pII->bdBitDepth == BD_565 && (pII->cfColorFormat != CF_RGB || pII->cBitsPerUnit != 16 || pII->cLeadingPadding != 0)){
         printf("Unsupported BD_565 image format!\n");
         return ICERR_ERROR; // BD_5 must be compact RGB!
-    }   
+    }
     if(pII->bdBitDepth == BD_10 && (pII->cfColorFormat != CF_RGB || pII->cBitsPerUnit != 32 || pII->cLeadingPadding != 0)){
         printf("Unsupported BD_10 image format!\n");
         return ICERR_ERROR; // BD_10 must be compact RGB!
     }
 
-    if((pII->bdBitDepth == BD_5 || pII->bdBitDepth == BD_565 || pII->bdBitDepth == BD_10) && 
+    if((pII->bdBitDepth == BD_5 || pII->bdBitDepth == BD_565 || pII->bdBitDepth == BD_10) &&
         (pSCP->cfColorFormat != YUV_420 && pSCP->cfColorFormat != YUV_422 && pSCP->cfColorFormat != Y_ONLY))
             pSCP->cfColorFormat = YUV_444;
 
@@ -1224,8 +1227,8 @@ Int ValidateArgs(CWMImageInfo* pII, CWMIStrCodecParam *pSCP)
     if(pSCP->bdBitDepth != BD_LONG)
         pSCP->bdBitDepth = BD_LONG; // currently only support 32 bit internally
 
-    if(pSCP->uAlphaMode > 1 && (pII->cfColorFormat == YUV_420 || pII->cfColorFormat == YUV_422 
-								|| pII->bdBitDepth == BD_5 || pII->bdBitDepth == BD_10 
+    if(pSCP->uAlphaMode > 1 && (pII->cfColorFormat == YUV_420 || pII->cfColorFormat == YUV_422
+								|| pII->bdBitDepth == BD_5 || pII->bdBitDepth == BD_10
 								|| pII->bdBitDepth == BD_1))
     {
         printf("Alpha is not supported for this pixel format!\n");
@@ -1249,7 +1252,7 @@ Int ValidateArgs(CWMImageInfo* pII, CWMIStrCodecParam *pSCP)
                 break;
             }
         }
-        if ((Int)((((U32)pII->cWidth + 15) >> 4) - pSCP->uiTileY[pSCP->cNumOfSliceMinus1H]) < 2) 
+        if ((Int)((((U32)pII->cWidth + 15) >> 4) - pSCP->uiTileY[pSCP->cNumOfSliceMinus1H]) < 2)
             bTooNarrowTile = TRUE;
     }
     if (bTooNarrowTile) {
@@ -1270,15 +1273,15 @@ Int ValidateArgs(CWMImageInfo* pII, CWMIStrCodecParam *pSCP)
     /** Y_ONLY, YUV_420, YUV_422 => YUV_444 **/
     /** Y_ONLY, YUV_420          => YUV_422 **/
     /** Y_ONLY                   => YUV_420 **/
-    if((pII->cfColorFormat == Y_ONLY &&  pSCP->cfColorFormat != Y_ONLY) || 
-        (pSCP->cfColorFormat == YUV_422 && (pII->cfColorFormat == YUV_420 || pII->cfColorFormat == Y_ONLY)) || 
+    if((pII->cfColorFormat == Y_ONLY &&  pSCP->cfColorFormat != Y_ONLY) ||
+        (pSCP->cfColorFormat == YUV_422 && (pII->cfColorFormat == YUV_420 || pII->cfColorFormat == Y_ONLY)) ||
         (pSCP->cfColorFormat == YUV_444 && (pII->cfColorFormat == YUV_422 || pII->cfColorFormat == YUV_420 || pII->cfColorFormat == Y_ONLY))){
 		pSCP->cfColorFormat = pII->cfColorFormat; // force not to do color transcoding!
     }
     else if (pII->cfColorFormat == NCOMPONENT) {
 		pSCP->cfColorFormat = NCOMPONENT; // force not to do color transcoding!
     }
-    if (CMYK == pII->cfColorFormat && pSCP->cfColorFormat == NCOMPONENT) 
+    if (CMYK == pII->cfColorFormat && pSCP->cfColorFormat == NCOMPONENT)
     {
         pSCP->cfColorFormat = CMYK;
     }
@@ -1319,7 +1322,7 @@ static Void InitializeStrEnc(CWMImageStrCodec *pSC,
 
     pSC->cRow = 0;
     pSC->cColumn = 0;
-    
+
     pSC->cmbWidth = (pSC->WMII.cWidth + 15) / 16;
     pSC->cmbHeight = (pSC->WMII.cHeight + 15) / 16;
 
@@ -1615,10 +1618,10 @@ Void downsampleUV(CWMImageStrCodec * pSC)
 
             pSrc = (iChannel == 1 ? pSC->pResU : pSC->pResV);
             pDst = (cfInt == YUV_422 ? pSC->p1MBbuffer[iChannel] : pSrc);
-            
+
             for(iRow = 0; iRow < 16; iRow ++){
                 d0 = d4 = pSrc[idxCC[iRow][2]], d1 = d3 = pSrc[idxCC[iRow][1]], d2 = pSrc[idxCC[iRow][0]]; // left boundary
-                
+
                 for(iColumn = 0; iColumn + 2 < pSC->cmbWidth * 16; iColumn += 2){
                     pDst[((iColumn >> 4) << (8 - cShift)) + idxCC[iRow][(iColumn & 15) >> cShift]] = DF_ODD;
                     d0 = d2, d1 = d3, d2 = d4;
@@ -1635,7 +1638,7 @@ Void downsampleUV(CWMImageStrCodec * pSC)
             const size_t cShift = (cfExt == YUV_422 ? 0 : 1);
             PixelI * pBuf[4];
             size_t mbOff, pxOff;
-            
+
             pDst = pSC->p1MBbuffer[iChannel];
             pSrc = (iChannel == 1 ? pSC->pResU : pSC->pResV);
             pBuf[0] = pSrc + (pSC->cmbWidth << (cfExt == YUV_422 ? 7 : 8));
@@ -1663,7 +1666,7 @@ Void downsampleUV(CWMImageStrCodec * pSC)
                     d3 = pSrc[mbOff + idxCC[iRow + 3][pxOff]];
                     d4 = pSrc[mbOff + idxCC[iRow + 4][pxOff]];
                 }
-                
+
                 //last row of current MB
                 pDst[((iColumn >> 3) << 6) + idxCC_420[6][iColumn & 7]] = DF_ODD;
                 d0 = d2, d1 = d3, d2 = d4;
@@ -1753,7 +1756,7 @@ Int inputMBRowAlpha(CWMImageStrCodec* pSC)
             if(bdExt == BD_8){
                 const size_t cStride = (pSC->WMII.cBitsPerUnit >> 3);
                 const U8 * pSrc = pSrc0;
-                
+
                 for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride)
                     pA[((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf]] = ((PixelI)pSrc[iAlphaPos] - (1 << 7)) << cShift;
             }
@@ -1769,7 +1772,7 @@ Int inputMBRowAlpha(CWMImageStrCodec* pSC)
                 const size_t cStride = (pSC->WMII.cBitsPerUnit >> 3) / sizeof(I16);
                 const U8 nLenMantissaOrShift = pSC->m_pNextSC->WMISCP.nLenMantissaOrShift;
                 const I16 * pSrc = (I16 *)pSrc0;
-            
+
                 for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride)
                     pA[((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf]] = (((PixelI)pSrc[iAlphaPos] >> nLenMantissaOrShift) << cShift);
             }
@@ -1784,7 +1787,7 @@ Int inputMBRowAlpha(CWMImageStrCodec* pSC)
                 const size_t cStride = (pSC->WMII.cBitsPerUnit >> 3) / sizeof(I32);
                 const U8 nLenMantissaOrShift = pSC->m_pNextSC->WMISCP.nLenMantissaOrShift;
                 const I32 * pSrc = (I32 *)pSrc0;
-            
+
                 for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride)
                     pA[((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf]] = (((PixelI)pSrc[iAlphaPos] >> nLenMantissaOrShift) << cShift);
             }
@@ -1793,7 +1796,7 @@ Int inputMBRowAlpha(CWMImageStrCodec* pSC)
                 const U8 nLen = pSC->m_pNextSC->WMISCP.nLenMantissaOrShift;
                 const I8 nExpBias = pSC->m_pNextSC->WMISCP.nExpBias;
                 const float * pSrc = (float *)pSrc0;
-            
+
                 for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride)
                     pA[((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf]] = float2pixel (pSrc[iAlphaPos], nExpBias, nLen) << cShift;
             }
@@ -1807,7 +1810,7 @@ Int inputMBRowAlpha(CWMImageStrCodec* pSC)
                 pA[((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf]] =  pA[(((cColumn - 1) >> 4) << 8) + idxCC[iRow][(cColumn - 1) & 0xf]];
         }
     }
-    
+
     return ICERR_OK;
 }
 
@@ -1819,7 +1822,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
     COLORFORMAT cfExt = pSC->WMII.cfColorFormat;
     const COLORFORMAT cfInt = pSC->m_param.cfColorFormat;
     const size_t cPixelStride = (pSC->WMII.cBitsPerUnit >> 3);
-    const size_t iRowStride = 
+    const size_t iRowStride =
 		(cfExt == YUV_420 || (pSC->WMISCP.bYUVData && pSC->m_param.cfColorFormat==YUV_420)) ? 2 : 1;
     const size_t cRow = pSC->WMIBI.cLine;
     const size_t cColumn = pSC->WMII.cWidth;
@@ -1909,10 +1912,10 @@ Int inputMBRow(CWMImageStrCodec* pSC)
                 case CF_RGB:
                     assert (pSC->m_bSecondary == FALSE);
 					for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cPixelStride){
-						PixelI r = ((PixelI)pSrc[iR]) << cShift, g = ((PixelI)pSrc[1]) << cShift, b = ((PixelI)pSrc[iB]) << cShift;   
+						PixelI r = ((PixelI)pSrc[iR]) << cShift, g = ((PixelI)pSrc[1]) << cShift, b = ((PixelI)pSrc[iB]) << cShift;
 
 						_CC(r, g, b); // color conversion
-				   
+
 						iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
 						pU[iPos] = -r, pV[iPos] = b, pY[iPos] = g - iOffset;
 					}
@@ -1965,7 +1968,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
                         PixelI k = ((PixelI)pSrc[3]) << cShift;
 
                         _CC_CMYK(c, m, y, k);
-                        
+
                         iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
                         pU[iPos] = c, pV[iPos] = -y, pK[iPos] = k, pY[iPos] = iOffset - m;
                     }
@@ -2014,7 +2017,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
                 case CF_RGB:
                     for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride){
                         PixelI r = ((PixelI)pSrc[0] >> nLen) << cShift, g = ((PixelI)pSrc[1] >> nLen) << cShift, b = ((PixelI)pSrc[2] >> nLen) << cShift;
-                        
+
                         _CC(r, g, b); // color conversion
 
                         iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
@@ -2048,7 +2051,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
                         PixelI k = ((PixelI)pSrc[3] >> nLen) << cShift;
 
                         _CC_CMYK(c, m, y, k);
-                        
+
                         iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
                         pU[iPos] = c, pV[iPos] = -y, pK[iPos] = k, pY[iPos] = iOffset - m;
                     }
@@ -2096,7 +2099,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
                 case CF_RGB:
                     for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride){
                         PixelI r = ((PixelI)pSrc[0] >> nLen) << cShift, g = ((PixelI)pSrc[1] >> nLen) << cShift, b = ((PixelI)pSrc[2] >> nLen) << cShift;
-                        
+
                         _CC(r, g, b); // color conversion
 
                         iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
@@ -2110,7 +2113,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
 					{
 						const size_t cChannel = pSC->WMISCP.cChannel;
 						size_t iChannel;
-	
+
 						for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride){
 							iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
 							for(iChannel = 0; iChannel < cChannel; iChannel ++)
@@ -2122,15 +2125,15 @@ Int inputMBRow(CWMImageStrCodec* pSC)
                 case CMYK:
 					{
 						PixelI * pK = (cfInt == CMYK ? pSC->p1MBbuffer[3] : pY); // CMYK -> YUV_xxx transcoding!
-	
+
 						for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride){
 							PixelI c = ((PixelI)pSrc[0] >> nLen) << cShift;
 							PixelI m = ((PixelI)pSrc[1] >> nLen) << cShift;
 							PixelI y = ((PixelI)pSrc[2] >> nLen) << cShift;
 							PixelI k = ((PixelI)pSrc[3] >> nLen) << cShift;
-	
+
 							_CC_CMYK(c, m, y, k);
-							
+
 							iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
 							pU[iPos] = c, pV[iPos] = -y, pK[iPos] = k, pY[iPos] = -m;
 						}
@@ -2152,7 +2155,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
                         PixelI r = forwardHalf (pSrc[0]) << cShift;
                         PixelI g = forwardHalf (pSrc[1]) << cShift;
                         PixelI b = forwardHalf (pSrc[2]) << cShift;
-                        
+
                         _CC(r, g, b); // color conversion
 
                         iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
@@ -2166,7 +2169,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
 					{
 						const size_t cChannel = pSC->WMISCP.cChannel; // check xxx => Y_ONLY transcoding!
 						size_t iChannel;
-	
+
 						for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride){
 							iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
 							for(iChannel = 0; iChannel < cChannel; iChannel ++)
@@ -2189,7 +2192,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
                 case CF_RGB:
                     for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride){
                         PixelI r = (pSrc[0] >> nLen) << cShift, g = (pSrc[1] >> nLen) << cShift, b = (pSrc[2] >> nLen) << cShift;
-                        
+
                         _CC(r, g, b); // color conversion
 
                         iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
@@ -2225,7 +2228,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
                 case CF_RGB:
                     for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride){
                         PixelI r = (pSrc[0] >> nLen)<< cShift, g = (pSrc[1] >> nLen)<< cShift, b = (pSrc[2] >> nLen)<< cShift;
-                        
+
                         _CC(r, g, b); // color conversion
 
                         iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
@@ -2239,7 +2242,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
 					{
 						const size_t cChannel = pSC->WMISCP.cChannel; // check xxx => Y_ONLY transcoding!
 						size_t iChannel;
-	
+
 						for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride){
 							iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
 							for(iChannel = 0; iChannel < cChannel; iChannel ++)
@@ -2277,7 +2280,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
 					{
 						const size_t cChannel = pSC->WMISCP.cChannel;
 						size_t iChannel;
-	
+
 						for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cStride){
 							iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
 							for(iChannel = 0; iChannel < cChannel; iChannel ++)
@@ -2295,14 +2298,14 @@ Int inputMBRow(CWMImageStrCodec* pSC)
             const PixelI iOffset = (16 << cShift);
 
             assert(cfExt == CF_RGB);
-            
+
             for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cPixelStride){
                 PixelI r = (PixelI)pSrc[0], g = (PixelI)pSrc[1], b = ((g >> 2) & 0x1F) << cShift;
 
                 g = ((r >> 5) + ((g & 3) << 3)) << cShift, r = (r & 0x1F) << cShift;
 
                 _CC(r, g, b); // color conversion
-                
+
                 iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
                 pU[iPos] = -r, pV[iPos] = b, pY[iPos] = g - iOffset;
             }
@@ -2312,14 +2315,14 @@ Int inputMBRow(CWMImageStrCodec* pSC)
             const PixelI iOffset = (32 << cShift);
 
             assert(cfExt == CF_RGB);
-            
+
             for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cPixelStride){
                 PixelI r = (PixelI)pSrc[0], g = (PixelI)pSrc[1], b = (g >> 3) << (cShift + 1);
 
                 g = ((r >> 5) + ((g & 7) << 3)) << cShift, r = (r & 0x1F) << (cShift + 1);
 
                 _CC(r, g, b); // color conversion
-                
+
                 iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
                 pU[iPos] = -r, pV[iPos] = b, pY[iPos] = g - iOffset;
             }
@@ -2329,7 +2332,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
             const PixelI iOffset = (512 << cShift);
 
             assert(cfExt == CF_RGB);
-            
+
             for(iColumn = 0; iColumn < cColumn; iColumn ++, pSrc += cPixelStride){
                 PixelI r = (PixelI)pSrc[0], g = (PixelI)pSrc[1], b = (PixelI)pSrc[2];
 
@@ -2337,7 +2340,7 @@ Int inputMBRow(CWMImageStrCodec* pSC)
                 b = ((b >> 4) + (((PixelI)pSrc[3] & 0x3F) << 4)) << cShift;
 
                 _CC(r, g, b); // color conversion
-                
+
                 iPos = ((iColumn >> 4) << 8) + idxCC[iRow][iColumn & 0xf];
                 pU[iPos] = -r, pV[iPos] = b, pY[iPos] = g - iOffset;
             }

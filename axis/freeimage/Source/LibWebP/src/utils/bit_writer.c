@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include "./bit_writer.h"
 
-//------------------------------------------------------------------------------
+       //------------------------------------------------------------------------------
 // VP8BitWriter
 
 static int BitWriterResize(VP8BitWriter* const bw, size_t extra_size) {
@@ -225,7 +225,7 @@ void VP8BitWriterWipeOut(VP8BitWriter* const bw) {
 #define htole32(x) (x)
 #define htole16(x) (x)
 #else     // pretty much all linux and/or glibc
-#include <endian.h>
+//#include <endian.h>
 #endif
 
 // Returns 1 on success.
