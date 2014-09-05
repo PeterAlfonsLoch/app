@@ -2,7 +2,7 @@
 
 
 memory_exception::memory_exception() :
-   element(::get_thread(),
+   element(::get_thread()),
    ::call_stack(get_app()),
    ::exception::base(get_app()),
    simple_exception(get_app())
