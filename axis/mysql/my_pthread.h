@@ -145,7 +145,7 @@ int pthread_attr_setstacksize(pthread_attr_t *connect_att,DWORD stack);
 int pthread_attr_destroy(pthread_attr_t *connect_att);
 int my_pthread_once(my_pthread_once_t *once_control,void (*init_routine)(void));
 struct tm *localtime_r(const time_t *timep,struct tm *tmp);
-struct tm *gmtime_r(const time_t *timep,struct tm *tmp);
+//struct tm *gmtime_r(const time_t *timep,struct tm *tmp);
 
 void pthread_exit(void *a);
 int pthread_join(pthread_t thread, void **value_ptr);
