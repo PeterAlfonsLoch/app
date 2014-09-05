@@ -3678,6 +3678,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_check_interface.h" />
     <ClInclude Include="user\user\user_create_context.h" />
     <ClInclude Include="user\user\user_timer_array.h" />
+    <ClCompile Include="primitive\math\math_cvt.cpp" />
+    <ClCompile Include="primitive\math\math_cvt_g.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_default_error_handler.cpp" />
