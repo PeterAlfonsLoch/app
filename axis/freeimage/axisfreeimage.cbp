@@ -111,7 +111,10 @@
 		<Unit filename="Source/FreeImage/ConversionUINT16.cpp" />
 		<Unit filename="Source/FreeImage/FreeImage.cpp" />
 		<Unit filename="Source/FreeImage/FreeImageFramework.cpp" />
-		<Unit filename="Source/FreeImage/FreeImageFramework.h" />
+		<Unit filename="Source/FreeImage/FreeImageFramework.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="Source/FreeImage/FreeImageIO.cpp" />
 		<Unit filename="Source/FreeImage/GetType.cpp" />
 		<Unit filename="Source/FreeImage/Halftoning.cpp" />
@@ -556,7 +559,11 @@
 		<Unit filename="Source/LibOpenJPEG/opj_image.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibOpenJPEG/opj_includes.h" />
+		<Unit filename="Source/LibOpenJPEG/opj_includes.h">
+			<Option compilerVar="C" />
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="Source/LibOpenJPEG/opj_intmath.h" />
 		<Unit filename="Source/LibOpenJPEG/opj_inttypes.h" />
 		<Unit filename="Source/LibOpenJPEG/opj_malloc.h" />
@@ -621,7 +628,11 @@
 		<Unit filename="Source/LibPNG/pngpread.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngpriv.h" />
+		<Unit filename="Source/LibPNG/pngpriv.h">
+			<Option compilerVar="C" />
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="Source/LibPNG/pngread.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -1244,7 +1255,10 @@
 		<Unit filename="Source/OpenEXR/Imath/ImathVec.h" />
 		<Unit filename="Source/OpenEXR/Imath/ImathVecAlgo.h" />
 		<Unit filename="Source/OpenEXR/Imf.cpp" />
-		<Unit filename="Source/OpenEXR/Imf.h" />
+		<Unit filename="Source/OpenEXR/Imf.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="Source/OpenEXR/OpenEXRConfig.h" />
 		<Unit filename="Source/Plugin.h" />
 		<Unit filename="Source/Quantizers.h" />

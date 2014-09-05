@@ -1,3 +1,6 @@
+#ifndef __GNUC__
+#pragma once
+#endif
 
 /* pngpriv.h - private declarations for use inside libpng
  *
@@ -906,7 +909,7 @@ PNG_INTERNAL_FUNCTION(png_voidp,png_malloc_base,(png_const_structrp png_ptr,
 #if defined(PNG_TEXT_SUPPORTED) || defined(PNG_sPLT_SUPPORTED) ||\
    defined(PNG_STORE_UNKNOWN_CHUNKS_SUPPORTED)
 /* Internal array allocator, outputs no error or warning messages on failure,
- * just returns NULL.  
+ * just returns NULL.
  */
 PNG_INTERNAL_FUNCTION(png_voidp,png_malloc_array,(png_const_structrp png_ptr,
    int nelements, size_t element_size),PNG_ALLOCATED);

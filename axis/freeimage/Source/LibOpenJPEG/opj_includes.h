@@ -1,6 +1,9 @@
+#ifndef __GNUC__
+#pragma once
+#endif
 /*
  * Copyright (c) 2005, Herve Drolon, FreeImage Team
- * Copyright (c) 2008;2011-2012, Centre National d'Etudes Spatiales (CNES), France 
+ * Copyright (c) 2008;2011-2012, Centre National d'Etudes Spatiales (CNES), France
  * Copyright (c) 2012, CS Systemes d'Information, France
  * All rights reserved.
  *
@@ -123,12 +126,12 @@ static INLINE long lrintf(float f){
     return (long)((f>0.0f) ? (f + 0.5f):(f -0.5f));
 #else
     int i;
- 
+
     _asm{
         fld f
         fistp i
     };
- 
+
     return i;
 #endif
 }

@@ -599,11 +599,18 @@
 		<Unit filename="filesystem/file/file_writer_flush.h" />
 		<Unit filename="filesystem/filesystem.h" />
 		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h" />
+		<Unit filename="framework.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="framework_c.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="framework_c.h" />
+		<Unit filename="framework_c.h">
+			<Option compilerVar="C" />
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="multithreading/multithreading.cpp" />
 		<Unit filename="multithreading/multithreading.h" />
 		<Unit filename="multithreading/multithreading_condition.cpp" />
