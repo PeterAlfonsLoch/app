@@ -183,13 +183,7 @@ namespace aura
 
    inline void __cdecl gcvt_s(char *_Buffer, size_t _SizeInChars, double _Value, int32_t _Ndec)
    {
-#ifdef WINDOWS
-      C_RUNTIME_ERROR_CHECK(::_gcvt_s(_Buffer, _SizeInChars, _Value, _Ndec));
-#elif defined(ANDROID)
-      //_gcvt(_Value, _Ndec, _Buffer);
-#else
-      gcvt(_Value, _Ndec, _Buffer);
-#endif
+      C_RUNTIME_ERROR_CHECK(::gcvt_dup(_Buffer, _SizeInChars, _Value, _Ndec));
    }
 
 /*
