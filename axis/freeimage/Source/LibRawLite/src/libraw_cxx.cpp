@@ -30,7 +30,7 @@ it under the terms of the one of three licenses as you choose:
 //#include <new>
 //#include <exception>
 //#include <sys/types.h>
-#include <sys/stat.h>
+//#include <sys/stat.h>
 //#ifndef WIN32
 //#include <netinet/in.h>
 //#else
@@ -40,18 +40,16 @@ it under the terms of the one of three licenses as you choose:
 #include "libraw/libraw.h"
 #include "internal/defines.h"
 
-#ifdef USE_RAWSPEED
-#include "../RawSpeed/rawspeed_xmldata.cpp"
-#include <RawSpeed/StdAfx.h>
-#include <RawSpeed/FileMap.h>
-#include <RawSpeed/RawParser.h>
-#include <RawSpeed/RawDecoder.h>
-#include <RawSpeed/CameraMetaData.h>
-#include <RawSpeed/ColorFilterArray.h>
-#endif
+//#ifdef USE_RAWSPEED
+//#include "../RawSpeed/rawspeed_xmldata.cpp"
+//#include <RawSpeed/StdAfx.h>
+//#include <RawSpeed/FileMap.h>
+//#include <RawSpeed/RawParser.h>
+//#include <RawSpeed/RawDecoder.h>
+//#include <RawSpeed/CameraMetaData.h>
+//#include <RawSpeed/ColorFilterArray.h>
+//#endif
 
-//#define strcasecmp stricmp
-//#define strncasecmp strnicmp
 
 
 #ifdef __cplusplus

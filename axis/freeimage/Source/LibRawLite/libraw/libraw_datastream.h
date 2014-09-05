@@ -45,14 +45,14 @@ it under the terms of the one of three licenses as you choose:
 //#include <fstream>
 //#include <memory>
 
-#if defined (WIN32)
+//#if defined (WIN32)
 //#include <winsock2.h>
 
 /* MSVS 2008 and above... */
-#if _MSC_VER >= 1500
-#define WIN32SECURECALLS
-#endif
-#endif
+//#if _MSC_VER >= 1500
+//#define WIN32SECURECALLS
+//#endif
+//#endif
 
 #define IOERROR() do { throw LIBRAW_EXCEPTION_IO_EOF; } while(0)
 

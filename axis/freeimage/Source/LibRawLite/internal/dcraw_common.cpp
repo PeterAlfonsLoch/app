@@ -27,7 +27,7 @@ it under the terms of the one of three licenses as you choose:
 #define LIBRAW_LIBRARY_BUILD
 #define LIBRAW_IO_REDEFINED
 #include "libraw/libraw.h"
-#include "LibRawLite/internal/defines.h"
+#include "internal/defines.h"
 #include "internal/var_defines.h"
 
 

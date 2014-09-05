@@ -165,7 +165,7 @@ add(ARG_TYPE t)
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>
 typename BASE_ARRAY_TYPE::iterator set < TYPE,ARG_TYPE,BASE_ARRAY_TYPE,COMPARE >:: insert(ARG_TYPE t)
 {
-   return BASE_ARRAY_TYPE::iterator(add(t), this);
+   return typename BASE_ARRAY_TYPE::iterator(add(t), this);
 }
 
 template < class TYPE,class ARG_TYPE,class BASE_ARRAY_TYPE,class COMPARE>

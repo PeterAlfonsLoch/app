@@ -14,6 +14,11 @@
    machine */
 #define HAVE_IEEEFP 1
 
+
+#ifdef LINUX
+#define HAVE_GETOPT
+#endif
+
 /* Define to 1 if you have the <string.h> header file. */
 #define HAVE_STRING_H 1
 

@@ -29,7 +29,7 @@ Attribute::~Attribute () {}
 
 namespace {
 
-struct NameCompare: std::binary_function <const char *, const char *, bool>
+struct NameCompare // : std::binary_function <const char *, const char *, bool>
 {
     bool
     operator () (const char *x, const char *y) const
@@ -70,7 +70,7 @@ typeMap ()
 } // namespace
 
 
-bool		
+bool
 Attribute::knownType (const char typeName[])
 {
     LockedTypeMap& tMap = typeMap();
@@ -80,7 +80,7 @@ Attribute::knownType (const char typeName[])
 }
 
 
-void	
+void
 Attribute::registerAttributeType (const char typeName[],
 			          Attribute *(*newAttribute)())
 {

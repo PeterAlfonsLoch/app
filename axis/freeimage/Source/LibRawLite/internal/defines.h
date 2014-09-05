@@ -50,14 +50,14 @@ it under the terms of the one of three licenses as you choose:
 //#ifdef __CYGWIN__
 //#include <io.h>
 //#endif
-#ifdef WIN32
+//#ifdef WIN32
 //#include <sys/utime.h>
 //#include <winsock2.h>
-#pragma comment(lib, "ws2_32.lib")
-#define snprintf _snprintf
-#define strcasecmp _stricmp
-#define strncasecmp _strnicmp
-#else
+//#pragma comment(lib, "ws2_32.lib")
+//#define snprintf _snprintf
+//#define strcasecmp _stricmp
+//#define strncasecmp _strnicmp
+//#else
 //#include <unistd.h>
 //#include <utime.h>
 //#include <netinet/in.h>
@@ -65,9 +65,9 @@ it under the terms of the one of three licenses as you choose:
 
 
 
-typedef int64_t INT64;
-typedef uint64_t UINT64;
-#endif
+//typedef int64_t INT64;
+//typedef uint64_t UINT64;
+//#endif
 
 #ifdef NODEPS
 #define NO_JASPER
