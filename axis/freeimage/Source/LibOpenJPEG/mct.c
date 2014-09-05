@@ -5,7 +5,7 @@
  * Copyright (c) 2002-2003, Yannick Verschueren
  * Copyright (c) 2003-2007, Francois-Olivier Devaux and Antonin Descampe
  * Copyright (c) 2005, Herve Drolon, FreeImage Team
- * Copyright (c) 2008;2011-2012, Centre National d'Etudes Spatiales (CNES), France 
+ * Copyright (c) 2008;2011-2012, Centre National d'Etudes Spatiales (CNES), France
  * Copyright (c) 2012, CS Systemes d'Information, France
  * All rights reserved.
  *
@@ -31,11 +31,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "opj_includes.h"
 #ifdef __SSE__
 #include <xmmintrin.h>
 #endif
 
-#include "opj_includes.h"
+
 
 /* <summary> */
 /* This table contains the norms of the basis function of the reversible MCT. */
@@ -85,8 +86,8 @@ void opj_mct_encode(
 /* </summary> */
 void opj_mct_decode(
 		OPJ_INT32* restrict c0,
-		OPJ_INT32* restrict c1, 
-		OPJ_INT32* restrict c2, 
+		OPJ_INT32* restrict c1,
+		OPJ_INT32* restrict c2,
 		OPJ_UINT32 n)
 {
 	OPJ_UINT32 i;

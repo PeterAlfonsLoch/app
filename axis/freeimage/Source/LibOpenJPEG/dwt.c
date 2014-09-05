@@ -31,11 +31,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "opj_includes.h"
+
 #ifdef __SSE__
 #include <xmmintrin.h>
 #endif
 
-#include "opj_includes.h"
 
 /** @defgroup DWT DWT - Implementation of a discrete wavelet transform */
 /*@{*/
@@ -75,7 +76,7 @@ static const OPJ_FLOAT32 opj_c13318 = 1.625732422f;
 /*@}*/
 
 /**
-Virtual function type for wavelet transform in 1-D 
+Virtual function type for wavelet transform in 1-D
 */
 typedef void (*DWT1DFN)(opj_dwt_t* v);
 
@@ -112,7 +113,7 @@ Forward 9-7 wavelet transform in 1-D
 */
 static void opj_dwt_encode_1_real(OPJ_INT32 *a, OPJ_INT32 dn, OPJ_INT32 sn, OPJ_INT32 cas);
 /**
-Explicit calculation of the Quantization Stepsizes 
+Explicit calculation of the Quantization Stepsizes
 */
 static void opj_dwt_encode_stepsize(OPJ_INT32 stepsize, OPJ_INT32 numbps, opj_stepsize_t *bandno_stepsize);
 /**
@@ -178,7 +179,7 @@ static const OPJ_FLOAT64 opj_dwt_norms_real[4][10] = {
 	{2.080, 3.865, 8.307, 17.18, 34.71, 69.59, 139.3, 278.6, 557.2}
 };
 
-/* 
+/*
 ==========================================================
    local functions
 ==========================================================
@@ -186,7 +187,7 @@ static const OPJ_FLOAT64 opj_dwt_norms_real[4][10] = {
 
 /* <summary>			                 */
 /* Forward lazy transform (horizontal).  */
-/* </summary>                            */ 
+/* </summary>                            */
 void opj_dwt_deinterleave_h(OPJ_INT32 *a, OPJ_INT32 *b, OPJ_INT32 dn, OPJ_INT32 sn, OPJ_INT32 cas) {
 	OPJ_INT32 i;
 	OPJ_INT32 * l_dest = b;
@@ -196,7 +197,7 @@ void opj_dwt_deinterleave_h(OPJ_INT32 *a, OPJ_INT32 *b, OPJ_INT32 dn, OPJ_INT32 
 		*l_dest++ = *l_src;
 		l_src += 2;
 	}
-	
+
     l_dest = b + sn;
 	l_src = a + 1 - cas;
 
@@ -206,9 +207,9 @@ void opj_dwt_deinterleave_h(OPJ_INT32 *a, OPJ_INT32 *b, OPJ_INT32 dn, OPJ_INT32 
 	}
 }
 
-/* <summary>                             */  
+/* <summary>                             */
 /* Forward lazy transform (vertical).    */
-/* </summary>                            */ 
+/* </summary>                            */
 void opj_dwt_deinterleave_v(OPJ_INT32 *a, OPJ_INT32 *b, OPJ_INT32 dn, OPJ_INT32 sn, OPJ_INT32 x, OPJ_INT32 cas) {
     OPJ_INT32 i = sn;
 	OPJ_INT32 * l_dest = b;
@@ -222,7 +223,7 @@ void opj_dwt_deinterleave_v(OPJ_INT32 *a, OPJ_INT32 *b, OPJ_INT32 dn, OPJ_INT32 
 
 	l_dest = b + sn * x;
 	l_src = a + 1 - cas;
-	
+
 	i = dn;
     while (i--) {
 		*l_dest = *l_src;
@@ -251,9 +252,9 @@ void opj_dwt_interleave_h(opj_dwt_t* h, OPJ_INT32 *a) {
     }
 }
 
-/* <summary>                             */  
+/* <summary>                             */
 /* Inverse lazy transform (vertical).    */
-/* </summary>                            */ 
+/* </summary>                            */
 void opj_dwt_interleave_v(opj_dwt_t* v, OPJ_INT32 *a, OPJ_INT32 x) {
     OPJ_INT32 *ai = a;
     OPJ_INT32 *bi = v->mem + v->cas;
@@ -268,7 +269,7 @@ void opj_dwt_interleave_v(opj_dwt_t* v, OPJ_INT32 *a, OPJ_INT32 x) {
     i = v->dn ;
     while( i-- ) {
       *bi = *ai;
-	  bi += 2;  
+	  bi += 2;
 	  ai += x;
     }
 }
@@ -279,7 +280,7 @@ void opj_dwt_interleave_v(opj_dwt_t* v, OPJ_INT32 *a, OPJ_INT32 x) {
 /* </summary>                           */
 void opj_dwt_encode_1(OPJ_INT32 *a, OPJ_INT32 dn, OPJ_INT32 sn, OPJ_INT32 cas) {
 	OPJ_INT32 i;
-	
+
 	if (!cas) {
 		if ((dn > 0) || (sn > 1)) {	/* NEW :  CASE ONE ELEMENT */
 			for (i = 0; i < dn; i++) OPJ_D(i) -= (OPJ_S_(i) + OPJ_S_(i + 1)) >> 1;
@@ -297,10 +298,10 @@ void opj_dwt_encode_1(OPJ_INT32 *a, OPJ_INT32 dn, OPJ_INT32 sn, OPJ_INT32 cas) {
 
 /* <summary>                            */
 /* Inverse 5-3 wavelet transform in 1-D. */
-/* </summary>                           */ 
+/* </summary>                           */
 void opj_dwt_decode_1_(OPJ_INT32 *a, OPJ_INT32 dn, OPJ_INT32 sn, OPJ_INT32 cas) {
 	OPJ_INT32 i;
-	
+
 	if (!cas) {
 		if ((dn > 0) || (sn > 1)) { /* NEW :  CASE ONE ELEMENT */
 			for (i = 0; i < sn; i++) OPJ_S(i) -= (OPJ_D_(i - 1) + OPJ_D_(i) + 2) >> 2;
@@ -318,7 +319,7 @@ void opj_dwt_decode_1_(OPJ_INT32 *a, OPJ_INT32 dn, OPJ_INT32 sn, OPJ_INT32 cas) 
 
 /* <summary>                            */
 /* Inverse 5-3 wavelet transform in 1-D. */
-/* </summary>                           */ 
+/* </summary>                           */
 void opj_dwt_decode_1(opj_dwt_t *v) {
 	opj_dwt_decode_1_(v->mem, v->dn, v->sn, v->cas);
 }
@@ -369,7 +370,7 @@ void opj_dwt_encode_stepsize(OPJ_INT32 stepsize, OPJ_INT32 numbps, opj_stepsize_
 	bandno_stepsize->expn = numbps - p;
 }
 
-/* 
+/*
 ==========================================================
    DWT interface
 ==========================================================

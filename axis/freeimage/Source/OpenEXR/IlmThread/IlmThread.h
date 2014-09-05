@@ -1,4 +1,5 @@
-#include "Imf.h"
+#pragma once
+
 
 #ifndef INCLUDED_ILM_THREAD_H
 #define INCLUDED_ILM_THREAD_H
@@ -78,7 +79,7 @@
 	#define ILMTHREAD_EXPORT __declspec(dllimport)
     #endif
 #else
-    #define ILMTHREAD_EXPORT 
+    #define ILMTHREAD_EXPORT
 #endif
 
 namespace IlmThread {
@@ -100,7 +101,7 @@ class ILMTHREAD_EXPORT Thread
 
     void		start ();
     virtual void	run () = 0;
-    
+
   private:
 
     #if defined _WIN32 || defined _WIN64

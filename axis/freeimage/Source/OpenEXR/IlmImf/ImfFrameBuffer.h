@@ -1,4 +1,4 @@
-#include "Imf.h"
+#pragma once
 
 
 
@@ -65,7 +65,7 @@ struct Slice
 
     //--------------------------------------------
     // Subsampling: pixel (x, y) is present in the
-    // slice only if 
+    // slice only if
     //
     //  x % xSampling == 0 && y % ySampling == 0
     //
@@ -81,7 +81,7 @@ struct Slice
     //----------------------------------------------------------
 
     double		fillValue;
-    
+
 
     //-------------------------------------------------------
     // For tiled files, the xTileCoords and yTileCoords flags
@@ -248,7 +248,7 @@ FrameBuffer::Iterator::Iterator (const FrameBuffer::SliceMap::iterator &i):
 }
 
 
-inline FrameBuffer::Iterator &		
+inline FrameBuffer::Iterator &
 FrameBuffer::Iterator::operator ++ ()
 {
     ++_i;
@@ -256,7 +256,7 @@ FrameBuffer::Iterator::operator ++ ()
 }
 
 
-inline FrameBuffer::Iterator 	
+inline FrameBuffer::Iterator
 FrameBuffer::Iterator::operator ++ (int)
 {
     Iterator tmp = *this;
@@ -272,7 +272,7 @@ FrameBuffer::Iterator::name () const
 }
 
 
-inline Slice &	
+inline Slice &
 FrameBuffer::Iterator::slice () const
 {
     return _i->m_element2;
@@ -308,7 +308,7 @@ FrameBuffer::ConstIterator::operator ++ ()
 }
 
 
-inline FrameBuffer::ConstIterator 		
+inline FrameBuffer::ConstIterator
 FrameBuffer::ConstIterator::operator ++ (int)
 {
     ConstIterator tmp = *this;
@@ -323,7 +323,7 @@ FrameBuffer::ConstIterator::name () const
     return *_i->m_element1;
 }
 
-inline const Slice &	
+inline const Slice &
 FrameBuffer::ConstIterator::slice () const
 {
     return _i->m_element2;
