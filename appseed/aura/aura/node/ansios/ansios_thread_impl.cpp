@@ -7,7 +7,7 @@
 
 #include "framework.h"
 #include <fcntl.h>
-
+#include <time.h>
 
 namespace ansios
 {

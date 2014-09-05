@@ -17,6 +17,7 @@ extern char * const * environ;
 #endif
 
 
+CLASS_DECL_AURA void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
 
 
 namespace ansios
