@@ -4,7 +4,6 @@
 #include <unistd.h>
 
 
-#define __USE_GNU
 #include <link.h>
 
 

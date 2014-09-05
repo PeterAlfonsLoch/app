@@ -7,7 +7,6 @@
 #include <unistd.h>
 
 
-#define __USE_GNU
 #include <link.h>
 
 
@@ -29,7 +28,7 @@ namespace aura
    system::system(sp(::aura::application) papp) :
       m_process(this)
    {
-      
+
 #ifdef MATTER_CACHE_FROM_HTTP_SERVER
 
       m_bMatterFromHttpCache = true;
@@ -135,7 +134,7 @@ namespace aura
          throw simple_exception(this,"failed to construct system m_pxml->initialize()");
 
       m_spmutexUserAppData = canew(mutex(get_app(),false,"Local\\ca2.UserAppData"));
-      
+
       m_spmutexSystemAppData = canew(mutex(get_app(),false,"Local\\ca2.SystemAppData"));
 
       m_spmutexFactory = canew(mutex(get_app()));

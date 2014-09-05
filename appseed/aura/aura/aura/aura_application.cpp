@@ -6,7 +6,6 @@
 #undef _GNU_SOURCE
 #endif
 #define _GNU_SOURCE
-#define __USE_GNU
 #include <link.h>
 #elif defined(APPLEOS)
 #include <dlfcn.h>
@@ -83,7 +82,7 @@ namespace aura
 
       m_pcoreapp                 = NULL;
 
-      
+
 
 
 
@@ -298,7 +297,7 @@ namespace aura
 
    }
 
-   
+
 
    bool application::app_map_lookup(const char * psz,void * & p)
    {
@@ -577,8 +576,8 @@ namespace aura
       UNREFERENCED_PARAMETER(nCode);
 
    }
-      
-   
+
+
    void application::ShowWaitCursor(bool bShow)
    {
 
@@ -1448,7 +1447,7 @@ namespace aura
       m_bAuraProcessInitializeResult = false;
 
 
-      
+
 
       if(m_pthreadimpl == NULL)
       {
@@ -1562,7 +1561,7 @@ namespace aura
 
    bool application::initialize()
    {
-      
+
       return true;
 
 
@@ -1576,7 +1575,7 @@ namespace aura
       try
       {
 
-         
+
          //destroy_message_queue();
 
       }
@@ -2575,7 +2574,7 @@ namespace aura
 
    }
 
-   
+
    string application::file_as_string(var varFile,var & varQuery)
    {
 
@@ -2643,7 +2642,7 @@ namespace aura
    {
 
       return file_delete_dup(psz) != FALSE;
-   
+
    }
 
    string application::file_extension(const char * pszPath)
@@ -2671,7 +2670,7 @@ namespace aura
 
    string application::dir_simple_path(const string & str1,const string & str2)
    {
-      
+
       return dir_path(str1,str2);
 
    }
@@ -2869,7 +2868,7 @@ namespace aura
 
    }
 
-   
+
    void application::message_handler(signal_details * pobj)
    {
 
@@ -2966,7 +2965,7 @@ namespace aura
 
    }
 
-   
+
    sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
    {
 

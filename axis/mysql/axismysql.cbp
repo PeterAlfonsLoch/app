@@ -469,7 +469,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="mysys_err.h" />
-		<Unit filename="mysys_ssl/crypt_genhash_impl.cc" />
 		<Unit filename="mysys_ssl/my_aes.cc" />
 		<Unit filename="mysys_ssl/my_default.cc" />
 		<Unit filename="mysys_ssl/my_default_priv.h" />

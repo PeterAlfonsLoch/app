@@ -1,7 +1,6 @@
 #include "framework.h"
 #include <X11/cursorfont.h>
 
-#define __USE_GNU
 #include <link.h>
 
 

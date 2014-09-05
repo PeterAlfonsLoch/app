@@ -11,7 +11,6 @@
 
 
 #ifdef LINUX
-#define __USE_GNU
 #include <link.h>
 #elif defined(APPLEOS)
 #include <dlfcn.h>
