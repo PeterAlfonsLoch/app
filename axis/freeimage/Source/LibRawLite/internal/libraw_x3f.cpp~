@@ -30,7 +30,31 @@ BSD-style License
 
 */
 
-
+  /* From X3F_IO.H */
+//#if defined(_WIN32)
+//	#if defined _MSC_VER
+//		typedef   signed __int8   int8_t;
+//		typedef unsigned __int8   uint8_t;
+//		typedef   signed __int16  int16_t;
+//		typedef unsigned __int16  uint16_t;
+//		typedef   signed __int32  int32_t;
+//		typedef unsigned __int32  uint32_t;
+//		typedef   signed __int64  int64_t;
+//		typedef unsigned __int64  uint64_t;
+//	#else
+//		#include <stdint.h>
+//	#endif // _WIN32
+//	#include <sys/types.h>
+//#else
+//#include <inttypes.h>
+//#endif
+#include "axis/axis/axis.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdio.h>
+#include "../libraw/libraw_datastream.h"
 
 #define SIZE_UNIQUE_IDENTIFIER 16
 #define SIZE_WHITE_BALANCE 32
