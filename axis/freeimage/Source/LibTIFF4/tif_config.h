@@ -18,7 +18,9 @@
 #define HAVE_SYS_TYPES_H 1
 
 /* Define to 1 if you have the <io.h> header file. */
+#if !defined(LINUX)
 #define HAVE_IO_H 1
+#endif
 
 /* Define to 1 if you have the <search.h> header file. */
 #define HAVE_SEARCH_H 1
@@ -50,7 +52,7 @@
 /* Signed size type formatter */
 #define TIFF_SSIZE_FORMAT "%ld"
 
-/* 
+/*
 -----------------------------------------------------------------------
 Byte order
 -----------------------------------------------------------------------

@@ -123,3 +123,10 @@ CLASS_DECL_AURA int_bool matches_wildcard_criteria_ci(const char * pszCriteria, 
 END_EXTERN_C
 
 
+#define strcasecmp stricmp
+#define strncasecmp strnicmp
+
+
+
+
+

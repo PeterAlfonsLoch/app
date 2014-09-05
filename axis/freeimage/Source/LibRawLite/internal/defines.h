@@ -1,4 +1,4 @@
-/* 
+/*
   Copyright 2008-2013 LibRaw LLC (info@libraw.org)
 
 LibRaw is free software; you can redistribute it and/or modify
@@ -62,6 +62,9 @@ it under the terms of the one of three licenses as you choose:
 #include <utime.h>
 #include <netinet/in.h>
 #include <stdint.h>
+
+
+
 typedef int64_t INT64;
 typedef uint64_t UINT64;
 #endif
@@ -159,3 +162,9 @@ typedef uint64_t UINT64;
 
 #define BAYER2(row,col) \
 	image[((row) >> shrink)*iwidth + ((col) >> shrink)][fcol(row,col)]
+
+
+#define strcasecmp stricmp
+#define strncasecmp strnicmp
+
+

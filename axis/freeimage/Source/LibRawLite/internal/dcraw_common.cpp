@@ -1,4 +1,4 @@
-/* 
+/*
   Copyright 2008-2013 LibRaw LLC (info@libraw.org)
 
 LibRaw is free software; you can redistribute it and/or modify
@@ -28,7 +28,7 @@ it under the terms of the one of three licenses as you choose:
 #define LIBRAW_LIBRARY_BUILD
 #define LIBRAW_IO_REDEFINED
 #include "libraw/libraw.h"
-#include "internal/defines.h"
+#include "LibRawLite/internal/defines.h"
 #include "internal/var_defines.h"
 int CLASS fcol (int row, int col)
 {
@@ -147,7 +147,7 @@ void CLASS read_shorts (ushort *pixel, int count)
 {
   if (fread (pixel, 2, count, ifp) < count) derror();
   if ((order == 0x4949) == (ntohs(0x1234) == 0x1234))
-    _swab ((char*)pixel, (char*)pixel, count*2);
+    swab ((char*)pixel, (char*)pixel, count*2);
 }
 
 void CLASS canon_600_fixed_wb (int temp)
@@ -934,7 +934,7 @@ void CLASS lossless_dng_load_raw()
     fseek (ifp, save+4, SEEK_SET);
     if ((tcol += tile_width) >= raw_width)
       trow += tile_length + (tcol = 0);
-    
+
     ljpeg_end (&jh);
   }
 }
@@ -1439,7 +1439,7 @@ unsigned CLASS ph1_bithuff (int nbits, ushort *huff)
 {
 #ifndef LIBRAW_NOTHREADS
 #define bitbuf tls->ph1_bits.bitbuf
-#define vbits  tls->ph1_bits.vbits    
+#define vbits  tls->ph1_bits.vbits
 #else
   static UINT64 bitbuf=0;
   static int vbits=0;
@@ -1794,7 +1794,7 @@ void CLASS canon_rmf_load_raw()
 	RAW(orow,ocol) = bits >> (10*c+2) & 0x3ff;
       }
     }
-  }  
+  }
   maximum = 0x3ff;
 }
 
@@ -1802,7 +1802,7 @@ unsigned CLASS pana_bits (int nbits)
 {
 #ifndef LIBRAW_NOTHREADS
 #define buf tls->pana_bits.buf
-#define vbits tls->pana_bits.vbits   
+#define vbits tls->pana_bits.vbits
 #else
   static uchar buf[0x4000];
   static int vbits;
@@ -2589,7 +2589,7 @@ void CLASS sony_decrypt (unsigned *data, int len, int start, int key)
   while (len--)
     {
       *data++ ^= pad[p & 127] = pad[(p+1) & 127] ^ pad[(p+65) & 127];
-      p++;     
+      p++;
     }
 #else
   while (len--)
@@ -2980,7 +2980,7 @@ void CLASS redcine_load_raw()
 void CLASS crop_masked_pixels()
 {
   int row, col;
-  unsigned 
+  unsigned
 #ifndef LIBRAW_LIBRARY_BUILD
     r, raw_pitch = raw_width*2,
     c, m, mblack[8], zero, val;
@@ -3362,7 +3362,7 @@ void CLASS wavelet_denoise()
   temp = fimg + size*3;
   if ((nc = colors) == 3 && filters) nc++;
 #ifdef LIBRAW_LIBRARY_BUILD
-#pragma omp parallel default(shared) private(i,col,row,thold,lev,lpass,hpass,temp,c) firstprivate(scale,size) 
+#pragma omp parallel default(shared) private(i,col,row,thold,lev,lpass,hpass,temp,c) firstprivate(scale,size)
 #endif
   {
       temp = (float*)malloc( (iheight + iwidth) * sizeof *fimg);
@@ -4482,7 +4482,7 @@ void CLASS ahd_interpolate()
 #ifdef LIBRAW_USE_OPENMP
         if(0== omp_get_thread_num())
 #endif
-           if(callbacks.progress_cb) {                                     
+           if(callbacks.progress_cb) {
                int rr = (*callbacks.progress_cb)(callbacks.progresscb_data,LIBRAW_PROGRESS_INTERPOLATE,top-2,height-7);
                if(rr)
                    terminate_flag = 1;
@@ -4497,7 +4497,7 @@ void CLASS ahd_interpolate()
     }
     free (buffer);
   }
-#ifdef LIBRAW_LIBRARY_BUILD 
+#ifdef LIBRAW_LIBRARY_BUILD
   if(terminate_flag)
       throw LIBRAW_EXCEPTION_CANCELLED_BY_CALLBACK;
 #endif
@@ -4841,7 +4841,7 @@ void CLASS parse_makernote (int base, int uptag)
     {{ 1.398283396477404,     -0.398283116703571, 4.427165001263944E-08},
      {-1.233904514232401E-07,  0.999999995196570, 3.126724276714121e-08},
      { 4.561487232726535E-08, -0.042938290466635, 1.042938250416105    }};
-  
+
   float adobe_cam [3][3];
 
 /*
@@ -6149,7 +6149,7 @@ void CLASS parse_external_jpeg()
     }
   }
 #else
-  if (strcmp (jname, ifname)) 
+  if (strcmp (jname, ifname))
       {
           if(!ifp->subfile_open(jname))
               {
@@ -7485,7 +7485,7 @@ void CLASS adobe_coeff (const char *t_make, const char *t_model)
     { "Sony DSLR-A900", -128, 0,
 	{ 5209,-1072,-397,-8845,16120,2919,-1618,1803,8654 } },
     {"Sony ILCE-3000",-128, 0,
-     { 14009,-8208,729,3738,4752,2932,5743,-3800,6494 } },    
+     { 14009,-8208,729,3738,4752,2932,5743,-3800,6494 } },
     {"Sony ILCE-A7R",-128, 0,
      { 8592,-3219,-348,-3846,12042,1475,-1079,2166,5893 } },
     {"Sony ILCE-A7",-128, 0,
@@ -7540,7 +7540,7 @@ void CLASS adobe_coeff (const char *t_make, const char *t_model)
       if (table[i].trans[0]) {
 	for (j=0; j < 12; j++)
 #ifdef LIBRAW_LIBRARY_BUILD
-          imgdata.color.cam_xyz[0][j] = 
+          imgdata.color.cam_xyz[0][j] =
 #endif
 	  cam_xyz[0][j] = table[i].trans[j] / 10000.0;
 	cam_xyz_coeff (cam_xyz);
@@ -8250,7 +8250,7 @@ canon_a5:
         mask[0][0] = top_margin = 30;
         mask[0][2] = top_margin + height;
         left_margin = 120;
-        mask[0][1] = 23; 
+        mask[0][1] = 23;
         mask[0][3] = 72;
   } else if (!strcmp(model,"PowerShot G16")) {
       mask[0][0] = 0;
@@ -8985,7 +8985,7 @@ void CLASS convert_to_rgb()
   raw_color |= colors == 1 || document_mode ||
 		output_color < 1 || output_color > 5;
 #else
-  raw_color |= colors == 1 || 
+  raw_color |= colors == 1 ||
 		output_color < 1 || output_color > 5;
 #endif
   if (!raw_color) {

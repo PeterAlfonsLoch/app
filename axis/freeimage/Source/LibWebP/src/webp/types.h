@@ -21,6 +21,7 @@
 #ifdef __STRICT_ANSI__
 #define WEBP_INLINE
 #else  /* __STRICT_ANSI__ */
+#undef inline
 #define WEBP_INLINE inline
 #endif
 #else
