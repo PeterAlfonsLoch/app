@@ -1967,6 +1967,12 @@
     <ClInclude Include="aura\os\cross\ansios\ansios_datetime.h">
       <Filter>Header Files\aura\os\cross\ansios</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_mktime.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3342,6 +3348,9 @@
     </ClCompile>
     <ClCompile Include="aura\os\cross\ansios\ansios_datetime.cpp">
       <Filter>Source Files\aura\os\cross\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3458,7 +3458,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\data\data_data_container.h" />
     <ClInclude Include="primitive\data\data_data_listener.h" />
     <ClInclude Include="primitive\data\data_item.h" />
+    <ClInclude Include="primitive\datetime\datetime.h" />
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
+    <ClInclude Include="primitive\datetime\datetime_mktime.h" />
     <ClInclude Include="primitive\datetime\datetime_time.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
     <ClInclude Include="primitive\geometry\geometry.h" />
@@ -3681,6 +3683,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_check_interface.h" />
     <ClInclude Include="user\user\user_create_context.h" />
     <ClInclude Include="user\user\user_timer_array.h" />
+    <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\datetime_mktime.c" />
     <ClCompile Include="primitive\math\math_cvt.cpp" />
     <ClCompile Include="primitive\math\math_cvt_g.cpp" />
