@@ -54,26 +54,13 @@
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
-			<Add directory="../../thirdparty/appseed" />
-			<Add directory="../../thirdparty/include" />
 			<Add directory="." />
 			<Add directory=".." />
 			<Add directory="../.." />
-			<Add directory="../ca2" />
-			<Add directory="../../nodeapp/linux" />
-			<Add directory="../../nodeapp/linux/include" />
 			<Add directory="../../.." />
-			<Add directory="../base" />
-			<Add directory="base/openssl" />
-			<Add directory="base/openssl/crypto" />
-			<Add directory="base/openssl/ssl" />
-			<Add directory="base/openssl/crypto/asn1" />
-			<Add directory="base/openssl/crypto/evp" />
-			<Add directory="base/openssl/crypto/modes" />
-			<Add directory="base/openssl/include" />
-			<Add directory="../../../nodeapp/thirdparty/include" />
 			<Add directory="../../appseed" />
 			<Add directory="../../appseed/axis" />
+			<Add directory="../../appseed/aura" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
