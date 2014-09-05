@@ -9,6 +9,7 @@
 #include "numeric_parser_exception.h"
 
 
+#include "aura/primitive/datetime/datetime_mktime.h"
 #include "aura/primitive/datetime/datetime_value.h"
 
 

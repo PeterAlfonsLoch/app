@@ -41,3 +41,10 @@ typedef struct oswindow_data * oswindow;
 #include "windows/windows.h"
 
 #endif
+
+
+#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID) && !defined(SOLARIOS)
+
+#include "ansios/ansios.h"
+
+#endif
