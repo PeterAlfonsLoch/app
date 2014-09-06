@@ -131,6 +131,9 @@
     <ClCompile Include="src\gzip\ftgzip.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\bzip2\ftbzip2.c">
+      <Filter>Source Files\FT_MODULES</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\ft2build.h">

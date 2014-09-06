@@ -987,6 +987,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="src\bzip2\ftbzip2.c" />
     <ClCompile Include="src\cff\cff.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug Multithreaded|Win32'">Disabled</Optimization>
       <Optimization Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Disabled</Optimization>
