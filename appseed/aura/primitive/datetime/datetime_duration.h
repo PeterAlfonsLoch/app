@@ -18,11 +18,11 @@ public:
 
    };
 
-   
+
    int64_t     m_iNanoseconds;
    int64_t     m_iSeconds;
 
-   
+
    inline void raw_set(int64_t iSeconds, int64_t iNanoseconds);
    inline void set(int64_t iSeconds, int64_t iNanoseconds);
    inline void set_null();
@@ -102,14 +102,6 @@ duration duration::raw_create(int64_t iSeconds, int64_t iNanoseconds)
 
 }
 
-void duration::fset(double d, double dNano)
-{
-
-   dNano += fmod(d, 1.0) * 1000.0 * 1000.0 * 1000.0;
-
-   raw_set((int64_t)(floor(d) + floor((dNano / (1000.0 * 1000.0 * 1000.0)))), (int64_t)fmod(dNano, 1000.0 * 1000.0 * 1000.0));
-
-}
 
 
 duration duration::fcreate(double d, double dNano)

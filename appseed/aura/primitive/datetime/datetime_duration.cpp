@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <math.h>
 
 
 void duration::normalize()
@@ -13,7 +14,7 @@ void duration::normalize()
 
 millis::millis(double d)
 {
-   
+
    raw_set((int64_t)(d / 1000.0), (int64_t)fmod(d * 1000000.0, 1000000000.0));
 
 }
@@ -82,3 +83,14 @@ void duration::set(double d, e_unit eunit)
    };
 }
 
+
+
+
+void duration::fset(double d, double dNano)
+{
+
+   dNano += fmod(d, 1.0) * 1000.0 * 1000.0 * 1000.0;
+
+   raw_set((int64_t)(floor(d) + floor((dNano / (1000.0 * 1000.0 * 1000.0)))), (int64_t)fmod(dNano, 1000.0 * 1000.0 * 1000.0));
+
+}

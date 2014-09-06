@@ -461,7 +461,7 @@ namespace file
 #include "aura/primitive/math/math_static_numeric_info.h"
 #include "aura/primitive/math/math_numeric_info.h"
 #include "aura/primitive/math/math_number.h"
-#include "aura/primitive/math/math_complex.h"
+//#include "aura/primitive/math/math_complex.h"
 
 
 #include "aura/primitive/datetime/datetime_duration.h"
@@ -1128,7 +1128,14 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "app/appseed/aura/aura/node/node.h"
 
 
+namespace math
+{
 
+   template < typename T >
+   class complex;
+
+
+} // namespace math
 
 
 namespace std
