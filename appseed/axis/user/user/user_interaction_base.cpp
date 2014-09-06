@@ -2281,9 +2281,11 @@ namespace user
    window_graphics * & interaction_base::get_window_graphics()
    {
 
+      static window_graphics * p = NULL;
+
       throw interface_only_exception(get_app());
 
-      return &(*((window_graphics *) NULL));
+      return p;
 
    }
 
