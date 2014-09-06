@@ -24,6 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
 */
 #include "appseed/axis/axis/axis/axis.h"
+#include <stdarg.h>
 #include "bzlib.h"
 #include "libbsdiff.h"
 
