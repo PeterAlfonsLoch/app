@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include <stdarg.h>
 
 namespace xml
 {

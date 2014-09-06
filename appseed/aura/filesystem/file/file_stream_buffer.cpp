@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <stdarg.h>
 
 thread_int_ptr < int_ptr > g_iGenerateSyncIoError;
 thread_int_ptr < int_ptr > g_iSyncIoError;
@@ -96,7 +97,7 @@ namespace file
 
       while(nCount > 0)
       {
-         
+
          uiRead = read(&buf[uiPos], nCount);
 
          if(uiRead <= 0)
@@ -127,7 +128,7 @@ namespace file
 
    void stream_buffer::write(output_stream & ostream)
    {
-      
+
       seek_to_begin();
 
       transfer_to(*ostream.m_spbuffer);
@@ -137,7 +138,7 @@ namespace file
 
    void stream_buffer::read(input_stream & istream)
    {
-   
+
       transfer_from(*istream.m_spbuffer);
 
       seek_to_begin();
@@ -382,7 +383,7 @@ namespace file
       return GetFileName();
    }
 
-   
+
    bool stream_buffer::read(char * pch)
    {
       if(read(pch, 1) == 1)
@@ -464,7 +465,7 @@ namespace file
          return EOF;
 
       return ch;
-      
+
    }
 
    int stream_buffer::sbumpc()
@@ -476,14 +477,14 @@ namespace file
          return EOF;
 
       return ch;
-      
+
    }
 
    bool stream_buffer::read_string(string & str)
    {
 
       str.Empty();
-      
+
       int i = sbumpc();
 
       if(i == EOF)
@@ -494,9 +495,9 @@ namespace file
 
          if((char) i == '\n' || (char) i == '\r')
             break;
-         
+
          str += (char) i;
-      
+
          i = sbumpc();
       };
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include <math.h>
 
 point_array::point_array(const POINTD * lppt,::count c)
 {

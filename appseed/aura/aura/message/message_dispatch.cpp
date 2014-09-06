@@ -54,18 +54,6 @@ namespace message
    }
 
 
-#if defined(LINUX)
-
-   sp(::message::base) dispatch::get_base(XEvent * pevent,::user::interaction * pwnd)
-   {
-
-      throw todo(get_app());
-
-   }
-
-
-#endif
-
    dispatch::dispatch()
    {
 
