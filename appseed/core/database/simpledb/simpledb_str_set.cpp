@@ -215,7 +215,7 @@ repeat:;
    catch(...)
    {
    }
-   m_pset->m_pqueue = NULL;
+   m_pset->m_pcore->m_pqueue = NULL;
    return 0;
 }
 
