@@ -76,20 +76,20 @@ namespace http
       virtual void set_proxy_auth(::fontopus::user * puser, ::sockets::http_client_socket * pfile);
       virtual void clean_proxy_auth(::fontopus::user * puser);
 
-      ::sockets::http_session * open(
+      sp(::sockets::http_session) open(
          const char * pszHost,
          const char * pszProtocol,
          property_set & set,
          ::fontopus::user * puser,
          const char * pszVersion);
 
-      ::sockets::http_session * request(::sockets::http_session * psession, const char * pszUrl, property_set & set);
+      sp(::sockets::http_session) request(sp(::sockets::http_session) spsession,const char * pszUrl,property_set & set);
 
 
 
 
 
-      ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set);
+      sp(::sockets::http_client_socket) get(sp(::sockets::socket_handler) sphandler, const char * pszUrl, property_set & set);
 
 
 

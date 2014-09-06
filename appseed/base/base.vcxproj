@@ -2749,6 +2749,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\http\http_signal.h" />
     <ClInclude Include="net\http\http_status.h" />
     <ClInclude Include="net\http\http_system.h" />
+    <ClInclude Include="net\http\webserver\webserver_http_cookie.h" />
+    <ClInclude Include="net\http\webserver\webserver_http_form.h" />
+    <ClInclude Include="net\http\webserver\webserver_http_request.h" />
+    <ClInclude Include="net\http\webserver\webserver_http_response.h" />
+    <ClInclude Include="net\http\webserver\webserver_http_transaction.h" />
     <ClInclude Include="net\mail\mail.h" />
     <ClInclude Include="net\mail\mail_pop3.h" />
     <ClInclude Include="net\mail\pop3_socket.h" />
@@ -2824,11 +2829,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\sockets\sockets_link_out_socket.h" />
     <ClInclude Include="net\sockets\sockets_logger.h" />
     <ClInclude Include="net\sockets\sockets_trace_logger.h" />
-    <ClInclude Include="net\sockets\webserver\webserver_http_cookie.h" />
-    <ClInclude Include="net\sockets\webserver\webserver_http_form.h" />
-    <ClInclude Include="net\sockets\webserver\webserver_http_request.h" />
-    <ClInclude Include="net\sockets\webserver\webserver_http_response.h" />
-    <ClInclude Include="net\sockets\webserver\webserver_http_transaction.h" />
     <ClInclude Include="programming\javascript\javascript.h" />
     <ClInclude Include="programming\javascript\javascript_functions.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs.h" />
@@ -3233,6 +3233,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\http\http_signal.cpp" />
     <ClCompile Include="net\http\http_status.cpp" />
     <ClCompile Include="net\http\http_system.cpp" />
+    <ClCompile Include="net\http\webserver\webserver_http_cookie.cpp" />
+    <ClCompile Include="net\http\webserver\webserver_http_form.cpp" />
+    <ClCompile Include="net\http\webserver\webserver_http_request.cpp" />
+    <ClCompile Include="net\http\webserver\webserver_http_response.cpp" />
+    <ClCompile Include="net\http\webserver\webserver_http_transaction.cpp" />
     <ClCompile Include="net\mail\mail_pop3.cpp" />
     <ClCompile Include="net\mail\mail_pop3_socket.cpp" />
     <ClCompile Include="net\mail\mail_simple_pop3.cpp" />
@@ -3297,11 +3302,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\sockets\sockets_link_in_socket.cpp" />
     <ClCompile Include="net\sockets\sockets_link_out_socket.cpp" />
     <ClCompile Include="net\sockets\sockets_trace_logger.cpp" />
-    <ClCompile Include="net\sockets\webserver\sockets_http_cookie.cpp" />
-    <ClCompile Include="net\sockets\webserver\sockets_http_form.cpp" />
-    <ClCompile Include="net\sockets\webserver\sockets_http_request.cpp" />
-    <ClCompile Include="net\sockets\webserver\sockets_http_response.cpp" />
-    <ClCompile Include="net\sockets\webserver\sockets_http_transaction.cpp" />
     <ClCompile Include="programming\javascript\javascript.cpp" />
     <ClCompile Include="programming\javascript\javascript_functions.cpp" />
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp" />

@@ -1,15 +1,6 @@
 #pragma once
 
 
-typedef LPVOID HINTERNET;
-
-
-namespace fontopus
-{
-
-   class user;
-
-} // namespace fontopus
 
 
 namespace http
@@ -26,7 +17,7 @@ namespace http
       virtual ~application();
 
 
-      ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set);
+      sp(::sockets::http_client_socket) get(sp(::sockets::socket_handler) sphandler, const char * pszUrl, property_set & set);
 
 
       DECL_GEN_SIGNAL(get);

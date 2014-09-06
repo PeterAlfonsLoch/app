@@ -54,9 +54,6 @@
     <Filter Include="Source Files\net\sockets\bsd\webserver">
       <UniqueIdentifier>{7778ba93-af59-4ce3-8697-5fb3fccc9ca2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\sockets\webserver">
-      <UniqueIdentifier>{aba1157a-0acc-40b6-a867-7640fc18260f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net\sockets\base">
       <UniqueIdentifier>{e1cfdcb3-5c36-4daf-bf60-bee8dda845b8}</UniqueIdentifier>
     </Filter>
@@ -92,9 +89,6 @@
     </Filter>
     <Filter Include="Header Files\net\sockets\bsd\webserver">
       <UniqueIdentifier>{cfa9b769-297b-4db9-98ca-510975595975}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\webserver">
-      <UniqueIdentifier>{c2b29c7c-2e42-47ec-8530-4abbfb7d3468}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\sockets\base">
       <UniqueIdentifier>{f43de315-2e56-41f7-a09d-08a1e060ea43}</UniqueIdentifier>
@@ -264,6 +258,12 @@
     <Filter Include="Source Files\graphics\visual\NewFilter1">
       <UniqueIdentifier>{3ec8c6a1-1474-462a-a796-52c0eea9b4aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\net\http\webserver">
+      <UniqueIdentifier>{ec42121c-51b9-4fdd-a944-73a138916178}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\http\webserver">
+      <UniqueIdentifier>{b61f0f14-23c5-48cc-8816-99689890b656}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -331,21 +331,6 @@
     </ClInclude>
     <ClInclude Include="net\sockets\http\sockets_http_tunnel.h">
       <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\webserver\webserver_http_cookie.h">
-      <Filter>Header Files\net\sockets\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\webserver\webserver_http_form.h">
-      <Filter>Header Files\net\sockets\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\webserver\webserver_http_request.h">
-      <Filter>Header Files\net\sockets\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\webserver\webserver_http_response.h">
-      <Filter>Header Files\net\sockets\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\webserver\webserver_http_transaction.h">
-      <Filter>Header Files\net\sockets\webserver</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\sockets.h">
       <Filter>Header Files\net\sockets</Filter>
@@ -977,6 +962,21 @@
     <ClInclude Include="net\net_sockets.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_cookie.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_form.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_request.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_response.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\http\webserver\webserver_http_transaction.h">
+      <Filter>Header Files\net\http\webserver</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1140,21 +1140,6 @@
     </ClCompile>
     <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp">
       <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\webserver\sockets_http_cookie.cpp">
-      <Filter>Source Files\net\sockets\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\webserver\sockets_http_form.cpp">
-      <Filter>Source Files\net\sockets\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\webserver\sockets_http_request.cpp">
-      <Filter>Source Files\net\sockets\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\webserver\sockets_http_response.cpp">
-      <Filter>Source Files\net\sockets\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\webserver\sockets_http_transaction.cpp">
-      <Filter>Source Files\net\sockets\webserver</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\sockets_http_batch_buffer.cpp">
       <Filter>Source Files\net\sockets</Filter>
@@ -1674,6 +1659,21 @@
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_glyph_set.cpp">
       <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_cookie.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_form.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_request.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_response.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_transaction.cpp">
+      <Filter>Source Files\net\http\webserver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
