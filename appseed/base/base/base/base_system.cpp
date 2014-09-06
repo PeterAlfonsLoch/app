@@ -50,14 +50,6 @@ namespace base
 
 
 
-   void * & system::ftlibrary()
-   {
-
-      
-
-   }
-
-
    bool system::process_initialize()
    {
 
