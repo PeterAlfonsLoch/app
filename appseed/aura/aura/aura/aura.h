@@ -54,8 +54,6 @@
 
 #include "nodeapp/operational_system/config.h"
 
-#include "nodeapp/operational_system/_.h"
-
 #if defined(_ACID_LIBRARY)
 #define CLASS_DECL_AURA
 #elif defined(_AURA_LIBRARY)
@@ -67,9 +65,7 @@
 
 #include "app/appseed/aura/version.h"
 
-#include "nodeapp/operational_system/_c.h"
-
-#include "nodeapp/operational_system/_ca.h"
+#include "nodeapp/operational_system/system.h"
 
 #include "aura_types.h"
 
