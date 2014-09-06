@@ -3430,9 +3430,6 @@
     <ClCompile Include="primitive\datetime\datetime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="user\framework_user.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>

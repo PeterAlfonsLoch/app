@@ -1304,3 +1304,10 @@ CLASS_DECL_AURA void dappy(const char * psz);
 
 CLASS_DECL_AURA void set_aura(void * p,::aura::application * papp);
 CLASS_DECL_AURA ::aura::application * get_aura(void * p);
+
+
+
+#include "aura/user/user.h"
+
+
+

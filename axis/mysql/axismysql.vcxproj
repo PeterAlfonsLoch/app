@@ -1976,6 +1976,7 @@
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">CppStandard11</CppStandard>
     </ClCompile>
+    <ClCompile Include="my_global.c" />
     <ClCompile Include="sql-common\client.c" />
     <ClCompile Include="sql-common\client_authentication.cc">
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
