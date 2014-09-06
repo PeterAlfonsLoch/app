@@ -68,7 +68,38 @@ public:
       m_pqueue(NULL),
       m_pmysqldbUser(pserver->m_pmysqldbUser),
       m_strUser(pserver->m_strUser)
-   {}
+   {
+   
+      sp(::sqlite::base) pdb = db()->GetImplDatabase();
+
+      //create Integer Table if necessary
+
+      try
+      {
+
+         pdb->start_transaction();
+
+         m_pdataset->query("select * from sqlite_master where type like 'table' and name like '" + m_strTable + "'");
+
+         if (m_pdataset->num_rows()==0)
+         {
+         
+            m_pdataset->exec("create table integertable (id text primary key, value integer)");
+         }
+         
+         pdb->commit_transaction();
+
+      }
+      catch (...)
+      {
+         
+         pdb->rollback_transaction();
+
+         return;
+
+      }
+
+   }
 
    virtual ~db_long_set_core() {}
 
@@ -245,13 +276,13 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 
    }
 #ifndef METROWIN
-   else if(m_pmysqldbUser != NULL)
+   else if(m_pcore->m_pmysqldbUser != NULL)
    {
 
       try
       {
 
-         *plValue = m_pmysqldbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_strUser + "' AND `key` = '" + m_pmysqldbUser->real_escape_string(lpKey) + "'").int32();
+         *plValue = m_pcore->m_pmysqldbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_pcore->m_strUser + "' AND `key` = '" + m_pmysqldbUser->real_escape_string(lpKey) + "'").int32();
 
          return true;
 
@@ -268,7 +299,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
    {
 
 
-      single_lock slDatabase(db()->GetImplCriticalSection());
+      single_lock slDatabase(m_pcore->db()->GetImplCriticalSection());
 
       string strKey;
       strKey = lpKey;
@@ -283,14 +314,14 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       slDatabase.lock();
       //try
       {
-         m_pdataset->query(strSql);
+         m_pcore->m_pdataset->query(strSql);
       }
       //catch(...)
       {
          // return false;
       }
 
-      if(m_pdataset->num_rows() <= 0)
+      if(m_pcore->m_pdataset->num_rows() <= 0)
          return false;
 
       *plValue = m_pdataset->fv("value");
@@ -305,51 +336,51 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 bool db_long_set::save(const char * lpKey, int64_t lValue)
 {
 
-   if(m_pdataserver->m_bRemote)
+   if(m_pcore->m_pdataserver->m_bRemote)
    {
 
-      if(m_pqueue == NULL)
+      if(m_pcore->m_pqueue == NULL)
       {
 
-         m_pqueue = new db_long_sync_queue(get_app());
-         m_pqueue->m_pset = this;
-         m_pqueue->begin();
+         m_pcore->m_pqueue = new db_long_sync_queue(get_app());
+         m_pcore->m_pqueue->m_pset = this;
+         m_pcore->m_pqueue->begin();
 
       }
 
-      m_pqueue->queue(lpKey, lValue);
+      m_pcore->m_pqueue->queue(lpKey,lValue);
 
-      item longitem;
+      db_long_set_item longitem;
 
       longitem.m_dwTimeout = get_tick_count() + 23 * (5000);
       longitem.m_l = lValue;
 
-      m_map.set_at(lpKey, longitem);
+      m_pcore->m_map.set_at(lpKey,longitem);
 
       return true;
 
    }
 #ifndef METROWIN
-   else if(m_pmysqldbUser != NULL)
+   else if(m_pcore->m_pmysqldbUser != NULL)
    {
 
-      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_strUser + "', '" + m_pmysqldbUser->real_escape_string(lpKey) + "', " + ::str::from(lValue) + ")";
+      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->real_escape_string(lpKey) + "', " + ::str::from(lValue) + ")";
 
       TRACE(strSql);
 
-      return m_pmysqldbUser->query(strSql) != NULL;
+      return m_pcore->m_pmysqldbUser->query(strSql) != NULL;
 
    }
 #endif
    else
    {
-      single_lock slDatabase(db()->GetImplCriticalSection());
+      single_lock slDatabase(m_pcore->db()->GetImplCriticalSection());
       string strKey;
       strKey = lpKey;
       strKey.replace("'", "''");
 
 
-      sp(::sqlite::base) pdb   = db()->GetImplDatabase();
+      sp(::sqlite::base) pdb   = m_pcore->db()->GetImplDatabase();
       string strSql;
       int64_t l;
       slDatabase.lock();
@@ -363,7 +394,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
          try
          {
             pdb->start_transaction();
-            m_pdataset->exec(strSql);
+            m_pcore->m_pdataset->exec(strSql);
             pdb->commit_transaction();
          }
          catch(...)
@@ -385,7 +416,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
          try
          {
             pdb->start_transaction();
-            m_pdataset->exec(strSql);
+            m_pcore->m_pdataset->exec(strSql);
             pdb->commit_transaction();
          }
          catch(...)
