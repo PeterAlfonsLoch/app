@@ -16,7 +16,6 @@
 /*****************************************************************************
 ** Simulation of posix threads calls for Windows
 *****************************************************************************/
-#if defined (_WIN32)
 #include "mysys_priv.h"
 #include <process.h>
 #include <signal.h>
@@ -189,4 +188,3 @@ int my_pthread_once(my_pthread_once_t *once_control,
   }
   return 0;
 }
-#endif

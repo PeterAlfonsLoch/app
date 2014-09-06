@@ -56,10 +56,34 @@
     <ClCompile Include="src\smooth\smooth.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="builds\windows\ftdebug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gzip\ftgzip.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ft2build.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\base\ftbbox.c">
       <Filter>Source Files\FT_MODULES</Filter>
     </ClCompile>
+    <ClCompile Include="src\bzip2\ftbzip2.c">
+      <Filter>Source Files\FT_MODULES</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\ftgxval.c">
+      <Filter>Source Files\FT_MODULES</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\ftlcdfil.c">
+      <Filter>Source Files\FT_MODULES</Filter>
+    </ClCompile>
     <ClCompile Include="src\base\ftmm.c">
+      <Filter>Source Files\FT_MODULES</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\ftotval.c">
+      <Filter>Source Files\FT_MODULES</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base\ftpatent.c">
       <Filter>Source Files\FT_MODULES</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftpfr.c">
@@ -75,18 +99,6 @@
       <Filter>Source Files\FT_MODULES</Filter>
     </ClCompile>
     <ClCompile Include="src\base\ftxf86.c">
-      <Filter>Source Files\FT_MODULES</Filter>
-    </ClCompile>
-    <ClCompile Include="src\base\ftlcdfil.c">
-      <Filter>Source Files\FT_MODULES</Filter>
-    </ClCompile>
-    <ClCompile Include="src\base\ftgxval.c">
-      <Filter>Source Files\FT_MODULES</Filter>
-    </ClCompile>
-    <ClCompile Include="src\base\ftotval.c">
-      <Filter>Source Files\FT_MODULES</Filter>
-    </ClCompile>
-    <ClCompile Include="src\base\ftpatent.c">
       <Filter>Source Files\FT_MODULES</Filter>
     </ClCompile>
     <ClCompile Include="src\pcf\pcf.c">
@@ -123,15 +135,6 @@
       <Filter>Source Files\FT_MODULES</Filter>
     </ClCompile>
     <ClCompile Include="src\winfonts\winfnt.c">
-      <Filter>Source Files\FT_MODULES</Filter>
-    </ClCompile>
-    <ClCompile Include="builds\windows\ftdebug.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gzip\ftgzip.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\bzip2\ftbzip2.c">
       <Filter>Source Files\FT_MODULES</Filter>
     </ClCompile>
   </ItemGroup>

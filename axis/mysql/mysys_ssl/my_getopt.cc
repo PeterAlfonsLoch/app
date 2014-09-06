@@ -13,7 +13,7 @@
    along with this program; if not, write to the Free Software Foundation,
    51 Franklin Street, Suite 500, Boston, MA 02110-1335 USA */
 
-#include <my_global.h>
+#include <my_global_cc.h>
 #include <m_string.h>
 #include <stdlib.h>
 #include <mysys_err.h>

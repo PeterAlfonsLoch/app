@@ -16,7 +16,7 @@
 /*****************************************************************************
 ** The following is a simple implementation of posix conditions
 *****************************************************************************/
-#if defined(_WIN32)
+//#if defined(_WIN32)
 
 #include "mysys_priv.h"
 #include <m_string.h>
@@ -365,4 +365,4 @@ struct tm *localtime_r(const time_t *timep,struct tm *tmp)
   }
   return tmp;
 }
-#endif /* _WIN32 */
+//#endif /* _WIN32 */

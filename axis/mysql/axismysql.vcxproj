@@ -1694,6 +1694,7 @@
     <ClInclude Include="my_dir.h" />
     <ClInclude Include="my_getopt.h" />
     <ClInclude Include="my_global.h" />
+    <ClInclude Include="my_global_cc.h" />
     <ClInclude Include="my_icp.h" />
     <ClInclude Include="my_list.h" />
     <ClInclude Include="my_md5.h" />
@@ -1746,124 +1747,554 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">myglobal_cc.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mycc.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="libmysql\authentication_win\plugin_client.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">myglobal_cc.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mycc.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="libmysql\errmsg.c" />
+    <ClCompile Include="libmysql\errmsg.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="libmysql\get_password.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="libmysql\libmysql.c" />
-    <ClCompile Include="mysys\array.c" />
-    <ClCompile Include="mysys\base64.c" />
-    <ClCompile Include="mysys\charset-def.c" />
-    <ClCompile Include="mysys\charset.c" />
-    <ClCompile Include="mysys\checksum.c" />
-    <ClCompile Include="mysys\errors.c" />
-    <ClCompile Include="mysys\hash.c" />
-    <ClCompile Include="mysys\lf_alloc-pin.c" />
-    <ClCompile Include="mysys\lf_dynarray.c" />
-    <ClCompile Include="mysys\lf_hash.c" />
-    <ClCompile Include="mysys\list.c" />
-    <ClCompile Include="mysys\mf_arr_appstr.c" />
-    <ClCompile Include="mysys\mf_cache.c" />
-    <ClCompile Include="mysys\mf_dirname.c" />
-    <ClCompile Include="mysys\mf_fn_ext.c" />
-    <ClCompile Include="mysys\mf_format.c" />
-    <ClCompile Include="mysys\mf_getdate.c" />
-    <ClCompile Include="mysys\mf_iocache.c" />
-    <ClCompile Include="mysys\mf_iocache2.c" />
-    <ClCompile Include="mysys\mf_keycache.c" />
-    <ClCompile Include="mysys\mf_keycaches.c" />
-    <ClCompile Include="mysys\mf_loadpath.c" />
-    <ClCompile Include="mysys\mf_pack.c" />
-    <ClCompile Include="mysys\mf_path.c" />
-    <ClCompile Include="mysys\mf_qsort.c" />
-    <ClCompile Include="mysys\mf_qsort2.c" />
-    <ClCompile Include="mysys\mf_radix.c" />
-    <ClCompile Include="mysys\mf_same.c" />
-    <ClCompile Include="mysys\mf_sort.c" />
-    <ClCompile Include="mysys\mf_soundex.c" />
-    <ClCompile Include="mysys\mf_tempdir.c" />
-    <ClCompile Include="mysys\mf_tempfile.c" />
-    <ClCompile Include="mysys\mf_unixpath.c" />
-    <ClCompile Include="mysys\mf_wcomp.c" />
-    <ClCompile Include="mysys\mulalloc.c" />
-    <ClCompile Include="mysys\my_access.c" />
-    <ClCompile Include="mysys\my_alarm.c" />
-    <ClCompile Include="mysys\my_alloc.c" />
-    <ClCompile Include="mysys\my_bit.c" />
-    <ClCompile Include="mysys\my_bitmap.c" />
-    <ClCompile Include="mysys\my_chsize.c" />
-    <ClCompile Include="mysys\my_compare.c" />
-    <ClCompile Include="mysys\my_compress.c" />
-    <ClCompile Include="mysys\my_conio.c" />
-    <ClCompile Include="mysys\my_copy.c" />
-    <ClCompile Include="mysys\my_crc32.c" />
-    <ClCompile Include="mysys\my_create.c" />
-    <ClCompile Include="mysys\my_delete.c" />
-    <ClCompile Include="mysys\my_div.c" />
-    <ClCompile Include="mysys\my_error.c" />
-    <ClCompile Include="mysys\my_file.c" />
-    <ClCompile Include="mysys\my_fopen.c" />
-    <ClCompile Include="mysys\my_fstream.c" />
-    <ClCompile Include="mysys\my_gethwaddr.c" />
-    <ClCompile Include="mysys\my_getncpus.c" />
-    <ClCompile Include="mysys\my_getpagesize.c" />
-    <ClCompile Include="mysys\my_getsystime.c" />
-    <ClCompile Include="mysys\my_getwd.c" />
-    <ClCompile Include="mysys\my_init.c" />
-    <ClCompile Include="mysys\my_isnan.c" />
-    <ClCompile Include="mysys\my_largepage.c" />
-    <ClCompile Include="mysys\my_lib.c" />
-    <ClCompile Include="mysys\my_lock.c" />
-    <ClCompile Include="mysys\my_malloc.c" />
-    <ClCompile Include="mysys\my_memmem.c" />
-    <ClCompile Include="mysys\my_mess.c" />
-    <ClCompile Include="mysys\my_mkdir.c" />
-    <ClCompile Include="mysys\my_mmap.c" />
-    <ClCompile Include="mysys\my_once.c" />
-    <ClCompile Include="mysys\my_open.c" />
-    <ClCompile Include="mysys\my_pread.c" />
-    <ClCompile Include="mysys\my_pthread.c" />
-    <ClCompile Include="mysys\my_rdtsc.c" />
-    <ClCompile Include="mysys\my_read.c" />
-    <ClCompile Include="mysys\my_redel.c" />
-    <ClCompile Include="mysys\my_rename.c" />
-    <ClCompile Include="mysys\my_seek.c" />
-    <ClCompile Include="mysys\my_sleep.c" />
-    <ClCompile Include="mysys\my_static.c" />
-    <ClCompile Include="mysys\my_symlink.c" />
-    <ClCompile Include="mysys\my_symlink2.c" />
-    <ClCompile Include="mysys\my_sync.c" />
-    <ClCompile Include="mysys\my_syslog.c" />
-    <ClCompile Include="mysys\my_thr_init.c" />
-    <ClCompile Include="mysys\my_wincond.c" />
-    <ClCompile Include="mysys\my_windac.c" />
+    <ClCompile Include="libmysql\libmysql.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\array.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\base64.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\charset-def.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\charset.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\checksum.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\errors.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\hash.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\lf_alloc-pin.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\lf_dynarray.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\lf_hash.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\list.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_arr_appstr.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_cache.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_dirname.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_fn_ext.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_format.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_getdate.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_iocache.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_iocache2.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_keycache.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_keycaches.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_loadpath.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_pack.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_path.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_qsort.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_qsort2.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_radix.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_same.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_sort.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_soundex.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_tempdir.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_tempfile.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_unixpath.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mf_wcomp.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mulalloc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\myglobal_cc.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global_cc.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mycc.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\mysys.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_access.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_alarm.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_alloc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_bit.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_bitmap.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_chsize.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_compare.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_compress.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_conio.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_copy.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_crc32.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_create.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_delete.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_div.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_error.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_file.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_fopen.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_fstream.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_gethwaddr.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_getncpus.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_getpagesize.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_getsystime.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_getwd.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_init.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_isnan.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_largepage.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_lib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_lock.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_malloc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_memmem.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_mess.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_mkdir.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_mmap.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_once.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_open.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_pread.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_pthread.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_rdtsc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_read.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_redel.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_rename.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_seek.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_sleep.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_static.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_symlink.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_symlink2.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_sync.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_syslog.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_thr_init.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_wincond.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_windac.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="mysys\my_winerr.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="mysys\my_winfile.c" />
-    <ClCompile Include="mysys\my_winthread.c" />
-    <ClCompile Include="mysys\my_write.c" />
-    <ClCompile Include="mysys\psi_noop.c" />
-    <ClCompile Include="mysys\ptr_cmp.c" />
-    <ClCompile Include="mysys\queues.c" />
-    <ClCompile Include="mysys\stacktrace.c" />
-    <ClCompile Include="mysys\string.c" />
-    <ClCompile Include="mysys\thr_alarm.c" />
-    <ClCompile Include="mysys\thr_lock.c" />
-    <ClCompile Include="mysys\thr_mutex.c" />
-    <ClCompile Include="mysys\thr_rwlock.c" />
-    <ClCompile Include="mysys\tree.c" />
-    <ClCompile Include="mysys\typelib.c" />
+    <ClCompile Include="mysys\my_winfile.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_winthread.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\my_write.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\psi_noop.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\ptr_cmp.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\queues.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\stacktrace.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\string.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\thr_alarm.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\thr_lock.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\thr_mutex.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\thr_rwlock.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\tree.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="mysys\typelib.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">mysys_priv.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mysys.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="mysys_ssl\crypt_genhash_impl.cc">
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
@@ -1891,6 +2322,9 @@
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">CppStandard11</CppStandard>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global_cc.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mycc.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="mysys_ssl\my_default.cc">
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
@@ -1919,6 +2353,9 @@
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">CppStandard11</CppStandard>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global_cc.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mycc.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="mysys_ssl\my_md5.cc">
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
@@ -1933,6 +2370,9 @@
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">CppStandard11</CppStandard>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global_cc.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mycc.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="mysys_ssl\my_rnd.cc">
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
@@ -1961,6 +2401,9 @@
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">CppStandard11</CppStandard>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global_cc.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mycc.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="mysys_ssl\my_sha2.cc">
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
@@ -1975,9 +2418,20 @@
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">CppStandard11</CppStandard>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global_cc.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mycc.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="my_global.c" />
-    <ClCompile Include="sql-common\client.c" />
+    <ClCompile Include="my_global.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="sql-common\client.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="sql-common\client_authentication.cc">
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">EnableRuntimeTypeInfo</RuntimeTypeInfo>
@@ -1991,62 +2445,285 @@
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CppStandard11</CppStandard>
       <CppStandard Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">CppStandard11</CppStandard>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="sql-common\client_plugin.c" />
-    <ClCompile Include="sql-common\my_time.c" />
-    <ClCompile Include="sql-common\pack.c" />
-    <ClCompile Include="sql\auth\password.c" />
-    <ClCompile Include="sql\net_serv.cc" />
-    <ClCompile Include="strings\bchange.c" />
-    <ClCompile Include="strings\ctype-big5.c" />
-    <ClCompile Include="strings\ctype-bin.c" />
-    <ClCompile Include="strings\ctype-cp932.c" />
-    <ClCompile Include="strings\ctype-czech.c" />
-    <ClCompile Include="strings\ctype-eucjpms.c" />
-    <ClCompile Include="strings\ctype-euc_kr.c" />
-    <ClCompile Include="strings\ctype-extra.c" />
-    <ClCompile Include="strings\ctype-gb2312.c" />
-    <ClCompile Include="strings\ctype-gbk.c" />
-    <ClCompile Include="strings\ctype-latin1.c" />
-    <ClCompile Include="strings\ctype-mb.c" />
-    <ClCompile Include="strings\ctype-simple.c" />
-    <ClCompile Include="strings\ctype-sjis.c" />
-    <ClCompile Include="strings\ctype-tis620.c" />
-    <ClCompile Include="strings\ctype-uca.c" />
-    <ClCompile Include="strings\ctype-ucs2.c" />
-    <ClCompile Include="strings\ctype-ujis.c" />
-    <ClCompile Include="strings\ctype-utf8.c" />
-    <ClCompile Include="strings\ctype-win1250ch.c" />
-    <ClCompile Include="strings\ctype.c" />
-    <ClCompile Include="strings\decimal.c" />
-    <ClCompile Include="strings\dtoa.c" />
-    <ClCompile Include="strings\int2str.c" />
-    <ClCompile Include="strings\is_prefix.c" />
-    <ClCompile Include="strings\llstr.c" />
-    <ClCompile Include="strings\longlong2str.c" />
-    <ClCompile Include="strings\my_strchr.c" />
-    <ClCompile Include="strings\my_strtoll10.c" />
-    <ClCompile Include="strings\my_vsnprintf.c" />
-    <ClCompile Include="strings\str2int.c" />
-    <ClCompile Include="strings\strappend.c" />
-    <ClCompile Include="strings\strcend.c" />
-    <ClCompile Include="strings\strcont.c" />
-    <ClCompile Include="strings\strend.c" />
-    <ClCompile Include="strings\strfill.c" />
-    <ClCompile Include="strings\strmake.c" />
-    <ClCompile Include="strings\strmov.c" />
-    <ClCompile Include="strings\strnlen.c" />
-    <ClCompile Include="strings\strnmov.c" />
-    <ClCompile Include="strings\strxmov.c" />
-    <ClCompile Include="strings\strxnmov.c" />
-    <ClCompile Include="strings\str_alloc.c" />
-    <ClCompile Include="strings\xml.c" />
-    <ClCompile Include="vio\vio.c" />
-    <ClCompile Include="vio\viopipe.c" />
-    <ClCompile Include="vio\vioshm.c" />
-    <ClCompile Include="vio\viosocket.c" />
-    <ClCompile Include="vio\viossl.c" />
-    <ClCompile Include="vio\viosslfactories.c" />
+    <ClCompile Include="sql-common\client_plugin.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="sql-common\my_time.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="sql-common\pack.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="sql\auth\password.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="sql\net_serv.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global_cc.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)mycc.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\bchange.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-big5.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-bin.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-cp932.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-czech.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-eucjpms.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-euc_kr.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-extra.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-gb2312.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-gbk.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-latin1.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-mb.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-simple.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-sjis.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-tis620.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-uca.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-ucs2.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-ujis.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-utf8.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-win1250ch.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\ctype.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\decimal.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\dtoa.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\int2str.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\is_prefix.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\llstr.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\longlong2str.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\my_strchr.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\my_strtoll10.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\my_vsnprintf.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\str2int.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\strappend.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\strcend.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\strcont.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\strend.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\strfill.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\strmake.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\strmov.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\strnlen.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\strnmov.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\strxmov.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\strxnmov.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\str_alloc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="strings\xml.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="vio\vio.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="vio\viopipe.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="vio\vioshm.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="vio\viosocket.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="vio\viossl.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="vio\viosslfactories.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">my_global.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)my.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">

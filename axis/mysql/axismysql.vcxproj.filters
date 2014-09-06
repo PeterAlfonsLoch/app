@@ -300,6 +300,9 @@
     <ClInclude Include="mysys\my_handler_errors.h">
       <Filter>Header Files\mysys</Filter>
     </ClInclude>
+    <ClInclude Include="my_global_cc.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libmysql\errmsg.c">
@@ -823,6 +826,15 @@
     </ClCompile>
     <ClCompile Include="sql\net_serv.cc">
       <Filter>Source Files\sql</Filter>
+    </ClCompile>
+    <ClCompile Include="my_global.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mysys\mysys.c">
+      <Filter>Source Files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="mysys\myglobal_cc.cc">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

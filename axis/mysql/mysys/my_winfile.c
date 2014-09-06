@@ -44,8 +44,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA */
   here are useful only in scernarios that use low-level IO with my_win_fileno()
 */
 
-#ifdef _WIN32
-
 #include "mysys_priv.h"
 #include <share.h>
 #include <sys/stat.h>

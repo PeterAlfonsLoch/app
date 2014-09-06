@@ -34,9 +34,7 @@
   embedded library
  */
 
-#include "aura/aura/aura.h"
-
-#include <my_global.h>
+#include <my_global_cc.h>
 #include <mysql.h>
 #include <mysql_com.h>
 #include <mysqld_error.h>

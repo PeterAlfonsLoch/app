@@ -22,7 +22,7 @@
   Compatibility layer to make available YaSSL's SHA1 implementation.
 */
 
-#include <my_global.h>
+#include <my_global_cc.h>
 #include <mysql/sha1.h>
 
 #if defined(HAVE_YASSL)
