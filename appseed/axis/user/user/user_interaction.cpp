@@ -5586,7 +5586,7 @@ namespace user
    {
 
       if(m_pimpl == NULL)
-         return NULL;
+         return ::user::interaction_base::get_window_graphics();
 
       return m_pimpl->get_window_graphics();
 
