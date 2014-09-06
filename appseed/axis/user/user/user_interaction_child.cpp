@@ -453,7 +453,7 @@ namespace user
 
       smart_pointer < ::message::base > spbase;
 
-      spbase = get_base(pevent, m_pui);
+      spbase = Session.user()->get_base(pevent, m_pui);
 
       try
       {
@@ -625,21 +625,21 @@ namespace user
    {
       m_strWindowText = psz;
    }
-   
+
 
    bool interaction_child::DestroyWindow()
    {
 
       if(!m_bCreate)
          return false;
-      
+
       bool bOk = ::user::interaction_impl_base::DestroyWindow();
-      
+
       if(bOk)
       {
-         
+
          m_bCreate = false;
-         
+
       }
 
       return bOk;
