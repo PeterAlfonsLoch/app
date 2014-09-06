@@ -175,12 +175,12 @@ void db_long_sync_queue::queue(const char * pszKey,int64_t l)
 
    single_lock sl(&m_mutex, true);
 
-   db_long_set::queue_item item;
+   db_long_set_queue_item item;
 
    item.m_strKey = pszKey;
    item.m_l = l;
 
-   m_itema.add(new db_long_set::queue_item(item));
+   m_itema.add(new db_long_set_queue_item(item));
 
 }
 
