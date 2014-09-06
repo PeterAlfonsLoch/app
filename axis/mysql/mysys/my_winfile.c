@@ -676,4 +676,4 @@ int my_win_dup(File fd)
   DBUG_RETURN(-1);
 }
 
-#endif /*_WIN32*/
+//#endif /*_WIN32*/
