@@ -59,9 +59,9 @@ namespace axis
 
       m_puserschema                 = m_pschemasimple;
 
-      m_schemasimple.m_pfont.alloc(allocer());
+      m_pschemasimple->m_pfont.alloc(allocer());
 
-      m_schemasimple.m_pfont->create_pixel_font("Helvetica",16);
+      m_pschemasimple->m_pfont->create_pixel_font("Helvetica",16);
 
 
    }
