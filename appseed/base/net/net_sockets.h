@@ -6,6 +6,8 @@
 
 #include "net.h"
 
+#include "net_port_forward.h"
+
 
 #include "base/net/sockets/sockets.h"
 

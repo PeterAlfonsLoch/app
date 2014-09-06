@@ -3229,7 +3229,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="graphics\visual\visual_water_routine.cpp" />
     <ClCompile Include="net\http\http.cpp" />
     <ClCompile Include="net\http\http_application.cpp" />
-    <ClCompile Include="net\http\http_get_socket.cpp" />
+    <ClCompile Include="net\http\http_get_socket.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="net\http\http_output_stream.cpp" />
     <ClCompile Include="net\http\http_signal.cpp" />
     <ClCompile Include="net\http\http_status.cpp" />

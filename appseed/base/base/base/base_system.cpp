@@ -52,11 +52,6 @@ namespace base
 
 
 
-   ::sockets::net & system::net()
-   {
-      return *m_spnet;
-   }
-
 
    void * & system::ftlibrary()
    {

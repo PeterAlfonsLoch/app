@@ -59,6 +59,11 @@ namespace sockets
 
    }
 
+   ::sockets::net & sockets::net()
+   {
+      return *m_spnet;
+   }
+
 
 
 } // namespace karaoke
