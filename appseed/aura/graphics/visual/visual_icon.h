@@ -32,7 +32,7 @@ namespace visual
    };
 
 
-   class CLASS_DECL_AXIS icon_int_map :
+   class CLASS_DECL_AURA icon_int_map :
       virtual public int_map < icon * >
    {
    public:
