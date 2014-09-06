@@ -54,10 +54,6 @@ namespace axis
       ::user::str *                                m_puserstr;
 
 
-#ifdef WINDOWS
-      ID2D1DeviceContext *                         m_pdevicecontext;
-      sp(mutex)                                    m_pmutexDc;
-#endif
 
       ::aura::library                              m_libraryDraw2d;
 

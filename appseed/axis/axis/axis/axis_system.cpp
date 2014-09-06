@@ -95,13 +95,6 @@ namespace axis
 
       }
 
-#ifdef WINDOWS
-
-      m_pmutexDc           = NULL;
-
-      m_pdevicecontext     = NULL;
-
-#endif
 
       __node_axis_factory_exchange(this);
 
