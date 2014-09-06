@@ -3,6 +3,7 @@
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
 #include "framework.h"
+#include <math.h>
 
 byte byte_clip(double d);
 
@@ -509,7 +510,7 @@ namespace draw2d
 
 //                  if (a > 0)
                   {
-                   
+
                      pdst2[0] = (BYTE)((((int)psrc2[0] - (int)pdst2[0]) * a + ((int)pdst2[0] * 255)) / 255);
                      pdst2[1] = (BYTE)((((int)psrc2[1] - (int)pdst2[1]) * a + ((int)pdst2[1] * 255)) / 255);
                      pdst2[2] = (BYTE)((((int)psrc2[2] - (int)pdst2[2]) * a + ((int)pdst2[2] * 255)) / 255);
@@ -618,7 +619,7 @@ namespace draw2d
 
          for (int x = 0; x < xEnd; x++)
          {
-            
+
             *pdst2 = *psrc2 * *pdst2 / 255;
 
             pdst2+=4;
@@ -1046,7 +1047,7 @@ namespace draw2d
       lpb1 += ((int32_t)echannel) % 4;
 
       lpb2 += ((int32_t)echannel) % 4;
-      
+
       for( int32_t y = 0; y < m_size.cy; y++)
       {
 
@@ -1056,7 +1057,7 @@ namespace draw2d
 
          for ( int32_t x = 0; x < m_size.cx; x++)
          {
-          
+
             *lpb2 = (BYTE)(((uint32_t)*lpb1_2 * (uint32_t)*lpb2_2) / 255);
 
             lpb1_2 += 4;
@@ -1275,7 +1276,7 @@ namespace draw2d
          }
 
       }
-      
+
 
    }
 
@@ -2396,9 +2397,9 @@ namespace draw2d
       {
 
          primitive::memory mem;
-         
+
          mem.allocate((iRadius * iRadius) + 4);
-         
+
          LPBYTE lpbAlloc = mem.get_data();
 
          LPBYTE lpb = lpbAlloc;
@@ -2882,7 +2883,7 @@ namespace draw2d
 
    }
 
-   
+
    COLORREF dib::make_colorref(int32_t a, int32_t r, int32_t g, int32_t b)
    {
 
@@ -2959,7 +2960,7 @@ namespace draw2d
       double dDiv = m_size.cx * m_size.cy;
       if(dDiv > 0)
       {
-         
+
          for (int32_t y = 0; y < m_size.cy; y++)
          {
             iRLine = 0;
