@@ -2648,14 +2648,7 @@ synch_lock ml(&cairo_mutex());
          rectPaint = rectWindow;
          rectPaint.offset(-rectPaint.top_left());
          m_spgraphics->SelectClipRgn(NULL);
-         if(pwnd->m_pui != NULL)
-         {
-            pwnd->m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
-         }
-         else
-         {
-            pwnd->_001OnDeferPaintLayeredWindowBackground(pdc);
-         }
+         pwnd->_001OnDeferPaintLayeredWindowBackground(pdc);
          m_spgraphics->SelectClipRgn(NULL);
         m_spgraphics-> SetViewportOrg(point(0, 0));
          pwnd->_000OnDraw(pdc);
