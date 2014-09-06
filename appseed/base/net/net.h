@@ -57,6 +57,7 @@ namespace sockets
 
 
 
+#include "net_ip_enum.h"
 
 
 

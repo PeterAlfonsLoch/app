@@ -25,6 +25,22 @@ namespace sockets
    bool sockets::initialize1()
    {
 
+      m_spnet = canew(::sockets::net(this));
+      //m_spnet.alloc(allocer());
+
+      if(m_spnet.is_null())
+      {
+
+         m_iReturnCode = -1986;
+
+         return false;
+
+      }
+
+
+      if(!m_spnet->initialize())
+         return false;
+
       if(!::aura::departament::initialize1())
          return false;
 

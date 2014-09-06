@@ -126,21 +126,6 @@ namespace base
       m_pbasesession->construct(this,0);
 
 
-      m_spnet = canew(::sockets::net(this));
-      //m_spnet.alloc(allocer());
-
-      if(m_spnet.is_null())
-      {
-
-         m_iReturnCode = -1986;
-
-         return false;
-
-      }
-
-
-      if(!m_spnet->initialize())
-         return false;
 
       if(!m_pbasesession->begin_synch(&m_iReturnCode))
       {
