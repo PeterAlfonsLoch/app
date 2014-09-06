@@ -7,11 +7,10 @@
 // 08/12/06 (mv)
 
 #include "framework.h"
+#include <stdarg.h>
 
 #define EOF     (-1)
 
-// Force the linker to include USER32.LIB
-#pragma comment(linker, "/defaultlib:user32.lib")
 
 int32_t sprintf_dup(char *buffer, const char *format, ...)
 {

@@ -8,9 +8,8 @@
 
 #include "framework.h"
 #include <wchar.h>
+#include <stdarg.h>
 
-// Force the linker to include USER32.LIB
-#pragma comment(linker, "/defaultlib:user32.lib")
 
 
 int32_t printf_dup(const char *format, ...)
@@ -93,40 +92,40 @@ mutex * g_pmutexCvt = NULL;
 
 int32_t ecvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {
-   
+
    synch_lock ml(g_pmutexCvt);
-   
+
    char * psz = ecvt(d, i, pi1, pi2);
-   
+
    if(psz == NULL)
       return -1;
-   
+
    if(strlen(psz) > (size - 1))
       return -1;
-   
+
    strcpy(sz, psz);
-   
+
    return 0;
 
 }
 
 int32_t fcvt_r(double d, int i, int *__restrict pi1, int *__restrict pi2, char * sz, size_t size) /* LEGACY */
 {
-   
+
    synch_lock ml(g_pmutexCvt);
-   
+
    char * psz = fcvt(d, i, pi1, pi2);
-   
+
    if(psz == NULL)
       return -1;
-   
+
    if(strlen(psz) > (size - 1))
       return -1;
-   
+
    strcpy(sz, psz);
-   
+
    return 0;
-   
+
 }
 
 #endif
