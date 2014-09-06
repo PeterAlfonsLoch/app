@@ -1,6 +1,5 @@
 #include "framework.h"
-#include "visual_const.h"
-#include "visual_cursor.h"
+#include "aura/graphics/graphics.h"
 
 
 namespace visual
