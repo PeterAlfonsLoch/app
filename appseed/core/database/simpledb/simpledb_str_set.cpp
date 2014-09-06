@@ -268,11 +268,14 @@ db_str_set::db_str_set(db_server * pserver):
 element(pserver->get_app())
 {
 
+   m_pcore = new db_str_set_core(pserver);
 
 }
 
 db_str_set::~db_str_set()
 {
+
+   ::aura::del(m_pcore);
 
 }
 
