@@ -2745,6 +2745,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\http\http_application.h" />
     <ClInclude Include="net\http\http_get_socket.h" />
     <ClInclude Include="net\http\http_http.h" />
+    <ClInclude Include="net\http\http_listener.h" />
     <ClInclude Include="net\http\http_output_stream.h" />
     <ClInclude Include="net\http\http_signal.h" />
     <ClInclude Include="net\http\http_status.h" />

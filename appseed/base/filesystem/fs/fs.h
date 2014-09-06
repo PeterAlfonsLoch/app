@@ -35,10 +35,8 @@ namespace fs
 
 #include "fs_data.h"
 #include "fs_set.h"
-#include "fs_ifs_file.h"
 #include "fs_ifs.h"
 #include "fs_native_fs.h"
-#include "fs_remote_native_file.h"
 #include "fs_remote_native_fs.h"
 #include "fs_link.h"
 

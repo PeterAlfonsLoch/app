@@ -11,6 +11,8 @@
 
 
 
+#include "filesystem/fs/fs_ifs_file.h"
+#include "filesystem/fs/fs_remote_native_file.h"
 
 
 

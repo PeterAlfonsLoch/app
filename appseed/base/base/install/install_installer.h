@@ -7,7 +7,7 @@ namespace install
 
    class CLASS_DECL_BASE installer :
       virtual public object,
-      virtual public ::sockets::http_listener,
+      virtual public ::http::listener,
       virtual public int_scalar_source::listener
    {
    public:

@@ -10,6 +10,7 @@
       {
       public:
 
+         SSLInitializer *                    m_psslinit;
 
 
 #if defined(BSD_STYLE_SOCKETS)
@@ -23,12 +24,15 @@
          resolv_socket::cache_t                       m_resolvcache;
          resolv_socket::timeout_t                     m_resolvtimeout;
          mutex                                        m_mutexResolvCache;
+         sp(::sockets::net)                           m_spnet;
+         ::net::port_forward_sp                       m_spportforward;
 
 
 
          sockets(::aura::application * papp);
          virtual ~sockets();
 
+         class ::sockets::net                         & net();
 
          bool initialize1();
 

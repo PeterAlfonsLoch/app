@@ -30,7 +30,7 @@ namespace base
       //application_ptra                                         m_appptra;
       //sp(::user::interaction)                                  m_spuiFocus;
       //sp(::user::str_context)                                  m_puserstrcontext;
-      sp(::sockets::sockets)                                   m_psockets;
+      ::sockets::sockets *                                     m_psockets;
       //bool                                                     m_bZipIsDir;
       //map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
       //sp(::aura::savings)                                      m_psavings;

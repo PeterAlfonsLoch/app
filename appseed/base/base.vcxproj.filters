@@ -977,6 +977,9 @@
     <ClInclude Include="net\http\webserver\webserver_http_transaction.h">
       <Filter>Header Files\net\http\webserver</Filter>
     </ClInclude>
+    <ClInclude Include="net\http\http_listener.h">
+      <Filter>Header Files\net\http</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">

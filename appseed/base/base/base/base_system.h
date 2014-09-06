@@ -12,19 +12,12 @@ namespace base
    {
    public:
 
-#ifdef BSD_STYLE_SOCKETS
-
-      ::sockets::SSLInitializer *                    m_psslinit;
-
-#endif
 
       ::url::departament                           m_urldepartament;
 
 
       ::file::system_sp                            m_spfile;
       ::file::dir::system_sp                       m_spdir;
-      sp(::sockets::net)                           m_spnet;
-      ::net::port_forward_sp                       m_spportforward;
       ::http::system                               m_httpsystem;
 
 
@@ -61,7 +54,6 @@ namespace base
       inline class ::http::system                  & http()    { return m_httpsystem; }
       inline ::file::system                        & file()    { return *m_spfile; }
       inline ::file::dir::system                   & dir()     { return *m_spdir; }
-      class ::sockets::net                         & net();
       class ::base::compress                       & compress();
       ::fontopus::user_set                         & userset();
 

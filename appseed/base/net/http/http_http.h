@@ -24,6 +24,8 @@ namespace fontopus
 namespace sockets
 {
 
+   class sockets;
+
    class CLASS_DECL_BASE http_client_socket:
       virtual public ::object
    {
@@ -48,13 +50,18 @@ namespace sockets
    public:
    };
 
-}
+
+} // namespace sockets
+
 
 #include "webserver/webserver_http_cookie.h"
 
 #include "http_status.h"
 
 #include "http_signal.h"
+
+#include "http_listener.h"
+
 
 
 
