@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "windows_file_system.h"
 
 
 namespace windows

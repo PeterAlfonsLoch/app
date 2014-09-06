@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "base/net/net_sockets.h"
+#include "windows_port_forward.h"
 
 //const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION = ::RegisterWindowMessageA("UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION-{7C29C80A_5712_40e8_A124_A82E4B2795A7}");  
 #define UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION (WM_APP + 123) 

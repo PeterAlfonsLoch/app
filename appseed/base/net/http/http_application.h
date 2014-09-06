@@ -17,7 +17,7 @@ namespace http
       virtual ~application();
 
 
-      sp(::sockets::http_client_socket) get(sp(::sockets::socket_handler) sphandler, const char * pszUrl, property_set & set);
+      ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set);
 
 
       DECL_GEN_SIGNAL(get);

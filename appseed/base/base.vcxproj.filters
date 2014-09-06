@@ -1678,6 +1678,9 @@
     <ClCompile Include="net\http\webserver\webserver_http_transaction.cpp">
       <Filter>Source Files\net\http\webserver</Filter>
     </ClCompile>
+    <ClCompile Include="net\net_sockets.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="base.def">

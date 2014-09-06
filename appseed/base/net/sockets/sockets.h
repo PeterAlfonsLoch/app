@@ -42,11 +42,10 @@ namespace net
 //#include "http_memory_file.h"
 
 
-#include "webserver/webserver_http_form.h"
-#include "webserver/webserver_http_cookie.h"
-#include "webserver/webserver_http_transaction.h"
-#include "webserver/webserver_http_request.h"
-#include "webserver/webserver_http_response.h"
+#include "base/net/http/webserver/webserver_http_form.h"
+#include "base/net/http/webserver/webserver_http_transaction.h"
+#include "base/net/http/webserver/webserver_http_request.h"
+#include "base/net/http/webserver/webserver_http_response.h"
 
 
 #include "sockets_logger.h"

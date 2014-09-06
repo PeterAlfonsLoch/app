@@ -112,7 +112,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param l Address of remote host
          \param port Port of remote host
          \return true if successful */
-         using sockets::socket::open;
+         using ::sockets::socket::open;
          bool open(in_addr l,port_t port);
          /** Define remote host.
          \param host Hostname
