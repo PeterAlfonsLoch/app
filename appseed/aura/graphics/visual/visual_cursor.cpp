@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "visual_const.h"
 #include "visual_cursor.h"
 
 
