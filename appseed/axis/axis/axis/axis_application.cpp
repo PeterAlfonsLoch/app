@@ -1871,6 +1871,15 @@ namespace axis
    }
 
 
+   void application::window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int iStride)
+   {
+
+      window_graphics::update_window(pdata,interaction_impl,pOsBitmapData,rect,iStride);
+
+   }
+
+
+
    sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
    {
 
