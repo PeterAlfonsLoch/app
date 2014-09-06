@@ -1,4 +1,5 @@
 #include "base/net/net_sockets.h"
+#include "axis/compress/compress.h"
 
 namespace sockets
 {

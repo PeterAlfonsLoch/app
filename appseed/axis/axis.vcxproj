@@ -1663,6 +1663,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\axis_policy\axis_policy_objc.h" />
     <ClInclude Include="axis\axis_policy\axis_policy_objcpp.h" />
     <ClInclude Include="axis\axis_policy\axis_policy_winrt.h" />
+    <ClInclude Include="axis\compress\bsdiff\libbsdiff.h" />
     <ClInclude Include="axis\compress\bzip_stream.h" />
     <ClInclude Include="axis\compress\compress.h" />
     <ClInclude Include="axis\compress\gzip_stream.h" />
@@ -2684,6 +2685,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">framework_c.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp" />
+    <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp" />
     <ClCompile Include="axis\compress\bzip_stream.cpp" />
     <ClCompile Include="axis\compress\gzip_stream.cpp" />
     <ClCompile Include="axis\message\message_user.cpp">

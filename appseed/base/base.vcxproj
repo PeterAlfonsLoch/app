@@ -3548,9 +3548,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ResourceCompile Include="base.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\axis\bsdiff\axisbsdiff.vcxproj">
-      <Project>{3a2c59ed-a76d-41d8-abbb-2666f0a599b8}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\axis\bzip2\axisbzip2.vcxproj">
       <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
     </ProjectReference>

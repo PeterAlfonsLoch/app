@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "axis/compress/compress.h"
 
 
 namespace core

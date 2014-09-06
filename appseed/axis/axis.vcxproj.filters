@@ -192,6 +192,12 @@
     <Filter Include="Source Files\axis\compress">
       <UniqueIdentifier>{6b022698-345f-4103-b2fe-2d6fd19b5ca6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\axis\compress\bsdiff">
+      <UniqueIdentifier>{f760d837-b8a1-41ee-b528-eefc089d1d54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\compress\bsdiff">
+      <UniqueIdentifier>{ec8fa78e-d2fd-4f44-bf85-0d6f3b0150c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\draw2d\draw2d.h">
@@ -845,6 +851,9 @@
     <ClInclude Include="axis\compress\compress.h">
       <Filter>Header Files\axis\compress</Filter>
     </ClInclude>
+    <ClInclude Include="axis\compress\bsdiff\libbsdiff.h">
+      <Filter>Header Files\axis\compress\bsdiff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
@@ -1393,11 +1402,14 @@
     <ClCompile Include="axis\compress\gzip_stream.cpp">
       <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
+    <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp">
+      <Filter>Source Files\axis\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp">
+      <Filter>Source Files\axis\compress\bsdiff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "axis/compress/compress.h"
+
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 #define _O_BINARY 0
 #define _O_RDONLY O_RDONLY

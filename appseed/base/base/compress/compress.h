@@ -2,7 +2,6 @@
 
 #include "zlib.h"
 
-#include "bsdiff/libbsdiff.h"
 #include "zip/zip.h"
 
 

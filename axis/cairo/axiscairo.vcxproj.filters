@@ -560,6 +560,9 @@
     <ClCompile Include="src\cairo-cairoerror.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cairoint.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\win32\cairo-win32-private.h">

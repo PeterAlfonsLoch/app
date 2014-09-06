@@ -1,5 +1,5 @@
 #include "base/net/net_sockets.h"
-
+#include "axis/compress/compress.h"
 
 #ifdef WINDOWS
 #include <WinInet.h>

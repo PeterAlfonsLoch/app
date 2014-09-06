@@ -23,7 +23,7 @@
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
 */
-#include "aura/aura/aura.h"
+#include "framework.h"
 #include <stdarg.h>
 #include "bzlib.h"
 #include "libbsdiff.h"
