@@ -24,8 +24,8 @@ namespace user
       virtual rect64 GetWindowRect64() = 0;
 
 
-      virtual ::window_graphics * get_window_graphics() = 0;
-      virtual oswindow get_handle() = 0;
+      virtual ::window_graphics * & get_window_graphics() = 0;
+      virtual oswindow get_handle() const = 0;
 
 
    };

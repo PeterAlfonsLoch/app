@@ -623,7 +623,8 @@ namespace user
 
       void transfer_from(timer_array & ta, interaction * pui);
 
-      virtual window_graphics * get_window_graphics();
+      virtual window_graphics * & get_window_graphics();
+
    };
 
 

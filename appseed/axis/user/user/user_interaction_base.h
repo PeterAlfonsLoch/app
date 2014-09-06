@@ -566,7 +566,7 @@ namespace user
       virtual void keep_alive(::aura::live_object * pliveobject = NULL);
 
 
-      virtual window_graphics * get_window_graphics();
+      virtual window_graphics * & get_window_graphics();
 
    };
 
