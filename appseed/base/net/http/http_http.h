@@ -11,7 +11,7 @@ namespace fontopus
 } // namespace fontopus
 
 
-//#include "http_status.h"
+#include "http_status.h"
 
 #include "http_signal.h"
 

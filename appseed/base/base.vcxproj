@@ -2742,7 +2742,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="graphics\visual\visual_rgb_quad_array.h" />
     <ClInclude Include="graphics\visual\visual_visual.h" />
     <ClInclude Include="graphics\visual\visual_water_routine.h" />
-    <ClInclude Include="net\http\http.h" />
     <ClInclude Include="net\http\http_application.h" />
     <ClInclude Include="net\http\http_get_socket.h" />
     <ClInclude Include="net\http\http_http.h" />
@@ -2763,6 +2762,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\net_port_forward.h" />
     <ClInclude Include="net\net_url_departament.h" />
     <ClInclude Include="net\net_url_domain.h" />
+    <ClInclude Include="net\net_sockets.h" />
     <ClInclude Include="net\sockets\base\sockets_base_socket.h" />
     <ClInclude Include="net\sockets\base\sockets_base_socket_handler.h" />
     <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_server.h" />

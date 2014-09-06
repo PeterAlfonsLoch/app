@@ -620,9 +620,6 @@
     <ClInclude Include="base\compress\compress_compress.h">
       <Filter>Header Files\base\compress</Filter>
     </ClInclude>
-    <ClInclude Include="net\http\http.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_application.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -976,6 +973,9 @@
     </ClInclude>
     <ClInclude Include="base\base\base_static_start.h">
       <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_sockets.h">
+      <Filter>Header Files\net</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1835,6 +1835,9 @@
     </None>
     <None Include="base\base\base.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
