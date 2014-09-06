@@ -44,7 +44,7 @@ int_bool file_set_length(const char * pszName, size_t iSize)
 
    int32_t fd = ::open(pszName, O_RDONLY);
 
-   int_bool bSet = ::ensure_file_size(fd, iSize) != -1;
+   int_bool bSet = ::ensure_file_size_fd(fd, iSize) != -1;
 
    ::close(fd);
 
