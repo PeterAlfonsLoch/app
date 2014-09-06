@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "axis/user/user.h"
 
 
 
@@ -185,7 +185,7 @@ namespace axis
    ::axis::copydesk & session::copydesk()
    {
 
-      return *m_spcopydesk;
+      return *m_pcopydesk;
 
    }
 
@@ -1029,12 +1029,14 @@ namespace axis
       if(!::axis::application::process_initialize())
          return false;
 
-      m_spuser = create_user();
+      m_puser = create_user();
 
-      if(m_spuser == NULL)
+      m_puser->add_ref();
+
+      if(m_puser == NULL)
          return false;
 
-      m_spuser->construct(this);
+      m_puser->construct(this);
 
       return true;
 
@@ -1044,9 +1046,11 @@ namespace axis
    bool session::initialize1()
    {
 
-      m_spcopydesk.alloc(allocer());
+      m_pcopydesk = alloc(System.type_info < ::axis::copydesk > ()).cast < ::axis::copydesk > ();
 
-      if(!m_spcopydesk->initialize())
+      m_pcopydesk->add_ref();
+
+      if(!m_pcopydesk->initialize())
          return false;
 
       if(!::aura::session::initialize1())
@@ -1060,10 +1064,10 @@ namespace axis
       if(m_puserstrcontext == NULL)
          return false;
 
-      if(!m_spuser->initialize1())
+      if(!m_puser->initialize1())
          return false;
 
-      if(!m_spuser->initialize2())
+      if(!m_puser->initialize2())
          return false;
 
       str_context()->localeschema().m_idaLocale.add(get_locale());
@@ -1123,7 +1127,7 @@ namespace axis
 
       }
 
-      if(!m_spuser->initialize())
+      if(!m_puser->initialize())
          return false;
 
       user()->set_keyboard_layout(NULL,::action::source::database());
@@ -1173,10 +1177,10 @@ namespace axis
 
       try
       {
-         if(m_spcopydesk.is_set())
+         if(m_pcopydesk != NULL)
          {
-            m_spcopydesk->finalize();
-            m_spcopydesk.release();
+            m_pcopydesk->finalize();
+            ::release(m_pcopydesk);
          }
       }
       catch(...)
@@ -1332,7 +1336,7 @@ namespace axis
             return NULL;
          }
       }
-      pwnd = m_spuiFocus;
+      pwnd = m_puiFocus;
       if(pwnd != NULL)
       {
          if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()

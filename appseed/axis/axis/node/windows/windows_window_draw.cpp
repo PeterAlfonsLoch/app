@@ -1,7 +1,7 @@
-#include "framework.h"
+#include "axis/user/user.h"
+
 
 extern void _001DeferPaintLayeredWindowBackground(oswindow oswindow,::draw2d::graphics * pdc);
-
 
 
 class keep_event_reset

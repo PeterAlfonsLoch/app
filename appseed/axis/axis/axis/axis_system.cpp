@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "axis/user/user.h"
 
 
 //void dappy(const char * psz);
@@ -149,7 +149,7 @@ namespace axis
 
 #ifdef WINDOWSEX
 
-      m_spwindow = canew(interaction_impl(this));
+      m_psystemwindow = canew(system_interaction_impl(this));
 
 #endif
 
@@ -159,7 +159,7 @@ namespace axis
 
       dappy(string(typeid(*this).name()) + " : Going to ::axis::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
 
-      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::axis::system::interaction_impl::no_twf"))
+      if(!m_psystemwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::axis::system::interaction_impl::no_twf"))
       {
 
          dappy(string(typeid(*this).name()) + " : ::axis::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
@@ -281,7 +281,7 @@ namespace axis
       try
       {
 
-         m_spwindow.release();
+         m_psystemwindow->release();
 
       }
       catch(...)
@@ -663,65 +663,6 @@ namespace axis
 
    }
 
-#ifdef WINDOWSEX
-
-
-   system::interaction_impl::interaction_impl(sp(::aura::application) papp):
-      element(papp),
-      ::user::interaction(papp)
-   {
-
-   }
-
-   void system::interaction_impl::install_message_handling(::message::dispatch * pdispatch)
-   {
-
-      ::user::interaction::install_message_handling(pdispatch);
-
-      IGUI_WIN_MSG_LINK(WM_SETTINGCHANGE,pdispatch,this,&::axis::system::interaction_impl::_001MessageHub);
-      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&::axis::system::interaction_impl::_001MessageHub);
-
-   }
-
-   void system::interaction_impl::_001MessageHub(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::base,pbase,pobj);
-
-      if(pbase != NULL)
-      {
-
-         if(pbase->m_uiMessage == WM_DISPLAYCHANGE ||
-            (pbase->m_uiMessage == WM_SETTINGCHANGE &&
-            (pbase->m_wparam == SPI_SETWORKAREA)))
-         {
-
-            System.enum_display_monitors();
-
-            for(index i = 0; i < System.frames().get_count(); i++)
-            {
-
-               try
-               {
-
-                  System.frames()[i]->post_message(WM_APP + 1984 + 21);
-
-               }
-               catch(...)
-               {
-               }
-
-            }
-
-
-         }
-
-      }
-
-   }
-
-
-#endif
 
 
    ::user::interaction * system::get_active_guie()
@@ -936,3 +877,68 @@ namespace axis
 
 
 
+
+#ifdef WINDOWSEX
+
+
+namespace axis
+{
+
+   system_interaction_impl::system_interaction_impl(sp(::aura::application) papp):
+      element(papp),
+      ::user::interaction(papp)
+   {
+
+   }
+
+   void system_interaction_impl::install_message_handling(::message::dispatch * pdispatch)
+   {
+
+      ::user::interaction::install_message_handling(pdispatch);
+
+      IGUI_WIN_MSG_LINK(WM_SETTINGCHANGE,pdispatch,this,&system_interaction_impl::_001MessageHub);
+      IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE,pdispatch,this,&system_interaction_impl::_001MessageHub);
+
+   }
+
+   void system_interaction_impl::_001MessageHub(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::base,pbase,pobj);
+
+      if(pbase != NULL)
+      {
+
+         if(pbase->m_uiMessage == WM_DISPLAYCHANGE ||
+            (pbase->m_uiMessage == WM_SETTINGCHANGE &&
+            (pbase->m_wparam == SPI_SETWORKAREA)))
+         {
+
+            System.enum_display_monitors();
+
+            for(index i = 0; i < System.frames().get_count(); i++)
+            {
+
+               try
+               {
+
+                  System.frames()[i]->post_message(WM_APP + 1984 + 21);
+
+               }
+               catch(...)
+               {
+               }
+
+            }
+
+
+         }
+
+      }
+
+   }
+
+} // namespace axis
+
+
+#endif

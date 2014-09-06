@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "axis/user/user.h"
 
 
 thread_int_ptr < HHOOK > t_hHookOldCbtFilter;
@@ -100,7 +100,7 @@ namespace windows
    interaction_impl::~interaction_impl()
    {
 
-      if(m_pauraapp != NULL &&  m_pauraapp->m_paxissession != NULL &&  m_pauraapp->m_paxissession->m_spuser.is_set())
+      if(m_pauraapp != NULL &&  m_pauraapp->m_paxissession != NULL &&  m_pauraapp->m_paxissession->m_puser != NULL)
       {
 
          if(Session.user()->m_pwindowmap != NULL)
