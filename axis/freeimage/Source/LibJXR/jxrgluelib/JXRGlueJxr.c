@@ -28,6 +28,7 @@
 //*@@@---@@@@******************************************************************
 //#include <limits.h>
 #include <JXRGlue.h>
+#include <limits.h>
 
 
 static const char szHDPhotoFormat[] = "<dc:format>image/vnd.ms-photo</dc:format>";

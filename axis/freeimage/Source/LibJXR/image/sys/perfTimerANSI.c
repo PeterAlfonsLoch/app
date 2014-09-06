@@ -31,6 +31,7 @@
 //***************************************************************************
 #include "strcodec.h"
 #include "perfTimer.h"
+#include <time.h>
 
 
 #ifndef DISABLE_PERF_MEASUREMENT
