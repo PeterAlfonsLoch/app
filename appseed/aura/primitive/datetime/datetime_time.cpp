@@ -785,7 +785,7 @@ namespace datetime
 
       struct tm* ptmTemp = _localtime64(&m_time);
 
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, pszFormat, ptmTemp))
+      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
 
          szBuffer[0] = '\0';

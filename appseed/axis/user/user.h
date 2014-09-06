@@ -1,4 +1,12 @@
+#ifndef __GNUC__
 #pragma once
+#endif
+
+
+#include "axis/axis/axis/axis.h"
+
+
+#define new AURA_NEW
 
 
 #include "user/user/user_keyboard_focus.h"

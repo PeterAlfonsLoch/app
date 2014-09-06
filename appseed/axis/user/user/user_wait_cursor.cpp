@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "axis/user/user.h"
 
 wait_cursor::wait_cursor(sp(::aura::application) papp) :
    element(papp)

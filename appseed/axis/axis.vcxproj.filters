@@ -827,6 +827,9 @@
     <ClInclude Include="database\sqlite\sqlite.h">
       <Filter>Header Files\database\sqlite</Filter>
     </ClInclude>
+    <ClInclude Include="user\user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
@@ -1366,11 +1369,11 @@
     <ClCompile Include="axis\os\windows\windows.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
+    <ClCompile Include="user\framework_user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
@@ -1547,6 +1550,9 @@
     </None>
     <None Include="axis.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="user\user.inl">
+      <Filter>Header Files\user</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
