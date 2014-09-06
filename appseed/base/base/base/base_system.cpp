@@ -166,23 +166,6 @@ namespace base
    bool system::finalize()
    {
 
-      try
-      {
-
-         if(!m_spnet->gudo_set())
-         {
-
-            m_iReturnCode = -87;
-
-         }
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -87;
-
-      }
 
 
       __wait_threading_count_except(this,::millis((5000) * 77));
@@ -213,24 +196,6 @@ namespace base
       {
 
          bOk = ::base::application::finalize();
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-
-      }
-
-      try
-      {
-
-         if(m_spportforward.is_set())
-         {
-
-            m_spportforward.release();
-
-         }
 
       }
       catch(...)

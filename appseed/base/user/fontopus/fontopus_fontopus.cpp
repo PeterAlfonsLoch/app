@@ -66,7 +66,7 @@ namespace fontopus
             {
                puser = login(set);
             }
-            catch(const cancel_exception & e)
+            catch(const cancel_exception &)
             {
 
                return NULL;

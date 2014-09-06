@@ -63,7 +63,44 @@ namespace sockets
 
    bool sockets::finalize()
    {
-    
+
+
+      try
+      {
+
+         if(!m_spnet->gudo_set())
+         {
+
+            m_iReturnCode = -87;
+
+         }
+
+      }
+      catch(...)
+      {
+
+         m_iReturnCode = -87;
+
+      }
+      try
+      {
+
+         if(m_spportforward.is_set())
+         {
+
+            m_spportforward.release();
+
+         }
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
+
+
       if(Application.is_system())
       {
          if(m_pajpbasesocketinit != NULL)

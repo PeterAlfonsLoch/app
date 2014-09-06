@@ -58,7 +58,7 @@ namespace sockets
 
 
 #include "net_ip_enum.h"
-
+#include "net_port_forward.h"
 
 
 

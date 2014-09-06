@@ -3204,7 +3204,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="filesystem\file\file_system.cpp" />
     <ClCompile Include="filesystem\fs\fs_data.cpp" />
     <ClCompile Include="filesystem\fs\fs_fs.cpp" />
-    <ClCompile Include="filesystem\fs\fs_ifs.cpp" />
+    <ClCompile Include="filesystem\fs\fs_ifs.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="filesystem\fs\fs_ifs_file.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
@@ -3216,7 +3219,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp" />
+    <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="filesystem\fs\fs_set.cpp" />
     <ClCompile Include="graphics\visual\visual_api.cpp" />
     <ClCompile Include="graphics\visual\visual_buffered_graphics.cpp" />
@@ -3234,7 +3240,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="graphics\visual\visual_visual.cpp" />
     <ClCompile Include="graphics\visual\visual_water_routine.cpp" />
     <ClCompile Include="net\http\http.cpp" />
-    <ClCompile Include="net\http\http_application.cpp" />
+    <ClCompile Include="net\http\http_application.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="net\http\http_get_socket.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
@@ -3242,7 +3251,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\http\http_output_stream.cpp" />
     <ClCompile Include="net\http\http_signal.cpp" />
     <ClCompile Include="net\http\http_status.cpp" />
-    <ClCompile Include="net\http\http_system.cpp" />
+    <ClCompile Include="net\http\http_system.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="net\http\webserver\webserver_http_cookie.cpp" />
     <ClCompile Include="net\http\webserver\webserver_http_form.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
@@ -3272,7 +3284,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="net\net_address.cpp" />
+    <ClCompile Include="net\net_address.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="net\net_email.cpp" />
     <ClCompile Include="net\net_email_address.cpp" />
     <ClCompile Include="net\net_ip_enum.cpp" />
@@ -3503,7 +3518,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\fontopus\fontopus.cpp" />
     <ClCompile Include="user\fontopus\fontopus_authentication_map.cpp" />
     <ClCompile Include="user\fontopus\fontopus_contact_list.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_fontopus.cpp" />
+    <ClCompile Include="user\fontopus\fontopus_fontopus.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_licensing.cpp" />
     <ClCompile Include="user\fontopus\fontopus_login.cpp" />
     <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp" />

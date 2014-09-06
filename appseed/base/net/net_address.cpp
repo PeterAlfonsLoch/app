@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "base/net/net_sockets.h"
 
 
 namespace net
@@ -90,7 +90,7 @@ namespace net
 #endif
 
       set_address(host);
-      u.s.m_port = Sys(papp).net().service_port(strService);
+      u.s.m_port = Sys(papp).sockets().net().service_port(strService);
       sync_os_service();
 
    }
