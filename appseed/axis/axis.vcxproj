@@ -3300,10 +3300,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="framework_c.h" />
     <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="graphics\graphics.h" />
-    <ClInclude Include="graphics\visual\visual.h" />
-    <ClInclude Include="graphics\visual\visual_const.h" />
-    <ClInclude Include="graphics\visual\visual_cursor.h" />
-    <ClInclude Include="graphics\visual\visual_icon.h" />
     <ClCompile Include="axis\os\windows\windows.cpp" />
     <ClCompile Include="axis\os\windows\windows_dll.cpp" />
     <ClCompile Include="axis\os\windows\windows_gdi.cpp" />
@@ -3783,8 +3779,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CompileAsCHeader</CompileAs>
     </ClCompile>
     <ClCompile Include="graphics\graphics_window_graphics.cpp" />
-    <ClCompile Include="graphics\visual\visual_cursor.cpp" />
-    <ClCompile Include="graphics\visual\visual_icon.cpp" />
     <ClCompile Include="primitive\data\data_simple_item.cpp" />
     <ClCompile Include="primitive\data\data_tree.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>

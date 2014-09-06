@@ -3385,6 +3385,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="graphics\draw2d\draw2d_pen.h" />
     <ClInclude Include="graphics\draw2d\draw2d_region.h" />
     <ClInclude Include="graphics\graphics.h" />
+    <ClInclude Include="graphics\visual\visual.h" />
+    <ClInclude Include="graphics\visual\visual_const.h" />
+    <ClInclude Include="graphics\visual\visual_cursor.h" />
+    <ClInclude Include="graphics\visual\visual_icon.h" />
     <ClInclude Include="multithreading\multithreading_data.h" />
     <ClInclude Include="multithreading\multithreading_go_thread.h" />
     <ClInclude Include="multithreading\multithreading_set_event_on_exit.h" />
@@ -3713,6 +3717,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="graphics\draw2d\draw2d_path.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_pen.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_region.cpp" />
+    <ClCompile Include="graphics\visual\visual_cursor.cpp" />
+    <ClCompile Include="graphics\visual\visual_icon.cpp" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\datetime_mktime.c">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>

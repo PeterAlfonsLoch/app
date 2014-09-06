@@ -234,6 +234,12 @@
     <Filter Include="Header Files\graphics\draw2d">
       <UniqueIdentifier>{bda713ee-7402-4b3b-86af-1b0db0b61e6e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\visual">
+      <UniqueIdentifier>{f6e26b97-a135-4fc3-b352-5cf1a753444c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\visual">
+      <UniqueIdentifier>{ffc99b1e-a394-44b0-8f4c-b3f78d0ac17f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2033,6 +2039,18 @@
     <ClInclude Include="user\user\user_draw_interface.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\visual\visual.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_const.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_cursor.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\visual\visual_icon.h">
+      <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3457,6 +3475,12 @@
     <ClCompile Include="user\user\user_draw_interface.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\visual\visual_cursor.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\visual_icon.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3488,9 +3512,6 @@
     </None>
     <None Include="aura\aura\aura_system_xml.inl">
       <Filter>Header Files\aura\aura</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
