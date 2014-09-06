@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <math.h>
 
 
 //IMPLEMENT_AXIS_FIXED_ALLOC_STATIC(var);
@@ -1922,7 +1923,7 @@ const stringa & var::stra() const
 {
 
    return ((var *)this)->stra();
-   
+
 }
 
 
@@ -1930,14 +1931,14 @@ const int_array & var::inta() const
 {
 
    return ((var *)this)->inta();
-   
+
 }
 
 const int64_array & var::int64a() const
 {
 
    return ((var *)this)->int64a();
-   
+
 }
 
 
@@ -1982,7 +1983,7 @@ const var_array & var::vara() const
 {
 
    return ((var *)this)->vara();
-   
+
 }
 
 
@@ -1990,7 +1991,7 @@ const ::duration & var::duration() const
 {
 
    return ((var *)this)->duration();
-   
+
 }
 
 
@@ -2035,7 +2036,7 @@ const property_set & var::propset() const
 {
 
    return ((var *)this)->propset();
-   
+
 }
 
 
@@ -2058,7 +2059,7 @@ const property & var::prop() const
 {
 
    return ((var *)this)->prop();
-   
+
 }
 
 
@@ -3841,7 +3842,7 @@ string var::get_json()
 
 void var::null()
 {
-    
+
     set_type(var::type_null);
-    
+
 }

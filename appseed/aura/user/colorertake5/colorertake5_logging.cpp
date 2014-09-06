@@ -1,4 +1,5 @@
 #include "aura/user/user.h"
+#include <stdarg.h>
 
 namespace colorertake5
 {

@@ -815,6 +815,7 @@
 		<Unit filename="primitive/math/math_scalar.h" />
 		<Unit filename="primitive/math/math_scalar_enum.h" />
 		<Unit filename="primitive/math/math_static_numeric_info.h" />
+		<Unit filename="primitive/math/math_std_template.h" />
 		<Unit filename="primitive/primitive_application_bias.cpp" />
 		<Unit filename="primitive/primitive_application_bias.h" />
 		<Unit filename="primitive/primitive_bit.cpp" />
@@ -1257,6 +1258,10 @@
 		<Unit filename="user/colorertake5/colorertake5_xmldom.h" />
 		<Unit filename="user/simple/simple_message_box.cpp" />
 		<Unit filename="user/simple/simple_message_box.h" />
+		<Unit filename="user/user.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="user/user/user.h" />
 		<Unit filename="user/user/user_check_interface.cpp" />
 		<Unit filename="user/user/user_check_interface.h" />
