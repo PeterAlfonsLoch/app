@@ -225,7 +225,7 @@ namespace sockets
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
             in_addr l;
-            System.net().convert(l, value); // ip2ipaddr_t
+            Session.sockets().net().convert(l, value); // ip2ipaddr_t
             m_parent -> OnResolved(m_resolv_id, ::net::address(l, m_resolv_port));
          }
          // update cache
@@ -243,7 +243,7 @@ namespace sockets
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
             in6_addr a;
-            System.net().convert(value, a);
+            Session.sockets().net().convert(value, a);
             m_parent -> OnResolved(m_resolv_id, ::net::address(a, m_resolv_port));
          }
          // update cache
@@ -265,10 +265,10 @@ namespace sockets
       if (m_query == "gethostbyname")
       {
          struct in_addr sa;
-         if (System.net().convert(sa, m_data))
+         if (Session.sockets().net().convert(sa, m_data))
          {
             string ip;
-            System.net().convert(ip, sa);
+            Session.sockets().net().convert(ip, sa);
             write("A: " + ip + "\n");
          }
          else
@@ -280,10 +280,10 @@ namespace sockets
       else if (m_query == "gethostbyname2")
       {
          struct in6_addr sa;
-         if (System.net().convert(sa, m_data))
+         if (Session.sockets().net().convert(sa, m_data))
          {
             string ip;
-            System.net().convert(ip, sa);
+            Session.sockets().net().convert(ip, sa);
             write("AAAA: " + ip + "\n");
          }
          else
@@ -295,17 +295,17 @@ namespace sockets
       else
       if (m_query == "gethostbyaddr")
       {
-         if (System.net().isipv4( m_data ))
+         if (Session.sockets().net().isipv4( m_data ))
          {
             struct in_addr sa;
-            if (!System.net().convert(sa, m_data, AI_NUMERICHOST))
+            if (!Session.sockets().net().convert(sa, m_data, AI_NUMERICHOST))
             {
                write("Failed: convert to sockaddr_in failed\n");
             }
             else
             {
                string name;
-               if (!System.net().reverse( (struct sockaddr *)&sa, sizeof(sa), name))
+               if (!Session.sockets().net().reverse( (struct sockaddr *)&sa, sizeof(sa), name))
                {
                   write("Failed: ipv4 reverse lookup of " + m_data + "\n");
                }
@@ -315,17 +315,17 @@ namespace sockets
                }
             }
          }
-         else if (System.net().isipv6( m_data ))
+         else if (Session.sockets().net().isipv6( m_data ))
          {
             struct in6_addr sa;
-            if (!System.net().convert(sa, m_data, AI_NUMERICHOST))
+            if (!Session.sockets().net().convert(sa, m_data, AI_NUMERICHOST))
             {
                write("Failed: convert to sockaddr_in6 failed\n");
             }
             else
             {
                string name;
-               if (!System.net().reverse( (struct sockaddr *)&sa, sizeof(sa), name))
+               if (!Session.sockets().net().reverse( (struct sockaddr *)&sa, sizeof(sa), name))
                {
                   write("Failed: ipv6 reverse lookup of " + m_data + "\n");
                }
@@ -364,14 +364,14 @@ namespace sockets
       if (m_resolve_ipv6)
       {
          string tmp;
-         System.net().convert(tmp, m_resolv_address6);
+         Session.sockets().net().convert(tmp, m_resolv_address6);
          m_query = "gethostbyaddr";
          m_data = tmp;
          string msg = "gethostbyaddr " + tmp + "\n";
          write( msg );
       }
       string tmp;
-      System.net().convert(tmp, m_resolv_address);
+      Session.sockets().net().convert(tmp, m_resolv_address);
       m_query = "gethostbyaddr";
       m_data = tmp;
       string msg = "gethostbyaddr " + tmp + "\n";

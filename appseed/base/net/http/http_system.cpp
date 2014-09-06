@@ -259,7 +259,7 @@ namespace http
       int32_t port = System.url().get_port(pszUrl);
 
 /*         ipaddr_t l;
-      if (!System.net().u2ip(strHost,l))
+      if (!Session.sockets().net().u2ip(strHost,l))
       {
          return false;
       }*/
@@ -1239,7 +1239,7 @@ retry:
 
       if (set["http_listener"].cast < ::http::listener >() != NULL)
       {
-         psocket->::sockets::http_socket::m_plistener = set["http_listener"].cast < ::sockets::http_listener >();
+         psocket->::sockets::http_socket::m_plistener = set["http_listener"].cast < ::http::listener >();
       }
       psocket->inheaders().add(set["headers"].propset());
       if (set.has_property("progress_listener"))
@@ -1432,10 +1432,10 @@ retry:
 
       set["get_status"] = (int64_t)estatus;
 
-      if (set["http_listener"].cast < ::sockets::http_listener >() != NULL)
+      if (set["http_listener"].cast < ::http::listener >() != NULL)
       {
 
-         set["http_listener"].cast < ::sockets::http_listener >()->on_http_complete(psocket, estatus);
+         set["http_listener"].cast < ::http::listener >()->on_http_complete(psocket, estatus);
 
       }
 

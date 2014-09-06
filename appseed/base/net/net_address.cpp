@@ -90,7 +90,7 @@ namespace net
 #endif
 
       set_address(host);
-      u.s.m_port = Sys(papp).sockets().net().service_port(strService);
+      u.s.m_port = Sess(papp).sockets().net().service_port(strService);
       sync_os_service();
 
    }
@@ -386,11 +386,11 @@ namespace net
 
 #else
 
-      if (Sys(get_thread_app()).net().convert(u.m_addr6.sin6_addr, strAddress))
+      if (Sess(get_thread_app()).sockets().net().convert(u.m_addr6.sin6_addr, strAddress))
       {
          u.s.m_family = AF_INET6;
       }
-      else if (Sys(get_thread_app()).net().convert(u.m_addr.sin_addr, strAddress))
+      else if (Sess(get_thread_app()).sockets().net().convert(u.m_addr.sin_addr, strAddress))
       {
          u.s.m_family = AF_INET;
       }
@@ -411,7 +411,7 @@ namespace net
 
    string tmp;
 
-   Sys(get_thread_app()).net().reverse((sockaddr *) &m_sa, sa_len(), tmp);
+   Sess(get_thread_app()).sockets().net().reverse((sockaddr *) &m_sa, sa_len(), tmp);
 
    return tmp;
 

@@ -10,7 +10,10 @@
       {
       public:
 
-         SSLInitializer *                    m_psslinit;
+
+         int32_t                                      m_iReturnCode;
+
+         SSLInitializer *                             m_psslinit;
 
 
 #if defined(BSD_STYLE_SOCKETS)

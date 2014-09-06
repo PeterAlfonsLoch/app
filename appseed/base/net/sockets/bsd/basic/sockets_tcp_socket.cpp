@@ -204,7 +204,7 @@ void ssl_sigpipe_handle( int x );
          ::net::address sa(GetSocks4Host(), GetSocks4Port());
          {
             string sockshost;
-            System.net().convert(sockshost, GetSocks4Host());
+            Session.sockets().net().convert(sockshost, GetSocks4Host());
             log("open", 0, "Connecting to socks4 server @ " + sockshost + ":" + ::str::from(GetSocks4Port()), ::aura::log::level_info);
          }
          SetSocks4();
@@ -269,10 +269,10 @@ void ssl_sigpipe_handle( int x );
    {
       if (IsIpv6())
       {
-         if (!Handler().ResolverEnabled() || System.net().isipv6(host) )
+         if (!Handler().ResolverEnabled() || Session.sockets().net().isipv6(host) )
          {
             in6_addr a;
-            if (!System.net().convert(a, host))
+            if (!Session.sockets().net().convert(a, host))
             {
                SetCloseAndDelete();
                return false;
@@ -288,10 +288,10 @@ void ssl_sigpipe_handle( int x );
          m_strHost = host;
          return true;
       }
-      if (!Handler().ResolverEnabled() || System.net().isipv4(host) )
+      if (!Handler().ResolverEnabled() || Session.sockets().net().isipv4(host) )
       {
          in_addr l;
-         if (!System.net().convert(l, host))
+         if (!Session.sockets().net().convert(l, host))
          {
             SetCloseAndDelete();
             return false;
@@ -314,7 +314,7 @@ void ssl_sigpipe_handle( int x );
    void tcp_socket::OnResolved(int32_t id, const ::net::address & a)
    {
       
-       TRACE("tcp_socket::OnResolved id %d addr %s port %d\n", id, System.net().canonical_name(a).c_str(), a.u.s.m_port);
+       TRACE("tcp_socket::OnResolved id %d addr %s port %d\n", id, Session.sockets().net().canonical_name(a).c_str(), a.u.s.m_port);
       
       if (id == m_resolver_id)
       {

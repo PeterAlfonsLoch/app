@@ -19,7 +19,7 @@ namespace base
       ::file::system_sp                            m_spfile;
       ::file::dir::system_sp                       m_spdir;
       ::http::system                               m_httpsystem;
-
+      
 
       class ::fontopus::user_set                   m_userset;
       ::crypto::crypto_sp                          m_spcrypto;

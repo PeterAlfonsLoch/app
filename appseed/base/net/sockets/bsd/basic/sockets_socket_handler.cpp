@@ -1006,7 +1006,7 @@ namespace sockets
 
    void socket_handler::SetSocks4Host(const string & host)
    {
-      System.net().convert(m_socks4_host, host);
+      Session.sockets().net().convert(m_socks4_host, host);
    }
 
 
@@ -1029,7 +1029,7 @@ namespace sockets
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       in_addr local;
-      System.net().convert(local, "127.0.0.1");
+      Session.sockets().net().convert(local, "127.0.0.1");
       if (!resolv -> open(::net::address(local, m_resolver_port)))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
@@ -1048,7 +1048,7 @@ namespace sockets
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       in_addr local;
-      System.net().convert(local, "127.0.0.1");
+      Session.sockets().net().convert(local, "127.0.0.1");
       if (!resolv -> open(::net::address(local, m_resolver_port)))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
@@ -1066,7 +1066,7 @@ namespace sockets
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       in_addr local;
-      System.net().convert(local, "127.0.0.1");
+      Session.sockets().net().convert(local, "127.0.0.1");
       if (!resolv -> open(::net::address(local, m_resolver_port)))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
@@ -1084,7 +1084,7 @@ namespace sockets
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       in_addr local;
-      System.net().convert(local, "127.0.0.1");
+      Session.sockets().net().convert(local, "127.0.0.1");
       if (!resolv -> open(::net::address(local, m_resolver_port)))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);

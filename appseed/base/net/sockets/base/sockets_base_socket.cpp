@@ -704,7 +704,7 @@ namespace sockets
    void base_socket::SetSocks4Host(const string & host)
    {
 
-      System.net().convert(m_socks4_host, host);
+      Session.sockets().net().convert(m_socks4_host, host);
 
    }
 
@@ -1947,7 +1947,7 @@ namespace sockets
    string base_socket::get_short_description()
    {
 
-      return System.net().canonical_name(GetRemoteAddress());
+      return Session.sockets().net().canonical_name(GetRemoteAddress());
 
    }
 
