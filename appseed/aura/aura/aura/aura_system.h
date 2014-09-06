@@ -54,6 +54,8 @@ namespace aura
       sp(mutex)                                    m_pmutexDc;
 #endif
 
+      void *                                       m_ftlibrary;
+
 
 
       sp(mutex)                                    m_spmutexUserAppData;
@@ -303,6 +305,10 @@ namespace aura
       virtual string dir_appmatter_locator(sp(::aura::application) papp);
 
       virtual string crypto_md5_text(const string & str);
+
+
+      virtual void * & ftlibrary();
+
 
    };
 

@@ -105,6 +105,7 @@ namespace aura
       }
       */
 
+      m_ftlibrary = NULL;
 
       //use_base_ca2_allocator();
 
@@ -1190,6 +1191,14 @@ namespace aura
 
    }
 
+
+   void * & system::ftlibrary()
+   {
+
+      return m_ftlibrary;
+
+
+   }
 
 
 

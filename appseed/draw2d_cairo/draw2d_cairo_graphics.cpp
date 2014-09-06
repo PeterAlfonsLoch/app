@@ -4981,7 +4981,7 @@ synch_lock ml(m_spmutex);
 
       int iError = 0;
 
-      string strPath = Sys(get_app()).dir().element("app/appmatter/main/_std/_std/font/truetype/arialuni.ttf");
+      string strPath = Sys(get_app()).dir_element("app/appmatter/main/_std/_std/font/truetype/arialuni.ttf");
 
       if(g_ft == NULL)
       {

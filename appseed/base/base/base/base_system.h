@@ -27,8 +27,6 @@ namespace base
       sp(::install::install)                       m_spinstall;
 
 
-      void *                                       m_ftlibrary;
-
 
       ::visual::visual                             m_visual;
 
@@ -59,8 +57,6 @@ namespace base
 
       class ::crypto::crypto                       & crypto();
       ::install::install                           & install() { return *m_spinstall; }
-
-      void *                                       & ftlibrary();
 
       inline class ::visual::visual                & visual()     { return m_visual       ; }
 

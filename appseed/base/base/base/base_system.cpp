@@ -20,20 +20,17 @@ namespace base
       m_visual(this)
    {
 
-         m_pbasesystem = this;
+      m_pbasesystem = this;
 
-         m_spinstall = new ::install::install(this);
+      m_spinstall = new ::install::install(this);
 
-         __node_base_factory_exchange(this);
+      __node_base_factory_exchange(this);
 
-         m_compress.set_app(this);
-
-         m_ftlibrary = NULL;
+      m_compress.set_app(this);
 
 
 
-
-      }
+   }
 
 
    void system::construct(const char * pszAppId)
@@ -56,7 +53,7 @@ namespace base
    void * & system::ftlibrary()
    {
 
-      return m_ftlibrary;
+      
 
    }
 
