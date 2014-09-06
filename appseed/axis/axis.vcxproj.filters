@@ -189,6 +189,9 @@
     <Filter Include="Header Files\axis\compress">
       <UniqueIdentifier>{aa64ea9e-1344-463d-b1e9-004e327ca47d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\axis\compress">
+      <UniqueIdentifier>{6b022698-345f-4103-b2fe-2d6fd19b5ca6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\draw2d\draw2d.h">
@@ -1383,6 +1386,12 @@
     </ClCompile>
     <ClCompile Include="user\framework_user.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\bzip_stream.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\gzip_stream.cpp">
+      <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

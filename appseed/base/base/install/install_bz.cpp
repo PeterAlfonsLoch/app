@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "bzlib.h"
 
 const int32_t g_iGzUncompressLen = 1024 * 1024;
 char * g_pchGzUncompressBuffer = NULL;

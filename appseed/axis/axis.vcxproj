@@ -2684,6 +2684,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">framework_c.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="axis\compress\bzip_stream.cpp" />
+    <ClCompile Include="axis\compress\gzip_stream.cpp" />
     <ClCompile Include="axis\message\message_user.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
@@ -4062,6 +4064,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
   <ItemGroup>
     <ProjectReference Include="..\..\aura\sqlite\aurasqlite.vcxproj">
       <Project>{424f72d6-053a-41c5-be03-3b0bd535f1eb}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\bzip2\axisbzip2.vcxproj">
+      <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\zlib\axiszlib.vcxproj">
+      <Project>{34fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
     </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>

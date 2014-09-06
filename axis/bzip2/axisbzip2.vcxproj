@@ -28,9 +28,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="blocksort.c" />
-    <ClCompile Include="bzip_stream.cpp">
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">BZ_EXPORT;_BZIP2_LIBRARY</PreprocessorDefinitions>
-    </ClCompile>
     <ClCompile Include="bzlib.c" />
     <ClCompile Include="compress.c" />
     <ClCompile Include="crctable.c" />
@@ -39,16 +36,10 @@
     <ClCompile Include="randtable.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bzip_stream.h" />
     <ClInclude Include="bzlib_private.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="axisbzip2.def" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
-      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A5A649E1-D516-4F29-A627-DA6884DD421C}</ProjectGuid>

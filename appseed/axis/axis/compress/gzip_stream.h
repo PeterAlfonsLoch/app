@@ -46,14 +46,9 @@
 #pragma once
 
 
-#ifdef ZLIB_DLL
-#define CLASS_DECL_ZLIB  CLASS_DECL_EXPORT
-#else
-#define CLASS_DECL_ZLIB  CLASS_DECL_IMPORT
-#endif
 
 
-class CLASS_DECL_ZLIB gzip_stream:
+class CLASS_DECL_AXIS gzip_stream:
    virtual public ::file::output_stream
 {
 public:

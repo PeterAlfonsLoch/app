@@ -6,12 +6,6 @@
 #include "zip/zip.h"
 
 
-#include "zlib/gzip_stream.h"
-
-
-#include "bzip2/bzip_stream.h"
-
-
 #include "compress_compress.h"
 
 

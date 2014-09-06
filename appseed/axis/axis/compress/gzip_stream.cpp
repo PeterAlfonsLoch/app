@@ -1,5 +1,7 @@
-#include "aura/aura/aura.h"
-#include "zutil.h"
+#include "framework.h"
+#include "zlib.h"
+#include "axis/zlib/zutil.h"
+#include "gzip_stream.h"
 
 
 //#define ALLOC(size) malloc(size)

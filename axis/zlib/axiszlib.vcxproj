@@ -225,6 +225,7 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -384,7 +385,6 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClCompile Include="crc32.c" />
     <ClCompile Include="deflate.c" />
     <ClCompile Include="gzclose.c" />
-    <ClCompile Include="gzip_stream.cpp" />
     <ClCompile Include="gzlib.c" />
     <ClCompile Include="gzread.c" />
     <ClCompile Include="gzwrite.c" />
@@ -402,7 +402,6 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClInclude Include="crc32.h" />
     <ClInclude Include="deflate.h" />
     <ClInclude Include="gzguts.h" />
-    <ClInclude Include="gzip_stream.h" />
     <ClInclude Include="inffast.h" />
     <ClInclude Include="inffixed.h" />
     <ClInclude Include="inflate.h" />
