@@ -169,6 +169,7 @@ namespace user
 
 
    class interaction;
+   class interaction_impl;
    class document;
    class frame_window;
 
