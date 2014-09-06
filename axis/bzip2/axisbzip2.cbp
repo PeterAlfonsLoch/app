@@ -72,6 +72,7 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
+		<Unit filename="../../include/bzlib.h" />
 		<Unit filename="CHANGES" />
 		<Unit filename="LICENSE" />
 		<Unit filename="Makefile" />
@@ -97,12 +98,9 @@
 		<Unit filename="bzip2.1" />
 		<Unit filename="bzip2.1.preformatted" />
 		<Unit filename="bzip2.txt" />
-		<Unit filename="bzip_stream.cpp" />
-		<Unit filename="bzip_stream.h" />
 		<Unit filename="bzlib.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="bzlib.h" />
 		<Unit filename="bzlib_private.h" />
 		<Unit filename="bzmore" />
 		<Unit filename="bzmore.1" />

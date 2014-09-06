@@ -428,18 +428,6 @@
 		<Unit filename="mysys/my_thr_init.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="mysys/my_wincond.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="mysys/my_windac.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="mysys/my_winfile.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="mysys/my_winthread.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="mysys/my_write.c">
 			<Option compilerVar="CC" />
 		</Unit>

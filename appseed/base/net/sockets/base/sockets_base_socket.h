@@ -2,11 +2,11 @@
 
 
 #if defined(LINUX)
-struct ucred {
-    pid_t pid;    /* process ID of the sending process */
-    uid_t uid;    /* user ID of the sending process */
-    gid_t gid;    /* group ID of the sending process */
-};
+//struct ucred {
+  //  pid_t pid;    /* process ID of the sending process */
+    //uid_t uid;    /* user ID of the sending process */
+    //gid_t gid;    /* group ID of the sending process */
+//};
 #endif // defined
 
 

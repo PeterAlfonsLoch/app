@@ -102,8 +102,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="gzguts.h" />
-		<Unit filename="gzip_stream.cpp" />
-		<Unit filename="gzip_stream.h" />
 		<Unit filename="gzlib.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -28,16 +28,16 @@
 #define __USE_GNU				/* We want to use stpcpy */
 #endif
 #if defined(HAVE_STRINGS_H)
-//#include <strings.h>
+#include <strings.h>
 #endif
-//#include <string.h>
+#include <string.h>
 
 /* need by my_vsnprintf */
 #include <stdarg.h>
 
-#define bfill please_use_memset_rather_than_bfill()
-#define bzero please_use_memset_rather_than_bzero()
-#define bmove please_use_memmove_rather_than_bmove()
+//#define bfill please_use_memset_rather_than_bfill()
+//#define bzero please_use_memset_rather_than_bzero()
+//#define bmove please_use_memmove_rather_than_bmove()
 
 #if defined(__cplusplus)
 extern "C" {

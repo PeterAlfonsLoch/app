@@ -8,7 +8,7 @@
 
 void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);
 
-int_bool ensure_file_size(int32_t fd, size_t iSize)
+int_bool ensure_file_size_fd(int32_t fd, size_t iSize)
 {
 
    if(ftruncate(fd, iSize) == -1)

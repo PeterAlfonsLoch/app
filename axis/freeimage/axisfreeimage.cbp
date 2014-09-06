@@ -769,7 +769,11 @@
 		<Unit filename="Source/LibTIFF4/tiffconf.h" />
 		<Unit filename="Source/LibTIFF4/tiffconf.vc.h" />
 		<Unit filename="Source/LibTIFF4/tiffconf.wince.h" />
-		<Unit filename="Source/LibTIFF4/tiffio.h" />
+		<Unit filename="Source/LibTIFF4/tiffio.h">
+			<Option compilerVar="C" />
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="Source/LibTIFF4/tiffio.hxx" />
 		<Unit filename="Source/LibTIFF4/tiffiop.h" />
 		<Unit filename="Source/LibTIFF4/tiffvers.h" />

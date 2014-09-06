@@ -11,6 +11,7 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <pthread.h>
 #endif
 
 namespace hotplugin
@@ -130,7 +131,7 @@ namespace hotplugin
 
    ::count host::get_memory_length()
    {
-      
+
       return m_memory.get_size();
 
    }
@@ -151,7 +152,7 @@ namespace hotplugin
 
    void host::free_memory()
    {
-      
+
       m_memory.allocate(0);
 
    }
@@ -273,9 +274,9 @@ namespace hotplugin
    {
 
       {
-       
+
          sp(mutex) pmutex = canew(mutex(get_thread_app(),"Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
-         
+
          if(::GetLastError() == ERROR_ALREADY_EXISTS)
          {
 
@@ -290,7 +291,7 @@ namespace hotplugin
       m_pplugin = new install::plugin(get_app());
 
       m_pplugin->set_host(this);
-      
+
    }
 
 
@@ -360,7 +361,7 @@ namespace hotplugin
 
    int32_t host::host_starter_start(const char * pszCommandLine, ::aura::application * papp, plugin * pplugin)
    {
-      
+
       ::install::starter_start * pstart    = new ::install::starter_start(papp);
 
       pstart->m_pplugin             = pplugin;
@@ -529,7 +530,7 @@ throw todo(get_thread_app());
    {
 
       ::rect rect;
-      
+
       GetWindowRect(rect);
 
       m_sizeBitmap.cx = abs((int32_t)width(rect));
@@ -669,6 +670,7 @@ throw todo(get_thread_app());
 
 
 } // namespace hotplugin
+
 
 
 

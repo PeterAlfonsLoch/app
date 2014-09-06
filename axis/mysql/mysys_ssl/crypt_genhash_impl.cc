@@ -20,6 +20,7 @@
 #include <malloc.h>
 #else
 #include <alloca.h>
+#include <string.h>
 #endif
 
 #ifdef HAVE_OPENSSL

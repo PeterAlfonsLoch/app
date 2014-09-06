@@ -27,6 +27,10 @@
    Encryption is not supported.
 */
 
+#ifdef LINUX
+#include <time.h>
+#endif
+
 #define CRC32(ca, b) ((*(pcrc_32_tab+(((int32_t)(ca) ^ (b)) & 0xff))) ^ ((ca) >> 8))
 
 /***********************************************************************

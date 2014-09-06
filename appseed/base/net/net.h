@@ -12,17 +12,7 @@ namespace net
 {
 
 
-   inline int32_t family_len(int32_t family)
-   {
-
-      if(family == AF_INET)
-         return sizeof(sockaddr_in);
-      else if(family == AF_INET6)
-         return sizeof(sockaddr_in6);
-      else
-         return 0;
-
-   }
+   CLASS_DECL_BASE int32_t family_len(int32_t family);
 
 
 

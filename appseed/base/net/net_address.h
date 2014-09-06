@@ -1,5 +1,9 @@
 #pragma once
 
+#if defined(LINUX)
+#include <netdb.h>
+#endif
+
 
 namespace net
 {

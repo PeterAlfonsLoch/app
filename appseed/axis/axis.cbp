@@ -71,6 +71,8 @@
 			<Add option="-laura" />
 			<Add option="-lauracharguess" />
 			<Add option="-laurasqlite" />
+			<Add option="-laxisbzip2" />
+			<Add option="-laxiszlib" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
@@ -104,6 +106,14 @@
 		<Unit filename="axis/axis_policy/axis_policy_winrt.h" />
 		<Unit filename="axis/axis_policy/axis_vanity_ada.txt" />
 		<Unit filename="axis/axis_policy/axis_vanity_basic.txt" />
+		<Unit filename="axis/compress/bsdiff/bsdiff_bsdiff.cpp" />
+		<Unit filename="axis/compress/bsdiff/bsdiff_bspatch.cpp" />
+		<Unit filename="axis/compress/bsdiff/libbsdiff.h" />
+		<Unit filename="axis/compress/bzip_stream.cpp" />
+		<Unit filename="axis/compress/bzip_stream.h" />
+		<Unit filename="axis/compress/compress.h" />
+		<Unit filename="axis/compress/gzip_stream.cpp" />
+		<Unit filename="axis/compress/gzip_stream.h" />
 		<Unit filename="axis/message/message.h" />
 		<Unit filename="axis/message/message_base.h" />
 		<Unit filename="axis/message/message_cross_windows.h" />
@@ -248,6 +258,7 @@
 		<Unit filename="primitive/datetime/datetime_departament.h" />
 		<Unit filename="primitive/datetime/datetime_value.cpp" />
 		<Unit filename="primitive/datetime/datetime_value.h" />
+		<Unit filename="user/framework_user.cpp" />
 		<Unit filename="user/simple/simple.h" />
 		<Unit filename="user/simple/simple_scroll_bar.cpp" />
 		<Unit filename="user/simple/simple_scroll_bar.h" />
