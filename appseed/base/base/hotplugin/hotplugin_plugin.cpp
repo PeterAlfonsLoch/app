@@ -841,8 +841,11 @@ namespace hotplugin
 
          uint_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
-         ensure_file_size_handle(m_hfileBitmap, size);
+
 #ifdef METROWIN
+
+         ensure_file_size_handle(m_hfileBitmap, size);
+
          m_hfilemapBitmap = CreateFileMappingFromApp(
             m_hfileBitmap,
             NULL,
@@ -858,6 +861,9 @@ namespace hotplugin
          }
 
 #elif defined(WINDOWS)
+
+         ensure_file_size_handle(m_hfileBitmap, size);
+
          m_hfilemapBitmap = CreateFileMapping(
             m_hfileBitmap,
             NULL,
@@ -872,6 +878,9 @@ namespace hotplugin
             m_hfileBitmap = INVALID_HANDLE_VALUE;
             throw "resource exception";
          }
+#else
+
+         ensure_file_size_fd(m_hfileBitmap, size);
 
 #endif
 

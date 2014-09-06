@@ -1,19 +1,35 @@
 #pragma once
 
 
-namespace base
+namespace linux
 {
 
-   class CLASS_DECL_LINUX factory_exchange :
-      virtual public ::object
+   namespace base
    {
-   public:
 
-      factory_exchange(sp(::axis::application) papp);
-      virtual ~factory_exchange();
+      class CLASS_DECL_LINUX factory_exchange :
+         virtual public ::object
+      {
+      public:
 
-   };
+         factory_exchange(sp(::axis::application) papp);
+         virtual ~factory_exchange();
+
+      };
 
 
-} // namespace base
+   } // namespace base
+
+
+} // namespace linux
+
+
+
+
+
+
+
+
+
+
 
