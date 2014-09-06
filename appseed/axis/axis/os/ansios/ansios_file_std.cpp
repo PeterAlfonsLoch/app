@@ -5,6 +5,7 @@
 // 08/20/05 (mv)
 
 #include "framework.h"
+#include <stdarg.h>
 
 
 #ifdef METROWIN
