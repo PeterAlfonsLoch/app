@@ -77,7 +77,10 @@ namespace sockets
 
    bool sockets::finalize()
    {
-      book bOk = true;
+
+
+      bool bOk = true;
+
 
       try
       {
