@@ -180,7 +180,7 @@ namespace file
 
       if (::str::begins_ci_iws(strPath, "http://") || ::str::begins_ci_iws(strPath, "https://"))
       {
-         
+
          property_set set(papp);
 
 /*         if(papp->m_pbasesession != NULL)
@@ -1049,7 +1049,7 @@ restart:
    void system::del(const char * psz)
    {
 #ifdef WINDOWS
-      
+
       HANDLE h = ::CreateFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz),GENERIC_READ | GENERIC_WRITE,0,NULL,OPEN_EXISTING,FILE_FLAG_OPEN_REPARSE_POINT | FILE_FLAG_DELETE_ON_CLOSE,NULL);
 
       if(h == INVALID_HANDLE_VALUE)
@@ -1622,7 +1622,17 @@ restart:
    bool system::resolve_link(string & strTarget,const char * pszSource,sp(::user::interaction) puiMessageParentOptional)
    {
 
+#ifdef WINDOWS
+
       return vfxResolveShortcut(strTarget,pszSource,puiMessageParentOptional);
+
+#else
+
+      throw todo(get_app());
+
+      return false;
+
+#endif
 
    }
 
