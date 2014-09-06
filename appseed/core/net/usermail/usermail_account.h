@@ -5,6 +5,9 @@ namespace usermail
 {
 
 
+   class db_pop3;
+
+
    class CLASS_DECL_CORE account :
       virtual public ::object
    {
@@ -18,7 +21,7 @@ namespace usermail
       string               m_strMailDb;
       uint32_t             m_dwLastCheck;
       uint32_t             m_dwCheckTime;
-      db_pop3              m_pop3;
+      db_pop3 *            m_ppop3;
 
 
       account(sp(::aura::application) papp);

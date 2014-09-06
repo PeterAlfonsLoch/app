@@ -13,8 +13,8 @@
 /////////////////////////////////////////////////////////
 
 
-#include "simpledb_socket.h"
-#include "simpledb_socket_thread.h"
+//#include "simpledb_socket.h"
+//#include "simpledb_socket_thread.h"
 #include "simpledb_server.h"
 #include "simpledb_session.h"
 #include "simpledb_manager.h"

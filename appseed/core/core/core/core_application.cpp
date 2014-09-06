@@ -3996,7 +3996,7 @@ namespace core
    int32_t application::simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
-      if(!Session.user().is_set())
+      if(!Session.user() != NULL)
          return ::base::application::simple_message_box(puiOwner,pszMessage,fuStyle);
 
       return userex()->simple_message_box(puiOwner,pszMessage,fuStyle);
@@ -4007,7 +4007,7 @@ namespace core
    int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
    {
 
-      if(!Session.user().is_set())
+      if(!Session.user() != NULL)
          return ::base::application::simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
 
       return userex()->simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);

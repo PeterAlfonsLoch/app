@@ -1,5 +1,35 @@
 #include "framework.h"
+#include "base/net/net_sockets.h"
 
+
+
+class CLASS_DECL_CORE db_long_sync_queue:
+   public simple_thread
+{
+public:
+
+
+   mutex                                        m_mutex;
+   db_long_set *                                m_pset;
+   sockets::socket_handler                      m_handler;
+   sockets::http_session *                      m_phttpsession;
+
+   smart_pointer_array < db_long_set::queue_item >                     m_itema;
+
+
+
+
+
+   db_long_sync_queue(sp(::aura::application) papp);
+   virtual ~db_long_sync_queue();
+
+
+   virtual int32_t run();
+
+
+   void queue(const char * pszKey,int64_t l);
+
+};
 
 
 db_long_set::db_long_set(db_server * pserver) :
@@ -48,7 +78,7 @@ db_long_set::queue_item & db_long_set::queue_item::operator = (const queue_item 
    return *this;
 }
 
-db_long_set::sync_queue::sync_queue(sp(::aura::application) papp) :
+db_long_sync_queue::db_long_sync_queue(sp(::aura::application) papp):
    element(papp),
    thread(papp),
    simple_thread(papp),
@@ -60,12 +90,12 @@ db_long_set::sync_queue::sync_queue(sp(::aura::application) papp) :
 
 }
 
-db_long_set::sync_queue::~sync_queue()
+db_long_sync_queue::~db_long_sync_queue()
 {
 }
 
 
-int32_t db_long_set::sync_queue::run()
+int32_t db_long_sync_queue::run()
 {
 
    while(true)
@@ -126,7 +156,7 @@ repeat:;
 
 }
 
-void db_long_set::sync_queue::queue(const char * pszKey, int64_t l)
+void db_long_sync_queue::queue(const char * pszKey,int64_t l)
 {
 
    single_lock sl(&m_mutex, true);
@@ -251,7 +281,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
       if(m_pqueue == NULL)
       {
 
-         m_pqueue = new sync_queue(get_app());
+         m_pqueue = new db_long_sync_queue(get_app());
          m_pqueue->m_pset = this;
          m_pqueue->begin();
 

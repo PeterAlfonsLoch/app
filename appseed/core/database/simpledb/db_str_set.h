@@ -1,6 +1,8 @@
 #pragma once
 
 
+class db_str_sync_queue;
+
 class CLASS_DECL_CORE db_str_set :
    public db_set
 {
@@ -35,37 +37,16 @@ public:
 
    };
 
-   class CLASS_DECL_CORE sync_queue :
-      public simple_thread
-   {
-   public:
-
-      mutex                                        m_mutex;
-      db_str_set *                                 m_pset;
-      sockets::socket_handler                      m_handler;
-      sockets::http_session *                      m_phttpsession;
-
-      smart_pointer_array < queue_item >               m_itema;
-
-      sync_queue(sp(::aura::application) papp);
-      virtual ~sync_queue();
 
 
-      virtual int32_t run();
 
-
-      void queue(const char * pszKey, const char * psz);
-
-   };
-
-
-   mutex                                        m_mutex;
-   sockets::socket_handler                      m_handler;
-   sockets::http_session *                      m_phttpsession;
+   //mutex                                        m_mutex;
+   //sockets::socket_handler                      m_handler;
+   //sockets::http_session *                      m_phttpsession;
    string_map < item >            m_map;
    bool                                         m_bIndexed;
 
-   sync_queue *                                 m_pqueue;
+   db_str_sync_queue *                                 m_pqueue;
 
    ::mysql::database *                          m_pmysqldbUser;
    string                                       m_strUser;

@@ -1,5 +1,7 @@
 #include "framework.h"
+#include "base/net/net_sockets.h"
 #include "db_str_set.h"
+
 
 db_str_set::db_str_set(db_server * pserver) :
    element(pserver->get_app()),

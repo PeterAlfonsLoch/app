@@ -981,7 +981,7 @@ class Ex1FactoryImpl;
 #include "core/net/hi5/hi5_twit.h"
 
 
-#include "core/programming/dynamic_source/dynamic_source.h"
+//#include "core/programming/dynamic_source/dynamic_source.h"
 
 
 #include "core/user/user/user.h"

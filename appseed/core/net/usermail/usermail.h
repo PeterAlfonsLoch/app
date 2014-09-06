@@ -9,12 +9,13 @@ namespace usermail
    
 
    class usermail;
+   class tree;
 
 
 } // namespace usermail
 
 
-#include "usermail_db_pop3.h"
+//#include "usermail_db_pop3.h"
 
 
 #include "usermail_account.h"

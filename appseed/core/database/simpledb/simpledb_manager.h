@@ -1,7 +1,12 @@
 #pragma once
 
+
 namespace simpledb
 {
+
+   
+   class socket;
+
 
    class CLASS_DECL_CORE manager :
       virtual public thread,
@@ -47,7 +52,23 @@ namespace simpledb
 
       virtual void message_queue_message_handler(signal_details * pobj);
 
+
    };
 
 
 } // namespace simpledb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
