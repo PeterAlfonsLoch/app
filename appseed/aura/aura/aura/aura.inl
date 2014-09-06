@@ -369,9 +369,17 @@ namespace aura
 
    }
 
+   template < typename T >
+   void application::alloc(T * & pt)
+   {
+
+      sp(T) sp = alloc(System.type_info < T >());
+
+      pt = sp.m_p;
+
+   }
 
 } // namespace aura
-
 
 
 

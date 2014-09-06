@@ -64,6 +64,9 @@ namespace axis
       m_pschemasimple->m_pfont->create_pixel_font("Helvetica",16);
 
 
+      m_pcopydesk = NULL;
+
+
    }
 
 
@@ -1046,9 +1049,7 @@ namespace axis
    bool session::initialize1()
    {
 
-      m_pcopydesk = alloc(System.type_info < ::axis::copydesk > ()).cast < ::axis::copydesk > ();
-
-      m_pcopydesk->add_ref();
+      alloc(m_pcopydesk);
 
       if(!m_pcopydesk->initialize())
          return false;

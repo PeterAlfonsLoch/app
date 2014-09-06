@@ -86,8 +86,8 @@ namespace aura
       virtual sp(element) alloc(sp(type) info);
       virtual sp(element) alloc(const id & idType);
 
-
-      
+      template < typename T >
+      void alloc(T * & pt);
 
 
       virtual int32_t simple_message_box(::user::interaction * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);

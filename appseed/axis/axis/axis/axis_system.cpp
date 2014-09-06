@@ -149,7 +149,7 @@ namespace axis
 
 #ifdef WINDOWSEX
 
-      m_psystemwindow = canew(system_interaction_impl(this));
+      m_psystemwindow = new system_interaction_impl(this);
 
 #endif
 
