@@ -2,4 +2,4 @@
 
 
 #include "bzip_stream.h"
-#include "glib_stream.h"
+#include "gzip_stream.h"
