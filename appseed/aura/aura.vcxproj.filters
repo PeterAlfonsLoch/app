@@ -2018,6 +2018,12 @@
     <ClInclude Include="graphics\graphics.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_const.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_fwd.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">

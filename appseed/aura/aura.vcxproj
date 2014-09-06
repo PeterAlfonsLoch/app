@@ -3373,8 +3373,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="graphics\draw2d\draw2d.h" />
     <ClInclude Include="graphics\draw2d\draw2d_bitmap.h" />
     <ClInclude Include="graphics\draw2d\draw2d_brush.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_const.h" />
     <ClInclude Include="graphics\draw2d\draw2d_dib.h" />
     <ClInclude Include="graphics\draw2d\draw2d_font.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_fwd.h" />
     <ClInclude Include="graphics\draw2d\draw2d_graphics.h" />
     <ClInclude Include="graphics\draw2d\draw2d_igui.h" />
     <ClInclude Include="graphics\draw2d\draw2d_object.h" />

@@ -1,9 +1,17 @@
 #include "framework.h"
+#include "draw2d.h"
 #include <math.h>
 
 
 namespace draw2d
 {
+
+
+   pen_sp::pen_sp(::draw2d::graphics * pgraphics,double dWidth,COLORREF crColor):
+      smart_pointer < pen >(pgraphics->allocer())
+   {
+      m_p->create_solid(dWidth,crColor);
+   }
 
    void word_break(::draw2d::graphics * pdc, const string & strSource, const RECT & rect, string &str1, string & str2);
 

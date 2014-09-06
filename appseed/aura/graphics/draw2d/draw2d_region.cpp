@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "draw2d_const.h"
+#include "draw2d_object.h"
+#include "draw2d_region.h"
 
 
 namespace draw2d

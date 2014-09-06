@@ -7,11 +7,6 @@ namespace draw2d
 {
 
 
-   pen_sp::pen_sp(::draw2d::graphics * pgraphics, double dWidth, COLORREF crColor) :
-      smart_pointer < pen > (pgraphics->allocer())
-   {
-      m_p->create_solid(dWidth, crColor);
-   }
 
 
    pen::pen()
