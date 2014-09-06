@@ -2580,13 +2580,13 @@ synch_lock ml(&cairo_mutex());
 
 #if defined(WINDOWS)
 
-   bool dib::update_window(::user::interaction_impl * pwnd, signal_details * pobj)
+   bool dib::update_window(::user::draw_interface * pwnd, signal_details * pobj)
    {
 
 
       rect64 rectWindow;
 
-      pwnd->m_pui->GetWindowRect(rectWindow);
+      pwnd->GetWindowRect(rectWindow);
 
       m_spgraphics->SetViewportOrg(0, 0);
 
@@ -2594,14 +2594,14 @@ synch_lock ml(&cairo_mutex());
 
       rect rect(rectWindow);
 
-      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rect, m_iScan);
+      Application.window_graphics_update_window(pwnd->get_window_graphics(), pwnd->get_handle(), m_pcolorref, rect, m_iScan);
 
       return true;
 
    }
 
 
-   bool dib::print_window(::user::interaction_impl * pwnd, signal_details * pobj)
+   bool dib::print_window(::user::draw_interface * pwnd, signal_details * pobj)
    {
 
       SCAST_PTR(::message::base, pbase, pobj);
