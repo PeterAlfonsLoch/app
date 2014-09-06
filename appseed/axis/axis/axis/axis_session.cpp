@@ -55,7 +55,7 @@ namespace axis
 
       m_paxissystem->m_basesessionptra.add_unique(this);
 
-      m_pschemasimple               = canew(::user::simple_schema_impl);
+      m_pschemasimple               = canew(::user::schema_simple_impl);
 
       m_puserschema                 = m_pschemasimple;
 
