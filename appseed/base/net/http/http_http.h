@@ -25,30 +25,11 @@ namespace sockets
 {
 
    class sockets;
-
-   class CLASS_DECL_BASE http_client_socket:
-      virtual public ::object
-   {
-   public:
-   };
-
-   class CLASS_DECL_BASE socket_handler:
-      virtual public ::object
-   {
-   public:
-   };
-
-   class CLASS_DECL_BASE http_session:
-      virtual public ::object
-   {
-   public:
-   };
-
-   class CLASS_DECL_BASE http_tunnel:
-      virtual public ::object
-   {
-   public:
-   };
+   class http_socket;
+   class http_client_socket;
+   class socket_handler;
+   class http_session;
+   class http_tunnel;
 
 
 } // namespace sockets
