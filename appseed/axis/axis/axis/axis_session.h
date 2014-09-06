@@ -78,7 +78,7 @@ namespace axis
 
 
       ::axis::copydesk & copydesk();
-      inline sp(class ::user::user)             user()         { return m_spuser; }
+      inline class ::user::user *            user()         { return m_spuser.m_p; }
 
       ::user::str_context *                     str_context();
 

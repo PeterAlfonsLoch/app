@@ -801,7 +801,7 @@ namespace datetime
    }
 
 
-   inline string time::FormatGmt(string & str, const string & strFormat) const
+   string time::FormatGmt(string & str, const string & strFormat) const
    {
 
       char szBuffer[maxTimeBufferSize];
