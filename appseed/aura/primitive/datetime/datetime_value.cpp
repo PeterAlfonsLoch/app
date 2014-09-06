@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include <math.h>
 
 namespace datetime
 {
@@ -94,7 +94,7 @@ namespace datetime
 
 
 
-   
+
 } // namespace datetime
 
 

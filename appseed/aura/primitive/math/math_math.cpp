@@ -1,5 +1,6 @@
 #include "framework.h"
 #include <time.h>
+#include <math.h>
 
 
 namespace math

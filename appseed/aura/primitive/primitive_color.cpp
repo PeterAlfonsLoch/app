@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <math.h>
 
 double primitive_color_round(double d);
 
@@ -59,12 +60,12 @@ proc hls2rgb {h l s} {
 void color::get_hls(
    double & dHParam, double & dLParam, double & dSParam) const
 {
-   
+
    double dR = m_dR;
    double dG = m_dG;
    double dB = m_dB;
 
-   
+
    double dCMin = MIN(dR, MIN(dG, dB));;
    double dCMax = MAX(dR, MAX(dG, dB));
    double dA;
@@ -201,7 +202,7 @@ void color::get_hls(
            dCDiff / (2.0 - dCSum);
 
 
-   
+
 
 }
 
@@ -223,7 +224,7 @@ void color::get_hls(
    if (dHue < (HLSMAX/2))
       return ( d2 );
    if (dHue < ((HLSMAX*2)/3))
-      return ( d1 + (((d2-d1)*(((HLSMAX*2)/3)-dHue)+(HLSMAX/12))/(HLSMAX/6))); 
+      return ( d1 + (((d2-d1)*(((HLSMAX*2)/3)-dHue)+(HLSMAX/12))/(HLSMAX/6)));
    else
       return ( d1 );
 } */
@@ -360,10 +361,10 @@ void color::set_hls(
    m_uchR      = (BYTE) primitive_color_round(m_dR * 255.0);
    m_uchG      = (BYTE) primitive_color_round(m_dG * 255.0);
    m_uchB      = (BYTE) primitive_color_round(m_dB * 255.0);
-   
 
 
-} 
+
+}
 
 uint32_t color::get_rgb() const
 {
@@ -540,28 +541,28 @@ void color::set_hls(
 void CColor::get_hls(LPBYTE H, LPBYTE L, LPBYTE S)
 {
    double dHue, dLightness, dSaturation;
-   // input RGB values 
+   // input RGB values
    double dRed = m_bRed;
    double dGreen = m_bGreen;
-   double dBlue = m_bBlue; 
-   // MAX and MIN RGB values 
-   double dMax, dMin;      
-   // intermediate value: % of spread from MAX 
-   double dRedDelta, dGreenDelta, dBlueDelta; 
-   // calculate lightness 
+   double dBlue = m_bBlue;
+   // MAX and MIN RGB values
+   double dMax, dMin;
+   // intermediate value: % of spread from MAX
+   double dRedDelta, dGreenDelta, dBlueDelta;
+   // calculate lightness
    dMax = MAX(MAX(dRed, dGreen), dBlue);
    dMin = MIN(MIN(dRed, dGreen), dBlue);
    dLightness = (BYTE) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
    if(dMax == dMin)
    {
-      // r=g=b --> achromatic case 
-      dSaturation = 0;                     // saturation 
-      dHue = UNDEFINED_HUE;             // hue 
+      // r=g=b --> achromatic case
+      dSaturation = 0;                     // saturation
+      dHue = UNDEFINED_HUE;             // hue
    }
    else
    {
-      // chromatic case 
-      // saturation 
+      // chromatic case
+      // saturation
       if (dLightness <= (HLSMAX / 2.0))
          dSaturation = (((dMax - dMin) * HLSMAX) + ((dMax + dMin) / 2.0) )
          / (dMax + dMin);
@@ -569,7 +570,7 @@ void CColor::get_hls(LPBYTE H, LPBYTE L, LPBYTE S)
          dSaturation = (((dMax - dMin) * HLSMAX) + ((2.0 * RGBMAX - dMax - dMin) / 2.0))
             / (2.0 * RGBMAX - dMax - dMin);
 
-      // hue 
+      // hue
       dRedDelta   = ( ((dMax-dRed  )*(HLSMAX/6.0)) + ((dMax-dMin)/2.0) ) / (dMax-dMin);
       dGreenDelta = ( ((dMax-dGreen)*(HLSMAX/6.0)) + ((dMax-dMin)/2.0) ) / (dMax-dMin);
       dBlueDelta   = ( ((dMax-dBlue )*(HLSMAX/6.0)) + ((dMax-dMin)/2.0) ) / (dMax-dMin);
@@ -578,7 +579,7 @@ void CColor::get_hls(LPBYTE H, LPBYTE L, LPBYTE S)
          dHue = dBlueDelta - dGreenDelta;
       else if (dGreen == dMax)
          dHue= (HLSMAX/3.0) + dRedDelta - dBlueDelta;
-      else // B == cMax 
+      else // B == cMax
          dHue = ((2.0*HLSMAX)/3.0) + dGreenDelta - dRedDelta;
       if (dHue < 0)
          dHue += HLSMAX;
@@ -591,69 +592,69 @@ void CColor::get_hls(LPBYTE H, LPBYTE L, LPBYTE S)
 }*/
 
 /*
-// utility routine for HLStoRGB 
+// utility routine for HLStoRGB
 
 double HueToRGB(
    double d1,
    double d2,
    double dHue)
 {
-   // range check: note values passed add/subtract thirds of range 
+   // range check: note values passed add/subtract thirds of range
    if (dHue < 0.0)
       dHue += HLSMAX;
    if (dHue > HLSMAX)
       dHue -= HLSMAX;
-   // return r,g, or b value from this tridrant 
+   // return r,g, or b value from this tridrant
    if (dHue < (HLSMAX/6))
       return ( d1 + (((d2-d1)*dHue+(HLSMAX/12))/(HLSMAX/6)) );
    if (dHue < (HLSMAX/2))
       return ( d2 );
    if (dHue < ((HLSMAX*2)/3))
-      return ( d1 + (((d2-d1)*(((HLSMAX*2)/3)-dHue)+(HLSMAX/12))/(HLSMAX/6))); 
+      return ( d1 + (((d2-d1)*(((HLSMAX*2)/3)-dHue)+(HLSMAX/12))/(HLSMAX/6)));
    else
       return ( d1 );
-} 
+}
 
 void CColor::set_hls(
    double dHue,
    double dLightness,
    double dSaturation)
 {
-   double dRed, dGreen, dBlue;        // RGB component values 
-   double dMagic1, dMagic2;       // calculated magic numbers (really!) 
-   
+   double dRed, dGreen, dBlue;        // RGB component values
+   double dMagic1, dMagic2;       // calculated magic numbers (really!)
+
    if (dSaturation == 0.0)
    {
-      //achromatic case 
+      //achromatic case
       dRed = dGreen = dBlue = (dLightness * RGBMAX) / HLSMAX;
       if (dHue != UNDEFINED_HUE)
       {
-         // ERROR 
+         // ERROR
       }
    }
    else
    {
-      // chromatic case 
-      // set up magic numbers 
+      // chromatic case
+      // set up magic numbers
       if (dLightness <= (HLSMAX / 2.0))
          dMagic2 = (dLightness * (HLSMAX + dSaturation) + (HLSMAX/2.0))/HLSMAX;
       else
          dMagic2 = dLightness + dSaturation - ((dLightness * dSaturation) + (HLSMAX/2.0))/HLSMAX;
       dMagic1 = 2.0 * dLightness- dMagic2;
 
-      // get RGB, change units from HLSMAX to RGBMAX 
+      // get RGB, change units from HLSMAX to RGBMAX
       dRed   = (HueToRGB(dMagic1, dMagic2, dHue+(HLSMAX/3.0))*RGBMAX +
-         (HLSMAX/2.0))/HLSMAX; 
+         (HLSMAX/2.0))/HLSMAX;
       dGreen   = (HueToRGB(dMagic1, dMagic2, dHue)*RGBMAX + (HLSMAX/2.0)) / HLSMAX;
       dBlue   = (HueToRGB(dMagic1, dMagic2, dHue-(HLSMAX/3.0))*RGBMAX +
-         (HLSMAX/2))/HLSMAX; 
+         (HLSMAX/2))/HLSMAX;
    }
    m_bBlue      = (BYTE) dBlue;
    m_bGreen   = (BYTE) dGreen;
    m_bRed      = (BYTE) dRed;
 
 
-} 
+}
 
 uint32_t CColor::get_rgb()
 {
