@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_CORE db_long_set :
-   public db_set
+   virtual public ::object
 {
 public:
 

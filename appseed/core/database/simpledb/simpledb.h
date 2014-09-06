@@ -1,6 +1,16 @@
 #pragma once
 
 
+namespace mysql
+{
+
+
+   class database;
+
+
+} // namespace mysql
+
+
 //////////////////////////////////////////////////////////
 // simpledb - non-meta-non-orto-non-para remark
 // Thank youyuuu!!

@@ -25,12 +25,22 @@ public:
    string            m_str;
 
 
-   db_str_set_queue_item();
-   db_str_set_queue_item(const db_str_set_queue_item & item);
-   virtual ~db_str_set_queue_item();
+   db_str_set_queue_item() {}
+   db_str_set_queue_item(const db_str_set_queue_item & item){ operator =(item); }
+   virtual ~db_str_set_queue_item() {  }
 
 
-   db_str_set_queue_item & operator = (const db_str_set_queue_item & item);
+   db_str_set_queue_item & operator = (const db_str_set_queue_item & item)
+   {
+      if(this != &item)
+      {
+         m_strKey = item.m_strKey;
+         m_dwTimeout = item.m_dwTimeout;
+         m_str = item.m_str;
+      }
+      return *this;
+   }
+
 
 
 };
@@ -55,8 +65,22 @@ public:
 
 
 
-   db_str_set_core(db_server * pserver);
-   virtual ~db_str_set_core();
+   db_str_set_core::db_str_set_core(db_server * pserver):
+      element(pserver->get_app()),
+      db_set(pserver,"stringtable"),
+      m_handler(get_app()),
+      m_mutex(get_app()),
+      m_phttpsession(NULL),
+      m_pqueue(NULL),
+      m_pmysqldbUser(pserver->m_pmysqldbUser),
+      m_strUser(pserver->m_strUser)
+   {
+   }
+
+   db_str_set_core::~db_str_set_core()
+   {
+
+   }
 
 
 };
@@ -75,8 +99,17 @@ public:
    smart_pointer_array < db_str_set_queue_item >      m_itema;
 
 
-   db_str_sync_queue(sp(::aura::application) papp);
-   virtual ~db_str_sync_queue();
+   db_str_sync_queue(sp(::aura::application) papp):
+      element(papp),
+      thread(papp),
+      simple_thread(papp),
+      m_handler(papp),
+      m_mutex(papp),
+      m_phttpsession(NULL)
+   { }
+
+   virtual ~db_str_sync_queue() {}
+
 
    virtual int32_t run();
 
@@ -85,111 +118,7 @@ public:
 };
 
 
-db_str_set_core::db_str_set_core(db_server * pserver):
-element(pserver->get_app()),
-m_sockethandler(get_app()),
-m_mutex(get_app())
-{
-}
 
-db_str_set_core::~db_str_set_core()
-{
-
-}
-
-db_str_set::db_str_set(db_server * pserver) :
-   element(pserver->get_app()),
-   db_set(pserver, "stringtable"),
-   m_mutex(get_app())
-{
-
-   m_phandler = new ::sockets::socket_handler(get_app());
-
-   m_pqueue       = NULL;
-
-//   m_phttpsession = NULL;
-
-   m_pmysqldbUser = pserver->m_pmysqldbUser;
-   m_strUser      = pserver->m_strUser;
-
-//   if((!m_pdataserver->m_bRemote && m_pmysqldbUser == NULL) || Session.fontopus().m_puser)
-  // {
-      sp(::sqlite::base) pdb = db()->GetImplDatabase();
-      //create string Table if necessary
-      try
-      {
-         pdb->start_transaction();
-         m_pdataset->query("select * from sqlite_master where type like 'table' and name like 'stringtable'");
-         if (m_pdataset->num_rows()==0)
-         {
-            m_pdataset->exec("create table stringtable (id text primary key, value text)");
-         }
-         pdb->commit_transaction();
-      }
-      catch (...)
-      {
-         pdb->rollback_transaction();
-         return;
-      }
-
-   //}
-
-
-}
-
-db_str_set::~db_str_set()
-{
-   
-   ::aura::del(m_phandler);
-
-}
-
-
-db_str_set::queue_item::queue_item()
-{
-}
-
-db_str_set::queue_item::queue_item(const queue_item & item)
-{
-   operator =(item);
-}
-db_str_set::queue_item::~queue_item()
-{
-}
-
-
-db_str_set::queue_item & db_str_set::queue_item::operator = (const queue_item & item)
-{
-   if(this != &item)
-   {
-      m_strKey = item.m_strKey;
-      m_dwTimeout = item.m_dwTimeout;
-      m_str = item.m_str;
-   }
-   return *this;
-}
-
-
-db_str_sync_queue::db_str_sync_queue(sp(::aura::application) papp):
-   element(papp),
-   thread(papp),
-   simple_thread(papp),
-   m_handler(papp),
-   m_mutex(papp)
-{
-   m_phttpsession = NULL;
-
-   if (papp->m_pbasesession == NULL)
-   {
-      throw simple_exception(papp, "dbstr_set should have session because it needs a user to indicate the user database");
-   }
-
-
-}
-
-db_str_sync_queue::~db_str_sync_queue()
-{
-}
 
 
 
@@ -304,6 +233,54 @@ void db_str_sync_queue::queue(const char * pszKey,const char * psz)
    m_itema.add(item);
 
 }
+
+
+db_str_set::db_str_set(db_server * pserver):
+element(pserver->get_app())
+{
+
+   m_phandler = new ::sockets::socket_handler(get_app());
+
+   m_pqueue       = NULL;
+
+   //   m_phttpsession = NULL;
+
+   m_pmysqldbUser = pserver->m_pmysqldbUser;
+   m_strUser      = pserver->m_strUser;
+
+   //   if((!m_pdataserver->m_bRemote && m_pmysqldbUser == NULL) || Session.fontopus().m_puser)
+   // {
+   sp(::sqlite::base) pdb = db()->GetImplDatabase();
+   //create string Table if necessary
+   try
+   {
+      pdb->start_transaction();
+      m_pdataset->query("select * from sqlite_master where type like 'table' and name like 'stringtable'");
+      if(m_pdataset->num_rows() == 0)
+      {
+         m_pdataset->exec("create table stringtable (id text primary key, value text)");
+      }
+      pdb->commit_transaction();
+   }
+   catch(...)
+   {
+      pdb->rollback_transaction();
+      return;
+   }
+
+   //}
+
+
+}
+
+db_str_set::~db_str_set()
+{
+
+   ::aura::del(m_phandler);
+
+}
+
+
 
 
 // true if deleted
