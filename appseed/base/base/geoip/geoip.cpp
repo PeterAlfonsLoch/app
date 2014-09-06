@@ -1,6 +1,10 @@
 #include "framework.h"
 
-#pragma comment(lib, "Ws2_32.lib")
+#ifdef WINDOWS
+
+#include <Winsock2.h>
+
+#endif
 
 #include <sys/stat.h>
 
