@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_AXIS icon :
+   class CLASS_DECL_AURA icon :
       virtual public ::object
    {
    public:
