@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include <math.h>
 
 namespace draw2d
 {
@@ -13,7 +13,7 @@ namespace draw2d
 
    path::string_path::string_path(const string_path & stringpath)
    {
-      
+
       operator = (stringpath);
 
    }
@@ -37,17 +37,17 @@ namespace draw2d
 
    }
 
-   
+
    path::element::element()
    {
 
       m_etype = type_none;
-   
+
    }
 
    path::element::element(const element & e)
    {
-      
+
       operator = (e);
 
    }
@@ -155,10 +155,10 @@ namespace draw2d
 
    }
 
-   
+
    bool path::add_move(int32_t x,int32_t y)
    {
-      
+
       return add_move((double)x,(double)y);
 
    }
@@ -212,7 +212,7 @@ namespace draw2d
 
    }
 
-   
+
    bool path::add_line(int32_t x, int32_t y)
    {
 
