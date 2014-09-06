@@ -15,9 +15,6 @@ class string;
 
 bool GetDrive(const char * lpDeviceFileName, string & fsFileName, bool bDriveLetterOnly );
 
-CLASS_DECL_AURA int_bool ensure_file_size_handle(HANDLE h, uint64_t iSize);
-CLASS_DECL_AURA int_bool ensure_file_size_fd(int32_t fd, size_t iSize);
-CLASS_DECL_AURA int_bool ensure_file_size(FILE * file, size_t iSize);
 
 #endif
 

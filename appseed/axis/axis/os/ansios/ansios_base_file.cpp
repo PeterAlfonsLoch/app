@@ -18,6 +18,22 @@ int_bool ensure_file_size_fd(int32_t fd, size_t iSize)
 
 }
 
+int_bool ensure_file_size(FILE * file,size_t iSize)
+{
+
+   return ensure_file_size_fd(fileno(file),iSize);
+
+}
+
+
+int_bool ensure_file_size_handle(HANDLE h,size_t iSize)
+{
+
+   return ensure_file_size(h.m_pfile,iSize);
+
+}
+
+
 
 size_t get_file_size(int32_t fd)
 {
