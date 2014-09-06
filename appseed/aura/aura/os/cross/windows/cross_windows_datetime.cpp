@@ -63,8 +63,6 @@ LONG TIME_GetBias(void);
 
 
 
-//#include "nodeapp/operational_system/bare_operational_system.h"
-
 //#ifdef METROWIN
 //#define STATUS_SUCCESS 0
 //#define STATUS_PRIVILEGE_NOT_HELD 1

@@ -28,7 +28,6 @@
 #define HAVE_SETTIMEOFDAY
 //#define WIN32_NO_STATUS
 #define __WINESRC__
-#include "nodeapp/operational_system/bare_operational_system.h"
 #include "os_cross_windows_internals.h"
 #include "c/c/verisimple_string.h"
 #include "c/c/mutex.h"
