@@ -36,15 +36,13 @@
 
 
 
-#include "primitive/data/data_tree_item.h"
-#include "primitive/data/data_tree.h"
-#include "primitive/data/data_simple_item.h"
 
 #include "axis/user/simple_ui/simple_ui_style.h"
 #include "axis/user/simple_ui/simple_ui_interaction.h"
 #include "axis/database/sqlite/sqlite.h"
 #include "user/user/user_document_data_map.h"
 #include "user/user/user_document.h"
+#include "database/database/database_user_interaction.h"
 #include "user/user/user_impact.h"
 
 
@@ -83,8 +81,6 @@
 #include "user/user/user_scroll_view.h"
 #include "user/user/user_form_interface.h"
 
-#include "filesystem/file/file_edit_buffer.h"
-
 #include "user/user/user_plain_text_data.h"
 #include "user/user/user_edit_plain_text.h"
 
@@ -108,7 +104,7 @@
 
 
 
-#include "database/database/database_user_interaction.h"
+
 
 
 
@@ -138,6 +134,34 @@
 
 
 
+#ifdef WINDOWSEX
+
+
+namespace axis
+{
+
+   // top level window for receiving system messages broadcasted to top level windows in Windows
+
+   class CLASS_DECL_AXIS system_interaction_impl:
+      virtual public ::user::interaction
+   {
+   public:
+
+      system_interaction_impl(sp(::aura::application) papp);
+
+      void install_message_handling(::message::dispatch * pdispath);
+
+      DECL_GEN_SIGNAL(_001MessageHub);
+
+
+   };
+
+
+} // namespace axis
+
+
+
+#endif
 
 
 

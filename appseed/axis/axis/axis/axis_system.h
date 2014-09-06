@@ -68,21 +68,8 @@ namespace axis
 
 #ifdef WINDOWSEX
 
-      class CLASS_DECL_AXIS interaction_impl:
-         virtual public ::user::interaction
-      {
-      public:
 
-         interaction_impl(sp(::aura::application) papp);
-
-         void install_message_handling(::message::dispatch * pdispath);
-
-         DECL_GEN_SIGNAL(_001MessageHub);
-
-
-      };
-
-      sp(interaction_impl)                         m_spwindow;
+      ::axis::system_interaction_impl *            m_psystemwindow;
 
       raw_array < MONITORINFO >                    m_monitorinfoa;
       raw_array < HMONITOR >                       m_hmonitora;

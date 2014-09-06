@@ -2665,7 +2665,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_static_start.cpp" />
+    <ClCompile Include="axis\axis\axis_static_start.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="axis\axis_policy\axis_c.c">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
@@ -3045,7 +3048,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClCompile>
     <ClCompile Include="axis\node\node.cpp" />
     <ClCompile Include="axis\node\windows\windows_copydesk.cpp" />
-    <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp" />
+    <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp" />
     <ClCompile Include="axis\node\windows\windows_print_job.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
@@ -3310,7 +3316,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="database\database\database_set.cpp" />
     <ClCompile Include="database\database\database_stringhelper.cpp" />
     <ClCompile Include="database\database\database_update_hint.cpp" />
-    <ClCompile Include="database\database\database_user_interaction.cpp" />
+    <ClCompile Include="database\database\database_user_interaction.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="database\sqlite\sqlite_base.cpp" />
     <ClCompile Include="database\sqlite\sqlite_set.cpp" />
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />

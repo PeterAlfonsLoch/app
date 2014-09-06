@@ -24,6 +24,7 @@ namespace axis
    class application;
    class system;
    class copydesk;
+   class system_interaction_impl;
 
    typedef smart_pointer < copydesk > copydesk_sp;
 
@@ -408,6 +409,14 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "axis/graphics/graphics.h"
 
 #include "axis/axis/axis_platform_interface.h"
+
+#include "primitive/data/data_tree_item.h"
+
+#include "primitive/data/data_tree.h"
+
+#include "primitive/data/data_simple_item.h"
+
+#include "filesystem/file/file_edit_buffer.h"
 
 #include "axis/axis/axis_application.h"
 
