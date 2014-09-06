@@ -226,7 +226,6 @@
 # endif
 #endif /* TIME_WITH_SYS_TIME */
 #ifdef HAVE_UNISTD_H
-#define _BSD_SOURCE
 #include <unistd.h>
 #endif
 #ifdef HAVE_ALLOCA_H
