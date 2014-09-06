@@ -6,7 +6,7 @@ namespace draw2d
 
 
 
-   class CLASS_DECL_AXIS text_metric
+   class CLASS_DECL_AURA text_metric
    {
    public:
 
@@ -34,7 +34,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_AXIS font :
+   class CLASS_DECL_AURA font :
       virtual public ::draw2d::object
    {
    public:

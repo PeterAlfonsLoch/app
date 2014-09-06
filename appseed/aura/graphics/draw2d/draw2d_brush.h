@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_AXIS brush :
+   class CLASS_DECL_AURA brush :
       virtual public ::draw2d::object
    {
    public:
@@ -58,7 +58,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_AXIS brush_sp :
+   class CLASS_DECL_AURA brush_sp :
       public smart_pointer < brush >
    {
    public:

@@ -3299,18 +3299,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
     <ClInclude Include="graphics\graphics_window_graphics.h" />
-    <ClInclude Include="graphics\draw2d\draw2d.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_bitmap.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_brush.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_dib.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_font.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_graphics.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_igui.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_object.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_palette.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_path.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_pen.h" />
-    <ClInclude Include="graphics\draw2d\draw2d_region.h" />
     <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="graphics\visual\visual.h" />
     <ClInclude Include="graphics\visual\visual_const.h" />
@@ -3794,16 +3782,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CompileAsCHeader</CompileAs>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_dib.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_font.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_graphics.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_object.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_palette.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_path.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_pen.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d_region.cpp" />
     <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="graphics\visual\visual_cursor.cpp" />
     <ClCompile Include="graphics\visual\visual_icon.cpp" />

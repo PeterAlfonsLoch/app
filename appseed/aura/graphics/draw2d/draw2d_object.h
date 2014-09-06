@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_AXIS object :
+   class CLASS_DECL_AURA object :
       virtual public ::object
    {
    public:

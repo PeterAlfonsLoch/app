@@ -3370,6 +3370,19 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClCompile>
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
+    <ClInclude Include="graphics\draw2d\draw2d.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_bitmap.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_brush.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_dib.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_font.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_graphics.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_igui.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_object.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_palette.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_path.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_pen.h" />
+    <ClInclude Include="graphics\draw2d\draw2d_region.h" />
+    <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="multithreading\multithreading_data.h" />
     <ClInclude Include="multithreading\multithreading_go_thread.h" />
     <ClInclude Include="multithreading\multithreading_set_event_on_exit.h" />
@@ -3684,6 +3697,16 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_check_interface.h" />
     <ClInclude Include="user\user\user_create_context.h" />
     <ClInclude Include="user\user\user_timer_array.h" />
+    <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_dib.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_font.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_graphics.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_object.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_palette.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_path.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_pen.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d_region.cpp" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\datetime_mktime.c">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>

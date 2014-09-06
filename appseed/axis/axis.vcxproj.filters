@@ -21,14 +21,8 @@
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{99770166-4760-4a1f-97fa-e3f6766a517c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics\draw2d">
-      <UniqueIdentifier>{f63fcdc5-a231-426e-9b32-4429c5fee34d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{b8226273-efa2-4c5c-814e-29792dd05b58}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\draw2d">
-      <UniqueIdentifier>{adb13c14-e574-4d1e-b88d-00b62542c49e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\graphics\visual">
       <UniqueIdentifier>{2703a7f6-7ead-46b3-b241-4cbd23d6a89e}</UniqueIdentifier>
@@ -200,42 +194,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="graphics\draw2d\draw2d.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_bitmap.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_brush.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_dib.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_font.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_graphics.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_igui.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_object.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_palette.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_path.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_pen.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d_region.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\graphics.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
@@ -856,36 +814,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_brush.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_dib.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_font.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_graphics.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_object.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_palette.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_path.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_pen.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\draw2d_region.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\visual\visual_icon.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
@@ -1410,9 +1338,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

@@ -13,7 +13,7 @@ namespace draw2d
    //////////////////////////////////////////////////////////////////////
 
 
-   class CLASS_DECL_AXIS dib :
+   class CLASS_DECL_AURA dib :
       virtual public ::object,
       virtual public ::file::serializable
    {
@@ -270,7 +270,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_AXIS dib_sp :
+   class CLASS_DECL_AURA dib_sp :
       public smart_pointer < dib >
    {
    public:
@@ -300,7 +300,7 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_AXIS dibmap :
+   class CLASS_DECL_AURA dibmap :
       virtual public map < class size, class size, ::draw2d::dib_sp, ::draw2d::dib_sp >
    {
    public:
@@ -334,7 +334,7 @@ namespace comparison
 
 
    template < >
-   class CLASS_DECL_AXIS hash < const ::draw2d::dib::descriptor & >
+   class CLASS_DECL_AURA hash < const ::draw2d::dib::descriptor & >
    {
    public:
 
@@ -358,7 +358,7 @@ namespace comparison
 namespace draw2d
 {
 
-   class CLASS_DECL_AXIS dibmap_ex1 :
+   class CLASS_DECL_AURA dibmap_ex1 :
       virtual public map < ::draw2d::dib::descriptor, const ::draw2d::dib::descriptor &, ::draw2d::dib_sp, ::draw2d::dib_sp >
    {
    public:

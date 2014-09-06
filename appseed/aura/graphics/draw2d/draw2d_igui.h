@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_AXIS item
+   class CLASS_DECL_AURA item
    {
    public:
        UINT          CtlType;

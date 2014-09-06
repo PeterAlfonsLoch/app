@@ -87,9 +87,6 @@
     <Filter Include="Source Files\filesystem\file">
       <UniqueIdentifier>{7164038b-3f76-4ce1-96d5-cc885cbf7871}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics\visual">
-      <UniqueIdentifier>{279c4f0b-7469-485f-a720-40edf81d3278}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\str">
       <UniqueIdentifier>{d5ea5447-e463-4542-852d-3dad51cf8c42}</UniqueIdentifier>
     </Filter>
@@ -230,6 +227,12 @@
     </Filter>
     <Filter Include="Header Files\primitive\datetime\data">
       <UniqueIdentifier>{ddf01975-333f-459f-a6b4-f5e9fdffa7f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{9f32d8b2-81a3-433b-b3cf-72224dd706ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\draw2d">
+      <UniqueIdentifier>{bda713ee-7402-4b3b-86af-1b0db0b61e6e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1976,6 +1979,45 @@
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_bitmap.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_brush.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_dib.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_font.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_graphics.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_igui.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_object.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_palette.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_path.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_pen.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d_region.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3358,6 +3400,36 @@
     <ClCompile Include="user\framework_user.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_brush.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_dib.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_font.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_graphics.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_object.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_palette.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_path.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_pen.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_region.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3389,9 +3461,6 @@
     </None>
     <None Include="aura\aura\aura_system_xml.inl">
       <Filter>Header Files\aura\aura</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

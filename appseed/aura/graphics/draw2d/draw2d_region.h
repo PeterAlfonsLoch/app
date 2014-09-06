@@ -5,7 +5,7 @@ namespace draw2d
 {
 
 
-   class CLASS_DECL_AXIS region :
+   class CLASS_DECL_AURA region :
       virtual public object
    {
    public:
@@ -121,7 +121,7 @@ namespace draw2d
    };
 
 
-   class CLASS_DECL_AXIS region_sp :
+   class CLASS_DECL_AURA region_sp :
       public smart_pointer < region >
    {
    public:
