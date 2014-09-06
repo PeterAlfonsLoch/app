@@ -2278,12 +2278,12 @@ namespace user
 
    }
 
-   window_graphics * interaction_base::get_window_graphics()
+   window_graphics * & interaction_base::get_window_graphics()
    {
 
       throw interface_only_exception(get_app());
 
-      return NULL;
+      return &(*((window_graphics *) NULL));
 
    }
 

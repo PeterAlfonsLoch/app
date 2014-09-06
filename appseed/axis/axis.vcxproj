@@ -3383,8 +3383,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_control_event.h" />
     <ClInclude Include="user\user\user_create_context.h" />
     <ClInclude Include="user\user\user_document_data_map.h" />
-    <ClInclude Include="user\user\user_draw_context.h" />
-    <ClInclude Include="user\user\user_draw_interface.h" />
     <ClInclude Include="user\user\user_edit_plain_text.h" />
     <ClInclude Include="user\user\user_elemental.h" />
     <ClInclude Include="user\user\user_enum.h" />
@@ -3409,7 +3407,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_place_holder.h" />
     <ClInclude Include="user\user\user_place_holder_container.h" />
     <ClInclude Include="user\user\user_plain_text_data.h" />
-    <ClInclude Include="user\user\user_printer.h" />
     <ClInclude Include="user\user\user_print_job.h" />
     <ClInclude Include="user\user\user_schema.h" />
     <ClInclude Include="user\user\user_schema_layered_frame.h" />
@@ -3850,14 +3847,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="user\user\user_draw_context.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="user\user\user_draw_interface.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="user\user\user_edit_plain_text.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
@@ -3939,10 +3928,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="user\user\user_plain_text_data.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="user\user\user_printer.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
