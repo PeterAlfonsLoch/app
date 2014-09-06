@@ -16,8 +16,22 @@
 #ifndef MY_CONFIG_H
 #define MY_CONFIG_H
 
+typedef unsigned char uchar;
+typedef unsigned char uint8_t;
+typedef unsigned int uint32_t;
 
-#include "aura/aura/aura.h"
+#ifdef _WIN32
+#define strncasecmp _strnicmp
+#define snprintf _snprintf
+#define ssize_t SSIZE_T
+#endif
+
+#ifndef MAX
+#define MAX(a, b)  (((a) > (b)) ? (a) : (b))
+#endif
+#ifndef MIN
+#define MIN(a, b)  (((a) < (b)) ? (a) : (b))
+#endif
 
 
 #undef new
@@ -480,7 +494,7 @@
 /* #undef IPPROTO_IPV6 */
 /* #undef IPV6_V6ONLY */
 #define STACK_DIRECTION -1
-#if defined(WINDOWS)
+#if defined(_WIN32)
 #define SYSTEM_TYPE "Win64"
 #define MACHINE_TYPE "x86_64"
 #define SIGPIPE SIGINT

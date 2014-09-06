@@ -16,7 +16,7 @@
 #include "mysys_priv.h"
 #include "m_string.h"
 #ifdef _WIN32
-
+#include <VersionHelpers.h>
 /* Windows NT/2000 discretionary access control utility functions. */
 
 /*
@@ -29,7 +29,17 @@
 
 static my_bool is_nt()
 {
-  return is_windows_nt() ? 1 : 0;
+
+#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
+
+   return IsWindowsXPOrGreater();
+
+#else
+
+   return !(GetVersion() & 0x80000000);
+
+#endif
+
 }
 
 /*

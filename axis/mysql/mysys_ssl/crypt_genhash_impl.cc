@@ -16,6 +16,12 @@
 // First include (the generated) my_config.h, to get correct platform defines.
 #include "my_config.h"
 
+#ifdef _WIN32
+#include <malloc.h>
+#else
+#include <alloca.h>
+#endif
+
 #ifdef HAVE_OPENSSL
 
 #ifdef HAVE_YASSL

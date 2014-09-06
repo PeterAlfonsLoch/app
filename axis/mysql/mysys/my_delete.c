@@ -78,7 +78,7 @@ int nt_share_delete(const char *name, myf MyFlags)
   DBUG_ENTER("nt_share_delete");
   DBUG_PRINT("my",("name %s MyFlags %d", name, MyFlags));
 
-  for (cnt= get_tick_count(); cnt; cnt--)
+  for (cnt= GetTickCount(); cnt; cnt--)
   {
     errno= 0;
     sprintf(buf, "%s.%08X.deleted", name, cnt);
