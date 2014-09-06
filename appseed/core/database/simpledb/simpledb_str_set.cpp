@@ -352,7 +352,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       try
       {
 
-         strValue = m_pcore->m_pmysqldbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_pcore->m_strUser + "' AND `key` = '" + m_pmysqldbUser->real_escape_string(lpKey) + "'");
+         strValue = m_pcore->m_pmysqldbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_pcore->m_strUser + "' AND `key` = '" + m_pcore->m_pmysqldbUser->real_escape_string(lpKey) + "'");
 
          return true;
 
