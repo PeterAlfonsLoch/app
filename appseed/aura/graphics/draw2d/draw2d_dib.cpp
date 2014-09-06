@@ -3883,7 +3883,7 @@ namespace draw2d
    }
 
 
-   bool dib::update_window(::user::interaction_impl * pwnd, signal_details * pobj)
+   bool dib::update_window(::user::draw_interface * pwnd, signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pwnd);
@@ -3900,7 +3900,7 @@ namespace draw2d
    }
 
 
-   bool dib::print_window(::user::interaction_impl * pwnd, signal_details * pobj)
+   bool dib::print_window(::user::draw_interface * pwnd, signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pwnd);
       UNREFERENCED_PARAMETER(pobj);

@@ -66,7 +66,7 @@ namespace draw2d_direct2d
 
 
 #if defined(WINDOWSEX)
-      virtual bool update_window(::user::interaction_impl * pwnd, signal_details * pobj);
+      virtual bool update_window(::user::draw_interface * pwnd,signal_details * pobj);
       //virtual bool print_window(window * pwnd, signal_details * pobj);
 #endif
 

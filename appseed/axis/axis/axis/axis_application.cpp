@@ -1870,13 +1870,6 @@ namespace axis
 
    }
 
-   void application::window_graphics_update_window(::user::interaction_impl * pwnd,COLORREF * pcolorref,int iScan)
-   {
-
-      throw todo(this);
-
-   }
-
 
    sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
    {
@@ -2031,19 +2024,6 @@ namespace axis
    }
 
 
-   void application::window_graphics_update_window(::user::interaction_impl * pwnd,COLORREF * pcolorref,int iScan)
-   {
-
-      ::rect rectWindow;
-
-      pwnd->m_pui->GetWindowRect(rectWindow);
-
-      ::rect rect(rectWindow);
-
-      window_graphics::update_window(pwnd->m_pgraphics,pwnd->get_handle(),pcolorref,rect,iScan);
-
-
-   }
 
 
 } // namespace axis
