@@ -65,8 +65,6 @@
 			<Add option="-Wl,-z,origin" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
-			<Add option="-lX11" />
-			<Add option="-lXmu" />
 			<Add option="-latomiconv" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
@@ -780,9 +778,6 @@
 		<Unit filename="primitive/datetime/datetime_c.h" />
 		<Unit filename="primitive/datetime/datetime_duration.cpp" />
 		<Unit filename="primitive/datetime/datetime_duration.h" />
-		<Unit filename="primitive/datetime/datetime_mktime.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="primitive/datetime/datetime_mktime.h" />
 		<Unit filename="primitive/datetime/datetime_time.cpp" />
 		<Unit filename="primitive/datetime/datetime_time.h" />

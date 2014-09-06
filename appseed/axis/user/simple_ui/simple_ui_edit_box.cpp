@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "axis/user/user.h"
 
 
 namespace simple_ui
@@ -52,7 +52,7 @@ namespace simple_ui
 
    void edit_box::_001OnLButtonUp(signal_details * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
 
 

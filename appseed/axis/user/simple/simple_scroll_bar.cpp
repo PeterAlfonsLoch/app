@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "axis/user/user.h"
 
 
 simple_scroll_bar::simple_scroll_bar(sp(::aura::application) papp) :
@@ -17,7 +17,7 @@ simple_scroll_bar::simple_scroll_bar(sp(::aura::application) papp) :
    m_scrollinfo.nPage   = 10;
    m_scrollinfo.nPos    = 0;
 
-   
+
    m_cr = ARGB(77 + 49,184,184,177);
    m_crBorder = ARGB(184,84 - 49,84 - 49,77 - 49);
    m_crLiteBorder = ARGB(184,84 + 23,84 + 23,77 + 23);
@@ -164,10 +164,10 @@ void simple_scroll_bar::_001OnLButtonDown(signal_details * pobj)
    }
    else
    {
-      
+
       if(scrollbar_action(m_eelement, pt))
       {
-         
+
          SetTimer((uint_ptr) this,300,NULL);
 
       }
@@ -182,24 +182,24 @@ void simple_scroll_bar::_001OnLButtonUp(signal_details * pobj)
    SCAST_PTR(::message::mouse,pmouse,pobj)
 
    m_eelement = element_none;
-   
+
    KillTimer(((uint_ptr)this));
-   
+
    KillTimer(((uint_ptr)this)+1);
-   
+
    pmouse->m_bRet = false;
 
    simple_scroll_bar * pcapture = System.get_capture_uie().cast < simple_scroll_bar >();
 
    if((pcapture != NULL && pcapture == this) || m_bTracking)
    {
-      
+
       System.release_capture_uie();
-      
+
       bool bWasTracking = m_bTracking;
-      
+
       m_bTracking = false;
-      
+
       if(bWasTracking)
       {
 
@@ -210,11 +210,11 @@ void simple_scroll_bar::_001OnLButtonUp(signal_details * pobj)
          SetTrackingPos(pt);
 
       }
-      
+
       send_scroll_message(SB_THUMBPOSITION);
-   
+
       Redraw();
-      
+
    }
 
 }
@@ -587,9 +587,9 @@ void simple_scroll_bar::_001OnTimer(signal_details * pobj)
 
    if(ptimer->m_nIDEvent == (uint_ptr) this)
    {
-      
+
       KillTimer(ptimer->m_nIDEvent);
-      
+
       SetTimer(((uint_ptr) this) + 1,10,NULL);
 
       ptimer->m_bRet = true;
@@ -614,14 +614,14 @@ void simple_scroll_bar::_001OnTimer(signal_details * pobj)
 
 bool simple_scroll_bar::scrollbar_lineA()
 {
-   
+
    int32_t nPos = m_scrollinfo.nPos;
-   
+
    nPos-=3;
-   
+
    if(nPos < m_scrollinfo.nMin)
       nPos = m_scrollinfo.nMin;
-   
+
    m_scrollinfo.nPos = nPos;
 
    if(m_eorientation == orientation_horizontal)
@@ -632,7 +632,7 @@ bool simple_scroll_bar::scrollbar_lineA()
    {
       send_scroll_message(SB_LINEUP);
    }
-   
+
    if(m_scrollinfo.nPos == m_scrollinfo.nMin)
       return false;
 
@@ -912,7 +912,7 @@ public:
    point pt1;
    point pt2;
 
-   
+
    trw(sp(::aura::application) papp): element(papp),::user::interaction(papp)
    {
 
@@ -1042,7 +1042,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
             uchAlpha = 255;
             oprop("tracking_fade_in") = false;
          }
-         
+
       }
       else if((bool)oprop("tracking_fade_out"))
       {
@@ -1124,7 +1124,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
    if(m_eorientation == orientation_horizontal)
    {
 
-      
+
       pdc->MoveTo(ptCenter.x - 5,ptCenter.y - 5);
       pdc->LineTo(ptCenter.x - 5,ptCenter.y + 5);
       pdc->MoveTo(ptCenter.x,ptCenter.y - 5);
@@ -1457,7 +1457,7 @@ index simple_scroll_bar::hit_test(point pt,e_element & eelement)
       return 0;
 
    }
-   
+
    if(m_rectB.contains(pt))
    {
 

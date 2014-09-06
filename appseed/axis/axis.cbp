@@ -294,6 +294,8 @@
 		<Unit filename="user/simple_ui/simple_ui_style.h" />
 		<Unit filename="user/simple_ui/simple_ui_tap.cpp" />
 		<Unit filename="user/simple_ui/simple_ui_tap.h" />
+		<Unit filename="user/user.h" />
+		<Unit filename="user/user.inl" />
 		<Unit filename="user/user/user.cpp" />
 		<Unit filename="user/user/user.h" />
 		<Unit filename="user/user/user_buffer.cpp" />

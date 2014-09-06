@@ -52,6 +52,7 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
+			<Add option="-DNO_XMALLOC" />
 			<Add directory="../../atom" />
 			<Add directory="srclib" />
 			<Add directory="../iconv" />
@@ -62,8 +63,6 @@
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
-			<Add option="-laxis" />
-			<Add option="-laxisbzip2" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
