@@ -58,11 +58,11 @@ namespace base
 
       m_pbasesystem->m_basesessionptra.add_unique(this);
 
-      m_puserschema                 = &m_schemasimple;
+//      m_puserschema                 = &m_schemasimple;
 
-      m_schemasimple.m_pfont.alloc(allocer());
+  //    m_schemasimple.m_pfont.alloc(allocer());
 
-      m_schemasimple.m_pfont->create_pixel_font("Helvetica",16);
+    //  m_schemasimple.m_pfont->create_pixel_font("Helvetica",16);
 
    }
 
