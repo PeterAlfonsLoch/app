@@ -3775,9 +3775,23 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">aura/user/user.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="user\simple\simple_message_box.cpp" />
-    <ClCompile Include="user\user\user_check_interface.cpp" />
-    <ClCompile Include="user\user\user_create_context.cpp" />
+    <ClCompile Include="user\framework_user.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">aura/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_message_box.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">aura/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="user\user\user_check_interface.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">aura/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="user\user\user_create_context.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">aura/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClInclude Include="user\user\user_timer_item.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
@@ -3831,7 +3845,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\aura\aura_simple_shell_launcher.cpp" />
     <ClCompile Include="aura\aura\aura_small_ipc_channel.cpp" />
     <ClCompile Include="aura\aura\aura_sprintf.cpp" />
-    <ClCompile Include="aura\aura\aura_system.cpp" />
+    <ClCompile Include="aura\aura\aura_system.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">aura/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="aura\aura\aura_template.cpp" />
     <ClCompile Include="aura\aura\aura_trace.cpp" />
     <ClCompile Include="aura\exception\exception.cpp" />
@@ -4874,8 +4891,14 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\str\str_to_integer.cpp" />
     <ClCompile Include="primitive\str\str_verisimple_wstring.cpp" />
     <ClCompile Include="primitive\str\str_wtostring.cpp" />
-    <ClCompile Include="user\user\user_timer_array.cpp" />
-    <ClCompile Include="user\user\user_timer_item.cpp" />
+    <ClCompile Include="user\user\user_timer_array.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">aura/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="user\user\user_timer_item.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">aura/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>
