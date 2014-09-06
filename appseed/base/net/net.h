@@ -40,9 +40,18 @@ namespace sockets
 } // namespace sockets
 
 
+
 #include "net_net.h"
 
-#include "base/net/net_address.h"
+
+
+#include "net_address.h"
+
+
+
+#include "net_email_address.h"
+#include "net_email.h"
+
 
 
 

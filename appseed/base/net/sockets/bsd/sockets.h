@@ -62,8 +62,6 @@ CLASS_DECL_BASE string c_inet_ntop(int32_t af, const void *src);
 #include "sip/sip_client.h"
 #include "sip/sip_server.h"
 
-#include "net/net_email_address.h"
-#include "net/net_email.h"
 
 #include "smtp/smtp_socket.h"
 #include "smtp/smtpd_socket.h"

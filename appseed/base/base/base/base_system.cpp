@@ -77,13 +77,6 @@ namespace base
 
       m_peengine = new ::exception::engine(this);
 
-#ifdef BSD_STYLE_SOCKETS
-
-      m_psslinit = new ::sockets::SSLInitializer(this);
-
-#endif
-
-
 
       if(!::axis::system::process_initialize())
          return false;

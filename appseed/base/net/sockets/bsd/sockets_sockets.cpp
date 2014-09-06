@@ -12,6 +12,8 @@ namespace sockets
       m_mutexResolvCache(papp)
    {
 
+      m_psslinit = new ::sockets::SSLInitializer(this);
+
       m_pajpbasesocketinit    = NULL;
 
    }
