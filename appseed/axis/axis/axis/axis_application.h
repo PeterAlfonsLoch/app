@@ -24,7 +24,7 @@ namespace axis
       bool                                            m_bAxisInitializeResult;
 
       synch_ptr_array < ::user::interaction >         m_framea;
-      ::database::server *                            m_pdataserver;
+      sp(::database::server)                          m_spdataserver;
 
       bool                                            m_bUpdateMatterOnInstall;
 
@@ -51,7 +51,7 @@ namespace axis
 
 
       
-      inline ::database::server &               dataserver()   { return *m_pdataserver; }
+      inline ::database::server &               dataserver()   { return *(m_spdataserver.m_p); }
 
 
 

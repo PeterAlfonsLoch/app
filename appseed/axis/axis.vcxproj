@@ -3047,9 +3047,15 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\node\windows\windows_copydesk.cpp" />
     <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp" />
     <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp" />
-    <ClCompile Include="axis\node\windows\windows_print_job.cpp" />
+    <ClCompile Include="axis\node\windows\windows_print_job.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="axis\node\windows\windows_window_draw.cpp" />
-    <ClCompile Include="axis\node\windows\windows_message_queue.cpp" />
+    <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="axis\os\ansios\ansios_cross_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>

@@ -51,7 +51,7 @@ namespace axis
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
       ::user::window_draw *                        m_ptwf;
-      sp(::user::str)                              m_puserstr;
+      ::user::str *                                m_puserstr;
 
 
 #ifdef WINDOWS

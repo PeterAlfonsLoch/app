@@ -114,12 +114,6 @@
     <Filter Include="Source Files\axis\axis">
       <UniqueIdentifier>{b15f9423-6971-4587-b04f-ca13192a9bcf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\node">
-      <UniqueIdentifier>{57540175-8b21-49ef-a8b9-0ccf5f3f4a56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node\windows">
-      <UniqueIdentifier>{bf60306d-2d73-4340-8890-4402c6ebccab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\node">
       <UniqueIdentifier>{cbc7bdb2-868d-47ca-9594-7ff7e1135989}</UniqueIdentifier>
     </Filter>
@@ -132,17 +126,11 @@
     <Filter Include="Source Files\axis\message">
       <UniqueIdentifier>{b9bf68d4-d81e-4040-a63c-b2b470c06acd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\node\android">
-      <UniqueIdentifier>{8e87a155-a76c-44a0-8114-25921d3dd914}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\node\android">
       <UniqueIdentifier>{7e1d30ab-0995-45f2-b0b9-64e3a5d68c5a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\axis\node\ansios">
       <UniqueIdentifier>{69195050-6ed5-49b9-b26e-60f94ca26561}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node\ansios">
-      <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user\simple">
       <UniqueIdentifier>{e035613e-26d4-49da-a3f4-14a8924d15cb}</UniqueIdentifier>
@@ -185,6 +173,18 @@
     </Filter>
     <Filter Include="Header Files\database\sqlite">
       <UniqueIdentifier>{f0d65683-66e5-47f0-b31c-aeb2d6be1747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node">
+      <UniqueIdentifier>{57540175-8b21-49ef-a8b9-0ccf5f3f4a56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node\windows">
+      <UniqueIdentifier>{bf60306d-2d73-4340-8890-4402c6ebccab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node\android">
+      <UniqueIdentifier>{8e87a155-a76c-44a0-8114-25921d3dd914}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node\ansios">
+      <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

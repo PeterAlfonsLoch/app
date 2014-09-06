@@ -110,6 +110,8 @@ namespace user
    class str_context;
    class schema_simple_impl;
    class impact;
+   class window_draw;
+   class str;
 
 }
 
@@ -395,8 +397,11 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #endif
 
+#include "axis/primitive/datetime/datetime_value.h"
 
+#include "axis/primitive/datetime/datetime_departament.h"
 
+#include "axis/database/database/database.h"
 
 #include "axis/axis/axis_static_start.h"
 
@@ -413,6 +418,10 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "user/user/user_schema.h"
 
 #include "axis/axis/axis_session.h"
+
+#include "axis/axis/axis_system.h"
+
+#include "axis/axis/axis_simple_app.h"
 
 #include "axis/axis/axis.inl"
 
