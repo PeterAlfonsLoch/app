@@ -1,11 +1,11 @@
 #include "base/net/net_sockets.h"
 
 
-namespace sockets
+namespace http
 {
 
 
-   void http_listener::on_http_complete(http_socket * psocket, ::http::e_status estatus)
+   void listener::on_http_complete(::sockets::http_socket * psocket, ::http::e_status estatus)
    {
 
 

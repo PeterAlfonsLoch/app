@@ -77,7 +77,7 @@ namespace sockets
 
    bool sockets::finalize()
    {
-
+      book bOk = true;
 
       try
       {
@@ -163,7 +163,7 @@ namespace sockets
          }
       }
 
-      return true;
+      return bOk;
 
    }
 
