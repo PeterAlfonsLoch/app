@@ -55,7 +55,9 @@ namespace axis
 
       m_paxissystem->m_basesessionptra.add_unique(this);
 
-      m_puserschema                 = &m_schemasimple;
+      m_pschemasimple               = canew(::user::simple_schema_impl);
+
+      m_puserschema                 = m_pschemasimple;
 
       m_schemasimple.m_pfont.alloc(allocer());
 
@@ -480,10 +482,10 @@ namespace axis
 
    }
 
-   
+
    bool session::wkspace_to_monitor(LPRECT lprect)
    {
-      
+
       int iWkspace = get_best_wkspace(NULL,rect(lprect));
 
       return wkspace_to_monitor(lprect,iWkspace,iWkspace);
@@ -1362,7 +1364,7 @@ namespace axis
          m_pmapKeyPressed = new ::map < ::user::e_key,::user::e_key,bool,bool >;
 
       }
-         
+
       bool bPressed = false;
       if(ekey == ::user::key_shift)
       {

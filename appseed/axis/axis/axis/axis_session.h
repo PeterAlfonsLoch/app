@@ -14,7 +14,7 @@ namespace axis
    {
    public:
 
-      
+
 
       ::user::interaction *                                    m_puiMouseMoveCapture;
       ::user::interaction *                                    m_puiLastLButtonDown;
@@ -48,7 +48,7 @@ namespace axis
 
 
 
-      ::user::schema_simple_impl                               m_schemasimple;
+      sp(::user::schema_simple_impl)                           m_pschemasimple;
 
 
 
@@ -88,11 +88,11 @@ namespace axis
 
       //virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
 
-      
+
       virtual void set_cursor(::visual::e_cursor ecursor);
       virtual void set_default_cursor(::visual::e_cursor ecursor);
 
-      
+
       virtual COLORREF get_default_color(uint64_t ui);
 
       virtual bool is_key_pressed(::user::e_key ekey);
@@ -143,7 +143,7 @@ namespace axis
 
       virtual void  get_cursor_pos(LPPOINT lppoint);
 
-      
+
 
 
 
