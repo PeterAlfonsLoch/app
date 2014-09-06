@@ -20,7 +20,19 @@ namespace sockets
 
    sockets::~sockets()
    {
+
+      if(m_psslinit != NULL)
+      {
+
+         delete m_psslinit;
+
+         m_psslinit = NULL;
+
+      }
+
+
    }
+
 
    bool sockets::initialize1()
    {
@@ -97,6 +109,45 @@ namespace sockets
       {
 
          bOk = false;
+
+      }
+
+      try
+      {
+         m_spportforward.release();
+      }
+      catch(...)
+      {
+      }
+
+      try
+      {
+
+         if(!m_spnet->finalize())
+         {
+
+            m_iReturnCode = -87;
+
+         }
+
+      }
+      catch(...)
+      {
+
+         m_iReturnCode = -87;
+
+      }
+
+      try
+      {
+
+         m_spnet.release();
+
+      }
+      catch(...)
+      {
+
+         m_iReturnCode = -86;
 
       }
 

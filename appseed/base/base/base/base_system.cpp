@@ -264,23 +264,7 @@ namespace base
       }
 
 
-      try
-      {
 
-         if(!m_spnet->finalize())
-         {
-
-            m_iReturnCode = -87;
-
-         }
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -87;
-
-      }
 
 
 
@@ -343,13 +327,6 @@ namespace base
 
 
 
-      try
-      {
-         m_spportforward.release();
-      }
-      catch(...)
-      {
-      }
 
 
 
@@ -431,7 +408,7 @@ namespace base
       try
       {
 
-         m_spwindow.release();
+         ::release(m_psystemwindow);
 
       }
       catch(...)
@@ -440,32 +417,6 @@ namespace base
          m_iReturnCode = -2;
 
       }
-#endif
-
-      try
-      {
-
-         m_spnet.release();
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -86;
-
-      }
-
-#ifdef BSD_STYLE_SOCKETS
-
-      if(m_psslinit != NULL)
-      {
-
-         delete m_psslinit;
-
-         m_psslinit = NULL;
-
-      }
-
 #endif
 
       if(m_peengine != NULL)
