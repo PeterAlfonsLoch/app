@@ -8,35 +8,6 @@ class CLASS_DECL_CORE db_long_set :
 public:
 
 
-   class CLASS_DECL_CORE item
-   {
-   public:
-
-      uint32_t          m_dwTimeout;
-      int64_t        m_l;
-
-   };
-
-   class CLASS_DECL_CORE queue_item :
-      virtual public element
-   {
-   public:
-
-      string         m_strKey;
-      uint32_t          m_dwTimeout;
-      int64_t        m_l;
-
-      queue_item();
-      queue_item(const queue_item & item);
-      ~queue_item();
-
-
-      queue_item & operator = (const queue_item & item);
-
-
-   };
-
-
    class db_long_set_core *            m_pcore;
 
 

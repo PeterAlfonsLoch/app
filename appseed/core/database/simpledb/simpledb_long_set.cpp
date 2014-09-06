@@ -1,6 +1,37 @@
 #include "framework.h"
 #include "base/net/net_sockets.h"
 
+
+class CLASS_DECL_CORE db_long_set_item
+{
+public:
+
+   uint32_t       m_dwTimeout;
+   int64_t        m_l;
+
+};
+
+class CLASS_DECL_CORE db_long_set_queue_item:
+   virtual public element
+{
+public:
+
+   string         m_strKey;
+   uint32_t       m_dwTimeout;
+   int64_t        m_l;
+
+   db_long_set_queue_item();
+   db_long_set_queue_item(const db_long_set_queue_item & item);
+   virtual ~db_long_set_queue_item();
+
+
+   db_long_set_queue_item & operator = (const db_long_set_queue_item & item);
+
+
+};
+
+
+
 class CLASS_DECL_CORE db_long_set_core:
    public db_set
 {
@@ -20,8 +51,8 @@ public:
 
    class db_long_sync_queue *                m_pqueue;
 
-   db_long_set(db_server * pdatacentral);
-   virtual ~db_long_set();
+   db_long_set_core(db_server * pdatacentral);
+   virtual ~db_long_set_core();
 
 };
 
