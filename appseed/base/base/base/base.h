@@ -8,6 +8,9 @@
 #include "axis/axis/axis/axis.h"
 
 
+#include "axis/user/user.h"
+
+
 
 #ifdef _BASE_STATIC
    #define CLASS_DECL_BASE
