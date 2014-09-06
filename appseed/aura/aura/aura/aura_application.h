@@ -140,7 +140,7 @@ namespace aura
       virtual bool set_window_text(::user::interaction * pui, const string & strText);
       virtual ::thread * get_thread(::user::interaction * pui);
       virtual void set_thread(::user::interaction * pui,::thread * pthread);
-      
+      virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int iStride = -1);
 
 
       virtual ::user::interaction * get_active_guie();

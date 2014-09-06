@@ -5582,7 +5582,15 @@ namespace user
    }
 
 
+   window_graphics * interaction_base::get_window_graphics()
+   {
 
+      if(m_pimpl == NULL)
+         return NULL;
+
+      return m_pimpl->get_window_graphics();
+
+   }
 
 
 

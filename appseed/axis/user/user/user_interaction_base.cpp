@@ -2292,7 +2292,14 @@ namespace user
 
    }
 
+   window_graphics * interaction_base::get_window_graphics()
+   {
 
+      throw interface_only_exception(get_app());
+
+      return NULL;
+
+   }
 
 
 } // namespace user
