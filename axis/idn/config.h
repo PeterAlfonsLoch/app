@@ -1,7 +1,7 @@
 #pragma once
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 
 /* Define to the number of bits in type 'ptrdiff_t'. */
 #undef BITSIZEOF_PTRDIFF_T

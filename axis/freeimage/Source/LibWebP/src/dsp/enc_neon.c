@@ -10,7 +10,7 @@
 // ARM NEON version of speed-critical encoding functions.
 //
 // adapted from libvpx (http://www.webmproject.org/code/)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include "./dsp.h"
 
 #if defined(WEBP_USE_NEON)

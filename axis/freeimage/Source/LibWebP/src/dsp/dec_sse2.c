@@ -11,7 +11,7 @@
 //
 // Author: somnath@google.com (Somnath Banerjee)
 //         cduvivier@google.com (Christian Duvivier)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include "./dsp.h"
 
 #if defined(WEBP_USE_SSE2)

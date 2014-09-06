@@ -10,7 +10,7 @@
 // functions for sample output.
 //
 // Author: Skal (pascal.massimino@gmail.com)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include <assert.h>
 #include <stdlib.h>
 #include "../dec/vp8i.h"

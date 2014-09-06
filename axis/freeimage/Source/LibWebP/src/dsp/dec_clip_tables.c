@@ -10,7 +10,7 @@
 // Clipping tables for filtering
 //
 // Author: Skal (pascal.massimino@gmail.com)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include "./dsp.h"
 
 #define USE_STATIC_TABLES     // undefine to have run-time table initialization

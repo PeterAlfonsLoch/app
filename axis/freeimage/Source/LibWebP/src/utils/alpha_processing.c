@@ -10,7 +10,7 @@
 // Utilities for processing transparent channel.
 //
 // Author: Skal (pascal.massimino@gmail.com)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include <assert.h>
 #include "./alpha_processing.h"
 

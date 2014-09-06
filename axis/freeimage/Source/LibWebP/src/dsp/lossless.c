@@ -12,7 +12,7 @@
 // Authors: Vikas Arora (vikaas.arora@gmail.com)
 //          Jyrki Alakuijala (jyrki@google.com)
 //          Urvang Joshi (urvang@google.com)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include "./dsp.h"
 
 #if defined(WEBP_USE_SSE2)

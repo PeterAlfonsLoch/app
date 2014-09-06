@@ -17,7 +17,7 @@
 #define MY_CONFIG_H
 
 
-#include "axis/axis/axis/axis.h"
+#include "aura/aura/aura.h"
 
 
 #undef new

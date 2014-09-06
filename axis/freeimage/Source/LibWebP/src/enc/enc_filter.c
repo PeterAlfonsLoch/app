@@ -10,7 +10,7 @@
 // Selecting filter level
 //
 // Author: somnath@google.com (Somnath Banerjee)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include <assert.h>
 #include "./vp8enci.h"
 

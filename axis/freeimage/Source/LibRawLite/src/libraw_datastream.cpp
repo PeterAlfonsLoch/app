@@ -17,7 +17,7 @@
    (See file LICENSE.LibRaw.pdf provided in LibRaw distribution archive for details).
 
 */
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #ifdef WIN32
 #ifdef __MINGW32__
     #define _WIN32_WINNT 0x0500

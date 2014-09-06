@@ -29,7 +29,7 @@
 #ifndef WMI_WINDOWSMEDIAPHOTO_H
 #define WMI_WINDOWSMEDIAPHOTO_H
 
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 
 //================================================================
 #include <assert.h>

@@ -10,7 +10,7 @@
 // YUV to RGB upsampling functions.
 //
 // Author: somnath@google.com (Somnath Banerjee)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include "./dsp.h"
 #include "./yuv.h"
 

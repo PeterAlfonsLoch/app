@@ -32,7 +32,7 @@
 #define OPJ_INCLUDES_H
 
 
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 
 /*
  * This must be included before any system headers,

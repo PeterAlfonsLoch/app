@@ -10,7 +10,7 @@
 // YUV->RGB conversion function
 //
 // Author: Skal (pascal.massimino@gmail.com)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include "./yuv.h"
 
 

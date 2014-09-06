@@ -9,7 +9,7 @@
 //
 // Author: Jyrki Alakuijala (jyrki@google.com)
 //
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include <assert.h>
 #include <math.h>
 

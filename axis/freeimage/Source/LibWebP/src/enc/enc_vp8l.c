@@ -11,7 +11,7 @@
 //
 // Author: Vikas Arora (vikaas.arora@gmail.com)
 //
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>

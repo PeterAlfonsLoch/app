@@ -10,7 +10,7 @@
 // Pseudo-random utilities
 //
 // Author: Skal (pascal.massimino@gmail.com)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include <string.h>
 #include "./random.h"
 

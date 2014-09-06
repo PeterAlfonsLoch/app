@@ -10,7 +10,7 @@
 // SSE2 version of YUV to RGB upsampling functions.
 //
 // Author: somnath@google.com (Somnath Banerjee)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include "./dsp.h"
 
 #if defined(WEBP_USE_SSE2)

@@ -10,7 +10,7 @@
 // Quantizer initialization
 //
 // Author: Skal (pascal.massimino@gmail.com)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include "./vp8i.h"
 
 static WEBP_INLINE int clip(int v, int M) {

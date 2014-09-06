@@ -9,7 +9,7 @@
 //
 //  WebP container demux.
 //
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif

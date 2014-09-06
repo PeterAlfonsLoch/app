@@ -11,7 +11,7 @@
 //
 // Author: mans@mansr.com (Mans Rullgard)
 // Based on SSE code by: somnath@google.com (Somnath Banerjee)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include "./dsp.h"
 
 #if defined(WEBP_USE_NEON)

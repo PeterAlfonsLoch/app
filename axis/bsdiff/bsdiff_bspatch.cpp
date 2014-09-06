@@ -23,7 +23,7 @@
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
 */
-#include "appseed/axis/axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include <stdarg.h>
 #include "bzlib.h"
 #include "libbsdiff.h"

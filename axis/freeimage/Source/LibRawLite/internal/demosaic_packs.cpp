@@ -20,7 +20,7 @@ it under the terms of the one of three licenses as you choose:
    Look into dcraw homepage (probably http://cybercom.net/~dcoffin/dcraw/)
    for more information
 */
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include <math.h>
 
 #define CLASS LibRaw::

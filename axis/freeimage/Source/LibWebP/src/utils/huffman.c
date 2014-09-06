@@ -10,7 +10,7 @@
 // Utilities for building and looking up Huffman trees.
 //
 // Author: Urvang Joshi (urvang@google.com)
-#include "axis/axis/axis.h"
+#include "aura/aura/aura.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>

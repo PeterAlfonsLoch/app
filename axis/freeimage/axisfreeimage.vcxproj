@@ -2013,30 +2013,131 @@ copy Source\FreeImage.h Dist
     <ClCompile Include="Source\LibJXR\jxrgluelib\JXRGlueJxr.c" />
     <ClCompile Include="Source\LibJXR\jxrgluelib\JXRGluePFC.c" />
     <ClCompile Include="Source\LibJXR\jxrgluelib\JXRMeta.c" />
-    <ClCompile Include="Source\LibOpenJPEG\bio.c" />
-    <ClCompile Include="Source\LibOpenJPEG\cidx_manager.c" />
-    <ClCompile Include="Source\LibOpenJPEG\cio.c" />
-    <ClCompile Include="Source\LibOpenJPEG\dwt.c" />
-    <ClCompile Include="Source\LibOpenJPEG\event.c" />
-    <ClCompile Include="Source\LibOpenJPEG\function_list.c" />
-    <ClCompile Include="Source\LibOpenJPEG\opj_image.c" />
-    <ClCompile Include="Source\LibOpenJPEG\invert.c" />
-    <ClCompile Include="Source\LibOpenJPEG\j2k.c" />
-    <ClCompile Include="Source\LibOpenJPEG\jp2.c" />
-    <ClCompile Include="Source\LibOpenJPEG\mct.c" />
-    <ClCompile Include="Source\LibOpenJPEG\mqc.c" />
-    <ClCompile Include="Source\LibOpenJPEG\openjpeg.c" />
-    <ClCompile Include="Source\LibOpenJPEG\opj_clock.c" />
-    <ClCompile Include="Source\LibOpenJPEG\phix_manager.c" />
-    <ClCompile Include="Source\LibOpenJPEG\pi.c" />
-    <ClCompile Include="Source\LibOpenJPEG\ppix_manager.c" />
-    <ClCompile Include="Source\LibOpenJPEG\raw.c" />
-    <ClCompile Include="Source\LibOpenJPEG\t1.c" />
-    <ClCompile Include="Source\LibOpenJPEG\t2.c" />
-    <ClCompile Include="Source\LibOpenJPEG\tcd.c" />
-    <ClCompile Include="Source\LibOpenJPEG\tgt.c" />
-    <ClCompile Include="Source\LibOpenJPEG\thix_manager.c" />
-    <ClCompile Include="Source\LibOpenJPEG\tpix_manager.c" />
+    <ClCompile Include="Source\LibOpenJPEG\bio.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\cidx_manager.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\cio.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\dwt.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\event.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\function_list.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\opj_image.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\invert.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\j2k.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\jp2.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\mct.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\mqc.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\openjpeg.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\opj_clock.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\opj_includes.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\phix_manager.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\pi.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\ppix_manager.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\raw.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\t1.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\t2.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\tcd.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\tgt.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\thix_manager.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibOpenJPEG\tpix_manager.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">opj_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)opj.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="Source\LibPNG\png.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">Create</PrecompiledHeader>
@@ -2343,45 +2444,206 @@ copy Source\FreeImage.h Dist
     <ClCompile Include="Source\LibRawLite\src\libraw_cxx.cpp" />
     <ClCompile Include="Source\LibRawLite\src\libraw_c_api.cpp" />
     <ClCompile Include="Source\LibRawLite\src\libraw_datastream.cpp" />
-    <ClCompile Include="Source\LibTIFF4\tif_aux.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_close.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_codec.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_color.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_compress.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_dir.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_dirinfo.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_dirread.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_dirwrite.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_dumpmode.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_error.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_extension.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_fax3.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_fax3sm.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_flush.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_getimage.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_jbig.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_jpeg.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_jpeg_12.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_luv.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_lzma.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_lzw.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_next.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_ojpeg.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_open.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_packbits.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_pixarlog.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_predict.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_print.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_read.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_stream.cxx" />
-    <ClCompile Include="Source\LibTIFF4\tif_strip.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_swab.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_thunder.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_tile.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_version.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_warning.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_write.c" />
-    <ClCompile Include="Source\LibTIFF4\tif_zip.c" />
+    <ClCompile Include="Source\LibTIFF4\tiffop.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_aux.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_close.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_codec.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_color.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_compress.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_dir.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_dirinfo.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_dirread.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_dirwrite.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_dumpmode.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_error.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_extension.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_fax3.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_fax3sm.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_flush.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_getimage.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_jbig.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_jpeg.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_jpeg_12.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_luv.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_lzma.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_lzw.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_next.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_ojpeg.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_open.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_packbits.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_pixarlog.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_predict.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_print.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_read.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_stream.cxx">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_strip.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_swab.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_thunder.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_tile.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_version.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_warning.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_write.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="Source\LibTIFF4\tif_zip.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">tiffiop.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)tiffiop.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="Source\LibWebP\src\dec\dec_alpha.c" />
     <ClCompile Include="Source\LibWebP\src\dec\dec_buffer.c" />
     <ClCompile Include="Source\LibWebP\src\dec\dec_frame.c" />
@@ -4757,31 +5019,15 @@ copy Source\FreeImage.h Dist
     <None Include="axisfreeimage.def" />
     <None Include="Source\LibJPEG\jmemdosa.asm" />
     <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj.filters" />
-    <None Include="Source\LibOpenJPEG\AUTHORS" />
-    <None Include="Source\LibOpenJPEG\INSTALL" />
-    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2003.vcproj" />
-    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2005.vcproj" />
-    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcproj" />
-    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcxproj" />
     <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcxproj.filters" />
-    <None Include="Source\LibOpenJPEG\LICENSE" />
-    <None Include="Source\LibOpenJPEG\NEWS" />
-    <None Include="Source\LibOpenJPEG\README" />
-    <None Include="Source\LibOpenJPEG\THANKS" />
     <None Include="Source\LibPNG\LibPNG.2008.vcxproj.filters" />
     <None Include="Source\LibRawLite\dcraw\dcraw.1.html" />
     <None Include="Source\LibRawLite\internal\preprocess.pl" />
     <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj.filters" />
-    <None Include="Source\LibTIFF4\tiffconf.h-vms" />
-    <None Include="Source\LibTIFF4\tiffconf.h.in" />
-    <None Include="Source\LibTIFF4\tiffvers.h.in" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
-      <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
     <ProjectReference Include="..\zlib\axiszlib.vcxproj">
       <Project>{34fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
