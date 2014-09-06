@@ -2661,7 +2661,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="database\database\database_template.h" />
     <ClInclude Include="database\database\database_update_hint.h" />
     <ClInclude Include="database\database\database_user_interaction.h" />
-    <ClCompile Include="axis\axis\axis_print_job.cpp" />
+    <ClCompile Include="axis\axis\axis_print_job.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="axis\axis\axis_static_start.cpp" />
     <ClCompile Include="axis\axis_policy\axis_c.c">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>

@@ -37,18 +37,18 @@ namespace axis
 
       ::visual::e_cursor                                       m_ecursor;
       ::visual::e_cursor                                       m_ecursorDefault;
-      ::axis::copydesk_sp                                      m_spcopydesk;
+      ::axis::copydesk *                                       m_pcopydesk;
 
 
-      sp(::user::interaction)                                  m_spuiFocus;
-      sp(::user::str_context)                                  m_puserstrcontext;
-      map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
-      sp(::user::user)                                         m_spuser;
+      ::user::interaction *                                   m_puiFocus;
+      ::user::str_context *                                   m_puserstrcontext;
+      map < ::user::e_key,::user::e_key,bool,bool > *         m_pmapKeyPressed;
+      ::user::user *                                          m_puser;
 
 
 
 
-      sp(::user::schema_simple_impl)                           m_pschemasimple;
+      ::user::schema_simple_impl *                            m_pschemasimple;
 
 
 
@@ -78,7 +78,7 @@ namespace axis
 
 
       ::axis::copydesk & copydesk();
-      inline ::user::user *            user()         { return m_spuser.m_p; }
+      inline ::user::user *            user()         { return m_puser; }
 
       ::user::str_context *                     str_context();
 

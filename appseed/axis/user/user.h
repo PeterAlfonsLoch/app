@@ -109,9 +109,6 @@
 
 
 
-#include "axis/axis/axis_static_start.h"
-
-
 #include "axis/primitive/datetime/datetime_value.h"
 #include "axis/primitive/datetime/datetime_departament.h"
 

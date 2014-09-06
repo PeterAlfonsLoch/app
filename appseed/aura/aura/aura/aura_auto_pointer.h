@@ -97,6 +97,15 @@ public:
 
    }
 
+   T & operator *()
+   {
+      return*m_p;
+   }
+
+   const T & operator *() const
+   {
+      return*m_p;
+   }
 
    void reset(T * p)
    {
@@ -134,19 +143,6 @@ public:
 
    }
 
-   T * operator *()
-   {
-
-      return *m_p;
-
-   }
-
-   const T * operator *() const
-   {
-
-      return *m_p;
-
-   }
 
 };
 

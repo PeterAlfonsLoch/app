@@ -398,7 +398,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
 
-
+#include "axis/axis/axis_static_start.h"
 
 #include "axis/graphics/graphics.h"
 

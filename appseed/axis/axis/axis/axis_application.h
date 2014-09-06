@@ -24,7 +24,7 @@ namespace axis
       bool                                            m_bAxisInitializeResult;
 
       synch_ptr_array < ::user::interaction >         m_framea;
-      sp(::database::server)                          m_spdataserver;
+      ::database::server *                            m_pdataserver;
 
       bool                                            m_bUpdateMatterOnInstall;
 
@@ -40,7 +40,7 @@ namespace axis
       static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
 
       bool                                            m_bShouldInitializeGTwf;
-      sp(::user::interaction)                         m_pwndMain;
+      ::user::interaction *                           m_pwndMain;
       bool                                            m_bInitializeProDevianMode;
 
 
@@ -51,7 +51,7 @@ namespace axis
 
 
       
-      inline ::database::server &               dataserver()   { return *m_spdataserver; }
+      inline ::database::server &               dataserver()   { return *m_pdataserver; }
 
 
 
