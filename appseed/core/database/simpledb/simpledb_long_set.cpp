@@ -238,9 +238,9 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
    if(m_pcore->m_pdataserver->m_bRemote)
    {
 
-      item longitem;
+      db_long_set_item longitem;
 
-      if(m_map.Lookup(lpKey, longitem) && longitem.m_dwTimeout > get_tick_count())
+      if(m_pcore->m_map.Lookup(lpKey,longitem) && longitem.m_dwTimeout > get_tick_count())
       {
          *plValue = longitem.m_l;
          return true;
@@ -259,19 +259,19 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       strUrl += System.url().url_encode(lpKey);
 
       //m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
-      m_phttpsession = System.http().request(m_phttpsession, strUrl, set);
+      m_pcore-> m_phttpsession = System.http().request(m_pcore->m_phttpsession,strUrl,set);
 
-      if(m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
+      if(m_pcore->m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
       {
          return false;
       }
 
-      *plValue = ::str::to_int64(string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(), m_phttpsession->m_memoryfile.get_memory()->get_size()));
+      *plValue = ::str::to_int64(string((const char *)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
       longitem.m_dwTimeout = get_tick_count() + 23 * (5000);
       longitem.m_l = *plValue;
 
-      m_map.set_at(lpKey, longitem);
+      m_pcore->m_map.set_at(lpKey,longitem);
       return true;
 
    }
