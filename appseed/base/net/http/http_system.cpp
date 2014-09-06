@@ -1237,7 +1237,7 @@ retry:
       }
 
 
-      if (set["http_listener"].cast < ::sockets::http_listener >() != NULL)
+      if (set["http_listener"].cast < ::http::listener >() != NULL)
       {
          psocket->::sockets::http_socket::m_plistener = set["http_listener"].cast < ::sockets::http_listener >();
       }
