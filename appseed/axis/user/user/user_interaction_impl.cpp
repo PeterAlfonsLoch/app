@@ -2304,7 +2304,7 @@ namespace user
 
       sl.unlock();
 
-      m_spdibFlip->update_window(this,NULL);
+      m_spdibFlip->update_window(m_pui,NULL);
 
    }
 

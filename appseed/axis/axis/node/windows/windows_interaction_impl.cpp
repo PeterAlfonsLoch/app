@@ -5423,7 +5423,7 @@ namespace windows
       if(m_spdib.is_set() && m_spdib->get_graphics() != NULL)
       {
 
-         m_spdib->update_window(this,NULL);
+         m_spdib->update_window(m_pui,NULL);
 
       }
 
@@ -5501,7 +5501,10 @@ namespace windows
 
    }
 
-
+   window_graphics * interaction_impl::get_window_graphics()
+   {
+      return m_pgraphics;
+   }
 } // namespace windows
 
 

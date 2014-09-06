@@ -1,6 +1,8 @@
 #pragma once
 
 
+class window_graphics;
+
 namespace user
 {
 
@@ -20,6 +22,10 @@ namespace user
       virtual void GetWindowRect(__rect64 * lprect) = 0;
       virtual rect GetWindowRect() = 0;
       virtual rect64 GetWindowRect64() = 0;
+
+
+      virtual ::window_graphics * get_window_graphics() = 0;
+      virtual oswindow get_handle() = 0;
 
 
    };
