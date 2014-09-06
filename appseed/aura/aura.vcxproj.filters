@@ -2024,6 +2024,9 @@
     <ClInclude Include="graphics\draw2d\draw2d_fwd.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_draw_context.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3435,6 +3438,12 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_region.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_draw_context.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_gdi.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "app/appseed/base/base/base/base.h"
+#include "aura/aura/aura.h"
+#include "aura/graphics/graphics.h"
 
 #undef new
 

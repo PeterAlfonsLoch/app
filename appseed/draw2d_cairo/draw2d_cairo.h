@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "app/appseed/base/base/base/base.h" // System.ftlibrary()
+#include "aura/aura/aura.h" // System.ftlibrary()
+#include "aura/graphics/graphics.h"
 
 #include "app/axis/cairo/src/cairo-features.h"
 #include "app/axis/cairo/src/cairo.h"
