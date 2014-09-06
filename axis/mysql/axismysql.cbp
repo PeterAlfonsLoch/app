@@ -67,6 +67,7 @@
 			<Add option="-Wl,-z,origin" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
+			<Add option="-laura" />
 			<Add option="-laxis" />
 			<Add option="-laxiszlib" />
 			<Add option="-laxisopenssl" />
@@ -469,6 +470,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="mysys_err.h" />
+		<Unit filename="mysys_ssl/crypt_genhash_impl.cc" />
 		<Unit filename="mysys_ssl/my_aes.cc" />
 		<Unit filename="mysys_ssl/my_default.cc" />
 		<Unit filename="mysys_ssl/my_default_priv.h" />
