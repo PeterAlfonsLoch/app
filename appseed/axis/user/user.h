@@ -5,6 +5,8 @@
 
 #include "axis/axis/axis/axis.h"
 
+#include "aura/user/user.h"
+
 
 #define new AURA_NEW
 
