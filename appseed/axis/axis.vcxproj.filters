@@ -186,6 +186,9 @@
     <Filter Include="Source Files\axis\node\ansios">
       <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\axis\compress">
+      <UniqueIdentifier>{aa64ea9e-1344-463d-b1e9-004e327ca47d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\draw2d\draw2d.h">
@@ -830,6 +833,15 @@
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="axis\compress\bzip_stream.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\gzip_stream.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\compress\compress.h">
+      <Filter>Header Files\axis\compress</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp">
@@ -1374,9 +1386,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

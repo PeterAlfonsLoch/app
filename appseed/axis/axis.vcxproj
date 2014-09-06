@@ -1663,6 +1663,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\axis_policy\axis_policy_objc.h" />
     <ClInclude Include="axis\axis_policy\axis_policy_objcpp.h" />
     <ClInclude Include="axis\axis_policy\axis_policy_winrt.h" />
+    <ClInclude Include="axis\compress\bzip_stream.h" />
+    <ClInclude Include="axis\compress\compress.h" />
+    <ClInclude Include="axis\compress\gzip_stream.h" />
     <ClInclude Include="axis\message\message_user.h" />
     <ClInclude Include="axis\node\android\android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
