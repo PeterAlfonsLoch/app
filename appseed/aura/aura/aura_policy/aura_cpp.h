@@ -71,7 +71,13 @@ class stringa;
 class string;
 class id;
 
+namespace colorertake5
+{
 
+   class ParserFactory;
+
+
+} // namespace colorertake5
 
 namespace visual
 {
@@ -829,9 +835,6 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 #include "aura/aura/aura/aura_cregexp.h"
 #include "aura/aura/aura/aura_cregexp_util.h"
-
-#include "aura/user/colorertake5/colorertake5.h"
-//#include "filesystem/file/file_edit_buffer.h"
 
 
 #include "aura/aura/process/process.h"

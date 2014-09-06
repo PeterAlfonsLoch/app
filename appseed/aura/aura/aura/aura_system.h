@@ -47,7 +47,7 @@ namespace aura
       string_map < string_to_int >                 m_mapNameToEnum;
       ::aura::os_sp                                m_spos;
       spa(::aura::session)                         m_basesessionptra;
-      sp(colorertake5::ParserFactory)              m_pparserfactory;
+      colorertake5::ParserFactory *                m_pparserfactory;
 
 
       sp(mutex)                                    m_spmutexUserAppData;
