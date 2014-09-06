@@ -128,7 +128,15 @@
 		<Unit filename="my_default.h" />
 		<Unit filename="my_dir.h" />
 		<Unit filename="my_getopt.h" />
-		<Unit filename="my_global.h" />
+		<Unit filename="my_global.h">
+			<Option compilerVar="C" />
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="my_global_cc.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="my_icp.h" />
 		<Unit filename="my_list.h" />
 		<Unit filename="my_md5.h" />
@@ -435,7 +443,11 @@
 		<Unit filename="mysys/my_write.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="mysys/mysys_priv.h" />
+		<Unit filename="mysys/mysys_priv.h">
+			<Option compilerVar="C" />
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
 		<Unit filename="mysys/psi_noop.c">
 			<Option compilerVar="CC" />
 		</Unit>
