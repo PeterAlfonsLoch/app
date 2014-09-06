@@ -1,6 +1,5 @@
 #include "framework.h"
-
-
+#include "visual_cursor.h"
 
 
 namespace visual
