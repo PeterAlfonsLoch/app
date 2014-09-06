@@ -31,7 +31,7 @@ public:
    static inline duration create_null();
 
 
-   inline void fset(double dSeconds, double dNanoseconds);
+   void fset(double dSeconds, double dNanoseconds);
    static inline duration fcreate(double dSeconds, double dNanoseconds);
 
    void set(int64_t i, e_unit eunit);
