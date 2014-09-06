@@ -14,6 +14,8 @@ namespace user
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 
+      virtual void _000OnDraw(::draw2d::graphics * pdc) = 0;
+
       virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc) = 0;
 
       virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc) = 0;
