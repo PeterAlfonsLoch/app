@@ -30,7 +30,7 @@ it under the terms of the one of three licenses as you choose:
 //#include <new>
 //#include <exception>
 //#include <sys/types.h>
-//#include <sys/stat.h>
+#include <sys/stat.h>
 //#ifndef WIN32
 //#include <netinet/in.h>
 //#else

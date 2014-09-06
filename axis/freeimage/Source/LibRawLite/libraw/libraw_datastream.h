@@ -27,10 +27,10 @@ it under the terms of the one of three licenses as you choose:
 #pragma warning (disable : 4018 )
 #pragma warning (disable : 4305 )
 
-//#include <stdio.h>
-//#include <sys/types.h>
-//#include <errno.h>
-//#include <string.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <errno.h>
+#include <string.h>
 //#ifdef _WIN32
 //#include <windows.h>
 //#endif

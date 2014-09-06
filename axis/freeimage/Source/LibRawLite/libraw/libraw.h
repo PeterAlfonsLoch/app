@@ -31,10 +31,10 @@ it under the terms of the one of three licenses as you choose:
 #define LIBRAW_USE_STREAMS_DATASTREAM_MAXSIZE (250*1024L*1024L)
 
 
-//#include <limits.h>
-//#include <memory.h>
-//#include <stdio.h>
-//#include <stdlib.h>
+#include <limits.h>
+#include <memory.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 
 #include "libraw_datastream.h"
