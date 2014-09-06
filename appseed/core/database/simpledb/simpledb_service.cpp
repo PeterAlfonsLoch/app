@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "base/net/net_sockets.h"
+#include "core/database/simpledb/simpledb_socket_thread.h"
 
 #ifdef WINDOWS
 #include <ShlObj.h>

@@ -3,16 +3,111 @@
 #include "db_str_set.h"
 
 
+class CLASS_DECL_CORE db_str_set_item
+{
+public:
+
+
+   uint32_t          m_dwTimeout;
+   string            m_str;
+
+
+};
+
+
+class CLASS_DECL_CORE db_str_set_queue_item:
+   virtual public element
+{
+public:
+
+   string            m_strKey;
+   uint32_t          m_dwTimeout;
+   string            m_str;
+
+
+   db_str_set_queue_item();
+   db_str_set_queue_item(const db_str_set_queue_item & item);
+   virtual ~db_str_set_queue_item();
+
+
+   db_str_set_queue_item & operator = (const db_str_set_queue_item & item);
+
+
+};
+
+
+class CLASS_DECL_CORE db_str_set_core:
+   virtual public ::db_set
+{
+public:
+
+
+   mutex                                        m_mutex;
+   sockets::socket_handler                      m_handler;
+   sockets::http_session *                      m_phttpsession;
+   string_map < db_str_set_item >               m_map;
+   bool                                         m_bIndexed;
+   ::mysql::database *                          m_pmysqldbUser;
+   string                                       m_strUser;
+
+   class db_str_sync_queue *                    m_pqueue;
+
+
+
+
+   db_str_set_core(db_server * pserver);
+   virtual ~db_str_set_core();
+
+
+};
+
+
+class CLASS_DECL_CORE db_str_sync_queue:
+   public simple_thread
+{
+public:
+
+   mutex                                              m_mutex;
+   db_str_set *                                       m_pset;
+   sockets::socket_handler                            m_handler;
+   sockets::http_session *                            m_phttpsession;
+
+   smart_pointer_array < db_str_set_queue_item >      m_itema;
+
+
+   db_str_sync_queue(sp(::aura::application) papp);
+   virtual ~db_str_sync_queue();
+
+   virtual int32_t run();
+
+   void queue(const char * pszKey,const char * psz);
+
+};
+
+
+db_str_set_core::db_str_set_core(db_server * pserver):
+element(pserver->get_app()),
+m_sockethandler(get_app()),
+m_mutex(get_app())
+{
+}
+
+db_str_set_core::~db_str_set_core()
+{
+
+}
+
 db_str_set::db_str_set(db_server * pserver) :
    element(pserver->get_app()),
    db_set(pserver, "stringtable"),
-   m_handler(pserver->get_app()),
-   m_mutex(pserver->get_app())
+   m_mutex(get_app())
 {
+
+   m_phandler = new ::sockets::socket_handler(get_app());
 
    m_pqueue       = NULL;
 
-   m_phttpsession = NULL;
+//   m_phttpsession = NULL;
 
    m_pmysqldbUser = pserver->m_pmysqldbUser;
    m_strUser      = pserver->m_strUser;
@@ -44,6 +139,8 @@ db_str_set::db_str_set(db_server * pserver) :
 
 db_str_set::~db_str_set()
 {
+   
+   ::aura::del(m_phandler);
 
 }
 
@@ -73,7 +170,7 @@ db_str_set::queue_item & db_str_set::queue_item::operator = (const queue_item & 
 }
 
 
-db_str_set::sync_queue::sync_queue(sp(::aura::application) papp) :
+db_str_sync_queue::db_str_sync_queue(sp(::aura::application) papp):
    element(papp),
    thread(papp),
    simple_thread(papp),
@@ -90,13 +187,13 @@ db_str_set::sync_queue::sync_queue(sp(::aura::application) papp) :
 
 }
 
-db_str_set::sync_queue::~sync_queue()
+db_str_sync_queue::~db_str_sync_queue()
 {
 }
 
 
 
-int32_t db_str_set::sync_queue::run()
+int32_t db_str_sync_queue::run()
 {
 
    single_lock sl(&m_mutex, false);
@@ -194,12 +291,12 @@ repeat:;
 }
 
 
-void db_str_set::sync_queue::queue(const char * pszKey, const char * psz)
+void db_str_sync_queue::queue(const char * pszKey,const char * psz)
 {
 
    single_lock sl(&m_mutex, true);
 
-   sp(queue_item) item(new queue_item);
+   sp(db_str_set::queue_item) item(new db_str_set::queue_item);
 
    item->m_strKey = pszKey;
    item->m_str = psz;
@@ -404,7 +501,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       if(m_pqueue == NULL)
       {
 
-         m_pqueue = new sync_queue(get_app());
+         m_pqueue = new db_str_sync_queue(get_app());
          m_pqueue->m_pset = this;
          m_pqueue->begin();
 

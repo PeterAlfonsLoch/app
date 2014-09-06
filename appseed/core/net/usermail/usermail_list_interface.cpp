@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "base/net/net_sockets.h"
+#include "core/database/simpledb/simpledb_socket_thread.h"
+#include "core/net/usermail/usermail_db_pop3.h"
 
 
 namespace usermail
@@ -54,24 +57,25 @@ namespace usermail
 
    void list_interface::data::_001GetItemText(::user::list_item * pitem)
    {
-      single_lock slDataset(&m_plist->m_paccount->m_pop3.m_csDataset, TRUE);
+
+      single_lock slDataset(&m_plist->m_paccount->m_ppop3->m_csDataset, TRUE);
       string strId;
       strId = m_straId[pitem->m_iItem];
       if(pitem->m_iSubItem == 0)
       {
-         pitem->m_strText = m_plist->m_paccount->m_pop3.m_pdataset->query_item("select sender from inbox where id = '" + strId + "'");
+         pitem->m_strText = m_plist->m_paccount->m_ppop3->m_pdataset->query_item("select sender from inbox where id = '" + strId + "'");
       }
       else if(pitem->m_iSubItem == 1)
       {
-         pitem->m_strText = m_plist->m_paccount->m_pop3.m_pdataset->query_item("select subject from inbox where id = '" + strId + "'");
+         pitem->m_strText = m_plist->m_paccount->m_ppop3->m_pdataset->query_item("select subject from inbox where id = '" + strId + "'");
       }
       else if(pitem->m_iSubItem == 2)
       {
-         pitem->m_strText = m_plist->m_paccount->m_pop3.m_pdataset->query_item("select sentdatetime from inbox where id = '" + strId + "'");
+         pitem->m_strText = m_plist->m_paccount->m_ppop3->m_pdataset->query_item("select sentdatetime from inbox where id = '" + strId + "'");
       }
-      if(m_plist->m_paccount->m_pop3.m_pdataset->num_rows() == 1)
+      if(m_plist->m_paccount->m_ppop3->m_pdataset->num_rows() == 1)
       {
-         pitem->m_strText = m_plist->m_paccount->m_pop3.m_pdataset->FieldValueAt(0);
+         pitem->m_strText = m_plist->m_paccount->m_ppop3->m_pdataset->FieldValueAt(0);
       }
       else
       {
@@ -91,9 +95,9 @@ namespace usermail
    {
       if(m_plist->m_paccount == NULL)
          return;
-      single_lock slDataset(&m_plist->m_paccount->m_pop3.m_csDataset, TRUE);
+      single_lock slDataset(&m_plist->m_paccount->m_ppop3->m_csDataset, TRUE);
       m_straId.remove_all();
-      sp(::sqlite::set) pdataset = m_plist->m_paccount->m_pop3.m_pdataset;
+      sp(::sqlite::set) pdataset = m_plist->m_paccount->m_ppop3->m_pdataset;
       pdataset->query_items(m_straId, "select id from inbox");
    }
 

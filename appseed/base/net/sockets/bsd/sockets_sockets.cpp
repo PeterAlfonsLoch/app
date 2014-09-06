@@ -58,6 +58,11 @@ namespace sockets
       if(!::aura::departament::initialize1())
          return false;
 
+
+      m_spportforward = Application.alloc(System.type_info < ::net::port_forward > ());
+
+
+
       
       if(Application.is_system())
       {

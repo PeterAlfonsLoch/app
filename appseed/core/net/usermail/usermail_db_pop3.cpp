@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "base/net/net_sockets.h"
+#include "usermail_db_pop3.h"
 
 
 namespace usermail

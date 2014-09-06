@@ -1,6 +1,29 @@
 #include "framework.h"
 #include "base/net/net_sockets.h"
 
+class CLASS_DECL_CORE db_long_set_core:
+   public db_set
+{
+public:
+
+
+   mutex                                     m_mutex;
+   sockets::socket_handler *                 m_phandler;
+   sockets::http_session *                   m_phttpsession;
+
+
+   string_map < item >                       m_map;
+   bool                                      m_bIndexed;
+
+   ::mysql::database *                       m_pmysqldbUser;
+   string                                    m_strUser;
+
+   class db_long_sync_queue *                m_pqueue;
+
+   db_long_set(db_server * pdatacentral);
+   virtual ~db_long_set();
+
+};
 
 
 class CLASS_DECL_CORE db_long_sync_queue:
@@ -35,9 +58,10 @@ public:
 db_long_set::db_long_set(db_server * pserver) :
    element(pserver->get_app()),
    db_set(pserver, "integertable"),
-   m_handler(pserver->get_app()),
-   m_mutex(pserver->get_app())
+   m_mutex(get_app())
 {
+   
+   m_phandler        = new ::sockets::socket_handler(get_app());
 
    m_phttpsession    = NULL;
 
@@ -51,6 +75,9 @@ db_long_set::db_long_set(db_server * pserver) :
 
 db_long_set::~db_long_set()
 {
+
+   ::aura::del(m_phandler);
+
 }
 
 
@@ -161,12 +188,12 @@ void db_long_sync_queue::queue(const char * pszKey,int64_t l)
 
    single_lock sl(&m_mutex, true);
 
-   queue_item item;
+   db_long_set::queue_item item;
 
    item.m_strKey = pszKey;
    item.m_l = l;
 
-   m_itema.add(new queue_item(item));
+   m_itema.add(new db_long_set::queue_item(item));
 
 }
 
@@ -841,4 +868,5 @@ bool db_long_set::save(const char * lpKey, LPPOINT lpPoint)
    return true;
 
 }
+
 

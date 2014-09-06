@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "base/net/net_sockets.h"
 #include "charguess.h"
 
 
@@ -199,9 +200,6 @@ namespace core
       return false;
       }*/
 
-
-
-      m_spportforward.alloc(allocer());
 
 
       m_phtml = create_html();
@@ -636,16 +634,6 @@ namespace core
       catch(...)
       {
 
-      }
-
-
-
-      try
-      {
-         m_spportforward.release();
-      }
-      catch(...)
-      {
       }
 
 

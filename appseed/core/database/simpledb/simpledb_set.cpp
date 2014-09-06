@@ -1,5 +1,6 @@
 #include "framework.h"
 
+
 db_set::db_set(db_server * pserver, const char * pszTable)
 {
    m_pdataserver = pserver;

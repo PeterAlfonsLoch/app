@@ -1,15 +1,6 @@
 #pragma once
 
 
-class db_server;
-
-
-namespace mysql
-{
-   class database;
-}
-
-class db_long_sync_queue;
 
 class CLASS_DECL_CORE db_long_set :
    public db_set
@@ -46,20 +37,7 @@ public:
    };
 
 
-
-   //mutex                                        m_mutex;
-   //sockets::socket_handler                      m_handler;
-   //sockets::http_session *                      m_phttpsession;
-
-
-   string_map < item >            m_map;
-   bool                                         m_bIndexed;
-
-   db_long_sync_queue *                                 m_pqueue;
-   
-
-   ::mysql::database *                          m_pmysqldbUser;
-   string                                       m_strUser;
+   class db_long_set_core *            m_pcore;
 
 
    db_long_set(db_server * pdatacentral);

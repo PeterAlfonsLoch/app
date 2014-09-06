@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "dynamic_source.h"
 
 
 namespace dynamic_source

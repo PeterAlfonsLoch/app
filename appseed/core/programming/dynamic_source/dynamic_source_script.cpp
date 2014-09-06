@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "dynamic_source.h"
+
 
 #if defined(LINUX) || defined(APPLEOS)
 #if defined(APPLEOS)

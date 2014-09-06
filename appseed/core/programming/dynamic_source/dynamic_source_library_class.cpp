@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "dynamic_source.h"
 #include <sys/stat.h>
 
 
@@ -6,22 +7,27 @@ namespace dynamic_source
 {
 
 
-   typedef struct tagLOADPARMS32 {
+   typedef struct tagLOADPARMS32
+   {
       char * lpEnvAddress;  // address of environment strings
       char * lpCmdLine;     // address of command line
       char * lpCmdShow;     // how to show new program
       uint32_t dwReserved;    // must be zero
    } LOADPARMS32;
 
+
    library_class::library_class(sp(::aura::application) papp)
       :  element(papp),
       m_memfileError(papp),
       m_library(papp)
    {
+
    }
+
 
    bool library_class::DoesMatchVersion()
    {
+      
       for(int32_t i = 0; i < m_straSourcePath.get_size(); i++)
       {
          struct stat st;
