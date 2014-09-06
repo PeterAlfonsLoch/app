@@ -1,4 +1,4 @@
-#include "framework.h"
+#include "base/net/net_sockets.h"
 
 
 ifs_file::ifs_file(sp(::aura::application) papp, var varFile) :

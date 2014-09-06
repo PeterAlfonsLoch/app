@@ -3205,11 +3205,17 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="filesystem\fs\fs_data.cpp" />
     <ClCompile Include="filesystem\fs\fs_fs.cpp" />
     <ClCompile Include="filesystem\fs\fs_ifs.cpp" />
-    <ClCompile Include="filesystem\fs\fs_ifs_file.cpp" />
+    <ClCompile Include="filesystem\fs\fs_ifs_file.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="filesystem\fs\fs_item.cpp" />
     <ClCompile Include="filesystem\fs\fs_item_array.cpp" />
     <ClCompile Include="filesystem\fs\fs_native_fs.cpp" />
-    <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp" />
+    <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp" />
     <ClCompile Include="filesystem\fs\fs_set.cpp" />
     <ClCompile Include="graphics\visual\visual_api.cpp" />
@@ -3238,13 +3244,34 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\http\http_status.cpp" />
     <ClCompile Include="net\http\http_system.cpp" />
     <ClCompile Include="net\http\webserver\webserver_http_cookie.cpp" />
-    <ClCompile Include="net\http\webserver\webserver_http_form.cpp" />
-    <ClCompile Include="net\http\webserver\webserver_http_request.cpp" />
-    <ClCompile Include="net\http\webserver\webserver_http_response.cpp" />
-    <ClCompile Include="net\http\webserver\webserver_http_transaction.cpp" />
-    <ClCompile Include="net\mail\mail_pop3.cpp" />
-    <ClCompile Include="net\mail\mail_pop3_socket.cpp" />
-    <ClCompile Include="net\mail\mail_simple_pop3.cpp" />
+    <ClCompile Include="net\http\webserver\webserver_http_form.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_request.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_response.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\http\webserver\webserver_http_transaction.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_pop3.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_pop3_socket.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="net\mail\mail_simple_pop3.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="net\net_address.cpp" />
     <ClCompile Include="net\net_email.cpp" />
     <ClCompile Include="net\net_email_address.cpp" />
