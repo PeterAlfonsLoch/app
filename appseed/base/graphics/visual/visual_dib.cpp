@@ -1,6 +1,6 @@
 #include "framework.h"
 #ifndef METROWIN
-#include "freeimage/Source/freeimage.h"
+#include "freeimage/Source/FreeImage.h"
 #endif
 
 
@@ -34,7 +34,7 @@ namespace visual
 
    bool dib_sp::load_from_file(var varFile, bool bCache)
    {
-      
+
       return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, varFile, bCache, m_p->m_pauraapp);
 
    }
@@ -178,7 +178,7 @@ namespace visual
 
    bool dib_sp::from(class draw2d::graphics * pgraphics, struct FIBITMAP * pfi, bool bUnload)
    {
-      
+
       return Sys(m_p->m_pauraapp).visual().imaging().from(m_p, pgraphics, pfi, bUnload);
 
    }
