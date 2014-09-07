@@ -67,10 +67,12 @@
 			<Add option="-ldl" />
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
+			<Add option="-laura" />
+			<Add option="-laxis" />
+			<Add option="-laxisfreeimage" />
+			<Add option="-laxisfreetype" />
+			<Add option="-laxiscairo" />
 			<Add option="-lbase" />
-			<Add option="-lbasefreeimage" />
-			<Add option="-lbasefreetype" />
-			<Add option="-lbasecairo" />
 			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />

@@ -83,6 +83,7 @@
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
 			<Add option="-lXext" />
+			<Add option="-laura" />
 			<Add option="-laxisfreeimage" />
 			<Add option="-laxisfreetype" />
 			<Add option="-laxiszlib" />
