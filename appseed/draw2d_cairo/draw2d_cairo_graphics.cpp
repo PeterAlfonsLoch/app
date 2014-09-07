@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <math.h>
 
 
 
@@ -5348,7 +5349,7 @@ synch_lock ml(m_spmutex);
           return true;
 
        cairo_surface_t * psurface = NULL;
-       
+
        cairo_pattern_get_surface(ppattern,&psurface);
 
        if(psurface == NULL)

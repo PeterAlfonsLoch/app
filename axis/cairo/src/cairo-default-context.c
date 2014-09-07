@@ -56,6 +56,10 @@
 #define INFINITY HUGE_VAL
 #endif
 
+#if !defined(HUGE_VALD)
+#define HUGE_VALD ((double)INFINITY)
+#endif
+
 static freed_pool_t context_pool;
 
 void

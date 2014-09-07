@@ -18,7 +18,7 @@ void init_cairo_mutex(sp(::aura::application) papp)
 
 }
 
-
+#ifdef WINDOWS
 
 #ifdef METROWIN
 [Platform::MTAThread]
@@ -87,3 +87,4 @@ BOOL WINAPI DllMain(HINSTANCE hInstance,DWORD dwReason,LPVOID lpReserved)
 }
 
 
+#endif

@@ -58,6 +58,7 @@
 			<Add directory="../../../app" />
 			<Add directory="../../../app/thirdparty/include" />
 			<Add directory="../base" />
+			<Add directory="../aura" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />

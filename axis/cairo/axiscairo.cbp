@@ -82,6 +82,11 @@
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
+			<Add option="-lXext" />
+			<Add option="-laxisfreeimage" />
+			<Add option="-laxisfreetype" />
+			<Add option="-laxiszlib" />
+			<Add option="-laxispixman" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
@@ -133,6 +138,9 @@
 		</Unit>
 		<Unit filename="src/cairo-cache-private.h" />
 		<Unit filename="src/cairo-cache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cairo-cairoerror.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/cairo-cff-subset.c">
@@ -200,19 +208,10 @@
 		<Unit filename="src/cairo-device.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/cairo-directfb-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-directfb.h" />
 		<Unit filename="src/cairo-drm.h" />
-		<Unit filename="src/cairo-egl-context.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-error-inline.h" />
 		<Unit filename="src/cairo-error-private.h" />
-		<Unit filename="src/cairo-error.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-fallback-compositor.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -249,53 +248,11 @@
 		</Unit>
 		<Unit filename="src/cairo-ft-private.h" />
 		<Unit filename="src/cairo-ft.h" />
-		<Unit filename="src/cairo-gl-composite.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-gl-device.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-gl-dispatch-private.h" />
-		<Unit filename="src/cairo-gl-dispatch.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-gl-ext-def-private.h" />
-		<Unit filename="src/cairo-gl-glyphs.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-gl-gradient-private.h" />
-		<Unit filename="src/cairo-gl-gradient.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-gl-info.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-gl-msaa-compositor.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-gl-operand.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-gl-private.h" />
-		<Unit filename="src/cairo-gl-shaders.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-gl-source.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-gl-spans-compositor.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-gl-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-gl-traps-compositor.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-gl.h" />
-		<Unit filename="src/cairo-glx-context.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-gstate-private.h" />
 		<Unit filename="src/cairo-gstate.c">
 			<Option compilerVar="CC" />
@@ -361,9 +318,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/cairo-os2-private.h" />
-		<Unit filename="src/cairo-os2-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-os2.h" />
 		<Unit filename="src/cairo-output-stream-private.h" />
 		<Unit filename="src/cairo-output-stream.c">
@@ -446,19 +400,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/cairo-ps.h" />
-		<Unit filename="src/cairo-qt-surface.cpp" />
 		<Unit filename="src/cairo-qt.h" />
-		<Unit filename="src/cairo-quartz-font.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-quartz-image-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-quartz-image.h" />
 		<Unit filename="src/cairo-quartz-private.h" />
-		<Unit filename="src/cairo-quartz-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-quartz.h" />
 		<Unit filename="src/cairo-raster-source-pattern.c">
 			<Option compilerVar="CC" />
@@ -623,47 +567,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/cairo-version.h" />
-		<Unit filename="src/cairo-vg-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-vg.h" />
-		<Unit filename="src/cairo-wgl-context.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-wideint-private.h" />
 		<Unit filename="src/cairo-wideint-type-private.h" />
 		<Unit filename="src/cairo-wideint.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/cairo-win32.h" />
-		<Unit filename="src/cairo-xcb-connection-core.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-xcb-connection-render.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-xcb-connection-shm.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-xcb-connection.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-xcb-private.h" />
-		<Unit filename="src/cairo-xcb-screen.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-xcb-shm.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-xcb-surface-core.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-xcb-surface-render.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/cairo-xcb-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-xcb.h" />
 		<Unit filename="src/cairo-xlib-core-compositor.c">
 			<Option compilerVar="CC" />
@@ -709,86 +620,18 @@
 		</Unit>
 		<Unit filename="src/cairo.h" />
 		<Unit filename="src/cairoint.h" />
-		<Unit filename="src/check-has-hidden-symbols.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/check-link.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-bo.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-gallium-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-i915-glyphs.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/drm/cairo-drm-i915-private.h" />
-		<Unit filename="src/drm/cairo-drm-i915-shader.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-i915-spans.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-i915-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-i965-glyphs.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/drm/cairo-drm-i965-private.h" />
-		<Unit filename="src/drm/cairo-drm-i965-shader.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-i965-spans.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-i965-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/drm/cairo-drm-intel-brw-defines.h" />
-		<Unit filename="src/drm/cairo-drm-intel-brw-eu-emit.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-intel-brw-eu-util.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-intel-brw-eu.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/drm/cairo-drm-intel-brw-eu.h" />
 		<Unit filename="src/drm/cairo-drm-intel-brw-structs.h" />
 		<Unit filename="src/drm/cairo-drm-intel-command-private.h" />
-		<Unit filename="src/drm/cairo-drm-intel-debug.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/drm/cairo-drm-intel-ioctl-private.h" />
 		<Unit filename="src/drm/cairo-drm-intel-private.h" />
-		<Unit filename="src/drm/cairo-drm-intel-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-intel.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/drm/cairo-drm-ioctl-private.h" />
 		<Unit filename="src/drm/cairo-drm-private.h" />
 		<Unit filename="src/drm/cairo-drm-radeon-private.h" />
-		<Unit filename="src/drm/cairo-drm-radeon-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-radeon.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/drm/cairo-drm.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/skia/cairo-skia-context.cpp" />
 		<Unit filename="src/skia/cairo-skia-private.h" />
-		<Unit filename="src/skia/cairo-skia-surface.cpp" />
 		<Unit filename="src/test-base-compositor-surface.c">
 			<Option compilerVar="CC" />
 		</Unit>

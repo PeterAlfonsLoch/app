@@ -17,3 +17,8 @@
 #define CAIRO_HAS_WIN32_SURFACE 1
 #define CAIRO_HAS_WIN32_FONT 1
 #endif
+
+
+#ifdef LINUX
+#define CAIRO_HAS_XLIB_SURFACE 1
+#endif

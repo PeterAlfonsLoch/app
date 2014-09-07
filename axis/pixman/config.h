@@ -55,7 +55,9 @@
 #undef HAVE_POSIX_MEMALIGN
 
 /* Whether pthreads is supported */
-#undef HAVE_PTHREADS
+#ifdef LINUX
+#define HAVE_PTHREADS 1
+#endif
 
 /* Whether we have sigaction() */
 #undef HAVE_SIGACTION

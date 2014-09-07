@@ -240,11 +240,11 @@ typedef uLong FAR uLongf;
    typedef Byte     *voidp;
 #endif
 
-#ifdef HAVE_UNISTD_H
-#  include <sys/types.h> /* for off_t */
-#  include <unistd.h>    /* for SEEK_* and off_t */
-#  define z_off_t  off_t
-#endif
+//#ifdef HAVE_UNISTD_H
+//#  include <sys/types.h> /* for off_t */
+//#  include <unistd.h>    /* for SEEK_* and off_t */
+//#  define z_off_t  off_t
+//#endif
 #ifndef SEEK_SET
 #  define SEEK_SET        0       /* Seek from beginning of file.  */
 #  define SEEK_CUR        1       /* Seek from current position.  */
