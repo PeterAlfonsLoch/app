@@ -2,6 +2,7 @@
 
 
 #include <math.h>
+#include <time.h>
 
 
 typedef double FLOAT_DATE;

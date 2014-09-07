@@ -400,7 +400,7 @@ int_bool file_delete_dup(const char * lpszFileName)
 
 
 
-/*
+
 
 int_bool file_is_equal_path(const char * psz1,const char * psz2)
 {
@@ -413,19 +413,18 @@ int_bool file_is_equal_path(const char * psz1,const char * psz2)
    wchar_t * pwszPath1 = new wchar_t[iBufSize];
    wchar_t * pwszPath2 = new wchar_t[iBufSize];
    int32_t iCmp = -1;
-   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
-   {
-      if(GetFullPathNameW(pwsz2,iBufSize,pwszPath2,&pwszFile2))
-      {
+//   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
+  // {
+    //  if(GetFullPathNameW(pwsz2,iBufSize,pwszPath2,&pwszFile2))
+      //{
          string p1 = ::str::international::unicode_to_utf8(pwszPath1);
          string p2 = ::str::international::unicode_to_utf8(pwszPath2);
          iCmp = stricmp_dup(p1,p2);
-      }
-   }
+      //}
+   //}
    delete pwszPath1;
    delete pwszPath2;
    return iCmp == 0;
 
 }
 
-*/
