@@ -295,7 +295,9 @@ typedef unsigned int uint32_t;
 #define _unlink unlink
 #define _getcwd getcwd
 #define _chdir chdir
-#define tell tell64
+//#define // tell64
+#undef HAVE_TELL
+
 #endif
 
 

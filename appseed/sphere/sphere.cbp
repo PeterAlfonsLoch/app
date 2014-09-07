@@ -57,20 +57,19 @@
 			<Add directory=".." />
 			<Add directory="../../.." />
 			<Add directory="../../../app" />
-			<Add directory="../../../../ca2" />
 			<Add directory="../core" />
 			<Add directory="../base" />
-			<Add directory="../../thirdparty" />
-			<Add directory="../../thirdparty/appseed" />
-			<Add directory="../../../app/thirdparty/include" />
-			<Add directory="../../../app/thirdparty/appseed" />
 			<Add directory="../../../nodeapp" />
+			<Add directory="../axis" />
+			<Add directory="../aura" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
 			<Add option="-Wl,-E" />
+			<Add option="-laura" />
+			<Add option="-laxis" />
 			<Add option="-lbase" />
-			<Add option="-lbasefreeimage" />
+			<Add option="-laxisfreeimage" />
 			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
