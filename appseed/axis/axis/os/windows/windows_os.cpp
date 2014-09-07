@@ -1,4 +1,4 @@
-#include "axis/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
 
 
 bool CLASS_DECL_AXIS vfxResolveShortcut(string & strTarget,const char * pszSource,sp(::user::interaction) puiMessageParentOptional)

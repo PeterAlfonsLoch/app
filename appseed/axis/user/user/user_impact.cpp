@@ -40,7 +40,7 @@ ON_COMMAND_EX(ID_PREV_PANE, OnNextPaneCmd)
 // special command for Initial Update
 ON_MESSAGE_VOID(WM_INITIALUPDATE, OnInitialUpdate)*/
 // END_MESSAGE_MAP()
-#include "axis/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
 
 
 #define WM_INITIALUPDATE    0x0364  // (params unused) - sent to children

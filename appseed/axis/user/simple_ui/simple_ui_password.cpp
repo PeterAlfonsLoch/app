@@ -1,4 +1,4 @@
-﻿#include "axis/user/user.h"
+﻿#include "framework.h" // from "axis/user/user.h"
 
 
 string str_block(char ch,int32_t iSize);

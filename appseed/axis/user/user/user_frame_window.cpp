@@ -1,4 +1,4 @@
-#include "axis/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
 
 #ifdef WINDOWS
 #include <dde.h>        // for DDE execute shell requests

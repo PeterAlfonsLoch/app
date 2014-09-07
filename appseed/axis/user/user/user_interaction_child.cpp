@@ -1,4 +1,4 @@
-#include "axis/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
 
 
 void __reposition_window(__SIZEPARENTPARAMS* lpLayout,oswindow oswindow,LPCRECT lpRect);

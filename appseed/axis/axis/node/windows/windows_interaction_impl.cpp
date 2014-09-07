@@ -1,4 +1,4 @@
-#include "axis/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
 
 
 thread_int_ptr < HHOOK > t_hHookOldCbtFilter;

@@ -1279,9 +1279,6 @@
     <ClCompile Include="axis\os\windows\windows.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="user\framework_user.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="axis\compress\bzip_stream.cpp">
       <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
@@ -1296,9 +1293,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

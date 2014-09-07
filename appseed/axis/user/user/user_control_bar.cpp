@@ -1,4 +1,4 @@
-#include "axis/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
 
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
 

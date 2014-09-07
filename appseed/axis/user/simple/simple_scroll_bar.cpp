@@ -1,4 +1,4 @@
-#include "axis/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
 
 
 simple_scroll_bar::simple_scroll_bar(sp(::aura::application) papp) :

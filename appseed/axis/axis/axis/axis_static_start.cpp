@@ -1,7 +1,7 @@
 //
 //  axis_static_start
 //
-#include "axis/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
 
 
 
