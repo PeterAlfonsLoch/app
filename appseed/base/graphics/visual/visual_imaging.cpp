@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "freeimage/Source/freeimage.h"
+#include "freeimage/Source/FreeImage.h"
 #include "visual_FreeImageFileProc.h"
 #ifdef WINDOWSEX
 #undef new
@@ -3190,7 +3190,7 @@ bool imaging::blur(::draw2d::graphics *pdcDst, point ptDst, size size, ::draw2d:
       return false;
 
    f->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-   
+
    f->from(null_point(), pdcSrc, ptSrc, size);
 
    f.blur();

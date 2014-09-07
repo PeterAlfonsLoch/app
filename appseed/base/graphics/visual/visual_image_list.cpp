@@ -1,7 +1,7 @@
 #include "framework.h"
 
 #ifndef METROWIN
-#include "freeimage/Source/freeimage.h"
+#include "freeimage/Source/FreeImage.h"
 #endif
 
 image_list::image_list(sp(::aura::application) papp) :
@@ -214,7 +214,7 @@ int32_t image_list::add(::visual::icon * picon)
       &dcIcon,
       0, 0,
       SRCCOPY);*/
-   
+
    m_iSize++;
 
    return iItem;
@@ -230,7 +230,7 @@ int32_t image_list::add_icon(const char * psz)
 #ifdef WINDOWSEX
 
    int32_t iSize = MIN(m_size.cx, m_size.cy);
-   
+
    icon.m_picon = (void *) (HICON) ::LoadImage(NULL, psz, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
 
 #endif

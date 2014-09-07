@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <math.h>
 
 
 namespace visual
@@ -490,7 +491,7 @@ namespace visual
         ca = pSrcImage[offset + m_iWidth*(dy>>3) + (dx>>3)];
         pTargetImage[offset] = ca;
    //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
-    
+
        }
      }
    }
@@ -523,7 +524,7 @@ namespace visual
         {
            ca = pSrcImage[lIndex];// - (dx>>LightModifier);
            // Now we shift it by the dx component...
-           // 
+           //
            ca = GetShiftedColor(ca,dx);
 
             pTargetImage[offset] = ca;
@@ -541,10 +542,10 @@ namespace visual
       //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
            pTargetImage[offset] = ca;
         }
-    
+
        }
      }
-    
+
    }
    inline COLORREF water_routine::GetShiftedColor(COLORREF color,int32_t shift)
    {
