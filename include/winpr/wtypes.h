@@ -36,7 +36,7 @@
 #include <objc/objc.h>
 #endif
 
-#if !defined(_WIN32) && !defined(LINUX)
+#if !defined(_WIN32)
 
 #define WINAPI
 #define CDECL

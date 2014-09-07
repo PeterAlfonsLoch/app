@@ -24,9 +24,7 @@
 #include <winpr/wtypes.h>
 
 
-#ifdef LINUX
-
-#elif _WIN32
+#if _WIN32
 
 #include <winerror.h>
 

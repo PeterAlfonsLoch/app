@@ -27,6 +27,7 @@
 #include <winpr/crt.h>
 #include <winpr/error.h>
 #include <winpr/print.h>
+#include <winpr/wtypes.h>
 
 #ifndef _WIN32
 

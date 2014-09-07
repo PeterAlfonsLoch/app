@@ -25,6 +25,7 @@
 
 #include <winpr/environment.h>
 #include <winpr/error.h>
+#include <winpr/nt.h>
 
 #ifndef _WIN32
 

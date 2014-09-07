@@ -24,7 +24,7 @@
 #include <winpr/wtypes.h>
 #include <winpr/windows.h>
 
-#if !defined(_WIN32) && !defined(LINUX)
+#if !defined(_WIN32)
 
 /* Defined in winnt.h, do not redefine */
 
@@ -89,9 +89,7 @@
 
 /* Defined in wincred.h, do not redefine */
 
-#if defined(LINUX)
-
-#elif _WIN32
+#if _WIN32
 
 #include <wincred.h>
 
@@ -146,8 +144,6 @@
 #if!defined(STATUS_SUCCESS)
 #define STATUS_SUCCESS							((NTSTATUS)0x00000000)
 #endif
-
-#if !defined(LINUX)
 
 #define STATUS_SEVERITY_SUCCESS						0x0
 #define STATUS_SEVERITY_INFORMATIONAL					0x1
@@ -1300,7 +1296,6 @@
 #undef _FILE_INFORMATION_CLASS
 #undef FileDirectoryInformation
 
-#endif
 
 typedef enum _FILE_INFORMATION_CLASS
 {
@@ -1346,7 +1341,7 @@ typedef enum _FILE_INFORMATION_CLASS
 	FileShortNameInformation
 } FILE_INFORMATION_CLASS;
 
-#if !defined(_WIN32) && !defined(LINUX)
+#if !defined(_WIN32)
 
 #define FILE_SUPERSEDE				0x00000000
 #define FILE_OPEN				0x00000001

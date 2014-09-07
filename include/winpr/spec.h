@@ -22,9 +22,7 @@
 
 #include <winpr/platform.h>
 
-#if defined(LINUX)
-
-#elif defined(_WIN32)
+#if defined(_WIN32)
 
 #include <specstrings.h>
 
