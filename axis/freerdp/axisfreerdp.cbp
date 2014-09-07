@@ -67,15 +67,16 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
-			<Add option="-DFT2_BUILD_LIBRARY" />
+			<Add option="-DLINUX" />
 			<Add directory="../../../../include" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="../../../.." />
-			<Add directory="../../../appseed/c" />
 			<Add directory="../../../appseed" />
 			<Add directory="../../appseed" />
 			<Add directory="../../../appseed/base" />
+			<Add directory="../../../appseed/axis" />
+			<Add directory="../../../appseed/aura" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
