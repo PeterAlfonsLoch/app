@@ -129,7 +129,7 @@
 		<Unit filename="my_dir.h" />
 		<Unit filename="my_getopt.h" />
 		<Unit filename="my_global.h">
-			<Option compilerVar="C" />
+			<Option compilerVar="CC" />
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
@@ -432,7 +432,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="mysys/mysys_priv.h">
-			<Option compilerVar="C" />
+			<Option compilerVar="CC" />
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>

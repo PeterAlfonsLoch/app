@@ -79,7 +79,7 @@
 			<Add directory="../../../stage/x86" />
 		</Linker>
 		<Unit filename="../../include/ft2build.h">
-			<Option compilerVar="C" />
+			<Option compilerVar="CC" />
 			<Option compile="1" />
 			<Option weight="10" />
 		</Unit>

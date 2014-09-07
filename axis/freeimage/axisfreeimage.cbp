@@ -522,7 +522,7 @@
 		<Unit filename="Source/LibOpenJPEG/opj_config.h" />
 		<Unit filename="Source/LibOpenJPEG/opj_config_private.h" />
 		<Unit filename="Source/LibOpenJPEG/opj_includes.h">
-			<Option compilerVar="C" />
+			<Option compilerVar="CC" />
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
@@ -588,7 +588,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Source/LibPNG/pngpriv.h">
-			<Option compilerVar="C" />
+			<Option compilerVar="CC" />
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
@@ -767,7 +767,7 @@
 		<Unit filename="Source/LibTIFF4/tiffconf.vc.h" />
 		<Unit filename="Source/LibTIFF4/tiffconf.wince.h" />
 		<Unit filename="Source/LibTIFF4/tiffio.h">
-			<Option compilerVar="C" />
+			<Option compilerVar="CC" />
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
