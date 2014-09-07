@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace windows
+namespace linux
 {
 
 
@@ -44,6 +44,6 @@ namespace windows
    };
 
 
-} // namespace windows
+} // namespace linux
 
 
