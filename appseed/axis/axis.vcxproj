@@ -2665,14 +2665,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="database\database\database_template.h" />
     <ClInclude Include="database\database\database_update_hint.h" />
     <ClInclude Include="database\database\database_user_interaction.h" />
-    <ClCompile Include="axis\axis\axis_print_job.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_static_start.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="axis\axis\axis_print_job.cpp" />
+    <ClCompile Include="axis\axis\axis_static_start.cpp" />
     <ClCompile Include="axis\axis_policy\axis_c.c">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
@@ -2689,10 +2683,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp" />
     <ClCompile Include="axis\compress\bzip_stream.cpp" />
     <ClCompile Include="axis\compress\gzip_stream.cpp" />
-    <ClCompile Include="axis\message\message_user.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="axis\message\message_user.cpp" />
     <ClCompile Include="axis\node\android\android_android.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -3058,30 +3049,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="axis\node\node.cpp" />
-    <ClCompile Include="axis\node\windows\windows_copydesk.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_print_job.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_window_draw.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="axis\node\windows\windows_copydesk.cpp" />
+    <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp" />
+    <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp" />
+    <ClCompile Include="axis\node\windows\windows_print_job.cpp" />
+    <ClCompile Include="axis\node\windows\windows_window_draw.cpp" />
+    <ClCompile Include="axis\node\windows\windows_message_queue.cpp" />
     <ClCompile Include="axis\os\ansios\ansios_cross_win.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
@@ -3303,10 +3276,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\os\windows\windows.cpp" />
     <ClCompile Include="axis\os\windows\windows_dll.cpp" />
     <ClCompile Include="axis\os\windows\windows_gdi.cpp" />
-    <ClCompile Include="axis\os\windows\windows_os.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="axis\os\windows\windows_os.cpp" />
     <ClCompile Include="axis\os\windows\windows_simple_app.cpp" />
     <ClCompile Include="axis\os\windows\windows_window_gdi.cpp" />
     <ClCompile Include="database\database\database_application.cpp" />
@@ -3323,10 +3293,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="database\database\database_set.cpp" />
     <ClCompile Include="database\database\database_stringhelper.cpp" />
     <ClCompile Include="database\database\database_update_hint.cpp" />
-    <ClCompile Include="database\database\database_user_interaction.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="database\database\database_user_interaction.cpp" />
     <ClCompile Include="database\sqlite\sqlite_base.cpp" />
     <ClCompile Include="database\sqlite\sqlite_set.cpp" />
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
@@ -3432,26 +3399,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="version.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="axis\axis\axis.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_application.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_core_copydesk.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_session.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="axis\axis\axis_system.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="axis\axis\axis.cpp" />
+    <ClCompile Include="axis\axis\axis_application.cpp" />
+    <ClCompile Include="axis\axis\axis_core_copydesk.cpp" />
+    <ClCompile Include="axis\axis\axis_session.cpp" />
+    <ClCompile Include="axis\axis\axis_system.cpp" />
     <ClCompile Include="axis\os\android\android_c.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
@@ -3777,19 +3729,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClCompile>
     <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="primitive\data\data_simple_item.cpp" />
-    <ClCompile Include="primitive\data\data_tree.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="primitive\data\data_tree.cpp" />
     <ClCompile Include="primitive\data\data_tree_item.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_value.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">axis/user/user.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)user.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_departament.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_value.cpp" />
     <ClCompile Include="user\simple\simple_scroll_bar.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp" />
