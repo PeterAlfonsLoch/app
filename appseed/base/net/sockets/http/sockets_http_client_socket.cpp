@@ -1,5 +1,11 @@
 #include "base/net/net_sockets.h"
 
+#ifdef LINUX
+
+#include <sys/time.h>
+
+#endif
+
 
 namespace sockets
 {
@@ -450,15 +456,15 @@ namespace sockets
       case http_method_get:
 
          return "GET";
-         
+
       case http_method_post:
 
          return "POST";
-         
+
       case http_method_put:
 
          return "PUT";
-         
+
       default:
 
          return "GET";
@@ -477,7 +483,7 @@ namespace sockets
 
       if (strMethod == "get")
       {
-         
+
          return http_method_get;
 
       }

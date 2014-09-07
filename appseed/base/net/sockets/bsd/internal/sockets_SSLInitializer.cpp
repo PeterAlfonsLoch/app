@@ -26,6 +26,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
 
+#ifdef LINUX
+
+#include <pthread.h>
+
+#endif
 
 #ifdef DEBUG
 #define DEB(x) x
@@ -208,7 +213,7 @@ void ssl_sigpipe_handle( int x ) {
 
 
 
-   
+
    extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line)
    {
       UNREFERENCED_PARAMETER(file);
@@ -216,7 +221,7 @@ void ssl_sigpipe_handle( int x ) {
 
 
       synch_lock sl(::sockets::g_pmutexMap);
-      
+
       mutex * pmutex;
       if(!::sockets::g_pmapMutex->Lookup(n,pmutex))
       {
@@ -233,7 +238,7 @@ void ssl_sigpipe_handle( int x ) {
    }
 
 
-   
+
    extern "C" unsigned long SSLInitializer_SSL_id_function()
    {
 #ifdef WIN32
