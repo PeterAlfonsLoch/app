@@ -81,7 +81,7 @@
 		<Unit filename="../../include/ft2build.h">
 			<Option compilerVar="C" />
 			<Option compile="1" />
-			<Option weight="0" />
+			<Option weight="10" />
 		</Unit>
 		<Unit filename="builds/unix/ftsystem.c">
 			<Option compilerVar="CC" />
