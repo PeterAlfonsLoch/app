@@ -702,7 +702,7 @@ namespace user
       virtual void set_handle(oswindow oswindow);
       virtual oswindow get_handle() const;
 
-
+      virtual window_graphics * & get_window_graphics();
 
    };
 

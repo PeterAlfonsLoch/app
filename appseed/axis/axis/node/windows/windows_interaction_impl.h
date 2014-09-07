@@ -661,9 +661,6 @@ namespace windows
       virtual bool get_rect_normal(LPRECT lprect);
 
       
-      virtual window_graphics * & get_window_graphics();
-
-
    };
 
 
