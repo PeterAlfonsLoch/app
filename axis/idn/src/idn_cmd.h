@@ -31,7 +31,7 @@ extern "C" {
 
 #ifndef CMDLINE_PARSER_VERSION
 /** @brief the program version */
-#define CMDLINE_PARSER_VERSION VERSION
+#define CMDLINE_PARSER_VERSION "1"
 #endif
 
 /** @brief Where the command line options are stored */
@@ -69,7 +69,7 @@ struct gengetopt_args_info
   const char *debug_help; /**< @brief Print debugging information help description.  */
   int quiet_flag;	/**< @brief Silent operation (default=off).  */
   const char *quiet_help; /**< @brief Silent operation help description.  */
-  
+
   unsigned int help_given ;	/**< @brief Whether help was given.  */
   unsigned int full_help_given ;	/**< @brief Whether full-help was given.  */
   unsigned int version_given ;	/**< @brief Whether version was given.  */
@@ -181,7 +181,7 @@ void cmdline_parser_print_full_help(void);
 void cmdline_parser_print_version(void);
 
 /**
- * Initializes all the fields a cmdline_parser_params structure 
+ * Initializes all the fields a cmdline_parser_params structure
  * to their default values
  * @param params the structure to initialize
  */

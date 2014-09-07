@@ -36,6 +36,7 @@
 
 #include "stringprep.h"
 
+#define SIZE_MAX ((size_t)-1)
 static ssize_t
 stringprep_find_character_in_table (uint32_t ucs4,
 				    const Stringprep_table_element * table)

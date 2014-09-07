@@ -30,6 +30,8 @@
 #ifndef STRINGPREP_H
 # define STRINGPREP_H
 
+typedef unsigned int uint32_t;
+
 # ifndef IDNAPI
 #  if defined LIBIDN_BUILDING && defined HAVE_VISIBILITY && HAVE_VISIBILITY
 #   define IDNAPI __attribute__((__visibility__("default")))

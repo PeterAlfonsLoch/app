@@ -1283,3 +1283,14 @@
 #define c_strncasecmp strnicmp
 #define c_strcasecmp stricmp
 #endif
+
+
+
+
+#ifdef LINUX
+#define c_strncasecmp strncasecmp
+#define c_strcasecmp strcasecmp
+#endif
+
+
+

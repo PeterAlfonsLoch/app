@@ -196,10 +196,10 @@ adapt (punycode_uint delta, punycode_uint numpoints, int firsttime)
  *   garbage.
  **/
 int
-punycode_encode (glong input_length,
+punycode_encode (size_t input_length,
 		 const punycode_uint input[],
 		 const unsigned char case_flags[],
-		 glong * output_length, char output[])
+		 size_t * output_length, char output[])
 {
   punycode_uint input_len, n, delta, h, b, bias, j, m, q, k, t;
   glong out, max_out;
@@ -345,9 +345,9 @@ punycode_encode (glong input_length,
  *
  **/
 int
-punycode_decode (glong input_length,
+punycode_decode (size_t input_length,
 		 const char input[],
-		 glong * output_length,
+		 size_t * output_length,
 		 punycode_uint output[], unsigned char case_flags[])
 {
   punycode_uint n, out, i, max_out, bias, oldi, w, k, digit, t;

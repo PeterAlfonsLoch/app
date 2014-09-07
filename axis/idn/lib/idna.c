@@ -31,12 +31,23 @@
 # include "config.h"
 #endif
 
+
+
 #include <stdlib.h>
 #include <string.h>
 #include <stringprep.h>
 #include <punycode.h>
 
 #include "idna.h"
+
+#undef strncasecmp
+#undef strcasecmp
+
+#ifdef LINUX
+#define c_strncasecmp strncasecmp
+#define c_strcasecmp strcasecmp
+#endif
+
 
 /* Get c_strcasecmp. */
 //#include <c-strcase.h>
