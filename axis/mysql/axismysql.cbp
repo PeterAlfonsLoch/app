@@ -67,8 +67,6 @@
 			<Add option="-Wl,-z,origin" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
-			<Add option="-laura" />
-			<Add option="-laxis" />
 			<Add option="-laxiszlib" />
 			<Add option="-laxisopenssl" />
 			<Add option="-Wl,-z,defs" />

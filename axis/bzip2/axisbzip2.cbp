@@ -68,7 +68,6 @@
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
-			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
