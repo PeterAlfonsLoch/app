@@ -64,8 +64,8 @@ err:
 
 #elif __linux__
 
-#define _BSD_SOURCE
-#undef _FEATURES_H
+//#define _BSD_SOURCE
+//#undef _FEATURES_H
 
 #include <net/if.h>
 #include <sys/ioctl.h>

@@ -1,5 +1,6 @@
+#ifndef __GNUC__
 #pragma once
-
+#endif
 
 #include "gzip_stream.h"
 

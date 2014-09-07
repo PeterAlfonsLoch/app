@@ -89,9 +89,6 @@
 		<Unit filename="src/autofit/autofit.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/PaxHeaders.3012/basepic.h" />
-		<Unit filename="src/base/PaxHeaders.3012/ftbase.h" />
-		<Unit filename="src/base/PaxHeaders.3012/md5.h" />
 		<Unit filename="src/base/basepic.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -196,10 +193,6 @@
 		<Unit filename="src/base/ftxf86.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/md5.h" />
-		<Unit filename="src/bdf/PaxHeaders.3012/bdf.h" />
-		<Unit filename="src/bdf/PaxHeaders.3012/bdfdrivr.h" />
-		<Unit filename="src/bdf/PaxHeaders.3012/bdferror.h" />
 		<Unit filename="src/bdf/bdf.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -209,14 +202,6 @@
 		<Unit filename="src/bzip2/ftbzip2.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/cache/PaxHeaders.3012/ftccache.h" />
-		<Unit filename="src/cache/PaxHeaders.3012/ftccback.h" />
-		<Unit filename="src/cache/PaxHeaders.3012/ftcerror.h" />
-		<Unit filename="src/cache/PaxHeaders.3012/ftcglyph.h" />
-		<Unit filename="src/cache/PaxHeaders.3012/ftcimage.h" />
-		<Unit filename="src/cache/PaxHeaders.3012/ftcmanag.h" />
-		<Unit filename="src/cache/PaxHeaders.3012/ftcmru.h" />
-		<Unit filename="src/cache/PaxHeaders.3012/ftcsbits.h" />
 		<Unit filename="src/cache/ftccache.h" />
 		<Unit filename="src/cache/ftccback.h" />
 		<Unit filename="src/cache/ftcerror.h" />
@@ -225,28 +210,6 @@
 		<Unit filename="src/cache/ftcmanag.h" />
 		<Unit filename="src/cache/ftcmru.h" />
 		<Unit filename="src/cache/ftcsbits.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cf2arrst.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cf2blues.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cf2error.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cf2fixed.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cf2font.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cf2ft.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cf2glue.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cf2hints.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cf2intrp.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cf2read.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cf2stack.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cf2types.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cffcmap.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cffdrivr.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cfferrs.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cffgload.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cffload.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cffobjs.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cffparse.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cffpic.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cfftoken.h" />
-		<Unit filename="src/cff/PaxHeaders.3012/cfftypes.h" />
 		<Unit filename="src/cff/cf2arrst.h" />
 		<Unit filename="src/cff/cf2blues.h" />
 		<Unit filename="src/cff/cf2error.h" />
@@ -272,13 +235,6 @@
 		<Unit filename="src/cff/cffpic.h" />
 		<Unit filename="src/cff/cfftoken.h" />
 		<Unit filename="src/cff/cfftypes.h" />
-		<Unit filename="src/cid/PaxHeaders.3012/ciderrs.h" />
-		<Unit filename="src/cid/PaxHeaders.3012/cidgload.h" />
-		<Unit filename="src/cid/PaxHeaders.3012/cidload.h" />
-		<Unit filename="src/cid/PaxHeaders.3012/cidobjs.h" />
-		<Unit filename="src/cid/PaxHeaders.3012/cidparse.h" />
-		<Unit filename="src/cid/PaxHeaders.3012/cidriver.h" />
-		<Unit filename="src/cid/PaxHeaders.3012/cidtoken.h" />
 		<Unit filename="src/cid/ciderrs.h" />
 		<Unit filename="src/cid/cidgload.h" />
 		<Unit filename="src/cid/cidload.h" />
@@ -289,13 +245,6 @@
 		<Unit filename="src/cid/type1cid.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/gxvalid/PaxHeaders.3012/gxvalid.h" />
-		<Unit filename="src/gxvalid/PaxHeaders.3012/gxvcommn.h" />
-		<Unit filename="src/gxvalid/PaxHeaders.3012/gxverror.h" />
-		<Unit filename="src/gxvalid/PaxHeaders.3012/gxvfeat.h" />
-		<Unit filename="src/gxvalid/PaxHeaders.3012/gxvmod.h" />
-		<Unit filename="src/gxvalid/PaxHeaders.3012/gxvmort.h" />
-		<Unit filename="src/gxvalid/PaxHeaders.3012/gxvmorx.h" />
 		<Unit filename="src/gxvalid/gxvalid.h" />
 		<Unit filename="src/gxvalid/gxvcommn.h" />
 		<Unit filename="src/gxvalid/gxverror.h" />
@@ -303,14 +252,6 @@
 		<Unit filename="src/gxvalid/gxvmod.h" />
 		<Unit filename="src/gxvalid/gxvmort.h" />
 		<Unit filename="src/gxvalid/gxvmorx.h" />
-		<Unit filename="src/gzip/PaxHeaders.3012/infblock.h" />
-		<Unit filename="src/gzip/PaxHeaders.3012/infcodes.h" />
-		<Unit filename="src/gzip/PaxHeaders.3012/inffixed.h" />
-		<Unit filename="src/gzip/PaxHeaders.3012/inftrees.h" />
-		<Unit filename="src/gzip/PaxHeaders.3012/infutil.h" />
-		<Unit filename="src/gzip/PaxHeaders.3012/zconf.h" />
-		<Unit filename="src/gzip/PaxHeaders.3012/zlib.h" />
-		<Unit filename="src/gzip/PaxHeaders.3012/zutil.h" />
 		<Unit filename="src/gzip/ftgzip.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -322,26 +263,15 @@
 		<Unit filename="src/gzip/zconf.h" />
 		<Unit filename="src/gzip/zlib.h" />
 		<Unit filename="src/gzip/zutil.h" />
-		<Unit filename="src/lzw/PaxHeaders.3012/ftzopen.h" />
 		<Unit filename="src/lzw/ftlzw.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/lzw/ftzopen.h" />
-		<Unit filename="src/otvalid/PaxHeaders.3012/otvalid.h" />
-		<Unit filename="src/otvalid/PaxHeaders.3012/otvcommn.h" />
-		<Unit filename="src/otvalid/PaxHeaders.3012/otverror.h" />
-		<Unit filename="src/otvalid/PaxHeaders.3012/otvgpos.h" />
-		<Unit filename="src/otvalid/PaxHeaders.3012/otvmod.h" />
 		<Unit filename="src/otvalid/otvalid.h" />
 		<Unit filename="src/otvalid/otvcommn.h" />
 		<Unit filename="src/otvalid/otverror.h" />
 		<Unit filename="src/otvalid/otvgpos.h" />
 		<Unit filename="src/otvalid/otvmod.h" />
-		<Unit filename="src/pcf/PaxHeaders.3012/pcf.h" />
-		<Unit filename="src/pcf/PaxHeaders.3012/pcfdrivr.h" />
-		<Unit filename="src/pcf/PaxHeaders.3012/pcferror.h" />
-		<Unit filename="src/pcf/PaxHeaders.3012/pcfread.h" />
-		<Unit filename="src/pcf/PaxHeaders.3012/pcfutil.h" />
 		<Unit filename="src/pcf/pcf.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -350,14 +280,6 @@
 		<Unit filename="src/pcf/pcferror.h" />
 		<Unit filename="src/pcf/pcfread.h" />
 		<Unit filename="src/pcf/pcfutil.h" />
-		<Unit filename="src/pfr/PaxHeaders.3012/pfrcmap.h" />
-		<Unit filename="src/pfr/PaxHeaders.3012/pfrdrivr.h" />
-		<Unit filename="src/pfr/PaxHeaders.3012/pfrerror.h" />
-		<Unit filename="src/pfr/PaxHeaders.3012/pfrgload.h" />
-		<Unit filename="src/pfr/PaxHeaders.3012/pfrload.h" />
-		<Unit filename="src/pfr/PaxHeaders.3012/pfrobjs.h" />
-		<Unit filename="src/pfr/PaxHeaders.3012/pfrsbit.h" />
-		<Unit filename="src/pfr/PaxHeaders.3012/pfrtypes.h" />
 		<Unit filename="src/pfr/pfr.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -369,13 +291,6 @@
 		<Unit filename="src/pfr/pfrobjs.h" />
 		<Unit filename="src/pfr/pfrsbit.h" />
 		<Unit filename="src/pfr/pfrtypes.h" />
-		<Unit filename="src/psaux/PaxHeaders.3012/afmparse.h" />
-		<Unit filename="src/psaux/PaxHeaders.3012/psauxerr.h" />
-		<Unit filename="src/psaux/PaxHeaders.3012/psauxmod.h" />
-		<Unit filename="src/psaux/PaxHeaders.3012/psconv.h" />
-		<Unit filename="src/psaux/PaxHeaders.3012/psobjs.h" />
-		<Unit filename="src/psaux/PaxHeaders.3012/t1cmap.h" />
-		<Unit filename="src/psaux/PaxHeaders.3012/t1decode.h" />
 		<Unit filename="src/psaux/afmparse.h" />
 		<Unit filename="src/psaux/psaux.c">
 			<Option compilerVar="CC" />
@@ -386,12 +301,6 @@
 		<Unit filename="src/psaux/psobjs.h" />
 		<Unit filename="src/psaux/t1cmap.h" />
 		<Unit filename="src/psaux/t1decode.h" />
-		<Unit filename="src/pshinter/PaxHeaders.3012/pshalgo.h" />
-		<Unit filename="src/pshinter/PaxHeaders.3012/pshglob.h" />
-		<Unit filename="src/pshinter/PaxHeaders.3012/pshmod.h" />
-		<Unit filename="src/pshinter/PaxHeaders.3012/pshnterr.h" />
-		<Unit filename="src/pshinter/PaxHeaders.3012/pshpic.h" />
-		<Unit filename="src/pshinter/PaxHeaders.3012/pshrec.h" />
 		<Unit filename="src/pshinter/pshalgo.h" />
 		<Unit filename="src/pshinter/pshglob.h" />
 		<Unit filename="src/pshinter/pshinter.c">
@@ -401,10 +310,6 @@
 		<Unit filename="src/pshinter/pshnterr.h" />
 		<Unit filename="src/pshinter/pshpic.h" />
 		<Unit filename="src/pshinter/pshrec.h" />
-		<Unit filename="src/psnames/PaxHeaders.3012/psmodule.h" />
-		<Unit filename="src/psnames/PaxHeaders.3012/psnamerr.h" />
-		<Unit filename="src/psnames/PaxHeaders.3012/pspic.h" />
-		<Unit filename="src/psnames/PaxHeaders.3012/pstables.h" />
 		<Unit filename="src/psnames/psmodule.h" />
 		<Unit filename="src/psnames/psnamerr.h" />
 		<Unit filename="src/psnames/psnames.c">
@@ -412,11 +317,6 @@
 		</Unit>
 		<Unit filename="src/psnames/pspic.h" />
 		<Unit filename="src/psnames/pstables.h" />
-		<Unit filename="src/raster/PaxHeaders.3012/ftmisc.h" />
-		<Unit filename="src/raster/PaxHeaders.3012/ftraster.h" />
-		<Unit filename="src/raster/PaxHeaders.3012/ftrend1.h" />
-		<Unit filename="src/raster/PaxHeaders.3012/rasterrs.h" />
-		<Unit filename="src/raster/PaxHeaders.3012/rastpic.h" />
 		<Unit filename="src/raster/ftmisc.h" />
 		<Unit filename="src/raster/ftraster.c">
 			<Option compilerVar="CC" />
@@ -428,19 +328,6 @@
 		<Unit filename="src/raster/ftrend1.h" />
 		<Unit filename="src/raster/rasterrs.h" />
 		<Unit filename="src/raster/rastpic.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/pngshim.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/sfdriver.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/sferrors.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/sfntpic.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/sfobjs.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/ttbdf.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/ttcmap.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/ttcmapc.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/ttkern.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/ttload.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/ttmtx.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/ttpost.h" />
-		<Unit filename="src/sfnt/PaxHeaders.3012/ttsbit.h" />
 		<Unit filename="src/sfnt/pngshim.h" />
 		<Unit filename="src/sfnt/sfdriver.h" />
 		<Unit filename="src/sfnt/sferrors.h" />
@@ -457,10 +344,6 @@
 		<Unit filename="src/sfnt/ttmtx.h" />
 		<Unit filename="src/sfnt/ttpost.h" />
 		<Unit filename="src/sfnt/ttsbit.h" />
-		<Unit filename="src/smooth/PaxHeaders.3012/ftgrays.h" />
-		<Unit filename="src/smooth/PaxHeaders.3012/ftsmerrs.h" />
-		<Unit filename="src/smooth/PaxHeaders.3012/ftsmooth.h" />
-		<Unit filename="src/smooth/PaxHeaders.3012/ftspic.h" />
 		<Unit filename="src/smooth/ftgrays.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -471,15 +354,6 @@
 		</Unit>
 		<Unit filename="src/smooth/ftsmooth.h" />
 		<Unit filename="src/smooth/ftspic.h" />
-		<Unit filename="src/truetype/PaxHeaders.3012/ttdriver.h" />
-		<Unit filename="src/truetype/PaxHeaders.3012/tterrors.h" />
-		<Unit filename="src/truetype/PaxHeaders.3012/ttgload.h" />
-		<Unit filename="src/truetype/PaxHeaders.3012/ttgxvar.h" />
-		<Unit filename="src/truetype/PaxHeaders.3012/ttinterp.h" />
-		<Unit filename="src/truetype/PaxHeaders.3012/ttobjs.h" />
-		<Unit filename="src/truetype/PaxHeaders.3012/ttpic.h" />
-		<Unit filename="src/truetype/PaxHeaders.3012/ttpload.h" />
-		<Unit filename="src/truetype/PaxHeaders.3012/ttsubpix.h" />
 		<Unit filename="src/truetype/truetype.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -492,14 +366,6 @@
 		<Unit filename="src/truetype/ttpic.h" />
 		<Unit filename="src/truetype/ttpload.h" />
 		<Unit filename="src/truetype/ttsubpix.h" />
-		<Unit filename="src/type1/PaxHeaders.3012/t1afm.h" />
-		<Unit filename="src/type1/PaxHeaders.3012/t1driver.h" />
-		<Unit filename="src/type1/PaxHeaders.3012/t1errors.h" />
-		<Unit filename="src/type1/PaxHeaders.3012/t1gload.h" />
-		<Unit filename="src/type1/PaxHeaders.3012/t1load.h" />
-		<Unit filename="src/type1/PaxHeaders.3012/t1objs.h" />
-		<Unit filename="src/type1/PaxHeaders.3012/t1parse.h" />
-		<Unit filename="src/type1/PaxHeaders.3012/t1tokens.h" />
 		<Unit filename="src/type1/t1afm.h" />
 		<Unit filename="src/type1/t1driver.h" />
 		<Unit filename="src/type1/t1errors.h" />
@@ -511,11 +377,6 @@
 		<Unit filename="src/type1/type1.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/type42/PaxHeaders.3012/t42drivr.h" />
-		<Unit filename="src/type42/PaxHeaders.3012/t42error.h" />
-		<Unit filename="src/type42/PaxHeaders.3012/t42objs.h" />
-		<Unit filename="src/type42/PaxHeaders.3012/t42parse.h" />
-		<Unit filename="src/type42/PaxHeaders.3012/t42types.h" />
 		<Unit filename="src/type42/t42drivr.h" />
 		<Unit filename="src/type42/t42error.h" />
 		<Unit filename="src/type42/t42objs.h" />
@@ -524,8 +385,6 @@
 		<Unit filename="src/type42/type42.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/winfonts/PaxHeaders.3012/fnterrs.h" />
-		<Unit filename="src/winfonts/PaxHeaders.3012/winfnt.h" />
 		<Unit filename="src/winfonts/fnterrs.h" />
 		<Unit filename="src/winfonts/winfnt.c">
 			<Option compilerVar="CC" />

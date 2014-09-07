@@ -24,7 +24,7 @@
 
 #include "my_global.h"                  /* C_MODE_START, C_MODE_END */
 
-#define _BSD_SOURCE
+//#define _BSD_SOURCE
 
 C_MODE_START
 

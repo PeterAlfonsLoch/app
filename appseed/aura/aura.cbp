@@ -52,7 +52,6 @@
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
 			<Add directory="../../../include" />
-			<Add directory="../../include" />
 			<Add directory="framework" />
 			<Add directory="." />
 			<Add directory=".." />
@@ -605,8 +604,6 @@
 		</Unit>
 		<Unit filename="framework_c.h">
 			<Option compilerVar="C" />
-			<Option compile="1" />
-			<Option weight="0" />
 		</Unit>
 		<Unit filename="graphics/draw2d/draw2d.h" />
 		<Unit filename="graphics/draw2d/draw2d_bitmap.cpp" />
@@ -1035,10 +1032,7 @@
 		<Unit filename="user/framework_user.cpp" />
 		<Unit filename="user/simple/simple_message_box.cpp" />
 		<Unit filename="user/simple/simple_message_box.h" />
-		<Unit filename="user/user.h">
-			<Option compile="1" />
-			<Option weight="0" />
-		</Unit>
+		<Unit filename="user/user.h" />
 		<Unit filename="user/user/user.h" />
 		<Unit filename="user/user/user_check_interface.cpp" />
 		<Unit filename="user/user/user_check_interface.h" />

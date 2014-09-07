@@ -832,7 +832,7 @@ extern my_bool my_gethwaddr(uchar *to);
 extern int my_getncpus();
 
 #ifdef HAVE_SYS_MMAN_H
-#define __USE_GNU
+//#define __USE_GNU
 #include <sys/mman.h>
 
 #ifndef MAP_NOSYNC
