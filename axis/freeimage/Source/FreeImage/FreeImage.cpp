@@ -62,7 +62,7 @@ DllMain(HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
 #else // !_WIN32
 #ifndef FREEIMAGE_LIB
 
-void FreeImage_SO_Initialise() __attribute__((constructor));
+/*void FreeImage_SO_Initialise() __attribute__((constructor));
 void FreeImage_SO_DeInitialise() __attribute__((destructor));
 
 void FreeImage_SO_Initialise() {
@@ -71,7 +71,7 @@ void FreeImage_SO_Initialise() {
 
 void FreeImage_SO_DeInitialise() {
   FreeImage_DeInitialise();
-}
+}*/
 #endif // FREEIMAGE_LIB
 
 #endif // _WIN32

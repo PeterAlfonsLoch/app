@@ -10,15 +10,6 @@ int_bool MessageBoxAForConsole(oswindow interaction_impl, const char * psz, cons
 //int_bool (* g_messageboxa)(oswindow interaction_impl, const char * psz, const char * pszTitle, uint32_t uiFlags) = MessageBoxAForConsole;
 
 
-int_bool MessageBoxA(oswindow interaction_impl, const char * psz, const char * pszTitle, uint32_t uiFlags)
-{
-
-//   return (*g_messageboxa)(interaction_impl, psz, pszTitle, uiFlags);
-
-   return simple_message_box(interaction_impl, psz, pszTitle, uiFlags);
-
-}
-
 
 int_bool MessageBoxAForConsole(oswindow interaction_impl, const char * psz, const char * pszTitle, uint32_t uiFlags)
 {
