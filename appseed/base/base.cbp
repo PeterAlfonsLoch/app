@@ -302,9 +302,6 @@
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="framework_c.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="graphics/draw2d/draw2d.h" />
 		<Unit filename="graphics/draw2d/draw2d_bitmap.h" />
 		<Unit filename="graphics/draw2d/draw2d_brush.h" />
@@ -358,7 +355,6 @@
 		<Unit filename="multithreading/multithreading_wait_result.h" />
 		<Unit filename="multithreading/multithreading_waitable.h" />
 		<Unit filename="net/http/http.cpp" />
-		<Unit filename="net/http/http.h" />
 		<Unit filename="net/http/http_application.cpp" />
 		<Unit filename="net/http/http_application.h" />
 		<Unit filename="net/http/http_get_socket.cpp" />
@@ -372,68 +368,16 @@
 		<Unit filename="net/http/http_status.h" />
 		<Unit filename="net/http/http_system.cpp" />
 		<Unit filename="net/http/http_system.h" />
-		<Unit filename="net/idn/ac-stdint.h" />
-		<Unit filename="net/idn/config.h" />
-		<Unit filename="net/idn/gunibreak.h" />
-		<Unit filename="net/idn/gunicomp.h" />
-		<Unit filename="net/idn/gunidecomp.h" />
-		<Unit filename="net/idn/idn-free.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/idn-free.h" />
-		<Unit filename="net/idn/idn-int.h" />
-		<Unit filename="net/idn/idna.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/idna.h" />
-		<Unit filename="net/idn/nfkc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/pr29.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/pr29.h" />
-		<Unit filename="net/idn/profiles.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/punycode.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/punycode.h" />
-		<Unit filename="net/idn/rfc3454.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/stdbool.h" />
-		<Unit filename="net/idn/strerror-idna.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/strerror-pr29.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/strerror-punycode.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/strerror-stringprep.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/strerror-tld.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/stringprep.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/stringprep.h" />
-		<Unit filename="net/idn/tld.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/tld.h" />
-		<Unit filename="net/idn/tlds.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/toutf8.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="net/idn/unistd.h" />
+		<Unit filename="net/http/webserver/webserver_http_cookie.cpp" />
+		<Unit filename="net/http/webserver/webserver_http_cookie.h" />
+		<Unit filename="net/http/webserver/webserver_http_form.cpp" />
+		<Unit filename="net/http/webserver/webserver_http_form.h" />
+		<Unit filename="net/http/webserver/webserver_http_request.cpp" />
+		<Unit filename="net/http/webserver/webserver_http_request.h" />
+		<Unit filename="net/http/webserver/webserver_http_response.cpp" />
+		<Unit filename="net/http/webserver/webserver_http_response.h" />
+		<Unit filename="net/http/webserver/webserver_http_transaction.cpp" />
+		<Unit filename="net/http/webserver/webserver_http_transaction.h" />
 		<Unit filename="net/mail/mail.h" />
 		<Unit filename="net/mail/mail_pop3.cpp" />
 		<Unit filename="net/mail/mail_pop3.h" />
@@ -455,6 +399,7 @@
 		<Unit filename="net/net_net.h" />
 		<Unit filename="net/net_port_forward.cpp" />
 		<Unit filename="net/net_port_forward.h" />
+		<Unit filename="net/net_sockets.h" />
 		<Unit filename="net/net_url_departament.cpp" />
 		<Unit filename="net/net_url_departament.h" />
 		<Unit filename="net/net_url_domain.cpp" />
@@ -574,57 +519,6 @@
 		<Unit filename="net/sockets/sockets_logger.h" />
 		<Unit filename="net/sockets/sockets_trace_logger.cpp" />
 		<Unit filename="net/sockets/sockets_trace_logger.h" />
-		<Unit filename="net/sockets/webserver/sockets_http_cookie.cpp" />
-		<Unit filename="net/sockets/webserver/sockets_http_form.cpp" />
-		<Unit filename="net/sockets/webserver/sockets_http_request.cpp" />
-		<Unit filename="net/sockets/webserver/sockets_http_response.cpp" />
-		<Unit filename="net/sockets/webserver/sockets_http_transaction.cpp" />
-		<Unit filename="net/sockets/webserver/webserver_http_cookie.h" />
-		<Unit filename="net/sockets/webserver/webserver_http_form.h" />
-		<Unit filename="net/sockets/webserver/webserver_http_request.h" />
-		<Unit filename="net/sockets/webserver/webserver_http_response.h" />
-		<Unit filename="net/sockets/webserver/webserver_http_transaction.h" />
-		<Unit filename="net/sockets/winrt/asynch_dns/sockets_resolv_server.h" />
-		<Unit filename="net/sockets/winrt/asynch_dns/sockets_resolv_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_listen_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_net.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_sctp_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_socket_handler.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_stream_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_sync_socket_handler.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_tcp_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_tls_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/sockets_udp_socket.h" />
-		<Unit filename="net/sockets/winrt/basic/zzz_want_to_remove_socket_handler.h" />
-		<Unit filename="net/sockets/winrt/basic/zzz_want_to_remove_socket_handler_base.h" />
-		<Unit filename="net/sockets/winrt/sip/sip_base.h" />
-		<Unit filename="net/sockets/winrt/sip/sip_base_client_socket.h" />
-		<Unit filename="net/sockets/winrt/sip/sip_callback.h" />
-		<Unit filename="net/sockets/winrt/sip/sip_client.h" />
-		<Unit filename="net/sockets/winrt/sip/sip_event.h" />
-		<Unit filename="net/sockets/winrt/sip/sip_request.h" />
-		<Unit filename="net/sockets/winrt/sip/sip_response.h" />
-		<Unit filename="net/sockets/winrt/sip/sip_server.h" />
-		<Unit filename="net/sockets/winrt/sip/sip_socket.h" />
-		<Unit filename="net/sockets/winrt/sip/sip_tcp_client_socket.h" />
-		<Unit filename="net/sockets/winrt/sip/sip_transaction.h" />
-		<Unit filename="net/sockets/winrt/sip/sip_udp_client_socket.h" />
-		<Unit filename="net/sockets/winrt/smtp/smtp_socket.h" />
-		<Unit filename="net/sockets/winrt/smtp/smtpd_socket.h" />
-		<Unit filename="net/sockets/winrt/sockets.h" />
-		<Unit filename="net/sockets/winrt/sockets_config.h" />
-		<Unit filename="net/sockets/winrt/sockets_sockets.h" />
-		<Unit filename="net/sockets/winrt/timer/sockets_event.h" />
-		<Unit filename="net/sockets/winrt/timer/sockets_event_handler.h" />
-		<Unit filename="net/sockets/winrt/timer/sockets_event_time.h" />
-		<Unit filename="net/sockets/winrt/timer/sockets_ievent_handler.h" />
-		<Unit filename="net/sockets/winrt/timer/sockets_ievent_owner.h" />
-		<Unit filename="net/sockets/winrt/webserver/webserver_ajp13.h" />
-		<Unit filename="net/sockets/winrt/webserver/webserver_ajp13_socket.h" />
-		<Unit filename="net/sockets/winrt/webserver/webserver_ajp_base_socket.h" />
-		<Unit filename="net/sockets/winrt/webserver/webserver_http_base_socket.h" />
-		<Unit filename="net/sockets/winrt/webserver/webserver_httpd_socket.h" />
 		<Unit filename="primitive/collection/collection.h" />
 		<Unit filename="primitive/collection/collection.inl" />
 		<Unit filename="primitive/collection/collection_array_decl.h" />

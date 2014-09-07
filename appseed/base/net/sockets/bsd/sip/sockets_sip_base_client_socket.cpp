@@ -1,5 +1,10 @@
 #include "base/net/net_sockets.h"
 
+#ifdef LINUX
+
+#include <sys/time.h>
+
+#endif
 
 namespace sockets
 {

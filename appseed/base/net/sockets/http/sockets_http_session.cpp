@@ -1,5 +1,10 @@
 #include "base/net/net_sockets.h"
 
+#ifdef LINUX
+
+#include <sys/time.h>
+
+#endif
 
 namespace sockets
 {
@@ -35,7 +40,7 @@ namespace sockets
 
       if(protocol == "http")
          m_port = 80;
-      else 
+      else
          m_port = 443;
 
       m_strConnectHost              = m_host;
@@ -61,7 +66,7 @@ namespace sockets
 
    void http_session::request(e_http_method emethod, const string & strRequest)
    {
-      
+
       m_emethod                     = emethod;
       inattr(__id(request_uri))     = strRequest;
       inattr(__id(http_protocol))   = m_strProtocol;
@@ -81,11 +86,11 @@ namespace sockets
 
    void http_session::step()
    {
-      
+
       inheader(__id(connection)) = "Keep-Alive";
-      
+
       inattr(__id(http_method)) = http_method_string(m_emethod);
-      
+
       switch (m_emethod)
       {
       case http_method_get:
@@ -121,13 +126,13 @@ namespace sockets
    {
 
       m_bRequestComplete = true;
-      
+
    }
 
 
    void http_session::OnHeaderComplete()
    {
-      
+
       http_client_socket::OnHeaderComplete();
 
    }
