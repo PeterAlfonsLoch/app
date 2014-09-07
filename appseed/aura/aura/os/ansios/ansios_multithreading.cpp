@@ -1460,10 +1460,10 @@ CLASS_DECL_AURA UINT GetCurrentThreadId()
 }
 
 
-namespace aura
+namespace multithreading
 {
 
-   CLASS_DECL_AURA bool set_thread_priority(int32_t priority)
+   CLASS_DECL_AURA bool set_priority(int32_t priority)
    {
 
       return (::SetThreadPriority(::GetCurrentThread(),priority) != 0);

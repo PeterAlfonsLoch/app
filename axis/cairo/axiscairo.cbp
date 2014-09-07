@@ -51,6 +51,7 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
+			<Add option="-DHAVE_CONFIG_H" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
@@ -72,6 +73,7 @@
 			<Add directory="base/openssl/crypto/modes" />
 			<Add directory="base/openssl/include" />
 			<Add directory="../../../nodeapp/thirdparty/include" />
+			<Add directory="../pixman/pixman" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -117,7 +119,6 @@
 		<Unit filename="src/cairo-bentley-ottmann.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/cairo-beos-surface.cpp" />
 		<Unit filename="src/cairo-beos.h" />
 		<Unit filename="src/cairo-botor-scan-converter.c">
 			<Option compilerVar="CC" />
@@ -158,21 +159,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/cairo-cogl-context-private.h" />
-		<Unit filename="src/cairo-cogl-context.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-cogl-gradient-private.h" />
-		<Unit filename="src/cairo-cogl-gradient.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-cogl-private.h" />
-		<Unit filename="src/cairo-cogl-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-cogl-utils-private.h" />
-		<Unit filename="src/cairo-cogl-utils.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/cairo-cogl.h" />
 		<Unit filename="src/cairo-color.c">
 			<Option compilerVar="CC" />
@@ -816,31 +805,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/test-paginated-surface.h" />
-		<Unit filename="src/win32/cairo-win32-debug.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/win32/cairo-win32-device.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/win32/cairo-win32-display-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/win32/cairo-win32-font.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/win32/cairo-win32-gdi-compositor.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/win32/cairo-win32-printing-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="src/win32/cairo-win32-private.h" />
-		<Unit filename="src/win32/cairo-win32-surface.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="src/win32/cairo-win32-system.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />

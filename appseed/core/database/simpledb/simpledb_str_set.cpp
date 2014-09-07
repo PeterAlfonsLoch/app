@@ -65,7 +65,7 @@ public:
 
 
 
-   db_str_set_core::db_str_set_core(db_server * pserver):
+   db_str_set_core(db_server * pserver):
       element(pserver->get_app()),
       db_set(pserver,"stringtable"),
       m_handler(get_app()),
@@ -77,7 +77,7 @@ public:
    {
 
       sp(::sqlite::base) pdb = db()->GetImplDatabase();
-      
+
       //create string Table if necessary
 
       try
@@ -106,7 +106,7 @@ public:
 
    }
 
-   db_str_set_core::~db_str_set_core()
+   ~db_str_set_core()
    {
 
    }
@@ -297,7 +297,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
    if(m_pcore->m_pdataserver->m_bRemote && string(lpKey).find(".local://") < 0)
    {
-      
+
       Application.assert_user_logged_in();
 
       if(m_pcore->m_phttpsession == NULL)

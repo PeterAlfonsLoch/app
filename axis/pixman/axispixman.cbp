@@ -59,6 +59,7 @@
 			<Add directory="../../../appseed" />
 			<Add directory="../../../appseed/base" />
 			<Add directory="../pixman" />
+			<Add directory="pixman" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />

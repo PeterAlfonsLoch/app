@@ -2,14 +2,14 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="axiszlib" />
+		<Option title="axisidn" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libaxiszlib.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libaxisidn.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/axiszlib" />
+				<Option object_output="../../../time/intermediate/app/axisidn" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -23,9 +23,9 @@
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libaxiszlib.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libaxisidn.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/axiszlib" />
+				<Option object_output="../../../time/intermediate/app/axisidn" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -51,119 +51,88 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
+			<Add option="-DHAVE_CONFIG_H" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
-			<Add directory="../../thirdparty/appseed" />
-			<Add directory="../../thirdparty/include" />
 			<Add directory="." />
 			<Add directory=".." />
 			<Add directory="../.." />
-			<Add directory="../ca2" />
-			<Add directory="../../nodeapp/linux" />
-			<Add directory="../../nodeapp/linux/include" />
 			<Add directory="../../.." />
-			<Add directory="../base" />
-			<Add directory="base/openssl" />
-			<Add directory="base/openssl/crypto" />
-			<Add directory="base/openssl/ssl" />
-			<Add directory="base/openssl/crypto/asn1" />
-			<Add directory="base/openssl/crypto/evp" />
-			<Add directory="base/openssl/crypto/modes" />
-			<Add directory="base/openssl/include" />
-			<Add directory="../../../nodeapp/thirdparty/include" />
-			<Add directory="../../appseed/axis" />
+			<Add directory="../../appseed/aura" />
 			<Add directory="../../appseed" />
+			<Add directory="lib" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
-			<Add option="-ldl" />
-			<Add option="-lpthread" />
-			<Add option="-lX11" />
-			<Add option="-lXmu" />
-			<Add option="-laxis" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
-		<Unit filename="CMakeLists.txt" />
-		<Unit filename="ChangeLog" />
-		<Unit filename="FAQ" />
-		<Unit filename="INDEX" />
-		<Unit filename="Makefile" />
-		<Unit filename="Makefile.in" />
-		<Unit filename="README" />
-		<Unit filename="adler32.c">
+		<Unit filename="config.h" />
+		<Unit filename="lib/gunibreak.h" />
+		<Unit filename="lib/gunicomp.h" />
+		<Unit filename="lib/gunidecomp.h" />
+		<Unit filename="lib/idn-free.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="axiszlib.cbp" />
-		<Unit filename="axiszlib.def" />
-		<Unit filename="axiszlib.layout" />
-		<Unit filename="axiszlib.sln" />
-		<Unit filename="axiszlib.vcxproj" />
-		<Unit filename="compress.c">
+		<Unit filename="lib/idn-free.h" />
+		<Unit filename="lib/idna.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="configure" />
-		<Unit filename="crc32.c">
+		<Unit filename="lib/nfkc.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="crc32.h" />
-		<Unit filename="deflate.c">
+		<Unit filename="lib/pr29.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="deflate.h" />
-		<Unit filename="gzclose.c">
+		<Unit filename="lib/pr29.h" />
+		<Unit filename="lib/profiles.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="gzguts.h" />
-		<Unit filename="gzip_stream.cpp" />
-		<Unit filename="gzip_stream.h" />
-		<Unit filename="gzlib.c">
+		<Unit filename="lib/punycode.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="gzread.c">
+		<Unit filename="lib/punycode.h" />
+		<Unit filename="lib/rfc3454.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="gzwrite.c">
+		<Unit filename="lib/strerror-idna.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="infback.c">
+		<Unit filename="lib/strerror-pr29.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="inffast.c">
+		<Unit filename="lib/strerror-punycode.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="inffast.h" />
-		<Unit filename="inffixed.h" />
-		<Unit filename="inflate.c">
+		<Unit filename="lib/strerror-stringprep.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="inflate.h" />
-		<Unit filename="inftrees.c">
+		<Unit filename="lib/strerror-tld.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="inftrees.h" />
-		<Unit filename="make_vms.com" />
-		<Unit filename="treebuild.xml" />
-		<Unit filename="trees.c">
+		<Unit filename="lib/stringprep.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="trees.h" />
-		<Unit filename="uncompr.c">
+		<Unit filename="lib/stringprep.h" />
+		<Unit filename="lib/tld.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="zconf.h.cmakein" />
-		<Unit filename="zconf.h.in" />
-		<Unit filename="zlib.3" />
-		<Unit filename="zlib.3.pdf" />
-		<Unit filename="zlib.map" />
-		<Unit filename="zlib.pc.in" />
-		<Unit filename="zlib2ansi" />
-		<Unit filename="zutil.c">
+		<Unit filename="lib/tld.h" />
+		<Unit filename="lib/tlds.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="zutil.h" />
+		<Unit filename="lib/toutf8.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lib/version.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/idn_cmd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/idn_cmd.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

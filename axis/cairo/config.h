@@ -32,10 +32,14 @@
 #undef CAIRO_HAS_INTERPRETER
 
 /* Define to 1 to enable cairo's pthread feature */
-#undef CAIRO_HAS_PTHREAD
+#if defined(LINUX)
+#define CAIRO_HAS_PTHREAD 1
+#endif
 
 /* Define to 1 if we have full pthread support */
-#undef CAIRO_HAS_REAL_PTHREAD
+#if defined(LINUX)
+#define CAIRO_HAS_REAL_PTHREAD 1
+#endif
 
 /* Define to 1 if libspectre is available */
 #undef CAIRO_HAS_SPECTRE
@@ -118,14 +122,14 @@
 /* Define to 1 if you have the `FT_GlyphSlot_Embolden' function. */
 #undef HAVE_FT_GLYPHSLOT_EMBOLDEN
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(LINUX)
 #define HAVE_FT_GLYPHSLOT_EMBOLDEN 1
 #endif
 
 /* Define to 1 if you have the `FT_GlyphSlot_Oblique' function. */
 #undef HAVE_FT_GLYPHSLOT_OBLIQUE
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(LINUX)
 #define HAVE_FT_GLYPHSLOT_OBLIQUE 1
 #endif
 
@@ -134,7 +138,7 @@
 #undef HAVE_FT_LIBRARY_SETLCDFILTER
 
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(LINUX)
 #define HAVE_FT_LIBRARY_SETLCDFILTER 1
 #endif
 
@@ -142,7 +146,7 @@
 /* Define to 1 if you have the `FT_Load_Sfnt_Table' function. */
 #undef HAVE_FT_LOAD_SFNT_TABLE
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(LINUX)
 #define HAVE_FT_LOAD_SFNT_TABLE 1
 #endif
 
@@ -221,19 +225,21 @@
 #undef HAVE_SIGNAL_H
 
 /* Define to 1 if you have the <stdint.h> header file. */
-#undef HAVE_STDINT_H
+#ifdef LINUX
+#define HAVE_STDINT_H 1
+#endif
 
 /* Define to 1 if you have the <stdlib.h> header file. */
 #undef HAVE_STDLIB_H
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(LINUX)
 #define HAVE_STDLIB_H 1
 #endif
 
 /* Define to 1 if you have the <strings.h> header file. */
 #undef HAVE_STRINGS_H
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(LINUX)
 #define HAVE_STRINGS_H 1
 #endif
 
@@ -273,7 +279,7 @@
 /* Define to 1 if you have the <time.h> header file. */
 #undef HAVE_TIME_H
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(LINUX)
 #define HAVE_TIME_H 1
 #endif
 
@@ -281,9 +287,8 @@
 #undef HAVE_UINT128_T
 
 /* Define to 1 if the system has the type `uint64_t'. */
-#undef HAVE_UINT64_T
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(LINUX)
 #define HAVE_UINT64_T 1
 #endif
 

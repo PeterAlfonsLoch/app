@@ -1,5 +1,5 @@
 #include "framework.h"
-#include <sys/times.h>
+#include <sys/time.h>
 
 DWORD get_tick_count()
 {

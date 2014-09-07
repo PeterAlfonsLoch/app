@@ -296,7 +296,7 @@ namespace datetime
       }
    }
 
-   string to_string(sp(::aura::application) pbaseapp,::user::str_context * pcontext, ::datetime::value & value)
+   string to_string(sp(::aura::application) pbaseapp,::user::str_context * pcontext, const ::datetime::value & value)
    {
       string str;
       if(value.m_bSpan)
