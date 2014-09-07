@@ -182,6 +182,7 @@
 		<Unit filename="base/node/ansios/ansios.h" />
 		<Unit filename="base/node/linux/linux.h" />
 		<Unit filename="base/node/linux/linux_crypto.cpp" />
+		<Unit filename="base/node/linux/linux_crypto.h" />
 		<Unit filename="base/node/linux/linux_dir.cpp" />
 		<Unit filename="base/node/linux/linux_dir.h" />
 		<Unit filename="base/node/linux/linux_factory_exchange.cpp" />

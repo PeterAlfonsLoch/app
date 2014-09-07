@@ -127,7 +127,6 @@
 		<Unit filename="axis/node/linux/linux.h" />
 		<Unit filename="axis/node/linux/linux1.cpp" />
 		<Unit filename="axis/node/linux/linux2.cpp" />
-		<Unit filename="axis/node/linux/linux_application.h" />
 		<Unit filename="axis/node/linux/linux_copydesk.cpp" />
 		<Unit filename="axis/node/linux/linux_copydesk.h" />
 		<Unit filename="axis/node/linux/linux_dumpinit.cpp" />
@@ -135,15 +134,14 @@
 		<Unit filename="axis/node/linux/linux_exception.cpp" />
 		<Unit filename="axis/node/linux/linux_factory_exchange.cpp" />
 		<Unit filename="axis/node/linux/linux_factory_exchange.h" />
-		<Unit filename="axis/node/linux/linux_file.h" />
 		<Unit filename="axis/node/linux/linux_interaction_impl.cpp" />
 		<Unit filename="axis/node/linux/linux_interaction_impl.h" />
 		<Unit filename="axis/node/linux/linux_internal.h" />
 		<Unit filename="axis/node/linux/linux_main.cpp" />
+		<Unit filename="axis/node/linux/linux_message_queue.cpp" />
+		<Unit filename="axis/node/linux/linux_message_queue.h" />
 		<Unit filename="axis/node/linux/linux_root_tools.cpp" />
 		<Unit filename="axis/node/linux/linux_root_tools.h" />
-		<Unit filename="axis/node/linux/linux_shell.h" />
-		<Unit filename="axis/node/linux/linux_stdio_file.h" />
 		<Unit filename="axis/node/linux/linux_trace.cpp" />
 		<Unit filename="axis/node/linux/linux_util.cpp" />
 		<Unit filename="axis/node/linux/linux_window_draw.cpp" />

@@ -63,6 +63,7 @@
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
 			<Add option="-ldl" />
+			<Add option="-lX11" />
 			<Add option="-lpthread" />
 			<Add option="-latomiconv" />
 			<Add option="-Wl,-z,defs" />
@@ -452,6 +453,7 @@
 		<Unit filename="aura/os/os_process.cpp" />
 		<Unit filename="aura/os/os_process.h" />
 		<Unit filename="aura/os/os_thread.cpp" />
+		<Unit filename="aura/os/xlib/xlib_windowing.cpp" />
 		<Unit filename="aura/process/process.h" />
 		<Unit filename="aura/process/process_bidi_pipe.cpp" />
 		<Unit filename="aura/process/process_bidi_pipe.h" />
