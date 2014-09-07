@@ -2910,10 +2910,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\install\install_canvas.cpp" />
     <ClCompile Include="base\install\install_focus.cpp" />
     <ClCompile Include="base\install\install_install.cpp" />
-    <ClCompile Include="base\install\install_installer.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="base\install\install_installer.cpp" />
     <ClCompile Include="base\install\install_plugin.cpp" />
     <ClCompile Include="base\install\install_small_bell.cpp" />
     <ClCompile Include="base\install\install_starter_start.cpp" />
