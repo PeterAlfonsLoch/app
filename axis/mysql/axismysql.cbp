@@ -48,7 +48,7 @@
 			<Add option="-fno-stack-protector" />
 			<Add option="-Wno-pointer-arith" />
 			<Add option="-Wno-attributes" />
-			<Add option="-Winvalid-pch" />
+			<Add option="-Wno-invalid-pch" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
 			<Add directory="../../../include" />

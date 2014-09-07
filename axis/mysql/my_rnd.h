@@ -21,7 +21,7 @@
   A wrapper to use OpenSSL/YaSSL PRNGs.
 */
 
-#include <my_global.h>
+#include <my_global_cc.h>
 #include <mysql_com.h>
 #include <limits.h>
 

@@ -36,7 +36,7 @@
                                 the login file.
 ****************************************************************************/
 
-#include "../mysys/mysys_priv.h"
+#include "../mysys/mysys_priv_cc.h"
 #include "my_default.h"
 #include "my_default_priv.h"
 #include "m_string.h"
@@ -603,7 +603,7 @@ int load_defaults(const char *conf_file, const char **groups,
    NOTES
     In case of fatal error, the function will print a warning and do
     exit(1)
- 
+
     To free used memory one should call free_defaults() with the argument
     that was put in *argv
 
@@ -612,7 +612,7 @@ int load_defaults(const char *conf_file, const char **groups,
      a pointer to the array of default directory paths is stored to a location
      it points to. That stored value must be passed to my_search_option_files()
      later.
-     
+
      - 1 is returned if the given conf_file didn't exist. In this case, the
      value pointed to by default_directories is undefined.
 */
@@ -834,7 +834,7 @@ static char *get_argument(const char *keyword, size_t kwlen,
     search_default_file_with_ext()
     opt_handler                 Option handler function. It is used to process
                                 every separate option.
-    handler_ctx                 Pointer to the structure to store actual 
+    handler_ctx                 Pointer to the structure to store actual
                                 parameters of the function.
     dir				directory to read
     ext				Extension for configuration file
@@ -913,7 +913,7 @@ static int search_default_file_with_ext(Process_option_func opt_handler,
     {
       if (recursion_level >= max_recursion_level)
       {
-        for (end= ptr + strlen(ptr) - 1; 
+        for (end= ptr + strlen(ptr) - 1;
              my_isspace(&my_charset_latin1, *(end - 1));
              end--)
         {}
@@ -1010,8 +1010,8 @@ static int search_default_file_with_ext(Process_option_func opt_handler,
 	      name,line);
       goto err;
     }
-    
-   
+
+
     end= remove_end_comment(ptr);
     if ((value= strchr(ptr, '=')))
       end= value;				/* Option without argument */
@@ -1317,7 +1317,7 @@ static size_t my_get_system_windows_directory(char *buffer, size_t size)
     return func_ptr(buffer, (uint) size);
 
   /*
-    Windows NT 4.0 Terminal Server Edition:  
+    Windows NT 4.0 Terminal Server Edition:
     To retrieve the shared Windows directory, call GetSystemDirectory and
     trim the "System32" element from the end of the returned path.
   */
