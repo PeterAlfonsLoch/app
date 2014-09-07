@@ -3287,10 +3287,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="net\net_address.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="net\net_address.cpp" />
     <ClCompile Include="net\net_email.cpp" />
     <ClCompile Include="net\net_email_address.cpp" />
     <ClCompile Include="net\net_ip_enum.cpp" />
@@ -3298,222 +3295,61 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\net_port_forward.cpp" />
     <ClCompile Include="net\net_url_departament.cpp" />
     <ClCompile Include="net\net_url_domain.cpp" />
-    <ClCompile Include="net\sockets\base\sockets_base_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_server.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_sctp_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_socket_handler.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_stream_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_sync_socket_handler.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_tcp_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_tls_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_udp_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\internal\sockets_SSLInitializer.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base_client_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_callback.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_client.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_request.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_response.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_server.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_tcp_client_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_transaction.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_udp_client_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtpd_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtp_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sockets_include.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\sockets_Event.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\sockets_EventHandler.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\sockets_EventTime.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\sockets_IEventOwner.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_Ajp13Socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_AjpBaseSocket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_httpd_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_base_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\sockets_http_client_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\sockets_http_debug_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\sockets_http_get_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\sockets_http_listener.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\sockets_http_post_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\sockets_http_session.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\sockets_http_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\sockets_http_batch_buffer.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\sockets_http_buffer.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\sockets_link_in_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\sockets_link_out_socket.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="net\sockets\sockets_trace_logger.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket.cpp" />
+    <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp" />
+    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_server.cpp" />
+    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_sctp_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_socket_handler.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_stream_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_sync_socket_handler.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_tcp_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_tls_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_udp_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\internal\sockets_SSLInitializer.cpp" />
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base.cpp" />
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base_client_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_callback.cpp" />
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_client.cpp" />
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_request.cpp" />
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_response.cpp" />
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_server.cpp" />
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_tcp_client_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_transaction.cpp" />
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_udp_client_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtpd_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtp_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\sockets_include.cpp" />
+    <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp" />
+    <ClCompile Include="net\sockets\bsd\timer\sockets_Event.cpp" />
+    <ClCompile Include="net\sockets\bsd\timer\sockets_EventHandler.cpp" />
+    <ClCompile Include="net\sockets\bsd\timer\sockets_EventTime.cpp" />
+    <ClCompile Include="net\sockets\bsd\timer\sockets_IEventOwner.cpp" />
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_Ajp13Socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_AjpBaseSocket.cpp" />
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_httpd_socket.cpp" />
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_base_socket.cpp" />
+    <ClCompile Include="net\sockets\http\sockets_http_client_socket.cpp" />
+    <ClCompile Include="net\sockets\http\sockets_http_debug_socket.cpp" />
+    <ClCompile Include="net\sockets\http\sockets_http_get_socket.cpp" />
+    <ClCompile Include="net\sockets\http\sockets_http_listener.cpp" />
+    <ClCompile Include="net\sockets\http\sockets_http_post_socket.cpp" />
+    <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp" />
+    <ClCompile Include="net\sockets\http\sockets_http_session.cpp" />
+    <ClCompile Include="net\sockets\http\sockets_http_socket.cpp" />
+    <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp" />
+    <ClCompile Include="net\sockets\sockets_http_batch_buffer.cpp" />
+    <ClCompile Include="net\sockets\sockets_http_buffer.cpp" />
+    <ClCompile Include="net\sockets\sockets_link_in_socket.cpp" />
+    <ClCompile Include="net\sockets\sockets_link_out_socket.cpp" />
+    <ClCompile Include="net\sockets\sockets_trace_logger.cpp" />
     <ClCompile Include="net\net_sockets.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">base/net/net_sockets.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)sockets.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="programming\javascript\javascript.cpp" />
     <ClCompile Include="programming\javascript\javascript_functions.cpp" />

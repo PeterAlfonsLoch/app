@@ -54,9 +54,6 @@
     <Filter Include="Source Files\net\sockets\bsd\webserver">
       <UniqueIdentifier>{7778ba93-af59-4ce3-8697-5fb3fccc9ca2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\sockets\base">
-      <UniqueIdentifier>{e1cfdcb3-5c36-4daf-bf60-bee8dda845b8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net\sockets\http">
       <UniqueIdentifier>{a5c7501f-8541-45c3-a3a3-755c723b2e05}</UniqueIdentifier>
     </Filter>
@@ -263,6 +260,9 @@
     </Filter>
     <Filter Include="Source Files\net\http\webserver">
       <UniqueIdentifier>{b61f0f14-23c5-48cc-8816-99689890b656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\base">
+      <UniqueIdentifier>{e1cfdcb3-5c36-4daf-bf60-bee8dda845b8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1841,6 +1841,9 @@
     </None>
     <None Include="base\base\base.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

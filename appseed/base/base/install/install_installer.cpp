@@ -1,4 +1,4 @@
-#include "base/net/net_sockets.h"
+#include "framework.h" // from "base/net/net_sockets.h"
 #include "axis/compress/compress.h"
 
 #ifdef WINDOWS
