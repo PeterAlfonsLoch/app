@@ -78,6 +78,8 @@
 			<Add directory="../../../appseed/base" />
 			<Add directory="../../../appseed/axis" />
 			<Add directory="../../../appseed/aura" />
+			<Add directory="libwinpr/utils" />
+			<Add directory="libwinpr/utils/trio" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
