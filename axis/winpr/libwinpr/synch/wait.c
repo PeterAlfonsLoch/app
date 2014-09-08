@@ -124,7 +124,7 @@ static int pthread_timedjoin_np(pthread_t td, void **res,
 			return pthread_join(td, res);
 
 		nanosleep(&sleepytime, NULL);
- 
+
 		clock_gettime(CLOCK_MONOTONIC, &timenow);
 
 		if (ts_difftime(timeout, &timenow) >= 0)
@@ -136,7 +136,7 @@ static int pthread_timedjoin_np(pthread_t td, void **res,
 
 	return ETIMEDOUT;
 }
-
+#ifndef LINUX
 #if defined(__FreeBSD__)
 	/*the only way to get it work is to remove the static*/
 	int pthread_mutex_timedlock(pthread_mutex_t *mutex, const struct timespec *timeout)
@@ -166,6 +166,8 @@ static int pthread_timedjoin_np(pthread_t td, void **res,
 
 	return retcode;
 }
+#endif
+
 #endif
 
 static void ts_add_ms(struct timespec *ts, DWORD dwMilliseconds)
@@ -297,7 +299,7 @@ DWORD WaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
 			struct timespec timeout;
 
 			clock_gettime(CLOCK_MONOTONIC, &timeout);
-			ts_add_ms(&timeout, dwMilliseconds);	
+			ts_add_ms(&timeout, dwMilliseconds);
 
 			status = pthread_mutex_timedlock(&mutex->mutex, &timeout);
 

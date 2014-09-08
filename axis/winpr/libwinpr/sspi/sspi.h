@@ -34,7 +34,7 @@ struct _SSPI_CREDENTIALS
 	ULONG fCredentialUse;
 	SEC_GET_KEY_FN pGetKeyFn;
 	void* pvGetKeyArgument;
-	SEC_WINNT_AUTH_IDENTITY identity;
+	SEC_WINNT_AUTH_IDENTITY_W identity;
 };
 typedef struct _SSPI_CREDENTIALS SSPI_CREDENTIALS;
 

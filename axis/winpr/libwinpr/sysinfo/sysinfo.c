@@ -31,6 +31,11 @@
 #include <fcntl.h>
 #endif
 
+#ifdef LINUX
+#include <stdlib.h>
+
+#endif
+
 /**
  * api-ms-win-core-sysinfo-l1-1-1.dll:
  *
@@ -98,7 +103,7 @@ static DWORD GetNumberOfProcessors()
 	/* TODO: iOS */
 
 #if defined(__linux__) || defined(__sun) || defined(_AIX)
-	numCPUs = (DWORD) sysconf(_SC_NPROCESSORS_ONLN);
+	numCPUs = (DWORD) get_nprocs();
 #elif defined(__MACOSX__) || \
 	defined(__FreeBSD__) || defined(__NetBSD__) || \
 	defined(__OpenBSD__) || defined(__DragonFly__)
@@ -537,9 +542,9 @@ static unsigned GetARMCPUCaps(void){
 		num = read(fd, (char *)&auxvec, sizeof(auxvec));
 		if (num < 1 || (auxvec.a_type == 0 && auxvec.a_val == 0))
 				break;
-		if (auxvec.a_type == AT_HWCAP) 
+		if (auxvec.a_type == AT_HWCAP)
 		{
-			caps = auxvec.a_val;	
+			caps = auxvec.a_val;
 		}
 	}
 	close(fd);
@@ -623,15 +628,15 @@ BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature)
 
 	switch (ProcessorFeature)
 	{
-		case PF_MMX_INSTRUCTIONS_AVAILABLE: 
+		case PF_MMX_INSTRUCTIONS_AVAILABLE:
 			if (d & D_BIT_MMX)
 				ret = TRUE;
 			break;
-		case PF_XMMI_INSTRUCTIONS_AVAILABLE: 
+		case PF_XMMI_INSTRUCTIONS_AVAILABLE:
 			if (d & D_BIT_SSE)
 				ret = TRUE;
 			break;
-		case PF_XMMI64_INSTRUCTIONS_AVAILABLE: 
+		case PF_XMMI64_INSTRUCTIONS_AVAILABLE:
 			if (d & D_BIT_SSE2)
 				ret = TRUE;
 			break;
@@ -639,7 +644,7 @@ BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature)
 			if (d & D_BIT_3DN)
 				ret = TRUE;
 			break;
-		case PF_SSE3_INSTRUCTIONS_AVAILABLE: 
+		case PF_SSE3_INSTRUCTIONS_AVAILABLE:
 			if (c & C_BIT_SSE3)
 				ret = TRUE;
 			break;

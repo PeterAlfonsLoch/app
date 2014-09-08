@@ -3,7 +3,7 @@
  * Negotiate Security Package
  *
  * Copyright 2011-2014 Marc-Andre Moreau <marcandre.moreau@gmail.com>
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -141,7 +141,7 @@ SECURITY_STATUS SEC_ENTRY negotiate_AcceptSecurityContext(PCredHandle phCredenti
 		pInput, fContextReq, TargetDataRep, &(context->SubContext),
 		pOutput, pfContextAttr, ptsTimeStamp);
 
-	return status;	
+	return status;
 }
 
 SECURITY_STATUS SEC_ENTRY negotiate_CompleteAuthToken(PCtxtHandle phContext, PSecBufferDesc pToken)
@@ -309,7 +309,7 @@ SECURITY_STATUS SEC_ENTRY negotiate_AcquireCredentialsHandleW(SEC_WCHAR* pszPrin
 	credentials->pGetKeyFn = pGetKeyFn;
 	credentials->pvGetKeyArgument = pvGetKeyArgument;
 
-	identity = (SEC_WINNT_AUTH_IDENTITY*) pAuthData;
+	identity = (SEC_WINNT_AUTH_IDENTITY_W*) pAuthData;
 
 	if (identity)
 		sspi_CopyAuthIdentity(&(credentials->identity), identity);
@@ -319,7 +319,7 @@ SECURITY_STATUS SEC_ENTRY negotiate_AcquireCredentialsHandleW(SEC_WCHAR* pszPrin
 
 	return SEC_E_OK;
 }
-
+/*
 SECURITY_STATUS SEC_ENTRY negotiate_AcquireCredentialsHandleA(SEC_CHAR* pszPrincipal, SEC_CHAR* pszPackage,
 		ULONG fCredentialUse, void* pvLogonID, void* pAuthData, SEC_GET_KEY_FN pGetKeyFn,
 		void* pvGetKeyArgument, PCredHandle phCredential, PTimeStamp ptsExpiry)
@@ -353,16 +353,19 @@ SECURITY_STATUS SEC_ENTRY negotiate_AcquireCredentialsHandleA(SEC_CHAR* pszPrinc
 
 	return SEC_E_OK;
 }
+*/
 
 SECURITY_STATUS SEC_ENTRY negotiate_QueryCredentialsAttributesW(PCredHandle phCredential, ULONG ulAttribute, void* pBuffer)
 {
 	return SEC_E_UNSUPPORTED_FUNCTION;
 }
 
+/*
 SECURITY_STATUS SEC_ENTRY negotiate_QueryCredentialsAttributesA(PCredHandle phCredential, ULONG ulAttribute, void* pBuffer)
 {
 	return SEC_E_UNSUPPORTED_FUNCTION;
 }
+*/
 
 SECURITY_STATUS SEC_ENTRY negotiate_FreeCredentialsHandle(PCredHandle phCredential)
 {
@@ -432,38 +435,38 @@ SECURITY_STATUS SEC_ENTRY negotiate_VerifySignature(PCtxtHandle phContext, PSecB
 
 	return status;
 }
-
-const SecurityFunctionTableA NEGOTIATE_SecurityFunctionTableA =
-{
-	1, /* dwVersion */
-	NULL, /* EnumerateSecurityPackages */
-	negotiate_QueryCredentialsAttributesA, /* QueryCredentialsAttributes */
-	negotiate_AcquireCredentialsHandleA, /* AcquireCredentialsHandle */
-	negotiate_FreeCredentialsHandle, /* FreeCredentialsHandle */
-	NULL, /* Reserved2 */
-	negotiate_InitializeSecurityContextA, /* InitializeSecurityContext */
-	negotiate_AcceptSecurityContext, /* AcceptSecurityContext */
-	negotiate_CompleteAuthToken, /* CompleteAuthToken */
-	negotiate_DeleteSecurityContext, /* DeleteSecurityContext */
-	NULL, /* ApplyControlToken */
-	negotiate_QueryContextAttributesA, /* QueryContextAttributes */
-	negotiate_ImpersonateSecurityContext, /* ImpersonateSecurityContext */
-	negotiate_RevertSecurityContext, /* RevertSecurityContext */
-	negotiate_MakeSignature, /* MakeSignature */
-	negotiate_VerifySignature, /* VerifySignature */
-	NULL, /* FreeContextBuffer */
-	NULL, /* QuerySecurityPackageInfo */
-	NULL, /* Reserved3 */
-	NULL, /* Reserved4 */
-	NULL, /* ExportSecurityContext */
-	NULL, /* ImportSecurityContext */
-	NULL, /* AddCredentials */
-	NULL, /* Reserved8 */
-	NULL, /* QuerySecurityContextToken */
-	negotiate_EncryptMessage, /* EncryptMessage */
-	negotiate_DecryptMessage, /* DecryptMessage */
-	negotiate_SetContextAttributesA, /* SetContextAttributes */
-};
+//
+//const SecurityFunctionTableA NEGOTIATE_SecurityFunctionTableA =
+//{
+//	1, /* dwVersion */
+//	NULL, /* EnumerateSecurityPackages */
+//	negotiate_QueryCredentialsAttributesA, /* QueryCredentialsAttributes */
+//	negotiate_AcquireCredentialsHandleA, /* AcquireCredentialsHandle */
+//	negotiate_FreeCredentialsHandle, /* FreeCredentialsHandle */
+//	NULL, /* Reserved2 */
+//	negotiate_InitializeSecurityContextA, /* InitializeSecurityContext */
+//	negotiate_AcceptSecurityContext, /* AcceptSecurityContext */
+//	negotiate_CompleteAuthToken, /* CompleteAuthToken */
+//	negotiate_DeleteSecurityContext, /* DeleteSecurityContext */
+//	NULL, /* ApplyControlToken */
+//	negotiate_QueryContextAttributesA, /* QueryContextAttributes */
+//	negotiate_ImpersonateSecurityContext, /* ImpersonateSecurityContext */
+//	negotiate_RevertSecurityContext, /* RevertSecurityContext */
+//	negotiate_MakeSignature, /* MakeSignature */
+//	negotiate_VerifySignature, /* VerifySignature */
+//	NULL, /* FreeContextBuffer */
+//	NULL, /* QuerySecurityPackageInfo */
+//	NULL, /* Reserved3 */
+//	NULL, /* Reserved4 */
+//	NULL, /* ExportSecurityContext */
+//	NULL, /* ImportSecurityContext */
+//	NULL, /* AddCredentials */
+//	NULL, /* Reserved8 */
+//	NULL, /* QuerySecurityContextToken */
+//	negotiate_EncryptMessage, /* EncryptMessage */
+//	negotiate_DecryptMessage, /* DecryptMessage */
+//	negotiate_SetContextAttributesA, /* SetContextAttributes */
+//};
 
 const SecurityFunctionTableW NEGOTIATE_SecurityFunctionTableW =
 {
@@ -497,16 +500,16 @@ const SecurityFunctionTableW NEGOTIATE_SecurityFunctionTableW =
 	negotiate_SetContextAttributesW, /* SetContextAttributes */
 };
 
-const SecPkgInfoA NEGOTIATE_SecPkgInfoA =
-{
-	0x00083BB3, /* fCapabilities */
-	1, /* wVersion */
-	0x0009, /* wRPCID */
-	0x00002FE0, /* cbMaxToken */
-	"Negotiate", /* Name */
-	"Microsoft Package Negotiator" /* Comment */
-};
-
+//const SecPkgInfoA NEGOTIATE_SecPkgInfoA =
+//{
+//	0x00083BB3, /* fCapabilities */
+//	1, /* wVersion */
+//	0x0009, /* wRPCID */
+//	0x00002FE0, /* cbMaxToken */
+//	"Negotiate", /* Name */
+//	"Microsoft Package Negotiator" /* Comment */
+//};
+//
 WCHAR NEGOTIATE_SecPkgInfoW_Name[] = { 'N','e','g','o','t','i','a','t','e','\0' };
 
 WCHAR NEGOTIATE_SecPkgInfoW_Comment[] =

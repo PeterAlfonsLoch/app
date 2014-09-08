@@ -21,7 +21,10 @@
 #include "config.h"
 #endif
 
+#ifdef _WIN32
+
 #include <winsock2.h>
+#endif
 
 #include <time.h>
 #include <openssl/des.h>
@@ -52,7 +55,7 @@ int ntlm_SetContextWorkstation(NTLM_CONTEXT* context, char* Workstation)
 	if (!Workstation)
 	{
 		GetComputerNameExA(ComputerNameNetBIOS, NULL, &nSize);
-		
+
 		ws = (char*) malloc(nSize);
 
 		if (!ws)
@@ -607,7 +610,7 @@ SECURITY_STATUS SEC_ENTRY ntlm_InitializeSecurityContextA(PCredHandle phCredenti
 
 	if (pszTargetNameW)
 		free(pszTargetNameW);
-	
+
 	return status;
 }
 

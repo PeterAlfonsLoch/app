@@ -93,7 +93,7 @@ static void _CommInit()
 	{
 		_CommHandleCreator->IsHandled = IsCommDevice;
 		_CommHandleCreator->CreateFileA = CommCreateFileA;
-		
+
 		RegisterHandleCreator(_CommHandleCreator);
 	}
 
@@ -102,7 +102,7 @@ static void _CommInit()
 	{
 		_CommHandleCloseCb->IsHandled = CommIsHandled;
 		_CommHandleCloseCb->CloseHandle = CommCloseHandle;
-		
+
 		RegisterHandleCloseCb(_CommHandleCloseCb);
 	}
 
@@ -1180,9 +1180,9 @@ DWORD QueryCommDevice(LPCTSTR lpDeviceName, LPTSTR lpTargetPath, DWORD ucchMax)
 /**
  * Checks whether lpDeviceName is a valid and registered Communication device.
  */
-BOOL IsCommDevice(LPCTSTR lpDeviceName)
+BOOL IsCommDevice(LPCSTR lpDeviceName)
 {
-	TCHAR lpTargetPath[MAX_PATH];
+	CHAR lpTargetPath[MAX_PATH];
 
 	if (!CommInitialized())
 		return FALSE;
@@ -1254,7 +1254,7 @@ HANDLE CommCreateFileA(LPCSTR lpDeviceName, DWORD dwDesiredAccess, DWORD dwShare
 
 	if (!CommInitialized())
 		return INVALID_HANDLE_VALUE;
-	
+
 	if (dwDesiredAccess != (GENERIC_READ | GENERIC_WRITE))
 	{
 		CommLog_Print(WLOG_WARN, "unexpected access to the device: 0x%lX", dwDesiredAccess);
