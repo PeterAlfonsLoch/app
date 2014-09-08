@@ -1341,6 +1341,8 @@ typedef enum _FILE_INFORMATION_CLASS
 	FileShortNameInformation
 } FILE_INFORMATION_CLASS;
 
+#endif
+
 #if !defined(_WIN32)
 
 #define FILE_SUPERSEDE				0x00000000
@@ -1540,7 +1542,6 @@ WINPR_API PTEB NtCurrentTeb(void);
 }
 #endif
 
-#endif
 
 #ifdef __cplusplus
 extern "C" {
