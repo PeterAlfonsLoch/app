@@ -29,7 +29,13 @@
 #include <winpr/spec.h>
 
 #ifdef _WIN32
+
+#if !defined(LINUX)
+
 #include <wtypes.h>
+
+#endif
+
 #endif
 
 #if defined(__OBJC__) && defined(__APPLE__)

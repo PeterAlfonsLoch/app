@@ -22,7 +22,7 @@
 
 /* Windows header include order is important, use this instead of including windows.h directly */
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(LINUX)
 
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN

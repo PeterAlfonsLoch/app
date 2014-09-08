@@ -24,7 +24,11 @@
 
 #if defined(_WIN32)
 
+#if !defined(LINUX)
+
 #include <specstrings.h>
+
+#endif
 
 #else
 
