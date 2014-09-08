@@ -4,7 +4,7 @@
 
 #ifdef _WIN32
 #define CLASS_DECL_EXPORT _declspec(dllexport) 
-#define CLASS_DECL_IMPORT _declspec(dllexport)
+#define CLASS_DECL_IMPORT _declspec(dllimport)
 #else
 #define CLASS_DECL_EXPORT
 #define CLASS_DECL_IMPORT
