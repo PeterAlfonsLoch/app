@@ -59,7 +59,7 @@
 const char* _comm_serial_ioctl_name(ULONG number)
 {
 	int i;
-	
+
 	for (i=0; _SERIAL_IOCTL_NAMES[i].number != 0; i++)
 	{
 		if (_SERIAL_IOCTL_NAMES[i].number == number)
@@ -629,7 +629,7 @@ static BOOL _CommDeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID l
 		}
 	}
 
-	CommLog_Print(WLOG_WARN, _T("unsupported IoControlCode=[0x%lX] %s (remote serial driver: %s)"),
+	CommLog_Print(WLOG_WARN, "unsupported IoControlCode=[0x%lX] %s (remote serial driver: %s)",
 		dwIoControlCode, _comm_serial_ioctl_name(dwIoControlCode), pServerSerialDriver->name);
 	SetLastError(ERROR_CALL_NOT_IMPLEMENTED); /* => STATUS_NOT_IMPLEMENTED */
 	return FALSE;

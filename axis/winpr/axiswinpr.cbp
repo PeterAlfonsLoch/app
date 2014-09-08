@@ -65,9 +65,9 @@
 			<Add option="-Wno-pointer-arith" />
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
-			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
+			<Add option="-DHAVE_CONFIG_H" />
 			<Add option="-DBYEWINDOWS_UNICODE" />
 			<Add directory="../../../../include" />
 			<Add directory="../../../include" />
@@ -129,9 +129,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/crt/buffer.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/crt/casing.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/crt/conversion.c">
@@ -221,21 +218,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/nt/nt.h" />
-		<Unit filename="libwinpr/path/include/PathAllocCombine.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/path/include/PathCchAddExtension.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/path/include/PathCchAddSeparator.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/path/include/PathCchAddSeparatorEx.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/path/include/PathCchAppend.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libwinpr/path/path.c">
 			<Option compilerVar="CC" />
 		</Unit>

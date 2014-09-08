@@ -304,7 +304,7 @@ BOOL SetEnvironmentVariableW(LPCWSTR lpName, LPCWSTR lpValue)
 
 extern char** environ;
 
-LPCH GetEnvironmentStrings(VOID)
+LPCH GetEnvironmentStringsA(VOID)
 {
 	char* p;
 	int offset;

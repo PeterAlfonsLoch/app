@@ -84,7 +84,7 @@ typedef unsigned long ULONG;
 
 typedef unsigned char BYTE, *PBYTE, *LPBYTE;
 typedef BYTE BOOLEAN, *PBOOLEAN;
-typedef unsigned short WCHAR, *PWCHAR;
+typedef wchar_t WCHAR, *PWCHAR;
 typedef WCHAR* BSTR;
 typedef char CHAR, *PCHAR;
 typedef DWORD *PDWORD, *LPDWORD;
@@ -142,8 +142,14 @@ typedef signed __int64 LONG64;
 typedef CHAR *PSTR, *LPSTR, *LPCH;
 typedef const CHAR *LPCSTR,*PCSTR;
 
-typedef WCHAR *LPWSTR, *PWSTR, *LPWCH;
-typedef const WCHAR *LPCWSTR,*PCWSTR;
+#define LPWSTR WCHAR *
+#define PWSTR WCHAR *
+#define LPWCH WCHAR *
+
+
+#define LPCWSTR const WCHAR *
+#define PCWSTR const WCHAR *
+
 
 typedef unsigned __int64 QWORD;
 
@@ -161,7 +167,7 @@ typedef ULONG_PTR DWORD_PTR, *PDWORD_PTR;
 typedef ULONG_PTR SIZE_T;
 typedef unsigned int ULONG32;
 typedef unsigned __int64 ULONG64;
-typedef wchar_t BYEWINDOWS_UNICODE;
+typedef wchar_t UNICODE;
 typedef unsigned short USHORT;
 #define VOID void
 typedef void *PVOID, *LPVOID;
@@ -200,10 +206,10 @@ typedef IID* REFIID;
 #endif
 
 #ifdef BYEWINDOWS_UNICODE
-typedef LPWSTR PTSTR;
-typedef LPWSTR LPTCH;
-typedef LPWSTR LPTSTR;
-typedef LPCWSTR LPCTSTR;
+#define PTSTR LPWSTR
+#define LPTCH LPWSTR
+#define LPTSTR LPWSTR
+#define LPCTSTR LPCWSTR
 #else
 typedef LPSTR PTSTR;
 typedef LPSTR LPTCH;
