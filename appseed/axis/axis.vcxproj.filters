@@ -227,9 +227,6 @@
     <ClInclude Include="user\simple_ui\simple_ui_style.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="axis\axis\axis.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis\axis_application.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
@@ -785,6 +782,9 @@
     <ClInclude Include="axis\compress\bsdiff\libbsdiff.h">
       <Filter>Header Files\axis\compress\bsdiff</Filter>
     </ClInclude>
+    <ClInclude Include="axis\axis\axis.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\graphics_window_graphics.cpp">
@@ -1293,9 +1293,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

@@ -1403,9 +1403,6 @@
     <ClInclude Include="graphics\html\elemental\html_elemental_image.h">
       <Filter>Header Files\graphics\html\elemental</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_allocator.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -1737,6 +1734,9 @@
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_simple_app.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
   </ItemGroup>

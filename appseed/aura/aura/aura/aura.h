@@ -7,50 +7,8 @@
 
 #include "aura_aura.h"
 
-
-#ifdef AURA_LANGUAGE
-
-
-#ifdef __cplusplus
-
-
-#define cplusplus
-
-
-#else
-
-
-#define cplus
-
-
-#endif
-
-
-#endif
-
-
-#if defined(__cplusplus)
-
-
-#define DECL_EXTERN_C	   extern "C"
-#define BEGIN_EXTERN_C		extern "C" {
-#define END_EXTERN_C		   }
-
-
-#else
-
-
-#define DECL_EXTERN_C
-#define BEGIN_EXTERN_C
-#define END_EXTERN_C
-
-
-#endif
-
-
 #define system_user_1 "system_user_1"
 #define system_user_2 "system_user_2"
-
 
 #include "nodeapp/operational_system/config.h"
 

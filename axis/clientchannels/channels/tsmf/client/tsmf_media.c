@@ -54,6 +54,24 @@
 #include "tsmf_codec.h"
 #include "tsmf_media.h"
 
+
+#ifndef _WIN32
+#include <sys/time.h>
+#else
+#include <time.h>
+#include <sys/timeb.h>
+#include <winpr/windows.h>
+
+int gettimeofday(struct timeval* tp,void* tz)
+{
+   struct _timeb timebuffer;
+   _ftime(&timebuffer);
+   tp->tv_sec = (long)timebuffer.time;
+   tp->tv_usec = timebuffer.millitm * 1000;
+   return 0;
+}
+#endif
+
 #define AUDIO_TOLERANCE 10000000LL
 
 struct _TSMF_PRESENTATION

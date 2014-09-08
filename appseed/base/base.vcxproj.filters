@@ -698,9 +698,6 @@
     <ClInclude Include="user\fontopus\fontopus_simple_ui.h">
       <Filter>Header Files\user\fontopus</Filter>
     </ClInclude>
-    <ClInclude Include="base\base\base.h">
-      <Filter>Header Files\base\base</Filter>
-    </ClInclude>
     <ClInclude Include="base\base\base_application.h">
       <Filter>Header Files\base\base</Filter>
     </ClInclude>
@@ -979,6 +976,9 @@
     </ClInclude>
     <ClInclude Include="net\http\http_listener.h">
       <Filter>Header Files\net\http</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base.h">
+      <Filter>Header Files\base\base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1841,6 +1841,9 @@
     </None>
     <None Include="base\base\base.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
