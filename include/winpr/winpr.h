@@ -41,10 +41,14 @@
 	#endif
 #endif
 
+#ifndef INLINE
+
 #ifdef _WIN32
 #define INLINE	__inline
 #else
 #define INLINE	inline
+#endif
+
 #endif
 
 #endif /* WINPR_H */
