@@ -362,7 +362,7 @@ WINPR_API BOOL TransmitCommChar(HANDLE hFile, char cChar);
 
 WINPR_API BOOL WaitCommEvent(HANDLE hFile, PDWORD lpEvtMask, LPOVERLAPPED lpOverlapped);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define BuildCommDCB		BuildCommDCBW
 #define BuildCommDCBAndTimeouts	BuildCommDCBAndTimeoutsW
 #define CommConfigDialog	CommConfigDialogW

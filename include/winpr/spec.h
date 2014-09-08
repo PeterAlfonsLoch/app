@@ -22,13 +22,9 @@
 
 #include <winpr/platform.h>
 
-#if defined(_WIN32)
-
-#if !defined(LINUX)
+#ifdef _WIN32
 
 #include <specstrings.h>
-
-#endif
 
 #else
 

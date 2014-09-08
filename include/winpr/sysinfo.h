@@ -113,7 +113,7 @@ typedef enum _COMPUTER_NAME_FORMAT
 WINPR_API BOOL GetComputerNameExA(COMPUTER_NAME_FORMAT NameType, LPSTR lpBuffer, LPDWORD lpnSize);
 WINPR_API BOOL GetComputerNameExW(COMPUTER_NAME_FORMAT NameType, LPWSTR lpBuffer, LPDWORD lpnSize);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define GetComputerNameEx	GetComputerNameExW
 #else
 #define GetComputerNameEx	GetComputerNameExA
@@ -169,7 +169,7 @@ typedef struct _OSVERSIONINFOEXW
 	BYTE wReserved;
 } OSVERSIONINFOEXW, *POSVERSIONINFOEXW, *LPOSVERSIONINFOEXW;
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define OSVERSIONINFO		OSVERSIONINFOW
 #define OSVERSIONINFOEX		OSVERSIONINFOEXW
 #define POSVERSIONINFO		POSVERSIONINFOW
@@ -208,7 +208,7 @@ typedef struct _OSVERSIONINFOEXW
 WINPR_API BOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation);
 WINPR_API BOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define GetVersionEx	GetVersionExW
 #else
 #define GetVersionEx	GetVersionExA

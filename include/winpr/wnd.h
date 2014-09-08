@@ -352,7 +352,7 @@ typedef struct tagWNDCLASSEXW
 	HICON hIconSm;
 } WNDCLASSEXW, *PWNDCLASSEXW, NEAR *NPWNDCLASSEXW, FAR *LPWNDCLASSEXW;
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 typedef WNDCLASSW WNDCLASS;
 typedef PWNDCLASSW PWNDCLASS;
 typedef NPWNDCLASSW NPWNDCLASS;
@@ -511,7 +511,7 @@ WINPR_API LRESULT WINAPI CallWindowProcW(WNDPROC lpPrevWndFunc, HWND hWnd, UINT 
 WINPR_API LRESULT WINAPI DefWindowProcA(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 WINPR_API LRESULT WINAPI DefWindowProcW(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define GetWindowLong		GetWindowLongW
 #define SetWindowLong		SetWindowLongW
 #define GetWindowLongPtr	GetWindowLongPtrW

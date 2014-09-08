@@ -885,7 +885,7 @@ typedef struct _WTSLISTENERCONFIGA
 	CHAR InitialProgram[MAX_PATH + 1];
 } WTSLISTENERCONFIGA, *PWTSLISTENERCONFIGA;
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define WTS_SERVER_INFO			WTS_SERVER_INFOW
 #define PWTS_SERVER_INFO		PWTS_SERVER_INFOW
 #define WTS_SESSION_INFO		WTS_SESSION_INFOW
@@ -1082,7 +1082,7 @@ WINPR_API BOOL CDECL WTSGetChildSessionId(PULONG pSessionId);
 }
 #endif
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define WTSStartRemoteControlSession	WTSStartRemoteControlSessionW
 #define WTSConnectSession		WTSConnectSessionW
 #define WTSEnumerateServers		WTSEnumerateServersW

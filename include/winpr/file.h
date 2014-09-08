@@ -211,7 +211,7 @@ typedef enum _FINDEX_SEARCH_OPS
 
 typedef VOID (*LPOVERLAPPED_COMPLETION_ROUTINE)(DWORD dwErrorCode, DWORD dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define WIN32_FIND_DATA		WIN32_FIND_DATAW
 #define PWIN32_FIND_DATA	PWIN32_FIND_DATAW
 #define LPWIN32_FIND_DATA	LPWIN32_FIND_DATAW
@@ -295,7 +295,7 @@ WINPR_API BOOL CreateDirectoryW(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecu
 }
 #endif
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define CreateFile		CreateFileW
 #define DeleteFile		DeleteFileW
 #define FindFirstFile		FindFirstFileW

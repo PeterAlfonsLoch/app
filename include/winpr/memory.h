@@ -59,7 +59,7 @@ WINPR_API BOOL UnmapViewOfFile(LPCVOID lpBaseAddress);
 }
 #endif
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define CreateFileMapping	CreateFileMappingW
 #define OpenFileMapping		OpenFileMappingW
 #else

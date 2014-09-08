@@ -112,7 +112,7 @@ struct _COMMAND_LINE_ARGUMENT_W
 	LPCWSTR Text;
 };
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define COMMAND_LINE_ARGUMENT	COMMAND_LINE_ARGUMENT_W
 #else
 #define COMMAND_LINE_ARGUMENT	COMMAND_LINE_ARGUMENT_A
@@ -145,7 +145,7 @@ WINPR_API COMMAND_LINE_ARGUMENT_A* CommandLineFindNextArgumentA(COMMAND_LINE_ARG
 }
 #endif
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define CommandLineClearArguments	CommandLineClearArgumentsW
 #define CommandLineParseArguments	CommandLineParseArgumentsW
 #define CommandLineFindArgument		CommandLineFindArgumentW

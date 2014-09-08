@@ -124,7 +124,7 @@ WINPR_API BOOL GetUserNameExW(EXTENDED_NAME_FORMAT NameFormat, LPWSTR lpNameBuff
 }
 #endif
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define LogonUser	LogonUserW
 #define LogonUserEx	LogonUserExW
 #define GetUserNameEx	GetUserNameExW

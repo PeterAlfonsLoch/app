@@ -103,7 +103,7 @@ WINPR_API DWORD DsCrackSpnW(LPCWSTR pszSpn, DWORD* pcServiceClass, LPWSTR Servic
 WINPR_API DWORD DsCrackSpnA(LPCSTR pszSpn, LPDWORD pcServiceClass, LPSTR ServiceClass, LPDWORD pcServiceName,
 		LPSTR ServiceName, LPDWORD pcInstanceName, LPSTR InstanceName, USHORT* pInstancePort);
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define DsCrackSpn	DsCrackSpnW
 #else
 #define DsCrackSpn	DsCrackSpnA
@@ -119,7 +119,7 @@ WINPR_API DWORD DsMakeSpnA(LPCSTR ServiceClass, LPCSTR ServiceName, LPCSTR Insta
 }
 #endif
 
-#ifdef BYEWINDOWS_UNICODE
+#ifdef UNICODE
 #define DsMakeSpn	DsMakeSpnW
 #else
 #define DsMakeSpn	DsMakeSpnA
