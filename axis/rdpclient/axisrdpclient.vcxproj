@@ -57,6 +57,12 @@
     <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
       <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\appseed\base\base.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\appseed\core\core.vcxproj">
+      <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\clientchannels\axisclientchannels.vcxproj">
       <Project>{3c27b10b-e5db-4dba-8292-051830aaf103}</Project>
     </ProjectReference>
@@ -68,19 +74,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="client\ca2\cfreerdp.cpp" />
-    <ClCompile Include="client\ca2\cf_event.cpp" />
-    <ClCompile Include="client\ca2\cf_graphics.cpp" />
-    <ClCompile Include="client\common\client.c" />
-    <ClCompile Include="client\common\cmdline.c" />
-    <ClCompile Include="client\common\compatibility.c" />
-    <ClCompile Include="client\common\file.c" />
+    <ClCompile Include="client\ca2\ca2rdp.cpp" />
+    <ClCompile Include="client\ca2\ca2rdp_event.cpp" />
+    <ClCompile Include="client\ca2\ca2rdp_graphics.cpp" />
+    <ClCompile Include="client\common\client.cpp" />
+    <ClCompile Include="client\common\cmdline.cpp" />
+    <ClCompile Include="client\common\compatibility.cpp" />
+    <ClCompile Include="client\common\file.cpp" />
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="client\ca2\cfreerdp.h" />
-    <ClInclude Include="client\ca2\cf_event.h" />
-    <ClInclude Include="client\ca2\cf_graphics.h" />
+    <ClInclude Include="client\ca2\ca2rdp.h" />
+    <ClInclude Include="client\ca2\ca2rdp_event.h" />
+    <ClInclude Include="client\ca2\ca2rdp_graphics.h" />
     <ClInclude Include="client\common\compatibility.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="freerdp_rdpclient_setup.h" />
@@ -349,7 +355,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_FREERDP_RDPCLIENT_DLL;BYEWINDOWS_UNICODE;FREERDP_EXPORTS;HAVE_CONFIG_H;_USRDLL; _CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

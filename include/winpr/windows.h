@@ -22,7 +22,7 @@
 
 /* Windows header include order is important, use this instead of including windows.h directly */
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(_WINDOWS_)
 
 
 #define _WIN32_WINNT 0x0603

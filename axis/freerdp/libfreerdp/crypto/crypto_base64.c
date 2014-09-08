@@ -189,6 +189,8 @@ out_free:
 	return NULL;
 }
 
+
+
 void crypto_base64_decode(const char* enc_data, int length, BYTE** dec_data, int* res_length)
 {
 	*dec_data = base64_decode(enc_data, length, res_length);

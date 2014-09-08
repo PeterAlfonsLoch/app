@@ -20,9 +20,9 @@
 #ifndef __DF_EVENT_H
 #define __DF_EVENT_H
 
-#include "dfreerdp.h"
+#include "ca2rdp.h"
 
-void df_keyboard_init(void);
-BOOL df_event_process(freerdp* instance, DFBEvent* event);
+CLASS_DECL_RDPCLIENT void ca2rdp_send_mouse_button_event(rdpInput* input,UINT uiMessage,POINT pt);
+CLASS_DECL_RDPCLIENT void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode);
 
 #endif /* __DF_EVENT_H */

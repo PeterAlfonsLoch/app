@@ -20,7 +20,7 @@
 #ifndef __DFREERDP_H
 #define __DFREERDP_H
 
-#include "config.h"
+#include "axis/rdpclient/config.h"
 #include <freerdp/freerdp.h>
 #include <freerdp/graphics.h>
 #include <freerdp/gdi/gdi.h>
@@ -29,42 +29,51 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <directfb.h>
 
-typedef struct df_info dfInfo;
+typedef struct ca2rdp_info ca2rdpInfo;
 
-struct df_context
+CLASS_DECL_RDPCLIENT BOOL ca2rdp_pre_connect(freerdp* instance);
+
+struct ca2rdp_context :
+   public rdpContext
 {
-	rdpContext _p;
+	
+   DWORD mainThreadId;
+   HANDLE thread;
+   ::aura::application * m_papp;
 
-	dfInfo* dfi;
-	rdpSettings* settings;
+	ca2rdpInfo* ca2rdpi;
 };
-typedef struct df_context dfContext;
+typedef struct ca2rdp_context ca2rdpContext;
 
-struct df_pointer
+struct ca2rdp_pointer
 {
 	rdpPointer pointer;
-	IDirectFBSurface* surface;
+   ::visual::cursor * m_pcursor;
 	UINT32 xhot;
 	UINT32 yhot;
 };
-typedef struct df_pointer dfPointer;
+typedef struct ca2rdp_pointer ca2rdpPointer;
 
-struct df_info
+struct ca2rdp_info
 {
 	int read_fds;
-	DFBResult err;
-	IDirectFB* dfb;
-	DFBEvent event;
+	int err;
+   ::message::base * event;
+	//DFBEvent event;
 	HCLRCONV clrconv;
-	DFBRectangle update_rect;
-	DFBSurfaceDescription dsc;
-	IDirectFBSurface* primary;
-	IDirectFBSurface* surface;
-	IDirectFBDisplayLayer* layer;
-	IDirectFBEventBuffer* event_buffer;
+	::rect update_rect;
+   //DFBSurfaceDescription dsc;
+	::draw2d::dib * primary;
+   ::draw2d::dib * surface;
+//	IDirectFBDisplayLayer* layer;
+	//IDirectFBEventBuffer* event_buffer;
+
+
+
 };
+
+
+CLASS_DECL_RDPCLIENT BOOL ca2rdp_post_connect(freerdp* instance);
 
 #endif /* __DFREERDP_H */

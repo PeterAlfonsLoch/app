@@ -20,8 +20,8 @@
 #ifndef __DF_GRAPHICS_H
 #define __DF_GRAPHICS_H
 
-#include "dfreerdp.h"
+#include "ca2rdp.h"
 
-void df_register_graphics(rdpGraphics* graphics);
+CLASS_DECL_RDPCLIENT  void ca2rdp_register_graphics(rdpGraphics* graphics);
 
 #endif /* __DF_GRAPHICS_H */

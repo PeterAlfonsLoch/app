@@ -17,8 +17,12 @@
  * limitations under the License.
  */
 
+#include "ca2rdp_event.h"
+#include "ca2rdp_graphics.h"
+
+#include "ca2rdp.h"
+
 #include <errno.h>
-#include <pthread.h>
 #include <locale.h>
 
 #include <freerdp/freerdp.h>
@@ -32,101 +36,102 @@
 #include <winpr/crt.h>
 #include <winpr/synch.h>
 
-#include "df_event.h"
-#include "df_graphics.h"
 
-#include "dfreerdp.h"
 
-static HANDLE g_sem;
-static int g_thread_count = 0;
 
-struct thread_data
-{
-	freerdp* instance;
-};
-
-int df_context_new(freerdp* instance, rdpContext* context)
+int ca2rdp_context_new(freerdp* instance, rdpContext* context)
 {
 	context->channels = freerdp_channels_new();
 	return 0;
 }
 
-void df_context_free(freerdp* instance, rdpContext* context)
+void ca2rdp_context_free(freerdp* instance, rdpContext* context)
 {
 
 }
 
-void df_begin_paint(rdpContext* context)
+void ca2rdp_begin_paint(rdpContext* context)
 {
 	rdpGdi* gdi = context->gdi;
 	gdi->primary->hdc->hwnd->invalid->null = 1;
 }
 
-void df_end_paint(rdpContext* context)
+void ca2rdp_end_paint(rdpContext* context)
 {
 	rdpGdi* gdi;
-	dfInfo* dfi;
+	ca2rdpInfo* ca2rdpi;
 
 	gdi = context->gdi;
-	dfi = ((dfContext*) context)->dfi;
+	ca2rdpi = ((ca2rdpContext*) context)->ca2rdpi;
 
 	if (gdi->primary->hdc->hwnd->invalid->null)
 		return;
 
-#if 1
-	dfi->update_rect.x = gdi->primary->hdc->hwnd->invalid->x;
-	dfi->update_rect.y = gdi->primary->hdc->hwnd->invalid->y;
-	dfi->update_rect.w = gdi->primary->hdc->hwnd->invalid->w;
-	dfi->update_rect.h = gdi->primary->hdc->hwnd->invalid->h;
+#ifdef WINDOWS
+	ca2rdpi->update_rect.left = gdi->primary->hdc->hwnd->invalid->x;
+	ca2rdpi->update_rect.top = gdi->primary->hdc->hwnd->invalid->y;
+   ca2rdpi->update_rect.right = gdi->primary->hdc->hwnd->invalid->x+gdi->primary->hdc->hwnd->invalid->w;
+   ca2rdpi->update_rect.bottom = gdi->primary->hdc->hwnd->invalid->y +gdi->primary->hdc->hwnd->invalid->h;
 #else
-	dfi->update_rect.x = 0;
-	dfi->update_rect.y = 0;
-	dfi->update_rect.w = gdi->width;
-	dfi->update_rect.h = gdi->height;
+	ca2rdpi->update_rect.x = 0;
+	ca2rdpi->update_rect.y = 0;
+	ca2rdpi->update_rect.w = gdi->width;
+	ca2rdpi->update_rect.h = gdi->height;
 #endif
 
-	dfi->primary->Blit(dfi->primary, dfi->surface, &(dfi->update_rect), dfi->update_rect.x, dfi->update_rect.y);
+   ca2rdpi->surface->Paste(ca2rdpi->primary);
+
+/*#ifdef WINDOWS
+   ::draw2d::graphics_sp g(((ca2rdpContext*)context)->m_papp->allocer());
+   g->CreateCompatibleDC(NULL);
+   g->Attach(gdi->primary->hdc->alpha);
+   ca2rdpi->primary->get_graphics()->BitBlt(ca2rdpi->update_rect.left,ca2rdpi->update_rect.top,
+      ca2rdpi->update_rect.width(),ca2rdpi->update_rect.height,g,0, 0,SRCCOPY);
+   g->Detach();
+#else
+   ca2rdpi->primary->BitBlt(ca2rdpi->surface,SRCCOPY);
+#endif*/
 }
 
-BOOL df_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, int* wcount)
+BOOL ca2rdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, int* wcount)
 {
-	dfInfo* dfi;
+	ca2rdpInfo* ca2rdpi;
 
-	dfi = ((dfContext*) instance->context)->dfi;
+	ca2rdpi = ((ca2rdpContext*) instance->context)->ca2rdpi;
 
-	rfds[*rcount] = (void*)(long)(dfi->read_fds);
+	rfds[*rcount] = (void*)(long)(ca2rdpi->read_fds);
 	(*rcount)++;
 
 	return TRUE;
 }
 
-BOOL df_check_fds(freerdp* instance, fd_set* set)
+BOOL ca2rdp_check_fds(freerdp* instance, fd_set* set)
 {
-	dfInfo* dfi;
+	ca2rdpInfo* ca2rdpi;
 
-	dfi = ((dfContext*) instance->context)->dfi;
+	ca2rdpi = ((ca2rdpContext*) instance->context)->ca2rdpi;
 
-	if (!FD_ISSET(dfi->read_fds, set))
+	if (!FD_ISSET(ca2rdpi->read_fds, set))
 		return TRUE;
 
-	if (read(dfi->read_fds, &(dfi->event), sizeof(dfi->event)) > 0)
-		df_event_process(instance, &(dfi->event));
+//	if (read(ca2rdpi->read_fds, &(ca2rdpi->event), sizeof(ca2rdpi->event)) > 0)
+	//	ca2rdp_event_process(instance, &(ca2rdpi->event));
 
 	return TRUE;
 }
 
-BOOL df_pre_connect(freerdp* instance)
+BOOL ca2rdp_pre_connect(freerdp* instance)
 {
-	dfInfo* dfi;
+	ca2rdpInfo* ca2rdpi;
 	BOOL bitmap_cache;
-	dfContext* context;
+	ca2rdpContext* context;
 	rdpSettings* settings;
 
-	dfi = (dfInfo*) malloc(sizeof(dfInfo));
-	ZeroMemory(dfi, sizeof(dfInfo));
+	ca2rdpi = (ca2rdpInfo*) malloc(sizeof(ca2rdpInfo));
+	ZeroMemory(ca2rdpi, sizeof(ca2rdpInfo));
 
-	context = ((dfContext*) instance->context);
-	context->dfi = dfi;
+	context = ((ca2rdpContext*) instance->context);
+	context->ca2rdpi = ca2rdpi;
 
 	settings = instance->settings;
 	bitmap_cache = settings->BitmapCacheEnabled;
@@ -156,15 +161,15 @@ BOOL df_pre_connect(freerdp* instance)
 	settings->OrderSupport[NEG_ELLIPSE_SC_INDEX] = FALSE;
 	settings->OrderSupport[NEG_ELLIPSE_CB_INDEX] = FALSE;
 
-	dfi->clrconv = (CLRCONV*) malloc(sizeof(CLRCONV));
-	ZeroMemory(dfi->clrconv, sizeof(CLRCONV));
+	ca2rdpi->clrconv = (CLRCONV*) malloc(sizeof(CLRCONV));
+	ZeroMemory(ca2rdpi->clrconv, sizeof(CLRCONV));
 
-	dfi->clrconv->alpha = 1;
-	dfi->clrconv->invert = 0;
-	dfi->clrconv->rgb555 = 0;
+	ca2rdpi->clrconv->alpha = 1;
+	ca2rdpi->clrconv->invert = 0;
+	ca2rdpi->clrconv->rgb555 = 0;
 
-	dfi->clrconv->palette = (rdpPalette*) malloc(sizeof(rdpPalette));
-	ZeroMemory(dfi->clrconv->palette, sizeof(rdpPalette));
+	ca2rdpi->clrconv->palette = (rdpPalette*) malloc(sizeof(rdpPalette));
+	ZeroMemory(ca2rdpi->clrconv->palette, sizeof(rdpPalette));
 
 	freerdp_channels_pre_connect(instance->context->channels, instance);
 
@@ -173,63 +178,72 @@ BOOL df_pre_connect(freerdp* instance)
 	return TRUE;
 }
 
-BOOL df_post_connect(freerdp* instance)
+BOOL ca2rdp_post_connect(freerdp* instance)
 {
 	rdpGdi* gdi;
-	dfInfo* dfi;
-	dfContext* context;
+	ca2rdpInfo* ca2rdpi;
+	ca2rdpContext* context;
 
-	context = ((dfContext*) instance->context);
-	dfi = context->dfi;
+	context = ((ca2rdpContext*) instance->context);
+	ca2rdpi = context->ca2rdpi;
+   //gdi->width = instance->settings->DesktopWidth;
+   //gdi->height = instance->settings->DesktopHeight;
 
-	gdi_init(instance, CLRCONV_ALPHA | CLRCONV_INVERT | CLRBUF_16BPP | CLRBUF_32BPP, NULL);
+   App(context->m_papp).alloc(ca2rdpi->primary);
+   ca2rdpi->primary->create(instance->settings->DesktopWidth,instance->settings->DesktopHeight);
+
+   App(context->m_papp).alloc(ca2rdpi->surface);
+   ca2rdpi->surface->create(instance->settings->DesktopWidth,instance->settings->DesktopHeight);
+
+
+   gdi_init(instance,CLRCONV_ALPHA |  CLRBUF_32BPP,(BYTE*) ca2rdpi->primary->m_pcolorref);
 	gdi = instance->context->gdi;
 
-	dfi->err = DirectFBCreate(&(dfi->dfb));
+//	ca2rdpi->err = DirectFBCreate(&(ca2rdpi->ca2rdpb));
 
-	dfi->dsc.flags = DSDESC_CAPS;
-	dfi->dsc.caps = DSCAPS_PRIMARY;
-	dfi->err = dfi->dfb->CreateSurface(dfi->dfb, &(dfi->dsc), &(dfi->primary));
-	dfi->err = dfi->primary->GetSize(dfi->primary, &(gdi->width), &(gdi->height));
-	dfi->dfb->SetVideoMode(dfi->dfb, gdi->width, gdi->height, gdi->dstBpp);
-	dfi->dfb->CreateInputEventBuffer(dfi->dfb, DICAPS_ALL, DFB_TRUE, &(dfi->event_buffer));
-	dfi->event_buffer->CreateFileDescriptor(dfi->event_buffer, &(dfi->read_fds));
+	//ca2rdpi->dsc.flags = DSDESC_CAPS;
+	//ca2rdpi->dsc.caps = DSCAPS_PRIMARY;
+	//ca2rdpi->err = ca2rdpi->ca2rdpb->CreateSurface(ca2rdpi->ca2rdpb, &(ca2rdpi->dsc), &(ca2rdpi->primary));
+	//ca2rdpi->err = ca2rdpi->primary->GetSize(ca2rdpi->primary, &(gdi->width), &(gdi->height));
+	//ca2rdpi->ca2rdpb->SetVideoMode(ca2rdpi->ca2rdpb, gdi->width, gdi->height, gdi->dstBpp);
+	//ca2rdpi->ca2rdpb->CreateInputEventBuffer(ca2rdpi->ca2rdpb, DICAPS_ALL, DFB_TRUE, &(ca2rdpi->event_buffer));
+	//ca2rdpi->event_buffer->CreateFileDescriptor(ca2rdpi->event_buffer, &(ca2rdpi->read_fds));
 
-	dfi->dfb->GetDisplayLayer(dfi->dfb, 0, &(dfi->layer));
-	dfi->layer->EnableCursor(dfi->layer, 1);
+	//ca2rdpi->ca2rdpb->GetDisplayLayer(ca2rdpi->ca2rdpb, 0, &(ca2rdpi->layer));
+	//ca2rdpi->layer->EnableCursor(ca2rdpi->layer, 1);
 
-	dfi->dsc.flags = DSDESC_CAPS | DSDESC_WIDTH | DSDESC_HEIGHT | DSDESC_PREALLOCATED | DSDESC_PIXELFORMAT;
-	dfi->dsc.caps = DSCAPS_SYSTEMONLY;
-	dfi->dsc.width = gdi->width;
-	dfi->dsc.height = gdi->height;
+	//ca2rdpi->dsc.flags = DSDESC_CAPS | DSDESC_WIDTH | DSDESC_HEIGHT | DSDESC_PREALLOCATED | DSDESC_PIXELFORMAT;
+	//ca2rdpi->dsc.caps = DSCAPS_SYSTEMONLY;
+	//ca2rdpi->dsc.width = gdi->width;
+	//ca2rdpi->dsc.height = gdi->height;
 
-	if (gdi->dstBpp == 32 || gdi->dstBpp == 24)
-		dfi->dsc.pixelformat = DSPF_AiRGB;
-	else if (gdi->dstBpp == 16 || gdi->dstBpp == 15)
-		dfi->dsc.pixelformat = DSPF_RGB16;
-	else if (gdi->dstBpp == 8)
-		dfi->dsc.pixelformat = DSPF_RGB332;
-	else
-		dfi->dsc.pixelformat = DSPF_AiRGB;
+	//if (gdi->dstBpp == 32 || gdi->dstBpp == 24)
+		//ca2rdpi->dsc.pixelformat = DSPF_AiRGB;
+	//else if (gdi->dstBpp == 16 || gdi->dstBpp == 15)
+//		ca2rdpi->dsc.pixelformat = DSPF_RGB16;
+//	else if (gdi->dstBpp == 8)
+	//	ca2rdpi->dsc.pixelformat = DSPF_RGB332;
+	//else
+		//ca2rdpi->dsc.pixelformat = DSPF_AiRGB;
 
-	dfi->dsc.preallocated[0].data = gdi->primary_buffer;
-	dfi->dsc.preallocated[0].pitch = gdi->width * gdi->bytesPerPixel;
-	dfi->dfb->CreateSurface(dfi->dfb, &(dfi->dsc), &(dfi->surface));
+	//ca2rdpi->dsc.preallocated[0].data = gdi->primary_buffer;
+	//ca2rdpi->dsc.preallocated[0].pitch = gdi->width * gdi->bytesPerPixel;
+	//ca2rdpi->ca2rdpb->CreateSurface(ca2rdpi->ca2rdpb, &(ca2rdpi->dsc), &(ca2rdpi->surface));
+//
+	instance->update->BeginPaint = ca2rdp_begin_paint;
+	instance->update->EndPaint = ca2rdp_end_paint;
 
-	instance->update->BeginPaint = df_begin_paint;
-	instance->update->EndPaint = df_end_paint;
-
-	df_keyboard_init();
+	//ca2rdp_keyboard_init();
 
 	pointer_cache_register_callbacks(instance->update);
-	df_register_graphics(instance->context->graphics);
+	ca2rdp_register_graphics(instance->context->graphics);
 
 	freerdp_channels_post_connect(instance->context->channels, instance);
 
 	return TRUE;
 }
 
-BOOL df_verify_certificate(freerdp* instance, char* subject, char* issuer, char* fingerprint)
+BOOL ca2rdp_verify_certificate(freerdp* instance, char* subject, char* issuer, char* fingerprint)
 {
 	char answer;
 
@@ -259,12 +273,12 @@ BOOL df_verify_certificate(freerdp* instance, char* subject, char* issuer, char*
 	return FALSE;
 }
 
-static int df_receive_channel_data(freerdp* instance, int channelId, BYTE* data, int size, int flags, int total_size)
+static int ca2rdp_receive_channel_data(freerdp* instance, int channelId, BYTE* data, int size, int flags, int total_size)
 {
 	return freerdp_channels_data(instance, channelId, data, size, flags, total_size);
 }
 
-static void df_process_cb_monitor_ready_event(rdpChannels* channels, freerdp* instance)
+static void ca2rdp_process_cb_monitor_ready_event(rdpChannels* channels, freerdp* instance)
 {
 	wMessage* event;
 	RDP_CB_FORMAT_LIST_EVENT* format_list_event;
@@ -277,7 +291,7 @@ static void df_process_cb_monitor_ready_event(rdpChannels* channels, freerdp* in
 	freerdp_channels_send_event(channels, event);
 }
 
-static void df_process_channel_event(rdpChannels* channels, freerdp* instance)
+static void ca2rdp_process_channel_event(rdpChannels* channels, freerdp* instance)
 {
 	wMessage* event;
 
@@ -288,11 +302,11 @@ static void df_process_channel_event(rdpChannels* channels, freerdp* instance)
 		switch (GetMessageType(event->id))
 		{
 			case CliprdrChannel_MonitorReady:
-				df_process_cb_monitor_ready_event(channels, instance);
+				ca2rdp_process_cb_monitor_ready_event(channels, instance);
 				break;
 
 			default:
-				DEBUG_WARN( "df_process_channel_event: unknown event type %d\n", GetMessageType(event->id));
+				DEBUG_WARN( "ca2rdp_process_channel_event: unknown event type %d\n", GetMessageType(event->id));
 				break;
 		}
 
@@ -300,13 +314,13 @@ static void df_process_channel_event(rdpChannels* channels, freerdp* instance)
 	}
 }
 
-static void df_free(dfInfo* dfi)
+static void ca2rdp_free(ca2rdpInfo* ca2rdpi)
 {
-	dfi->dfb->Release(dfi->dfb);
-	free(dfi);
+//	ca2rdpi->ca2rdpb->Release(ca2rdpi->ca2rdpb);
+	free(ca2rdpi);
 }
 
-int dfreerdp_run(freerdp* instance)
+int ca2rdpreerdp_run(freerdp* instance)
 {
 	int i;
 	int fds;
@@ -317,8 +331,8 @@ int dfreerdp_run(freerdp* instance)
 	void* wfds[32];
 	fd_set rfds_set;
 	fd_set wfds_set;
-	dfInfo* dfi;
-	dfContext* context;
+	ca2rdpInfo* ca2rdpi;
+	ca2rdpContext* context;
 	rdpChannels* channels;
 
 	ZeroMemory(rfds, sizeof(rfds));
@@ -327,9 +341,9 @@ int dfreerdp_run(freerdp* instance)
 	if (!freerdp_connect(instance))
 		return 0;
 
-	context = (dfContext*) instance->context;
+	context = (ca2rdpContext*) instance->context;
 
-	dfi = context->dfi;
+	ca2rdpi = context->ca2rdpi;
 	channels = instance->context->channels;
 
 	while (1)
@@ -347,9 +361,9 @@ int dfreerdp_run(freerdp* instance)
 			DEBUG_WARN( "Failed to get channel manager file descriptor\n");
 			break;
 		}
-		if (df_get_fds(instance, rfds, &rcount, wfds, &wcount) != TRUE)
+		if (ca2rdp_get_fds(instance, rfds, &rcount, wfds, &wcount) != TRUE)
 		{
-			DEBUG_WARN( "Failed to get dfreerdp file descriptor\n");
+			DEBUG_WARN( "Failed to get ca2rdpreerdp file descriptor\n");
 			break;
 		}
 
@@ -378,7 +392,7 @@ int dfreerdp_run(freerdp* instance)
 				(errno == EINPROGRESS) ||
 				(errno == EINTR))) /* signal occurred */
 			{
-				DEBUG_WARN( "dfreerdp_run: select failed\n");
+				DEBUG_WARN( "ca2rdpreerdp_run: select failed\n");
 				break;
 			}
 		}
@@ -388,9 +402,9 @@ int dfreerdp_run(freerdp* instance)
 			DEBUG_WARN( "Failed to check FreeRDP file descriptor\n");
 			break;
 		}
-		if (df_check_fds(instance, &rfds_set) != TRUE)
+		if (ca2rdp_check_fds(instance, &rfds_set) != TRUE)
 		{
-			DEBUG_WARN( "Failed to check dfreerdp file descriptor\n");
+			DEBUG_WARN( "Failed to check ca2rdpreerdp file descriptor\n");
 			break;
 		}
 		if (freerdp_channels_check_fds(channels, instance) != TRUE)
@@ -398,12 +412,12 @@ int dfreerdp_run(freerdp* instance)
 			DEBUG_WARN( "Failed to check channel manager file descriptor\n");
 			break;
 		}
-		df_process_channel_event(channels, instance);
+		ca2rdp_process_channel_event(channels, instance);
 	}
 
 	freerdp_channels_close(channels, instance);
 	freerdp_channels_free(channels);
-	df_free(dfi);
+	ca2rdp_free(ca2rdpi);
 	gdi_free(instance);
 	freerdp_disconnect(instance);
 	freerdp_free(instance);
@@ -411,12 +425,14 @@ int dfreerdp_run(freerdp* instance)
 	return 0;
 }
 
+/*
 void* thread_func(void* param)
+
 {
 	struct thread_data* data;
 	data = (struct thread_data*) param;
 
-	dfreerdp_run(data->instance);
+	ca2rdpreerdp_run(data->instance);
 
 	free(data);
 
@@ -429,13 +445,15 @@ void* thread_func(void* param)
 
 	return NULL;
 }
+*/
 
+/*
 int main(int argc, char* argv[])
 {
 	int status;
 	pthread_t thread;
 	freerdp* instance;
-	dfContext* context;
+	ca2rdpContext* context;
 	rdpChannels* channels;
 	struct thread_data* data;
 
@@ -444,17 +462,17 @@ int main(int argc, char* argv[])
 	g_sem = CreateSemaphore(NULL, 0, 1, NULL);
 
 	instance = freerdp_new();
-	instance->PreConnect = df_pre_connect;
-	instance->PostConnect = df_post_connect;
-	instance->VerifyCertificate = df_verify_certificate;
-	instance->ReceiveChannelData = df_receive_channel_data;
+	instance->PreConnect = ca2rdp_pre_connect;
+	instance->PostConnect = ca2rdp_post_connect;
+	instance->VerifyCertificate = ca2rdp_verify_certificate;
+	instance->ReceiveChannelData = ca2rdp_receive_channel_data;
 
-	instance->ContextSize = sizeof(dfContext);
-	instance->ContextNew = df_context_new;
-	instance->ContextFree = df_context_free;
+	instance->ContextSize = sizeof(ca2rdpContext);
+	instance->ContextNew = ca2rdp_context_new;
+	instance->ContextFree = ca2rdp_context_free;
 	freerdp_context_new(instance);
 
-	context = (dfContext*) instance->context;
+	context = (ca2rdpContext*) instance->context;
 	channels = instance->context->channels;
 
 	DirectFBInit(&argc, &argv);
@@ -484,3 +502,6 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
+
+
+*/

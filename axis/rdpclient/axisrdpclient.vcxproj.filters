@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="client\common\client.c">
-      <Filter>Source Files\client\common</Filter>
-    </ClCompile>
-    <ClCompile Include="client\common\cmdline.c">
-      <Filter>Source Files\client\common</Filter>
-    </ClCompile>
-    <ClCompile Include="client\common\compatibility.c">
-      <Filter>Source Files\client\common</Filter>
-    </ClCompile>
-    <ClCompile Include="client\common\file.c">
-      <Filter>Source Files\client\common</Filter>
-    </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="client\ca2\cf_event.cpp">
+    <ClCompile Include="client\ca2\ca2rdp_event.cpp">
       <Filter>Source Files\client\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="client\ca2\cf_graphics.cpp">
+    <ClCompile Include="client\ca2\ca2rdp_graphics.cpp">
       <Filter>Source Files\client\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="client\ca2\cfreerdp.cpp">
+    <ClCompile Include="client\ca2\ca2rdp.cpp">
       <Filter>Source Files\client\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\client.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\cmdline.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\compatibility.cpp">
+      <Filter>Source Files\client\common</Filter>
+    </ClCompile>
+    <ClCompile Include="client\common\file.cpp">
+      <Filter>Source Files\client\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,13 +62,13 @@
     <ClInclude Include="freerdp_rdpclient_setup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="client\ca2\cf_event.h">
+    <ClInclude Include="client\ca2\ca2rdp_event.h">
       <Filter>Header Files\client\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="client\ca2\cf_graphics.h">
+    <ClInclude Include="client\ca2\ca2rdp_graphics.h">
       <Filter>Header Files\client\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="client\ca2\cfreerdp.h">
+    <ClInclude Include="client\ca2\ca2rdp.h">
       <Filter>Header Files\client\ca2</Filter>
     </ClInclude>
   </ItemGroup>

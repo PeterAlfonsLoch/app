@@ -1,5 +1,5 @@
-#ifndef __CONFIG_H
-#define __CONFIG_H
+#pragma once
+
 
 #include "freerdp_rdpclient_setup.h"
 
@@ -89,7 +89,6 @@
 #define WITH_DEBUG_X11_LOCAL_MOVESIZE
 #define WITH_DEBUG_XV
 #define WITH_DEBUG_ANDROID_JNI
-#endif
 
 
 
