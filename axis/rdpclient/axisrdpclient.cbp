@@ -85,65 +85,12 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
-		<Unit filename="client/X11/cli/xfreerdp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/generate_argument_docbook.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_channels.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_channels.h" />
-		<Unit filename="client/X11/xf_client.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_client.h" />
-		<Unit filename="client/X11/xf_cliprdr.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_cliprdr.h" />
-		<Unit filename="client/X11/xf_event.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_event.h" />
-		<Unit filename="client/X11/xf_gdi.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_gdi.h" />
-		<Unit filename="client/X11/xf_gfx.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_gfx.h" />
-		<Unit filename="client/X11/xf_graphics.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_graphics.h" />
-		<Unit filename="client/X11/xf_input.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_input.h" />
-		<Unit filename="client/X11/xf_keyboard.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_keyboard.h" />
-		<Unit filename="client/X11/xf_monitor.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_monitor.h" />
-		<Unit filename="client/X11/xf_rail.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_rail.h" />
-		<Unit filename="client/X11/xf_tsmf.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_tsmf.h" />
-		<Unit filename="client/X11/xf_window.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="client/X11/xf_window.h" />
-		<Unit filename="client/X11/xfreerdp.h" />
+		<Unit filename="client/ca2/ca2rdp.cpp" />
+		<Unit filename="client/ca2/ca2rdp.h" />
+		<Unit filename="client/ca2/ca2rdp_event.cpp" />
+		<Unit filename="client/ca2/ca2rdp_event.h" />
+		<Unit filename="client/ca2/ca2rdp_graphics.cpp" />
+		<Unit filename="client/ca2/ca2rdp_graphics.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
