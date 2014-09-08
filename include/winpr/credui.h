@@ -86,7 +86,7 @@ typedef struct _CREDUI_INFOW
 	HBITMAP hbmBanner;
 } CREDUI_INFOW, *PCREDUI_INFOW;
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CREDUI_INFO	CREDUI_INFOW
 #define PCREDUI_INFO	PCREDUI_INFOW
 #else
@@ -128,7 +128,7 @@ WINPR_API DWORD CredUIReadSSOCredA(PCSTR pszRealm, PSTR* ppszUsername);
 }
 #endif
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CredUIPromptForCredentials		CredUIPromptForCredentialsW
 #define CredUIParseUserName			CredUIParseUserNameW
 #define CredUICmdLinePromptForCredentials	CredUICmdLinePromptForCredentialsW

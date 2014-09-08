@@ -116,7 +116,7 @@ WINPR_API HRESULT PathCchRemoveFileSpecA(PSTR pszPath, size_t cchPath);
 WINPR_API HRESULT PathCchRemoveFileSpecW(PWSTR pszPath, size_t cchPath);
 
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define PathCchAddBackslash		PathCchAddBackslashW
 #define PathCchRemoveBackslash		PathCchRemoveBackslashW
 #define PathCchAddBackslashEx		PathCchAddBackslashExW
@@ -181,7 +181,7 @@ WINPR_API HRESULT UnixPathCchAppendW(PWSTR pszPath, size_t cchPath, PCWSTR pszMo
 WINPR_API HRESULT UnixPathAllocCombineA(PCSTR pszPathIn, PCSTR pszMore, unsigned long dwFlags, PSTR* ppszPathOut);
 WINPR_API HRESULT UnixPathAllocCombineW(PCWSTR pszPathIn, PCWSTR pszMore, unsigned long dwFlags, PWSTR* ppszPathOut);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define PathCchAddSlash			PathCchAddSlashW
 #define PathCchAddSlashEx		PathCchAddSlashExW
 #define UnixPathCchAddExtension		UnixPathCchAddExtensionW
@@ -212,7 +212,7 @@ WINPR_API HRESULT NativePathCchAppendW(PWSTR pszPath, size_t cchPath, PCWSTR psz
 WINPR_API HRESULT NativePathAllocCombineA(PCSTR pszPathIn, PCSTR pszMore, unsigned long dwFlags, PSTR* ppszPathOut);
 WINPR_API HRESULT NativePathAllocCombineW(PCWSTR pszPathIn, PCWSTR pszMore, unsigned long dwFlags, PWSTR* ppszPathOut);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define PathCchAddSeparator		PathCchAddSeparatorW
 #define PathCchAddSeparatorEx		PathCchAddSeparatorExW
 #define NativePathCchAddExtension	NativePathCchAddExtensionW
@@ -248,7 +248,7 @@ WINPR_API WCHAR PathGetSeparatorW(unsigned long dwFlags);
 WINPR_API PCSTR PathGetSharedLibraryExtensionA(unsigned long dwFlags);
 WINPR_API PCWSTR PathGetSharedLibraryExtensionW(unsigned long dwFlags);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define PathCchConvertStyle		PathCchConvertStyleW
 #define PathGetSeparator		PathGetSeparatorW
 #define PathGetSharedLibraryExtension	PathGetSharedLibraryExtensionW
@@ -292,7 +292,7 @@ WINPR_API BOOL PathFileExistsW(LPCWSTR pszPath);
 }
 #endif
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define PathFileExists	PathFileExistsW
 #else
 #define PathFileExists	PathFileExistsA

@@ -96,7 +96,7 @@ WINPR_API BOOL ImpersonateNamedPipeClient(HANDLE hNamedPipe);
 WINPR_API BOOL GetNamedPipeClientComputerNameA(HANDLE Pipe, LPCSTR ClientComputerName, ULONG ClientComputerNameLength);
 WINPR_API BOOL GetNamedPipeClientComputerNameW(HANDLE Pipe, LPCWSTR ClientComputerName, ULONG ClientComputerNameLength);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define CreateNamedPipe				CreateNamedPipeW
 #define WaitNamedPipe				WaitNamedPipeW
 #define GetNamedPipeClientComputerName		GetNamedPipeClientComputerNameW

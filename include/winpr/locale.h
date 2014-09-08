@@ -492,7 +492,7 @@ DWORD WINAPI FormatMessageA(DWORD dwFlags, LPCVOID lpSource, DWORD dwMessageId, 
 DWORD WINAPI FormatMessageW(DWORD dwFlags, LPCVOID lpSource, DWORD dwMessageId, DWORD dwLanguageId,
 			   LPWSTR lpBuffer, DWORD nSize, va_list* Arguments);
 
-#ifdef UNICODE
+#ifdef BYEWINDOWS_UNICODE
 #define FormatMessage	FormatMessageW
 #else
 #define FormatMessage	FormatMessageA
