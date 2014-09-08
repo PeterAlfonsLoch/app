@@ -68,6 +68,7 @@
 			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
+			<Add option="-DBYEWINDOWS_UNICODE" />
 			<Add directory="../../../../include" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
