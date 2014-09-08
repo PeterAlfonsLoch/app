@@ -3298,9 +3298,6 @@
     <ClCompile Include="aura\node\ansios\ansios_process.cpp">
       <Filter>Source Files\aura\node\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="user\framework_user.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3332,9 +3329,6 @@
     </None>
     <None Include="aura\aura\aura_system_xml.inl">
       <Filter>Header Files\aura\aura</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
