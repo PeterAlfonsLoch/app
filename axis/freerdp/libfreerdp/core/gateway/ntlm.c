@@ -133,12 +133,18 @@ BOOL ntlm_client_make_spn(rdpNtlm* ntlm, LPCTSTR ServiceClassParam, char* hostna
 	MultiByteToWideChar(CP_UTF8, 0, hostname, length, hostnameX, length);
 	hostnameX[length] = 0;
 
-/*   length = wcslen(ServiceClassParam);
+#ifdef _WIN32
+
+   length = strlen(ServiceClassParam);
    ServiceClass = (LPWSTR)malloc((length + 1)* sizeof(WCHAR));
    MultiByteToWideChar(CP_UTF8,0,(LPCSTR)ServiceClassParam,length,ServiceClass,length);
-   ServiceClass[length] = 0;*/
+   ServiceClass[length] = 0;
+
+#else
 
    ServiceClass = wcsdup(ServiceClassParam);
+
+#endif
 
 #else
 	hostnameX = hostname;
