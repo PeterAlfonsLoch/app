@@ -455,12 +455,6 @@
     <ClInclude Include="axis\node\node.h">
       <Filter>Header Files\axis\node</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\os.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\win1.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\windows\windows_copydesk.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
@@ -784,6 +778,9 @@
     </ClInclude>
     <ClInclude Include="axis\axis\axis.h">
       <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows.h">
+      <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1293,9 +1290,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="axis\axis\axis.inl">
       <Filter>Header Files\axis\axis</Filter>
     </None>

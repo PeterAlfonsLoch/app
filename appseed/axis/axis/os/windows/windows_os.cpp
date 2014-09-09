@@ -1,4 +1,5 @@
 #include "framework.h" // from "axis/user/user.h"
+#include "aura/node/windows/windows.h"
 #include <ShObjIdl.h>
 
 

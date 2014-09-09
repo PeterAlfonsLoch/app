@@ -20,7 +20,6 @@ namespace axis
          System.factory().creatable_large    < ::windows::print_job          >(System.type_info < ::user::print_job           >());
          System.factory().creatable          < ::windows::message_queue      >(System.type_info < ::aura::message_queue       >(), 32);
 
-         ::windows::shell::theWindowsShell.Initialize();
 
       }
 
