@@ -240,23 +240,23 @@ struct _RAIL_SYSPARAM_ORDER
 {
 	UINT32 param;
 	UINT32 params;
-	BOOL dragFullWindows;
-	BOOL keyboardCues;
-	BOOL keyboardPref;
-	BOOL mouseButtonSwap;
+	WINBOOL dragFullWindows;
+	WINBOOL keyboardCues;
+	WINBOOL keyboardPref;
+	WINBOOL mouseButtonSwap;
 	RECTANGLE_16 workArea;
 	RECTANGLE_16 displayChange;
 	RECTANGLE_16 taskbarPos;
 	RAIL_HIGH_CONTRAST highContrast;
-	BOOL setScreenSaveActive;
-	BOOL setScreenSaveSecure;
+	WINBOOL setScreenSaveActive;
+	WINBOOL setScreenSaveSecure;
 };
 typedef struct _RAIL_SYSPARAM_ORDER RAIL_SYSPARAM_ORDER;
 
 struct _RAIL_ACTIVATE_ORDER
 {
 	UINT32 windowId;
-	BOOL enabled;
+	WINBOOL enabled;
 };
 typedef struct _RAIL_ACTIVATE_ORDER RAIL_ACTIVATE_ORDER;
 
@@ -300,7 +300,7 @@ typedef struct _RAIL_MINMAXINFO_ORDER RAIL_MINMAXINFO_ORDER;
 struct _RAIL_LOCALMOVESIZE_ORDER
 {
 	UINT32 windowId;
-	BOOL isMoveSizeStart;
+	WINBOOL isMoveSizeStart;
 	UINT16 moveSizeType;
 	UINT16 posX;
 	UINT16 posY;

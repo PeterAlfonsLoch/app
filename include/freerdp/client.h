@@ -89,7 +89,7 @@ FREERDP_API int freerdp_client_settings_parse_command_line(rdpSettings* settings
 
 FREERDP_API int freerdp_client_settings_parse_connection_file(rdpSettings* settings, const char* filename);
 FREERDP_API int freerdp_client_settings_parse_connection_file_buffer(rdpSettings* settings, const BYTE* buffer, size_t size);
-FREERDP_API int freerdp_client_settings_write_connection_file(const rdpSettings* settings, const char* filename, BOOL unicode);
+FREERDP_API int freerdp_client_settings_write_connection_file(const rdpSettings* settings, const char* filename, WINBOOL unicode);
 
 FREERDP_API int freerdp_client_settings_parse_assistance_file(rdpSettings* settings, const char* filename);
 

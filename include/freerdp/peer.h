@@ -31,19 +31,19 @@
 typedef void (*psPeerContextNew)(freerdp_peer* client, rdpContext* context);
 typedef void (*psPeerContextFree)(freerdp_peer* client, rdpContext* context);
 
-typedef BOOL (*psPeerInitialize)(freerdp_peer* client);
-typedef BOOL (*psPeerGetFileDescriptor)(freerdp_peer* client, void** rfds, int* rcount);
+typedef WINBOOL (*psPeerInitialize)(freerdp_peer* client);
+typedef WINBOOL (*psPeerGetFileDescriptor)(freerdp_peer* client, void** rfds, int* rcount);
 typedef HANDLE (*psPeerGetEventHandle)(freerdp_peer* client);
 typedef HANDLE (*psPeerGetReceiveEventHandle)(freerdp_peer* client);
-typedef BOOL (*psPeerCheckFileDescriptor)(freerdp_peer* client);
-typedef BOOL (*psPeerIsWriteBlocked)(freerdp_peer* client);
+typedef WINBOOL (*psPeerCheckFileDescriptor)(freerdp_peer* client);
+typedef WINBOOL (*psPeerIsWriteBlocked)(freerdp_peer* client);
 typedef int (*psPeerDrainOutputBuffer)(freerdp_peer* client);
-typedef BOOL (*psPeerClose)(freerdp_peer* client);
+typedef WINBOOL (*psPeerClose)(freerdp_peer* client);
 typedef void (*psPeerDisconnect)(freerdp_peer* client);
-typedef BOOL (*psPeerCapabilities)(freerdp_peer* client);
-typedef BOOL (*psPeerPostConnect)(freerdp_peer* client);
-typedef BOOL (*psPeerActivate)(freerdp_peer* client);
-typedef BOOL (*psPeerLogon)(freerdp_peer* client, SEC_WINNT_AUTH_IDENTITY_W* identity, BOOL automatic);
+typedef WINBOOL (*psPeerCapabilities)(freerdp_peer* client);
+typedef WINBOOL (*psPeerPostConnect)(freerdp_peer* client);
+typedef WINBOOL (*psPeerActivate)(freerdp_peer* client);
+typedef WINBOOL (*psPeerLogon)(freerdp_peer* client, SEC_WINNT_AUTH_IDENTITY_W* identity, WINBOOL automatic);
 
 typedef int (*psPeerSendChannelData)(freerdp_peer* client, UINT16 channelId, BYTE* data, int size);
 typedef int (*psPeerReceiveChannelData)(freerdp_peer* client, UINT16 channelId, BYTE* data, int size, int flags, int totalSize);
@@ -81,10 +81,10 @@ struct rdp_freerdp_peer
 
 	int pId;
 	UINT32 ack_frame_id;
-	BOOL local;
-	BOOL connected;
-	BOOL activated;
-	BOOL authenticated;
+	WINBOOL local;
+	WINBOOL connected;
+	WINBOOL activated;
+	WINBOOL authenticated;
 	SEC_WINNT_AUTH_IDENTITY_W identity;
 
 	psPeerIsWriteBlocked IsWriteBlocked;

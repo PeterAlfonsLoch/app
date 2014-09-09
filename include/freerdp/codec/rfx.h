@@ -55,7 +55,7 @@ struct _RFX_TILE
 	int height;
 	BYTE* data;
 	int scanline;
-	BOOL allocated;
+	WINBOOL allocated;
 	BYTE quantIdxY;
 	BYTE quantIdxCb;
 	BYTE quantIdxCr;
@@ -81,7 +81,7 @@ struct _RFX_MESSAGE
 	 */
 	UINT16 numRects;
 	RFX_RECT* rects;
-	BOOL freeRects;
+	WINBOOL freeRects;
 
 	/**
 	 * The tiles array represents the actual frame data. Each tile is always
@@ -97,7 +97,7 @@ struct _RFX_MESSAGE
 
 	UINT32 tilesDataSize;
 
-	BOOL freeArray;
+	WINBOOL freeArray;
 };
 typedef struct _RFX_MESSAGE RFX_MESSAGE;
 
@@ -118,7 +118,7 @@ struct _RFX_CONTEXT
 {
 	RFX_STATE state;
 
-	BOOL encoder;
+	WINBOOL encoder;
 	UINT16 flags;
 	UINT16 properties;
 	UINT16 width;
@@ -152,7 +152,7 @@ struct _RFX_CONTEXT
 };
 typedef struct _RFX_CONTEXT RFX_CONTEXT;
 
-FREERDP_API RFX_CONTEXT* rfx_context_new(BOOL encoder);
+FREERDP_API RFX_CONTEXT* rfx_context_new(WINBOOL encoder);
 FREERDP_API void rfx_context_free(RFX_CONTEXT* context);
 FREERDP_API void rfx_context_set_pixel_format(RFX_CONTEXT* context, RDP_PIXEL_FORMAT pixel_format);
 FREERDP_API void rfx_context_reset(RFX_CONTEXT* context);

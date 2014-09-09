@@ -33,8 +33,8 @@ struct rdp_assistance_file
 	char* PassStub;
 	UINT32 DtStart;
 	UINT32 DtLength;
-	BOOL LowSpeed;
-	BOOL RCTicketEncrypted;
+	WINBOOL LowSpeed;
+	WINBOOL RCTicketEncrypted;
 
 	char* ConnectionString1;
 	char* ConnectionString2;

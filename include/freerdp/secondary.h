@@ -75,7 +75,7 @@ struct _CACHE_BITMAP_ORDER
 	UINT32 bitmapHeight;
 	UINT32 bitmapLength;
 	UINT32 cacheIndex;
-	BOOL compressed;
+	WINBOOL compressed;
 	BYTE bitmapComprHdr[8];
 	BYTE* bitmapDataStream;
 };
@@ -92,7 +92,7 @@ struct _CACHE_BITMAP_V2_ORDER
 	UINT32 bitmapHeight;
 	UINT32 bitmapLength;
 	UINT32 cacheIndex;
-	BOOL compressed;
+	WINBOOL compressed;
 	UINT32 cbCompFirstRowSize;
 	UINT32 cbCompMainBodySize;
 	UINT32 cbScanWidth;
@@ -187,7 +187,7 @@ struct rdp_secondary_update
 
 	/* internal */
 
-	BOOL glyph_v2;
+	WINBOOL glyph_v2;
 	CACHE_BITMAP_ORDER cache_bitmap_order;
 	CACHE_BITMAP_V2_ORDER cache_bitmap_v2_order;
 	CACHE_BITMAP_V3_ORDER cache_bitmap_v3_order;

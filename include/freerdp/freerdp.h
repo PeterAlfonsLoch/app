@@ -57,12 +57,12 @@ extern "C" {
 typedef int (*pContextNew)(freerdp* instance, rdpContext* context);
 typedef void (*pContextFree)(freerdp* instance, rdpContext* context);
 
-typedef BOOL (*pPreConnect)(freerdp* instance);
-typedef BOOL (*pPostConnect)(freerdp* instance);
+typedef WINBOOL (*pPreConnect)(freerdp* instance);
+typedef WINBOOL (*pPostConnect)(freerdp* instance);
 typedef void (*pPostDisconnect)(freerdp* instance);
-typedef BOOL (*pAuthenticate)(freerdp* instance, char** username, char** password, char** domain);
-typedef BOOL (*pVerifyCertificate)(freerdp* instance, char* subject, char* issuer, char* fingerprint);
-typedef BOOL (*pVerifyChangedCertificate)(freerdp* instance, char* subject, char* issuer, char* new_fingerprint, char* old_fingerprint);
+typedef WINBOOL (*pAuthenticate)(freerdp* instance, char** username, char** password, char** domain);
+typedef WINBOOL (*pVerifyCertificate)(freerdp* instance, char* subject, char* issuer, char* fingerprint);
+typedef WINBOOL (*pVerifyChangedCertificate)(freerdp* instance, char* subject, char* issuer, char* new_fingerprint, char* old_fingerprint);
 typedef int (*pVerifyX509Certificate)(freerdp* instance, BYTE* data, int length, const char* hostname, int port, DWORD flags);
 
 typedef int (*pLogonErrorInfo)(freerdp* instance, UINT32 data, UINT32 type);
@@ -85,7 +85,7 @@ struct rdp_context
 						   Pointer to the client peer.
 						   This is set by a call to freerdp_peer_context_new() during peer initialization.
 						   This field is used only on the server side. */
-	ALIGN64 BOOL ServerMode; /**< (offset 2) true when context is in server mode */
+	ALIGN64 WINBOOL ServerMode; /**< (offset 2) true when context is in server mode */
 
 	ALIGN64 UINT32 LastError; /* 3 */
 
@@ -197,7 +197,7 @@ struct rdp_freerdp
 											   Callback for certificate validation.
 											   Used to verify that an unknown certificate is trusted. */
 	ALIGN64 pVerifyChangedCertificate VerifyChangedCertificate; /**< (offset 52)
-															 Callback for changed certificate validation. 
+															 Callback for changed certificate validation.
 															 Used when a certificate differs from stored fingerprint.
 															 If returns TRUE, the new fingerprint will be trusted and old thrown out. */
 
@@ -230,13 +230,13 @@ struct rdp_freerdp
 FREERDP_API int freerdp_context_new(freerdp* instance);
 FREERDP_API void freerdp_context_free(freerdp* instance);
 
-FREERDP_API BOOL freerdp_connect(freerdp* instance);
-FREERDP_API BOOL freerdp_shall_disconnect(freerdp* instance);
-FREERDP_API BOOL freerdp_disconnect(freerdp* instance);
-FREERDP_API BOOL freerdp_reconnect(freerdp* instance);
+FREERDP_API WINBOOL freerdp_connect(freerdp* instance);
+FREERDP_API WINBOOL freerdp_shall_disconnect(freerdp* instance);
+FREERDP_API WINBOOL freerdp_disconnect(freerdp* instance);
+FREERDP_API WINBOOL freerdp_reconnect(freerdp* instance);
 
-FREERDP_API BOOL freerdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, int* wcount);
-FREERDP_API BOOL freerdp_check_fds(freerdp* instance);
+FREERDP_API WINBOOL freerdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, int* wcount);
+FREERDP_API WINBOOL freerdp_check_fds(freerdp* instance);
 
 FREERDP_API wMessageQueue* freerdp_get_message_queue(freerdp* instance, DWORD id);
 FREERDP_API HANDLE freerdp_get_message_queue_event_handle(freerdp* instance, DWORD id);
@@ -250,7 +250,7 @@ FREERDP_API void freerdp_get_version(int* major, int* minor, int* revision);
 FREERDP_API freerdp* freerdp_new(void);
 FREERDP_API void freerdp_free(freerdp* instance);
 
-FREERDP_API BOOL freerdp_focus_required(freerdp* instance);
+FREERDP_API WINBOOL freerdp_focus_required(freerdp* instance);
 
 FREERDP_API UINT32 freerdp_get_last_error(rdpContext* context);
 FREERDP_API void freerdp_set_last_error(rdpContext* context, UINT32 lastError);

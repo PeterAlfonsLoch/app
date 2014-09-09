@@ -164,12 +164,12 @@ typedef struct rdp_file rdpFile;
 extern "C" {
 #endif
 
-FREERDP_API BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name);
-FREERDP_API BOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const BYTE* buffer, size_t size);
-FREERDP_API BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* settings);
+FREERDP_API WINBOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name);
+FREERDP_API WINBOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const BYTE* buffer, size_t size);
+FREERDP_API WINBOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* settings);
 
-FREERDP_API BOOL freerdp_client_populate_rdp_file_from_settings(rdpFile* file, const rdpSettings* settings);
-FREERDP_API BOOL freerdp_client_write_rdp_file(const rdpFile* file, const char* name, BOOL unicode);
+FREERDP_API WINBOOL freerdp_client_populate_rdp_file_from_settings(rdpFile* file, const rdpSettings* settings);
+FREERDP_API WINBOOL freerdp_client_write_rdp_file(const rdpFile* file, const char* name, WINBOOL unicode);
 FREERDP_API size_t freerdp_client_write_rdp_file_buffer(const rdpFile* file, char* buffer, size_t size);
 
 FREERDP_API int freerdp_client_rdp_file_set_string_option(rdpFile* file, const char* name, const char* value);

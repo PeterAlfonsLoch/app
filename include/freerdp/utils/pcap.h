@@ -58,7 +58,7 @@ struct rdp_pcap
 {
 	FILE* fp;
 	char* name;
-	BOOL write;
+	WINBOOL write;
 	int file_size;
 	int record_count;
 	pcap_header header;
@@ -72,14 +72,14 @@ typedef struct rdp_pcap rdpPcap;
 extern "C" {
 #endif
 
-FREERDP_API rdpPcap* pcap_open(char* name, BOOL write);
+FREERDP_API rdpPcap* pcap_open(char* name, WINBOOL write);
 FREERDP_API void pcap_close(rdpPcap* pcap);
 
 FREERDP_API void pcap_add_record(rdpPcap* pcap, void* data, UINT32 length);
-FREERDP_API BOOL pcap_has_next_record(rdpPcap* pcap);
-FREERDP_API BOOL pcap_get_next_record(rdpPcap* pcap, pcap_record* record);
-FREERDP_API BOOL pcap_get_next_record_header(rdpPcap* pcap, pcap_record* record);
-FREERDP_API BOOL pcap_get_next_record_content(rdpPcap* pcap, pcap_record* record);
+FREERDP_API WINBOOL pcap_has_next_record(rdpPcap* pcap);
+FREERDP_API WINBOOL pcap_get_next_record(rdpPcap* pcap, pcap_record* record);
+FREERDP_API WINBOOL pcap_get_next_record_header(rdpPcap* pcap, pcap_record* record);
+FREERDP_API WINBOOL pcap_get_next_record_content(rdpPcap* pcap, pcap_record* record);
 FREERDP_API void pcap_flush(rdpPcap* pcap);
 
 #ifdef __cplusplus

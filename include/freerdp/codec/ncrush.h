@@ -29,7 +29,7 @@
 
 struct _NCRUSH_CONTEXT
 {
-	BOOL Compressor;
+	WINBOOL Compressor;
 	BYTE* HistoryPtr;
 	UINT32 HistoryOffset;
 	UINT32 HistoryEndOffset;
@@ -51,9 +51,9 @@ extern "C" {
 FREERDP_API int ncrush_compress(NCRUSH_CONTEXT* ncrush, BYTE* pSrcData, UINT32 SrcSize, BYTE** ppDstData, UINT32* pDstSize, UINT32* pFlags);
 FREERDP_API int ncrush_decompress(NCRUSH_CONTEXT* ncrush, BYTE* pSrcData, UINT32 SrcSize, BYTE** ppDstData, UINT32* pDstSize, UINT32 flags);
 
-FREERDP_API void ncrush_context_reset(NCRUSH_CONTEXT* ncrush, BOOL flush);
+FREERDP_API void ncrush_context_reset(NCRUSH_CONTEXT* ncrush, WINBOOL flush);
 
-FREERDP_API NCRUSH_CONTEXT* ncrush_context_new(BOOL Compressor);
+FREERDP_API NCRUSH_CONTEXT* ncrush_context_new(WINBOOL Compressor);
 FREERDP_API void ncrush_context_free(NCRUSH_CONTEXT* ncrush);
 
 #ifdef __cplusplus
@@ -61,4 +61,4 @@ FREERDP_API void ncrush_context_free(NCRUSH_CONTEXT* ncrush);
 #endif
 
 #endif /* FREERDP_CODEC_NCRUSH_H */
- 
+

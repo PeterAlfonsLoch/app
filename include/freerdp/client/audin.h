@@ -26,7 +26,7 @@
  * Subsystem Interface
  */
 
-typedef BOOL (*AudinReceive) (BYTE* data, int size, void* userData);
+typedef WINBOOL (*AudinReceive) (BYTE* data, int size, void* userData);
 
 typedef struct audin_format audinFormat;
 struct audin_format
@@ -44,7 +44,7 @@ typedef struct _IAudinDevice IAudinDevice;
 struct _IAudinDevice
 {
 	void (*Open) (IAudinDevice* devplugin, AudinReceive receive, void* userData);
-	BOOL (*FormatSupported) (IAudinDevice* devplugin, audinFormat* format);
+	WINBOOL (*FormatSupported) (IAudinDevice* devplugin, audinFormat* format);
 	void (*SetFormat) (IAudinDevice* devplugin, audinFormat* format, UINT32 FramesPerPacket);
 	void (*Close) (IAudinDevice* devplugin);
 	void (*Free) (IAudinDevice* devplugin);

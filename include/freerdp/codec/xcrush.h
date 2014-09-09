@@ -71,7 +71,7 @@ typedef struct _RDP61_COMPRESSED_DATA RDP61_COMPRESSED_DATA;
 
 struct _XCRUSH_CONTEXT
 {
-	BOOL Compressor;
+	WINBOOL Compressor;
 	MPPC_CONTEXT* mppc;
 	BYTE* HistoryPtr;
 	UINT32 HistoryOffset;
@@ -103,9 +103,9 @@ extern "C" {
 FREERDP_API int xcrush_compress(XCRUSH_CONTEXT* xcrush, BYTE* pSrcData, UINT32 SrcSize, BYTE** ppDstData, UINT32* pDstSize, UINT32* pFlags);
 FREERDP_API int xcrush_decompress(XCRUSH_CONTEXT* xcrush, BYTE* pSrcData, UINT32 SrcSize, BYTE** ppDstData, UINT32* pDstSize, UINT32 flags);
 
-FREERDP_API void xcrush_context_reset(XCRUSH_CONTEXT* xcrush, BOOL flush);
+FREERDP_API void xcrush_context_reset(XCRUSH_CONTEXT* xcrush, WINBOOL flush);
 
-FREERDP_API XCRUSH_CONTEXT* xcrush_context_new(BOOL Compressor);
+FREERDP_API XCRUSH_CONTEXT* xcrush_context_new(WINBOOL Compressor);
 FREERDP_API void xcrush_context_free(XCRUSH_CONTEXT* xcrush);
 
 #ifdef __cplusplus
@@ -113,4 +113,4 @@ FREERDP_API void xcrush_context_free(XCRUSH_CONTEXT* xcrush);
 #endif
 
 #endif /* FREERDP_CODEC_XCRUSH_H */
- 
+

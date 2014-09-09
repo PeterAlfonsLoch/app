@@ -74,7 +74,7 @@ typedef pstatus_t (*__copy_8u_t)(
 typedef pstatus_t (*__copy_8u_AC4r_t)(
 	const BYTE *pSrc,
 	INT32 srcStep,	/* bytes */
-	BYTE *pDst,  
+	BYTE *pDst,
 	INT32 dstStep,	/* bytes */
 	INT32 width,  INT32 height);	/* pixels */
 typedef pstatus_t (*__set_8u_t)(
@@ -153,13 +153,13 @@ typedef pstatus_t (*__YCoCgRToRGB_8u_AC4R_t)(
 	BYTE *pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
 	UINT8 shift,
-	BOOL withAlpha,
-	BOOL invert);
+	WINBOOL withAlpha,
+	WINBOOL invert);
 typedef pstatus_t (*__RGB565ToARGB_16u32u_C3C4_t)(
 	const UINT16* pSrc, INT32 srcStep,
 	UINT32* pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
-	BOOL alpha, BOOL invert);
+	WINBOOL alpha, WINBOOL invert);
 typedef pstatus_t (*__andC_32u_t)(
 	const UINT32 *pSrc,
 	UINT32 val,

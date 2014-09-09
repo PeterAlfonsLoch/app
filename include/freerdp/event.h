@@ -55,9 +55,9 @@ DEFINE_EVENT_BEGIN(LocalResizeWindow)
 	int width;
 	int height;
 DEFINE_EVENT_END(LocalResizeWindow)
-	
+
 DEFINE_EVENT_BEGIN(EmbedWindow)
-	BOOL embed;
+	WINBOOL embed;
 	void* handle;
 DEFINE_EVENT_END(EmbedWindow)
 

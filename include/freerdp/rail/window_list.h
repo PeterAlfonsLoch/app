@@ -44,7 +44,7 @@ extern "C" {
 #endif
 
 FREERDP_API void window_list_rewind(rdpWindowList* list);
-FREERDP_API BOOL window_list_has_next(rdpWindowList* list);
+FREERDP_API WINBOOL window_list_has_next(rdpWindowList* list);
 FREERDP_API rdpWindow* window_list_get_next(rdpWindowList* list);
 
 FREERDP_API rdpWindow* window_list_get_by_id(rdpWindowList* list, UINT32 windowId);

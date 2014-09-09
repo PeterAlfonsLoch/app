@@ -41,7 +41,7 @@
 
 struct _H264_CONTEXT
 {
-	BOOL Compressor;
+	WINBOOL Compressor;
 
 	BYTE* data;
 	UINT32 size;
@@ -73,7 +73,7 @@ FREERDP_API int h264_decompress(H264_CONTEXT* h264, BYTE* pSrcData, UINT32 SrcSi
 
 FREERDP_API void h264_context_reset(H264_CONTEXT* h264);
 
-FREERDP_API H264_CONTEXT* h264_context_new(BOOL Compressor);
+FREERDP_API H264_CONTEXT* h264_context_new(WINBOOL Compressor);
 FREERDP_API void h264_context_free(H264_CONTEXT* h264);
 
 #ifdef __cplusplus

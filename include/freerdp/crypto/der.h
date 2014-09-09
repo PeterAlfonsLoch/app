@@ -29,7 +29,7 @@ FREERDP_API int der_skip_octet_string(int length);
 FREERDP_API int der_skip_sequence_tag(int length);
 FREERDP_API int der_write_sequence_tag(wStream* s, int length);
 FREERDP_API int der_skip_contextual_tag(int length);
-FREERDP_API int der_write_contextual_tag(wStream* s, BYTE tag, int length, BOOL pc);
+FREERDP_API int der_write_contextual_tag(wStream* s, BYTE tag, int length, WINBOOL pc);
 FREERDP_API void der_write_octet_string(wStream* s, BYTE* oct_str, int length);
 
 #endif /* FREERDP_CRYPTO_DER_H */

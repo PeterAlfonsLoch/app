@@ -352,7 +352,7 @@ struct _IRP
 	pcIRPResponse Discard;
 
 	HANDLE thread;
-	BOOL cancelled;
+	WINBOOL cancelled;
 };
 
 struct _DEVMAN

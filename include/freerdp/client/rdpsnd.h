@@ -44,7 +44,7 @@ struct _RDPSND_WAVE
 	UINT32 wLocalTimeA;
 	UINT32 wLocalTimeB;
 
-	BOOL AutoConfirm;
+	WINBOOL AutoConfirm;
 };
 typedef struct _RDPSND_WAVE RDPSND_WAVE;
 
@@ -52,7 +52,7 @@ typedef struct rdpsnd_plugin rdpsndPlugin;
 
 typedef struct rdpsnd_device_plugin rdpsndDevicePlugin;
 
-typedef BOOL (*pcFormatSupported) (rdpsndDevicePlugin* device, AUDIO_FORMAT* format);
+typedef WINBOOL (*pcFormatSupported) (rdpsndDevicePlugin* device, AUDIO_FORMAT* format);
 typedef void (*pcOpen) (rdpsndDevicePlugin* device, AUDIO_FORMAT* format, int latency);
 typedef void (*pcSetFormat) (rdpsndDevicePlugin* device, AUDIO_FORMAT* format, int latency);
 typedef UINT32 (*pcGetVolume) (rdpsndDevicePlugin* device);
@@ -84,7 +84,7 @@ struct rdpsnd_device_plugin
 	pcWavePlay WavePlay;
 	pcWaveConfirm WaveConfirm;
 
-	BOOL DisableConfirmThread;
+	WINBOOL DisableConfirmThread;
 };
 
 #define RDPSND_DEVICE_EXPORT_FUNC_NAME "freerdp_rdpsnd_client_subsystem_entry"
