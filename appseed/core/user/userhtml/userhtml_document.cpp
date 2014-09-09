@@ -97,7 +97,7 @@ bool html_document::on_open_document(var varFile)
    get_html_data()->m_propset.merge(oprop("html_data_propset").propset());
 
 
-   if(!get_html_data()->open_document(varFile))
+   if(!open_document(varFile))
       return FALSE;
 
    set_path_name(get_html_data()->m_strPathName);

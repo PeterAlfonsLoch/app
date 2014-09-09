@@ -183,7 +183,7 @@ void html_form::_001OnCreate(signal_details * pobj)
       pcreate->m_bRet = true;
       return;
    }
-   if(m_strOpenOnCreate.has_char() && !get_html_data()->open_document(m_strOpenOnCreate))
+   if(m_strOpenOnCreate.has_char() && !open_document(m_strOpenOnCreate))
    {
       pcreate->set_lresult(-1);
       pcreate->m_bRet = true;
@@ -326,7 +326,7 @@ string html_form::get_path()
 
 bool html_form::open_document(var varFile)
 {
-   if(!get_html_data()->open_document(varFile))
+   if(!open_document(varFile))
       return false;
    string strPathName;
    if(varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
