@@ -1,4 +1,5 @@
-#include "axis/user/user.h"
+#include "framework.h" // from ""axis/user/user.h"
+#include "linux.h"
 
 #include <stdio.h>
 #include <stdlib.h>
