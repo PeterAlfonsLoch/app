@@ -1612,8 +1612,10 @@ namespace core
                      strPath.replace("/", "_");
                      strPath.replace("-","_");
                      ::str::begins_eat_ci(strPath,"app_");
+#ifdef WINDOWS
                      strPath += ".bat";
-#ifdef OS64BIT
+#endif
+#if defined(OS64BIT) && defined(WINDOWS)
                      strPath = System.dir().element("nodeapp/stage/install/basis/x64/_std",strPath);
 #else
                      strPath = System.dir().element("nodeapp/stage/install/basis/x86/_std",strPath);
@@ -3028,7 +3030,7 @@ namespace core
 
       if(!m_pcalculator->initialize())
          return false;
-      
+
       xxdebug_box("m_pcalculator::initialize ok","m_pcalculator::initialize ok",MB_ICONINFORMATION);
 
       xxdebug_box("m_pcolorertake5::initialize ok","m_pcolorertake5::initialize ok",MB_ICONINFORMATION);
