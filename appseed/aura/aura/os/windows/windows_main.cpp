@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "sal.h"
+#include "aura/node/windows/windows.h"
+#include "windows.h"
+
 
 
 CLASS_DECL_AURA int32_t ca2_main();

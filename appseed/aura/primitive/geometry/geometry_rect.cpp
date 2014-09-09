@@ -1495,3 +1495,8 @@ double rectd::maximum_signed_absolute_dimension(bool bPositivePreference) const 
 
 
 }
+
+
+
+double rectd::minimum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
+double rectd::maximum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }

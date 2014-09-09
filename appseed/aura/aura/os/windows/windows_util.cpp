@@ -1,5 +1,6 @@
 #include "framework.h"
-#include <malloc.h>
+#include "windows.h"
+
 
 
 // interesting function

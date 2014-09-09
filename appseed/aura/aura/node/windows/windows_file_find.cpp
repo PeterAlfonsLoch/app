@@ -411,7 +411,7 @@ namespace windows
       ASSERT_VALID(this);
 
       if (m_pFoundInfo != NULL)
-         return m_pFoundInfo->nFileSizeLow + ((m_pFoundInfo->nFileSizeHigh) << 32);
+         return m_pFoundInfo->nFileSizeLow + (((int64_t) m_pFoundInfo->nFileSizeHigh) << 32);
       else
          return 0;
 
