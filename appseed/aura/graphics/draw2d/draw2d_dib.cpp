@@ -4155,6 +4155,11 @@ namespace draw2d
       return (unsigned int * ) pdib->m_pcolorref;
    }
 
+   graphics * dib_get_graphics(dib * pdib)
+   {
+      return pdib->get_graphics();
+   }
+
 
 } // namespace draw2d
 

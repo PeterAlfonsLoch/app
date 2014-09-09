@@ -42,6 +42,7 @@ namespace aura
 namespace draw2d
 {
    class dib;
+   class graphics;
 }
 
 namespace visual
@@ -63,6 +64,7 @@ namespace draw2d
    void dib_alloc(::aura::application * papp, dib * & pdib);
    void dib_create(dib * pdib, int w, int h);
    unsigned int * dib_get_data(dib * pdib);
+   graphics * dib_get_graphics(dib * pdib);
 }
 
 struct ca2rdp_context :
@@ -75,6 +77,10 @@ struct ca2rdp_context :
 
 	ca2rdpInfo* ca2rdpi;
 };
+
+::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext);
+
+
 typedef struct ca2rdp_context ca2rdpContext;
 
 struct ca2rdp_pointer
