@@ -31,7 +31,7 @@
 extern "C" {
 #endif
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(CA2_AURA)
 
 #define HANDLE_FLAG_INHERIT			0x00000001
 #define HANDLE_FLAG_PROTECT_FROM_CLOSE		0x00000002
