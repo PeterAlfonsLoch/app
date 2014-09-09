@@ -36,7 +36,7 @@ VOID CloseThreadpoolTimer(PTP_TIMER pti)
 
 }
 
-WINBOOL IsThreadpoolTimerSet(PTP_TIMER pti)
+BOOL IsThreadpoolTimerSet(PTP_TIMER pti)
 {
 	return FALSE;
 }
@@ -46,7 +46,7 @@ VOID SetThreadpoolTimer(PTP_TIMER pti, PFILETIME pftDueTime, DWORD msPeriod, DWO
 
 }
 
-VOID WaitForThreadpoolTimerCallbacks(PTP_TIMER pti, WINBOOL fCancelPendingCallbacks)
+VOID WaitForThreadpoolTimerCallbacks(PTP_TIMER pti, BOOL fCancelPendingCallbacks)
 {
 
 }

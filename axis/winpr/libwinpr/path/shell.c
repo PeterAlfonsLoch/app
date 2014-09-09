@@ -350,7 +350,7 @@ char* GetCombinedPath(const char* basePath, const char* subPath)
 	return path;
 }
 
-WINBOOL PathFileExistsA(LPCSTR pszPath)
+BOOL PathFileExistsA(LPCSTR pszPath)
 {
 	struct stat stat_info;
 
@@ -360,7 +360,7 @@ WINBOOL PathFileExistsA(LPCSTR pszPath)
 	return TRUE;
 }
 
-WINBOOL PathFileExistsW(LPCWSTR pszPath)
+BOOL PathFileExistsW(LPCWSTR pszPath)
 {
 	return FALSE;
 }

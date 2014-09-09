@@ -142,7 +142,7 @@ ConversionResult ConvertUTF32toUTF16(
 	const DWORD** sourceStart, const DWORD* sourceEnd,
 	WCHAR** targetStart, WCHAR* targetEnd, ConversionFlags flags);
 
-WINBOOL isLegalUTF8Sequence(const BYTE *source, const BYTE *sourceEnd);
+BOOL isLegalUTF8Sequence(const BYTE *source, const BYTE *sourceEnd);
 
 #ifdef __cplusplus
 }

@@ -74,8 +74,8 @@ struct winpr_event
 	WINPR_HANDLE_DEF();
 
 	int pipe_fd[2];
-	WINBOOL bAttached;
-	WINBOOL bManualReset;
+	BOOL bAttached;
+	BOOL bManualReset;
 };
 typedef struct winpr_event WINPR_EVENT;
 
@@ -91,9 +91,9 @@ struct winpr_timer
 	WINPR_HANDLE_DEF();
 
 	int fd;
-	WINBOOL bInit;
+	BOOL bInit;
 	LONG lPeriod;
-	WINBOOL bManualReset;
+	BOOL bManualReset;
 	PTIMERAPCROUTINE pfnCompletionRoutine;
 	LPVOID lpArgToCompletionRoutine;
 
@@ -117,7 +117,7 @@ struct winpr_timer_queue
 	pthread_mutex_t cond_mutex;
 	struct sched_param param;
 
-	WINBOOL bCancelled;
+	BOOL bCancelled;
 	WINPR_TIMER_QUEUE_TIMER* activeHead;
 	WINPR_TIMER_QUEUE_TIMER* inactiveHead;
 };

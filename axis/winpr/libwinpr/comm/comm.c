@@ -117,7 +117,7 @@ static void _CommInit()
  * Returns TRUE when the comm module is correctly intialized, FALSE otherwise
  * with ERROR_DLL_INIT_FAILED set as the last error.
  */
-static WINBOOL CommInitialized()
+static BOOL CommInitialized()
 {
 	if (pthread_once(&_CommInitialized, _CommInit) != 0)
 	{
@@ -141,7 +141,7 @@ void CommLog_Print(int level, char *fmt, ...)
 }
 
 
-WINBOOL BuildCommDCBA(LPCSTR lpDef, LPDCB lpDCB)
+BOOL BuildCommDCBA(LPCSTR lpDef, LPDCB lpDCB)
 {
 	if (!CommInitialized())
 		return FALSE;
@@ -151,7 +151,7 @@ WINBOOL BuildCommDCBA(LPCSTR lpDef, LPDCB lpDCB)
 	return TRUE;
 }
 
-WINBOOL BuildCommDCBW(LPCWSTR lpDef, LPDCB lpDCB)
+BOOL BuildCommDCBW(LPCWSTR lpDef, LPDCB lpDCB)
 {
 	if (!CommInitialized())
 		return FALSE;
@@ -161,7 +161,7 @@ WINBOOL BuildCommDCBW(LPCWSTR lpDef, LPDCB lpDCB)
 	return TRUE;
 }
 
-WINBOOL BuildCommDCBAndTimeoutsA(LPCSTR lpDef, LPDCB lpDCB, LPCOMMTIMEOUTS lpCommTimeouts)
+BOOL BuildCommDCBAndTimeoutsA(LPCSTR lpDef, LPDCB lpDCB, LPCOMMTIMEOUTS lpCommTimeouts)
 {
 	if (!CommInitialized())
 		return FALSE;
@@ -171,7 +171,7 @@ WINBOOL BuildCommDCBAndTimeoutsA(LPCSTR lpDef, LPDCB lpDCB, LPCOMMTIMEOUTS lpCom
 	return TRUE;
 }
 
-WINBOOL BuildCommDCBAndTimeoutsW(LPCWSTR lpDef, LPDCB lpDCB, LPCOMMTIMEOUTS lpCommTimeouts)
+BOOL BuildCommDCBAndTimeoutsW(LPCWSTR lpDef, LPDCB lpDCB, LPCOMMTIMEOUTS lpCommTimeouts)
 {
 	if (!CommInitialized())
 		return FALSE;
@@ -181,7 +181,7 @@ WINBOOL BuildCommDCBAndTimeoutsW(LPCWSTR lpDef, LPDCB lpDCB, LPCOMMTIMEOUTS lpCo
 	return TRUE;
 }
 
-WINBOOL CommConfigDialogA(LPCSTR lpszName, HWND hWnd, LPCOMMCONFIG lpCC)
+BOOL CommConfigDialogA(LPCSTR lpszName, HWND hWnd, LPCOMMCONFIG lpCC)
 {
 	if (!CommInitialized())
 		return FALSE;
@@ -191,7 +191,7 @@ WINBOOL CommConfigDialogA(LPCSTR lpszName, HWND hWnd, LPCOMMCONFIG lpCC)
 	return TRUE;
 }
 
-WINBOOL CommConfigDialogW(LPCWSTR lpszName, HWND hWnd, LPCOMMCONFIG lpCC)
+BOOL CommConfigDialogW(LPCWSTR lpszName, HWND hWnd, LPCOMMCONFIG lpCC)
 {
 	if (!CommInitialized())
 		return FALSE;
@@ -201,22 +201,7 @@ WINBOOL CommConfigDialogW(LPCWSTR lpszName, HWND hWnd, LPCOMMCONFIG lpCC)
 	return TRUE;
 }
 
-WINBOOL GetCommConfig(HANDLE hCommDev, LPCOMMCONFIG lpCC, LPDWORD lpdwSize)
-{
-	WINPR_COMM* pComm = (WINPR_COMM*) hCommDev;
-
-	if (!CommInitialized())
-		return FALSE;
-
-	/* TODO: not implemented */
-
-	if (!pComm)
-		return FALSE;
-
-	return TRUE;
-}
-
-WINBOOL SetCommConfig(HANDLE hCommDev, LPCOMMCONFIG lpCC, DWORD dwSize)
+BOOL GetCommConfig(HANDLE hCommDev, LPCOMMCONFIG lpCC, LPDWORD lpdwSize)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hCommDev;
 
@@ -231,7 +216,22 @@ WINBOOL SetCommConfig(HANDLE hCommDev, LPCOMMCONFIG lpCC, DWORD dwSize)
 	return TRUE;
 }
 
-WINBOOL GetCommMask(HANDLE hFile, PDWORD lpEvtMask)
+BOOL SetCommConfig(HANDLE hCommDev, LPCOMMCONFIG lpCC, DWORD dwSize)
+{
+	WINPR_COMM* pComm = (WINPR_COMM*) hCommDev;
+
+	if (!CommInitialized())
+		return FALSE;
+
+	/* TODO: not implemented */
+
+	if (!pComm)
+		return FALSE;
+
+	return TRUE;
+}
+
+BOOL GetCommMask(HANDLE hFile, PDWORD lpEvtMask)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 
@@ -246,7 +246,7 @@ WINBOOL GetCommMask(HANDLE hFile, PDWORD lpEvtMask)
 	return TRUE;
 }
 
-WINBOOL SetCommMask(HANDLE hFile, DWORD dwEvtMask)
+BOOL SetCommMask(HANDLE hFile, DWORD dwEvtMask)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 
@@ -261,7 +261,7 @@ WINBOOL SetCommMask(HANDLE hFile, DWORD dwEvtMask)
 	return TRUE;
 }
 
-WINBOOL GetCommModemStatus(HANDLE hFile, PDWORD lpModemStat)
+BOOL GetCommModemStatus(HANDLE hFile, PDWORD lpModemStat)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 
@@ -281,7 +281,7 @@ WINBOOL GetCommModemStatus(HANDLE hFile, PDWORD lpModemStat)
  *   ERROR_DLL_INIT_FAILED
  *   ERROR_INVALID_HANDLE
  */
-WINBOOL GetCommProperties(HANDLE hFile, LPCOMMPROP lpCommProp)
+BOOL GetCommProperties(HANDLE hFile, LPCOMMPROP lpCommProp)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 	DWORD bytesReturned;
@@ -315,7 +315,7 @@ WINBOOL GetCommProperties(HANDLE hFile, LPCOMMPROP lpCommProp)
  *   ERROR_IO_DEVICE
  *   ERROR_OUTOFMEMORY
  */
-WINBOOL GetCommState(HANDLE hFile, LPDCB lpDCB)
+BOOL GetCommState(HANDLE hFile, LPDCB lpDCB)
 {
 	DCB *lpLocalDcb;
 	struct termios currentState;
@@ -493,7 +493,7 @@ WINBOOL GetCommState(HANDLE hFile, LPDCB lpDCB)
  *   ERROR_INVALID_HANDLE
  *   ERROR_IO_DEVICE
  */
-WINBOOL SetCommState(HANDLE hFile, LPDCB lpDCB)
+BOOL SetCommState(HANDLE hFile, LPDCB lpDCB)
 {
 	struct termios upcomingTermios;
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
@@ -719,7 +719,7 @@ WINBOOL SetCommState(HANDLE hFile, LPDCB lpDCB)
  * ERRORS:
  *   ERROR_INVALID_HANDLE
  */
-WINBOOL GetCommTimeouts(HANDLE hFile, LPCOMMTIMEOUTS lpCommTimeouts)
+BOOL GetCommTimeouts(HANDLE hFile, LPCOMMTIMEOUTS lpCommTimeouts)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 	DWORD bytesReturned;
@@ -749,7 +749,7 @@ WINBOOL GetCommTimeouts(HANDLE hFile, LPCOMMTIMEOUTS lpCommTimeouts)
  * ERRORS:
  *   ERROR_INVALID_HANDLE
  */
-WINBOOL SetCommTimeouts(HANDLE hFile, LPCOMMTIMEOUTS lpCommTimeouts)
+BOOL SetCommTimeouts(HANDLE hFile, LPCOMMTIMEOUTS lpCommTimeouts)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 	DWORD bytesReturned;
@@ -774,7 +774,7 @@ WINBOOL SetCommTimeouts(HANDLE hFile, LPCOMMTIMEOUTS lpCommTimeouts)
 	return TRUE;
 }
 
-WINBOOL GetDefaultCommConfigA(LPCSTR lpszName, LPCOMMCONFIG lpCC, LPDWORD lpdwSize)
+BOOL GetDefaultCommConfigA(LPCSTR lpszName, LPCOMMCONFIG lpCC, LPDWORD lpdwSize)
 {
 	if (!CommInitialized())
 		return FALSE;
@@ -784,7 +784,7 @@ WINBOOL GetDefaultCommConfigA(LPCSTR lpszName, LPCOMMCONFIG lpCC, LPDWORD lpdwSi
 	return TRUE;
 }
 
-WINBOOL GetDefaultCommConfigW(LPCWSTR lpszName, LPCOMMCONFIG lpCC, LPDWORD lpdwSize)
+BOOL GetDefaultCommConfigW(LPCWSTR lpszName, LPCOMMCONFIG lpCC, LPDWORD lpdwSize)
 {
 	if (!CommInitialized())
 		return FALSE;
@@ -794,7 +794,7 @@ WINBOOL GetDefaultCommConfigW(LPCWSTR lpszName, LPCOMMCONFIG lpCC, LPDWORD lpdwS
 	return TRUE;
 }
 
-WINBOOL SetDefaultCommConfigA(LPCSTR lpszName, LPCOMMCONFIG lpCC, DWORD dwSize)
+BOOL SetDefaultCommConfigA(LPCSTR lpszName, LPCOMMCONFIG lpCC, DWORD dwSize)
 {
 	if (!CommInitialized())
 		return FALSE;
@@ -804,7 +804,7 @@ WINBOOL SetDefaultCommConfigA(LPCSTR lpszName, LPCOMMCONFIG lpCC, DWORD dwSize)
 	return TRUE;
 }
 
-WINBOOL SetDefaultCommConfigW(LPCWSTR lpszName, LPCOMMCONFIG lpCC, DWORD dwSize)
+BOOL SetDefaultCommConfigW(LPCWSTR lpszName, LPCOMMCONFIG lpCC, DWORD dwSize)
 {
 	if (!CommInitialized())
 		return FALSE;
@@ -814,22 +814,7 @@ WINBOOL SetDefaultCommConfigW(LPCWSTR lpszName, LPCOMMCONFIG lpCC, DWORD dwSize)
 	return TRUE;
 }
 
-WINBOOL SetCommBreak(HANDLE hFile)
-{
-	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
-
-	if (!CommInitialized())
-		return FALSE;
-
-	/* TODO: not implemented */
-
-	if (!pComm)
-		return FALSE;
-
-	return TRUE;
-}
-
-WINBOOL ClearCommBreak(HANDLE hFile)
+BOOL SetCommBreak(HANDLE hFile)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 
@@ -844,7 +829,22 @@ WINBOOL ClearCommBreak(HANDLE hFile)
 	return TRUE;
 }
 
-WINBOOL ClearCommError(HANDLE hFile, PDWORD lpErrors, LPCOMSTAT lpStat)
+BOOL ClearCommBreak(HANDLE hFile)
+{
+	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
+
+	if (!CommInitialized())
+		return FALSE;
+
+	/* TODO: not implemented */
+
+	if (!pComm)
+		return FALSE;
+
+	return TRUE;
+}
+
+BOOL ClearCommError(HANDLE hFile, PDWORD lpErrors, LPCOMSTAT lpStat)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 
@@ -860,7 +860,7 @@ WINBOOL ClearCommError(HANDLE hFile, PDWORD lpErrors, LPCOMSTAT lpStat)
 }
 
 
-WINBOOL PurgeComm(HANDLE hFile, DWORD dwFlags)
+BOOL PurgeComm(HANDLE hFile, DWORD dwFlags)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 	DWORD bytesReturned = 0;
@@ -884,7 +884,7 @@ WINBOOL PurgeComm(HANDLE hFile, DWORD dwFlags)
 }
 
 
-WINBOOL SetupComm(HANDLE hFile, DWORD dwInQueue, DWORD dwOutQueue)
+BOOL SetupComm(HANDLE hFile, DWORD dwInQueue, DWORD dwOutQueue)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 	SERIAL_QUEUE_SIZE queueSize;
@@ -911,7 +911,7 @@ WINBOOL SetupComm(HANDLE hFile, DWORD dwInQueue, DWORD dwOutQueue)
 	return TRUE;
 }
 
-WINBOOL EscapeCommFunction(HANDLE hFile, DWORD dwFunc)
+BOOL EscapeCommFunction(HANDLE hFile, DWORD dwFunc)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 
@@ -926,7 +926,7 @@ WINBOOL EscapeCommFunction(HANDLE hFile, DWORD dwFunc)
 	return TRUE;
 }
 
-WINBOOL TransmitCommChar(HANDLE hFile, char cChar)
+BOOL TransmitCommChar(HANDLE hFile, char cChar)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 
@@ -941,7 +941,7 @@ WINBOOL TransmitCommChar(HANDLE hFile, char cChar)
 	return TRUE;
 }
 
-WINBOOL WaitCommEvent(HANDLE hFile, PDWORD lpEvtMask, LPOVERLAPPED lpOverlapped)
+BOOL WaitCommEvent(HANDLE hFile, PDWORD lpEvtMask, LPOVERLAPPED lpOverlapped)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hFile;
 
@@ -959,7 +959,7 @@ WINBOOL WaitCommEvent(HANDLE hFile, PDWORD lpEvtMask, LPOVERLAPPED lpOverlapped)
 
 /* Extended API */
 
-static WINBOOL _IsReservedCommDeviceName(LPCSTR lpName)
+static BOOL _IsReservedCommDeviceName(LPCSTR lpName)
 {
 	int i;
 
@@ -1001,7 +1001,7 @@ static WINBOOL _IsReservedCommDeviceName(LPCSTR lpName)
  *   ERROR_OUTOFMEMORY was not possible to get mappings.
  *   ERROR_INVALID_DATA was not possible to add the device.
  */
-WINBOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCSTR lpDeviceName, LPCSTR lpTargetPath)
+BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCSTR lpDeviceName, LPCSTR lpTargetPath)
 {
 	int i = 0;
 	LPSTR storedDeviceName = NULL;
@@ -1174,7 +1174,7 @@ DWORD QueryCommDevice(LPCSTR lpDeviceName, LPSTR lpTargetPath, DWORD ucchMax)
 /**
  * Checks whether lpDeviceName is a valid and registered Communication device.
  */
-WINBOOL IsCommDevice(LPCSTR lpDeviceName)
+BOOL IsCommDevice(LPCSTR lpDeviceName)
 {
 	CHAR lpTargetPath[MAX_PATH];
 
@@ -1419,7 +1419,7 @@ HANDLE CommCreateFileA(LPCSTR lpDeviceName, DWORD dwDesiredAccess, DWORD dwShare
 }
 
 
-WINBOOL CommIsHandled(HANDLE handle)
+BOOL CommIsHandled(HANDLE handle)
 {
 	WINPR_COMM *pComm;
 
@@ -1438,7 +1438,7 @@ WINBOOL CommIsHandled(HANDLE handle)
 }
 
 
-WINBOOL CommCloseHandle(HANDLE handle)
+BOOL CommCloseHandle(HANDLE handle)
 {
 	WINPR_COMM *pComm;
 

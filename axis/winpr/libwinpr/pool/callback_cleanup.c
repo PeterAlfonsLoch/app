@@ -28,8 +28,8 @@
 
 #ifdef _WIN32
 
-static WINBOOL module_initialized = FALSE;
-static WINBOOL module_available = FALSE;
+static BOOL module_initialized = FALSE;
+static BOOL module_available = FALSE;
 static HMODULE kernel32_module = NULL;
 
 static VOID (WINAPI * pSetEventWhenCallbackReturns)(PTP_CALLBACK_INSTANCE pci, HANDLE evt);

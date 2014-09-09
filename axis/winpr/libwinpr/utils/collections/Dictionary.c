@@ -45,7 +45,7 @@ int Dictionary_Count(wDictionary* dictionary)
  * Gets a value indicating whether the Dictionary has a fixed size.
  */
 
-WINBOOL Dictionary_IsFixedSized(wDictionary* dictionary)
+BOOL Dictionary_IsFixedSized(wDictionary* dictionary)
 {
 	return FALSE;
 }
@@ -54,7 +54,7 @@ WINBOOL Dictionary_IsFixedSized(wDictionary* dictionary)
  * Gets a value indicating whether the Dictionary is read-only.
  */
 
-WINBOOL Dictionary_IsReadOnly(wDictionary* dictionary)
+BOOL Dictionary_IsReadOnly(wDictionary* dictionary)
 {
 	return FALSE;
 }
@@ -63,7 +63,7 @@ WINBOOL Dictionary_IsReadOnly(wDictionary* dictionary)
  * Gets a value indicating whether the Dictionary is synchronized (thread safe).
  */
 
-WINBOOL Dictionary_IsSynchronized(wDictionary* dictionary)
+BOOL Dictionary_IsSynchronized(wDictionary* dictionary)
 {
 	return dictionary->synchronized;
 }
@@ -94,7 +94,7 @@ void Dictionary_Clear(wDictionary* dictionary)
  * Determines whether the Dictionary contains a specific key.
  */
 
-WINBOOL Dictionary_Contains(wDictionary* dictionary, void* key)
+BOOL Dictionary_Contains(wDictionary* dictionary, void* key)
 {
 	return FALSE;
 }
@@ -112,7 +112,7 @@ void Dictionary_Remove(wDictionary* dictionary, void* key)
  * Construction, Destruction
  */
 
-wDictionary* Dictionary_New(WINBOOL synchronized)
+wDictionary* Dictionary_New(BOOL synchronized)
 {
 	wDictionary* dictionary = NULL;
 

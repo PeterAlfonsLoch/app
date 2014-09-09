@@ -211,7 +211,7 @@ ConversionResult ConvertUTF16toUTF8(
 {
 	BYTE* target;
 	const WCHAR* source;
-	WINBOOL computeLength;
+	BOOL computeLength;
 	ConversionResult result;
 
 	computeLength = (!targetEnd) ? TRUE : FALSE;
@@ -369,7 +369,7 @@ ConversionResult ConvertUTF16toUTF8(
  * definition of UTF-8 goes up to 4-byte sequences.
  */
 
-static WINBOOL isLegalUTF8(const BYTE *source, int length)
+static BOOL isLegalUTF8(const BYTE *source, int length)
 {
 	BYTE a;
 	const BYTE *srcptr = source + length;
@@ -409,7 +409,7 @@ static WINBOOL isLegalUTF8(const BYTE *source, int length)
  * Exported function to return whether a UTF-8 sequence is legal or not.
  * This is not used here; it's just exported.
  */
-WINBOOL isLegalUTF8Sequence(const BYTE *source, const BYTE *sourceEnd)
+BOOL isLegalUTF8Sequence(const BYTE *source, const BYTE *sourceEnd)
 {
 	int length = trailingBytesForUTF8[*source] + 1;
 
@@ -427,7 +427,7 @@ ConversionResult ConvertUTF8toUTF16(
 {
 	WCHAR* target;
 	const BYTE* source;
-	WINBOOL computeLength;
+	BOOL computeLength;
 	ConversionResult result;
 
 	computeLength = (!targetEnd) ? TRUE : FALSE;

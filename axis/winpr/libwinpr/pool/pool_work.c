@@ -28,15 +28,15 @@
 
 #ifdef _WIN32
 
-static WINBOOL module_initialized = FALSE;
-static WINBOOL module_available = FALSE;
+static BOOL module_initialized = FALSE;
+static BOOL module_available = FALSE;
 static HMODULE kernel32_module = NULL;
 
 static PTP_WORK (WINAPI * pCreateThreadpoolWork)(PTP_WORK_CALLBACK pfnwk, PVOID pv, PTP_CALLBACK_ENVIRON pcbe);
 static VOID (WINAPI * pCloseThreadpoolWork)(PTP_WORK pwk);
 static VOID (WINAPI * pSubmitThreadpoolWork)(PTP_WORK pwk);
-static WINBOOL (WINAPI * pTrySubmitThreadpoolCallback)(PTP_SIMPLE_CALLBACK pfns, PVOID pv, PTP_CALLBACK_ENVIRON pcbe);
-static VOID (WINAPI * pWaitForThreadpoolWorkCallbacks)(PTP_WORK pwk, WINBOOL fCancelPendingCallbacks);
+static BOOL (WINAPI * pTrySubmitThreadpoolCallback)(PTP_SIMPLE_CALLBACK pfns, PVOID pv, PTP_CALLBACK_ENVIRON pcbe);
+static VOID (WINAPI * pWaitForThreadpoolWorkCallbacks)(PTP_WORK pwk, BOOL fCancelPendingCallbacks);
 
 static void module_init()
 {
@@ -125,7 +125,7 @@ VOID SubmitThreadpoolWork(PTP_WORK pwk)
 #endif
 }
 
-WINBOOL TrySubmitThreadpoolCallback(PTP_SIMPLE_CALLBACK pfns, PVOID pv, PTP_CALLBACK_ENVIRON pcbe)
+BOOL TrySubmitThreadpoolCallback(PTP_SIMPLE_CALLBACK pfns, PVOID pv, PTP_CALLBACK_ENVIRON pcbe)
 {
 #ifdef _WIN32
 	module_init();
@@ -137,7 +137,7 @@ WINBOOL TrySubmitThreadpoolCallback(PTP_SIMPLE_CALLBACK pfns, PVOID pv, PTP_CALL
 	return FALSE;
 }
 
-VOID WaitForThreadpoolWorkCallbacks(PTP_WORK pwk, WINBOOL fCancelPendingCallbacks)
+VOID WaitForThreadpoolWorkCallbacks(PTP_WORK pwk, BOOL fCancelPendingCallbacks)
 {
 #ifdef _WIN32
 	module_init();

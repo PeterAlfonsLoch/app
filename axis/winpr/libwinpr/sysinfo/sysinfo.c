@@ -162,7 +162,7 @@ void GetNativeSystemInfo(LPSYSTEM_INFO lpSystemInfo)
 	GetSystemInfo(lpSystemInfo);
 }
 
-WINBOOL GetComputerNameA(LPSTR lpBuffer, LPDWORD lpnSize)
+BOOL GetComputerNameA(LPSTR lpBuffer, LPDWORD lpnSize)
 {
 	char* dot;
 	int length;
@@ -191,7 +191,7 @@ WINBOOL GetComputerNameA(LPSTR lpBuffer, LPDWORD lpnSize)
 	return TRUE;
 }
 
-WINBOOL GetComputerNameExA(COMPUTER_NAME_FORMAT NameType, LPSTR lpBuffer, LPDWORD lpnSize)
+BOOL GetComputerNameExA(COMPUTER_NAME_FORMAT NameType, LPSTR lpBuffer, LPDWORD lpnSize)
 {
 	int length;
 	char hostname[256];
@@ -232,7 +232,7 @@ WINBOOL GetComputerNameExA(COMPUTER_NAME_FORMAT NameType, LPSTR lpBuffer, LPDWOR
 	return TRUE;
 }
 
-WINBOOL GetComputerNameExW(COMPUTER_NAME_FORMAT NameType, LPWSTR lpBuffer, LPDWORD nSize)
+BOOL GetComputerNameExW(COMPUTER_NAME_FORMAT NameType, LPWSTR lpBuffer, LPDWORD nSize)
 {
 	fprintf(stderr, "GetComputerNameExW unimplemented\n");
 	return 0;
@@ -242,7 +242,7 @@ WINBOOL GetComputerNameExW(COMPUTER_NAME_FORMAT NameType, LPWSTR lpBuffer, LPDWO
  * http://msdn.microsoft.com/en-us/library/windows/desktop/ms724833
  */
 
-WINBOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation)
+BOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation)
 {
 	/* Windows 7 SP1 Version Info */
 
@@ -272,7 +272,7 @@ WINBOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation)
 	return 0;
 }
 
-WINBOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation)
+BOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation)
 {
 	fprintf(stderr, "GetVersionExW unimplemented\n");
 	return 1;
@@ -304,7 +304,7 @@ void GetSystemTime(LPSYSTEMTIME lpSystemTime)
 	}
 }
 
-WINBOOL SetSystemTime(CONST SYSTEMTIME* lpSystemTime)
+BOOL SetSystemTime(CONST SYSTEMTIME* lpSystemTime)
 {
 	return FALSE;
 }
@@ -335,7 +335,7 @@ VOID GetLocalTime(LPSYSTEMTIME lpSystemTime)
 	}
 }
 
-WINBOOL SetLocalTime(CONST SYSTEMTIME* lpSystemTime)
+BOOL SetLocalTime(CONST SYSTEMTIME* lpSystemTime)
 {
 	return FALSE;
 }
@@ -355,7 +355,7 @@ VOID GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime)
 	lpSystemTimeAsFileTime->dwHighDateTime = time64.HighPart;
 }
 
-WINBOOL GetSystemTimeAdjustment(PDWORD lpTimeAdjustment, PDWORD lpTimeIncrement, PBOOL lpTimeAdjustmentDisabled)
+BOOL GetSystemTimeAdjustment(PDWORD lpTimeAdjustment, PDWORD lpTimeIncrement, PBOOL lpTimeAdjustmentDisabled)
 {
 	return FALSE;
 }
@@ -556,9 +556,9 @@ static unsigned GetARMCPUCaps(void){
 
 #ifndef _WIN32
 
-WINBOOL IsProcessorFeaturePresent(DWORD ProcessorFeature)
+BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature)
 {
-	WINBOOL ret = FALSE;
+	BOOL ret = FALSE;
 #ifdef _M_ARM
 #ifdef __linux__
 	unsigned caps;
@@ -659,9 +659,9 @@ WINBOOL IsProcessorFeaturePresent(DWORD ProcessorFeature)
 
 #endif //_WIN32
 
-WINBOOL IsProcessorFeaturePresentEx(DWORD ProcessorFeature)
+BOOL IsProcessorFeaturePresentEx(DWORD ProcessorFeature)
 {
-	WINBOOL ret = FALSE;
+	BOOL ret = FALSE;
 #ifdef _M_ARM
 #ifdef __linux__
 	unsigned caps;

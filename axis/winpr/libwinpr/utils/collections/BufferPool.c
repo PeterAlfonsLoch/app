@@ -34,7 +34,7 @@
  * Methods
  */
 
-static WINBOOL BufferPool_ShiftAvailable(wBufferPool* pool, int index, int count)
+static BOOL BufferPool_ShiftAvailable(wBufferPool* pool, int index, int count)
 {
 	if (count > 0)
 	{
@@ -61,7 +61,7 @@ static WINBOOL BufferPool_ShiftAvailable(wBufferPool* pool, int index, int count
 	return TRUE;
 }
 
-static WINBOOL BufferPool_ShiftUsed(wBufferPool* pool, int index, int count)
+static BOOL BufferPool_ShiftUsed(wBufferPool* pool, int index, int count)
 {
 	if (count > 0)
 	{
@@ -122,7 +122,7 @@ int BufferPool_GetBufferSize(wBufferPool* pool, void* buffer)
 {
 	int size = 0;
 	int index = 0;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 
 	if (pool->synchronized)
 		EnterCriticalSection(&pool->lock);
@@ -164,7 +164,7 @@ void* BufferPool_Take(wBufferPool* pool, int size)
 	int maxSize;
 	int maxIndex;
 	int foundIndex;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 	void* buffer = NULL;
 
 	if (pool->synchronized)
@@ -289,11 +289,11 @@ out_error:
  * Returns a buffer to the pool.
  */
 
-WINBOOL BufferPool_Return(wBufferPool* pool, void* buffer)
+BOOL BufferPool_Return(wBufferPool* pool, void* buffer)
 {
 	int size = 0;
 	int index = 0;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 
 	if (pool->synchronized)
 		EnterCriticalSection(&pool->lock);
@@ -420,7 +420,7 @@ void BufferPool_Clear(wBufferPool* pool)
  * Construction, Destruction
  */
 
-wBufferPool* BufferPool_New(WINBOOL synchronized, int fixedSize, DWORD alignment)
+wBufferPool* BufferPool_New(BOOL synchronized, int fixedSize, DWORD alignment)
 {
 	wBufferPool* pool = NULL;
 

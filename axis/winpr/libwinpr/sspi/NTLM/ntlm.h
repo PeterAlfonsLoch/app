@@ -223,17 +223,17 @@ typedef struct _NTLM_AUTHENTICATE_MESSAGE NTLM_AUTHENTICATE_MESSAGE;
 
 struct _NTLM_CONTEXT
 {
-	WINBOOL server;
-	WINBOOL NTLMv2;
-	WINBOOL UseMIC;
+	BOOL server;
+	BOOL NTLMv2;
+	BOOL UseMIC;
 	NTLM_STATE state;
 	int SendSeqNum;
 	int RecvSeqNum;
 	BYTE NtlmHash[16];
 	BYTE NtlmV2Hash[16];
 	BYTE MachineID[32];
-	WINBOOL SendVersionInfo;
-	WINBOOL confidentiality;
+	BOOL SendVersionInfo;
+	BOOL confidentiality;
 	RC4_KEY SendRc4Seal;
 	RC4_KEY RecvRc4Seal;
 	BYTE* SendSigningKey;
@@ -241,18 +241,18 @@ struct _NTLM_CONTEXT
 	BYTE* SendSealingKey;
 	BYTE* RecvSealingKey;
 	UINT32 NegotiateFlags;
-	WINBOOL UseSamFileDatabase;
+	BOOL UseSamFileDatabase;
 	int LmCompatibilityLevel;
 	int SuppressExtendedProtection;
-	WINBOOL SendWorkstationName;
+	BOOL SendWorkstationName;
 	UNICODE_STRING Workstation;
 	UNICODE_STRING ServicePrincipalName;
 	SSPI_CREDENTIALS* credentials;
 	BYTE* ChannelBindingToken;
 	BYTE ChannelBindingsHash[16];
 	SecPkgContext_Bindings Bindings;
-	WINBOOL SendSingleHostData;
-	WINBOOL NegotiateKeyExchange;
+	BOOL SendSingleHostData;
+	BOOL NegotiateKeyExchange;
 	NTLM_SINGLE_HOST_DATA SingleHostData;
 	NTLM_NEGOTIATE_MESSAGE NEGOTIATE_MESSAGE;
 	NTLM_CHALLENGE_MESSAGE CHALLENGE_MESSAGE;

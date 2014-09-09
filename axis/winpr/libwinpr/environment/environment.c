@@ -90,12 +90,12 @@ DWORD GetCurrentDirectoryW(DWORD nBufferLength, LPWSTR lpBuffer)
 	return 0;
 }
 
-WINBOOL SetCurrentDirectoryA(LPCSTR lpPathName)
+BOOL SetCurrentDirectoryA(LPCSTR lpPathName)
 {
 	return TRUE;
 }
 
-WINBOOL SetCurrentDirectoryW(LPCWSTR lpPathName)
+BOOL SetCurrentDirectoryW(LPCWSTR lpPathName)
 {
 	return TRUE;
 }
@@ -115,12 +115,12 @@ HANDLE GetStdHandle(DWORD nStdHandle)
 	return NULL;
 }
 
-WINBOOL SetStdHandle(DWORD nStdHandle, HANDLE hHandle)
+BOOL SetStdHandle(DWORD nStdHandle, HANDLE hHandle)
 {
 	return TRUE;
 }
 
-WINBOOL SetStdHandleEx(DWORD dwStdHandle, HANDLE hNewHandle, HANDLE* phOldHandle)
+BOOL SetStdHandleEx(DWORD dwStdHandle, HANDLE hNewHandle, HANDLE* phOldHandle)
 {
 	return TRUE;
 }
@@ -135,12 +135,12 @@ LPWSTR GetCommandLineW(VOID)
 	return NULL;
 }
 
-WINBOOL NeedCurrentDirectoryForExePathA(LPCSTR ExeName)
+BOOL NeedCurrentDirectoryForExePathA(LPCSTR ExeName)
 {
 	return TRUE;
 }
 
-WINBOOL NeedCurrentDirectoryForExePathW(LPCWSTR ExeName)
+BOOL NeedCurrentDirectoryForExePathW(LPCWSTR ExeName)
 {
 	return TRUE;
 }
@@ -230,7 +230,7 @@ DWORD GetEnvironmentVariableW(LPCWSTR lpName, LPWSTR lpBuffer, DWORD nSize)
 	return 0;
 }
 
-WINBOOL SetEnvironmentVariableA(LPCSTR lpName, LPCSTR lpValue)
+BOOL SetEnvironmentVariableA(LPCSTR lpName, LPCSTR lpValue)
 {
 	if (!lpName)
 		return FALSE;
@@ -249,7 +249,7 @@ WINBOOL SetEnvironmentVariableA(LPCSTR lpName, LPCSTR lpValue)
 	return TRUE;
 }
 
-WINBOOL SetEnvironmentVariableEBA(LPSTR * envBlock,LPCSTR lpName, LPCSTR lpValue)
+BOOL SetEnvironmentVariableEBA(LPSTR * envBlock,LPCSTR lpName, LPCSTR lpValue)
 {
 	int length;
 	char* envstr;
@@ -281,7 +281,7 @@ WINBOOL SetEnvironmentVariableEBA(LPSTR * envBlock,LPCSTR lpName, LPCSTR lpValue
 }
 
 
-WINBOOL SetEnvironmentVariableW(LPCWSTR lpName, LPCWSTR lpValue)
+BOOL SetEnvironmentVariableW(LPCWSTR lpName, LPCWSTR lpValue)
 {
 	return TRUE;
 }
@@ -479,12 +479,12 @@ LPWCH GetEnvironmentStringsW(VOID)
 	return NULL;
 }
 
-WINBOOL SetEnvironmentStringsA(LPCH NewEnvironment)
+BOOL SetEnvironmentStringsA(LPCH NewEnvironment)
 {
 	return TRUE;
 }
 
-WINBOOL SetEnvironmentStringsW(LPWCH NewEnvironment)
+BOOL SetEnvironmentStringsW(LPWCH NewEnvironment)
 {
 	return TRUE;
 }
@@ -499,7 +499,7 @@ DWORD ExpandEnvironmentStringsW(LPCWSTR lpSrc, LPWSTR lpDst, DWORD nSize)
 	return 0;
 }
 
-WINBOOL FreeEnvironmentStringsA(LPCH lpszEnvironmentBlock)
+BOOL FreeEnvironmentStringsA(LPCH lpszEnvironmentBlock)
 {
 	if (lpszEnvironmentBlock)
 		free(lpszEnvironmentBlock);
@@ -507,7 +507,7 @@ WINBOOL FreeEnvironmentStringsA(LPCH lpszEnvironmentBlock)
 	return TRUE;
 }
 
-WINBOOL FreeEnvironmentStringsW(LPWCH lpszEnvironmentBlock)
+BOOL FreeEnvironmentStringsW(LPWCH lpszEnvironmentBlock)
 {
 	return TRUE;
 }

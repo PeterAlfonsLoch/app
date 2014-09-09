@@ -61,7 +61,7 @@ struct _wPcap
 {
 	FILE* fp;
 	char* name;
-	WINBOOL write;
+	BOOL write;
 	int file_size;
 	int record_count;
 	wPcapHeader header;
@@ -71,7 +71,7 @@ struct _wPcap
 };
 typedef struct _wPcap wPcap;
 
-wPcap* Pcap_Open(char* name, WINBOOL write);
+wPcap* Pcap_Open(char* name, BOOL write);
 void Pcap_Close(wPcap* pcap);
 
 void Pcap_Flush(wPcap* pcap);

@@ -46,12 +46,12 @@ struct _MAKECERT_CONTEXT
 	EVP_PKEY* pkey;
 	PKCS12* pkcs12;
 
-	WINBOOL live;
-	WINBOOL silent;
+	BOOL live;
+	BOOL silent;
 
-	WINBOOL crtFormat;
-	WINBOOL pemFormat;
-	WINBOOL pfxFormat;
+	BOOL crtFormat;
+	BOOL pemFormat;
+	BOOL pfxFormat;
 
 	char* password;
 

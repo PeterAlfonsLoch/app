@@ -56,7 +56,7 @@ int ArrayList_Count(wArrayList *arrayList)
  * Gets a value indicating whether the ArrayList has a fixed size.
  */
 
-WINBOOL ArrayList_IsFixedSized(wArrayList *arrayList)
+BOOL ArrayList_IsFixedSized(wArrayList *arrayList)
 {
 	return FALSE;
 }
@@ -65,7 +65,7 @@ WINBOOL ArrayList_IsFixedSized(wArrayList *arrayList)
  * Gets a value indicating whether the ArrayList is read-only.
  */
 
-WINBOOL ArrayList_IsReadOnly(wArrayList *arrayList)
+BOOL ArrayList_IsReadOnly(wArrayList *arrayList)
 {
 	return FALSE;
 }
@@ -74,7 +74,7 @@ WINBOOL ArrayList_IsReadOnly(wArrayList *arrayList)
  * Gets a value indicating whether access to the ArrayList is synchronized (thread safe).
  */
 
-WINBOOL ArrayList_IsSynchronized(wArrayList *arrayList)
+BOOL ArrayList_IsSynchronized(wArrayList *arrayList)
 {
 	return arrayList->synchronized;
 }
@@ -133,7 +133,7 @@ void ArrayList_SetItem(wArrayList *arrayList, int index, void *obj)
  * Shift a section of the list.
  */
 
-WINBOOL ArrayList_Shift(wArrayList *arrayList, int index, int count)
+BOOL ArrayList_Shift(wArrayList *arrayList, int index, int count)
 {
 	if (count > 0)
 	{
@@ -195,10 +195,10 @@ void ArrayList_Clear(wArrayList *arrayList)
  * Determines whether an element is in the ArrayList.
  */
 
-WINBOOL ArrayList_Contains(wArrayList *arrayList, void *obj)
+BOOL ArrayList_Contains(wArrayList *arrayList, void *obj)
 {
 	int index;
-	WINBOOL rc = FALSE;
+	BOOL rc = FALSE;
 
 	if (arrayList->synchronized)
 		EnterCriticalSection(&arrayList->lock);
@@ -255,9 +255,9 @@ out:
  * Inserts an element into the ArrayList at the specified index.
  */
 
-WINBOOL ArrayList_Insert(wArrayList *arrayList, int index, void *obj)
+BOOL ArrayList_Insert(wArrayList *arrayList, int index, void *obj)
 {
-	WINBOOL ret = TRUE;
+	BOOL ret = TRUE;
 
 	if (arrayList->synchronized)
 		EnterCriticalSection(&arrayList->lock);
@@ -284,11 +284,11 @@ WINBOOL ArrayList_Insert(wArrayList *arrayList, int index, void *obj)
  * Removes the first occurrence of a specific object from the ArrayList.
  */
 
-WINBOOL ArrayList_Remove(wArrayList *arrayList, void *obj)
+BOOL ArrayList_Remove(wArrayList *arrayList, void *obj)
 {
 	int index;
-	WINBOOL found = FALSE;
-	WINBOOL ret = TRUE;
+	BOOL found = FALSE;
+	BOOL ret = TRUE;
 
 	if (arrayList->synchronized)
 		EnterCriticalSection(&arrayList->lock);
@@ -320,9 +320,9 @@ WINBOOL ArrayList_Remove(wArrayList *arrayList, void *obj)
  * Removes the element at the specified index of the ArrayList.
  */
 
-WINBOOL ArrayList_RemoveAt(wArrayList *arrayList, int index)
+BOOL ArrayList_RemoveAt(wArrayList *arrayList, int index)
 {
-	WINBOOL ret = TRUE;
+	BOOL ret = TRUE;
 
 	if (arrayList->synchronized)
 		EnterCriticalSection(&arrayList->lock);
@@ -354,7 +354,7 @@ WINBOOL ArrayList_RemoveAt(wArrayList *arrayList, int index)
 int ArrayList_IndexOf(wArrayList *arrayList, void *obj, int startIndex, int count)
 {
 	int index;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 
 	if (arrayList->synchronized)
 		EnterCriticalSection(&arrayList->lock);
@@ -396,7 +396,7 @@ int ArrayList_IndexOf(wArrayList *arrayList, void *obj, int startIndex, int coun
 int ArrayList_LastIndexOf(wArrayList *arrayList, void *obj, int startIndex, int count)
 {
 	int index;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 
 	if (arrayList->synchronized)
 		EnterCriticalSection(&arrayList->lock);
@@ -425,7 +425,7 @@ int ArrayList_LastIndexOf(wArrayList *arrayList, void *obj, int startIndex, int 
 	return index;
 }
 
-static WINBOOL ArrayList_DefaultCompare(void *objA, void *objB)
+static BOOL ArrayList_DefaultCompare(void *objA, void *objB)
 {
 	return objA == objB ? TRUE : FALSE;
 }
@@ -434,7 +434,7 @@ static WINBOOL ArrayList_DefaultCompare(void *objA, void *objB)
  * Construction, Destruction
  */
 
-wArrayList *ArrayList_New(WINBOOL synchronized)
+wArrayList *ArrayList_New(BOOL synchronized)
 {
 	wArrayList *arrayList = NULL;
 	arrayList = (wArrayList *)calloc(1, sizeof(wArrayList));

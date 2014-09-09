@@ -26,7 +26,7 @@
 
 struct _CREDSSP_CONTEXT
 {
-	WINBOOL server;
+	BOOL server;
 };
 typedef struct _CREDSSP_CONTEXT CREDSSP_CONTEXT;
 

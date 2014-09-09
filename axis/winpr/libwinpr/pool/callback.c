@@ -26,11 +26,11 @@
 
 #ifdef _WIN32
 
-static WINBOOL module_initialized = FALSE;
-static WINBOOL module_available = FALSE;
+static BOOL module_initialized = FALSE;
+static BOOL module_available = FALSE;
 static HMODULE kernel32_module = NULL;
 
-static WINBOOL (WINAPI * pCallbackMayRunLong)(PTP_CALLBACK_INSTANCE pci);
+static BOOL (WINAPI * pCallbackMayRunLong)(PTP_CALLBACK_INSTANCE pci);
 
 static void module_init()
 {
@@ -52,7 +52,7 @@ static void module_init()
 
 #ifdef WINPR_THREAD_POOL
 
-WINBOOL CallbackMayRunLong(PTP_CALLBACK_INSTANCE pci)
+BOOL CallbackMayRunLong(PTP_CALLBACK_INSTANCE pci)
 {
 #ifdef _WIN32
 	module_init();

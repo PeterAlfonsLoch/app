@@ -64,7 +64,7 @@ static void _HandleCloseCbsInit()
 /**
  * Returns TRUE on success, FALSE otherwise.
  */
-WINBOOL RegisterHandleCloseCb(HANDLE_CLOSE_CB *pHandleCloseCb)
+BOOL RegisterHandleCloseCb(HANDLE_CLOSE_CB *pHandleCloseCb)
 {
 	int i;
 
@@ -97,7 +97,7 @@ WINBOOL RegisterHandleCloseCb(HANDLE_CLOSE_CB *pHandleCloseCb)
 
 
 
-WINBOOL CloseHandle(HANDLE hObject)
+BOOL CloseHandle(HANDLE hObject)
 {
 	int i;
 	ULONG Type;
@@ -124,7 +124,7 @@ WINBOOL CloseHandle(HANDLE hObject)
 		HANDLE_CLOSE_CB *close_cb = (HANDLE_CLOSE_CB*)_HandleCloseCbs[i];
 		if (close_cb && close_cb->IsHandled(hObject))
 		{
-			WINBOOL result = close_cb->CloseHandle(hObject);
+			BOOL result = close_cb->CloseHandle(hObject);
 
 			LeaveCriticalSection(&_HandleCloseCbsLock);
 			return result;
@@ -297,18 +297,18 @@ WINBOOL CloseHandle(HANDLE hObject)
 	return FALSE;
 }
 
-WINBOOL DuplicateHandle(HANDLE hSourceProcessHandle, HANDLE hSourceHandle, HANDLE hTargetProcessHandle,
-	LPHANDLE lpTargetHandle, DWORD dwDesiredAccess, WINBOOL bInheritHandle, DWORD dwOptions)
+BOOL DuplicateHandle(HANDLE hSourceProcessHandle, HANDLE hSourceHandle, HANDLE hTargetProcessHandle,
+	LPHANDLE lpTargetHandle, DWORD dwDesiredAccess, BOOL bInheritHandle, DWORD dwOptions)
 {
 	return TRUE;
 }
 
-WINBOOL GetHandleInformation(HANDLE hObject, LPDWORD lpdwFlags)
+BOOL GetHandleInformation(HANDLE hObject, LPDWORD lpdwFlags)
 {
 	return TRUE;
 }
 
-WINBOOL SetHandleInformation(HANDLE hObject, DWORD dwMask, DWORD dwFlags)
+BOOL SetHandleInformation(HANDLE hObject, DWORD dwMask, DWORD dwFlags)
 {
 	return TRUE;
 }

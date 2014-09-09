@@ -75,7 +75,7 @@ void* LinkedList_Last(wLinkedList* list)
  * Determines whether the LinkedList contains a specific value.
  */
 
-WINBOOL LinkedList_Contains(wLinkedList* list, void* value)
+BOOL LinkedList_Contains(wLinkedList* list, void* value)
 {
 	wLinkedListNode* item;
 
@@ -124,7 +124,7 @@ void LinkedList_Clear(wLinkedList* list)
  * Adds a new node containing the specified value at the start of the LinkedList.
  */
 
-WINBOOL LinkedList_AddFirst(wLinkedList* list, void* value)
+BOOL LinkedList_AddFirst(wLinkedList* list, void* value)
 {
 	wLinkedListNode* node;
 
@@ -153,7 +153,7 @@ WINBOOL LinkedList_AddFirst(wLinkedList* list, void* value)
  * Adds a new node containing the specified value at the end of the LinkedList.
  */
 
-WINBOOL LinkedList_AddLast(wLinkedList* list, void* value)
+BOOL LinkedList_AddLast(wLinkedList* list, void* value)
 {
 	wLinkedListNode* node;
 
@@ -182,7 +182,7 @@ WINBOOL LinkedList_AddLast(wLinkedList* list, void* value)
  * Removes the first occurrence of the specified value from the LinkedList.
  */
 
-WINBOOL LinkedList_Remove(wLinkedList* list, void* value)
+BOOL LinkedList_Remove(wLinkedList* list, void* value)
 {
 	wLinkedListNode* node;
 
@@ -302,7 +302,7 @@ void* LinkedList_Enumerator_Current(wLinkedList* list)
  * Advances the enumerator to the next element of the LinkedList.
  */
 
-WINBOOL LinkedList_Enumerator_MoveNext(wLinkedList* list)
+BOOL LinkedList_Enumerator_MoveNext(wLinkedList* list)
 {
 	if (list->initial)
 		list->initial = 0;

@@ -34,8 +34,8 @@ struct winpr_thread
 {
 	WINPR_HANDLE_DEF();
 
-	WINBOOL started;
-	WINBOOL mainProcess;
+	BOOL started;
+	BOOL mainProcess;
 	DWORD dwExitCode;
 	pthread_t thread;
 	SIZE_T dwStackSize;

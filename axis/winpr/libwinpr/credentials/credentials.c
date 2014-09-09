@@ -32,161 +32,161 @@
 
 #ifndef _WIN32
 
-WINBOOL CredWriteW(PCREDENTIALW Credential, DWORD Flags)
+BOOL CredWriteW(PCREDENTIALW Credential, DWORD Flags)
 {
 	return TRUE;
 }
 
-WINBOOL CredWriteA(PCREDENTIALA Credential, DWORD Flags)
+BOOL CredWriteA(PCREDENTIALA Credential, DWORD Flags)
 {
 	return TRUE;
 }
 
-WINBOOL CredReadW(LPCWSTR TargetName, DWORD Type, DWORD Flags, PCREDENTIALW* Credential)
+BOOL CredReadW(LPCWSTR TargetName, DWORD Type, DWORD Flags, PCREDENTIALW* Credential)
 {
 	return TRUE;
 }
 
-WINBOOL CredReadA(LPCSTR TargetName, DWORD Type, DWORD Flags, PCREDENTIALA* Credential)
+BOOL CredReadA(LPCSTR TargetName, DWORD Type, DWORD Flags, PCREDENTIALA* Credential)
 {
 	return TRUE;
 }
 
-WINBOOL CredEnumerateW(LPCWSTR Filter, DWORD Flags, DWORD* Count, PCREDENTIALW** Credential)
+BOOL CredEnumerateW(LPCWSTR Filter, DWORD Flags, DWORD* Count, PCREDENTIALW** Credential)
 {
 	return TRUE;
 }
 
-WINBOOL CredEnumerateA(LPCSTR Filter, DWORD Flags, DWORD* Count, PCREDENTIALA** Credential)
+BOOL CredEnumerateA(LPCSTR Filter, DWORD Flags, DWORD* Count, PCREDENTIALA** Credential)
 {
 	return TRUE;
 }
 
-WINBOOL CredWriteDomainCredentialsW(PCREDENTIAL_TARGET_INFORMATIONW TargetInfo, PCREDENTIALW Credential, DWORD Flags)
+BOOL CredWriteDomainCredentialsW(PCREDENTIAL_TARGET_INFORMATIONW TargetInfo, PCREDENTIALW Credential, DWORD Flags)
 {
 	return TRUE;
 }
 
-WINBOOL CredWriteDomainCredentialsA(PCREDENTIAL_TARGET_INFORMATIONA TargetInfo, PCREDENTIALA Credential, DWORD Flags)
+BOOL CredWriteDomainCredentialsA(PCREDENTIAL_TARGET_INFORMATIONA TargetInfo, PCREDENTIALA Credential, DWORD Flags)
 {
 	return TRUE;
 }
 
-WINBOOL CredReadDomainCredentialsW(PCREDENTIAL_TARGET_INFORMATIONW TargetInfo, DWORD Flags, DWORD* Count, PCREDENTIALW** Credential)
+BOOL CredReadDomainCredentialsW(PCREDENTIAL_TARGET_INFORMATIONW TargetInfo, DWORD Flags, DWORD* Count, PCREDENTIALW** Credential)
 {
 	return TRUE;
 }
 
-WINBOOL CredReadDomainCredentialsA(PCREDENTIAL_TARGET_INFORMATIONA TargetInfo, DWORD Flags, DWORD* Count, PCREDENTIALA** Credential)
+BOOL CredReadDomainCredentialsA(PCREDENTIAL_TARGET_INFORMATIONA TargetInfo, DWORD Flags, DWORD* Count, PCREDENTIALA** Credential)
 {
 	return TRUE;
 }
 
-WINBOOL CredDeleteW(LPCWSTR TargetName, DWORD Type, DWORD Flags)
+BOOL CredDeleteW(LPCWSTR TargetName, DWORD Type, DWORD Flags)
 {
 	return TRUE;
 }
 
-WINBOOL CredDeleteA(LPCSTR TargetName, DWORD Type, DWORD Flags)
+BOOL CredDeleteA(LPCSTR TargetName, DWORD Type, DWORD Flags)
 {
 	return TRUE;
 }
 
-WINBOOL CredRenameW(LPCWSTR OldTargetName, LPCWSTR NewTargetName, DWORD Type, DWORD Flags)
+BOOL CredRenameW(LPCWSTR OldTargetName, LPCWSTR NewTargetName, DWORD Type, DWORD Flags)
 {
 	return TRUE;
 }
 
-WINBOOL CredRenameA(LPCSTR OldTargetName, LPCSTR NewTargetName, DWORD Type, DWORD Flags)
+BOOL CredRenameA(LPCSTR OldTargetName, LPCSTR NewTargetName, DWORD Type, DWORD Flags)
 {
 	return TRUE;
 }
 
-WINBOOL CredGetTargetInfoW(LPCWSTR TargetName, DWORD Flags, PCREDENTIAL_TARGET_INFORMATIONW* TargetInfo)
+BOOL CredGetTargetInfoW(LPCWSTR TargetName, DWORD Flags, PCREDENTIAL_TARGET_INFORMATIONW* TargetInfo)
 {
 	return TRUE;
 }
 
-WINBOOL CredGetTargetInfoA(LPCSTR TargetName, DWORD Flags, PCREDENTIAL_TARGET_INFORMATIONA* TargetInfo)
+BOOL CredGetTargetInfoA(LPCSTR TargetName, DWORD Flags, PCREDENTIAL_TARGET_INFORMATIONA* TargetInfo)
 {
 	return TRUE;
 }
 
-WINBOOL CredMarshalCredentialW(CRED_MARSHAL_TYPE CredType, PVOID Credential, LPWSTR* MarshaledCredential)
+BOOL CredMarshalCredentialW(CRED_MARSHAL_TYPE CredType, PVOID Credential, LPWSTR* MarshaledCredential)
 {
 	return TRUE;
 }
 
-WINBOOL CredMarshalCredentialA(CRED_MARSHAL_TYPE CredType, PVOID Credential, LPSTR* MarshaledCredential)
+BOOL CredMarshalCredentialA(CRED_MARSHAL_TYPE CredType, PVOID Credential, LPSTR* MarshaledCredential)
 {
 	return TRUE;
 }
 
-WINBOOL CredUnmarshalCredentialW(LPCWSTR MarshaledCredential, PCRED_MARSHAL_TYPE CredType, PVOID* Credential)
+BOOL CredUnmarshalCredentialW(LPCWSTR MarshaledCredential, PCRED_MARSHAL_TYPE CredType, PVOID* Credential)
 {
 	return TRUE;
 }
 
-WINBOOL CredUnmarshalCredentialA(LPCSTR MarshaledCredential, PCRED_MARSHAL_TYPE CredType, PVOID* Credential)
+BOOL CredUnmarshalCredentialA(LPCSTR MarshaledCredential, PCRED_MARSHAL_TYPE CredType, PVOID* Credential)
 {
 	return TRUE;
 }
 
-WINBOOL CredIsMarshaledCredentialW(LPCWSTR MarshaledCredential)
+BOOL CredIsMarshaledCredentialW(LPCWSTR MarshaledCredential)
 {
 	return TRUE;
 }
 
-WINBOOL CredIsMarshaledCredentialA(LPCSTR MarshaledCredential)
+BOOL CredIsMarshaledCredentialA(LPCSTR MarshaledCredential)
 {
 	return TRUE;
 }
 
-WINBOOL CredProtectW(WINBOOL fAsSelf, LPWSTR pszCredentials, DWORD cchCredentials,
+BOOL CredProtectW(BOOL fAsSelf, LPWSTR pszCredentials, DWORD cchCredentials,
 		LPWSTR pszProtectedCredentials, DWORD* pcchMaxChars, CRED_PROTECTION_TYPE* ProtectionType)
 {
 	return TRUE;
 }
 
-WINBOOL CredProtectA(WINBOOL fAsSelf, LPSTR pszCredentials, DWORD cchCredentials,
+BOOL CredProtectA(BOOL fAsSelf, LPSTR pszCredentials, DWORD cchCredentials,
 		LPSTR pszProtectedCredentials, DWORD* pcchMaxChars, CRED_PROTECTION_TYPE* ProtectionType)
 {
 	return TRUE;
 }
 
-WINBOOL CredUnprotectW(WINBOOL fAsSelf, LPWSTR pszProtectedCredentials,
+BOOL CredUnprotectW(BOOL fAsSelf, LPWSTR pszProtectedCredentials,
 		DWORD cchCredentials, LPWSTR pszCredentials, DWORD* pcchMaxChars)
 {
 	return TRUE;
 }
 
-WINBOOL CredUnprotectA(WINBOOL fAsSelf, LPSTR pszProtectedCredentials,
+BOOL CredUnprotectA(BOOL fAsSelf, LPSTR pszProtectedCredentials,
 		DWORD cchCredentials, LPSTR pszCredentials, DWORD* pcchMaxChars)
 {
 	return TRUE;
 }
 
-WINBOOL CredIsProtectedW(LPWSTR pszProtectedCredentials, CRED_PROTECTION_TYPE* pProtectionType)
+BOOL CredIsProtectedW(LPWSTR pszProtectedCredentials, CRED_PROTECTION_TYPE* pProtectionType)
 {
 	return TRUE;
 }
 
-WINBOOL CredIsProtectedA(LPSTR pszProtectedCredentials, CRED_PROTECTION_TYPE* pProtectionType)
+BOOL CredIsProtectedA(LPSTR pszProtectedCredentials, CRED_PROTECTION_TYPE* pProtectionType)
 {
 	return TRUE;
 }
 
-WINBOOL CredFindBestCredentialW(LPCWSTR TargetName, DWORD Type, DWORD Flags, PCREDENTIALW* Credential)
+BOOL CredFindBestCredentialW(LPCWSTR TargetName, DWORD Type, DWORD Flags, PCREDENTIALW* Credential)
 {
 	return TRUE;
 }
 
-WINBOOL CredFindBestCredentialA(LPCSTR TargetName, DWORD Type, DWORD Flags, PCREDENTIALA* Credential)
+BOOL CredFindBestCredentialA(LPCSTR TargetName, DWORD Type, DWORD Flags, PCREDENTIALA* Credential)
 {
 	return TRUE;
 }
 
-WINBOOL CredGetSessionTypes(DWORD MaximumPersistCount, LPDWORD MaximumPersist)
+BOOL CredGetSessionTypes(DWORD MaximumPersistCount, LPDWORD MaximumPersist)
 {
 	return TRUE;
 }

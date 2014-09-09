@@ -28,13 +28,13 @@
 
 #ifdef _WIN32
 
-static WINBOOL module_initialized = FALSE;
-static WINBOOL module_available = FALSE;
+static BOOL module_initialized = FALSE;
+static BOOL module_available = FALSE;
 static HMODULE kernel32_module = NULL;
 
 static PTP_POOL (WINAPI * pCreateThreadpool)(PVOID reserved);
 static VOID (WINAPI * pCloseThreadpool)(PTP_POOL ptpp);
-static WINBOOL (WINAPI * pSetThreadpoolThreadMinimum)(PTP_POOL ptpp, DWORD cthrdMic);
+static BOOL (WINAPI * pSetThreadpoolThreadMinimum)(PTP_POOL ptpp, DWORD cthrdMic);
 static VOID (WINAPI * pSetThreadpoolThreadMaximum)(PTP_POOL ptpp, DWORD cthrdMost);
 
 static void module_init()
@@ -202,7 +202,7 @@ VOID CloseThreadpool(PTP_POOL ptpp)
 #endif
 }
 
-WINBOOL SetThreadpoolThreadMinimum(PTP_POOL ptpp, DWORD cthrdMic)
+BOOL SetThreadpoolThreadMinimum(PTP_POOL ptpp, DWORD cthrdMic)
 {
 #ifdef _WIN32
 	module_init();

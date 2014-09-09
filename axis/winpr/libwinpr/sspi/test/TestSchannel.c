@@ -11,8 +11,8 @@
 #include <winpr/crypto.h>
 #include <winpr/schannel.h>
 
-WINBOOL g_ClientWait = FALSE;
-WINBOOL g_ServerWait = FALSE;
+BOOL g_ClientWait = FALSE;
+BOOL g_ServerWait = FALSE;
 
 HANDLE g_ClientReadPipe = NULL;
 HANDLE g_ClientWritePipe = NULL;
@@ -362,7 +362,7 @@ int schannel_recv(PSecurityFunctionTable table, HANDLE hPipe, PCtxtHandle phCont
 
 static void* schannel_test_server_thread(void* arg)
 {
-	WINBOOL extraData;
+	BOOL extraData;
 	BYTE* lpTokenIn;
 	BYTE* lpTokenOut;
 	TimeStamp expiry;

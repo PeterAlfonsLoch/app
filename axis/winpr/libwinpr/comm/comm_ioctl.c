@@ -72,7 +72,7 @@ const char* _comm_serial_ioctl_name(ULONG number)
 }
 
 
-static WINBOOL _CommDeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize,
+static BOOL _CommDeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize,
 				LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned, LPOVERLAPPED lpOverlapped)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hDevice;
@@ -649,11 +649,11 @@ static WINBOOL _CommDeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOI
  *   ERROR_INSUFFICIENT_BUFFER
  *   ERROR_CALL_NOT_IMPLEMENTED unimplemented ioctl
  */
-WINBOOL CommDeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize,
+BOOL CommDeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize,
 			LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned, LPOVERLAPPED lpOverlapped)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hDevice;
-	WINBOOL result;
+	BOOL result;
 
 	if (hDevice == INVALID_HANDLE_VALUE)
 	{

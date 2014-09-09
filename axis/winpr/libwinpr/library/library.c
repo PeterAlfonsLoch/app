@@ -79,12 +79,12 @@ DLL_DIRECTORY_COOKIE AddDllDirectory(PCWSTR NewDirectory)
 	return NULL;
 }
 
-WINBOOL RemoveDllDirectory(DLL_DIRECTORY_COOKIE Cookie)
+BOOL RemoveDllDirectory(DLL_DIRECTORY_COOKIE Cookie)
 {
 	return TRUE;
 }
 
-WINBOOL SetDefaultDllDirectories(DWORD DirectoryFlags)
+BOOL SetDefaultDllDirectories(DWORD DirectoryFlags)
 {
 	return TRUE;
 }
@@ -144,7 +144,7 @@ FARPROC GetProcAddress(HMODULE hModule, LPCSTR lpProcName)
 	return proc;
 }
 
-WINBOOL FreeLibrary(HMODULE hLibModule)
+BOOL FreeLibrary(HMODULE hLibModule)
 {
 	int status;
 

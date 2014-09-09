@@ -47,7 +47,7 @@
 
 #include "../pipe/pipe.h"
 
-WINBOOL GetOverlappedResult(HANDLE hFile, LPOVERLAPPED lpOverlapped, LPDWORD lpNumberOfBytesTransferred, WINBOOL bWait)
+BOOL GetOverlappedResult(HANDLE hFile, LPOVERLAPPED lpOverlapped, LPDWORD lpNumberOfBytesTransferred, BOOL bWait)
 {
 	ULONG Type;
 	PVOID Object;
@@ -120,12 +120,12 @@ WINBOOL GetOverlappedResult(HANDLE hFile, LPOVERLAPPED lpOverlapped, LPDWORD lpN
 	return TRUE;
 }
 
-WINBOOL GetOverlappedResultEx(HANDLE hFile, LPOVERLAPPED lpOverlapped, LPDWORD lpNumberOfBytesTransferred, DWORD dwMilliseconds, WINBOOL bAlertable)
+BOOL GetOverlappedResultEx(HANDLE hFile, LPOVERLAPPED lpOverlapped, LPDWORD lpNumberOfBytesTransferred, DWORD dwMilliseconds, BOOL bAlertable)
 {
 	return TRUE;
 }
 
-WINBOOL DeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize,
+BOOL DeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize,
 		LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned, LPOVERLAPPED lpOverlapped)
 {
 	return TRUE;
@@ -136,34 +136,34 @@ HANDLE CreateIoCompletionPort(HANDLE FileHandle, HANDLE ExistingCompletionPort, 
 	return NULL;
 }
 
-WINBOOL GetQueuedCompletionStatus(HANDLE CompletionPort, LPDWORD lpNumberOfBytesTransferred,
+BOOL GetQueuedCompletionStatus(HANDLE CompletionPort, LPDWORD lpNumberOfBytesTransferred,
 		PULONG_PTR lpCompletionKey, LPOVERLAPPED* lpOverlapped, DWORD dwMilliseconds)
 {
 	return TRUE;
 }
 
-WINBOOL GetQueuedCompletionStatusEx(HANDLE CompletionPort, LPOVERLAPPED_ENTRY lpCompletionPortEntries,
-		ULONG ulCount, PULONG ulNumEntriesRemoved, DWORD dwMilliseconds, WINBOOL fAlertable)
+BOOL GetQueuedCompletionStatusEx(HANDLE CompletionPort, LPOVERLAPPED_ENTRY lpCompletionPortEntries,
+		ULONG ulCount, PULONG ulNumEntriesRemoved, DWORD dwMilliseconds, BOOL fAlertable)
 {
 	return TRUE;
 }
 
-WINBOOL PostQueuedCompletionStatus(HANDLE CompletionPort, DWORD dwNumberOfBytesTransferred, ULONG_PTR dwCompletionKey, LPOVERLAPPED lpOverlapped)
+BOOL PostQueuedCompletionStatus(HANDLE CompletionPort, DWORD dwNumberOfBytesTransferred, ULONG_PTR dwCompletionKey, LPOVERLAPPED lpOverlapped)
 {
 	return TRUE;
 }
 
-WINBOOL CancelIo(HANDLE hFile)
+BOOL CancelIo(HANDLE hFile)
 {
 	return TRUE;
 }
 
-WINBOOL CancelIoEx(HANDLE hFile, LPOVERLAPPED lpOverlapped)
+BOOL CancelIoEx(HANDLE hFile, LPOVERLAPPED lpOverlapped)
 {
 	return TRUE;
 }
 
-WINBOOL CancelSynchronousIo(HANDLE hThread)
+BOOL CancelSynchronousIo(HANDLE hThread)
 {
 	return TRUE;
 }

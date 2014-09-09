@@ -76,7 +76,7 @@ void StreamPool_AddUsed(wStreamPool* pool, wStream* s)
 void StreamPool_RemoveUsed(wStreamPool* pool, wStream* s)
 {
 	int index;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 
 	for (index = 0; index < pool->uSize; index++)
 	{
@@ -254,7 +254,7 @@ wStream* StreamPool_Find(wStreamPool* pool, BYTE* ptr)
 {
 	int index;
 	wStream* s = NULL;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 
 	EnterCriticalSection(&pool->lock);
 
@@ -325,7 +325,7 @@ void StreamPool_Clear(wStreamPool* pool)
  * Construction, Destruction
  */
 
-wStreamPool* StreamPool_New(WINBOOL synchronized, size_t defaultSize)
+wStreamPool* StreamPool_New(BOOL synchronized, size_t defaultSize)
 {
 	wStreamPool* pool = NULL;
 

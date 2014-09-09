@@ -86,7 +86,7 @@ void winpr_CArrayDump(const BYTE* data, int length, int width)
 	printf("\n");
 }
 
-char* winpr_BinToHexString(const BYTE* data, int length, WINBOOL space)
+char* winpr_BinToHexString(const BYTE* data, int length, BOOL space)
 {
 	int i;
 	int n;

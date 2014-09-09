@@ -35,18 +35,18 @@
 #ifdef _WIN32
 
 static HMODULE g_Kernel32 = NULL;
-static WINBOOL g_NativeBarrier = FALSE;
+static BOOL g_NativeBarrier = FALSE;
 static INIT_ONCE g_InitOnce = INIT_ONCE_STATIC_INIT;
 
-typedef WINBOOL (WINAPI * fnInitializeSynchronizationBarrier)(LPSYNCHRONIZATION_BARRIER lpBarrier, LONG lTotalThreads, LONG lSpinCount);
-typedef WINBOOL (WINAPI * fnEnterSynchronizationBarrier)(LPSYNCHRONIZATION_BARRIER lpBarrier, DWORD dwFlags);
-typedef WINBOOL (WINAPI * fnDeleteSynchronizationBarrier)(LPSYNCHRONIZATION_BARRIER lpBarrier);
+typedef BOOL (WINAPI * fnInitializeSynchronizationBarrier)(LPSYNCHRONIZATION_BARRIER lpBarrier, LONG lTotalThreads, LONG lSpinCount);
+typedef BOOL (WINAPI * fnEnterSynchronizationBarrier)(LPSYNCHRONIZATION_BARRIER lpBarrier, DWORD dwFlags);
+typedef BOOL (WINAPI * fnDeleteSynchronizationBarrier)(LPSYNCHRONIZATION_BARRIER lpBarrier);
 
 static fnInitializeSynchronizationBarrier pfnInitializeSynchronizationBarrier = NULL;
 static fnEnterSynchronizationBarrier pfnEnterSynchronizationBarrier = NULL;
 static fnDeleteSynchronizationBarrier pfnDeleteSynchronizationBarrier = NULL;
 
-static WINBOOL CALLBACK InitOnce_Barrier(PINIT_ONCE once, PVOID param, PVOID *context)
+static BOOL CALLBACK InitOnce_Barrier(PINIT_ONCE once, PVOID param, PVOID *context)
 {
 	g_Kernel32 = LoadLibraryA("kernel32.dll");
 
@@ -73,7 +73,7 @@ static WINBOOL CALLBACK InitOnce_Barrier(PINIT_ONCE once, PVOID param, PVOID *co
 
 #endif
 
-WINBOOL WINAPI InitializeSynchronizationBarrier(LPSYNCHRONIZATION_BARRIER lpBarrier, LONG lTotalThreads, LONG lSpinCount)
+BOOL WINAPI InitializeSynchronizationBarrier(LPSYNCHRONIZATION_BARRIER lpBarrier, LONG lTotalThreads, LONG lSpinCount)
 {
 	WINPR_BARRIER* pBarrier;
 
@@ -114,10 +114,10 @@ WINBOOL WINAPI InitializeSynchronizationBarrier(LPSYNCHRONIZATION_BARRIER lpBarr
 	return TRUE;
 }
 
-WINBOOL WINAPI EnterSynchronizationBarrier(LPSYNCHRONIZATION_BARRIER lpBarrier, DWORD dwFlags)
+BOOL WINAPI EnterSynchronizationBarrier(LPSYNCHRONIZATION_BARRIER lpBarrier, DWORD dwFlags)
 {
 	LONG count;
-	WINBOOL status = FALSE;
+	BOOL status = FALSE;
 	WINPR_BARRIER* pBarrier;
 
 #ifdef _WIN32
@@ -148,7 +148,7 @@ WINBOOL WINAPI EnterSynchronizationBarrier(LPSYNCHRONIZATION_BARRIER lpBarrier, 
 	return status;
 }
 
-WINBOOL WINAPI DeleteSynchronizationBarrier(LPSYNCHRONIZATION_BARRIER lpBarrier)
+BOOL WINAPI DeleteSynchronizationBarrier(LPSYNCHRONIZATION_BARRIER lpBarrier)
 {
 	WINPR_BARRIER* pBarrier;
 

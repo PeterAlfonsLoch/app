@@ -51,7 +51,7 @@ struct winpr_comm
 	 *
 	 * TODO: command line switch or getting rid of it.
 	 */
-	WINBOOL permissive;
+	BOOL permissive;
 
 	SERIAL_DRIVER_ID serverSerialDriverId;
 
@@ -89,8 +89,8 @@ typedef struct winpr_comm WINPR_COMM;
 
 void CommLog_Print(int wlog_level, char *fmt, ...);
 
-WINBOOL CommIsHandled(HANDLE handle);
-WINBOOL CommCloseHandle(HANDLE handle);
+BOOL CommIsHandled(HANDLE handle);
+BOOL CommCloseHandle(HANDLE handle);
 
 #ifdef __UCLIBC__
 int eventfd_read(int fd, eventfd_t* value);

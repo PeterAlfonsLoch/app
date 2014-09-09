@@ -55,7 +55,7 @@ int Stack_Count(wStack* stack)
  * Gets a value indicating whether access to the Stack is synchronized (thread safe).
  */
 
-WINBOOL Stack_IsSynchronized(wStack* stack)
+BOOL Stack_IsSynchronized(wStack* stack)
 {
 	return stack->synchronized;
 }
@@ -93,10 +93,10 @@ void Stack_Clear(wStack* stack)
  * Determines whether an element is in the Stack.
  */
 
-WINBOOL Stack_Contains(wStack* stack, void* obj)
+BOOL Stack_Contains(wStack* stack, void* obj)
 {
 	int i;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 
 	if (stack->synchronized)
 		EnterCriticalSection(&stack->lock);
@@ -178,7 +178,7 @@ void* Stack_Peek(wStack* stack)
 }
 
 
-static WINBOOL default_stack_equals(void *obj1, void *obj2)
+static BOOL default_stack_equals(void *obj1, void *obj2)
 {
 	return (obj1 == obj2);
 }
@@ -187,7 +187,7 @@ static WINBOOL default_stack_equals(void *obj1, void *obj2)
  * Construction, Destruction
  */
 
-wStack* Stack_New(WINBOOL synchronized)
+wStack* Stack_New(BOOL synchronized)
 {
 	wStack* stack = NULL;
 

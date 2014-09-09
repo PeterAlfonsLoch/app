@@ -29,7 +29,7 @@
 
 #include "../handle/handle.h"
 
-HANDLE CreateMutexW(LPSECURITY_ATTRIBUTES lpMutexAttributes, WINBOOL bInitialOwner, LPCWSTR lpName)
+HANDLE CreateMutexW(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCWSTR lpName)
 {
 	HANDLE handle = NULL;
 	WINPR_MUTEX* mutex;
@@ -50,7 +50,7 @@ HANDLE CreateMutexW(LPSECURITY_ATTRIBUTES lpMutexAttributes, WINBOOL bInitialOwn
 	return handle;
 }
 
-HANDLE CreateMutexA(LPSECURITY_ATTRIBUTES lpMutexAttributes, WINBOOL bInitialOwner, LPCSTR lpName)
+HANDLE CreateMutexA(LPSECURITY_ATTRIBUTES lpMutexAttributes, BOOL bInitialOwner, LPCSTR lpName)
 {
 	return CreateMutexW(lpMutexAttributes, bInitialOwner, NULL);
 }
@@ -65,17 +65,17 @@ HANDLE CreateMutexExW(LPSECURITY_ATTRIBUTES lpMutexAttributes, LPCWSTR lpName, D
 	return CreateMutexW(lpMutexAttributes, FALSE, NULL);
 }
 
-HANDLE OpenMutexA(DWORD dwDesiredAccess, WINBOOL bInheritHandle,LPCSTR lpName)
+HANDLE OpenMutexA(DWORD dwDesiredAccess, BOOL bInheritHandle,LPCSTR lpName)
 {
 	return NULL;
 }
 
-HANDLE OpenMutexW(DWORD dwDesiredAccess, WINBOOL bInheritHandle,LPCWSTR lpName)
+HANDLE OpenMutexW(DWORD dwDesiredAccess, BOOL bInheritHandle,LPCWSTR lpName)
 {
 	return NULL;
 }
 
-WINBOOL ReleaseMutex(HANDLE hMutex)
+BOOL ReleaseMutex(HANDLE hMutex)
 {
 	ULONG Type;
 	PVOID Object;

@@ -29,7 +29,7 @@
 
 #include "smartcard_inspect.h"
 
-static WINBOOL g_Initialized = FALSE;
+static BOOL g_Initialized = FALSE;
 static PSCardApiFunctionTable g_SCardApi = NULL;
 
 /**

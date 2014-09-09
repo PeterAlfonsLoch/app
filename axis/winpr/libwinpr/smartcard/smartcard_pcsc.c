@@ -106,7 +106,7 @@ struct _PCSC_SCARDCONTEXT
 	CRITICAL_SECTION lock;
 	SCARDCONTEXT hContext;
 	DWORD dwCardHandleCount;
-	WINBOOL isTransactionLocked;
+	BOOL isTransactionLocked;
 };
 typedef struct _PCSC_SCARDCONTEXT PCSC_SCARDCONTEXT;
 
@@ -131,8 +131,8 @@ static PCSCFunctionTable g_PCSC = { 0 };
 static HANDLE g_StartedEvent = NULL;
 static int g_StartedEventRefCount = 0;
 
-static WINBOOL g_SCardAutoAllocate = FALSE;
-static WINBOOL g_PnP_Notification = TRUE;
+static BOOL g_SCardAutoAllocate = FALSE;
+static BOOL g_PnP_Notification = TRUE;
 
 /**
  * g_LockTransactions: enable pcsc-lite SCardBeginTransaction/SCardEndTransaction.
@@ -158,7 +158,7 @@ static WINBOOL g_PnP_Notification = TRUE;
  * We could revisit transactions later on based on the demand, but for now we just want things to work.
  */
 
-static WINBOOL g_LockTransactions = FALSE;
+static BOOL g_LockTransactions = FALSE;
 
 static wArrayList* g_Readers = NULL;
 static wListDictionary* g_CardHandles = NULL;
@@ -359,7 +359,7 @@ void PCSC_ReleaseCardContext(SCARDCONTEXT hContext)
 	ListDictionary_Remove(g_CardContexts, (void*) hContext);
 }
 
-WINBOOL PCSC_LockCardContext(SCARDCONTEXT hContext)
+BOOL PCSC_LockCardContext(SCARDCONTEXT hContext)
 {
 	PCSC_SCARDCONTEXT* pContext;
 
@@ -376,7 +376,7 @@ WINBOOL PCSC_LockCardContext(SCARDCONTEXT hContext)
 	return TRUE;
 }
 
-WINBOOL PCSC_UnlockCardContext(SCARDCONTEXT hContext)
+BOOL PCSC_UnlockCardContext(SCARDCONTEXT hContext)
 {
 	PCSC_SCARDCONTEXT* pContext;
 
@@ -485,7 +485,7 @@ void PCSC_DisconnectCardHandle(SCARDHANDLE hCard)
 	pContext->dwCardHandleCount--;
 }
 
-WINBOOL PCSC_LockCardHandle(SCARDHANDLE hCard)
+BOOL PCSC_LockCardHandle(SCARDHANDLE hCard)
 {
 	PCSC_SCARDHANDLE* pCard;
 
@@ -502,7 +502,7 @@ WINBOOL PCSC_LockCardHandle(SCARDHANDLE hCard)
 	return TRUE;
 }
 
-WINBOOL PCSC_UnlockCardHandle(SCARDHANDLE hCard)
+BOOL PCSC_UnlockCardHandle(SCARDHANDLE hCard)
 {
 	PCSC_SCARDHANDLE* pCard;
 
@@ -519,7 +519,7 @@ WINBOOL PCSC_UnlockCardHandle(SCARDHANDLE hCard)
 	return TRUE;
 }
 
-WINBOOL PCSC_LockCardTransaction(SCARDHANDLE hCard)
+BOOL PCSC_LockCardTransaction(SCARDHANDLE hCard)
 {
 	PCSC_SCARDHANDLE* pCard;
 
@@ -538,7 +538,7 @@ WINBOOL PCSC_LockCardTransaction(SCARDHANDLE hCard)
 	return TRUE;
 }
 
-WINBOOL PCSC_UnlockCardTransaction(SCARDHANDLE hCard)
+BOOL PCSC_UnlockCardTransaction(SCARDHANDLE hCard)
 {
 	PCSC_SCARDHANDLE* pCard;
 
@@ -584,7 +584,7 @@ char* PCSC_GetReaderNameFromAlias(char* nameWinSCard)
 	return namePCSC;
 }
 
-WINBOOL PCSC_AddReaderNameAlias(char* namePCSC, char* nameWinSCard)
+BOOL PCSC_AddReaderNameAlias(char* namePCSC, char* nameWinSCard)
 {
 	PCSC_READER* reader;
 
@@ -1036,7 +1036,7 @@ WINSCARDAPI LONG WINAPI PCSC_SCardListReaders_Internal(SCARDCONTEXT hContext,
 {
 	LONG status = SCARD_S_SUCCESS;
 	char* mszReadersWinSCard = NULL;
-	WINBOOL pcchReadersAlloc = FALSE;
+	BOOL pcchReadersAlloc = FALSE;
 	LPSTR* pMszReaders = (LPSTR*) mszReaders;
 	PCSC_DWORD pcsc_cchReaders = 0;
 
@@ -1102,7 +1102,7 @@ WINSCARDAPI LONG WINAPI PCSC_SCardListReaders_Internal(SCARDCONTEXT hContext,
 WINSCARDAPI LONG WINAPI PCSC_SCardListReadersA(SCARDCONTEXT hContext,
 		LPCSTR mszGroups, LPSTR mszReaders, LPDWORD pcchReaders)
 {
-	WINBOOL nullCardContext = FALSE;
+	BOOL nullCardContext = FALSE;
 	LONG status = SCARD_S_SUCCESS;
 
 	if (!g_PCSC.pfnSCardListReaders)
@@ -1141,7 +1141,7 @@ WINSCARDAPI LONG WINAPI PCSC_SCardListReadersW(SCARDCONTEXT hContext,
 	LPSTR mszReadersA = NULL;
 	LPSTR* pMszReadersA = &mszReadersA;
 	LONG status = SCARD_S_SUCCESS;
-	WINBOOL nullCardContext = FALSE;
+	BOOL nullCardContext = FALSE;
 
 	if (!g_PCSC.pfnSCardListReaders)
 		return SCARD_E_NO_SERVICE;
@@ -1450,7 +1450,7 @@ WINSCARDAPI LONG WINAPI PCSC_SCardGetStatusChange_Internal(SCARDCONTEXT hContext
 	int* map;
 	DWORD dwEventState;
 	PCSC_DWORD cMappedReaders;
-	WINBOOL stateChanged = FALSE;
+	BOOL stateChanged = FALSE;
 	PCSC_SCARD_READERSTATE* states;
 	LONG status = SCARD_S_SUCCESS;
 	PCSC_DWORD pcsc_dwTimeout = (PCSC_DWORD) dwTimeout;
@@ -1902,8 +1902,8 @@ WINSCARDAPI LONG WINAPI PCSC_SCardStatus_Internal(SCARDHANDLE hCard,
 {
 	SCARDCONTEXT hContext;
 	char* mszReaderNamesWinSCard = NULL;
-	WINBOOL pcbAtrLenAlloc = FALSE;
-	WINBOOL pcchReaderLenAlloc = FALSE;
+	BOOL pcbAtrLenAlloc = FALSE;
+	BOOL pcchReaderLenAlloc = FALSE;
 	LPBYTE* pPbAtr = (LPBYTE*) pbAtr;
 	LPSTR* pMszReaderNames = (LPSTR*) mszReaderNames;
 	LONG status = SCARD_S_SUCCESS;
@@ -2170,7 +2170,7 @@ WINSCARDAPI LONG WINAPI PCSC_SCardControl(SCARDHANDLE hCard,
 	DWORD IoCtlFunction = 0;
 	DWORD IoCtlAccess = 0;
 	DWORD IoCtlDeviceType = 0;
-	WINBOOL getFeatureRequest = FALSE;
+	BOOL getFeatureRequest = FALSE;
 	LONG status = SCARD_S_SUCCESS;
 	PCSC_DWORD pcsc_dwControlCode = 0;
 	PCSC_DWORD pcsc_cbInBufferSize = (PCSC_DWORD) cbInBufferSize;
@@ -2227,7 +2227,7 @@ WINSCARDAPI LONG WINAPI PCSC_SCardControl(SCARDHANDLE hCard,
 WINSCARDAPI LONG WINAPI PCSC_SCardGetAttrib_Internal(SCARDHANDLE hCard, DWORD dwAttrId, LPBYTE pbAttr, LPDWORD pcbAttrLen)
 {
 	SCARDCONTEXT hContext = 0;
-	WINBOOL pcbAttrLenAlloc = FALSE;
+	BOOL pcbAttrLenAlloc = FALSE;
 	LPBYTE* pPbAttr = (LPBYTE*) pbAttr;
 	LONG status = SCARD_S_SUCCESS;
 	PCSC_DWORD pcsc_dwAttrId = (PCSC_DWORD) dwAttrId;
@@ -2411,7 +2411,7 @@ WINSCARDAPI LONG WINAPI PCSC_SCardGetAttrib(SCARDHANDLE hCard, DWORD dwAttrId, L
 {
 	DWORD cbAttrLen;
 	SCARDCONTEXT hContext;
-	WINBOOL pcbAttrLenAlloc = FALSE;
+	BOOL pcbAttrLenAlloc = FALSE;
 	LONG status = SCARD_S_SUCCESS;
 	LPBYTE* pPbAttr = (LPBYTE*) pbAttr;
 

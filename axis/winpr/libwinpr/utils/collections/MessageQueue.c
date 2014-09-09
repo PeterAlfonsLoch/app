@@ -57,9 +57,9 @@ int MessageQueue_Size(wMessageQueue* queue)
  * Methods
  */
 
-WINBOOL MessageQueue_Wait(wMessageQueue* queue)
+BOOL MessageQueue_Wait(wMessageQueue* queue)
 {
-	WINBOOL status = FALSE;
+	BOOL status = FALSE;
 
 	if (WaitForSingleObject(queue->event, INFINITE) == WAIT_OBJECT_0)
 		status = TRUE;
@@ -147,7 +147,7 @@ int MessageQueue_Get(wMessageQueue* queue, wMessage* message)
 	return status;
 }
 
-int MessageQueue_Peek(wMessageQueue* queue, wMessage* message, WINBOOL remove)
+int MessageQueue_Peek(wMessageQueue* queue, wMessage* message, BOOL remove)
 {
 	int status = 0;
 

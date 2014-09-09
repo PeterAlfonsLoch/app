@@ -37,7 +37,7 @@
 wReference* ReferenceTable_FindEntry(wReferenceTable* referenceTable, void* ptr)
 {
 	UINT32 index = 0;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 	wReference* reference = NULL;
 
 	for (index = 0; index < referenceTable->size; index++)
@@ -54,7 +54,7 @@ wReference* ReferenceTable_FindEntry(wReferenceTable* referenceTable, void* ptr)
 wReference* ReferenceTable_GetFreeEntry(wReferenceTable* referenceTable)
 {
 	UINT32 index = 0;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 	wReference* reference = NULL;
 
 	for (index = 0; index < referenceTable->size; index++)
@@ -147,7 +147,7 @@ UINT32 ReferenceTable_Release(wReferenceTable* referenceTable, void* ptr)
 	return count;
 }
 
-wReferenceTable* ReferenceTable_New(WINBOOL synchronized, void* context, REFERENCE_FREE ReferenceFree)
+wReferenceTable* ReferenceTable_New(BOOL synchronized, void* context, REFERENCE_FREE ReferenceFree)
 {
 	wReferenceTable* referenceTable;
 

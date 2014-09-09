@@ -50,7 +50,7 @@ typedef struct winpr_handle WINPR_HANDLE;
 #define WINPR_HANDLE_SET_TYPE(_handle, _type) \
 	_handle->Type = _type
 
-static INLINE WINBOOL winpr_Handle_GetInfo(HANDLE handle, ULONG* pType, PVOID* pObject)
+static INLINE BOOL winpr_Handle_GetInfo(HANDLE handle, ULONG* pType, PVOID* pObject)
 {
 	WINPR_HANDLE* wHandle;
 
@@ -65,8 +65,8 @@ static INLINE WINBOOL winpr_Handle_GetInfo(HANDLE handle, ULONG* pType, PVOID* p
 	return TRUE;
 }
 
-typedef WINBOOL (*pcIsHandled)(HANDLE handle);
-typedef WINBOOL (*pcCloseHandle)(HANDLE handle);
+typedef BOOL (*pcIsHandled)(HANDLE handle);
+typedef BOOL (*pcCloseHandle)(HANDLE handle);
 
 typedef struct _HANDLE_CLOSE_CB
 {
@@ -74,6 +74,6 @@ typedef struct _HANDLE_CLOSE_CB
 	pcCloseHandle CloseHandle;
 } HANDLE_CLOSE_CB;
 
-WINBOOL RegisterHandleCloseCb(HANDLE_CLOSE_CB *pHandleClose);
+BOOL RegisterHandleCloseCb(HANDLE_CLOSE_CB *pHandleClose);
 
 #endif /* WINPR_HANDLE_PRIVATE_H */

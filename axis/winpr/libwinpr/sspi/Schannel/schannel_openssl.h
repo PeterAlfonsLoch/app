@@ -35,7 +35,7 @@ struct _SCHANNEL_OPENSSL
 {
 	SSL* ssl;
 	SSL_CTX* ctx;
-	WINBOOL connected;
+	BOOL connected;
 	BIO* bioRead;
 	BIO* bioWrite;
 	BYTE* ReadBuffer;

@@ -381,7 +381,7 @@ int WLog_GetFilterLogLevel(wLog* log)
 {
 	DWORD i, j;
 	int iLevel = -1;
-	WINBOOL match = FALSE;
+	BOOL match = FALSE;
 
 	for (i = 0; i < g_FilterCount; i++)
 	{
@@ -595,7 +595,7 @@ wLog* WLog_FindChild(LPCSTR name)
 	DWORD index;
 	wLog* root;
 	wLog* child = NULL;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 
 	root = WLog_GetRoot();
 

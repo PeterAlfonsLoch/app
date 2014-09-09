@@ -85,7 +85,7 @@ wStream* Stream_New(BYTE* buffer, size_t size)
 	return s;
 }
 
-void Stream_Free(wStream* s, WINBOOL bFreeBuffer)
+void Stream_Free(wStream* s, BOOL bFreeBuffer)
 {
 	if (s)
 	{

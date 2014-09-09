@@ -191,7 +191,7 @@ int PubSub_OnEvent(wPubSub* pubSub, const char* EventName, void* context, wEvent
  * Construction, Destruction
  */
 
-wPubSub* PubSub_New(WINBOOL synchronized)
+wPubSub* PubSub_New(BOOL synchronized)
 {
 	wPubSub* pubSub = NULL;
 

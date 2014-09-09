@@ -455,7 +455,7 @@ DWORD WaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
 	return WAIT_OBJECT_0;
 }
 
-DWORD WaitForSingleObjectEx(HANDLE hHandle, DWORD dwMilliseconds, WINBOOL bAlertable)
+DWORD WaitForSingleObjectEx(HANDLE hHandle, DWORD dwMilliseconds, BOOL bAlertable)
 {
 	fprintf(stderr, "[ERROR] %s: Function not implemented.\n", __func__);
 	assert(0);
@@ -464,7 +464,7 @@ DWORD WaitForSingleObjectEx(HANDLE hHandle, DWORD dwMilliseconds, WINBOOL bAlert
 
 #define MAXIMUM_WAIT_OBJECTS 64
 
-DWORD WaitForMultipleObjects(DWORD nCount, const HANDLE* lpHandles, WINBOOL bWaitAll, DWORD dwMilliseconds)
+DWORD WaitForMultipleObjects(DWORD nCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds)
 {
 	int fd = -1;
 	int index;
@@ -678,14 +678,14 @@ DWORD WaitForMultipleObjects(DWORD nCount, const HANDLE* lpHandles, WINBOOL bWai
 	return WAIT_FAILED;
 }
 
-DWORD WaitForMultipleObjectsEx(DWORD nCount, const HANDLE* lpHandles, WINBOOL bWaitAll, DWORD dwMilliseconds, WINBOOL bAlertable)
+DWORD WaitForMultipleObjectsEx(DWORD nCount, const HANDLE* lpHandles, BOOL bWaitAll, DWORD dwMilliseconds, BOOL bAlertable)
 {
 	fprintf(stderr, "[ERROR] %s: Function not implemented.\n", __func__);
 	assert(0);
 	return 0;
 }
 
-DWORD SignalObjectAndWait(HANDLE hObjectToSignal, HANDLE hObjectToWaitOn, DWORD dwMilliseconds, WINBOOL bAlertable)
+DWORD SignalObjectAndWait(HANDLE hObjectToSignal, HANDLE hObjectToWaitOn, DWORD dwMilliseconds, BOOL bAlertable)
 {
 	fprintf(stderr, "[ERROR] %s: Function not implemented.\n", __func__);
 	assert(0);

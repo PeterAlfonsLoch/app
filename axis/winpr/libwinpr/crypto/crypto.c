@@ -145,7 +145,7 @@
 
 static wListDictionary* g_ProtectedMemoryBlocks = NULL;
 
-WINBOOL CryptProtectMemory(LPVOID pData, DWORD cbData, DWORD dwFlags)
+BOOL CryptProtectMemory(LPVOID pData, DWORD cbData, DWORD dwFlags)
 {
 	BYTE* pCipherText;
 	int cbOut, cbFinal;
@@ -200,7 +200,7 @@ WINBOOL CryptProtectMemory(LPVOID pData, DWORD cbData, DWORD dwFlags)
 	return TRUE;
 }
 
-WINBOOL CryptUnprotectMemory(LPVOID pData, DWORD cbData, DWORD dwFlags)
+BOOL CryptUnprotectMemory(LPVOID pData, DWORD cbData, DWORD dwFlags)
 {
 	BYTE* pPlainText;
 	int cbOut, cbFinal;
@@ -242,36 +242,36 @@ WINBOOL CryptUnprotectMemory(LPVOID pData, DWORD cbData, DWORD dwFlags)
 	return TRUE;
 }
 
-WINBOOL CryptProtectData(DATA_BLOB* pDataIn, LPCWSTR szDataDescr, DATA_BLOB* pOptionalEntropy,
+BOOL CryptProtectData(DATA_BLOB* pDataIn, LPCWSTR szDataDescr, DATA_BLOB* pOptionalEntropy,
 		PVOID pvReserved, CRYPTPROTECT_PROMPTSTRUCT* pPromptStruct, DWORD dwFlags, DATA_BLOB* pDataOut)
 {
 	return TRUE;
 }
 
-WINBOOL CryptUnprotectData(DATA_BLOB* pDataIn, LPWSTR* ppszDataDescr, DATA_BLOB* pOptionalEntropy,
+BOOL CryptUnprotectData(DATA_BLOB* pDataIn, LPWSTR* ppszDataDescr, DATA_BLOB* pOptionalEntropy,
 		PVOID pvReserved, CRYPTPROTECT_PROMPTSTRUCT* pPromptStruct, DWORD dwFlags, DATA_BLOB* pDataOut)
 {
 	return TRUE;
 }
 
-WINBOOL CryptStringToBinaryW(LPCWSTR pszString, DWORD cchString, DWORD dwFlags, BYTE* pbBinary,
+BOOL CryptStringToBinaryW(LPCWSTR pszString, DWORD cchString, DWORD dwFlags, BYTE* pbBinary,
 		DWORD* pcbBinary, DWORD* pdwSkip, DWORD* pdwFlags)
 {
 	return TRUE;
 }
 
-WINBOOL CryptStringToBinaryA(LPCSTR pszString, DWORD cchString, DWORD dwFlags, BYTE* pbBinary,
+BOOL CryptStringToBinaryA(LPCSTR pszString, DWORD cchString, DWORD dwFlags, BYTE* pbBinary,
 		DWORD* pcbBinary, DWORD* pdwSkip, DWORD* pdwFlags)
 {
 	return TRUE;
 }
 
-WINBOOL CryptBinaryToStringW(CONST BYTE* pbBinary, DWORD cbBinary, DWORD dwFlags, LPWSTR pszString, DWORD* pcchString)
+BOOL CryptBinaryToStringW(CONST BYTE* pbBinary, DWORD cbBinary, DWORD dwFlags, LPWSTR pszString, DWORD* pcchString)
 {
 	return TRUE;
 }
 
-WINBOOL CryptBinaryToStringA(CONST BYTE* pbBinary, DWORD cbBinary, DWORD dwFlags, LPSTR pszString, DWORD* pcchString)
+BOOL CryptBinaryToStringA(CONST BYTE* pbBinary, DWORD cbBinary, DWORD dwFlags, LPSTR pszString, DWORD* pcchString)
 {
 	return TRUE;
 }

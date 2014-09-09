@@ -60,9 +60,9 @@ DWORD CountdownEvent_InitialCount(wCountdownEvent* countdown)
  * Determines whether the event is set.
  */
 
-WINBOOL CountdownEvent_IsSet(wCountdownEvent* countdown)
+BOOL CountdownEvent_IsSet(wCountdownEvent* countdown)
 {
-	WINBOOL status = FALSE;
+	BOOL status = FALSE;
 
 	if (WaitForSingleObject(countdown->event, 0) == WAIT_OBJECT_0)
 		status = TRUE;
@@ -103,11 +103,11 @@ void CountdownEvent_AddCount(wCountdownEvent* countdown, DWORD signalCount)
  * Registers multiple signals with the CountdownEvent, decrementing the value of CurrentCount by the specified amount.
  */
 
-WINBOOL CountdownEvent_Signal(wCountdownEvent* countdown, DWORD signalCount)
+BOOL CountdownEvent_Signal(wCountdownEvent* countdown, DWORD signalCount)
 {
-	WINBOOL status;
-	WINBOOL newStatus;
-	WINBOOL oldStatus;
+	BOOL status;
+	BOOL newStatus;
+	BOOL oldStatus;
 
 	status = newStatus = oldStatus = FALSE;
 

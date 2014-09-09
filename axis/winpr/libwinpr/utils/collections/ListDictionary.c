@@ -69,7 +69,7 @@ int ListDictionary_Count(wListDictionary* listDictionary)
  * Gets a value indicating whether the ListDictionary has a fixed size.
  */
 
-WINBOOL ListDictionary_IsFixedSized(wListDictionary* listDictionary)
+BOOL ListDictionary_IsFixedSized(wListDictionary* listDictionary)
 {
 	return FALSE;
 }
@@ -78,7 +78,7 @@ WINBOOL ListDictionary_IsFixedSized(wListDictionary* listDictionary)
  * Gets a value indicating whether the ListDictionary is read-only.
  */
 
-WINBOOL ListDictionary_IsReadOnly(wListDictionary* listDictionary)
+BOOL ListDictionary_IsReadOnly(wListDictionary* listDictionary)
 {
 	return FALSE;
 }
@@ -87,7 +87,7 @@ WINBOOL ListDictionary_IsReadOnly(wListDictionary* listDictionary)
  * Gets a value indicating whether the ListDictionary is synchronized (thread safe).
  */
 
-WINBOOL ListDictionary_IsSynchronized(wListDictionary* listDictionary)
+BOOL ListDictionary_IsSynchronized(wListDictionary* listDictionary)
 {
 	return listDictionary->synchronized;
 }
@@ -171,7 +171,7 @@ int ListDictionary_GetKeys(wListDictionary* listDictionary, ULONG_PTR** ppKeys)
  * Adds an entry with the specified key and value into the ListDictionary.
  */
 
-WINBOOL ListDictionary_Add(wListDictionary* listDictionary, void* key, void* value)
+BOOL ListDictionary_Add(wListDictionary* listDictionary, void* key, void* value)
 {
 	wListDictionaryItem* item;
 	wListDictionaryItem* lastItem;
@@ -243,7 +243,7 @@ void ListDictionary_Clear(wListDictionary* listDictionary)
  * Determines whether the ListDictionary contains a specific key.
  */
 
-WINBOOL ListDictionary_Contains(wListDictionary* listDictionary, void* key)
+BOOL ListDictionary_Contains(wListDictionary* listDictionary, void* key)
 {
 	wListDictionaryItem* item;
 	OBJECT_EQUALS_FN keyEquals;
@@ -375,9 +375,9 @@ void* ListDictionary_GetItemValue(wListDictionary* listDictionary, void* key)
  * Set an item value using key
  */
 
-WINBOOL ListDictionary_SetItemValue(wListDictionary* listDictionary, void* key, void* value)
+BOOL ListDictionary_SetItemValue(wListDictionary* listDictionary, void* key, void* value)
 {
-	WINBOOL status = FALSE;
+	BOOL status = FALSE;
 	wListDictionaryItem* item;
 	OBJECT_EQUALS_FN keyEquals;
 
@@ -413,7 +413,7 @@ WINBOOL ListDictionary_SetItemValue(wListDictionary* listDictionary, void* key, 
 	return status;
 }
 
-static WINBOOL default_equal_function(void *obj1, void *obj2)
+static BOOL default_equal_function(void *obj1, void *obj2)
 {
 	return (obj1 == obj2);
 }
@@ -421,7 +421,7 @@ static WINBOOL default_equal_function(void *obj1, void *obj2)
  * Construction, Destruction
  */
 
-wListDictionary* ListDictionary_New(WINBOOL synchronized)
+wListDictionary* ListDictionary_New(BOOL synchronized)
 {
 	wListDictionary* listDictionary = NULL;
 

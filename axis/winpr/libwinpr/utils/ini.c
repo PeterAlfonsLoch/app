@@ -112,7 +112,7 @@ void IniFile_Load_Finish(wIniFile* ini)
 	}
 }
 
-WINBOOL IniFile_Load_HasNextLine(wIniFile* ini)
+BOOL IniFile_Load_HasNextLine(wIniFile* ini)
 {
 	if (!ini)
 		return FALSE;

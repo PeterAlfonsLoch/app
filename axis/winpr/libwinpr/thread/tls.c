@@ -60,7 +60,7 @@ LPVOID TlsGetValue(DWORD dwTlsIndex)
 	return value;
 }
 
-WINBOOL TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
+BOOL TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
 	pthread_key_t key;
 
@@ -70,7 +70,7 @@ WINBOOL TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
 	return TRUE;
 }
 
-WINBOOL TlsFree(DWORD dwTlsIndex)
+BOOL TlsFree(DWORD dwTlsIndex)
 {
 	pthread_key_t key;
 

@@ -41,7 +41,7 @@ VOID InitializeCriticalSection(LPCRITICAL_SECTION lpCriticalSection)
 	InitializeCriticalSectionEx(lpCriticalSection, 0, 0);
 }
 
-WINBOOL InitializeCriticalSectionEx(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags)
+BOOL InitializeCriticalSectionEx(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags)
 {
 	/**
 	 * See http://msdn.microsoft.com/en-us/library/ff541979(v=vs.85).aspx
@@ -76,7 +76,7 @@ WINBOOL InitializeCriticalSectionEx(LPCRITICAL_SECTION lpCriticalSection, DWORD 
 	return TRUE;
 }
 
-WINBOOL InitializeCriticalSectionAndSpinCount(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount)
+BOOL InitializeCriticalSectionAndSpinCount(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount)
 {
 	return InitializeCriticalSectionEx(lpCriticalSection, dwSpinCount, 0);
 }
@@ -171,7 +171,7 @@ VOID EnterCriticalSection(LPCRITICAL_SECTION lpCriticalSection)
 	lpCriticalSection->OwningThread = (HANDLE) (ULONG_PTR) GetCurrentThreadId();
 }
 
-WINBOOL TryEnterCriticalSection(LPCRITICAL_SECTION lpCriticalSection)
+BOOL TryEnterCriticalSection(LPCRITICAL_SECTION lpCriticalSection)
 {
 	HANDLE current_thread = (HANDLE) (ULONG_PTR) GetCurrentThreadId();
 
@@ -237,14 +237,14 @@ VOID DeleteCriticalSection(LPCRITICAL_SECTION lpCriticalSection)
 
 #if (defined(_WIN32) && (_WIN32_WINNT < 0x0600))
 
-typedef WINBOOL (WINAPI * PINITIALIZE_CRITICAL_SECTION_EX_FN)(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags);
+typedef BOOL (WINAPI * PINITIALIZE_CRITICAL_SECTION_EX_FN)(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags);
 
 static HMODULE g_KERNEL32_Library = NULL;
-static WINBOOL g_InitializeCriticalSectionEx_Detected = FALSE;
-static WINBOOL g_InitializeCriticalSectionEx_Available = FALSE;
+static BOOL g_InitializeCriticalSectionEx_Detected = FALSE;
+static BOOL g_InitializeCriticalSectionEx_Available = FALSE;
 static PINITIALIZE_CRITICAL_SECTION_EX_FN g_pInitializeCriticalSectionEx = NULL;
 
-WINBOOL InitializeCriticalSectionEx(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags)
+BOOL InitializeCriticalSectionEx(LPCRITICAL_SECTION lpCriticalSection, DWORD dwSpinCount, DWORD Flags)
 {
 	if (!g_InitializeCriticalSectionEx_Detected)
 	{

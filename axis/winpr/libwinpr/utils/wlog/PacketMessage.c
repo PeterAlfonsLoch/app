@@ -128,7 +128,7 @@ void Pcap_Add_Record(wPcap* pcap, void* data, UINT32 length)
 	record->header.ts_usec = tp.tv_usec;
 }
 
-WINBOOL Pcap_HasNext_Record(wPcap* pcap)
+BOOL Pcap_HasNext_Record(wPcap* pcap)
 {
 	if (pcap->file_size - (ftell(pcap->fp)) <= 16)
 		return FALSE;
@@ -136,7 +136,7 @@ WINBOOL Pcap_HasNext_Record(wPcap* pcap)
 	return TRUE;
 }
 
-WINBOOL Pcap_GetNext_RecordHeader(wPcap* pcap, wPcapRecord* record)
+BOOL Pcap_GetNext_RecordHeader(wPcap* pcap, wPcapRecord* record)
 {
 	if (Pcap_HasNext_Record(pcap) != TRUE)
 		return FALSE;
@@ -147,7 +147,7 @@ WINBOOL Pcap_GetNext_RecordHeader(wPcap* pcap, wPcapRecord* record)
 	return TRUE;
 }
 
-WINBOOL Pcap_GetNext_RecordContent(wPcap* pcap, wPcapRecord* record)
+BOOL Pcap_GetNext_RecordContent(wPcap* pcap, wPcapRecord* record)
 {
 	if (pcap && pcap->fp)
 	{
@@ -157,7 +157,7 @@ WINBOOL Pcap_GetNext_RecordContent(wPcap* pcap, wPcapRecord* record)
 	return FALSE;
 }
 
-WINBOOL Pcap_GetNext_Record(wPcap* pcap, wPcapRecord* record)
+BOOL Pcap_GetNext_Record(wPcap* pcap, wPcapRecord* record)
 {
 	if (Pcap_HasNext_Record(pcap) != TRUE)
 		return FALSE;
@@ -167,7 +167,7 @@ WINBOOL Pcap_GetNext_Record(wPcap* pcap, wPcapRecord* record)
 	return TRUE;
 }
 
-wPcap* Pcap_Open(char* name, WINBOOL write)
+wPcap* Pcap_Open(char* name, BOOL write)
 {
 	wPcap* pcap;
 

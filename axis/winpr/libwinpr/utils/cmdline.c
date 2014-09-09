@@ -53,11 +53,11 @@ int CommandLineParseArgumentsA(int argc, LPCSTR* argv, COMMAND_LINE_ARGUMENT_A* 
 	int count;
 	int length;
 	int index;
-	WINBOOL match;
-	WINBOOL found;
-	WINBOOL argument;
-	WINBOOL escaped;
-	WINBOOL notescaped;
+	BOOL match;
+	BOOL found;
+	BOOL argument;
+	BOOL escaped;
+	BOOL notescaped;
 	char* sigil;
 	int sigil_length;
 	int sigil_index;

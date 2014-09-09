@@ -41,7 +41,7 @@ VOID SetThreadpoolWait(PTP_WAIT pwa, HANDLE h, PFILETIME pftTimeout)
 
 }
 
-VOID WaitForThreadpoolWaitCallbacks(PTP_WAIT pwa, WINBOOL fCancelPendingCallbacks)
+VOID WaitForThreadpoolWaitCallbacks(PTP_WAIT pwa, BOOL fCancelPendingCallbacks)
 {
 
 }

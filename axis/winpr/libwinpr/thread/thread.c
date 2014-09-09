@@ -140,7 +140,7 @@ VOID ExitThread(DWORD dwExitCode)
 	pthread_exit((void*) (size_t) dwExitCode);
 }
 
-WINBOOL GetExitCodeThread(HANDLE hThread, LPDWORD lpExitCode)
+BOOL GetExitCodeThread(HANDLE hThread, LPDWORD lpExitCode)
 {
 	ULONG Type;
 	PVOID Object;
@@ -200,12 +200,12 @@ DWORD SuspendThread(HANDLE hThread)
 	return 0;
 }
 
-WINBOOL SwitchToThread(VOID)
+BOOL SwitchToThread(VOID)
 {
 	return TRUE;
 }
 
-WINBOOL TerminateThread(HANDLE hThread, DWORD dwExitCode)
+BOOL TerminateThread(HANDLE hThread, DWORD dwExitCode)
 {
 	ULONG Type;
 	PVOID Object;

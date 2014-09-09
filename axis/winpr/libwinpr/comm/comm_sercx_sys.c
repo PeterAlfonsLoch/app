@@ -136,7 +136,7 @@ static const speed_t _SERCX_SYS_BAUD_TABLE[][3] = {
 };
 
 
-static WINBOOL _get_properties(WINPR_COMM *pComm, COMMPROP *pProperties)
+static BOOL _get_properties(WINPR_COMM *pComm, COMMPROP *pProperties)
 {
 	int i;
 	SERIAL_DRIVER* pSerialSys = SerialSys_s();
@@ -160,7 +160,7 @@ static WINBOOL _get_properties(WINPR_COMM *pComm, COMMPROP *pProperties)
 }
 
 
-static WINBOOL _set_baud_rate(WINPR_COMM *pComm, const SERIAL_BAUD_RATE *pBaudRate)
+static BOOL _set_baud_rate(WINPR_COMM *pComm, const SERIAL_BAUD_RATE *pBaudRate)
 {
 	int i;
 	speed_t newSpeed;
@@ -202,7 +202,7 @@ static WINBOOL _set_baud_rate(WINPR_COMM *pComm, const SERIAL_BAUD_RATE *pBaudRa
 }
 
 
-static WINBOOL _get_baud_rate(WINPR_COMM *pComm, SERIAL_BAUD_RATE *pBaudRate)
+static BOOL _get_baud_rate(WINPR_COMM *pComm, SERIAL_BAUD_RATE *pBaudRate)
 {
 	int i;
 	speed_t currentSpeed;
@@ -231,10 +231,10 @@ static WINBOOL _get_baud_rate(WINPR_COMM *pComm, SERIAL_BAUD_RATE *pBaudRate)
 	return FALSE;
 }
 
-static WINBOOL _set_handflow(WINPR_COMM *pComm, const SERIAL_HANDFLOW *pHandflow)
+static BOOL _set_handflow(WINPR_COMM *pComm, const SERIAL_HANDFLOW *pHandflow)
 {
 	SERIAL_HANDFLOW SerCxHandflow;
-	WINBOOL result = TRUE;
+	BOOL result = TRUE;
 	SERIAL_DRIVER* pSerialSys = SerialSys_s();
 
 	memcpy(&SerCxHandflow, pHandflow, sizeof(SERIAL_HANDFLOW));
@@ -311,9 +311,9 @@ static WINBOOL _set_handflow(WINPR_COMM *pComm, const SERIAL_HANDFLOW *pHandflow
 }
 
 
-static WINBOOL _get_handflow(WINPR_COMM *pComm, SERIAL_HANDFLOW *pHandflow)
+static BOOL _get_handflow(WINPR_COMM *pComm, SERIAL_HANDFLOW *pHandflow)
 {
-	WINBOOL result;
+	BOOL result;
 	SERIAL_DRIVER* pSerialSys = SerialSys_s();
 
 	result = pSerialSys->get_handflow(pComm, pHandflow);
@@ -347,7 +347,7 @@ static const ULONG _SERCX_SYS_SUPPORTED_EV_MASK =
 	SERIAL_EV_EVENT2*/;
 
 
-static WINBOOL _set_wait_mask(WINPR_COMM *pComm, const ULONG *pWaitMask)
+static BOOL _set_wait_mask(WINPR_COMM *pComm, const ULONG *pWaitMask)
 {
 	ULONG possibleMask;
 	SERIAL_DRIVER* pSerialSys = SerialSys_s();

@@ -112,10 +112,10 @@ void Queue_Clear(wQueue* queue)
  * Determines whether an element is in the Queue.
  */
 
-WINBOOL Queue_Contains(wQueue* queue, void* obj)
+BOOL Queue_Contains(wQueue* queue, void* obj)
 {
 	int index;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 
 	if (queue->synchronized)
 		EnterCriticalSection(&queue->lock);
@@ -139,9 +139,9 @@ WINBOOL Queue_Contains(wQueue* queue, void* obj)
  * Adds an object to the end of the Queue.
  */
 
-WINBOOL Queue_Enqueue(wQueue* queue, void* obj)
+BOOL Queue_Enqueue(wQueue* queue, void* obj)
 {
-	WINBOOL ret = TRUE;
+	BOOL ret = TRUE;
 
 	if (queue->synchronized)
 		EnterCriticalSection(&queue->lock);
@@ -233,7 +233,7 @@ void* Queue_Peek(wQueue* queue)
 	return obj;
 }
 
-static WINBOOL default_queue_equals(void *obj1, void *obj2)
+static BOOL default_queue_equals(void *obj1, void *obj2)
 {
 	return (obj1 == obj2);
 }
@@ -242,7 +242,7 @@ static WINBOOL default_queue_equals(void *obj1, void *obj2)
  * Construction, Destruction
  */
 
-wQueue* Queue_New(WINBOOL synchronized, int capacity, int growthFactor)
+wQueue* Queue_New(BOOL synchronized, int capacity, int growthFactor)
 {
 	wQueue* queue = NULL;
 

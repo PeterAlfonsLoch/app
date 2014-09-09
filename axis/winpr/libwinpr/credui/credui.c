@@ -34,14 +34,14 @@
 
 DWORD CredUIPromptForCredentialsW(PCREDUI_INFOW pUiInfo, PCWSTR pszTargetName,
 		PCtxtHandle pContext, DWORD dwAuthError, PWSTR pszUserName, ULONG ulUserNameBufferSize,
-		PWSTR pszPassword, ULONG ulPasswordBufferSize, WINBOOL* save, DWORD dwFlags)
+		PWSTR pszPassword, ULONG ulPasswordBufferSize, BOOL* save, DWORD dwFlags)
 {
 	return 0;
 }
 
 DWORD CredUIPromptForCredentialsA(PCREDUI_INFOA pUiInfo, PCSTR pszTargetName,
 		PCtxtHandle pContext, DWORD dwAuthError, PSTR pszUserName, ULONG ulUserNameBufferSize,
-		PSTR pszPassword, ULONG ulPasswordBufferSize, WINBOOL* save, DWORD dwFlags)
+		PSTR pszPassword, ULONG ulPasswordBufferSize, BOOL* save, DWORD dwFlags)
 {
 	return 0;
 }
@@ -70,22 +70,22 @@ DWORD CredUICmdLinePromptForCredentialsA(PCSTR pszTargetName, PCtxtHandle pConte
 	return 0;
 }
 
-DWORD CredUIConfirmCredentialsW(PCWSTR pszTargetName, WINBOOL bConfirm)
+DWORD CredUIConfirmCredentialsW(PCWSTR pszTargetName, BOOL bConfirm)
 {
 	return 0;
 }
 
-DWORD CredUIConfirmCredentialsA(PCSTR pszTargetName, WINBOOL bConfirm)
+DWORD CredUIConfirmCredentialsA(PCSTR pszTargetName, BOOL bConfirm)
 {
 	return 0;
 }
 
-DWORD CredUIStoreSSOCredW(PCWSTR pszRealm, PCWSTR pszUsername, PCWSTR pszPassword, WINBOOL bPersist)
+DWORD CredUIStoreSSOCredW(PCWSTR pszRealm, PCWSTR pszUsername, PCWSTR pszPassword, BOOL bPersist)
 {
 	return 0;
 }
 
-DWORD CredUIStoreSSOCredA(PCSTR pszRealm, PCSTR pszUsername, PCSTR pszPassword, WINBOOL bPersist)
+DWORD CredUIStoreSSOCredA(PCSTR pszRealm, PCSTR pszUsername, PCSTR pszPassword, BOOL bPersist)
 {
 	return 0;
 }

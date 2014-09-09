@@ -114,7 +114,7 @@ static const speed_t _SERIAL_SYS_BAUD_TABLE[][2] = {
 #define _SERIAL_MAX_BAUD  B115200
 
 
-static WINBOOL _get_properties(WINPR_COMM *pComm, COMMPROP *pProperties)
+static BOOL _get_properties(WINPR_COMM *pComm, COMMPROP *pProperties)
 {
 	int i;
 
@@ -176,7 +176,7 @@ static WINBOOL _get_properties(WINPR_COMM *pComm, COMMPROP *pProperties)
 	return TRUE;
 }
 
-static WINBOOL _set_baud_rate(WINPR_COMM *pComm, const SERIAL_BAUD_RATE *pBaudRate)
+static BOOL _set_baud_rate(WINPR_COMM *pComm, const SERIAL_BAUD_RATE *pBaudRate)
 {
 	int i;
 	speed_t newSpeed;
@@ -216,7 +216,7 @@ static WINBOOL _set_baud_rate(WINPR_COMM *pComm, const SERIAL_BAUD_RATE *pBaudRa
 }
 
 
-static WINBOOL _get_baud_rate(WINPR_COMM *pComm, SERIAL_BAUD_RATE *pBaudRate)
+static BOOL _get_baud_rate(WINPR_COMM *pComm, SERIAL_BAUD_RATE *pBaudRate)
 {
 	int i;
 	speed_t currentSpeed;
@@ -254,9 +254,9 @@ static WINBOOL _get_baud_rate(WINPR_COMM *pComm, SERIAL_BAUD_RATE *pBaudRate)
  *   ERROR_INVALID_PARAMETER when Xon and Xoff chars are the same;
  *   ERROR_NOT_SUPPORTED
  */
-static WINBOOL _set_serial_chars(WINPR_COMM *pComm, const SERIAL_CHARS *pSerialChars)
+static BOOL _set_serial_chars(WINPR_COMM *pComm, const SERIAL_CHARS *pSerialChars)
 {
-	WINBOOL result = TRUE;
+	BOOL result = TRUE;
 	struct termios upcomingTermios;
 
 	ZeroMemory(&upcomingTermios, sizeof(struct termios));
@@ -335,7 +335,7 @@ static WINBOOL _set_serial_chars(WINPR_COMM *pComm, const SERIAL_CHARS *pSerialC
 }
 
 
-static WINBOOL _get_serial_chars(WINPR_COMM *pComm, SERIAL_CHARS *pSerialChars)
+static BOOL _get_serial_chars(WINPR_COMM *pComm, SERIAL_CHARS *pSerialChars)
 {
 	struct termios currentTermios;
 
@@ -365,9 +365,9 @@ static WINBOOL _get_serial_chars(WINPR_COMM *pComm, SERIAL_CHARS *pSerialChars)
 }
 
 
-static WINBOOL _set_line_control(WINPR_COMM *pComm, const SERIAL_LINE_CONTROL *pLineControl)
+static BOOL _set_line_control(WINPR_COMM *pComm, const SERIAL_LINE_CONTROL *pLineControl)
 {
-	WINBOOL result = TRUE;
+	BOOL result = TRUE;
 	struct termios upcomingTermios;
 
 
@@ -480,7 +480,7 @@ static WINBOOL _set_line_control(WINPR_COMM *pComm, const SERIAL_LINE_CONTROL *p
 }
 
 
-static WINBOOL _get_line_control(WINPR_COMM *pComm, SERIAL_LINE_CONTROL *pLineControl)
+static BOOL _get_line_control(WINPR_COMM *pComm, SERIAL_LINE_CONTROL *pLineControl)
 {
 	struct termios currentTermios;
 
@@ -527,9 +527,9 @@ static WINBOOL _get_line_control(WINPR_COMM *pComm, SERIAL_LINE_CONTROL *pLineCo
 }
 
 
-static WINBOOL _set_handflow(WINPR_COMM *pComm, const SERIAL_HANDFLOW *pHandflow)
+static BOOL _set_handflow(WINPR_COMM *pComm, const SERIAL_HANDFLOW *pHandflow)
 {
-	WINBOOL result = TRUE;
+	BOOL result = TRUE;
 	struct termios upcomingTermios;
 
 	ZeroMemory(&upcomingTermios, sizeof(struct termios));
@@ -717,7 +717,7 @@ static WINBOOL _set_handflow(WINPR_COMM *pComm, const SERIAL_HANDFLOW *pHandflow
 }
 
 
-static WINBOOL _get_handflow(WINPR_COMM *pComm, SERIAL_HANDFLOW *pHandflow)
+static BOOL _get_handflow(WINPR_COMM *pComm, SERIAL_HANDFLOW *pHandflow)
 {
 	struct termios currentTermios;
 
@@ -789,7 +789,7 @@ static WINBOOL _get_handflow(WINPR_COMM *pComm, SERIAL_HANDFLOW *pHandflow)
 	return TRUE;
 }
 
-static WINBOOL _set_timeouts(WINPR_COMM *pComm, const SERIAL_TIMEOUTS *pTimeouts)
+static BOOL _set_timeouts(WINPR_COMM *pComm, const SERIAL_TIMEOUTS *pTimeouts)
 {
 	/* NB: timeouts are applied on system during read/write I/O */
 
@@ -810,7 +810,7 @@ static WINBOOL _set_timeouts(WINPR_COMM *pComm, const SERIAL_TIMEOUTS *pTimeouts
 	return TRUE;
 }
 
-static WINBOOL _get_timeouts(WINPR_COMM *pComm, SERIAL_TIMEOUTS *pTimeouts)
+static BOOL _get_timeouts(WINPR_COMM *pComm, SERIAL_TIMEOUTS *pTimeouts)
 {
 	pTimeouts->ReadIntervalTimeout         = pComm->timeouts.ReadIntervalTimeout;
 	pTimeouts->ReadTotalTimeoutMultiplier  = pComm->timeouts.ReadTotalTimeoutMultiplier;
@@ -822,7 +822,7 @@ static WINBOOL _get_timeouts(WINPR_COMM *pComm, SERIAL_TIMEOUTS *pTimeouts)
 }
 
 
-static WINBOOL _set_lines(WINPR_COMM *pComm, UINT32 lines)
+static BOOL _set_lines(WINPR_COMM *pComm, UINT32 lines)
 {
 	if (ioctl(pComm->fd, TIOCMBIS, &lines) < 0)
 	{
@@ -835,7 +835,7 @@ static WINBOOL _set_lines(WINPR_COMM *pComm, UINT32 lines)
 }
 
 
-static WINBOOL _clear_lines(WINPR_COMM *pComm, UINT32 lines)
+static BOOL _clear_lines(WINPR_COMM *pComm, UINT32 lines)
 {
 	if (ioctl(pComm->fd, TIOCMBIC, &lines) < 0)
 	{
@@ -848,7 +848,7 @@ static WINBOOL _clear_lines(WINPR_COMM *pComm, UINT32 lines)
 }
 
 
-static WINBOOL _set_dtr(WINPR_COMM *pComm)
+static BOOL _set_dtr(WINPR_COMM *pComm)
 {
 	SERIAL_HANDFLOW handflow;
 	if (!_get_handflow(pComm, &handflow))
@@ -866,7 +866,7 @@ static WINBOOL _set_dtr(WINPR_COMM *pComm)
 	return _set_lines(pComm, TIOCM_DTR);
 }
 
-static WINBOOL _clear_dtr(WINPR_COMM *pComm)
+static BOOL _clear_dtr(WINPR_COMM *pComm)
 {
 	SERIAL_HANDFLOW handflow;
 	if (!_get_handflow(pComm, &handflow))
@@ -884,7 +884,7 @@ static WINBOOL _clear_dtr(WINPR_COMM *pComm)
 	return _clear_lines(pComm, TIOCM_DTR);
 }
 
-static WINBOOL _set_rts(WINPR_COMM *pComm)
+static BOOL _set_rts(WINPR_COMM *pComm)
 {
 	SERIAL_HANDFLOW handflow;
 	if (!_get_handflow(pComm, &handflow))
@@ -899,7 +899,7 @@ static WINBOOL _set_rts(WINPR_COMM *pComm)
 	return _set_lines(pComm, TIOCM_RTS);
 }
 
-static WINBOOL _clear_rts(WINPR_COMM *pComm)
+static BOOL _clear_rts(WINPR_COMM *pComm)
 {
 	SERIAL_HANDFLOW handflow;
 	if (!_get_handflow(pComm, &handflow))
@@ -916,7 +916,7 @@ static WINBOOL _clear_rts(WINPR_COMM *pComm)
 
 
 
-static WINBOOL _get_modemstatus(WINPR_COMM *pComm, ULONG *pRegister)
+static BOOL _get_modemstatus(WINPR_COMM *pComm, ULONG *pRegister)
 {
 	UINT32 lines=0;
 	if (ioctl(pComm->fd, TIOCMGET, &lines) < 0)
@@ -969,7 +969,7 @@ static const ULONG _SERIAL_SYS_SUPPORTED_EV_MASK =
 	SERIAL_EV_EVENT2*/;
 
 
-static WINBOOL _set_wait_mask(WINPR_COMM *pComm, const ULONG *pWaitMask)
+static BOOL _set_wait_mask(WINPR_COMM *pComm, const ULONG *pWaitMask)
 {
 	ULONG possibleMask;
 
@@ -1030,7 +1030,7 @@ static WINBOOL _set_wait_mask(WINPR_COMM *pComm, const ULONG *pWaitMask)
 }
 
 
-static WINBOOL _get_wait_mask(WINPR_COMM *pComm, ULONG *pWaitMask)
+static BOOL _get_wait_mask(WINPR_COMM *pComm, ULONG *pWaitMask)
 {
 	*pWaitMask = pComm->WaitEventMask;
 	return TRUE;
@@ -1038,7 +1038,7 @@ static WINBOOL _get_wait_mask(WINPR_COMM *pComm, ULONG *pWaitMask)
 
 
 
-static WINBOOL _set_queue_size(WINPR_COMM *pComm, const SERIAL_QUEUE_SIZE *pQueueSize)
+static BOOL _set_queue_size(WINPR_COMM *pComm, const SERIAL_QUEUE_SIZE *pQueueSize)
 {
 	if ((pQueueSize->InSize <= N_TTY_BUF_SIZE) && (pQueueSize->OutSize <= N_TTY_BUF_SIZE))
 		return TRUE; /* nothing to do */
@@ -1056,7 +1056,7 @@ static WINBOOL _set_queue_size(WINPR_COMM *pComm, const SERIAL_QUEUE_SIZE *pQueu
 }
 
 
-static WINBOOL _purge(WINPR_COMM *pComm, const ULONG *pPurgeMask)
+static BOOL _purge(WINPR_COMM *pComm, const ULONG *pPurgeMask)
 {
 	if ((*pPurgeMask & ~(SERIAL_PURGE_TXABORT | SERIAL_PURGE_RXABORT | SERIAL_PURGE_TXCLEAR | SERIAL_PURGE_RXCLEAR)) > 0)
 	{
@@ -1132,7 +1132,7 @@ static WINBOOL _purge(WINPR_COMM *pComm, const ULONG *pPurgeMask)
  *  - SERIAL_EV_RXFLAG: FIXME: once EventChar supported
  *
  */
-static WINBOOL _get_commstatus(WINPR_COMM *pComm, SERIAL_STATUS *pCommstatus)
+static BOOL _get_commstatus(WINPR_COMM *pComm, SERIAL_STATUS *pCommstatus)
 {
 	/* http://msdn.microsoft.com/en-us/library/jj673022%28v=vs.85%29.aspx */
 
@@ -1288,7 +1288,7 @@ static WINBOOL _get_commstatus(WINPR_COMM *pComm, SERIAL_STATUS *pCommstatus)
 	return TRUE;
 }
 
-static WINBOOL _refresh_PendingEvents(WINPR_COMM *pComm)
+static BOOL _refresh_PendingEvents(WINPR_COMM *pComm)
 {
 	SERIAL_STATUS serialStatus;
 
@@ -1315,7 +1315,7 @@ static void _consume_event(WINPR_COMM *pComm, ULONG *pOutputMask, ULONG event)
 /*
  * NB: see also: _set_wait_mask()
  */
-static WINBOOL _wait_on_mask(WINPR_COMM *pComm, ULONG *pOutputMask)
+static BOOL _wait_on_mask(WINPR_COMM *pComm, ULONG *pOutputMask)
 {
 	assert(*pOutputMask == 0);
 
@@ -1400,7 +1400,7 @@ static WINBOOL _wait_on_mask(WINPR_COMM *pComm, ULONG *pOutputMask)
 	return FALSE;
 }
 
-static WINBOOL _set_break_on(WINPR_COMM *pComm)
+static BOOL _set_break_on(WINPR_COMM *pComm)
 {
 	if (ioctl(pComm->fd, TIOCSBRK, NULL) < 0)
 	{
@@ -1413,7 +1413,7 @@ static WINBOOL _set_break_on(WINPR_COMM *pComm)
 }
 
 
-static WINBOOL _set_break_off(WINPR_COMM *pComm)
+static BOOL _set_break_off(WINPR_COMM *pComm)
 {
 	if (ioctl(pComm->fd, TIOCCBRK, NULL) < 0)
 	{
@@ -1426,7 +1426,7 @@ static WINBOOL _set_break_off(WINPR_COMM *pComm)
 }
 
 
-static WINBOOL _set_xoff(WINPR_COMM *pComm)
+static BOOL _set_xoff(WINPR_COMM *pComm)
 {
 	if (tcflow(pComm->fd, TCIOFF) < 0)
 	{
@@ -1439,7 +1439,7 @@ static WINBOOL _set_xoff(WINPR_COMM *pComm)
 }
 
 
-static WINBOOL _set_xon(WINPR_COMM *pComm)
+static BOOL _set_xon(WINPR_COMM *pComm)
 {
 	if (tcflow(pComm->fd, TCION) < 0)
 	{
@@ -1452,7 +1452,7 @@ static WINBOOL _set_xon(WINPR_COMM *pComm)
 }
 
 
-WINBOOL _get_dtrrts(WINPR_COMM *pComm, ULONG *pMask)
+BOOL _get_dtrrts(WINPR_COMM *pComm, ULONG *pMask)
 {
 	UINT32 lines=0;
 	if (ioctl(pComm->fd, TIOCMGET, &lines) < 0)
@@ -1473,7 +1473,7 @@ WINBOOL _get_dtrrts(WINPR_COMM *pComm, ULONG *pMask)
 }
 
 
-WINBOOL _config_size(WINPR_COMM *pComm, ULONG *pSize)
+BOOL _config_size(WINPR_COMM *pComm, ULONG *pSize)
 {
 	/* http://msdn.microsoft.com/en-us/library/ff546548%28v=vs.85%29.aspx */
 	pSize = 0;
@@ -1481,9 +1481,9 @@ WINBOOL _config_size(WINPR_COMM *pComm, ULONG *pSize)
 }
 
 
-WINBOOL _immediate_char(WINPR_COMM *pComm, const UCHAR *pChar)
+BOOL _immediate_char(WINPR_COMM *pComm, const UCHAR *pChar)
 {
-	WINBOOL result;
+	BOOL result;
 	DWORD nbBytesWritten = -1;
 
 	/* FIXME: CommWriteFile uses a critical section, shall it be
@@ -1500,7 +1500,7 @@ WINBOOL _immediate_char(WINPR_COMM *pComm, const UCHAR *pChar)
 }
 
 
-WINBOOL _reset_device(WINPR_COMM *pComm)
+BOOL _reset_device(WINPR_COMM *pComm)
 {
 	/* http://msdn.microsoft.com/en-us/library/dn265347%28v=vs.85%29.aspx */
 	return TRUE;

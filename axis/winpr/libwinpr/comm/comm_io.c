@@ -34,7 +34,7 @@
 
 #include "comm.h"
 
-WINBOOL _comm_set_permissive(HANDLE hDevice, WINBOOL permissive)
+BOOL _comm_set_permissive(HANDLE hDevice, BOOL permissive)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hDevice;
 
@@ -80,7 +80,7 @@ static UCHAR _vtime(ULONG Ti)
  *   ERROR_IO_DEVICE
  *   ERROR_BAD_DEVICE
  */
-WINBOOL CommReadFile(HANDLE hDevice, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
+BOOL CommReadFile(HANDLE hDevice, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 		LPDWORD lpNumberOfBytesRead, LPOVERLAPPED lpOverlapped)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hDevice;
@@ -357,7 +357,7 @@ WINBOOL CommReadFile(HANDLE hDevice, LPVOID lpBuffer, DWORD nNumberOfBytesToRead
  *   ERROR_INVALID_PARAMETER
  *   ERROR_BAD_DEVICE
  */
-WINBOOL CommWriteFile(HANDLE hDevice, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
+BOOL CommWriteFile(HANDLE hDevice, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
 		LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped)
 {
 	WINPR_COMM* pComm = (WINPR_COMM*) hDevice;

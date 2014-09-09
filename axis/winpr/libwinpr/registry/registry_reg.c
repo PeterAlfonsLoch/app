@@ -190,7 +190,7 @@ static RegVal* reg_load_value(Reg* reg, RegKey* key)
 	return value;
 }
 
-static WINBOOL reg_load_has_next_line(Reg* reg)
+static BOOL reg_load_has_next_line(Reg* reg)
 {
 	if (!reg)
 		return 0;
@@ -368,7 +368,7 @@ void reg_unload(Reg* reg)
 	free(reg->root_key);
 }
 
-Reg* reg_open(WINBOOL read_only)
+Reg* reg_open(BOOL read_only)
 {
 	Reg* reg;
 

@@ -218,7 +218,7 @@ static void _HandleCreatorsInit()
  *   ERROR_DLL_INIT_FAILED
  *   ERROR_INSUFFICIENT_BUFFER _HandleCreators full
  */
-WINBOOL RegisterHandleCreator(PHANDLE_CREATOR pHandleCreator)
+BOOL RegisterHandleCreator(PHANDLE_CREATOR pHandleCreator)
 {
 	int i;
 
@@ -258,7 +258,7 @@ WINBOOL RegisterHandleCreator(PHANDLE_CREATOR pHandleCreator)
 
 #ifdef HAVE_AIO_H
 
-static WINBOOL g_AioSignalHandlerInstalled = FALSE;
+static BOOL g_AioSignalHandlerInstalled = FALSE;
 
 void AioSignalHandler(int signum, siginfo_t* siginfo, void* arg)
 {
@@ -397,7 +397,7 @@ HANDLE CreateFileW(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode,
 	return NULL;
 }
 
-WINBOOL DeleteFileA(LPCSTR lpFileName)
+BOOL DeleteFileA(LPCSTR lpFileName)
 {
 	int status;
 
@@ -406,17 +406,17 @@ WINBOOL DeleteFileA(LPCSTR lpFileName)
 	return (status != -1) ? TRUE : FALSE;
 }
 
-WINBOOL DeleteFileW(LPCWSTR lpFileName)
+BOOL DeleteFileW(LPCWSTR lpFileName)
 {
 	return TRUE;
 }
 
-WINBOOL ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
+BOOL ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 		LPDWORD lpNumberOfBytesRead, LPOVERLAPPED lpOverlapped)
 {
 	ULONG Type;
 	PVOID Object;
-	WINBOOL status = TRUE;
+	BOOL status = TRUE;
 
 	if (hFile == INVALID_HANDLE_VALUE) {
 		return FALSE;
@@ -560,24 +560,24 @@ WINBOOL ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 	return FALSE;
 }
 
-WINBOOL ReadFileEx(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
+BOOL ReadFileEx(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 		LPOVERLAPPED lpOverlapped, LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine)
 {
 	return TRUE;
 }
 
-WINBOOL ReadFileScatter(HANDLE hFile, FILE_SEGMENT_ELEMENT aSegmentArray[],
+BOOL ReadFileScatter(HANDLE hFile, FILE_SEGMENT_ELEMENT aSegmentArray[],
 		DWORD nNumberOfBytesToRead, LPDWORD lpReserved, LPOVERLAPPED lpOverlapped)
 {
 	return TRUE;
 }
 
-WINBOOL WriteFile(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
+BOOL WriteFile(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
 		LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped)
 {
 	ULONG Type;
 	PVOID Object;
-	WINBOOL status = TRUE;
+	BOOL status = TRUE;
 
 	if (hFile == INVALID_HANDLE_VALUE) {
 		return FALSE;
@@ -700,24 +700,24 @@ WINBOOL WriteFile(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
 	return FALSE;
 }
 
-WINBOOL WriteFileEx(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
+BOOL WriteFileEx(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
 		LPOVERLAPPED lpOverlapped, LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine)
 {
 	return TRUE;
 }
 
-WINBOOL WriteFileGather(HANDLE hFile, FILE_SEGMENT_ELEMENT aSegmentArray[],
+BOOL WriteFileGather(HANDLE hFile, FILE_SEGMENT_ELEMENT aSegmentArray[],
 		DWORD nNumberOfBytesToWrite, LPDWORD lpReserved, LPOVERLAPPED lpOverlapped)
 {
 	return TRUE;
 }
 
-WINBOOL FlushFileBuffers(HANDLE hFile)
+BOOL FlushFileBuffers(HANDLE hFile)
 {
 	return TRUE;
 }
 
-WINBOOL SetEndOfFile(HANDLE hFile)
+BOOL SetEndOfFile(HANDLE hFile)
 {
 	return TRUE;
 }
@@ -728,31 +728,31 @@ DWORD SetFilePointer(HANDLE hFile, LONG lDistanceToMove,
 	return TRUE;
 }
 
-WINBOOL SetFilePointerEx(HANDLE hFile, LARGE_INTEGER liDistanceToMove,
+BOOL SetFilePointerEx(HANDLE hFile, LARGE_INTEGER liDistanceToMove,
 		PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod)
 {
 	return TRUE;
 }
 
-WINBOOL LockFile(HANDLE hFile, DWORD dwFileOffsetLow, DWORD dwFileOffsetHigh,
+BOOL LockFile(HANDLE hFile, DWORD dwFileOffsetLow, DWORD dwFileOffsetHigh,
 		DWORD nNumberOfBytesToLockLow, DWORD nNumberOfBytesToLockHigh)
 {
 	return TRUE;
 }
 
-WINBOOL LockFileEx(HANDLE hFile, DWORD dwFlags, DWORD dwReserved,
+BOOL LockFileEx(HANDLE hFile, DWORD dwFlags, DWORD dwReserved,
 		DWORD nNumberOfBytesToLockLow, DWORD nNumberOfBytesToLockHigh, LPOVERLAPPED lpOverlapped)
 {
 	return TRUE;
 }
 
-WINBOOL UnlockFile(HANDLE hFile, DWORD dwFileOffsetLow, DWORD dwFileOffsetHigh,
+BOOL UnlockFile(HANDLE hFile, DWORD dwFileOffsetLow, DWORD dwFileOffsetHigh,
 		DWORD nNumberOfBytesToUnlockLow, DWORD nNumberOfBytesToUnlockHigh)
 {
 	return TRUE;
 }
 
-WINBOOL UnlockFileEx(HANDLE hFile, DWORD dwReserved, DWORD nNumberOfBytesToUnlockLow,
+BOOL UnlockFileEx(HANDLE hFile, DWORD dwReserved, DWORD nNumberOfBytesToUnlockLow,
 		DWORD nNumberOfBytesToUnlockHigh, LPOVERLAPPED lpOverlapped)
 {
 	return TRUE;
@@ -858,7 +858,7 @@ HANDLE FindFirstFileExW(LPCWSTR lpFileName, FINDEX_INFO_LEVELS fInfoLevelId, LPV
 	return NULL;
 }
 
-WINBOOL FindNextFileA(HANDLE hFindFile, LPWIN32_FIND_DATAA lpFindFileData)
+BOOL FindNextFileA(HANDLE hFindFile, LPWIN32_FIND_DATAA lpFindFileData)
 {
 	WIN32_FILE_SEARCH* pFileSearch;
 
@@ -882,12 +882,12 @@ WINBOOL FindNextFileA(HANDLE hFindFile, LPWIN32_FIND_DATAA lpFindFileData)
 	return FALSE;
 }
 
-WINBOOL FindNextFileW(HANDLE hFindFile, LPWIN32_FIND_DATAW lpFindFileData)
+BOOL FindNextFileW(HANDLE hFindFile, LPWIN32_FIND_DATAW lpFindFileData)
 {
 	return FALSE;
 }
 
-WINBOOL FindClose(HANDLE hFindFile)
+BOOL FindClose(HANDLE hFindFile)
 {
 	WIN32_FILE_SEARCH* pFileSearch;
 
@@ -909,7 +909,7 @@ WINBOOL FindClose(HANDLE hFindFile)
 	return FALSE;
 }
 
-WINBOOL CreateDirectoryA(LPCSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+BOOL CreateDirectoryA(LPCSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
 {
 	if (!mkdir(lpPathName, S_IRUSR | S_IWUSR | S_IXUSR))
 		return TRUE;
@@ -917,7 +917,7 @@ WINBOOL CreateDirectoryA(LPCSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttr
 	return FALSE;
 }
 
-WINBOOL CreateDirectoryW(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+BOOL CreateDirectoryW(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
 {
 	return TRUE;
 }
@@ -928,7 +928,7 @@ WINBOOL CreateDirectoryW(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAtt
 
 #define NAMED_PIPE_PREFIX_PATH		"\\\\.\\pipe\\"
 
-WINBOOL IsNamedPipeFileNameA(LPCSTR lpName)
+BOOL IsNamedPipeFileNameA(LPCSTR lpName)
 {
 	if (strncmp(lpName, NAMED_PIPE_PREFIX_PATH, sizeof(NAMED_PIPE_PREFIX_PATH) - 1) != 0)
 		return FALSE;
