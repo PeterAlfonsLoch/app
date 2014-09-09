@@ -131,10 +131,15 @@ namespace file
 
 } // namespace file
 
+
 class machine_event_data;
+
+
 namespace html
 {
+
    class html;
+
 } // namespace html
 
 
