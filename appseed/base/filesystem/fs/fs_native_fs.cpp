@@ -1,4 +1,7 @@
 #include "framework.h"
+#ifdef WINDOWSEX
+#include "aura/node/windows/windows.h"
+#endif
 
 
 namespace fs

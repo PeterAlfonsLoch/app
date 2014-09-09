@@ -797,9 +797,6 @@
     <ClInclude Include="base\node\node.h">
       <Filter>Header Files\base\node</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\windows\os.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\windows\windows_dir.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
@@ -979,6 +976,9 @@
     </ClInclude>
     <ClInclude Include="base\base\base.h">
       <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\windows\windows.h">
+      <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1841,6 +1841,9 @@
     </None>
     <None Include="base\base\base.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
