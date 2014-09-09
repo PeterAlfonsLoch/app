@@ -824,16 +824,16 @@ SECURITY_STATUS SEC_ENTRY winpr_ExportSecurityContext(PCtxtHandle phContext, ULO
 
 SECURITY_STATUS SEC_ENTRY winpr_FreeCredentialsHandle(PCredHandle phCredential)
 {
-	wchar_t* Name;
+	SEC_CHAR* Name;
 	SECURITY_STATUS status;
-	SecurityFunctionTableA* table;
+	SecurityFunctionTableW* table;
 
-	Name = (wchar_t*) sspi_SecureHandleGetUpperPointer(phCredential);
+	Name = (SEC_CHAR*) sspi_SecureHandleGetUpperPointer(phCredential);
 
 	if (!Name)
 		return SEC_E_SECPKG_NOT_FOUND;
 
-	table = sspi_GetSecurityFunctionTableAByNameW(Name);
+	table = sspi_GetSecurityFunctionTableWByNameA(Name);
 
 	if (!table)
 		return SEC_E_SECPKG_NOT_FOUND;
@@ -948,16 +948,16 @@ SECURITY_STATUS SEC_ENTRY winpr_AcceptSecurityContext(PCredHandle phCredential, 
 		PSecBufferDesc pInput, ULONG fContextReq, ULONG TargetDataRep, PCtxtHandle phNewContext,
 		PSecBufferDesc pOutput, PULONG pfContextAttr, PTimeStamp ptsTimeStamp)
 {
-	wchar_t* Name;
+	SEC_CHAR* Name;
 	SECURITY_STATUS status;
 	SecurityFunctionTableW* table;
 
-	Name = (wchar_t*) sspi_SecureHandleGetUpperPointer(phCredential);
+	Name = (SEC_CHAR*) sspi_SecureHandleGetUpperPointer(phCredential);
 
 	if (!Name)
 		return SEC_E_SECPKG_NOT_FOUND;
 
-	table = sspi_GetSecurityFunctionTableWByNameW(Name);
+	table = sspi_GetSecurityFunctionTableWByNameA(Name);
 
 	if (!table)
 		return SEC_E_SECPKG_NOT_FOUND;
@@ -973,16 +973,16 @@ SECURITY_STATUS SEC_ENTRY winpr_AcceptSecurityContext(PCredHandle phCredential, 
 
 SECURITY_STATUS SEC_ENTRY winpr_ApplyControlToken(PCtxtHandle phContext, PSecBufferDesc pInput)
 {
-	wchar_t* Name = NULL;
-	SECURITY_STATUS status;
-	SecurityFunctionTableW* table;
+   SEC_CHAR* Name;
+   SECURITY_STATUS status;
+   SecurityFunctionTableW* table;
 
-	Name = (wchar_t*) sspi_SecureHandleGetUpperPointer(phContext);
+   Name = (SEC_CHAR*)sspi_SecureHandleGetUpperPointer(phContext);
 
-	if (!Name)
-		return SEC_E_SECPKG_NOT_FOUND;
+   if(!Name)
+      return SEC_E_SECPKG_NOT_FOUND;
 
-	table = sspi_GetSecurityFunctionTableWByNameW(Name);
+   table = sspi_GetSecurityFunctionTableWByNameA(Name);
 
 	if (!table)
 		return SEC_E_SECPKG_NOT_FOUND;
@@ -997,16 +997,16 @@ SECURITY_STATUS SEC_ENTRY winpr_ApplyControlToken(PCtxtHandle phContext, PSecBuf
 
 SECURITY_STATUS SEC_ENTRY winpr_CompleteAuthToken(PCtxtHandle phContext, PSecBufferDesc pToken)
 {
-	wchar_t* Name = NULL;
-	SECURITY_STATUS status;
-	SecurityFunctionTableW* table;
+   SEC_CHAR* Name;
+   SECURITY_STATUS status;
+   SecurityFunctionTableW* table;
 
-	Name = (wchar_t*) sspi_SecureHandleGetUpperPointer(phContext);
+   Name = (SEC_CHAR*)sspi_SecureHandleGetUpperPointer(phContext);
 
-	if (!Name)
-		return SEC_E_SECPKG_NOT_FOUND;
+   if(!Name)
+      return SEC_E_SECPKG_NOT_FOUND;
 
-	table = sspi_GetSecurityFunctionTableWByNameW(Name);
+   table = sspi_GetSecurityFunctionTableWByNameA(Name);
 
 	if (!table)
 		return SEC_E_SECPKG_NOT_FOUND;
@@ -1233,16 +1233,16 @@ SECURITY_STATUS SEC_ENTRY winpr_SetContextAttributesW(PCtxtHandle phContext, ULO
 
 SECURITY_STATUS SEC_ENTRY winpr_SetContextAttributesA(PCtxtHandle phContext, ULONG ulAttribute, void* pBuffer, ULONG cbBuffer)
 {
-	wchar_t* Name;
-	SECURITY_STATUS status;
-	SecurityFunctionTableW* table;
+   SEC_CHAR* Name;
+   SECURITY_STATUS status;
+   SecurityFunctionTableW* table;
 
-	Name = (wchar_t*) sspi_SecureHandleGetUpperPointer(phContext);
+   Name = (SEC_CHAR*)sspi_SecureHandleGetUpperPointer(phContext);
 
-	if (!Name)
-		return SEC_E_SECPKG_NOT_FOUND;
+   if(!Name)
+      return SEC_E_SECPKG_NOT_FOUND;
 
-	table = sspi_GetSecurityFunctionTableWByNameW(Name);
+   table = sspi_GetSecurityFunctionTableWByNameA(Name);
 
 	if (!table)
 		return SEC_E_SECPKG_NOT_FOUND;
@@ -1283,16 +1283,16 @@ SECURITY_STATUS SEC_ENTRY winpr_RevertSecurityContext(PCtxtHandle phContext)
 
 SECURITY_STATUS SEC_ENTRY winpr_DecryptMessage(PCtxtHandle phContext, PSecBufferDesc pMessage, ULONG MessageSeqNo, PULONG pfQOP)
 {
-	wchar_t * Name;
-	SECURITY_STATUS status;
-	SecurityFunctionTableW* table;
+   SEC_CHAR* Name;
+   SECURITY_STATUS status;
+   SecurityFunctionTableW* table;
 
-	Name = (wchar_t*) sspi_SecureHandleGetUpperPointer(phContext);
+   Name = (SEC_CHAR*)sspi_SecureHandleGetUpperPointer(phContext);
 
-	if (!Name)
-		return SEC_E_SECPKG_NOT_FOUND;
+   if(!Name)
+      return SEC_E_SECPKG_NOT_FOUND;
 
-	table = sspi_GetSecurityFunctionTableWByNameW(Name);
+   table = sspi_GetSecurityFunctionTableWByNameA(Name);
 
 	if (!table)
 		return SEC_E_SECPKG_NOT_FOUND;
@@ -1307,16 +1307,16 @@ SECURITY_STATUS SEC_ENTRY winpr_DecryptMessage(PCtxtHandle phContext, PSecBuffer
 
 SECURITY_STATUS SEC_ENTRY winpr_EncryptMessage(PCtxtHandle phContext, ULONG fQOP, PSecBufferDesc pMessage, ULONG MessageSeqNo)
 {
-	wchar_t* Name;
-	SECURITY_STATUS status;
-	SecurityFunctionTableW* table;
+   SEC_CHAR* Name;
+   SECURITY_STATUS status;
+   SecurityFunctionTableW* table;
 
-	Name = (wchar_t*) sspi_SecureHandleGetUpperPointer(phContext);
+   Name = (SEC_CHAR*)sspi_SecureHandleGetUpperPointer(phContext);
 
-	if (!Name)
-		return SEC_E_SECPKG_NOT_FOUND;
+   if(!Name)
+      return SEC_E_SECPKG_NOT_FOUND;
 
-	table = sspi_GetSecurityFunctionTableWByNameW(Name);
+   table = sspi_GetSecurityFunctionTableWByNameA(Name);
 
 	if (!table)
 		return SEC_E_SECPKG_NOT_FOUND;
@@ -1331,16 +1331,16 @@ SECURITY_STATUS SEC_ENTRY winpr_EncryptMessage(PCtxtHandle phContext, ULONG fQOP
 
 SECURITY_STATUS SEC_ENTRY winpr_MakeSignature(PCtxtHandle phContext, ULONG fQOP, PSecBufferDesc pMessage, ULONG MessageSeqNo)
 {
-	wchar_t * Name;
-	SECURITY_STATUS status;
-	SecurityFunctionTableW* table;
+   SEC_CHAR* Name;
+   SECURITY_STATUS status;
+   SecurityFunctionTableW* table;
 
-	Name = (wchar_t*) sspi_SecureHandleGetUpperPointer(phContext);
+   Name = (SEC_CHAR*)sspi_SecureHandleGetUpperPointer(phContext);
 
-	if (!Name)
-		return SEC_E_SECPKG_NOT_FOUND;
+   if(!Name)
+      return SEC_E_SECPKG_NOT_FOUND;
 
-	table = sspi_GetSecurityFunctionTableWByNameW(Name);
+   table = sspi_GetSecurityFunctionTableWByNameA(Name);
 
 	if (!table)
 		return SEC_E_SECPKG_NOT_FOUND;
@@ -1355,16 +1355,16 @@ SECURITY_STATUS SEC_ENTRY winpr_MakeSignature(PCtxtHandle phContext, ULONG fQOP,
 
 SECURITY_STATUS SEC_ENTRY winpr_VerifySignature(PCtxtHandle phContext, PSecBufferDesc pMessage, ULONG MessageSeqNo, PULONG pfQOP)
 {
-	wchar_t* Name;
-	SECURITY_STATUS status;
-	SecurityFunctionTableW* table;
+   SEC_CHAR* Name;
+   SECURITY_STATUS status;
+   SecurityFunctionTableW* table;
 
-	Name = (wchar_t*) sspi_SecureHandleGetUpperPointer(phContext);
+   Name = (SEC_CHAR*)sspi_SecureHandleGetUpperPointer(phContext);
 
-	if (!Name)
-		return SEC_E_SECPKG_NOT_FOUND;
+   if(!Name)
+      return SEC_E_SECPKG_NOT_FOUND;
 
-	table = sspi_GetSecurityFunctionTableWByNameW(Name);
+   table = sspi_GetSecurityFunctionTableWByNameA(Name);
 
 	if (!table)
 		return SEC_E_SECPKG_NOT_FOUND;

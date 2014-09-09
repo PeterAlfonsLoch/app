@@ -78,7 +78,7 @@ struct ca2rdp_context :
 	ca2rdpInfo* ca2rdpi;
 };
 
-::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext);
+CLASS_DECL_RDPCLIENT ::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext);
 
 
 typedef struct ca2rdp_context ca2rdpContext;

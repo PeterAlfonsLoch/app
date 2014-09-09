@@ -47,6 +47,31 @@ int certificate_store_init(rdpCertificateStore* certificate_store)
 
 	settings = certificate_store->settings;
 
+   char * dir = _strdup(settings->ConfigPath);
+
+   char * pch = strrchr(dir,'\\');
+
+   if(pch == NULL)
+   {
+      pch = strrchr(dir,'/');
+
+   }
+
+   if(pch != NULL)
+   {
+      *pch = '\0';
+
+         if(!PathFileExistsA(dir))
+         {
+         CreateDirectoryA(dir,0);
+         DEBUG_WARN("creating directory %s\n",dir);
+         }
+
+   }
+
+   free(dir);
+
+
 	if (!PathFileExistsA(settings->ConfigPath))
 	{
 		CreateDirectoryA(settings->ConfigPath, 0);
