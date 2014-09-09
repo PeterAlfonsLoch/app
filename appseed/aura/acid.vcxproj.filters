@@ -2908,12 +2908,6 @@
     <ClCompile Include="framework_c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\windows\win2.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\windows\windows.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\windows\windows_base_file.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
@@ -3026,9 +3020,6 @@
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="aura\node\windows\windows_uac_tools.cpp">
-      <Filter>Source Files\aura\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\windows\win1.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="aura\node\node.cpp">
@@ -3298,6 +3289,12 @@
     <ClCompile Include="aura\node\ansios\ansios_process.cpp">
       <Filter>Source Files\aura\node\ansios</Filter>
     </ClCompile>
+    <ClCompile Include="aura\node\windows\windows.cpp">
+      <Filter>Source Files\aura\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_base.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3329,9 +3326,6 @@
     </None>
     <None Include="aura\aura\aura_system_xml.inl">
       <Filter>Header Files\aura\aura</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
