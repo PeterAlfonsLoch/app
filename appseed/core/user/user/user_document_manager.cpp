@@ -1,36 +1,9 @@
 #include "framework.h"
 
-/*
-static const char _vfxShellOpenFmt[] = "%s\\shell\\open\\%s";
-static const char _vfxShellPrintFmt[] = "%s\\shell\\print\\%s";
-static const char _vfxShellPrintToFmt[] = "%s\\shell\\printto\\%s";
-static const char _vfxDefaultIconFmt[] = "%s\\DefaultIcon";
-static const char _vfxShellNewFmt[] = "%s\\ShellNew";
-
-#define DEFAULT_ICON_INDEX 0
-
-static const char _vfxIconIndexFmt[] = ",%d";
-static const char _vfxCommand[] = "command";
-static const char _vfxOpenArg[] = " \"%1\"";
-static const char _vfxPrintArg[] = " /p \"%1\"";
-static const char _vfxPrintToArg[] = " /pt \"%1\" \"%2\" \"%3\" \"%4\"";
-static const char _vfxDDEArg[] = " /dde";
-
-static const char _vfxDDEExec[] = "ddeexec";
-static const char _vfxDDEOpen[] = "[open(\"%1\")]";
-static const char _vfxDDEPrint[] = "[print(\"%1\")]";
-static const char _vfxDDEPrintTo[] = "[printto(\"%1\",\"%2\",\"%3\",\"%4\")]";
-
-static const char _vfxShellNewValueName[] = "NullFile";
-static const char _vfxShellNewValue[] = "";
-
-*/
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? NULL : (_cpc2)-1)
 
 #define _wcsinc(_pc)    ((_pc)+1)
 
-/*bool vfxExtractSubString(string& rString, const wchar_t * lpszFullString,
-int32_t iSubString, WCHAR chSep);*/
 UINT __get_file_title(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax);
 
 bool _set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = NULL);
@@ -39,40 +12,7 @@ void __get_module_short_file_name(HINSTANCE hInst, string& strShortName);
 
 
 
-inline bool IsDirSep(wchar_t wch)
-{
-   return (wch == L'\\' || wch == L'/');
-}
-
-
-
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-/*
-static const char gen_ShellOpenFmt[] = "%s\\shell\\open\\%s";
-static const char gen_ShellPrintFmt[] = "%s\\shell\\print\\%s";
-static const char gen_ShellPrintToFmt[] = "%s\\shell\\printto\\%s";
-static const char gen_DefaultIconFmt[] = "%s\\DefaultIcon";
-static const char gen_ShellNewFmt[] = "%s\\ShellNew";
-*/
 #define DEFAULT_ICON_INDEX 0
-
-//static const char gen_IconIndexFmt[] = ",%d";
-//static const char gen_Command[] = "command";
-//static const char gen_OpenArg[] = _T(" \"%1\"");
-//static const char gen_PrintArg[] = _T(" /p \"%1\"");
-//static const char gen_PrintToArg[] = _T(" /pt \"%1\" \"%2\" \"%3\" \"%4\"");
-//static const char gen_DDEArg[] = " /dde";
-
-//static const char gen_DDEExec[] = "ddeexec";
-//static const char gen_DDEOpen[] = _T("[open(\"%1\")]");
-//static const char gen_DDEPrint[] = _T("[print(\"%1\")]");
-//static const char gen_DDEPrintTo[] = _T("[printto(\"%1\",\"%2\",\"%3\",\"%4\")]");
-
-//static const char gen_ShellNewValueName[] = "NullFile";
-//static const char gen_ShellNewValue[] = "";
 
 
 
@@ -103,83 +43,7 @@ namespace user
    const char document_manager::gen_ShellNewValueName[] = "NullFile";
    const char document_manager::gen_ShellNewValue[] = "";
 
-   // recursively remove a registry key if and only if it has no subkeys
-   /*
-   bool __delete_reg_key(const char * lpszKey)
-   {
-   // copy the string
-   LPTSTR lpszKeyCopy = _tcsdup(lpszKey);
 
-   if(lpszKeyCopy == NULL)
-   return FALSE;
-
-   LPTSTR lpszLast = lpszKeyCopy + lstrlen(lpszKeyCopy);
-
-   // work until the end of the string
-   while (lpszLast != NULL)
-   {
-   *lpszLast = '\0';
-   lpszLast = _tcsdec(lpszKeyCopy, lpszLast);
-
-   // try to open that key
-   HKEY hKey;
-   if (::RegOpenKey(HKEY_CLASSES_ROOT, lpszKeyCopy, &hKey) != ERROR_SUCCESS)
-   break;
-
-   // enumerate the keys underneath
-   char szScrap[_MAX_PATH+1];
-   uint32_t dwLen = _countof(szScrap);
-   bool bItExists = FALSE;
-
-   if (::RegEnumKey(hKey, 0, szScrap, dwLen) == ERROR_SUCCESS)
-   bItExists = TRUE;
-   ::RegCloseKey(hKey);
-
-   // found one?  quit looping
-   if (bItExists)
-   break;
-
-   // otherwise, delete and find the previous backwhack
-   ::RegDeleteKey(HKEY_CLASSES_ROOT, lpszKeyCopy);
-   lpszLast = _tcsrchr(lpszKeyCopy, '\\');
-   }
-
-   // release the string and return
-   free(lpszKeyCopy);
-   return TRUE;
-   }
-
-   __STATIC bool _API
-   __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszValueName)
-   {
-   if (lpszValueName == NULL)
-   {
-   if (::RegSetValue(HKEY_CLASSES_ROOT, lpszKey, REG_SZ,
-   lpszValue, lstrlen(lpszValue) * sizeof(char)) != ERROR_SUCCESS)
-   {
-   //         TRACE(::aura::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n",
-   //          lpszKey);
-   return FALSE;
-   }
-   return TRUE;
-   }
-   else
-   {
-   HKEY hKey;
-
-   if(::RegCreateKey(HKEY_CLASSES_ROOT, lpszKey, &hKey) == ERROR_SUCCESS)
-   {
-   LONG lResult = ::RegSetValueEx(hKey, lpszValueName, 0, REG_SZ,
-   (CONST BYTE*)lpszValue, (lstrlen(lpszValue) + 1) * sizeof(char));
-
-   if(::RegCloseKey(hKey) == ERROR_SUCCESS && lResult == ERROR_SUCCESS)
-   return TRUE;
-   }
-   //TRACE(::aura::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n", lpszKey);
-   return FALSE;
-   }
-   }
-   */
    document_manager::document_manager(sp(::aura::application) papp) :
       element(papp)
    {

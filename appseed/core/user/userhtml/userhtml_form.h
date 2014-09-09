@@ -12,6 +12,8 @@ public:
    string                        m_strOpenOnCreate;
    rect                          m_rectOpen;
 
+   ::html::form *                m_phtmlform;
+
 
 
    html_form(sp(::aura::application) papp);

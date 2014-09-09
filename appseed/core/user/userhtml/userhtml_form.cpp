@@ -9,16 +9,21 @@ html_form::html_form(sp(::aura::application) papp) :
    ::user::form(papp)
 {
 
-   m_sphtmldata = new html::data(papp);
+   m_phtmlform = new html::form();
 
-   m_sphtmldata->m_pui = this;
+   m_phtmlform->m_sphtmldata = new html::data(papp);
 
-   m_pelementalHover = NULL;
+   m_phtmlform->m_sphtmldata->m_pui = this;
+
+   m_phtmlform->m_pelementalHover = NULL;
 
 }
 
 html_form::~html_form()
 {
+
+   ::aura::del(m_phtmlform);
+
 }
 
 
@@ -195,13 +200,13 @@ void html_form::_001OnLButtonDown(signal_details * pobj)
    point pt;
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
-   m_pelementalLButtonDown = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
-   if(m_pelementalLButtonDown != NULL)
+   m_phtmlform->m_pelementalLButtonDown = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
+   if(m_phtmlform->m_pelementalLButtonDown != NULL)
    {
       html::signal signal(pobj->m_psignal);
       signal.m_pdata = get_html_data();
       signal.m_psignal = pmouse;
-      m_pelementalLButtonDown->OnLButtonDown(&signal);
+      m_phtmlform->m_pelementalLButtonDown->OnLButtonDown(&signal);
    }
    pmouse->m_bRet = true;
    pmouse->set_lresult(1);
@@ -223,22 +228,22 @@ void html_form::_001OnMouseMove(signal_details * pobj)
    if(pelemental != NULL)
    {
 
-      if (pelemental != m_pelementalHover)
+      if (pelemental != m_phtmlform->m_pelementalHover)
       {
 
-         if (m_pelementalHover != NULL)
+         if (m_phtmlform->m_pelementalHover != NULL)
          {
 
-            if (m_pelementalHover->m_pimpl != NULL)
+            if (m_phtmlform->m_pelementalHover->m_pimpl != NULL)
             {
 
-               m_pelementalHover->m_pimpl->m_bHover = false;
+               m_phtmlform->m_pelementalHover->m_pimpl->m_bHover = false;
 
             }
 
          }
 
-         m_pelementalHover = pelemental;
+         m_phtmlform->m_pelementalHover = pelemental;
 
       }
 
@@ -280,17 +285,17 @@ void html_form::_001OnMouseMove(signal_details * pobj)
 void html_form::_001OnMouseLeave(signal_details * pobj)
 {
 
-   if(m_pelementalHover != NULL)
+   if(m_phtmlform->m_pelementalHover != NULL)
    {
 
-      if (m_pelementalHover->m_pimpl != NULL)
+      if (m_phtmlform->m_pelementalHover->m_pimpl != NULL)
       {
 
-         m_pelementalHover->m_pimpl->m_bHover = false;
+         m_phtmlform->m_pelementalHover->m_pimpl->m_bHover = false;
 
       }
 
-      m_pelementalHover = NULL;
+      m_phtmlform->m_pelementalHover = NULL;
 
    }
 
@@ -302,13 +307,13 @@ void html_form::_001OnLButtonUp(signal_details * pobj)
    point pt(pmouse->m_pt);
    ScreenToClient(&pt);
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
-   if(m_pelementalLButtonDown != NULL
-      && pelemental == m_pelementalLButtonDown)
+   if(m_phtmlform->m_pelementalLButtonDown != NULL
+      && pelemental == m_phtmlform->m_pelementalLButtonDown)
    {
       html::signal signal(pobj->m_psignal);
       signal.m_pdata = get_html_data();
       signal.m_psignal = pmouse;
-      m_pelementalLButtonDown->OnLButtonUp(&signal);
+      m_phtmlform->m_pelementalLButtonDown->OnLButtonUp(&signal);
    }
 }
 
@@ -373,7 +378,7 @@ void html_form::_001SetText(const string & str, ::action::context actioncontext)
 
    sphtmldata->implement_and_layout(this);
 
-   m_sphtmldata = sphtmldata;
+   m_phtmlform->m_sphtmldata = sphtmldata;
 
    if(bFocus)
    {
@@ -388,12 +393,12 @@ void html_form::_001SetText(const string & str, ::action::context actioncontext)
 
 ::html::data * html_form::get_html_data()
 {
-   return m_sphtmldata;
+   return m_phtmlform->m_sphtmldata;
 }
 
 const ::html::data * html_form::get_html_data() const
 {
-   return m_sphtmldata;
+   return m_phtmlform->m_sphtmldata;
 }
 
 void html_form::_001OnKeyDown(signal_details * pobj)
