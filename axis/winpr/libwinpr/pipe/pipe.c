@@ -80,7 +80,7 @@ static void InitWinPRPipeModule()
  * Unnamed pipe
  */
 
-BOOL CreatePipe(PHANDLE hReadPipe, PHANDLE hWritePipe, LPSECURITY_ATTRIBUTES lpPipeAttributes, DWORD nSize)
+WINBOOL CreatePipe(PHANDLE hReadPipe, PHANDLE hWritePipe, LPSECURITY_ATTRIBUTES lpPipeAttributes, DWORD nSize)
 {
 	int pipe_fd[2];
 	WINPR_PIPE* pReadPipe;
@@ -312,7 +312,7 @@ HANDLE CreateNamedPipeW(LPCWSTR lpName, DWORD dwOpenMode, DWORD dwPipeMode, DWOR
 	return NULL;
 }
 
-BOOL ConnectNamedPipe(HANDLE hNamedPipe, LPOVERLAPPED lpOverlapped)
+WINBOOL ConnectNamedPipe(HANDLE hNamedPipe, LPOVERLAPPED lpOverlapped)
 {
 	int status;
 	socklen_t length;
@@ -362,7 +362,7 @@ BOOL ConnectNamedPipe(HANDLE hNamedPipe, LPOVERLAPPED lpOverlapped)
 	return TRUE;
 }
 
-BOOL DisconnectNamedPipe(HANDLE hNamedPipe)
+WINBOOL DisconnectNamedPipe(HANDLE hNamedPipe)
 {
 	WINPR_NAMED_PIPE* pNamedPipe;
 
@@ -377,21 +377,21 @@ BOOL DisconnectNamedPipe(HANDLE hNamedPipe)
 	return TRUE;
 }
 
-BOOL PeekNamedPipe(HANDLE hNamedPipe, LPVOID lpBuffer, DWORD nBufferSize,
+WINBOOL PeekNamedPipe(HANDLE hNamedPipe, LPVOID lpBuffer, DWORD nBufferSize,
 		LPDWORD lpBytesRead, LPDWORD lpTotalBytesAvail, LPDWORD lpBytesLeftThisMessage)
 {
 	return TRUE;
 }
 
-BOOL TransactNamedPipe(HANDLE hNamedPipe, LPVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer,
+WINBOOL TransactNamedPipe(HANDLE hNamedPipe, LPVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer,
 		DWORD nOutBufferSize, LPDWORD lpBytesRead, LPOVERLAPPED lpOverlapped)
 {
 	return TRUE;
 }
 
-BOOL WaitNamedPipeA(LPCSTR lpNamedPipeName, DWORD nTimeOut)
+WINBOOL WaitNamedPipeA(LPCSTR lpNamedPipeName, DWORD nTimeOut)
 {
-	BOOL status;
+	WINBOOL status;
 	DWORD nWaitTime;
 	char* lpFilePath;
 	DWORD dwSleepInterval;
@@ -423,12 +423,12 @@ BOOL WaitNamedPipeA(LPCSTR lpNamedPipeName, DWORD nTimeOut)
 	return status;
 }
 
-BOOL WaitNamedPipeW(LPCWSTR lpNamedPipeName, DWORD nTimeOut)
+WINBOOL WaitNamedPipeW(LPCWSTR lpNamedPipeName, DWORD nTimeOut)
 {
 	return TRUE;
 }
 
-BOOL SetNamedPipeHandleState(HANDLE hNamedPipe, LPDWORD lpMode, LPDWORD lpMaxCollectionCount, LPDWORD lpCollectDataTimeout)
+WINBOOL SetNamedPipeHandleState(HANDLE hNamedPipe, LPDWORD lpMode, LPDWORD lpMaxCollectionCount, LPDWORD lpCollectDataTimeout)
 {
 	int fd;
 	int flags;
@@ -468,17 +468,17 @@ BOOL SetNamedPipeHandleState(HANDLE hNamedPipe, LPDWORD lpMode, LPDWORD lpMaxCol
 	return TRUE;
 }
 
-BOOL ImpersonateNamedPipeClient(HANDLE hNamedPipe)
+WINBOOL ImpersonateNamedPipeClient(HANDLE hNamedPipe)
 {
 	return FALSE;
 }
 
-BOOL GetNamedPipeClientComputerNameA(HANDLE Pipe, LPCSTR ClientComputerName, ULONG ClientComputerNameLength)
+WINBOOL GetNamedPipeClientComputerNameA(HANDLE Pipe, LPCSTR ClientComputerName, ULONG ClientComputerNameLength)
 {
 	return FALSE;
 }
 
-BOOL GetNamedPipeClientComputerNameW(HANDLE Pipe, LPCWSTR ClientComputerName, ULONG ClientComputerNameLength)
+WINBOOL GetNamedPipeClientComputerNameW(HANDLE Pipe, LPCWSTR ClientComputerName, ULONG ClientComputerNameLength)
 {
 	return FALSE;
 }

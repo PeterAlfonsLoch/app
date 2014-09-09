@@ -28,12 +28,12 @@
 
 #ifdef _WIN32
 
-static BOOL module_initialized = FALSE;
-static BOOL module_available = FALSE;
+static WINBOOL module_initialized = FALSE;
+static WINBOOL module_available = FALSE;
 static HMODULE kernel32_module = NULL;
 
 static PTP_CLEANUP_GROUP (WINAPI * pCreateThreadpoolCleanupGroup)();
-static VOID (WINAPI * pCloseThreadpoolCleanupGroupMembers)(PTP_CLEANUP_GROUP ptpcg, BOOL fCancelPendingCallbacks, PVOID pvCleanupContext);
+static VOID (WINAPI * pCloseThreadpoolCleanupGroupMembers)(PTP_CLEANUP_GROUP ptpcg, WINBOOL fCancelPendingCallbacks, PVOID pvCleanupContext);
 static VOID (WINAPI * pCloseThreadpoolCleanupGroup)(PTP_CLEANUP_GROUP ptpcg);
 
 static void module_init()
@@ -72,7 +72,7 @@ PTP_CLEANUP_GROUP CreateThreadpoolCleanupGroup()
 	return cleanupGroup;
 }
 
-VOID CloseThreadpoolCleanupGroupMembers(PTP_CLEANUP_GROUP ptpcg, BOOL fCancelPendingCallbacks, PVOID pvCleanupContext)
+VOID CloseThreadpoolCleanupGroupMembers(PTP_CLEANUP_GROUP ptpcg, WINBOOL fCancelPendingCallbacks, PVOID pvCleanupContext)
 {
 #ifdef _WIN32
 	module_init();

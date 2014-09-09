@@ -28,7 +28,7 @@
 
 static int g_winpr_openssl_num_locks = 0;
 static HANDLE* g_winpr_openssl_locks = NULL;
-static BOOL g_winpr_openssl_initialized_by_winpr = FALSE;
+static WINBOOL g_winpr_openssl_initialized_by_winpr = FALSE;
 
 struct CRYPTO_dynlock_value
 {
@@ -85,7 +85,7 @@ static void _winpr_openssl_dynlock_destroy(struct CRYPTO_dynlock_value *dynlock,
 	free(dynlock);
 }
 
-static BOOL _winpr_openssl_initialize_locking(void)
+static WINBOOL _winpr_openssl_initialize_locking(void)
 {
 	int i, count;
 
@@ -160,7 +160,7 @@ static BOOL _winpr_openssl_initialize_locking(void)
 	return TRUE;
 }
 
-static BOOL _winpr_openssl_cleanup_locking(void)
+static WINBOOL _winpr_openssl_cleanup_locking(void)
 {
 	/* undo our static locking modifications */
 
@@ -209,7 +209,7 @@ static BOOL _winpr_openssl_cleanup_locking(void)
 	return TRUE;
 }
 
-static BOOL CALLBACK _winpr_openssl_initialize(PINIT_ONCE once, PVOID param, PVOID *context)
+static WINBOOL CALLBACK _winpr_openssl_initialize(PINIT_ONCE once, PVOID param, PVOID *context)
 {
 	DWORD flags = param ? *(PDWORD)param : WINPR_SSL_INIT_DEFAULT;
 
@@ -240,13 +240,13 @@ static BOOL CALLBACK _winpr_openssl_initialize(PINIT_ONCE once, PVOID param, PVO
 
 /* exported functions */
 
-BOOL winpr_InitializeSSL(DWORD flags)
+WINBOOL winpr_InitializeSSL(DWORD flags)
 {
 	static INIT_ONCE once = INIT_ONCE_STATIC_INIT;
 	return InitOnceExecuteOnce(&once, _winpr_openssl_initialize, &flags, NULL);
 }
 
-BOOL winpr_CleanupSSL(DWORD flags)
+WINBOOL winpr_CleanupSSL(DWORD flags)
 {
 	if (flags & WINPR_SSL_CLEANUP_GLOBAL)
 	{

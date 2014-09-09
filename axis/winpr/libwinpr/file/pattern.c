@@ -81,7 +81,7 @@ LPSTR FilePatternFindNextWildcardA(LPCSTR lpPattern, DWORD* pFlags)
 	return NULL;
 }
 
-BOOL FilePatternMatchSubExpressionA(LPCSTR lpFileName, size_t cchFileName,
+WINBOOL FilePatternMatchSubExpressionA(LPCSTR lpFileName, size_t cchFileName,
 		LPCSTR lpX, size_t cchX, LPCSTR lpY, size_t cchY, LPCSTR lpWildcard, LPSTR* ppMatchEnd)
 {
 	LPSTR lpMatch;
@@ -201,9 +201,9 @@ BOOL FilePatternMatchSubExpressionA(LPCSTR lpFileName, size_t cchFileName,
 	return FALSE;
 }
 
-BOOL FilePatternMatchA(LPCSTR lpFileName, LPCSTR lpPattern)
+WINBOOL FilePatternMatchA(LPCSTR lpFileName, LPCSTR lpPattern)
 {
-	BOOL match;
+	WINBOOL match;
 	LPSTR lpTail;
 	size_t cchTail;
 	size_t cchPattern;

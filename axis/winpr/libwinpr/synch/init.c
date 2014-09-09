@@ -28,13 +28,13 @@
 
 #if (!defined(_WIN32)) || (defined(_WIN32) && (_WIN32_WINNT < 0x0600))
 
-BOOL InitOnceBeginInitialize(LPINIT_ONCE lpInitOnce, DWORD dwFlags, PBOOL fPending, LPVOID* lpContext)
+WINBOOL InitOnceBeginInitialize(LPINIT_ONCE lpInitOnce, DWORD dwFlags, PBOOL fPending, LPVOID* lpContext)
 {
 	fprintf(stderr, "%s: not implemented\n", __FUNCTION__);
 	return FALSE;
 }
 
-BOOL InitOnceComplete(LPINIT_ONCE lpInitOnce, DWORD dwFlags, LPVOID lpContext)
+WINBOOL InitOnceComplete(LPINIT_ONCE lpInitOnce, DWORD dwFlags, LPVOID lpContext)
 {
 	fprintf(stderr, "%s: not implemented\n", __FUNCTION__);
 	return FALSE;
@@ -45,7 +45,7 @@ VOID InitOnceInitialize(PINIT_ONCE InitOnce)
 	fprintf(stderr, "%s: not implemented\n", __FUNCTION__);
 }
 
-BOOL InitOnceExecuteOnce(PINIT_ONCE InitOnce, PINIT_ONCE_FN InitFn, PVOID Parameter, LPVOID* Context)
+WINBOOL InitOnceExecuteOnce(PINIT_ONCE InitOnce, PINIT_ONCE_FN InitFn, PVOID Parameter, LPVOID* Context)
 {
 	for (;;)
 	{

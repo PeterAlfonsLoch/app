@@ -45,7 +45,7 @@
 
 CRITICAL_SECTION cs = { NULL, 0, 0, NULL, NULL, 0 };
 
-HANDLE CreateEventW(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, LPCWSTR lpName)
+HANDLE CreateEventW(LPSECURITY_ATTRIBUTES lpEventAttributes, WINBOOL bManualReset, WINBOOL bInitialState, LPCWSTR lpName)
 {
 	WINPR_EVENT* event;
 	HANDLE handle = NULL;
@@ -96,7 +96,7 @@ HANDLE CreateEventW(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, 
 	return handle;
 }
 
-HANDLE CreateEventA(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, LPCSTR lpName)
+HANDLE CreateEventA(LPSECURITY_ATTRIBUTES lpEventAttributes, WINBOOL bManualReset, WINBOOL bInitialState, LPCSTR lpName)
 {
 	return CreateEventW(lpEventAttributes, bManualReset, bInitialState, NULL);
 }
@@ -111,12 +111,12 @@ HANDLE CreateEventExA(LPSECURITY_ATTRIBUTES lpEventAttributes, LPCSTR lpName, DW
 	return NULL;
 }
 
-HANDLE OpenEventW(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCWSTR lpName)
+HANDLE OpenEventW(DWORD dwDesiredAccess, WINBOOL bInheritHandle, LPCWSTR lpName)
 {
 	return NULL;
 }
 
-HANDLE OpenEventA(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCSTR lpName)
+HANDLE OpenEventA(DWORD dwDesiredAccess, WINBOOL bInheritHandle, LPCSTR lpName)
 {
 	return NULL;
 }
@@ -135,12 +135,12 @@ static int eventfd_write(int fd, eventfd_t value)
 #endif
 #endif
 
-BOOL SetEvent(HANDLE hEvent)
+WINBOOL SetEvent(HANDLE hEvent)
 {
 	ULONG Type;
 	PVOID Object;
 	int length;
-	BOOL status;
+	WINBOOL status;
 	WINPR_EVENT* event;
 
 	status = FALSE;
@@ -177,12 +177,12 @@ BOOL SetEvent(HANDLE hEvent)
 	return status;
 }
 
-BOOL ResetEvent(HANDLE hEvent)
+WINBOOL ResetEvent(HANDLE hEvent)
 {
 	ULONG Type;
 	PVOID Object;
 	int length;
-	BOOL status;
+	WINBOOL status;
 	WINPR_EVENT* event;
 
 	status = FALSE;
@@ -218,7 +218,7 @@ BOOL ResetEvent(HANDLE hEvent)
 
 #endif
 
-HANDLE CreateFileDescriptorEventW(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, int FileDescriptor)
+HANDLE CreateFileDescriptorEventW(LPSECURITY_ATTRIBUTES lpEventAttributes, WINBOOL bManualReset, WINBOOL bInitialState, int FileDescriptor)
 {
 #ifndef _WIN32
 	WINPR_EVENT* event;
@@ -244,7 +244,7 @@ HANDLE CreateFileDescriptorEventW(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL 
 #endif
 }
 
-HANDLE CreateFileDescriptorEventA(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL bManualReset, BOOL bInitialState, int FileDescriptor)
+HANDLE CreateFileDescriptorEventA(LPSECURITY_ATTRIBUTES lpEventAttributes, WINBOOL bManualReset, WINBOOL bInitialState, int FileDescriptor)
 {
 	return CreateFileDescriptorEventW(lpEventAttributes, bManualReset, bInitialState, FileDescriptor);
 }
@@ -253,7 +253,7 @@ HANDLE CreateFileDescriptorEventA(LPSECURITY_ATTRIBUTES lpEventAttributes, BOOL 
  * Returns an event based on the handle returned by GetEventWaitObject()
  */
 HANDLE CreateWaitObjectEvent(LPSECURITY_ATTRIBUTES lpEventAttributes,
-	BOOL bManualReset, BOOL bInitialState, void* pObject)
+	WINBOOL bManualReset, WINBOOL bInitialState, void* pObject)
 {
 #ifndef _WIN32
 	return CreateFileDescriptorEventW(lpEventAttributes, bManualReset, bInitialState, (int) (ULONG_PTR) pObject);

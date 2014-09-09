@@ -332,12 +332,12 @@ VOID InitializeListHead(PLIST_ENTRY ListHead)
 	ListHead->Flink = ListHead->Blink = ListHead;
 }
 
-BOOL IsListEmpty(const LIST_ENTRY* ListHead)
+WINBOOL IsListEmpty(const LIST_ENTRY* ListHead)
 {
-	return (BOOL) (ListHead->Flink == ListHead);
+	return (WINBOOL) (ListHead->Flink == ListHead);
 }
 
-BOOL RemoveEntryList(PLIST_ENTRY Entry)
+WINBOOL RemoveEntryList(PLIST_ENTRY Entry)
 {
 	PLIST_ENTRY OldFlink;
 	PLIST_ENTRY OldBlink;
@@ -347,7 +347,7 @@ BOOL RemoveEntryList(PLIST_ENTRY Entry)
 	OldFlink->Blink = OldBlink;
 	OldBlink->Flink = OldFlink;
 
-	return (BOOL) (OldFlink == OldBlink);
+	return (WINBOOL) (OldFlink == OldBlink);
 }
 
 VOID InsertHeadList(PLIST_ENTRY ListHead, PLIST_ENTRY Entry)

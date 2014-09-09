@@ -95,12 +95,12 @@ HANDLE CreateFileMappingW(HANDLE hFile, LPSECURITY_ATTRIBUTES lpAttributes, DWOR
 	return NULL;
 }
 
-HANDLE OpenFileMappingA(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCSTR lpName)
+HANDLE OpenFileMappingA(DWORD dwDesiredAccess, WINBOOL bInheritHandle, LPCSTR lpName)
 {
 	return NULL;
 }
 
-HANDLE OpenFileMappingW(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCWSTR lpName)
+HANDLE OpenFileMappingW(DWORD dwDesiredAccess, WINBOOL bInheritHandle, LPCWSTR lpName)
 {
 	return NULL;
 }
@@ -117,12 +117,12 @@ LPVOID MapViewOfFileEx(HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD d
 	return NULL;
 }
 
-BOOL FlushViewOfFile(LPCVOID lpBaseAddress, SIZE_T dwNumberOfBytesToFlush)
+WINBOOL FlushViewOfFile(LPCVOID lpBaseAddress, SIZE_T dwNumberOfBytesToFlush)
 {
 	return TRUE;
 }
 
-BOOL UnmapViewOfFile(LPCVOID lpBaseAddress)
+WINBOOL UnmapViewOfFile(LPCVOID lpBaseAddress)
 {
 	return TRUE;
 }

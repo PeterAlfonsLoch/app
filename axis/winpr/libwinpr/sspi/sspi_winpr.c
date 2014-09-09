@@ -458,7 +458,7 @@ PSecBuffer sspi_FindSecBuffer(PSecBufferDesc pMessage, ULONG BufferType)
 	return pSecBuffer;
 }
 
-static BOOL sspi_initialized = FALSE;
+static WINBOOL sspi_initialized = FALSE;
 
 void sspi_GlobalInit()
 {

@@ -79,12 +79,12 @@ DLL_DIRECTORY_COOKIE AddDllDirectory(PCWSTR NewDirectory)
 	return NULL;
 }
 
-BOOL RemoveDllDirectory(DLL_DIRECTORY_COOKIE Cookie)
+WINBOOL RemoveDllDirectory(DLL_DIRECTORY_COOKIE Cookie)
 {
 	return TRUE;
 }
 
-BOOL SetDefaultDllDirectories(DWORD DirectoryFlags)
+WINBOOL SetDefaultDllDirectories(DWORD DirectoryFlags)
 {
 	return TRUE;
 }
@@ -144,7 +144,7 @@ FARPROC GetProcAddress(HMODULE hModule, LPCSTR lpProcName)
 	return proc;
 }
 
-BOOL FreeLibrary(HMODULE hLibModule)
+WINBOOL FreeLibrary(HMODULE hLibModule)
 {
 	int status;
 
@@ -180,7 +180,7 @@ DWORD GetModuleFileNameW(HMODULE hModule, LPWSTR lpFilename, DWORD nSize)
 }
 
 DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize)
-{	
+{
 #if defined(__linux__)
 	int status;
 	int length;
@@ -217,30 +217,30 @@ DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize)
 #elif defined(__MACOSX__)
 	int status;
 	int length;
-	
+
 	if (!hModule)
 	{
 		char path[4096];
 		char buffer[4096];
 		uint32_t size = sizeof(path);
-	
+
 		status = _NSGetExecutablePath(path, &size);
-	
+
 		if (status != 0)
 		{
 			/* path too small */
 			return 0;
 		}
-		
+
 		/*
 		 * _NSGetExecutablePath may not return the canonical path,
 		 * so use realpath to find the absolute, canonical path.
 		 */
-		
+
 		realpath(path, buffer);
-	
+
 		length = strlen(buffer);
-	
+
 		if (length < nSize)
 		{
 			CopyMemory(lpFilename, buffer, length);
@@ -251,7 +251,7 @@ DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize)
 			CopyMemory(lpFilename, buffer, nSize - 1);
 			lpFilename[nSize - 1] = '\0';
 		}
-		
+
 		return 0;
 	}
 #endif

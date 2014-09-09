@@ -193,7 +193,7 @@ LONG RegLoadMUIStringA(HKEY hKey, LPCSTR pszValue, LPSTR pszOutBuf,
 	return 0;
 }
 
-LONG RegNotifyChangeKeyValue(HKEY hKey, BOOL bWatchSubtree, DWORD dwNotifyFilter, HANDLE hEvent, BOOL fAsynchronous)
+LONG RegNotifyChangeKeyValue(HKEY hKey, WINBOOL bWatchSubtree, DWORD dwNotifyFilter, HANDLE hEvent, WINBOOL fAsynchronous)
 {
 	return 0;
 }

@@ -53,11 +53,11 @@ int CommandLineParseArgumentsA(int argc, LPCSTR* argv, COMMAND_LINE_ARGUMENT_A* 
 	int count;
 	int length;
 	int index;
-	BOOL match;
-	BOOL found;
-	BOOL argument;
-	BOOL escaped;
-	BOOL notescaped;
+	WINBOOL match;
+	WINBOOL found;
+	WINBOOL argument;
+	WINBOOL escaped;
+	WINBOOL notescaped;
 	char* sigil;
 	int sigil_length;
 	int sigil_index;
@@ -146,7 +146,7 @@ int CommandLineParseArgumentsA(int argc, LPCSTR* argv, COMMAND_LINE_ARGUMENT_A* 
 		else if (flags & COMMAND_LINE_SIGIL_NOT_ESCAPED)
 		{
 			if (notescaped)
-				return COMMAND_LINE_ERROR; 
+				return COMMAND_LINE_ERROR;
 
 			sigil_length = 0;
 			escaped = FALSE;
@@ -270,7 +270,7 @@ int CommandLineParseArgumentsA(int argc, LPCSTR* argv, COMMAND_LINE_ARGUMENT_A* 
 						argument = TRUE;
 					else
 						argument = FALSE;
-					
+
 					if (value_present && argument)
 					{
 						i++;
@@ -361,7 +361,7 @@ int CommandLineParseArgumentsA(int argc, LPCSTR* argv, COMMAND_LINE_ARGUMENT_A* 
 				else if (options[j].Flags & COMMAND_LINE_PRINT_VERSION)
 						return COMMAND_LINE_STATUS_PRINT_VERSION;
 			}
-			
+
 			if (!found)
 				return COMMAND_LINE_ERROR_NO_KEYWORD;
 		}

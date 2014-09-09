@@ -112,7 +112,7 @@ void ObjectPool_Clear(wObjectPool* pool)
  * Construction, Destruction
  */
 
-wObjectPool* ObjectPool_New(BOOL synchronized)
+wObjectPool* ObjectPool_New(WINBOOL synchronized)
 {
 	wObjectPool* pool = NULL;
 

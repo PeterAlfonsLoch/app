@@ -84,13 +84,13 @@ struct _TEST_NTLM_CLIENT
 	PSecBuffer pBuffer;
 	SecBuffer inputBuffer[2];
 	SecBuffer outputBuffer[2];
-	BOOL haveContext;
-	BOOL haveInputBuffer;
+	WINBOOL haveContext;
+	WINBOOL haveInputBuffer;
 	LPTSTR ServicePrincipalName;
 	SecBufferDesc inputBufferDesc;
 	SecBufferDesc outputBufferDesc;
 	CredHandle credentials;
-	BOOL confidentiality;
+	WINBOOL confidentiality;
 	SecPkgInfo* pPackageInfo;
 	SecurityFunctionTable* table;
 	SEC_WINNT_AUTH_IDENTITY_W identity;
@@ -306,14 +306,14 @@ struct _TEST_NTLM_SERVER
 	PSecBuffer pBuffer;
 	SecBuffer inputBuffer[2];
 	SecBuffer outputBuffer[2];
-	BOOL haveContext;
-	BOOL haveInputBuffer;
-	BOOL UseNtlmV2Hash;
+	WINBOOL haveContext;
+	WINBOOL haveInputBuffer;
+	WINBOOL UseNtlmV2Hash;
 	LPTSTR ServicePrincipalName;
 	SecBufferDesc inputBufferDesc;
 	SecBufferDesc outputBufferDesc;
 	CredHandle credentials;
-	BOOL confidentiality;
+	WINBOOL confidentiality;
 	SecPkgInfo* pPackageInfo;
 	SecurityFunctionTable* table;
 	SEC_WINNT_AUTH_IDENTITY identity;
@@ -495,7 +495,7 @@ int TestNTLM(int argc, char* argv[])
 	PSecBuffer pSecBuffer;
 	TEST_NTLM_CLIENT* client;
 	TEST_NTLM_SERVER* server;
-	BOOL DynamicTest = TRUE;
+	WINBOOL DynamicTest = TRUE;
 
 	/**
 	 * Client Initialization

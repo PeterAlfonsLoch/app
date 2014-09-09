@@ -41,7 +41,7 @@ VOID Sleep(DWORD dwMilliseconds)
 	usleep(dwMilliseconds * 1000);
 }
 
-DWORD SleepEx(DWORD dwMilliseconds, BOOL bAlertable)
+DWORD SleepEx(DWORD dwMilliseconds, WINBOOL bAlertable)
 {
 	usleep(dwMilliseconds * 1000);
 	return TRUE;

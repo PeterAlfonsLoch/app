@@ -189,7 +189,7 @@ HCERTSTORE CertOpenSystemStoreA(HCRYPTPROV_LEGACY hProv, LPCSTR szSubsystemProto
 	return CertOpenSystemStoreW(hProv, NULL);
 }
 
-BOOL CertCloseStore(HCERTSTORE hCertStore, DWORD dwFlags)
+WINBOOL CertCloseStore(HCERTSTORE hCertStore, DWORD dwFlags)
 {
 	WINPR_CERTSTORE* certstore;
 

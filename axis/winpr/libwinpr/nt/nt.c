@@ -330,8 +330,8 @@ NTSTATUS _NtWaitForSingleObject(HANDLE Handle, BOOLEAN Alertable, PLARGE_INTEGER
 #else
 
 static HMODULE NtdllModule = NULL;
-static BOOL moduleAvailable = FALSE;
-static BOOL moduleInitialized = FALSE;
+static WINBOOL moduleAvailable = FALSE;
+static WINBOOL moduleInitialized = FALSE;
 
 typedef VOID (WINAPI * RTL_INIT_ANSI_STRING_FN)(PANSI_STRING DestinationString, PCSZ SourceString);
 

@@ -557,12 +557,12 @@ HRESULT PathCchRemoveExtensionW(PWSTR pszPath, size_t cchPath)
  * PathCchIsRoot
  */
 
-BOOL PathCchIsRootA(PCSTR pszPath)
+WINBOOL PathCchIsRootA(PCSTR pszPath)
 {
 	return 0;
 }
 
-BOOL PathCchIsRootW(PCWSTR pszPath)
+WINBOOL PathCchIsRootW(PCWSTR pszPath)
 {
 	return 0;
 }
@@ -571,7 +571,7 @@ BOOL PathCchIsRootW(PCWSTR pszPath)
  * PathIsUNCEx
  */
 
-BOOL PathIsUNCExA(PCSTR pszPath, PCSTR* ppszServer)
+WINBOOL PathIsUNCExA(PCSTR pszPath, PCSTR* ppszServer)
 {
 	if (!pszPath)
 		return FALSE;
@@ -585,7 +585,7 @@ BOOL PathIsUNCExA(PCSTR pszPath, PCSTR* ppszServer)
 	return FALSE;
 }
 
-BOOL PathIsUNCExW(PCWSTR pszPath, PCWSTR* ppszServer)
+WINBOOL PathIsUNCExW(PCWSTR pszPath, PCWSTR* ppszServer)
 {
 	if (!pszPath)
 		return FALSE;
@@ -633,8 +633,8 @@ HRESULT PathCchStripToRootW(PWSTR pszPath, size_t cchPath)
 
 HRESULT PathCchStripPrefixA(PSTR pszPath, size_t cchPath)
 {
-	BOOL hasPrefix;
-	BOOL deviceNamespace;
+	WINBOOL hasPrefix;
+	WINBOOL deviceNamespace;
 
 	if (!pszPath)
 		return S_FALSE;
@@ -664,8 +664,8 @@ HRESULT PathCchStripPrefixA(PSTR pszPath, size_t cchPath)
 
 HRESULT PathCchStripPrefixW(PWSTR pszPath, size_t cchPath)
 {
-	BOOL hasPrefix;
-	BOOL deviceNamespace;
+	WINBOOL hasPrefix;
+	WINBOOL deviceNamespace;
 
 	if (!pszPath)
 		return S_FALSE;

@@ -281,7 +281,7 @@ int ConvertToUnicode(UINT CodePage, DWORD dwFlags, LPCSTR lpMultiByteStr,
 		int cbMultiByte, LPWSTR* lpWideCharStr, int cchWideChar)
 {
 	int status;
-	BOOL allocate = FALSE;
+	WINBOOL allocate = FALSE;
 
 	if (!lpMultiByteStr)
 		return 0;
@@ -327,7 +327,7 @@ int ConvertFromUnicode(UINT CodePage, DWORD dwFlags, LPCWSTR lpWideCharStr, int 
 		LPSTR* lpMultiByteStr, int cbMultiByte, LPCSTR lpDefaultChar, LPBOOL lpUsedDefaultChar)
 {
 	int status;
-	BOOL allocate = FALSE;
+	WINBOOL allocate = FALSE;
 
 	if (!lpWideCharStr)
 		return 0;

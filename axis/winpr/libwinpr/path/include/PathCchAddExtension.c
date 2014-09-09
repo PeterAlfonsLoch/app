@@ -11,7 +11,7 @@ HRESULT PATH_CCH_ADD_EXTENSION(PWSTR pszPath, size_t cchPath, PCWSTR pszExt)
 {
 #ifdef _WIN32
 	LPWSTR pDot;
-	BOOL bExtDot;
+	WINBOOL bExtDot;
 	LPWSTR pBackslash;
 	size_t pszExtLength;
 	size_t pszPathLength;
@@ -53,7 +53,7 @@ HRESULT PATH_CCH_ADD_EXTENSION(PWSTR pszPath, size_t cchPath, PCWSTR pszExt)
 HRESULT PATH_CCH_ADD_EXTENSION(PSTR pszPath, size_t cchPath, PCSTR pszExt)
 {
 	CHAR* pDot;
-	BOOL bExtDot;
+	WINBOOL bExtDot;
 	CHAR* pBackslash;
 	size_t pszExtLength;
 	size_t pszPathLength;

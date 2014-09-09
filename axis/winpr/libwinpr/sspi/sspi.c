@@ -34,7 +34,7 @@
 
 static wLog* g_Log = NULL;
 
-static BOOL g_Initialized = FALSE;
+static WINBOOL g_Initialized = FALSE;
 static HMODULE g_SspiModule = NULL;
 
 static SecurityFunctionTableW* g_SspiW = NULL;
@@ -43,9 +43,9 @@ static SecurityFunctionTableA* g_SspiA = NULL;
 SecurityFunctionTableA sspi_SecurityFunctionTableA;
 SecurityFunctionTableW sspi_SecurityFunctionTableW;
 
-BOOL ShouldUseNativeSspi()
+WINBOOL ShouldUseNativeSspi()
 {
-	BOOL status = FALSE;
+	WINBOOL status = FALSE;
 #ifdef _WIN32
 	DWORD nSize;
 	char* env = NULL;
@@ -68,7 +68,7 @@ BOOL ShouldUseNativeSspi()
 	return status;
 }
 
-BOOL InitializeSspiModule_Native(void)
+WINBOOL InitializeSspiModule_Native(void)
 {
 	INIT_SECURITY_INTERFACE_W pInitSecurityInterfaceW;
 	//INIT_SECURITY_INTERFACE_A pInitSecurityInterfaceA;
@@ -95,7 +95,7 @@ BOOL InitializeSspiModule_Native(void)
 
 void InitializeSspiModule(DWORD flags)
 {
-	BOOL status = FALSE;
+	WINBOOL status = FALSE;
 
 	if (g_Initialized)
 		return;

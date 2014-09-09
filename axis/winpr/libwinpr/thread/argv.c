@@ -100,7 +100,7 @@ LPSTR* CommandLineToArgvA(LPCSTR lpCmdLine, int* pNumArgs)
 	int maxBufferSize;
 	int currentIndex;
 	int cmdLineLength;
-	BOOL* lpEscapedChars;
+	WINBOOL* lpEscapedChars;
 	LPSTR lpEscapedCmdLine;
 
 	if (!lpCmdLine)
@@ -115,8 +115,8 @@ LPSTR* CommandLineToArgvA(LPCSTR lpCmdLine, int* pNumArgs)
 	lpEscapedCmdLine = NULL;
 	cmdLineLength = strlen(lpCmdLine);
 
-	lpEscapedChars = (BOOL*) malloc((cmdLineLength + 1) * sizeof(BOOL));
-	ZeroMemory(lpEscapedChars, (cmdLineLength + 1) * sizeof(BOOL));
+	lpEscapedChars = (WINBOOL*) malloc((cmdLineLength + 1) * sizeof(WINBOOL));
+	ZeroMemory(lpEscapedChars, (cmdLineLength + 1) * sizeof(WINBOOL));
 
 	if (strstr(lpCmdLine, "\\\""))
 	{

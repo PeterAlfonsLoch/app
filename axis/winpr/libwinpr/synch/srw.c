@@ -50,12 +50,12 @@ VOID AcquireSRWLockShared(PSRWLOCK SRWLock)
 
 }
 
-BOOL TryAcquireSRWLockExclusive(PSRWLOCK SRWLock)
+WINBOOL TryAcquireSRWLockExclusive(PSRWLOCK SRWLock)
 {
 	return TRUE;
 }
 
-BOOL TryAcquireSRWLockShared(PSRWLOCK SRWLock)
+WINBOOL TryAcquireSRWLockShared(PSRWLOCK SRWLock)
 {
 	return TRUE;
 }

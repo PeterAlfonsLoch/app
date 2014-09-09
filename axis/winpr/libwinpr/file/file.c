@@ -218,7 +218,7 @@ static void _HandleCreatorsInit()
  *   ERROR_DLL_INIT_FAILED
  *   ERROR_INSUFFICIENT_BUFFER _HandleCreators full
  */
-BOOL RegisterHandleCreator(PHANDLE_CREATOR pHandleCreator)
+WINBOOL RegisterHandleCreator(PHANDLE_CREATOR pHandleCreator)
 {
 	int i;
 
@@ -258,7 +258,7 @@ BOOL RegisterHandleCreator(PHANDLE_CREATOR pHandleCreator)
 
 #ifdef HAVE_AIO_H
 
-static BOOL g_AioSignalHandlerInstalled = FALSE;
+static WINBOOL g_AioSignalHandlerInstalled = FALSE;
 
 void AioSignalHandler(int signum, siginfo_t* siginfo, void* arg)
 {
@@ -397,7 +397,7 @@ HANDLE CreateFileW(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode,
 	return NULL;
 }
 
-BOOL DeleteFileA(LPCSTR lpFileName)
+WINBOOL DeleteFileA(LPCSTR lpFileName)
 {
 	int status;
 
@@ -406,17 +406,17 @@ BOOL DeleteFileA(LPCSTR lpFileName)
 	return (status != -1) ? TRUE : FALSE;
 }
 
-BOOL DeleteFileW(LPCWSTR lpFileName)
+WINBOOL DeleteFileW(LPCWSTR lpFileName)
 {
 	return TRUE;
 }
 
-BOOL ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
+WINBOOL ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 		LPDWORD lpNumberOfBytesRead, LPOVERLAPPED lpOverlapped)
 {
 	ULONG Type;
 	PVOID Object;
-	BOOL status = TRUE;
+	WINBOOL status = TRUE;
 
 	if (hFile == INVALID_HANDLE_VALUE) {
 		return FALSE;
@@ -560,24 +560,24 @@ BOOL ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 	return FALSE;
 }
 
-BOOL ReadFileEx(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
+WINBOOL ReadFileEx(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 		LPOVERLAPPED lpOverlapped, LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine)
 {
 	return TRUE;
 }
 
-BOOL ReadFileScatter(HANDLE hFile, FILE_SEGMENT_ELEMENT aSegmentArray[],
+WINBOOL ReadFileScatter(HANDLE hFile, FILE_SEGMENT_ELEMENT aSegmentArray[],
 		DWORD nNumberOfBytesToRead, LPDWORD lpReserved, LPOVERLAPPED lpOverlapped)
 {
 	return TRUE;
 }
 
-BOOL WriteFile(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
+WINBOOL WriteFile(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
 		LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped)
 {
 	ULONG Type;
 	PVOID Object;
-	BOOL status = TRUE;
+	WINBOOL status = TRUE;
 
 	if (hFile == INVALID_HANDLE_VALUE) {
 		return FALSE;
@@ -700,24 +700,24 @@ BOOL WriteFile(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
 	return FALSE;
 }
 
-BOOL WriteFileEx(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
+WINBOOL WriteFileEx(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
 		LPOVERLAPPED lpOverlapped, LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine)
 {
 	return TRUE;
 }
 
-BOOL WriteFileGather(HANDLE hFile, FILE_SEGMENT_ELEMENT aSegmentArray[],
+WINBOOL WriteFileGather(HANDLE hFile, FILE_SEGMENT_ELEMENT aSegmentArray[],
 		DWORD nNumberOfBytesToWrite, LPDWORD lpReserved, LPOVERLAPPED lpOverlapped)
 {
 	return TRUE;
 }
 
-BOOL FlushFileBuffers(HANDLE hFile)
+WINBOOL FlushFileBuffers(HANDLE hFile)
 {
 	return TRUE;
 }
 
-BOOL SetEndOfFile(HANDLE hFile)
+WINBOOL SetEndOfFile(HANDLE hFile)
 {
 	return TRUE;
 }
@@ -728,31 +728,31 @@ DWORD SetFilePointer(HANDLE hFile, LONG lDistanceToMove,
 	return TRUE;
 }
 
-BOOL SetFilePointerEx(HANDLE hFile, LARGE_INTEGER liDistanceToMove,
+WINBOOL SetFilePointerEx(HANDLE hFile, LARGE_INTEGER liDistanceToMove,
 		PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod)
 {
 	return TRUE;
 }
 
-BOOL LockFile(HANDLE hFile, DWORD dwFileOffsetLow, DWORD dwFileOffsetHigh,
+WINBOOL LockFile(HANDLE hFile, DWORD dwFileOffsetLow, DWORD dwFileOffsetHigh,
 		DWORD nNumberOfBytesToLockLow, DWORD nNumberOfBytesToLockHigh)
 {
 	return TRUE;
 }
 
-BOOL LockFileEx(HANDLE hFile, DWORD dwFlags, DWORD dwReserved,
+WINBOOL LockFileEx(HANDLE hFile, DWORD dwFlags, DWORD dwReserved,
 		DWORD nNumberOfBytesToLockLow, DWORD nNumberOfBytesToLockHigh, LPOVERLAPPED lpOverlapped)
 {
 	return TRUE;
 }
 
-BOOL UnlockFile(HANDLE hFile, DWORD dwFileOffsetLow, DWORD dwFileOffsetHigh,
+WINBOOL UnlockFile(HANDLE hFile, DWORD dwFileOffsetLow, DWORD dwFileOffsetHigh,
 		DWORD nNumberOfBytesToUnlockLow, DWORD nNumberOfBytesToUnlockHigh)
 {
 	return TRUE;
 }
 
-BOOL UnlockFileEx(HANDLE hFile, DWORD dwReserved, DWORD nNumberOfBytesToUnlockLow,
+WINBOOL UnlockFileEx(HANDLE hFile, DWORD dwReserved, DWORD nNumberOfBytesToUnlockLow,
 		DWORD nNumberOfBytesToUnlockHigh, LPOVERLAPPED lpOverlapped)
 {
 	return TRUE;
@@ -858,7 +858,7 @@ HANDLE FindFirstFileExW(LPCWSTR lpFileName, FINDEX_INFO_LEVELS fInfoLevelId, LPV
 	return NULL;
 }
 
-BOOL FindNextFileA(HANDLE hFindFile, LPWIN32_FIND_DATAA lpFindFileData)
+WINBOOL FindNextFileA(HANDLE hFindFile, LPWIN32_FIND_DATAA lpFindFileData)
 {
 	WIN32_FILE_SEARCH* pFileSearch;
 
@@ -882,12 +882,12 @@ BOOL FindNextFileA(HANDLE hFindFile, LPWIN32_FIND_DATAA lpFindFileData)
 	return FALSE;
 }
 
-BOOL FindNextFileW(HANDLE hFindFile, LPWIN32_FIND_DATAW lpFindFileData)
+WINBOOL FindNextFileW(HANDLE hFindFile, LPWIN32_FIND_DATAW lpFindFileData)
 {
 	return FALSE;
 }
 
-BOOL FindClose(HANDLE hFindFile)
+WINBOOL FindClose(HANDLE hFindFile)
 {
 	WIN32_FILE_SEARCH* pFileSearch;
 
@@ -909,7 +909,7 @@ BOOL FindClose(HANDLE hFindFile)
 	return FALSE;
 }
 
-BOOL CreateDirectoryA(LPCSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+WINBOOL CreateDirectoryA(LPCSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
 {
 	if (!mkdir(lpPathName, S_IRUSR | S_IWUSR | S_IXUSR))
 		return TRUE;
@@ -917,7 +917,7 @@ BOOL CreateDirectoryA(LPCSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttribu
 	return FALSE;
 }
 
-BOOL CreateDirectoryW(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+WINBOOL CreateDirectoryW(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
 {
 	return TRUE;
 }
@@ -928,7 +928,7 @@ BOOL CreateDirectoryW(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttrib
 
 #define NAMED_PIPE_PREFIX_PATH		"\\\\.\\pipe\\"
 
-BOOL IsNamedPipeFileNameA(LPCSTR lpName)
+WINBOOL IsNamedPipeFileNameA(LPCSTR lpName)
 {
 	if (strncmp(lpName, NAMED_PIPE_PREFIX_PATH, sizeof(NAMED_PIPE_PREFIX_PATH) - 1) != 0)
 		return FALSE;

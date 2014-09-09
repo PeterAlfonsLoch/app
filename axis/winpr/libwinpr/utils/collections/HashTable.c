@@ -247,9 +247,9 @@ int HashTable_Add(wHashTable* table, void* key, void* value)
  * Removes the element with the specified key from the HashTable.
  */
 
-BOOL HashTable_Remove(wHashTable* table, void* key)
+WINBOOL HashTable_Remove(wHashTable* table, void* key)
 {
-	BOOL status = TRUE;
+	WINBOOL status = TRUE;
 	long hashValue = table->hashFunction(key) % table->numOfBuckets;
 	wKeyValuePair* pair = table->bucketArray[hashValue];
 	wKeyValuePair* previousPair = NULL;
@@ -326,9 +326,9 @@ void* HashTable_GetItemValue(wHashTable* table, void* key)
  * Set an item value using key
  */
 
-BOOL HashTable_SetItemValue(wHashTable* table, void* key, void* value)
+WINBOOL HashTable_SetItemValue(wHashTable* table, void* key, void* value)
 {
-	BOOL status = TRUE;
+	WINBOOL status = TRUE;
 	wKeyValuePair* pair;
 
 	if (table->synchronized)
@@ -438,9 +438,9 @@ int HashTable_GetKeys(wHashTable* table, ULONG_PTR** ppKeys)
  * Determines whether the HashTable contains a specific key.
  */
 
-BOOL HashTable_Contains(wHashTable* table, void* key)
+WINBOOL HashTable_Contains(wHashTable* table, void* key)
 {
-	BOOL status;
+	WINBOOL status;
 
 	if (table->synchronized)
 		EnterCriticalSection(&table->lock);
@@ -457,9 +457,9 @@ BOOL HashTable_Contains(wHashTable* table, void* key)
  * Determines whether the HashTable contains a specific key.
  */
 
-BOOL HashTable_ContainsKey(wHashTable* table, void* key)
+WINBOOL HashTable_ContainsKey(wHashTable* table, void* key)
 {
-	BOOL status;
+	WINBOOL status;
 
 	if (table->synchronized)
 		EnterCriticalSection(&table->lock);
@@ -476,10 +476,10 @@ BOOL HashTable_ContainsKey(wHashTable* table, void* key)
  * Determines whether the HashTable contains a specific value.
  */
 
-BOOL HashTable_ContainsValue(wHashTable* table, void* value)
+WINBOOL HashTable_ContainsValue(wHashTable* table, void* value)
 {
 	int index;
-	BOOL status = FALSE;
+	WINBOOL status = FALSE;
 	wKeyValuePair* pair;
 
 	if (table->synchronized)
@@ -520,7 +520,7 @@ void HashTable_SetFreeFunction(wHashTable* table, void* context, KEY_VALUE_FREE_
  * Construction, Destruction
  */
 
-wHashTable* HashTable_New(BOOL synchronized)
+wHashTable* HashTable_New(WINBOOL synchronized)
 {
 	int index;
 	wHashTable* table;

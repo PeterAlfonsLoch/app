@@ -11,8 +11,8 @@
 HRESULT PATH_CCH_APPEND(PWSTR pszPath, size_t cchPath, PCWSTR pszMore)
 {
 #ifdef _WIN32
-	BOOL pathBackslash;
-	BOOL moreBackslash;
+	WINBOOL pathBackslash;
+	WINBOOL moreBackslash;
 	size_t pszMoreLength;
 	size_t pszPathLength;
 
@@ -61,8 +61,8 @@ HRESULT PATH_CCH_APPEND(PWSTR pszPath, size_t cchPath, PCWSTR pszMore)
 
 HRESULT PATH_CCH_APPEND(PSTR pszPath, size_t cchPath, PCSTR pszMore)
 {
-	BOOL pathBackslash;
-	BOOL moreBackslash;
+	WINBOOL pathBackslash;
+	WINBOOL moreBackslash;
 	size_t pszMoreLength;
 	size_t pszPathLength;
 
@@ -109,9 +109,9 @@ HRESULT PATH_CCH_APPEND(PSTR pszPath, size_t cchPath, PCSTR pszMore)
 #endif
 
 /*
-#undef DEFINE_UNICODE	
-#undef _PATH_SEPARATOR_CHR	
-#undef _PATH_SEPARATOR_STR	
-#undef PATH_CCH_APPEND	
+#undef DEFINE_UNICODE
+#undef _PATH_SEPARATOR_CHR
+#undef _PATH_SEPARATOR_STR
+#undef PATH_CCH_APPEND
 */
 

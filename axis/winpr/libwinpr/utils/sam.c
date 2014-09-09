@@ -39,7 +39,7 @@
 #define WINPR_SAM_FILE		"/etc/winpr/SAM"
 #endif
 
-WINPR_SAM* SamOpen(BOOL read_only)
+WINPR_SAM* SamOpen(WINBOOL read_only)
 {
 	FILE* fp = NULL;
 	WINPR_SAM* sam = NULL;
@@ -68,7 +68,7 @@ WINPR_SAM* SamOpen(BOOL read_only)
 	return sam;
 }
 
-static BOOL SamLookupStart(WINPR_SAM* sam)
+static WINBOOL SamLookupStart(WINPR_SAM* sam)
 {
 	size_t read_size;
 	long int file_size;
@@ -202,7 +202,7 @@ void SamFreeEntry(WINPR_SAM* sam, WINPR_SAM_ENTRY* entry)
 WINPR_SAM_ENTRY* SamLookupUserA(WINPR_SAM* sam, LPSTR User, UINT32 UserLength, LPSTR Domain, UINT32 DomainLength)
 {
 	int length;
-	BOOL found = 0;
+	WINBOOL found = 0;
 	WINPR_SAM_ENTRY* entry;
 
 	entry = (WINPR_SAM_ENTRY*) malloc(sizeof(WINPR_SAM_ENTRY));
@@ -244,9 +244,9 @@ WINPR_SAM_ENTRY* SamLookupUserA(WINPR_SAM* sam, LPSTR User, UINT32 UserLength, L
 WINPR_SAM_ENTRY* SamLookupUserW(WINPR_SAM* sam, LPWSTR User, UINT32 UserLength, LPWSTR Domain, UINT32 DomainLength)
 {
 	int length;
-	BOOL Found = 0;
-	BOOL UserMatch;
-	BOOL DomainMatch;
+	WINBOOL Found = 0;
+	WINBOOL UserMatch;
+	WINBOOL DomainMatch;
 	LPWSTR EntryUser;
 	UINT32 EntryUserLength;
 	LPWSTR EntryDomain;

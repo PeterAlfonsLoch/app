@@ -46,12 +46,12 @@ struct _MAKECERT_CONTEXT
 	EVP_PKEY* pkey;
 	PKCS12* pkcs12;
 
-	BOOL live;
-	BOOL silent;
+	WINBOOL live;
+	WINBOOL silent;
 
-	BOOL crtFormat;
-	BOOL pemFormat;
-	BOOL pfxFormat;
+	WINBOOL crtFormat;
+	WINBOOL pemFormat;
+	WINBOOL pfxFormat;
 
 	char* password;
 
@@ -634,7 +634,7 @@ int makecert_context_process(MAKECERT_CONTEXT* context, int argc, char** argv)
 	{
 		X509_gmtime_adj(X509_get_notAfter(context->x509), (long) (60 * 60 * 24 * 365 * context->duration_years));
 	}
-	
+
 	X509_set_pubkey(context->x509, context->pkey);
 
 	name = X509_get_subject_name(context->x509);

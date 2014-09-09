@@ -293,7 +293,7 @@ DWORD CharLowerBuffW(LPWSTR lpsz, DWORD cchLength)
 	return cchLength;
 }
 
-BOOL IsCharAlphaA(CHAR ch)
+WINBOOL IsCharAlphaA(CHAR ch)
 {
 	if (((ch >= 'a') && (ch <= 'z')) || ((ch >= 'A') && (ch <= 'Z')))
 		return 1;
@@ -301,13 +301,13 @@ BOOL IsCharAlphaA(CHAR ch)
 		return 0;
 }
 
-BOOL IsCharAlphaW(WCHAR ch)
+WINBOOL IsCharAlphaW(WCHAR ch)
 {
 	fprintf(stderr, "IsCharAlphaW unimplemented!\n");
 	return 0;
 }
 
-BOOL IsCharAlphaNumericA(CHAR ch)
+WINBOOL IsCharAlphaNumericA(CHAR ch)
 {
 	if (((ch >= 'a') && (ch <= 'z')) || ((ch >= 'A') && (ch <= 'Z')) ||
 			((ch >= '0') && (ch <= '9')))
@@ -316,13 +316,13 @@ BOOL IsCharAlphaNumericA(CHAR ch)
 		return 0;
 }
 
-BOOL IsCharAlphaNumericW(WCHAR ch)
+WINBOOL IsCharAlphaNumericW(WCHAR ch)
 {
 	fprintf(stderr, "IsCharAlphaNumericW unimplemented!\n");
 	return 0;
 }
 
-BOOL IsCharUpperA(CHAR ch)
+WINBOOL IsCharUpperA(CHAR ch)
 {
 	if ((ch >= 'A') && (ch <= 'Z'))
 		return 1;
@@ -330,13 +330,13 @@ BOOL IsCharUpperA(CHAR ch)
 		return 0;
 }
 
-BOOL IsCharUpperW(WCHAR ch)
+WINBOOL IsCharUpperW(WCHAR ch)
 {
 	fprintf(stderr, "IsCharUpperW unimplemented!\n");
 	return 0;
 }
 
-BOOL IsCharLowerA(CHAR ch)
+WINBOOL IsCharLowerA(CHAR ch)
 {
 	if ((ch >= 'a') && (ch <= 'z'))
 		return 1;
@@ -344,7 +344,7 @@ BOOL IsCharLowerA(CHAR ch)
 		return 0;
 }
 
-BOOL IsCharLowerW(WCHAR ch)
+WINBOOL IsCharLowerW(WCHAR ch)
 {
 	fprintf(stderr, "IsCharLowerW unimplemented!\n");
 	return 0;

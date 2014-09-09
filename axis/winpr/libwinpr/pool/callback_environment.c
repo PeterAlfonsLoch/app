@@ -61,8 +61,8 @@ VOID InitializeCallbackEnvironment_V3(TP_CALLBACK_ENVIRON_V3* pcbe)
 
 #ifdef _WIN32
 
-static BOOL module_initialized = FALSE;
-static BOOL module_available = FALSE;
+static WINBOOL module_initialized = FALSE;
+static WINBOOL module_available = FALSE;
 static HMODULE kernel32_module = NULL;
 
 static VOID (WINAPI * pDestroyThreadpoolEnvironment)(PTP_CALLBACK_ENVIRON pcbe);

@@ -27,7 +27,7 @@
 
 /**
  * api-ms-win-core-processthreads-l1-1-1.dll
- * 
+ *
  * CreateRemoteThread
  * CreateRemoteThreadEx
  * CreateThread
@@ -140,7 +140,7 @@ VOID ExitThread(DWORD dwExitCode)
 	pthread_exit((void*) (size_t) dwExitCode);
 }
 
-BOOL GetExitCodeThread(HANDLE hThread, LPDWORD lpExitCode)
+WINBOOL GetExitCodeThread(HANDLE hThread, LPDWORD lpExitCode)
 {
 	ULONG Type;
 	PVOID Object;
@@ -200,12 +200,12 @@ DWORD SuspendThread(HANDLE hThread)
 	return 0;
 }
 
-BOOL SwitchToThread(VOID)
+WINBOOL SwitchToThread(VOID)
 {
 	return TRUE;
 }
 
-BOOL TerminateThread(HANDLE hThread, DWORD dwExitCode)
+WINBOOL TerminateThread(HANDLE hThread, DWORD dwExitCode)
 {
 	ULONG Type;
 	PVOID Object;

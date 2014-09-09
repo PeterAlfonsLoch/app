@@ -46,7 +46,7 @@ VOID CancelThreadpoolIo(PTP_IO pio)
 
 }
 
-VOID WaitForThreadpoolIoCallbacks(PTP_IO pio, BOOL fCancelPendingCallbacks)
+VOID WaitForThreadpoolIoCallbacks(PTP_IO pio, WINBOOL fCancelPendingCallbacks)
 {
 
 }
