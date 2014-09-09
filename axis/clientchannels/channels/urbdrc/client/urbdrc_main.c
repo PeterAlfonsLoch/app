@@ -489,7 +489,7 @@ static void* urbdrc_search_usb_device(void* arg)
 		devnum = 0;
 		sdev = NULL;
 		pdev = NULL;
-		dvc_channel = NULL;   
+		dvc_channel = NULL;
 		on_close = 0;
 		listobj[0] = searchman->term_event;
 		listobj[1] = mon_fd;
@@ -529,7 +529,7 @@ static void* urbdrc_search_usb_device(void* arg)
 					busnum = atoi(udev_device_get_property_value(dev,"BUSNUM"));
 					devnum = atoi(udev_device_get_property_value(dev,"DEVNUM"));
 
-					dvc_channel = channel_mgr->FindChannelById(channel_mgr, 
+					dvc_channel = channel_mgr->FindChannelById(channel_mgr,
 						urbdrc->first_channel_id);
 
 					searchman->rewind(searchman);
@@ -541,7 +541,7 @@ static void* urbdrc_search_usb_device(void* arg)
 						if (sdev->idVendor == idVendor &&
 							sdev->idProduct == idProduct)
 						{
-							LLOGLN(10, ("Searchman Find Device: %04x:%04x ", 
+							LLOGLN(10, ("Searchman Find Device: %04x:%04x ",
 								sdev->idVendor, sdev->idProduct));
 							found = 1;
 							break;
@@ -550,7 +550,7 @@ static void* urbdrc_search_usb_device(void* arg)
 
 					if (!found && udevman->isAutoAdd(udevman))
 					{
-						LLOGLN(10, ("Auto Find Device: %04x:%04x ", 
+						LLOGLN(10, ("Auto Find Device: %04x:%04x ",
 							idVendor, idProduct));
 						found = 2;
 					}
@@ -565,12 +565,12 @@ static void* urbdrc_search_usb_device(void* arg)
 					{
 						searchman->UsbDevice++;
 
-						/* when we send the usb device add request, 
-						 * we will detach the device driver at same 
-						 * time. But, if the time of detach the 
-						 * driver and attach driver is too close, 
-						 * the system will crash. workaround: we 
-						 * wait it for some time to avoid system 
+						/* when we send the usb device add request,
+						 * we will detach the device driver at same
+						 * time. But, if the time of detach the
+						 * driver and attach driver is too close,
+						 * the system will crash. workaround: we
+						 * wait it for some time to avoid system
 						 * crash. */
 
 						listobj[0] = searchman->term_event;
@@ -618,7 +618,7 @@ static void* urbdrc_search_usb_device(void* arg)
 
 							if (!pdev->isSigToEnd(pdev))
 							{
-								dvc_channel->Write(dvc_channel, 0, NULL, NULL); 
+								dvc_channel->Write(dvc_channel, 0, NULL, NULL);
 								pdev->SigToEnd(pdev);
 							}
 
@@ -628,7 +628,7 @@ static void* urbdrc_search_usb_device(void* arg)
 					}
 
 					udevman->loading_unlock(udevman);
-					
+
 					listobj[0] = searchman->term_event;
 					numobj = 1;
 					timeout = 3000; /* milliseconds */
@@ -692,7 +692,7 @@ void* urbdrc_new_device_create(void* arg)
 		case INIT_CHANNEL_IN:
 			urbdrc->first_channel_id = ChannelId;
 			searchman->start(searchman, urbdrc_search_usb_device);
-			
+
 			for (i = 0; i < udevman->get_device_num(udevman); i++)
 				error = urdbrc_send_virtual_channel_add(callback->channel, MessageId);
 
@@ -716,11 +716,11 @@ void* urbdrc_new_device_create(void* arg)
 				}
 			}
 			udevman->loading_unlock(udevman);
-			
+
 			if (found && pdev->isAlreadySend(pdev))
 			{
-				/* when we send the usb device add request, we will detach 
-				 * the device driver at same time. But, if the time of detach the 
+				/* when we send the usb device add request, we will detach
+				 * the device driver at same time. But, if the time of detach the
 				 * driver and attach driver is too close, the system will crash.
 				 * workaround: we wait it for some time to avoid system crash. */
 
@@ -729,7 +729,7 @@ void* urbdrc_new_device_create(void* arg)
 				if (error >= 0)
 					urdbrc_send_usb_device_add(callback, pdev);
 			}
-			
+
 			break;
 
 		default:
@@ -788,7 +788,7 @@ static int urbdrc_process_channel_notification(URBDRC_CHANNEL_CALLBACK* callback
 	return error;
 }
 
-static int urbdrc_on_data_received(IWTSVirtualChannelCallback* pChannelCallback, UINT32 cbSize, BYTE* Buffer)
+static int urbdrc_on_data_received2(IWTSVirtualChannelCallback* pChannelCallback, UINT32 cbSize, BYTE* Buffer)
 {
 	URBDRC_CHANNEL_CALLBACK* callback = (URBDRC_CHANNEL_CALLBACK*) pChannelCallback;
 	URBDRC_PLUGIN* urbdrc;
@@ -868,6 +868,11 @@ static int urbdrc_on_data_received(IWTSVirtualChannelCallback* pChannelCallback,
 	}
 
 	return 0;
+}
+
+static int urbdrc_on_data_received(IWTSVirtualChannelCallback* pChannelCallback, wStream * strm)
+{
+   return urbdrc_on_data_received2(pChannelCallback, strm->length, strm->buffer);
 }
 
 static int urbdrc_on_close(IWTSVirtualChannelCallback * pChannelCallback)

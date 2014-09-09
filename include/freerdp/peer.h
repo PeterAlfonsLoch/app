@@ -43,7 +43,7 @@ typedef void (*psPeerDisconnect)(freerdp_peer* client);
 typedef BOOL (*psPeerCapabilities)(freerdp_peer* client);
 typedef BOOL (*psPeerPostConnect)(freerdp_peer* client);
 typedef BOOL (*psPeerActivate)(freerdp_peer* client);
-typedef BOOL (*psPeerLogon)(freerdp_peer* client, SEC_WINNT_AUTH_IDENTITY* identity, BOOL automatic);
+typedef BOOL (*psPeerLogon)(freerdp_peer* client, SEC_WINNT_AUTH_IDENTITY_W* identity, BOOL automatic);
 
 typedef int (*psPeerSendChannelData)(freerdp_peer* client, UINT16 channelId, BYTE* data, int size);
 typedef int (*psPeerReceiveChannelData)(freerdp_peer* client, UINT16 channelId, BYTE* data, int size, int flags, int totalSize);

@@ -44,7 +44,7 @@
 /* TODO: all #ifdef __linux__ could be removed once only some generic
  * functions will be used. Replace CommReadFile by ReadFile,
  * CommWriteFile by WriteFile etc..  */
-#if defined __linux__ && !defined ANDROID 
+#if defined __linux__ && !defined ANDROID
 
 #define MAX_IRP_THREADS	5
 
@@ -164,7 +164,7 @@ static void serial_process_irp_create(SERIAL_DEVICE* serial, IRP* irp)
 	CreateDisposition = OPEN_EXISTING;
 #endif
 
-	serial->hComm = CreateFile(serial->device.name,
+	serial->hComm = CreateFileA(serial->device.name,
 				DesiredAccess,
 				SharedAccess,
 				NULL,			/* SecurityAttributes */
