@@ -63,7 +63,7 @@
 #define WINDOW_SHOW					0x05
 
 /* Window Styles */
-#if !defined(_WIN32) && !defined(CA2_AURA)
+#if !defined(_WIN32)
 #define WS_BORDER			0x00800000
 #define WS_CAPTION			0x00C00000
 #define WS_CHILD			0x40000000
@@ -91,7 +91,7 @@
 #endif
 
 /* Extended Window Styles */
-#if !defined(_WIN32) && !defined(CA2_AURA)
+#if !defined(_WIN32)
 #define WS_EX_ACCEPTFILES		0x00000010
 #define WS_EX_APPWINDOW			0x00040000
 #define WS_EX_CLIENTEDGE		0x00000200
