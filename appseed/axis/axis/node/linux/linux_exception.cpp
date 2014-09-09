@@ -1,9 +1,11 @@
 #include "framework.h"
+#include "linux.h"
+
 
 /////////////////////////////////////////////////////////////////////////////
 // __EXCEPTION_CONTEXT (thread global state)
 
-inline __EXCEPTION_CONTEXT* __get_exception_context()
+__EXCEPTION_CONTEXT* __get_exception_context()
 {
 
    return NULL;
@@ -19,12 +21,12 @@ __exception_link::__exception_link()
 
 
 // out-of-line cleanup called from inline __exception_link destructor
-CLASS_DECL_LINUX void __try_cleanup()
+CLASS_DECL_AXIS void __try_cleanup()
 {
 }
 
 // special out-of-line implementation of THROW_LAST (for auto-delete behavior)
-void CLASS_DECL_LINUX __throw_last_cleanup()
+void CLASS_DECL_AXIS __throw_last_cleanup()
 {
 }
 
@@ -38,7 +40,7 @@ namespace gen
 
 #if defined( _CUSTOM_THROW )  // You can define your own throw hresult_exception to throw a custom exception.
 
-CLASS_DECL_LINUX void WINAPI atl_throw_impl( HRESULT hr )
+CLASS_DECL_AXIS void WINAPI atl_throw_impl( HRESULT hr )
 {
    TRACE(atlTraceException, 0, "throw hresult_exception: hr = 0x%x\n", hr );
 #ifdef _AFX
@@ -61,7 +63,7 @@ CLASS_DECL_LINUX void WINAPI atl_throw_impl( HRESULT hr )
 // Throw a atl_exception with th given HRESULT
 #if !defined( _CUSTOM_THROW )  // You can define your own throw hresult_exception
 
-//CLASS_DECL_LINUX void WINAPI atl_throw_impl(HRESULT hr)
+//CLASS_DECL_AXIS void WINAPI atl_throw_impl(HRESULT hr)
 //{
 //   TRACE("throw hresult_exception: hr = 0x%x\n", hr);
  //  throw hresult_exception(hr);

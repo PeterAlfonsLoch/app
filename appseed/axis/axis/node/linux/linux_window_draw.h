@@ -5,7 +5,7 @@ namespace linux
 {
 
 
-   class CLASS_DECL_LINUX window_draw :
+   class CLASS_DECL_AXIS window_draw :
       virtual public ::user::window_draw,
       virtual public ::aura::message_queue_listener
    {
