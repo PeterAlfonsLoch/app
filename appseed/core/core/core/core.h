@@ -1090,6 +1090,9 @@ class form_view;
 #include "core/platform/core_platform.h"
 
 
+#include "core/graphics/html/html_enum.h"
+
+
 #include "core/graphics/html/html_html.h"
 
 

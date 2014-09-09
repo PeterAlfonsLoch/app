@@ -7,15 +7,18 @@ namespace html
 
    html::html(sp(::aura::application) papp) :
       element(papp),
-      ::aura::departament(papp),
-      m_entityresolver(papp)
+      ::aura::departament(papp)
    {
+
+      m_pentityresolver = new LiteHTMLEntityResolver(papp);
 
    }
 
 
    html::~html()
    {
+      
+      ::aura::del(m_pentityresolver);
 
    }
 

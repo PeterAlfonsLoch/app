@@ -4,6 +4,9 @@
 typedef string_map < COLORREF > string_to_colorref;
 
 
+class LiteHTMLEntityResolver;
+
+
 namespace html
 {
 
@@ -20,10 +23,10 @@ namespace html
       
 
 
-      COLORREF                   m_clrInvalid;   // an invalid color
-      uint16_t                   m_percentMax;   // maximum allowable percentage value
-      CNamedColors               m_namedColors;   // collection of named colors
-      LiteHTMLEntityResolver     m_entityresolver;
+      COLORREF                      m_clrInvalid;   // an invalid color
+      uint16_t                      m_percentMax;   // maximum allowable percentage value
+      CNamedColors                  m_namedColors;   // collection of named colors
+      LiteHTMLEntityResolver  *     m_pentityresolver;
 
 
       html(sp(::aura::application) papp);
