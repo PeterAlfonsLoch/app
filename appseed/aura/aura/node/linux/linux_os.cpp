@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "aura/node/ansios/ansios.h"
+#include "linux.h"
+
 
 
 #undef USERNAME_LENGTH // mysql one

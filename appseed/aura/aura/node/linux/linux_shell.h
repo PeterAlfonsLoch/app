@@ -6,7 +6,7 @@
 namespace linux
 {
 
-class CLASS_DECL_LINUX shell
+class CLASS_DECL_AURA shell
 {
 public:
    shell();

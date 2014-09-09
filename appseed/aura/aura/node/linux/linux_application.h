@@ -5,7 +5,7 @@ namespace linux
 {
 
 
-   class CLASS_DECL_LINUX main_init_data :
+   class CLASS_DECL_AURA main_init_data :
       public ::aura::main_init_data
    {
    public:
@@ -19,7 +19,7 @@ namespace linux
    };
 
 
-   class CLASS_DECL_LINUX application :
+   class CLASS_DECL_AURA application :
       virtual public ::aura::application
    {
    public:

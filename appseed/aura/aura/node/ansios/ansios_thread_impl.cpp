@@ -1,11 +1,5 @@
-//
-//  ansios_thread_impl.cpp
-//  aura
-//
-//
-//
-
 #include "framework.h"
+#include "ansios.h"
 #include <fcntl.h>
 #include <sys/time.h>
 

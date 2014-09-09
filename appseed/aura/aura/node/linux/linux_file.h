@@ -5,8 +5,8 @@ class FileException;
 struct FileStatus;
 
 
-void CLASS_DECL_LINUX vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
-void CLASS_DECL_LINUX vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
+void CLASS_DECL_AURA vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
+void CLASS_DECL_AURA vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ namespace linux
 {
 
 
-   class CLASS_DECL_LINUX file :
+   class CLASS_DECL_AURA file :
       virtual public ::file::binary_buffer
    {
    public:
@@ -122,7 +122,7 @@ namespace linux
 
 
 
-bool CLASS_DECL_LINUX vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
+bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
 
 
 

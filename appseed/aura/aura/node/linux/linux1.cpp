@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "aura/node/ansios/ansios.h"
+#include "linux.h"
 
 
 namespace linux
@@ -20,7 +22,7 @@ namespace linux
 
 
 
-void CLASS_DECL_LINUX __lnx_term()
+void CLASS_DECL_AURA __lnx_term()
 {
 
 

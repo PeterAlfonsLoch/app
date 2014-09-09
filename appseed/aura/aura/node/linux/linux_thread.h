@@ -5,7 +5,7 @@ namespace linux
 {
 
 
-   class CLASS_DECL_LINUX thread :
+   class CLASS_DECL_AURA thread :
       virtual public ::ansios::thread_impl
    {
    public:

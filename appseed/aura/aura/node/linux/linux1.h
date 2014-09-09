@@ -19,7 +19,7 @@ namespace linux
 
 
 // Placed on frame for EXCEPTION linkage, or ::exception::aura cleanup
-struct CLASS_DECL_LINUX __exception_link
+struct CLASS_DECL_AURA __exception_link
 {
    __exception_link * m_pLinkPrev;    // previous top, next in handler chain
    ::exception::base * m_pException;   // current exception (NULL in try block)
@@ -32,7 +32,7 @@ struct CLASS_DECL_LINUX __exception_link
 };
 
 // Exception global state - never Ķaccess directly
-struct CLASS_DECL_LINUX __EXCEPTION_CONTEXT
+struct CLASS_DECL_AURA __EXCEPTION_CONTEXT
 {
    __exception_link* m_pLinkTop;
 
@@ -40,12 +40,12 @@ struct CLASS_DECL_LINUX __EXCEPTION_CONTEXT
 };
 
 
-CLASS_DECL_LINUX MESSAGE * __get_current_message();
+CLASS_DECL_AURA MESSAGE * __get_current_message();
 
 
-CLASS_DECL_LINUX sp(::aura::application)  __get_app();
-CLASS_DECL_LINUX sp(::user::interaction) __get_main_window();
-//CLASS_DECL_LINUX HINSTANCE CLASS_DECL_LINUX System.m_hInstance;
-CLASS_DECL_LINUX const char * __get_app_name();
+CLASS_DECL_AURA sp(::aura::application)  __get_app();
+CLASS_DECL_AURA sp(::user::interaction) __get_main_window();
+//CLASS_DECL_AURA HINSTANCE CLASS_DECL_AURA System.m_hInstance;
+CLASS_DECL_AURA const char * __get_app_name();
 
 
