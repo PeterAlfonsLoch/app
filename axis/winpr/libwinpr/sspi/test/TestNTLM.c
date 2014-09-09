@@ -93,7 +93,7 @@ struct _TEST_NTLM_CLIENT
 	BOOL confidentiality;
 	SecPkgInfo* pPackageInfo;
 	SecurityFunctionTable* table;
-	SEC_WINNT_AUTH_IDENTITY identity;
+	SEC_WINNT_AUTH_IDENTITY_W identity;
 };
 typedef struct _TEST_NTLM_CLIENT TEST_NTLM_CLIENT;
 

@@ -57,8 +57,8 @@ static wLog *_Log = NULL;
 
 struct comm_device
 {
-	LPTSTR name;
-	LPTSTR path;
+	LPSTR name;
+	LPSTR path;
 };
 
 typedef struct comm_device COMM_DEVICE;
@@ -959,7 +959,7 @@ BOOL WaitCommEvent(HANDLE hFile, PDWORD lpEvtMask, LPOVERLAPPED lpOverlapped)
 
 /* Extended API */
 
-static BOOL _IsReservedCommDeviceName(LPCTSTR lpName)
+static BOOL _IsReservedCommDeviceName(LPCSTR lpName)
 {
 	int i;
 
@@ -969,26 +969,20 @@ static BOOL _IsReservedCommDeviceName(LPCTSTR lpName)
 	/* Serial ports, COM1-9 */
 	for (i=1; i<10; i++)
 	{
-		TCHAR genericName[5];
-		if (_stprintf_s(genericName, 5, _T("COM%d"), i) < 0)
-		{
-			return FALSE;
-		}
+		CHAR genericName[5];
+		sprintf(genericName, "COM%d", i);
 
-		if (_tcscmp(genericName, lpName) == 0)
+		if (strcmp(genericName, lpName) == 0)
 			return TRUE;
 	}
 
 	/* Parallel ports, LPT1-9 */
 	for (i=1; i<10; i++)
 	{
-		TCHAR genericName[5];
-		if (_stprintf_s(genericName, 5, _T("LPT%d"), i) < 0)
-		{
-			return FALSE;
-		}
+		CHAR genericName[5];
+		sprintf(genericName, "LPT%d", i);
 
-		if (_tcscmp(genericName, lpName) == 0)
+		if (strcmp(genericName, lpName) == 0)
 			return TRUE;
 	}
 
@@ -1007,11 +1001,11 @@ static BOOL _IsReservedCommDeviceName(LPCTSTR lpName)
  *   ERROR_OUTOFMEMORY was not possible to get mappings.
  *   ERROR_INVALID_DATA was not possible to add the device.
  */
-BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCTSTR lpDeviceName, LPCTSTR lpTargetPath)
+BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCSTR lpDeviceName, LPCSTR lpTargetPath)
 {
 	int i = 0;
-	LPTSTR storedDeviceName = NULL;
-	LPTSTR storedTargetPath = NULL;
+	LPSTR storedDeviceName = NULL;
+	LPSTR storedTargetPath = NULL;
 
 	if (!CommInitialized())
 		return FALSE;
@@ -1024,7 +1018,7 @@ BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCTSTR lpDeviceName, LPCTSTR lpTarget
 		goto error_handle;
 	}
 
-	if (_tcsncmp(lpDeviceName, _T("\\\\.\\"), 4) != 0)
+	if (strncmp(lpDeviceName, "\\\\.\\", 4) != 0)
 	{
 		if (!_IsReservedCommDeviceName(lpDeviceName))
 		{
@@ -1033,14 +1027,14 @@ BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCTSTR lpDeviceName, LPCTSTR lpTarget
 		}
 	}
 
-	storedDeviceName = _tcsdup(lpDeviceName);
+	storedDeviceName = strdup(lpDeviceName);
 	if (storedDeviceName == NULL)
 	{
 		SetLastError(ERROR_OUTOFMEMORY);
 		goto error_handle;
 	}
 
-	storedTargetPath = _tcsdup(lpTargetPath);
+	storedTargetPath = strdup(lpTargetPath);
 	if (storedTargetPath == NULL)
 	{
 		SetLastError(ERROR_OUTOFMEMORY);
@@ -1051,7 +1045,7 @@ BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCTSTR lpDeviceName, LPCTSTR lpTarget
 	{
 		if (_CommDevices[i] != NULL)
 		{
-			if (_tcscmp(_CommDevices[i]->name, storedDeviceName) == 0)
+			if (strcmp(_CommDevices[i]->name, storedDeviceName) == 0)
 			{
 				/* take over the emplacement */
 				free(_CommDevices[i]->name);
@@ -1116,10 +1110,10 @@ BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCTSTR lpDeviceName, LPCTSTR lpTarget
  *   ERROR_INVALID_DATA was not possible to retrieve any device information.
  *   ERROR_INSUFFICIENT_BUFFER too small lpTargetPath
  */
-DWORD QueryCommDevice(LPCTSTR lpDeviceName, LPTSTR lpTargetPath, DWORD ucchMax)
+DWORD QueryCommDevice(LPCSTR lpDeviceName, LPSTR lpTargetPath, DWORD ucchMax)
 {
 	int i;
-	LPTSTR storedTargetPath;
+	LPSTR storedTargetPath;
 
 	SetLastError(ERROR_SUCCESS);
 
@@ -1145,7 +1139,7 @@ DWORD QueryCommDevice(LPCTSTR lpDeviceName, LPTSTR lpTargetPath, DWORD ucchMax)
 	{
 		if (_CommDevices[i] != NULL)
 		{
-			if (_tcscmp(_CommDevices[i]->name, lpDeviceName) == 0)
+			if (strcmp(_CommDevices[i]->name, lpDeviceName) == 0)
 			{
 				storedTargetPath = _CommDevices[i]->path;
 				break;
@@ -1165,16 +1159,16 @@ DWORD QueryCommDevice(LPCTSTR lpDeviceName, LPTSTR lpTargetPath, DWORD ucchMax)
 		return 0;
 	}
 
-	if (_tcslen(storedTargetPath) + 2 > ucchMax)
+	if (strlen(storedTargetPath) + 2 > ucchMax)
 	{
 		SetLastError(ERROR_INSUFFICIENT_BUFFER);
 		return 0;
 	}
 
-	_tcscpy(lpTargetPath, storedTargetPath);
-	lpTargetPath[_tcslen(storedTargetPath) + 1] = '\0'; /* 2nd final '\0' */
+	strcpy(lpTargetPath, storedTargetPath);
+	lpTargetPath[strlen(storedTargetPath) + 1] = '\0'; /* 2nd final '\0' */
 
-	return _tcslen(lpTargetPath) + 2;
+	return strlen(lpTargetPath) + 2;
 }
 
 /**

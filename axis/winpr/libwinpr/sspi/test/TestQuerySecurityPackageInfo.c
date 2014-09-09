@@ -19,7 +19,7 @@ int TestQuerySecurityPackageInfo(int argc, char* argv[])
 	}
 
 	printf("\nQuerySecurityPackageInfo:\n");
-	printf("\"%s\", \"%s\"\n", pPackageInfo->Name, pPackageInfo->Comment);
+	printf("\"%S\", \"%S\"\n", pPackageInfo->Name, pPackageInfo->Comment);
 
 	sspi_GlobalFinish();
 

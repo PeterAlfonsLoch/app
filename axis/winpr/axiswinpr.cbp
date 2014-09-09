@@ -66,6 +66,7 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
+			<Add option="-D__linux__" />
 			<Add option="-DLINUX" />
 			<Add option="-DHAVE_CONFIG_H" />
 			<Add option="-DBYEWINDOWS_UNICODE" />
@@ -84,7 +85,10 @@
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
-			<Add option="-lbase" />
+			<Add option="-lrt" />
+			<Add option="-ldl" />
+			<Add option="-lpthread" />
+			<Add option="-laxisopenssl" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
@@ -612,15 +616,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/wtsapi/wtsapi.h" />
-		<Unit filename="tools/hash/hash.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="tools/makecert/cli/main.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="tools/makecert/makecert.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />

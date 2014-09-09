@@ -18,14 +18,14 @@ int TestEnumerateSecurityPackages(int argc, char* argv[])
 	if (status != SEC_E_OK)
 	{
 		sspi_GlobalFinish();
-		return -1;	
+		return -1;
 	}
 
 	printf("\nEnumerateSecurityPackages (%d):\n", (unsigned int)cPackages);
 
 	for (index = 0; index < (int) cPackages; index++)
 	{
-		printf("\"%s\", \"%s\"\n", pPackageInfo[index].Name, pPackageInfo[index].Comment);
+		printf("\"%S\", \"%S\"\n", pPackageInfo[index].Name, pPackageInfo[index].Comment);
 	}
 
 	FreeContextBuffer(pPackageInfo);

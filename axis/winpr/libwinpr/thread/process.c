@@ -26,6 +26,8 @@
 #include <winpr/thread.h>
 #include <fcntl.h>
 
+char * GetEnvironmentStringsA();
+
 /**
  * CreateProcessA
  * CreateProcessW
@@ -186,7 +188,7 @@ BOOL _CreateProcessExA(HANDLE hToken, DWORD dwLogonFlags,
 	WINPR_THREAD* thread;
 	WINPR_PROCESS* process;
 	WINPR_ACCESS_TOKEN* token;
-	LPTCH lpszEnvironmentBlock;
+	char * lpszEnvironmentBlock;
 	BOOL ret = FALSE;
 
 	pid = 0;
@@ -206,7 +208,7 @@ BOOL _CreateProcessExA(HANDLE hToken, DWORD dwLogonFlags,
 	}
 	else
 	{
-		lpszEnvironmentBlock = GetEnvironmentStrings();
+		lpszEnvironmentBlock =  GetEnvironmentStringsA();
 		envp = EnvironmentBlockToEnvpA(lpszEnvironmentBlock);
 	}
 
@@ -315,7 +317,7 @@ finish:
 	}
 
 	if (lpszEnvironmentBlock)
-		FreeEnvironmentStrings(lpszEnvironmentBlock);
+		FreeEnvironmentStringsA(lpszEnvironmentBlock);
 
 	if (envp)
 	{

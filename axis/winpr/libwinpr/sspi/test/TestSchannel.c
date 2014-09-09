@@ -383,7 +383,7 @@ static void* schannel_test_server_thread(void* arg)
 	SecBufferDesc SecBufferDesc_out;
 	DWORD NumberOfBytesRead;
 	SECURITY_STATUS status;
-	PSecPkgInfo pPackageInfo;
+	PSecPkgInfoW pPackageInfo;
 	PSecurityFunctionTable table;
 	DWORD NumberOfBytesWritten;
 
@@ -628,13 +628,13 @@ int TestSchannel(int argc, char* argv[])
 	CtxtHandle context;
 	CredHandle credentials;
 	SECURITY_STATUS status;
-	PSecPkgInfo pPackageInfo;
+	PSecPkgInfoW pPackageInfo;
 	PSecBuffer pSecBuffer;
 	SecBuffer SecBuffer_in[2];
 	SecBuffer SecBuffer_out[1];
 	SecBufferDesc SecBufferDesc_in;
 	SecBufferDesc SecBufferDesc_out;
-	PSecurityFunctionTable table;
+	PSecurityFunctionTableW table;
 	DWORD NumberOfBytesRead;
 	DWORD NumberOfBytesWritten;
 	SecPkgCred_SupportedAlgs SupportedAlgs;

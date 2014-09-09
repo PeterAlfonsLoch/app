@@ -304,20 +304,20 @@ BOOL SetEnvironmentVariableW(LPCWSTR lpName, LPCWSTR lpValue)
 
 extern char** environ;
 
-LPCH GetEnvironmentStringsA(VOID)
+char * GetEnvironmentStringsA()
 {
 	char* p;
 	int offset;
 	int length;
 	char** envp;
 	DWORD cchEnvironmentBlock;
-	LPCH lpszEnvironmentBlock;
+	LPSTR lpszEnvironmentBlock;
 
 	offset = 0;
 	envp = environ;
 
 	cchEnvironmentBlock = 128;
-	lpszEnvironmentBlock = (LPCH) malloc(cchEnvironmentBlock * sizeof(CHAR));
+	lpszEnvironmentBlock = (LPSTR) malloc(cchEnvironmentBlock * sizeof(CHAR));
 
 	while (*envp)
 	{
@@ -326,7 +326,7 @@ LPCH GetEnvironmentStringsA(VOID)
 		while ((offset + length + 8) > cchEnvironmentBlock)
 		{
 			cchEnvironmentBlock *= 2;
-			lpszEnvironmentBlock = (LPCH) realloc(lpszEnvironmentBlock, cchEnvironmentBlock * sizeof(CHAR));
+			lpszEnvironmentBlock = (LPSTR) realloc(lpszEnvironmentBlock, cchEnvironmentBlock * sizeof(CHAR));
 		}
 
 		p = &(lpszEnvironmentBlock[offset]);

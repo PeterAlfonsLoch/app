@@ -101,7 +101,7 @@ BOOL ntlm_client_init(rdpNtlm* ntlm, BOOL http, char* user, char* domain, char* 
 	}
 	else
 	{
-		/** 
+		/**
 		 * flags for RPC authentication:
 		 * RPC_C_AUTHN_LEVEL_PKT_INTEGRITY:
 		 * ISC_REQ_USE_DCE_STYLE | ISC_REQ_DELEGATE | ISC_REQ_MUTUAL_AUTH |
@@ -123,7 +123,7 @@ BOOL ntlm_client_make_spn(rdpNtlm* ntlm, LPCTSTR ServiceClassParam, char* hostna
 	DWORD SpnLength;
 	LPWSTR hostnameX;
    LPWSTR ServiceClass;
-   
+
 
 	length = 0;
 
@@ -133,10 +133,12 @@ BOOL ntlm_client_make_spn(rdpNtlm* ntlm, LPCTSTR ServiceClassParam, char* hostna
 	MultiByteToWideChar(CP_UTF8, 0, hostname, length, hostnameX, length);
 	hostnameX[length] = 0;
 
-   length = strlen(ServiceClassParam);
+/*   length = wcslen(ServiceClassParam);
    ServiceClass = (LPWSTR)malloc((length + 1)* sizeof(WCHAR));
-   MultiByteToWideChar(CP_UTF8,0,ServiceClassParam,length,ServiceClass,length);
-   ServiceClass[length] = 0;
+   MultiByteToWideChar(CP_UTF8,0,(LPCSTR)ServiceClassParam,length,ServiceClass,length);
+   ServiceClass[length] = 0;*/
+
+   ServiceClass = wcsdup(ServiceClassParam);
 
 #else
 	hostnameX = hostname;

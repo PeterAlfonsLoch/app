@@ -32,7 +32,7 @@
 /* Options */
 #define WITH_PROFILER
 #define WITH_GPROF
-#define WITH_SSE2
+//#define WITH_SSE2
 //#define WITH_NEON
 //#define WITH_IPP
 //#define WITH_NATIVE_SSPI

@@ -405,8 +405,8 @@ typedef enum _SERIAL_DRIVER_ID
  *   - mappings are stored in a static array.
  *   - QueryCommDevice returns only the mappings that have been defined through DefineCommDevice()
  */
-WINPR_API BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCTSTR lpDeviceName, LPCTSTR lpTargetPath);
-WINPR_API DWORD QueryCommDevice(LPCTSTR lpDeviceName, LPTSTR lpTargetPath, DWORD ucchMax);
+WINPR_API BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCSTR lpDeviceName, LPCSTR lpTargetPath);
+WINPR_API DWORD QueryCommDevice(LPCSTR lpDeviceName, LPSTR lpTargetPath, DWORD ucchMax);
 WINPR_API BOOL IsCommDevice(LPCSTR lpDeviceName);
 
 /**

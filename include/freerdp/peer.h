@@ -85,7 +85,7 @@ struct rdp_freerdp_peer
 	BOOL connected;
 	BOOL activated;
 	BOOL authenticated;
-	SEC_WINNT_AUTH_IDENTITY identity;
+	SEC_WINNT_AUTH_IDENTITY_W identity;
 
 	psPeerIsWriteBlocked IsWriteBlocked;
 	psPeerDrainOutputBuffer DrainOutputBuffer;

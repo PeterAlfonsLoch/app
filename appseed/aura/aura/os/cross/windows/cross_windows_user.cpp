@@ -396,7 +396,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError)
 #endif
 
 
-
+/*
 CLASS_DECL_AURA int_bool TranslateMessage(const MESSAGE * pmsg)
 {
 
@@ -412,8 +412,9 @@ CLASS_DECL_AURA int_bool TranslateMessage(const MESSAGE * pmsg)
    return FALSE;
 
 }
+*/
 
-
+/*
 
 CLASS_DECL_AURA int_bool DispatchMessage(const MESSAGE * pmsg)
 {
@@ -434,7 +435,7 @@ CLASS_DECL_AURA int_bool DispatchMessage(const MESSAGE * pmsg)
 
 }
 
-
+*/
 
 
 

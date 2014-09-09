@@ -509,7 +509,7 @@ const SecurityFunctionTableW NEGOTIATE_SecurityFunctionTableW =
 //	"Negotiate", /* Name */
 //	"Microsoft Package Negotiator" /* Comment */
 //};
-//
+
 WCHAR NEGOTIATE_SecPkgInfoW_Name[] = { 'N','e','g','o','t','i','a','t','e','\0' };
 
 WCHAR NEGOTIATE_SecPkgInfoW_Comment[] =
