@@ -455,3 +455,27 @@ void html_form::defer_layout()
 }
 
 
+bool html_form::get_edit_mode()
+{
+
+   return get_html_data()->m_bEdit;
+
+}
+
+
+void html_form::set_edit_mode(bool bSet)
+{
+
+   get_html_data()->m_bEdit = bSet;
+
+}
+
+
+bool html_form::load_html(const char & str)
+{
+
+   get_html_data()->load(str);
+
+   return true;
+
+}
