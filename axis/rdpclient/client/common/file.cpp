@@ -21,6 +21,11 @@
 #include "config.h"
 #endif
 
+
+#ifdef LINUX
+#define  _stricmp strcasecmp
+#endif
+
 #include <freerdp/utils/debug.h>
 #include <freerdp/client/file.h>
 #include <freerdp/client/cmdline.h>
@@ -302,7 +307,7 @@ WINBOOL freerdp_client_rdp_file_set_string(rdpFile* file, const char* name, cons
 	return bStandard;
 }
 
-void freerdp_client_add_option(rdpFile* file, char* option)
+void freerdp_client_add_option(rdpFile* file, const char* option)
 {
 	while ((file->argc + 1) > file->argSize)
 	{

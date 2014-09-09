@@ -21,6 +21,11 @@
 #include "config.h"
 #endif
 
+
+#ifdef LINUX
+#define  _stricmp strcasecmp
+#endif
+
 #include <winpr/crt.h>
 #include <winpr/cmdline.h>
 
@@ -133,30 +138,30 @@ int freerdp_client_old_process_plugin(rdpSettings* settings, ADDIN_ARGV* args)
 			(strcmp(args->argv[1], "drive") == 0))
 		{
 			freerdp_addin_replace_argument(args, "disk", "drive");
-			freerdp_client_add_device_channel(settings, args->argc - 1, &args->argv[1]);
+			freerdp_client_add_device_channel(settings, args->argc - 1, (const char **) &args->argv[1]);
 		}
 		else if (strcmp(args->argv[1], "printer") == 0)
 		{
-			freerdp_client_add_device_channel(settings, args->argc - 1, &args->argv[1]);
+			freerdp_client_add_device_channel(settings, args->argc - 1, (const char **) &args->argv[1]);
 		}
 		else if ((strcmp(args->argv[1], "scard") == 0) ||
 				(strcmp(args->argv[1], "smartcard") == 0))
 		{
 			freerdp_addin_replace_argument(args, "scard", "smartcard");
-			freerdp_client_add_device_channel(settings, args->argc - 1, &args->argv[1]);
+			freerdp_client_add_device_channel(settings, args->argc - 1, (const char **) &args->argv[1]);
 		}
 		else if (strcmp(args->argv[1], "serial") == 0)
 		{
-			freerdp_client_add_device_channel(settings, args->argc - 1, &args->argv[1]);
+			freerdp_client_add_device_channel(settings, args->argc - 1, (const char **) &args->argv[1]);
 		}
 		else if (strcmp(args->argv[1], "parallel") == 0)
 		{
-			freerdp_client_add_device_channel(settings, args->argc - 1, &args->argv[1]);
+			freerdp_client_add_device_channel(settings, args->argc - 1, (const char **) &args->argv[1]);
 		}
 	}
 	else if (strcmp(args->argv[0], "drdynvc") == 0)
 	{
-		freerdp_client_add_dynamic_channel(settings, args->argc - 1, &args->argv[1]);
+		freerdp_client_add_dynamic_channel(settings, args->argc - 1,(const char **)  &args->argv[1]);
 	}
 	else if (strcmp(args->argv[0], "rdpsnd") == 0)
 	{
@@ -164,7 +169,7 @@ int freerdp_client_old_process_plugin(rdpSettings* settings, ADDIN_ARGV* args)
 			return -1;
 
 		freerdp_addin_replace_argument_value(args, args->argv[1], "sys", args->argv[1]);
-		freerdp_client_add_static_channel(settings, args->argc, args->argv);
+		freerdp_client_add_static_channel(settings, args->argc, (const char **) args->argv);
 	}
 	else if (strcmp(args->argv[0], "rail") == 0)
 	{
@@ -175,7 +180,7 @@ int freerdp_client_old_process_plugin(rdpSettings* settings, ADDIN_ARGV* args)
 	}
 	else
 	{
-		freerdp_client_add_static_channel(settings, args->argc, args->argv);
+		freerdp_client_add_static_channel(settings, args->argc, (const char **) args->argv);
 	}
 
 	return 1;

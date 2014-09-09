@@ -147,7 +147,7 @@ void* freerdp_load_dynamic_addin(LPCSTR pszFileName, LPCSTR pszPath, LPCSTR pszE
 	return entry;
 }
 
-void* freerdp_load_dynamic_channel_addin_entry(LPCSTR pszName, LPSTR pszSubsystem, LPSTR pszType, DWORD dwFlags)
+void* freerdp_load_dynamic_channel_addin_entry(LPCSTR pszName, LPCSTR pszSubsystem, LPCSTR pszType, DWORD dwFlags)
 {
 	void* entry;
 	LPSTR pszFileName;

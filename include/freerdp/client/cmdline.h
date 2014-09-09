@@ -38,9 +38,9 @@ FREERDP_API int freerdp_parse_username(char* username, char** user, char** domai
 FREERDP_API int freerdp_parse_hostname(char* hostname, char** host, int* port);
 FREERDP_API int freerdp_set_connection_type(rdpSettings* settings, int type);
 
-FREERDP_API int freerdp_client_add_device_channel(rdpSettings* settings, int count, char** params);
-FREERDP_API int freerdp_client_add_static_channel(rdpSettings* settings, int count, char** params);
-FREERDP_API int freerdp_client_add_dynamic_channel(rdpSettings* settings, int count, char** params);
+FREERDP_API int freerdp_client_add_device_channel(rdpSettings* settings, int count, const char** params);
+FREERDP_API int freerdp_client_add_static_channel(rdpSettings* settings, int count, const char** params);
+FREERDP_API int freerdp_client_add_dynamic_channel(rdpSettings* settings, int count, const char** params);
 
 #ifdef __cplusplus
 }

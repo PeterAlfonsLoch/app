@@ -50,7 +50,7 @@ int freerdp_addin_set_argument(ADDIN_ARGV* args, char* argument)
 	return 0;
 }
 
-int freerdp_addin_replace_argument(ADDIN_ARGV* args, char* previous, char* argument)
+int freerdp_addin_replace_argument(ADDIN_ARGV* args, const char* previous, const char* argument)
 {
 	int i;
 
@@ -106,7 +106,7 @@ int freerdp_addin_set_argument_value(ADDIN_ARGV* args, char* option, char* value
 	return 0;
 }
 
-int freerdp_addin_replace_argument_value(ADDIN_ARGV* args, char* previous, char* option, char* value)
+int freerdp_addin_replace_argument_value(ADDIN_ARGV* args, const char* previous, const char* option, const char* value)
 {
 	int i;
 	char* str;

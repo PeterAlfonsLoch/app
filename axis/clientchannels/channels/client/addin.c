@@ -299,7 +299,7 @@ void freerdp_channels_addin_list_free(FREERDP_ADDIN** ppAddins)
 	free(ppAddins);
 }
 
-void* freerdp_channels_load_static_addin_entry(LPCSTR pszName, LPSTR pszSubsystem, LPSTR pszType, DWORD dwFlags)
+void* freerdp_channels_load_static_addin_entry(LPCSTR pszName, LPCSTR pszSubsystem, LPCSTR pszType, DWORD dwFlags)
 {
 	int i, j;
 	STATIC_SUBSYSTEM_ENTRY* subsystems;
