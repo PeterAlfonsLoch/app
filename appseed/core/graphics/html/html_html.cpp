@@ -266,8 +266,11 @@ namespace html
 
    int32_t html::resolve_entity(const char * lpszEntity, string & strChar)
    {
-      return m_entityresolver.resolveEntity(lpszEntity, strChar);
+
+      return m_pentityresolver->resolveEntity(lpszEntity, strChar);
+
    }
+
 
    bool html::initialize()
    {
