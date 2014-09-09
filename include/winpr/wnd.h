@@ -24,7 +24,7 @@
 #include <winpr/wtypes.h>
 #include <winpr/windows.h>
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(CA2_AURA)
 
 #define WM_NULL					0x0000
 #define WM_CREATE				0x0001

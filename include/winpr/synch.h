@@ -37,7 +37,7 @@
 extern "C" {
 #endif
 
-#ifndef _WIN32
+#if !defined(_WIN32)
 
 /* Mutex */
 
@@ -178,6 +178,8 @@ WINPR_API BOOL WaitOnAddress(VOID volatile *Address, PVOID CompareAddress, SIZE_
 
 #define INFINITE		0xFFFFFFFF
 
+#ifndef CA2_AURA
+
 #define WAIT_OBJECT_0		0x00000000L
 #define WAIT_ABANDONED		0x00000080L
 
@@ -186,6 +188,8 @@ WINPR_API BOOL WaitOnAddress(VOID volatile *Address, PVOID CompareAddress, SIZE_
 #endif
 
 #define WAIT_FAILED		((DWORD) 0xFFFFFFFF)
+
+#endif
 
 WINPR_API DWORD WaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds);
 WINPR_API DWORD WaitForSingleObjectEx(HANDLE hHandle, DWORD dwMilliseconds, BOOL bAlertable);
