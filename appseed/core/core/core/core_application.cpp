@@ -1615,7 +1615,7 @@ namespace core
 #ifdef WINDOWS
                      strPath += ".bat";
 #endif
-#if defined(OS64BIT) && defined(WINDOWS)
+#if defined(OS64BIT)
                      strPath = System.dir().element("nodeapp/stage/install/basis/x64/_std",strPath);
 #else
                      strPath = System.dir().element("nodeapp/stage/install/basis/x86/_std",strPath);
