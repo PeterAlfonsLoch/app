@@ -2923,6 +2923,9 @@
     <ClCompile Include="core\core\core_simple_app.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\html\html_form.cpp">
+      <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core.def">

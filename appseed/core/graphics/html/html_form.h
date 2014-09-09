@@ -15,7 +15,11 @@ namespace html
       spa(::html::elemental)           m_elementalptraMouseMove;
       sp(::html::data)                 m_sphtmldata;
 
+      form();
+      virtual ~form();
+
    };
+
 
 } // namespace html
 
