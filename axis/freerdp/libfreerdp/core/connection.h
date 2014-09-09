@@ -47,26 +47,26 @@ enum CONNECTION_STATE
 	CONNECTION_STATE_ACTIVE = 13
 };
 
-WINBOOL rdp_client_connect(rdpRdp* rdp);
-WINBOOL rdp_client_redirect(rdpRdp* rdp);
-WINBOOL rdp_client_reconnect(rdpRdp* rdp);
-WINBOOL rdp_client_connect_mcs_connect_response(rdpRdp* rdp, wStream* s);
-WINBOOL rdp_client_connect_mcs_attach_user_confirm(rdpRdp* rdp, wStream* s);
-WINBOOL rdp_client_connect_mcs_channel_join_confirm(rdpRdp* rdp, wStream* s);
-WINBOOL rdp_client_connect_auto_detect(rdpRdp* rdp, wStream* s);
+BOOL rdp_client_connect(rdpRdp* rdp);
+BOOL rdp_client_redirect(rdpRdp* rdp);
+BOOL rdp_client_reconnect(rdpRdp* rdp);
+BOOL rdp_client_connect_mcs_connect_response(rdpRdp* rdp, wStream* s);
+BOOL rdp_client_connect_mcs_attach_user_confirm(rdpRdp* rdp, wStream* s);
+BOOL rdp_client_connect_mcs_channel_join_confirm(rdpRdp* rdp, wStream* s);
+BOOL rdp_client_connect_auto_detect(rdpRdp* rdp, wStream* s);
 int rdp_client_connect_license(rdpRdp* rdp, wStream* s);
 int rdp_client_connect_demand_active(rdpRdp* rdp, wStream* s);
 int rdp_client_connect_finalize(rdpRdp* rdp);
 int rdp_client_transition_to_state(rdpRdp* rdp, int state);
 
-WINBOOL rdp_server_accept_nego(rdpRdp* rdp, wStream* s);
-WINBOOL rdp_server_accept_mcs_connect_initial(rdpRdp* rdp, wStream* s);
-WINBOOL rdp_server_accept_mcs_erect_domain_request(rdpRdp* rdp, wStream* s);
-WINBOOL rdp_server_accept_mcs_attach_user_request(rdpRdp* rdp, wStream* s);
-WINBOOL rdp_server_accept_mcs_channel_join_request(rdpRdp* rdp, wStream* s);
-WINBOOL rdp_server_accept_confirm_active(rdpRdp* rdp, wStream* s);
-WINBOOL rdp_server_establish_keys(rdpRdp* rdp, wStream* s);
-WINBOOL rdp_server_reactivate(rdpRdp* rdp);
+BOOL rdp_server_accept_nego(rdpRdp* rdp, wStream* s);
+BOOL rdp_server_accept_mcs_connect_initial(rdpRdp* rdp, wStream* s);
+BOOL rdp_server_accept_mcs_erect_domain_request(rdpRdp* rdp, wStream* s);
+BOOL rdp_server_accept_mcs_attach_user_request(rdpRdp* rdp, wStream* s);
+BOOL rdp_server_accept_mcs_channel_join_request(rdpRdp* rdp, wStream* s);
+BOOL rdp_server_accept_confirm_active(rdpRdp* rdp, wStream* s);
+BOOL rdp_server_establish_keys(rdpRdp* rdp, wStream* s);
+BOOL rdp_server_reactivate(rdpRdp* rdp);
 int rdp_server_transition_to_state(rdpRdp* rdp, int state);
 
 #endif /* __CONNECTION_H */

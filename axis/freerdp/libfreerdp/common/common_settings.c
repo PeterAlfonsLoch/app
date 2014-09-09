@@ -652,7 +652,7 @@ void freerdp_update_gateway_usage_method(rdpSettings* settings, UINT32 GatewayEn
  * Partially Generated Code
  */
 
-WINBOOL freerdp_get_param_bool(rdpSettings* settings, int id)
+BOOL freerdp_get_param_bool(rdpSettings* settings, int id)
 {
 	switch (id)
 	{
@@ -1034,7 +1034,7 @@ WINBOOL freerdp_get_param_bool(rdpSettings* settings, int id)
 	}
 }
 
-int freerdp_set_param_bool(rdpSettings* settings, int id, WINBOOL param)
+int freerdp_set_param_bool(rdpSettings* settings, int id, BOOL param)
 {
 	switch (id)
 	{

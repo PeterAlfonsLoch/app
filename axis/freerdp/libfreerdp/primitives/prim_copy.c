@@ -27,8 +27,8 @@
 #include "prim_internal.h"
 
 /* ------------------------------------------------------------------------- */
-/*static inline WINBOOL memory_regions_overlap_1d(*/
-static WINBOOL memory_regions_overlap_1d(
+/*static inline BOOL memory_regions_overlap_1d(*/
+static BOOL memory_regions_overlap_1d(
 	const BYTE *p1,
 	const BYTE *p2,
 	size_t bytes)
@@ -48,8 +48,8 @@ static WINBOOL memory_regions_overlap_1d(
 }
 
 /* ------------------------------------------------------------------------- */
-/*static inline WINBOOL memory_regions_overlap_2d( */
-static WINBOOL memory_regions_overlap_2d(
+/*static inline BOOL memory_regions_overlap_2d( */
+static BOOL memory_regions_overlap_2d(
 	const BYTE *p1,  int p1Step,  int p1Size,
 	const BYTE *p2,  int p2Step,  int p2Size,
 	int width,  int height)

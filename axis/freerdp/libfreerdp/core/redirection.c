@@ -61,7 +61,7 @@ void rdp_print_redirection_flags(UINT32 flags)
 	DEBUG_WARN( "}\n");
 }
 
-WINBOOL rdp_redirection_read_string(wStream* s, char** str)
+BOOL rdp_redirection_read_string(wStream* s, char** str)
 {
 	UINT32 length;
 
@@ -177,7 +177,7 @@ int rdp_redirection_apply_settings(rdpRdp* rdp)
 	return 0;
 }
 
-WINBOOL rdp_recv_server_redirection_pdu(rdpRdp* rdp, wStream* s)
+BOOL rdp_recv_server_redirection_pdu(rdpRdp* rdp, wStream* s)
 {
 	UINT16 flags;
 	UINT16 length;

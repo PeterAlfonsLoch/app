@@ -236,7 +236,7 @@ UINT32 rpc_offset_pad(UINT32* offset, UINT32 pad)
  *
  */
 
-WINBOOL rpc_get_stub_data_info(rdpRpc* rpc, BYTE* buffer, UINT32* offset, UINT32* length)
+BOOL rpc_get_stub_data_info(rdpRpc* rpc, BYTE* buffer, UINT32* offset, UINT32* length)
 {
 	UINT32 alloc_hint = 0;
 	rpcconn_hdr_t* header;
@@ -479,7 +479,7 @@ out_free_pdu:
 	return -1;
 }
 
-WINBOOL rpc_connect(rdpRpc* rpc)
+BOOL rpc_connect(rdpRpc* rpc)
 {
 	rpc->TlsIn = rpc->transport->TlsIn;
 	rpc->TlsOut = rpc->transport->TlsOut;

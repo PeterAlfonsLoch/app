@@ -320,7 +320,7 @@ void http_request_free(HttpRequest* http_request)
 	free(http_request);
 }
 
-WINBOOL http_response_parse_header_status_line(HttpResponse* http_response, char* status_line)
+BOOL http_response_parse_header_status_line(HttpResponse* http_response, char* status_line)
 {
 	char* separator;
 	char* status_code;
@@ -345,7 +345,7 @@ WINBOOL http_response_parse_header_status_line(HttpResponse* http_response, char
 	return TRUE;
 }
 
-WINBOOL http_response_parse_header_field(HttpResponse* http_response, char* name, char* value)
+BOOL http_response_parse_header_field(HttpResponse* http_response, char* name, char* value)
 {
 	if (_stricmp(name, "Content-Length") == 0)
 	{
@@ -387,7 +387,7 @@ WINBOOL http_response_parse_header_field(HttpResponse* http_response, char* name
 	return TRUE;
 }
 
-WINBOOL http_response_parse_header(HttpResponse* http_response)
+BOOL http_response_parse_header(HttpResponse* http_response)
 {
 	int count;
 	char* line;
@@ -596,7 +596,7 @@ out_free:
 	return NULL;
 }
 
-static WINBOOL strings_equals_nocase(void *obj1, void *obj2)
+static BOOL strings_equals_nocase(void *obj1, void *obj2)
 {
 	if (!obj1 || !obj2)
 		return FALSE;

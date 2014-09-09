@@ -34,7 +34,7 @@ void window_list_rewind(rdpWindowList* list)
 	list->iterator = list->head;
 }
 
-WINBOOL window_list_has_next(rdpWindowList* list)
+BOOL window_list_has_next(rdpWindowList* list)
 {
 	if (list->iterator != NULL)
 	{

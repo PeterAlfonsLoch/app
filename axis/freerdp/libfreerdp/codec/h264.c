@@ -290,7 +290,7 @@ void h264_context_reset(H264_CONTEXT* h264)
 
 }
 
-H264_CONTEXT* h264_context_new(WINBOOL Compressor)
+H264_CONTEXT* h264_context_new(BOOL Compressor)
 {
 	H264_CONTEXT* h264;
 

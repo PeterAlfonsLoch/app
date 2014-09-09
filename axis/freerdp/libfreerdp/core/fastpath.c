@@ -171,7 +171,7 @@ UINT32 fastpath_get_update_pdu_header_size(FASTPATH_UPDATE_PDU_HEADER* fpUpdateP
 	return size;
 }
 
-WINBOOL fastpath_read_header_rdp(rdpFastPath* fastpath, wStream* s, UINT16 *length)
+BOOL fastpath_read_header_rdp(rdpFastPath* fastpath, wStream* s, UINT16 *length)
 {
 	BYTE header;
 
@@ -190,7 +190,7 @@ WINBOOL fastpath_read_header_rdp(rdpFastPath* fastpath, wStream* s, UINT16 *leng
 	return TRUE;
 }
 
-static WINBOOL fastpath_recv_orders(rdpFastPath* fastpath, wStream* s)
+static BOOL fastpath_recv_orders(rdpFastPath* fastpath, wStream* s)
 {
 	rdpUpdate* update = fastpath->rdp->update;
 	UINT16 numberOrders;
@@ -208,7 +208,7 @@ static WINBOOL fastpath_recv_orders(rdpFastPath* fastpath, wStream* s)
 	return TRUE;
 }
 
-static WINBOOL fastpath_recv_update_common(rdpFastPath* fastpath, wStream* s)
+static BOOL fastpath_recv_update_common(rdpFastPath* fastpath, wStream* s)
 {
 	UINT16 updateType;
 	rdpUpdate* update = fastpath->rdp->update;
@@ -236,7 +236,7 @@ static WINBOOL fastpath_recv_update_common(rdpFastPath* fastpath, wStream* s)
 	return TRUE;
 }
 
-static WINBOOL fastpath_recv_update_synchronize(rdpFastPath* fastpath, wStream* s)
+static BOOL fastpath_recv_update_synchronize(rdpFastPath* fastpath, wStream* s)
 {
 	/* server 2008 can send invalid synchronize packet with missing padding,
 	  so don't return FALSE even if the packet is invalid */
@@ -520,7 +520,7 @@ int fastpath_recv_updates(rdpFastPath* fastpath, wStream* s)
 	return status;
 }
 
-static WINBOOL fastpath_read_input_event_header(wStream* s, BYTE* eventFlags, BYTE* eventCode)
+static BOOL fastpath_read_input_event_header(wStream* s, BYTE* eventFlags, BYTE* eventCode)
 {
 	BYTE eventHeader;
 
@@ -535,7 +535,7 @@ static WINBOOL fastpath_read_input_event_header(wStream* s, BYTE* eventFlags, BY
 	return TRUE;
 }
 
-static WINBOOL fastpath_recv_input_event_scancode(rdpFastPath* fastpath, wStream* s, BYTE eventFlags)
+static BOOL fastpath_recv_input_event_scancode(rdpFastPath* fastpath, wStream* s, BYTE eventFlags)
 {
 	UINT16 flags;
 	UINT16 code;
@@ -560,7 +560,7 @@ static WINBOOL fastpath_recv_input_event_scancode(rdpFastPath* fastpath, wStream
 	return TRUE;
 }
 
-static WINBOOL fastpath_recv_input_event_mouse(rdpFastPath* fastpath, wStream* s, BYTE eventFlags)
+static BOOL fastpath_recv_input_event_mouse(rdpFastPath* fastpath, wStream* s, BYTE eventFlags)
 {
 	UINT16 pointerFlags;
 	UINT16 xPos;
@@ -578,7 +578,7 @@ static WINBOOL fastpath_recv_input_event_mouse(rdpFastPath* fastpath, wStream* s
 	return TRUE;
 }
 
-static WINBOOL fastpath_recv_input_event_mousex(rdpFastPath* fastpath, wStream* s, BYTE eventFlags)
+static BOOL fastpath_recv_input_event_mousex(rdpFastPath* fastpath, wStream* s, BYTE eventFlags)
 {
 	UINT16 pointerFlags;
 	UINT16 xPos;
@@ -596,14 +596,14 @@ static WINBOOL fastpath_recv_input_event_mousex(rdpFastPath* fastpath, wStream* 
 	return TRUE;
 }
 
-static WINBOOL fastpath_recv_input_event_sync(rdpFastPath* fastpath, wStream* s, BYTE eventFlags)
+static BOOL fastpath_recv_input_event_sync(rdpFastPath* fastpath, wStream* s, BYTE eventFlags)
 {
 	IFCALL(fastpath->rdp->input->SynchronizeEvent, fastpath->rdp->input, eventFlags);
 
 	return TRUE;
 }
 
-static WINBOOL fastpath_recv_input_event_unicode(rdpFastPath* fastpath, wStream* s, BYTE eventFlags)
+static BOOL fastpath_recv_input_event_unicode(rdpFastPath* fastpath, wStream* s, BYTE eventFlags)
 {
 	UINT16 unicodeCode;
 	UINT16 flags;
@@ -625,7 +625,7 @@ static WINBOOL fastpath_recv_input_event_unicode(rdpFastPath* fastpath, wStream*
 	return TRUE;
 }
 
-static WINBOOL fastpath_recv_input_event(rdpFastPath* fastpath, wStream* s)
+static BOOL fastpath_recv_input_event(rdpFastPath* fastpath, wStream* s)
 {
 	BYTE eventFlags;
 	BYTE eventCode;
@@ -748,7 +748,7 @@ wStream* fastpath_input_pdu_init(rdpFastPath* fastpath, BYTE eventFlags, BYTE ev
 	return s;
 }
 
-WINBOOL fastpath_send_multiple_input_pdu(rdpFastPath* fastpath, wStream* s, int iNumEvents)
+BOOL fastpath_send_multiple_input_pdu(rdpFastPath* fastpath, wStream* s, int iNumEvents)
 {
 	rdpRdp* rdp;
 	UINT16 length;
@@ -843,7 +843,7 @@ WINBOOL fastpath_send_multiple_input_pdu(rdpFastPath* fastpath, wStream* s, int 
 	return TRUE;
 }
 
-WINBOOL fastpath_send_input_pdu(rdpFastPath* fastpath, wStream* s)
+BOOL fastpath_send_input_pdu(rdpFastPath* fastpath, wStream* s)
 {
 	return fastpath_send_multiple_input_pdu(fastpath, s, 1);
 }
@@ -862,12 +862,12 @@ wStream* fastpath_update_pdu_init_new(rdpFastPath* fastpath)
 	return s;
 }
 
-WINBOOL fastpath_send_update_pdu(rdpFastPath* fastpath, BYTE updateCode, wStream* s)
+BOOL fastpath_send_update_pdu(rdpFastPath* fastpath, BYTE updateCode, wStream* s)
 {
 	int fragment;
 	UINT16 maxLength;
 	UINT32 totalLength;
-	WINBOOL status = TRUE;
+	BOOL status = TRUE;
 	wStream* fs = NULL;
 	rdpSettings* settings;
 	rdpRdp* rdp = fastpath->rdp;

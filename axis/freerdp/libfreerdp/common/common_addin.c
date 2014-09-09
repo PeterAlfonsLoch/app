@@ -81,7 +81,7 @@ LPSTR freerdp_get_dynamic_addin_install_path()
 void* freerdp_load_dynamic_addin(LPCSTR pszFileName, LPCSTR pszPath, LPCSTR pszEntryName)
 {
 	void* entry;
-	WINBOOL bHasExt;
+	BOOL bHasExt;
 	PCSTR pszExt;
 	size_t cchExt;
 	HINSTANCE library;

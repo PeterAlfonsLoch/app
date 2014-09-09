@@ -38,8 +38,8 @@ pstatus_t general_YCoCgRToRGB_8u_AC4R(
 	BYTE *pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
 	UINT8 shift,
-	WINBOOL withAlpha,
-	WINBOOL invert)
+	BOOL withAlpha,
+	BOOL invert)
 {
 	const BYTE *sptr = pSrc;
 	BYTE *dptr = pDst;

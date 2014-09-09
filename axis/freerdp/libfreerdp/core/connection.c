@@ -167,9 +167,9 @@
  * @return true if the connection succeeded. FALSE otherwise.
  */
 
-WINBOOL rdp_client_connect(rdpRdp* rdp)
+BOOL rdp_client_connect(rdpRdp* rdp)
 {
-	WINBOOL ret;
+	BOOL ret;
 	rdpSettings* settings = rdp->settings;
 
 	if (rdp->settingsCopy)
@@ -314,14 +314,14 @@ WINBOOL rdp_client_connect(rdpRdp* rdp)
 	return TRUE;
 }
 
-WINBOOL rdp_client_disconnect(rdpRdp* rdp)
+BOOL rdp_client_disconnect(rdpRdp* rdp)
 {
 	return transport_disconnect(rdp->transport);
 }
 
-WINBOOL rdp_client_redirect(rdpRdp* rdp)
+BOOL rdp_client_redirect(rdpRdp* rdp)
 {
-	WINBOOL status;
+	BOOL status;
 	rdpSettings* settings = rdp->settings;
 
 	rdp_client_disconnect(rdp);
@@ -370,7 +370,7 @@ WINBOOL rdp_client_redirect(rdpRdp* rdp)
 	return status;
 }
 
-WINBOOL rdp_client_reconnect(rdpRdp* rdp)
+BOOL rdp_client_reconnect(rdpRdp* rdp)
 {
 	rdp_client_disconnect(rdp);
 
@@ -381,7 +381,7 @@ WINBOOL rdp_client_reconnect(rdpRdp* rdp)
 
 static BYTE fips_ivec[8] = { 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF };
 
-static WINBOOL rdp_client_establish_keys(rdpRdp* rdp)
+static BOOL rdp_client_establish_keys(rdpRdp* rdp)
 {
 	BYTE* mod;
 	BYTE* exp;
@@ -389,7 +389,7 @@ static WINBOOL rdp_client_establish_keys(rdpRdp* rdp)
 	UINT32 length;
 	UINT32 key_len;
 	int status = 0;
-	WINBOOL ret = FALSE;
+	BOOL ret = FALSE;
 	rdpSettings* settings;
 	BYTE* crypt_client_random = NULL;
 
@@ -500,7 +500,7 @@ end:
 	return ret;
 }
 
-WINBOOL rdp_server_establish_keys(rdpRdp* rdp, wStream* s)
+BOOL rdp_server_establish_keys(rdpRdp* rdp, wStream* s)
 {
 	BYTE* client_random = NULL;
 	BYTE* crypt_client_random = NULL;
@@ -508,7 +508,7 @@ WINBOOL rdp_server_establish_keys(rdpRdp* rdp, wStream* s)
 	UINT16 channel_id, length, sec_flags;
 	BYTE* mod;
 	BYTE* priv_exp;
-	WINBOOL ret = FALSE;
+	BOOL ret = FALSE;
 
 	if (!rdp->settings->DisableEncryption)
 	{
@@ -624,7 +624,7 @@ end2:
 	return ret;
 }
 
-WINBOOL rdp_client_connect_mcs_connect_response(rdpRdp* rdp, wStream* s)
+BOOL rdp_client_connect_mcs_connect_response(rdpRdp* rdp, wStream* s)
 {
 	if (!mcs_recv_connect_response(rdp->mcs, s))
 	{
@@ -643,7 +643,7 @@ WINBOOL rdp_client_connect_mcs_connect_response(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_client_connect_mcs_attach_user_confirm(rdpRdp* rdp, wStream* s)
+BOOL rdp_client_connect_mcs_attach_user_confirm(rdpRdp* rdp, wStream* s)
 {
 	if (!mcs_recv_attach_user_confirm(rdp->mcs, s))
 		return FALSE;
@@ -656,11 +656,11 @@ WINBOOL rdp_client_connect_mcs_attach_user_confirm(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_client_connect_mcs_channel_join_confirm(rdpRdp* rdp, wStream* s)
+BOOL rdp_client_connect_mcs_channel_join_confirm(rdpRdp* rdp, wStream* s)
 {
 	UINT32 i;
 	UINT16 channelId;
-	WINBOOL allJoined = TRUE;
+	BOOL allJoined = TRUE;
 	rdpMcs* mcs = rdp->mcs;
 
 	if (!mcs_recv_channel_join_confirm(mcs, s, &channelId))
@@ -754,7 +754,7 @@ WINBOOL rdp_client_connect_mcs_channel_join_confirm(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_client_connect_auto_detect(rdpRdp* rdp, wStream *s)
+BOOL rdp_client_connect_auto_detect(rdpRdp* rdp, wStream *s)
 {
 	BYTE* mark;
 	UINT16 length;
@@ -959,9 +959,9 @@ int rdp_client_transition_to_state(rdpRdp* rdp, int state)
 	return status;
 }
 
-WINBOOL rdp_server_accept_nego(rdpRdp* rdp, wStream* s)
+BOOL rdp_server_accept_nego(rdpRdp* rdp, wStream* s)
 {
-	WINBOOL status;
+	BOOL status;
 	rdpSettings* settings = rdp->settings;
 	rdpNego *nego = rdp->nego;
 
@@ -1026,7 +1026,7 @@ WINBOOL rdp_server_accept_nego(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_server_accept_mcs_connect_initial(rdpRdp* rdp, wStream* s)
+BOOL rdp_server_accept_mcs_connect_initial(rdpRdp* rdp, wStream* s)
 {
 	UINT32 i;
 	rdpMcs* mcs = rdp->mcs;
@@ -1051,7 +1051,7 @@ WINBOOL rdp_server_accept_mcs_connect_initial(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_server_accept_mcs_erect_domain_request(rdpRdp* rdp, wStream* s)
+BOOL rdp_server_accept_mcs_erect_domain_request(rdpRdp* rdp, wStream* s)
 {
 	if (!mcs_recv_erect_domain_request(rdp->mcs, s))
 		return FALSE;
@@ -1061,7 +1061,7 @@ WINBOOL rdp_server_accept_mcs_erect_domain_request(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_server_accept_mcs_attach_user_request(rdpRdp* rdp, wStream* s)
+BOOL rdp_server_accept_mcs_attach_user_request(rdpRdp* rdp, wStream* s)
 {
 	if (!mcs_recv_attach_user_request(rdp->mcs, s))
 		return FALSE;
@@ -1074,11 +1074,11 @@ WINBOOL rdp_server_accept_mcs_attach_user_request(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_server_accept_mcs_channel_join_request(rdpRdp* rdp, wStream* s)
+BOOL rdp_server_accept_mcs_channel_join_request(rdpRdp* rdp, wStream* s)
 {
 	UINT32 i;
 	UINT16 channelId;
-	WINBOOL allJoined = TRUE;
+	BOOL allJoined = TRUE;
 	rdpMcs* mcs = rdp->mcs;
 
 	if (!mcs_recv_channel_join_request(mcs, s, &channelId))
@@ -1109,7 +1109,7 @@ WINBOOL rdp_server_accept_mcs_channel_join_request(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_server_accept_confirm_active(rdpRdp* rdp, wStream* s)
+BOOL rdp_server_accept_confirm_active(rdpRdp* rdp, wStream* s)
 {
 	if (rdp->state != CONNECTION_STATE_CAPABILITIES_EXCHANGE)
 		return FALSE;
@@ -1128,7 +1128,7 @@ WINBOOL rdp_server_accept_confirm_active(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_server_reactivate(rdpRdp* rdp)
+BOOL rdp_server_reactivate(rdpRdp* rdp)
 {
 	if (!rdp_send_deactivate_all(rdp))
 		return FALSE;

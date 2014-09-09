@@ -36,7 +36,7 @@
  * http://download.microsoft.com/download/9/8/6/9863C72A-A3AA-4DDB-B1BA-CA8D17EFD2D4/RIFFNEW.pdf
  */
 
-static WINBOOL freerdp_dsp_resample(FREERDP_DSP_CONTEXT* context,
+static BOOL freerdp_dsp_resample(FREERDP_DSP_CONTEXT* context,
 	const BYTE* src, int bytes_per_sample,
 	UINT32 schan, UINT32 srate, int sframes,
 	UINT32 rchan, UINT32 rrate)
@@ -154,7 +154,7 @@ static UINT16 dsp_decode_ima_adpcm_sample(ADPCM* adpcm,
 	return (UINT16) d;
 }
 
-static WINBOOL freerdp_dsp_decode_ima_adpcm(FREERDP_DSP_CONTEXT* context,
+static BOOL freerdp_dsp_decode_ima_adpcm(FREERDP_DSP_CONTEXT* context,
 	const BYTE* src, int size, int channels, int block_size)
 {
 	BYTE* dst;
@@ -336,7 +336,7 @@ static BYTE dsp_encode_ima_adpcm_sample(ADPCM* adpcm, int channel, INT16 sample)
 	return enc;
 }
 
-static WINBOOL freerdp_dsp_encode_ima_adpcm(FREERDP_DSP_CONTEXT* context,
+static BOOL freerdp_dsp_encode_ima_adpcm(FREERDP_DSP_CONTEXT* context,
 	const BYTE* src, int size, int channels, int block_size)
 {
 	int i;
@@ -458,7 +458,7 @@ static INLINE INT16 freerdp_dsp_decode_ms_adpcm_sample(ADPCM* adpcm, BYTE sample
 	return (INT16) presample;
 }
 
-static WINBOOL freerdp_dsp_decode_ms_adpcm(FREERDP_DSP_CONTEXT* context,
+static BOOL freerdp_dsp_decode_ms_adpcm(FREERDP_DSP_CONTEXT* context,
 	const BYTE* src, int size, int channels, int block_size)
 {
 	BYTE* dst;
@@ -593,7 +593,7 @@ static BYTE freerdp_dsp_encode_ms_adpcm_sample(ADPCM* adpcm, INT32 sample, int c
 	return ((BYTE) errordelta) & 0x0F;
 }
 
-static WINBOOL freerdp_dsp_encode_ms_adpcm(FREERDP_DSP_CONTEXT* context,
+static BOOL freerdp_dsp_encode_ms_adpcm(FREERDP_DSP_CONTEXT* context,
 	const BYTE* src, int size, int channels, int block_size)
 {
 	BYTE* dst;

@@ -415,7 +415,7 @@ BIO_METHOD* BIO_s_buffered_socket(void)
 	return &transport_bio_buffered_socket_methods;
 }
 
-WINBOOL transport_bio_buffered_drain(BIO *bio)
+BOOL transport_bio_buffered_drain(BIO *bio)
 {
 	int status;
 	rdpTcp* tcp = (rdpTcp*) bio->ptr;
@@ -487,7 +487,7 @@ void tcp_get_mac_address(rdpTcp* tcp)
 		mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]); */
 }
 
-WINBOOL tcp_connect(rdpTcp* tcp, const char* hostname, int port, int timeout)
+BOOL tcp_connect(rdpTcp* tcp, const char* hostname, int port, int timeout)
 {
 	int status;
 	UINT32 option_value;
@@ -627,7 +627,7 @@ WINBOOL tcp_connect(rdpTcp* tcp, const char* hostname, int port, int timeout)
 	return TRUE;
 }
 
-WINBOOL tcp_disconnect(rdpTcp* tcp)
+BOOL tcp_disconnect(rdpTcp* tcp)
 {
 	freerdp_tcp_disconnect(tcp->sockfd);
 	tcp->sockfd = -1;
@@ -635,7 +635,7 @@ WINBOOL tcp_disconnect(rdpTcp* tcp)
 	return TRUE;
 }
 
-WINBOOL tcp_set_blocking_mode(rdpTcp* tcp, WINBOOL blocking)
+BOOL tcp_set_blocking_mode(rdpTcp* tcp, BOOL blocking)
 {
 #ifndef _WIN32
 	int flags;
@@ -682,7 +682,7 @@ WINBOOL tcp_set_blocking_mode(rdpTcp* tcp, WINBOOL blocking)
 	return TRUE;
 }
 
-WINBOOL tcp_set_keep_alive_mode(rdpTcp* tcp)
+BOOL tcp_set_keep_alive_mode(rdpTcp* tcp)
 {
 #ifndef _WIN32
 	UINT32 option_value;

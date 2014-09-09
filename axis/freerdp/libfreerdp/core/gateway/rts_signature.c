@@ -205,7 +205,7 @@ RTS_PDU_SIGNATURE_ENTRY RTS_PDU_SIGNATURE_TABLE[] =
 	{ 0, NULL }
 };
 
-WINBOOL rts_match_pdu_signature(rdpRpc* rpc, RtsPduSignature* signature, rpcconn_rts_hdr_t* rts)
+BOOL rts_match_pdu_signature(rdpRpc* rpc, RtsPduSignature* signature, rpcconn_rts_hdr_t* rts)
 {
 	int i;
 	int status;

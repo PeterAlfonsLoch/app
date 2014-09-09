@@ -30,7 +30,7 @@ extern pstatus_t general_RGB565ToARGB_16u32u_C3C4(
 	const UINT16* pSrc, INT32 srcStep,
 	UINT32* pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
-	WINBOOL alpha, WINBOOL invert);
+	BOOL alpha, BOOL invert);
 extern void primitives_init_16to32bpp_opt(primitives_t* prims);
 
 #endif /* !__PRIM_16TO32BPP_H_INCLUDED__ */

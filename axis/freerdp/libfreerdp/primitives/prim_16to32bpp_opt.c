@@ -44,7 +44,7 @@ static pstatus_t sse3_RGB565ToARGB_16u32u_C3C4_no_invert(
 	const UINT16* pSrc, INT32 srcStep,
 	UINT32* pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
-	WINBOOL alpha)
+	BOOL alpha)
 {
 	const BYTE *src = (const BYTE *) pSrc;
 	BYTE *dst = (BYTE *) pDst;
@@ -148,7 +148,7 @@ static pstatus_t sse3_RGB565ToARGB_16u32u_C3C4_invert(
 	const UINT16* pSrc, INT32 srcStep,
 	UINT32* pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
-	WINBOOL alpha)
+	BOOL alpha)
 {
 	const BYTE *src = (const BYTE *) pSrc;
 	BYTE *dst = (BYTE *) pDst;
@@ -252,7 +252,7 @@ pstatus_t sse3_RGB565ToARGB_16u32u_C3C4(
 	const UINT16* pSrc, INT32 srcStep,
 	UINT32* pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
-	WINBOOL alpha, WINBOOL invert)
+	BOOL alpha, BOOL invert)
 {
 	if (invert)
 	{

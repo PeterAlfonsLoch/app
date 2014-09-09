@@ -46,26 +46,26 @@ typedef struct rdp_tcp rdpTcp;
 struct rdp_tcp
 {
 	int sockfd;
-	WINBOOL ipcSocket;
+	BOOL ipcSocket;
 	char ip_address[32];
 	BYTE mac_address[6];
 	rdpSettings* settings;
 	BIO* socketBio;
 	BIO* bufferedBio;
 	RingBuffer xmitBuffer;
-	WINBOOL writeBlocked;
-	WINBOOL readBlocked;
+	BOOL writeBlocked;
+	BOOL readBlocked;
 	HANDLE event;
 };
 
-WINBOOL tcp_connect(rdpTcp* tcp, const char* hostname, int port, int timeout);
-WINBOOL tcp_disconnect(rdpTcp* tcp);
+BOOL tcp_connect(rdpTcp* tcp, const char* hostname, int port, int timeout);
+BOOL tcp_disconnect(rdpTcp* tcp);
 int tcp_read(rdpTcp* tcp, BYTE* data, int length);
 int tcp_write(rdpTcp* tcp, BYTE* data, int length);
 int tcp_wait_read(rdpTcp* tcp, DWORD dwMilliSeconds);
 int tcp_wait_write(rdpTcp* tcp, DWORD dwMilliSeconds);
-WINBOOL tcp_set_blocking_mode(rdpTcp* tcp, WINBOOL blocking);
-WINBOOL tcp_set_keep_alive_mode(rdpTcp* tcp);
+BOOL tcp_set_blocking_mode(rdpTcp* tcp, BOOL blocking);
+BOOL tcp_set_keep_alive_mode(rdpTcp* tcp);
 int tcp_attach(rdpTcp* tcp, int sockfd);
 HANDLE tcp_get_event_handle(rdpTcp* tcp);
 

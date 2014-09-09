@@ -260,8 +260,8 @@ void RLEDECOMPRESS(BYTE* pbSrcBuffer, UINT32 cbSrcBuffer, BYTE* pbDestBuffer,
 
 	PIXEL temp;
 	PIXEL fgPel = WHITE_PIXEL;
-	WINBOOL fInsertFgPel = FALSE;
-	WINBOOL fFirstLine = TRUE;
+	BOOL fInsertFgPel = FALSE;
+	BOOL fFirstLine = TRUE;
 
 	BYTE bitmask;
 	PIXEL pixelA, pixelB;

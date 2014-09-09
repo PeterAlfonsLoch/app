@@ -60,10 +60,10 @@
 /**
  * Verify if a packet has valid TPKT header.\n
  * @param s
- * @return WINBOOL
+ * @return BOOL
  */
 
-WINBOOL tpkt_verify_header(wStream* s)
+BOOL tpkt_verify_header(wStream* s)
 {
 	BYTE version;
 

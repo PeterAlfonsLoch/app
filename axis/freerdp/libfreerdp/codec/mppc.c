@@ -468,8 +468,8 @@ int mppc_compress(MPPC_CONTEXT* mppc, BYTE* pSrcData, UINT32 SrcSize, BYTE** ppD
 	BYTE* pDstData;
 	UINT32 MatchIndex;
 	UINT32 accumulator;
-	WINBOOL PacketFlushed;
-	WINBOOL PacketAtFront;
+	BOOL PacketFlushed;
+	BOOL PacketAtFront;
 	DWORD CopyOffset;
 	DWORD LengthOfMatch;
 	BYTE* HistoryBuffer;
@@ -819,7 +819,7 @@ void mppc_set_compression_level(MPPC_CONTEXT* mppc, DWORD CompressionLevel)
 	}
 }
 
-void mppc_context_reset(MPPC_CONTEXT* mppc, WINBOOL flush)
+void mppc_context_reset(MPPC_CONTEXT* mppc, BOOL flush)
 {
 	ZeroMemory(&(mppc->HistoryBuffer), sizeof(mppc->HistoryBuffer));
 	ZeroMemory(&(mppc->MatchBuffer), sizeof(mppc->MatchBuffer));
@@ -832,7 +832,7 @@ void mppc_context_reset(MPPC_CONTEXT* mppc, WINBOOL flush)
 	mppc->HistoryPtr = &(mppc->HistoryBuffer[mppc->HistoryOffset]);
 }
 
-MPPC_CONTEXT* mppc_context_new(DWORD CompressionLevel, WINBOOL Compressor)
+MPPC_CONTEXT* mppc_context_new(DWORD CompressionLevel, BOOL Compressor)
 {
 	MPPC_CONTEXT* mppc;
 

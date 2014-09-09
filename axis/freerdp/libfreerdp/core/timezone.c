@@ -74,7 +74,7 @@ void rdp_write_system_time(wStream* s, SYSTEM_TIME* system_time)
  * @param settings settings
  */
 
-WINBOOL rdp_read_client_time_zone(wStream* s, rdpSettings* settings)
+BOOL rdp_read_client_time_zone(wStream* s, rdpSettings* settings)
 {
 	char* str = NULL;
 	TIME_ZONE_INFO* clientTimeZone;

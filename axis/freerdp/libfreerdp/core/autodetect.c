@@ -33,7 +33,7 @@ typedef struct
 	UINT16 requestType;
 } AUTODETECT_REQ_PDU;
 
-static WINBOOL autodetect_send_rtt_measure_response(rdpRdp* rdp, UINT16 sequenceNumber)
+static BOOL autodetect_send_rtt_measure_response(rdpRdp* rdp, UINT16 sequenceNumber)
 {
 	wStream* s;
 
@@ -54,7 +54,7 @@ static WINBOOL autodetect_send_rtt_measure_response(rdpRdp* rdp, UINT16 sequence
 	return rdp_send_message_channel_pdu(rdp, s, SEC_AUTODETECT_RSP);
 }
 
-static WINBOOL autodetect_send_bandwidth_measure_results(rdpRdp* rdp, UINT16 responseType, UINT16 sequenceNumber)
+static BOOL autodetect_send_bandwidth_measure_results(rdpRdp* rdp, UINT16 responseType, UINT16 sequenceNumber)
 {
 	UINT32 timeDelta;
 	wStream* s;
@@ -81,7 +81,7 @@ static WINBOOL autodetect_send_bandwidth_measure_results(rdpRdp* rdp, UINT16 res
 	return rdp_send_message_channel_pdu(rdp, s, SEC_AUTODETECT_RSP);
 }
 
-WINBOOL autodetect_send_netchar_sync(rdpRdp* rdp, UINT16 sequenceNumber)
+BOOL autodetect_send_netchar_sync(rdpRdp* rdp, UINT16 sequenceNumber)
 {
 	wStream* s;
 
@@ -104,7 +104,7 @@ WINBOOL autodetect_send_netchar_sync(rdpRdp* rdp, UINT16 sequenceNumber)
 	return rdp_send_message_channel_pdu(rdp, s, SEC_AUTODETECT_RSP);
 }
 
-static WINBOOL autodetect_recv_rtt_measure_request(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
+static BOOL autodetect_recv_rtt_measure_request(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
 {
 	if (autodetectReqPdu->headerLength != 0x06)
 		return FALSE;
@@ -115,7 +115,7 @@ static WINBOOL autodetect_recv_rtt_measure_request(rdpRdp* rdp, wStream* s, AUTO
 	return autodetect_send_rtt_measure_response(rdp, autodetectReqPdu->sequenceNumber);
 }
 
-static WINBOOL autodetect_recv_bandwidth_measure_start(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
+static BOOL autodetect_recv_bandwidth_measure_start(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
 {
 	if (autodetectReqPdu->headerLength != 0x06)
 		return FALSE;
@@ -129,7 +129,7 @@ static WINBOOL autodetect_recv_bandwidth_measure_start(rdpRdp* rdp, wStream* s, 
 	return TRUE;
 }
 
-static WINBOOL autodetect_recv_bandwidth_measure_payload(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
+static BOOL autodetect_recv_bandwidth_measure_payload(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
 {
 	UINT16 payloadLength;
 
@@ -149,7 +149,7 @@ static WINBOOL autodetect_recv_bandwidth_measure_payload(rdpRdp* rdp, wStream* s
 	return TRUE;
 }
 
-static WINBOOL autodetect_recv_bandwidth_measure_stop(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
+static BOOL autodetect_recv_bandwidth_measure_stop(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
 {
 	UINT16 payloadLength;
 	UINT16 responseType;
@@ -183,7 +183,7 @@ static WINBOOL autodetect_recv_bandwidth_measure_stop(rdpRdp* rdp, wStream* s, A
 	return autodetect_send_bandwidth_measure_results(rdp, responseType, autodetectReqPdu->sequenceNumber);
 }
 
-static WINBOOL autodetect_recv_netchar_result(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
+static BOOL autodetect_recv_netchar_result(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
 {
 	switch (autodetectReqPdu->requestType)
 	{
@@ -221,7 +221,7 @@ static WINBOOL autodetect_recv_netchar_result(rdpRdp* rdp, wStream* s, AUTODETEC
 int rdp_recv_autodetect_packet(rdpRdp* rdp, wStream* s)
 {
 	AUTODETECT_REQ_PDU autodetectReqPdu;
-	WINBOOL success = FALSE;
+	BOOL success = FALSE;
 
 	if (Stream_GetRemainingLength(s) < 6)
 		return -1;

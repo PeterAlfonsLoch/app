@@ -46,7 +46,7 @@ void rail_unicode_string_free(RAIL_UNICODE_STRING* unicode_string)
 		free(unicode_string->string);
 }
 
-WINBOOL rail_read_unicode_string(wStream* s, RAIL_UNICODE_STRING* unicode_string)
+BOOL rail_read_unicode_string(wStream* s, RAIL_UNICODE_STRING* unicode_string)
 {
 	if (Stream_GetRemainingLength(s) < 2)
 		return FALSE;

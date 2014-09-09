@@ -32,8 +32,8 @@
 
 #include "rpc.h"
 
-WINBOOL rpc_ntlm_http_out_connect(rdpRpc* rpc);
-WINBOOL rpc_ntlm_http_in_connect(rdpRpc* rpc);
+BOOL rpc_ntlm_http_out_connect(rdpRpc* rpc);
+BOOL rpc_ntlm_http_in_connect(rdpRpc* rpc);
 
 void rpc_ntlm_http_init_channel(rdpRpc* rpc, rdpNtlmHttp* ntlm_http, TSG_CHANNEL channel);
 

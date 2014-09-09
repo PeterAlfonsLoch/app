@@ -24,7 +24,7 @@
 #include <assert.h>
 
 
-WINBOOL ringbuffer_init(RingBuffer *rb, size_t initialSize)
+BOOL ringbuffer_init(RingBuffer *rb, size_t initialSize)
 {
 	rb->buffer = malloc(initialSize);
 	if (!rb->buffer)
@@ -52,7 +52,7 @@ void ringbuffer_destroy(RingBuffer *ringbuffer)
 	ringbuffer->buffer = 0;
 }
 
-static WINBOOL ringbuffer_realloc(RingBuffer *rb, size_t targetSize)
+static BOOL ringbuffer_realloc(RingBuffer *rb, size_t targetSize)
 {
 	BYTE *newData;
 
@@ -131,7 +131,7 @@ static WINBOOL ringbuffer_realloc(RingBuffer *rb, size_t targetSize)
  * @param sz
  * @return
  */
-WINBOOL ringbuffer_write(RingBuffer *rb, const BYTE *ptr, size_t sz)
+BOOL ringbuffer_write(RingBuffer *rb, const BYTE *ptr, size_t sz)
 {
 	size_t toWrite;
 	size_t remaining;
@@ -196,7 +196,7 @@ BYTE *ringbuffer_ensure_linear_write(RingBuffer *rb, size_t sz)
 	return rb->buffer + rb->writePtr;
 }
 
-WINBOOL ringbuffer_commit_written_bytes(RingBuffer *rb, size_t sz)
+BOOL ringbuffer_commit_written_bytes(RingBuffer *rb, size_t sz)
 {
 	if (rb->writePtr + sz > rb->size)
 		return FALSE;

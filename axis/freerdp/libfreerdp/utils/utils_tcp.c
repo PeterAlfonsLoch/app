@@ -276,7 +276,7 @@ int freerdp_tcp_disconnect(int sockfd)
 	return 0;
 }
 
-int freerdp_tcp_set_no_delay(int sockfd, WINBOOL no_delay)
+int freerdp_tcp_set_no_delay(int sockfd, BOOL no_delay)
 {
 	UINT32 option_value;
 	socklen_t option_len;

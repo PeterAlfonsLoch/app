@@ -712,8 +712,8 @@ struct rpc_client
 
 	HANDLE PduSentEvent;
 
-	WINBOOL SynchronousSend;
-	WINBOOL SynchronousReceive;
+	BOOL SynchronousSend;
+	BOOL SynchronousReceive;
 };
 typedef struct rpc_client RpcClient;
 
@@ -762,7 +762,7 @@ struct rdp_rpc
 	wArrayList* VirtualConnectionCookieTable;
 };
 
-WINBOOL rpc_connect(rdpRpc* rpc);
+BOOL rpc_connect(rdpRpc* rpc);
 
 void rpc_pdu_header_print(rpcconn_hdr_t* header);
 void rpc_pdu_header_init(rdpRpc* rpc, rpcconn_hdr_t* header);
@@ -775,7 +775,7 @@ int rpc_out_read(rdpRpc* rpc, BYTE* data, int length);
 int rpc_out_write(rdpRpc* rpc, const BYTE* data, int length);
 int rpc_in_write(rdpRpc* rpc, const BYTE* data, int length);
 
-WINBOOL rpc_get_stub_data_info(rdpRpc* rpc, BYTE* header, UINT32* offset, UINT32* length);
+BOOL rpc_get_stub_data_info(rdpRpc* rpc, BYTE* header, UINT32* offset, UINT32* length);
 
 int rpc_write(rdpRpc* rpc, BYTE* data, int length, UINT16 opnum);
 

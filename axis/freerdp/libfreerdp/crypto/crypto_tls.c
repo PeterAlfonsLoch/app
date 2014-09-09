@@ -499,7 +499,7 @@ BIO* BIO_new_rdp_tls(SSL_CTX* ctx, int client)
 	return bio;
 }
 
-static CryptoCert tls_get_certificate(rdpTls* tls, WINBOOL peer)
+static CryptoCert tls_get_certificate(rdpTls* tls, BOOL peer)
 {
 	CryptoCert cert;
 	X509* remote_cert;
@@ -576,9 +576,9 @@ out_free:
 
 
 #if defined(__APPLE__)
-WINBOOL tls_prepare(rdpTls* tls, BIO *underlying, SSL_METHOD *method, int options, WINBOOL clientMode)
+BOOL tls_prepare(rdpTls* tls, BIO *underlying, SSL_METHOD *method, int options, BOOL clientMode)
 #else
-WINBOOL tls_prepare(rdpTls* tls, BIO *underlying, const SSL_METHOD *method, int options, WINBOOL clientMode)
+BOOL tls_prepare(rdpTls* tls, BIO *underlying, const SSL_METHOD *method, int options, BOOL clientMode)
 #endif
 {
 	tls->ctx = SSL_CTX_new(method);
@@ -613,7 +613,7 @@ WINBOOL tls_prepare(rdpTls* tls, BIO *underlying, const SSL_METHOD *method, int 
 	return TRUE;
 }
 
-int tls_do_handshake(rdpTls* tls, WINBOOL clientMode)
+int tls_do_handshake(rdpTls* tls, BOOL clientMode)
 {
 	CryptoCert cert;
 	int verify_status, status;
@@ -757,7 +757,7 @@ int tls_connect(rdpTls* tls, BIO *underlying)
 
 
 
-WINBOOL tls_accept(rdpTls* tls, BIO *underlying, const char* cert_file, const char* privatekey_file)
+BOOL tls_accept(rdpTls* tls, BIO *underlying, const char* cert_file, const char* privatekey_file)
 {
 	long options = 0;
 
@@ -817,7 +817,7 @@ WINBOOL tls_accept(rdpTls* tls, BIO *underlying, const char* cert_file, const ch
 	return tls_do_handshake(tls, FALSE) > 0;
 }
 
-WINBOOL tls_disconnect(rdpTls* tls)
+BOOL tls_disconnect(rdpTls* tls)
 {
 	if (!tls)
 		return FALSE;
@@ -1029,7 +1029,7 @@ int tls_set_alert_code(rdpTls* tls, int level, int description)
 	return 0;
 }
 
-WINBOOL tls_match_hostname(char *pattern, int pattern_length, char *hostname)
+BOOL tls_match_hostname(char *pattern, int pattern_length, char *hostname)
 {
 	if (strlen(hostname) == pattern_length)
 	{
@@ -1059,9 +1059,9 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 	char** alt_names = NULL;
 	int alt_names_count = 0;
 	int* alt_names_lengths = NULL;
-	WINBOOL certificate_status;
-	WINBOOL hostname_match = FALSE;
-	WINBOOL verification_status = FALSE;
+	BOOL certificate_status;
+	BOOL hostname_match = FALSE;
+	BOOL verification_status = FALSE;
 	rdpCertificateData* certificate_data;
 
 	if (tls->settings->ExternalCertificateManagement)
@@ -1211,7 +1211,7 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 		char* subject;
 		char* fingerprint;
 		freerdp* instance = (freerdp*) tls->settings->instance;
-		WINBOOL accept_certificate = FALSE;
+		BOOL accept_certificate = FALSE;
 
 		issuer = crypto_cert_issuer(cert->px509);
 		subject = crypto_cert_subject(cert->px509);

@@ -176,7 +176,7 @@ extern RtsPduSignature RTS_PDU_PING_SIGNATURE;
 extern RtsPduSignature RTS_PDU_FLOW_CONTROL_ACK_SIGNATURE;
 extern RtsPduSignature RTS_PDU_FLOW_CONTROL_ACK_WITH_DESTINATION_SIGNATURE;
 
-WINBOOL rts_match_pdu_signature(rdpRpc* rpc, RtsPduSignature* signature, rpcconn_rts_hdr_t* rts);
+BOOL rts_match_pdu_signature(rdpRpc* rpc, RtsPduSignature* signature, rpcconn_rts_hdr_t* rts);
 int rts_extract_pdu_signature(rdpRpc* rpc, RtsPduSignature* signature, rpcconn_rts_hdr_t* rts);
 UINT32 rts_identify_pdu_signature(rdpRpc* rpc, RtsPduSignature* signature, RTS_PDU_SIGNATURE_ENTRY** entry);
 int rts_print_pdu_signature(rdpRpc* rpc, RtsPduSignature* signature);

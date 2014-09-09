@@ -138,7 +138,7 @@ DWORD TsProxySendToServer(handle_t IDL_handle, byte pRpcMessage[], UINT32 count,
 	return length;
 }
 
-WINBOOL TsProxyCreateTunnelWriteRequest(rdpTsg* tsg)
+BOOL TsProxyCreateTunnelWriteRequest(rdpTsg* tsg)
 {
 	int status;
 	BYTE* buffer;
@@ -203,7 +203,7 @@ WINBOOL TsProxyCreateTunnelWriteRequest(rdpTsg* tsg)
 	return TRUE;
 }
 
-WINBOOL TsProxyCreateTunnelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
+BOOL TsProxyCreateTunnelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 {
 	BYTE* buffer;
 	UINT32 count;
@@ -513,7 +513,7 @@ WINBOOL TsProxyCreateTunnelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 	return TRUE;
 }
 
-WINBOOL TsProxyCreateTunnel(rdpTsg* tsg, PTSG_PACKET tsgPacket, PTSG_PACKET* tsgPacketResponse,
+BOOL TsProxyCreateTunnel(rdpTsg* tsg, PTSG_PACKET tsgPacket, PTSG_PACKET* tsgPacketResponse,
 		PTUNNEL_CONTEXT_HANDLE_SERIALIZE* tunnelContext, UINT32* tunnelId)
 {
 	/**
@@ -538,7 +538,7 @@ WINBOOL TsProxyCreateTunnel(rdpTsg* tsg, PTSG_PACKET tsgPacket, PTSG_PACKET* tsg
 	return TRUE;
 }
 
-WINBOOL TsProxyAuthorizeTunnelWriteRequest(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext)
+BOOL TsProxyAuthorizeTunnelWriteRequest(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext)
 {
 	UINT32 pad;
 	int status;
@@ -603,7 +603,7 @@ WINBOOL TsProxyAuthorizeTunnelWriteRequest(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_N
 	return TRUE;
 }
 
-WINBOOL TsProxyAuthorizeTunnelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
+BOOL TsProxyAuthorizeTunnelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 {
 	BYTE* buffer;
 	UINT32 length;
@@ -698,7 +698,7 @@ WINBOOL TsProxyAuthorizeTunnelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 	return TRUE;
 }
 
-WINBOOL TsProxyAuthorizeTunnel(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext,
+BOOL TsProxyAuthorizeTunnel(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext,
 		PTSG_PACKET tsgPacket, PTSG_PACKET* tsgPacketResponse)
 {
 	/**
@@ -723,7 +723,7 @@ WINBOOL TsProxyAuthorizeTunnel(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE t
 	return TRUE;
 }
 
-WINBOOL TsProxyMakeTunnelCallWriteRequest(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext, unsigned long procId)
+BOOL TsProxyMakeTunnelCallWriteRequest(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext, unsigned long procId)
 {
 	int status;
 	BYTE* buffer;
@@ -760,9 +760,9 @@ WINBOOL TsProxyMakeTunnelCallWriteRequest(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NO
 	return TRUE;
 }
 
-WINBOOL TsProxyMakeTunnelCallReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
+BOOL TsProxyMakeTunnelCallReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 {
-	WINBOOL rc = TRUE;
+	BOOL rc = TRUE;
 	BYTE* buffer;
 	UINT32 length;
 	UINT32 offset;
@@ -887,7 +887,7 @@ WINBOOL TsProxyMakeTunnelCallReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 	return rc;
 }
 
-WINBOOL TsProxyMakeTunnelCall(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext,
+BOOL TsProxyMakeTunnelCall(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext,
 		UINT32 procId, PTSG_PACKET tsgPacket, PTSG_PACKET* tsgPacketResponse)
 {
 	/**
@@ -912,7 +912,7 @@ WINBOOL TsProxyMakeTunnelCall(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tu
 	return TRUE;
 }
 
-WINBOOL TsProxyCreateChannelWriteRequest(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext)
+BOOL TsProxyCreateChannelWriteRequest(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext)
 {
 	int status;
 	UINT32 count;
@@ -969,7 +969,7 @@ WINBOOL TsProxyCreateChannelWriteRequest(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOS
 	return TRUE;
 }
 
-WINBOOL TsProxyCreateChannelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
+BOOL TsProxyCreateChannelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 {
 	BYTE* buffer;
 	UINT32 length;
@@ -1002,7 +1002,7 @@ WINBOOL TsProxyCreateChannelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 	return TRUE;
 }
 
-WINBOOL TsProxyCreateChannel(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext, PTSENDPOINTINFO tsEndPointInfo,
+BOOL TsProxyCreateChannel(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tunnelContext, PTSENDPOINTINFO tsEndPointInfo,
 		PCHANNEL_CONTEXT_HANDLE_SERIALIZE* channelContext, UINT32* channelId)
 {
 	/**
@@ -1027,7 +1027,7 @@ WINBOOL TsProxyCreateChannel(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_NOSERIALIZE tun
 	return TRUE;
 }
 
-WINBOOL TsProxyCloseChannelWriteRequest(rdpTsg* tsg, PCHANNEL_CONTEXT_HANDLE_NOSERIALIZE* context)
+BOOL TsProxyCloseChannelWriteRequest(rdpTsg* tsg, PCHANNEL_CONTEXT_HANDLE_NOSERIALIZE* context)
 {
 	int status;
 	BYTE* buffer;
@@ -1051,7 +1051,7 @@ WINBOOL TsProxyCloseChannelWriteRequest(rdpTsg* tsg, PCHANNEL_CONTEXT_HANDLE_NOS
 	return TRUE;
 }
 
-WINBOOL TsProxyCloseChannelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
+BOOL TsProxyCloseChannelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 {
 	BYTE* buffer;
 	UINT32 length;
@@ -1103,7 +1103,7 @@ HRESULT TsProxyCloseChannel(rdpTsg* tsg, PCHANNEL_CONTEXT_HANDLE_NOSERIALIZE* co
 	return TRUE;
 }
 
-WINBOOL TsProxyCloseTunnelWriteRequest(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_SERIALIZE* context)
+BOOL TsProxyCloseTunnelWriteRequest(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_SERIALIZE* context)
 {
 	int status;
 	BYTE* buffer;
@@ -1127,7 +1127,7 @@ WINBOOL TsProxyCloseTunnelWriteRequest(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_SERIA
 	return TRUE;
 }
 
-WINBOOL TsProxyCloseTunnelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
+BOOL TsProxyCloseTunnelReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 {
 	BYTE* buffer;
 	UINT32 length;
@@ -1179,7 +1179,7 @@ HRESULT TsProxyCloseTunnel(rdpTsg* tsg, PTUNNEL_CONTEXT_HANDLE_SERIALIZE* contex
 	return TRUE;
 }
 
-WINBOOL TsProxySetupReceivePipeWriteRequest(rdpTsg* tsg)
+BOOL TsProxySetupReceivePipeWriteRequest(rdpTsg* tsg)
 {
 	int status;
 	BYTE* buffer;
@@ -1204,12 +1204,12 @@ WINBOOL TsProxySetupReceivePipeWriteRequest(rdpTsg* tsg)
 	return TRUE;
 }
 
-WINBOOL TsProxySetupReceivePipeReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
+BOOL TsProxySetupReceivePipeReadResponse(rdpTsg* tsg, RPC_PDU* pdu)
 {
 	return TRUE;
 }
 
-WINBOOL TsProxySetupReceivePipe(handle_t IDL_handle, BYTE* pRpcMessage)
+BOOL TsProxySetupReceivePipe(handle_t IDL_handle, BYTE* pRpcMessage)
 {
 	rdpTsg* tsg;
 
@@ -1234,7 +1234,7 @@ WINBOOL TsProxySetupReceivePipe(handle_t IDL_handle, BYTE* pRpcMessage)
 	return TRUE;
 }
 
-WINBOOL tsg_connect(rdpTsg* tsg, const char* hostname, UINT16 port)
+BOOL tsg_connect(rdpTsg* tsg, const char* hostname, UINT16 port)
 {
 	RPC_PDU* pdu = NULL;
 	RpcClientCall* call;
@@ -1458,7 +1458,7 @@ WINBOOL tsg_connect(rdpTsg* tsg, const char* hostname, UINT16 port)
 	return TRUE;
 }
 
-WINBOOL tsg_disconnect(rdpTsg* tsg)
+BOOL tsg_disconnect(rdpTsg* tsg)
 {
 	/**
 	 *                        Gateway Shutdown Phase
@@ -1586,7 +1586,7 @@ int tsg_write(rdpTsg* tsg, BYTE* data, UINT32 length)
 	return length;
 }
 
-WINBOOL tsg_set_blocking_mode(rdpTsg* tsg, WINBOOL blocking)
+BOOL tsg_set_blocking_mode(rdpTsg* tsg, BOOL blocking)
 {
 	tsg->rpc->client->SynchronousSend = TRUE;
 	tsg->rpc->client->SynchronousReceive = blocking;

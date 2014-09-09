@@ -124,7 +124,7 @@ void license_print_scope_list(SCOPE_LIST* scopeList)
  * @return if the operation completed successfully
  */
 
-WINBOOL license_read_preamble(wStream* s, BYTE* bMsgType, BYTE* flags, UINT16* wMsgSize)
+BOOL license_read_preamble(wStream* s, BYTE* bMsgType, BYTE* flags, UINT16* wMsgSize)
 {
 	/* preamble (4 bytes) */
 	if (Stream_GetRemainingLength(s) < 4)
@@ -184,7 +184,7 @@ wStream* license_send_stream_init(rdpLicense* license)
  * @param s stream
  */
 
-WINBOOL license_send(rdpLicense* license, wStream* s, BYTE type)
+BOOL license_send(rdpLicense* license, wStream* s, BYTE type)
 {
 	int length;
 	BYTE flags;
@@ -485,7 +485,7 @@ void license_decrypt_platform_challenge(rdpLicense* license)
  * @param productInfo product information
  */
 
-WINBOOL license_read_product_info(wStream* s, LICENSE_PRODUCT_INFO* productInfo)
+BOOL license_read_product_info(wStream* s, LICENSE_PRODUCT_INFO* productInfo)
 {
 	if (Stream_GetRemainingLength(s) < 8)
 		return FALSE;
@@ -560,7 +560,7 @@ void license_free_product_info(LICENSE_PRODUCT_INFO* productInfo)
  * @param blob license binary blob
  */
 
-WINBOOL license_read_binary_blob(wStream* s, LICENSE_BLOB* blob)
+BOOL license_read_binary_blob(wStream* s, LICENSE_BLOB* blob)
 {
 	UINT16 wBlobType;
 
@@ -672,7 +672,7 @@ void license_free_binary_blob(LICENSE_BLOB* blob)
  * @param scopeList scope list
  */
 
-WINBOOL license_read_scope_list(wStream* s, SCOPE_LIST* scopeList)
+BOOL license_read_scope_list(wStream* s, SCOPE_LIST* scopeList)
 {
 	UINT32 i;
 	UINT32 scopeCount;
@@ -749,7 +749,7 @@ void license_free_scope_list(SCOPE_LIST* scopeList)
  * @param s stream
  */
 
-WINBOOL license_read_license_request_packet(rdpLicense* license, wStream* s)
+BOOL license_read_license_request_packet(rdpLicense* license, wStream* s)
 {
 	/* ServerRandom (32 bytes) */
 	if (Stream_GetRemainingLength(s) < 32)
@@ -804,7 +804,7 @@ WINBOOL license_read_license_request_packet(rdpLicense* license, wStream* s)
  * @param s stream
  */
 
-WINBOOL license_read_platform_challenge_packet(rdpLicense* license, wStream* s)
+BOOL license_read_platform_challenge_packet(rdpLicense* license, wStream* s)
 {
 	BYTE MacData[16];
 	UINT32 ConnectFlags = 0;
@@ -881,7 +881,7 @@ void license_read_upgrade_license_packet(rdpLicense* license, wStream* s)
  * @param s stream
  */
 
-WINBOOL license_read_error_alert_packet(rdpLicense* license, wStream* s)
+BOOL license_read_error_alert_packet(rdpLicense* license, wStream* s)
 {
 	UINT32 dwErrorCode;
 	UINT32 dwStateTransition;
@@ -1092,7 +1092,7 @@ void license_send_platform_challenge_response_packet(rdpLicense* license)
  * @param license license module
  */
 
-WINBOOL license_send_valid_client_error_packet(rdpLicense* license)
+BOOL license_send_valid_client_error_packet(rdpLicense* license)
 {
 	wStream* s;
 

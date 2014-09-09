@@ -55,11 +55,11 @@
  *  @return TRUE if successful. FALSE otherwise.
  *
  */
-WINBOOL freerdp_connect(freerdp* instance)
+BOOL freerdp_connect(freerdp* instance)
 {
 	rdpRdp* rdp;
 	rdpSettings* settings;
-	WINBOOL status = FALSE;
+	BOOL status = FALSE;
 	ConnectionResultEventArgs e;
 
 	/* We always set the return code to 0 before we start the connect sequence*/
@@ -195,7 +195,7 @@ WINBOOL freerdp_connect(freerdp* instance)
 	return status;
 }
 
-WINBOOL freerdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, int* wcount)
+BOOL freerdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, int* wcount)
 {
 	rdpRdp* rdp;
 
@@ -205,7 +205,7 @@ WINBOOL freerdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds
 	return TRUE;
 }
 
-WINBOOL freerdp_check_fds(freerdp* instance)
+BOOL freerdp_check_fds(freerdp* instance)
 {
 	int status;
 	rdpRdp* rdp;
@@ -310,7 +310,7 @@ static int freerdp_send_channel_data(freerdp* instance, UINT16 channelId, BYTE* 
 	return rdp_send_channel_data(instance->context->rdp, channelId, data, size);
 }
 
-WINBOOL freerdp_disconnect(freerdp* instance)
+BOOL freerdp_disconnect(freerdp* instance)
 {
 	rdpRdp* rdp;
 
@@ -330,20 +330,20 @@ WINBOOL freerdp_disconnect(freerdp* instance)
 	return TRUE;
 }
 
-WINBOOL freerdp_reconnect(freerdp* instance)
+BOOL freerdp_reconnect(freerdp* instance)
 {
 	return rdp_client_reconnect(instance->context->rdp);
 }
 
-WINBOOL freerdp_shall_disconnect(freerdp* instance)
+BOOL freerdp_shall_disconnect(freerdp* instance)
 {
 	return instance->context->rdp->disconnect;
 }
 
-FREERDP_API WINBOOL freerdp_focus_required(freerdp* instance)
+FREERDP_API BOOL freerdp_focus_required(freerdp* instance)
 {
 	rdpRdp* rdp;
-	WINBOOL bRetCode = FALSE;
+	BOOL bRetCode = FALSE;
 
 	rdp = instance->context->rdp;
 

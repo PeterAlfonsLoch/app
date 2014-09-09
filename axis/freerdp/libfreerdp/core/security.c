@@ -299,7 +299,7 @@ void security_mac_signature(rdpRdp *rdp, const BYTE* data, UINT32 length, BYTE* 
 }
 
 void security_salted_mac_signature(rdpRdp *rdp, const BYTE* data, UINT32 length,
-		WINBOOL encryption, BYTE* output)
+		BOOL encryption, BYTE* output)
 {
 	CryptoMd5 md5;
 	CryptoSha1 sha1;
@@ -401,7 +401,7 @@ static void fips_expand_key_bits(BYTE* in, BYTE* out)
 		out[i] = fips_oddparity_table[fips_reverse_table[out[i]]];
 }
 
-WINBOOL security_establish_keys(const BYTE* client_random, rdpRdp* rdp)
+BOOL security_establish_keys(const BYTE* client_random, rdpRdp* rdp)
 {
 	BYTE pre_master_secret[48];
 	BYTE master_secret[48];
@@ -517,7 +517,7 @@ WINBOOL security_establish_keys(const BYTE* client_random, rdpRdp* rdp)
 	return TRUE;
 }
 
-WINBOOL security_key_update(BYTE* key, BYTE* update_key, int key_len, rdpRdp* rdp)
+BOOL security_key_update(BYTE* key, BYTE* update_key, int key_len, rdpRdp* rdp)
 {
 	BYTE sha1h[CRYPTO_SHA1_DIGEST_LENGTH];
 	CryptoMd5 md5;
@@ -564,7 +564,7 @@ WINBOOL security_key_update(BYTE* key, BYTE* update_key, int key_len, rdpRdp* rd
 	return TRUE;
 }
 
-WINBOOL security_encrypt(BYTE* data, int length, rdpRdp* rdp)
+BOOL security_encrypt(BYTE* data, int length, rdpRdp* rdp)
 {
 	if (rdp->encrypt_use_count >= 4096)
 	{
@@ -584,7 +584,7 @@ WINBOOL security_encrypt(BYTE* data, int length, rdpRdp* rdp)
 	return TRUE;
 }
 
-WINBOOL security_decrypt(BYTE* data, int length, rdpRdp* rdp)
+BOOL security_decrypt(BYTE* data, int length, rdpRdp* rdp)
 {
 	if (rdp->rc4_decrypt_key == NULL)
 		return FALSE;
@@ -622,20 +622,20 @@ void security_hmac_signature(const BYTE* data, int length, BYTE* output, rdpRdp*
 	memmove(output, buf, 8);
 }
 
-WINBOOL security_fips_encrypt(BYTE* data, int length, rdpRdp* rdp)
+BOOL security_fips_encrypt(BYTE* data, int length, rdpRdp* rdp)
 {
 	crypto_des3_encrypt(rdp->fips_encrypt, length, data, data);
 	rdp->encrypt_use_count++;
 	return TRUE;
 }
 
-WINBOOL security_fips_decrypt(BYTE* data, int length, rdpRdp* rdp)
+BOOL security_fips_decrypt(BYTE* data, int length, rdpRdp* rdp)
 {
 	crypto_des3_decrypt(rdp->fips_decrypt, length, data, data);
 	return TRUE;
 }
 
-WINBOOL security_fips_check_signature(const BYTE* data, int length, const BYTE* sig, rdpRdp* rdp)
+BOOL security_fips_check_signature(const BYTE* data, int length, const BYTE* sig, rdpRdp* rdp)
 {
 	BYTE buf[20];
 	BYTE use_count_le[4];

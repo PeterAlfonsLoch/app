@@ -64,7 +64,7 @@ struct _TIME_ZONE_ENTRY
 {
 	const char* Id;
 	UINT32 Bias;
-	WINBOOL SupportsDST;
+	BOOL SupportsDST;
 	const char* DisplayName;
 	const char* StandardName;
 	const char* DaylightName;
@@ -1572,7 +1572,7 @@ char* freerdp_get_unix_timezone_identifier()
 #endif
 }
 
-WINBOOL freerdp_match_unix_timezone_identifier_with_list(const char* tzid, const char* list)
+BOOL freerdp_match_unix_timezone_identifier_with_list(const char* tzid, const char* list)
 {
 	char* p;
 	char* list_copy;

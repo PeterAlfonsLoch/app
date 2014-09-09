@@ -31,7 +31,7 @@
 #include "planar.h"
 
 static int planar_decompress_plane_rle(BYTE* pSrcData, UINT32 SrcSize, BYTE* pDstData,
-		int nDstStep, int nXDst, int nYDst, int nWidth, int nHeight, int nChannel, WINBOOL vFlip)
+		int nDstStep, int nXDst, int nYDst, int nWidth, int nHeight, int nChannel, BOOL vFlip)
 {
 	int x, y;
 	BYTE* srcp;
@@ -169,7 +169,7 @@ static int planar_decompress_plane_rle(BYTE* pSrcData, UINT32 SrcSize, BYTE* pDs
 }
 
 static int planar_decompress_plane_raw(BYTE* pSrcData, UINT32 SrcSize, BYTE* pDstData,
-		int nDstStep, int nXDst, int nYDst, int nWidth, int nHeight, int nChannel, WINBOOL vFlip)
+		int nDstStep, int nXDst, int nYDst, int nWidth, int nHeight, int nChannel, BOOL vFlip)
 {
 	int x, y;
 	int beg, end, inc;
@@ -209,7 +209,7 @@ int planar_decompress(BITMAP_PLANAR_CONTEXT* planar, BYTE* pSrcData, UINT32 SrcS
 {
 	int status;
 	BYTE* srcp;
-	WINBOOL vFlip;
+	BOOL vFlip;
 	BYTE FormatHeader;
 	BYTE* pDstData = NULL;
 	UINT32 UncompressedSize;
@@ -334,14 +334,14 @@ int planar_decompress(BITMAP_PLANAR_CONTEXT* planar, BYTE* pSrcData, UINT32 SrcS
 		/* The data is in YCoCg colorspace rather than RGB. */
 		if (FormatHeader & PLANAR_FORMAT_HEADER_CS)
 		{
-			static WINBOOL been_warned = FALSE;
+			static BOOL been_warned = FALSE;
 			if (!been_warned)
 				DEBUG_WARN( "Chroma-Subsampling is not implemented.\n");
 			been_warned = TRUE;
 		}
 		else
 		{
-			WINBOOL alpha;
+			BOOL alpha;
 			int cll;
 
 			alpha = (FormatHeader & PLANAR_FORMAT_HEADER_NA) ? FALSE : TRUE;
@@ -645,7 +645,7 @@ BYTE* freerdp_bitmap_planar_compress_plane_rle(BYTE* inPlane, int width, int hei
 	return outPlane;
 }
 
-int freerdp_bitmap_planar_compress_planes_rle(BYTE* inPlanes[4], int width, int height, BYTE* outPlanes, int* dstSizes, WINBOOL skipAlpha)
+int freerdp_bitmap_planar_compress_planes_rle(BYTE* inPlanes[4], int width, int height, BYTE* outPlanes, int* dstSizes, BOOL skipAlpha)
 {
 	int outPlanesSize = width * height * 4;
 

@@ -77,7 +77,7 @@ const char* DATA_PDU_TYPE_STRINGS[80] =
  * @param flags security flags
  */
 
-WINBOOL rdp_read_security_header(wStream* s, UINT16* flags)
+BOOL rdp_read_security_header(wStream* s, UINT16* flags)
 {
 	/* Basic Security Header */
 	if (Stream_GetRemainingLength(s) < 4)
@@ -101,7 +101,7 @@ void rdp_write_security_header(wStream* s, UINT16 flags)
 	Stream_Write_UINT16(s, 0); /* flagsHi (unused) */
 }
 
-WINBOOL rdp_read_share_control_header(wStream* s, UINT16* length, UINT16* type, UINT16* channel_id)
+BOOL rdp_read_share_control_header(wStream* s, UINT16* length, UINT16* type, UINT16* channel_id)
 {
 	if (Stream_GetRemainingLength(s) < 2)
 		return FALSE;
@@ -133,7 +133,7 @@ void rdp_write_share_control_header(wStream* s, UINT16 length, UINT16 type, UINT
 	Stream_Write_UINT16(s, channel_id); /* pduSource */
 }
 
-WINBOOL rdp_read_share_data_header(wStream* s, UINT16* length, BYTE* type, UINT32* shareId,
+BOOL rdp_read_share_data_header(wStream* s, UINT16* length, BYTE* type, UINT32* shareId,
 					BYTE* compressedType, UINT16* compressedLength)
 {
 	if (Stream_GetRemainingLength(s) < 12)
@@ -229,7 +229,7 @@ wStream* rdp_data_pdu_init(rdpRdp* rdp)
 	return s;
 }
 
-WINBOOL rdp_set_error_info(rdpRdp* rdp, UINT32 errorInfo)
+BOOL rdp_set_error_info(rdpRdp* rdp, UINT32 errorInfo)
 {
 	rdp->errorInfo = errorInfo;
 
@@ -270,7 +270,7 @@ wStream* rdp_message_channel_pdu_init(rdpRdp* rdp)
  * @param channel_id channel id
  */
 
-WINBOOL rdp_read_header(rdpRdp* rdp, wStream* s, UINT16* length, UINT16* channelId)
+BOOL rdp_read_header(rdpRdp* rdp, wStream* s, UINT16* length, UINT16* channelId)
 {
 	BYTE byte;
 	UINT16 initiator;
@@ -473,7 +473,7 @@ static UINT32 rdp_get_sec_bytes(rdpRdp* rdp)
  * @param channel_id channel id
  */
 
-WINBOOL rdp_send(rdpRdp* rdp, wStream* s, UINT16 channel_id)
+BOOL rdp_send(rdpRdp* rdp, wStream* s, UINT16 channel_id)
 {
 	UINT16 length;
 
@@ -493,7 +493,7 @@ WINBOOL rdp_send(rdpRdp* rdp, wStream* s, UINT16 channel_id)
 	return TRUE;
 }
 
-WINBOOL rdp_send_pdu(rdpRdp* rdp, wStream* s, UINT16 type, UINT16 channel_id)
+BOOL rdp_send_pdu(rdpRdp* rdp, wStream* s, UINT16 type, UINT16 channel_id)
 {
 	UINT16 length;
 	UINT32 sec_bytes;
@@ -522,7 +522,7 @@ WINBOOL rdp_send_pdu(rdpRdp* rdp, wStream* s, UINT16 type, UINT16 channel_id)
 	return TRUE;
 }
 
-WINBOOL rdp_send_data_pdu(rdpRdp* rdp, wStream* s, BYTE type, UINT16 channel_id)
+BOOL rdp_send_data_pdu(rdpRdp* rdp, wStream* s, BYTE type, UINT16 channel_id)
 {
 	UINT16 length;
 	UINT32 sec_bytes;
@@ -552,7 +552,7 @@ WINBOOL rdp_send_data_pdu(rdpRdp* rdp, wStream* s, BYTE type, UINT16 channel_id)
 	return TRUE;
 }
 
-WINBOOL rdp_send_message_channel_pdu(rdpRdp* rdp, wStream* s, UINT16 sec_flags)
+BOOL rdp_send_message_channel_pdu(rdpRdp* rdp, wStream* s, UINT16 sec_flags)
 {
 	UINT16 length;
 	UINT32 sec_bytes;
@@ -579,12 +579,12 @@ WINBOOL rdp_send_message_channel_pdu(rdpRdp* rdp, wStream* s, UINT16 sec_flags)
 	return TRUE;
 }
 
-WINBOOL rdp_recv_server_shutdown_denied_pdu(rdpRdp* rdp, wStream* s)
+BOOL rdp_recv_server_shutdown_denied_pdu(rdpRdp* rdp, wStream* s)
 {
 	return TRUE;
 }
 
-WINBOOL rdp_recv_server_set_keyboard_indicators_pdu(rdpRdp* rdp, wStream* s)
+BOOL rdp_recv_server_set_keyboard_indicators_pdu(rdpRdp* rdp, wStream* s)
 {
 	UINT16 unitId;
 	UINT16 ledFlags;
@@ -598,7 +598,7 @@ WINBOOL rdp_recv_server_set_keyboard_indicators_pdu(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_recv_server_set_keyboard_ime_status_pdu(rdpRdp* rdp, wStream* s)
+BOOL rdp_recv_server_set_keyboard_ime_status_pdu(rdpRdp* rdp, wStream* s)
 {
 	UINT16 unitId;
 	UINT32 imeState;
@@ -614,7 +614,7 @@ WINBOOL rdp_recv_server_set_keyboard_ime_status_pdu(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_recv_set_error_info_data_pdu(rdpRdp* rdp, wStream* s)
+BOOL rdp_recv_set_error_info_data_pdu(rdpRdp* rdp, wStream* s)
 {
 	UINT32 errorInfo;
 
@@ -628,7 +628,7 @@ WINBOOL rdp_recv_set_error_info_data_pdu(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_recv_server_auto_reconnect_status_pdu(rdpRdp* rdp, wStream* s)
+BOOL rdp_recv_server_auto_reconnect_status_pdu(rdpRdp* rdp, wStream* s)
 {
 	UINT32 arcStatus;
 
@@ -640,7 +640,7 @@ WINBOOL rdp_recv_server_auto_reconnect_status_pdu(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_recv_server_status_info_pdu(rdpRdp* rdp, wStream* s)
+BOOL rdp_recv_server_status_info_pdu(rdpRdp* rdp, wStream* s)
 {
 	UINT32 statusCode;
 
@@ -652,7 +652,7 @@ WINBOOL rdp_recv_server_status_info_pdu(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_recv_monitor_layout_pdu(rdpRdp* rdp, wStream* s)
+BOOL rdp_recv_monitor_layout_pdu(rdpRdp* rdp, wStream* s)
 {
 	UINT32 index;
 	UINT32 monitorCount;
@@ -686,7 +686,7 @@ WINBOOL rdp_recv_monitor_layout_pdu(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-WINBOOL rdp_write_monitor_layout_pdu(wStream* s, UINT32 monitorCount, MONITOR_DEF* monitorDefArray)
+BOOL rdp_write_monitor_layout_pdu(wStream* s, UINT32 monitorCount, MONITOR_DEF* monitorDefArray)
 {
 	UINT32 index;
 	MONITOR_DEF* monitor;
@@ -898,7 +898,7 @@ int rdp_recv_out_of_sequence_pdu(rdpRdp* rdp, wStream* s)
  * @param length int
  */
 
-WINBOOL rdp_decrypt(rdpRdp* rdp, wStream* s, int length, UINT16 securityFlags)
+BOOL rdp_decrypt(rdpRdp* rdp, wStream* s, int length, UINT16 securityFlags)
 {
 	BYTE cmac[8];
 	BYTE wmac[8];
@@ -1176,7 +1176,7 @@ int rdp_send_channel_data(rdpRdp* rdp, UINT16 channelId, BYTE* data, int size)
  * @param rdp RDP module
  * @param blocking blocking mode
  */
-void rdp_set_blocking_mode(rdpRdp* rdp, WINBOOL blocking)
+void rdp_set_blocking_mode(rdpRdp* rdp, BOOL blocking)
 {
 	rdp->transport->ReceiveCallback = rdp_recv_callback;
 	rdp->transport->ReceiveExtra = rdp;
@@ -1206,7 +1206,7 @@ rdpRdp* rdp_new(rdpContext* context)
 {
 	rdpRdp* rdp;
 	DWORD flags;
-	WINBOOL newSettings = FALSE;
+	BOOL newSettings = FALSE;
 
 	rdp = (rdpRdp*) calloc(1, sizeof(rdpRdp));
 	if (!rdp)

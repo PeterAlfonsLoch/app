@@ -34,7 +34,7 @@
 void rdp_read_system_time(wStream* s, SYSTEM_TIME* system_time);
 void rdp_write_system_time(wStream* s, SYSTEM_TIME* system_time);
 void rdp_get_client_time_zone(wStream* s, rdpSettings* settings);
-WINBOOL rdp_read_client_time_zone(wStream* s, rdpSettings* settings);
+BOOL rdp_read_client_time_zone(wStream* s, rdpSettings* settings);
 void rdp_write_client_time_zone(wStream* s, rdpSettings* settings);
 
 #ifdef WITH_DEBUG_TIMEZONE

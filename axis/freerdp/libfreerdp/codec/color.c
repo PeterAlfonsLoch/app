@@ -1305,8 +1305,8 @@ int freerdp_image_copy(BYTE* pDstData, DWORD dwDstFormat, int nDstStep, int nXDs
 	int srcBytesPerPixel;
 	int dstBitsPerPixel;
 	int dstBytesPerPixel;
-	WINBOOL overlap = FALSE;
-	WINBOOL vFlip = FALSE;
+	BOOL overlap = FALSE;
+	BOOL vFlip = FALSE;
 
 	srcBitsPerPixel = FREERDP_PIXEL_FORMAT_DEPTH(dwSrcFormat);
 	srcBytesPerPixel = (FREERDP_PIXEL_FORMAT_BPP(dwSrcFormat) / 8);

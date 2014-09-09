@@ -56,7 +56,7 @@
  *
  */
 
-WINBOOL rts_connect(rdpRpc* rpc)
+BOOL rts_connect(rdpRpc* rpc)
 {
 	RPC_PDU* pdu;
 	rpcconn_rts_hdr_t* rts;

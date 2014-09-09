@@ -1004,7 +1004,7 @@ int xcrush_compress(XCRUSH_CONTEXT* xcrush, BYTE* pSrcData, UINT32 SrcSize, BYTE
 	return 1;
 }
 
-void xcrush_context_reset(XCRUSH_CONTEXT* xcrush, WINBOOL flush)
+void xcrush_context_reset(XCRUSH_CONTEXT* xcrush, BOOL flush)
 {
 	xcrush->SignatureIndex = 0;
 	xcrush->SignatureCount = 1000;
@@ -1027,7 +1027,7 @@ void xcrush_context_reset(XCRUSH_CONTEXT* xcrush, WINBOOL flush)
 	mppc_context_reset(xcrush->mppc, flush);
 }
 
-XCRUSH_CONTEXT* xcrush_context_new(WINBOOL Compressor)
+XCRUSH_CONTEXT* xcrush_context_new(BOOL Compressor)
 {
 	XCRUSH_CONTEXT* xcrush;
 

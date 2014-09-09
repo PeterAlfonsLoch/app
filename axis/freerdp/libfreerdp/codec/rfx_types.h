@@ -45,7 +45,7 @@ struct _RFX_CONTEXT_PRIV
 	wLog* log;
 	wObjectPool* TilePool;
 
-	WINBOOL UseThreads;
+	BOOL UseThreads;
 	PTP_WORK* workObjects;
 	RFX_TILE_COMPOSE_WORK_PARAM* tileWorkParams;
 

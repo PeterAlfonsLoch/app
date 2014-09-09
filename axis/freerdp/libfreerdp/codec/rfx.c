@@ -194,7 +194,7 @@ void rfx_encoder_tile_free(RFX_TILE* tile)
 		free(tile);
 }
 
-RFX_CONTEXT* rfx_context_new(WINBOOL encoder)
+RFX_CONTEXT* rfx_context_new(BOOL encoder)
 {
 	HKEY hKey;
 	LONG status;
@@ -264,7 +264,7 @@ RFX_CONTEXT* rfx_context_new(WINBOOL encoder)
 
 /*
 
-      WINBOOL isVistaOrLater;
+      BOOL isVistaOrLater;
 		OSVERSIONINFOA verinfo;
 
 		ZeroMemory(&verinfo, sizeof(OSVERSIONINFOA));
@@ -430,7 +430,7 @@ void rfx_context_reset(RFX_CONTEXT* context)
 	context->frameIdx = 0;
 }
 
-static WINBOOL rfx_process_message_sync(RFX_CONTEXT* context, wStream* s)
+static BOOL rfx_process_message_sync(RFX_CONTEXT* context, wStream* s)
 {
 	UINT32 magic;
 
@@ -461,7 +461,7 @@ static WINBOOL rfx_process_message_sync(RFX_CONTEXT* context, wStream* s)
 	return TRUE;
 }
 
-static WINBOOL rfx_process_message_codec_versions(RFX_CONTEXT* context, wStream* s)
+static BOOL rfx_process_message_codec_versions(RFX_CONTEXT* context, wStream* s)
 {
 	BYTE numCodecs;
 
@@ -493,7 +493,7 @@ static WINBOOL rfx_process_message_codec_versions(RFX_CONTEXT* context, wStream*
 	return TRUE;
 }
 
-static WINBOOL rfx_process_message_channels(RFX_CONTEXT* context, wStream* s)
+static BOOL rfx_process_message_channels(RFX_CONTEXT* context, wStream* s)
 {
 	BYTE channelId;
 	BYTE numChannels;
@@ -535,7 +535,7 @@ static WINBOOL rfx_process_message_channels(RFX_CONTEXT* context, wStream* s)
 	return TRUE;
 }
 
-static WINBOOL rfx_process_message_context(RFX_CONTEXT* context, wStream* s)
+static BOOL rfx_process_message_context(RFX_CONTEXT* context, wStream* s)
 {
 	BYTE ctxId;
 	UINT16 tileSize;
@@ -586,7 +586,7 @@ static WINBOOL rfx_process_message_context(RFX_CONTEXT* context, wStream* s)
 	return TRUE;
 }
 
-static WINBOOL rfx_process_message_frame_begin(RFX_CONTEXT* context, RFX_MESSAGE* message, wStream* s)
+static BOOL rfx_process_message_frame_begin(RFX_CONTEXT* context, RFX_MESSAGE* message, wStream* s)
 {
 	UINT32 frameIdx;
 	UINT16 numRegions;
@@ -610,7 +610,7 @@ static void rfx_process_message_frame_end(RFX_CONTEXT* context, RFX_MESSAGE* mes
 	WLog_Print(context->priv->log, WLOG_DEBUG, "RFX_FRAME_END");
 }
 
-static WINBOOL rfx_process_message_region(RFX_CONTEXT* context, RFX_MESSAGE* message, wStream* s)
+static BOOL rfx_process_message_region(RFX_CONTEXT* context, RFX_MESSAGE* message, wStream* s)
 {
 	int i;
 
@@ -682,9 +682,9 @@ void CALLBACK rfx_process_message_tile_work_callback(PTP_CALLBACK_INSTANCE insta
 	rfx_decode_rgb(param->context, param->tile, param->tile->data, 64 * 4);
 }
 
-static WINBOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* message, wStream* s)
+static BOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* message, wStream* s)
 {
-	WINBOOL rc;
+	BOOL rc;
 	int i, close_cnt;
 	int pos;
 	BYTE quant;
@@ -1162,7 +1162,7 @@ void CALLBACK rfx_compose_message_tile_work_callback(PTP_CALLBACK_INSTANCE insta
 }
 
 
-static WINBOOL computeRegion(const RFX_RECT* rects, int numRects, REGION16 *region, int width, int height)
+static BOOL computeRegion(const RFX_RECT* rects, int numRects, REGION16 *region, int width, int height)
 {
 	int i;
 	const RFX_RECT *rect = rects;
@@ -1185,7 +1185,7 @@ static WINBOOL computeRegion(const RFX_RECT* rects, int numRects, REGION16 *regi
 
 #define TILE_NO(v) ((v) / 64)
 
-WINBOOL setupWorkers(RFX_CONTEXT *context, int nbTiles)
+BOOL setupWorkers(RFX_CONTEXT *context, int nbTiles)
 {
 	RFX_CONTEXT_PRIV *priv = context->priv;
 

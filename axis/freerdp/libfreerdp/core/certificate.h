@@ -43,14 +43,14 @@
 #define BB_RSA_KEY_BLOB        		6
 #define BB_RSA_SIGNATURE_BLOB  		8
 
-WINBOOL certificate_read_x509_certificate(rdpCertBlob* cert, rdpCertInfo* info);
+BOOL certificate_read_x509_certificate(rdpCertBlob* cert, rdpCertInfo* info);
 
 rdpX509CertChain* certificate_new_x509_certificate_chain(UINT32 count);
 void certificate_free_x509_certificate_chain(rdpX509CertChain* x509_cert_chain);
 
-WINBOOL certificate_read_server_proprietary_certificate(rdpCertificate* certificate, wStream* s);
-WINBOOL certificate_read_server_x509_certificate_chain(rdpCertificate* certificate, wStream* s);
-WINBOOL certificate_read_server_certificate(rdpCertificate* certificate, BYTE* server_cert, int length);
+BOOL certificate_read_server_proprietary_certificate(rdpCertificate* certificate, wStream* s);
+BOOL certificate_read_server_x509_certificate_chain(rdpCertificate* certificate, wStream* s);
+BOOL certificate_read_server_certificate(rdpCertificate* certificate, BYTE* server_cert, int length);
 
 rdpCertificate* certificate_new(void);
 void certificate_free(rdpCertificate* certificate);

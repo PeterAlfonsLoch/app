@@ -2249,8 +2249,8 @@ int ncrush_compress(NCRUSH_CONTEXT* ncrush, BYTE* pSrcData, UINT32 SrcSize, BYTE
 	BYTE* HistoryPtr;
 	BYTE* pDstData;
 	UINT32 DstSize;
-	WINBOOL PacketAtFront;
-	WINBOOL PacketFlushed;
+	BOOL PacketAtFront;
+	BOOL PacketFlushed;
 	int MatchLength;
 	UINT32 IndexLEC;
 	UINT32 IndexLOM;
@@ -2658,7 +2658,7 @@ int ncrush_generate_tables(NCRUSH_CONTEXT *context)
 	return 1;
 }
 
-void ncrush_context_reset(NCRUSH_CONTEXT* ncrush, WINBOOL flush)
+void ncrush_context_reset(NCRUSH_CONTEXT* ncrush, BOOL flush)
 {
 	ZeroMemory(&(ncrush->HistoryBuffer), sizeof(ncrush->HistoryBuffer));
 	ZeroMemory(&(ncrush->OffsetCache), sizeof(ncrush->OffsetCache));
@@ -2674,7 +2674,7 @@ void ncrush_context_reset(NCRUSH_CONTEXT* ncrush, WINBOOL flush)
 	ncrush->HistoryPtr = &(ncrush->HistoryBuffer[ncrush->HistoryOffset]);
 }
 
-NCRUSH_CONTEXT* ncrush_context_new(WINBOOL Compressor)
+NCRUSH_CONTEXT* ncrush_context_new(BOOL Compressor)
 {
 	NCRUSH_CONTEXT* ncrush;
 

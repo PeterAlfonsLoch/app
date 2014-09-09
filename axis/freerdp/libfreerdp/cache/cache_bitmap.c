@@ -137,7 +137,7 @@ void update_gdi_cache_bitmap_v3(rdpContext* context, CACHE_BITMAP_V3_ORDER* cach
 {
 	rdpBitmap* bitmap;
 	rdpBitmap* prevBitmap;
-	WINBOOL isCompressed = TRUE;
+	BOOL isCompressed = TRUE;
 	rdpCache* cache = context->cache;
 	BITMAP_DATA_EX* bitmapData = &cacheBitmapV3->bitmapData;
 
@@ -175,7 +175,7 @@ void update_gdi_bitmap_update(rdpContext* context, BITMAP_UPDATE* bitmapUpdate)
 	int i;
 	rdpBitmap* bitmap;
 	BITMAP_DATA* bitmap_data;
-	WINBOOL reused = TRUE;
+	BOOL reused = TRUE;
 	rdpCache* cache = context->cache;
 
 	if (!cache->bitmap->bitmap)
