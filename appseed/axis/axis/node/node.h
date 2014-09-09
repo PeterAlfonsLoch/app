@@ -6,8 +6,6 @@ void __node_axis_factory_exchange(sp(::aura::application) papp);
 
 #ifdef WINDOWSEX
 
-#include "windows/os.h"
-
 #elif defined(APPLE_IOS)
 
 #include "ansios/ansios.h"
@@ -15,8 +13,6 @@ void __node_axis_factory_exchange(sp(::aura::application) papp);
 
 #elif defined(LINUX)
 
-#include "ansios/ansios.h"
-#include "linux/linux.h"
 
 #elif defined(MACOS)
 

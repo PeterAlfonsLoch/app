@@ -132,8 +132,7 @@ namespace linux
       using ::user::interaction_impl::get_child_by_id;
       void get_child_by_id(id id, oswindow* phWnd) const;
          // as above, but returns oswindow
-      using ::user::interaction_impl::GetDescendantWindow;
-      sp(::user::interaction) GetDescendantWindow(id id);
+      sp(::user::interaction) GetDescendantWindow(id id) const;
          // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
       static sp(::user::interaction) PASCAL GetSafeOwner(::user::interaction * pParent = NULL, oswindow* pWndTop = NULL);
