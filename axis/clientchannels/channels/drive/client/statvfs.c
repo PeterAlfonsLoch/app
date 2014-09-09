@@ -27,7 +27,7 @@
 
 int statvfs(const char *path, struct statvfs *buf)
 {
-	BOOL res;
+	WINBOOL res;
 	int len;
 	LPWSTR unicodestr;
 	DWORD lpSectorsPerCluster;
@@ -52,6 +52,6 @@ int statvfs(const char *path, struct statvfs *buf)
 	buf->f_fsid = lpNumberOfFreeClusters & 0xffff; /* file system ID */
 	buf->f_flag = 0; /* mount flags */
 	buf->f_namemax = 250; /* maximum filename length */
-	
+
 	return res;
 }

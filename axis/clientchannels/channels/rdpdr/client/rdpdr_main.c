@@ -62,7 +62,7 @@ struct _DEVICE_DRIVE_EXT
 	char* path;
 };
 
-static void rdpdr_send_device_list_announce_request(rdpdrPlugin* rdpdr, BOOL userLoggedOn);
+static void rdpdr_send_device_list_announce_request(rdpdrPlugin* rdpdr, WINBOOL userLoggedOn);
 
 static void rdpdr_send_device_list_remove_request(rdpdrPlugin* rdpdr, UINT32 count, UINT32 ids[])
 {
@@ -184,7 +184,7 @@ static void* drive_hotplug_thread_func(void* arg)
 	WNDCLASSEXW wnd_cls;
 	HWND hwnd;
 	MSG msg;
-	BOOL bRet;
+	WINBOOL bRet;
 	DEV_BROADCAST_HANDLE NotificationFilter;
 	HDEVNOTIFY hDevNotify;
 
@@ -248,7 +248,7 @@ static void drive_hotplug_thread_terminate(rdpdrPlugin* rdpdr)
 
 typedef struct _hotplug_dev {
 	char* path;
-	BOOL  to_add;
+	WINBOOL  to_add;
 } hotplug_dev;
 
 static char* next_line(FILE* fd, size_t* len)
@@ -328,13 +328,13 @@ static char* get_word(char* str, unsigned int* offset)
 		(*offset)++;
 
 	word = malloc(wlen + 1);
-	
+
 	if (word != NULL)
 	{
 		CopyMemory(word, p, wlen);
 		word[wlen] = '\0';
 	}
-	
+
 	return word;
 }
 
@@ -384,7 +384,7 @@ static void handle_hotplug(rdpdrPlugin* rdpdr)
 
 	for (j = 0; j < count; j++)
 	{
-		BOOL dev_found = FALSE;
+		WINBOOL dev_found = FALSE;
 
 		device_ext = (DEVICE_DRIVE_EXT *)ListDictionary_GetItemValue(rdpdr->devman->devices, (void *)keys[j]);
 
@@ -598,7 +598,7 @@ static void rdpdr_process_server_clientid_confirm(rdpdrPlugin* rdpdr, wStream* s
 	}
 }
 
-static void rdpdr_send_device_list_announce_request(rdpdrPlugin* rdpdr, BOOL userLoggedOn)
+static void rdpdr_send_device_list_announce_request(rdpdrPlugin* rdpdr, WINBOOL userLoggedOn)
 {
 	int i;
 	BYTE c;
@@ -680,7 +680,7 @@ static void rdpdr_send_device_list_announce_request(rdpdrPlugin* rdpdr, BOOL use
 	rdpdr_send(rdpdr, s);
 }
 
-static BOOL rdpdr_process_irp(rdpdrPlugin* rdpdr, wStream* s)
+static WINBOOL rdpdr_process_irp(rdpdrPlugin* rdpdr, wStream* s)
 {
 	IRP* irp;
 
@@ -1032,7 +1032,7 @@ static VOID VCAPITYPE rdpdr_virtual_channel_init_event(LPVOID pInitHandle, UINT 
 /* rdpdr is always built-in */
 #define VirtualChannelEntry	rdpdr_VirtualChannelEntry
 
-BOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
+WINBOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
 {
 	rdpdrPlugin* rdpdr;
 

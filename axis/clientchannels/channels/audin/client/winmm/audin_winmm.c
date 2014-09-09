@@ -191,7 +191,7 @@ static void audin_winmm_set_format(IAudinDevice* device, audinFormat* format, UI
 	}
 }
 
-static BOOL audin_winmm_format_supported(IAudinDevice* device, audinFormat* format)
+static WINBOOL audin_winmm_format_supported(IAudinDevice* device, audinFormat* format)
 {
 	AudinWinmmDevice* winmm = (AudinWinmmDevice*) device;
 	PWAVEFORMATEX pwfx;
@@ -219,7 +219,7 @@ static BOOL audin_winmm_format_supported(IAudinDevice* device, audinFormat* form
 				winmm->ppwfx = realloc(winmm->ppwfx, sizeof(PWAVEFORMATEX) * winmm->ppwfx_size);
 			}
 			winmm->ppwfx[winmm->cFormats++] = pwfx;
-	
+
 			return 1;
 		}
 	}

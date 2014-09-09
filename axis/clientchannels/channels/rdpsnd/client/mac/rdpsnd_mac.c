@@ -42,13 +42,13 @@ struct rdpsnd_mac_plugin
 {
 	rdpsndDevicePlugin device;
 
-	BOOL isOpen;
-	BOOL isPlaying;
-	
+	WINBOOL isOpen;
+	WINBOOL isPlaying;
+
 	UINT32 latency;
 	AUDIO_FORMAT format;
 	int audioBufferIndex;
-    
+
 	AudioQueueRef audioQueue;
 	AudioStreamBasicDescription audioFormat;
 	AudioQueueBufferRef audioBuffers[MAC_AUDIO_QUEUE_NUM_BUFFERS];
@@ -57,38 +57,38 @@ typedef struct rdpsnd_mac_plugin rdpsndMacPlugin;
 
 static void mac_audio_queue_output_cb(void* inUserData, AudioQueueRef inAQ, AudioQueueBufferRef inBuffer)
 {
-	
+
 }
 
 static void rdpsnd_mac_set_format(rdpsndDevicePlugin* device, AUDIO_FORMAT* format, int latency)
 {
 	rdpsndMacPlugin* mac = (rdpsndMacPlugin*) device;
-	
+
 	mac->latency = (UINT32) latency;
 	CopyMemory(&(mac->format), format, sizeof(AUDIO_FORMAT));
-	
+
 	switch (format->wFormatTag)
 	{
 		case WAVE_FORMAT_ALAW:
 			mac->audioFormat.mFormatID = kAudioFormatALaw;
 			break;
-			
+
 		case WAVE_FORMAT_MULAW:
 			mac->audioFormat.mFormatID = kAudioFormatULaw;
 			break;
-			
+
 		case WAVE_FORMAT_PCM:
 			mac->audioFormat.mFormatID = kAudioFormatLinearPCM;
 			break;
-			
+
 		case WAVE_FORMAT_GSM610:
 			mac->audioFormat.mFormatID = kAudioFormatMicrosoftGSM;
 			break;
-			
+
 		default:
 			break;
 	}
-	
+
 	mac->audioFormat.mSampleRate = format->nSamplesPerSec;
 	mac->audioFormat.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
 	mac->audioFormat.mFramesPerPacket = 1;
@@ -97,7 +97,7 @@ static void rdpsnd_mac_set_format(rdpsndDevicePlugin* device, AUDIO_FORMAT* form
 	mac->audioFormat.mBytesPerFrame = (format->wBitsPerSample * format->nChannels) / 8;
 	mac->audioFormat.mBytesPerPacket = format->nBlockAlign;
 	mac->audioFormat.mReserved = 0;
-	
+
 	rdpsnd_print_audio_format(format);
 }
 
@@ -105,65 +105,65 @@ static void rdpsnd_mac_open(rdpsndDevicePlugin* device, AUDIO_FORMAT* format, in
 {
 	int index;
 	OSStatus status;
-    
+
 	rdpsndMacPlugin* mac = (rdpsndMacPlugin*) device;
-	
+
 	if (mac->isOpen)
 		return;
-    
+
 	mac->audioBufferIndex = 0;
-    
+
 	device->SetFormat(device, format, 0);
-    
+
 	status = AudioQueueNewOutput(&(mac->audioFormat),
 				     mac_audio_queue_output_cb, mac,
 				     NULL, NULL, 0, &(mac->audioQueue));
-	
+
 	if (status != 0)
 	{
 		CLOG_ERR( "AudioQueueNewOutput failure\n");
 		return;
 	}
-	
+
 	UInt32 DecodeBufferSizeFrames;
 	UInt32 propertySize = sizeof(DecodeBufferSizeFrames);
-	
+
 	AudioQueueGetProperty(mac->audioQueue,
 			      kAudioQueueProperty_DecodeBufferSizeFrames,
 			      &DecodeBufferSizeFrames,
 			      &propertySize);
-	
+
 	if (status != 0)
 	{
 		CLOG_DBG("AudioQueueGetProperty failure: kAudioQueueProperty_DecodeBufferSizeFrames\n");
 	}
-    
+
 	for (index = 0; index < MAC_AUDIO_QUEUE_NUM_BUFFERS; index++)
 	{
 		status = AudioQueueAllocateBuffer(mac->audioQueue, MAC_AUDIO_QUEUE_BUFFER_SIZE, &mac->audioBuffers[index]);
-		
+
 		if (status != 0)
 		{
 			CLOG_ERR( "AudioQueueAllocateBuffer failed\n");
 		}
 	}
-    
+
 	mac->isOpen = TRUE;
 }
 
 static void rdpsnd_mac_close(rdpsndDevicePlugin* device)
 {
 	rdpsndMacPlugin* mac = (rdpsndMacPlugin*) device;
-	
+
 	if (mac->isOpen)
 	{
 		mac->isOpen = FALSE;
-		
+
 		AudioQueueStop(mac->audioQueue, true);
-		
+
 		AudioQueueDispose(mac->audioQueue, true);
 		mac->audioQueue = NULL;
-		
+
 		mac->isPlaying = FALSE;
 	}
 }
@@ -171,13 +171,13 @@ static void rdpsnd_mac_close(rdpsndDevicePlugin* device)
 static void rdpsnd_mac_free(rdpsndDevicePlugin* device)
 {
 	rdpsndMacPlugin* mac = (rdpsndMacPlugin*) device;
-	
+
 	device->Close(device);
-	
+
 	free(mac);
 }
 
-static BOOL rdpsnd_mac_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
+static WINBOOL rdpsnd_mac_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
 {
         if (format->wFormatTag == WAVE_FORMAT_PCM)
         {
@@ -195,7 +195,7 @@ static BOOL rdpsnd_mac_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT
         {
                 return FALSE;
         }
-	
+
 	return FALSE;
 }
 
@@ -206,17 +206,17 @@ static void rdpsnd_mac_set_volume(rdpsndDevicePlugin* device, UINT32 value)
 	UINT16 volumeLeft;
 	UINT16 volumeRight;
 	rdpsndMacPlugin* mac = (rdpsndMacPlugin*) device;
-	
+
 	if (!mac->audioQueue)
 		return;
-		
+
 	volumeLeft = (value & 0xFFFF);
 	volumeRight = ((value >> 16) & 0xFFFF);
-	
+
 	fVolume = ((float) volumeLeft) / 65535.0;
-	
+
 	status = AudioQueueSetParameter(mac->audioQueue, kAudioQueueParam_Volume, fVolume);
-	
+
 	if (status != 0)
 	{
 		CLOG_ERR( "AudioQueueSetParameter kAudioQueueParam_Volume failed: %f\n", fVolume);
@@ -226,21 +226,21 @@ static void rdpsnd_mac_set_volume(rdpsndDevicePlugin* device, UINT32 value)
 static void rdpsnd_mac_start(rdpsndDevicePlugin* device)
 {
 	rdpsndMacPlugin* mac = (rdpsndMacPlugin*) device;
-	
+
 	if (!mac->isPlaying)
 	{
 		OSStatus status;
-		
+
 		if (!mac->audioQueue)
 			return;
-		
+
 		status = AudioQueueStart(mac->audioQueue, NULL);
-		
+
 		if (status != 0)
 		{
 			CLOG_ERR( "AudioQueueStart failed\n");
 		}
-		
+
 		mac->isPlaying = TRUE;
 	}
 }
@@ -250,26 +250,26 @@ static void rdpsnd_mac_play(rdpsndDevicePlugin* device, BYTE* data, int size)
 	int length;
 	AudioQueueBufferRef audioBuffer;
 	rdpsndMacPlugin* mac = (rdpsndMacPlugin*) device;
-	
+
 	if (!mac->isOpen)
 		return;
 
 	audioBuffer = mac->audioBuffers[mac->audioBufferIndex];
-    
+
 	length = size > audioBuffer->mAudioDataBytesCapacity ? audioBuffer->mAudioDataBytesCapacity : size;
-    
+
 	CopyMemory(audioBuffer->mAudioData, data, length);
 	audioBuffer->mAudioDataByteSize = length;
-    
+
 	AudioQueueEnqueueBuffer(mac->audioQueue, audioBuffer, 0, 0);
-    
+
 	mac->audioBufferIndex++;
 
 	if (mac->audioBufferIndex >= MAC_AUDIO_QUEUE_NUM_BUFFERS)
 	{
 		mac->audioBufferIndex = 0;
 	}
-	
+
 	device->Start(device);
 }
 
@@ -280,12 +280,12 @@ static void rdpsnd_mac_play(rdpsndDevicePlugin* device, BYTE* data, int size)
 int freerdp_rdpsnd_client_subsystem_entry(PFREERDP_RDPSND_DEVICE_ENTRY_POINTS pEntryPoints)
 {
 	rdpsndMacPlugin* mac;
-    
+
 	mac = (rdpsndMacPlugin*) calloc(1, sizeof(rdpsndMacPlugin));
-	
+
 	if (!mac)
 		return -1;
-	
+
 	mac->device.Open = rdpsnd_mac_open;
 	mac->device.FormatSupported = rdpsnd_mac_format_supported;
 	mac->device.SetFormat = rdpsnd_mac_set_format;

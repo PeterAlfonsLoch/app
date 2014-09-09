@@ -74,10 +74,10 @@ static void* audin_opensles_thread_func(void* arg)
 		BYTE *b;
 	} buffer;
 	AudinOpenSLESDevice* opensles = (AudinOpenSLESDevice*) arg;
-	const size_t raw_size = opensles->frames_per_packet * opensles->bytes_per_channel; 
+	const size_t raw_size = opensles->frames_per_packet * opensles->bytes_per_channel;
 
 	DEBUG_DVC("opensles=%p", opensles);
-	
+
 	assert(opensles);
 	assert(opensles->frames_per_packet > 0);
 	assert(opensles->dsp_context);
@@ -160,10 +160,10 @@ static void audin_opensles_free(IAudinDevice* device)
 	free(opensles);
 }
 
-static BOOL audin_opensles_format_supported(IAudinDevice* device, audinFormat* format)
+static WINBOOL audin_opensles_format_supported(IAudinDevice* device, audinFormat* format)
 {
 	AudinOpenSLESDevice* opensles = (AudinOpenSLESDevice*) device;
-	
+
 	DEBUG_DVC("device=%p, format=%p", opensles, format);
 
 	assert(format);
@@ -184,7 +184,7 @@ static BOOL audin_opensles_format_supported(IAudinDevice* device, audinFormat* f
 #endif
 			/* TODO: Deactivated format, does not work, find out why */
 //		case WAVE_FORMAT_ADPCM: /* IMA ADPCM */
-		case WAVE_FORMAT_DVI_ADPCM: 
+		case WAVE_FORMAT_DVI_ADPCM:
 			if ((format->nSamplesPerSec <= 48000) &&
 				(format->wBitsPerSample == 4) &&
 				(format->nChannels == 1 || format->nChannels == 2))
@@ -195,7 +195,7 @@ static BOOL audin_opensles_format_supported(IAudinDevice* device, audinFormat* f
 		default:
 			DEBUG_DVC("Encoding '%s' [%08X] not supported",
 				rdpsnd_get_audio_tag_string(format->wFormatTag),
-				format->wFormatTag); 
+				format->wFormatTag);
 			break;
 	}
 
@@ -239,7 +239,7 @@ static void audin_opensles_set_format(IAudinDevice* device,
 		case WAVE_FORMAT_DVI_ADPCM:
 			opensles->bytes_per_channel = 2;
 			bs = (format->nBlockAlign - 4 * format->nChannels) * 4;
-	
+
 			opensles->frames_per_packet =
 				(FramesPerPacket * format->nChannels * 2 /
 				bs + 1) * bs / (format->nChannels * 2);
@@ -252,7 +252,7 @@ static void audin_opensles_set_format(IAudinDevice* device,
 		default:
 			CLOG_ERR("Encoding '%d' [%08X] not supported",
 				(format->wFormatTag),
-				format->wFormatTag); 
+				format->wFormatTag);
 			return;
 	}
 
@@ -302,7 +302,7 @@ static void audin_opensles_close(IAudinDevice* device)
 	AudinOpenSLESDevice* opensles = (AudinOpenSLESDevice*) device;
 
 	DEBUG_DVC("device=%p", device);
-	
+
 	assert(opensles);
 
 	/* The function may have been called out of order,

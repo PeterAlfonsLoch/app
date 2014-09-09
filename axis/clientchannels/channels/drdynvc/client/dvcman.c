@@ -66,7 +66,7 @@ static int dvcman_create_listener(IWTSVirtualChannelManager* pChannelMgr,
 			*ppListener = (IWTSListener*) listener;
 
 		dvcman->listeners[dvcman->num_listeners++] = (IWTSListener*) listener;
-		
+
 		return 0;
 	}
 	else
@@ -148,7 +148,7 @@ UINT32 dvcman_get_channel_id(IWTSVirtualChannel * channel)
 IWTSVirtualChannel* dvcman_find_channel_by_id(IWTSVirtualChannelManager* pChannelMgr, UINT32 ChannelId)
 {
 	int index;
-	BOOL found = FALSE;
+	WINBOOL found = FALSE;
 	DVCMAN_CHANNEL* channel;
 	DVCMAN* dvcman = (DVCMAN*) pChannelMgr;
 
@@ -176,7 +176,7 @@ IWTSVirtualChannel* dvcman_find_channel_by_id(IWTSVirtualChannelManager* pChanne
 void* dvcman_get_channel_interface_by_name(IWTSVirtualChannelManager* pChannelMgr, const char* ChannelName)
 {
 	int i;
-	BOOL found = FALSE;
+	WINBOOL found = FALSE;
 	void* pInterface = NULL;
 	DVCMAN_LISTENER* listener;
 	DVCMAN* dvcman = (DVCMAN*) pChannelMgr;

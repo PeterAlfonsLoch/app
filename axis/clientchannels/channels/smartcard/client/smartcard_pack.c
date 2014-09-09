@@ -562,7 +562,7 @@ UINT32 smartcard_unpack_list_readers_call(SMARTCARD_DEVICE* smartcard, wStream* 
 
 	if (status)
 		return status;
-	
+
 	if ((mszGroupsNdrPtr && !call->cBytes) || (!mszGroupsNdrPtr && call->cBytes))
 	{
 		WLog_Print(smartcard->log, WLOG_WARN,
@@ -570,11 +570,11 @@ UINT32 smartcard_unpack_list_readers_call(SMARTCARD_DEVICE* smartcard, wStream* 
 			   (int) mszGroupsNdrPtr, (int) call->cBytes);
 		return STATUS_INVALID_PARAMETER;
 	}
-	
+
 	if (mszGroupsNdrPtr)
 	{
 		Stream_Read_UINT32(s, count); /* NdrCount (4 bytes) */
-		
+
 		if (count != call->cBytes)
 		{
 			WLog_Print(smartcard->log, WLOG_WARN,
@@ -582,31 +582,31 @@ UINT32 smartcard_unpack_list_readers_call(SMARTCARD_DEVICE* smartcard, wStream* 
 				   (int) count, (int) call->cBytes);
 			return STATUS_INVALID_PARAMETER;
 		}
-		
+
 		if (Stream_GetRemainingLength(s) < call->cBytes)
 		{
 			WLog_Print(smartcard->log, WLOG_WARN, "ListReaders_Call is too short: Actual: %d, Expected: %d",
 				   (int) Stream_GetRemainingLength(s), call->cBytes);
 			return STATUS_BUFFER_TOO_SMALL;
 		}
-		
+
 		call->mszGroups = (BYTE*) calloc(1, call->cBytes + 4);
-		
+
 		if (!call->mszGroups)
 		{
 			WLog_Print(smartcard->log, WLOG_WARN, "ListReaders_Call out of memory error (mszGroups)");
 			return STATUS_NO_MEMORY;
 		}
-		
+
 		Stream_Read(s, call->mszGroups, call->cBytes);
-		
+
 		smartcard_unpack_read_size_align(smartcard, s, call->cBytes, 4);
 	}
 
 	return SCARD_S_SUCCESS;
 }
 
-void smartcard_trace_list_readers_call(SMARTCARD_DEVICE* smartcard, ListReaders_Call* call, BOOL unicode)
+void smartcard_trace_list_readers_call(SMARTCARD_DEVICE* smartcard, ListReaders_Call* call, WINBOOL unicode)
 {
 	BYTE* pb;
 	char* mszGroupsA = NULL;
@@ -652,7 +652,7 @@ UINT32 smartcard_pack_list_readers_return(SMARTCARD_DEVICE* smartcard, wStream* 
 
 	Stream_Write_UINT32(s, ret->cBytes); /* cBytes (4 bytes) */
 	Stream_Write_UINT32(s, mszNdrPtr); /* mszNdrPtr (4 bytes) */
-	
+
 	if (mszNdrPtr)
 	{
 		Stream_Write_UINT32(s, ret->cBytes); /* mszNdrLen (4 bytes) */
@@ -668,7 +668,7 @@ UINT32 smartcard_pack_list_readers_return(SMARTCARD_DEVICE* smartcard, wStream* 
 	return SCARD_S_SUCCESS;
 }
 
-void smartcard_trace_list_readers_return(SMARTCARD_DEVICE* smartcard, ListReaders_Return* ret, BOOL unicode)
+void smartcard_trace_list_readers_return(SMARTCARD_DEVICE* smartcard, ListReaders_Return* ret, WINBOOL unicode)
 {
 	int index;
 	int length;
@@ -1517,7 +1517,7 @@ UINT32 smartcard_pack_get_status_change_return(SMARTCARD_DEVICE* smartcard, wStr
 	return SCARD_S_SUCCESS;
 }
 
-void smartcard_trace_get_status_change_return(SMARTCARD_DEVICE* smartcard, GetStatusChange_Return* ret, BOOL unicode)
+void smartcard_trace_get_status_change_return(SMARTCARD_DEVICE* smartcard, GetStatusChange_Return* ret, WINBOOL unicode)
 {
 	UINT32 index;
 	char* rgbAtr;
@@ -1652,7 +1652,7 @@ UINT32 smartcard_unpack_status_call(SMARTCARD_DEVICE* smartcard, wStream* s, Sta
 	return SCARD_S_SUCCESS;
 }
 
-void smartcard_trace_status_call(SMARTCARD_DEVICE* smartcard, Status_Call* call, BOOL unicode)
+void smartcard_trace_status_call(SMARTCARD_DEVICE* smartcard, Status_Call* call, WINBOOL unicode)
 {
 	BYTE* pb;
 
@@ -1705,18 +1705,18 @@ UINT32 smartcard_pack_status_return(SMARTCARD_DEVICE* smartcard, wStream* s, Sta
 	Stream_Write_UINT32(s, ret->cbAtrLen); /* cbAtrLen (4 bytes) */
 
 	Stream_Write_UINT32(s, ret->cBytes); /* mszReaderNamesNdrLen (4 bytes) */
-	
+
 	if (ret->mszReaderNames)
 		Stream_Write(s, ret->mszReaderNames, ret->cBytes);
 	else
 		Stream_Zero(s, ret->cBytes);
-	
+
 	smartcard_pack_write_size_align(smartcard, s, ret->cBytes, 4);
 
 	return SCARD_S_SUCCESS;
 }
 
-void smartcard_trace_status_return(SMARTCARD_DEVICE* smartcard, Status_Return* ret, BOOL unicode)
+void smartcard_trace_status_return(SMARTCARD_DEVICE* smartcard, Status_Return* ret, WINBOOL unicode)
 {
 	int index;
 	int length;

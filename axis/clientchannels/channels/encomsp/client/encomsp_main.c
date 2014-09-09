@@ -895,7 +895,7 @@ static VOID VCAPITYPE encomsp_virtual_channel_init_event(LPVOID pInitHandle, UIN
 /* encomsp is always built-in */
 #define VirtualChannelEntry	encomsp_VirtualChannelEntry
 
-BOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
+WINBOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
 {
 	encomspPlugin* encomsp;
 	EncomspClientContext* context;

@@ -38,7 +38,7 @@
 
 #include "smartcard_main.h"
 
-const char* smartcard_get_ioctl_string(UINT32 ioControlCode, BOOL funcName)
+const char* smartcard_get_ioctl_string(UINT32 ioControlCode, WINBOOL funcName)
 {
 	switch (ioControlCode)
 	{

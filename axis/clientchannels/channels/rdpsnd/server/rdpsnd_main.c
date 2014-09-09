@@ -33,11 +33,11 @@
 
 #include "rdpsnd_main.h"
 
-BOOL rdpsnd_server_send_formats(RdpsndServerContext* context, wStream* s)
+WINBOOL rdpsnd_server_send_formats(RdpsndServerContext* context, wStream* s)
 {
 	int pos;
 	UINT16 i;
-	BOOL status;
+	WINBOOL status;
 	ULONG written;
 
 	Stream_Write_UINT8(s, SNDC_FORMATS);
@@ -52,7 +52,7 @@ BOOL rdpsnd_server_send_formats(RdpsndServerContext* context, wStream* s)
 	Stream_Write_UINT8(s, context->block_no); /* cLastBlockConfirmed */
 	Stream_Write_UINT16(s, 0x06); /* wVersion */
 	Stream_Write_UINT8(s, 0); /* bPad */
-	
+
 	for (i = 0; i < context->num_server_formats; i++)
 	{
 		Stream_Write_UINT16(s, context->server_formats[i].wFormatTag); /* wFormatTag (WAVE_FORMAT_PCM) */
@@ -83,7 +83,7 @@ BOOL rdpsnd_server_send_formats(RdpsndServerContext* context, wStream* s)
 	return status;
 }
 
-static BOOL rdpsnd_server_recv_waveconfirm(RdpsndServerContext* context, wStream* s)
+static WINBOOL rdpsnd_server_recv_waveconfirm(RdpsndServerContext* context, wStream* s)
 {
 	UINT16 timestamp;
 	BYTE confirmBlockNum;
@@ -100,21 +100,21 @@ static BOOL rdpsnd_server_recv_waveconfirm(RdpsndServerContext* context, wStream
 	return TRUE;
 }
 
-static BOOL rdpsnd_server_recv_quality_mode(RdpsndServerContext* context, wStream* s)
+static WINBOOL rdpsnd_server_recv_quality_mode(RdpsndServerContext* context, wStream* s)
 {
 	UINT16 quality;
-	
+
 	if (Stream_GetRemainingLength(s) < 4)
 		return FALSE;
 
 	Stream_Read_UINT16(s, quality);
 	Stream_Seek_UINT16(s); // reserved
-	
+
 	CLOG_ERR( "Client requested sound quality: %#0X\n", quality);
 	return TRUE;
 }
 
-static BOOL rdpsnd_server_recv_formats(RdpsndServerContext* context, wStream* s)
+static WINBOOL rdpsnd_server_recv_formats(RdpsndServerContext* context, wStream* s)
 {
 	int i, num_known_format = 0;
 	UINT32 flags, vol, pitch;
@@ -192,7 +192,7 @@ static void* rdpsnd_server_thread(void* arg)
 	DWORD nCount, status;
 	HANDLE events[8];
 	RdpsndServerContext* context;
-	BOOL doRun;
+	WINBOOL doRun;
 
 	context = (RdpsndServerContext *)arg;
 	nCount = 0;
@@ -218,13 +218,13 @@ out:
 	return NULL;
 }
 
-static BOOL rdpsnd_server_initialize(RdpsndServerContext* context, BOOL ownThread)
+static WINBOOL rdpsnd_server_initialize(RdpsndServerContext* context, WINBOOL ownThread)
 {
 	context->priv->ownThread = ownThread;
 	return context->Start(context) >= 0;
 }
 
-static BOOL rdpsnd_server_select_format(RdpsndServerContext* context, int client_format_index)
+static WINBOOL rdpsnd_server_select_format(RdpsndServerContext* context, int client_format_index)
 {
 	int bs;
 	int out_buffer_size;
@@ -235,13 +235,13 @@ static BOOL rdpsnd_server_select_format(RdpsndServerContext* context, int client
 		CLOG_ERR( "%s: index %d is not correct.\n", __FUNCTION__, client_format_index);
 		return FALSE;
 	}
-	
+
 	context->priv->src_bytes_per_sample = context->src_format.wBitsPerSample / 8;
 	context->priv->src_bytes_per_frame = context->priv->src_bytes_per_sample * context->src_format.nChannels;
 
 	context->selected_client_format = client_format_index;
 	format = &context->client_formats[client_format_index];
-	
+
 	if (format->nSamplesPerSec == 0)
 	{
 		CLOG_ERR( "%s: invalid Client Sound Format!!\n", __FUNCTION__);
@@ -271,7 +271,7 @@ static BOOL rdpsnd_server_select_format(RdpsndServerContext* context, int client
 	context->priv->out_pending_frames = 0;
 
 	out_buffer_size = context->priv->out_frames * context->priv->src_bytes_per_frame;
-	
+
 	if (context->priv->out_buffer_size < out_buffer_size)
 	{
 		BYTE *newBuffer;
@@ -288,13 +288,13 @@ static BOOL rdpsnd_server_select_format(RdpsndServerContext* context, int client
 	return TRUE;
 }
 
-static BOOL rdpsnd_server_send_audio_pdu(RdpsndServerContext* context, UINT16 wTimestamp)
+static WINBOOL rdpsnd_server_send_audio_pdu(RdpsndServerContext* context, UINT16 wTimestamp)
 {
 	int size;
 	BYTE* src;
 	int frames;
 	int fill_size;
-	BOOL status;
+	WINBOOL status;
 	AUDIO_FORMAT* format;
 	int tbytes_per_frame;
 	ULONG written;
@@ -380,7 +380,7 @@ out:
 	return status;
 }
 
-static BOOL rdpsnd_server_send_samples(RdpsndServerContext* context, const void* buf, int nframes, UINT16 wTimestamp)
+static WINBOOL rdpsnd_server_send_samples(RdpsndServerContext* context, const void* buf, int nframes, UINT16 wTimestamp)
 {
 	int cframes;
 	int cframesize;
@@ -409,10 +409,10 @@ static BOOL rdpsnd_server_send_samples(RdpsndServerContext* context, const void*
 	return TRUE;
 }
 
-static BOOL rdpsnd_server_set_volume(RdpsndServerContext* context, int left, int right)
+static WINBOOL rdpsnd_server_set_volume(RdpsndServerContext* context, int left, int right)
 {
 	int pos;
-	BOOL status;
+	WINBOOL status;
 	ULONG written;
 	wStream* s = context->priv->rdpsnd_pdu;
 
@@ -433,10 +433,10 @@ static BOOL rdpsnd_server_set_volume(RdpsndServerContext* context, int left, int
 	return status;
 }
 
-static BOOL rdpsnd_server_close(RdpsndServerContext* context)
+static WINBOOL rdpsnd_server_close(RdpsndServerContext* context)
 {
 	int pos;
-	BOOL status;
+	WINBOOL status;
 	ULONG written;
 	wStream* s = context->priv->rdpsnd_pdu;
 
@@ -620,10 +620,10 @@ HANDLE rdpsnd_server_get_event_handle(RdpsndServerContext *context)
 	return context->priv->channelEvent;
 }
 
-BOOL rdpsnd_server_handle_messages(RdpsndServerContext *context)
+WINBOOL rdpsnd_server_handle_messages(RdpsndServerContext *context)
 {
 	DWORD bytesReturned;
-	BOOL ret;
+	WINBOOL ret;
 
 	RdpsndServerPrivate *priv = context->priv;
 	wStream *s = priv->input_stream;

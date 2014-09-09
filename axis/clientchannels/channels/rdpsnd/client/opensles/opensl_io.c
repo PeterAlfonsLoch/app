@@ -45,7 +45,7 @@ static SLresult openSLCreateEngine(OPENSL_STREAM *p)
 	DEBUG_SND("engineObject=%p", p->engineObject);
   if(result != SL_RESULT_SUCCESS) goto  engine_end;
 
-  // realize the engine 
+  // realize the engine
   result = (*p->engineObject)->Realize(p->engineObject, SL_BOOLEAN_FALSE);
 	DEBUG_SND("Realize=%d", result);
   if(result != SL_RESULT_SUCCESS) goto engine_end;
@@ -118,7 +118,7 @@ static SLresult openSLPlayOpen(OPENSL_STREAM *p)
     default:
       return -1;
     }
-   
+
     const SLInterfaceID ids[] = {SL_IID_VOLUME};
     const SLboolean req[] = {SL_BOOLEAN_FALSE};
     result = (*p->engineEngine)->CreateOutputMix(p->engineEngine, &(p->outputMixObject), 1, ids, req);
@@ -131,9 +131,9 @@ static SLresult openSLPlayOpen(OPENSL_STREAM *p)
 		DEBUG_SND("Realize=%d", result);
 		assert(!result);
     if(result != SL_RESULT_SUCCESS) goto end_openaudio;
-   
+
     int speakers;
-    if(channels > 1) 
+    if(channels > 1)
       speakers = SL_SPEAKER_FRONT_LEFT | SL_SPEAKER_FRONT_RIGHT;
     else speakers = SL_SPEAKER_FRONT_CENTER;
     SLDataFormat_PCM format_pcm = {SL_DATAFORMAT_PCM,channels, sr,
@@ -190,7 +190,7 @@ static SLresult openSLPlayOpen(OPENSL_STREAM *p)
     result = (*p->bqPlayerPlay)->SetPlayState(p->bqPlayerPlay, SL_PLAYSTATE_PLAYING);
 		DEBUG_SND("SetPlayState=%d", result);
 		assert(!result);
- 
+
   end_openaudio:
 		assert(!result);
     return result;
@@ -229,7 +229,7 @@ static void openSLDestroyEngine(OPENSL_STREAM *p){
 
 // open the android audio device for and/or output
 OPENSL_STREAM *android_OpenAudioDevice(int sr, int outchannels, int bufferframes){
-  
+
   OPENSL_STREAM *p;
   p = (OPENSL_STREAM *) calloc(sizeof(OPENSL_STREAM),1);
 	memset(p, 0, sizeof(OPENSL_STREAM));
@@ -237,7 +237,7 @@ OPENSL_STREAM *android_OpenAudioDevice(int sr, int outchannels, int bufferframes
 	p->queuesize = bufferframes;
   p->outchannels = outchannels;
   p->sr = sr;
- 
+
   if(openSLCreateEngine(p) != SL_RESULT_SUCCESS) {
     android_CloseAudioDevice(p);
     return NULL;
@@ -246,10 +246,10 @@ OPENSL_STREAM *android_OpenAudioDevice(int sr, int outchannels, int bufferframes
   if(openSLPlayOpen(p) != SL_RESULT_SUCCESS) {
     android_CloseAudioDevice(p);
     return NULL;
-  }  
+  }
 
 	p->queue = Queue_New(TRUE, -1, -1);
-  
+
 	return p;
 }
 
@@ -291,9 +291,9 @@ int android_AudioOut(OPENSL_STREAM *p, const short *buffer,int size)
 
 	void *data = calloc(size, sizeof(short));
 	memcpy(data, buffer, size * sizeof(short));
- 	(*p->bqPlayerBufferQueue)->Enqueue(p->bqPlayerBufferQueue, 
+ 	(*p->bqPlayerBufferQueue)->Enqueue(p->bqPlayerBufferQueue,
 	 	data, sizeof(short) * size);
-  
+
 	return size;
 }
 
@@ -309,7 +309,7 @@ int android_GetOutputMute(OPENSL_STREAM *p) {
 	return mute;
 }
 
-void android_SetOutputMute(OPENSL_STREAM *p, BOOL _mute) {
+void android_SetOutputMute(OPENSL_STREAM *p, WINBOOL _mute) {
 	SLboolean mute = _mute;
 
 	assert(p);

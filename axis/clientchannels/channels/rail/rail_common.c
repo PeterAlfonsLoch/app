@@ -69,7 +69,7 @@ void rail_string_to_unicode_string(char* string, RAIL_UNICODE_STRING* unicode_st
 	unicode_string->length = (UINT16) length;
 }
 
-BOOL rail_read_pdu_header(wStream* s, UINT16* orderType, UINT16* orderLength)
+WINBOOL rail_read_pdu_header(wStream* s, UINT16* orderType, UINT16* orderLength)
 {
 	if (Stream_GetRemainingLength(s) < 4)
 		return FALSE;
@@ -94,7 +94,7 @@ wStream* rail_pdu_init(int length)
 	return s;
 }
 
-BOOL rail_read_handshake_order(wStream* s, RAIL_HANDSHAKE_ORDER* handshake)
+WINBOOL rail_read_handshake_order(wStream* s, RAIL_HANDSHAKE_ORDER* handshake)
 {
 	if (Stream_GetRemainingLength(s) < 4)
 		return FALSE;
@@ -109,7 +109,7 @@ void rail_write_handshake_order(wStream* s, RAIL_HANDSHAKE_ORDER* handshake)
 	Stream_Write_UINT32(s, handshake->buildNumber); /* buildNumber (4 bytes) */
 }
 
-BOOL rail_read_handshake_ex_order(wStream* s, RAIL_HANDSHAKE_EX_ORDER* handshakeEx)
+WINBOOL rail_read_handshake_ex_order(wStream* s, RAIL_HANDSHAKE_EX_ORDER* handshakeEx)
 {
 	if (Stream_GetRemainingLength(s) < 8)
 		return FALSE;

@@ -176,7 +176,7 @@ static TSMF_SAMPLE *tsmf_stream_pop_sample(TSMF_STREAM *stream, int sync)
 	UINT32 count;
 	TSMF_STREAM *s;
 	TSMF_SAMPLE *sample;
-	BOOL pending = FALSE;
+	WINBOOL pending = FALSE;
 	TSMF_PRESENTATION *presentation = stream->presentation;
 	assert(stream);
 
@@ -258,12 +258,12 @@ static void tsmf_sample_queue_ack(TSMF_SAMPLE *sample)
 	Queue_Enqueue(sample->stream->sample_ack_list, sample);
 }
 
-static BOOL tsmf_stream_process_ack(void *arg, BOOL force)
+static WINBOOL tsmf_stream_process_ack(void *arg, WINBOOL force)
 {
 	TSMF_STREAM *stream = arg;
 	TSMF_SAMPLE *sample;
 	UINT64 ack_time;
-	BOOL rc = FALSE;
+	WINBOOL rc = FALSE;
 	assert(stream);
 	Queue_Lock(stream->sample_ack_list);
 	sample = (TSMF_SAMPLE *) Queue_Peek(stream->sample_ack_list);
@@ -326,7 +326,7 @@ TSMF_PRESENTATION *tsmf_presentation_find_by_id(const BYTE *guid)
 	char guid_str[GUID_SIZE * 2 + 1];
 	UINT32 index;
 	UINT32 count;
-	BOOL found = FALSE;
+	WINBOOL found = FALSE;
 	TSMF_PRESENTATION *presentation;
 	ArrayList_Lock(presentation_list);
 	count = ArrayList_Count(presentation_list);
@@ -442,7 +442,7 @@ static void tsmf_sample_playback_audio(TSMF_SAMPLE *sample)
 
 static void tsmf_sample_playback(TSMF_SAMPLE *sample)
 {
-	BOOL ret = FALSE;
+	WINBOOL ret = FALSE;
 	UINT32 width;
 	UINT32 height;
 	UINT32 pixfmt = 0;
@@ -518,7 +518,7 @@ static void tsmf_sample_playback(TSMF_SAMPLE *sample)
 		TSMF_STREAM *stream = sample->stream;
 		UINT64 ack_anticipation_time = get_current_time();
 		UINT64 currentRunningTime = sample->start_time;
-		BOOL buffer_filled = TRUE;
+		WINBOOL buffer_filled = TRUE;
 
 		if (stream->decoder->GetRunningTime)
 		{
@@ -959,7 +959,7 @@ TSMF_STREAM *tsmf_stream_find_by_id(TSMF_PRESENTATION *presentation, UINT32 stre
 {
 	UINT32 index;
 	UINT32 count;
-	BOOL found = FALSE;
+	WINBOOL found = FALSE;
 	TSMF_STREAM *stream = NULL;
 	ArrayList_Lock(presentation->stream_list);
 	count = ArrayList_Count(presentation->stream_list);

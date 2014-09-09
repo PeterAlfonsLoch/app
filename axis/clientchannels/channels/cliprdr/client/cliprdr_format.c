@@ -56,7 +56,7 @@ void cliprdr_process_format_list_event(cliprdrPlugin* cliprdr, RDP_CB_FORMAT_LIS
 	else
 	{
 		wStream* body = Stream_New(NULL, 64);
-		
+
 		for (i = 0; i < cb_event->num_formats; i++)
 		{
 			const char* name;
@@ -85,9 +85,9 @@ void cliprdr_process_format_list_event(cliprdrPlugin* cliprdr, RDP_CB_FORMAT_LIS
 					name_length = 2;
 					break;
 			}
-			
+
 			if (!cliprdr->use_long_format_names)
-			{				
+			{
 				x = (name_length > short_name_length) ?
 					name_length : short_name_length;
 
@@ -105,7 +105,7 @@ void cliprdr_process_format_list_event(cliprdrPlugin* cliprdr, RDP_CB_FORMAT_LIS
 				Stream_Write(body, name, name_length);
 			}
 		}
-				
+
 		Stream_SealLength(body);
 		s = cliprdr_packet_new(CB_FORMAT_LIST, 0, Stream_Length(body));
 		Stream_Write(s, Stream_Buffer(body), Stream_Length(body));
@@ -126,7 +126,7 @@ static void cliprdr_send_format_list_response(cliprdrPlugin* cliprdr)
 void cliprdr_process_short_format_names(cliprdrPlugin* cliprdr, wStream* s, UINT32 length, UINT16 flags)
 {
 	int i;
-	BOOL ascii;
+	WINBOOL ascii;
 	int num_formats;
 	CLIPRDR_FORMAT_NAME* format_name;
 
@@ -173,10 +173,10 @@ void cliprdr_process_long_format_names(cliprdrPlugin* cliprdr, wStream* s, UINT3
 	int allocated_formats = 8;
 	BYTE* end_mark;
 	CLIPRDR_FORMAT_NAME* format_name;
-	
+
 	Stream_GetPointer(s, end_mark);
 	end_mark += length;
-		
+
 	cliprdr->format_names = (CLIPRDR_FORMAT_NAME*) malloc(sizeof(CLIPRDR_FORMAT_NAME) * allocated_formats);
 	cliprdr->num_format_names = 0;
 
@@ -184,17 +184,17 @@ void cliprdr_process_long_format_names(cliprdrPlugin* cliprdr, wStream* s, UINT3
 	{
 		BYTE* p;
 		int name_len;
-		
+
 		if (cliprdr->num_format_names >= allocated_formats)
 		{
 			allocated_formats *= 2;
 			cliprdr->format_names = (CLIPRDR_FORMAT_NAME*) realloc(cliprdr->format_names,
 					sizeof(CLIPRDR_FORMAT_NAME) * allocated_formats);
 		}
-		
+
 		format_name = &cliprdr->format_names[cliprdr->num_format_names++];
 		Stream_Read_UINT32(s, format_name->id);
-		
+
 		format_name->name = NULL;
 		format_name->length = 0;
 
@@ -203,7 +203,7 @@ void cliprdr_process_long_format_names(cliprdrPlugin* cliprdr, wStream* s, UINT3
 			if (*((unsigned short*) p) == 0)
 				break;
 		}
-		
+
 		format_name->length = ConvertFromUnicode(CP_UTF8, 0, (WCHAR*) Stream_Pointer(s), name_len / 2, &format_name->name, 0, NULL, NULL);
 
 		Stream_Seek(s, name_len + 2);
@@ -282,7 +282,7 @@ void cliprdr_process_format_list(cliprdrPlugin* cliprdr, wStream* s, UINT32 data
 	{
 		int i;
 		UINT32 format;
-		BOOL supported;
+		WINBOOL supported;
 		CLIPRDR_FORMAT_NAME* format_name;
 		RDP_CB_FORMAT_LIST_EVENT* cb_event;
 
@@ -464,25 +464,25 @@ void cliprdr_process_format_data_request_event(cliprdrPlugin* cliprdr, RDP_CB_DA
 void cliprdr_process_format_data_response(cliprdrPlugin* cliprdr, wStream* s, UINT32 dataLen, UINT16 msgFlags)
 {
 	CliprdrClientContext* context = cliprdr_get_client_interface(cliprdr);
-	
+
 	if (context->custom)
 	{
 		CLIPRDR_FORMAT_DATA_RESPONSE formatDataResponse;
-		
+
 		formatDataResponse.msgType = CB_FORMAT_DATA_RESPONSE;
 		formatDataResponse.msgFlags = msgFlags;
 		formatDataResponse.dataLen = dataLen;
 		formatDataResponse.requestedFormatData = NULL;
-		
+
 		if (dataLen)
 		{
 			formatDataResponse.requestedFormatData = (BYTE*) malloc(dataLen);
 			Stream_Read(s, formatDataResponse.requestedFormatData, dataLen);
 		}
-		
+
 		if (context->ServerFormatDataResponse)
 			context->ServerFormatDataResponse(context, &formatDataResponse);
-		
+
 		free(formatDataResponse.requestedFormatData);
 	}
 	else
@@ -491,7 +491,7 @@ void cliprdr_process_format_data_response(cliprdrPlugin* cliprdr, wStream* s, UI
 
 		cb_event = (RDP_CB_DATA_RESPONSE_EVENT*) freerdp_event_new(CliprdrChannel_Class,
 				CliprdrChannel_DataResponse, NULL, NULL);
-	
+
 		if (dataLen > 0)
 		{
 			cb_event->size = dataLen;

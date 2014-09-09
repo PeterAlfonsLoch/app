@@ -65,7 +65,7 @@ static void tsmf_pulse_context_state_callback(pa_context *context, void *userdat
 	}
 }
 
-static BOOL tsmf_pulse_connect(TSMFPulseAudioDevice *pulse)
+static WINBOOL tsmf_pulse_connect(TSMFPulseAudioDevice *pulse)
 {
 	pa_context_state_t state;
 	if(!pulse->context)
@@ -110,7 +110,7 @@ static BOOL tsmf_pulse_connect(TSMFPulseAudioDevice *pulse)
 	}
 }
 
-static BOOL tsmf_pulse_open(ITSMFAudioDevice *audio, const char *device)
+static WINBOOL tsmf_pulse_open(ITSMFAudioDevice *audio, const char *device)
 {
 	TSMFPulseAudioDevice *pulse = (TSMFPulseAudioDevice *) audio;
 	if(device)
@@ -185,7 +185,7 @@ static void tsmf_pulse_stream_request_callback(pa_stream *stream, size_t length,
 	pa_threaded_mainloop_signal(pulse->mainloop, 0);
 }
 
-static BOOL tsmf_pulse_close_stream(TSMFPulseAudioDevice *pulse)
+static WINBOOL tsmf_pulse_close_stream(TSMFPulseAudioDevice *pulse)
 {
 	if(!pulse->context || !pulse->stream)
 		return FALSE;
@@ -201,7 +201,7 @@ static BOOL tsmf_pulse_close_stream(TSMFPulseAudioDevice *pulse)
 	return TRUE;
 }
 
-static BOOL tsmf_pulse_open_stream(TSMFPulseAudioDevice *pulse)
+static WINBOOL tsmf_pulse_open_stream(TSMFPulseAudioDevice *pulse)
 {
 	pa_stream_state_t state;
 	pa_buffer_attr buffer_attr = { 0 };
@@ -263,7 +263,7 @@ static BOOL tsmf_pulse_open_stream(TSMFPulseAudioDevice *pulse)
 	}
 }
 
-static BOOL tsmf_pulse_set_format(ITSMFAudioDevice *audio,
+static WINBOOL tsmf_pulse_set_format(ITSMFAudioDevice *audio,
 								  UINT32 sample_rate, UINT32 channels, UINT32 bits_per_sample)
 {
 	TSMFPulseAudioDevice *pulse = (TSMFPulseAudioDevice *) audio;
@@ -275,7 +275,7 @@ static BOOL tsmf_pulse_set_format(ITSMFAudioDevice *audio,
 	return tsmf_pulse_open_stream(pulse);
 }
 
-static BOOL tsmf_pulse_play(ITSMFAudioDevice *audio, BYTE *data, UINT32 data_size)
+static WINBOOL tsmf_pulse_play(ITSMFAudioDevice *audio, BYTE *data, UINT32 data_size)
 {
 	TSMFPulseAudioDevice *pulse = (TSMFPulseAudioDevice *) audio;
 	BYTE *src;

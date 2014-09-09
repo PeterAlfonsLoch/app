@@ -65,7 +65,7 @@ typedef struct _AudinALSADevice
 	void* user_data;
 } AudinALSADevice;
 
-static BOOL audin_alsa_set_params(AudinALSADevice* alsa, snd_pcm_t* capture_handle)
+static WINBOOL audin_alsa_set_params(AudinALSADevice* alsa, snd_pcm_t* capture_handle)
 {
 	int error;
 	snd_pcm_hw_params_t* hw_params;
@@ -98,7 +98,7 @@ static BOOL audin_alsa_set_params(AudinALSADevice* alsa, snd_pcm_t* capture_hand
 	return TRUE;
 }
 
-static BOOL audin_alsa_thread_receive(AudinALSADevice* alsa, BYTE* src, int size)
+static WINBOOL audin_alsa_thread_receive(AudinALSADevice* alsa, BYTE* src, int size)
 {
 	int frames;
 	int cframes;
@@ -258,7 +258,7 @@ static void audin_alsa_free(IAudinDevice* device)
 	free(alsa);
 }
 
-static BOOL audin_alsa_format_supported(IAudinDevice* device, audinFormat* format)
+static WINBOOL audin_alsa_format_supported(IAudinDevice* device, audinFormat* format)
 {
 	switch (format->wFormatTag)
 	{
@@ -342,7 +342,7 @@ static void audin_alsa_open(IAudinDevice* device, AudinReceive receive, void* us
 	alsa->buffer = (BYTE*) malloc(tbytes_per_frame * alsa->frames_per_packet);
 	ZeroMemory(alsa->buffer, tbytes_per_frame * alsa->frames_per_packet);
 	alsa->buffer_frames = 0;
-	
+
 	alsa->stopEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 	alsa->thread = CreateThread(NULL, 0,
 			(LPTHREAD_START_ROUTINE) audin_alsa_thread_func, alsa, 0, NULL);

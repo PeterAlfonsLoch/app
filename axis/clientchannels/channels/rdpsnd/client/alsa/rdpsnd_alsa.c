@@ -363,7 +363,7 @@ static void rdpsnd_alsa_free(rdpsndDevicePlugin* device)
 	free(alsa);
 }
 
-static BOOL rdpsnd_alsa_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
+static WINBOOL rdpsnd_alsa_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
 {
 	switch (format->wFormatTag)
 	{
@@ -454,7 +454,7 @@ static void rdpsnd_alsa_set_volume(rdpsndDevicePlugin* device, UINT32 value)
 
 	left = (value & 0xFFFF);
 	right = ((value >> 16) & 0xFFFF);
-	
+
 	for (elem = snd_mixer_first_elem(alsa->mixer_handle); elem; elem = snd_mixer_elem_next(elem))
 	{
 		if (snd_mixer_selem_has_playback_volume(elem))

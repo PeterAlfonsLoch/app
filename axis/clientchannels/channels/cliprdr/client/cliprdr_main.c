@@ -332,7 +332,7 @@ static void cliprdr_process_receive(rdpSvcPlugin* plugin, wStream* s)
 
 	DEBUG_CLIPRDR("msgType: %s (%d), msgFlags: %d dataLen: %d",
 		CB_MSG_TYPE_STRINGS[msgType], msgType, msgFlags, dataLen);
-	
+
 #ifdef WITH_DEBUG_CLIPRDR
 	winpr_HexDump(Stream_Buffer(s), dataLen + 8);
 #endif
@@ -640,7 +640,7 @@ int cliprdr_client_format_data_response(CliprdrClientContext* context, CLIPRDR_F
 /* cliprdr is always built-in */
 #define VirtualChannelEntry	cliprdr_VirtualChannelEntry
 
-BOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
+WINBOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
 {
 	cliprdrPlugin* cliprdr;
 	CliprdrClientContext* context;

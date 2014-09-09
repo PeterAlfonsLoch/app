@@ -254,7 +254,7 @@ static int drdynvc_process_create_request(drdynvcPlugin* drdynvc, int Sp, int cb
 	Stream_Write_UINT8(data_out, 0x10 | cbChId);
 	Stream_SetPosition(s, 1);
 	Stream_Copy(data_out, s, pos - 1);
-	
+
 	if (channel_status == 0)
 	{
 		DEBUG_DVC("channel created");
@@ -320,19 +320,19 @@ static int drdynvc_process_close_request(drdynvcPlugin* drdynvc, int Sp, int cbC
 	ChannelId = drdynvc_read_variable_uint(s, cbChId);
 	DEBUG_DVC("ChannelId=%d", ChannelId);
 	dvcman_close_channel(drdynvc->channel_mgr, ChannelId);
-	
+
 	data_out = Stream_New(NULL, 4);
 	value = (CLOSE_REQUEST_PDU << 4) | (cbChId & 0x03);
 	Stream_Write_UINT8(data_out, value);
 	drdynvc_write_variable_uint(data_out, ChannelId);
 	error = svc_plugin_send((rdpSvcPlugin*) drdynvc, data_out);
-	
+
 	if (error != CHANNEL_RC_OK)
 	{
 		CLOG_ERR("VirtualChannelWrite failed %d", error);
 		return 1;
 	}
-	
+
 	drdynvc->channel_error = error;
 
 	return 0;
@@ -444,7 +444,7 @@ int drdynvc_get_version(DrdynvcClientContext* context)
 /* drdynvc is always built-in */
 #define VirtualChannelEntry	drdynvc_VirtualChannelEntry
 
-BOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
+WINBOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
 {
 	drdynvcPlugin* _p;
 	DrdynvcClientContext* context;

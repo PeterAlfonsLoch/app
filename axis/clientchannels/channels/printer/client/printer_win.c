@@ -139,7 +139,7 @@ static rdpPrintJob* printer_win_create_printjob(rdpPrinter* printer, UINT32 id)
 	win_printjob->printjob.Close = printer_win_close_printjob;
 
 	win_printer->printjob = win_printjob;
-	
+
 	return (rdpPrintJob*) win_printjob;
 }
 
@@ -167,7 +167,7 @@ static void printer_win_free_printer(rdpPrinter* printer)
 	free(printer);
 }
 
-static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, const char* name, const wchar_t* drivername, BOOL is_default)
+static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, const char* name, const wchar_t* drivername, WINBOOL is_default)
 {
 	rdpWinPrinter* win_printer;
 	wchar_t wname[256];
@@ -214,7 +214,7 @@ static rdpPrinter** printer_win_enum_printers(rdpPrinterDriver* driver)
 
 	/* allocate array of PRINTER_INFO structures */
 	prninfo = (PRINTER_INFO_2W*) GlobalAlloc(GPTR,needed);
- 
+
 	/* call again */
 	if (!EnumPrintersW(PRINTER_ENUM_LOCAL|PRINTER_ENUM_CONNECTIONS, NULL, 2, (LPBYTE) prninfo, needed, &needed, &returned))
 	{
@@ -240,9 +240,9 @@ static rdpPrinter* printer_win_get_printer(rdpPrinterDriver* driver, const char*
 {
 	rdpWinPrinterDriver* win_driver = (rdpWinPrinterDriver*)driver;
 	rdpPrinter *myPrinter = NULL;
-	
+
 	myPrinter = printer_win_new_printer(win_driver, name, L"", win_driver->id_sequence == 1 ? TRUE : FALSE);
-	
+
 	return myPrinter;
 }
 
