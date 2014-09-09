@@ -48,14 +48,20 @@ namespace visual
 
 #endif
 
+
    void cursor_alloc(::aura::application * papp, cursor * & pdib)
    {
+
       pdib = new cursor(papp);
+
    }
+
 
    ::draw2d::dib * cursor_get_dib(cursor * pcursor)
    {
+
       return pcursor->m_dib;
+
    }
 
 
@@ -128,7 +134,9 @@ HBITMAP CreateAlphaBitmapV5(::draw2d::dib * pdib)
    memcpy(lpBits,pdib->m_pcolorref,(size_t) (sizeof(COLORREF)* pdib->area()));
 
    return hBitmap;
+
 }
+
 
 HCURSOR CreateAlphaIcon(::draw2d::dib * pdib,bool bIcon,int xHotSpot,int yHotSpot)
 {

@@ -4134,30 +4134,47 @@ namespace draw2d
          Cos10N[i] = (int64_t) (dCos * d32);
          Sin10N[i] = (int64_t) (dSin * d32);
       }
+
    }
 
 
    void dib_paste(dib * pdibthis, dib *pdib)
    {
+
       pdibthis->Paste(pdib);
+
    }
+
 
    void dib_alloc(::aura::application * papp, dib * & pdib)
    {
+
       App(papp).alloc(pdib);
+
    }
+
+
    void dib_create(dib * pdib, int w, int h)
    {
+
       pdib->create(w, h);
+
    }
+
+
    unsigned int * dib_get_data(dib * pdib)
    {
+
       return (unsigned int * ) pdib->m_pcolorref;
+
    }
+
 
    graphics * dib_get_graphics(dib * pdib)
    {
+
       return pdib->get_graphics();
+
    }
 
 

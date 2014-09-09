@@ -42,6 +42,10 @@ namespace visual
    typedef sp(cursor) cursor_sp;
 
 
+   CLASS_DECL_AURA void cursor_alloc(::aura::application * papp,cursor * & pdib);
+   CLASS_DECL_AURA ::draw2d::dib * cursor_get_dib(cursor * pcursor);
+
+
 } // namespace visual
 
 

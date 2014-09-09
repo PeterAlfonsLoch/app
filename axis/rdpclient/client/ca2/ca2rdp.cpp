@@ -512,7 +512,15 @@ int main(int argc, char* argv[])
 
 */
 
+
 ::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext)
 {
+
    return ::draw2d::dib_get_graphics(pcontext->ca2rdpi->surface);
+
 }
+
+
+
+
+

@@ -427,6 +427,7 @@ namespace draw2d
    CLASS_DECL_AURA void dib_alloc(::aura::application * papp, dib * & pdib);
    CLASS_DECL_AURA void dib_create(dib * pdib, int w, int h);
    CLASS_DECL_AURA unsigned int * dib_get_data(dib * pdib);
+   CLASS_DECL_AURA graphics * dib_get_graphics(dib * pdib);
 
 
 } // namespace draw2d

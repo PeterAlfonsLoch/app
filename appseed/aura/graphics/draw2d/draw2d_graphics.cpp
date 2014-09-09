@@ -2996,8 +2996,10 @@ namespace draw2d
       return from(size, pgraphicsSrc, null_point(), dwRop);
    }
 
+   
    bool graphics::alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity)
    {
+      
       UNREFERENCED_PARAMETER(xDest);
       UNREFERENCED_PARAMETER(yDest);
       UNREFERENCED_PARAMETER(nDestWidth);
@@ -3008,33 +3010,51 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nSrcWidth);
       UNREFERENCED_PARAMETER(nSrcHeight);
       UNREFERENCED_PARAMETER(dOpacity);
+
       throw interface_only_exception(get_app());
+
       return false;
+
    }
+
 
    bool graphics::alpha_blend(point ptDst, size szDst,::draw2d::graphics * pgraphicsSrc, point ptSrc, size szSrc, double dOpacity)
    {
+
       return alpha_blend(ptDst.x, ptDst.y, szDst.cx, szDst.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, szSrc.cx, szSrc.cy, dOpacity);
+
    }
+
 
    bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, double dOpacity)
    {
+
       return alpha_blend(ptDst, size, pgraphicsSrc, ptSrc, size, dOpacity);
+
    }
+
 
    bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, double dOpacity)
    {
+      
       return alpha_blend(ptDst, size, pgraphicsSrc, null_point(), dOpacity);
+
    }
+
 
    bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, double dOpacity)
    {
+
       return alpha_blend(null_point(), size, pgraphicsSrc, ptSrc, dOpacity);
+
    }
+
 
    bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, double dOpacity)
    {
+
       return alpha_blend(size, pgraphicsSrc, null_point(), dOpacity);
+
    }
 
 
