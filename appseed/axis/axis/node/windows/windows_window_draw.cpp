@@ -1,4 +1,5 @@
 #include "framework.h" // from "axis/user/user.h"
+#include "windows.h"
 
 
 extern void _001DeferPaintLayeredWindowBackground(oswindow oswindow,::draw2d::graphics * pdc);

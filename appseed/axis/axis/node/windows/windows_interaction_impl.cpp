@@ -1,4 +1,5 @@
 #include "framework.h" // from "axis/user/user.h"
+#include "windows.h"
 
 
 thread_int_ptr < HHOOK > t_hHookOldCbtFilter;
