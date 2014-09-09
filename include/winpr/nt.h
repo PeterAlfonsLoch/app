@@ -1294,7 +1294,11 @@
 #define _FILE_INFORMATION_CLASS		_WINTERNL__FILE_INFORMATION_CLASS
 #define FileDirectoryInformation	_WINTERNL_FileDirectoryInformation
 
+#ifndef (CA2_AURA)
+
 #include <winternl.h>
+
+#endif
 
 #undef FILE_INFORMATION_CLASS
 #undef _FILE_INFORMATION_CLASS
