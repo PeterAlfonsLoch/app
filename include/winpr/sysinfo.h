@@ -110,8 +110,8 @@ typedef enum _COMPUTER_NAME_FORMAT
 	ComputerNameMax
 } COMPUTER_NAME_FORMAT;
 
-WINPR_API WINBOOL GetComputerNameExA(COMPUTER_NAME_FORMAT NameType, LPSTR lpBuffer, LPDWORD lpnSize);
-WINPR_API WINBOOL GetComputerNameExW(COMPUTER_NAME_FORMAT NameType, LPWSTR lpBuffer, LPDWORD lpnSize);
+WINPR_API BOOL GetComputerNameExA(COMPUTER_NAME_FORMAT NameType, LPSTR lpBuffer, LPDWORD lpnSize);
+WINPR_API BOOL GetComputerNameExW(COMPUTER_NAME_FORMAT NameType, LPWSTR lpBuffer, LPDWORD lpnSize);
 
 #ifdef BYEWINDOWS_UNICODE
 #define GetComputerNameEx	GetComputerNameExW
@@ -205,8 +205,8 @@ typedef struct _OSVERSIONINFOEXW
 #define VER_NT_SERVER				0x0000003
 #define VER_NT_WORKSTATION			0x0000001
 
-WINPR_API WINBOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation);
-WINPR_API WINBOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation);
+WINPR_API BOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation);
+WINPR_API BOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation);
 
 #ifdef BYEWINDOWS_UNICODE
 #define GetVersionEx	GetVersionExW
@@ -215,16 +215,16 @@ WINPR_API WINBOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation);
 #endif
 
 WINPR_API void GetSystemTime(LPSYSTEMTIME lpSystemTime);
-WINPR_API WINBOOL SetSystemTime(CONST SYSTEMTIME* lpSystemTime);
+WINPR_API BOOL SetSystemTime(CONST SYSTEMTIME* lpSystemTime);
 WINPR_API VOID GetLocalTime(LPSYSTEMTIME lpSystemTime);
-WINPR_API WINBOOL SetLocalTime(CONST SYSTEMTIME* lpSystemTime);
+WINPR_API BOOL SetLocalTime(CONST SYSTEMTIME* lpSystemTime);
 
 WINPR_API VOID GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime);
-WINPR_API WINBOOL GetSystemTimeAdjustment(PDWORD lpTimeAdjustment, PDWORD lpTimeIncrement, PBOOL lpTimeAdjustmentDisabled);
+WINPR_API BOOL GetSystemTimeAdjustment(PDWORD lpTimeAdjustment, PDWORD lpTimeIncrement, PBOOL lpTimeAdjustmentDisabled);
 
 WINPR_API DWORD GetTickCount(void);
 
-WINPR_API WINBOOL IsProcessorFeaturePresent(DWORD ProcessorFeature);
+WINPR_API BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature);
 
 #define PF_FLOATING_POINT_PRECISION_ERRATA		0
 #define PF_FLOATING_POINT_EMULATED			1
@@ -295,7 +295,7 @@ WINPR_API ULONGLONG GetTickCount64(void);
 
 #endif
 
-WINPR_API WINBOOL IsProcessorFeaturePresentEx(DWORD ProcessorFeature);
+WINPR_API BOOL IsProcessorFeaturePresentEx(DWORD ProcessorFeature);
 
 /* extended flags */
 #define PF_EX_LZCNT			1

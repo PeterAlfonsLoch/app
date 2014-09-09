@@ -65,7 +65,7 @@ extern "C" {
  * Unnamed pipe
  */
 
-WINPR_API WINBOOL CreatePipe(PHANDLE hReadPipe, PHANDLE hWritePipe, LPSECURITY_ATTRIBUTES lpPipeAttributes, DWORD nSize);
+WINPR_API BOOL CreatePipe(PHANDLE hReadPipe, PHANDLE hWritePipe, LPSECURITY_ATTRIBUTES lpPipeAttributes, DWORD nSize);
 
 /**
  * Named pipe
@@ -76,25 +76,25 @@ WINPR_API HANDLE CreateNamedPipeA(LPCSTR lpName, DWORD dwOpenMode, DWORD dwPipeM
 WINPR_API HANDLE CreateNamedPipeW(LPCWSTR lpName, DWORD dwOpenMode, DWORD dwPipeMode, DWORD nMaxInstances,
 		DWORD nOutBufferSize, DWORD nInBufferSize, DWORD nDefaultTimeOut, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
 
-WINPR_API WINBOOL ConnectNamedPipe(HANDLE hNamedPipe, LPOVERLAPPED lpOverlapped);
+WINPR_API BOOL ConnectNamedPipe(HANDLE hNamedPipe, LPOVERLAPPED lpOverlapped);
 
-WINPR_API WINBOOL DisconnectNamedPipe(HANDLE hNamedPipe);
+WINPR_API BOOL DisconnectNamedPipe(HANDLE hNamedPipe);
 
-WINPR_API WINBOOL PeekNamedPipe(HANDLE hNamedPipe, LPVOID lpBuffer, DWORD nBufferSize,
+WINPR_API BOOL PeekNamedPipe(HANDLE hNamedPipe, LPVOID lpBuffer, DWORD nBufferSize,
 		LPDWORD lpBytesRead, LPDWORD lpTotalBytesAvail, LPDWORD lpBytesLeftThisMessage);
 
-WINPR_API WINBOOL TransactNamedPipe(HANDLE hNamedPipe, LPVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer,
+WINPR_API BOOL TransactNamedPipe(HANDLE hNamedPipe, LPVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer,
 		DWORD nOutBufferSize, LPDWORD lpBytesRead, LPOVERLAPPED lpOverlapped);
 
-WINPR_API WINBOOL WaitNamedPipeA(LPCSTR lpNamedPipeName, DWORD nTimeOut);
-WINPR_API WINBOOL WaitNamedPipeW(LPCWSTR lpNamedPipeName, DWORD nTimeOut);
+WINPR_API BOOL WaitNamedPipeA(LPCSTR lpNamedPipeName, DWORD nTimeOut);
+WINPR_API BOOL WaitNamedPipeW(LPCWSTR lpNamedPipeName, DWORD nTimeOut);
 
-WINPR_API WINBOOL SetNamedPipeHandleState(HANDLE hNamedPipe, LPDWORD lpMode, LPDWORD lpMaxCollectionCount, LPDWORD lpCollectDataTimeout);
+WINPR_API BOOL SetNamedPipeHandleState(HANDLE hNamedPipe, LPDWORD lpMode, LPDWORD lpMaxCollectionCount, LPDWORD lpCollectDataTimeout);
 
-WINPR_API WINBOOL ImpersonateNamedPipeClient(HANDLE hNamedPipe);
+WINPR_API BOOL ImpersonateNamedPipeClient(HANDLE hNamedPipe);
 
-WINPR_API WINBOOL GetNamedPipeClientComputerNameA(HANDLE Pipe, LPCSTR ClientComputerName, ULONG ClientComputerNameLength);
-WINPR_API WINBOOL GetNamedPipeClientComputerNameW(HANDLE Pipe, LPCWSTR ClientComputerName, ULONG ClientComputerNameLength);
+WINPR_API BOOL GetNamedPipeClientComputerNameA(HANDLE Pipe, LPCSTR ClientComputerName, ULONG ClientComputerNameLength);
+WINPR_API BOOL GetNamedPipeClientComputerNameW(HANDLE Pipe, LPCWSTR ClientComputerName, ULONG ClientComputerNameLength);
 
 #ifdef BYEWINDOWS_UNICODE
 #define CreateNamedPipe				CreateNamedPipeW

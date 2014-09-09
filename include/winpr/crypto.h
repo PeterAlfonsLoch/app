@@ -245,7 +245,7 @@ typedef struct _CERT_PUBLIC_KEY_INFO
 typedef struct _CERT_EXTENSION
 {
 	LPSTR pszObjId;
-	WINBOOL fCritical;
+	BOOL fCritical;
 	CRYPT_OBJID_BLOB Value;
 } CERT_EXTENSION, *PCERT_EXTENSION;
 typedef const CERT_EXTENSION* PCCERT_EXTENSION;
@@ -483,7 +483,7 @@ HCERTSTORE CertOpenStore(LPCSTR lpszStoreProvider, DWORD dwMsgAndCertEncodingTyp
 WINPR_API HCERTSTORE CertOpenSystemStoreW(HCRYPTPROV_LEGACY hProv, LPCWSTR szSubsystemProtocol);
 WINPR_API HCERTSTORE CertOpenSystemStoreA(HCRYPTPROV_LEGACY hProv, LPCSTR szSubsystemProtocol);
 
-WINPR_API WINBOOL CertCloseStore(HCERTSTORE hCertStore, DWORD dwFlags);
+WINPR_API BOOL CertCloseStore(HCERTSTORE hCertStore, DWORD dwFlags);
 
 #ifdef BYEWINDOWS_UNICODE
 #define CertOpenSystemStore	CertOpenSystemStoreW
@@ -556,12 +556,12 @@ typedef struct _CRYPTPROTECT_PROMPTSTRUCT
 extern "C" {
 #endif
 
-WINPR_API WINBOOL CryptProtectMemory(LPVOID pData, DWORD cbData, DWORD dwFlags);
-WINPR_API WINBOOL CryptUnprotectMemory(LPVOID pData, DWORD cbData, DWORD dwFlags);
+WINPR_API BOOL CryptProtectMemory(LPVOID pData, DWORD cbData, DWORD dwFlags);
+WINPR_API BOOL CryptUnprotectMemory(LPVOID pData, DWORD cbData, DWORD dwFlags);
 
-WINPR_API WINBOOL CryptProtectData(DATA_BLOB* pDataIn, LPCWSTR szDataDescr, DATA_BLOB* pOptionalEntropy,
+WINPR_API BOOL CryptProtectData(DATA_BLOB* pDataIn, LPCWSTR szDataDescr, DATA_BLOB* pOptionalEntropy,
 		PVOID pvReserved, CRYPTPROTECT_PROMPTSTRUCT* pPromptStruct, DWORD dwFlags, DATA_BLOB* pDataOut);
-WINPR_API WINBOOL CryptUnprotectData(DATA_BLOB* pDataIn, LPWSTR* ppszDataDescr, DATA_BLOB* pOptionalEntropy,
+WINPR_API BOOL CryptUnprotectData(DATA_BLOB* pDataIn, LPWSTR* ppszDataDescr, DATA_BLOB* pOptionalEntropy,
 		PVOID pvReserved, CRYPTPROTECT_PROMPTSTRUCT* pPromptStruct, DWORD dwFlags, DATA_BLOB* pDataOut);
 
 #ifdef __cplusplus
@@ -587,13 +587,13 @@ WINPR_API WINBOOL CryptUnprotectData(DATA_BLOB* pDataIn, LPWSTR* ppszDataDescr, 
 #define CRYPT_STRING_NOCRLF				0x40000000
 #define CRYPT_STRING_NOCR				0x80000000
 
-WINBOOL CryptStringToBinaryW(LPCWSTR pszString, DWORD cchString, DWORD dwFlags, BYTE* pbBinary,
+BOOL CryptStringToBinaryW(LPCWSTR pszString, DWORD cchString, DWORD dwFlags, BYTE* pbBinary,
 		DWORD* pcbBinary, DWORD* pdwSkip, DWORD* pdwFlags);
-WINBOOL CryptStringToBinaryA(LPCSTR pszString, DWORD cchString, DWORD dwFlags, BYTE* pbBinary,
+BOOL CryptStringToBinaryA(LPCSTR pszString, DWORD cchString, DWORD dwFlags, BYTE* pbBinary,
 		DWORD* pcbBinary, DWORD* pdwSkip, DWORD* pdwFlags);
 
-WINBOOL CryptBinaryToStringW(CONST BYTE* pbBinary, DWORD cbBinary, DWORD dwFlags, LPWSTR pszString, DWORD* pcchString);
-WINBOOL CryptBinaryToStringA(CONST BYTE* pbBinary, DWORD cbBinary, DWORD dwFlags, LPSTR pszString, DWORD* pcchString);
+BOOL CryptBinaryToStringW(CONST BYTE* pbBinary, DWORD cbBinary, DWORD dwFlags, LPWSTR pszString, DWORD* pcchString);
+BOOL CryptBinaryToStringA(CONST BYTE* pbBinary, DWORD cbBinary, DWORD dwFlags, LPSTR pszString, DWORD* pcchString);
 
 #ifdef BYEWINDOWS_UNICODE
 #define CryptStringToBinary	CryptStringToBinaryW

@@ -172,9 +172,9 @@ WINPR_API LONGLONG InterlockedCompareExchange64(LONGLONG volatile *Destination, 
 
 WINPR_API VOID InitializeListHead(PLIST_ENTRY ListHead);
 
-WINPR_API WINBOOL IsListEmpty(const LIST_ENTRY* ListHead);
+WINPR_API BOOL IsListEmpty(const LIST_ENTRY* ListHead);
 
-WINPR_API WINBOOL RemoveEntryList(PLIST_ENTRY Entry);
+WINPR_API BOOL RemoveEntryList(PLIST_ENTRY Entry);
 
 WINPR_API VOID InsertHeadList(PLIST_ENTRY ListHead, PLIST_ENTRY Entry);
 WINPR_API PLIST_ENTRY RemoveHeadList(PLIST_ENTRY ListHead);

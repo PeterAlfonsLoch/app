@@ -34,27 +34,27 @@ extern "C" {
 WINPR_API DWORD GetCurrentDirectoryA(DWORD nBufferLength, LPSTR lpBuffer);
 WINPR_API DWORD GetCurrentDirectoryW(DWORD nBufferLength, LPWSTR lpBuffer);
 
-WINPR_API WINBOOL SetCurrentDirectoryA(LPCSTR lpPathName);
-WINPR_API WINBOOL SetCurrentDirectoryW(LPCWSTR lpPathName);
+WINPR_API BOOL SetCurrentDirectoryA(LPCSTR lpPathName);
+WINPR_API BOOL SetCurrentDirectoryW(LPCWSTR lpPathName);
 
 WINPR_API DWORD SearchPathA(LPCSTR lpPath, LPCSTR lpFileName, LPCSTR lpExtension, DWORD nBufferLength, LPSTR lpBuffer, LPSTR* lpFilePart);
 WINPR_API DWORD SearchPathW(LPCWSTR lpPath, LPCWSTR lpFileName, LPCWSTR lpExtension, DWORD nBufferLength, LPWSTR lpBuffer, LPWSTR* lpFilePart);
 
 WINPR_API HANDLE GetStdHandle(DWORD nStdHandle);
-WINPR_API WINBOOL SetStdHandle(DWORD nStdHandle, HANDLE hHandle);
-WINPR_API WINBOOL SetStdHandleEx(DWORD dwStdHandle, HANDLE hNewHandle, HANDLE* phOldHandle);
+WINPR_API BOOL SetStdHandle(DWORD nStdHandle, HANDLE hHandle);
+WINPR_API BOOL SetStdHandleEx(DWORD dwStdHandle, HANDLE hNewHandle, HANDLE* phOldHandle);
 
 WINPR_API LPSTR GetCommandLineA(VOID);
 WINPR_API LPWSTR GetCommandLineW(VOID);
 
-WINPR_API WINBOOL NeedCurrentDirectoryForExePathA(LPCSTR ExeName);
-WINPR_API WINBOOL NeedCurrentDirectoryForExePathW(LPCWSTR ExeName);
+WINPR_API BOOL NeedCurrentDirectoryForExePathA(LPCSTR ExeName);
+WINPR_API BOOL NeedCurrentDirectoryForExePathW(LPCWSTR ExeName);
 
 WINPR_API DWORD GetEnvironmentVariableA(LPCSTR lpName, LPSTR lpBuffer, DWORD nSize);
 WINPR_API DWORD GetEnvironmentVariableW(LPCWSTR lpName, LPWSTR lpBuffer, DWORD nSize);
 
-WINPR_API WINBOOL SetEnvironmentVariableA(LPCSTR lpName, LPCSTR lpValue);
-WINPR_API WINBOOL SetEnvironmentVariableW(LPCWSTR lpName, LPCWSTR lpValue);
+WINPR_API BOOL SetEnvironmentVariableA(LPCSTR lpName, LPCSTR lpValue);
+WINPR_API BOOL SetEnvironmentVariableW(LPCWSTR lpName, LPCWSTR lpValue);
 
 /**
  * A brief history of the GetEnvironmentStrings functions:
@@ -64,19 +64,19 @@ WINPR_API WINBOOL SetEnvironmentVariableW(LPCWSTR lpName, LPCWSTR lpValue);
 WINPR_API char * GetEnvironmentStrings(VOID);
 WINPR_API LPWSTR GetEnvironmentStringsW(VOID);
 
-WINPR_API WINBOOL SetEnvironmentStringsA(LPCH NewEnvironment);
-WINPR_API WINBOOL SetEnvironmentStringsW(LPWCH NewEnvironment);
+WINPR_API BOOL SetEnvironmentStringsA(LPCH NewEnvironment);
+WINPR_API BOOL SetEnvironmentStringsW(LPWCH NewEnvironment);
 
 WINPR_API DWORD ExpandEnvironmentStringsA(LPCSTR lpSrc, LPSTR lpDst, DWORD nSize);
 WINPR_API DWORD ExpandEnvironmentStringsW(LPCWSTR lpSrc, LPWSTR lpDst, DWORD nSize);
 
-WINPR_API WINBOOL FreeEnvironmentStringsA(LPCH lpszEnvironmentBlock);
-WINPR_API WINBOOL FreeEnvironmentStringsW(LPWCH lpszEnvironmentBlock);
+WINPR_API BOOL FreeEnvironmentStringsA(LPCH lpszEnvironmentBlock);
+WINPR_API BOOL FreeEnvironmentStringsW(LPWCH lpszEnvironmentBlock);
 
 WINPR_API LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge);
 
 WINPR_API DWORD GetEnvironmentVariableEBA(LPCSTR envBlock, LPCSTR lpName, LPSTR lpBuffer, DWORD nSize);
-WINPR_API WINBOOL SetEnvironmentVariableEBA(LPSTR * envBlock,LPCSTR lpName, LPCSTR lpValue);
+WINPR_API BOOL SetEnvironmentVariableEBA(LPSTR * envBlock,LPCSTR lpName, LPCSTR lpValue);
 
 #ifdef __cplusplus
 }

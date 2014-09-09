@@ -42,8 +42,8 @@ WINPR_API HANDLE CreateFileMappingA(HANDLE hFile, LPSECURITY_ATTRIBUTES lpAttrib
 WINPR_API HANDLE CreateFileMappingW(HANDLE hFile, LPSECURITY_ATTRIBUTES lpAttributes, DWORD flProtect,
 		DWORD dwMaximumSizeHigh, DWORD dwMaximumSizeLow, LPCWSTR lpName);
 
-WINPR_API HANDLE OpenFileMappingA(DWORD dwDesiredAccess, WINBOOL bInheritHandle, LPCSTR lpName);
-WINPR_API HANDLE OpenFileMappingW(DWORD dwDesiredAccess, WINBOOL bInheritHandle, LPCWSTR lpName);
+WINPR_API HANDLE OpenFileMappingA(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCSTR lpName);
+WINPR_API HANDLE OpenFileMappingW(DWORD dwDesiredAccess, BOOL bInheritHandle, LPCWSTR lpName);
 
 WINPR_API LPVOID MapViewOfFile(HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD dwFileOffsetHigh,
 		DWORD dwFileOffsetLow, SIZE_T dwNumberOfBytesToMap);
@@ -51,9 +51,9 @@ WINPR_API LPVOID MapViewOfFile(HANDLE hFileMappingObject, DWORD dwDesiredAccess,
 WINPR_API LPVOID MapViewOfFileEx(HANDLE hFileMappingObject, DWORD dwDesiredAccess, DWORD dwFileOffsetHigh,
 		DWORD dwFileOffsetLow, SIZE_T dwNumberOfBytesToMap, LPVOID lpBaseAddress);
 
-WINPR_API WINBOOL FlushViewOfFile(LPCVOID lpBaseAddress, SIZE_T dwNumberOfBytesToFlush);
+WINPR_API BOOL FlushViewOfFile(LPCVOID lpBaseAddress, SIZE_T dwNumberOfBytesToFlush);
 
-WINPR_API WINBOOL UnmapViewOfFile(LPCVOID lpBaseAddress);
+WINPR_API BOOL UnmapViewOfFile(LPCVOID lpBaseAddress);
 
 #ifdef __cplusplus
 }

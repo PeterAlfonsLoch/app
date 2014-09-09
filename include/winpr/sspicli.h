@@ -103,22 +103,22 @@ typedef enum
 extern "C" {
 #endif
 
-WINPR_API WINBOOL LogonUserA(LPCSTR lpszUsername, LPCSTR lpszDomain, LPCSTR lpszPassword,
+WINPR_API BOOL LogonUserA(LPCSTR lpszUsername, LPCSTR lpszDomain, LPCSTR lpszPassword,
 		DWORD dwLogonType, DWORD dwLogonProvider, PHANDLE phToken);
 
-WINPR_API WINBOOL LogonUserW(LPCWSTR lpszUsername, LPCWSTR lpszDomain, LPCWSTR lpszPassword,
+WINPR_API BOOL LogonUserW(LPCWSTR lpszUsername, LPCWSTR lpszDomain, LPCWSTR lpszPassword,
 		DWORD dwLogonType, DWORD dwLogonProvider, PHANDLE phToken);
 
-WINPR_API WINBOOL LogonUserExA(LPCSTR lpszUsername, LPCSTR lpszDomain, LPCSTR lpszPassword,
+WINPR_API BOOL LogonUserExA(LPCSTR lpszUsername, LPCSTR lpszDomain, LPCSTR lpszPassword,
 		DWORD dwLogonType, DWORD dwLogonProvider, PHANDLE phToken, PSID* ppLogonSid,
 		PVOID* ppProfileBuffer, LPDWORD pdwProfileLength, PQUOTA_LIMITS pQuotaLimits);
 
-WINPR_API WINBOOL LogonUserExW(LPCWSTR lpszUsername, LPCWSTR lpszDomain, LPCWSTR lpszPassword,
+WINPR_API BOOL LogonUserExW(LPCWSTR lpszUsername, LPCWSTR lpszDomain, LPCWSTR lpszPassword,
 		DWORD dwLogonType, DWORD dwLogonProvider, PHANDLE phToken, PSID* ppLogonSid,
 		PVOID* ppProfileBuffer, LPDWORD pdwProfileLength, PQUOTA_LIMITS pQuotaLimits);
 
-WINPR_API WINBOOL GetUserNameExA(EXTENDED_NAME_FORMAT NameFormat, LPSTR lpNameBuffer, PULONG nSize);
-WINPR_API WINBOOL GetUserNameExW(EXTENDED_NAME_FORMAT NameFormat, LPWSTR lpNameBuffer, PULONG nSize);
+WINPR_API BOOL GetUserNameExA(EXTENDED_NAME_FORMAT NameFormat, LPSTR lpNameBuffer, PULONG nSize);
+WINPR_API BOOL GetUserNameExW(EXTENDED_NAME_FORMAT NameFormat, LPWSTR lpNameBuffer, PULONG nSize);
 
 #ifdef __cplusplus
 }

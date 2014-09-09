@@ -48,7 +48,7 @@ WINPR_API void Stream_EnsureCapacity(wStream* s, size_t size);
 WINPR_API void Stream_EnsureRemainingCapacity(wStream* s, size_t size);
 
 WINPR_API wStream* Stream_New(BYTE* buffer, size_t size);
-WINPR_API void Stream_Free(wStream* s, WINBOOL bFreeBuffer);
+WINPR_API void Stream_Free(wStream* s, BOOL bFreeBuffer);
 
 #define Stream_Read_UINT8(_s, _v) do { _v = \
 	*_s->pointer++; } while (0)
@@ -218,7 +218,7 @@ WINPR_API void Stream_Free(wStream* s, WINBOOL bFreeBuffer);
 
 #define Stream_Clear(_s)		memset(_s->buffer, 0, _s->capacity)
 
-static INLINE WINBOOL Stream_SafeSeek(wStream* s, size_t size) {
+static INLINE BOOL Stream_SafeSeek(wStream* s, size_t size) {
 	if (Stream_GetRemainingLength(s) < size)
 		return FALSE;
 	Stream_Seek(s, size);
@@ -238,7 +238,7 @@ struct _wStreamPool
 	wStream** uArray;
 
 	CRITICAL_SECTION lock;
-	WINBOOL synchronized;
+	BOOL synchronized;
 	size_t defaultSize;
 };
 
@@ -254,7 +254,7 @@ WINPR_API void StreamPool_Release(wStreamPool* pool, BYTE* ptr);
 
 WINPR_API void StreamPool_Clear(wStreamPool* pool);
 
-WINPR_API wStreamPool* StreamPool_New(WINBOOL synchronized, size_t defaultSize);
+WINPR_API wStreamPool* StreamPool_New(BOOL synchronized, size_t defaultSize);
 WINPR_API void StreamPool_Free(wStreamPool* pool);
 
 #ifdef __cplusplus

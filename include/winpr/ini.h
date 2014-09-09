@@ -47,7 +47,7 @@ struct _wIniFile
 	int lineLength;
 	char* buffer;
 	char* filename;
-	WINBOOL readOnly;
+	BOOL readOnly;
 	int nSections;
 	int cSections;
 	wIniFileSection** sections;

@@ -34,8 +34,8 @@
 extern "C" {
 #endif
 
-WINPR_API WINBOOL winpr_InitializeSSL(DWORD flags);
-WINPR_API WINBOOL winpr_CleanupSSL(DWORD flags);
+WINPR_API BOOL winpr_InitializeSSL(DWORD flags);
+WINPR_API BOOL winpr_CleanupSSL(DWORD flags);
 
 #ifdef	__cplusplus
 }

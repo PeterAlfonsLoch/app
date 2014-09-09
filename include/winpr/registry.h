@@ -310,7 +310,7 @@ WINPR_API LONG RegLoadMUIStringA(HKEY hKey, LPCSTR pszValue, LPSTR pszOutBuf,
 #define RegLoadMUIString RegLoadMUIStringA
 #endif
 
-WINPR_API LONG RegNotifyChangeKeyValue(HKEY hKey, WINBOOL bWatchSubtree, DWORD dwNotifyFilter, HANDLE hEvent, WINBOOL fAsynchronous);
+WINPR_API LONG RegNotifyChangeKeyValue(HKEY hKey, BOOL bWatchSubtree, DWORD dwNotifyFilter, HANDLE hEvent, BOOL fAsynchronous);
 
 WINPR_API LONG RegOpenCurrentUser(REGSAM samDesired, PHKEY phkResult);
 

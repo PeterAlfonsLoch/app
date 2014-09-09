@@ -36,7 +36,7 @@ extern "C" {
 WINPR_API void winpr_HexDump(const BYTE* data, int length);
 WINPR_API void winpr_CArrayDump(const BYTE* data, int length, int width);
 
-WINPR_API char* winpr_BinToHexString(const BYTE* data, int length, WINBOOL space);
+WINPR_API char* winpr_BinToHexString(const BYTE* data, int length, BOOL space);
 
 WINPR_API int wprintfx(const char *fmt, ...);
 WINPR_API int wvprintfx(const char *fmt, va_list args);
