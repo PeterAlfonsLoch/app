@@ -24,11 +24,11 @@
 #include <winpr/wtypes.h>
 #include <winpr/windows.h>
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(CA2_AURA)
 
 /* Defined in winnt.h, do not redefine */
 
-#define STATUS_WAIT_0				((NTSTATUS)0x00000000L) 
+#define STATUS_WAIT_0				((NTSTATUS)0x00000000L)
 #define STATUS_ABANDONED_WAIT_0			((NTSTATUS)0x00000080L)
 #define STATUS_USER_APC				((NTSTATUS)0x000000C0L)
 #define STATUS_TIMEOUT				((NTSTATUS)0x00000102L)
@@ -78,9 +78,9 @@
 #define STATUS_DLL_INIT_FAILED			((NTSTATUS)0xC0000142L)
 #define STATUS_FLOAT_MULTIPLE_FAULTS		((NTSTATUS)0xC00002B4L)
 #define STATUS_FLOAT_MULTIPLE_TRAPS		((NTSTATUS)0xC00002B5L)
-#define STATUS_REG_NAT_CONSUMPTION		((NTSTATUS)0xC00002C9L)    
-#define STATUS_STACK_BUFFER_OVERRUN		((NTSTATUS)0xC0000409L)    
-#define STATUS_INVALID_CRUNTIME_PARAMETER	((NTSTATUS)0xC0000417L)    
+#define STATUS_REG_NAT_CONSUMPTION		((NTSTATUS)0xC00002C9L)
+#define STATUS_STACK_BUFFER_OVERRUN		((NTSTATUS)0xC0000409L)
+#define STATUS_INVALID_CRUNTIME_PARAMETER	((NTSTATUS)0xC0000417L)
 #define STATUS_ASSERTION_FAILURE		((NTSTATUS)0xC0000420L)
 #define STATUS_SXS_EARLY_DEACTIVATION		((NTSTATUS)0xC015000FL)
 #define STATUS_SXS_INVALID_DEACTIVATION		((NTSTATUS)0xC0150010L)
@@ -1275,7 +1275,7 @@
  * winternl.h contains an incomplete definition of enum FILE_INFORMATION_CLASS
  * avoid conflict by prefixing the winternl.h definition by _WINTERNL_ and then
  * make a complete definition of enum FILE_INFORMATION_CLASS ourselves.
- * 
+ *
  * For more information, refer to [MS-FSCC]: File System Control Codes:
  * http://msdn.microsoft.com/en-us/library/cc231987.aspx
  */
