@@ -124,7 +124,7 @@ do_decompress(char* comp_data, int comp_data_bytes,
 }
 
 /* jpeg decompress */
-BOOL jpeg_decompress(BYTE* input, BYTE* output, int width, int height, int size, int bpp)
+WINBOOL jpeg_decompress(BYTE* input, BYTE* output, int width, int height, int size, int bpp)
 {
 	int lwidth;
 	int lheight;
@@ -150,7 +150,7 @@ BOOL jpeg_decompress(BYTE* input, BYTE* output, int width, int height, int size,
 
 #else
 
-BOOL jpeg_decompress(BYTE* input, BYTE* output, int width, int height, int size, int bpp)
+WINBOOL jpeg_decompress(BYTE* input, BYTE* output, int width, int height, int size, int bpp)
 {
 	return 0;
 }

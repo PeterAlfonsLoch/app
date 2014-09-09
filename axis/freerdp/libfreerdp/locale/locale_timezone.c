@@ -64,7 +64,7 @@ struct _TIME_ZONE_ENTRY
 {
 	const char* Id;
 	UINT32 Bias;
-	BOOL SupportsDST;
+	WINBOOL SupportsDST;
 	const char* DisplayName;
 	const char* StandardName;
 	const char* DaylightName;
@@ -1538,7 +1538,7 @@ char* freerdp_get_unix_timezone_identifier()
 	 * will point to /usr/share/zoneinfo/region/place where region/place could be
 	 * America/Montreal for example.
 	 */
-	
+
 	if ((len = readlink("/etc/localtime", buf, sizeof(buf) - 1)) != -1)
 	{
 		int num = 0;
@@ -1562,7 +1562,7 @@ char* freerdp_get_unix_timezone_identifier()
 		tzid = (char*) malloc(len - pos + 1);
 		strncpy(tzid, buf + pos + 1, len - pos);
 
-		return tzid;	
+		return tzid;
 	}
 
 	DEBUG_WARN( "Unable to detect time zone\n");
@@ -1572,7 +1572,7 @@ char* freerdp_get_unix_timezone_identifier()
 #endif
 }
 
-BOOL freerdp_match_unix_timezone_identifier_with_list(const char* tzid, const char* list)
+WINBOOL freerdp_match_unix_timezone_identifier_with_list(const char* tzid, const char* list)
 {
 	char* p;
 	char* list_copy;
@@ -1658,7 +1658,7 @@ void freerdp_time_zone_detect(TIME_ZONE_INFO* clientTimeZone)
 	struct tm* local_time;
 
 	clientTimeZone->standardBias = 0;
-	
+
 	time(&t);
 	local_time = localtime(&t);
 

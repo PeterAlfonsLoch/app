@@ -97,7 +97,7 @@ int rpc_send_bind_pdu(rdpRpc* rpc)
 	p_cont_elem_t* p_cont_elem;
 	rpcconn_bind_hdr_t* bind_pdu;
 	rdpSettings* settings = rpc->settings;
-	BOOL promptPassword = FALSE;
+	WINBOOL promptPassword = FALSE;
 	freerdp* instance = (freerdp*) settings->instance;
 
 	DEBUG_RPC("Sending bind PDU");
@@ -116,7 +116,7 @@ int rpc_send_bind_pdu(rdpRpc* rpc)
 	{
 		if (instance->GatewayAuthenticate)
 		{
-			BOOL proceed = instance->GatewayAuthenticate(instance,
+			WINBOOL proceed = instance->GatewayAuthenticate(instance,
 					&settings->GatewayUsername, &settings->GatewayPassword, &settings->GatewayDomain);
 
 			if (!proceed)

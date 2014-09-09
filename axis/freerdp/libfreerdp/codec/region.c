@@ -128,7 +128,7 @@ static RECTANGLE_16 *region16_extents_noconst(REGION16 *region)
 	return &region->extents;
 }
 
-BOOL region16_is_empty(const REGION16 *region)
+WINBOOL region16_is_empty(const REGION16 *region)
 {
 	assert(region);
 	assert(region->data);
@@ -136,13 +136,13 @@ BOOL region16_is_empty(const REGION16 *region)
 	return (region->data->nbRects == 0);
 }
 
-BOOL rectangles_intersects(const RECTANGLE_16 *r1, const RECTANGLE_16 *r2)
+WINBOOL rectangles_intersects(const RECTANGLE_16 *r1, const RECTANGLE_16 *r2)
 {
 	RECTANGLE_16 tmp;
 	return rectangles_intersection(r1, r2, &tmp);
 }
 
-BOOL rectangles_intersection(const RECTANGLE_16 *r1, const RECTANGLE_16 *r2,
+WINBOOL rectangles_intersection(const RECTANGLE_16 *r1, const RECTANGLE_16 *r2,
 		RECTANGLE_16 *dst)
 {
 	dst->left = MAX(r1->left, r2->left);
@@ -181,7 +181,7 @@ static INLINE REGION16_DATA* allocateRegion(long nbItems)
 	return ret;
 }
 
-BOOL region16_copy(REGION16 *dst, const REGION16 *src)
+WINBOOL region16_copy(REGION16 *dst, const REGION16 *src)
 {
 	assert(dst);
 	assert(dst->data);
@@ -340,7 +340,7 @@ static RECTANGLE_16* next_band(RECTANGLE_16* band1, RECTANGLE_16* endPtr, int* n
 	return band1;
 }
 
-static BOOL band_match(const RECTANGLE_16* band1, const RECTANGLE_16* band2, RECTANGLE_16* endPtr)
+static WINBOOL band_match(const RECTANGLE_16* band1, const RECTANGLE_16* band2, RECTANGLE_16* endPtr)
 {
 	int refBand2 = band2->top;
 	const RECTANGLE_16* band2Start = band2;
@@ -366,7 +366,7 @@ static BOOL band_match(const RECTANGLE_16* band1, const RECTANGLE_16* band2, REC
  * @param rect the rectangle to test
  * @return if rect is fully included in an item of the band
  */
-static BOOL rectangle_contained_in_band(const RECTANGLE_16 *band, const RECTANGLE_16 *endPtr,
+static WINBOOL rectangle_contained_in_band(const RECTANGLE_16 *band, const RECTANGLE_16 *endPtr,
 		const RECTANGLE_16 *rect)
 {
 	UINT16 refY = band->top;
@@ -387,7 +387,7 @@ static BOOL rectangle_contained_in_band(const RECTANGLE_16 *band, const RECTANGL
 	return FALSE;
 }
 
-BOOL region16_simplify_bands(REGION16 *region)
+WINBOOL region16_simplify_bands(REGION16 *region)
 {
 	/** Simplify consecutive bands that touch and have the same items
 	 *
@@ -465,7 +465,7 @@ BOOL region16_simplify_bands(REGION16 *region)
 	return TRUE;
 }
 
-BOOL region16_union_rect(REGION16 *dst, const REGION16 *src, const RECTANGLE_16 *rect)
+WINBOOL region16_union_rect(REGION16 *dst, const REGION16 *src, const RECTANGLE_16 *rect)
 {
 	const RECTANGLE_16* srcExtents;
 	RECTANGLE_16* dstExtents;
@@ -674,7 +674,7 @@ BOOL region16_union_rect(REGION16 *dst, const REGION16 *src, const RECTANGLE_16 
 	return region16_simplify_bands(dst);
 }
 
-BOOL region16_intersects_rect(const REGION16 *src, const RECTANGLE_16 *arg2)
+WINBOOL region16_intersects_rect(const REGION16 *src, const RECTANGLE_16 *arg2)
 {
 	const RECTANGLE_16 *rect, *endPtr, *srcExtents;
 	int nbRects;
@@ -706,7 +706,7 @@ BOOL region16_intersects_rect(const REGION16 *src, const RECTANGLE_16 *arg2)
 	return FALSE;
 }
 
-BOOL region16_intersect_rect(REGION16 *dst, const REGION16 *src, const RECTANGLE_16 *rect)
+WINBOOL region16_intersect_rect(REGION16 *dst, const REGION16 *src, const RECTANGLE_16 *rect)
 {
 	REGION16_DATA *newItems;
 	const RECTANGLE_16 *srcPtr, *endPtr, *srcExtents;
@@ -729,7 +729,7 @@ BOOL region16_intersect_rect(REGION16 *dst, const REGION16 *src, const RECTANGLE
 
 	if (nbRects == 1)
 	{
-		BOOL intersects = rectangles_intersection(srcExtents, rect, &common);
+		WINBOOL intersects = rectangles_intersection(srcExtents, rect, &common);
 
 		region16_clear(dst);
 

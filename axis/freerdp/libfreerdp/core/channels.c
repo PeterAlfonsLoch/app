@@ -46,7 +46,7 @@
 #include "server.h"
 #include "channels.h"
 
-BOOL freerdp_channel_send(rdpRdp* rdp, UINT16 channelId, BYTE* data, int size)
+WINBOOL freerdp_channel_send(rdpRdp* rdp, UINT16 channelId, BYTE* data, int size)
 {
 	DWORD i;
 	int left;
@@ -108,7 +108,7 @@ BOOL freerdp_channel_send(rdpRdp* rdp, UINT16 channelId, BYTE* data, int size)
 	return TRUE;
 }
 
-BOOL freerdp_channel_process(freerdp* instance, wStream* s, UINT16 channelId)
+WINBOOL freerdp_channel_process(freerdp* instance, wStream* s, UINT16 channelId)
 {
 	UINT32 length;
 	UINT32 flags;
@@ -127,7 +127,7 @@ BOOL freerdp_channel_process(freerdp* instance, wStream* s, UINT16 channelId)
 	return TRUE;
 }
 
-BOOL freerdp_channel_peer_process(freerdp_peer* client, wStream* s, UINT16 channelId)
+WINBOOL freerdp_channel_peer_process(freerdp_peer* client, wStream* s, UINT16 channelId)
 {
 	UINT32 length;
 	UINT32 flags;

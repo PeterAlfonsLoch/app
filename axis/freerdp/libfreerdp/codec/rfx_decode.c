@@ -49,7 +49,7 @@ static void rfx_decode_format_rgb(INT16* r_buf, INT16* g_buf, INT16* b_buf,
 	static const prim_size_t roi_64x64 = { 64, 64 };
 	BYTE* dst = dst_buf;
 	int x, y;
-	
+
 	switch (pixel_format)
 	{
 		case RDP_PIXEL_FORMAT_B8G8R8A8:
@@ -126,7 +126,7 @@ static void rfx_decode_component(RFX_CONTEXT* context, const UINT32* quantizatio
 /* rfx_decode_ycbcr_to_rgb code now resides in the primitives library. */
 
 /* stride is bytes between rows in the output buffer. */
-BOOL rfx_decode_rgb(RFX_CONTEXT* context, RFX_TILE* tile, BYTE* rgb_buffer, int stride)
+WINBOOL rfx_decode_rgb(RFX_CONTEXT* context, RFX_TILE* tile, BYTE* rgb_buffer, int stride)
 {
 	BYTE* pBuffer;
 	INT16* pSrcDst[3];
@@ -160,7 +160,7 @@ BOOL rfx_decode_rgb(RFX_CONTEXT* context, RFX_TILE* tile, BYTE* rgb_buffer, int 
 		rfx_decode_format_rgb(pSrcDst[0], pSrcDst[1], pSrcDst[2],
 			context->pixel_format, rgb_buffer, stride);
 	PROFILER_EXIT(context->priv->prof_rfx_decode_format_rgb);
-	
+
 	PROFILER_EXIT(context->priv->prof_rfx_decode_rgb);
 
 	BufferPool_Return(context->priv->BufferPool, pBuffer);

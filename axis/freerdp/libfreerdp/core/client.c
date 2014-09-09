@@ -362,7 +362,7 @@ static int freerdp_channels_process_sync(rdpChannels* channels, freerdp* instanc
 /**
  * called only from main thread
  */
-BOOL freerdp_channels_get_fds(rdpChannels* channels, freerdp* instance, void** read_fds,
+WINBOOL freerdp_channels_get_fds(rdpChannels* channels, freerdp* instance, void** read_fds,
 	int* read_count, void** write_fds, int* write_count)
 {
 	void* pfd;
@@ -419,7 +419,7 @@ int freerdp_channels_process_pending_messages(freerdp* instance)
 /**
  * called only from main thread
  */
-BOOL freerdp_channels_check_fds(rdpChannels* channels, freerdp* instance)
+WINBOOL freerdp_channels_check_fds(rdpChannels* channels, freerdp* instance)
 {
 	if (WaitForSingleObject(MessageQueue_Event(channels->MsgPipe->Out), 0) == WAIT_OBJECT_0)
 	{

@@ -40,7 +40,7 @@ void rdp_write_synchronize_pdu(wStream* s, rdpSettings* settings)
 	Stream_Write_UINT16(s, settings->PduSource); /* targetUser (2 bytes) */
 }
 
-BOOL rdp_recv_synchronize_pdu(rdpRdp* rdp, wStream* s)
+WINBOOL rdp_recv_synchronize_pdu(rdpRdp* rdp, wStream* s)
 {
 	if (rdp->settings->ServerMode)
 		return rdp_recv_server_synchronize_pdu(rdp, s);
@@ -48,13 +48,13 @@ BOOL rdp_recv_synchronize_pdu(rdpRdp* rdp, wStream* s)
 		return rdp_recv_client_synchronize_pdu(rdp, s);
 }
 
-BOOL rdp_recv_server_synchronize_pdu(rdpRdp* rdp, wStream* s)
+WINBOOL rdp_recv_server_synchronize_pdu(rdpRdp* rdp, wStream* s)
 {
 	rdp->finalize_sc_pdus |= FINALIZE_SC_SYNCHRONIZE_PDU;
 	return TRUE;
 }
 
-BOOL rdp_send_server_synchronize_pdu(rdpRdp* rdp)
+WINBOOL rdp_send_server_synchronize_pdu(rdpRdp* rdp)
 {
 	wStream* s;
 
@@ -64,7 +64,7 @@ BOOL rdp_send_server_synchronize_pdu(rdpRdp* rdp)
 	return rdp_send_data_pdu(rdp, s, DATA_PDU_TYPE_SYNCHRONIZE, rdp->mcs->userId);
 }
 
-BOOL rdp_recv_client_synchronize_pdu(rdpRdp* rdp, wStream* s)
+WINBOOL rdp_recv_client_synchronize_pdu(rdpRdp* rdp, wStream* s)
 {
 	UINT16 messageType;
 
@@ -84,7 +84,7 @@ BOOL rdp_recv_client_synchronize_pdu(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-BOOL rdp_send_client_synchronize_pdu(rdpRdp* rdp)
+WINBOOL rdp_send_client_synchronize_pdu(rdpRdp* rdp)
 {
 	wStream* s;
 
@@ -95,7 +95,7 @@ BOOL rdp_send_client_synchronize_pdu(rdpRdp* rdp)
 	return rdp_send_data_pdu(rdp, s, DATA_PDU_TYPE_SYNCHRONIZE, rdp->mcs->userId);
 }
 
-BOOL rdp_recv_control_pdu(wStream* s, UINT16* action)
+WINBOOL rdp_recv_control_pdu(wStream* s, UINT16* action)
 {
 	if (Stream_GetRemainingLength(s) < 8)
 		return FALSE;
@@ -114,7 +114,7 @@ void rdp_write_client_control_pdu(wStream* s, UINT16 action)
 	Stream_Write_UINT32(s, 0); /* controlId (4 bytes) */
 }
 
-BOOL rdp_recv_server_control_pdu(rdpRdp* rdp, wStream* s)
+WINBOOL rdp_recv_server_control_pdu(rdpRdp* rdp, wStream* s)
 {
 	UINT16 action;
 
@@ -136,7 +136,7 @@ BOOL rdp_recv_server_control_pdu(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-BOOL rdp_send_server_control_cooperate_pdu(rdpRdp* rdp)
+WINBOOL rdp_send_server_control_cooperate_pdu(rdpRdp* rdp)
 {
 	wStream* s;
 
@@ -149,7 +149,7 @@ BOOL rdp_send_server_control_cooperate_pdu(rdpRdp* rdp)
 	return rdp_send_data_pdu(rdp, s, DATA_PDU_TYPE_CONTROL, rdp->mcs->userId);
 }
 
-BOOL rdp_send_server_control_granted_pdu(rdpRdp* rdp)
+WINBOOL rdp_send_server_control_granted_pdu(rdpRdp* rdp)
 {
 	wStream* s;
 
@@ -162,7 +162,7 @@ BOOL rdp_send_server_control_granted_pdu(rdpRdp* rdp)
 	return rdp_send_data_pdu(rdp, s, DATA_PDU_TYPE_CONTROL, rdp->mcs->userId);
 }
 
-BOOL rdp_send_client_control_pdu(rdpRdp* rdp, UINT16 action)
+WINBOOL rdp_send_client_control_pdu(rdpRdp* rdp, UINT16 action)
 {
 	wStream* s;
 
@@ -197,7 +197,7 @@ void rdp_write_client_persistent_key_list_pdu(wStream* s, rdpSettings* settings)
 	/* entries */
 }
 
-BOOL rdp_send_client_persistent_key_list_pdu(rdpRdp* rdp)
+WINBOOL rdp_send_client_persistent_key_list_pdu(rdpRdp* rdp)
 {
 	wStream* s;
 
@@ -207,7 +207,7 @@ BOOL rdp_send_client_persistent_key_list_pdu(rdpRdp* rdp)
 	return rdp_send_data_pdu(rdp, s, DATA_PDU_TYPE_BITMAP_CACHE_PERSISTENT_LIST, rdp->mcs->userId);
 }
 
-BOOL rdp_recv_client_font_list_pdu(wStream* s)
+WINBOOL rdp_recv_client_font_list_pdu(wStream* s)
 {
 	if (Stream_GetRemainingLength(s) < 8)
 		return FALSE;
@@ -223,7 +223,7 @@ void rdp_write_client_font_list_pdu(wStream* s, UINT16 flags)
 	Stream_Write_UINT16(s, 50); /* entrySize (2 bytes) */
 }
 
-BOOL rdp_send_client_font_list_pdu(rdpRdp* rdp, UINT16 flags)
+WINBOOL rdp_send_client_font_list_pdu(rdpRdp* rdp, UINT16 flags)
 {
 	wStream* s;
 
@@ -233,7 +233,7 @@ BOOL rdp_send_client_font_list_pdu(rdpRdp* rdp, UINT16 flags)
 	return rdp_send_data_pdu(rdp, s, DATA_PDU_TYPE_FONT_LIST, rdp->mcs->userId);
 }
 
-BOOL rdp_recv_font_map_pdu(rdpRdp* rdp, wStream* s)
+WINBOOL rdp_recv_font_map_pdu(rdpRdp* rdp, wStream* s)
 {
 	if (rdp->settings->ServerMode)
 		return rdp_recv_server_font_map_pdu(rdp, s);
@@ -241,13 +241,13 @@ BOOL rdp_recv_font_map_pdu(rdpRdp* rdp, wStream* s)
 		return rdp_recv_client_font_map_pdu(rdp, s);
 }
 
-BOOL rdp_recv_server_font_map_pdu(rdpRdp* rdp, wStream* s)
+WINBOOL rdp_recv_server_font_map_pdu(rdpRdp* rdp, wStream* s)
 {
 	rdp->finalize_sc_pdus |= FINALIZE_SC_FONT_MAP_PDU;
 	return TRUE;
 }
 
-BOOL rdp_recv_client_font_map_pdu(rdpRdp* rdp, wStream* s)
+WINBOOL rdp_recv_client_font_map_pdu(rdpRdp* rdp, wStream* s)
 {
 	rdp->finalize_sc_pdus |= FINALIZE_SC_FONT_MAP_PDU;
 
@@ -262,7 +262,7 @@ BOOL rdp_recv_client_font_map_pdu(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-BOOL rdp_send_server_font_map_pdu(rdpRdp* rdp)
+WINBOOL rdp_send_server_font_map_pdu(rdpRdp* rdp)
 {
 	wStream* s;
 
@@ -276,7 +276,7 @@ BOOL rdp_send_server_font_map_pdu(rdpRdp* rdp)
 	return rdp_send_data_pdu(rdp, s, DATA_PDU_TYPE_FONT_MAP, rdp->mcs->userId);
 }
 
-BOOL rdp_recv_deactivate_all(rdpRdp* rdp, wStream* s)
+WINBOOL rdp_recv_deactivate_all(rdpRdp* rdp, wStream* s)
 {
 	UINT16 lengthSourceDescriptor;
 
@@ -325,10 +325,10 @@ BOOL rdp_recv_deactivate_all(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-BOOL rdp_send_deactivate_all(rdpRdp* rdp)
+WINBOOL rdp_send_deactivate_all(rdpRdp* rdp)
 {
 	wStream* s;
-	BOOL status;
+	WINBOOL status;
 
 	s = Stream_New(NULL, 1024);
 	rdp_init_stream_pdu(rdp, s);
@@ -344,7 +344,7 @@ BOOL rdp_send_deactivate_all(rdpRdp* rdp)
 	return status;
 }
 
-BOOL rdp_server_accept_client_control_pdu(rdpRdp* rdp, wStream* s)
+WINBOOL rdp_server_accept_client_control_pdu(rdpRdp* rdp, wStream* s)
 {
 	UINT16 action;
 
@@ -360,7 +360,7 @@ BOOL rdp_server_accept_client_control_pdu(rdpRdp* rdp, wStream* s)
 	return TRUE;
 }
 
-BOOL rdp_server_accept_client_font_list_pdu(rdpRdp* rdp, wStream* s)
+WINBOOL rdp_server_accept_client_font_list_pdu(rdpRdp* rdp, wStream* s)
 {
 	if (!rdp_recv_client_font_list_pdu(s))
 		return FALSE;

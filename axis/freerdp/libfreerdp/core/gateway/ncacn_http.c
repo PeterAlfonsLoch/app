@@ -74,7 +74,7 @@ int rpc_ncacn_http_send_in_channel_request(rdpRpc* rpc)
 {
 	wStream* s;
 	int content_length;
-	BOOL continue_needed;
+	WINBOOL continue_needed;
 	rdpNtlm* ntlm = rpc->NtlmHttpIn->ntlm;
 
 	continue_needed = ntlm_authenticate(ntlm);
@@ -134,7 +134,7 @@ int rpc_ncacn_http_ntlm_init(rdpRpc* rpc, TSG_CHANNEL channel)
 	{
 		if (instance->GatewayAuthenticate)
 		{
-			BOOL proceed = instance->GatewayAuthenticate(instance, &settings->GatewayUsername,
+			WINBOOL proceed = instance->GatewayAuthenticate(instance, &settings->GatewayUsername,
 										&settings->GatewayPassword, &settings->GatewayDomain);
 
 			if (!proceed)
@@ -168,10 +168,10 @@ int rpc_ncacn_http_ntlm_init(rdpRpc* rpc, TSG_CHANNEL channel)
 	return 1;
 }
 
-BOOL rpc_ntlm_http_in_connect(rdpRpc* rpc)
+WINBOOL rpc_ntlm_http_in_connect(rdpRpc* rpc)
 {
 	rdpNtlm* ntlm = rpc->NtlmHttpIn->ntlm;
-	BOOL success = FALSE;
+	WINBOOL success = FALSE;
 
 	if (rpc_ncacn_http_ntlm_init(rpc, TSG_CHANNEL_IN) == 1)
 	{
@@ -203,7 +203,7 @@ int rpc_ncacn_http_send_out_channel_request(rdpRpc* rpc)
 {
 	wStream* s;
 	int content_length;
-	BOOL continue_needed;
+	WINBOOL continue_needed;
 	rdpNtlm* ntlm = rpc->NtlmHttpOut->ntlm;
 
 	continue_needed = ntlm_authenticate(ntlm);
@@ -236,15 +236,15 @@ int rpc_ncacn_http_recv_out_channel_response(rdpRpc* rpc)
 	}
 	ntlm->inputBuffer[0].pvBuffer = ntlm_token_data;
 	ntlm->inputBuffer[0].cbBuffer = ntlm_token_length;
-	
+
 	http_response_free(http_response);
 	return 0;
 }
 
-BOOL rpc_ntlm_http_out_connect(rdpRpc* rpc)
+WINBOOL rpc_ntlm_http_out_connect(rdpRpc* rpc)
 {
 	rdpNtlm* ntlm = rpc->NtlmHttpOut->ntlm;
-	BOOL success = FALSE;
+	WINBOOL success = FALSE;
 
 	if (rpc_ncacn_http_ntlm_init(rpc, TSG_CHANNEL_OUT) == 1)
 	{

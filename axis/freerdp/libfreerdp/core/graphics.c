@@ -77,7 +77,7 @@ void Bitmap_SetDimensions(rdpContext* context, rdpBitmap* bitmap, UINT16 width, 
 }
 
 /* static method */
-void Bitmap_SetSurface(rdpContext* context, rdpBitmap* bitmap, BOOL primary)
+void Bitmap_SetSurface(rdpContext* context, rdpBitmap* bitmap, WINBOOL primary)
 {
 	context->graphics->Bitmap_Prototype->SetSurface(context, bitmap, primary);
 }

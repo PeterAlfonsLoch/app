@@ -27,8 +27,8 @@
 #include "prim_internal.h"
 
 /* ------------------------------------------------------------------------- */
-/*static inline BOOL memory_regions_overlap_1d(*/
-static BOOL memory_regions_overlap_1d(
+/*static inline WINBOOL memory_regions_overlap_1d(*/
+static WINBOOL memory_regions_overlap_1d(
 	const BYTE *p1,
 	const BYTE *p2,
 	size_t bytes)
@@ -48,8 +48,8 @@ static BOOL memory_regions_overlap_1d(
 }
 
 /* ------------------------------------------------------------------------- */
-/*static inline BOOL memory_regions_overlap_2d( */
-static BOOL memory_regions_overlap_2d(
+/*static inline WINBOOL memory_regions_overlap_2d( */
+static WINBOOL memory_regions_overlap_2d(
 	const BYTE *p1,  int p1Step,  int p1Size,
 	const BYTE *p2,  int p2Step,  int p2Size,
 	int width,  int height)
@@ -160,7 +160,7 @@ void primitives_init_copy(
 	prims->copy_8u_AC4r = (__copy_8u_AC4r_t) ippiCopy_8u_AC4r;
 #endif
 	/* Performance with an SSE2 version with no prefetch seemed to be
-	 * all over the map vs. memcpy.  
+	 * all over the map vs. memcpy.
 	 * Sometimes it was significantly faster, sometimes dreadfully slower,
 	 * and it seemed to vary a lot depending on block size and processor.
 	 * Hence, no SSE version is used here unless once can be written that

@@ -499,7 +499,7 @@ BIO* BIO_new_rdp_tls(SSL_CTX* ctx, int client)
 	return bio;
 }
 
-static CryptoCert tls_get_certificate(rdpTls* tls, BOOL peer)
+static CryptoCert tls_get_certificate(rdpTls* tls, WINBOOL peer)
 {
 	CryptoCert cert;
 	X509* remote_cert;
@@ -576,9 +576,9 @@ out_free:
 
 
 #if defined(__APPLE__)
-BOOL tls_prepare(rdpTls* tls, BIO *underlying, SSL_METHOD *method, int options, BOOL clientMode)
+WINBOOL tls_prepare(rdpTls* tls, BIO *underlying, SSL_METHOD *method, int options, WINBOOL clientMode)
 #else
-BOOL tls_prepare(rdpTls* tls, BIO *underlying, const SSL_METHOD *method, int options, BOOL clientMode)
+WINBOOL tls_prepare(rdpTls* tls, BIO *underlying, const SSL_METHOD *method, int options, WINBOOL clientMode)
 #endif
 {
 	tls->ctx = SSL_CTX_new(method);
@@ -599,7 +599,7 @@ BOOL tls_prepare(rdpTls* tls, BIO *underlying, const SSL_METHOD *method, int opt
 			return FALSE;
 		}
 	}
- 
+
 	tls->bio = BIO_new_rdp_tls(tls->ctx, clientMode);
 
 	if (BIO_get_ssl(tls->bio, &tls->ssl) < 0)
@@ -613,7 +613,7 @@ BOOL tls_prepare(rdpTls* tls, BIO *underlying, const SSL_METHOD *method, int opt
 	return TRUE;
 }
 
-int tls_do_handshake(rdpTls* tls, BOOL clientMode)
+int tls_do_handshake(rdpTls* tls, WINBOOL clientMode)
 {
 	CryptoCert cert;
 	int verify_status, status;
@@ -757,7 +757,7 @@ int tls_connect(rdpTls* tls, BIO *underlying)
 
 
 
-BOOL tls_accept(rdpTls* tls, BIO *underlying, const char* cert_file, const char* privatekey_file)
+WINBOOL tls_accept(rdpTls* tls, BIO *underlying, const char* cert_file, const char* privatekey_file)
 {
 	long options = 0;
 
@@ -781,7 +781,7 @@ BOOL tls_accept(rdpTls* tls, BIO *underlying, const char* cert_file, const char*
 #ifdef SSL_OP_NO_COMPRESSION
 	options |= SSL_OP_NO_COMPRESSION;
 #endif
-	 
+
 	/**
 	 * SSL_OP_TLS_BLOCK_PADDING_BUG:
 	 *
@@ -817,7 +817,7 @@ BOOL tls_accept(rdpTls* tls, BIO *underlying, const char* cert_file, const char*
 	return tls_do_handshake(tls, FALSE) > 0;
 }
 
-BOOL tls_disconnect(rdpTls* tls)
+WINBOOL tls_disconnect(rdpTls* tls)
 {
 	if (!tls)
 		return FALSE;
@@ -1029,7 +1029,7 @@ int tls_set_alert_code(rdpTls* tls, int level, int description)
 	return 0;
 }
 
-BOOL tls_match_hostname(char *pattern, int pattern_length, char *hostname)
+WINBOOL tls_match_hostname(char *pattern, int pattern_length, char *hostname)
 {
 	if (strlen(hostname) == pattern_length)
 	{
@@ -1059,9 +1059,9 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 	char** alt_names = NULL;
 	int alt_names_count = 0;
 	int* alt_names_lengths = NULL;
-	BOOL certificate_status;
-	BOOL hostname_match = FALSE;
-	BOOL verification_status = FALSE;
+	WINBOOL certificate_status;
+	WINBOOL hostname_match = FALSE;
+	WINBOOL verification_status = FALSE;
 	rdpCertificateData* certificate_data;
 
 	if (tls->settings->ExternalCertificateManagement)
@@ -1078,7 +1078,7 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 		 */
 
 		bio = BIO_new(BIO_s_mem());
-		
+
 		if (!bio)
 		{
 			DEBUG_WARN( "%s: BIO_new() failure\n", __FUNCTION__);
@@ -1092,19 +1092,19 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 			DEBUG_WARN( "%s: PEM_write_bio_X509 failure: %d\n", __FUNCTION__, status);
 			return -1;
 		}
-		
+
 		offset = 0;
 		length = 2048;
 		pemCert = (BYTE*) malloc(length + 1);
 
 		status = BIO_read(bio, pemCert, length);
-		
+
 		if (status < 0)
 		{
 			DEBUG_WARN( "%s: failed to read certificate\n", __FUNCTION__);
 			return -1;
 		}
-		
+
 		offset += status;
 
 		while (offset >= length)
@@ -1125,17 +1125,17 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 			DEBUG_WARN( "%s: failed to read certificate\n", __FUNCTION__);
 			return -1;
 		}
-		
+
 		length = offset;
 		pemCert[length] = '\0';
 
 		status = -1;
-		
+
 		if (instance->VerifyX509Certificate)
 		{
 			status = instance->VerifyX509Certificate(instance, pemCert, length, hostname, port, tls->isGatewayTransport);
 		}
-		
+
 		DEBUG_WARN( "%s: (length = %d) status: %d\n%s\n", __FUNCTION__,	length, status, pemCert);
 
 		free(pemCert);
@@ -1211,7 +1211,7 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 		char* subject;
 		char* fingerprint;
 		freerdp* instance = (freerdp*) tls->settings->instance;
-		BOOL accept_certificate = FALSE;
+		WINBOOL accept_certificate = FALSE;
 
 		issuer = crypto_cert_issuer(cert->px509);
 		subject = crypto_cert_subject(cert->px509);
@@ -1247,7 +1247,7 @@ int tls_verify_certificate(rdpTls* tls, CryptoCert cert, char* hostname, int por
 		{
 			/* entry was found in known_hosts file, but fingerprint does not match. ask user to use it */
 			tls_print_certificate_error(hostname, fingerprint, tls->certificate_store->file);
-			
+
 			if (instance->VerifyChangedCertificate)
 			{
 				accept_certificate = instance->VerifyChangedCertificate(instance, subject, issuer, fingerprint, "");

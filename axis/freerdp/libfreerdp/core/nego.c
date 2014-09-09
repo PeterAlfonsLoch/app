@@ -58,7 +58,7 @@ static const char PROTOCOL_SECURITY_STRINGS[9][4] =
 };
 #endif /* WITH_DEBUG_NEGO */
 
-BOOL nego_security_connect(rdpNego* nego);
+WINBOOL nego_security_connect(rdpNego* nego);
 
 /**
  * Negotiate protocol security and connect.
@@ -66,7 +66,7 @@ BOOL nego_security_connect(rdpNego* nego);
  * @return
  */
 
-BOOL nego_connect(rdpNego* nego)
+WINBOOL nego_connect(rdpNego* nego)
 {
 	if (nego->state == NEGO_STATE_INITIAL)
 	{
@@ -174,7 +174,7 @@ BOOL nego_connect(rdpNego* nego)
 }
 
 /* connect to selected security layer */
-BOOL nego_security_connect(rdpNego* nego)
+WINBOOL nego_security_connect(rdpNego* nego)
 {
 	if (!nego->tcp_connected)
 	{
@@ -212,7 +212,7 @@ BOOL nego_security_connect(rdpNego* nego)
  * @return
  */
 
-BOOL nego_tcp_connect(rdpNego* nego)
+WINBOOL nego_tcp_connect(rdpNego* nego)
 {
 	if (!nego->tcp_connected)
 	{
@@ -246,7 +246,7 @@ BOOL nego_tcp_connect(rdpNego* nego)
  * @return
  */
 
-BOOL nego_transport_connect(rdpNego* nego)
+WINBOOL nego_transport_connect(rdpNego* nego)
 {
 	nego_tcp_connect(nego);
 
@@ -279,7 +279,7 @@ int nego_transport_disconnect(rdpNego* nego)
  * @return
  */
 
-BOOL nego_send_preconnection_pdu(rdpNego* nego)
+WINBOOL nego_send_preconnection_pdu(rdpNego* nego)
 {
 	wStream* s;
 	UINT32 cbSize;
@@ -496,7 +496,7 @@ void nego_attempt_rdp(rdpNego* nego)
  * @param nego
  */
 
-BOOL nego_recv_response(rdpNego* nego)
+WINBOOL nego_recv_response(rdpNego* nego)
 {
 	int status;
 	wStream* s;
@@ -608,7 +608,7 @@ int nego_recv(rdpTransport* transport, wStream* s, void* extra)
  * @param s stream
  */
 
-BOOL nego_read_request(rdpNego* nego, wStream* s)
+WINBOOL nego_read_request(rdpNego* nego, wStream* s)
 {
 	BYTE li;
 	BYTE c;
@@ -689,7 +689,7 @@ void nego_send(rdpNego* nego)
  * @param nego
  */
 
-BOOL nego_send_negotiation_request(rdpNego* nego)
+WINBOOL nego_send_negotiation_request(rdpNego* nego)
 {
 	wStream* s;
 	int length;
@@ -872,11 +872,11 @@ void nego_process_negotiation_failure(rdpNego* nego, wStream* s)
  * @param nego
  */
 
-BOOL nego_send_negotiation_response(rdpNego* nego)
+WINBOOL nego_send_negotiation_response(rdpNego* nego)
 {
 	int length;
 	int bm, em;
-	BOOL status;
+	WINBOOL status;
 	wStream* s;
 	BYTE flags;
 	rdpSettings* settings;
@@ -1061,7 +1061,7 @@ void nego_set_target(rdpNego* nego, char* hostname, int port)
  * @param enable_rdp whether to enable security layer negotiation (TRUE for enabled, FALSE for disabled)
  */
 
-void nego_set_negotiation_enabled(rdpNego* nego, BOOL NegotiateSecurityLayer)
+void nego_set_negotiation_enabled(rdpNego* nego, WINBOOL NegotiateSecurityLayer)
 {
 	DEBUG_NEGO("Enabling security layer negotiation: %s", NegotiateSecurityLayer ? "TRUE" : "FALSE");
 	nego->NegotiateSecurityLayer = NegotiateSecurityLayer;
@@ -1073,18 +1073,18 @@ void nego_set_negotiation_enabled(rdpNego* nego, BOOL NegotiateSecurityLayer)
  * @param enable_restricted whether to enable security layer negotiation (TRUE for enabled, FALSE for disabled)
  */
 
-void nego_set_restricted_admin_mode_required(rdpNego* nego, BOOL RestrictedAdminModeRequired)
+void nego_set_restricted_admin_mode_required(rdpNego* nego, WINBOOL RestrictedAdminModeRequired)
 {
 	DEBUG_NEGO("Enabling restricted admin mode: %s", RestrictedAdminModeRequired ? "TRUE" : "FALSE");
 	nego->RestrictedAdminModeRequired = RestrictedAdminModeRequired;
 }
 
-void nego_set_gateway_enabled(rdpNego* nego, BOOL GatewayEnabled)
+void nego_set_gateway_enabled(rdpNego* nego, WINBOOL GatewayEnabled)
 {
 	nego->GatewayEnabled = GatewayEnabled;
 }
 
-void nego_set_gateway_bypass_local(rdpNego* nego, BOOL GatewayBypassLocal)
+void nego_set_gateway_bypass_local(rdpNego* nego, WINBOOL GatewayBypassLocal)
 {
 	nego->GatewayBypassLocal = GatewayBypassLocal;
 }
@@ -1095,7 +1095,7 @@ void nego_set_gateway_bypass_local(rdpNego* nego, BOOL GatewayBypassLocal)
  * @param enable_rdp whether to enable normal RDP protocol (TRUE for enabled, FALSE for disabled)
  */
 
-void nego_enable_rdp(rdpNego* nego, BOOL enable_rdp)
+void nego_enable_rdp(rdpNego* nego, WINBOOL enable_rdp)
 {
 	DEBUG_NEGO("Enabling RDP security: %s", enable_rdp ? "TRUE" : "FALSE");
 	nego->enabled_protocols[PROTOCOL_RDP] = enable_rdp;
@@ -1107,7 +1107,7 @@ void nego_enable_rdp(rdpNego* nego, BOOL enable_rdp)
  * @param enable_tls whether to enable TLS + RDP protocol (TRUE for enabled, FALSE for disabled)
  */
 
-void nego_enable_tls(rdpNego* nego, BOOL enable_tls)
+void nego_enable_tls(rdpNego* nego, WINBOOL enable_tls)
 {
 	DEBUG_NEGO("Enabling TLS security: %s", enable_tls ? "TRUE" : "FALSE");
 	nego->enabled_protocols[PROTOCOL_TLS] = enable_tls;
@@ -1119,7 +1119,7 @@ void nego_enable_tls(rdpNego* nego, BOOL enable_tls)
  * @param enable_nla whether to enable network level authentication protocol (TRUE for enabled, FALSE for disabled)
  */
 
-void nego_enable_nla(rdpNego* nego, BOOL enable_nla)
+void nego_enable_nla(rdpNego* nego, WINBOOL enable_nla)
 {
 	DEBUG_NEGO("Enabling NLA security: %s", enable_nla ? "TRUE" : "FALSE");
 	nego->enabled_protocols[PROTOCOL_NLA] = enable_nla;
@@ -1131,7 +1131,7 @@ void nego_enable_nla(rdpNego* nego, BOOL enable_nla)
  * @param enable_ext whether to enable network level authentication extended protocol (TRUE for enabled, FALSE for disabled)
  */
 
-void nego_enable_ext(rdpNego* nego, BOOL enable_ext)
+void nego_enable_ext(rdpNego* nego, WINBOOL enable_ext)
 {
 	DEBUG_NEGO("Enabling NLA extended security: %s", enable_ext ? "TRUE" : "FALSE");
 	nego->enabled_protocols[PROTOCOL_EXT] = enable_ext;
@@ -1144,7 +1144,7 @@ void nego_enable_ext(rdpNego* nego, BOOL enable_ext)
  * @param RoutingTokenLength
  */
 
-BOOL nego_set_routing_token(rdpNego* nego, BYTE* RoutingToken, DWORD RoutingTokenLength)
+WINBOOL nego_set_routing_token(rdpNego* nego, BYTE* RoutingToken, DWORD RoutingTokenLength)
 {
 	free(nego->RoutingToken);
 	nego->RoutingTokenLength = RoutingTokenLength;
@@ -1161,7 +1161,7 @@ BOOL nego_set_routing_token(rdpNego* nego, BYTE* RoutingToken, DWORD RoutingToke
  * @param cookie
  */
 
-BOOL nego_set_cookie(rdpNego* nego, char* cookie)
+WINBOOL nego_set_cookie(rdpNego* nego, char* cookie)
 {
 	if (nego->cookie)
 	{
@@ -1195,7 +1195,7 @@ void nego_set_cookie_max_length(rdpNego* nego, UINT32 cookie_max_length)
  * @param send_pcpdu
  */
 
-void nego_set_send_preconnection_pdu(rdpNego* nego, BOOL send_pcpdu)
+void nego_set_send_preconnection_pdu(rdpNego* nego, WINBOOL send_pcpdu)
 {
 	nego->send_preconnection_pdu = send_pcpdu;
 }

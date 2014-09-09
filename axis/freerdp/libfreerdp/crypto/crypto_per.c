@@ -30,7 +30,7 @@
  * @return
  */
 
-BOOL per_read_length(wStream* s, UINT16* length)
+WINBOOL per_read_length(wStream* s, UINT16* length)
 {
 	BYTE byte;
 
@@ -78,7 +78,7 @@ void per_write_length(wStream* s, int length)
  * @return
  */
 
-BOOL per_read_choice(wStream* s, BYTE* choice)
+WINBOOL per_read_choice(wStream* s, BYTE* choice)
 {
 	if (Stream_GetRemainingLength(s) < 1)
 		return FALSE;
@@ -105,7 +105,7 @@ void per_write_choice(wStream* s, BYTE choice)
  * @return
  */
 
-BOOL per_read_selection(wStream* s, BYTE* selection)
+WINBOOL per_read_selection(wStream* s, BYTE* selection)
 {
 	if (Stream_GetRemainingLength(s) < 1)
 		return FALSE;
@@ -132,7 +132,7 @@ void per_write_selection(wStream* s, BYTE selection)
  * @return
  */
 
-BOOL per_read_number_of_sets(wStream* s, BYTE* number)
+WINBOOL per_read_number_of_sets(wStream* s, BYTE* number)
 {
 	if (Stream_GetRemainingLength(s) < 1)
 		return FALSE;
@@ -158,7 +158,7 @@ void per_write_number_of_sets(wStream* s, BYTE number)
  * @param length
  */
 
-BOOL per_read_padding(wStream* s, int length)
+WINBOOL per_read_padding(wStream* s, int length)
 {
 	if (((int) Stream_GetRemainingLength(s)) < length)
 		return FALSE;
@@ -188,7 +188,7 @@ void per_write_padding(wStream* s, int length)
  * @return
  */
 
-BOOL per_read_integer(wStream* s, UINT32* integer)
+WINBOOL per_read_integer(wStream* s, UINT32* integer)
 {
 	UINT16 length;
 
@@ -241,7 +241,7 @@ void per_write_integer(wStream* s, UINT32 integer)
  * @return
  */
 
-BOOL per_read_integer16(wStream* s, UINT16* integer, UINT16 min)
+WINBOOL per_read_integer16(wStream* s, UINT16* integer, UINT16 min)
 {
 	if (Stream_GetRemainingLength(s) < 2)
 		return FALSE;
@@ -276,7 +276,7 @@ void per_write_integer16(wStream* s, UINT16 integer, UINT16 min)
  * @return
  */
 
-BOOL per_read_enumerated(wStream* s, BYTE* enumerated, BYTE count)
+WINBOOL per_read_enumerated(wStream* s, BYTE* enumerated, BYTE count)
 {
 	if (Stream_GetRemainingLength(s) < 1)
 		return FALSE;
@@ -310,7 +310,7 @@ void per_write_enumerated(wStream* s, BYTE enumerated, BYTE count)
  * @return
  */
 
-BOOL per_read_object_identifier(wStream* s, BYTE oid[6])
+WINBOOL per_read_object_identifier(wStream* s, BYTE oid[6])
 {
 	BYTE t12;
 	UINT16 length;
@@ -387,7 +387,7 @@ void per_write_string(wStream* s, BYTE* str, int length)
  * @return
  */
 
-BOOL per_read_octet_string(wStream* s, BYTE* oct_str, int length, int min)
+WINBOOL per_read_octet_string(wStream* s, BYTE* oct_str, int length, int min)
 {
 	int i;
 	UINT16 mlength;
@@ -443,7 +443,7 @@ void per_write_octet_string(wStream* s, BYTE* oct_str, int length, int min)
  * @param min minimum string length
  */
 
-BOOL per_read_numeric_string(wStream* s, int min)
+WINBOOL per_read_numeric_string(wStream* s, int min)
 {
 	int length;
 	UINT16 mlength;

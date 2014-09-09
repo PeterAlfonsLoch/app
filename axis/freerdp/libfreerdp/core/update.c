@@ -44,7 +44,7 @@ const char* const UPDATE_TYPE_STRINGS[] =
 
 extern const BYTE PRIMARY_DRAWING_ORDER_FIELD_BYTES[];
 
-BOOL update_recv_orders(rdpUpdate* update, wStream* s)
+WINBOOL update_recv_orders(rdpUpdate* update, wStream* s)
 {
 	UINT16 numberOrders;
 
@@ -66,7 +66,7 @@ BOOL update_recv_orders(rdpUpdate* update, wStream* s)
 	return TRUE;
 }
 
-BOOL update_read_bitmap_data(rdpUpdate* update, wStream* s, BITMAP_DATA* bitmapData)
+WINBOOL update_read_bitmap_data(rdpUpdate* update, wStream* s, BITMAP_DATA* bitmapData)
 {
 	if (Stream_GetRemainingLength(s) < 18)
 		return FALSE;
@@ -109,7 +109,7 @@ BOOL update_read_bitmap_data(rdpUpdate* update, wStream* s, BITMAP_DATA* bitmapD
 	return TRUE;
 }
 
-BOOL update_write_bitmap_data(rdpUpdate* update, wStream* s, BITMAP_DATA* bitmapData)
+WINBOOL update_write_bitmap_data(rdpUpdate* update, wStream* s, BITMAP_DATA* bitmapData)
 {
 	Stream_EnsureRemainingCapacity(s, 64 + bitmapData->bitmapLength);
 
@@ -155,7 +155,7 @@ BOOL update_write_bitmap_data(rdpUpdate* update, wStream* s, BITMAP_DATA* bitmap
 	return TRUE;
 }
 
-BOOL update_read_bitmap_update(rdpUpdate* update, wStream* s, BITMAP_UPDATE* bitmapUpdate)
+WINBOOL update_read_bitmap_update(rdpUpdate* update, wStream* s, BITMAP_UPDATE* bitmapUpdate)
 {
 	int i;
 
@@ -188,7 +188,7 @@ BOOL update_read_bitmap_update(rdpUpdate* update, wStream* s, BITMAP_UPDATE* bit
 	return TRUE;
 }
 
-BOOL update_write_bitmap_update(rdpUpdate* update, wStream* s, BITMAP_UPDATE* bitmapUpdate)
+WINBOOL update_write_bitmap_update(rdpUpdate* update, wStream* s, BITMAP_UPDATE* bitmapUpdate)
 {
 	int i;
 
@@ -208,7 +208,7 @@ BOOL update_write_bitmap_update(rdpUpdate* update, wStream* s, BITMAP_UPDATE* bi
 	return TRUE;
 }
 
-BOOL update_read_palette(rdpUpdate* update, wStream* s, PALETTE_UPDATE* palette_update)
+WINBOOL update_read_palette(rdpUpdate* update, wStream* s, PALETTE_UPDATE* palette_update)
 {
 	int i;
 	PALETTE_ENTRY* entry;
@@ -247,7 +247,7 @@ void update_read_synchronize(rdpUpdate* update, wStream* s)
 	 */
 }
 
-BOOL update_read_play_sound(wStream* s, PLAY_SOUND_UPDATE* play_sound)
+WINBOOL update_read_play_sound(wStream* s, PLAY_SOUND_UPDATE* play_sound)
 {
 	if (Stream_GetRemainingLength(s) < 8)
 		return FALSE;
@@ -258,7 +258,7 @@ BOOL update_read_play_sound(wStream* s, PLAY_SOUND_UPDATE* play_sound)
 	return TRUE;
 }
 
-BOOL update_recv_play_sound(rdpUpdate* update, wStream* s)
+WINBOOL update_recv_play_sound(rdpUpdate* update, wStream* s)
 {
 	if (!update_read_play_sound(s, &update->play_sound))
 		return FALSE;
@@ -267,7 +267,7 @@ BOOL update_recv_play_sound(rdpUpdate* update, wStream* s)
 	return TRUE;
 }
 
-BOOL update_read_pointer_position(wStream* s, POINTER_POSITION_UPDATE* pointer_position)
+WINBOOL update_read_pointer_position(wStream* s, POINTER_POSITION_UPDATE* pointer_position)
 {
 	if (Stream_GetRemainingLength(s) < 4)
 		return FALSE;
@@ -277,7 +277,7 @@ BOOL update_read_pointer_position(wStream* s, POINTER_POSITION_UPDATE* pointer_p
 	return TRUE;
 }
 
-BOOL update_read_pointer_system(wStream* s, POINTER_SYSTEM_UPDATE* pointer_system)
+WINBOOL update_read_pointer_system(wStream* s, POINTER_SYSTEM_UPDATE* pointer_system)
 {
 	if (Stream_GetRemainingLength(s) < 4)
 		return FALSE;
@@ -286,7 +286,7 @@ BOOL update_read_pointer_system(wStream* s, POINTER_SYSTEM_UPDATE* pointer_syste
 	return TRUE;
 }
 
-BOOL update_read_pointer_color(wStream* s, POINTER_COLOR_UPDATE* pointer_color, int xorBpp)
+WINBOOL update_read_pointer_color(wStream* s, POINTER_COLOR_UPDATE* pointer_color, int xorBpp)
 {
 	BYTE *newMask;
 	int scanlineSize;
@@ -397,7 +397,7 @@ BOOL update_read_pointer_color(wStream* s, POINTER_COLOR_UPDATE* pointer_color, 
 	return TRUE;
 }
 
-BOOL update_read_pointer_new(wStream* s, POINTER_NEW_UPDATE* pointer_new)
+WINBOOL update_read_pointer_new(wStream* s, POINTER_NEW_UPDATE* pointer_new)
 {
 	if (Stream_GetRemainingLength(s) < 2)
 		return FALSE;
@@ -411,7 +411,7 @@ BOOL update_read_pointer_new(wStream* s, POINTER_NEW_UPDATE* pointer_new)
 	return update_read_pointer_color(s, &pointer_new->colorPtrAttr, pointer_new->xorBpp); /* colorPtrAttr */
 }
 
-BOOL update_read_pointer_cached(wStream* s, POINTER_CACHED_UPDATE* pointer_cached)
+WINBOOL update_read_pointer_cached(wStream* s, POINTER_CACHED_UPDATE* pointer_cached)
 {
 	if (Stream_GetRemainingLength(s) < 2)
 		return FALSE;
@@ -420,7 +420,7 @@ BOOL update_read_pointer_cached(wStream* s, POINTER_CACHED_UPDATE* pointer_cache
 	return TRUE;
 }
 
-BOOL update_recv_pointer(rdpUpdate* update, wStream* s)
+WINBOOL update_recv_pointer(rdpUpdate* update, wStream* s)
 {
 	UINT16 messageType;
 	rdpContext* context = update->context;
@@ -470,7 +470,7 @@ BOOL update_recv_pointer(rdpUpdate* update, wStream* s)
 	return TRUE;
 }
 
-BOOL update_recv(rdpUpdate* update, wStream* s)
+WINBOOL update_recv(rdpUpdate* update, wStream* s)
 {
 	UINT16 updateType;
 	rdpContext* context = update->context;
@@ -645,7 +645,7 @@ static void update_force_flush(rdpContext* context)
 	}
 }
 
-static BOOL update_check_flush(rdpContext* context, int size)
+static WINBOOL update_check_flush(rdpContext* context, int size)
 {
 	wStream* s;
 	rdpUpdate* update = context->update;
@@ -679,7 +679,7 @@ static void update_set_bounds(rdpContext* context, rdpBounds* bounds)
 		CopyMemory(&update->currentBounds, bounds, sizeof(rdpBounds));
 }
 
-BOOL update_bounds_is_null(rdpBounds* bounds)
+WINBOOL update_bounds_is_null(rdpBounds* bounds)
 {
 	if ((bounds->left == 0) && (bounds->top == 0) &&
 			(bounds->right == 0) && (bounds->bottom == 0))
@@ -688,7 +688,7 @@ BOOL update_bounds_is_null(rdpBounds* bounds)
 	return FALSE;
 }
 
-BOOL update_bounds_equals(rdpBounds* bounds1, rdpBounds* bounds2)
+WINBOOL update_bounds_equals(rdpBounds* bounds1, rdpBounds* bounds2)
 {
 	if ((bounds1->left == bounds2->left) && (bounds1->top == bounds2->top) &&
 		(bounds1->right == bounds2->right) && (bounds1->bottom == bounds2->bottom))
@@ -1530,7 +1530,7 @@ static void update_send_pointer_cached(rdpContext* context, POINTER_CACHED_UPDAT
 	Stream_Release(s);
 }
 
-BOOL update_read_refresh_rect(rdpUpdate* update, wStream* s)
+WINBOOL update_read_refresh_rect(rdpUpdate* update, wStream* s)
 {
 	int index;
 	BYTE numberOfAreas;
@@ -1562,7 +1562,7 @@ BOOL update_read_refresh_rect(rdpUpdate* update, wStream* s)
 	return TRUE;
 }
 
-BOOL update_read_suppress_output(rdpUpdate* update, wStream* s)
+WINBOOL update_read_suppress_output(rdpUpdate* update, wStream* s)
 {
 	BYTE allowDisplayUpdates;
 

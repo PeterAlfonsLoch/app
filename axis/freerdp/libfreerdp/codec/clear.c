@@ -266,7 +266,7 @@ int clear_decompress(CLEAR_CONTEXT* clear, BYTE* pSrcData, UINT32 SrcSize,
 			UINT16 yStart;
 			UINT16 yEnd;
 			BYTE* vBar;
-			BOOL vBarUpdate;
+			WINBOOL vBarUpdate;
 			UINT32 colorBkg;
 			UINT16 vBarHeader;
 			UINT16 vBarIndex;
@@ -758,7 +758,7 @@ void clear_context_reset(CLEAR_CONTEXT* clear)
 	clear->ShortVBarStorageCursor = 0;
 }
 
-CLEAR_CONTEXT* clear_context_new(BOOL Compressor)
+CLEAR_CONTEXT* clear_context_new(WINBOOL Compressor)
 {
 	CLEAR_CONTEXT* clear;
 

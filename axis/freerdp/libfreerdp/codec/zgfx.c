@@ -384,12 +384,12 @@ int zgfx_compress(ZGFX_CONTEXT* zgfx, BYTE* pSrcData, UINT32 SrcSize, BYTE** ppD
 	return 1;
 }
 
-void zgfx_context_reset(ZGFX_CONTEXT* zgfx, BOOL flush)
+void zgfx_context_reset(ZGFX_CONTEXT* zgfx, WINBOOL flush)
 {
 	zgfx->HistoryIndex = 0;
 }
 
-ZGFX_CONTEXT* zgfx_context_new(BOOL Compressor)
+ZGFX_CONTEXT* zgfx_context_new(WINBOOL Compressor)
 {
 	ZGFX_CONTEXT* zgfx;
 

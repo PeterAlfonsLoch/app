@@ -415,7 +415,7 @@ BIO_METHOD* BIO_s_buffered_socket(void)
 	return &transport_bio_buffered_socket_methods;
 }
 
-BOOL transport_bio_buffered_drain(BIO *bio)
+WINBOOL transport_bio_buffered_drain(BIO *bio)
 {
 	int status;
 	rdpTcp* tcp = (rdpTcp*) bio->ptr;
@@ -487,7 +487,7 @@ void tcp_get_mac_address(rdpTcp* tcp)
 		mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]); */
 }
 
-BOOL tcp_connect(rdpTcp* tcp, const char* hostname, int port, int timeout)
+WINBOOL tcp_connect(rdpTcp* tcp, const char* hostname, int port, int timeout)
 {
 	int status;
 	UINT32 option_value;
@@ -627,7 +627,7 @@ BOOL tcp_connect(rdpTcp* tcp, const char* hostname, int port, int timeout)
 	return TRUE;
 }
 
-BOOL tcp_disconnect(rdpTcp* tcp)
+WINBOOL tcp_disconnect(rdpTcp* tcp)
 {
 	freerdp_tcp_disconnect(tcp->sockfd);
 	tcp->sockfd = -1;
@@ -635,7 +635,7 @@ BOOL tcp_disconnect(rdpTcp* tcp)
 	return TRUE;
 }
 
-BOOL tcp_set_blocking_mode(rdpTcp* tcp, BOOL blocking)
+WINBOOL tcp_set_blocking_mode(rdpTcp* tcp, WINBOOL blocking)
 {
 #ifndef _WIN32
 	int flags;
@@ -655,11 +655,11 @@ BOOL tcp_set_blocking_mode(rdpTcp* tcp, BOOL blocking)
 	/**
 	 * ioctlsocket function:
 	 * msdn.microsoft.com/en-ca/library/windows/desktop/ms738573/
-	 * 
+	 *
 	 * The WSAAsyncSelect and WSAEventSelect functions automatically set a socket to nonblocking mode.
 	 * If WSAAsyncSelect or WSAEventSelect has been issued on a socket, then any attempt to use
 	 * ioctlsocket to set the socket back to blocking mode will fail with WSAEINVAL.
-	 * 
+	 *
 	 * To set the socket back to blocking mode, an application must first disable WSAAsyncSelect
 	 * by calling WSAAsyncSelect with the lEvent parameter equal to zero, or disable WSAEventSelect
 	 * by calling WSAEventSelect with the lNetworkEvents parameter equal to zero.
@@ -682,7 +682,7 @@ BOOL tcp_set_blocking_mode(rdpTcp* tcp, BOOL blocking)
 	return TRUE;
 }
 
-BOOL tcp_set_keep_alive_mode(rdpTcp* tcp)
+WINBOOL tcp_set_keep_alive_mode(rdpTcp* tcp)
 {
 #ifndef _WIN32
 	UINT32 option_value;
@@ -783,7 +783,7 @@ HANDLE tcp_get_event_handle(rdpTcp* tcp)
 {
 	if (!tcp)
 		return NULL;
-	
+
 	return tcp->event;
 }
 

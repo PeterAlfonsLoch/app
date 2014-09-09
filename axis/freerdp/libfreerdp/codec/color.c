@@ -1016,23 +1016,23 @@ BYTE* freerdp_icon_convert(BYTE* srcData, BYTE* dstData, BYTE* mask, int width, 
 		/* Server sends 16 bpp field, but data is usually 15-bit 555 */
 		bpp = 15;
 	}
-	
+
 	data = freerdp_image_flip(srcData, dstData, width, height, bpp);
 	dstData = freerdp_image_convert(data, NULL, width, height, bpp, 32, clrconv);
 	_aligned_free(data);
 
-	/* Read the AND alpha plane */ 
+	/* Read the AND alpha plane */
 	if (bpp < 32)
 	{
 		maskIndex = 0;
 		icon = (UINT32*) dstData;
-		
+
 		for (y = 0; y < height; y++)
 		{
 			for (x = 0; x < width-7; x+=8)
 			{
 				bmask = mask[maskIndex++];
-				
+
 				for (bit = 0; bit < 8; bit++)
 					if ((bmask & (0x80 >> bit)) == 0)
 					{
@@ -1041,11 +1041,11 @@ BYTE* freerdp_icon_convert(BYTE* srcData, BYTE* dstData, BYTE* mask, int width, 
 							*tmp |= 0xFF000000;
 					}
 			}
-			
+
 			if ((width % 8) != 0)
 			{
 				bmask = mask[maskIndex++];
-				
+
 				for (bit = 0; bit < width % 8; bit++)
 					if ((bmask & (0x80 >> bit)) == 0)
 					{
@@ -1054,7 +1054,7 @@ BYTE* freerdp_icon_convert(BYTE* srcData, BYTE* dstData, BYTE* mask, int width, 
 							*tmp |= 0xFF000000;
 					}
 			}
-		
+
 			/* Skip padding */
 			if ((width % 32) != 0)
 				maskIndex += (32 - (width % 32)) / 8;
@@ -1115,7 +1115,7 @@ BYTE* freerdp_mono_image_convert(BYTE* srcData, int width, int height, int srcBp
 	int bitIndex;
 	BYTE redBg, greenBg, blueBg;
 	BYTE redFg, greenFg, blueFg;
-	
+
 	GetRGB32(redBg, greenBg, blueBg, bgcolor);
 	GetRGB32(redFg, greenFg, blueFg, fgcolor);
 
@@ -1305,8 +1305,8 @@ int freerdp_image_copy(BYTE* pDstData, DWORD dwDstFormat, int nDstStep, int nXDs
 	int srcBytesPerPixel;
 	int dstBitsPerPixel;
 	int dstBytesPerPixel;
-	BOOL overlap = FALSE;
-	BOOL vFlip = FALSE;
+	WINBOOL overlap = FALSE;
+	WINBOOL vFlip = FALSE;
 
 	srcBitsPerPixel = FREERDP_PIXEL_FORMAT_DEPTH(dwSrcFormat);
 	srcBytesPerPixel = (FREERDP_PIXEL_FORMAT_BPP(dwSrcFormat) / 8);

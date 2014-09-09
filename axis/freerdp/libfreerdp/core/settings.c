@@ -592,7 +592,7 @@ rdpSettings* freerdp_settings_clone(rdpSettings* settings)
 		_settings->DynamicChannelCount = settings->DynamicChannelCount; /* 5056 */
 		_settings->DynamicChannelArraySize = settings->DynamicChannelArraySize; /* 5057 */
 
-		/* BOOL values */
+		/* WINBOOL values */
 
 		_settings->ServerMode = settings->ServerMode; /* 16 */
 		_settings->WaitForOutputBufferFlush = settings->WaitForOutputBufferFlush; /* 25 */

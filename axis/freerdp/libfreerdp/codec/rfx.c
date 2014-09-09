@@ -194,7 +194,7 @@ void rfx_encoder_tile_free(RFX_TILE* tile)
 		free(tile);
 }
 
-RFX_CONTEXT* rfx_context_new(BOOL encoder)
+RFX_CONTEXT* rfx_context_new(WINBOOL encoder)
 {
 	HKEY hKey;
 	LONG status;
@@ -248,7 +248,7 @@ RFX_CONTEXT* rfx_context_new(BOOL encoder)
 	 * dwt_buffer: 32 * 32 * 2 * 2 * sizeof(INT16) = 8192, maximum sub-band width is 32
 	 *
 	 * Additionally we add 32 bytes (16 in front and 16 at the back of the buffer)
-	 * in order to allow optimized functions (SEE, NEON) to read from positions 
+	 * in order to allow optimized functions (SEE, NEON) to read from positions
 	 * that are actually in front/beyond the buffer. Offset calculations are
 	 * performed at the BufferPool_Take function calls in rfx_encode/decode.c.
 	 *
@@ -264,7 +264,7 @@ RFX_CONTEXT* rfx_context_new(BOOL encoder)
 
 /*
 
-      BOOL isVistaOrLater;
+      WINBOOL isVistaOrLater;
 		OSVERSIONINFOA verinfo;
 
 		ZeroMemory(&verinfo, sizeof(OSVERSIONINFOA));
@@ -332,15 +332,15 @@ RFX_CONTEXT* rfx_context_new(BOOL encoder)
 
 	/* create profilers for default decoding routines */
 	rfx_profiler_create(context);
-	
+
 	/* set up default routines */
-	context->quantization_decode = rfx_quantization_decode;	
-	context->quantization_encode = rfx_quantization_encode;	
+	context->quantization_decode = rfx_quantization_decode;
+	context->quantization_encode = rfx_quantization_encode;
 	context->dwt_2d_decode = rfx_dwt_2d_decode;
 	context->dwt_2d_encode = rfx_dwt_2d_encode;
 
 	RFX_INIT_SIMD(context);
-	
+
 	context->state = RFX_STATE_SEND_HEADERS;
 	return context;
 
@@ -430,7 +430,7 @@ void rfx_context_reset(RFX_CONTEXT* context)
 	context->frameIdx = 0;
 }
 
-static BOOL rfx_process_message_sync(RFX_CONTEXT* context, wStream* s)
+static WINBOOL rfx_process_message_sync(RFX_CONTEXT* context, wStream* s)
 {
 	UINT32 magic;
 
@@ -461,7 +461,7 @@ static BOOL rfx_process_message_sync(RFX_CONTEXT* context, wStream* s)
 	return TRUE;
 }
 
-static BOOL rfx_process_message_codec_versions(RFX_CONTEXT* context, wStream* s)
+static WINBOOL rfx_process_message_codec_versions(RFX_CONTEXT* context, wStream* s)
 {
 	BYTE numCodecs;
 
@@ -493,7 +493,7 @@ static BOOL rfx_process_message_codec_versions(RFX_CONTEXT* context, wStream* s)
 	return TRUE;
 }
 
-static BOOL rfx_process_message_channels(RFX_CONTEXT* context, wStream* s)
+static WINBOOL rfx_process_message_channels(RFX_CONTEXT* context, wStream* s)
 {
 	BYTE channelId;
 	BYTE numChannels;
@@ -506,7 +506,7 @@ static BOOL rfx_process_message_channels(RFX_CONTEXT* context, wStream* s)
 
 	Stream_Read_UINT8(s, numChannels); /* numChannels (1 byte), must bet set to 0x01 */
 
-	/* In RDVH sessions, numChannels will represent the number of virtual monitors 
+	/* In RDVH sessions, numChannels will represent the number of virtual monitors
 	 * configured and does not always be set to 0x01 as [MS-RDPRFX] said.
 	 */
 	if (numChannels < 1)
@@ -535,7 +535,7 @@ static BOOL rfx_process_message_channels(RFX_CONTEXT* context, wStream* s)
 	return TRUE;
 }
 
-static BOOL rfx_process_message_context(RFX_CONTEXT* context, wStream* s)
+static WINBOOL rfx_process_message_context(RFX_CONTEXT* context, wStream* s)
 {
 	BYTE ctxId;
 	UINT16 tileSize;
@@ -586,7 +586,7 @@ static BOOL rfx_process_message_context(RFX_CONTEXT* context, wStream* s)
 	return TRUE;
 }
 
-static BOOL rfx_process_message_frame_begin(RFX_CONTEXT* context, RFX_MESSAGE* message, wStream* s)
+static WINBOOL rfx_process_message_frame_begin(RFX_CONTEXT* context, RFX_MESSAGE* message, wStream* s)
 {
 	UINT32 frameIdx;
 	UINT16 numRegions;
@@ -610,7 +610,7 @@ static void rfx_process_message_frame_end(RFX_CONTEXT* context, RFX_MESSAGE* mes
 	WLog_Print(context->priv->log, WLOG_DEBUG, "RFX_FRAME_END");
 }
 
-static BOOL rfx_process_message_region(RFX_CONTEXT* context, RFX_MESSAGE* message, wStream* s)
+static WINBOOL rfx_process_message_region(RFX_CONTEXT* context, RFX_MESSAGE* message, wStream* s)
 {
 	int i;
 
@@ -682,9 +682,9 @@ void CALLBACK rfx_process_message_tile_work_callback(PTP_CALLBACK_INSTANCE insta
 	rfx_decode_rgb(param->context, param->tile, param->tile->data, 64 * 4);
 }
 
-static BOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* message, wStream* s)
+static WINBOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* message, wStream* s)
 {
-	BOOL rc;
+	WINBOOL rc;
 	int i, close_cnt;
 	int pos;
 	BYTE quant;
@@ -1162,7 +1162,7 @@ void CALLBACK rfx_compose_message_tile_work_callback(PTP_CALLBACK_INSTANCE insta
 }
 
 
-static BOOL computeRegion(const RFX_RECT* rects, int numRects, REGION16 *region, int width, int height)
+static WINBOOL computeRegion(const RFX_RECT* rects, int numRects, REGION16 *region, int width, int height)
 {
 	int i;
 	const RFX_RECT *rect = rects;
@@ -1185,7 +1185,7 @@ static BOOL computeRegion(const RFX_RECT* rects, int numRects, REGION16 *region,
 
 #define TILE_NO(v) ((v) / 64)
 
-BOOL setupWorkers(RFX_CONTEXT *context, int nbTiles)
+WINBOOL setupWorkers(RFX_CONTEXT *context, int nbTiles)
 {
 	RFX_CONTEXT_PRIV *priv = context->priv;
 

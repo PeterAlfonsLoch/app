@@ -37,7 +37,7 @@
 
 #include "ntlm.h"
 
-BOOL ntlm_client_init(rdpNtlm* ntlm, BOOL http, char* user, char* domain, char* password, SecPkgContext_Bindings* Bindings)
+WINBOOL ntlm_client_init(rdpNtlm* ntlm, WINBOOL http, char* user, char* domain, char* password, SecPkgContext_Bindings* Bindings)
 {
 	SECURITY_STATUS status;
 
@@ -116,7 +116,7 @@ BOOL ntlm_client_init(rdpNtlm* ntlm, BOOL http, char* user, char* domain, char* 
 	return TRUE;
 }
 
-BOOL ntlm_client_make_spn(rdpNtlm* ntlm, LPCTSTR ServiceClassParam, char* hostname)
+WINBOOL ntlm_client_make_spn(rdpNtlm* ntlm, LPCTSTR ServiceClassParam, char* hostname)
 {
 	int length;
 	DWORD status;
@@ -208,7 +208,7 @@ BOOL ntlm_client_make_spn(rdpNtlm* ntlm, LPCTSTR ServiceClassParam, char* hostna
  *                                           --------------
  */
 
-BOOL ntlm_authenticate(rdpNtlm* ntlm)
+WINBOOL ntlm_authenticate(rdpNtlm* ntlm)
 {
 	SECURITY_STATUS status;
 

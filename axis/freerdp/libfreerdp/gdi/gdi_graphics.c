@@ -96,9 +96,9 @@ void gdi_Bitmap_Paint(rdpContext* context, rdpBitmap* bitmap)
 
 void gdi_Bitmap_Decompress(rdpContext* context, rdpBitmap* bitmap,
 		BYTE* data, int width, int height, int bpp, int length,
-		BOOL compressed, int codecId)
+		WINBOOL compressed, int codecId)
 {
-	BOOL status;
+	WINBOOL status;
 	UINT16 size;
 	BYTE* src;
 	BYTE* dst;
@@ -179,7 +179,7 @@ void gdi_Bitmap_Decompress(rdpContext* context, rdpBitmap* bitmap,
 	bitmap->bpp = bpp;
 }
 
-void gdi_Bitmap_SetSurface(rdpContext* context, rdpBitmap* bitmap, BOOL primary)
+void gdi_Bitmap_SetSurface(rdpContext* context, rdpBitmap* bitmap, WINBOOL primary)
 {
 	rdpGdi* gdi = context->gdi;
 

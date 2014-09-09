@@ -354,7 +354,7 @@ int xcrush_find_match_length(XCRUSH_CONTEXT* xcrush, UINT32 MatchOffset, UINT32 
 
 	if (MatchOffset == ChunkOffset)
 		return -2003; /* error */
-	
+
 	if (MatchBuffer < HistoryBuffer)
 		return -2004; /* error */
 
@@ -380,7 +380,7 @@ int xcrush_find_match_length(XCRUSH_CONTEXT* xcrush, UINT32 MatchOffset, UINT32 
 
 		if (ForwardMatchPtr > HistoryBufferEnd)
 			break;
-			
+
 		ForwardMatchLength++;
 	}
 
@@ -433,7 +433,7 @@ int xcrush_find_all_matches(XCRUSH_CONTEXT* xcrush, UINT32 SignatureIndex, UINT3
 	for (i = 0; i < SignatureIndex; i++)
 	{
 		offset = SrcOffset + HistoryOffset;
-		
+
 		if (!Signatures[i].size)
 			return -1001; /* error */
 
@@ -449,13 +449,13 @@ int xcrush_find_all_matches(XCRUSH_CONTEXT* xcrush, UINT32 SignatureIndex, UINT3
 			ZeroMemory(&MaxMatchInfo, sizeof(XCRUSH_MATCH_INFO));
 
 			while (chunk)
-			{				
+			{
 				if ((chunk->offset < HistoryOffset) || (chunk->offset < offset)
 					|| (chunk->offset > SrcSize + HistoryOffset))
 				{
 					status = xcrush_find_match_length(xcrush, offset, chunk->offset,
 							HistoryOffset, SrcSize, MaxMatchLength, &MatchInfo);
-					
+
 					if (status < 0)
 						return status; /* error */
 
@@ -467,17 +467,17 @@ int xcrush_find_all_matches(XCRUSH_CONTEXT* xcrush, UINT32 SignatureIndex, UINT3
 						MaxMatchInfo.MatchOffset = MatchInfo.MatchOffset;
 						MaxMatchInfo.ChunkOffset = MatchInfo.ChunkOffset;
 						MaxMatchInfo.MatchLength = MatchInfo.MatchLength;
-						
+
 						if (MatchLength > 256)
 							break;
 					}
 				}
-				
+
 				ChunkIndex = ChunkCount++;
 
 				if (ChunkIndex > 4)
 					break;
-				
+
 				status = xcrush_find_next_matching_chunk(xcrush, chunk, &chunk);
 
 				if (status < 0)
@@ -489,19 +489,19 @@ int xcrush_find_all_matches(XCRUSH_CONTEXT* xcrush, UINT32 SignatureIndex, UINT3
 				xcrush->OriginalMatches[j].MatchOffset = MaxMatchInfo.MatchOffset;
 				xcrush->OriginalMatches[j].ChunkOffset = MaxMatchInfo.ChunkOffset;
 				xcrush->OriginalMatches[j].MatchLength = MaxMatchInfo.MatchLength;
-				
+
 				if (xcrush->OriginalMatches[j].MatchOffset < HistoryOffset)
 					return -1002; /* error */
 
 				PrevMatchEnd = xcrush->OriginalMatches[j].MatchLength + xcrush->OriginalMatches[j].MatchOffset;
-				
+
 				j++;
-				
+
 				if (j >= 1000)
 					return -1003; /* error */
 			}
 		}
-		
+
 		SrcOffset += Signatures[i].size;
 
 		if (SrcOffset > SrcSize)
@@ -548,7 +548,7 @@ int xcrush_optimize_matches(XCRUSH_CONTEXT* xcrush)
 
 				OriginalMatch = &OriginalMatches[i];
 				OptimizedMatch = &OptimizedMatches[j];
-				
+
 				OptimizedMatch->MatchOffset = OriginalMatch->MatchOffset;
 				OptimizedMatch->ChunkOffset = OriginalMatch->ChunkOffset;
 				OptimizedMatch->MatchLength = OriginalMatch->MatchLength;
@@ -558,14 +558,14 @@ int xcrush_optimize_matches(XCRUSH_CONTEXT* xcrush)
 
 				if (MatchDiff >= 20000)
 					return -5002; /* error */
-				
+
 				OptimizedMatches[j].MatchLength -= MatchDiff;
 				OptimizedMatches[j].MatchOffset += MatchDiff;
 				OptimizedMatches[j].ChunkOffset += MatchDiff;
 
 				PrevMatchEnd = OptimizedMatches[j].MatchLength + OptimizedMatches[j].MatchOffset;
 				TotalMatchLength += OptimizedMatches[j].MatchLength;
-				
+
 				j++;
 			}
 		}
@@ -577,7 +577,7 @@ int xcrush_optimize_matches(XCRUSH_CONTEXT* xcrush)
 			OptimizedMatch->MatchOffset = OriginalMatch->MatchOffset;
 			OptimizedMatch->ChunkOffset = OriginalMatch->ChunkOffset;
 			OptimizedMatch->MatchLength = OriginalMatch->MatchLength;
-			
+
 			PrevMatchEnd = OptimizedMatches[j].MatchLength + OptimizedMatches[j].MatchOffset;
 			TotalMatchLength += OptimizedMatches[j].MatchLength;
 
@@ -618,21 +618,21 @@ int xcrush_generate_output(XCRUSH_CONTEXT* xcrush, BYTE* OutputBuffer, UINT32 Ou
 
 	if (Literals > OutputEnd)
 		return -6002; /* error */
-	
+
 	for (MatchIndex = 0; MatchIndex < MatchCount; MatchIndex++)
-	{		
+	{
 		MatchDetails[MatchIndex].MatchLength = (UINT16) (xcrush->OptimizedMatches[MatchIndex].MatchLength);
 		MatchDetails[MatchIndex].MatchOutputOffset = (UINT16) (xcrush->OptimizedMatches[MatchIndex].MatchOffset - HistoryOffset);
 		MatchDetails[MatchIndex].MatchHistoryOffset = xcrush->OptimizedMatches[MatchIndex].ChunkOffset;
 	}
 
 	CurrentOffset = HistoryOffset;
-	
+
 	for (MatchIndex = 0; MatchIndex < MatchCount; MatchIndex++)
 	{
 		MatchLength = (UINT16) (xcrush->OptimizedMatches[MatchIndex].MatchLength);
 		MatchOffset = xcrush->OptimizedMatches[MatchIndex].MatchOffset;
-		
+
 		if (MatchOffset <= CurrentOffset)
 		{
 			if (MatchOffset != CurrentOffset)
@@ -656,9 +656,9 @@ int xcrush_generate_output(XCRUSH_CONTEXT* xcrush, BYTE* OutputBuffer, UINT32 Ou
 			CurrentOffset = MatchOffset + MatchLength;
 		}
 	}
-	
+
 	HistoryOffsetDiff = xcrush->HistoryOffset - CurrentOffset;
-	
+
 	if (Literals + HistoryOffsetDiff >= OutputEnd)
 		return -6006; /* error */
 
@@ -1004,7 +1004,7 @@ int xcrush_compress(XCRUSH_CONTEXT* xcrush, BYTE* pSrcData, UINT32 SrcSize, BYTE
 	return 1;
 }
 
-void xcrush_context_reset(XCRUSH_CONTEXT* xcrush, BOOL flush)
+void xcrush_context_reset(XCRUSH_CONTEXT* xcrush, WINBOOL flush)
 {
 	xcrush->SignatureIndex = 0;
 	xcrush->SignatureCount = 1000;
@@ -1027,7 +1027,7 @@ void xcrush_context_reset(XCRUSH_CONTEXT* xcrush, BOOL flush)
 	mppc_context_reset(xcrush->mppc, flush);
 }
 
-XCRUSH_CONTEXT* xcrush_context_new(BOOL Compressor)
+XCRUSH_CONTEXT* xcrush_context_new(WINBOOL Compressor)
 {
 	XCRUSH_CONTEXT* xcrush;
 

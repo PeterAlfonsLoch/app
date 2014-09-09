@@ -140,7 +140,7 @@ DWORD freerdp_keyboard_get_rdp_scancode_from_x11_keycode(DWORD keycode)
 	return X11_KEYCODE_TO_VIRTUAL_SCANCODE[keycode];
 }
 
-DWORD freerdp_keyboard_get_x11_keycode_from_rdp_scancode(DWORD scancode, BOOL extended)
+DWORD freerdp_keyboard_get_x11_keycode_from_rdp_scancode(DWORD scancode, WINBOOL extended)
 {
 	if (extended)
 		return VIRTUAL_SCANCODE_TO_X11_KEYCODE[scancode][1];

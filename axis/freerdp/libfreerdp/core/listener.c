@@ -68,13 +68,13 @@ static const char* inet_ntop(int af, const void* src, char* dst, size_t cnt)
 		getnameinfo((struct sockaddr*) &in, sizeof(struct sockaddr_in6), dst, cnt, NULL, 0, NI_NUMERICHOST);
 		return dst;
 	}
-	
+
 	return NULL;
 }
 #endif
 #endif
 
-static BOOL freerdp_listener_open(freerdp_listener* instance, const char* bind_address, UINT16 port)
+static WINBOOL freerdp_listener_open(freerdp_listener* instance, const char* bind_address, UINT16 port)
 {
 	rdpListener* listener = (rdpListener*) instance->listener;
 	int status;
@@ -176,7 +176,7 @@ static BOOL freerdp_listener_open(freerdp_listener* instance, const char* bind_a
 	return (listener->num_sockfds > 0 ? TRUE : FALSE);
 }
 
-static BOOL freerdp_listener_open_local(freerdp_listener* instance, const char* path)
+static WINBOOL freerdp_listener_open_local(freerdp_listener* instance, const char* path)
 {
 #ifndef _WIN32
 	int status;
@@ -243,7 +243,7 @@ static void freerdp_listener_close(freerdp_listener* instance)
 	listener->num_sockfds = 0;
 }
 
-static BOOL freerdp_listener_get_fds(freerdp_listener* instance, void** rfds, int* rcount)
+static WINBOOL freerdp_listener_get_fds(freerdp_listener* instance, void** rfds, int* rcount)
 {
 	int index;
 	rdpListener* listener = (rdpListener*) instance->listener;
@@ -277,7 +277,7 @@ int freerdp_listener_get_event_handles(freerdp_listener* instance, HANDLE* event
 	return 0;
 }
 
-static BOOL freerdp_listener_check_fds(freerdp_listener* instance)
+static WINBOOL freerdp_listener_check_fds(freerdp_listener* instance)
 {
 	int i;
 	void* sin_addr;

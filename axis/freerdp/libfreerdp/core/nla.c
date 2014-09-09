@@ -110,7 +110,7 @@ int credssp_ntlm_client_init(rdpCredssp* credssp)
 {
 	char* spn;
 	int length;
-	BOOL PromptPassword;
+	WINBOOL PromptPassword;
 	rdpTls* tls = NULL;
 	freerdp* instance;
 	rdpSettings* settings;
@@ -143,7 +143,7 @@ int credssp_ntlm_client_init(rdpCredssp* credssp)
 	{
 		if (instance->Authenticate)
 		{
-			BOOL proceed = instance->Authenticate(instance,
+			WINBOOL proceed = instance->Authenticate(instance,
 					&settings->Username, &settings->Password, &settings->Domain);
 
 			if (!proceed)
@@ -254,9 +254,9 @@ int credssp_client_authenticate(rdpCredssp* credssp)
 	SecBuffer output_buffer;
 	SecBufferDesc input_buffer_desc;
 	SecBufferDesc output_buffer_desc;
-	BOOL have_context;
-	BOOL have_input_buffer;
-	BOOL have_pub_key_auth;
+	WINBOOL have_context;
+	WINBOOL have_input_buffer;
+	WINBOOL have_pub_key_auth;
 
 	sspi_GlobalInit();
 
@@ -442,9 +442,9 @@ int credssp_server_authenticate(rdpCredssp* credssp)
 	SecBuffer output_buffer;
 	SecBufferDesc input_buffer_desc;
 	SecBufferDesc output_buffer_desc;
-	BOOL have_context;
-	BOOL have_input_buffer;
-	BOOL have_pub_key_auth;
+	WINBOOL have_context;
+	WINBOOL have_input_buffer;
+	WINBOOL have_pub_key_auth;
 
 	sspi_GlobalInit();
 

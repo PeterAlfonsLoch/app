@@ -97,9 +97,9 @@ void transport_stop(rdpTransport* transport)
 	}
 }
 
-BOOL transport_disconnect(rdpTransport* transport)
+WINBOOL transport_disconnect(rdpTransport* transport)
 {
-	BOOL status = TRUE;
+	WINBOOL status = TRUE;
 
 	if (!transport)
 		return FALSE;
@@ -112,7 +112,7 @@ BOOL transport_disconnect(rdpTransport* transport)
 	return status;
 }
 
-BOOL transport_connect_rdp(rdpTransport* transport)
+WINBOOL transport_connect_rdp(rdpTransport* transport)
 {
 	/* RDP encryption */
 
@@ -225,7 +225,7 @@ BIO_METHOD* BIO_s_tsg(void)
 	return &transport_bio_tsg_methods;
 }
 
-BOOL transport_connect_tls(rdpTransport* transport)
+WINBOOL transport_connect_tls(rdpTransport* transport)
 {
 	rdpSettings *settings = transport->settings;
 	rdpTls *targetTls;
@@ -299,7 +299,7 @@ BOOL transport_connect_tls(rdpTransport* transport)
 	return TRUE;
 }
 
-BOOL transport_connect_nla(rdpTransport* transport)
+WINBOOL transport_connect_nla(rdpTransport* transport)
 {
 	freerdp* instance;
 	rdpSettings* settings;
@@ -361,7 +361,7 @@ BOOL transport_connect_nla(rdpTransport* transport)
 	return TRUE;
 }
 
-BOOL transport_tsg_connect(rdpTransport* transport, const char* hostname, UINT16 port)
+WINBOOL transport_tsg_connect(rdpTransport* transport, const char* hostname, UINT16 port)
 {
 	rdpTsg* tsg;
 	int tls_status;
@@ -453,9 +453,9 @@ BOOL transport_tsg_connect(rdpTransport* transport, const char* hostname, UINT16
 	return TRUE;
 }
 
-BOOL transport_connect(rdpTransport* transport, const char* hostname, UINT16 port, int timeout)
+WINBOOL transport_connect(rdpTransport* transport, const char* hostname, UINT16 port, int timeout)
 {
-	BOOL status = FALSE;
+	WINBOOL status = FALSE;
 	rdpSettings* settings = transport->settings;
 
 	transport->async = settings->AsyncTransport;
@@ -502,14 +502,14 @@ BOOL transport_connect(rdpTransport* transport, const char* hostname, UINT16 por
 	return status;
 }
 
-BOOL transport_accept_rdp(rdpTransport* transport)
+WINBOOL transport_accept_rdp(rdpTransport* transport)
 {
 	/* RDP encryption */
 
 	return TRUE;
 }
 
-BOOL transport_accept_tls(rdpTransport* transport)
+WINBOOL transport_accept_tls(rdpTransport* transport)
 {
 	if (!transport->TlsIn)
 		transport->TlsIn = tls_new(transport->settings);
@@ -526,7 +526,7 @@ BOOL transport_accept_tls(rdpTransport* transport)
 	return TRUE;
 }
 
-BOOL transport_accept_nla(rdpTransport* transport)
+WINBOOL transport_accept_nla(rdpTransport* transport)
 {
 	freerdp* instance;
 	rdpSettings* settings;
@@ -834,7 +834,7 @@ int transport_read_pdu(rdpTransport* transport, wStream* s)
 	return Stream_Length(s);
 }
 
-BOOL transport_bio_buffered_drain(BIO *bio);
+WINBOOL transport_bio_buffered_drain(BIO *bio);
 
 int transport_write(rdpTransport* transport, wStream* s)
 {
@@ -991,7 +991,7 @@ void transport_get_read_handles(rdpTransport* transport, HANDLE* events, DWORD* 
 	}
 }
 
-BOOL tranport_is_write_blocked(rdpTransport* transport)
+WINBOOL tranport_is_write_blocked(rdpTransport* transport)
 {
 	if (transport->TcpIn->writeBlocked)
 		return TRUE;
@@ -1003,7 +1003,7 @@ BOOL tranport_is_write_blocked(rdpTransport* transport)
 
 int tranport_drain_output_buffer(rdpTransport* transport)
 {
-	BOOL ret = FALSE;
+	WINBOOL ret = FALSE;
 
 	/* First try to send some accumulated bytes in the send buffer */
 	if (transport->TcpIn->writeBlocked)
@@ -1085,9 +1085,9 @@ int transport_check_fds(rdpTransport* transport)
 	return 0;
 }
 
-BOOL transport_set_blocking_mode(rdpTransport* transport, BOOL blocking)
+WINBOOL transport_set_blocking_mode(rdpTransport* transport, WINBOOL blocking)
 {
-	BOOL status;
+	WINBOOL status;
 
 	status = TRUE;
 	transport->blocking = blocking;
@@ -1110,12 +1110,12 @@ BOOL transport_set_blocking_mode(rdpTransport* transport, BOOL blocking)
 	return status;
 }
 
-void transport_set_gateway_enabled(rdpTransport* transport, BOOL GatewayEnabled)
+void transport_set_gateway_enabled(rdpTransport* transport, WINBOOL GatewayEnabled)
 {
 	transport->GatewayEnabled = GatewayEnabled;
 }
 
-void transport_set_nla_mode(rdpTransport* transport, BOOL NlaMode)
+void transport_set_nla_mode(rdpTransport* transport, WINBOOL NlaMode)
 {
 	transport->NlaMode = NlaMode;
 }
@@ -1132,21 +1132,21 @@ static void* transport_client_thread(void* arg)
 	transport = (rdpTransport*) arg;
 	assert(NULL != transport);
 	assert(NULL != transport->settings);
-	
+
 	instance = (freerdp*) transport->settings->instance;
 	assert(NULL != instance);
-	
+
 	context = instance->context;
 	assert(NULL != instance->context);
-	
+
 	WLog_Print(transport->log, WLOG_DEBUG, "Starting transport thread");
 
 	nCount = 0;
 	handles[nCount++] = transport->stopEvent;
 	handles[nCount++] = transport->connectedEvent;
-	
+
 	status = WaitForMultipleObjects(nCount, handles, FALSE, INFINITE);
-	
+
 	if (WaitForSingleObject(transport->stopEvent, 0) == WAIT_OBJECT_0)
 	{
 		WLog_Print(transport->log, WLOG_DEBUG, "Terminating transport thread");

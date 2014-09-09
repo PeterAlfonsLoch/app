@@ -670,7 +670,7 @@ void progressive_context_reset(PROGRESSIVE_CONTEXT* progressive)
 
 }
 
-PROGRESSIVE_CONTEXT* progressive_context_new(BOOL Compressor)
+PROGRESSIVE_CONTEXT* progressive_context_new(WINBOOL Compressor)
 {
 	PROGRESSIVE_CONTEXT* progressive;
 

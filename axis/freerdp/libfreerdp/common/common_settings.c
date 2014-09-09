@@ -652,7 +652,7 @@ void freerdp_update_gateway_usage_method(rdpSettings* settings, UINT32 GatewayEn
  * Partially Generated Code
  */
 
-BOOL freerdp_get_param_bool(rdpSettings* settings, int id)
+WINBOOL freerdp_get_param_bool(rdpSettings* settings, int id)
 {
 	switch (id)
 	{
@@ -1034,7 +1034,7 @@ BOOL freerdp_get_param_bool(rdpSettings* settings, int id)
 	}
 }
 
-int freerdp_set_param_bool(rdpSettings* settings, int id, BOOL param)
+int freerdp_set_param_bool(rdpSettings* settings, int id, WINBOOL param)
 {
 	switch (id)
 	{
@@ -1276,7 +1276,7 @@ int freerdp_set_param_bool(rdpSettings* settings, int id, BOOL param)
 
 		case FreeRDP_SmartSizing:
 			settings->SmartSizing = param;
-			break;		
+			break;
 
 		case FreeRDP_MouseMotion:
 			settings->MouseMotion = param;
@@ -2144,7 +2144,7 @@ int freerdp_set_param_uint32(rdpSettings* settings, int id, UINT32 param)
 
 	/* Mark field as modified */
 	settings->SettingsModified[id] = 1;
-	
+
 	return 0;
 }
 
@@ -2176,7 +2176,7 @@ int freerdp_set_param_uint64(rdpSettings* settings, int id, UINT64 param)
 
 	/* Mark field as modified */
 	settings->SettingsModified[id] = 1;
-	
+
 	return 0;
 }
 

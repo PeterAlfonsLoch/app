@@ -44,7 +44,7 @@ static pstatus_t ssse3_YCoCgRToRGB_8u_AC4R_invert(
 	BYTE *pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
 	UINT8 shift,
-	BOOL withAlpha)
+	WINBOOL withAlpha)
 {
 	const BYTE *sptr = pSrc;
 	BYTE *dptr = (BYTE *) pDst;
@@ -76,7 +76,7 @@ static pstatus_t ssse3_YCoCgRToRGB_8u_AC4R_invert(
 	for (h=0; h<height; h++)
 	{
 		int w = width;
-		BOOL onStride;
+		WINBOOL onStride;
 
 		/* Get to a 16-byte destination boundary. */
 		if ((ULONG_PTR) dptr & 0x0f)
@@ -203,7 +203,7 @@ static pstatus_t ssse3_YCoCgRToRGB_8u_AC4R_no_invert(
 	BYTE *pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
 	UINT8 shift,
-	BOOL withAlpha)
+	WINBOOL withAlpha)
 {
 	const BYTE *sptr = pSrc;
 	BYTE *dptr = (BYTE *) pDst;
@@ -235,7 +235,7 @@ static pstatus_t ssse3_YCoCgRToRGB_8u_AC4R_no_invert(
 	for (h=0; h<height; h++)
 	{
 		int w = width;
-		BOOL onStride;
+		WINBOOL onStride;
 
 		/* Get to a 16-byte destination boundary. */
 		if ((ULONG_PTR) dptr & 0x0f)
@@ -319,7 +319,7 @@ static pstatus_t ssse3_YCoCgRToRGB_8u_AC4R_no_invert(
 
 			/* Repack R's & B's.  */
 			/* This line is the only diff between inverted and non-inverted.
-			 * Unfortunately, it would be expensive to check "inverted" 
+			 * Unfortunately, it would be expensive to check "inverted"
 			 * every time through this loop.
 			 */
 			R0 = _mm_packus_epi16(R5, R3);
@@ -368,8 +368,8 @@ pstatus_t ssse3_YCoCgRToRGB_8u_AC4R(
 	BYTE *pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
 	UINT8 shift,
-	BOOL withAlpha,
-	BOOL invert)
+	WINBOOL withAlpha,
+	WINBOOL invert)
 {
 	if (invert) {
 		return ssse3_YCoCgRToRGB_8u_AC4R_invert(pSrc, srcStep, pDst, dstStep,

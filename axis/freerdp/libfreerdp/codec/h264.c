@@ -136,7 +136,7 @@ static BYTE* convert_420_to_444(BYTE* chroma420, int chroma420Width, int chroma4
 
 	/* Upconvert in the vertical direction (in-place, bottom-up). */
 
-	for (i = 0; i < chroma444Width; i++)   
+	for (i = 0; i < chroma444Width; i++)
 	{
 		src = chroma444 + i + (chroma420Height-2) * chroma444Width;
 		dst = chroma444 + i + (2*(chroma420Height-2)+1) * chroma444Width;
@@ -266,7 +266,7 @@ int h264_decompress(H264_CONTEXT* h264, BYTE* pSrcData, UINT32 SrcSize,
 #endif
 
 			*(UINT32*)pXRGB = YUV_to_RGB(Y, U, V);
-		
+
 			pXRGB += 4;
 		}
 	}
@@ -290,7 +290,7 @@ void h264_context_reset(H264_CONTEXT* h264)
 
 }
 
-H264_CONTEXT* h264_context_new(BOOL Compressor)
+H264_CONTEXT* h264_context_new(WINBOOL Compressor)
 {
 	H264_CONTEXT* h264;
 
@@ -331,7 +331,7 @@ H264_CONTEXT* h264_context_new(BOOL Compressor)
 			}
 		}
 #endif
-			
+
 		h264_context_reset(h264);
 	}
 

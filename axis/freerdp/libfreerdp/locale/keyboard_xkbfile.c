@@ -420,9 +420,9 @@ int detect_keyboard_layout_from_xkbfile(void* display, DWORD* keyboardLayoutId)
 int freerdp_keyboard_load_map_from_xkbfile(void* display, DWORD x11_keycode_to_rdp_scancode[256])
 {
 	int i, j;
-	BOOL found;
+	WINBOOL found;
 	XkbDescPtr xkb;
-	BOOL status = FALSE;
+	WINBOOL status = FALSE;
 
 	if (display && (xkb = XkbGetMap(display, 0, XkbUseCoreKbd)))
 	{

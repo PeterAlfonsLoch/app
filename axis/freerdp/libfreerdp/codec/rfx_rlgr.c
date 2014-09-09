@@ -73,13 +73,13 @@
 	_k = (_param >> LSGR); \
 }
 
-static BOOL g_LZCNT = FALSE;
+static WINBOOL g_LZCNT = FALSE;
 
 static INLINE UINT32 lzcnt_s(UINT32 x)
 {
 	if (!x)
 		return 32;
-	
+
 	if (!g_LZCNT)
 	{
 		UINT32 y;

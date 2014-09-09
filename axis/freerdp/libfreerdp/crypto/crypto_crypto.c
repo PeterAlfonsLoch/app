@@ -193,11 +193,11 @@ void crypto_cert_free(CryptoCert cert)
 	free(cert);
 }
 
-BOOL crypto_cert_get_public_key(CryptoCert cert, BYTE** PublicKey, DWORD* PublicKeyLength)
+WINBOOL crypto_cert_get_public_key(CryptoCert cert, BYTE** PublicKey, DWORD* PublicKeyLength)
 {
 	BYTE* ptr;
 	int length;
-	BOOL status = TRUE;
+	WINBOOL status = TRUE;
 	EVP_PKEY* pkey = NULL;
 
 	pkey = X509_get_pubkey(cert->px509);
@@ -364,7 +364,7 @@ char* crypto_print_name(X509_NAME* name)
 {
 	char* buffer = NULL;
 	BIO* outBIO = BIO_new(BIO_s_mem());
-	
+
 	if (X509_NAME_print_ex(outBIO, name, 0, XN_FLAG_ONELINE) > 0)
 	{
 		unsigned long size = BIO_number_written(outBIO);
@@ -493,10 +493,10 @@ char* crypto_cert_issuer(X509* xcert)
 	return crypto_print_name(X509_get_issuer_name(xcert));
 }
 
-BOOL x509_verify_certificate(CryptoCert cert, char* certificate_store_path)
+WINBOOL x509_verify_certificate(CryptoCert cert, char* certificate_store_path)
 {
 	X509_STORE_CTX* csc;
-	BOOL status = FALSE;
+	WINBOOL status = FALSE;
 	X509_STORE* cert_ctx = NULL;
 	X509_LOOKUP* lookup = NULL;
 	X509* xcert = cert->px509;

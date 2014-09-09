@@ -150,7 +150,7 @@ static const char *certificate_read_errors[] = {
  * @param cert X.509 certificate
  */
 
-BOOL certificate_read_x509_certificate(rdpCertBlob* cert, rdpCertInfo* info)
+WINBOOL certificate_read_x509_certificate(rdpCertBlob* cert, rdpCertInfo* info)
 {
 	wStream* s;
 	int length;
@@ -330,7 +330,7 @@ void certificate_free_x509_certificate_chain(rdpX509CertChain* x509_cert_chain)
 	free(x509_cert_chain);
 }
 
-static BOOL certificate_process_server_public_key(rdpCertificate* certificate, wStream* s, UINT32 length)
+static WINBOOL certificate_process_server_public_key(rdpCertificate* certificate, wStream* s, UINT32 length)
 {
 	BYTE magic[4];
 	UINT32 keylen;
@@ -367,7 +367,7 @@ static BOOL certificate_process_server_public_key(rdpCertificate* certificate, w
 	return TRUE;
 }
 
-static BOOL certificate_process_server_public_signature(rdpCertificate* certificate,
+static WINBOOL certificate_process_server_public_signature(rdpCertificate* certificate,
 		const BYTE* sigdata, int sigdatalen, wStream* s, UINT32 siglen)
 {
 	int i, sum;
@@ -432,7 +432,7 @@ static BOOL certificate_process_server_public_signature(rdpCertificate* certific
  * @param s stream
  */
 
-BOOL certificate_read_server_proprietary_certificate(rdpCertificate* certificate, wStream* s)
+WINBOOL certificate_read_server_proprietary_certificate(rdpCertificate* certificate, wStream* s)
 {
 	UINT32 dwSigAlgId;
 	UINT32 dwKeyAlgId;
@@ -516,12 +516,12 @@ BOOL certificate_read_server_proprietary_certificate(rdpCertificate* certificate
  * @param s stream
  */
 
-BOOL certificate_read_server_x509_certificate_chain(rdpCertificate* certificate, wStream* s)
+WINBOOL certificate_read_server_x509_certificate_chain(rdpCertificate* certificate, wStream* s)
 {
 	int i;
 	UINT32 certLength;
 	UINT32 numCertBlobs;
-	BOOL ret;
+	WINBOOL ret;
 
 	DEBUG_CERTIFICATE("Server X.509 Certificate Chain");
 
@@ -584,11 +584,11 @@ BOOL certificate_read_server_x509_certificate_chain(rdpCertificate* certificate,
  * @param length certificate length
  */
 
-BOOL certificate_read_server_certificate(rdpCertificate* certificate, BYTE* server_cert, int length)
+WINBOOL certificate_read_server_certificate(rdpCertificate* certificate, BYTE* server_cert, int length)
 {
 	wStream* s;
 	UINT32 dwVersion;
-	BOOL ret;
+	WINBOOL ret;
 
 	if (length < 4)  /* NULL certificate is not an error see #1795 */
 		return TRUE;

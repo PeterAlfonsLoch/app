@@ -33,7 +33,7 @@ typedef struct
 	UINT16 requestType;
 } AUTODETECT_REQ_PDU;
 
-static BOOL autodetect_send_rtt_measure_response(rdpRdp* rdp, UINT16 sequenceNumber)
+static WINBOOL autodetect_send_rtt_measure_response(rdpRdp* rdp, UINT16 sequenceNumber)
 {
 	wStream* s;
 
@@ -54,14 +54,14 @@ static BOOL autodetect_send_rtt_measure_response(rdpRdp* rdp, UINT16 sequenceNum
 	return rdp_send_message_channel_pdu(rdp, s, SEC_AUTODETECT_RSP);
 }
 
-static BOOL autodetect_send_bandwidth_measure_results(rdpRdp* rdp, UINT16 responseType, UINT16 sequenceNumber)
+static WINBOOL autodetect_send_bandwidth_measure_results(rdpRdp* rdp, UINT16 responseType, UINT16 sequenceNumber)
 {
 	UINT32 timeDelta;
 	wStream* s;
-	
+
 	/* Compute the total time */
 	timeDelta = GetTickCount() - rdp->autodetect->bandwidthMeasureStartTime;
-	
+
 	/* Send the result PDU to the server */
 
 	s = rdp_message_channel_pdu_init(rdp);
@@ -81,10 +81,10 @@ static BOOL autodetect_send_bandwidth_measure_results(rdpRdp* rdp, UINT16 respon
 	return rdp_send_message_channel_pdu(rdp, s, SEC_AUTODETECT_RSP);
 }
 
-BOOL autodetect_send_netchar_sync(rdpRdp* rdp, UINT16 sequenceNumber)
+WINBOOL autodetect_send_netchar_sync(rdpRdp* rdp, UINT16 sequenceNumber)
 {
 	wStream* s;
-	
+
 	/* Send the response PDU to the server */
 
 	s = rdp_message_channel_pdu_init(rdp);
@@ -104,7 +104,7 @@ BOOL autodetect_send_netchar_sync(rdpRdp* rdp, UINT16 sequenceNumber)
 	return rdp_send_message_channel_pdu(rdp, s, SEC_AUTODETECT_RSP);
 }
 
-static BOOL autodetect_recv_rtt_measure_request(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
+static WINBOOL autodetect_recv_rtt_measure_request(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
 {
 	if (autodetectReqPdu->headerLength != 0x06)
 		return FALSE;
@@ -115,7 +115,7 @@ static BOOL autodetect_recv_rtt_measure_request(rdpRdp* rdp, wStream* s, AUTODET
 	return autodetect_send_rtt_measure_response(rdp, autodetectReqPdu->sequenceNumber);
 }
 
-static BOOL autodetect_recv_bandwidth_measure_start(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
+static WINBOOL autodetect_recv_bandwidth_measure_start(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
 {
 	if (autodetectReqPdu->headerLength != 0x06)
 		return FALSE;
@@ -129,7 +129,7 @@ static BOOL autodetect_recv_bandwidth_measure_start(rdpRdp* rdp, wStream* s, AUT
 	return TRUE;
 }
 
-static BOOL autodetect_recv_bandwidth_measure_payload(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
+static WINBOOL autodetect_recv_bandwidth_measure_payload(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
 {
 	UINT16 payloadLength;
 
@@ -149,7 +149,7 @@ static BOOL autodetect_recv_bandwidth_measure_payload(rdpRdp* rdp, wStream* s, A
 	return TRUE;
 }
 
-static BOOL autodetect_recv_bandwidth_measure_stop(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
+static WINBOOL autodetect_recv_bandwidth_measure_stop(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
 {
 	UINT16 payloadLength;
 	UINT16 responseType;
@@ -183,7 +183,7 @@ static BOOL autodetect_recv_bandwidth_measure_stop(rdpRdp* rdp, wStream* s, AUTO
 	return autodetect_send_bandwidth_measure_results(rdp, responseType, autodetectReqPdu->sequenceNumber);
 }
 
-static BOOL autodetect_recv_netchar_result(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
+static WINBOOL autodetect_recv_netchar_result(rdpRdp* rdp, wStream* s, AUTODETECT_REQ_PDU* autodetectReqPdu)
 {
 	switch (autodetectReqPdu->requestType)
 	{
@@ -214,15 +214,15 @@ static BOOL autodetect_recv_netchar_result(rdpRdp* rdp, wStream* s, AUTODETECT_R
 	}
 
 	DEBUG_AUTODETECT("received Network Characteristics Result PDU -> baseRTT=%u, bandwidth=%u, averageRTT=%u", rdp->autodetect->netCharBaseRTT, rdp->autodetect->netCharBandwidth, rdp->autodetect->netCharAverageRTT);
- 
+
 	return TRUE;
 }
 
 int rdp_recv_autodetect_packet(rdpRdp* rdp, wStream* s)
 {
 	AUTODETECT_REQ_PDU autodetectReqPdu;
-	BOOL success = FALSE;
-	
+	WINBOOL success = FALSE;
+
 	if (Stream_GetRemainingLength(s) < 6)
 		return -1;
 
@@ -288,7 +288,7 @@ rdpAutoDetect* autodetect_new(void)
 	{
 		ZeroMemory(autoDetect, sizeof(rdpAutoDetect));
 	}
-	
+
 	return autoDetect;
 }
 

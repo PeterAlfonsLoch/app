@@ -34,7 +34,7 @@
 extern const char* DATA_PDU_TYPE_STRINGS[80];
 #endif
 
-static BOOL freerdp_peer_initialize(freerdp_peer* client)
+static WINBOOL freerdp_peer_initialize(freerdp_peer* client)
 {
 	rdpRdp* rdp = client->context->rdp;
 	rdpSettings* settings = rdp->settings;
@@ -65,7 +65,7 @@ static BOOL freerdp_peer_initialize(freerdp_peer* client)
 	return TRUE;
 }
 
-static BOOL freerdp_peer_get_fds(freerdp_peer* client, void** rfds, int* rcount)
+static WINBOOL freerdp_peer_get_fds(freerdp_peer* client, void** rfds, int* rcount)
 {
 	rfds[*rcount] = (void*)(long)(client->context->rdp->transport->TcpIn->sockfd);
 	(*rcount)++;
@@ -78,7 +78,7 @@ static HANDLE freerdp_peer_get_event_handle(freerdp_peer* client)
 	return client->context->rdp->transport->TcpIn->event;
 }
 
-static BOOL freerdp_peer_check_fds(freerdp_peer* peer)
+static WINBOOL freerdp_peer_check_fds(freerdp_peer* peer)
 {
 	int status;
 	rdpRdp* rdp;
@@ -93,7 +93,7 @@ static BOOL freerdp_peer_check_fds(freerdp_peer* peer)
 	return TRUE;
 }
 
-static BOOL peer_recv_data_pdu(freerdp_peer* client, wStream* s)
+static WINBOOL peer_recv_data_pdu(freerdp_peer* client, wStream* s)
 {
 	BYTE type;
 	UINT16 length;
@@ -391,7 +391,7 @@ static int peer_recv_callback(rdpTransport* transport, wStream* s, void* extra)
 	return 0;
 }
 
-static BOOL freerdp_peer_close(freerdp_peer* client)
+static WINBOOL freerdp_peer_close(freerdp_peer* client)
 {
 	/**
 	 * [MS-RDPBCGR] 1.3.1.4.2 User-Initiated Disconnection Sequence on Server
@@ -414,7 +414,7 @@ static int freerdp_peer_send_channel_data(freerdp_peer* client, UINT16 channelId
 	return rdp_send_channel_data(client->context->rdp, channelId, data, size);
 }
 
-static BOOL freerdp_peer_is_write_blocked(freerdp_peer* peer)
+static WINBOOL freerdp_peer_is_write_blocked(freerdp_peer* peer)
 {
 	return tranport_is_write_blocked(peer->context->rdp->transport);
 }

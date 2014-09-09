@@ -320,7 +320,7 @@ void http_request_free(HttpRequest* http_request)
 	free(http_request);
 }
 
-BOOL http_response_parse_header_status_line(HttpResponse* http_response, char* status_line)
+WINBOOL http_response_parse_header_status_line(HttpResponse* http_response, char* status_line)
 {
 	char* separator;
 	char* status_code;
@@ -345,7 +345,7 @@ BOOL http_response_parse_header_status_line(HttpResponse* http_response, char* s
 	return TRUE;
 }
 
-BOOL http_response_parse_header_field(HttpResponse* http_response, char* name, char* value)
+WINBOOL http_response_parse_header_field(HttpResponse* http_response, char* name, char* value)
 {
 	if (_stricmp(name, "Content-Length") == 0)
 	{
@@ -387,7 +387,7 @@ BOOL http_response_parse_header_field(HttpResponse* http_response, char* name, c
 	return TRUE;
 }
 
-BOOL http_response_parse_header(HttpResponse* http_response)
+WINBOOL http_response_parse_header(HttpResponse* http_response)
 {
 	int count;
 	char* line;
@@ -494,7 +494,7 @@ HttpResponse* http_response_recv(rdpTls* tls)
 		while (nbytes < 5)
 		{
 			status = BIO_read(tls->bio, p, length - nbytes);
-            
+
 			if (status <= 0)
 			{
 				if (!BIO_should_retry(tls->bio))
@@ -512,7 +512,7 @@ HttpResponse* http_response_recv(rdpTls* tls)
 		}
 
 		header_end = strstr((char*) buffer, "\r\n\r\n");
-        
+
 		if (!header_end)
 		{
 			DEBUG_WARN( "%s: invalid response:\n", __FUNCTION__);
@@ -596,7 +596,7 @@ out_free:
 	return NULL;
 }
 
-static BOOL strings_equals_nocase(void *obj1, void *obj2)
+static WINBOOL strings_equals_nocase(void *obj1, void *obj2)
 {
 	if (!obj1 || !obj2)
 		return FALSE;

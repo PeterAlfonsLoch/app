@@ -44,7 +44,7 @@ static pstatus_t sse3_RGB565ToARGB_16u32u_C3C4_no_invert(
 	const UINT16* pSrc, INT32 srcStep,
 	UINT32* pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
-	BOOL alpha)
+	WINBOOL alpha)
 {
 	const BYTE *src = (const BYTE *) pSrc;
 	BYTE *dst = (BYTE *) pDst;
@@ -148,7 +148,7 @@ static pstatus_t sse3_RGB565ToARGB_16u32u_C3C4_invert(
 	const UINT16* pSrc, INT32 srcStep,
 	UINT32* pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
-	BOOL alpha)
+	WINBOOL alpha)
 {
 	const BYTE *src = (const BYTE *) pSrc;
 	BYTE *dst = (BYTE *) pDst;
@@ -184,7 +184,7 @@ static pstatus_t sse3_RGB565ToARGB_16u32u_C3C4_invert(
 		while (w >= 8)
 		{
 			/* Off-stride, slower load. */
-			if ((ULONG_PTR) src & 0x0f) 
+			if ((ULONG_PTR) src & 0x0f)
 				R0 = _mm_lddqu_si128((__m128i *) src);
 			else
 				R0 = _mm_load_si128((__m128i *) src);
@@ -252,7 +252,7 @@ pstatus_t sse3_RGB565ToARGB_16u32u_C3C4(
 	const UINT16* pSrc, INT32 srcStep,
 	UINT32* pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
-	BOOL alpha, BOOL invert)
+	WINBOOL alpha, WINBOOL invert)
 {
 	if (invert)
 	{

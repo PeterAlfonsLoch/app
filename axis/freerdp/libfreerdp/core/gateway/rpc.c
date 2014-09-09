@@ -236,7 +236,7 @@ UINT32 rpc_offset_pad(UINT32* offset, UINT32 pad)
  *
  */
 
-BOOL rpc_get_stub_data_info(rdpRpc* rpc, BYTE* buffer, UINT32* offset, UINT32* length)
+WINBOOL rpc_get_stub_data_info(rdpRpc* rpc, BYTE* buffer, UINT32* offset, UINT32* length)
 {
 	UINT32 alloc_hint = 0;
 	rpcconn_hdr_t* header;
@@ -352,7 +352,7 @@ int rpc_in_write(rdpRpc* rpc, const BYTE* data, int length)
 	winpr_HexDump(data, length);
 	DEBUG_WARN( "\n");
 #endif
-	
+
 	status = tls_write_all(rpc->TlsIn, data, length);
 
 	return status;
@@ -479,7 +479,7 @@ out_free_pdu:
 	return -1;
 }
 
-BOOL rpc_connect(rdpRpc* rpc)
+WINBOOL rpc_connect(rdpRpc* rpc)
 {
 	rpc->TlsIn = rpc->transport->TlsIn;
 	rpc->TlsOut = rpc->transport->TlsOut;

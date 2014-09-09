@@ -34,7 +34,7 @@ void window_list_rewind(rdpWindowList* list)
 	list->iterator = list->head;
 }
 
-BOOL window_list_has_next(rdpWindowList* list)
+WINBOOL window_list_has_next(rdpWindowList* list)
 {
 	if (list->iterator != NULL)
 	{
@@ -104,7 +104,7 @@ void window_list_create(rdpWindowList* list, WINDOW_ORDER_INFO* orderInfo, WINDO
 
 	/* See if the window already exists */
 	window = window_list_get_by_id(list, orderInfo->windowId);
-	 
+
         /* If the window already exists, just update the existing window */
 	if (window != NULL)
 	{
@@ -201,8 +201,8 @@ void window_list_clear(rdpWindowList* list)
                list->head = current->next;
                rail_DestroyWindow(list->rail, current);
                current = list->head;
-       }       
-       
+       }
+
        list->tail = NULL;
 }
 
