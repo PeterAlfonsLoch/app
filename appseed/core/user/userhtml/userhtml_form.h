@@ -60,7 +60,7 @@ public:
 
    virtual bool get_edit_mode();
    virtual void set_edit_mode(bool bSet = true);
-   virtual bool load_html(const char & str);
+   virtual bool load_html(const string & str);
 
 
 };

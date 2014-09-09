@@ -471,7 +471,7 @@ void html_form::set_edit_mode(bool bSet)
 }
 
 
-bool html_form::load_html(const char & str)
+bool html_form::load_html(const string & str)
 {
 
    get_html_data()->load(str);
