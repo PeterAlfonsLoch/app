@@ -24,7 +24,7 @@
 #include <winpr/wtypes.h>
 #include <winpr/windows.h>
 
-#if !defined(_WIN32) && !defined(CA2_AURA)
+#if !defined(_WIN32)
 
 /* Defined in winnt.h, do not redefine */
 
@@ -89,9 +89,7 @@
 
 /* Defined in wincred.h, do not redefine */
 
-#ifdef CA2_AURA
-
-#elif defined(_WIN32)
+#if defined(_WIN32)
 
 #include <wincred.h>
 
@@ -147,14 +145,10 @@
 #define STATUS_SUCCESS							((NTSTATUS)0x00000000)
 #endif
 
-#if !defined(CA2_AURA)
-
 #define STATUS_SEVERITY_SUCCESS						0x0
 #define STATUS_SEVERITY_INFORMATIONAL					0x1
 #define STATUS_SEVERITY_WARNING						0x2
 #define STATUS_SEVERITY_ERROR						0x3
-
-#endif
 
 #define STATUS_WAIT_1							((NTSTATUS)0x00000001)
 #define STATUS_WAIT_2							((NTSTATUS)0x00000002)
@@ -303,8 +297,6 @@
 #define STATUS_CLUSTER_NETWORK_ALREADY_ONLINE				((NTSTATUS)0x80130003)
 #define STATUS_CLUSTER_NETWORK_ALREADY_OFFLINE				((NTSTATUS)0x80130004)
 #define STATUS_CLUSTER_NODE_ALREADY_MEMBER				((NTSTATUS)0x80130005)
-
-#ifndef CA2_AURA
 
 //#define STATUS_WAIT_0							((NTSTATUS)0x00000000)
 #define STATUS_UNSUCCESSFUL						((NTSTATUS)0xC0000001)
@@ -1275,11 +1267,11 @@
 #define STATUS_GENERIC_COMMAND_FAILED					((NTSTATUS)0xC0150026)
 #define STATUS_SXS_FILE_HASH_MISSING					((NTSTATUS)0xC0150027)
 
-#endif
+
 
 /* Defined in winternl.h, always define since we do not include this header */
 
-#if defined(_WIN32) || defined(CA2_AURA)
+#if defined(_WIN32)
 
 /**
  * winternl.h contains an incomplete definition of enum FILE_INFORMATION_CLASS
@@ -1294,19 +1286,13 @@
 #define _FILE_INFORMATION_CLASS		_WINTERNL__FILE_INFORMATION_CLASS
 #define FileDirectoryInformation	_WINTERNL_FileDirectoryInformation
 
-#if !defined(CA2_AURA)
-
 #include <winternl.h>
-
-#endif
 
 #undef FILE_INFORMATION_CLASS
 #undef _FILE_INFORMATION_CLASS
 #undef FileDirectoryInformation
 
 #endif
-
-#ifndef CA2_AURA
 
 typedef enum _FILE_INFORMATION_CLASS
 {
@@ -1352,10 +1338,8 @@ typedef enum _FILE_INFORMATION_CLASS
 	FileShortNameInformation
 } FILE_INFORMATION_CLASS;
 
-#endif // CA2_AURA
 
-
-#if !defined(_WIN32) && !defined(CA2_AURA)
+#if !defined(_WIN32) 
 
 #define FILE_SUPERSEDE				0x00000000
 #define FILE_OPEN				0x00000001

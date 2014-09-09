@@ -23,9 +23,7 @@
 #include <winpr/winpr.h>
 #include <winpr/wtypes.h>
 
-#ifdef CA2_AURA
-
-#elif defined(_WIN32)
+#if defined(_WIN32)
 
 #include <winerror.h>
 

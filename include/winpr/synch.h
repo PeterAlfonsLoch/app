@@ -37,7 +37,7 @@
 extern "C" {
 #endif
 
-#if !defined(_WIN32) && !defined(CA2_AURA)
+#if !defined(_WIN32)
 
 /* Mutex */
 
@@ -178,8 +178,6 @@ WINPR_API BOOL WaitOnAddress(VOID volatile *Address, PVOID CompareAddress, SIZE_
 
 #define INFINITE		0xFFFFFFFF
 
-#ifndef CA2_AURA
-
 #define WAIT_OBJECT_0		0x00000000L
 #define WAIT_ABANDONED		0x00000080L
 
@@ -188,8 +186,6 @@ WINPR_API BOOL WaitOnAddress(VOID volatile *Address, PVOID CompareAddress, SIZE_
 #endif
 
 #define WAIT_FAILED		((DWORD) 0xFFFFFFFF)
-
-#endif
 
 WINPR_API DWORD WaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds);
 WINPR_API DWORD WaitForSingleObjectEx(HANDLE hHandle, DWORD dwMilliseconds, BOOL bAlertable);
@@ -254,8 +250,6 @@ WINPR_API BOOL CancelWaitableTimer(HANDLE hTimer);
  * Timer-Queue Timer
  */
 
-#ifndef CA2_AURA
-
 #define WT_EXECUTEDEFAULT			0x00000000
 #define WT_EXECUTEINIOTHREAD			0x00000001
 #define WT_EXECUTEINUITHREAD			0x00000002
@@ -266,8 +260,6 @@ WINPR_API BOOL CancelWaitableTimer(HANDLE hTimer);
 #define WT_EXECUTEINPERSISTENTIOTHREAD		0x00000040
 #define WT_EXECUTEINPERSISTENTTHREAD		0x00000080
 #define WT_TRANSFER_IMPERSONATION		0x00000100
-
-#endif
 
 typedef VOID (*WAITORTIMERCALLBACK)(PVOID lpParameter, BOOLEAN TimerOrWaitFired);
 
