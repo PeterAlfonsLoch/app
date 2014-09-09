@@ -199,7 +199,7 @@ struct _wLog
 	LPSTR Name;
 	DWORD Level;
 
-	BOOL IsRoot;
+	WINBOOL IsRoot;
 	LPSTR* Names;
 	DWORD NameCount;
 	wLogAppender* Appender;

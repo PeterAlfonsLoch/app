@@ -22,7 +22,7 @@
 
 void tsmf_playback_ack(IWTSVirtualChannelCallback* pChannelCallback,
 	UINT32 message_id, UINT64 duration, UINT32 data_size);
-BOOL tsmf_push_event(IWTSVirtualChannelCallback* pChannelCallback,
+WINBOOL tsmf_push_event(IWTSVirtualChannelCallback* pChannelCallback,
 	wMessage* event);
 
 #endif

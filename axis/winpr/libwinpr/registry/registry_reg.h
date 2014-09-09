@@ -33,7 +33,7 @@ struct _reg
 	int line_length;
 	char* buffer;
 	char* filename;
-	BOOL read_only;
+	WINBOOL read_only;
 	RegKey* root_key;
 };
 
@@ -63,7 +63,7 @@ struct _reg_key
 	RegKey* subkeys;
 };
 
-Reg* reg_open(BOOL read_only);
+Reg* reg_open(WINBOOL read_only);
 void reg_close(Reg *reg);
 
 #endif

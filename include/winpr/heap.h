@@ -40,7 +40,7 @@ extern "C" {
 WINPR_API HANDLE GetProcessHeap(void);
 WINPR_API LPVOID HeapAlloc(HANDLE hHeap, DWORD dwFlags, SIZE_T dwBytes);
 WINPR_API LPVOID HeapReAlloc(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem, SIZE_T dwBytes);
-WINPR_API BOOL HeapFree(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem);
+WINPR_API WINBOOL HeapFree(HANDLE hHeap, DWORD dwFlags, LPVOID lpMem);
 
 #ifdef __cplusplus
 }

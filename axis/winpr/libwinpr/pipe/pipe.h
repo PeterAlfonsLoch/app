@@ -51,7 +51,7 @@ struct winpr_named_pipe
 	const char* lpFileName;
 	const char* lpFilePath;
 
-	BOOL ServerMode;
+	WINBOOL ServerMode;
 	DWORD dwOpenMode;
 	DWORD dwPipeMode;
 	DWORD nMaxInstances;
@@ -64,7 +64,7 @@ struct winpr_named_pipe
 	fnUnrefNamedPipe pfnUnrefNamedPipe;
 };
 
-BOOL winpr_destroy_named_pipe(WINPR_NAMED_PIPE* pNamedPipe);
+WINBOOL winpr_destroy_named_pipe(WINPR_NAMED_PIPE* pNamedPipe);
 
 #endif
 

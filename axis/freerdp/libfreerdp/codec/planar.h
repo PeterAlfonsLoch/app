@@ -70,10 +70,10 @@ struct _BITMAP_PLANAR_CONTEXT
 	int maxHeight;
 	int maxPlaneSize;
 
-	BOOL AllowSkipAlpha;
-	BOOL AllowRunLengthEncoding;
-	BOOL AllowColorSubsampling;
-	BOOL AllowDynamicColorFidelity;
+	WINBOOL AllowSkipAlpha;
+	WINBOOL AllowRunLengthEncoding;
+	WINBOOL AllowColorSubsampling;
+	WINBOOL AllowDynamicColorFidelity;
 
 	int ColorLossLevel;
 

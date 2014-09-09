@@ -74,8 +74,8 @@ struct winpr_event
 	WINPR_HANDLE_DEF();
 
 	int pipe_fd[2];
-	BOOL bAttached;
-	BOOL bManualReset;
+	WINBOOL bAttached;
+	WINBOOL bManualReset;
 };
 typedef struct winpr_event WINPR_EVENT;
 
@@ -91,12 +91,12 @@ struct winpr_timer
 	WINPR_HANDLE_DEF();
 
 	int fd;
-	BOOL bInit;
+	WINBOOL bInit;
 	LONG lPeriod;
-	BOOL bManualReset;
+	WINBOOL bManualReset;
 	PTIMERAPCROUTINE pfnCompletionRoutine;
 	LPVOID lpArgToCompletionRoutine;
-	
+
 #ifdef WITH_POSIX_TIMER
 	timer_t tid;
 	struct itimerspec timeout;
@@ -109,7 +109,7 @@ typedef struct winpr_timer_queue_timer WINPR_TIMER_QUEUE_TIMER;
 struct winpr_timer_queue
 {
 	WINPR_HANDLE_DEF();
-	
+
 	pthread_t thread;
 	pthread_attr_t attr;
 	pthread_mutex_t mutex;
@@ -117,7 +117,7 @@ struct winpr_timer_queue
 	pthread_mutex_t cond_mutex;
 	struct sched_param param;
 
-	BOOL bCancelled;
+	WINBOOL bCancelled;
 	WINPR_TIMER_QUEUE_TIMER* activeHead;
 	WINPR_TIMER_QUEUE_TIMER* inactiveHead;
 };
@@ -132,7 +132,7 @@ struct winpr_timer_queue_timer
 	DWORD Period;
 	PVOID Parameter;
 	WAITORTIMERCALLBACK Callback;
-	
+
 	int FireCount;
 
 	struct timespec StartTime;

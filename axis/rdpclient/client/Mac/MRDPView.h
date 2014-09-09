@@ -42,14 +42,14 @@
 	int argc;
 	char** argv;
 	DWORD kbdModFlags;
-	BOOL initialized;
+	WINBOOL initialized;
 	NSPoint savedDragLocation;
-	BOOL firstCreateWindow;
-	BOOL isMoveSizeInProgress;
-	BOOL skipResizeOnce;
-	BOOL saveInitialDragLoc;
-	BOOL skipMoveWindowOnce;
-	
+	WINBOOL firstCreateWindow;
+	WINBOOL isMoveSizeInProgress;
+	WINBOOL skipResizeOnce;
+	WINBOOL saveInitialDragLoc;
+	WINBOOL skipMoveWindowOnce;
+
 @public
 	NSPasteboard* pasteboard_rd; /* for reading from clipboard */
 	NSPasteboard* pasteboard_wr; /* for writing to clipboard */
@@ -79,9 +79,9 @@
 #define PTR_FLAGS_BUTTON3               0x4000
 #define WheelRotationMask               0x01FF
 
-BOOL mac_pre_connect(freerdp* instance);
-BOOL mac_post_connect(freerdp*	instance);
-BOOL mac_authenticate(freerdp* instance, char** username, char** password, char** domain);
+WINBOOL mac_pre_connect(freerdp* instance);
+WINBOOL mac_post_connect(freerdp*	instance);
+WINBOOL mac_authenticate(freerdp* instance, char** username, char** password, char** domain);
 
 DWORD mac_client_thread(void* param);
 

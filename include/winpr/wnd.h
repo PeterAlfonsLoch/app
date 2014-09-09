@@ -433,7 +433,7 @@ WINPR_API LONG_PTR WINAPI GetWindowLongPtrW(HWND hWnd, int nIndex);
 WINPR_API LONG_PTR WINAPI SetWindowLongPtrA(HWND hWnd, int nIndex, LONG_PTR dwNewLong);
 WINPR_API LONG_PTR WINAPI SetWindowLongPtrW(HWND hWnd, int nIndex, LONG_PTR dwNewLong);
 
-WINPR_API BOOL WINAPI DestroyWindow(HWND hWnd);
+WINPR_API WINBOOL WINAPI DestroyWindow(HWND hWnd);
 
 WINPR_API VOID WINAPI PostQuitMessage(int nExitCode);
 
@@ -443,8 +443,8 @@ WINPR_API ATOM WINAPI RegisterClassW(CONST WNDCLASSW* lpWndClass);
 WINPR_API ATOM WINAPI RegisterClassExA(CONST WNDCLASSEXA* lpwcx);
 WINPR_API ATOM WINAPI RegisterClassExW(CONST WNDCLASSEXW* lpwcx);
 
-WINPR_API BOOL WINAPI UnregisterClassA(LPCSTR lpClassName, HINSTANCE hInstance);
-WINPR_API BOOL WINAPI UnregisterClassW(LPCWSTR lpClassName, HINSTANCE hInstance);
+WINPR_API WINBOOL WINAPI UnregisterClassA(LPCSTR lpClassName, HINSTANCE hInstance);
+WINPR_API WINBOOL WINAPI UnregisterClassW(LPCWSTR lpClassName, HINSTANCE hInstance);
 
 WINPR_API HWND WINAPI CreateWindowExA(DWORD dwExStyle, LPCSTR lpClassName,
 		LPCSTR lpWindowName, DWORD dwStyle, int X, int Y, int nWidth, int nHeight,
@@ -464,8 +464,8 @@ WINPR_API HWND WINAPI FindWindowW(LPCWSTR lpClassName, LPCWSTR lpWindowName);
 WINPR_API HWND WINAPI FindWindowExA(HWND hWndParent, HWND hWndChildAfter, LPCSTR lpszClass, LPCSTR lpszWindow);
 WINPR_API HWND WINAPI FindWindowExW(HWND hWndParent, HWND hWndChildAfter, LPCWSTR lpszClass, LPCWSTR lpszWindow);
 
-WINPR_API BOOL WINAPI GetMessageA(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
-WINPR_API BOOL WINAPI GetMessageW(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
+WINPR_API WINBOOL WINAPI GetMessageA(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
+WINPR_API WINBOOL WINAPI GetMessageW(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
 WINPR_API DWORD WINAPI GetMessagePos(VOID);
 
@@ -475,7 +475,7 @@ WINPR_API LPARAM WINAPI GetMessageExtraInfo(VOID);
 
 WINPR_API LPARAM WINAPI SetMessageExtraInfo(LPARAM lParam);
 
-WINPR_API BOOL WINAPI SetMessageQueue(int cMessagesMax);
+WINPR_API WINBOOL WINAPI SetMessageQueue(int cMessagesMax);
 
 WINPR_API LRESULT WINAPI SendMessageA(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 WINPR_API LRESULT WINAPI SendMessageW(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
@@ -485,25 +485,25 @@ WINPR_API LRESULT WINAPI SendMessageTimeoutA(HWND hWnd, UINT Msg, WPARAM wParam,
 WINPR_API LRESULT WINAPI SendMessageTimeoutW(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam,
 		UINT fuFlags, UINT uTimeout, PDWORD_PTR lpdwResult);
 
-WINPR_API BOOL WINAPI SendNotifyMessageA(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
-WINPR_API BOOL WINAPI SendNotifyMessageW(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
+WINPR_API WINBOOL WINAPI SendNotifyMessageA(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
+WINPR_API WINBOOL WINAPI SendNotifyMessageW(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 
-WINPR_API BOOL WINAPI SendMessageCallbackA(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam,
+WINPR_API WINBOOL WINAPI SendMessageCallbackA(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam,
 		SENDASYNCPROC lpResultCallBack, ULONG_PTR dwData);
-WINPR_API BOOL WINAPI SendMessageCallbackW(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam,
+WINPR_API WINBOOL WINAPI SendMessageCallbackW(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam,
 		SENDASYNCPROC lpResultCallBack, ULONG_PTR dwData);
 
-WINPR_API BOOL WINAPI TranslateMessage(CONST MSG* lpMsg);
+WINPR_API WINBOOL WINAPI TranslateMessage(CONST MSG* lpMsg);
 
 WINPR_API LRESULT WINAPI DispatchMessageA(CONST MSG* lpMsg);
 WINPR_API LRESULT WINAPI DispatchMessageW(CONST MSG* lpMsg);
 
-WINPR_API BOOL WINAPI PeekMessageA(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
-WINPR_API BOOL WINAPI PeekMessageW(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
+WINPR_API WINBOOL WINAPI PeekMessageA(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
+WINPR_API WINBOOL WINAPI PeekMessageW(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
 
-WINPR_API BOOL WINAPI ReplyMessage(LRESULT lResult);
+WINPR_API WINBOOL WINAPI ReplyMessage(LRESULT lResult);
 
-WINPR_API BOOL WINAPI WaitMessage(VOID);
+WINPR_API WINBOOL WINAPI WaitMessage(VOID);
 
 WINPR_API LRESULT WINAPI CallWindowProcA(WNDPROC lpPrevWndFunc, HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 WINPR_API LRESULT WINAPI CallWindowProcW(WNDPROC lpPrevWndFunc, HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);

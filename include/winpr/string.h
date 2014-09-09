@@ -98,8 +98,8 @@ WINPR_API DWORD CharLowerBuffW(LPWSTR lpsz, DWORD cchLength);
 #define CharLowerBuff	CharLowerBuffA
 #endif
 
-WINPR_API BOOL IsCharAlphaA(CHAR ch);
-WINPR_API BOOL IsCharAlphaW(WCHAR ch);
+WINPR_API WINBOOL IsCharAlphaA(CHAR ch);
+WINPR_API WINBOOL IsCharAlphaW(WCHAR ch);
 
 #ifdef BYEWINDOWS_UNICODE
 #define IsCharAlpha	IsCharAlphaW
@@ -107,8 +107,8 @@ WINPR_API BOOL IsCharAlphaW(WCHAR ch);
 #define IsCharAlpha	IsCharAlphaA
 #endif
 
-WINPR_API BOOL IsCharAlphaNumericA(CHAR ch);
-WINPR_API BOOL IsCharAlphaNumericW(WCHAR ch);
+WINPR_API WINBOOL IsCharAlphaNumericA(CHAR ch);
+WINPR_API WINBOOL IsCharAlphaNumericW(WCHAR ch);
 
 #ifdef BYEWINDOWS_UNICODE
 #define IsCharAlphaNumeric	IsCharAlphaNumericW
@@ -116,8 +116,8 @@ WINPR_API BOOL IsCharAlphaNumericW(WCHAR ch);
 #define IsCharAlphaNumeric	IsCharAlphaNumericA
 #endif
 
-WINPR_API BOOL IsCharUpperA(CHAR ch);
-WINPR_API BOOL IsCharUpperW(WCHAR ch);
+WINPR_API WINBOOL IsCharUpperA(CHAR ch);
+WINPR_API WINBOOL IsCharUpperW(WCHAR ch);
 
 #ifdef BYEWINDOWS_UNICODE
 #define IsCharUpper	IsCharUpperW
@@ -125,8 +125,8 @@ WINPR_API BOOL IsCharUpperW(WCHAR ch);
 #define IsCharUpper	IsCharUpperA
 #endif
 
-WINPR_API BOOL IsCharLowerA(CHAR ch);
-WINPR_API BOOL IsCharLowerW(WCHAR ch);
+WINPR_API WINBOOL IsCharLowerA(CHAR ch);
+WINPR_API WINBOOL IsCharLowerW(WCHAR ch);
 
 #ifdef BYEWINDOWS_UNICODE
 #define IsCharLower	IsCharLowerW

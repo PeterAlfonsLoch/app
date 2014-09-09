@@ -23,12 +23,12 @@
 
 #include "rail_main.h"
 
-BOOL rail_read_server_exec_result_order(wStream* s, RAIL_EXEC_RESULT_ORDER* exec_result);
-BOOL rail_read_server_sysparam_order(wStream* s, RAIL_SYSPARAM_ORDER* sysparam);
-BOOL rail_read_server_minmaxinfo_order(wStream* s, RAIL_MINMAXINFO_ORDER* minmaxinfo);
-BOOL rail_read_server_localmovesize_order(wStream* s, RAIL_LOCALMOVESIZE_ORDER* localmovesize);
-BOOL rail_read_server_get_appid_resp_order(wStream* s, RAIL_GET_APPID_RESP_ORDER* get_appid_resp);
-BOOL rail_read_langbar_info_order(wStream* s, RAIL_LANGBAR_INFO_ORDER* langbar_info);
+WINBOOL rail_read_server_exec_result_order(wStream* s, RAIL_EXEC_RESULT_ORDER* exec_result);
+WINBOOL rail_read_server_sysparam_order(wStream* s, RAIL_SYSPARAM_ORDER* sysparam);
+WINBOOL rail_read_server_minmaxinfo_order(wStream* s, RAIL_MINMAXINFO_ORDER* minmaxinfo);
+WINBOOL rail_read_server_localmovesize_order(wStream* s, RAIL_LOCALMOVESIZE_ORDER* localmovesize);
+WINBOOL rail_read_server_get_appid_resp_order(wStream* s, RAIL_GET_APPID_RESP_ORDER* get_appid_resp);
+WINBOOL rail_read_langbar_info_order(wStream* s, RAIL_LANGBAR_INFO_ORDER* langbar_info);
 
 void rail_write_client_status_order(wStream* s, RAIL_CLIENT_STATUS_ORDER* client_status);
 void rail_write_client_exec_order(wStream* s, RAIL_EXEC_ORDER* exec);
@@ -41,7 +41,7 @@ void rail_write_client_window_move_order(wStream* s, RAIL_WINDOW_MOVE_ORDER* win
 void rail_write_client_get_appid_req_order(wStream* s, RAIL_GET_APPID_REQ_ORDER* get_appid_req);
 void rail_write_langbar_info_order(wStream* s, RAIL_LANGBAR_INFO_ORDER* langbar_info);
 
-BOOL rail_order_recv(railPlugin* rail, wStream* s);
+WINBOOL rail_order_recv(railPlugin* rail, wStream* s);
 
 void rail_send_pdu(railPlugin* rail, wStream* s, UINT16 orderType);
 

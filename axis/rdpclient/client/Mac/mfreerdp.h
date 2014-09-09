@@ -29,7 +29,7 @@ struct mf_context
 	DEFINE_RDP_CLIENT_COMMON();
 
 	void* view;
-	BOOL view_ownership;
+	WINBOOL view_ownership;
 
 	int width;
 	int height;
@@ -47,7 +47,7 @@ struct mf_context
 	HANDLE stopEvent;
 	HANDLE keyboardThread;
 	enum APPLE_KEYBOARD_TYPE appleKeyboardType;
-	
+
 	HGDI_DC hdc;
 	UINT16 srcBpp;
 	UINT16 dstBpp;
@@ -55,23 +55,23 @@ struct mf_context
 
 	DWORD mainThreadId;
 	DWORD keyboardThreadId;
-	BOOL disconnect;
-	BOOL sw_gdi;
+	WINBOOL disconnect;
+	WINBOOL sw_gdi;
 
 	rdpFile* connectionRdpFile;
 
 	// Keep track of window size and position, disable when in fullscreen mode.
-	BOOL disablewindowtracking;
+	WINBOOL disablewindowtracking;
 
 	// These variables are required for horizontal scrolling.
-	BOOL updating_scrollbars;
-	BOOL xScrollVisible;
+	WINBOOL updating_scrollbars;
+	WINBOOL xScrollVisible;
 	int xMinScroll;       // minimum horizontal scroll value
 	int xCurrentScroll;   // current horizontal scroll value
 	int xMaxScroll;       // maximum horizontal scroll value
 
 	// These variables are required for vertical scrolling.
-	BOOL yScrollVisible;
+	WINBOOL yScrollVisible;
 	int yMinScroll;       // minimum vertical scroll value
 	int yCurrentScroll;   // current vertical scroll value
 	int yMaxScroll;       // maximum vertical scroll value

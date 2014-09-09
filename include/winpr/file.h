@@ -231,48 +231,48 @@ WINPR_API HANDLE CreateFileA(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwS
 WINPR_API HANDLE CreateFileW(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes,
 		DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
 
-WINPR_API BOOL DeleteFileA(LPCSTR lpFileName);
+WINPR_API WINBOOL DeleteFileA(LPCSTR lpFileName);
 
-WINPR_API BOOL DeleteFileW(LPCWSTR lpFileName);
+WINPR_API WINBOOL DeleteFileW(LPCWSTR lpFileName);
 
-WINPR_API BOOL ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
+WINPR_API WINBOOL ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 		LPDWORD lpNumberOfBytesRead, LPOVERLAPPED lpOverlapped);
 
-WINPR_API BOOL ReadFileEx(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
+WINPR_API WINBOOL ReadFileEx(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 		LPOVERLAPPED lpOverlapped, LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine);
 
-WINPR_API BOOL ReadFileScatter(HANDLE hFile, FILE_SEGMENT_ELEMENT aSegmentArray[],
+WINPR_API WINBOOL ReadFileScatter(HANDLE hFile, FILE_SEGMENT_ELEMENT aSegmentArray[],
 		DWORD nNumberOfBytesToRead, LPDWORD lpReserved, LPOVERLAPPED lpOverlapped);
 
-WINPR_API BOOL WriteFile(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
+WINPR_API WINBOOL WriteFile(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
 		LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped);
 
-WINPR_API BOOL WriteFileEx(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
+WINPR_API WINBOOL WriteFileEx(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
 		LPOVERLAPPED lpOverlapped, LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine);
 
-WINPR_API BOOL WriteFileGather(HANDLE hFile, FILE_SEGMENT_ELEMENT aSegmentArray[],
+WINPR_API WINBOOL WriteFileGather(HANDLE hFile, FILE_SEGMENT_ELEMENT aSegmentArray[],
 		DWORD nNumberOfBytesToWrite, LPDWORD lpReserved, LPOVERLAPPED lpOverlapped);
 
-WINPR_API BOOL FlushFileBuffers(HANDLE hFile);
+WINPR_API WINBOOL FlushFileBuffers(HANDLE hFile);
 
-WINPR_API BOOL SetEndOfFile(HANDLE hFile);
+WINPR_API WINBOOL SetEndOfFile(HANDLE hFile);
 
 WINPR_API DWORD SetFilePointer(HANDLE hFile, LONG lDistanceToMove,
 		PLONG lpDistanceToMoveHigh, DWORD dwMoveMethod);
 
-WINPR_API BOOL SetFilePointerEx(HANDLE hFile, LARGE_INTEGER liDistanceToMove,
+WINPR_API WINBOOL SetFilePointerEx(HANDLE hFile, LARGE_INTEGER liDistanceToMove,
 		PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod);
 
-WINPR_API BOOL LockFile(HANDLE hFile, DWORD dwFileOffsetLow, DWORD dwFileOffsetHigh,
+WINPR_API WINBOOL LockFile(HANDLE hFile, DWORD dwFileOffsetLow, DWORD dwFileOffsetHigh,
 		DWORD nNumberOfBytesToLockLow, DWORD nNumberOfBytesToLockHigh);
 
-WINPR_API BOOL LockFileEx(HANDLE hFile, DWORD dwFlags, DWORD dwReserved,
+WINPR_API WINBOOL LockFileEx(HANDLE hFile, DWORD dwFlags, DWORD dwReserved,
 		DWORD nNumberOfBytesToLockLow, DWORD nNumberOfBytesToLockHigh, LPOVERLAPPED lpOverlapped);
 
-WINPR_API BOOL UnlockFile(HANDLE hFile, DWORD dwFileOffsetLow, DWORD dwFileOffsetHigh,
+WINPR_API WINBOOL UnlockFile(HANDLE hFile, DWORD dwFileOffsetLow, DWORD dwFileOffsetHigh,
 		DWORD nNumberOfBytesToUnlockLow, DWORD nNumberOfBytesToUnlockHigh);
 
-WINPR_API BOOL UnlockFileEx(HANDLE hFile, DWORD dwReserved, DWORD nNumberOfBytesToUnlockLow,
+WINPR_API WINBOOL UnlockFileEx(HANDLE hFile, DWORD dwReserved, DWORD nNumberOfBytesToUnlockLow,
 		DWORD nNumberOfBytesToUnlockHigh, LPOVERLAPPED lpOverlapped);
 
 WINPR_API HANDLE FindFirstFileA(LPCSTR lpFileName, LPWIN32_FIND_DATAA lpFindFileData);
@@ -283,13 +283,13 @@ WINPR_API HANDLE FindFirstFileExA(LPCSTR lpFileName, FINDEX_INFO_LEVELS fInfoLev
 WINPR_API HANDLE FindFirstFileExW(LPCWSTR lpFileName, FINDEX_INFO_LEVELS fInfoLevelId, LPVOID lpFindFileData,
 		FINDEX_SEARCH_OPS fSearchOp, LPVOID lpSearchFilter, DWORD dwAdditionalFlags);
 
-WINPR_API BOOL FindNextFileA(HANDLE hFindFile, LPWIN32_FIND_DATAA lpFindFileData);
-WINPR_API BOOL FindNextFileW(HANDLE hFindFile, LPWIN32_FIND_DATAW lpFindFileData);
+WINPR_API WINBOOL FindNextFileA(HANDLE hFindFile, LPWIN32_FIND_DATAA lpFindFileData);
+WINPR_API WINBOOL FindNextFileW(HANDLE hFindFile, LPWIN32_FIND_DATAW lpFindFileData);
 
-WINPR_API BOOL FindClose(HANDLE hFindFile);
+WINPR_API WINBOOL FindClose(HANDLE hFindFile);
 
-WINPR_API BOOL CreateDirectoryA(LPCSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
-WINPR_API BOOL CreateDirectoryW(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
+WINPR_API WINBOOL CreateDirectoryA(LPCSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
+WINPR_API WINBOOL CreateDirectoryW(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
 
 #ifdef __cplusplus
 }
@@ -314,7 +314,7 @@ WINPR_API BOOL CreateDirectoryW(LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecu
 
 /* Extra Functions */
 
-typedef BOOL (*pcIsFileHandled)(LPCSTR lpFileName);
+typedef WINBOOL (*pcIsFileHandled)(LPCSTR lpFileName);
 typedef HANDLE (*pcCreateFileA)(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes,
 				DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
 
@@ -324,7 +324,7 @@ typedef struct _HANDLE_CREATOR
 	pcCreateFileA CreateFileA;
 } HANDLE_CREATOR, *PHANDLE_CREATOR, *LPHANDLE_CREATOR;
 
-BOOL RegisterHandleCreator(PHANDLE_CREATOR pHandleCreator);
+WINBOOL RegisterHandleCreator(PHANDLE_CREATOR pHandleCreator);
 
 #endif /* _WIN32 */
 
@@ -339,12 +339,12 @@ BOOL RegisterHandleCreator(PHANDLE_CREATOR pHandleCreator);
 extern "C" {
 #endif
 
-WINPR_API BOOL FilePatternMatchA(LPCSTR lpFileName, LPCSTR lpPattern);
+WINPR_API WINBOOL FilePatternMatchA(LPCSTR lpFileName, LPCSTR lpPattern);
 WINPR_API LPSTR FilePatternFindNextWildcardA(LPCSTR lpPattern, DWORD* pFlags);
 
 WINPR_API int UnixChangeFileMode(const char* filename, int flags);
 
-WINPR_API BOOL IsNamedPipeFileNameA(LPCSTR lpName);
+WINPR_API WINBOOL IsNamedPipeFileNameA(LPCSTR lpName);
 WINPR_API char* GetNamedPipeNameWithoutPrefixA(LPCSTR lpName);
 WINPR_API char* GetNamedPipeUnixDomainSocketBaseFilePathA(void);
 WINPR_API char* GetNamedPipeUnixDomainSocketFilePathA(LPCSTR lpName);

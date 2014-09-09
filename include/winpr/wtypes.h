@@ -63,15 +63,15 @@
 
 #ifndef __OBJC__
 #if defined(__APPLE__)
-typedef signed char BOOL;
+typedef signed char WINBOOL;
 #else
 #ifndef XMD_H
-typedef int BOOL;
+typedef int WINBOOL;
 #endif
 #endif
 #endif
 
-typedef BOOL *PBOOL, *LPBOOL;
+typedef WINBOOL *PBOOL, *LPBOOL;
 
 #if defined(__LP64__) || defined(__APPLE__)
 typedef int LONG;
@@ -323,7 +323,7 @@ typedef struct _SECURITY_ATTRIBUTES
 {
 	DWORD nLength;
 	LPVOID lpSecurityDescriptor;
-	BOOL bInheritHandle;
+	WINBOOL bInheritHandle;
 } SECURITY_ATTRIBUTES, *PSECURITY_ATTRIBUTES, *LPSECURITY_ATTRIBUTES;
 
 typedef struct _PROCESS_INFORMATION

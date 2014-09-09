@@ -61,11 +61,11 @@ struct _RDPGFX_PLUGIN
 	wLog* log;
 	rdpSettings* settings;
 
-	BOOL ThinClient;
-	BOOL SmallCache;
-	BOOL Progressive;
-	BOOL ProgressiveV2;
-	BOOL H264;
+	WINBOOL ThinClient;
+	WINBOOL SmallCache;
+	WINBOOL Progressive;
+	WINBOOL ProgressiveV2;
+	WINBOOL H264;
 
 	ZGFX_CONTEXT* zgfx;
 	UINT32 UnacknowledgedFrames;

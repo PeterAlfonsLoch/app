@@ -37,8 +37,8 @@ extern "C" {
 #endif
 
 WINPR_API DLL_DIRECTORY_COOKIE AddDllDirectory(PCWSTR NewDirectory);
-WINPR_API BOOL RemoveDllDirectory(DLL_DIRECTORY_COOKIE Cookie);
-WINPR_API BOOL SetDefaultDllDirectories(DWORD DirectoryFlags);
+WINPR_API WINBOOL RemoveDllDirectory(DLL_DIRECTORY_COOKIE Cookie);
+WINPR_API WINBOOL SetDefaultDllDirectories(DWORD DirectoryFlags);
 
 WINPR_API HMODULE LoadLibraryA(LPCSTR lpLibFileName);
 WINPR_API HMODULE LoadLibraryW(LPCWSTR lpLibFileName);
@@ -66,7 +66,7 @@ WINPR_API DWORD GetModuleFileNameW(HMODULE hModule, LPWSTR lpFilename, DWORD nSi
 
 WINPR_API FARPROC GetProcAddress(HMODULE hModule, LPCSTR lpProcName);
 
-WINPR_API BOOL FreeLibrary(HMODULE hLibModule);
+WINPR_API WINBOOL FreeLibrary(HMODULE hLibModule);
 
 #ifdef __cplusplus
 }

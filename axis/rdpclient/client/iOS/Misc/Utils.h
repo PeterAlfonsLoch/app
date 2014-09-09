@@ -1,9 +1,9 @@
 /*
  Utility functions
- 
+
  Copyright 2013 Thincast Technologies GmbH, Authors: Martin Fleisz, Dorian Johnson
- 
- This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
+
+ This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
@@ -16,13 +16,13 @@
 #define GET_TAG_FROM_PATH(path) ((((int)path.section) << 16) | ((int)(path.row)))
 
 
-BOOL ScanHostNameAndPort(NSString* address, NSString** host, unsigned short* port);
+WINBOOL ScanHostNameAndPort(NSString* address, NSString** host, unsigned short* port);
 
 #pragma mark -
 #pragma mark Screen Resolutions
 
 NSString* ScreenResolutionDescription(TSXScreenOptions type, int width, int height);
-BOOL ScanScreenResolution(NSString* description, int* width, int* height, TSXScreenOptions* type);
+WINBOOL ScanScreenResolution(NSString* description, int* width, int* height, TSXScreenOptions* type);
 
 NSDictionary* SelectionForColorSetting(void);
 NSArray* ResolutionModes(void);
@@ -30,7 +30,7 @@ NSArray* ResolutionModes(void);
 #pragma mark Security Protocol
 
 NSString* ProtocolSecurityDescription(TSXProtocolSecurityOptions type);
-BOOL ScanProtocolSecurity(NSString* description, TSXProtocolSecurityOptions* type);
+WINBOOL ScanProtocolSecurity(NSString* description, TSXProtocolSecurityOptions* type);
 NSDictionary* SelectionForSecuritySetting(void);
 
 #pragma mark Bookmarks
@@ -40,8 +40,8 @@ NSMutableArray* FilterHistory(NSArray* history, NSString* filterStr);
 
 #pragma mark iPad/iPhone detection
 
-BOOL IsPad(void);
-BOOL IsPhone(void);
+WINBOOL IsPad(void);
+WINBOOL IsPhone(void);
 
 #pragma mark Version Info
 NSString* TSXAppFullVersion(void);
@@ -49,22 +49,22 @@ NSString* TSXAppFullVersion(void);
 #pragma mark Touch/Mouse handling
 
 // set mouse buttons swapped flag
-void SetSwapMouseButtonsFlag(BOOL swapped);
+void SetSwapMouseButtonsFlag(WINBOOL swapped);
 
 // set invert scrolling flag
-void SetInvertScrollingFlag(BOOL invert);
+void SetInvertScrollingFlag(WINBOOL invert);
 
-// return event value for left mouse button 
-int GetLeftMouseButtonClickEvent(BOOL down);
+// return event value for left mouse button
+int GetLeftMouseButtonClickEvent(WINBOOL down);
 
-// return event value for right mouse button 
-int GetRightMouseButtonClickEvent(BOOL down);
+// return event value for right mouse button
+int GetRightMouseButtonClickEvent(WINBOOL down);
 
 // return event value for mouse move event
 int GetMouseMoveEvent(void);
 
 // return mouse wheel event
-int GetMouseWheelEvent(BOOL down);
+int GetMouseWheelEvent(WINBOOL down);
 
 // scrolling gesture detection delta
 CGFloat GetScrollGestureDelta(void);
@@ -75,6 +75,6 @@ void WakeUpWWAN(void);
 
 #pragma mark System Info functions
 NSString* TSXGetPlatform(void);
-BOOL TSXDeviceHasJailBreak(void);
+WINBOOL TSXDeviceHasJailBreak(void);
 NSString* TSXGetPrimaryMACAddress(NSString *sep);
 

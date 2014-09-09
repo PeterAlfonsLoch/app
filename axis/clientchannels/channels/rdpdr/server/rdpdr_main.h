@@ -38,7 +38,7 @@ struct _rdpdr_server_private
 	UINT16 VersionMinor;
 	char* ClientComputerName;
 
-	BOOL UserLoggedOnPdu;
+	WINBOOL UserLoggedOnPdu;
 };
 
 #define RDPDR_HEADER_LENGTH		4

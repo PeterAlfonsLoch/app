@@ -319,48 +319,48 @@ typedef struct _COMSTAT
 extern "C" {
 #endif
 
-WINPR_API BOOL BuildCommDCBA(LPCSTR lpDef, LPDCB lpDCB);
-WINPR_API BOOL BuildCommDCBW(LPCWSTR lpDef, LPDCB lpDCB);
+WINPR_API WINBOOL BuildCommDCBA(LPCSTR lpDef, LPDCB lpDCB);
+WINPR_API WINBOOL BuildCommDCBW(LPCWSTR lpDef, LPDCB lpDCB);
 
-WINPR_API BOOL BuildCommDCBAndTimeoutsA(LPCSTR lpDef, LPDCB lpDCB, LPCOMMTIMEOUTS lpCommTimeouts);
-WINPR_API BOOL BuildCommDCBAndTimeoutsW(LPCWSTR lpDef, LPDCB lpDCB, LPCOMMTIMEOUTS lpCommTimeouts);
+WINPR_API WINBOOL BuildCommDCBAndTimeoutsA(LPCSTR lpDef, LPDCB lpDCB, LPCOMMTIMEOUTS lpCommTimeouts);
+WINPR_API WINBOOL BuildCommDCBAndTimeoutsW(LPCWSTR lpDef, LPDCB lpDCB, LPCOMMTIMEOUTS lpCommTimeouts);
 
-WINPR_API BOOL CommConfigDialogA(LPCSTR lpszName, HWND hWnd, LPCOMMCONFIG lpCC);
-WINPR_API BOOL CommConfigDialogW(LPCWSTR lpszName, HWND hWnd, LPCOMMCONFIG lpCC);
+WINPR_API WINBOOL CommConfigDialogA(LPCSTR lpszName, HWND hWnd, LPCOMMCONFIG lpCC);
+WINPR_API WINBOOL CommConfigDialogW(LPCWSTR lpszName, HWND hWnd, LPCOMMCONFIG lpCC);
 
-WINPR_API BOOL GetCommConfig(HANDLE hCommDev, LPCOMMCONFIG lpCC, LPDWORD lpdwSize);
-WINPR_API BOOL SetCommConfig(HANDLE hCommDev, LPCOMMCONFIG lpCC, DWORD dwSize);
+WINPR_API WINBOOL GetCommConfig(HANDLE hCommDev, LPCOMMCONFIG lpCC, LPDWORD lpdwSize);
+WINPR_API WINBOOL SetCommConfig(HANDLE hCommDev, LPCOMMCONFIG lpCC, DWORD dwSize);
 
-WINPR_API BOOL GetCommMask(HANDLE hFile, PDWORD lpEvtMask);
-WINPR_API BOOL SetCommMask(HANDLE hFile, DWORD dwEvtMask);
+WINPR_API WINBOOL GetCommMask(HANDLE hFile, PDWORD lpEvtMask);
+WINPR_API WINBOOL SetCommMask(HANDLE hFile, DWORD dwEvtMask);
 
-WINPR_API BOOL GetCommModemStatus(HANDLE hFile, PDWORD lpModemStat);
-WINPR_API BOOL GetCommProperties(HANDLE hFile, LPCOMMPROP lpCommProp);
+WINPR_API WINBOOL GetCommModemStatus(HANDLE hFile, PDWORD lpModemStat);
+WINPR_API WINBOOL GetCommProperties(HANDLE hFile, LPCOMMPROP lpCommProp);
 
-WINPR_API BOOL GetCommState(HANDLE hFile, LPDCB lpDCB);
-WINPR_API BOOL SetCommState(HANDLE hFile, LPDCB lpDCB);
+WINPR_API WINBOOL GetCommState(HANDLE hFile, LPDCB lpDCB);
+WINPR_API WINBOOL SetCommState(HANDLE hFile, LPDCB lpDCB);
 
-WINPR_API BOOL GetCommTimeouts(HANDLE hFile, LPCOMMTIMEOUTS lpCommTimeouts);
-WINPR_API BOOL SetCommTimeouts(HANDLE hFile, LPCOMMTIMEOUTS lpCommTimeouts);
+WINPR_API WINBOOL GetCommTimeouts(HANDLE hFile, LPCOMMTIMEOUTS lpCommTimeouts);
+WINPR_API WINBOOL SetCommTimeouts(HANDLE hFile, LPCOMMTIMEOUTS lpCommTimeouts);
 
-WINPR_API BOOL GetDefaultCommConfigA(LPCSTR lpszName, LPCOMMCONFIG lpCC, LPDWORD lpdwSize);
-WINPR_API BOOL GetDefaultCommConfigW(LPCWSTR lpszName, LPCOMMCONFIG lpCC, LPDWORD lpdwSize);
+WINPR_API WINBOOL GetDefaultCommConfigA(LPCSTR lpszName, LPCOMMCONFIG lpCC, LPDWORD lpdwSize);
+WINPR_API WINBOOL GetDefaultCommConfigW(LPCWSTR lpszName, LPCOMMCONFIG lpCC, LPDWORD lpdwSize);
 
-WINPR_API BOOL SetDefaultCommConfigA(LPCSTR lpszName, LPCOMMCONFIG lpCC, DWORD dwSize);
-WINPR_API BOOL SetDefaultCommConfigW(LPCWSTR lpszName, LPCOMMCONFIG lpCC, DWORD dwSize);
+WINPR_API WINBOOL SetDefaultCommConfigA(LPCSTR lpszName, LPCOMMCONFIG lpCC, DWORD dwSize);
+WINPR_API WINBOOL SetDefaultCommConfigW(LPCWSTR lpszName, LPCOMMCONFIG lpCC, DWORD dwSize);
 
-WINPR_API BOOL SetCommBreak(HANDLE hFile);
-WINPR_API BOOL ClearCommBreak(HANDLE hFile);
-WINPR_API BOOL ClearCommError(HANDLE hFile, PDWORD lpErrors, LPCOMSTAT lpStat);
+WINPR_API WINBOOL SetCommBreak(HANDLE hFile);
+WINPR_API WINBOOL ClearCommBreak(HANDLE hFile);
+WINPR_API WINBOOL ClearCommError(HANDLE hFile, PDWORD lpErrors, LPCOMSTAT lpStat);
 
-WINPR_API BOOL PurgeComm(HANDLE hFile, DWORD dwFlags);
-WINPR_API BOOL SetupComm(HANDLE hFile, DWORD dwInQueue, DWORD dwOutQueue);
+WINPR_API WINBOOL PurgeComm(HANDLE hFile, DWORD dwFlags);
+WINPR_API WINBOOL SetupComm(HANDLE hFile, DWORD dwInQueue, DWORD dwOutQueue);
 
-WINPR_API BOOL EscapeCommFunction(HANDLE hFile, DWORD dwFunc);
+WINPR_API WINBOOL EscapeCommFunction(HANDLE hFile, DWORD dwFunc);
 
-WINPR_API BOOL TransmitCommChar(HANDLE hFile, char cChar);
+WINPR_API WINBOOL TransmitCommChar(HANDLE hFile, char cChar);
 
-WINPR_API BOOL WaitCommEvent(HANDLE hFile, PDWORD lpEvtMask, LPOVERLAPPED lpOverlapped);
+WINPR_API WINBOOL WaitCommEvent(HANDLE hFile, PDWORD lpEvtMask, LPOVERLAPPED lpOverlapped);
 
 #ifdef BYEWINDOWS_UNICODE
 #define BuildCommDCB		BuildCommDCBW
@@ -405,9 +405,9 @@ typedef enum _SERIAL_DRIVER_ID
  *   - mappings are stored in a static array.
  *   - QueryCommDevice returns only the mappings that have been defined through DefineCommDevice()
  */
-WINPR_API BOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCSTR lpDeviceName, LPCSTR lpTargetPath);
+WINPR_API WINBOOL DefineCommDevice(/* DWORD dwFlags,*/ LPCSTR lpDeviceName, LPCSTR lpTargetPath);
 WINPR_API DWORD QueryCommDevice(LPCSTR lpDeviceName, LPSTR lpTargetPath, DWORD ucchMax);
-WINPR_API BOOL IsCommDevice(LPCSTR lpDeviceName);
+WINPR_API WINBOOL IsCommDevice(LPCSTR lpDeviceName);
 
 /**
  * A handle can only be created on defined devices with DefineCommDevice(). This
@@ -558,25 +558,25 @@ void _comm_setServerSerialDriver(HANDLE hComm, SERIAL_DRIVER_ID);
  *
  * permissive mode is disabled by default.
  */
-BOOL _comm_set_permissive(HANDLE hDevice, BOOL permissive);
+WINBOOL _comm_set_permissive(HANDLE hDevice, WINBOOL permissive);
 
 
 /**
  * FIXME: to be moved in comm_ioctl.h
  */
-BOOL CommDeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize,
+WINBOOL CommDeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize,
 			LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned, LPOVERLAPPED lpOverlapped);
 
 /**
  * FIXME: to be moved in comm_io.h
  */
-BOOL CommReadFile(HANDLE hDevice, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
+WINBOOL CommReadFile(HANDLE hDevice, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 		LPDWORD lpNumberOfBytesRead, LPOVERLAPPED lpOverlapped);
 
 /**
  * FIXME: to be moved in comm_io.h
  */
-BOOL CommWriteFile(HANDLE hDevice, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
+WINBOOL CommWriteFile(HANDLE hDevice, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite,
 		LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped);
 
 #ifdef __cplusplus

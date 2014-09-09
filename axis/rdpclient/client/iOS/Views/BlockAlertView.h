@@ -12,8 +12,8 @@
     CGFloat _height;
     NSString *_title;
     NSString *_message;
-    BOOL _shown;
-    BOOL _cancelBounce;
+    WINBOOL _shown;
+    WINBOOL _cancelBounce;
 }
 
 + (BlockAlertView *)alertWithTitle:(NSString *)title message:(NSString *)message;
@@ -30,12 +30,12 @@
 - (void)addComponents:(CGRect)frame;
 
 - (void)show;
-- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;
+- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(WINBOOL)animated;
 
 - (void)setupDisplay;
 
 @property (nonatomic, retain) UIImage *backgroundImage;
 @property (nonatomic, readonly) UIView *view;
-@property (nonatomic, readwrite) BOOL vignetteBackground;
+@property (nonatomic, readwrite) WINBOOL vignetteBackground;
 
 @end

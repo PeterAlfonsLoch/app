@@ -50,7 +50,7 @@ HRESULT STDMETHODCALLTYPE CliprdrDataObject_GetData(IDataObject *This, FORMATETC
 HRESULT STDMETHODCALLTYPE CliprdrDataObject_GetDataHere(IDataObject *This, FORMATETC *pformatetc, STGMEDIUM *pmedium);
 HRESULT STDMETHODCALLTYPE CliprdrDataObject_QueryGetData(IDataObject *This, FORMATETC *pformatetc);
 HRESULT STDMETHODCALLTYPE CliprdrDataObject_GetCanonicalFormatEtc(IDataObject *This, FORMATETC *pformatectIn, FORMATETC *pformatetcOut);
-HRESULT STDMETHODCALLTYPE CliprdrDataObject_SetData(IDataObject *This, FORMATETC *pformatetc, STGMEDIUM *pmedium, BOOL fRelease);
+HRESULT STDMETHODCALLTYPE CliprdrDataObject_SetData(IDataObject *This, FORMATETC *pformatetc, STGMEDIUM *pmedium, WINBOOL fRelease);
 HRESULT STDMETHODCALLTYPE CliprdrDataObject_EnumFormatEtc(IDataObject *This, DWORD dwDirection, IEnumFORMATETC **ppenumFormatEtc);
 HRESULT STDMETHODCALLTYPE CliprdrDataObject_DAdvise(IDataObject *This, FORMATETC *pformatetc, DWORD advf, IAdviseSink *pAdvSink, DWORD *pdwConnection);
 HRESULT STDMETHODCALLTYPE CliprdrDataObject_DUnadvise(IDataObject *This, DWORD dwConnection);

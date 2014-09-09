@@ -45,7 +45,7 @@ struct _RFX_CONTEXT_PRIV
 	wLog* log;
 	wObjectPool* TilePool;
 
-	BOOL UseThreads;
+	WINBOOL UseThreads;
 	PTP_WORK* workObjects;
 	RFX_TILE_COMPOSE_WORK_PARAM* tileWorkParams;
 
@@ -54,7 +54,7 @@ struct _RFX_CONTEXT_PRIV
 
 	PTP_POOL ThreadPool;
 	TP_CALLBACK_ENVIRON ThreadPoolEnv;
- 
+
 	wBufferPool* BufferPool;
 
 	/* profilers */

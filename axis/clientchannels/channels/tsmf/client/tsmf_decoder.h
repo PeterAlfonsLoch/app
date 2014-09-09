@@ -35,15 +35,15 @@ typedef struct _ITSMFDecoder ITSMFDecoder;
 struct _ITSMFDecoder
 {
 	/* Set the decoder format. Return true if supported. */
-	BOOL (*SetFormat)(ITSMFDecoder *decoder, TS_AM_MEDIA_TYPE *media_type);
+	WINBOOL (*SetFormat)(ITSMFDecoder *decoder, TS_AM_MEDIA_TYPE *media_type);
 	/* Decode a sample. */
-	BOOL (*Decode)(ITSMFDecoder *decoder, const BYTE *data, UINT32 data_size, UINT32 extensions);
+	WINBOOL (*Decode)(ITSMFDecoder *decoder, const BYTE *data, UINT32 data_size, UINT32 extensions);
 	/* Get the decoded data */
 	BYTE *(*GetDecodedData)(ITSMFDecoder *decoder, UINT32 *size);
 	/* Get the pixel format of decoded video frame */
 	UINT32(*GetDecodedFormat)(ITSMFDecoder *decoder);
 	/* Get the width and height of decoded video frame */
-	BOOL (*GetDecodedDimension)(ITSMFDecoder *decoder, UINT32 *width, UINT32 *height);
+	WINBOOL (*GetDecodedDimension)(ITSMFDecoder *decoder, UINT32 *width, UINT32 *height);
 	/* Free the decoder */
 	void (*Free)(ITSMFDecoder *decoder);
 	/* Optional Contol function */
@@ -58,11 +58,11 @@ struct _ITSMFDecoder
 	/* Change Gstreamer Audio Volume */
 	void (*ChangeVolume)(ITSMFDecoder *decoder, UINT32 newVolume, UINT32 muted);
 	/* Check buffer level */
-	BOOL (*BufferFilled)(ITSMFDecoder *decoder);
+	WINBOOL (*BufferFilled)(ITSMFDecoder *decoder);
 	/* Register a callback for frame ack. */
-	BOOL (*SetAckFunc)(ITSMFDecoder *decoder, BOOL (*cb)(void *,BOOL), void *stream);
+	WINBOOL (*SetAckFunc)(ITSMFDecoder *decoder, WINBOOL (*cb)(void *,WINBOOL), void *stream);
 	/* Register a callback for stream seek detection. */
-	BOOL (*SetSyncFunc)(ITSMFDecoder *decoder, void (*cb)(void *), void *stream);
+	WINBOOL (*SetSyncFunc)(ITSMFDecoder *decoder, void (*cb)(void *), void *stream);
 };
 
 #define TSMF_DECODER_EXPORT_FUNC_NAME "TSMFDecoderEntry"

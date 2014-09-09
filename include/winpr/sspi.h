@@ -1025,7 +1025,7 @@ typedef struct _SecPkgContext_AuthNtlmHash SecPkgContext_AuthNtlmHash;
 struct _SecPkgContext_AuthNtlmTimestamp
 {
 	BYTE Timestamp[8];
-	BOOL ChallengeOrResponse;
+	WINBOOL ChallengeOrResponse;
 };
 typedef struct _SecPkgContext_AuthNtlmTimestamp SecPkgContext_AuthNtlmTimestamp;
 

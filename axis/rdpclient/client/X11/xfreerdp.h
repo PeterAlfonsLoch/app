@@ -95,30 +95,30 @@ struct xf_context
 	Colormap colormap;
 	int screen_number;
 	int scanline_pad;
-	BOOL big_endian;
-	BOOL fullscreen;
-	BOOL grab_keyboard;
-	BOOL unobscured;
-	BOOL debug;
+	WINBOOL big_endian;
+	WINBOOL fullscreen;
+	WINBOOL grab_keyboard;
+	WINBOOL unobscured;
+	WINBOOL debug;
 	xfWindow* window;
 	xfPointer* pointer;
 	xfWorkArea workArea;
 	int current_desktop;
-	BOOL remote_app;
-	BOOL disconnect;
+	WINBOOL remote_app;
+	WINBOOL disconnect;
 	HCLRCONV clrconv;
 	HANDLE mutex;
-	BOOL UseXThreads;
-	BOOL cursorHidden;
+	WINBOOL UseXThreads;
+	WINBOOL cursorHidden;
 
 	HGDI_DC hdc;
 	BYTE* primary_buffer;
 	REGION16 invalidRegion;
-	BOOL inGfxFrame;
-	BOOL graphicsReset;
+	WINBOOL inGfxFrame;
+	WINBOOL graphicsReset;
 	UINT16 outputSurfaceId;
 
-	BOOL frame_begin;
+	WINBOOL frame_begin;
 	UINT16 frame_x1;
 	UINT16 frame_y1;
 	UINT16 frame_x2;
@@ -129,26 +129,26 @@ struct xf_context
 	int currentWidth;
 	int currentHeight;
 	int XInputOpcode;
-	BOOL enableScaling;
+	WINBOOL enableScaling;
 
 	int offset_x;
 	int offset_y;
 
-	BOOL focused;
-	BOOL use_xinput;
-	BOOL mouse_active;
-	BOOL suppress_output;
-	BOOL fullscreen_toggle;
-	BOOL controlToggle;
+	WINBOOL focused;
+	WINBOOL use_xinput;
+	WINBOOL mouse_active;
+	WINBOOL suppress_output;
+	WINBOOL fullscreen_toggle;
+	WINBOOL controlToggle;
 	UINT32 KeyboardLayout;
-	BOOL KeyboardState[256];
+	WINBOOL KeyboardState[256];
 	XModifierKeymap* modifierMap;
 	wArrayList* keyCombinations;
 	wArrayList* xevents;
 	char* actionScript;
 
 	XSetWindowAttributes attribs;
-	BOOL complex_regions;
+	WINBOOL complex_regions;
 	VIRTUAL_SCREEN vscreen;
 	BYTE* bmp_codec_none;
 	BYTE* bmp_codec_nsc;
@@ -193,7 +193,7 @@ struct xf_context
 void xf_create_window(xfContext* xfc);
 void xf_toggle_fullscreen(xfContext* xfc);
 void xf_toggle_control(xfContext* xfc);
-BOOL xf_post_connect(freerdp* instance);
+WINBOOL xf_post_connect(freerdp* instance);
 
 void xf_encomsp_init(xfContext* xfc, EncomspClientContext* encomsp);
 void xf_encomsp_uninit(xfContext* xfc, EncomspClientContext* encomsp);
@@ -239,10 +239,10 @@ enum XF_EXIT_CODE
 	XF_EXIT_UNKNOWN = 255,
 };
 
-void xf_lock_x11(xfContext* xfc, BOOL display);
-void xf_unlock_x11(xfContext* xfc, BOOL display);
+void xf_lock_x11(xfContext* xfc, WINBOOL display);
+void xf_unlock_x11(xfContext* xfc, WINBOOL display);
 
-void xf_draw_screen_scaled(xfContext* xfc, int x, int y, int w, int h, BOOL scale);
+void xf_draw_screen_scaled(xfContext* xfc, int x, int y, int w, int h, WINBOOL scale);
 void xf_transform_window(xfContext* xfc);
 
 FREERDP_API DWORD xf_exit_code_from_disconnect_reason(DWORD reason);

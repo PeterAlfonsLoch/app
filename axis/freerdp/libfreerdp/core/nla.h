@@ -37,7 +37,7 @@ typedef struct rdp_credssp rdpCredssp;
 
 struct rdp_credssp
 {
-	BOOL server;
+	WINBOOL server;
 	int send_seq_num;
 	int recv_seq_num;
 	freerdp* instance;

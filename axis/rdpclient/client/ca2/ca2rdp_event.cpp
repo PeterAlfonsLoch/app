@@ -121,7 +121,7 @@
 //	keymap[DIKI_KP_PLUS - DIKI_UNKNOWN] = VK_ADD;
 //	keymap[DIKI_KP_ENTER - DIKI_UNKNOWN] = VK_RETURN;
 //	keymap[DIKI_KP_DECIMAL - DIKI_UNKNOWN] = VK_DECIMAL;
-//	
+//
 //	keymap[DIKI_QUOTE_LEFT - DIKI_UNKNOWN] = VK_OEM_3;
 //	keymap[DIKI_BRACKET_LEFT - DIKI_UNKNOWN] = VK_OEM_4;
 //	keymap[DIKI_BRACKET_RIGHT - DIKI_UNKNOWN] = VK_OEM_6;
@@ -148,9 +148,9 @@
 //	keymap[DIKI_META_L - DIKI_UNKNOWN] = VK_LWIN;
 //	keymap[DIKI_META_R - DIKI_UNKNOWN] = VK_RWIN;
 //	keymap[DIKI_SUPER_L - DIKI_UNKNOWN] = VK_APPS;
-//	
+//
 //	ZeroMemory(functionmap, sizeof(functionmap));
-//	
+//
 //	functionmap[DFB_FUNCTION_KEY(23) - DFB_FUNCTION_KEY(0)] = VK_HANGUL;
 //	functionmap[DFB_FUNCTION_KEY(24) - DFB_FUNCTION_KEY(0)] = VK_HANJA;
 //
@@ -205,14 +205,14 @@ void ca2rdp_send_mouse_wheel_event(rdpInput* input, INT16 axisrel, UINT16 x, UIN
 	input->MouseEvent(input, flags, x, y);
 }
 
-void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode)
+void ca2rdp_send_keyboard_event(rdpInput* input,WINBOOL down,UINT scancode)
 {
 
 		freerdp_input_send_keyboard_event_ex(input, down, scancode);
 }
 
 /*
-BOOL ca2rdp_event_process(freerdp* instance, DFBEvent* event)
+WINBOOL ca2rdp_event_process(freerdp* instance, DFBEvent* event)
 {
 	int flags;
 	rdpGdi* gdi;

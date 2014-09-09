@@ -97,11 +97,11 @@ WINPR_API HRESULT PathCchRenameExtensionW(PWSTR pszPath, size_t cchPath, PCWSTR 
 WINPR_API HRESULT PathCchRemoveExtensionA(PSTR pszPath, size_t cchPath);
 WINPR_API HRESULT PathCchRemoveExtensionW(PWSTR pszPath, size_t cchPath);
 
-WINPR_API BOOL PathCchIsRootA(PCSTR pszPath);
-WINPR_API BOOL PathCchIsRootW(PCWSTR pszPath);
+WINPR_API WINBOOL PathCchIsRootA(PCSTR pszPath);
+WINPR_API WINBOOL PathCchIsRootW(PCWSTR pszPath);
 
-WINPR_API BOOL PathIsUNCExA(PCSTR pszPath, PCSTR* ppszServer);
-WINPR_API BOOL PathIsUNCExW(PCWSTR pszPath, PCWSTR* ppszServer);
+WINPR_API WINBOOL PathIsUNCExA(PCSTR pszPath, PCSTR* ppszServer);
+WINPR_API WINBOOL PathIsUNCExW(PCWSTR pszPath, PCWSTR* ppszServer);
 
 WINPR_API HRESULT PathCchSkipRootA(PCSTR pszPath, PCSTR* ppszRootEnd);
 WINPR_API HRESULT PathCchSkipRootW(PCWSTR pszPath, PCWSTR* ppszRootEnd);
@@ -285,8 +285,8 @@ WINPR_API char* GetEnvironmentPath(char* name);
 WINPR_API char* GetEnvironmentSubPath(char* name, const char* path);
 WINPR_API char* GetCombinedPath(const char* basePath, const char* subPath);
 
-WINPR_API BOOL PathFileExistsA(LPCSTR pszPath);
-WINPR_API BOOL PathFileExistsW(LPCWSTR pszPath);
+WINPR_API WINBOOL PathFileExistsA(LPCSTR pszPath);
+WINPR_API WINBOOL PathFileExistsW(LPCWSTR pszPath);
 
 #ifdef __cplusplus
 }

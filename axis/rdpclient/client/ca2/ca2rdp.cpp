@@ -93,7 +93,7 @@ void ca2rdp_end_paint(rdpContext* context)
 #endif*/
 }
 
-BOOL ca2rdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, int* wcount)
+WINBOOL ca2rdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, int* wcount)
 {
 	ca2rdpInfo* ca2rdpi;
 
@@ -105,7 +105,7 @@ BOOL ca2rdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, in
 	return TRUE;
 }
 
-BOOL ca2rdp_check_fds(freerdp* instance, fd_set* set)
+WINBOOL ca2rdp_check_fds(freerdp* instance, fd_set* set)
 {
 	ca2rdpInfo* ca2rdpi;
 
@@ -120,10 +120,10 @@ BOOL ca2rdp_check_fds(freerdp* instance, fd_set* set)
 	return TRUE;
 }
 
-BOOL ca2rdp_pre_connect(freerdp* instance)
+WINBOOL ca2rdp_pre_connect(freerdp* instance)
 {
 	ca2rdpInfo* ca2rdpi;
-	BOOL bitmap_cache;
+	WINBOOL bitmap_cache;
 	ca2rdpContext* context;
 	rdpSettings* settings;
 
@@ -178,7 +178,7 @@ BOOL ca2rdp_pre_connect(freerdp* instance)
 	return TRUE;
 }
 
-BOOL ca2rdp_post_connect(freerdp* instance)
+WINBOOL ca2rdp_post_connect(freerdp* instance)
 {
 	rdpGdi* gdi;
 	ca2rdpInfo* ca2rdpi;
@@ -243,7 +243,7 @@ BOOL ca2rdp_post_connect(freerdp* instance)
 	return TRUE;
 }
 
-BOOL ca2rdp_verify_certificate(freerdp* instance, char* subject, char* issuer, char* fingerprint)
+WINBOOL ca2rdp_verify_certificate(freerdp* instance, char* subject, char* issuer, char* fingerprint)
 {
 	char answer;
 

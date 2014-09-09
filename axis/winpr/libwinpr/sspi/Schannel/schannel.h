@@ -36,7 +36,7 @@ typedef struct _SCHANNEL_CREDENTIALS SCHANNEL_CREDENTIALS;
 
 struct _SCHANNEL_CONTEXT
 {
-	BOOL server;
+	WINBOOL server;
 	SCHANNEL_CRED cred;
 	SCHANNEL_OPENSSL* openssl;
 };

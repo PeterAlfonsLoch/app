@@ -1,9 +1,9 @@
 /*
  Bookmark model abstraction
- 
+
  Copyright 2013 Thincast Technologies GmbH, Authors: Dorian Johnson
- 
- This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
+
+ This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
@@ -18,7 +18,7 @@
 	NSString* _uuid, * _label;
 	UIImage* _image;
     ConnectionParams* _connection_params;
-    BOOL _connected_via_wlan;
+    WINBOOL _connected_via_wlan;
 }
 
 @property (nonatomic,assign)   ComputerBookmark* parent;
@@ -26,17 +26,17 @@
 @property (nonatomic,copy)     NSString* label;
 @property (nonatomic,retain)   UIImage* image;
 @property (readonly, nonatomic) ConnectionParams* params;
-@property (nonatomic, assign) BOOL conntectedViaWLAN;
+@property (nonatomic, assign) WINBOOL conntectedViaWLAN;
 
 // Creates a copy of this object, with a new UUID
 - (id)copy;
 - (id)copyWithUUID;
 
 // Whether user can delete, move, or rename this entry
-- (BOOL)isDeletable;
-- (BOOL)isMovable;
-- (BOOL)isRenamable;
-- (BOOL)hasImmutableHost;
+- (WINBOOL)isDeletable;
+- (WINBOOL)isMovable;
+- (WINBOOL)isRenamable;
+- (WINBOOL)hasImmutableHost;
 
 - (id)initWithConnectionParameters:(ConnectionParams*)params;
 - (id)initWithBaseDefaultParameters;

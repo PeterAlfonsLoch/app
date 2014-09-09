@@ -61,7 +61,7 @@ struct rdp_tsg
 	LPWSTR Hostname;
 	LPWSTR MachineName;
 	TSG_STATE state;
-	BOOL PendingPdu;
+	WINBOOL PendingPdu;
 	UINT32 BytesRead;
 	UINT32 BytesAvailable;
 	UINT32 StubOffset;
@@ -196,14 +196,14 @@ typedef struct _TSG_PACKET_QUARREQUEST
 
 typedef struct _TSG_REDIRECTION_FLAGS
 {
-	BOOL enableAllRedirections;
-	BOOL disableAllRedirections;
-	BOOL driveRedirectionDisabled;
-	BOOL printerRedirectionDisabled;
-	BOOL portRedirectionDisabled;
-	BOOL reserved;
-	BOOL clipboardRedirectionDisabled;
-	BOOL pnpRedirectionDisabled;
+	WINBOOL enableAllRedirections;
+	WINBOOL disableAllRedirections;
+	WINBOOL driveRedirectionDisabled;
+	WINBOOL printerRedirectionDisabled;
+	WINBOOL portRedirectionDisabled;
+	WINBOOL reserved;
+	WINBOOL clipboardRedirectionDisabled;
+	WINBOOL pnpRedirectionDisabled;
 } TSG_REDIRECTION_FLAGS, *PTSG_REDIRECTION_FLAGS;
 
 typedef struct _TSG_PACKET_RESPONSE
@@ -306,13 +306,13 @@ typedef struct _TSG_PACKET
 
 DWORD TsProxySendToServer(handle_t IDL_handle, BYTE pRpcMessage[], UINT32 count, UINT32* lengths);
 
-BOOL tsg_connect(rdpTsg* tsg, const char* hostname, UINT16 port);
-BOOL tsg_disconnect(rdpTsg* tsg);
+WINBOOL tsg_connect(rdpTsg* tsg, const char* hostname, UINT16 port);
+WINBOOL tsg_disconnect(rdpTsg* tsg);
 
 int tsg_write(rdpTsg* tsg, BYTE* data, UINT32 length);
 int tsg_read(rdpTsg* tsg, BYTE* data, UINT32 length);
 
-BOOL tsg_set_blocking_mode(rdpTsg* tsg, BOOL blocking);
+WINBOOL tsg_set_blocking_mode(rdpTsg* tsg, WINBOOL blocking);
 
 rdpTsg* tsg_new(rdpTransport* transport);
 void tsg_free(rdpTsg* tsg);

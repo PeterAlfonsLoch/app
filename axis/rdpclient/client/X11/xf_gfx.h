@@ -28,7 +28,7 @@ struct xf_gfx_surface
 	UINT16 surfaceId;
 	UINT32 width;
 	UINT32 height;
-	BOOL alpha;
+	WINBOOL alpha;
 	BYTE* data;
 	XImage* image;
 	int scanline;
@@ -40,7 +40,7 @@ struct xf_gfx_cache_entry
 	UINT64 cacheKey;
 	UINT32 width;
 	UINT32 height;
-	BOOL alpha;
+	WINBOOL alpha;
 	BYTE* data;
 	int scanline;
 };

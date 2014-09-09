@@ -66,9 +66,9 @@ void android_push_event(freerdp * inst, ANDROID_EVENT* event);
 ANDROID_EVENT* android_peek_event(ANDROID_EVENT_QUEUE * queue);
 ANDROID_EVENT* android_pop_event(ANDROID_EVENT_QUEUE * queue);
 int android_process_event(ANDROID_EVENT_QUEUE * queue, freerdp * inst);
-BOOL android_get_fds(freerdp * inst, void ** read_fds,
+WINBOOL android_get_fds(freerdp * inst, void ** read_fds,
 		int * read_count, void ** write_fds, int * write_count);
-BOOL android_check_fds(freerdp * inst);
+WINBOOL android_check_fds(freerdp * inst);
 ANDROID_EVENT_KEY* android_event_key_new(int flags, UINT16 scancode);
 ANDROID_EVENT_KEY* android_event_unicodekey_new(UINT16 key);
 ANDROID_EVENT_CURSOR* android_event_cursor_new(UINT16 flags, UINT16 x, UINT16 y);
