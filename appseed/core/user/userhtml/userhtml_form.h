@@ -11,10 +11,6 @@ public:
    string                        m_strPath;
    string                        m_strOpenOnCreate;
    rect                          m_rectOpen;
-   html::elemental *             m_pelementalLButtonDown;
-   html::elemental *             m_pelementalHover;
-   spa(::html::elemental)        m_elementalptraMouseMove;
-   sp(html::data)                m_sphtmldata;
 
 
 

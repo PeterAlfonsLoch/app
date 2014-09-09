@@ -1739,6 +1739,9 @@
     <ClInclude Include="core\core\core.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\html\html_form.h">
+      <Filter>Header Files\graphics\html</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp">

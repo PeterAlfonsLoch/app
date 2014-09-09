@@ -1,6 +1,18 @@
 #pragma once
 
 
+namespace html
+{
+   
+   class form;
+   class box;
+   class elemental;
+
+}
+
+
+class html_document;
+class html_view;
 
 
 #include "userhtml_form.h"

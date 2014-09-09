@@ -43,6 +43,13 @@ CLASS_DECL_CORE void trim001(string & str);
 #include "html_html.h"
 
 
+#include "core/graphics/html/html2.h"
+
+
+#include "html_form.h"
+
+
+
 
 
 
