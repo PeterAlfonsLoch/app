@@ -66,13 +66,13 @@ typedef struct rdp_rail_order rdpRailOrder;
 
 
 void rail_string_to_unicode_string(char* string, RAIL_UNICODE_STRING* unicode_string);
-WINBOOL rail_read_handshake_order(wStream* s, RAIL_HANDSHAKE_ORDER* handshake);
+BOOL rail_read_handshake_order(wStream* s, RAIL_HANDSHAKE_ORDER* handshake);
 void rail_write_handshake_order(wStream* s, RAIL_HANDSHAKE_ORDER* handshake);
-WINBOOL rail_read_handshake_ex_order(wStream* s, RAIL_HANDSHAKE_EX_ORDER* handshakeEx);
+BOOL rail_read_handshake_ex_order(wStream* s, RAIL_HANDSHAKE_EX_ORDER* handshakeEx);
 void rail_write_handshake_ex_order(wStream* s, RAIL_HANDSHAKE_EX_ORDER* handshakeEx);
 
 wStream* rail_pdu_init(int length);
-WINBOOL rail_read_pdu_header(wStream* s, UINT16* orderType, UINT16* orderLength);
+BOOL rail_read_pdu_header(wStream* s, UINT16* orderType, UINT16* orderLength);
 void rail_write_pdu_header(wStream* s, UINT16 orderType, UINT16 orderLength);
 
 #endif /* FREERDP_CHANNEL_RAIL_COMMON_H */

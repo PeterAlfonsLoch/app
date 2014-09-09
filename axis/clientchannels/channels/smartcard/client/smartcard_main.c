@@ -253,7 +253,7 @@ void smartcard_process_irp(SMARTCARD_DEVICE* smartcard, IRP* irp)
 {
 	void* key;
 	UINT32 status;
-	WINBOOL asyncIrp = FALSE;
+	BOOL asyncIrp = FALSE;
 	SMARTCARD_CONTEXT* pContext = NULL;
 	SMARTCARD_OPERATION* operation = NULL;
 

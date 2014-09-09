@@ -758,7 +758,7 @@ static VOID VCAPITYPE remdesk_virtual_channel_init_event(LPVOID pInitHandle, UIN
 /* remdesk is always built-in */
 #define VirtualChannelEntry	remdesk_VirtualChannelEntry
 
-WINBOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
+BOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
 {
 	remdeskPlugin* remdesk;
 	RemdeskClientContext* context;

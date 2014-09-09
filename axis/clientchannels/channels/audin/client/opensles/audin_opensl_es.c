@@ -160,7 +160,7 @@ static void audin_opensles_free(IAudinDevice* device)
 	free(opensles);
 }
 
-static WINBOOL audin_opensles_format_supported(IAudinDevice* device, audinFormat* format)
+static BOOL audin_opensles_format_supported(IAudinDevice* device, audinFormat* format)
 {
 	AudinOpenSLESDevice* opensles = (AudinOpenSLESDevice*) device;
 

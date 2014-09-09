@@ -24,7 +24,7 @@
 #include "rdpdr_main.h"
 
 void devman_unregister_device(DEVMAN* devman, void* key);
-WINBOOL devman_load_device_service(DEVMAN* devman, RDPDR_DEVICE* device);
+BOOL devman_load_device_service(DEVMAN* devman, RDPDR_DEVICE* device);
 DEVICE* devman_get_device_by_id(DEVMAN* devman, UINT32 id);
 
 DEVMAN* devman_new(rdpdrPlugin* rdpdr);

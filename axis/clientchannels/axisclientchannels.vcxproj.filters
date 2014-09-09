@@ -350,9 +350,6 @@
     <ClCompile Include="channels\client\addin.c">
       <Filter>Source Files\channels\client</Filter>
     </ClCompile>
-    <ClCompile Include="channels\client\tables.c">
-      <Filter>Source Files\channels\client</Filter>
-    </ClCompile>
     <ClCompile Include="channels\audin\client\winmm\audin_winmm.c">
       <Filter>Source Files\channels\audin\winmm</Filter>
     </ClCompile>
@@ -361,6 +358,9 @@
     </ClCompile>
     <ClCompile Include="channels\remdesk\client\remdesk_main.c">
       <Filter>Source Files\channels\remdesk</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\client\tables_windows.c">
+      <Filter>Source Files\channels\client</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

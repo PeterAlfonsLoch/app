@@ -167,7 +167,7 @@ static void printer_win_free_printer(rdpPrinter* printer)
 	free(printer);
 }
 
-static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, const char* name, const wchar_t* drivername, WINBOOL is_default)
+static rdpPrinter* printer_win_new_printer(rdpWinPrinterDriver* win_driver, const char* name, const wchar_t* drivername, BOOL is_default)
 {
 	rdpWinPrinter* win_printer;
 	wchar_t wname[256];

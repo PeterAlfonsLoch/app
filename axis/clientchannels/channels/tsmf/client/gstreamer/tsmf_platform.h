@@ -41,19 +41,19 @@ typedef struct _TSMFGstreamerDecoder
 	GstElement *outsink;
 	GstElement *volume;
 
-	WINBOOL ready;
-	WINBOOL paused;
+	BOOL ready;
+	BOOL paused;
 	UINT64 last_sample_end_time;
 
 	double gstVolume;
-	WINBOOL gstMuted;
+	BOOL gstMuted;
 
 	int pipeline_start_time_valid; /* We've set the start time and have not reset the pipeline */
 	int shutdown; /* The decoder stream is shutting down */
 
 	void *platform;
 
-	WINBOOL (*ack_cb)(void *,WINBOOL);
+	BOOL (*ack_cb)(void *,BOOL);
 	void (*sync_cb)(void *);
 	void *stream;
 
@@ -77,7 +77,7 @@ int tsmf_window_destroy(TSMFGstreamerDecoder *decoder);
 int tsmf_window_pause(TSMFGstreamerDecoder *decoder);
 int tsmf_window_resume(TSMFGstreamerDecoder *decoder);
 
-WINBOOL tsmf_gstreamer_add_pad(TSMFGstreamerDecoder *mdecoder);
+BOOL tsmf_gstreamer_add_pad(TSMFGstreamerDecoder *mdecoder);
 void tsmf_gstreamer_remove_pad(TSMFGstreamerDecoder *mdecoder);
 
 #endif

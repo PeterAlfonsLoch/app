@@ -29,7 +29,7 @@
 
 int remdesk_virtual_channel_write(RemdeskServerContext* context, wStream* s)
 {
-	WINBOOL status;
+	BOOL status;
 	ULONG BytesWritten = 0;
 
 	status = WTSVirtualChannelWrite(context->priv->ChannelHandle,

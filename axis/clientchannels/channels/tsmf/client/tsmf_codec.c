@@ -283,7 +283,7 @@ static void tsmf_print_guid(const BYTE *guid)
 }
 
 /* http://msdn.microsoft.com/en-us/library/dd318229.aspx */
-static UINT32 tsmf_codec_parse_BITMAPINFOHEADER(TS_AM_MEDIA_TYPE *mediatype, wStream *s, WINBOOL bypass)
+static UINT32 tsmf_codec_parse_BITMAPINFOHEADER(TS_AM_MEDIA_TYPE *mediatype, wStream *s, BOOL bypass)
 {
 	UINT32 biSize;
 	UINT32 biWidth;
@@ -358,11 +358,11 @@ static UINT32 tsmf_codec_parse_VIDEOINFOHEADER(TS_AM_MEDIA_TYPE *mediatype, wStr
 	return 48;
 }
 
-WINBOOL tsmf_codec_parse_media_type(TS_AM_MEDIA_TYPE *mediatype, wStream *s)
+BOOL tsmf_codec_parse_media_type(TS_AM_MEDIA_TYPE *mediatype, wStream *s)
 {
 	int i;
 	UINT32 cbFormat;
-	WINBOOL ret = TRUE;
+	BOOL ret = TRUE;
 	memset(mediatype, 0, sizeof(TS_AM_MEDIA_TYPE));
 	/* MajorType */
 	DEBUG_TSMF("MajorType:");
@@ -484,10 +484,10 @@ WINBOOL tsmf_codec_parse_media_type(TS_AM_MEDIA_TYPE *mediatype, wStream *s)
 	return ret;
 }
 
-WINBOOL tsmf_codec_check_media_type(wStream *s)
+BOOL tsmf_codec_check_media_type(wStream *s)
 {
 	BYTE *m;
-	WINBOOL ret;
+	BOOL ret;
 	TS_AM_MEDIA_TYPE mediatype;
 	Stream_GetPointer(s, m);
 	ret = tsmf_codec_parse_media_type(&mediatype, s);

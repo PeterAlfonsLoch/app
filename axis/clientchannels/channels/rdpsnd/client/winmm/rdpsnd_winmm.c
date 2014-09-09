@@ -53,9 +53,9 @@ struct rdpsnd_winmm_plugin
 	FREERDP_DSP_CONTEXT* dsp_context;
 };
 
-static WINBOOL rdpsnd_winmm_convert_format(const AUDIO_FORMAT* in, WAVEFORMATEX* out)
+static BOOL rdpsnd_winmm_convert_format(const AUDIO_FORMAT* in, WAVEFORMATEX* out)
 {
-	WINBOOL result = FALSE;
+	BOOL result = FALSE;
 
 	ZeroMemory(out, sizeof(WAVEFORMATEX));
 	out->wFormatTag = WAVE_FORMAT_PCM;
@@ -196,7 +196,7 @@ static void rdpsnd_winmm_free(rdpsndDevicePlugin* device)
 	}
 }
 
-static WINBOOL rdpsnd_winmm_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
+static BOOL rdpsnd_winmm_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
 {
 	MMRESULT result;
 	WAVEFORMATEX out;

@@ -34,10 +34,10 @@ struct _cliprdr_server_private
 	HANDLE StopEvent;
 	void* ChannelHandle;
 
-	WINBOOL UseLongFormatNames;
-	WINBOOL StreamFileClipEnabled;
-	WINBOOL FileClipNoFilePaths;
-	WINBOOL CanLockClipData;
+	BOOL UseLongFormatNames;
+	BOOL StreamFileClipEnabled;
+	BOOL FileClipNoFilePaths;
+	BOOL CanLockClipData;
 
 	UINT32 ClientFormatNameCount;
 	CLIPRDR_FORMAT_NAME* ClientFormatNames;

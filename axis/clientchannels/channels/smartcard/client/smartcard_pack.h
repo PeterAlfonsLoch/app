@@ -473,10 +473,10 @@ void smartcard_trace_context_call(SMARTCARD_DEVICE* smartcard, Context_Call* cal
 void smartcard_trace_long_return(SMARTCARD_DEVICE* smartcard, Long_Return* ret, const char* name);
 
 UINT32 smartcard_unpack_list_readers_call(SMARTCARD_DEVICE* smartcard, wStream* s, ListReaders_Call* call);
-void smartcard_trace_list_readers_call(SMARTCARD_DEVICE* smartcard, ListReaders_Call* call, WINBOOL unicode);
+void smartcard_trace_list_readers_call(SMARTCARD_DEVICE* smartcard, ListReaders_Call* call, BOOL unicode);
 
 UINT32 smartcard_pack_list_readers_return(SMARTCARD_DEVICE* smartcard, wStream* s, ListReaders_Return* ret);
-void smartcard_trace_list_readers_return(SMARTCARD_DEVICE* smartcard, ListReaders_Return* ret, WINBOOL unicode);
+void smartcard_trace_list_readers_return(SMARTCARD_DEVICE* smartcard, ListReaders_Return* ret, BOOL unicode);
 
 UINT32 smartcard_unpack_connect_a_call(SMARTCARD_DEVICE* smartcard, wStream* s, ConnectA_Call* call);
 void smartcard_trace_connect_a_call(SMARTCARD_DEVICE* smartcard, ConnectA_Call* call);
@@ -503,16 +503,16 @@ UINT32 smartcard_unpack_get_status_change_w_call(SMARTCARD_DEVICE* smartcard, wS
 void smartcard_trace_get_status_change_w_call(SMARTCARD_DEVICE* smartcard, GetStatusChangeW_Call* call);
 
 UINT32 smartcard_pack_get_status_change_return(SMARTCARD_DEVICE* smartcard, wStream* s, GetStatusChange_Return* ret);
-void smartcard_trace_get_status_change_return(SMARTCARD_DEVICE* smartcard, GetStatusChange_Return* ret, WINBOOL unicode);
+void smartcard_trace_get_status_change_return(SMARTCARD_DEVICE* smartcard, GetStatusChange_Return* ret, BOOL unicode);
 
 UINT32 smartcard_unpack_state_call(SMARTCARD_DEVICE* smartcard, wStream* s, State_Call* call);
 UINT32 smartcard_pack_state_return(SMARTCARD_DEVICE* smartcard, wStream* s, State_Return* ret);
 
 UINT32 smartcard_unpack_status_call(SMARTCARD_DEVICE* smartcard, wStream* s, Status_Call* call);
-void smartcard_trace_status_call(SMARTCARD_DEVICE* smartcard, Status_Call* call, WINBOOL unicode);
+void smartcard_trace_status_call(SMARTCARD_DEVICE* smartcard, Status_Call* call, BOOL unicode);
 
 UINT32 smartcard_pack_status_return(SMARTCARD_DEVICE* smartcard, wStream* s, Status_Return* ret);
-void smartcard_trace_status_return(SMARTCARD_DEVICE* smartcard, Status_Return* ret, WINBOOL unicode);
+void smartcard_trace_status_return(SMARTCARD_DEVICE* smartcard, Status_Return* ret, BOOL unicode);
 
 UINT32 smartcard_unpack_get_attrib_call(SMARTCARD_DEVICE* smartcard, wStream* s, GetAttrib_Call* call);
 void smartcard_trace_get_attrib_call(SMARTCARD_DEVICE* smartcard, GetAttrib_Call* call);

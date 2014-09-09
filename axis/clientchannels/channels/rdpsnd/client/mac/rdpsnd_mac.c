@@ -42,8 +42,8 @@ struct rdpsnd_mac_plugin
 {
 	rdpsndDevicePlugin device;
 
-	WINBOOL isOpen;
-	WINBOOL isPlaying;
+	BOOL isOpen;
+	BOOL isPlaying;
 
 	UINT32 latency;
 	AUDIO_FORMAT format;
@@ -177,7 +177,7 @@ static void rdpsnd_mac_free(rdpsndDevicePlugin* device)
 	free(mac);
 }
 
-static WINBOOL rdpsnd_mac_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
+static BOOL rdpsnd_mac_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
 {
         if (format->wFormatTag == WAVE_FORMAT_PCM)
         {

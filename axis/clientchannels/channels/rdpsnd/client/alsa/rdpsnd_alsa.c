@@ -363,7 +363,7 @@ static void rdpsnd_alsa_free(rdpsndDevicePlugin* device)
 	free(alsa);
 }
 
-static WINBOOL rdpsnd_alsa_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
+static BOOL rdpsnd_alsa_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
 {
 	switch (format->wFormatTag)
 	{

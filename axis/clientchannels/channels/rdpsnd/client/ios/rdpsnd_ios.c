@@ -39,8 +39,8 @@ typedef struct rdpsnd_ios_plugin
 	rdpsndDevicePlugin device;
 	AudioComponentInstance audio_unit;
 	TPCircularBuffer buffer;
-	WINBOOL is_opened;
-	WINBOOL is_playing;
+	BOOL is_opened;
+	BOOL is_playing;
 } rdpsndIOSPlugin;
 
 #define THIS(__ptr) ((rdpsndIOSPlugin*)__ptr)
@@ -89,7 +89,7 @@ static OSStatus rdpsnd_ios_render_cb(
 	return noErr;
 }
 
-static WINBOOL rdpsnd_ios_format_supported(rdpsndDevicePlugin* __unused device, AUDIO_FORMAT* format)
+static BOOL rdpsnd_ios_format_supported(rdpsndDevicePlugin* __unused device, AUDIO_FORMAT* format)
 {
 	if (format->wFormatTag == WAVE_FORMAT_PCM)
 	{
@@ -144,7 +144,7 @@ static void rdpsnd_ios_play(rdpsndDevicePlugin* device, BYTE* data, int size)
 {
 	rdpsndIOSPlugin *p = THIS(device);
 
-	const WINBOOL ok = TPCircularBufferProduceBytes(&p->buffer, data, size);
+	const BOOL ok = TPCircularBufferProduceBytes(&p->buffer, data, size);
 	if (!ok)
 	{
 		return;
@@ -230,7 +230,7 @@ static void rdpsnd_ios_open(rdpsndDevicePlugin* device, AUDIO_FORMAT* format, in
 	}
 
 	/* Allocate the circular buffer. */
-	const WINBOOL ok = TPCircularBufferInit(&p->buffer, CIRCULAR_BUFFER_SIZE);
+	const BOOL ok = TPCircularBufferInit(&p->buffer, CIRCULAR_BUFFER_SIZE);
 	if (!ok)
 	{
 		AudioUnitUninitialize(p->audio_unit);

@@ -33,7 +33,7 @@ static UINT32 g_ClientId = 0;
 static int rdpdr_server_send_announce_request(RdpdrServerContext* context)
 {
 	wStream* s;
-	WINBOOL status;
+	BOOL status;
 	RDPDR_HEADER header;
 	ULONG written;
 
@@ -294,7 +294,7 @@ static int rdpdr_server_write_smartcard_capability_set(RdpdrServerContext* conte
 static int rdpdr_server_send_core_capability_request(RdpdrServerContext* context)
 {
 	wStream* s;
-	WINBOOL status;
+	BOOL status;
 	RDPDR_HEADER header;
 	UINT16 numCapabilities;
 	ULONG written;
@@ -377,7 +377,7 @@ static int rdpdr_server_receive_core_capability_response(RdpdrServerContext* con
 static int rdpdr_server_send_client_id_confirm(RdpdrServerContext* context)
 {
 	wStream* s;
-	WINBOOL status;
+	BOOL status;
 	RDPDR_HEADER header;
 	ULONG written;
 
@@ -459,7 +459,7 @@ static int rdpdr_server_receive_device_list_announce_request(RdpdrServerContext*
 static int rdpdr_server_send_user_logged_on(RdpdrServerContext* context)
 {
 	wStream* s;
-	WINBOOL status;
+	BOOL status;
 	RDPDR_HEADER header;
 	ULONG written;
 

@@ -148,7 +148,7 @@ UINT32 dvcman_get_channel_id(IWTSVirtualChannel * channel)
 IWTSVirtualChannel* dvcman_find_channel_by_id(IWTSVirtualChannelManager* pChannelMgr, UINT32 ChannelId)
 {
 	int index;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 	DVCMAN_CHANNEL* channel;
 	DVCMAN* dvcman = (DVCMAN*) pChannelMgr;
 
@@ -176,7 +176,7 @@ IWTSVirtualChannel* dvcman_find_channel_by_id(IWTSVirtualChannelManager* pChanne
 void* dvcman_get_channel_interface_by_name(IWTSVirtualChannelManager* pChannelMgr, const char* ChannelName)
 {
 	int i;
-	WINBOOL found = FALSE;
+	BOOL found = FALSE;
 	void* pInterface = NULL;
 	DVCMAN_LISTENER* listener;
 	DVCMAN* dvcman = (DVCMAN*) pChannelMgr;

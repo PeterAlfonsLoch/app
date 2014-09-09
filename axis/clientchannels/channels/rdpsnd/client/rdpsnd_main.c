@@ -78,13 +78,13 @@ struct rdpsnd_plugin
 	AUDIO_FORMAT* ClientFormats;
 	UINT16 NumberOfClientFormats;
 
-	WINBOOL expectingWave;
+	BOOL expectingWave;
 	BYTE waveData[4];
 	UINT16 waveDataSize;
 	UINT32 wTimeStamp;
 
 	int latency;
-	WINBOOL isOpen;
+	BOOL isOpen;
 	UINT16 fixedFormat;
 	UINT16 fixedChannel;
 	UINT32 fixedRate;
@@ -592,7 +592,7 @@ static void rdpsnd_register_device_plugin(rdpsndPlugin* rdpsnd, rdpsndDevicePlug
 	device->WaveConfirm = rdpsnd_device_send_wave_confirm_pdu;
 }
 
-static WINBOOL rdpsnd_load_device_plugin(rdpsndPlugin* rdpsnd, const char* name, ADDIN_ARGV* args)
+static BOOL rdpsnd_load_device_plugin(rdpsndPlugin* rdpsnd, const char* name, ADDIN_ARGV* args)
 {
 	PFREERDP_RDPSND_DEVICE_ENTRY entry;
 	FREERDP_RDPSND_DEVICE_ENTRY_POINTS entryPoints;
@@ -1064,7 +1064,7 @@ static VOID VCAPITYPE rdpsnd_virtual_channel_init_event(LPVOID pInitHandle, UINT
 /* rdpsnd is always built-in */
 #define VirtualChannelEntry	rdpsnd_VirtualChannelEntry
 
-WINBOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
+BOOL VCAPITYPE VirtualChannelEntry(PCHANNEL_ENTRY_POINTS pEntryPoints)
 {
 	rdpsndPlugin* rdpsnd;
 

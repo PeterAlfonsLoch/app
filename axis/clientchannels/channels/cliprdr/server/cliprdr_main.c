@@ -66,7 +66,7 @@
 static int cliprdr_server_send_capabilities(CliprdrServerContext* context)
 {
 	wStream* s;
-	WINBOOL status;
+	BOOL status;
 	UINT32 generalFlags;
 	CLIPRDR_HEADER header;
 	ULONG written;
@@ -108,7 +108,7 @@ static int cliprdr_server_send_capabilities(CliprdrServerContext* context)
 static int cliprdr_server_send_monitor_ready(CliprdrServerContext* context)
 {
 	wStream* s;
-	WINBOOL status;
+	BOOL status;
 	CLIPRDR_HEADER header;
 	ULONG written;
 
@@ -136,7 +136,7 @@ static int cliprdr_server_send_monitor_ready(CliprdrServerContext* context)
 static int cliprdr_server_send_format_list_response(CliprdrServerContext* context)
 {
 	wStream* s;
-	WINBOOL status;
+	BOOL status;
 	CLIPRDR_HEADER header;
 	ULONG written;
 

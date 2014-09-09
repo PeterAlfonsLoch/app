@@ -226,7 +226,7 @@ static int audin_send_open_reply_pdu(IWTSVirtualChannelCallback* pChannelCallbac
 	return error;
 }
 
-static WINBOOL audin_receive_wave_data(BYTE* data, int size, void* user_data)
+static BOOL audin_receive_wave_data(BYTE* data, int size, void* user_data)
 {
 	int error;
 	wStream* out;
@@ -438,7 +438,7 @@ static void audin_register_device_plugin(IWTSPlugin* pPlugin, IAudinDevice* devi
 	audin->device = device;
 }
 
-static WINBOOL audin_load_device_plugin(IWTSPlugin* pPlugin, const char* name, ADDIN_ARGV* args)
+static BOOL audin_load_device_plugin(IWTSPlugin* pPlugin, const char* name, ADDIN_ARGV* args)
 {
 	PFREERDP_AUDIN_DEVICE_ENTRY entry;
 	FREERDP_AUDIN_DEVICE_ENTRY_POINTS entryPoints;
@@ -487,7 +487,7 @@ COMMAND_LINE_ARGUMENT_A audin_args[] =
 	{ NULL, 0, NULL, NULL, NULL, -1, NULL, NULL }
 };
 
-static WINBOOL audin_process_addin_args(IWTSPlugin* pPlugin, ADDIN_ARGV* args)
+static BOOL audin_process_addin_args(IWTSPlugin* pPlugin, ADDIN_ARGV* args)
 {
 	int status;
 	DWORD flags;

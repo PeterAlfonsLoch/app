@@ -56,7 +56,7 @@ void rail_write_high_contrast(wStream* s, RAIL_HIGH_CONTRAST* highContrast)
 	rail_write_unicode_string(s, &highContrast->colorScheme); /* colorScheme */
 }
 
-WINBOOL rail_read_server_exec_result_order(wStream* s, RAIL_EXEC_RESULT_ORDER* execResult)
+BOOL rail_read_server_exec_result_order(wStream* s, RAIL_EXEC_RESULT_ORDER* execResult)
 {
 	if (Stream_GetRemainingLength(s) < 8)
 		return FALSE;
@@ -69,7 +69,7 @@ WINBOOL rail_read_server_exec_result_order(wStream* s, RAIL_EXEC_RESULT_ORDER* e
 	return rail_read_unicode_string(s, &execResult->exeOrFile); /* exeOrFile */
 }
 
-WINBOOL rail_read_server_sysparam_order(wStream* s, RAIL_SYSPARAM_ORDER* sysparam)
+BOOL rail_read_server_sysparam_order(wStream* s, RAIL_SYSPARAM_ORDER* sysparam)
 {
 	BYTE body;
 
@@ -96,7 +96,7 @@ WINBOOL rail_read_server_sysparam_order(wStream* s, RAIL_SYSPARAM_ORDER* syspara
 	return TRUE;
 }
 
-WINBOOL rail_read_server_minmaxinfo_order(wStream* s, RAIL_MINMAXINFO_ORDER* minmaxinfo)
+BOOL rail_read_server_minmaxinfo_order(wStream* s, RAIL_MINMAXINFO_ORDER* minmaxinfo)
 {
 	if (Stream_GetRemainingLength(s) < 20)
 		return FALSE;
@@ -114,7 +114,7 @@ WINBOOL rail_read_server_minmaxinfo_order(wStream* s, RAIL_MINMAXINFO_ORDER* min
 	return TRUE;
 }
 
-WINBOOL rail_read_server_localmovesize_order(wStream* s, RAIL_LOCALMOVESIZE_ORDER* localMoveSize)
+BOOL rail_read_server_localmovesize_order(wStream* s, RAIL_LOCALMOVESIZE_ORDER* localMoveSize)
 {
 	UINT16 isMoveSizeStart;
 
@@ -133,7 +133,7 @@ WINBOOL rail_read_server_localmovesize_order(wStream* s, RAIL_LOCALMOVESIZE_ORDE
 	return TRUE;
 }
 
-WINBOOL rail_read_server_get_appid_resp_order(wStream* s, RAIL_GET_APPID_RESP_ORDER* getAppidResp)
+BOOL rail_read_server_get_appid_resp_order(wStream* s, RAIL_GET_APPID_RESP_ORDER* getAppidResp)
 {
 	if (Stream_GetRemainingLength(s) < 516)
 		return FALSE;
@@ -144,7 +144,7 @@ WINBOOL rail_read_server_get_appid_resp_order(wStream* s, RAIL_GET_APPID_RESP_OR
 	return TRUE;
 }
 
-WINBOOL rail_read_langbar_info_order(wStream* s, RAIL_LANGBAR_INFO_ORDER* langbarInfo)
+BOOL rail_read_langbar_info_order(wStream* s, RAIL_LANGBAR_INFO_ORDER* langbarInfo)
 {
 	if (Stream_GetRemainingLength(s) < 4)
 		return FALSE;
@@ -274,7 +274,7 @@ void rail_write_langbar_info_order(wStream* s, RAIL_LANGBAR_INFO_ORDER* langbarI
 	Stream_Write_UINT32(s, langbarInfo->languageBarStatus); /* languageBarStatus (4 bytes) */
 }
 
-WINBOOL rail_recv_handshake_order(railPlugin* rail, RAIL_HANDSHAKE_ORDER* handshake, wStream* s)
+BOOL rail_recv_handshake_order(railPlugin* rail, RAIL_HANDSHAKE_ORDER* handshake, wStream* s)
 {
 	RAIL_SYSPARAM_ORDER sysparam;
 	RAIL_CLIENT_STATUS_ORDER clientStatus;
@@ -330,7 +330,7 @@ WINBOOL rail_recv_handshake_order(railPlugin* rail, RAIL_HANDSHAKE_ORDER* handsh
 	return TRUE;
 }
 
-WINBOOL rail_recv_handshake_ex_order(railPlugin* rail, RAIL_HANDSHAKE_EX_ORDER* handshakeEx, wStream* s)
+BOOL rail_recv_handshake_ex_order(railPlugin* rail, RAIL_HANDSHAKE_EX_ORDER* handshakeEx, wStream* s)
 {
 	RailClientContext* context = rail_get_client_interface(rail);
 
@@ -345,7 +345,7 @@ WINBOOL rail_recv_handshake_ex_order(railPlugin* rail, RAIL_HANDSHAKE_EX_ORDER* 
 	return TRUE;
 }
 
-WINBOOL rail_recv_exec_result_order(railPlugin* rail, RAIL_EXEC_RESULT_ORDER* execResult, wStream* s)
+BOOL rail_recv_exec_result_order(railPlugin* rail, RAIL_EXEC_RESULT_ORDER* execResult, wStream* s)
 {
 	RailClientContext* context = rail_get_client_interface(rail);
 
@@ -366,7 +366,7 @@ WINBOOL rail_recv_exec_result_order(railPlugin* rail, RAIL_EXEC_RESULT_ORDER* ex
 	return TRUE;
 }
 
-WINBOOL rail_recv_server_sysparam_order(railPlugin* rail, RAIL_SYSPARAM_ORDER* sysparam, wStream* s)
+BOOL rail_recv_server_sysparam_order(railPlugin* rail, RAIL_SYSPARAM_ORDER* sysparam, wStream* s)
 {
 	RailClientContext* context = rail_get_client_interface(rail);
 
@@ -385,7 +385,7 @@ WINBOOL rail_recv_server_sysparam_order(railPlugin* rail, RAIL_SYSPARAM_ORDER* s
 	return TRUE;
 }
 
-WINBOOL rail_recv_server_minmaxinfo_order(railPlugin* rail, RAIL_MINMAXINFO_ORDER* minMaxInfo, wStream* s)
+BOOL rail_recv_server_minmaxinfo_order(railPlugin* rail, RAIL_MINMAXINFO_ORDER* minMaxInfo, wStream* s)
 {
 	RailClientContext* context = rail_get_client_interface(rail);
 
@@ -404,7 +404,7 @@ WINBOOL rail_recv_server_minmaxinfo_order(railPlugin* rail, RAIL_MINMAXINFO_ORDE
 	return TRUE;
 }
 
-WINBOOL rail_recv_server_localmovesize_order(railPlugin* rail, RAIL_LOCALMOVESIZE_ORDER* localMoveSize, wStream* s)
+BOOL rail_recv_server_localmovesize_order(railPlugin* rail, RAIL_LOCALMOVESIZE_ORDER* localMoveSize, wStream* s)
 {
 	RailClientContext* context = rail_get_client_interface(rail);
 
@@ -423,7 +423,7 @@ WINBOOL rail_recv_server_localmovesize_order(railPlugin* rail, RAIL_LOCALMOVESIZ
 	return TRUE;
 }
 
-WINBOOL rail_recv_server_get_appid_resp_order(railPlugin* rail, RAIL_GET_APPID_RESP_ORDER* getAppIdResp, wStream* s)
+BOOL rail_recv_server_get_appid_resp_order(railPlugin* rail, RAIL_GET_APPID_RESP_ORDER* getAppIdResp, wStream* s)
 {
 	RailClientContext* context = rail_get_client_interface(rail);
 
@@ -442,7 +442,7 @@ WINBOOL rail_recv_server_get_appid_resp_order(railPlugin* rail, RAIL_GET_APPID_R
 	return TRUE;
 }
 
-WINBOOL rail_recv_langbar_info_order(railPlugin* rail, RAIL_LANGBAR_INFO_ORDER* langBarInfo, wStream* s)
+BOOL rail_recv_langbar_info_order(railPlugin* rail, RAIL_LANGBAR_INFO_ORDER* langBarInfo, wStream* s)
 {
 	RailClientContext* context = rail_get_client_interface(rail);
 
@@ -461,7 +461,7 @@ WINBOOL rail_recv_langbar_info_order(railPlugin* rail, RAIL_LANGBAR_INFO_ORDER* 
 	return TRUE;
 }
 
-WINBOOL rail_order_recv(railPlugin* rail, wStream* s)
+BOOL rail_order_recv(railPlugin* rail, wStream* s)
 {
 	UINT16 orderType;
 	UINT16 orderLength;

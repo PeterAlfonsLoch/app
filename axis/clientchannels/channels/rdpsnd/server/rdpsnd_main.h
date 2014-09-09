@@ -31,13 +31,13 @@
 
 struct _rdpsnd_server_private
 {
-	WINBOOL ownThread;
+	BOOL ownThread;
 	HANDLE Thread;
 	HANDLE StopEvent;
 	HANDLE channelEvent;
 	void* ChannelHandle;
 
-	WINBOOL waitingHeader;
+	BOOL waitingHeader;
 	DWORD expectedBytes;
 	BYTE msgType;
 	wStream* input_stream;

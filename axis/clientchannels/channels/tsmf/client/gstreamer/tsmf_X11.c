@@ -55,7 +55,7 @@ struct X11Handle
 	int shmid;
 	int *xfwin;
 #if defined(WITH_XEXT)
-	WINBOOL has_shape;
+	BOOL has_shape;
 #endif
 	Display *disp;
 	Window subwin;

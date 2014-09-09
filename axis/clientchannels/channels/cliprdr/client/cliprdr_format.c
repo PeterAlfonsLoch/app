@@ -126,7 +126,7 @@ static void cliprdr_send_format_list_response(cliprdrPlugin* cliprdr)
 void cliprdr_process_short_format_names(cliprdrPlugin* cliprdr, wStream* s, UINT32 length, UINT16 flags)
 {
 	int i;
-	WINBOOL ascii;
+	BOOL ascii;
 	int num_formats;
 	CLIPRDR_FORMAT_NAME* format_name;
 
@@ -282,7 +282,7 @@ void cliprdr_process_format_list(cliprdrPlugin* cliprdr, wStream* s, UINT32 data
 	{
 		int i;
 		UINT32 format;
-		WINBOOL supported;
+		BOOL supported;
 		CLIPRDR_FORMAT_NAME* format_name;
 		RDP_CB_FORMAT_LIST_EVENT* cb_event;
 

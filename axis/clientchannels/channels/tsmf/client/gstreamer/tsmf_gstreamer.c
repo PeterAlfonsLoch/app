@@ -43,7 +43,7 @@
 #include <inttypes.h>
 #endif
 
-static WINBOOL tsmf_gstreamer_pipeline_build(TSMFGstreamerDecoder *mdecoder);
+static BOOL tsmf_gstreamer_pipeline_build(TSMFGstreamerDecoder *mdecoder);
 static void tsmf_gstreamer_clean_up(TSMFGstreamerDecoder *mdecoder);
 static int tsmf_gstreamer_pipeline_set_state(TSMFGstreamerDecoder *mdecoder,
 		GstState desired_state);
@@ -166,7 +166,7 @@ static GstBuffer *tsmf_get_buffer_from_data(const void *raw_data, gsize size)
 	return buffer;
 }
 
-static WINBOOL tsmf_gstreamer_set_format(ITSMFDecoder *decoder, TS_AM_MEDIA_TYPE *media_type)
+static BOOL tsmf_gstreamer_set_format(ITSMFDecoder *decoder, TS_AM_MEDIA_TYPE *media_type)
 {
 	TSMFGstreamerDecoder *mdecoder = (TSMFGstreamerDecoder *) decoder;
 
@@ -393,7 +393,7 @@ void tsmf_gstreamer_clean_up(TSMFGstreamerDecoder *mdecoder)
 	mdecoder->src = NULL;
 }
 
-WINBOOL tsmf_gstreamer_pipeline_build(TSMFGstreamerDecoder *mdecoder)
+BOOL tsmf_gstreamer_pipeline_build(TSMFGstreamerDecoder *mdecoder)
 {
 	const char *appsrc = "appsrc name=source ! decodebin name=decoder !";
 	const char *video = "autovideoconvert ! videoscale !";
@@ -472,7 +472,7 @@ WINBOOL tsmf_gstreamer_pipeline_build(TSMFGstreamerDecoder *mdecoder)
 	return TRUE;
 }
 
-static WINBOOL tsmf_gstreamer_decodeEx(ITSMFDecoder *decoder, const BYTE *data, UINT32 data_size, UINT32 extensions,
+static BOOL tsmf_gstreamer_decodeEx(ITSMFDecoder *decoder, const BYTE *data, UINT32 data_size, UINT32 extensions,
 									UINT64 start_time, UINT64 end_time, UINT64 duration)
 {
 	GstBuffer *gst_buf;
@@ -580,7 +580,7 @@ static void tsmf_gstreamer_change_volume(ITSMFDecoder *decoder, UINT32 newVolume
 	if (mdecoder->media_type == TSMF_MAJOR_TYPE_VIDEO)
 		return;
 
-	mdecoder->gstMuted = (WINBOOL) muted;
+	mdecoder->gstMuted = (BOOL) muted;
 	DEBUG_TSMF("mute=[%d]", mdecoder->gstMuted);
 	mdecoder->gstVolume = (double) newVolume / (double) 10000;
 	DEBUG_TSMF("gst_new_vol=[%f]", mdecoder->gstVolume);
@@ -659,7 +659,7 @@ static void tsmf_gstreamer_control(ITSMFDecoder *decoder, ITSMFControlMsg contro
 		CLOG_ERR("Unknown control message %08x", control_msg);
 }
 
-static WINBOOL tsmf_gstreamer_buffer_filled(ITSMFDecoder *decoder)
+static BOOL tsmf_gstreamer_buffer_filled(ITSMFDecoder *decoder)
 {
 	TSMFGstreamerDecoder *mdecoder = (TSMFGstreamerDecoder *) decoder;
 	DEBUG_TSMF("");
@@ -729,7 +729,7 @@ static void tsmf_gstreamer_update_rendering_area(ITSMFDecoder *decoder,
 						   numRectangles, rectangles);
 }
 
-WINBOOL tsmf_gstreamer_ack(ITSMFDecoder *decoder, WINBOOL (*cb)(void *, WINBOOL), void *stream)
+BOOL tsmf_gstreamer_ack(ITSMFDecoder *decoder, BOOL (*cb)(void *, BOOL), void *stream)
 {
 	TSMFGstreamerDecoder *mdecoder = (TSMFGstreamerDecoder *) decoder;
 	DEBUG_TSMF("");
@@ -738,7 +738,7 @@ WINBOOL tsmf_gstreamer_ack(ITSMFDecoder *decoder, WINBOOL (*cb)(void *, WINBOOL)
 	return TRUE;
 }
 
-WINBOOL tsmf_gstreamer_sync(ITSMFDecoder *decoder, void (*cb)(void *), void *stream)
+BOOL tsmf_gstreamer_sync(ITSMFDecoder *decoder, void (*cb)(void *), void *stream)
 {
 	TSMFGstreamerDecoder *mdecoder = (TSMFGstreamerDecoder *) decoder;
 	DEBUG_TSMF("");

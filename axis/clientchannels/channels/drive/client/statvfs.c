@@ -27,7 +27,7 @@
 
 int statvfs(const char *path, struct statvfs *buf)
 {
-	WINBOOL res;
+	BOOL res;
 	int len;
 	LPWSTR unicodestr;
 	DWORD lpSectorsPerCluster;

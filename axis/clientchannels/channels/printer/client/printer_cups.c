@@ -215,7 +215,7 @@ static void printer_cups_free_printer(rdpPrinter* printer)
 	free(printer);
 }
 
-static rdpPrinter* printer_cups_new_printer(rdpCupsPrinterDriver* cups_driver, const char* name, WINBOOL is_default)
+static rdpPrinter* printer_cups_new_printer(rdpCupsPrinterDriver* cups_driver, const char* name, BOOL is_default)
 {
 	rdpCupsPrinter* cups_printer;
 

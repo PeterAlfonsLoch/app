@@ -103,7 +103,7 @@ static char SMARTCARD_SERVICE_NAME[] = "smartcard";
 static char SERIAL_SERVICE_NAME[] = "serial";
 static char PARALLEL_SERVICE_NAME[] = "parallel";
 
-WINBOOL devman_load_device_service(DEVMAN* devman, RDPDR_DEVICE* device)
+BOOL devman_load_device_service(DEVMAN* devman, RDPDR_DEVICE* device)
 {
 	char* ServiceName = NULL;
 	DEVICE_SERVICE_ENTRY_POINTS ep;

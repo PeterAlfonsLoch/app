@@ -89,8 +89,8 @@ struct _RDPINPUT_CONTACT_POINT
 {
 	int lastX;
 	int lastY;
-	WINBOOL dirty;
-	WINBOOL active;
+	BOOL dirty;
+	BOOL active;
 	UINT32 state;
 	UINT32 flags;
 	UINT32 contactId;

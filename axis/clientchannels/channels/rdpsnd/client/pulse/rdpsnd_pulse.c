@@ -86,7 +86,7 @@ static void rdpsnd_pulse_context_state_callback(pa_context* context, void* userd
 	}
 }
 
-static WINBOOL rdpsnd_pulse_connect(rdpsndDevicePlugin* device)
+static BOOL rdpsnd_pulse_connect(rdpsndDevicePlugin* device)
 {
 	pa_context_state_t state;
 	rdpsndPulsePlugin* pulse = (rdpsndPulsePlugin*) device;
@@ -370,7 +370,7 @@ static void rdpsnd_pulse_free(rdpsndDevicePlugin* device)
 	free(pulse);
 }
 
-static WINBOOL rdpsnd_pulse_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
+static BOOL rdpsnd_pulse_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
 {
 	rdpsndPulsePlugin* pulse = (rdpsndPulsePlugin*)device;
 

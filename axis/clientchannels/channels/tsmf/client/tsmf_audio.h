@@ -27,11 +27,11 @@ typedef struct _ITSMFAudioDevice ITSMFAudioDevice;
 struct _ITSMFAudioDevice
 {
 	/* Open the audio device. */
-	WINBOOL (*Open) (ITSMFAudioDevice* audio, const char* device);
+	BOOL (*Open) (ITSMFAudioDevice* audio, const char* device);
 	/* Set the audio data format. */
-	WINBOOL (*SetFormat) (ITSMFAudioDevice* audio, UINT32 sample_rate, UINT32 channels, UINT32 bits_per_sample);
+	BOOL (*SetFormat) (ITSMFAudioDevice* audio, UINT32 sample_rate, UINT32 channels, UINT32 bits_per_sample);
 	/* Play audio data. */
-	WINBOOL (*Play) (ITSMFAudioDevice* audio, BYTE* data, UINT32 data_size);
+	BOOL (*Play) (ITSMFAudioDevice* audio, BYTE* data, UINT32 data_size);
 	/* Get the latency of the last written sample, in 100ns */
 	UINT64 (*GetLatency) (ITSMFAudioDevice* audio);
 	/* Change the playback volume level */

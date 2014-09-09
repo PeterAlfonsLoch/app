@@ -191,7 +191,7 @@ static void audin_winmm_set_format(IAudinDevice* device, audinFormat* format, UI
 	}
 }
 
-static WINBOOL audin_winmm_format_supported(IAudinDevice* device, audinFormat* format)
+static BOOL audin_winmm_format_supported(IAudinDevice* device, audinFormat* format)
 {
 	AudinWinmmDevice* winmm = (AudinWinmmDevice*) device;
 	PWAVEFORMATEX pwfx;

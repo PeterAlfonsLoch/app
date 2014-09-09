@@ -85,7 +85,7 @@ typedef struct opensl_stream {
 	/*
 	 * Change the current output mute setting.
 	 */
-	void android_SetOutputMute(OPENSL_STREAM *p, WINBOOL mute);
+	void android_SetOutputMute(OPENSL_STREAM *p, BOOL mute);
 	/*
 	 * Get the current output volume level.
 	 */

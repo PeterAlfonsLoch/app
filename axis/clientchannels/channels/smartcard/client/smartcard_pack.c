@@ -606,7 +606,7 @@ UINT32 smartcard_unpack_list_readers_call(SMARTCARD_DEVICE* smartcard, wStream* 
 	return SCARD_S_SUCCESS;
 }
 
-void smartcard_trace_list_readers_call(SMARTCARD_DEVICE* smartcard, ListReaders_Call* call, WINBOOL unicode)
+void smartcard_trace_list_readers_call(SMARTCARD_DEVICE* smartcard, ListReaders_Call* call, BOOL unicode)
 {
 	BYTE* pb;
 	char* mszGroupsA = NULL;
@@ -668,7 +668,7 @@ UINT32 smartcard_pack_list_readers_return(SMARTCARD_DEVICE* smartcard, wStream* 
 	return SCARD_S_SUCCESS;
 }
 
-void smartcard_trace_list_readers_return(SMARTCARD_DEVICE* smartcard, ListReaders_Return* ret, WINBOOL unicode)
+void smartcard_trace_list_readers_return(SMARTCARD_DEVICE* smartcard, ListReaders_Return* ret, BOOL unicode)
 {
 	int index;
 	int length;
@@ -1517,7 +1517,7 @@ UINT32 smartcard_pack_get_status_change_return(SMARTCARD_DEVICE* smartcard, wStr
 	return SCARD_S_SUCCESS;
 }
 
-void smartcard_trace_get_status_change_return(SMARTCARD_DEVICE* smartcard, GetStatusChange_Return* ret, WINBOOL unicode)
+void smartcard_trace_get_status_change_return(SMARTCARD_DEVICE* smartcard, GetStatusChange_Return* ret, BOOL unicode)
 {
 	UINT32 index;
 	char* rgbAtr;
@@ -1652,7 +1652,7 @@ UINT32 smartcard_unpack_status_call(SMARTCARD_DEVICE* smartcard, wStream* s, Sta
 	return SCARD_S_SUCCESS;
 }
 
-void smartcard_trace_status_call(SMARTCARD_DEVICE* smartcard, Status_Call* call, WINBOOL unicode)
+void smartcard_trace_status_call(SMARTCARD_DEVICE* smartcard, Status_Call* call, BOOL unicode)
 {
 	BYTE* pb;
 
@@ -1716,7 +1716,7 @@ UINT32 smartcard_pack_status_return(SMARTCARD_DEVICE* smartcard, wStream* s, Sta
 	return SCARD_S_SUCCESS;
 }
 
-void smartcard_trace_status_return(SMARTCARD_DEVICE* smartcard, Status_Return* ret, WINBOOL unicode)
+void smartcard_trace_status_return(SMARTCARD_DEVICE* smartcard, Status_Return* ret, BOOL unicode)
 {
 	int index;
 	int length;

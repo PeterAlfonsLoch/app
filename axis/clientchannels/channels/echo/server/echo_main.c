@@ -37,7 +37,7 @@ typedef struct _echo_server
 {
 	echo_server_context context;
 
-	WINBOOL opened;
+	BOOL opened;
 
 	HANDLE stopEvent;
 
@@ -48,7 +48,7 @@ typedef struct _echo_server
 
 } echo_server;
 
-static WINBOOL echo_server_open_channel(echo_server* echo)
+static BOOL echo_server_open_channel(echo_server* echo)
 {
 	DWORD Error;
 	HANDLE hEvent;
@@ -94,7 +94,7 @@ static void* echo_server_thread_func(void* arg)
 	void* buffer;
 	DWORD nCount;
 	HANDLE events[8];
-	WINBOOL ready = FALSE;
+	BOOL ready = FALSE;
 	HANDLE ChannelEvent;
 	DWORD BytesReturned = 0;
 	echo_server* echo = (echo_server*) arg;
@@ -137,7 +137,7 @@ static void* echo_server_thread_func(void* arg)
 			break;
 		}
 
-		ready = *((WINBOOL*) buffer);
+		ready = *((BOOL*) buffer);
 
 		WTSFreeMemory(buffer);
 
@@ -203,7 +203,7 @@ static void echo_server_close(echo_server_context* context)
 	}
 }
 
-static WINBOOL echo_server_request(echo_server_context* context, const BYTE* buffer, UINT32 length)
+static BOOL echo_server_request(echo_server_context* context, const BYTE* buffer, UINT32 length)
 {
 	echo_server* echo = (echo_server*) context;
 

@@ -309,7 +309,7 @@ int android_GetOutputMute(OPENSL_STREAM *p) {
 	return mute;
 }
 
-void android_SetOutputMute(OPENSL_STREAM *p, WINBOOL _mute) {
+void android_SetOutputMute(OPENSL_STREAM *p, BOOL _mute) {
 	SLboolean mute = _mute;
 
 	assert(p);

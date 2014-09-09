@@ -101,7 +101,7 @@ void tsmf_playback_ack(IWTSVirtualChannelCallback *pChannelCallback,
 	Stream_Free(s, TRUE);
 }
 
-WINBOOL tsmf_push_event(IWTSVirtualChannelCallback *pChannelCallback, wMessage *event)
+BOOL tsmf_push_event(IWTSVirtualChannelCallback *pChannelCallback, wMessage *event)
 {
 	int status;
 	TSMF_CHANNEL_CALLBACK *callback = (TSMF_CHANNEL_CALLBACK *) pChannelCallback;

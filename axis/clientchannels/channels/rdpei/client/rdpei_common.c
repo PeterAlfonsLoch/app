@@ -26,7 +26,7 @@
 
 #include "rdpei_common.h"
 
-WINBOOL rdpei_read_2byte_unsigned(wStream* s, UINT32* value)
+BOOL rdpei_read_2byte_unsigned(wStream* s, UINT32* value)
 {
 	BYTE byte;
 
@@ -52,7 +52,7 @@ WINBOOL rdpei_read_2byte_unsigned(wStream* s, UINT32* value)
 	return TRUE;
 }
 
-WINBOOL rdpei_write_2byte_unsigned(wStream* s, UINT32 value)
+BOOL rdpei_write_2byte_unsigned(wStream* s, UINT32 value)
 {
 	BYTE byte;
 
@@ -75,10 +75,10 @@ WINBOOL rdpei_write_2byte_unsigned(wStream* s, UINT32 value)
 	return TRUE;
 }
 
-WINBOOL rdpei_read_2byte_signed(wStream* s, INT32* value)
+BOOL rdpei_read_2byte_signed(wStream* s, INT32* value)
 {
 	BYTE byte;
-	WINBOOL negative;
+	BOOL negative;
 
 	if (Stream_GetRemainingLength(s) < 1)
 		return FALSE;
@@ -104,10 +104,10 @@ WINBOOL rdpei_read_2byte_signed(wStream* s, INT32* value)
 	return TRUE;
 }
 
-WINBOOL rdpei_write_2byte_signed(wStream* s, INT32 value)
+BOOL rdpei_write_2byte_signed(wStream* s, INT32 value)
 {
 	BYTE byte;
-	WINBOOL negative = FALSE;
+	BOOL negative = FALSE;
 
 	if (value < 0)
 	{
@@ -142,7 +142,7 @@ WINBOOL rdpei_write_2byte_signed(wStream* s, INT32 value)
 	return TRUE;
 }
 
-WINBOOL rdpei_read_4byte_unsigned(wStream* s, UINT32* value)
+BOOL rdpei_read_4byte_unsigned(wStream* s, UINT32* value)
 {
 	BYTE byte;
 	BYTE count;
@@ -194,7 +194,7 @@ WINBOOL rdpei_read_4byte_unsigned(wStream* s, UINT32* value)
 	return TRUE;
 }
 
-WINBOOL rdpei_write_4byte_unsigned(wStream* s, UINT32 value)
+BOOL rdpei_write_4byte_unsigned(wStream* s, UINT32 value)
 {
 	BYTE byte;
 
@@ -237,11 +237,11 @@ WINBOOL rdpei_write_4byte_unsigned(wStream* s, UINT32 value)
 	return TRUE;
 }
 
-WINBOOL rdpei_read_4byte_signed(wStream* s, INT32* value)
+BOOL rdpei_read_4byte_signed(wStream* s, INT32* value)
 {
 	BYTE byte;
 	BYTE count;
-	WINBOOL negative;
+	BOOL negative;
 
 	if (Stream_GetRemainingLength(s) < 1)
 		return FALSE;
@@ -294,10 +294,10 @@ WINBOOL rdpei_read_4byte_signed(wStream* s, INT32* value)
 	return TRUE;
 }
 
-WINBOOL rdpei_write_4byte_signed(wStream* s, INT32 value)
+BOOL rdpei_write_4byte_signed(wStream* s, INT32 value)
 {
 	BYTE byte;
-	WINBOOL negative = FALSE;
+	BOOL negative = FALSE;
 
 	if (value < 0)
 	{
@@ -361,7 +361,7 @@ WINBOOL rdpei_write_4byte_signed(wStream* s, INT32 value)
 	return TRUE;
 }
 
-WINBOOL rdpei_read_8byte_unsigned(wStream* s, UINT64* value)
+BOOL rdpei_read_8byte_unsigned(wStream* s, UINT64* value)
 {
 	BYTE byte;
 	BYTE count;
@@ -473,7 +473,7 @@ WINBOOL rdpei_read_8byte_unsigned(wStream* s, UINT64* value)
 	return TRUE;
 }
 
-WINBOOL rdpei_write_8byte_unsigned(wStream* s, UINT64 value)
+BOOL rdpei_write_8byte_unsigned(wStream* s, UINT64 value)
 {
 	BYTE byte;
 

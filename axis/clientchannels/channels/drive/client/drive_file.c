@@ -101,13 +101,13 @@ static char* drive_file_combine_fullpath(const char* base_path, const char* path
 	return fullpath;
 }
 
-static WINBOOL drive_file_remove_dir(const char* path)
+static BOOL drive_file_remove_dir(const char* path)
 {
 	DIR* dir;
 	char* p;
 	struct STAT st;
 	struct dirent* pdirent;
-	WINBOOL ret = TRUE;
+	BOOL ret = TRUE;
 
 	dir = opendir(path);
 
@@ -177,15 +177,15 @@ static void drive_file_set_fullpath(DRIVE_FILE* file, char* fullpath)
 		file->filename += 1;
 }
 
-static WINBOOL drive_file_init(DRIVE_FILE* file, UINT32 DesiredAccess, UINT32 CreateDisposition, UINT32 CreateOptions)
+static BOOL drive_file_init(DRIVE_FILE* file, UINT32 DesiredAccess, UINT32 CreateDisposition, UINT32 CreateOptions)
 {
 	struct STAT st;
-	WINBOOL exists;
+	BOOL exists;
 #ifdef WIN32
 	const static int mode = _S_IREAD | _S_IWRITE ;
 #else
 	const static int mode = S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH;
-	WINBOOL largeFile = FALSE;
+	BOOL largeFile = FALSE;
 #endif
 	int oflag = 0;
 
@@ -330,7 +330,7 @@ void drive_file_free(DRIVE_FILE* file)
 	free(file);
 }
 
-WINBOOL drive_file_seek(DRIVE_FILE* file, UINT64 Offset)
+BOOL drive_file_seek(DRIVE_FILE* file, UINT64 Offset)
 {
 	if (file->is_dir || file->fd == -1)
 		return FALSE;
@@ -341,7 +341,7 @@ WINBOOL drive_file_seek(DRIVE_FILE* file, UINT64 Offset)
 	return TRUE;
 }
 
-WINBOOL drive_file_read(DRIVE_FILE* file, BYTE* buffer, UINT32* Length)
+BOOL drive_file_read(DRIVE_FILE* file, BYTE* buffer, UINT32* Length)
 {
 	ssize_t r;
 
@@ -358,7 +358,7 @@ WINBOOL drive_file_read(DRIVE_FILE* file, BYTE* buffer, UINT32* Length)
 	return TRUE;
 }
 
-WINBOOL drive_file_write(DRIVE_FILE* file, BYTE* buffer, UINT32 Length)
+BOOL drive_file_write(DRIVE_FILE* file, BYTE* buffer, UINT32 Length)
 {
 	ssize_t r;
 
@@ -379,7 +379,7 @@ WINBOOL drive_file_write(DRIVE_FILE* file, BYTE* buffer, UINT32 Length)
 	return TRUE;
 }
 
-WINBOOL drive_file_query_information(DRIVE_FILE* file, UINT32 FsInformationClass, wStream* output)
+BOOL drive_file_query_information(DRIVE_FILE* file, UINT32 FsInformationClass, wStream* output)
 {
 	struct STAT st;
 
@@ -453,7 +453,7 @@ int dir_empty(const char *path)
 	return empty;
 #endif
 }
-WINBOOL drive_file_set_information(DRIVE_FILE* file, UINT32 FsInformationClass, UINT32 Length, wStream* input)
+BOOL drive_file_set_information(DRIVE_FILE* file, UINT32 FsInformationClass, UINT32 Length, wStream* input)
 {
 	char* s = NULL;
 	mode_t m;
@@ -580,11 +580,11 @@ WINBOOL drive_file_set_information(DRIVE_FILE* file, UINT32 FsInformationClass, 
 	return TRUE;
 }
 
-WINBOOL drive_file_query_directory(DRIVE_FILE* file, UINT32 FsInformationClass, BYTE InitialQuery,
+BOOL drive_file_query_directory(DRIVE_FILE* file, UINT32 FsInformationClass, BYTE InitialQuery,
 	const char* path, wStream* output)
 {
 	int length;
-	WINBOOL ret;
+	BOOL ret;
 	WCHAR* ent_path;
 	struct STAT st;
 	struct dirent* ent;

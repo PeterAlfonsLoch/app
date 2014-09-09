@@ -222,7 +222,7 @@ static void rdpsnd_opensles_free(rdpsndDevicePlugin* device)
 	free(opensles);
 }
 
-static WINBOOL rdpsnd_opensles_format_supported(rdpsndDevicePlugin* device,
+static BOOL rdpsnd_opensles_format_supported(rdpsndDevicePlugin* device,
 		AUDIO_FORMAT* format)
 {
 	rdpsndopenslesPlugin* opensles = (rdpsndopenslesPlugin*) device;

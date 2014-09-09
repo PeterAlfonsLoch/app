@@ -50,7 +50,7 @@ typedef struct _TSMFALSAAudioDevice
 	FREERDP_DSP_CONTEXT *dsp_context;
 } TSMFAlsaAudioDevice;
 
-static WINBOOL tsmf_alsa_open_device(TSMFAlsaAudioDevice *alsa)
+static BOOL tsmf_alsa_open_device(TSMFAlsaAudioDevice *alsa)
 {
 	int error;
 	error = snd_pcm_open(&alsa->out_handle, alsa->device, SND_PCM_STREAM_PLAYBACK, 0);
@@ -63,7 +63,7 @@ static WINBOOL tsmf_alsa_open_device(TSMFAlsaAudioDevice *alsa)
 	return TRUE;
 }
 
-static WINBOOL tsmf_alsa_open(ITSMFAudioDevice *audio, const char *device)
+static BOOL tsmf_alsa_open(ITSMFAudioDevice *audio, const char *device)
 {
 	TSMFAlsaAudioDevice *alsa = (TSMFAlsaAudioDevice *) audio;
 	if(!device)
@@ -78,7 +78,7 @@ static WINBOOL tsmf_alsa_open(ITSMFAudioDevice *audio, const char *device)
 	return tsmf_alsa_open_device(alsa);
 }
 
-static WINBOOL tsmf_alsa_set_format(ITSMFAudioDevice *audio,
+static BOOL tsmf_alsa_set_format(ITSMFAudioDevice *audio,
 								 UINT32 sample_rate, UINT32 channels, UINT32 bits_per_sample)
 {
 	int error;
@@ -138,7 +138,7 @@ static WINBOOL tsmf_alsa_set_format(ITSMFAudioDevice *audio,
 	return TRUE;
 }
 
-static WINBOOL tsmf_alsa_play(ITSMFAudioDevice *audio, BYTE *data, UINT32 data_size)
+static BOOL tsmf_alsa_play(ITSMFAudioDevice *audio, BYTE *data, UINT32 data_size)
 {
 	int len;
 	int error;
