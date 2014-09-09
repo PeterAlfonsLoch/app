@@ -89,7 +89,9 @@
 
 /* Defined in wincred.h, do not redefine */
 
-#ifdef _WIN32
+#ifdef CA2_AURA
+
+#elif defined(_WIN32)
 
 #include <wincred.h>
 
