@@ -80,6 +80,7 @@
 			<Add directory="../../../appseed/base" />
 			<Add directory="../../../appseed/axis" />
 			<Add directory="../../../appseed/aura" />
+			<Add directory="channels/audin/client" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -88,294 +89,222 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
-		<Unit filename="builds/amiga/include/freetype/config/ftconfig.h" />
-		<Unit filename="builds/amiga/include/freetype/config/ftmodule.h" />
-		<Unit filename="builds/atari/ATARI.H" />
-		<Unit filename="builds/unix/ft2unix.h" />
-		<Unit filename="builds/vms/ftconfig.h" />
-		<Unit filename="devel/ft2build.h" />
-		<Unit filename="devel/ftoption.h" />
-		<Unit filename="src/autofit/afangles.h" />
-		<Unit filename="src/autofit/afcjk.h" />
-		<Unit filename="src/autofit/afdummy.h" />
-		<Unit filename="src/autofit/aferrors.h" />
-		<Unit filename="src/autofit/afglobal.h" />
-		<Unit filename="src/autofit/afhints.h" />
-		<Unit filename="src/autofit/afindic.h" />
-		<Unit filename="src/autofit/aflatin.h" />
-		<Unit filename="src/autofit/aflatin2.h" />
-		<Unit filename="src/autofit/afloader.h" />
-		<Unit filename="src/autofit/afmodule.h" />
-		<Unit filename="src/autofit/afpic.h" />
-		<Unit filename="src/autofit/aftypes.h" />
-		<Unit filename="src/autofit/afwarp.h" />
-		<Unit filename="src/autofit/autofit.c">
+		<Unit filename="channels/audin/client/alsa/audin_alsa.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/Jamfile" />
-		<Unit filename="src/base/basepic.c">
+		<Unit filename="channels/audin/client/audin_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/basepic.h" />
-		<Unit filename="src/base/ftapi.c">
+		<Unit filename="channels/audin/client/audin_main.h" />
+		<Unit filename="channels/audin/client/opensles/opensl_io.h" />
+		<Unit filename="channels/client/addin.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftbase.c">
+		<Unit filename="channels/client/addin.h" />
+		<Unit filename="channels/client/tables.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftbase.h" />
-		<Unit filename="src/base/ftbbox.c">
+		<Unit filename="channels/client/tables.h" />
+		<Unit filename="channels/cliprdr/client/cliprdr_format.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftbdf.c">
+		<Unit filename="channels/cliprdr/client/cliprdr_format.h" />
+		<Unit filename="channels/cliprdr/client/cliprdr_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftbitmap.c">
+		<Unit filename="channels/cliprdr/client/cliprdr_main.h" />
+		<Unit filename="channels/cliprdr/server/cliprdr_main.h" />
+		<Unit filename="channels/disp/client/disp_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftcid.c">
+		<Unit filename="channels/disp/client/disp_main.h" />
+		<Unit filename="channels/drdynvc/client/drdynvc_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftdbgmem.c">
+		<Unit filename="channels/drdynvc/client/drdynvc_main.h" />
+		<Unit filename="channels/drdynvc/client/drdynvc_types.h" />
+		<Unit filename="channels/drdynvc/client/dvcman.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftdebug.c">
+		<Unit filename="channels/drdynvc/client/dvcman.h" />
+		<Unit filename="channels/drdynvc/server/drdynvc_main.h" />
+		<Unit filename="channels/drive/client/dirent.h" />
+		<Unit filename="channels/drive/client/drive_file.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftfstype.c">
+		<Unit filename="channels/drive/client/drive_file.h" />
+		<Unit filename="channels/drive/client/drive_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftgasp.c">
+		<Unit filename="channels/drive/client/statvfs.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftglyph.c">
+		<Unit filename="channels/drive/client/statvfs.h" />
+		<Unit filename="channels/echo/client/echo_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftgxval.c">
+		<Unit filename="channels/echo/client/echo_main.h" />
+		<Unit filename="channels/encomsp/client/encomsp_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftinit.c">
+		<Unit filename="channels/encomsp/client/encomsp_main.h" />
+		<Unit filename="channels/encomsp/server/encomsp_main.h" />
+		<Unit filename="channels/parallel/client/parallel_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftlcdfil.c">
+		<Unit filename="channels/printer/client/printer_cups.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftmm.c">
+		<Unit filename="channels/printer/client/printer_cups.h" />
+		<Unit filename="channels/printer/client/printer_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftotval.c">
+		<Unit filename="channels/printer/client/printer_main.h" />
+		<Unit filename="channels/printer/client/printer_win.h" />
+		<Unit filename="channels/rail/client/rail_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftpatent.c">
+		<Unit filename="channels/rail/client/rail_main.h" />
+		<Unit filename="channels/rail/client/rail_orders.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftpfr.c">
+		<Unit filename="channels/rail/client/rail_orders.h" />
+		<Unit filename="channels/rail/rail_common.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftpic.c">
+		<Unit filename="channels/rail/rail_common.h" />
+		<Unit filename="channels/rdpdr/client/devman.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftstroke.c">
+		<Unit filename="channels/rdpdr/client/devman.h" />
+		<Unit filename="channels/rdpdr/client/irp.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftsynth.c">
+		<Unit filename="channels/rdpdr/client/irp.h" />
+		<Unit filename="channels/rdpdr/client/rdpdr_capabilities.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftsystem.c">
+		<Unit filename="channels/rdpdr/client/rdpdr_capabilities.h" />
+		<Unit filename="channels/rdpdr/client/rdpdr_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/fttype1.c">
+		<Unit filename="channels/rdpdr/client/rdpdr_main.h" />
+		<Unit filename="channels/rdpdr/server/rdpdr_main.h" />
+		<Unit filename="channels/rdpei/client/rdpei_common.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftwinfnt.c">
+		<Unit filename="channels/rdpei/client/rdpei_common.h" />
+		<Unit filename="channels/rdpei/client/rdpei_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/ftxf86.c">
+		<Unit filename="channels/rdpei/client/rdpei_main.h" />
+		<Unit filename="channels/rdpgfx/client/rdpgfx_codec.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/base/rules.mk" />
-		<Unit filename="src/bdf/bdf.c">
+		<Unit filename="channels/rdpgfx/client/rdpgfx_codec.h" />
+		<Unit filename="channels/rdpgfx/client/rdpgfx_common.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/bdf/bdf.h" />
-		<Unit filename="src/bdf/bdfdrivr.h" />
-		<Unit filename="src/bdf/bdferror.h" />
-		<Unit filename="src/bzip2/ftbzip2.c">
+		<Unit filename="channels/rdpgfx/client/rdpgfx_common.h" />
+		<Unit filename="channels/rdpgfx/client/rdpgfx_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/cache/ftcache.c">
+		<Unit filename="channels/rdpgfx/client/rdpgfx_main.h" />
+		<Unit filename="channels/rdpsnd/client/alsa/rdpsnd_alsa.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/cache/ftccache.h" />
-		<Unit filename="src/cache/ftccback.h" />
-		<Unit filename="src/cache/ftcerror.h" />
-		<Unit filename="src/cache/ftcglyph.h" />
-		<Unit filename="src/cache/ftcimage.h" />
-		<Unit filename="src/cache/ftcmanag.h" />
-		<Unit filename="src/cache/ftcmru.h" />
-		<Unit filename="src/cache/ftcsbits.h" />
-		<Unit filename="src/cff/cff.c">
+		<Unit filename="channels/rdpsnd/client/ios/TPCircularBuffer.h" />
+		<Unit filename="channels/rdpsnd/client/opensles/opensl_io.h" />
+		<Unit filename="channels/rdpsnd/client/rdpsnd_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/cff/cffcmap.h" />
-		<Unit filename="src/cff/cffdrivr.h" />
-		<Unit filename="src/cff/cfferrs.h" />
-		<Unit filename="src/cff/cffgload.h" />
-		<Unit filename="src/cff/cffload.h" />
-		<Unit filename="src/cff/cffobjs.h" />
-		<Unit filename="src/cff/cffparse.h" />
-		<Unit filename="src/cff/cffpic.h" />
-		<Unit filename="src/cff/cfftoken.h" />
-		<Unit filename="src/cff/cfftypes.h" />
-		<Unit filename="src/cid/ciderrs.h" />
-		<Unit filename="src/cid/cidgload.h" />
-		<Unit filename="src/cid/cidload.h" />
-		<Unit filename="src/cid/cidobjs.h" />
-		<Unit filename="src/cid/cidparse.h" />
-		<Unit filename="src/cid/cidriver.h" />
-		<Unit filename="src/cid/cidtoken.h" />
-		<Unit filename="src/cid/type1cid.c">
+		<Unit filename="channels/rdpsnd/client/rdpsnd_main.h" />
+		<Unit filename="channels/rdpsnd/server/rdpsnd_main.h" />
+		<Unit filename="channels/remdesk/client/remdesk_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/gxvalid/gxvalid.c">
+		<Unit filename="channels/remdesk/client/remdesk_main.h" />
+		<Unit filename="channels/remdesk/server/remdesk_main.h" />
+		<Unit filename="channels/serial/client/serial_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/gxvalid/gxvalid.h" />
-		<Unit filename="src/gxvalid/gxvcommn.h" />
-		<Unit filename="src/gxvalid/gxverror.h" />
-		<Unit filename="src/gxvalid/gxvfeat.h" />
-		<Unit filename="src/gxvalid/gxvmod.h" />
-		<Unit filename="src/gxvalid/gxvmort.h" />
-		<Unit filename="src/gxvalid/gxvmorx.h" />
-		<Unit filename="src/gzip/ftgzip.c">
+		<Unit filename="channels/server/channels.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/lzw/ftlzw.c">
+		<Unit filename="channels/server/channels.h" />
+		<Unit filename="channels/smartcard/client/smartcard_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/lzw/ftzopen.h" />
-		<Unit filename="src/otvalid/otvalid.c">
+		<Unit filename="channels/smartcard/client/smartcard_main.h" />
+		<Unit filename="channels/smartcard/client/smartcard_operations.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/otvalid/otvalid.h" />
-		<Unit filename="src/otvalid/otvcommn.h" />
-		<Unit filename="src/otvalid/otverror.h" />
-		<Unit filename="src/otvalid/otvgpos.h" />
-		<Unit filename="src/otvalid/otvmod.h" />
-		<Unit filename="src/pcf/pcf.c">
+		<Unit filename="channels/smartcard/client/smartcard_pack.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pcf/pcf.h" />
-		<Unit filename="src/pcf/pcfdrivr.h" />
-		<Unit filename="src/pcf/pcferror.h" />
-		<Unit filename="src/pcf/pcfread.h" />
-		<Unit filename="src/pcf/pcfutil.h" />
-		<Unit filename="src/pfr/pfr.c">
+		<Unit filename="channels/smartcard/client/smartcard_pack.h" />
+		<Unit filename="channels/tsmf/client/alsa/tsmf_alsa.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pfr/pfrcmap.h" />
-		<Unit filename="src/pfr/pfrdrivr.h" />
-		<Unit filename="src/pfr/pfrerror.h" />
-		<Unit filename="src/pfr/pfrgload.h" />
-		<Unit filename="src/pfr/pfrload.h" />
-		<Unit filename="src/pfr/pfrobjs.h" />
-		<Unit filename="src/pfr/pfrsbit.h" />
-		<Unit filename="src/pfr/pfrtypes.h" />
-		<Unit filename="src/psaux/afmparse.h" />
-		<Unit filename="src/psaux/psaux.c">
+		<Unit filename="channels/tsmf/client/gstreamer/tsmf_platform.h" />
+		<Unit filename="channels/tsmf/client/tsmf_audio.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/psaux/psauxerr.h" />
-		<Unit filename="src/psaux/psauxmod.h" />
-		<Unit filename="src/psaux/psconv.h" />
-		<Unit filename="src/psaux/psobjs.h" />
-		<Unit filename="src/psaux/t1cmap.h" />
-		<Unit filename="src/psaux/t1decode.h" />
-		<Unit filename="src/pshinter/pshalgo.h" />
-		<Unit filename="src/pshinter/pshglob.h" />
-		<Unit filename="src/pshinter/pshinter.c">
+		<Unit filename="channels/tsmf/client/tsmf_audio.h" />
+		<Unit filename="channels/tsmf/client/tsmf_codec.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/pshinter/pshmod.h" />
-		<Unit filename="src/pshinter/pshnterr.h" />
-		<Unit filename="src/pshinter/pshpic.h" />
-		<Unit filename="src/pshinter/pshrec.h" />
-		<Unit filename="src/psnames/psmodule.h" />
-		<Unit filename="src/psnames/psnamerr.h" />
-		<Unit filename="src/psnames/psnames.c">
+		<Unit filename="channels/tsmf/client/tsmf_codec.h" />
+		<Unit filename="channels/tsmf/client/tsmf_constants.h" />
+		<Unit filename="channels/tsmf/client/tsmf_decoder.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/psnames/pspic.h" />
-		<Unit filename="src/psnames/pstables.h" />
-		<Unit filename="src/raster/ftmisc.h" />
-		<Unit filename="src/raster/ftraster.h" />
-		<Unit filename="src/raster/ftrend1.h" />
-		<Unit filename="src/raster/raster.c">
+		<Unit filename="channels/tsmf/client/tsmf_decoder.h" />
+		<Unit filename="channels/tsmf/client/tsmf_ifman.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/raster/rasterrs.h" />
-		<Unit filename="src/raster/rastpic.h" />
-		<Unit filename="src/sfnt/sfdriver.h" />
-		<Unit filename="src/sfnt/sferrors.h" />
-		<Unit filename="src/sfnt/sfnt.c">
+		<Unit filename="channels/tsmf/client/tsmf_ifman.h" />
+		<Unit filename="channels/tsmf/client/tsmf_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/sfnt/sfntpic.h" />
-		<Unit filename="src/sfnt/sfobjs.h" />
-		<Unit filename="src/sfnt/ttbdf.h" />
-		<Unit filename="src/sfnt/ttcmap.h" />
-		<Unit filename="src/sfnt/ttcmapc.h" />
-		<Unit filename="src/sfnt/ttkern.h" />
-		<Unit filename="src/sfnt/ttload.h" />
-		<Unit filename="src/sfnt/ttmtx.h" />
-		<Unit filename="src/sfnt/ttpost.h" />
-		<Unit filename="src/sfnt/ttsbit.h" />
-		<Unit filename="src/smooth/ftgrays.h" />
-		<Unit filename="src/smooth/ftsmerrs.h" />
-		<Unit filename="src/smooth/ftsmooth.h" />
-		<Unit filename="src/smooth/ftspic.h" />
-		<Unit filename="src/smooth/smooth.c">
+		<Unit filename="channels/tsmf/client/tsmf_main.h" />
+		<Unit filename="channels/tsmf/client/tsmf_media.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/tools/ftrandom/ftrandom.c">
+		<Unit filename="channels/tsmf/client/tsmf_media.h" />
+		<Unit filename="channels/tsmf/client/tsmf_types.h" />
+		<Unit filename="channels/urbdrc/client/data_transfer.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/truetype/truetype.c">
+		<Unit filename="channels/urbdrc/client/data_transfer.h" />
+		<Unit filename="channels/urbdrc/client/isoch_queue.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/truetype/ttdriver.h" />
-		<Unit filename="src/truetype/tterrors.h" />
-		<Unit filename="src/truetype/ttgload.h" />
-		<Unit filename="src/truetype/ttgxvar.h" />
-		<Unit filename="src/truetype/ttinterp.h" />
-		<Unit filename="src/truetype/ttobjs.h" />
-		<Unit filename="src/truetype/ttpic.h" />
-		<Unit filename="src/truetype/ttpload.h" />
-		<Unit filename="src/truetype/ttsubpix.h" />
-		<Unit filename="src/type1/t1afm.h" />
-		<Unit filename="src/type1/t1driver.h" />
-		<Unit filename="src/type1/t1errors.h" />
-		<Unit filename="src/type1/t1gload.h" />
-		<Unit filename="src/type1/t1load.h" />
-		<Unit filename="src/type1/t1objs.h" />
-		<Unit filename="src/type1/t1parse.h" />
-		<Unit filename="src/type1/t1tokens.h" />
-		<Unit filename="src/type1/type1.c">
+		<Unit filename="channels/urbdrc/client/isoch_queue.h" />
+		<Unit filename="channels/urbdrc/client/libusb/libusb_udevice.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/type42/t42drivr.h" />
-		<Unit filename="src/type42/t42error.h" />
-		<Unit filename="src/type42/t42objs.h" />
-		<Unit filename="src/type42/t42parse.h" />
-		<Unit filename="src/type42/t42types.h" />
-		<Unit filename="src/type42/type42.c">
+		<Unit filename="channels/urbdrc/client/libusb/libusb_udevice.h" />
+		<Unit filename="channels/urbdrc/client/libusb/libusb_udevman.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/winfonts/fnterrs.h" />
-		<Unit filename="src/winfonts/winfnt.c">
+		<Unit filename="channels/urbdrc/client/libusb/request_queue.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/winfonts/winfnt.h" />
+		<Unit filename="channels/urbdrc/client/libusb/request_queue.h" />
+		<Unit filename="channels/urbdrc/client/searchman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/urbdrc/client/searchman.h" />
+		<Unit filename="channels/urbdrc/client/urbdrc_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/urbdrc/client/urbdrc_main.h" />
+		<Unit filename="channels/urbdrc/client/urbdrc_types.h" />
+		<Unit filename="config.h" />
+		<Unit filename="tables.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />
