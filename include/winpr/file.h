@@ -27,7 +27,7 @@
 #include <winpr/io.h>
 #include <winpr/error.h>
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !define(CA2_AURA)
 
 #ifndef MAX_PATH
 #define MAX_PATH				260
