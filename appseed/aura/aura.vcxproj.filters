@@ -1508,12 +1508,6 @@
     <ClInclude Include="aura\node\node.h">
       <Filter>Header Files\aura\node</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\os.h">
-      <Filter>Header Files\aura\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\windows\win1.h">
-      <Filter>Header Files\aura\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="aura\node\windows\windows_application.h">
       <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
@@ -2050,6 +2044,9 @@
     </ClInclude>
     <ClInclude Include="graphics\visual\visual_icon.h">
       <Filter>Header Files\graphics\visual</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\windows\windows.h">
+      <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3022,12 +3019,6 @@
     <ClCompile Include="framework_c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\windows\win2.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\windows\windows.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\windows\windows_base_file.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
@@ -3140,9 +3131,6 @@
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="aura\node\windows\windows_uac_tools.cpp">
-      <Filter>Source Files\aura\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\windows\win1.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="aura\node\node.cpp">
@@ -3478,6 +3466,12 @@
     <ClCompile Include="graphics\visual\visual_icon.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_base.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\windows\windows.cpp">
+      <Filter>Source Files\aura\node\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3512,9 +3506,6 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
