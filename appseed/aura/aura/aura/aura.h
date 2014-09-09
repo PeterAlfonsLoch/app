@@ -4,6 +4,7 @@
 #ifndef CA2_APP_AURA_AURA_AURA_AURA_H
 #define CA2_APP_AURA_AURA_AURA_AURA_H
 
+#define CA2_AURA
 
 #include "aura_aura.h"
 

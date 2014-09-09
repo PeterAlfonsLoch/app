@@ -19,6 +19,7 @@
 
 #ifndef WINPR_WTYPES_H
 #define WINPR_WTYPES_H
+#ifndef CA2_AURA
 
 /* MSDN: Windows Data Types - http://msdn.microsoft.com/en-us/library/aa383751/ */
 /* [MS-DTYP]: Windows Data Types - http://msdn.microsoft.com/en-us/library/cc230273/ */
@@ -396,5 +397,5 @@ typedef PDWORD PLCID;
 typedef WORD LANGID;
 
 #endif
-
+#endif // CA2_AURA
 #endif /* WINPR_WTYPES_H */

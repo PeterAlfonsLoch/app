@@ -22,7 +22,9 @@
 
 #include <winpr/platform.h>
 
-#ifdef _WIN32
+#ifdef CA2_AURA
+
+#elif defined(_WIN32)
 
 #include <specstrings.h>
 
