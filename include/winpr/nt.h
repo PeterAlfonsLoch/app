@@ -1279,7 +1279,7 @@
 
 /* Defined in winternl.h, always define since we do not include this header */
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(CA2_AURA)
 
 /**
  * winternl.h contains an incomplete definition of enum FILE_INFORMATION_CLASS
@@ -1346,7 +1346,7 @@ typedef enum _FILE_INFORMATION_CLASS
 	FileShortNameInformation
 } FILE_INFORMATION_CLASS;
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(CA2_AURA)
 
 #define FILE_SUPERSEDE				0x00000000
 #define FILE_OPEN				0x00000001
