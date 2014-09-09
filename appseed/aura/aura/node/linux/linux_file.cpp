@@ -17,12 +17,12 @@
 //#include <dlfcn.h>
 //#endif
 
-__STATIC inline bool IsDirSep(WCHAR ch)
+/*__STATIC inline bool IsDirSep(WCHAR ch)
 {
 
    return (ch == '\\' || ch == '/');
 
-}
+}*/
 
 
 namespace linux
