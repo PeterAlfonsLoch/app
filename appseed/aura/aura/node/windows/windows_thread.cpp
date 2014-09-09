@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "windows.h"
 #include <ddeml.h>  // for MSGF_DDEMGR
 
 
