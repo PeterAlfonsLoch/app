@@ -398,8 +398,8 @@ typedef WORD LANGID;
 
 #endif
 #else // CA2_AURA
-typedef void* HANDLE, *PHANDLE, *LPHANDLE;
-typedef HANDLE HWND;
+typedef void* FREERDP_HANDLE, *PFREERDP_HANDLE, *LPFREERDP_HANDLE;
+typedef FREERDP_HANDLE HWND;
 typedef BYTE BOOLEAN, *PBOOLEAN;
 #endif // CA2_AURA
 #endif /* WINPR_WTYPES_H */
