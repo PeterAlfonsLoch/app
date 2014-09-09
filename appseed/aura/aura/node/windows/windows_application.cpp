@@ -1,6 +1,6 @@
 #include "framework.h"
+#include "windows.h"
 
-void dappy(const char * psz);
 
 namespace windows
 {
@@ -17,8 +17,6 @@ namespace windows
       m_paurasystem                    =  papp->m_pauraapp->m_paurasystem;
 
       m_atomApp = m_atomSystemTopic    = NULL;
-
-      
 
    }
 

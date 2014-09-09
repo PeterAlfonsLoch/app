@@ -1,16 +1,22 @@
 #include "framework.h"
+#include "windows.h"
+
 
 namespace windows
 {
+
 
    folder_watch::folder_watch(sp(::aura::application) papp) :
       element(papp),
       thread(papp)
    {
+
    }
+
 
    bool folder_watch::watch(const char * pszPath)
    {
+
       if(!::file::folder_watch::watch(pszPath))
          return false;
 
@@ -18,7 +24,9 @@ namespace windows
          return false;
 
       return true;
+
    }
+
 
    int32_t folder_watch::run() // thread procedure
    {

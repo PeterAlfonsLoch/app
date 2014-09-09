@@ -21,7 +21,6 @@ CLASS_DECL_AURA void __try_cleanup();
 
 
 
-#include "win1.h"
 #include "windows_implementation.h"
 #include "windows_folder_watch.h"
 #include "windows_factory_exchange.h"

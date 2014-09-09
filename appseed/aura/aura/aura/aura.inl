@@ -396,3 +396,11 @@ namespace aura
 
 
 
+
+
+inline bool IsDirSep(WCHAR ch)
+{
+
+   return (ch == '\\' || ch == '/');
+
+}

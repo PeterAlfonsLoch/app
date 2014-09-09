@@ -63,7 +63,7 @@ namespace windows
 
       m_pNextInfo = new WIN32_FIND_DATAW;
 
-      m_bGotLast = FALSE;
+      m_bGotLast = false;
 
       if (pstrName == NULL)
          pstrName = "*.*";
@@ -83,7 +83,7 @@ namespace windows
 
          ::SetLastError(dwTemp);
 
-         return FALSE;
+         return false;
 
       }
 
@@ -106,7 +106,7 @@ namespace windows
 
          ::SetLastError(ERROR_INVALID_NAME);
 
-         return FALSE;
+         return false;
       }
       else
       {
@@ -153,9 +153,9 @@ namespace windows
       ASSERT_VALID(this);
 
       if (m_pFoundInfo != NULL)
-         return m_pFoundInfo->dwFileAttributes & dwMask;
+         return (m_pFoundInfo->dwFileAttributes & dwMask) != FALSE;
       else
-         return FALSE;
+         return false;
 
    }
 
@@ -172,7 +172,7 @@ namespace windows
          return TRUE;
       }
       else
-         return FALSE;
+         return false;
 
    }
 
@@ -189,7 +189,7 @@ namespace windows
          return TRUE;
       }
       else
-         return FALSE;
+         return false;
 
    }
 
@@ -206,7 +206,7 @@ namespace windows
          return TRUE;
       }
       else
-         return FALSE;
+         return false;
 
    }
 
@@ -223,7 +223,7 @@ namespace windows
          return TRUE;
       }
       else
-         return FALSE;
+         return false;
 
    }
 
@@ -240,7 +240,7 @@ namespace windows
          return TRUE;
       }
       else
-         return FALSE;
+         return false;
 
    }
 
@@ -255,7 +255,7 @@ namespace windows
          return TRUE;
       }
       else
-         return FALSE;
+         return false;
    }
 
    
@@ -268,7 +268,7 @@ namespace windows
       // return TRUE if the file name is "." or ".." and
       // the file is a directory
 
-      bool bResult = FALSE;
+      bool bResult = false;
 
       if (m_pFoundInfo != NULL && IsDirectory())
       {
@@ -302,7 +302,7 @@ namespace windows
       ASSERT(m_hContext != NULL);
 
       if (m_hContext == NULL)
-         return FALSE;
+         return false;
 
       if (m_pFoundInfo == NULL)
          m_pFoundInfo = new WIN32_FIND_DATAW;

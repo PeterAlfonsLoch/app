@@ -1,27 +1,42 @@
 #include "framework.h"
-#include "win1.h"
+#include "windows.h"
+
 
 namespace windows
 {
+
+
    int32_t windows::function()
    {
+
       return 0;
+
    }
+
 
    HINSTANCE LoadLibrary(const char * lpsz)
    {
+
       return ::LoadLibraryW(::str::international::utf8_to_unicode(lpsz));
+
    }
+
 
    bool CLASS_DECL_AURA SHGetSpecialFolderPath(oswindow oswindow,string &str,int32_t csidl,bool fCreate)
    {
+
       return ::SHGetSpecialFolderPathW(oswindow,wtostring(str,MAX_PATH * 8),csidl,fCreate) != FALSE;
+
    }
+
 
    DWORD GetFileAttributes(const char * lpFileName)
    {
+
       return ::GetFileAttributesW(::str::international::utf8_to_unicode(lpFileName));
+
    }
+
 
    bool CreateDirectory(const char * lpPathName,LPSECURITY_ATTRIBUTES lpSecurityAttributes)
    {

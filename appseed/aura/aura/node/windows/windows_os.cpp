@@ -1,7 +1,5 @@
 #include "framework.h"
-
-
-#undef USERNAME_LENGTH // mysql one
+#include "windows.h"
 
 
 #include <Wtsapi32.h>
