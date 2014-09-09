@@ -91,7 +91,7 @@
 #endif
 
 /* Extended Window Styles */
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(CA2_AURA)
 #define WS_EX_ACCEPTFILES		0x00000010
 #define WS_EX_APPWINDOW			0x00040000
 #define WS_EX_CLIENTEDGE		0x00000200
