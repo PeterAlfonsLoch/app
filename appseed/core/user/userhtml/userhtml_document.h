@@ -20,6 +20,8 @@ public:
 
    virtual bool open_document(var varFile);
 
+   virtual bool load_html(const string & str);
+
    virtual bool on_new_document();
 
 #ifdef DEBUG
@@ -33,6 +35,8 @@ public:
    virtual bool on_simple_action(id id);
 
    virtual void soft_reload();
+
+   virtual sp(::user::interaction) get_frame();
 
 
 };

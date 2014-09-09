@@ -8,6 +8,7 @@
 #pragma once
 
 class lite_html_reader;   // forward declaration
+class lite_html_tag;   // forward declaration
 
 /**
  ILiteHTMLReaderEvents

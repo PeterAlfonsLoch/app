@@ -184,8 +184,33 @@ bool html_document::on_simple_action(id id)
 
 bool html_document::open_document(var varFile)
 {
+
    return on_open_document(varFile) != FALSE;
+
 }
+
+
+bool html_document::load_html(const string & str)
+{
+
+   get_html_data()->load(str);
+
+   return true;
+
+}
+
+
+sp(::user::interaction) html_document::get_frame()
+{
+
+   return get_html_data()->get_frame();
+
+}
+
+
+
+
+
 
 
 
