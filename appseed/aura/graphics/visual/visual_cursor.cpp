@@ -48,6 +48,17 @@ namespace visual
 
 #endif
 
+   void cursor_alloc(::aura::application * papp, cursor * & pdib)
+   {
+      pdib = new cursor(papp);
+   }
+
+   ::draw2d::dib * cursor_get_dib(cursor * pcursor)
+   {
+      return pcursor->m_dib;
+   }
+
+
 } // namespace visual
 
 

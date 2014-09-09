@@ -4137,6 +4137,25 @@ namespace draw2d
    }
 
 
+   void dib_paste(dib * pdibthis, dib *pdib)
+   {
+      pdibthis->Paste(pdib);
+   }
+
+   void dib_alloc(::aura::application * papp, dib * & pdib)
+   {
+      App(papp).alloc(pdib);
+   }
+   void dib_create(dib * pdib, int w, int h)
+   {
+      pdib->create(w, h);
+   }
+   unsigned int * dib_get_data(dib * pdib)
+   {
+      return (unsigned int * ) pdib->m_pcolorref;
+   }
+
+
 } // namespace draw2d
 
 

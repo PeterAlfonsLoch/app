@@ -34,6 +34,37 @@ typedef struct ca2rdp_info ca2rdpInfo;
 
 CLASS_DECL_RDPCLIENT WINBOOL ca2rdp_pre_connect(freerdp* instance);
 
+namespace aura
+{
+   class application;
+}
+
+namespace draw2d
+{
+   class dib;
+}
+
+namespace visual
+{
+   class cursor;
+   void cursor_alloc(::aura::application * papp, cursor * & pcursor);
+   ::draw2d::dib * cursor_get_dib(cursor * pcursor);
+}
+
+namespace message
+{
+   class base;
+   class mouse;
+}
+
+namespace draw2d
+{
+   void dib_paste(dib * pdibthis, dib *pdib);
+   void dib_alloc(::aura::application * papp, dib * & pdib);
+   void dib_create(dib * pdib, int w, int h);
+   unsigned int * dib_get_data(dib * pdib);
+}
+
 struct ca2rdp_context :
    public rdpContext
 {
@@ -62,7 +93,10 @@ struct ca2rdp_info
    ::message::base * event;
 	//DFBEvent event;
 	HCLRCONV clrconv;
-	::rect update_rect;
+	int x;
+	int y;
+	int w;
+	int h;
    //DFBSurfaceDescription dsc;
 	::draw2d::dib * primary;
    ::draw2d::dib * surface;

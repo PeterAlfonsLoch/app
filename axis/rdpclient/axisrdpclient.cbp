@@ -76,7 +76,9 @@
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
-			<Add option="-lbase" />
+			<Add option="-laura" />
+			<Add option="-laxisfreerdp" />
+			<Add option="-laxiswinpr" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
@@ -86,6 +88,8 @@
 		<Unit filename="client/ca2/ca2rdp_event.h" />
 		<Unit filename="client/ca2/ca2rdp_graphics.cpp" />
 		<Unit filename="client/ca2/ca2rdp_graphics.h" />
+		<Unit filename="config.h" />
+		<Unit filename="freerdp_rdpclient_setup.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

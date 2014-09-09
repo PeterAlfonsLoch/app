@@ -74,7 +74,6 @@
 			<Add option="-laxis" />
 			<Add option="-laxiszlib" />
 			<Add option="-laxisbzip2" />
-			<Add option="-laxisbsdiff" />
 			<Add option="-laxisopenssl" />
 			<Add option="-laxisfreeimage" />
 			<Add option="-laxisfreetype" />

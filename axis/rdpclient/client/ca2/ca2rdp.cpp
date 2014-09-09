@@ -73,13 +73,13 @@ void ca2rdp_end_paint(rdpContext* context)
    ca2rdpi->update_rect.right = gdi->primary->hdc->hwnd->invalid->x+gdi->primary->hdc->hwnd->invalid->w;
    ca2rdpi->update_rect.bottom = gdi->primary->hdc->hwnd->invalid->y +gdi->primary->hdc->hwnd->invalid->h;
 #else
-	ca2rdpi->update_rect.x = 0;
-	ca2rdpi->update_rect.y = 0;
-	ca2rdpi->update_rect.w = gdi->width;
-	ca2rdpi->update_rect.h = gdi->height;
+	ca2rdpi->x = 0;
+	ca2rdpi->y = 0;
+	ca2rdpi->w = gdi->width;
+	ca2rdpi->h = gdi->height;
 #endif
 
-   ca2rdpi->surface->Paste(ca2rdpi->primary);
+   ::draw2d::dib_paste(ca2rdpi->surface,ca2rdpi->primary);
 
 /*#ifdef WINDOWS
    ::draw2d::graphics_sp g(((ca2rdpContext*)context)->m_papp->allocer());
@@ -189,14 +189,20 @@ WINBOOL ca2rdp_post_connect(freerdp* instance)
    //gdi->width = instance->settings->DesktopWidth;
    //gdi->height = instance->settings->DesktopHeight;
 
-   App(context->m_papp).alloc(ca2rdpi->primary);
-   ca2rdpi->primary->create(instance->settings->DesktopWidth,instance->settings->DesktopHeight);
+   ::draw2d::dib_alloc(context->m_papp, ca2rdpi->primary);
+   ::draw2d::dib_create(ca2rdpi->primary, instance->settings->DesktopWidth,instance->settings->DesktopHeight);
 
-   App(context->m_papp).alloc(ca2rdpi->surface);
-   ca2rdpi->surface->create(instance->settings->DesktopWidth,instance->settings->DesktopHeight);
+   ::draw2d::dib_alloc(context->m_papp, ca2rdpi->surface);
+   ::draw2d::dib_create(ca2rdpi->surface, instance->settings->DesktopWidth,instance->settings->DesktopHeight);
+
+//   App(context->m_papp).alloc(ca2rdpi->primary);
+  // ca2rdpi->primary->create(instance->settings->DesktopWidth,instance->settings->DesktopHeight);
+
+   //App(context->m_papp).alloc(ca2rdpi->surface);
+   //ca2rdpi->surface->create(instance->settings->DesktopWidth,instance->settings->DesktopHeight);
 
 
-   gdi_init(instance,CLRCONV_ALPHA |  CLRBUF_32BPP,(BYTE*) ca2rdpi->primary->m_pcolorref);
+   gdi_init(instance,CLRCONV_ALPHA |  CLRBUF_32BPP,(BYTE*) ::draw2d::dib_get_data(ca2rdpi->primary));
 	gdi = instance->context->gdi;
 
 //	ca2rdpi->err = DirectFBCreate(&(ca2rdpi->ca2rdpb));

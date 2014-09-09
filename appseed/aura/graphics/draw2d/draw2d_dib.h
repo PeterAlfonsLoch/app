@@ -29,7 +29,7 @@ namespace draw2d
 
       };
 
-      
+
       class descriptor
       {
       public:
@@ -418,11 +418,19 @@ namespace draw2d
          }
       }
 
-      
+
 
    };
 
+
+   CLASS_DECL_AURA void dib_paste(dib * pdibthis, dib *pdib);
+   CLASS_DECL_AURA void dib_alloc(::aura::application * papp, dib * & pdib);
+   CLASS_DECL_AURA void dib_create(dib * pdib, int w, int h);
+   CLASS_DECL_AURA unsigned int * dib_get_data(dib * pdib);
+
+
 } // namespace draw2d
+
 
 
 

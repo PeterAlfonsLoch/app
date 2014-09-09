@@ -39,20 +39,23 @@ void ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
 
 	ca2rdp_pointer->xhot = pointer->xPos;
 	ca2rdp_pointer->yhot = pointer->yPos;
-   ca2rdp_pointer->m_pcursor = new ::visual::cursor(((ca2rdpContext*)context)->m_papp);
-   
+
+   ::visual::cursor_alloc(((ca2rdpContext*)context)->m_papp, ca2rdp_pointer->m_pcursor);
+
+   ::draw2d::dib * dib = ::visual::cursor_get_dib(ca2rdp_pointer->m_pcursor);
+
    //.m_dib.alloc(((ca2rdpContext*)context)->m_papp->allocer());
-   ca2rdp_pointer->m_pcursor->m_dib->create(ca2rdp_pointer->pointer.width,ca2rdp_pointer->pointer.height);
+   ::draw2d::dib_create(dib, ca2rdp_pointer->pointer.width,ca2rdp_pointer->pointer.height);
 
 	if ((pointer->andMaskData != 0) && (pointer->xorMaskData != 0))
 	{
-      freerdp_alpha_cursor_convert((BYTE *) ca2rdp_pointer->m_pcursor->m_dib->get_data(),pointer->xorMaskData,pointer->andMaskData,
+      freerdp_alpha_cursor_convert((BYTE *) ::draw2d::dib_get_data(dib),pointer->xorMaskData,pointer->andMaskData,
 				pointer->width, pointer->height, pointer->xorBpp, ca2rdpi->clrconv);
 	}
 
 	if (pointer->xorBpp > 24)
 	{
-      freerdp_image_swap_color_order((BYTE *)ca2rdp_pointer->m_pcursor->m_dib->get_data(),pointer->width,pointer->height);
+      freerdp_image_swap_color_order((BYTE *)::draw2d::dib_get_data(dib),pointer->width,pointer->height);
 	}
 
 }
