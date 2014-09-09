@@ -1306,6 +1306,8 @@
 
 #endif
 
+#ifndef CA2_AURA
+
 typedef enum _FILE_INFORMATION_CLASS
 {
 	FileDirectoryInformation = 1,
@@ -1349,6 +1351,9 @@ typedef enum _FILE_INFORMATION_CLASS
 	FileValidDataLengthInformation,
 	FileShortNameInformation
 } FILE_INFORMATION_CLASS;
+
+#endif // CA2_AURA
+
 
 #if !defined(_WIN32) && !defined(CA2_AURA)
 
