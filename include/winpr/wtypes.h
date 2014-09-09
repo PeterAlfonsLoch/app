@@ -397,5 +397,7 @@ typedef PDWORD PLCID;
 typedef WORD LANGID;
 
 #endif
+#else // CA2_AURA
+typedef BYTE BOOLEAN, *PBOOLEAN;
 #endif // CA2_AURA
 #endif /* WINPR_WTYPES_H */
