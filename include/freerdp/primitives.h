@@ -153,13 +153,13 @@ typedef pstatus_t (*__YCoCgRToRGB_8u_AC4R_t)(
 	BYTE *pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
 	UINT8 shift,
-	WINBOOL withAlpha,
-	WINBOOL invert);
+	BOOL withAlpha,
+	BOOL invert);
 typedef pstatus_t (*__RGB565ToARGB_16u32u_C3C4_t)(
 	const UINT16* pSrc, INT32 srcStep,
 	UINT32* pDst, INT32 dstStep,
 	UINT32 width, UINT32 height,
-	WINBOOL alpha, WINBOOL invert);
+	BOOL alpha, BOOL invert);
 typedef pstatus_t (*__andC_32u_t)(
 	const UINT32 *pSrc,
 	UINT32 val,

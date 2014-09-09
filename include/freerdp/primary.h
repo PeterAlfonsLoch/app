@@ -78,7 +78,7 @@ struct _ORDER_INFO
 	UINT32 fieldFlags;
 	UINT32 boundsFlags;
 	rdpBounds bounds;
-	WINBOOL deltaCoordinates;
+	BOOL deltaCoordinates;
 };
 typedef struct _ORDER_INFO ORDER_INFO;
 
@@ -352,7 +352,7 @@ struct _FAST_INDEX_ORDER
 	INT32 opTop;
 	INT32 opRight;
 	INT32 opBottom;
-	WINBOOL opaqueRect;
+	BOOL opaqueRect;
 	INT32 x;
 	INT32 y;
 	UINT32 cbData;

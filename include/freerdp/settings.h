@@ -377,7 +377,7 @@ typedef struct _BITMAP_CACHE_CELL_INFO BITMAP_CACHE_CELL_INFO;
 struct _BITMAP_CACHE_V2_CELL_INFO
 {
 	UINT32 numEntries;
-	WINBOOL persistent;
+	BOOL persistent;
 };
 typedef struct _BITMAP_CACHE_V2_CELL_INFO BITMAP_CACHE_V2_CELL_INFO;
 
@@ -810,7 +810,7 @@ struct rdp_settings
 	UINT64 padding001[16 - 1]; /* 1 */
 
 	/* Core Parameters */
-	ALIGN64 WINBOOL ServerMode; /* 16 */
+	ALIGN64 BOOL ServerMode; /* 16 */
 	ALIGN64 UINT32 ShareId; /* 17 */
 	ALIGN64 UINT32 PduSource; /* 18 */
 	ALIGN64 UINT32 ServerPort; /* 19 */
@@ -819,7 +819,7 @@ struct rdp_settings
 	ALIGN64 char* Password; /* 22 */
 	ALIGN64 char* Domain; /* 23 */
 	ALIGN64 char* PasswordHash; /* 24 */
-	ALIGN64 WINBOOL WaitForOutputBufferFlush; /* 25 */
+	ALIGN64 BOOL WaitForOutputBufferFlush; /* 25 */
 	UINT64 padding0064[64 - 26]; /* 26 */
 	UINT64 padding0128[128 - 64]; /* 64 */
 
@@ -837,18 +837,18 @@ struct rdp_settings
 	ALIGN64 char* ClientHostname; /* 134 */
 	ALIGN64 char* ClientProductId; /* 135 */
 	ALIGN64 UINT32 EarlyCapabilityFlags; /* 136 */
-	ALIGN64 WINBOOL NetworkAutoDetect; /* 137 */
-	ALIGN64 WINBOOL SupportAsymetricKeys; /* 138 */
-	ALIGN64 WINBOOL SupportErrorInfoPdu; /* 139 */
-	ALIGN64 WINBOOL SupportStatusInfoPdu; /* 140 */
-	ALIGN64 WINBOOL SupportMonitorLayoutPdu; /* 141 */
-	ALIGN64 WINBOOL SupportGraphicsPipeline; /* 142 */
-	ALIGN64 WINBOOL SupportDynamicTimeZone; /* 143 */
-	ALIGN64 WINBOOL SupportHeartbeatPdu; /* 144 */
+	ALIGN64 BOOL NetworkAutoDetect; /* 137 */
+	ALIGN64 BOOL SupportAsymetricKeys; /* 138 */
+	ALIGN64 BOOL SupportErrorInfoPdu; /* 139 */
+	ALIGN64 BOOL SupportStatusInfoPdu; /* 140 */
+	ALIGN64 BOOL SupportMonitorLayoutPdu; /* 141 */
+	ALIGN64 BOOL SupportGraphicsPipeline; /* 142 */
+	ALIGN64 BOOL SupportDynamicTimeZone; /* 143 */
+	ALIGN64 BOOL SupportHeartbeatPdu; /* 144 */
 	UINT64 padding0192[192 - 145]; /* 145 */
 
 	/* Client/Server Security Data */
-	ALIGN64 WINBOOL DisableEncryption; /* 192 */
+	ALIGN64 BOOL DisableEncryption; /* 192 */
 	ALIGN64 UINT32 EncryptionMethods; /* 193 */
 	ALIGN64 UINT32 ExtEncryptionMethods; /* 194 */
 	ALIGN64 UINT32 EncryptionLevel; /* 195 */
@@ -869,19 +869,19 @@ struct rdp_settings
 	/* Client Cluster Data */
 	ALIGN64 UINT32 ClusterInfoFlags; /* 320 */
 	ALIGN64 UINT32 RedirectedSessionId; /* 321 */
-	ALIGN64 WINBOOL ConsoleSession; /* 322 */
+	ALIGN64 BOOL ConsoleSession; /* 322 */
 	UINT64 padding0384[384 - 323]; /* 323 */
 
 	/* Client Monitor Data */
 	ALIGN64 int MonitorCount; /* 384 */
 	ALIGN64 UINT32 MonitorDefArraySize; /* 385 */
 	ALIGN64 rdpMonitor* MonitorDefArray; /* 386 */
-	ALIGN64 WINBOOL SpanMonitors; /* 387 */
-	ALIGN64 WINBOOL UseMultimon; /* 388 */
-	ALIGN64 WINBOOL ForceMultimon; /* 389 */
+	ALIGN64 BOOL SpanMonitors; /* 387 */
+	ALIGN64 BOOL UseMultimon; /* 388 */
+	ALIGN64 BOOL ForceMultimon; /* 389 */
 	ALIGN64 UINT32 DesktopPosX; /* 390 */
 	ALIGN64 UINT32 DesktopPosY; /* 391 */
-	ALIGN64 WINBOOL ListMonitors; /* 392 */
+	ALIGN64 BOOL ListMonitors; /* 392 */
 	ALIGN64 UINT32* MonitorIds; /* 393 */
 	ALIGN64 UINT32 NumMonitorIds; /* 394 */
 	UINT64 padding0448[448 - 395]; /* 395 */
@@ -891,7 +891,7 @@ struct rdp_settings
 
 	/* Client Multitransport Channel Data */
 	ALIGN64 UINT32 MultitransportFlags; /* 512 */
-	ALIGN64 WINBOOL SupportMultitransport; /* 513 */
+	ALIGN64 BOOL SupportMultitransport; /* 513 */
 	UINT64 padding0576[576 - 514]; /* 514 */
 	UINT64 padding0640[640 - 576]; /* 576 */
 
@@ -905,60 +905,60 @@ struct rdp_settings
 	UINT64 padding0704[704 - 642]; /* 642 */
 
 	/* Client Info Flags */
-	ALIGN64 WINBOOL AutoLogonEnabled; /* 704 */
-	ALIGN64 WINBOOL CompressionEnabled; /* 705 */
-	ALIGN64 WINBOOL DisableCtrlAltDel; /* 706 */
-	ALIGN64 WINBOOL EnableWindowsKey; /* 707 */
-	ALIGN64 WINBOOL MaximizeShell; /* 708 */
-	ALIGN64 WINBOOL LogonNotify; /* 709 */
-	ALIGN64 WINBOOL LogonErrors; /* 710 */
-	ALIGN64 WINBOOL MouseAttached; /* 711 */
-	ALIGN64 WINBOOL MouseHasWheel; /* 712 */
-	ALIGN64 WINBOOL RemoteConsoleAudio; /* 713 */
-	ALIGN64 WINBOOL AudioPlayback; /* 714 */
-	ALIGN64 WINBOOL AudioCapture; /* 715 */
-	ALIGN64 WINBOOL VideoDisable; /* 716 */
-	ALIGN64 WINBOOL PasswordIsSmartcardPin; /* 717 */
-	ALIGN64 WINBOOL UsingSavedCredentials; /* 718 */
-	ALIGN64 WINBOOL ForceEncryptedCsPdu; /* 719 */
-	ALIGN64 WINBOOL HiDefRemoteApp; /* 720 */
+	ALIGN64 BOOL AutoLogonEnabled; /* 704 */
+	ALIGN64 BOOL CompressionEnabled; /* 705 */
+	ALIGN64 BOOL DisableCtrlAltDel; /* 706 */
+	ALIGN64 BOOL EnableWindowsKey; /* 707 */
+	ALIGN64 BOOL MaximizeShell; /* 708 */
+	ALIGN64 BOOL LogonNotify; /* 709 */
+	ALIGN64 BOOL LogonErrors; /* 710 */
+	ALIGN64 BOOL MouseAttached; /* 711 */
+	ALIGN64 BOOL MouseHasWheel; /* 712 */
+	ALIGN64 BOOL RemoteConsoleAudio; /* 713 */
+	ALIGN64 BOOL AudioPlayback; /* 714 */
+	ALIGN64 BOOL AudioCapture; /* 715 */
+	ALIGN64 BOOL VideoDisable; /* 716 */
+	ALIGN64 BOOL PasswordIsSmartcardPin; /* 717 */
+	ALIGN64 BOOL UsingSavedCredentials; /* 718 */
+	ALIGN64 BOOL ForceEncryptedCsPdu; /* 719 */
+	ALIGN64 BOOL HiDefRemoteApp; /* 720 */
 	ALIGN64 UINT32 CompressionLevel; /* 721 */
 	UINT64 padding0768[768 - 722]; /* 722 */
 
 	/* Client Info (Extra) */
-	ALIGN64 WINBOOL IPv6Enabled; /* 768 */
+	ALIGN64 BOOL IPv6Enabled; /* 768 */
 	ALIGN64 char* ClientAddress; /* 769 */
 	ALIGN64 char* ClientDir; /* 770 */
 	UINT64 padding0832[832 - 771]; /* 771 */
 
 	/* Client Info (Auto Reconnection) */
-	ALIGN64 WINBOOL AutoReconnectionEnabled; /* 832 */
+	ALIGN64 BOOL AutoReconnectionEnabled; /* 832 */
 	ALIGN64 UINT32 AutoReconnectMaxRetries; /* 833 */
 	ALIGN64 ARC_CS_PRIVATE_PACKET* ClientAutoReconnectCookie; /* 834 */
 	ALIGN64 ARC_SC_PRIVATE_PACKET* ServerAutoReconnectCookie; /* 835 */
-	ALIGN64 WINBOOL PrintReconnectCookie; /* 836 */
+	ALIGN64 BOOL PrintReconnectCookie; /* 836 */
 	UINT64 padding0896[896 - 837]; /* 837 */
 
 	/* Client Info (Time Zone) */
 	ALIGN64 TIME_ZONE_INFO* ClientTimeZone; /* 896 */
 	ALIGN64 char* DynamicDSTTimeZoneKeyName; /* 897 */
-	ALIGN64 WINBOOL DynamicDaylightTimeDisabled; /* 898 */
+	ALIGN64 BOOL DynamicDaylightTimeDisabled; /* 898 */
 	UINT64 padding0960[960 - 899]; /* 899 */
 
 	/* Client Info (Performance Flags) */
 	ALIGN64 UINT32 PerformanceFlags; /* 960 */
-	ALIGN64 WINBOOL AllowFontSmoothing; /* 961 */
-	ALIGN64 WINBOOL DisableWallpaper; /* 962 */
-	ALIGN64 WINBOOL DisableFullWindowDrag; /* 963 */
-	ALIGN64 WINBOOL DisableMenuAnims; /* 964 */
-	ALIGN64 WINBOOL DisableThemes; /* 965 */
-	ALIGN64 WINBOOL DisableCursorShadow; /* 966 */
-	ALIGN64 WINBOOL DisableCursorBlinking; /* 967 */
-	ALIGN64 WINBOOL AllowDesktopComposition; /* 968 */
+	ALIGN64 BOOL AllowFontSmoothing; /* 961 */
+	ALIGN64 BOOL DisableWallpaper; /* 962 */
+	ALIGN64 BOOL DisableFullWindowDrag; /* 963 */
+	ALIGN64 BOOL DisableMenuAnims; /* 964 */
+	ALIGN64 BOOL DisableThemes; /* 965 */
+	ALIGN64 BOOL DisableCursorShadow; /* 966 */
+	ALIGN64 BOOL DisableCursorBlinking; /* 967 */
+	ALIGN64 BOOL AllowDesktopComposition; /* 968 */
 	UINT64 padding1024[1024 - 969]; /* 969 */
 
 	/* Remote Assistance */
-	ALIGN64 WINBOOL RemoteAssistanceMode; /* 1024 */
+	ALIGN64 BOOL RemoteAssistanceMode; /* 1024 */
 	ALIGN64 char* RemoteAssistanceSessionId; /* 1025 */
 	ALIGN64 char* RemoteAssistancePassStub; /* 1026 */
 	ALIGN64 char* RemoteAssistancePassword; /* 1027 */
@@ -970,28 +970,28 @@ struct rdp_settings
 	 */
 
 	/* Protocol Security */
-	ALIGN64 WINBOOL TlsSecurity; /* 1088 */
-	ALIGN64 WINBOOL NlaSecurity; /* 1089 */
-	ALIGN64 WINBOOL RdpSecurity; /* 1090 */
-	ALIGN64 WINBOOL ExtSecurity; /* 1091 */
-	ALIGN64 WINBOOL Authentication; /* 1092 */
+	ALIGN64 BOOL TlsSecurity; /* 1088 */
+	ALIGN64 BOOL NlaSecurity; /* 1089 */
+	ALIGN64 BOOL RdpSecurity; /* 1090 */
+	ALIGN64 BOOL ExtSecurity; /* 1091 */
+	ALIGN64 BOOL Authentication; /* 1092 */
 	ALIGN64 UINT32 RequestedProtocols; /* 1093 */
 	ALIGN64 UINT32 SelectedProtocol; /* 1094 */
 	ALIGN64 UINT32 NegotiationFlags; /* 1095 */
-	ALIGN64 WINBOOL NegotiateSecurityLayer; /* 1096 */
-	ALIGN64 WINBOOL RestrictedAdminModeRequired; /* 1097 */
+	ALIGN64 BOOL NegotiateSecurityLayer; /* 1096 */
+	ALIGN64 BOOL RestrictedAdminModeRequired; /* 1097 */
 	ALIGN64 char* AuthenticationServiceClass; /* 1098 */
-	ALIGN64 WINBOOL DisableCredentialsDelegation; /* 1099 */
-	ALIGN64 WINBOOL AuthenticationLevel; /* 1100 */
+	ALIGN64 BOOL DisableCredentialsDelegation; /* 1099 */
+	ALIGN64 BOOL AuthenticationLevel; /* 1100 */
 	ALIGN64 char* PermittedTLSCiphers; /* 1101 */
 	UINT64 padding1152[1152 - 1102]; /* 1102 */
 
 	/* Connection Cookie */
-	ALIGN64 WINBOOL MstscCookieMode; /* 1152 */
+	ALIGN64 BOOL MstscCookieMode; /* 1152 */
 	ALIGN64 UINT32 CookieMaxLength; /* 1153 */
 	ALIGN64 UINT32 PreconnectionId; /* 1154 */
 	ALIGN64 char* PreconnectionBlob; /* 1155 */
-	ALIGN64 WINBOOL SendPreconnectionPdu; /* 1156 */
+	ALIGN64 BOOL SendPreconnectionPdu; /* 1156 */
 	UINT64 padding1216[1216 - 1157]; /* 1157 */
 
 	/* Server Redirection */
@@ -1026,14 +1026,14 @@ struct rdp_settings
 	UINT64 padding1408[1408 - 1346]; /* 1346 */
 
 	/* Server Certificate */
-	ALIGN64 WINBOOL IgnoreCertificate; /* 1408 */
+	ALIGN64 BOOL IgnoreCertificate; /* 1408 */
 	ALIGN64 char* CertificateName; /* 1409 */
 	ALIGN64 char* CertificateFile; /* 1410 */
 	ALIGN64 char* PrivateKeyFile; /* 1411 */
 	ALIGN64 char* RdpKeyFile; /* 1412 */
 	ALIGN64 rdpRsaKey* RdpServerRsaKey; /* 1413 */
 	ALIGN64 rdpCertificate* RdpServerCertificate; /* 1414 */
-	ALIGN64 WINBOOL ExternalCertificateManagement; /* 1415 */
+	ALIGN64 BOOL ExternalCertificateManagement; /* 1415 */
 	UINT64 padding1472[1472 - 1416]; /* 1416 */
 	UINT64 padding1536[1536 - 1472]; /* 1472 */
 
@@ -1042,32 +1042,32 @@ struct rdp_settings
 	 */
 
 	/* Window Settings */
-	ALIGN64 WINBOOL Workarea; /* 1536 */
-	ALIGN64 WINBOOL Fullscreen; /* 1537 */
+	ALIGN64 BOOL Workarea; /* 1536 */
+	ALIGN64 BOOL Fullscreen; /* 1537 */
 	ALIGN64 UINT32 PercentScreen; /* 1538 */
-	ALIGN64 WINBOOL GrabKeyboard; /* 1539 */
-	ALIGN64 WINBOOL Decorations; /* 1540 */
-	ALIGN64 WINBOOL MouseMotion; /* 1541 */
+	ALIGN64 BOOL GrabKeyboard; /* 1539 */
+	ALIGN64 BOOL Decorations; /* 1540 */
+	ALIGN64 BOOL MouseMotion; /* 1541 */
 	ALIGN64 char* WindowTitle; /* 1542 */
 	ALIGN64 UINT64 ParentWindowId; /* 1543 */
-	ALIGN64 WINBOOL AsyncInput; /* 1544 */
-	ALIGN64 WINBOOL AsyncUpdate; /* 1545 */
-	ALIGN64 WINBOOL AsyncChannels; /* 1546 */
-	ALIGN64 WINBOOL AsyncTransport; /* 1547 */
-	ALIGN64 WINBOOL ToggleFullscreen; /* 1548 */
+	ALIGN64 BOOL AsyncInput; /* 1544 */
+	ALIGN64 BOOL AsyncUpdate; /* 1545 */
+	ALIGN64 BOOL AsyncChannels; /* 1546 */
+	ALIGN64 BOOL AsyncTransport; /* 1547 */
+	ALIGN64 BOOL ToggleFullscreen; /* 1548 */
 	ALIGN64 char* WmClass; /* 1549 */
-	ALIGN64 WINBOOL EmbeddedWindow; /* 1550 */
-	ALIGN64 WINBOOL SmartSizing; /* 1551 */
+	ALIGN64 BOOL EmbeddedWindow; /* 1550 */
+	ALIGN64 BOOL SmartSizing; /* 1551 */
 	ALIGN64 int XPan; /* 1552 */
 	ALIGN64 int YPan; /* 1553 */
 	ALIGN64 double ScalingFactor; /* 1554 */
 	UINT64 padding1601[1601 - 1555]; /* 1555 */
 
 	/* Miscellaneous */
-	ALIGN64 WINBOOL SoftwareGdi; /* 1601 */
-	ALIGN64 WINBOOL LocalConnection; /* 1602 */
-	ALIGN64 WINBOOL AuthenticationOnly; /* 1603 */
-	ALIGN64 WINBOOL CredentialsFromStdin; /* 1604 */
+	ALIGN64 BOOL SoftwareGdi; /* 1601 */
+	ALIGN64 BOOL LocalConnection; /* 1602 */
+	ALIGN64 BOOL AuthenticationOnly; /* 1603 */
+	ALIGN64 BOOL CredentialsFromStdin; /* 1604 */
 	UINT64 padding1664[1664 - 1605]; /* 1605 */
 
 	/* Names */
@@ -1086,8 +1086,8 @@ struct rdp_settings
 	UINT64 padding1856[1856 - 1795]; /* 1795 */
 
 	/* Recording */
-	ALIGN64 WINBOOL DumpRemoteFx; /* 1856 */
-	ALIGN64 WINBOOL PlayRemoteFx; /* 1857 */
+	ALIGN64 BOOL DumpRemoteFx; /* 1856 */
+	ALIGN64 BOOL PlayRemoteFx; /* 1857 */
 	ALIGN64 char* DumpRemoteFxFile; /* 1858 */
 	ALIGN64 char* PlayRemoteFxFile; /* 1859 */
 	UINT64 padding1920[1920 - 1860]; /* 1860 */
@@ -1105,9 +1105,9 @@ struct rdp_settings
 	ALIGN64 char* GatewayPassword; /* 1988 */
 	ALIGN64 char* GatewayDomain; /* 1989 */
 	ALIGN64 UINT32 GatewayCredentialsSource; /* 1990 */
-	ALIGN64 WINBOOL GatewayUseSameCredentials; /* 1991 */
-	ALIGN64 WINBOOL GatewayEnabled; /* 1992 */
-	ALIGN64 WINBOOL GatewayBypassLocal; /* 1993 */
+	ALIGN64 BOOL GatewayUseSameCredentials; /* 1991 */
+	ALIGN64 BOOL GatewayEnabled; /* 1992 */
+	ALIGN64 BOOL GatewayBypassLocal; /* 1993 */
 	UINT64 padding2048[2048 - 1994]; /* 1994 */
 	UINT64 padding2112[2112 - 2048]; /* 2048 */
 
@@ -1116,7 +1116,7 @@ struct rdp_settings
 	 */
 
 	/* RemoteApp */
-	ALIGN64 WINBOOL RemoteApplicationMode; /* 2112 */
+	ALIGN64 BOOL RemoteApplicationMode; /* 2112 */
 	ALIGN64 char* RemoteApplicationName; /* 2113 */
 	ALIGN64 char* RemoteApplicationIcon; /* 2114 */
 	ALIGN64 char* RemoteApplicationProgram; /* 2115 */
@@ -1125,10 +1125,10 @@ struct rdp_settings
 	ALIGN64 char* RemoteApplicationCmdLine; /* 2118 */
 	ALIGN64 UINT32 RemoteApplicationExpandCmdLine; /* 2119 */
 	ALIGN64 UINT32 RemoteApplicationExpandWorkingDir; /* 2120 */
-	ALIGN64 WINBOOL DisableRemoteAppCapsCheck; /* 2121 */
+	ALIGN64 BOOL DisableRemoteAppCapsCheck; /* 2121 */
 	ALIGN64 UINT32 RemoteAppNumIconCaches; /* 2122 */
 	ALIGN64 UINT32 RemoteAppNumIconCacheEntries; /* 2123 */
-	ALIGN64 WINBOOL RemoteAppLanguageBarSupported; /* 2124 */
+	ALIGN64 BOOL RemoteAppLanguageBarSupported; /* 2124 */
 	UINT64 padding2176[2176 - 2125]; /* 2125 */
 	UINT64 padding2240[2240 - 2176]; /* 2176 */
 
@@ -1144,39 +1144,39 @@ struct rdp_settings
 	/* General Capabilities */
 	ALIGN64 UINT32 OsMajorType; /* 2304 */
 	ALIGN64 UINT32 OsMinorType; /* 2305 */
-	ALIGN64 WINBOOL RefreshRect; /* 2306 */
-	ALIGN64 WINBOOL SuppressOutput; /* 2307 */
-	ALIGN64 WINBOOL FastPathOutput; /* 2308 */
-	ALIGN64 WINBOOL SaltedChecksum; /* 2309 */
-	ALIGN64 WINBOOL LongCredentialsSupported; /* 2310 */
-	ALIGN64 WINBOOL NoBitmapCompressionHeader; /* 2311 */
-	ALIGN64 WINBOOL BitmapCompressionDisabled; /* 2312 */
+	ALIGN64 BOOL RefreshRect; /* 2306 */
+	ALIGN64 BOOL SuppressOutput; /* 2307 */
+	ALIGN64 BOOL FastPathOutput; /* 2308 */
+	ALIGN64 BOOL SaltedChecksum; /* 2309 */
+	ALIGN64 BOOL LongCredentialsSupported; /* 2310 */
+	ALIGN64 BOOL NoBitmapCompressionHeader; /* 2311 */
+	ALIGN64 BOOL BitmapCompressionDisabled; /* 2312 */
 	UINT64 padding2368[2368 - 2313]; /* 2313 */
 
 	/* Bitmap Capabilities */
-	ALIGN64 WINBOOL DesktopResize; /* 2368 */
-	ALIGN64 WINBOOL DrawAllowDynamicColorFidelity; /* 2369 */
-	ALIGN64 WINBOOL DrawAllowColorSubsampling; /* 2370 */
-	ALIGN64 WINBOOL DrawAllowSkipAlpha; /* 2371 */
+	ALIGN64 BOOL DesktopResize; /* 2368 */
+	ALIGN64 BOOL DrawAllowDynamicColorFidelity; /* 2369 */
+	ALIGN64 BOOL DrawAllowColorSubsampling; /* 2370 */
+	ALIGN64 BOOL DrawAllowSkipAlpha; /* 2371 */
 	UINT64 padding2432[2432 - 2372]; /* 2372 */
 
 	/* Order Capabilities */
 	ALIGN64 BYTE* OrderSupport; /* 2432 */
-	ALIGN64 WINBOOL BitmapCacheV3Enabled; /* 2433 */
-	ALIGN64 WINBOOL AltSecFrameMarkerSupport; /* 2434 */
+	ALIGN64 BOOL BitmapCacheV3Enabled; /* 2433 */
+	ALIGN64 BOOL AltSecFrameMarkerSupport; /* 2434 */
 	UINT64 padding2497[2497 - 2435]; /* 2435 */
 
 	/* Bitmap Cache Capabilities */
-	ALIGN64 WINBOOL BitmapCacheEnabled; /* 2497 */
+	ALIGN64 BOOL BitmapCacheEnabled; /* 2497 */
 	ALIGN64 UINT32 BitmapCacheVersion; /* 2498 */
-	ALIGN64 WINBOOL AllowCacheWaitingList; /* 2499 */
-	ALIGN64 WINBOOL BitmapCachePersistEnabled; /* 2500 */
+	ALIGN64 BOOL AllowCacheWaitingList; /* 2499 */
+	ALIGN64 BOOL BitmapCachePersistEnabled; /* 2500 */
 	ALIGN64 UINT32 BitmapCacheV2NumCells; /* 2501 */
 	ALIGN64 BITMAP_CACHE_V2_CELL_INFO* BitmapCacheV2CellInfo; /* 2502 */
 	UINT64 padding2560[2560 - 2503]; /* 2503 */
 
 	/* Pointer Capabilities */
-	ALIGN64 WINBOOL ColorPointerFlag; /* 2560 */
+	ALIGN64 BOOL ColorPointerFlag; /* 2560 */
 	ALIGN64 UINT32 PointerCacheSize; /* 2561 */
 	UINT64 padding2624[2624 - 2562]; /* 2562 */
 
@@ -1186,10 +1186,10 @@ struct rdp_settings
 	ALIGN64 UINT32 KeyboardSubType; /* 2626 */
 	ALIGN64 UINT32 KeyboardFunctionKey; /* 2627 */
 	ALIGN64 char* ImeFileName; /* 2628 */
-	ALIGN64 WINBOOL UnicodeInput; /* 2629 */
-	ALIGN64 WINBOOL FastPathInput; /* 2630 */
-	ALIGN64 WINBOOL MultiTouchInput; /* 2631 */
-	ALIGN64 WINBOOL MultiTouchGestures; /* 2632 */
+	ALIGN64 BOOL UnicodeInput; /* 2629 */
+	ALIGN64 BOOL FastPathInput; /* 2630 */
+	ALIGN64 BOOL MultiTouchInput; /* 2631 */
+	ALIGN64 BOOL MultiTouchGestures; /* 2632 */
 	ALIGN64 UINT32 KeyboardHook; /* 2633 */
 	UINT64 padding2688[2688 - 2634]; /* 2634 */
 
@@ -1215,7 +1215,7 @@ struct rdp_settings
 	UINT64 padding2944[2944 - 2882]; /* 2882 */
 
 	/* Sound Capabilities */
-	ALIGN64 WINBOOL SoundBeepsEnabled; /* 2944 */
+	ALIGN64 BOOL SoundBeepsEnabled; /* 2944 */
 	UINT64 padding3008[3008 - 2945]; /* 2945 */
 	UINT64 padding3072[3072 - 3008]; /* 3008 */
 
@@ -1248,9 +1248,9 @@ struct rdp_settings
 	UINT64 padding3520[3520 - 3457]; /* 3457 */
 
 	/* Surface Commands Capabilities */
-	ALIGN64 WINBOOL SurfaceCommandsEnabled; /* 3520 */
-	ALIGN64 WINBOOL FrameMarkerCommandEnabled; /* 3521 */
-	ALIGN64 WINBOOL SurfaceFrameMarkerEnabled; /* 3522 */
+	ALIGN64 BOOL SurfaceCommandsEnabled; /* 3520 */
+	ALIGN64 BOOL FrameMarkerCommandEnabled; /* 3521 */
+	ALIGN64 BOOL SurfaceFrameMarkerEnabled; /* 3522 */
 	UINT64 padding3584[3584 - 3523]; /* 3523 */
 	UINT64 padding3648[3648 - 3584]; /* 3584 */
 
@@ -1259,31 +1259,31 @@ struct rdp_settings
 	 */
 
 	/* RemoteFX */
-	ALIGN64 WINBOOL RemoteFxOnly; /* 3648 */
-	ALIGN64 WINBOOL RemoteFxCodec; /* 3649 */
+	ALIGN64 BOOL RemoteFxOnly; /* 3648 */
+	ALIGN64 BOOL RemoteFxCodec; /* 3649 */
 	ALIGN64 UINT32 RemoteFxCodecId; /* 3650 */
 	ALIGN64 UINT32 RemoteFxCodecMode; /* 3651 */
-	ALIGN64 WINBOOL RemoteFxImageCodec; /* 3652 */
+	ALIGN64 BOOL RemoteFxImageCodec; /* 3652 */
 	ALIGN64 UINT32 RemoteFxCaptureFlags; /* 3653 */
 	UINT64 padding3712[3712 - 3654]; /* 3654 */
 
 	/* NSCodec */
-	ALIGN64 WINBOOL NSCodec; /* 3712 */
+	ALIGN64 BOOL NSCodec; /* 3712 */
 	ALIGN64 UINT32 NSCodecId; /* 3713 */
 	ALIGN64 UINT32 FrameAcknowledge; /* 3714 */
 	UINT64 padding3776[3776 - 3715]; /* 3715 */
 
 	/* JPEG */
-	ALIGN64 WINBOOL JpegCodec; /* 3776 */
+	ALIGN64 BOOL JpegCodec; /* 3776 */
 	ALIGN64 UINT32 JpegCodecId; /* 3777 */
 	ALIGN64 UINT32 JpegQuality; /* 3778 */
 	UINT64 padding3840[3840 - 3779]; /* 3779 */
 
-	ALIGN64 WINBOOL GfxThinClient; /* 3840 */
-	ALIGN64 WINBOOL GfxSmallCache; /* 3841 */
-	ALIGN64 WINBOOL GfxProgressive; /* 3842 */
-	ALIGN64 WINBOOL GfxProgressiveV2; /* 3843 */
-	ALIGN64 WINBOOL GfxH264; /* 3844 */
+	ALIGN64 BOOL GfxThinClient; /* 3840 */
+	ALIGN64 BOOL GfxSmallCache; /* 3841 */
+	ALIGN64 BOOL GfxProgressive; /* 3842 */
+	ALIGN64 BOOL GfxProgressiveV2; /* 3843 */
+	ALIGN64 BOOL GfxH264; /* 3844 */
 	UINT64 padding3904[3904 - 3845]; /* 3845 */
 
 	/**
@@ -1295,14 +1295,14 @@ struct rdp_settings
 	UINT64 padding3968[3968 - 3905]; /* 3905 */
 
 	/* Draw Nine Grid */
-	ALIGN64 WINBOOL DrawNineGridEnabled; /* 3968 */
+	ALIGN64 BOOL DrawNineGridEnabled; /* 3968 */
 	ALIGN64 UINT32 DrawNineGridCacheSize; /* 3969 */
 	ALIGN64 UINT32 DrawNineGridCacheEntries; /* 3970 */
 	UINT64 padding4032[4032 - 3971]; /* 3971 */
 
 	/* Draw GDI+ */
-	ALIGN64 WINBOOL DrawGdiPlusEnabled; /* 4032 */
-	ALIGN64 WINBOOL DrawGdiPlusCacheEnabled; /* 4033 */
+	ALIGN64 BOOL DrawGdiPlusEnabled; /* 4032 */
+	ALIGN64 BOOL DrawGdiPlusCacheEnabled; /* 4033 */
 	UINT64 padding4096[4096 - 4034]; /* 4034 */
 	UINT64 padding4160[4160 - 4096]; /* 4096 */
 
@@ -1311,36 +1311,36 @@ struct rdp_settings
 	 */
 
 	/* Device Redirection */
-	ALIGN64 WINBOOL DeviceRedirection; /* 4160 */
+	ALIGN64 BOOL DeviceRedirection; /* 4160 */
 	ALIGN64 UINT32 DeviceCount; /* 4161 */
 	ALIGN64 UINT32 DeviceArraySize; /* 4162 */
 	ALIGN64 RDPDR_DEVICE** DeviceArray; /* 4163 */
 	UINT64 padding4288[4288 - 4164]; /* 4164 */
 
 	/* Drive Redirection */
-	ALIGN64 WINBOOL RedirectDrives; /* 4288 */
-	ALIGN64 WINBOOL RedirectHomeDrive; /* 4289 */
+	ALIGN64 BOOL RedirectDrives; /* 4288 */
+	ALIGN64 BOOL RedirectHomeDrive; /* 4289 */
 	ALIGN64 char* DrivesToRedirect; /* 4290 */
 	UINT64 padding4416[4416 - 4291]; /* 4291 */
 
 	/* Smartcard Redirection */
-	ALIGN64 WINBOOL RedirectSmartCards; /* 4416 */
+	ALIGN64 BOOL RedirectSmartCards; /* 4416 */
 	UINT64 padding4544[4544 - 4417]; /* 4417 */
 
 	/* Printer Redirection */
-	ALIGN64 WINBOOL RedirectPrinters; /* 4544 */
+	ALIGN64 BOOL RedirectPrinters; /* 4544 */
 	UINT64 padding4672[4672 - 4545]; /* 4545 */
 
 	/* Serial and Parallel Port Redirection */
-	ALIGN64 WINBOOL RedirectSerialPorts; /* 4672 */
-	ALIGN64 WINBOOL RedirectParallelPorts; /* 4673 */
+	ALIGN64 BOOL RedirectSerialPorts; /* 4672 */
+	ALIGN64 BOOL RedirectParallelPorts; /* 4673 */
 	UINT64 padding4800[4800 - 4674]; /* 4674 */
 
 	/**
 	 * Other Redirection
 	 */
 
-	ALIGN64 WINBOOL RedirectClipboard; /* 4800 */
+	ALIGN64 BOOL RedirectClipboard; /* 4800 */
 	UINT64 padding4928[4928 - 4801]; /* 4801 */
 
 	/**
@@ -1359,7 +1359,7 @@ struct rdp_settings
 	ALIGN64 UINT32 DynamicChannelCount; /* 5056 */
 	ALIGN64 UINT32 DynamicChannelArraySize; /* 5057 */
 	ALIGN64 ADDIN_ARGV** DynamicChannelArray; /* 5058 */
-	ALIGN64 WINBOOL SupportDynamicChannels; /* 5059 */
+	ALIGN64 BOOL SupportDynamicChannels; /* 5059 */
 	UINT64 padding5184[5184 - 5060]; /* 5060 */
 
 	/**
@@ -1422,8 +1422,8 @@ FREERDP_API void freerdp_performance_flags_split(rdpSettings* settings);
 FREERDP_API void freerdp_set_gateway_usage_method(rdpSettings* settings, UINT32 GatewayUsageMethod);
 FREERDP_API void freerdp_update_gateway_usage_method(rdpSettings* settings, UINT32 GatewayEnabled, UINT32 GatewayBypassLocal);
 
-FREERDP_API WINBOOL freerdp_get_param_bool(rdpSettings* settings, int id);
-FREERDP_API int freerdp_set_param_bool(rdpSettings* settings, int id, WINBOOL param);
+FREERDP_API BOOL freerdp_get_param_bool(rdpSettings* settings, int id);
+FREERDP_API int freerdp_set_param_bool(rdpSettings* settings, int id, BOOL param);
 
 FREERDP_API int freerdp_get_param_int(rdpSettings* settings, int id);
 FREERDP_API int freerdp_set_param_int(rdpSettings* settings, int id, int param);

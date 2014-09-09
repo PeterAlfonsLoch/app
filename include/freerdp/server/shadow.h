@@ -69,10 +69,10 @@ struct rdp_shadow_client
 	rdpContext context;
 
 	HANDLE thread;
-	WINBOOL activated;
-	WINBOOL inLobby;
-	WINBOOL mayView;
-	WINBOOL mayInteract;
+	BOOL activated;
+	BOOL inLobby;
+	BOOL mayView;
+	BOOL mayInteract;
 	HANDLE StopEvent;
 	CRITICAL_SECTION lock;
 	REGION16 invalidRegion;
@@ -97,8 +97,8 @@ struct rdp_shadow_server
 	rdpShadowSubsystem* subsystem;
 
 	DWORD port;
-	WINBOOL mayView;
-	WINBOOL mayInteract;
+	BOOL mayView;
+	BOOL mayInteract;
 	char* ipcSocket;
 	char* ConfigPath;
 	char* CertificateFile;

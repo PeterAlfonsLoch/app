@@ -94,7 +94,7 @@ struct _RDP_CB_FORMAT_LIST_EVENT
 	UINT16 num_formats;
 	BYTE* raw_format_data;
 	UINT32 raw_format_data_size;
-	WINBOOL raw_format_unicode;
+	BOOL raw_format_unicode;
 };
 typedef struct _RDP_CB_FORMAT_LIST_EVENT RDP_CB_FORMAT_LIST_EVENT;
 

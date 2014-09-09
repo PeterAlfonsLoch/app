@@ -31,11 +31,11 @@ typedef struct rdp_freerdp_listener freerdp_listener;
 extern "C" {
 #endif
 
-typedef WINBOOL (*psListenerOpen)(freerdp_listener* instance, const char* bind_address, UINT16 port);
-typedef WINBOOL (*psListenerOpenLocal)(freerdp_listener* instance, const char* path);
-typedef WINBOOL (*psListenerGetFileDescriptor)(freerdp_listener* instance, void** rfds, int* rcount);
+typedef BOOL (*psListenerOpen)(freerdp_listener* instance, const char* bind_address, UINT16 port);
+typedef BOOL (*psListenerOpenLocal)(freerdp_listener* instance, const char* path);
+typedef BOOL (*psListenerGetFileDescriptor)(freerdp_listener* instance, void** rfds, int* rcount);
 typedef int (*psListenerGetEventHandles)(freerdp_listener* instance, HANDLE* events, DWORD* nCount);
-typedef WINBOOL (*psListenerCheckFileDescriptor)(freerdp_listener* instance);
+typedef BOOL (*psListenerCheckFileDescriptor)(freerdp_listener* instance);
 typedef void (*psListenerClose)(freerdp_listener* instance);
 typedef void (*psPeerAccepted)(freerdp_listener* instance, freerdp_peer* client);
 

@@ -51,7 +51,7 @@ extern "C" {
  * @param initialSize the initial capacity of the ringBuffer
  * @return if the initialisation was successful
  */
-FREERDP_API WINBOOL ringbuffer_init(RingBuffer *rb, size_t initialSize);
+FREERDP_API BOOL ringbuffer_init(RingBuffer *rb, size_t initialSize);
 
 /** destroys internal data used by this ringbuffer
  * @param ringbuffer
@@ -78,7 +78,7 @@ FREERDP_API size_t ringbuffer_capacity(const RingBuffer *ringbuffer);
  * @param sz the size of the data to add
  * @return if the operation was successful, it could fail in case of OOM during realloc()
  */
-FREERDP_API WINBOOL ringbuffer_write(RingBuffer *rb, const BYTE *ptr, size_t sz);
+FREERDP_API BOOL ringbuffer_write(RingBuffer *rb, const BYTE *ptr, size_t sz);
 
 
 /** ensures that we have sz bytes available at the write head, and return a pointer
@@ -99,7 +99,7 @@ FREERDP_API BYTE *ringbuffer_ensure_linear_write(RingBuffer *rb, size_t sz);
  * @param sz the number of bytes that have been written
  * @return if the operation was successful, FALSE is sz is too big
  */
-FREERDP_API WINBOOL ringbuffer_commit_written_bytes(RingBuffer *rb, size_t sz);
+FREERDP_API BOOL ringbuffer_commit_written_bytes(RingBuffer *rb, size_t sz);
 
 
 /** peeks the buffer chunks for sz bytes and returns how many chunks are filled.

@@ -34,7 +34,7 @@ FREERDP_API int freerdp_tcp_wait_read(int sockfd);
 FREERDP_API int freerdp_tcp_wait_write(int sockfd);
 FREERDP_API int freerdp_tcp_disconnect(int sockfd);
 
-FREERDP_API int freerdp_tcp_set_no_delay(int sockfd, WINBOOL no_delay);
+FREERDP_API int freerdp_tcp_set_no_delay(int sockfd, BOOL no_delay);
 
 FREERDP_API int freerdp_wsa_startup(void);
 FREERDP_API int freerdp_wsa_cleanup(void);

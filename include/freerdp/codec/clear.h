@@ -48,7 +48,7 @@ typedef struct _CLEAR_VBAR_ENTRY CLEAR_VBAR_ENTRY;
 
 struct _CLEAR_CONTEXT
 {
-	WINBOOL Compressor;
+	BOOL Compressor;
 	NSC_CONTEXT* nsc;
 	UINT32 seqNumber;
 	BYTE* TempBuffer;
@@ -72,7 +72,7 @@ FREERDP_API int clear_decompress(CLEAR_CONTEXT* clear, BYTE* pSrcData, UINT32 Sr
 
 FREERDP_API void clear_context_reset(CLEAR_CONTEXT* clear);
 
-FREERDP_API CLEAR_CONTEXT* clear_context_new(WINBOOL Compressor);
+FREERDP_API CLEAR_CONTEXT* clear_context_new(BOOL Compressor);
 FREERDP_API void clear_context_free(CLEAR_CONTEXT* clear);
 
 #ifdef __cplusplus

@@ -59,7 +59,7 @@ struct _BITMAP_DATA
 	UINT32 cbScanWidth;
 	UINT32 cbUncompressedSize;
 	BYTE* bitmapDataStream;
-	WINBOOL compressed;
+	BOOL compressed;
 };
 typedef struct _BITMAP_DATA BITMAP_DATA;
 
@@ -202,10 +202,10 @@ struct rdp_update
 
 	wLog* log;
 
-	WINBOOL dump_rfx;
-	WINBOOL play_rfx;
+	BOOL dump_rfx;
+	BOOL play_rfx;
 	rdpPcap* pcap_rfx;
-	WINBOOL initialState;
+	BOOL initialState;
 
 	BITMAP_UPDATE bitmap_update;
 	PALETTE_UPDATE palette_update;
@@ -214,13 +214,13 @@ struct rdp_update
 	SURFACE_BITS_COMMAND surface_bits_command;
 	SURFACE_FRAME_MARKER surface_frame_marker;
 
-	WINBOOL asynchronous;
+	BOOL asynchronous;
 	rdpUpdateProxy* proxy;
 	wMessageQueue* queue;
 
 	wStream* us;
 	UINT16 numberOrders;
-	WINBOOL combineUpdates;
+	BOOL combineUpdates;
 	rdpBounds currentBounds;
 	rdpBounds previousBounds;
 };

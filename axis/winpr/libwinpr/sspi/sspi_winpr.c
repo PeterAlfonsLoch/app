@@ -1178,7 +1178,7 @@ SECURITY_STATUS SEC_ENTRY winpr_QueryContextAttributesA(PCtxtHandle phContext, U
 	if (!table->QueryContextAttributesW)
 		return SEC_E_UNSUPPORTED_FUNCTION;
 
-	status = table->QueryContextAttributes(phContext, ulAttribute, pBuffer);
+	status = table->QueryContextAttributesW(phContext, ulAttribute, pBuffer);
 
 	return status;
 }

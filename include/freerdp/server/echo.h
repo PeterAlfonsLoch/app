@@ -34,7 +34,7 @@ typedef struct _echo_server_context echo_server_context;
 
 typedef void (*psEchoServerOpen)(echo_server_context* context);
 typedef void (*psEchoServerClose)(echo_server_context* context);
-typedef WINBOOL (*psEchoServerRequest)(echo_server_context* context, const BYTE* buffer, UINT32 length);
+typedef BOOL (*psEchoServerRequest)(echo_server_context* context, const BYTE* buffer, UINT32 length);
 
 typedef void (*psEchoServerOpenResult)(echo_server_context* context, ECHO_SERVER_OPEN_RESULT result);
 typedef void (*psEchoServerResponse)(echo_server_context* context, const BYTE* buffer, UINT32 length);

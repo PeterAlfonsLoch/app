@@ -30,12 +30,12 @@ typedef struct _rdpsnd_server_private RdpsndServerPrivate;
 typedef int (*psRdpsndStart)(RdpsndServerContext* context);
 typedef int (*psRdpsndStop)(RdpsndServerContext* context);
 
-typedef WINBOOL (*psRdpsndServerInitialize)(RdpsndServerContext* context, WINBOOL ownThread);
-typedef WINBOOL (*psRdpsndServerSelectFormat)(RdpsndServerContext* context, int client_format_index);
-typedef WINBOOL (*psRdpsndServerSendSamples)(RdpsndServerContext* context, const void* buf, int nframes, UINT16 wTimestamp);
-typedef WINBOOL (*psRdpsndServerConfirmBlock)(RdpsndServerContext* context, BYTE confirmBlockNum, UINT16 wtimestamp);
-typedef WINBOOL (*psRdpsndServerSetVolume)(RdpsndServerContext* context, int left, int right);
-typedef WINBOOL (*psRdpsndServerClose)(RdpsndServerContext* context);
+typedef BOOL (*psRdpsndServerInitialize)(RdpsndServerContext* context, BOOL ownThread);
+typedef BOOL (*psRdpsndServerSelectFormat)(RdpsndServerContext* context, int client_format_index);
+typedef BOOL (*psRdpsndServerSendSamples)(RdpsndServerContext* context, const void* buf, int nframes, UINT16 wTimestamp);
+typedef BOOL (*psRdpsndServerConfirmBlock)(RdpsndServerContext* context, BYTE confirmBlockNum, UINT16 wtimestamp);
+typedef BOOL (*psRdpsndServerSetVolume)(RdpsndServerContext* context, int left, int right);
+typedef BOOL (*psRdpsndServerClose)(RdpsndServerContext* context);
 
 
 typedef void (*psRdpsndServerActivated)(RdpsndServerContext* context);
@@ -115,8 +115,8 @@ FREERDP_API RdpsndServerContext* rdpsnd_server_context_new(HANDLE vcm);
 FREERDP_API void rdpsnd_server_context_reset(RdpsndServerContext *);
 FREERDP_API void rdpsnd_server_context_free(RdpsndServerContext* context);
 FREERDP_API HANDLE rdpsnd_server_get_event_handle(RdpsndServerContext *context);
-FREERDP_API WINBOOL rdpsnd_server_handle_messages(RdpsndServerContext *context);
-FREERDP_API WINBOOL rdpsnd_server_send_formats(RdpsndServerContext* context, wStream* s);
+FREERDP_API BOOL rdpsnd_server_handle_messages(RdpsndServerContext *context);
+FREERDP_API BOOL rdpsnd_server_send_formats(RdpsndServerContext* context, wStream* s);
 
 
 #ifdef __cplusplus

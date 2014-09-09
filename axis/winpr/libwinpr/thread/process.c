@@ -26,7 +26,11 @@
 #include <winpr/thread.h>
 #include <fcntl.h>
 
+#ifndef _WIN32
+
 char * GetEnvironmentStringsA();
+
+#endif
 
 /**
  * CreateProcessA

@@ -247,7 +247,7 @@ typedef struct _PROGRESSIVE_BLOCK_FRAME_END PROGRESSIVE_BLOCK_FRAME_END;
 
 struct _PROGRESSIVE_CONTEXT
 {
-	WINBOOL Compressor;
+	BOOL Compressor;
 
 	wBufferPool* bufferPool;
 
@@ -279,7 +279,7 @@ FREERDP_API int progressive_decompress(PROGRESSIVE_CONTEXT* progressive, BYTE* p
 
 FREERDP_API void progressive_context_reset(PROGRESSIVE_CONTEXT* progressive);
 
-FREERDP_API PROGRESSIVE_CONTEXT* progressive_context_new(WINBOOL Compressor);
+FREERDP_API PROGRESSIVE_CONTEXT* progressive_context_new(BOOL Compressor);
 FREERDP_API void progressive_context_free(PROGRESSIVE_CONTEXT* progressive);
 
 #ifdef __cplusplus
