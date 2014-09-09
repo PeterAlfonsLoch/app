@@ -469,3 +469,20 @@ namespace windows
 
 
 
+void __node_init_main_data(::aura::application * papp,HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
+{
+
+
+   ::windows::main_init_data * pmaininitdata = new ::windows::main_init_data;
+
+
+   pmaininitdata->m_hInstance = hInstance;
+   pmaininitdata->m_hPrevInstance = hPrevInstance;
+   pmaininitdata->m_vssCommandLine = ::str::international::unicode_to_utf8(::GetCommandLineW());
+   pmaininitdata->m_nCmdShow = nCmdShow;
+
+   papp->init_main_data(pmaininitdata);
+
+}
+
+
