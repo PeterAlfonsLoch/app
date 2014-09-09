@@ -1,12 +1,6 @@
 #pragma once
 
 
-#define SECURITY_WIN32
-
-
-#define CLASS_DECL_AURA
-
-
 string get_error_message(DWORD dwError);
 
 sp(::aura::application)     linux_instantiate_application(sp(::aura::application) pappSystem, const char * pszId);
@@ -51,8 +45,6 @@ CLASS_DECL_AURA void AfxTryCleanup();
 
 #include "linux_shell.h"
 
-CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, ::signal_details * pobj);
-CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
 
 
