@@ -40,6 +40,6 @@
 @property (retain) NSString* username;
 @property (retain) NSString* password;
 
-- (WINBOOL) runModal;
+- (BOOL) runModal;
 
 @end

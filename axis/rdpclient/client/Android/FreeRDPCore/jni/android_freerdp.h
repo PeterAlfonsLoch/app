@@ -22,7 +22,7 @@ struct android_context
 	ANDROID_EVENT_QUEUE* event_queue;
 	HANDLE thread;
 
-	WINBOOL is_connected;
+	BOOL is_connected;
 
 	void* clipboard_context;
 };

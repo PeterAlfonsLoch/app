@@ -20,6 +20,6 @@
 - (void)removeView:(UIView *)view;
 
 @property (nonatomic, retain) UIImage *backgroundImage;
-@property (nonatomic, readwrite) WINBOOL vignetteBackground;
+@property (nonatomic, readwrite) BOOL vignetteBackground;
 
 @end

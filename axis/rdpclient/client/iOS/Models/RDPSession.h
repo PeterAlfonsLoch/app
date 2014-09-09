@@ -56,16 +56,16 @@ extern NSString* TSXSessionDidFailToConnectNotification;
     NSString* _name;
 
     // flag if the session is suspended
-    WINBOOL _suspended;
+    BOOL _suspended;
 
 	// flag that specifies whether the RDP toolbar is visible
-	WINBOOL _toolbar_visible;
+	BOOL _toolbar_visible;
 }
 
 @property (readonly) ConnectionParams* params;
 @property (readonly) ComputerBookmark* bookmark;
 @property (assign) id <RDPSessionDelegate> delegate;
-@property (assign) WINBOOL toolbarVisible;
+@property (assign) BOOL toolbarVisible;
 @property (readonly) CGContextRef bitmapContext;
 @property (readonly) NSCondition* uiRequestCompleted;
 
@@ -88,7 +88,7 @@ extern NSString* TSXSessionDidFailToConnectNotification;
 -(void)resume;
 
 // returns YES if the session is started
--(WINBOOL)isSuspended;
+-(BOOL)isSuspended;
 
 // send input event to the server
 -(void)sendInputEvent:(NSDictionary*)event;

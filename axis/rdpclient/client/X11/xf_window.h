@@ -74,26 +74,26 @@ struct xf_window
 	int shmid;
 	Window handle;
 	Window *xfwin;
-	WINBOOL fullscreen;
-	WINBOOL decorations;
+	BOOL fullscreen;
+	BOOL decorations;
 	rdpWindow *window;
-	WINBOOL is_mapped;
-	WINBOOL is_transient;
+	BOOL is_mapped;
+	BOOL is_transient;
 	xfLocalMove local_move;
 	BYTE rail_state;
-	WINBOOL rail_ignore_configure;
+	BOOL rail_ignore_configure;
 };
 
 void xf_ewmhints_init(xfContext *xfc);
 
-WINBOOL xf_GetCurrentDesktop(xfContext *xfc);
-WINBOOL xf_GetWorkArea(xfContext *xfc);
+BOOL xf_GetCurrentDesktop(xfContext *xfc);
+BOOL xf_GetWorkArea(xfContext *xfc);
 
-void xf_SetWindowFullscreen(xfContext *xfc, xfWindow *window, WINBOOL fullscreen);
-void xf_SetWindowDecorations(xfContext *xfc, xfWindow *window, WINBOOL show);
+void xf_SetWindowFullscreen(xfContext *xfc, xfWindow *window, BOOL fullscreen);
+void xf_SetWindowDecorations(xfContext *xfc, xfWindow *window, BOOL show);
 void xf_SetWindowUnlisted(xfContext *xfc, xfWindow *window);
 
-xfWindow *xf_CreateDesktopWindow(xfContext *xfc, char *name, int width, int height, WINBOOL decorations);
+xfWindow *xf_CreateDesktopWindow(xfContext *xfc, char *name, int width, int height, BOOL decorations);
 void xf_ResizeDesktopWindow(xfContext *xfc, xfWindow *window, int width, int height);
 
 xfWindow *xf_CreateWindow(xfContext *xfc, rdpWindow *wnd, int x, int y, int width, int height, UINT32 id);
@@ -105,11 +105,11 @@ void xf_SetWindowRects(xfContext *xfc, xfWindow *window, RECTANGLE_16 *rects, in
 void xf_SetWindowVisibilityRects(xfContext *xfc, xfWindow *window, RECTANGLE_16 *rects, int nrects);
 void xf_SetWindowStyle(xfContext *xfc, xfWindow *window, UINT32 style, UINT32 ex_style);
 void xf_UpdateWindowArea(xfContext *xfc, xfWindow *window, int x, int y, int width, int height);
-WINBOOL xf_IsWindowBorder(xfContext *xfc, xfWindow *xfw, int x, int y);
+BOOL xf_IsWindowBorder(xfContext *xfc, xfWindow *xfw, int x, int y);
 void xf_DestroyWindow(xfContext *xfc, xfWindow *window);
 rdpWindow *xf_rdpWindowFromWindow(xfContext *xfc, Window wnd);
 
-WINBOOL xf_GetWindowProperty(xfContext *xfc, Window window, Atom property, int length,
+BOOL xf_GetWindowProperty(xfContext *xfc, Window window, Atom property, int length,
 						  unsigned long *nitems, unsigned long *bytes, BYTE **prop);
 
 void xf_SetWindowMinMaxInfo(xfContext *xfc, xfWindow *window, int maxWidth, int maxHeight,

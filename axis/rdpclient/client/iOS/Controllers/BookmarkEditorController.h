@@ -27,7 +27,7 @@
     ComputerBookmark* _bookmark;
     ConnectionParams* _params;
 
-    WINBOOL _display_server_settings;
+    BOOL _display_server_settings;
 
     id<BookmarkEditorDelegate> delegate;
 }

@@ -16,13 +16,13 @@
 #define GET_TAG_FROM_PATH(path) ((((int)path.section) << 16) | ((int)(path.row)))
 
 
-WINBOOL ScanHostNameAndPort(NSString* address, NSString** host, unsigned short* port);
+BOOL ScanHostNameAndPort(NSString* address, NSString** host, unsigned short* port);
 
 #pragma mark -
 #pragma mark Screen Resolutions
 
 NSString* ScreenResolutionDescription(TSXScreenOptions type, int width, int height);
-WINBOOL ScanScreenResolution(NSString* description, int* width, int* height, TSXScreenOptions* type);
+BOOL ScanScreenResolution(NSString* description, int* width, int* height, TSXScreenOptions* type);
 
 NSDictionary* SelectionForColorSetting(void);
 NSArray* ResolutionModes(void);
@@ -30,7 +30,7 @@ NSArray* ResolutionModes(void);
 #pragma mark Security Protocol
 
 NSString* ProtocolSecurityDescription(TSXProtocolSecurityOptions type);
-WINBOOL ScanProtocolSecurity(NSString* description, TSXProtocolSecurityOptions* type);
+BOOL ScanProtocolSecurity(NSString* description, TSXProtocolSecurityOptions* type);
 NSDictionary* SelectionForSecuritySetting(void);
 
 #pragma mark Bookmarks
@@ -40,8 +40,8 @@ NSMutableArray* FilterHistory(NSArray* history, NSString* filterStr);
 
 #pragma mark iPad/iPhone detection
 
-WINBOOL IsPad(void);
-WINBOOL IsPhone(void);
+BOOL IsPad(void);
+BOOL IsPhone(void);
 
 #pragma mark Version Info
 NSString* TSXAppFullVersion(void);
@@ -49,22 +49,22 @@ NSString* TSXAppFullVersion(void);
 #pragma mark Touch/Mouse handling
 
 // set mouse buttons swapped flag
-void SetSwapMouseButtonsFlag(WINBOOL swapped);
+void SetSwapMouseButtonsFlag(BOOL swapped);
 
 // set invert scrolling flag
-void SetInvertScrollingFlag(WINBOOL invert);
+void SetInvertScrollingFlag(BOOL invert);
 
 // return event value for left mouse button
-int GetLeftMouseButtonClickEvent(WINBOOL down);
+int GetLeftMouseButtonClickEvent(BOOL down);
 
 // return event value for right mouse button
-int GetRightMouseButtonClickEvent(WINBOOL down);
+int GetRightMouseButtonClickEvent(BOOL down);
 
 // return event value for mouse move event
 int GetMouseMoveEvent(void);
 
 // return mouse wheel event
-int GetMouseWheelEvent(WINBOOL down);
+int GetMouseWheelEvent(BOOL down);
 
 // scrolling gesture detection delta
 CGFloat GetScrollGestureDelta(void);
@@ -75,6 +75,6 @@ void WakeUpWWAN(void);
 
 #pragma mark System Info functions
 NSString* TSXGetPlatform(void);
-WINBOOL TSXDeviceHasJailBreak(void);
+BOOL TSXDeviceHasJailBreak(void);
 NSString* TSXGetPrimaryMACAddress(NSString *sep);
 

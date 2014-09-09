@@ -56,7 +56,7 @@ extern "C" {
       int map_size;
 
       UINT32 request_format;
-      WINBOOL channel_initialized;
+      BOOL channel_initialized;
 
       HWND hwndClipboard;
 
@@ -83,10 +83,10 @@ extern "C" {
    CLASS_DECL_RDPCLIENT void wf_cliprdr_init(wfContext* wfc,rdpChannels* channels);
    CLASS_DECL_RDPCLIENT void wf_cliprdr_uninit(wfContext* wfc);
    CLASS_DECL_RDPCLIENT void wf_process_cliprdr_event(wfContext* wfc,wMessage* event);
-   CLASS_DECL_RDPCLIENT WINBOOL wf_cliprdr_process_selection_notify(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
-   CLASS_DECL_RDPCLIENT WINBOOL wf_cliprdr_process_selection_request(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
-   CLASS_DECL_RDPCLIENT WINBOOL wf_cliprdr_process_selection_clear(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
-   CLASS_DECL_RDPCLIENT WINBOOL wf_cliprdr_process_property_notify(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
+   CLASS_DECL_RDPCLIENT BOOL wf_cliprdr_process_selection_notify(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
+   CLASS_DECL_RDPCLIENT BOOL wf_cliprdr_process_selection_request(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
+   CLASS_DECL_RDPCLIENT BOOL wf_cliprdr_process_selection_clear(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
+   CLASS_DECL_RDPCLIENT BOOL wf_cliprdr_process_property_notify(wfContext* wfc,HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
    CLASS_DECL_RDPCLIENT void wf_cliprdr_check_owner(wfContext* wfc);
 
    CLASS_DECL_RDPCLIENT int cliprdr_send_data_request(cliprdrContext *cliprdr,UINT32 format);

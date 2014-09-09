@@ -14,13 +14,13 @@
 // callback if touch pointer should be closed
 -(void)touchPointerClose;
 // callback for a left click action
--(void)touchPointerLeftClick:(CGPoint)pos down:(WINBOOL)down;
+-(void)touchPointerLeftClick:(CGPoint)pos down:(BOOL)down;
 // callback for a right click action
--(void)touchPointerRightClick:(CGPoint)pos down:(WINBOOL)down;
+-(void)touchPointerRightClick:(CGPoint)pos down:(BOOL)down;
 // callback for pointer move action
 -(void)touchPointerMove:(CGPoint)pos;
 // callback if scrolling is performed
--(void)touchPointerScrollDown:(WINBOOL)down;
+-(void)touchPointerScrollDown:(BOOL)down;
 // callback for toggling the standard keyboard
 -(void)touchPointerToggleKeyboard;
 // callback for toggling the extended keyboard
@@ -51,8 +51,8 @@
 
     // scroll/drag n drop handling
     CGPoint _prev_touch_location;
-    WINBOOL _pointer_moving;
-    WINBOOL _pointer_scrolling;
+    BOOL _pointer_moving;
+    BOOL _pointer_scrolling;
 
     NSObject<TouchPointerDelegate>* _delegate;
 }

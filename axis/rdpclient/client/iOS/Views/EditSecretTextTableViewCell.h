@@ -19,6 +19,6 @@
 @property (retain, nonatomic) UILabel* label;
 @property (retain, nonatomic) UITextField* textfield;
 
-- (void)setEnabled:(WINBOOL)enabled;
+- (void)setEnabled:(BOOL)enabled;
 
 @end

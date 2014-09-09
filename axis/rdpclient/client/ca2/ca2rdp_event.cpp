@@ -205,14 +205,14 @@ void ca2rdp_send_mouse_wheel_event(rdpInput* input, INT16 axisrel, UINT16 x, UIN
 	input->MouseEvent(input, flags, x, y);
 }
 
-void ca2rdp_send_keyboard_event(rdpInput* input,WINBOOL down,UINT scancode)
+void ca2rdp_send_keyboard_event(rdpInput* input,BOOL down,UINT scancode)
 {
 
 		freerdp_input_send_keyboard_event_ex(input, down, scancode);
 }
 
 /*
-WINBOOL ca2rdp_event_process(freerdp* instance, DFBEvent* event)
+BOOL ca2rdp_event_process(freerdp* instance, DFBEvent* event)
 {
 	int flags;
 	rdpGdi* gdi;

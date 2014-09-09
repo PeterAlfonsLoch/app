@@ -46,7 +46,7 @@ struct mf_info
 
 	// Tracking connection state
 	volatile TSXConnectionState connection_state;
-	volatile WINBOOL unwanted; // set when controlling Session no longer wants the connection to continue
+	volatile BOOL unwanted; // set when controlling Session no longer wants the connection to continue
 };
 
 

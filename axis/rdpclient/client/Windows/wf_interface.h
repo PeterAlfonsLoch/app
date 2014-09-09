@@ -113,22 +113,22 @@ struct wf_context
 	RFX_CONTEXT* rfx_context;
 	NSC_CONTEXT* nsc_context;
 
-	WINBOOL sw_gdi;
+	BOOL sw_gdi;
 
 	rdpFile* connectionRdpFile;
 
 	// Keep track of window size and position, disable when in fullscreen mode.
-	WINBOOL disablewindowtracking;
+	BOOL disablewindowtracking;
 
 	// These variables are required for horizontal scrolling.
-	WINBOOL updating_scrollbars;
-	WINBOOL xScrollVisible;
+	BOOL updating_scrollbars;
+	BOOL xScrollVisible;
 	int xMinScroll;       // minimum horizontal scroll value
 	int xCurrentScroll;   // current horizontal scroll value
 	int xMaxScroll;       // maximum horizontal scroll value
 
 	// These variables are required for vertical scrolling.
-	WINBOOL yScrollVisible;
+	BOOL yScrollVisible;
 	int yMinScroll;       // minimum vertical scroll value
 	int yCurrentScroll;   // current vertical scroll value
 	int yMaxScroll;       // maximum vertical scroll value

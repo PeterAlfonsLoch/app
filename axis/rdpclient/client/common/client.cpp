@@ -102,7 +102,7 @@ HANDLE freerdp_client_get_thread(rdpContext* context)
 	return ((rdpClientContext*) context)->thread;
 }
 
-static WINBOOL freerdp_client_settings_post_process(rdpSettings* settings)
+static BOOL freerdp_client_settings_post_process(rdpSettings* settings)
 {
 	/* Moved GatewayUseSameCredentials logic outside of cmdline.c, so
 	 * that the rdp file also triggers this functionality */
@@ -217,7 +217,7 @@ int freerdp_client_settings_parse_connection_file_buffer(rdpSettings* settings, 
 	return status;
 }
 
-int freerdp_client_settings_write_connection_file(const rdpSettings* settings, const char* filename, WINBOOL unicode)
+int freerdp_client_settings_write_connection_file(const rdpSettings* settings, const char* filename, BOOL unicode)
 {
 	rdpFile* file;
 

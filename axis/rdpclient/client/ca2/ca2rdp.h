@@ -32,7 +32,7 @@
 
 typedef struct ca2rdp_info ca2rdpInfo;
 
-CLASS_DECL_RDPCLIENT WINBOOL ca2rdp_pre_connect(freerdp* instance);
+CLASS_DECL_RDPCLIENT BOOL ca2rdp_pre_connect(freerdp* instance);
 
 namespace aura
 {
@@ -114,6 +114,6 @@ struct ca2rdp_info
 };
 
 
-CLASS_DECL_RDPCLIENT WINBOOL ca2rdp_post_connect(freerdp* instance);
+CLASS_DECL_RDPCLIENT BOOL ca2rdp_post_connect(freerdp* instance);
 
 #endif /* __DFREERDP_H */

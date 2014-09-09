@@ -24,12 +24,12 @@
 
     // touch pointer view
     IBOutlet TouchPointerView* _touchpointer_view;
-    WINBOOL _autoscroll_with_touchpointer;
-    WINBOOL _is_autoscrolling;
+    BOOL _autoscroll_with_touchpointer;
+    BOOL _is_autoscrolling;
 
 	// rdp session toolbar
 	IBOutlet UIToolbar* _session_toolbar;
-    WINBOOL _session_toolbar_visible;
+    BOOL _session_toolbar_visible;
 
 	// dummy text field used to display the keyboard
 	IBOutlet UITextField* _dummy_textfield;
@@ -45,18 +45,18 @@
 
     // rdp session
     RDPSession* _session;
-    WINBOOL _session_initilized;
+    BOOL _session_initilized;
 
 	// flag that indicates whether the keyboard is visible or not
-	WINBOOL _keyboard_visible;
+	BOOL _keyboard_visible;
 
     // flag to switch between left/right mouse button mode
-    WINBOOL _toggle_mouse_button;
+    BOOL _toggle_mouse_button;
 
     // keyboard extension view
     AdvancedKeyboardView* _advanced_keyboard_view;
-    WINBOOL _advanced_keyboard_visible;
-    WINBOOL _requesting_advanced_keyboard;
+    BOOL _advanced_keyboard_visible;
+    BOOL _requesting_advanced_keyboard;
     CGFloat _keyboard_last_height;
 
     // delayed mouse move event sending

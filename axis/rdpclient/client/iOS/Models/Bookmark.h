@@ -18,7 +18,7 @@
 	NSString* _uuid, * _label;
 	UIImage* _image;
     ConnectionParams* _connection_params;
-    WINBOOL _connected_via_wlan;
+    BOOL _connected_via_wlan;
 }
 
 @property (nonatomic,assign)   ComputerBookmark* parent;
@@ -26,17 +26,17 @@
 @property (nonatomic,copy)     NSString* label;
 @property (nonatomic,retain)   UIImage* image;
 @property (readonly, nonatomic) ConnectionParams* params;
-@property (nonatomic, assign) WINBOOL conntectedViaWLAN;
+@property (nonatomic, assign) BOOL conntectedViaWLAN;
 
 // Creates a copy of this object, with a new UUID
 - (id)copy;
 - (id)copyWithUUID;
 
 // Whether user can delete, move, or rename this entry
-- (WINBOOL)isDeletable;
-- (WINBOOL)isMovable;
-- (WINBOOL)isRenamable;
-- (WINBOOL)hasImmutableHost;
+- (BOOL)isDeletable;
+- (BOOL)isMovable;
+- (BOOL)isRenamable;
+- (BOOL)hasImmutableHost;
 
 - (id)initWithConnectionParameters:(ConnectionParams*)params;
 - (id)initWithBaseDefaultParameters;

@@ -29,17 +29,17 @@
 
     NSObject<RDPKeyboardDelegate>* _delegate;
 
-	WINBOOL _ctrl_pressed;
-    WINBOOL _alt_pressed;
-    WINBOOL _shift_pressed;
-    WINBOOL _win_pressed;
+	BOOL _ctrl_pressed;
+    BOOL _alt_pressed;
+    BOOL _shift_pressed;
+    BOOL _win_pressed;
 }
 
 @property (assign) id <RDPKeyboardDelegate> delegate;
-@property (readonly) WINBOOL ctrlPressed;
-@property (readonly) WINBOOL altPressed;
-@property (readonly) WINBOOL shiftPressed;
-@property (readonly) WINBOOL winPressed;
+@property (readonly) BOOL ctrlPressed;
+@property (readonly) BOOL altPressed;
+@property (readonly) BOOL shiftPressed;
+@property (readonly) BOOL winPressed;
 
 // returns a keyboard instance
 + (RDPKeyboard*)getSharedRDPKeyboard;

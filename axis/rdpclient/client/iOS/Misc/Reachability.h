@@ -59,7 +59,7 @@ typedef enum {
 
 @interface Reachability: NSObject
 {
-	WINBOOL localWiFiRef;
+	BOOL localWiFiRef;
 	SCNetworkReachabilityRef reachabilityRef;
 }
 
@@ -77,13 +77,13 @@ typedef enum {
 + (Reachability*) reachabilityForLocalWiFi;
 
 //Start listening for reachability notifications on the current run loop
-- (WINBOOL) startNotifier;
+- (BOOL) startNotifier;
 - (void) stopNotifier;
 
 - (NetworkStatus) currentReachabilityStatus;
 //WWAN may be available, but not active until a connection has been established.
 //WiFi may require a connection for VPN on Demand.
-- (WINBOOL) connectionRequired;
+- (BOOL) connectionRequired;
 @end
 
 

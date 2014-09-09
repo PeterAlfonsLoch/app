@@ -35,7 +35,7 @@
 }
 
 + (NSString *) getPasswordForUsername: (NSString *) username andServerName: (NSString *) serverName error: (NSError **) error;
-+ (WINBOOL) storeUsername: (NSString *) username andPassword: (NSString *) password forServerName: (NSString *) serverName updateExisting: (WINBOOL) updateExisting error: (NSError **) error;
-+ (WINBOOL) deleteItemForUsername: (NSString *) username andServerName: (NSString *) serverName error: (NSError **) error;
++ (BOOL) storeUsername: (NSString *) username andPassword: (NSString *) password forServerName: (NSString *) serverName updateExisting: (BOOL) updateExisting error: (NSError **) error;
++ (BOOL) deleteItemForUsername: (NSString *) username andServerName: (NSString *) serverName error: (NSError **) error;
 
 @end
