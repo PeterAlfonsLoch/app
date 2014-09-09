@@ -313,7 +313,7 @@ int freerdp_client_command_line_pre_filter(void* context, int index, int argc, L
 	return 0;
 }
 
-int freerdp_client_add_device_channel(rdpSettings* settings, int count, char** params)
+int freerdp_client_add_device_channel(rdpSettings* settings, int count, const char** params)
 {
 	if (strcmp(params[0], "drive") == 0)
 	{
@@ -462,7 +462,7 @@ int freerdp_client_add_device_channel(rdpSettings* settings, int count, char** p
 	return 0;
 }
 
-int freerdp_client_add_static_channel(rdpSettings* settings, int count, char** params)
+int freerdp_client_add_static_channel(rdpSettings* settings, int count, const char** params)
 {
 	int index;
 	ADDIN_ARGV* args;
@@ -480,7 +480,7 @@ int freerdp_client_add_static_channel(rdpSettings* settings, int count, char** p
 	return 0;
 }
 
-int freerdp_client_add_dynamic_channel(rdpSettings* settings, int count, char** params)
+int freerdp_client_add_dynamic_channel(rdpSettings* settings, int count, const char** params)
 {
 	int index;
 	ADDIN_ARGV* args;
@@ -1997,7 +1997,7 @@ int freerdp_client_load_addins(rdpChannels* channels, rdpSettings* settings)
 			params[1] = "media";
 			params[2] = "*";
 
-			freerdp_client_add_device_channel(settings, 3, (char**) params);
+			freerdp_client_add_device_channel(settings, 3,  params);
 		}
 	}
 
@@ -2011,7 +2011,7 @@ int freerdp_client_load_addins(rdpChannels* channels, rdpSettings* settings)
 			params[1] = "home";
 			params[2] = "%";
 
-			freerdp_client_add_device_channel(settings, 3, (char**) params);
+			freerdp_client_add_device_channel(settings, 3, params);
 		}
 	}
 
@@ -2026,7 +2026,7 @@ int freerdp_client_load_addins(rdpChannels* channels, rdpSettings* settings)
 			params[0] = "rdpsnd";
 			params[1] = "sys:fake";
 
-			freerdp_client_add_static_channel(settings, 2, (char**) params);
+			freerdp_client_add_static_channel(settings, 2, params);
 		}
 	}
 
@@ -2064,7 +2064,7 @@ int freerdp_client_load_addins(rdpChannels* channels, rdpSettings* settings)
 
 			params[0] = "cliprdr";
 
-			freerdp_client_add_static_channel(settings, 1, (char**) params);
+			freerdp_client_add_static_channel(settings, 1, params);
 		}
 	}
 
