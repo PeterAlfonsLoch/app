@@ -37,7 +37,7 @@
 extern "C" {
 #endif
 
-#if !defined(_WIN32)
+#if !defined(_WIN32) && !defined(CA2_AURA)
 
 /* Mutex */
 
