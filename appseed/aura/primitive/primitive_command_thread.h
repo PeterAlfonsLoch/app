@@ -34,8 +34,8 @@ public:
 
    virtual bool is_thread();
 
-   virtual void consolidate(sp(::create_context) pcreatecontext);
-   virtual void consolidate(sp(::command_thread) pthread);
+   virtual void consolidate(::create_context * pcreatecontext);
+   virtual void consolidate(::command_thread * pthread);
 
    virtual var & property(const char * pszKey);
    virtual bool has_property(const char * pszKey);
