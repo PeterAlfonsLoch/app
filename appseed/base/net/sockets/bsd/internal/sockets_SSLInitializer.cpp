@@ -222,19 +222,32 @@ void ssl_sigpipe_handle( int x ) {
 
       synch_lock sl(::sockets::g_pmutexMap);
 
-      mutex * pmutex;
+      mutex * pmutex = NULL;
       if(!::sockets::g_pmapMutex->Lookup(n,pmutex))
       {
          ::sockets::g_pmapMutex->operator [](n) = new mutex(get_thread_app());
+         if(!::sockets::g_pmapMutex->Lookup(n,pmutex))
+         {
+            return;
+         }
       }
+
+      if(pmutex == NULL)
+      {
+         return;
+      }
+
+      sl.unlock();
+
       if (mode & CRYPTO_LOCK)
       {
-         ::sockets::g_pmapMutex->operator [](n)->lock();
+         pmutex->lock();
       }
       else
       {
-         ::sockets:: g_pmapMutex->operator [](n)->unlock();
+         pmutex->unlock();
       }
+
    }
 
 
