@@ -85,6 +85,10 @@
 #define WITH_DEBUG_CREDSSP
 #endif
 
+#define NTLMSP_NAME_W	L"NTLM"
+#define NEGOSSP_NAME_W	L"Negotiate"
+
+
 #define NLA_PKG_NAME	NEGOSSP_NAME_W
 
 #define TERMSRV_SPN_PREFIX	"TERMSRV/"

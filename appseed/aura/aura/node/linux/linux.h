@@ -89,10 +89,6 @@ CLASS_DECL_AURA const char * __get_app_name();
 
 
 
-#pragma once
-
-
-
 
 // from wincore.cpp
 extern CLASS_DECL_AURA const char _afxWnd[];           // simple child windows/controls
@@ -171,46 +167,7 @@ CLASS_DECL_AURA void vfxThrowFileException(sp(::aura::application) papp, int32_t
 
 
 
-#pragma once
 
-
-namespace linux
-{
-
-
-   class thread;
-
-   class linux
-   {
-      int32_t function();
-   };
-
-
-
-} // namespace linux
-
-
-
-// Placed on frame for EXCEPTION linkage, or ::exception::aura cleanup
-struct CLASS_DECL_AURA __exception_link
-{
-   __exception_link * m_pLinkPrev;    // previous top, next in handler chain
-   ::exception::base * m_pException;   // current exception (NULL in try block)
-
-   __exception_link();       // for initialization and linking
-   ~__exception_link()       // for cleanup and unlinking
-      {
-          //__try_cleanup();
-      };
-};
-
-// Exception global state - never Ķaccess directly
-struct CLASS_DECL_AURA __EXCEPTION_CONTEXT
-{
-   __exception_link* m_pLinkTop;
-
-   // Note: most of the exception context is now in the __exception_link
-};
 
 
 CLASS_DECL_AURA MESSAGE * __get_current_message();

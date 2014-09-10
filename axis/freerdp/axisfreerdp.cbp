@@ -65,7 +65,6 @@
 			<Add option="-Wno-pointer-arith" />
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
-			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
 			<Add option="-DHAVE_CONFIG_H" />
