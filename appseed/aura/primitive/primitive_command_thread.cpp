@@ -115,7 +115,7 @@ void command_thread::on_request(sp(::create_context) pline)
    }
 }
 
-void command_thread::consolidate(sp(::create_context) pcreatecontext)
+void command_thread::consolidate(::create_context * pcreatecontext)
 {
    if(!pcreatecontext->m_spCommandLine->m_varFile.is_empty())
    {
@@ -134,7 +134,7 @@ void command_thread::consolidate(sp(::create_context) pcreatecontext)
    m_varTopicQuery.propset().merge(pcreatecontext->m_spCommandLine->m_varQuery.propset());
 }
 
-void command_thread::consolidate(sp(::command_thread) pthread)
+void command_thread::consolidate(::command_thread * pthread)
 {
 
    if(pthread == NULL || pthread == this)
