@@ -119,6 +119,7 @@ CLASS_DECL_AURA bool __wait_threading_count_except(::thread * pthread, ::duratio
             {
 
                ::multithreading::s_pthreadptra->element_at(i)->m_bRun = false;
+               ::multithreading::s_pthreadptra->element_at(i)->post_thread_message(WM_QUIT);
                
             }
             catch (...)

@@ -88,6 +88,7 @@ namespace axis
 
       //virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
 
+      virtual bool on_create_frame_window();
 
       virtual void set_cursor(::visual::e_cursor ecursor);
       virtual void set_default_cursor(::visual::e_cursor ecursor);

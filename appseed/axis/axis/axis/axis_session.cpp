@@ -1046,13 +1046,21 @@ namespace axis
    }
 
 
-   bool session::initialize1()
+   bool session::on_create_frame_window()
    {
-
+      
       alloc(m_pcopydesk);
 
       if(!m_pcopydesk->initialize())
          return false;
+
+      return true;
+
+   }
+
+
+   bool session::initialize1()
+   {
 
       if(!::aura::session::initialize1())
          return false;

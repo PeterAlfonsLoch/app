@@ -257,6 +257,8 @@ namespace axis
 
       System.defer_create_system_frame_window();
 
+      Session.on_create_frame_window();
+
       m_framea.add(pwnd);
 
       if(m_puiMain == NULL)
