@@ -311,10 +311,6 @@ post_thread_message
    {
       return ::win::thread::pre_translate_message(pMsg);
    }
-   bool application::pump_message()    // low level message pump
-   {
-      return ::win::thread::pump_message();
-   }
    bool application::on_idle(LONG lCount) // return TRUE if more idle processing
    {
       return ::win::thread::on_idle(lCount);

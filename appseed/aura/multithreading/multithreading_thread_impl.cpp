@@ -1202,6 +1202,7 @@ int32_t thread_impl::run()
    {
 
       // phase1: check to see if we can do idle work
+/*      
       while(bIdle && !::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE))
       {
 
@@ -1220,8 +1221,10 @@ int32_t thread_impl::run()
 
       }
 
+*/
+
       // phase2: pump messages while available
-      while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
+//      while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
       {
 
          // pump message, but quit on WM_QUIT
@@ -1245,6 +1248,10 @@ int32_t thread_impl::run()
 
          if(!m_pthread->on_run_step())
             goto stop_run;
+
+
+         on_idle(0);
+
 
       }
 

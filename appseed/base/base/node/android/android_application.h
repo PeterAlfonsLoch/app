@@ -133,7 +133,6 @@ namespace android
       // running and idle processing
       virtual int32_t run();
       virtual void pre_translate_message(::signal_details * pobj);
-      virtual bool pump_message();     // low level message pump
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
       virtual bool is_idle_message(MESSAGE* pMsg);  // checks for special messages
 
