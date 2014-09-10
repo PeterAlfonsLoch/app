@@ -310,43 +310,43 @@ namespace aura
    }
 
 
-   sp(::command_thread) application::command_central()
+   ::command_thread * application::command_central()
    {
       return m_pcommandthread;
    }
 
-   sp(::command_thread) application::command_thread()
+   ::command_thread * application::command_thread()
    {
       return m_pcommandthread;
    }
 
-   sp(::command_thread) application::command()
+   ::command_thread * application::command()
    {
       return m_pcommandthread;
    }
 
-   sp(::command_thread) application::guideline()
+   ::command_thread * application::guideline()
    {
       return m_pcommandthread;
    }
 
-   sp(::command_thread) application::directrix()
+   ::command_thread * application::directrix()
    {
       return m_pcommandthread;
    }
 
-   sp(::command_thread) application::axiom()
+   ::command_thread * application::axiom()
    {
       return m_pcommandthread;
    }
 
    bool application::verb()
    {
-      axiom()->run();
+      m_pcommandthread->run();
       return true;
    }
 
-   sp(::command_thread) application::creation()
+   ::command_thread * application::creation()
    {
       return m_pcommandthread;
    }

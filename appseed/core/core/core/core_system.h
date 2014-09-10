@@ -14,6 +14,9 @@ namespace core
    {
    public:
 
+
+      bool (system::*m_pfnVerb)();
+
       //core::platform::run_start_installer *        m_prunstartinstaller;
       //core::platform::map *                        m_pbergedgemap;
       index                                        m_iNewEdge;
@@ -164,6 +167,8 @@ namespace core
 
 
       virtual bool verb();
+      virtual bool common_verb();
+      virtual bool install_uninstall_verb();
 
 
 

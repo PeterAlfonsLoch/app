@@ -26,6 +26,8 @@ namespace core
       m_emaildepartament(this)
    {
 
+      m_pfnVerb = &system::install_uninstall_verb;
+
 #ifdef METROWIN
          m_window                                  = nullptr;
 #endif
@@ -248,7 +250,11 @@ namespace core
    bool system::initialize1()
    {
 
-
+      if(!directrix()->m_varTopicQuery.has_property("install")
+         && !directrix()->m_varTopicQuery.has_property("uninstall"))
+      {
+         m_pfnVerb = &system::common_verb;
+      }
 
       m_visual.construct(this);
 
@@ -538,16 +544,9 @@ namespace core
       return true;
    }
 
-   bool system::verb()
+
+   bool system::common_verb()
    {
-
-      static uint32_t dwStart = ::get_tick_count();
-
-      if(directrix()->m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
-         return false;
-
-      if(directrix()->m_varTopicQuery.has_property("uninstall") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
-         return false;
 
       if(!m_bDoNotExitIfNoApplications)
       {
@@ -562,7 +561,7 @@ namespace core
             try
             {
 
-               if(&appptra[i]==NULL || appptra[i].is_session() || appptra[i].is_system())
+               if(&appptra[i] == NULL || appptra[i].is_session() || appptra[i].is_system())
                {
 
                   appptra.remove_at(i);
@@ -610,7 +609,32 @@ namespace core
       }
 
       return ::core::application::verb();
-      
+
+
+   }
+
+   bool system::install_uninstall_verb()
+   {
+
+      static DWORD dwStart = get_tick_count();
+
+      if(directrix()->m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
+         return false;
+
+      if(directrix()->m_varTopicQuery.has_property("uninstall") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
+         return false;
+
+      return common_verb();
+
+   }
+
+
+   bool system::verb()
+   {
+
+
+      return (this->*m_pfnVerb)();
+
 
    }
 

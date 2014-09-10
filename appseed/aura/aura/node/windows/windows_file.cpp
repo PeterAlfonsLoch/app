@@ -181,10 +181,11 @@ retry:
          {
             iRetrySharingViolation++;
             Sleep(dwWaitSharingViolation);
-            dwWaitSharingViolation += 840;
+            dwWaitSharingViolation += 84;
             goto retry;
          }
-         else if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
+         else
+         if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
          {
             /*         if (pException != NULL)
             {

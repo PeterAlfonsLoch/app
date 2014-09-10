@@ -148,13 +148,13 @@ namespace aura
 
 
       // Wall-eeeeee aliases
-      sp(::command_thread) command_central();
-      sp(::command_thread) command_thread();
-      sp(::command_thread) guideline();
-      sp(::command_thread) command();
-      sp(::command_thread) directrix();
-      sp(::command_thread) axiom();
-      sp(::command_thread) creation();
+      ::command_thread * command_central();
+      ::command_thread * command_thread();
+      ::command_thread * guideline();
+      ::command_thread * command();
+      ::command_thread * directrix();
+      ::command_thread * axiom();
+      ::command_thread * creation();
 
 
 
