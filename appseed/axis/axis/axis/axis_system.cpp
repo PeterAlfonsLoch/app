@@ -140,6 +140,17 @@ namespace axis
          return false;
 
 
+      return true;
+
+   }
+
+
+   bool system::defer_create_system_frame_window()
+   {
+
+      if(m_psystemwindow != NULL)
+         return true;
+
 #ifdef WINDOWSEX
 
       m_psystemwindow = new system_interaction_impl(this);

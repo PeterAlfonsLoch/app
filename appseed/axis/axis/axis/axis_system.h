@@ -114,6 +114,8 @@ namespace axis
 
       virtual void wait_twf();
 
+      virtual bool defer_create_system_frame_window();
+
       virtual bool is_system();
 
       sp(::user::window_draw)               get_twf();

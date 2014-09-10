@@ -255,6 +255,8 @@ namespace axis
 
       synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
+      System.defer_create_system_frame_window();
+
       m_framea.add(pwnd);
 
       if(m_puiMain == NULL)
