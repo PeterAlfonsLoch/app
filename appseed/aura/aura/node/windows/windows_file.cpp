@@ -177,11 +177,11 @@ retry:
       {
          DWORD dwLastError = ::GetLastError();
 
-         if(dwLastError == ERROR_SHARING_VIOLATION && iRetrySharingViolation < 23)
+         if(dwLastError == ERROR_SHARING_VIOLATION && iRetrySharingViolation < 49)
          {
             iRetrySharingViolation++;
             Sleep(dwWaitSharingViolation);
-            dwWaitSharingViolation += 84;
+            dwWaitSharingViolation += 84 + 77 + 49;
             goto retry;
          }
          else
