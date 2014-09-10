@@ -88,7 +88,7 @@ extern "C"
 {
 #endif
 
-#include <stddef.h>		/* size_t */
+//#include <stddef.h>		/* size_t */
 //# include <idn-int.h>		/* uint32_t */
 
   enum punycode_status
@@ -114,10 +114,10 @@ extern "C"
 
   typedef uint32_t punycode_uint;
 
-  extern IDNAPI int punycode_encode (size_t input_length,
+  extern IDNAPI int punycode_encode (long input_length,
 				     const punycode_uint input[],
 				     const unsigned char case_flags[],
-				     size_t * output_length, char output[]);
+				     long * output_length, char output[]);
 
 /*
     punycode_encode() converts a sequence of code points (presumed to be
@@ -174,9 +174,9 @@ extern "C"
         and output might contain garbage.
 */
 
-  extern IDNAPI int punycode_decode (size_t input_length,
+  extern IDNAPI int punycode_decode (long input_length,
 				     const char input[],
-				     size_t * output_length,
+				     long * output_length,
 				     punycode_uint output[],
 				     unsigned char case_flags[]);
 
