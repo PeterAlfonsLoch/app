@@ -1048,6 +1048,9 @@ namespace axis
 
    bool session::on_create_frame_window()
    {
+
+      if(m_pcopydesk != NULL)
+         return true;
       
       alloc(m_pcopydesk);
 

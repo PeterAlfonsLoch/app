@@ -106,6 +106,8 @@ namespace axis
 
       m_pschemaLayeredFrame = new ::user::schema_layered_frame;
 
+      m_psystemwindow = NULL;
+
    }
 
 
