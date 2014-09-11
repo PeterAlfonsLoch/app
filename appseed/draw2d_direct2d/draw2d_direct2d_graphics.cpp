@@ -4676,6 +4676,8 @@ namespace draw2d_direct2d
       if (pbrush == NULL)
          return false;
 
+      //m_prendertarget->SetTransform(D2D1::Matrix3x2F::Identity());
+
       m_prendertarget->DrawGeometry((ID2D1PathGeometry *) ppath->get_os_data(), pbrush, (FLOAT) m_sppen->m_dWidth);
 
       //HRESULT hr = m_prendertarget->Flush();

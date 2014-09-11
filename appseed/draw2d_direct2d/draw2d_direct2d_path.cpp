@@ -14,6 +14,8 @@ namespace draw2d_direct2d
       ::element(papp)
    {
 
+      m_bFigureEnded = true;
+
    }
 
    graphics_path::~graphics_path() 
@@ -44,7 +46,7 @@ namespace draw2d_direct2d
    bool graphics_path::internal_end_figure(bool bClose)
    {
 
-      if(m_psink == NULL)
+      if(m_psink == NULL || m_bFigureEnded)
          return true;
 
       if(bClose)
@@ -59,6 +61,8 @@ namespace draw2d_direct2d
          m_psink->EndFigure(D2D1_FIGURE_END_OPEN);
 
       }
+
+      m_bFigureEnded = true;
 
       return true;
 
@@ -128,6 +132,11 @@ namespace draw2d_direct2d
       {
 
          m_ppath->Open(&m_psink);
+
+      }
+
+      if(m_bFigureEnded)
+      {
 
          m_psink->BeginFigure(pt, m_bFill ? D2D1_FIGURE_BEGIN_FILLED : D2D1_FIGURE_BEGIN_HOLLOW);
 
