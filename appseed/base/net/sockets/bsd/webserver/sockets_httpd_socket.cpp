@@ -190,6 +190,8 @@ namespace sockets
       // %! remember to change the password to the one you used for your server key
       InitializeContext(m_strCat, m_strCat, "", SSLv23_server_method());
 
+      synch_lock sl(m_pmutexSslCtx);
+
       int_array ia;
 
       ia.add(512);

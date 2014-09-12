@@ -64,6 +64,7 @@ void ssl_sigpipe_handle( int x );
    ,m_bTryingReconnect(false)
    {
       m_bCertCommonNameCheckEnabled = true;
+      m_pmutexSslCtx = NULL;
    }
    #ifdef _MSC_VER
    #pragma warning(default:4355)
@@ -97,6 +98,7 @@ void ssl_sigpipe_handle( int x );
    ,m_bTryingReconnect(false)
    {
       m_bCertCommonNameCheckEnabled = true;
+      m_pmutexSslCtx = NULL;
       UNREFERENCED_PARAMETER(osize);
    }
    #ifdef _MSC_VER
@@ -982,7 +984,11 @@ void ssl_sigpipe_handle( int x );
 
    void tcp_socket::OnSSLConnect()
    {
+      
       SetNonblocking(true);
+
+      synch_lock slMap(&Session.sockets().m_clientcontextmap.m_mutex);
+
       {
          if (m_ssl_ctx)
          {
@@ -992,6 +998,11 @@ void ssl_sigpipe_handle( int x );
          }
          InitSSLClient();
       }
+
+      synch_lock sl(m_pmutexSslCtx);
+
+      slMap.unlock();
+
       if (m_ssl_ctx)
       {
          /* Connect the SSL socket */
@@ -1025,7 +1036,11 @@ void ssl_sigpipe_handle( int x );
 
    void tcp_socket::OnSSLAccept()
    {
+      
       SetNonblocking(true);
+
+      synch_lock slMap(&Session.sockets().m_servercontextmap.m_mutex);
+
       {
          if (m_ssl_ctx)
          {
@@ -1036,6 +1051,13 @@ void ssl_sigpipe_handle( int x );
          InitSSLServer();
          SetSSLServer();
       }
+
+
+      synch_lock sl(m_pmutexSslCtx);
+
+      slMap.unlock();
+
+
       if (m_ssl_ctx)
       {
          m_ssl = SSL_new(m_ssl_ctx);
@@ -1231,82 +1253,23 @@ void ssl_sigpipe_handle( int x );
       if(m_spsslclientcontext.is_set())
       {
          m_ssl_ctx = m_spsslclientcontext->m_pcontext;
+         m_pmutexSslCtx = &m_spsslclientcontext->m_pmutex;
       }
    }
 
 
    void tcp_socket::InitializeContext(const string & context,const string & keyfile,const string & password, const SSL_METHOD *meth_in)
    {
-      /* create our context*/
-      static string_map < SSL_CTX * > server_contexts;
-      if(server_contexts.PLookup(context) == NULL)
-      {
-         const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
-         m_ssl_ctx = server_contexts[context] = SSL_CTX_new(meth);
-         SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
-         // session id
-         if (context.get_length())
-            SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *) (const  char *)context, (uint32_t)context.get_length());
-         else
-            SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *)"--is_empty--", 9);
-      }
-      else
-      {
-         m_ssl_ctx = server_contexts[context];
-      }
 
-      if(!SSL_CTX_use_certificate_chain_file(m_ssl_ctx, keyfile))
-      {
-         /* Load our keys and certificates*/
-         if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
-         {
-            log("tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::aura::log::level_fatal);
-         }
-      }
+      m_ssl_ctx = Session.sockets().m_servercontextmap->InitializeContext(m_pmutexSslCtx,context,keyfile,password,meth_in);
 
-      m_password = password;
-      SSL_CTX_set_default_passwd_cb(m_ssl_ctx, tcp_socket_SSL_password_cb);
-      SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, this);
-      if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
-      {
-         log("tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::aura::log::level_fatal);
-      }
    }
 
 
    void tcp_socket::InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in)
    {
-      /* create our context*/
-      static string_map < SSL_CTX * > server_contexts;
-      if(server_contexts.PLookup(context) == NULL)
-      {
-         const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
-         m_ssl_ctx = server_contexts[context] = SSL_CTX_new(meth);
-         SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
-         // session id
-         if (context.get_length())
-            SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *) (const  char *)context, (uint32_t)context.get_length());
-         else
-            SSL_CTX_set_session_id_context(m_ssl_ctx, (const uchar *)"--is_empty--", 9);
-      }
-      else
-      {
-         m_ssl_ctx = server_contexts[context];
-      }
 
-      /* Load our keys and certificates*/
-      if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, certfile, SSL_FILETYPE_PEM)))
-      {
-         log("tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::aura::log::level_fatal);
-      }
-
-      m_password = password;
-      SSL_CTX_set_default_passwd_cb(m_ssl_ctx, tcp_socket_SSL_password_cb);
-      SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, this);
-      if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
-      {
-         log("tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::aura::log::level_fatal);
-      }
+      m_ssl_ctx = Session.sockets().m_servercontextmap->InitializeContext(m_pmutexSslCtx,context,certfile,keyfile,password,meth_in);
    }
 
 

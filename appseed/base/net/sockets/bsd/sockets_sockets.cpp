@@ -9,7 +9,9 @@ namespace sockets
      element(papp),
      ::aura::departament(papp),
       m_mutexHttpPostBoundary(papp),
-      m_mutexResolvCache(papp)
+      m_mutexResolvCache(papp),
+      m_clientcontextmap(papp),
+      m_servercontextmap(papp)
    {
 
       m_iReturnCode = -1;

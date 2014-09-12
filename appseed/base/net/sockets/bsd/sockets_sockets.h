@@ -18,6 +18,7 @@
 
 #if defined(BSD_STYLE_SOCKETS)
          ssl_client_context_map                       m_clientcontextmap;
+         ssl_server_context_map                       m_servercontextmap;
 #endif
          AjpBaseSocket::Initializer *                 m_pajpbasesocketinit;
 

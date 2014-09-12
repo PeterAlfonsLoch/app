@@ -980,6 +980,12 @@
     <ClInclude Include="base\node\windows\windows.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h">
+      <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1681,6 +1687,12 @@
     <ClCompile Include="net\net_sockets.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.cpp">
+      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="base.def">
@@ -1841,6 +1853,9 @@
     </None>
     <None Include="base\base\base.inl">
       <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

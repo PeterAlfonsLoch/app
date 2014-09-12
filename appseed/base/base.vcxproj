@@ -2780,6 +2780,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h" />
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context.h" />
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_sync_socket_handler.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h" />
@@ -3261,6 +3263,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\sockets\bsd\basic\sockets_socket_handler.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_stream_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_sync_socket_handler.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sockets_tcp_socket.cpp" />

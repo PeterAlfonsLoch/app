@@ -10,7 +10,8 @@ namespace sockets
 
 
    ssl_client_context::ssl_client_context(sp(::aura::application) papp, const SSL_METHOD * pmethod) :
-      element(papp)
+      element(papp),
+      m_mutex(papp)
    {
       m_psession = NULL;
       if(pmethod == NULL)

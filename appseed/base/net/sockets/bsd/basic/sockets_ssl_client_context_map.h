@@ -11,9 +11,14 @@
       {
       public:
 
+         mutex m_mutex;
 
-         ssl_client_context_map();
+
+         ssl_client_context_map(sp(::aura::application) papp);
          virtual ~ssl_client_context_map();
+
+
+         
 
 
       };

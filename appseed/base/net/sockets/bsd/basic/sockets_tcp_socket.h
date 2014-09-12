@@ -83,6 +83,8 @@ namespace sockets
       typedef list<OUTPUT *> output_list;
 
    public:
+
+      mutex *        m_pmutexSslCtx;
       //
       bool m_b_input_buffer_disabled;
       uint64_t m_bytes_sent;

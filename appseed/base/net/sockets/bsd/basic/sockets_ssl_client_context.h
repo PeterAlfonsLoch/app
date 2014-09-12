@@ -18,6 +18,7 @@ typedef struct ssl_session_st SSL_SESSION;
       {
       public:
 
+         mutex m_mutex;
 
          SSL_CTX *         m_pcontext;
          SSL_SESSION *     m_psession;
