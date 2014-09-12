@@ -15,7 +15,7 @@ namespace sockets
    {
    }
 
-   SSL_CTX * ssl_server_context_map::InitializeContext(mutex ** ppmutex,const string & context,const string & certfile,const string & keyfile,const string & password,const SSL_METHOD *meth_in)
+   SSL_CTX * ssl_server_context_map::InitializeContext(mutex ** ppmutex,const string & context,const string & keyfile,const string & password,const SSL_METHOD *meth_in)
    {
       synch_lock sl(&m_mutex);
       /* create our context*/
@@ -23,7 +23,7 @@ namespace sockets
       if(servercontext.is_null())
       {
          servercontext = new ssl_server_context(get_app());
-         servercontext->InitializeContext(context,certfile,keyfile,password,meth_in);
+         servercontext->InitializeContext(context,keyfile,password,meth_in);
          set_at(context, servercontext);
       }
       if(servercontext.is_set())
@@ -33,6 +33,23 @@ namespace sockets
       }
       return NULL;
    }
-
+   SSL_CTX * ssl_server_context_map::InitializeContext(mutex ** ppmutex,const string & context,const string & certfile,const string & keyfile,const string & password,const SSL_METHOD *meth_in)
+   {
+      synch_lock sl(&m_mutex);
+      /* create our context*/
+      sp(ssl_server_context) servercontext = operator[](context);
+      if(servercontext.is_null())
+      {
+         servercontext = new ssl_server_context(get_app());
+         servercontext->InitializeContext(context,certfile,keyfile,password,meth_in);
+         set_at(context,servercontext);
+      }
+      if(servercontext.is_set())
+      {
+         *ppmutex =  &servercontext->m_mutex;
+         return servercontext->m_pcontext;
+      }
+      return NULL;
+   }
 } // namespace sockets
 

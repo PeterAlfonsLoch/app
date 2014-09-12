@@ -1253,7 +1253,7 @@ void ssl_sigpipe_handle( int x );
       if(m_spsslclientcontext.is_set())
       {
          m_ssl_ctx = m_spsslclientcontext->m_pcontext;
-         m_pmutexSslCtx = &m_spsslclientcontext->m_pmutex;
+         m_pmutexSslCtx = &m_spsslclientcontext->m_mutex;
       }
    }
 
@@ -1261,7 +1261,7 @@ void ssl_sigpipe_handle( int x );
    void tcp_socket::InitializeContext(const string & context,const string & keyfile,const string & password, const SSL_METHOD *meth_in)
    {
 
-      m_ssl_ctx = Session.sockets().m_servercontextmap->InitializeContext(m_pmutexSslCtx,context,keyfile,password,meth_in);
+      m_ssl_ctx = Session.sockets().m_servercontextmap.InitializeContext(&m_pmutexSslCtx,context,keyfile,password,meth_in);
 
    }
 
@@ -1269,7 +1269,7 @@ void ssl_sigpipe_handle( int x );
    void tcp_socket::InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in)
    {
 
-      m_ssl_ctx = Session.sockets().m_servercontextmap->InitializeContext(m_pmutexSslCtx,context,certfile,keyfile,password,meth_in);
+      m_ssl_ctx = Session.sockets().m_servercontextmap.InitializeContext(&m_pmutexSslCtx,context,certfile,keyfile,password,meth_in);
    }
 
 

@@ -18,10 +18,6 @@ namespace sockets
 
    ssl_server_context::~ssl_server_context()
    {
-      if(m_psession != NULL)
-      {
-         SSL_SESSION_free(m_psession);
-      }
       if(m_pcontext != NULL)
       {
          SSL_CTX_free(m_pcontext);
