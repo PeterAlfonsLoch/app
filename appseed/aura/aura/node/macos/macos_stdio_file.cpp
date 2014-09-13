@@ -33,7 +33,7 @@ namespace macos
       
       if(nOpenFlags  & ::file::defer_create_directory)
       {
-         Application.dir().mk(Application.dir_name(lpszFileName));
+         Application.dir_mk(Application.dir_name(lpszFileName));
       }
       
       m_pStream = NULL;
