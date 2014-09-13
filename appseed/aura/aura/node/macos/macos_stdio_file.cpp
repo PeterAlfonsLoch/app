@@ -11,7 +11,7 @@ namespace macos
    
    stdio_file::stdio_file(::aura::application * papp) :
    element(papp),
-   ::mac::file(papp)
+   ::macos::file(papp)
    {
       m_pStream = NULL;
    }
@@ -96,7 +96,7 @@ namespace macos
             //         pException->m_cause = ::file::exception::OsErrorToException(errno);
          }
          
-         ::mac::file::Abort(); // close m_hFile
+         ::macos::file::Abort(); // close m_hFile
          return FALSE;
       }
       
@@ -340,7 +340,7 @@ namespace macos
 #ifdef _DEBUG
    void stdio_file::dump(dump_context & dumpcontext) const
    {
-      ::mac::file::dump(dumpcontext);
+      ::macos::file::dump(dumpcontext);
       
       dumpcontext << "m_pStream = " << (void *)m_pStream;
       dumpcontext << "\n";
