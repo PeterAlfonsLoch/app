@@ -63,6 +63,17 @@ CLASS_DECL_mac void AfxResetMsgCache();
 #include "mac_crypto.h"
 #include "mac_ip_enum.h"
 
+#pragma once
+
+
+#include "mac_dir.h"
+#include "mac_file_system.h"
+#include "mac_file.h"
+#include "mac_shell.h"
+#include "mac_stdio_file.h"
+#include "mac_file_set.h"
+
+
 #define NULL_REF(class) (*((class *) NULL))
 // xxx CLASS_DECL_mac WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
