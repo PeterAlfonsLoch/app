@@ -102,7 +102,7 @@ namespace axis
 
 
 
-
+      virtual bool verb();
 
 
 

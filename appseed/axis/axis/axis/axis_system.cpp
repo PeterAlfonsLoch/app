@@ -327,6 +327,15 @@ namespace axis
    }
 
 
+   bool system::verb()
+   {
+
+      return ::aura::system::verb();
+
+   }
+
+
+
    bool system::is_system()
    {
 
