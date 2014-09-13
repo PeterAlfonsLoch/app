@@ -462,6 +462,10 @@
 		<Unit filename="net/sockets/bsd/basic/sockets_ssl_client_context.h" />
 		<Unit filename="net/sockets/bsd/basic/sockets_ssl_client_context_map.cpp" />
 		<Unit filename="net/sockets/bsd/basic/sockets_ssl_client_context_map.h" />
+		<Unit filename="net/sockets/bsd/basic/sockets_ssl_server_context.cpp" />
+		<Unit filename="net/sockets/bsd/basic/sockets_ssl_server_context.h" />
+		<Unit filename="net/sockets/bsd/basic/sockets_ssl_server_context_map.cpp" />
+		<Unit filename="net/sockets/bsd/basic/sockets_ssl_server_context_map.h" />
 		<Unit filename="net/sockets/bsd/basic/sockets_stream_socket.cpp" />
 		<Unit filename="net/sockets/bsd/basic/sockets_stream_socket.h" />
 		<Unit filename="net/sockets/bsd/basic/sockets_sync_socket_handler.cpp" />
