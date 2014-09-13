@@ -693,9 +693,6 @@ namespace user
 #include "core_history.h"
 
 
-// services
-#include "core/core/service/service_plain_service.h"
-#include "core/core/service/service_thread_pool.h"
 
 
 
