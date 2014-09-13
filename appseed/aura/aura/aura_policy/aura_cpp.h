@@ -607,7 +607,6 @@ namespace file
 
 #include "aura/os/ansios/ansios.h"
 #include "aura/os/macos/macos.h"
-#include "aura/os/macos/macos_windowing.h"
 
 #elif defined(ANDROID)
 

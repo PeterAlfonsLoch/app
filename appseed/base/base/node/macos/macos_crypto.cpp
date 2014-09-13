@@ -1,11 +1,12 @@
 #include "framework.h"
+#include "macos.h"
 
 
 namespace macos
 {
 
 
-   crypto::crypto(::axis::application * papp) :
+   crypto::crypto(::aura::application * papp) :
       element(papp),
       ::crypto::crypto(papp)
    {
