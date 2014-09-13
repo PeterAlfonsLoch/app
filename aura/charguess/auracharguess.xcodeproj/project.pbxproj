@@ -43,7 +43,7 @@
 
 /* Begin PBXFileReference section */
 		9A5E9DE619B7605F00949252 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
-		9AA539B119B763C400B9F861 /* lib_ca2freeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_ca2freeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA539B119B763C400B9F861 /* libauracharguess.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libauracharguess.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,16 +62,16 @@
 			isa = PBXGroup;
 			children = (
 				9A5E9DE619B7605F00949252 /* aura.xcodeproj */,
-				9AA539B119B763C400B9F861 /* lib_ca2freeimage.dylib */,
+				9AA539B119B763C400B9F861 /* libauracharguess.dylib */,
 			);
 			sourceTree = "<group>";
 		};
 		9A5E9DE719B7605F00949252 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A5E9DED19B7605F00949252 /* libbase.dylib */,
+				9A5E9DED19B7605F00949252 /* libaura.dylib */,
 				9A5E9DEF19B7605F00949252 /* libaura.dylib */,
-				9A5E9DF119B7605F00949252 /* base_iosTests.xctest */,
+				9A5E9DF119B7605F00949252 /* aura_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,7 +104,7 @@
 			);
 			name = auracharguess;
 			productName = FreeImage;
-			productReference = 9AA539B119B763C400B9F861 /* lib_ca2freeimage.dylib */;
+			productReference = 9AA539B119B763C400B9F861 /* libauracharguess.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -140,10 +140,9 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A5E9DED19B7605F00949252 /* libbase.dylib */ = {
+		9A5E9DED19B7605F00949252 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = libbase.dylib;
 			path = libaura.dylib;
 			remoteRef = 9A5E9DEC19B7605F00949252 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -155,10 +154,9 @@
 			remoteRef = 9A5E9DEE19B7605F00949252 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A5E9DF119B7605F00949252 /* base_iosTests.xctest */ = {
+		9A5E9DF119B7605F00949252 /* aura_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			name = base_iosTests.xctest;
 			path = aura_iosTests.xctest;
 			remoteRef = 9A5E9DF019B7605F00949252 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -214,6 +212,7 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -247,6 +246,7 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
@@ -260,7 +260,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = _ca2freeimage;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
+				PRODUCT_NAME = auracharguess;
 			};
 			name = Debug;
 		};
@@ -269,7 +270,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = _ca2freeimage;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
+				PRODUCT_NAME = auracharguess;
 			};
 			name = Release;
 		};

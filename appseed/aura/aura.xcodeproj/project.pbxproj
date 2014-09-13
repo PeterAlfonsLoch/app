@@ -761,7 +761,6 @@
 		9A16452E19C4A4CF00966C5E /* xml_xml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16414619C4A4CE00966C5E /* xml_xml.cpp */; };
 		9A16452F19C4A4CF00966C5E /* xml_xmlite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16414719C4A4CE00966C5E /* xml_xmlite.cpp */; };
 		9A16453019C4A4CF00966C5E /* xml_xmlite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16414819C4A4CE00966C5E /* xml_xmlite.h */; };
-		9A16453119C4A4CF00966C5E /* base_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A16414B19C4A4CE00966C5E /* base_iosTests.m */; };
 		9A16453419C4A52800966C5E /* draw2d_const.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16453219C4A52800966C5E /* draw2d_const.h */; };
 		9A16453519C4A52800966C5E /* draw2d_fwd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16453319C4A52800966C5E /* draw2d_fwd.h */; };
 		9A16453719C4A55100966C5E /* geometry_geometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16453619C4A55100966C5E /* geometry_geometry.cpp */; };
@@ -772,7 +771,6 @@
 		9A16454319C4A56200966C5E /* math_mkint_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16453C19C4A56200966C5E /* math_mkint_c.h */; };
 		9A16454419C4A56200966C5E /* math_natural.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16453D19C4A56200966C5E /* math_natural.cpp */; };
 		9A16454519C4A56200966C5E /* math_std_template.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16453E19C4A56200966C5E /* math_std_template.h */; };
-		9A1647AB19C4A76C00966C5E /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1647A819C4A76000966C5E /* libatomiconv.dylib */; };
 		9A16483719C4ADA000966C5E /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16480E19C4ADA000966C5E /* macos.h */; };
 		9A16483A19C4ADA000966C5E /* macos_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16481119C4ADA000966C5E /* macos_util.cpp */; };
 		9A16483B19C4ADA000966C5E /* macos_trace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16481219C4ADA000966C5E /* macos_trace.cpp */; };
@@ -1154,20 +1152,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A1647A719C4A76000966C5E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A16454719C4A5C800966C5E /* atomiconv.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A1647A219C4A73900966C5E;
-			remoteInfo = atomiconv;
-		};
-		9A1647A919C4A76300966C5E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A16454719C4A5C800966C5E /* atomiconv.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A1647A119C4A73900966C5E;
-			remoteInfo = atomiconv;
-		};
 		9AE24D491904CEFF001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CEA754BB14411F2B007E04DE /* Project object */;
@@ -1982,7 +1966,6 @@
 		9A16453C19C4A56200966C5E /* math_mkint_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_mkint_c.h; sourceTree = "<group>"; };
 		9A16453D19C4A56200966C5E /* math_natural.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math_natural.cpp; sourceTree = "<group>"; };
 		9A16453E19C4A56200966C5E /* math_std_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_std_template.h; sourceTree = "<group>"; };
-		9A16454719C4A5C800966C5E /* atomiconv.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = atomiconv.xcodeproj; path = ../../atom/iconv/atomiconv.xcodeproj; sourceTree = "<group>"; };
 		9A16480E19C4ADA000966C5E /* macos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos.h; sourceTree = "<group>"; };
 		9A16481119C4ADA000966C5E /* macos_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_util.cpp; sourceTree = "<group>"; };
 		9A16481219C4ADA000966C5E /* macos_trace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_trace.cpp; sourceTree = "<group>"; };
@@ -2201,7 +2184,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A1647AB19C4A76C00966C5E /* libatomiconv.dylib in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
@@ -3264,14 +3246,6 @@
 			path = aura_iosTests;
 			sourceTree = "<group>";
 		};
-		9A16454819C4A5C800966C5E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A1647A819C4A76000966C5E /* libatomiconv.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9AC31566198E4CB8008FB109 /* colorertake5 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3529,7 +3503,6 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
-				9A16454719C4A5C800966C5E /* atomiconv.xcodeproj */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
 				9A8897A514C24736006B4023 /* Foundation.framework */,
@@ -4144,7 +4117,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A1647AA19C4A76300966C5E /* PBXTargetDependency */,
 			);
 			name = aura;
 			productName = c;
@@ -4210,12 +4182,6 @@
 			mainGroup = CEA754B914411F2B007E04DE;
 			productRefGroup = CEA754B914411F2B007E04DE;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 9A16454819C4A5C800966C5E /* Products */;
-					ProjectRef = 9A16454719C4A5C800966C5E /* atomiconv.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				9A98A6031771D67E000AE16E /* aura */,
@@ -4224,16 +4190,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		9A1647A819C4A76000966C5E /* libatomiconv.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libatomiconv.dylib;
-			remoteRef = 9A1647A719C4A76000966C5E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9AE24D411904CEFE001AEFFB /* Resources */ = {
@@ -4633,7 +4589,6 @@
 				9A1641ED19C4A4CE00966C5E /* exception_archive.cpp in Sources */,
 				07F5B261184A3B6A0092C3E1 /* draw2d_region.cpp in Sources */,
 				9A16452E19C4A4CF00966C5E /* xml_xml.cpp in Sources */,
-				9A16453119C4A4CF00966C5E /* base_iosTests.m in Sources */,
 				9AE4C81A1996D83200E50F88 /* file_serializable.cpp in Sources */,
 				9A16420919C4A4CE00966C5E /* exception_interface_only.cpp in Sources */,
 				9A1641A819C4A4CE00966C5E /* aura_math.cpp in Sources */,
@@ -4837,11 +4792,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A1647AA19C4A76300966C5E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = atomiconv;
-			targetProxy = 9A1647A919C4A76300966C5E /* PBXContainerItemProxy */;
-		};
 		9AE24D4A1904CEFF001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9AE24D331904CEFE001AEFFB /* aura_ios */;
@@ -5007,7 +4957,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2";
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
@@ -5063,7 +5013,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2";
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",

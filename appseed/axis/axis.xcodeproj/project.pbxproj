@@ -2067,7 +2067,7 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2";
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
@@ -2127,7 +2127,7 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2";
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",

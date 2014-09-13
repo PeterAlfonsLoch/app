@@ -6,10 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		9A5E9DF419B761D000949252 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5E9DEF19B7605F00949252 /* libaura.dylib */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		9A5E9DEC19B7605F00949252 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -32,26 +28,18 @@
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = base_iosTests;
 		};
-		9A5E9DF219B7609D00949252 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A5E9DE619B7605F00949252 /* aura.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = aura;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9A5E9DE619B7605F00949252 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
-		9AA5397C19B763C400B9F861 /* lib_ca2freeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_ca2freeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AEEAD9819C4D7A900866C9E /* libaurasqlite.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaurasqlite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9AA5E5FC16F7C61B005C45CE /* Frameworks */ = {
+		9AEEAD9519C4D7A900866C9E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A5E9DF419B761D000949252 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,16 +50,16 @@
 			isa = PBXGroup;
 			children = (
 				9A5E9DE619B7605F00949252 /* aura.xcodeproj */,
-				9AA5397C19B763C400B9F861 /* lib_ca2freeimage.dylib */,
+				9AEEAD9819C4D7A900866C9E /* libaurasqlite.dylib */,
 			);
 			sourceTree = "<group>";
 		};
 		9A5E9DE719B7605F00949252 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A5E9DED19B7605F00949252 /* libbase.dylib */,
+				9A5E9DED19B7605F00949252 /* libaura.dylib */,
 				9A5E9DEF19B7605F00949252 /* libaura.dylib */,
-				9A5E9DF119B7605F00949252 /* base_iosTests.xctest */,
+				9A5E9DF119B7605F00949252 /* aura_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,7 +67,7 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9AA5E5FE16F7C61B005C45CE /* Headers */ = {
+		9AEEAD9619C4D7A900866C9E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -89,22 +77,21 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9AA5E4C216F7C61B005C45CE /* aurasqlite */ = {
+		9AEEAD9719C4D7A900866C9E /* aurasqlite */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "aurasqlite" */;
+			buildConfigurationList = 9AEEAD9919C4D7A900866C9E /* Build configuration list for PBXNativeTarget "aurasqlite" */;
 			buildPhases = (
-				9AA5E4C316F7C61B005C45CE /* Sources */,
-				9AA5E5FC16F7C61B005C45CE /* Frameworks */,
-				9AA5E5FE16F7C61B005C45CE /* Headers */,
+				9AEEAD9419C4D7A900866C9E /* Sources */,
+				9AEEAD9519C4D7A900866C9E /* Frameworks */,
+				9AEEAD9619C4D7A900866C9E /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A5E9DF319B7609D00949252 /* PBXTargetDependency */,
 			);
 			name = aurasqlite;
-			productName = FreeImage;
-			productReference = 9AA5397C19B763C400B9F861 /* lib_ca2freeimage.dylib */;
+			productName = aurasqlite;
+			productReference = 9AEEAD9819C4D7A900866C9E /* libaurasqlite.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -134,16 +121,15 @@
 			);
 			projectRoot = "";
 			targets = (
-				9AA5E4C216F7C61B005C45CE /* aurasqlite */,
+				9AEEAD9719C4D7A900866C9E /* aurasqlite */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A5E9DED19B7605F00949252 /* libbase.dylib */ = {
+		9A5E9DED19B7605F00949252 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = libbase.dylib;
 			path = libaura.dylib;
 			remoteRef = 9A5E9DEC19B7605F00949252 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -155,10 +141,9 @@
 			remoteRef = 9A5E9DEE19B7605F00949252 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A5E9DF119B7605F00949252 /* base_iosTests.xctest */ = {
+		9A5E9DF119B7605F00949252 /* aura_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			name = base_iosTests.xctest;
 			path = aura_iosTests.xctest;
 			remoteRef = 9A5E9DF019B7605F00949252 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -166,7 +151,7 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9AA5E4C316F7C61B005C45CE /* Sources */ = {
+		9AEEAD9419C4D7A900866C9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -174,14 +159,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9A5E9DF319B7609D00949252 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = aura;
-			targetProxy = 9A5E9DF219B7609D00949252 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9A1B2F8A16A2AF5C00875A94 /* Debug */ = {
@@ -214,6 +191,7 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -247,6 +225,7 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)/ca2.app";
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
@@ -255,21 +234,50 @@
 			};
 			name = Release;
 		};
-		9AA5E6D416F7C61B005C45CE /* Debug */ = {
+		9AEEAD9A19C4D7A900866C9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = _ca2freeimage;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		9AA5E6D516F7C61B005C45CE /* Release */ = {
+		9AEEAD9B19C4D7A900866C9E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = _ca2freeimage;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_PREFIX = lib;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -285,14 +293,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AA5E6D316F7C61B005C45CE /* Build configuration list for PBXNativeTarget "aurasqlite" */ = {
+		9AEEAD9919C4D7A900866C9E /* Build configuration list for PBXNativeTarget "aurasqlite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AA5E6D416F7C61B005C45CE /* Debug */,
-				9AA5E6D516F7C61B005C45CE /* Release */,
+				9AEEAD9A19C4D7A900866C9E /* Debug */,
+				9AEEAD9B19C4D7A900866C9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

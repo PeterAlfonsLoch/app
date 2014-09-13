@@ -26,7 +26,11 @@
 #endif
 
 #define _GL_USE_STDLIB_ALLOC 1
-#include <config.h>
+#include "config.h"
+#if DEPENDS_ON_LIBICONV && HAVE_ICONV
+#include "atom/iconv/include/iconv.h"
+#endif
+
 
 /* Specification.  */
 #include "relocatable.h"
@@ -51,9 +55,6 @@
 
 #if DEPENDS_ON_LIBCHARSET
 # include <libcharset.h>
-#endif
-#if DEPENDS_ON_LIBICONV && HAVE_ICONV
-#include "atom/iconv/include/iconv.h"
 #endif
 #if DEPENDS_ON_LIBINTL && ENABLE_NLS
 # include <libintl.h>

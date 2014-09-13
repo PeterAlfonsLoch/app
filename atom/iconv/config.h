@@ -1291,3 +1291,7 @@
 
 
 #define HAVE_WORKING_O_NOFOLLOW 1
+
+
+#define NO_XMALLOC
+
