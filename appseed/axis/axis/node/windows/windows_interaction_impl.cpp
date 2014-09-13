@@ -1518,15 +1518,15 @@ namespace windows
       return nResult;
    }
 
-   sp(::user::interaction) interaction_impl::GetDescendantWindow(sp(::user::interaction) oswindow,id id)
+   ::user::interaction * interaction_impl::GetDescendantWindow(::user::interaction * pui,id id)
    {
-      single_lock sl(oswindow->m_pauraapp->m_pmutex,TRUE);
+      single_lock sl(pui->m_pauraapp->m_pmutex,TRUE);
       // get_child_by_id recursive (return first found)
       // breadth-first for 1 level, then depth-first for next level
 
       // use get_child_by_id since it is a fast USER function
       sp(::user::interaction) pWndChild;
-      if((pWndChild = oswindow->get_child_by_id(id)) != NULL)
+      if((pWndChild = pui->get_child_by_id(id)) != NULL)
       {
          if(pWndChild->GetTopWindow() != NULL)
          {
@@ -1539,14 +1539,14 @@ namespace windows
             return pWndChild;
       }
 
-      for(int32_t i = 0; i < oswindow->m_uiptraChild.get_count(); i++)
+      for(int32_t i = 0; i < pui->m_uiptraChild.get_count(); i++)
       {
-         if(oswindow->m_uiptraChild[i]->GetDlgCtrlId() == id)
+         if(pui->m_uiptraChild[i]->GetDlgCtrlId() == id)
          {
-            if(oswindow->m_uiptraChild[i]->GetDescendantWindow(id))
-               return oswindow->m_uiptraChild[i]->GetDescendantWindow(id);
+            if(pui->m_uiptraChild[i]->GetDescendantWindow(id))
+               return pui->m_uiptraChild[i]->GetDescendantWindow(id);
             else
-               return oswindow->m_uiptraChild[i];
+               return pui->m_uiptraChild[i];
          }
       }
 
@@ -3953,7 +3953,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetDescendantWindow(id id) const
+   ::user::interaction * interaction_impl::GetDescendantWindow(id id) const
    {
 
       ASSERT(::IsWindow(get_handle()));

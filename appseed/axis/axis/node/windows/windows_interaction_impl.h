@@ -132,7 +132,7 @@ namespace windows
       void get_child_by_id(id id,oswindow* poswindow_) const;
       // as above, but returns oswindow
       using ::user::interaction_impl::GetDescendantWindow;
-      sp(::user::interaction) GetDescendantWindow(id id) const;
+      ::user::interaction * GetDescendantWindow(id id) const;
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
       static ::window_sp get_safe_owner(::window_sp pParent = NULL,oswindow* pWndTop = NULL);
@@ -606,7 +606,7 @@ namespace windows
       bool IsTopParentActive();
       void ActivateTopParent();
       virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj);
-      static sp(::user::interaction) GetDescendantWindow(sp(::user::interaction) oswindow,id id);
+      static ::user::interaction * GetDescendantWindow(::user::interaction * pui, id id);
       static void SendMessageToDescendants(oswindow  oswindow,UINT message,WPARAM wParam,lparam lParam,bool bDeep,bool bOnlyPerm);
       virtual void on_final_release();
       static bool ModifyStyle(oswindow oswindow,uint32_t dwRemove,uint32_t dwAdd,UINT nFlags);
