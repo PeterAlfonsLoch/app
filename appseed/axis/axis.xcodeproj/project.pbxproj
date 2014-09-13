@@ -305,6 +305,43 @@
 		9AEEAD6A19C4BDBA00866C9E /* user_str_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAD6819C4BDBA00866C9E /* user_str_context.h */; };
 		9AEEAE0119C4FC3500866C9E /* lib_ca2freeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEADDC19C4FB3400866C9E /* lib_ca2freeimage.dylib */; };
 		9AEEAE0419C4FC9B00866C9E /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5E9E0019B7623B00949252 /* libaura.dylib */; };
+		9AEEAE2D19C4FF9400866C9E /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE0719C4FF9400866C9E /* database.h */; };
+		9AEEAE2E19C4FF9400866C9E /* database_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE0819C4FF9400866C9E /* database_application.cpp */; };
+		9AEEAE2F19C4FF9400866C9E /* database_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE0919C4FF9400866C9E /* database_base.cpp */; };
+		9AEEAE3019C4FF9400866C9E /* database_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE0A19C4FF9400866C9E /* database_base.h */; };
+		9AEEAE3119C4FF9400866C9E /* database_change_event.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE0B19C4FF9400866C9E /* database_change_event.h */; };
+		9AEEAE3219C4FF9400866C9E /* database_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE0C19C4FF9400866C9E /* database_client.cpp */; };
+		9AEEAE3319C4FF9400866C9E /* database_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE0D19C4FF9400866C9E /* database_client.h */; };
+		9AEEAE3419C4FF9400866C9E /* database_database.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE0E19C4FF9400866C9E /* database_database.h */; };
+		9AEEAE3519C4FF9400866C9E /* database_definition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE0F19C4FF9400866C9E /* database_definition.cpp */; };
+		9AEEAE3619C4FF9400866C9E /* database_definition.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE1019C4FF9400866C9E /* database_definition.h */; };
+		9AEEAE3719C4FF9400866C9E /* database_event_change.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE1119C4FF9400866C9E /* database_event_change.cpp */; };
+		9AEEAE3819C4FF9400866C9E /* database_field_definition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE1219C4FF9400866C9E /* database_field_definition.cpp */; };
+		9AEEAE3919C4FF9400866C9E /* database_field_definition.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE1319C4FF9400866C9E /* database_field_definition.h */; };
+		9AEEAE3A19C4FF9400866C9E /* database_id.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE1419C4FF9400866C9E /* database_id.cpp */; };
+		9AEEAE3B19C4FF9400866C9E /* database_id.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE1519C4FF9400866C9E /* database_id.h */; };
+		9AEEAE3C19C4FF9400866C9E /* database_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE1619C4FF9400866C9E /* database_key.cpp */; };
+		9AEEAE3D19C4FF9400866C9E /* database_key.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE1719C4FF9400866C9E /* database_key.h */; };
+		9AEEAE3E19C4FF9400866C9E /* database_selection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE1819C4FF9400866C9E /* database_selection.cpp */; };
+		9AEEAE3F19C4FF9400866C9E /* database_selection.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE1919C4FF9400866C9E /* database_selection.h */; };
+		9AEEAE4019C4FF9400866C9E /* database_selection_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE1A19C4FF9400866C9E /* database_selection_item.cpp */; };
+		9AEEAE4119C4FF9400866C9E /* database_selection_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE1B19C4FF9400866C9E /* database_selection_item.h */; };
+		9AEEAE4219C4FF9400866C9E /* database_server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE1C19C4FF9400866C9E /* database_server.cpp */; };
+		9AEEAE4319C4FF9400866C9E /* database_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE1D19C4FF9400866C9E /* database_server.h */; };
+		9AEEAE4419C4FF9400866C9E /* database_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE1E19C4FF9400866C9E /* database_set.cpp */; };
+		9AEEAE4519C4FF9400866C9E /* database_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE1F19C4FF9400866C9E /* database_set.h */; };
+		9AEEAE4619C4FF9400866C9E /* database_stringhelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE2019C4FF9400866C9E /* database_stringhelper.cpp */; };
+		9AEEAE4719C4FF9400866C9E /* database_stringhelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE2119C4FF9400866C9E /* database_stringhelper.h */; };
+		9AEEAE4819C4FF9400866C9E /* database_template.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE2219C4FF9400866C9E /* database_template.h */; };
+		9AEEAE4919C4FF9400866C9E /* database_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE2319C4FF9400866C9E /* database_update_hint.cpp */; };
+		9AEEAE4A19C4FF9400866C9E /* database_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE2419C4FF9400866C9E /* database_update_hint.h */; };
+		9AEEAE4B19C4FF9400866C9E /* database_user_interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE2519C4FF9400866C9E /* database_user_interaction.cpp */; };
+		9AEEAE4C19C4FF9400866C9E /* database_user_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE2619C4FF9400866C9E /* database_user_interaction.h */; };
+		9AEEAE4D19C4FF9400866C9E /* sqlite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE2819C4FF9400866C9E /* sqlite.h */; };
+		9AEEAE4E19C4FF9400866C9E /* sqlite_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE2919C4FF9400866C9E /* sqlite_base.cpp */; };
+		9AEEAE4F19C4FF9400866C9E /* sqlite_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE2A19C4FF9400866C9E /* sqlite_base.h */; };
+		9AEEAE5019C4FF9500866C9E /* sqlite_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE2B19C4FF9400866C9E /* sqlite_set.cpp */; };
+		9AEEAE5119C4FF9500866C9E /* sqlite_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE2C19C4FF9400866C9E /* sqlite_set.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -636,6 +673,43 @@
 		9AEEAD6719C4BDBA00866C9E /* user_str_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_str_context.cpp; sourceTree = "<group>"; };
 		9AEEAD6819C4BDBA00866C9E /* user_str_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_str_context.h; sourceTree = "<group>"; };
 		9AEEADD719C4FB3400866C9E /* axisbzip2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisbzip2.xcodeproj; path = ../../axis/bzip2/axisbzip2.xcodeproj; sourceTree = "<group>"; };
+		9AEEAE0719C4FF9400866C9E /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
+		9AEEAE0819C4FF9400866C9E /* database_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_application.cpp; sourceTree = "<group>"; };
+		9AEEAE0919C4FF9400866C9E /* database_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_base.cpp; sourceTree = "<group>"; };
+		9AEEAE0A19C4FF9400866C9E /* database_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_base.h; sourceTree = "<group>"; };
+		9AEEAE0B19C4FF9400866C9E /* database_change_event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_change_event.h; sourceTree = "<group>"; };
+		9AEEAE0C19C4FF9400866C9E /* database_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_client.cpp; sourceTree = "<group>"; };
+		9AEEAE0D19C4FF9400866C9E /* database_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_client.h; sourceTree = "<group>"; };
+		9AEEAE0E19C4FF9400866C9E /* database_database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_database.h; sourceTree = "<group>"; };
+		9AEEAE0F19C4FF9400866C9E /* database_definition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_definition.cpp; sourceTree = "<group>"; };
+		9AEEAE1019C4FF9400866C9E /* database_definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_definition.h; sourceTree = "<group>"; };
+		9AEEAE1119C4FF9400866C9E /* database_event_change.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_event_change.cpp; sourceTree = "<group>"; };
+		9AEEAE1219C4FF9400866C9E /* database_field_definition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_field_definition.cpp; sourceTree = "<group>"; };
+		9AEEAE1319C4FF9400866C9E /* database_field_definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_field_definition.h; sourceTree = "<group>"; };
+		9AEEAE1419C4FF9400866C9E /* database_id.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_id.cpp; sourceTree = "<group>"; };
+		9AEEAE1519C4FF9400866C9E /* database_id.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_id.h; sourceTree = "<group>"; };
+		9AEEAE1619C4FF9400866C9E /* database_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_key.cpp; sourceTree = "<group>"; };
+		9AEEAE1719C4FF9400866C9E /* database_key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_key.h; sourceTree = "<group>"; };
+		9AEEAE1819C4FF9400866C9E /* database_selection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_selection.cpp; sourceTree = "<group>"; };
+		9AEEAE1919C4FF9400866C9E /* database_selection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_selection.h; sourceTree = "<group>"; };
+		9AEEAE1A19C4FF9400866C9E /* database_selection_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_selection_item.cpp; sourceTree = "<group>"; };
+		9AEEAE1B19C4FF9400866C9E /* database_selection_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_selection_item.h; sourceTree = "<group>"; };
+		9AEEAE1C19C4FF9400866C9E /* database_server.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_server.cpp; sourceTree = "<group>"; };
+		9AEEAE1D19C4FF9400866C9E /* database_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_server.h; sourceTree = "<group>"; };
+		9AEEAE1E19C4FF9400866C9E /* database_set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_set.cpp; sourceTree = "<group>"; };
+		9AEEAE1F19C4FF9400866C9E /* database_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_set.h; sourceTree = "<group>"; };
+		9AEEAE2019C4FF9400866C9E /* database_stringhelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_stringhelper.cpp; sourceTree = "<group>"; };
+		9AEEAE2119C4FF9400866C9E /* database_stringhelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_stringhelper.h; sourceTree = "<group>"; };
+		9AEEAE2219C4FF9400866C9E /* database_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_template.h; sourceTree = "<group>"; };
+		9AEEAE2319C4FF9400866C9E /* database_update_hint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_update_hint.cpp; sourceTree = "<group>"; };
+		9AEEAE2419C4FF9400866C9E /* database_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_update_hint.h; sourceTree = "<group>"; };
+		9AEEAE2519C4FF9400866C9E /* database_user_interaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_user_interaction.cpp; sourceTree = "<group>"; };
+		9AEEAE2619C4FF9400866C9E /* database_user_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_user_interaction.h; sourceTree = "<group>"; };
+		9AEEAE2819C4FF9400866C9E /* sqlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite.h; sourceTree = "<group>"; };
+		9AEEAE2919C4FF9400866C9E /* sqlite_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sqlite_base.cpp; sourceTree = "<group>"; };
+		9AEEAE2A19C4FF9400866C9E /* sqlite_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite_base.h; sourceTree = "<group>"; };
+		9AEEAE2B19C4FF9400866C9E /* sqlite_set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sqlite_set.cpp; sourceTree = "<group>"; };
+		9AEEAE2C19C4FF9400866C9E /* sqlite_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite_set.h; sourceTree = "<group>"; };
 		CE931714155F1599005F90F6 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../../System/Library/Frameworks/Carbon.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1154,6 +1228,66 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9AEEAE0519C4FF9400866C9E /* database */ = {
+			isa = PBXGroup;
+			children = (
+				9AEEAE0619C4FF9400866C9E /* database */,
+				9AEEAE2719C4FF9400866C9E /* sqlite */,
+			);
+			path = database;
+			sourceTree = "<group>";
+		};
+		9AEEAE0619C4FF9400866C9E /* database */ = {
+			isa = PBXGroup;
+			children = (
+				9AEEAE0719C4FF9400866C9E /* database.h */,
+				9AEEAE0819C4FF9400866C9E /* database_application.cpp */,
+				9AEEAE0919C4FF9400866C9E /* database_base.cpp */,
+				9AEEAE0A19C4FF9400866C9E /* database_base.h */,
+				9AEEAE0B19C4FF9400866C9E /* database_change_event.h */,
+				9AEEAE0C19C4FF9400866C9E /* database_client.cpp */,
+				9AEEAE0D19C4FF9400866C9E /* database_client.h */,
+				9AEEAE0E19C4FF9400866C9E /* database_database.h */,
+				9AEEAE0F19C4FF9400866C9E /* database_definition.cpp */,
+				9AEEAE1019C4FF9400866C9E /* database_definition.h */,
+				9AEEAE1119C4FF9400866C9E /* database_event_change.cpp */,
+				9AEEAE1219C4FF9400866C9E /* database_field_definition.cpp */,
+				9AEEAE1319C4FF9400866C9E /* database_field_definition.h */,
+				9AEEAE1419C4FF9400866C9E /* database_id.cpp */,
+				9AEEAE1519C4FF9400866C9E /* database_id.h */,
+				9AEEAE1619C4FF9400866C9E /* database_key.cpp */,
+				9AEEAE1719C4FF9400866C9E /* database_key.h */,
+				9AEEAE1819C4FF9400866C9E /* database_selection.cpp */,
+				9AEEAE1919C4FF9400866C9E /* database_selection.h */,
+				9AEEAE1A19C4FF9400866C9E /* database_selection_item.cpp */,
+				9AEEAE1B19C4FF9400866C9E /* database_selection_item.h */,
+				9AEEAE1C19C4FF9400866C9E /* database_server.cpp */,
+				9AEEAE1D19C4FF9400866C9E /* database_server.h */,
+				9AEEAE1E19C4FF9400866C9E /* database_set.cpp */,
+				9AEEAE1F19C4FF9400866C9E /* database_set.h */,
+				9AEEAE2019C4FF9400866C9E /* database_stringhelper.cpp */,
+				9AEEAE2119C4FF9400866C9E /* database_stringhelper.h */,
+				9AEEAE2219C4FF9400866C9E /* database_template.h */,
+				9AEEAE2319C4FF9400866C9E /* database_update_hint.cpp */,
+				9AEEAE2419C4FF9400866C9E /* database_update_hint.h */,
+				9AEEAE2519C4FF9400866C9E /* database_user_interaction.cpp */,
+				9AEEAE2619C4FF9400866C9E /* database_user_interaction.h */,
+			);
+			path = database;
+			sourceTree = "<group>";
+		};
+		9AEEAE2719C4FF9400866C9E /* sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				9AEEAE2819C4FF9400866C9E /* sqlite.h */,
+				9AEEAE2919C4FF9400866C9E /* sqlite_base.cpp */,
+				9AEEAE2A19C4FF9400866C9E /* sqlite_base.h */,
+				9AEEAE2B19C4FF9400866C9E /* sqlite_set.cpp */,
+				9AEEAE2C19C4FF9400866C9E /* sqlite_set.h */,
+			);
+			path = sqlite;
+			sourceTree = "<group>";
+		};
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
@@ -1166,6 +1300,7 @@
 				073EDDE4164E96DA00818801 /* SecurityFoundation.framework */,
 				9AEEA84B19C4BD0700866C9E /* axis */,
 				9AEEAAEB19C4BD0900866C9E /* axis_iosTests */,
+				9AEEAE0519C4FF9400866C9E /* database */,
 				07F5B12D184A3B420092C3E1 /* filesystem */,
 				9AE24D351904CEFE001AEFFB /* Frameworks */,
 				07F5B20E184A3B690092C3E1 /* graphics */,
@@ -1193,14 +1328,18 @@
 				9AC31613198E4CDF008FB109 /* user_document.h in Headers */,
 				9AC3161F198E4CDF008FB109 /* user_interaction_impl.h in Headers */,
 				9AC31621198E4CDF008FB109 /* user_plain_text_data.h in Headers */,
+				9AEEAE4C19C4FF9400866C9E /* database_user_interaction.h in Headers */,
 				9AEEAD3119C4BD0A00866C9E /* os.h in Headers */,
 				9AEEAC0119C4BD0900866C9E /* node.h in Headers */,
 				9AC31617198E4CDF008FB109 /* user_form_interface.h in Headers */,
 				9AEEABB119C4BD0900866C9E /* macos_message_queue.h in Headers */,
+				9AEEAE3F19C4FF9400866C9E /* database_selection.h in Headers */,
 				9AEEABB819C4BD0900866C9E /* macos_window_draw.h in Headers */,
 				07A2247518F7F3F8002C3B39 /* user_inline.h in Headers */,
 				9AE4C8281996D8E700E50F88 /* user_schema_simple_impl.h in Headers */,
+				9AEEAE3B19C4FF9400866C9E /* database_id.h in Headers */,
 				9AEEABB219C4BD0900866C9E /* macos_mm.h in Headers */,
+				9AEEAE3319C4FF9400866C9E /* database_client.h in Headers */,
 				9AEEAB0219C4BD0900866C9E /* axis_platform_interface.h in Headers */,
 				9AEEAB0C19C4BD0900866C9E /* axis_system_str.h in Headers */,
 				07884C021897E9A500DC6CEB /* user_keyboard_layout.h in Headers */,
@@ -1212,12 +1351,16 @@
 				9AEEAD0919C4BD0A00866C9E /* macos_window_impl.h in Headers */,
 				9AEEAB2419C4BD0900866C9E /* message_user.h in Headers */,
 				9AEEAAFD19C4BD0900866C9E /* axis.h in Headers */,
+				9AEEAE4319C4FF9400866C9E /* database_server.h in Headers */,
+				9AEEAE3919C4FF9400866C9E /* database_field_definition.h in Headers */,
 				07B095FA18495C5F007A0560 /* simple_ui_style.h in Headers */,
 				07884BFE1897E9A500DC6CEB /* user_keyboard.h in Headers */,
 				9AE4C8261996D8E700E50F88 /* user_schema_layered_frame.h in Headers */,
+				9AEEAE4119C4FF9400866C9E /* database_selection_item.h in Headers */,
 				9AEEAC3519C4BD0900866C9E /* ansios.h in Headers */,
 				9AC3161D198E4CDF008FB109 /* user_interaction_impl_base.h in Headers */,
 				9AEEAB0D19C4BD0900866C9E /* axis_template.h in Headers */,
+				9AEEAE4F19C4FF9400866C9E /* sqlite_base.h in Headers */,
 				9AC31610198E4CDF008FB109 /* user_control.h in Headers */,
 				9AE4C7FA1996D29C00E50F88 /* data_simple_item.h in Headers */,
 				9AEEAD0B19C4BD0A00866C9E /* macos_windowing.h in Headers */,
@@ -1242,6 +1385,7 @@
 				9AE4C7FE1996D29C00E50F88 /* data_tree_item.h in Headers */,
 				07884C001897E9A500DC6CEB /* user_keyboard_focus.h in Headers */,
 				07A2247718F7F3F8002C3B39 /* user_menu_base_item.h in Headers */,
+				9AEEAE4D19C4FF9400866C9E /* sqlite.h in Headers */,
 				07A2247918F7F3F8002C3B39 /* user_menu_base.h in Headers */,
 				9AEEAD0419C4BD0A00866C9E /* macos_process.h in Headers */,
 				9AEEABBB19C4BD0900866C9E /* RoundWindow.h in Headers */,
@@ -1251,6 +1395,7 @@
 				07F5B281184A3B6A0092C3E1 /* graphics_window_graphics.h in Headers */,
 				9AE4C8351996D8F000E50F88 /* simple_scroll_bar.h in Headers */,
 				9AE4C8171996D83200E50F88 /* file_edit_buffer.h in Headers */,
+				9AEEAE3419C4FF9400866C9E /* database_database.h in Headers */,
 				07884BF71897E9A500DC6CEB /* user_impact_update_hint.h in Headers */,
 				0751A4A7192AB3F900CFD2B0 /* user_windowing.h in Headers */,
 				9AEEAB0719C4BD0900866C9E /* axis_simple_app.h in Headers */,
@@ -1259,6 +1404,7 @@
 				9AEEAB1019C4BD0900866C9E /* axis_cpp.h in Headers */,
 				07884C0A1897E9A500DC6CEB /* user_place_holder.h in Headers */,
 				9AEEAB2219C4BD0900866C9E /* gzip_stream.h in Headers */,
+				9AEEAE3D19C4FF9400866C9E /* database_key.h in Headers */,
 				07B095F618495C5F007A0560 /* simple_ui_label.h in Headers */,
 				07884BE71897E9A500DC6CEB /* user_control_event.h in Headers */,
 				07884BF91897E9A500DC6CEB /* user_interaction.h in Headers */,
@@ -1270,11 +1416,15 @@
 				9AEEABAC19C4BD0900866C9E /* macos_implementation.h in Headers */,
 				07884BF31897E9A500DC6CEB /* user_impact.h in Headers */,
 				9AEEAB1419C4BD0900866C9E /* axis_policy_winrt.h in Headers */,
+				9AEEAE5119C4FF9500866C9E /* sqlite_set.h in Headers */,
+				9AEEAE4519C4FF9400866C9E /* database_set.h in Headers */,
+				9AEEAE4819C4FF9400866C9E /* database_template.h in Headers */,
 				07884C061897E9A500DC6CEB /* user_mouse_focus.h in Headers */,
 				9AEEAB1119C4BD0900866C9E /* axis_policy.h in Headers */,
 				07884BF51897E9A500DC6CEB /* user_impact_system.h in Headers */,
 				9AC31619198E4CDF008FB109 /* user_interaction_base.h in Headers */,
 				9AEEABAB19C4BD0900866C9E /* macos_factory_exchange.h in Headers */,
+				9AEEAE2D19C4FF9400866C9E /* database.h in Headers */,
 				07884BF11897E9A500DC6CEB /* user_frame_window.h in Headers */,
 				9AEEABAE19C4BD0900866C9E /* macos_interaction_impl.h in Headers */,
 				07884BDF1897E9A400DC6CEB /* user.h in Headers */,
@@ -1284,8 +1434,11 @@
 				07884BFB1897E9A500DC6CEB /* user_job.h in Headers */,
 				07B095F218495C5F007A0560 /* simple_ui_edit_box.h in Headers */,
 				07884BEF1897E9A500DC6CEB /* user_elemental.h in Headers */,
+				9AEEAE4719C4FF9400866C9E /* database_stringhelper.h in Headers */,
 				07884C291897E9A500DC6CEB /* user_window_map.h in Headers */,
+				9AEEAE3619C4FF9400866C9E /* database_definition.h in Headers */,
 				9AEEAD0C19C4BD0A00866C9E /* os.h in Headers */,
+				9AEEAE4A19C4FF9400866C9E /* database_update_hint.h in Headers */,
 				9AEEAB2019C4BD0900866C9E /* compress.h in Headers */,
 				07884C041897E9A500DC6CEB /* user_message.h in Headers */,
 				9AEEAC6619C4BD0A00866C9E /* windows.h in Headers */,
@@ -1311,7 +1464,9 @@
 				9AE725C017E83B69003E47F9 /* version.h in Headers */,
 				07884BE51897E9A500DC6CEB /* user_control_bar.h in Headers */,
 				9AEEAB1319C4BD0900866C9E /* axis_policy_objcpp.h in Headers */,
+				9AEEAE3019C4FF9400866C9E /* database_base.h in Headers */,
 				07884BE11897E9A400DC6CEB /* user_buffer.h in Headers */,
+				9AEEAE3119C4FF9400866C9E /* database_change_event.h in Headers */,
 				07884C181897E9A500DC6CEB /* user_user.h in Headers */,
 				9AEEAC6819C4BD0A00866C9E /* cross.h in Headers */,
 				07A2247418F7F3F8002C3B39 /* user_enum.h in Headers */,
@@ -1467,21 +1622,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				07884C281897E9A500DC6CEB /* user_window_map.cpp in Sources */,
+				9AEEAE4919C4FF9400866C9E /* database_update_hint.cpp in Sources */,
 				9AEEABB519C4BD0900866C9E /* macos_printer.cpp in Sources */,
 				07B0950B18495C2B007A0560 /* datetime_departament.cpp in Sources */,
 				07884BF01897E9A500DC6CEB /* user_frame_window.cpp in Sources */,
 				9AC31612198E4CDF008FB109 /* user_document.cpp in Sources */,
 				07884C051897E9A500DC6CEB /* user_mouse_focus.cpp in Sources */,
 				9AC3161C198E4CDF008FB109 /* user_interaction_impl_base.cpp in Sources */,
+				9AEEAE5019C4FF9500866C9E /* sqlite_set.cpp in Sources */,
 				9AE4C82D1996D8E700E50F88 /* user_scroll_view.cpp in Sources */,
 				9AEEABA819C4BD0900866C9E /* macos_copydesk.cpp in Sources */,
 				9AC3160F198E4CDF008FB109 /* user_control.cpp in Sources */,
 				9AEEAC3719C4BD0900866C9E /* ansios_cross_win.cpp in Sources */,
 				9AEEABBA19C4BD0900866C9E /* round_window.mm in Sources */,
 				07884BE61897E9A500DC6CEB /* user_control_event.cpp in Sources */,
+				9AEEAE3719C4FF9400866C9E /* database_event_change.cpp in Sources */,
+				9AEEAE3219C4FF9400866C9E /* database_client.cpp in Sources */,
 				07884C171897E9A500DC6CEB /* user_user.cpp in Sources */,
 				9AEEACF519C4BD0A00866C9E /* macos_cross_win_file.cpp in Sources */,
 				9AEEABAD19C4BD0900866C9E /* macos_interaction_impl.cpp in Sources */,
+				9AEEAE4019C4FF9400866C9E /* database_selection_item.cpp in Sources */,
 				07884BF21897E9A500DC6CEB /* user_impact.cpp in Sources */,
 				9AEEAC6519C4BD0A00866C9E /* metrowin_user.cpp in Sources */,
 				9AEEAC3919C4BD0900866C9E /* ansios_cross_windows_user.cpp in Sources */,
@@ -1489,12 +1649,14 @@
 				9AE4C8341996D8F000E50F88 /* simple_scroll_bar.cpp in Sources */,
 				9AC3161A198E4CDF008FB109 /* user_interaction_child.cpp in Sources */,
 				9AE4C8271996D8E700E50F88 /* user_schema_simple_impl.cpp in Sources */,
+				9AEEAE3E19C4FF9400866C9E /* database_selection.cpp in Sources */,
 				9AEEAB2119C4BD0900866C9E /* gzip_stream.cpp in Sources */,
 				07884BDE1897E9A400DC6CEB /* user.cpp in Sources */,
 				077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */,
 				07884C151897E9A500DC6CEB /* user_text_interface.cpp in Sources */,
 				9AEEABBC19C4BD0900866C9E /* RoundWindow.mm in Sources */,
 				9AEEABAA19C4BD0900866C9E /* macos_factory_exchange.cpp in Sources */,
+				9AEEAE2E19C4FF9400866C9E /* database_application.cpp in Sources */,
 				07884C0B1897E9A500DC6CEB /* user_place_holder_container.cpp in Sources */,
 				07884BF41897E9A500DC6CEB /* user_impact_system.cpp in Sources */,
 				9AC3161E198E4CDF008FB109 /* user_interaction_impl.cpp in Sources */,
@@ -1503,6 +1665,7 @@
 				9AEEAB0019C4BD0900866C9E /* axis_core_copydesk.cpp in Sources */,
 				07B095F518495C5F007A0560 /* simple_ui_label.cpp in Sources */,
 				9AEEAD0519C4BD0A00866C9E /* macos_process_pid.cpp in Sources */,
+				9AEEAE4419C4FF9400866C9E /* database_set.cpp in Sources */,
 				9AEEAC3B19C4BD0900866C9E /* ansios_multithreading.cpp in Sources */,
 				9AEEAB0319C4BD0900866C9E /* axis_print_job.cpp in Sources */,
 				9AEEAB0E19C4BD0900866C9E /* axis_c.c in Sources */,
@@ -1513,6 +1676,7 @@
 				9A24EE81193783BF00ECBAD3 /* simple_ui_message_box.cpp in Sources */,
 				07B095FB18495C5F007A0560 /* simple_ui_tap.cpp in Sources */,
 				9AC31620198E4CDF008FB109 /* user_plain_text_data.cpp in Sources */,
+				9AEEAE4619C4FF9400866C9E /* database_stringhelper.cpp in Sources */,
 				9AEEACFF19C4BD0A00866C9E /* macos_multithreading.cpp in Sources */,
 				07884C111897E9A500DC6CEB /* user_server.cpp in Sources */,
 				9AEEAD0319C4BD0A00866C9E /* macos_process.cpp in Sources */,
@@ -1520,6 +1684,7 @@
 				07B095F118495C5F007A0560 /* simple_ui_edit_box.cpp in Sources */,
 				9AEEAC3819C4BD0900866C9E /* ansios_cross_win_file.cpp in Sources */,
 				9AEEAB0519C4BD0900866C9E /* axis_session.cpp in Sources */,
+				9AEEAE3819C4FF9400866C9E /* database_field_definition.cpp in Sources */,
 				07884BF61897E9A500DC6CEB /* user_impact_update_hint.cpp in Sources */,
 				9AEEACEE19C4BD0A00866C9E /* macos.cpp in Sources */,
 				07F5B280184A3B6A0092C3E1 /* graphics_window_graphics.cpp in Sources */,
@@ -1535,6 +1700,7 @@
 				07884C201897E9A500DC6CEB /* user_wait_cursor.cpp in Sources */,
 				07B095F718495C5F007A0560 /* simple_ui_password.cpp in Sources */,
 				9AEEAD0119C4BD0A00866C9E /* macos_os.cpp in Sources */,
+				9AEEAE3A19C4FF9400866C9E /* database_id.cpp in Sources */,
 				9AEEACF319C4BD0A00866C9E /* macos_cross_user.mm in Sources */,
 				9AEEAB1E19C4BD0900866C9E /* bzip_stream.cpp in Sources */,
 				07884BF81897E9A500DC6CEB /* user_interaction.cpp in Sources */,
@@ -1546,6 +1712,7 @@
 				9AEEAB0819C4BD0900866C9E /* axis_static_start.cpp in Sources */,
 				9AEEACFD19C4BD0A00866C9E /* macos_message_loop.cpp in Sources */,
 				9AE4C7FD1996D29C00E50F88 /* data_tree_item.cpp in Sources */,
+				9AEEAE3519C4FF9400866C9E /* database_definition.cpp in Sources */,
 				9AEEAC3619C4BD0900866C9E /* ansios_base_file.cpp in Sources */,
 				07884C1B1897E9A500DC6CEB /* user_view_creator.cpp in Sources */,
 				9AEEAC3A19C4BD0900866C9E /* ansios_file_std.cpp in Sources */,
@@ -1569,17 +1736,22 @@
 				9AEEAD0A19C4BD0A00866C9E /* macos_windowing.cpp in Sources */,
 				9AC31618198E4CDF008FB109 /* user_interaction_base.cpp in Sources */,
 				9AEEAC6419C4BD0A00866C9E /* cross_metrowin_user.cpp in Sources */,
+				9AEEAE4219C4FF9400866C9E /* database_server.cpp in Sources */,
 				9AEEAB0A19C4BD0900866C9E /* axis_system.cpp in Sources */,
 				9AEEAB2319C4BD0900866C9E /* message_user.cpp in Sources */,
 				07884C241897E9A500DC6CEB /* user_window_draw.cpp in Sources */,
+				9AEEAE4B19C4FF9400866C9E /* database_user_interaction.cpp in Sources */,
 				07B0951118495C2B007A0560 /* datetime_value.cpp in Sources */,
+				9AEEAE4E19C4FF9400866C9E /* sqlite_base.cpp in Sources */,
 				07884C191897E9A500DC6CEB /* user_view_container.cpp in Sources */,
 				9AEEAD0819C4BD0A00866C9E /* macos_win_base.cpp in Sources */,
 				07A2247818F7F3F8002C3B39 /* user_menu_base.cpp in Sources */,
 				07884C031897E9A500DC6CEB /* user_message.cpp in Sources */,
 				9AEEABB019C4BD0900866C9E /* macos_message_queue.cpp in Sources */,
 				07884BE01897E9A400DC6CEB /* user_buffer.cpp in Sources */,
+				9AEEAE3C19C4FF9400866C9E /* database_key.cpp in Sources */,
 				07884BFF1897E9A500DC6CEB /* user_keyboard_focus.cpp in Sources */,
+				9AEEAE2F19C4FF9400866C9E /* database_base.cpp in Sources */,
 				9AE4C82B1996D8E700E50F88 /* user_scroll_bar.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
