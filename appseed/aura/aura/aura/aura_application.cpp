@@ -2746,8 +2746,10 @@ namespace aura
       return ::file_name_dup(psz);
 
    }
+
+#ifdef APPLEOS
    
-   string application::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
+   string application::dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
    {
       
       throw interface_only_exception(get_app());
@@ -2755,6 +2757,8 @@ namespace aura
       return "";
       
    }
+
+#endif
 
 
    string application::file_time_square()

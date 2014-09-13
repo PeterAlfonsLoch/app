@@ -3528,6 +3528,8 @@ namespace base
 
    }
 
+#ifdef APPLEOS
+
    string application::dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
    {
       
@@ -3535,6 +3537,7 @@ namespace base
       
    }
 
+#endif
 
    string application::file_as_string(var varFile,var & varQuery)
    {
