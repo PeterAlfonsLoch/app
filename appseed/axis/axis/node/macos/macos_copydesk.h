@@ -6,8 +6,8 @@ namespace macos
 
 
    class CLASS_DECL_mac copydesk :
-      virtual public ::aura::copydesk,
-      virtual public ::window_sp
+      virtual public ::axis::copydesk,
+   virtual public ::user::interaction
    {
    public:
 

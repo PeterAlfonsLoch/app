@@ -68,9 +68,9 @@ CLASS_DECL_mac void AfxResetMsgCache();
 CLASS_DECL_mac void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_mac void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_mac void AfxProcessWndProcException(::exception::aura*, signal_details * pobj);
+CLASS_DECL_mac void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
 CLASS_DECL_mac void __cdecl __pre_translate_message(signal_details * pobj);
-#include "mac_printer.h"
+#include "macos_printer.h"
 
 
 
@@ -96,5 +96,4 @@ CLASS_DECL_mac void vfxThrowFileException(::aura::application * papp, int32_t ca
 
 
 
-#include "mac_internal.h"
 
