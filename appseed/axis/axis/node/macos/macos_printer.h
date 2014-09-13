@@ -1,17 +1,17 @@
 #pragma once
 
 
-namespace mac2
+namespace macos
 {
 
 
-   class CLASS_DECL_mac printer :
+   class CLASS_DECL_BASE printer :
       virtual public ::user::printer
    {
    public:
 
 
-      class CLASS_DECL_mac document_properties :
+      class CLASS_DECL_BASE document_properties :
          virtual public ::object
       {
       public:
@@ -26,7 +26,7 @@ namespace mac2
 
 
   //       virtual bool initialize(::win2::printer * pprinter, DEVMODE * pdevmode = NULL);
-         virtual bool initialize(::mac2::printer * pprinter);
+         virtual bool initialize(::macos::printer * pprinter);
          virtual bool close();
          virtual ::draw2d::graphics * create_graphics();
 

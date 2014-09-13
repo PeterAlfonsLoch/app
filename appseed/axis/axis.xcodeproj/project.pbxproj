@@ -222,15 +222,8 @@
 		9AEEAB1219C4BD0900866C9E /* axis_policy_objc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA87219C4BD0700866C9E /* axis_policy_objc.h */; };
 		9AEEAB1319C4BD0900866C9E /* axis_policy_objcpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA87319C4BD0700866C9E /* axis_policy_objcpp.h */; };
 		9AEEAB1419C4BD0900866C9E /* axis_policy_winrt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA87419C4BD0700866C9E /* axis_policy_winrt.h */; };
-		9AEEAB1519C4BD0900866C9E /* bsdiff.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA88219C4BD0700866C9E /* bsdiff.c */; };
-		9AEEAB1619C4BD0900866C9E /* bsdiff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA88319C4BD0700866C9E /* bsdiff.cpp */; };
 		9AEEAB1719C4BD0900866C9E /* bsdiff_bsdiff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA88419C4BD0700866C9E /* bsdiff_bsdiff.cpp */; };
 		9AEEAB1819C4BD0900866C9E /* bsdiff_bspatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA88519C4BD0700866C9E /* bsdiff_bspatch.cpp */; };
-		9AEEAB1919C4BD0900866C9E /* bspatch.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA88619C4BD0700866C9E /* bspatch.c */; };
-		9AEEAB1A19C4BD0900866C9E /* bspatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA88719C4BD0700866C9E /* bspatch.cpp */; };
-		9AEEAB1B19C4BD0900866C9E /* libbsdiff.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA88819C4BD0700866C9E /* libbsdiff.c */; };
-		9AEEAB1C19C4BD0900866C9E /* libbsdiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA88919C4BD0700866C9E /* libbsdiff.h */; };
-		9AEEAB1D19C4BD0900866C9E /* test-libbsdiff.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA88A19C4BD0700866C9E /* test-libbsdiff.c */; };
 		9AEEAB1E19C4BD0900866C9E /* bzip_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA88B19C4BD0700866C9E /* bzip_stream.cpp */; };
 		9AEEAB1F19C4BD0900866C9E /* bzip_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA88C19C4BD0700866C9E /* bzip_stream.h */; };
 		9AEEAB2019C4BD0900866C9E /* compress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA88D19C4BD0700866C9E /* compress.h */; };
@@ -251,8 +244,6 @@
 		9AEEABB019C4BD0900866C9E /* macos_message_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA92519C4BD0800866C9E /* macos_message_queue.cpp */; };
 		9AEEABB119C4BD0900866C9E /* macos_message_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA92619C4BD0800866C9E /* macos_message_queue.h */; };
 		9AEEABB219C4BD0900866C9E /* macos_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA92719C4BD0800866C9E /* macos_mm.h */; };
-		9AEEABB319C4BD0900866C9E /* macos_os.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA92819C4BD0800866C9E /* macos_os.cpp */; };
-		9AEEABB419C4BD0900866C9E /* macos_os.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA92919C4BD0800866C9E /* macos_os.h */; };
 		9AEEABB519C4BD0900866C9E /* macos_printer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA92A19C4BD0800866C9E /* macos_printer.cpp */; };
 		9AEEABB619C4BD0900866C9E /* macos_printer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA92B19C4BD0800866C9E /* macos_printer.h */; };
 		9AEEABB719C4BD0900866C9E /* macos_window_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA92C19C4BD0800866C9E /* macos_window_draw.cpp */; };
@@ -389,13 +380,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
 			remoteInfo = base_ios;
-		};
-		9AEEAD6519C4BD0A00866C9E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AEEA87E19C4BD0700866C9E /* axisbsdiff.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AA5E6D616F7C61B005C45CE;
-			remoteInfo = axisbsdiff;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -590,21 +574,8 @@
 		9AEEA87419C4BD0700866C9E /* axis_policy_winrt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = axis_policy_winrt.h; sourceTree = "<group>"; };
 		9AEEA87519C4BD0700866C9E /* axis_vanity_ada.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axis_vanity_ada.txt; sourceTree = "<group>"; };
 		9AEEA87619C4BD0700866C9E /* axis_vanity_basic.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axis_vanity_basic.txt; sourceTree = "<group>"; };
-		9AEEA87919C4BD0700866C9E /* axisbsdiff.cbp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = axisbsdiff.cbp; sourceTree = "<group>"; };
-		9AEEA87A19C4BD0700866C9E /* axisbsdiff.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axisbsdiff.def; sourceTree = "<group>"; };
-		9AEEA87B19C4BD0700866C9E /* axisbsdiff.sln */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axisbsdiff.sln; sourceTree = "<group>"; };
-		9AEEA87C19C4BD0700866C9E /* axisbsdiff.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = axisbsdiff.vcxproj; sourceTree = "<group>"; };
-		9AEEA87D19C4BD0700866C9E /* axisbsdiff.vcxproj.filters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = axisbsdiff.vcxproj.filters; sourceTree = "<group>"; };
-		9AEEA87E19C4BD0700866C9E /* axisbsdiff.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = axisbsdiff.xcodeproj; sourceTree = "<group>"; };
-		9AEEA88219C4BD0700866C9E /* bsdiff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bsdiff.c; sourceTree = "<group>"; };
-		9AEEA88319C4BD0700866C9E /* bsdiff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bsdiff.cpp; sourceTree = "<group>"; };
 		9AEEA88419C4BD0700866C9E /* bsdiff_bsdiff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bsdiff_bsdiff.cpp; sourceTree = "<group>"; };
 		9AEEA88519C4BD0700866C9E /* bsdiff_bspatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bsdiff_bspatch.cpp; sourceTree = "<group>"; };
-		9AEEA88619C4BD0700866C9E /* bspatch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bspatch.c; sourceTree = "<group>"; };
-		9AEEA88719C4BD0700866C9E /* bspatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bspatch.cpp; sourceTree = "<group>"; };
-		9AEEA88819C4BD0700866C9E /* libbsdiff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libbsdiff.c; sourceTree = "<group>"; };
-		9AEEA88919C4BD0700866C9E /* libbsdiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libbsdiff.h; sourceTree = "<group>"; };
-		9AEEA88A19C4BD0700866C9E /* test-libbsdiff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "test-libbsdiff.c"; sourceTree = "<group>"; };
 		9AEEA88B19C4BD0700866C9E /* bzip_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bzip_stream.cpp; sourceTree = "<group>"; };
 		9AEEA88C19C4BD0700866C9E /* bzip_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bzip_stream.h; sourceTree = "<group>"; };
 		9AEEA88D19C4BD0700866C9E /* compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress.h; sourceTree = "<group>"; };
@@ -625,8 +596,6 @@
 		9AEEA92519C4BD0800866C9E /* macos_message_queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_message_queue.cpp; sourceTree = "<group>"; };
 		9AEEA92619C4BD0800866C9E /* macos_message_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_message_queue.h; sourceTree = "<group>"; };
 		9AEEA92719C4BD0800866C9E /* macos_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_mm.h; sourceTree = "<group>"; };
-		9AEEA92819C4BD0800866C9E /* macos_os.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_os.cpp; sourceTree = "<group>"; };
-		9AEEA92919C4BD0800866C9E /* macos_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_os.h; sourceTree = "<group>"; };
 		9AEEA92A19C4BD0800866C9E /* macos_printer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_printer.cpp; sourceTree = "<group>"; };
 		9AEEA92B19C4BD0800866C9E /* macos_printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_printer.h; sourceTree = "<group>"; };
 		9AEEA92C19C4BD0800866C9E /* macos_window_draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_window_draw.cpp; sourceTree = "<group>"; };
@@ -1070,31 +1039,10 @@
 		9AEEA87819C4BD0700866C9E /* bsdiff */ = {
 			isa = PBXGroup;
 			children = (
-				9AEEA87919C4BD0700866C9E /* axisbsdiff.cbp */,
-				9AEEA87A19C4BD0700866C9E /* axisbsdiff.def */,
-				9AEEA87B19C4BD0700866C9E /* axisbsdiff.sln */,
-				9AEEA87C19C4BD0700866C9E /* axisbsdiff.vcxproj */,
-				9AEEA87D19C4BD0700866C9E /* axisbsdiff.vcxproj.filters */,
-				9AEEA87E19C4BD0700866C9E /* axisbsdiff.xcodeproj */,
-				9AEEA88219C4BD0700866C9E /* bsdiff.c */,
-				9AEEA88319C4BD0700866C9E /* bsdiff.cpp */,
 				9AEEA88419C4BD0700866C9E /* bsdiff_bsdiff.cpp */,
 				9AEEA88519C4BD0700866C9E /* bsdiff_bspatch.cpp */,
-				9AEEA88619C4BD0700866C9E /* bspatch.c */,
-				9AEEA88719C4BD0700866C9E /* bspatch.cpp */,
-				9AEEA88819C4BD0700866C9E /* libbsdiff.c */,
-				9AEEA88919C4BD0700866C9E /* libbsdiff.h */,
-				9AEEA88A19C4BD0700866C9E /* test-libbsdiff.c */,
 			);
 			path = bsdiff;
-			sourceTree = "<group>";
-		};
-		9AEEA87F19C4BD0700866C9E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9AEEAD6619C4BD0A00866C9E /* lib_ca2freeimage.dylib */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		9AEEA89019C4BD0700866C9E /* message */ = {
@@ -1141,8 +1089,6 @@
 				9AEEA92519C4BD0800866C9E /* macos_message_queue.cpp */,
 				9AEEA92619C4BD0800866C9E /* macos_message_queue.h */,
 				9AEEA92719C4BD0800866C9E /* macos_mm.h */,
-				9AEEA92819C4BD0800866C9E /* macos_os.cpp */,
-				9AEEA92919C4BD0800866C9E /* macos_os.h */,
 				9AEEA92A19C4BD0800866C9E /* macos_printer.cpp */,
 				9AEEA92B19C4BD0800866C9E /* macos_printer.h */,
 				9AEEA92C19C4BD0800866C9E /* macos_window_draw.cpp */,
@@ -1383,7 +1329,6 @@
 				07884C211897E9A500DC6CEB /* user_wait_cursor.h in Headers */,
 				07884C0E1897E9A500DC6CEB /* user_print_job.h in Headers */,
 				9AEEAB0F19C4BD0900866C9E /* axis_c.h in Headers */,
-				9AEEAB1C19C4BD0900866C9E /* libbsdiff.h in Headers */,
 				9AEEAC5E19C4BD0A00866C9E /* windows_thread_impl.h in Headers */,
 				077C2A1E190F144000A1F6B0 /* framework.h in Headers */,
 				9AEEAC4D19C4BD0900866C9E /* windows_errno.h in Headers */,
@@ -1394,7 +1339,6 @@
 				9AEEAB0119C4BD0900866C9E /* axis_core_copydesk.h in Headers */,
 				07B095F818495C5F007A0560 /* simple_ui_password.h in Headers */,
 				9AEEAC5C19C4BD0A00866C9E /* windows_shared_memory.h in Headers */,
-				9AEEABB419C4BD0900866C9E /* macos_os.h in Headers */,
 				9AEEAC5919C4BD0A00866C9E /* windows_pshpack2.h in Headers */,
 				9AEEAD6A19C4BDBA00866C9E /* user_str_context.h in Headers */,
 				9AC31615198E4CDF008FB109 /* user_edit_plain_text.h in Headers */,
@@ -1589,10 +1533,6 @@
 					ProductGroup = 9A5E9DFA19B7623B00949252 /* Products */;
 					ProjectRef = 9A5E9DF919B7623B00949252 /* aura.xcodeproj */;
 				},
-				{
-					ProductGroup = 9AEEA87F19C4BD0700866C9E /* Products */;
-					ProjectRef = 9AEEA87E19C4BD0700866C9E /* axisbsdiff.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1623,13 +1563,6 @@
 			fileType = wrapper.cfbundle;
 			path = aura_iosTests.xctest;
 			remoteRef = 9A5E9E0319B7623B00949252 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9AEEAD6619C4BD0A00866C9E /* lib_ca2freeimage.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = lib_ca2freeimage.dylib;
-			remoteRef = 9AEEAD6519C4BD0A00866C9E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1688,20 +1621,17 @@
 				9AEEAB0019C4BD0900866C9E /* axis_core_copydesk.cpp in Sources */,
 				07B095F518495C5F007A0560 /* simple_ui_label.cpp in Sources */,
 				9AEEAD0519C4BD0A00866C9E /* macos_process_pid.cpp in Sources */,
-				9AEEAB1519C4BD0900866C9E /* bsdiff.c in Sources */,
 				9AEEAC3B19C4BD0900866C9E /* ansios_multithreading.cpp in Sources */,
 				9AEEAB0319C4BD0900866C9E /* axis_print_job.cpp in Sources */,
 				9AEEAB0E19C4BD0900866C9E /* axis_c.c in Sources */,
 				9AEEACF019C4BD0A00866C9E /* macos_base_user.cpp in Sources */,
 				9AC31614198E4CDF008FB109 /* user_edit_plain_text.cpp in Sources */,
 				9AEEAAFC19C4BD0900866C9E /* axis.cpp in Sources */,
-				9AEEAB1A19C4BD0900866C9E /* bspatch.cpp in Sources */,
 				9AEEAC3F19C4BD0900866C9E /* cross_windows_error.cpp in Sources */,
 				07884C0D1897E9A500DC6CEB /* user_print_job.cpp in Sources */,
 				9A24EE81193783BF00ECBAD3 /* simple_ui_message_box.cpp in Sources */,
 				07B095FB18495C5F007A0560 /* simple_ui_tap.cpp in Sources */,
 				9AC31620198E4CDF008FB109 /* user_plain_text_data.cpp in Sources */,
-				9AEEAB1919C4BD0900866C9E /* bspatch.c in Sources */,
 				9AEEACFF19C4BD0A00866C9E /* macos_multithreading.cpp in Sources */,
 				07884C111897E9A500DC6CEB /* user_server.cpp in Sources */,
 				9AEEAD0319C4BD0A00866C9E /* macos_process.cpp in Sources */,
@@ -1712,7 +1642,6 @@
 				07884BF61897E9A500DC6CEB /* user_impact_update_hint.cpp in Sources */,
 				9AEEACEE19C4BD0A00866C9E /* macos.cpp in Sources */,
 				07F5B280184A3B6A0092C3E1 /* graphics_window_graphics.cpp in Sources */,
-				9AEEABB319C4BD0900866C9E /* macos_os.cpp in Sources */,
 				9AE4C7FB1996D29C00E50F88 /* data_tree.cpp in Sources */,
 				07884BFA1897E9A500DC6CEB /* user_job.cpp in Sources */,
 				9AEEAC0019C4BD0900866C9E /* node.cpp in Sources */,
@@ -1732,7 +1661,6 @@
 				9AEEACF819C4BD0A00866C9E /* macos_file.cpp in Sources */,
 				9AEEACF419C4BD0A00866C9E /* macos_cross_win.cpp in Sources */,
 				9AEEACFA19C4BD0A00866C9E /* macos_graphics.cpp in Sources */,
-				9AEEAB1619C4BD0900866C9E /* bsdiff.cpp in Sources */,
 				9AEEAB1719C4BD0900866C9E /* bsdiff_bsdiff.cpp in Sources */,
 				9AEEAB0819C4BD0900866C9E /* axis_static_start.cpp in Sources */,
 				9AEEACFD19C4BD0A00866C9E /* macos_message_loop.cpp in Sources */,
@@ -1751,7 +1679,6 @@
 				07A2247618F7F3F8002C3B39 /* user_menu_base_item.cpp in Sources */,
 				9AEEAD0719C4BD0A00866C9E /* macos_time.cpp in Sources */,
 				9AEEABAF19C4BD0900866C9E /* macos_main.cpp in Sources */,
-				9AEEAB1D19C4BD0900866C9E /* test-libbsdiff.c in Sources */,
 				9AEEABB719C4BD0900866C9E /* macos_window_draw.cpp in Sources */,
 				07B095F318495C5F007A0560 /* simple_ui_interaction.cpp in Sources */,
 				07884BFD1897E9A500DC6CEB /* user_keyboard.cpp in Sources */,
@@ -1769,7 +1696,6 @@
 				9AEEAB2319C4BD0900866C9E /* message_user.cpp in Sources */,
 				07884C241897E9A500DC6CEB /* user_window_draw.cpp in Sources */,
 				07B0951118495C2B007A0560 /* datetime_value.cpp in Sources */,
-				9AEEAB1B19C4BD0900866C9E /* libbsdiff.c in Sources */,
 				9AE725BF17E83B69003E47F9 /* version.cpp in Sources */,
 				07884C191897E9A500DC6CEB /* user_view_container.cpp in Sources */,
 				9AEEAD0819C4BD0A00866C9E /* macos_win_base.cpp in Sources */,
@@ -2028,7 +1954,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/appseed/aura";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app";
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
@@ -2087,7 +2013,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/appseed/aura";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app";
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = (
 					"-Wno-comment",

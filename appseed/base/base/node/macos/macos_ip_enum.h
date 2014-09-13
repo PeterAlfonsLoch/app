@@ -14,7 +14,7 @@ namespace macos
 {
 
 
-   class CLASS_DECL_mac ip_enum :
+   class CLASS_DECL_BASE ip_enum :
       virtual public ::net::ip_enum
    {
    public:

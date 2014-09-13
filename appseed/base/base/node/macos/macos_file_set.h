@@ -5,7 +5,7 @@ namespace macos
 {
    
    
-   class CLASS_DECL_mac file_set :
+   class CLASS_DECL_BASE file_set :
       public ::file::set
    {
    public:

@@ -5,7 +5,7 @@ namespace macos
 {
 
 
-   class CLASS_DECL_mac crypto :
+   class CLASS_DECL_BASE crypto :
       virtual public ::crypto::crypto
    {
    public:

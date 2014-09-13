@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "macos.h"
 //#include <cairo/cairo-xlib.h>
 
 //#define COMPILE_MULTIMON_STUBS
@@ -6,11 +7,11 @@
 
 //#include "sal.h"
 
-CLASS_DECL_mac void hook_window_create(::user::interaction * pWnd);
-CLASS_DECL_mac bool unhook_window_create();
-void CLASS_DECL_mac __pre_init_dialog(
+CLASS_DECL_AXIS void hook_window_create(::user::interaction * pWnd);
+CLASS_DECL_AXIS bool unhook_window_create();
+void CLASS_DECL_AXIS __pre_init_dialog(
                                       ::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
-void CLASS_DECL_mac __post_init_dialog(
+void CLASS_DECL_AXIS __post_init_dialog(
                                        ::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
 LRESULT CALLBACK
 __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);
@@ -109,7 +110,7 @@ namespace macos
 
       /*
 
-      if(m_paxisapp != NULL && m_paxisapp->m_paxissession != NULL && m_paxisapp->m_paxissession->user().m_p != NULL && m_paxisapp->m_paxissession->user()->m_pwindowmap != NULL)
+      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession->user().m_p != NULL && m_pauraapp->m_paxissession->user()->m_pwindowmap != NULL)
       {
          Session.user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
       }
@@ -140,7 +141,7 @@ namespace macos
 
    // Change a window's style
 
-   /*__STATIC bool CLASS_DECL_mac __modify_style(oswindow hWnd, int32_t nStyleOffset,
+   /*__STATIC bool CLASS_DECL_AXIS __modify_style(oswindow hWnd, int32_t nStyleOffset,
     DWORD dwRemove, DWORD dwAdd, UINT nFlags)
     {
     ASSERT(hWnd != NULL);
@@ -637,7 +638,7 @@ namespace macos
 
       Default();
 
-      ::mac::window_draw * pdraw = dynamic_cast < ::mac::window_draw * > (System.get_twf().m_p);
+      ::macos::window_draw * pdraw = dynamic_cast < ::macos::window_draw * > (System.get_twf().m_p);
 
       if(pdraw != NULL)
       {
@@ -660,13 +661,13 @@ namespace macos
    // WM_NCDESTROY is the absolute LAST message sent.
    void interaction_impl::_001OnNcDestroy(signal_details * pobj)
    {
-      single_lock sl(m_paxisapp == NULL ? NULL : m_paxisapp->m_pmutex, TRUE);
+      single_lock sl(m_pauraapp == NULL ? NULL : m_pauraapp->m_pmutex, TRUE);
       pobj->m_bRet = true;
       // cleanup main and active windows
       ::thread* pThread = ::get_thread();
       if (pThread != NULL)
       {
-         if (pThread->get_active_ui() == this)
+         if (pThread->get_active_ui() == m_pui)
             pThread->set_active_ui(NULL);
       }
 
@@ -750,7 +751,7 @@ namespace macos
       //
       // In general, user::interaction objects should be passed by oswindow from
       // one thread to another.  The receiving thread can wrap
-      // the oswindow with a user::interaction object by using ::mac::interaction_impl::from_handle.
+      // the oswindow with a user::interaction object by using ::macos::interaction_impl::from_handle.
       //
       // It is dangerous to pass C++ objects from one thread to
       // another, unless the objects are designed to be used in
@@ -812,7 +813,7 @@ namespace macos
    bool interaction_impl::DestroyWindow()
    {
 
-      single_lock sl(m_paxisapp == NULL ? NULL : m_paxisapp->m_pmutex, TRUE);
+      single_lock sl(m_pauraapp == NULL ? NULL : m_pauraapp->m_pmutex, TRUE);
 
       if(get_handle() == NULL)
          return false;
@@ -969,7 +970,7 @@ namespace macos
     }*/
 
    /*   ::user::interaction * interaction_impl::GetAncestor(UINT gaFlags) const
-    { ASSERT(::IsWindow((oswindow)get_handle())); return  ::mac::interaction_impl::from_handle(::GetAncestor((oswindow)get_handle(), gaFlags)); }
+    { ASSERT(::IsWindow((oswindow)get_handle())); return  ::macos::interaction_impl::from_handle(::GetAncestor((oswindow)get_handle(), gaFlags)); }
 
     */
 
@@ -1176,7 +1177,7 @@ namespace macos
 
       if(pbase->m_uiMessage == WM_TIMER)
       {
-//         m_paxisapp->m_paxisapp->step_timer();
+//         m_pauraapp->m_pauraapp->step_timer();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
@@ -1259,17 +1260,17 @@ namespace macos
 
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
-         if(m_paxisapp->m_paxissession != NULL)
+         if(m_pauraapp->m_paxissession != NULL)
          {
 
             Session.m_ptCursor = pmouse->m_pt;
 
          }
 
-/*         if(m_pui != NULL && m_pui != this && m_pui->m_paxisapp->m_paxissession != NULL && m_pui->m_paxisapp->m_paxissession != m_paxisapp->m_paxissession)
+/*         if(m_pui != NULL && m_pui != this && m_pui->m_pauraapp->m_paxissession != NULL && m_pui->m_pauraapp->m_paxissession != m_pauraapp->m_paxissession)
          {
 
-            BaseSess(m_pui->m_paxisapp->m_paxissession).m_ptCursor = pmouse->m_pt;
+            BaseSess(m_pui->m_pauraapp->m_paxissession).m_ptCursor = pmouse->m_pt;
 
          }
   */
@@ -1489,7 +1490,7 @@ namespace macos
 
     // special case for activation
     if (message == WM_ACTIVATE)
-    __handle_activate(this, wparam, ::mac::interaction_impl::from_handle((oswindow)lparam));
+    __handle_activate(this, wparam, ::macos::interaction_impl::from_handle((oswindow)lparam));
 
     // special case for set cursor HTERROR
     if (message == WM_SETCURSOR &&
@@ -1612,7 +1613,7 @@ namespace macos
 
                                             case ::ca2::Sig_v_u_W:
                                             (this->*mmf.pfn_v_u_W)(static_cast<UINT>(wparam),
-                                            ::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
+                                            ::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
                                             break;
 
                                             case ::ca2::Sig_u_u_v:
@@ -1624,13 +1625,13 @@ namespace macos
                                             break;
 
                                             case ::ca2::Sig_b_W_uu:
-                                            lResult = (this->*mmf.pfn_b_W_u_u)(::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
+                                            lResult = (this->*mmf.pfn_b_W_u_u)(::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
                                             LOWORD(lparam), HIWORD(lparam));
                                             break;
 
                                             case ::ca2::Sig_b_W_COPYDATASTRUCT:
                                             lResult = (this->*mmf.pfn_b_W_COPYDATASTRUCT)(
-                                            ::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
+                                            ::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
                                             reinterpret_cast<COPYDATASTRUCT*>(lparam));
                                             break;
 
@@ -1649,7 +1650,7 @@ namespace macos
                                             wndTemp.set_handle(pCtl->hWnd);
                                             UINT nCtlType = pCtl->nCtlType;
                                             // if not coming from a permanent user::interaction, use stack temporary
-                                            ::user::interaction * pWnd = ::mac::interaction_impl::FromHandlePermanent(wndTemp.get_handle());
+                                            ::user::interaction * pWnd = ::macos::interaction_impl::FromHandlePermanent(wndTemp.get_handle());
                                             if (pWnd == NULL)
                                             {
                                             pWnd = &wndTemp;
@@ -1679,7 +1680,7 @@ namespace macos
 
                                             case ::ca2::Sig_i_u_W_u:
                                             lResult = (this->*mmf.pfn_i_u_W_u)(LOWORD(wparam),
-                                            ::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
+                                            ::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
                                             break;
 
                                             case ::ca2::Sig_i_uu_v:
@@ -1687,7 +1688,7 @@ namespace macos
                                             break;
 
                                             case ::ca2::Sig_i_W_uu:
-                                            lResult = (this->*mmf.pfn_i_W_u_u)(::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
+                                            lResult = (this->*mmf.pfn_i_W_u_u)(::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
                                             LOWORD(lparam), HIWORD(lparam));
                                             break;
 
@@ -1749,8 +1750,8 @@ namespace macos
 
                                             case ::ca2::Sig_MDIACTIVATE:
                                             (this->*mmf.pfn_v_b_W_W)(get_handle() == reinterpret_cast<oswindow>(lparam),
-                                            ::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)),
-                                            ::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)));
+                                            ::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)),
+                                            ::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)));
                                             break;
 
                                             case ::ca2::Sig_v_D_v:
@@ -1759,33 +1760,33 @@ namespace macos
 
 
                                             case ::ca2::Sig_v_W_v:
-                                            (this->*mmf.pfn_v_W)(::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)));
+                                            (this->*mmf.pfn_v_W)(::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)));
                                             break;
 
                                             case ::ca2::Sig_v_v_W:
-                                            (this->*mmf.pfn_v_W)(::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
+                                            (this->*mmf.pfn_v_W)(::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
                                             break;
 
                                             case ::ca2::Sig_v_W_uu:
-                                            (this->*mmf.pfn_v_W_u_u)(::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)), LOWORD(lparam),
+                                            (this->*mmf.pfn_v_W_u_u)(::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)), LOWORD(lparam),
                                             HIWORD(lparam));
                                             break;
 
                                             case ::ca2::Sig_v_W_p:
                                             {
                                             point point(lparam);
-                                            (this->*mmf.pfn_v_W_p)(::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)), point);
+                                            (this->*mmf.pfn_v_W_p)(::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)), point);
                                             }
                                             break;
 
                                             case ::ca2::Sig_v_W_h:
-                                            (this->*mmf.pfn_v_W_h)(::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
+                                            (this->*mmf.pfn_v_W_h)(::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(wparam)),
                                             reinterpret_cast<HANDLE>(lparam));
                                             break;
 
                                             case ::ca2::Sig_ACTIVATE:
                                             (this->*mmf.pfn_v_u_W_b)(LOWORD(wparam),
-                                            ::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
+                                            ::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)), HIWORD(wparam));
                                             break;
 
                                             case ::ca2::Sig_SCROLL:
@@ -1798,7 +1799,7 @@ namespace macos
                                             int32_t nPos = (short)HIWORD(wparam);
                                             if (lpEntry->nSig == ::ca2::Sig_SCROLL)
                                             (this->*mmf.pfn_v_u_u_W)(nScrollCode, nPos,
-                                            ::mac::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
+                                            ::macos::interaction_impl::from_handle(reinterpret_cast<oswindow>(lparam)));
                                             else
                                             (this->*mmf.pfn_v_u_u)(nScrollCode, nPos);
                                             }
@@ -2000,10 +2001,10 @@ namespace macos
 
     */
 
-   /* trans oswindow CLASS_DECL_mac __get_parent_owner(::user::interaction * hWnd)
+   /* trans oswindow CLASS_DECL_AXIS __get_parent_owner(::user::interaction * hWnd)
     {
     // check for permanent-owned user::interaction first
-    ::user::interaction * pWnd = ::mac::interaction_impl::FromHandlePermanent(hWnd);
+    ::user::interaction * pWnd = ::macos::interaction_impl::FromHandlePermanent(hWnd);
     if (pWnd != NULL)
     return MAC_WINDOW(pWnd)->GetOwner();
 
@@ -2045,7 +2046,7 @@ namespace macos
       //  while ((hWndT = ::GetWindow(hWndOwner, GW_OWNER)) != NULL)
       //   hWndOwner = hWndT;
 
-      //      return ::mac::interaction_impl::from_handle(hWndOwner);
+      //      return ::macos::interaction_impl::from_handle(hWndOwner);
       return NULL;
    }
 
@@ -2064,7 +2065,7 @@ namespace macos
        hWndParent = hWndT;
        }
 
-       return ::mac::interaction_impl::from_handle(hWndParent);*/
+       return ::macos::interaction_impl::from_handle(hWndParent);*/
 
 //      return NULL;
   // }
@@ -2141,7 +2142,7 @@ namespace macos
 
    sp(::user::interaction) PASCAL interaction_impl::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
    {
-      single_lock sl(hWnd->m_paxisapp->m_pmutex, TRUE);
+      single_lock sl(hWnd->m_pauraapp->m_pmutex, TRUE);
       // GetDlgItem recursive (return first found)
       // breadth-first for 1 level, then depth-first for next level
 
@@ -2196,7 +2197,7 @@ namespace macos
          // if bOnlyPerm is TRUE, don't send to non-permanent windows
          /*if (bOnlyPerm)
           {
-          ::user::interaction * pWnd = ::mac::interaction_impl::FromHandlePermanent(hWndChild);
+          ::user::interaction * pWnd = ::macos::interaction_impl::FromHandlePermanent(hWndChild);
           if (pWnd != NULL)
           {
           // call user::interaction proc directly since it is a C++ user::interaction
@@ -3225,7 +3226,7 @@ namespace macos
    void interaction_impl::_001OnProdevianSynch(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      System.get_event(m_paxisapp->m_paxisapp)->SetEvent();
+      //      System.get_event(m_pauraapp->m_pauraapp)->SetEvent();
       //    System.get_event(System.get_twf())->wait(millis(8400));
    }
 
@@ -3588,7 +3589,7 @@ namespace macos
        state.m_pOther = &wndTemp;
 
        // check for reflect handlers in the child user::interaction
-       ::user::interaction * pWnd = ::mac::interaction_impl::FromHandlePermanent(hWndChild);
+       ::user::interaction * pWnd = ::macos::interaction_impl::FromHandlePermanent(hWndChild);
        if (pWnd != NULL)
        {
        // call it directly to disable any routing
@@ -3742,8 +3743,8 @@ namespace macos
       /*
          bool b;
          bool * pb = &b;
-         if(m_paxisapp->m_pplaneapp->s_ptwf != NULL)
-         pb = &m_paxisapp->m_pplaneapp->s_ptwf->m_bProDevianMode;
+         if(m_pauraapp->m_pplaneapp->s_ptwf != NULL)
+         pb = &m_pauraapp->m_pplaneapp->s_ptwf->m_bProDevianMode;
          keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
       */
 
@@ -4092,7 +4093,7 @@ namespace macos
   //       return NULL;
     //  if(get_handle() == NULL)
       //   return NULL;
-     // return ::mac::interaction_impl::from_handle(::GetParent(get_handle()));
+     // return ::macos::interaction_impl::from_handle(::GetParent(get_handle()));
    }
 
 
@@ -4250,9 +4251,9 @@ namespace macos
 
    bool interaction_impl::post_message(UINT message, WPARAM wparam, lparam lparam)
    {
-      if(m_paxisapp != NULL)
+      if(m_pauraapp != NULL)
       {
-         return m_paxisapp->post_message(m_pui, message, wparam, lparam);
+         return m_pauraapp->post_message(m_pui, message, wparam, lparam);
       }
       else
       {
@@ -4604,7 +4605,7 @@ namespace macos
 //      ASSERT(::IsWindow(get_handle()));
   //    return interaction_impl::GetDescendantWindow(this, id);
 
-      single_lock sl(m_paxisapp->m_pmutex, TRUE);
+      single_lock sl(m_pauraapp->m_pmutex, TRUE);
       for(int32_t i = 0; i < m_pui->m_uiptraChild.get_count(); i++)
       {
          if(m_pui->m_uiptraChild[i]->GetDlgCtrlId() == id)
@@ -4693,7 +4694,7 @@ namespace macos
 /*
       UNREFERENCED_PARAMETER(lpfnTimer);
 
-      m_pui->m_paxisapp->set_timer(m_pui, nIDEvent, nElapse);
+      m_pui->m_pauraapp->set_timer(m_pui, nIDEvent, nElapse);
 
       return nIDEvent;
 
@@ -4713,7 +4714,7 @@ namespace macos
       //ASSERT(::IsWindow(get_handle()));
       //return ::KillTimer(get_handle(), nIDEvent)  != FALSE;
 
-      m_pui->m_paxisapp->unset_timer(m_pui, nIDEvent);
+      m_pui->m_pauraapp->unset_timer(m_pui, nIDEvent);
 
 
       return true;*/
@@ -4749,7 +4750,7 @@ namespace macos
    sp(::user::interaction) interaction_impl::GetActiveWindow()
    {
 
-      return ::mac::interaction_impl::from_handle(::GetActiveWindow());
+      return ::macos::interaction_impl::from_handle(::GetActiveWindow());
 
    }
 
@@ -4757,7 +4758,7 @@ namespace macos
    {
 
       ASSERT(::IsWindow(get_handle()));
-      return ::mac::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
+      return ::macos::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
 
    }
 
@@ -4772,7 +4773,7 @@ namespace macos
       if(pinterface != NULL)
          m_pguieCapture = pinterface;
 
-      return ::mac::interaction_impl::from_handle(::SetCapture(get_handle()));
+      return ::macos::interaction_impl::from_handle(::SetCapture(get_handle()));
 
    }
 
@@ -4780,7 +4781,7 @@ namespace macos
    sp(::user::interaction) interaction_impl::GetFocus()
    {
 
-      return ::mac::interaction_impl::from_handle(::GetFocus());
+      return ::macos::interaction_impl::from_handle(::GetFocus());
 
    }
 
@@ -4791,7 +4792,7 @@ namespace macos
       if(!::IsWindow(get_handle()))
          return NULL;
 
-      return ::mac::interaction_impl::from_handle(::SetFocus(get_handle()));
+      return ::macos::interaction_impl::from_handle(::SetFocus(get_handle()));
 
    }
 
@@ -4903,7 +4904,7 @@ namespace macos
 
       throw not_implemented(get_app());
       //      ASSERT(::IsWindow(get_handle()));
-      //      return ::mac::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
+      //      return ::macos::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 
    }
 
@@ -4912,7 +4913,7 @@ namespace macos
 
       throw not_implemented(get_app());
       //      ASSERT(::IsWindow(get_handle()));
-      //      return ::mac::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
+      //      return ::macos::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 
    }
 
@@ -4976,7 +4977,7 @@ namespace macos
 
       throw not_implemented(get_app());
       //      ASSERT(::IsWindow(get_handle()));
-      //      return ::mac::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(), point));
+      //      return ::macos::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(), point));
 
    }
 
@@ -4985,7 +4986,7 @@ namespace macos
 
       throw not_implemented(get_app());
       //      ASSERT(::IsWindow(get_handle()));
-      //      return ::mac::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
+      //      return ::macos::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
 
    }
 
@@ -4993,7 +4994,7 @@ namespace macos
    {
 
       //      throw not_implemented(get_app());
-      //      return ::mac::interaction_impl::from_handle(::FindWindow(lpszClassName, lpszWindowName));
+      //      return ::macos::interaction_impl::from_handle(::FindWindow(lpszClassName, lpszWindowName));
       return NULL;
 
    }
@@ -5002,7 +5003,7 @@ namespace macos
    {
 
       throw not_implemented(::get_thread_app());
-      //      return ::mac::interaction_impl::from_handle(::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow));
+      //      return ::macos::interaction_impl::from_handle(::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow));
 
    }
 
@@ -5027,7 +5028,7 @@ namespace macos
    {
 
       ASSERT(::IsWindow(get_handle()));
-      //      return ::mac::interaction_impl::from_handle(::GetWindow(get_handle(), nCmd));
+      //      return ::macos::interaction_impl::from_handle(::GetWindow(get_handle(), nCmd));
       return NULL;
 
    }
@@ -5038,7 +5039,7 @@ namespace macos
 
       throw todo(get_app());
       //      ASSERT(::IsWindow(get_handle()));
-      //      return ::mac::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
+      //      return ::macos::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
 
    }
 
@@ -5046,7 +5047,7 @@ namespace macos
    {
 
       ASSERT(::IsWindow(get_handle()));
-      return ::mac::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()));
+      return ::macos::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_handle()));
 
    }
 
@@ -5055,7 +5056,7 @@ namespace macos
 
 
       throw not_implemented(::get_thread_app());
-      //      return ::mac::interaction_impl::from_handle(::oswindowFromPoint(point));
+      //      return ::macos::interaction_impl::from_handle(::oswindowFromPoint(point));
 
    }
 
@@ -5100,7 +5101,7 @@ namespace macos
    {
 
       throw not_implemented(::get_thread_app());
-      //      return ::mac::interaction_impl::from_handle(::GetOpenClipboardWindow());
+      //      return ::macos::interaction_impl::from_handle(::GetOpenClipboardWindow());
 
    }
 
@@ -5108,7 +5109,7 @@ namespace macos
    {
 
       throw not_implemented(::get_thread_app());
-      //      return ::mac::interaction_impl::from_handle(::GetClipboardOwner());
+      //      return ::macos::interaction_impl::from_handle(::GetClipboardOwner());
 
    }
 
@@ -5116,7 +5117,7 @@ namespace macos
    {
 
       throw not_implemented(::get_thread_app());
-      //      return ::mac::interaction_impl::from_handle(::GetClipboardViewer());
+      //      return ::macos::interaction_impl::from_handle(::GetClipboardViewer());
 
    }
 
@@ -5195,7 +5196,7 @@ namespace macos
    {
 
       return NULL;
-      // return ::mac::interaction_impl::from_handle(::GetForegroundWindow());
+      // return ::macos::interaction_impl::from_handle(::GetForegroundWindow());
 
    }
 
@@ -5857,7 +5858,7 @@ namespace macos
 
 
 
-__STATIC void CLASS_DECL_mac __pre_init_dialog(
+__STATIC void CLASS_DECL_AXIS __pre_init_dialog(
                                                ::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld)
 {
    ASSERT(lpRectOld != NULL);
@@ -5867,7 +5868,7 @@ __STATIC void CLASS_DECL_mac __pre_init_dialog(
    *pdwStyleOld = MAC_WINDOW(pWnd)->GetStyle();
 }
 
-__STATIC void CLASS_DECL_mac __post_init_dialog(
+__STATIC void CLASS_DECL_AXIS __post_init_dialog(
                                                 ::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld)
 {
    // must be hidden to start with
@@ -5898,7 +5899,7 @@ __STATIC void CLASS_DECL_mac __post_init_dialog(
 
 
 
-CLASS_DECL_mac void hook_window_create(::user::interaction * pWnd)
+CLASS_DECL_AXIS void hook_window_create(::user::interaction * pWnd)
 {
 
    UNREFERENCED_PARAMETER(pWnd);
@@ -5906,7 +5907,7 @@ CLASS_DECL_mac void hook_window_create(::user::interaction * pWnd)
 }
 
 
-CLASS_DECL_mac bool unhook_window_create()
+CLASS_DECL_AXIS bool unhook_window_create()
 {
 
    return TRUE;
@@ -5917,7 +5918,7 @@ CLASS_DECL_mac bool unhook_window_create()
 
 
 
-__STATIC void CLASS_DECL_mac
+__STATIC void CLASS_DECL_AXIS
 __handle_activate(::user::interaction * pWnd, WPARAM nState, ::user::interaction * pWndOther)
 {
 
@@ -5948,7 +5949,7 @@ __handle_activate(::user::interaction * pWnd, WPARAM nState, ::user::interaction
    //   }
 }
 
-__STATIC bool CLASS_DECL_mac
+__STATIC bool CLASS_DECL_AXIS
 __handle_set_cursor(::user::interaction * pWnd, UINT nHitTest, UINT nMsg)
 {
 
@@ -5962,7 +5963,7 @@ __handle_set_cursor(::user::interaction * pWnd, UINT nHitTest, UINT nMsg)
    //      if (pLastActive != NULL)
    //         pLastActive = pLastActive->GetLastActivePopup();
    //      if (pLastActive != NULL &&
-   //         pLastActive != ::mac::interaction_impl::GetForegroundWindow() &&
+   //         pLastActive != ::macos::interaction_impl::GetForegroundWindow() &&
    //         pLastActive->IsWindowEnabled())
    //      {
    //         pLastActive->SetForegroundWindow();
@@ -5977,7 +5978,7 @@ __handle_set_cursor(::user::interaction * pWnd, UINT nHitTest, UINT nMsg)
 /////////////////////////////////////////////////////////////////////////////
 // Standard init called by WinMain
 
-//__STATIC bool CLASS_DECL_mac __register_with_icon(WNDCLASS* pWndCls,
+//__STATIC bool CLASS_DECL_AXIS __register_with_icon(WNDCLASS* pWndCls,
 //                                                  const char * lpszClassName, UINT nIDIcon)
 //{
 //   pWndCls->lpszClassName = lpszClassName;
@@ -6009,7 +6010,7 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lp
    //         {
    //            DWORD dwStyle;
    //            rect rectOld;
-   //            ::user::interaction * pWnd = ::mac::interaction_impl::from_handle(hWnd);
+   //            ::user::interaction * pWnd = ::macos::interaction_impl::from_handle(hWnd);
    //            __pre_init_dialog(pWnd, &rectOld, &dwStyle);
    //            bCallDefault = FALSE;
    //            lResult = CallWindowProc(oldWndProc, hWnd, nMsg, wparam, lparam);
@@ -6018,12 +6019,12 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lp
    //         break;
    //
    //      case WM_ACTIVATE:
-   //         __handle_activate(::mac::interaction_impl::from_handle(hWnd), wparam,
-   //            ::mac::interaction_impl::from_handle((oswindow)lparam));
+   //         __handle_activate(::macos::interaction_impl::from_handle(hWnd), wparam,
+   //            ::macos::interaction_impl::from_handle((oswindow)lparam));
    //         break;
    //
    //      case WM_SETCURSOR:
-   //         bCallDefault = !__handle_set_cursor(::mac::interaction_impl::from_handle(hWnd),
+   //         bCallDefault = !__handle_set_cursor(::macos::interaction_impl::from_handle(hWnd),
    //            (short)LOWORD(lparam), HIWORD(lparam));
    //         break;
    //

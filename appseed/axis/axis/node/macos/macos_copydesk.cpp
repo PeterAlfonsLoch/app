@@ -8,8 +8,7 @@ namespace macos
 
    copydesk::copydesk(::aura::application * papp) :
       element(papp),
-      ::aura::copydesk(papp),
-      window_sp(papp)
+      ::axis::copydesk(papp)
    {
    }
 
@@ -20,12 +19,9 @@ namespace macos
    int32_t copydesk::get_file_count()
    {
    
-      if(m_p == NULL)
-         return 0;
-   
-      if(!m_p->OpenClipboard())
-         return 0;
-      int32_t iCount = 0;
+//      if(!OpenClipboard())
+  //       return 0;
+    //  int32_t iCount = 0;
       throw todo(get_app());
       /* xxx HDROP hdrop = (HDROP) ::GetClipboardData(CF_HDROP);
       if(hdrop != NULL)
@@ -33,17 +29,18 @@ namespace macos
          iCount = ::DragQueryFile(hdrop , 0xFFFFFFFF, NULL, 0);
       }
       ::CloseClipboard(); */
-      return iCount;
+    //  return iCount;
+      return 0;
    }
 
 
    void copydesk::get_filea(stringa & stra)
    {
-      int32_t iCount = get_file_count();
-      if(iCount <= 0)
-         return;
-      if(!m_p->OpenClipboard())
-         return;
+      //int32_t iCount = get_file_count();
+      //if(iCount <= 0)
+        // return;
+      //if(!OpenClipboard())
+        // return;
       throw todo(get_app());
       /* HDROP hdrop = (HDROP) ::GetClipboardData(CF_HDROP);
       string str;
@@ -62,7 +59,7 @@ namespace macos
    void copydesk::set_filea(stringa & stra)
    {
 
-      ASSERT(m_p->IsWindow());
+      ASSERT(IsWindow());
 
       strsize iLen = 0;
 
@@ -116,7 +113,7 @@ namespace macos
    bool copydesk::initialize()
    {
 
-      if(!::aura::copydesk::initialize())
+      if(!::axis::copydesk::initialize())
          return false;
 
   //    if(!m_p->CreateEx(0, System.RegisterWndClass(0), NULL, 0, rect(0, 0, 0, 0), NULL, id()))
@@ -135,16 +132,16 @@ namespace macos
 
       bool bOk;
 
-      bOk = ::aura::copydesk::finalize();
+      bOk = ::axis::copydesk::finalize();
 
-      if(window_sp::is_set() && window_sp::m_p->IsWindow())
-      {
-         bOk = window_sp::m_p->DestroyWindow() != FALSE;
-      }
-      else
-      {
-         bOk = false;
-      }
+//      if(window_sp::is_set() && window_sp::m_p->IsWindow())
+  //    {
+    //     bOk = window_sp::m_p->DestroyWindow() != FALSE;
+      //}
+//      else
+  //    {
+    //     bOk = false;
+      //}
 
       return bOk;
 
@@ -152,7 +149,7 @@ namespace macos
 
    void copydesk::set_plain_text(const char * psz)
    {
-      ASSERT(m_p->IsWindow());
+      ASSERT(IsWindow());
    //   int32_t iLen = 0;
 
       string str;
@@ -160,11 +157,11 @@ namespace macos
 
 
 
-      ASSERT(m_p->IsWindow());
-      if(!m_p->OpenClipboard())
-      {
-         return;
-      }
+      ASSERT(IsWindow());
+//      if(!m_p->OpenClipboard())
+  //    {
+    ///     return;
+      //}
 
       throw todo(get_app());
 
@@ -228,8 +225,8 @@ namespace macos
 
    bool copydesk::desk_to_dib(::draw2d::dib * pdib)
    {
-      if(!m_p->OpenClipboard())
-         return false;
+//      if(!m_p->OpenClipboard())
+  //       return false;
       bool bOk = false;
       throw todo(get_app());
 /* xxx

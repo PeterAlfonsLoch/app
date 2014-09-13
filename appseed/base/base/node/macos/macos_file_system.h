@@ -5,13 +5,13 @@ namespace macos
 {
    
    
-   class CLASS_DECL_mac file_system :
+   class CLASS_DECL_BASE file_system :
       public ::file::system
    {
    public:
       
       
-      class CLASS_DECL_mac path :
+      class CLASS_DECL_BASE path :
          public ::file::system::path
       {
       public:

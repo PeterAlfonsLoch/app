@@ -65,7 +65,7 @@ namespace macos
 
 
    //bool printer::document_properties::initialize(::win2::printer * pprinter, DEVMODE * pdevmode)
-   bool printer::document_properties::initialize(::mac2::printer * pprinter)
+   bool printer::document_properties::initialize(::macos::printer * pprinter)
    {
 //      UNREFERENCED_PARAMETER(pdevmode);
   //    if(m_pdevmode != NULL)

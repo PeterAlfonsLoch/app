@@ -38,6 +38,10 @@ __FBSDID("$FreeBSD: src/usr.bin/bsdiff/bsdiff/bsdiff.c,v 1.1 2005/08/06 01:59:05
 #include <string.h>
 #include <unistd.h>
 
+#ifdef MIN
+#undef MIN
+#endif
+
 #define MIN(x,y) (((x)<(y)) ? (x) : (y))
 
 static void split(off_t *I,off_t *V,off_t start,off_t len,off_t h)
@@ -199,7 +203,7 @@ int main(int argc,char *argv[])
 	u_char *old,*new;
 	off_t oldsize,newsize;
 	off_t *I,*V;
-	off_t scan,pos,len;
+	off_t scan,pos = 0,len;
 	off_t lastscan,lastpos,lastoffset;
 	off_t oldscore,scsc;
 	off_t s,Sf,lenf,Sb,lenb;

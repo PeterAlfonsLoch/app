@@ -5,7 +5,7 @@ namespace macos
 {
    
    
-   class CLASS_DECL_mac window_draw :
+   class CLASS_DECL_BASE window_draw :
    virtual public ::user::window_draw,
    virtual public aura::message_queue_listener
    {

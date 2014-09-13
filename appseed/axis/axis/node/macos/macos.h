@@ -5,7 +5,7 @@
 
 
 
-#define CLASS_DECL_mac
+#define CLASS_DECL_BASE
 
 
 string get_error_message(DWORD dwError);
@@ -15,37 +15,37 @@ string get_error_message(DWORD dwError);
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
 
-//CLASS_DECL_mac WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
-CLASS_DECL_mac WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0);
+//CLASS_DECL_BASE WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
+CLASS_DECL_BASE WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0);
 
 /////////////////////////////////////////////////////////////////////////////
 // stop on a specific primitive::memory request
 
 // Debugger hook on specified allocation request - Obsolete
-CLASS_DECL_mac void AfxSetAllocStop(LONG lRequestNumber);
+CLASS_DECL_BASE void AfxSetAllocStop(LONG lRequestNumber);
 
 // Return TRUE if primitive::memory is sane or print out what is wrong
-CLASS_DECL_mac bool __check_memory();
+CLASS_DECL_BASE bool __check_memory();
 
 // Return TRUE if valid primitive::memory block of nBytes
-CLASS_DECL_mac WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes,
+CLASS_DECL_BASE WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes,
                                         LONG* plRequestNumber = NULL);
 
 // helper routines for non-C++ EH implementations
 // for THROW_LAST auto-delete backward compatiblity
-CLASS_DECL_mac void AfxThrowLastCleanup();
+CLASS_DECL_BASE void AfxThrowLastCleanup();
 
 // other out-of-line helper functions
-CLASS_DECL_mac void AfxTryCleanup();
+CLASS_DECL_BASE void AfxTryCleanup();
 
 
 /////////////////////////////////////////////////////////////////////////////
 // Global implementation helpers
 
 // window creation hooking
-CLASS_DECL_mac void AfxHookWindowCreate(::user::interaction * pWnd);
-CLASS_DECL_mac WINBOOL AfxUnhookWindowCreate();
-CLASS_DECL_mac void AfxResetMsgCache();
+CLASS_DECL_BASE void AfxHookWindowCreate(::user::interaction * pWnd);
+CLASS_DECL_BASE WINBOOL AfxUnhookWindowCreate();
+CLASS_DECL_BASE void AfxResetMsgCache();
 
 // for backward compatibility to previous versions
 #define _AfxHookWindowCreate    AfxHookWindowCreate
@@ -59,17 +59,17 @@ CLASS_DECL_mac void AfxResetMsgCache();
 
 
 #define NULL_REF(class) (*((class *) NULL))
-// xxx CLASS_DECL_mac WNDPROC AfxGetAfxWndProc();
+// xxx CLASS_DECL_BASE WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
 #define MAC_THREAD(pthread) (dynamic_cast < ::mac::thread * > (dynamic_cast < ::thread * >(pthread)))
 #define MAC_WINDOW(pwnd) (dynamic_cast < ::mac::interaction_impl * > (dynamic_cast < ::user::interaction_impl * >(pwnd)))
 
-CLASS_DECL_mac void __trace_message(const char * lpszPrefix, signal_details * pobj);
-CLASS_DECL_mac void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, signal_details * pobj);
+CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_mac void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
-CLASS_DECL_mac void __cdecl __pre_translate_message(signal_details * pobj);
+CLASS_DECL_BASE void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
+CLASS_DECL_BASE void __cdecl __pre_translate_message(signal_details * pobj);
 #include "macos_printer.h"
 
 
@@ -89,10 +89,10 @@ WINBOOL GetMessage(
 
 
 
-int32_t CLASS_DECL_mac __mac_main(int32_t argc, char * argv[]);
+int32_t CLASS_DECL_BASE __mac_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_mac void vfxThrowFileException(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_BASE void vfxThrowFileException(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 
