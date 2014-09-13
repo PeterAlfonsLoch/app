@@ -688,7 +688,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_child::GetDescendantWindow(id id) const
+   interaction * interaction_child::GetDescendantWindow(id id) const
    {
 
       single_lock sl(m_pui->m_pauraapp->m_pmutex,TRUE);

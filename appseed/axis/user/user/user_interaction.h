@@ -301,7 +301,7 @@ namespace user
 
       virtual void walk_pre_translate_tree(signal_details * pobj, sp(::user::interaction) puiStop = NULL);
 
-      virtual sp(interaction) GetDescendantWindow(id id) const;
+      virtual interaction * GetDescendantWindow(id id) const;
 
       virtual void SetWindowText(const char * lpszString);
       virtual strsize GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount);
@@ -604,7 +604,7 @@ namespace user
 
 
       /*
-      
+
       static sp(::message::base) peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
       static sp(::message::base) get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
       static sp(::message::base) peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);

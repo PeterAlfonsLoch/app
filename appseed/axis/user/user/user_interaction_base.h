@@ -352,7 +352,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics *pdc);
       virtual void draw_control_background(::draw2d::graphics *pdc);
 
-      
+
       virtual bool IsAscendant(const interaction * puiIsAscendant) const;
       virtual bool IsParent(const interaction * puiIsParent) const;
       virtual bool IsChild(const interaction * puiIsChild) const;
@@ -376,7 +376,7 @@ namespace user
       virtual void WalkPreTranslateTree(signal_details * pobj);
       virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj);
 
-      virtual sp(interaction) GetDescendantWindow(id id) const;
+      virtual interaction * GetDescendantWindow(id id) const;
 
       virtual void SetWindowText(const char * lpszString);
       virtual strsize GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount);

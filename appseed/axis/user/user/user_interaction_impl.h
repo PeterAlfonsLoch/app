@@ -146,7 +146,7 @@ namespace user
       // get immediate child with given ID
       //void get_child_by_id(id id, int32_t iLevelHWND* poswindow_) const;
       // as above, but returns oswindow
-      virtual sp(::user::interaction) GetDescendantWindow(id id) const;
+      virtual ::user::interaction * GetDescendantWindow(id id) const;
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
 

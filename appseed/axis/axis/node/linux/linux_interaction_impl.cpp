@@ -2104,7 +2104,7 @@ restart_mouse_hover_check:
 
    }
 
-   sp(::user::interaction) PASCAL interaction_impl::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
+   ::user::interaction * interaction_impl::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
    {
 
       single_lock sl(hWnd->m_pauraapp->m_pmutex, TRUE);
@@ -4621,10 +4621,10 @@ if(psurface == g_cairosurface)
       }
    }
 
-   sp(::user::interaction) interaction_impl::GetDescendantWindow(id id) const
+   ::user::interaction * interaction_impl::GetDescendantWindow(id id) const
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
-      return interaction_impl::GetDescendantWindow(this, id);
+      return interaction_impl::GetDescendantWindow(m_pui, id);
    }
 
 

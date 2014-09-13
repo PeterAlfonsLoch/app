@@ -369,7 +369,7 @@ namespace user
    }
 
 
-   
+
 
 
 
@@ -1182,7 +1182,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetDescendantWindow(id iId) const
+   interaction * interaction_base::GetDescendantWindow(id iId) const
    {
 
       throw interface_only_exception(get_app());
@@ -1946,7 +1946,7 @@ namespace user
 
       if(ecommand == simple_command_full_screen)
       {
-         
+
          WfiFullScreen();
 
          return true;

@@ -1156,7 +1156,7 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::interaction) interaction_impl::GetDescendantWindow(id id) const
+   ::user::interaction * interaction_impl::GetDescendantWindow(id id) const
    {
       UNREFERENCED_PARAMETER(id);
       throw interface_only_exception(get_app());

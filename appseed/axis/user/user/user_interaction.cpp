@@ -2452,7 +2452,7 @@ namespace user
 
 
 
-   sp(interaction) interaction::GetDescendantWindow(id iId) const
+   interaction * interaction::GetDescendantWindow(id iId) const
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -5400,7 +5400,7 @@ namespace user
 
    sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
    {
-      
+
       if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
          return NULL;
 
@@ -5411,7 +5411,7 @@ namespace user
 
    sp(::message::base) interaction::get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
    {
-      
+
       if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
          return NULL;
 
@@ -5462,7 +5462,7 @@ namespace user
    }
 
    */
-   
+
    sp(::message::base) interaction::get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam)
    {
 //      ::user::interaction * pwnd = this;

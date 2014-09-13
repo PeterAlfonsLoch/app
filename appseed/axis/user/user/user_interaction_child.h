@@ -37,7 +37,7 @@ namespace user
       void SetWindowText(const char * psz);
 
 
-      virtual sp(::user::interaction) GetDescendantWindow(id id) const;
+      virtual ::user::interaction * GetDescendantWindow(id id) const;
 
 
       // Advanced: virtual AdjustWindowRect
