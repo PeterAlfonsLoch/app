@@ -168,15 +168,6 @@
     <Filter Include="Header Files\core">
       <UniqueIdentifier>{a28da0a9-77ec-4f4c-8821-ad2d60cf8bad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\core\api">
-      <UniqueIdentifier>{8ce7f905-15ff-4ea9-844d-259b244b2b43}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\windows">
-      <UniqueIdentifier>{8c4d47f3-cd5a-48eb-95e4-2fcc0cc0769d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\install">
-      <UniqueIdentifier>{c09a6b2b-5c02-4df3-ba4b-8131a8aa1e40}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\core\os">
       <UniqueIdentifier>{d3860369-4c94-40b9-bc4a-300baea8cfd8}</UniqueIdentifier>
     </Filter>
@@ -216,9 +207,6 @@
     <Filter Include="Source Files\core\android">
       <UniqueIdentifier>{e91ce7dd-017a-4fb6-82c7-245c85d6121e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\core\android">
-      <UniqueIdentifier>{5d7b2b50-be6c-4759-9e33-33960eb963ff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\core\file">
       <UniqueIdentifier>{6d36e31f-cdd1-43fa-8552-969adff0de94}</UniqueIdentifier>
     </Filter>
@@ -236,9 +224,6 @@
     </Filter>
     <Filter Include="Source Files\core\service">
       <UniqueIdentifier>{3116622e-722d-4408-b2b6-bc6a41544f03}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\service">
-      <UniqueIdentifier>{bed1a7a6-0249-4837-837a-3eaeb03138ce}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\graphics\backview">
       <UniqueIdentifier>{f5765b97-b0f5-4b6c-890b-48cf2dbed288}</UniqueIdentifier>
@@ -776,27 +761,6 @@
     <ClInclude Include="database\simpledb\veiev_post.h">
       <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
-    <ClInclude Include="core\api\api.h">
-      <Filter>Header Files\core\api</Filter>
-    </ClInclude>
-    <ClInclude Include="core\api\api_rotate.h">
-      <Filter>Header Files\core\api</Filter>
-    </ClInclude>
-    <ClInclude Include="core\api\mktime.h">
-      <Filter>Header Files\core\api</Filter>
-    </ClInclude>
-    <ClInclude Include="core\windows\os.h">
-      <Filter>Header Files\core\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="core\windows\os_defs.h">
-      <Filter>Header Files\core\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="core\windows\os_library.h">
-      <Filter>Header Files\core\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="core\windows\os_utils.h">
-      <Filter>Header Files\core\windows</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\userex_wait_message_dialog.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
@@ -908,18 +872,6 @@
     <ClInclude Include="core\plugin\plugin.h">
       <Filter>Header Files\core\plugin</Filter>
     </ClInclude>
-    <ClInclude Include="core\android\os.h">
-      <Filter>Header Files\core\android</Filter>
-    </ClInclude>
-    <ClInclude Include="core\android\os_allocate_debug.h">
-      <Filter>Header Files\core\android</Filter>
-    </ClInclude>
-    <ClInclude Include="core\android\os_debug.h">
-      <Filter>Header Files\core\android</Filter>
-    </ClInclude>
-    <ClInclude Include="core\android\os_multithreading.h">
-      <Filter>Header Files\core\android</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_in_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -982,12 +934,6 @@
     </ClInclude>
     <ClInclude Include="net\hi5\hi5_twit.h">
       <Filter>Header Files\net\hi5</Filter>
-    </ClInclude>
-    <ClInclude Include="core\service\service_plain_service.h">
-      <Filter>Header Files\core\service</Filter>
-    </ClInclude>
-    <ClInclude Include="core\service\service_thread_pool.h">
-      <Filter>Header Files\core\service</Filter>
     </ClInclude>
     <ClInclude Include="net\net_email_departament.h">
       <Filter>Header Files\net</Filter>
@@ -1687,9 +1633,6 @@
     </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_util1.h">
-      <Filter>Header Files\core\install</Filter>
     </ClInclude>
     <ClInclude Include="framework\framework.h">
       <Filter>Header Files\framework</Filter>

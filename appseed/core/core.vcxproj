@@ -1548,29 +1548,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp" />
     <ClCompile Include="user\wndfrm\wndfrm_interaction.cpp" />
     <ClCompile Include="user\wndfrm\wndfrm_wndfrm.cpp" />
-    <ClInclude Include="core\android\os.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="core\android\os_allocate_debug.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="core\android\os_debug.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="core\android\os_multithreading.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="core\api\api.h" />
-    <ClInclude Include="core\api\api_rotate.h" />
-    <ClInclude Include="core\api\mktime.h" />
     <ClInclude Include="core\core\core.h" />
     <ClInclude Include="core\core\core_allocator.h" />
     <ClInclude Include="core\core\core_application.h" />
@@ -1616,7 +1593,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_timer.h" />
     <ClInclude Include="core\core\core_types.h" />
     <ClInclude Include="core\core\core_util.h" />
-    <ClInclude Include="core\core\core_util1.h" />
     <ClInclude Include="core\platform\bergedge\bergedge.h" />
     <ClInclude Include="core\platform\bergedge\bergedge_document.h" />
     <ClInclude Include="core\platform\bergedge\bergedge_form_callback.h" />
@@ -1650,12 +1626,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\plugin\plugin_plugin.h" />
     <ClInclude Include="core\plugin\plugin_run_start_installer.h" />
     <ClInclude Include="core\plugin\plugin_system.h" />
-    <ClInclude Include="core\service\service_plain_service.h" />
-    <ClInclude Include="core\service\service_thread_pool.h" />
-    <ClInclude Include="core\windows\os.h" />
-    <ClInclude Include="core\windows\os_defs.h" />
-    <ClInclude Include="core\windows\os_library.h" />
-    <ClInclude Include="core\windows\os_utils.h" />
     <ClInclude Include="database\databaseuser\databaseuser.h" />
     <ClInclude Include="database\databaseuser\data_key_list_data.h" />
     <ClInclude Include="database\databaseuser\list_data.h" />

@@ -440,6 +440,8 @@ CLASS_DECL_AURA ::aura::application * get_thread_app();
 #include "aura/aura/aura/aura_lparam.h"
 #include "aura/aura/aura/aura_muldiv64.h"
 
+
+
 #include "aura/aura/aura/aura_auto_pointer.h"
 
 #include "aura/aura/aura/aura_smart_pointer1.h"

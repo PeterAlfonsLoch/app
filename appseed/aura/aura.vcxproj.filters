@@ -240,6 +240,9 @@
     <Filter Include="Source Files\graphics\visual">
       <UniqueIdentifier>{ffc99b1e-a394-44b0-8f4c-b3f78d0ac17f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\primitive\api">
+      <UniqueIdentifier>{b26a6098-cf09-41e7-9741-3dd479fc2a8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2048,6 +2051,12 @@
     <ClInclude Include="aura\node\windows\windows.h">
       <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\api\api.h">
+      <Filter>Header Files\primitive\api</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\api\api_rotate.h">
+      <Filter>Header Files\primitive\api</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3506,9 +3515,6 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
