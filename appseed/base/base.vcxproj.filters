@@ -2064,6 +2064,9 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="base.rc">
