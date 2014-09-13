@@ -46,7 +46,7 @@ namespace macos
       virtual HINSTANCE GetHinstance();
       bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::document) _001OpenDocumentFile(var varFile);
+      virtual ::user::document * _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew();
       
 
@@ -74,22 +74,16 @@ namespace macos
       
       
             
-      sp(::user::interaction) window_from_os_data(void * pdata);
-      sp(::user::interaction) window_from_os_data_permanent(void * pdata);
       
       virtual ::thread * GetThread();
       virtual void set_thread(::thread * pthread);
       
-      virtual sp(::user::interaction) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual sp(::user::interaction) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
       
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);
       virtual uint32_t get_thread_id();
       
       
-      virtual sp(::user::printer) get_printer(const char * pszDeviceName);
-
       string draw2d_get_default_library_name();
       string multimedia_audio_mixer_get_default_library_name();
       string multimedia_audio_get_default_library_name();

@@ -16,9 +16,9 @@ char * gcvt_internal(double number,int ndigit, char * buf)
 {
    int sign,decpt;
    char sz[GCVTBUFSIZE];
-   register char *p1;
-   register char *p2;
-   register int i;
+   char *p1;
+   char *p2;
+    int i;
 
    ecvt_dup(sz,GCVTBUFSIZE,  number,ndigit,&decpt,&sign);
    p1 = sz;
@@ -27,8 +27,8 @@ char * gcvt_internal(double number,int ndigit, char * buf)
       *p2++ = '-';
    for(i=ndigit - 1; i>0 && p1[i] == '0'; i--)
       ndigit--;
-   if(decpt >= 0 && decpt - ndigit > 4
-      || decpt < 0 && decpt < -3) { /* use E-style */
+   if((decpt >= 0 && decpt - ndigit > 4) || (decpt < 0 && decpt < -3))  /* use E-style */
+   {
       decpt--;
       *p2++ = *p1++;
       *p2++ = '.';

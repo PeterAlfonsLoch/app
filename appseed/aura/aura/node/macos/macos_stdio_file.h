@@ -10,7 +10,7 @@ namespace macos
    
    
    class stdio_file :
-      virtual public ::mac::file,
+      virtual public ::macos::file,
       virtual public ::file::text_buffer
    {
    public:

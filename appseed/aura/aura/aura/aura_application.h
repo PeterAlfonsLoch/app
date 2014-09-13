@@ -384,6 +384,10 @@ namespace aura
       virtual string dir_userappdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
       virtual string dir_appdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
       virtual string dir_simple_path(const string & str1,const string & str2);
+      
+#ifdef APPLEOS
+      virtual CLASS_DECL_AURA string dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
+#endif
 
       virtual ::file::buffer_sp file_get_file(var varFile,uint32_t uiFlags);
 

@@ -16,6 +16,8 @@
 
 namespace aura
 {
+   
+   
    application_signal_details::application_signal_details(sp(application) papp,class ::signal * psignal,e_application_signal esignal):
       element(papp),
       ::signal_details(psignal)
@@ -2744,13 +2746,24 @@ namespace aura
       return ::file_name_dup(psz);
 
    }
+   
+   string application::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
+   {
+      
+      throw interface_only_exception(get_app());
+      
+      return "";
+      
+   }
 
 
    string application::file_time_square()
    {
 
       //return get_temp_file_name_template(
-      throw not_implemented(get_app());
+      throw interface_only_exception(get_app());
+      
+      return "";
 
    }
 
@@ -2758,7 +2771,9 @@ namespace aura
    string application::http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
    {
 
-      throw not_implemented(get_app());
+      throw interface_only_exception(get_app());
+      
+      return "";
 
    }
 

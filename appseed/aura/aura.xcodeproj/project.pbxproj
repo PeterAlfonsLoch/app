@@ -339,13 +339,6 @@
 		07F5B285184A3B6A0092C3E1 /* visual_cursor.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B24A184A3B6A0092C3E1 /* visual_cursor.h */; };
 		07F5B286184A3B6A0092C3E1 /* visual_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B24B184A3B6A0092C3E1 /* visual_icon.cpp */; };
 		07F5B287184A3B6A0092C3E1 /* visual_icon.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B24C184A3B6A0092C3E1 /* visual_icon.h */; };
-		07F5B2CE184A3FA30092C3E1 /* javascript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2C6184A3FA30092C3E1 /* javascript.cpp */; };
-		07F5B2CF184A3FA30092C3E1 /* javascript.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2C7184A3FA30092C3E1 /* javascript.h */; };
-		07F5B2D0184A3FA30092C3E1 /* javascript_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2C8184A3FA30092C3E1 /* javascript_functions.cpp */; };
-		07F5B2D1184A3FA30092C3E1 /* javascript_functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2C9184A3FA30092C3E1 /* javascript_functions.h */; };
-		07F5B2D3184A3FA30092C3E1 /* javascript_tinyjs.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2CB184A3FA30092C3E1 /* javascript_tinyjs.h */; };
-		07F5B2D4184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2CC184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp */; };
-		07F5B2D5184A3FA30092C3E1 /* javascript_tinyjs_functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2CD184A3FA30092C3E1 /* javascript_tinyjs_functions.h */; };
 		07F5B2DC184A403C0092C3E1 /* multithreading_go_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2D6184A403C0092C3E1 /* multithreading_go_thread.cpp */; };
 		07F5B2DD184A403C0092C3E1 /* multithreading_go_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2D7184A403C0092C3E1 /* multithreading_go_thread.h */; };
 		07F5B2DE184A403C0092C3E1 /* multithreading_signal_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2D8184A403C0092C3E1 /* multithreading_signal_thread.cpp */; };
@@ -706,8 +699,6 @@
 		9A16447119C4A4CF00966C5E /* macos_time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16407D19C4A4CE00966C5E /* macos_time.cpp */; };
 		9A16447219C4A4CF00966C5E /* macos_win_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16407E19C4A4CE00966C5E /* macos_win_base.cpp */; };
 		9A16447319C4A4CF00966C5E /* macos_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16407F19C4A4CE00966C5E /* macos_window_impl.h */; };
-		9A16447419C4A4CF00966C5E /* macos_windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16408019C4A4CE00966C5E /* macos_windowing.cpp */; };
-		9A16447519C4A4CF00966C5E /* macos_windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16408119C4A4CE00966C5E /* macos_windowing.h */; };
 		9A16447619C4A4CF00966C5E /* NSObject+DDExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16408219C4A4CE00966C5E /* NSObject+DDExtensions.h */; };
 		9A16447719C4A4CF00966C5E /* NSObject+DDExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A16408319C4A4CE00966C5E /* NSObject+DDExtensions.mm */; };
 		9A16447819C4A4CF00966C5E /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16408419C4A4CE00966C5E /* os.h */; };
@@ -971,9 +962,6 @@
 		9AA6A6AC1907B84D000A1F4A /* primitive_type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE722F517E83B69003E47F9 /* primitive_type.cpp */; };
 		9AA6A6AD1907B84D000A1F4A /* primitive_var.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE722F717E83B69003E47F9 /* primitive_var.cpp */; };
 		9AA6A6AE1907B84D000A1F4A /* primitive_virtual_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE722FA17E83B69003E47F9 /* primitive_virtual_memory.cpp */; };
-		9AA6A6AF1907B84D000A1F4A /* javascript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2C6184A3FA30092C3E1 /* javascript.cpp */; };
-		9AA6A6B01907B84D000A1F4A /* javascript_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2C8184A3FA30092C3E1 /* javascript_functions.cpp */; };
-		9AA6A6B11907B84D000A1F4A /* javascript_tinyjs_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2CC184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp */; };
 		9AA6A6C51907B84E000A1F4A /* user_check_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884B941897E9A400DC6CEB /* user_check_interface.cpp */; };
 		9AA6A6C81907B84E000A1F4A /* user_create_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884B9A1897E9A400DC6CEB /* user_create_context.cpp */; };
 		9AA6A6C91907B84E000A1F4A /* user_draw_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884B9C1897E9A400DC6CEB /* user_draw_context.cpp */; };
@@ -1548,14 +1536,6 @@
 		07F5B24A184A3B6A0092C3E1 /* visual_cursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_cursor.h; sourceTree = "<group>"; };
 		07F5B24B184A3B6A0092C3E1 /* visual_icon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = visual_icon.cpp; sourceTree = "<group>"; };
 		07F5B24C184A3B6A0092C3E1 /* visual_icon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = visual_icon.h; sourceTree = "<group>"; };
-		07F5B2C5184A3FA30092C3E1 /* from_tiny_js_42.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = from_tiny_js_42.txt; sourceTree = "<group>"; };
-		07F5B2C6184A3FA30092C3E1 /* javascript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = javascript.cpp; sourceTree = "<group>"; };
-		07F5B2C7184A3FA30092C3E1 /* javascript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = javascript.h; sourceTree = "<group>"; };
-		07F5B2C8184A3FA30092C3E1 /* javascript_functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = javascript_functions.cpp; sourceTree = "<group>"; };
-		07F5B2C9184A3FA30092C3E1 /* javascript_functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = javascript_functions.h; sourceTree = "<group>"; };
-		07F5B2CB184A3FA30092C3E1 /* javascript_tinyjs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = javascript_tinyjs.h; sourceTree = "<group>"; };
-		07F5B2CC184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = javascript_tinyjs_functions.cpp; sourceTree = "<group>"; };
-		07F5B2CD184A3FA30092C3E1 /* javascript_tinyjs_functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = javascript_tinyjs_functions.h; sourceTree = "<group>"; };
 		07F5B2D6184A403C0092C3E1 /* multithreading_go_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multithreading_go_thread.cpp; sourceTree = "<group>"; };
 		07F5B2D7184A403C0092C3E1 /* multithreading_go_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multithreading_go_thread.h; sourceTree = "<group>"; };
 		07F5B2D8184A403C0092C3E1 /* multithreading_signal_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multithreading_signal_thread.cpp; sourceTree = "<group>"; };
@@ -1928,8 +1908,6 @@
 		9A16407D19C4A4CE00966C5E /* macos_time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_time.cpp; sourceTree = "<group>"; };
 		9A16407E19C4A4CE00966C5E /* macos_win_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_win_base.cpp; sourceTree = "<group>"; };
 		9A16407F19C4A4CE00966C5E /* macos_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_window_impl.h; sourceTree = "<group>"; };
-		9A16408019C4A4CE00966C5E /* macos_windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_windowing.cpp; sourceTree = "<group>"; };
-		9A16408119C4A4CE00966C5E /* macos_windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_windowing.h; sourceTree = "<group>"; };
 		9A16408219C4A4CE00966C5E /* NSObject+DDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DDExtensions.h"; sourceTree = "<group>"; };
 		9A16408319C4A4CE00966C5E /* NSObject+DDExtensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSObject+DDExtensions.mm"; sourceTree = "<group>"; };
 		9A16408419C4A4CE00966C5E /* os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os.h; sourceTree = "<group>"; };
@@ -2690,29 +2668,6 @@
 			path = visual;
 			sourceTree = "<group>";
 		};
-		07F5B2C3184A3FA30092C3E1 /* programming */ = {
-			isa = PBXGroup;
-			children = (
-				07F5B2C4184A3FA30092C3E1 /* javascript */,
-			);
-			path = programming;
-			sourceTree = "<group>";
-		};
-		07F5B2C4184A3FA30092C3E1 /* javascript */ = {
-			isa = PBXGroup;
-			children = (
-				07F5B2C5184A3FA30092C3E1 /* from_tiny_js_42.txt */,
-				07F5B2C6184A3FA30092C3E1 /* javascript.cpp */,
-				07F5B2C7184A3FA30092C3E1 /* javascript.h */,
-				07F5B2C8184A3FA30092C3E1 /* javascript_functions.cpp */,
-				07F5B2C9184A3FA30092C3E1 /* javascript_functions.h */,
-				07F5B2CB184A3FA30092C3E1 /* javascript_tinyjs.h */,
-				07F5B2CC184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp */,
-				07F5B2CD184A3FA30092C3E1 /* javascript_tinyjs_functions.h */,
-			);
-			path = javascript;
-			sourceTree = "<group>";
-		};
 		9A163D3019C4A4CC00966C5E /* aura */ = {
 			isa = PBXGroup;
 			children = (
@@ -3079,8 +3034,8 @@
 			children = (
 				9A163F8919C4A4CD00966C5E /* ansios */,
 				9A163F9419C4A4CD00966C5E /* cross */,
-				9A163FC519C4A4CD00966C5E /* cross.h */,
 				9A16405619C4A4CD00966C5E /* macos */,
+				9A163FC519C4A4CD00966C5E /* cross.h */,
 				9A1640AC19C4A4CE00966C5E /* os.h */,
 				9A1640AD19C4A4CE00966C5E /* os_binreloc.cpp */,
 				9A1640AE19C4A4CE00966C5E /* os_binreloc.h */,
@@ -3224,8 +3179,6 @@
 				9A16407D19C4A4CE00966C5E /* macos_time.cpp */,
 				9A16407E19C4A4CE00966C5E /* macos_win_base.cpp */,
 				9A16407F19C4A4CE00966C5E /* macos_window_impl.h */,
-				9A16408019C4A4CE00966C5E /* macos_windowing.cpp */,
-				9A16408119C4A4CE00966C5E /* macos_windowing.h */,
 				9A16408219C4A4CE00966C5E /* NSObject+DDExtensions.h */,
 				9A16408319C4A4CE00966C5E /* NSObject+DDExtensions.mm */,
 				9A16408419C4A4CE00966C5E /* os.h */,
@@ -3606,7 +3559,6 @@
 				07F5B20E184A3B690092C3E1 /* graphics */,
 				9AE7226817E83B68003E47F9 /* multithreading */,
 				9AE722BF17E83B69003E47F9 /* primitive */,
-				07F5B2C3184A3FA30092C3E1 /* programming */,
 				9AE7233517E83B69003E47F9 /* user */,
 				077C2A17190F143F00A1F6B0 /* framework_c.c */,
 				077C2A18190F143F00A1F6B0 /* framework_c.h */,
@@ -3696,7 +3648,6 @@
 				07B094F918495C2B007A0560 /* collection_typed_pointer_array.h in Headers */,
 				9A16450719C4A4CF00966C5E /* vms.h in Headers */,
 				07B0952C18495C2B007A0560 /* primitive_color.h in Headers */,
-				07F5B2D5184A3FA30092C3E1 /* javascript_tinyjs_functions.h in Headers */,
 				9A1641A419C4A4CE00966C5E /* aura_machine_event_central.h in Headers */,
 				9A1641DD19C4A4CE00966C5E /* aura_template.h in Headers */,
 				9AC315F0198E4CB8008FB109 /* colorertake5_text_parser_impl.h in Headers */,
@@ -3859,7 +3810,6 @@
 				9A1641A619C4A4CE00966C5E /* aura_machine_event_data.h in Headers */,
 				9A1643A819C4A4CF00966C5E /* windows_error.h in Headers */,
 				9A1641B219C4A4CE00966C5E /* aura_muldiv64.h in Headers */,
-				07F5B2D1184A3FA30092C3E1 /* javascript_functions.h in Headers */,
 				9A16483C19C4ADA000966C5E /* macos_thread.h in Headers */,
 				9A1644A019C4A4CF00966C5E /* os_binreloc.h in Headers */,
 				079AE0651886481200635C39 /* math_scalar_enum.h in Headers */,
@@ -3923,7 +3873,6 @@
 				9A1641D119C4A4CE00966C5E /* aura_small_ipc_channel.h in Headers */,
 				9A16415119C4A4CE00966C5E /* aura_action_context.h in Headers */,
 				9A16415319C4A4CE00966C5E /* aura_allocate.h in Headers */,
-				07F5B2CF184A3FA30092C3E1 /* javascript.h in Headers */,
 				9A1643BA19C4A4CF00966C5E /* windows_time.h in Headers */,
 				07B0955D18495C2B007A0560 /* str_wstring.h in Headers */,
 				9AE7251517E83B69003E47F9 /* multithreading_semaphore.h in Headers */,
@@ -3973,7 +3922,6 @@
 				9A1643A519C4A4CE00966C5E /* windows_crtdefs.h in Headers */,
 				07B094B218495C2A007A0560 /* collection_bit_array.h in Headers */,
 				9A16424B19C4A4CE00966C5E /* message_dispatch.h in Headers */,
-				07F5B2D3184A3FA30092C3E1 /* javascript_tinyjs.h in Headers */,
 				07B0950E18495C2B007A0560 /* datetime_duration.h in Headers */,
 				9A1641F719C4A4CE00966C5E /* exception_debug.h in Headers */,
 				07F5B1B4184A3B430092C3E1 /* file_c.h in Headers */,
@@ -4044,7 +3992,6 @@
 				9A16423919C4A4CE00966C5E /* exception_temporary.h in Headers */,
 				9A16418019C4A4CE00966C5E /* aura_file_watcher_impl.h in Headers */,
 				9A1641A719C4A4CE00966C5E /* aura_main_init_data.h in Headers */,
-				9A16447519C4A4CF00966C5E /* macos_windowing.h in Headers */,
 				07F5B1D3184A3B430092C3E1 /* file_plain_text_stream_base.h in Headers */,
 				9A16416F19C4A4CE00966C5E /* aura_cregexp.h in Headers */,
 				9AE7255F17E83B69003E47F9 /* primitive_factory.h in Headers */,
@@ -4453,7 +4400,6 @@
 				9AC315EA198E4CB8008FB109 /* colorertake5_text_lines.cpp in Sources */,
 				07F5B254184A3B6A0092C3E1 /* draw2d_font.cpp in Sources */,
 				9A16417A19C4A4CE00966C5E /* aura_element.cpp in Sources */,
-				07F5B2CE184A3FA30092C3E1 /* javascript.cpp in Sources */,
 				9A16446219C4A4CF00966C5E /* macos_lock.cpp in Sources */,
 				9A16421B19C4A4CE00966C5E /* exception_mm.mm in Sources */,
 				9A1641F619C4A4CE00966C5E /* exception_debug.cpp in Sources */,
@@ -4516,7 +4462,6 @@
 				9A1641BB19C4A4CE00966C5E /* aura_plex.cpp in Sources */,
 				07F5B284184A3B6A0092C3E1 /* visual_cursor.cpp in Sources */,
 				9A16450C19C4A4CF00966C5E /* xml_base_array.cpp in Sources */,
-				9A16447419C4A4CF00966C5E /* macos_windowing.cpp in Sources */,
 				9A16452819C4A4CF00966C5E /* xml_tree_base.cpp in Sources */,
 				9AE724FC17E83B69003E47F9 /* multithreading_condition.cpp in Sources */,
 				07F5B1CC184A3B430092C3E1 /* file_plain_text_output_stream.cpp in Sources */,
@@ -4560,7 +4505,6 @@
 				9A16419E19C4A4CE00966C5E /* aura_log.cpp in Sources */,
 				9AE7251D17E83B69003E47F9 /* multithreading_sync_object.cpp in Sources */,
 				9AE7251F17E83B69003E47F9 /* multithreading_synch_lock.cpp in Sources */,
-				07F5B2D4184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp in Sources */,
 				07B0951E18495C2B007A0560 /* _math.cpp in Sources */,
 				07884BE21897E9A400DC6CEB /* user_check_interface.cpp in Sources */,
 				07F5B1AD184A3B430092C3E1 /* file_byte_output_stream_binary_buffer.cpp in Sources */,
@@ -4587,7 +4531,6 @@
 				9A16447019C4A4CF00966C5E /* macos_small_ipca_channel.cpp in Sources */,
 				07B0951C18495C2B007A0560 /* geometry_types.cpp in Sources */,
 				9A16447119C4A4CF00966C5E /* macos_time.cpp in Sources */,
-				07F5B2D0184A3FA30092C3E1 /* javascript_functions.cpp in Sources */,
 				9A1641B919C4A4CE00966C5E /* aura_platform_interface.cpp in Sources */,
 				07B0954A18495C2B007A0560 /* str_parse.cpp in Sources */,
 				9A16415419C4A4CE00966C5E /* aura_allocate_mid_big.cpp in Sources */,
@@ -4894,9 +4837,6 @@
 				9AA6A6AC1907B84D000A1F4A /* primitive_type.cpp in Sources */,
 				9AA6A6AD1907B84D000A1F4A /* primitive_var.cpp in Sources */,
 				9AA6A6AE1907B84D000A1F4A /* primitive_virtual_memory.cpp in Sources */,
-				9AA6A6AF1907B84D000A1F4A /* javascript.cpp in Sources */,
-				9AA6A6B01907B84D000A1F4A /* javascript_functions.cpp in Sources */,
-				9AA6A6B11907B84D000A1F4A /* javascript_tinyjs_functions.cpp in Sources */,
 				9AA6A6C51907B84E000A1F4A /* user_check_interface.cpp in Sources */,
 				9AA6A6C81907B84E000A1F4A /* user_create_context.cpp in Sources */,
 				9AA6A6C91907B84E000A1F4A /* user_draw_context.cpp in Sources */,
@@ -5098,7 +5038,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework aura/aura";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework aura/aura $(WorkspaceDir)/../../../app";
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
@@ -5153,7 +5093,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework aura/aura";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework aura/aura $(WorkspaceDir)/../../../app";
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = (
 					"-Wno-comment",

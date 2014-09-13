@@ -3528,6 +3528,12 @@ namespace base
 
    }
 
+   string application::dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
+   {
+      
+      return dir().pathfind((pszEnv, pszTopic, pszMode);, <#const char *pszTopic#>, <#const char *pszMode#>)
+      
+   }
 
 
    string application::file_as_string(var varFile,var & varQuery)

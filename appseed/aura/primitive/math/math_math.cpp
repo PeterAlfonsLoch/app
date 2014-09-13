@@ -221,7 +221,7 @@ namespace math
 
          sleep(millis(1));
 
-         double d2 = timer.getTimeInMicroSec();
+//         double d2 = timer.getTimeInMicroSec();
 
          //            LARGE_INTEGER tick;
          //          QueryPerformanceCounter(&tick);

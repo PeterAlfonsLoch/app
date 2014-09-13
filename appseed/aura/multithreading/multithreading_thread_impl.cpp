@@ -712,12 +712,12 @@ int32_t thread_impl::exit_instance()
 
          m_spuiptra.release();
 
-         for(int32_t i = 0; i < puiptra->get_size(); i++)
-         {
+  //       for(int32_t i = 0; i < puiptra->get_size(); i++)
+    //     {
 
-            ::user::interaction * pui = puiptra->element_at(i);
+//            ::user::interaction * pui = puiptra->element_at(i);
 
-         }
+      //   }
 
          puiptra.release();
 

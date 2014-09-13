@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "macos.h"
 #include <mach-o/dyld.h>
 
 
@@ -28,7 +29,7 @@ namespace macos
       //      ::ca2::smart_pointer < ::application_base > ::m_p->_001OnFileNew(NULL);
    }
 
-   sp(::user::document) application::_001OpenDocumentFile(var varFile)
+   ::user::document * application::_001OpenDocumentFile(var varFile)
    {
       //    return ::ca2::smart_pointer < ::application_base > ::m_p->_001OpenDocumentFile(varFile);
       return NULL;
@@ -115,80 +116,6 @@ namespace macos
 
       return iRet;
    }
-   /*
-   // Advanced: exception handling
-   LRESULT application::ProcessWndProcException(::exception::aura* e, const MESSAGE* pMsg)
-   {
-   return   ::win::thread::ProcessWndProcException(e, pMsg);
-   }
-
-
-   // Advanced: handling messages sent to message filter hook
-   bool application::ProcessMessageFilter(int32_t code, LPMESSAGE lpMsg)
-   {
-   return  ::win::thread::ProcessMessageFilter(code, lpMsg);
-   }
-
-
-   // Advanced: access to GetMainWnd()
-   ::user::interaction* application::GetMainWnd()
-   {
-   return ::win::thread::GetMainWnd();
-   }
-
-
-
-   void application::assert_valid() const
-   {
-   ::win::thread::assert_valid();
-   }
-
-   void application::dump(dump_context & dumpcontext) const
-   {
-   ::win::thread::dump(dumpcontext);
-   }
-
-
-   void application::CommonConstruct()
-   {
-   ::win::thread::CommonConstruct();
-   }
-   void application::Delete()
-   {
-   ::win::thread::Delete();
-   }
-   // 'delete this' only if m_bAutoDelete == TRUE
-
-   bool application::DispatchThreadMessageEx(MESSAGE* msg)  // helper
-   {
-   return ::win::thread::DispatchThreadMessageEx(msg);
-   }*/
-
-   /*   ::draw2d::graphics * application::graphics_from_os_data(void * pdata)
-   {
-   return ::win::graphics::from_handle((HDC) pdata);
-   }*/
-
-   sp(::user::interaction) application::window_from_os_data(void * pdata)
-   {
-      return ::mac::interaction_impl::from_handle((oswindow) pdata);
-   }
-
-   sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
-   {
-      sp(::user::interaction) pwnd = ::mac::interaction_impl::FromHandlePermanent((oswindow) pdata);
-      if(pwnd != NULL)
-         return pwnd;
-      ptr_array < ::user::interaction>  wndptra = System.frames();
-      for(int32_t i = 0; i < wndptra.get_count(); i++)
-      {
-         if(wndptra[i]->get_safe_handle() == (oswindow) pdata)
-         {
-            return wndptra[i];
-         }
-      }
-      return NULL;
-   }
    
 
    ::thread * application::GetThread()
@@ -255,15 +182,6 @@ namespace macos
 
    }
 
-   sp(::user::interaction) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
-   {
-      return ::mac::interaction_impl::FindWindow(lpszClassName, lpszWindowName);
-   }
-
-   sp(::user::interaction) application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
-   {
-      return ::mac::interaction_impl::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow);
-   }
 
 
    void application::get_time(struct timeval *p)
@@ -314,7 +232,7 @@ namespace macos
    bool application::set_main_init_data(::aura::main_init_data * pdata)
    {
 
-      m_pmaininitdata = (::mac::main_init_data *) pdata;
+      m_pmaininitdata = (::macos::main_init_data *) pdata;
 
       if(m_pmaininitdata != NULL && m_pimpl->is_system())
       {
@@ -416,22 +334,6 @@ namespace macos
 
    }
 
-
-   sp(::user::printer) application::get_printer(const char * pszDeviceName)
-   {
-
-      sp(::mac2::printer) pprinter = Application.alloc (System.type_info < ::user::printer > ());
-
-      if(!pprinter->open(pszDeviceName))
-      {
-
-         return NULL;
-
-      }
-
-      return pprinter;
-
-   }
    
    
     
