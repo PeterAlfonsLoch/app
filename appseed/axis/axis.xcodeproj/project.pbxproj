@@ -197,18 +197,6 @@
 		9AE725BE17E83B69003E47F9 /* version.config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE7233B17E83B69003E47F9 /* version.config.h */; };
 		9AE725BF17E83B69003E47F9 /* version.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE7233C17E83B69003E47F9 /* version.cpp */; };
 		9AE725C017E83B69003E47F9 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE7233D17E83B69003E47F9 /* version.h */; };
-		9AEEAAF019C4BD0900866C9E /* aura.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA84D19C4BD0700866C9E /* aura.h */; };
-		9AEEAAF119C4BD0900866C9E /* aura_allocate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA84E19C4BD0700866C9E /* aura_allocate.h */; };
-		9AEEAAF219C4BD0900866C9E /* aura_allocate_mid_big.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA84F19C4BD0700866C9E /* aura_allocate_mid_big.cpp */; };
-		9AEEAAF319C4BD0900866C9E /* aura_allocate_system_heap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA85019C4BD0700866C9E /* aura_allocate_system_heap.cpp */; };
-		9AEEAAF419C4BD0900866C9E /* aura_aura.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA85119C4BD0700866C9E /* aura_aura.h */; };
-		9AEEAAF519C4BD0900866C9E /* aura_heap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA85219C4BD0700866C9E /* aura_heap.cpp */; };
-		9AEEAAF619C4BD0900866C9E /* aura_heap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA85319C4BD0700866C9E /* aura_heap.h */; };
-		9AEEAAF719C4BD0900866C9E /* aura_heap_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA85419C4BD0700866C9E /* aura_heap_item.h */; };
-		9AEEAAF819C4BD0900866C9E /* aura_heap_item_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA85519C4BD0700866C9E /* aura_heap_item_array.h */; };
-		9AEEAAF919C4BD0900866C9E /* aura_new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA85619C4BD0700866C9E /* aura_new.cpp */; };
-		9AEEAAFA19C4BD0900866C9E /* aura_new.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA85719C4BD0700866C9E /* aura_new.h */; };
-		9AEEAAFB19C4BD0900866C9E /* aura_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA85819C4BD0700866C9E /* aura_types.h */; };
 		9AEEAAFC19C4BD0900866C9E /* axis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA85919C4BD0700866C9E /* axis.cpp */; };
 		9AEEAAFD19C4BD0900866C9E /* axis.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA85A19C4BD0700866C9E /* axis.h */; };
 		9AEEAAFE19C4BD0900866C9E /* axis_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA85C19C4BD0700866C9E /* axis_application.cpp */; };
@@ -574,18 +562,6 @@
 		9AE7233B17E83B69003E47F9 /* version.config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.config.h; sourceTree = "<group>"; };
 		9AE7233C17E83B69003E47F9 /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = version.cpp; sourceTree = "<group>"; };
 		9AE7233D17E83B69003E47F9 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
-		9AEEA84D19C4BD0700866C9E /* aura.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura.h; sourceTree = "<group>"; };
-		9AEEA84E19C4BD0700866C9E /* aura_allocate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_allocate.h; sourceTree = "<group>"; };
-		9AEEA84F19C4BD0700866C9E /* aura_allocate_mid_big.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura_allocate_mid_big.cpp; sourceTree = "<group>"; };
-		9AEEA85019C4BD0700866C9E /* aura_allocate_system_heap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura_allocate_system_heap.cpp; sourceTree = "<group>"; };
-		9AEEA85119C4BD0700866C9E /* aura_aura.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_aura.h; sourceTree = "<group>"; };
-		9AEEA85219C4BD0700866C9E /* aura_heap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura_heap.cpp; sourceTree = "<group>"; };
-		9AEEA85319C4BD0700866C9E /* aura_heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_heap.h; sourceTree = "<group>"; };
-		9AEEA85419C4BD0700866C9E /* aura_heap_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_heap_item.h; sourceTree = "<group>"; };
-		9AEEA85519C4BD0700866C9E /* aura_heap_item_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_heap_item_array.h; sourceTree = "<group>"; };
-		9AEEA85619C4BD0700866C9E /* aura_new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura_new.cpp; sourceTree = "<group>"; };
-		9AEEA85719C4BD0700866C9E /* aura_new.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_new.h; sourceTree = "<group>"; };
-		9AEEA85819C4BD0700866C9E /* aura_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_types.h; sourceTree = "<group>"; };
 		9AEEA85919C4BD0700866C9E /* axis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = axis.cpp; sourceTree = "<group>"; };
 		9AEEA85A19C4BD0700866C9E /* axis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = axis.h; sourceTree = "<group>"; };
 		9AEEA85B19C4BD0700866C9E /* axis.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axis.inl; sourceTree = "<group>"; };
@@ -1039,18 +1015,6 @@
 		9AEEA84C19C4BD0700866C9E /* axis */ = {
 			isa = PBXGroup;
 			children = (
-				9AEEA84D19C4BD0700866C9E /* aura.h */,
-				9AEEA84E19C4BD0700866C9E /* aura_allocate.h */,
-				9AEEA84F19C4BD0700866C9E /* aura_allocate_mid_big.cpp */,
-				9AEEA85019C4BD0700866C9E /* aura_allocate_system_heap.cpp */,
-				9AEEA85119C4BD0700866C9E /* aura_aura.h */,
-				9AEEA85219C4BD0700866C9E /* aura_heap.cpp */,
-				9AEEA85319C4BD0700866C9E /* aura_heap.h */,
-				9AEEA85419C4BD0700866C9E /* aura_heap_item.h */,
-				9AEEA85519C4BD0700866C9E /* aura_heap_item_array.h */,
-				9AEEA85619C4BD0700866C9E /* aura_new.cpp */,
-				9AEEA85719C4BD0700866C9E /* aura_new.h */,
-				9AEEA85819C4BD0700866C9E /* aura_types.h */,
 				9AEEA85919C4BD0700866C9E /* axis.cpp */,
 				9AEEA85A19C4BD0700866C9E /* axis.h */,
 				9AEEA85B19C4BD0700866C9E /* axis.inl */,
@@ -1386,9 +1350,6 @@
 				9AEEAC4919C4BD0900866C9E /* windows_common_controls.h in Headers */,
 				9AEEAC0119C4BD0900866C9E /* node.h in Headers */,
 				9AEEAC6119C4BD0A00866C9E /* windows_user.h in Headers */,
-				9AEEAAF619C4BD0900866C9E /* aura_heap.h in Headers */,
-				9AEEAAF719C4BD0900866C9E /* aura_heap_item.h in Headers */,
-				9AEEAAF819C4BD0900866C9E /* aura_heap_item_array.h in Headers */,
 				9AC31617198E4CDF008FB109 /* user_form_interface.h in Headers */,
 				9AEEABB119C4BD0900866C9E /* macos_message_queue.h in Headers */,
 				9AEEABB819C4BD0900866C9E /* macos_window_draw.h in Headers */,
@@ -1403,7 +1364,6 @@
 				9AEEABB919C4BD0900866C9E /* round_window.h in Headers */,
 				9AEEAB5519C4BD0900866C9E /* ansios.h in Headers */,
 				07B0950C18495C2B007A0560 /* datetime_departament.h in Headers */,
-				9AEEAAFB19C4BD0900866C9E /* aura_types.h in Headers */,
 				9AEEAD0019C4BD0A00866C9E /* macos_multithreading.h in Headers */,
 				9AC31611198E4CDF008FB109 /* user_document_data_map.h in Headers */,
 				9AEEAD0919C4BD0A00866C9E /* macos_window_impl.h in Headers */,
@@ -1433,7 +1393,6 @@
 				9AEEAB0419C4BD0900866C9E /* axis_print_job.h in Headers */,
 				07884C2B1897E9A500DC6CEB /* user_window_util.h in Headers */,
 				9AEEAB0119C4BD0900866C9E /* axis_core_copydesk.h in Headers */,
-				9AEEAAFA19C4BD0900866C9E /* aura_new.h in Headers */,
 				07B095F818495C5F007A0560 /* simple_ui_password.h in Headers */,
 				9AEEAC5C19C4BD0A00866C9E /* windows_shared_memory.h in Headers */,
 				9AEEABB419C4BD0900866C9E /* macos_os.h in Headers */,
@@ -1444,7 +1403,6 @@
 				9AEEAC4519C4BD0900866C9E /* e.h in Headers */,
 				9AEEAC4F19C4BD0900866C9E /* windows_file.h in Headers */,
 				9AEEAC5A19C4BD0A00866C9E /* windows_pshpack4.h in Headers */,
-				9AEEAAF419C4BD0900866C9E /* aura_aura.h in Headers */,
 				9AE4C7FC1996D29C00E50F88 /* data_tree.h in Headers */,
 				9AEEACFB19C4BD0A00866C9E /* macos_graphics_mm.h in Headers */,
 				9AEEAB0919C4BD0900866C9E /* axis_static_start.h in Headers */,
@@ -1511,7 +1469,6 @@
 				07884C041897E9A500DC6CEB /* user_message.h in Headers */,
 				9AEEAC4C19C4BD0900866C9E /* windows_defs.h in Headers */,
 				9AEEAC6619C4BD0A00866C9E /* windows.h in Headers */,
-				9AEEAAF019C4BD0900866C9E /* aura.h in Headers */,
 				07B095FC18495C5F007A0560 /* simple_ui_tap.h in Headers */,
 				9AEEAAFF19C4BD0900866C9E /* axis_application.h in Headers */,
 				07F5B27F184A3B6A0092C3E1 /* graphics.h in Headers */,
@@ -1534,7 +1491,6 @@
 				9AE725BE17E83B69003E47F9 /* version.config.h in Headers */,
 				9A24EE82193783BF00ECBAD3 /* simple_ui_message_box.h in Headers */,
 				9AE725C017E83B69003E47F9 /* version.h in Headers */,
-				9AEEAAF119C4BD0900866C9E /* aura_allocate.h in Headers */,
 				9AEEAC5519C4BD0900866C9E /* windows_nls.h in Headers */,
 				07884BE51897E9A500DC6CEB /* user_control_bar.h in Headers */,
 				9AEEAB1319C4BD0900866C9E /* axis_policy_objcpp.h in Headers */,
@@ -1697,7 +1653,6 @@
 				07884C281897E9A500DC6CEB /* user_window_map.cpp in Sources */,
 				9AEEABB519C4BD0900866C9E /* macos_printer.cpp in Sources */,
 				07B0950B18495C2B007A0560 /* datetime_departament.cpp in Sources */,
-				9AEEAAF319C4BD0900866C9E /* aura_allocate_system_heap.cpp in Sources */,
 				07884BF01897E9A500DC6CEB /* user_frame_window.cpp in Sources */,
 				9AC31612198E4CDF008FB109 /* user_document.cpp in Sources */,
 				07884C051897E9A500DC6CEB /* user_mouse_focus.cpp in Sources */,
@@ -1716,7 +1671,6 @@
 				07884BF21897E9A500DC6CEB /* user_impact.cpp in Sources */,
 				9AEEAC6519C4BD0A00866C9E /* metrowin_user.cpp in Sources */,
 				9AEEAC3919C4BD0900866C9E /* ansios_cross_windows_user.cpp in Sources */,
-				9AEEAAF219C4BD0900866C9E /* aura_allocate_mid_big.cpp in Sources */,
 				9AEEACFC19C4BD0A00866C9E /* macos_lock.cpp in Sources */,
 				9AE4C8341996D8F000E50F88 /* simple_scroll_bar.cpp in Sources */,
 				9AC3161A198E4CDF008FB109 /* user_interaction_child.cpp in Sources */,
@@ -1733,7 +1687,6 @@
 				9AC3161E198E4CDF008FB109 /* user_interaction_impl.cpp in Sources */,
 				0751A4A4192AB3F900CFD2B0 /* user_windowing.cpp in Sources */,
 				07884C091897E9A500DC6CEB /* user_place_holder.cpp in Sources */,
-				9AEEAAF519C4BD0900866C9E /* aura_heap.cpp in Sources */,
 				9AEEAB0019C4BD0900866C9E /* axis_core_copydesk.cpp in Sources */,
 				07B095F518495C5F007A0560 /* simple_ui_label.cpp in Sources */,
 				9AEEAD0519C4BD0A00866C9E /* macos_process_pid.cpp in Sources */,
@@ -1746,7 +1699,6 @@
 				9AEEAAFC19C4BD0900866C9E /* axis.cpp in Sources */,
 				9AEEAB1A19C4BD0900866C9E /* bspatch.cpp in Sources */,
 				9AEEAC3F19C4BD0900866C9E /* cross_windows_error.cpp in Sources */,
-				9AEEAAF919C4BD0900866C9E /* aura_new.cpp in Sources */,
 				07884C0D1897E9A500DC6CEB /* user_print_job.cpp in Sources */,
 				9A24EE81193783BF00ECBAD3 /* simple_ui_message_box.cpp in Sources */,
 				07B095FB18495C5F007A0560 /* simple_ui_tap.cpp in Sources */,
@@ -2078,7 +2030,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/appseed/aura";
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
@@ -2137,7 +2089,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/appseed/aura";
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = (
 					"-Wno-comment",

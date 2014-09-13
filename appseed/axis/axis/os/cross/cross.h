@@ -2,25 +2,6 @@
 
 
 
-#ifdef WINDOWSEX
-
-typedef HANDLE HTHREAD;
-
-#else
-
-#ifdef cplusplus
-
-class event;
-
-#endif
-
-typedef struct hthread * HTHREAD;
-
-struct oswindow_data;
-
-typedef struct oswindow_data * oswindow;
-
-#endif
 
 
 
