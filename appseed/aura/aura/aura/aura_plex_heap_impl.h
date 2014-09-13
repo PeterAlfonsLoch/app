@@ -170,7 +170,7 @@ inline void plex_heap_alloc::Free(void * p)
 
    uint32_t ui = ((uint32_t *)p)[-1];
 
-   if(ui >= 0 && ui < m_uiShareCount)
+   if(ui < m_uiShareCount)
    {
 
       element_at(ui)->Free(&((uint32_t *)p)[-1]);

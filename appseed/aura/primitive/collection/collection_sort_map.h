@@ -1682,7 +1682,8 @@ typedef CLASS_DECL_AURA sort_string_map < string, const string & > sort_string_t
 
 
 
-
+/*
+ 
 inline void sort_map_test()
 {
    sort_string_to_intptr m;
@@ -1709,5 +1710,8 @@ inline void sort_map_test()
    sort_string_to_intptr::iterator upper = m.upper_bound("Ca2");
 
 }
+
+
+*/
 
 
