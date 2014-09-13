@@ -1128,7 +1128,7 @@ namespace macos
 
    void interaction_impl::message_handler(signal_details * pobj)
    {
-      SCAST_PTR(::message::aura, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
 
       if(pbase->m_uiMessage == WM_SIZE || pbase->m_uiMessage == WM_MOVE)
       {
@@ -2674,7 +2674,7 @@ namespace macos
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
 
-      SCAST_PTR(::message::aura, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       // walk from the target user::interaction up to the hWndStop user::interaction checking
       //  if any user::interaction wants to translate this message
 
@@ -3237,7 +3237,7 @@ namespace macos
 
       throw not_implemented(get_app());
 
-      //      SCAST_PTR(::message::aura, pbase, pobj);
+      //      SCAST_PTR(::message::base, pbase, pobj);
       //
       //      PAINTSTRUCT paint;
       //      memset(&paint, 0, sizeof(paint));
@@ -3310,7 +3310,7 @@ namespace macos
    void interaction_impl::_001OnPrint(signal_details * pobj)
    {
       throw not_implemented(get_app());
-      //      SCAST_PTR(::message::aura, pbase, pobj);
+      //      SCAST_PTR(::message::base, pbase, pobj);
       //
       //      if(pbase->m_wparam == NULL)
       //         return;
@@ -4208,7 +4208,7 @@ namespace macos
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
 
-      ::smart_pointer < ::message::aura > spbase;
+      ::smart_pointer < ::message::base > spbase;
 
       spbase = get_base(m_pui, message, wparam, lparam);
 
@@ -5317,7 +5317,7 @@ namespace macos
 
    void interaction_impl::_001OnSetCursor(signal_details * pobj)
    {
-      SCAST_PTR(::message::aura, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(Session.get_cursor() != NULL
          && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
       {
@@ -5696,7 +5696,7 @@ namespace macos
    bool interaction_impl::round_window_key_down(::user::e_key ekey)
    {
 
-      sp(::message::aura) spbase;
+      sp(::message::base) spbase;
 
       ::message::key * pkey = canew(::message::key(get_app()));
 
@@ -5715,7 +5715,7 @@ namespace macos
    bool interaction_impl::round_window_key_up(::user::e_key ekey)
    {
 
-      sp(::message::aura) spbase;
+      sp(::message::base) spbase;
 
       ::message::key * pkey = canew(::message::key(get_app()));
 
@@ -5734,7 +5734,7 @@ namespace macos
    void interaction_impl::round_window_mouse_down(double x, double y)
    {
 
-      sp(::message::aura) spbase;
+      sp(::message::base) spbase;
 
       if(::GetActiveWindow() != get_handle())
       {
@@ -5795,7 +5795,7 @@ namespace macos
    void interaction_impl::round_window_mouse_up(double x, double y)
    {
 
-      sp(::message::aura) spbase;
+      sp(::message::base) spbase;
 
       ::message::mouse * pmouse = canew(::message::mouse(get_app()));
 
@@ -5815,7 +5815,7 @@ namespace macos
    void interaction_impl::round_window_mouse_moved(double x, double y)
    {
 
-      sp(::message::aura) spbase;
+      sp(::message::base) spbase;
 
       ::message::mouse * pmouse = canew(::message::mouse(get_app()));
 
@@ -5835,7 +5835,7 @@ namespace macos
    void interaction_impl::round_window_mouse_dragged(double x, double y)
    {
 
-      sp(::message::aura) spbase;
+      sp(::message::base) spbase;
 
       ::message::mouse * pmouse = canew(::message::mouse(get_app()));
 

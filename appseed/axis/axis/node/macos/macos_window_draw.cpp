@@ -67,7 +67,7 @@ namespace macos
    
    void window_draw::message_queue_message_handler(signal_details * pobj)
    {
-      SCAST_PTR(::message::aura, pbase, pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_USER + 1984 + 1977))
       {
          _synch_redraw();
