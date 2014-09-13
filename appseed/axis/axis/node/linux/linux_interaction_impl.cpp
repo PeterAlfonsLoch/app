@@ -1,4 +1,5 @@
 #include "framework.h" // from ""axis/user/user.h"
+#include "linux.h"
 #include <X11/Xatom.h>
 #include "axis/os/linux/linux_window_xlib.h"
 #include "axis/os/linux/linux_windowing.h"
@@ -56,6 +57,7 @@ WINBOOL GetMessage(
 /*
 const char gen_Wnd[] = __WND;
 */
+
 namespace linux
 {
 
@@ -4619,7 +4621,7 @@ if(psurface == g_cairosurface)
       }
    }
 
-   sp(::user::interaction) interaction_impl::GetDescendantWindow(id id)
+   sp(::user::interaction) interaction_impl::GetDescendantWindow(id id) const
    {
       ASSERT(::IsWindow((oswindow) get_handle()));
       return interaction_impl::GetDescendantWindow(this, id);

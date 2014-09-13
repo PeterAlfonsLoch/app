@@ -51,7 +51,7 @@ inline int64_t add_ref(c_derived * pca)
 {
    if(pca == NULL)
       return -1;
-   return pca->add_ref();
+  return pca->add_ref();
 }
 
 template < class c_derived >

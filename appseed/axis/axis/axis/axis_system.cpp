@@ -106,7 +106,11 @@ namespace axis
 
       m_pschemaLayeredFrame = new ::user::schema_layered_frame;
 
+      #ifdef WINDOWSEX
+
       m_psystemwindow = NULL;
+
+      #endif
 
    }
 
@@ -150,10 +154,11 @@ namespace axis
    bool system::defer_create_system_frame_window()
    {
 
-      if(m_psystemwindow != NULL)
-         return true;
 
 #ifdef WINDOWSEX
+
+      if(m_psystemwindow != NULL)
+         return true;
 
       m_psystemwindow = new system_interaction_impl(this);
 

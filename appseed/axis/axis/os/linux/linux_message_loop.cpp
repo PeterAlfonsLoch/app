@@ -1,4 +1,5 @@
 #include "framework.h" // from ""axis/user/user.h"
+#include "linux.h"
 
 /*
 class sys_message_queue
