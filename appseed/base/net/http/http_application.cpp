@@ -40,11 +40,11 @@ namespace http
       if ((bool)set["optional_ca2_sessid"])
       {
          if (Session.fontopus()->m_puser != NULL)
-            set["user"] = &ApplicationUser;
+            set["user"] = get_app()->m_pbasesession->fontopus()->get_user(true,pszUrl);
       }
       else
       {
-         set["user"] = &ApplicationUser;
+         set["user"] = get_app()->m_pbasesession->fontopus()->get_user(true,pszUrl);
       }
       set["app"] = get_app();
 

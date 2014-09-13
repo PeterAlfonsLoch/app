@@ -28,6 +28,9 @@ namespace sockets
       m_mapCache.m_bAutoGudoSet = false;
       m_mapReverseCache.m_bAutoGudoSet = false;
 
+      m_mapCache.remove_all();
+      m_mapReverseCache.remove_all();
+
    }
 
    net::~net()
