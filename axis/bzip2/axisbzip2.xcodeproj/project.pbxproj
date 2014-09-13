@@ -43,6 +43,7 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
+				9AEB768616F7BAA50085103B /* Products */,
 				9AEEADE119C4FBA000866C9E /* blocksort.c */,
 				9AEEADE419C4FBA000866C9E /* bzlib_private.h */,
 				9AEEADE519C4FBA000866C9E /* bzlib.c */,
@@ -51,7 +52,6 @@
 				9AEEADE819C4FBA000866C9E /* decompress.c */,
 				9AEEADEA19C4FBA000866C9E /* huffman.c */,
 				9AEEADEC19C4FBA000866C9E /* randtable.c */,
-				9AEB768616F7BAA50085103B /* Products */,
 				9AEEADFD19C4FBC700866C9E /* libaxisbzip2.dylib */,
 			);
 			sourceTree = "<group>";
@@ -167,6 +167,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = axisbzip2;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
@@ -195,6 +196,7 @@
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = axisbzip2;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
@@ -205,7 +207,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = axisbzip2;
 			};
 			name = Debug;
 		};
@@ -213,7 +214,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = axisbzip2;
 			};
 			name = Release;
 		};

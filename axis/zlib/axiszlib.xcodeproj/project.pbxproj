@@ -10,14 +10,11 @@
 		9A9F2DD019A6445E007AE2C7 /* crc32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9F2DB419A6445D007AE2C7 /* crc32.h */; };
 		9A9F2DD119A6445E007AE2C7 /* deflate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9F2DB519A6445D007AE2C7 /* deflate.h */; };
 		9A9F2DD219A6445E007AE2C7 /* gzguts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9F2DB619A6445D007AE2C7 /* gzguts.h */; };
-		9A9F2DD319A6445E007AE2C7 /* gzip_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9F2DB719A6445D007AE2C7 /* gzip_stream.h */; };
 		9A9F2DD419A6445E007AE2C7 /* inffast.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9F2DB819A6445D007AE2C7 /* inffast.h */; };
 		9A9F2DD519A6445E007AE2C7 /* inffixed.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9F2DB919A6445D007AE2C7 /* inffixed.h */; };
 		9A9F2DD619A6445E007AE2C7 /* inflate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9F2DBA19A6445D007AE2C7 /* inflate.h */; };
 		9A9F2DD719A6445E007AE2C7 /* inftrees.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9F2DBB19A6445D007AE2C7 /* inftrees.h */; };
 		9A9F2DD819A6445E007AE2C7 /* trees.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9F2DBC19A6445D007AE2C7 /* trees.h */; };
-		9A9F2DD919A6445E007AE2C7 /* zconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9F2DBD19A6445D007AE2C7 /* zconf.h */; };
-		9A9F2DDA19A6445E007AE2C7 /* zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9F2DBE19A6445D007AE2C7 /* zlib.h */; };
 		9A9F2DDB19A6445E007AE2C7 /* zutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9F2DBF19A6445D007AE2C7 /* zutil.h */; };
 		9A9F2DDC19A6445E007AE2C7 /* adler32.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9F2DC019A6445D007AE2C7 /* adler32.c */; };
 		9A9F2DDD19A6445E007AE2C7 /* compress.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9F2DC119A6445D007AE2C7 /* compress.c */; };
@@ -34,67 +31,17 @@
 		9A9F2DE819A6445E007AE2C7 /* trees.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9F2DCC19A6445E007AE2C7 /* trees.c */; };
 		9A9F2DE919A6445E007AE2C7 /* uncompr.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9F2DCD19A6445E007AE2C7 /* uncompr.c */; };
 		9A9F2DEA19A6445E007AE2C7 /* zutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9F2DCE19A6445E007AE2C7 /* zutil.c */; };
-		9A9F2DEB19A6445E007AE2C7 /* gzip_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9F2DCF19A6445E007AE2C7 /* gzip_stream.cpp */; };
-		9AA5E5FF16F7C61B005C45CE /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C0B216E7F5FF008420D3 /* CacheFile.h */; };
-		9AA5E60216F7C61B005C45CE /* FreeImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C0FB16E7F5FF008420D3 /* FreeImage.h */; };
-		9AA5E60316F7C61B005C45CE /* FreeImageIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C0FF16E7F5FF008420D3 /* FreeImageIO.h */; };
-		9AA5E6CF16F7C61B005C45CE /* Plugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C36816E7F600008420D3 /* Plugin.h */; };
-		9AA5E6D016F7C61B005C45CE /* Quantizers.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C36916E7F600008420D3 /* Quantizers.h */; };
-		9AA5E6D116F7C61B005C45CE /* ToneMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C4C516E7F601008420D3 /* ToneMapping.h */; };
-		9AA5E6D216F7C61B005C45CE /* Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C4C616E7F601008420D3 /* Utilities.h */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		9A2EA1EC19A62827004DAFFC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2EA1E619A62827004DAFFC /* axis.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
-			remoteInfo = base;
-		};
-		9A2EA1EE19A62827004DAFFC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2EA1E619A62827004DAFFC /* axis.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
-			remoteInfo = base_ios;
-		};
-		9A2EA1F019A62827004DAFFC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2EA1E619A62827004DAFFC /* axis.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
-			remoteInfo = base_iosTests;
-		};
-		9A9F2DB219A64438007AE2C7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2EA1E619A62827004DAFFC /* axis.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = axis;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		9A2EA1E619A62827004DAFFC /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../../appseed/axis/axis.xcodeproj; sourceTree = "<group>"; };
-		9A86C0B216E7F5FF008420D3 /* CacheFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheFile.h; sourceTree = "<group>"; };
-		9A86C0FB16E7F5FF008420D3 /* FreeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImage.h; sourceTree = "<group>"; };
-		9A86C0FF16E7F5FF008420D3 /* FreeImageIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImageIO.h; sourceTree = "<group>"; };
-		9A86C36816E7F600008420D3 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
-		9A86C36916E7F600008420D3 /* Quantizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quantizers.h; sourceTree = "<group>"; };
-		9A86C4C516E7F601008420D3 /* ToneMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToneMapping.h; sourceTree = "<group>"; };
-		9A86C4C616E7F601008420D3 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		9A9F2DB419A6445D007AE2C7 /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc32.h; sourceTree = "<group>"; };
 		9A9F2DB519A6445D007AE2C7 /* deflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deflate.h; sourceTree = "<group>"; };
 		9A9F2DB619A6445D007AE2C7 /* gzguts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gzguts.h; sourceTree = "<group>"; };
-		9A9F2DB719A6445D007AE2C7 /* gzip_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gzip_stream.h; sourceTree = "<group>"; };
 		9A9F2DB819A6445D007AE2C7 /* inffast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffast.h; sourceTree = "<group>"; };
 		9A9F2DB919A6445D007AE2C7 /* inffixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inffixed.h; sourceTree = "<group>"; };
 		9A9F2DBA19A6445D007AE2C7 /* inflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inflate.h; sourceTree = "<group>"; };
 		9A9F2DBB19A6445D007AE2C7 /* inftrees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inftrees.h; sourceTree = "<group>"; };
 		9A9F2DBC19A6445D007AE2C7 /* trees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trees.h; sourceTree = "<group>"; };
-		9A9F2DBD19A6445D007AE2C7 /* zconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zconf.h; sourceTree = "<group>"; };
-		9A9F2DBE19A6445D007AE2C7 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
 		9A9F2DBF19A6445D007AE2C7 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
 		9A9F2DC019A6445D007AE2C7 /* adler32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adler32.c; sourceTree = "<group>"; };
 		9A9F2DC119A6445D007AE2C7 /* compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compress.c; sourceTree = "<group>"; };
@@ -111,8 +58,7 @@
 		9A9F2DCC19A6445E007AE2C7 /* trees.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trees.c; sourceTree = "<group>"; };
 		9A9F2DCD19A6445E007AE2C7 /* uncompr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = uncompr.c; sourceTree = "<group>"; };
 		9A9F2DCE19A6445E007AE2C7 /* zutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zutil.c; sourceTree = "<group>"; };
-		9A9F2DCF19A6445E007AE2C7 /* gzip_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gzip_stream.cpp; sourceTree = "<group>"; };
-		9AA5E6D616F7C61B005C45CE /* lib_ca2freeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_ca2freeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA5E6D616F7C61B005C45CE /* libaxiszlib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxiszlib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,18 +75,15 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
-				9A9F2DEC19A64469007AE2C7 /* New Group */,
+				9AEB768616F7BAA50085103B /* Products */,
 				9A9F2DB419A6445D007AE2C7 /* crc32.h */,
 				9A9F2DB519A6445D007AE2C7 /* deflate.h */,
 				9A9F2DB619A6445D007AE2C7 /* gzguts.h */,
-				9A9F2DB719A6445D007AE2C7 /* gzip_stream.h */,
 				9A9F2DB819A6445D007AE2C7 /* inffast.h */,
 				9A9F2DB919A6445D007AE2C7 /* inffixed.h */,
 				9A9F2DBA19A6445D007AE2C7 /* inflate.h */,
 				9A9F2DBB19A6445D007AE2C7 /* inftrees.h */,
 				9A9F2DBC19A6445D007AE2C7 /* trees.h */,
-				9A9F2DBD19A6445D007AE2C7 /* zconf.h */,
-				9A9F2DBE19A6445D007AE2C7 /* zlib.h */,
 				9A9F2DBF19A6445D007AE2C7 /* zutil.h */,
 				9A9F2DC019A6445D007AE2C7 /* adler32.c */,
 				9A9F2DC119A6445D007AE2C7 /* compress.c */,
@@ -157,35 +100,8 @@
 				9A9F2DCC19A6445E007AE2C7 /* trees.c */,
 				9A9F2DCD19A6445E007AE2C7 /* uncompr.c */,
 				9A9F2DCE19A6445E007AE2C7 /* zutil.c */,
-				9A9F2DCF19A6445E007AE2C7 /* gzip_stream.cpp */,
-				9A2EA1E619A62827004DAFFC /* axis.xcodeproj */,
-				9AEB768616F7BAA50085103B /* Products */,
-				9A86C0B216E7F5FF008420D3 /* CacheFile.h */,
-				9A86C0FB16E7F5FF008420D3 /* FreeImage.h */,
-				9A86C0FF16E7F5FF008420D3 /* FreeImageIO.h */,
-				9A86C36816E7F600008420D3 /* Plugin.h */,
-				9A86C36916E7F600008420D3 /* Quantizers.h */,
-				9A86C4C516E7F601008420D3 /* ToneMapping.h */,
-				9A86C4C616E7F601008420D3 /* Utilities.h */,
-				9AA5E6D616F7C61B005C45CE /* lib_ca2freeimage.dylib */,
+				9AA5E6D616F7C61B005C45CE /* libaxiszlib.dylib */,
 			);
-			sourceTree = "<group>";
-		};
-		9A2EA1E719A62827004DAFFC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A2EA1ED19A62827004DAFFC /* libaxis.dylib */,
-				9A2EA1EF19A62827004DAFFC /* libaxis.dylib */,
-				9A2EA1F119A62827004DAFFC /* base_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A9F2DEC19A64469007AE2C7 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
 			sourceTree = "<group>";
 		};
 		9AEB768616F7BAA50085103B /* Products */ = {
@@ -204,23 +120,13 @@
 			files = (
 				9A9F2DD819A6445E007AE2C7 /* trees.h in Headers */,
 				9A9F2DD519A6445E007AE2C7 /* inffixed.h in Headers */,
-				9AA5E5FF16F7C61B005C45CE /* CacheFile.h in Headers */,
-				9AA5E60216F7C61B005C45CE /* FreeImage.h in Headers */,
-				9A9F2DD919A6445E007AE2C7 /* zconf.h in Headers */,
-				9A9F2DDA19A6445E007AE2C7 /* zlib.h in Headers */,
 				9A9F2DD419A6445E007AE2C7 /* inffast.h in Headers */,
 				9A9F2DDB19A6445E007AE2C7 /* zutil.h in Headers */,
-				9A9F2DD319A6445E007AE2C7 /* gzip_stream.h in Headers */,
 				9A9F2DD019A6445E007AE2C7 /* crc32.h in Headers */,
-				9AA5E60316F7C61B005C45CE /* FreeImageIO.h in Headers */,
-				9AA5E6CF16F7C61B005C45CE /* Plugin.h in Headers */,
-				9AA5E6D016F7C61B005C45CE /* Quantizers.h in Headers */,
 				9A9F2DD219A6445E007AE2C7 /* gzguts.h in Headers */,
 				9A9F2DD719A6445E007AE2C7 /* inftrees.h in Headers */,
 				9A9F2DD619A6445E007AE2C7 /* inflate.h in Headers */,
-				9AA5E6D116F7C61B005C45CE /* ToneMapping.h in Headers */,
 				9A9F2DD119A6445E007AE2C7 /* deflate.h in Headers */,
-				9AA5E6D216F7C61B005C45CE /* Utilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,11 +144,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A9F2DB319A64438007AE2C7 /* PBXTargetDependency */,
 			);
 			name = axiszlib;
 			productName = FreeImage;
-			productReference = 9AA5E6D616F7C61B005C45CE /* lib_ca2freeimage.dylib */;
+			productReference = 9AA5E6D616F7C61B005C45CE /* libaxiszlib.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -264,43 +169,12 @@
 			mainGroup = 9A1B2F7D16A2AF5C00875A94;
 			productRefGroup = 9A1B2F7D16A2AF5C00875A94;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 9A2EA1E719A62827004DAFFC /* Products */;
-					ProjectRef = 9A2EA1E619A62827004DAFFC /* axis.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				9AA5E4C216F7C61B005C45CE /* axiszlib */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		9A2EA1ED19A62827004DAFFC /* libaxis.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaxis.dylib;
-			remoteRef = 9A2EA1EC19A62827004DAFFC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A2EA1EF19A62827004DAFFC /* libaxis.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libaxis.dylib;
-			remoteRef = 9A2EA1EE19A62827004DAFFC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A2EA1F119A62827004DAFFC /* base_iosTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			name = base_iosTests.xctest;
-			path = axis_iosTests.xctest;
-			remoteRef = 9A2EA1F019A62827004DAFFC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9AA5E4C316F7C61B005C45CE /* Sources */ = {
@@ -312,7 +186,6 @@
 				9A9F2DDE19A6445E007AE2C7 /* crc32.c in Sources */,
 				9A9F2DE719A6445E007AE2C7 /* inftrees.c in Sources */,
 				9A9F2DDC19A6445E007AE2C7 /* adler32.c in Sources */,
-				9A9F2DEB19A6445E007AE2C7 /* gzip_stream.cpp in Sources */,
 				9A9F2DDD19A6445E007AE2C7 /* compress.c in Sources */,
 				9A9F2DE519A6445E007AE2C7 /* inffast.c in Sources */,
 				9A9F2DE619A6445E007AE2C7 /* inflate.c in Sources */,
@@ -327,14 +200,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9A9F2DB319A64438007AE2C7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axis;
-			targetProxy = 9A9F2DB219A64438007AE2C7 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9A1B2F8A16A2AF5C00875A94 /* Debug */ = {
@@ -370,6 +235,7 @@
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = axiszlib;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/FreeImage/LibRawLite";
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
@@ -402,6 +268,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = axiszlib;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/FreeImage/LibRawLite";
 				WorkspaceDir = "$(SRCROOT)/../../../../nodeapp/seed/metaseed";
@@ -413,7 +280,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = _ca2freeimage;
 			};
 			name = Debug;
 		};
@@ -422,7 +288,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = _ca2freeimage;
 			};
 			name = Release;
 		};
