@@ -1,23 +1,12 @@
 #include "framework.h"
+#include "macos.h"
 
 
 #include <fcntl.h>
 
-#ifdef LINUX
-#include <dlfcn.h>
-#include <link.h>
-#include <ctype.h>
-#elif defined(MACOS)
 #include <dlfcn.h>
 #include <sys/stat.h>
-#endif
 
-__STATIC inline bool IsDirSep(WCHAR ch)
-{
-   
-   return (ch == '\\' || ch == '/');
-   
-}
 
 
 namespace macos
@@ -97,7 +86,7 @@ namespace macos
       
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         Application.dir().mk(Application.dir_name(lpszFileName));
+         Application.dir_mk(Application.dir_name(lpszFileName));
       }
       
 //      m_bCloseOnDelete = FALSE;
@@ -190,7 +179,7 @@ namespace macos
              {*/
             
             
-            vfxThrowFileException(get_app(), ::mac::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+            vfxThrowFileException(get_app(), ::macos::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
             
             //}
             
@@ -228,7 +217,7 @@ namespace macos
             
             
             DWORD dwLastError = ::GetLastError();
-            vfxThrowFileException(get_app(), ::mac::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
+            vfxThrowFileException(get_app(), ::macos::file_exception::OsErrorToException(dwLastError), dwLastError, m_strFileName);
             
             
             //}
@@ -260,16 +249,16 @@ namespace macos
       ::primitive::memory_size readNow;
       while(nCount > 0)
       {
-         readNow = (size_t) min(0x7fffffff, nCount);
+         readNow = (size_t) MIN(0x7fffffff, nCount);
          size_t iRead = ::read(m_iFile, &((byte *)lpBuf)[pos], readNow);
-         if(iRead == ::numeric_info::get_allset_value < size_t >())
+         if(iRead == ::numeric_info<size_t>::get_allset_value ())
          {
             int32_t iError = errno;
             if(iError == EAGAIN)
             {
                
             }
-            ::mac::file_exception::ThrowOsError(get_app(), errno);
+            ::macos::file_exception::ThrowOsError(get_app(), errno);
          }
          else if(iRead == 0)
          {
@@ -298,9 +287,9 @@ namespace macos
       ::primitive::memory_position pos = 0;
       while(nCount > 0)
       {
-         size_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) min(0x7fffffff, nCount));
-         if(iWrite == ::numeric_info::get_allset_value < size_t >())
-            ::mac::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError(), m_strFileName);
+         size_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) MIN(0x7fffffff, nCount));
+         if(iWrite == ::numeric_info<size_t>::get_allset_value ())
+            ::macos::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError(), m_strFileName);
          nCount -= iWrite;
          pos += iWrite;
       }
@@ -315,7 +304,7 @@ namespace macos
    {
       
       if(m_iFile == (UINT)hFileNull)
-         ::mac::file_exception::ThrowOsError(get_app(), (LONG)0);
+         ::macos::file_exception::ThrowOsError(get_app(), (LONG)0);
       
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
@@ -328,7 +317,7 @@ namespace macos
       file_position posNew = ::lseek(m_iFile, lLoOffset, (DWORD)nFrom);
       //      posNew |= ((file_position) lHiOffset) << 32;
       if(posNew  == (file_position)-1)
-         ::mac::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+         ::macos::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
       
       return posNew;
    }
@@ -344,7 +333,7 @@ namespace macos
       file_position pos = ::lseek(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((file_position)lHiOffset) << 32;
       if(pos  == (file_position)-1)
-         ::mac::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+         ::macos::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
       
       return pos;
    }
@@ -366,7 +355,7 @@ namespace macos
        return;
        
        if (!::FlushFileBuffers((HANDLE)m_iFile))
-       ::mac::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
+       ::macos::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
    }
    
    void file::close()
@@ -383,7 +372,7 @@ namespace macos
       m_strFileName.Empty();
       
       if (bError)
-         ::mac::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+         ::macos::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
    
    void file::Abort()
@@ -404,7 +393,7 @@ namespace macos
       ASSERT(m_iFile != (UINT)hFileNull);
       
       /*if (!::LockFile((HANDLE)m_iFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-       ::mac::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
+       ::macos::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
    }
    
    void file::UnlockRange(file_position dwPos, file_size dwCount)
@@ -413,7 +402,7 @@ namespace macos
       ASSERT(m_iFile != (UINT)hFileNull);
       
       /*      if (!::UnlockFile((HANDLE)m_iFile,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-       ::mac::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
+       ::macos::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());*/
    }
    
    void file::set_length(file_size dwNewLen)
@@ -424,7 +413,7 @@ namespace macos
       seek((LONG)dwNewLen, (::file::e_seek)::file::seek_begin);
       
       if (!::ftruncate(m_iFile, dwNewLen))
-         ::mac::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
+         ::macos::file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
    
    file_size file::get_length() const
@@ -554,7 +543,7 @@ namespace macos
       
       ::file::file_status status;
       GetStatus(status);
-      return System.file().title_(status.m_strFullName);
+      return System.file_title(status.m_strFullName);
    }
    
    string file::GetFilePath() const
@@ -579,13 +568,13 @@ namespace macos
    void ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
-         vfxThrowFileException(papp, ::mac::file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
+         vfxThrowFileException(papp, ::macos::file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
    
    void ThrowErrno(::aura::application * papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
-         vfxThrowFileException(papp, ::mac::file_exception::ErrnoToException(nErrno), errno, lpszFileName);
+         vfxThrowFileException(papp, ::macos::file_exception::ErrnoToException(nErrno), errno, lpszFileName);
    }
    
    
@@ -1685,10 +1674,10 @@ void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, int32_t c
 {
 #ifdef DEBUG
    const char * lpsz;
-   if (cause >= 0 && cause < _countof(::mac::rgszFileExceptionCause))
-      lpsz = ::mac::rgszFileExceptionCause[cause];
+   if (cause >= 0 && cause < _countof(::macos::rgszFileExceptionCause))
+      lpsz = ::macos::rgszFileExceptionCause[cause];
    else
-      lpsz = ::mac::szUnknown;
+      lpsz = ::macos::szUnknown;
    //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
 #endif
    throw ::file::exception(papp, cause, lOsError, lpszFileName);
