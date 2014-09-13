@@ -330,10 +330,8 @@
 		<Unit filename="aura/node/ansios/ansios_process.h" />
 		<Unit filename="aura/node/ansios/ansios_thread_impl.cpp" />
 		<Unit filename="aura/node/ansios/ansios_thread_impl.h" />
-		<Unit filename="aura/node/linux/implementation.h" />
 		<Unit filename="aura/node/linux/linux.cpp" />
 		<Unit filename="aura/node/linux/linux.h" />
-		<Unit filename="aura/node/linux/linux1.h" />
 		<Unit filename="aura/node/linux/linux_application.cpp" />
 		<Unit filename="aura/node/linux/linux_application.h" />
 		<Unit filename="aura/node/linux/linux_dumpinit.cpp" />
