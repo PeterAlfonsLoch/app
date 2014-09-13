@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "macos.h"
 
 
 class keep_event_reset
@@ -31,12 +32,12 @@ namespace macos
    element(papp),
    ::thread(papp),
    ::user::window_draw(papp),
-   message_queue(papp),
    m_mutexRendering(papp),
    m_mutexRgnUpdate(papp),
    m_semaphoreBuffer(papp),
    m_mutexRender(papp),
-   m_wndpaOut(papp)
+   m_wndpaOut(papp),
+   m_spqueue(allocer())
    {
       m_dwLastRedrawRequest = ::get_tick_count();
       m_bRender = false;
@@ -94,7 +95,7 @@ namespace macos
    {
       if(!m_bProDevianMode)
       {
-         m_spuiMessage->post_message(WM_USER + 1984 + 1977);
+         m_spqueue->message_queue_post_message(WM_USER + 1984 + 1977);
       }
    }
    
@@ -206,7 +207,7 @@ namespace macos
    bool window_draw::pre_run()
    {
       
-      if(!create_message_queue("ca2::twf - ca2 Transparent Window Framework"))
+      if(!m_spqueue->create_message_queue("ca2::twf - ca2 Transparent Window Framework", this))
       {
          
          TRACE("Could not initialize ca2::twf - ca2 Transparent Window Framework!");
@@ -247,7 +248,7 @@ namespace macos
          }
          else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
          {
-            Sleep(max((DWORD) max(0, iUiDataWriteWindowTimeForTheApplicationInThisMachine), (1000 / m_iFramesPerSecond) - m_dwLastDelay));
+            Sleep(MAX((DWORD) MAX(0, iUiDataWriteWindowTimeForTheApplicationInThisMachine), (1000 / m_iFramesPerSecond) - m_dwLastDelay));
          }
          else
          {

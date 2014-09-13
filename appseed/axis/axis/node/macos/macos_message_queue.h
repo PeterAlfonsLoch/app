@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace windows
+namespace macos
 {
 
 
@@ -38,7 +38,7 @@ namespace windows
 
       virtual bool message_queue_destroy();
 
-      virtual void * message_queue::message_queue_get_os_handle();
+      virtual void * message_queue_get_os_handle();
 
 
    };

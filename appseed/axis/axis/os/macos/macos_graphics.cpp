@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "macos_internal.h"
+
+HDC GetDC(oswindow hwnd);
 
 #ifdef DEBUG
 #undef DEBUG

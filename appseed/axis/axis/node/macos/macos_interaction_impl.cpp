@@ -1223,42 +1223,20 @@ namespace macos
          pbase->m_uiMessage == WM_MOUSEMOVE)
          //         pbase->m_uiMessage == WM_MOUSEWHEEL)
       {
-         // user presence status activity reporting
-         if(pbase->m_uiMessage == WM_LBUTTONDOWN
-            || pbase->m_uiMessage == WM_RBUTTONDOWN
-            || pbase->m_uiMessage == WM_MBUTTONDOWN
-            || pbase->m_uiMessage == WM_MOUSEMOVE)
+         if(pbase->m_uiMessage == WM_LBUTTONDOWN)
          {
-
-            if(Session.fontopus()->m_puser != NULL)
-            {
-
-               if(&ApplicationUser != NULL)
-               {
-
-                  if(ApplicationUser.m_ppresence != NULL)
-                  {
-
-                     try
-                     {
-
-                        ApplicationUser.m_ppresence->report_activity();
-
-                     }
-                     catch(...)
-                     {
-
-                     }
-
-                  }
-
-               }
-
-            }
-
+            
+            TRACE("WM_LBUTTONDOWN");
+            
          }
-
+         
          ::message::mouse * pmouse = (::message::mouse *) pbase;
+
+         
+         // user presence status activity reporting
+         
+         Session.on_ui_mouse_message(pmouse);
+
 
          if(m_pauraapp->m_paxissession != NULL)
          {
@@ -4210,7 +4188,7 @@ namespace macos
 
       ::smart_pointer < ::message::base > spbase;
 
-      spbase = get_base(m_pui, message, wparam, lparam);
+      spbase = get_base(message, wparam, lparam);
 
       /*      try
        {
@@ -4279,7 +4257,7 @@ namespace macos
    strsize interaction_impl::GetWindowText(LPTSTR lpszString, strsize nMaxCount)
    {
       strncpy(lpszString, m_strWindowText, nMaxCount);
-      return min(nMaxCount, m_strWindowText.get_length());
+      return MIN(nMaxCount, m_strWindowText.get_length());
    }
 
    strsize interaction_impl::GetWindowTextLength()

@@ -1,8 +1,8 @@
 #include "framework.h" // from "axis/user/user.h"
-#include "windows.h"
+#include "macos.h"
 
 
-namespace windows
+namespace macos
 {
 
 
@@ -98,7 +98,7 @@ namespace windows
    bool message_queue::message_queue_destroy()
    {
 
-      return DestroyWindow() != NULL;
+      return DestroyWindow();
 
    }
 

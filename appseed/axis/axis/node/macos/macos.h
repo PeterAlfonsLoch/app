@@ -62,8 +62,8 @@ CLASS_DECL_BASE void AfxResetMsgCache();
 // xxx CLASS_DECL_BASE WNDPROC AfxGetAfxWndProc();
 #define AfxWndProc (*AfxGetAfxWndProc())
 
-#define MAC_THREAD(pthread) (dynamic_cast < ::mac::thread * > (dynamic_cast < ::thread * >(pthread)))
-#define MAC_WINDOW(pwnd) (dynamic_cast < ::mac::interaction_impl * > (dynamic_cast < ::user::interaction_impl * >(pwnd)))
+#define MAC_THREAD(pthread) (dynamic_cast < ::macos::thread * > (dynamic_cast < ::thread * >(pthread)))
+#define MAC_WINDOW(pwnd) (dynamic_cast < ::macos::interaction_impl * > (dynamic_cast < ::user::interaction_impl * >(pwnd)))
 
 CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
@@ -71,6 +71,7 @@ CLASS_DECL_BASE void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 CLASS_DECL_BASE void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
 CLASS_DECL_BASE void __cdecl __pre_translate_message(signal_details * pobj);
 #include "macos_printer.h"
+#include "macos_message_queue.h"
 
 
 
