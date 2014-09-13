@@ -5,7 +5,7 @@ namespace linux
 {
 
 
-   class CLASS_DECL_LINUX os :
+   class CLASS_DECL_BASE os :
       public ::base::os
    {
    public:

@@ -14,7 +14,7 @@ namespace linux
 {
 
 
-   class CLASS_DECL_LINUX ip_enum :
+   class CLASS_DECL_BASE ip_enum :
       virtual public ::net::ip_enum
    {
    public:

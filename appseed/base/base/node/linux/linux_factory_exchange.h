@@ -7,7 +7,7 @@ namespace linux
    namespace base
    {
 
-      class CLASS_DECL_LINUX factory_exchange :
+      class CLASS_DECL_BASE factory_exchange :
          virtual public ::object
       {
       public:
