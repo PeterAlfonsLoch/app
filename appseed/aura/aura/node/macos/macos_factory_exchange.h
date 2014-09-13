@@ -1,6 +1,10 @@
 #pragma once
 
 
+namespace aura
+{
+
+
 namespace mac
 {
 
@@ -22,5 +26,8 @@ namespace mac
 
 
 
+
+
+}
 
 
