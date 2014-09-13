@@ -1,15 +1,15 @@
 #pragma once
 
 
-namespace aura
+
+
+namespace macos
 {
 
-
-namespace mac
-{
-
+   namespace aura
+   {
    
-   class CLASS_DECL_mac factory_exchange :
+   class CLASS_DECL_AURA factory_exchange :
       virtual public ::object
    {
    public:
@@ -21,13 +21,13 @@ namespace mac
       
    };
    
-
-} // namespace mac
-
-
+   } // namespace aura
+} // namespace macos
 
 
 
-}
+
+
+
 
 

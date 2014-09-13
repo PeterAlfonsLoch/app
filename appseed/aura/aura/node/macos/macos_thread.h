@@ -4,13 +4,13 @@
 WINBOOL AfxInternalPreTranslateMessage(MESSAGE* pMsg);
 
 
-namespace mac
+namespace macos
 {
 
    
 
    
-   class CLASS_DECL_mac thread :
+   class CLASS_DECL_AURA thread :
       virtual public ::ansios::thread_impl
    {
    public:
@@ -28,7 +28,7 @@ namespace mac
  
 
 
-} // namespace mac
+} // namespace macos
 
 
 

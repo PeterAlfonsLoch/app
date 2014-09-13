@@ -10,14 +10,14 @@
 
 #ifdef cplusplus
 
-namespace mac
+namespace macos
 {
    
    CGFloat get_system_main_menu_bar_height();
    CGFloat get_system_dock_height();
    
    
-} // namespace mac
+} // namespace macos
 
 
 

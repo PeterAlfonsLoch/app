@@ -38,7 +38,7 @@ namespace ansios
 	}
 
 
-} // namespace mac
+} // namespace macos
 
 
 

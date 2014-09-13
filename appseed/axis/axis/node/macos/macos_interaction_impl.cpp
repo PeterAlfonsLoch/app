@@ -46,7 +46,7 @@ WINBOOL GetMessage(
 /*
  const char gen_Wnd[] = __WND;
  */
-namespace mac
+namespace macos
 {
 
    void interaction_impl::mouse_hover_add(sp(::user::interaction) pinterface)
@@ -5853,7 +5853,7 @@ namespace mac
 
 
 
-} // namespace mac
+} // namespace macos
 
 
 
@@ -6063,7 +6063,7 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lp
 
 
 
-namespace mac
+namespace macos
 {
 
    void interaction_impl::_001UpdateWindow()

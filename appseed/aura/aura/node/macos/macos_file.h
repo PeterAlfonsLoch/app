@@ -4,15 +4,15 @@
 class FileException;
 struct FileStatus;
 
-void CLASS_DECL_mac vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
+void CLASS_DECL_AURA vfxGetRoot(const wchar_t * lpszPath, string& wstrRoot);
 
-namespace mac
+namespace macos
 {
 
    /////////////////////////////////////////////////////////////////////////////
    // File - raw unbuffered disk file I/O
 
-   class CLASS_DECL_mac file :
+   class CLASS_DECL_AURA file :
       virtual public ::file::binary_buffer
    {
    public:
@@ -113,4 +113,4 @@ namespace mac
 
 
 
-} // namespace mac
+} // namespace macos

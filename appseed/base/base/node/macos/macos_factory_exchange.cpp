@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace mac
+namespace macos
 {
 
    
@@ -36,7 +36,7 @@ namespace mac
    }
 
     
-} // namespace mac
+} // namespace macos
 
 
 void __node_factory_exchange(sp(::axis::application) papp)

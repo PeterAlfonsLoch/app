@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace mac
+namespace macos
 {
    
    class CLASS_DECL_mac path :
@@ -97,6 +97,6 @@ namespace mac
       string         m_strNetSeedFolder;
    };
    
-} // namespace mac
+} // namespace macos
 
 

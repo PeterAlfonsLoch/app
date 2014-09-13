@@ -1,7 +1,8 @@
 #include "framework.h"
+#include "macos.h"
 
 
-namespace mac{
+namespace macos{
    
    
    shell shell::theLinuxShell;
@@ -27,4 +28,4 @@ namespace mac{
    }
    
    
-} // namespace mac
+} // namespace macos

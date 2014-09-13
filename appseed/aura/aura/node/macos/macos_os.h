@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace mac
+namespace macos
 {
    
    
-   class CLASS_DECL_mac os :
+   class CLASS_DECL_AURA os :
       virtual public ::aura::os
    {
    public:
@@ -64,7 +64,7 @@ namespace mac
    
    
    
-} // namespace mac
+} // namespace macos
 
 
 

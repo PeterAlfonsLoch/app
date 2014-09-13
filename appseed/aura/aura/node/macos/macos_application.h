@@ -9,11 +9,11 @@ namespace gen
 }
 
 
-namespace mac
+namespace macos
 {
 
    
-   class CLASS_DECL_mac main_init_data :
+   class CLASS_DECL_AURA main_init_data :
       public ::aura::main_init_data
    {
    public:
@@ -28,7 +28,7 @@ namespace mac
    };
 
    
-   class CLASS_DECL_mac application :
+   class CLASS_DECL_AURA application :
       virtual public ::aura::application
    {
    public:
@@ -100,7 +100,7 @@ namespace mac
    };
 
    
-} // namespace mac
+} // namespace macos
 
 
 

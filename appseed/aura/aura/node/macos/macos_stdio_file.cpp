@@ -2,7 +2,7 @@
 
 #include <fcntl.h>
 
-namespace mac
+namespace macos
 {
    
    
@@ -378,4 +378,4 @@ namespace mac
    }
    
    
-} // namespace mac
+} // namespace macos

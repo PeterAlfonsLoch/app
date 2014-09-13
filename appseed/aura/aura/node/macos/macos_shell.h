@@ -3,10 +3,10 @@
 #define WH_SHSTDAPI(type) type
 
 
-namespace mac
+namespace macos
 {
    
-   class CLASS_DECL_mac shell
+   class CLASS_DECL_AURA shell
    {
    public:
       shell();
@@ -492,5 +492,5 @@ namespace mac
     */
    
    
-} // namespace mac
+} // namespace macos
 

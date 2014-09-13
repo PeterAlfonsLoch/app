@@ -14,7 +14,7 @@ struct PROCESS_INFO_t
 };
 
 
-namespace mac
+namespace macos
 {
    
    
@@ -1241,7 +1241,7 @@ namespace mac
    }
    
 
-} // namespace mac
+} // namespace macos
 
 
 

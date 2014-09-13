@@ -184,7 +184,7 @@ WINBOOL get_nswindow_rect(oswindow oswindow, LPRECT lprect)
 }
 
 
-namespace mac
+namespace macos
 {
 
    CGFloat get_system_main_menu_bar_height()
@@ -197,7 +197,7 @@ namespace mac
       return [[[NSApplication sharedApplication] mainMenu] menuBarHeight];
    }
 
-} // namespace mac
+} // namespace macos
 
 
 

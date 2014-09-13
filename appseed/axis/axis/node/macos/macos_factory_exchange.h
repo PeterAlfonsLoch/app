@@ -1,10 +1,11 @@
 #pragma once
 
 
-namespace mac
+namespace macos
 {
 
-   
+namespace axis
+   {
    class CLASS_DECL_mac factory_exchange :
       virtual public ::object
    {
@@ -16,9 +17,11 @@ namespace mac
       
       
    };
+      
+   } // namespace axis
    
 
-} // namespace mac
+} // namespace macos
 
 
 

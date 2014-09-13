@@ -10,7 +10,7 @@ Copyright (c) 1998 by PJ Naughter.
 */
 
 
-namespace mac
+namespace macos
 {
 
 
@@ -30,7 +30,7 @@ namespace mac
    };
 
 
-} // namespace mac
+} // namespace macos
 
 
 
