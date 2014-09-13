@@ -97,16 +97,12 @@ DWORD _AfxGetComCtlVersion();
 #define MAC_THREAD(pthread) (dynamic_cast < ::mac::thread * > (dynamic_cast < ::thread * >(pthread)))
 #define MAC_WINDOW(pwnd) (dynamic_cast < ::mac::interaction_impl * > (dynamic_cast < ::user::interaction_impl * >(pwnd)))
 
-#include "macos_shell.h"
 
 CLASS_DECL_mac void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_mac void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
 CLASS_DECL_mac void AfxProcessWndProcException(::exception::base*, signal_details * pobj);
 CLASS_DECL_mac void __cdecl __pre_translate_message(signal_details * pobj);
-#include "mac_printer.h"
-
-#include "mac_application.h"
 
 
 
@@ -132,12 +128,6 @@ CLASS_DECL_mac void vfxThrowFileException(sp(::aura::application) papp, int32_t 
 
 
 
-#pragma once
-
-
-#include "mac_dir.h"
-#include "mac_file_system.h"
-#include "mac_file.h"
-#include "mac_shell.h"
-#include "mac_stdio_file.h"
-#include "mac_file_set.h"
+#include "macos_dir.h"
+#include "macos_file_system.h"
+#include "macos_file_set.h"

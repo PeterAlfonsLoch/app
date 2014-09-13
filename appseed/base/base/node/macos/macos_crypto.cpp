@@ -6,7 +6,7 @@ namespace macos
 {
 
 
-   crypto::crypto(::aura::application * papp) :
+   crypto::crypto(sp(::aura::application) papp) :
       element(papp),
       ::crypto::crypto(papp)
    {

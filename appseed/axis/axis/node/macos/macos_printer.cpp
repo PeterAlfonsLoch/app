@@ -1,7 +1,8 @@
 #include "framework.h"
+#include "macos.h"
 
 
-namespace mac2
+namespace macos
 {
 
 

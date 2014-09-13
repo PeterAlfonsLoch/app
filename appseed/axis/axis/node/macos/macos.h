@@ -51,27 +51,11 @@ CLASS_DECL_mac void AfxResetMsgCache();
 #define _AfxHookWindowCreate    AfxHookWindowCreate
 #define _AfxUnhookWindowCreate  AfxUnhookWindowCreate
 
-#include "mac_implementation.h"
-#include "mac_dir.h"
-#include "mac_factory_exchange.h"
-#include "mac_window_draw.h"
-#include "mac_thread.h"
-#include "mac_interaction_impl.h"
-#include "mac_os.h"
-#include "mac_port_forward.h"
-#include "mac_copydesk.h"
-#include "mac_crypto.h"
-#include "mac_ip_enum.h"
+#include "macos_factory_exchange.h"
+#include "macos_window_draw.h"
+#include "macos_interaction_impl.h"
+#include "macos_copydesk.h"
 
-#pragma once
-
-
-#include "mac_dir.h"
-#include "mac_file_system.h"
-#include "mac_file.h"
-#include "mac_shell.h"
-#include "mac_stdio_file.h"
-#include "mac_file_set.h"
 
 
 #define NULL_REF(class) (*((class *) NULL))
@@ -81,16 +65,12 @@ CLASS_DECL_mac void AfxResetMsgCache();
 #define MAC_THREAD(pthread) (dynamic_cast < ::mac::thread * > (dynamic_cast < ::thread * >(pthread)))
 #define MAC_WINDOW(pwnd) (dynamic_cast < ::mac::interaction_impl * > (dynamic_cast < ::user::interaction_impl * >(pwnd)))
 
-#include "mac_shell.h"
-
 CLASS_DECL_mac void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_mac void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
 CLASS_DECL_mac void AfxProcessWndProcException(::exception::aura*, signal_details * pobj);
 CLASS_DECL_mac void __cdecl __pre_translate_message(signal_details * pobj);
 #include "mac_printer.h"
-
-#include "mac_application.h"
 
 
 
