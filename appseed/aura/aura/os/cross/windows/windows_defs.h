@@ -140,7 +140,7 @@ typedef char *PSZ;
 #endif
 
 typedef uint32_t       DWORD;
-typedef int32_t                 WINBOOL;
+//typedef int32_t                 WINBOOL;
 typedef unsigned char       BYTE;
 typedef unsigned short      WORD;
 typedef float               FLOAT;
