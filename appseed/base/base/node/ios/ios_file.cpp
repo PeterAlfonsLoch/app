@@ -24,7 +24,7 @@ namespace ios
 {
    
    
-   file::file(::axis::application * papp) :
+   file::file(sp(::aura::application) papp) :
    element(papp)
    {
       
@@ -34,7 +34,7 @@ namespace ios
       
    }
    
-   file::file(::axis::application * papp, int32_t hFile) :
+   file::file(sp(::aura::application) papp, int32_t hFile) :
    element(papp)
    {
       
@@ -44,7 +44,7 @@ namespace ios
       
    }
    
-   file::file(::axis::application * papp, const char * lpszFileName, UINT nOpenFlags) :
+   file::file(sp(::aura::application) papp, const char * lpszFileName, UINT nOpenFlags) :
    element(papp)
    {
       
@@ -575,13 +575,13 @@ namespace ios
    namespace file_exception
    {
    
-   void ThrowOsError(::axis::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
+   void ThrowOsError(sp(::aura::application) papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
          vfxThrowFileException(papp, ::ios::file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
    
-   void ThrowErrno(::axis::application * papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
+   void ThrowErrno(sp(::aura::application) papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
          vfxThrowFileException(papp, ::ios::file_exception::ErrnoToException(nErrno), errno, lpszFileName);
@@ -1680,7 +1680,7 @@ CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget, const char * pszSour
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_BASE vfxThrowFileException(::axis::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_BASE vfxThrowFileException(sp(::aura::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;

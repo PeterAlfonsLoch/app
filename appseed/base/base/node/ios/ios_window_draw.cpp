@@ -27,7 +27,7 @@ namespace ios
 {
 
    
-   window_draw::window_draw(::axis::application * papp) :
+   window_draw::window_draw(sp(::aura::application) papp) :
    element(papp),
    ::thread(papp),
    ::user::window_draw(papp),

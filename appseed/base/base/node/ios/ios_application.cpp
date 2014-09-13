@@ -7,7 +7,7 @@ namespace ios
 {
 
 
-   application::application(::axis::application * papp) :
+   application::application(sp(::aura::application) papp) :
       element(papp)
    {
       ::thread::m_p.create(allocer());

@@ -25,7 +25,7 @@ struct plane_system
 
 string get_error_message(DWORD dwError);
 
-::axis::application *     ios_instantiate_application(::axis::application * pappSystem, const char * pszId);
+sp(::aura::application)     ios_instantiate_application(sp(::aura::application) pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
@@ -117,7 +117,7 @@ WINBOOL GetMessage(
 int32_t CLASS_DECL_BASE __ios_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_BASE void vfxThrowFileException(::axis::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_BASE void vfxThrowFileException(sp(::aura::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 

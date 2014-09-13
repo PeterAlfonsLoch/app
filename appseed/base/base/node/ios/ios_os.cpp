@@ -8,7 +8,7 @@ namespace ios
 {
    
    
-   os::os(::axis::application * papp) :
+   os::os(sp(::aura::application) papp) :
    element(papp),
    ::core::os(papp)
    {

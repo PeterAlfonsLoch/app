@@ -5,7 +5,7 @@ namespace macos
 {
 
    
-   factory_exchange::factory_exchange(::axis::application * papp) :
+   factory_exchange::factory_exchange(sp(::aura::application) papp) :
       element(papp)
    {
       

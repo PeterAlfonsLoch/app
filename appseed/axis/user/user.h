@@ -5,6 +5,8 @@
 
 #include "axis/axis/axis.h"
 
+#ifdef __cplusplus
+
 #include "aura/user/user.h"
 
 
@@ -164,6 +166,11 @@ namespace axis
 
 
 #endif
+
+
+
+
+#endif // __cplusplus
 
 
 

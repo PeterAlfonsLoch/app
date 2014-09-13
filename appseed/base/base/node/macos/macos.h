@@ -10,7 +10,7 @@
 
 string get_error_message(DWORD dwError);
 
-::axis::application *     mac_instantiate_application(::axis::application * pappSystem, const char * pszId);
+sp(::aura::application)     mac_instantiate_application(sp(::aura::application) pappSystem, const char * pszId);
 
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
@@ -84,16 +84,11 @@ CLASS_DECL_mac oswindow _AfxChildWindowFromPoint(oswindow,POINT);
 extern int _afxComCtlVersion;
 DWORD _AfxGetComCtlVersion();
 
-#include "mac_dir.h"
-#include "mac_factory_exchange.h"
-#include "mac_window_draw.h"
-#include "mac_thread.h"
-#include "mac_interaction_impl.h"
-#include "mac_os.h"
-#include "mac_port_forward.h"
-#include "mac_copydesk.h"
-#include "mac_crypto.h"
-#include "mac_ip_enum.h"
+#include "macos_dir.h"
+#include "macos_factory_exchange.h"
+#include "macos_port_forward.h"
+#include "macos_crypto.h"
+#include "macos_ip_enum.h"
 
 #define NULL_REF(class) (*((class *) NULL))
 // xxx CLASS_DECL_mac WNDPROC AfxGetAfxWndProc();
@@ -102,7 +97,7 @@ DWORD _AfxGetComCtlVersion();
 #define MAC_THREAD(pthread) (dynamic_cast < ::mac::thread * > (dynamic_cast < ::thread * >(pthread)))
 #define MAC_WINDOW(pwnd) (dynamic_cast < ::mac::interaction_impl * > (dynamic_cast < ::user::interaction_impl * >(pwnd)))
 
-#include "mac_shell.h"
+#include "macos_shell.h"
 
 CLASS_DECL_mac void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_mac void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
@@ -133,7 +128,7 @@ WINBOOL GetMessage(
 int32_t CLASS_DECL_mac __mac_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_mac void vfxThrowFileException(::axis::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_mac void vfxThrowFileException(sp(::aura::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 

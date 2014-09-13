@@ -5,7 +5,7 @@ namespace ios
 {
 
 
-   crypto::crypto(::axis::application * papp) :
+   crypto::crypto(sp(::aura::application) papp) :
       element(papp),
       ::crypto::crypto(papp)
    {

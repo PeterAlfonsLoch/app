@@ -11,7 +11,7 @@ namespace ios
    public:
       
       
-      os(::axis::application * papp);
+      os(sp(::aura::application) papp);
       virtual ~os();
       
       

@@ -11,7 +11,7 @@ namespace macos
    public:
 
 
-      crypto(::axis::application * papp);
+      crypto(sp(::aura::application) papp);
       virtual ~crypto();
 
 

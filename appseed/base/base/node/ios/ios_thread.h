@@ -13,7 +13,7 @@ namespace ios
    public:
       
       
-      thread(::axis::application * papp);
+      thread(sp(::aura::application) papp);
       virtual ~thread();
       
       

@@ -21,7 +21,7 @@ namespace ios2
          HDC            m_hdc;
 
 
-         document_properties(::axis::application * papp);
+         document_properties(sp(::aura::application) papp);
          virtual ~document_properties();
 
 
@@ -37,7 +37,7 @@ namespace ios2
       document_properties     m_documentproperties;
 
 
-      printer(::axis::application * papp);
+      printer(sp(::aura::application) papp);
       virtual ~printer();
 
 

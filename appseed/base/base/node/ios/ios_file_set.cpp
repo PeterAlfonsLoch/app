@@ -5,7 +5,7 @@ namespace ios
 {
    
    
-   file_set::file_set(::axis::application * papp) :
+   file_set::file_set(sp(::aura::application) papp) :
    element(papp)
    {
       

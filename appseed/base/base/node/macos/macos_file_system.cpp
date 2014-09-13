@@ -18,7 +18,7 @@ namespace macos
 {
    
    
-   file_system::file_system(::axis::application * papp) :
+   file_system::file_system(sp(::aura::application) papp) :
       element(papp)
    {
    }
@@ -182,19 +182,19 @@ namespace macos
    }
    
    
-   string file_system::time_square(::axis::application * papp, const char * pszPrefix, const char * pszSuffix)
+   string file_system::time_square(sp(::aura::application) papp, const char * pszPrefix, const char * pszSuffix)
    {
       string str;
       System.dir().time_square(str);
       return time(papp, str, 25, pszPrefix, pszSuffix);
    }
    
-   string file_system::time_log(::axis::application * papp, const char * pszId)
+   string file_system::time_log(sp(::aura::application) papp, const char * pszId)
    {
       return time(papp, System.dir().time_log(pszId), 9);
    }
    
-   string file_system::time(::axis::application * papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
+   string file_system::time(sp(::aura::application) papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
    {
       single_lock lockMachineEvent(
                                   (&System.machine_event_central() != NULL) ?
@@ -321,13 +321,13 @@ namespace macos
       return true;
    }
    
-   string file_system::as_string(var varFile, ::axis::application * papp)
+   string file_system::as_string(var varFile, sp(::aura::application) papp)
    {
       var varQuery;
       return as_string(varFile, varQuery, papp);
    }
    
-   string file_system::as_string(var varFile, var & varQuery, ::axis::application * papp)
+   string file_system::as_string(var varFile, var & varQuery, sp(::aura::application) papp)
    {
       primitive::memory storage;
       if(varFile.cast < ::file::reader > () != NULL)
@@ -424,7 +424,7 @@ namespace macos
       return strResult;
    }
    
-   void file_system::as_memory(var varFile, primitive::memory_base & mem, ::axis::application * papp)
+   void file_system::as_memory(var varFile, primitive::memory_base & mem, sp(::aura::application) papp)
    {
       
       mem.allocate(0);
@@ -476,7 +476,7 @@ namespace macos
       
    }
    
-   void file_system::lines(stringa & stra, var varFile, ::axis::application * papp)
+   void file_system::lines(stringa & stra, var varFile, sp(::aura::application) papp)
    {
       
       UNREFERENCED_PARAMETER(papp);
@@ -502,7 +502,7 @@ namespace macos
       
    }
    
-   bool file_system::put_contents(var varFile, const void * pvoidContents, count count, ::axis::application * papp)
+   bool file_system::put_contents(var varFile, const void * pvoidContents, count count, sp(::aura::application) papp)
    {
       
       ::file::buffer_sp spfile;
@@ -518,7 +518,7 @@ namespace macos
       
    }
    
-   bool file_system::put_contents(var varFile, const char * lpcszContents, ::axis::application * papp)
+   bool file_system::put_contents(var varFile, const char * lpcszContents, sp(::aura::application) papp)
    {
       if(lpcszContents == NULL)
       {
@@ -530,7 +530,7 @@ namespace macos
       }
    }
    
-   bool file_system::put_contents(var varFile, ::file::reader & reader, ::axis::application * papp)
+   bool file_system::put_contents(var varFile, ::file::reader & reader, sp(::aura::application) papp)
    {
       ::file::buffer_sp spfile;
       spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
@@ -546,12 +546,12 @@ namespace macos
       return true;
    }
    
-   bool file_system::put_contents(var varFile, primitive::memory & mem, ::axis::application * papp)
+   bool file_system::put_contents(var varFile, primitive::memory & mem, sp(::aura::application) papp)
    {
       return put_contents(varFile, mem.get_data(), (count) mem.get_size(), papp);
    }
    
-   bool file_system::put_contents_utf8(var varFile, const char * lpcszContents, ::axis::application * papp)
+   bool file_system::put_contents_utf8(var varFile, const char * lpcszContents, sp(::aura::application) papp)
    {
       ::file::buffer_sp spfile;
       spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
@@ -675,7 +675,7 @@ namespace macos
       
    }
    
-   void file_system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::axis::application * papp)
+   void file_system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, sp(::aura::application) papp)
    {
       if(bFailIfExists)
       {
@@ -897,7 +897,7 @@ namespace macos
    }
    
    
-   string file_system::copy(const char * psz, ::axis::application * papp)
+   string file_system::copy(const char * psz, sp(::aura::application) papp)
    {
       string strCopy("copy");
       string strNew;
@@ -938,7 +938,7 @@ namespace macos
    }
    
    
-   bool file_system::exists(const char * pszPath, ::axis::application * papp)
+   bool file_system::exists(const char * pszPath, sp(::aura::application) papp)
    {
       
       if(::str::begins_ci_iws(pszPath, "uifs://"))
@@ -990,7 +990,7 @@ namespace macos
    }
    
    
-   bool file_system::exists(const string & strPath, ::axis::application * papp)
+   bool file_system::exists(const string & strPath, sp(::aura::application) papp)
    {
       
       if(::str::begins_ci_iws(strPath, "uifs://"))
@@ -1054,7 +1054,7 @@ namespace macos
       
    }
    
-   string file_system::paste(const char * pszLocation, const char * path, ::axis::application * papp)
+   string file_system::paste(const char * pszLocation, const char * path, sp(::aura::application) papp)
    {
       string strDir = System.dir().name(path);
       string strDest = System.dir().path(pszLocation, "");
@@ -1071,7 +1071,7 @@ namespace macos
       }
    }
    
-   void file_system::trash_that_is_not_trash(stringa & stra, ::axis::application * papp)
+   void file_system::trash_that_is_not_trash(stringa & stra, sp(::aura::application) papp)
    {
       
       if(stra.get_size() <= 0)
@@ -1092,7 +1092,7 @@ namespace macos
       
    }
    
-   void file_system::trash_that_is_not_trash(const char * psz, ::axis::application * papp)
+   void file_system::trash_that_is_not_trash(const char * psz, sp(::aura::application) papp)
    {
       
       string strDir = System.dir().trash_that_is_not_trash(psz);
@@ -1108,7 +1108,7 @@ namespace macos
       
    }
    
-   void file_system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, ::axis::application * papp)
+   void file_system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, sp(::aura::application) papp)
    {
       stringa straTitle;
       System.dir().ls(papp, pszContext, NULL, &straTitle);
@@ -1162,7 +1162,7 @@ namespace macos
       
    }
    
-   string file_system::sys_temp(const char * pszName, const char * pszExtension, ::axis::application * papp)
+   string file_system::sys_temp(const char * pszName, const char * pszExtension, sp(::aura::application) papp)
    {
       
       string strTempDir = get_sys_temp_path();
@@ -1204,14 +1204,14 @@ namespace macos
       
    }
    
-   ::file::buffer_sp file_system::time_square_file(::axis::application * papp, const char * pszPrefix, const char * pszSuffix)
+   ::file::buffer_sp file_system::time_square_file(sp(::aura::application) papp, const char * pszPrefix, const char * pszSuffix)
    {
       
       return get(time_square(papp, pszPrefix, pszSuffix), papp);
       
    }
    
-   ::file::buffer_sp file_system::get(const char * name, ::axis::application * papp)
+   ::file::buffer_sp file_system::get(const char * name, sp(::aura::application) papp)
    {
       
       System.dir().mk(System.dir().name(name), papp);
