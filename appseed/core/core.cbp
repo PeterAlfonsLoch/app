@@ -84,7 +84,6 @@
 			<Add option="-laxisfreetype" />
 			<Add option="-laxismysql" />
 			<Add option="-laxis" />
-			<Add option="-lbase" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />
@@ -645,6 +644,8 @@
 		<Unit filename="graphics/html/html_file.h" />
 		<Unit filename="graphics/html/html_font.cpp" />
 		<Unit filename="graphics/html/html_font.h" />
+		<Unit filename="graphics/html/html_form.cpp" />
+		<Unit filename="graphics/html/html_form.h" />
 		<Unit filename="graphics/html/html_html.cpp" />
 		<Unit filename="graphics/html/html_html.h" />
 		<Unit filename="graphics/html/html_html2.h" />
