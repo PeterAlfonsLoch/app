@@ -423,6 +423,14 @@ namespace base
    }
 
 
+   bool system::verb()
+   {
+
+      return ::axis::system::verb();
+
+   }
+
+
    //UINT system::os_post_to_all_threads(UINT uiMessage,WPARAM wparam,lparam lparam)
    //{
 

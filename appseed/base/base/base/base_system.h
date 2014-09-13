@@ -68,7 +68,7 @@ namespace base
       virtual bool initialize2();
 
 
-
+      virtual bool verb();
 
 
 

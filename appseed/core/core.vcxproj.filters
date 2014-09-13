@@ -159,20 +159,8 @@
     <Filter Include="Source Files\core">
       <UniqueIdentifier>{afafef36-ef8f-43c3-986e-c6d3d79971c3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\windows">
-      <UniqueIdentifier>{4e78959a-4e29-4cfb-8184-a549dce8fadd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\deepfish">
-      <UniqueIdentifier>{6202ee21-07f2-4224-962e-169066f82723}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\core">
       <UniqueIdentifier>{a28da0a9-77ec-4f4c-8821-ad2d60cf8bad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\os">
-      <UniqueIdentifier>{d3860369-4c94-40b9-bc4a-300baea8cfd8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\install">
-      <UniqueIdentifier>{b8258c88-5f05-479d-ae79-9b6deadc4f4f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\core\plugin">
       <UniqueIdentifier>{079ee505-bca6-43e2-9e84-e7fcc53a03df}</UniqueIdentifier>
@@ -201,15 +189,6 @@
     <Filter Include="Header Files\core\plugin">
       <UniqueIdentifier>{c992cd0f-dbc2-4bfc-9672-d60f6c877d6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\os\android">
-      <UniqueIdentifier>{840c968e-69cd-4b95-8d80-5ade7b4d2223}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\android">
-      <UniqueIdentifier>{e91ce7dd-017a-4fb6-82c7-245c85d6121e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\file">
-      <UniqueIdentifier>{6d36e31f-cdd1-43fa-8552-969adff0de94}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem\file">
       <UniqueIdentifier>{ec0bc585-ba95-4719-91bb-202ddde49dc9}</UniqueIdentifier>
     </Filter>
@@ -221,9 +200,6 @@
     </Filter>
     <Filter Include="Source Files\filesystem\folder_watch">
       <UniqueIdentifier>{0836171c-654e-4702-8512-85ed485fb89e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\service">
-      <UniqueIdentifier>{3116622e-722d-4408-b2b6-bc6a41544f03}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\graphics\backview">
       <UniqueIdentifier>{f5765b97-b0f5-4b6c-890b-48cf2dbed288}</UniqueIdentifier>
@@ -2080,9 +2056,6 @@
     <ClCompile Include="database\simpledb\simpledb_database.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="core\windows\os_library_initialize.cpp">
-      <Filter>Source Files\core\windows</Filter>
-    </ClCompile>
     <ClCompile Include="core\plugin\plugin_history.cpp">
       <Filter>Source Files\core\plugin</Filter>
     </ClCompile>
@@ -2200,21 +2173,6 @@
     <ClCompile Include="filesystem\userfs\userfs_userfs.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="core\android\os.cpp">
-      <Filter>Source Files\core\android</Filter>
-    </ClCompile>
-    <ClCompile Include="core\android\os_allocate_debug.cpp">
-      <Filter>Source Files\core\android</Filter>
-    </ClCompile>
-    <ClCompile Include="core\android\os_debug.cpp">
-      <Filter>Source Files\core\android</Filter>
-    </ClCompile>
-    <ClCompile Include="core\android\os_multithreading.cpp">
-      <Filter>Source Files\core\android</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_in_buffer.cpp">
-      <Filter>Source Files\core\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_out_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -2256,9 +2214,6 @@
     </ClCompile>
     <ClCompile Include="net\hi5\hi5_twitter_authorization.cpp">
       <Filter>Source Files\net\hi5</Filter>
-    </ClCompile>
-    <ClCompile Include="core\service\service_plain_service.cpp">
-      <Filter>Source Files\core\service</Filter>
     </ClCompile>
     <ClCompile Include="net\net_email_departament.cpp">
       <Filter>Source Files\net</Filter>
@@ -2868,6 +2823,9 @@
     </ClCompile>
     <ClCompile Include="graphics\html\html_form.cpp">
       <Filter>Source Files\graphics\html</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_in_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
