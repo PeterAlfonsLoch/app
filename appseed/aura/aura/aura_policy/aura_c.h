@@ -86,6 +86,6 @@ END_EXTERN_C
 
 
 #include "aura/primitive/datetime/datetime_mktime.h"
-#include "aura/primitive/api/api_rotate.h"
+#include "aura/primitive/api/api.h"
 
 
