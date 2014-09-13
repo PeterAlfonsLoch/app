@@ -7,11 +7,12 @@ namespace macos
    
    class CLASS_DECL_mac window_draw :
    virtual public ::user::window_draw,
-   virtual public ::message_queue
+   virtual public aura::message_queue_listener
    {
    public:
       
       
+      ::aura::message_queue_sp               m_spqueue;
       user::interaction_ptr_array            m_wndpaOut;
       mutex                                  m_mutexRendering;
       mutex                                  m_mutexRgnUpdate;

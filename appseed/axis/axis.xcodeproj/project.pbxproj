@@ -350,7 +350,6 @@
 		9AEEAD0B19C4BD0A00866C9E /* macos_windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAA8E19C4BD0900866C9E /* macos_windowing.h */; };
 		9AEEAD0C19C4BD0A00866C9E /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAA8F19C4BD0900866C9E /* os.h */; };
 		9AEEAD3119C4BD0A00866C9E /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAAB619C4BD0900866C9E /* os.h */; };
-		9AEEAD6319C4BD0A00866C9E /* base_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAAED19C4BD0900866C9E /* base_iosTests.m */; };
 		9AEEAD6919C4BDBA00866C9E /* user_str_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAD6719C4BDBA00866C9E /* user_str_context.cpp */; };
 		9AEEAD6A19C4BDBA00866C9E /* user_str_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAD6819C4BDBA00866C9E /* user_str_context.h */; };
 /* End PBXBuildFile section */
@@ -1665,7 +1664,6 @@
 				9AEEABBA19C4BD0900866C9E /* round_window.mm in Sources */,
 				07884BE61897E9A500DC6CEB /* user_control_event.cpp in Sources */,
 				07884C171897E9A500DC6CEB /* user_user.cpp in Sources */,
-				9AEEAD6319C4BD0A00866C9E /* base_iosTests.m in Sources */,
 				9AEEACF519C4BD0A00866C9E /* macos_cross_win_file.cpp in Sources */,
 				9AEEABAD19C4BD0900866C9E /* macos_interaction_impl.cpp in Sources */,
 				07884BF21897E9A500DC6CEB /* user_impact.cpp in Sources */,
