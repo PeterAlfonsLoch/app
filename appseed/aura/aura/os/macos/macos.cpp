@@ -86,7 +86,7 @@ CLASS_DECL_AURA bool __node_aura_pos_init()
 
 
 
-CLASS_DECL_AURA bool __node_pre_term()
+CLASS_DECL_AURA bool __node_aura_pre_term()
 {
   
    if(t_posthread != NULL)
@@ -113,7 +113,7 @@ CLASS_DECL_AURA bool __node_pre_term()
 
 
 
-CLASS_DECL_AURA bool __node_pos_term()
+CLASS_DECL_AURA bool __node_aura_pos_term()
 {
    
 

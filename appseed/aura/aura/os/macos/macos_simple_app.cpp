@@ -1,6 +1,5 @@
 #include "framework.h"
 
-void dappy(const char * psz);
 
 namespace aura
 {
@@ -12,6 +11,7 @@ namespace aura
 
    }
 
+   
    simple_app::~simple_app()
    {
 
@@ -169,23 +169,32 @@ namespace aura
       }
 
    }
+   
 
    bool simple_app::intro()
    {
+      
       return true;
+      
    }
+   
 
    int32_t simple_app::refrain()
    {
 
       while(true)
       {
+         
          GetMessage(&m_msg,NULL,0,0xffffffffu);
+         
          TranslateMessage(&m_msg);
+         
          DispatchMessage(&m_msg);
+         
       }
 
       return 0;
+      
    }
 
 
@@ -212,7 +221,9 @@ namespace aura
 
    int32_t simple_app::simple_app_pre_run()
    {
+      
       return 0;
+      
    }
 
 

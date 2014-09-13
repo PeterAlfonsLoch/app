@@ -77,46 +77,13 @@ WINBOOL mac_release_color(CGColorRef colorref)
     return TRUE;
 }
 
-
+/*
 
 HDC GetWindowDC(oswindow hwnd)
 {
    return GetDC(hwnd);
 }
 
-HDC GetDC(oswindow hwnd)
-{
-    
-    HDC hdc = new device_context;
-    
-    
-    hdc->m_window = hwnd;
-    hdc->m_cgcontext = get_nswindow_cgcontext(hwnd);
-/*    hdc->m_windowPort = GetWindowPort(hwnd);
-    GetPortBounds(hdc->m_windowPort, &hdc->m_portBounds);
-    
-    hdc->m_wasSwapped = QDSwapPort(hdc->m_windowPort, &hwnd->m_savedPort);
-    
-    
-    /* ... QuickDraw Drawing Commands ... */
-    // at windowPort
-    
-    
-  /*  QDBeginCGContext(hdc->m_windowPort, &hdc->m_cgcontext);
-    SyncCGContextOriginWithPort(hdc->m_cgcontext, hdc->m_windowPort);
-    //ClipCGContextToRegion(cgContext, &portBounds, clippingRegion);
-    //DisposeRgn(clippingRegion);
-    //clippingRegion = NULL;
-    
-    /* ... Quartz Drawing Commands ... */
-    
-    
-    hdc->m_cgcolorrefText = mac_create_color(0);
-    hdc->m_cgcolorrefBk = mac_create_color(RGB(255, 255, 255));
-    
-    return hdc;
-    
-}
 
 
 WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
@@ -132,14 +99,16 @@ WINBOOL ReleaseDC(oswindow hwnd, HDC hdc)
       QDSwapPort(hdc->m_savedPort, &hdc->m_savedPort);
    }*/
 
-   delete hdc;
+ /*  delete hdc;
    return TRUE;
 
 }
+  
+  */
 
 
-WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
-{
+//WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
+//{
 /*   XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
   /* if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd, &attrs) == 0)
@@ -151,7 +120,7 @@ WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
    lprect->right     = lprect->left    + attrs.width;
    lprect->bottom    = lprect->top     + attrs.height;*/
     
-    if(!GetWindowRect(hwnd, lprect))
+    /*if(!GetWindowRect(hwnd, lprect))
         return FALSE;
     
     lprect->right   -=  lprect->left;
@@ -165,7 +134,7 @@ WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
 
 
 WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
-{
+{*/
   /* XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
 /*   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd, &attrs) == 0)
@@ -177,11 +146,11 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
    lprect->right     = lprect->left    + attrs.width;
    lprect->bottom    = lprect->top     + attrs.height;*/
     
-   return get_nswindow_rect(hwnd, lprect) ? 1 : 0;
+/*   return get_nswindow_rect(hwnd, lprect) ? 1 : 0;
     
     
 }
-
+*/
 
 /*
 int FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
@@ -202,6 +171,8 @@ int FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
 }
 */
 
+/*
+
 HDC BeginPaint(oswindow hwnd, PAINTSTRUCT * ps)
 {
 
@@ -220,7 +191,7 @@ WINBOOL EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
    return ReleaseDC(hwnd, ps->hdc);
 
 }
-
+*/
 
 
 

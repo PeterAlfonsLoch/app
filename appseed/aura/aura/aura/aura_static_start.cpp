@@ -71,6 +71,7 @@ extern mutex * g_pmutexThreadHandleLock;
 
 #endif
 
+/*
 #if defined(APPLEOS)
 
 #include "aura/os/macos/macos_window_impl.h"
@@ -84,6 +85,7 @@ extern oswindow_dataptra * g_poswindowdataptra;
 extern oswindow_dataptra * g_poswindowdataptra;
 
 #endif
+ */
 
 #ifdef APPLEOS
 
@@ -193,11 +195,11 @@ namespace aura
 #endif // defined(LINUX) || defined(APPLEOS)
 
 
-#if defined(APPLEOS)
-
-         g_poswindowdataptra = new oswindow_dataptra;
-
-#endif // defined(APPLEOS)
+//#if defined(APPLEOS)
+//
+  //       g_poswindowdataptra = new oswindow_dataptra;
+//
+//#endif // defined(APPLEOS)
 
          // IMPLEMENT_AXIS_FIXED_ALLOC_CONSTRUCTOR(var, 1024)
          // IMPLEMENT_AXIS_FIXED_ALLOC_CONSTRUCTOR(property, 1024)
@@ -318,13 +320,13 @@ namespace aura
 #endif  // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
 
-#if defined(APPLEOS)
+//#if defined(APPLEOS)
 
-         delete g_poswindowdataptra;
+  //       delete g_poswindowdataptra;
 
-         g_poswindowdataptra = NULL;
+    //     g_poswindowdataptra = NULL;
 
-#endif // defined(APPLEOS)
+//#endif // defined(APPLEOS)
 
          //delete g_pmutexTrace;
 

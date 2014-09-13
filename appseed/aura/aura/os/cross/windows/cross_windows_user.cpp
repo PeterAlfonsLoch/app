@@ -1,5 +1,9 @@
 #include "framework.h"
+#ifdef APPLEOS
+#include <iconv.h>
+#else
 #include "atom/iconv/include/iconv.h"
+#endif
 
 
 CLASS_DECL_AURA COLORREF GetSysColor(DWORD dw)

@@ -1,6 +1,6 @@
 #pragma once
 
-HDC GetDC(oswindow hwnd);
+//HDC GetDC(oswindow hwnd);
 HFONT CreateFontIndirect(const LOGFONT * lf);
 HPEN CreatePen(int iPenStyle, int iWidth, COLORREF crColor);
 HGDIOBJ GetStockObject(int iStockObject);
