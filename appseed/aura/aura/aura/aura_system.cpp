@@ -63,6 +63,15 @@ namespace aura
 
       }
 
+
+      m_pfnVerb = &system::install_uninstall_verb;
+
+
+
+      m_bDoNotExitIfNoApplications              = true;
+
+
+
       m_peengine = NULL;
 
 
@@ -145,6 +154,101 @@ namespace aura
       m_pthreadimpl.alloc(allocer());
 
       m_pthreadimpl->m_pthread = this;
+
+   }
+
+
+   bool system::install_uninstall_verb()
+   {
+
+      static DWORD dwStart = get_tick_count();
+
+      if(directrix()->m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
+         return false;
+
+      if(directrix()->m_varTopicQuery.has_property("uninstall") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
+         return false;
+
+      return common_verb();
+
+   }
+
+
+   bool system::common_verb()
+   {
+
+      if(!m_bDoNotExitIfNoApplications)
+      {
+
+         ::aura::application_ptra appptra;
+
+         appptra = get_appptra();
+
+         for(int32_t i = 0; i < appptra.get_size();)
+         {
+
+            try
+            {
+
+               if(&appptra[i] == NULL || appptra[i].is_session() || appptra[i].is_system())
+               {
+
+                  appptra.remove_at(i);
+
+                  continue;
+
+               }
+               else if(appptra[i].is_serviceable() && appptra[i].m_strAppId != directrix()->m_varTopicQuery["app"].get_string())
+               {
+
+                  appptra.remove_at(i);
+
+                  continue;
+
+               }
+
+            }
+            catch(...)
+            {
+
+               appptra.remove_at(i);
+
+               continue;
+
+            }
+
+            i++;
+
+         }
+
+         if(appptra.get_size() <= 0)
+         {
+
+            return false;
+
+         }
+
+         if(appptra.get_size() == 1 && appptra.contains(this))
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return ::aura::application::verb();
+
+
+   }
+
+
+   bool system::verb()
+   {
+
+
+      return (this->*m_pfnVerb)();
+
 
    }
 

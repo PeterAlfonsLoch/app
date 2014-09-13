@@ -15,8 +15,6 @@ namespace core
    public:
 
 
-      bool (system::*m_pfnVerb)();
-
       //core::platform::run_start_installer *        m_prunstartinstaller;
       //core::platform::map *                        m_pbergedgemap;
       index                                        m_iNewEdge;
@@ -50,8 +48,6 @@ namespace core
       bool                                         m_bProcessInitialize;
       bool                                         m_bProcessInitializeResult;
 
-
-      bool                                         m_bDoNotExitIfNoApplications;
 
       strid_map < ::aura::library * >              m_idmapCreateViewLibrary;
 
@@ -166,9 +162,6 @@ namespace core
       virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
 
 
-      virtual bool verb();
-      virtual bool common_verb();
-      virtual bool install_uninstall_verb();
 
 
 

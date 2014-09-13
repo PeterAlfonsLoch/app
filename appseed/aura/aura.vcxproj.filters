@@ -243,6 +243,12 @@
     <Filter Include="Header Files\primitive\api">
       <UniqueIdentifier>{b26a6098-cf09-41e7-9741-3dd479fc2a8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\multithreading\service">
+      <UniqueIdentifier>{2762f484-eb95-4a1b-a8ed-821742ef3e55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\multithreading\service">
+      <UniqueIdentifier>{1d2673ac-c466-4eef-a3c2-8d1ac417ee3a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2057,6 +2063,12 @@
     <ClInclude Include="primitive\api\api_rotate.h">
       <Filter>Header Files\primitive\api</Filter>
     </ClInclude>
+    <ClInclude Include="multithreading\service\service_plain_service.h">
+      <Filter>Header Files\multithreading\service</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\service\service_thread_pool.h">
+      <Filter>Header Files\multithreading\service</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3480,6 +3492,9 @@
     </ClCompile>
     <ClCompile Include="aura\node\windows\windows.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\service\service_plain_service.cpp">
+      <Filter>Source Files\multithreading\service</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

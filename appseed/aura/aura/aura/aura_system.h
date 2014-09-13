@@ -83,6 +83,13 @@ namespace aura
       ::html::html *                               m_phtml; // only defined  in core;
 
 
+      bool                                         m_bDoNotExitIfNoApplications;
+
+      bool (system::*                              m_pfnVerb)();
+
+
+
+
 
 
       system(sp(::aura::application) papp);
@@ -177,6 +184,14 @@ namespace aura
       virtual bool initialize2();
 
       virtual void wait_twf();
+
+      
+      
+      virtual bool verb();
+      virtual bool common_verb();
+      virtual bool install_uninstall_verb();
+
+
 
       virtual bool is_system();
 

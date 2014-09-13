@@ -109,3 +109,7 @@ namespace multithreading
 #include "multithreading_thread_os.h"
 
 
+#include "service/service_thread_pool.h"
+#include "service/service_plain_service.h"
+
+

@@ -3398,6 +3398,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="multithreading\multithreading_synch_index_ptr_array.h" />
     <ClInclude Include="multithreading\multithreading_synch_ptr_array.h" />
     <ClInclude Include="multithreading\multithreading_thread_impl.h" />
+    <ClInclude Include="multithreading\service\service_plain_service.h" />
+    <ClInclude Include="multithreading\service\service_thread_pool.h" />
     <ClInclude Include="primitive\api\api.h" />
     <ClInclude Include="primitive\api\api_rotate.h" />
     <ClInclude Include="primitive\collection\collection.h" />
@@ -3720,6 +3722,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="graphics\draw2d\draw2d_region.cpp" />
     <ClCompile Include="graphics\visual\visual_cursor.cpp" />
     <ClCompile Include="graphics\visual\visual_icon.cpp" />
+    <ClCompile Include="multithreading\service\service_plain_service.cpp" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\datetime_mktime.c">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
