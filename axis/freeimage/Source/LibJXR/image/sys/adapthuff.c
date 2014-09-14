@@ -36,12 +36,12 @@
 #endif
 
 // Huffman lookup tables
-static const short g4HuffLookupTable[40] = {
+const short g4HuffLookupTable[40] = {
   19,19,19,19,27,27,27,27,10,10,10,10,10,10,10,10,
   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
   0,0,0,0,0,0,0,0 };
 
-static const short g5HuffLookupTable[2][42] = {{
+const short g5HuffLookupTable[2][42] = {{
   28,28,36,36,19,19,19,19,10,10,10,10,10,10,10,10,
   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
   0,0,0,0,0,0,0,0,0,0 },
@@ -50,7 +50,7 @@ static const short g5HuffLookupTable[2][42] = {{
   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
   0,0,0,0,0,0,0,0,0,0 }};
 
-static const short g6HuffLookupTable[4][44] = {{
+const short g6HuffLookupTable[4][44] = {{
   13,29,44,44,19,19,19,19,34,34,34,34,34,34,34,34,
   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
   0,0,0,0,0,0,0,0,0,0,0,0 },
@@ -67,7 +67,7 @@ static const short g6HuffLookupTable[4][44] = {{
   25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,
   0,0,0,0,0,0,0,0,0,0,0,0 }};
 
-static const short g7HuffLookupTable[2][46] = {{
+const short g7HuffLookupTable[2][46] = {{
   45,53,36,36,27,27,27,27,2,2,2,2,2,2,2,2,
   10,10,10,10,10,10,10,10,18,18,18,18,18,18,18,18,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
@@ -76,7 +76,7 @@ static const short g7HuffLookupTable[2][46] = {{
   1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
   5,6,0,0,0,0,0,0,0,0,0,0,0,0 }};
 
-static const short g8HuffLookupTable[2][48] = {{
+const short g8HuffLookupTable[2][48] = {{
   53,21,28,28,11,11,11,11,43,43,43,43,59,59,59,59,
   2,2,2,2,2,2,2,2,34,34,34,34,34,34,34,34,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
@@ -85,7 +85,7 @@ static const short g8HuffLookupTable[2][48] = {{
   35,35,35,35,43,43,43,43,58,58,58,58,58,58,58,58,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }};
 
-static const short g9HuffLookupTable[2][50] = {{
+const short g9HuffLookupTable[2][50] = {{
   13,29,37,61,20,20,68,68,3,3,3,3,51,51,51,51,
   41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,41,
   0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -96,7 +96,7 @@ static const short g9HuffLookupTable[2][50] = {{
   -32734,4,7,8,0,0,0,0,0,0,0,0,0,0,0,0,
   0,0 }};
 
-static const short g12HuffLookupTable[5][56] = {{
+const short g12HuffLookupTable[5][56] = {{
   -32736,5,76,76,37,53,69,85,43,43,43,43,91,91,91,91,
   57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,57,
   -32734,1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -160,10 +160,10 @@ ErrorExit:
   Adapt Huffman table
 **********************************************************************/
 // Alphabet size = 4
-static const Int g_Index4Table[] = {
+const Int g_Index4Table[] = {
     1,2,3,3
 };
-static const Int g4CodeTable[] = {
+const Int g4CodeTable[] = {
     4,
     1, 1,
     1, 2,
@@ -172,11 +172,11 @@ static const Int g4CodeTable[] = {
 };
 
 // Alphabet size = 5
-static const Int g_Index5Table[] = {
+const Int g_Index5Table[] = {
     1,2,3,4,4,
     1,3,3,3,3
 };
-static const Int g5CodeTable[] = {
+const Int g5CodeTable[] = {
     5,
     1, 1,
     1, 2,
@@ -191,16 +191,16 @@ static const Int g5CodeTable[] = {
     2, 3,
     3, 3,
 };
-static const Int g5DeltaTable[] = { 0,-1,0,1,1 };
+const Int g5DeltaTable[] = { 0,-1,0,1,1 };
 
 // Alphabet size = 6
-static const Int g_Index6Table[] = {
+const Int g_Index6Table[] = {
     1,5,3,5,2,4,
     2,4,2,4,2,3,
     4,4,2,2,2,3,
     5,5,2,1,4,3,
 };
-static const Int g6CodeTable[] = {
+const Int g6CodeTable[] = {
     6,
     1, 1,
     0, 5,
@@ -233,16 +233,16 @@ static const Int g6CodeTable[] = {
     1, 4,
     1, 3
 };
-static const Int g6DeltaTable[] = {
+const Int g6DeltaTable[] = {
     -1, 1, 1, 1, 0, 1,
     -2, 0, 0, 2, 0, 0,
     -1,-1, 0, 1,-2, 0
 };
 
 // Alphabet size = 7
-static const Int g_Index7Table[] = { 2,2,2,3,4,5,5,
+const Int g_Index7Table[] = { 2,2,2,3,4,5,5,
                         1,2,3,4,5,6,6 };
-static const Int g7CodeTable[] = {
+const Int g7CodeTable[] = {
     7,
     1, 2,
     2, 2,
@@ -261,12 +261,12 @@ static const Int g7CodeTable[] = {
     0, 6,
     1, 6
 };
-static const Int g7DeltaTable[] = { 1,0,-1,-1,-1,-1,-1 };
+const Int g7DeltaTable[] = { 1,0,-1,-1,-1,-1,-1 };
 
 // Alphabet size = 8
-static const Int g_Index8Table[] = { 2,3,5,4,2,3,5,3,
+const Int g_Index8Table[] = { 2,3,5,4,2,3,5,3,
                         3,3,4,3,3,3,4,2};
-static const Int g8CodeTable[] = {
+const Int g8CodeTable[] = {
     8,
     2, 2,
     1, 3,
@@ -287,13 +287,13 @@ static const Int g8CodeTable[] = {
     0, 4,
     3, 2
 };
-static const Int g8DeltaTable[] = { -1,0,1,1,-1,0,1,1 };
+const Int g8DeltaTable[] = { -1,0,1,1,-1,0,1,1 };
 
-static const Int g_Index9Table[] = {
+const Int g_Index9Table[] = {
     3,5,4,5,5,1,3,5,4,
     1,3,3,4,6,3,5,7,7,
 };
-static const Int g9CodeTable[] = {
+const Int g9CodeTable[] = {
     9,
     2, 3,
     0, 5,
@@ -316,17 +316,17 @@ static const Int g9CodeTable[] = {
     0, 7,
     1, 7,
 };
-static const Int g9DeltaTable[] = { 2,2,1,1,-1,-2,-2,-2,-3 };
+const Int g9DeltaTable[] = { 2,2,1,1,-1,-2,-2,-2,-3 };
 
 // Alphabet size = 12
-static const Int g_Index12Table[] = {  // index12 is the most critical symbol
+const Int g_Index12Table[] = {  // index12 is the most critical symbol
     5,6,7,7,5,3,5,1,5,4,5,3,
     4,5,6,6,4,3,5,2,3,3,5,3,
     2,3,7,7,5,3,7,3,3,3,7,4,
     3,2,7,5,5,3,7,3,5,3,6,3,
     3,1,7,4,7,3,8,4,7,4,8,5,
 };
-static const Int g12CodeTable[] = {
+const Int g12CodeTable[] = {
     12,  
     1, 5,
     1, 6,
@@ -397,7 +397,7 @@ static const Int g12CodeTable[] = {
     1, 8,
     1, 5
 };
-static const Int g12DeltaTable[] = {
+const Int g12DeltaTable[] = {
     1, 1, 1, 1, 1, 0, 0,-1, 2, 1, 0, 0,
     2, 2,-1,-1,-1, 0,-2,-1, 0, 0,-2,-1,
    -1, 1, 0, 2, 0, 0, 0, 0,-2, 0, 1, 1,
@@ -407,16 +407,16 @@ static const Int g12DeltaTable[] = {
 /**********************************************************************
   Adapt fixed length codes based on discriminant
 **********************************************************************/
-static const Int THRESHOLD = 8;
-static const Int MEMORY = 8;
+const Int THRESHOLD = 8;
+const Int MEMORY = 8;
  
 Void AdaptDiscriminant (CAdaptiveHuffman *pAdHuff)
 {
     Int iSym = pAdHuff->m_iNSymbols, t, dL, dH;
     const Int *pCodes, *pDelta = NULL;
     Bool bChange = FALSE;
-    static const Int gMaxTables[] = { 0,0,0,0, 1,2, 4,2, 2,2, 0,0,5 };
-    static const Int gSecondDisc[]= { 0,0,0,0, 0,0, 1,0, 0,0, 0,0,1 };
+    const Int gMaxTables[] = { 0,0,0,0, 1,2, 4,2, 2,2, 0,0,5 };
+    const Int gSecondDisc[]= { 0,0,0,0, 0,0, 1,0, 0,0, 0,0,1 };
 
     if (!pAdHuff->m_bInitialize) {
         pAdHuff->m_bInitialize = 1;

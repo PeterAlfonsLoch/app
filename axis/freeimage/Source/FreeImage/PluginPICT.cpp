@@ -823,7 +823,7 @@ DecodeOp9a( FreeImageIO *io, fi_handle handle, FIBITMAP* dib, MacpixMap* pixMap 
 
 static void
 DecodeBitmap( FreeImageIO *io, fi_handle handle, FIBITMAP* dib, WINBOOL isRegion, MacRect* bounds, WORD rowBytes ) {
-	WORD mode = Read16( io, handle );
+	Read16( io, handle );
 
 	if ( isRegion ) {
 		SkipPolyOrRegion( io, handle );
@@ -868,7 +868,7 @@ DecodePixmap( FreeImageIO *io, fi_handle handle, FIBITMAP* dib, WINBOOL isRegion
 	MacRect tempRect;
 	ReadRect( io, handle, &tempRect );
 	ReadRect( io, handle, &tempRect );
-	WORD mode = Read16( io, handle );
+Read16( io, handle );
 
 	if ( isRegion) {
 		SkipPolyOrRegion( io, handle );
@@ -957,7 +957,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 	FIBITMAP* dib = NULL;
 	try {
 		// Skip empty 512 byte header.
-		if ( !io->seek_proc(handle, 512, SEEK_CUR) == 0 )
+		if ( io->seek_proc(handle, 512, SEEK_CUR) == 0 )
 			return NULL;
 
 		// Read PICT header
@@ -1114,7 +1114,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 						MacRect dummy;
 						ReadRect( io, handle, &dummy );
 						ReadRect( io, handle, &dummy );
-						WORD mode = Read16( io, handle );
+Read16( io, handle );
 
 						pictType=op9a;
 						done = TRUE;

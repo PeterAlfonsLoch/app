@@ -234,6 +234,52 @@
 		9AEEB81619C5097200866C9E /* type1cid.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB80819C5097200866C9E /* type1cid.c */; };
 		9AEEB81F19C50B7F00866C9E /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEB81C19C50B1000866C9E /* libaxisfreeimage.dylib */; };
 		9AEEB83D19C50EC200866C9E /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEB83319C50E7D00866C9E /* libaura.dylib */; };
+		9AEEBC3319C5803200866C9E /* freetype.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB99719C5803100866C9E /* freetype.h */; };
+		9AEEBC3419C5803200866C9E /* ft2build.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB99819C5803100866C9E /* ft2build.h */; };
+		9AEEBC3519C5803200866C9E /* ftadvanc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB99919C5803100866C9E /* ftadvanc.h */; };
+		9AEEBC3619C5803200866C9E /* ftautoh.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB99A19C5803100866C9E /* ftautoh.h */; };
+		9AEEBC3719C5803200866C9E /* ftbbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB99B19C5803100866C9E /* ftbbox.h */; };
+		9AEEBC3819C5803200866C9E /* ftbdf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB99C19C5803100866C9E /* ftbdf.h */; };
+		9AEEBC3919C5803200866C9E /* ftbitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB99D19C5803100866C9E /* ftbitmap.h */; };
+		9AEEBC3A19C5803200866C9E /* ftbzip2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB99E19C5803100866C9E /* ftbzip2.h */; };
+		9AEEBC3B19C5803200866C9E /* ftcache.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB99F19C5803100866C9E /* ftcache.h */; };
+		9AEEBC3C19C5803200866C9E /* ftcffdrv.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9A019C5803100866C9E /* ftcffdrv.h */; };
+		9AEEBC3D19C5803200866C9E /* ftchapters.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9A119C5803100866C9E /* ftchapters.h */; };
+		9AEEBC3E19C5803200866C9E /* ftcid.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9A219C5803100866C9E /* ftcid.h */; };
+		9AEEBC3F19C5803200866C9E /* fterrdef.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9A319C5803100866C9E /* fterrdef.h */; };
+		9AEEBC4019C5803200866C9E /* fterrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9A419C5803100866C9E /* fterrors.h */; };
+		9AEEBC4119C5803200866C9E /* ftgasp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9A519C5803100866C9E /* ftgasp.h */; };
+		9AEEBC4219C5803200866C9E /* ftglyph.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9A619C5803100866C9E /* ftglyph.h */; };
+		9AEEBC4319C5803200866C9E /* ftgxval.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9A719C5803100866C9E /* ftgxval.h */; };
+		9AEEBC4419C5803200866C9E /* ftgzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9A819C5803100866C9E /* ftgzip.h */; };
+		9AEEBC4519C5803200866C9E /* ftimage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9A919C5803100866C9E /* ftimage.h */; };
+		9AEEBC4619C5803200866C9E /* ftincrem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9AA19C5803100866C9E /* ftincrem.h */; };
+		9AEEBC4719C5803200866C9E /* ftlcdfil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9AB19C5803100866C9E /* ftlcdfil.h */; };
+		9AEEBC4819C5803200866C9E /* ftlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9AC19C5803100866C9E /* ftlist.h */; };
+		9AEEBC4919C5803200866C9E /* ftlzw.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9AD19C5803100866C9E /* ftlzw.h */; };
+		9AEEBC4A19C5803200866C9E /* ftmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9AE19C5803100866C9E /* ftmac.h */; };
+		9AEEBC4B19C5803200866C9E /* ftmm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9AF19C5803100866C9E /* ftmm.h */; };
+		9AEEBC4C19C5803200866C9E /* ftmodapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9B019C5803100866C9E /* ftmodapi.h */; };
+		9AEEBC4D19C5803200866C9E /* ftmoderr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9B119C5803100866C9E /* ftmoderr.h */; };
+		9AEEBC4E19C5803200866C9E /* ftotval.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9B219C5803100866C9E /* ftotval.h */; };
+		9AEEBC4F19C5803200866C9E /* ftoutln.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9B319C5803100866C9E /* ftoutln.h */; };
+		9AEEBC5019C5803200866C9E /* ftpfr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9B419C5803100866C9E /* ftpfr.h */; };
+		9AEEBC5119C5803200866C9E /* ftrender.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9B519C5803100866C9E /* ftrender.h */; };
+		9AEEBC5219C5803200866C9E /* ftsizes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9B619C5803100866C9E /* ftsizes.h */; };
+		9AEEBC5319C5803200866C9E /* ftsnames.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9B719C5803100866C9E /* ftsnames.h */; };
+		9AEEBC5419C5803200866C9E /* ftstroke.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9B819C5803100866C9E /* ftstroke.h */; };
+		9AEEBC5519C5803200866C9E /* ftsynth.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9B919C5803100866C9E /* ftsynth.h */; };
+		9AEEBC5619C5803200866C9E /* ftsystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9BA19C5803100866C9E /* ftsystem.h */; };
+		9AEEBC5719C5803200866C9E /* fttrigon.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9BB19C5803100866C9E /* fttrigon.h */; };
+		9AEEBC5819C5803200866C9E /* ftttdrv.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9BC19C5803100866C9E /* ftttdrv.h */; };
+		9AEEBC5919C5803200866C9E /* fttypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9BD19C5803100866C9E /* fttypes.h */; };
+		9AEEBC5A19C5803200866C9E /* ftwinfnt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9BE19C5803100866C9E /* ftwinfnt.h */; };
+		9AEEBC5B19C5803200866C9E /* ftxf86.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB9BF19C5803100866C9E /* ftxf86.h */; };
+		9AEEBD8E19C5806F00866C9E /* ftconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEBD8319C5806F00866C9E /* ftconfig.h */; };
+		9AEEBD8F19C5806F00866C9E /* ftheader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEBD8419C5806F00866C9E /* ftheader.h */; };
+		9AEEBD9019C5806F00866C9E /* ftmodule.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEBD8519C5806F00866C9E /* ftmodule.h */; };
+		9AEEBD9119C5806F00866C9E /* ftoption.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEBD8619C5806F00866C9E /* ftoption.h */; };
+		9AEEBD9219C5806F00866C9E /* ftstdlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEBD8719C5806F00866C9E /* ftstdlib.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -510,6 +556,52 @@
 		9AEEB80819C5097200866C9E /* type1cid.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = type1cid.c; sourceTree = "<group>"; };
 		9AEEB81719C50B1000866C9E /* axisfreeimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreeimage.xcodeproj; path = ../freeimage/axisfreeimage.xcodeproj; sourceTree = "<group>"; };
 		9AEEB82C19C50E7D00866C9E /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
+		9AEEB99719C5803100866C9E /* freetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = freetype.h; sourceTree = "<group>"; };
+		9AEEB99819C5803100866C9E /* ft2build.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ft2build.h; sourceTree = "<group>"; };
+		9AEEB99919C5803100866C9E /* ftadvanc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftadvanc.h; sourceTree = "<group>"; };
+		9AEEB99A19C5803100866C9E /* ftautoh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftautoh.h; sourceTree = "<group>"; };
+		9AEEB99B19C5803100866C9E /* ftbbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftbbox.h; sourceTree = "<group>"; };
+		9AEEB99C19C5803100866C9E /* ftbdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftbdf.h; sourceTree = "<group>"; };
+		9AEEB99D19C5803100866C9E /* ftbitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftbitmap.h; sourceTree = "<group>"; };
+		9AEEB99E19C5803100866C9E /* ftbzip2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftbzip2.h; sourceTree = "<group>"; };
+		9AEEB99F19C5803100866C9E /* ftcache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftcache.h; sourceTree = "<group>"; };
+		9AEEB9A019C5803100866C9E /* ftcffdrv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftcffdrv.h; sourceTree = "<group>"; };
+		9AEEB9A119C5803100866C9E /* ftchapters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftchapters.h; sourceTree = "<group>"; };
+		9AEEB9A219C5803100866C9E /* ftcid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftcid.h; sourceTree = "<group>"; };
+		9AEEB9A319C5803100866C9E /* fterrdef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fterrdef.h; sourceTree = "<group>"; };
+		9AEEB9A419C5803100866C9E /* fterrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fterrors.h; sourceTree = "<group>"; };
+		9AEEB9A519C5803100866C9E /* ftgasp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftgasp.h; sourceTree = "<group>"; };
+		9AEEB9A619C5803100866C9E /* ftglyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftglyph.h; sourceTree = "<group>"; };
+		9AEEB9A719C5803100866C9E /* ftgxval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftgxval.h; sourceTree = "<group>"; };
+		9AEEB9A819C5803100866C9E /* ftgzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftgzip.h; sourceTree = "<group>"; };
+		9AEEB9A919C5803100866C9E /* ftimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftimage.h; sourceTree = "<group>"; };
+		9AEEB9AA19C5803100866C9E /* ftincrem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftincrem.h; sourceTree = "<group>"; };
+		9AEEB9AB19C5803100866C9E /* ftlcdfil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftlcdfil.h; sourceTree = "<group>"; };
+		9AEEB9AC19C5803100866C9E /* ftlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftlist.h; sourceTree = "<group>"; };
+		9AEEB9AD19C5803100866C9E /* ftlzw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftlzw.h; sourceTree = "<group>"; };
+		9AEEB9AE19C5803100866C9E /* ftmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmac.h; sourceTree = "<group>"; };
+		9AEEB9AF19C5803100866C9E /* ftmm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmm.h; sourceTree = "<group>"; };
+		9AEEB9B019C5803100866C9E /* ftmodapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmodapi.h; sourceTree = "<group>"; };
+		9AEEB9B119C5803100866C9E /* ftmoderr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmoderr.h; sourceTree = "<group>"; };
+		9AEEB9B219C5803100866C9E /* ftotval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftotval.h; sourceTree = "<group>"; };
+		9AEEB9B319C5803100866C9E /* ftoutln.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftoutln.h; sourceTree = "<group>"; };
+		9AEEB9B419C5803100866C9E /* ftpfr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftpfr.h; sourceTree = "<group>"; };
+		9AEEB9B519C5803100866C9E /* ftrender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftrender.h; sourceTree = "<group>"; };
+		9AEEB9B619C5803100866C9E /* ftsizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftsizes.h; sourceTree = "<group>"; };
+		9AEEB9B719C5803100866C9E /* ftsnames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftsnames.h; sourceTree = "<group>"; };
+		9AEEB9B819C5803100866C9E /* ftstroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftstroke.h; sourceTree = "<group>"; };
+		9AEEB9B919C5803100866C9E /* ftsynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftsynth.h; sourceTree = "<group>"; };
+		9AEEB9BA19C5803100866C9E /* ftsystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftsystem.h; sourceTree = "<group>"; };
+		9AEEB9BB19C5803100866C9E /* fttrigon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fttrigon.h; sourceTree = "<group>"; };
+		9AEEB9BC19C5803100866C9E /* ftttdrv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftttdrv.h; sourceTree = "<group>"; };
+		9AEEB9BD19C5803100866C9E /* fttypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fttypes.h; sourceTree = "<group>"; };
+		9AEEB9BE19C5803100866C9E /* ftwinfnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftwinfnt.h; sourceTree = "<group>"; };
+		9AEEB9BF19C5803100866C9E /* ftxf86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftxf86.h; sourceTree = "<group>"; };
+		9AEEBD8319C5806F00866C9E /* ftconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftconfig.h; sourceTree = "<group>"; };
+		9AEEBD8419C5806F00866C9E /* ftheader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftheader.h; sourceTree = "<group>"; };
+		9AEEBD8519C5806F00866C9E /* ftmodule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmodule.h; sourceTree = "<group>"; };
+		9AEEBD8619C5806F00866C9E /* ftoption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftoption.h; sourceTree = "<group>"; };
+		9AEEBD8719C5806F00866C9E /* ftstdlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftstdlib.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -530,6 +622,7 @@
 			children = (
 				9AEEB82C19C50E7D00866C9E /* aura.xcodeproj */,
 				9AEEB81719C50B1000866C9E /* axisfreeimage.xcodeproj */,
+				9AEEB84719C5802F00866C9E /* include */,
 				9AEEB49219C5089500866C9E /* src */,
 				9AEEB49119C5088600866C9E /* libaxisfreetype.dylib */,
 			);
@@ -969,6 +1062,68 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9AEEB84719C5802F00866C9E /* include */ = {
+			isa = PBXGroup;
+			children = (
+				9AEEBD8219C5806F00866C9E /* config */,
+				9AEEB99719C5803100866C9E /* freetype.h */,
+				9AEEB99819C5803100866C9E /* ft2build.h */,
+				9AEEB99919C5803100866C9E /* ftadvanc.h */,
+				9AEEB99A19C5803100866C9E /* ftautoh.h */,
+				9AEEB99B19C5803100866C9E /* ftbbox.h */,
+				9AEEB99C19C5803100866C9E /* ftbdf.h */,
+				9AEEB99D19C5803100866C9E /* ftbitmap.h */,
+				9AEEB99E19C5803100866C9E /* ftbzip2.h */,
+				9AEEB99F19C5803100866C9E /* ftcache.h */,
+				9AEEB9A019C5803100866C9E /* ftcffdrv.h */,
+				9AEEB9A119C5803100866C9E /* ftchapters.h */,
+				9AEEB9A219C5803100866C9E /* ftcid.h */,
+				9AEEB9A319C5803100866C9E /* fterrdef.h */,
+				9AEEB9A419C5803100866C9E /* fterrors.h */,
+				9AEEB9A519C5803100866C9E /* ftgasp.h */,
+				9AEEB9A619C5803100866C9E /* ftglyph.h */,
+				9AEEB9A719C5803100866C9E /* ftgxval.h */,
+				9AEEB9A819C5803100866C9E /* ftgzip.h */,
+				9AEEB9A919C5803100866C9E /* ftimage.h */,
+				9AEEB9AA19C5803100866C9E /* ftincrem.h */,
+				9AEEB9AB19C5803100866C9E /* ftlcdfil.h */,
+				9AEEB9AC19C5803100866C9E /* ftlist.h */,
+				9AEEB9AD19C5803100866C9E /* ftlzw.h */,
+				9AEEB9AE19C5803100866C9E /* ftmac.h */,
+				9AEEB9AF19C5803100866C9E /* ftmm.h */,
+				9AEEB9B019C5803100866C9E /* ftmodapi.h */,
+				9AEEB9B119C5803100866C9E /* ftmoderr.h */,
+				9AEEB9B219C5803100866C9E /* ftotval.h */,
+				9AEEB9B319C5803100866C9E /* ftoutln.h */,
+				9AEEB9B419C5803100866C9E /* ftpfr.h */,
+				9AEEB9B519C5803100866C9E /* ftrender.h */,
+				9AEEB9B619C5803100866C9E /* ftsizes.h */,
+				9AEEB9B719C5803100866C9E /* ftsnames.h */,
+				9AEEB9B819C5803100866C9E /* ftstroke.h */,
+				9AEEB9B919C5803100866C9E /* ftsynth.h */,
+				9AEEB9BA19C5803100866C9E /* ftsystem.h */,
+				9AEEB9BB19C5803100866C9E /* fttrigon.h */,
+				9AEEB9BC19C5803100866C9E /* ftttdrv.h */,
+				9AEEB9BD19C5803100866C9E /* fttypes.h */,
+				9AEEB9BE19C5803100866C9E /* ftwinfnt.h */,
+				9AEEB9BF19C5803100866C9E /* ftxf86.h */,
+			);
+			name = include;
+			path = ../../include;
+			sourceTree = "<group>";
+		};
+		9AEEBD8219C5806F00866C9E /* config */ = {
+			isa = PBXGroup;
+			children = (
+				9AEEBD8319C5806F00866C9E /* ftconfig.h */,
+				9AEEBD8419C5806F00866C9E /* ftheader.h */,
+				9AEEBD8519C5806F00866C9E /* ftmodule.h */,
+				9AEEBD8619C5806F00866C9E /* ftoption.h */,
+				9AEEBD8719C5806F00866C9E /* ftstdlib.h */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -980,7 +1135,9 @@
 				9AEEB81119C5097200866C9E /* cidparse.h in Headers */,
 				9AEEB7D319C5089700866C9E /* ttobjs.h in Headers */,
 				9AEEB78F19C5089700866C9E /* psnamerr.h in Headers */,
+				9AEEBC5219C5803200866C9E /* ftsizes.h in Headers */,
 				9AEEB73419C5089700866C9E /* infblock.h in Headers */,
+				9AEEBC5919C5803200866C9E /* fttypes.h in Headers */,
 				9AEEB6D319C5089700866C9E /* ftcimage.h in Headers */,
 				9AEEB6E319C5089700866C9E /* cf2font.h in Headers */,
 				9AEEB67919C5089700866C9E /* aferrors.h in Headers */,
@@ -988,6 +1145,7 @@
 				9AEEB7F119C5089700866C9E /* t42parse.h in Headers */,
 				9AEEB80919C5097200866C9E /* ciderrs.h in Headers */,
 				9AEEB79219C5089700866C9E /* pspic.h in Headers */,
+				9AEEBC4319C5803200866C9E /* ftgxval.h in Headers */,
 				9AEEB76319C5089700866C9E /* pfrcmap.h in Headers */,
 				9AEEB7EF19C5089700866C9E /* t42objs.h in Headers */,
 				9AEEB77419C5089700866C9E /* psauxerr.h in Headers */,
@@ -997,21 +1155,31 @@
 				9AEEB71519C5089700866C9E /* gxvcommn.h in Headers */,
 				9AEEB74919C5089700866C9E /* otvalid.h in Headers */,
 				9AEEB79D19C5089700866C9E /* rastpic.h in Headers */,
+				9AEEBD8E19C5806F00866C9E /* ftconfig.h in Headers */,
 				9AEEB6CC19C5089700866C9E /* ftccache.h in Headers */,
 				9AEEB7EC19C5089700866C9E /* t42drivr.h in Headers */,
+				9AEEBD9119C5806F00866C9E /* ftoption.h in Headers */,
 				9AEEB6DE19C5089700866C9E /* cf2blues.h in Headers */,
 				9AEEB7CD19C5089700866C9E /* ttgload.h in Headers */,
+				9AEEBC4819C5803200866C9E /* ftlist.h in Headers */,
 				9AEEB6C119C5089700866C9E /* bdf.h in Headers */,
 				9AEEB7AC19C5089700866C9E /* ttcmap.h in Headers */,
 				9AEEB75B19C5089700866C9E /* pcferror.h in Headers */,
+				9AEEBC5819C5803200866C9E /* ftttdrv.h in Headers */,
 				9AEEB76819C5089700866C9E /* pfrgload.h in Headers */,
 				9AEEB73A19C5089700866C9E /* inftrees.h in Headers */,
+				9AEEBC4D19C5803200866C9E /* ftmoderr.h in Headers */,
+				9AEEBC5719C5803200866C9E /* fttrigon.h in Headers */,
+				9AEEBC3D19C5803200866C9E /* ftchapters.h in Headers */,
 				9AEEB72719C5089700866C9E /* gxvmorx.h in Headers */,
 				9AEEB75F19C5089700866C9E /* pcfutil.h in Headers */,
 				9AEEB74119C5089700866C9E /* zutil.h in Headers */,
+				9AEEBC3419C5803200866C9E /* ft2build.h in Headers */,
 				9AEEB75819C5089700866C9E /* pcf.h in Headers */,
 				9AEEB7CB19C5089700866C9E /* tterrors.h in Headers */,
 				9AEEB77E19C5089700866C9E /* t1decode.h in Headers */,
+				9AEEBC4619C5803200866C9E /* ftincrem.h in Headers */,
+				9AEEBC3919C5803200866C9E /* ftbitmap.h in Headers */,
 				9AEEB7F419C5089700866C9E /* fnterrs.h in Headers */,
 				9AEEB68319C5089700866C9E /* aflatin2.h in Headers */,
 				9AEEB6C319C5089700866C9E /* bdfdrivr.h in Headers */,
@@ -1020,15 +1188,20 @@
 				9AEEB7DC19C5089700866C9E /* t1afm.h in Headers */,
 				9AEEB71E19C5089700866C9E /* gxvmod.h in Headers */,
 				9AEEB68B19C5089700866C9E /* afranges.h in Headers */,
+				9AEEBC3B19C5803200866C9E /* ftcache.h in Headers */,
 				9AEEB68519C5089700866C9E /* afloader.h in Headers */,
 				9AEEB6EF19C5089700866C9E /* cf2types.h in Headers */,
 				9AEEB7E519C5089700866C9E /* t1objs.h in Headers */,
 				9AEEB7F219C5089700866C9E /* t42types.h in Headers */,
 				9AEEB80F19C5097200866C9E /* cidobjs.h in Headers */,
+				9AEEBC5519C5803200866C9E /* ftsynth.h in Headers */,
+				9AEEBD8F19C5806F00866C9E /* ftheader.h in Headers */,
+				9AEEBC3319C5803200866C9E /* freetype.h in Headers */,
 				9AEEB73E19C5089700866C9E /* zconf.h in Headers */,
 				9AEEB7D119C5089700866C9E /* ttinterp.h in Headers */,
 				9AEEB7B319C5089700866C9E /* ttmtx.h in Headers */,
 				9AEEB7A619C5089700866C9E /* sfntpic.h in Headers */,
+				9AEEBC5419C5803200866C9E /* ftstroke.h in Headers */,
 				9AEEB78B19C5089700866C9E /* pshrec.h in Headers */,
 				9AEEB6CD19C5089700866C9E /* ftccback.h in Headers */,
 				9AEEB74519C5089700866C9E /* ftzopen.h in Headers */,
@@ -1039,31 +1212,42 @@
 				9AEEB6EE19C5089700866C9E /* cf2stack.h in Headers */,
 				9AEEB7B719C5089700866C9E /* ttsbit.h in Headers */,
 				9AEEB71819C5089700866C9E /* gxvfeat.h in Headers */,
+				9AEEBC3F19C5803200866C9E /* fterrdef.h in Headers */,
 				9AEEB74C19C5089700866C9E /* otvcommn.h in Headers */,
 				9AEEB6F219C5089700866C9E /* cffcmap.h in Headers */,
+				9AEEBC4419C5803200866C9E /* ftgzip.h in Headers */,
 				9AEEB78E19C5089700866C9E /* psmodule.h in Headers */,
 				9AEEB6D719C5089700866C9E /* ftcmru.h in Headers */,
 				9AEEB67519C5089700866C9E /* afcjk.h in Headers */,
 				9AEEB76619C5089700866C9E /* pfrerror.h in Headers */,
 				9AEEB75A19C5089700866C9E /* pcfdrivr.h in Headers */,
 				9AEEB79619C5089700866C9E /* ftraster.h in Headers */,
+				9AEEBC3619C5803200866C9E /* ftautoh.h in Headers */,
 				9AEEB68919C5089700866C9E /* afpic.h in Headers */,
+				9AEEBC4E19C5803200866C9E /* ftotval.h in Headers */,
 				9AEEB77C19C5089700866C9E /* t1cmap.h in Headers */,
+				9AEEBC4C19C5803200866C9E /* ftmodapi.h in Headers */,
 				9AEEB77119C5089700866C9E /* afmparse.h in Headers */,
 				9AEEB6E119C5089700866C9E /* cf2fixed.h in Headers */,
 				9AEEB7E319C5089700866C9E /* t1load.h in Headers */,
+				9AEEBC5A19C5803200866C9E /* ftwinfnt.h in Headers */,
 				9AEEB76E19C5089700866C9E /* pfrsbit.h in Headers */,
+				9AEEBC4919C5803200866C9E /* ftlzw.h in Headers */,
+				9AEEBC3819C5803200866C9E /* ftbdf.h in Headers */,
 				9AEEB80D19C5097200866C9E /* cidload.h in Headers */,
 				9AEEB69119C5089700866C9E /* afwrtsys.h in Headers */,
 				9AEEB75D19C5089700866C9E /* pcfread.h in Headers */,
+				9AEEBC5119C5803200866C9E /* ftrender.h in Headers */,
 				9AEEB7A019C5089700866C9E /* pngshim.h in Headers */,
 				9AEEB6D119C5089700866C9E /* ftcglyph.h in Headers */,
 				9AEEB7BA19C5089700866C9E /* ftsmerrs.h in Headers */,
 				9AEEB6F719C5089700866C9E /* cffgload.h in Headers */,
 				9AEEB68719C5089700866C9E /* afmodule.h in Headers */,
 				9AEEB7B519C5089700866C9E /* ttpost.h in Headers */,
+				9AEEBC3519C5803200866C9E /* ftadvanc.h in Headers */,
 				9AEEB76519C5089700866C9E /* pfrdrivr.h in Headers */,
 				9AEEB7CA19C5089700866C9E /* ttdriver.h in Headers */,
+				9AEEBD9219C5806F00866C9E /* ftstdlib.h in Headers */,
 				9AEEB73619C5089700866C9E /* infcodes.h in Headers */,
 				9AEEB76A19C5089700866C9E /* pfrload.h in Headers */,
 				9AEEB7B919C5089700866C9E /* ftgrays.h in Headers */,
@@ -1071,6 +1255,7 @@
 				9AEEB7E819C5089700866C9E /* t1tokens.h in Headers */,
 				9AEEB6F419C5089700866C9E /* cffdrivr.h in Headers */,
 				9AEEB6EA19C5089700866C9E /* cf2intrp.h in Headers */,
+				9AEEBC5619C5803200866C9E /* ftsystem.h in Headers */,
 				9AEEB67F19C5089700866C9E /* afindic.h in Headers */,
 				9AEEB6FB19C5089700866C9E /* cffobjs.h in Headers */,
 				9AEEB78619C5089700866C9E /* pshmod.h in Headers */,
@@ -1078,6 +1263,8 @@
 				9AEEB69D19C5089700866C9E /* ftbase.h in Headers */,
 				9AEEB73719C5089700866C9E /* inffixed.h in Headers */,
 				9AEEB74D19C5089700866C9E /* otverror.h in Headers */,
+				9AEEBC5019C5803200866C9E /* ftpfr.h in Headers */,
+				9AEEBC3719C5803200866C9E /* ftbbox.h in Headers */,
 				9AEEB7DF19C5089700866C9E /* t1errors.h in Headers */,
 				9AEEB67119C5089700866C9E /* afangles.h in Headers */,
 				9AEEB7A819C5089700866C9E /* sfobjs.h in Headers */,
@@ -1085,10 +1272,12 @@
 				9AEEB70119C5089700866C9E /* cfftypes.h in Headers */,
 				9AEEB76F19C5089700866C9E /* pfrtypes.h in Headers */,
 				9AEEB68E19C5089700866C9E /* aftypes.h in Headers */,
+				9AEEBC4B19C5803200866C9E /* ftmm.h in Headers */,
 				9AEEB72019C5089700866C9E /* gxvmort.h in Headers */,
 				9AEEB6E819C5089700866C9E /* cf2hints.h in Headers */,
 				9AEEB80B19C5097200866C9E /* cidgload.h in Headers */,
 				9AEEB6EC19C5089700866C9E /* cf2read.h in Headers */,
+				9AEEBC3E19C5803200866C9E /* ftcid.h in Headers */,
 				9AEEB81419C5097200866C9E /* cidtoken.h in Headers */,
 				9AEEB6F919C5089700866C9E /* cffload.h in Headers */,
 				9AEEB78319C5089700866C9E /* pshglob.h in Headers */,
@@ -1098,7 +1287,9 @@
 				9AEEB75019C5089700866C9E /* otvgpos.h in Headers */,
 				9AEEB6E619C5089700866C9E /* cf2glue.h in Headers */,
 				9AEEB70019C5089700866C9E /* cfftoken.h in Headers */,
+				9AEEBC4719C5803200866C9E /* ftlcdfil.h in Headers */,
 				9AEEB71219C5089700866C9E /* gxvalid.h in Headers */,
+				9AEEBC3A19C5803200866C9E /* ftbzip2.h in Headers */,
 				9AEEB68C19C5089700866C9E /* afscript.h in Headers */,
 				9AEEB7E119C5089700866C9E /* t1gload.h in Headers */,
 				9AEEB7D919C5089700866C9E /* ttsubpix.h in Headers */,
@@ -1108,19 +1299,28 @@
 				9AEEB78119C5089700866C9E /* pshalgo.h in Headers */,
 				9AEEB77819C5089700866C9E /* psconv.h in Headers */,
 				9AEEB6FF19C5089700866C9E /* cffpic.h in Headers */,
+				9AEEBC4019C5803200866C9E /* fterrors.h in Headers */,
 				9AEEB7ED19C5089700866C9E /* t42error.h in Headers */,
 				9AEEB7AA19C5089700866C9E /* ttbdf.h in Headers */,
 				9AEEB67819C5089700866C9E /* afdummy.h in Headers */,
 				9AEEB67319C5089700866C9E /* afblue.h in Headers */,
 				9AEEB73F19C5089700866C9E /* zlib.h in Headers */,
 				9AEEB7E719C5089700866C9E /* t1parse.h in Headers */,
+				9AEEBC4119C5803200866C9E /* ftgasp.h in Headers */,
 				9AEEB7BC19C5089700866C9E /* ftsmooth.h in Headers */,
 				9AEEB7B119C5089700866C9E /* ttload.h in Headers */,
 				9AEEB6C419C5089700866C9E /* bdferror.h in Headers */,
+				9AEEBC5B19C5803200866C9E /* ftxf86.h in Headers */,
+				9AEEBC4A19C5803200866C9E /* ftmac.h in Headers */,
 				9AEEB7BE19C5089700866C9E /* ftspic.h in Headers */,
+				9AEEBC4F19C5803200866C9E /* ftoutln.h in Headers */,
 				9AEEB6E519C5089700866C9E /* cf2ft.h in Headers */,
+				9AEEBC5319C5803200866C9E /* ftsnames.h in Headers */,
 				9AEEB69919C5089700866C9E /* basepic.h in Headers */,
+				9AEEBC4219C5803200866C9E /* ftglyph.h in Headers */,
+				9AEEBC3C19C5803200866C9E /* ftcffdrv.h in Headers */,
 				9AEEB67B19C5089700866C9E /* afglobal.h in Headers */,
+				9AEEBC4519C5803200866C9E /* ftimage.h in Headers */,
 				9AEEB6DC19C5089700866C9E /* cf2arrst.h in Headers */,
 				9AEEB79B19C5089700866C9E /* rasterrs.h in Headers */,
 				9AEEB81319C5097200866C9E /* cidriver.h in Headers */,
@@ -1133,6 +1333,7 @@
 				9AEEB79319C5089700866C9E /* pstables.h in Headers */,
 				9AEEB7AF19C5089700866C9E /* ttkern.h in Headers */,
 				9AEEB7F719C5089700866C9E /* winfnt.h in Headers */,
+				9AEEBD9019C5806F00866C9E /* ftmodule.h in Headers */,
 				9AEEB6E019C5089700866C9E /* cf2error.h in Headers */,
 				9AEEB78919C5089700866C9E /* pshpic.h in Headers */,
 				9AEEB69419C5089700866C9E /* hbshim.h in Headers */,
@@ -1339,11 +1540,11 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../app/include";
+				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1370,11 +1571,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = FT2_BUILD_LIBRARY;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../app/include";
+				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = axisfreetype;

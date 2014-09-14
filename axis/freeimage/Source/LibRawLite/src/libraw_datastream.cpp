@@ -150,7 +150,7 @@ int LibRaw_file_datastream::seek(INT64 o, int whence)
         default: dir = ::file::beg;
         }
 //    return f->pubseekoff((long)o, dir) < 0;
-    return f->seek((long)o,dir) < 0;
+    return f->seek((long)o,dir);
 }
 
 INT64 LibRaw_file_datastream::tell()     

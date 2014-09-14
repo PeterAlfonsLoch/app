@@ -2,7 +2,7 @@
 // Define and set to 1 if the target system has POSIX thread support
 // and you want OpenEXR to use it for multithreaded file I/O.
 //
-#ifdef LINUX
+#if defined(LINUX) || defined(APPLEOS)
 #define HAVE_PTHREAD 1		// currently disabled in FreeImage
 #endif
 
@@ -11,7 +11,7 @@
 // and you want OpenEXR to use them; otherwise, OpenEXR will use its
 // own semaphore implementation.
 //
-#ifdef LINUX
+#if defined(LINUX) || defined(APPLEOS)
 #define HAVE_POSIX_SEMAPHORES 1
 #endif
 

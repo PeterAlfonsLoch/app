@@ -933,7 +933,7 @@ tiff_write_xmp_profile(TIFF *tiff, FIBITMAP *dib) {
 static WINBOOL
 tiff_write_exif_profile(TIFF *tiff, FIBITMAP *dib) {
 	WINBOOL bResult = FALSE;
-	uint32 exif_offset = 0;
+//	uint32 exif_offset = 0;
 
 	// write EXIF_MAIN tags, EXIF_EXIF not supported yet
 	bResult = tiff_write_exif_tags(tiff, TagLib::EXIF_MAIN, dib);

@@ -1658,7 +1658,7 @@ int LibRaw::raw2image_ex(int do_subtract_black)
 
     // process cropping
     int do_crop = 0;
-    unsigned save_width = S.width;
+//    unsigned save_width = S.width;
     if (~O.cropbox[2] && ~O.cropbox[3]
 #ifdef LIBRAW_DEMOSAIC_PACK_GPL2
         && load_raw != &LibRaw::foveon_sd_load_raw
@@ -3628,7 +3628,7 @@ void LibRaw::parse_x3f()
   _x3f_data = x3f;
 
   x3f_header_t *H = NULL;
-  x3f_directory_section_t *DS = NULL;
+//  x3f_directory_section_t *DS = NULL;
 
   H = &x3f->header;
   // Parse RAW size from RAW section
@@ -3679,11 +3679,11 @@ void LibRaw::parse_x3f()
   }
   // Try to get thumbnail data
   LibRaw_thumbnail_formats format = LIBRAW_THUMBNAIL_UNKNOWN;
-  if(DE = x3f_get_thumb_jpeg(x3f))
+  if((DE = x3f_get_thumb_jpeg(x3f)))
     {
       format = LIBRAW_THUMBNAIL_JPEG;
     }
-  else if(DE = x3f_get_thumb_plain(x3f))
+  else if((DE = x3f_get_thumb_plain(x3f)))
     {
       format = LIBRAW_THUMBNAIL_BITMAP;
     }

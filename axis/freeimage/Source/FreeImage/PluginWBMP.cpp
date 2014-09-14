@@ -119,7 +119,7 @@ multiByteWrite(FreeImageIO *io, fi_handle handle, DWORD In) {
 	while (k > 1) {
 		k--;
 
-		Out = (BYTE)(0x80 | (In >> 7*k) & 0xFF);
+		Out = (BYTE)(0x80 | ((In >> 7*k) & 0xFF));
 
 		io->write_proc(&Out, 1, 1, handle);
 	}
@@ -141,7 +141,7 @@ readExtHeader(FreeImageIO *io, fi_handle handle, BYTE b) {
 
 		case 0x00:
 		{
-			DWORD info = multiByteRead(io, handle);
+ multiByteRead(io, handle);
 			break;
 		}
 

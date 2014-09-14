@@ -1281,11 +1281,15 @@ namespace std
    {
       ::lemon::sort_heap(first,last,comp);
    }
+   
+#ifndef __APPLE__
 
    template <class T> void swap(T& a,T& b)
    {
       T c(a); a=b; b=c;
    }
+   
+#endif
 
 }
 

@@ -232,7 +232,7 @@ FreeImage_Initialise(WINBOOL load_local_plugins_only) {
       TagLib::create_instance();
 
 		// initialise the TagLib singleton
-		TagLib& s = TagLib::instance();
+TagLib::instance();
 
 		// internal plugin initialization
 

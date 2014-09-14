@@ -26,6 +26,11 @@
 #include <m_string.h>
 #include <m_ctype.h>
 
+
+#ifdef __APPLE__
+#include <ctype.h>
+#endif
+
 #ifdef HAVE_GETPASS
 #ifdef HAVE_PWD_H
 #include <pwd.h>

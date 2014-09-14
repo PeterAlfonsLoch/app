@@ -57,9 +57,9 @@ http://libpng.org/pub/mng/spec/
 const DWORD JPEG_CHUNK_SIZE	= 8192;
 
 /** PNG signature */
-static const BYTE g_png_signature[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
+ const BYTE g_png_signature[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
 /** JNG signature */
-static const BYTE g_jng_signature[8] = { 139, 74, 78, 71, 13, 10, 26, 10 };
+ const BYTE g_jng_signature[8] = { 139, 74, 78, 71, 13, 10, 26, 10 };
 
 // --------------------------------------------------------------------------
 
@@ -129,57 +129,57 @@ typedef std::map<std::string, std::string> tEXtMAP;
   portable, we use ASCII numbers like this, not characters.
 */
 
-static BYTE mng_MHDR[5]={ 77,  72,  68,  82, (BYTE) '\0'};
-static BYTE mng_BACK[5]={ 66,  65,  67,  75, (BYTE) '\0'};
-static BYTE mng_BASI[5]={ 66,  65,  83,  73, (BYTE) '\0'};
-static BYTE mng_CLIP[5]={ 67,  76,  73,  80, (BYTE) '\0'};
-static BYTE mng_CLON[5]={ 67,  76,  79,  78, (BYTE) '\0'};
-static BYTE mng_DEFI[5]={ 68,  69,  70,  73, (BYTE) '\0'};
-static BYTE mng_DHDR[5]={ 68,  72,  68,  82, (BYTE) '\0'};
-static BYTE mng_DISC[5]={ 68,  73,  83,  67, (BYTE) '\0'};
-static BYTE mng_ENDL[5]={ 69,  78,  68,  76, (BYTE) '\0'};
-static BYTE mng_FRAM[5]={ 70,  82,  65,  77, (BYTE) '\0'};
-static BYTE mng_IEND[5]={ 73,  69,  78,  68, (BYTE) '\0'};
-static BYTE mng_IHDR[5]={ 73,  72,  68,  82, (BYTE) '\0'};
-static BYTE mng_JHDR[5]={ 74,  72,  68,  82, (BYTE) '\0'};
-static BYTE mng_LOOP[5]={ 76,  79,  79,  80, (BYTE) '\0'};
-static BYTE mng_MAGN[5]={ 77,  65,  71,  78, (BYTE) '\0'};
-static BYTE mng_MEND[5]={ 77,  69,  78,  68, (BYTE) '\0'};
-static BYTE mng_MOVE[5]={ 77,  79,  86,  69, (BYTE) '\0'};
-static BYTE mng_PAST[5]={ 80,  65,  83,  84, (BYTE) '\0'};
-static BYTE mng_PLTE[5]={ 80,  76,  84,  69, (BYTE) '\0'};
-static BYTE mng_SAVE[5]={ 83,  65,  86,  69, (BYTE) '\0'};
-static BYTE mng_SEEK[5]={ 83,  69,  69,  75, (BYTE) '\0'};
-static BYTE mng_SHOW[5]={ 83,  72,  79,  87, (BYTE) '\0'};
-static BYTE mng_TERM[5]={ 84,  69,  82,  77, (BYTE) '\0'};
-static BYTE mng_bKGD[5]={ 98,  75,  71,  68, (BYTE) '\0'};
-static BYTE mng_cHRM[5]={ 99,  72,  82,  77, (BYTE) '\0'};
-static BYTE mng_gAMA[5]={103,  65,  77,  65, (BYTE) '\0'};
-static BYTE mng_iCCP[5]={105,  67,  67,  80, (BYTE) '\0'};
-static BYTE mng_nEED[5]={110,  69,  69,  68, (BYTE) '\0'};
-static BYTE mng_pHYg[5]={112,  72,  89, 103, (BYTE) '\0'};
-static BYTE mng_vpAg[5]={118, 112,  65, 103, (BYTE) '\0'};
-static BYTE mng_pHYs[5]={112,  72,  89, 115, (BYTE) '\0'};
-static BYTE mng_sBIT[5]={115,  66,  73,  84, (BYTE) '\0'};
-static BYTE mng_sRGB[5]={115,  82,  71,  66, (BYTE) '\0'};
-static BYTE mng_tRNS[5]={116,  82,  78,  83, (BYTE) '\0'};
+ BYTE mng_MHDR[5]={ 77,  72,  68,  82, (BYTE) '\0'};
+ BYTE mng_BACK[5]={ 66,  65,  67,  75, (BYTE) '\0'};
+ BYTE mng_BASI[5]={ 66,  65,  83,  73, (BYTE) '\0'};
+ BYTE mng_CLIP[5]={ 67,  76,  73,  80, (BYTE) '\0'};
+ BYTE mng_CLON[5]={ 67,  76,  79,  78, (BYTE) '\0'};
+ BYTE mng_DEFI[5]={ 68,  69,  70,  73, (BYTE) '\0'};
+ BYTE mng_DHDR[5]={ 68,  72,  68,  82, (BYTE) '\0'};
+ BYTE mng_DISC[5]={ 68,  73,  83,  67, (BYTE) '\0'};
+ BYTE mng_ENDL[5]={ 69,  78,  68,  76, (BYTE) '\0'};
+ BYTE mng_FRAM[5]={ 70,  82,  65,  77, (BYTE) '\0'};
+ BYTE mng_IEND[5]={ 73,  69,  78,  68, (BYTE) '\0'};
+ BYTE mng_IHDR[5]={ 73,  72,  68,  82, (BYTE) '\0'};
+ BYTE mng_JHDR[5]={ 74,  72,  68,  82, (BYTE) '\0'};
+ BYTE mng_LOOP[5]={ 76,  79,  79,  80, (BYTE) '\0'};
+ BYTE mng_MAGN[5]={ 77,  65,  71,  78, (BYTE) '\0'};
+ BYTE mng_MEND[5]={ 77,  69,  78,  68, (BYTE) '\0'};
+ BYTE mng_MOVE[5]={ 77,  79,  86,  69, (BYTE) '\0'};
+ BYTE mng_PAST[5]={ 80,  65,  83,  84, (BYTE) '\0'};
+ BYTE mng_PLTE[5]={ 80,  76,  84,  69, (BYTE) '\0'};
+ BYTE mng_SAVE[5]={ 83,  65,  86,  69, (BYTE) '\0'};
+ BYTE mng_SEEK[5]={ 83,  69,  69,  75, (BYTE) '\0'};
+ BYTE mng_SHOW[5]={ 83,  72,  79,  87, (BYTE) '\0'};
+ BYTE mng_TERM[5]={ 84,  69,  82,  77, (BYTE) '\0'};
+ BYTE mng_bKGD[5]={ 98,  75,  71,  68, (BYTE) '\0'};
+ BYTE mng_cHRM[5]={ 99,  72,  82,  77, (BYTE) '\0'};
+ BYTE mng_gAMA[5]={103,  65,  77,  65, (BYTE) '\0'};
+ BYTE mng_iCCP[5]={105,  67,  67,  80, (BYTE) '\0'};
+ BYTE mng_nEED[5]={110,  69,  69,  68, (BYTE) '\0'};
+ BYTE mng_pHYg[5]={112,  72,  89, 103, (BYTE) '\0'};
+ BYTE mng_vpAg[5]={118, 112,  65, 103, (BYTE) '\0'};
+ BYTE mng_pHYs[5]={112,  72,  89, 115, (BYTE) '\0'};
+ BYTE mng_sBIT[5]={115,  66,  73,  84, (BYTE) '\0'};
+ BYTE mng_sRGB[5]={115,  82,  71,  66, (BYTE) '\0'};
+ BYTE mng_tRNS[5]={116,  82,  78,  83, (BYTE) '\0'};
 
 #if defined(JNG_SUPPORTED)
-static BYTE mng_IDAT[5]={ 73,  68,  65,  84, (BYTE) '\0'};
-static BYTE mng_JDAT[5]={ 74,  68,  65,  84, (BYTE) '\0'};
-static BYTE mng_JDAA[5]={ 74,  68,  65,  65, (BYTE) '\0'};
-static BYTE mng_JdAA[5]={ 74, 100,  65,  65, (BYTE) '\0'};
-static BYTE mng_JSEP[5]={ 74,  83,  69,  80, (BYTE) '\0'};
-static BYTE mng_oFFs[5]={111,  70,  70, 115, (BYTE) '\0'};
+ BYTE mng_IDAT[5]={ 73,  68,  65,  84, (BYTE) '\0'};
+ BYTE mng_JDAT[5]={ 74,  68,  65,  84, (BYTE) '\0'};
+ BYTE mng_JDAA[5]={ 74,  68,  65,  65, (BYTE) '\0'};
+ BYTE mng_JdAA[5]={ 74, 100,  65,  65, (BYTE) '\0'};
+ BYTE mng_JSEP[5]={ 74,  83,  69,  80, (BYTE) '\0'};
+ BYTE mng_oFFs[5]={111,  70,  70, 115, (BYTE) '\0'};
 #endif
 
-static BYTE mng_hIST[5]={104,  73,  83,  84, (BYTE) '\0'};
-static BYTE mng_iTXt[5]={105,  84,  88, 116, (BYTE) '\0'};
-static BYTE mng_sPLT[5]={115,  80,  76,  84, (BYTE) '\0'};
-static BYTE mng_sTER[5]={115,  84,  69,  82, (BYTE) '\0'};
-static BYTE mng_tEXt[5]={116,  69,  88, 116, (BYTE) '\0'};
-static BYTE mng_tIME[5]={116,  73,  77,  69, (BYTE) '\0'};
-static BYTE mng_zTXt[5]={122,  84,  88, 116, (BYTE) '\0'};
+ BYTE mng_hIST[5]={104,  73,  83,  84, (BYTE) '\0'};
+ BYTE mng_iTXt[5]={105,  84,  88, 116, (BYTE) '\0'};
+ BYTE mng_sPLT[5]={115,  80,  76,  84, (BYTE) '\0'};
+ BYTE mng_sTER[5]={115,  84,  69,  82, (BYTE) '\0'};
+ BYTE mng_tEXt[5]={116,  69,  88, 116, (BYTE) '\0'};
+ BYTE mng_tIME[5]={116,  73,  77,  69, (BYTE) '\0'};
+ BYTE mng_zTXt[5]={122,  84,  88, 116, (BYTE) '\0'};
 
 
 // --------------------------------------------------------------------------
@@ -187,7 +187,7 @@ static BYTE mng_zTXt[5]={122,  84,  88, 116, (BYTE) '\0'};
 /**
 Convert a chunk name to a unique ID
 */
-static eChunckType
+ eChunckType
 mng_GetChunckType(const BYTE *mChunkName) {
 	if(memcmp(mChunkName, mng_MHDR, 4) == 0) {
 		return MHDR;
@@ -258,7 +258,7 @@ mng_SwapLong(DWORD *lp) {
 /**
 Returns the size, in bytes, of a FreeImageIO stream, from the current position.
 */
-static long
+ long
 mng_LOF(FreeImageIO *io, fi_handle handle) {
 	long start_pos = io->tell_proc(handle);
 	io->seek_proc(handle, 0, SEEK_END);
@@ -277,7 +277,7 @@ should be the end of the PNG stream at the return of the function.
 @param m_TotalBytesOfChunks
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-static WINBOOL
+ WINBOOL
 mng_CountPNGChunks(FreeImageIO *io, fi_handle handle, long inPos, unsigned *m_TotalBytesOfChunks) {
 	long mLOF;
 	long mPos;
@@ -355,9 +355,9 @@ Retrieve the position of a chunk in a PNG stream
 @param next_pos [returned value] Start position of the next chunk
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-static WINBOOL
+ WINBOOL
 mng_FindChunk(FIMEMORY *hPngMemory, BYTE *chunk_name, long offset, DWORD *start_pos, DWORD *next_pos) {
-	WINBOOL mEnd = FALSE;
+//	WINBOOL mEnd = FALSE;
 	DWORD mLength = 0;
 
 	BYTE *data = NULL;
@@ -418,7 +418,7 @@ Remove a chunk located at (start_pos, next_pos) in the PNG stream
 @param next_pos Start position of the next chunk
 @return Returns TRUE if successfull, returns FALSE otherwise
 */
-static WINBOOL
+ WINBOOL
 mng_CopyRemoveChunks(FIMEMORY *hPngMemory, DWORD start_pos, DWORD next_pos) {
 	BYTE *data = NULL;
 	DWORD size_in_bytes = 0;
@@ -463,7 +463,7 @@ Insert a chunk just before the inNextChunkName chunk
 @param next_pos Start position of the next chunk
 @return Returns TRUE if successfull, returns FALSE otherwise
 */
-static WINBOOL
+ WINBOOL
 mng_CopyInsertChunks(FIMEMORY *hPngMemory, BYTE *inNextChunkName, BYTE *inInsertChunk, DWORD inChunkLength, DWORD start_pos, DWORD next_pos) {
 	BYTE *data = NULL;
 	DWORD size_in_bytes = 0;
@@ -505,7 +505,7 @@ mng_CopyInsertChunks(FIMEMORY *hPngMemory, BYTE *inNextChunkName, BYTE *inInsert
 	return TRUE;
 }
 
-static WINBOOL
+ WINBOOL
 mng_RemoveChunk(FIMEMORY *hPngMemory, BYTE *chunk_name) {
 	WINBOOL bResult = FALSE;
 
@@ -521,7 +521,7 @@ mng_RemoveChunk(FIMEMORY *hPngMemory, BYTE *chunk_name) {
 	return TRUE;
 }
 
-static WINBOOL
+ WINBOOL
 mng_InsertChunk(FIMEMORY *hPngMemory, BYTE *inNextChunkName, BYTE *inInsertChunk, unsigned chunk_length) {
 	WINBOOL bResult = FALSE;
 
@@ -537,7 +537,7 @@ mng_InsertChunk(FIMEMORY *hPngMemory, BYTE *inNextChunkName, BYTE *inInsertChunk
 	return TRUE;
 }
 
-static FIBITMAP*
+ FIBITMAP*
 mng_LoadFromMemoryHandle(FIMEMORY *hmem, int flags = 0) {
 	long offset = 0;
 	FIBITMAP *dib = NULL;
@@ -564,7 +564,7 @@ Write a chunk in a PNG stream from the current position.
 @param length Chunk length
 @param hPngMemory PNG stream handle
 */
-static void
+ void
 mng_WriteChunk(BYTE *chunk_name, BYTE *chunk_data, DWORD length, FIMEMORY *hPngMemory) {
 	DWORD crc_file = 0;
 	// write a PNG chunk ...
@@ -603,7 +603,7 @@ The image is assumed to be a greyscale image.
 @param mLength IDAT chunk length
 @param hPngMemory Output memory stream
 */
-static void
+ void
 mng_WritePNGStream(DWORD jng_width, DWORD jng_height, BYTE jng_alpha_sample_depth, BYTE *mChunk, DWORD mLength, FIMEMORY *hPngMemory) {
 	// PNG grayscale IDAT format
 
@@ -659,7 +659,7 @@ The tag must be destroyed by the caller using FreeImage_DeleteTag.
 @param value Tag value
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-static WINBOOL
+ WINBOOL
 mng_SetKeyValue(FREE_IMAGE_MDMODEL model, FIBITMAP *dib, const char *key, const char *value) {
 	if(!dib || !key || !value) {
 		return FALSE;
@@ -693,7 +693,7 @@ Read a tEXt chunk and extract the key/value pair.
 @param mLength Chunk length
 @return Returns TRUE if successful, returns FALSE otherwise
 */
-static WINBOOL
+ WINBOOL
 mng_SetMetadata_tEXt(tEXtMAP &key_value_pair, const BYTE *mChunk, DWORD mLength) {
 	std::string key;
 	std::string value;
@@ -962,7 +962,7 @@ mng_ReadChunks(int format_id, FreeImageIO *io, fi_handle handle, long Offset, in
 						jng_color_type = mChunk[8];
 						jng_image_sample_depth = mChunk[9];
 						jng_image_compression_method = mChunk[10];
-						BYTE jng_image_interlace_method = mChunk[11];
+//						BYTE jng_image_interlace_method = mChunk[11];
 
 						jng_alpha_sample_depth = mChunk[12];
 						jng_alpha_compression_method = mChunk[13];

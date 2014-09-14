@@ -63,10 +63,14 @@ it under the terms of the one of three licenses as you choose:
 #include <netinet/in.h>
 #include <stdint.h>
 
-
+#ifndef __APPLE__
 
 typedef int64_t INT64;
 typedef uint64_t UINT64;
+
+#endif
+
+
 #endif
 
 #ifdef NODEPS

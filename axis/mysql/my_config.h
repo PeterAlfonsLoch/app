@@ -100,9 +100,12 @@ typedef unsigned int uint32_t;
 /* #undef HAVE_SYS_TIME_H */
 #define HAVE_SYS_TYPES_H 1
 
+
 #ifdef LINUX
 #define HAVE_SYS_UN_H 1
+#define HAVE_SYS_TIME_H 1
 #endif // LINUX
+
 
 /* #undef HAVE_SYS_VADVISE_H */
 /* #undef HAVE_TERM_H */
@@ -236,8 +239,6 @@ typedef unsigned int uint32_t;
 #define HAVE_TELL 1
 #endif
 
-#define HAVE_TEMPNAM 1
-
 #if defined(ANDROID)
 #define SYSTEM_TYPE "Android"
 #define MACHINE_TYPE "ARM"
@@ -301,7 +302,7 @@ typedef unsigned int uint32_t;
 #endif
 
 
-#if defined(APPLEOS)
+#if defined(__APPLE__)
 #define SYSTEM_TYPE "OSX64"
 #define MACHINE_TYPE "x86_64"
 #define HAVE_RINT 1
@@ -316,7 +317,8 @@ typedef unsigned int uint32_t;
 #define HAVE_POLL 1
 #define HAVE_SYS_SOCKET_H 1
 #define HAVE_STDINT_H 1
-//#define HAVE_MKSTEMP 1
+#define HAVE_SYS_TIME_H 1
+#define HAVE_MKSTEMP 1
 #define _access access
 #define _chmod chmod
 #define _unlink unlink

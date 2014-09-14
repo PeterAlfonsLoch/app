@@ -68,24 +68,21 @@ _WriteProc(png_structp png_ptr, unsigned char *data, png_size_t size) {
     pfio->s_io->write_proc(data, (unsigned int)size, 1, pfio->s_handle);
 }
 
-static void
-_FlushProc(png_structp png_ptr) {
-	(png_structp)png_ptr;
+void
+_FlushProc(png_structp ) {
+//	(png_structp)png_ptr;
 	// empty flush implementation
 }
 
-static void
-error_handler(png_structp png_ptr, const char *error) {
-	(png_structp)png_ptr;
+void
+error_handler(png_structp, const char *error) {
 	throw error;
 }
 
 // in FreeImage warnings disabled
 
-static void
-warning_handler(png_structp png_ptr, const char *warning) {
-	(png_structp)png_ptr;
-	(char*)warning;
+void
+warning_handler(png_structp , const char *warning) {
 }
 
 // ==========================================================

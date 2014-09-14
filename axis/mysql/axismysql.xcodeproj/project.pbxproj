@@ -448,6 +448,8 @@
 		9AE72EE517E90B87003E47F9 /* viosslfactories.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72D9D17E90B87003E47F9 /* viosslfactories.c */; };
 		9AE72EE917E90B87003E47F9 /* violite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE72DA117E90B87003E47F9 /* violite.h */; };
 		9AE72EEA17E90B87003E47F9 /* welcome_copyright_notice.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE72DA217E90B87003E47F9 /* welcome_copyright_notice.h */; };
+		9AEEB84019C5231C00866C9E /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F2DAB19A64412007AE2C7 /* libaxisopenssl.dylib */; };
+		9AEEB84419C5249900866C9E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEB84319C5249900866C9E /* libz.1.2.5.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -471,13 +473,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = base_iosTests;
-		};
-		9A9F2DA219A643E6007AE2C7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2EA32E19A62C6A004DAFFC /* axis.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = axis;
 		};
 		9A9F2DAA19A64412007AE2C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -805,6 +800,7 @@
 		9AE72D9D17E90B87003E47F9 /* viosslfactories.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = viosslfactories.c; sourceTree = "<group>"; };
 		9AE72DA117E90B87003E47F9 /* violite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = violite.h; sourceTree = "<group>"; };
 		9AE72DA217E90B87003E47F9 /* welcome_copyright_notice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = welcome_copyright_notice.h; sourceTree = "<group>"; };
+		9AEEB84319C5249900866C9E /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -812,6 +808,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AEEB84419C5249900866C9E /* libz.1.2.5.dylib in Frameworks */,
+				9AEEB84019C5231C00866C9E /* libaxisopenssl.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,7 +945,7 @@
 			children = (
 				9A2EA33519A62C6A004DAFFC /* libaxis.dylib */,
 				9A2EA33719A62C6A004DAFFC /* libaxis.dylib */,
-				9A2EA33919A62C6A004DAFFC /* base_iosTests.xctest */,
+				9A2EA33919A62C6A004DAFFC /* axis_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -957,7 +955,7 @@
 			children = (
 				9A9F2DAB19A64412007AE2C7 /* libaxisopenssl.dylib */,
 				9A9F2DAD19A64412007AE2C7 /* libaxisopenssl.dylib */,
-				9A9F2DAF19A64412007AE2C7 /* baseopenssl_iosTests.xctest */,
+				9A9F2DAF19A64412007AE2C7 /* axisopenssl_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -965,6 +963,7 @@
 		9AE24DB31904CF5B001AEFFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AEEB84319C5249900866C9E /* libz.1.2.5.dylib */,
 				9AA6A2AE19071166000A1F4A /* libbase_ios.dylib */,
 				9AA6A2AC1907115B000A1F4A /* libbase.dylib */,
 				9AA6A2AA19071155000A1F4A /* libbase_ios.dylib */,
@@ -1409,7 +1408,6 @@
 			);
 			dependencies = (
 				9A9F2DB119A6441E007AE2C7 /* PBXTargetDependency */,
-				9A9F2DA319A643E6007AE2C7 /* PBXTargetDependency */,
 			);
 			name = axismysql;
 			productName = FreeImage;
@@ -1508,7 +1506,7 @@
 			remoteRef = 9A2EA33619A62C6A004DAFFC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A2EA33919A62C6A004DAFFC /* base_iosTests.xctest */ = {
+		9A2EA33919A62C6A004DAFFC /* axis_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = axis_iosTests.xctest;
@@ -1529,7 +1527,7 @@
 			remoteRef = 9A9F2DAC19A64412007AE2C7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A9F2DAF19A64412007AE2C7 /* baseopenssl_iosTests.xctest */ = {
+		9A9F2DAF19A64412007AE2C7 /* axisopenssl_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = axisopenssl_iosTests.xctest;
@@ -1907,11 +1905,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A9F2DA319A643E6007AE2C7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axis;
-			targetProxy = 9A9F2DA219A643E6007AE2C7 /* PBXContainerItemProxy */;
-		};
 		9A9F2DB119A6441E007AE2C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axisopenssl;

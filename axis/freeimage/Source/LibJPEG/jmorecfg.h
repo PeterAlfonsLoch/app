@@ -183,6 +183,8 @@ typedef char JOCTET;
 
 /* UINT8 must hold at least the values 0..255. */
 
+#ifndef CA2_AURA
+
 #ifdef HAVE_UNSIGNED_CHAR
 typedef unsigned char UINT8;
 #else /* not HAVE_UNSIGNED_CHAR */
@@ -205,6 +207,8 @@ typedef unsigned int UINT16;
 
 #ifndef XMD_H			/* X11/xmd.h correctly defines INT16 */
 typedef short INT16;
+#endif
+
 #endif
 
 /* INT32 must hold at least signed 32-bit values. */

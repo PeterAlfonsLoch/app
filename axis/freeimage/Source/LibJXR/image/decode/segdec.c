@@ -36,6 +36,23 @@
 #include "memtrace.h"
 #endif
 
+
+#ifdef __APPLE__
+static inline unsigned short bswap_16(unsigned short x) {
+   return (x>>8) | (x<<8);
+}
+
+static inline unsigned int bswap_32(unsigned int x) {
+   return (bswap_16(x&0xffff)<<16) | (bswap_16(x>>16));
+}
+
+static inline unsigned long long bswap_64(unsigned long long x) {
+   return (((unsigned long long)bswap_32(x&0xffffffffull))<<32) |
+   (bswap_32(x>>32));
+}
+
+#endif
+
 extern const int dctIndex[3][16];
 extern const int blkOffset[16];
 extern const int blkOffsetUV[4];
@@ -63,7 +80,11 @@ static U32 _FORCEINLINE _load4(void* pv)
     v |= ((U32)((U16 *) pv)[1]) << 16;
     return _byteswap_ulong(v);
 #else // _M_IA64
-    return _byteswap_ulong(*(U32*)pv);
+#ifdef MACOS
+    return bswap_32(*(U32*)pv);
+#else
+   return _byteswap_ulong(*(U32*)pv);
+#endif
 #endif // _M_IA64
 #endif // _BIG__ENDIAN_
 }

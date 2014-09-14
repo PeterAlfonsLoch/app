@@ -76,8 +76,10 @@ typedef __int64 INT64;
 typedef unsigned __int64 UINT64;
 #else
 #include <stdint.h>
+#ifndef __APPLE__
 typedef int64_t INT64;
 typedef uint64_t UINT64;
+#endif
 #endif
 
 typedef unsigned char uchar;

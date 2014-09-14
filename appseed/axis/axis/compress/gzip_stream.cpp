@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "zlib.h"
+#include "axlizlib.h"
 #include "axis/zlib/zutil.h"
 #include "gzip_stream.h"
 

@@ -18,7 +18,7 @@
 
 #include "axis/axis/os/os.h"
 
-#include "axis/axis_policy/axis_policy.h"
+#include "axis/axis/axis_policy/axis_policy.h"
 
 #endif // CA2_APP_AXIS_AXIS_AXIS_AXIS_H
 

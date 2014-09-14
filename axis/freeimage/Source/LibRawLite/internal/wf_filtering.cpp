@@ -821,7 +821,7 @@ void LibRaw::wf_bayer4_green_blur(int mode, void* src_image, int src_imgmode, vo
 	else
 		green_mode = WF_GREENMODE_IND;
 
-	int src_h_shift, dst_h_shift, src_h_shift_x2;
+	int src_h_shift = 0, dst_h_shift, src_h_shift_x2;
 
 	if      (src_imgmode == WF_IMGMODE_BAYER1PLANE)
 		src_h_shift = 2 >> IO.shrink;
@@ -1125,8 +1125,8 @@ void LibRaw::wf_bayer4_igauss_filter(int radius, void* src_image, int src_imgmod
 	int line_memory_len = (MAX(S.height, S.width)+1)/2+radius*2+1;
     line_filtered       = (long int(*)[4]) calloc(line_memory_len, sizeof(long int[4]));
 
-	int src_h_shift, src_v_shift;
-	int dst_h_shift, dst_v_shift;
+	int src_h_shift = 0, src_v_shift;
+	int dst_h_shift = 0, dst_v_shift;
 
 	if      (src_imgmode == WF_IMGMODE_BAYER1PLANE)
 		src_h_shift = 2 >> IO.shrink;
@@ -1558,7 +1558,7 @@ void LibRaw::wf_bayer4_block_filter(int* radius_list, void* src_image, int src_i
 	source_line        =(long int(*)[4]) calloc(line_memory_len, sizeof(long int[4]));
 	
 
-   	int   src_h_shift, dst_h_shift, src_v_shift, dst_v_shift;
+   	int   src_h_shift = 0, dst_h_shift = 0, src_v_shift, dst_v_shift;
  
 	if      (src_imgmode == WF_IMGMODE_BAYER1PLANE)
 		src_h_shift = 2 >> IO.shrink;

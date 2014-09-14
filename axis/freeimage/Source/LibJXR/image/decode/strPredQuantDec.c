@@ -71,12 +71,18 @@ Int dequantizeMacroblock(CWMImageStrCodec * pSC)
 
         // dequantize LP
         if(pSC->WMISCP.sbSubband != SB_DC_ONLY)
+        {
             if(i == 0 || (cf != YUV_422 && cf != YUV_420))
+            {
                 dequantizeBlock4x4(pSC->p1MBbuffer[i] , pMBInfo->iBlockDC[i], dctIndex[2], pTile->pQuantizerLP[i][pMBInfo->iQIndexLP].iQP);
+            }
             else if(cf == YUV_422)
+            {
                 dequantizeBlock4x2(pSC->p1MBbuffer[i], pMBInfo->iBlockDC[i], pTile->pQuantizerLP[i][pMBInfo->iQIndexLP].iQP);
+            }
             else // 420
                 dequantizeBlock2x2(pSC->p1MBbuffer[i], pMBInfo->iBlockDC[i], pTile->pQuantizerLP[i][pMBInfo->iQIndexLP].iQP);
+        }
     }
 
     return ICERR_OK;

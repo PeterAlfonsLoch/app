@@ -35,7 +35,7 @@ static const BYTE RLE_ENDOFLINE   = 0;
 static const BYTE RLE_ENDOFBITMAP = 1;
 static const BYTE RLE_DELTA       = 2;
 
-#if !defined(_WIN32) && !defined(LINUX)
+#if !defined(_WIN32) && !defined(LINUX) && !defined(MACOS)
 static const BYTE BI_RGB            = 0;	// compression: none
 static const BYTE BI_RLE8           = 1;	// compression: RLE 8-bit/pixel
 static const BYTE BI_RLE4           = 2;	// compression: RLE 4-bit/pixel
@@ -53,7 +53,7 @@ static const BYTE BI_ALPHABITFIELDS = 6;	// compression: Bit field (this value i
 #pragma pack(1)
 #endif
 
-#if !defined(_WIN32) && !defined(LINUX)
+#if !defined(_WIN32) && !defined(LINUX) && !defined(APPLEOS)
 typedef struct tagBITMAPCOREHEADER {
   DWORD   bcSize;
   WORD    bcWidth;

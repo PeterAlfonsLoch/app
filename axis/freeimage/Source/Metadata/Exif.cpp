@@ -734,9 +734,9 @@ jpeg_read_exif_dir(FIBITMAP *dib, const BYTE *tiffp, unsigned long offset, unsig
 		// get the tag ID
 		WORD tag = ReadUint16(msb_order, base);
 		// get the tag type
-		WORD type = ReadUint16(msb_order, base + sizeof(WORD));
+//		WORD type = ReadUint16(msb_order, base + sizeof(WORD));
 		// get number of components
-		DWORD count = ReadUint32(msb_order, base + sizeof(WORD) + sizeof(WORD));
+	//	DWORD count = ReadUint32(msb_order, base + sizeof(WORD) + sizeof(WORD));
 		// get the tag value
 		DWORD offset = ReadUint32(msb_order, base + sizeof(WORD) + sizeof(WORD) + sizeof(DWORD));
 

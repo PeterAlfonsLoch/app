@@ -29,7 +29,9 @@
 //#include <limits.h>
 #include <JXRGlue.h>
 #include <limits.h>
-
+#ifdef __APPLE__
+#include <wchar.h>
+#endif
 
 static const char szHDPhotoFormat[] = "<dc:format>image/vnd.ms-photo</dc:format>";
 const U32 IFDEntryTypeSizes[] = { 0, 1, 1, 2, 4, 8, 1, 1, 2, 4, 8, 4, 8 };
@@ -374,7 +376,9 @@ ERR WriteContainerPre(
     // PFD
     assert (offPos <= OFFSET_OF_PFD); // otherwise stuff is overwritten
     if (offPos < OFFSET_OF_PFD)
+    {
         Call(pWS->Write(pWS, Zero, OFFSET_OF_PFD - offPos));
+    }
     offPos = (size_t)OFFSET_OF_PFD;
 
     if (!pIE->WMP.bHasAlpha || pIE->WMP.wmiSCP.uAlphaMode != 2) //no planar alpha

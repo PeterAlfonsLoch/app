@@ -508,7 +508,7 @@ LoadDXT (int type, DDSURFACEDESC2 &desc, FreeImageIO *io, fi_handle handle, int 
 
 	int bpp = FreeImage_GetBPP (dib);
 	int line = CalculateLine (width, bpp);
-	BYTE *bits = FreeImage_GetBits (dib);
+//	BYTE *bits = FreeImage_GetBits (dib);
 
 	// select the right decoder
 	switch (type) {

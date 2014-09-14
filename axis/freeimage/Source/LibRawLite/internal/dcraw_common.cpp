@@ -834,9 +834,16 @@ void CLASS canon_sraw_load_raw()
     if (row & (jh.sraw >> 1))
       for (col=0; col < width; col+=2)
 	for (c=1; c < 3; c++)
+   {
 	  if (row == height-1)
+     {
 	       ip[col][c] =  ip[col-width][c];
-	  else ip[col][c] = (ip[col-width][c] + ip[col+width][c] + 1) >> 1;
+     }
+	  else
+     {
+        ip[col][c] = (ip[col-width][c] + ip[col+width][c] + 1) >> 1;
+     }
+   }
     for (col=1; col < width; col+=2)
       for (c=1; c < 3; c++)
 	if (col == width-1)
@@ -7947,7 +7954,7 @@ void CLASS identify()
     parse_fuji (get4());
     if (thumb_offset > 120) {
       fseek (ifp, 120, SEEK_SET);
-      is_raw += (i = get4()) && 1;
+      is_raw += (i = get4()) & 1;
       if (is_raw == 2 && shot_select)
 	parse_fuji (i);
     }

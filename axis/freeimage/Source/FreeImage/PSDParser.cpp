@@ -493,7 +493,7 @@ bool psdParser::ReadImageResources(FreeImageIO *io, fi_handle handle, LONG lengt
 		oResource._Length = length;
 	} else {
 		BYTE Length[4];
-		int n = (int)io->read_proc(&Length, sizeof(Length), 1, handle);
+      io->read_proc(&Length, sizeof(Length), 1, handle);
 
 		oResource._Length = psdGetValue( Length, sizeof(oResource._Length) );
 	}
@@ -849,7 +849,7 @@ FIBITMAP* psdParser::ReadImageData(FreeImageIO *io, fi_handle handle) {
 					io->read_proc(rle_line_start, rleLineSize, 1, handle);
 
 					for (BYTE* rle_line = rle_line_start, *line = line_start;
-						rle_line < rle_line_start + rleLineSize, line < line_end;) {
+						rle_line < rle_line_start + rleLineSize && line < line_end;) {
 
 						int len = *rle_line++;
 

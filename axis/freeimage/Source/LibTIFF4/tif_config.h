@@ -26,7 +26,7 @@
 #define HAVE_SYS_TYPES_H 1
 
 /* Define to 1 if you have the <io.h> header file. */
-#if !defined(LINUX)
+#if !defined(LINUX) && !defined(__APPLE__)
 #define HAVE_IO_H 1
 #endif
 

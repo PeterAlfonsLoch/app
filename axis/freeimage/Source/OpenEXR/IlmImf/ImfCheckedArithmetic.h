@@ -144,10 +144,10 @@ checkArraySize (T n, size_t s)
     //      size_t (n).
     //
 
-    IMF_STATIC_ASSERT (!std::numeric_limits<T>::is_signed &&
-                        std::numeric_limits<T>::is_integer);
+//    IMF_STATIC_ASSERT (!std::numeric_limits<T>::is_signed &&
+  //                      std::numeric_limits<T>::is_integer);
 
-    IMF_STATIC_ASSERT (sizeof (T) <= sizeof (size_t));
+    //IMF_STATIC_ASSERT (sizeof (T) <= sizeof (size_t));
 
     if (size_t (n) > std::numeric_limits<size_t>::maximum() / s)
         throw Iex::OverflowExc ("Integer multiplication overflow.");
