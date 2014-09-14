@@ -4,15 +4,10 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>_ca2freeimage copy.xcscheme</key>
+		<key>axiszlib.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
-		</dict>
-		<key>_ca2freeimage.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>33</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
