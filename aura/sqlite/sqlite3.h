@@ -32,6 +32,11 @@
 */
 #ifndef _SQLITE3_H_
 #define _SQLITE3_H_
+
+
+#include "aura/aura/aura.h"
+
+
 #include <stdarg.h>     /* Needed for the definition of va_list */
 
 /*

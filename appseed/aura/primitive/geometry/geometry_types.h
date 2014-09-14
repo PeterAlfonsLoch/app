@@ -204,7 +204,7 @@ CLASS_DECL_AURA bool deflate(LPRECT prect,LPCRECT lpcrect);
 
 
 
-#ifdef APPLEOS
+#if defined(APPLEOS)
 
 
 

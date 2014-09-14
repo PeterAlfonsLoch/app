@@ -23771,7 +23771,6 @@ Do not add any more error codes in that range.
 // Generic test for success on any status value (non-negative numbers
 // indiCAte success).
 //
-
 #define SUCCEEDED(hr) (((HRESULT)(hr)) >= 0)
 
 //

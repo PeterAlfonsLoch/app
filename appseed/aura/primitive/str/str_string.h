@@ -523,9 +523,9 @@ public:
 
    string utf8_substr(strsize iFirst, strsize nCount) const;
 
-   ::count utf8_get_length() const;
+   strsize utf8_get_length() const;
 
-   inline ::count utf8_length() const;
+   inline strsize utf8_length() const;
 
    void clear();
 

@@ -7,8 +7,22 @@
 //
 #pragma once
 
+#ifdef DEBUG
+#undef DEBUG
+#define DEBUG 1
+#else
+#define DEBUG 0
+#endif
 
 #import <Foundation/Foundation.h>
+
+#if DEBUG
+#undef DEBUG
+#define DEBUG
+#else
+#undef DEBUG
+#endif
+
 
 
 #include "NSObject+DDExtensions.h"

@@ -1,10 +1,10 @@
 #pragma once
 
 
-typedef unsigned char      byte;
-typedef unsigned char      uchar;
-typedef unsigned int       dword;
-typedef int                int_bool;
+typedef uint8_t      byte;
+typedef uint8_t      uchar;
+typedef uint32_t     dword;
+typedef int          int_bool;
 
 
 #ifdef __cplusplus
@@ -18,4 +18,14 @@ TARGET throw_cast(SOURCE src)
 
 
 #define WINBOOL int_bool
+
+
+
+
+
+
+
+
+
+
 
