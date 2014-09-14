@@ -765,7 +765,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
 #include "aura/primitive/math/math_math_rng.h"
-#include "aura/primitive/math/math_math.h"
+#include "aura/primitive/math/math_departament.h"
 #include "aura/primitive/geometry/geometry_geometry.h"
 
 
