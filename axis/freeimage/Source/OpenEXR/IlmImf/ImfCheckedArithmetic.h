@@ -62,8 +62,8 @@ uiMult (T a, T b)
     // Unsigned integer multiplication
     //
 
-    IMF_STATIC_ASSERT (!std::numeric_limits<T>::is_signed &&
-                        std::numeric_limits<T>::is_integer);
+//    IMF_STATIC_ASSERT (!std::numeric_limits<T>::is_signed &&
+  //                      std::numeric_limits<T>::is_integer);
 
     if (a > 0 && b > std::numeric_limits<T>::maximum() / a)
         throw Iex::OverflowExc ("Integer multiplication overflow.");
@@ -98,8 +98,8 @@ uiAdd (T a, T b)
     // Unsigned integer addition
     //
 
-    IMF_STATIC_ASSERT (!std::numeric_limits<T>::is_signed &&
-                        std::numeric_limits<T>::is_integer);
+//    IMF_STATIC_ASSERT (!std::numeric_limits<T>::is_signed &&
+  //                      std::numeric_limits<T>::is_integer);
 
     if (a > std::numeric_limits<T>::maximum() - b)
         throw Iex::OverflowExc ("Integer addition overflow.");

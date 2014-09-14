@@ -433,7 +433,7 @@ Int StrIOEncInit(CWMImageStrCodec* pSC)
         TCHAR szPath[MAX_PATH];
         DWORD cSize, j, k;
 #endif
-        char * pFilename;
+        char * pFilename = NULL;
 
         pSC->ppWStream = (struct WMPStream **)malloc(pSC->cNumBitIO * sizeof(struct WMPStream *));
         if(pSC->ppWStream == NULL) return ICERR_ERROR;

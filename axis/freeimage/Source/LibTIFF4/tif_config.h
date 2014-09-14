@@ -52,7 +52,11 @@
 #define TIFF_INT64_FORMAT "%ld"
 
 /* Unsigned 64-bit type formatter */
+#ifdef MACOS
+#define TIFF_UINT64_FORMAT "%llu"
+#else
 #define TIFF_UINT64_FORMAT "%lu"
+#endif
 
 /* Pointer difference type formatter */
 #define TIFF_PTRDIFF_FORMAT "%ld"

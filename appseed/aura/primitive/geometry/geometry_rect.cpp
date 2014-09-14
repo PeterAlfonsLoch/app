@@ -599,6 +599,8 @@ void rect64::SubtractRectMinor(const __rect64 *  lpcrectMajor, const __rect64 * 
 
 
 
+int64_t rect64::minimum_absolute_dimension() const throw(){ return MIN(INTABS(width()),INTABS(height())); }
+int64_t rect64::maximum_absolute_dimension() const throw(){ return MIN(INTABS(width()),INTABS(height())); }
 
 
 

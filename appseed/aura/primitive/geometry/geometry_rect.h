@@ -359,8 +359,8 @@ public:
    int64_t minimum_natural_dimension() const throw(){ return MIN(MAX(0,width()),MAX(0,height())); }
    int64_t maximum_natural_dimension() const throw(){ return MAX(MAX(0,width()),MAX(0,height())); }
 
-   int64_t minimum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
-   int64_t maximum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
+   int64_t minimum_absolute_dimension() const throw();
+   int64_t maximum_absolute_dimension() const throw();
 
    int64_t minimum_signed_absolute_dimension(bool bNegativePreference = true) const throw();
    int64_t maximum_signed_absolute_dimension(bool bPositivePreference = true) const throw();

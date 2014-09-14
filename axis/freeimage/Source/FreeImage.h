@@ -117,7 +117,7 @@ FI_STRUCT (FIMULTIBITMAP) { void *data; };
 #define _WINDOWS_	// prevent a bug in MinGW32
 #endif // __MINGW32__
 
-#if !defined(_WINDOWS_) && !defined(LINUX)
+#if !defined(_WINDOWS_) && !defined(LINUX) && !defined(MACOS)
 #define _WINDOWS_
 
 #ifndef FALSE

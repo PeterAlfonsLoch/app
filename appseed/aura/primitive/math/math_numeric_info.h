@@ -27,10 +27,10 @@ namespace numeric_info_internal
       typedef T TYPE;
       typedef T OFFSET_TYPE;
 
-      static inline TYPE maximum(){ (TYPE) 0; }
-      static inline TYPE minimum(){ (TYPE) 0; }
-      static inline TYPE null(){ (TYPE) 0; }
-      static inline TYPE unitary(){ (TYPE) 1; }
+      static inline TYPE maximum(){ return (TYPE) 0; }
+      static inline TYPE minimum(){ return (TYPE) 0; }
+      static inline TYPE null(){ return (TYPE) 0; }
+      static inline TYPE unitary(){ return (TYPE) 1; }
       static inline TYPE allset(){ TYPE t; memset(&t,0xff,sizeof(TYPE)); return t; }
 
 

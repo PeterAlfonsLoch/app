@@ -62,6 +62,9 @@
 #undef MIN
 #undef MAX
 
+#define INTABS(i) (((i) >= 0) ? (i) : (-i))
+#define FLOATABS(f) (((f) >= 0.f) ? (f) : (-f))
+#define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
 #define MAX(a, b) (((a) > (b)) ? (a) : (b))
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
 #define LIM(a, min, max) MIN(max, MAX(min, a))
