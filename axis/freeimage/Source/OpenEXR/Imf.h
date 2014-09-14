@@ -26,7 +26,7 @@
 //#include <cmath>
 //#include <sstream>
 
-#include <zlib.h>
+#include "axis/zlib/zlib.h"
 
 
 #pragma warning (disable : 4305)

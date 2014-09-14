@@ -45,7 +45,7 @@ int32_t  aLen=plain.Length;    // Length is length of unzipped data.
 #pragma once
 
 
-#include "bzlib.h"
+#include "axis/bzip2/bzlib.h"
 
 
 

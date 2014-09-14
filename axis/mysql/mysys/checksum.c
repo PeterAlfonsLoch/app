@@ -16,7 +16,7 @@
 
 #include <my_global.h>
 #include <my_sys.h>
-#include "zlib.h"
+#include "axis/zlib/zlib.h"
 
 /*
   Calculate a long checksum for a memoryblock.

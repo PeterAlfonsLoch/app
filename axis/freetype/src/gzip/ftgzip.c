@@ -47,7 +47,7 @@
 
 #ifdef FT_CONFIG_OPTION_SYSTEM_ZLIB
 
-#include <zlib.h>
+#include "axis/zlib/zlib.h"
 
 #else /* !FT_CONFIG_OPTION_SYSTEM_ZLIB */
 
@@ -63,7 +63,7 @@
 #define MY_ZCALLOC /* prevent all zcalloc() & zfree() in zutils.c */
 #endif
 
-#include "zlib.h"
+#include "axis/zlib/zlib.h"
 
 #undef  SLOW
 #define SLOW  1  /* we can't use asm-optimized sources here! */

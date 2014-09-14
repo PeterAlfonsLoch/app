@@ -25,7 +25,7 @@
 */
 #include "framework.h"
 #include <stdarg.h>
-#include "bzlib.h"
+#include "axis/bzip2/bzlib.h"
 #include "libbsdiff.h"
 
 

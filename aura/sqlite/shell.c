@@ -15,7 +15,7 @@
 
 #include "aura/aura/aura.h"
 
-#include "sqlite3.h"
+#include "aura/sqlite/sqlite3.h"
 
 #if (defined(_WIN32) || defined(WIN32)) && !defined(_CRT_SECURE_NO_WARNINGS)
 /* This needs to come before any includes for MSVC compiler */
@@ -37,7 +37,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "sqlite3.h"
+#include "aura/sqlite/sqlite3.h"
 #include <ctype.h>
 #include <stdarg.h>
 
