@@ -683,7 +683,6 @@
 		9A16446719C4A4CF00966C5E /* macos_ns_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16407319C4A4CE00966C5E /* macos_ns_exception.cpp */; };
 		9A16446819C4A4CF00966C5E /* macos_ns_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16407419C4A4CE00966C5E /* macos_ns_exception.h */; };
 		9A16446919C4A4CF00966C5E /* macos_os.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16407519C4A4CE00966C5E /* macos_os.cpp */; };
-		9A16446A19C4A4CF00966C5E /* aaa_want_to_remove_macos_oswindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16407619C4A4CE00966C5E /* aaa_want_to_remove_macos_oswindow.h */; };
 		9A16446B19C4A4CF00966C5E /* macos_process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16407719C4A4CE00966C5E /* macos_process.cpp */; };
 		9A16446C19C4A4CF00966C5E /* macos_process.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16407819C4A4CE00966C5E /* macos_process.h */; };
 		9A16446D19C4A4CF00966C5E /* macos_process_pid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16407919C4A4CE00966C5E /* macos_process_pid.cpp */; };
@@ -1882,7 +1881,6 @@
 		9A16407319C4A4CE00966C5E /* macos_ns_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_ns_exception.cpp; sourceTree = "<group>"; };
 		9A16407419C4A4CE00966C5E /* macos_ns_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_ns_exception.h; sourceTree = "<group>"; };
 		9A16407519C4A4CE00966C5E /* macos_os.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_os.cpp; sourceTree = "<group>"; };
-		9A16407619C4A4CE00966C5E /* aaa_want_to_remove_macos_oswindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_macos_oswindow.h; sourceTree = "<group>"; };
 		9A16407719C4A4CE00966C5E /* macos_process.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_process.cpp; sourceTree = "<group>"; };
 		9A16407819C4A4CE00966C5E /* macos_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_process.h; sourceTree = "<group>"; };
 		9A16407919C4A4CE00966C5E /* macos_process_pid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_process_pid.cpp; sourceTree = "<group>"; };
@@ -3161,7 +3159,6 @@
 				9A16407319C4A4CE00966C5E /* macos_ns_exception.cpp */,
 				9A16407419C4A4CE00966C5E /* macos_ns_exception.h */,
 				9A16407519C4A4CE00966C5E /* macos_os.cpp */,
-				9A16407619C4A4CE00966C5E /* aaa_want_to_remove_macos_oswindow.h */,
 				9A16407719C4A4CE00966C5E /* macos_process.cpp */,
 				9A16407819C4A4CE00966C5E /* macos_process.h */,
 				9A16407919C4A4CE00966C5E /* macos_process_pid.cpp */,
@@ -3971,7 +3968,6 @@
 				9A16416519C4A4CE00966C5E /* aura_command_target.h in Headers */,
 				9AE7255517E83B69003E47F9 /* primitive_create_context.h in Headers */,
 				9AC315CC198E4CB8008FB109 /* colorertake5_line_source.h in Headers */,
-				9A16446A19C4A4CF00966C5E /* aaa_want_to_remove_macos_oswindow.h in Headers */,
 				9A16484819C4ADA100966C5E /* macos_mm.h in Headers */,
 				9A16417419C4A4CE00966C5E /* aura_definition.h in Headers */,
 				9A16439419C4A4CE00966C5E /* cross.h in Headers */,
