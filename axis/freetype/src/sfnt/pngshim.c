@@ -27,7 +27,7 @@
 
   /* We always include <stjmp.h>, so make libpng shut up! */
 #define PNG_SKIP_SETJMP_CHECK 1
-#include <freeimage/Source/LibPNG/png.h>
+#include <png.h>
 #include "pngshim.h"
 
 #include "sferrors.h"

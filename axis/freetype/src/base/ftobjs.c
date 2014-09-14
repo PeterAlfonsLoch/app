@@ -17,7 +17,6 @@
 
 
 #include <ft2build.h>
-#include <openssl/md5.h>
 #include FT_LIST_H
 #include FT_OUTLINE_H
 #include FT_INTERNAL_VALIDATE_H
@@ -57,7 +56,7 @@
 #endif /* _MSC_VER */
 
   /* it's easiest to include `md5.c' directly */
-//#include "md5.c"
+#include "md5.c"
 
 #if defined( _MSC_VER )
 #pragma warning( pop )
