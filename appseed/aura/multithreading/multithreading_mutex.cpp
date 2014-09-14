@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#if defined(LINUX) || defined(SOLARIS)
+#if defined(LINUX) || defined(SOLARIS) || defined(APPLEOS)
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <pthread.h>

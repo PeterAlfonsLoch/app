@@ -808,21 +808,13 @@ struct win_handle
    };
 
 
-   struct thread
-   {
-
-
-       pthread_t m_thread;
-
-
-   };
 
    union
    {
 
 
       file     m_file;
-      thread   m_thread;
+      void *   m_thread;
 
 
    };

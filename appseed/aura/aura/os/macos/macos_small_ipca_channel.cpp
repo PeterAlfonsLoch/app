@@ -1,6 +1,7 @@
 #include "framework.h"
 #include <sys/ipc.h>
 #include <sys/msg.h>
+#include <pthread.h>
 
 
 small_ipc_channel_base::small_ipc_channel_base()

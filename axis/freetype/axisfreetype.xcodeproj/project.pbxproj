@@ -280,6 +280,7 @@
 		9AEEBD9019C5806F00866C9E /* ftmodule.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEBD8519C5806F00866C9E /* ftmodule.h */; };
 		9AEEBD9119C5806F00866C9E /* ftoption.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEBD8619C5806F00866C9E /* ftoption.h */; };
 		9AEEBD9219C5806F00866C9E /* ftstdlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEBD8719C5806F00866C9E /* ftstdlib.h */; };
+		9AEEBDB519C5963200866C9E /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEBDA919C595DD00866C9E /* libaxiszlib.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,6 +325,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = aura;
+		};
+		9AEEBDA819C595DD00866C9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AEEBDA419C595DD00866C9E /* axiszlib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AA5E6D616F7C61B005C45CE;
+			remoteInfo = axiszlib;
+		};
+		9AEEBDB319C5962B00866C9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AEEBDA419C595DD00866C9E /* axiszlib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
+			remoteInfo = axiszlib;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -602,6 +617,7 @@
 		9AEEBD8519C5806F00866C9E /* ftmodule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmodule.h; sourceTree = "<group>"; };
 		9AEEBD8619C5806F00866C9E /* ftoption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftoption.h; sourceTree = "<group>"; };
 		9AEEBD8719C5806F00866C9E /* ftstdlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftstdlib.h; sourceTree = "<group>"; };
+		9AEEBDA419C595DD00866C9E /* axiszlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiszlib.xcodeproj; path = ../zlib/axiszlib.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -610,6 +626,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AEEB83D19C50EC200866C9E /* libaura.dylib in Frameworks */,
+				9AEEBDB519C5963200866C9E /* libaxiszlib.dylib in Frameworks */,
 				9AEEB81F19C50B7F00866C9E /* libaxisfreeimage.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,6 +639,7 @@
 			children = (
 				9AEEB82C19C50E7D00866C9E /* aura.xcodeproj */,
 				9AEEB81719C50B1000866C9E /* axisfreeimage.xcodeproj */,
+				9AEEBDA419C595DD00866C9E /* axiszlib.xcodeproj */,
 				9AEEB84719C5802F00866C9E /* include */,
 				9AEEB49219C5089500866C9E /* src */,
 				9AEEB49119C5088600866C9E /* libaxisfreetype.dylib */,
@@ -1124,6 +1142,14 @@
 			path = config;
 			sourceTree = "<group>";
 		};
+		9AEEBDA519C595DD00866C9E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AEEBDA919C595DD00866C9E /* libaxiszlib.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1355,6 +1381,7 @@
 			);
 			dependencies = (
 				9AEEB83C19C50EB900866C9E /* PBXTargetDependency */,
+				9AEEBDB419C5962B00866C9E /* PBXTargetDependency */,
 				9AEEB81E19C50B4E00866C9E /* PBXTargetDependency */,
 			);
 			name = axisfreetype;
@@ -1389,6 +1416,10 @@
 				{
 					ProductGroup = 9AEEB81819C50B1000866C9E /* Products */;
 					ProjectRef = 9AEEB81719C50B1000866C9E /* axisfreeimage.xcodeproj */;
+				},
+				{
+					ProductGroup = 9AEEBDA519C595DD00866C9E /* Products */;
+					ProjectRef = 9AEEBDA419C595DD00866C9E /* axiszlib.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1425,6 +1456,13 @@
 			fileType = wrapper.cfbundle;
 			path = aura_iosTests.xctest;
 			remoteRef = 9AEEB83619C50E7D00866C9E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AEEBDA919C595DD00866C9E /* libaxiszlib.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxiszlib.dylib;
+			remoteRef = 9AEEBDA819C595DD00866C9E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1514,6 +1552,11 @@
 			isa = PBXTargetDependency;
 			name = aura;
 			targetProxy = 9AEEB83B19C50EB900866C9E /* PBXContainerItemProxy */;
+		};
+		9AEEBDB419C5962B00866C9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axiszlib;
+			targetProxy = 9AEEBDB319C5962B00866C9E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9AA5E4C216F7C61B005C45CE"
-               BuildableName = "lib_ca2freeimage.dylib"
+               BuildableName = "libaxisfreeimage.dylib"
                BlueprintName = "axisfreeimage"
                ReferencedContainer = "container:axisfreeimage.xcodeproj">
             </BuildableReference>

@@ -90,7 +90,7 @@ namespace str
 	   if ( len ) {
    #if defined(WIN32) || defined(WIN64)
 		   return _strnicmp(left.c_str(),right.c_str(),len);
-   #elif defined(LINUX)
+   #elif defined(LINUX) || defined(APPLEOS)
          return strnicmp_dup(left.c_str(), right.c_str(), len);
    #else
 		   return strncasecmp(left.c_str(),right.c_str(),len);
@@ -99,7 +99,7 @@ namespace str
 	   else {
    #if defined(WIN32) || defined(WIN64)
 		   return _stricmp(left.c_str(),right.c_str());
-   #elif defined(LINUX)
+   #elif defined(LINUX) || defined(APPLEOS)
          return stricmp_dup(left.c_str(), right.c_str());
    #else
 		   return strcasecmp(left.c_str(),right.c_str());
@@ -116,7 +116,7 @@ namespace str
 	   if ( len ) {
    #if defined(WIN32) || defined(WIN64)
 		   return _strnicmp(left,right.c_str(),len);
-   #elif defined(LINUX)
+   #elif defined(LINUX) || defined(APPLEOS)
          return strnicmp_dup(left, right.c_str(), len);
    #else
 		   return strncasecmp(left,right.c_str(),len);
@@ -125,7 +125,7 @@ namespace str
 	   else {
    #if defined(WIN32) || defined(WIN64)
 		   return _stricmp(left,right.c_str());
-   #elif defined(LINUX)
+   #elif defined(LINUX) || defined(APPLEOS)
          return stricmp_dup(left, right.c_str());
    #else
 		   return strcasecmp(left,right.c_str());
@@ -142,7 +142,7 @@ namespace str
 	   if ( len ) {
    #if defined(WIN32) || defined(WIN64)
 		   return _strnicmp(left.c_str(),right,len);
-   #elif defined(LINUX)
+   #elif defined(LINUX) || defined(APPLEOS)
          return strnicmp_dup(left.c_str(), right, len);
    #else
 		   return strncasecmp(left.c_str(),right,len);
@@ -151,7 +151,7 @@ namespace str
 	   else {
    #if defined(WIN32) || defined(WIN64)
 		   return _stricmp(left.c_str(),right);
-   #elif defined(LINUX)
+   #elif defined(LINUX) || defined(APPLEOS)
          return stricmp_dup(left.c_str(), right);
    #else
 		   return strcasecmp(left.c_str(),right);
@@ -168,7 +168,7 @@ namespace str
 	   if ( len ) {
    #if defined(WIN32) || defined(WIN64)
 		   return _strnicmp(left,right,len);
-   #elif defined(LINUX)
+   #elif defined(LINUX) || defined(APPLEOS)
          return strnicmp_dup(left, right, len);
    #else
 		   return strncasecmp(left,right,len);
@@ -177,7 +177,7 @@ namespace str
 	   else {
    #if defined(WIN32) || defined(WIN64)
 		   return _stricmp(left,right);
-   #elif defined(LINUX)
+   #elif defined(LINUX) || defined(APPLEOS)
          return stricmp_dup(left, right);
    #else
 		   return strcasecmp(left,right);

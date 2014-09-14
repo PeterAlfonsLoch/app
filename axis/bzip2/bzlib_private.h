@@ -30,7 +30,7 @@
 #include <string.h>
 #endif
 
-#include "axis/bzip2/bzlib.h"
+#include "bzlib.h"
 
 
 

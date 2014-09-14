@@ -361,38 +361,8 @@ do { \
 #endif // C_RUNTIME_ERRORCHECK_SPRINTF
 
 
-inline errno_t c_runtime_error_check(errno_t error)
-{
-    switch(error)
-    {
-        case ENOMEM:
-            throw memory_exception(get_thread_app());
-            break;
-        case EINVAL:
-        case ERANGE:
-            throw invalid_argument_exception(get_thread_app());
-            break;
-#if defined(WINDOWS)
-        case STRUNCATE:
-#endif
-        case 0:
-            break;
-        default:
-            throw invalid_argument_exception(get_thread_app());
-            break;
-    }
-    return error;
-}
-
-inline void __cdecl __clearerr_s(FILE *stream)
-{
-#ifdef WINDOWS
-   C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
-#else
-   clearerr(stream);
-   C_RUNTIME_ERROR_CHECK(errno);
-#endif
-}
+CLASS_DECL_AURA errno_t c_runtime_error_check(errno_t error);
+CLASS_DECL_AURA void __cdecl __clearerr_s(FILE *stream);
 
 
 

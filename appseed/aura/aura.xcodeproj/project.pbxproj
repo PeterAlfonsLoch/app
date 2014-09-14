@@ -156,8 +156,6 @@
 		07B0951B18495C2B007A0560 /* geometry_size.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0945918495C2A007A0560 /* geometry_size.h */; };
 		07B0951C18495C2B007A0560 /* geometry_types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0945A18495C2A007A0560 /* geometry_types.cpp */; };
 		07B0951D18495C2B007A0560 /* geometry_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0945B18495C2A007A0560 /* geometry_types.h */; };
-		07B0951E18495C2B007A0560 /* _math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0945D18495C2A007A0560 /* _math.cpp */; };
-		07B0951F18495C2B007A0560 /* _math.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0945E18495C2A007A0560 /* _math.h */; };
 		07B0952018495C2B007A0560 /* math_count.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0945F18495C2A007A0560 /* math_count.h */; };
 		07B0952118495C2B007A0560 /* math_index.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0946018495C2A007A0560 /* math_index.h */; };
 		07B0952218495C2B007A0560 /* math_math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0946118495C2A007A0560 /* math_math.cpp */; };
@@ -788,6 +786,8 @@
 		9A16485719C4ADA100966C5E /* macos_factory_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16482E19C4ADA000966C5E /* macos_factory_exchange.cpp */; };
 		9A16485E19C4ADA100966C5E /* macos_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16483519C4ADA000966C5E /* macos_application.h */; };
 		9A16485F19C4ADA100966C5E /* macos_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16483619C4ADA000966C5E /* macos_application.cpp */; };
+		9A44E3FE19C5C10200143B94 /* math_departament.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A44E3FC19C5C10200143B94 /* math_departament.cpp */; };
+		9A44E3FF19C5C10200143B94 /* math_departament.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A44E3FD19C5C10200143B94 /* math_departament.h */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -899,7 +899,6 @@
 		9AA6A6711907B84D000A1F4A /* geometry_size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0945818495C2A007A0560 /* geometry_size.cpp */; };
 		9AA6A6721907B84D000A1F4A /* geometry_types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0945A18495C2A007A0560 /* geometry_types.cpp */; };
 		9AA6A6731907B84D000A1F4A /* math_scalar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079AE0631886481200635C39 /* math_scalar.cpp */; };
-		9AA6A6741907B84D000A1F4A /* _math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0945D18495C2A007A0560 /* _math.cpp */; };
 		9AA6A6751907B84D000A1F4A /* math_math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0946118495C2A007A0560 /* math_math.cpp */; };
 		9AA6A6761907B84D000A1F4A /* math_math_rng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0946318495C2A007A0560 /* math_math_rng.cpp */; };
 		9AA6A6771907B84D000A1F4A /* str_base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0947118495C2A007A0560 /* str_base64.cpp */; };
@@ -1339,8 +1338,6 @@
 		07B0945918495C2A007A0560 /* geometry_size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometry_size.h; sourceTree = "<group>"; };
 		07B0945A18495C2A007A0560 /* geometry_types.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = geometry_types.cpp; sourceTree = "<group>"; };
 		07B0945B18495C2A007A0560 /* geometry_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometry_types.h; sourceTree = "<group>"; };
-		07B0945D18495C2A007A0560 /* _math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _math.cpp; sourceTree = "<group>"; };
-		07B0945E18495C2A007A0560 /* _math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _math.h; sourceTree = "<group>"; };
 		07B0945F18495C2A007A0560 /* math_count.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_count.h; sourceTree = "<group>"; };
 		07B0946018495C2A007A0560 /* math_index.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_index.h; sourceTree = "<group>"; };
 		07B0946118495C2A007A0560 /* math_math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math_math.cpp; sourceTree = "<group>"; };
@@ -1993,6 +1990,8 @@
 		9A16482E19C4ADA000966C5E /* macos_factory_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_factory_exchange.cpp; sourceTree = "<group>"; };
 		9A16483519C4ADA000966C5E /* macos_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_application.h; sourceTree = "<group>"; };
 		9A16483619C4ADA000966C5E /* macos_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_application.cpp; sourceTree = "<group>"; };
+		9A44E3FC19C5C10200143B94 /* math_departament.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math_departament.cpp; sourceTree = "<group>"; };
+		9A44E3FD19C5C10200143B94 /* math_departament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_departament.h; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC31567198E4CB8008FB109 /* colorertake5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5.h; sourceTree = "<group>"; };
@@ -2414,6 +2413,8 @@
 		07B0945C18495C2A007A0560 /* math */ = {
 			isa = PBXGroup;
 			children = (
+				9A44E3FC19C5C10200143B94 /* math_departament.cpp */,
+				9A44E3FD19C5C10200143B94 /* math_departament.h */,
 				9A16453819C4A56200966C5E /* math_complex.h */,
 				9A16453919C4A56200966C5E /* math_cvt_g.cpp */,
 				9A16453A19C4A56200966C5E /* math_cvt.cpp */,
@@ -2424,8 +2425,6 @@
 				079AE0621886481200635C39 /* math_scalar_enum.h */,
 				079AE0631886481200635C39 /* math_scalar.cpp */,
 				079AE0641886481200635C39 /* math_scalar.h */,
-				07B0945D18495C2A007A0560 /* _math.cpp */,
-				07B0945E18495C2A007A0560 /* _math.h */,
 				07B0945F18495C2A007A0560 /* math_count.h */,
 				07B0946018495C2A007A0560 /* math_index.h */,
 				07B0946118495C2A007A0560 /* math_math.cpp */,
@@ -3636,7 +3635,6 @@
 				9A16421919C4A4CE00966C5E /* exception_memory_state.h in Headers */,
 				9A1641AC19C4A4CE00966C5E /* aura_message_queue.h in Headers */,
 				9AC315D0198E4CB8008FB109 /* colorertake5_memory_file.h in Headers */,
-				07B0951F18495C2B007A0560 /* _math.h in Headers */,
 				9A16452319C4A4CF00966C5E /* xml_output_tree.h in Headers */,
 				07F5B1CF184A3B430092C3E1 /* file_plain_text_output_stream_string_buffer.h in Headers */,
 				9AC315F1198E4CB8008FB109 /* colorertake5_text_region.h in Headers */,
@@ -3790,6 +3788,7 @@
 				9A1643AA19C4A4CF00966C5E /* windows_gdi.h in Headers */,
 				9A1644FD19C4A4CF00966C5E /* process.h in Headers */,
 				07B0954118495C2B007A0560 /* str_interface.h in Headers */,
+				9A44E3FF19C5C10200143B94 /* math_departament.h in Headers */,
 				9A16447819C4A4CF00966C5E /* os.h in Headers */,
 				07B094CB18495C2B007A0560 /* collection_map_association.h in Headers */,
 				07B094D718495C2B007A0560 /* collection_pointer_list.h in Headers */,
@@ -4401,6 +4400,7 @@
 				07F5B286184A3B6A0092C3E1 /* visual_icon.cpp in Sources */,
 				07B0952B18495C2B007A0560 /* primitive_color.cpp in Sources */,
 				9A16417F19C4A4CE00966C5E /* aura_file_watcher_impl.cpp in Sources */,
+				9A44E3FE19C5C10200143B94 /* math_departament.cpp in Sources */,
 				07B0955A18495C2B007A0560 /* str_tokenizer.cpp in Sources */,
 				9A16415C19C4A4CE00966C5E /* aura_assert.cpp in Sources */,
 				07F5B1F2184A3B430092C3E1 /* file_transfer_buffer.cpp in Sources */,
@@ -4487,7 +4487,6 @@
 				9A16419E19C4A4CE00966C5E /* aura_log.cpp in Sources */,
 				9AE7251D17E83B69003E47F9 /* multithreading_sync_object.cpp in Sources */,
 				9AE7251F17E83B69003E47F9 /* multithreading_synch_lock.cpp in Sources */,
-				07B0951E18495C2B007A0560 /* _math.cpp in Sources */,
 				07884BE21897E9A400DC6CEB /* user_check_interface.cpp in Sources */,
 				07F5B1AD184A3B430092C3E1 /* file_byte_output_stream_binary_buffer.cpp in Sources */,
 				9AE7252317E83B69003E47F9 /* multithreading_wait_result.cpp in Sources */,
@@ -4764,7 +4763,6 @@
 				9AA6A6711907B84D000A1F4A /* geometry_size.cpp in Sources */,
 				9AA6A6721907B84D000A1F4A /* geometry_types.cpp in Sources */,
 				9AA6A6731907B84D000A1F4A /* math_scalar.cpp in Sources */,
-				9AA6A6741907B84D000A1F4A /* _math.cpp in Sources */,
 				9AA6A6751907B84D000A1F4A /* math_math.cpp in Sources */,
 				9AA6A6761907B84D000A1F4A /* math_math_rng.cpp in Sources */,
 				9AA6A6771907B84D000A1F4A /* str_base64.cpp in Sources */,

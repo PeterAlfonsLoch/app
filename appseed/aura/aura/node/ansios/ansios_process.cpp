@@ -14,6 +14,7 @@ extern char **environ;
 #include <sys/wait.h>
 #include <unistd.h>
 #include <spawn.h>
+#include <pthread.h>
 extern char * const * environ;
 #endif
 

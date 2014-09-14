@@ -30,7 +30,7 @@
 
 #include "aura/aura/os/os.h"
 
-#include "aura/primitive/math/_math.h"
+#include "aura/primitive/math/math_math.h"
 
 #include "aura_heap.h"
 

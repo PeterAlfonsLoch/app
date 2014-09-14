@@ -342,8 +342,8 @@
 		9AEEAE4F19C4FF9400866C9E /* sqlite_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE2A19C4FF9400866C9E /* sqlite_base.h */; };
 		9AEEAE5019C4FF9500866C9E /* sqlite_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE2B19C4FF9400866C9E /* sqlite_set.cpp */; };
 		9AEEAE5119C4FF9500866C9E /* sqlite_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE2C19C4FF9400866C9E /* sqlite_set.h */; };
-		9AEEAE6219C5034F00866C9E /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEAE6119C5034F00866C9E /* libz.1.2.5.dylib */; };
-		9AEEAE7119C507C300866C9E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEAE7019C507C300866C9E /* libsqlite3.0.dylib */; };
+		9AEEBDBA19C5966A00866C9E /* libaurasqlite.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEBD9D19C5816E00866C9E /* libaurasqlite.dylib */; };
+		9AEEBDBB19C5967700866C9E /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEBDA319C581CB00866C9E /* libaxiszlib.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -408,6 +408,20 @@
 			containerPortal = 9AEEBD9E19C581CA00866C9E /* axiszlib.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AA5E6D616F7C61B005C45CE;
+			remoteInfo = axiszlib;
+		};
+		9AEEBDB619C5964B00866C9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AEEBD9819C5816D00866C9E /* aurasqlite.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AEEAD9719C4D7A900866C9E;
+			remoteInfo = aurasqlite;
+		};
+		9AEEBDB819C5965000866C9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AEEBD9E19C581CA00866C9E /* axiszlib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
 			remoteInfo = axiszlib;
 		};
 /* End PBXContainerItemProxy section */
@@ -743,10 +757,10 @@
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
 				9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */,
-				9AEEAE6219C5034F00866C9E /* libz.1.2.5.dylib in Frameworks */,
-				9AEEAE7119C507C300866C9E /* libsqlite3.0.dylib in Frameworks */,
 				9AEEAE0419C4FC9B00866C9E /* libaura.dylib in Frameworks */,
 				9AEEAE0119C4FC3500866C9E /* lib_ca2freeimage.dylib in Frameworks */,
+				9AEEBDBB19C5967700866C9E /* libaxiszlib.dylib in Frameworks */,
+				9AEEBDBA19C5966A00866C9E /* libaurasqlite.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1534,7 +1548,9 @@
 			);
 			dependencies = (
 				9AEEAE0319C4FC8C00866C9E /* PBXTargetDependency */,
+				9AEEBDB919C5965000866C9E /* PBXTargetDependency */,
 				9AEEAE0019C4FC2D00866C9E /* PBXTargetDependency */,
+				9AEEBDB719C5964B00866C9E /* PBXTargetDependency */,
 			);
 			name = axis;
 			productName = c;
@@ -1895,6 +1911,16 @@
 			isa = PBXTargetDependency;
 			name = aura;
 			targetProxy = 9AEEAE0219C4FC8C00866C9E /* PBXContainerItemProxy */;
+		};
+		9AEEBDB719C5964B00866C9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aurasqlite;
+			targetProxy = 9AEEBDB619C5964B00866C9E /* PBXContainerItemProxy */;
+		};
+		9AEEBDB919C5965000866C9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axiszlib;
+			targetProxy = 9AEEBDB819C5965000866C9E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

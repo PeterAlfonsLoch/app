@@ -1,9 +1,9 @@
 #pragma once
 
 
-typedef uint8_t            byte;
+typedef unsigned char      byte;
 typedef unsigned char      uchar;
-typedef uint32_t           dword;
+typedef unsigned int       dword;
 typedef int                int_bool;
 
 

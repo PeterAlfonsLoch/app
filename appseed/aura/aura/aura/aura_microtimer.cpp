@@ -14,7 +14,7 @@
 #include "framework.h"
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(APPLEOS)
 #include <sys/time.h>
 #endif
 

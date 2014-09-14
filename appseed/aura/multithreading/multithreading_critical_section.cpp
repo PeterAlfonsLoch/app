@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(APPLEOS)
 #include <pthread.h>
 #endif
 
