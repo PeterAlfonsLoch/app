@@ -5024,7 +5024,6 @@ copy Source\FreeImage.h Dist
     <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj.filters" />
     <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcxproj.filters" />
     <None Include="Source\LibPNG\LibPNG.2008.vcxproj.filters" />
-    <None Include="Source\LibRawLite\dcraw\dcraw.1.html" />
     <None Include="Source\LibRawLite\internal\preprocess.pl" />
     <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj.filters" />
   </ItemGroup>

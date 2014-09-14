@@ -72,9 +72,6 @@
     <Filter Include="Source\LibRawLite">
       <UniqueIdentifier>{aa5a1c3b-cb2e-447e-b80e-e66e0da51356}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\LibRawLite\dcraw">
-      <UniqueIdentifier>{fcb46903-15e4-4209-b234-e57843aec1a6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\LibRawLite\internal">
       <UniqueIdentifier>{76854af4-87eb-4dc7-b632-26baeec1e3a6}</UniqueIdentifier>
     </Filter>
@@ -2175,9 +2172,6 @@
     </None>
     <None Include="Source\LibPNG\LibPNG.2008.vcxproj.filters">
       <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibRawLite\dcraw\dcraw.1.html">
-      <Filter>Source\LibRawLite\dcraw</Filter>
     </None>
     <None Include="Source\LibRawLite\internal\preprocess.pl">
       <Filter>Source\LibRawLite\internal</Filter>
