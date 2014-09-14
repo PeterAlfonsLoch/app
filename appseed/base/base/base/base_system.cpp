@@ -2,7 +2,7 @@
 #include "framework.h" // from "base/net/net_sockets.h"
 
 
-#include "axis/freetype/include/ft2build.h"
+#include "ft2build.h"
 #include FT_FREETYPE_H
 
 
