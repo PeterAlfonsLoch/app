@@ -4,7 +4,7 @@
 #endif
 
 
-#include <ft2build.h>
+#include "axis/freetype/include/ft2build.h"
 
 
 #include FT_FREETYPE_H
