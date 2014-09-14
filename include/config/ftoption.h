@@ -281,7 +281,15 @@ FT_BEGIN_HEADER
   /*                                                                       */
 /* #define FT_EXPORT(x)      extern x */
 /* #define FT_EXPORT_DEF(x)  x */
-
+#ifdef _WIN32
+#ifdef FT2_BUILD_LIBRARY
+#define FT_EXPORT(x)      __declspec(dllexport) x
+#define FT_EXPORT_DEF(x)  __declspec(dllexport) x
+#else
+#define FT_EXPORT(x)      __declspec(dllimport) x
+#define FT_EXPORT_DEF(x)  __declspec(dllimport) x
+#endif
+#endif
 
   /*************************************************************************/
   /*                                                                       */

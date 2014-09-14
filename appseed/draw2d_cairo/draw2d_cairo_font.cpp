@@ -10,7 +10,7 @@ namespace draw2d_cairo
    {
 
       m_pfont = NULL;
-      m_ft = NULL;
+//      m_ft = NULL;
       m_pface = NULL;
 
    }
@@ -45,12 +45,12 @@ synch_lock ml(&cairo_mutex());
 
       }
 
-      if(m_ft != NULL)
+//      if(m_ft != NULL)
       {
 
          //FT_Done_Face (m_ft);
 
-         m_ft = NULL;
+  //       m_ft = NULL;
 
       }
 

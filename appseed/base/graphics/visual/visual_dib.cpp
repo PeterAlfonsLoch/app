@@ -196,7 +196,10 @@ namespace visual
 } // namespace visual
 
 
-CLASS_DECL_BASE void draw_bitmap(::draw2d::dib * m_p, int32_t dx,int32_t dy,FT_Bitmap * bitmap,FT_Int x,FT_Int y)
+
+
+
+CLASS_DECL_BASE void draw_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,FT_Bitmap * bitmap,FT_Int x,FT_Int y)
 {
 
    FT_Int  i,j,p,q;
