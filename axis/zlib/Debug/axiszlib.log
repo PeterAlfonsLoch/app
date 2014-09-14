@@ -1,0 +1,54 @@
+﻿cl : Command line warning D9030: '/Gm' is incompatible with multiprocessing; ignoring /MP switch
+  zutil.c
+zutil.c(325): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  uncompr.c
+uncompr.c(60): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  trees.c
+trees.c(169): warning C4005: 'send_code' : macro redefinition
+          trees.c(163) : see previous definition of 'send_code'
+trees.c(1228): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  inftrees.c
+inftrees.c(307): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  inflate.c
+inflate.c(436): warning C4005: 'UPDATE' : macro redefinition
+          inflate.c(434) : see previous definition of 'UPDATE'
+inflate.c(1514): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  inffast.c
+inffast.c(28): warning C4005: 'OFF' : macro redefinition
+          inffast.c(25) : see previous definition of 'OFF'
+inffast.c(29): warning C4005: 'PUP' : macro redefinition
+          inffast.c(26) : see previous definition of 'PUP'
+inffast.c(341): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  infback.c
+infback.c(641): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  gzwrite.c
+gzwrite.c(578): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  gzread.c
+gzread.c(595): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  gzlib.c
+gzlib.c(12): warning C4005: 'LSEEK' : macro redefinition
+          gzlib.c(9) : see previous definition of 'LSEEK'
+gzlib.c(14): warning C4005: 'LSEEK' : macro redefinition
+          gzlib.c(12) : see previous definition of 'LSEEK'
+gzlib.c(635): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  gzclose.c
+gzclose.c(26): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  deflate.c
+deflate.c(189): warning C4005: 'INSERT_STRING' : macro redefinition
+          deflate.c(184) : see previous definition of 'INSERT_STRING'
+deflate.c(1969): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  crc32.c
+crc32.c(46): warning C4005: 'TBLS' : macro redefinition
+          crc32.c(44) : see previous definition of 'TBLS'
+crc32.c(426): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  compress.c
+compress.c(81): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  adler32.c
+adler32.c(59): warning C4005: 'MOD' : macro redefinition
+          adler32.c(44) : see previous definition of 'MOD'
+adler32.c(60): warning C4005: 'MOD28' : macro redefinition
+          adler32.c(39) : see previous definition of 'MOD28'
+adler32.c(61): warning C4005: 'MOD63' : macro redefinition
+          adler32.c(57) : see previous definition of 'MOD63'
+adler32.c(180): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  Generating Code...
