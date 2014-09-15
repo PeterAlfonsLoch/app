@@ -100,6 +100,9 @@ bool db_server::initialize()
 
    m_pdb = new ::sqlite::base(get_app());
 
+   m_pdb->create_long_set("integertable");
+   m_pdb->create_string_set("stringtable");
+
    string str;
    str = Application.dir().userappdata("prop.db");
    Application.dir().mk(System.dir().name(str));
@@ -113,8 +116,8 @@ bool db_server::initialize()
    m_pdatabaseImpl->setDatabase(str);
    m_pdatabaseImpl->connect();
 
-   m_pLongsSet = new db_long_set(this);
-   m_pStringSet = new db_str_set(this);
+   m_pLongsSet    = new db_long_set(this);
+   m_pStringSet   = new db_str_set(this);
 
    int32_t iBufferSize = 128 * 1024;
    sp(::command_thread) commandthread = System.command();

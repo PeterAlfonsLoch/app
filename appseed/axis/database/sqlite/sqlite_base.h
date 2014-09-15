@@ -55,6 +55,10 @@ namespace sqlite
 
      string escape(const char * psz);
 
+     virtual void create_long_set(const string & strTable);
+     virtual void create_string_set(const string & strTable);
+
+
    };
 
 } // namespace vmssqlite

@@ -55,7 +55,7 @@ namespace database
 
       /* virtual methods that must be overloaded in derived classes */
 
-      virtual int32_t init() { return DB_COMMAND_OK; }
+      virtual int32_t init();
       virtual int32_t status() { return DB_CONNECTION_NONE; }
       virtual int32_t setErr(int32_t err_code)=0;
       virtual const char *getErrorMsg() { return error; }
@@ -77,6 +77,9 @@ namespace database
       virtual void rollback_transaction() {};
 
       virtual bool in_transaction() {return false;};
+
+      virtual void create_long_set(const string & strTable);
+      virtual void create_string_set(const string & strTable);
 
    };
 

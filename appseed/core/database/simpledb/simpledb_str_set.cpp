@@ -76,33 +76,6 @@ public:
       m_strUser(pserver->m_strUser)
    {
 
-      sp(::sqlite::base) pdb = db()->GetImplDatabase();
-
-      //create string Table if necessary
-
-      try
-      {
-
-         pdb->start_transaction();
-
-         m_pdataset->query("select * from sqlite_master where type like 'table' and name like 'stringtable'");
-
-         if(m_pdataset->num_rows() == 0)
-         {
-
-            m_pdataset->exec("create table stringtable (id text primary key, value text)");
-
-         }
-
-         pdb->commit_transaction();
-
-      }
-      catch(...)
-      {
-
-         pdb->rollback_transaction();
-
-      }
 
    }
 

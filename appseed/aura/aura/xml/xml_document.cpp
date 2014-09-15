@@ -233,6 +233,8 @@ namespace xml
             case ::xml::set_name:
                {
                   pnode = get_node_from_indexed_path(pitem->m_iaPath);
+                  if(pnode == NULL)
+                     return;
                   pnode->set_name(pitem->m_strValue);
                }
                break;
@@ -240,6 +242,8 @@ namespace xml
             case ::xml::set_value:
                {
                   pnode = get_node_from_indexed_path(pitem->m_iaPath);
+                  if(pnode == NULL)
+                     return;
                   pnode->set_value(pitem->m_strValue);
                }
                break;
@@ -247,13 +251,17 @@ namespace xml
             case ::xml::set_attr:
                {
                   pnode = get_node_from_indexed_path(pitem->m_iaPath);
-                  pnode->set_attr(pitem->m_strName, pitem->m_strValue);
+                  if(pnode == NULL)
+                     return;
+                  pnode->set_attr(pitem->m_strName,pitem->m_strValue);
                }
                break;
 
             case ::xml::add_attr:
                {
                   pnode = get_node_from_indexed_path(pitem->m_iaPath);
+                  if(pnode == NULL)
+                     return;
                   pnode->add_attr(pitem->m_strName, pitem->m_strValue);
                }
                break;

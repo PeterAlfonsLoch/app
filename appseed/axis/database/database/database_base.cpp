@@ -30,5 +30,23 @@ namespace database
       return connect();
    }
 
+
+   int32_t base::init()
+   {
+
+      return DB_COMMAND_OK;
+
+   }
+
+   void base::create_long_set(const string & strTable)
+   {
+   }
+
+   void base::create_string_set(const string & strTable)
+   {
+   }
+
+
+
 } // namespace database
 

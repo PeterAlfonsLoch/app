@@ -206,4 +206,80 @@ namespace sqlite
       return str;
    }
 
+   
+   void base::create_long_set(const string & strTable)
+   {
+
+      try
+      {
+
+         set set(this);
+
+         start_transaction();
+
+         set.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
+
+         if(set.num_rows() == 0)
+         {
+
+            set.exec("create table '" + strTable + "' (id text primary key, value integer)");
+         }
+
+         commit_transaction();
+
+      }
+      catch(...)
+      {
+
+         rollback_transaction();
+
+      }
+
+   }
+
+
+   void base::create_string_set(const string & strTable)
+   {
+
+      try
+      {
+
+         set set(this);
+
+         start_transaction();
+
+         set.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
+
+         if(set.num_rows() == 0)
+         {
+
+            set.exec("create table '" + strTable + "' (id text primary key, value text)");
+
+         }
+
+         commit_transaction();
+
+      }
+      catch(...)
+      {
+
+         rollback_transaction();
+
+      }
+
+   }
+
+
 } // namespace sqlite
+
+
+
+
+
+
+
+
+
+
+
+

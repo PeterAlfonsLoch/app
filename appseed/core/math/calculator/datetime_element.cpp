@@ -42,17 +42,15 @@ namespace datetime
       }
       else if(m_ptoken->value == token::multiplication)
       {
-         throw not_supported_exception(pbaseapp);
-         //return m_pelement1->get_value() * m_pelement2->get_value().m_dR;
+         throw_datetime_parser_exception("multiplication of datetime not supported (yet? meaningful?)");
       }
       else if(m_ptoken->value == token::division)
       {
-         throw not_supported_exception(pbaseapp);
-         //return m_pelement1->get_value() / m_pelement2->get_value();
+         throw_datetime_parser_exception("division of datetime not supported (yet? meaningful?)");
       }
       else if(m_ptoken->value == token::function)
       {
-         throw not_supported_exception(pbaseapp);
+         throw_datetime_parser_exception("\"" +m_ptoken->m_str + "\" function applied to datetime not supported (yet? meaningful?)");
          /*if(m_ptoken->m_str == "sqr")
          {
             return m_pelement1->get_value() * m_pelement1->get_value();
