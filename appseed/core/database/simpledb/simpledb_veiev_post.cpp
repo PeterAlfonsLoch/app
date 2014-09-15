@@ -89,11 +89,15 @@ var veiev_post::last()
 
    try
    {
+
       m_pdataset->query(strSql);
+
    }
    catch(...)
    {
+
       return false;
+
    }
 
    if(m_pdataset->num_rows() <= 0)
@@ -102,7 +106,9 @@ var veiev_post::last()
    m_pdataset->first();
 
    return current();
+
 }
+
 
 var veiev_post::current()
 {
