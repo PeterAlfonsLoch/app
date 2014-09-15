@@ -30,21 +30,29 @@ db_server::~db_server()
 
 string db_server::calc_key(::database::client * pclient, ::database::id & idSection, ::database::id & id, ::database::id & idIndex)
 {
+
    if(pclient != NULL)
    {
+
       return pclient->calc_key(idSection, id, idIndex);
+
    }
    else
    {
+
       string str;
       str = idSection.get_id().str();
       str += ".";
       str += id.get_id().str();
       str += ".";
       str += idIndex.get_id().str();
+
       return str;
+
    }
+
 }
+
 
 bool db_server::initialize_user(mysql::database * pmysqldbUser, const char * pszUser)
 {
@@ -81,32 +89,41 @@ bool db_server::initialize()
    || System.directrix()->m_varTopicQuery["app"] == "app-gtech/sensible_netnode"
    || System.directrix()->m_varTopicQuery["app"] == "app-gtech/sensible_service")
    {
-      m_bRemote = false;
-   }
 
+      m_bRemote = false;
+
+   }
 
    m_pdb          = new ::sqlite::base(get_app());
 
    m_pdb->create_long_set("integertable");
+
    m_pdb->create_string_set("stringtable");
 
    string str;
+
    str = Application.dir().userappdata("database.sqlite");
+
    Application.dir().mk(System.dir().name(str));
+
    m_pdb->setDatabase(str);
+
    m_pdb->connect();
 
    m_plongset     = new db_long_set(this);
+
    m_pstrset      = new db_str_set(this);
 
    int32_t iBufferSize = 128 * 1024;
+
    sp(::command_thread) commandthread = System.command();
 
    if(commandthread->m_varTopicQuery.has_property("filesizebuffer"))
    {
-      iBufferSize = commandthread->m_varTopicQuery["filesizebuffer"] * 1024 * 1024;
-   }
 
+      iBufferSize = commandthread->m_varTopicQuery["filesizebuffer"] * 1024 * 1024;
+
+   }
 
 #if !defined(METROWIN) && !defined(APPLEOS)
 
@@ -348,5 +365,11 @@ void db_server::dump(dump_context &) const
 
 db_str_set * db_server::get_db_str_set()
 {
+
    return m_pstrset;
+
 }
+
+
+
+

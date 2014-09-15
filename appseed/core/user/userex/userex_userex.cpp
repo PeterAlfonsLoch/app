@@ -27,12 +27,7 @@ namespace userex
    bool userex::initialize1()
    {
 
-      if(m_pauraapp->is_system())
-      {
-
-         System.factory().creatable_small < keyboard_layout >();
-
-      }
+      System.factory().creatable_small < keyboard_layout >();
 
       m_pshellimageset = new filemanager::_shell::ImageSet(m_pauraapp);
 
@@ -126,35 +121,25 @@ namespace userex
       set_data_server(Application.simpledb().get_data_server());
 
 
-      if(!Application.is_system())
-      {
-
-         m_pufeschema      = new ::user::front_end_schema(get_app());
-         m_pufe            = new ::user::front_end();
-
-      }
-
-      if(Application.is_system())
-      {
+      m_pufeschema      = new ::user::front_end_schema(get_app());
+      m_pufe            = new ::user::front_end();
 
 
-         // form
-         System.factory().creatable_small < form_document >();
-         System.factory().creatable_small < pane_tab_view >();
-         System.factory().creatable_small < form_frame >();
-         System.factory().creatable_small < form_child_frame >();
-         System.factory().creatable_small < form_view >();
+      // form
+      System.factory().creatable_small < form_document >();
+      System.factory().creatable_small < pane_tab_view >();
+      System.factory().creatable_small < form_frame >();
+      System.factory().creatable_small < form_child_frame >();
+      System.factory().creatable_small < form_view >();
 
 
-         // hour (alarm configuration with ease ...
+      // hour (alarm configuration with ease ...
 
-         System.factory().creatable_small < hour_list_view >();
-         System.factory().creatable_small < minute_list_view >();
-         System.factory().creatable_small < second_list_view >();
-         System.factory().creatable_small < simple_toolbar >();
-         System.factory().creatable_small < OrtoButton >();
-
-      }
+      System.factory().creatable_small < hour_list_view >();
+      System.factory().creatable_small < minute_list_view >();
+      System.factory().creatable_small < second_list_view >();
+      System.factory().creatable_small < simple_toolbar >();
+      System.factory().creatable_small < OrtoButton >();
 
 
       //if(Application.m_pdocmanager != NULL)

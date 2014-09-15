@@ -82,6 +82,44 @@ namespace core
 
    }
 
+   bool platform::process_initialize()
+   {
+
+      if(!::platform::application::process_initialize())
+         return false;
+
+      m_spuserex = create_userex();
+
+      if(m_spuserex == NULL)
+         return false;
+
+      m_spuserex->construct(this);
+
+      return true;
+
+   }
+
+
+   bool platform::initialize1()
+   {
+
+      if(!::platform::application::initialize1())
+         return false;
+
+      if(!m_spuserex->initialize())
+         return false;
+
+      if(!m_spuserex->initialize1())
+         return false;
+
+      if(!m_spuserex->initialize2())
+         return false;
+
+      return true;
+
+
+   }
+
 
    bool platform::initialize()
    {
@@ -1723,44 +1761,6 @@ namespace core
    }
    
    
-   bool platform::process_initialize()
-   {
-      
-      if(::platform::application::process_initialize())
-         return false;
-      
-      m_spuserex = create_userex();
-      
-      if(m_spuserex == NULL)
-         return false;
-      
-      m_spuserex->construct(this);
-      
-      return true;
-      
-   }
-
-   
-   bool platform::initialize1()
-   {
-
-      if(!::platform::application::initialize1())
-         return false;
-
-      if(!m_spuserex->initialize())
-         return false;
-      
-      if(!m_spuserex->initialize1())
-         return false;
-
-      if(!m_spuserex->initialize2())
-         return false;
-      
-      return true;
-
-
-   }
-
 
    bool platform::is_serviceable()
    {
