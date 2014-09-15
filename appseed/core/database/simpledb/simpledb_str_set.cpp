@@ -393,7 +393,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       string strValue(lpcsz);
       strValue.replace("'", "''");
 
-      sp(::sqlite::base) pdb   = m_pcore->db()->GetImplDatabase();
+      sp(::sqlite::base) pdb   = m_pcore->db()->get_database();
       string strSql;
       string str;
       slDatabase.lock();
