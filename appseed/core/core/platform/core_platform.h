@@ -134,13 +134,17 @@ namespace core
       void launch_app(const char * psz);
       void install_app(const char * psz);
 
+      
+      
       sp(::bergedge::document)                  get_document();
       sp(::bergedge::view)                      get_view();
       sp(::platform::document)                  get_platform();
       sp(::nature::document)                    get_nature();
       
       
-      inline sp(::userex::userex)               Platform.userex()       { return m_spuserex; }
+      inline sp(::userex::userex)               userex()       { return m_spuserex; }
+      
+      
 
       virtual bool process_initialize();
 
