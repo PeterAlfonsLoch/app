@@ -28,24 +28,21 @@ class CLASS_DECL_CORE db_server :
 public:
 
 
-   sp(::sqlite::base)        m_pdb;
-   //sp(::sqlite::base)        m_pdatabaseImpl;
-   //::critical_section      m_csImplDatabase;
+   sp(::sqlite::base)         m_pdb;
+   mutex                      m_mutexDb;
 
-   ::simpledb::base *      m_pbase;
+   ::simpledb::base *         m_pbase;
 
-//   db_stra_set *           m_pSongsDirsSet;
-   db_long_set *           m_pLongsSet;
-   db_str_set *            m_pStringSet;
-   bool                    m_bWorking;
-   bool                    m_bFullBuild;
-   string                  m_strDatabase;
-   DBFileSystemSizeSet *   m_pfilesystemsizeset;
-   class ::im_post *       m_pimpost;
-   class ::veiev_post *    m_pveievpost;
+   db_long_set *              m_plongset;
+   db_str_set *               m_pstrset;
+   bool                       m_bWorking;
+   string                     m_strDatabase;
    
-   mysql::database *       m_pmysqldbUser;
-   string                  m_strUser;
+   DBFileSystemSizeSet *      m_pfilesystemsizeset;
+
+   mysql::database *          m_pmysqldbUser;
+   string                     m_strUser;
+
 
    db_server(sp(::aura::application) papp);
    virtual ~db_server();

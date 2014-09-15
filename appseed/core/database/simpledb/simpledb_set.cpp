@@ -3,38 +3,34 @@
 
 db_set::db_set(db_server * pserver, const char * pszTable)
 {
+
    m_pdataserver = pserver;
-   sp(::sqlite::base) pdb   = db()->GetImplDatabase();
-   if(pdb != NULL) {
-   m_pdataset = (sp(::sqlite::set)) pdb->CreateDataset();
-   m_strTable = pszTable;}
-   
-   //create Integer Table if necessary
-   /*try
+
+   sp(::sqlite::base) pdb   = db()->get_database();
+
+   if(pdb != NULL)
    {
-      pdb->start_transaction();
-      m_pdataset->query("select * from sqlite_master where type like 'table' and name like '" + m_strTable + "'");
-      if (m_pdataset->num_rows()==0)
-      {
-         m_pdataset->exec("create table integertable (id text primary key, value integer)");
-      }
-      pdb->commit_transaction();
+
+      m_pdataset = (sp(::sqlite::set)) pdb->CreateDataset();
+
    }
-   catch (...)
-   {
-      pdb->rollback_transaction();
-      return;
-   }*/
+
+   m_strTable = pszTable;
+
 }
+
 
 db_set::~db_set()
 {
 
 }
 
+
 db_server * db_set::db()
 {
+
    return dynamic_cast < db_server * > (m_pdataserver);
+
 }
 
 
