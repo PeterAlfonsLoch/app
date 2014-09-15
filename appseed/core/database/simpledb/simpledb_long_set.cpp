@@ -272,7 +272,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
    {
 
 
-      single_lock slDatabase(m_pcore->db()->GetImplCriticalSection());
+      single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex);
 
       string strKey;
       strKey = lpKey;
@@ -347,7 +347,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
 #endif
    else
    {
-      single_lock slDatabase(m_pcore->db()->GetImplCriticalSection());
+      single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex);
       string strKey;
       strKey = lpKey;
       strKey.replace("'", "''");

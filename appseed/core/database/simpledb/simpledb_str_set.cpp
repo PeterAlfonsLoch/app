@@ -288,8 +288,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
          return true;
       }
 
-      single_lock slDatabase(m_pcore->db()->GetImplCriticalSection(),true);
-
+      single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex,true);
 
       property_set set(get_app());
 
@@ -343,7 +342,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 #endif
    else
    {
-      single_lock slDatabase(m_pcore->db()->GetImplCriticalSection());
+      single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex);
 
       string strKey;
       strKey = lpKey;
@@ -385,7 +384,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
    {
       if(m_pcore->db() == NULL)
          return false;
-      single_lock slDatabase(m_pcore->db()->GetImplCriticalSection());
+      single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex);
 
       string strKey;
       strKey = lpKey;
