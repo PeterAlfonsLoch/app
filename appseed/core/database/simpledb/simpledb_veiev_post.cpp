@@ -163,18 +163,23 @@ var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
    }
 
    ::count iNumRows = m_pdataset->num_rows();
+
    if(iNumRows <= 0)
       return false;
 
-
    while(!m_pdataset->eof())
    {
+
       var.vara().add(current());
+
       m_pdataset->next();
+
    }
 
    return var;
+
 }
+
 
 int64_t veiev_post::get_count()
 {
