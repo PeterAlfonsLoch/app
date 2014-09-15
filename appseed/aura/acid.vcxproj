@@ -2013,15 +2013,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="aura\node\node.h" />
-    <ClInclude Include="aura\node\windows\os.h" />
-    <ClInclude Include="aura\node\windows\win1.h" />
     <ClInclude Include="aura\node\windows\windows_application.h" />
     <ClInclude Include="aura\node\windows\windows_exception.h" />
     <ClInclude Include="aura\node\windows\windows_factory_exchange.h" />
     <ClInclude Include="aura\node\windows\windows_file.h" />
     <ClInclude Include="aura\node\windows\windows_file_find.h" />
     <ClInclude Include="aura\node\windows\windows_folder_watch.h" />
-    <ClInclude Include="aura\node\windows\windows_implementation.h" />
     <ClInclude Include="aura\node\windows\windows_os.h" />
     <ClInclude Include="aura\node\windows\windows_pipe.h" />
     <ClInclude Include="aura\node\windows\windows_process.h" />
@@ -3497,7 +3494,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\geometry\geometry_point.h" />
     <ClInclude Include="primitive\geometry\geometry_rect.h" />
     <ClInclude Include="primitive\geometry\geometry_size.h" />
+    <ClInclude Include="primitive\math\math_complex.h" />
     <ClInclude Include="primitive\math\math_count.h" />
+    <ClInclude Include="primitive\math\math_departament.h" />
     <ClInclude Include="primitive\math\math_index.h" />
     <ClInclude Include="primitive\math\math_math.h" />
     <ClInclude Include="primitive\math\math_math_rng.h" />
@@ -3508,7 +3507,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\math\math_scalar_enum.h" />
     <ClInclude Include="primitive\math\math_static_numeric_info.h" />
     <ClInclude Include="primitive\math\math_mkint_c.h" />
-    <ClInclude Include="primitive\math\_math.h" />
+    <ClInclude Include="primitive\math\math_std_template.h" />
     <ClInclude Include="primitive\primitive_application_bias.h" />
     <ClInclude Include="primitive\primitive_bit.h" />
     <ClInclude Include="primitive\primitive_check.h" />
@@ -3708,6 +3707,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_check_interface.h" />
     <ClInclude Include="user\user\user_create_context.h" />
     <ClInclude Include="user\user\user_timer_array.h" />
+    <ClCompile Include="primitive\math\math_cvt.cpp" />
+    <ClCompile Include="primitive\math\math_cvt_g.cpp" />
     <ClCompile Include="primitive\math\math_departament.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp" />

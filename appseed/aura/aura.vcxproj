@@ -2003,7 +2003,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\node\windows\windows_file.h" />
     <ClInclude Include="aura\node\windows\windows_file_find.h" />
     <ClInclude Include="aura\node\windows\windows_folder_watch.h" />
-    <ClInclude Include="aura\node\windows\windows_implementation.h" />
     <ClInclude Include="aura\node\windows\windows_os.h" />
     <ClInclude Include="aura\node\windows\windows_pipe.h" />
     <ClInclude Include="aura\node\windows\windows_registry.h" />

@@ -1532,9 +1532,6 @@
     <ClInclude Include="aura\node\windows\windows_folder_watch.h">
       <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_implementation.h">
-      <Filter>Header Files\aura\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="aura\node\windows\windows_os.h">
       <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
@@ -3530,9 +3527,6 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
