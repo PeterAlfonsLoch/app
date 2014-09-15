@@ -19,17 +19,17 @@ namespace sockets
 
 
    net::net(sp(::aura::application) papp) :
-      element(papp),
-      m_mapCache(papp,"sockets::net::m_mapCache"),
-      m_mapReverseCache(papp,"sockets::net::m_mapReverseCache")
+      element(papp)
+//      m_mapCache(papp,""),
+  //    m_mapReverseCache(papp,"sockets::net::m_mapReverseCache")
    {
 
       m_bInitialized = false;
-      m_mapCache.m_bAutoGudoSet = false;
-      m_mapReverseCache.m_bAutoGudoSet = false;
+      //m_mapCache.m_bAutoGudoSet = false;
+      //m_mapReverseCache.m_bAutoGudoSet = false;
 
-      m_mapCache.remove_all();
-      m_mapReverseCache.remove_all();
+      //m_mapCache.remove_all();
+      //m_mapReverseCache.remove_all();
 
    }
 
@@ -66,9 +66,9 @@ namespace sockets
       if(!m_bInitialized)
          return false;
 
-      m_mapCache.gudo_set();
+//      m_mapCache.gudo_set();
 
-      m_mapReverseCache.gudo_set();
+  //    m_mapReverseCache.gudo_set();
 
       return true;
 

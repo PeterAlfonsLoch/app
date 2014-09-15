@@ -1469,9 +1469,6 @@
     <ClInclude Include="aura\os\ansios\ansios_thread.h">
       <Filter>Header Files\aura\os\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\_math.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\math\math_mkint_c.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
@@ -2068,6 +2065,9 @@
     </ClInclude>
     <ClInclude Include="multithreading\service\service_thread_pool.h">
       <Filter>Header Files\multithreading\service</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math_departament.h">
+      <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2839,9 +2839,6 @@
     <ClCompile Include="aura\aura\aura_trace.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\math\_math.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_folder_watch.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -3496,6 +3493,9 @@
     <ClCompile Include="multithreading\service\service_plain_service.cpp">
       <Filter>Source Files\multithreading\service</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\math\math_departament.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3530,9 +3530,6 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

@@ -165,7 +165,7 @@ namespace str
             return false;
          }
       }
-      while(tolower(*lpcsz) == tolower(*lpcszPrefix))
+      while(tolower((byte) *lpcsz) == tolower((byte)*lpcszPrefix))
       {
          lpcsz++;
          lpcszPrefix++;
@@ -198,11 +198,11 @@ namespace str
             return false;
          }
       }
-      while(*lpcsz && isspace(*lpcsz))
+      while(*lpcsz && isspace((byte) *lpcsz))
          lpcsz++;
       if(!*lpcsz)
          return false;
-      while(tolower(*lpcsz) == tolower(*lpcszPrefix))
+      while(tolower(*lpcsz) == tolower((byte) *lpcszPrefix))
       {
          lpcsz++;
          lpcszPrefix++;

@@ -337,7 +337,7 @@ CLASS_DECL_BASE int_bool from_string(in_addr * addrParam, const char * string)
 
    addr->S_un.S_un_b.s_b4 = i4;
 
-   addr->S_un.S_addr = HTONL(addr->S_un.S_addr);
+   //addr->S_un.S_addr = HTONL(addr->S_un.S_addr);
 
    return true;
 
@@ -349,9 +349,9 @@ CLASS_DECL_BASE string to_vsstring(const in_addr * addrParam)
 
    c_in_addr * paddr = (c_in_addr *) addrParam;
 
-   c_in_addr addr;
+   c_in_addr & addr = *paddr;
 
-   addr.S_un.S_addr = NTOHL(paddr->S_un.S_addr);
+   //addr.S_un.S_addr = NTOHL(paddr->S_un.S_addr);
 
    string str;
 

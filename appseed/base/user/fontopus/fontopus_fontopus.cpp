@@ -14,8 +14,6 @@ namespace fontopus
 
       m_pthreadCreatingUser      = NULL;
 
-      //Application.gudo_get("fontopus::fontopus::m_mapFontopusServer",m_mapFontopusServer);
-
    }
 
 
@@ -467,8 +465,6 @@ namespace fontopus
       m_mapFontopusSession.set_at(strFontopusServer, psession);
 
       m_mapFontopusServer.set_at(strHost, strFontopusServer);
-
-      //Application.gudo_set("fontopus::fontopus::m_mapFontopusServer",m_mapFontopusServer);
 
       iRetry--;
 
