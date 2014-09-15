@@ -198,13 +198,18 @@ int64_t veiev_post::get_count()
    strSql = "select COUNT(*) as ::count FROM veiev_post";
 
    slDatabase.lock();
+
    try
    {
+
       m_pdataset->query(strSql);
+
    }
    catch(...)
    {
+
       return 0;
+
    }
 
    if(m_pdataset->num_rows() <= 0)
@@ -215,3 +220,43 @@ int64_t veiev_post::get_count()
    return m_pdataset->fv("count");
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
