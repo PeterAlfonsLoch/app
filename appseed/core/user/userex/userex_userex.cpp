@@ -654,7 +654,7 @@ namespace userex
    {
       if(pwndParent != NULL && pwndParent->m_pauraapp != get_app())
       {
-         return App(pwndParent->m_pauraapp).Platform.userex()->create_form(pcallback,pwndParent,var);
+         return Plat(pwndParent->m_pauraapp).userex()->create_form(pcallback,pwndParent,var);
       }
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
@@ -701,7 +701,7 @@ namespace userex
    {
       if(pwndParent != NULL && pwndParent->m_pauraapp != get_app())
       {
-         return App(pwndParent->m_pauraapp).Platform.userex()->create_child_form(pcallback,pwndParent,var);
+         return Plat(pwndParent->m_pauraapp).userex()->create_child_form(pcallback,pwndParent,var);
       }
       if(m_ptemplateChildForm == NULL)
          return NULL;
