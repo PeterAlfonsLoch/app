@@ -35,7 +35,7 @@ BaseMenuCentral::~BaseMenuCentral()
 
 BaseMenuCentral * BaseMenuCentral::GetMenuCentral(sp(::aura::application) papp)
 {
-   return App(papp).Platform.userex()->get_menucentral();
+   return Plat(papp).userex()->get_menucentral();
 }
 
 /*bool BaseMenuCentral::MenuV033CreateImageMap(UINT uiaMenuV003Map [][2])

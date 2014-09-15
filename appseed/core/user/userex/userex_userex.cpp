@@ -532,13 +532,13 @@ namespace userex
    ::user::front_end_schema * GetUfeSchema(sp(::aura::application) papp)
    {
 
-      return App(papp).Platform.userex()->GetUfeSchema();
+      return Plat(papp).userex()->GetUfeSchema();
 
    }
 
    ::user::front_end * GetUfe(sp(::aura::application) papp)
    {
-      return App(papp).Platform.userex()->GetUfe();
+      return Plat(papp).userex()->GetUfe();
    }
 
 
