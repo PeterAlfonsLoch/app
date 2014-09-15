@@ -388,8 +388,20 @@ namespace user
       {
          m_pviewcreator->on_show_view();
       }
+      
+      if(m_pviewdata->m_pwnd == NULL && m_pviewdata->m_pholder != NULL)
+      {
 
-      if(m_pviewdata != NULL && m_pviewdata->m_pwnd != NULL)
+         if(m_pviewdata->m_pholder->m_uiptraHold.get_count() > 0)
+         {
+
+            m_pviewdata->m_pwnd = &m_pviewdata->m_pholder->m_uiptraHold[0];
+
+         }
+
+      }
+
+      if(m_pviewdata != NULL && m_pviewdata->m_pholder != NULL)
       {
          rect rectClient;
          m_pviewdata->m_pholder->GetClientRect(rectClient);
@@ -408,8 +420,11 @@ namespace user
             }
 
          }
-         m_pviewdata->m_pwnd->UpdateWindow();
-         m_pviewdata->m_pwnd->SetFocus();
+         if(m_pviewdata->m_pwnd != NULL)
+         {
+            m_pviewdata->m_pwnd->UpdateWindow();
+            m_pviewdata->m_pwnd->SetFocus();
+         }
       }
 
       ((GetParentFrame()))->RedrawWindow();

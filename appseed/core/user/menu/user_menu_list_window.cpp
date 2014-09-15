@@ -317,7 +317,7 @@ namespace user
 
    void menu_list_window::_001OnDraw(::draw2d::graphics *pdc)
    {
-      rect rectClient;
+/*      rect rectClient;
       GetClientRect(rectClient);
       if(_001IsTranslucent())
       {
@@ -335,9 +335,26 @@ namespace user
 #else
          throw todo(get_app());
 #endif
-      }
+      }*/
 
       ::user::interaction::_001OnDraw(pdc);
+   }
+
+
+   bool menu_list_window::get_color(COLORREF & cr,e_color ecolor)
+   {
+      
+      bool bOk = menu::get_color(cr,ecolor);
+
+      if(ecolor == color_background)
+      {
+         cr &= 0x00ffffff;
+         cr |= (84 << 24);
+      }
+
+
+      return bOk;
+
    }
 
 

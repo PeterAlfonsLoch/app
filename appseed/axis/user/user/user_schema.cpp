@@ -212,8 +212,12 @@ namespace user
          return ARGB(255,84,84,77);
 
       }
+      else if(ecolor == color_border_hover)
+      {
 
+         return ARGB(255,84,184,77);
 
+      }
 
 
       throw invalid_argument_exception(::get_thread_app());

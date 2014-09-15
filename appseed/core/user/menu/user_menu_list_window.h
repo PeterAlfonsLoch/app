@@ -35,6 +35,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
+      virtual bool get_color(COLORREF & cr,e_color ecolor);
 
       virtual void clear();
 
