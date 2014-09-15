@@ -73,16 +73,20 @@ bool veiev_post::write(var rec)
 
 var veiev_post::last()
 {
+
    if(m_pdataserver == NULL)
       return false;
 
-   single_lock slDatabase(db()->GetImplCriticalSection());
+   sp(::sqlite::base) pdb = db()->get_database();
+
+   single_lock slDatabase(pdb->m_pmutex);
 
    string strSql;
+
    strSql = "select * FROM veiev_post ORDER BY `datetime`DESC, `index` DESC LIMIT 1";
 
-
    slDatabase.lock();
+
    try
    {
       m_pdataset->query(strSql);
