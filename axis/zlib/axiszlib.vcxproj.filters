@@ -9,9 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\include">
-      <UniqueIdentifier>{6dc6a995-c412-416b-8f65-ea6b86c86ef9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Assembler Files">
       <UniqueIdentifier>{c6fc5d5c-8a8b-4552-ac6d-9689b8afa14c}</UniqueIdentifier>
     </Filter>
@@ -94,11 +91,11 @@
     <ClInclude Include="zutil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\zconf.h">
-      <Filter>Header Files\include</Filter>
+    <ClInclude Include="zconf.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\zlib.h">
-      <Filter>Header Files\include</Filter>
+    <ClInclude Include="zlib.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

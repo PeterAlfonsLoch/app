@@ -540,8 +540,6 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClCompile Include="zutil.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\zconf.h" />
-    <ClInclude Include="..\..\include\zlib.h" />
     <ClInclude Include="crc32.h" />
     <ClInclude Include="deflate.h" />
     <ClInclude Include="gzguts.h" />
@@ -550,6 +548,8 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClInclude Include="inflate.h" />
     <ClInclude Include="inftrees.h" />
     <ClInclude Include="trees.h" />
+    <ClInclude Include="zconf.h" />
+    <ClInclude Include="zlib.h" />
     <ClInclude Include="zutil.h" />
   </ItemGroup>
   <ItemGroup>

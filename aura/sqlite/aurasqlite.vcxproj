@@ -530,8 +530,8 @@ copy Source\FreeImage.h Dist
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\sqlite3.h" />
-    <ClInclude Include="..\..\include\sqlite3ext.h" />
+    <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="sqlite3ext.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="aurasqlite.def" />

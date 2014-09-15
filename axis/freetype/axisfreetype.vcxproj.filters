@@ -151,10 +151,10 @@
     <ClInclude Include="..\..\include\config\ftstdlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\config\ftconfig.h">
+    <ClInclude Include="..\..\include\config\ftconfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\config\ftoption.h">
+    <ClInclude Include="..\..\include\config\ftoption.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
