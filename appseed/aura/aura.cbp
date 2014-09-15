@@ -364,6 +364,7 @@
 		<Unit filename="aura/os/ansios/ansios_cross_windows_user.cpp" />
 		<Unit filename="aura/os/ansios/ansios_file.h" />
 		<Unit filename="aura/os/ansios/ansios_file_std.cpp" />
+		<Unit filename="aura/os/ansios/ansios_message_loop.cpp" />
 		<Unit filename="aura/os/ansios/ansios_multithreading.cpp" />
 		<Unit filename="aura/os/ansios/ansios_multithreading.h" />
 		<Unit filename="aura/os/ansios/ansios_thread.h" />
@@ -431,7 +432,6 @@
 		<Unit filename="aura/os/linux/linux_library.cpp" />
 		<Unit filename="aura/os/linux/linux_linux.h" />
 		<Unit filename="aura/os/linux/linux_lock.cpp" />
-		<Unit filename="aura/os/linux/linux_message_loop.cpp" />
 		<Unit filename="aura/os/linux/linux_multithreading.cpp" />
 		<Unit filename="aura/os/linux/linux_os.cpp" />
 		<Unit filename="aura/os/linux/linux_process.cpp" />
@@ -821,11 +821,13 @@
 		<Unit filename="primitive/geometry/geometry_size.h" />
 		<Unit filename="primitive/geometry/geometry_types.cpp" />
 		<Unit filename="primitive/geometry/geometry_types.h" />
-		<Unit filename="primitive/math/_math.cpp" />
 		<Unit filename="primitive/math/_math.h" />
+		<Unit filename="primitive/math/math_complex.h" />
 		<Unit filename="primitive/math/math_count.h" />
 		<Unit filename="primitive/math/math_cvt.cpp" />
 		<Unit filename="primitive/math/math_cvt_g.cpp" />
+		<Unit filename="primitive/math/math_departament.cpp" />
+		<Unit filename="primitive/math/math_departament.h" />
 		<Unit filename="primitive/math/math_index.h" />
 		<Unit filename="primitive/math/math_math.cpp" />
 		<Unit filename="primitive/math/math_math.h" />

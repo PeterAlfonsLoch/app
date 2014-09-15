@@ -665,8 +665,15 @@ FT_BEGIN_HEADER
 
 FT_END_HEADER
 
+#ifdef LINUX
+#define HAVE_UNISTD_H 1
+#define HAVE_FCNTL_H 1
+#endif
 
 #endif /* __FTCONFIG_H__ */
 
 
 /* END */
+
+
+
