@@ -183,16 +183,18 @@ var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
 
 int64_t veiev_post::get_count()
 {
+
    if(m_pdataserver == NULL)
       return 0;
 
-   single_lock slDatabase(db()->GetImplCriticalSection());
+   sp(::sqlite::base) pdb = db()->get_database();
+
+   single_lock slDatabase(pdb->m_pmutex);
 
    class var var;
 
-//   sp(::sqlite::base) pdb = db()->GetImplDatabase();
-
    string strSql;
+
    strSql = "select COUNT(*) as ::count FROM veiev_post";
 
    slDatabase.lock();
