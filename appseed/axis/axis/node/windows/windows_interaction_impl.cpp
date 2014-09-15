@@ -1164,14 +1164,17 @@ namespace windows
 
       if(pbase->m_uiMessage == WM_KEYDOWN ||
          pbase->m_uiMessage == WM_KEYUP ||
-         pbase->m_uiMessage == WM_CHAR)
+         pbase->m_uiMessage == WM_CHAR ||
+         pbase->m_uiMessage == WM_SYSKEYDOWN ||
+         pbase->m_uiMessage == WM_SYSKEYUP ||
+         pbase->m_uiMessage == WM_SYSCHAR)
       {
 
          SCAST_PTR(::message::key,pkey,pobj);
 
          Session.user()->keyboard().translate_os_key_message(pkey);
 
-         if(pbase->m_uiMessage == WM_KEYDOWN)
+         if(pbase->m_uiMessage == WM_KEYDOWN || pbase->m_uiMessage == WM_SYSKEYDOWN)
          {
             try
             {
@@ -1181,7 +1184,7 @@ namespace windows
             {
             }
          }
-         else if(pbase->m_uiMessage == WM_KEYUP)
+         else if(pbase->m_uiMessage == WM_KEYUP || pbase->m_uiMessage == WM_SYSKEYUP)
          {
             try
             {
@@ -1382,9 +1385,12 @@ namespace windows
          pbase->set_lresult(DefWindowProc(pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
          return;
       }
-      else if(pbase->m_uiMessage == WM_KEYDOWN ||
+      if(pbase->m_uiMessage == WM_KEYDOWN ||
          pbase->m_uiMessage == WM_KEYUP ||
-         pbase->m_uiMessage == WM_CHAR)
+         pbase->m_uiMessage == WM_CHAR ||
+         pbase->m_uiMessage == WM_SYSKEYDOWN ||
+         pbase->m_uiMessage == WM_SYSKEYUP ||
+         pbase->m_uiMessage == WM_SYSCHAR)
       {
 
          message::key * pkey = (::message::key *) pbase;
