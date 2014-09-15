@@ -59,8 +59,8 @@ namespace backview
       //iStart      = (int32_t) TransitionEffectRadialUnveil;
       //iEnd      = (int32_t) TransitionEffectRadialUnveil;
 
-      iStart   = (int32_t) TransitionEffectpixelate_RightLeft;
-      iEnd     = (int32_t) TransitionEffectRadialUnveil;
+      //iStart   = (int32_t) TransitionEffectpixelate_RightLeft;
+      //iEnd     = (int32_t) TransitionEffectRadialUnveil;
 
       for(int32_t i = iStart; i <= iEnd; i++)
       {
@@ -92,11 +92,11 @@ namespace backview
       //iStart = iEnd = (int32_t) VisualEffectRotateEx2;
       //iStart = iEnd = (int32_t) VisualEffectRotateEx3;
 
-      //iStart   = (int32_t) VisualEffectPixelExplosion;
-      //iEnd     = (int32_t) VisualEffectRotateEx3;
+      iStart   = (int32_t) VisualEffectPixelExplosion;
+      iEnd     = (int32_t) VisualEffectRotateEx3;
 
-      iStart   = (int32_t) VisualEffectNoPrecisionRotateTrackcolor_blend_;
-      iEnd     = (int32_t) VisualEffectNoPrecisionRotateTrackcolor_blend_;
+      //iStart   = (int32_t) VisualEffectNoPrecisionRotateTrackcolor_blend_;
+      //iEnd     = (int32_t) VisualEffectNoPrecisionRotateTrackcolor_blend_;
 
       for(int32_t i = iStart; i <= iEnd; i++)
       {
