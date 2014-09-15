@@ -45,7 +45,11 @@
 #  endif
 # endif
 
+#if !defined(STRINGPREP_H)
+
 typedef long glong;
+
+#endif
 
 # ifdef __cplusplus
 extern "C"

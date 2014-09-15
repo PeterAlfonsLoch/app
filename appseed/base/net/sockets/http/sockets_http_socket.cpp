@@ -1,6 +1,6 @@
 #include "framework.h" // from "base/net/net_sockets.h"
 
-#ifdef LINUX
+#if defined(LINUX) || defined(APPLEOS)
 
 #include <sys/time.h>
 

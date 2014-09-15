@@ -127,7 +127,7 @@ namespace hotplugin
       virtual void plugin_system_redraw();
 
       
-#ifndef WINDOWS
+#if !defined(WINDOWS) && !defined(APPLEOS)
       using ::user::interaction::message_handler;
       virtual int32_t message_handler(XEvent * pevent);
 #endif

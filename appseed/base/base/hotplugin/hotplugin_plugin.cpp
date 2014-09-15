@@ -208,7 +208,7 @@ namespace hotplugin
       return 0;
    }*/
 
-#else
+#elif defined(LINUX) || defined(SOLARIS)
 
    int32_t plugin::message_handler(XEvent * pevent)
    {

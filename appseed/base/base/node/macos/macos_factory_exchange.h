@@ -5,6 +5,10 @@ namespace macos
 {
 
    
+   namespace base
+   {
+   
+   
    class CLASS_DECL_BASE factory_exchange :
       virtual public ::object
    {
@@ -16,6 +20,9 @@ namespace macos
       
       
    };
+      
+      
+   } // namespace base
    
 
 } // namespace macos

@@ -12,6 +12,15 @@
 
 #endif
 
+#ifdef APPLEOS
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+
+
+#endif
+
 
 #include "net.h"
 

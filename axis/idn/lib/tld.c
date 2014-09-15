@@ -41,7 +41,7 @@
 /* Get specifications. */
 #include <tld.h>
 
-typedef long glong;
+//typedef long glong;
 
 /* Array of built-in domain restriction structures.  See tlds.c.  */
 extern const Tld_table *_tld_tables[];

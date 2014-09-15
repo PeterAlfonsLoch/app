@@ -30,7 +30,6 @@
 #ifndef STRINGPREP_H
 # define STRINGPREP_H
 
-typedef unsigned int uint32_t;
 
 # ifndef IDNAPI
 #  if defined LIBIDN_BUILDING && defined HAVE_VISIBILITY && HAVE_VISIBILITY
@@ -44,8 +43,17 @@ typedef unsigned int uint32_t;
 #  endif
 # endif
 
+#ifndef CA2_AURA
+
+typedef unsigned int uint32_t;
+
+#endif
+
+#if !defined(PR29_H)
 
 typedef long glong;
+
+#endif
 
 # include <stddef.h>		/* glong */
 # include <sys/types.h>		/* ssize_t */

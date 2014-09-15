@@ -1,13 +1,6 @@
 #pragma once
 
 
-#define SECURITY_WIN32
-
-
-
-#define CLASS_DECL_BASE
-
-
 string get_error_message(DWORD dwError);
 
 sp(::aura::application)     mac_instantiate_application(sp(::aura::application) pappSystem, const char * pszId);
@@ -50,8 +43,6 @@ CLASS_DECL_BASE void AfxResetMsgCache();
 // for backward compatibility to previous versions
 #define _AfxHookWindowCreate    AfxHookWindowCreate
 #define _AfxUnhookWindowCreate  AfxUnhookWindowCreate
-
-#pragma once
 
 
 // from wincore.cpp

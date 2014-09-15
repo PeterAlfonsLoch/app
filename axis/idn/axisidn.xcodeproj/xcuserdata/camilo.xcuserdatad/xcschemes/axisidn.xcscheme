@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9AA5E4C216F7C61B005C45CE"
-               BuildableName = "lib_ca2freeimage.dylib"
-               BlueprintName = "axisbzip2"
+               BuildableName = "libaxisidn.dylib"
+               BlueprintName = "axisidn"
                ReferencedContainer = "container:axisidn.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

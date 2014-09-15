@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
 
-#ifdef LINUX
+#if defined(LINUX) || defined(APPLEOS)
 
 #include <pthread.h>
 

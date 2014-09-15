@@ -42,8 +42,11 @@
 #  endif
 # endif
 
+#if !defined(STRINGPREP_H)
 
 typedef long glong;
+
+#endif
 
 # include <stddef.h>		/* glong */
 //////# include <idn-int.h>		/* uint32_t */

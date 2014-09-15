@@ -1,10 +1,9 @@
 #include "framework.h"
+#include "macos.h"
 
 
-#ifndef WINDOWS
 #include <sys/stat.h>
 #include <ctype.h>
-#endif
 
 
 struct PROCESS_INFO_t
