@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>core.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>53</integer>
+		</dict>
 		<key>core_ios.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,6 +22,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>9A19A1A419C6F50B0018DF7D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9A8897B514C2C8DB006B4023</key>
 		<dict>
 			<key>primary</key>

@@ -25,8 +25,6 @@ namespace core
 
       ::simpledb::simpledb                   m_simpledb;
 
-      sp(::userex::userex)                   m_spuserex;
-
       bool                                   m_bService;
 
       class signal                           m_signalAppLanguageChange;
@@ -146,7 +144,6 @@ namespace core
       inline ::calculator::calculator           & calculator() { return *m_pcalculator; }
 
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb; }
-      inline sp(::userex::userex)               userex()       { return m_spuserex; }
 
 
 

@@ -45,25 +45,21 @@ namespace core
       };
 
 
-      index                                                 m_iEdge;
+      index                                              m_iEdge;
 
-      bool                                                  m_bShowPlatform;
+      bool                                               m_bShowPlatform;
 
-      sp(::aura::application)                                   m_pappCurrent;
+      sp(::aura::application)                            m_pappCurrent;
 
+      var                                                m_varTopicFile;
+      var                                                m_varCurrentViewFile;
 
-      var                                                   m_varTopicFile;
-      var                                                   m_varCurrentViewFile;
+      sp(::filemanager::filemanager)                     m_pfilemanager;
 
-
-      sp(::filemanager::filemanager)   m_pfilemanager;
-
-
-
-      sp(::user::single_document_template)                         m_ptemplate_bergedge;
-      sp(::user::single_document_template)                         m_ptemplate_platform;
-      sp(::user::single_document_template)                         m_ptemplate_nature;
-      sp(::user::single_document_template)                         m_ptemplate_html;
+      sp(::user::single_document_template)               m_ptemplate_bergedge;
+      sp(::user::single_document_template)               m_ptemplate_platform;
+      sp(::user::single_document_template)               m_ptemplate_nature;
+      sp(::user::single_document_template)               m_ptemplate_html;
       sp(::bergedge::document)                           m_pbergedgedocument;
       sp(::platform::document)                           m_pplatformdocument;
       sp(::nature::document)                             m_pnaturedocument;
@@ -71,6 +67,10 @@ namespace core
 
 
       string_map < sp(::user::wndfrm::interaction) >     m_mapUinteraction;
+      
+      sp(::userex::userex)                               m_spuserex;
+      
+
 
 
       platform(sp(::aura::application) papp);
@@ -134,10 +134,15 @@ namespace core
       void launch_app(const char * psz);
       void install_app(const char * psz);
 
-      sp(::bergedge::document)            get_document();
-      sp(::bergedge::view)                get_view();
-      sp(::platform::document)          get_platform();
-      sp(::nature::document)            get_nature();
+      sp(::bergedge::document)                  get_document();
+      sp(::bergedge::view)                      get_view();
+      sp(::platform::document)                  get_platform();
+      sp(::nature::document)                    get_nature();
+      
+      
+      inline sp(::userex::userex)               userex()       { return m_spuserex; }
+
+      virtual bool process_initialize();
 
       virtual bool initialize1();
 

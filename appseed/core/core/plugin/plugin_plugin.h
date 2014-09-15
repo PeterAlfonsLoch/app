@@ -79,6 +79,8 @@ namespace plugin
 
 #elif defined(METROWIN)
 
+#elif defined(APPLEOS)
+      
 #else
 
       virtual int32_t message_handler(XEvent * pevent);

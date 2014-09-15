@@ -203,13 +203,6 @@ namespace core
       if(!::base::application::process_initialize())
          return false;
 
-      m_spuserex = create_userex();
-
-      if(m_spuserex == NULL)
-         return false;
-
-      m_spuserex->construct(this);
-
       m_spuserfs = create_userfs();
 
       if(m_spuserfs == NULL)
@@ -268,9 +261,6 @@ namespace core
       if(!m_simpledb.initialize2())
          return false;
 
-
-      if(!m_spuserex->initialize())
-         return false;
 
       if(!is_system() && !is_session() && !is_installing() && !is_uninstalling())
       {
@@ -386,10 +376,6 @@ namespace core
       if(!m_spuser->initialize2())
       return false;*/
 
-      if(!m_spuserex->initialize1())
-         return false;
-      if(!m_spuserex->initialize2())
-         return false;
 
 
 
@@ -1621,7 +1607,7 @@ namespace core
                      strPath = System.dir().element("nodeapp/stage/install/basis/x86/_std",strPath);
 #endif
 
-                     uint32_t dwExitCode;
+                     uint32_t dwExitCode = 0;
                      string str;
                      ::process::process_sp process(allocer());
                      bool bOk = true;
@@ -3414,7 +3400,7 @@ namespace core
    void application::defer_add_document_template(sp(::user::impact_system) ptemplate)
    {
 
-      Application.userex()->defer_add_document_template(ptemplate);
+      Platform.userex()->defer_add_document_template(ptemplate);
 
    }
 
@@ -3998,7 +3984,7 @@ namespace core
    int32_t application::simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
-      if(!Session.user() != NULL)
+      if(userex() == NULL)
          return ::base::application::simple_message_box(puiOwner,pszMessage,fuStyle);
 
       return userex()->simple_message_box(puiOwner,pszMessage,fuStyle);
@@ -4009,7 +3995,7 @@ namespace core
    int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
    {
 
-      if(!Session.user() != NULL)
+      if(userex() == NULL)
          return ::base::application::simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
 
       return userex()->simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
