@@ -1037,6 +1037,8 @@ namespace plugin
       return 0;
 
    }
+   
+#elif defined(APPLEOS)
 
 #else
 
