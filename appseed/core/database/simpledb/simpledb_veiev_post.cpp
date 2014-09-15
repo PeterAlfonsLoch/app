@@ -3,7 +3,7 @@
 veiev_post::veiev_post(db_server * pserver) :
    db_set(pserver, "veiev_post")
 {
-   sp(::sqlite::base) pdb = db()->GetImplDatabase();
+   sp(::sqlite::base) pdb = db()->get_database();
    sp(::sqlite::set)  pds = (sp(::sqlite::set)) pdb->CreateDataset();
 
    //create string Table if necessary
