@@ -112,7 +112,9 @@ var veiev_post::last()
 
 var veiev_post::current()
 {
+
    var ret;
+
    ret.set_type(var::type_propset);
    ret["sender"]     = m_pdataset->fv("sender");
    ret["recipient"]  = m_pdataset->fv("recipient");
@@ -120,7 +122,9 @@ var veiev_post::current()
    ret["datetime"]   = m_pdataset->fv("datetime");
    ret["index"]      = m_pdataset->fv("index");
    ret["message"]    = m_pdataset->fv("message");
+
    return ret;
+
 }
 
 
