@@ -130,31 +130,37 @@ var veiev_post::current()
 
 var veiev_post::get_page(::index iPage, ::index iMessageCountPerPage)
 {
+
    if(m_pdataserver == NULL)
       return false;
 
-   single_lock slDatabase(db()->GetImplCriticalSection());
+   sp(::sqlite::base) pdb = db()->get_database();
+
+   single_lock slDatabase(pdb->m_pmutex);
 
    class var var;
 
-//   sp(::sqlite::base) pdb = db()->GetImplDatabase();
-
    string strSql;
+
    strSql.Format(
       "select * FROM veiev_post ORDER BY datetime DESC, `index` DESC LIMIT %d, %d",
       iPage * iMessageCountPerPage,
       iMessageCountPerPage);
 
    slDatabase.lock();
+
    try
    {
+
       m_pdataset->query(strSql);
+
    }
    catch(...)
    {
-      return false;
-   }
 
+      return false;
+
+   }
 
    ::count iNumRows = m_pdataset->num_rows();
    if(iNumRows <= 0)
