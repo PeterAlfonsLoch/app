@@ -315,51 +315,36 @@ bool db_server::save(const char * lpKey, ::file::input_stream & istream)
 
 sp(::sqlite::base) db_server::get_database()
 {
+
    return m_pdb;
+
 }
 
-critical_section * db_server::GetImplCriticalSection()
-{
-   return &m_csImplDatabase;
-}
 
 bool db_server::data_pulse_change(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::database::update_hint * puh)
 {
-   return ::database::server::data_pulse_change(
-      pclient,
-      idSection,
-      id,
-      idIndex,
-      puh);
+
+   return ::database::server::data_pulse_change(pclient, idSection, id, idIndex, puh);
+
 }
+
 
 void db_server::assert_valid() const
 {
+
    // return void HAHAHAHAHAHA
+
 }
+
 
 void db_server::dump(dump_context &) const
 {
+
    // return void HAHAHAHAHAHA
+
 }
 
-im_post & db_server::im_post()
-{
-   if(m_pimpost == NULL)
-   {
-      m_pimpost = new class im_post(this);
-   }
-   return *m_pimpost;
-}
 
-veiev_post & db_server::veiev_post()
-{
-   if(m_pveievpost == NULL)
-   {
-      m_pveievpost = new class veiev_post(this);
-   }
-   return *m_pveievpost;
-}
 
 db_str_set * db_server::get_db_str_set()
 {
