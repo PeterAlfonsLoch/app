@@ -96,10 +96,6 @@ bool db_server::initialize()
 
    m_pdb          = new ::sqlite::base(get_app());
 
-   m_pdb->create_long_set("integertable");
-
-   m_pdb->create_string_set("stringtable");
-
    string str;
 
    str = Application.dir().userappdata("database.sqlite");
@@ -109,6 +105,10 @@ bool db_server::initialize()
    m_pdb->setDatabase(str);
 
    m_pdb->connect();
+
+   m_pdb->create_long_set("integertable");
+
+   m_pdb->create_string_set("stringtable");
 
    m_plongset     = new db_long_set(this);
 
