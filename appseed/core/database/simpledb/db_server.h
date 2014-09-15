@@ -12,7 +12,6 @@ class DBFileSystemSizeSet;
 class MidiInstrumentSet;
 
 class stringa;
-class CDWArray;
 
 
 namespace sqlite
@@ -30,13 +29,12 @@ public:
 
 
    sp(::sqlite::base)        m_pdb;
-   sp(::sqlite::base)        m_pdatabaseImpl;
-   ::critical_section      m_csImplDatabase;
+   //sp(::sqlite::base)        m_pdatabaseImpl;
+   //::critical_section      m_csImplDatabase;
 
    ::simpledb::base *      m_pbase;
 
-   MidiInstrumentSet *     m_pmidiinstrumentset;
-   db_stra_set *           m_pSongsDirsSet;
+//   db_stra_set *           m_pSongsDirsSet;
    db_long_set *           m_pLongsSet;
    db_str_set *            m_pStringSet;
    bool                    m_bWorking;
@@ -53,8 +51,10 @@ public:
    virtual ~db_server();
 
 
-   ::critical_section * GetImplCriticalSection();
-   sp(::sqlite::base) GetImplDatabase();
+   sp(::sqlite::base) get_database();
+
+   //::critical_section * GetImplCriticalSection();
+   //sp(::sqlite::base) GetImplDatabase();
    MidiInstrumentSet * GetMidiInstrumentSet();
 
 

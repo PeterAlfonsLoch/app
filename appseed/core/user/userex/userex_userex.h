@@ -44,7 +44,7 @@ namespace userex
 
 
       userex(sp(::aura::application) papp);
-      virtual ~Platform.userex();
+      virtual ~userex();
 
 
       filemanager::_shell::ImageSet & shellimageset();

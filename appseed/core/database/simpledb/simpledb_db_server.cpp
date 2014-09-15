@@ -9,14 +9,14 @@ db_server::db_server(sp(::aura::application) papp) :
    element(papp)
 {
    m_pdb                = NULL;
-   m_pSongsDirsSet      = NULL;
+//   m_pSongsDirsSet      = NULL;
    m_pLongsSet          = NULL;
    m_pStringSet         = NULL;
    m_bWorking           = false;
    m_pimpost            = NULL;
    m_pveievpost         = NULL;
    m_pfilesystemsizeset = NULL;
-   m_pdatabaseImpl      = NULL;
+//   m_pdatabaseImpl      = NULL;
    m_bRemote            = true;
    m_pmysqldbUser       = NULL;
 }
@@ -104,17 +104,17 @@ bool db_server::initialize()
    m_pdb->create_string_set("stringtable");
 
    string str;
-   str = Application.dir().userappdata("prop.db");
+   str = Application.dir().userappdata("database.sqlite");
    Application.dir().mk(System.dir().name(str));
    m_pdb->setDatabase(str);
    m_pdb->connect();
 
-   m_pdatabaseImpl = new ::sqlite::base(get_app());
+//   m_pdatabaseImpl = new ::sqlite::base(get_app());
 
-   str = Application.dir().userappdata("_prop002.db");
-   Application.dir().mk(System.dir().name(str));
-   m_pdatabaseImpl->setDatabase(str);
-   m_pdatabaseImpl->connect();
+  // str = Application.dir().userappdata("_prop002.db");
+  // Application.dir().mk(System.dir().name(str));
+  // m_pdatabaseImpl->setDatabase(str);
+  // m_pdatabaseImpl->connect();
 
    m_pLongsSet    = new db_long_set(this);
    m_pStringSet   = new db_str_set(this);
