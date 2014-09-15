@@ -29,15 +29,19 @@ veiev_post::~veiev_post()
 
 bool veiev_post::write(var rec)
 {
-   single_lock slDatabase(db()->GetImplCriticalSection());
 
-   sp(::sqlite::base) pdb = db()->GetImplDatabase();
+   sp(::sqlite::base) pdb = db()->get_database();
+
+   single_lock slDatabase(pdb->m_pmutex);
 
    string strMessage;
+
    strMessage = rec["message"];
+
    strMessage.replace("'", "''");
 
    string strSql;
+
    strSql.Format(
       "insert into veiev_post (`sender`, `recipient`, `sent`, `datetime`, `index`, `message`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s');",
       rec["sender"].get_string(),
@@ -48,7 +52,9 @@ bool veiev_post::write(var rec)
       strMessage);
 
    slDatabase.lock();
+
    pdb->start_transaction();
+
    if(!m_pdataset->exec(strSql))
    {
       pdb->rollback_transaction();
