@@ -89,7 +89,6 @@
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
 		<Unit filename="core/api/api.h" />
-		<Unit filename="core/api/mktime.cpp" />
 		<Unit filename="core/api/mktime.h" />
 		<Unit filename="core/core/core.cpp" />
 		<Unit filename="core/core/core.h" />
@@ -207,11 +206,8 @@
 		<Unit filename="core/data/data_tree_item_data.h" />
 		<Unit filename="core/install/install.h" />
 		<Unit filename="core/install/install_install.h" />
-		<Unit filename="core/linux/os.cpp" />
 		<Unit filename="core/linux/os.h" />
-		<Unit filename="core/linux/os_allocate_debug.cpp" />
 		<Unit filename="core/linux/os_allocate_debug.h" />
-		<Unit filename="core/linux/os_debug.cpp" />
 		<Unit filename="core/linux/os_debug.h" />
 		<Unit filename="core/os/os.h" />
 		<Unit filename="core/os/os_cross_windows.h" />
@@ -282,7 +278,6 @@
 		<Unit filename="core/plugin/plugin_run_start_installer.h" />
 		<Unit filename="core/plugin/plugin_system.cpp" />
 		<Unit filename="core/plugin/plugin_system.h" />
-		<Unit filename="core/service/service_plain_service.cpp" />
 		<Unit filename="core/service/service_plain_service.h" />
 		<Unit filename="core/service/service_thread_pool.h" />
 		<Unit filename="database/database.h" />
