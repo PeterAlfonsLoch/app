@@ -57,12 +57,19 @@ bool veiev_post::write(var rec)
 
    if(!m_pdataset->exec(strSql))
    {
+
       pdb->rollback_transaction();
+
       return false;
+
    }
+
    pdb->commit_transaction();
+
    return true;
+
 }
+
 
 var veiev_post::last()
 {
