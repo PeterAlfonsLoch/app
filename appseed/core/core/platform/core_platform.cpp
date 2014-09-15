@@ -1723,7 +1723,7 @@ namespace core
    }
    
    
-   bool platform::initialize()
+   bool platform::process_initialize()
    {
       
       if(::platform::application::process_initialize())

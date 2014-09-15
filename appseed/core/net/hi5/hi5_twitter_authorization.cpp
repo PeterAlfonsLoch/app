@@ -203,7 +203,7 @@ namespace hi5
          {
          case 1:
             {
-               m_pdocAuth = System.userex()->create_child_form(this, pcreatordata->m_pholder);
+               m_pdocAuth = System.Platform.userex()->create_child_form(this, pcreatordata->m_pholder);
                if(m_pdocAuth != NULL)
                {
                   m_pviewAuth = m_pdocAuth->get_typed_view < form_view > ();

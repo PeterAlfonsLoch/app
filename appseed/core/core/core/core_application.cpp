@@ -3510,14 +3510,14 @@ namespace core
       close_all_documents(FALSE);
 
 
-      Application.userex()->_001CloseAllDocuments(FALSE);
+      Platform.userex()->_001CloseAllDocuments(FALSE);
 
 
       // there are cases where destroying the documents may destroy the
       //  main window of the application.
       //bool b::core::ContextIsDll = afxContextIsDLL;
       //if (!b::core::ContextIsDll && papp->m_pcoreapp->GetVisibleFrameCount() <= 0)
-      if(Application.userex()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
+      if(Platform.userex()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
       {
 
          post_thread_message(WM_QUIT);
@@ -3984,10 +3984,10 @@ namespace core
    int32_t application::simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
-      if(userex() == NULL)
+      if(Platform.userex() == NULL)
          return ::base::application::simple_message_box(puiOwner,pszMessage,fuStyle);
 
-      return userex()->simple_message_box(puiOwner,pszMessage,fuStyle);
+      return Platform.userex()->simple_message_box(puiOwner,pszMessage,fuStyle);
 
    }
 
@@ -3995,10 +3995,10 @@ namespace core
    int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
    {
 
-      if(userex() == NULL)
+      if(Platform.userex() == NULL)
          return ::base::application::simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
 
-      return userex()->simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
+      return Platform.userex()->simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
 
    }
 

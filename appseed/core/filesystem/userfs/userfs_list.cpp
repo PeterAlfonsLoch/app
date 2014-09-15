@@ -494,7 +494,7 @@ namespace userfs
    {
       if (i == 0)
       {
-         return System.userex()->shellimageset().GetImageList16();
+         return System.Platform.userex()->shellimageset().GetImageList16();
       }
       return NULL;
    }

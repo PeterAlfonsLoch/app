@@ -353,7 +353,7 @@ namespace bergedge
             break;
          case PaneViewConfiguration:
          {
-            sp(::form_document) pdoc = System.userex()->create_form(this, this);
+            sp(::form_document) pdoc = Platform.userex()->create_form(this, this);
             if(pdoc == NULL)
                return;
             m_pformOptions = pdoc->get_typed_view < form_view > ();
