@@ -8,23 +8,25 @@ int32_t g_idbchange;
 db_server::db_server(sp(::aura::application) papp) :
    element(papp)
 {
+   
    m_pdb                = NULL;
-//   m_pSongsDirsSet      = NULL;
-   m_pLongsSet          = NULL;
-   m_pStringSet         = NULL;
+   m_plongset           = NULL;
+   m_pstrset            = NULL;
    m_bWorking           = false;
-   m_pimpost            = NULL;
-   m_pveievpost         = NULL;
    m_pfilesystemsizeset = NULL;
-//   m_pdatabaseImpl      = NULL;
    m_bRemote            = true;
    m_pmysqldbUser       = NULL;
+
 }
+
 
 db_server::~db_server()
 {
+
    close();
+
 }
+
 
 string db_server::calc_key(::database::client * pclient, ::database::id & idSection, ::database::id & id, ::database::id & idIndex)
 {
@@ -55,23 +57,8 @@ bool db_server::initialize_user(mysql::database * pmysqldbUser, const char * psz
    m_pmysqldbUser    = pmysqldbUser;
    m_strUser         = pszUser;
 
-//   m_pdb = new ::sqlite::base(get_app());
-
-/*   string str;
-   str = Application.dir().userappdata("prop.db");
-   Application.dir().mk(System.dir().name(str));
-   m_pdb->setDatabase(str);
-   m_pdb->connect();
-
-   m_pdatabaseImpl = new ::sqlite::base(get_app());
-
-   str = Application.dir().userappdata("_prop002.db");
-   Application.dir().mk(System.dir().name(str));
-   m_pdatabaseImpl->setDatabase(str);
-   m_pdatabaseImpl->connect();*/
-
-   m_pLongsSet    = new db_long_set(this);
-   m_pStringSet   = new db_str_set(this);
+   m_plongset        = new db_long_set(this);
+   m_pstrset         = new db_str_set(this);
 
    if(!create_message_queue())
       return false;
@@ -98,7 +85,7 @@ bool db_server::initialize()
    }
 
 
-   m_pdb = new ::sqlite::base(get_app());
+   m_pdb          = new ::sqlite::base(get_app());
 
    m_pdb->create_long_set("integertable");
    m_pdb->create_string_set("stringtable");
@@ -109,15 +96,8 @@ bool db_server::initialize()
    m_pdb->setDatabase(str);
    m_pdb->connect();
 
-//   m_pdatabaseImpl = new ::sqlite::base(get_app());
-
-  // str = Application.dir().userappdata("_prop002.db");
-  // Application.dir().mk(System.dir().name(str));
-  // m_pdatabaseImpl->setDatabase(str);
-  // m_pdatabaseImpl->connect();
-
-   m_pLongsSet    = new db_long_set(this);
-   m_pStringSet   = new db_str_set(this);
+   m_plongset     = new db_long_set(this);
+   m_pstrset      = new db_str_set(this);
 
    int32_t iBufferSize = 128 * 1024;
    sp(::command_thread) commandthread = System.command();
@@ -127,16 +107,6 @@ bool db_server::initialize()
       iBufferSize = commandthread->m_varTopicQuery["filesizebuffer"] * 1024 * 1024;
    }
 
-#if !defined(METROWIN) && !defined(APPLEOS)
-//   m_pfilesystemsizeset = new DBFileSystemSizeSet(&System);
-      m_pfilesystemsizeset =NULL;
-#else
-   m_pfilesystemsizeset = NULL;
-#endif
-
-   //var varChange;
-   //data_server_load("ca2", "database_change", "change", varChange);
-   //g_idbchange = varChange;
 
 #if !defined(METROWIN) && !defined(APPLEOS)
 
@@ -147,13 +117,14 @@ bool db_server::initialize()
 
    m_bWorking = true;
 
-
-
    return true;
+
 }
+
 
 bool db_server::finalize()
 {
+
    m_bWorking = false;
 
    destroy_message_queue();
@@ -165,24 +136,17 @@ bool db_server::finalize()
    }
 
 
-   if(m_pStringSet != NULL)
+   if(m_pstrset != NULL)
    {
-      delete m_pStringSet;
-      m_pStringSet = NULL;
+      delete m_pstrset;
+      m_pstrset = NULL;
    }
 
 
-   if(m_pLongsSet != NULL)
+   if(m_plongset != NULL)
    {
-      delete m_pLongsSet;
-      m_pLongsSet = NULL;
-   }
-
-
-   if(m_pdatabaseImpl != NULL)
-   {
-      m_pdatabaseImpl->disconnect();
-      m_pdatabaseImpl.release();
+      delete m_plongset;
+      m_plongset = NULL;
    }
 
 
@@ -192,9 +156,8 @@ bool db_server::finalize()
       m_pdb.release();
    }
 
-
-
    return true;
+
 }
 
 bool db_server::create_message_queue()
@@ -230,111 +193,71 @@ bool db_server::destroy_message_queue()
 
 void db_server::_001OnTimer(signal_details * pobj)
 {
+   
    SCAST_PTR(::message::timer, ptimer, pobj);
+   
    if(ptimer->m_nIDEvent == 1258477)
    {
-      /*var varChange;
-      var var;
-      data_server_load("ca2", "database_change", "change", varChange);
-      while(g_idbchange <= (int32_t) varChange)
-      {
-         if(data_server_load("ca2", "database_change", g_idbchange, var))
-         {
-            if(var.stra().get_count() == 3)
-            {
-               try
-               {
-                  data_pulse_change(var.stra()[0], var.stra()[1], var.stra()[2], NULL);
-               }
-               catch(...)
-               {
-               }
-            }
-         }
-         g_idbchange++;
-      }
-      */
+
    }
+
 }
 
 
 void db_server::close()
 {
-   if(m_pSongsDirsSet != NULL)
+
+   if(m_pstrset != NULL)
    {
-      delete m_pSongsDirsSet;
-      m_pSongsDirsSet = NULL;
+      delete m_pstrset;
+      m_pstrset = NULL;
    }
-   if(m_pStringSet != NULL)
+
+   if(m_plongset != NULL)
    {
-      delete m_pStringSet;
-      m_pStringSet = NULL;
+      delete m_plongset;
+      m_plongset = NULL;
    }
-   if(m_pLongsSet != NULL)
-   {
-      delete m_pLongsSet;
-      m_pLongsSet = NULL;
-   }
-    m_bWorking = false;
+
+   m_bWorking = false;
+
 }
 
 
 bool db_server::data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::file::output_stream & writable, ::database::update_hint * phint)
 {
+
    UNREFERENCED_PARAMETER(phint);
-//   single_lock sl(&m_csImplDatabase, TRUE);
+
    if(!load(calc_key(pclient, idSection, id, idIndex), writable))
       return false;
+
    return true;
+
 }
+
 
 bool db_server::data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::file::input_stream & readable, ::database::update_hint * phint)
 {
+
    UNREFERENCED_PARAMETER(phint);
-   single_lock sl(&m_csImplDatabase, TRUE);
+
    if(!save(calc_key(pclient, idSection, id, idIndex), readable))
       return false;
-/*   if(idSection.m_id.str() != "ca2" ||
-      id.m_id.str() != "database_change")
-   {
-      try
-      {
-         m_pdb->start_transaction();
-         var varChange;
-         data_server_load("ca2", "database_change", "change", varChange);
-         varChange++;
-         stringa stra;
-         stra.add(idSection.m_id);
-         stra.add(id.m_id);
-         stra.add(idIndex.m_id);
-         if(!data_save("ca2", "database_change", varChange.int32(), stra))
-         {
-            m_pdb->rollback_transaction();
-            goto end_write_change;
-         }
-         if(!data_server_save("ca2", "database_change", "change", varChange))
-         {
-            m_pdb->rollback_transaction();
-            goto end_write_change;
-         }
 
-         m_pdb->commit_transaction();
-      }
-      catch(...)
-      {
-         m_pdb->rollback_transaction();
-      }
-end_write_change:;
-   }*/
    return true;
+
 }
+
 
 bool db_server::load(const char * lpcszKey, string & str)
 {
-   //single_lock sl(&m_csImplDatabase, TRUE);
+
    if(get_db_str_set() == NULL)
       return false;
+
    return get_db_str_set()->load(lpcszKey, str);
+
 }
 
 
@@ -351,7 +274,6 @@ bool db_server::load(const char * lpKey, ::file::output_stream & ostream)
 
    }
 
-
    ::file::byte_output_stream os(ostream);
 
    os.write_from_hex(str);
@@ -360,11 +282,15 @@ bool db_server::load(const char * lpKey, ::file::output_stream & ostream)
 
 }
 
+
 bool db_server::save(const char * lpcszKey, const char * lpcsz)
 {
+
    if(get_db_str_set() == NULL)
       return false;
+
    return get_db_str_set()->save(lpcszKey, lpcsz);
+
 }
 
 
@@ -386,37 +312,10 @@ bool db_server::save(const char * lpKey, ::file::input_stream & istream)
 
 }
 
-/*
-bool db_server::Save(const char * lpcszSection, const char * lpcszKey, WINDOWPLACEMENT & wp)
-{
-   return get_db_long_set()->Save(
-      lpcszSection,
-      lpcszKey,
-      wp);
-}
 
-void db_server::AddListener(_vmsdb::DBCentralListener *plistener)
+sp(::sqlite::base) db_server::get_database()
 {
-   m_listenerset.add(plistener);
-}
-
-bool db_server::GetDefaultImageDirectorySet(stringa *pwstra)
-{
-   m_listenerset.OnEvent(
-      _vmsdb::DBEventGetDefaultImageDirectorySet,
-      (LPARAM) pwstra);
-   return true;
-}
-
-MidiInstrumentSet * db_server::GetMidiInstrumentSet()
-{
-   return m_pmidiinstrumentset;
-}
-*/
-
-sp(::sqlite::base) db_server::GetImplDatabase()
-{
-   return m_pdatabaseImpl;
+   return m_pdb;
 }
 
 critical_section * db_server::GetImplCriticalSection()
@@ -464,5 +363,5 @@ veiev_post & db_server::veiev_post()
 
 db_str_set * db_server::get_db_str_set()
 {
-   return m_pStringSet;
+   return m_pstrset;
 }

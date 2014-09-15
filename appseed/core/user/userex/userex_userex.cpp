@@ -11,37 +11,27 @@ namespace userex
       ::user::core(papp)
    {
 
+      m_pshellimageset  = NULL;
+      m_pufeschema      = NULL;
+      m_pufe            = NULL;
 
-         m_pshellimageset  = NULL;
-         m_pufeschema      = NULL;
-         m_pufe            = NULL;
+   }
 
 
-         //::core::user * papp = dynamic_cast <::core::user *>(::get_thread()->m_pAppThread);
-         //::core::connect(papp->m_pcoreapp->m_signalAppLanguageChange, this, &userex::VmsGuiiOnAppLanguage);
-
-         //m_pwindowmap = NULL;
-
-      }
-
-   userex::~Platform.userex()
+   userex::~userex()
    {
+
    }
 
 
    bool userex::initialize1()
    {
 
-
-
-
-
-
-
-
       if(m_pauraapp->is_system())
       {
+
          System.factory().creatable_small < keyboard_layout >();
+
       }
 
       m_pshellimageset = new filemanager::_shell::ImageSet(m_pauraapp);
@@ -52,6 +42,7 @@ namespace userex
       return true;
 
    }
+
 
    bool userex::initialize()
    {

@@ -29,7 +29,6 @@ public:
 
 
    sp(::sqlite::base)         m_pdb;
-   mutex                      m_mutexDb;
 
    ::simpledb::base *         m_pbase;
 
@@ -49,11 +48,6 @@ public:
 
 
    sp(::sqlite::base) get_database();
-
-   //::critical_section * GetImplCriticalSection();
-   //sp(::sqlite::base) GetImplDatabase();
-   MidiInstrumentSet * GetMidiInstrumentSet();
-
 
    using database::server::data_server_load;
    virtual bool data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::file::output_stream & writable, ::database::update_hint * phint = NULL);
@@ -82,8 +76,6 @@ public:
    bool create_message_queue();
    bool destroy_message_queue();
 
-   virtual class ::im_post & im_post();
-   virtual class ::veiev_post & veiev_post();
 
    inline db_str_set * get_db_str_set();
    DECL_GEN_SIGNAL(_001OnTimer);
