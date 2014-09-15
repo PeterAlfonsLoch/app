@@ -18,7 +18,7 @@ namespace filemanager
 
       m_iAnimate = 0;
 
-      m_pimagelist = System.Platform.userex()->shellimageset().GetImageList16();
+      m_pimagelist = Platform.userex()->shellimageset().GetImageList16();
 
    }
 
@@ -887,11 +887,11 @@ namespace filemanager
          {
 
 #ifdef WINDOWSEX
-            m_pimagelist = System.Platform.userex()->shellimageset().GetImageList16();
+            m_pimagelist = Platform.userex()->shellimageset().GetImageList16();
             try
             {
-               item->m_iImage = System.Platform.userex()->shellimageset().GetImage(m_treeptra[0]->get_handle(),item->m_strPath,_shell::FileAttributeDirectory,_shell::IconNormal);
-               item->m_iImageSelected = System.Platform.userex()->shellimageset().GetImage(m_treeptra[0]->get_handle(),item->m_strPath,_shell::FileAttributeDirectory,_shell::IconOpen);
+               item->m_iImage = Platform.userex()->shellimageset().GetImage(m_treeptra[0]->get_handle(),item->m_strPath,_shell::FileAttributeDirectory,_shell::IconNormal);
+               item->m_iImageSelected = Platform.userex()->shellimageset().GetImage(m_treeptra[0]->get_handle(),item->m_strPath,_shell::FileAttributeDirectory,_shell::IconOpen);
             }
             catch(...)
             {
@@ -1151,13 +1151,13 @@ namespace filemanager
       void tree::on_merge_user_tree(::user::tree * pusertree)
       {
 
-         m_iDefaultImage = System.Platform.userex()->shellimageset().GetImage(
+         m_iDefaultImage = Platform.userex()->shellimageset().GetImage(
             pusertree->get_handle(),
             "foo",
             _shell::FileAttributeDirectory,
             _shell::IconNormal);
 
-         m_iDefaultImageSelected = System.Platform.userex()->shellimageset().GetImage(
+         m_iDefaultImageSelected = Platform.userex()->shellimageset().GetImage(
             pusertree->get_handle(),
             "foo",
             _shell::FileAttributeDirectory,

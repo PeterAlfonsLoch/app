@@ -142,7 +142,7 @@ namespace core
       sp(::nature::document)                    get_nature();
       
       
-      inline sp(::userex::userex)               userex()       { return m_spuserex; }
+      inline sp(::userex::userex)               Platform.userex()       { return m_spuserex; }
       
       
 

@@ -18,7 +18,7 @@ namespace usernet // ca8 + cube
 
    bool network_configuration::initialize(sp(::user::interaction) puiParent)
    {
-      m_pdoc = System.Platform.userex()->create_form(this, puiParent);
+      m_pdoc = Platform.userex()->create_form(this, puiParent);
       if(m_pdoc != NULL)
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();
@@ -30,7 +30,7 @@ namespace usernet // ca8 + cube
 
    bool network_configuration::initialize_child(sp(::user::interaction) puiParent)
    {
-      m_pdoc = System.Platform.userex()->create_child_form(this, puiParent);
+      m_pdoc = Platform.userex()->create_child_form(this, puiParent);
       if(m_pdoc != NULL)
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();
