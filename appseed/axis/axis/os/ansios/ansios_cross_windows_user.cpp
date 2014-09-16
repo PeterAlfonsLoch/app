@@ -15,7 +15,7 @@ int_bool MessageBoxA(oswindow interaction_impl, const char * psz, const char * p
 
 //   return (*g_messageboxa)(interaction_impl, psz, pszTitle, uiFlags);
 
-   return simple_message_box(interaction_impl, psz, pszTitle, uiFlags);
+   return MessageBoxA(interaction_impl, psz, pszTitle, uiFlags);
 
 }
 
