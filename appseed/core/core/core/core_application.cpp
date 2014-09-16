@@ -1651,7 +1651,7 @@ namespace core
 
                      if(bTimeOut)
                      {
-                        ::simple_message_box(NULL,"A time out has occurred while running : " + strPath + "\n\nIt is recommended to kill manually + \"" +strPath+ "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+                        ::simple_message_box(NULL, " - " + notinstalled.m_strId + "\nis not installing in a gracefully-timed way.\n\nIt is recommended to kill manually :\n - \"" +strPath+ "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
                      }
                      else if(bOk && dwExitCode == 0)
                      {
