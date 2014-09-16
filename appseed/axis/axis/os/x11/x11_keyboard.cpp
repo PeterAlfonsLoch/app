@@ -9,8 +9,8 @@
 //
 // $Id: XKeyboard.cpp 53 2008-07-18 08:38:47Z jay $
 #include "framework.h"
-#include "XKeyboard.h"
-#include "X11Exception.h"
+#include "x11_keyboard.h"
+#include "x11_exception.h"
 #include <X11/XKBlib.h>
 
 // XKeyboard -----------------------------------------------------------
@@ -399,7 +399,7 @@ int compareNoCase(const string& s1, const string& s2)
 //     return EXIT_SUCCESS;
 // }
 
-string x11_keyboard_get_current_group_info(string & strGroupName, string & strGroupSymbol)
+void x11_keyboard_get_current_group_info(string & strGroupName, string & strGroupSymbol)
 {
 
    XKeyboard xkb;
