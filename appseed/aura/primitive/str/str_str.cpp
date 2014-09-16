@@ -2054,6 +2054,177 @@ namespace str
       return string(pszValueStart, pszValueEnd - pszValueStart);
    }
 
+   string consume_spaced_value(string & str)
+   {
+
+      strsize i = 0;
+
+      while(i < str.length() && isspace((byte) str[i]))
+      {
+         i++;
+      }
+
+      if(i >= str.length())
+         return "";
+
+      int iStart = i;
+
+      while(i < str.length() && !isspace((byte) str[i]))
+      {
+         i++;
+      }
+
+      string strResult = str.Mid(iStart, i - iStart);
+
+      str = str.Mid(i);
+
+      return strResult;
+
+
+   }
+
+   string consume_spaced_value(const char * & psz)
+   {
+
+      string str(psz);
+
+      int iOldLen = str.length();
+
+      string strResult = consume_spaced_value(str);
+
+      psz += iOldLen - str.length();
+
+      return strResult;
+
+   }
+
+   string consume_spaced_value(const char * & psz, const char * pszEnd)
+   {
+
+      string str(psz, pszEnd - psz);
+
+      int iOldLen = str.length();
+
+      string strResult = consume_spaced_value(str);
+
+      psz += iOldLen - str.length();
+
+      return strResult;
+
+   }
+
+
+   string consume_command_line_argument(string & str)
+   {
+
+      string strResult;
+
+      int iFind = str.find('\"');
+
+      if(iFind < 0)
+      {
+
+         strResult = consume_spaced_value(str);
+
+      }
+      else
+      {
+
+         strsize i = 0;
+
+         while(i < iFind && isspace((byte) str[i]))
+         {
+            i++;
+         }
+
+         if(i < iFind)
+         {
+
+            int iStart = i;
+
+            while(i < iFind && !isspace((byte) str[i]))
+            {
+               i++;
+            }
+
+            strResult = str.Mid(iStart, i - iStart);
+
+            str = str.Mid(i);
+
+         }
+         else
+         {
+
+            iFind++;
+
+            int iFind2 = str.find('\"', iFind);
+
+            if(iFind2 < 0)
+            {
+
+               int iStart = iFind;
+
+               i = iStart;
+
+               while(i < str.length() && !isspace((byte) str[i]))
+               {
+                  i++;
+               }
+
+               strResult = str.Mid(iStart, i - iStart);
+
+               str = str.Mid(i);
+
+            }
+            else
+            {
+
+               strResult = str.Mid(iFind, iFind2 - iFind);
+
+               str = str.Mid(iFind2 + 1);
+
+            }
+
+         }
+
+      }
+
+      return strResult;
+
+   }
+
+
+   string consume_command_line_argument(const char * & psz)
+   {
+
+      string str(psz);
+
+      int iOldLen = str.length();
+
+      string strResult = consume_command_line_argument(str);
+
+      psz += iOldLen - str.length();
+
+      return strResult;
+
+   }
+
+   string consume_command_line_argument(const char * & psz, const char * pszEnd)
+   {
+
+      string str(psz, pszEnd - psz);
+
+      int iOldLen = str.length();
+
+      string strResult = consume_command_line_argument(str);
+
+      psz += iOldLen - str.length();
+
+      return strResult;
+
+   }
+
+
    string consume_c_quoted_value(const char * & pszXml)
    {
       const char * psz = pszXml;

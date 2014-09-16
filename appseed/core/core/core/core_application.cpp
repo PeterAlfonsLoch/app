@@ -1600,6 +1600,9 @@ namespace core
                      ::str::begins_eat_ci(strPath,"app_");
 #ifdef WINDOWS
                      strPath += ".bat";
+#else
+                     strPath += " \"" + System.dir().element() + "\"";
+
 #endif
 #if defined(OS64BIT)
                      strPath = System.dir().element("nodeapp/stage/install/basis/x64/_std",strPath);
@@ -1607,10 +1610,11 @@ namespace core
                      strPath = System.dir().element("nodeapp/stage/install/basis/x86/_std",strPath);
 #endif
 
+                     bool bOk = true;
                      uint32_t dwExitCode = 0;
+
                      string str;
                      ::process::process_sp process(allocer());
-                     bool bOk = true;
                      if(!process->create_child_process(strPath,false,System.dir().name(strPath)))
                      {
                         bOk = false;
@@ -1624,6 +1628,7 @@ namespace core
                            i++;
                         }
                      }
+
 
                      if(bOk && dwExitCode == 0)
                      {

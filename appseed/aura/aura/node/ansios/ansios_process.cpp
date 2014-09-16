@@ -45,9 +45,13 @@ namespace ansios
       if(!::process::process::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
          return false;
 
-      string szCmdline = pszCmdLine;
+      stringa straParam;
 
-      char * argv[] ={(char *)pszCmdLine,0};
+      raw_array < char * > argv;
+
+      straParam.explode_command_line(pszCmdLine, &argv);
+
+      //char * argv[] ={(char *)pszCmdLine,0};
 
       posix_spawnattr_t attr;
 
@@ -95,6 +99,7 @@ namespace ansios
 
 
       int status = posix_spawn(&m_iPid,pszCmdLine,&actions,&attr,argv,environ);
+
 
 #ifdef APPLEOS
 

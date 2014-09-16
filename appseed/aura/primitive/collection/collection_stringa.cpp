@@ -802,6 +802,38 @@ void stringa::replace(const char * lpszSearch, const char * lpszReplace)
 }
 
 
+::count stringa::explode_command_line(const string & str, raw_array < char * > * argv)
+{
+
+   string strParse(str);
+
+   while(strParse.has_char())
+   {
+
+      add(::str::consume_command_line_argument(strParse));
+
+   }
+
+   if(argv != NULL)
+   {
+
+      for(index i = 0; i < get_count(); i++)
+      {
+
+         argv->add((char *) (const char *) element_at(i));
+
+      }
+
+      argv->add(NULL);
+
+   }
+
+   return get_count();
+
+
+}
+
+
 void stringa::surround(const char * pszPrefix, const char * pszSuffix, index iStart, ::count iCount)
 {
 
@@ -1209,7 +1241,7 @@ void stringa::decode_v16(const char * psz)
 
    for (index i = 0; i < get_count(); i++)
    {
-      
+
       if (element_at(i) == str)
          c--;
 
@@ -1274,7 +1306,7 @@ void stringa::decode_v16(const char * psz)
 
 string stringa::get_json()
 {
-   
+
    string str("[");
 
    for (index i = 1; i < get_count(); i++)

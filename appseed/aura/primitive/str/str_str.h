@@ -234,6 +234,12 @@ namespace str
    CLASS_DECL_AURA string consume_nc_name(const char * & pszXml);
    CLASS_DECL_AURA string consume_quoted_value(const char * & pszXml);
    CLASS_DECL_AURA string consume_quoted_value(const char * & pszXml, const char * pszEnd);
+   CLASS_DECL_AURA string consume_spaced_value(string & str);
+   CLASS_DECL_AURA string consume_spaced_value(const char * & pszXml);
+   CLASS_DECL_AURA string consume_spaced_value(const char * & pszXml, const char * pszEnd);
+   CLASS_DECL_AURA string consume_command_line_argument(string & str);
+   CLASS_DECL_AURA string consume_command_line_argument(const char * & pszXml);
+   CLASS_DECL_AURA string consume_command_line_argument(const char * & pszXml, const char * pszEnd);
    CLASS_DECL_AURA bool begins_consume(const char * & pszXml, const char * psz);
 
    CLASS_DECL_AURA bool xml_is_comment(const char * pszXml);

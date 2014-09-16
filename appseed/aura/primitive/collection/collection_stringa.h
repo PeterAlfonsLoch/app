@@ -105,6 +105,8 @@ public:
 
    comparable_array < id > get_comparable_ida() const;
 
+   ::count explode_command_line(const string & str, raw_array < char * > * argv = NULL);
+
 
 
 //   void XFV001Expand();
@@ -321,7 +323,7 @@ public:
 
 inline ::count stringa::get_count_except(const char * psz)
 {
-   
+
    return get_count_except(string(psz));
 
 }
