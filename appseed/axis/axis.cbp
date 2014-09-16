@@ -188,6 +188,9 @@
 		<Unit filename="axis/os/linux/linux_windowing.cpp" />
 		<Unit filename="axis/os/linux/linux_windowing.h" />
 		<Unit filename="axis/os/os.h" />
+		<Unit filename="axis/os/x11/x11_exception.h" />
+		<Unit filename="axis/os/x11/x11_keyboard.cpp" />
+		<Unit filename="axis/os/x11/x11_keyboard.h" />
 		<Unit filename="axis/vms/veriwell_musical_studio.h" />
 		<Unit filename="axis/vms/vms.h" />
 		<Unit filename="axis/vms/vms_2.h" />
@@ -280,9 +283,6 @@
 			<Option weight="0" />
 		</Unit>
 		<Unit filename="user/user.inl" />
-		<Unit filename="user/user/X11Exception.h" />
-		<Unit filename="user/user/XKeyboard.cpp" />
-		<Unit filename="user/user/XKeyboard.h" />
 		<Unit filename="user/user/user.cpp" />
 		<Unit filename="user/user/user.h" />
 		<Unit filename="user/user/user_buffer.cpp" />
@@ -371,13 +371,10 @@
 		<Unit filename="user/user/user_view_creator.cpp" />
 		<Unit filename="user/user/user_view_creator.h" />
 		<Unit filename="user/user/user_view_creator_data.h" />
-		<Unit filename="user/user/user_virtual_user_interface.h" />
 		<Unit filename="user/user/user_wait_cursor.cpp" />
 		<Unit filename="user/user/user_wait_cursor.h" />
-		<Unit filename="user/user/user_window.h" />
 		<Unit filename="user/user/user_window_draw.cpp" />
 		<Unit filename="user/user/user_window_draw.h" />
-		<Unit filename="user/user/user_window_interface.h" />
 		<Unit filename="user/user/user_window_map.cpp" />
 		<Unit filename="user/user/user_window_map.h" />
 		<Unit filename="user/user/user_window_util.cpp" />
