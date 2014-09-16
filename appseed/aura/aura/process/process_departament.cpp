@@ -83,8 +83,6 @@ namespace process
       m_strCmdLine(strCmdLine)
    {
 
-      uint32_t uiTimeOut;
-
       if(dur.is_pos_infinity())
       {
 

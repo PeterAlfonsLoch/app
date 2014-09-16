@@ -423,7 +423,8 @@ int32_t simple_ui_message_box(oswindow interaction_impl,const char * lpText,cons
 
 #endif
 
-   if(::get_thread_app() == NULL || ::get_thread_app()->m_paxissession == NULL)
+   if(::get_thread_app() == NULL || ::get_thread_app()->m_paxissession == NULL
+      || &Sys(::get_thread_app()) == NULL || Sys(::get_thread_app()).get_twf() == NULL)
    {
 
       return system_message_box(interaction_impl,lpText,lpCaption,uiFlags);

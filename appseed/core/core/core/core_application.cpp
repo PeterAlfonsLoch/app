@@ -3972,7 +3972,7 @@ namespace core
    int32_t application::simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
-      if(Platform.userex() == NULL)
+      if(&Platform == NULL || Platform.userex() == NULL)
          return ::base::application::simple_message_box(puiOwner,pszMessage,fuStyle);
 
       return Platform.userex()->simple_message_box(puiOwner,pszMessage,fuStyle);
