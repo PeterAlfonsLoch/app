@@ -46,7 +46,6 @@
 	<item code="108" value="key_ralt" />
 	<item code="22" value="key_back" />
 	<item code="119" value="key_delete" />
-	<item code="61" value="key_slash" />
 	<item code="111" value="key_up" />
 	<item code="116" value="key_down" />
 	<item code="113" value="key_left" />
@@ -62,5 +61,7 @@
 	<item code="65" value="key_space" />
 	<item code="34" value="key_acute2" />
 	<item code="48" value="key_til2" />
+	<item code="97" value="key_slash2" />
+	<item code="61" value="key_semicolon2" />
 </layout>
 
