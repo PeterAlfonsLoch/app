@@ -427,6 +427,6 @@ string x11_keyboard_get_current_group_symbol()
 
    XKeyboard xkb;
 
-   return cGrpSymb=xkb.currentGroupSymbol(); //return somethings like "us"
+   return xkb.currentGroupSymbol(); //return somethings like "us"
 
 }
