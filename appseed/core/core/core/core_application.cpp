@@ -1620,6 +1620,8 @@ namespace core
 
                      }
 
+                     bool bTimeOut = false;
+
                      if(bOk)
                      {
 
@@ -1630,6 +1632,15 @@ namespace core
                         while(!process->has_exited(&dwExitCode))
                         {
 
+                           if(i > 10)
+                           {
+
+                              bTimeOut = true;
+
+                              break;
+
+                           }
+
                            Sleep(584);
 
                            i++;
@@ -1638,8 +1649,11 @@ namespace core
 
                      }
 
-
-                     if(bOk && dwExitCode == 0)
+                     if(bTimeOut)
+                     {
+                        ::simple_message_box(NULL,"A time out has occurred while running : " + strPath + "\n\nIt is recommended to kill manually + \"" +strPath+ "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+                     }
+                     else if(bOk && dwExitCode == 0)
                      {
                         ::simple_message_box(NULL,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
                      }
