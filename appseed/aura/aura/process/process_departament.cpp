@@ -222,7 +222,7 @@ namespace process
 
       m_pbPotentialTimeout = pbPotentialTimeout;
 
-      m_pthread = new process_thread(papp, strCmdLine, dur, pstrRead);
+      m_pthread = new process_thread(papp, strCmdLine, dur, &m_bPotentialTimeout, pstrRead);
 
       m_pthread->m_bAutoDelete = true;
 
