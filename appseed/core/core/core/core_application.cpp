@@ -1603,8 +1603,8 @@ namespace core
 
 #endif
 
-                     //strPath += " : app=" + notinstalled.m_strId + " install build_number=basis locale=_std schema=_std";
-                     strPath += " : app=" + notinstalled.m_strId + " install build_number=basis";
+                     strPath += " : app=" + notinstalled.m_strId + " install build_number=basis locale="+notinstalled.m_strLocale+" schema="+notinstalled.m_strSchema;
+                     //strPath += " : app=" + notinstalled.m_strId + " install build_number=basis";
 
                      bool bOk = true;
 
