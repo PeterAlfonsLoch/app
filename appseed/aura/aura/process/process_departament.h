@@ -19,10 +19,11 @@ namespace process
          sp(process)                      m_spprocess;
          string *                         m_pstrRead;
          manual_reset_event *             m_pevReady;
-         uint32_t                         m_dwTimeout;
-         uint32_t                         m_dwStartTime;
+         uint32_t                         m_uiTimeout;
+         uint32_t                         m_uiStartTime;
          bool *                           m_pbInitFailure;
          bool *                           m_pbPotentialTimeout;
+         uint32_t *                       m_uiRetCode;
 
 
 
@@ -43,9 +44,11 @@ namespace process
          manual_reset_event               m_evReady;
          bool                             m_bInitFailure;
          bool                             m_bPotentialTimeout;
+         bool *                           m_pbPotentialTimeout;
          process_thread *                 m_pthread;
+         uint32_t                         m_uiRetCode;
 
-         process_processor(sp(::aura::application) papp, const string & strCmdLine, DWORD dwTimeOut, string * pstrRead);
+         process_processor(sp(::aura::application) papp, const string & strCmdLine, DWORD dwTimeOut, bool * pbPotentialTimeout = NULL, string * pstrRead = NULL);
          virtual ~process_processor();
 
       };

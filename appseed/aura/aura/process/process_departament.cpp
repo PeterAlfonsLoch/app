@@ -24,24 +24,7 @@ namespace process
 
       string strRead;
 
-
-
-      evReady.ResetEvent();
-
-      bool
-
-      process_thread * pthread = new process_thread(get_app(),&strRead,&evReady);
-
-      pthread->m_pb = pbPotentialTimeout;
-
-      pthread->m_bAutoDelete = true;
-
-      if(!pthread->m_spprocess->create_child_process(pszCmdLine,true))
-         return false;
-
-      pthread->begin();
-
-      evReady.wait();
+      process_processor proc(get_app(), pszCmdLine, dwTimeout, pbPotentialTimeout, &strRead);
 
       return strRead;
 
@@ -52,23 +35,9 @@ namespace process
    uint32_t departament::retry(const char * pszCmdLine,uint32_t dwTimeout,int32_t iShow, bool * pbPotentialTimeout)
    {
 
-      manual_reset_event evReady(get_app());
+      process_processor proc(get_app(), pszCmdLine, dwTimeout, pbPotentialTimeout, &strRead);
 
-      evReady.ResetEvent();
-
-      process_thread * pthread = new process_thread(get_app(), NULL,&evReady);
-
-      pthread->m_pb = pbPotentialTimeout;
-
-      pthread->m_bAutoDelete = true;
-
-      pthread->m_strCmdLine = pszCmdLine;
-
-      pthread->begin();
-
-      evReady.wait();
-
-      return strRead;
+      return proc.m_uiRetCode;
 
 
    }
@@ -77,18 +46,12 @@ namespace process
    uint32_t departament::synch(const char * pszCmdLine,int32_t iShow, const ::duration & dur, bool * p)
    {
 
-      if(dur.is_pos_infinity())
-      {
+      uint32_t uiTimeOut;
 
-         return retry(pszCmdLine,0,iShow);
 
-      }
-      else
-      {
+      process_processor proc(get_app(), pszCmdLine, uiTimeout, pbPotentialTimeout, &strRead);
 
-         return retry(pszCmdLine,dur.get_total_milliseconds(),iShow);
 
-      }
 
    }
 
@@ -229,17 +192,41 @@ namespace process
    }
 
 
-   departament::process_processor::process_processor(sp(::aura::application) papp, const string & strCmdLine, DWORD dwTimeOut, string * pstrRead) :
+   departament::process_processor::process_processor(sp(::aura::application) papp, const string & strCmdLine, const duration::duration & dur, bool * pbPotentialTimeout, string * pstrRead) :
       element(papp)
       m_evReady(papp)
    {
 
-      m_pthread = new process
+      m_pbPotentialTimeout = pbPotentialTimeout;
+
+      m_pthread = new process_thread(papp, strCmdLine, dur, pstrRead);
+
+      m_pthread->m_bAutoDelete = true;
+
+      m_pthread->m_pbInitFailure = &m_bInitFailure;
+
+      m_pthread->m_pbPotentialTimeout = &m_bPotentialTimeout;
+
+      m_pthread->m_pevReady = &m_evReady;
+
+      m_evReady.ResetEvent();
+
+      m_pthread->begin();
+
+      m_evReady.wait();
 
    }
 
    departament::process_processor::process_processor
    {
+
+      if(m_pbPotentialTimeout != NULL)
+      {
+
+         *m_pbPotentialTimeout = m_bPotentialTimeout;
+
+      }
+
    }
 
 
