@@ -59,5 +59,7 @@
 	<item code="117" value="key_next" />
 	<item code="36" value="key_return" />
 	<item code="20" value="key_hyphen" />
+	<item code="65" value="key_space" />
+	<item code="34" value="key_acute2" />
 </layout>
 

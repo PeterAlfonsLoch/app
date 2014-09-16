@@ -20,6 +20,7 @@ namespace user
 
       string                     m_strName;
       string                     m_strPath;
+      string                     m_countrycode;
       comparable_array < HKL >   m_hkla;
 
 

@@ -1,5 +1,10 @@
 								#include "framework.h" // from "axis/user/user.h"
 
+#ifdef LINUX
+#include "XKeyboard.h"
+#endif
+
+
 namespace user
 {
 
@@ -290,6 +295,21 @@ namespace user
          }
       }
 
+#elif defined(LINUX) || defined(SOLARIS)
+
+   XKeyboard xkb;
+
+//std::string cGrpName=xkb.currentGroupName(); //return somethings like "USA"
+   string cGrpSymb=xkb.currentGroupSymbol(); //return somethings like "us"
+
+   for(int32_t i = 0; i < layoutida.get_count(); i++)
+   {
+      if(layoutida[i].m_countrycode.contains_ci(cGrpSymb))
+      {
+         return layoutida[i].m_strPath;
+      }
+   }
+
 #else
 
       TRACE("not implemented exception");
@@ -329,6 +349,8 @@ namespace user
       playoutid->m_strPath = pszPath;
 
       playoutid->m_strName = doc.get_root()->attrs()["name"];
+
+      playoutid->m_countrycode = doc.get_root()->attrs()["cc"];
 
       stringa straHkl;
 
