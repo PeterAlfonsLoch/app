@@ -301,7 +301,7 @@ namespace user
 
    for(int32_t i = 0; i < layoutida.get_count(); i++)
    {
-      if(layoutida[i].m_countrycode.contains_ci(cGrpSymb))
+      if(layoutida[i].m_countrycode.contains_ci(strSymbol))
       {
          return layoutida[i].m_strPath;
       }
