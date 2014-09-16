@@ -207,6 +207,9 @@ namespace macos
    bool window_draw::pre_run()
    {
       
+      if(m_spqueue.is_null())
+         return false;
+      
       if(!m_spqueue->create_message_queue("ca2::twf - ca2 Transparent Window Framework", this))
       {
          
