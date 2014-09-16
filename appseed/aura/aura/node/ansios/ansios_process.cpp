@@ -98,7 +98,7 @@ namespace ansios
       }
 
 
-      int status = posix_spawn(&m_iPid,pszCmdLine,&actions,&attr,argv,environ);
+      int status = posix_spawn(&m_iPid,argv[0],&actions,&attr,argv,environ);
 
 
 #ifdef APPLEOS
