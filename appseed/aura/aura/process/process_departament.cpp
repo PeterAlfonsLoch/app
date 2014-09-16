@@ -240,7 +240,7 @@ namespace process
 
    }
 
-   departament::process_processor::process_processor
+   departament::process_processor::~process_processor()
    {
 
       if(m_pbPotentialTimeout != NULL)
