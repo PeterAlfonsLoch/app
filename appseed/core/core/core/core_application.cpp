@@ -1603,6 +1603,7 @@ namespace core
 
 #endif
 
+                     //strPath += " : app=" + notinstalled.m_strId + " install build_number=basis locale=_std schema=_std";
                      strPath += " : app=" + notinstalled.m_strId + " install build_number=basis";
 
                      bool bOk = true;
@@ -1651,7 +1652,7 @@ namespace core
 
                      if(bTimeOut)
                      {
-                        ::simple_message_box(NULL, " - " + notinstalled.m_strId + "\nis not installing in a gracefully-timed way.\n\nIt is recommended to kill manually :\n - \"" +strPath+ "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+                        ::simple_message_box(NULL, " - " + notinstalled.m_strId + "\nhas timed out while trying to install.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nIt is recommended to kill manually :\n - \"" +strPath+ "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
                      }
                      else if(bOk && dwExitCode == 0)
                      {

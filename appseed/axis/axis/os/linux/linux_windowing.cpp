@@ -947,7 +947,13 @@ WINBOOL DestroyWindow(oswindow window)
 
    window->get_user_interaction()->send_message(WM_NCDESTROY, 0, 0);
 
+   XUnmapWindow(pdisplay, win);
+
+   XSync(pdisplay, False);
+
    XDestroyWindow(pdisplay, win);
+
+   XSync(pdisplay, False);
 
    return true;
 
