@@ -16,6 +16,11 @@
 #include <X11/Xlib.h>
 
 
+void x11_keyboard_get_current_group_info(string & strGroupName, string & strGroupSymbol);
+string x11_keyboard_get_current_group_name();
+string x11_keyboard_get_current_group_symbol();
+
+
 typedef stringa StringVector;
 
 

@@ -1,7 +1,7 @@
-								#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "axis/user/user.h"
 
-#ifdef LINUX
-#include "XKeyboard.h"
+#if defined(LINUX) || defined(SOLARIS)
+#include "axis/axis/os/x11/x11_keyboard.h"
 #endif
 
 
@@ -297,10 +297,7 @@ namespace user
 
 #elif defined(LINUX) || defined(SOLARIS)
 
-   XKeyboard xkb;
-
-//std::string cGrpName=xkb.currentGroupName(); //return somethings like "USA"
-   string cGrpSymb=xkb.currentGroupSymbol(); //return somethings like "us"
+   string strSymbol = x11_keyboard_get_current_group_symbol();
 
    for(int32_t i = 0; i < layoutida.get_count(); i++)
    {
