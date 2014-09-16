@@ -65,7 +65,7 @@ namespace axis
 
       }
 
-      m_pcoreapp                 = NULL;
+//      m_pcoreapp                 = NULL;
 
       
 
