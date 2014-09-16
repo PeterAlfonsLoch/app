@@ -25,9 +25,10 @@ namespace user
       if(this != &id)
       {
 
-         m_strName   = id.m_strName;
-         m_strPath   = id.m_strPath;
-         m_hkla      = id.m_hkla;
+         m_strName      = id.m_strName;
+         m_strPath      = id.m_strPath;
+         m_countrycode  = id.m_countrycode;
+         m_hkla         = id.m_hkla;
 
       }
 

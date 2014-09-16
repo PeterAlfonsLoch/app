@@ -280,6 +280,9 @@
 			<Option weight="0" />
 		</Unit>
 		<Unit filename="user/user.inl" />
+		<Unit filename="user/user/X11Exception.h" />
+		<Unit filename="user/user/XKeyboard.cpp" />
+		<Unit filename="user/user/XKeyboard.h" />
 		<Unit filename="user/user/user.cpp" />
 		<Unit filename="user/user/user.h" />
 		<Unit filename="user/user/user_buffer.cpp" />

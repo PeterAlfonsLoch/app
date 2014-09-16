@@ -694,6 +694,9 @@
 		<Unit filename="multithreading/multithreading_wait_result.h" />
 		<Unit filename="multithreading/multithreading_waitable.cpp" />
 		<Unit filename="multithreading/multithreading_waitable.h" />
+		<Unit filename="multithreading/service/service_plain_service.cpp" />
+		<Unit filename="multithreading/service/service_plain_service.h" />
+		<Unit filename="multithreading/service/service_thread_pool.h" />
 		<Unit filename="primitive/collection/collection.h" />
 		<Unit filename="primitive/collection/collection_2d_array.cpp" />
 		<Unit filename="primitive/collection/collection_array.cpp" />

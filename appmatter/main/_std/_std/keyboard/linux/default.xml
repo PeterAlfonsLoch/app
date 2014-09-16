@@ -61,5 +61,6 @@
 	<item code="20" value="key_hyphen" />
 	<item code="65" value="key_space" />
 	<item code="34" value="key_acute2" />
+	<item code="48" value="key_til2" />
 </layout>
 
