@@ -74,13 +74,13 @@ namespace process
 
    }
 
-   departament::process_thread::process_thread(sp(::aura::application) papp,string * pstrRead,manual_reset_event * pevReady, DWORD dwTimeOut):
+   departament::process_thread::process_thread(sp(::aura::application) papp, const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout, string * pstrRead):
       element(papp),
       thread(papp),
       simple_thread(papp),
       m_spprocess(allocer()),
       m_pstrRead(pstrRead),
-      m_pevReady(pevReady)
+      m_strCmdLine(strCmdLine)
    {
 
       uint32_t uiTimeOut;
@@ -88,19 +88,19 @@ namespace process
       if(dur.is_pos_infinity())
       {
 
-         uiTimeOut = 0;
+         m_uiTimeout = 0;
 
       }
       else
       {
 
-         uiTimeOut = dur.get_total_milliseconds();
+         m_uiTimeout = dur.get_total_milliseconds();
 
       }
 
 
-      m_bPotentialTimeout     = false;
-      m_bInitFailure          = false;
+      m_pbPotentialTimeout    = pbPotentialTimeout;
+      m_pbInitFailure         = NULL;
 
    }
 
@@ -111,7 +111,12 @@ namespace process
       if(!m_spprocess->create_child_process(m_strCmdLine,true))
       {
 
-         m_bInitFailure = true;
+         if(m_pbInitFailure != NULL)
+         {
+
+            *m_pbInitFailure = true;
+
+         }
 
          if(m_pevReady != NULL)
          {
@@ -124,7 +129,7 @@ namespace process
 
       }
 
-      m_dwStartTime = ::get_tick_count();
+      m_uiStartTime = ::get_tick_count();
 
       string strRead;
 
@@ -187,7 +192,7 @@ namespace process
    bool departament::process_thread::retry()
    {
 
-      if(m_dwTimeout > 0 && ::get_tick_count() - m_dwStartTime > m_dwTimeout)
+      if(m_uiTimeout > 0 && ::get_tick_count() - m_uiStartTime > m_uiTimeout)
       {
 
          if(m_pbPotentialTimeout != NULL)
@@ -206,10 +211,14 @@ namespace process
    }
 
 
-   departament::process_processor::process_processor(sp(::aura::application) papp, const string & strCmdLine, const duration::duration & dur, bool * pbPotentialTimeout, string * pstrRead) :
+   departament::process_processor::process_processor(sp(::aura::application) papp, const string & strCmdLine, const duration & dur, bool * pbPotentialTimeout, string * pstrRead) :
       element(papp)
       m_evReady(papp)
    {
+
+      m_bInitFailure = false;
+
+      m_bPotentialTimeout = false;
 
       m_pbPotentialTimeout = pbPotentialTimeout;
 
