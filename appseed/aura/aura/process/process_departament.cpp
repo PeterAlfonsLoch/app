@@ -212,7 +212,7 @@ namespace process
 
 
    departament::process_processor::process_processor(sp(::aura::application) papp, const string & strCmdLine, const duration & dur, bool * pbPotentialTimeout, string * pstrRead) :
-      element(papp)
+      element(papp),
       m_evReady(papp)
    {
 
