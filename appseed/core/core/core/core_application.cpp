@@ -1606,11 +1606,14 @@ namespace core
                      strPath += " : app=" + notinstalled.m_strId + " install build_number=basis locale="+notinstalled.m_strLocale+" schema="+notinstalled.m_strSchema;
                      //strPath += " : app=" + notinstalled.m_strId + " install build_number=basis";
 
-                     bool bOk = true;
+                     uint32_t dwExitCode = System.process().synch(strPath, SW_HIDE, minutes(1));
 
-                     uint32_t dwExitCode = 0;
+                     //bool bOk = true;
 
-                     string str;
+                     //uint32_t dwExitCode = 0;
+
+                     //bool bTimeOut = false;
+/*                     string str;
 
                      ::process::process_sp process(allocer());
 
@@ -1621,7 +1624,6 @@ namespace core
 
                      }
 
-                     bool bTimeOut = false;
 
                      if(bOk)
                      {
@@ -1633,7 +1635,7 @@ namespace core
                         while(!process->has_exited(&dwExitCode))
                         {
 
-                           if(i > 10)
+                           if(i > 20)
                            {
 
                               bTimeOut = true;
@@ -1648,7 +1650,7 @@ namespace core
 
                         }
 
-                     }
+                     }*/
 
                      if(bTimeOut)
                      {

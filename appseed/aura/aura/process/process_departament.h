@@ -35,6 +35,9 @@ namespace process
 
          uint32_t    m_dwTimeout;
          uint32_t    m_dwStartTime;
+         bool        m_bPotentialTimeout;
+
+         on_retry();
 
       };
 
@@ -46,8 +49,8 @@ namespace process
 
       // run process and get output
       virtual var get_output(const char * pszCmdLine);
-      virtual uint32_t retry(const char * pszCmdLine,uint32_t dwTimeOut,int32_t iShow = SW_HIDE);
-      virtual uint32_t synch(const char * pszCmdLine,int32_t iShow = SW_HIDE);
+      virtual uint32_t retry(const char * pszCmdLine,uint32_t dwTimeOut,int32_t iShow = SW_HIDE, bool * pbPotentialTimeout = NULL);
+      virtual uint32_t synch(const char * pszCmdLine,int32_t iShow = SW_HIDE, const ::duration & dur = ::duration::infinite(), bool * pbPotentialTimeout = NULL);
       virtual bool launch(const char * pszCmdLine,int32_t iShow = SW_HIDE);
 
 

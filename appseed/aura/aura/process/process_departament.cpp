@@ -44,7 +44,15 @@ namespace process
    }
 
 
-   uint32_t departament::retry(const char * pszCmdLine,uint32_t dwTimeout,int32_t iShow)
+   departament::on_retry::on_retry()
+   {
+
+      m_bPotentialTimeout = false;
+
+   }
+
+
+   uint32_t departament::retry(const char * pszCmdLine,uint32_t dwTimeout,int32_t iShow, bool * pbPotentialTimeout)
    {
 
       class on_retry onretry;
@@ -65,6 +73,13 @@ namespace process
 
       uint32_t dwExitCode = call_sync(strBin,pszEnd,NULL,iShow,-1,484,&departament::s_on_retry,(uint_ptr)&onretry);
 
+      if(pbPotentialTimeout != NULL)
+      {
+
+         *pbPotentialTimeout = onretry.m_bPotentialTimeout;
+
+      }
+
       return dwExitCode;
 
 #endif
@@ -80,15 +95,33 @@ namespace process
 
       class on_retry * ponretry = (on_retry *)dwParam;
 
-      return ponretry->m_dwTimeout == 0 || ::get_tick_count() - ponretry->m_dwStartTime < ponretry->m_dwTimeout;
+      if(ponretry->m_dwTimeout > 0 && ::get_tick_count() - ponretry->m_dwStartTime > ponretry->m_dwTimeout;
+      {
+
+         ponretry->m_bPotentialTimeout = true;
+
+      }
+
+      return !ponretry->m_bPotentialTimeout;
 
    }
 
 
-   uint32_t departament::synch(const char * pszCmdLine,int32_t iShow)
+   uint32_t departament::synch(const char * pszCmdLine,int32_t iShow, const ::duration & dur, bool * p)
    {
 
-      return retry(pszCmdLine,0,iShow);
+      if(dur.is_pos_infinity())
+      {
+
+         return retry(pszCmdLine,0,iShow);
+
+      }
+      else
+      {
+
+         return retry(pszCmdLine,dur.get_total_milliseconds(),iShow);
+
+      }
 
    }
 
