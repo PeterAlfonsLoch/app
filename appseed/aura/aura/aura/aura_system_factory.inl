@@ -3,10 +3,14 @@
 
 
 template < class CREATABLE_TYPE >
-sp(element) creatable_factory_item < CREATABLE_TYPE > ::create(sp(::aura::application) papp)
+element * creatable_factory_item < CREATABLE_TYPE > ::create(::aura::application * papp)
 {
 
    void * pv = NULL;
+   
+   sp(::aura::application) spapp;
+   
+   spapp = papp;
 
    {
 
@@ -21,7 +25,7 @@ sp(element) creatable_factory_item < CREATABLE_TYPE > ::create(sp(::aura::applic
 
 #undef new
 
-   CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(papp);
+   CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(spapp);
 
 #define new AURA_NEW
 
@@ -39,7 +43,7 @@ sp(element) creatable_factory_item < CREATABLE_TYPE > ::create(sp(::aura::applic
 
 
 template < class CREATABLE_TYPE >
-sp(element) creatable_factory_item < CREATABLE_TYPE > ::clone(sp(element) pobject)
+element * creatable_factory_item < CREATABLE_TYPE > ::clone(sp(element) pobject)
 {
 
    UNREFERENCED_PARAMETER(pobject);
@@ -52,7 +56,7 @@ sp(element) creatable_factory_item < CREATABLE_TYPE > ::clone(sp(element) pobjec
 
 
 template < class CLONEABLE_TYPE >
-sp(element) cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(element) pobject)
+element * cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(element) pobject)
 {
 
    const CLONEABLE_TYPE * ptSrc = dynamic_cast < const CLONEABLE_TYPE * > (pobject.m_p);

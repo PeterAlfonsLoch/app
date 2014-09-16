@@ -116,10 +116,10 @@ public:
 
    
    using ::object::create;
-   virtual sp(element) create(sp(::aura::application) papp) = 0;
+   virtual element *  create(::aura::application * papp) = 0;
    
    using ::object::clone;
-   virtual sp(element) clone(sp(element) pobject) = 0;
+   virtual element * clone(sp(element) pobject) = 0;
 
 };
 
@@ -132,10 +132,10 @@ public:
    inline creatable_factory_item(sp(::aura::application) papp, sp(factory_allocator) pallocator) : element(papp), factory_item_base(papp, pallocator) {}
 
    using ::factory_item_base::create;
-   virtual sp(element) create(sp(::aura::application) papp);
+   virtual element * create(::aura::application * papp);
 
    using ::factory_item_base::clone;
-   virtual sp(element) clone(sp(element) pobject);
+   virtual element * clone(sp(element) pobject);
 
 };
 
@@ -149,7 +149,7 @@ public:
 
    
    using creatable_factory_item < CLONEABLE_TYPE >::clone;
-   virtual sp(element) clone(sp(element) pobject);
+   virtual element * clone(sp(element) pobject);
 
 };
 
@@ -232,21 +232,25 @@ public:
    void cloneable(sp(type)  info, int32_t iCount, bool bOverwrite = true, bool bAligned = false);
 
    using ::object::create;
-   virtual sp(element) create(sp(::aura::application) papp, sp(type) info);
+   virtual element * create(::aura::application *  papp, sp(type) info);
    
-   virtual sp(element) base_clone(sp(element) pobject);
+   virtual element * base_clone(sp(element) pobject);
 
-   virtual sp(element) typed_clone(id idType, sp(element) pobject);
+   virtual element * typed_clone(id idType, sp(element) pobject);
    
    using ::object::clone;
    template < class T >
-   sp(T) clone(sp(T) pobject)
+   T * clone(sp(T) pobject)
    {
+      element * pca =
 #ifdef WINDOWSEX
-      return typed_clone(typeid(T).raw_name(), pobject);
+      pca = typed_clone(typeid(T).raw_name(), pobject);
 #else
-      return typed_clone(typeid(T).name(),pobject);
+      pca = typed_clone(typeid(T).name(),pobject);
 #endif
+      if(pca == NULL)
+         return NULL;
+      return dynamic_cast < T * >(pca);
    }
 
    template < class T >

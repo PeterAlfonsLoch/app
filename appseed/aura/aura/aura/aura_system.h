@@ -134,15 +134,19 @@ namespace aura
 
 
 
+      virtual void on_allocation_error(::aura::application * papp,sp(type) info);
+      //   sp(element) alloc(sp(::aura::application) papp, sp(type) info);
+      element * alloc(::aura::application * papp,const std_type_info & info);
+      //   virtual sp(element) on_alloc(sp(::aura::application) papp, sp(type) info);
 
 
 
       using ::aura::application::alloc;
-      virtual sp(element) alloc(sp(::aura::application) papp,sp(type) info);
-      virtual sp(element) alloc(sp(::aura::application) papp,const class id & idType);
+      virtual element * alloc(::aura::application * papp,sp(type) info);
+      virtual element * alloc(::aura::application * papp,const class id & idType);
 
-      virtual sp(element) on_alloc(sp(::aura::application) papp,sp(type) info);
-      virtual sp(element) clone();
+      virtual element * on_alloc(::aura::application * papp,sp(type) info);
+      virtual element * clone();
       template < class T >
       sp(T) clone(sp(T) p)
       {
@@ -195,10 +199,6 @@ namespace aura
 
       virtual bool is_system();
 
-      virtual void on_allocation_error(sp(::aura::application) papp,sp(type) info);
-      //   sp(element) alloc(sp(::aura::application) papp, sp(type) info);
-      sp(element) alloc(sp(::aura::application) papp,const std_type_info & info);
-      //   virtual sp(element) on_alloc(sp(::aura::application) papp, sp(type) info);
 
 
       static inline class id id(const ::std_type_info & info);

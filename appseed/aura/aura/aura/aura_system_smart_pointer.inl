@@ -7,10 +7,10 @@ void smart_pointer < T >::alloc(const allocatorsp & allocer)
    static class id idType = CaSys(allocer).type_info < T > ()->m_id;
    if(m_p != NULL)
       ::release(m_p);
-   sp(element) pca = CaSys(allocer).alloc(allocer->m_pauraapp, idType);
-   if(pca.is_set())
+   element * pca = CaSys(allocer).alloc(allocer->m_pauraapp, idType);
+   if(pca != NULL)
    {
-      m_p = dynamic_cast < T * >(pca.m_p);
+      m_p = dynamic_cast < T * >(pca);
       if(m_p != NULL)
       {
          ::add_ref(m_p);

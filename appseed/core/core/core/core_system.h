@@ -121,7 +121,7 @@ namespace core
 
 
 
-      virtual void on_allocation_error(sp(::aura::application) papp,sp(type) info);
+      virtual void on_allocation_error(::aura::application * papp,sp(type) info);
 
 
       ::core::stra                           & stra();

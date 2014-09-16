@@ -54,6 +54,24 @@ namespace aura
       {
 
          m_paurasystem           = m_pauraapp->m_paurasystem;
+         
+         m_paxissystem           = m_pauraapp->m_paxissystem;
+         
+         m_paxissession          = m_pauraapp->m_paxissession;
+         
+         m_paxisapp              = m_pauraapp->m_paxisapp;
+
+         m_pbasesystem           = m_pauraapp->m_pbasesystem;
+         
+         m_pbasesession          = m_pauraapp->m_pbasesession;
+         
+         m_pbaseapp              = m_pauraapp->m_pbaseapp;
+
+         m_pcoresystem           = m_pauraapp->m_pcoresystem;
+         
+         m_pcoreplatform         = m_pauraapp->m_pcoreplatform;
+         
+         m_pcoreapp              = m_pauraapp->m_pcoreapp;
 
          if(m_pauraapp->m_paurasession == NULL && m_paurasystem != NULL)
          {
@@ -82,7 +100,7 @@ namespace aura
 
       }
 
-      m_pcoreapp                 = NULL;
+//      m_pcoreapp                 = NULL;
 
 
 
@@ -267,12 +285,12 @@ namespace aura
    }
 
 
-   sp(element) application::alloc(sp(type) info)
+   element * application::alloc(sp(type) info)
    {
       return System.alloc(this,info);
    }
 
-   sp(element) application::alloc(const  id & idType)
+   element * application::alloc(const  id & idType)
    {
       return System.alloc(this,idType);
    }

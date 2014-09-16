@@ -551,7 +551,7 @@ namespace aura
 
    }
 
-   sp(element) system::clone()
+   element * system::clone()
    {
       // by the time, it is not possible to clone a system
       return NULL;
@@ -695,35 +695,35 @@ namespace aura
 
 
 
-   sp(element) system::on_alloc(sp(::aura::application) papp,sp(type) info)
+   element * system::on_alloc(::aura::application * papp,sp(type) info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
       simple_message_box(str);*/
-      sp(element) pobj = m_pfactory->create(papp,info);
+      element * pobj = m_pfactory->create(papp,info);
       if(pobj != NULL)
          return pobj;
       on_allocation_error(papp,info);
       return NULL;
    }
 
-   sp(element) system::alloc(sp(::aura::application) papp,sp(type) info)
+   element * system::alloc(::aura::application * papp,sp(type) info)
    {
       return on_alloc(papp,info);
    }
 
-   sp(element) system::alloc(sp(::aura::application) papp,const std_type_info & info)
+   element * system::alloc(::aura::application * papp,const std_type_info & info)
    {
       return on_alloc(papp,canew(type(info)));
    }
 
-   void system::on_allocation_error(sp(::aura::application) papp,sp(type) info)
+   void system::on_allocation_error(::aura::application * papp,sp(type) info)
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(info);
    }
 
-   sp(element) system::alloc(sp(::aura::application) papp,const class id & idType)
+   element * system::alloc(::aura::application * papp,const class id & idType)
    {
       return on_alloc(papp,get_type_info(idType));
    }

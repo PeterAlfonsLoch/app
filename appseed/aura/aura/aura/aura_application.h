@@ -83,8 +83,8 @@ namespace aura
       virtual ~application();
 
 
-      virtual sp(element) alloc(sp(type) info);
-      virtual sp(element) alloc(const id & idType);
+      virtual element * alloc(sp(type) info);
+      virtual element * alloc(const id & idType);
 
       template < typename T >
       void alloc(T * & pt);

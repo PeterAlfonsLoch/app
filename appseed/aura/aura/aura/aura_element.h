@@ -32,7 +32,7 @@ public:
    virtual void delete_this();
 
 
-   virtual sp(element) clone();
+   virtual element * clone();
 
 
    static void system(const char * pszProjectName);

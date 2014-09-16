@@ -51,7 +51,7 @@ namespace base
 
       }
 
-      m_pcoreapp                 = NULL;
+//      m_pcoreapp                 = NULL;
 
       
       m_dir.set_app(this);

@@ -161,7 +161,7 @@ sp(factory_allocator) base_factory::get_allocator(const char * pszType)
 
 
 
-sp(element) base_factory::create(sp(::aura::application) papp, sp(type) info)
+element * base_factory::create(::aura::application * papp, sp(type) info)
 {
 
    if(info->m_spmutex.is_null())
@@ -201,7 +201,7 @@ sp(element) base_factory::create(sp(::aura::application) papp, sp(type) info)
 
 
 
-sp(element) base_factory::base_clone(sp(element) pobject)
+element * base_factory::base_clone(sp(element) pobject)
 {
 
    return typed_clone((id) typeid(*pobject).name(), pobject);
@@ -209,7 +209,7 @@ sp(element) base_factory::base_clone(sp(element) pobject)
 }
 
 
-sp(element) base_factory::typed_clone(id idType, sp(element) pobject)
+element * base_factory::typed_clone(id idType, sp(element) pobject)
 {
 
    single_lock sl(m_pmutex,TRUE);
