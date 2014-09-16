@@ -95,7 +95,7 @@ namespace process
 
       class on_retry * ponretry = (on_retry *)dwParam;
 
-      if(ponretry->m_dwTimeout > 0 && ::get_tick_count() - ponretry->m_dwStartTime > ponretry->m_dwTimeout;
+      if(ponretry->m_dwTimeout > 0 && ::get_tick_count() - ponretry->m_dwStartTime > ponretry->m_dwTimeout)
       {
 
          ponretry->m_bPotentialTimeout = true;

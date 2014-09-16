@@ -1604,65 +1604,22 @@ namespace core
 #endif
 
                      strPath += " : app=" + notinstalled.m_strId + " install build_number=basis locale="+notinstalled.m_strLocale+" schema="+notinstalled.m_strSchema;
-                     //strPath += " : app=" + notinstalled.m_strId + " install build_number=basis";
 
-                     uint32_t dwExitCode = System.process().synch(strPath, SW_HIDE, minutes(1));
+                     bool bTimedOut = false;
 
-                     //bool bOk = true;
+                     uint32_t dwExitCode = System.process().synch(strPath, SW_HIDE, minutes(1), &bTimedOut);
 
-                     //uint32_t dwExitCode = 0;
-
-                     //bool bTimeOut = false;
-/*                     string str;
-
-                     ::process::process_sp process(allocer());
-
-                     if(!process->create_child_process(strPath,false,System.dir().name(strPath)))
-                     {
-
-                        bOk = false;
-
-                     }
-
-
-                     if(bOk)
-                     {
-
-                        int32_t i;
-
-                        i = 1;
-
-                        while(!process->has_exited(&dwExitCode))
-                        {
-
-                           if(i > 20)
-                           {
-
-                              bTimeOut = true;
-
-                              break;
-
-                           }
-
-                           Sleep(584);
-
-                           i++;
-
-                        }
-
-                     }*/
-
-                     if(bTimeOut)
+                     if(bTimedOut)
                      {
                         ::simple_message_box(NULL, " - " + notinstalled.m_strId + "\nhas timed out while trying to install.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nIt is recommended to kill manually :\n - \"" +strPath+ "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
                      }
-                     else if(bOk && dwExitCode == 0)
+                     else if(dwExitCode == 0)
                      {
                         ::simple_message_box(NULL,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
                      }
                      else
                      {
-                        ::simple_message_box(NULL,"Fail ret code run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+                        ::simple_message_box(NULL, strPath + "\n\nFailed return code : " + ::str::from(dwExitCode),"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
                      }
 
                   }
