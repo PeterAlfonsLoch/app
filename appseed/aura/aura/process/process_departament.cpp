@@ -19,12 +19,12 @@ namespace process
    }
 
 
-   var departament::get_output(const char * pszCmdLine,uint32_t dwTimeout,int32_t iShow, bool * pbPotentialTimeout)
+   var departament::get_output(const char * pszCmdLine,const ::duration & dur,int32_t iShow, bool * pbPotentialTimeout)
    {
 
       string strRead;
 
-      process_processor proc(get_app(), pszCmdLine, dwTimeout, pbPotentialTimeout, &strRead);
+      process_processor proc(get_app(), pszCmdLine, dur, pbPotentialTimeout, &strRead);
 
       return strRead;
 
@@ -32,10 +32,10 @@ namespace process
 
 
 
-   uint32_t departament::retry(const char * pszCmdLine,uint32_t dwTimeout,int32_t iShow, bool * pbPotentialTimeout)
+   uint32_t departament::retry(const char * pszCmdLine,const ::duration & dur,int32_t iShow, bool * pbPotentialTimeout)
    {
 
-      process_processor proc(get_app(), pszCmdLine, dwTimeout, pbPotentialTimeout, &strRead);
+      process_processor proc(get_app(), pszCmdLine, dur, pbPotentialTimeout);
 
       return proc.m_uiRetCode;
 
@@ -43,17 +43,15 @@ namespace process
    }
 
 
-   uint32_t departament::synch(const char * pszCmdLine,int32_t iShow, const ::duration & dur, bool * p)
+   uint32_t departament::synch(const char * pszCmdLine,int32_t iShow, const ::duration & dur, bool * pbPotentialTimeout)
    {
 
-      uint32_t uiTimeOut;
+      process_processor proc(get_app(), pszCmdLine, dur, pbPotentialTimeout);
 
-
-      process_processor proc(get_app(), pszCmdLine, uiTimeout, pbPotentialTimeout, &strRead);
-
-
+      return proc.m_uiRetCode;
 
    }
+
 
    bool departament::launch(const char * pszCmdLine,int32_t iShow)
    {
@@ -84,6 +82,22 @@ namespace process
       m_pstrRead(pstrRead),
       m_pevReady(pevReady)
    {
+
+      uint32_t uiTimeOut;
+
+      if(dur.is_pos_infinity())
+      {
+
+         uiTimeOut = 0;
+
+      }
+      else
+      {
+
+         uiTimeOut = dur.get_total_milliseconds();
+
+      }
+
 
       m_bPotentialTimeout     = false;
       m_bInitFailure          = false;

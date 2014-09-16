@@ -27,7 +27,7 @@ namespace process
 
 
 
-         process_thread(sp(::aura::application) papp);
+         process_thread(sp(::aura::application) papp, const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = NULL, string * pstrRead = NULL);
 
          int32_t run();
 
@@ -48,7 +48,7 @@ namespace process
          process_thread *                 m_pthread;
          uint32_t                         m_uiRetCode;
 
-         process_processor(sp(::aura::application) papp, const string & strCmdLine, DWORD dwTimeOut, bool * pbPotentialTimeout = NULL, string * pstrRead = NULL);
+         process_processor(sp(::aura::application) papp, const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = NULL, string * pstrRead = NULL);
          virtual ~process_processor();
 
       };
@@ -62,8 +62,8 @@ namespace process
 
 
       // run process and get output
-      virtual var get_output(const char * pszCmdLine,uint32_t dwTimeOut,int32_t iShow = SW_HIDE, bool * pbPotentialTimeout = NULL);
-      virtual uint32_t retry(const char * pszCmdLine,uint32_t dwTimeOut,int32_t iShow = SW_HIDE, bool * pbPotentialTimeout = NULL);
+      virtual var get_output(const char * pszCmdLine,const ::duration & dur= ::duration::infinite(),int32_t iShow = SW_HIDE, bool * pbPotentialTimeout = NULL);
+      virtual uint32_t retry(const char * pszCmdLine,const ::duration & dur,int32_t iShow = SW_HIDE, bool * pbPotentialTimeout = NULL);
       virtual uint32_t synch(const char * pszCmdLine,int32_t iShow = SW_HIDE, const ::duration & dur = ::duration::infinite(), bool * pbPotentialTimeout = NULL);
       virtual bool launch(const char * pszCmdLine,int32_t iShow = SW_HIDE);
 
