@@ -441,7 +441,8 @@
 		9A19A12D19C6933E0018DF7D /* sockets_ssl_server_context_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12919C6933E0018DF7D /* sockets_ssl_server_context_map.h */; };
 		9A19A12E19C6933E0018DF7D /* sockets_ssl_server_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A12A19C6933E0018DF7D /* sockets_ssl_server_context.cpp */; };
 		9A19A12F19C6933E0018DF7D /* sockets_ssl_server_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12B19C6933E0018DF7D /* sockets_ssl_server_context.h */; };
-		9A19A16D19C6ED9E0018DF7D /* lib_ca2freeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A163D2519C4995100966C5E /* lib_ca2freeimage.dylib */; };
+		9A19A16D19C6ED9E0018DF7D /* libaxisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A163D2519C4995100966C5E /* libaxisidn.dylib */; };
+		9A1EDB6419C842E000F5CCE8 /* base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB6319C842E000F5CCE8 /* base.cpp */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -1253,6 +1254,7 @@
 		9A19A12919C6933E0018DF7D /* sockets_ssl_server_context_map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sockets_ssl_server_context_map.h; sourceTree = "<group>"; };
 		9A19A12A19C6933E0018DF7D /* sockets_ssl_server_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_ssl_server_context.cpp; sourceTree = "<group>"; };
 		9A19A12B19C6933E0018DF7D /* sockets_ssl_server_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sockets_ssl_server_context.h; sourceTree = "<group>"; };
+		9A1EDB6319C842E000F5CCE8 /* base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base.cpp; sourceTree = "<group>"; };
 		9A2EA33A19A62C7B004DAFFC /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1307,7 +1309,7 @@
 				9A19A0CC19C68CE70018DF7D /* libaxisbzip2.dylib in Frameworks */,
 				9A19A12719C6931C0018DF7D /* libaxisfreeimage.dylib in Frameworks */,
 				9A19A0CD19C68D140018DF7D /* libaxisfreetype.dylib in Frameworks */,
-				9A19A16D19C6ED9E0018DF7D /* lib_ca2freeimage.dylib in Frameworks */,
+				9A19A16D19C6ED9E0018DF7D /* libaxisidn.dylib in Frameworks */,
 				9A19A0C919C68C220018DF7D /* libaxisopenssl.dylib in Frameworks */,
 				9A19A0E819C6923E0018DF7D /* libaxiszlib.dylib in Frameworks */,
 				9A19A0DD19C68F020018DF7D /* libaxis.dylib in Frameworks */,
@@ -2042,7 +2044,7 @@
 		9A163D1F19C4995000966C5E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A163D2519C4995100966C5E /* lib_ca2freeimage.dylib */,
+				9A163D2519C4995100966C5E /* libaxisidn.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2248,6 +2250,7 @@
 				9AE7229617E83B69003E47F9 /* net */,
 				07F5B2C3184A3FA30092C3E1 /* programming */,
 				9AE7233517E83B69003E47F9 /* user */,
+				9A1EDB6319C842E000F5CCE8 /* base.cpp */,
 				077C2A19190F143F00A1F6B0 /* framework.cpp */,
 				077C2A1A190F144000A1F6B0 /* framework.h */,
 				9AE24D431904CEFE001AEFFB /* base_iosTests.xctest */,
@@ -2640,10 +2643,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A163D2519C4995100966C5E /* lib_ca2freeimage.dylib */ = {
+		9A163D2519C4995100966C5E /* libaxisidn.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = lib_ca2freeimage.dylib;
+			path = libaxisidn.dylib;
 			remoteRef = 9A163D2419C4995100966C5E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2901,6 +2904,7 @@
 				07B08D7C18495B41007A0560 /* install_windows_boot.cpp in Sources */,
 				07B0978A18495CBE007A0560 /* sockets_net.cpp in Sources */,
 				9A19A11D19C692650018DF7D /* visual_image_list.cpp in Sources */,
+				9A1EDB6419C842E000F5CCE8 /* base.cpp in Sources */,
 				9A19A11919C692650018DF7D /* visual_glyph.cpp in Sources */,
 				07B097BE18495CBE007A0560 /* sockets_include.cpp in Sources */,
 				9AE7252917E83B69003E47F9 /* net_net.cpp in Sources */,
