@@ -19,7 +19,7 @@ namespace process
    }
 
 
-   var departament::get_output(const char * pszCmdLine)
+   var departament::get_output(const char * pszCmdLine,uint32_t dwTimeout,int32_t iShow, bool * pbPotentialTimeout)
    {
 
       string strRead;
@@ -29,6 +29,8 @@ namespace process
       evReady.ResetEvent();
 
       process_thread * pthread = new process_thread(get_app(),&strRead,&evReady);
+
+      pthread->m_pb = pbPotentialTimeout;
 
       pthread->m_bAutoDelete = true;
 
@@ -44,65 +46,31 @@ namespace process
    }
 
 
-   departament::on_retry::on_retry()
-   {
-
-      m_bPotentialTimeout = false;
-
-   }
-
 
    uint32_t departament::retry(const char * pszCmdLine,uint32_t dwTimeout,int32_t iShow, bool * pbPotentialTimeout)
    {
 
-      class on_retry onretry;
+      manual_reset_event evReady(get_app());
 
-      onretry.m_dwTimeout     = dwTimeout;
+      evReady.ResetEvent();
 
-      onretry.m_dwStartTime   = ::get_tick_count();
+      process_thread * pthread = new process_thread(get_app(), NULL,&evReady);
 
-      const char * pszEnd = NULL;
+      pthread->m_pb = pbPotentialTimeout;
 
-      string strBin = consume_param(pszCmdLine,&pszEnd);
+      pthread->m_bAutoDelete = true;
 
-#ifdef METROWIN
+      pthread->m_strCmdLine = pszCmdLine;
 
-      throw todo(get_app());
+      pthread->begin();
 
-#else
+      evReady.wait();
 
-      uint32_t dwExitCode = call_sync(strBin,pszEnd,NULL,iShow,-1,484,&departament::s_on_retry,(uint_ptr)&onretry);
+      return strRead;
 
-      if(pbPotentialTimeout != NULL)
-      {
-
-         *pbPotentialTimeout = onretry.m_bPotentialTimeout;
-
-      }
-
-      return dwExitCode;
 
 #endif
 
-
-   }
-
-
-   int32_t departament::s_on_retry(int32_t iTry,uint_ptr dwParam)
-   {
-
-      UNREFERENCED_PARAMETER(iTry);
-
-      class on_retry * ponretry = (on_retry *)dwParam;
-
-      if(ponretry->m_dwTimeout > 0 && ::get_tick_count() - ponretry->m_dwStartTime > ponretry->m_dwTimeout)
-      {
-
-         ponretry->m_bPotentialTimeout = true;
-
-      }
-
-      return !ponretry->m_bPotentialTimeout;
 
    }
 
@@ -146,7 +114,7 @@ namespace process
 
    }
 
-   departament::process_thread::process_thread(sp(::aura::application) papp,string * pstrRead,manual_reset_event * pevReady):
+   departament::process_thread::process_thread(sp(::aura::application) papp,string * pstrRead,manual_reset_event * pevReady, DWORD dwTimeOut):
       element(papp),
       thread(papp),
       simple_thread(papp),
@@ -154,11 +122,33 @@ namespace process
       m_pstrRead(pstrRead),
       m_pevReady(pevReady)
    {
+
+      m_bPotentialTimeout     = false;
+      m_bInitFailure          = false;
+
    }
 
 
    int32_t departament::process_thread::run()
    {
+
+      if(!m_spprocess->create_child_process(m_strCmdLine,true))
+      {
+
+         m_bInitFailure = true;
+
+         if(m_pevReady != NULL)
+         {
+
+            m_pevReady->SetEvent();
+
+         }
+
+         return false;
+
+      }
+
+      m_dwStartTime = ::get_tick_count();
 
       string strRead;
 
@@ -173,6 +163,9 @@ namespace process
             *m_pstrRead += strRead;
 
          }
+
+         if(!retry())
+            break;
 
          Sleep(100);
 
@@ -207,11 +200,36 @@ namespace process
       {
 
          m_pevReady->SetEvent();
+
       }
 
       return 0;
 
    }
+
+
+   bool departament::process_thread::retry()
+   {
+
+      if(m_dwTimeout > 0 && ::get_tick_count() - m_dwStartTime > m_dwTimeout)
+      {
+
+         if(m_pbPotentialTimeout != NULL)
+         {
+
+            *m_pbPotentialTimeout = true;
+
+
+         }
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
 
 
 } // namespace process
