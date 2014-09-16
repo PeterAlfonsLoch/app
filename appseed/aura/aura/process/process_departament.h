@@ -15,21 +15,38 @@ namespace process
       {
       public:
 
-         bool                             m_bInitFailure;
          string                           m_strCmdLine;
          sp(process)                      m_spprocess;
          string *                         m_pstrRead;
          manual_reset_event *             m_pevReady;
          uint32_t                         m_dwTimeout;
          uint32_t                         m_dwStartTime;
+         bool *                           m_pbInitFailure;
          bool *                           m_pbPotentialTimeout;
 
 
-         process_thread(sp(::aura::application) papp, bool * pbPotentialTimeout, string * pstrRead = NULL,manual_reset_event * pevReady = NULL, DWORD dwTimeOut = 0);
+
+         process_thread(sp(::aura::application) papp);
 
          int32_t run();
 
          bool retry();
+
+      };
+
+      class process_processor :
+         virtual public object
+      {
+      public:
+
+
+         manual_reset_event               m_evReady;
+         bool                             m_bInitFailure;
+         bool                             m_bPotentialTimeout;
+         process_thread *                 m_pthread;
+
+         process_processor(sp(::aura::application) papp, const string & strCmdLine, DWORD dwTimeOut, string * pstrRead);
+         virtual ~process_processor();
 
       };
 

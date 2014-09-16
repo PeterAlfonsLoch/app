@@ -24,9 +24,11 @@ namespace process
 
       string strRead;
 
-      manual_reset_event evReady(get_app());
+
 
       evReady.ResetEvent();
+
+      bool
 
       process_thread * pthread = new process_thread(get_app(),&strRead,&evReady);
 
@@ -67,9 +69,6 @@ namespace process
       evReady.wait();
 
       return strRead;
-
-
-#endif
 
 
    }
@@ -219,7 +218,6 @@ namespace process
 
             *m_pbPotentialTimeout = true;
 
-
          }
 
          return false;
@@ -228,6 +226,20 @@ namespace process
 
       return true;
 
+   }
+
+
+   departament::process_processor::process_processor(sp(::aura::application) papp, const string & strCmdLine, DWORD dwTimeOut, string * pstrRead) :
+      element(papp)
+      m_evReady(papp)
+   {
+
+      m_pthread = new process
+
+   }
+
+   departament::process_processor::process_processor
+   {
    }
 
 
