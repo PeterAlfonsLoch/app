@@ -1595,38 +1595,47 @@ namespace core
 
                      string strPath = notinstalled.m_strId;
 
-                     strPath.replace("/", "_");
-                     strPath.replace("-","_");
-                     ::str::begins_eat_ci(strPath,"app_");
+                     strPath = System.dir().ca2module("app");
+
 #ifdef WINDOWS
-                     strPath += ".bat";
-#else
-                     strPath += " \"" + System.dir().element() + "\"";
+
+                     strPath += ".exe";
 
 #endif
-#if defined(OS64BIT)
-                     strPath = System.dir().element("nodeapp/stage/install/basis/x64/_std",strPath);
-#else
-                     strPath = System.dir().element("nodeapp/stage/install/basis/x86/_std",strPath);
-#endif
+
+                     strPath += " : app=" + notinstalled.m_strId + " install build_number=basis";
 
                      bool bOk = true;
+
                      uint32_t dwExitCode = 0;
 
                      string str;
+
                      ::process::process_sp process(allocer());
+
                      if(!process->create_child_process(strPath,false,System.dir().name(strPath)))
                      {
+
                         bOk = false;
+
                      }
+
                      if(bOk)
                      {
+
                         int32_t i;
+
                         i = 1;
+
                         while(!process->has_exited(&dwExitCode))
                         {
+
+                           Sleep(584);
+
                            i++;
+
                         }
+
                      }
 
 
