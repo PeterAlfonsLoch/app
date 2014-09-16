@@ -820,7 +820,9 @@ void stringa::replace(const char * lpszSearch, const char * lpszReplace)
       for(index i = 0; i < get_count(); i++)
       {
 
-         argv->add((char *) (const char *) element_at(i));
+         char * pch = (char *) (const char *) element_at(i);
+
+         argv->add(pch);
 
       }
 

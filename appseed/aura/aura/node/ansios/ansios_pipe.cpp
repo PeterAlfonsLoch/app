@@ -132,6 +132,9 @@ namespace ansios
 
             dwRead =::read(m_fd[0],chBuf,BUFSIZE);
 
+            if(!m_bBlock && dwRead == (size_t) -1)
+               return "";
+
             bSuccess = true;
 
          }

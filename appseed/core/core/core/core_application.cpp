@@ -1607,7 +1607,7 @@ namespace core
 
                      bool bTimedOut = false;
 
-                     uint32_t dwExitCode = System.process().synch(strPath, SW_HIDE, minutes(1), &bTimedOut);
+                     uint32_t dwExitCode = System.process().synch(strPath, SW_HIDE, seconds(8.41115770402), &bTimedOut);
 
                      if(bTimedOut)
                      {
