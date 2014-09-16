@@ -399,13 +399,14 @@ int compareNoCase(const string& s1, const string& s2)
 //     return EXIT_SUCCESS;
 // }
 
-string x11_keyboard_get_current_group_info(string str)
+string x11_keyboard_get_current_group_info(string & strGroupName, string & strGroupSymbol)
 {
 
    XKeyboard xkb;
 
-   //std::string cGrpName=xkb.currentGroupName(); //return somethings like "USA"
-   string cGrpSymb=xkb.currentGroupSymbol(); //return somethings like "us"
+   strGroupName = xkb.currentGroupName(); //return somethings like "USA"
+
+   strGroupSymbol = xkb.currentGroupSymbol(); //return somethings like "us"
 
 }
 
@@ -415,8 +416,7 @@ string x11_keyboard_get_current_group_symbol()
 
    XKeyboard xkb;
 
-   //std::string cGrpName=xkb.currentGroupName(); //return somethings like "USA"
-   string cGrpSymb=xkb.currentGroupSymbol(); //return somethings like "us"
+   return xkb.currentGroupName(); //return somethings like "USA"
 
 }
 
@@ -427,7 +427,6 @@ string x11_keyboard_get_current_group_symbol()
 
    XKeyboard xkb;
 
-   //std::string cGrpName=xkb.currentGroupName(); //return somethings like "USA"
-   string cGrpSymb=xkb.currentGroupSymbol(); //return somethings like "us"
+   return cGrpSymb=xkb.currentGroupSymbol(); //return somethings like "us"
 
 }
