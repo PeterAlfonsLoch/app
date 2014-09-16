@@ -411,7 +411,7 @@ void x11_keyboard_get_current_group_info(string & strGroupName, string & strGrou
 }
 
 
-string x11_keyboard_get_current_group_symbol()
+string x11_keyboard_get_current_group_name()
 {
 
    XKeyboard xkb;
