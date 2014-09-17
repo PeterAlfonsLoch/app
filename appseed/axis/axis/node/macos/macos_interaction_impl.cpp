@@ -3741,7 +3741,7 @@ namespace macos
                      (int) y,
                      (int) cx,
                      (int)cy,
-                     0);
+                     nFlags);
 
       send_message(WM_MOVE);
 
@@ -4185,10 +4185,12 @@ namespace macos
 
    LRESULT interaction_impl::send_message(UINT message, WPARAM wparam, lparam lparam)
    {
+      
+      return ::user::interaction_impl::send_message(message, wparam, lparam);
 
-      ::smart_pointer < ::message::base > spbase;
+//      ::smart_pointer < ::message::base > spbase;
 
-      spbase = get_base(message, wparam, lparam);
+  //    spbase = get_base(message, wparam, lparam);
 
       /*      try
        {
@@ -4218,8 +4220,8 @@ namespace macos
        catch(...)
        {
        }*/
-      message_handler(spbase);
-      return spbase->get_lresult();
+//      message_handler(spbase);
+  //    return spbase->get_lresult();
 
       //throw todo(get_app());
 

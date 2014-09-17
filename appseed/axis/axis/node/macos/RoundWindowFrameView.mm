@@ -233,6 +233,9 @@
    return YES;
 }
 
+
+#define WINDOW_FRAME_PADDING 32
+
 //
 // drawRect:
 //
@@ -241,10 +244,12 @@
 - (void)drawRect:(NSRect)rect
 {
    
-   //	[[NSColor clearColor] set];
-	//NSRectFill(rect);
+   /*
+   
+   	[[NSColor clearColor] set];
+	NSRectFill(rect);
 
-/*
+
 	NSBezierPath * rectPath = [NSBezierPath bezierPathWithRect : [self bounds]];
 	
 	NSGradient * gradient = [[NSGradient alloc] initWithColorsAndLocations : [NSColor whiteColor], (CGFloat) 0.0, [NSColor lightGrayColor], (CGFloat)1.0, nil];
@@ -280,8 +285,9 @@
 				paragraphStyle, NSParagraphStyleAttributeName,
 				[NSFont systemFontOfSize:14], NSFontAttributeName,
 			nil]];
- */
+ 
    
+   return;*/
   
    round_window * p = m_roundwindow->m_pwindow;
    
@@ -308,12 +314,54 @@
    return TRUE;
 }
 
+
 - (BOOL) acceptsFirstMouse:(NSEvent *)theEvent
 {
-   [self mouseDown: theEvent];
+   
+   if(theEvent != NULL)
+   {
+   
+      [self mouseDown: theEvent];
+      
+   }
+   
    return YES;
+   
 }
 
+// from RoundWindow.mm
+
+/*- (BOOL) acceptsFirstResponder
+{
+   if(m_bNoActivate)
+      return NO;
+   else
+      return YES;
+}*/
+
+- (BOOL) becomeFirstResponder
+{
+//   if(m_bNoActivate)
+  //    return NO;
+  // else
+   {
+      
+      //      m_pwindow->round_window_on_become_first_responder();
+      
+      return YES;
+      
+   }
+}
+
+- (BOOL) resignFirstResponder
+{
+   
+   //if(m_bNoActivate)
+     // return YES;
+   //else
+      return YES;
+   
+}
 
 
 - (void)keyDown:(NSEvent *)event {
@@ -332,6 +380,8 @@
    [super keyDown:event];
    
 }
+
+// end from RoundWindow.mm
 
 - (void)keyUp:(NSEvent *)event {
    

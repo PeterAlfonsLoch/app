@@ -157,6 +157,9 @@
       return YES;
 }
 
+/*
+ 
+ let the view become first responder
 
 - (BOOL) acceptsFirstResponder
 {
@@ -183,9 +186,15 @@
 - (BOOL) resignFirstResponder
 {
    
-   return YES;
+   if(m_bNoActivate)
+      return YES;
+   else
+      return NO;
    
 }
+ 
+ 
+ */
 
 
 //
