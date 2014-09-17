@@ -683,12 +683,26 @@ namespace macos
       Detach();
       ASSERT(get_handle() == NULL);
       m_pfnDispatchWindowProc = &interaction_impl::_start_user_message_handler;
-      // call special post-cleanup routine
-      PostNcDestroy();
+      
+      signalizable_disconnect_all();
+      
       if(m_pui != NULL)
       {
-         m_pui->PostNcDestroy();
+      
+         m_pui->signalizable_disconnect_all();
+         
       }
+      
+      // call special post-cleanup routine
+      PostNcDestroy();
+      
+      if(m_pui != NULL)
+      {
+      
+         m_pui->PostNcDestroy();
+         
+      }
+      
    }
 
    void interaction_impl::PostNcDestroy()

@@ -191,9 +191,10 @@ namespace macos
       return strcmp(lpcsz1, lpcsz2) == 0;
    }
    
-   void dir::root_ones(stringa & stra, sp(::aura::application)  papp)
+   void dir::root_ones(stringa & stra, stringa & straTitle, sp(::aura::application)  papp)
    {
       stra.add("/");
+      straTitle.add("System");
       /*      DWORD dwSize = ::GetLogicalDriveStrings(0, NULL);
        LPTSTR lpszAlloc = (LPTSTR) malloc(dwSize + 1);
        LPTSTR lpsz = lpszAlloc;

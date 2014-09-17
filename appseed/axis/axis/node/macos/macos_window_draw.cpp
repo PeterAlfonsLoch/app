@@ -267,6 +267,7 @@ namespace macos
    bool window_draw::UpdateBuffer()
    {
       
+      return ::user::window_draw::UpdateBuffer();
        
        if(m_bRender)
          return false;

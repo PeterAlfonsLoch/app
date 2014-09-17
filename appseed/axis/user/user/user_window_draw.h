@@ -28,6 +28,7 @@ namespace user
       uint32_t             m_iFramesPerSecond;
       event                m_eventFree;
       bool                 m_bRunning;
+      bool                 m_bRender;
 
 
       window_draw(sp(::aura::application) papp);

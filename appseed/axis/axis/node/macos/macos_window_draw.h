@@ -17,7 +17,6 @@ namespace macos
       mutex                                  m_mutexRendering;
       mutex                                  m_mutexRgnUpdate;
       semaphore                              m_semaphoreBuffer;
-      bool                                   m_bRender;
       DWORD                                  m_dwLastRedrawRequest;
       mutex                                  m_mutexRender;
       DWORD                                  m_dwLastUpdate;

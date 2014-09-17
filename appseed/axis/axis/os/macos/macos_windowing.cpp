@@ -338,7 +338,15 @@ oswindow GetFocus()
 }
 
 
-
+::user::interaction * window_from_handle(oswindow oswindow)
+{
+   
+   if(oswindow == NULL)
+      return NULL;
+   
+   return oswindow->m_pui;
+   
+}
 
 static oswindow g_oswindowActive = NULL;
 
@@ -364,3 +372,9 @@ oswindow SetActiveWindow(oswindow window)
 
 
 
+
+
+oswindow GetWindow(oswindow window, int iParentHood)
+{
+   return NULL;
+}

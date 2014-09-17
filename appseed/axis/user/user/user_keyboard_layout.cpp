@@ -29,6 +29,7 @@ namespace user
          m_strPath      = id.m_strPath;
          m_countrycode  = id.m_countrycode;
          m_hkla         = id.m_hkla;
+         m_keylayout    = id.m_keylayout;
 
       }
 

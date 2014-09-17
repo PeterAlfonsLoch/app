@@ -105,7 +105,8 @@ namespace process
 
    int32_t departament::process_thread::run()
    {
-
+   
+   
       if(!m_spprocess->create_child_process(m_strCmdLine,true))
       {
 
@@ -131,7 +132,7 @@ namespace process
 
       string strRead;
 
-      while(!m_spprocess->has_exited())
+      while(!m_spprocess->has_exited(m_puiRetCode))
       {
 
          strRead = m_spprocess->m_pipe.m_sppipeOut->read();
@@ -213,6 +214,8 @@ namespace process
       element(papp),
       m_evReady(papp)
    {
+   
+      m_uiRetCode = -1;
 
       m_bInitFailure = false;
 
@@ -229,6 +232,8 @@ namespace process
       m_pthread->m_pbPotentialTimeout = &m_bPotentialTimeout;
 
       m_pthread->m_pevReady = &m_evReady;
+      
+      m_pthread->m_puiRetCode = &m_uiRetCode;
 
       m_evReady.ResetEvent();
 

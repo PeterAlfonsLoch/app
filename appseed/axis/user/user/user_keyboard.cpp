@@ -2,6 +2,8 @@
 
 #if defined(LINUX) || defined(SOLARIS)
 #include "axis/axis/os/x11/x11_keyboard.h"
+#elif defined(APPLEOS)
+string keyboard_input_source();
 #endif
 
 
@@ -306,6 +308,18 @@ namespace user
          return layoutida[i].m_strPath;
       }
    }
+   
+#elif defined(APPLEOS)
+
+      string strSymbol = keyboard_input_source();
+      
+      for(int32_t i = 0; i < layoutida.get_count(); i++)
+      {
+         if(layoutida[i].m_keylayout.has_char() && strSymbol.contains(layoutida[i].m_keylayout))
+         {
+            return layoutida[i].m_strPath;
+         }
+      }
 
 #else
 
@@ -348,6 +362,8 @@ namespace user
       playoutid->m_strName = doc.get_root()->attrs()["name"];
 
       playoutid->m_countrycode = doc.get_root()->attrs()["cc"];
+
+      playoutid->m_keylayout = doc.get_root()->attrs()["kl"];
 
       stringa straHkl;
 

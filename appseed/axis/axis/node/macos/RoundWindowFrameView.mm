@@ -145,6 +145,8 @@
    
    return;
    
+   /*
+   
 	NSPoint pointInView = [self convertPoint:[event locationInWindow] fromView:nil];
 	
 	BOOL resize = NO;
@@ -226,6 +228,8 @@
 		
 		[window setFrame:newFrame display:YES animate:NO];
 	}
+   
+   */
 }
 
 - (BOOL) isFlipped
@@ -311,23 +315,35 @@
 
 - (BOOL)acceptsFirstResponder
 {
+   
    return TRUE;
+   
 }
 
 
 - (BOOL) acceptsFirstMouse:(NSEvent *)theEvent
 {
+
    
-   if(theEvent != NULL)
+/*   if(theEvent != NULL)
    {
    
       [self mouseDown: theEvent];
       
-   }
+   }*/
    
    return YES;
    
 }
+
+
+- (BOOL)mouseDownCanMoveWindow
+{
+
+   return NO;
+
+}
+
 
 // from RoundWindow.mm
 
@@ -571,7 +587,7 @@
       }
       else if(ush == 1)
       {
-         return ::user::key_2;
+         return ::user::key_s;
       }
       else if(ush == 2)
       {
@@ -700,6 +716,46 @@
       else if(ush == 117)
       {
          return ::user::key_delete;
+      }
+      else if(ush == 44)
+      {
+         return ::user::key_semicolon2;
+      }
+      else if(ush == 24)
+      {
+         return ::user::key_equal;
+      }
+      else if(ush == 27)
+      {
+         return ::user::key_hyphen;
+      }
+      else if(ush == 94)
+      {
+         return ::user::key_slash2;
+      }
+      else if(ush == 30)
+      {
+         return ::user::key_openbracket2;
+      }
+      else if(ush == 42)
+      {
+         return ::user::key_closebracket2;
+      }
+      else if(ush == 39)
+      {
+         return ::user::key_til2;
+      }
+      else if(ush == 33)
+      {
+         return ::user::key_acute2;
+      }
+      else if(ush == 115)
+      {
+         return ::user::key_home;
+      }
+      else if(ush == 119)
+      {
+         return ::user::key_end;
       }
       
    }

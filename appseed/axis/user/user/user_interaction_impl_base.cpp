@@ -759,6 +759,9 @@ namespace user
 
    bool interaction_impl_base::IsChild(const interaction * puiIsChild) const
    {
+   
+      if(puiIsChild == NULL)
+         return false;
 
       interaction * puiProbe = puiIsChild->GetParent();
 

@@ -77,6 +77,11 @@
 		07884C291897E9A500DC6CEB /* user_window_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 07884BDB1897E9A400DC6CEB /* user_window_map.h */; };
 		07884C2A1897E9A500DC6CEB /* user_window_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884BDC1897E9A400DC6CEB /* user_window_util.cpp */; };
 		07884C2B1897E9A500DC6CEB /* user_window_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 07884BDD1897E9A400DC6CEB /* user_window_util.h */; };
+		079F634519C99DBB00DB8D83 /* cross.h in Headers */ = {isa = PBXBuildFile; fileRef = 079F631819C99DBB00DB8D83 /* cross.h */; };
+		079F634619C99DBB00DB8D83 /* cross_metrowin_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079F631A19C99DBB00DB8D83 /* cross_metrowin_user.cpp */; };
+		079F634819C99DBB00DB8D83 /* windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 079F631D19C99DBB00DB8D83 /* windows.h */; };
+		079F634919C99DBB00DB8D83 /* windows_user.h in Headers */ = {isa = PBXBuildFile; fileRef = 079F631E19C99DBB00DB8D83 /* windows_user.h */; };
+		079F634B19C99DD900DB8D83 /* ansios_multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 079F634A19C99DD900DB8D83 /* ansios_multithreading.cpp */; };
 		07A2247418F7F3F8002C3B39 /* user_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A2246E18F7F3F8002C3B39 /* user_enum.h */; };
 		07A2247518F7F3F8002C3B39 /* user_inline.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A2246F18F7F3F8002C3B39 /* user_inline.h */; };
 		07A2247618F7F3F8002C3B39 /* user_menu_base_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A2247018F7F3F8002C3B39 /* user_menu_base_item.cpp */; };
@@ -261,7 +266,6 @@
 		9AEEAC3819C4BD0900866C9E /* ansios_cross_win_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA9B319C4BD0800866C9E /* ansios_cross_win_file.cpp */; };
 		9AEEAC3919C4BD0900866C9E /* ansios_cross_windows_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA9B419C4BD0800866C9E /* ansios_cross_windows_user.cpp */; };
 		9AEEAC3A19C4BD0900866C9E /* ansios_file_std.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA9B519C4BD0800866C9E /* ansios_file_std.cpp */; };
-		9AEEAC3B19C4BD0900866C9E /* ansios_multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA9B619C4BD0800866C9E /* ansios_multithreading.cpp */; };
 		9AEEAC3C19C4BD0900866C9E /* ansios_multithreading.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA9B719C4BD0800866C9E /* ansios_multithreading.h */; };
 		9AEEAC6319C4BD0A00866C9E /* cross.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEA9E019C4BD0800866C9E /* cross.h */; };
 		9AEEAC6419C4BD0A00866C9E /* cross_metrowin_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEA9E219C4BD0800866C9E /* cross_metrowin_user.cpp */; };
@@ -303,7 +307,7 @@
 		9AEEAD3119C4BD0A00866C9E /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAAB619C4BD0900866C9E /* os.h */; };
 		9AEEAD6919C4BDBA00866C9E /* user_str_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAD6719C4BDBA00866C9E /* user_str_context.cpp */; };
 		9AEEAD6A19C4BDBA00866C9E /* user_str_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAD6819C4BDBA00866C9E /* user_str_context.h */; };
-		9AEEAE0119C4FC3500866C9E /* lib_ca2freeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEADDC19C4FB3400866C9E /* lib_ca2freeimage.dylib */; };
+		9AEEAE0119C4FC3500866C9E /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEADDC19C4FB3400866C9E /* libaxisbzip2.dylib */; };
 		9AEEAE0419C4FC9B00866C9E /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5E9E0019B7623B00949252 /* libaura.dylib */; };
 		9AEEAE2D19C4FF9400866C9E /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE0719C4FF9400866C9E /* database.h */; };
 		9AEEAE2E19C4FF9400866C9E /* database_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE0819C4FF9400866C9E /* database_application.cpp */; };
@@ -508,6 +512,11 @@
 		07884BDB1897E9A400DC6CEB /* user_window_map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_window_map.h; sourceTree = "<group>"; };
 		07884BDC1897E9A400DC6CEB /* user_window_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_window_util.cpp; sourceTree = "<group>"; };
 		07884BDD1897E9A400DC6CEB /* user_window_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_window_util.h; sourceTree = "<group>"; };
+		079F631819C99DBB00DB8D83 /* cross.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cross.h; sourceTree = "<group>"; };
+		079F631A19C99DBB00DB8D83 /* cross_metrowin_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cross_metrowin_user.cpp; sourceTree = "<group>"; };
+		079F631D19C99DBB00DB8D83 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows.h; sourceTree = "<group>"; };
+		079F631E19C99DBB00DB8D83 /* windows_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_user.h; sourceTree = "<group>"; };
+		079F634A19C99DD900DB8D83 /* ansios_multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_multithreading.cpp; sourceTree = "<group>"; };
 		07A2246E18F7F3F8002C3B39 /* user_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_enum.h; sourceTree = "<group>"; };
 		07A2246F18F7F3F8002C3B39 /* user_inline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_inline.h; sourceTree = "<group>"; };
 		07A2247018F7F3F8002C3B39 /* user_menu_base_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_menu_base_item.cpp; sourceTree = "<group>"; };
@@ -657,7 +666,6 @@
 		9AEEA9B319C4BD0800866C9E /* ansios_cross_win_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_cross_win_file.cpp; sourceTree = "<group>"; };
 		9AEEA9B419C4BD0800866C9E /* ansios_cross_windows_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_cross_windows_user.cpp; sourceTree = "<group>"; };
 		9AEEA9B519C4BD0800866C9E /* ansios_file_std.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_file_std.cpp; sourceTree = "<group>"; };
-		9AEEA9B619C4BD0800866C9E /* ansios_multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ansios_multithreading.cpp; sourceTree = "<group>"; };
 		9AEEA9B719C4BD0800866C9E /* ansios_multithreading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios_multithreading.h; sourceTree = "<group>"; };
 		9AEEA9E019C4BD0800866C9E /* cross.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cross.h; sourceTree = "<group>"; };
 		9AEEA9E219C4BD0800866C9E /* cross_metrowin_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cross_metrowin_user.cpp; sourceTree = "<group>"; };
@@ -758,7 +766,7 @@
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
 				9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */,
 				9AEEAE0419C4FC9B00866C9E /* libaura.dylib in Frameworks */,
-				9AEEAE0119C4FC3500866C9E /* lib_ca2freeimage.dylib in Frameworks */,
+				9AEEAE0119C4FC3500866C9E /* libaxisbzip2.dylib in Frameworks */,
 				9AEEBDBB19C5967700866C9E /* libaxiszlib.dylib in Frameworks */,
 				9AEEBDBA19C5966A00866C9E /* libaurasqlite.dylib in Frameworks */,
 			);
@@ -891,6 +899,34 @@
 				0751A4A3192AB3F900CFD2B0 /* user_windowing.h */,
 			);
 			path = user;
+			sourceTree = "<group>";
+		};
+		079F62F019C99DBA00DB8D83 /* cross */ = {
+			isa = PBXGroup;
+			children = (
+				079F631819C99DBB00DB8D83 /* cross.h */,
+				079F631919C99DBB00DB8D83 /* metrowin */,
+				079F631C19C99DBB00DB8D83 /* windows */,
+			);
+			name = cross;
+			path = axis/os/cross;
+			sourceTree = SOURCE_ROOT;
+		};
+		079F631919C99DBB00DB8D83 /* metrowin */ = {
+			isa = PBXGroup;
+			children = (
+				079F631A19C99DBB00DB8D83 /* cross_metrowin_user.cpp */,
+			);
+			path = metrowin;
+			sourceTree = "<group>";
+		};
+		079F631C19C99DBB00DB8D83 /* windows */ = {
+			isa = PBXGroup;
+			children = (
+				079F631D19C99DBB00DB8D83 /* windows.h */,
+				079F631E19C99DBB00DB8D83 /* windows_user.h */,
+			);
+			path = windows;
 			sourceTree = "<group>";
 		};
 		07B0944618495C2A007A0560 /* datetime */ = {
@@ -1172,13 +1208,14 @@
 		9AEEA9AF19C4BD0800866C9E /* ansios */ = {
 			isa = PBXGroup;
 			children = (
+				079F634A19C99DD900DB8D83 /* ansios_multithreading.cpp */,
 				9AEEA9B019C4BD0800866C9E /* ansios.h */,
 				9AEEA9B119C4BD0800866C9E /* ansios_base_file.cpp */,
 				9AEEA9B219C4BD0800866C9E /* ansios_cross_win.cpp */,
 				9AEEA9B319C4BD0800866C9E /* ansios_cross_win_file.cpp */,
 				9AEEA9B419C4BD0800866C9E /* ansios_cross_windows_user.cpp */,
 				9AEEA9B519C4BD0800866C9E /* ansios_file_std.cpp */,
-				9AEEA9B619C4BD0800866C9E /* ansios_multithreading.cpp */,
+				079F62F019C99DBA00DB8D83 /* cross */,
 				9AEEA9B719C4BD0800866C9E /* ansios_multithreading.h */,
 			);
 			path = ansios;
@@ -1263,7 +1300,7 @@
 		9AEEADD819C4FB3400866C9E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AEEADDC19C4FB3400866C9E /* lib_ca2freeimage.dylib */,
+				9AEEADDC19C4FB3400866C9E /* libaxisbzip2.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1402,6 +1439,7 @@
 				9AEEAB0C19C4BD0900866C9E /* axis_system_str.h in Headers */,
 				07884C021897E9A500DC6CEB /* user_keyboard_layout.h in Headers */,
 				9AEEABB919C4BD0900866C9E /* round_window.h in Headers */,
+				079F634919C99DBB00DB8D83 /* windows_user.h in Headers */,
 				9AEEAB5519C4BD0900866C9E /* ansios.h in Headers */,
 				07B0950C18495C2B007A0560 /* datetime_departament.h in Headers */,
 				9AEEAD0019C4BD0A00866C9E /* macos_multithreading.h in Headers */,
@@ -1436,6 +1474,7 @@
 				9AC31615198E4CDF008FB109 /* user_edit_plain_text.h in Headers */,
 				07884C1D1897E9A500DC6CEB /* user_view_creator_data.h in Headers */,
 				9AE4C7FC1996D29C00E50F88 /* data_tree.h in Headers */,
+				079F634819C99DBB00DB8D83 /* windows.h in Headers */,
 				9AEEACFB19C4BD0A00866C9E /* macos_graphics_mm.h in Headers */,
 				9AEEAB0919C4BD0900866C9E /* axis_static_start.h in Headers */,
 				07884C1A1897E9A500DC6CEB /* user_view_container.h in Headers */,
@@ -1527,6 +1566,7 @@
 				9AEEAE3119C4FF9400866C9E /* database_change_event.h in Headers */,
 				07884C181897E9A500DC6CEB /* user_user.h in Headers */,
 				9AEEAC6819C4BD0A00866C9E /* cross.h in Headers */,
+				079F634519C99DBB00DB8D83 /* cross.h in Headers */,
 				07A2247418F7F3F8002C3B39 /* user_enum.h in Headers */,
 				9AEEACEF19C4BD0A00866C9E /* macos.h in Headers */,
 				07884BFC1897E9A500DC6CEB /* user_key_enum.h in Headers */,
@@ -1665,10 +1705,10 @@
 			remoteRef = 9A5E9E0319B7623B00949252 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AEEADDC19C4FB3400866C9E /* lib_ca2freeimage.dylib */ = {
+		9AEEADDC19C4FB3400866C9E /* libaxisbzip2.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = lib_ca2freeimage.dylib;
+			path = libaxisbzip2.dylib;
 			remoteRef = 9AEEADDB19C4FB3400866C9E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1716,6 +1756,7 @@
 				9AEEABA819C4BD0900866C9E /* macos_copydesk.cpp in Sources */,
 				9AC3160F198E4CDF008FB109 /* user_control.cpp in Sources */,
 				9AEEAC3719C4BD0900866C9E /* ansios_cross_win.cpp in Sources */,
+				079F634619C99DBB00DB8D83 /* cross_metrowin_user.cpp in Sources */,
 				9AEEABBA19C4BD0900866C9E /* round_window.mm in Sources */,
 				07884BE61897E9A500DC6CEB /* user_control_event.cpp in Sources */,
 				9AEEAE3719C4FF9400866C9E /* database_event_change.cpp in Sources */,
@@ -1739,6 +1780,7 @@
 				9AEEABBC19C4BD0900866C9E /* RoundWindow.mm in Sources */,
 				9AEEABAA19C4BD0900866C9E /* macos_factory_exchange.cpp in Sources */,
 				9AEEAE2E19C4FF9400866C9E /* database_application.cpp in Sources */,
+				079F634B19C99DD900DB8D83 /* ansios_multithreading.cpp in Sources */,
 				07884C0B1897E9A500DC6CEB /* user_place_holder_container.cpp in Sources */,
 				07884BF41897E9A500DC6CEB /* user_impact_system.cpp in Sources */,
 				9AC3161E198E4CDF008FB109 /* user_interaction_impl.cpp in Sources */,
@@ -1748,7 +1790,6 @@
 				07B095F518495C5F007A0560 /* simple_ui_label.cpp in Sources */,
 				9AEEAD0519C4BD0A00866C9E /* macos_process_pid.cpp in Sources */,
 				9AEEAE4419C4FF9400866C9E /* database_set.cpp in Sources */,
-				9AEEAC3B19C4BD0900866C9E /* ansios_multithreading.cpp in Sources */,
 				9AEEAB0319C4BD0900866C9E /* axis_print_job.cpp in Sources */,
 				9AEEAB0E19C4BD0900866C9E /* axis_c.c in Sources */,
 				9AEEACF019C4BD0A00866C9E /* macos_base_user.cpp in Sources */,

@@ -32,8 +32,63 @@ namespace user
 
    bool window_draw::UpdateBuffer()
    {
-      throw interface_only_exception(get_app());
+   
+      if(m_bRender)
+         return false;
+      
+      keep<bool> keepRender(&m_bRender, true, false, true);
+      
+      ::user::interaction_ptr_array wndpa(get_app());
+      
+      wndpa = get_wnda();
+      
+      rect rectWindow;
+      
+      rect rect9;
+      
+      ::user::oswindow_array wndaApp;
+      
+      for(int32_t l = 0; l < wndpa.get_count();)
+      {
+      
+         try
+         {
+            
+            if(wndpa[l].oprop("session").is_new())
+            {
+            
+               if(wndpa[l].m_bMayProDevian)
+               {
+               
+                  wndpa[l]._001UpdateWindow();
+                  
+               }
+               
+            }
+            
+            l++;
+            
+         }
+         catch(simple_exception & se)
+         {
+            if(se.m_strMessage == "no more a window")
+            {
+               System.frames().remove(&wndpa[l]);
+               wndpa.remove_at(l);
+               
+            }
+         }
+         catch(...)
+         {
+            System.frames().remove(&wndpa[l]);
+            wndpa.remove_at(l);
+         }
+      }
+      
+      return true;
+      
    }
+   
 
    bool window_draw::ScreenOutput()
    {

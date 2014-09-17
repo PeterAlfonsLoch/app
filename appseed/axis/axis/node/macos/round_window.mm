@@ -119,3 +119,4 @@ void round_window::round_window_invalidate()
 //   [[m_proundwindow->m_controller dd_invokeOnMainThread] setViewsNeedDisplay : TRUE];
    
 }
+

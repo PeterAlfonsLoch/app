@@ -23,7 +23,7 @@ namespace process
          uint32_t                         m_uiStartTime;
          bool *                           m_pbInitFailure;
          bool *                           m_pbPotentialTimeout;
-         uint32_t *                       m_uiRetCode;
+         uint32_t *                       m_puiRetCode;
 
 
 

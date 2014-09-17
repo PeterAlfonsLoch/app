@@ -65,6 +65,8 @@ public:
 
 
    virtual void install_message_handling(::message::dispatch * pdispatch);
+   
+   virtual void signalizable_disconnect_all();
 
 };
 

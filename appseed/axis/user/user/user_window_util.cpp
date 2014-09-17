@@ -711,8 +711,6 @@ namespace user
    {
 
 
-#if !defined(METROWIN) && !defined(APPLEOS)
-//      int32_t iOrder = 0;
       ::oswindow oswindowOrder = NULL;
 
       if(!::IsWindow(oswindow))
@@ -744,12 +742,6 @@ namespace user
 
       }
 
-#else
-
-      throw todo(get_thread_app());
-
-#endif
-
       return 0x7fffffff;
 
 
@@ -758,8 +750,6 @@ namespace user
 
    void window_util::GetZOrder(oswindow oswindow, int_array & ia)
    {
-
-#if defined(WINDOWSEX) || defined(LINUX)
 
       if(!IsWindow(oswindow))
          return;
@@ -777,11 +767,6 @@ namespace user
          oswindow = ::GetParent(oswindow);
       }
 
-#else
-
-      throw todo(get_thread_app());
-
-#endif
 
    }
 

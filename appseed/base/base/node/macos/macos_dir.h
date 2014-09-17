@@ -44,7 +44,7 @@ namespace macos
       virtual bool  name_is(const string & str, sp(::aura::application)  papp);
       virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath, sp(::aura::application)  papp);
       virtual bool  is_inside_time(const char * lpcsz, sp(::aura::application)  papp);
-      virtual void root_ones(stringa & stra, sp(::aura::application)  papp);
+      virtual void root_ones(stringa & stra, stringa & straTitle, sp(::aura::application)  papp);
       virtual bool mk(const char * lpcsz, sp(::aura::application)  papp);
       virtual bool rm(sp(::aura::application)  papp, const char * psz, bool bRecursive = true);
       

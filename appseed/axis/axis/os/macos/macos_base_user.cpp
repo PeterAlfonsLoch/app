@@ -309,3 +309,13 @@ WINBOOL RedrawWindow(oswindow hWnd, CONST RECT *lprcUpdate, HRGN hrgnUpdate, UIN
 
 
 
+
+const char * mm_keyboard_input_source();
+
+string keyboard_input_source()
+{
+const char * psz = mm_keyboard_input_source();
+string str =psz;
+free((void *) psz);
+return str;
+}

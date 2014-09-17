@@ -38,7 +38,7 @@ namespace user
 
 } // namespace user
 
-
+#if defined(WINDOWS) || defined(LINUX)
 ::user::interaction * window_from_handle(oswindow oswindow)
 {
 
@@ -50,7 +50,7 @@ namespace user
    return ::user::g_pmapUi->operator[](oswindow);
 
 }
-
+#endif
 
 CLASS_DECL_AXIS bool oswindow_assign(oswindow oswindow,::user::interaction * pui)
 {

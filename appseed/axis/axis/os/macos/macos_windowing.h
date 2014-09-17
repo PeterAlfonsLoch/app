@@ -147,6 +147,9 @@ inline oswindow GetParent(::oswindow window)
    return window->get_parent();
 }
 
+
+oswindow GetWindow(oswindow window, int iParentHood);
+
 inline oswindow SetParent(::oswindow window, ::oswindow oswindowNewParent)
 {
    return window->set_parent(oswindowNewParent);
@@ -190,6 +193,9 @@ inline int32_t IsWindowVisible(::oswindow window)
 
 #define GetWindowLong GetWindowLongA
 #define SetWindowLong SetWindowLongA
+
+
+#define HWND_MESSAGE ((::oswindow_data *) (int_ptr) 1)
 
 
 

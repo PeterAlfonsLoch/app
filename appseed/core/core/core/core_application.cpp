@@ -1601,9 +1601,20 @@ namespace core
 
                      strPath += ".exe";
 
+#elif defined(APPLEOS)
+
+setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
+                     
+//                     strPath += ".app/Contents/MacOS/app";
+                     strPath += ".app";
+                     
 #endif
 
+#if defined(APPLEOS)
+                     strPath = "/usr/bin/open " +strPath+" --args : app=" + notinstalled.m_strId + " install build_number=basis locale="+notinstalled.m_strLocale+" schema="+notinstalled.m_strSchema;
+                     #else
                      strPath += " : app=" + notinstalled.m_strId + " install build_number=basis locale="+notinstalled.m_strLocale+" schema="+notinstalled.m_strSchema;
+                     #endif
 
                      bool bTimedOut = false;
 

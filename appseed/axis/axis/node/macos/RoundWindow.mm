@@ -131,6 +131,7 @@
 	return [super contentView];
 }
 
+
 //
 // canBecomeKeyWindow
 //
@@ -156,7 +157,16 @@
    else
       return YES;
 }
+/*
 
+- (BOOL)acceptsFirstResponder
+{
+   
+   return TRUE;
+   
+}
+
+*/
 /*
  
  let the view become first responder

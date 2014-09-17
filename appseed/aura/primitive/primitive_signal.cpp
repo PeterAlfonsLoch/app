@@ -62,13 +62,29 @@ signalizable::signalizable()
 {
 }
 
+
 signalizable::~signalizable()
 {
+
+   signalizable_disconnect_all();
+   
+}
+
+
+void signalizable::signalizable_disconnect_all()
+{
+
    for(int32_t i = 0; i < m_signalptra.get_size(); i++)
    {
+   
       m_signalptra[i]->disconnect(this);
+      
    }
+   
+   m_signalptra.remove_all();
+   
 }
+
 
 void signalizable::install_message_handling(::message::dispatch * pdispatch)
 {
