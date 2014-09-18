@@ -43,6 +43,13 @@ public:
       m_iLength      = 0;
       m_wchFirst     = L'\0';
    }
+   
+   inline wstring_data * clone() const
+   {
+      wstring_data * pdata = (wstring_data *) memory_alloc(((m_iAllocation + 1) * sizeof(wchar_t)) + sizeof(count) + sizeof(count) + sizeof(wchar_t));
+      memcpy(pdata, this, ((m_iAllocation + 1) * sizeof(wchar_t)) + sizeof(count) + sizeof(count) + sizeof(wchar_t));
+      return pdata;
+   }
 
 
    inline static wchar_t * alloc(::count iCount)
@@ -117,10 +124,10 @@ public:
    verisimple_wstring(const byte * pszSrc,manager * pstringmanager = NULL);
    verisimple_wstring(const wchar_t * pchSrc, manager * pstringmanager = NULL);
    verisimple_wstring(const wchar_t * pchSrc, strsize nLength,manager * pstringmanager = NULL);
-   inline verisimple_wstring(wstring_data * pdata,manager * pstringmanager = NULL)
+   inline verisimple_wstring(const wstring_data * pdata,manager * pstringmanager = NULL)
    {
       UNREFERENCED_PARAMETER(pstringmanager);
-      m_pwsz = &pdata->m_wchFirst;
+      m_pwsz = *pdata->clone();
    }
    ~verisimple_wstring();
 
