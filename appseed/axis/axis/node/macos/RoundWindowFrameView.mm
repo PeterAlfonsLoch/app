@@ -383,7 +383,7 @@
 - (void)keyDown:(NSEvent *)event
 {
 
-   unsigned int uiKeyCode = event_key(event);
+   unsigned int uiKeyCode = event_key_code(event);
    
    round_window * p = m_roundwindow->m_pwindow;
    
@@ -402,7 +402,7 @@
 - (void)keyUp:(NSEvent *)event
 {
    
-   unsigned int uiKeyCode = event_key(event);
+   unsigned int uiKeyCode = event_key_code(event);
    
    round_window * p = m_roundwindow->m_pwindow;
    
