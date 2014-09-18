@@ -5687,7 +5687,7 @@ namespace macos
    }
 
 
-   bool interaction_impl::round_window_key_down(unsigned int ekey)
+   bool interaction_impl::round_window_key_down(unsigned int uiKeyCode)
    {
 
       sp(::message::base) spbase;
