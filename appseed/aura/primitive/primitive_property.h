@@ -711,7 +711,7 @@ inline bool operator == (const string & str, const property & prop)
 
 
 inline string::string(const property & prop) :
-simple_string(string_trait::GetDefaultManager())
+stdstring<simple_string>(string_trait::GetDefaultManager())
 {
 
    operator = (prop.to_string());

@@ -272,3 +272,56 @@ inline bool string::ends_ci(const string & strSuffixCandidate)
 
 
 
+
+
+
+
+
+
+
+
+template < class BASE >
+strsize stdstring::copy(typename BASE::value_type * s,strsize len,strsize pos) const
+{
+
+   strsize thislen = get_length();
+
+   if(pos < 0)
+   {
+
+      pos = thislen + pos + 1;
+
+   }
+
+   if(pos < 0)
+   {
+
+      len += pos;
+
+      pos = 0;
+
+   }
+
+   if(pos >= thislen)
+   {
+
+      return 0;
+
+   }
+
+   len = MIN(len,thislen - pos);
+
+   if(len <= 0)
+   {
+
+      return 0;
+
+   }
+
+   memcpy(s,operator const char *() + (pos * sizeof(typename BASE::value_type)),(len * sizeof(typename BASE::value_type)));
+
+   return len;
+
+}
+
+

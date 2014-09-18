@@ -78,7 +78,7 @@ class CLASS_DECL_AURA verisimple_wstring
 {
 protected:
 
-
+   typedef void manager;
    typedef wchar_t value_type;
 
 

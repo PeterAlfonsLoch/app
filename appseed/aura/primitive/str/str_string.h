@@ -1056,7 +1056,7 @@ inline char string::last_char() const
 
 
 inline string::string(const id & id) :
-   simple_string(string_trait::GetDefaultManager())
+   stdstring<simple_string>(string_trait::GetDefaultManager())
 {
 
    operator = (id.to_string());
@@ -1126,7 +1126,7 @@ inline string id::str() const
 }
 
 inline   string::string() throw() :
-simple_string( string_trait::GetDefaultManager() )
+stdstring<simple_string>(string_trait::GetDefaultManager())
 {
 }
 
