@@ -2905,11 +2905,22 @@ bool string::begins_ci(const char * s) const
    return ::str::begins_ci(*this, s);
 }
 
-strsize string::copy(char* s,size_t len,size_t pos = 0) const
+strsize string::copy(char* s,size_t len,size_t pos) const
 {
    strsize thislen = get_length();
-   i = pos;
-   len = min
-      while(i < len
+   if(pos < 0)
+   {
+      pos = thislen + pos + 1;
+   }
+   if(pos >= thislen)
+      return 0;
+   strsize i = pos;
+   len = min(len, 
+
+   memcpy(s,operator const char *(),len);
+
+   return len;
+
 }
+
 
