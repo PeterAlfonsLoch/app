@@ -20,6 +20,9 @@ namespace backview
       Main & HelperGetMain();
 
 
+      inline mutex & user_mutex() { *m_main.m_pmutex;}
+
+
    };
 
 
