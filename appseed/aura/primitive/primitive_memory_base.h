@@ -73,6 +73,10 @@ namespace primitive
       virtual bool allocate(memory_size dwNewLength);
       virtual bool allocate_internal(memory_size dwNewLength);
 
+
+      virtual void reserve(memory_size dwNewLength);
+
+
       virtual void remove_offset();
 
       //virtual void FullLoad(::file::stream_buffer & buffer);

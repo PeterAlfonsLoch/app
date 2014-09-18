@@ -125,6 +125,18 @@ namespace primitive
       return false;
    }
 
+
+   void memory_base::reserve(memory_size dwNewLength)
+   {
+
+      if(dwNewLength <= m_dwAllocation)
+         return;
+
+      if(!allocate_internal(dwNewLength))
+         throw memory_exception(get_app());
+
+   }
+
    /*
    void memory_base::FullLoad(::file::binary_buffer & file)
    {
