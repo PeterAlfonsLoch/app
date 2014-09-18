@@ -1,12 +1,6 @@
 #pragma once
 
 
-template < class BASE > class stdstring;
-class string;
-class verisimple_wstring;
-typedef stdstring < verisimple_wstring > wstring;
-namespace primitive { class memory; }
-typedef stdstring < ::primitive::memory > bstring; // binary string (may contain nulls)
 
 template < class T, typename C >
 void std_string_assign(T & t,const C * psz);
@@ -32,10 +26,8 @@ public:
 
    strsize copy(typename BASE::value_type * s,strsize len,strsize pos = 0) const;
 
-   
-   inline stdstring < BASE > & operator = (const string & str);
-   inline stdstring < BASE > & operator = (const wstring & str);
-   inline stdstring < BASE > & operator = (const bstring & str);
+   template < class BASE2 >
+   inline stdstring < BASE > & operator = (const stdstring < BASE2 > & str);
 
 
 };
