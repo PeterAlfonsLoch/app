@@ -94,15 +94,26 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz,manager * pmanager)
 void verisimple_wstring::assign(const wchar_t * pwsz)
 {
 
-::count iLen         = wcslen_dup(pwsz);
+   if(m_pwsz != NULL && m_pwsz != wstring_data::get_nil())
+   {
+      
+      wstring_data::free(m_pwsz);
 
-m_pwsz = (wchar_t *)wstring_data::alloc(iLen + 1);
+      m_pwsz = NULL;
 
-get_data()->m_iLength = iLen;
+   }
 
-memcpy_dup(m_pwsz,pwsz,get_data()->m_iLength * sizeof(wchar_t));
+   ::count iLen         = wcslen_dup(pwsz);
 
-m_pwsz[get_data()->m_iLength] = L'\0';
+   m_pwsz = (wchar_t *)wstring_data::alloc(iLen + 1);
+
+   get_data()->m_iLength = iLen;
+
+   memcpy_dup(m_pwsz,pwsz,get_data()->m_iLength * sizeof(wchar_t));
+
+   m_pwsz[get_data()->m_iLength] = L'\0';
+
+}
 
 
 verisimple_wstring::verisimple_wstring(const verisimple_wstring & wstr,manager * pmanager)
