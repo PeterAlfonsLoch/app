@@ -45,9 +45,9 @@ namespace primitive
       m_pbComputed   = NULL;
       m_iOffset      = 0;
       m_bAligned = false;
-      allocate(iCount);
-      ASSERT(__is_valid_address(pdata,iCount,FALSE));
-      memcpy(m_pbStorage,pdata,iCount);
+      allocate(nLength);
+      ASSERT(__is_valid_address(pchSrc,nLength,FALSE));
+      memcpy(m_pbStorage,pchSrc,nLength);
 
 
    }
