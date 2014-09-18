@@ -189,7 +189,7 @@ namespace primitive
 
 #endif
 
-       memory_base & erase(::primitive::memory_size pos = 0,::primitive::memory_offset len = -1);
+       memory_base & erase(::primitive::memory_offset pos = 0,::primitive::memory_offset len = -1);
 
    };
 
