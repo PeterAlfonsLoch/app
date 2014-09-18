@@ -25,26 +25,6 @@ namespace file
    }
 
 
-   input_stream::input_stream(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp)
-   {
-
-      m_gcount = 0;
-
-      if(papp == NULL)
-      {
-
-         m_spbuffer = canew(::file::streambuf(lpszFileName,nOpenFlags | ::file::mode_read));
-
-      }
-      else
-      {
-
-         m_spbuffer = App(papp).file_get_file(lpszFileName,nOpenFlags | ::file::mode_read);
-
-      }
-
-
-   }
 
 
    input_stream::input_stream(stream_buffer * preader)

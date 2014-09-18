@@ -3591,6 +3591,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\process\process_process.cpp" />
     <ClCompile Include="filesystem\file\file.cpp" />
     <ClCompile Include="filesystem\file\file_c.cpp" />
+    <ClCompile Include="filesystem\file\file_file_input_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_file_output_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_file_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_file_stream_base.cpp" />
     <ClCompile Include="filesystem\file\file_serializable.cpp" />
     <ClCompile Include="filesystem\file\file_streambuf.cpp" />
     <ClCompile Include="framework.cpp">
