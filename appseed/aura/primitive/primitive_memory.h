@@ -17,6 +17,10 @@ namespace primitive
       bool m_bAligned;
 
 
+      memory(manager * pmanager);
+      memory(const memory & strSrc,manager * pmanager = NULL);
+      memory(const byte * pchSrc,strsize nLength,manager * pmanager = NULL);
+
       memory(sp(::aura::application) papp);
       memory(sp(::aura::application) papp, bool bAligned);
       memory(const void *, memory_size iCount);

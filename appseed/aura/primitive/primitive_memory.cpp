@@ -4,6 +4,55 @@
 namespace primitive
 {
 
+   memory::memory(manager * pmanager)
+   {
+
+      UNREFERENCED_PARAMETER(pmanager);
+      m_pprimitivememory   = this;
+      m_pbStorage          = NULL;
+      m_pbComputed         = NULL;
+      m_pcontainer         = NULL;
+      m_iOffset            = 0;
+      m_dwAllocation       = 0;
+      m_cbStorage          = 0;
+      m_bAligned = false;
+
+   }
+
+   memory::memory(const memory & strSrc,manager * pmanager)
+   {
+
+      UNREFERENCED_PARAMETER(pmanager);
+
+      m_pprimitivememory   = this;
+      m_pbStorage    = NULL;
+      m_pbComputed   = NULL;
+      m_iOffset      = 0;
+      m_dwAllocation = 0;
+      m_cbStorage    = 0;
+      m_bAligned = false;
+      memory_base::operator = (s);
+
+   }
+   
+   memory::memory(const byte * pchSrc,strsize nLength,manager * pmanager)
+   {
+
+      UNREFERENCED_PARAMETER(pmanager);
+
+      m_pprimitivememory   = this;
+      m_pbStorage    = NULL;
+      m_pbComputed   = NULL;
+      m_iOffset      = 0;
+      m_bAligned = false;
+      allocate(iCount);
+      ASSERT(__is_valid_address(pdata,iCount,FALSE));
+      memcpy(m_pbStorage,pdata,iCount);
+
+
+   }
+
+
    memory::memory(sp(::aura::application) papp) :
       element(papp)
    {

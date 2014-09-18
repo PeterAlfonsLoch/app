@@ -20,6 +20,8 @@ inline int32_t msb(N n)
 }
 
 
+class bstring_manager;
+
 
 namespace primitive
 {
@@ -36,6 +38,8 @@ namespace primitive
       public ::file::serializable
    {
    public:
+
+      typedef bstring_manager manager;
 
       typedef byte value_type;
 
