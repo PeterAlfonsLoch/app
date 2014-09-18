@@ -341,55 +341,55 @@ inline strsize strlen_s_dup(const char * psz,strsize nsize)
 
 
 template < >
-void std_string_assign(stdstring < simple_string > & t,const char * psz)
+inline void std_string_assign(stdstring < simple_string > & t,const char * psz)
 {
    t = psz;
 }
 
 template < >
-void std_string_assign(stdstring < simple_string > & t,const wchar_t * psz)
+inline void std_string_assign(stdstring < simple_string > & t,const wchar_t * psz)
 {
    t = ::str::international::unicode_to_utf8(psz);
 }
 
 template < >
-void std_string_bassign(stdstring < simple_string > & t,const byte * psz, strsize nsize)
+inline void std_string_bassign(stdstring < simple_string > & t,const byte * psz,strsize nsize)
 {
    t = (const char *) string((const char *) psz, MIN(nsize, strlen_s_dup((const char *) psz, nsize)));
 }
 
 template < >
-void std_string_assign(stdstring < verisimple_wstring > & t,const char * psz)
+inline void std_string_assign(stdstring < verisimple_wstring > & t,const char * psz)
 {
    t = ::str::international::utf8_to_unicode(psz);
 }
 
 template < >
-void std_string_assign(stdstring < verisimple_wstring > & t,const wchar_t * psz)
+inline void std_string_assign(stdstring < verisimple_wstring > & t,const wchar_t * psz)
 {
    t = psz;
 }
 
 template < >
-void std_string_bassign(stdstring < verisimple_wstring > & t,const byte * psz, strsize nsize)
+inline void std_string_bassign(stdstring < verisimple_wstring > & t,const byte * psz,strsize nsize)
 {
    t = ::str::international::utf8_to_unicode(string((const char *) psz,MIN(nsize,strlen_s_dup((const char *) psz,nsize))));
 }
 
 template < >
-void std_string_assign(stdstring < ::primitive::memory > & t,const char * psz)
+inline void std_string_assign(stdstring < ::primitive::memory > & t,const char * psz)
 {
    t.assign(psz);
 }
 
 template < >
-void std_string_assign(stdstring < ::primitive::memory > & t,const wchar_t * psz)
+inline void std_string_assign(stdstring < ::primitive::memory > & t,const wchar_t * psz)
 {
    t.assign(::str::international::unicode_to_utf8(psz));
 }
 
 template < >
-void std_string_bassign(stdstring < ::primitive::memory > & t,const byte * psz,strsize nsize)
+inline void std_string_bassign(stdstring < ::primitive::memory > & t,const byte * psz,strsize nsize)
 {
    t.assign(string((const char *)psz,MIN(nsize,strlen_s_dup((const char *)psz,nsize))));
 }

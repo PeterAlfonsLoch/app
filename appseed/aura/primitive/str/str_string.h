@@ -184,7 +184,7 @@ public:
 
    template < typename T >
    inline explicit string(T o) :
-      simple_string(string_trait::GetDefaultManager())
+      stdstring < simple_string >(string_trait::GetDefaultManager())
    {
 
       *this = to_string(o);
