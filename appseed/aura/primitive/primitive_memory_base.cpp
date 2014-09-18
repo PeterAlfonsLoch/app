@@ -353,7 +353,7 @@ namespace primitive
    }
 
 
-   memory_base & memory_base::erase(::primitive::memory_size pos,::primitive::memory_offset len)
+   memory_base & memory_base::erase(::primitive::memory_offset pos,::primitive::memory_offset len)
    {
 
       if(pos < 0)

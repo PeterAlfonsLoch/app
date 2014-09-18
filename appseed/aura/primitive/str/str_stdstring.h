@@ -21,6 +21,7 @@ public:
    stdstring(strsize nsize, const byte * pszSrc,typename BASE::manager * pstringmanager = NULL): BASE(pstringmanager){ std_string_bassign(*this,pszSrc, nsize); }
    stdstring(const wchar_t * pszSrc,typename BASE::manager * pstringmanager = NULL): BASE(pstringmanager){ std_string_assign(*this,pszSrc); }
    stdstring(const typename BASE::value_type * pchSrc,strsize nLength,typename BASE::manager * pstringmanager = NULL): BASE(pchSrc,nLength,pstringmanager){}
+   stdstring(const typename BASE::data_type * pdata,typename BASE::manager * pstringmanager = NULL): BASE(pdata,pstringmanager){}
    ~stdstring() NOTHROW{}
 
 
