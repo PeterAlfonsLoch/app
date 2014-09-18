@@ -74,11 +74,14 @@ public:
 };
 
 
+class wstring_manager;
+
+
 class CLASS_DECL_AURA verisimple_wstring
 {
 protected:
 
-   typedef void manager;
+   typedef wstring_manager manager;
    typedef wchar_t value_type;
 
 
@@ -100,15 +103,19 @@ protected:
 
 public:
 
-
-
-   verisimple_wstring();
-   verisimple_wstring(const char * psz);
-   verisimple_wstring(const wchar_t * pwsz);
-   verisimple_wstring(const wchar_t * pwsz, ::count iCount);
-   verisimple_wstring(const verisimple_wstring & wstr);
-   inline verisimple_wstring(wstring_data * pdata)
+   verisimple_wstring(manager * pstringmanager)
    {
+      construct(pstringmanager);
+   }
+
+   void construct(manager * pstringmanager = NULL);
+   verisimple_wstring(const verisimple_wstring & strSrc,manager * pstringmanager = NULL);
+   verisimple_wstring(const char * pszSrc,manager * pstringmanager = NULL);
+   verisimple_wstring(const wchar_t * pchSrc, manager * pstringmanager = NULL);
+   verisimple_wstring(const wchar_t * pchSrc, strsize nLength,manager * pstringmanager = NULL);
+   inline verisimple_wstring(wstring_data * pdata,manager * pstringmanager = NULL)
+   {
+      UNREFERENCED_PARAMETER(pstringmanager);
       m_pwsz = &pdata->m_wchFirst;
    }
    ~verisimple_wstring();
