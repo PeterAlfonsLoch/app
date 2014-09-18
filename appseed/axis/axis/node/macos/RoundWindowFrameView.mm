@@ -489,8 +489,10 @@
 
 unsigned int event_key_code(NSEvent * event)
 {
+
+   unsigned int ui = [event modifierFlags];
    
-   if([event modifierFlags] & NSNumericPadKeyMask) // arrow keys have this mask
+   if(ui & NSNumericPadKeyMask) // arrow keys have this mask
    {
       
       NSString * arrow = [event charactersIgnoringModifiers];
@@ -536,16 +538,18 @@ unsigned int event_key_code(NSEvent * event)
       }
       
    }
+   else if(ui & NSShiftKeyMask || ui & NSControlKeyMask || ui & NSAlternateKeyMask) // arrow keys have this mask
+   {
+   
+   }
    else
    {
       
-      unsigned short ush = [event keyCode];
-      
-      return ush;
+      ui = [event keyCode];
       
    }
    
-   return ::user::key_none;;
+   return 0;
    
    
 }
