@@ -418,6 +418,8 @@ class CLASS_DECL_AURA simple_string
 {
 public:
 
+   typedef char value_type;
+
 
    explicit simple_string(string_manager * pstringmanager )
    {

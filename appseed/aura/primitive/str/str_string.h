@@ -148,6 +148,8 @@ class CLASS_DECL_AURA string :
 {
 public:
 
+   
+
    static const int npos;
 
 

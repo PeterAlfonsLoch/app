@@ -79,6 +79,9 @@ class CLASS_DECL_AURA verisimple_wstring
 protected:
 
 
+   typedef wchar_t value_type;
+
+
    friend class wtostring;
 
    // it is and should be really a pointer to the m_pwsz of a wstring_data alloced in heap

@@ -37,6 +37,8 @@ namespace primitive
    {
    public:
 
+      typedef byte value_type;
+
 
       LPBYTE                  m_pbStorage;
       LPBYTE                  m_pbComputed;
