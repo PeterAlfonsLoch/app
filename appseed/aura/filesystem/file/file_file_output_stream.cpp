@@ -9,8 +9,6 @@ namespace file
    file_output_stream::file_output_stream()
    {
 
-      m_gcount = 0;
-
    }
 
 
@@ -20,7 +18,6 @@ namespace file
    {
 
       m_spbuffer = preader;
-      m_gcount = 0;
 
    }
 
@@ -28,7 +25,6 @@ namespace file
    {
 
       m_spbuffer = istream.m_spbuffer;
-      m_gcount = 0;
 
    }
 

@@ -87,11 +87,12 @@ namespace file
    public:
 
 
-      buffer_sp               m_spbuffer;
-      e_iostate               m_iostate;
-      fmtflags                m_fmtflags;
-      file_size               m_width;
-      file_size               m_precision;
+      buffer_sp                  m_spbuffer;
+      e_iostate                  m_iostate;
+      fmtflags                   m_fmtflags;
+      file_size                  m_width;
+      file_size                  m_precision;
+      ::primitive::memory_size   m_gcount;
 
       stream_base();
       stream_base(sp(stream_buffer) pbuffer);

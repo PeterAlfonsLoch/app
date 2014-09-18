@@ -19,9 +19,6 @@ namespace file
    public:
 
 
-      ::primitive::memory_size      m_gcount;
-
-
       input_stream();
       input_stream(stream_buffer * preader);
       input_stream(const input_stream & preader);

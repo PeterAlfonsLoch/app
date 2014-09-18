@@ -8,9 +8,10 @@ namespace file
    stream_base::stream_base()
    {
 
-      m_iostate = goodbit;
-      m_fmtflags = nofmtflags;
-      m_precision = 0;
+      m_iostate         = goodbit;
+      m_fmtflags        = nofmtflags;
+      m_precision       = 0;
+      m_gcount          = 0;
 
    }
 
@@ -18,15 +19,21 @@ namespace file
       m_spbuffer(pbuffer)
    {
 
-      m_iostate = goodbit;
+      m_iostate         = goodbit;
+      m_fmtflags        = nofmtflags;
+      m_precision       = 0;
+      m_gcount          = 0;
 
    }
 
    stream_base::stream_base(const stream_base & buffer)
    {
 
-      m_iostate   = buffer.m_iostate;
-      m_spbuffer  = buffer.m_spbuffer;
+      m_iostate         = buffer.m_iostate;
+      m_fmtflags        = nofmtflags;
+      m_precision       = 0;
+      m_gcount          = 0;
+      m_spbuffer        = buffer.m_spbuffer;
 
    }
 
