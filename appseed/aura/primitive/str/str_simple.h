@@ -421,6 +421,8 @@ public:
    typedef string_manager manager;
 
    typedef char value_type;
+   
+   typedef string_data data_type;
 
 
    explicit simple_string(string_manager * pstringmanager )
@@ -430,6 +432,7 @@ public:
 
    void construct(string_manager * pstringmanager);
    simple_string(const simple_string & strSrc, string_manager * pstringmanager  );
+   simple_string(const string_data * pdata, string_manager * pstringmanager  );
    simple_string(const char * pszSrc,string_manager * pstringmanager );
    simple_string(const wchar_t * pszSrc,string_manager * pstringmanager);
    simple_string(const byte * pszSrc,string_manager * pstringmanager);

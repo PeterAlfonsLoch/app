@@ -12,6 +12,9 @@ namespace primitive
       public memory_base
    {
    public:
+   
+   
+      typedef memory data_type;
 
 
       bool m_bAligned;
@@ -19,6 +22,7 @@ namespace primitive
 
       memory(manager * pmanager);
       memory(const memory & strSrc,manager * pmanager);
+      memory(const memory * pmemory,manager * pmanager);
       memory(const byte * pchSrc,strsize nLength,manager * pmanager);
 
       memory(sp(::aura::application) papp);

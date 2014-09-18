@@ -85,6 +85,7 @@ public:
 
    typedef wstring_manager manager;
    typedef wchar_t value_type;
+   typedef wstring_data data_type;
 
 
 protected:
