@@ -35,6 +35,24 @@ namespace primitive
 
    }
    
+   
+   memory::memory(const memory * ps,manager * pmanager)
+   {
+      
+      UNREFERENCED_PARAMETER(pmanager);
+      
+      m_pprimitivememory   = this;
+      m_pbStorage    = NULL;
+      m_pbComputed   = NULL;
+      m_iOffset      = 0;
+      m_dwAllocation = 0;
+      m_cbStorage    = 0;
+      m_bAligned = false;
+      memory_base::operator = (*ps);
+      
+   }
+ 
+   
    memory::memory(const byte * pchSrc,strsize nLength,manager * pmanager)
    {
 
