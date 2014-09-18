@@ -29,7 +29,7 @@ namespace file
       if(m_spbuffer.is_null())
       {
 
-         m_spbuffer = App(papp).alloc(System.type_info < ::file::text_file >());
+         m_spbuffer = App(papp).alloc(System.type_info < ::file::text_buffer >());
 
          if(m_spbuffer.is_null())
          {
