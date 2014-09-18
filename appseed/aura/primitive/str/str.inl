@@ -380,13 +380,13 @@ inline void std_string_assign(stdstring < simple_string > & t,const string * pst
 }
 
 template < >
-inline void std_string_assign(stdstring < simple_string > & t,const wstring * wstr)
+inline void std_string_assign(stdstring < simple_string > & t,const wstring * pwstr)
 {
    t = ::str::international::unicode_to_utf8(*pwstr);
 }
 
 template < >
-inline void std_string_assign(stdstring < simple_string > & t,const bstring * bstr)
+inline void std_string_assign(stdstring < simple_string > & t,const bstring * pbstr)
 {
    t = string((const char *)pbstr->get_data(),MIN(pbstr->get_length(),strlen_s_dup((const char *)pbstr->get_data(),pbstr->get_length())));
 }
