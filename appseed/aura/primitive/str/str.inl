@@ -416,6 +416,12 @@ inline void std_string_assign(stdstring < verisimple_wstring > & t,const string 
 }
 
 template < >
+inline void std_string_assign(stdstring < verisimple_wstring > & t,const stdstring < simple_string > * pstr)
+{
+   t = ::str::international::utf8_to_unicode(*pstr);
+}
+
+template < >
 inline void std_string_assign(stdstring < verisimple_wstring > & t,const wstring * pwstr)
 {
    t = *pwstr;
