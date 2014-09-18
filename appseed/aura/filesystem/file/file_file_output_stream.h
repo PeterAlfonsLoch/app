@@ -11,8 +11,8 @@ namespace file
 
 
    class CLASS_DECL_AURA file_output_stream:
-      virtual public stream_base,
-      virtual public writer
+      virtual public file_stream_base,
+      virtual public output_stream
    {
    public:
 

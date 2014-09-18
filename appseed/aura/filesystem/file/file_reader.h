@@ -26,9 +26,6 @@ namespace file
 
       virtual void transfer_to(writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024);
 
-      virtual void close();
-
-
       virtual file_position get_position() const;
 
       file_position tellg() { return get_position(); }

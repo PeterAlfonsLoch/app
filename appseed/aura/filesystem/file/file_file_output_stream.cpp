@@ -31,9 +31,6 @@ namespace file
    file_output_stream::~file_output_stream()
    {
 
-      close();
-
-
 
    }
 
