@@ -163,8 +163,8 @@ namespace primitive
       memory_base & prefix_der_uint();
       memory_base & prefix_der_sequence();
 
-      intline ::primitive::memory_size get_length();
-      intline ::primitive::memory_size length();
+      inline ::primitive::memory_size get_length();
+      inline ::primitive::memory_size length();
 
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
