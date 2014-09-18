@@ -15,6 +15,7 @@ namespace file
 
    }
 
+
    stream_base::stream_base(sp(stream_buffer) pbuffer) :
       m_spbuffer(pbuffer)
    {
@@ -25,6 +26,7 @@ namespace file
       m_gcount          = 0;
 
    }
+
 
    stream_base::stream_base(const stream_base & buffer)
    {
@@ -37,8 +39,10 @@ namespace file
 
    }
 
+
    stream_base::~stream_base()
    {
+
    }
 
 
@@ -49,9 +53,12 @@ namespace file
 
    }
 
+
    void stream_base::close()
    {
+
       m_spbuffer.release();
+
    }
 
 

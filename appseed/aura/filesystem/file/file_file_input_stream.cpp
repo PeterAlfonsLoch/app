@@ -9,7 +9,6 @@ namespace file
    file_input_stream::file_input_stream()
    {
 
-      m_gcount = 0;
 
    }
 
@@ -20,15 +19,13 @@ namespace file
    {
 
       m_spbuffer = preader;
-      m_gcount = 0;
 
    }
 
-   file_input_stream::file_input_stream(const input_stream & istream)
+   file_input_stream::file_input_stream(const file_input_stream & istream)
    {
 
       m_spbuffer = istream.m_spbuffer;
-      m_gcount = 0;
 
    }
 
