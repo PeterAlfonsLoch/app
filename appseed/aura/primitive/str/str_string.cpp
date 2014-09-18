@@ -831,7 +831,7 @@ string::string(uchar* pszSrc ) :
 }
 
 string::string(wchar_t* pszSrc ) :
-   simple_string( string_trait::GetDefaultManager() )
+   simple_string(string_trait::GetDefaultManager() )
 {
    const wchar_t *psz = reinterpret_cast< const wchar_t* >( pszSrc );
    //if (!CheckImplicitLoad( psz ))

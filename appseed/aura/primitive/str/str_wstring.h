@@ -111,6 +111,7 @@ public:
    void construct(manager * pstringmanager = NULL);
    verisimple_wstring(const verisimple_wstring & strSrc,manager * pstringmanager = NULL);
    verisimple_wstring(const char * pszSrc,manager * pstringmanager = NULL);
+   verisimple_wstring(const byte * pszSrc,manager * pstringmanager = NULL);
    verisimple_wstring(const wchar_t * pchSrc, manager * pstringmanager = NULL);
    verisimple_wstring(const wchar_t * pchSrc, strsize nLength,manager * pstringmanager = NULL);
    inline verisimple_wstring(wstring_data * pdata,manager * pstringmanager = NULL)

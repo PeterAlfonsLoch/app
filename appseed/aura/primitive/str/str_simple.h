@@ -431,6 +431,8 @@ public:
    void construct(string_manager * pstringmanager);
    simple_string(const simple_string & strSrc, string_manager * pstringmanager  );
    simple_string(const char * pszSrc,string_manager * pstringmanager );
+   simple_string(const wchar_t * pszSrc,string_manager * pstringmanager);
+   simple_string(const byte * pszSrc,string_manager * pstringmanager);
    simple_string(const char* pchSrc,strsize nLength,string_manager * pstringmanager );
    ~simple_string() NOTHROW
    {

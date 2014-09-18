@@ -43,7 +43,7 @@
       CopyChars( m_pszData, pszSrc, nLength );
 #endif
    }
-   inline simple_string::simple_string(const char* pchSrc,strsize nLength,string_manager * pstringmanager )
+   inline simple_string::simple_string(const char* pchSrc,strsize nLength,string_manager * pstringmanager)
    {
       ENSURE( pstringmanager != NULL );
 
@@ -281,7 +281,7 @@ inline bool string::ends_ci(const string & strSuffixCandidate)
 
 
 template < class BASE >
-strsize stdstring::copy(typename BASE::value_type * s,strsize len,strsize pos) const
+strsize stdstring < BASE >::copy(typename BASE::value_type * s,strsize len,strsize pos) const
 {
 
    strsize thislen = get_length();
@@ -318,10 +318,78 @@ strsize stdstring::copy(typename BASE::value_type * s,strsize len,strsize pos) c
 
    }
 
-   memcpy(s,operator const char *() + (pos * sizeof(typename BASE::value_type)),(len * sizeof(typename BASE::value_type)));
+   memcpy(s,operator const typename BASE::value_type *() + (pos * sizeof(typename BASE::value_type)),(len * sizeof(typename BASE::value_type)));
 
    return len;
 
 }
 
 
+inline strsize strlen_s_dup(const char * psz,strsize nsize)
+{
+   if(psz == NULL)
+      return 0;
+   strsize len = 0;
+   while(*psz != '\0' && nsize > 0)
+   {
+      psz++;
+      nsize--;
+      len++;
+   }
+   return len;
+}
+
+
+template < >
+void std_string_assign(stdstring < simple_string > & t,const char * psz)
+{
+   t = psz;
+}
+
+template < >
+void std_string_assign(stdstring < simple_string > & t,const wchar_t * psz)
+{
+   t = ::str::international::unicode_to_utf8(psz);
+}
+
+template < >
+void std_string_bassign(stdstring < simple_string > & t,const byte * psz, strsize nsize)
+{
+   t = (const char *) string((const char *) psz, MIN(nsize, strlen_s_dup((const char *) psz, nsize)));
+}
+
+template < >
+void std_string_assign(stdstring < verisimple_wstring > & t,const char * psz)
+{
+   t = ::str::international::utf8_to_unicode(psz);
+}
+
+template < >
+void std_string_assign(stdstring < verisimple_wstring > & t,const wchar_t * psz)
+{
+   t = psz;
+}
+
+template < >
+void std_string_bassign(stdstring < verisimple_wstring > & t,const byte * psz, strsize nsize)
+{
+   t = ::str::international::utf8_to_unicode(string((const char *) psz,MIN(nsize,strlen_s_dup((const char *) psz,nsize))));
+}
+
+template < >
+void std_string_assign(stdstring < ::primitive::memory > & t,const char * psz)
+{
+   t.assign(psz);
+}
+
+template < >
+void std_string_assign(stdstring < ::primitive::memory > & t,const wchar_t * psz)
+{
+   t.assign(::str::international::unicode_to_utf8(psz));
+}
+
+template < >
+void std_string_bassign(stdstring < ::primitive::memory > & t,const byte * psz,strsize nsize)
+{
+   t.assign(string((const char *)psz,MIN(nsize,strlen_s_dup((const char *)psz,nsize))));
+}

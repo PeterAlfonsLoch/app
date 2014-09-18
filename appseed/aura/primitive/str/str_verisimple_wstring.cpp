@@ -11,15 +11,19 @@ wchar_t * wstring_data::get_nil()
 }
 
 
-verisimple_wstring::verisimple_wstring()
+verisimple_wstring::verisimple_wstring(manager * pmanager)
 {
+
+   UNREFERENCED_PARAMETER(pmanager);
 
    m_pwsz         = wstring_data::get_nil();
 
 }
 
-verisimple_wstring::verisimple_wstring(const char * psz)
+verisimple_wstring::verisimple_wstring(const char * psz,manager * pmanager)
 {
+
+   UNREFERENCED_PARAMETER(pmanager);
 
    m_pwsz         = wstring_data::get_nil();
 
@@ -28,8 +32,23 @@ verisimple_wstring::verisimple_wstring(const char * psz)
 }
 
 
-verisimple_wstring::verisimple_wstring(const wchar_t * pwsz, ::count iCount)
+verisimple_wstring::verisimple_wstring(const byte * psz,manager * pmanager)
 {
+
+   UNREFERENCED_PARAMETER(pmanager);
+
+   m_pwsz         = wstring_data::get_nil();
+
+   operator = ((const char *) psz);
+
+}
+
+
+verisimple_wstring::verisimple_wstring(const wchar_t * pwsz,strsize iCount,manager * pmanager)
+{
+
+   UNREFERENCED_PARAMETER(pmanager);
+
    if(pwsz == NULL)
    {
 
@@ -49,8 +68,10 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz, ::count iCount)
 }
 
 
-verisimple_wstring::verisimple_wstring(const wchar_t * pwsz)
+verisimple_wstring::verisimple_wstring(const wchar_t * pwsz,manager * pmanager)
 {
+
+   UNREFERENCED_PARAMETER(pmanager);
 
    if(pwsz == NULL)
    {
@@ -75,8 +96,10 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz)
 
 }
 
-verisimple_wstring::verisimple_wstring(const verisimple_wstring & wstr)
+verisimple_wstring::verisimple_wstring(const verisimple_wstring & wstr,manager * pmanager)
 {
+
+   UNREFERENCED_PARAMETER(pmanager);
 
    m_pwsz         = wstring_data::get_nil();
 
