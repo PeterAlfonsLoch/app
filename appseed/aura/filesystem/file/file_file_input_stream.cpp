@@ -6,7 +6,7 @@ namespace file
 {
 
 
-   file_input_stream::input_stream()
+   file_input_stream::file_input_stream()
    {
 
       m_gcount = 0;
@@ -16,7 +16,7 @@ namespace file
 
 
 
-   file_input_stream::input_stream(stream_buffer * preader)
+   file_input_stream::file_input_stream(stream_buffer * preader)
    {
 
       m_spbuffer = preader;
@@ -24,7 +24,7 @@ namespace file
 
    }
 
-   file_input_stream::input_stream(const input_stream & istream)
+   file_input_stream::file_input_stream(const input_stream & istream)
    {
 
       m_spbuffer = istream.m_spbuffer;
@@ -32,7 +32,7 @@ namespace file
 
    }
 
-   file_input_stream::~input_stream()
+   file_input_stream::~file_input_stream()
    {
 
       close();
