@@ -400,7 +400,7 @@ inline void std_string_assign(stdstring < verisimple_wstring > & t,const char * 
 template < >
 inline void std_string_assign(stdstring < verisimple_wstring > & t,const wchar_t * psz)
 {
-   t = psz;
+   t.operator=(psz);
 }
 
 template < >
