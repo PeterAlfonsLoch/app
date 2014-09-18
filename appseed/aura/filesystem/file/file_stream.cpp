@@ -34,7 +34,7 @@ namespace file
          if(m_spbuffer.is_null())
          {
 
-            setf(failbit);
+            setstate(failbit);
 
             return;
 
@@ -45,7 +45,7 @@ namespace file
       if(!m_spbuffer->open(lpszFileName,nOpenFlags))
       {
          
-         setf(failbit);
+         setstate(failbit);
 
          return;
 

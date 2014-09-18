@@ -135,8 +135,10 @@ namespace primitive
 
       inline void assign(const char * psz);
 
-      inline byte operator [] (memory_size i) const;
-      inline byte & operator [] (memory_size i);
+      inline byte operator [] (uint64_t i) const;
+      inline byte & operator [] (uint64_t i);
+      inline byte operator [] (int i) const;
+      inline byte & operator [] (int i);
 
       inline operator const byte *() const;
       inline operator byte *();
@@ -721,14 +723,28 @@ namespace primitive
 
    }
 
-   inline uchar memory_base::operator [] (memory_size i) const
+   inline uchar memory_base::operator [] (uint64_t ui) const
+   {
+
+      return this->get_data()[(primitive::memory_position)ui];
+
+   }
+
+   inline uchar & memory_base::operator [] (uint64_t ui)
+   {
+
+      return this->get_data()[(primitive::memory_position)ui];
+
+   }
+
+   inline uchar memory_base::operator [] (int i) const
    {
 
       return this->get_data()[i];
 
    }
 
-   inline uchar & memory_base::operator [] (memory_size i)
+   inline uchar & memory_base::operator [] (int i)
    {
 
       return this->get_data()[i];

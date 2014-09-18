@@ -48,9 +48,11 @@ namespace file
       type_binary                      = (int32_t) 0x08000, // derived classes only
       defer_create_directory           = (int32_t) 0x10000,
       hint_unknown_length_supported    = (int32_t) 0x20000,
+      mode_truncate                    = (int32_t) 0x40000,
       binary                           = type_binary,
       out                              = mode_write,
       in                               = mode_read,
+      trunc                            = mode_truncate
    };
 
 
