@@ -2904,3 +2904,12 @@ bool string::begins_ci(const char * s) const
 {
    return ::str::begins_ci(*this, s);
 }
+
+strsize string::copy(char* s,size_t len,size_t pos = 0) const
+{
+   strsize thislen = get_length();
+   i = pos;
+   len = min
+      while(i < len
+}
+
