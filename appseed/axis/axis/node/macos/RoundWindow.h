@@ -11,10 +11,9 @@
 //  this copyright and permission notice. Attribution in compiled projects is
 //  appreciated but not required.
 //
-#include "app/appseed/axis/user/user/user_key_enum.h"
 
 
-::user::e_key event_key(NSEvent * event);
+unsigned int event_key_code(NSEvent * event);
 
 
 class round_window;

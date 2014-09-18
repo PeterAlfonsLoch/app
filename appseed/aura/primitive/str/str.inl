@@ -284,7 +284,7 @@ template < class BASE >
 strsize stdstring < BASE >::copy(typename BASE::value_type * s,strsize len,strsize pos) const
 {
 
-   strsize thislen = get_length();
+   strsize thislen = this->get_length();
 
    if(pos < 0)
    {
