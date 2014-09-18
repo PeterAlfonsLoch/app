@@ -680,7 +680,7 @@ void string::construct() throw()
 
 
 string::string( string_manager * pstringmanager ) throw() :
-   simple_string( pstringmanager )
+   stdstring < simple_string >(pstringmanager)
 {
 }
 
@@ -693,17 +693,17 @@ void __cdecl string::Construct(class string * pstring)
 
 // copy constructor
 string::string(const string & strSrc) :
-   simple_string( strSrc, string_trait::GetDefaultManager() )
+   stdstring < simple_string >(strSrc,string_trait::GetDefaultManager())
 {
 }
 
 string::string(const string & strSrc, strsize npos, strsize len) :
-simple_string(strSrc.Mid(npos, len),string_trait::GetDefaultManager())
+   stdstring < simple_string >(strSrc.Mid(npos,len),string_trait::GetDefaultManager())
 {
 }
 
 string::string(const char * pszSrc) :
-   simple_string( string_trait::GetDefaultManager() )
+   stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    //if(!CheckImplicitLoad(pszSrc))
    //{
@@ -714,7 +714,7 @@ string::string(const char * pszSrc) :
 
 
 string::string(char * pszSrc) :
-   simple_string( string_trait::GetDefaultManager() )
+stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    //if(!CheckImplicitLoad(pszSrc))
    //{
@@ -724,7 +724,7 @@ string::string(char * pszSrc) :
 }
 
 string::string(const char * pszSrc,string_manager * pstringmanager ) :
-   simple_string( pstringmanager )
+stdstring < simple_string >(pstringmanager)
 {
    //      if( !CheckImplicitLoad( pszSrc ) )
    //      {
@@ -735,7 +735,7 @@ string::string(const char * pszSrc,string_manager * pstringmanager ) :
 
 
 string::string(const wchar_t* pszSrc ) :
-   simple_string( string_trait::GetDefaultManager() )
+stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    //      if( !CheckImplicitLoad( pszSrc ) )
    //      {
@@ -754,7 +754,7 @@ string::string(const wchar_t* pszSrc ) :
 
 
 string::string( const string_interface & str ) :
-   simple_string( string_trait::GetDefaultManager() )
+stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    char sz[256];
    strsize iLen = str.get_length();
@@ -774,7 +774,7 @@ string::string( const string_interface & str ) :
 
 
 string::string(const wchar_t * pszSrc,string_manager * pstringmanager ) :
-   simple_string( pstringmanager )
+stdstring < simple_string >(pstringmanager)
 {
    //      if( !CheckImplicitLoad( pszSrc ) )
    //      {
