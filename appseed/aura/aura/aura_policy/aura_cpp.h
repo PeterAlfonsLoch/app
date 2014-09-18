@@ -1169,6 +1169,9 @@ namespace std
    using istream = ::file::input_stream;
    using ifstream = ::file::input_stream;
 
+   using stream = ::file::stream;
+   using fstream = ::file::stream;
+
    using stringstream = ::file::plain_text_stream_string_buffer;
    using ostringstream = ::file::plain_text_output_stream_string_buffer;
 

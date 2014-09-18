@@ -341,6 +341,55 @@ namespace primitive
    }
 
 
+   memory_base & memory_base::erase(::primitive::memory_size pos,::primitive::memory_offset len)
+   {
+
+      if(pos < 0)
+      {
+         
+         len = get_size() + pos;
+
+      }
+
+      if(len < 0)
+      {
+         
+         len = get_size() - pos + len + 1;
+
+      }
+
+      if(pos < 0)
+      {
+
+         pos = 0;
+
+      }
+
+      len = MIN(len,get_size() - pos);
+
+      if(len <= 0)
+      {
+
+         return *this;
+
+      }
+
+      if(pos >= get_size())
+      {
+
+         return *this;
+
+      }
+
+      memmove(m_pbStorage + pos,m_pbStorage + pos + len,len);
+
+      allocate(get_size() - len);
+
+      return *this;
+
+   }
+
+
 } // namespace primitive
 
 

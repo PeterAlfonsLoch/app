@@ -542,6 +542,15 @@ public:
       return iterator(this->get_size(), this);
    }
 
+   const_iterator begin() const
+   {
+      return const_iterator(0,this);
+   }
+
+   const_iterator end() const
+   {
+      return const_iterator(this->get_size(),this);
+   }
 
    // overloaded operator helpers
    inline const TYPE& operator[](index nIndex) const;

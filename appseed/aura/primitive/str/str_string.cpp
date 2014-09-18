@@ -697,6 +697,11 @@ string::string(const string & strSrc) :
 {
 }
 
+string::string(const string & strSrc, strsize npos, strsize len) :
+simple_string(strSrc.Mid(npos, len),string_trait::GetDefaultManager())
+{
+}
+
 string::string(const char * pszSrc) :
    simple_string( string_trait::GetDefaultManager() )
 {

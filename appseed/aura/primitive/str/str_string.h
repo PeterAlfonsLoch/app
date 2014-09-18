@@ -173,6 +173,7 @@ public:
    string(wchar_t * pszSrc);
    string(const wchar_t * pszSrc);
    string(const string & strSrc);
+   string(const string & strSrc, strsize npos, strsize len = -1);
    string(const istring & istr);
    string(const string_interface & str);
 

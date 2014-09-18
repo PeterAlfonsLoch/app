@@ -271,6 +271,21 @@ namespace file
 
    }
 
+
+   int input_stream::peek()
+   {
+      unsigned char uch;
+
+      if(read(&uch,1) == 1)
+      {
+         seek(-1,seek_current);
+         return uch;
+      }
+
+      return EOF;
+
+   }
+
    input_stream & input_stream::getline(char * sz,strsize n)
    {
       int c;

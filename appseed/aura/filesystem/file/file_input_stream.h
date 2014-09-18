@@ -102,6 +102,7 @@ namespace file
 
       virtual input_stream & getline(char * sz, strsize n);
       virtual int get();
+      virtual int peek();
 
       virtual void close();
 
@@ -111,6 +112,8 @@ namespace file
       input_stream & seekg(file_offset offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
 
       ::file_size get_left() { return m_spbuffer->get_length() - m_spbuffer->get_position(); }
+
+
 
    };
 
