@@ -23,6 +23,36 @@ namespace file
    {
    }
 
+   void stream::open(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp = ::get_thread_app())
+   {
+
+      if(m_spbuffer.is_null())
+      {
+
+         m_spbuffer = App(papp).alloc(System.type_info < file::stdio_fle >());
+
+         if(m_spbuffer.is_null())
+         {
+
+            setf(failbit);
+
+            return;
+
+         }
+
+      }
+
+      if(!m_spbuffer->open(lpszFileName,nOpenFlags))
+      {
+         
+         setf(failbit);
+
+         return;
+
+      }
+
+   }
+
    stream & stream::operator = (const stream & stream)
    {
       input_stream::operator = (stream);

@@ -17,6 +17,8 @@ namespace file
       stream(const stream & stream);
       virtual ~stream();
 
+      void open(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp = ::get_thread_app());
+
       
       stream & operator = (const stream & stream);
 
