@@ -134,8 +134,7 @@ namespace windows
       ASSERT(IsWindow());
    //   int32_t iLen = 0;
 
-      string str;
-      str = ::str::international::utf8_to_unicode(psz);
+      string str(psz);
 
 
 

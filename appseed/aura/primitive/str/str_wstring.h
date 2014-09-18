@@ -298,7 +298,17 @@ public:
    verisimple_wstring substr(::index iStart, ::count c = -1);
    verisimple_wstring & replace(::index iStart,::count c, const wchar_t * psz);
 
+
+   verisimple_wstring & operator = (const string & str);
+
 };
 
 
 
+inline verisimple_wstring & operator = (const string & str)
+{
+
+   operator = (::str::international::utf8_to_unicode(str));
+
+   return *this;
+}

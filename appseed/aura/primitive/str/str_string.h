@@ -1583,6 +1583,13 @@ inline string to_string(verisimple_wstring wstr)
 
 }
 
+template < >
+inline string to_string(wstring wstr)
+{
+
+   return string((const wchar_t *) wstr);
+
+}
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
 
