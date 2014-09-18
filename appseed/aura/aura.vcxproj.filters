@@ -24,9 +24,6 @@
     <Filter Include="Header Files\primitive\datetime">
       <UniqueIdentifier>{0510e3ff-0079-4cb1-b9e8-2cca759dcb0a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura">
-      <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{dc109c06-f55b-48ea-ac46-06302b3262f3}</UniqueIdentifier>
     </Filter>
@@ -96,33 +93,6 @@
     <Filter Include="Source Files\primitive\str">
       <UniqueIdentifier>{48b842bb-d6ab-4f7c-9d21-8c8541d95a90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\xml">
-      <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\exception">
-      <UniqueIdentifier>{3057931a-c1e2-4b6c-9059-d0ece06cdca4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\aura">
-      <UniqueIdentifier>{5dc0d2bc-fc5d-4202-9b04-2343b93cccb5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os">
-      <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\android">
-      <UniqueIdentifier>{1d998585-d816-43da-8e2f-dd16e84dde53}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\windows">
-      <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\cross">
-      <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\cross\windows">
-      <UniqueIdentifier>{105dbf8b-8b00-4530-b1fa-ac561338c12e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\ansios">
-      <UniqueIdentifier>{d8fdcc30-b719-4944-8c43-76d53cfb6b94}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\user">
       <UniqueIdentifier>{6d60439d-8fc1-4d30-963f-b0f9e77abb41}</UniqueIdentifier>
     </Filter>
@@ -171,26 +141,11 @@
     <Filter Include="Source Files\aura\node\windows">
       <UniqueIdentifier>{bf60306d-2d73-4340-8890-4402c6ebccab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\node">
-      <UniqueIdentifier>{cbc7bdb2-868d-47ca-9594-7ff7e1135989}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\node\windows">
-      <UniqueIdentifier>{8a9f35dd-3924-4dfe-bc44-6a823f0200b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\message">
-      <UniqueIdentifier>{6ea91d16-af59-4653-ad87-aaa3548a7437}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\aura\message">
       <UniqueIdentifier>{b9bf68d4-d81e-4040-a63c-b2b470c06acd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\aura\node\android">
       <UniqueIdentifier>{8e87a155-a76c-44a0-8114-25921d3dd914}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\node\android">
-      <UniqueIdentifier>{7e1d30ab-0995-45f2-b0b9-64e3a5d68c5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\node\ansios">
-      <UniqueIdentifier>{69195050-6ed5-49b9-b26e-60f94ca26561}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\aura\node\ansios">
       <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
@@ -204,23 +159,14 @@
     <Filter Include="Header Files\user\simple">
       <UniqueIdentifier>{87359dfc-dc8d-48ea-9e7a-cc1bd37769e0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\aura_policy">
-      <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\colorertake5">
       <UniqueIdentifier>{220712f8-0893-4938-8b45-7f270991f20b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user\colorertake5">
       <UniqueIdentifier>{f5b305ca-65b3-4b2a-918b-250947ae62ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\process">
-      <UniqueIdentifier>{2fedfefb-a349-4ba7-9fa2-f86d10306aa9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\aura\process">
       <UniqueIdentifier>{6d592c90-2d43-41e1-a493-c0746f96e320}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\cross\ansios">
-      <UniqueIdentifier>{1ed12af4-cb60-48aa-9d69-eaae021eebd9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\aura\os\cross\ansios">
       <UniqueIdentifier>{bdcaf82f-4175-4f90-8c9c-7e1517c5b7aa}</UniqueIdentifier>
@@ -248,6 +194,60 @@
     </Filter>
     <Filter Include="Source Files\multithreading\service">
       <UniqueIdentifier>{1d2673ac-c466-4eef-a3c2-8d1ac417ee3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura">
+      <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\xml">
+      <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\exception">
+      <UniqueIdentifier>{3057931a-c1e2-4b6c-9059-d0ece06cdca4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\aura">
+      <UniqueIdentifier>{5dc0d2bc-fc5d-4202-9b04-2343b93cccb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\os">
+      <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\os\android">
+      <UniqueIdentifier>{1d998585-d816-43da-8e2f-dd16e84dde53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\os\windows">
+      <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\os\cross">
+      <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\os\cross\windows">
+      <UniqueIdentifier>{105dbf8b-8b00-4530-b1fa-ac561338c12e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\os\cross\ansios">
+      <UniqueIdentifier>{1ed12af4-cb60-48aa-9d69-eaae021eebd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\os\ansios">
+      <UniqueIdentifier>{d8fdcc30-b719-4944-8c43-76d53cfb6b94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\node">
+      <UniqueIdentifier>{cbc7bdb2-868d-47ca-9594-7ff7e1135989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\node\windows">
+      <UniqueIdentifier>{8a9f35dd-3924-4dfe-bc44-6a823f0200b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\node\android">
+      <UniqueIdentifier>{7e1d30ab-0995-45f2-b0b9-64e3a5d68c5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\node\ansios">
+      <UniqueIdentifier>{69195050-6ed5-49b9-b26e-60f94ca26561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\message">
+      <UniqueIdentifier>{6ea91d16-af59-4653-ad87-aaa3548a7437}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\aura_policy">
+      <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\aura\process">
+      <UniqueIdentifier>{2fedfefb-a349-4ba7-9fa2-f86d10306aa9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
