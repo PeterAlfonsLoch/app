@@ -48,7 +48,7 @@ string_interface & string_interface::operator = (const char * psz)
 
 
 string::string(wchar_t ch,strsize nLength) :
-   simple_string( string_trait::GetDefaultManager() )
+   stdstring < simple_string >( string_trait::GetDefaultManager() )
 {
    ASSERT( nLength >= 0 );
    if( nLength > 0 )
