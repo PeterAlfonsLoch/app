@@ -36,7 +36,7 @@ namespace backview
 
       void Shutdown();
 
-
+      inline mutex & user_mutex() { return *m_pmutex; }
 
       ::mutex & GetTransferMutex();
       ::draw2d::graphics_sp GetTransferDC();
