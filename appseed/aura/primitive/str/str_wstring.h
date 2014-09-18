@@ -80,10 +80,15 @@ class wstring_manager;
 
 class CLASS_DECL_AURA verisimple_wstring
 {
-protected:
+public:
+
 
    typedef wstring_manager manager;
    typedef wchar_t value_type;
+
+
+protected:
+
 
 
    friend class wtostring;
@@ -136,6 +141,8 @@ public:
    }
 
 
+   void reserve(strsize n) { UNREFERENCED_PARAMETER(n); } // wstring does not prereserve
+
    verisimple_wstring & operator = (const verisimple_wstring & wstr);
    verisimple_wstring & operator = (const wchar_t * pwsz);
    verisimple_wstring & operator = (const char * psz);
@@ -154,6 +161,9 @@ public:
    inline operator Platform::String ^ () const { return ref new Platform::String(operator const wchar_t *()); }
    inline operator Platform::String ^ () { return ref new Platform::String(operator const wchar_t *()); }
 #endif
+
+   inline verisimple_wstring & operator += (wchar_t wch) { append(wch); return *this; }
+
 
 
    inline wchar_t operator [] (index iIndex) const

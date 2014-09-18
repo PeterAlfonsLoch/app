@@ -11,7 +11,6 @@ namespace file
       m_iostate         = goodbit;
       m_fmtflags        = nofmtflags;
       m_precision       = 0;
-      m_gcount          = 0;
 
    }
 
@@ -23,7 +22,6 @@ namespace file
       m_iostate         = goodbit;
       m_fmtflags        = nofmtflags;
       m_precision       = 0;
-      m_gcount          = 0;
 
    }
 
@@ -34,7 +32,6 @@ namespace file
       m_iostate         = buffer.m_iostate;
       m_fmtflags        = nofmtflags;
       m_precision       = 0;
-      m_gcount          = 0;
       m_spbuffer        = buffer.m_spbuffer;
 
    }

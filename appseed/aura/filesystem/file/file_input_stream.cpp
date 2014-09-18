@@ -294,13 +294,8 @@ namespace file
          sz++;
          n--;
       }
+
       return *this;
-   }
-
-   void input_stream::close()
-   {
-
-      stream_base::close();
 
    }
 

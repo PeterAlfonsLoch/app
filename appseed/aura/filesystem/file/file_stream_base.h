@@ -92,7 +92,6 @@ namespace file
       fmtflags                   m_fmtflags;
       file_size                  m_width;
       file_size                  m_precision;
-      ::primitive::memory_size   m_gcount;
 
       stream_base();
       stream_base(sp(stream_buffer) pbuffer);
@@ -173,6 +172,8 @@ namespace file
       stream_base & operator << (const set_width & w) { width(w.m_width); return *this;  }
 
       virtual bool is_open() const;
+
+
 
    };
 

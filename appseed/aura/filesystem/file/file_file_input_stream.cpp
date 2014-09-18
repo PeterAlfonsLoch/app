@@ -12,7 +12,13 @@ namespace file
 
    }
 
+   
+   file_input_stream::file_input_stream(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp)
+   {
 
+      open(lpszFileName,nOpenFlags,papp);
+
+   }
 
 
    file_input_stream::file_input_stream(stream_buffer * preader)

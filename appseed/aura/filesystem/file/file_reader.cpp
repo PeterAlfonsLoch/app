@@ -152,12 +152,11 @@ namespace file
       }
       catch(...)
       {
+
       }
+
    }
 
-   void reader::close()
-   {
-   }
 
    file_position reader::get_position() const
    {
