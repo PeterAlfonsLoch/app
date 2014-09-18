@@ -873,7 +873,7 @@ namespace primitive
    inline ::primitive::memory_size memory_base::get_length()
    {
 
-      return get_storage_size();
+      return get_size();
 
    }
 
