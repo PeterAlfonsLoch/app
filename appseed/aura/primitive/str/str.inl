@@ -397,11 +397,15 @@ inline void std_string_assign(stdstring < verisimple_wstring > & t,const char * 
    t = ::str::international::utf8_to_unicode(psz);
 }
 
+
 template < >
 inline void std_string_assign(stdstring < verisimple_wstring > & t,const wchar_t * psz)
 {
-   t.operator=(psz);
+
+   t.assign(psz);
+
 }
+
 
 template < >
 inline void std_string_bassign(stdstring < verisimple_wstring > & t,const byte * psz,strsize nsize)
