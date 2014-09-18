@@ -225,6 +225,20 @@ verisimple_wstring & verisimple_wstring::operator = (const char * psz)
 }
 
 
+void verisimple_wstring::assign(const char * psz)
+{
+   
+   ::count iLen = utf16_len(psz);
+   
+   alloc(iLen + 1);
+   
+   utf8_to_utf16(*this, psz);
+   
+   set_length(iLen);
+   
+}
+
+
 
 verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2)
 {
