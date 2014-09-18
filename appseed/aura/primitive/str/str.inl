@@ -25,6 +25,27 @@
       attach( pNewData );
    }
 
+inline simple_string::simple_string(const string_data  * pdata, string_manager * pstringmanager  )
+{
+   if(pdata == NULL)
+   {
+      ENSURE( pstringmanager != NULL );
+      
+      string_data* pData = pstringmanager->allocate( 0, sizeof( char ) );
+      if( pData == NULL )
+      {
+         throw_memory_exception();
+      }
+      attach( pData );
+      set_length( 0 );
+      return;
+   }
+   string_data* pSrcData = const_cast < string_data * > (pdata);
+   string_data* pNewData = CloneData( pSrcData );
+   attach( pNewData );
+}
+
+
    inline simple_string::simple_string(const char * pszSrc,string_manager * pstringmanager )
    {
       ENSURE( pstringmanager != NULL );
