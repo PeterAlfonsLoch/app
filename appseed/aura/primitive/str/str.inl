@@ -415,7 +415,7 @@ inline void std_string_assign(stdstring < simple_string > & t,const bstring * pb
 template < >
 inline void std_string_assign(stdstring < verisimple_wstring > & t,const char * psz)
 {
-   t = ::str::international::utf8_to_unicode(psz);
+   t.assign(psz);
 }
 
 
