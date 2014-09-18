@@ -870,7 +870,7 @@ namespace primitive
    }
 
    
-   inline ::primitive::memory_size memory_base::length()
+   inline ::primitive::memory_size memory_base::length() const
    {
 
       return get_size();
