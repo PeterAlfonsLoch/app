@@ -374,6 +374,24 @@ inline void std_string_bassign(stdstring < simple_string > & t,const byte * psz,
 }
 
 template < >
+inline void std_string_assign(stdstring < simple_string > & t,const string & str)
+{
+   t = str;
+}
+
+template < >
+inline void std_string_assign(stdstring < simple_string > & t,const wstring & wstr)
+{
+   t = ::str::international::unicode_to_utf8(wstr);
+}
+
+template < >
+inline void std_string_assign(stdstring < simple_string > & t,const bstring & bstr)
+{
+   t = string((const char *)bstr.get_data(),MIN(bstr.get_length(),strlen_s_dup((const char *)bstr.get_data(),bstr.get_length())));
+}
+
+template < >
 inline void std_string_assign(stdstring < verisimple_wstring > & t,const char * psz)
 {
    t = ::str::international::utf8_to_unicode(psz);
@@ -392,6 +410,25 @@ inline void std_string_bassign(stdstring < verisimple_wstring > & t,const byte *
 }
 
 template < >
+inline void std_string_assign(stdstring < verisimple_wstring > & t,const string & str)
+{
+   t = ::str::international::utf8_to_unicode(str);
+}
+
+template < >
+inline void std_string_assign(stdstring < verisimple_wstring > & t,const wstring & wstr)
+{
+   t = wstr;
+}
+
+template < >
+inline void std_string_assign(stdstring < verisimple_wstring > & t,const bstring & bstr)
+{
+   t = ::str::international::utf8_to_unicode(string((const char *)bstr.get_data(),MIN(bstr.get_length(),strlen_s_dup((const char *)bstr.get_data(),bstr.get_length()))));
+}
+
+
+template < >
 inline void std_string_assign(stdstring < ::primitive::memory > & t,const char * psz)
 {
    t.assign(psz);
@@ -407,4 +444,60 @@ template < >
 inline void std_string_bassign(stdstring < ::primitive::memory > & t,const byte * psz,strsize nsize)
 {
    t.assign(string((const char *)psz,MIN(nsize,strlen_s_dup((const char *)psz,nsize))));
+}
+
+template < >
+inline void std_string_assign(stdstring < ::primitive::memory > & t,const string & str)
+{
+   t = (const char *) str;
+}
+
+template < >
+inline void std_string_assign(stdstring < ::primitive::memory > & t,const wstring & wstr)
+{
+   t = (const char *) ::str::international::unicode_to_utf8(wstr);
+}
+
+template < >
+inline void std_string_assign(stdstring < ::primitive::memory > & t,const bstring & bstr)
+{
+   t = (const char *) string((const char *)bstr.get_data(),MIN(bstr.get_length(),strlen_s_dup((const char *)bstr.get_data(),bstr.get_length())));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+template < class BASE >
+inline stdstring < BASE > & stdstring < BASE >::operator = (const string & str)
+{
+   std_string_assign(*this,str);
+   return *this;
+}
+
+template < class BASE >
+inline stdstring < BASE > & stdstring < BASE >::operator = (const wstring & str)
+{
+   std_string_assign(*this,str);
+   return *this;
+}
+
+inline stdstring < BASE > & stdstring < BASE >::operator = (const bstring & str)
+{
+   std_string_assign(*this,str);
+   return *this;
 }

@@ -2,6 +2,7 @@
 
 
 class verisimple_wstring;
+class string;
 
 
 typedef stdstring < verisimple_wstring > wstring;
