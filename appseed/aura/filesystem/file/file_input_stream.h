@@ -113,7 +113,7 @@ namespace file
 
       ::file_size get_left() { return m_spbuffer->get_length() - m_spbuffer->get_position(); }
 
-
+      virtual bool is_open();
 
    };
 

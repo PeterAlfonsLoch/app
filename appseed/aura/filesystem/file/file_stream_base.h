@@ -169,6 +169,8 @@ namespace file
 
       stream_base & operator << (const set_width & w) { width(w.m_width); return *this;  }
 
+      virtual bool is_open() const;
+
    };
 
 

@@ -123,6 +123,20 @@ namespace file
 
    }
 
+   bool stream_base::is_open() const
+   {
+
+      if(m_spbuffer.is_null())
+         return false;
+
+      if(!m_spbuffer->is_open())
+         return false;
+
+      return true;
+
+   }
+
+
 
 } // namespace file
 
