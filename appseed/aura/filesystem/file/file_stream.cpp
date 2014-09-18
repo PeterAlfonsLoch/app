@@ -23,13 +23,13 @@ namespace file
    {
    }
 
-   void stream::open(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp = ::get_thread_app())
+   void stream::open(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp)
    {
 
       if(m_spbuffer.is_null())
       {
 
-         m_spbuffer = App(papp).alloc(System.type_info < file::stdio_fle >());
+         m_spbuffer = App(papp).alloc(System.type_info < ::file::stdio_file >());
 
          if(m_spbuffer.is_null())
          {
