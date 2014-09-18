@@ -213,7 +213,7 @@ verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimpl
 
    ::count iLen2 = wstr2.length();
 
-   verisimple_wstring wstrRet;
+   wstring wstrRet;
 
    wstrRet.alloc(iLen1 + iLen2 + 1);
 

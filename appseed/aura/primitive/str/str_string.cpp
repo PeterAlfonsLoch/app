@@ -89,7 +89,7 @@ string::string(wchar_t ch,strsize nLength) :
 }
 
 string::string(const wchar_t* pch,strsize nLength ) :
-   simple_string( string_trait::GetDefaultManager() )
+   stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    ASSERT( nLength >= 0 );
    if( nLength > 0 )
@@ -106,7 +106,7 @@ string::string(const wchar_t* pch,strsize nLength ) :
 }
 
 string::string(const wchar_t* pch,strsize nLength,string_manager * pstringmanager ) :
-   simple_string( pstringmanager )
+   stdstring < simple_string >(pstringmanager)
 {
    ASSERT( nLength >= 0 );
    if( nLength > 0 )
