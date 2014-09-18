@@ -1164,16 +1164,16 @@ namespace std
    using set = ::set< TYPE >;
 
    using ostream = ::file::output_stream;
-   using ofstream = ::file::output_stream;
+   using ofstream = ::file::file_output_stream;
 
    using istream = ::file::input_stream;
-   using ifstream = ::file::input_stream;
+   using ifstream = ::file::file_input_stream;
 
    using stream = ::file::stream;
-   using fstream = ::file::stream;
+   using fstream = ::file::file_stream;
 
    using iostream = ::file::stream;
-   using iofstream = ::file::stream;
+   using iofstream = ::file::file_stream;
 
    using stringstream = ::file::plain_text_stream_string_buffer;
    using ostringstream = ::file::plain_text_output_stream_string_buffer;

@@ -2733,6 +2733,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\file\file_composite.h" />
     <ClInclude Include="filesystem\file\file_dir.h" />
     <ClInclude Include="filesystem\file\file_exception.h" />
+    <ClInclude Include="filesystem\file\file_file_input_stream.h" />
+    <ClInclude Include="filesystem\file\file_file_output_stream.h" />
+    <ClInclude Include="filesystem\file\file_file_stream.h" />
+    <ClInclude Include="filesystem\file\file_file_stream_base.h" />
     <ClInclude Include="filesystem\file\file_folder_watch.h" />
     <ClInclude Include="filesystem\file\file_input_stream.h" />
     <ClInclude Include="filesystem\file\file_memory_buffer.h" />

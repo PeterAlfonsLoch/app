@@ -2069,6 +2069,18 @@
     <ClInclude Include="primitive\str\str_stdstring.h">
       <Filter>Header Files\primitive\str</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\file\file_file_stream_base.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_file_input_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_file_output_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_file_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">

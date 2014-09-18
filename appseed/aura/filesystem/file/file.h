@@ -87,6 +87,12 @@ CLASS_DECL_AURA string file_extension_dup(const char * path);
 #include "file_streambuf.h"
 
 
+include "file_file_stream_base.h"
+include "file_file_input_stream.h"
+include "file_file_output_stream.h"
+include "file_file_stream.h"
+
+
 
 
 
