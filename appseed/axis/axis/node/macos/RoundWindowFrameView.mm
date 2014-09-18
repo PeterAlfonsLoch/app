@@ -487,7 +487,7 @@
 @end
 
 
-::user::e_key event_key(NSEvent * event)
+unsigned int event_key_code(NSEvent * event)
 {
    
    if([event modifierFlags] & NSNumericPadKeyMask) // arrow keys have this mask
@@ -508,28 +508,28 @@
          if(key == NSLeftArrowFunctionKey)
          {
             
-            return ::user::key_left;
+            return 1002; //::user::key_left;
             
          }
          
          if(key == NSRightArrowFunctionKey)
          {
             
-            return ::user::key_right;
+            return 1004; //::user::key_right;
             
          }
          
          if(key == NSUpArrowFunctionKey)
          {
             
-            return ::user::key_up;
+            return 1003; // ::user::key_up;
             
          }
          
          if(key == NSDownArrowFunctionKey)
          {
             
-            return ::user::key_down;
+            return 1005; // ::user::key_down;
             
          }
          
@@ -541,12 +541,14 @@
       
       unsigned short ush = [event keyCode];
       
+      return ush;
+      
       if(ush == 12)
       {
          return ::user::key_q;
       }
       else if(ush == 13)
-      {
+      {
          return ::user::key_w;
       }
       else if(ush == 14)
