@@ -380,8 +380,8 @@
 }
 
 
-- (void)keyDown:(NSEvent *)event {
-   
+- (void)keyDown:(NSEvent *)event
+{
 
    unsigned int uiKeyCode = event_key(event);
    
@@ -397,10 +397,10 @@
    
 }
 
-// end from RoundWindow.mm
 
-- (void)keyUp:(NSEvent *)event {
-   
+// end from RoundWindow.mm
+- (void)keyUp:(NSEvent *)event
+{
    
    unsigned int uiKeyCode = event_key(event);
    
