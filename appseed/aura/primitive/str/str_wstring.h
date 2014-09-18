@@ -103,11 +103,7 @@ protected:
 
 public:
 
-   verisimple_wstring(manager * pstringmanager)
-   {
-      construct(pstringmanager);
-   }
-
+   verisimple_wstring(manager * pstringmanager);
    void construct(manager * pstringmanager = NULL);
    verisimple_wstring(const verisimple_wstring & strSrc,manager * pstringmanager = NULL);
    verisimple_wstring(const char * pszSrc,manager * pstringmanager = NULL);
