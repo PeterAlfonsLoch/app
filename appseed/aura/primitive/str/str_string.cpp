@@ -2907,15 +2907,40 @@ bool string::begins_ci(const char * s) const
 
 strsize string::copy(char* s,size_t len,size_t pos) const
 {
+
    strsize thislen = get_length();
+
    if(pos < 0)
    {
+
       pos = thislen + pos + 1;
+
    }
+
+   if(pos < 0)
+   {
+      
+      len += pos;
+
+      pos = 0;
+
+   }
+
    if(pos >= thislen)
+   {
+
       return 0;
-   strsize i = pos;
-   len = min(len, 
+
+   }
+
+   len = MIN(len,thislen - pos);
+
+   if(len <= 0)
+   {
+
+      return 0;
+
+   }
 
    memcpy(s,operator const char *(),len);
 
