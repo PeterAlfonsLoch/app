@@ -374,21 +374,21 @@ inline void std_string_bassign(stdstring < simple_string > & t,const byte * psz,
 }
 
 template < >
-inline void std_string_assign(stdstring < simple_string > & t,const string & str)
+inline void std_string_assign(stdstring < simple_string > & t,const string * pstr)
 {
-   t = str;
+   t = *pstr;
 }
 
 template < >
-inline void std_string_assign(stdstring < simple_string > & t,const wstring & wstr)
+inline void std_string_assign(stdstring < simple_string > & t,const wstring * wstr)
 {
-   t = ::str::international::unicode_to_utf8(wstr);
+   t = ::str::international::unicode_to_utf8(*pwstr);
 }
 
 template < >
-inline void std_string_assign(stdstring < simple_string > & t,const bstring & bstr)
+inline void std_string_assign(stdstring < simple_string > & t,const bstring * bstr)
 {
-   t = string((const char *)bstr.get_data(),MIN(bstr.get_length(),strlen_s_dup((const char *)bstr.get_data(),bstr.get_length())));
+   t = string((const char *)pbstr->get_data(),MIN(pbstr->get_length(),strlen_s_dup((const char *)pbstr->get_data(),pbstr->get_length())));
 }
 
 template < >
@@ -410,21 +410,21 @@ inline void std_string_bassign(stdstring < verisimple_wstring > & t,const byte *
 }
 
 template < >
-inline void std_string_assign(stdstring < verisimple_wstring > & t,const string & str)
+inline void std_string_assign(stdstring < verisimple_wstring > & t,const string * pstr)
 {
-   t = ::str::international::utf8_to_unicode(str);
+   t = ::str::international::utf8_to_unicode(*pstr);
 }
 
 template < >
-inline void std_string_assign(stdstring < verisimple_wstring > & t,const wstring & wstr)
+inline void std_string_assign(stdstring < verisimple_wstring > & t,const wstring * pwstr)
 {
-   t = wstr;
+   t = *pwstr;
 }
 
 template < >
-inline void std_string_assign(stdstring < verisimple_wstring > & t,const bstring & bstr)
+inline void std_string_assign(stdstring < verisimple_wstring > & t,const bstring * pbstr)
 {
-   t = ::str::international::utf8_to_unicode(string((const char *)bstr.get_data(),MIN(bstr.get_length(),strlen_s_dup((const char *)bstr.get_data(),bstr.get_length()))));
+   t = ::str::international::utf8_to_unicode(string((const char *)pbstr->get_data(),MIN(pbstr->get_length(),strlen_s_dup((const char *)pbstr->get_data(),pbstr->get_length()))));
 }
 
 
@@ -447,21 +447,21 @@ inline void std_string_bassign(stdstring < ::primitive::memory > & t,const byte 
 }
 
 template < >
-inline void std_string_assign(stdstring < ::primitive::memory > & t,const string & str)
+inline void std_string_assign(stdstring < ::primitive::memory > & t,const string * pstr)
 {
-   t = (const char *) str;
+   t = (const char *) *pstr;
 }
 
 template < >
-inline void std_string_assign(stdstring < ::primitive::memory > & t,const wstring & wstr)
+inline void std_string_assign(stdstring < ::primitive::memory > & t,const wstring * pwstr)
 {
-   t = (const char *) ::str::international::unicode_to_utf8(wstr);
+   t = (const char *) ::str::international::unicode_to_utf8(*pwstr);
 }
 
 template < >
-inline void std_string_assign(stdstring < ::primitive::memory > & t,const bstring & bstr)
+inline void std_string_assign(stdstring < ::primitive::memory > & t,const bstring * pbstr)
 {
-   t = (const char *) string((const char *)bstr.get_data(),MIN(bstr.get_length(),strlen_s_dup((const char *)bstr.get_data(),bstr.get_length())));
+   t = *pbstr;
 }
 
 
@@ -485,7 +485,7 @@ inline void std_string_assign(stdstring < ::primitive::memory > & t,const bstrin
 template < class BASE, class BASE2 >
 inline stdstring < BASE > & stdstring < BASE >::operator = (const stdstring < BASE2 > & str)
 {
-   std_string_assign(*this,str);
+   std_string_assign(*this,&str);
    return *this;
 }
 
