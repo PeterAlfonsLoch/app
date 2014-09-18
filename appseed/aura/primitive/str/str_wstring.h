@@ -321,6 +321,7 @@ public:
    verisimple_wstring & operator = (const string & str);
 
    void assign(const wchar_t * pwsz);
+   void assign(const char * psz);
 
 };
 
