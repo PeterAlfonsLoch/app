@@ -325,6 +325,21 @@ strsize stdstring < BASE >::copy(typename BASE::value_type * s,strsize len,strsi
 }
 
 
+
+
+
+inline verisimple_wstring & verisimple_wstring::operator = (const string & str)
+{
+
+   operator = (::str::international::utf8_to_unicode(str));
+
+   return *this;
+}
+
+
+
+
+
 inline strsize strlen_s_dup(const char * psz,strsize nsize)
 {
    if(psz == NULL)

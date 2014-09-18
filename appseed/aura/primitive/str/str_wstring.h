@@ -305,10 +305,3 @@ public:
 
 
 
-inline verisimple_wstring & operator = (const string & str)
-{
-
-   operator = (::str::international::utf8_to_unicode(str));
-
-   return *this;
-}
