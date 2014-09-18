@@ -19,7 +19,7 @@ namespace primitive
 
    }
 
-   memory::memory(const memory & strSrc,manager * pmanager)
+   memory::memory(const memory & s,manager * pmanager)
    {
 
       UNREFERENCED_PARAMETER(pmanager);
