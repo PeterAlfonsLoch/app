@@ -805,7 +805,7 @@ string::string(Platform::Object ^ o, string_manager * pstringmanager) :
 #endif
 
 string::string( const uchar* pszSrc ) :
-   simple_string( string_trait::GetDefaultManager() )
+stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    *this = reinterpret_cast< const char* >( pszSrc );
 }
@@ -821,7 +821,7 @@ const char *psz = reinterpret_cast< const char* >( pszSrc );
 }*/
 
 string::string(uchar* pszSrc ) :
-   simple_string( string_trait::GetDefaultManager() )
+stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    const char *psz = reinterpret_cast< const char* >( pszSrc );
    //      if (!CheckImplicitLoad( psz ))
@@ -831,7 +831,7 @@ string::string(uchar* pszSrc ) :
 }
 
 string::string(wchar_t* pszSrc ) :
-   simple_string(string_trait::GetDefaultManager() )
+stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    const wchar_t *psz = reinterpret_cast< const wchar_t* >( pszSrc );
    //if (!CheckImplicitLoad( psz ))
@@ -841,19 +841,19 @@ string::string(wchar_t* pszSrc ) :
 }
 
 string::string(const istring & istr) :
-   simple_string( string_trait::GetDefaultManager() )
+stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    *this = (const char *) istr;
 }
 
 string::string(const uchar* pszSrc,string_manager * pstringmanager ) :
-   simple_string( pstringmanager )
+stdstring < simple_string >(pstringmanager)
 {
    *this = reinterpret_cast< const char* >( pszSrc );
 }
 
 string::string(char ch,strsize nLength) :
-   simple_string( string_trait::GetDefaultManager() )
+stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    ASSERT( nLength >= 0 );
    if( nLength > 0 )
@@ -865,7 +865,7 @@ string::string(char ch,strsize nLength) :
 }
 
 string::string(strsize nLength, char ch) :
-   simple_string( string_trait::GetDefaultManager() )
+stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    ASSERT( nLength >= 0 );
    if( nLength > 0 )
@@ -879,12 +879,12 @@ string::string(strsize nLength, char ch) :
 
 
 string::string(const char* pch,strsize nLength ) :
-   simple_string( pch, nLength, string_trait::GetDefaultManager() )
+stdstring < simple_string >(pch,nLength,string_trait::GetDefaultManager())
 {
 }
 
 string::string(const char* pch,strsize nLength,string_manager * pstringmanager ) :
-   simple_string( pch, nLength, pstringmanager )
+stdstring < simple_string >(pch,nLength,pstringmanager)
 {
 }
 
