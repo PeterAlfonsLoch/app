@@ -226,6 +226,14 @@
 		07B0956318495C2B007A0560 /* x_defines.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B094A518495C2A007A0560 /* x_defines.h */; };
 		07B0956418495C2B007A0560 /* x_encodings.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B094A618495C2A007A0560 /* x_encodings.h */; };
 		07B0956518495C2B007A0560 /* x_tables.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B094A818495C2A007A0560 /* x_tables.h */; };
+		07B4AFDC19CB9D8500E56AFA /* file_file_input_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B4AFD419CB9D8500E56AFA /* file_file_input_stream.cpp */; };
+		07B4AFDD19CB9D8500E56AFA /* file_file_input_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B4AFD519CB9D8500E56AFA /* file_file_input_stream.h */; };
+		07B4AFDE19CB9D8500E56AFA /* file_file_output_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B4AFD619CB9D8500E56AFA /* file_file_output_stream.cpp */; };
+		07B4AFDF19CB9D8500E56AFA /* file_file_output_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B4AFD719CB9D8500E56AFA /* file_file_output_stream.h */; };
+		07B4AFE019CB9D8500E56AFA /* file_file_stream_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B4AFD819CB9D8500E56AFA /* file_file_stream_base.cpp */; };
+		07B4AFE119CB9D8500E56AFA /* file_file_stream_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B4AFD919CB9D8500E56AFA /* file_file_stream_base.h */; };
+		07B4AFE219CB9D8500E56AFA /* file_file_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B4AFDA19CB9D8500E56AFA /* file_file_stream.cpp */; };
+		07B4AFE319CB9D8500E56AFA /* file_file_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B4AFDB19CB9D8500E56AFA /* file_file_stream.h */; };
 		07F5B19F184A3B430092C3E1 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B12F184A3B420092C3E1 /* file.h */; };
 		07F5B1A2184A3B430092C3E1 /* file_binary_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B132184A3B420092C3E1 /* file_binary_buffer.cpp */; };
 		07F5B1A3184A3B430092C3E1 /* file_binary_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B133184A3B420092C3E1 /* file_binary_buffer.h */; };
@@ -1413,6 +1421,14 @@
 		07B094A718495C2A007A0560 /* x_encodings.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = x_encodings.pl; sourceTree = "<group>"; };
 		07B094A818495C2A007A0560 /* x_tables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x_tables.h; sourceTree = "<group>"; };
 		07B094A918495C2A007A0560 /* x_tables_generator.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = x_tables_generator.pl; sourceTree = "<group>"; };
+		07B4AFD419CB9D8500E56AFA /* file_file_input_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_file_input_stream.cpp; sourceTree = "<group>"; };
+		07B4AFD519CB9D8500E56AFA /* file_file_input_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_file_input_stream.h; sourceTree = "<group>"; };
+		07B4AFD619CB9D8500E56AFA /* file_file_output_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_file_output_stream.cpp; sourceTree = "<group>"; };
+		07B4AFD719CB9D8500E56AFA /* file_file_output_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_file_output_stream.h; sourceTree = "<group>"; };
+		07B4AFD819CB9D8500E56AFA /* file_file_stream_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_file_stream_base.cpp; sourceTree = "<group>"; };
+		07B4AFD919CB9D8500E56AFA /* file_file_stream_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_file_stream_base.h; sourceTree = "<group>"; };
+		07B4AFDA19CB9D8500E56AFA /* file_file_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file_file_stream.cpp; sourceTree = "<group>"; };
+		07B4AFDB19CB9D8500E56AFA /* file_file_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_file_stream.h; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		07F3372018111CA200A34D04 /* multithreading_set_event_on_exit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = multithreading_set_event_on_exit.h; sourceTree = "<group>"; };
 		07F5B12F184A3B420092C3E1 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
@@ -2565,6 +2581,14 @@
 				07F5B14B184A3B430092C3E1 /* file_dir2.cpp */,
 				07F5B150184A3B430092C3E1 /* file_exception.cpp */,
 				07F5B151184A3B430092C3E1 /* file_exception.h */,
+				07B4AFD419CB9D8500E56AFA /* file_file_input_stream.cpp */,
+				07B4AFD519CB9D8500E56AFA /* file_file_input_stream.h */,
+				07B4AFD619CB9D8500E56AFA /* file_file_output_stream.cpp */,
+				07B4AFD719CB9D8500E56AFA /* file_file_output_stream.h */,
+				07B4AFD819CB9D8500E56AFA /* file_file_stream_base.cpp */,
+				07B4AFD919CB9D8500E56AFA /* file_file_stream_base.h */,
+				07B4AFDA19CB9D8500E56AFA /* file_file_stream.cpp */,
+				07B4AFDB19CB9D8500E56AFA /* file_file_stream.h */,
 				07F5B152184A3B430092C3E1 /* file_input_stream.cpp */,
 				07F5B153184A3B430092C3E1 /* file_input_stream.h */,
 				07F5B154184A3B430092C3E1 /* file_memory_buffer.cpp */,
@@ -3589,6 +3613,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A1641E119C4A4CE00966C5E /* aura_url.h in Headers */,
+				07B4AFE119CB9D8500E56AFA /* file_file_stream_base.h in Headers */,
 				07B0953318495C2B007A0560 /* str_c.h in Headers */,
 				9A1641EF19C4A4CE00966C5E /* exception_assert.h in Headers */,
 				9A16415719C4A4CE00966C5E /* aura_application.h in Headers */,
@@ -3630,6 +3655,7 @@
 				9A1643A319C4A4CE00966C5E /* windows_common_controls.h in Headers */,
 				07B094DA18495C2B007A0560 /* collection_queue.h in Headers */,
 				07B094D918495C2B007A0560 /* collection_priority_queue.h in Headers */,
+				07B4AFDD19CB9D8500E56AFA /* file_file_input_stream.h in Headers */,
 				9A16416D19C4A4CE00966C5E /* aura_cpu_architecture.h in Headers */,
 				07B0950918495C2B007A0560 /* comparison_var_strict.h in Headers */,
 				9A16423719C4A4CE00966C5E /* exception_system.h in Headers */,
@@ -3760,6 +3786,7 @@
 				9A16417319C4A4CE00966C5E /* aura_debug.h in Headers */,
 				07884BE91897E9A500DC6CEB /* user_create_context.h in Headers */,
 				07F5B1A6184A3B430092C3E1 /* file_buffered_buffer.h in Headers */,
+				07B4AFDF19CB9D8500E56AFA /* file_file_output_stream.h in Headers */,
 				9A16418619C4A4CE00966C5E /* aura_fixed_alloc.h in Headers */,
 				9A16421F19C4A4CE00966C5E /* exception_not_installed.h in Headers */,
 				9AC315CF198E4CB8008FB109 /* colorertake5_memory_chunks.h in Headers */,
@@ -4007,6 +4034,7 @@
 				9AE7256117E83B69003E47F9 /* primitive_id.h in Headers */,
 				9A16445619C4A4CF00966C5E /* macos_cross_win_gdi.h in Headers */,
 				9AE7256317E83B69003E47F9 /* primitive_id_space.h in Headers */,
+				07B4AFE319CB9D8500E56AFA /* file_file_stream.h in Headers */,
 				07F5B255184A3B6A0092C3E1 /* draw2d_font.h in Headers */,
 				079AE0811886486300635C39 /* primitive_relation_set.h in Headers */,
 				9A1643A019C4A4CE00966C5E /* windows.h in Headers */,
@@ -4348,6 +4376,7 @@
 				9AC315B1198E4CB8008FB109 /* colorertake5_colorertake5.cpp in Sources */,
 				9A1641E319C4A4CE00966C5E /* aura_c.c in Sources */,
 				9A1641AE19C4A4CE00966C5E /* aura_microtimer.cpp in Sources */,
+				07B4AFDE19CB9D8500E56AFA /* file_file_output_stream.cpp in Sources */,
 				9A16454019C4A56200966C5E /* math_cvt_g.cpp in Sources */,
 				9A16419C19C4A4CE00966C5E /* aura_live_signal.cpp in Sources */,
 				07B094E418495C2B007A0560 /* collection_sort.cpp in Sources */,
@@ -4404,6 +4433,7 @@
 				9A16445819C4A4CF00966C5E /* macos_debug.cpp in Sources */,
 				9A16446019C4A4CF00966C5E /* macos_launcher.cpp in Sources */,
 				07AAB14D1926B2EF0050A443 /* multithreading_thread_impl.cpp in Sources */,
+				07B4AFE219CB9D8500E56AFA /* file_file_stream.cpp in Sources */,
 				9A16423819C4A4CE00966C5E /* exception_temporary.cpp in Sources */,
 				07F5B1C4184A3B430092C3E1 /* file_memory_buffer.cpp in Sources */,
 				9A16452F19C4A4CF00966C5E /* xml_xmlite.cpp in Sources */,
@@ -4444,6 +4474,7 @@
 				9AC315B8198E4CB8008FB109 /* colorertake5_error_handler_writer.cpp in Sources */,
 				9A16439D19C4A4CE00966C5E /* cross_windows_user.cpp in Sources */,
 				9A16415819C4A4CE00966C5E /* aura_application_interface.cpp in Sources */,
+				07B4AFDC19CB9D8500E56AFA /* file_file_input_stream.cpp in Sources */,
 				07B0954718495C2B007A0560 /* str_istring.cpp in Sources */,
 				9A16438919C4A4CE00966C5E /* ansios_cross_win.cpp in Sources */,
 				9A16451719C4A4CF00966C5E /* xml_entity.cpp in Sources */,
@@ -4468,6 +4499,7 @@
 				9A16438819C4A4CE00966C5E /* ansios_base_file.cpp in Sources */,
 				9A1641A119C4A4CE00966C5E /* aura_machine_event.cpp in Sources */,
 				9AE724FF17E83B69003E47F9 /* multithreading_critical_section.cpp in Sources */,
+				07B4AFE019CB9D8500E56AFA /* file_file_stream_base.cpp in Sources */,
 				9A16449F19C4A4CF00966C5E /* os_binreloc.cpp in Sources */,
 				07B0951818495C2B007A0560 /* geometry_rect.cpp in Sources */,
 				9A16427819C4A4CE00966C5E /* ansios_thread_impl.cpp in Sources */,
