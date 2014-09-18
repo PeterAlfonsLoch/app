@@ -41,3 +41,10 @@ namespace primitive
 } // namespace primitive
 
 
+
+
+typedef stdstring < ::primitive::memory > bstring; // binary string (may contain nulls)
+
+
+
+

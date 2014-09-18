@@ -2066,6 +2066,9 @@
     <ClInclude Include="primitive\math\math_departament.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\str\str_stdstring.h">
+      <Filter>Header Files\primitive\str</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3527,9 +3530,6 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

@@ -3544,6 +3544,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\str\str_istring.h" />
     <ClInclude Include="primitive\str\str_parse.h" />
     <ClInclude Include="primitive\str\str_simple.h" />
+    <ClInclude Include="primitive\str\str_stdstring.h" />
     <ClInclude Include="primitive\str\str_str.h" />
     <ClInclude Include="primitive\str\str_str1.h" />
     <ClInclude Include="primitive\str\str_str2.h" />

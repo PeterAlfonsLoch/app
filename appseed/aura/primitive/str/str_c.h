@@ -7,6 +7,9 @@
 #ifdef __cplusplus
 
 
+#include "str_stdstring.h"
+
+
 #include "str_wstring.h"
 
 

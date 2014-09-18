@@ -139,9 +139,8 @@ class fixed_alloc_array;
 
 
 
-
 class CLASS_DECL_AURA string :
-   public simple_string
+   public stdstring < simple_string >
 #if defined(LINUX)
    , public string_format_printer
 #endif
@@ -263,7 +262,6 @@ public:
    string & assign (InputIterator first, InputIterator last);
 
 
-   strsize copy(char* s,size_t len,size_t pos = 0) const;
 
    // Comparison
    int32_t Compare(const char * psz ) const;

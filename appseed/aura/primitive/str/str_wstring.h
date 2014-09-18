@@ -4,7 +4,7 @@
 class verisimple_wstring;
 
 
-typedef verisimple_wstring wstring;
+typedef stdstring < verisimple_wstring > wstring;
 
 
 CLASS_DECL_AURA verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2);
