@@ -1158,7 +1158,7 @@ namespace macos
 
          SCAST_PTR(::message::key, pkey, pobj);
 
-         Application.user()->keyboard().translate_os_key_message(pkey);
+         Session.user()->keyboard().translate_os_key_message(pkey);
 
          if(pbase->m_uiMessage == WM_KEYDOWN)
          {
@@ -5687,7 +5687,7 @@ namespace macos
    }
 
 
-   bool interaction_impl::round_window_key_down(::user::e_key ekey)
+   bool interaction_impl::round_window_key_down(unsigned int ekey)
    {
 
       sp(::message::base) spbase;
@@ -5695,7 +5695,7 @@ namespace macos
       ::message::key * pkey = canew(::message::key(get_app()));
 
       pkey->m_uiMessage = WM_KEYDOWN;
-      pkey->m_ekey = ekey;
+      pkey->m_nChar = uiKeyCode;
 
       spbase = pkey;
 
@@ -5706,7 +5706,7 @@ namespace macos
    }
 
 
-   bool interaction_impl::round_window_key_up(::user::e_key ekey)
+   bool interaction_impl::round_window_key_up(unsigned int uiKeyCode)
    {
 
       sp(::message::base) spbase;
@@ -5714,7 +5714,7 @@ namespace macos
       ::message::key * pkey = canew(::message::key(get_app()));
 
       pkey->m_uiMessage = WM_KEYUP;
-      pkey->m_ekey = ekey;
+      pkey->m_nChar = uiKeyCode;
 
       spbase = pkey;
 
