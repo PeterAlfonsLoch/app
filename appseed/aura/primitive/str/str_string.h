@@ -262,6 +262,9 @@ public:
    template <class InputIterator>
    string & assign (InputIterator first, InputIterator last);
 
+
+   strsize copy(char* s,size_t len,size_t pos = 0) const;
+
    // Comparison
    int32_t Compare(const char * psz ) const;
    int32_t CompareNoCase(const char * psz) const RELEASENOTHROW;
@@ -817,7 +820,13 @@ string & string::assign ( InputIterator first, InputIterator last )
    }
 }
 
-
+strsize copy(char* s,size_t len,size_t pos = 0) const
+{
+   strsize thislen = get_length();
+   i = pos;
+   len = min
+   while(i < len
+}
 
 inline strsize string::find_first_in(const string & str, strsize pos) const RELEASENOTHROW
 {
