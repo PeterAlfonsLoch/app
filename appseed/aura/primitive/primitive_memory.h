@@ -23,6 +23,7 @@ namespace primitive
 
       memory(sp(::aura::application) papp);
       memory(sp(::aura::application) papp, bool bAligned);
+      memory(const byte *,memory_size iCount);
       memory(const void *, memory_size iCount);
       memory(const memory_base & memorybase);
       memory(const memory & memory);

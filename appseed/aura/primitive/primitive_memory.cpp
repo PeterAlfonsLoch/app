@@ -83,6 +83,18 @@ namespace primitive
 
    }
 
+   memory::memory(const byte * pdata,memory_size iCount)
+   {
+      m_pprimitivememory   = this;
+      m_pbStorage    = NULL;
+      m_pbComputed   = NULL;
+      m_iOffset      = 0;
+      m_bAligned = false;
+      allocate(iCount);
+      ASSERT(__is_valid_address(pdata,iCount,FALSE));
+      memcpy(m_pbStorage,pdata,iCount);
+   }
+
    memory::memory(const void * pdata, memory_size iCount)
    {
       m_pprimitivememory   = this;
