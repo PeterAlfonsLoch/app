@@ -26,9 +26,7 @@ public:
 
    strsize copy(typename BASE::value_type * s,strsize len,strsize pos = 0) const;
 
-   template < class BASE2 >
-   inline stdstring < BASE > & operator = (const stdstring < BASE2 > & str);
-
+   template < class BASE2 > inline stdstring < BASE > & operator = (const stdstring < BASE2 > & str) { std_string_assign(*this,&str); return *this; }
 
 };
 

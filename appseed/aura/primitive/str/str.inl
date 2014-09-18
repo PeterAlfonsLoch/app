@@ -482,10 +482,3 @@ inline void std_string_assign(stdstring < ::primitive::memory > & t,const bstrin
 
 
 
-template < class BASE, class BASE2 >
-inline stdstring < BASE > & stdstring < BASE >::operator = (const stdstring < BASE2 > & str)
-{
-   std_string_assign(*this,&str);
-   return *this;
-}
-
