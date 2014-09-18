@@ -7,51 +7,29 @@ namespace file
 
    stream::stream()
    {
+
    }
+
 
    stream::stream(sp(stream_buffer) pbuffer) :
       stream_base(pbuffer)
    {
+
    }
+
 
    stream::stream(const stream & stream) :
       stream_base(stream)
    {
+
    }
+
 
    stream::~stream()
    {
-   }
-
-   void stream::open(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp)
-   {
-
-      if(m_spbuffer.is_null())
-      {
-
-         m_spbuffer = App(papp).alloc(System.type_info < ::file::text_buffer >());
-
-         if(m_spbuffer.is_null())
-         {
-
-            setstate(failbit);
-
-            return;
-
-         }
-
-      }
-
-      if(!m_spbuffer->open(lpszFileName,nOpenFlags))
-      {
-         
-         setstate(failbit);
-
-         return;
-
-      }
 
    }
+
 
    stream & stream::operator = (const stream & stream)
    {
