@@ -51,7 +51,6 @@
 	<item scan="12" value="key_hyphen" />
 	<item scan="13" value="key_equal" />
 	<item scan="14" value="key_back" />
-	<item scan="83" value="key_delete" />
 	<item scan="42" value="key_lshift" />
 	<item scan="54" value="key_rshift" />
 	<item scan="29" value="key_control" />
@@ -73,11 +72,12 @@
 	<item scan="75" ext="1" value="key_left" />
 	<item scan="77" ext="1" value="key_right" />
 	<item scan="72" ext="1" value="key_up" />
+	<item scan="83" ext="1" value="key_delete" />
 	<item scan="80" ext="1" value="key_down" />
-	<item scan="71" value="key_home" />
-	<item scan="79" value="key_end" />
-	<item scan="73" value="key_prior" />
-	<item scan="81" value="key_next" />
+	<item scan="71" ext="1" value="key_home" />
+	<item scan="79" ext="1" value="key_end" />
+	<item scan="73" ext="1" value="key_prior" />
+	<item scan="81" ext="1" value="key_next" />
 	<item scan="15" value="key_tab" />
 	<item scan="1" value="key_escape" />
 	<item scan="79" value="key_numpad_1" />
