@@ -502,7 +502,7 @@ unsigned int event_key_code(NSEvent * event)
          return 1005; // ::user::key_down;
             
       }
-      else if(key >= L'0' || key <= L'9')
+      else if(key >= L'0' && key <= L'9')
       {
       
          return 3000 + key - L'0';
