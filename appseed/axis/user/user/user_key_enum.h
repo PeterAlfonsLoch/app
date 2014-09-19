@@ -93,7 +93,7 @@ namespace user
       key_acute2,
       key_equal,
       key_escape,
-      key_apostrophe2
+      key_apostrophe2,
       key_numpad_0,
       key_numpad_1,
       key_numpad_2,
