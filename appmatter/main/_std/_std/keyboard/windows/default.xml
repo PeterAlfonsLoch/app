@@ -27,7 +27,7 @@
 	<item scan="86" value="key_backslash2" />
 	<item scan="44" value="key_z" />
 	<item scan="45" value="key_x" />
-	<item scan="46" value="key_c" />
+	<item scan="46" value="key_c" />2
 	<item scan="47" value="key_v" />
 	<item scan="48" value="key_b" />
 	<item scan="49" value="key_n" />
@@ -38,7 +38,7 @@
 	<item scan="115" value="key_slash2" />
 	<item code="186" value="key_semicolon3" />
 	<item scan="2" value="key_1" />
-	<item scan="50" value="key_2" />
+	<item scan="3" value="key_2" />
 	<item scan="51" value="key_3" />
 	<item scan="52" value="key_4" />
 	<item scan="53" value="key_5" />
