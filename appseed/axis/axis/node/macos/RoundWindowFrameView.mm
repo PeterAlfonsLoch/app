@@ -16,6 +16,24 @@
 
 @implementation RoundWindowFrameView
 
+
+- (id)initWithFrame:(NSRect)frame
+{
+   self = [super initWithFrame:frame];
+   
+   m_roundwindow =  self;
+   
+   frameView->m_bLShift = false;
+   frameView->m_bLControl = false;
+   frameView->m_bLAlt = false;
+   frameView->m_bRShift = false;
+   frameView->m_bRControl = false;
+   frameView->m_bRAlt = false;
+
+   
+   return self;
+}
+
 //
 // resizeRect
 //
