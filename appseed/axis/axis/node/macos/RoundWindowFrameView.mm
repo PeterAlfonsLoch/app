@@ -31,8 +31,8 @@
    m_bLAlt = false;
    m_bRAlt = false;
 
-   
    return self;
+   
 }
 
 
