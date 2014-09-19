@@ -432,7 +432,7 @@ m_f = true; \
       return;
    
    bool bLCommand = [event modifierFlags] & (1 << 4);
-   bool bLCommand = [event modifierFlags] & (1 << 4);
+   bool bRCommand = [event modifierFlags] & (1 << 4);
    
    DO_FLAG(m_bLCommand, p, bLCommand, 2031)
    
