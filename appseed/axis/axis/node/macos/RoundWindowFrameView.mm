@@ -424,12 +424,14 @@
    if(p == NULL)
       return;
    
-   if([event modifierFlags] & NSShiftKeyMask)
+   unsigned int ui = event modifierFlags];
+   
+   if(ui & NSShiftKeyMask)
    {
       if(!m_bShift)
       {
          m_bShift = true;
-         if(p->round_window_key_down(::user::key_shift))
+         if(p->round_window_key_down(ui & NSShiftKeyMask))
             return;
       }
    }
@@ -438,17 +440,17 @@
       if(m_bShift)
       {
          m_bShift = false;
-         if(p->round_window_key_up(::user::key_shift))
+         if(p->round_window_key_up(ui & NSShiftKeyMask))
             return;
       }
    }
 
-   if([event modifierFlags] & NSControlKeyMask)
+   if(ui & NSControlKeyMask)
    {
       if(!m_bControl)
       {
          m_bControl = true;
-         if(p->round_window_key_down(::user::key_control))
+         if(p->round_window_key_down(ui & NSControlKeyMask))
             return;
       }
    }
@@ -457,17 +459,17 @@
       if(m_bControl)
       {
          m_bControl = false;
-         if(p->round_window_key_up(::user::key_control))
+         if(p->round_window_key_up(ui & NSControlKeyMask))
             return;
       }
    }
  
-   if([event modifierFlags] & NSAlternateKeyMask)
+   if(ui & NSAlternateKeyMask)
    {
       if(!m_bAlt)
       {
          m_bAlt = true;
-         if(p->round_window_key_down(::user::key_alt))
+         if(p->round_window_key_down(ui & NSAlternateKeyMask))
             return;
       }
    }
@@ -476,7 +478,7 @@
       if(m_bAlt)
       {
          m_bAlt = false;
-         if(p->round_window_key_up(::user::key_alt))
+         if(p->round_window_key_up(ui & NSAlternateKeyMask))
             return;
       }
    }

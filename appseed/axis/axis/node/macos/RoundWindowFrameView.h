@@ -20,9 +20,12 @@
 {
    @public
    RoundWindow * m_roundwindow;
-   bool m_bShift;
-   bool m_bControl;
-   bool m_bAlt;
+   bool m_bLShift;
+   bool m_bRShift;
+   bool m_bLControl;
+   bool m_bRControl;
+   bool m_bLAlt;
+   bool m_bRAlt;
    
    
 }
