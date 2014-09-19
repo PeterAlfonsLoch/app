@@ -130,6 +130,10 @@ namespace user
             {
                iMap |= 0x80000000;
             }
+            if(pnode->attr("ralt") == 1)
+            {
+               iMap |= 0x40000000;
+            }
             /*            if(strChar.has_char())
             {
             iChar = iMap | (int32_t)(uchar)(char)(strChar[0]);

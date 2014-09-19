@@ -234,6 +234,10 @@ namespace user
       {
          iCode |= 0x80000000;
       }
+      if(Session.is_key_pressed(::user::key_ralt))
+      {
+         iCode |= 0x40000000;
+      }
 
       return m_playout->process_key(iCode);
 
