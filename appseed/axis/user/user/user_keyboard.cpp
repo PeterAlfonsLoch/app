@@ -455,6 +455,16 @@ namespace user
 
 #ifdef WINDOWSEX
 
+      if(pkey->m_bExt)
+      {
+
+         pkey->m_ekey = m_mapExt[(int32_t)pkey->m_nScanCode];
+
+         if(pkey->m_ekey != ::user::key_none)
+            return;
+
+      }
+
       pkey->m_ekey = m_mapScan[(int32_t)pkey->m_nScanCode];
 
       if(pkey->m_ekey != ::user::key_none)
