@@ -450,8 +450,8 @@
    bool sr = (ui & 4) != 0;
    bool cl = (ui & 1) != 0;;
    bool cr = (ui & (1 << 13)) != 0;
-   bool al = (ui & (1 << 6)) != 0;;
-   bool ar = (ui & (1 << 7)) != 0;
+   bool al = (ui & (1 << 7)) != 0;;
+   bool ar = (ui & (1 << 8)) != 0;
    
    
    DO_FLAG(m_bLShift, p, sl, 2001)
