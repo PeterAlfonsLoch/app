@@ -170,8 +170,6 @@ namespace user
          if(!load_os_layout(strPath))
             return false;
 
-         return false;
-
       }
 
       strPath = Application.dir_matter("keyboard/windows/default.xml");
