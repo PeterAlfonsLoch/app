@@ -45,6 +45,8 @@
 	<item code="2013" value="key_rcontrol" />
 	<item code="2021" value="key_lalt" />
 	<item code="2023" value="key_ralt" />
+	<item code="2031" value="key_lcommand" />
+	<item code="2033" value="key_rcommand" />
 	<item code="51" value="key_back" />
 	<item code="117" value="key_delete" />
 	<item code="1003" value="key_up" />
