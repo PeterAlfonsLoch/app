@@ -137,6 +137,16 @@
 	<item code="key_8" shift="1" value="*" />
 	<item code="key_9" shift="1" value="(" />
 	<item code="key_0" shift="1" value=")" />
+	<item code="key_numpad_1" value="1" />
+	<item code="key_numpad_2" value="2" />
+	<item code="key_numpad_3" value="3" />
+	<item code="key_numpad_4" value="4" />
+	<item code="key_numpad_5" value="5" />
+	<item code="key_numpad_6" value="6" />
+	<item code="key_numpad_7" value="7" />
+	<item code="key_numpad_8" value="8" />
+	<item code="key_numpad_9" value="9" />
+	<item code="key_numpad_0" value="0" />
 	<escape value="¨">
 		<item char="a" value="ä" />
 		<item char="e" value="ë" />
