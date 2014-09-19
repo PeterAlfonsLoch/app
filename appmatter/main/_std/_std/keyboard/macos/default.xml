@@ -55,8 +55,8 @@
 	<item code="66" value="key_capslock" />
 	<item code="115" value="key_home" />
 	<item code="119" value="key_end" />
-	<item code="112" value="key_prior" />
-	<item code="117" value="key_next" />
+	<item code="116" value="key_prior" />
+	<item code="121" value="key_next" />
 	<item code="36" value="key_return" />
 	<item code="27" value="key_hyphen" />
 	<item code="24" value="key_equal" />
@@ -69,6 +69,16 @@
 	<item code="10" value="key_backslash2" />
 	<item code="50" value="key_apostrophe2" />
 	<item code="53" value="key_escape" />
+	<item code="3001" value="key_numpad_1" />
+	<item code="3002" value="key_numpad_2" />
+	<item code="3003" value="key_numpad_3" />
+	<item code="3004" value="key_numpad_4" />
+	<item code="3005" value="key_numpad_5" />
+	<item code="3006" value="key_numpad_6" />
+	<item code="3007" value="key_numpad_7" />
+	<item code="3008" value="key_numpad_8" />
+	<item code="3009" value="key_numpad_9" />
+	<item code="3000" value="key_numpad_0" />
    
 
 </layout>
