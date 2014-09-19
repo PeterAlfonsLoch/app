@@ -65,6 +65,7 @@
 	<item code="42" value="key_closebracket2" />
 	<item code="39" value="key_til2" />
 	<item code="33" value="key_acute2" />
+	<item code="49" value="key_space" />
    
 
 </layout>
