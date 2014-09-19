@@ -147,6 +147,15 @@
 	<item code="key_numpad_8" value="8" />
 	<item code="key_numpad_9" value="9" />
 	<item code="key_numpad_0" value="0" />
+	<item code="key_numpad_1" numlock="1" keymap="key_end" />
+	<item code="key_numpad_2" numlock="1" keymap="key_down" />
+	<item code="key_numpad_3" numlock="1" keymap="key_next" />
+	<item code="key_numpad_4" numlock="1" keymap="key_left" />
+	<item code="key_numpad_6" numlock="1" keymap="key_right" />
+	<item code="key_numpad_7" numlock="1" keymap="key_home" />
+	<item code="key_numpad_8" numlock="1" keymap="key_up" />
+	<item code="key_numpad_9" numlock="1" keymap="key_next" />
+	<item code="key_numpad_0" numlock="1" keymap="key_insert" />
 	<escape value="¨">
 		<item char="a" value="ä" />
 		<item char="e" value="ë" />
