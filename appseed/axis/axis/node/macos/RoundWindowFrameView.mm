@@ -25,9 +25,9 @@
    m_roundwindow =  roundwindow;
    
    m_bLShift = false;
+   m_bRShift = false;
    m_bLControl = false;
    m_bLAlt = false;
-   m_bRShift = false;
    m_bRControl = false;
    m_bRAlt = false;
 
