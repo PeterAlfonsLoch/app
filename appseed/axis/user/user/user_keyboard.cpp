@@ -173,6 +173,8 @@ namespace user
 
             string strScan    = pnode->attr("scan");
 
+            string strExt    = pnode->attr("ext");
+
             string strValue   = pnode->attr("value");
 
             ekey     = System.enum_from_name < ::user::e_key >(typeinfoKey,strValue);
@@ -188,10 +190,21 @@ namespace user
 
             if(strScan.has_char())
             {
-               
+
                iScan    = atoi(strCode);
 
-               m_mapScan.set_at(iScan,ekey);
+               if(strExt == "1")
+               {
+
+                  m_mapExt.set_at(iScan,ekey);
+
+               }
+               else
+               {
+
+                  m_mapScan.set_at(iScan,ekey);
+
+               }
 
             }
 

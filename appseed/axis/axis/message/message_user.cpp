@@ -100,6 +100,7 @@ namespace message
 
       m_nScanCode = ((lparam >> 16) & 0xff);
 
+      m_bExt = (lparam & 24) != 0;
 
    }
 
