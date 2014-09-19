@@ -32,4 +32,6 @@
    
 }
 
+- (id)initWithFrame:(NSRect)frame andRoundWindow:(RoundWindow*)myOtherObject;
+
 @end
