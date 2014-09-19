@@ -16,6 +16,10 @@ plex_heap * plex_heap::create(plex_heap*& pHead, uint_ptr nMax, uint_ptr cbEleme
    }
 
    plex_heap* p = (plex_heap*) system_heap_alloc(sizeof(plex_heap) + nMax * cbElement);
+   
+#ifdef DEBUG
+   Free_check_pointer_in_cpp(p);
+#endif
          // may throw exception
    p->pNext = pHead;
    pHead = p;  // change head (adds in reverse order for simplicity)
@@ -120,6 +124,9 @@ void plex_heap_alloc_sync::NewBlock()
       }
    }
    ASSERT(m_pnodeFree != NULL);  // we must have something
+#ifdef DEBUG
+   Free_check_pointer_in_cpp(m_pnodeFree);
+#endif
 
 }
 
@@ -839,5 +846,17 @@ void * plex_heap_alloc_array::realloc(void * p, size_t size, size_t sizeOld, int
    }
 
    return pNew;
+
+}
+
+void * g_pf1 = NULL;
+
+void Free_check_pointer_in_cpp(void * p)
+{
+
+   if((unsigned long) p <  (unsigned long)  g_pf1)
+   {
+      printf("hit g_pf1");
+   }
 
 }

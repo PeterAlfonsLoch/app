@@ -3,11 +3,13 @@
 
 #undef new
 
+void Free_check_pointer_in_cpp(void * p);
 
 inline void * plex_heap_alloc_sync::Alloc()
 {
 
-   m_protect.lock();
+   synch_lock sl(&m_protect);
+
    void * pdata = NULL;
    try
    {
@@ -23,20 +25,23 @@ inline void * plex_heap_alloc_sync::Alloc()
    catch(...)
    {
    }
-   m_protect.unlock();
    //memset(pdata, 0, m_nAllocSize); // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
    return pdata;
 }
-
-#define STORE_LAST_BLOCK 0
 
 inline void plex_heap_alloc_sync::Free(void * p)
 {
 
    if(p == NULL)
       return;
+   
+   #ifdef DEBUG
+   Free_check_pointer_in_cpp(p);
+   #endif
 
-   m_protect.lock();
+   synch_lock sl(&m_protect);
+   
+   memset(p, 0xCD, m_nAllocSize); // attempt to invalidate memory so it get unusable (as it should be after freed).
 
    try
    {
@@ -94,7 +99,6 @@ inline void plex_heap_alloc_sync::Free(void * p)
 
    }
 
-   m_protect.unlock();
 
 }
 
@@ -269,6 +273,8 @@ inline void * plex_heap_alloc_array::alloc(size_t size)
 
 void plex_heap_alloc_array::free(void * p, size_t size)
 {
+
+   memset(p, 0xCD, size); // attempt to invalidate memory so it get unusable (as it should be after free).
 
    plex_heap_alloc * palloc = find(size);
 

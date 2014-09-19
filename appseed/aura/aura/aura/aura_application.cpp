@@ -12,6 +12,7 @@
 #endif
 
 
+extern void * g_pf1;
 
 
 namespace aura
@@ -1522,6 +1523,13 @@ namespace aura
 
    bool application::initialize1()
    {
+   
+#if defined(WINDOWS)
+      g_pf1 = (void *) (uint_ptr) ::str::to_uint64(file_as_string("C:\\ca2\\config\\system\\pf1.txt"));
+#else
+      g_pf1 = (void *) (uint_ptr) ::str::to_uint64(file_as_string("/ca2/pf1.txt"));
+#endif
+
 
       if(m_bAuraInitialize1)
          return m_bAuraInitialize1Result;

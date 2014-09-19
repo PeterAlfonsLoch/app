@@ -404,3 +404,5 @@ inline bool IsDirSep(WCHAR ch)
    return (ch == '\\' || ch == '/');
 
 }
+
+#define new AURA_NEW

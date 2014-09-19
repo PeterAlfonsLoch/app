@@ -6,6 +6,9 @@
 
 #define CA2_AURA
 
+
+
+
 #include "aura_aura.h"
 
 #define system_user_1 "system_user_1"
@@ -45,6 +48,8 @@
 #include "aura_number.h"
 
 #include "aura/aura/aura_policy/aura_policy.h"
+
+#define new AURA_NEW
 
 #endif
 

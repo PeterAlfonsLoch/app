@@ -1098,5 +1098,7 @@ class form_view;
 #include "app/appseed/core/user/user/user_inline.h"
 
 
+#define new AURA_NEW
+
 
 

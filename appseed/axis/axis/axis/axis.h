@@ -20,6 +20,8 @@
 
 #include "axis/axis/axis_policy/axis_policy.h"
 
+#define new AURA_NEW
+
 #endif // CA2_APP_AXIS_AXIS_AXIS_AXIS_H
 
 
