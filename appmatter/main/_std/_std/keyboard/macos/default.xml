@@ -66,6 +66,7 @@
 	<item code="39" value="key_til2" />
 	<item code="33" value="key_acute2" />
 	<item code="49" value="key_space" />
+	<item code="10" value="key_backslash2" />
    
 
 </layout>
