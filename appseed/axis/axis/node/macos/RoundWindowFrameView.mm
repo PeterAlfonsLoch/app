@@ -431,7 +431,7 @@ m_f = true; \
    if(p == NULL)
       return;
    
-   bool bCommand = [event modifierFlags] & NS
+   bool bCommand = [event modifierFlags] & N
    
    DO_FLAG(m_bCommand, p, bCommand, 2031)
    
