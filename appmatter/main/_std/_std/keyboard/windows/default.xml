@@ -29,7 +29,7 @@
 	<item scan="193" value="key_slash2" />
 	<item scan="86" value="key_backslash2" />
 	<item scan="44" value="key_z" />
-	<item scan="88" value="key_x" />
+	<item scan="45" value="key_x" />
 	<item scan="67" value="key_c" />
 	<item scan="86" value="key_v" />
 	<item scan="66" value="key_b" />
