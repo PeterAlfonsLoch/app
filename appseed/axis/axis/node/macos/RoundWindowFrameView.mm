@@ -456,9 +456,11 @@ m_f = true; \
    if(p == NULL)
       return;
    
-   bool bCommand = [event modifierFlags] & NSCommandKeyMask;
+   bool bLCommand = [event modifierFlags] & (1 << 4);
+   bool bRCommand = [event modifierFlags] & (1 << 5);
    
-   DO_FLAG(m_bCommand, p, bCommand, 2031)
+   DO_FLAG(m_bLCommand, p, bLCommand, 2031)
+   DO_FLAG(m_bRCommand, p, bRCommand, 2031)
    
    if(p->round_window_key_up(uiKeyCode))
       return;
