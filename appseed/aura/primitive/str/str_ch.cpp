@@ -126,6 +126,11 @@ namespace str
             return false;
         return CHAR_CATEGORY(CHAR_PROP(ca)) == CHAR_CATEGORY_Nd;
       }
+      bool is_digit(int iUniIndex){
+         if(!is_legal_uni_index(iUniIndex))
+            return false;
+         return CHAR_CATEGORY(CHAR_PROP(ca)) == CHAR_CATEGORY_Nd;
+      }
 
       bool is_assigned(const char * pszUtf8Char){
          int64_t ca = uni_index(pszUtf8Char);

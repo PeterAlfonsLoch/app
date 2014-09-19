@@ -119,7 +119,41 @@ namespace user
 #elif defined(APPLEOS)
       strPath = Application.dir_matter("keyboard/macos/default.xml");
 #else
+
+         WCHAR wsz[KL_NAMELENGTH];
+
+         if(GetKeyboardLayoutNameW(wsz))
+         {
+
+            if(wcslen(wsz) == 8)
+            {
+               for(index i = 0; i < 8; i++)
+               {
+                  ::str::ch::is_digit(
+               }
+            }
+
+            HKL hkl = GetKeyboardLayout(::GetCurrentThreadId());
+
+            WORD w = HIWORD(hkl);
+
+            string str = ::str::from(w);
+
+            strPath = Application.dir_matter("keyboard/windows/" + str + ".xml");
+
+            if(Application.file_exists(strPath))
+            {
+
+               if(!load_os_layout(strPath))
+                  return false;
+
+               return false;
+
+            }
+         }
+
       strPath = Application.dir_matter("keyboard/windows/default.xml");
+
 #endif
 
       if(!Application.file_exists(strPath))
@@ -191,7 +225,7 @@ namespace user
             if(strScan.has_char())
             {
 
-               iScan    = atoi(strCode);
+               iScan    = atoi(strScan);
 
                if(strExt == "1")
                {
