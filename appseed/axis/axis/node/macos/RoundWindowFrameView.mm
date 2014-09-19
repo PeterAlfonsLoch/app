@@ -433,7 +433,7 @@ m_f = true; \
    
    bool bLCommand = [event modifierFlags] & (1 << 4);
    
-   DO_FLAG(m_bCommand, p, bCommand, 2031)
+   DO_FLAG(m_bLCommand, p, bCommand, 2031)
    
    if(p->round_window_key_down(uiKeyCode))
       return;
