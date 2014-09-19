@@ -31,7 +31,7 @@
    m_bLAlt = false;
    m_bRAlt = false;
    m_bLCommand = false;
-   m_bCommand = false;
+   m_bRCommand = false;
 
    return self;
    
