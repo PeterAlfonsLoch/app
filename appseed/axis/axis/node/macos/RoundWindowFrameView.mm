@@ -30,8 +30,8 @@
    m_bRControl = false;
    m_bLAlt = false;
    m_bRAlt = false;
-   m_bCommand = fa
-   m_bCommand =
+   m_bCommand = false;
+   m_bCommand = 
 
    return self;
    
