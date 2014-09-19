@@ -104,7 +104,7 @@
 	
    bounds.origin = NSZeroPoint;
 
-	RoundWindowFrameView * frameView = [[RoundWindowFrameView alloc] initWithFrame : bounds round_window : self] ;
+	RoundWindowFrameView * frameView = [[RoundWindowFrameView alloc] initWithFrame : bounds andRoundWindow: self] ;
    
 	[super setContentView : frameView];
 
