@@ -17,11 +17,12 @@
 @implementation RoundWindowFrameView
 
 
-- (id)initWithFrame:(NSRect)frame
+- (id)initWithFrame:(NSRect)frame andRoundWindow:(RoundWindow *)roundwindow
 {
+
    self = [super initWithFrame:frame];
    
-   m_roundwindow =  self;
+   m_roundwindow =  roundwindow;
    
    frameView->m_bLShift = false;
    frameView->m_bLControl = false;
