@@ -37,6 +37,7 @@
 	<item scan="53" value="key_semicolon2" />
 	<item scan="115" value="key_slash2" />
 	<item code="186" value="key_semicolon3" />
+	<item scan="41" value="key_apostrophe2" />	
 	<item scan="2" value="key_1" />
 	<item scan="3" value="key_2" />
 	<item scan="4" value="key_3" />
@@ -47,6 +48,9 @@
 	<item scan="9" value="key_8" />
 	<item scan="10" value="key_9" />
 	<item scan="11" value="key_0" />
+<item scan="12" value="key_hyphen" />
+<item scan="13" value="key_equal" />
+	
 <item scan="8" value="key_back" />
 <item scan="46" value="key_delete" />
 <item scan="42" value="key_lshift" />
@@ -68,8 +72,6 @@
 <item scan="33" value="key_prior" />
 <item scan="34" value="key_next" />
 <item scan="9" value="key_tab" />
-<item scan="189" value="key_hyphen" />
-<item scan="187" value="key_equal" />
 <item scan="27" value="key_escape" />
 </layout>
 
