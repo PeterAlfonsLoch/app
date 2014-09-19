@@ -431,7 +431,6 @@ m_f = true; \
    if(p == NULL)
       return;
    
-   }
    
    bool bCommand = [event modifierFlags] & NSCommandKeyMask;
    
