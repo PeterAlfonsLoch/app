@@ -98,6 +98,7 @@ namespace message
 
       m_nFlags = HIWORD(lparam);
 
+      m_nScanCode = ((lparam >> 16) & 0xff);
 
 
    }
