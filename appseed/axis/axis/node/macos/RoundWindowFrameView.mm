@@ -25,7 +25,7 @@
    m_roundwindow =  roundwindow;
    
    m_bLShift = false;
-   frameView->m_bLControl = false;
+   m_bLControl = false;
    frameView->m_bLAlt = false;
    frameView->m_bRShift = false;
    frameView->m_bRControl = false;
