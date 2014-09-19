@@ -108,9 +108,9 @@
    
    frameView->m_roundwindow =  self;
    
-   frameView->m_bShift = false;
-   frameView->m_bControl = false;
-   frameView->m_bAlt = false;
+   frameView->m_bLShift = false;
+   frameView->m_bLControl = false;
+   frameView->m_bLAlt = false;
    
 		
 	[super setContentView : frameView];
