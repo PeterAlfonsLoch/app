@@ -32,7 +32,7 @@
 	<item scan="45" value="key_x" />
 	<item scan="46" value="key_c" />
 	<item scan="47" value="key_v" />
-	<item scan="66" value="key_b" />
+	<item scan="48" value="key_b" />
 	<item scan="78" value="key_n" />
 	<item scan="77" value="key_m" />
 	<item scan="59" value="key_comma" />
