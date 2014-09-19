@@ -471,66 +471,42 @@
 unsigned int event_key_code(NSEvent * event)
 {
 
-   unsigned int ui = [event modifierFlags];
-   
-   if(ui & NSNumericPadKeyMask) // arrow keys have this mask
+   NSString * arrow = [event charactersIgnoringModifiers];
+      
+   if([arrow length] == 1)
    {
-      
-      NSString * arrow = [event charactersIgnoringModifiers];
-      
-      unichar key = 0;
-      
-      if([arrow length] == 0)
-         return ::user::key_none;            // reject dead keys
-      
-      if([arrow length] == 1)
+         
+      unichar key = [arrow characterAtIndex:0];
+         
+      if(key == NSLeftArrowFunctionKey)
       {
-         
-         key = [arrow characterAtIndex:0];
-         
-         if(key == NSLeftArrowFunctionKey)
-         {
             
-            return 1002; //::user::key_left;
+         return 1002; //::user::key_left;
             
-         }
-         
-         if(key == NSRightArrowFunctionKey)
-         {
+      }
+      else if(key == NSRightArrowFunctionKey)
+      {
             
-            return 1004; //::user::key_right;
+         return 1004; //::user::key_right;
             
-         }
-         
-         if(key == NSUpArrowFunctionKey)
-         {
+      }
+      else if(key == NSUpArrowFunctionKey)
+      {
             
-            return 1003; // ::user::key_up;
+         return 1003; // ::user::key_up;
             
-         }
-         
-         if(key == NSDownArrowFunctionKey)
-         {
+      }
+      else if(key == NSDownArrowFunctionKey)
+      {
             
-            return 1005; // ::user::key_down;
+         return 1005; // ::user::key_down;
             
-         }
-         
       }
       
    }
-   else if(ui & NSShiftKeyMask || ui & NSControlKeyMask || ui & NSAlternateKeyMask) // arrow keys have this mask
-   {
-   
-   }
-   else
-   {
+ 
+  return [event keyCode];
       
-      ui = [event keyCode];
-      
-   }
-   
-   return 0;
    
    
 }
