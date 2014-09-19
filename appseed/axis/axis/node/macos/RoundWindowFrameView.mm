@@ -29,7 +29,7 @@
    m_bLAlt = false;
    m_bRShift = false;
    m_bRControl = false;
-   frameView->m_bRAlt = false;
+   m_bRAlt = false;
 
    
    return self;
