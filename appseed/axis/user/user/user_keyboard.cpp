@@ -134,7 +134,7 @@ namespace user
 
             for(; i < 8; i++)
             {
-               if(!::str::ch::is_digit(wsz[i]))
+               if(!::str::ch::is_digit(wsz[i]) && !(wsz[i] >= 'A' && wsz[i] <= 'F') && !(wsz[i] >= 'a' && wsz[i] <= 'f'))
                   break;
             }
 
@@ -142,7 +142,7 @@ namespace user
             {
                string str(wstring(wsz,4)); // first four digits
 
-               w = atoi(str);
+               w = ::hex::to_int64(str);
 
             }
 
@@ -167,8 +167,8 @@ namespace user
       if(Application.file_exists(strPath))
       {
 
-         if(!load_os_layout(strPath))
-            return false;
+         if(load_os_layout(strPath))
+            return true;
 
       }
 
