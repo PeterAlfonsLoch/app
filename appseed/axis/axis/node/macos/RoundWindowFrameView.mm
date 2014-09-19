@@ -431,7 +431,6 @@ m_f = true; \
    if(p == NULL)
       return;
    
-         if(p->round_window_key_down(NSCommandKeyMask))
             return;
       }
    }
