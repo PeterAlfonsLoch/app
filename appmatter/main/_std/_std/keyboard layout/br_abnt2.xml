@@ -80,7 +80,15 @@
 	<item code="key_space" value=" " />
    
 
-   <item code="key_openbracket2" ralt="1" value="º" />
+   <item code="key_1" ralt="1" value="¹" />
+   <item code="key_2" ralt="1" value="²" />
+   <item code="key_3" ralt="1" value="³" />
+   <item code="key_4" ralt="1" value="£" />
+   <item code="key_5" ralt="1" value="¢" />
+   <item code="key_6" ralt="1" value="¬" />
+   <item code="key_equal" ralt="1" value="§" />
+   <item code="key_openbracket2" ralt="1" value="ª" />
+   <item code="key_closebracket2" ralt="1" value="º" />
 
    
 	<item code="53" key="191" value=";" />
