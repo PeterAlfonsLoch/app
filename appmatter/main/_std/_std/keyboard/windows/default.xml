@@ -28,7 +28,7 @@
 	<item scan="186" value="key_semicolon3" />
 	<item scan="193" value="key_slash2" />
 	<item scan="86" value="key_backslash2" />
-	<item scan="90" value="key_z" />
+	<item scan="44" value="key_z" />
 	<item scan="88" value="key_x" />
 	<item scan="67" value="key_c" />
 	<item scan="86" value="key_v" />
