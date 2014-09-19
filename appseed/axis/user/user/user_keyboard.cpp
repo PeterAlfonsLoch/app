@@ -112,7 +112,7 @@ namespace user
    bool keyboard::initialize()
    {
 
-         string strPath;
+      string strPath;
 
 #ifdef LINUX
       strPath = Application.dir_matter("keyboard/linux/default.xml");
@@ -120,37 +120,59 @@ namespace user
       strPath = Application.dir_matter("keyboard/macos/default.xml");
 #else
 
-         WCHAR wsz[KL_NAMELENGTH];
+      WCHAR wsz[KL_NAMELENGTH];
 
-         if(GetKeyboardLayoutNameW(wsz))
+      WORD w;
+
+      if(GetKeyboardLayoutNameW(wsz))
+      {
+
+         if(wcslen(wsz) == 8)
          {
 
-            if(wcslen(wsz) == 8)
+            index i = 0;
+
+            for(; i < 8; i++)
             {
-               for(index i = 0; i < 8; i++)
-               {
-                  ::str::ch::is_digit(
-               }
+               if(!::str::ch::is_digit(wsz[i]))
+                  break;
             }
+
+            if(i == 8)
+            {
+               string str(wstring(wsz,4)); // first four digits
+
+               w = atoi(str);
+
+            }
+
+         }
+         else
+         {
 
             HKL hkl = GetKeyboardLayout(::GetCurrentThreadId());
 
-            WORD w = HIWORD(hkl);
+            w = HIWORD(hkl);
 
-            string str = ::str::from(w);
+            w &= 0x0fff;
 
-            strPath = Application.dir_matter("keyboard/windows/" + str + ".xml");
-
-            if(Application.file_exists(strPath))
-            {
-
-               if(!load_os_layout(strPath))
-                  return false;
-
-               return false;
-
-            }
          }
+
+      }
+
+      string str = ::str::from(w);
+
+      strPath = Application.dir_matter("keyboard/windows/" + str + ".xml");
+
+      if(Application.file_exists(strPath))
+      {
+
+         if(!load_os_layout(strPath))
+            return false;
+
+         return false;
+
+      }
 
       strPath = Application.dir_matter("keyboard/windows/default.xml");
 

@@ -120,17 +120,25 @@ namespace str
                  ) >> c1) & 1) != 0;
       }
 
-      bool is_digit(const char * pszUtf8Char){
-         int64_t ca = uni_index(pszUtf8Char);
-         if(!is_legal_uni_index(ca))
-            return false;
-        return CHAR_CATEGORY(CHAR_PROP(ca)) == CHAR_CATEGORY_Nd;
+      bool is_digit(const char * pszUtf8Char)
+      {
+      
+         int64_t iUniIndex = uni_index(pszUtf8Char);
+
+         return is_digit(iUniIndex);
+
       }
-      bool is_digit(int iUniIndex){
+
+      bool is_digit(int64_t iUniIndex)
+      {
+
          if(!is_legal_uni_index(iUniIndex))
             return false;
-         return CHAR_CATEGORY(CHAR_PROP(ca)) == CHAR_CATEGORY_Nd;
+
+         return CHAR_CATEGORY(CHAR_PROP(iUniIndex)) == CHAR_CATEGORY_Nd;
+
       }
+
 
       bool is_assigned(const char * pszUtf8Char){
          int64_t ca = uni_index(pszUtf8Char);

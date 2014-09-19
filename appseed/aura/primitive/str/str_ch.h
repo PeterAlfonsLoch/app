@@ -123,7 +123,7 @@ namespace str
       CLASS_DECL_AURA bool is_letter(const char * pszUtf8Char);
       CLASS_DECL_AURA bool is_letter_or_digit(const char * pszUtf8Char);
       CLASS_DECL_AURA bool is_digit(const char * pszUtf8Char);
-      CLASS_DECL_AURA bool is_digit(int iUniIndex);
+      CLASS_DECL_AURA bool is_digit(int64_t iUniIndex);
       CLASS_DECL_AURA bool is_assigned(const char * pszUtf8Char);
       CLASS_DECL_AURA bool is_space_char(const char * pszUtf8Char);
       CLASS_DECL_AURA bool is_whitespace(const char * pszUtf8Char);
