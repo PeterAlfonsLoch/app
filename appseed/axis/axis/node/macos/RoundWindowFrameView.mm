@@ -380,6 +380,25 @@
 }
 
 
+#define DO_FLAG(m_f, p, now, key) \
+if(m_f) \
+{ \
+if(!now) \
+{ \
+p->round_window_key_up(key); \
+m_f = false; \
+} \
+} \
+else \
+{ \
+if(now) \
+{ \
+p->round_window_key_down(key); \
+m_f = true; \
+} \
+}
+
+
 - (void)keyDown:(NSEvent *)event
 {
 
@@ -392,9 +411,17 @@
    
    if(!m_bCommand)
    {
-   if([event modifierFlags] & NSCommandKeyMask)
-      if(p->round_window_key_down(NSCommandKeyMask))
-         return;
+      if([event modifierFlags] & NSCommandKeyMask)
+      {
+         m_bCommand = true;
+         if(p->round_window_key_down(NSCommandKeyMask))
+            return;
+      }
+   }
+   
+   bool bCommand = [event modifierFlags] & NSCommandKeyMask;
+   
+   DO_FLAG(m_bCommand, p, bCommand, 2031)
    
    if(p->round_window_key_down(uiKeyCode))
       return;
@@ -415,6 +442,10 @@
    if(p == NULL)
       return;
    
+   bool bCommand = [event modifierFlags] & NSCommandKeyMask;
+   
+   DO_FLAG(m_bCommand, p, bCommand, 2031)
+   
    if(p->round_window_key_up(uiKeyCode))
       return;
    
@@ -422,24 +453,7 @@
    
 }
 
-#define DO_FLAG(m_f, p, now, key) \
-   if(m_f) \
-   { \
-      if(!now) \
-      { \
-         p->round_window_key_up(key); \
-         m_f = false; \
-      } \
-   } \
-   else \
-   { \
-      if(now) \
-      { \
-         p->round_window_key_down(key); \
-         m_f = true; \
-      } \
-   }
-         
+
 
 
 - (void)flagsChanged:(NSEvent *)event
