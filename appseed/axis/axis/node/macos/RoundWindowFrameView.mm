@@ -460,7 +460,7 @@ m_f = true; \
    bool bRCommand = [event modifierFlags] & (1 << 5);
    
    DO_FLAG(m_bLCommand, p, bLCommand, 2031)
-   DO_FLAG(m_bRCommand, p, bRCommand, 2031)
+   DO_FLAG(m_bRCommand, p, bRCommand, 2033)
    
    if(p->round_window_key_up(uiKeyCode))
       return;
