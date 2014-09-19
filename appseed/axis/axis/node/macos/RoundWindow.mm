@@ -111,6 +111,9 @@
    frameView->m_bLShift = false;
    frameView->m_bLControl = false;
    frameView->m_bLAlt = false;
+   frameView->m_bRShift = false;
+   frameView->m_bRControl = false;
+   frameView->m_bRAlt = false;
    
 		
 	[super setContentView : frameView];
