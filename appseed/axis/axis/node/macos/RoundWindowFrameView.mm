@@ -468,50 +468,65 @@
 @end
 
 
-unsigned int event_key_code(NSEvent * event)
+unsigned int event_num_pad_key_code(NSEvent * event)
 {
 
    NSString * arrow = [event charactersIgnoringModifiers];
-      
+   
    if([arrow length] == 1)
    {
-         
+      
       unichar key = [arrow characterAtIndex:0];
-         
+      
       if(key == NSLeftArrowFunctionKey)
       {
-            
+         
          return 1002; //::user::key_left;
-            
+         
       }
       else if(key == NSRightArrowFunctionKey)
       {
-            
+         
          return 1004; //::user::key_right;
-            
+         
       }
       else if(key == NSUpArrowFunctionKey)
       {
-            
+         
          return 1003; // ::user::key_up;
-            
+         
       }
       else if(key == NSDownArrowFunctionKey)
       {
-            
+         
          return 1005; // ::user::key_down;
-            
+         
       }
       else if(key >= L'0' && key <= L'9')
       {
-      
+         
          return 3000 + key - L'0';
-      
+         
       }
       
    }
+   
+   return 0;
+
+}
+
+
+unsigned int event_key_code(NSEvent * event)
+{
+
+   if([event modifierFlags] & NSNumericPadKeyMask)
+   {
+
+      return event_num_pad_key_code(event);
+   
+   }
  
-  return [event keyCode];
+   return [event keyCode];
    
 }
 
