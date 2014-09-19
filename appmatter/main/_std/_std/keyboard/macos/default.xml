@@ -39,12 +39,12 @@
 	<item code="28" value="key_8" />
 	<item code="25" value="key_9" />
 	<item code="29" value="key_0" />
-	<item code="131330" value="key_lshift" />
-	<item code="131332" value="key_rshift" />
-	<item code="37" value="key_lcontrol" />
-	<item code="105" value="key_rcontrol" />
-	<item code="64" value="key_lalt" />
-	<item code="108" value="key_ralt" />
+	<item code="2001" value="key_lshift" />
+	<item code="2003" value="key_rshift" />
+	<item code="2011" value="key_lcontrol" />
+	<item code="2013" value="key_rcontrol" />
+	<item code="2021" value="key_lalt" />
+	<item code="2023" value="key_ralt" />
 	<item code="51" value="key_back" />
 	<item code="117" value="key_delete" />
 	<item code="1003" value="key_up" />

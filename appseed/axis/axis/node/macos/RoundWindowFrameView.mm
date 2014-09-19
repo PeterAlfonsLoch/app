@@ -416,6 +416,26 @@
    
 }
 
+#define DO_FLAG(m_f, p, now, key) \
+   if(m_f) \
+   { \
+      if(!now) \
+      { \
+         p->round_window_key_up(key); \
+         m_f = false; \
+      } \
+   } \
+   else \
+   { \
+      if(now) \
+      { \
+         p->round_window_key_down(key); \
+         m_f = true; \
+      } \
+   }
+         
+
+
 - (void)flagsChanged:(NSEvent *)event
 {
 
@@ -424,66 +444,25 @@
    if(p == NULL)
       return;
    
-   unsigned int ui = event modifierFlags];
    
-   if(ui & NSShiftKeyMask)
-   {
-      if(!m_bShift)
-      {
-         m_bShift = true;
-         if(p->round_window_key_down(ui & NSShiftKeyMask))
-            return;
-      }
-   }
-   else
-   {
-      if(m_bShift)
-      {
-         m_bShift = false;
-         if(p->round_window_key_up(ui & NSShiftKeyMask))
-            return;
-      }
-   }
-
-   if(ui & NSControlKeyMask)
-   {
-      if(!m_bControl)
-      {
-         m_bControl = true;
-         if(p->round_window_key_down(ui & NSControlKeyMask))
-            return;
-      }
-   }
-   else
-   {
-      if(m_bControl)
-      {
-         m_bControl = false;
-         if(p->round_window_key_up(ui & NSControlKeyMask))
-            return;
-      }
-   }
- 
-   if(ui & NSAlternateKeyMask)
-   {
-      if(!m_bAlt)
-      {
-         m_bAlt = true;
-         if(p->round_window_key_down(ui & NSAlternateKeyMask))
-            return;
-      }
-   }
-   else
-   {
-      if(m_bAlt)
-      {
-         m_bAlt = false;
-         if(p->round_window_key_up(ui & NSAlternateKeyMask))
-            return;
-      }
-   }
+   unsigned int ui = [event modifierFlags];
+   bool sl = (ui & 2) != 0;;
+   bool sr = (ui & 4) != 0;
+   bool cl = (ui & 1) != 0;;
+   bool cr = (ui & (1 << 13)) != 0;
+   bool al = (ui & (1 << 6)) != 0;;
+   bool ar = (ui & (1 << 7)) != 0;
+   
+   
+   DO_FLAG(m_bLShift, p, sl, 2001)
+   DO_FLAG(m_bRShift, p, sr, 2003)
+   DO_FLAG(m_bLControl, p, cl, 2011)
+   DO_FLAG(m_bRControl, p, cr, 2013)
+   DO_FLAG(m_bLAlt, p, al, 2021)
+   DO_FLAG(m_bRAlt, p, ar, 2023)
 
    [super flagsChanged:event];
+   
 }
 
 @end
