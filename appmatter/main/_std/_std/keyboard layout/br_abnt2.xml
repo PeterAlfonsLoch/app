@@ -78,6 +78,11 @@
 	<item code="key_hyphen" shift="1" value="_" />
 	<item code="key_equal" shift="1" value="+" />
 	<item code="key_space" value=" " />
+   
+
+   <item code="key_openbracket2" ralt="1" value="º" />
+
+   
 	<item code="53" key="191" value=";" />
 	<item code="53" key="191" shift="1" value=":" />
 	<item code="86" key="226" value="\\" />
