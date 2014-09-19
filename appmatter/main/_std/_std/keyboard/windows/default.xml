@@ -56,21 +56,40 @@
 	<item scan="54" value="key_rshift" />
 	<item scan="29" value="key_control" />
 	<item scan="18" value="key_alt" />
-<item scan="91" value="key_lcommand" />
-<item scan="92" value="key_rcommand" />
-<item scan="93" value="key_context" />
-<item scan="57" value="key_space" />
-<item scan="51" value="key_comma" />
-<item scan="52" value="key_dot" />
-	<item scan="75" value="key_left" />
-	<item scan="77" value="key_right" />
-	<item scan="72" value="key_up" />
-	<item scan="80" value="key_down" />
+	<item scan="91" value="key_lcommand" />
+	<item scan="92" value="key_rcommand" />
+	<item scan="93" value="key_context" />
+	<item scan="57" value="key_space" />
+	<item scan="59" value="key_f1" />
+	<item scan="60" value="key_f2" />
+	<item scan="61" value="key_f3" />
+	<item scan="62" value="key_f4" />
+	<item scan="63" value="key_f5" />
+	<item scan="64" value="key_f6" />
+	<item scan="65" value="key_f7" />
+	<item scan="66" value="key_f8" />
+	<item scan="67" value="key_f9" />
+	<item scan="68" value="key_f10" />
+	<item scan="75" ext="1" value="key_left" />
+	<item scan="77" ext="1" value="key_right" />
+	<item scan="72" ext="1" value="key_up" />
+	<item scan="80" ext="1" value="key_down" />
 	<item scan="71" value="key_home" />
 	<item scan="79" value="key_end" />
 	<item scan="73" value="key_prior" />
 	<item scan="81" value="key_next" />
-<item scan="9" value="key_tab" />
-<item scan="27" value="key_escape" />
+	<item scan="15" value="key_tab" />
+	<item scan="1" value="key_escape" />
+	<item scan="79" value="key_numpad_1" />
+	<item scan="80" value="key_numpad_2" />
+	<item scan="81" value="key_numpad_3" />
+	<item scan="75" value="key_numpad_4" />
+	<item scan="76" value="key_numpad_5" />
+	<item scan="77" value="key_numpad_6" />
+	<item scan="79" value="key_numpad_7" />
+	<item scan="79" value="key_numpad_8" />
+	<item scan="79" value="key_numpad_9" />
+	<item scan="79" value="key_numpad_0" />
+	<item scan="69" value="key_numlock" />
 </layout>
 

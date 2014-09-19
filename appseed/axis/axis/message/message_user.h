@@ -200,10 +200,11 @@ namespace message
    public:
 
 
-      uint_ptr m_nChar;
-      uint_ptr m_nScanCode;
-      UINT m_nRepCnt;
-      UINT m_nFlags;
+      uint_ptr          m_nChar;
+      uint_ptr          m_nScanCode;
+      UINT              m_nRepCnt;
+      UINT              m_nFlags;
+      bool              m_bExt;
 
       ::user::e_key     m_ekey;
       

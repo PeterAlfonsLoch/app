@@ -11,6 +11,7 @@ namespace user
    {
    public:
 
+      int_map < ::user::e_key >              m_mapExt;
       int_map < ::user::e_key >              m_mapScan;
       int_map < ::user::e_key >              m_mapKey;
       sp(keyboard_layout)                    m_playout;
