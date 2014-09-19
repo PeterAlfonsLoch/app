@@ -28,7 +28,7 @@
    m_bLControl = false;
    m_bLAlt = false;
    m_bRShift = false;
-   frameView->m_bRControl = false;
+   m_bRControl = false;
    frameView->m_bRAlt = false;
 
    
