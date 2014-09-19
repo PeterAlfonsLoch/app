@@ -66,10 +66,10 @@
 	<item scan="77" value="key_right" />
 	<item scan="72" value="key_up" />
 	<item scan="80" value="key_down" />
-<item scan="71" value="key_home" />
-<item scan="35" value="key_end" />
-<item scan="33" value="key_prior" />
-<item scan="34" value="key_next" />
+	<item scan="71" value="key_home" />
+	<item scan="79" value="key_end" />
+	<item scan="73" value="key_prior" />
+	<item scan="81" value="key_next" />
 <item scan="9" value="key_tab" />
 <item scan="27" value="key_escape" />
 </layout>
