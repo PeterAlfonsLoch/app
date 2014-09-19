@@ -431,7 +431,6 @@ m_f = true; \
    if(p == NULL)
       return;
    
-      if([event modifierFlags] & NSCommandKeyMask)
       {
          m_bCommand = true;
          if(p->round_window_key_down(NSCommandKeyMask))
