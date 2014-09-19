@@ -201,6 +201,7 @@ namespace message
 
 
       uint_ptr m_nChar;
+      uint_ptr m_nScanCode;
       UINT m_nRepCnt;
       UINT m_nFlags;
 

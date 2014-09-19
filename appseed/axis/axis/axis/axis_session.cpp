@@ -66,6 +66,8 @@ namespace axis
 
       m_pcopydesk = NULL;
 
+      m_puiFocus = NULL;
+
 
    }
 
