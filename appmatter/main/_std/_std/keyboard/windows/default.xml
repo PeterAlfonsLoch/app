@@ -54,7 +54,7 @@
 	<item scan="42" value="key_lshift" />
 	<item scan="54" value="key_rshift" />
 	<item scan="29" value="key_control" />
-	<item scan="18" value="key_alt" />
+	<item scan="56" value="key_alt" />
 	<item scan="91" value="key_lcommand" />
 	<item scan="92" value="key_rcommand" />
 	<item scan="93" value="key_context" />
