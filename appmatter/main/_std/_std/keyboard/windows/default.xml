@@ -2,31 +2,32 @@
 	<item scan="16" value="key_q" />
 	<item scan="17" value="key_w" />
 	<item scan="18" value="key_e" />
-	<item scan="82" value="key_r" />
-	<item scan="84" value="key_t" />
-	<item scan="89" value="key_y" />
-	<item scan="85" value="key_u" />
-	<item scan="73" value="key_i" />
-	<item scan="79" value="key_o" />
-	<item scan="80" value="key_p" />
+	<item scan="19" value="key_r" />
+	<item scan="20" value="key_t" />
+	<item scan="21" value="key_y" />
+	<item scan="22" value="key_u" />
+	<item scan="23" value="key_i" />
+	<item scan="24" value="key_o" />
+	<item scan="25" value="key_p" />
+	<item scan="26" value="key_acute2" />
+	<item scan="27" value="key_openbracket2" />
+	<item scan="28" value="key_return" />
 	<item scan="30" value="key_a" />
-	<item scan="83" value="key_s" />
-	<item scan="68" value="key_d" />
-	<item scan="70" value="key_f" />
-	<item scan="71" value="key_g" />
-	<item scan="72" value="key_h" />
-	<item scan="74" value="key_j" />
-	<item scan="75" value="key_k" />
-	<item scan="76" value="key_l" />
-	<item scan="47" value="key_semicolon" />
+	<item scan="31" value="key_s" />
+	<item scan="32" value="key_d" />
+	<item scan="33" value="key_f" />
+	<item scan="34" value="key_g" />
+	<item scan="35" value="key_h" />
+	<item scan="36" value="key_j" />
+	<item scan="37" value="key_k" />
+	<item scan="38" value="key_l" />
+	<item scan="39" value="key_semicolon" />
+	<item scan="40" value="key_til2" />
+	<item scan="43" value="key_closebracket2" />
 	<item scan="191" value="key_semicolon2" />
 	<item scan="186" value="key_semicolon3" />
 	<item scan="193" value="key_slash2" />
-	<item scan="226" value="key_backslash2" />
-	<item scan="220" value="key_closebracket2" />
-	<item scan="221" value="key_openbracket2" />
-	<item scan="222" value="key_til2" />
-	<item scan="219" value="key_acute2" />
+	<item scan="86" value="key_backslash2" />
 	<item scan="90" value="key_z" />
 	<item scan="88" value="key_x" />
 	<item scan="67" value="key_c" />
@@ -66,7 +67,6 @@
 <item scan="35" value="key_end" />
 <item scan="33" value="key_prior" />
 <item scan="34" value="key_next" />
-<item scan="13" value="key_return" />
 <item scan="9" value="key_tab" />
 <item scan="189" value="key_hyphen" />
 <item scan="187" value="key_equal" />
