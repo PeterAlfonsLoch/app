@@ -26,7 +26,8 @@
    bool m_bRControl;
    bool m_bLAlt;
    bool m_bRAlt;
-   bool m_bCommand;
+   bool m_bLCommand; // In Windows, the Windows Key
+   bool m_bRCommand; // In Windows, the Windows Key
    
    
 }
