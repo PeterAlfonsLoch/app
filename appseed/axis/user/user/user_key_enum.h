@@ -92,7 +92,8 @@ namespace user
       key_til2,
       key_acute2,
       key_equal,
-      key_escape
+      key_escape,
+      key_apostrophe2
       
    };
    

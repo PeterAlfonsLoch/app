@@ -91,6 +91,7 @@ namespace user
      System.set_enum_name(key_acute2, "key_acute2");
      System.set_enum_name(key_equal, "key_equal");
      System.set_enum_name(key_escape,"key_escape");
+     System.set_enum_name(key_apostrophe2,"key_apostrophe2");
 
 
    }
