@@ -139,6 +139,8 @@ namespace user
 
       int32_t iCode;
 
+      int32_t iScan;
+
       ::user::e_key ekey;
 
       sp(type) typeinfoKey = System.type_info < ::user::e_key > ();
@@ -169,13 +171,31 @@ namespace user
 
             string strCode    = pnode->attr("code");
 
+            string strScan    = pnode->attr("scan");
+
             string strValue   = pnode->attr("value");
 
-            iCode    = atoi(strCode);
+            ekey     = System.enum_from_name < ::user::e_key >(typeinfoKey,strValue);
 
-            ekey     = System.enum_from_name < ::user::e_key > (typeinfoKey, strValue);
+            if(strCode.has_char())
+            {
 
-            m_mapKey.set_at(iCode, ekey);
+               iCode    = atoi(strCode);
+
+               m_mapKey.set_at(iCode,ekey);
+
+            }
+
+            if(strScan.has_char())
+            {
+               
+               iScan    = atoi(strCode);
+
+               m_mapScan.set_at(iScan,ekey);
+
+            }
+
+
 
          }
 
@@ -422,7 +442,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      pkey->m_ekey = m_mapKey[(int32_t)pkey->m_nScanCode];
+      pkey->m_ekey = m_mapScan[(int32_t)pkey->m_nScanCode];
 
       if(pkey->m_ekey != ::user::key_none)
          return;
