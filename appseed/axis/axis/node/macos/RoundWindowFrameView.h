@@ -26,6 +26,7 @@
    bool m_bRControl;
    bool m_bLAlt;
    bool m_bRAlt;
+   bool m_bCommand;
    
    
 }
