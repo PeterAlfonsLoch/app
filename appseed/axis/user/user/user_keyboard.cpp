@@ -64,9 +64,9 @@ namespace user
       System.set_enum_name(key_alt, "key_alt");
       System.set_enum_name(key_lalt, "key_lalt");
       System.set_enum_name(key_ralt, "key_ralt");
-      System.set_enum_name(key_command, "key_alt");
-      System.set_enum_name(key_lcommand, "key_lalt");
-      System.set_enum_name(key_rcommand, "key_ralt");
+      System.set_enum_name(key_command, "key_command");
+      System.set_enum_name(key_lcommand, "key_lcommand");
+      System.set_enum_name(key_rcommand, "key_rcommand");
       System.set_enum_name(key_lbutton, "key_lbutton");
       System.set_enum_name(key_mbutton, "key_mbutton");
       System.set_enum_name(key_rbutton, "key_rbutton");
