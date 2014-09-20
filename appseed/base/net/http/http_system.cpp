@@ -586,6 +586,11 @@ namespace http
          TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
          return NULL;
       }
+
+      if(psession->IsSSL())
+      {
+         psession->SetNonblocking(false);
+      }
       uint32_t dw2 = ::get_tick_count();
       TRACE("system::get open time %d\n", dw2 - dw1);
 
@@ -1332,6 +1337,10 @@ retry:
          uint32_t dwTimeProfile2 = get_tick_count();
          TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
          return NULL;
+      }
+      if(psocket->IsSSL())
+      {
+         psocket->SetNonblocking(false);
       }
       uint32_t dw2 = ::get_tick_count();
       TRACE("system::get open time %d\n", dw2 - dw1);

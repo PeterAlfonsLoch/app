@@ -1092,6 +1092,7 @@ void ssl_sigpipe_handle( int x );
          {
             SSL_set_session(m_ssl, m_spsslclientcontext->m_psession);
          }
+         TRACE("SSL_connect!!");
          int32_t r = SSL_connect(m_ssl);
          if (r > 0)
          {
@@ -1100,7 +1101,6 @@ void ssl_sigpipe_handle( int x );
             long x509_err = cert_common_name_check(m_strHost);
             if(x509_err != X509_V_OK
             && x509_err != X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN
-            && x509_err != X509_V_ERR_APPLICATION_VERIFICATION
             && x509_err != X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY)
             {
                log("SSLNegotiate/cert_common_name_check", 0, "cert_common_name_check failed", ::aura::log::level_info);
@@ -1162,7 +1162,10 @@ void ssl_sigpipe_handle( int x );
          else
          {
             r = SSL_get_error(m_ssl, r);
-            if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
+            if(r == SSL_ERROR_WANT_READ || r == SSL_ERROR_WANT_WRITE)
+            {
+            }
+            else
             {
                log("SSLNegotiate/SSL_connect", -1, "Connection failed", ::aura::log::level_info);
    TRACE("SSL_connect() failed - closing socket, return code: %d\n",r);
@@ -1204,7 +1207,10 @@ void ssl_sigpipe_handle( int x );
          else
          {
             r = SSL_get_error(m_ssl, r);
-            if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
+            if(r == SSL_ERROR_WANT_READ || r == SSL_ERROR_WANT_WRITE)
+            {
+            }
+            else
             {
                log("SSLNegotiate/SSL_accept", -1, "Connection failed", ::aura::log::level_info);
    TRACE("SSL_accept() failed - closing socket, return code: %d\n",r);
@@ -1622,6 +1628,34 @@ void ssl_sigpipe_handle( int x );
             if (strnicmp_dup(data, common_name, 255) == 0)
             {
                ok = true;
+            }
+            else
+            {
+               string str = data;
+               if(::str::begins_eat(str,"*."))
+               {
+                  string strCommon = common_name;
+                  if(strCommon == str)
+                  {
+                     ok = true;
+                  }
+                  else
+                  {
+
+                     int iFind = strCommon.find('.');
+
+                     if(iFind >= 0)
+                     {
+                        if(str == strCommon.Mid(iFind + 1))
+                        {
+                           ok = true;
+                        }
+                     }
+
+                  }
+                  
+
+               }
             }
          }
       }

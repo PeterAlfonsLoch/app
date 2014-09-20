@@ -447,11 +447,11 @@ namespace fontopus
       
       if(::str::ends(strHost,".ca2.cc"))
       {
-         strGetFontopus = "https://" + strHost + "/get_fontopus_login");
+         strGetFontopus = "https://" + strHost + "/get_fontopus_login";
       }
       else
       {
-         strGetFontopus = "https://" + strHost + "/get_fontopus_login");
+         strGetFontopus = "https://" + strHost + "/get_fontopus_login";
       }
 
       sp(::sockets::http_session) psession;
@@ -561,11 +561,11 @@ namespace fontopus
 
       if(::str::ends(strRequestingServer,".ca2.cc"))
       {
-         strGetFontopus = "https://" + strRequestingServer + "/get_fontopus_login");
+         strGetFontopus = "https://" + strRequestingServer + "/get_fontopus_login";
       }
       else
       {
-         strGetFontopus = "https://" + strRequestingServer + "/get_fontopus_login");
+         strGetFontopus = "https://" + strRequestingServer + "/get_fontopus_login";
       }
 
       sp(::aura::application) papp = get_app();
