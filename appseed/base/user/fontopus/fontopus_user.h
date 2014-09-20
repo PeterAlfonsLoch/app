@@ -36,6 +36,7 @@ namespace fontopus
       sp(::userpresence::presence)             m_ppresence;
 
       sp(::ifs)                                  m_pifs;
+      string                                 m_strLoginStats;
 
 
       user(sp(::aura::application) papp);
