@@ -109,8 +109,11 @@ namespace primitive
       m_iOffset      = 0;
       m_bAligned = false;
       allocate(iCount);
-      ASSERT(__is_valid_address(pdata,iCount,FALSE));
-      memcpy(m_pbStorage,pdata,iCount);
+      if(pdata != NULL)
+      {
+         ASSERT(__is_valid_address(pdata,iCount,FALSE));
+         memcpy(m_pbStorage,pdata,iCount);
+      }
    }
 
    memory::memory(const void * pdata, memory_size iCount)
