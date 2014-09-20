@@ -11,6 +11,7 @@ namespace http
       m_mutexProxy(papp),
       m_mutexDownload(papp)
    {
+      oprop("dw") = ::get_tick_count();
    }
 
    system::~system()

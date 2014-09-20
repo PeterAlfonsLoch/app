@@ -50,6 +50,7 @@ namespace userpresence
 
    bool userpresence::defer_initialize_user_presence()
    {
+      return true;
 
       if(!is_initialized())
       {

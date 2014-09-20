@@ -31,12 +31,13 @@ namespace fontopus
       string                                 m_strFontopusServerSessId;
       string                                 m_strRequestingServer;
 
-      sp(contact_list)                         m_pcontactlist;
+      sp(contact_list)                       m_pcontactlist;
 
-      sp(::userpresence::presence)             m_ppresence;
+      sp(::userpresence::presence)           m_ppresence;
 
-      sp(::ifs)                                  m_pifs;
+      sp(::ifs)                              m_pifs;
       string                                 m_strLoginStats;
+      string                                 m_strFontopusServerInfo;
 
 
       user(sp(::aura::application) papp);
