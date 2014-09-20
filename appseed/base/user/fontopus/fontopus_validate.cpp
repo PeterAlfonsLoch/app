@@ -862,9 +862,11 @@ namespace fontopus
    void validate::save_authentication_info()
    {
       ::net::address address(m_loginthread.m_strFontopusServer);
+      m_loginthread.m_puser->m_strFontopusServerInfo = m_loginthread.m_strFontopusServer + " : " + address.get_display_number() ;
       TRACE0("The authentication has succeeded (" + m_loginthread.m_strFontopusServer + "[" + address.get_display_number()+ "]).");
+      TRACE0("Fontopus Server info = " + m_loginthread.m_puser->m_strFontopusServerInfo);
 
-      m_loginthread.m_puser->m_strFontopusServerInfo;
+      
 
       string strUsername = m_loginthread.m_strUsername;
       string strPasshash = m_loginthread.m_strPasshash;
