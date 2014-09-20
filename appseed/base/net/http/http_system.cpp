@@ -587,10 +587,10 @@ namespace http
          return NULL;
       }
 
-      if(psession->IsSSL())
-      {
-         psession->SetNonblocking(false);
-      }
+      //if(psession->IsSSL())
+      //{
+      //   psession->SetNonblocking(false);
+      //}
       uint32_t dw2 = ::get_tick_count();
       TRACE("system::get open time %d\n", dw2 - dw1);
 
@@ -1338,10 +1338,10 @@ retry:
          TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
          return NULL;
       }
-      if(psocket->IsSSL())
+      /*if(psocket->IsSSL())
       {
          psocket->SetNonblocking(false);
-      }
+      }*/
       uint32_t dw2 = ::get_tick_count();
       TRACE("system::get open time %d\n", dw2 - dw1);
       handler.add(psocket);

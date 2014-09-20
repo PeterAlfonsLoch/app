@@ -311,8 +311,7 @@ namespace sockets
    bool base_socket::SetNonblocking(bool bNb)
    {
       m_bNonBlocking = bNb;
-      return true;
-      /*   #ifdef _WIN32
+         #ifdef _WIN32
       unsigned long l = bNb ? 1 : 0;
       int n = ioctlsocket(m_socket, FIONBIO, &l);
       if (n != 0)
@@ -339,7 +338,7 @@ namespace sockets
       }
       }
       return true;
-      #endif*/
+      #endif
    }
 
 
