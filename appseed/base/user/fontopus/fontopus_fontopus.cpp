@@ -454,7 +454,7 @@ namespace fontopus
 
          ::property_set set(get_app());
 
-         set["raw_http"] = true;
+         //set["raw_http"] = true;
 
          set["get_response"] = "";
 
