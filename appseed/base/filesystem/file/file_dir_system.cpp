@@ -2498,7 +2498,7 @@ ret:
 
          string strApiServer;
 
-         string strGetFontopus("http://api.ca2.cc/get_fontopus_login");
+         string strGetFontopus("https://api.ca2.cc/get_fontopus_login");
 
          string strFontopusServer = Session.fontopus()->get_server(strGetFontopus,8);
 

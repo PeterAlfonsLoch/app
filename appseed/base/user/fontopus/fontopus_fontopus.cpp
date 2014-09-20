@@ -443,7 +443,16 @@ namespace fontopus
 
       iRetry--;
 
-      string strGetFontopus("http://" + strHost + "/get_fontopus_login");
+      string strGetFontopus;
+      
+      if(::str::ends(strHost,".ca2.cc"))
+      {
+         strGetFontopus = "https://" + strHost + "/get_fontopus_login");
+      }
+      else
+      {
+         strGetFontopus = "https://" + strHost + "/get_fontopus_login");
+      }
 
       sp(::sockets::http_session) psession;
 
@@ -548,7 +557,16 @@ namespace fontopus
 
       DWORD dwGetFontopusBeg = ::get_tick_count();
 
-      string strGetFontopus("http://" + strRequestingServer + "/get_fontopus_login");
+      string strGetFontopus;
+
+      if(::str::ends(strRequestingServer,".ca2.cc"))
+      {
+         strGetFontopus = "https://" + strRequestingServer + "/get_fontopus_login");
+      }
+      else
+      {
+         strGetFontopus = "https://" + strRequestingServer + "/get_fontopus_login");
+      }
 
       sp(::aura::application) papp = get_app();
 
