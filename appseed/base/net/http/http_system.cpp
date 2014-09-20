@@ -1454,7 +1454,7 @@ retry:
          if (pbase != NULL)
          {
 
-            pbase->assign(::primitive::memory(psocket->GetDataPtr(), psocket->GetContentLength()));
+            pbase->assign(psocket->GetDataPtr(), psocket->GetContentLength());
 
          }
          else
