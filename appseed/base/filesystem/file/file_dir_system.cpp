@@ -497,7 +497,7 @@ namespace file
 
             property_set set(get_app());
 
-            bIs = Sess(papp).http().exists(lpcszPath, set);
+            bIs = !Sess(papp).http().exists(lpcszPath, set);
 
             return true;
 
