@@ -700,9 +700,9 @@ namespace fontopus
 
       strApiServer = m_strFontopusServer;
 
-      strApiServer.replace("account","api");
+      //strApiServer.replace("account","api");
 
-      m_strLoginUrl = "https://" + strApiServer + "/account/login";
+      m_strLoginUrl = "https://" + strApiServer + "/api/account/login";
 
       xml::document doc(get_app());
 

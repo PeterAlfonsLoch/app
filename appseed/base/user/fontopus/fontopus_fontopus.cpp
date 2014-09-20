@@ -501,6 +501,8 @@ namespace fontopus
 
       strSomeBrothersAndSisters = doc.get_root()->attr("some_brothers_and_sisters");
 
+      ::sockets::net::dns_cache_item item = Session.sockets().net().m_mapCache[strHost];
+
       if(strSomeBrothersAndSisters.has_char())
       {
 
@@ -512,6 +514,8 @@ namespace fontopus
          {
 
             m_mapFontopusServer.set_at(straSomeBrothersAndSisters[i],strFontopusServer);
+
+            Session.sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i], item);
 
          }
 
@@ -527,7 +531,11 @@ namespace fontopus
 
       m_mapFontopusServer.set_at(strHost, strFontopusServer);
 
+      Session.sockets().net().m_mapCache.set_at(strHost,item);
+
       m_mapFontopusServer.set_at(strFontopusServer,strFontopusServer);
+
+      Session.sockets().net().m_mapCache.set_at(strFontopusServer,item);
 
       return strFontopusServer;
 
