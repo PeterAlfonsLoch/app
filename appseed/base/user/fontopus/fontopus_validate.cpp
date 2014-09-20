@@ -735,6 +735,8 @@ namespace fontopus
       if(strRsaModulus.is_empty())
          return "";
 
+      sp(::sockets::http_session) psession =Session.fontopus()->m_mapFontopusSession[m_strFontopusServer];
+
       DWORD dwGetLoginEnd = ::get_tick_count();
 
       TRACE("NetLogin: Get Login Millis = %d",dwGetLoginEnd - dwGetLoginBeg);
@@ -812,7 +814,7 @@ namespace fontopus
          
          uint32_t dwTimeProfile1 = get_tick_count();
 
-         sp(::sockets::http_session) psession = System.http().request(psession,strAuthUrl,set);
+         psession = System.http().request(psession,strAuthUrl,set);
 
          strAuth = set["get_response"];
 
