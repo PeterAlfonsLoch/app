@@ -527,6 +527,8 @@ namespace fontopus
 
       m_mapFontopusServer.set_at(strHost, strFontopusServer);
 
+      m_mapFontopusServer.set_at(strFontopusServer,strFontopusServer);
+
       return strFontopusServer;
 
    }
