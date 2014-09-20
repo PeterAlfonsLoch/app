@@ -472,6 +472,8 @@ namespace fontopus
       if(strNode.is_empty())
          goto retry;
 
+      ::xml::document doc(get_app());
+
       if(!doc.load(strNode))
          goto retry;
 
