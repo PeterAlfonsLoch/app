@@ -698,9 +698,18 @@ namespace fontopus
 
       string strApiServer;
 
-      strApiServer = m_strFontopusServer;
+      if(m_strRequestingServer == "account.ca2.cc")
+      {
 
-      //strApiServer.replace("account","api");
+         strApiServer = "account.ca2.cc";
+
+      }
+      else
+      {
+
+         strApiServer = m_strFontopusServer;
+
+      }
 
       m_strLoginUrl = "https://" + strApiServer + "/api/account/login";
 
@@ -756,7 +765,7 @@ namespace fontopus
       DWORD dwAuthBeg = ::get_tick_count();
       {
 
-         string strAuthUrl("https://" + strApiServer + "/account/auth?" + (m_pcallback == NULL ? string() : m_pcallback->oprop("defer_registration").get_string())
+         string strAuthUrl("https://" + strApiServer + "/api/account/auth?" + (m_pcallback == NULL ? string() : m_pcallback->oprop("defer_registration").get_string())
             + (m_pcallback == NULL ? string() : "&ruri=" + System.url().url_encode((m_pcallback->oprop("ruri").get_string()))));
 
          property_set set;
