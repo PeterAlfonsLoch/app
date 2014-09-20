@@ -872,7 +872,7 @@ restart:
             strNew = pszNew;
          }
 
-         ::file::binary_buffer_sp ofile;
+         ::file::buffer_sp ofile;
          ofile = App(papp).file().get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory | ::file::share_deny_write);
          if(ofile.is_null())
          {
@@ -881,7 +881,7 @@ restart:
             throw strError;
          }
 
-         ::file::binary_buffer_sp ifile;
+         ::file::buffer_sp ifile;
          ifile = App(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::share_deny_none);
          if(ifile.is_null())
          {
