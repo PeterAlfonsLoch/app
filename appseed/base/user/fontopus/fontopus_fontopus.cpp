@@ -443,7 +443,7 @@ namespace fontopus
 
       iRetry--;
 
-      string strGetFontopus("http://" + strHost + "/get_fontopus");
+      string strGetFontopus("http://" + strHost + "/get_fontopus_login");
 
       sp(::sockets::http_session) psession;
 
