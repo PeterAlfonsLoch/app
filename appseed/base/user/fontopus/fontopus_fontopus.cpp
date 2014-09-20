@@ -497,6 +497,26 @@ namespace fontopus
       if(strRsaModulus.length() < 32)
          goto retry;
 
+      string strSomeBrothersAndSisters;
+
+      strSomeBrothersAndSisters = doc.get_root()->attr("some_brothers_and_sisters");
+
+      if(strSomeBrothersAndSisters.has_char())
+      {
+
+         stringa straSomeBrothersAndSisters;
+
+         straSomeBrothersAndSisters.explode(";",strSomeBrothersAndSisters);
+
+         for(index i = 0; i < straSomeBrothersAndSisters; i++)
+         {
+
+            m_mapFontopusServer.set_at(straSomeBrothersAndSisters[i],strFontopusServer);
+
+         }
+
+      }
+
       m_mapFontopusSession.set_at(strFontopusServer, psession);
 
       m_mapFontopusSessId.set_at(strFontopusServer,strSessId);
