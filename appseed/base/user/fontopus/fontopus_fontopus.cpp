@@ -548,7 +548,7 @@ namespace fontopus
 
       DWORD dwGetFontopusBeg = ::get_tick_count();
 
-      string strGetFontopus("http://" + strRequestingServer + "/get_fontopus");
+      string strGetFontopus("http://" + strRequestingServer + "/get_fontopus_login");
 
       sp(::aura::application) papp = get_app();
 
