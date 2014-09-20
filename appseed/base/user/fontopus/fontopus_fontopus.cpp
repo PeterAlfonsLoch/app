@@ -441,9 +441,14 @@ namespace fontopus
       if (iRetry < 0)
          return ""; // should not retry or lookup is valid and strFontopusServer is really empty
 
+      iRetry--;
+
       string strGetFontopus("http://" + strHost + "/get_fontopus");
 
       sp(::sockets::http_session) psession;
+
+      string strNode;
+
       try
       {
 
@@ -455,21 +460,50 @@ namespace fontopus
 
          psession = System.http().request(psession,strGetFontopus,set);
 
-         strFontopusServer = set["get_response"];
+         strNode = set["get_response"];
 
       }
       catch (...)
       {
       }
 
+      strNode.trim();
+
+      if(strNode.is_empty())
+         goto retry;
+
+      if(!doc.load(strNode))
+         goto retry;
+
+      if(doc.get_root()->get_name() != "login")
+         goto retry;
+
+      string strSessId = doc.get_root()->attr("sessid");
+
+      if(strSessId.is_empty())
+         goto retry;
+
+      strFontopusServer = doc.get_root()->attr("fontopus_server");
+
+      if(strFontopusServer.is_empty())
+         goto retry;
+
+      string strRsaModulus;
+
+      strRsaModulus = doc.get_root()->attr("rsa_modulus");
+
+      if(strRsaModulus.is_empty())
+         goto retry;
+
       m_mapFontopusSession.set_at(strFontopusServer, psession);
 
+      m_mapFontopusSessId.set_at(strFontopusServer,strSessId);
+
+      m_mapFontopusRsa.set_at(strFontopusServer,strRsa);
+
+      m_mapFontopusSession.set_at(strFontopusServer,psession);
+
       m_mapFontopusServer.set_at(strHost, strFontopusServer);
-
-      iRetry--;
-
-      if (strFontopusServer.is_empty())
-         goto retry;
 
       return strFontopusServer;
 

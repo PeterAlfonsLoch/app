@@ -17,6 +17,8 @@ namespace fontopus
       string                                       m_strFirstFontopusServer;
       authentication_map                           m_authmap;
       string_map < ::sockets::http_session * >     m_mapFontopusSession;
+      string_to_string                             m_mapFontopusRsa;
+      string_to_string                             m_mapFontopusSessId;
 
 
 
