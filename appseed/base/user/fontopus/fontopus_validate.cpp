@@ -716,56 +716,12 @@ namespace fontopus
 
       set["app"] = get_app();
 
-      sp(::sockets::http_session) psession = Session.fontopus()->m_mapFontopusSession[m_strFontopusServer];
+      strSessId = Session.fontopus()->m_mapFontopusSessId[m_strFontopusServer];
 
-      for(int32_t iRetry = 0; iRetry <= 8; iRetry++)
-      {
+      strRsaModulus = Session.fontopus()->m_mapFontopusRsa[m_strFontopusServer];
 
-         if(iRetry > 0)
-         {
-            Sleep(iRetry * 584);
-         }
-
-         try
-         {
-
-            set["get_response"] = "";
-
-            set["raw_http"] = true;
-
-            psession = System.http().request(psession,m_strLoginUrl,set);
-
-            Session.fontopus()->m_mapFontopusSession.set_at(m_strFontopusServer,psession);
-
-            strLogin = set["get_response"];
-
-         }
-         catch(...)
-         {
-         }
-
-         strLogin.trim();
-
-         if(strLogin.is_empty())
-            continue;
-
-         if(!doc.load(strLogin))
-            continue;
-
-         if(doc.get_root()->get_name() != "login")
-            continue;
-
-         strSessId = doc.get_root()->attr("sessid");
-
-         if(strSessId.is_empty())
-            continue;
-
-         strRsaModulus = doc.get_root()->attr("rsa_modulus");
-
-         if(strRsaModulus.has_char())
-            break;
-
-      }
+      if(strSessId.is_empty())
+         return "";
 
       if(strRsaModulus.is_empty())
          return "";
