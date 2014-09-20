@@ -670,6 +670,10 @@ FT_END_HEADER
 #define HAVE_FCNTL_H 1
 #endif
 
+#ifndef METROWIN
+#define HAVE_OPENSSL
+#endif
+
 #endif /* __FTCONFIG_H__ */
 
 

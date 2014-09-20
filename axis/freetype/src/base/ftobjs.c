@@ -56,7 +56,8 @@
 #endif /* _MSC_VER */
 
   /* it's easiest to include `md5.c' directly */
-#include "md5.c"
+//#include "md5.c"
+#include "md5.h"
 
 #if defined( _MSC_VER )
 #pragma warning( pop )
