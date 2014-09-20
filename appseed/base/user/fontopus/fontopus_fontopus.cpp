@@ -494,14 +494,14 @@ namespace fontopus
 
       strRsaModulus = doc.get_root()->attr("rsa_modulus");
 
-      if(strRsaModulus.is_empty())
+      if(strRsaModulus.length() < 32)
          goto retry;
 
       m_mapFontopusSession.set_at(strFontopusServer, psession);
 
       m_mapFontopusSessId.set_at(strFontopusServer,strSessId);
 
-      m_mapFontopusRsa.set_at(strFontopusServer,strRsa);
+      m_mapFontopusRsa.set_at(strFontopusServer,strRsaModulus);
 
       m_mapFontopusSession.set_at(strFontopusServer,psession);
 

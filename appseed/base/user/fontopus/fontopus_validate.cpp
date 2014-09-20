@@ -791,13 +791,19 @@ namespace fontopus
 
          set["app"] = get_app();
          set["user"] = m_puser;
+         
          if(m_puser != NULL)
          {
+
             set["cookies"] = m_puser->m_phttpcookies;
+
          }
+         
          set["get_response"] = "";
+         
          uint32_t dwTimeProfile1 = get_tick_count();
-         psession = System.http().request(psession,strAuthUrl,set);
+
+         sp(::sockets::http_session) psession = System.http().request(psession,strAuthUrl,set);
 
          strAuth = set["get_response"];
 
