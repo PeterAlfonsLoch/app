@@ -3232,9 +3232,6 @@
     <ClCompile Include="aura\os\metrowin\metrowin_file_watcher.cpp">
       <Filter>Source Files\aura\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_file_std.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_file_watcher.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
