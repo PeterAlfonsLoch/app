@@ -2552,14 +2552,14 @@ string file_get_mozilla_firefox_plugin_container_path()
 
 
 
-
-
-
-int ftruncate(int file,file_size len)
-{
-   return _chsize_s(file,len);
-}
-
+//
+//
+//
+//int ftruncate(int file,file_size len)
+//{
+//   return _chsize_s(file,len);
+//}
+//
 
 
 int_bool file_set_length(const char * pszName,size_t iSize)
