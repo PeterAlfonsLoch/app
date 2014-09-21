@@ -923,7 +923,7 @@ restart:
       }
 
 
-      if((oswindow == NULL || msg.oswindow == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
+      if((oswindow == NULL || msg.hwnd == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
       {
          *lpMsg = msg;
          pmq->ma.remove_at(i);
@@ -969,7 +969,7 @@ BOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin,
    {
       MESSAGE & msg = pmq->ma[i];
 
-      if((oswindow == NULL || msg.oswindow == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
+      if((oswindow == NULL || msg.hwnd == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
       {
          *lpMsg = msg;
          if(wRemoveMsg & PM_REMOVE)
@@ -1043,7 +1043,7 @@ BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARAM wparam, LPAR
 
    MESSAGE msg;
 
-   msg.oswindow   = NULL;
+   msg.hwnd       = NULL;
    msg.message    = message;
    msg.wParam     = wparam;
    msg.lParam     = lparam;
@@ -1060,41 +1060,6 @@ BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARAM wparam, LPAR
 }
 
 
-CLASS_DECL_AURA WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
-{
-
-   HTHREAD  h = oswindow->m_pui->m_pthread->get_os_handle();
-
-   if(h == NULL)
-      return FALSE;
-
-
-   mq * pmq = get_mq(h);
-
-   if(pmq == NULL)
-      return FALSE;
-
-   synch_lock ml(&pmq->m_mutex);
-
-   MESSAGE msg;
-
-   //zero(&msg, sizeof(msg));
-
-   msg.oswindow   = oswindow;
-   msg.message    = Msg;
-   msg.wParam     = wParam;
-   msg.lParam     = lParam;
-   msg.pt.x       = 0x80000000;
-   msg.pt.y       = 0x80000000;
-
-
-   pmq->ma.add(msg);
-
-   pmq->m_eventNewMessage.set_event();
-
-   return true;
-
-}
 
 
 namespace core

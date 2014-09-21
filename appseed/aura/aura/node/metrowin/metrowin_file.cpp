@@ -1680,19 +1680,19 @@ namespace metrowin
 
 
 
-void CLASS_DECL_AURA ::file::throw_exception(::aura::application * papp, int cause, LONG lOsError,   const char * lpszFileName /* == NULL */)
-{
-   throw ::file::exception(papp, cause, lOsError, lpszFileName);
-#ifdef WINDOWSEX
-   #ifdef DEBUG
-   const char * lpsz;
-   if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
-   lpsz = rgszFileExceptionCause[cause];
-   else
-   lpsz = szUnknown;
-   TRACE3("file exception: %hs, file %W, App error information = %ld.\n",
-   lpsz, (lpszFileName == NULL) ? L"Unknown" : lpszFileName, lOsError);
-   #endif
-   THROW(new FileException(cause, lOsError, lpszFileName));
-#endif
-}
+///*void CLASS_DECL_AURA ::file::throw_exception(::aura::application * papp, int cause, LONG lOsError,   const char * lpszFileName /* == NULL */)
+//{
+//   throw ::file::exception(papp, cause, lOsError, lpszFileName);
+//#ifdef WINDOWSEX
+//   #ifdef DEBUG
+//   const char * lpsz;
+//   if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
+//   lpsz = rgszFileExceptionCause[cause];
+//   else
+//   lpsz = szUnknown;
+//   TRACE3("file exception: %hs, file %W, App error information = %ld.\n",
+//   lpsz, (lpszFileName == NULL) ? L"Unknown" : lpszFileName, lOsError);
+//   #endif
+//   THROW(new FileException(cause, lOsError, lpszFileName));
+//#endif
+//}

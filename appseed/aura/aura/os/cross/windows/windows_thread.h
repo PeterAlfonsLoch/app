@@ -54,7 +54,7 @@ CLASS_DECL_AURA int_bool WINAPI TlsFree(DWORD dwTlsIndex);
 CLASS_DECL_AURA LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex);
 CLASS_DECL_AURA int_bool WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
 
-void WINAPI TlsShutdown();
+CLASS_DECL_AURA void WINAPI TlsShutdown();
 
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)

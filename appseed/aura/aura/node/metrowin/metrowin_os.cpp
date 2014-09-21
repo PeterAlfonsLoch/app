@@ -857,37 +857,37 @@ namespace metrowin
    void os::post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam)
    {
 
-      ::count ca;
-
-      ::thread * pthread;
-
-//      ca = ::metrowin::thread::s_threadptra.get_size();
-
-      bool bOk;
-
-      if(message == WM_QUIT)
-      {
-
-         for(index i = 0; i < ca; )
-         {
-
-            bOk = true;
-         
-            try
-            {
-               //pthread = dynamic_cast < ::thread * >(::metrowin::thread::s_threadptra[i]);
-               pthread->m_bRun = false;
-            }
-            catch(...)
-            {
-
-               bOk = false;
-
-            }
-
-
-         }
-      }
+//      ::count ca;
+//
+//      ::thread * pthread;
+//
+////      ca = ::metrowin::thread::s_threadptra.get_size();
+//
+//      bool bOk;
+//
+//      if(message == WM_QUIT)
+//      {
+//
+//         for(index i = 0; i < ca; )
+//         {
+//
+//            bOk = true;
+//         
+//            try
+//            {
+//               //pthread = dynamic_cast < ::thread * >(::metrowin::thread::s_threadptra[i]);
+//               pthread->m_bRun = false;
+//            }
+//            catch(...)
+//            {
+//
+//               bOk = false;
+//
+//            }
+//
+//
+//         }
+//      }
 
 
 
