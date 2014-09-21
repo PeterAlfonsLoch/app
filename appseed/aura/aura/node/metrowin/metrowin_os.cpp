@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "metrowin.h"
 
 
 #undef USERNAME_LENGTH // mysql one

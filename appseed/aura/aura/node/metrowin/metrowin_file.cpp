@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "metrowin.h"
+
 
 namespace metrowin
 {

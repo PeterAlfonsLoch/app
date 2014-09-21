@@ -3,7 +3,7 @@
 
 
 
-#ifdef cplusplus || defined (__cplusplus_winrt)
+#ifdef __cplusplus
 
 
 

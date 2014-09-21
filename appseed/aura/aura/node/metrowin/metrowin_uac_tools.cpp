@@ -96,6 +96,7 @@ MODIFICATIONS:
 */
 
 #include "framework.h"
+#include "metrowin.h"
 
 #ifdef IMPLEMENT_VISTA_TOOLS
 

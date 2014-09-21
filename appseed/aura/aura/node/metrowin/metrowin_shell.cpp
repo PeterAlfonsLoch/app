@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "metrowin.h"
 
 /***
 *int _validdrive( unsigned drive ) -

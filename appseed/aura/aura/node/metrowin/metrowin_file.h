@@ -35,10 +35,8 @@ namespace metrowin
 
       enum { hFileNull = -1 };
 
-      zip::Util *    m_pziputil;
       bool           m_bCloseOnDelete;
       string         m_strFileName;
-      //wstring        m_wstrFileName;
       UINT           m_hFile;
 
 
