@@ -1266,37 +1266,37 @@ int_bool close_handle(handle h)
 
 
 
-
-
-
-
-int_bool file_set_length(const char * pszName,size_t iSize)
-{
-
-   wstring wstr(pszName);
-
-   HANDLE h = ::CreateFileW(wstr,GENERIC_READ | GENERIC_WRITE,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-
-   if(h == INVALID_HANDLE_VALUE)
-      return false;
-
-   if(!ensure_file_size_handle(h,iSize))
-   {
-
-      ::CloseHandle(h);
-
-      return false;
-
-   }
-
-   ::CloseHandle(h);
-
-   return true;
-
-}
-
-
-
+//
+//
+//
+//
+//int_bool file_set_length(const char * pszName,size_t iSize)
+//{
+//
+//   wstring wstr(pszName);
+//
+//   HANDLE h = ::CreateFileW(wstr,GENERIC_READ | GENERIC_WRITE,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+//
+//   if(h == INVALID_HANDLE_VALUE)
+//      return false;
+//
+//   if(!ensure_file_size_handle(h,iSize))
+//   {
+//
+//      ::CloseHandle(h);
+//
+//      return false;
+//
+//   }
+//
+//   ::CloseHandle(h);
+//
+//   return true;
+//
+//}
+//
+//
+//
 
 
 int_bool file_move_dup(const char * lpszNewName,const char * lpszOldName)
