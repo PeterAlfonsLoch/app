@@ -3,6 +3,29 @@
 
 
 
+#ifdef cplusplus || defined (__cplusplus_winrt)
+
+
+
+
+class CLASS_DECL_AURA thread_data
+{
+public:
+
+
+   DWORD g_dwTlsIndex;
+
+   thread_data();
+   ~thread_data();
+
+   void * get();
+   void set(void * p);
+
+
+};
+
+
+#endif
 
 
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "metrowin.h"
 
 
 void _c_simple_message_loop()

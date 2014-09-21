@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "metrowin.h"
 
 dword get_tick_count()
 {

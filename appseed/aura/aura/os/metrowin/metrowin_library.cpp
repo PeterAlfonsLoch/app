@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "metrowin.h"
 
 base_library::base_library(sp(::aura::application) papp) :
    element(papp)

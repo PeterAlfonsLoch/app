@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_AURA void ensure_file_size(HANDLE h, int64_t iSize);
+//CLASS_DECL_AURA void ensure_file_size(HANDLE h, int64_t iSize);
 CLASS_DECL_AURA DWORD GetFileAttributesW(const wchar_t * psz);
 #define GetFileAttributes GetFileAttributesW
 CLASS_DECL_AURA DWORD GetFileSize(HANDLE h, LPDWORD lpdwHi);

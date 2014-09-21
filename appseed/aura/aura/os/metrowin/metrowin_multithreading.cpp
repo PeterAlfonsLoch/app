@@ -6,7 +6,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 #include "framework.h"
-
+#include "metrowin.h"
 
 #undef System
 

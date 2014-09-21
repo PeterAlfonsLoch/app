@@ -126,11 +126,15 @@ typedef ULONG_PTR        DWORD_PTR, *PDWORD_PTR;
 
 #define __int3264 __int32
 
+#ifndef METROWIN
+
 typedef long          INT_PTR, *PINT_PTR;
 typedef unsigned long UINT_PTR, *PUINT_PTR;
 typedef long          LONG_PTR, *PLONG_PTR;
 typedef unsigned long ULONG_PTR, *PULONG_PTR;
 typedef ULONG_PTR     DWORD_PTR, *PDWORD_PTR;
+
+#endif
 
 #endif
 
@@ -252,19 +256,24 @@ inline void *ULongToPtr(ULONG32 ul)
 
 #else /* FIXME: defined(_WIN32) */
 
+#ifndef METROWIN
 #define MAXINT_PTR 0x7fffffff
 #define MININT_PTR 0x80000000
 #define MAXUINT_PTR 0xffffffff
+#endif
 
 typedef long SHANDLE_PTR;
 typedef unsigned long HANDLE_PTR;
 typedef signed short HALF_PTR, *PHALF_PTR;
 typedef unsigned short UHALF_PTR, *PUHALF_PTR;
 
+#ifndef METROWIN
 #define MAXUHALF_PTR 0xffff
 #define MAXHALF_PTR 0x7fff
 #define MINHALF_PTR 0x8000
+#endif
 
+#ifndef METROWIN
 #define HandleToULong(h)        ((ULONG)(ULONG_PTR)(h))
 #define HandleToLong(h)         ((LONG)(LONG_PTR)(h))
 #define ULongToHandle(ul)       ((HANDLE)(ULONG_PTR)(ul))
@@ -279,6 +288,7 @@ typedef unsigned short UHALF_PTR, *PUHALF_PTR;
 #define UIntToPtr(ui)           ((void *)(UINT_PTR)((UINT)ui))
 #define LongToPtr(l)            ((void *)(LONG_PTR)((LONG)l))
 #define ULongToPtr(ul)          ((void *)(ULONG_PTR)((ULONG)ul))
+#endif
 
 #endif /* defined(OS64BIT) || defined(_WIN32) */
 
@@ -296,7 +306,7 @@ typedef ULONG_PTR KAFFINITY, *PKAFFINITY;
 
 /* Architecture dependent settings. */
 /* These are hardcoded to avoid dependencies on config.h in Winelib apps. */
-#if defined(__i386__)
+#if defined(__i386__) || defined(_WIN32)
 # undef  WORDS_BIGENDIAN
 # undef  BITFIELDS_BIGENDIAN
 # define ALLOW_UNALIGNED_ACCESS

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "metrowin.h"
 
 
 //extern thread_local_storage * gen_ThreadData;

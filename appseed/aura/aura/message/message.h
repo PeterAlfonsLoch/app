@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "message_cross_windows.h"
+
 
 
 #define CN_UPDATE_COMMAND_UI 23

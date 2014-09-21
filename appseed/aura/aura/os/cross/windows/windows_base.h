@@ -190,11 +190,7 @@ typedef struct _PROC_THREAD_ATTRIBUTE_LIST *PPROC_THREAD_ATTRIBUTE_LIST, *LPPROC
    // );
 
 
-VOID
-WINAPI
-Sleep(
-    DWORD dwMilliseconds
-    );
+void WINAPI Sleep(DWORD dwMilliseconds);
 
 
 

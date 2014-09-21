@@ -20,7 +20,7 @@
 	THE SOFTWARE.
 */
 #include "framework.h"
-
+#include "metrowin.h"
 
 namespace file_watcher
 {

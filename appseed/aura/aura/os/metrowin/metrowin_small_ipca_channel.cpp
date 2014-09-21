@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "metrowin.h"
 #ifndef METROWIN
 
 extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(

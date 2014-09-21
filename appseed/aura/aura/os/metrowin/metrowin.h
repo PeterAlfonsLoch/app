@@ -1,8 +1,12 @@
 #pragma once
 
 
-#include "metrowin_file.h"
-#include "metrowin_thread.h"
+#include "metrowin_base_file.h"
+#include "metrowin_multithreading.h"
+//#include "metrowin_utils.h"
+
+
+CLASS_DECL_AURA void WINAPI Sleep(DWORD dwMilliseconds);
 
 
 /*#define GetAValue(rgb)      (LOBYTE((rgb)>>24))

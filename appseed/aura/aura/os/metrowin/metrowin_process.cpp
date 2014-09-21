@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "metrowin.h"
 #include <Shellapi.h>
 #include <string.h>
 

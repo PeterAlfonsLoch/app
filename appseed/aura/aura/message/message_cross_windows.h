@@ -4,7 +4,8 @@
 //#include <agile.h>
 #endif
 
-typedef struct tagCREATESTRUCTA {
+typedef struct tagCREATESTRUCTA
+{
    LPVOID      lpCreateParams;
    HINSTANCE   hInstance;
    HMENU       hMenu;
@@ -18,7 +19,9 @@ typedef struct tagCREATESTRUCTA {
    LPCSTR      lpszClass;
    uint32_t       dwExStyle;
 } CREATESTRUCTA,*LPCREATESTRUCTA;
-typedef struct tagCREATESTRUCTW {
+
+typedef struct tagCREATESTRUCTW
+{
    LPVOID      lpCreateParams;
    HINSTANCE   hInstance;
    HMENU       hMenu;

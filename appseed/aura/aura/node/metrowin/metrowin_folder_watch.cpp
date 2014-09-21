@@ -1,13 +1,18 @@
 #include "framework.h"
+#include "metrowin.h"
+
 
 namespace metrowin
 {
+
 
    folder_watch::folder_watch(::aura::application * papp) :
       element(papp),
       ::thread(papp)
    {
+
    }
+
 
    bool folder_watch::watch(const char * pszPath)
    {
@@ -97,3 +102,19 @@ namespace metrowin
 
 
 } // namespace metrowin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

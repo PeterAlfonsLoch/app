@@ -5,7 +5,7 @@
 // 08/20/05 (mv)
 
 #include "framework.h"
-
+#include "metrowin.h"
 
 //_flag values (not the ones used by the normal CRT
 

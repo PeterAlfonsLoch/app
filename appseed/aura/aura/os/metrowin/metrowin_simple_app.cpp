@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "metrowin.h"
 
 
 simple_app::simple_app() :
