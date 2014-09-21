@@ -213,7 +213,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir);pixman;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;HAVE_CONFIG_H;METROWIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -526,6 +526,11 @@ copy Source\FreeImage.h Dist
     <ClInclude Include="pixman\pixman-private.h" />
     <ClInclude Include="pixman\pixman-version.h" />
     <ClInclude Include="pixman\pixman.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
+      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

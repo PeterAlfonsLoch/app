@@ -1403,9 +1403,6 @@
     <ClInclude Include="aura\os\android\android_process.h">
       <Filter>Header Files\aura\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\android\android_window_android.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="aura\os\android\android_android.h">
       <Filter>Header Files\aura\os\android</Filter>
     </ClInclude>

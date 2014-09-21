@@ -128,19 +128,19 @@ typedef ULONG_PTR        DWORD_PTR, *PDWORD_PTR;
 
 #ifndef METROWIN
 
-typedef long          INT_PTR, *PINT_PTR;
-typedef unsigned long UINT_PTR, *PUINT_PTR;
-typedef long          LONG_PTR, *PLONG_PTR;
-typedef unsigned long ULONG_PTR, *PULONG_PTR;
-typedef ULONG_PTR     DWORD_PTR, *PDWORD_PTR;
+typedef int             INT_PTR, *PINT_PTR;
+typedef unsigned int    UINT_PTR, *PUINT_PTR;
+typedef int             LONG_PTR, *PLONG_PTR;
+typedef unsigned int    ULONG_PTR, *PULONG_PTR;
+typedef ULONG_PTR       DWORD_PTR, *PDWORD_PTR;
 
 #endif
 
 #endif
 
 
-   //   typedef INT_PTR int_ptr;
-   //typedef UINT_PTR uint_ptr;
+   typedef INT_PTR int_ptr;
+   typedef UINT_PTR uint_ptr;
    typedef LONG_PTR long_ptr;
    typedef ULONG_PTR ulong_ptr;
    typedef DWORD_PTR dword_ptr;

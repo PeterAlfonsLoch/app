@@ -118,7 +118,7 @@
 #   define PIXMAN_GET_THREAD_LOCAL(name)				\
     (&name)
 
-#elif defined(__MINGW32__)
+#elif defined(__MINGW32__) || defined(METROWIN)
 
 #   define _NO_W32_PSEUDO_MODIFIERS
 #   include <windows.h>

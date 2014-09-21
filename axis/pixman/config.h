@@ -55,7 +55,7 @@
 #undef HAVE_POSIX_MEMALIGN
 
 /* Whether pthreads is supported */
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
 #define HAVE_PTHREADS 1
 #endif
 

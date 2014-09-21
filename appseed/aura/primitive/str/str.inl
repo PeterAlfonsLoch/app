@@ -339,7 +339,12 @@ strsize stdstring < BASE >::copy(typename BASE::value_type * s,strsize len,strsi
 
    }
 
-   memcpy(s,operator const typename BASE::value_type *() + (pos * sizeof(typename BASE::value_type)),(len * sizeof(typename BASE::value_type)));
+   typedef typename BASE::value_type char_type;
+
+   typedef const char_type const_char_type;
+   
+
+   memcpy(s,((const_char_type *)*this) + (pos * sizeof(char_type)),(len * sizeof(char_type)));
 
    return len;
 
