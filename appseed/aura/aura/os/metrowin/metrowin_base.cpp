@@ -513,133 +513,118 @@ CreateMutexW(
 
 
 
-int g_iAuraRefCount = 0;
 
 
-CLASS_DECL_AURA int get_aura_init()
+
+
+
+
+
+
+bool __node_aura_pre_init()
 {
 
-   return g_iAuraRefCount;
+   HRESULT hresult = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+
+   if(FAILED(hresult))
+   {
+
+      if(hresult == RPC_E_CHANGED_MODE)
+      {
+
+         hresult = ::CoInitializeEx(NULL,COINIT_APARTMENTTHREADED);
+
+         if(FAILED(hresult))
+         {
+
+            ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+
+            return false;
+
+         }
+
+      }
+      else
+      {
+
+         ::simple_message_box(NULL,"Failed to ::CoInitializeEx(NULL, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",MB_ICONEXCLAMATION);
+
+         return false;
+
+      }
+
+   }
+
+   return true;
 
 }
 
+void CLASS_DECL_AURA __cdecl _ca2_purecall();
 
-CLASS_DECL_AURA int_bool defer_aura_init()
+bool __node_aura_pos_init()
 {
 
-   g_iAuraRefCount++;
+   _set_purecall_handler(_ca2_purecall);
 
-   if(g_iAuraRefCount > 1)
-      return TRUE;
-
-   if(!aura_init())
-      return FALSE;
-
-   return TRUE;
-
-}
+   //HMODULE hmoduleUser32 = ::LoadLibrary("User32");
+   //g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32,"ChangeWindowMessageFilter");
 
 
-CLASS_DECL_AURA int_bool defer_aura_term()
-{
+   //HMODULE hmoduleAdvApi32 = ::LoadLibrary("AdvApi32");
+   //g_pfnRegGetValueW = (LPFN_RegGetValueW) ::GetProcAddress(hmoduleAdvApi32,"RegGetValueW");
 
-   g_iAuraRefCount--;
+   //g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
+   //g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
+   //g_gdiplusToken             = NULL;
+   //g_gdiplusHookToken         = NULL;
 
-   if(g_iAuraRefCount >= 1)
-      return TRUE;
+   //g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
 
-   aura_term();
+   //Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken,g_pgdiplusStartupInput,g_pgdiplusStartupOutput);
 
-   return TRUE;
+   //if(statusStartup != Gdiplus::Ok)
+   //{
 
-}
+   //   simple_message_box(NULL,"Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
+   //   return false;
 
+   //}
 
-bool aura_init()
-{
-
-   ::aura::static_start::init();
-
-   if(!__node_aura_pre_init())
-      return false;
-
-   //::aura::static_start::init();
-
-   __init_threading_count();
-
-   ::multithreading::init_multithreading();
-
-   ::os_thread::s_pmutex = new mutex();
-
-   ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type();
+   //statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
 
 
-   if(!__node_aura_pos_init())
-      return false;
+   //if(statusStartup != Gdiplus::Ok)
+   //{
+
+   //   simple_message_box(NULL,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+
+   //   return false;
+
+   //}
 
    return true;
 
 }
 
 
-bool aura_term()
+bool __node_aura_pre_term()
 {
 
-   __wait_threading_count(::millis((5000) * 8));
+   //g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
 
-   __node_aura_pre_term();
 
-   ::multithreading::term_multithreading();
-
-   __term_threading_count();
-
-   __node_aura_pos_term();
-
-   ::aura::static_start::term();
+   //::Gdiplus::GdiplusShutdown(g_gdiplusToken);
 
    return true;
 
 }
 
-
-
-
-void dappy(const char * psz)
+bool __node_aura_pos_term()
 {
 
-   //printf("app._ : %s : %s\n",_argv[2],psz);
-   //printf("hello!!    : %s\n",psz);
-   //::OutputDebugString("hello!!    : " + string(psz) + "\n");
+   ::CoUninitialize();
+
+   return true;
 
 }
-
-
-
-
-::map < void *,void *,::aura::application *,::aura::application * > * g_pmapAura = NULL;
-
-void set_aura(void * p,::aura::application * papp)
-{
-
-   g_pmapAura->set_at(p,papp);
-
-}
-
-::aura::application * get_aura(void * p)
-{
-
-   return g_pmapAura->operator [](p);
-
-}
-
-
-
-
-
-
-
-
-
-
-
