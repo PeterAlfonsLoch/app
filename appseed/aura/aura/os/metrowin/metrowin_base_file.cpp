@@ -1297,17 +1297,17 @@ int_bool close_handle(handle h)
 //
 //
 //
-
-
-int_bool file_move_dup(const char * lpszNewName,const char * lpszOldName)
-{
-
-   if(!::MoveFile((LPTSTR)lpszOldName,(LPTSTR)lpszNewName))
-      return FALSE;
-
-   return TRUE;
-
-}
+//
+//
+//int_bool file_move_dup(const char * lpszNewName,const char * lpszOldName)
+//{
+//
+//   if(!::MoveFile((LPTSTR)lpszOldName,(LPTSTR)lpszNewName))
+//      return FALSE;
+//
+//   return TRUE;
+//
+//}
 
 int_bool file_delete_dup(const char * lpszFileName)
 {
@@ -1326,8 +1326,8 @@ int_bool file_delete_dup(const char * lpszFileName)
 
 int_bool file_is_equal_path(const char * psz1,const char * psz2)
 {
-
-   const int32_t iBufSize = MAX_PATH * 8;
+   return file_is_equal_path_dup(psz1,psz2);
+   /*const int32_t iBufSize = MAX_PATH * 8;
    wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
    wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
    wchar_t * pwszFile1;
@@ -1347,6 +1347,6 @@ int_bool file_is_equal_path(const char * psz1,const char * psz2)
    delete pwszPath1;
    delete pwszPath2;
    return iCmp == 0;
-
+*/
 }
 
