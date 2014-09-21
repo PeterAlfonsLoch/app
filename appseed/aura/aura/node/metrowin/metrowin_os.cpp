@@ -166,7 +166,7 @@ namespace metrowin
       get_all_processes(dwa);
       for(int i = 0; i < dwa.get_count(); i++)
       {
-         if(System.file().title_(get_process_path(dwa[i]))
+         if(System.file_title(get_process_path(dwa[i]))
             .CompareNoCase(pszName) == 0)
          {
             dwPid = dwa[i];
