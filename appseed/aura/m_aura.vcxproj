@@ -1156,6 +1156,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\os\metrowin\metrowin_base.cpp" />
+    <ClCompile Include="aura\os\metrowin\metrowin_base_file.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_file_std.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_file_watcher.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_launcher.cpp" />
