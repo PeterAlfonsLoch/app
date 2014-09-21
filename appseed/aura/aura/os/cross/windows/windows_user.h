@@ -468,6 +468,7 @@ LPCWSTR lpString);
 #define WS_SIZEBOX          WS_THICKFRAME
 #define WS_TILEDWINDOW      WS_OVERLAPPEDWINDOW
 
+#ifndef METROWIN
 /*
 * Common Window Styles
 */
@@ -481,6 +482,7 @@ LPCWSTR lpString);
 #define WS_POPUPWINDOW      (WS_POPUP          | \
    WS_BORDER | \
    WS_SYSMENU)
+#endif
 
 #define WS_CHILDWINDOW      (WS_CHILD)
 
@@ -952,7 +954,7 @@ UINT uType);
 #endif
 //#endif /* WINVER >= 0x0501 */
 
-
+#ifndef METROWIN
 struct user_menu;
 
 typedef struct _hmenu
@@ -992,6 +994,8 @@ typedef struct tagACCEL {
 
 typedef LPACCEL HACCEL;
 
+#endif
+
 typedef struct tagPAINTSTRUCT {
    HDC         hdc;
    WINBOOL        fErase;
@@ -1000,6 +1004,8 @@ typedef struct tagPAINTSTRUCT {
    WINBOOL        fIncUpdate;
    BYTE        rgbReserved[32];
 } PAINTSTRUCT,*PPAINTSTRUCT,*NPPAINTSTRUCT,*LPPAINTSTRUCT;
+
+#ifndef METROWIN
 
 typedef struct tagCREATESTRUCTA {
    LPVOID      lpCreateParams;
@@ -1036,6 +1042,8 @@ typedef LPCREATESTRUCTW LPCREATESTRUCT;
 typedef CREATESTRUCTA CREATESTRUCT;
 typedef LPCREATESTRUCTA LPCREATESTRUCT;
 #endif // UNICODE
+
+#endif
 
 typedef struct tagWINDOWPLACEMENT {
    UINT  length;
@@ -1083,14 +1091,14 @@ WINBOOL IsWindowVisible(oswindow hWnd);
 
 WINBOOL IsIconic(oswindow hWnd);
 
-
+#ifndef METROWIN
 
 #define ZORDER_TOP -1
 #define ZORDER_BOTTOM -2
 #define ZORDER_TOPMOST -3
 #define ZORDER_NOTOPMOST -4
 
-
+#endif
 
 //WINBOOL RedrawWindow(oswindow hWnd, CONST RECT *lprcUpdate, HRGN hrgnUpdate, UINT flags);
 
@@ -1145,7 +1153,7 @@ int32_t nIndex);
 #endif // !UNICODE
 
 
-
+#ifndef METROWIN
 typedef struct tagNMHDR
 {
    oswindow      hwndFrom;
@@ -1155,6 +1163,8 @@ typedef struct tagNMHDR
 
 
 typedef NMHDR FAR * LPNMHDR;
+
+#endif
 
 typedef struct tagSTYLESTRUCT
 {

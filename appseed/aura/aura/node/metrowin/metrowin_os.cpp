@@ -885,87 +885,11 @@ namespace metrowin
 
             }
 
-            try
-            {
-               if(bOk)
-               {
-
-                  if(ca == ::metrowin::thread::s_haThread.get_size())
-                     i++;
-                  else
-                     ca = ::metrowin::thread::s_haThread.get_size();
-
-               }
-               else
-               {
-
-                  ca = ::metrowin::thread::s_haThread.get_size();
-
-               }
-
-            }
-            catch(...)
-            {
-               break;
-            }
 
          }
       }
 
 
-      ca = ::metrowin::thread::s_haThread.get_size();
-
-
-      for(index i = 0; i < ca; )
-      {
-
-         bOk = true;
-         
-         try
-         {
-            repeat:
-            if(::PostThreadMessage(::get_thread_id(::metrowin::thread::s_haThread[i]), message, wparam, lparam))
-            {
-               if(message == WM_QUIT)
-               {
-                  DWORD dwRet = ::WaitForSingleObjectEx(::metrowin::thread::s_haThread[i], 1984, FALSE);
-                  if((dwRet != WAIT_OBJECT_0) && (dwRet != WAIT_FAILED))
-                     goto repeat;
-               }
-            }
-         }
-         catch(...)
-         {
-
-            bOk = false;
-
-         }
-
-         try
-         {
-            if(bOk)
-            {
-
-               if(ca == ::metrowin::thread::s_haThread.get_size())
-                  i++;
-               else
-                  ca = ::metrowin::thread::s_haThread.get_size();
-
-            }
-            else
-            {
-
-               ca = ::metrowin::thread::s_haThread.get_size();
-
-            }
-
-         }
-         catch(...)
-         {
-            break;
-         }
-
-      }
 
    }
 

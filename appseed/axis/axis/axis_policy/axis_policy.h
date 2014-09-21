@@ -48,7 +48,7 @@ END_EXTERN_C
 
 
 #include "axis_c.h"
-#include "axis_policy_cpp.h"
+#include "axis_cpp.h"
 #include "axis_policy_winrt.h"
 
 

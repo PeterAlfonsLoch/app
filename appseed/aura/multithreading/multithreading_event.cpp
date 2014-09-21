@@ -41,7 +41,7 @@ event::event(sp(::aura::application) papp, bool bInitiallyOwn, bool bManualReset
 
    }
 
-   m_object = ::CreateEventEx(lpsaAttribute, ::str::international::utf8_to_unicode(pstrName), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
+   m_object = (int_ptr) ::CreateEventEx(lpsaAttribute, ::str::international::utf8_to_unicode(pstrName), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
 
    if(m_object == NULL)
       throw resource_exception(papp);

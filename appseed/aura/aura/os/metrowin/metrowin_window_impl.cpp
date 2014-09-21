@@ -3,7 +3,6 @@
 #include "metrowin_window_impl.h"
 
 
-#include <agile.h>
 
 
 namespace user
@@ -92,80 +91,3 @@ int_bool oswindow_remove(::user::interaction * pui)
 
 }
 
-
-
-Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window(oswindow window)
-{
-
-   return window->m_pui->get_os_window();
-
-}
-
-
-static oswindow g_oswindowFocus;
-
-
-oswindow WINAPI GetFocus()
-{
-
-   return g_oswindowFocus;
-
-}
-
-oswindow WINAPI SetFocus(oswindow __oswindow)
-{
-   
-   ::oswindow oswindowOldFocus = g_oswindowFocus;
-
-   g_oswindowFocus = __oswindow;
-
-   // todo
-   //SendMessage(__oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
-   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) __oswindow)
-
-   return oswindowOldFocus;
-
-}
-
-
-
-static oswindow g_oswindowCapture;
-
-
-oswindow WINAPI GetCapture()
-{
-
-   return g_oswindowCapture;
-
-}
-
-oswindow WINAPI SetCapture(oswindow __oswindow)
-{
-   
-   ::oswindow oswindowOldCapture = g_oswindowCapture;
-
-   g_oswindowCapture = __oswindow;
-
-   // todo
-   //SendMessage(__oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
-   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) __oswindow)
-
-   return oswindowOldCapture;
-
-}
-
-
-oswindow WINAPI ReleaseCapture()
-{
-   
-   ::oswindow oswindowOldCapture = g_oswindowCapture;
-
-   g_oswindowCapture = NULL;
-
-   // todo
-   //SendMessage(__oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
-   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) __oswindow)
-
-   return oswindowOldCapture;
-
-}

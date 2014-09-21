@@ -71,7 +71,7 @@ typedef struct tagBITMAPINFOOS2_1X_HEADER {
   WORD   biBitCount;
 } BITMAPINFOOS2_1X_HEADER, *PBITMAPINFOOS2_1X_HEADER;
 
-#ifndef _WIN32
+#ifndef WINDOWSEX
 typedef struct tagBITMAPFILEHEADER {
   WORD    bfType;		//! The file type
   DWORD   bfSize;		//! The size, in bytes, of the bitmap file

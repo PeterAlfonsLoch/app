@@ -63,12 +63,14 @@ bool __win_file_find_is_dots(WIN32_FIND_DATA & data)
 
 string dir::get_ca2_module_folder()
 {
-   wchar_t lpszModuleFolder[MAX_PATH * 8];
 #if defined(METROWIN)
+
+   wchar_t lpszModuleFolder[MAX_PATH * 8];
+
 
    return "";
 
-   char lpszModuleFilePath[MAX_PATH * 8];
+/*   char lpszModuleFilePath[MAX_PATH * 8];
 
    HMODULE hmodule = ::LoadPackagedLibrary(L"ca.dll", 0);
 
@@ -85,7 +87,7 @@ string dir::get_ca2_module_folder()
       //if(FAILED(hr))
       // throw "dir::get_ca2_module_folder_dup : SHGetKnownFolderPath failed";
 
-      strcpy(lpszModuleFilePath, buf.c_str());
+      /*strcpy(lpszModuleFilePath, buf.c_str());
 
       if(lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
          || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
@@ -99,9 +101,9 @@ string dir::get_ca2_module_folder()
       strcat_dup(lpszModuleFilePath, "stage\\x64\\");
 #endif
 
-      strcpy_dup(lpszModuleFolder, lpszModuleFilePath);
+      wcscpy_dup(lpszModuleFolder, lpszModuleFilePath);*/
 
-      return true;
+  /*    return true;
 
    }
 
@@ -223,10 +225,10 @@ string dir::get_ca2_module_folder()
 
 string dir::get_base_module_folder()
 {
-   wchar_t lpszModuleFolder[MAX_PATH * 8];
 #if defined(METROWIN)
 
    return "";
+/*   wchar_t lpszModuleFolder[MAX_PATH * 8];
 
    char lpszModuleFilePath[MAX_PATH * 8];
 
@@ -291,7 +293,7 @@ string dir::get_base_module_folder()
    }
    */
 
-   return true;
+//   return true;
 
 #elif defined(WINDOWS)
 
@@ -353,13 +355,14 @@ string dir::get_base_module_folder()
 
 #else
 
-   wcscpy_dup(lpszModuleFolder, L"/core/");
+   wchar_t lpszModuleFolder[MAX_PATH * 8];
+wcscpy_dup(lpszModuleFolder, L"/core/");
 
 
+   return lpszModuleFolder;
 
 #endif
 
-   return lpszModuleFolder;
 
 }
 

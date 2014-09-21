@@ -33,6 +33,7 @@ namespace metrowin
       */
 
       thread(::aura::application * papp);
+     virtual ~thread();
 
 
       //operator HANDLE() const;

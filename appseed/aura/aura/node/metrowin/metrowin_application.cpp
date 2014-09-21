@@ -13,7 +13,7 @@ namespace metrowin
       element(papp)
    {
 
-      m_pthreadimpl.create(allocer());
+      m_pthreadimpl.alloc(allocer());
       m_pthreadimpl->m_pthread = this;
 
       m_paxissystem = papp->m_paxissystem;
@@ -429,38 +429,6 @@ namespace metrowin
    {
       return ::metrowin::graphics::from_handle((HDC) pdata);
    }*/
-#ifdef METROWIN
-   sp(::user::interaction) application::window_from_os_data(void * pdata)
-   {
-      return ((oswindow) pdata)->window();
-   }
-
-   sp(::user::interaction) application::window_from_os_data_permanent(void * pdata)
-   {
-      return ((oswindow) pdata)->window();
-   }
-#else
-   ::user::interaction_impl * application::window_from_os_data(void * pdata)
-   {
-      return ::metrowin::window::from_handle((oswindow) pdata);
-   }
-
-   ::user::interaction_impl * application::window_from_os_data_permanent(void * pdata)
-   {
-      ::user::interaction_impl * pwnd = ::metrowin::window::FromHandlePermanent((oswindow) pdata);
-      if(pwnd != NULL)
-         return pwnd;
-      user::interaction_ptr_array wndptra = System.frames();
-      for(int i = 0; i < wndptra.get_count(); i++)
-      {
-         if(wndptra[i]->get_safe_handle() == (oswindow) pdata)
-         {
-            return wndptra[i]->get_wnd();
-         }
-      }
-      return NULL;
-   }
-#endif
 
 
    void application::SetCurrentHandles()
@@ -472,16 +440,7 @@ namespace metrowin
 
    }
 
-   sp(::user::interaction) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
-   {
-      return interaction_impl::FindWindow(lpszClassName, lpszWindowName);
-   }
-
-   sp(::user::interaction) application::FindWindowEx(oswindow hwndParent,oswindow hwndChildAfter,const char * lpszClass,const char * lpszWindow)
-   {
-      return interaction_impl::FindWindowEx(hwndParent,hwndChildAfter,lpszClass,lpszWindow);
-   }
-
+   
 
    void application::get_time(struct timeval *p)
    {
@@ -575,17 +534,6 @@ namespace metrowin
 
       return true;
 
-   }
-
-   sp(::user::printer) application::get_printer(const char * pszDeviceName)
-   {
-      ::metrowin::printer * pprinter = new ::metrowin::printer(get_app());
-      if(!pprinter->open(pszDeviceName))
-      {
-         delete pprinter;
-         return NULL;
-      }
-      return pprinter;
    }
 
 

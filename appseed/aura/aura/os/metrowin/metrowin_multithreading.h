@@ -27,7 +27,7 @@ public:
 
 #endif
 
-
+#ifndef METROWIN
 
 typedef struct tag_MSG
 {
@@ -37,7 +37,7 @@ WPARAM      wParam;
 LPARAM      lParam;
 POINT       pt;
 } MESSAGE, * LPMESSAGE;
-
+#endif
 
 
 
@@ -58,3 +58,13 @@ CLASS_DECL_AURA WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPAR
 #define PostMessage  PostMessageW
 
 CLASS_DECL_AURA WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam);
+
+
+CLASS_DECL_AURA void WINAPI TlsShutdown();
+
+CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread);
+
+CLASS_DECL_AURA BOOL WINAPI SetThreadPriority(HTHREAD hThread,int iPriority);
+
+CLASS_DECL_AURA int WINAPI GetThreadPriority(_In_ HTHREAD hThread);
+

@@ -3181,12 +3181,6 @@
     <ClCompile Include="aura\node\metrowin\metrowin_stdio_file.cpp">
       <Filter>Source Files\aura\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_thread.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\metrowin\metrowin_thread_local_storage.cpp">
-      <Filter>Source Files\aura\node\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="aura\node\metrowin\metrowin_trace.cpp">
       <Filter>Source Files\aura\node\metrowin</Filter>
     </ClCompile>
@@ -3209,9 +3203,6 @@
       <Filter>Source Files\aura\os\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\metrowin\metrowin_small_ipca_channel.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_simple_ui.cpp">
       <Filter>Source Files\aura\os\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\metrowin\metrowin_simple_shell_launcher.cpp">
@@ -3258,6 +3249,9 @@
     </ClCompile>
     <ClCompile Include="aura\aura\aura_file_watcher_thread.cpp">
       <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\metrowin\metrowin_thread.cpp">
+      <Filter>Source Files\aura\node\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

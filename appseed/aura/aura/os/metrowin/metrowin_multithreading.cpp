@@ -7,6 +7,7 @@
 
 #include "framework.h"
 #include "metrowin.h"
+#include "metrowin_metrowin.h"
 
 #undef System
 
@@ -998,6 +999,15 @@ DWORD WINAPI get_thread_id(HTHREAD Thread)
    return p->m_element2;
 
 }
+
+
+DWORD WINAPI GetThreadId(HTHREAD Thread)
+{
+   
+   return get_thread_id(Thread);
+
+}
+
 
 HTHREAD WINAPI get_thread_handle(DWORD dw)
 {

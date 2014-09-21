@@ -1,15 +1,15 @@
 #pragma once
 
 
-#ifdef METROWIN
+/*#ifdef METROWIN
 
 struct timeval
 {
-   __int32    tv_sec;         /* seconds */
-   __int32    tv_usec;        /* microseconds */
-};
+   //__int32    tv_sec;         /* seconds */
+   //__int32    tv_usec;        /* microseconds */
+//};
 
-#endif
+//#endif
 
 CLASS_DECL_AURA int_bool WINAPI LocalFileTimeToFileTime(const FILETIME *localft, LPFILETIME utcft);
 CLASS_DECL_AURA int_bool WINAPI FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft);

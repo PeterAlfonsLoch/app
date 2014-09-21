@@ -120,13 +120,13 @@ int CLASS_DECL_AURA win_main(::aura::system * psystem, ::Platform::Array < ::Pla
    }*/
 //      delete __get_module_state()->m_pmapHMENU;
 
-   try
-   {
-      __get_module_state()->m_pmapHWND     = NULL;
-   }
-   catch(...)
-   {
-   }
+   //try
+   //{
+   //   __get_module_state()->m_pmapHWND     = NULL;
+   //}
+   //catch(...)
+   //{
+   //}
 /*   try
    {
       __get_module_state()->m_pmapHDC      = NULL;
@@ -151,106 +151,106 @@ int CLASS_DECL_AURA win_main(::aura::system * psystem, ::Platform::Array < ::Pla
 }
 
 
-int CLASS_DECL_AURA ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
-{
-   try
-   {
-
-      _set_purecall_handler(_ca2_purecall);
-
-      ::core::system * psystem = new ::core::system();
-
-
-      //Sleep(30 * 1000);
-
-
-      ASSERT(hPrevInstance == NULL);
-
-      int nReturnCode = 0;
-
-      ::metrowin::main_init_data * pinitmaindata  = new ::metrowin::main_init_data;
-
-      pinitmaindata->m_hInstance             = hInstance;
-      pinitmaindata->m_hPrevInstance         = hPrevInstance;
-      pinitmaindata->m_vssCommandLine        = lpCmdLine;
-      pinitmaindata->m_nCmdShow              = nCmdShow;
-
-
-      psystem->init_main_data(pinitmaindata);
-
-
-      nReturnCode = psystem->main();
-
-
-      __win_term();
-
-
-      try
-      {
-         delete psystem;
-      }
-      catch(...)
-      {
-      }
-
-      psystem = NULL;
-
-      try
-      {
-//         delete __get_module_state()->m_pmapHWND;
-      }
-      catch(...)
-      {
-      }
-/*      try
-      {
-         delete __get_module_state()->m_pmapHDC;
-      }
-      catch(...)
-      {
-      }*/
-/*      try
-      {
-         delete __get_module_state()->m_pmapHGDIOBJ;
-      }
-      catch(...)
-      {
-      }*/
-//      delete __get_module_state()->m_pmapHMENU;
-      try
-      {
-         __get_module_state()->m_pmapHWND     = NULL;
-      }
-      catch(...)
-      {
-      }
-/*      try
-      {
-         __get_module_state()->m_pmapHDC      = NULL;
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         __get_module_state()->m_pmapHGDIOBJ  = NULL;
-      }
-      catch(...)
-      {
-      }*/
-
-//      set_heap_mutex(NULL);
-
-
-      return nReturnCode;
-   }
-   catch(...)
-   {
-   }
-   return -1;
-}
-
-
+//int CLASS_DECL_AURA ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
+//{
+//   try
+//   {
+//
+//      _set_purecall_handler(_ca2_purecall);
+//
+//      ::core::system * psystem = new ::core::system();
+//
+//
+//      //Sleep(30 * 1000);
+//
+//
+//      ASSERT(hPrevInstance == NULL);
+//
+//      int nReturnCode = 0;
+//
+//      ::metrowin::main_init_data * pinitmaindata  = new ::metrowin::main_init_data;
+//
+//      pinitmaindata->m_hInstance             = hInstance;
+//      pinitmaindata->m_hPrevInstance         = hPrevInstance;
+//      pinitmaindata->m_vssCommandLine        = lpCmdLine;
+//      pinitmaindata->m_nCmdShow              = nCmdShow;
+//
+//
+//      psystem->init_main_data(pinitmaindata);
+//
+//
+//      nReturnCode = psystem->main();
+//
+//
+//      __win_term();
+//
+//
+//      try
+//      {
+//         delete psystem;
+//      }
+//      catch(...)
+//      {
+//      }
+//
+//      psystem = NULL;
+//
+//      try
+//      {
+////         delete __get_module_state()->m_pmapHWND;
+//      }
+//      catch(...)
+//      {
+//      }
+///*      try
+//      {
+//         delete __get_module_state()->m_pmapHDC;
+//      }
+//      catch(...)
+//      {
+//      }*/
+///*      try
+//      {
+//         delete __get_module_state()->m_pmapHGDIOBJ;
+//      }
+//      catch(...)
+//      {
+//      }*/
+////      delete __get_module_state()->m_pmapHMENU;
+//      try
+//      {
+//         __get_module_state()->m_pmapHWND     = NULL;
+//      }
+//      catch(...)
+//      {
+//      }
+///*      try
+//      {
+//         __get_module_state()->m_pmapHDC      = NULL;
+//      }
+//      catch(...)
+//      {
+//      }
+//      try
+//      {
+//         __get_module_state()->m_pmapHGDIOBJ  = NULL;
+//      }
+//      catch(...)
+//      {
+//      }*/
+//
+////      set_heap_mutex(NULL);
+//
+//
+//      return nReturnCode;
+//   }
+//   catch(...)
+//   {
+//   }
+//   return -1;
+//}
+//
+//
 
 void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
 {

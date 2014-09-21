@@ -87,7 +87,7 @@ namespace metrowin
 
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         Application.dir().mk(Application.dir_name(lpszFileName));
+         Application.dir_mk(Application.dir_name(lpszFileName));
       }
 
       m_bCloseOnDelete = FALSE;
@@ -360,8 +360,8 @@ namespace metrowin
       ASSERT_VALID(this);
       ASSERT(m_hFile != (UINT)hFileNull);
 
-      if (!::LockFile((HANDLE)m_hFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-         WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
+//      if (!::LockFile((HANDLE)m_hFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
+  //       WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
 
    void file::UnlockRange(file_position dwPos, file_size dwCount)
@@ -369,8 +369,8 @@ namespace metrowin
       ASSERT_VALID(this);
       ASSERT(m_hFile != (UINT)hFileNull);
 
-      if (!::UnlockFile((HANDLE)m_hFile,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-         WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
+    //  if (!::UnlockFile((HANDLE)m_hFile,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
+      //   WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
 
    void file::set_length(file_size dwNewLen)
@@ -928,7 +928,7 @@ namespace metrowin
       ::file::file_status status;
       GetStatus(status);
       string wstrResult;
-      wstrResult = System.file().title_(status.m_strFullName);
+      wstrResult = System.file_title(status.m_strFullName);
       return wstrResult;
    }
 
@@ -990,7 +990,7 @@ namespace metrowin
    /////////////////////////////////////////////////////////////////////////////
    // WinFileException helpers
 
-   void CLASS_DECL_AURA ::file::throw_exception(::aura::application * papp, int cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+   void CLASS_DECL_AURA throw_exception(sp(::aura::application) papp, int cause, LONG lOsError, const char * lpszFileName /* == NULL */)
    {
 #ifdef DEBUG
       const char * lpsz;

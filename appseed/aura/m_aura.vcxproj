@@ -1061,7 +1061,6 @@
     <ClCompile Include="aura\node\metrowin\metrowin_shell.cpp" />
     <ClCompile Include="aura\node\metrowin\metrowin_stdio_file.cpp" />
     <ClCompile Include="aura\node\metrowin\metrowin_thread.cpp" />
-    <ClCompile Include="aura\node\metrowin\metrowin_thread_local_storage.cpp" />
     <ClCompile Include="aura\node\metrowin\metrowin_trace.cpp" />
     <ClCompile Include="aura\node\metrowin\metrowin_uac_tools.cpp" />
     <ClCompile Include="aura\node\metrowin\metrowin_util.cpp" />
@@ -1167,7 +1166,6 @@
     <ClCompile Include="aura\os\metrowin\metrowin_process.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_simple_app.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_simple_shell_launcher.cpp" />
-    <ClCompile Include="aura\os\metrowin\metrowin_simple_ui.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_small_ipca_channel.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_sockets.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_time.cpp" />

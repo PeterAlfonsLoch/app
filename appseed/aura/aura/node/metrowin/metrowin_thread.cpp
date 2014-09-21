@@ -9,7 +9,7 @@ namespace metrowin
 } // namespace metrowin
 
 bool CLASS_DECL_AURA __internal_pump_message();
-LRESULT CLASS_DECL_AURA __internal_process_wnd_proc_exception(::exception::aura*, const MSG* pMsg);
+LRESULT CLASS_DECL_AURA __internal_process_wnd_proc_exception(::exception::base*, const MSG* pMsg);
 bool __internal_pre_translate_message(MSG* pMsg);
 bool __internal_is_idle_message(MSG* pMsg);
 //__STATIC void CLASS_DECL_AURA __pre_init_dialog(sp(::user::interaction) pWnd, LPRECT lpRectOld, uint32_t* pdwStyleOld);
@@ -75,7 +75,8 @@ void thread::set_p(::thread * p)
    */
 
    thread::thread(::aura::application * papp) :
-      element(papp)//,
+      element(papp),
+      ::thread_impl(papp)//,
       //message_queue(papp),//,
       //m_evFinish(FALSE, TRUE)
       //::thread(NULL),
@@ -834,7 +835,7 @@ void thread::set_p(::thread * p)
 //
 //   void thread::DispatchThreadMessageEx(signal_details * pobj)
 //   {
-//      SCAST_PTR(::message::aura, pbase, pobj);
+//      SCAST_PTR(::message::base, pbase, pobj);
 //      if(!pbase->m_bRet && pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
 //      {
 //         smart_pointer < ::user::message > spmessage(pbase->m_lparam);
@@ -896,7 +897,7 @@ void thread::set_p(::thread * p)
 //         ::message::e_prototype eprototype = signal.m_eprototype;
 //         if(eprototype == ::message::PrototypeNone)
 //         {
-//            //::message::aura aura(get_app());
+//            //::message::base aura(get_app());
 //            pbase->m_psignal = psignal;
 //            lresult = 0;
 //            //aura.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
@@ -922,13 +923,13 @@ void thread::set_p(::thread * p)
 //
 //   __STATIC inline bool IsEnterKey(signal_details * pobj)
 //   { 
-//      SCAST_PTR(::message::aura, pbase, pobj);
+//      SCAST_PTR(::message::base, pbase, pobj);
 //      return pbase->m_uiMessage == WM_KEYDOWN && pbase->m_wparam == VK_RETURN; 
 //   }
 //
 //   __STATIC inline bool IsButtonUp(signal_details * pobj)
 //   { 
-//      SCAST_PTR(::message::aura, pbase, pobj);
+//      SCAST_PTR(::message::base, pbase, pobj);
 //      return pbase->m_uiMessage == WM_LBUTTONUP; 
 //   }
 //
@@ -938,7 +939,7 @@ void thread::set_p(::thread * p)
 //      if(pobj == NULL)
 //         return;   // not handled
 //
-//      SCAST_PTR(::message::aura, pbase, pobj);
+//      SCAST_PTR(::message::base, pbase, pobj);
 //
 //#ifdef WINDOWSEX
 //      frame_window* pTopFrameWnd;
@@ -1048,7 +1049,7 @@ void thread::set_p(::thread * p)
 //         if(msg.message != WM_KICKIDLE)
 //         {
 //            {
-//               smart_pointer < ::message::aura > spbase;
+//               smart_pointer < ::message::base > spbase;
 //
 //               spbase = get_base(&msg);
 //
@@ -1209,7 +1210,7 @@ void thread::set_p(::thread * p)
 //
 //   void thread::message_handler(signal_details * pobj)
 //   {
-//      SCAST_PTR(::message::aura, pbase, pobj);
+//      SCAST_PTR(::message::base, pbase, pobj);
 //      // special message which identifies the window as using __window_procedure
 ///*      if(pbase->m_uiMessage == WM_QUERYAFXWNDPROC)
 //      {
@@ -2170,7 +2171,7 @@ void thread::set_p(::thread * p)
 ////::message::e_prototype eprototype = signal.m_eprototype;
 ////if(eprototype == ::message::PrototypeNone)
 ////{
-////::message::aura aura;
+////::message::base aura;
 ////aura.m_psignal = psignal;
 ////lresult = 0;
 ////aura.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
@@ -2208,7 +2209,7 @@ void thread::set_p(::thread * p)
 ////      return ::CallNextHookEx(gen_ThreadState->m_hHookOldMsgFilter, code, wParam, lParam);
 ////   }
 ////   ASSERT(pthread != NULL);
-////   smart_pointer < ::message::aura > spbase;
+////   smart_pointer < ::message::base > spbase;
 ////   spbase(pthread->get_base((LPMSG)lParam));
 ////   pthread->ProcessMessageFilter(code, spbase);
 ////   LRESULT lresult = spbase->m_bRet ? 1 : 0;

@@ -285,7 +285,7 @@ TagLib::instance();
 
 			// external plugin initialization
 
-#ifdef _WIN32
+#ifdef WINDOWSEX
 			if (!load_local_plugins_only) {
 				int count = 0;
 				char buffer[MAX_PATH + 200];

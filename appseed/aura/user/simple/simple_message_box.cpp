@@ -27,7 +27,7 @@ extern "C"
 CLASS_DECL_AURA int32_t aura_simple_message_box(oswindow interaction_impl,const char * lpText,const char * lpCaption,uint32_t uiFlags)
 {
 
-   return ::MessageBox(interaction_impl,lpText,lpCaption,uiFlags);
+   return ::MessageBoxA(interaction_impl,lpText,lpCaption,uiFlags);
 
 }
 
