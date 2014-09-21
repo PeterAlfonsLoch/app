@@ -1,7 +1,7 @@
 #include "framework.h" // previously aura/user/user.h
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -9,7 +9,7 @@
 
 #include <link.h>
 
-
+#include <dlfcn.h>
 #include <ctype.h>
 #include <sys/stat.h>
 #endif
@@ -1120,9 +1120,13 @@ namespace aura
 
       throw todo(this);
 
+#elif defined(ANDROID)
+
+      throw todo(this);
+
 #else
 
-#ifdef LINUX
+#if defined(LINUX)
 
       {
 

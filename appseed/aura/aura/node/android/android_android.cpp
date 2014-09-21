@@ -4,7 +4,7 @@
 
 void CLASS_DECL_AURA __abort()
 {
-   __android_term();
+   //__android_term();
    abort();
 }
 

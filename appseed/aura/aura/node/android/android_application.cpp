@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "android.h"
 #include <dlfcn.h>
 #include <link.h>
 
