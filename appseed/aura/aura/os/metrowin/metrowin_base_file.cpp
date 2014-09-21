@@ -346,20 +346,6 @@ END_EXTERN_C
 
 
 
-int_bool file_copy_dup(const char * pszNew,const char * pszSrc,bool bOverwrite)
-{
-
-   wstring wstrNew(pszNew);
-
-   wstring wstrSrc(pszSrc);
-
-   return ::CopyFileW(wstrSrc,wstrNew,bOverwrite ? FALSE : TRUE) ? true : false;
-
-}
-
-
-
-
 
 
 string file_get_mozilla_firefox_plugin_container_path()
