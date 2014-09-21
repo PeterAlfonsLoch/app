@@ -788,6 +788,7 @@
       <AndroidSystemLibs>c;m;log;gcc;base</AndroidSystemLibs>
       <ModuleDefinitionFile>_ca2freeimage.def</ModuleDefinitionFile>
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>

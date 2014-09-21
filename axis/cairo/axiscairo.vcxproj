@@ -638,9 +638,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
-      <AndroidSystemLibs>m;log;gcc;base;basefreetype;basepixman;basefreeimage</AndroidSystemLibs>
       <ModuleDefinitionFile>basecairo.def</ModuleDefinitionFile>
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
+      <AdditionalDependencies>aura;axis;base;axisfreetype;axispixman;axisfreeimage;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
