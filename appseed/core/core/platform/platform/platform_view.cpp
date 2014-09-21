@@ -296,7 +296,7 @@ namespace platform
                sp(::create_context) cc(Application.command_central());
 
                cc->m_spCommandLine->m_strApp   = strApp;
-               cc->m_spCommandLine->m_varFile  = Bergedge.m_varTopicFile;
+               cc->m_spCommandLine->m_varFile  = Platform.m_varTopicFile;
 
                Session.command()->request_create(cc);
             }
@@ -374,13 +374,13 @@ namespace platform
       class rect rectThumb;
       if(&Session != NULL)
       {
-         Bergedge.get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
+         Platform.get_document()->get_bergedge_view()->GetWindowRect(rectThumb);
          if(rectThumb.area() > 0)
          {
             ::draw2d::dib_sp dib(allocer());
             dib->create(1920, 1080);
             keep < bool > keepOnDraw(&GetParentFrame().cast < ::platform::frame > ()->m_bOnDraw, true, false, true);
-            Bergedge.get_document()->get_bergedge_view()->_000OnDraw(dib->get_graphics());
+            Platform.get_document()->get_bergedge_view()->_000OnDraw(dib->get_graphics());
             dib->get_graphics()->SetViewportOrg(0, 0);
             keepOnDraw.KeepAway();
 
@@ -458,7 +458,7 @@ namespace platform
    {
       try
       {
-         Bergedge.userex()->open_document_file(pcreatecontext);
+         Platform.userex()->open_document_file(pcreatecontext);
       }
       catch(...)
       {

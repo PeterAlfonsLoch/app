@@ -1276,7 +1276,7 @@ void simple_frame_window::OnDropFiles(HDROP hDropInfo)
    SetActiveWindow();      // activate us first !
    UINT nFiles = ::DragQueryFile(hDropInfo, (UINT)-1, NULL, 0);
 
-   ::userex::userex* puser = Bergedge.userex();
+   ::userex::userex* puser = Platform.userex();
    ASSERT(puser != NULL);
    for (UINT iFile = 0; iFile < nFiles; iFile++)
    {

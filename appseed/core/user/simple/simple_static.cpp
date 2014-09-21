@@ -32,7 +32,7 @@ void simple_static::_001OnDraw(::draw2d::graphics *pdc)
 
       select_font(pdc);
 
-      ::draw2d::brush_sp brush(allocer(), Bergedge.userex()->GetUfeSchema()->m_crTextNormal);
+      ::draw2d::brush_sp brush(allocer(), Platform.userex()->GetUfeSchema()->m_crTextNormal);
 
       pdc->SelectObject(brush);
 

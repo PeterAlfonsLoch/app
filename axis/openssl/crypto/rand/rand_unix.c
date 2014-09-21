@@ -168,7 +168,7 @@ int RAND_poll(void)
 	long long duration;
 	extern void s$sleep2 (long long *_duration, short int *_code);
 #else
-#error "Unsupported Bergedge."
+#error "Unsupported Platform."
 #endif /* OPENSSL_SYS_VOS_IA32 */
 #endif /* OPENSSL_SYS_VOS_HPPA */
 

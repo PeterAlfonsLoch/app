@@ -113,8 +113,8 @@ namespace bergedge
          sp(::aura::application) pappTab;
          if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
-            Bergedge.m_pappCurrent = pappTab;
-            Bergedge.m_pappCurrent = pappTab;
+            Platform.m_pappCurrent = pappTab;
+            Platform.m_pappCurrent = pappTab;
          }
          sp(::simple_frame_window) pframeApp =  (m_pviewdata->m_pwnd.m_p);
          if(pframeApp != NULL)
@@ -212,9 +212,9 @@ namespace bergedge
 
          }
 
-         string strIcon = Sess(Bergedge.m_pappCurrent).dir().matter("mainframe/icon48.png");
+         string strIcon = Sess(Platform.m_pappCurrent).dir().matter("mainframe/icon48.png");
          pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
-         if(Sess(Bergedge.m_pappCurrent).file().exists(strIcon))
+         if(Sess(Platform.m_pappCurrent).file().exists(strIcon))
          {
             ppane->m_dib.alloc(allocer());
             ppane->m_dib.load_from_file(strIcon);
@@ -228,7 +228,7 @@ namespace bergedge
       else if(strId == "::bergedge::pane_view_application")
       {
          pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-         sp(::filemanager::manager) pdoc = Bergedge.filemanager().std().open_child_list(false,true,this);
+         sp(::filemanager::manager) pdoc = Platform.filemanager().std().open_child_list(false,true,this);
          if(pdoc != NULL)
          {
             pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -287,7 +287,7 @@ namespace bergedge
          case PaneViewWinActionArea:
             {
                pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-               ::filemanager::manager_template * ptemplate = &Bergedge.filemanager().std();
+               ::filemanager::manager_template * ptemplate = &Platform.filemanager().std();
                sp(::filemanager::manager) pdoc = ptemplate->open_child_list(false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
@@ -323,13 +323,13 @@ namespace bergedge
             break;
          case PaneViewThreeActionLaunch:
             {
-               sp(::filemanager::manager) pdoc = Bergedge.filemanager().std().open_child_list(false, true, pcreatordata->m_pholder);
+               sp(::filemanager::manager) pdoc = Platform.filemanager().std().open_child_list(false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
                   pdoc->get_filemanager_data()->m_iIconSize = 48;
                   pdoc->get_filemanager_data()->m_bListText = true;
                   pdoc->get_filemanager_data()->m_bListSelection = false;
-                  pdoc->get_filemanager_data()->m_pcallback = &Bergedge.filemanager();
+                  pdoc->get_filemanager_data()->m_pcallback = &Platform.filemanager();
                   pdoc->get_filemanager_data()->m_bIconView = true;
                   pdoc->get_filemanager_data()->m_strDISection = "winactionarea_3-action-launch";
                   pdoc->Initialize(true);
@@ -353,7 +353,7 @@ namespace bergedge
             break;
          case PaneViewConfiguration:
          {
-            sp(::form_document) pdoc = Bergedge.userex()->create_form(this, this);
+            sp(::form_document) pdoc = Platform.userex()->create_form(this, this);
             if(pdoc == NULL)
                return;
             m_pformOptions = pdoc->get_typed_view < form_view > ();

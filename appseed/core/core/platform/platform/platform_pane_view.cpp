@@ -144,7 +144,7 @@ namespace platform
          break;
       case platform::PaneViewFileManager:
          {
-                                           sp(::filemanager::manager) pdoc = Bergedge.filemanager().std().open_child(false,true);
+                                           sp(::filemanager::manager) pdoc = Platform.filemanager().std().open_child(false,true);
             if(pdoc != NULL)
             {
                sp(::user::impact) pview = pdoc->get_view();

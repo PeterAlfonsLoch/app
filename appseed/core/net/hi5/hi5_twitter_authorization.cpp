@@ -162,10 +162,10 @@ namespace hi5
 
          }
 
-         if(&Bergedge != NULL && Bergedge.get_document() != NULL && Bergedge.get_document()->get_bergedge_view() != NULL)
+         if(&Bergedge != NULL && Platform.get_document() != NULL && Platform.get_document()->get_bergedge_view() != NULL)
          {
 
-            Bergedge.get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
+            Platform.get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
 
          }
          else
@@ -203,7 +203,7 @@ namespace hi5
          {
          case 1:
             {
-               m_pdocAuth = Bergedge.userex()->create_child_form(this, pcreatordata->m_pholder);
+               m_pdocAuth = Platform.userex()->create_child_form(this, pcreatordata->m_pholder);
                if(m_pdocAuth != NULL)
                {
                   m_pviewAuth = m_pdocAuth->get_typed_view < form_view > ();

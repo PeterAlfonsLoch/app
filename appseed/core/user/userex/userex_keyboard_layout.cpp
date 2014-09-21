@@ -24,7 +24,7 @@ namespace userex // ca8 + cube
    bool keyboard_layout::CreateViews()
    {
 
-      m_pdoc = Bergedge.userex()->create_form(this, this);
+      m_pdoc = Platform.userex()->create_form(this, this);
 
       SetPaneCount(2);
 

@@ -41,7 +41,7 @@ namespace filemanager
       {
 
          pfilemanagerdata = canew(::filemanager::data(get_app()));
-         pfilemanagerdata->m_pcallback = &Bergedge.filemanager();
+         pfilemanagerdata->m_pcallback = &Platform.filemanager();
          pfilemanagerdata->m_iTemplate = m_iTemplate;
          pfilemanagerdata->m_iDocument = m_iNextDocument++;
          pfilemanagerdata->m_bTransparentBackground = pcreatecontext == NULL ? true : pcreatecontext->m_bTransparentBackground;
@@ -111,8 +111,8 @@ namespace filemanager
       createcontext->oprop("filemanager::data") = pfilemanagerdata;
 
       pfilemanagerdata->m_pmanagertemplate = this;
-      pfilemanagerdata->m_pcallback = &Bergedge.filemanager();
-      pfilemanagerdata->m_pfilemanager = &Bergedge.filemanager();
+      pfilemanagerdata->m_pcallback = &Platform.filemanager();
+      pfilemanagerdata->m_pfilemanager = &Platform.filemanager();
       pfilemanagerdata->m_iTemplate = m_iTemplate;
       pfilemanagerdata->m_iDocument = m_iNextDocument++;
       pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
@@ -126,7 +126,7 @@ namespace filemanager
       {
 
          string strId;
-         strId.Format("%s::(%d)",Bergedge.filemanager().m_idFileManager.str(),pdoc->get_filemanager_data()->m_iDocument);
+         strId.Format("%s::(%d)",Platform.filemanager().m_idFileManager.str(),pdoc->get_filemanager_data()->m_iDocument);
          pdoc->get_filemanager_data()->m_strDISection = strId;
 
       }
@@ -160,8 +160,8 @@ namespace filemanager
 
 
       pfilemanagerdata->m_pmanagertemplate = this;
-      pfilemanagerdata->m_pcallback = &Bergedge.filemanager();
-      pfilemanagerdata->m_pfilemanager = &Bergedge.filemanager();
+      pfilemanagerdata->m_pcallback = &Platform.filemanager();
+      pfilemanagerdata->m_pfilemanager = &Platform.filemanager();
       pfilemanagerdata->m_iTemplate = m_iTemplate;
       pfilemanagerdata->m_iDocument = m_iNextDocument++;
       pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;

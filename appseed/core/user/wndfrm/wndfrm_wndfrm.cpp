@@ -104,14 +104,14 @@ namespace user
 
          }
 
-         sp(::user::wndfrm::interaction) pinteraction = Bergedge.m_mapUinteraction[pszUinteraction];
+         sp(::user::wndfrm::interaction) pinteraction = Platform.m_mapUinteraction[pszUinteraction];
 
-         if(Bergedge.m_mapUinteraction[pszUinteraction] == NULL)
+         if(Platform.m_mapUinteraction[pszUinteraction] == NULL)
          {
 
-            Bergedge.m_mapUinteraction[pszUinteraction] = Bergedge.wndfrm().get_new_wndfrm(pszUinteraction);
+            Platform.m_mapUinteraction[pszUinteraction] = Platform.wndfrm().get_new_wndfrm(pszUinteraction);
 
-            pinteraction = Bergedge.m_mapUinteraction[pszUinteraction];
+            pinteraction = Platform.m_mapUinteraction[pszUinteraction];
 
          }
 
