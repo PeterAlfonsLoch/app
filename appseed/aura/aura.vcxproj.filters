@@ -3184,12 +3184,6 @@
     <ClCompile Include="aura\node\android\android_application.cpp">
       <Filter>Source Files\aura\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\android\android_copydesk.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_dir.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="aura\node\android\android_dumpinit.cpp">
       <Filter>Source Files\aura\node\android</Filter>
     </ClCompile>
@@ -3211,16 +3205,10 @@
     <ClCompile Include="aura\node\android\android_file_system.cpp">
       <Filter>Source Files\aura\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\android\android_ip_enum.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="aura\node\android\android_main.cpp">
       <Filter>Source Files\aura\node\android</Filter>
     </ClCompile>
     <ClCompile Include="aura\node\android\android_os.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_port_forward.cpp">
       <Filter>Source Files\aura\node\android</Filter>
     </ClCompile>
     <ClCompile Include="aura\node\android\android_shell.cpp">
@@ -3238,13 +3226,7 @@
     <ClCompile Include="aura\node\android\android_util.cpp">
       <Filter>Source Files\aura\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\android\android_window.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="aura\node\android\android1.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android2.cpp">
       <Filter>Source Files\aura\node\android</Filter>
     </ClCompile>
     <ClCompile Include="aura\node\ansios\ansios_thread_impl.cpp">
@@ -3267,9 +3249,6 @@
     </ClCompile>
     <ClCompile Include="aura\aura\aura_static_start.cpp">
       <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_crypto.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_session_interface.cpp">
       <Filter>Source Files\aura\aura</Filter>
