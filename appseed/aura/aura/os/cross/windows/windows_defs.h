@@ -124,6 +124,7 @@ typedef UCHAR *PUCHAR;
 #define WINAPIV
 #define APIENTRY    WINAPI
 #define APIPRIVATE
+//#define PASCAL      pascal
 #define PASCAL      pascal
 #endif
 
