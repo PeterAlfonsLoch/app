@@ -1,7 +1,7 @@
 // ==========================================================
 // Copy / paste routines
 //
-// - Floris van den Berg (flvdberg@wxs.nl)
+// - Floris van den Plat (flvdberg@wxs.nl)
 // - Alexander Dymerets (sashad@te.net.ua)
 // - Hervé Drolon (drolon@infonie.fr)
 // - Manfred Tausch (manfred.tausch@t-online.de)

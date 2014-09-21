@@ -2,7 +2,7 @@
 // FreeImage implementation
 //
 // Design and implementation by
-// - Floris van den Berg (flvdberg@wxs.nl)
+// - Floris van den Plat (flvdberg@wxs.nl)
 // - Hervé Drolon (drolon@infonie.fr)
 // - Karl-Heinz Bussian (khbussian@moss.de)
 //

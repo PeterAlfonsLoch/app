@@ -2,7 +2,7 @@
 // Multi-Page functions
 //
 // Design and implementation by
-// - Floris van den Berg (flvdberg@wxs.nl)
+// - Floris van den Plat (flvdberg@wxs.nl)
 // - Laurent Rocher (rocherl@club-internet.fr)
 // - Steve Johnson (steve@parisgroup.net)
 // - Petr Pytelka (pyta@lightcomp.com)

@@ -2,7 +2,7 @@
 // Deluxe Paint Loader
 //
 // Design and implementation by
-// - Floris van den Berg (flvdberg@wxs.nl)
+// - Floris van den Plat (flvdberg@wxs.nl)
 // - Mark Sibly (marksibly@blitzbasic.com)
 // - Aaron Shumate (trek@startreker.com)
 // - Hervé Drolon (drolon@infonie.fr)

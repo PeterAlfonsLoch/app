@@ -2,7 +2,7 @@
 // BMP Loader and Writer
 //
 // Design and implementation by
-// - Floris van den Berg (flvdberg@wxs.nl)
+// - Floris van den Plat (flvdberg@wxs.nl)
 // - Markus Loibl (markus.loibl@epost.de)
 // - Martin Weber (martweb@gmx.net)
 // - Hervé Drolon (drolon@infonie.fr)

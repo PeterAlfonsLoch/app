@@ -2,7 +2,7 @@
 // TIFF Loader and Writer
 //
 // Design and implementation by
-// - Floris van den Berg (flvdberg@wxs.nl)
+// - Floris van den Plat (flvdberg@wxs.nl)
 // - Hervé Drolon (drolon@infonie.fr)
 // - Markus Loibl (markus.loibl@epost.de)
 // - Luca Piergentili (l.pierge@terra.es)

@@ -2,7 +2,7 @@
 // Kodak PhotoCD Loader
 //
 // Design and implementation by
-// - Floris van den Berg (flvdberg@wxs.nl)
+// - Floris van den Plat (flvdberg@wxs.nl)
 //
 // Based on pascal code developed by Alex Kwak
 //

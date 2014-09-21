@@ -75,8 +75,8 @@ namespace install
 #undef Sess
 #define Sess(paxisapp) (*paxisapp->m_pbasesession)
 //#define Session (Sess(m_pauraapp))
-//#define Berg(paxisapp) (*paxisapp->m_pcoreplatform)
-//#define Platform (Berg(m_pauraapp))
+//#define Plat(paxisapp) (*paxisapp->m_pcoreplatform)
+//#define Platform (Plat(m_pauraapp))
 
 #undef App
 #undef Application

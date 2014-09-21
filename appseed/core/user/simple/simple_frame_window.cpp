@@ -675,7 +675,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       }
 
    }
-   else if(Berg(papp->m_pcoreapp).userex()->GetVisibleTopLevelFrameCountExcept(this) <= 0)
+   else if(Plat(papp->m_pcoreapp).userex()->GetVisibleTopLevelFrameCountExcept(this) <= 0)
    {
 
       if (!papp->m_pcoreapp->_001CloseApplicationByUser(this))

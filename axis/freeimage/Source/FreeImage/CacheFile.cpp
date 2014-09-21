@@ -2,7 +2,7 @@
 // Multi-Page functions
 //
 // Design and implementation by
-// - Floris van den Berg (flvdberg@wxs.nl)
+// - Floris van den Plat (flvdberg@wxs.nl)
 // - checkered (checkered@users.sourceforge.net)
 //
 // This file is part of FreeImage 3

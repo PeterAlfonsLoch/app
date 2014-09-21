@@ -3,7 +3,7 @@
 // Based on code developed by The Independent JPEG Group
 //
 // Design and implementation by
-// - Floris van den Berg (flvdberg@wxs.nl)
+// - Floris van den Plat (flvdberg@wxs.nl)
 // - Jan L. Nauta (jln@magentammt.com)
 // - Markus Loibl (markus.loibl@epost.de)
 // - Karl-Heinz Bussian (khbussian@moss.de)

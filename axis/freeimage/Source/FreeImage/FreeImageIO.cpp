@@ -2,7 +2,7 @@
 // Input/Output functions
 //
 // Design and implementation by
-// - Floris van den Berg (flvdberg@wxs.nl)
+// - Floris van den Plat (flvdberg@wxs.nl)
 //
 // This file is part of FreeImage 3
 //

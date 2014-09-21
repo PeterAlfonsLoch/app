@@ -2,7 +2,7 @@
 // FreeImage Plugin Interface
 //
 // Design and implementation by
-// - Floris van den Berg (floris@geekhq.nl)
+// - Floris van den Plat (floris@geekhq.nl)
 // - Rui Lopes (ruiglopes@yahoo.com)
 // - Detlev Vendt (detlev.vendt@brillit.de)
 // - Petr Pytelka (pyta@lightcomp.com)
