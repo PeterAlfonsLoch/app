@@ -1,5 +1,7 @@
 #pragma once
 
+#include "aura/node/ansios/ansios.h"
+
 
 string get_error_message(DWORD dwError);
 
