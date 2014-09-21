@@ -452,39 +452,39 @@ END_EXTERN_C
 //
 //}
 //
-
-bool file_get_memory_dup(::primitive::memory_base & memory,const char * path)
-{
-
-   memory.allocate(0);
-
-   HANDLE hfile = ::create_file(path,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-
-   if(hfile == INVALID_HANDLE_VALUE)
-      return false;
-
-   uint64_t uiSize = fsize_dup(hfile);
-
-   if(uiSize > ((::count) - 1))
-   {
-
-      ::CloseHandle(hfile);
-
-      return false;
-
-   }
-
-   memory.allocate((::count) uiSize);
-
-   DWORD dwRead;
-
-   ::ReadFile(hfile,memory.get_data(),(uint32_t)memory.get_size(),&dwRead,NULL);
-
-   ::CloseHandle(hfile);
-
-   return true;
-
-}
+//
+//bool file_get_memory_dup(::primitive::memory_base & memory,const char * path)
+//{
+//
+//   memory.allocate(0);
+//
+//   HANDLE hfile = ::create_file(path,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+//
+//   if(hfile == INVALID_HANDLE_VALUE)
+//      return false;
+//
+//   uint64_t uiSize = fsize_dup(hfile);
+//
+//   if(uiSize > ((::count) - 1))
+//   {
+//
+//      ::CloseHandle(hfile);
+//
+//      return false;
+//
+//   }
+//
+//   memory.allocate((::count) uiSize);
+//
+//   DWORD dwRead;
+//
+//   ::ReadFile(hfile,memory.get_data(),(uint32_t)memory.get_size(),&dwRead,NULL);
+//
+//   ::CloseHandle(hfile);
+//
+//   return true;
+//
+//}
 
 //
 //
@@ -2363,170 +2363,170 @@ return false;
 
 
 
-
-
-int_bool file_ftd_dup(const char * pszDir,const char * pszFile)
-{
-
-   HANDLE hfile1 = NULL;
-   HANDLE hfile2 = NULL;
-   wstring wstr(pszFile);
-   hfile1 = ::create_file(pszFile,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-   if(hfile1 == INVALID_HANDLE_VALUE)
-      return false;
-
-   string strVersion;
-
-
-   file_read_ex1_string_dup(hfile1,NULL,strVersion);
-   int32_t n;
-   string strRelative;
-   string strMd5;
-   string strMd5New;
-   int32_t iBufSize = 1024 * 1024;
-   primitive::memory mem;
-   mem.allocate(iBufSize);
-   uchar * buf = (uchar *)mem.get_data();
-   int32_t iLen;
-   ::md5::md5 ctx;
-   DWORD dwRead;
-   DWORD dwWritten;
-   if(strVersion == "fileset v1")
-   {
-      while(true)
-      {
-         file_read_n_number_dup(hfile1,NULL,n);
-         if(n == 2)
-            break;
-         file_read_ex1_string_dup(hfile1,NULL,strMd5);
-         ctx.initialize();
-         file_read_ex1_string_dup(hfile1,&ctx,strRelative);
-         string strPath = dir::path(pszDir,strRelative);
-         dir::mk(dir::name(strPath));
-         hfile2 = ::create_file(strPath,GENERIC_WRITE,0,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
-         if(hfile2 == INVALID_HANDLE_VALUE)
-            return false;
-         file_read_n_number_dup(hfile1,&ctx,iLen);
-         while(iLen > 0)
-         {
-            if(!::ReadFile(hfile1,buf,MIN(iBufSize,iLen),&dwRead,NULL))
-               break;
-            if(dwRead == 0)
-               break;
-            ::WriteFile(hfile2,buf,dwRead,&dwWritten,NULL);
-            ctx.update(buf,dwRead);
-            iLen -= dwRead;
-         }
-         ::CloseHandle(hfile2);
-         hfile2 = NULL;
-         ctx.finalize();
-
-         strMd5New.clear();
-         string strFormat;
-         strMd5New = ctx.to_string();
-         if(strMd5.CompareNoCase(strMd5New) != 0)
-            return false;
-      }
-   }
-   ::CloseHandle(hfile1);
-   if(hfile2 != INVALID_HANDLE_VALUE)
-      ::CloseHandle(hfile2);
-   return true;
-}
-
-
-void file_read_n_number_dup(HANDLE hfile,::md5::md5 * pctx,int32_t & iNumber)
-{
-   string str;
-   char ch;
-   DWORD dwRead;
-   while(ReadFile(hfile,&ch,1,&dwRead,NULL) && dwRead == 1)
-   {
-      if(ch >= '0' && ch <= '9')
-         str += ch;
-      else
-         break;
-      if(pctx != NULL)
-      {
-         pctx->update(&ch,1);
-      }
-   }
-   if(ch != 'n')
-      return;
-   if(pctx != NULL)
-   {
-      pctx->update(&ch,1);
-   }
-   iNumber = atoi_dup(str);
-}
-
-void file_read_ex1_string_dup(HANDLE hfile,::md5::md5 * pctx,string & str)
-{
-   int32_t iLen;
-   file_read_n_number_dup(hfile,pctx,iLen);
-   primitive::memory mem;
-   mem.allocate(MAX(iLen,64));
-   LPSTR lpsz = (LPSTR)mem.get_data();
-   DWORD dwRead;
-   ReadFile(hfile,lpsz,iLen,&dwRead,NULL);
-   if(pctx != NULL)
-   {
-      pctx->update(lpsz,iLen);
-   }
-   lpsz[iLen] = '\0';
-   str = lpsz;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//
+//
+//int_bool file_ftd_dup(const char * pszDir,const char * pszFile)
+//{
+//
+//   HANDLE hfile1 = NULL;
+//   HANDLE hfile2 = NULL;
+//   wstring wstr(pszFile);
+//   hfile1 = ::create_file(pszFile,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+//   if(hfile1 == INVALID_HANDLE_VALUE)
+//      return false;
+//
+//   string strVersion;
+//
+//
+//   file_read_ex1_string_dup(hfile1,NULL,strVersion);
+//   int32_t n;
+//   string strRelative;
+//   string strMd5;
+//   string strMd5New;
+//   int32_t iBufSize = 1024 * 1024;
+//   primitive::memory mem;
+//   mem.allocate(iBufSize);
+//   uchar * buf = (uchar *)mem.get_data();
+//   int32_t iLen;
+//   ::md5::md5 ctx;
+//   DWORD dwRead;
+//   DWORD dwWritten;
+//   if(strVersion == "fileset v1")
+//   {
+//      while(true)
+//      {
+//         file_read_n_number_dup(hfile1,NULL,n);
+//         if(n == 2)
+//            break;
+//         file_read_ex1_string_dup(hfile1,NULL,strMd5);
+//         ctx.initialize();
+//         file_read_ex1_string_dup(hfile1,&ctx,strRelative);
+//         string strPath = dir::path(pszDir,strRelative);
+//         dir::mk(dir::name(strPath));
+//         hfile2 = ::create_file(strPath,GENERIC_WRITE,0,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
+//         if(hfile2 == INVALID_HANDLE_VALUE)
+//            return false;
+//         file_read_n_number_dup(hfile1,&ctx,iLen);
+//         while(iLen > 0)
+//         {
+//            if(!::ReadFile(hfile1,buf,MIN(iBufSize,iLen),&dwRead,NULL))
+//               break;
+//            if(dwRead == 0)
+//               break;
+//            ::WriteFile(hfile2,buf,dwRead,&dwWritten,NULL);
+//            ctx.update(buf,dwRead);
+//            iLen -= dwRead;
+//         }
+//         ::CloseHandle(hfile2);
+//         hfile2 = NULL;
+//         ctx.finalize();
+//
+//         strMd5New.clear();
+//         string strFormat;
+//         strMd5New = ctx.to_string();
+//         if(strMd5.CompareNoCase(strMd5New) != 0)
+//            return false;
+//      }
+//   }
+//   ::CloseHandle(hfile1);
+//   if(hfile2 != INVALID_HANDLE_VALUE)
+//      ::CloseHandle(hfile2);
+//   return true;
+//}
+//
+//
+//void file_read_n_number_dup(HANDLE hfile,::md5::md5 * pctx,int32_t & iNumber)
+//{
+//   string str;
+//   char ch;
+//   DWORD dwRead;
+//   while(ReadFile(hfile,&ch,1,&dwRead,NULL) && dwRead == 1)
+//   {
+//      if(ch >= '0' && ch <= '9')
+//         str += ch;
+//      else
+//         break;
+//      if(pctx != NULL)
+//      {
+//         pctx->update(&ch,1);
+//      }
+//   }
+//   if(ch != 'n')
+//      return;
+//   if(pctx != NULL)
+//   {
+//      pctx->update(&ch,1);
+//   }
+//   iNumber = atoi_dup(str);
+//}
+//
+//void file_read_ex1_string_dup(HANDLE hfile,::md5::md5 * pctx,string & str)
+//{
+//   int32_t iLen;
+//   file_read_n_number_dup(hfile,pctx,iLen);
+//   primitive::memory mem;
+//   mem.allocate(MAX(iLen,64));
+//   LPSTR lpsz = (LPSTR)mem.get_data();
+//   DWORD dwRead;
+//   ReadFile(hfile,lpsz,iLen,&dwRead,NULL);
+//   if(pctx != NULL)
+//   {
+//      pctx->update(lpsz,iLen);
+//   }
+//   lpsz[iLen] = '\0';
+//   str = lpsz;
+//}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
 
-int_bool file_copy_dup(const char * pszNew,const char * pszSrc,int_bool bOverwrite)
-{
 
-   ::Windows::Storage::IStorageFolder ^ folderNew = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(dir::name(pszNew)));
 
-   auto optionNew = ::Windows::Storage::CreationCollisionOption::ReplaceExisting;
 
-   // create target file 
-   ::Windows::Storage::IStorageFile ^ fileNew = wait(folderNew->CreateFileAsync(file_title_dup(pszNew),optionNew));
-
-   if(fileNew == nullptr)
-      return false;
-
-   ::Windows::Storage::IStorageFolder ^ folderSrc = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(dir::name(pszSrc)));
-
-   // create source file 
-   ::Windows::Storage::IStorageFile ^ fileSrc = wait(folderSrc->GetFileAsync(file_title_dup(pszNew)));
-
-   if(fileSrc == nullptr)
-      return false;
-
-   wait(fileSrc->CopyAndReplaceAsync(fileNew));
-
-   return true;
-
-}
+//int_bool file_copy_dup(const char * pszNew,const char * pszSrc,int_bool bOverwrite)
+//{
+//
+//   ::Windows::Storage::IStorageFolder ^ folderNew = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(dir::name(pszNew)));
+//
+//   auto optionNew = ::Windows::Storage::CreationCollisionOption::ReplaceExisting;
+//
+//   // create target file 
+//   ::Windows::Storage::IStorageFile ^ fileNew = wait(folderNew->CreateFileAsync(file_title_dup(pszNew),optionNew));
+//
+//   if(fileNew == nullptr)
+//      return false;
+//
+//   ::Windows::Storage::IStorageFolder ^ folderSrc = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(dir::name(pszSrc)));
+//
+//   // create source file 
+//   ::Windows::Storage::IStorageFile ^ fileSrc = wait(folderSrc->GetFileAsync(file_title_dup(pszNew)));
+//
+//   if(fileSrc == nullptr)
+//      return false;
+//
+//   wait(fileSrc->CopyAndReplaceAsync(fileNew));
+//
+//   return true;
+//
+//}
 
 
 
