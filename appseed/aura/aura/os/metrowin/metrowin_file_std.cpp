@@ -812,29 +812,29 @@ string get_sys_temp_path()
 //
 
 
-int_bool file_put_contents_dup(const char * path,const char * contents,::count len)
-{
-
-   dir::mk(dir::name(path));
-
-   wstring wstr(path);
-
-
-
-   HANDLE hfile = ::create_file(path,GENERIC_WRITE,0,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
-   if(hfile == INVALID_HANDLE_VALUE)
-      return false;
-   count dwWrite;
-   if(len < 0)
-      dwWrite = strlen_dup(contents);
-   else
-      dwWrite = len;
-   DWORD dwWritten = 0;
-   bool bOk = ::WriteFile(hfile,contents,(uint32_t)dwWrite,&dwWritten,NULL) != FALSE;
-   ::CloseHandle(hfile);
-   return dwWrite == dwWritten && bOk != FALSE;
-
-}
+//int_bool file_put_contents_dup(const char * path,const char * contents,::count len)
+//{
+//
+//   dir::mk(dir::name(path));
+//
+//   wstring wstr(path);
+//
+//
+//
+//   HANDLE hfile = ::create_file(path,GENERIC_WRITE,0,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
+//   if(hfile == INVALID_HANDLE_VALUE)
+//      return false;
+//   count dwWrite;
+//   if(len < 0)
+//      dwWrite = strlen_dup(contents);
+//   else
+//      dwWrite = len;
+//   DWORD dwWritten = 0;
+//   bool bOk = ::WriteFile(hfile,contents,(uint32_t)dwWrite,&dwWritten,NULL) != FALSE;
+//   ::CloseHandle(hfile);
+//   return dwWrite == dwWritten && bOk != FALSE;
+//
+//}
 
 
 
