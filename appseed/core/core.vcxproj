@@ -2425,9 +2425,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ProjectReference Include="..\..\axis\bzip2\axisbzip2.vcxproj">
       <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\axis\mysql\axismysql.vcxproj">
-      <Project>{2652c96f-6e86-4ed1-b3b6-ac977dfb0593}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\axis\openssl\axisopenssl.vcxproj">
       <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>
     </ProjectReference>
