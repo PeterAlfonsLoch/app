@@ -44,7 +44,7 @@ namespace simpledb
 
       if(!m_pserver->initialize())
       {
-         Platform.userex()->simple_message_box(NULL, "Could not initialize simpledb.", MB_OK);
+         Bergedge.userex()->simple_message_box(NULL, "Could not initialize simpledb.", MB_OK);
          return false;
       }
 

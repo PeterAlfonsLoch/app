@@ -517,13 +517,13 @@ namespace userex
    ::user::front_end_schema * GetUfeSchema(sp(::aura::application) papp)
    {
 
-      return Plat(papp).userex()->GetUfeSchema();
+      return Berg(papp).userex()->GetUfeSchema();
 
    }
 
    ::user::front_end * GetUfe(sp(::aura::application) papp)
    {
-      return Plat(papp).userex()->GetUfe();
+      return Berg(papp).userex()->GetUfe();
    }
 
 
@@ -639,7 +639,7 @@ namespace userex
    {
       if(pwndParent != NULL && pwndParent->m_pauraapp != get_app())
       {
-         return Plat(pwndParent->m_pauraapp).userex()->create_form(pcallback,pwndParent,var);
+         return Berg(pwndParent->m_pauraapp).userex()->create_form(pcallback,pwndParent,var);
       }
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
@@ -686,7 +686,7 @@ namespace userex
    {
       if(pwndParent != NULL && pwndParent->m_pauraapp != get_app())
       {
-         return Plat(pwndParent->m_pauraapp).userex()->create_child_form(pcallback,pwndParent,var);
+         return Berg(pwndParent->m_pauraapp).userex()->create_child_form(pcallback,pwndParent,var);
       }
       if(m_ptemplateChildForm == NULL)
          return NULL;

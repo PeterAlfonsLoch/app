@@ -412,15 +412,15 @@ namespace filemanager
             GetSelectedFilePath(stra);
             if(stra.get_count() <= 0)
             {
-               Platform.m_varTopicFile.unset();
+               Bergedge.m_varTopicFile.unset();
             }
             else if(stra.get_count() == 1)
             {
-               Platform.m_varTopicFile = stra[0];
+               Bergedge.m_varTopicFile = stra[0];
             }
             else
             {
-               Platform.m_varTopicFile = stra;
+               Bergedge.m_varTopicFile = stra;
             }
 
          }
@@ -1291,7 +1291,7 @@ namespace filemanager
          ::userfs::list_item & item = get_fs_list_data()->m_itema.get_item((int32_t)m_iCreateImageListStep);
 
          ///IShellFolder * lpsf = m_pshellfolder;
-         item.m_iImage = Platform.userex()->shellimageset().GetImage(
+         item.m_iImage = Bergedge.userex()->shellimageset().GetImage(
             get_handle(),
             item.m_strPath,
             get_document()->get_fs_data()->is_dir(item.m_strPath) ? _shell::FileAttributeDirectory : _shell::FileAttributeNormal,
@@ -1362,11 +1362,11 @@ namespace filemanager
          column.m_bEditOnSecondClick = false;
          if (get_filemanager_data()->m_iIconSize >= 48)
          {
-            column.m_pil = Platform.userex()->shellimageset().GetImageList48();
+            column.m_pil = Bergedge.userex()->shellimageset().GetImageList48();
          }
          else
          {
-            column.m_pil = Platform.userex()->shellimageset().GetImageList16();
+            column.m_pil = Bergedge.userex()->shellimageset().GetImageList16();
          }
          _001AddColumn(column);
          m_iSelectionSubItem = i;
@@ -1412,12 +1412,12 @@ namespace filemanager
       column.m_bEditOnSecondClick = true;
       if (get_filemanager_data()->m_iIconSize >= 48)
       {
-         column.m_pilHover = Platform.userex()->shellimageset().GetImageList48Hover();
-         column.m_pil = Platform.userex()->shellimageset().GetImageList48();
+         column.m_pilHover = Bergedge.userex()->shellimageset().GetImageList48Hover();
+         column.m_pil = Bergedge.userex()->shellimageset().GetImageList48();
       }
       else
       {
-         column.m_pil = Platform.userex()->shellimageset().GetImageList16();
+         column.m_pil = Bergedge.userex()->shellimageset().GetImageList16();
       }
       _001AddColumn(column);
 
@@ -1855,7 +1855,7 @@ namespace filemanager
    {
       if (i == 0)
       {
-         return Platform.userex()->shellimageset().GetImageList16();
+         return Bergedge.userex()->shellimageset().GetImageList16();
       }
       return NULL;
    }

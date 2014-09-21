@@ -252,7 +252,7 @@ namespace platform
 
    void frame::super_dock_on_bergedge()
    {
-      if(!Platform.m_bShowPlatform)
+      if(!Bergedge.m_bShowPlatform)
       {
          return;
       }

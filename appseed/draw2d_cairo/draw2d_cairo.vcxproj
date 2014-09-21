@@ -1290,6 +1290,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <None Include="draw2d_cairo.def" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\axis\cairo\axiscairo.vcxproj">
+      <Project>{e6c58c82-71e5-48e6-98ed-1b505d6f10c2}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\axis\freetype\axisfreetype.vcxproj">
       <Project>{78b079bd-9fc7-4b9e-b4a6-96da0f00248b}</Project>
     </ProjectReference>

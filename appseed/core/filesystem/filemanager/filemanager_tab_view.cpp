@@ -141,7 +141,7 @@ namespace filemanager
          sp(::create_context) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = pcreatordata->m_pholder;
-         sp(form_document) pdoc = Platform.filemanager().m_ptemplateForm->open_document_file(createcontext);
+         sp(form_document) pdoc = Bergedge.filemanager().m_ptemplateForm->open_document_file(createcontext);
          if (pdoc == NULL)
             return;
          form_view * pformview = pdoc->get_typed_view < form_view >();
@@ -177,7 +177,7 @@ namespace filemanager
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = this;
          //throw not_implemented(get_app());
-         sp(operation_document) pdoc = (Platform.filemanager().m_ptemplateOperation->open_document_file(createcontext));
+         sp(operation_document) pdoc = (Bergedge.filemanager().m_ptemplateOperation->open_document_file(createcontext));
          if (pdoc == NULL)
             return;
          sp(::user::impact) pview = pdoc->get_view(0);
@@ -191,8 +191,8 @@ namespace filemanager
       {
 
          ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
-         pfilemanagerdata->m_pcallback = &Platform.filemanager();
-         pfilemanagerdata->m_pmanagertemplate = &Platform.filemanager().std();
+         pfilemanagerdata->m_pcallback = &Bergedge.filemanager();
+         pfilemanagerdata->m_pmanagertemplate = &Bergedge.filemanager().std();
          pfilemanagerdata->m_bFileSize = true;
          pfilemanagerdata->m_bTransparentBackground = true;
 
@@ -202,15 +202,15 @@ namespace filemanager
          createcontext->m_puiParent = pcreatordata->m_pholder;
          createcontext->oprop("filemanager::data") = pfilemanagerdata;
 
-         sp(manager) pmanager = (Platform.filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
+         sp(manager) pmanager = (Bergedge.filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
          sp(simple_frame_window) pwndTopLevel = NULL;
          if(pmanager != NULL)
          {
 
             m_pfilemanager = pmanager;
 
-            pmanager->get_filemanager_data()->m_iTemplate = Platform.filemanager().std().m_iTemplate;
-            pmanager->get_filemanager_data()->m_iDocument = Platform.filemanager().std().m_iNextDocument++;
+            pmanager->get_filemanager_data()->m_iTemplate = Bergedge.filemanager().std().m_iTemplate;
+            pmanager->get_filemanager_data()->m_iDocument = Bergedge.filemanager().std().m_iNextDocument++;
             pmanager->get_filemanager_template()->m_strDISection.Format("filemanager(%d)",pmanager->get_filemanager_data()->m_iDocument);
 
 

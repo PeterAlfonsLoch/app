@@ -244,7 +244,7 @@ namespace core
 
       if(!is_system())
       {
-         Platform.register_bergedge_application(this);
+         Bergedge.register_bergedge_application(this);
       }
 
 
@@ -454,7 +454,7 @@ namespace core
       {
          if(!is_system())
          {
-            Platform.unregister_bergedge_application(this);
+            Bergedge.unregister_bergedge_application(this);
          }
       }
       catch(...)
@@ -1727,9 +1727,9 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument)
       // if ptemplate==NULL => all document templates
    {
-      if(Platform.m_pfilemanager != NULL)
+      if(Bergedge.m_pfilemanager != NULL)
       {
-         return Platform.m_pfilemanager->do_prompt_file_name(varFile,nIDSTitle,lFlags,bOpenFileDialog,ptemplate,pdocument);
+         return Bergedge.m_pfilemanager->do_prompt_file_name(varFile,nIDSTitle,lFlags,bOpenFileDialog,ptemplate,pdocument);
       }
       ENSURE(m_pdocmanager != NULL);
       /*      return m_pdocmanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
@@ -3108,7 +3108,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
       if(!is_system())
       {
-         Platform.register_bergedge_application(this);
+         Bergedge.register_bergedge_application(this);
       }
 
       xxdebug_box("register_bergedge_application ok","register_bergedge_application ok",MB_ICONINFORMATION);
@@ -3399,7 +3399,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    void application::defer_add_document_template(sp(::user::impact_system) ptemplate)
    {
 
-      Platform.userex()->defer_add_document_template(ptemplate);
+      Bergedge.userex()->defer_add_document_template(ptemplate);
 
    }
 
@@ -3490,7 +3490,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    void application::set_title(const char * pszTitle)
    {
 
-      Platform.set_app_title(m_strInstallType,m_strAppName,pszTitle);
+      Bergedge.set_app_title(m_strInstallType,m_strAppName,pszTitle);
 
    }
 
@@ -3509,14 +3509,14 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
       close_all_documents(FALSE);
 
 
-      Platform.userex()->_001CloseAllDocuments(FALSE);
+      Bergedge.userex()->_001CloseAllDocuments(FALSE);
 
 
       // there are cases where destroying the documents may destroy the
       //  main window of the application.
       //bool b::core::ContextIsDll = afxContextIsDLL;
       //if (!b::core::ContextIsDll && papp->m_pcoreapp->GetVisibleFrameCount() <= 0)
-      if(Platform.userex()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
+      if(Bergedge.userex()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
       {
 
          post_thread_message(WM_QUIT);
@@ -3836,7 +3836,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
          }
 
-         papp = Platform.get_new_app(this,pszType,strNewId);
+         papp = Bergedge.get_new_app(this,pszType,strNewId);
 
          if(papp == NULL)
             return NULL;
@@ -3983,10 +3983,10 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    int32_t application::simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
-      if(&Platform == NULL || Platform.userex() == NULL)
+      if(&Bergedge == NULL || Bergedge.userex() == NULL)
          return ::base::application::simple_message_box(puiOwner,pszMessage,fuStyle);
 
-      return Platform.userex()->simple_message_box(puiOwner,pszMessage,fuStyle);
+      return Bergedge.userex()->simple_message_box(puiOwner,pszMessage,fuStyle);
 
    }
 
@@ -3994,10 +3994,10 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
    {
 
-      if(Platform.userex() == NULL)
+      if(Bergedge.userex() == NULL)
          return ::base::application::simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
 
-      return Platform.userex()->simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
+      return Bergedge.userex()->simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
 
    }
 

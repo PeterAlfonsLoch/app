@@ -100,7 +100,7 @@ namespace filemanager
 
 
       m_ptemplateStd = new manager_template(get_app());
-      Platform.userex()->shellimageset().initialize();
+      Bergedge.userex()->shellimageset().initialize();
       m_ptemplateStd->Initialize(0, pszMatter);
 
       m_ptemplateFs = new manager_template(get_app());

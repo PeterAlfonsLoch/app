@@ -675,7 +675,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       }
 
    }
-   else if(Plat(papp->m_pcoreapp).userex()->GetVisibleTopLevelFrameCountExcept(this) <= 0)
+   else if(Berg(papp->m_pcoreapp).userex()->GetVisibleTopLevelFrameCountExcept(this) <= 0)
    {
 
       if (!papp->m_pcoreapp->_001CloseApplicationByUser(this))
@@ -1276,7 +1276,7 @@ void simple_frame_window::OnDropFiles(HDROP hDropInfo)
    SetActiveWindow();      // activate us first !
    UINT nFiles = ::DragQueryFile(hDropInfo, (UINT)-1, NULL, 0);
 
-   ::userex::userex* puser = Platform.userex();
+   ::userex::userex* puser = Bergedge.userex();
    ASSERT(puser != NULL);
    for (UINT iFile = 0; iFile < nFiles; iFile++)
    {

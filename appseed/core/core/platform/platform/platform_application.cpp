@@ -21,7 +21,7 @@ namespace platform
       if(!::core::application::initialize_instance())
          return false;
 
-      Platform.filemanager().std().m_strLevelUp = "levelup";
+      Bergedge.filemanager().std().m_strLevelUp = "levelup";
 
       ::user::single_document_template* pDocTemplate;
       pDocTemplate = new ::user::single_document_template(
@@ -30,7 +30,7 @@ namespace platform
          System.type_info < document > (),
          System.type_info < frame > (),       // main SDI frame window
          System.type_info < pane_view > ());
-      Platform.userex()->add_document_template(pDocTemplate);
+      Bergedge.userex()->add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
 
       return true;

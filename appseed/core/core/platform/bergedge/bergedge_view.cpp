@@ -182,7 +182,7 @@ namespace bergedge
       m_dib_veriwell.load_from_matter("veriwell_2008_green_h49.png");
       m_dib_winactionarea.load_from_matter("winactionarea.png");
 
-      if(!Platform.m_bShowPlatform)
+      if(!Bergedge.m_bShowPlatform)
       {
          return;
       }
@@ -251,7 +251,7 @@ namespace bergedge
       }
       else if(ptimer->m_nIDEvent == 888888)
       {
-         Platform.check_topic_file_change();
+         Bergedge.check_topic_file_change();
       }
 
    }

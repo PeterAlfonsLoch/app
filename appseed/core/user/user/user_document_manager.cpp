@@ -612,7 +612,7 @@ namespace user
       if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
          return; // open cancelled
 
-      Platform.userex()->open_document_file(createcontext);
+      Bergedge.userex()->open_document_file(createcontext);
       // if returns NULL, the ::fontopus::user has already been alerted
    }
 

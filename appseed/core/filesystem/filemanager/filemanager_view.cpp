@@ -155,7 +155,7 @@ namespace filemanager
 
                   if (bSave && get_filemanager_manager()->get_fs_data()->file_exists(strPath))
                   {
-                     if (System.simple_message_box(Platform.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
+                     if (System.simple_message_box(Bergedge.get_view(), "Do you want to replace the existing file " + strPath + "?", MB_YESNO) == IDNO)
                      {
                         bSave = false;
                      }

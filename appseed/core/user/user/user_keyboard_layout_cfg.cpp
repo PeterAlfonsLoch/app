@@ -23,7 +23,7 @@ namespace user
    bool keyboard_layout_cfg::CreateViews()
    {
 
-      /*m_pdoc = Platform.userex()->create_form(this, this);
+      /*m_pdoc = Bergedge.userex()->create_form(this, this);
 
       SetPaneCount(2);
 

@@ -254,7 +254,7 @@ namespace bergedge
             ::file::memory_buffer file(get_app(), pstruct->lpData, pstruct->cbData);
             string strPath;
             file.to_string(strPath);
-            Platform.open_by_file_extension(strPath);
+            Bergedge.open_by_file_extension(strPath);
          }
       }
 

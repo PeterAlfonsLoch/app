@@ -378,7 +378,7 @@ namespace user
          if(pframewindow->m_workset.m_pframeschema == NULL)
          {
             
-            m_pschema = &Platform.userex()->GetUfeSchema()->m_button;
+            m_pschema = &Bergedge.userex()->GetUfeSchema()->m_button;
             
          }
          else

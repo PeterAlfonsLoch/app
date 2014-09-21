@@ -111,7 +111,7 @@ namespace user
       {
 
 //         int32_t   fwKeys = (int32_t) lpMsg->wParam;        // key flags
-         if(Platform.is_mouse_button_pressed(::user::mouse_left_button))
+         if(Bergedge.is_mouse_button_pressed(::user::mouse_left_button))
          {
             ::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);
             splitbar.SetCapture();
