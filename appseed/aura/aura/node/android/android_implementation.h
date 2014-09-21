@@ -2,12 +2,12 @@
 
 #define AfxDeferRegisterClass(fClass) AfxEndDeferRegisterClass(fClass)
 
-CLASS_DECL_AURA BOOL AfxEndDeferRegisterClass(LONG fToRegister, const char ** ppszClass);
+CLASS_DECL_AURA WINBOOL AfxEndDeferRegisterClass(LONG fToRegister, const char ** ppszClass);
 
 
 // Temporary ::collection::map management (locks temp ::collection::map on current thread)
 //CLASS_DECL_AURA void AfxLockTempMaps(::aura::application * papp);
-//CLASS_DECL_AURA BOOL AfxUnlockTempMaps(::aura::application * papp, BOOL bDeleteTemps = TRUE);
+//CLASS_DECL_AURA WINBOOL AfxUnlockTempMaps(::aura::application * papp, WINBOOL bDeleteTemps = TRUE);
 
 
 
@@ -23,13 +23,13 @@ extern CLASS_DECL_AURA const char _afxWndOleControl[];
 // Special helpers
 
 CLASS_DECL_AURA void AfxCancelModes(oswindow hWndRcvr);
-CLASS_DECL_AURA BOOL AfxHelpEnabled();  // determine if ID_HELP handler exists
-CLASS_DECL_AURA BOOL AfxCustomLogFont(UINT nIDS, LOGFONT* pLogFont);
-CLASS_DECL_AURA BOOL AfxGetPropSheetFont(string & strFace, WORD& wSize, BOOL bWizard);
+CLASS_DECL_AURA WINBOOL AfxHelpEnabled();  // determine if ID_HELP handler exists
+CLASS_DECL_AURA WINBOOL AfxCustomLogFont(UINT nIDS, LOGFONT* pLogFont);
+CLASS_DECL_AURA WINBOOL AfxGetPropSheetFont(string & strFace, WORD& wSize, WINBOOL bWizard);
 
-CLASS_DECL_AURA BOOL _AfxIsComboBoxControl(oswindow hWnd, UINT nStyle);
-CLASS_DECL_AURA BOOL _AfxCheckCenterDialog(const char * lpszResource);
-CLASS_DECL_AURA BOOL _AfxCompareClassName(oswindow hWnd, const char * lpszClassName);
+CLASS_DECL_AURA WINBOOL _AfxIsComboBoxControl(oswindow hWnd, UINT nStyle);
+CLASS_DECL_AURA WINBOOL _AfxCheckCenterDialog(const char * lpszResource);
+CLASS_DECL_AURA WINBOOL _AfxCompareClassName(oswindow hWnd, const char * lpszClassName);
 CLASS_DECL_AURA oswindow _AfxChildWindowFromPoint(oswindow, POINT);
 
 // for determining version of COMCTL32.DLL

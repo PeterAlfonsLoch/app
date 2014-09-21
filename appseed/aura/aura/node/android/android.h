@@ -8,8 +8,8 @@ string get_error_message(DWORD dwError);
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
 
-//CLASS_DECL_AURA BOOL AfxInitialize(BOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
-CLASS_DECL_AURA BOOL AfxInitialize(BOOL bDLL = FALSE, DWORD dwVersion = 0);
+//CLASS_DECL_AURA WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
+CLASS_DECL_AURA WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0);
 
 /////////////////////////////////////////////////////////////////////////////
 // stop on a specific primitive::memory request
@@ -18,10 +18,10 @@ CLASS_DECL_AURA BOOL AfxInitialize(BOOL bDLL = FALSE, DWORD dwVersion = 0);
 CLASS_DECL_AURA void AfxSetAllocStop(LONG lRequestNumber);
 
 // Return TRUE if primitive::memory is sane or print out what is wrong
-CLASS_DECL_AURA BOOL AfxCheckMemory();
+CLASS_DECL_AURA WINBOOL AfxCheckMemory();
 
 // Return TRUE if valid primitive::memory block of nBytes
-CLASS_DECL_AURA BOOL AfxIsMemoryBlock(const void * p, UINT nBytes,
+CLASS_DECL_AURA WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes,
    LONG* plRequestNumber = NULL);
 
 CLASS_DECL_AURA void AfxResetMsgCache();
