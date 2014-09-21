@@ -3204,7 +3204,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="aura\os\cross\ansios\ansios_datetime.cpp" />
+    <ClCompile Include="aura\os\cross\ansios\ansios_datetime.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="aura\os\cross\windows\cross_windows_windows.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
@@ -3510,27 +3512,69 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\str\x\x_defines.h" />
     <ClInclude Include="primitive\str\x\x_encodings.h" />
     <ClInclude Include="primitive\str\x\x_tables.h" />
-    <ClCompile Include="aura\os\windows\windows_base.cpp" />
-    <ClCompile Include="aura\os\windows\windows_base_file.cpp" />
-    <ClCompile Include="aura\os\windows\windows_base_registry.cpp" />
-    <ClCompile Include="aura\os\windows\windows_debug.cpp" />
-    <ClCompile Include="aura\os\windows\windows_dll.cpp" />
-    <ClCompile Include="aura\os\windows\windows_error.cpp" />
-    <ClCompile Include="aura\os\windows\windows_file_watcher.cpp" />
-    <ClCompile Include="aura\os\windows\windows_gdi.cpp" />
-    <ClCompile Include="aura\os\windows\windows_launcher.cpp" />
-    <ClCompile Include="aura\os\windows\windows_library.cpp" />
-    <ClCompile Include="aura\os\windows\windows_lock.cpp" />
-    <ClCompile Include="aura\os\windows\windows_main.cpp" />
-    <ClCompile Include="aura\os\windows\windows_message_loop.cpp" />
-    <ClCompile Include="aura\os\windows\windows_multithreading.cpp" />
-    <ClCompile Include="aura\os\windows\windows_base_process.cpp" />
-    <ClCompile Include="aura\os\windows\windows_simple_app.cpp" />
-    <ClCompile Include="aura\os\windows\windows_simple_shell_launcher.cpp" />
-    <ClCompile Include="aura\os\windows\windows_small_ipc_channel.cpp" />
-    <ClCompile Include="aura\os\windows\windows_time.cpp" />
-    <ClCompile Include="aura\os\windows\windows_util.cpp" />
-    <ClCompile Include="aura\os\windows\windows_utils.cpp" />
+    <ClCompile Include="aura\os\windows\windows_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_base_file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_base_registry.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_debug.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_dll.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_error.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_file_watcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_gdi.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_lock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_message_loop.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_multithreading.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_base_process.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_simple_app.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_simple_shell_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_small_ipc_channel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_time.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_util.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_utils.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="aura\process\process_bidi_pipe.cpp" />
     <ClCompile Include="aura\process\process_departament.cpp" />
     <ClCompile Include="aura\process\process_pipe.cpp" />
