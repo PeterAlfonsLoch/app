@@ -293,28 +293,28 @@ handle create_file(const char * lpcszFileName,dword dwDesiredAccess,dword dwShar
 
 int_bool file_is_equal_path_dup(const char * psz1,const char * psz2)
 {
-
-   const int32_t iBufSize = MAX_PATH * 8;
-   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
-   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
-   int iCmp = pwsz1.CompareNoCase(pwsz2);
-/*   wchar_t * pwszFile1;
-   wchar_t * pwszFile2;
-   wchar_t * pwszPath1 = new wchar_t[iBufSize];
-   wchar_t * pwszPath2 = new wchar_t[iBufSize];
-   int32_t iCmp = -1;
-   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
-   {
-      if(GetFullPathNameW(pwsz2,iBufSize,pwszPath2,&pwszFile2))
-      {
-         string p1 = ::str::international::unicode_to_utf8(pwszPath1);
-         string p2 = ::str::international::unicode_to_utf8(pwszPath2);
-         iCmp = stricmp_dup(p1,p2);
-      }
-   }
-   delete pwszPath1;
-   delete pwszPath2;*/
-   return iCmp == 0;
+   return file_is_equal_path(psz1,psz2);
+//   const int32_t iBufSize = MAX_PATH * 8;
+//   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
+//   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
+//   int iCmp = pwsz1.CompareNoCase(pwsz2);
+///*   wchar_t * pwszFile1;
+//   wchar_t * pwszFile2;
+//   wchar_t * pwszPath1 = new wchar_t[iBufSize];
+//   wchar_t * pwszPath2 = new wchar_t[iBufSize];
+//   int32_t iCmp = -1;
+//   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
+//   {
+//      if(GetFullPathNameW(pwsz2,iBufSize,pwszPath2,&pwszFile2))
+//      {
+//         string p1 = ::str::international::unicode_to_utf8(pwszPath1);
+//         string p2 = ::str::international::unicode_to_utf8(pwszPath2);
+//         iCmp = stricmp_dup(p1,p2);
+//      }
+//   }
+//   delete pwszPath1;
+//   delete pwszPath2;*/
+//   return iCmp == 0;
 
 }
 
