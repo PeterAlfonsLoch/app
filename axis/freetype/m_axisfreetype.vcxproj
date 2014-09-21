@@ -1704,10 +1704,10 @@
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5487686F-8A2F-401A-A38E-FDA8900E1984}</ProjectGuid>
+    <ProjectGuid>{CEB5A61F-90C4-437D-92B0-6A6629EF3385}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>base</ProjectName>
-    <RootNamespace>base</RootNamespace>
+    <ProjectName>axisfreetype</ProjectName>
+    <RootNamespace>axisfreetype</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
