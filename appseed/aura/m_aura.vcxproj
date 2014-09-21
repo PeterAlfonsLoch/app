@@ -2214,6 +2214,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsWinRT>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
