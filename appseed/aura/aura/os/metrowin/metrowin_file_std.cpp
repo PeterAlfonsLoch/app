@@ -794,22 +794,22 @@ string get_sys_temp_path()
 }
 
 
-
-int_bool file_exists_dup(const char * path1)
-{
-
-   string str(path1);
-   str.replace("/","\\");
-   wstring wstr(L"\\\\?\\");
-   wstr = wstr + wstring(str);
-   uint32_t dwFileAttributes = ::GetFileAttributesW(wstr);
-   if(dwFileAttributes != INVALID_FILE_ATTRIBUTES && (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
-      return true;
-   else
-      return false;
-
-}
-
+//
+//int_bool file_exists_dup(const char * path1)
+//{
+//
+//   string str(path1);
+//   str.replace("/","\\");
+//   wstring wstr(L"\\\\?\\");
+//   wstr = wstr + wstring(str);
+//   uint32_t dwFileAttributes = ::GetFileAttributesW(wstr);
+//   if(dwFileAttributes != INVALID_FILE_ATTRIBUTES && (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
+//      return true;
+//   else
+//      return false;
+//
+//}
+//
 
 
 int_bool file_put_contents_dup(const char * path,const char * contents,::count len)
