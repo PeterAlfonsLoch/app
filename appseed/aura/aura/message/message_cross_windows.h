@@ -1,10 +1,10 @@
 #ifdef METROWIN
 
 #if defined(__cplusplus_winrt)
-#include <agile.h>
+//#include <agile.h>
 #endif
 
-typedef struct tagCREATESTRUCTA {
+/*typedef struct tagCREATESTRUCTA {
    LPVOID      lpCreateParams;
    HINSTANCE   hInstance;
    HMENU       hMenu;
@@ -32,13 +32,14 @@ typedef struct tagCREATESTRUCTW {
    LPCWSTR     lpszClass;
    uint32_t       dwExStyle;
 } CREATESTRUCTW,*LPCREATESTRUCTW;
-#ifdef UNICODE
-typedef CREATESTRUCTW ::user::create_struct;
-typedef LPCREATESTRUCTW ::user::create_struct *;
-#else
-typedef CREATESTRUCTA ::user::create_struct;
-typedef LPCREATESTRUCTA ::user::create_struct *;
-#endif // UNICODE
+*/
+//#ifdef UNICODE
+//typedef CREATESTRUCTW ::user::create_struct;
+//typedef LPCREATESTRUCTW ::user::create_struct *;
+//#else
+//typedef CREATESTRUCTA ::user::create_struct;
+//typedef LPCREATESTRUCTA ::user::create_struct *;
+//#endif // UNICODE
 
 #endif
 

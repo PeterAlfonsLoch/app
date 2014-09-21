@@ -27,11 +27,11 @@ interface ID2D1DeviceContext;
 
 #endif
 
-#ifdef METROWIN
+/*#ifdef METROWIN
 
 #include <agile.h>
 
-#endif
+#endif*/
 
 
 namespace user

@@ -123,52 +123,52 @@ static inline ULONG __wine_ulong_swap(ULONG l)
  * Structure used by kernel to store most
  * addresses.
  */
-struct sockaddr {
-        u_short sa_family;              /* address family */
-        char    sa_data[14];            /* up to 14 bytes of direct address */
-};
+//struct sockaddr {
+//        u_short sa_family;              /* address family */
+//        char    sa_data[14];            /* up to 14 bytes of direct address */
+//};
 
 /*
  * Structure used by kernel to pass protocol
  * information in raw sockets.
  */
-struct sockproto {
-        u_short sp_family;              /* address family */
-        u_short sp_protocol;            /* protocol */
-};
+//struct sockproto {
+//        u_short sp_family;              /* address family */
+//        u_short sp_protocol;            /* protocol */
+//};
 
 
+//
+//struct sockaddr_in
+//{
+//   short sin_family;
+//   unsigned short sin_port;
+//   struct in_addr sin_addr;
+//   char sin_zero[8];
+//};
+//
+//
+//struct sockaddr_in6
+//{
+//  short sin6_family;
+//  u_short sin6_port;
+//  u_long sin6_flowinfo;
+//  struct in6_addr sin6_addr;
+//  u_long sin6_scope_id;
+//};
+//
+//
 
-struct sockaddr_in
-{
-   short sin_family;
-   unsigned short sin_port;
-   struct in_addr sin_addr;
-   char sin_zero[8];
-};
-
-
-struct sockaddr_in6
-{
-  short sin6_family;
-  u_short sin6_port;
-  u_long sin6_flowinfo;
-  struct in6_addr sin6_addr;
-  u_long sin6_scope_id;
-};
-
-
-
-typedef struct addrinfo {
-  int             ai_flags;
-  int             ai_family;
-  int             ai_socktype;
-  int             ai_protocol;
-  size_t          ai_addrlen;
-  char            *ai_canonname;
-  struct sockaddr  *ai_addr;
-  struct addrinfo  *ai_next;
-} ADDRINFOA, *PADDRINFOA;
+//typedef struct addrinfo {
+//  int             ai_flags;
+//  int             ai_family;
+//  int             ai_socktype;
+//  int             ai_protocol;
+//  size_t          ai_addrlen;
+//  char            *ai_canonname;
+//  struct sockaddr  *ai_addr;
+//  struct addrinfo  *ai_next;
+//} ADDRINFOA, *PADDRINFOA;
 
 
 
@@ -177,9 +177,9 @@ typedef struct addrinfo {
 #define NI_NUMERICSERV  0x08  /* Return numeric form of the service (port #) */
 
 
-typedef int SOCKET;
+//typedef int SOCKET;
 
-#define INVALID_SOCKET ((SOCKET) -1)
+//#define INVALID_SOCKET ((SOCKET) -1)
 
 
 

@@ -6,6 +6,14 @@
 
 
 
+typedef struct tag_MSG
+{
+oswindow    hwnd;
+UINT        message;
+WPARAM      wParam;
+LPARAM      lParam;
+POINT       pt;
+} MESSAGE, * LPMESSAGE;
 
 
 

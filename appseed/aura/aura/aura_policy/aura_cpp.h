@@ -177,6 +177,7 @@ namespace user
    class interaction_impl;
    class document;
    class frame_window;
+   class create_struct;
 
 
 } // namespace user
@@ -381,8 +382,8 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 
 #define Sess(pauraapp) (*pauraapp->m_paurasession)
 #define Session (Sess(m_pauraapp))
-#define Plat(pauraapp) (*pauraapp->m_pcoreplatform)
-#define Platform (Plat(m_pauraapp))
+#define Berg(pauraapp) (*pauraapp->m_pcoreplatform)
+#define Bergedge (Plat(m_pauraapp))
 
 
 #undef App
@@ -1227,7 +1228,7 @@ namespace std
 
    using setw = ::file::set_width;
 
-#if !defined(WINDOWSEX) && !defined(MACOS)
+#if !defined(WINDOWSEX) && !defined(MACOS) && !defined(METROWIN)
 
    using bad_alloc = ::memory_exception;
 

@@ -45,7 +45,7 @@ END_EXTERN_C
 #elif defined(__cplusplus_winrt)
 
 #include "aura_c.h"
-#include "aura_policy_cpp.h"
+#include "aura_cpp.h"
 #include "aura_policy_winrt.h"
 
 
