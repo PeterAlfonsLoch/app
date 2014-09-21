@@ -20,7 +20,7 @@ namespace net
       public:
 
          ::Windows::Networking::HostName ^      m_hostname;
-         ::Platform::String ^                   m_strService;
+         ::String ^                   m_strService;
 
       };
 

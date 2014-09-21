@@ -784,7 +784,7 @@ stdstring < simple_string >(pstringmanager)
 
 #ifdef METROWIN
 
-string::string(Platform::Object ^ o) :
+string::string(Object ^ o) :
 stdstring < simple_string >(string_trait::GetDefaultManager())
 {
    //      if( !CheckImplicitLoad( pszSrc ) )
@@ -793,7 +793,7 @@ stdstring < simple_string >(string_trait::GetDefaultManager())
    //      }
 }
 
-string::string(Platform::Object ^ o, string_manager * pstringmanager) :
+string::string(Object ^ o, string_manager * pstringmanager) :
 stdstring < simple_string >(pstringmanager)
 {
    //      if( !CheckImplicitLoad( pszSrc ) )

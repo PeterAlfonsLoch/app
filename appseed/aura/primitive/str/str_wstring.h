@@ -166,8 +166,8 @@ public:
    inline const wchar_t * c_str() const { return this->operator const wchar_t *();  }
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
-   inline operator Platform::String ^ () const { return ref new Platform::String(operator const wchar_t *()); }
-   inline operator Platform::String ^ () { return ref new Platform::String(operator const wchar_t *()); }
+   inline operator String ^ () const { return ref new String(operator const wchar_t *()); }
+   inline operator String ^ () { return ref new String(operator const wchar_t *()); }
 #endif
 
    inline verisimple_wstring & operator += (wchar_t wch) { append(wch); return *this; }

@@ -6,7 +6,7 @@
 #endif
 
 #ifdef METROWIN
-[Platform::MTAThread]
+[MTAThread]
 #endif
 extern "C" int APIENTRY
 DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
@@ -110,11 +110,11 @@ namespace Platform {
 			UninitializeData(__abi___threading_model);
 		}
 
-	} } // namespace Platform::Details
+	} } // namespace Details
 
 //Put initialization data into the departament that we can return failure
 #pragma section(".CRT$XIY",long,read)
-extern "C" __declspec(allocate(".CRT$XIY")) void* __abi__initialize = Platform::Details::Initialize;
+extern "C" __declspec(allocate(".CRT$XIY")) void* __abi__initialize = Details::Initialize;
 
 // All required libraries must be pulled in in init.cpp file because it always referenced
 // The librairies should not be pulled in vccorlib.h unless it's vccorlib*.lib

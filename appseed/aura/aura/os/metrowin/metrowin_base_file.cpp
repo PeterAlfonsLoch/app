@@ -252,7 +252,7 @@ int_bool file_copy_dup(const char * pszNew,const char * pszSrc,int_bool bOverwri
          return FALSE;
 
    }
-   catch(::Platform::Exception ^ ex)
+   catch(::Exception ^ ex)
    {
 
    }
@@ -269,7 +269,7 @@ int_bool file_copy_dup(const char * pszNew,const char * pszSrc,int_bool bOverwri
          return FALSE;
 
    }
-   catch(::Platform::Exception ^ ex)
+   catch(::Exception ^ ex)
    {
       
    }
@@ -2057,7 +2057,7 @@ int_bool close_handle(handle h)
    if(folder == nullptr)
       return nullptr;
 
-   ::Platform::String ^ strFileName = file_title_dup(lpcszFileName);
+   ::String ^ strFileName = file_title_dup(lpcszFileName);
 
    if(dwCreationDisposition == CREATE_ALWAYS)
    {

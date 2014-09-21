@@ -9,7 +9,7 @@ namespace user
 
 
 
-   Platform::Agile<Windows::UI::Core::CoreWindow>(*interaction::s_get_os_window)(interaction * pui) = &interaction::get_os_window_default;
+   Agile<Windows::UI::Core::CoreWindow>(*interaction::s_get_os_window)(interaction * pui) = &interaction::get_os_window_default;
 
 
 
@@ -3780,7 +3780,7 @@ namespace user
 
 #ifdef METROWIN
 
-   Platform::Agile<Windows::UI::Core::CoreWindow> interaction::get_os_window()
+   Agile<Windows::UI::Core::CoreWindow> interaction::get_os_window()
    {
    if (m_pimpl == NULL)
    {

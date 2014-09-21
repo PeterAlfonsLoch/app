@@ -54,7 +54,7 @@ namespace core
       comparable_array < ::aura::library * >       m_libraryptra;
 
 #ifdef METROWIN
-      Platform::Agile < Windows::UI::Core::CoreWindow > m_window;
+      Agile < Windows::UI::Core::CoreWindow > m_window;
 #endif
 
 

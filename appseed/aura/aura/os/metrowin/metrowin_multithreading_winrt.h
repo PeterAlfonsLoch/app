@@ -28,7 +28,7 @@ private:
 public:
 
 
-   waiter_for_Windows_Foundation_IAsyncOperation(::Windows::Foundation::IAsyncOperation < T > ^ operation, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any) :
+   waiter_for_Windows_Foundation_IAsyncOperation(::Windows::Foundation::IAsyncOperation < T > ^ operation, CallbackContext callbackcontext = CallbackContext::Any) :
       m_event(get_thread_app())
    {
 
@@ -96,7 +96,7 @@ private:
 public:
 
 
-   waiter_for_Windows_Foundation_IAsyncOperationWithProgress(::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any) :
+   waiter_for_Windows_Foundation_IAsyncOperationWithProgress(::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, CallbackContext callbackcontext = CallbackContext::Any) :
       m_event(get_thread_app())
    {
 
@@ -162,7 +162,7 @@ private:
 public:
 
 
-   waiter_for_Windows_Foundation_IAsyncAction(::Windows::Foundation::IAsyncAction ^ action, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any) :
+   waiter_for_Windows_Foundation_IAsyncAction(::Windows::Foundation::IAsyncAction ^ action, CallbackContext callbackcontext = CallbackContext::Any) :
       m_event(get_thread_app())
    {
 
@@ -209,7 +209,7 @@ public:
 
 
 template < typename T >
-inline T wait(::Windows::Foundation::IAsyncOperation < T > ^ operation, DWORD dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
+inline T wait(::Windows::Foundation::IAsyncOperation < T > ^ operation, DWORD dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL, CallbackContext callbackcontext = CallbackContext::Any)
 {
    
    waiter_for_Windows_Foundation_IAsyncOperation < T > waiter(operation, callbackcontext);
@@ -220,7 +220,7 @@ inline T wait(::Windows::Foundation::IAsyncOperation < T > ^ operation, DWORD dw
 
 
 template < typename T, typename T2 >
-inline T wait(::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, DWORD dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
+inline T wait(::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, DWORD dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
    waiter_for_Windows_Foundation_IAsyncOperationWithProgress < T, T2 > waiter(operation, callbackcontext);
@@ -230,7 +230,7 @@ inline T wait(::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ ope
 }
 
 
-inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncAction ^ action,  DWORD dwMillis = INFINITE, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
+inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncAction ^ action,  DWORD dwMillis = INFINITE, CallbackContext callbackcontext = CallbackContext::Any)
 {
    
    ::Windows::Foundation::AsyncStatus status;

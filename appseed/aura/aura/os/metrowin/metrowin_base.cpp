@@ -7,11 +7,11 @@ extern CLASS_DECL_THREAD os_thread * t_posthread;
 extern CLASS_DECL_THREAD HTHREAD currentThread;
 
 /*
-Platform::String ^ rtstr(const char * psz)
+String ^ rtstr(const char * psz)
 {
    if(psz == NULL)
-      return ref new Platform::String(L"");
-   return ref new Platform::String(wstring(psz));
+      return ref new String(L"");
+   return ref new String(wstring(psz));
 
 }
 */

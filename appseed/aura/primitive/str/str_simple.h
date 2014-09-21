@@ -546,9 +546,9 @@ public:
    }
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
-   inline operator Platform::String ^() const
+   inline operator String ^() const
    {
-      return ref new Platform::String(wstring(*this));
+      return ref new String(wstring(*this));
    }
 #endif
 

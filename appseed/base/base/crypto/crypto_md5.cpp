@@ -85,7 +85,7 @@ namespace crypto
 #ifdef METROWIN
 
 
-         m_posdata->m_hash->Append(::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(ref new Platform::Array < uchar, 1U > ((uchar *) data, size)));
+         m_posdata->m_hash->Append(::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(ref new Array < uchar, 1U > ((uchar *) data, size)));
 
 #else
 

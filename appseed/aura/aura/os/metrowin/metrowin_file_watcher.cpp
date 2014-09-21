@@ -43,15 +43,15 @@ namespace file_watcher
       property Windows::Storage::StorageFolder ^                   m_folder;
       property Windows::Storage::Search::StorageItemQueryResult ^  m_queryresult;
       property Windows::Foundation::EventRegistrationToken         m_evtoken;
-      property Platform::String ^                                  m_strDirName;
+      property String ^                                  m_strDirName;
       property size_t                                                m_pwatcher;   // should be exactly file_watcher_impl *
       property size_t                                                m_plistener;  // should be exactly file_watch_listener *
       property uint64_t                                              m_id;
       property bool                                                  m_bRecursive;
 
-      static watch_struct ^ create_watch(Platform::String ^ strDirectory, bool bRecursive);
+      static watch_struct ^ create_watch(String ^ strDirectory, bool bRecursive);
 
-      void ContentsChanged(::Windows::Storage::Search::IStorageQueryResultBase ^ r, ::Platform::Object ^ o)
+      void ContentsChanged(::Windows::Storage::Search::IStorageQueryResultBase ^ r, ::Object ^ o)
       {
          file_watcher_impl::action action;
          action.watch = this;
@@ -127,7 +127,7 @@ namespace file_watcher
 		}
 	}
 	/// Starts monitoring a directory.
-	watch_struct ^ watch_struct::create_watch(Platform::String ^ strDirectory, bool bRecursive)
+	watch_struct ^ watch_struct::create_watch(String ^ strDirectory, bool bRecursive)
 	{
 
 		watch_struct ^ pwatch = ref new watch_struct;
@@ -155,7 +155,7 @@ namespace file_watcher
          return nullptr;
 
       pwatch->m_evtoken = pwatch->m_queryresult->ContentsChanged += ref new ::Windows::Foundation::TypedEventHandler < ::Windows::Storage::Search::IStorageQueryResultBase ^, 
-         ::Platform::Object ^ >(pwatch, &watch_struct::ContentsChanged);
+         ::Object ^ >(pwatch, &watch_struct::ContentsChanged);
 
 		return pwatch;
 
@@ -208,7 +208,7 @@ namespace file_watcher
 	void os_file_watcher::remove_watch(const string & directory)
 	{
       watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
-      Platform::String ^ strDir = directory;
+      String ^ strDir = directory;
       for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
 		{
          if(strDir == ppair->m_element2.w->m_strDirName)

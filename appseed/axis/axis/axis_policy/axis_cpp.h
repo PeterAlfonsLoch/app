@@ -229,7 +229,7 @@ namespace user
    public:
 
 
-      Platform::Agile<Windows::UI::Core::CoreWindow> window;
+      Agile<Windows::UI::Core::CoreWindow> window;
       ::axis::system_window ^ pwindow;
 
 

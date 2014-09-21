@@ -28,7 +28,7 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 //  Can be replaced as long as '::ca2::WinInit' is called first
 
 
-int CLASS_DECL_AURA win_main(::aura::system * psystem, ::Platform::Array < ::Platform::String ^ > ^ args)
+int CLASS_DECL_AURA win_main(::aura::system * psystem, ::Array < ::String ^ > ^ args)
 {
 
    //UNREFERENCED_PARAMETER(lpCmdLine);

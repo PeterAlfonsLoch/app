@@ -1161,6 +1161,7 @@
     <ClCompile Include="aura\os\metrowin\metrowin_launcher.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_library.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_lock.cpp" />
+    <ClCompile Include="aura\os\metrowin\metrowin_MessageBoxA.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_message_loop.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_multithreading.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_process.cpp" />

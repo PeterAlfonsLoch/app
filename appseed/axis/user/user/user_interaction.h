@@ -486,7 +486,7 @@ namespace user
       virtual void _001OnTriggerMouseInside();
 
       //#ifdef METROWIN
-      //      Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window();
+      //      Agile<Windows::UI::Core::CoreWindow> get_os_window();
       //#endif
 
 
@@ -519,16 +519,16 @@ namespace user
       virtual sp(place_holder) place(sp(::user::interaction) pui);
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
-      static Platform::Agile<Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction * pui);
-      Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window()
+      static Agile<Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction * pui);
+      Agile<Windows::UI::Core::CoreWindow> get_os_window()
       {
          return get_os_window(this);
       }
-      static Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window(interaction * pui)
+      static Agile<Windows::UI::Core::CoreWindow> get_os_window(interaction * pui)
       {
          return (*s_get_os_window)(pui);
       }
-      static Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window_default(interaction * pui)
+      static Agile<Windows::UI::Core::CoreWindow> get_os_window_default(interaction * pui)
       {
          UNREFERENCED_PARAMETER(pui);
          return nullptr;

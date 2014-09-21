@@ -193,7 +193,7 @@ public:
 
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
-   string(Platform::Object ^ o);
+   string(Object ^ o);
 #endif
    string(const char * pszSrc,string_manager * pstringmanager );
    string(const wchar_t * pszSrc,string_manager * pstringmanager );
@@ -209,7 +209,7 @@ public:
    string(const wchar_t* pch, strsize nLength);
    string(const wchar_t* pch, strsize nLength, string_manager * pstringmanager);
 #if defined(METROWIN) && defined(__cplusplus_winrt)
-   string(Platform::Object ^ o, string_manager * pstringmanager);
+   string(Object ^ o, string_manager * pstringmanager);
 #endif
    ~string() throw();
 
@@ -228,7 +228,7 @@ public:
    string & operator = (const uchar* pszSrc);
    string & operator = (char ch);
 #if defined(METROWIN) && defined(__cplusplus_winrt)
-   string & operator = (const Platform::String ^ & str);
+   string & operator = (const String ^ & str);
 #endif
    string & operator = (wchar_t ch);
 
@@ -758,13 +758,13 @@ public:
 
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
-inline operator Platform::String ^() const
+inline operator String ^() const
 {
-   return ref new Platform::String(wstring(*this));
+   return ref new String(wstring(*this));
 }
-inline operator Platform::String ^()
+inline operator String ^()
 {
-   return ref new Platform::String(wstring(*this));
+   return ref new String(wstring(*this));
 }
 #endif
 
@@ -1595,7 +1595,7 @@ inline string to_string(wstring wstr)
 
 
 template < >
-inline string to_string(Platform::String ^ str)
+inline string to_string(String ^ str)
 {
 
    return (const wchar_t *) wstring(begin(str));

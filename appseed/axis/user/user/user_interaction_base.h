@@ -487,7 +487,7 @@ namespace user
       virtual void _001OnTriggerMouseInside();
 
       //#ifdef METROWIN
-      //      Platform::Agile<Windows::UI::Core::CoreWindow> get_os_window();
+      //      Agile<Windows::UI::Core::CoreWindow> get_os_window();
       //#endif
 
 

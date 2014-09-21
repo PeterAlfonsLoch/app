@@ -212,8 +212,8 @@ namespace message
 
       /*#ifdef METROWIN
 
-      Platform::Agile < ::Windows::UI::Core::CharacterReceivedEventArgs ^  > m_charrecv;
-      Platform::Agile < ::Windows::UI::Core::CharacterReceivedEventArgs ^  > m_key;
+      Agile < ::Windows::UI::Core::CharacterReceivedEventArgs ^  > m_charrecv;
+      Agile < ::Windows::UI::Core::CharacterReceivedEventArgs ^  > m_key;
 
       #endif*/
 

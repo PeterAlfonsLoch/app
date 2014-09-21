@@ -4,7 +4,7 @@ extern int __abi___threading_model;
 
 
 #ifdef METROWIN
-[Platform::MTAThread]
+[MTAThread]
 #endif
 extern "C" int APIENTRY
 DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
