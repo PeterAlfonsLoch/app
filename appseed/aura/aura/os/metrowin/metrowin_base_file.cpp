@@ -346,112 +346,112 @@ END_EXTERN_C
 
 
 
+//
+//
+//string file_get_mozilla_firefox_plugin_container_path()
+//{
+//
+//   string strPath;
+//   HKEY hkeyMozillaFirefox;
+//
+//   if(::RegOpenKey(HKEY_LOCAL_MACHINE,"SOFTWARE\\Mozilla\\Mozilla Firefox",&hkeyMozillaFirefox) != ERROR_SUCCESS)
+//      return "";
+//   {
+//
+//      DWORD dwType;
+//      DWORD dwData;
+//      dwData = 0;
+//      if(::WinRegGetValueW(hkeyMozillaFirefox,NULL,L"CurrentVersion",RRF_RT_REG_SZ,&dwType,NULL,&dwData) != ERROR_SUCCESS)
+//      {
+//         goto ret1;
+//      }
+//
+//      wstring wstrVersion;
+//      wstrVersion.alloc(dwData);
+//      if(::WinRegGetValueW(hkeyMozillaFirefox,NULL,L"CurrentVersion",RRF_RT_REG_SZ,&dwType,wstrVersion,&dwData) != ERROR_SUCCESS)
+//      {
+//         goto ret1;
+//      }
+//      wstrVersion.release_buffer();
+//
+//      wstring wstrMainSubKey = wstrVersion + L"\\Main";
+//      dwData = 0;
+//
+//      if(::WinRegGetValueW(hkeyMozillaFirefox,wstrMainSubKey,L"Install Directory",RRF_RT_REG_SZ,&dwType,NULL,&dwData) != ERROR_SUCCESS)
+//      {
+//         goto ret1;
+//      }
+//
+//      wstring wstrDir;
+//      wstrDir.alloc(dwData);
+//      if(::WinRegGetValueW(hkeyMozillaFirefox,wstrMainSubKey,L"Install Directory",RRF_RT_REG_SZ,&dwType,wstrDir,&dwData) != ERROR_SUCCESS)
+//      {
+//         goto ret1;
+//      }
+//      wstrDir.release_buffer();
+//
+//      string strDir;
+//
+//      strDir = ::str::international::unicode_to_utf8(wstrDir);
+//
+//      strPath = dir::path(strDir,"plugin-container.exe");
+//   }
+//
+//ret1:
+//   ::RegCloseKey(hkeyMozillaFirefox);
+//   return strPath;
+//
+//}
+//
+//
+//
 
 
-string file_get_mozilla_firefox_plugin_container_path()
-{
-
-   string strPath;
-   HKEY hkeyMozillaFirefox;
-
-   if(::RegOpenKey(HKEY_LOCAL_MACHINE,"SOFTWARE\\Mozilla\\Mozilla Firefox",&hkeyMozillaFirefox) != ERROR_SUCCESS)
-      return "";
-   {
-
-      DWORD dwType;
-      DWORD dwData;
-      dwData = 0;
-      if(::WinRegGetValueW(hkeyMozillaFirefox,NULL,L"CurrentVersion",RRF_RT_REG_SZ,&dwType,NULL,&dwData) != ERROR_SUCCESS)
-      {
-         goto ret1;
-      }
-
-      wstring wstrVersion;
-      wstrVersion.alloc(dwData);
-      if(::WinRegGetValueW(hkeyMozillaFirefox,NULL,L"CurrentVersion",RRF_RT_REG_SZ,&dwType,wstrVersion,&dwData) != ERROR_SUCCESS)
-      {
-         goto ret1;
-      }
-      wstrVersion.release_buffer();
-
-      wstring wstrMainSubKey = wstrVersion + L"\\Main";
-      dwData = 0;
-
-      if(::WinRegGetValueW(hkeyMozillaFirefox,wstrMainSubKey,L"Install Directory",RRF_RT_REG_SZ,&dwType,NULL,&dwData) != ERROR_SUCCESS)
-      {
-         goto ret1;
-      }
-
-      wstring wstrDir;
-      wstrDir.alloc(dwData);
-      if(::WinRegGetValueW(hkeyMozillaFirefox,wstrMainSubKey,L"Install Directory",RRF_RT_REG_SZ,&dwType,wstrDir,&dwData) != ERROR_SUCCESS)
-      {
-         goto ret1;
-      }
-      wstrDir.release_buffer();
-
-      string strDir;
-
-      strDir = ::str::international::unicode_to_utf8(wstrDir);
-
-      strPath = dir::path(strDir,"plugin-container.exe");
-   }
-
-ret1:
-   ::RegCloseKey(hkeyMozillaFirefox);
-   return strPath;
-
-}
+//
+//string get_sys_temp_path()
+//{
+//
+//   wchar_t  wsz[MAX_PATH * 4];
+//
+//   wsz[GetTempPathW(sizeof(wsz) / sizeof(wsz[0]),wsz)] = L'\0';
+//
+//   return string(wsz);
+//
+//}
+//
 
 
-
-
-
-
-string get_sys_temp_path()
-{
-
-   wchar_t  wsz[MAX_PATH * 4];
-
-   wsz[GetTempPathW(sizeof(wsz) / sizeof(wsz[0]),wsz)] = L'\0';
-
-   return string(wsz);
-
-}
-
-
-
-string file_as_string_dup(const char * path)
-{
-
-   string str;
-
-   HANDLE hfile = ::create_file(path,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-
-   if(hfile == INVALID_HANDLE_VALUE)
-      return "";
-
-   DWORD dwSizeHigh;
-
-   DWORD dwSize = ::GetFileSize(hfile,&dwSizeHigh);
-
-   LPSTR lpsz = str.GetBufferSetLength(dwSize);
-
-   DWORD dwRead;
-
-   ::ReadFile(hfile,lpsz,dwSize,&dwRead,NULL);
-
-   lpsz[dwSize] = '\0';
-
-   str.ReleaseBuffer(dwSize);
-
-   ::CloseHandle(hfile);
-
-   return str;
-
-
-}
-
+//string file_as_string_dup(const char * path)
+//{
+//
+//   string str;
+//
+//   HANDLE hfile = ::create_file(path,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+//
+//   if(hfile == INVALID_HANDLE_VALUE)
+//      return "";
+//
+//   DWORD dwSizeHigh;
+//
+//   DWORD dwSize = ::GetFileSize(hfile,&dwSizeHigh);
+//
+//   LPSTR lpsz = str.GetBufferSetLength(dwSize);
+//
+//   DWORD dwRead;
+//
+//   ::ReadFile(hfile,lpsz,dwSize,&dwRead,NULL);
+//
+//   lpsz[dwSize] = '\0';
+//
+//   str.ReleaseBuffer(dwSize);
+//
+//   ::CloseHandle(hfile);
+//
+//   return str;
+//
+//
+//}
+//
 
 bool file_get_memory_dup(::primitive::memory_base & memory,const char * path)
 {
@@ -486,19 +486,19 @@ bool file_get_memory_dup(::primitive::memory_base & memory,const char * path)
 
 }
 
-
-
-string file_module_path_dup()
-{
-
-   char path[MAX_PATH * 4];
-
-   if(!GetModuleFileName(NULL,path,sizeof(path)))
-      return "";
-
-   return path;
-
-}
+//
+//
+//string file_module_path_dup()
+//{
+//
+//   char path[MAX_PATH * 4];
+//
+//   if(!GetModuleFileName(NULL,path,sizeof(path)))
+//      return "";
+//
+//   return path;
+//
+//}
 
 
 
@@ -547,115 +547,115 @@ void file_read_gen_string_dup(HANDLE hfile,::md5::md5 * pctx,string & str)
    memory_free_dbg(lpsz,0);
 }
 
-
-bool PrintModules(string & strImage,uint32_t processID,const char * pszDll)
-{
-
-   HANDLE hProcess;
-
-   DWORD cbNeeded;
-
-   uint32_t ui;
-
-   hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,FALSE,processID);
-
-   if(NULL == hProcess)
-      return false;
-
-   const int32_t iMaxModuleCount = 1024;
-
-   HMODULE * hMods = new HMODULE[iMaxModuleCount];
-
-   const int32_t iImageSize = MAX_PATH * 8;
-
-   char * szImage = (char *)memory_alloc(iImageSize);
-
-   GetModuleFileNameEx(hProcess,NULL,szImage,iImageSize);
-
-   strImage = szImage;
-
-   memory_free_dbg(szImage,0);
-
-   bool bFound = false;
-
-   if(EnumProcessModules(hProcess,hMods,sizeof(HMODULE) * iMaxModuleCount,&cbNeeded))
-   {
-
-      for(ui = 0; ui < (cbNeeded / sizeof(HMODULE)); ui++)
-      {
-
-         TCHAR szModName[MAX_PATH];
-
-         // Get the full path to the module's file.
-
-         if(GetModuleFileNameEx(hProcess,hMods[ui],szModName,sizeof(szModName) / sizeof(TCHAR)))
-         {
-
-            if(!stricmp_dup(szModName,pszDll))
-            {
-
-               bFound = true;
-
-               break;
-
-            }
-
-         }
-
-      }
-
-   }
-
-   delete hMods;
-
-   CloseHandle(hProcess);
-
-   return bFound;
-
-}
-
-void dll_processes(uint_array & dwa,stringa & straProcesses,const char * pszDll)
-{
-   // Get the list of process identifiers.
-
-   DWORD * aProcesses = new DWORD[1024 * 8];
-
-   DWORD cbNeeded,cProcesses;
-
-   uint32_t ui;
-
-   if(!EnumProcesses(aProcesses,124 * 8 * sizeof(DWORD),&cbNeeded))
-   {
-      delete aProcesses;
-      return;
-   }
-
-   // Calculate how many process identifiers were returned.
-
-   cProcesses = cbNeeded / sizeof(DWORD);
-
-   // Print the name of the modules for each process.
-
-   string strImage;
-
-   for(ui = 0; ui < cProcesses; ui++)
-   {
-
-      if(PrintModules(strImage,aProcesses[ui],pszDll))
-      {
-
-         straProcesses.add(strImage); // there may processes with different pids but same image
-         dwa.add(aProcesses[ui]);
-
-      }
-
-   }
-
-   delete aProcesses;
-
-}
-
-
+//
+//bool PrintModules(string & strImage,uint32_t processID,const char * pszDll)
+//{
+//
+//   HANDLE hProcess;
+//
+//   DWORD cbNeeded;
+//
+//   uint32_t ui;
+//
+//   hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,FALSE,processID);
+//
+//   if(NULL == hProcess)
+//      return false;
+//
+//   const int32_t iMaxModuleCount = 1024;
+//
+//   HMODULE * hMods = new HMODULE[iMaxModuleCount];
+//
+//   const int32_t iImageSize = MAX_PATH * 8;
+//
+//   char * szImage = (char *)memory_alloc(iImageSize);
+//
+//   GetModuleFileNameEx(hProcess,NULL,szImage,iImageSize);
+//
+//   strImage = szImage;
+//
+//   memory_free_dbg(szImage,0);
+//
+//   bool bFound = false;
+//
+//   if(EnumProcessModules(hProcess,hMods,sizeof(HMODULE) * iMaxModuleCount,&cbNeeded))
+//   {
+//
+//      for(ui = 0; ui < (cbNeeded / sizeof(HMODULE)); ui++)
+//      {
+//
+//         TCHAR szModName[MAX_PATH];
+//
+//         // Get the full path to the module's file.
+//
+//         if(GetModuleFileNameEx(hProcess,hMods[ui],szModName,sizeof(szModName) / sizeof(TCHAR)))
+//         {
+//
+//            if(!stricmp_dup(szModName,pszDll))
+//            {
+//
+//               bFound = true;
+//
+//               break;
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//   delete hMods;
+//
+//   CloseHandle(hProcess);
+//
+//   return bFound;
+//
+//}
+//
+//void dll_processes(uint_array & dwa,stringa & straProcesses,const char * pszDll)
+//{
+//   // Get the list of process identifiers.
+//
+//   DWORD * aProcesses = new DWORD[1024 * 8];
+//
+//   DWORD cbNeeded,cProcesses;
+//
+//   uint32_t ui;
+//
+//   if(!EnumProcesses(aProcesses,124 * 8 * sizeof(DWORD),&cbNeeded))
+//   {
+//      delete aProcesses;
+//      return;
+//   }
+//
+//   // Calculate how many process identifiers were returned.
+//
+//   cProcesses = cbNeeded / sizeof(DWORD);
+//
+//   // Print the name of the modules for each process.
+//
+//   string strImage;
+//
+//   for(ui = 0; ui < cProcesses; ui++)
+//   {
+//
+//      if(PrintModules(strImage,aProcesses[ui],pszDll))
+//      {
+//
+//         straProcesses.add(strImage); // there may processes with different pids but same image
+//         dwa.add(aProcesses[ui]);
+//
+//      }
+//
+//   }
+//
+//   delete aProcesses;
+//
+//}
+//
+//
 
 
 
