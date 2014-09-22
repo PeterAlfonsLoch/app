@@ -57,7 +57,8 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
 CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath)
 {
 
-   void * plibrary = dlopen(pszPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
+   //void * plibrary = dlopen(pszPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
+   void * plibrary = dlopen(pszPath,RTLD_LOCAL | RTLD_NOW);
 
    int iError = errno;
 
