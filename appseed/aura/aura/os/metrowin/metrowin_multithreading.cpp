@@ -28,6 +28,42 @@ mutex * g_pmutexThreadIdLock = NULL;
 mutex * g_pmutexTlsData = NULL;
 //END_EXTERN_C
 
+
+thread_data::thread_data()
+{
+
+   g_dwTlsIndex = TlsAlloc();
+
+}
+
+
+thread_data::~thread_data()
+{
+
+   TlsFree(g_dwTlsIndex);
+
+}
+
+
+void * thread_data::get()
+{
+
+   return TlsGetValue(g_dwTlsIndex);
+
+}
+
+
+void thread_data::set(void * p)
+{
+
+   TlsSetValue(g_dwTlsIndex,(LPVOID)p);
+
+}
+
+
+
+
+
 map<HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo> & pendingThreads()
 {
 
