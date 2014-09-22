@@ -1158,6 +1158,7 @@
     <ClCompile Include="aura\os\metrowin\metrowin_base.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_base_file.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_debug.cpp" />
+    <ClCompile Include="aura\os\metrowin\metrowin_direct2d_tls.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_file_watcher.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_launcher.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_library.cpp" />
