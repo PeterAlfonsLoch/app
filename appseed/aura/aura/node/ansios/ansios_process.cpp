@@ -134,9 +134,9 @@ namespace ansios
 
       if(bPiped)
       {
-      dup2(m_pipe.m_pipeOut.m_fd[1] , STDOUT_FILENO);
-      dup2(m_pipe.m_pipeOut.m_fd[1] , STDERR_FILENO);
-      dup2(m_pipe.m_pipeIn.m_fd[0]  , STDIN_FILENO);
+         dup2(m_pipe.m_sppipeOut.cast < pipe >()->m_fd[1],STDOUT_FILENO);
+         dup2(m_pipe.m_sppipeOut.cast < pipe >()->m_fd[1],STDERR_FILENO);
+         dup2(m_pipe.m_sppipeIn.cast < pipe >()->m_fd[0],STDIN_FILENO);
       }
 
 
