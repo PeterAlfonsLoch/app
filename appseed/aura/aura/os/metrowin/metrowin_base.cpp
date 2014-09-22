@@ -461,6 +461,22 @@ CreateMutexW(
 
 
 
+int_bool is_windows_nt()
+{
+
+#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
+
+   return IsWindowsXPOrGreater();
+
+#else
+
+   return !(GetVersion() & 0x80000000);
+
+#endif
+
+}
+
+
 
 
 
