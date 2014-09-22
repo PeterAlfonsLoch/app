@@ -37,7 +37,7 @@ namespace metrowin
 
 
 
-void __node_aura_factory_exchange(::aura::application * papp)
+void __node_aura_factory_exchange(sp(::aura::application) papp)
 {
    
    ::metrowin::aura::factory_exchange factoryexchange(papp);
