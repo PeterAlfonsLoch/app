@@ -21,12 +21,12 @@
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
 
-BEGIN_EXTERN_C
+//BEGIN_EXTERN_C
 mutex * g_pmutexPendingThreadsLock = NULL;
 mutex * g_pmutexThreadIdHandleLock = NULL;
 mutex * g_pmutexThreadIdLock = NULL;
 mutex * g_pmutexTlsData = NULL;
-END_EXTERN_C
+//END_EXTERN_C
 
 map<HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo> & pendingThreads()
 {
