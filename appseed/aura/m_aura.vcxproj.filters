@@ -3256,6 +3256,9 @@
     <ClCompile Include="aura\os\metrowin\metrowin_MessageBoxA.cpp">
       <Filter>Source Files\aura\os\metrowin</Filter>
     </ClCompile>
+    <ClCompile Include="aura\os\metrowin\metrowin_debug.cpp">
+      <Filter>Source Files\aura\os\metrowin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="aura.rc">
