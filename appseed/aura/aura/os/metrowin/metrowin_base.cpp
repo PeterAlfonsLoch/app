@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "metrowin.h"
 #include <winternl.h>
+#include <VersionHelpers.h>
 
 
 extern CLASS_DECL_THREAD os_thread * t_posthread;
