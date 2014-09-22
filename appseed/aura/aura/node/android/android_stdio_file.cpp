@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "android.h"
 
 #include <fcntl.h>
 
@@ -32,7 +33,7 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
 
    if(nOpenFlags  & ::file::defer_create_directory)
    {
-      Application.dir().mk(Application.dir_name(lpszFileName));
+      Application.dir_mk(Application.dir_name(lpszFileName));
    }
 
    m_pStream = NULL;
