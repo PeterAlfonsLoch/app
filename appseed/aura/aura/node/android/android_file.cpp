@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "android.h"
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -12,12 +13,12 @@
 //#include <dlfcn.h>
 //#endif
 
-__STATIC inline bool IsDirSep(WCHAR ch)
-{
-
-   return (ch == '\\' || ch == '/');
-
-}
+//__STATIC inline bool IsDirSep(WCHAR ch)
+//{
+//
+//   return (ch == '\\' || ch == '/');
+//
+//}
 
 
 namespace android
