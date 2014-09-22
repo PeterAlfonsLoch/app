@@ -24,7 +24,13 @@
  */
 
 #include "framework.h"
+
+
+#if !defined(WINDOWS)
 #include <sys/time.h>
+#endif
+
+
 #include <time.h>
 
 #define server_start_time 0

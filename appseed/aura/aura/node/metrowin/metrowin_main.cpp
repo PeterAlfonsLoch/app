@@ -79,15 +79,6 @@ int CLASS_DECL_AURA win_main(::aura::system * psystem, ::Array < ::String ^ > ^ 
 
    try
    {
-      __win_term();
-   }
-   catch(...)
-   {
-   }
-
-
-   try
-   {
       delete psystem;
    }
    catch(...)

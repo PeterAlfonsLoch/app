@@ -1079,7 +1079,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\os\cross\windows\cross_windows_datetime.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -1967,7 +1967,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>Wtsapi32.lib;version.lib;Shlwapi.lib;Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Oleaut32.lib;DWrite.lib;D3D11.lib;D2D1.lib;Wtsapi32.lib;version.lib;Shlwapi.lib;Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"
