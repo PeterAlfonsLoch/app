@@ -2923,9 +2923,6 @@
     <ClCompile Include="aura\os\ansios\ansios_cross_windows_user.cpp">
       <Filter>Source Files\aura\os\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\ansios\crypto\ansios_crypt.cpp">
-      <Filter>Source Files\aura\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\ansios\ansios_file_std.cpp">
       <Filter>Source Files\aura\os\ansios</Filter>
     </ClCompile>
