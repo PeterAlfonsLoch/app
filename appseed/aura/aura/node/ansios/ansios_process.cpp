@@ -5,8 +5,6 @@
 #if defined(ANDROID)
 #include <sys/wait.h>
 #include <unistd.h>
-#include <spawn.h>
-extern char **environ;
 #elif defined(LINUX)
 #include <sys/wait.h>
 #include <unistd.h>
@@ -54,10 +52,12 @@ namespace ansios
       straParam.explode_command_line(pszCmdLine, &argv);
 
       //char * argv[] ={(char *)pszCmdLine,0};
+#if defined(LINUX) || defined(APPLEOS)
 
       posix_spawnattr_t attr;
 
       posix_spawnattr_init(&attr);
+
 
 #ifdef LINUX
 
@@ -116,16 +116,8 @@ namespace ansios
 
 #endif
 
-//#ifdef LINUX
+#else
 
-
-      posix_spawn_file_actions_destroy(&actions);
-
-      posix_spawnattr_destroy(&attr);
-
-      return status == 0;
-
-      /*
       char *	cmd_line;
 
       cmd_line = (char *) memory_alloc(strlen(pszCmdLine ) + 1 );
@@ -185,8 +177,8 @@ namespace ansios
       return 0;
       }
       // in parent, success
-      return 1;*/
-
+      return 1;
+#endif
 
    }
 
