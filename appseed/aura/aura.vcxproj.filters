@@ -3226,9 +3226,6 @@
     <ClCompile Include="aura\os\android\android_base_file.cpp">
       <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\android\android_windowing.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_static_start.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
