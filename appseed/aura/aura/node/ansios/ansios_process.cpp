@@ -5,6 +5,8 @@
 #if defined(ANDROID)
 #include <sys/wait.h>
 #include <unistd.h>
+#include <spawn.h>
+extern char **environ;
 #elif defined(LINUX)
 #include <sys/wait.h>
 #include <unistd.h>
