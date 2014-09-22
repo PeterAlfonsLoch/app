@@ -17,7 +17,7 @@
 //#include <map>
 
 //using namespace std;
-using namespace Platform;
+//using namespace Platform;
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
 

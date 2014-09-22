@@ -7,18 +7,15 @@ using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::UI::Xaml::Navigation;
 
-public ref class message_box_a sealed
+class message_box_a
 {
 public:
-
-   MessageDialog^ msg;
 
    message_box_a();
 
    void do_modal(String ^ text, String ^ caption, unsigned int uiFlags);
-   void on_command(Windows::UI::Popups::IUICommand^ command);
 
-   void create_a_button(String ^ id,String ^ text);
+   
 };
 
 message_box_a::message_box_a()
@@ -26,10 +23,8 @@ message_box_a::message_box_a()
  
 }
 
-void message_box_a::create_a_button(String ^ id,String ^ text)
-{
-   msg->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this,&message_box_a::on_command),id);
-}
+#define create_a_button(id,text) \
+   msg->Commands->Append(ref new UICommand(text,nullptr,id);
 
 void message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uiFlags)
 {
@@ -78,284 +73,104 @@ void message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uiFlags
    msg->CancelCommandIndex = 1;
 
    // Show the message dialog 
-   msg->ShowAsync();
-}
+   UICommand ^ cmd = ::wait(msg->ShowAsync());
 
-/// <summary> 
-/// Callback function for the invocation of the dialog commands. 
-/// </summary> 
-/// <param name="command">The command that was invoked.</param> 
-void CancelCommand::CommandInvokedHandler(Windows::UI::Popups::IUICommand^ command)
-{
+   int iResult = IDCANCEL;
 
-   if(stricmp_dup(pszId,"ok") == 0)
+   if(cmd->Id == "ok")
    {
 
-      m_iResult = IDOK;
+      iResult =  IDOK;
 
-      EndModalLoop(IDOK);
 
-      return true;
+
+
 
    }
-   else if(stricmp_dup(pszId,"yes") == 0)
+   else if(cmd->Id == "yes")
    {
 
-      m_iResult = IDYES;
+      iResult =  IDYES;
 
-      EndModalLoop(IDOK);
 
-      return true;
+
+
 
    }
-   else if(stricmp_dup(pszId,"no") == 0)
+   else if(cmd->Id == "no")
    {
 
-      m_iResult = IDNO;
+      iResult =  IDNO;
 
-      EndModalLoop(IDOK);
 
-      return true;
+
+
 
    }
-   else if(stricmp_dup(pszId,"cancel") == 0)
+   else if(cmd->Id == "cancel")
    {
 
-      m_iResult = IDCANCEL;
+      iResult =  IDCANCEL;
 
-      EndModalLoop(IDOK);
 
-      return true;
+
+
 
    }
-   else if(stricmp_dup(pszId,"abort") == 0)
+   else if(cmd->Id == "abort")
    {
 
-      m_iResult = IDABORT;
+      iResult =  IDABORT;
 
-      EndModalLoop(IDOK);
 
-      return true;
+
+
 
    }
-   else if(stricmp_dup(pszId,"retry") == 0)
+   else if(cmd->Id == "retry")
    {
 
-      m_iResult = IDRETRY;
+      iResult =  IDRETRY;
 
-      EndModalLoop(IDOK);
 
-      return true;
+
+
 
    }
-   else if(stricmp_dup(pszId,"ignore") == 0)
+   else if(cmd->Id == "ignore")
    {
 
-      m_iResult = IDIGNORE;
+      iResult =  IDIGNORE;
 
-      EndModalLoop(IDOK);
 
-      return true;
+
+
 
    }
-   else if(stricmp_dup(pszId,"try") == 0)
+   else if(cmd->Id == "try")
    {
 
-      m_iResult = IDTRYAGAIN;
+      iResult =  IDTRYAGAIN;
 
-      EndModalLoop(IDOK);
 
-      return true;
+
+
 
    }
-   else if(stricmp_dup(pszId,"continue") == 0)
+   else if(cmd->Id == "continue")
    {
 
-      m_iResult = IDCONTINUE;
+      iResult =  IDCONTINUE;
 
-      EndModalLoop(IDOK);
 
-      return true;
+
+
 
    }
 
-
-   return false;
-
-   // Display message 
-   rootPage->NotifyUser("The '" + command->Label + "' command has been selected.",NotifyType::StatusMessage);
-}
-
-
-
-
-
-::rect rectDesktop;
-
-stringa stra;
-
-stra.add("\r");
-
-stra.add("\n");
-
-stra.add("\r\n");
-
-m_stra.add_smallest_tokens(m_strMessage,stra);
-
-Session.get_main_monitor(rectDesktop);
-
-SetWindowText(m_strTitle);
-
-rect rectFontopus;
-
-int stdw = 800;
-
-int stdh = 184 + 23 + 184;
-
-int w = stdw;
-
-int h = stdh;
-
-if(w > rectDesktop.width())
-{
-
-   w = rectDesktop.width();
+   return iResult;
 
 }
-
-if(h > rectDesktop.height())
-{
-
-   h = rectDesktop.height();
-
-}
-
-rectFontopus.left = rectDesktop.left + (width(rectDesktop) - w) / 2;
-
-rectFontopus.top = rectDesktop.top + (height(rectDesktop) - h) / 3;
-
-rectFontopus.right = rectFontopus.left + w;
-
-rectFontopus.bottom = rectFontopus.top + h;
-
-if(!create_window_ex(0,NULL,NULL,0,rectFontopus,NULL,"fontopus"))
-throw simple_exception(get_app(),"not excepted! Failing Message box!!");
-
-uint32_t uiType = m_uiFlags & MB_TYPEMASK;
-
-
-SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
-
-layout();
-
-SetForegroundWindow();
-
-BringWindowToTop();
-
-BringToTop(SW_NORMAL);
-
-RunModalLoop();
-
-return m_iResult;
-
-   }
-
-
-   void message_box::_001OnDraw(::draw2d::graphics * pdc)
-   {
-
-      rect rectClient;
-
-      GetClientRect(rectClient);
-
-      pdc->FillSolidRect(rectClient,ARGB(255,0xcc,0xcc,0xc5));
-
-      sp(::draw2d::font) font(allocer());
-
-      font->create_point_font("Arial",12);
-
-      pdc->selectFont(font);
-
-      ::draw2d::text_metric tm;
-
-      pdc->get_text_metrics(&tm);
-
-      int iHeight = tm.tmHeight;
-
-      int y = 10;
-
-      for(int i = 0; i < m_stra.get_size(); i++)
-      {
-
-         pdc->TextOut(10,y,m_stra[i]);
-
-         y+= iHeight;
-
-      }
-
-
-   }
-
-
-   void message_box::layout()
-   {
-
-      rect rectClient;
-
-      GetClientRect(rectClient);
-
-      // DESKTOP sizing
-      int cx = (84 + 77) * 2 / 3;
-      int cy = 49 / 2;
-      int margin = 10;
-      int x = rectClient.left + margin;
-      int y = rectClient.bottom - cy - margin;
-
-
-      for(index i = 0; i < m_tapaA.get_count(); i++)
-      {
-
-         sp(tap) ptap = m_tapaA(i);
-
-         ptap->SetWindowPos(ZORDER_TOP,x,y,cx,cy,SWP_SHOWWINDOW);
-
-         x += cx + margin;
-
-      }
-
-      x = rectClient.right - margin - cx;
-
-      for(index i = m_tapaB.get_upper_bound(); i >= 0; i--)
-      {
-
-         sp(tap) ptap = m_tapaB(i);
-
-         ptap->SetWindowPos(ZORDER_TOP,x,y,cx,cy,SWP_SHOWWINDOW);
-
-         x -= cx + margin;
-
-      }
-
-
-   }
-
-
-   bool message_box::on_action(const char * pszId)
-   {
-
-
-   }
-
-
-   void message_box::pre_translate_message(signal_details * pobj)
-   {
-
-      simple_ui::interaction::pre_translate_message(pobj);
-
-   }
-
-
-} // namespace simple_ui
 
 
 
@@ -365,9 +180,12 @@ int32_t MessageBoxA(oswindow interaction_impl,const char * lpText,const char * l
 
    UNREFERENCED_PARAMETER(interaction_impl);
 
-   message_box_a ^ a = ref new message_box_a();
+   message_box_a a;
 
-   return a->do_modal(string(lpText),string(lpCaption),uiFlags);
+   int iResult = a->do_modal(string(lpText),string(lpCaption),uiFlags);
+
+
+   return iResult;
 
 
 }
