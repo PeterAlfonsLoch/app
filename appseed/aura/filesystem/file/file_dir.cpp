@@ -298,6 +298,8 @@ string dir::get_base_module_folder()
 
 #elif defined(WINDOWS)
 
+   wchar_t lpszModuleFolder[MAX_PATH * 8];
+
    wchar_t lpszModuleFilePath[MAX_PATH * 8];
 
    HMODULE hmodule = ::GetModuleHandleA("base.dll");
@@ -352,6 +354,9 @@ string dir::get_base_module_folder()
       }
 
    }
+
+
+   return lpszModuleFolder;
 
 
 #else
