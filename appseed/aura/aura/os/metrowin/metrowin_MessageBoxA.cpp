@@ -24,12 +24,14 @@ message_box_a::message_box_a()
 }
 
 #define create_a_button(id,text) \
-   msg->Commands->Append(ref new UICommand(text,nullptr,id);
+   msg->Commands->Append(ref new UICommand(text,nullptr,id));
 
 void message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uiFlags)
 {
 
    MessageDialog^ msg = ref new MessageDialog(text, caption);
+
+   uint32_t uiType = uiFlags & MB_TYPEMASK;
 
    switch(uiType)
    {
