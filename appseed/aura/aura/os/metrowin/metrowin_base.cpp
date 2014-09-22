@@ -467,7 +467,9 @@ int_bool is_windows_nt()
 
 #if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
 
-   return IsWindowsXPOrGreater();
+//   return IsWindowsXPOrGreater();
+
+   return TRUE;
 
 #else
 
