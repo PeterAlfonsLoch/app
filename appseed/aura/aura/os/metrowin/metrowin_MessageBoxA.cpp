@@ -13,7 +13,7 @@ public:
 
    message_box_a();
 
-   void do_modal(String ^ text, String ^ caption, unsigned int uiFlags);
+   int do_modal(String ^ text, String ^ caption, unsigned int uiFlags);
 
    
 };
@@ -75,7 +75,7 @@ void message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uiFlags
    msg->CancelCommandIndex = 1;
 
    // Show the message dialog 
-   UICommand ^ cmd = ::wait(msg->ShowAsync());
+   IUICommand ^ cmd = ::wait(msg->ShowAsync());
 
    int iResult = IDCANCEL;
 
