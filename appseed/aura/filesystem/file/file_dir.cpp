@@ -136,6 +136,7 @@ string dir::get_ca2_module_folder()
    return true;
 
 #elif defined(WINDOWS)
+   wchar_t lpszModuleFolder[MAX_PATH * 8];
 
    wchar_t lpszModuleFilePath[MAX_PATH * 8];
 
