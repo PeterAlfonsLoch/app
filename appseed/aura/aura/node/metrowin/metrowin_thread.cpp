@@ -15,6 +15,31 @@ bool __internal_is_idle_message(MSG* pMsg);
 //__STATIC void CLASS_DECL_AURA __pre_init_dialog(sp(::user::interaction) pWnd, LPRECT lpRectOld, uint32_t* pdwStyleOld);
 //__STATIC void CLASS_DECL_AURA __post_init_dialog(sp(::user::interaction) pWnd, const RECT& rectOld, uint32_t dwStyleOld);
 
+
+//__declspec(thread) HHOOK t_hHookOldMsgFilter = NULL;
+//
+//
+//LRESULT CALLBACK __message_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam);
+
+
+void CLASS_DECL_AURA __init_thread()
+{
+
+   //if(t_hHookOldMsgFilter == NULL)
+   //{
+
+   //   t_hHookOldMsgFilter = ::SetWindowsHookEx(WH_MSGFILTER,__message_filter_hook,NULL,::GetCurrentThreadId());
+
+   //}
+
+}
+
+
+void CLASS_DECL_AURA __term_thread()
+{
+
+
+}
 namespace core
 {
 
