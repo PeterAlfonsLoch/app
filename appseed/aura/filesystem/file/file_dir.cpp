@@ -196,9 +196,9 @@ string dir::get_ca2_module_folder()
 
 #else
 
+   wchar_t lpszModuleFolder[MAX_PATH * 8];
+
    wcscpy_dup(lpszModuleFolder, L"/ca2/");
-
-
 
 #endif
 

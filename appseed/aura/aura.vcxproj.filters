@@ -99,9 +99,6 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{6dfb842d-9db9-46a1-a7d1-6f696d6287bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\str\iconv">
-      <UniqueIdentifier>{d60a1b53-2e99-40da-8849-66e0d745281b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\aura">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
     </Filter>
@@ -2937,96 +2934,6 @@
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_thread.cpp">
       <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\allocator.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\areadlink.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\canonicalize-lgpl.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\careadlinkat.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\c-ctype.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\error.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\genaliases.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\genaliases2.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\genflags.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\gentranslit.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\iconv.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\lstat.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\malloca.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\memmove.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\progname.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\progreloc.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\read.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\readlink.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\relocatable.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\relocwrapper.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\safe-read.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\setenv.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\sigprocmask.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\stat.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\stdio-write.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\strerror.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\strerror-override.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\xmalloc.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\xreadlink.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\xstrdup.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
     </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
