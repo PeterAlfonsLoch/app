@@ -26,7 +26,8 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
    if(strstr((const char *)strPath,"/") == NULL && !str_begins_dup(strPath,"lib"))
       strPath = "lib" + strPath;
 
-   void * plibrary = dlopen(strPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
+   //void * plibrary = dlopen(strPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
+   void * plibrary = dlopen(strPath,RTLD_LOCAL | RTLD_NOW);
 
    int iError = errno;
 
