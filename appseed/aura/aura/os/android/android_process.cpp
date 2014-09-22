@@ -138,8 +138,6 @@ CLASS_DECL_AURA bool main_initialize()
 
    t_posthread->m_bRun = true;
 
-   ::windowing::init_windowing();
-
    return true;
 
 }
@@ -147,8 +145,6 @@ CLASS_DECL_AURA bool main_initialize()
 
 CLASS_DECL_AURA bool main_finalize()
 {
-
-   ::windowing::term_windowing();
 
    if(t_posthread != NULL)
    {

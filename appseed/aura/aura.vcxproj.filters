@@ -2584,9 +2584,6 @@
     <ClCompile Include="aura\os\android\android_locale.c">
       <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\android\android_window_impl.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="aura\exception\exception.cpp">
       <Filter>Source Files\aura\exception</Filter>
     </ClCompile>
@@ -2906,9 +2903,6 @@
       <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\android\android_win_base.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\android\android_window_android.cpp">
       <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\os_binreloc.cpp">
