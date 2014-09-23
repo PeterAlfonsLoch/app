@@ -2863,9 +2863,6 @@
     <ClCompile Include="primitive\primitive_relation_set.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\android\android.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\android\android_cross_win_file.cpp">
       <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
@@ -3382,6 +3379,9 @@
     <ClCompile Include="filesystem\file\file_file_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
+    <ClCompile Include="aura\os\android\android_base.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3416,9 +3416,6 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

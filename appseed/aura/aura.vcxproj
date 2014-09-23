@@ -3818,8 +3818,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</RuntimeTypeInfo>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsC</CompileAs>
     </ClCompile>
-    <ClCompile Include="aura\os\android\android.cpp">
+    <ClCompile Include="aura\os\android\android_base.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
@@ -4161,7 +4162,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCHeader</CompileAs>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CompileAsCHeader</CompileAs>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
     </ClCompile>
