@@ -3456,9 +3456,6 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="aura.def">
       <Filter>Source Files</Filter>
     </None>
@@ -3479,10 +3476,5 @@
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcr120d.dll">
       <Filter>Binary Files\x64</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="aura.rc">
-      <Filter>Source Files</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>
