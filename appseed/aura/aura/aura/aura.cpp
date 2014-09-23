@@ -1,5 +1,16 @@
 #include "framework.h"
 
+
+
+BEGIN_EXTERN_C
+
+CLASS_DECL_AURA uint32_t g_dwStartTime = 0;
+
+
+END_EXTERN_C
+
+
+
 //namespace std
 //{
 //
