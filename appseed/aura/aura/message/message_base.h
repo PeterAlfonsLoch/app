@@ -24,6 +24,7 @@ namespace message
 
       base(sp(::aura::application) papp,class ::signal * psignal = NULL);
       base(sp(::aura::application) papp,::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      base(const base & base);
 
 
 

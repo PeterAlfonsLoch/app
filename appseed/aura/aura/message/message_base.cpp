@@ -23,6 +23,16 @@ namespace message
       set(pwnd,uiMessage,wparam,lparam,lresult);
    }
 
+   base::base(const base & base)
+   {
+   m_pwnd = base.m_pwnd;
+                          m_uiMessage = base.m_uiMessage;
+                      m_wparam = base.m_wparam;
+                      m_lparam = base.m_lparam;
+                        m_bConditional = base.m_bConditional;
+                      m_bReflect = base.m_bReflect;
+   }
+
    void base::set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
       m_pwnd            = pwnd;
@@ -47,7 +57,7 @@ namespace message
       return *m_plresult;
    }
 
-   
+
 } // namespace user
 
 
