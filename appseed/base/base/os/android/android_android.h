@@ -69,25 +69,25 @@ CLASS_DECL_BASE DWORD SetLastError(DWORD dw);
 
 CLASS_DECL_BASE bool _istlead(int32_t ch);
 
-
-oswindow GetCapture();
-oswindow SetCapture(oswindow interaction_impl);
-int_bool ReleaseCapture();
-oswindow SetFocus(oswindow interaction_impl);
-oswindow GetFocus();
-oswindow GetWindow(oswindow interaction_impl, int iParentHood);
-oswindow GetActiveWindow();
-oswindow SetActiveWindow(oswindow interaction_impl);
-int_bool DestroyWindow(oswindow interaction_impl);
-oswindow GetDesktopWindow();
-
-
-
-
+//
+//oswindow GetCapture();
+//oswindow SetCapture(oswindow interaction_impl);
+//int_bool ReleaseCapture();
+//oswindow SetFocus(oswindow interaction_impl);
+//oswindow GetFocus();
+//oswindow GetWindow(oswindow interaction_impl, int iParentHood);
+//oswindow GetActiveWindow();
+//oswindow SetActiveWindow(oswindow interaction_impl);
+//int_bool DestroyWindow(oswindow interaction_impl);
+//oswindow GetDesktopWindow();
+//
+//
 
 
 
-bool c_xstart();
 
-extern oswindow g_oswindowDesktop;
+
+//bool c_xstart();
+
+//extern oswindow g_oswindowDesktop;
 
