@@ -69,16 +69,6 @@ CLASS_DECL_AURA DWORD SetLastError(DWORD dw);
 CLASS_DECL_AURA bool _istlead(int32_t ch);
 
 
-oswindow GetCapture();
-oswindow SetCapture(oswindow interaction_impl);
-int_bool ReleaseCapture();
-oswindow SetFocus(oswindow interaction_impl);
-oswindow GetFocus();
-oswindow GetWindow(oswindow interaction_impl, int iParentHood);
-oswindow GetActiveWindow();
-oswindow SetActiveWindow(oswindow interaction_impl);
-int_bool DestroyWindow(oswindow interaction_impl);
-oswindow GetDesktopWindow();
 
 
 
@@ -86,7 +76,36 @@ oswindow GetDesktopWindow();
 
 
 
-bool c_xstart();
 
-extern oswindow g_oswindowDesktop;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
