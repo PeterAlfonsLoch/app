@@ -894,10 +894,13 @@ int32_t thread_impl::main()
       return 0;
    }
 
+
+
    // first -- check for simple worker thread
    DWORD nResult = 0;
    if(m_pfnThreadProc != NULL)
    {
+      m_pthread->m_bRun = true;
       nResult = (*m_pfnThreadProc)(m_pThreadParams);
    }
    // else -- check for thread with message loop
