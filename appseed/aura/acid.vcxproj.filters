@@ -3298,6 +3298,9 @@
     <ClCompile Include="primitive\math\math_cvt_g.cpp">
       <Filter>Header Files\primitive\math</Filter>
     </ClCompile>
+    <ClCompile Include="aura\exception\exception_throw.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3308,12 +3311,6 @@
     </None>
     <None Include="primitive\str\str.inl">
       <Filter>Header Files\primitive\str</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

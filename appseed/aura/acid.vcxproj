@@ -2786,6 +2786,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\aura\aura_session_interface.cpp" />
     <ClCompile Include="aura\aura\aura_static_start.cpp" />
     <ClCompile Include="aura\exception\exception_parsing.cpp" />
+    <ClCompile Include="aura\exception\exception_throw.cpp" />
     <ClCompile Include="aura\exception\exception_verisimple.cpp" />
     <ClCompile Include="aura\message\message.cpp" />
     <ClCompile Include="aura\message\message_base.cpp" />
