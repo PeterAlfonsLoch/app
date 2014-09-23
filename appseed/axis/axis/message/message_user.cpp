@@ -90,7 +90,9 @@ namespace message
    }
 
 
-   key::key(const key & key)
+   key::key(const key & key) :
+      element(key),
+      ::message::base(key)
    {
 
       operator = (key);
