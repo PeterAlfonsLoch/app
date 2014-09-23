@@ -81,13 +81,21 @@ namespace message
       set_lresult(bResult);
    }
 
+
    key::key(sp(::aura::application) papp):
       element(papp),
       ::message::base(papp)
    {
-      }
+
+   }
 
 
+   key::key(const key & key)
+   {
+
+      operator = (key);
+
+   }
 
 
    void key::set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
@@ -106,24 +114,29 @@ namespace message
       m_bExt = (lparam & (1 << 24)) != 0;
 
    }
-  key & key::operator = (const key & key)
+
+
+   key & key::operator = (const key & key)
    {
 
       if(this != &key)
       {
 
-                        m_nChar = key.m_nChar;
-      uint_ptr          m_nScanCode;
-      UINT              m_nRepCnt;
-      UINT              m_nFlags;
-      bool              m_bExt;
+         m_nChar = key.m_nChar;
+         m_nScanCode = key.m_nScanCode;
+         m_nRepCnt = key.m_nRepCnt;
+         m_nFlags = key.m_nFlags;
+         m_bExt = key.m_bExt;
+         m_ekey = key.m_ekey;
+         m_strText = key.m_strText;
 
-      m_ekey;
-
-      m_strText;
       }
+
       return *this;
+
    }
+
+
    nc_activate::nc_activate(sp(::aura::application) papp):
       element(papp),
       ::message::base(papp)
