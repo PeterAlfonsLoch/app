@@ -533,6 +533,14 @@
 		<Unit filename="filesystem/file/file_dir2.cpp" />
 		<Unit filename="filesystem/file/file_exception.cpp" />
 		<Unit filename="filesystem/file/file_exception.h" />
+		<Unit filename="filesystem/file/file_file_input_stream.cpp" />
+		<Unit filename="filesystem/file/file_file_input_stream.h" />
+		<Unit filename="filesystem/file/file_file_output_stream.cpp" />
+		<Unit filename="filesystem/file/file_file_output_stream.h" />
+		<Unit filename="filesystem/file/file_file_stream.cpp" />
+		<Unit filename="filesystem/file/file_file_stream.h" />
+		<Unit filename="filesystem/file/file_file_stream_base.cpp" />
+		<Unit filename="filesystem/file/file_file_stream_base.h" />
 		<Unit filename="filesystem/file/file_folder_watch.cpp" />
 		<Unit filename="filesystem/file/file_folder_watch.h" />
 		<Unit filename="filesystem/file/file_input_stream.cpp" />
