@@ -444,13 +444,13 @@ if(__get_module_state()->m_pmapHWND == NULL)
    void application::ShowWaitCursor(bool bShow)
    {
 
-      synch_lock mlUser(&user_mutex());
+      //synch_lock mlUser(&user_mutex());
 
-      synch_lock mlOsWindow(::oswindow_data::s_pmutex);
+      //synch_lock mlOsWindow(::oswindow_data::s_pmutex);
 
-      unsigned int uiShape = 0;
+      //unsigned int uiShape = 0;
 
-      TRACE("not_implemented android::application::ShowWaitCursor(bool)");
+      //TRACE("not_implemented android::application::ShowWaitCursor(bool)");
 
       /*
 
