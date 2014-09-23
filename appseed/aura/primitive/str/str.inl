@@ -169,11 +169,6 @@ inline simple_string::simple_string(const string_data  * pdata, string_manager *
    }
 
 
-      inline void throw_error_exception(const char * psz)
-      {
-         throw error_exception(get_thread_app(), psz);
-      }
-
    inline void string_buffer::set_length(strsize nLength )
    {
       ASSERT( nLength >= 0 );
@@ -281,14 +276,12 @@ inline strsize string::replace_ci(const char * pszOld,const char * pszNew, strsi
 }
 
 
-DECLSPEC_NO_RETURN inline void __cdecl throw_memory_exception()
-{
-   throw memory_exception(get_thread_app());
-}
 
 inline bool string::ends_ci(const string & strSuffixCandidate)
 {
+   
    return ::str::ends_ci(*this, strSuffixCandidate);
+
 }
 
 
@@ -384,7 +377,7 @@ inline strsize strlen_s_dup(const char * psz,strsize nsize)
 template < >
 inline void std_string_assign(stdstring < simple_string > & t,const char * psz)
 {
-   t = psz;
+   t.assign(psz);
 }
 
 template < >

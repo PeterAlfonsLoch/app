@@ -16,7 +16,7 @@ plex_heap * plex_heap::create(plex_heap*& pHead, uint_ptr nMax, uint_ptr cbEleme
    }
 
    plex_heap* p = (plex_heap*) system_heap_alloc(sizeof(plex_heap) + nMax * cbElement);
-   
+
 #ifdef DEBUG
    Free_check_pointer_in_cpp(p);
 #endif

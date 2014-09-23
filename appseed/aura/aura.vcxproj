@@ -1782,6 +1782,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\exception\exception_standard_translator.h" />
     <ClInclude Include="aura\exception\exception_system.h" />
     <ClInclude Include="aura\exception\exception_temporary.h" />
+    <ClInclude Include="aura\exception\exception_throw.h" />
     <ClInclude Include="aura\exception\exception_todo.h" />
     <ClInclude Include="aura\exception\exception_trap.h" />
     <ClInclude Include="aura\exception\exception_unhandled_report.h" />
@@ -2780,6 +2781,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\aura\aura_static_start.cpp" />
     <ClCompile Include="aura\exception\exception_cancel.cpp" />
     <ClCompile Include="aura\exception\exception_parsing.cpp" />
+    <ClCompile Include="aura\exception\exception_throw.cpp" />
     <ClCompile Include="aura\exception\exception_verisimple.cpp" />
     <ClCompile Include="aura\message\message.cpp" />
     <ClCompile Include="aura\message\message_base.cpp" />

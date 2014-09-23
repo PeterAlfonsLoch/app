@@ -28,16 +28,28 @@ void * system_heap_alloc(size_t size)
 //#if ZEROED_ALLOC
   // byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
 //#else  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
+   
+   void * p;
+
 #ifdef WINDOWSEX
 
-   return ::HeapAlloc(g_system_heap(), 0, size);
+   p = ::HeapAlloc(g_system_heap(), 0, size);
 
 #else
 
-   return ::malloc(size);
+   p = ::malloc(size);
 
 #endif
 //#endif
+
+   if(p == NULL)
+   {
+
+      throw_memory_exception();
+
+   }
+
+   return p;
 
 }
 

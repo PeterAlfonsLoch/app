@@ -3,8 +3,7 @@
 
 class string_manager;
 
-inline void throw_error_exception(const char * psz);
-DECLSPEC_NO_RETURN inline void __cdecl throw_memory_exception();
+
 
 struct CLASS_DECL_AURA string_data
 {
@@ -473,6 +472,11 @@ public:
       SetString( pszSrc );
 
       return *this;
+   }
+
+   void assign(const char * pszSrc)
+   {
+      SetString(pszSrc);
    }
 
    simple_string& operator+=(const simple_string& strSrc )

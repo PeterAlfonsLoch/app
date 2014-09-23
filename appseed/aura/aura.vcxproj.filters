@@ -2072,6 +2072,9 @@
     <ClInclude Include="filesystem\file\file_file_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
+    <ClInclude Include="aura\exception\exception_throw.h">
+      <Filter>Header Files\aura\exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3387,6 +3390,9 @@
     </ClCompile>
     <ClCompile Include="aura\os\ansios\ansios_message_loop.cpp">
       <Filter>Source Files\aura\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_throw.cpp">
+      <Filter>Source Files\aura\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
