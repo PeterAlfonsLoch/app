@@ -207,7 +207,7 @@ namespace message
       bool              m_bExt;
 
       ::user::e_key     m_ekey;
-      
+
       string   m_strText;
 
       /*#ifdef METROWIN
@@ -219,9 +219,12 @@ namespace message
 
 
       key(sp(::aura::application) papp);
+      key(const key & key);
 
       using ::message::base::set;
       virtual void set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+
+      key & operator = (const key & key);
    };
 
    class CLASS_DECL_AXIS nc_activate: public base

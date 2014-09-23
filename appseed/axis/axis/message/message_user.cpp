@@ -87,6 +87,17 @@ namespace message
    {
       }
 
+            uint_ptr          m_nChar;
+      uint_ptr          m_nScanCode;
+      UINT              m_nRepCnt;
+      UINT              m_nFlags;
+      bool              m_bExt;
+
+      ::user::e_key     m_ekey;
+
+      string   m_strText;
+
+
    void key::set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
 
@@ -103,7 +114,22 @@ namespace message
       m_bExt = (lparam & (1 << 24)) != 0;
 
    }
+  key & key::operator = (::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   {
 
+      base::set(pwnd,uiMessage,wparam,lparam,lresult);
+
+      m_nChar = static_cast<UINT>(wparam);
+
+      m_nRepCnt = LOWORD(lparam);
+
+      m_nFlags = HIWORD(lparam);
+
+      m_nScanCode = ((lparam >> 16) & 0xff);
+
+      m_bExt = (lparam & (1 << 24)) != 0;
+
+   }
    nc_activate::nc_activate(sp(::aura::application) papp):
       element(papp),
       ::message::base(papp)
