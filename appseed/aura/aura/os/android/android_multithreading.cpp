@@ -425,3 +425,66 @@ struct _TEB * WINAPI NtCurrentTeb(void)
 
 
 
+
+
+bool on_init_thread()
+{
+
+   if(!__os_init_thread())
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+bool on_term_thread()
+{
+
+   bool bOk1 = __os_term_thread();
+
+   return bOk1;
+
+}
+
+
+
+
+
+void __node_init_multithreading()
+{
+
+}
+
+
+
+void __node_term_multithreading()
+{
+
+}
+
+
+
+
+thread_int_ptr < HRESULT > t_hresultCoInitialize;
+
+
+bool __os_init_thread()
+{
+
+   return true;
+
+}
+
+
+
+bool __os_term_thread()
+{
+
+   return true;
+
+}

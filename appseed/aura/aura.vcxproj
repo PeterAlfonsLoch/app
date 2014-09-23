@@ -2769,6 +2769,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="filesystem\file\file_transfer_buffer.h" />
     <ClInclude Include="filesystem\file\file_writer.h" />
     <ClInclude Include="filesystem\file\file_writer_flush.h" />
+    <ClCompile Include="android_MessageBoxA.cpp" />
     <ClCompile Include="aura\aura\aura_application_interface.cpp" />
     <ClCompile Include="aura\aura\aura_gudo.cpp" />
     <ClCompile Include="aura\aura\aura_id_pool.cpp" />
