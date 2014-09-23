@@ -67,7 +67,7 @@
 	<item code="51" value="key_closebracket2" />
 	<item code="21" value="key_equal" />
 	<item code="49" value="key_apostrophe2" />
-	<item code="49" value="key_backslash2" />
+	<item code="94" value="key_backslash2" />
 	<item code="9" value="key_escape" />
 </layout>
 
