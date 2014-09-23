@@ -316,7 +316,7 @@ namespace http
 
       }
 
-      while(true)
+      while(::get_thread() == NULL || get_thread()->m_bRun)
       {
 
          {
