@@ -63,5 +63,11 @@
 	<item code="48" value="key_til2" />
 	<item code="97" value="key_slash2" />
 	<item code="61" value="key_semicolon2" />
+	<item code="35" value="key_openbracket2" />
+	<item code="51" value="key_closebracket2" />
+	<item code="21" value="key_equal" />
+	<item code="49" value="key_apostrophe2" />
+	<item code="49" value="key_backslash2" />
+	<item code="9" value="key_escape" />
 </layout>
 
