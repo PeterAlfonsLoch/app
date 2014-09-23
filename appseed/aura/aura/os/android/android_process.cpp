@@ -5,7 +5,8 @@
 #include <unistd.h>
 
 
-extern __thread os_thread * t_posthread;
+extern thread_pointer < os_thread > t_posthread;
+extern thread_pointer < os_thread > currentThread;
 
 
 int32_t create_process(const char * _cmd_line, int32_t * pprocessId)

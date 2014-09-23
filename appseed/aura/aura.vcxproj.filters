@@ -3385,6 +3385,9 @@
     <ClCompile Include="android_MessageBoxA.cpp">
       <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_message_loop.cpp">
+      <Filter>Source Files\aura\os\ansios</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
