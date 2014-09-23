@@ -840,7 +840,7 @@ retry:
 
          TRACE("intertime system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
 
-         while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete)
+         while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete && (::get_thread() == NULL || ::get_thread()->m_bRun))
          {
             dw1 = ::get_tick_count();
             psession->m_phandler->select(240, 0);
