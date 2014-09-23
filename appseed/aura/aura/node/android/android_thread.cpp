@@ -38,18 +38,6 @@ void __term_threading()
 bool __node_init_thread(::thread * pthread)
 {
 
-   try
-   {
-
-      pthread->::exception::translator::attach();
-
-   }
-   catch(...)
-   {
-
-      return false;
-
-   }
 
    return true;
 
