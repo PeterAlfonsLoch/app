@@ -355,7 +355,7 @@ void cookies::parse_header(const char * psz)
       {
          if(pszKeyEnd == NULL || pszKeyEnd > pszParamEnd)
          {
-            ca.m_strName = string(pszParam, pszParamEnd - pszKeyEnd);
+            ca.m_strName = string(pszParam,pszParamEnd - pszParam);
             ca.m_strNameLow = ca.m_strName;
             ca.m_strNameLow.make_lower();
             ca.m_varValue.set_type(var::type_empty);
