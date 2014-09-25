@@ -15,7 +15,7 @@ namespace lemon
 
       for(int i = 0; i < srca.get_size(); i++)
       {
-         dsta.add(new TSRC(srca[i]));
+         dsta.add(canew(TSRC(srca[i])));
          ca++;
       }
 
@@ -31,7 +31,7 @@ namespace lemon
 		::count count = a.get_count();
 		if(count == 1)
       {
-      	perm.add(new A(a));
+      	perm.add(canew(A(a)));
          return;
       }
       A elema;
@@ -54,7 +54,7 @@ namespace lemon
 			array_permute(perm2, topermut);
 			for(int32_t j = 0; j < perm2.get_count(); j++)
 			{
-            perm.add(new A(elema + perm2[j]));
+            perm.add(canew(A(elema + perm2[j])));
 		   }
 		}
 	}
