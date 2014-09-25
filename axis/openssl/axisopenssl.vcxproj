@@ -515,7 +515,7 @@
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
-      <AdditionalDependencies>Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>rc4.o;wp.o;Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -524,6 +524,10 @@
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
+    <PreLinkEvent>
+      <Command>ml /safeseh /coff /Zi /Fo"$(IntDir)wp.o" /c /Fl"$(IntDir)wp-mmx.lst" "$(ProjectDir)crypto/whrlpool/asm/wp-mmx.asm"
+ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)crypto/rc4/asm/rc4-586.asm"</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">
     <Midl>
@@ -1309,7 +1313,7 @@
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>rc4md5.o;modexp512.o;Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>rc4.o;wp.o;rc4md5.o;modexp512.o;Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
     </Link>
@@ -1319,7 +1323,9 @@
     </PostBuildEvent>
     <PreLinkEvent>
       <Command>ml64 /Zi /Fo"$(IntDir)modexp512.o" /c /Fl"$(IntDir)modexp512.lst" "$(ProjectDir)crypto/bn/asm/modexp512-x86_64-masm.asm"
-ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto/rc4/asm/rc4-md5-x86_64.asm"</Command>
+ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto/rc4/asm/rc4-md5-x86_64.asm"
+ml64 /Zi /Fo"$(IntDir)wp.o" /c /Fl"$(IntDir)wp.lst" "$(ProjectDir)crypto/whrlpool/asm/wp-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)crypto/rc4/asm/rc4-x86_64.asm</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">
@@ -1577,7 +1583,7 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>rc4md5.o;modexp512.o;Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>rc4.o;wp.o;rc4md5.o;modexp512.o;Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
@@ -1585,6 +1591,12 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
       </Command>
     </PostBuildEvent>
     <Manifest />
+    <PreLinkEvent>
+      <Command>ml64 /Zi /Fo"$(IntDir)modexp512.o" /c /Fl"$(IntDir)modexp512.lst" "$(ProjectDir)crypto/bn/asm/modexp512-x86_64-masm.asm"
+ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto/rc4/asm/rc4-md5-x86_64.asm"
+ml64 /Zi /Fo"$(IntDir)wp.o" /c /Fl"$(IntDir)wp.lst" "$(ProjectDir)crypto/whrlpool/asm/wp-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)crypto/rc4/asm/rc4-x86_64.asm</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
     <Midl>
@@ -3471,8 +3483,12 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="crypto\rc4\rc4_enc.c" />
-    <ClCompile Include="crypto\rc4\rc4_skey.c" />
+    <ClCompile Include="crypto\rc4\rc4_enc.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="crypto\rc4\rc4_skey.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="crypto\rc4\rc4_utl.c" />
     <ClCompile Include="crypto\rc5\rc5cfb64.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
@@ -3969,7 +3985,10 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
     <ClCompile Include="crypto\ui\ui_lib.c" />
     <ClCompile Include="crypto\ui\ui_openssl.c" />
     <ClCompile Include="crypto\ui\ui_util.c" />
-    <ClCompile Include="crypto\whrlpool\wp_block.c" />
+    <ClCompile Include="crypto\whrlpool\wp_block.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="crypto\whrlpool\wp_dgst.c" />
     <ClCompile Include="crypto\whrlpool\wp_test.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
@@ -4390,7 +4409,11 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
   <ItemGroup>
     <None Include="axisopenssl.def" />
     <None Include="crypto\bn\asm\modexp512-x86_64-masm.asm" />
+    <None Include="crypto\rc4\asm\rc4-586.asm" />
     <None Include="crypto\rc4\asm\rc4-md5-x86_64.asm" />
+    <None Include="crypto\rc4\asm\rc4-x86_64.asm" />
+    <None Include="crypto\whrlpool\asm\wp-mmx.asm" />
+    <None Include="crypto\whrlpool\asm\wp-x86_64.asm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

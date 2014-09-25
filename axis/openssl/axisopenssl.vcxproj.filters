@@ -207,6 +207,12 @@
     <Filter Include="Source Files\crypto\rc4\asm">
       <UniqueIdentifier>{76b58c59-e4fd-48ad-bf15-256a22c47d1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\crypto\whrlpool\asm">
+      <UniqueIdentifier>{31c30132-1e9e-4773-9304-dc082c10b54c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\crypto\whrlpool\asm\NewFilter1">
+      <UniqueIdentifier>{98f86904-e824-4913-b601-b326d862059c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ssl\bio_ssl.c">
@@ -2845,6 +2851,18 @@
       <Filter>Source Files\crypto\bn\asm</Filter>
     </None>
     <None Include="crypto\rc4\asm\rc4-md5-x86_64.asm">
+      <Filter>Source Files\crypto\rc4\asm</Filter>
+    </None>
+    <None Include="crypto\whrlpool\asm\wp-x86_64.asm">
+      <Filter>Source Files\crypto\whrlpool\asm</Filter>
+    </None>
+    <None Include="crypto\whrlpool\asm\wp-mmx.asm">
+      <Filter>Source Files\crypto\whrlpool\asm</Filter>
+    </None>
+    <None Include="crypto\rc4\asm\rc4-586.asm">
+      <Filter>Source Files\crypto\rc4\asm</Filter>
+    </None>
+    <None Include="crypto\rc4\asm\rc4-x86_64.asm">
       <Filter>Source Files\crypto\rc4\asm</Filter>
     </None>
   </ItemGroup>
