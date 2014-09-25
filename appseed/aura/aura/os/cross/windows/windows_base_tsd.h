@@ -60,7 +60,7 @@ extern "C" {
 #    define __int32 int32_t
 #  endif
 #  ifndef __int64
-#    if defined(OS64BIT) && !defined(__MINGW64__)
+#    if defined(OS64BIT) && !defined(__MINGW64__) 
 #      define __int64 long
 #    else
 #      define __int64 long long
@@ -138,12 +138,32 @@ typedef ULONG_PTR       DWORD_PTR, *PDWORD_PTR;
 
 #endif
 
+   
+#ifdef APPLEOS
+   
+#if defined(OS64BIT)
 
+   typedef int64_t int_ptr;
+   typedef uint64_t uint_ptr;
+   
+#else
+
+   typedef int32_t int_ptr;
+   typedef uint32_t uint_ptr;
+   
+#endif
+   
+#else
+   
    typedef INT_PTR int_ptr;
    typedef UINT_PTR uint_ptr;
-   typedef LONG_PTR long_ptr;
-   typedef ULONG_PTR ulong_ptr;
-   typedef DWORD_PTR dword_ptr;
+   
+#endif
+   
+   
+typedef LONG_PTR long_ptr;
+typedef ULONG_PTR ulong_ptr;
+typedef DWORD_PTR dword_ptr;
 
 /* Win32 or Win64 dependent typedef/defines. */
 

@@ -3772,7 +3772,7 @@
 		9A8897AD14C2C8DB006B4023 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "ca2 Desenvolvimento de Sofware Ltda.";
 				TargetAttributes = {
 					9AE24DEA1904CF6E001AEFFB = {
@@ -4879,6 +4879,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -4894,6 +4895,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

@@ -77,7 +77,7 @@
 		9A1B2F7F16A2AF5C00875A94 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
 			buildConfigurationList = 9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "aurasqlite" */;
@@ -200,12 +200,14 @@
 		9AEEAD9A19C4D7A900866C9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Debug;
 		};
 		9AEEAD9B19C4D7A900866C9E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Release;
 		};

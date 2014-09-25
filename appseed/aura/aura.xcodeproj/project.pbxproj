@@ -1168,6 +1168,8 @@
 		9AEEADB519C4E10900866C9E /* simple_message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADB319C4E10900866C9E /* simple_message_box.cpp */; };
 		9AEEADB619C4E10900866C9E /* simple_message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEADB419C4E10900866C9E /* simple_message_box.h */; };
 		9AEEADB819C4E5E800866C9E /* macos_MessageBoxA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADB719C4E5E800866C9E /* macos_MessageBoxA.cpp */; };
+		9AF885B419D42E2400A3117D /* exception_throw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF885B219D42E2400A3117D /* exception_throw.cpp */; };
+		9AF885B519D42E2400A3117D /* exception_throw.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF885B319D42E2400A3117D /* exception_throw.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2215,6 +2217,8 @@
 		9AEEADB319C4E10900866C9E /* simple_message_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_message_box.cpp; sourceTree = "<group>"; };
 		9AEEADB419C4E10900866C9E /* simple_message_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_message_box.h; sourceTree = "<group>"; };
 		9AEEADB719C4E5E800866C9E /* macos_MessageBoxA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = macos_MessageBoxA.cpp; sourceTree = "<group>"; };
+		9AF885B219D42E2400A3117D /* exception_throw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_throw.cpp; sourceTree = "<group>"; };
+		9AF885B319D42E2400A3117D /* exception_throw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_throw.h; sourceTree = "<group>"; };
 		CE931714155F1599005F90F6 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../../System/Library/Frameworks/Carbon.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2979,6 +2983,8 @@
 				9A163E2819C4A4CD00966C5E /* exception_system.h */,
 				9A163E2919C4A4CD00966C5E /* exception_temporary.cpp */,
 				9A163E2A19C4A4CD00966C5E /* exception_temporary.h */,
+				9AF885B219D42E2400A3117D /* exception_throw.cpp */,
+				9AF885B319D42E2400A3117D /* exception_throw.h */,
 				9A163E2B19C4A4CD00966C5E /* exception_todo.cpp */,
 				9A163E2C19C4A4CD00966C5E /* exception_todo.h */,
 				9A163E2D19C4A4CD00966C5E /* exception_trap.h */,
@@ -4121,6 +4127,7 @@
 				9A16418919C4A4CE00966C5E /* aura_flags.h in Headers */,
 				9A16450F19C4A4CF00966C5E /* xml_data.h in Headers */,
 				9A1641BA19C4A4CE00966C5E /* aura_platform_interface.h in Headers */,
+				9AF885B519D42E2400A3117D /* exception_throw.h in Headers */,
 				9AC315B3198E4CB8008FB109 /* colorertake5_cregexp.h in Headers */,
 				9A1643BB19C4A4CF00966C5E /* windows_types.h in Headers */,
 				07B0951218495C2B007A0560 /* datetime_value.h in Headers */,
@@ -4321,6 +4328,7 @@
 				07B094CE18495C2B007A0560 /* collection_numeric_array.cpp in Sources */,
 				9A1641EA19C4A4CE00966C5E /* exception.cpp in Sources */,
 				9AC315AF198E4CB8008FB109 /* colorertake5_base_editor.cpp in Sources */,
+				9AF885B419D42E2400A3117D /* exception_throw.cpp in Sources */,
 				07B0950818495C2B007A0560 /* comparison_var_strict.cpp in Sources */,
 				07F5B1C0184A3B430092C3E1 /* file_exception.cpp in Sources */,
 				9A16424A19C4A4CE00966C5E /* message_dispatch.cpp in Sources */,

@@ -5,9 +5,10 @@
 
 struct timeval
 {
-   //__int32    tv_sec;         /* seconds */
-   //__int32    tv_usec;        /* microseconds */
+   //__int32    tv_sec;         // seconds
+   //__int32    tv_usec;        // microseconds
 //};
+*/
 
 //#endif
 
@@ -23,7 +24,10 @@ int_bool SystemTimeToFileTime(const SYSTEMTIME *syst, LPFILETIME ft);
 
 #ifndef METROWIN
 
-void GetSystemTimeAsFileTime(LPFILETIME time); /* [out] Destination for the current utc time */
+void GetSystemTimeAsFileTime(LPFILETIME time); // [out] Destination for the current utc time
+ 
+
+
 void GetSystemTime(LPSYSTEMTIME systime);
 
 #endif

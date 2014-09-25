@@ -115,6 +115,8 @@ namespace ansios
       }
 
 #endif
+      
+      return status == 0;
 
 #else
 
