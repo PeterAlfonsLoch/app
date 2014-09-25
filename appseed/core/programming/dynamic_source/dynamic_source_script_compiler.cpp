@@ -80,11 +80,13 @@ namespace dynamic_source
       m_strPlat1     = "64";
       strPlat2 = "  x86_amd64";
       m_strPlatform = "x64";
+      m_strStagePlatform = "x64";
       m_strLibPlatform = "x64/";
 #else
       m_strPlat1     = "";
       strPlat2 = " /x86";
-      m_strPlatform = "x86";
+      m_strPlatform = "Win32";
+      m_strStagePlatform = "x86";
       m_strLibPlatform = "";
 #endif
 
@@ -147,10 +149,10 @@ namespace dynamic_source
       string str;
       string strItem;
 
-      strItem = System.dir().element("stage\\" + m_strPlatform);
+      strItem = System.dir().element("stage\\" + m_strStagePlatform);
       str = str + strItem + ";";
 
-      strItem = System.dir().element("stage\\" + m_strPlatform + "\\dynamic_source\\library");
+      strItem = System.dir().element("stage\\" + m_strStagePlatform + "\\dynamic_source\\library");
       str = str + strItem + ";";
 #ifdef WINDOWSEX
       uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
@@ -252,9 +254,9 @@ namespace dynamic_source
 #else
       pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s\\%s.bat"), System.file().name_(strTransformName), strTransformName);
       strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\%s.obj", false), strTransformName, System.file().name_(strTransformName));
-      strP.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.pdb"), System.dir().path(System.dir().name(strTransformName), strScript, false));
-      strL.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.lib"), System.dir().path(System.dir().name(strTransformName), strScript, false));
-      strE.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.exp"), System.dir().path(System.dir().name(strTransformName), strScript, false));
+      strP.Format(System.dir().stage(m_strStagePlatform + "\\dynamic_source\\%s.pdb"),System.dir().path(System.dir().name(strTransformName),strScript,false));
+      strL.Format(System.dir().stage(m_strStagePlatform + "\\dynamic_source\\%s.lib"),System.dir().path(System.dir().name(strTransformName),strScript,false));
+      strE.Format(System.dir().stage(m_strStagePlatform + "\\dynamic_source\\%s.exp"),System.dir().path(System.dir().name(strTransformName),strScript,false));
       strDVI.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_strSdk1 + ".idb", false), strTransformName);
       strDVP.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_strSdk1 + ".pdb", false), strTransformName);
       strDPCH.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\" + m_pmanager->m_strNamespace + "_dynamic_source_script.pch", false), strTransformName);
@@ -475,6 +477,7 @@ namespace dynamic_source
       str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
       str.replace("%CONFIGURATION%", m_strDynamicSourceConfiguration);
       str.replace("%PLATFORM%", m_strPlatform);
+      str.replace("%STAGEPLATFORM%",m_strStagePlatform);
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
       str.replace("%SDK1%", m_strSdk1);
       string strTargetPath = pscript->m_strScriptPath;
@@ -953,7 +956,7 @@ namespace dynamic_source
 #ifdef LINUX
       m_strLibraryPath = "/core/stage/x86/libnetnodelibrary.so";
 #else
-      m_strLibraryPath.Format(System.dir().stage(m_strPlatform + "\\dynamic_source\\library\\%s.dll"), System.dir().path(System.dir().name(strName), strLib, false));
+      m_strLibraryPath.Format(System.dir().stage(m_strStagePlatform + "\\dynamic_source\\library\\%s.dll"),System.dir().path(System.dir().name(strName),strLib,false));
 #endif
       //#else
       // plib->m_strLibraryPath.Format(System.dir().path(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
@@ -1018,6 +1021,7 @@ namespace dynamic_source
          str.replace("%ITEM_NAME%", str1);
          str.replace("%ITEM_DIR%", System.dir().name(str1));
          str.replace("%PLATFORM%", m_strPlatform);
+         str.replace("%STAGEPLATFORM%",m_strStagePlatform);
          str.replace("%NETNODE_ROOT%", strN);
          str.replace("%LIBPLATFORM%", m_strLibPlatform);
          str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
@@ -1093,6 +1097,7 @@ namespace dynamic_source
       str.replace("%ITEM_DIR%", "library");
       str.replace("%OBJS%", strObjs);
       str.replace("%PLATFORM%", m_strPlatform);
+      str.replace("%PLATFORM%",m_strStagePlatform);
       str.replace("%NETNODE_ROOT%", strN);
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
       str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
@@ -1101,7 +1106,7 @@ namespace dynamic_source
       string strTargetName = m_strLibraryPath;
       ::str::ends_eat_ci(strTargetName, ".dll");
       str.replace("%TARGET_NAME%", strTargetName);
-      Application.dir().mk(System.dir().element("stage\\" + m_strPlatform + "\\library"));
+      Application.dir().mk(System.dir().element("stage\\" + m_strStagePlatform + "\\library"));
 #ifdef LINUX
       Sleep(1984);
       strCmd = System.dir().element("stage\\front\\libl1.bash");

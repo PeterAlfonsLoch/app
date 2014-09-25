@@ -56,6 +56,7 @@ namespace dynamic_source
       mutex                                     m_mutexLibrary;
       string                                    m_strSdk1;
       string                                    m_strPlatform;
+      string                                    m_strStagePlatform;
       string                                    m_strLibPlatform;
       //::file_watcher::thread                  m_folderwatch;
       ::file_watcher::id                        m_filewatchid;
