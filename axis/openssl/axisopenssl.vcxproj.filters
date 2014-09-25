@@ -201,6 +201,12 @@
     <Filter Include="Source Files\engines\ccgost">
       <UniqueIdentifier>{bd327091-7384-4e82-9808-f60ce3a2637f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\crypto\bn\asm">
+      <UniqueIdentifier>{34f18270-b0e2-4e02-84bf-f785cde2aedc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\crypto\rc4\asm">
+      <UniqueIdentifier>{76b58c59-e4fd-48ad-bf15-256a22c47d1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ssl\bio_ssl.c">
@@ -2834,6 +2840,12 @@
   <ItemGroup>
     <None Include="axisopenssl.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="crypto\bn\asm\modexp512-x86_64-masm.asm">
+      <Filter>Source Files\crypto\bn\asm</Filter>
+    </None>
+    <None Include="crypto\rc4\asm\rc4-md5-x86_64.asm">
+      <Filter>Source Files\crypto\rc4\asm</Filter>
     </None>
   </ItemGroup>
 </Project>
