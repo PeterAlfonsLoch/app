@@ -57,22 +57,6 @@ namespace dynamic_source
       m_evCreationEnabled.SetEvent();
    }
 
-   string ds_script::get_stage_path()
-   {
-      string strPath = m_strScriptPath;
-
-      strPath.replace(":/", ".");
-      strPath.replace(":\\", ".");
-      strPath.replace("/", ".");
-      strPath.replace("\\", ".");
-#ifdef WINDOWS
-      return System.dir().path("C:\\netnode\\stage\\x64\\", strPath);
-#else
-::str::begins_eat(strPath, ".");
-      return System.dir().path("/core/stage/x86/", "lib" + strPath);
-#endif
-
-   }
 
    bool ds_script::DoesMatchVersion()
    {
@@ -152,10 +136,10 @@ namespace dynamic_source
    bool ds_script::ShouldBuild()
    {
       single_lock sl(&m_mutex, TRUE);
-      return  m_bShouldBuild || (HasTempError() 
+      return  m_pmanager->should_build(m_strScriptPath) && (m_bShouldBuild || (HasTempError() 
          // && HasTimedOutLastBuild()
          )
-          || !DoesMatchVersion();
+          || !DoesMatchVersion());
 
    }
 
@@ -320,20 +304,23 @@ namespace dynamic_source
            // debug_break();
          //}
          //::SetDllDirectory("C:\\netnode\\stage\\x64");
-         string strStagePath = get_stage_path();
-         //::file_copy_dup(strStagePath, m_strScriptPath, false);
-         #ifdef WINDOWS
+         string strStagePath = m_pmanager->get_full_stage_path(m_strScriptPath);
+
+
+#ifdef WINDOWS
          string str1 = m_strScriptPath;
          string str2 = strStagePath;
-         ::str::ends_eat_ci(str1, ".dll");
-         ::str::ends_eat_ci(str2, ".dll");
+         ::str::ends_eat_ci(str1,".dll");
+         ::str::ends_eat_ci(str2,".dll");
          str1 += ".pdb";
          str2 += ".pdb";
-         ::file_copy_dup(str2, str1, true);
-         #else
-             //Sleep(584);
+         ::file_copy_dup(str2,str1,true);
+#else
+         //Sleep(584);
 
-        #endif
+#endif
+
+
          ::file_copy_dup(strStagePath, m_strScriptPath, true);
 
          m_library.open(strStagePath);
@@ -401,7 +388,7 @@ namespace dynamic_source
       {
          m_library.close();
 
-         string strStagePath = get_stage_path();
+         string strStagePath = m_pmanager->get_stage_path(m_strScriptPath);
 
 #ifdef WINDOWSEX
 

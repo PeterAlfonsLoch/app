@@ -154,7 +154,7 @@ namespace dynamic_source
 
       bool initialize_instance();
 
-      bool include_matches_file_exists(const string & strPath);
+      virtual bool include_matches_file_exists(const string & strPath);
       void set_include_matches_file_exists(const string & strPath, bool bFileExists);
       bool include_matches_is_dir(const string & strPath);
       bool include_has_script(const string & strPath);
@@ -209,6 +209,14 @@ namespace dynamic_source
 
 
       virtual void defer_clean_session();
+
+      virtual string get_full_stage_path(const string & strScript);
+
+      virtual string get_stage_path(const string & strScript);
+
+      virtual bool should_build(const string & strScript);
+
+      virtual string get_script_path(const string & strName);
 
    };
 

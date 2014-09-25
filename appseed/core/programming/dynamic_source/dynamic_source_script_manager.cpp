@@ -1046,8 +1046,65 @@ namespace dynamic_source
 
    }
 
+   string script_manager::get_stage_path(const string & strScriptPath)
+   {
+
+      string strPath = strScriptPath;
+
+      strPath.replace(":/",".");
+      strPath.replace(":\\",".");
+      strPath.replace("/",".");
+      strPath.replace("\\",".");
+#ifdef WINDOWS
+      return System.dir().path("C:\\netnode\\stage\\x64\\",strPath);
+#else
+      ::str::begins_eat(strPath,".");
+      return System.dir().path("/core/stage/x86/","lib" + strPath);
+#endif
+
+   }
 
 
+   string script_manager::get_full_stage_path(const string & strScript)
+   {
+
+      return get_stage_path(strScript);
+
+   }
+
+
+   string script_manager::get_script_path(const string & strName)
+   {
+      
+      string strTransformName = strName;
+
+      strTransformName.replace(":","");
+
+      string strScript;
+
+      strScript = System.file().title_(strName);
+
+#ifdef WINDOWS
+
+      return System.dir().path(System.dir().stage(m_pcompiler->m_strPlatform + "\\dynamic_source"),System.dir().path(System.dir().name(strTransformName),strScript + ".dll",false));
+
+#else
+
+      return System.dir().path(System.dir().stage(m_strPlatform + "\\dynamic_source"),System.dir().path(System.dir().name(strTransformName),strScript + ".so",false))
+
+#endif
+
+   }
+
+
+   bool script_manager::should_build(const string & strScriptPath)
+   {
+
+      UNREFERENCED_PARAMETER(strScriptPath);
+
+      return true;
+
+   }
 
 } // namespace dynamic_source
 
