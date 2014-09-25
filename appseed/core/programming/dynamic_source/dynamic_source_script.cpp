@@ -138,8 +138,8 @@ namespace dynamic_source
       single_lock sl(&m_mutex, TRUE);
       return  m_pmanager->should_build(m_strScriptPath) && (m_bShouldBuild || (HasTempError() 
          // && HasTimedOutLastBuild()
-         )
-          || !DoesMatchVersion());
+         
+          || !DoesMatchVersion()));
 
    }
 
