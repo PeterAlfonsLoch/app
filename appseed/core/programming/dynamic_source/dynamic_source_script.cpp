@@ -501,6 +501,15 @@ namespace dynamic_source
          }
 
       }
+      else
+      {
+         if(!m_pmanager->should_build(m_strScriptPath))
+         {
+            m_strScriptPath = m_pmanager->get_script_path(m_strName);
+            Load(false);
+         }
+
+      }
 
       script_instance * pinstance;
       if(m_lpfnCreateInstance == NULL)
