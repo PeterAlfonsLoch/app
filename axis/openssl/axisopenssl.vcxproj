@@ -1313,7 +1313,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>rc4.o;wp.o;rc4md5.o;modexp512.o;Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>aes.o;aesni.o;aesnisha1.o;rc4.o;modexp512.o;mont.o;cmll.o;md5.o;rc4.o;rc4md5.o;sha1.o;sha512.o;wp.o;Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
     </Link>
@@ -1322,10 +1322,21 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       </Command>
     </PostBuildEvent>
     <PreLinkEvent>
-      <Command>ml64 /Zi /Fo"$(IntDir)modexp512.o" /c /Fl"$(IntDir)modexp512.lst" "$(ProjectDir)crypto/bn/asm/modexp512-x86_64-masm.asm"
-ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto/rc4/asm/rc4-md5-x86_64.asm"
-ml64 /Zi /Fo"$(IntDir)wp.o" /c /Fl"$(IntDir)wp.lst" "$(ProjectDir)crypto/whrlpool/asm/wp-x86_64.asm
-ml64 /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)crypto/rc4/asm/rc4-x86_64.asm</Command>
+      <Command>ml64 /Zi /Fo"$(IntDir)aes.o" /c /Fl"$(IntDir)aes.lst" "$(ProjectDir)asm/x64-win32-masm/aes/aes-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)aesni.o" /c /Fl"$(IntDir)aesni.lst" "$(ProjectDir)asm/x64-win32-masm/aes/aesni-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)aesnisha1.o" /c /Fl"$(IntDir)aesnisha1.lst" "$(ProjectDir)asm/x64-win32-masm/aes/aesni-sha1-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)modexp512.o" /c /Fl"$(IntDir)modexp512.lst" "$(ProjectDir)asm/x64-win32-masm/bn/modexp512-x86_64-masm.asm"
+ml64 /Zi /Fo"$(IntDir)mont.o" /c /Fl"$(IntDir)mont.lst" "$(ProjectDir)asm/x64-win32-masm/bn/x86_64-mont.asm"
+ml64 /Zi /Fo"$(IntDir)cmll.o" /c /Fl"$(IntDir)cmll.lst" "$(ProjectDir)asm/x64-win32-masm/camellia/cmll-x86_64.asm"
+ml64 /Zi /Fo"$(IntDir)md5.o" /c /Fl"$(IntDir)md5.lst" "$(ProjectDir)asm/x64-win32-masm/md5/md5-x86_64.asm"
+ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)asm/x64-win32-masm/rc4/rc4-md5-x86_64.asm"
+ml64 /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)asm/x64-win32-masm/rc4/rc4-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)sha1.o" /c /Fl"$(IntDir)sha1.lst" "$(ProjectDir)asm/x64-win32-masm/sha/sha1-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)sha512.o" /c /Fl"$(IntDir)sha512.lst" "$(ProjectDir)asm/x64-win32-masm/sha/sha512-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)wp.o" /c /Fl"$(IntDir)wp.lst" "$(ProjectDir)asm/x64-win32-masm/whrlpool/wp-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)asm/x64-win32-masm/x86_64cpuid.asm
+
+</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">
@@ -1583,7 +1594,7 @@ ml64 /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)crypto/rc4/a
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>rc4.o;wp.o;rc4md5.o;modexp512.o;Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>aes.o;aesni.o;aesnisha1.o;rc4.o;modexp512.o;mont.o;cmll.o;md5.o;rc4.o;rc4md5.o;sha1.o;sha512.o;wp.o;Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
@@ -1592,10 +1603,20 @@ ml64 /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)crypto/rc4/a
     </PostBuildEvent>
     <Manifest />
     <PreLinkEvent>
-      <Command>ml64 /Zi /Fo"$(IntDir)modexp512.o" /c /Fl"$(IntDir)modexp512.lst" "$(ProjectDir)crypto/bn/asm/modexp512-x86_64-masm.asm"
-ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto/rc4/asm/rc4-md5-x86_64.asm"
-ml64 /Zi /Fo"$(IntDir)wp.o" /c /Fl"$(IntDir)wp.lst" "$(ProjectDir)crypto/whrlpool/asm/wp-x86_64.asm
-ml64 /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)crypto/rc4/asm/rc4-x86_64.asm</Command>
+      <Command>ml64 /Zi /Fo"$(IntDir)aes.o" /c /Fl"$(IntDir)aes.lst" "$(ProjectDir)asm/x64-win32-masm/aes/aes-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)aesni.o" /c /Fl"$(IntDir)aesni.lst" "$(ProjectDir)asm/x64-win32-masm/aes/aesni-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)aesnisha1.o" /c /Fl"$(IntDir)aesnisha1.lst" "$(ProjectDir)asm/x64-win32-masm/aes/aesni-sha1-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)modexp512.o" /c /Fl"$(IntDir)modexp512.lst" "$(ProjectDir)asm/x64-win32-masm/bn/modexp512-x86_64-masm.asm"
+ml64 /Zi /Fo"$(IntDir)mont.o" /c /Fl"$(IntDir)mont.lst" "$(ProjectDir)asm/x64-win32-masm/bn/x86_64-mont.asm"
+ml64 /Zi /Fo"$(IntDir)cmll.o" /c /Fl"$(IntDir)cmll.lst" "$(ProjectDir)asm/x64-win32-masm/camellia/cmll-x86_64.asm"
+ml64 /Zi /Fo"$(IntDir)md5.o" /c /Fl"$(IntDir)md5.lst" "$(ProjectDir)asm/x64-win32-masm/md5/md5-x86_64.asm"
+ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)asm/x64-win32-masm/rc4/rc4-md5-x86_64.asm"
+ml64 /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir)asm/x64-win32-masm/rc4/rc4-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)sha1.o" /c /Fl"$(IntDir)sha1.lst" "$(ProjectDir)asm/x64-win32-masm/sha/sha1-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)sha512.o" /c /Fl"$(IntDir)sha512.lst" "$(ProjectDir)asm/x64-win32-masm/sha/sha512-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)wp.o" /c /Fl"$(IntDir)wp.lst" "$(ProjectDir)asm/x64-win32-masm/whrlpool/wp-x86_64.asm
+ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)asm/x64-win32-masm/x86_64cpuid.asm
+</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
@@ -1672,7 +1693,10 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="crypto\aes\aes_cbc.c" />
+    <ClCompile Include="crypto\aes\aes_cbc.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="crypto\aes\aes_cfb.c" />
     <ClCompile Include="crypto\aes\aes_core.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
@@ -1699,15 +1723,18 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="crypto\aes\aes_ofb.c" />
     <ClCompile Include="crypto\aes\aes_wrap.c" />
-    <ClCompile Include="crypto\aes\aes_x86core.c" />
+    <ClCompile Include="crypto\aes\aes_x86core.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="crypto\asn1\ameth_lib.c" />
     <ClCompile Include="crypto\asn1\asn1_err.c" />
     <ClCompile Include="crypto\asn1\asn1_gen.c" />
@@ -4411,13 +4438,21 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
     <ClInclude Include="ssl\tls1.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="asm\x64-win32-masm\aes\aes-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\aes\aesni-sha1-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\aes\aesni-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\bn\modexp512-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\bn\x86_64-mont.asm" />
+    <None Include="asm\x64-win32-masm\camellia\cmll-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\md5\md5-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\rc4\rc4-md5-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\rc4\rc4-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\sha\sha1-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\sha\sha512-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\whrlpool\wp-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\x86_64cpuid.asm" />
     <None Include="axisopenssl.def" />
     <None Include="crypto\bn\asm\modexp512-x86_64-masm.asm" />
-    <None Include="crypto\rc4\asm\rc4-586.asm" />
-    <None Include="crypto\rc4\asm\rc4-md5-x86_64.asm" />
-    <None Include="crypto\rc4\asm\rc4-x86_64.asm" />
-    <None Include="crypto\whrlpool\asm\wp-mmx.asm" />
-    <None Include="crypto\whrlpool\asm\wp-x86_64.asm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
