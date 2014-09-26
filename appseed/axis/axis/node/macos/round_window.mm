@@ -40,23 +40,14 @@ void ns_app_run()
    
 }
 
-void round_window::round_window_release()
+
+void round_window::round_window_close()
 {
    
-   if(m_proundwindow == NULL)
-      return;
-   
-   RoundWindow * proundwindow = m_proundwindow;
-   
-   m_proundwindow = NULL;
-   
-   proundwindow->m_pwindow = NULL;
-   
-   [[proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] close];
-   
-   [proundwindow release];
+   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] close];
    
 }
+
 
 void round_window::round_window_show()
 {

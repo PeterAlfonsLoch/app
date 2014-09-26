@@ -45,7 +45,7 @@ bool m_bDirty;
    virtual void round_window_make_key_window_and_order_front();
    virtual void round_window_make_main_window();
    
-   virtual void round_window_release();
+   virtual void round_window_close();
    
    
 };

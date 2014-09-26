@@ -335,31 +335,51 @@
 }
 
 
-- (BOOL)acceptsFirstResponder
-{
-   
-   return TRUE;
-   
-}
+//- (BOOL)acceptsFirstResponder
+//{
+//
+//   return TRUE;
+//
+//}
 
 
 - (BOOL) acceptsFirstMouse:(NSEvent *)theEvent
 {
-
    
-/*   if(theEvent != NULL)
+   if(![NSApp isActive])
+   {
+      
+      [NSApp activate];
+      
+   }
+   
+   if(![m_roundwindow isKeyWindow])
+   {
+      
+      [m_roundwindow makeKeyWindow];
+      
+   }
+   
+//   if(![m_roundwindow isMainWindow])
+//   {
+//
+//      [m_roundwindow makeMainWindow];
+//
+//   }
+   
+   if([[NSApp orderedWindows] firstObject] != m_roundwindow)
    {
    
-      [self mouseDown: theEvent];
+      [m_roundwindow orderFront:self];
       
-   }*/
-   
+   }
+
    return YES;
    
 }
 
 
-- (BOOL)mouseDownCanMoveWindow
+- (BOOL) mouseDownCanMoveWindow
 {
 
    return NO;
@@ -377,29 +397,29 @@
       return YES;
 }*/
 
-- (BOOL) becomeFirstResponder
-{
+//- (BOOL) becomeFirstResponder
+//{
 //   if(m_bNoActivate)
   //    return NO;
   // else
-   {
+  // {
       
       //      m_pwindow->round_window_on_become_first_responder();
       
-      return YES;
+    //  return YES;
       
-   }
-}
+  // }
+//}
 
-- (BOOL) resignFirstResponder
-{
+//- (BOOL) resignFirstResponder
+//{
    
    //if(m_bNoActivate)
      // return YES;
    //else
-      return YES;
+  //    return YES;
    
-}
+//}
 
 
 #define DO_FLAG(m_f, p, now, key) \

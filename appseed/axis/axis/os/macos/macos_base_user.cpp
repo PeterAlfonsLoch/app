@@ -68,6 +68,21 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
       
    }
    
+    if(!(uFlags & SWP_NOZORDER))
+    {
+       
+       int_ptr iInsertAfter = (int_ptr) hwndInsertAfter;
+       
+       if(iInsertAfter == ZORDER_TOP || iInsertAfter == ZORDER_TOPMOST)
+       {
+          
+          order_front_nswindow(hwnd);
+          
+       }
+       
+    }
+
+   
    /*   if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter >= 0)
     {
     value_mask |= CWSibling;

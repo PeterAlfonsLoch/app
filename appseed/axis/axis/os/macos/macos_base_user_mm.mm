@@ -121,6 +121,28 @@ WINBOOL move_nswindow(oswindow hwnd, int x, int y)
 }
 
 
+WINBOOL make_key_and_order_front_nswindow(oswindow hwnd)
+{
+   
+   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] makeKeyAndOrderFront: nil];
+   
+   return 1;
+   
+   
+}
+
+
+WINBOOL order_front_nswindow(oswindow hwnd)
+{
+   
+   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] orderFront: nil];
+   
+   return 1;
+   
+   
+}
+
+
 CLASS_DECL_THREAD NSAutoreleasePool * g_ns_pool = NULL;
 
 

@@ -121,7 +121,9 @@
 //
 - (NSView *)contentView
 {
+   
 	return [super contentView];
+   
 }
 
 
@@ -132,24 +134,25 @@
 //
 - (BOOL)canBecomeKeyWindow
 {
-   if(m_bNoActivate)
-      return NO;
-   else
-      return YES;
+   
+   return YES;
+   
 }
+
 
 //
 // canBecomeMainWindow
 //
 // Overrides the default to allow a borderless window to be the main window.
 //
-- (BOOL)canBecomeMainWindow
-{
-   if(m_bNoActivate)
-      return NO;
-   else
-      return YES;
-}
+//- (BOOL)canBecomeMainWindow
+//{
+//
+//   return YES;
+//
+//}
+
+
 /*
 
 - (BOOL)acceptsFirstResponder

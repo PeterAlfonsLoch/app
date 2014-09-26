@@ -64,6 +64,9 @@ CLASS_DECL_AURA bool __wait_threading_count(::duration dur)
          return true;
 
       sl.unlock();
+      
+      if(::multithreading::s_pthreadptra->get_count() <= 0)
+         return true;
 
       for(index i = 0; i < ::multithreading::s_pthreadptra->get_count(); i++)
       {
@@ -101,6 +104,13 @@ CLASS_DECL_AURA bool __wait_threading_count_except(::thread * pthread, ::duratio
       {
          
          synch_lock sl(::multithreading::s_pmutex);
+         
+         if(::multithreading::s_pthreadptra->get_count() <= 0)
+         {
+            
+            return true;
+            
+         }
          
          if(::multithreading::s_pthreadptra->get_count() == 1)
          {

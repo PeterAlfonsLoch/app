@@ -318,6 +318,14 @@ WINBOOL mac_release_color(CGColorRef colorref);
 
 WINBOOL set_nswindow_frame(oswindow hwnd,LPCRECT prect,int iDisplay);
 WINBOOL move_nswindow(oswindow hwnd,int x,int y);
+WINBOOL make_key_and_order_front_nswindow(oswindow hwnd);
+WINBOOL order_front_nswindow(oswindow hwnd);
+
+
+
+
+
+
 
 
 

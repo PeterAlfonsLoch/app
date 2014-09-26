@@ -106,16 +106,6 @@ namespace macos
    interaction_impl::~interaction_impl()
    {
 
-      round_window_release();
-
-      /*
-
-      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession->user().m_p != NULL && m_pauraapp->m_paxissession->user()->m_pwindowmap != NULL)
-      {
-         Session.user()->m_pwindowmap->m_map.remove_key((int_ptr) get_handle());
-      }
-
-       */
 
    }
 
@@ -632,7 +622,7 @@ namespace macos
    void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
 
-      round_window_release();
+      round_window_close();
 
       UNREFERENCED_PARAMETER(pobj);
 
@@ -3750,7 +3740,7 @@ namespace macos
 
 
       ::SetWindowPos(m_oswindow,
-                     0,
+                     (oswindow) (int_ptr) z,
                      (int) x,
                      (int) y,
                      (int) cx,
