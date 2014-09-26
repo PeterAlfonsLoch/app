@@ -57,10 +57,10 @@ namespace draw2d
       {
       public:
 
-         double   m_x;
-         double   m_y;
-         string   m_strText;
-         ::draw2d::font_sp m_spfont;
+         double               m_x;
+         double               m_y;
+         string               m_strText;
+         ::draw2d::font_sp    m_spfont;
 
          string_path();
          string_path(const string_path & stringpath);
@@ -70,7 +70,8 @@ namespace draw2d
 
       };
 
-      class CLASS_DECL_AURA element
+      class CLASS_DECL_AURA element :
+      virtual public ::object
       {
       public:
 
@@ -112,7 +113,7 @@ namespace draw2d
       };
 
 
-      array < element >                m_elementa;
+      spa(element)                     m_elementa;
       bool                             m_bFill;
       ::draw2d::e_fill_mode            m_efillmode;
       bool                             m_bHasPoint;

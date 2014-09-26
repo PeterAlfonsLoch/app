@@ -61,6 +61,8 @@
 #include <openssl/crypto.h>
 #include "cryptlib.h"
 
+unsigned char cleanse_ctr = 0;
+
 
 static int allow_customize = 1;      /* we provide flexible functions for */
 static int allow_customize_debug = 1;/* exchanging memory-related functions at

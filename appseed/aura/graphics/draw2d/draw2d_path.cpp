@@ -134,21 +134,23 @@ namespace draw2d
       if(width(rect) <= 0 || height(rect) <= 0)
          return true;
 
-      element e;
+      sp(element) e;
+      
+      e = canew(element);
 
-      e.m_etype               = element::type_arc;
-      e.u.m_arc.m_xCenter     = ((double) rect.right + (double) rect.left) / 2.0;
-      e.u.m_arc.m_yCenter     = ((double) rect.bottom + (double) rect.top) / 2.0;
-      e.u.m_arc.m_dRadiusX    = (double) rect.right - e.u.m_arc.m_xCenter;
-      e.u.m_arc.m_dRadiusY    = (double) rect.bottom - e.u.m_arc.m_yCenter;
-      e.u.m_arc.m_dAngle1     = iStart * 3.1415 / 180.0;
-      e.u.m_arc.m_dAngle2     = e.u.m_arc.m_dAngle1 + iAngle * 3.1415 / 180.0;
+      e->m_etype               = element::type_arc;
+      e->u.m_arc.m_xCenter     = ((double) rect.right + (double) rect.left) / 2.0;
+      e->u.m_arc.m_yCenter     = ((double) rect.bottom + (double) rect.top) / 2.0;
+      e->u.m_arc.m_dRadiusX    = (double) rect.right - e->u.m_arc.m_xCenter;
+      e->u.m_arc.m_dRadiusY    = (double) rect.bottom - e->u.m_arc.m_yCenter;
+      e->u.m_arc.m_dAngle1     = iStart * 3.1415 / 180.0;
+      e->u.m_arc.m_dAngle2     = e->u.m_arc.m_dAngle1 + iAngle * 3.1415 / 180.0;
 
       m_elementa.add(e);
 
       m_bHasPoint = true;
-      m_pt.x = (LONG) (e.u.m_arc.m_xCenter + e.u.m_arc.m_dRadiusX * cos(e.u.m_arc.m_dAngle2));
-      m_pt.y = (LONG) (e.u.m_arc.m_yCenter + e.u.m_arc.m_dRadiusY * sin(e.u.m_arc.m_dAngle2));
+      m_pt.x = (LONG) (e->u.m_arc.m_xCenter + e->u.m_arc.m_dRadiusX * cos(e->u.m_arc.m_dAngle2));
+      m_pt.y = (LONG) (e->u.m_arc.m_yCenter + e->u.m_arc.m_dRadiusY * sin(e->u.m_arc.m_dAngle2));
 
       m_bUpdated = false;
 
@@ -168,11 +170,13 @@ namespace draw2d
    bool path::add_move(double x, double y)
    {
 
-      element e;
+      sp(element) e;
+      
+      e = canew(element);
 
-      e.m_etype               = element::type_move;
-      e.u.m_move.m_x          = x;
-      e.u.m_move.m_y          = y;
+      e->m_etype               = element::type_move;
+      e->u.m_move.m_x          = x;
+      e->u.m_move.m_y          = y;
 
       m_elementa.add(e);
 
@@ -195,11 +199,13 @@ namespace draw2d
          return add_move(x,y);
       }
 
-      element e;
+      sp(element) e;
+      
+      e = canew(element);
 
-      e.m_etype               = element::type_line;
-      e.u.m_line.m_x          = x;
-      e.u.m_line.m_y          = y;
+      e->m_etype               = element::type_line;
+      e->u.m_line.m_x          = x;
+      e->u.m_line.m_y          = y;
 
       m_elementa.add(e);
 
@@ -265,11 +271,13 @@ namespace draw2d
    {
 
 
-      element e;
+      sp(element) e;
+      
+      e = canew(element);
 
-      e.m_etype               = element::type_end;
+      e->m_etype               = element::type_end;
 
-      e.u.m_end.m_bClose      = bClose;
+      e->u.m_end.m_bClose      = bClose;
 
       m_elementa.add(e);
 
@@ -284,14 +292,15 @@ namespace draw2d
    bool path::add_string(int32_t x,int32_t y,const string & strText,::draw2d::font_sp spfont)
    {
 
-      element e;
+      sp(element) e;
 
+      e = canew(element);
 
-      e.m_etype                     = element::type_string;
-      e.m_stringpath.m_x            = x;
-      e.m_stringpath.m_y            = y;
-      e.m_stringpath.m_strText      = strText;
-      e.m_stringpath.m_spfont       = spfont.clone();
+      e->m_etype                     = element::type_string;
+      e->m_stringpath.m_x            = x;
+      e->m_stringpath.m_y            = y;
+      e->m_stringpath.m_strText      = strText;
+      e->m_stringpath.m_spfont       = spfont.clone();
 
       m_elementa.add(e);
 
