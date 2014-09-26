@@ -83,11 +83,11 @@ namespace dynamic_source
       m_strStagePlatform = "x64";
       m_strLibPlatform = "x64/";
 #else
-      m_strPlat1     = "";
-      strPlat2 = " /x86";
+      m_strPlat1     = "32";
+      strPlat2 = " x86";
       m_strPlatform = "Win32";
       m_strStagePlatform = "x86";
-      m_strLibPlatform = "";
+      m_strLibPlatform = "x86/";
 #endif
 
       //System.file().lines(m_straSync, "C:\\core\\database\\text\\dynamic_source\\syncer.txt", get_app());
@@ -467,7 +467,7 @@ namespace dynamic_source
 #ifdef _M_X64
       strPlat2 = "x86_amd64";
 #else
-      strPlat2 = " /x86";
+      strPlat2 = " x86";
 #endif
       str.replace("%VS_VARS_PLAT2%", strPlat2);
 
@@ -809,7 +809,7 @@ namespace dynamic_source
 #ifdef _M_X64
       strPlat2 = "x86_amd64";
 #else
-      strPlat2 = " /x86";
+      strPlat2 = " x86";
 #endif
       str.replace("%VS_VARS_PLAT2%", strPlat2);
 
@@ -895,7 +895,7 @@ namespace dynamic_source
       unload_library();
       string strName = "library";
 
-      m_strLibsLibs = System.dir().element("time/library/" + m_strPlatform + "/library/library.lib");
+      m_strLibsLibs = System.dir().element("time/library/" + m_strStagePlatform + "/library/library.lib");
 
       m_memfileLibError.set_length(0);
       string strFolder;
@@ -1028,7 +1028,7 @@ namespace dynamic_source
          str.replace("%CONFIGURATION%", m_strDynamicSourceConfiguration);
          str.replace("%SDK1%", m_strSdk1);
          Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\" + System.dir().name(str1)));
-         Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1), false));
+         Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strStagePlatform + "\\" + System.dir().name(str1), false));
          
          string strFormat = "libc-" + str1;
 
@@ -1097,7 +1097,7 @@ namespace dynamic_source
       str.replace("%ITEM_DIR%", "library");
       str.replace("%OBJS%", strObjs);
       str.replace("%PLATFORM%", m_strPlatform);
-      str.replace("%PLATFORM%",m_strStagePlatform);
+      str.replace("%STAGEPLATFORM%",m_strStagePlatform);
       str.replace("%NETNODE_ROOT%", strN);
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
       str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
