@@ -5127,7 +5127,7 @@ namespace user
 
       m_bRectOk = false;
 
-      if(!(nFlags & SWP_NOREDRAW) && IsWindowVisible() && !(GetExStyle() & WS_EX_LAYERED))
+      if(!(nFlags & SWP_NOREDRAW) && IsWindowVisible())
       {
 
          RedrawWindow();

@@ -64,6 +64,9 @@
 
 - (void)mouseUp:(NSEvent *)event
 {
+
+   //printf("\nmouseUp");
+
    
    round_window * p = m_roundwindow->m_pwindow;
    
@@ -89,6 +92,9 @@
 
 - (void)mouseMoved:(NSEvent *)event
 {
+
+   //printf("\nmouseMoved");
+
    
    round_window * p = m_roundwindow->m_pwindow;
    
@@ -114,6 +120,10 @@
 
 - (void)mouseDragged:(NSEvent *)event
 {
+
+   //printf("\nmouseDragged");
+   
+
    
    round_window * p = m_roundwindow->m_pwindow;
    
@@ -148,6 +158,8 @@
 - (void)mouseDown:(NSEvent *)event
 {
    
+   //printf("\nmouseDown");
+
    round_window * p = m_roundwindow->m_pwindow;
    
    if(p == NULL)
@@ -345,6 +357,8 @@
 
 - (BOOL) acceptsFirstMouse:(NSEvent *)theEvent
 {
+
+//printf("\nacceptsFirstMouse\n");
    
    if(![NSApp isActive])
    {

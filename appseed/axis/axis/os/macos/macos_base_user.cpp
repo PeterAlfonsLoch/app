@@ -28,6 +28,8 @@
 #endif
 
 
+/*
+
 WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
 {
    
@@ -81,7 +83,7 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
        }
        
     }
-
+*/
    
    /*   if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter >= 0)
     {
@@ -112,9 +114,9 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
     
     XCloseDisplay(display);*/
    
-   return 1;
+//   return 1;
    
-}
+//}
 
 //int MessageBoxANative(oswindow hwnd, const char * message, const char * header, unsigned int message_type );
 /*

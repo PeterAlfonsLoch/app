@@ -104,6 +104,7 @@
 		07B095FA18495C5F007A0560 /* simple_ui_style.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0958A18495C5E007A0560 /* simple_ui_style.h */; };
 		07B095FB18495C5F007A0560 /* simple_ui_tap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0958B18495C5E007A0560 /* simple_ui_tap.cpp */; };
 		07B095FC18495C5F007A0560 /* simple_ui_tap.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0958C18495C5E007A0560 /* simple_ui_tap.h */; };
+		07B999F719D69CFE00C405D3 /* RoundWindowApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07B999F619D69CFE00C405D3 /* RoundWindowApp.mm */; };
 		07F5B27F184A3B6A0092C3E1 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B243184A3B6A0092C3E1 /* graphics.h */; };
 		07F5B280184A3B6A0092C3E1 /* graphics_window_graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B244184A3B6A0092C3E1 /* graphics_window_graphics.cpp */; };
 		07F5B281184A3B6A0092C3E1 /* graphics_window_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B245184A3B6A0092C3E1 /* graphics_window_graphics.h */; };
@@ -536,6 +537,8 @@
 		07B0958A18495C5E007A0560 /* simple_ui_style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_ui_style.h; sourceTree = "<group>"; };
 		07B0958B18495C5E007A0560 /* simple_ui_tap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_ui_tap.cpp; sourceTree = "<group>"; };
 		07B0958C18495C5E007A0560 /* simple_ui_tap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_ui_tap.h; sourceTree = "<group>"; };
+		07B999F619D69CFE00C405D3 /* RoundWindowApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundWindowApp.mm; sourceTree = "<group>"; };
+		07B999FA19D69D3200C405D3 /* RoundWindowApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundWindowApp.h; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		07F5B243184A3B6A0092C3E1 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		07F5B244184A3B6A0092C3E1 /* graphics_window_graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = graphics_window_graphics.cpp; sourceTree = "<group>"; };
@@ -1185,6 +1188,8 @@
 				9AEEA93119C4BD0800866C9E /* RoundWindow.mm */,
 				9AEEA93219C4BD0800866C9E /* RoundWindowFrameView.h */,
 				9AEEA93319C4BD0800866C9E /* RoundWindowFrameView.mm */,
+				07B999F619D69CFE00C405D3 /* RoundWindowApp.mm */,
+				07B999FA19D69D3200C405D3 /* RoundWindowApp.h */,
 			);
 			path = macos;
 			sourceTree = "<group>";
@@ -1736,6 +1741,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B999F719D69CFE00C405D3 /* RoundWindowApp.mm in Sources */,
 				07884C281897E9A500DC6CEB /* user_window_map.cpp in Sources */,
 				9AEEAE4919C4FF9400866C9E /* database_update_hint.cpp in Sources */,
 				9AEEABB519C4BD0900866C9E /* macos_printer.cpp in Sources */,

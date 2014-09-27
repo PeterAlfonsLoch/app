@@ -209,7 +209,7 @@ namespace user
 
             update_window_region(rectWindow);
 
-            if (pwnd->IsWindowVisible())
+/*            if (pwnd->IsWindowVisible())
             {
                pwnd->RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
 
@@ -223,7 +223,7 @@ namespace user
                m_pworkset->m_rectPending.set(0, 0, 0, 0);
             }
 
-
+*/
 
          }
 

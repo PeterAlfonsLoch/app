@@ -1090,7 +1090,7 @@ namespace dynamic_source
 
 #else
 
-      return System.dir().path(System.dir().stage(m_pcompiler->m_strStagePlatform + "\\dynamic_source"),System.dir().path(System.dir().name(strTransformName),strScript + ".so",false))
+      return System.dir().path(System.dir().stage(m_pcompiler->m_strStagePlatform + "\\dynamic_source"),System.dir().path(System.dir().name(strTransformName),strScript + ".so",false));
 
 #endif
 

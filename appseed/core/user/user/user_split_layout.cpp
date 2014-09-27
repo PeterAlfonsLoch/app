@@ -219,7 +219,7 @@ namespace user
    {
 
 
-      TRACE("split_layout::layout");
+      TRACE0("split_layout::layout");
       rect rectClient;
       GetClientRect(rectClient);
       int32_t iDimension = get_normal_dimension();

@@ -37,12 +37,15 @@ bool oswindow_data::show_window(int32_t nCmdShow)
 
    if(nCmdShow == SW_HIDE)
    {
+   
+//   printf("\nhide window");
 
       [m_nswindow orderOut : nil];
       
    }
    else
    {
+  //    printf("\nshow window");
    
       [m_nswindow makeKeyAndOrderFront : nil];
       
@@ -92,6 +95,9 @@ WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
    //   rect.size.width   = 500;
    //   rect.size.height  = 500;
    
+//   printf("\nset nswindow frame (%f, %f)[%f, %f]", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+
+   
    
    [hwnd->window() setFrame : rect display : iDisplay];
    
@@ -113,6 +119,9 @@ WINBOOL move_nswindow(oswindow hwnd, int x, int y)
    point.x = x;
    point.y = [[NSScreen mainScreen] frame].size.height - y;
    
+//   printf("\nmove nswindow (%f, %f)", point.x, point.y);
+
+   
    [hwnd->window() setFrameTopLeftPoint : point];
    
    return 1;
@@ -123,6 +132,9 @@ WINBOOL move_nswindow(oswindow hwnd, int x, int y)
 
 WINBOOL make_key_and_order_front_nswindow(oswindow hwnd)
 {
+
+//   printf("\nmake_key_and_order_front_nswindow");
+
    
    [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] makeKeyAndOrderFront: nil];
    
@@ -134,6 +146,7 @@ WINBOOL make_key_and_order_front_nswindow(oswindow hwnd)
 
 WINBOOL order_front_nswindow(oswindow hwnd)
 {
+//   printf("\norder_front_nswindow");
    
    [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] orderFront: nil];
    
@@ -288,5 +301,98 @@ int GetWkspaceCount()
 {
    
    return [[NSScreen screens] count];
+   
+}
+
+
+
+WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+{
+   
+   //   int   value_mask = 0;
+   bool  bMove = !(uFlags & SWP_NOMOVE);
+   bool  bSize = !(uFlags & SWP_NOSIZE);
+   
+   if(bMove && bSize)
+   {
+      
+      RECT rect;
+      
+      rect.left      = x;
+      rect.top       = y;
+      rect.right     = rect.left + cx;
+      rect.bottom    = rect.top + cy;
+      
+      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW));
+      
+   }
+   else if(bSize) // bSize only
+   {
+      
+      RECT rect;
+      
+      GetWindowRect(hwnd, &rect);
+      
+      rect.right     = rect.left + cx;
+      rect.bottom    = rect.top + cy;
+      
+      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW));
+      
+   }
+   else if(bMove) // bMove only
+   {
+      
+      move_nswindow(hwnd, x, y);
+      
+   }
+   
+   if(!(uFlags & SWP_NOZORDER))
+   {
+      
+      int_ptr iInsertAfter = (int_ptr) hwndInsertAfter;
+      
+      if(iInsertAfter == ZORDER_TOP || iInsertAfter == ZORDER_TOPMOST)
+      {
+         
+         order_front_nswindow(hwnd);
+         
+      }
+      
+   }
+   
+//   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] display];
+   
+   
+   
+   /*   if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter >= 0)
+    {
+    value_mask |= CWSibling;
+    values.sibling = hwndInsertAfter;
+    values.stack_mode = Above;
+    }
+    
+    XConfigureWindow(display, hwnd, value_mask, &values);
+    
+    if(uFlags & SWP_SHOWWINDOW)
+    {
+    XMapWindow(display, hwnd);
+    }
+    
+    if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter < 0)
+    {
+    if(hwndInsertAfter == ZORDER_TOP || hwndInsertAfter == ZORDER_TOPMOST)
+    {
+    XRaiseWindow(display, hwnd);
+    }
+    else if(hwndInsertAfter == ZORDER_BOTTOM)
+    {
+    XLowerWindow(display, hwnd);
+    }
+    
+    }
+    
+    XCloseDisplay(display);*/
+   
+   return 1;
    
 }

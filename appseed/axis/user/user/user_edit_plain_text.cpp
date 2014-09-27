@@ -2823,7 +2823,7 @@ namespace user
       if(nCmdShow != SW_HIDE)
       {
 
-         TRACE("Going to Show edit_plain_text");
+         TRACE0("Going to Show edit_plain_text");
 
       }
 

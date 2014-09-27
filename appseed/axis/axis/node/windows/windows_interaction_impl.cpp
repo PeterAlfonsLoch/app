@@ -4010,6 +4010,9 @@ namespace windows
 
       if(System.get_twf()->m_bProDevianMode)
          return true;
+      
+      if(GetExStyle() & WS_EX_LAYERED)
+         return false;
 
       ASSERT(::IsWindow(get_handle()));
 

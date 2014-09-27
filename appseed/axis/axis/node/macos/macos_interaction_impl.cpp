@@ -1230,7 +1230,7 @@ namespace macos
          if(pbase->m_uiMessage == WM_LBUTTONDOWN)
          {
             
-            TRACE("WM_LBUTTONDOWN");
+//            TRACE("WM_LBUTTONDOWN");
             
          }
          
@@ -3737,19 +3737,69 @@ namespace macos
          return ::SetWindowPos(get_handle(), pWndInsertAfter->get_handle(),
          x, y, cx, cy, nFlags) != FALSE;
       */
+      
+      ::rect rectBefore;
+      
+      ::GetWindowRect(m_oswindow, rectBefore);
+      
+      ::rect rectNew = rectBefore;
+      
+      if(nFlags & SWP_NOSIZE)
+      {
+         if(nFlags & SWP_NOMOVE)
+         {
+         }
+         else
+         {
+            rectNew.right = rectNew.width() + x;
+            rectNew.bottom = rectNew.height() + y;
+            rectNew.left = x;
+            rectNew.top = y;
+         }
+      }
+      else
+      {
+         if(nFlags & SWP_NOMOVE)
+         {
+            rectNew.right = rectNew.left + cx;
+            rectNew.bottom = rectNew.right + cy;
+         }
+         else
+         {
+            rectNew.left = x;
+            rectNew.top = y;
+            rectNew.right = x + cx;
+            rectNew.bottom = y + cy;
+         }
+      }
+      
+      
+      if(rectNew != rectBefore)
+      {
 
-
-      ::SetWindowPos(m_oswindow,
+         ::SetWindowPos(m_oswindow,
                      (oswindow) (int_ptr) z,
                      (int) x,
                      (int) y,
                      (int) cx,
                      (int)cy,
                      nFlags);
+         
+      }
 
-      send_message(WM_MOVE);
+      if(rectBefore.top_left() != rectNew.top_left())
+      {
 
-      send_message(WM_SIZE);
+         send_message(WM_MOVE);
+         
+      }
+      
+      if(rectBefore.size() != rectNew.size())
+      {
+
+         send_message(WM_SIZE);
+         
+      }
 
 
       if(nFlags & SWP_SHOWWINDOW)
@@ -3820,11 +3870,11 @@ namespace macos
        }*/
 
       //      if(nFlags & SWP_REDRAWWINDOW)
-      {
+      //{
 
-         _001RedrawWindow();
+        // _001RedrawWindow();
 
-      }
+      //}
 
       return true;
 

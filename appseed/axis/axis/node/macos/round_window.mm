@@ -28,7 +28,7 @@ NSWindow * new_round_window(round_window * pwindow, CGRect rect)
 void ns_shared_application()
 {
 
-   [NSApplication sharedApplication];
+   [RoundWindowApp sharedApplication];
    
 }
 
@@ -99,7 +99,7 @@ void round_window::round_window_make_main_window()
 void round_window::round_window_redraw()
 {
 
-   [[m_proundwindow dd_invokeOnMainThread] display ];
+   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] display ];
    
 }
 

@@ -44,9 +44,7 @@
       
    m_controller = [[NSWindowController alloc] initWithWindow:self];
  
-
    [self create_view];
-   
    
 	return self;
    
@@ -145,12 +143,12 @@
 //
 // Overrides the default to allow a borderless window to be the main window.
 //
-//- (BOOL)canBecomeMainWindow
-//{
-//
-//   return YES;
-//
-//}
+- (BOOL)canBecomeMainWindow
+{
+
+   return YES;
+
+}
 
 
 /*
@@ -212,7 +210,7 @@
 {
   // bounds = windowFrame;
 	windowFrame.origin = NSZeroPoint;
-	return NSInsetRect(windowFrame, NS_ROUND_WINDOW_FRAME_PADDING, NS_ROUND_WINDOW_FRAME_PADDING);
+	return NSInsetRect(windowFrame, 0, 0);
 }
 
 //
@@ -222,7 +220,7 @@
 //
 + (NSRect)frameRectForContentRect:(NSRect)windowContentRect styleMask:(NSUInteger)windowStyle
 {
-	return NSInsetRect(windowContentRect, -NS_ROUND_WINDOW_FRAME_PADDING, -NS_ROUND_WINDOW_FRAME_PADDING);
+	return NSInsetRect(windowContentRect, -0, -0);
 }
 
 
