@@ -358,7 +358,17 @@ namespace windows
                try
                {
 
-                  System.m_framea[l]->_001UpdateWindow();
+                  System.m_framea[l]->_001UpdateBuffer();
+
+               }
+               catch(...)
+               {
+
+               }
+               try
+               {
+
+                  System.m_framea[l]->_001UpdateScreen();
 
                }
                catch(...)

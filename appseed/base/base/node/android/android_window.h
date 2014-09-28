@@ -635,7 +635,8 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       virtual void _001BaseWndInterfaceMap();
 
 
-      void _001UpdateWindow();
+      void _001UpdateScreen();
+      void _001UpdateBuffer();
       void _001Expose();
 
 

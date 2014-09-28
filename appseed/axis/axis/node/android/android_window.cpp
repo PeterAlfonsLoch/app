@@ -7114,13 +7114,13 @@ namespace android
 
       }
 
-      ::interaction_impl::_001UpdateWindow();
+      ::interaction_impl::_001UpdateScreen();
 
 }
 
 
 
-   void interaction_impl::_001UpdateWindow()
+   void interaction_impl::_001UpdateScreen()
    {
 
       single_lock sl(mutex_graphics(), false);
@@ -7442,7 +7442,7 @@ namespace android
 //      ::DeleteObject(hbitmap);
    }
 
-   void interaction_impl::_001UpdateWindow()
+   void interaction_impl::_001UpdateScreen()
    {
 
       rect rectWindow;

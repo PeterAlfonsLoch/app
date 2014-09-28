@@ -61,7 +61,7 @@ namespace user
       if(pui.is_set())
       {
 
-         GetWindow()->_001UpdateWindow();
+         GetWindow()->_001UpdateScreen();
 
       }
 
@@ -1588,13 +1588,19 @@ namespace user
    }
 
 
-   void interaction_base::_001UpdateWindow()
+   void interaction_base::_001UpdateScreen()
    {
 
       throw interface_only_exception(get_app());
 
    }
 
+   void interaction_base::_001UpdateBuffer()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
 
    void interaction_base::_001WindowMinimize()
    {

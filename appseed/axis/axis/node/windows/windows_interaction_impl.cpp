@@ -4789,7 +4789,9 @@ namespace windows
 
                keepLockWindowUpdate.KeepAway();
 
-               _001UpdateWindow();
+               _001UpdateBuffer();
+
+               _001UpdateScreen();
 
             }
 
@@ -5372,112 +5374,6 @@ namespace windows
 
    */
 
-
-   void interaction_impl::_001UpdateWindow()
-   {
-
-      /*if (!(GetExStyle() & WS_EX_LAYERED))
-      {
-      ::RedrawWindow(get_handle(), NULL, NULL, RDW_UPDATENOW | RDW_INVALIDATE);
-      return;
-      }*/
-
-      //if(m_pui->m_bLockWindowUpdate)
-        // return;
-
-      single_lock sl(m_pui->m_spmutex,false);
-
-      if(!sl.lock())
-         return;
-
-      win_update_graphics();
-
-      if(m_spdib.is_null() || m_spdib->get_graphics() == NULL)
-         return;
-
-      m_spdib->map();
-
-      if(m_spdib->get_data() == NULL)
-         return;
-
-      rect64 rectWindow;
-
-      m_pui->GetWindowRect(rectWindow);
-
-      if(GetExStyle() & WS_EX_LAYERED)
-      {
-
-         m_spdib->Fill(0,0,0,0);
-
-      }
-      else
-      {
-
-         m_spdib->Fill(255,255,255,255);
-
-      }
-
-
-      m_spdib->get_graphics()->SetViewportOrg(0,0);
-
-      //m_spdib->get_graphics()->FillSolidRect(00, 00, 100, 100, ARGB(127, 0, 127, 0));
-      _001Print(m_spdib->get_graphics());
-
-
-      //pgraphics->FillSolidRect(300, 300, 100, 100, ARGB(127, 127, 127, 0));
-
-      //m_spdib->get_graphics()->SetViewportOrg(0, 0);
-      //m_spdib->get_graphics()->FillSolidRect(100, 100, 100, 100, ARGB(127, 127, 0, 0));
-
-
-
-      if(m_spdib.is_set() && m_spdib->get_graphics() != NULL)
-      {
-
-         m_spdib->update_window(m_pui,NULL);
-
-      }
-
-      sl.unlock();
-
-      /*      if(GetExStyle() & WS_EX_LAYERED)
-      {
-
-      class rect rectWin;
-
-      ::GetWindowRect(get_handle(), rectWin);
-
-      if(rect(rectWindow) != rectWin || (m_pui != NULL && (bool) m_pui->oprop("pending_layout")))
-      {
-
-      if(m_pui != NULL && (bool) m_pui->oprop("pending_layout"))
-      {
-
-      ::oswindow oswindowZOrder = (oswindow) m_pui->oprop("pending_zorder").int32();
-
-      ::SetWindowPos(get_handle(), HWND_TOPMOST,
-      (int32_t) rectWindow.left, (int32_t) rectWindow.top, (int32_t) rectWindow.width(), (int32_t) rectWindow.height(), SWP_SHOWWINDOW);
-      ::SetWindowPos(get_handle(), HWND_NOTOPMOST,
-      (int32_t) rectWindow.left, (int32_t) rectWindow.top, (int32_t) rectWindow.width(), (int32_t) rectWindow.height(), SWP_SHOWWINDOW);
-      ::SetWindowPos(get_handle(), oswindowZOrder,
-      (int32_t) rectWindow.left, (int32_t) rectWindow.top, (int32_t) rectWindow.width(), (int32_t) rectWindow.height(), SWP_SHOWWINDOW | SWP_FRAMECHANGED);
-      /*sp(simple_frame_window) pframe =  (pwnd->m_pui);
-      if(pframe != NULL)
-      {
-      pframe->ActivateFrame();
-      }*/
-      /*               m_pui->oprop("pending_layout") = false;
-      }
-      else
-      {
-      ::SetWindowPos(get_handle(), NULL, (int32_t) rectWindow.left, (int32_t) rectWindow.top, (int32_t) rectWindow.width(), (int32_t) rectWindow.height(), SWP_SHOWWINDOW);
-      }
-      }
-
-      }*/
-
-
-   }
 
 
    bool interaction_impl::get_rect_normal(LPRECT lprect)

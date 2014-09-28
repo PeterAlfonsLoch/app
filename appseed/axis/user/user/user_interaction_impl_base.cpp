@@ -26,12 +26,17 @@ namespace user
    }
 
 
-   void interaction_impl_base::_001UpdateWindow()
+   void interaction_impl_base::_001UpdateScreen()
    {
 
 
    }
 
+   void interaction_impl_base::_001UpdateBuffer()
+   {
+
+
+   }
 
    void interaction_impl_base::_001WindowMinimize()
    {

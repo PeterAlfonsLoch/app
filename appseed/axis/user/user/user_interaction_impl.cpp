@@ -2241,22 +2241,35 @@ namespace user
    }
 
 
-   void interaction_impl::_001UpdateWindow()
+   void interaction_impl::_001UpdateScreen()
    {
 
-      //   if (m_bUpdateGraphics)
+      single_lock sl(mutex_display(),true);
+
+      if(m_spdib.is_set() && m_spdib->get_graphics() != NULL)
       {
-         update_graphics_resources();
+
+         m_spdib->update_window(m_pui,NULL);
+
       }
+
+      
+   }
+
+
+   void interaction_impl::_001UpdateBuffer()
+   {
+
+      update_graphics_resources();
 
       single_lock sl(m_pui->m_spmutex,true);
 
-      if(m_spdib.is_null())
+      if(m_spdibBuffer.is_null())
          return;
 
-      m_spdib->map();
+      m_spdibBuffer->map();
 
-      if(m_spdib->get_data() == NULL)
+      if(m_spdibBuffer->get_data() == NULL)
          return;
 
       rect64 rectWindow;
@@ -2265,46 +2278,23 @@ namespace user
 
       if(m_bComposite)
       {
-         m_spdib->Fill(0,0,0,0);
+         m_spdibBuffer->Fill(0,0,0,0);
       }
       else
       {
-         m_spdib->Fill(255,184,184,177);
+         m_spdibBuffer->Fill(255,184,184,177);
       }
 
-      //m_spdib->get_graphics()->FillSolidRect(00, 00, 100, 100, ARGB(127, 0, 127, 0));
-      ::draw2d::graphics * pgraphics = m_spdib->get_graphics();
+      ::draw2d::graphics * pgraphics = m_spdibBuffer->get_graphics();
 
       if(pgraphics == NULL)
          return;
 
       _001Print(pgraphics);
-      //m_spdib->get_graphics()->SetViewportOrg(0, 0);
-      //m_spdib->get_graphics()->FillSolidRect(100, 100, 100, 100, ARGB(127, 127, 0, 0));
-
 
       single_lock sl2(mutex_display(),true);
 
-      rect rect;
-
-      GetClientRect(rect);
-
-      if(m_spdibFlip.is_null())
-         m_spdibFlip.alloc(allocer());
-
-      if(m_spdibFlip.is_null())
-         return;
-
-      m_spdibFlip->create(rect.size());
-
-      if(m_spdibFlip->get_data() == NULL)
-         return;
-
-      m_spdibFlip->Paste(m_spdib);
-
-      sl.unlock();
-
-      m_spdibFlip->update_window(m_pui,NULL);
+      m_spdib->Paste(m_spdibBuffer);
 
    }
 
@@ -2368,10 +2358,10 @@ namespace user
 
          m_spdib->create(rectWindow.size());
 
-         if(m_spdibFlip.is_null())
-            m_spdibFlip.alloc(allocer());
+         if(m_spdibBuffer.is_null())
+            m_spdibBuffer.alloc(allocer());
 
-         m_spdibFlip->create(rectWindow.size());
+         m_spdibBuffer->create(rectWindow.size());
 
          m_size = rectWindow.size();
 

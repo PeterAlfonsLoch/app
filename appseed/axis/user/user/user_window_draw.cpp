@@ -60,7 +60,7 @@ namespace user
                if(wndpa[l].m_bMayProDevian)
                {
                
-                  wndpa[l]._001UpdateWindow();
+                  wndpa[l]._001UpdateScreen();
                   
                }
                

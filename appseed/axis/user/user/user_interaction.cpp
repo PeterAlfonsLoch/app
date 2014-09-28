@@ -3151,14 +3151,26 @@ namespace user
    }
 
 
-   void interaction::_001UpdateWindow()
+   void interaction::_001UpdateScreen()
    {
 
       if(m_bLockWindowUpdate)
          return;
 
 
-      m_pimpl->_001UpdateWindow();
+      m_pimpl->_001UpdateScreen();
+
+   }
+
+
+   void interaction::_001UpdateBuffer()
+   {
+
+      if(m_bLockWindowUpdate)
+         return;
+
+
+      m_pimpl->_001UpdateBuffer();
 
    }
 

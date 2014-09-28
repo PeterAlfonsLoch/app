@@ -645,9 +645,6 @@ namespace windows
       virtual void _001BaseWndInterfaceMap();
 
 
-      void _001UpdateWindow();
-
-
       void _001OnTriggerMouseInside();
 
       void set_viewport_org(::draw2d::graphics * pgraphics);

@@ -61,7 +61,7 @@ namespace user
 
       window_graphics *             m_pgraphics;
       ::draw2d::dib_sp              m_spdib;
-      ::draw2d::dib_sp              m_spdibFlip;
+      ::draw2d::dib_sp              m_spdibBuffer;
 
       ::user::interaction *         m_puiCapture;
 
@@ -691,7 +691,8 @@ namespace user
       virtual void _001BaseWndInterfaceMap();
 
 
-      virtual void _001UpdateWindow();
+      virtual void _001UpdateScreen();
+      virtual void _001UpdateBuffer();
 
 
       virtual void update_graphics_resources();

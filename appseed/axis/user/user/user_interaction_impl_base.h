@@ -19,7 +19,8 @@ namespace user
       interaction_impl_base();
       virtual ~interaction_impl_base();
 
-      virtual void _001UpdateWindow();
+      virtual void _001UpdateScreen();
+      virtual void _001UpdateBuffer();
 
 
       virtual void _001WindowMinimize();

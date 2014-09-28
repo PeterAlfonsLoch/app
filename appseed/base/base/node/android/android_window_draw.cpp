@@ -510,7 +510,7 @@ namespace android
          {
             if(wndpa[l].oprop("session").is_new())
             {
-               wndpa[l].m_pimpl.cast < ::interaction_impl >()->_001UpdateWindow();
+               wndpa[l].m_pimpl.cast < ::interaction_impl >()->_001UpdateScreen();
             }
             l++;
          }
