@@ -135,7 +135,7 @@ namespace user
 
 
       virtual sp(::user::interaction) GetTopWindow() const;
-      virtual sp(::user::interaction) GetParent() const;
+      virtual ::user::interaction * GetParent() const;
       virtual sp(::user::interaction) GetTopLevel() const;
       virtual sp(::user::interaction) GetParentTopLevel() const;
       virtual sp(::user::interaction) EnsureTopLevel();

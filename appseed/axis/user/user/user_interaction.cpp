@@ -94,7 +94,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::GetParent() const
+   interaction * interaction::GetParent() const
    {
 
       return m_pparent;
@@ -2025,7 +2025,7 @@ namespace user
          return m_pimpl->GetWindow(nCmd);
    }
 
-   sp(interaction) interaction::GetActiveWindow()
+   ::user::interaction * interaction::GetActiveWindow()
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -2042,7 +2042,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::SetActiveWindow()
+   ::user::interaction * interaction::SetActiveWindow()
    {
       if(m_pimpl == NULL)
          return NULL;

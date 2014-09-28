@@ -826,7 +826,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::GetParent() const
+   interaction * interaction_impl_base::GetParent() const
    {
 
       return m_pui->GetParent();

@@ -21,7 +21,6 @@ namespace filemanager
    }
 
 
-#ifdef DEBUG
    void left_view::assert_valid() const
    {
       ::user::split_view::assert_valid();
@@ -32,7 +31,6 @@ namespace filemanager
       ::user::split_view::dump(dumpcontext);
    }
 
-#endif //DEBUG
 
 
    void left_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)

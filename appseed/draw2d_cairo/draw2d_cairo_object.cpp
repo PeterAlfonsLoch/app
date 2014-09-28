@@ -70,7 +70,6 @@ namespace draw2d_cairo
       return NULL;
    }
 
-#ifdef _DEBUG
    void object::dump(dump_context & dumpcontext) const
    {
       ::object::dump(dumpcontext);
@@ -85,7 +84,6 @@ namespace draw2d_cairo
       /*      ASSERT(get_handle() == NULL ||
       (afxData.bWin95 || ::GetObjectType(get_handle()) != 0));*/
    }
-#endif
 
 
    /*

@@ -212,7 +212,6 @@ namespace filemanager
 
    }
 
-#ifdef DEBUG
    void manager::assert_valid() const
    {
       ::user::document::assert_valid();
@@ -222,7 +221,6 @@ namespace filemanager
    {
       ::user::document::dump(dumpcontext);
    }
-#endif //DEBUG
 
    /////////////////////////////////////////////////////////////////////////////
    // manager serialization

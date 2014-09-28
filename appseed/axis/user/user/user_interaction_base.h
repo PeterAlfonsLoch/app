@@ -371,8 +371,8 @@ namespace user
       virtual bool has_focus();
       virtual sp(interaction) SetFocus();
       virtual bool SetForegroundWindow();
-      virtual sp(interaction) GetActiveWindow();
-      virtual sp(interaction) SetActiveWindow();
+      virtual interaction * GetActiveWindow();
+      virtual interaction * SetActiveWindow();
 
       virtual void WalkPreTranslateTree(signal_details * pobj);
       virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj);
@@ -408,7 +408,7 @@ namespace user
 
 
       virtual sp(::user::interaction) GetTopWindow() const;
-      virtual sp(::user::interaction) GetParent() const;
+      virtual ::user::interaction * GetParent() const;
       virtual sp(::user::interaction) GetTopLevel() const;
       virtual sp(::user::interaction) GetParentTopLevel() const;
       virtual sp(::user::interaction) EnsureTopLevel();

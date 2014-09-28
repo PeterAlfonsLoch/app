@@ -333,7 +333,7 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       virtual sp(::user::interaction) GetLastActivePopup();
 
       virtual bool IsChild(sp(::user::interaction)  pWnd);
-      virtual sp(::user::interaction) GetParent() const;
+      virtual ::user::interaction * GetParent() const;
       virtual sp(::user::interaction) SetParent(sp(::user::interaction) pWndNewParent);
       static sp(::user::interaction) PASCAL oswindowFromPoint(POINT point);
 

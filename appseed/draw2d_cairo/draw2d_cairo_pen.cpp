@@ -32,8 +32,6 @@ namespace draw2d_cairo
    /////////////////////////////////////////////////////////////////////////////
 
 
-#ifdef DEBUG
-
    void pen::dump(dump_context & dumpcontext) const
    {
 
@@ -59,7 +57,6 @@ namespace draw2d_cairo
 */
    }
 
-#endif
 
 
 

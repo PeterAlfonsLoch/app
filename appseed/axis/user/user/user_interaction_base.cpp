@@ -932,7 +932,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetActiveWindow()
+   interaction * interaction_base::GetActiveWindow()
    {
 
       throw interface_only_exception(get_app());
@@ -948,7 +948,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::SetActiveWindow()
+   interaction * interaction_base::SetActiveWindow()
    {
 
       throw interface_only_exception(get_app());
@@ -1150,7 +1150,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetParent() const
+   interaction * interaction_base::GetParent() const
    {
 
       throw interface_only_exception(get_app());

@@ -95,7 +95,7 @@ namespace user
 
 
 
-      virtual sp(::user::interaction) from_os_data(void * pdata);
+      virtual ::user::interaction * from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
       bool attach(oswindow oswindow_New);
@@ -287,8 +287,8 @@ namespace user
       virtual bool enable_window(bool bEnable = TRUE);
 
       // the active interaction_impl applies only to top-level (frame windows)
-      virtual sp(::user::interaction) GetActiveWindow();
-      virtual sp(::user::interaction) SetActiveWindow();
+      virtual ::user::interaction * GetActiveWindow();
+      virtual ::user::interaction * SetActiveWindow();
 
       // the foreground interaction_impl applies only to top-level windows (frame windows)
       virtual bool SetForegroundWindow();

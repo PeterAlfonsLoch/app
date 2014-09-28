@@ -457,11 +457,11 @@ namespace fontopus
          if(*pplogin == NULL)
             goto end;
 
-         ::simple_ui::style * pstyle = NULL;
+         sp(::simple_ui::style) pstyle = NULL;
 
          {
 
-            pstyle = (*pplogin)->GetParent().cast < simple_ui::style >();
+            pstyle = (*pplogin)->GetParent();
 
          }
 

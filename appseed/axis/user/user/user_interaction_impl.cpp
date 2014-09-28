@@ -155,7 +155,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_impl::from_os_data(void * pdata)
+   ::user::interaction * interaction_impl::from_os_data(void * pdata)
    {
 
       UNREFERENCED_PARAMETER(pdata);
@@ -1239,12 +1239,12 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::interaction) interaction_impl::GetActiveWindow()
+   ::user::interaction * interaction_impl::GetActiveWindow()
    {
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::interaction) interaction_impl::SetActiveWindow()
+   ::user::interaction * interaction_impl::SetActiveWindow()
    {
       throw interface_only_exception(get_app());
    }

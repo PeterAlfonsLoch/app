@@ -117,7 +117,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::from_os_data(void * pdata)
+   ::user::interaction * interaction_impl::from_os_data(void * pdata)
    {
 
       return from_handle((oswindow)pdata);
@@ -175,7 +175,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::from_handle(oswindow oswindow)
+   ::user::interaction * interaction_impl::from_handle(oswindow oswindow)
    {
 
       return ::window_from_handle(oswindow);
@@ -3444,7 +3444,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetParent() const
+   ::user::interaction * interaction_impl::GetParent() const
    {
 
       if(!::IsWindow(get_handle()))
@@ -4087,20 +4087,20 @@ namespace windows
 
    }
 
-   sp(::user::interaction) interaction_impl::GetActiveWindow()
+   ::user::interaction * interaction_impl::GetActiveWindow()
    {
 
-      return (sp(::user::interaction)) ::windows::interaction_impl::from_handle(::GetActiveWindow()).m_p;
+      return ::windows::interaction_impl::from_handle(::GetActiveWindow());
 
    }
 
 
-   sp(::user::interaction) interaction_impl::SetActiveWindow()
+   ::user::interaction * interaction_impl::SetActiveWindow()
    {
 
       ASSERT(::IsWindow(get_handle()));
 
-      return (sp(::user::interaction)) ::windows::interaction_impl::from_handle(::SetActiveWindow(get_handle())).m_p;
+      return ::windows::interaction_impl::from_handle(::SetActiveWindow(get_handle()));
 
    }
 
@@ -4130,7 +4130,7 @@ namespace windows
    sp(::user::interaction) interaction_impl::GetFocus()
    {
 
-      return ::windows::interaction_impl::from_handle(::GetFocus()).m_p;
+      return ::windows::interaction_impl::from_handle(::GetFocus());
 
    }
 
@@ -4309,7 +4309,7 @@ namespace windows
    {
       ASSERT(::IsWindow(get_handle()));
 
-      return (sp(::user::interaction)) ::windows::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(),point)).m_p;
+      return (sp(::user::interaction)) ::windows::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(),point));
 
 
    }
@@ -4318,7 +4318,7 @@ namespace windows
    {
       ASSERT(::IsWindow(get_handle()));
 
-      return (sp(::user::interaction))  ::windows::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(),point,nFlags)).m_p;
+      return (sp(::user::interaction))  ::windows::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(),point,nFlags));
 
 
    }
@@ -4339,7 +4339,7 @@ namespace windows
       if(!::IsWindow(get_handle()))
          return NULL;
 
-      return (sp(::user::interaction)) ::windows::interaction_impl::from_handle(::GetNextWindow(get_handle(),nFlag)).m_p;
+      return (sp(::user::interaction)) ::windows::interaction_impl::from_handle(::GetNextWindow(get_handle(),nFlag));
 
    }
 

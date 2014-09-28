@@ -19,7 +19,6 @@ namespace filemanager
    }
 
 
-#ifdef DEBUG
    void tab_view::assert_valid() const
    {
       ::user::tab_view::assert_valid();
@@ -30,7 +29,6 @@ namespace filemanager
       ::user::tab_view::dump(dumpcontext);
    }
 
-#endif //DEBUG
 
 
    void tab_view::install_message_handling(::message::dispatch * pinterface)

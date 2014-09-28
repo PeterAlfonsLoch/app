@@ -22,7 +22,7 @@ namespace user
       virtual void keyboard_focus_OnSysChar(signal_details * pobj);
       virtual void keyboard_focus_OnKeyDown(signal_details * pobj);
       virtual void keyboard_focus_OnKeyUp(signal_details * pobj);
-      virtual sp(::user::interaction) GetParent() const = 0;
+      virtual ::user::interaction * GetParent() const = 0;
       virtual sp(::user::interaction) GetWindow() const = 0;
       virtual bool BaseOnControlEvent(control_event * pevent) = 0;
       virtual keyboard_focus * keyboard_get_next_focusable();
