@@ -242,6 +242,8 @@ double primitive_color_round(double d)
       return n;
 }
 
+#define dsin(x) (sin(((x) *2.0 * 3.1415) / 360.0))
+
 void color::set_hls(
    double dH,
    double dL,
@@ -362,7 +364,24 @@ void color::set_hls(
    m_uchG      = (BYTE) primitive_color_round(m_dG * 255.0);
    m_uchB      = (BYTE) primitive_color_round(m_dB * 255.0);
 
+/*   double H = dH * 360.0;
 
+
+   double d360 = dsin(360.0);
+
+   double R1 = dsin(H) * dL;
+   double G1 = dsin(H + 120.0) * dL;
+   double B1 = dsin(H + 240.0) * dL;
+
+   double AVERAGE = (R1 + G1 + B1) / 3;
+
+   m_dR = ((R1 - AVERAGE) * dS) + AVERAGE;
+   m_dG = ((G1 - AVERAGE) * dS) + AVERAGE;
+   m_dB = ((B1 - AVERAGE) * dS) + AVERAGE;
+
+   m_uchR      = (BYTE)primitive_color_round(m_dR * 255.0);
+   m_uchG      = (BYTE)primitive_color_round(m_dG * 255.0);
+   m_uchB      = (BYTE)primitive_color_round(m_dB * 255.0);*/
 
 }
 
