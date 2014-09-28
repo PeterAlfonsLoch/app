@@ -3450,9 +3450,6 @@
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="aura.def">
       <Filter>Source Files</Filter>
     </None>
