@@ -657,15 +657,11 @@ namespace user
       virtual bool HandleFloatingSysCommand(UINT nID,LPARAM lParam);
       virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
-      virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj);
       virtual void on_final_release();
 
 
       virtual bool _EnableToolTips(bool bEnable,UINT nFlag);
       virtual void PrepareForHelp();
-
-      virtual void WalkPreTranslateTree(signal_details * pobj);
-
 
       // for creating dialogs and dialog-like windows
       //virtual bool CreateDlg(const char * lpszTemplateName, ::window_sp pParentWnd);

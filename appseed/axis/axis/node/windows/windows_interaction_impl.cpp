@@ -1901,31 +1901,6 @@ namespace windows
       return false;
    }
 
-   void interaction_impl::WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj)
-   {
-      ASSERT(puiStop == NULL || puiStop->IsWindow());
-      ASSERT(pobj != NULL);
-
-      SCAST_PTR(::message::base,pbase,pobj);
-      // walk from the target interaction_impl up to the oswindow_Stop interaction_impl checking
-      //  if any interaction_impl wants to translate this message
-
-      for(sp(::user::interaction) pui = pbase->m_pwnd; pui != NULL; pui->GetParent())
-      {
-
-         pui->pre_translate_message(pobj);
-
-         if(pobj->m_bRet)
-            return; // trapped by target interaction_impl (eg: accelerators)
-
-         // got to oswindow_Stop interaction_impl without interest
-         if(pui == puiStop)
-            break;
-
-      }
-      // no special processing
-   }
-
    bool interaction_impl::ReflectMessage(oswindow oswindow_Child,::message::base * pbase)
    {
 
@@ -4714,7 +4689,7 @@ namespace windows
 
       SCAST_PTR(::message::window_pos,pwindowpos,pobj);
 
-      TRACE("::windows::interaction_impl::_001OnWindowPosChanging");
+      //TRACE("::windows::interaction_impl::_001OnWindowPosChanging");
 
       if(GetExStyle() & WS_EX_LAYERED)
       {
@@ -4744,7 +4719,7 @@ namespace windows
             if(pwindowpos->m_pwindowpos->flags & SWP_NOMOVE)
             {
 
-               TRACE("::user::interaction_impl::interaction_impl::_001OnWindowPosChanging SWP_NOMOVE");
+               //TRACE("::user::interaction_impl::interaction_impl::_001OnWindowPosChanging SWP_NOMOVE");
 
             }
             else
@@ -4757,7 +4732,7 @@ namespace windows
             if(pwindowpos->m_pwindowpos->flags & SWP_NOSIZE)
             {
 
-               TRACE("::user::interaction_impl::interaction_impl::_001OnWindowPosChanging SWP_NOSIZE");
+               //TRACE("::user::interaction_impl::interaction_impl::_001OnWindowPosChanging SWP_NOSIZE");
 
             }
             else
@@ -4773,10 +4748,15 @@ namespace windows
 
             keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate,true,false,true);
 
+
+            bool bUpdate = false;
+
             if(rectBefore.top_left() != rect.top_left())
             {
 
                send_message(WM_MOVE);
+
+               bUpdate = true;
 
             }
 
@@ -4787,6 +4767,13 @@ namespace windows
 
                send_message(WM_SIZE, 0, MAKELONG(MAX(0, rect.width()), MAX(0, rect.height())));
 
+               bUpdate = true;
+
+            }
+
+            if(bUpdate)
+            {
+
                keepLockWindowUpdate.KeepAway();
 
                _001UpdateBuffer();
@@ -4794,8 +4781,6 @@ namespace windows
                _001UpdateScreen();
 
             }
-
-            
 
          }
 

@@ -2842,35 +2842,6 @@ return 0;
       return false;*/
    }
 
-   /*
-
-   void interaction_impl::WalkPreTranslateTree(sp(::user::interaction) puiStop, ::signal_details * pobj)
-   {
-      ASSERT(puiStop == NULL || puiStop->IsWindow());
-      ASSERT(pobj != NULL);
-
-      SCAST_PTR(::message::base, pbase, pobj);
-      // walk from the target interaction_impl up to the hWndStop interaction_impl checking
-      //  if any interaction_impl wants to translate this message
-
-      for (sp(::user::interaction) pui = pbase->m_pwnd; pui != NULL; pui->GetParent())
-      {
-
-         pui->pre_translate_message(pobj);
-
-         if(pobj->m_bRet)
-            return; // trapped by target interaction_impl (eg: accelerators)
-
-         // got to hWndStop interaction_impl without interest
-         if(pui == puiStop)
-            break;
-
-      }
-      // no special processing
-   }
-
-   */
-
 
    bool interaction_impl::SendChildNotifyLastMsg(LRESULT* pResult)
    {

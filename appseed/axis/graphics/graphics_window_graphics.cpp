@@ -75,17 +75,16 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow interact
    if (pdata != NULL)
    {
 
-      pdata->update_window(interaction_impl, pOsBitmapData, rect, iStride);
+      pdata->update_window(pOsBitmapData, rect, iStride);
 
    }
 
 }
 
 
-void window_graphics::update_window(oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int iStride)
+void window_graphics::update_window(COLORREF * pOsBitmapData, const RECT & rect, int iStride)
 {
 
-   UNREFERENCED_PARAMETER(interaction_impl);
    UNREFERENCED_PARAMETER(pOsBitmapData);
    UNREFERENCED_PARAMETER(rect);
    UNREFERENCED_PARAMETER(iStride);

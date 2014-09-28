@@ -374,8 +374,6 @@ namespace user
       virtual interaction * GetActiveWindow();
       virtual interaction * SetActiveWindow();
 
-      virtual void WalkPreTranslateTree(signal_details * pobj);
-      virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj);
 
       virtual interaction * GetDescendantWindow(id id) const;
 

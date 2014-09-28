@@ -43,6 +43,40 @@ void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxPar
 
    m_hbitmapOld = (HBITMAP) ::SelectObject(m_hdc, m_hbitmap);
 
+
+   if(interaction_impl == NULL)
+      return;
+
+   HDC hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_CLIPSIBLINGS | DCX_WINDOW);
+
+   
+
+   if(hdcScreen == NULL)
+   {
+
+      // If it has failed to get interaction_impl
+      // owned device context, try to get
+      // a device context from the cache.
+      hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_CACHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
+
+      // If no device context could be retrieved,
+      // nothing can be drawn at the screen.
+      // The function failed.
+      if(hdcScreen == NULL)
+         return;
+
+      m_bOwnDC = false;
+
+   }
+   else
+   {
+
+      m_bOwnDC = true;
+
+   }
+
+   m_hwnd =interaction_impl;
+
    window_graphics::create_window_graphics(interaction_impl, cxParam, cyParam, iStride);
 
 }
@@ -52,6 +86,13 @@ void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxPar
 
 void window_gdi::destroy_window_graphics()
 {
+
+   if(m_hdcScreen != NULL)
+   {
+
+      ::ReleaseDC(m_hwnd,m_hdcScreen);
+
+   }
 
    if(m_hdc != NULL)
    {
@@ -77,51 +118,24 @@ void window_gdi::destroy_window_graphics()
 
    m_pcolorref = NULL;
 
+   m_hwnd = NULL;
+
    window_graphics::destroy_window_graphics();
 
 
 }
 
 
-void window_gdi::update_window(oswindow interaction_impl, COLORREF * pcolorref, const RECT & rect, int iStride)
+void window_gdi::update_window(COLORREF * pcolorref, const RECT & rect, int iStride)
 {
 
    if (width(rect) <= 0 || height(rect) <= 0)
       return;
 
-   if (interaction_impl == NULL)
-      return;
-
-   HDC hdcScreen = ::GetDCEx(interaction_impl, NULL,  DCX_CLIPSIBLINGS | DCX_WINDOW);
-
-   bool bOwnDC;
-
-   if(hdcScreen == NULL)
-   {
-
-      // If it has failed to get interaction_impl
-      // owned device context, try to get
-      // a device context from the cache.
-      hdcScreen = ::GetDCEx(interaction_impl, NULL, DCX_CACHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
-
-      // If no device context could be retrieved,
-      // nothing can be drawn at the screen.
-      // The function failed.
-      if(hdcScreen == NULL)
-         return;
-
-      bOwnDC = false;
-
-   }
-   else
-   {
-
-      bOwnDC = true;
-
-   }
 
 
-   ::SelectClipRgn(hdcScreen, NULL);
+
+   ::SelectClipRgn(m_hdcScreen, NULL);
 
    ::SelectClipRgn(m_hdc, NULL);
 
@@ -138,7 +152,7 @@ void window_gdi::update_window(oswindow interaction_impl, COLORREF * pcolorref, 
    rectOutputClient.top    -= rect.top;
    rectOutputClient.bottom -= rect.top;
 
-   bool bLayered = (::GetWindowLong(interaction_impl, GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
+   bool bLayered = (::GetWindowLong(m_hwnd, GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
 
    try
    {
@@ -158,7 +172,7 @@ void window_gdi::update_window(oswindow interaction_impl, COLORREF * pcolorref, 
 
    ::GdiFlush();
 
-   ::SetViewportOrgEx(hdcScreen, 0, 0, NULL);
+   ::SetViewportOrgEx(m_hdcScreen, 0, 0, NULL);
 
    if(bLayered)
    {
@@ -179,18 +193,17 @@ void window_gdi::update_window(oswindow interaction_impl, COLORREF * pcolorref, 
 
       BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 
-      bool bOk = ::UpdateLayeredWindow(interaction_impl, hdcScreen, &pt, &sz, m_hdc, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
+      bool bOk = ::UpdateLayeredWindow(m_hwnd, m_hdcScreen, &pt, &sz, m_hdc, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
 
 
    }
    else
    {
 
-      ::BitBlt(hdcScreen, 0, 0, cx, cy,  m_hdc, 0, 0, SRCCOPY);
+      ::BitBlt(m_hdcScreen, 0, 0, cx, cy,  m_hdc, 0, 0, SRCCOPY);
 
    }
 
-   ::ReleaseDC(interaction_impl, hdcScreen);
 
 }
 

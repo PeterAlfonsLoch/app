@@ -1131,6 +1131,70 @@ namespace user
    }
 
 
+   void impact::walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop)
+   {
+
+      try
+      {
+
+         sp(::user::interaction) pui = this;
+
+         while(pui != NULL)
+         {
+
+            try
+            {
+
+               pui->pre_translate_message(pobj);
+
+            }
+            catch(...)
+            {
+
+               break;
+
+            }
+
+            if(pobj->m_bRet)
+               break;
+
+            try
+            {
+
+               pui = pui->GetParent();
+
+            }
+            catch(...)
+            {
+
+               break;
+
+            }
+
+            try
+            {
+
+               if(pui == puiStop)
+                  break;
+
+            }
+            catch(...)
+            {
+
+               break;
+
+            }
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+
+   }
+
 
 
 } // namespace user

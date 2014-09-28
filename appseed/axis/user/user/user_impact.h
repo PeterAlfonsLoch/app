@@ -228,11 +228,9 @@ namespace user
 
          virtual bool _001HasCommandHandler(id id);
 
+         virtual void walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop);
 
    };
-
-
-
 
 
 } // namespace user

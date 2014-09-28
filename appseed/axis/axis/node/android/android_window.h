@@ -592,7 +592,6 @@ virtual    void set_view_port_org(::draw2d::graphics * pgraphics);
       bool HandleFloatingSysCommand(UINT nID, LPARAM lParam);
       bool IsTopParentActive();
       void ActivateTopParent();
-      //virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop, ::signal_details * pobj);
       static sp(::user::interaction) PASCAL GetDescendantWindow(sp(::user::interaction) hWnd, id id);
       static void PASCAL SendMessageToDescendants(void*  hWnd, UINT message, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm);
       virtual void on_final_release();

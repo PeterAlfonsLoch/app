@@ -1674,22 +1674,6 @@ namespace user
    }
 
 
-   void interaction_base::WalkPreTranslateTree(signal_details * pobj)
-   {
-
-      throw interface_only_exception(get_app());
-
-   }
-
-
-   void interaction_base::WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj)
-   {
-
-      throw interface_only_exception(get_app());
-
-   }
-
-
    void interaction_base::on_select()
    {
 

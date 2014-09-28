@@ -569,20 +569,6 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   void interaction_impl::WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(puiStop);
-      UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception(get_app());
-   }
-
-   //bool interaction_impl::SendChildNotifyLastMsg(LRESULT* pResult)
-   //{
-   //   UNREFERENCED_PARAMETER(pResult);
-   //   throw interface_only_exception(get_app());
-   //}
-
-
    bool interaction_impl::OnChildNotify(::message::base * pbase)
    {
 
@@ -2179,10 +2165,6 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   void interaction_impl::WalkPreTranslateTree(signal_details * pobj)
-   {
-      return WalkPreTranslateTree(m_pui,pobj);
-   }
 
 
    ////////////////////////////////////////////////////////////////////////////

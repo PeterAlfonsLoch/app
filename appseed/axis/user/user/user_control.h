@@ -4,8 +4,9 @@
 namespace user
 {
 
+
    class CLASS_DECL_AXIS control :
-      virtual public impact
+      virtual public ::database::user::interaction
    {
    public:
 
@@ -166,6 +167,9 @@ namespace user
       ::user::interaction_base * _003GetCustomMessageWnd();
 
 
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+
+
 
       virtual index get_hover();
 
@@ -217,6 +221,8 @@ namespace user
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
       virtual bool simple_process_system_message(signal_details * pobj, ::user::e_event eevent);
+
+      virtual void walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop);
 
    };
 

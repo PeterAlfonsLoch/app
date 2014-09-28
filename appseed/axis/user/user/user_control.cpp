@@ -854,6 +854,62 @@ namespace user
    }
 
 
+   void control::walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop)
+   {
+
+      if(puiStop == this)
+      {
+
+         return;
+
+      }
+
+      try
+      {
+
+         pre_translate_message(pobj);
+
+      }
+      catch(...)
+      {
+
+      }
+
+      if(pobj->m_bRet)
+         return;
+
+      sp(::user::interaction) puiParent = GetParent();
+
+      if(puiParent.is_null())
+         return;
+
+      if(puiParent == puiStop)
+         return;
+
+      try
+      {
+
+         puiParent->pre_translate_message(pobj);
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+
+   }
+
+
+   void control::_001OnDraw(::draw2d::graphics * pgraphics)
+   {
+
+      ::database::user::interaction::_001OnDraw(pgraphics);
+
+   }
+
+
 } // namespace core
 
 

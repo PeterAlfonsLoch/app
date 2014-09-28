@@ -605,7 +605,6 @@ namespace windows
       bool HandleFloatingSysCommand(UINT nID,LPARAM lParam);
       bool IsTopParentActive();
       void ActivateTopParent();
-      virtual void WalkPreTranslateTree(sp(::user::interaction) puiStop,signal_details * pobj);
       static ::user::interaction * GetDescendantWindow(::user::interaction * pui, id id);
       static void SendMessageToDescendants(oswindow  oswindow,UINT message,WPARAM wParam,lparam lParam,bool bDeep,bool bOnlyPerm);
       virtual void on_final_release();
