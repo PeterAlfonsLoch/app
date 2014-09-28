@@ -2262,7 +2262,10 @@ namespace user
 
       update_graphics_resources();
 
-      single_lock sl(m_pui->m_spmutex,true);
+      single_lock sl(m_pui->m_spmutex,false);
+
+      if(!sl.lock())
+         return;
 
       if(m_spdibBuffer.is_null())
          return;
@@ -2292,7 +2295,10 @@ namespace user
 
       _001Print(pgraphics);
 
-      single_lock sl2(mutex_display(),true);
+      single_lock slDisplay(mutex_display(),false);
+
+      if(!slDisplay.lock())
+         return;
 
       m_spdib->Paste(m_spdibBuffer);
 
