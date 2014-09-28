@@ -333,10 +333,10 @@ namespace windows
    {
       if(m_bRender)
          return false;
-      single_lock sl(&m_mutexRender,FALSE);
-      if(!sl.lock(duration::zero()))
-         return false;
-      keep<bool> keepRender(&m_bRender,true,false,true);
+      //single_lock sl(&m_mutexRender,FALSE);
+      //if(!sl.lock(duration::zero()))
+        // return false;
+      //keep<bool> keepRender(&m_bRender,true,false,true);
 
 
 
@@ -349,16 +349,22 @@ namespace windows
       for(int32_t l = 0; l < System.m_framea.get_count();)
       {
 
+         sp(::user::interaction) pframe = System.m_framea[l];
+
+         slFrame.unlock();
+
+         bool bOk = true;
+
          try
          {
 
-            if(System.m_framea[l]->m_bMayProDevian && System.m_framea[l]->m_psession.is_null())
+            if(pframe->m_bMayProDevian && System.m_framea[l]->m_psession.is_null())
             {
 
                try
                {
 
-                  System.m_framea[l]->_001UpdateBuffer();
+                  pframe->_001UpdateBuffer();
 
                }
                catch(...)
@@ -368,7 +374,7 @@ namespace windows
                try
                {
 
-                  System.m_framea[l]->_001UpdateScreen();
+                  pframe->_001UpdateScreen();
 
                }
                catch(...)
@@ -383,16 +389,30 @@ namespace windows
          }
          catch(simple_exception & se)
          {
+
             if(se.m_strMessage == "no more a interaction_impl")
             {
-               System.frames().remove(System.m_framea[l]);
-
+               bOk = false;
+               
             }
+
          }
          catch(...)
          {
-            System.frames().remove(System.m_framea[l]);
+            
+            bOk = false;
+
          }
+
+         slFrame.lock();
+
+         if(!bOk)
+         {
+
+            System.frames().remove(System.m_framea[l]);
+
+         }
+
       }
       return true;
 
