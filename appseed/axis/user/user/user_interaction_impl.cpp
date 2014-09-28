@@ -2302,45 +2302,6 @@ namespace user
    void interaction_impl::update_graphics_resources()
    {
 
-/*
-
-      if(m_pmutexGraphics == NULL)
-      {
-
-         m_pmutexGraphics = new mutex(get_app());
-
-      }
-
-*/
-
-/*
-      if(m_pmutexDisplay == NULL)
-      {
-
-         m_pmutexDisplay = new mutex(get_app());
-
-      }
-
-*/
-
-      single_lock sl(m_pui->m_spmutex,false);
-
-      if(!sl.lock())
-      {
-         m_bUpdateGraphics = true;
-         return;
-      }
-
-      single_lock sl2(mutex_display(),false);
-
-      if(mutex_display() != NULL && !sl2.lock())
-      {
-         m_bUpdateGraphics = true;
-         return;
-      }
-
-      m_bUpdateGraphics = false;
-
       rect rectWindow;
 
       GetWindowRect(rectWindow);
@@ -2352,6 +2313,20 @@ namespace user
 
       if(m_size != rectWindow.size())
       {
+
+         single_lock sl(m_pui->m_spmutex,false);
+
+         if(!sl.lock())
+         {
+            return;
+         }
+
+         single_lock sl2(mutex_display(),false);
+
+         if(mutex_display() != NULL && !sl2.lock())
+         {
+            return;
+         }
 
          if(m_spdib.is_null())
             m_spdib.alloc(allocer());
