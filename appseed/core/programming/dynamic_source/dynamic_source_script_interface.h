@@ -19,16 +19,16 @@ namespace dynamic_source
 
 
       
-      sp(script_interface)                m_pinstanceMain;
-      sp(script_interface)                m_pinstanceParent;
-      sp(httpd_socket)                    m_pnetnodesocket;
-      sp(script_manager)                  m_pmanager;
+      script_interface *                  m_pinstanceMain;
+      script_interface *                  m_pinstanceParent;
+      httpd_socket *                      m_pnetnodesocket;
+      script_manager *                    m_pmanager;
 
 
       sp(::file::memory_buffer)           m_spmemoryfileFallback;
       ::file::output_stream               m_ostreamFallback;
 
-      sp(script)                          m_pscript;
+      script *                            m_pscript;
 
       int32_t                             m_iDebug;
 

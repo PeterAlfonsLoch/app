@@ -1928,7 +1928,7 @@ ch_else:
       {
          string strError;
          pinstance->initialize(pinstance, NULL, NULL, m_pmanager);
-         ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript.m_p);
+         ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript);
          if(pdsscript != NULL)
          {
             try
@@ -1975,7 +1975,7 @@ ch_else:
          {
             string strError;
             pinstance->initialize(pinstance, NULL, NULL, m_pmanager);
-            ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript.m_p);
+            ::dynamic_source::ds_script * pdsscript = dynamic_cast < ds_script * > (pinstance->m_pscript);
             if(pdsscript != NULL)
             {
                try
