@@ -11,10 +11,10 @@ namespace fontopus
 {
 
 
-   simple_ui::simple_ui(sp(::aura::application) papp) :
+   simple_ui::simple_ui(sp(::aura::application) papp, const string & strRequestUrl) :
       element(papp),
       ::simple_ui::style(papp),
-      m_login(papp, 0, 0)
+      m_login(papp, 0, 0, strRequestUrl)
    {
 
       m_bMayProDevian = false;
@@ -475,10 +475,10 @@ namespace fontopus
 
 
 
-   string CLASS_DECL_BASE get_cred(::aura::application * papp,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   string CLASS_DECL_BASE get_cred(::aura::application * papp, const string & strRequestUrl, const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
-      ::fontopus::simple_ui ui(papp);
+      ::fontopus::simple_ui ui(papp, strRequestUrl);
 
       string str = get_cred(papp, strUsername, strPassword, strToken);
 

@@ -15,10 +15,11 @@ namespace fontopus
    UINT c_cdecl thread_proc_defer_translate_login(void * p);
 
 
-   login::login(sp(::aura::application) papp, int left, int top) :
+   login::login(sp(::aura::application) papp, int left, int top, const string & strRequestUrl) :
       element(papp)
    {
 
+      m_strRequestUrl      = strRequestUrl;
 
       m_plabelUser         = new ::simple_ui::label(papp);
       m_peditUser          = new ::simple_ui::edit_box(papp);
@@ -434,15 +435,83 @@ namespace fontopus
 
       *m_pploginDeferTranslate = this;
 
-      //__begin_thread(get_app(),thread_proc_pre_login,get_app());
-      //__begin_thread(get_app(),thread_proc_defer_translate_login,m_pploginDeferTranslate);
+      __begin_thread(get_app(),thread_proc_pre_login,get_app());
+      __begin_thread(get_app(),thread_proc_defer_translate_login,m_pploginDeferTranslate);
       
    }
 
-   /*
    UINT c_cdecl thread_proc_defer_translate_login(void * p)
    {
 
+      int iRet = -1;
+
+      login ** pplogin = (login **)p;
+
+      if(*pplogin == NULL)
+      goto end;
+
+      {
+         
+         string strFontopusServer = Sess((*pplogin)->get_app()).fontopus()->get_server((*pplogin)->m_strRequestUrl);
+
+         if(*pplogin == NULL)
+            goto end;
+
+
+         string strUser = Sess((*pplogin)->get_app()).fontopus()->m_mapLabelUser[strFontopusServer];
+
+         string strPass = Sess((*pplogin)->get_app()).fontopus()->m_mapLabelPass[strFontopusServer];
+
+         string strOpen = Sess((*pplogin)->get_app()).fontopus()->m_mapLabelOpen[strFontopusServer];
+
+         if(*pplogin == NULL)
+            goto end;
+
+         try
+         {
+
+            (*pplogin)->defer_translate(strUser,strPass,strOpen);
+
+            iRet = 0;
+
+         }
+         catch(...)
+         {
+
+         }
+
+         if(*pplogin == NULL)
+            goto end;
+
+      }
+
+      end:
+
+      try
+      {
+
+      (*pplogin) = NULL;
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
+      delete pplogin;
+
+      }
+      catch(...)
+      {
+
+      }
+
+      return iRet;
+
+      /*
       int iRet = -1;
 
       login ** pplogin = (login **)p;
@@ -531,10 +600,10 @@ namespace fontopus
 
       return iRet;
 
+      */
+   }
 
-   }*/
-
-   /*
+   
    UINT c_cdecl thread_proc_pre_login(void * p)
    {
 
@@ -550,7 +619,7 @@ namespace fontopus
 
       return 0;
 
-   }*/
+   }
 
 } // namespace fontopus
 

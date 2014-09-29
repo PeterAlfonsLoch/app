@@ -276,7 +276,7 @@ namespace aura
       virtual string multimedia_audio_mixer_get_default_library_name();
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
-      virtual string get_cred(const RECT & rect, string & strUsername,string & strPassword, string strToken, string strTitle, bool bInteractive);
+      virtual string get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
 
       virtual bool get_temp_file_name_template(string & str,const char * pszName,const char * pszExtension,const char * pszTemplate);
 

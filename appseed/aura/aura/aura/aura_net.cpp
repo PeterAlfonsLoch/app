@@ -426,7 +426,7 @@ CLASS_DECL_AURA int_bool freerdp_authenticate(freerdp * instance, char** usernam
 
    strTitle = "Enter Credentials for : " + string(pszServerName);
 
-   if(App(papp).get_cred(null_rect(),strUsername,strPassword,strToken,strTitle,true) != "ok")
+   if(App(papp).get_cred("", null_rect(),strUsername,strPassword,strToken,strTitle,true) != "ok")
       return FALSE;
 
    index iFind = strUsername.find('/');

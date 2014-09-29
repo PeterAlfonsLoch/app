@@ -1014,10 +1014,10 @@ namespace base
 
    }
 
-   string CLASS_DECL_BASE application::get_cred(const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   string CLASS_DECL_BASE application::get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
-      return ::fontopus::get_cred(this,rect,strUsername,strPassword,strToken,strTitle,bInteractive);
+      return ::fontopus::get_cred(this,strRequestUrl, rect,strUsername,strPassword,strToken,strTitle,bInteractive);
 
    }
 

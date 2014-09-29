@@ -661,7 +661,7 @@ namespace axis
    }
 
 
-   string CLASS_DECL_AXIS application::get_cred(const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   string CLASS_DECL_AXIS application::get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       throw not_implemented(this);

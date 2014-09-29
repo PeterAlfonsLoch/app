@@ -23,7 +23,7 @@ namespace fontopus
       rect                       m_rectParent;
 
 
-      simple_ui(sp(::aura::application) papp);
+      simple_ui(sp(::aura::application) papp, const string & strRequestUrl);
       virtual ~simple_ui();
 
 

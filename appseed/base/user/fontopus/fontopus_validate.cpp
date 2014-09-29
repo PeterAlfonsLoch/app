@@ -195,7 +195,7 @@ namespace fontopus
 
       string strPassword;
 
-      string strResult = Application.get_cred(null_rect(),strUsername,strPassword,"ca2","ca2",m_bInteractive);
+      string strResult = Application.get_cred(pszRequestingParty, null_rect(),strUsername,strPassword,"ca2","ca2",m_bInteractive);
 
       if(strResult != "ok")
       {

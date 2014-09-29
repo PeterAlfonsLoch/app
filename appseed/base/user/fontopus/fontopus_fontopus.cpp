@@ -451,8 +451,11 @@ namespace fontopus
       }
       else
       {
-         strGetFontopus = "https://" + strHost + "/get_fontopus_login";
+         strGetFontopus = "http://" + strHost + "/get_fontopus_login";
       }
+
+      System.url().set_param(strGetFontopus,strGetFontopus,"lang",Session.get_locale());
+      System.url().set_param(strGetFontopus,strGetFontopus,"styl",Session.get_schema());
 
       sp(::sockets::http_session) psession;
 
@@ -527,6 +530,17 @@ namespace fontopus
             Session.sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i], item);
 
          }
+
+      }
+
+      ::xml::node * pnodeForm = doc.get_root()->get_child("form");
+
+      if(pnodeForm != NULL)
+      {
+
+         m_mapLabelUser[strFontopusServer] = pnodeForm->attr("email");
+         m_mapLabelPass[strFontopusServer] = pnodeForm->attr("senha");
+         m_mapLabelOpen[strFontopusServer] = pnodeForm->attr("abrir");
 
       }
 

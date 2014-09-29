@@ -18,6 +18,7 @@ namespace fontopus
       ::simple_ui::tap *            m_ptap;
       ::simple_ui::tap *            m_ptapClose;
       login **                      m_pploginDeferTranslate;
+      string                        m_strRequestUrl;
 
       string                        m_strUsername;
       string                        m_strPassword;
@@ -32,7 +33,7 @@ namespace fontopus
       visual::icon *                m_picon95; // the best size to fit current ca2 icon (as of 2014)
 
 
-      login(sp(::aura::application) papp, int left, int top);
+      login(sp(::aura::application) papp, int left, int top, const string & strRequestUrl);
       virtual ~login();
 
 

@@ -19,6 +19,9 @@ namespace fontopus
       string_map < ::sockets::http_session * >     m_mapFontopusSession;
       string_to_string                             m_mapFontopusRsa;
       string_to_string                             m_mapFontopusSessId;
+      string_to_string                             m_mapLabelUser;
+      string_to_string                             m_mapLabelPass;
+      string_to_string                             m_mapLabelOpen;
 
 
 
