@@ -7,7 +7,6 @@ namespace user
 
    combo_box::combo_box(sp(::aura::application) papp) :
       element(papp),
-      ::user::scroll_view(papp),
       ::data::data_listener(papp),
       ::colorertake5::base_editor(papp),
       ::user::edit_plain_text(papp)
@@ -853,12 +852,12 @@ namespace user
          ::user::edit_plain_text::_001OnInitialUpdate(pobj);
 
       }
-      else
-      {
+      //else
+      //{
 
-         ::user::control::_001OnInitialUpdate(pobj);
+      //   ::user::control::_001OnInitialUpdate(pobj);
 
-      }
+      //}
 
 
    }

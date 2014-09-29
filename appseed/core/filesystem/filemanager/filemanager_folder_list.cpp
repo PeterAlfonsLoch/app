@@ -8,7 +8,6 @@ namespace filemanager
    folder_list::folder_list(sp(::aura::application) papp) :
       element(papp),
       ::user::scroll_view(papp),
-      ::user::scroll_view(papp),
       ::user::list(papp),
       m_headerctrl(papp)
    {

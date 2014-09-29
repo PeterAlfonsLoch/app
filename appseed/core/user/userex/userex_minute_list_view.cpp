@@ -7,7 +7,7 @@ namespace userex
 
    minute_list_view::minute_list_view(sp(::aura::application) papp) :
       element(papp),
-      user::scroll_control(papp),
+      ::user::scroll_view(papp),
       ::user::form_interface(papp),
       user::form(papp),
       user::list(papp),

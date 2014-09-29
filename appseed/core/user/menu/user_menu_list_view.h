@@ -5,6 +5,7 @@ namespace user
 {
 
    class CLASS_DECL_CORE menu_list_view : 
+      virtual public impact,
       virtual public menu_list_window
    {
    public:
@@ -16,6 +17,8 @@ namespace user
       virtual ~menu_list_view();
 
       void install_message_handling(::message::dispatch * pinterface);
+
+      virtual bool pre_create_window(::user::create_struct & cs);
 
       virtual void GuieProc(signal_details * pobj);
 
@@ -29,6 +32,8 @@ namespace user
       virtual void dump(dump_context & dumpcontext) const;
    #endif
    #endif
+
+      virtual void PostNcDestroy();
 
    };
 

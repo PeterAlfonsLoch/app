@@ -3,10 +3,10 @@
 namespace bergedge
 {
 
+
    view::view(sp(::aura::application) papp) :
       element(papp),
       ::user::interaction(papp),
-      ::user::scroll_view(papp),
       ::user::scroll_view(papp),
       ::user::place_holder(papp),
       ::backview::user::interaction(papp),

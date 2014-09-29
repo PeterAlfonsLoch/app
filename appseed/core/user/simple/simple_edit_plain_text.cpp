@@ -4,7 +4,6 @@
 simple_edit_plain_text::simple_edit_plain_text(sp(::aura::application) papp) :
    element(papp),
    ::user::interaction(papp),
-   ::user::scroll_view(papp),
    ::data::data_listener(papp),
    ::colorertake5::base_editor(papp),
    ::user::edit_plain_text(papp)

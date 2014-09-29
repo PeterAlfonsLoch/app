@@ -45,6 +45,14 @@ namespace user
 
 #endif //DEBUG
 
+
+   bool menu_list_view::pre_create_window(::user::create_struct & cs)
+   {
+
+      return ::user::impact::pre_create_window(cs);
+
+   }
+
    void menu_list_view::GuieProc(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
@@ -91,6 +99,12 @@ namespace user
 
    }
 
+   void menu_list_view::PostNcDestroy()
+   {
+
+      ::user::menu_list_window::PostNcDestroy();
+
+   }
 
 } // namespace user
 
