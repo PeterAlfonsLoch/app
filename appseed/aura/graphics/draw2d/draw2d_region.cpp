@@ -400,7 +400,7 @@ namespace draw2d
 
       m_nCount = nCount;
       m_lppoints = new POINTD[m_nCount];
-      memcpy(m_lppoints, lppoints, sizeof(POINT) * m_nCount);
+      memcpy(m_lppoints, lppoints, sizeof(POINTD) * m_nCount);
       m_efillmode = efillmode;
 
       return true;
@@ -468,7 +468,7 @@ namespace draw2d
       
       m_lppoints = new POINTD[iTotalCount];
 
-      memcpy(m_lppoints, lppoints, sizeof(POINT) * iTotalCount);
+      memcpy(m_lppoints, lppoints, sizeof(POINTD) * iTotalCount);
 
       m_efillmode = efillmode;
 
