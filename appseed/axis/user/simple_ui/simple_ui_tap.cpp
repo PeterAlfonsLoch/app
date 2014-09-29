@@ -31,6 +31,7 @@ namespace simple_ui
       MSG_LBUTTONDOWN
       MSG_LBUTTONUP
       MSG_MOUSEMOVE
+      MSG_MOUSELEAVE
    END_IMH
 
 
@@ -95,12 +96,26 @@ namespace simple_ui
       pmouse->m_bRet = true;
       m_bMouseMove = true;
 
+      track_mouse_hover();
+
       RedrawWindow();
 
 
    }
 
-   
+   void tap::_001OnMouseLeave(signal_details * pobj)
+   {
+
+      //SCAST_PTR(::message::mouse,pmouse,pobj);
+
+      pobj->m_bRet = true;
+      m_bMouseMove = false;
+
+      RedrawWindow();
+
+
+   }
+
    bool tap::keyboard_focus_is_focusable()
    {
       

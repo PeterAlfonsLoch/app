@@ -34,6 +34,7 @@ namespace simple_ui
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECL_GEN_SIGNAL(_001OnMouseLeave);
 
       virtual bool keyboard_focus_is_focusable();
       virtual bool is_hover();
