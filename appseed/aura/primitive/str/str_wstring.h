@@ -127,7 +127,7 @@ public:
    inline verisimple_wstring(const wstring_data * pdata,manager * pstringmanager = NULL)
    {
       UNREFERENCED_PARAMETER(pstringmanager);
-      m_pwsz = *pdata->clone();
+      m_pwsz = (wchar_t *) &pdata->m_wchFirst;
    }
    ~verisimple_wstring();
 

@@ -47,22 +47,22 @@ void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxPar
    if(interaction_impl == NULL)
       return;
 
-   HDC hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_CLIPSIBLINGS | DCX_WINDOW);
+   m_hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_CLIPSIBLINGS | DCX_WINDOW);
 
    
 
-   if(hdcScreen == NULL)
+   if(m_hdcScreen == NULL)
    {
 
       // If it has failed to get interaction_impl
       // owned device context, try to get
       // a device context from the cache.
-      hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_CACHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
+      m_hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_CACHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
 
       // If no device context could be retrieved,
       // nothing can be drawn at the screen.
       // The function failed.
-      if(hdcScreen == NULL)
+      if(m_hdcScreen == NULL)
          return;
 
       m_bOwnDC = false;

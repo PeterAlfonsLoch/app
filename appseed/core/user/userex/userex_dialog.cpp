@@ -4,7 +4,7 @@
 
 dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
    element(puiParent->get_app()),
-   user::scroll_control(puiParent->get_app()),
+   user::scroll_view(puiParent->get_app()),
    ::user::form_interface(puiParent->get_app()),
    user::form(puiParent->get_app()),
    html_form(puiParent->get_app()),
