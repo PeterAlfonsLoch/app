@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE edit_plain_text_view :
-      virtual public impact,
+      virtual public scroll_view,
       virtual public edit_plain_text
    {
    public:
@@ -22,6 +22,7 @@ namespace user
 
       virtual void layout();
 
+      virtual void walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop);
 
    };
 

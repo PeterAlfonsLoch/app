@@ -53,13 +53,15 @@ namespace user
       m_psession                 = NULL;
       m_bMessageWindow           = false;
 
-      m_bVoidPaint                  = false;
-      m_pparent                     = NULL;
-      m_bBackgroundBypass           = false;
-      m_bEnableSaveWindowRect       = false;
+      m_bVoidPaint               = false;
+      m_pparent                  = NULL;
+      m_bBackgroundBypass        = false;
+      m_bEnableSaveWindowRect    = false;
 
       m_puserschema              = NULL;
-      m_bLockWindowUpdate = false;
+      m_bLockWindowUpdate        = false;
+
+      m_bDefaultWalkPreTranslateParentTree = false;
 
    }
 
@@ -3385,6 +3387,33 @@ namespace user
       {
 
       }
+
+      if(!m_bDefaultWalkPreTranslateParentTree)
+         return;
+
+      if(pobj->m_bRet)
+         return;
+
+      sp(::user::interaction) puiParent = GetParent();
+
+      if(puiParent.is_null())
+         return;
+
+      if(puiParent == puiStop)
+         return;
+
+      try
+      {
+
+         puiParent->pre_translate_message(pobj);
+
+      }
+      catch(...)
+      {
+
+      }
+
+
 
    }
 

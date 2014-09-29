@@ -11,7 +11,6 @@ namespace user
    edit_plain_text::edit_plain_text(sp(::aura::application) papp):
       element(papp),
       ::user::interaction(papp),
-      scroll_view(papp),
       colorertake5::base_editor(papp),
       ::data::data_listener(papp),
       m_keymessageLast(papp)
@@ -62,7 +61,7 @@ namespace user
    void edit_plain_text::install_message_handling(::message::dispatch * pinterface)
    {
 
-      scroll_view::install_message_handling(pinterface);
+      scroll_control::install_message_handling(pinterface);
 
 
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&edit_plain_text::_001OnCreate);
@@ -469,14 +468,11 @@ namespace user
 
       SCAST_PTR(::message::create,pcreate,pobj);
 
+      if(m_ptree == NULL)
+      {
 
-      if(get_document() != NULL && get_typed_data < plain_text_tree >() != NULL)
-      {
-         set_root(get_typed_data < plain_text_tree >(),false);
-      }
-      else
-      {
          set_root(new ::user::plain_text_tree(get_app()),true);
+
       }
 
       /*
@@ -2732,7 +2728,7 @@ namespace user
    bool edit_plain_text::keyboard_focus_OnSetFocus()
    {
 
-      ::user::scroll_view::keyboard_focus_OnSetFocus();
+      ::user::scroll_control::keyboard_focus_OnSetFocus();
 
       //m_bCaretOn = true;
       //m_dwLastCaret = get_tick_count();
@@ -2813,7 +2809,7 @@ namespace user
    void edit_plain_text::layout()
    {
 
-      scroll_view::layout();
+      scroll_control::layout();
 
    }
 
@@ -2827,7 +2823,7 @@ namespace user
 
       }
 
-      return ::user::scroll_view::ShowWindow(nCmdShow);
+      return ::user::scroll_control::ShowWindow(nCmdShow);
 
    }
 

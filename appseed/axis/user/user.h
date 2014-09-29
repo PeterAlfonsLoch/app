@@ -82,6 +82,7 @@
 
 #include "user/user/user_control.h"
 #include "user/user/user_scroll_bar.h"
+#include "user/user/user_scroll_control.h"
 #include "user/user/user_scroll_view.h"
 #include "user/user/user_form_interface.h"
 

@@ -7,8 +7,8 @@ namespace bergedge
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
+      ::user::scroll_view(papp),
       ::user::place_holder(papp),
-
       ::backview::user::interaction(papp),
       ::backview::Interface(papp),
       m_dibV(papp),
@@ -455,7 +455,7 @@ namespace bergedge
             pui->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
          }
       }
-      ::user::scroll_view::layout();
+      ::user::scroll_control::layout();
       ::backview::user::interaction::layout();
    }*/
 

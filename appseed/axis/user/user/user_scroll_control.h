@@ -8,7 +8,7 @@ namespace user
    class scroll_bar;
 
 
-   class CLASS_DECL_AXIS scroll_view :
+   class CLASS_DECL_AXIS scroll_control :
       virtual public control
    {
    public:
@@ -42,8 +42,8 @@ namespace user
 
 
 
-      scroll_view(sp(::aura::application) papp);
-      virtual ~scroll_view();
+      scroll_control();
+      virtual ~scroll_control();
 
 
       virtual void _001LayoutScrollBars();

@@ -222,7 +222,7 @@ namespace user
 
       virtual bool simple_process_system_message(signal_details * pobj, ::user::e_event eevent);
 
-      virtual void walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop);
+      //virtual void walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop);
 
    };
 

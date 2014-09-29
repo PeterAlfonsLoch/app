@@ -575,9 +575,6 @@
     <ClInclude Include="user\user\user_edit_plain_text.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_scroll_view.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_control.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -781,6 +778,12 @@
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows.h">
       <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_scroll_control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_scroll_view.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1168,9 +1171,6 @@
     <ClCompile Include="user\user\user_edit_plain_text.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_scroll_view.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_control.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1287,6 +1287,12 @@
     </ClCompile>
     <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp">
       <Filter>Source Files\axis\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_scroll_control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_scroll_view.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

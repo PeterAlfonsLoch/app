@@ -6,7 +6,7 @@
 
 simple_printer_list_view::simple_printer_list_view(sp(::aura::application) papp) :
    element(papp),
-   user::scroll_view(papp),
+   user::scroll_control(papp),
    user::form_interface(papp),
    user::form(papp),
    user::list(papp),

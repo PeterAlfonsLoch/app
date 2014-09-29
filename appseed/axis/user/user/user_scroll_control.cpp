@@ -5,8 +5,7 @@ namespace user
 {
 
 
-   scroll_view::scroll_view(sp(::aura::application) papp) :
-      element(papp)
+   scroll_control::scroll_control()
    {
 
       m_scrollinfo.m_ptScroll.x = 0;
@@ -28,11 +27,11 @@ namespace user
 
    }
 
-   scroll_view::~scroll_view()
+   scroll_control::~scroll_control()
    {
    }
 
-   void scroll_view::GetClientRect(LPRECT lprect)
+   void scroll_control::GetClientRect(LPRECT lprect)
    {
       rect rectClient;
       control::GetClientRect(rectClient);
@@ -82,7 +81,7 @@ namespace user
       *lprect = rectClient;
    }
 
-   void scroll_view::_001LayoutScrollBars()
+   void scroll_control::_001LayoutScrollBars()
    {
       rect rectClient;
 
@@ -118,7 +117,7 @@ namespace user
 
    }
 
-   void scroll_view::_001OnDeferCreateScrollBars()
+   void scroll_control::_001OnDeferCreateScrollBars()
    {
 
       if(m_scrollinfo.m_bHScroll)
@@ -136,10 +135,10 @@ namespace user
 
    }
 
-   UINT c_cdecl scroll_view::thread_proc_defer_create_scroll_bars(LPVOID lpparam)
+   UINT c_cdecl scroll_control::thread_proc_defer_create_scroll_bars(LPVOID lpparam)
    {
 
-      scroll_view * pview = (scroll_view *)lpparam;
+      scroll_control * pview = (scroll_control *)lpparam;
 
       pview->_001OnDeferCreateScrollBars();
 
@@ -147,7 +146,7 @@ namespace user
 
    }
 
-   void scroll_view::_001DeferCreateScrollBars()
+   void scroll_control::_001DeferCreateScrollBars()
    {
 
       bool bCreate = false;
@@ -185,7 +184,7 @@ namespace user
 
    }
 
-   void scroll_view::_001OnCreate(signal_details * pobj)
+   void scroll_control::_001OnCreate(signal_details * pobj)
    {
 
       SCAST_PTR(::message::create, pcreate, pobj);
@@ -195,13 +194,13 @@ namespace user
 
    }
 
-   void scroll_view::_001OnSize(signal_details * pobj)
+   void scroll_control::_001OnSize(signal_details * pobj)
    {
       pobj->previous();
       _001LayoutScrollBars();
    }
 
-   void scroll_view::_001OnUser9654(signal_details * pobj)
+   void scroll_control::_001OnUser9654(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
@@ -213,7 +212,7 @@ namespace user
       }
    }
 
-   void scroll_view::_001OnVScroll(signal_details * pobj)
+   void scroll_control::_001OnVScroll(signal_details * pobj)
    {
 
 
@@ -239,7 +238,7 @@ namespace user
    }
 
 
-   void scroll_view::_001OnHScroll(signal_details * pobj)
+   void scroll_control::_001OnHScroll(signal_details * pobj)
    {
 
 
@@ -265,14 +264,14 @@ namespace user
 
    }
 
-   int32_t scroll_view::get_wheel_scroll_delta()
+   int32_t scroll_control::get_wheel_scroll_delta()
    {
 
       return 1;
 
    }
 
-   void scroll_view::_001OnUpdateScrollPosition()
+   void scroll_control::_001OnUpdateScrollPosition()
    {
 
 
@@ -282,7 +281,7 @@ namespace user
    }
 
 
-   void scroll_view::_001OnMouseWheel(signal_details * pobj)
+   void scroll_control::_001OnMouseWheel(signal_details * pobj)
    {
 
       SCAST_PTR(::message::mouse_wheel, pmousewheel, pobj);
@@ -333,7 +332,7 @@ namespace user
    }
 
 
-   void scroll_view::_001UpdateScrollBars()
+   void scroll_control::_001UpdateScrollBars()
    {
 
       _001DeferCreateScrollBars();
@@ -387,25 +386,25 @@ namespace user
 
 
 
-   void scroll_view::install_message_handling(::message::dispatch * pinterface)
+   void scroll_control::install_message_handling(::message::dispatch * pinterface)
    {
 
 
       control::install_message_handling(pinterface);
 
-      IGUI_WIN_MSG_LINK(WM_CREATE,          pinterface, this, &scroll_view::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_SIZE,            pinterface, this, &scroll_view::_001OnSize);
-      IGUI_WIN_MSG_LINK(WM_VSCROLL,         pinterface, this, &scroll_view::_001OnVScroll);
-      IGUI_WIN_MSG_LINK(WM_HSCROLL,         pinterface, this, &scroll_view::_001OnHScroll);
-      IGUI_WIN_MSG_LINK(WM_MOUSEWHEEL,      pinterface, this, &scroll_view::_001OnMouseWheel);
+      IGUI_WIN_MSG_LINK(WM_CREATE,          pinterface, this, &scroll_control::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_SIZE,            pinterface, this, &scroll_control::_001OnSize);
+      IGUI_WIN_MSG_LINK(WM_VSCROLL,         pinterface, this, &scroll_control::_001OnVScroll);
+      IGUI_WIN_MSG_LINK(WM_HSCROLL,         pinterface, this, &scroll_control::_001OnHScroll);
+      IGUI_WIN_MSG_LINK(WM_MOUSEWHEEL,      pinterface, this, &scroll_control::_001OnMouseWheel);
 
-      IGUI_WIN_MSG_LINK(WM_USER + 9654,     pinterface, this, &scroll_view::_001OnUser9654);
+      IGUI_WIN_MSG_LINK(WM_USER + 9654,     pinterface, this, &scroll_control::_001OnUser9654);
 
 
    }
 
 
-   void scroll_view::create_scroll_bar(const RECT & rect, e_orientation eorientation)
+   void scroll_control::create_scroll_bar(const RECT & rect, e_orientation eorientation)
    {
 
       if(eorientation == orientation_horizontal)
@@ -439,7 +438,7 @@ namespace user
    }
 
 
-   void scroll_view::_001GetViewRect(LPRECT lprect)
+   void scroll_control::_001GetViewRect(LPRECT lprect)
    {
 
       GetClientRect(lprect);
@@ -448,7 +447,7 @@ namespace user
 
 
 
-   void scroll_view::_001GetViewClientRect(LPRECT lprect)
+   void scroll_control::_001GetViewClientRect(LPRECT lprect)
    {
 
 
@@ -509,7 +508,7 @@ namespace user
    }
 
 
-   void scroll_view::SetScrollSizes()
+   void scroll_control::SetScrollSizes()
    {
 
       rect rectTotal;
@@ -534,7 +533,7 @@ namespace user
    }
 
 
-   point scroll_view::get_scroll_position()
+   point scroll_control::get_scroll_position()
    {
 
       return m_scrollinfo.m_ptScroll;

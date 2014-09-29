@@ -77,7 +77,9 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnSetFocus);
+
    };
+
 
    class tab_drop_target_window : 
       virtual public ::user::interaction

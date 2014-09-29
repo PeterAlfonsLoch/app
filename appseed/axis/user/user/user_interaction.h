@@ -27,6 +27,8 @@ namespace user
       bool                                m_bLockWindowUpdate;
       bool                                m_bEnableSaveWindowRect;
 
+      bool                                m_bDefaultWalkPreTranslateParentTree;
+
       draw_interface *                    m_pdrawinterfaceBackground;
       bool                                m_bBackgroundBypass;
 

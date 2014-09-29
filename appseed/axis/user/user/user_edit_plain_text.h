@@ -10,7 +10,7 @@ namespace user
 
 
    class CLASS_DECL_AXIS edit_plain_text :
-      virtual public scroll_view,
+      virtual public scroll_control,
       virtual public colorertake5::base_editor,
       virtual public ::data::data_listener
    {

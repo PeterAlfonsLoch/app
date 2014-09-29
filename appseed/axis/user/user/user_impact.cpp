@@ -141,6 +141,8 @@ namespace user
    {
       SCAST_PTR(::message::create, pcreate, pobj);
 
+
+
       if (pcreate->previous())
          return;
 
@@ -754,79 +756,79 @@ namespace user
    }
 
 
-   void impact::on_draw_view_nc(::draw2d::graphics * pdc)
-   {
+   //void impact::on_draw_view_nc(::draw2d::graphics * pdc)
+   //{
 
-      UNREFERENCED_PARAMETER(pdc);
+   //   UNREFERENCED_PARAMETER(pdc);
 
-   }
+   //}
 
-   void impact::on_draw_view(::draw2d::graphics * pdc, spa(::data::data) spadata)
-   {
+   //void impact::on_draw_view(::draw2d::graphics * pdc, spa(::data::data) spadata)
+   //{
 
-      UNREFERENCED_PARAMETER(pdc);
-      UNREFERENCED_PARAMETER(spadata);
+   //   UNREFERENCED_PARAMETER(pdc);
+   //   UNREFERENCED_PARAMETER(spadata);
 
-   }
+   //}
 
-   void impact::defer_draw_view(::draw2d::graphics * pdc)
-   {
+   //void impact::defer_draw_view(::draw2d::graphics * pdc)
+   //{
 
-      if (get_document() == NULL)
-         return;
+   //   if (get_document() == NULL)
+   //      return;
 
-      spa(::data::data) spadata = get_document()->m_spadata;
+   //   spa(::data::data) spadata = get_document()->m_spadata;
 
-      //spadata.add(get_document()->m_spdata);
+   //   //spadata.add(get_document()->m_spdata);
 
-      sync_object_ptra sync;
+   //   sync_object_ptra sync;
 
-      for (index i = 0; i < spadata.get_count(); i++)
-      {
+   //   for (index i = 0; i < spadata.get_count(); i++)
+   //   {
 
-         sync.add(spadata[i].data_mutex());
+   //      sync.add(spadata[i].data_mutex());
 
-      }
+   //   }
 
-      retry_multi_lock sl(sync, millis(1), millis(1));
+   //   retry_multi_lock sl(sync, millis(1), millis(1));
 
-      try
-      {
-         on_draw_view(pdc, spadata);
-      }
-      catch (...)
-      {
-      }
+   //   try
+   //   {
+   //      on_draw_view(pdc, spadata);
+   //   }
+   //   catch (...)
+   //   {
+   //   }
 
-   }
+   //}
 
-   void impact::_001OnDraw(::draw2d::graphics * pdc)
-   {
+   //void impact::_001OnDraw(::draw2d::graphics * pdc)
+   //{
 
-      on_draw_view_nc(pdc);
+   //   on_draw_view_nc(pdc);
 
-      int32_t iTry = 0;
+   //   int32_t iTry = 0;
 
-      bool bOk;
+   //   bool bOk;
 
-   retry:
+   //retry:
 
-      bOk = true;
+   //   bOk = true;
 
-      try
-      {
-         defer_draw_view(pdc);
-      }
-      catch (...)
-      {
-         bOk = false;
-      }
+   //   try
+   //   {
+   //      defer_draw_view(pdc);
+   //   }
+   //   catch (...)
+   //   {
+   //      bOk = false;
+   //   }
 
-      iTry++;
-      if (!bOk && iTry < 9)
-         goto retry;
+   //   iTry++;
+   //   if (!bOk && iTry < 9)
+   //      goto retry;
 
-   }
+   //}
 
 
    /////////////////////////////////////////////////////////////////////////////
@@ -1134,64 +1136,22 @@ namespace user
    void impact::walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop)
    {
 
+
       try
       {
 
-         sp(::user::interaction) pui = this;
-
-         while(pui != NULL)
-         {
-
-            try
-            {
-
-               pui->pre_translate_message(pobj);
-
-            }
-            catch(...)
-            {
-
-               break;
-
-            }
-
-            if(pobj->m_bRet)
-               break;
-
-            try
-            {
-
-               pui = pui->GetParent();
-
-            }
-            catch(...)
-            {
-
-               break;
-
-            }
-
-            try
-            {
-
-               if(pui == puiStop)
-                  break;
-
-            }
-            catch(...)
-            {
-
-               break;
-
-            }
-
-         }
+         GetParentFrame()->pre_translate_message(pobj);
 
       }
       catch(...)
       {
 
       }
+
+      if(pobj->m_bRet)
+         return;
+
+      pre_translate_message(pobj);
 
    }
 

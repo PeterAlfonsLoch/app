@@ -186,7 +186,7 @@ namespace user
    void control::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      ::user::impact::install_message_handling(pdispatch);
+//      ::user::impact::install_message_handling(pdispatch);
       ::database::user::interaction::install_message_handling(pdispatch);
       IGUI_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &::user::control::_001OnMouseMove);
 
@@ -467,6 +467,7 @@ namespace user
       m_pform                       = NULL;
       m_pformcallback               = NULL;
       m_ulFlags                     &= ~element::flag_auto_delete;
+      m_bDefaultWalkPreTranslateParentTree = true;
    }
 
 
@@ -850,54 +851,6 @@ namespace user
       }
 
       return pobj->m_bRet;
-
-   }
-
-
-   void control::walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop)
-   {
-
-      if(puiStop == this)
-      {
-
-         return;
-
-      }
-
-      try
-      {
-
-         pre_translate_message(pobj);
-
-      }
-      catch(...)
-      {
-
-      }
-
-      if(pobj->m_bRet)
-         return;
-
-      sp(::user::interaction) puiParent = GetParent();
-
-      if(puiParent.is_null())
-         return;
-
-      if(puiParent == puiStop)
-         return;
-
-      try
-      {
-
-         puiParent->pre_translate_message(pobj);
-
-      }
-      catch(...)
-      {
-
-      }
-
-
 
    }
 

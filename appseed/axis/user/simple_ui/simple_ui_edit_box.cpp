@@ -8,7 +8,6 @@ namespace simple_ui
    edit_box::edit_box(sp(::aura::application) papp) :
       element(papp),
       ::user::interaction(papp),
-      ::user::scroll_view(papp),
       ::colorertake5::base_editor(papp),
       ::data::data_listener(papp),
       ::user::edit_plain_text(papp)

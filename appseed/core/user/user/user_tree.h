@@ -33,7 +33,7 @@ namespace user
 
 
    class CLASS_DECL_CORE tree :
-      virtual public scroll_view
+      virtual public scroll_control
    {
    public:
 
