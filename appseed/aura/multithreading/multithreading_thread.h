@@ -32,7 +32,7 @@ public:
    ::user::interaction *                  m_puiMain;           // main interaction_impl (usually same System.m_puiMain)
    ::user::interaction *                  m_puiActive;         // active main interaction_impl (may not be m_puiMain)
    bool *                                 m_pbReady;
-   property_set                           m_set;
+   //property_set                           m_set;
    string                                 m_strWorkUrl;
    ptr_array < thread >                   m_threadptraDependent;
    ptr_array < thread >                   m_threadptraRequired;

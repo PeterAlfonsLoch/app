@@ -20,8 +20,7 @@ thread::thread()
 
 
 thread::thread(sp(::aura::application) papp) :
-element(papp),
-m_set(papp)
+element(papp)
 {
 
    CommonConstruct();
