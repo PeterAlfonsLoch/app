@@ -358,7 +358,7 @@ namespace windows
          try
          {
 
-            if(pframe->m_bMayProDevian && System.m_framea[l]->m_psession.is_null())
+            if(pframe->IsWindowVisible() && pframe->m_bMayProDevian && System.m_framea[l]->m_psession.is_null())
             {
 
                try

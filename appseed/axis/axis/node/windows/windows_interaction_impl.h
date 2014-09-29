@@ -21,7 +21,6 @@ namespace windows
       string                                    m_strWindowText;
       bool                                      m_bUpdateGraphics;
 
-      ::draw2d::dib_sp                          m_spdib;
       size                                      m_size;
       point                                     m_pt;
 

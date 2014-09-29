@@ -2468,6 +2468,16 @@ namespace user
    }
 
 
+   bool interaction_impl::is_composite()
+   {
+
+      return GetExStyle() & WS_EX_LAYERED;
+
+
+   }
+
+
+
    sp(mutex) interaction_impl::mutex_display()
    {
 

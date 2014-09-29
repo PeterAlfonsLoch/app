@@ -2449,36 +2449,14 @@ namespace windows
    void interaction_impl::_001OnPaint(signal_details * pobj)
    {
 
-      single_lock sl(m_pui->m_spmutex,false);
-
-
-      if(!sl.lock())
-         return;
-
       SCAST_PTR(::message::base,pbase,pobj);
 
-      win_update_graphics();
-
-      if(m_spdib.is_null() || m_spdib->get_graphics() == NULL)
-         return;
-
-      m_spdib->map();
-
-      if(m_spdib->get_data() == NULL)
-         return;
+      _001UpdateBuffer();
 
       rect64 rectWindow;
 
       m_pui->GetWindowRect(rectWindow);
 
-      m_spdib->Fill(0,0,0,0);
-
-      m_spdib->get_graphics()->SetViewportOrg(0,0);
-
-      //m_spdib->get_graphics()->FillSolidRect(00, 00, 100, 100, ARGB(127, 0, 127, 0));
-      _001Print(m_spdib->get_graphics());
-      //m_spdib->get_graphics()->SetViewportOrg(0, 0);
-      //m_spdib->get_graphics()->FillSolidRect(100, 100, 100, 100, ARGB(127, 127, 0, 0));
       PAINTSTRUCT paint;
       memset(&paint,0,sizeof(paint));
       HDC hdc = ::BeginPaint(get_handle(),&paint);
@@ -2496,12 +2474,16 @@ namespace windows
       {
          rectUpdate = rectPaint;
          ClientToScreen(rectUpdate);
+
       }
+
       BitBlt(hdc,rectPaint.left,rectPaint.top,
          rectPaint.width(),rectPaint.height(),
          (HDC)m_spdib->get_graphics()->get_os_data(),rectUpdate.left,rectUpdate.top,
          SRCCOPY);
+
       ::EndPaint(get_handle(),&paint);
+
       pobj->m_bRet = true;
       pbase->set_lresult(0);
       //synch_lock ml(&user_mutex());

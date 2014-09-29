@@ -567,6 +567,9 @@ namespace user
 
       virtual window_graphics * & get_window_graphics();
 
+
+      virtual bool is_composite();
+
    };
 
 

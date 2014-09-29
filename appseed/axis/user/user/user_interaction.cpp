@@ -5593,6 +5593,15 @@ namespace user
    }
 
 
+   bool interaction::is_composite()
+   {
+
+      if(m_pimpl == NULL)
+         return true; // optimistic response, assume always true alpha blendable
+
+      return m_pimpl->is_composite(); 
+
+   }
 
 
 } // namespace user

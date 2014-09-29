@@ -2280,4 +2280,27 @@ namespace user
    }
 
 
+   bool interaction_base::is_composite()
+   {
+
+      return true; // optimistic response, assume always true alpha blendable
+
+   }
+
+
 } // namespace user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -189,6 +189,8 @@ namespace simple_ui
 
       int y = 10;
 
+      pdc->set_text_color(ARGB(255,49,49,42));
+
       for(int i = 0; i < m_stra.get_size(); i++)
       {
 
