@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#undef new
+/*#undef new
 
 static void _ConstructElements(string* pNewData, int_ptr nCount)
 {
@@ -22,12 +22,12 @@ static void _DestructElements(string* pOldData, int_ptr nCount)
       DestructElement(pOldData);
       pOldData++;
    }
-}
+}*/
 
 string_array::string_array()
 {
-   m_pData = NULL;
-   m_nSize = m_nMaxSize = m_nGrowBy = 0;
+   //m_pData = NULL;
+   //m_nSize = m_nMaxSize = m_nGrowBy = 0;
 }
 
 string_array::~string_array()
@@ -35,11 +35,11 @@ string_array::~string_array()
    ASSERT_VALID(this);
 
 
-   _DestructElements(m_pData, m_nSize);
-   delete[] (BYTE*)m_pData;
+   //_DestructElements(m_pData, m_nSize);
+   //delete[] (BYTE*)m_pData;
 }
 
-void string_array::set_size(::count nNewSize, ::count nGrowBy)
+/*void string_array::set_size(::count nNewSize, ::count nGrowBy)
 {
    ASSERT_VALID(this);
    ASSERT(nNewSize >= 0);
@@ -124,7 +124,7 @@ void string_array::set_size(::count nNewSize, ::count nGrowBy)
       m_nSize = nNewSize;
       m_nMaxSize = nNewMax;
    }
-}
+}*/
 
 ::count string_array::add(const string_array& src)
 {
@@ -172,7 +172,7 @@ void string_array::copy(const int64_array & src)
 
 }
 
-void string_array::free_extra()
+/*void string_array::free_extra()
 {
    ASSERT_VALID(this);
 
@@ -195,7 +195,7 @@ void string_array::free_extra()
       m_pData = pNewData;
       m_nMaxSize = m_nSize;
    }
-}
+}*/
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -243,8 +243,10 @@ void string_array::InsertEmpty(index nIndex, ::count nCount)
          (nOldSize-nIndex) * sizeof(string));
 
       // re-init slots we copied from
-
-      _ConstructElements(&m_pData[nIndex], nCount);
+      for(index i = nIndex; i < nIndex + nCount; i++)
+      {
+         m_pData[i].construct();
+      }
 
    }
 
@@ -280,24 +282,24 @@ void string_array::insert_at(index nIndex, const string & newElement, ::count nC
 }
 
 
-void string_array::remove_at(index nIndex, ::count nCount)
-{
-   ASSERT_VALID(this);
-   ASSERT(nIndex >= 0);
-   ASSERT(nCount >= 0);
-   ASSERT(nIndex + nCount <= m_nSize);
-
-   // just remov a range
-   ::count nMoveCount = m_nSize - (nIndex + nCount);
-
-   _DestructElements(&m_pData[nIndex], nCount);
-
-   if (nMoveCount)
-      memmove(&m_pData[nIndex], &m_pData[nIndex + nCount],
-         nMoveCount * sizeof(string));
-   m_nSize -= nCount;
-}
-
+//void string_array::remove_at(index nIndex, ::count nCount)
+//{
+//   ASSERT_VALID(this);
+//   ASSERT(nIndex >= 0);
+//   ASSERT(nCount >= 0);
+//   ASSERT(nIndex + nCount <= m_nSize);
+//
+//   // just remov a range
+//   ::count nMoveCount = m_nSize - (nIndex + nCount);
+//
+//   _DestructElements(&m_pData[nIndex], nCount);
+//
+//   if (nMoveCount)
+//      memmove(&m_pData[nIndex], &m_pData[nIndex + nCount],
+//         nMoveCount * sizeof(string));
+//   m_nSize -= nCount;
+//}
+//
 void string_array::insert_at(index nStartIndex, const string_array & NewArray)
 {
    ASSERT_VALID(this);
@@ -712,17 +714,17 @@ void string_array::add(const id & id)
 
 
 
-// same as clear
-void string_array::remove_all()
-{
-   set_size(0);
-}
-
-// same as remove all
-void string_array::clear()
-{
-   set_size(0);
-}
+//// same as clear
+//void string_array::remove_all()
+//{
+//   set_size(0);
+//}
+//
+//// same as remove all
+//void string_array::clear()
+//{
+//   set_size(0);
+//}
 
  string string_array::get_at(index nIndex) const
    { ASSERT(nIndex >= 0 && nIndex < m_nSize);

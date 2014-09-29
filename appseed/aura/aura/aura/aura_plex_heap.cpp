@@ -236,18 +236,21 @@ plex_heap_alloc_array::plex_heap_alloc_array()
 
    add(new plex_heap_alloc(1024 * 4, 32));
    add(new plex_heap_alloc(1024 * 8, 16));
-   add(new plex_heap_alloc(1024 * 16, 8));
-   add(new plex_heap_alloc(1024 * 32, 4));
-   add(new plex_heap_alloc(1024 * 64, 2));
+   add(new plex_heap_alloc(1024 * 16, 16));
+   add(new plex_heap_alloc(1024 * 32, 16));
+   add(new plex_heap_alloc(1024 * 64, 16));
 
-   add(new plex_heap_alloc(1024 * 128, 1));
-   add(new plex_heap_alloc(1024 * 192, 1));
-   add(new plex_heap_alloc(1024 * 256, 1));
-   add(new plex_heap_alloc(1024 * 384, 1));
-   add(new plex_heap_alloc(1024 * 512, 1));
-   add(new plex_heap_alloc(1024 * 768, 1));
-   add(new plex_heap_alloc(1024 * 1024, 1));
-   add(new plex_heap_alloc(1024 * 1024 * 2, 1));
+   add(new plex_heap_alloc(1024 * 128, 16));
+   add(new plex_heap_alloc(1024 * 192, 16));
+   add(new plex_heap_alloc(1024 * 256, 16));
+   add(new plex_heap_alloc(1024 * 384, 16));
+   add(new plex_heap_alloc(1024 * 512, 16));
+   add(new plex_heap_alloc(1024 * 768, 16));
+   add(new plex_heap_alloc(1024 * 1024, 16));
+   add(new plex_heap_alloc(1024 * 1024 * 2, 16));
+   add(new plex_heap_alloc(1024 * 1024 * 4,16));
+   add(new plex_heap_alloc(1024 * 1024 * 8,16));
+   add(new plex_heap_alloc(1024 * 1024 * 16,16));
 
    m_iWorkingSize = get_size();
 

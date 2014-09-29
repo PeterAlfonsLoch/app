@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AURA string_array :
-   virtual public ::object
+   virtual public array < string >
 {
 public:
    string_array();
@@ -11,13 +11,13 @@ public:
    ::count get_count() const;
    index get_lower_bound(index i = 0) const;
    index get_upper_bound(index i = -1) const;
-   void set_size(::count nNewSize, ::count nGrowBy = -1);
+   //void set_size(::count nNewSize, ::count nGrowBy = -1);
 
-   ::count size() const;
+   //::count size() const;
 
-   void free_extra();
-   void remove_all();
-   void clear();
+   //void free_extra();
+   //void remove_all();
+   //void clear();
 
    string get_at(index nIndex) const;
    void set_at(index nIndex, const char * newElement);
@@ -78,7 +78,7 @@ public:
 
    void insert_at(index nIndex, const string & newElement, ::count nCount = 1);
 
-   void remove_at(index nIndex, ::count nCount = 1);
+   //void remove_at(index nIndex, ::count nCount = 1);
 
    void insert_at(index nStartIndex, const string_array & NewArray);
 
@@ -95,10 +95,10 @@ public:
 
 
 protected:
-   string * m_pData;   // the actual array of data
-   ::count m_nSize;     // # of elements (upperBound - 1)
-   ::count m_nMaxSize;  // MAX allocated
-   ::count m_nGrowBy;   // grow amount
+//   string * m_pData;   // the actual array of data
+  // ::count m_nSize;     // # of elements (upperBound - 1)
+   //::count m_nMaxSize;  // MAX allocated
+   //::count m_nGrowBy;   // grow amount
 
    void InsertEmpty(index nIndex, ::count nCount);
 
@@ -162,5 +162,5 @@ inline index string_array::get_lower_bound(index i) const
 inline index string_array::get_upper_bound(index count) const
    { return m_nSize + count; }
 
-inline ::count string_array::size() const
-   { return m_nSize; }
+//inline ::count string_array::size() const
+  // { return m_nSize; }
