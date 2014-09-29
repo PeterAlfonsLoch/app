@@ -2439,12 +2439,18 @@ namespace windows
       ::DeleteObject(rgnUpdate);
    }
 
+
    void interaction_impl::_001OnProdevianSynch(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
       //      System.get_event(m_pui->m_pthread)->SetEvent();
+
       //    System.get_event(System.get_twf())->wait(millis(8400));
+
    }
+
 
    void interaction_impl::_001OnPaint(signal_details * pobj)
    {
@@ -2458,103 +2464,52 @@ namespace windows
       m_pui->GetWindowRect(rectWindow);
 
       PAINTSTRUCT paint;
+
       memset(&paint,0,sizeof(paint));
+
       HDC hdc = ::BeginPaint(get_handle(),&paint);
+
       ::SelectClipRgn(hdc,NULL);
+
       rect rectPaint;
+
       rect rectUpdate;
+
       rectPaint = paint.rcPaint;
+
       if(rectPaint.is_null() || (GetExStyle() & WS_EX_LAYERED))
       {
+
          rectUpdate = rectWindow;
+
          rectPaint = rectWindow;
+
          ScreenToClient(rectPaint);
+
       }
       else
       {
+
          rectUpdate = rectPaint;
-         ClientToScreen(rectUpdate);
 
       }
 
-      BitBlt(hdc,rectPaint.left,rectPaint.top,
-         rectPaint.width(),rectPaint.height(),
-         (HDC)m_spdib->get_graphics()->get_os_data(),rectUpdate.left,rectUpdate.top,
-         SRCCOPY);
+      ::draw2d::graphics_sp g(allocer());
+
+      g->Attach(hdc);
+
+      m_spdib->get_graphics()->SetViewportOrg(0,0);
+
+      g->BitBlt(rectPaint.left,rectPaint.top, rectPaint.width(),rectPaint.height(), m_spdib->get_graphics(),rectUpdate.left,rectUpdate.top,SRCCOPY);
+
+      g->Detach();
 
       ::EndPaint(get_handle(),&paint);
 
       pobj->m_bRet = true;
+
       pbase->set_lresult(0);
-      //synch_lock ml(&user_mutex());
-      ////lock lock(m_pui, 1984);
 
-      //SCAST_PTR(::message::base, pbase, pobj);
-
-      //PAINTSTRUCT paint;
-      //memset(&paint, 0, sizeof(paint));
-      //HDC hdc = ::BeginPaint(get_handle(), &paint);
-      //::SelectClipRgn(hdc, NULL);
-
-      //try
-      //{
-
-      //   ::draw2d::dib_sp dib(allocer());
-
-      //   rect rectWindow;
-      //   GetWindowRect(rectWindow);
-
-      //   if(!dib->create(rectWindow.bottom_right()))
-      //      return;
-
-      //   ::draw2d::graphics * pdc = dib->get_graphics();
-
-      //   if(pdc->get_os_data() == NULL)
-      //      return;
-
-      //   rect rectPaint;
-      //   rect rectUpdate;
-      //   rectPaint = paint.rcPaint;
-      //   if(rectPaint.is_null() || (GetExStyle() & WS_EX_LAYERED))
-      //   {
-      //      rectUpdate = rectWindow;
-      //      rectPaint = rectWindow;
-      //      ScreenToClient(rectPaint);
-      //   }
-      //   else
-      //   {
-      //      rectUpdate = rectPaint;
-      //      ClientToScreen(rectUpdate);
-      //   }
-      //   pdc->SelectClipRgn(NULL);
-      //   if(m_pui != NULL && m_pui != this)
-      //   {
-      //      m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
-      //   }
-      //   else
-      //   {
-      //      _001OnDeferPaintLayeredWindowBackground(pdc);
-      //   }
-      //   pdc->SelectClipRgn(NULL);
-      //   pdc->SetViewportOrg(point(0, 0));
-      //   _000OnDraw(pdc);
-      //   pdc->SetViewportOrg(point(0, 0));
-      //   //(dynamic_cast<::windows::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
-      //   pdc->SelectClipRgn(NULL);
-      //   pdc->SetViewportOrg(point(0, 0));
-      //   BitBlt(hdc, rectPaint.left, rectPaint.top, 
-      //      rectPaint.width(), rectPaint.height(),
-      //      (HDC) pdc->get_os_data(), rectUpdate.left, rectUpdate.top,
-      //      SRCCOPY);
-
-      //}
-      //catch(...)
-      //{
-      //}
-
-      //::EndPaint(get_handle(), &paint);
-      //pobj->m_bRet = true;
-      //pbase->set_lresult(0);
    }
 
 

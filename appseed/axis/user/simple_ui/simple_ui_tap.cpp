@@ -95,7 +95,7 @@ namespace simple_ui
       pmouse->m_bRet = true;
       m_bMouseMove = true;
 
-      //m_pplugin->redraw();
+      RedrawWindow();
 
 
    }

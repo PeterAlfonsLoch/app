@@ -1266,7 +1266,7 @@ namespace user
          if(!m_bMayProDevian && GetParent() == NULL)
          {
 
-            _001RedrawWindow();
+            //_001RedrawWindow();
 
          }
 

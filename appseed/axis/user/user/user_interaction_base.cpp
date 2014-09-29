@@ -61,6 +61,8 @@ namespace user
       if(pui.is_set())
       {
 
+         GetWindow()->_001UpdateBuffer();
+
          GetWindow()->_001UpdateScreen();
 
       }
