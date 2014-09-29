@@ -434,12 +434,12 @@ namespace fontopus
 
       *m_pploginDeferTranslate = this;
 
-      __begin_thread(get_app(),thread_proc_pre_login,get_app());
-      __begin_thread(get_app(),thread_proc_defer_translate_login,m_pploginDeferTranslate);
+      //__begin_thread(get_app(),thread_proc_pre_login,get_app());
+      //__begin_thread(get_app(),thread_proc_defer_translate_login,m_pploginDeferTranslate);
       
    }
 
-
+   /*
    UINT c_cdecl thread_proc_defer_translate_login(void * p)
    {
 
@@ -457,11 +457,11 @@ namespace fontopus
          if(*pplogin == NULL)
             goto end;
 
-         sp(::simple_ui::style) pstyle = NULL;
+         ::simple_ui::style * pstyle = NULL;
 
          {
 
-            pstyle = (*pplogin)->GetParent();
+            pstyle = dynamic_cast < ::simple_ui::style * > ((*pplogin)->GetParent());
 
          }
 
@@ -532,8 +532,9 @@ namespace fontopus
       return iRet;
 
 
-   }
+   }*/
 
+   /*
    UINT c_cdecl thread_proc_pre_login(void * p)
    {
 
@@ -549,7 +550,7 @@ namespace fontopus
 
       return 0;
 
-   }
+   }*/
 
 } // namespace fontopus
 

@@ -3917,14 +3917,19 @@ namespace windows
    bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
    {
 
-      if(System.get_twf() == NULL)
-         return false;
+      if(m_pui->m_bMayProDevian)
+      {
 
-      if(System.get_twf()->m_bProDevianMode)
-         return true;
-      
-      if(GetExStyle() & WS_EX_LAYERED)
-         return false;
+         if(System.get_twf() == NULL)
+            return false;
+
+         if(System.get_twf()->m_bProDevianMode)
+            return true;
+
+         if(GetExStyle() & WS_EX_LAYERED)
+            return false;
+
+      }
 
       ASSERT(::IsWindow(get_handle()));
 
