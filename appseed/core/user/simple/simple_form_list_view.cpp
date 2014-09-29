@@ -29,7 +29,6 @@ void simple_form_list_view::install_message_handling(::message::dispatch * pinte
 
 
 
-#ifdef DEBUG
 void simple_form_list_view::assert_valid() const
 {
    ::user::impact::assert_valid();
@@ -39,7 +38,6 @@ void simple_form_list_view::dump(dump_context & dumpcontext) const
 {
    ::user::impact::dump(dumpcontext);
 }
-#endif //DEBUG
 
 bool simple_form_list_view::pre_create_window(::user::create_struct& cs) 
 {

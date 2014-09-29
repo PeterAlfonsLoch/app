@@ -20,10 +20,8 @@ public:
    virtual void install_message_handling(::message::dispatch * pinterface);
 
 
-#ifdef DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
-#endif
 
 
 };
