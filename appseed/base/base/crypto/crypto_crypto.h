@@ -96,7 +96,7 @@ namespace crypto
       string spa_login_crypt(const char * psz,const string & pszRsa);
       string spa_login_decrypt(const char * psz,const string & pszRsa);
 
-      string spa_auth_crypt(const char * psz,const string & pszRsa);
+      string spa_auth_crypt(const char * psz,rsa * prsa);
       string spa_auth_decrypt(const char * psz,const string & pszRsa);
 
 

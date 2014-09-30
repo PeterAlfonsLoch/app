@@ -552,7 +552,7 @@ namespace fontopus
 
          strRsaModulus = Session.fontopus()->m_mapFontopusRsa[m_strFontopusServer];
 
-         string strDecrypt = System.crypto().spa_login_decrypt(strId, strRsaModulus);
+         string strDecrypt = System.crypto().spa_auth_decrypt(strId, strRsaModulus);
 
          if(doc.get_root()->attr("passhash").has_char() && doc.get_root()->attr("secureuserid").has_char())
          {

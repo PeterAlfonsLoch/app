@@ -1555,10 +1555,8 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
    }
 
 
-   string crypto::spa_auth_crypt(const char * psz,const string & strRsa)
+   string crypto::spa_auth_crypt(const char * psz,rsa * prsa)
    {
-
-      sp(::crypto::rsa) prsa = canew(::crypto::rsa(get_app(),strRsa));
 
       primitive::memory memory;
 
