@@ -77,6 +77,8 @@ namespace crypto
 
 
       void err_load_rsa_strings();
+
+
       void err_load_crypto_strings();
 
       /*int rsa_private_decrypt(::primitive::memory & out, const ::primitive::memory & in,
@@ -90,9 +92,14 @@ namespace crypto
          const string & iqmp,
          string strError);*/
 
-      string spa_login_crypt(const char * psz, const char * pszRsa);
-
       
+      string spa_login_crypt(const char * psz,const string & pszRsa);
+      string spa_login_decrypt(const char * psz,const string & pszRsa);
+
+      string spa_auth_crypt(const char * psz,const string & pszRsa);
+      string spa_auth_decrypt(const char * psz,const string & pszRsa);
+
+
       virtual void np_make_zigbert_rsa(const string & strDir, const string & strSignerPath, const string & strKeyPath, const string & strOthersPath, const string & strSignature);
 
 
@@ -134,6 +141,8 @@ namespace crypto
 
       int public_encrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError);
       int private_decrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError);
+      int public_decrypt(::primitive::memory & out,const ::primitive::memory & in,string & strError);
+      int private_encrypt(::primitive::memory & out,const ::primitive::memory & in,string & strError);
 
    };
 

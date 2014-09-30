@@ -1308,10 +1308,159 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
    }
 
-   string crypto::spa_login_crypt(const char * psz, const char * pszRsa)
+   int rsa::private_encrypt(::primitive::memory & out,const ::primitive::memory & in,string & strError)
+   {
+#ifdef MACOS_DEPRECATED
+
+
+      SecTransformRef transform = SecEncryptTransformCreate(m_prsa,&error);
+
+      if(error != NULL)
+      {
+
+         CFRelease(error);
+
+         return "";
+
+      }
+
+      SecTransformSetAttribute(transform,kSecPaddingKey,kSecPaddingPKCS1Key,&error);
+
+      if(error != NULL)
+      {
+
+         CFRelease(transform);
+
+         CFRelease(error);
+
+         return "";
+
+      }
+
+      primitive::memory memDataIn;
+
+      memDataIn.from_hex(strRsaModulus);
+
+      CFDataRef dataIn = memDataIn.get_os_cf_data();
+
+      SecTransformSetAttribute(transform,kSecTransformInputAttributeName,dataIn,&error);
+
+      if(error != NULL)
+      {
+
+         CFRelease(dataIn);
+
+         CFRelease(transform);
+
+         CFRelease(error);
+
+         return "";
+
+      }
+
+      /* Encrypt the data. */
+
+      CFDataRef data = (CFDataRef)SecTransformExecute(transform,&error);
+
+      if(error != NULL)
+      {
+
+         CFRelease(dataIn);
+
+         CFRelease(transform);
+
+         CFRelease(error);
+
+         return "";
+
+      }
+
+
+      string strHex;
+
+      primitive::memory memory;
+
+      memory.set_os_cf_data(data);
+
+      memory.to_hex(strHex);
+
+      CFRelease(data);
+
+      CFRelease(dataIn);
+
+      CFRelease(transform);
+
+#elif defined(METROWIN)
+
+
+
+      out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(m_prsa,in.get_os_crypt_buffer(),nullptr));
+
+
+
+
+#else
+
+      int32_t i = RSA_private_encrypt((int32_t)in.get_size(),(const uchar *)(const char *)in.get_data(),out.get_data(),m_prsa,RSA_PKCS1_PADDING);
+
+      strError = ERR_error_string(ERR_get_error(),NULL);
+
+      out.allocate(i);
+
+
+
+#endif
+
+      return out.get_size();
+
+
+   }
+
+   int rsa::public_decrypt(::primitive::memory & out,const ::primitive::memory & in,string & strError)
    {
 
-      sp(::crypto::rsa) prsa = canew(::crypto::rsa(get_app(), pszRsa));
+
+#if defined(METROWIN)
+
+
+
+      out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa,in.get_os_crypt_buffer(),nullptr));
+
+
+
+
+#else
+
+      single_lock sl(&m_mutex,true);
+
+      int32_t iRsaSize = 8192;
+
+      out.allocate(iRsaSize);
+
+      ::count i = RSA_public_decrypt((int)in.get_size(),in.get_data(),out.get_data(),m_prsa,RSA_PKCS1_PADDING);
+
+      if(i < 0 || i >(1024 * 1024))
+      {
+
+         strError = ERR_error_string(ERR_get_error(),NULL);
+
+         return (int)i;
+
+      }
+
+      out.allocate(i);
+
+#endif
+
+      return out.get_size();
+
+   }
+
+   
+   string crypto::spa_login_crypt(const char * psz, const string & strRsa)
+   {
+
+      sp(::crypto::rsa) prsa = canew(::crypto::rsa(get_app(), strRsa));
 
       primitive::memory memory;
 
@@ -1341,9 +1490,108 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
    }
 
 
+   string crypto::spa_login_decrypt(const char * psz,const string & strRsa)
+   {
+
+      sp(::crypto::rsa) prsa = canew(::crypto::rsa(get_app(),strRsa));
+
+      primitive::memory memory;
+
+      primitive::memory memIn;
+
+      hex_to_memory(memIn,psz);
+
+      memory.allocate(2048);
+
+      string strError;
+
+      int i = prsa->private_decrypt(memory,memIn,strError);
+
+      if(i < 0 || i >(1024 * 1024))
+      {
+
+         TRACE0(strError);
+
+      }
+
+      string strHex;
+
+      memory_to_hex(strHex,memory);
+
+      return strHex;
+
+   }
+
+   string crypto::spa_auth_decrypt(const char * psz,const string & strRsa)
+   {
+
+      sp(::crypto::rsa) prsa = canew(::crypto::rsa(get_app(),strRsa));
+
+      primitive::memory memory;
+
+      primitive::memory memIn;
+
+      hex_to_memory(memIn,psz);
+
+      memory.allocate(2048);
+
+      string strError;
+
+      int i = prsa->public_decrypt(memory,memIn,strError);
+
+      if(i < 0 || i >(1024 * 1024))
+      {
+
+         TRACE0(strError);
+
+      }
+
+      string strHex;
+
+      memory_to_hex(strHex,memory);
+
+      return strHex;
+
+   }
+
+
+   string crypto::spa_auth_crypt(const char * psz,const string & strRsa)
+   {
+
+      sp(::crypto::rsa) prsa = canew(::crypto::rsa(get_app(),strRsa));
+
+      primitive::memory memory;
+
+      primitive::memory memIn;
+
+      hex_to_memory(memIn,psz);
+
+      memory.allocate(2048);
+
+      string strError;
+
+      int i = prsa->private_encrypt(memory,memIn,strError);
+
+      if(i < 0 || i >(1024 * 1024))
+      {
+
+         TRACE0(strError);
+
+      }
+
+      string strHex;
+
+      memory_to_hex(strHex,memory);
+
+      return strHex;
+
+   }
+
    void crypto::np_make_zigbert_rsa(const string & strDir, const string & strSignerPath, const string & strKeyPath, const string & strOthersPath, const string & strSignature)
    {
+
 #ifndef METROWIN
+
       X509 * signer = NULL;
       {
          string strSigner = Application.file().as_string(strSignerPath);

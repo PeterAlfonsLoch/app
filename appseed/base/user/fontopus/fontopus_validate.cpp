@@ -520,8 +520,12 @@ namespace fontopus
 
    int32_t login_thread::run()
    {
+
+      int iRetryLogin = 0;
       
       ::http::e_status estatus;
+
+      RetryLogin:
       
       string strResponse = Login(&estatus);
 
@@ -533,27 +537,72 @@ namespace fontopus
       doc.load(strResponse);
       if(doc.get_root()->get_name() == "response")
       {
-         if(doc.get_root()->attr("id") == "auth" && doc.get_root()->attr("passhash").has_char() && doc.get_root()->attr("secureuserid").has_char())
+         
+         ::datetime::time time = ::datetime::time::get_current_time();
+         
+         string str;
+         
+         str = time.FormatGmt("%Y-%m-%d-%H-%M");
+         
+         string strHash = System.crypto().sha1("auth:" + str);
+         
+         string strId = doc.get_root()->attr("id");
+
+         string strRsaModulus;
+
+         strRsaModulus = Session.fontopus()->m_mapFontopusRsa[m_strFontopusServer];
+
+         string strDecrypt = System.crypto().spa_login_decrypt(strId, strRsaModulus);
+
+         if(doc.get_root()->attr("passhash").has_char() && doc.get_root()->attr("secureuserid").has_char())
          {
-            Session.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
-            Session.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
-            m_puser->m_strLogin = m_strUsername;
-            m_puser->m_strFontopusServerSessId = doc.get_root()->attr("sessid");
-            m_puser->set_sessid(m_puser->m_strFontopusServerSessId,m_strLoginUrl);
-            m_puser->m_strRequestingServer = m_strRequestingServer;
-            m_puser->m_strFunUserId = doc.get_root()->attr("secureuserid");
-            m_puser->m_strLoginStats = doc.get_root()->attr("stats");
-            m_strPasshash = doc.get_root()->attr("passhash");
-            iAuth = result_auth;
-            if(m_bFontopusServer)
+            
+            if(strDecrypt != strHash)
             {
-               Application.file().put_contents(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"),m_strFontopusServer);
+
+               if(iRetryLogin > 3)
+               {
+
+                  delete m_puser;
+
+                  iAuth = result_fail;
+
+               }
+               else
+               {
+
+                  iRetryLogin++;
+
+                  goto RetryLogin;
+
+               }
+
             }
-            execute();
-            if(m_strLicense.has_char())
+            else
             {
-               m_strValidUntil = doc.get_root()->attr("valid_until");
+
+               Session.fontopus()->m_authmap[m_strUsername].m_mapServer[m_strRequestingServer] = strResponse;
+               Session.fontopus()->m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer] = strResponse;
+               m_puser->m_strLogin = m_strUsername;
+               m_puser->m_strFontopusServerSessId = doc.get_root()->attr("sessid");
+               m_puser->set_sessid(m_puser->m_strFontopusServerSessId,m_strLoginUrl);
+               m_puser->m_strRequestingServer = m_strRequestingServer;
+               m_puser->m_strFunUserId = doc.get_root()->attr("secureuserid");
+               m_puser->m_strLoginStats = doc.get_root()->attr("stats");
+               m_strPasshash = doc.get_root()->attr("passhash");
+               iAuth = result_auth;
+               if(m_bFontopusServer)
+               {
+                  Application.file().put_contents(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"),m_strFontopusServer);
+               }
+               execute();
+               if(m_strLicense.has_char())
+               {
+                  m_strValidUntil = doc.get_root()->attr("valid_until");
+               }
+
             }
+
          }
          else if(doc.get_root()->attr("id") == "registration_deferred")
          {
@@ -768,7 +817,7 @@ namespace fontopus
       DWORD dwAuthBeg = ::get_tick_count();
       {
 
-         string strAuthUrl("https://" + strApiServer + "/api/account/auth?" + (m_pcallback == NULL ? string() : m_pcallback->oprop("defer_registration").get_string())
+         string strAuthUrl("https://" + strApiServer + "/api/account/auth2?" + (m_pcallback == NULL ? string() : m_pcallback->oprop("defer_registration").get_string())
             + (m_pcallback == NULL ? string() : "&ruri=" + System.url().url_encode((m_pcallback->oprop("ruri").get_string()))));
 
          property_set set;
