@@ -336,7 +336,7 @@ namespace fontopus
 
       strApiHost.replace("account","api");
 
-      strAuthUrl = "https://" + strApiHost + "/account/license";
+      strAuthUrl = "https://" + strApiHost + "/account/license2";
 
       property_set set;
 
@@ -355,10 +355,41 @@ namespace fontopus
       doc.load(strAuth);
       if(doc.get_root()->get_name() == "response")
       {
-         if(doc.get_root()->attr("id") == ApplicationUser.get_session_secret())
+
+         string strDecrypt;
+
+         string strId = doc.get_root()->attr("id");
+
+         if(strId.has_char())
          {
-            return true;
+
+            string strRsaModulus;
+
+            strRsaModulus = Session.fontopus()->m_mapFontopusRsa[m_loginthread.m_strFontopusServer];
+
+            if(strRsaModulus.has_char())
+            {
+
+               strDecrypt = System.crypto().spa_auth_decrypt(strId,strRsaModulus);
+
+            }
+
          }
+
+         if(strDecrypt.has_char())
+         {
+            
+            string strHash = System.crypto().sha1("\"license granted(093a95faf9e0b59bd4fb2dc60da16260)\"::" + m_puser->get_session_secret());
+
+            if((strHash.CompareNoCase(strDecrypt) == 0))
+            {
+
+               return true;
+
+            }
+
+         }
+
       }
 
       if(m_bInteractive)
@@ -537,27 +568,33 @@ namespace fontopus
       doc.load(strResponse);
       if(doc.get_root()->get_name() == "response")
       {
-         
-         ::datetime::time time = ::datetime::time::get_current_time();
-         
-         string str;
-         
-         str = time.FormatGmt("%Y-%m-%d-%H-%M");
-         
-         string strHash = System.crypto().sha1("auth:" + str);
-         
+
+         string strDecrypt;
+
          string strId = doc.get_root()->attr("id");
 
-         string strRsaModulus;
-
-         strRsaModulus = Session.fontopus()->m_mapFontopusRsa[m_strFontopusServer];
-
-         string strDecrypt = System.crypto().spa_auth_decrypt(strId, strRsaModulus);
-
-         if(doc.get_root()->attr("passhash").has_char() && doc.get_root()->attr("secureuserid").has_char())
+         if(strId.has_char())
          {
-            
-            if(strDecrypt != strHash)
+
+            string strRsaModulus;
+
+            strRsaModulus = Session.fontopus()->m_mapFontopusRsa[m_strFontopusServer];
+
+            if(strRsaModulus.has_char())
+            {
+
+               strDecrypt = System.crypto().spa_auth_decrypt(strId,strRsaModulus);
+
+            }
+
+         }
+
+         if(strDecrypt.has_char() && doc.get_root()->attr("passhash").has_char() && doc.get_root()->attr("secureuserid").has_char())
+         {
+
+            string strHash = System.crypto().sha1("\"authorization granted(71d0e601ae5e787ea898774115b2aa2a)\":" + m_puser->get_session_secret());
+
+            if(strDecrypt.CompareNoCase(strHash) != 0)
             {
 
                if(iRetryLogin > 3)
