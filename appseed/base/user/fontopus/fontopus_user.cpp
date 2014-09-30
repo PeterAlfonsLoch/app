@@ -156,6 +156,16 @@ restart:
       string strSessId = m_sessionidmap[strText];
       if(strSessId.has_char())
          return strSessId;
+      string strFontopusServer = Session.fontopus()->get_server(strText);
+      if(strFontopusServer.has_char())
+      {
+         
+         strSessId = Session.fontopus()->m_mapFontopusSessId[strFontopusServer];
+
+         if(strSessId.has_char())
+            return strSessId;
+
+      }
       class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true, bInteractive);
       user * puser = authuser.get_user(pszText);
       if(puser == NULL)

@@ -624,6 +624,7 @@ namespace fontopus
                m_puser->m_strFontopusServerSessId = doc.get_root()->attr("sessid");
                m_puser->set_sessid(m_puser->m_strFontopusServerSessId,m_strLoginUrl);
                m_puser->m_strRequestingServer = m_strRequestingServer;
+               m_puser->set_sessid(m_strRequestingServer,m_strLoginUrl);
                m_puser->m_strFunUserId = doc.get_root()->attr("secureuserid");
                m_puser->m_strLoginStats = doc.get_root()->attr("stats");
                m_strPasshash = doc.get_root()->attr("passhash");
