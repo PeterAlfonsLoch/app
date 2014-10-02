@@ -160,7 +160,7 @@ namespace sockets
          {
             inheader(__id(user_agent)) = "ca2_netnode";
             inheader(__id(accept)) = "text/html, text/plain, application/xml, */*;q=0.01";
-            inheader(__id(connection)) = "close";
+            //inheader(__id(connection)) = "close";
          }
          inheader(__id(content_length)) = (int64_t) body.get_length();
 
@@ -244,7 +244,7 @@ namespace sockets
       inheader(__id(host)) = GetUrlHost(); // oops - this is actually a request header that we're adding..
       inheader(__id(user_agent)) = MyUseragent();
       inheader(__id(accept)) = "text/html, text/plain, */*;q=0.01";
-      inheader(__id(connection)) = "close";
+      //inheader(__id(connection)) = "close";
       inheader(__id(content_type)) = "multipart/form-data; boundary=" + m_boundary;
       inheader(__id(content_length)) = (int64_t) length;
 
