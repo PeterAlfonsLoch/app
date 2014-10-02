@@ -863,6 +863,8 @@ namespace sockets
 
       }
 
+      m_spsocket.release();
+
       return 0;
 
    }

@@ -694,12 +694,12 @@ namespace sockets
 
                   // Adding the file descriptor to m_fds_erase will now also remove the
                   // socket from the detach queue - tnx knightmad
-                  //m_fds_erase.add_tail(p -> GetSocket());
+                  m_fds_erase.add_tail(p -> GetSocket());
 
                   m_fds_detach.remove(socket);
-                  m_fds.remove(socket);
-                  m_sockets.remove_key(socket);
-                  check_max_fd = true;
+                  //m_fds.remove(socket);
+                  //m_sockets.remove_key(socket);
+                 // check_max_fd = true;
                }
             }
          }
@@ -887,10 +887,11 @@ namespace sockets
          SOCKET socket = m_fds_erase.remove_head();
          m_fds_detach.remove(socket);
          m_fds.remove(socket);
-         sp(::sockets::socket) psocket = NULL;
-         /*if(m_sockets.Lookup(socket, psocket))
+         sp(::sockets::base_socket) psocket;
+         if(m_sockets.Lookup(socket, psocket))
          {
-            if(m_slave)
+            psocket->SetErasedByHandler();
+/*            if(m_slave)
             {
                if(psocket != NULL)
                {
@@ -904,7 +905,7 @@ namespace sockets
                }
             }*/
             m_sockets.remove_key(socket);
-         //}
+         }
          check_max_fd = true;
       }
 

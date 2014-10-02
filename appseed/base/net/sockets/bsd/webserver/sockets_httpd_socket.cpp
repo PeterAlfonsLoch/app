@@ -194,55 +194,76 @@ namespace sockets
 
       synch_lock sl(m_pmutexSslCtx);
 
-      int_array ia;
-
-      ia.add(512);
-      ia.add(1024);
-      ia.add(2048);
-      ia.add(4096);
-
-      for(index i = 0; i < ia.get_count(); i++)
+      if (m_strCipherList.has_char() && m_strCipherList.find("DH") >= 0)
       {
 
-         int keylength = ia[i];
+         int_array ia;
 
-         string strTitle = System.file().name_(m_strCat);
+         ia.add(512);
+         ia.add(1024);
+         ia.add(2048);
+         ia.add(4096);
 
-         if(strTitle.find_ci(".") >= 0)
+         for (index i = 0; i < ia.get_count(); i++)
          {
 
-            strTitle = strTitle.Left(strTitle.reverse_find("."));
+            int keylength = ia[i];
+
+            string strTitle = System.file().name_(m_strCat);
+
+            if (strTitle.find_ci(".") >= 0)
+            {
+
+               strTitle = strTitle.Left(strTitle.reverse_find("."));
+
+            }
+
+
+            string strFile = System.dir().path(System.dir().name(m_strCat), strTitle + ".dh" + ::str::from(keylength) + ".pem");
+
+            FILE * paramfile = fopen(strFile, "r");
+
+            if (paramfile)
+            {
+
+               DH * pdh = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
+
+               g_dh[keylength][m_ssl_ctx] = pdh;
+
+               fclose(paramfile);
+
+            }
 
          }
 
-
-         string strFile = System.dir().path(System.dir().name(m_strCat), strTitle + ".dh" + ::str::from(keylength) + ".pem");
-
-         FILE * paramfile = fopen(strFile, "r");
-
-         if(paramfile)
-         {
-
-            DH * pdh = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
-
-            g_dh[keylength][m_ssl_ctx] = pdh;
-
-            fclose(paramfile);
-
-         }
+         SSL_CTX_set_tmp_dh_callback(m_ssl_ctx, &tmp_dh_callback);
 
       }
-
-      SSL_CTX_set_tmp_dh_callback(m_ssl_ctx, &tmp_dh_callback);
 
 
       //int nid = OBJ_sn2nid(ECDHE_CURVE);
 
-      EC_KEY *ecdh = EC_KEY_new_by_curve_name(NID_secp384r1);
+      if (m_strCipherList.has_char() && m_strCipherList.find("ECDH") >= 0)
+      {
 
-      SSL_CTX_set_tmp_ecdh(m_ssl_ctx, ecdh);
+         EC_KEY *ecdh = EC_KEY_new_by_curve_name(NID_secp384r1);
 
-      SSL_CTX_set_options(m_ssl_ctx, SSL_CTX_get_options(m_ssl_ctx) | SSL_OP_SINGLE_DH_USE | SSL_OP_CIPHER_SERVER_PREFERENCE);
+         SSL_CTX_set_tmp_ecdh(m_ssl_ctx, ecdh);
+
+      }
+
+      if (m_strCipherList.has_char() && m_strCipherList.find("DH") >= 0)
+      {
+
+         SSL_CTX_set_options(m_ssl_ctx, SSL_CTX_get_options(m_ssl_ctx) | SSL_OP_SINGLE_DH_USE | SSL_OP_CIPHER_SERVER_PREFERENCE);
+
+      }
+      else
+      {
+
+         SSL_CTX_set_options(m_ssl_ctx, SSL_CTX_get_options(m_ssl_ctx) | SSL_OP_CIPHER_SERVER_PREFERENCE);
+
+      }
 
       if (m_strCipherList.is_empty())
       {

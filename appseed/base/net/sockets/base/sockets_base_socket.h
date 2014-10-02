@@ -52,7 +52,7 @@ namespace sockets
       public:
 
 
-         sp(base_socket)         m_spsocket;
+         sp(base_socket)      m_spsocket;
 
 
          socket_thread(base_socket * psocket);

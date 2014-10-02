@@ -43,10 +43,12 @@ namespace sockets
 
    socket::~socket()
    {
+
       if(&Handler() != NULL)
       {
          Handler().remove(this);
       }
+
       if (m_socket != INVALID_SOCKET
 #ifdef ENABLE_POOL
          && !m_bRetain
