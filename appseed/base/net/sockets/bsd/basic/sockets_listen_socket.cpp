@@ -239,6 +239,7 @@ namespace sockets
       }
       sp(socket) tmp = create_listen_socket();
       tmp->m_strCat = m_strCat;
+      tmp->m_strCipherList = m_strCipherList;
       tmp -> EnableSSL(IsSSL()); // SSL Enabled socket
       tmp -> SetIpv6( IsIpv6() );
       tmp -> set_parent(this);

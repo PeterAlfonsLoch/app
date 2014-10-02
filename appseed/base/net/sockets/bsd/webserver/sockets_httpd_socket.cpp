@@ -194,7 +194,16 @@ namespace sockets
 
       synch_lock sl(m_pmutexSslCtx);
 
-      if (m_strCipherList.has_char() && m_strCipherList.find("DH") >= 0)
+      string strCipherList = m_strCipherList;
+
+      if (strCipherList.is_empty())
+      {
+
+         strCipherList = "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH";
+
+      }
+
+      if (m_strCipherList.find("DH") >= 0)
       {
 
          int_array ia;
@@ -243,7 +252,7 @@ namespace sockets
 
       //int nid = OBJ_sn2nid(ECDHE_CURVE);
 
-      if (m_strCipherList.has_char() && m_strCipherList.find("ECDH") >= 0)
+      if (m_strCipherList.find("ECDH") >= 0)
       {
 
          EC_KEY *ecdh = EC_KEY_new_by_curve_name(NID_secp384r1);
@@ -252,7 +261,7 @@ namespace sockets
 
       }
 
-      if (m_strCipherList.has_char() && m_strCipherList.find("DH") >= 0)
+      if (m_strCipherList.find("DH") >= 0)
       {
 
          SSL_CTX_set_options(m_ssl_ctx, SSL_CTX_get_options(m_ssl_ctx) | SSL_OP_SINGLE_DH_USE | SSL_OP_CIPHER_SERVER_PREFERENCE);
@@ -265,18 +274,7 @@ namespace sockets
 
       }
 
-      if (m_strCipherList.is_empty())
-      {
-         
-         SSL_CTX_set_cipher_list(m_ssl_ctx, "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH");
-
-      }
-      else
-      {
-
-         SSL_CTX_set_cipher_list(m_ssl_ctx, m_strCipherList);
-
-      }
+      SSL_CTX_set_cipher_list(m_ssl_ctx, strCipherList);
 
    }
 
