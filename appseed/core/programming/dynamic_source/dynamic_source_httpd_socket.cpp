@@ -12,6 +12,8 @@ namespace dynamic_source
       socket(h),
       stream_socket(h),
       tcp_socket(h),
+      http_base_socket(h),
+      http_socket(h),
       ::sockets::httpd_socket(h)
    {
       
@@ -25,6 +27,8 @@ namespace dynamic_source
       socket(s),
       stream_socket(s),
       tcp_socket(s),
+      http_base_socket(s),
+      http_socket(s),
       ::sockets::httpd_socket(s)
    {
    }

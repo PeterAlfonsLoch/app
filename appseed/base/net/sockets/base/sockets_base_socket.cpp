@@ -771,7 +771,7 @@ namespace sockets
    void base_socket::DetachSocket()
    {
       SetDetached();
-      m_pThread = new socket_thread(this);
+      m_pThread = cnew(socket_thread(this));
    }
 
 

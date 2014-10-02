@@ -95,11 +95,19 @@ CLASS_DECL_AURA thread* __begin_thread(sp(::aura::application) papp,__THREADPROC
 int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
 uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
+template < class T >
+T * c_new(T * p)
+{
+   p->m_bHeap = true;
+   return p;
+}
+
+#define cnew(x) c_new(new x)
 
 template < class THREAD_TYPE >
 THREAD_TYPE * __begin_thread(sp(::aura::application) papp,int32_t epriority = ::multithreading::priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
-   THREAD_TYPE * pthread = new THREAD_TYPE(papp);
+   THREAD_TYPE * pthread = cnew(THREAD_TYPE(papp));
    pthread->begin(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
    return pthread;
 }

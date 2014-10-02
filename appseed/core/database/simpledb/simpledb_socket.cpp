@@ -13,6 +13,8 @@ namespace simpledb
       ::sockets::socket(h),
       stream_socket(h),
       tcp_socket(h),
+      http_base_socket(h),
+      http_socket(h),
       httpd_socket(h)
    {
       /*m_strHead += "HTTP/1.1 200 OK\n";

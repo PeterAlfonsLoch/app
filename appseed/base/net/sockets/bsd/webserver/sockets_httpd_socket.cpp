@@ -44,6 +44,7 @@ namespace sockets
       stream_socket(h),
       tcp_socket(h),
       http_base_socket(h),
+      http_socket(h),
       m_received(0)
    {
       m_http_date = datetime2httpdate(GetDate());
@@ -55,7 +56,8 @@ namespace sockets
       socket(s),
       stream_socket(s),
       tcp_socket(s),
-      http_base_socket(s)
+      http_base_socket(s),
+      http_socket(s)
    {
    }
 
