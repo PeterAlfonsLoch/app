@@ -58,7 +58,10 @@ id id_space::operator()(const string & str)
       return m_ida.element_at(m_iaStr.m_pData[iIndex]);
 
    id id;
-   id.raw_set(new string(str));
+   string * pstr = new string(str);
+   if(pstr == NULL)
+      throw memory_exception(::get_thread_app());
+   id.raw_set(pstr);
    m_ida.add(id);
    m_iaStr.insert_at(iIndex, m_ida.get_upper_bound());
    //sort();

@@ -43,11 +43,11 @@ int32_t machine_event_central::run()
       {
          synch_lock lockMachineEvent(&m_machineevent.m_mutex);
 
-         machine_event_data data;
+         //machine_event_data data;
 
-         m_machineevent.read(&data);
+         //m_machineevent.read(&data);
 
-         System.process_machine_event_data(&data);
+         //System.process_machine_event_data(&data);
       }
 
       Sleep(484);

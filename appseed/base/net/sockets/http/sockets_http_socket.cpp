@@ -254,7 +254,6 @@ namespace sockets
       id key;
       string strKey;
       string value;
-      id lowvalue;
       strsize iFind = line.find(':');
       if(iFind < 0)
       {
@@ -275,15 +274,14 @@ namespace sockets
             iLen--;
          }
          value = line.Mid(iFind, iLen - iFind);
-         lowvalue = value.lower();
       }
       strKey.make_lower();
       key = strKey;
       OnHeader(key, value);
       if(key == __id(host))
       {
-         m_request.m_strHttpHost = lowvalue;
-         m_request.attr(__id(http_host)) = lowvalue;
+         m_request.m_strHttpHost = value;
+         m_request.attr(__id(http_host)) = value;
       }
       else if(key == __id(content_length))
       {
@@ -293,7 +291,7 @@ namespace sockets
       {
          if (m_b_http_1_1)
          {
-            if(lowvalue == __id(close))
+            if(::str::equals_ci(value,"close"))
             {
                m_b_keepalive = false;
             }
