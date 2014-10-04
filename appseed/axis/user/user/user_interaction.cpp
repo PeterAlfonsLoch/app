@@ -485,6 +485,18 @@ namespace user
       try
       {
 
+         mouse_hover_remove(this);
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+      try
+      {
+
          if(Session.user()->m_pkeyboardfocus == this)
          {
 

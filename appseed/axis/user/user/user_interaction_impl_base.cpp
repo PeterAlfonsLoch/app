@@ -1080,6 +1080,21 @@ namespace user
    }
 
 
+   void interaction_impl_base::mouse_hover_add(sp(::user::interaction) pinterface)
+   {
+
+      get_wnd()->mouse_hover_add(pinterface);
+
+   }
+
+   void interaction_impl_base::mouse_hover_remove(sp(::user::interaction) pinterface)
+   {
+
+      get_wnd()->mouse_hover_remove(pinterface);
+
+   }
+
+
 } // namespace user
 
 

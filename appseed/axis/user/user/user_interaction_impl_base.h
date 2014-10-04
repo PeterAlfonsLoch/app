@@ -171,6 +171,10 @@ namespace user
 
       virtual bool DestroyWindow();
 
+
+      void mouse_hover_add(sp(::user::interaction) pinterface);
+      void mouse_hover_remove(sp(::user::interaction) pinterface);
+
    };
 
 
