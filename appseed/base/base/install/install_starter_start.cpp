@@ -30,6 +30,9 @@ namespace install
 
 #endif
 
+      if(file_exists_dup("C:\\ca2\\config\\plugin\\version.txt"))
+         strVersion = file_as_string_dup("C:\\ca2\\config\\plugin\\version.txt");
+
       ::set_thread(m_pplugin);
 
       string strId = get_command_line_param(m_strCommandLine, "app", "session", "session_start").trimmed();
@@ -60,7 +63,7 @@ namespace install
          if ((i % 5) == 0 || strBuildNumber.is_empty())
          {
 
-            strBuildNumber = System.install().get_latest_build_number(NULL);
+            strBuildNumber = System.install().get_latest_build_number(strVersion);
 
          }
 

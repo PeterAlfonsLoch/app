@@ -373,16 +373,18 @@ namespace install
 
       string strSpaIgnitionBaseUrl;
 
+      string strVersion(pszVersion);
+
       if (pszVersion != NULL && !strcmp(pszVersion, "basis"))
       {
 
-         strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
+         strSpaIgnitionBaseUrl = "http://basis-server.ca2.cc/api/spaignition";
 
       }
       else if (pszVersion != NULL && !strcmp(pszVersion, "stage"))
       {
 
-         strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
+         strSpaIgnitionBaseUrl = "http://stage-server.ca2.cc/api/spaignition";
 
       }
       else
@@ -390,11 +392,15 @@ namespace install
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
+         strVersion = "basis";
+
+         strSpaIgnitionBaseUrl = "http://basis-server.ca2.cc/api/spaignition";
 
 #else
 
-         strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
+         strVersion = "stage";
+
+         strSpaIgnitionBaseUrl = "http://stage-server.ca2.cc/api/spaignition";
 
 #endif
 
@@ -415,7 +421,9 @@ namespace install
 
       property_set set(get_app());
 
-      strBuildNumber = Application.http().get(strSpaIgnitionBaseUrl + "/query?node=build", set);
+      set["raw_http"] = true;
+
+      strBuildNumber = Application.http().get(strSpaIgnitionBaseUrl + "/query?node=build&version=" + strVersion, set);
 
       strBuildNumber.trim();
 

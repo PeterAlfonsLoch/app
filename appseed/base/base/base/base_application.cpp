@@ -3164,11 +3164,11 @@ namespace base
       string strUrl;
       if(_ca_is_basis())
       {
-         strUrl = "http://basis.spaignition.api.server.ca2.cc/download?authnone&version=basis&stage=";
+         strUrl = "http://basis-server.ca2.cc/api/spaignition/download?authnone&version=basis&stage=";
       }
       else
       {
-         strUrl = "http://stage.spaignition.api.server.ca2.cc/download?authnone&version=stage&stage=";
+         strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&version=stage&stage=";
       }
 
       strUrl += System.url().url_encode(strRelative);

@@ -206,6 +206,8 @@ namespace hotplugin
 
       }
 
+      deferred_prodevian_redraw();
+
    }
 
 
