@@ -38,6 +38,25 @@ void simple_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers)
 namespace install
 {
 
+   string get_version()
+   {
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+      string strVersion = "basis";
+
+#else
+
+      string strVersion = "stage";
+
+#endif
+
+      if(file_exists_dup("C:\\ca2\\config\\plugin\\version.txt"))
+         strVersion = file_as_string_dup("C:\\ca2\\config\\plugin\\version.txt");
+
+      return strVersion;
+
+   }
+
    plugin::plugin(sp(::aura::application) papp) :
       element(papp),
       ::simple_ui::style(papp),
@@ -1029,7 +1048,9 @@ namespace install
          if (strSchema.is_empty())
             strSchema = "en";
 
-         m_phost->host_starter_start(": app=session session_start=session app_type=application install locale=" + strLocale + " schema=" + strSchema);
+         string strVersion = get_version();
+
+         m_phost->host_starter_start(": app=session session_start=session app_type=application install locale=" + strLocale + " schema=" + strSchema + " version=" + strVersion);
 
       }
 
