@@ -637,6 +637,8 @@ namespace plugin
 
             string strSchema = set["schema"];
 
+            string strVersion = set["version"];
+
             string strRuri = set["ruri"];
 
             if(strBuildNumber.is_empty())
@@ -761,7 +763,7 @@ namespace plugin
 
                      strSchema.trim();
 
-                     if(strId.has_char() && !System.install().is(NULL, strBuildNumber, strType, strId, strLocale, strSchema))
+                     if(strId.has_char() && !System.install().is(strVersion, strBuildNumber, strType, strId, strLocale, strSchema))
                      {
 
                         string strCommandLine;
@@ -779,6 +781,7 @@ namespace plugin
                            || set.m_propertya[i].name() == "schema"
                            || set.m_propertya[i].name() == "app"
                            || set.m_propertya[i].name() == "session_start"
+                           || set.m_propertya[i].name() == "version"
                              )
                            )
                               continue;
