@@ -247,14 +247,18 @@ plex_heap_alloc_array::plex_heap_alloc_array()
    add(new plex_heap_alloc(1024 * 512, 16));
    add(new plex_heap_alloc(1024 * 768, 16));
    add(new plex_heap_alloc(1024 * 1024, 16));
+
+#ifdef OS64BIT
    add(new plex_heap_alloc(1024 * 1024 * 2, 16));
    add(new plex_heap_alloc(1024 * 1024 * 4,16));
    add(new plex_heap_alloc(1024 * 1024 * 8,16));
    add(new plex_heap_alloc(1024 * 1024 * 16,16));
+#endif
 
    m_iWorkingSize = get_size();
 
 }
+
 
 plex_heap_alloc_array::~plex_heap_alloc_array()
 {
