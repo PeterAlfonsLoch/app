@@ -223,28 +223,32 @@ void command_line::_001ParseCommandForkUri(const char * pszCommandFork)
    else
       strQuery = strQuery.Mid(iFind + 1);
 
-   string strObject(pszCommandFork);
+   string strScript(pszCommandFork);
 
-   strsize iPos = strObject.find("://");
+   strsize iPos = strScript.find("://");
 
    if(iPos >= 0)
    {
 
       iPos += 3;
 
-      strsize iStart = strObject.find("/",iPos);
+      strsize iStart = strScript.find("/",iPos);
 
       if(iStart < 0)
-         strObject= "/";
+         strScript= "/";
       else
-         strObject= strObject.Mid(iStart);
+         strScript= strScript.Mid(iStart);
 
    }
 
+   iFind = strScript.find('?');
+
+   if(iFind >= 0)
+      strScript = strQuery.Left(iFind);
 
    m_varQuery.propset().parse_url_query(strQuery);
    
-   m_strApp = strObject;
+   m_strApp = strScript;
 
    if(m_varQuery.has_property("file"))
    {
