@@ -236,7 +236,24 @@ namespace install
 
       m_bProgressModeAppInstall = true;
 
-      m_strSpaIgnitionBaseUrl = "http://api.ca2.cc/spaignition";
+      string strVersion(m_strVersion);
+
+      if(strVersion.is_empty())
+      {
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+         strVersion = "basis";
+
+#else
+
+         strVersion = "stage";
+
+#endif
+
+      }
+
+      m_strSpaIgnitionBaseUrl = "http://" + strVersion + "-server.ca2.cc/api/spaignition";
 
       int32_t iRet = ca2_build_version();
 
@@ -444,7 +461,7 @@ RetryHost:
 
          string strIndexMd5 = Application.http().get(strUrl, set);
          if(strIndexMd5.length() != 32
-            || stricmp_dup(System.crypto().md5(strIndexPath), strIndexMd5) != 0)
+            || stricmp_dup(System.file().md5(strIndexPath), strIndexMd5) != 0)
          {
             System.install().trace().rich_trace("Invalid file list!");
             System.install().trace().rich_trace("Going to retry host...");
@@ -2731,6 +2748,11 @@ RetryHost:
 
       m_strInstallSchema         = get_command_line_param(pszCommandLine, "schema").trimmed();
 
+      m_strVersion               = get_command_line_param(pszCommandLine, "version").trimmed();
+
+      if(m_strVersion.is_empty())
+         m_strVersion = "basis";
+
       m_strInstallSchema.trim();
 
       if(m_strInstallSchema.is_empty())
@@ -2916,9 +2938,10 @@ RetryBuildNumber:
 
          set["raw_http"] = true;
 
-         Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build&sessid=noauth", m_strBuild, set);
+         Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build&sessid=noauth&version=" + m_strVersion, m_strBuild, set);
 
          m_strBuild.trim();
+
          if(m_strBuild.length() != 19)
          {
             Sleep(184);

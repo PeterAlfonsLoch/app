@@ -1048,7 +1048,7 @@ namespace install
          if (strSchema.is_empty())
             strSchema = "en";
 
-         string strVersion = get_version();
+         string strVersion = ::install::get_version();
 
          m_phost->host_starter_start(": app=session session_start=session app_type=application install locale=" + strLocale + " schema=" + strSchema + " version=" + strVersion);
 

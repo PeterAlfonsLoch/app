@@ -700,7 +700,18 @@ namespace install
 
       property_set set(get_app());
 
-      m_strCa2Build = Application.http().get("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone", set);
+      if(m_strVersion == "basis")
+      {
+
+         m_strCa2Build = Application.http().get("http://basis-server.ca2.cc/api/spaignition/ca2_get_build?authnone",set);
+
+      }
+      else
+      {
+
+         m_strCa2Build = Application.http().get("http://stage-server.ca2.cc/api/spaignition/ca2_get_build?authnone",set);
+
+      }
 
    }
 

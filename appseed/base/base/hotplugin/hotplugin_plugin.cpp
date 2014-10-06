@@ -1044,6 +1044,11 @@ namespace hotplugin
       msg.wParam     = pbase->m_wparam;
       msg.lParam     = pbase->m_lparam;
 
+      if(msg.message == WM_WINDOWPOSCHANGED)
+         return;
+      if(msg.message == WM_WINDOWPOSCHANGING)
+         return;
+
 #ifndef METROWIN
       ensure_tx(::hotplugin::message_message,&msg,sizeof(msg));
 #endif

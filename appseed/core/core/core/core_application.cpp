@@ -242,9 +242,11 @@ namespace core
 
       m_dwAlive = ::get_tick_count();
 
-      if(!is_system())
+      if(!is_system() && m_pcoreplatform != NULL)
       {
+
          Platform.register_bergedge_application(this);
+
       }
 
 
@@ -3106,9 +3108,11 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
       //m_splicense(new class ::fontopus::license(this));
 
 
-      if(!is_system())
+      if(!is_system() && m_pcoreplatform != NULL)
       {
+
          Platform.register_bergedge_application(this);
+
       }
 
       xxdebug_box("register_bergedge_application ok","register_bergedge_application ok",MB_ICONINFORMATION);

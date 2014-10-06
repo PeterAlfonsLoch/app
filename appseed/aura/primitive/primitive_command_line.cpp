@@ -214,7 +214,44 @@ void command_line::_001ParseCommandFork(const char * pszCommandFork)
 void command_line::_001ParseCommandForkUri(const char * pszCommandFork)
 {
 
-   throw not_implemented(get_app());
+   string strQuery(pszCommandFork);
+
+   strsize iFind = strQuery.find('?');
+
+   if(iFind < 0)
+      strQuery = "";
+   else
+      strQuery = strQuery.Mid(iFind + 1);
+
+   string strObject(pszCommandFork);
+
+   strsize iPos = strObject.find("://");
+
+   if(iPos >= 0)
+   {
+
+      iPos += 3;
+
+      strsize iStart = strObject.find("/",iPos);
+
+      if(iStart < 0)
+         strObject= "/";
+      else
+         strObject= strObject.Mid(iStart);
+
+   }
+
+
+   m_varQuery.propset().parse_url_query(strQuery);
+   
+   m_strApp = strObject;
+
+   if(m_varQuery.has_property("file"))
+   {
+
+      m_varFile = m_varQuery["file"];
+
+   }
 
 }
 

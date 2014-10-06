@@ -47,6 +47,7 @@ namespace install
 
       string            m_strInstallLocale;
       string            m_strInstallSchema;
+      string            m_strVersion;
 
       string            m_strAppMatterList;
 
@@ -142,8 +143,6 @@ namespace install
       //bool              m_bInstalling;
 
       stringa           m_straHttpFailure;
-
-      string            m_strVersion;
 
       installer(sp(::aura::application) papp);
       ~installer();

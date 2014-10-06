@@ -1197,45 +1197,27 @@ namespace core
 
 
 
-uint32_t _thread_proc_start_core_system(void * p);
+uint32_t _thread_proc_start_core_system_main(void * p);
 
 
 
-uint32_t _thread_proc_start_core_system(void * p)
+uint32_t _thread_proc_start_core_system_main(void * p)
 {
 
    ::base::system * psystem = (::base::system *)p;
 
    ::core::system * pplanesystem = dynamic_cast < ::core::system * > (psystem);
 
-   ::set_thread(pplanesystem);
-
-   try
-   {
-
-      if(!pplanesystem->pre_run())
-      {
-
-         return pplanesystem->m_iReturnCode;
-
-      }
-
-   }
-   catch(...)
-   {
-
-      return -1;
-
-   }
+   ::set_thread(psystem);
 
    return pplanesystem->::core::system::main();
 
 }
 
 
-CLASS_DECL_CORE void __start_core_system(::base::system * psystem)
+CLASS_DECL_CORE void __start_core_system_main(::base::system * psystem)
 {
 
-   ::create_thread(NULL,0,&_thread_proc_start_core_system,(LPVOID)psystem,0,0);
+   ::create_thread(NULL,0,&_thread_proc_start_core_system_main,(LPVOID)psystem,0,0);
 
 }

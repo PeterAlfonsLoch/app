@@ -205,7 +205,7 @@ namespace core
 
 
 
-void CLASS_DECL_CORE __start_core_system(::base::system * psystem);
+void CLASS_DECL_CORE __start_core_system_main(::base::system * psystem);
 
 
 
