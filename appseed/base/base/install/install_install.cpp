@@ -1252,91 +1252,69 @@ namespace install
 
          trace().rich_trace("***Verifying installer");
 
-         string strPathA(System.dir().path(System.dir().name(strPath), "base.dll"));
-         string strPathB(System.dir().path(System.dir().name(strPath), "msvcp120d.dll"));
-         string strPathC(System.dir().path(System.dir().name(strPath), "msvcr120d.dll"));
-         string strPathD(System.dir().path(System.dir().name(strPath), "draw2d_gdiplus.dll"));
-         string strPathE(System.dir().path(System.dir().name(strPath), "os.dll"));
+         stringa straFile;
 
-         if (!file_exists_dup(strPath)
-            || !System.install().is_file_ok(strPath, "app.install.exe", strFormatBuild)
-            || !System.install().is_file_ok(strPathA, "base.dll", strFormatBuild)
-            || !System.install().is_file_ok(strPathB, "msvcp120d.dll", strFormatBuild)
-            || !System.install().is_file_ok(strPathC, "msvcr120d.dll", strFormatBuild)
-            || !System.install().is_file_ok(strPathD, "draw2d_gdiplus.dll", strFormatBuild)
-            || !System.install().is_file_ok(strPathE, "os.dll", strFormatBuild))
+         straFile.add("app.install.exe");
+         straFile.add("aura.dll");
+         straFile.add("aurasqlite.dll");
+         straFile.add("axix.dll");
+         straFile.add("axisbzip2.dll");
+         straFile.add("axisfreeimage.dll");
+         straFile.add("axisfreetype.dll");
+         straFile.add("axisidn.dll");
+         straFile.add("axisopenssl.dll");
+         straFile.add("axiszlib.dll");
+         straFile.add("base.dll");
+         straFile.add("msvcp120d.dll");
+         straFile.add("msvcr120d.dll");
+         straFile.add("draw2d_gdiplus.dll");
+         straFile.add("os.dll");
+
+         for(index iFile = 0; iFile < straFile.get_size(); iFile++)
          {
 
-            trace().rich_trace("***Downloading installer");
+            string strFile = straFile[iFile];
 
-            stringa straFile;
+            string strDownload = System.dir().path(System.dir().name(strPath),strFile);
 
-            straFile.add("app.install.exe");
-            straFile.add("base.dll");
-            straFile.add("msvcp120d.dll");
-            straFile.add("msvcr120d.dll");
-            straFile.add("draw2d_gdiplus.dll");
-            straFile.add("os.dll");
-
-            string strFile;
-
-            string strUrlPrefix = "http://ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/";
-
-            string strUrl;
-
-            property_set set;
-
-            string strDownload;
-
-            set["disable_ca2_sessid"] = true;
-
-            set["raw_http"] = true;
-
-            double dRate = 1.0 / (straFile.get_count() * 3.0);
-
-            if (pinstaller != NULL)
+            if(!System.install().is_file_ok(strDownload,strFile,strFormatBuild))
             {
 
-               set["int_scalar_source_listener"] = pinstaller;
+               trace().rich_trace("***Downloading installer");
 
-            }
+               string strUrlPrefix = "http://ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/";
 
-            int32_t iRetry;
+               string strUrl;
 
-            bool bFileNice;
+               property_set set;
 
-            for (index iFile = 0; iFile < straFile.get_count(); iFile++)
-            {
+               set["disable_ca2_sessid"] = true;
+
+               set["raw_http"] = true;
+
+               double dRate = 1.0 / (straFile.get_count() * 3.0);
+
+               if(pinstaller != NULL)
+               {
+
+                  set["int_scalar_source_listener"] = pinstaller;
+
+               }
+
+               int32_t iRetry;
+
+               bool bFileNice;
 
                iRetry = 0;
 
-               strFile = straFile[iFile];
-
                strUrl = strUrlPrefix + strFile + ".bz";
-
-               strDownload = System.dir().path(System.dir().name(strPath), strFile);
 
                bFileNice = false;
 
-               while (iRetry < 8)
+               while(iRetry < 8)
                {
 
-                  //if (!bPrivileged)
-                  //{
-
-                  //   if (!System.get_temp_file_name(strPath, "app.install", "exe"))
-                  //   {
-
-                  //      strPath.ReleaseBuffer();
-
-                  //      return "";
-
-                  //   }
-
-                  //}
-
-
-                  if (pinstaller != NULL)
+                  if(pinstaller != NULL)
                   {
 
                      pinstaller->m_dAppInstallProgressStart = iFile * (dRate  * 3.0);
@@ -1344,22 +1322,22 @@ namespace install
 
                   }
 
-                  if (Application.http().download(strUrl, strDownload + ".bz", set))
+                  if(Application.http().download(strUrl,strDownload + ".bz",set))
                   {
 
-                     System.compress().unbz(get_app(), strDownload, strDownload + ".bz");
+                     System.compress().unbz(get_app(),strDownload,strDownload + ".bz");
 
-                     if (pinstaller != NULL)
+                     if(pinstaller != NULL)
                      {
 
                         pinstaller->set_progress(iFile * (dRate * 3.0) + (dRate * 2.0));
 
                      }
 
-                     if (System.install().is_file_ok(strDownload, strFile, strFormatBuild))
+                     if(System.install().is_file_ok(strDownload,strFile,strFormatBuild))
                      {
 
-                        if (pinstaller != NULL)
+                        if(pinstaller != NULL)
                         {
 
                            pinstaller->set_progress(iFile * (dRate * 3.0) + (dRate * 2.0));
@@ -1379,14 +1357,14 @@ namespace install
 
                   iRetry++;
 
-               }
+                  if(!bFileNice)
+                  {
 
-               if (!bFileNice)
-               {
-                  
-                  // failed by too much retry in any number of the files already downloaded :
-                  // so, return failure (no eligible app.install.exe file).
-                  return "";
+                     // failed by too much retry in any number of the files already downloaded :
+                     // so, return failure (no eligible app.install.exe file).
+                     return "";
+
+                  }
 
                }
 
