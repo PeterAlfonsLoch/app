@@ -1356,16 +1356,17 @@ namespace install
 
                   iRetry++;
 
-                  if(!bFileNice)
-                  {
+               }
 
-                     // failed by too much retry in any number of the files already downloaded :
-                     // so, return failure (no eligible app.install.exe file).
-                     return "";
+               if(!bFileNice)
+               {
 
-                  }
+                  // failed by too much retry in any number of the files already downloaded :
+                  // so, return failure (no eligible app.install.exe file).
+                  return "";
 
                }
+
 
             }
 
