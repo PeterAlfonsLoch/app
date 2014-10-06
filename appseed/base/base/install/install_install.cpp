@@ -60,14 +60,14 @@ namespace install
 
       string strUrl;
 
-      strUrl = "http://api.ca2.cc/spaignition/md5?authnone&version=basis&stage=";
+      strUrl = "http://"+m_strVersion+"-server.ca2.cc/api/spaignition/md5?authnone&version="+m_strVersion+"&stage=";
       strUrl += pszTemplate;
       strUrl += "&build=";
       strUrl += strFormatBuild;
 
       property_set set(get_app());
 
-      return file_exists_dup(path1) && !stricmp_dup(System.crypto().md5(path1), Application.http().get(strUrl, set));
+      return file_exists_dup(path1) && !stricmp_dup(System.file().md5(path1), Application.http().get(strUrl, set));
 
    }
 
