@@ -253,6 +253,8 @@ namespace install
 
       }
 
+      System.install().m_strVersion = strVersion;
+
       m_strSpaIgnitionBaseUrl = "http://" + strVersion + "-server.ca2.cc/api/spaignition";
 
       int32_t iRet = ca2_build_version();
