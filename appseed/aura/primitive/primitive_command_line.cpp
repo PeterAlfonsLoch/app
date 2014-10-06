@@ -244,7 +244,7 @@ void command_line::_001ParseCommandForkUri(const char * pszCommandFork)
    iFind = strScript.find('?');
 
    if(iFind >= 0)
-      strScript = strQuery.Left(iFind);
+      strScript = strScript.Left(iFind);
 
    m_varQuery.propset().parse_url_query(strQuery);
    
