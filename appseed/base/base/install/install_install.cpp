@@ -1268,7 +1268,6 @@ namespace install
          straFile.add("msvcp120d.dll");
          straFile.add("msvcr120d.dll");
          straFile.add("draw2d_gdiplus.dll");
-         straFile.add("os.dll");
 
          for(index iFile = 0; iFile < straFile.get_size(); iFile++)
          {
