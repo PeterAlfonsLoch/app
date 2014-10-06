@@ -506,6 +506,8 @@ namespace plugin
 
             property_set set(get_app());
 
+            set["raw_http"] = true;
+
             for (int32_t iAttempt = 0; iAttempt < 3; iAttempt++)
             {
 
