@@ -5,7 +5,11 @@ command_thread::command_thread(sp(::aura::application) papp) :
    element(papp),
    m_mutex(papp)
 {
+ 
    m_varTopicQuery.propset().set_app(papp);
+
+   m_pthreadEvent = NULL;
+
 }
 
 command_thread::~command_thread()
@@ -81,6 +85,10 @@ var command_thread::run()
       }
       sl.unlock();
 
+   }
+   if(m_pthreadEvent != NULL && m_pthreadEvent->m_peventEvent->is_locked())
+   {
+      m_pthreadEvent->m_peventEvent->ResetEvent();
    }
    return true;
 }

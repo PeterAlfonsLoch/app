@@ -1020,6 +1020,15 @@ namespace core
          Session.set_schema(command()->m_varTopicQuery["schema"].stra()[0],::action::source::user());
       }
 
+      if(command()->m_pthreadEvent->m_peventEvent == NULL)
+      {
+
+         command()->m_pthreadEvent->m_peventEvent = new manual_reset_event(this);
+
+      }
+
+      command()->m_pthreadEvent->m_peventEvent->SetEvent();
+
    }
 
 #ifdef METROWIN
@@ -1068,6 +1077,14 @@ namespace core
 
       set._008ParseCommandFork(pdata->m_vssCommandLine,varFile,strApp);
 
+      if(set.has_property("version"))
+      {
+
+         install().m_strVersion = set["version"];
+
+      }
+
+
       if((varFile.is_empty() && ((!set.has_property("app") && !directrix()->m_varTopicQuery.has_property("appid") && !set.has_property("show_platform"))
          || set["app"] == "bergedge" || directrix()->m_varTopicQuery["appid"] == "bergedge")) &&
          !(set.has_property("install") || set.has_property("uninstall")))
@@ -1093,6 +1110,7 @@ namespace core
          }
          command()->add_line(strCommandLine);
       }
+
 
       //if(!::core::application::set_main_init_data(pdata))
       // return false;

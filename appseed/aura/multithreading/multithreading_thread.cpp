@@ -71,6 +71,8 @@ void thread::CommonConstruct()
 
    m_pmutex = new mutex();
 
+   m_peventEvent = NULL;
+
    m_bReady = false;
    m_bRun = true;
    m_pbReady = NULL;
@@ -97,6 +99,9 @@ thread::~thread()
 
    if(m_pmutex != NULL)
       delete m_pmutex;
+
+   if(m_peventEvent == NULL)
+      delete m_peventEvent;
 
 }
 

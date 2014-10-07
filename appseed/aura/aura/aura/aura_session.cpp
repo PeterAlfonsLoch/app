@@ -546,7 +546,7 @@ namespace aura
       for(index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
       {
 
-         for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+         for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
          {
 
             localeschema.add_locale_variant(straLocale[iLocale],straSchema[iSchema]);
@@ -555,14 +555,14 @@ namespace aura
 
       }
 
-      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+      for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       {
 
          localeschema.add_locale_variant(get_locale(),straSchema[iSchema]);
 
       }
 
-      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+      for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       {
 
          localeschema.add_locale_variant(__id(std),straSchema[iSchema]);
@@ -570,7 +570,7 @@ namespace aura
       }
 
 
-      for(index iSchema = 0; iSchema < straLocale.get_count(); iSchema++)
+      for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       {
 
          localeschema.add_locale_variant(__id(en),straSchema[iSchema]);

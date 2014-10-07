@@ -310,6 +310,8 @@ namespace plugin
 
          m_sizeBitmap.cy = abs_dup(rectClient.height());
 
+         //memset(m_dib->m_pcolorref,0xcd,300 * 300 * 4);
+
          {
 
             synch_lock sl(m_pmutexBitmap);

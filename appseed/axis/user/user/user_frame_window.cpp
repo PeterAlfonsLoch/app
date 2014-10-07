@@ -846,6 +846,14 @@ namespace user
       }
 
 
+      if(Application.command()->m_varTopicQuery.has_property("client_only"))
+      {
+         if(GetParentFrame() == NULL)
+         {
+            WfiFullScreen();
+         }
+      }
+
    }
 
    void frame_window::InitialFramePosition(bool bForceRestore)

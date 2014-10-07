@@ -1042,12 +1042,27 @@ namespace hotplugin
       // only valid fields
       msg.message    = pbase->m_uiMessage;
       msg.wParam     = pbase->m_wparam;
-      msg.lParam     = pbase->m_lparam;
+
+      sp(::message::mouse) spmouse = pobj;
+
+      if(spmouse.is_set())
+      {
+
+         msg.lParam     = spmouse->m_pt.lparam();
+
+      }
+      else
+      {
+
+         msg.lParam     = pbase->m_lparam;
+
+      }
 
       if(msg.message == WM_WINDOWPOSCHANGED)
          return;
       if(msg.message == WM_WINDOWPOSCHANGING)
          return;
+
 
 #ifndef METROWIN
       ensure_tx(::hotplugin::message_message,&msg,sizeof(msg));

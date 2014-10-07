@@ -390,19 +390,22 @@ namespace install
       else
       {
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
+         if(m_strVersion == CA2_BASIS)
+         {
 
-         strVersion = "basis";
+            strVersion = "basis";
 
-         strSpaIgnitionBaseUrl = "http://basis-server.ca2.cc/api/spaignition";
+            strSpaIgnitionBaseUrl = "http://basis-server.ca2.cc/api/spaignition";
 
-#else
+         }
+         else
+         {
 
-         strVersion = "stage";
+            strVersion = "stage";
 
-         strSpaIgnitionBaseUrl = "http://stage-server.ca2.cc/api/spaignition";
+            strSpaIgnitionBaseUrl = "http://stage-server.ca2.cc/api/spaignition";
 
-#endif
+         }
 
       }
 
@@ -844,28 +847,36 @@ namespace install
 
       string strBuild(pszBuild);
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
+      sp(::xml::node) lpnodeVersion;
 
-      sp(::xml::node) lpnodeVersion = doc.get_root()->get_child("basis");
+      if(m_strVersion == CA2_BASIS)
+      {
 
-#else
+         lpnodeVersion = doc.get_root()->get_child("basis");
 
-      sp(::xml::node) lpnodeVersion = doc.get_root()->get_child("stage");
+      }
+      else
+      {
 
-#endif
+         lpnodeVersion = doc.get_root()->get_child("stage");
+
+      }
 
       if (lpnodeVersion == NULL)
       {
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
+         if(m_strVersion == CA2_BASIS)
+         {
 
-         lpnodeVersion = doc.get_root()->add_child("basis");
+            lpnodeVersion = doc.get_root()->add_child("basis");
 
-#else
+         }
+         else
+         {
 
-         lpnodeVersion = doc.get_root()->add_child("stage");
+            lpnodeVersion = doc.get_root()->add_child("stage");
 
-#endif
+         }
 
       }
 
@@ -970,16 +981,18 @@ namespace install
       if (string(pszVersion).is_empty())
       {
 
-#if CA2_PLATFORM_VERSION == CA2_BASIS
+         if(m_strVersion == CA2_BASIS)
+         {
 
-         pszVersion = "basis";
+            pszVersion = "basis";
 
+         }
+         else
+         {
 
-#else
+            pszVersion = "stage";
 
-         pszVersion = "stage";
-
-#endif
+         }
 
       }
 

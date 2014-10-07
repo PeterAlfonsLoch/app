@@ -42,6 +42,8 @@ public:
 
    replace_thread *                       m_preplacethread;
 
+   manual_reset_event *                   m_peventEvent;
+
 
    thread();
    thread(sp(::aura::application) papp);

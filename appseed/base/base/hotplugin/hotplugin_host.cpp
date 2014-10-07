@@ -561,6 +561,12 @@ throw todo(get_thread_app());
 
       pgraphics->BitBlt(rect.left,rect.top,m_sizeBitmap.cx,m_sizeBitmap.cy,m_dib->get_graphics());
 
+      //{
+
+      //   pgraphics->FillSolidRect(100, 100, 100, 100,ARGB(255,50,255,180));
+
+      //}
+
    }
 
 

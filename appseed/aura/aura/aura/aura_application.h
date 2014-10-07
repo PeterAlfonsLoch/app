@@ -78,7 +78,6 @@ namespace aura
       string_table                                    m_stringtable;
       string_table                                    m_stringtableStd;
 
-
       application();
       virtual ~application();
 

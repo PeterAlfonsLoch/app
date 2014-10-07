@@ -111,6 +111,7 @@ namespace aura
 
       m_pcommandthread           = canew(::command_thread(this));
 
+      m_pcommandthread->m_pthreadEvent = this;
 
       m_bLicense                 = true;
 

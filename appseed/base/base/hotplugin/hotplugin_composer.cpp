@@ -276,7 +276,7 @@ namespace hotplugin
          return true;
 
       }
-      else 
+      /*else 
       {
 
          m_pbasehost->m_bOnPaint = true;
@@ -295,7 +295,7 @@ namespace hotplugin
 
          m_pbasehost->m_bOnPaint = false;
 
-      }
+      }*/
       
       return false;
 

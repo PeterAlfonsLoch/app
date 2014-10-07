@@ -73,8 +73,6 @@ namespace axis
 
       m_psignal                  = canew(class signal());
 
-      m_pcommandthread           = canew(::command_thread(this));
-
 
       m_bLicense                 = true;
 

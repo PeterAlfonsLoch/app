@@ -1201,6 +1201,19 @@ int32_t thread_impl::run()
    // acquire and dispatch messages until a WM_QUIT message is received.
    MESSAGE msg;
 
+   sync_object_ptra soa;
+
+   if(m_pthread->m_peventEvent == NULL)
+   {
+
+      m_pthread->m_peventEvent = new manual_reset_event(get_app());
+
+   }
+
+   soa.add(m_pthread->m_peventEvent);
+
+   multi_lock ml(soa);
+
    while(m_pthread->m_bRun)
    {
 
@@ -1230,11 +1243,30 @@ int32_t thread_impl::run()
 //      while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
       {
 
-         // pump message, but quit on WM_QUIT
-         if(!m_pthread->m_bRun || !pump_message())
+         if(m_spuiptra.is_set() && m_spuiptra->get_count() > 0)
          {
 
-            goto stop_run;
+            ml.lock(millis(1),false,QS_ALLEVENTS);
+
+         }
+         else
+         {
+
+            ml.lock(::duration::infinite(),false,QS_ALLEVENTS);
+
+         }
+
+
+         while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
+         {
+             
+            // pump message, but quit on WM_QUIT
+            if(!m_pthread->m_bRun || !pump_message())
+            {
+
+               goto stop_run;
+
+            }
 
          }
 

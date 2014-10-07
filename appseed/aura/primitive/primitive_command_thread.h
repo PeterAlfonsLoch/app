@@ -15,6 +15,7 @@ public:
 
    var                              m_varTopicFile;  // accumulatted, reset, set, or clear as command_thread history passes
    var                              m_varTopicQuery; // accumulatted, reset, set, or clear as command_thread history passes
+   ::thread *                       m_pthreadEvent;
 
 
    command_thread(sp(::aura::application) papp);
