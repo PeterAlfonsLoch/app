@@ -4746,7 +4746,7 @@ namespace windows
                      DWORD dwTime2 = ::get_tick_count();
 
                      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-                     TRACE("SizeManager::Mv call timem= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                     //TRACE("SizeManager::Mv call timem= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
                   }
 
@@ -4758,7 +4758,7 @@ namespace windows
                      DWORD dwTime2 = ::get_tick_count();
 
                      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-                     TRACE("SizeManager::Mv call timen= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                     //TRACE("SizeManager::Mv call timen= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
                   }
 
@@ -4770,7 +4770,7 @@ namespace windows
                      DWORD dwTime2 = ::get_tick_count();
 
                      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-                     TRACE("SizeManager::Mv call timeo= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                     //TRACE("SizeManager::Mv call timeo= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
                   }
 
@@ -5429,7 +5429,7 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
       t_time1 = ::get_tick_count();
 
 
-      TRACE("between move time2= %d ms",::get_tick_count() - t_time2);
+      //TRACE("between move time2= %d ms",::get_tick_count() - t_time2);
 
       t_time2 = ::get_tick_count();
 
@@ -5442,7 +5442,7 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
    if(message == WM_MOUSEMOVE && g_iMouseDown)
    {
 
-      TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
    }
 

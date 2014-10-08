@@ -11,7 +11,7 @@ namespace user
       m_eventFree(papp, TRUE, TRUE)
    {
       m_bProDevianMode                    = true;
-      m_iFramesPerSecond                  = .1;
+      m_iFramesPerSecond                  = 24.0;
       m_bRunning                          = false;
       m_bRun                              = true;
    }

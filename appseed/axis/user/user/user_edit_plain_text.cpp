@@ -2814,7 +2814,7 @@ namespace user
          DWORD dwTime2 = ::get_tick_count();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         TRACE("SizeManager::Mv call timeE= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //TRACE("SizeManager::Mv call timeE= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
       }
 
@@ -2826,7 +2826,7 @@ namespace user
          DWORD dwTime2 = ::get_tick_count();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         TRACE("SizeManager::Mv call timeg= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //TRACE("SizeManager::Mv call timeg= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
       }
 
