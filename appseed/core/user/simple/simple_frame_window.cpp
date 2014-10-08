@@ -6,6 +6,38 @@
 #define TEST 0
 
 
+simple_frame_window::helper_task::helper_task(simple_frame_window * pframe) :
+::thread(pframe->get_app()),
+m_pframe(pframe) 
+{
+   m_bSaveWindowRect = false;
+   begin(); 
+}
+
+
+int simple_frame_window::helper_task::run()
+{
+   while(m_bRun)
+   {
+      if(m_bSaveWindowRect)
+      {
+         try
+         {
+            if(m_pframe->does_display_match())
+            {
+               m_pframe->WindowDataSaveWindowRect();
+            }
+         }
+         catch(...)
+         {
+         }
+      }
+      Sleep(184);
+   }
+   return 0;
+}
+
+
 simple_frame_window::simple_frame_window(sp(::aura::application) papp) :
 element(papp),
 m_dibBk(allocer()),
@@ -17,6 +49,8 @@ m_fastblur(allocer())
    m_bWindowFrame = true;
    m_bLayered = true;
    m_pframeschema = NULL;
+
+   m_phelpertask = new helper_task(this);
 
 }
 
@@ -344,14 +378,9 @@ void simple_frame_window::_001OnMove(signal_details * pobj)
    //   RedrawWindow();
    //}
 
+   //post_message(WM_APP + 184, 123);
 
-
-   if (does_display_match())
-   {
-
-      WindowDataSaveWindowRect();
-
-   }
+   m_phelpertask->m_bSaveWindowRect = true;
 
 }
 
@@ -1178,6 +1207,17 @@ void simple_frame_window::_001OnUser184(signal_details * pobj)
    {
       InitialFramePosition(true);
       pbase->m_bRet = true;
+   }
+   if(pbase->m_wparam == 123)
+   {
+      if(does_display_match())
+      {
+
+         WindowDataSaveWindowRect();
+
+      }
+
+
    }
 }
 

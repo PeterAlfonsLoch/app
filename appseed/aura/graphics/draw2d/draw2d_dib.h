@@ -70,6 +70,7 @@ namespace draw2d
       int32_t           m_iScan;
       bool              m_bMapped; // optionally used by implementation
       descriptor        m_descriptor;
+      bool              m_bReduced; // optionally used by implementation
 
 
       static float Cosines[360];

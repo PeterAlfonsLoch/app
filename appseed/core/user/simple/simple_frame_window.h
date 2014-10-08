@@ -41,7 +41,23 @@ public:
 
    sp(::user::wndfrm::frame::frame)       m_pframeschema;
 
+   class helper_task:
+      public thread
+   {
+   public:
 
+      simple_frame_window *      m_pframe;
+      bool                       m_bSaveWindowRect;
+
+
+      helper_task(simple_frame_window * pframe);
+
+      int32_t run();
+
+   };
+
+
+   helper_task *        m_phelpertask;
 //   HDC                           m_hdcOpenGL;
 //#ifdef WINDOWS
 //   HGLRC                         m_hglrc;

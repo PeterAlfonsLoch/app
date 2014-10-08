@@ -25,7 +25,7 @@ namespace user
 
 
       bool                 m_bProDevianMode;
-      uint32_t             m_iFramesPerSecond;
+      double               m_iFramesPerSecond;
       event                m_eventFree;
       bool                 m_bRunning;
       bool                 m_bRender;

@@ -135,7 +135,7 @@ namespace user
             if(m_ehittestMode != HitTestNone)
             {
 
-               if(get_tick_count() - m_dwLastSizingTime > 184)
+               if(get_tick_count() - m_dwLastSizingTime > 0)
                {
 
                   m_dwLastSizingTime = get_tick_count();

@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
+
+
 namespace user
 {
 
@@ -68,8 +71,8 @@ namespace user
                || m_pworkset->m_bSizingCapture)
                return false;
 
-            if(get_tick_count() - m_dwLastMoveTime < 84)
-               return true;
+            //if(get_tick_count() - m_dwLastMoveTime < 84)
+              // return true;
 
             m_dwLastMoveTime = get_tick_count();
 
@@ -96,6 +99,17 @@ namespace user
                return false;
             pmouse->m_bRet = true;
             sp(::user::interaction) puieCapture = System.get_capture_uie();
+
+
+            DWORD dwTime1 = ::get_tick_count();
+
+            if(pmouse->m_uiMessage == WM_MOUSEMOVE)
+            {
+               //TRACE("message_handler call time1= %d ms", dwTime1);
+               TRACE("MoveManager::Ry call time1= %d ms",dwTime1 - t_time1.operator DWORD_PTR());
+
+            }
+
 
             if(puieCapture == NULL)
             {
@@ -148,6 +162,12 @@ namespace user
             rect rectEvent = rectWindow;
 
             rectEvent.move_to(pt);
+            if(pmouse->m_uiMessage == WM_MOUSEMOVE)
+            {
+               //TRACE("message_handler call time1= %d ms", dwTime1);
+               TRACE("MoveManager::Ry call time4= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
+
+            }
 
 
 
@@ -159,16 +179,41 @@ namespace user
                {
                   GetMoveWindow()->GetParent()->ScreenToClient(&ptMove);
                }
-               GetMoveWindow()->SetWindowPos(ZORDER_TOP, ptMove.x, ptMove.y, 0, 0, SWP_NOSIZE);
+               if(pmouse->m_uiMessage == WM_MOUSEMOVE)
+               {
+                  //TRACE("message_handler call time1= %d ms", dwTime1);
+                  TRACE("MoveManager::Ry call time5= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
+
+               }
+               GetMoveWindow()->SetWindowPos(ZORDER_TOP,ptMove.x,ptMove.y,0,0,SWP_NOSIZE | SWP_NOZORDER);
+               if(pmouse->m_uiMessage == WM_MOUSEMOVE)
+               {
+                  //TRACE("message_handler call time1= %d ms", dwTime1);
+                  TRACE("MoveManager::Ry call time6= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
+
+               }
                GetMoveWindow()->set_appearance(::user::AppearanceNormal);
+               if(pmouse->m_uiMessage == WM_MOUSEMOVE)
+               {
+                  //TRACE("message_handler call time1= %d ms", dwTime1);
+                  TRACE("MoveManager::Ry call time7= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
+
+               }
 
             }
 
             WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
             if(pinterface == NULL)
                pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->get_draw_window().m_p);
+            if(pmouse->m_uiMessage == WM_MOUSEMOVE)
+            {
+               //TRACE("message_handler call time1= %d ms", dwTime1);
+               TRACE("MoveManager::Ry call time8= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
+
+            }
 
             pinterface->WfiOnMove(pmouse->m_uiMessage == WM_MOUSEMOVE || pmouse->m_uiMessage == WM_NCMOUSEMOVE);
+
             if(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP)
             {
 //               TRACE("MoveManager::message_handler oswindow ReleaseCapture 2 %x\n", System.get_capture_uie().m_p);
@@ -198,6 +243,13 @@ namespace user
                System.release_capture_uie();
                m_bMoving = false;
             }
+            if(pmouse->m_uiMessage == WM_MOUSEMOVE)
+            {
+               //TRACE("message_handler call time1= %d ms", dwTime1);
+               TRACE("MoveManager::Ry call time9= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
+
+            }
+
             return true;
          }
 
@@ -432,8 +484,8 @@ namespace user
          void MoveManager::message_handler(sp(::user::interaction) pwnd, signal_details * pobj)
          {
             SCAST_PTR(::message::base, pbase, pobj);
-            if(m_bPendingMove
-               && get_tick_count() > m_dwLastMoveTime + s_dwMoveTime)
+            if(m_bPendingMove)
+               //&& get_tick_count() > m_dwLastMoveTime + s_dwMoveTime)
             {
                m_bPendingMove = false;
                MoveWindow(
@@ -475,12 +527,12 @@ namespace user
                   }
                   return;
                }
-               if(pbase->m_uiMessage == WM_MOUSEMOVE &&
-                  m_dwLastMovingTime + 10 > get_tick_count())
-               {
-                  pbase->m_bRet = true;
-                  return;
-               }
+               //if(pbase->m_uiMessage == WM_MOUSEMOVE &&
+                 // m_dwLastMovingTime + 10 > get_tick_count())
+               //{
+                 // pbase->m_bRet = true;
+                  //return;
+               //}
                //           uint32_t fwKeys = pbase->m_wparam;        // key flags
                point ptCursor((int16_t)LOWORD(pbase->m_lparam), (int16_t)HIWORD(pbase->m_lparam));
                pwnd->ClientToScreen(&ptCursor);

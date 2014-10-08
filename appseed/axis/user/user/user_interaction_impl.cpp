@@ -2284,6 +2284,8 @@ namespace user
 
       m_spdib->Paste(m_spdibBuffer);
 
+      m_spdib->m_bReduced = false;
+
    }
 
 

@@ -100,7 +100,7 @@ namespace user
                return false;
 
             if(get_tick_count() - m_dwLastMoveTime < 84)
-               return true;
+               return false;
 
             m_dwLastMoveTime = get_tick_count();
 

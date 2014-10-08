@@ -5142,7 +5142,18 @@ namespace user
       if(!(nFlags & SWP_NOREDRAW) && IsWindowVisible())
       {
 
-         RedrawWindow();
+         //if(is_composite() & (nFlags & SWP_NOSIZE))
+         //{
+
+         //   _001UpdateScreen();
+
+         //}
+         //else
+         //{
+
+            RedrawWindow();
+
+         //}
 
       }
 

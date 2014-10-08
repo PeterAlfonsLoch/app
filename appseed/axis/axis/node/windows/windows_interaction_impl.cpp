@@ -3003,11 +3003,16 @@ namespace windows
       if(GetExStyle() & WS_EX_LAYERED)
       {
 
-         nFlags |= SWP_NOCOPYBITS;
+         if(!(nFlags & SWP_NOSIZE))
+         {
 
-         nFlags |= SWP_NOREDRAW;
+            nFlags |= SWP_NOCOPYBITS;
 
-         nFlags |= SWP_FRAMECHANGED;
+            nFlags |= SWP_NOREDRAW;
+
+            nFlags |= SWP_FRAMECHANGED;
+
+         }
 
          ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
 
@@ -3021,7 +3026,18 @@ namespace windows
          if(!(nFlags & SWP_NOREDRAW))
          {
 
-            _001RedrawWindow();
+            if(nFlags & SWP_NOSIZE)
+            {
+
+//               _001UpdateScreen();
+
+            }
+            else
+            {
+
+  //             _001RedrawWindow();
+
+            }
 
          }
 
@@ -4718,9 +4734,14 @@ namespace windows
 
                keepLockWindowUpdate.KeepAway();
 
-               _001UpdateBuffer();
+               if(!(pwindowpos->m_pwindowpos->flags & SWP_NOSIZE))
+               {
 
-               _001UpdateScreen();
+                  _001UpdateBuffer();
+
+                  _001UpdateScreen();
+
+               }
 
             }
 
@@ -5344,6 +5365,11 @@ namespace windows
 
 #undef __window_procedure
 
+int g_iMouseDown = 0;
+
+CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
+CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time2;
+
 LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
 {
 
@@ -5352,7 +5378,46 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
    if(pui == NULL || pui->get_safe_handle() != oswindow)
       return ::DefWindowProc(oswindow,message,wparam,lparam);
 
-   return pui->call_message_handler(message,wparam,lparam);
+   ::aura::application * m_pauraapp = pui->get_app();
+
+   if(message == WM_LBUTTONDOWN)
+   {
+      
+      g_iMouseDown = 1;
+      t_time2 = ::get_tick_count();
+
+   }
+   else if(message == WM_LBUTTONUP)
+   {
+
+      g_iMouseDown = 0;
+
+   }
+
+
+   if(message == WM_MOUSEMOVE && g_iMouseDown)
+   {
+      t_time1 = ::get_tick_count();
+
+
+      TRACE("between move time2= %d ms",::get_tick_count() - t_time2);
+
+      t_time2 = ::get_tick_count();
+
+   }
+
+   LRESULT lresult = pui->call_message_handler(message,wparam,lparam);
+
+   DWORD dwTime2 = ::get_tick_count();
+
+   if(message == WM_MOUSEMOVE && g_iMouseDown)
+   {
+
+      TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+   }
+
+   return lresult;
 
 }
 
