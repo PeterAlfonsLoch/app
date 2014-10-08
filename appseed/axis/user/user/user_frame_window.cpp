@@ -4,6 +4,7 @@
 #include <dde.h>        // for DDE execute shell requests
 #endif
 
+extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 
 namespace user
 {
@@ -1533,6 +1534,14 @@ namespace user
       //   if (m_nIdleFlags & idleNotify)
       //   bNotify = TRUE;
       m_nIdleFlags &= ~(idleLayout | idleNotify);
+      {
+
+         DWORD dwTime2 = ::get_tick_count();
+
+         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         TRACE("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+      }
 
 
       // reposition all the child windows (regardless of ID)
@@ -1554,6 +1563,16 @@ namespace user
       {
 
          RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder);
+
+         {
+
+            DWORD dwTime2 = ::get_tick_count();
+
+            //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+            TRACE("userframewindoB call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+         }
+
 
       }
 

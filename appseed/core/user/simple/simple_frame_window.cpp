@@ -410,14 +410,14 @@ bool simple_frame_window::pre_create_window(::user::create_struct& cs)
 void simple_frame_window::layout()
 {
 
-   {
+   //{
 
-      DWORD dwTime2 = ::get_tick_count();
+   //   DWORD dwTime2 = ::get_tick_count();
 
-      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-      TRACE("smpfrmwnd::lyot call timeF= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+   //   //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+   //   TRACE("smpfrmwnd::lyot call timeF= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
-   }
+   //}
 
    if (m_bWindowFrame && m_workset.IsAppearanceEnabled())
    {
@@ -427,14 +427,14 @@ void simple_frame_window::layout()
    {
       ::user::frame_window::layout();
    }
-   {
+   //{
 
-      DWORD dwTime2 = ::get_tick_count();
+   //   DWORD dwTime2 = ::get_tick_count();
 
-      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-      TRACE("smpfrmwnd::lyot call timeG= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+   //   //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+   //   TRACE("smpfrmwnd::lyot call timeG= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
-   }
+   //}
 
 
 }
