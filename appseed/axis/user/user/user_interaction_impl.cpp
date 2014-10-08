@@ -2325,15 +2325,14 @@ namespace user
             || rectWindow.height() > m_spdib->m_size.cy)
          {
 
-            m_spdib->create(rectWindow.size());
+            m_spdib->create(rectWindow.size() + size(100, 100));
 
          }
    
          if(m_spdibBuffer.is_null())
             m_spdibBuffer.alloc(allocer());
 
-         if(rectWindow.width() > m_spdibBuffer->m_size.cx
-            || rectWindow.height() > m_spdibBuffer->m_size.cy)
+         if(m_spdib->size() != m_spdibBuffer->size())
          {
             m_spdibBuffer->create(rectWindow.size());
          }

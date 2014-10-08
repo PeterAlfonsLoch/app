@@ -41,7 +41,7 @@ void window_graphics::destroy_window_graphics()
 }
 
 
-void window_graphics::update_window(window_graphics * & pdata, oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int cxParam, incyParam, int iStride)
+void window_graphics::update_window(window_graphics * & pdata, oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int cxParam, int cyParam, int iStride)
 {
 
    if (pdata == NULL || (pdata->cx != width(rect) || pdata->cy != height(rect)))
@@ -82,12 +82,14 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow interact
 }
 
 
-void window_graphics::update_window(COLORREF * pOsBitmapData, const RECT & rect, int iStride)
+void window_graphics::update_window(COLORREF * pOsBitmapData, const RECT & rect, int cxParam, int cyParam, int iStride)
 {
 
    UNREFERENCED_PARAMETER(pOsBitmapData);
    UNREFERENCED_PARAMETER(rect);
    UNREFERENCED_PARAMETER(iStride);
+   UNREFERENCED_PARAMETER(cxParam);
+   UNREFERENCED_PARAMETER(cyParam);
 
 }
 
