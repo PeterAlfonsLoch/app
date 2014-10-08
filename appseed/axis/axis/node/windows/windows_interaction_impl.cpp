@@ -2,6 +2,10 @@
 #include "aura/node/windows/windows.h"
 #include "windows.h"
 
+CLASS_DECL_AXIS int g_iMouseDown = 0;
+
+CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
+CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time2;
 
 thread_int_ptr < HHOOK > t_hHookOldCbtFilter;
 thread_pointer < ::windows::interaction_impl  > t_pwndInit;
@@ -4737,9 +4741,38 @@ namespace windows
                if(!(pwindowpos->m_pwindowpos->flags & SWP_NOSIZE))
                {
 
+                  {
+
+                     DWORD dwTime2 = ::get_tick_count();
+
+                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                     TRACE("SizeManager::Mv call timem= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+                  }
+
+
+
                   _001UpdateBuffer();
+                  {
+
+                     DWORD dwTime2 = ::get_tick_count();
+
+                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                     TRACE("SizeManager::Mv call timen= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+                  }
+
 
                   _001UpdateScreen();
+
+                  {
+
+                     DWORD dwTime2 = ::get_tick_count();
+
+                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                     TRACE("SizeManager::Mv call timeo= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+                  }
 
                }
 
@@ -5365,10 +5398,6 @@ namespace windows
 
 #undef __window_procedure
 
-int g_iMouseDown = 0;
-
-CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
-CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time2;
 
 LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
 {
