@@ -110,6 +110,7 @@ namespace draw2d
       virtual bool bitmap_blend(::draw2d::graphics * pgraphics, LPCRECT lprect);
       virtual bool color_blend(COLORREF cr, BYTE bAlpha);
       virtual void BitBlt(dib * pdib, int32_t op);
+      virtual void BitBlt(int cxParam, int cyParam, dib * pdib,int32_t op);
       virtual int32_t cos(int32_t i, int32_t iAngle);
       virtual int32_t sin(int32_t i, int32_t iAngle);
       virtual int32_t cos10(int32_t i, int32_t iAngle);

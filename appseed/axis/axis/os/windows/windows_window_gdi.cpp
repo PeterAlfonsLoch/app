@@ -21,6 +21,12 @@ window_gdi::~window_gdi()
 void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
 
+   if(cxParam < cx && cyParam < cy)
+      return;
+
+   cxParam += 100;
+   cyParam += 100;
+
    destroy_window_graphics();
 
 
@@ -157,7 +163,7 @@ void window_gdi::update_window(COLORREF * pcolorref, const RECT & rect, int iStr
    try
    {
 
-      copy_colorref(m_pcolorref, pcolorref, iStride);
+      copy_colorref(width(rectWindow),height(rectWindow),m_pcolorref,pcolorref,iStride);
 
    }
    catch (...)

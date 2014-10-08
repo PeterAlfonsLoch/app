@@ -992,6 +992,56 @@ namespace draw2d
 
    }
 
+   void dib::BitBlt(int cxParam, int cyParam, dib *pdib,int32_t op)
+   {
+      if(op == 0)
+      {
+
+
+         int iStrideSrc = pdib->m_iScan;
+
+         if(iStrideSrc <= 0)
+         {
+
+            iStrideSrc = cxParam * sizeof(COLORREF);
+
+         }
+
+         if(m_iScan == iStrideSrc)
+         {
+
+            memcpy(m_pcolorref,pdib->m_pcolorref,cyParam * m_iScan);
+
+         }
+         else
+         {
+
+            int wsrc = iStrideSrc / sizeof(COLORREF);
+            int wdst = m_iScan / sizeof(COLORREF);
+            int cw = MIN(cxParam, m_size.cx) * sizeof(COLORREF);
+
+            int h = MIN(cyParam,m_size.cy);
+
+
+            COLORREF * psrc = pdib ->m_pcolorref;
+            COLORREF * pdst = m_pcolorref;
+
+            for(int i = 0; i < h; i++)
+            {
+
+               memcpy(pdst,psrc,cw);
+
+               pdst += wdst;
+
+               psrc += wsrc;
+
+            }
+
+         }
+
+      }
+
+   }
 
    void dib::Invert()
    {

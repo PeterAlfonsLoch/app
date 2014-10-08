@@ -24,7 +24,7 @@ public:
 
    static void update_window(window_graphics * & pdata, oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int iStride = -1);
 
-   virtual void copy_colorref(COLORREF * pcolorrefDst, COLORREF * pcolorrefSrc, int iStrideSrc);
+   virtual void copy_colorref(int cx, int cy, COLORREF * pcolorrefDst, COLORREF * pcolorrefSrc, int iStrideSrc);
 
 };
 

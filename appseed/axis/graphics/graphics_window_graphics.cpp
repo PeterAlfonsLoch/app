@@ -92,20 +92,20 @@ void window_graphics::update_window(COLORREF * pOsBitmapData, const RECT & rect,
 }
 
 
-void window_graphics::copy_colorref(COLORREF * pcolorrefDst, COLORREF * pcolorrefSrc, int iStrideSrc)
+void window_graphics::copy_colorref(int cxParam, int cyParam, COLORREF * pcolorrefDst, COLORREF * pcolorrefSrc, int iStrideSrc)
 {
 
    if (iStrideSrc <= 0)
    {
 
-      iStrideSrc = cx * sizeof(COLORREF);
+      iStrideSrc = cxParam * sizeof(COLORREF);
 
    }
 
    if (scan == iStrideSrc)
    {
 
-      memcpy(pcolorrefDst, pcolorrefSrc, cy * scan);
+      memcpy(pcolorrefDst,pcolorrefSrc,cyParam * scan);
 
    }
    else
@@ -113,13 +113,13 @@ void window_graphics::copy_colorref(COLORREF * pcolorrefDst, COLORREF * pcolorre
 
       int wsrc = iStrideSrc / sizeof(COLORREF);
       int wdst = scan / sizeof(COLORREF);
-      int cw = cx * sizeof(COLORREF);
+      int cw = cxParam * sizeof(COLORREF);
 
 
       COLORREF * psrc = pcolorrefSrc;
       COLORREF * pdst = pcolorrefDst;
 
-      for (int i = 0; i < cy; i++)
+      for(int i = 0; i < cyParam; i++)
       {
 
          memcpy(pdst, psrc, cw);

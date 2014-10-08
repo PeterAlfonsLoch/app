@@ -2282,7 +2282,7 @@ namespace user
       if(!slDisplay.lock())
          return;
 
-      m_spdib->Paste(m_spdibBuffer);
+      m_spdib->BitBlt(m_spdibBuffer, 0);
 
       m_spdib->m_bReduced = false;
 
