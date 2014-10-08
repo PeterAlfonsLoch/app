@@ -398,6 +398,9 @@ namespace user
       virtual bool _001HasCommandHandler(id id);
 
 
+      virtual bool get_window_minimum_size(::size & sizeMin);
+
+
    };
 
 

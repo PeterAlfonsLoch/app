@@ -126,7 +126,7 @@ namespace axis
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index iMonitor,LPRECT lprect);
 
-      virtual index initial_frame_position(LPRECT lprect,const RECT & rect, bool bMove);
+      virtual index initial_frame_position(LPRECT lprect,const RECT & rect, bool bMove, ::user::interaction * pui);
 
       virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const RECT & rect);
 
@@ -137,7 +137,7 @@ namespace axis
       virtual index get_good_restore(LPRECT lprect,const RECT & rect);
       virtual index get_good_iconify(LPRECT lprect,const RECT & rect);
 
-      virtual index get_good_move(LPRECT lprect,const RECT & rect);
+      virtual index get_good_move(LPRECT lprect,const RECT & rect, ::user::interaction * pui);
 
       virtual bool  get_window_minimum_size(LPSIZE lpsize);
 

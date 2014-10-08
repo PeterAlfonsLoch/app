@@ -579,7 +579,7 @@ namespace axis
    }
 
 
-   index session::initial_frame_position(LPRECT lprect,const RECT & rectParam, bool bMove)
+   index session::initial_frame_position(LPRECT lprect,const RECT & rectParam, bool bMove, ::user::interaction * pui)
    {
 
       rect rectRestore(rectParam);
@@ -590,7 +590,18 @@ namespace axis
 
       ::size sizeMin;
 
-      get_window_minimum_size(&sizeMin);
+      if(pui != NULL)
+      {
+
+         pui->get_window_minimum_size(&sizeMin);
+
+      }
+      else
+      {
+
+         get_window_minimum_size(&sizeMin);
+
+      }
 
       rect rectIntersect;
 
@@ -989,10 +1000,10 @@ namespace axis
    }
 
 
-   index session::get_good_move(LPRECT lprect,const RECT & rectParam)
+   index session::get_good_move(LPRECT lprect,const RECT & rectParam, ::user::interaction * pui)
    {
 
-      index iMatchingMonitor = initial_frame_position(lprect,rectParam,true);
+      index iMatchingMonitor = initial_frame_position(lprect,rectParam,true, pui);
 
       if(memcmp(lprect,&rectParam,sizeof(RECT)))
       {

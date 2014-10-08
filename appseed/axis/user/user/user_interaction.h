@@ -630,6 +630,8 @@ namespace user
 
       virtual bool is_composite();
 
+      virtual bool get_window_minimum_size(::size & sizeMin);
+
    };
 
 

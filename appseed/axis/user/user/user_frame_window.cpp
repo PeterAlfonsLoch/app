@@ -2065,6 +2065,16 @@ namespace user
    }
 
 
+   bool frame_window::get_window_minimum_size(::size & sizeMin)
+   {
+
+      sizeMin.cx = 0;
+      sizeMin.cy = 0;
+
+      return true;
+
+   }
+
 
 
 } // namespace user
