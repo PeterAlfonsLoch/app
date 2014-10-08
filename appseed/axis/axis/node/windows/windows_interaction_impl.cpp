@@ -4749,7 +4749,7 @@ namespace windows
                      DWORD dwTime2 = ::get_tick_count();
 
                      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-                     TRACE("OnSize::WndImpl call timem= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                     //TRACE("OnSize::WndImpl call timem= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
                   }
 
@@ -4761,7 +4761,7 @@ namespace windows
                      DWORD dwTime2 = ::get_tick_count();
 
                      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-                     TRACE("OnSize::WndImpl call timen= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                     //TRACE("OnSize::WndImpl call timen= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
                   }
 
@@ -4773,7 +4773,7 @@ namespace windows
                      DWORD dwTime2 = ::get_tick_count();
 
                      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-                     TRACE("OnSize::WndImpl call timeo= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                     //TRACE("OnSize::WndImpl call timeo= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
                   }
 

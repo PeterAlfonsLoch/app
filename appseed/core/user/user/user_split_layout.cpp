@@ -277,7 +277,7 @@ namespace user
       split_layout::Pane * pcomponent;
       sp(::user::interaction) pwnd;
       UINT uiBaseFlags = SWP_NOZORDER;
-      UINT uiFlags = 0;
+      UINT uiFlags = uiBaseFlags;
 
 
       for(i = 0; i < iSplitBarCount; i++)
@@ -285,6 +285,7 @@ namespace user
 
          CalcSplitBarRect(i, &rectA);
          pwnd = m_splitbara.element_at(i);
+         uiFlags = uiBaseFlags;
          if(IsWindowVisible())
          {
             if(!pwnd->IsWindowVisible())
@@ -315,7 +316,7 @@ namespace user
          DWORD dwTime2 = ::get_tick_count();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         TRACE("usersplitlayout call time5= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //TRACE("usersplitlayout call time5= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
       }
 
@@ -339,7 +340,7 @@ namespace user
             DWORD dwTime2 = ::get_tick_count();
 
             //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-            TRACE("usersplitlayout call time7= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(),typeid(*pwnd.m_p->m_uiptraChild[0]).name());
+            //TRACE("usersplitlayout call time6= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(),typeid(*pwnd.m_p->m_uiptraChild[0]).name());
 
          }
 
@@ -396,9 +397,19 @@ namespace user
                }
             }
          }
+         if(pwnd != NULL)
+         {
+
+            DWORD dwTime2 = ::get_tick_count();
+
+            //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+            TRACE("usersplitlayout call time7= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(),typeid(*pwnd.m_p->m_uiptraChild[0]).name());
+
+         }
 
          if(pwnd != NULL)
          {
+            uiFlags = uiBaseFlags;
             if(IsWindowVisible())
             {
                if(!pwnd->IsWindowVisible())
@@ -432,7 +443,7 @@ namespace user
          DWORD dwTime2 = ::get_tick_count();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         TRACE("usersplitlayout call time9= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //TRACE("usersplitlayout call time9= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
       }
    }

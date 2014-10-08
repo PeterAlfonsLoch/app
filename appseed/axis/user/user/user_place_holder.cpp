@@ -117,7 +117,8 @@ namespace user
       if(rectWindow != rectClient)
       {
          puiHold->SetWindowPos(ZORDER_TOP, rectClient.left, rectClient.top,
-            rectClient.width(), rectClient.height(), puiHold->IsWindowVisible() ? 0 : SWP_SHOWWINDOW);
+            rectClient.width(), rectClient.height(), 
+            (puiHold->IsWindowVisible() ? SWP_NOZORDER : SWP_SHOWWINDOW));
       }
       else
       {
