@@ -3,6 +3,7 @@
 
 void str_fill(string & str,char ch);
 
+extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 
 namespace user
 {
@@ -2808,8 +2809,28 @@ namespace user
 
    void edit_plain_text::layout()
    {
+      {
+
+         DWORD dwTime2 = ::get_tick_count();
+
+         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         TRACE("SizeManager::Mv call timeE= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+      }
+
 
       scroll_control::layout();
+
+      {
+
+         DWORD dwTime2 = ::get_tick_count();
+
+         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         TRACE("SizeManager::Mv call timeg= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+      }
+
+
 
    }
 

@@ -5,6 +5,7 @@
 
 #define TEST 0
 
+extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 
 simple_frame_window::helper_task::helper_task(simple_frame_window * pframe) :
 ::thread(pframe->get_app()),
@@ -358,13 +359,14 @@ void simple_frame_window::_001OnSize(signal_details * pobj)
 
    UNREFERENCED_PARAMETER(pobj);
 
-   if (does_display_match())
+ /*  if (does_display_match())
    {
 
       WindowDataSaveWindowRect();
 
-   }
+   }*/
 
+   m_phelpertask->m_bSaveWindowRect = true;
 }
 
 
@@ -407,6 +409,15 @@ bool simple_frame_window::pre_create_window(::user::create_struct& cs)
 void simple_frame_window::layout()
 {
 
+   {
+
+      DWORD dwTime2 = ::get_tick_count();
+
+      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+      TRACE("SizeManager::Mv call timeF= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+   }
+
    if (m_bWindowFrame && m_workset.IsAppearanceEnabled())
    {
       //m_workset.layout();
@@ -415,6 +426,15 @@ void simple_frame_window::layout()
    {
       ::user::frame_window::layout();
    }
+   {
+
+      DWORD dwTime2 = ::get_tick_count();
+
+      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+      TRACE("SizeManager::Mv call timeG= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+   }
+
 
 }
 
