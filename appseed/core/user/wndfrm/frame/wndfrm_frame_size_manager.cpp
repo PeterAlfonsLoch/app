@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-
+extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 namespace user
 {
 
@@ -127,6 +127,8 @@ namespace user
          bool SizeManager::_000OnMouseMove(::message::mouse * pmouse)
          {
 
+
+
             if(!m_pworkset->IsSizingEnabled())
                return false;
 
@@ -239,8 +241,32 @@ namespace user
             rect rectWindow;
 
             class rect rectMonitor;
+            {
+
+               DWORD dwTime2 = ::get_tick_count();
+
+               //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+            //   TRACE("SizeManager::Mv call time3= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+            }
+
+
+
+
 
             pwnd->best_monitor(rectMonitor);
+            {
+
+               DWORD dwTime2 = ::get_tick_count();
+
+               //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+              // TRACE("SizeManager::Mv call time4= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+            }
+
+
+
+
 
             if(m_ehittestMode == HitTestSizingTopLeft)
             {
@@ -369,7 +395,36 @@ namespace user
             {
                bSize = false;
             }
+            {
+
+               DWORD dwTime2 = ::get_tick_count();
+
+               //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+               //TRACE("SizeManager::Mv call timeA= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+            }
+
+
+
+
+
+
             MoveWindow(GetSizingWindow(), rectWindow);
+
+            {
+
+               DWORD dwTime2 = ::get_tick_count();
+
+               //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+               //TRACE("SizeManager::Mv call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+            }
+
+
+
+
+
+
             WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->get_draw_window().m_p);
             pinterface->WfiOnSize(bTracking);
             NotifyFramework((EHitTest)m_ehittestMode);
@@ -421,13 +476,34 @@ namespace user
                   ::rect rectTotal;
                   rectTotal.unite(rectBefore, rectAfter);
                   m_pworkset->m_rectPending.unite(rectBefore, rectAfter);
+                  {
+
+                     DWORD dwTime2 = ::get_tick_count();
+
+                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                     TRACE("SizeManager::Mv call timex= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+                  }
+
+
                   pwnd->SetWindowPos(
                      ZORDER_TOP,
                      rectParentClient.left,
                      rectParentClient.top,
                      rectParentClient.width(),
                      rectParentClient.height(),
-                     m_uiSWPFlags);
+                     (m_uiSWPFlags | SWP_NOZORDER) & ~SWP_SHOWWINDOW);
+
+                  {
+
+                     DWORD dwTime2 = ::get_tick_count();
+
+                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                     TRACE("SizeManager::Mv call timey= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+                  }
+
+
                }
                else
                {
