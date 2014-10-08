@@ -2954,53 +2954,24 @@ namespace draw2d
 
       map();
 
-      COLORREF color = make_colorref(a, r, g, b);
-      int64_t size = area();
-
-      COLORREF * pcr;
-
-      int64_t iSize32 = size / 32;
-      int32_t i;
-      for (i=0; i < iSize32; i+=32 )
+      if(a == r && a == g && a == b)
       {
-         pcr = &m_pcolorref[i];
-         pcr[0] = color;
-         pcr[1] = color;
-         pcr[2] = color;
-         pcr[3] = color;
-         pcr[4] = color;
-         pcr[5] = color;
-         pcr[6] = color;
-         pcr[7] = color;
-         pcr[8] = color;
-         pcr[9] = color;
-         pcr[10] = color;
-         pcr[11] = color;
-         pcr[12] = color;
-         pcr[13] = color;
-         pcr[14] = color;
-         pcr[15] = color;
-         pcr[16] = color;
-         pcr[17] = color;
-         pcr[18] = color;
-         pcr[19] = color;
-         pcr[20] = color;
-         pcr[21] = color;
-         pcr[22] = color;
-         pcr[23] = color;
-         pcr[24] = color;
-         pcr[25] = color;
-         pcr[26] = color;
-         pcr[27] = color;
-         pcr[28] = color;
-         pcr[29] = color;
-         pcr[30] = color;
-         pcr[31] = color;
+
+         memset(m_pcolorref,a,area() * sizeof(COLORREF));
+
       }
-
-      for (i=0; i<size; i++ )
+      else
       {
-         m_pcolorref[i]=color;
+
+         COLORREF color = make_colorref(a,r,g,b);
+         int64_t size = area();
+
+         COLORREF * pcr = m_pcolorref;
+
+#pragma omp parallel for
+         for(int64_t i = 0;i < size;i++)
+            pcr[i] = color;
+
       }
 
    }
