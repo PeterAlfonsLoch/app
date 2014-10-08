@@ -1,5 +1,6 @@
 #include "framework.h"
 
+extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 
 namespace user
 {
@@ -218,7 +219,14 @@ namespace user
    void split_layout::layout()
    {
 
+      {
 
+         DWORD dwTime2 = ::get_tick_count();
+
+         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         TRACE("usersplitlayout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+      }
       //TRACE0("split_layout::layout");
       rect rectClient;
       GetClientRect(rectClient);
@@ -268,7 +276,9 @@ namespace user
       int32_t iSplitBarCount = get_split_count();
       split_layout::Pane * pcomponent;
       sp(::user::interaction) pwnd;
+      UINT uiBaseFlags = SWP_NOZORDER;
       UINT uiFlags = 0;
+
 
       for(i = 0; i < iSplitBarCount; i++)
       {
@@ -279,14 +289,14 @@ namespace user
          {
             if(!pwnd->IsWindowVisible())
             {
-               uiFlags = SWP_SHOWWINDOW;
+               uiFlags = uiBaseFlags | SWP_SHOWWINDOW;
             }
          }
          else
          {
             if(pwnd->IsWindowVisible())
             {
-               uiFlags = SWP_HIDEWINDOW;
+               uiFlags = uiBaseFlags | SWP_HIDEWINDOW;
             }
          }
 
@@ -298,6 +308,17 @@ namespace user
             rectA.height(),
             uiFlags);
       }
+
+
+      {
+
+         DWORD dwTime2 = ::get_tick_count();
+
+         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         TRACE("usersplitlayout call time5= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
+      }
+
       bool bVisible;
       
       for(i = 0; i < get_pane_count(); i++)
@@ -309,6 +330,19 @@ namespace user
 
          CalcPaneRect(i,&rectPane);
 
+         pcomponent = m_panea.element_at(i);
+         pwnd = pcomponent->m_pholder;
+
+         if(pwnd != NULL)
+         {
+
+            DWORD dwTime2 = ::get_tick_count();
+
+            //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+            TRACE("usersplitlayout call time7= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(),typeid(*pwnd.m_p->m_uiptraChild[0]).name());
+
+         }
+
          rectClient = rectPane;
 
          rectClient.deflate(m_cxBorder,m_cyBorder);
@@ -318,8 +352,6 @@ namespace user
             bVisible = false;
          else
             bVisible = true;
-         pcomponent = m_panea.element_at(i);
-         pwnd = pcomponent->m_pholder;
          bool bHSVisible;
          bool bVSVisible;
          if(m_panea[i].m_bFixedSize)
@@ -371,18 +403,37 @@ namespace user
             {
                if(!pwnd->IsWindowVisible())
                {
-                  uiFlags = SWP_SHOWWINDOW;
+                  uiFlags = uiBaseFlags | SWP_SHOWWINDOW;
                }
             }
             else
             {
                if(pwnd->IsWindowVisible())
                {
-                  uiFlags = SWP_HIDEWINDOW;
+                  uiFlags = uiBaseFlags | SWP_HIDEWINDOW;
                }
             }
             pwnd->SetWindowPos(ZORDER_TOP, rectClient, uiFlags);
+            {
+
+               DWORD dwTime2 = ::get_tick_count();
+
+               //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+               TRACE("usersplitlayout call time8= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(), typeid(*pwnd.m_p->m_uiptraChild[0]).name());
+
+            }
+
          }
+      }
+
+
+      {
+
+         DWORD dwTime2 = ::get_tick_count();
+
+         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         TRACE("usersplitlayout call time9= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+
       }
    }
 
