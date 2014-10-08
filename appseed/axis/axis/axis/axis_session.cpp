@@ -593,7 +593,7 @@ namespace axis
       if(pui != NULL)
       {
 
-         pui->get_window_minimum_size(&sizeMin);
+         pui->get_window_minimum_size(sizeMin);
 
       }
       else
@@ -975,10 +975,10 @@ namespace axis
    }
 
 
-   index session::get_good_restore(LPRECT lprect,const RECT & rectParam)
+   index session::get_good_restore(LPRECT lprect,const RECT & rectParam, ::user::interaction * pui)
    {
 
-      return initial_frame_position(lprect,rectParam,false);
+      return initial_frame_position(lprect,rectParam,false, pui);
 
    }
 

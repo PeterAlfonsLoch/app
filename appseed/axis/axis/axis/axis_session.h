@@ -134,7 +134,7 @@ namespace axis
       virtual index get_best_zoneing(::user::EAppearance * peappearance, LPRECT lprect,const RECT & rect);
       virtual index get_best_monitor(LPRECT lprect,const RECT & rect);
       virtual index get_best_wkspace(LPRECT lprect,const RECT & rect);
-      virtual index get_good_restore(LPRECT lprect,const RECT & rect);
+      virtual index get_good_restore(LPRECT lprect,const RECT & rect, ::user::interaction * pui);
       virtual index get_good_iconify(LPRECT lprect,const RECT & rect);
 
       virtual index get_good_move(LPRECT lprect,const RECT & rect, ::user::interaction * pui);
