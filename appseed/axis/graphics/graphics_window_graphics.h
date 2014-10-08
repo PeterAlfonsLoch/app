@@ -19,10 +19,10 @@ public:
    virtual void destroy_window_graphics();
 
 
-   virtual void update_window(COLORREF * pOsBitmapData, const RECT & rect, int iStride = -1);
+   virtual void update_window(COLORREF * pOsBitmapData, const RECT & rect, int cxParam, int cyParam, int iStride = -1);
 
 
-   static void update_window(window_graphics * & pdata, oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int iStride = -1);
+   static void update_window(window_graphics * & pdata, oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int cxParam, int cyParam, int iStride = -1);
 
    virtual void copy_colorref(int cx, int cy, COLORREF * pcolorrefDst, COLORREF * pcolorrefSrc, int iStrideSrc);
 

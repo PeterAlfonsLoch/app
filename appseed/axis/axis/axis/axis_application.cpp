@@ -1873,10 +1873,10 @@ namespace axis
    }
 
 
-   void application::window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int iStride)
+   void application::window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam, int cyParam, int iStride)
    {
 
-      window_graphics::update_window(pdata,interaction_impl,pOsBitmapData,rect,iStride);
+      window_graphics::update_window(pdata,interaction_impl,pOsBitmapData,rect,cxParam, cyParam, iStride);
 
    }
 

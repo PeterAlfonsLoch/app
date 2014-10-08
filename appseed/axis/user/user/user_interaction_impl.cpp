@@ -2282,7 +2282,7 @@ namespace user
       if(!slDisplay.lock())
          return;
 
-      m_spdib->BitBlt(m_spdibBuffer, 0);
+      m_spdib->BitBlt(rectWindow.width(), rectWindow.height(), m_spdibBuffer, 1);
 
       m_spdib->m_bReduced = false;
 
@@ -2321,12 +2321,22 @@ namespace user
          if(m_spdib.is_null())
             m_spdib.alloc(allocer());
 
-         m_spdib->create(rectWindow.size());
+         if(rectWindow.width() > m_spdib->m_size.cx
+            || rectWindow.height() > m_spdib->m_size.cy)
+         {
 
+            m_spdib->create(rectWindow.size());
+
+         }
+   
          if(m_spdibBuffer.is_null())
             m_spdibBuffer.alloc(allocer());
 
-         m_spdibBuffer->create(rectWindow.size());
+         if(rectWindow.width() > m_spdibBuffer->m_size.cx
+            || rectWindow.height() > m_spdibBuffer->m_size.cy)
+         {
+            m_spdibBuffer->create(rectWindow.size());
+         }
 
          m_size = rectWindow.size();
 

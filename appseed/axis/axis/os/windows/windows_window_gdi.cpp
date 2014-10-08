@@ -21,11 +21,11 @@ window_gdi::~window_gdi()
 void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
 
-   if(cxParam < cx && cyParam < cy)
-      return;
+   //if(cxParam < cx && cyParam < cy)
+     // return;
 
-   cxParam += 100;
-   cyParam += 100;
+   //cxParam += 100;
+   //cyParam += 100;
 
    destroy_window_graphics();
 
@@ -132,7 +132,7 @@ void window_gdi::destroy_window_graphics()
 }
 
 
-void window_gdi::update_window(COLORREF * pcolorref, const RECT & rect, int iStride)
+void window_gdi::update_window(COLORREF * pcolorref,const RECT & rect,int cxParam,int cyParam,int iStride)
 {
 
    if (width(rect) <= 0 || height(rect) <= 0)
@@ -163,7 +163,7 @@ void window_gdi::update_window(COLORREF * pcolorref, const RECT & rect, int iStr
    try
    {
 
-      copy_colorref(width(rectWindow),height(rectWindow),m_pcolorref,pcolorref,iStride);
+      copy_colorref(cxParam, cyParam,m_pcolorref,pcolorref,iStride);
 
    }
    catch (...)
