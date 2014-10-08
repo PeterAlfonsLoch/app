@@ -44,7 +44,7 @@ void window_graphics::destroy_window_graphics()
 void window_graphics::update_window(window_graphics * & pdata, oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int cxParam, int cyParam, int iStride)
 {
 
-   if (pdata == NULL || (pdata->cx != width(rect) || pdata->cy != height(rect)))
+   if (pdata == NULL || (pdata->cx != cxParam || pdata->cy != cyParam))
    {
 
       if (pdata == NULL)
@@ -65,7 +65,7 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow interact
       if (pdata != NULL)
       {
 
-         pdata->create_window_graphics(interaction_impl, width(rect), height(rect), iStride);
+         pdata->create_window_graphics(interaction_impl, cxParam, cyParam, iStride);
 
       }
 

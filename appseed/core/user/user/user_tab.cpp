@@ -1090,7 +1090,7 @@ namespace user
          rectTabClient.right      = get_data()->m_rectTab.right;
          rectTabClient.bottom     = rectClient.bottom;
 
-         TRACE0("rectTabClient");
+         //TRACE0("rectTabClient");
       }
 
       for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
@@ -1129,7 +1129,8 @@ namespace user
 
          ScreenToClient(rectWindow);
 
-         pholder->SetWindowPos(ZORDER_TOP, rectChild.left, rectChild.top, rectChild.width(), rectChild.height(), _001GetSel() == iPane ? SWP_SHOWWINDOW : 0);
+         pholder->SetWindowPos(ZORDER_TOP, rectChild.left, rectChild.top, rectChild.width(), rectChild.height(), 
+            _001GetSel() == iPane ? (pholder->IsWindowVisible() ? 0 : SWP_SHOWWINDOW) : 0);
 
          //pholder->layout();
 

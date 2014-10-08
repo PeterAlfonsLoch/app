@@ -2334,7 +2334,7 @@ namespace user
 
          if(m_spdib->size() != m_spdibBuffer->size())
          {
-            m_spdibBuffer->create(rectWindow.size());
+            m_spdibBuffer->create(m_spdib->size());
          }
 
          m_size = rectWindow.size();

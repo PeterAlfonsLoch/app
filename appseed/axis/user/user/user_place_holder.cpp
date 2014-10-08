@@ -117,11 +117,14 @@ namespace user
       if(rectWindow != rectClient)
       {
          puiHold->SetWindowPos(ZORDER_TOP, rectClient.left, rectClient.top,
-            rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
+            rectClient.width(), rectClient.height(), puiHold->IsWindowVisible() ? 0 : SWP_SHOWWINDOW);
       }
       else
       {
-         puiHold->ShowWindow(SW_SHOW);
+         if(!puiHold->IsWindowVisible())
+         {
+            puiHold->ShowWindow(SW_SHOW);
+         }
          puiHold->layout();
       }
 

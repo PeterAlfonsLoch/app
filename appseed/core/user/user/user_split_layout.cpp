@@ -219,7 +219,7 @@ namespace user
    {
 
 
-      TRACE0("split_layout::layout");
+      //TRACE0("split_layout::layout");
       rect rectClient;
       GetClientRect(rectClient);
       int32_t iDimension = get_normal_dimension();
@@ -268,22 +268,28 @@ namespace user
       int32_t iSplitBarCount = get_split_count();
       split_layout::Pane * pcomponent;
       sp(::user::interaction) pwnd;
-      UINT uiFlags;
-
-      if(IsWindowVisible())
-      {
-         uiFlags = SWP_SHOWWINDOW;
-      }
-      else
-      {
-         uiFlags = SWP_HIDEWINDOW;
-      }
+      UINT uiFlags = 0;
 
       for(i = 0; i < iSplitBarCount; i++)
       {
 
          CalcSplitBarRect(i, &rectA);
          pwnd = m_splitbara.element_at(i);
+         if(IsWindowVisible())
+         {
+            if(!pwnd->IsWindowVisible())
+            {
+               uiFlags = SWP_SHOWWINDOW;
+            }
+         }
+         else
+         {
+            if(pwnd->IsWindowVisible())
+            {
+               uiFlags = SWP_HIDEWINDOW;
+            }
+         }
+
          pwnd->SetWindowPos(
             ZORDER_TOP,
             rectA.left,
@@ -361,6 +367,20 @@ namespace user
 
          if(pwnd != NULL)
          {
+            if(IsWindowVisible())
+            {
+               if(!pwnd->IsWindowVisible())
+               {
+                  uiFlags = SWP_SHOWWINDOW;
+               }
+            }
+            else
+            {
+               if(pwnd->IsWindowVisible())
+               {
+                  uiFlags = SWP_HIDEWINDOW;
+               }
+            }
             pwnd->SetWindowPos(ZORDER_TOP, rectClient, uiFlags);
          }
       }
