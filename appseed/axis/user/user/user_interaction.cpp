@@ -4883,7 +4883,7 @@ namespace user
 
       ::rect rectNew;
 
-      index iMatchingMonitor = Session.get_good_restore(rectNew,rectWindow);
+      index iMatchingMonitor = Session.get_good_restore(rectNew,rectWindow, this);
 
       if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
@@ -5065,7 +5065,7 @@ namespace user
 
       ::rect rectNew;
 
-      index iMatchingMonitor = Session.get_good_move(rectNew,rectWindow);
+      index iMatchingMonitor = Session.get_good_move(rectNew,rectWindow, this);
 
       if(!::IsRectEmpty(&rect) || iMatchingMonitor >= 0)
       {
