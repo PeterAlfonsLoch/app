@@ -10,7 +10,7 @@ CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int 
 namespace fontopus
 {
 
-   
+
    UINT c_cdecl thread_proc_pre_login(void * p);
    UINT c_cdecl thread_proc_defer_translate_login(void * p);
 
@@ -71,7 +71,7 @@ namespace fontopus
          }
 
       }
-       
+
       Sleep(49);
 
       ::aura::del(m_plabelUser);
@@ -138,7 +138,7 @@ namespace fontopus
       /*
       if (m_bSelfLayout)
       {
-         
+
 
          double dwh = (double)stdw / (double)stdh;
 
@@ -182,20 +182,20 @@ namespace fontopus
       }
       else
       {
-         
+
          GetClientRect(rectClient);
 
       }*/
 
-      
+
       w = (int)(rectClient.width());
 
       h = (int)(rectClient.height());
-      
+
       m_dRateX = (double)w / (double)stdw;
 
       m_dRateY = (double)h / (double)stdh;
-      
+
       double rx = m_dRateX;
 
       double ry = m_dRateY;
@@ -437,7 +437,7 @@ namespace fontopus
 
       __begin_thread(get_app(),thread_proc_pre_login,get_app());
       __begin_thread(get_app(),thread_proc_defer_translate_login,m_pploginDeferTranslate);
-      
+
    }
 
    UINT c_cdecl thread_proc_defer_translate_login(void * p)
@@ -451,12 +451,11 @@ namespace fontopus
       goto end;
 
       {
-         
+
          string strFontopusServer = Sess((*pplogin)->get_app()).fontopus()->get_server((*pplogin)->m_strRequestUrl);
 
          if(*pplogin == NULL)
             goto end;
-
 
          string strUser = Sess((*pplogin)->get_app()).fontopus()->m_mapLabelUser[strFontopusServer];
 
@@ -603,7 +602,7 @@ namespace fontopus
       */
    }
 
-   
+
    UINT c_cdecl thread_proc_pre_login(void * p)
    {
 

@@ -7,7 +7,8 @@ namespace fontopus
 
    fontopus::fontopus(::aura::application * papp) :
       element(papp),
-      ::aura::departament(papp)
+      ::aura::departament(papp),
+      m_mutex(papp)
    {
 
       m_puser                       = NULL;
@@ -43,7 +44,7 @@ namespace fontopus
 
    user * fontopus::create_current_user(const char * pszRequestUrl)
    {
-      
+
       property_set set(get_app());
 
       if(m_puser == NULL)
@@ -51,7 +52,7 @@ namespace fontopus
 
          if(pszRequestUrl != NULL)
          {
-            
+
             set["ruri"] = pszRequestUrl;
 
          }
@@ -116,14 +117,14 @@ namespace fontopus
       user * puser = NULL;
 
       class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true);
-      
+
       authuser.m_bDeferRegistration = true;
 
       authuser.propset().merge(set);
 
       if(set.has_property("ruri"))
       {
-         
+
          puser = authuser.get_user(set["ruri"]);
 
       }
@@ -427,12 +428,16 @@ namespace fontopus
 
       }
 
+      synch_lock sl(&m_mutex);
+
       string strFontopusServer;
 
       if (m_mapFontopusServer.Lookup(strHost, strFontopusServer) && strFontopusServer.has_char())
       {
          return strFontopusServer;
       }
+
+      sl.unlock();
 
       ::sockets::socket_handler h(get_app());
 
@@ -444,7 +449,7 @@ namespace fontopus
       iRetry--;
 
       string strGetFontopus;
-      
+
       if(::str::ends(strHost,".ca2.cc"))
       {
          strGetFontopus = "https://" + strHost + "/get_fontopus_login";
@@ -514,6 +519,8 @@ namespace fontopus
       strSomeBrothersAndSisters = doc.get_root()->attr("some_brothers_and_sisters");
 
       ::sockets::net::dns_cache_item item = Session.sockets().net().m_mapCache[strHost];
+
+      sl.lock();
 
       if(strSomeBrothersAndSisters.has_char())
       {

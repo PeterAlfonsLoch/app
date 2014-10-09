@@ -11,6 +11,7 @@ namespace fontopus
    public:
 
 
+      mutex                                        m_mutex;
       class create_user_thread *                   m_pthreadCreatingUser;
       user *                                       m_puser;
       string_to_string                             m_mapFontopusServer;
