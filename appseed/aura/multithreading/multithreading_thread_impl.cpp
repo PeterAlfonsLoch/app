@@ -1250,7 +1250,7 @@ int32_t thread_impl::run()
          if(m_spuiptra.is_set() && m_spuiptra->get_count() > 0)
          {
 
-               ml.lock(millis(1),false,QS_ALLEVENTS);
+               ml.lock(millis(25),false,QS_ALLEVENTS);
 
          }
          else
