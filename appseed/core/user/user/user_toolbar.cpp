@@ -1586,34 +1586,36 @@ throw todo(get_app());
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS)
 
-      ::user::toolbar_item item;
+      sp(::user::toolbar_item) item;
 
       for(int32_t i = 0; i < childs.get_size(); i++)
       {
          sp(::xml::node) pchild = childs(i);
          if(pchild->get_name() == "button")
          {
+            item = canew(::user::toolbar_item);
             xml::attr * pattr = pchild->find_attr("id");
-            item.m_id = pattr->get_string();
-            item.m_str = pchild->get_value();
+            item->m_id = pattr->get_string();
+            item->m_str = pchild->get_value();
             if(pchild->attr("image").get_string().has_char())
             {
-               item.m_spdib.alloc(allocer());
-               item.m_spdib.load_from_file(pchild->attr("image"));
+               item->m_spdib.alloc(allocer());
+               item->m_spdib.load_from_file(pchild->attr("image"));
             }
             if(pchild->attr("enable_if_has_command_handler").get_string().has_char())
             {
-               item.m_bEnableIfHasCommandHandler = pchild->attr("enable_if_has_command_handler").get_string().CompareNoCase("true") == 0;
+               item->m_bEnableIfHasCommandHandler = pchild->attr("enable_if_has_command_handler").get_string().CompareNoCase("true") == 0;
             }
-            item.m_fsStyle &= ~TBBS_SEPARATOR;
-            m_itema.add(new ::user::toolbar_item(item));
+            item->m_fsStyle &= ~TBBS_SEPARATOR;
+            m_itema.add(item);
          }
          else if(pchild->get_name() == "separator")
          {
-            item.m_id = "separator";
-            item.m_str = "";
-            item.m_fsStyle |= TBBS_SEPARATOR;
-            m_itema.add(new ::user::toolbar_item(item));
+            item = canew(::user::toolbar_item);
+            item->m_id = "separator";
+            item->m_str = "";
+            item->m_fsStyle |= TBBS_SEPARATOR;
+            m_itema.add(item);
          }
       }
 
@@ -1638,6 +1640,12 @@ throw todo(get_app());
       m_fsState                     = 0;
       m_fsStyle                     = 0;
       m_bEnableIfHasCommandHandler  = true;
+
+
+   }
+
+   toolbar_item::~toolbar_item()
+   {
 
 
    }

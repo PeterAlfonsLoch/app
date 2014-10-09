@@ -678,10 +678,10 @@ namespace user
 
    bool frame_window::on_create_client(::user::create_struct *, sp(::create_context) pContext)
    {
-      
+
       if (pContext != NULL && (pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL))
       {
-         
+
          if (::user::impact::s_create_view(pContext, null_rect(), this, "pane_first") == NULL)
             return false;
 
@@ -859,12 +859,12 @@ namespace user
 
    void frame_window::InitialFramePosition(bool bForceRestore)
    {
-      
+
       UNREFERENCED_PARAMETER(bForceRestore);
-      
+
       if (m_bFrameMoveEnable)
       {
-      
+
 //         good_restore(NULL, true);
 
       }
@@ -1181,7 +1181,7 @@ namespace user
 
    sp(::user::impact) frame_window::GetActiveView() const
    {
-      
+
       ASSERT(m_pViewActive == NULL || base_class < ::user::impact >::bases(m_pViewActive));
 
       return m_pViewActive;
@@ -1539,7 +1539,7 @@ namespace user
          DWORD dwTime2 = ::get_tick_count();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         TRACE("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //TRACE("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
       }
 
@@ -1569,7 +1569,7 @@ namespace user
             DWORD dwTime2 = ::get_tick_count();
 
             //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-            TRACE("userframewindoB call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+            //TRACE("userframewindoB call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
          }
 
@@ -1762,10 +1762,10 @@ namespace user
 #ifdef WINDOWS
 
       SCAST_PTR(::message::base, pbase, pobj);
-      
+
       if (GetParent() == NULL)
       {
-         
+
          if (pbase->m_wparam == SC_RESTORE)
          {
 
@@ -1990,9 +1990,9 @@ namespace user
 
    void frame_window::_001OnSize(signal_details * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
-      
+
    }
 
 

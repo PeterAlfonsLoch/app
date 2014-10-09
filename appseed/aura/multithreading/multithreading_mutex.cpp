@@ -381,6 +381,12 @@ wait_result mutex::wait(const duration & duration)
 
    uint32_t start = ::get_tick_count();
 
+   if(dwTimeout == (uint32_t) INFINITE)
+   {
+      dwTimeout = 30000 + 1977;
+      ((::duration&)  duration) = millis(dwTimeout);
+   }
+
    if(m_semid >= 0)
    {
       //Wait for Zero
@@ -474,6 +480,11 @@ wait_result mutex::wait(const duration & duration)
           }
        }
      }
+   }
+
+   if(dwTimeout == 30000 + 1977)
+   {
+      printf("HAHAHA");
    }
 
    return wait_result(wait_result::Timeout);

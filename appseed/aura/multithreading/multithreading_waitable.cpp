@@ -19,7 +19,7 @@ waitable::waitable(const waitable & objectSrc)
    UNREFERENCED_PARAMETER(objectSrc);
 
    m_pmutex = NULL;
-   
+
 }
 
 
@@ -52,7 +52,7 @@ void waitable::wait()
 wait_result waitable::wait(const duration & duration )
 {
 
-   
+
    if(m_pmutex == NULL)
    {
 
@@ -109,7 +109,7 @@ CLASS_DECL_AURA void sleep(const duration & duration)
 
 void * waitable::get_os_data() const
 {
-   
+
    if(m_pmutex == NULL)
    {
 
@@ -123,15 +123,16 @@ void * waitable::get_os_data() const
 
 void waitable::lock()
 {
-   
+
    if(!lock(duration::infinite()))
-      throw "failure to lock waitable";
+      if(!lock(duration::infinite()))
+         throw "failure to lock waitable";
 
 }
 
 bool waitable::lock(const duration & duration)
 {
-   
+
    if(m_pmutex == NULL)
    {
 
@@ -164,7 +165,7 @@ bool waitable::lock(const duration & duration)
 
 bool waitable::unlock()
 {
-   
+
    if(m_pmutex == NULL)
       return false;
 

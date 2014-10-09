@@ -21,14 +21,14 @@ namespace http
 
       if ((bool)set["raw_http"] || (bool)set["disable_ca2_sessid"]
          || ::str::find_ci("/matter.ca2.cc/", pszUrl) >= 0 || ::str::find_ci("-matter.ca2.cc/", pszUrl) >= 0
-         || ::str::find_ci("/get_fontopus_login",pszUrl) >= 0 
+         || ::str::find_ci("/get_fontopus_login",pszUrl) >= 0
          || ::str::find_ci("sessid=noauth", pszUrl) >= 0
          || ::str::find_ci("/matter/",System.url().get_script(pszUrl)) == 0
          || set["user"].cast < ::fontopus::user >() != NULL)
          return set;
-      
+
       string strWorkUrl;
-         
+
       if (get_thread() != NULL)
       {
 
@@ -55,7 +55,7 @@ namespace http
 
    ::sockets::http_client_socket * application::get(::sockets::socket_handler & handler,  const char * pszUrl, property_set & set)
    {
-      
+
       return System.http().get(handler, pszUrl, process_set(set, pszUrl));
 
    }
@@ -93,7 +93,7 @@ namespace http
       }
       else if(psignal->m_puser == NULL)
       {
-         psignal->m_puser = &ApplicationUser;
+         //psignal->m_puser = &ApplicationUser;
          psignal->m_set["app"] = get_app();
       }
       System.http().get(pobj);

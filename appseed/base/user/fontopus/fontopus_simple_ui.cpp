@@ -22,7 +22,7 @@ namespace fontopus
       m_login.m_pstyle = this;
       m_bLButtonDown = false;
       m_bFontopusSimpleUiLayout = false;
-      
+
 
    }
 
@@ -48,7 +48,7 @@ namespace fontopus
 
    }
 
-   
+
    void simple_ui::_001OnCreate(signal_details * pobj)
    {
 
@@ -231,7 +231,7 @@ namespace fontopus
       //m_login.layout();
 
       m_login.ShowWindow(SW_NORMAL);
-      
+
       SetForegroundWindow();
 
       ShowWindow(SW_NORMAL);
@@ -408,7 +408,7 @@ namespace fontopus
 
       if (pobj->previous())
          return;
-      
+
       GetWindow()->show_keyboard(false);
 
       m_bLButtonDown = true;
@@ -478,8 +478,6 @@ namespace fontopus
    string CLASS_DECL_BASE get_cred(::aura::application * papp, const string & strRequestUrl, const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
-      ::fontopus::simple_ui ui(papp, strRequestUrl);
-
       string str = get_cred(papp, strUsername, strPassword, strToken);
 
       if (str == "ok")
@@ -488,13 +486,17 @@ namespace fontopus
       if(!bInteractive)
          return "failed";
 
-      ui.m_login.m_peditUser->SetWindowText(strUsername);
+      sp(::fontopus::simple_ui) pui;
 
-      ui.m_login.m_ppassword->SetWindowText("");
+      pui = canew(::fontopus::simple_ui(papp, strRequestUrl));
 
-      string strResult = ui.get_cred(rect, strUsername, strPassword, strToken, strTitle);
+      pui->m_login.m_peditUser->SetWindowText(strUsername);
 
-      ui.DestroyWindow();
+      pui->m_login.m_ppassword->SetWindowText("");
+
+      string strResult = pui->get_cred(rect, strUsername, strPassword, strToken, strTitle);
+
+      pui->DestroyWindow();
 
       return strResult;
 

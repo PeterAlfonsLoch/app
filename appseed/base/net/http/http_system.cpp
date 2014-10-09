@@ -582,7 +582,7 @@ namespace http
          {
             *pestatus = status_failed;
          }*/
-         delete psession;
+         //delete psession;
          uint32_t dwTimeProfile2 = get_tick_count();
          TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
          return NULL;
@@ -749,7 +749,7 @@ retry:
             }
 
          }
-         if (set["user"].cast < ::fontopus::user >() != NULL && 
+         if (set["user"].cast < ::fontopus::user >() != NULL &&
             (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
             if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
          {
@@ -797,7 +797,7 @@ retry:
 
          psession->m_host  =System.url().get_server(pszRequest);
          psession->m_request.m_propertysetHeader[__id(host)] = psession->m_host;
-         
+
 
          bool bPost;
          bool bPut;
@@ -874,7 +874,7 @@ retry:
          oprop("dw") = ::get_tick_count();
 
 
-         
+
          set["get_headers"] = psession->outheaders();
 
 //            string strSessId;
@@ -976,7 +976,7 @@ retry:
          }
          else
          {
-          
+
             set["get_memory"] = canew(::primitive::memory(psession->GetDataPtr(), psession->GetContentLength()));
 
          }
@@ -1451,7 +1451,7 @@ retry:
 
       if (set.has_property("get_response"))
       {
-         
+
          set["get_response"] = string((const char *) psocket->GetDataPtr(), psocket->GetContentLength());
 
       }
@@ -1505,9 +1505,9 @@ retry:
 
    void system::get(signal_details * pobj)
    {
-      
+
       SCAST_PTR(signal, psignal, pobj);
-      
+
       if(psignal == NULL)
       {
          return;
@@ -1594,7 +1594,7 @@ retry:
 
    bool system::download(const char * pszUrl, const char * pszFile, property_set & set)
    {
-      
+
       ::sockets::socket_handler handler(get_app());
 
       ::file::buffer_sp spfile = set.cast < ::aura::application >("app", get_app())->m_pbasesession->file().get_file(pszFile,
@@ -1699,7 +1699,7 @@ retry:
 
       if (iStatusCode == 200)
       {
-         
+
          return psocket->outheader(__id(content_length));
 
       }
@@ -1709,7 +1709,7 @@ retry:
          return var(var::type_null);
 
       }
-      
+
 
    }
 
@@ -1794,7 +1794,7 @@ retry:
 
    bool system::put(const char * pszUrl, primitive::memory_base & memory, property_set & set)
    {
-      
+
       ::file::memory_buffer file(get_app(), &memory);
 
       return put(pszUrl, &file, set);

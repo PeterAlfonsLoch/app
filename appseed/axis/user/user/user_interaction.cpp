@@ -3171,7 +3171,6 @@ namespace user
       if(m_bLockWindowUpdate)
          return;
 
-
       m_pimpl->_001UpdateScreen();
 
    }
@@ -3182,7 +3181,6 @@ namespace user
 
       if(m_bLockWindowUpdate)
          return;
-
 
       m_pimpl->_001UpdateBuffer();
 
@@ -3384,7 +3382,7 @@ namespace user
 
       if(puiStop == this)
       {
-         
+
          return;
 
       }
@@ -5622,7 +5620,7 @@ namespace user
       if(m_pimpl == NULL)
          return true; // optimistic response, assume always true alpha blendable
 
-      return m_pimpl->is_composite(); 
+      return m_pimpl->is_composite();
 
    }
 

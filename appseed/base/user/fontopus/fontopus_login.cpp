@@ -55,7 +55,7 @@ namespace fontopus
 
    login::~login()
    {
-
+/*
       if(m_pploginDeferTranslate != NULL)
       {
 
@@ -72,7 +72,7 @@ namespace fontopus
 
       }
 
-      Sleep(49);
+      Sleep(49);*/
 
       ::aura::del(m_plabelUser);
       ::aura::del(m_peditUser);
@@ -435,6 +435,8 @@ namespace fontopus
 
       *m_pploginDeferTranslate = this;
 
+      add_ref();
+
       __begin_thread(get_app(),thread_proc_pre_login,get_app());
       __begin_thread(get_app(),thread_proc_defer_translate_login,m_pploginDeferTranslate);
 
@@ -452,7 +454,9 @@ namespace fontopus
 
       {
 
-         string strFontopusServer = Sess((*pplogin)->get_app()).fontopus()->get_server((*pplogin)->m_strRequestUrl);
+         string strRequestUrl = (*pplogin)->m_strRequestUrl;
+
+         string strFontopusServer = Sess((*pplogin)->get_app()).fontopus()->get_server(strRequestUrl);
 
          if(*pplogin == NULL)
             goto end;
@@ -489,7 +493,7 @@ namespace fontopus
       try
       {
 
-      (*pplogin) = NULL;
+         (*pplogin)->release();
 
       }
       catch(...)

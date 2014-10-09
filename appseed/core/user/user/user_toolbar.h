@@ -42,6 +42,7 @@ namespace user
 
 
       toolbar_item();
+      virtual ~toolbar_item();
 
 
    };

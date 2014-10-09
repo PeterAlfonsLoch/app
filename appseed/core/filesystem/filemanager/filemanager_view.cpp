@@ -54,9 +54,9 @@ namespace filemanager
                }
                else if (puh->is_type_of(update_hint::TypePop))
                {
-                  
+
                   OnActivateFrame(WA_INACTIVE, ((GetParentFrame())));
-                  
+
                   sp(::user::frame_window) spframewindow = GetParentFrame();
 
                   if (spframewindow.is_set())
@@ -65,7 +65,7 @@ namespace filemanager
                      spframewindow->ActivateFrame(SW_SHOW);
 
                   }
-                  
+
                   OnActivateView(TRUE, this, this);
 
                   RedrawWindow();
@@ -74,12 +74,12 @@ namespace filemanager
                else if(puh->is_type_of(update_hint::TypeCreateBars))
                {
 
-                  sp(simple_frame_window) pframe = (GetParentFrame());
+                  //sp(simple_frame_window) pframe = (GetParentFrame());
 
-                  if(pframe != NULL)
+                  //if(pframe != NULL)
                   {
 
-                     pframe->create_bars();
+                    // pframe->create_bars();
 
                   }
 
@@ -213,7 +213,7 @@ namespace filemanager
       set_position(0, 24);
 
       initialize_split_layout();
-      
+
       path_view * ppathview = create_view < path_view >();
 
       if (ppathview == NULL)

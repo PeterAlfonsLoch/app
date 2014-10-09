@@ -224,7 +224,7 @@ namespace user
          DWORD dwTime2 = ::get_tick_count();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         TRACE("usersplitlayout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //TRACE("usersplitlayout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
       }
       //TRACE0("split_layout::layout");
@@ -321,7 +321,7 @@ namespace user
       }
 
       bool bVisible;
-      
+
       for(i = 0; i < get_pane_count(); i++)
       {
 
@@ -403,7 +403,7 @@ namespace user
             DWORD dwTime2 = ::get_tick_count();
 
             //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-            TRACE("usersplitlayout call time7= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(),typeid(*pwnd.m_p->m_uiptraChild[0]).name());
+            //TRACE("usersplitlayout call time7= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(),typeid(*pwnd.m_p->m_uiptraChild[0]).name());
 
          }
 
@@ -430,7 +430,7 @@ namespace user
                DWORD dwTime2 = ::get_tick_count();
 
                //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-               TRACE("usersplitlayout call time8= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(), typeid(*pwnd.m_p->m_uiptraChild[0]).name());
+               //TRACE("usersplitlayout call time8= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(), typeid(*pwnd.m_p->m_uiptraChild[0]).name());
 
             }
 

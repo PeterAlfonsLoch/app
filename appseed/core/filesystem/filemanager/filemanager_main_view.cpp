@@ -83,11 +83,10 @@ namespace filemanager
 
                   sp(simple_frame_window) pframe = GetParentFrame();
 
-                  if(pframe != NULL)
+                  //if(pframe != NULL)
                   {
 
-                     pframe->create_bars();
-
+ //                    pframe->create_bars();
                   }
 
                }

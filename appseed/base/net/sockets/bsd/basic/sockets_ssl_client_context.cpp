@@ -45,7 +45,7 @@ namespace sockets
 
    void ssl_client_context::InitializeContext(const SSL_METHOD *meth_in)
    {
-      ERR_load_ERR_strings();
+      //ERR_load_ERR_strings();
       const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
       m_pcontext = SSL_CTX_new(meth);
       char buf[255];
