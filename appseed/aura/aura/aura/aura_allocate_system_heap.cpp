@@ -1,5 +1,6 @@
 #include "framework.h"
 
+#define PREFER_MALLOC 1
 
 // uint32_t aligned allocation
 
@@ -31,7 +32,7 @@ void * system_heap_alloc(size_t size)
    
    void * p;
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) && !defined(PREFER_MALLOC)
 
    p = ::HeapAlloc(g_system_heap(), 0, size);
 
@@ -59,7 +60,7 @@ void * system_heap_realloc(void * p, size_t size)
 
    synch_lock lock(g_pmutexSystemHeap);
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) && !defined(PREFER_MALLOC)
 
    return ::HeapReAlloc(g_system_heap(), 0, p, size);
 
@@ -77,7 +78,7 @@ void system_heap_free(void * p)
 
    synch_lock lock(g_pmutexSystemHeap);
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) && !defined(PREFER_MALLOC)
 
    if(!::HeapFree(g_system_heap(), 0, p))
    {
