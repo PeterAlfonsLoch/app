@@ -121,7 +121,8 @@ namespace primitive
       inline void eat_begin(void * pdata, memory_size iSize);
       inline void set_data(void * pdata, memory_size uiSize);
       inline void copy_from(const memory_base * pstorage);
-      inline void set(byte b, memory_size uiSize = -1);
+      inline void set(byte b,memory_position iStart = 0,memory_size uiSize = -1);
+      inline void zero(memory_position iStart = 0, memory_size uiSize = -1);
 
       inline void append(const memory_base & memory, memory_position iStart = 0, memory_size iCount = -1);
       inline void append(const void * pdata, memory_size iCount);
@@ -335,11 +336,16 @@ namespace primitive
       memcpy(get_data(), pdata, (size_t) uiSize);
    }
 
-   inline void memory_base::set(byte b, memory_size uiSize)
+   inline void memory_base::set(byte b, memory_position iStart, memory_size uiSize)
    {
-      if(uiSize > get_size())
-         uiSize = get_size();
-      memset(get_data(), b, (size_t) uiSize);
+      if(uiSize + iStart > get_size())
+         uiSize = get_size() - iStart;
+      memset(get_data() + iStart, b, (size_t) uiSize);
+   }
+
+   inline void memory_base::zero(memory_position iStart,memory_size uiSize)
+   {
+      set(0,iStart,uiSize);
    }
 
    inline void memory_base::eat_begin(void * pdata, memory_size iSize)
