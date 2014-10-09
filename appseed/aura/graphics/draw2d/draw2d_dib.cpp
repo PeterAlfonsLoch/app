@@ -3438,7 +3438,7 @@ namespace draw2d
    void dib::write(::file::output_stream & ostream)
    {
 
-      synch_lock ml(&user_mutex());
+      //synch_lock ml(&user_mutex());
 
       ostream << (int32_t) m_size.cx;
       ostream << (int32_t) m_size.cy;
@@ -3456,7 +3456,7 @@ namespace draw2d
    void dib::read(::file::input_stream & istream)
    {
 
-      synch_lock ml(&user_mutex());
+      //synch_lock ml(&user_mutex());
 
       int32_t width;
       int32_t height;

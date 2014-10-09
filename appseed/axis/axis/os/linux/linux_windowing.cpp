@@ -121,7 +121,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
    if(pui == NULL)
       return NULL;
 
-   single_lock slUser(&user_mutex(), true);
+   //single_lock slUser(&user_mutex(), true);
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
@@ -147,7 +147,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
 oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual, int iDepth, int iScreen, Colormap colormap)
 {
 
-   single_lock slUser(&user_mutex(), true);
+   //single_lock slUser(&user_mutex(), true);
 
    single_lock slOsWindow(::oswindow_data::s_pmutex, true);
 
@@ -323,7 +323,7 @@ bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnl
 int32_t oswindow_data::store_name(const char * psz)
 {
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    single_lock slOsWindow(s_pmutex, true);
 
@@ -338,7 +338,7 @@ int32_t oswindow_data::select_input(int32_t iInput)
 {
 
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    single_lock slOsWindow(s_pmutex, true);
 
@@ -363,7 +363,7 @@ int32_t oswindow_data::map_window()
 {
 
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    single_lock slOsWindow(s_pmutex, true);
 
@@ -451,7 +451,7 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 bool oswindow_data::is_child(::oswindow oswindow)
 {
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    single_lock slOsWindow(s_pmutex, true);
 
@@ -470,7 +470,7 @@ bool oswindow_data::is_child(::oswindow oswindow)
 oswindow oswindow_data::get_parent()
 {
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    single_lock slOsWindow(s_pmutex, true);
 
@@ -496,7 +496,7 @@ oswindow oswindow_data::get_parent()
 oswindow oswindow_data::set_parent(oswindow oswindow)
 {
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    single_lock slOsWindow(s_pmutex, true);
 
@@ -516,7 +516,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 bool oswindow_data::show_window(int32_t nCmdShow)
 {
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    single_lock slOsWindow(s_pmutex, true);
 
@@ -624,7 +624,7 @@ long oswindow_data::get_state()
 {
 
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    xdisplay d(display());
 
@@ -669,7 +669,7 @@ bool oswindow_data::is_iconic()
 bool oswindow_data::is_window_visible()
 {
 
-   single_lock sl(&user_mutex(), true);
+   //single_lock sl(&user_mutex(), true);
    xdisplay d(display());
 
    if(d.m_pdisplay == NULL)
@@ -698,7 +698,7 @@ oswindow GetCapture()
 oswindow SetCapture(oswindow window)
 {
 
-   single_lock sl(&user_mutex(), true);
+   //single_lock sl(&user_mutex(), true);
 
    oswindow windowOld(g_oswindowCapture);
 
@@ -727,7 +727,7 @@ oswindow SetCapture(oswindow window)
 WINBOOL ReleaseCapture()
 {
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    xdisplay d(g_oswindowCapture->display());
 
@@ -745,7 +745,7 @@ WINBOOL ReleaseCapture()
 oswindow SetFocus(oswindow window)
 {
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    xdisplay display(window->display());
 
@@ -764,7 +764,7 @@ oswindow SetFocus(oswindow window)
 oswindow GetFocus()
 {
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    xdisplay pdisplay;
 
@@ -811,7 +811,7 @@ oswindow SetActiveWindow(oswindow window)
 oswindow GetWindow(oswindow windowParam, int iParentHood)
 {
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
 
 
@@ -925,7 +925,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 WINBOOL DestroyWindow(oswindow window)
 {
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    if(!IsWindow(window))
       return FALSE;
@@ -1139,7 +1139,7 @@ void wm_nodecorations(oswindow w,int map)
    int set;
 
 
-   single_lock sl(&user_mutex(),true);
+//   single_lock sl(&user_mutex(),true);
 
    xdisplay d(w->display());
    Display * dpy = w->display();

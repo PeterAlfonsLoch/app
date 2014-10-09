@@ -113,7 +113,7 @@ namespace linux
 
       //keep_event_reset keepeventreset(&m_eventFree);
 
-      synch_lock sl(&user_mutex());
+      //synch_lock sl(&user_mutex());
 
       static DWORD s_dwLastAnalysisFrame = 0;
       static DWORD s_dwLastFrameFrame = 0;
@@ -520,7 +520,10 @@ namespace linux
          {
             if(wndpa[l].oprop("session").is_new())
             {
-               wndpa[l]._001UpdateWindow();
+
+               wndpa[l]._001UpdateBuffer();
+
+               wndpa[l]._001UpdateScreen();
             }
             l++;
          }
@@ -1046,7 +1049,7 @@ throw not_implemented(get_app());
    user::interaction_ptr_array window_draw::get_wnda()
    {
 
-      single_lock sl(&user_mutex(), true);
+//      single_lock sl(&user_mutex(), true);
 
       return System.frames();
 

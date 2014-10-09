@@ -835,7 +835,7 @@ return true;
 
 bool imaging::CreateHueImageList(::draw2d::graphics * pdc, sp(image_list) pilGray, sp(image_list) pilParam, COLORREF crHue, double dCompress)
 {
-   synch_lock ml(&user_mutex());
+   //synch_lock ml(&user_mutex());
    sp(image_list) pil = pilGray;
 
    if(!pil->create(pilParam))
@@ -856,7 +856,7 @@ bool imaging::CreateHueImageList(::draw2d::graphics * pdc, sp(image_list) pilGra
 bool imaging::Createcolor_blend_ImageList(sp(image_list) pilGray, sp(image_list) pilParam, COLORREF cr, BYTE bAlpha)
 {
 
-   synch_lock ml(&user_mutex());
+   //synch_lock ml(&user_mutex());
 
    try
    {

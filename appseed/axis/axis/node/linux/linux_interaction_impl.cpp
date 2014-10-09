@@ -8,6 +8,7 @@
 
 //#include <X11/extensions/Xcomposite.h>
 
+CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 
 //#define COMPILE_MULTIMON_STUBS
 //#include <multimon.h>
@@ -139,7 +140,7 @@ namespace linux
    }
 
 
-   sp(::user::interaction) interaction_impl::from_os_data(void * pdata)
+   ::user::interaction * interaction_impl::from_os_data(void * pdata)
    {
       return from_handle((oswindow) pdata);
    }
@@ -341,7 +342,7 @@ namespace linux
       else
       {
 
-         single_lock ml(&user_mutex());
+         //single_lock ml(&user_mutex());
 
          Display *display;
          Window rootwin;
@@ -504,7 +505,7 @@ namespace linux
          //m_pmutexGraphics = new mutex(get_app());
 
 d.unlock();
-         ml.unlock();
+///         ml.unlock();
 
       //if (!unhook_window_create())
         // PostNcDestroy();        // cleanup if CreateWindowEx fails too soon
@@ -577,6 +578,9 @@ d.unlock();
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
       //m_pbuffer->InstallMessageHandling(pinterface);
+
+      ::user::interaction_impl::install_message_handling(pinterface);
+
       IGUI_WIN_MSG_LINK(WM_DESTROY           , pinterface, this, &interaction_impl::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_NCDESTROY         , pinterface, this, &interaction_impl::_001OnNcDestroy);
       IGUI_WIN_MSG_LINK(WM_PAINT             , pinterface, this, &interaction_impl::_001OnPaint);
@@ -3696,7 +3700,7 @@ throw not_implemented(get_app());
    {
 
 
-      single_lock sl(&user_mutex(), true);
+//      single_lock sl(&user_mutex(), true);
 
       xdisplay d(m_oswindow->display());
 
@@ -4549,7 +4553,7 @@ if(psurface == g_cairosurface)
    bool interaction_impl::IsWindowVisible()
    {
 
-      single_lock sl(&user_mutex(), true);
+//      single_lock sl(&user_mutex(), true);
 
       if(!::IsWindow((oswindow) get_handle()))
          return false;
@@ -4762,7 +4766,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::user::interaction) interaction_impl::GetActiveWindow()
+   ::user::interaction * interaction_impl::GetActiveWindow()
    {
 
       throw not_implemented(get_app());
@@ -4770,7 +4774,7 @@ if(psurface == g_cairosurface)
 
    }
 
-   sp(::user::interaction) interaction_impl::SetActiveWindow()
+   ::user::interaction * interaction_impl::SetActiveWindow()
    {
 
       throw not_implemented(get_app());
@@ -5842,7 +5846,9 @@ namespace linux
 
       }
 
-      ::user::interaction_impl::_001UpdateWindow();
+      ::user::interaction_impl::_001UpdateBuffer();
+
+      ::user::interaction_impl::_001UpdateScreen();
 
 }
 

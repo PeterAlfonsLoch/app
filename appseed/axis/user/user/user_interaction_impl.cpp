@@ -2235,7 +2235,7 @@ namespace user
 
       }
 
-      
+
    }
 
 
@@ -2279,7 +2279,7 @@ namespace user
 
       single_lock slDisplay(mutex_display(),false);
 
-      if(!slDisplay.lock())
+      if(mutex_display() != NULL && !slDisplay.lock())
          return;
 
       m_spdib->BitBlt(rectWindow.width(), rectWindow.height(), m_spdibBuffer, 1);
@@ -2328,7 +2328,7 @@ namespace user
             m_spdib->create(rectWindow.size() + size(100, 100));
 
          }
-   
+
          if(m_spdibBuffer.is_null())
             m_spdibBuffer.alloc(allocer());
 

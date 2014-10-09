@@ -7,6 +7,10 @@
 
 #include "framework.h"
 
+#ifdef LINUX
+#define QS_ALLEVENTS 0xffff
+#endif
+
 uint32_t __thread_entry(void * pparam);
 
 thread_impl::thread_impl(sp(::aura::application) papp):
@@ -15,8 +19,8 @@ m_evFinish(papp),
 m_mutexUiPtra(papp)
 {
 
-   
-   
+
+
    CommonConstruct();
 
 }
@@ -32,9 +36,9 @@ thread_impl::~thread_impl()
 
 void thread_impl::construct()
 {
-   
+
    CommonConstruct();
-   
+
 }
 
 
@@ -46,7 +50,7 @@ void thread_impl::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
 
    m_pfnThreadProc = pfnThreadProc;
    m_pThreadParams = pParam;
-   
+
 }
 
 
@@ -63,8 +67,8 @@ void thread_impl::CommonConstruct()
    m_pfnThreadProc = NULL;
 
    m_nDisablePumpCount  = 0;
-   
-   
+
+
    m_hthread = NULL;
 
 }
@@ -277,7 +281,7 @@ bool thread_impl::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epri
       }
       return false;
    }
-      
+
 
    pstartup->m_event2.SetEvent();
 
@@ -492,7 +496,7 @@ uint32_t __thread_entry(void * pparam)
       {
 
          bError = true;
-      
+
       }
 
 
@@ -704,7 +708,7 @@ int32_t thread_impl::exit_instance()
    {
 
       single_lock sl(&m_mutexUiPtra,TRUE);
-      
+
       if(m_spuiptra.is_set())
       {
 
@@ -731,7 +735,7 @@ int32_t thread_impl::exit_instance()
 
    try
    {
-      
+
       m_sptimera.release();
 
    }
@@ -746,8 +750,8 @@ int32_t thread_impl::exit_instance()
 
 bool thread_impl::on_idle(LONG lCount)
 {
-   
-   
+
+
    return Application.on_thread_on_idle(this, lCount);
 
 
@@ -865,7 +869,7 @@ bool thread_impl::thread_entry()
    }
    catch(...)
    {
-      
+
       bError = true;
 
    }
@@ -960,7 +964,7 @@ int32_t thread_impl::thread_term()
 
    try
    {
-      
+
 //      destroy_message_queue();
 
    }
@@ -1072,7 +1076,7 @@ void thread_impl::set_timer(::user::interaction * pui,uint_ptr nIDEvent,UINT nEl
 
 void thread_impl::unset_timer(::user::interaction * pui,uint_ptr nIDEvent)
 {
-   
+
    if(m_sptimera.is_null())
       return;
 
@@ -1091,7 +1095,7 @@ event & thread_impl::get_finish_event()
 
 void thread_impl::step_timer()
 {
-   
+
    if(m_sptimera.is_null())
       return;
 
@@ -1218,7 +1222,7 @@ int32_t thread_impl::run()
    {
 
       // phase1: check to see if we can do idle work
-/*      
+/*
       while(bIdle && !::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE))
       {
 
@@ -1246,20 +1250,20 @@ int32_t thread_impl::run()
          if(m_spuiptra.is_set() && m_spuiptra->get_count() > 0)
          {
 
-            ml.lock(millis(1),false,QS_ALLEVENTS);
+               ml.lock(millis(1),false,QS_ALLEVENTS);
 
          }
          else
          {
 
-            ml.lock(::duration::infinite(),false,QS_ALLEVENTS);
+              ml.lock(::duration::infinite(),false,QS_ALLEVENTS);
 
          }
 
 
          while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
          {
-             
+
             // pump message, but quit on WM_QUIT
             if(!m_pthread->m_bRun || !pump_message())
             {
@@ -1371,7 +1375,7 @@ bool thread_impl::pump_message()
                }
                catch(exit_exception & e)
                {
-                  
+
                   throw e;
 
                }
@@ -1594,7 +1598,7 @@ void thread_impl::thread_impl_delete()
       single_lock sl(&m_pthread->m_preplacethread->m_mutex,true);
 
       m_pthread->m_preplacethread->m_spthread.release();
-   
+
    }
    else if(m_pthread->m_bAutoDelete)
    {
@@ -1604,7 +1608,7 @@ void thread_impl::thread_impl_delete()
    }
    else
    {
-      
+
       m_pthread->set_os_data(NULL);
 
    }
@@ -1707,7 +1711,7 @@ void thread_impl::do_events()
 
    while(m_pthread->m_bRun && ::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
    {
-      
+
       if(msg.message == WM_QUIT) // do not pump, otherwise main loop will not process the message
          break;
 

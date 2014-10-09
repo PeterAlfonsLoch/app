@@ -77,7 +77,7 @@ namespace linux
 
    #endif   // WINVER >= 0x0500
 
-      virtual sp(::user::interaction) from_os_data(void * pdata);
+      virtual ::user::interaction * from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
       static user::interaction * from_handle(oswindow hWnd);
@@ -279,8 +279,8 @@ namespace linux
       virtual bool EnableWindow(bool bEnable = TRUE);
 
       // the active ::user::interaction_impl applies only to top-level (frame windows)
-      virtual sp(::user::interaction) GetActiveWindow();
-      virtual sp(::user::interaction) SetActiveWindow();
+      virtual ::user::interaction * GetActiveWindow();
+      virtual ::user::interaction * SetActiveWindow();
 
       // the foreground ::user::interaction_impl applies only to top-level windows (frame windows)
       virtual bool SetForegroundWindow();

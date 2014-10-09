@@ -184,13 +184,13 @@ namespace dynamic_source
 
    void script_compiler::compile(ds_script * pscript)
    {
-      
+
       single_lock slScript(&pscript->m_mutex, TRUE);
-      
+
       TRACE("Compiling script \"%s\"\n", pscript->m_strName.c_str());
-      
+
       string strName(pscript->m_strName);
-      
+
       pscript->on_start_build();
 
 #ifdef WINDOWS
@@ -250,7 +250,7 @@ namespace dynamic_source
       //#ifdef DEBUG
 #ifdef LINUX
       pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s%s.bat"), System.file().name_(strTransformName), strTransformName);
-      strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pamnager->m_strNamespace + "_dynamic_source_script\\%s\\%s.o", false), strTransformName, System.file().name_(strTransformName));
+      strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\%s.o", false), strTransformName, System.file().name_(strTransformName));
 #else
       pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s\\%s.bat"), System.file().name_(strTransformName), strTransformName);
       strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_script\\%s\\%s.obj", false), strTransformName, System.file().name_(strTransformName));
@@ -1029,7 +1029,7 @@ namespace dynamic_source
          str.replace("%SDK1%", m_strSdk1);
          Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_strDynamicSourceConfiguration + "\\" + m_pmanager->m_strNamespace + "_dynamic_source_library\\" + System.dir().name(str1)));
          Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strStagePlatform + "\\" + System.dir().name(str1), false));
-         
+
          string strFormat = "libc-" + str1;
 
          strFormat.replace("/", "-");

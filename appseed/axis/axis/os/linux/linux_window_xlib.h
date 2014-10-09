@@ -21,6 +21,6 @@ public:
    virtual void create_window_graphics(oswindow window, int64_t cx, int64_t cy, int iStride = -1);
    virtual void destroy_window_graphics();
 
-   virtual void update_window(oswindow window, COLORREF * pOsBitmapData, const RECT & lpcrect, int iStride = -1);
+   virtual void update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, int cxParam, int cyParam, int iStride = -1);
 
 };

@@ -11,8 +11,18 @@ CLASS_DECL_AURA int32_t thread_get_scheduling_priority(int iOsPolicy, const sche
 
 CLASS_DECL_AURA int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
+mq * get_mq(HTHREAD  h);
 
-DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD dwTimeout, DWORD UNUSED(dwWakeMask), DWORD dwFlags)
+
+mq * get_mq()
+{
+
+   return get_mq(GetCurrentThread());
+
+}
+
+
+DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags)
 {
 
    DWORD start = 0;
@@ -22,6 +32,19 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD
       start = ::get_tick_count();
    }
 
+   mq * pmq = NULL;
+
+   if(dwWakeMask > 0)
+   {
+
+      pmq = get_mq();
+
+      if(pmq == NULL)
+         return 0;
+
+   }
+
+   single_lock ml(pmq == NULL ? NULL : &pmq->m_mutex,false);
 
    int_bool bWaitForAll        = dwFlags & MWMO_WAITALL;
 //   int_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
@@ -84,6 +107,11 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD
             if(pwaitableptra[i]->lock(millis(0)))
             {
                return WAIT_OBJECT_0 + i;
+            }
+            if(ml.lock(millis(0)))
+            {
+               ml.unlock();
+               return WAIT_OBJECT_0 + dwSize;
             }
          }
 
@@ -1109,15 +1137,6 @@ DWORD WINAPI thread_layer::proc(LPVOID lp)
 
 }
 
-mq * get_mq(HTHREAD  h);
-
-
-mq * get_mq()
-{
-
-   return get_mq(GetCurrentThread());
-
-}
 
 bool is_thread(HTHREAD h)
 {

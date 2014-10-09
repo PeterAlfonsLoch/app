@@ -123,7 +123,6 @@
 		<Unit filename="axis/message/message_user.h" />
 		<Unit filename="axis/node/ansios/ansios.h" />
 		<Unit filename="axis/node/ansios/ansios_thread_impl.h" />
-		<Unit filename="axis/node/linux/implementation.h" />
 		<Unit filename="axis/node/linux/linux.h" />
 		<Unit filename="axis/node/linux/linux1.cpp" />
 		<Unit filename="axis/node/linux/linux2.cpp" />
@@ -162,14 +161,10 @@
 		<Unit filename="axis/os/cross/windows/windows_user.h" />
 		<Unit filename="axis/os/linux/linux.cpp" />
 		<Unit filename="axis/os/linux/linux.h" />
-		<Unit filename="axis/os/linux/linux_cross_win_file.h" />
 		<Unit filename="axis/os/linux/linux_cross_win_gdi.cpp" />
 		<Unit filename="axis/os/linux/linux_cross_win_gdi.h" />
 		<Unit filename="axis/os/linux/linux_cross_win_gdi_internal.h" />
-		<Unit filename="axis/os/linux/linux_debug.h" />
 		<Unit filename="axis/os/linux/linux_display.cpp" />
-		<Unit filename="axis/os/linux/linux_file.h" />
-		<Unit filename="axis/os/linux/linux_file_watcher.h" />
 		<Unit filename="axis/os/linux/linux_graphics.h" />
 		<Unit filename="axis/os/linux/linux_internal.h" />
 		<Unit filename="axis/os/linux/linux_linux.h" />
@@ -179,7 +174,6 @@
 		<Unit filename="axis/os/linux/linux_os.cpp" />
 		<Unit filename="axis/os/linux/linux_osdisplay.h" />
 		<Unit filename="axis/os/linux/linux_oswindow.h" />
-		<Unit filename="axis/os/linux/linux_process.h" />
 		<Unit filename="axis/os/linux/linux_simple_app.cpp" />
 		<Unit filename="axis/os/linux/linux_user_impl.h" />
 		<Unit filename="axis/os/linux/linux_window_cairo.h" />
@@ -356,6 +350,8 @@
 		<Unit filename="user/user/user_schema_simple_impl.h" />
 		<Unit filename="user/user/user_scroll_bar.cpp" />
 		<Unit filename="user/user/user_scroll_bar.h" />
+		<Unit filename="user/user/user_scroll_control.cpp" />
+		<Unit filename="user/user/user_scroll_control.h" />
 		<Unit filename="user/user/user_scroll_view.cpp" />
 		<Unit filename="user/user/user_scroll_view.h" />
 		<Unit filename="user/user/user_server.cpp" />

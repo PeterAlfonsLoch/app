@@ -7,7 +7,7 @@ bool axis_defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow win
    if(hthread == NULL)
       return false;
 
-   single_lock sl(&user_mutex(), true);
+   //single_lock sl(&user_mutex(), true);
 
    bool bRet = false;
 

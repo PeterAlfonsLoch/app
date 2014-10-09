@@ -31,7 +31,7 @@ void window_xlib::create_window_graphics(oswindow window, int64_t cxParam, int64
 
    destroy_window_graphics();
 
-   single_lock sl(&user_mutex(), true);
+//   single_lock sl(&user_mutex(), true);
 
    m_window = window;
 
@@ -80,10 +80,10 @@ void window_xlib::destroy_window_graphics()
 }
 
 
-void window_xlib::update_window(oswindow window, COLORREF * pOsBitmapData, const RECT & lpcrect, int iStride)
+void window_xlib::update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, int cxParam, int cyParam, int iStride)
 {
 
-   single_lock sl(&user_mutex());
+   //single_lock sl(&user_mutex());
 
    if(m_pdc == NULL)
       return;
@@ -103,7 +103,7 @@ void window_xlib::update_window(oswindow window, COLORREF * pOsBitmapData, const
 
    //memset(pOsBitmapData, 0x44, min(iStride * 16, iStride * m_size.cy));
 
-   copy_colorref((COLORREF *) m_mem.get_data(), pOsBitmapData, iStride);
+   copy_colorref(cxParam, cyParam, (COLORREF *) m_mem.get_data(), pOsBitmapData, iStride);
 
 
 

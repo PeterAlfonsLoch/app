@@ -57,14 +57,7 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, uint32
    else
    {
 
-#ifdef WINDOWSEX
-
       iResult = ::MsgWaitForMultipleObjects((uint32_t) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), dwWakeMask);
-
-#else
-      throw not_supported_exception(::get_thread_app());
-
-#endif
 
    }
 
