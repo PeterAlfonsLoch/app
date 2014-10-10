@@ -6,6 +6,9 @@
 
 #undef new
 
+#include <D2d1_1.h>
+
+
 #include <winapifamily.h>
 #include <windows.h>
 #include <shlwapi.h>

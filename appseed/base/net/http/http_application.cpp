@@ -93,7 +93,7 @@ namespace http
       }
       else if(psignal->m_puser == NULL)
       {
-         //psignal->m_puser = &ApplicationUser;
+         psignal->m_puser = get_app()->m_pbasesession->fontopus()->get_user(psignal->m_strUrl);
          psignal->m_set["app"] = get_app();
       }
       System.http().get(pobj);

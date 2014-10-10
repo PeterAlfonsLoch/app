@@ -1537,7 +1537,7 @@ namespace filemanager
       {
          string strProtocol = strPath.Left(iFind);
          int32_t i = 0;
-         while(i < strProtocol.get_length() && isalnum(strProtocol[i]))
+         while(i < strProtocol.get_length() && isalnum_dup(strProtocol[i]))
          {
             i++;
          }

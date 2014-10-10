@@ -49,7 +49,7 @@ namespace aura
       spa(::aura::session)                         m_basesessionptra;
       colorertake5::ParserFactory *                m_pparserfactory;
 
-#ifdef METROWIN
+#ifdef WINDOWS
       ID2D1DeviceContext *                         m_pdevicecontext;
       sp(mutex)                                    m_pmutexDc;
 #endif

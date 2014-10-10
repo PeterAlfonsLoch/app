@@ -45,6 +45,7 @@ CLASS_DECL_AURA char * to_lower(char * pch);
 CLASS_DECL_AURA int32_t isdigit_dup(int32_t ch);
 CLASS_DECL_AURA int32_t isxdigit_dup(int32_t ch);
 CLASS_DECL_AURA int32_t isalpha_dup(int32_t ch);
+CLASS_DECL_AURA int32_t isalnum_dup(int32_t ch);
 CLASS_DECL_AURA int32_t isspace_dup(int32_t ch);
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
