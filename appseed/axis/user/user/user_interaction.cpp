@@ -4445,7 +4445,24 @@ namespace user
 
       ::rect rectNew;
 
-      index iMatchingMonitor = Session.get_best_monitor(rectNew,rectWindow);
+      index iMatchingMonitor = -1;
+
+      if(GetParent() != NULL)
+      {
+         
+         GetParent()->GetClientRect(rectNew);
+
+         GetParent()->ClientToScreen(rectNew);
+
+         iMatchingMonitor = 0;
+
+      }
+      else
+      {
+
+         iMatchingMonitor = Session.get_best_monitor(rectNew,rectWindow);
+
+      }
 
       if(bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
       {
