@@ -1251,7 +1251,7 @@ namespace user
    bool interaction_base::WfiIsZoomed()
    {
 
-      throw interface_only_exception(get_app());
+      return false;
 
    }
 
@@ -1259,7 +1259,7 @@ namespace user
    bool interaction_base::WfiIsFullScreen()
    {
 
-      throw interface_only_exception(get_app());
+      return false;
 
    }
 

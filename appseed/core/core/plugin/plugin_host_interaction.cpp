@@ -187,6 +187,7 @@ namespace plugin
       return true;
    }
 
+
    void host_interaction::GetWindowRect(__rect64 * lprect)
    {
       RECT rect;
@@ -195,7 +196,15 @@ namespace plugin
    }
 
 
-   bool host_interaction::RedrawWindow(const RECT & lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
+   void host_interaction::GetClientRect(__rect64 * lprect)
+   {
+      RECT rect;
+      m_pplugin->GetClientRect(&rect);
+      ::copy(lprect,&rect);
+   }
+
+
+   bool host_interaction::RedrawWindow(const RECT & lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
    {
 
       UNREFERENCED_PARAMETER(lpRectUpdate);
