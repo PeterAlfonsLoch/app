@@ -1269,7 +1269,7 @@ namespace user
                   DWORD dwTime2 = ::get_tick_count();
 
                   //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-                  TRACE("wndfrmset::lyot call timeF= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                  //TRACE("wndfrmset::lyot call timeF= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
                }
 
@@ -1281,7 +1281,7 @@ namespace user
                   DWORD dwTime2 = ::get_tick_count();
 
                   //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-                  TRACE("wndfrmset::lyot call timeF= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+                  //TRACE("wndfrmset::lyot call timeF= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
                }
 

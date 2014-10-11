@@ -5445,7 +5445,7 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
    if(message == WM_MOUSEMOVE && g_iMouseDown)
    {
 
-      TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+      //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
    }
 

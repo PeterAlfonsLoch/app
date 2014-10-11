@@ -67,6 +67,8 @@ namespace install
 
       property_set set(get_app());
 
+      set["raw_http"] = true;
+
       return file_exists_dup(path1) && !stricmp_dup(System.file().md5(path1), Application.http().get(strUrl, set));
 
    }
