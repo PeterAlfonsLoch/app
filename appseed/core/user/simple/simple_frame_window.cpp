@@ -908,39 +908,35 @@ void simple_frame_window::pre_translate_message(signal_details * pobj)
 void simple_frame_window::InitialFramePosition(bool bForceRestore)
 {
 
-#ifdef WINDOWSEX
-
-   if(GetParent() == NULL)
+   if(m_bFrameMoveEnable)
    {
 
-      //::SetWindowRgn(get_handle(),NULL,false); // Clean any persisted window region
+      if(Application.command()->m_varTopicQuery.has_property("client_only"))
+      {
 
-      /*keep < bool > keepDisableSaveWindowRect(&m_bEnableSaveWindowRect,false,m_bEnableSaveWindowRect,true);
+         if(m_workset.IsAppearanceEnabled())
+         {
 
-      keep < bool > keepIgnoreSizeEvent(&m_pimpl->m_bIgnoreSizeEvent,true,false,true);
+            WfiFullScreen();
 
-      keep < bool > keepIgnoreMoveEvent(&m_pimpl->m_bIgnoreMoveEvent,true,false,true);
+         }
+         else
+         {
 
-      keep < bool > keepLockWindowUpdate(&m_bLockWindowUpdate,true,false,true);
+            best_monitor(NULL,::null_rect(),true);
 
-      ::SetWindowPos(get_handle(),NULL,0,0,0,0,SWP_SHOWWINDOW); // skip possible ShowWindow with "good" (worst ) "Windows" (Loosedows) defaults*/
+         }
 
-      //::ShowWindow(get_handle(),SW_SHOWNORMAL); // skip possible ShowWindow with "good" (worst ) "Windows" (Loosedows) defaults
-
-      //::ShowWindow(get_handle(),SW_SHOWDEFAULT); // skip possible ShowWindow with "good" (worst ) "Windows" (Loosedows) defaults
-
-   }
-
-#endif
-
-   if (m_bFrameMoveEnable)
-   {
+      }
+      else
+      {
 
 
+         WindowDataLoadWindowRect(bForceRestore,true);
 
-      WindowDataLoadWindowRect(bForceRestore,true);
+         WindowDataEnableSaveWindowRect(true);
 
-      WindowDataEnableSaveWindowRect(true);
+      }
 
    }
 
@@ -948,17 +944,22 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    BringToTop(-1);
 
-   if (m_workset.get_appearance() != NULL && m_workset.GetAppearance() == ::user::AppearanceIconic)
+   if(m_workset.IsAppearanceEnabled())
    {
 
-      WfiRestore(false);
+      if(m_workset.get_appearance() != NULL && m_workset.GetAppearance() == ::user::AppearanceIconic)
+      {
 
-   }
+         WfiRestore(false);
 
-   if(m_workset.m_pframeschema != NULL)
-   {
+      }
 
-      m_workset.m_pframeschema->title_bar_layout(true);
+      if(m_workset.m_pframeschema != NULL)
+      {
+
+         m_workset.m_pframeschema->title_bar_layout(true);
+
+      }
 
    }
 
@@ -1996,26 +1997,7 @@ bool simple_frame_window::on_create_bars()
 void simple_frame_window::InitialUpdateFrame(sp(::user::document) pDoc,bool bMakeVisible)
 {
 
-
-   if(Application.command()->m_varTopicQuery.has_property("client_only"))
-   {
-
-      if(m_bWindowFrame && m_workset.IsAppearanceEnabled())
-      {
-
-         WfiFullScreen();
-
-      }
-      else
-      {
-
-         best_monitor(NULL,null_rect(),true);
-
-
-      }
-
-   }
-
+   ::user::frame_window::InitialUpdateFrame(pDoc,bMakeVisible);
 
 }
 

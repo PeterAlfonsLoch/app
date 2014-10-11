@@ -253,6 +253,15 @@ namespace user
          bool WorkSetClientInterface::WfiFullScreen()
          {
 
+            if(!m_workset.IsAppearanceEnabled())
+            {
+
+               index iMatchingMonitor = best_monitor(NULL,null_rect(),true);
+
+               return iMatchingMonitor >= 0;
+
+            }
+
             if(!m_workset.IsFullScreenEnabled())
                return false;
 
