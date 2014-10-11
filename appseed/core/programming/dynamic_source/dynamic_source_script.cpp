@@ -324,6 +324,7 @@ namespace dynamic_source
          ::file_copy_dup(strStagePath, m_strScriptPath, true);
 
          m_library.open(strStagePath);
+         
          if(m_library.is_closed())
          {
              #ifdef LINUX
@@ -389,7 +390,7 @@ namespace dynamic_source
          m_library.close();
 
          string strStagePath = m_pmanager->get_stage_path(m_strScriptPath);
-
+         /*
 #ifdef WINDOWSEX
 
          HMODULE hmodule = ::GetModuleHandleW(::str::international::utf8_to_unicode("\\\\?\\" + strStagePath));
@@ -418,7 +419,7 @@ namespace dynamic_source
          {
             TRACE("ds_script::%s Unload Error\r\n", m_strScriptPath.c_str());
          }
-#endif
+#endif*/
 
          m_lpfnCreateInstance = (NET_NODE_CREATE_INSTANCE_PROC) NULL;
       }
