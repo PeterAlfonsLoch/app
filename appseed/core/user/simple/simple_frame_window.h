@@ -226,6 +226,8 @@ public:
 
    virtual bool set_appearance(::user::EAppearance eappearance);
 
+   virtual void InitialUpdateFrame(sp(::user::document) pDoc,bool bMakeVisible);
+
 };
 
 

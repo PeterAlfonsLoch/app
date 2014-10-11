@@ -1993,6 +1993,36 @@ bool simple_frame_window::on_create_bars()
 
 
 
+void simple_frame_window::InitialUpdateFrame(sp(::user::document) pDoc,bool bMakeVisible)
+{
+
+
+   if(Application.command()->m_varTopicQuery.has_property("client_only"))
+   {
+
+      if(m_bWindowFrame && m_workset.IsAppearanceEnabled())
+      {
+
+         WfiFullScreen();
+
+      }
+      else
+      {
+
+         best_monitor(NULL,null_rect(),true);
+
+
+      }
+
+   }
+
+
+}
+
+
+
+
+
 
 
 

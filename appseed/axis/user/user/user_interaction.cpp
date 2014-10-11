@@ -4452,8 +4452,6 @@ namespace user
          
          GetParent()->GetClientRect(rectNew);
 
-         GetParent()->ClientToScreen(rectNew);
-
          iMatchingMonitor = 0;
 
       }

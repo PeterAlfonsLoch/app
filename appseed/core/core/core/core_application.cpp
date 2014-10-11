@@ -3876,6 +3876,8 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
       papp->m_pbasesystem = m_pbasesystem;
 
+      papp->m_pcoreapp->command_central()->consolidate(System.command_central());
+
       papp->m_pcoreapp->command_central()->consolidate(command_central());
 
       //   papp->m_pcoreapp->m_bSystemSynchronizedCursor = m_bSystemSynchronizedCursor;

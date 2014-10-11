@@ -1364,15 +1364,15 @@ namespace axis
       pwnd = m_puiFocus;
       if(pwnd != NULL)
       {
-         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-            || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
+//         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
+  //          || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
          {
             return pwnd;
          }
-         else
-         {
-            return NULL;
-         }
+    //     else
+      //   {
+        //    return NULL;
+         //}
       }
       return NULL;
 #else
