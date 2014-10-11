@@ -553,19 +553,22 @@ namespace fontopus
 
       m_mapFontopusSession.set_at(strFontopusServer, psession);
 
-      m_mapFontopusSessId.set_at(strFontopusServer,strSessId);
+      if(!m_mapFontopusSessId.Lookup(strFontopusServer,strSessId))
+      {
 
-      m_mapFontopusRsa.set_at(strFontopusServer,strRsaModulus);
+         m_mapFontopusSessId.set_at(strFontopusServer,strSessId);
 
-      m_mapFontopusSession.set_at(strFontopusServer,psession);
+         m_mapFontopusRsa.set_at(strFontopusServer,strRsaModulus);
+
+         m_mapFontopusServer.set_at(strFontopusServer,strFontopusServer);
+
+         Session.sockets().net().m_mapCache.set_at(strFontopusServer,item);
+
+      }
 
       m_mapFontopusServer.set_at(strHost, strFontopusServer);
 
       Session.sockets().net().m_mapCache.set_at(strHost,item);
-
-      m_mapFontopusServer.set_at(strFontopusServer,strFontopusServer);
-
-      Session.sockets().net().m_mapCache.set_at(strFontopusServer,item);
 
       return strFontopusServer;
 
