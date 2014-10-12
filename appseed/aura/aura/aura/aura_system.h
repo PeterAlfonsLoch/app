@@ -87,7 +87,7 @@ namespace aura
 
       bool (system::*                              m_pfnVerb)();
 
-
+      bool                                         m_bAdvancedGUI;
 
 
 
