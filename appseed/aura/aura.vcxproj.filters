@@ -3429,17 +3429,14 @@
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
     </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="aura.def">
       <Filter>Source Files</Filter>
     </None>
     <None Include="aura\message\message.inl">
       <Filter>Header Files\aura\message</Filter>
+    </None>
+    <None Include="..\..\..\nodeapp\thirdparty\binary\x64\vcomp120.dll">
+      <Filter>Binary Files\x64</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -3454,6 +3451,9 @@
     </CustomBuild>
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\msvcr120d.dll">
       <Filter>Binary Files\x64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\vcomp120d.dll">
+      <Filter>Binary Files\x86</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
