@@ -23,11 +23,7 @@ namespace hotplugin
       GetWindowRect(&rectWindow);
       int32_t cx = rectWindow.right - rectWindow.left;
       int32_t cy = rectWindow.bottom - rectWindow.top;
-      RECT rect;
-      rect.left = 0;
-      rect.top = 0;
-      rect.bottom = cy;
-      rect.right = cx;
+      RECT rect = lprect;
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
       int h = 33;
