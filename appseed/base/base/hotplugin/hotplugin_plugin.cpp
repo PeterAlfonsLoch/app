@@ -499,13 +499,19 @@ namespace hotplugin
       if (m_iHealingSurface == 0)
       {
 
-         on_bare_paint_full_screen(pgraphics, lprect);
+         on_bare_paint_veri_discreet(pgraphics,lprect);
+
+      }
+      else if(m_iHealingSurface == 1)
+      {
+
+         on_bare_paint_discreet(pgraphics,lprect);
 
       }
       else
       {
 
-         on_bare_paint_discreet(pgraphics, lprect);
+         on_bare_paint_full_screen(pgraphics,lprect);
 
       }
 

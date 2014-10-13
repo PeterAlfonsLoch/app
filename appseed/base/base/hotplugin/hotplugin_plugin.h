@@ -140,6 +140,8 @@ namespace hotplugin
 
       virtual void on_bare_paint_discreet(::draw2d::graphics * pgraphics,const RECT & lprect);
 
+      virtual void on_bare_paint_veri_discreet(::draw2d::graphics * pgraphics,const RECT & lprect);
+
       virtual void start_ca2();
 
       virtual void set_progress_rate(double dRate);

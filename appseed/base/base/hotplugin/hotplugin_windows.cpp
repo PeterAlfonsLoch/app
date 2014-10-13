@@ -8,11 +8,20 @@ namespace hotplugin
    void entry_hall_windows_on_paint(HDC hdc,const RECT & rect,const string & strEntryHallText)
    {
 
-      HBRUSH hbrushBack = ::CreateSolidBrush(RGB(184,184,177));
+
+      // Create a hatched bit pattern.
+      WORD HatchBits[8] ={0x55,0xAA,0x55,0xAA,0x55, 0xAA,0x55,0xAA};
+
+      // Use the bit pattern to create a bitmap.
+      HBITMAP hbm = ::CreateBitmap(8,8,1,1,HatchBits);
+
+
+      HBRUSH hbrushBack = (HBRUSH) ::CreatePatternBrush(hbm);
+      ::DeleteObject(hbm);
       HBRUSH hbrushDark = ::CreateSolidBrush(RGB(84,84,77));
       HBRUSH hbrushLate = ::CreateSolidBrush(RGB(84 + 49,84 + 49,77 + 42));
       HBRUSH hbrushLite = ::CreateSolidBrush(RGB(255,255,250));
-      HBRUSH hbrushGren = ::CreateSolidBrush(RGB(184,254,177));
+      HBRUSH hbrushGren = ::CreateSolidBrush(RGB(77,184,123));
 
       HPEN hpen = (HPEN) ::GetStockObject(NULL_PEN);
 
@@ -58,25 +67,33 @@ namespace hotplugin
 
       ::SelectObject(hdc,hbrushDark);
 
-      HPEN hpenLite = ::CreatePen(PS_SOLID,1,RGB(255,255,250));
+      //HPEN hpenLite = ::CreatePen(PS_SOLID,1,RGB(255,255,250));
 
-      ::SelectObject(hdc,hpenLite);
+      //::SelectObject(hdc,hpenLite);
 
-      ::Rectangle(hdc,rectBar.left,rectBar.top,rectBar.right,rectBar.bottom);
+      //::Rectangle(hdc,rectBar.left,rectBar.top,rectBar.right,rectBar.bottom);
 
-      rectBar.deflate(2,2);
+      //rectBar.deflate(2,2);
 
       int w = 284;
 
-      ::SelectObject(hdc,hbrushLate);
+      ::SetTextColor(hdc,RGB(84,84,84));
+
+      ::SetBkMode(hdc,TRANSPARENT);
+
+      ::SelectObject(hdc,hbrushBack);
 
       ::SelectObject(hdc,hpen);
 
-      rectBar.right++;
+      //rectBar.right++;
 
-      rectBar.bottom++;
+      //rectBar.bottom++;
+
+      int old = SetROP2(hdc,R2_MASKPEN);
 
       ::Rectangle(hdc,rectBar.left,rectBar.top,rectBar.right,rectBar.bottom);
+
+      SetROP2(hdc,old);
 
       int v = ::GetTickCount() * 484 / 1000;
 
@@ -118,27 +135,36 @@ namespace hotplugin
       if(str.is_empty())
       {
 
-         str = "ca2 plugin for Browsers : Internet Explorer compatible - ActiveX Tecnhology, Mozilla Firefox compatible - NPAPI : Netscape Plugin API";
+         //str = "ca2 plugin for Browsers : Internet Explorer compatible - ActiveX Tecnhology, Mozilla Firefox compatible - NPAPI : Netscape Plugin API";
+
+         str = "Opening ca2...";
 
       }
 
       ::SetBkMode(hdc,TRANSPARENT);
 
-      ::SetTextColor(hdc,RGB(84,84,77));
+      ::SetTextColor(hdc,RGB(250,250,250));
 
-      HFONT hStockFont = (HFONT)::GetStockObject(SYSTEM_FONT);
+      //HFONT hStockFont = (HFONT)::GetStockObject(SYSTEM_FONT);
 
-      HFONT hfontOld = (HFONT) ::SelectObject(hdc,hStockFont);
+      //HFONT hfontOld = (HFONT) ::SelectObject(hdc,hStockFont);
 
       //::TextOut(hdc,rectBar.left - 1,rectBar.bottom + 2,str,str.get_length());
 
-      rectBar.left++;
-      rectBar.top++;
-      rectBar.right--;
-      rectBar.bottom--;
+      //rectBar.left++;
+      //rectBar.top++;
+      //rectBar.right--;
+      //rectBar.bottom--;
 
-      ::DrawText(hdc,str,str.get_length(), &rectBar, DT_BOTTOM | DT_LEFT);
+      rectBar.left += 4;
 
+      HFONT hFont = CreateFont(23,0,0,0,FW_DONTCARE,FALSE,FALSE,FALSE,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
+         CLIP_DEFAULT_PRECIS,CLEARTYPE_QUALITY,VARIABLE_PITCH,TEXT("Calibri"));
+      HFONT hfontOld = (HFONT) ::SelectObject(hdc,hFont);
+
+      ::DrawText(hdc,str,str.get_length(),&rectBar,DT_SINGLELINE| DT_VCENTER | DT_LEFT);
+
+      ::DeleteObject(hFont);
 
       ::SelectObject(hdc,hfontOld);
 
@@ -151,7 +177,7 @@ namespace hotplugin
       ::DeleteObject(hbrushLate);
       ::DeleteObject(hbrushBack);
       ::DeleteObject(hbrushGren);
-      ::DeleteObject(hpenLite);
+      //::DeleteObject(hpenLite);
 
    }
 

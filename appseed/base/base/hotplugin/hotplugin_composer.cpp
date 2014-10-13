@@ -271,7 +271,15 @@ namespace hotplugin
       if((!m_bOk || !m_bResponsive) || m_pbasehost == NULL || !m_pbasehost->hotplugin_host_is_initialized() || m_strEntryHallText.has_char())
       {
 
+         ::rect rect = m_rect;
+
+         POINT pt;
+
+         ::OffsetViewportOrgEx(hdc, -rect.left, -rect.top, &pt);
+
          ::hotplugin::entry_hall_windows_on_paint(hdc,m_rect,m_strEntryHallText);
+
+         ::OffsetViewportOrgEx(hdc,rect.left,rect.top,&pt);
 
          return true;
 

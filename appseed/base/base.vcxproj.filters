@@ -1693,11 +1693,11 @@
     <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
     </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_veri_discreet.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
