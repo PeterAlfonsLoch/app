@@ -275,11 +275,9 @@ namespace hotplugin
 
          POINT pt;
 
-         ::OffsetViewportOrgEx(hdc, -rect.left, -rect.top, &pt);
+         //::SetViewportOrgEx(hdc, rect.left, rect.top, &pt);
 
          ::hotplugin::entry_hall_windows_on_paint(hdc,m_rect,m_strEntryHallText);
-
-         ::OffsetViewportOrgEx(hdc,rect.left,rect.top,&pt);
 
          return true;
 
