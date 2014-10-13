@@ -1311,6 +1311,13 @@ namespace aura
    }
 
 
+   void system::install_progress_add_up(int iAddUp)
+   {
+
+      UNREFERENCED_PARAMETER(iAddUp);
+
+   }
+
 
 } // namespace aura
 

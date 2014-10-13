@@ -548,6 +548,17 @@ namespace base
    }
 
 
+   void system::install_progress_add_up(int iAddUp)
+   {
+
+      UNREFERENCED_PARAMETER(iAddUp);
+
+      install().m_progressApp()++;
+
+   }
+
+
+
 } // namespace base
 
 

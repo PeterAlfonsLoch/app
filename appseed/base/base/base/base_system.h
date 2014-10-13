@@ -83,6 +83,9 @@ namespace base
 
       virtual string crypto_md5_text(const string & str);
 
+      virtual void install_progress_add_up(int iAddUp = 1);
+
+
    };
 
 

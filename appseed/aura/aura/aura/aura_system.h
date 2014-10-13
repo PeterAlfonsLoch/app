@@ -325,6 +325,9 @@ namespace aura
       virtual void * & ftlibrary();
 
 
+      virtual void install_progress_add_up(int iAddUp = 1);
+
+
    };
 
 

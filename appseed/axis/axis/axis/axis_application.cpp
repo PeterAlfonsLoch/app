@@ -1090,8 +1090,8 @@ namespace axis
 
    int32_t application::application_pre_run()
    {
-
-      return 0;
+   
+      return ::aura::application::application_pre_run();
 
    }
 
