@@ -20,7 +20,7 @@ namespace hotplugin
 
       HPEN hpenOld = (HPEN) ::SelectObject(hdc,hpen);
 
-      ::Rectangle(hdc,rect.left,rect.top,rect.right,rect.bottom);
+      //::Rectangle(hdc,rect.left,rect.top,rect.right,rect.bottom);
 
       int h = 33;
       int m = 49 * 2;
@@ -130,7 +130,14 @@ namespace hotplugin
 
       HFONT hfontOld = (HFONT) ::SelectObject(hdc,hStockFont);
 
-      ::TextOut(hdc,rectBar.left - 1,rectBar.bottom + 2,str,str.get_length());
+      //::TextOut(hdc,rectBar.left - 1,rectBar.bottom + 2,str,str.get_length());
+
+      rectBar.left++;
+      rectBar.top++;
+      rectBar.right--;
+      rectBar.bottom--;
+
+      ::DrawText(hdc,str,str.get_length(), &rectBar, DT_BOTTOM | DT_LEFT);
 
 
       ::SelectObject(hdc,hfontOld);
