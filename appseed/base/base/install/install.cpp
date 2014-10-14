@@ -178,7 +178,32 @@ namespace install
 {
 
 
+   CLASS_DECL_BASE void get_plugin_base_library_list(stringa & straFile)
+   {
+
+
+      straFile.add("app.install.exe");
+      straFile.add("aura.dll");
+      straFile.add("aurasqlite.dll");
+      straFile.add("axis.dll");
+      straFile.add("axisbzip2.dll");
+      straFile.add("axisfreeimage.dll");
+      straFile.add("axisfreetype.dll");
+      straFile.add("axisidn.dll");
+      straFile.add("axisopenssl.dll");
+      straFile.add("axiszlib.dll");
+      straFile.add("base.dll");
+      straFile.add("draw2d_gdiplus.dll");
+      straFile.add("msvcp120d.dll");
+      straFile.add("msvcr120d.dll");
+      straFile.add("vcomp120d.dll");
+
+
+   }
+
 
 
 } // namespace install
+
+
 

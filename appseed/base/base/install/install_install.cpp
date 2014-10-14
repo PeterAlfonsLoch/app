@@ -1195,28 +1195,6 @@ namespace install
    }
 
 
-   CLASS_DECL_BASE void get_plugin_base_library_list(stringa & straFile)
-   {
-
-
-      straFile.add("app.install.exe");
-      straFile.add("aura.dll");
-      straFile.add("aurasqlite.dll");
-      straFile.add("axis.dll");
-      straFile.add("axisbzip2.dll");
-      straFile.add("axisfreeimage.dll");
-      straFile.add("axisfreetype.dll");
-      straFile.add("axisidn.dll");
-      straFile.add("axisopenssl.dll");
-      straFile.add("axiszlib.dll");
-      straFile.add("base.dll");
-      straFile.add("msvcp120d.dll");
-      straFile.add("msvcr120d.dll");
-      straFile.add("draw2d_gdiplus.dll");
-
-
-   }
-
 
    string install::app_install_get_extern_executable_path(const char * pszVersion, const char * pszBuild, ::install::installer * pinstaller)
    {
