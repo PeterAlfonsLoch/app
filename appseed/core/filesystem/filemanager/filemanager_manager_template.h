@@ -46,9 +46,9 @@ namespace filemanager
       virtual ~manager_template();
 
 
-      sp(manager) open(sp(::create_context) pcreatecontext = NULL, ::fs::data * pdata = NULL, data * pfilemanagerdata = NULL);
-      sp(manager) open_child(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL);
-      sp(manager) open_child_list(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL);
+      sp(manager) open(sp(::create_context) pcreatecontext = NULL,::fs::data * pdata = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
+      sp(manager) open_child(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL, callback * pcallback = NULL);
+      sp(manager) open_child_list(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
 
       sp(manager) create_new_document(callback * pinterface,sp(::create_context) pcreatecontext);
 

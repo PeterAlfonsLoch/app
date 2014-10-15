@@ -29,7 +29,7 @@ namespace filemanager
       }
    }
 
-   sp(manager) manager_template::open(sp(::create_context) pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdataParam)
+   sp(manager) manager_template::open(sp(::create_context) pcreatecontext,::fs::data * pdata,::filemanager::data * pfilemanagerdataParam,callback * pcallback)
    {
       
       sp(::filemanager::data) pfilemanagerdata(pfilemanagerdataParam);
@@ -41,7 +41,7 @@ namespace filemanager
       {
 
          pfilemanagerdata = canew(::filemanager::data(get_app()));
-         pfilemanagerdata->m_pcallback = &Platform.filemanager();
+         pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Platform.filemanager();
          pfilemanagerdata->m_iTemplate = m_iTemplate;
          pfilemanagerdata->m_iDocument = m_iNextDocument++;
          pfilemanagerdata->m_bTransparentBackground = pcreatecontext == NULL ? true : pcreatecontext->m_bTransparentBackground;
@@ -94,7 +94,7 @@ namespace filemanager
    }
 
 
-   sp(manager) manager_template::open_child(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, ::filemanager::data * pfilemanagerdata)
+   sp(manager) manager_template::open_child(bool bMakeVisible,bool bTransparentBackground,sp(::user::interaction) pwndParent,::filemanager::data * pfilemanagerdata,callback * pcallback)
    {
 
       if(pfilemanagerdata == NULL)
@@ -111,7 +111,7 @@ namespace filemanager
       createcontext->oprop("filemanager::data") = pfilemanagerdata;
 
       pfilemanagerdata->m_pmanagertemplate = this;
-      pfilemanagerdata->m_pcallback = &Platform.filemanager();
+      pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Platform.filemanager();
       pfilemanagerdata->m_pfilemanager = &Platform.filemanager();
       pfilemanagerdata->m_iTemplate = m_iTemplate;
       pfilemanagerdata->m_iDocument = m_iNextDocument++;
@@ -138,7 +138,7 @@ namespace filemanager
    }
 
 
-   sp(manager) manager_template::open_child_list(bool bMakeVisible, bool bTransparentBackground, sp(::user::interaction) pwndParent, ::filemanager::data * pfilemanagerdata)
+   sp(manager) manager_template::open_child_list(bool bMakeVisible,bool bTransparentBackground,sp(::user::interaction) pwndParent,::filemanager::data * pfilemanagerdata,callback * pcallback)
    {
       
       UNREFERENCED_PARAMETER(bMakeVisible);
@@ -160,7 +160,7 @@ namespace filemanager
 
 
       pfilemanagerdata->m_pmanagertemplate = this;
-      pfilemanagerdata->m_pcallback = &Platform.filemanager();
+      pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Platform.filemanager();
       pfilemanagerdata->m_pfilemanager = &Platform.filemanager();
       pfilemanagerdata->m_iTemplate = m_iTemplate;
       pfilemanagerdata->m_iDocument = m_iNextDocument++;

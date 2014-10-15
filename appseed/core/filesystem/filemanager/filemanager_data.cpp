@@ -109,13 +109,13 @@ namespace filemanager
          {
             {
                varFile = itema[0].m_strPath;
-               varQuery["id"] = "left_file";
+               varQuery["::filemanager::id"] = "left_file";
                m_pcallback->request_file_query(varFile, varQuery);
             }
 
             {
                varFile = itema[1].m_strPath;
-               varQuery["id"] = "right_file";
+               varQuery["::filemanager::id"] = "right_file";
                m_pcallback->request_file_query(varFile, varQuery);
             }
          }
@@ -123,13 +123,13 @@ namespace filemanager
          {
             {
                varFile = itema[0].m_strPath;
-               varQuery["id"] = "right_file";
+               varQuery["::filemanager::id"] = "right_file";
                m_pcallback->request_file_query(varFile, varQuery);
             }
 
             {
                varFile = itema[1].m_strPath;
-               varQuery["id"] = "left_file";
+               varQuery["::filemanager::id"] = "left_file";
                m_pcallback->request_file_query(varFile, varQuery);
             }
          }
@@ -140,7 +140,7 @@ namespace filemanager
 
             varQuery = itema.get_var_query();
 
-            varQuery["id"] = m_id;
+            varQuery["::filemanager::id"] = m_id;
 
             m_pcallback->request_file_query(varFile, varQuery);
 

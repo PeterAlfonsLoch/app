@@ -14,7 +14,8 @@ namespace core
 
    class CLASS_DECL_CORE application:
       virtual public ::base::application,
-      virtual public ::database::client
+      virtual public ::database::client,
+      virtual public ::filemanager::callback
    {
    public:
 

@@ -191,7 +191,7 @@ namespace userex
 
          pfilemanagerdata->m_strDISection = Application.m_strAppName;
 
-         sp(::filemanager::manager) pmanager = Platform.filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata);
+         sp(::filemanager::manager) pmanager = Platform.filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata, get_app()->m_pcoreapp);
 
          if(pmanager != NULL)
          {
