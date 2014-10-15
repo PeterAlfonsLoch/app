@@ -21,7 +21,7 @@ namespace html
       //bool                 m_bHasChar;
 
       style                m_style;
-      array < elemental *, elemental * > m_elementalptra;
+      comparable_array < elemental *, elemental * > m_elementalptra;
 
       e_tag                m_etag;
       string               m_strBody;

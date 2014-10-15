@@ -326,7 +326,7 @@ string html_form::get_path()
 
 bool html_form::open_document(var varFile)
 {
-   if(!open_document(varFile))
+   if(!::user::form::open_document(varFile))
       return false;
    string strPathName;
    if(varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())

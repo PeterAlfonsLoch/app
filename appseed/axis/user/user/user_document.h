@@ -160,7 +160,7 @@ namespace user
 
 
 
-
+      virtual void on_request(sp(::create_context) pcreatecontext);
 
 
 

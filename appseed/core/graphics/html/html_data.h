@@ -161,6 +161,8 @@ namespace html
 
       bool                       m_bHasChar;
 
+      bool                       m_bDrawFirstBody;
+
 
 
       data(sp(::aura::application) papp);

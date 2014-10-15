@@ -985,9 +985,27 @@ namespace user
 
    void document::on_file_save()
    {
+      
       do_file_save();
+
    }
 
+   
+   void document::on_request(sp(::create_context) pcreatecontext)
+   {
+
+      if(!on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
+         return;
+
+      pcreatecontext->m_spCommandLine->m_varQuery["document"] = this;
+
+   }
+
+
 } // namespace user
+
+
+
+
 
 

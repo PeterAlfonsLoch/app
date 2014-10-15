@@ -799,7 +799,26 @@ namespace html
          if (m_idTagName == __id(html_link) && get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
          {
             sp(style_sheet) pstylesheet(new style_sheet(m_pauraapp));
-            pstylesheet->parse(pdata, App(pdata->get_app()).file().as_string(get_tag()->get_attr_value("href")));
+
+            string strUrl(get_tag()->get_attr_value("href"));
+            if(strUrl.find(":") >= 0)
+            {
+            }
+            else if(strUrl[0] == '\\')
+            {
+            }
+            else if(::str::begins(m_pdata->m_strPathName,"http://") ||
+               ::str::begins(m_pdata->m_strPathName,"https://"))
+            {
+               strUrl = System.url().path(m_pdata->m_strPathName,strUrl);
+            }
+            else
+            {
+               strUrl = System.dir().path(
+                  System.dir().name(m_pdata->m_strPathName),strUrl);
+               strUrl.replace("/","\\");
+            }
+            pstylesheet->parse(pdata, App(pdata->get_app()).file().as_string(strUrl));
             pdata->m_stylesheeta.add(pstylesheet);
          }
          for (int32_t i = 0; i < ptag->baseptra().get_size(); i++)
@@ -828,7 +847,7 @@ namespace html
             && m_pparent->get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
          {
             sp(style_sheet) pstylesheet(new style_sheet(m_pauraapp));
-            pstylesheet->parse(pdata, Sess(pdata->get_app()).file().as_string(m_pparent->get_tag()->get_attr_value("href")));
+            pstylesheet->parse(pdata, App(pdata->get_app()).file().as_string(m_pparent->get_tag()->get_attr_value("href")));
             pdata->m_stylesheeta.add(pstylesheet);
          }
       }

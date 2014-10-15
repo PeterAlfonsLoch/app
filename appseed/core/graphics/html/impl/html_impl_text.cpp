@@ -536,7 +536,21 @@ namespace html
 
             rect rect;
 
-            m_box.get(rect);
+            if(!pdata->m_bDrawFirstBody)
+            {
+               
+               pdata->m_bDrawFirstBody = true;
+
+               pdata->m_pform->GetClientRect(rect);
+
+            }
+            else
+            {
+
+               m_box.get(rect);
+
+            }
+
 
             COLORREF cr = 0;
 

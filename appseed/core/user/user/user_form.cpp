@@ -647,7 +647,7 @@ namespace user
 
    void form::install_message_handling( ::message::dispatch *pinterface)
    {
-      ::user::scroll_control::install_message_handling(pinterface);
+      ::user::scroll_view::install_message_handling(pinterface);
    /*   InstallOnDrawInterface(pinterface);
       VMSGEN_WINDOW_ON_SIZE_CONDITIONAL(pinterface, this, _001OnSize);
       VMSGEN_WINDOW_ON_VSCROLL_CONDITIONAL(pinterface, this, _001OnVScroll);
@@ -1027,7 +1027,8 @@ namespace user
    bool form::open_document(var varFile)
    {
 
-      UNREFERENCED_PARAMETER(varFile);
+      if(!::user::form_interface::open_document(varFile))
+         return false;
 
       return true;
 
@@ -1182,20 +1183,6 @@ namespace user
       pcontrol->GetClientRect(lprect);
 
    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

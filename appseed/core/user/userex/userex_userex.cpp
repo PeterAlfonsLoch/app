@@ -637,14 +637,37 @@ namespace userex
 
    sp(::form_document) userex::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
-      if(pwndParent != NULL && pwndParent->m_pauraapp != get_app())
-      {
-         return Plat(pwndParent->m_pauraapp).userex()->create_form(pcallback,pwndParent,var);
-      }
+      //if(pwndParent != NULL && pwndParent->m_pauraapp != get_app())
+      //{
+      //   return Plat(pwndParent->m_pauraapp).userex()->create_form(pcallback,pwndParent,var);
+      //}
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
          return NULL;
-      sp(::create_context) createcontext(allocer());
+
+      sp(::aura::application) papp;
+
+      if(pwndParent.is_set())
+      {
+
+         papp = pwndParent->get_app();
+
+      }
+      else if(pcallback != NULL)
+      {
+
+         papp = pcallback->get_app();
+
+      }
+      else
+      {
+
+         papp = get_app();
+
+      }
+
+      sp(::create_context) createcontext(papp->allocer());
+
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool)var["hold"])
@@ -684,14 +707,14 @@ namespace userex
 
    sp(::form_document) userex::create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
-      if(pwndParent != NULL && pwndParent->m_pauraapp != get_app())
-      {
-         return Plat(pwndParent->m_pauraapp).userex()->create_child_form(pcallback,pwndParent,var);
-      }
+      //if(pwndParent != NULL && pwndParent->m_pauraapp != get_app())
+      //{
+        // return Plat(pwndParent->m_pauraapp).userex()->create_child_form(pcallback,pwndParent,var);
+      //}
       if(m_ptemplateChildForm == NULL)
          return NULL;
       sp(::form_document) pdoc;
-      sp(::create_context) createcontext(allocer());
+      sp(::create_context) createcontext(pwndParent->allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       pdoc = (m_ptemplateChildForm->open_document_file(createcontext));
@@ -705,7 +728,7 @@ namespace userex
    sp(::user::document) userex::hold(sp(::user::interaction) pui)
    {
 
-      sp(::create_context) createcontext(allocer());
+      sp(::create_context) createcontext(pui->allocer());
 
       createcontext->m_bMakeVisible    = false;
       createcontext->m_bHold           = false;

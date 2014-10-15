@@ -21,6 +21,10 @@ namespace user
       virtual void control_get_window_rect(sp(control) pcontrol,LPRECT lprect);
       virtual void control_get_client_rect(sp(control) pcontrol,LPRECT lprect);
 
+
+      virtual bool open_document(var varFile);
+
+
    };
 
 

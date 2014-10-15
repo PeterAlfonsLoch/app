@@ -92,7 +92,8 @@ namespace html
          m_pedit->GetWindow()->ScreenToClient(rectWindow);
          ::point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
          pdata->m_pdc->SetViewportOrg(rectWindow.top_left());
-         m_pedit->_001OnDraw(pdata->m_pdc);
+         m_pedit->_000OnDraw(pdata->m_pdc);
+         pdata->m_pdc->SelectClipRgn(NULL);
          pdata->m_pdc->SetViewportOrg(ptPreviousViewportOrg);
       }
 

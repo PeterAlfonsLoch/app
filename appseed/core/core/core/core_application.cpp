@@ -3153,7 +3153,11 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
          sp(::create_context) pcreatecontext(pbase->m_lparam);
          try
          {
+
+            pcreatecontext->set_app(this);
+
             on_request(pcreatecontext);
+
          }
          catch(not_installed & e)
          {

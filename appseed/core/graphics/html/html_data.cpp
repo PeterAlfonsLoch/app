@@ -355,8 +355,24 @@ namespace html
          return;
       
       m_pdc = pdc;
-      
+
+      //if(m_strPathName.find_ci("alarms_index") >= 0)
+      //{
+
+      //   pdc->FillSolidRect(100,100,100,100,ARGB(184,255,0,0));
+
+      //}
+
+      m_bDrawFirstBody = false;
+
       m_elemental._001OnDraw(this);
+
+      //if(m_strPathName.find_ci("alarms_index") >= 0)
+      //{
+
+      //   pdc->FillSolidRect(200,200,100,100,ARGB(184,0,255,0));
+
+      //}
 
    }
 

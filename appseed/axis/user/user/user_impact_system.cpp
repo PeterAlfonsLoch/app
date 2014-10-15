@@ -144,7 +144,7 @@ namespace user
          ASSERT(FALSE);
          return NULL;
       }
-      sp(::user::frame_window) pFrame = Application.alloc(m_typeinfoFrame);
+      sp(::user::frame_window) pFrame = App(pcreatecontext->get_app()).alloc(m_typeinfoFrame);
       if (pFrame == NULL)
       {
          TRACE(::aura::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",

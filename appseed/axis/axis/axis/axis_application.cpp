@@ -1280,6 +1280,7 @@ namespace axis
 
    }
 
+
    //bool application::is_serviceable()
    //{
 

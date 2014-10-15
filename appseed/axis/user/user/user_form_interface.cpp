@@ -48,5 +48,15 @@ namespace user
 
    }
 
+   bool form_interface::open_document(var varFile)
+   {
+
+      if(!get_document()->open_document_file(varFile))
+         return false;
+
+      return true;
+
+   }
+
 
 } // namespace user
