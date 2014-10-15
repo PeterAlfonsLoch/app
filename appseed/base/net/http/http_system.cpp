@@ -406,28 +406,54 @@ namespace http
       if(!bOk)
       {
 
-// xxx         bool bAutoDetect = System.os().connection_settings_get_auto_detect();
-
-         bool bAutoDetect = false;
+         bool bAutoDetect = System.os().connection_settings_get_auto_detect();
 
          if(bAutoDetect)
          {
-            if(try_pac_script("http://wpad/wpad.dat", pszUrl, pproxy))
-               return;
+
+            TRACE("proxy auto_detect true");
+
+            string strUrl = System.os().connection_settings_get_auto_config_url();
+
+            if(strUrl.has_char())
+            {
+
+               TRACE("get_auto_config_url : %s",strUrl);
+
+               if(try_pac_script(strUrl,pszUrl,pproxy))
+                  return;
+
+            }
+
          }
-
-// xxx         string strUrl = System.os().connection_settings_get_auto_config_url();
-
-         string strUrl;
-
-         if(strUrl.has_char())
+         else
          {
-            if(try_pac_script(strUrl, pszUrl, pproxy))
+
+            TRACE("proxy auto_detect false");
+
+            string strUrl = System.os().connection_settings_get_auto_config_url();
+
+            if(strUrl.has_char())
+            {
+
+               TRACE("get_auto_config_url : %s",strUrl);
+
+               if(try_pac_script(strUrl,pszUrl,pproxy))
+                  return;
+
+            }
+
+            if(try_pac_script("http://wpad/wpad.dat",pszUrl,pproxy))
                return;
+
          }
+
 
          pproxy->m_bDirect = true;
+
+
       }
+
 
    }
 

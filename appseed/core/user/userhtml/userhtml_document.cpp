@@ -109,7 +109,7 @@ bool html_document::on_open_document(var varFile)
    update_all_views(NULL, 0, &uh);
 
 
-   data_set("LastOpenedFile", get_path_name());
+   data_set(".local://LastOpenedFile", get_path_name());
 
 
    return TRUE;
