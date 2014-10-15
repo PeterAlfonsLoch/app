@@ -1268,7 +1268,7 @@ namespace install
 
          stringa straFile;
 
-         get_plugin_base_library_list(straFile);
+         ::install::get_plugin_base_library_list(straFile);
 
          for(index iFile = 0; iFile < straFile.get_size(); iFile++)
          {

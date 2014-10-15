@@ -9,6 +9,8 @@ namespace install
    class interaction_impl;
    class install;
 
+   CLASS_DECL_BASE void get_plugin_base_library_list(stringa & straFile);
+
 
 } // namespace install
 
