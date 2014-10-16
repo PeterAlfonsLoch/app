@@ -1325,7 +1325,38 @@ namespace axis
    ::user::interaction * session::get_active_guie()
    {
 
+#if defined (METROWIN)
+
+      return GetFocus()->m_pui;
+
+#elif defined(WINDOWSEX) || defined(LINUX)
+
+      ::user::interaction * pwnd = System.get_active_guie();
+
+      if(pwnd != NULL)
+      {
+
+         return pwnd;
+
+      }
+
+      pwnd = m_puiActive;
+      
+      if(pwnd != NULL)
+      {
+
+         return pwnd;
+
+      }
+
+      return NULL;
+
+#else
+
       return System.get_active_guie();
+
+#endif
+
 
    }
 
@@ -1368,15 +1399,16 @@ namespace axis
       pwnd = m_puiFocus;
       if(pwnd != NULL)
       {
-//         if(get_active_guie()->get_safe_handle() == pwnd->get_safe_handle()
-  //          || ::user::window_util::IsAscendant(get_active_guie()->get_safe_handle(),pwnd->get_safe_handle()))
+         if(get_active_guie() != NULL
+            && (get_active_guie() == pwnd
+            || get_active_guie()->is_descendant(pwnd)))
          {
             return pwnd;
          }
-    //     else
-      //   {
-        //    return NULL;
-         //}
+         else
+         {
+            return NULL;
+         }
       }
       return NULL;
 #else

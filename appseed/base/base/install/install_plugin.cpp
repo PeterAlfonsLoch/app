@@ -569,6 +569,92 @@ namespace install
          if(ensure_tx(::hotplugin::message_paint, (void *) &lprect, sizeof(lprect)))
          {
 
+            if(m_phost->m_pbasecomposer->m_bSendActivationState)
+            {
+
+               m_phost->m_pbasecomposer->m_bSendActivationState = false;
+
+               m_phost->m_pbasecomposer->m_bActivationStateSent = false;
+
+            }
+
+            if(m_phost->m_pbasecomposer->m_bActive)
+            {
+
+               if(!m_phost->m_pbasecomposer->is_active() || !m_phost->m_pbasecomposer->m_bActivationStateSent)
+               {
+
+                  m_phost->m_pbasecomposer->m_bActive = false;
+
+                  LRESULT lresult;
+
+                  sp(message::base) pbase = canew(message::base(get_app(),this,WM_ACTIVATE,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
+
+                  m_phost->::hotplugin::host::message_handler(pbase);
+
+               }
+
+            }
+            else
+            {
+
+               if(m_phost->m_pbasecomposer->is_active() || !m_phost->m_pbasecomposer->m_bActivationStateSent)
+               {
+
+                  m_phost->m_pbasecomposer->m_bActive = true;
+
+                  LRESULT lresult;
+
+                  sp(message::base) pbase = canew(message::base(get_app(),this,WM_ACTIVATE,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
+
+                  m_phost->::hotplugin::host::message_handler(pbase);
+
+               }
+            }
+
+
+            if(m_phost->m_pbasecomposer->m_bFocus)
+            {
+
+               if(!has_focus() || !m_phost->m_pbasecomposer->m_bActivationStateSent)
+               {
+
+                  m_phost->m_pbasecomposer->m_bFocus = false;
+
+                  LRESULT lresult;
+
+                  sp(message::base) pbase = canew(message::base(get_app(),this,WM_KILLFOCUS,0,0,lresult));
+
+                  m_phost->::hotplugin::host::message_handler(pbase);
+
+               }
+
+            }
+            else
+            {
+
+               if(has_focus() || !m_phost->m_pbasecomposer->m_bActivationStateSent)
+               {
+
+                  m_phost->m_pbasecomposer->m_bFocus = true;
+
+                  LRESULT lresult;
+
+                  sp(message::base) pbase = canew(message::base(get_app(),this,WM_SETFOCUS,0,0,lresult));
+
+                  m_phost->::hotplugin::host::message_handler(pbase);
+
+               }
+
+            }
+
+            if(!m_phost->m_pbasecomposer->m_bActivationStateSent)
+            {
+
+               m_phost->m_pbasecomposer->m_bActivationStateSent = true;
+
+            }
+
             m_phost->blend_bitmap(pgraphics, lprect);
 
             return;
@@ -576,6 +662,15 @@ namespace install
          }
 
       }
+
+      if(!m_phost->m_pbasecomposer->m_bSendActivationState)
+      {
+
+         m_phost->m_pbasecomposer->m_bSendActivationState = true;
+
+      }
+
+
 
 #endif
 

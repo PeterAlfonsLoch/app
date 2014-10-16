@@ -8,6 +8,16 @@ namespace hotplugin
    composer::composer()
    {
 
+      m_bFocus                   = false;
+
+      m_bActive                  = false;
+
+      m_bActivationStateSent     = false;
+
+      m_bSendActivationState     = false;
+
+
+
       m_estatus               = status_start_system;
       m_bSystemOk             = false;
       m_bTryInitHost          = false;
@@ -322,6 +332,19 @@ namespace hotplugin
 
    }
 
+   
+   bool composer::is_active()
+   {
+
+      return true;
+
+   }
+
 
 } // namespace hotplugin
+
+
+
+
+
 

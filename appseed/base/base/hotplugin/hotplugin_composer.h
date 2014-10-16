@@ -22,6 +22,12 @@ namespace hotplugin
       };
 
 
+      bool                          m_bFocus;
+      bool                          m_bActive;
+      bool                          m_bSendActivationState;
+      bool                          m_bActivationStateSent;
+
+
       e_status                               m_estatus;
       bool                                   m_bSystemOk;
       bool                                   m_bHostOk;
@@ -78,7 +84,7 @@ namespace hotplugin
 
       virtual bool      _open_link(const string & strLink,const string & pszTarget);
 
-
+      virtual bool is_active();
    
    };
 
