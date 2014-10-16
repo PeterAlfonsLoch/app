@@ -16,7 +16,7 @@ namespace hotplugin
 
       m_bSendActivationState     = false;
 
-
+      m_bInit                 = true; // default implemenation assume initialized on construction, derivations may change it
 
       m_estatus               = status_start_system;
       m_bSystemOk             = false;
@@ -100,7 +100,7 @@ namespace hotplugin
             m_estatus = status_init_host;
 
          }
-         else
+         else if(m_bInit)
          {
 
             if(m_pbasehost == NULL)

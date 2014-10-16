@@ -267,7 +267,11 @@ namespace hotplugin
 
    bool plugin::plugin_finalize()
    {
+
+      post_thread_message(WM_QUIT);
+
       return true;
+
    }
 
    /*double cos_prec_dup(double x,double prec)

@@ -30,6 +30,7 @@ namespace hotplugin
 
       e_status                               m_estatus;
       bool                                   m_bSystemOk;
+      bool                                   m_bInit;
       bool                                   m_bHostOk;
       bool                                   m_bTryInitHost;
       bool                                   m_bHostInit;

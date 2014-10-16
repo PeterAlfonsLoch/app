@@ -1107,6 +1107,8 @@ namespace install
 
             property_set set(get_app());
 
+            set["raw_http"] = true;
+
             strPrompt = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
 
             if (strPrompt.is_empty())
