@@ -67,6 +67,8 @@ element(papp)
 void thread::CommonConstruct()
 {
 
+   m_durationRunLock = ::duration::infinite();
+
    m_dwAlive = ::get_tick_count();
 
    m_pmutex = new mutex();
@@ -89,6 +91,7 @@ void thread::CommonConstruct()
    m_preplacethread = NULL;
 
    m_bAutoDelete = true;
+
 
 }
 

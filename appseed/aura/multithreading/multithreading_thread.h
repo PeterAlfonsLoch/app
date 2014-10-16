@@ -16,6 +16,9 @@ class CLASS_DECL_AURA thread :
 {
 public:
 
+
+   ::duration                             m_durationRunLock;
+
    user_interaction_ptr_array *           m_puiptra;
 
    single_lock *                          m_pslUser;

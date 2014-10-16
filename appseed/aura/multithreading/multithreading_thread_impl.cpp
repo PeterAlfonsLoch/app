@@ -71,6 +71,9 @@ void thread_impl::CommonConstruct()
 
    m_hthread = NULL;
 
+
+   
+
 }
 
 
@@ -1256,7 +1259,7 @@ int32_t thread_impl::run()
          else
          {
 
-              ml.lock(::duration::infinite(),false,QS_ALLEVENTS);
+              ml.lock(m_pthread->m_durationRunLock,false,QS_ALLEVENTS);
 
          }
 
