@@ -32,8 +32,7 @@ namespace plugin
    class system;
 
    class CLASS_DECL_CORE plugin :
-      virtual public hotplugin::plugin,
-      virtual public ::object
+      virtual public hotplugin::plugin
    {
    public:
 
@@ -45,7 +44,7 @@ namespace plugin
       bool                          m_bMainReady;
       string                        m_strCa2LoginRuri;
       string                        m_strCa2LogoutRuri;
-      ::visual::dib_sp              m_dib;
+      //::visual::dib_sp              m_dib;
       
 
       plugin(sp(::aura::application) papp);
@@ -73,19 +72,21 @@ namespace plugin
 
       virtual void open_ca2_string(const char * psz);
 
-#ifdef WINDOWS
+      virtual void message_handler(signal_details * pobj);
 
-      virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
-
-#elif defined(METROWIN)
-
-#elif defined(APPLEOS)
-      
-#else
-
-      virtual int32_t message_handler(XEvent * pevent);
-
-#endif
+//#ifdef WINDOWS
+//
+//      virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+//
+//#elif defined(METROWIN)
+//
+//#elif defined(APPLEOS)
+//      
+//#else
+//
+//      virtual int32_t message_handler(XEvent * pevent);
+//
+//#endif
 
       void start_ca2_login();
       void start_ca2_logout();
@@ -95,7 +96,7 @@ namespace plugin
       static UINT c_cdecl thread_proc_ca2_logout(LPVOID pvoid);
 
 
-
+      virtual bool plugin_initialize();
 
 
    };

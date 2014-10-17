@@ -658,7 +658,7 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
          try
          {
             pthread = dynamic_cast < thread * >(threadptra[i]);
-            pthread->m_bRun = false;
+            pthread->set_end_thread();
          }
          catch(...)
          {
@@ -1587,7 +1587,7 @@ void thread_impl::thread_impl_delete()
    try
    {
 
-      m_pthread->m_bRun = false;
+      m_pthread->set_end_thread();
 
    }
    catch(...)
@@ -1750,7 +1750,7 @@ bool replace_thread::do_replace(::thread * pthread)
       try
       {
 
-         m_spthread->m_bRun = false;
+         m_spthread->set_end_thread();
 
       }
       catch(...)

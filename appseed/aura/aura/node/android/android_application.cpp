@@ -382,8 +382,8 @@ if(__get_module_state()->m_pmapHWND == NULL)
       // during the thread destructor
       m_pthreadimpl->set_os_data(NULL);
 
-      //ANDROID_THREAD(m_pthreadimpl.m_p)->m_bRun = false;
-      //ANDROID_THREAD(::ca2::application_base::m_p->::ca2::thread_sp::m_p)->m_bRun = false;
+      //ANDROID_THREAD(m_pthreadimpl.m_p)->set_end_thread();
+      //ANDROID_THREAD(::ca2::application_base::m_p->::ca2::thread_sp::m_p)->set_end_thread();
 
       int32_t iRet = ::aura::application::exit_instance();
 

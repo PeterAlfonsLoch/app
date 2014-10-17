@@ -188,6 +188,9 @@ public:
    virtual void do_events();
    virtual void do_events(const duration & duration);
 
+   virtual void set_run_thread(bool bRun = true);
+   virtual void set_end_thread();
+
 };
 
 

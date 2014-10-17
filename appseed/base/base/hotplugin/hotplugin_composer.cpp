@@ -28,11 +28,22 @@ namespace hotplugin
       m_bResponsive           = true;
       m_bWrite                = false;
 
+      m_bRectSent             = false;
+
    }
    
    
    composer::~composer()
    {
+
+   }
+
+
+
+   ::hotplugin::host * composer::create_host(sp(::base::system) psystem)
+   {
+
+      return NULL;
 
    }
 

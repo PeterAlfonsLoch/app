@@ -98,7 +98,7 @@ namespace user
    bool window_draw::twf_stop()
    {
 
-      m_bRun = false;
+      set_end_thread();
 
       return true;
 

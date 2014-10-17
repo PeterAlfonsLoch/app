@@ -268,6 +268,8 @@ namespace hotplugin
    bool plugin::plugin_finalize()
    {
 
+      plugin_message_handler(WM_CLOSE,0,0,false);
+
       post_thread_message(WM_QUIT);
 
       return true;
@@ -1039,43 +1041,77 @@ namespace hotplugin
 
    }
 
-
    void plugin::message_handler(signal_details * pobj)
    {
 
       SCAST_PTR(::message::base,pbase,pobj);
 
-      MESSAGE msg;
+      UINT message;
 
-      ZERO(msg);
+      WPARAM wparam;
 
-      // only valid fields
-      msg.message    = pbase->m_uiMessage;
-      msg.wParam     = pbase->m_wparam;
+      LPARAM lparam;
+
+      message    = pbase->m_uiMessage;
+
+      wparam     = pbase->m_wparam;
 
       sp(::message::mouse) spmouse = pobj;
 
       if(spmouse.is_set())
       {
 
-         msg.lParam     = spmouse->m_pt.lparam();
+         lparam     = spmouse->m_pt.lparam();
 
       }
       else
       {
 
-         msg.lParam     = pbase->m_lparam;
+         lparam     = pbase->m_lparam;
 
       }
 
-      if(msg.message == WM_WINDOWPOSCHANGED)
-         return;
-      if(msg.message == WM_WINDOWPOSCHANGING)
+      plugin_message_handler(message,wparam,lparam, true);
+
+   }
+
+
+   void plugin::plugin_message_handler(UINT message, WPARAM wparam, LPARAM lparam, bool bEnsureTx)
+   {
+
+      MESSAGE msg;
+
+      ZERO(msg);
+
+      msg.message = message;
+
+      msg.wParam = wparam;
+
+      msg.lParam = lparam;
+
+      plugin_message_handler(&msg, bEnsureTx);
+
+   }
+
+
+   void plugin::plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx)
+   {
+
+      if(pmsg->message == WM_WINDOWPOSCHANGED)
          return;
 
+      if(pmsg->message == WM_WINDOWPOSCHANGING)
+         return;
 
 #ifndef METROWIN
-      ensure_tx(::hotplugin::message_message,&msg,sizeof(msg));
+
+      if(bEnsureTx || ::IsWindow(::small_ipc_tx_channel::m_oswindow))
+      {
+
+         ensure_tx(::hotplugin::message_message,pmsg,sizeof(*pmsg));
+
+      }
+
 #endif
 
    }

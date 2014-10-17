@@ -925,7 +925,9 @@ void thread::signal_close_dependent_threads()
 
          synch_lock slThread(m_threadptraDependent[i]->m_pmutex);
 
-         m_threadptraDependent[i]->m_bRun = false;
+         m_threadptraDependent[i]->set_end_thread();
+
+         m_threadptraDependent[i]->m_peventEvent->SetEvent();
 
          i--;
 
@@ -1077,3 +1079,37 @@ void thread::do_events(const duration & duration)
    } while(::get_tick_count() < dwEnd);
 
 }
+
+
+void thread::set_run_thread(bool bRun)
+{
+   
+   if(bRun)
+   {
+      
+      m_bRun = true;
+
+   }
+   else
+   {
+
+      m_bRun = false;
+
+      if(m_peventEvent != NULL)
+      {
+
+         m_peventEvent->SetEvent();
+
+      }
+
+   }
+
+}
+
+void thread::set_end_thread()
+{
+
+   set_run_thread(false);
+
+}
+

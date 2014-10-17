@@ -134,6 +134,9 @@ namespace hotplugin
       //virtual bool DestroyWindow();
 
       virtual void message_handler(signal_details * pobj);
+      virtual void plugin_message_handler(UINT message,WPARAM wparam,LPARAM lparam, bool bEnsureTx);
+      virtual void plugin_message_handler(MESSAGE * pmsg, bool bEnsureTx);
+
 
       using ::hotplugin::plugin::SetWindowPos;
       virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags);

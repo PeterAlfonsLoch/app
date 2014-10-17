@@ -63,15 +63,35 @@ namespace plugin
 
    }
 
+
+   bool plugin::plugin_initialize()
+   {
+
+      if(!::hotplugin::plugin::plugin_initialize())
+         return false;
+
+      start_ca2_system();
+
+      return true;
+
+   }
+
+
    bool plugin::hist(const char * pszUrl)
    {
+
       return open_link(pszUrl, "");
+
    }
+
 
    void plugin::run_start_install(const char * pszInstall)
    {
+
       UNREFERENCED_PARAMETER(pszInstall);
+
    }
+
 
    int32_t plugin::start_ca2_system()
    {
@@ -238,6 +258,45 @@ namespace plugin
 
    }
 
+   void copy_colorref(int cxParam,int cyParam,COLORREF * pcolorrefDst,COLORREF * pcolorrefSrc,int iStrideDst = -1, int iStrideSrc = -1)
+   {
+
+      if(iStrideDst <= 0)
+      {
+
+         iStrideDst = cxParam * sizeof(COLORREF);
+
+      }
+
+      if(iStrideSrc <= 0)
+      {
+
+         iStrideDst = cxParam * sizeof(COLORREF);
+
+      }
+
+      int wsrc = iStrideSrc / sizeof(COLORREF);
+      int wdst = iStrideDst / sizeof(COLORREF);
+      int cw = cxParam * sizeof(COLORREF);
+
+
+      COLORREF * psrc = pcolorrefSrc;
+      COLORREF * pdst = pcolorrefDst;
+
+      for(int i = 0; i < cyParam; i++)
+      {
+
+         memcpy(pdst,psrc,cw);
+
+         pdst += wdst;
+
+         psrc += wsrc;
+
+      }
+
+   }
+
+
 
    void plugin::on_paint(::draw2d::graphics * pgraphics, const RECT & lprectOut)
    {
@@ -256,67 +315,40 @@ namespace plugin
          if(m_puiHost == NULL)
             return;
 
-         if(m_dib.is_null())
-            m_dib.alloc(allocer());
-
-         if(m_dib.is_null())
-            return;
-
-         m_dib->create(rectClient.size());
-
-         if(m_dib->area() <= 0)
-            return;
-
-         m_dib->Fill(0, 0, 0, 0);
-
-
-
-//         ::draw2d::graphics_sp dc(get_app());
-
-         //dc->CreateCompatibleDC(NULL);
-
-         //m_dib->defer_realize(dc);
-
-         try
-         {
-
-            /*
-            RECT rect;
-
-            rect.left = 100;
-            rect.right = 500;
-            rect.top = 100;
-            rect.bottom = 500;
-
-            m_dib->get_graphics()->FillSolidRect(&rect, ARGB(128, 255, 255, 127));
-            */
-
-            m_puiHost->_000OnDraw(m_dib->get_graphics());
-
-         }
-         catch(...)
-         {
-         }
-
-#ifdef WINDOWSEX
-
-         m_dib->get_graphics()->sync_flush();
-
-         ::GdiFlush();
-
-#endif
-
          m_sizeBitmap.cx = abs_dup(rectClient.width());
 
          m_sizeBitmap.cy = abs_dup(rectClient.height());
 
-         //memset(m_dib->m_pcolorref,0xcd,300 * 300 * 4);
+         if(m_sizeBitmap.cx <= 0 || m_sizeBitmap.cy <= 0)
+            return;
+
+         sp(::user::interaction_impl) pimpl = m_phost->::user::interaction::m_pimpl;
+
+         if(pimpl.is_null())
+            return;
+
+         ::draw2d::dib_sp dib = pimpl->m_spdib;
+
+         if(dib.is_null())
+            return;
+
+         if(dib->area() <= 0)
+            return;
+
+         single_lock sl(pimpl->mutex_display(),true);
+
 
          {
 
             synch_lock sl(m_pmutexBitmap);
 
-            memcpy(m_pcolorref, m_dib->get_data(), abs_dup(m_sizeBitmap.cy) * abs_dup(m_sizeBitmap.cx) * 4);
+            copy_colorref(
+               MIN(dib->m_size.cx,m_sizeBitmap.cx),
+               MIN(dib->m_size.cy,m_sizeBitmap.cy),
+               m_pcolorref,
+               dib->m_pcolorref,
+               abs_dup(m_sizeBitmap.cx) * sizeof(COLORREF),
+               abs_dup(dib->m_size.cx) * sizeof(COLORREF));
 
          }
 
@@ -554,7 +586,25 @@ namespace plugin
 
          LPSTR lpszAlloc = (LPSTR) (void *) psz;
 
+         if(psz == NULL)
+         {
+
+            TRACE("plugin::plugin::open_ca2_string NULL !!!");
+
+            return;
+
+         }
+
          strsize iCount = strlen(psz);
+
+         if(iCount <= 0)
+         {
+
+            TRACE("plugin::plugin::open_ca2_string EMPTY !!!");
+
+            return;
+
+         }
 
          //Sleep(15 * 1000);
 
@@ -919,7 +969,7 @@ namespace plugin
                *m_pbReady = false;
             }
             pthread->m_pbReady = m_pbReady;
-            pthread->m_bRun = false;
+            pthread->set_end_thread();
             int32_t iRepeat = 0;
             while((m_pbReady != NULL || !*m_pbReady) && iRepeat < 49)
             {
@@ -973,90 +1023,97 @@ namespace plugin
 
    }
 
-
-
-#ifdef WINDOWSEX
-
-   LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
-   {
-
-      if(m_puiHost != NULL)
-      {
-
-         if(uiMessage >= WM_MOUSEFIRST && uiMessage <= WM_MOUSELAST)
-         {
-
-            point pt = point(lparam);
-
-            //pt.x -= m_rect.left;
-
-            //pt.y -= m_rect.top;
-
-            lparam = pt.lparam();
-
-         }
-
-         if(uiMessage == WM_MOUSEMOVE)
-         {
-
-            ::window_sp pwindow = m_puiHost->m_pimpl;
-
-            pwindow->m_bMouseHover = true; // avoids tracking mouse leave;
-
-         }
-
-         ::window_sp pwindow = m_puiHost->m_pimpl;
-
-         oswindow oswindow = pwindow->get_handle();
-
-         bool bIsWindow = ::IsWindow(oswindow) != FALSE;
-
-         if(bIsWindow)
-         {
-
-            smart_pointer < message::base > spbase;
-
-            spbase = m_puiHost->get_base(uiMessage, wparam, lparam);
-
-            m_puiHost->message_handler(spbase);
-
-            return spbase->get_lresult();
-
-         }
-         else
-         {
-
-            return 0;
-
-         }
-
-      }
-
-      return 0;
-
-   }
-
-#elif defined(METROWIN)
-
-   LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
-   {
-
-      return 0;
-
-   }
    
-#elif defined(APPLEOS)
-
-#else
-
-   int32_t plugin::message_handler(XEvent * pevent)
+   void plugin::message_handler(signal_details * pobj)
    {
 
-      return 0;
+
 
    }
 
-#endif
+
+//#ifdef WINDOWSEX
+//
+//   LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+//   {
+//
+//      if(m_puiHost != NULL)
+//      {
+//
+//         if(uiMessage >= WM_MOUSEFIRST && uiMessage <= WM_MOUSELAST)
+//         {
+//
+//            point pt = point(lparam);
+//
+//            //pt.x -= m_rect.left;
+//
+//            //pt.y -= m_rect.top;
+//
+//            lparam = pt.lparam();
+//
+//         }
+//
+//         if(uiMessage == WM_MOUSEMOVE)
+//         {
+//
+//            ::window_sp pwindow = m_puiHost->m_pimpl;
+//
+//            pwindow->m_bMouseHover = true; // avoids tracking mouse leave;
+//
+//         }
+//
+//         ::window_sp pwindow = m_puiHost->m_pimpl;
+//
+//         oswindow oswindow = pwindow->get_handle();
+//
+//         bool bIsWindow = ::IsWindow(oswindow) != FALSE;
+//
+//         if(bIsWindow)
+//         {
+//
+//            smart_pointer < message::base > spbase;
+//
+//            spbase = m_puiHost->get_base(uiMessage, wparam, lparam);
+//
+//            m_puiHost->message_handler(spbase);
+//
+//            return spbase->get_lresult();
+//
+//         }
+//         else
+//         {
+//
+//            return 0;
+//
+//         }
+//
+//      }
+//
+//      return 0;
+//
+//   }
+//
+//#elif defined(METROWIN)
+//
+//   LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+//   {
+//
+//      return 0;
+//
+//   }
+//   
+//#elif defined(APPLEOS)
+//
+//#else
+//
+//   int32_t plugin::message_handler(XEvent * pevent)
+//   {
+//
+//      return 0;
+//
+//   }
+//
+//#endif
 
    bool plugin::os_native_bergedge_start()
    {

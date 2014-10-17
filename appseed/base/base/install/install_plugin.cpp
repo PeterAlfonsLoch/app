@@ -64,7 +64,8 @@ namespace install
       ::axis::session(papp),
       ::base::session(papp),
       hotplugin::plugin(papp),
-      m_canvas(papp)
+      m_canvas(papp),
+      m_startca2(papp)
    {
 
 
@@ -322,28 +323,26 @@ namespace install
 
    }
 
-   int32_t plugin::thread_start_ca2::run()
+   plugin::thread_start_ca2::thread_start_ca2(sp(::aura::application) papp) :
+      element(papp),
+      thread(papp)
    {
 
-      while(m_bRun)
-      {
+      m_durationRunLock = millis(84 + 77);
 
-         try
-         {
+   }
 
-            m_pplugin->thread_start_ca2_on_idle();
 
-         }
-         catch(...)
-         {
 
-         }
+   bool plugin::thread_start_ca2::on_run_step()
+   {
 
-         Sleep(84 + 77);
+      if(!::thread::on_run_step())
+         return false;
 
-      }
+      m_pplugin->thread_start_ca2_on_idle();
 
-      return 0;
+      return true;
 
    }
 
@@ -412,7 +411,7 @@ namespace install
 
          m_phost->open_link(strUrl, "");
 
-         m_startca2.m_bRun = false;
+         m_startca2.set_end_thread();
 
          return;
 
@@ -434,7 +433,7 @@ namespace install
          
          //ca2logout(set);
 
-         m_startca2.m_bRun = false;
+         m_startca2.set_end_thread();
 
          return;
 
@@ -563,11 +562,22 @@ namespace install
 
 #else
 
+      DWORD dwTime1 = ::get_tick_count();
+
+
+
       if (!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !is_installing() && System.install().is_ca2_installed())
       {
+         DWORD dwTime3 = ::get_tick_count();
 
-         if(ensure_tx(::hotplugin::message_paint, (void *) &lprect, sizeof(lprect)))
+         TRACE("eval1 %d",dwTime3 - dwTime1);
+
+         if(ensure_tx(WM_APP+WM_USER, (void *) &lprect, sizeof(lprect)))
          {
+
+            DWORD dwTime5 = ::get_tick_count();
+
+            TRACE("ensure_tx %d",dwTime5 - dwTime3);
 
             if(m_phost->m_pbasecomposer->m_bSendActivationState)
             {
@@ -655,7 +665,17 @@ namespace install
 
             }
 
+            DWORD dwTime7 = ::get_tick_count();
+
+            TRACE("focus_update %d",dwTime7 - dwTime5);
+
+
             m_phost->blend_bitmap(pgraphics, lprect);
+
+            DWORD dwTime9 = ::get_tick_count();
+
+            TRACE("blend %d",dwTime9 - dwTime7);
+
 
             return;
 
@@ -667,6 +687,13 @@ namespace install
       {
 
          m_phost->m_pbasecomposer->m_bSendActivationState = true;
+
+      }
+
+      if(m_phost->m_pbasecomposer->m_bRectSent)
+      {
+
+         m_phost->m_pbasecomposer->m_bRectSent = false;
 
       }
 
@@ -1049,7 +1076,27 @@ namespace install
          rect.right = x + cx;
          rect.bottom = y + cy;
 
-         ensure_tx(::hotplugin::message_set_window, (void *) &rect, sizeof(RECT));
+         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectSent != rect)
+         {
+
+            m_phost->m_pbasecomposer->m_bRectSent = true;
+
+            m_rectSent = rect;
+
+            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rect,sizeof(RECT)))
+            {
+               
+               m_phost->m_pbasecomposer->m_bRectSent = false;
+
+            }
+
+         }
+         else
+         {
+
+            TRACE("probably very healthly ignoring install::plugin::SetWindowPos");
+
+         }
 
 #endif
 

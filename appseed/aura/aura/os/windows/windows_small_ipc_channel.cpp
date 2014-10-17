@@ -128,7 +128,18 @@ bool small_ipc_tx_channel::send(int32_t message, void * pdata, int32_t len, uint
    if(dwTimeout == INFINITE)
    {
 
-      SendMessage(m_oswindow, WM_COPYDATA, (WPARAM) 0, (LPARAM) &cds);
+      if(message >= WM_APP)
+      {
+
+         SendMessage(m_oswindow,message, 0, 0);
+
+      }
+      else
+      {
+
+         SendMessage(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds);
+
+      }
 
    }
    else
@@ -354,6 +365,12 @@ LRESULT small_ipc_rx_channel::message_queue_proc(UINT message, WPARAM wparam, LP
       }
 
    }
+   else if(message >= WM_APP)
+   {
+
+      on_receive(this,message,(void *) wparam,lparam);
+
+   }
    else
    {
 
@@ -392,10 +409,16 @@ bool small_ipc_channel::open_ab(const char * pszKey, const char * pszModule, lau
    string strChannelRx = m_vssChannel + "-a";
    string strChannelTx = m_vssChannel + "-b";
 
-
-   if(!m_rxchannel.create(strChannelRx, pszModule))
+   if(!::IsWindow(m_rxchannel.m_oswindow))
    {
-      return false;
+
+      if(!m_rxchannel.create(strChannelRx,pszModule))
+      {
+
+         return false;
+
+      }
+
    }
 
    if(!small_ipc_tx_channel::open(strChannelTx, plauncher))
@@ -418,9 +441,16 @@ bool small_ipc_channel::open_ba(const char * pszKey, const char * pszModule, lau
    string strChannelTx = m_vssChannel + "-a";
 
 
-   if(!m_rxchannel.create(strChannelRx, pszModule))
+   if(!::IsWindow(m_rxchannel.m_oswindow))
    {
-      return false;
+
+      if(!m_rxchannel.create(strChannelRx,pszModule))
+      {
+
+         return false;
+
+      }
+
    }
 
    if(!small_ipc_tx_channel::open(strChannelTx, plauncher))

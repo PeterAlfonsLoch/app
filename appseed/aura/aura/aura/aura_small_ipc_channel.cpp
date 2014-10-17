@@ -56,7 +56,20 @@ bool small_ipc_channel::ensure_tx(int32_t message, void * pdata, int32_t len, ui
    //if(dwTimeout == INFINITE)
    //   dwTimeout = m_dwTimeout;
 
-   if(!send(message, pdata, len, dwTimeout))
+   if(message == WM_APP + WM_USER)
+   {
+
+      if(!is_tx_ok())
+      {
+      
+         restart_small_ipc_channel();
+
+         return false;
+
+      }
+
+   }
+   else if(!send(message, pdata, len, dwTimeout))
    {
 
       restart_small_ipc_channel();

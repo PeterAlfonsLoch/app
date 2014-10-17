@@ -132,6 +132,8 @@ namespace hotplugin
       virtual int32_t message_handler(XEvent * pevent);
 #endif
       virtual void message_handler(signal_details * pobj);
+      virtual void plugin_message_handler(UINT message, WPARAM wparam, LPARAM lparam, bool bEnsureTx);
+      virtual void plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx);
 
 
       virtual void on_bare_paint(::draw2d::graphics * pgraphics,const RECT & lprect);

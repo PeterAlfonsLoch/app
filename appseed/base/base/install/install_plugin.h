@@ -26,14 +26,16 @@ namespace install
 
 
       class CLASS_DECL_BASE thread_start_ca2 :
-         public thread_layer
+         public thread
       {
       public:
 
 
          plugin * m_pplugin;
 
-         virtual int32_t run();
+         thread_start_ca2(sp(::aura::application) papp);
+
+         virtual bool on_run_step();
 
 
       } ;
@@ -55,6 +57,8 @@ namespace install
       bool                 m_bPluginShiftKey;
 
       string               m_strLoginRequestingServer;
+
+      ::rect               m_rectSent;
 
 
 

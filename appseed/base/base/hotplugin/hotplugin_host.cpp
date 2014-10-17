@@ -181,9 +181,12 @@ namespace hotplugin
 
          try
          {
-
+            DWORD dwTime1 = ::get_tick_count();
 
             m_pplugin->on_paint(pgraphics, lprect);
+            DWORD dwTime9 = ::get_tick_count();
+
+            TRACE("plugin->on_paint %d",dwTime9 - dwTime1);
 
          }
          catch(...)
@@ -199,14 +202,23 @@ namespace hotplugin
 
       }
 
-      if(::user::interaction::m_pimpl != NULL)
+      if(::user::interaction::m_pimpl != NULL && pgraphics != NULL)
       {
+         //DWORD dwTime1 = ::get_tick_count();
+
 
          ::user::interaction::m_pimpl->_001Print(pgraphics);
+         //DWORD dwTime9 = ::get_tick_count();
+
+         //TRACE("m_pimpl->_001Print %d",dwTime9 - dwTime1);
 
       }
+      //DWORD dwTime1 = ::get_tick_count();
 
       deferred_prodevian_redraw();
+      //DWORD dwTime9 = ::get_tick_count();
+
+      //TRACE("deferred_prodevian_redraw %d",dwTime9 - dwTime1);
 
    }
 
@@ -608,6 +620,33 @@ throw todo(get_thread_app());
       ::simple_ui::interaction::message_handler(pobj);
 
    }
+
+   
+   void host::plugin_message_handler(UINT message,WPARAM wparam,LPARAM lparam, bool bEnsureTx)
+   {
+
+      if(m_pplugin != NULL)
+      {
+
+         m_pplugin->plugin_message_handler(message, wparam, lparam, bEnsureTx);
+
+      }
+
+   }
+
+
+   void host::plugin_message_handler(MESSAGE * pmsg,bool bEnsureTx)
+   {
+
+      if(m_pplugin != NULL)
+      {
+
+         m_pplugin->plugin_message_handler(pmsg, bEnsureTx);
+
+      }
+
+   }
+
 
 
    bool host::hotplugin_host_begin()

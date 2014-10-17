@@ -26,6 +26,9 @@ namespace hotplugin
       bool                          m_bActive;
       bool                          m_bSendActivationState;
       bool                          m_bActivationStateSent;
+      bool                          m_bRectSent;
+
+
 
 
       e_status                               m_estatus;
@@ -63,7 +66,7 @@ namespace hotplugin
       virtual ~composer();
 
 
-      virtual ::hotplugin::host * create_host(sp(::base::system) psystem) = 0;
+      virtual ::hotplugin::host * create_host(sp(::base::system) psystem) ;
 
       virtual void hotplugin_composer_on_timer();
 

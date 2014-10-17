@@ -13,28 +13,28 @@ namespace plugin
       ::core::system(papp)
    {
 
-         if (papp.is_set())
-         {
-            m_pauraapp = papp;
-         }
-         
-         if(m_paxissession == NULL)
-         {
+      //   if (papp.is_set())
+      //   {
+      //      m_pauraapp = papp;
+      //   }
+      //   
+      //   if(m_paxissession == NULL)
+      //   {
 
-            m_paxissession = m_pauraapp->m_paxissession;
+      //      m_paxissession = m_pauraapp->m_paxissession;
 
-         }
+      //   }
 
-      if (m_pbasesession == NULL)
-      {
-         
-            m_pbasesession = m_pauraapp->m_pbasesession;
+      //if (m_pbasesession == NULL)
+      //{
+      //   
+      //      m_pbasesession = m_pauraapp->m_pbasesession;
 
-      }
+      //}
 
       m_bShouldInitializeGTwf    = false;
 
-      m_bRun = true;
+      //m_bRun = true;
 
    }
 
@@ -42,7 +42,9 @@ namespace plugin
    bool system::os_native_bergedge_start()
    {
 
-      return m_pplugin->os_native_bergedge_start();
+      //return m_pplugin->os_native_bergedge_start();
+
+      return true;
 
    }
 

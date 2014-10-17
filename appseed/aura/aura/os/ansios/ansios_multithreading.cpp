@@ -956,7 +956,7 @@ void os_thread::stop_all(uint32_t millisMaxWait)
          for(int i = 0; i < s_pptra->get_count(); i++)
          {
 
-            s_pptra->element_at(i)->m_bRun = false;
+            s_pptra->element_at(i)->set_end_thread();
 
          }
 

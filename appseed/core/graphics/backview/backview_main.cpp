@@ -47,7 +47,7 @@ namespace backview
       {
          if(m_ptransitioneffect->m_bRun)
          {
-            m_ptransitioneffect->m_bRun = false;
+            m_ptransitioneffect->m_bRun;
          }
          else
          {
