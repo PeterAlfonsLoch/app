@@ -562,22 +562,22 @@ namespace install
 
 #else
 
-      DWORD dwTime1 = ::get_tick_count();
+      //DWORD dwTime1 = ::get_tick_count();
 
 
 
       if (!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !is_installing() && System.install().is_ca2_installed())
       {
-         DWORD dwTime3 = ::get_tick_count();
+         //DWORD dwTime3 = ::get_tick_count();
 
-         TRACE("eval1 %d",dwTime3 - dwTime1);
+         //TRACE("eval1 %d",dwTime3 - dwTime1);
 
          if(ensure_tx(WM_APP+WM_USER, (void *) &lprect, sizeof(lprect)))
          {
 
-            DWORD dwTime5 = ::get_tick_count();
+            //DWORD dwTime5 = ::get_tick_count();
 
-            TRACE("ensure_tx %d",dwTime5 - dwTime3);
+            //TRACE("ensure_tx %d",dwTime5 - dwTime3);
 
             if(m_phost->m_pbasecomposer->m_bSendActivationState)
             {
@@ -665,16 +665,16 @@ namespace install
 
             }
 
-            DWORD dwTime7 = ::get_tick_count();
+            //DWORD dwTime7 = ::get_tick_count();
 
-            TRACE("focus_update %d",dwTime7 - dwTime5);
+            //TRACE("focus_update %d",dwTime7 - dwTime5);
 
 
             m_phost->blend_bitmap(pgraphics, lprect);
 
-            DWORD dwTime9 = ::get_tick_count();
+            //DWORD dwTime9 = ::get_tick_count();
 
-            TRACE("blend %d",dwTime9 - dwTime7);
+            //TRACE("blend %d",dwTime9 - dwTime7);
 
 
             return;

@@ -181,12 +181,12 @@ namespace hotplugin
 
          try
          {
-            DWORD dwTime1 = ::get_tick_count();
+            //DWORD dwTime1 = ::get_tick_count();
 
             m_pplugin->on_paint(pgraphics, lprect);
-            DWORD dwTime9 = ::get_tick_count();
+            //DWORD dwTime9 = ::get_tick_count();
 
-            TRACE("plugin->on_paint %d",dwTime9 - dwTime1);
+            //TRACE("plugin->on_paint %d",dwTime9 - dwTime1);
 
          }
          catch(...)
