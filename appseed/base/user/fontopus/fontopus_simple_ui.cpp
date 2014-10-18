@@ -583,31 +583,46 @@ namespace fontopus
 
       string strRequestUrl = plogin->m_strRequestUrl;
 
+      string strFontopusServer;
+
+      string strUser;
+
+      string strPass;
+
+      string strOpen;
+
       if(strRequestUrl.has_char())
       {
 
-         string strFontopusServer = Sess(plogin->get_app()).fontopus()->get_server(strRequestUrl);
+         strFontopusServer = Sess(plogin->get_app()).fontopus()->get_server(strRequestUrl);
 
-         string strUser = Sess(plogin->get_app()).fontopus()->m_mapLabelUser[strFontopusServer];
+         strUser = Sess(plogin->get_app()).fontopus()->m_mapLabelUser[strFontopusServer];
 
-         string strPass = Sess(plogin->get_app()).fontopus()->m_mapLabelPass[strFontopusServer];
+         strPass = Sess(plogin->get_app()).fontopus()->m_mapLabelPass[strFontopusServer];
 
-         string strOpen = Sess(plogin->get_app()).fontopus()->m_mapLabelOpen[strFontopusServer];
-
-         try
-         {
-
-            plogin->defer_translate(strUser,strPass,strOpen);
-
-            iRet = 0;
-
-         }
-         catch(...)
-         {
-
-         }
+         strOpen = Sess(plogin->get_app()).fontopus()->m_mapLabelOpen[strFontopusServer];
 
       }
+      else
+      {
+         
+
+      }
+
+
+      try
+      {
+
+         plogin->defer_translate(strUser,strPass,strOpen);
+
+         iRet = 0;
+
+      }
+      catch(...)
+      {
+
+      }
+
 
       try
       {
