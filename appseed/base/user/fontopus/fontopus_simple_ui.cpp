@@ -71,13 +71,18 @@ namespace fontopus
 
       }
 
-      add_ref();
+      if(m_login.m_strRequestUrl.has_char())
+      {
 
-      m_psimpleuiDeferTranslate = new simple_ui *;
+         add_ref();
 
-      *m_psimpleuiDeferTranslate = this;
+         m_psimpleuiDeferTranslate = new simple_ui *;
 
-      __begin_thread(get_app(),thread_proc_defer_translate_login,m_psimpleuiDeferTranslate);
+         *m_psimpleuiDeferTranslate = this;
+
+         __begin_thread(get_app(),thread_proc_defer_translate_login,m_psimpleuiDeferTranslate);
+
+      }
 
    }
 
@@ -578,24 +583,29 @@ namespace fontopus
 
       string strRequestUrl = plogin->m_strRequestUrl;
 
-      string strFontopusServer = Sess(plogin->get_app()).fontopus()->get_server(strRequestUrl);
-
-      string strUser = Sess(plogin->get_app()).fontopus()->m_mapLabelUser[strFontopusServer];
-
-      string strPass = Sess(plogin->get_app()).fontopus()->m_mapLabelPass[strFontopusServer];
-
-      string strOpen = Sess(plogin->get_app()).fontopus()->m_mapLabelOpen[strFontopusServer];
-
-      try
+      if(strRequestUrl.has_char())
       {
 
-         plogin->defer_translate(strUser,strPass,strOpen);
+         string strFontopusServer = Sess(plogin->get_app()).fontopus()->get_server(strRequestUrl);
 
-         iRet = 0;
+         string strUser = Sess(plogin->get_app()).fontopus()->m_mapLabelUser[strFontopusServer];
 
-      }
-      catch(...)
-      {
+         string strPass = Sess(plogin->get_app()).fontopus()->m_mapLabelPass[strFontopusServer];
+
+         string strOpen = Sess(plogin->get_app()).fontopus()->m_mapLabelOpen[strFontopusServer];
+
+         try
+         {
+
+            plogin->defer_translate(strUser,strPass,strOpen);
+
+            iRet = 0;
+
+         }
+         catch(...)
+         {
+
+         }
 
       }
 
