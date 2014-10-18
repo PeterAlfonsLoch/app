@@ -150,7 +150,7 @@ void command_thread::consolidate(::command_thread * pthread)
 
    if(!pthread->m_varTopicFile.is_empty())
    {
-      m_varTopicFile.stra().add(pthread->m_varTopicFile.stra());
+      m_varTopicFile.stra().add_unique(pthread->m_varTopicFile.stra());
    }
    m_varTopicQuery.propset().merge(pthread->m_varTopicQuery.propset());
 
