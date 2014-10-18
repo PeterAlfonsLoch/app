@@ -841,68 +841,112 @@ void simple_frame_window::_001OnDdeInitiate(signal_details * pobj)
 
 void simple_frame_window::pre_translate_message(signal_details * pobj)
 {
+   
    SCAST_PTR(::message::base, pbase, pobj);
+
    if(pbase->m_uiMessage == WM_APP + 1984 + 21)
    {
+
       Wfi();
+
    }
-   else
-   if (pbase->m_uiMessage == WM_MOUSEMOVE)
+   else if (pbase->m_uiMessage == WM_MOUSEMOVE)
    {
 
    }
-   else if (pbase->m_uiMessage == WM_KEYDOWN)
+   else if(pbase->m_uiMessage == WM_KEYDOWN || pbase->m_uiMessage == WM_SYSKEYDOWN)
    {
 
       SCAST_PTR(::message::key, pkey, pobj);
 
-      if (pkey->m_ekey == ::user::key_alt)
+      if(pkey->m_ekey == ::user::key_alt || pkey->m_ekey == ::user::key_lalt || pkey->m_ekey == ::user::key_ralt)
       {
+
          m_bFullScreenAlt = false;
+
       }
       else if (pkey->m_ekey == ::user::key_return)
       {
-         if (Session.is_key_pressed(::user::key_control)
-            && Session.is_key_pressed(::user::key_alt))
+
+         if (Session.is_key_pressed(::user::key_control) && Session.is_key_pressed(::user::key_alt))
          {
+
             m_bFullScreenAlt = true;
+
             if (!IsFullScreen())
             {
+
                if (DeferFullScreen(true, false))
                {
+
                   pbase->m_bRet = true;
+
                   return;
+
                }
+
             }
+
          }
+
       }
+
    }
-   else if (pbase->m_uiMessage == WM_KEYUP)
+   else if(pbase->m_uiMessage == WM_KEYUP || pbase->m_uiMessage == WM_SYSKEYUP)
    {
 
       SCAST_PTR(::message::key, pkey, pobj);
 
-      if (pkey->m_ekey == ::user::key_alt)
+      if(pkey->m_ekey == ::user::key_alt || pkey->m_ekey == ::user::key_lalt || pkey->m_ekey == ::user::key_ralt)
       {
-         if (IsFullScreen()
-            && Session.is_key_pressed(::user::key_control)
-            && !m_bFullScreenAlt)
+
+         if (IsFullScreen() && Session.is_key_pressed(::user::key_control) && !m_bFullScreenAlt)
          {
-            if (DeferFullScreen(false, true))
+
+            if (WfiRestore(m_eappearanceBefore != ::user::AppearanceFullScreen))
             {
+
                pbase->m_bRet = true;
+
+               m_bFullScreenAlt = false;
+
                return;
+
             }
+
          }
+
+         m_bFullScreenAlt = false;
+
       }
+      else if(pkey->m_ekey == ::user::key_control || pkey->m_ekey == ::user::key_lcontrol || pkey->m_ekey == ::user::key_rcontrol)
+      {
+
+         if(IsFullScreen() && Session.is_key_pressed(::user::key_alt) && !m_bFullScreenAlt)
+         {
+
+            if(WfiRestore(m_eappearanceBefore != ::user::AppearanceFullScreen))
+            {
+
+               pbase->m_bRet = true;
+
+               m_bFullScreenAlt = false;
+
+               return;
+
+            }
+
+         }
+
+         m_bFullScreenAlt = false;
+
+      }
+
    }
+
    return ::user::frame_window::pre_translate_message(pobj);
+
 }
-
-
-
-
-
 
 
 void simple_frame_window::InitialFramePosition(bool bForceRestore)

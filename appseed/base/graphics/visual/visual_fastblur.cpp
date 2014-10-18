@@ -93,8 +93,22 @@ namespace visual
 
 
 
-   bool fastblur::blur()
+   bool fastblur::blur(int cx, int cy)
    {
+
+      if(cx < 0 || cx > m_p->m_size.cx)
+      {
+
+         cx = m_p->m_size.cx;
+
+      }
+
+      if(cy < 0 || cy > m_p->m_size.cy)
+      {
+
+         cy = m_p->m_size.cy;
+
+      }
 
       //synch_lock ml(&user_mutex());
 
@@ -112,7 +126,8 @@ namespace visual
                m_iRadius,
                (uint32_t *) m_ucha.get_data(),
                m_uchaDiv.get_data(),
-               m_p->m_iScan);
+               m_p->m_iScan,
+               cx, cy);
 
       }
       catch(...)
@@ -124,13 +139,15 @@ namespace visual
 
    }
 
-   bool fastblur::s_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint32_t * prgba, byte * dv, int32_t stride)
+   bool fastblur::s_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint32_t * prgba, byte * dv, int32_t stride, int cx, int cy)
    {
 
       if (radius <= 0)
       {
          return false;
       }
+
+
 
       int32_t rsum, gsum, bsum, asum;
       int32_t x;
@@ -142,8 +159,8 @@ namespace visual
        byte * p2;
       int32_t wm = w - 1;
       int32_t hm = h - 1;
-      int32_t wr = wm - radius;
-      int32_t hr = hm - radius;
+      int32_t wr = MIN(w,cx) - 1 - radius;
+      int32_t hr = MIN(h,cy) - 1 - radius;
       //   int32_t div        = radius + radius + 1;
       int32_t * pix = (int32_t *)pdata;
       byte * pb = (byte *)pdata;
@@ -153,7 +170,13 @@ namespace visual
 
       yw = 0;
 
-      for (y = 0; y < h; y++)
+
+
+      h = MIN(h,cy);
+      w = MIN(w,cx);
+
+
+      for(y = 0; y < h; y++)
       {
 
          pwork = &pwk[stride * y];
@@ -330,7 +353,7 @@ namespace visual
    }
 
 
-   bool fastblur::s_fastblur(uint32_t * pix, int32_t w, int32_t h, int32_t radius, byte * r, byte * g, byte * b, byte * a, byte * dv, int32_t stride, int32_t * vmin, int32_t * vmax)
+   bool fastblur::s_fastblur(uint32_t * pix,int32_t w,int32_t h,int32_t radius,byte * r,byte * g,byte * b,byte * a,byte * dv,int32_t stride,int32_t * vmin,int32_t * vmax,int cx,int cy)
    {
 
       return false;

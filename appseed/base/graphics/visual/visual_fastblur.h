@@ -36,10 +36,10 @@ namespace visual
       bool initialize(size sz, int32_t iRadius);
 
 
-      virtual bool blur();
+      virtual bool blur(int cx = -1, int cy = -1);
 
-      static bool s_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, byte * r, byte * g, byte * b, byte * a, byte * dv, int32_t stride, int32_t * vmin, int32_t * vmax);
-      static bool s_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint32_t * prgba, byte * dv, int32_t stride);
+      static bool s_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, byte * r, byte * g, byte * b, byte * a, byte * dv, int32_t stride, int32_t * vmin, int32_t * vmax, int cx, int cy);
+      static bool s_fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius, uint32_t * prgba, byte * dv, int32_t stride, int cx, int cy);
 
    };
 
