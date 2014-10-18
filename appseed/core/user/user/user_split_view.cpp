@@ -11,18 +11,26 @@ namespace user
       split_layout(papp),
       place_holder_container(papp)
    {
+
    }
+
 
    split_view::~split_view()
    {
+
    }
+
 
    void split_view::install_message_handling(::message::dispatch * pinterface)
    {
+      
       impact::install_message_handling(pinterface);
-      //USER_MESSAGE_LINK(message_create, pinterface, this, &split_view::_001OnCreate);
+      
+      USER_MESSAGE_LINK(message_create, pinterface, this, &split_view::_001OnCreate);
+
       //IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &split_view::_001OnSize);
       //IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &split_view::_001OnShowWindow);
+
    }
 
 
@@ -40,9 +48,11 @@ namespace user
    void split_view::_001OnCreate(signal_details * pobj)
    {
 
-//      SCAST_PTR(::message::create, pcreate, pobj)
+      SCAST_PTR(::message::create, pcreate, pobj)
 
-         pobj->previous();
+      pcreate->previous();
+
+      create_views();
 
    }
 
@@ -96,7 +106,7 @@ namespace user
             if (pupdatehint->is_type_of(view_update_hint::hint_open_document) || pupdatehint->is_type_of(view_update_hint::hint_create_views))
             {
 
-               pupdatehint->m_bOk = create_views();
+               //pupdatehint->m_bOk = create_views();
 
             }
 

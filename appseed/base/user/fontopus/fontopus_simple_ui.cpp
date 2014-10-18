@@ -11,6 +11,9 @@ namespace fontopus
 {
 
 
+   UINT c_cdecl thread_proc_defer_translate_login(void * p);
+
+
    simple_ui::simple_ui(sp(::aura::application) papp, const string & strRequestUrl) :
       element(papp),
       ::simple_ui::style(papp),
@@ -67,6 +70,14 @@ namespace fontopus
          return;
 
       }
+
+      add_ref();
+
+      m_psimpleuiDeferTranslate = new simple_ui *;
+
+      *m_psimpleuiDeferTranslate = this;
+
+      __begin_thread(get_app(),thread_proc_defer_translate_login,m_psimpleuiDeferTranslate);
 
    }
 
@@ -549,6 +560,68 @@ namespace fontopus
          crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"),"failed",strToken);
 
       }
+
+   }
+
+
+
+   UINT c_cdecl thread_proc_defer_translate_login(void * p)
+   {
+
+      int iRet = -1;
+
+      simple_ui ** ppsimpleui = (simple_ui **)p;
+
+      simple_ui * psimpleui = *ppsimpleui;
+
+      login * plogin = &psimpleui->m_login;
+
+      string strRequestUrl = plogin->m_strRequestUrl;
+
+      string strFontopusServer = Sess(plogin->get_app()).fontopus()->get_server(strRequestUrl);
+
+      string strUser = Sess(plogin->get_app()).fontopus()->m_mapLabelUser[strFontopusServer];
+
+      string strPass = Sess(plogin->get_app()).fontopus()->m_mapLabelPass[strFontopusServer];
+
+      string strOpen = Sess(plogin->get_app()).fontopus()->m_mapLabelOpen[strFontopusServer];
+
+      try
+      {
+
+         plogin->defer_translate(strUser,strPass,strOpen);
+
+         iRet = 0;
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
+         psimpleui->release();
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
+         delete ppsimpleui;
+
+      }
+      catch(...)
+      {
+
+      }
+
+      return iRet;
 
    }
 

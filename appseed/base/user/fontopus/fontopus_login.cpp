@@ -11,8 +11,8 @@ namespace fontopus
 {
 
 
-   UINT c_cdecl thread_proc_pre_login(void * p);
-   UINT c_cdecl thread_proc_defer_translate_login(void * p);
+   //UINT c_cdecl thread_proc_pre_login(void * p);
+//   UINT c_cdecl thread_proc_defer_translate_login(void * p);
 
 
    login::login(sp(::aura::application) papp, int left, int top, const string & strRequestUrl) :
@@ -431,198 +431,34 @@ namespace fontopus
       m_peditUser->keyboard_set_focus();
 
 
-      m_pploginDeferTranslate = new login *;
+      //m_pploginDeferTranslate = new login *;
 
-      *m_pploginDeferTranslate = this;
+      //*m_pploginDeferTranslate = this;
 
-      add_ref();
+      //add_ref();
 
-      __begin_thread(get_app(),thread_proc_pre_login,get_app());
-      __begin_thread(get_app(),thread_proc_defer_translate_login,m_pploginDeferTranslate);
+      //__begin_thread(get_app(),thread_proc_pre_login,get_app());
 
    }
 
-   UINT c_cdecl thread_proc_defer_translate_login(void * p)
-   {
 
-      int iRet = -1;
 
-      login ** pplogin = (login **)p;
+   //UINT c_cdecl thread_proc_pre_login(void * p)
+   //{
 
-      if(*pplogin == NULL)
-      goto end;
+   //   ::aura::application * papp = (::aura::application *) p;
 
-      {
+   //   return 0;
 
-         string strRequestUrl = (*pplogin)->m_strRequestUrl;
+   //   login_thread thread(papp);
+   //   thread.m_strRequestingServer = "account.ca2.cc";
+   //   thread.m_strUsername = "";
+   //   thread.m_strPassword = "";
+   //   thread.run();
 
-         string strFontopusServer = Sess((*pplogin)->get_app()).fontopus()->get_server(strRequestUrl);
+   //   return 0;
 
-         if(*pplogin == NULL)
-            goto end;
-
-         string strUser = Sess((*pplogin)->get_app()).fontopus()->m_mapLabelUser[strFontopusServer];
-
-         string strPass = Sess((*pplogin)->get_app()).fontopus()->m_mapLabelPass[strFontopusServer];
-
-         string strOpen = Sess((*pplogin)->get_app()).fontopus()->m_mapLabelOpen[strFontopusServer];
-
-         if(*pplogin == NULL)
-            goto end;
-
-         try
-         {
-
-            (*pplogin)->defer_translate(strUser,strPass,strOpen);
-
-            iRet = 0;
-
-         }
-         catch(...)
-         {
-
-         }
-
-         if(*pplogin == NULL)
-            goto end;
-
-      }
-
-      end:
-
-      try
-      {
-
-         (*pplogin)->release();
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-      delete pplogin;
-
-      }
-      catch(...)
-      {
-
-      }
-
-      return iRet;
-
-      /*
-      int iRet = -1;
-
-      login ** pplogin = (login **)p;
-
-      if(*pplogin == NULL)
-         goto end;
-
-      {
-
-         ::xml::document doc((*pplogin)->get_app());
-
-         if(*pplogin == NULL)
-            goto end;
-
-         ::simple_ui::style * pstyle = NULL;
-
-         {
-
-            pstyle = dynamic_cast < ::simple_ui::style * > ((*pplogin)->GetParent());
-
-         }
-
-         string strForm = pstyle->defer_get("http://api.ca2.cc/account/login_form?authnone=1");
-
-         if(*pplogin == NULL)
-            goto end;
-
-         if(!doc.load(strForm))
-            goto end;
-
-         ::xml::node & node = *doc.get_root();
-
-         string strUser = node.attr("email");
-
-         string strPass = node.attr("senha");
-
-         string strOpen = node.attr("abrir");
-
-         if(*pplogin == NULL)
-            goto end;
-
-         try
-         {
-
-            (*pplogin)->defer_translate(strUser,strPass,strOpen);
-
-            iRet = 0;
-
-         }
-         catch(...)
-         {
-
-         }
-
-         if(*pplogin == NULL)
-            goto end;
-
-
-      }
-
-
-
-  end:
-
-      try
-      {
-
-         (*pplogin) = NULL;
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         delete pplogin;
-
-      }
-      catch(...)
-      {
-
-      }
-
-      return iRet;
-
-      */
-   }
-
-
-   UINT c_cdecl thread_proc_pre_login(void * p)
-   {
-
-      ::aura::application * papp = (::aura::application *) p;
-
-      return 0;
-
-      login_thread thread(papp);
-      thread.m_strRequestingServer = "account.ca2.cc";
-      thread.m_strUsername = "";
-      thread.m_strPassword = "";
-      thread.run();
-
-      return 0;
-
-   }
+   //}
 
 } // namespace fontopus
 

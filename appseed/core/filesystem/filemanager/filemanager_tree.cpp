@@ -965,7 +965,7 @@ namespace filemanager
 
       void tree::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
       {
-         impact::on_update(pSender, lHint, phint);
+         ::filemanager::impact::on_update(pSender, lHint, phint);
          if (phint != NULL)
          {
             if (base_class < update_hint > ::bases(phint))

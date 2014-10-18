@@ -22,6 +22,9 @@ namespace fontopus
       bool                       m_bFontopusSimpleUiLayout;
       rect                       m_rectParent;
 
+      simple_ui **               m_psimpleuiDeferTranslate;
+
+
 
       simple_ui(sp(::aura::application) papp, const string & strRequestUrl);
       virtual ~simple_ui();

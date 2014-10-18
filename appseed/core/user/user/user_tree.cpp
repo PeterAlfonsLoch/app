@@ -690,7 +690,7 @@ namespace user
    void tree::install_message_handling(::message::dispatch * pdispatch)
    {
       ::user::interaction_base::install_message_handling(pdispatch);
-      ::user::scroll_control::install_message_handling(pdispatch);
+      ::user::scroll_view::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE        , pdispatch, this, &tree::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK , pdispatch, this, &tree::_001OnLButtonDblClk);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP     , pdispatch, this, &tree::_001OnLButtonUp);

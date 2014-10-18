@@ -927,8 +927,6 @@ void thread::signal_close_dependent_threads()
 
          m_threadptraDependent[i]->set_end_thread();
 
-         m_threadptraDependent[i]->m_peventEvent->SetEvent();
-
          i--;
 
       }
@@ -1093,7 +1091,7 @@ void thread::set_run_thread(bool bRun)
    else
    {
 
-      m_bRun = false;
+      m_durationRunLock = millis(7);
 
       if(m_peventEvent != NULL)
       {
@@ -1101,6 +1099,9 @@ void thread::set_run_thread(bool bRun)
          m_peventEvent->SetEvent();
 
       }
+
+      m_bRun = false;
+
 
    }
 

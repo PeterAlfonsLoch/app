@@ -103,7 +103,7 @@ namespace user
    void list::install_message_handling(::message::dispatch * pinterface)
    {
 
-      ::user::scroll_control::install_message_handling(pinterface);
+      ::user::scroll_view::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_SIZE,            pinterface, this, &list::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_VSCROLL,         pinterface, this, &list::_001OnVScroll);
