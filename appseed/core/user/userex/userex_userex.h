@@ -83,7 +83,7 @@ namespace userex
 
       virtual bool finalize();
 
-      virtual void _001CloseAllDocuments(bool bEndSession);
+      virtual void _001CloseAllDocuments(bool bEndSession, ::user::interaction * pwndExcept = NULL, ::aura::application * papp = NULL);
       void add_document_template(sp(::user::impact_system) ptemplate);
       virtual sp(::user::document) _vmsguserbaseOpenDocumentFile(const char * lpszFileName);
 

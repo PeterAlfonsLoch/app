@@ -505,12 +505,24 @@ namespace userex
 
    }
 
-   void  userex::_001CloseAllDocuments(bool bEndSession)
+   void  userex::_001CloseAllDocuments(bool bEndSession,::user::interaction * pwndExcept, ::aura::application * papp)
    {
       if(Application.m_pdocmanager != NULL)
       {
          Application.m_pdocmanager->close_all_documents(bEndSession);
       }
+
+      // there are cases where destroying the documents may destroy the
+      //  main window of the application.
+      //bool b::core::ContextIsDll = afxContextIsDLL;
+      //if (!b::core::ContextIsDll && papp->m_pcoreapp->GetVisibleFrameCount() <= 0)
+      if(papp != NULL && GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
+      {
+
+         System.post_thread_message(WM_QUIT);
+
+      }
+
    }
 
 

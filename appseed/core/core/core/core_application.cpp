@@ -3514,22 +3514,12 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
       HideApplication();
 
       // close all documents first
-      close_all_documents(FALSE);
+      //close_all_documents(FALSE);
 
 
-      Platform.userex()->_001CloseAllDocuments(FALSE);
+      Platform.userex()->_001CloseAllDocuments(FALSE, pwndExcept, this);
 
 
-      // there are cases where destroying the documents may destroy the
-      //  main window of the application.
-      //bool b::core::ContextIsDll = afxContextIsDLL;
-      //if (!b::core::ContextIsDll && papp->m_pcoreapp->GetVisibleFrameCount() <= 0)
-      if(Platform.userex()->GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
-      {
-
-         post_thread_message(WM_QUIT);
-
-      }
 
       return true;
 

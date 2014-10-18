@@ -259,6 +259,8 @@ namespace axis
 
       m_framea.add(pwnd);
 
+      //pwnd->get_app()->register_dependent_thread(System.get_twf());
+
       if(m_puiMain == NULL)
       {
 
@@ -282,6 +284,7 @@ namespace axis
       }
 
       m_framea.remove(pwnd);
+
 
    }
 

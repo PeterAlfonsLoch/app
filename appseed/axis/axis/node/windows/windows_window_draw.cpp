@@ -351,8 +351,6 @@ namespace windows
 
          sp(::user::interaction) pframe = System.m_framea[l];
 
-         slFrame.unlock();
-
          bool bOk = true;
 
          try
@@ -403,8 +401,6 @@ namespace windows
             bOk = false;
 
          }
-
-         slFrame.lock();
 
          if(!bOk)
          {
