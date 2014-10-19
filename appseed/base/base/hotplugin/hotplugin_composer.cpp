@@ -163,7 +163,7 @@ namespace hotplugin
             m_estatus = status_start_window;
 
          }
-         else if(!m_bTryInitHost)
+         else
          {
 
             m_bTryInitHost = true;

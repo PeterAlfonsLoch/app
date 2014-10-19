@@ -243,8 +243,32 @@ namespace aura
          string strRelative;
          time.Format(strRelative, "%Y/%m/%d");
          string strIndex;
-         strIndex.Format("%05d", iRetry);
-         *plog->m_pstrLogPath = ::dir::path(::get_sys_temp_path(), *m_pid, strRelative + "-" + strIndex + ".log");
+         strIndex.Format("%d-%05d", GetCurrentProcessId(), iRetry);
+
+         string strPath;
+
+         wchar_t wsz[4096];
+
+         if(!GetModuleFileNameW(NULL,wsz,sizeof(wsz) / sizeof(wchar_t)))
+         {
+            
+            strPath = "_";
+
+         }
+         else
+         {
+
+            strPath = ::str::international::unicode_to_utf8(wsz);
+
+         }
+
+         strPath.replace("\\", "/");
+
+         strPath = defer_solve_relative_compresions(strPath);
+
+         strPath.replace(":","_");
+
+         *plog->m_pstrLogPath = ::dir::path(::get_sys_temp_path(), *m_pid, ::dir::path(strPath, strRelative + "-" + strIndex + ".log"));
 
          try
          {

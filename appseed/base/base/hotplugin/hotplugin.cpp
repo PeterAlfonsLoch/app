@@ -28,6 +28,13 @@ namespace hotplugin
 
          g_pbasesystem = new ::base::system(NULL);
 
+         if(file_exists_dup("C:\\ca2\\config\\plugin\\npca2_beg_debug_box.txt"))
+         {
+
+            debug_box("hotplugin boxmain NP_Initialize","a AAA hotplugin box",MB_OK);
+
+         }
+
          ::set_thread(g_pbasesystem);
 
          g_pbasesystem->m_bMatterFromHttpCache = true;
