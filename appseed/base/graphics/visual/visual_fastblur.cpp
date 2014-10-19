@@ -31,11 +31,16 @@ namespace visual
       if(is_null())
          return false;
 
-      if (m_p->m_size == size(cx, cy))
+      if (m_p->m_size == size(cx, cy) && radius == m_iRadius)
          return true;
-      
-      if(!m_p->create(cx, cy))
-         return false;
+
+      if(cx + 100 > m_p->m_size.cx || cy + 100 > m_p->m_size.cy)
+      {
+
+         if(!m_p->create(cx+100,cy+100))
+            return false;
+
+      }
 
 //      int32_t h         = cy;
   //    int32_t scan      = m_p->scan;
