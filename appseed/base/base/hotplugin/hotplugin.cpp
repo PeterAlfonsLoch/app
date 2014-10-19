@@ -6,6 +6,7 @@ namespace hotplugin
 
    ::base::system * g_pbasesystem = NULL;
 
+   int g_iSystemCount = 0;
 
    uint32_t c_cdecl base_system_main(LPVOID lpVoid);
 
@@ -17,11 +18,13 @@ namespace hotplugin
 
    }
 
-   CLASS_DECL_BASE bool start_base_system()
+   CLASS_DECL_BASE bool defer_start_base_system()
    {
 
       if(g_pbasesystem != NULL)
          return true;
+
+      g_iSystemCount++;
 
       try
       {
@@ -31,7 +34,7 @@ namespace hotplugin
          if(file_exists_dup("C:\\ca2\\config\\plugin\\npca2_beg_debug_box.txt"))
          {
 
-            debug_box("hotplugin boxmain NP_Initialize","a AAA hotplugin box",MB_OK);
+            debug_box("hotplugin boxmain NP_Initialize","ZZZzzz hotplugin box",MB_OK);
 
          }
 
@@ -146,13 +149,26 @@ namespace hotplugin
 #endif
 
 
-   CLASS_DECL_BASE void stop_base_system()
+   CLASS_DECL_BASE void defer_stop_base_system()
    {
 
-      if(g_pbasesystem)
-         g_pbasesystem->post_to_all_threads(WM_QUIT,0,0);
+      g_iSystemCount--;
 
-      __wait_threading_count(minutes(1));
+      if(g_iSystemCount == 0)
+      {
+
+         if(g_pbasesystem != NULL)
+         {
+
+            g_pbasesystem->post_thread_message(WM_QUIT);
+
+            g_pbasesystem = NULL;
+
+         }
+
+         __wait_threading_count(minutes(1));
+
+      }
 
    }
 

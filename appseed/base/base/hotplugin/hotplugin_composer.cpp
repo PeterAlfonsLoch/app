@@ -16,10 +16,13 @@ namespace hotplugin
 
       m_bSendActivationState     = false;
 
+      m_bRectSent                = false;
+
       m_bInit                 = true; // default implemenation assume initialized on construction, derivations may change it
 
-      m_estatus               = status_start_system;
-      m_bSystemOk             = false;
+      m_estatus               = status_start_base_system;
+      m_bBaseSystemOk         = false;
+      m_bComposerSystemOk     = false;
       m_bTryInitHost          = false;
       m_bHostOk               = false;
       m_bTryInitWindow        = false;
@@ -28,7 +31,7 @@ namespace hotplugin
       m_bResponsive           = true;
       m_bWrite                = false;
 
-      m_bRectSent             = false;
+      
 
    }
    
@@ -51,13 +54,13 @@ namespace hotplugin
    void composer::hotplugin_composer_on_timer()
    {
 
-      if(m_estatus == status_start_system)
+      if(m_estatus == status_start_base_system)
       {
 
-         if(m_bSystemOk)
+         if(m_bBaseSystemOk)
          {
 
-            m_estatus = status_start_host;
+            m_estatus = status_start_composer_system;
 
          }
          else
@@ -66,7 +69,7 @@ namespace hotplugin
             if(::hotplugin::get_base_system() == NULL)
             {
 
-               ::hotplugin::start_base_system();
+               ::hotplugin::defer_start_base_system();
 
             }
             else
@@ -89,7 +92,58 @@ namespace hotplugin
                   else
                   {
 
-                     m_bSystemOk = true;
+                     m_bBaseSystemOk = true;
+
+                  }
+
+               }
+
+            }
+
+
+         }
+
+
+      }
+      else if(m_estatus == status_start_composer_system)
+      {
+
+         if(m_bComposerSystemOk)
+         {
+
+            m_estatus = status_start_host;
+
+         }
+         else
+         {
+
+            if(get_composer_system() == NULL)
+            {
+
+               defer_start_composer_system();
+
+            }
+            else
+            {
+
+
+               if(get_composer_system()->m_bReady)
+               {
+
+                  if(get_composer_system()->m_iReturnCode != 0)
+                  {
+
+                     string str;
+
+                     str.Format("m_pcomposersystem initialization error %d",get_composer_system()->m_iReturnCode);
+
+                     ::OutputDebugString(str);
+
+                  }
+                  else
+                  {
+
+                     m_bComposerSystemOk = true;
 
                   }
 
@@ -117,7 +171,7 @@ namespace hotplugin
             if(m_pbasehost == NULL)
             {
 
-               m_pbasehost = create_host(::hotplugin::get_base_system());
+               m_pbasehost = create_host(get_composer_system());
 
                m_pbasehost->m_pbasecomposer = this;
 
@@ -351,6 +405,122 @@ namespace hotplugin
 
    }
 
+
+   ::base::system * composer::get_composer_system()
+   {
+
+      return m_pcomposersystem;
+
+   }
+
+
+   bool composer::defer_start_composer_system()
+   {
+
+      if(m_pcomposersystem != NULL)
+         return true;
+
+      try
+      {
+
+         m_pcomposersystem = new ::base::system(NULL);
+
+         ::base::system * pbasesystem = m_pcomposersystem;
+
+         pbasesystem->m_bMatterFromHttpCache = true;
+
+         pbasesystem->m_bSystemSynchronizedCursor = false;
+
+         pbasesystem->m_bShouldInitializeGTwf = false;
+
+         pbasesystem->construct(NULL);
+
+#ifdef WINDOWS
+
+         pbasesystem->m_hinstance = (HINSTANCE)get_hinstance();
+
+#endif
+
+         xxdebug_box("box1","box1",MB_ICONINFORMATION);
+
+         pbasesystem->m_bReady = false;
+
+         ::create_thread(NULL,0,&::hotplugin::composer::composer_system_main,pbasesystem,0,NULL);
+
+      }
+      catch(...)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   uint32_t c_cdecl composer::composer_system_main(LPVOID lpVoid)
+   {
+
+      int32_t iReturnCode = 0;
+
+      ::base::system * pbasesystem = (::base::system *) lpVoid;
+
+      try
+      {
+
+         if(!pbasesystem->pre_run())
+         {
+
+            if(pbasesystem->m_iReturnCode == 0)
+            {
+
+               pbasesystem->m_iReturnCode = -1;
+
+            }
+
+            pbasesystem->m_bReady = true;
+
+            return -1;
+
+         }
+
+      }
+      catch(...)
+      {
+
+         if(pbasesystem->m_iReturnCode == 0)
+         {
+
+            pbasesystem->m_iReturnCode = -1;
+
+         }
+
+         pbasesystem->m_bReady = true;
+
+         return -1;
+
+      }
+
+      return pbasesystem->main();
+
+   }
+
+
+   void composer::defer_stop_composer_system()
+   {
+
+      if(m_pcomposersystem != NULL)
+      {
+
+         m_pcomposersystem->post_thread_message(WM_QUIT);
+
+         m_pcomposersystem = NULL;
+
+      }
+
+   }
 
 } // namespace hotplugin
 

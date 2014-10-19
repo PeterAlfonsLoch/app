@@ -50,8 +50,8 @@ namespace hotplugin
 
    CLASS_DECL_BASE ::base::system * get_base_system();
 
-   CLASS_DECL_BASE bool start_base_system();
-   CLASS_DECL_BASE void stop_base_system();
+   CLASS_DECL_BASE bool defer_start_base_system();
+   CLASS_DECL_BASE void defer_stop_base_system();
 
 
 #ifdef WINDOWS

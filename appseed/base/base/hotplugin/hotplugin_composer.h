@@ -13,7 +13,8 @@ namespace hotplugin
       enum e_status
       {
 
-         status_start_system,
+         status_start_base_system,
+         status_start_composer_system,
          status_start_host,
          status_init_host,
          status_start_window,
@@ -30,9 +31,9 @@ namespace hotplugin
 
 
 
-
       e_status                               m_estatus;
-      bool                                   m_bSystemOk;
+      bool                                   m_bBaseSystemOk;
+      bool                                   m_bComposerSystemOk;
       bool                                   m_bInit;
       bool                                   m_bHostOk;
       bool                                   m_bTryInitHost;
@@ -60,6 +61,7 @@ namespace hotplugin
 
       bool                                   m_bWrite;
 
+      ::base::system *                       m_pcomposersystem;
 
       
       composer();
@@ -90,6 +92,11 @@ namespace hotplugin
 
       virtual bool is_active();
    
+      virtual ::base::system * get_composer_system();
+      virtual bool defer_start_composer_system();
+      static uint32_t c_cdecl composer_system_main(LPVOID lpVoid);
+      virtual void defer_stop_composer_system();
+      
    };
 
 
