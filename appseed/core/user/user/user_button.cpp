@@ -593,7 +593,12 @@ namespace user
       m_pschema   = &::userex::GetUfeSchema(get_app())->m_button;
    }
 
+   bool button::keyboard_focus_is_focusable()
+   {
 
+      return true;
+
+   }
 
 } // namespace user
 
