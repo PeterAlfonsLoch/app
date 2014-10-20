@@ -1712,9 +1712,24 @@ namespace user
       m_signalptra.remove_all();
       m_pimpl = canew(::user::interaction_child(get_app()));
       m_pimpl->m_pui = this;
-      m_pthread = ::get_thread();
-      if(m_pthread == NULL)
-         m_pthread = get_app();
+
+      ::thread * pthread = ::get_thread();
+
+      if(pthread != NULL)
+      {
+
+         m_threadptra.add(pthread);
+
+      }
+
+      m_threadptra.get_count() <= 0)
+      {
+
+         m_threadptra.add(get_app());
+
+      }
+
+
       if(!m_pimpl->create_window(rect, pparent,id))
       {
          m_pthread = NULL;
