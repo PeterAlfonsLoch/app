@@ -1722,17 +1722,16 @@ namespace user
 
       }
 
-      m_threadptra.get_count() <= 0)
+      if(m_threadptra.get_count() <= 0)
       {
 
          m_threadptra.add(get_app());
 
       }
 
-
       if(!m_pimpl->create_window(rect, pparent,id))
       {
-         m_pthread = NULL;
+         m_threadptra.remove_all();
          m_pimpl.release();
          return false;
       }
@@ -1757,10 +1756,21 @@ namespace user
 
       sp(interaction_impl_base) pimplNew = NULL;
 
-      m_pthread = ::get_thread();
-      if(m_pthread == NULL)
-         m_pthread = get_app();
+      ::thread * pthread = ::get_thread();
 
+      if(pthread != NULL)
+      {
+
+         m_threadptra.add(pthread);
+
+      }
+
+      if(m_threadptra.get_count() <= 0)
+      {
+
+         m_threadptra.add(get_app());
+
+      }
 
 #if defined(WINDOWSEX) || defined(LINUX)
       if(pParentWnd == NULL || pParentWnd->get_safe_handle() == (oswindow)HWND_MESSAGE)
@@ -1844,7 +1854,7 @@ namespace user
       else
       {
 
-         m_pthread = NULL;
+         m_threadptra.remove_all();
 
          return false;
 
@@ -1855,15 +1865,31 @@ namespace user
 
    bool interaction::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pParentWnd,id id,LPVOID lpParam)
    {
+
       if(IsWindow())
       {
-         DestroyWindow();
-      }
-      m_signalptra.remove_all();
-      m_pthread = ::get_thread();
-      if(m_pthread == NULL)
-         m_pthread = get_app();
 
+         DestroyWindow();
+
+      }
+      
+      m_signalptra.remove_all();
+
+      ::thread * pthread = ::get_thread();
+
+      if(pthread != NULL)
+      {
+
+         m_threadptra.add(pthread);
+
+      }
+
+      if(m_threadptra.get_count() <= 0)
+      {
+
+         m_threadptra.add(get_app());
+
+      }
 #if !defined(METROWIN) && !defined(APPLE_IOS)
       if(pParentWnd == NULL)
       {
