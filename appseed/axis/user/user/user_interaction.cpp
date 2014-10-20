@@ -1896,8 +1896,11 @@ namespace user
 
          if(!Application.defer_initialize_twf())
          {
-            m_pthread = NULL;
+            
+            m_threadptra.remove_all();
+
             return false;
+
          }
 
          m_pimpl = Application.alloc(System.type_info < interaction_impl >());
@@ -1905,7 +1908,9 @@ namespace user
          dwStyle &= ~WS_CHILD;
          if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,lpParam))
          {
-            m_pthread = NULL;
+            
+            m_threadptra.remove_all();
+
             m_pimpl.release();
 
             return false;
@@ -1946,7 +1951,9 @@ namespace user
          m_pimpl->m_pui = this;
          if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rectFrame,pParentWnd,id,lpParam))
          {
-            m_pthread = NULL;
+            
+            m_threadptra.remove_all();
+
             m_pimpl.release();
 
             return false;
@@ -2882,7 +2889,7 @@ namespace user
       if(pthread == NULL)
       {
 
-         pthread = m_pthread;
+         pthread = m_threadptra.is_empty() ? NULL : m_threadptra[0];
 
       }
 
@@ -3429,10 +3436,21 @@ namespace user
 
       m_pimpl->m_pui = this;
 
-      m_pthread = ::get_thread();
-      if(m_pthread == NULL)
-         m_pthread = get_app();
+      ::thread * pthread = ::get_thread();
 
+      if(pthread != NULL)
+      {
+
+         m_threadptra.add(pthread);
+
+      }
+
+      if(m_threadptra.get_count() <= 0)
+      {
+
+         m_threadptra.add(get_app());
+
+      }
 
       if(!m_pimpl->create_message_queue(pszName))
       {
