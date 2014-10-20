@@ -73,12 +73,14 @@ bool image_list::realize(::draw2d::graphics * pdc)
 
 bool image_list::create(sp(image_list) pimagelist)
 {
-   m_spdib->Paste(pimagelist->m_spdib);
-   m_size   = pimagelist->m_size;
+   
+   *m_spdib    = *pimagelist->m_spdib;
 
-   m_iSize  = pimagelist->m_iSize;
-   m_iGrow  = pimagelist->m_iGrow;
-   m_size   = pimagelist->m_size;
+   m_size      = pimagelist->m_size;
+
+   m_iSize     = pimagelist->m_iSize;
+   m_iGrow     = pimagelist->m_iGrow;
+   m_size      = pimagelist->m_size;
 
    return true;
 }
@@ -313,7 +315,7 @@ bool image_list::_grow()
       ::draw2d::dib_sp spdib(allocer());
       //::draw2d::dib_sp dibAlpha(allocer());
 
-      spdib->Paste(m_spdib);
+      *spdib = *m_spdib;
 
       m_spdib->create(cx * iAllocSize, cy);
 

@@ -86,12 +86,12 @@ namespace draw2d
       virtual ~dib();
 
 
-      virtual ::draw2d::graphics * get_graphics();
-      virtual ::draw2d::bitmap_sp get_bitmap();
+      virtual ::draw2d::graphics * get_graphics() const; // is semantically const (besides may not be implementationly constant)
+      virtual ::draw2d::bitmap_sp get_bitmap() const; // is semantically const (besides may not be implementationly constant)
       virtual ::draw2d::bitmap_sp detach_bitmap();
 
 
-      virtual COLORREF * get_data();
+      virtual COLORREF * get_data() const;
 
 
       virtual void construct(int32_t cx, int32_t cy);
@@ -179,7 +179,8 @@ namespace draw2d
       virtual void DivideARGB(int32_t iDivide);
       virtual void DivideA(int32_t iDivide);
 
-      virtual bool from(::draw2d::dib * pdib);
+      virtual bool to(dib *dib) const;
+      virtual bool from(const ::draw2d::dib * pdib);
       virtual bool from(::draw2d::graphics * pdc);
       virtual bool from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, class size size);
       virtual bool from(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);
@@ -217,8 +218,8 @@ namespace draw2d
 
       virtual void Map (int32_t ToRgb, int32_t FromRgb );
 
-      virtual void copy( dib *dib );
-      virtual void Paste ( dib *dib );
+      
+      //virtual void from( dib *dib );
 
       virtual void Blend ( dib *dib, int32_t A );
       virtual void Darken ( dib *dib );
@@ -255,9 +256,9 @@ namespace draw2d
 
       //virtual int32_t width();
       //virtual int32_t height();
-      inline int64_t area() { return m_size.area(); }
-      virtual double pi();
-      inline class size size() { return m_size; }
+      inline int64_t area() const{ return m_size.area(); }
+      virtual double pi() const;
+      inline class size size() const { return m_size; }
 
       virtual void write(::file::output_stream & ostream);
       virtual void read(::file::input_stream & istream);
@@ -269,6 +270,8 @@ namespace draw2d
       static void static_initialize();
 
       virtual COLORREF make_colorref(int32_t a, int32_t r, int32_t g, int32_t b);
+
+      dib & operator = (const dib & dib);
 
    };
 
@@ -425,7 +428,7 @@ namespace draw2d
    };
 
 
-   CLASS_DECL_AURA void dib_paste(dib * pdibthis, dib *pdib);
+   CLASS_DECL_AURA void dib_copy(dib * pdibthis, dib *pdib);
    CLASS_DECL_AURA void dib_alloc(::aura::application * papp, dib * & pdib);
    CLASS_DECL_AURA void dib_create(dib * pdib, int w, int h);
    CLASS_DECL_AURA unsigned int * dib_get_data(dib * pdib);

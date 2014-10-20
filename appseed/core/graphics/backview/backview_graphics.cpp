@@ -553,7 +553,7 @@ namespace backview
       if (GetDib(_graphics::DibBuffer).is_null())
          return;
 
-      GetDib(_graphics::DibBack)->copy(GetDib(_graphics::DibBuffer));
+      *GetDib(_graphics::DibBack) = *GetDib(_graphics::DibBuffer);
 
    }
 
@@ -566,7 +566,7 @@ namespace backview
       if(!sl1Back.lock(millis(25)))
          return;
 
-      GetDib(_graphics::DibTransfer)->copy(GetDib(_graphics::DibBack));
+      *GetDib(_graphics::DibTransfer) = *GetDib(_graphics::DibBack);
 
    }
    void Graphics::OnCreateDib(::draw2d::dib *pdib, int32_t iIndex)

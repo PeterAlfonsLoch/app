@@ -56,7 +56,7 @@ namespace draw2d
    }
 
 
-   ::draw2d::graphics * dib::get_graphics()
+   ::draw2d::graphics * dib::get_graphics() const
    {
 
       throw interface_only_exception(get_app());
@@ -64,7 +64,7 @@ namespace draw2d
    }
 
 
-   ::draw2d::bitmap_sp dib::get_bitmap()
+   ::draw2d::bitmap_sp dib::get_bitmap() const
    {
 
       throw interface_only_exception(get_app());
@@ -91,7 +91,7 @@ namespace draw2d
    }
 
 
-   COLORREF * dib::get_data()
+   COLORREF * dib::get_data() const
    {
 
       return m_pcolorref;
@@ -207,24 +207,24 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-   bool dib::from(::draw2d::dib * pdib)
-   {
+   //bool dib::from(::draw2d::dib * pdib)
+   //{
 
-      if(!create(pdib->size()))
-         return false;
+   //   if(!create(pdib->size()))
+   //      return false;
 
-      map();
-      pdib->map();
-      try
-      {
-         memcpy(get_data(), pdib->get_data(), (size_t) (sizeof(COLORREF) * area()));
-      }
-      catch(...)
-      {
-         return false;
-      }
-      return true;
-   }
+   //   map();
+   //   pdib->map();
+   //   try
+   //   {
+   //      memcpy(get_data(), pdib->get_data(), (size_t) (sizeof(COLORREF) * area()));
+   //   }
+   //   catch(...)
+   //   {
+   //      return false;
+   //   }
+   //   return true;
+   //}
 
    bool dib::from(::draw2d::graphics * pdc)
    {
@@ -1279,39 +1279,48 @@ namespace draw2d
       }
    }
 
-   void dib::copy(dib * dib)
+   bool dib::to(dib * pdib) const
    {
 
-      if (area() <= 0)
-         return;
+      if(pdib == NULL)
+         return false;
 
-      // If DibSize Wrong Re-create dib
-      if(dib->m_size != size())
-         dib->create(size());
+      return pdib->from(this);
 
-      // do copy
+      //if (area() <= 0)
+      //   return;
 
-      map();
+      //// If DibSize Wrong Re-create dib
+      //if(dib->m_size != size())
+      //   dib->create(size());
 
-      dib->map();
+      //// do copy
 
-      if (get_data() == NULL || dib->get_data() == NULL)
-         return;
+      //map();
 
-      memcpy ( dib->get_data(), get_data(), (size_t) area() * sizeof(COLORREF) );
+      //dib->map();
+
+      //if (get_data() == NULL || dib->get_data() == NULL)
+      //   return;
+
+      //memcpy ( dib->get_data(), get_data(), (size_t) area() * sizeof(COLORREF) );
 
 
    }
 
 
-   void dib::Paste(dib * dib)
+   bool dib::from(const dib * dib)
    {
 
-      if (size() != dib->m_size)
+      if(size() != dib->m_size)
+      {
+
          create(dib->size());
 
-      dib->defer_realize(get_graphics());
-      defer_realize(dib->get_graphics());
+      }
+
+      ((dib *)dib)->defer_realize(((dib *)dib)->get_graphics());
+      ((dib *)this)->defer_realize(((dib *)dib)->get_graphics());
 
       map();
       dib->map();
@@ -1334,6 +1343,7 @@ namespace draw2d
 
       }
 
+      return true;
 
    }
 
@@ -3413,7 +3423,7 @@ namespace draw2d
 
       byte * pdataDst = (byte *) get_data() + ((int32_t)echannelDst);
 
-      byte * pdataSrc = (byte *) pdib->get_data() + ((int32_t)echannelDst);
+      byte * pdataSrc = (byte *) pdib->get_data() + ((int32_t)echannelSrc);
 
       for(int32_t y = 0; y < m_size.cy; y++)
       {
@@ -3495,7 +3505,7 @@ namespace draw2d
 
       while ( size-- )
       {
-         dst[3] = dst[i];
+         //dst[3] = dst[i];
          dst[0] = uchB;
          dst[1] = uchG;
          dst[2] = uchR;
@@ -4165,10 +4175,10 @@ namespace draw2d
    }
 
 
-   void dib_paste(dib * pdibthis, dib *pdib)
+   void dib_copy(dib * pdibthis, dib *pdib)
    {
 
-      pdibthis->Paste(pdib);
+      pdibthis->from(pdib);
 
    }
 
@@ -4203,6 +4213,22 @@ namespace draw2d
       return pdib->get_graphics();
 
    }
+
+   dib & dib::operator = (const dib & dib)
+   {
+
+      if(this != &dib);
+      {
+         
+         from(&dib);
+
+      }
+
+      return *this;
+
+   }
+
+
 
 
 } // namespace draw2d
