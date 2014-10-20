@@ -97,7 +97,7 @@ namespace user
             if(pui->keyboard_focus_is_focusable())
                return pui;
 
-            pui = keyboard_get_next_focusable(puiFocus);
+            pui = pui->keyboard_get_next_focusable(puiFocus);
 
             if(pui != NULL)
                return pui;
@@ -125,18 +125,23 @@ namespace user
 
       pui = puiThis->first_sibling();
 
-      while(pui != NULL && pui != puiFocus)
+      if(pui != puiThis)
       {
 
-         if(pui->keyboard_focus_is_focusable())
-            return pui;
+         while(pui != NULL && pui != puiFocus)
+         {
 
-         pfocusTry = pui->keyboard_get_next_focusable(puiFocus);
+            if(pui->keyboard_focus_is_focusable())
+               return pui;
 
-         if(pfocusTry != NULL)
-            return pfocusTry;
+            pfocusTry = pui->keyboard_get_next_focusable(puiFocus);
 
-         pui = pui->next_sibling();
+            if(pfocusTry != NULL)
+               return pfocusTry;
+
+            pui = pui->next_sibling();
+
+         }
 
       }
 

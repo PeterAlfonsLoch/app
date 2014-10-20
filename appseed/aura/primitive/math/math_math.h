@@ -8,6 +8,7 @@
 #define os_max_int int64_t
 
 CLASS_DECL_AURA os_max_int ceil_div(os_max_int num, os_max_int den);
+CLASS_DECL_AURA double tri(double angle);
 
 #ifdef __cplusplus
 
