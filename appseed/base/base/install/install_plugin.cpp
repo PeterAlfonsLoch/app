@@ -683,6 +683,8 @@ namespace install
 
       }
 
+      System.install().update_ca2_installed();
+
       if(!m_phost->m_pbasecomposer->m_bSendActivationState)
       {
 
