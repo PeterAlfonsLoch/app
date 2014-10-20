@@ -1744,7 +1744,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::above_sibling()
+   sp(interaction) interaction_base::above_sibling(sp(interaction) pui)
    {
 
       throw interface_only_exception(get_app());

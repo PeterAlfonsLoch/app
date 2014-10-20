@@ -3884,7 +3884,7 @@ namespace windows
          }
          try
          {
-            pui = pui->under_sibling();
+            pui = pui->next_sibling();
          }
          catch(...)
          {

@@ -3490,7 +3490,7 @@ namespace user
 
 
 
-   sp(interaction) interaction::top_sibling()
+   sp(interaction) interaction::first_sibling()
    {
       
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
@@ -3498,12 +3498,12 @@ namespace user
       if(GetParent() == NULL)
          return NULL;
 
-      return GetParent()->top_child();
+      return GetParent()->first_child();
 
    }
 
 
-   sp(interaction) interaction::under_sibling()
+   sp(interaction) interaction::next_sibling()
    {
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
       sp(interaction) pui = NULL;
@@ -3527,7 +3527,7 @@ namespace user
          return pui->m_uiptraChild[i];
    }
 
-   sp(interaction) interaction::under_sibling(sp(interaction) pui)
+   sp(interaction) interaction::next_sibling(sp(interaction) pui)
    {
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
       index i = m_uiptraChild.find_first(pui);
@@ -3551,7 +3551,7 @@ namespace user
       }
    }
 
-   sp(interaction) interaction::above_sibling()
+   sp(interaction) interaction::previous_sibling()
    {
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
       sp(interaction) pui = NULL;
@@ -3575,7 +3575,7 @@ namespace user
          return pui->m_uiptraChild[i];
    }
 
-   sp(interaction) interaction::bottom_sibling()
+   sp(interaction) interaction::previous_sibling()
    {
 
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
