@@ -59,7 +59,7 @@ void html_form::_001OnDraw(::draw2d::graphics * pdc)
 void html_form::_001DrawChildren(::draw2d::graphics *pdc)
 {
 
-   sp(::user::interaction) pui = get_bottom_child();
+   sp(::user::interaction) pui = first_child();
 
    while(pui != NULL)
    {

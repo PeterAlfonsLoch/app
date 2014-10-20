@@ -3468,7 +3468,18 @@ namespace user
       return false;
    }
 
-   sp(interaction) interaction::get_bottom_child()
+   sp(interaction) interaction::first_child()
+   {
+      
+      single_lock sl(m_pauraapp->m_pmutex,TRUE);
+      if(m_uiptraChild.get_count() <= 0)
+         return NULL;
+      else
+         return m_uiptraChild.first_element();
+
+   }
+
+   sp(interaction) interaction::last_child()
    {
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
       if(m_uiptraChild.get_count() <= 0)
@@ -3477,14 +3488,20 @@ namespace user
          return m_uiptraChild.last_element();
    }
 
-   sp(interaction) interaction::get_top_child()
+
+
+   sp(interaction) interaction::top_sibling()
    {
+      
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
-      if(m_uiptraChild.get_count() <= 0)
+      
+      if(GetParent() == NULL)
          return NULL;
-      else
-         return m_uiptraChild.first_element();
+
+      return GetParent()->get_top_child();
+
    }
+
 
    sp(interaction) interaction::under_sibling()
    {
@@ -3558,6 +3575,47 @@ namespace user
          return pui->m_uiptraChild[i];
    }
 
+   sp(interaction) interaction::bottom_sibling()
+   {
+
+      single_lock sl(m_pauraapp->m_pmutex,TRUE);
+
+      if(GetParent() == NULL)
+         return NULL;
+
+      return GetParent()->first_child();
+
+   }
+
+   sp(interaction) interaction::first_sibling()
+   {
+   
+      return bottom_sibling();
+
+   }
+
+
+   sp(interaction) interaction::previous_sibling()
+   {
+
+      return above_sibling();
+
+   }
+
+   sp(interaction) interaction::next_sibling()
+   {
+
+      return under_sibling();
+
+   }
+
+
+   sp(interaction) interaction::last_sibling()
+   {
+
+      return top_sibling();
+
+   }
 
    void interaction::mouse_hover_add(sp(::user::interaction) pinterface)
    {

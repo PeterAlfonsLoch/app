@@ -1728,7 +1728,23 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::get_bottom_child()
+   sp(interaction) interaction_base::top_child()
+   {
+
+      return last_child();
+
+   }
+
+
+   sp(interaction) interaction_base::bottom_child()
+   {
+
+      return first_child();
+
+   }
+
+
+   sp(interaction) interaction_base::above_sibling()
    {
 
       throw interface_only_exception(get_app());
@@ -1736,18 +1752,10 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::get_top_child()
+   sp(interaction) interaction_base::above_sibling()
    {
 
-      throw interface_only_exception(get_app());
-
-   }
-
-
-   sp(interaction) interaction_base::under_sibling()
-   {
-
-      throw interface_only_exception(get_app());
+      return previous_sibling();
 
    }
 
@@ -1760,7 +1768,68 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::above_sibling()
+   sp(interaction) interaction_base::under_sibling()
+   {
+
+      return next_sibling();
+
+   }
+
+   sp(interaction) interaction_base::top_sibling()
+   {
+
+      return last_sibling();
+
+   }
+
+
+   sp(interaction) interaction_base::bottom_sibling()
+   {
+
+      return first_sibling();
+
+   }
+
+   sp(interaction) interaction_base::first_child()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   sp(interaction) interaction_base::last_child()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+   sp(interaction) interaction_base::first_sibling()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   sp(interaction) interaction_base::last_sibling()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   sp(interaction) interaction_base::previous_sibling()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+
+   sp(interaction) interaction_base::next_sibling()
    {
 
       throw interface_only_exception(get_app());

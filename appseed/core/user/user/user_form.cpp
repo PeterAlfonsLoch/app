@@ -1039,11 +1039,16 @@ namespace user
    {
       if(pevent->m_eevent == ::user::event_tab_key)
       {
+         
          sp(::user::keyboard_focus) pfocus = pevent->m_puie->keyboard_get_next_focusable();
+
          if(pfocus != NULL)
          {
+
             Session.user()->set_keyboard_focus(pfocus);
+
          }
+
       }
       else if(pevent->m_eevent == ::user::event_button_clicked)
       {

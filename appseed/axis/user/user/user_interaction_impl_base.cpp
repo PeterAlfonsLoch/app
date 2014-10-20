@@ -667,10 +667,10 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::get_bottom_child()
+   sp(interaction) interaction_impl_base::first_child()
    {
 
-      return m_pui->get_bottom_child();
+      return m_pui->first_child();
 
    }
 
@@ -678,7 +678,7 @@ namespace user
    sp(interaction) interaction_impl_base::get_top_child()
    {
 
-      return m_pui->get_bottom_child();
+      return m_pui->first_child();
 
    }
 

@@ -114,10 +114,13 @@ namespace user
       virtual void on_set_parent(sp(interaction) pinterface);
 
 
-      virtual sp(interaction) get_bottom_child();
-      virtual sp(interaction) get_top_child();
-      virtual sp(interaction) under_sibling();
-      virtual sp(interaction) above_sibling();
+      virtual sp(interaction) first_child();
+      virtual sp(interaction) last_child();
+      virtual sp(interaction) last_sibling();
+      virtual sp(interaction) next_sibling();
+      virtual sp(interaction) previous_sibling();
+      virtual sp(interaction) first_sibling();
+
 
       virtual sp(interaction) above_sibling(sp(interaction) pui);
       virtual sp(interaction) under_sibling(sp(interaction) pui);
