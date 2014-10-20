@@ -60,8 +60,6 @@ namespace user
 
    impact::~impact()
    {
-      if (m_spdocument.is_set())
-         m_spdocument->remove_view(this);
    }
 
    void impact::install_message_handling(::message::dispatch * pinterface)
@@ -170,6 +168,10 @@ namespace user
       sp(::user::frame_window) pFrame = GetParentFrame();
       if (pFrame != NULL && pFrame->GetActiveView() == this)
          pFrame->SetActiveView(NULL);    // deactivate during death
+
+      if(m_spdocument.is_set())
+         m_spdocument->remove_view(this);
+
       //   ::user::interaction::OnDestroy();
    }
 
