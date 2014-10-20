@@ -655,25 +655,27 @@ namespace user
          if(!m_bMultiLine)
          {
 
-            ::user::control_event ev;
+            pkey->previous();
 
-            ev.m_puie         = this;
+            //::user::control_event ev;
 
-            ev.m_eevent       = ::user::event_tab_key;
+            //ev.m_puie         = this;
 
-            ev.m_actioncontext        = ::action::source_user;
+            //ev.m_eevent       = ::user::event_tab_key;
 
-            if(!BaseOnControlEvent(&ev))
-            {
+            //ev.m_actioncontext        = ::action::source_user;
 
-               sp(::user::interaction) pui = keyboard_get_next_focusable();
+            //if(!BaseOnControlEvent(&ev))
+            //{
 
-               if(pui != NULL)
-                  pui->keyboard_set_focus();
+            //   sp(::user::interaction) pui = keyboard_get_next_focusable();
 
-            }
+            //   if(pui != NULL)
+            //      pui->keyboard_set_focus();
 
-            pkey->m_bRet      = true;
+            //}
+
+            //pkey->m_bRet      = true;
 
             return;
 

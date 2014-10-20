@@ -1722,7 +1722,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
    if(GetExStyle() & WS_EX_LAYERED)
    {
 
-      sp(::user::interaction) pui = first_child();
+      sp(::user::interaction) pui = bottom_child();
 
       while (pui != NULL)
       {
@@ -1740,7 +1740,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 
       _001DrawThis(pdc);
 
-      pui = first_child();
+      pui = bottom_child();
 
       while (pui != NULL)
       {

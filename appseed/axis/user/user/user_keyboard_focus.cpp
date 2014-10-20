@@ -67,7 +67,7 @@ namespace user
    }
 
    
-   keyboard_focus * keyboard_focus::keyboard_get_next_focusable(keyboard_focus * pfocus)
+   keyboard_focus * keyboard_focus::keyboard_get_next_focusable(keyboard_focus * pfocus, bool bSkipChild)
    {
       
       sp(interaction) puiThis = this;
@@ -84,15 +84,25 @@ namespace user
 
       single_lock(puiThis->m_pauraapp->m_pmutex,TRUE);
 
-      sp(interaction) pui = puiThis->first_child();
+      sp(interaction) pui;
 
-      if(pui != NULL)
+      if(!bSkipChild)
       {
 
-         pui = keyboard_get_next_focusable(pfocus);
+         pui = puiThis->first_child();
 
          if(pui != NULL)
-            return pui;
+         {
+
+            if(pui->keyboard_focus_is_focusable())
+               return pui;
+
+            pui = keyboard_get_next_focusable(puiFocus);
+
+            if(pui != NULL)
+               return pui;
+
+         }
 
       }
 
@@ -104,7 +114,7 @@ namespace user
          if(pui->keyboard_focus_is_focusable())
             return pui;
 
-         pfocusTry = pui->keyboard_get_next_focusable(pfocus);
+         pfocusTry = pui->keyboard_get_next_focusable(puiFocus);
 
          if(pfocusTry != NULL)
             return pfocusTry;
@@ -121,12 +131,22 @@ namespace user
          if(pui->keyboard_focus_is_focusable())
             return pui;
 
-         pfocusTry = pui->keyboard_get_next_focusable(pfocus);
+         pfocusTry = pui->keyboard_get_next_focusable(puiFocus);
 
          if(pfocusTry != NULL)
             return pfocusTry;
 
          pui = pui->next_sibling();
+
+      }
+
+      if(puiThis->GetParent() != NULL)
+      {
+
+         pui = puiThis->GetParent()->keyboard_get_next_focusable(puiFocus, true);
+
+         if(pui.is_set())
+            return pui;
 
       }
 

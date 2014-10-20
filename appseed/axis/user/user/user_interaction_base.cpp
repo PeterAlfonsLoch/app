@@ -1747,7 +1747,7 @@ namespace user
    sp(interaction) interaction_base::above_sibling(sp(interaction) pui)
    {
 
-      throw interface_only_exception(get_app());
+      return next_sibling(pui);
 
    }
 
@@ -1755,7 +1755,7 @@ namespace user
    sp(interaction) interaction_base::above_sibling()
    {
 
-      return previous_sibling();
+      return next_sibling();
 
    }
 
@@ -1763,7 +1763,7 @@ namespace user
    sp(interaction) interaction_base::under_sibling(sp(interaction) pui)
    {
 
-      throw interface_only_exception(get_app());
+      return previous_sibling(pui);
 
    }
 
@@ -1771,7 +1771,7 @@ namespace user
    sp(interaction) interaction_base::under_sibling()
    {
 
-      return next_sibling();
+      return previous_sibling();
 
    }
 
@@ -1828,9 +1828,26 @@ namespace user
 
    }
 
+   sp(interaction) interaction_base::previous_sibling(sp(interaction) pui)
+   {
+
+      UNREFERENCED_PARAMETER(pui);
+
+      throw interface_only_exception(get_app());
+
+   }
 
    sp(interaction) interaction_base::next_sibling()
    {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+   sp(interaction) interaction_base::next_sibling(sp(interaction) pui)
+   {
+
+      UNREFERENCED_PARAMETER(pui);
 
       throw interface_only_exception(get_app());
 
@@ -1845,14 +1862,6 @@ namespace user
    }
 
    void interaction_base::mouse_hover_remove(sp(::user::interaction) pinterface)
-   {
-
-      throw interface_only_exception(get_app());
-
-   }
-
-
-   sp(interaction) interaction_base::above_sibling(sp(interaction) pui)
    {
 
       throw interface_only_exception(get_app());

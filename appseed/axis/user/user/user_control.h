@@ -216,6 +216,7 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnMouseMove);
       DECL_GEN_SIGNAL(_001OnMouseLeave);
+      DECL_GEN_SIGNAL(_001OnKeyDown);
 
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);

@@ -816,10 +816,12 @@ namespace user
          try
          {
 
-            if(ptraChild[i]->m_bVisible)
+            interaction * pui = ptraChild[i];
+
+            if(pui->m_bVisible)
             {
 
-               ptraChild[i]->_000OnDraw(pdc);
+               pui->_000OnDraw(pdc);
 
             }
 
@@ -3575,7 +3577,7 @@ namespace user
          return pui->m_uiptraChild[i];
    }
 
-   sp(interaction) interaction::previous_sibling()
+   sp(interaction) interaction::last_sibling()
    {
 
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
@@ -3583,39 +3585,10 @@ namespace user
       if(GetParent() == NULL)
          return NULL;
 
-      return GetParent()->first_child();
+      return GetParent()->last_child();
 
    }
 
-   sp(interaction) interaction::first_sibling()
-   {
-   
-      return bottom_sibling();
-
-   }
-
-
-   sp(interaction) interaction::previous_sibling()
-   {
-
-      return above_sibling();
-
-   }
-
-   sp(interaction) interaction::next_sibling()
-   {
-
-      return under_sibling();
-
-   }
-
-
-   sp(interaction) interaction::last_sibling()
-   {
-
-      return top_sibling();
-
-   }
 
    void interaction::mouse_hover_add(sp(::user::interaction) pinterface)
    {
@@ -3638,7 +3611,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::above_sibling(sp(interaction) pui)
+   sp(interaction) interaction::previous_sibling(sp(interaction) pui)
    {
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
       index i = m_uiptraChild.find_first(pui);

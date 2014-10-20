@@ -217,6 +217,8 @@ namespace user
       virtual sp(interaction) next_sibling();
       virtual sp(interaction) previous_sibling();
       virtual sp(interaction) first_sibling();
+      virtual sp(interaction) next_sibling(sp(interaction) pui);
+      virtual sp(interaction) previous_sibling(sp(interaction) pui);
 
       virtual sp(interaction) bottom_child();
       virtual sp(interaction) top_child();
@@ -224,10 +226,10 @@ namespace user
       virtual sp(interaction) under_sibling();
       virtual sp(interaction) above_sibling();
       virtual sp(interaction) top_sibling();
-
-
       virtual sp(interaction) above_sibling(sp(interaction) pui);
       virtual sp(interaction) under_sibling(sp(interaction) pui);
+
+
 
 
       virtual void mouse_hover_add(sp(::user::interaction) pinterface);
