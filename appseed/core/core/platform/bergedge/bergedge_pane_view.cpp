@@ -116,7 +116,7 @@ namespace bergedge
             Platform.m_pappCurrent = pappTab;
             Platform.m_pappCurrent = pappTab;
          }
-         sp(::simple_frame_window) pframeApp =  (m_pviewdata->m_pwnd.m_p);
+         sp(::simple_frame_window) pframeApp =  (m_pviewdata->m_pwnd);
          if(pframeApp != NULL)
          {
             pframeApp->WfiFullScreen();

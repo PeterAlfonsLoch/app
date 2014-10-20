@@ -22,9 +22,9 @@ namespace user
 
 
       id                               m_id;
-      sp(::user::interaction)            m_pwnd;
-      sp(::user::place_holder)           m_pholder;
-      sp(::user::document)     m_pdoc;
+      ::user::interaction *            m_pwnd;
+      ::user::place_holder *           m_pholder;
+      ::user::document *     m_pdoc;
       id                               m_idSplit;
       bool                             m_bTabSplitSwap;
       int32_t                              m_iExtendOnParent;

@@ -170,8 +170,8 @@ namespace nature
       ::userex::pane_tab_view::on_show_view();
       if(m_pviewdata->m_id == nature::PaneViewIdioma)
       {
-         sp(::user::menu_list_view) pmenuview =  (m_pviewdata->m_pwnd.m_p);
-         pmenuview->m_puiNotify = m_pviewdataOld == NULL ? NULL : (m_pviewdataOld->m_pwnd.m_p);
+         sp(::user::menu_list_view) pmenuview =  (m_pviewdata->m_pwnd);
+         pmenuview->m_puiNotify = m_pviewdataOld == NULL ? NULL : (m_pviewdataOld->m_pwnd);
          pmenuview->m_uiMessage = WM_USER + 1122;
          pmenuview->TrackPopupMenu(pmenuview, GetParentFrame());
       }

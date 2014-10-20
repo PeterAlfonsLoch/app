@@ -162,7 +162,7 @@ namespace filemanager
          pdoc->update_all_views(NULL, 0, &uh);
 
 
-         pformview->m_pmanager = m_pviewdata->m_pdoc.cast < ::filemanager::manager > ();
+         pformview->m_pmanager = dynamic_cast < ::filemanager::manager * > ( m_pviewdata->m_pdoc);
          //pformview->VmsDataInitialize(simpledb::get(get_app())->GetDataServer());
          //pcreatordata->m_pwnd = (pformview->GetParentFrame());
          //      form_child_frame * pframe = dynamic_cast < form_child_frame * >(pcreatordata->m_pwnd);

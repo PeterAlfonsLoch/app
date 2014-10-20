@@ -17,11 +17,11 @@ namespace android
    public:
 
 
-      spa(::user::interaction)         m_guieptraMouseHover;
-      ::message_queue_listener *       m_pcallback;
-      string                           m_strWindowText;
+      comparable_array < ::user::interaction * >   m_guieptraMouseHover;
+      ::message_queue_listener *                   m_pcallback;
+      string                                       m_strWindowText;
       ::user::interaction_base *       m_pbasewnd;
-      sp(::user::interaction)          m_pguiecapture;
+      ::user::interaction *            m_pguiecapture;
       bool                             m_bExposing;
       int32_t                          m_iDepth;
       //UINT m_nFlags;      // see WF_ flags above
