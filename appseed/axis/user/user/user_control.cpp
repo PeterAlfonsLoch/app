@@ -1,37 +1,54 @@
 #include "framework.h" // from "axis/user/user.h"
 
+
 namespace user
 {
 
+
 #ifdef WINDOWSEX
+
    const uint32_t control::g_uiMessage = ::RegisterWindowMessage("user::control::g_uiMessage");
+
 #endif
+
 
    control::descriptor::descriptor()
    {
+
       clear();
+
    }
+
 
    control::descriptor::~descriptor()
    {
+
       if(m_pcontrol != NULL)
       {
+
          if(m_bCreated)
          {
+
             m_pcontrol->DestroyWindow();
+
          }
          else if(m_bSubclassed)
          {
-            m_pcontrol->unsubclass_window();
-         }
-         m_pcontrol.release();
-      }
-   }
 
+            m_pcontrol->unsubclass_window();
+
+         }
+
+         m_pcontrol.release();
+
+      }
+
+   }
 
 
    void control::descriptor::clear()
    {
+
       m_id.is_empty();
       m_etype                    = type_none;
       m_bTransparent             = false;
@@ -42,17 +59,24 @@ namespace user
       m_pform                    = NULL;
       m_bSubclassed              = false;
       m_iSubItem                 = -1;
+
    }
+
 
    control::descriptor::descriptor(const class descriptor & descriptor)
    {
+
       operator =(descriptor);
+
    }
+
 
    class control::descriptor & control::descriptor::operator = (const descriptor & descriptor)
    {
+
       if(&descriptor == this)
          return *this;
+
       m_id                    = descriptor.m_id;
       m_etype                 = descriptor.m_etype;
       m_dataid                = descriptor.m_dataid;
@@ -67,33 +91,46 @@ namespace user
       m_ddx.m_pvoid           = descriptor.m_ddx.m_pvoid;
       m_pform                 = descriptor.m_pform;
       m_iSubItem              = descriptor.m_iSubItem;
+
       return *this;
+
    }
+
 
    bool control::descriptor::operator == (const descriptor & descriptor) const
    {
+
       return m_id       == descriptor.m_id
          && m_etype     == descriptor.m_etype
          && m_dataid    == descriptor.m_dataid
          && m_pform     == descriptor.m_pform
          && m_pcontrol  == descriptor.m_pcontrol;
+
    }
 
 
    void control::descriptor::add_function(efunction efunction)
    {
+
       m_flagsfunction.signalize(efunction);
+
    }
+
 
    void control::descriptor::remove_function(efunction efunction)
    {
+
       m_flagsfunction.unsignalize(efunction);
+
    }
 
-      bool control::descriptor::has_function(efunction efunction)
-      {
-         return m_flagsfunction.is_signalized(efunction);
-      }
+
+   bool control::descriptor::has_function(efunction efunction)
+   {
+
+      return m_flagsfunction.is_signalized(efunction);
+
+   }
 
 
    void control::descriptor::set_data_type(edatatype edatatype)
@@ -102,6 +139,7 @@ namespace user
       m_edatatype = edatatype;
 
    }
+
 
    control::edatatype control::descriptor::get_data_type()
    {
@@ -123,10 +161,12 @@ namespace user
 
    }
 
+
    control::descriptor_set::descriptor_set()
    {
 
    }
+
 
    control::descriptor_set::~descriptor_set()
    {
@@ -134,47 +174,74 @@ namespace user
    }
 
 
-
    sp(control) control::descriptor_set::get_control_by_id(id id)
    {
+
       for(int32_t i = 0; i < this->get_size(); i++)
       {
+
          class descriptor & descriptor = *this->element_at(i);
+
          if(descriptor.m_id == id)
          {
+
             return descriptor.m_pcontrol;
+
          }
+
       }
+
       return NULL;
+
    }
+
 
    class control::descriptor * control::descriptor_set::get(sp(::user::interaction) puie)
    {
+
       sp(control) pcontrol =  (puie.m_p);
+
       if(pcontrol == NULL)
          return NULL;
+
       for(int32_t i = 0; i < this->get_size(); i++)
       {
+
          class descriptor & descriptor = *this->element_at(i);
+
          if(descriptor.m_pcontrol == pcontrol)
          {
+
             return &descriptor;
+
          }
+
       }
+
       return NULL;
+
    }
+
 
    class control::descriptor * control::descriptor_set::get_by_sub_item(int32_t iSubItem)
    {
+
       for(int32_t i = 0; i < this->get_size(); i++)
       {
+
          class descriptor & descriptor = *this->element_at(i);
+
          if(descriptor.m_iSubItem == iSubItem)
          {
+
             return &descriptor;
+
          }
+
       }
+
       return NULL;
+
    }
 
 
@@ -182,6 +249,7 @@ namespace user
    {
 
    }
+
 
    void control::install_message_handling(::message::dispatch * pdispatch)
    {
@@ -207,112 +275,167 @@ namespace user
 
    void control::_003OnCustomDraw(::draw2d::graphics *pdc, ::user::draw_context * pdrawcontext)
    {
+
       pdc->chain(pdrawcontext);
+
       _001OnDraw(pdc);
+
       pdc->unchain(pdrawcontext);
+
    }
+
 
    bool control::_003IsCustomMessage()
    {
+
       return m_bCustomWindowProc;
+
    }
 
 
    void control::_003CallCustomDraw(::draw2d::graphics *pdc, ::user::draw_context * pdrawcontext)
    {
+
       _003OnCustomDraw(pdc, pdrawcontext);
+
    }
+
 
    bool control::_003CallCustomWindowProc(sp(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
    {
+
       m_pwndCustomWindowProc = pwnd;
+
       keep <bool> keepOnCustomMessage(&m_bCustomWindowProc, true, false, true);
+
       ::message::base axis(get_app(), pwnd, message, wparam, lparam, lresult);
+
       _003CustomWindowProc(&axis);
+
       return axis.m_bRet;
+
    }
+
 
    void control::_003CustomWindowProc(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
    }
+
 
    bool control::operator == (const class descriptor & descriptor) const
    {
+
       return *m_pdescriptor == descriptor;
+
    }
 
 
    bool control::operator == (const class control & control) const
    {
+      
       return operator == (*control.m_pdescriptor);
+
    }
+
 
    void control::descriptor::set_type(e_type e_type)
    {
+      
       m_etype = e_type;
 
       switch(m_etype)
       {
       case type_edit:
+
       //         m_typeinfo = System.type_info < CSimpleFormListEdit > ();
+
          break;
+
       case type_combo_box:
          {
-                            throw todo(get_app());
+
+            throw todo(get_app());
+
 //            m_data.m_pcombobox = new Ex1FormInterfaceComboBox;
+
          }
          break;
          default:
             break;
       }
+
    }
 
 
    control::e_type control::descriptor::get_type()
    {
+
       return m_etype;
+
    }
 
 
    index control::GetEditItem()
    {
+
       return m_iEditItem;
+
    }
+
 
    index control::GetEditSubItem()
    {
+
       return descriptor().m_iSubItem;
+
    }
+
 
    void control::SetEditItem(index iItem)
    {
+
       m_iEditItem = iItem;
+
    }
+
 
    void control::SetEditSubItem(index iSubItem)
    {
+
       descriptor().m_iSubItem = iSubItem;
+
    }
 
 
    bool control::get_data(sp(::user::interaction)pwnd, var &var)
    {
+      
       string str;
 
       if(descriptor().get_type() == type_edit)
       {
+
          sp(text_interface) ptext = pwnd.m_p;
+
          if(ptext == NULL)
             return false;
+
          ptext->_001GetText(str);
+
       }
       else
       {
+
          sp(text_interface) ptext = this;
+
          if(ptext == NULL)
             return false;
+
          ptext->_001GetText(str);
+
       }
 
       switch(descriptor().get_data_type())
@@ -896,7 +1019,19 @@ namespace user
 
    }
 
+
 } // namespace core
+
+
+
+
+
+
+
+
+
+
+
 
 
 
