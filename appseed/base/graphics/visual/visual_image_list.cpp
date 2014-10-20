@@ -63,7 +63,7 @@ bool image_list::create(int32_t cx, int32_t cy, UINT nFlags, int32_t nInitial, i
 }
 
 
-bool image_list::realize(::draw2d::graphics * pdc)
+bool image_list::realize(::draw2d::graphics * pdc) const
 {
 
    return m_spdib->realize(pdc);

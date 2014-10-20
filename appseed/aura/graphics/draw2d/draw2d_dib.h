@@ -169,11 +169,14 @@ namespace draw2d
       virtual bool create(::draw2d::graphics * pdc);
       virtual bool Destroy();
 
-      virtual bool realize(::draw2d::graphics * pdc);
-      virtual bool unrealize();
-      virtual bool is_realized();
-      virtual bool defer_realize(::draw2d::graphics * pdc);
-
+      // realization is semantically const
+      // dib keeps an image and image will be the same, 
+      // besides the way the Device Context associated with the dib (m_spgraphics)
+      // interprets or deals with it, may change
+      virtual bool realize(::draw2d::graphics * pdc) const;
+      virtual bool unrealize() const;
+      virtual bool is_realized() const;
+      virtual bool defer_realize(::draw2d::graphics * pdc) const;
 
       virtual void DivideRGB(int32_t iDivide);
       virtual void DivideARGB(int32_t iDivide);

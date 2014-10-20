@@ -2693,12 +2693,12 @@ namespace draw2d_direct2d
    }*/
 
 
-   bool dib::defer_realize(::draw2d::graphics * pgraphics)
+   bool dib::defer_realize(::draw2d::graphics * pgraphics) const
    {
 
       if (is_realized())
       {
-         ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->BeginDraw();
+         ((ID2D1DeviceContext *)((dib *) this)->m_spgraphics->get_os_data())->BeginDraw();
          return true;
       }
 
@@ -2706,7 +2706,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool dib::realize(::draw2d::graphics * pgraphics)
+   bool dib::realize(::draw2d::graphics * pgraphics) const
    {
 
       if (is_realized())
@@ -2715,19 +2715,19 @@ namespace draw2d_direct2d
       if (is_realized())
          return false;
 
-      m_spbitmap.alloc(allocer());
-      m_spgraphics.alloc(allocer());
+      ((dib *) this)->m_spbitmap.alloc(((dib *) this)->allocer());
+      ((dib *) this)->m_spgraphics.alloc(((dib *) this)->allocer());
 
-      if (m_spbitmap.is_null() || m_spbitmapMap.is_null() || m_spgraphics.is_null() || m_spgraphicsMap.is_null())
+      if(((dib *) this)->m_spbitmap.is_null() || ((dib *) this)->m_spbitmapMap.is_null() || ((dib *) this)->m_spgraphics.is_null() || ((dib *) this)->m_spgraphicsMap.is_null())
       {
          return false;
       }
 
       ::draw2d_direct2d::graphics * pgraphicsSrc = dynamic_cast <::draw2d_direct2d::graphics *> (pgraphics);
 
-      ::draw2d_direct2d::graphics * pgraphicsDst = dynamic_cast <::draw2d_direct2d::graphics *> (m_spgraphics.m_p);
+      ::draw2d_direct2d::graphics * pgraphicsDst = dynamic_cast <::draw2d_direct2d::graphics *> (((dib *) this)->m_spgraphics.m_p);
 
-      ::draw2d_direct2d::bitmap * pbitmap = dynamic_cast <::draw2d_direct2d::bitmap *> (m_spbitmap.m_p);
+      ::draw2d_direct2d::bitmap * pbitmap = dynamic_cast <::draw2d_direct2d::bitmap *> (((dib *) this)->m_spbitmap.m_p);
 
       pgraphicsDst->m_pbitmaprendertarget = nullptr;
 
@@ -2765,12 +2765,12 @@ namespace draw2d_direct2d
 
       if (pbitmap->m_pbitmap == NULL)
       {
-         m_spgraphics.release();
+         ((dib *) this)->m_spgraphics.release();
          return false;
       }
 
       if (pgraphicsDst->m_spbitmap.is_null())
-         pgraphicsDst->m_spbitmap.alloc(allocer());
+         pgraphicsDst->m_spbitmap.alloc(((dib *) this)->allocer());
 
       pgraphicsDst->m_spbitmap->attach(pbitmap->m_pbitmap.Get());
 
@@ -2790,14 +2790,14 @@ namespace draw2d_direct2d
 
       //hr = METROWIN_BITMAP(m_spbitmap.m_p)->m_pbitmap->CopyFromBitmap(&p, METROWIN_BITMAP(m_spbitmapMap.m_p)->m_pbitmap, &srcRect);
 
-      ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->BeginDraw();
+      ((ID2D1DeviceContext *)((dib *) this)->m_spgraphics->get_os_data())->BeginDraw();
 
       return true;
 
    }
 
 
-   bool dib::unrealize()
+   bool dib::unrealize() const
    {
 
       if (!is_realized())
@@ -2815,19 +2815,19 @@ namespace draw2d_direct2d
       srcRect.top = 0;
       srcRect.bottom = m_size.cy;
 
-      HRESULT hr = ((ID2D1Bitmap *)m_spbitmapMap->get_os_data())->CopyFromBitmap(&p, ((ID2D1Bitmap *)m_spbitmapMap->get_os_data()), &srcRect);
+      HRESULT hr = ((ID2D1Bitmap *)((dib *) this)->m_spbitmapMap->get_os_data())->CopyFromBitmap(&p,((ID2D1Bitmap *)((dib *) this)->m_spbitmapMap->get_os_data()),&srcRect);
 
-      m_spgraphics.release();
+      ((dib *) this)->m_spgraphics.release();
 
       return true;
 
    }
 
 
-   bool dib::is_realized()
+   bool dib::is_realized() const
    {
 
-      if (m_spgraphics.is_null() || m_spgraphics->get_os_data() == NULL)
+      if(((dib *) this)->m_spgraphics.is_null() || ((dib *) this)->m_spgraphics->get_os_data() == NULL)
          return false;
 
       return true;

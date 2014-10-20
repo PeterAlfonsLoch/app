@@ -222,7 +222,7 @@ namespace platform
       bConsole = false;
       if(bConsole)
       {
-         m_dibBkImage->copy(m_dibBk);
+         *m_dibBkImage = *m_dibBk;
       }
       else
       {

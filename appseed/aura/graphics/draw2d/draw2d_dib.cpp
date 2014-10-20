@@ -99,7 +99,7 @@ namespace draw2d
    }
 
 
-   bool dib::realize(::draw2d::graphics * pdc)
+   bool dib::realize(::draw2d::graphics * pdc) const
    {
 
       UNREFERENCED_PARAMETER(pdc);
@@ -108,7 +108,7 @@ namespace draw2d
    }
 
 
-   bool dib::unrealize()
+   bool dib::unrealize() const
    {
 
       return true;
@@ -116,14 +116,14 @@ namespace draw2d
    }
 
 
-   bool dib::is_realized()
+   bool dib::is_realized() const
    {
 
       return true;
 
    }
 
-   bool dib::defer_realize(::draw2d::graphics * pdc)
+   bool dib::defer_realize(::draw2d::graphics * pdc) const
    {
 
       if(is_realized())
@@ -1319,11 +1319,11 @@ namespace draw2d
 
       }
 
-      ((dib *)dib)->defer_realize(((dib *)dib)->get_graphics());
-      ((dib *)this)->defer_realize(((dib *)dib)->get_graphics());
+      dib->defer_realize(dib->get_graphics());
+      defer_realize(dib->get_graphics());
 
       map();
-      dib->map();
+      ((::draw2d::dib *) dib)->map();
       // If DibSize Wrong Re-create dib
       // do Paste
 
@@ -3305,9 +3305,12 @@ namespace draw2d
       return size64(m_size.cx, m_size.cy);
    }*/
 
-   double dib::pi()
+
+   double dib::pi() const
    {
+
       return atan(1.0)*4.0;
+
    }
 
 
@@ -4217,7 +4220,7 @@ namespace draw2d
    dib & dib::operator = (const dib & dib)
    {
 
-      if(this != &dib);
+      if(this != &dib)
       {
          
          from(&dib);
