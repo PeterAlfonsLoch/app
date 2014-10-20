@@ -567,19 +567,19 @@ namespace user
          {
          }
 
-         try
-         {
+      }
 
-            Application.remove(this);
+      try
+      {
 
-         }
-         catch(...)
-         {
-
-         }
-
+         m_pauraapp->remove(this);
 
       }
+      catch(...)
+      {
+
+      }
+
 
       try
       {
@@ -765,11 +765,11 @@ namespace user
 
             rect rectClient;
 
-            sp(::user::interaction) pui = this;
+            ::user::interaction * pui = this;
 
             bool bFirst = true;
 
-            while(pui.is_set())
+            while(pui != NULL)
             {
 
                pui->GetWindowRect(rectClient);

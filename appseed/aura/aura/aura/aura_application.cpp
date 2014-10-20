@@ -3105,17 +3105,17 @@ namespace aura
    }
 
 
-   ::thread * application::get_thread(::user::interaction * pui)
+   comparable_array < ::thread * > application::get_thread(::user::interaction * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);
 
-      return NULL;
+      throw interface_only_exception(this);
 
    }
 
 
-   void application::set_thread(::user::interaction * pui,::thread * pthread)
+   void application::add_thread(::user::interaction * pui,::thread * pthread)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3123,7 +3123,14 @@ namespace aura
 
    }
 
-   
+   void application::remove_thread(::user::interaction * pui,::thread * pthread)
+   {
+
+      UNREFERENCED_PARAMETER(pui);
+      UNREFERENCED_PARAMETER(pthread);
+
+   }
+
    void application::window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam, int cyParam, int iStride)
    {
 

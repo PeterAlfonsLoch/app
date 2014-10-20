@@ -69,7 +69,7 @@ namespace user
       sp(::user::menu_base)               m_spmenuPopup;
 
       int32_t                             m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
-      thread *                            m_pthread;
+      comparable_array < thread * >       m_threadptra;
 
 
       interaction();

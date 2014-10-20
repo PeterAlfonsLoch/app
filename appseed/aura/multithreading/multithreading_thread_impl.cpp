@@ -1015,10 +1015,10 @@ void thread_impl::remove(::user::interaction * pui)
 
    single_lock sl(&m_mutexUiPtra,TRUE);
 
-   if(Application.get_thread(pui) == m_pthread)
+   if(Application.get_thread(pui).contains(m_pthread))
    {
 
-      Application.set_thread(pui, NULL);
+      Application.remove_thread(pui, m_pthread);
 
    }
 
