@@ -1074,6 +1074,8 @@ void thread_impl::set_timer(::user::interaction * pui,uint_ptr nIDEvent,UINT nEl
 
    m_sptimera->set(pui,nIDEvent,nEllapse);
 
+   Application.add_thread(pui, m_pthread);
+
 }
 
 

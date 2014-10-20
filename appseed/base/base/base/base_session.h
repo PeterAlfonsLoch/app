@@ -18,24 +18,11 @@ namespace base
       sp(::fs::remote_native)                                  m_prfs;
       sp(::fs::fs)                                             m_spfs;
       sp(class ::fs::data)                                     m_spfsdata;
-           //bool                                                     m_bDrawCursor;
-
-
-      //::visual::e_cursor                                       m_ecursor;
-      //::visual::e_cursor                                       m_ecursorDefault;
-      //::base::copydesk_sp                                      m_spcopydesk;
 
 
       sp(::fontopus::fontopus)                                 m_pfontopus;
-      //application_ptra                                         m_appptra;
-      //sp(::user::interaction)                                  m_spuiFocus;
-      //sp(::user::str_context)                                  m_puserstrcontext;
       ::sockets::sockets *                                     m_psockets;
-      //bool                                                     m_bZipIsDir;
-      //map < ::user::e_key,::user::e_key,bool,bool > *          m_pmapKeyPressed;
-      //sp(::aura::savings)                                      m_psavings;
       bool                                                     m_bIfs;
-      //sp(::user::user)                                         m_spuser;
       sp(class ::fontopus::licensing)                   m_splicensing;
 
 

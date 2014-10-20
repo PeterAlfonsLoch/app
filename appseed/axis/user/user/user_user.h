@@ -16,7 +16,7 @@ namespace user
 
 
 
-      sp(::user::keyboard_focus)             m_pkeyboardfocus;
+      ::user::keyboard_focus *               m_pkeyboardfocus;
       ::user::mouse_focus *                  m_pmousefocusLButtonDown;
       ::user::mouse_focus *                  m_pmousefocusRButtonDown;
       sp(::user::window_map)                 m_pwindowmap;

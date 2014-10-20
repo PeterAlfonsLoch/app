@@ -3455,7 +3455,7 @@ namespace user
       if(!m_pimpl->create_message_queue(pszName))
       {
 
-         m_pthread = NULL;
+         m_threadptra.remove_all();
 
          m_pimpl.release();
 
