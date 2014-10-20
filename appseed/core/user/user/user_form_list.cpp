@@ -463,7 +463,7 @@ namespace user
          }
       }*/
       control_keep controlkeep(this, pt);
-      sp(::user::interaction) pui = get_top_child();
+      sp(::user::interaction) pui = top_child();
       sp(::user::interaction) puiBefore = NULL;
       bool bError;
       try

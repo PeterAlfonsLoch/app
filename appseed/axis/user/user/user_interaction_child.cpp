@@ -749,7 +749,7 @@ namespace user
       // unless we need to call this function recursively
       if(m_pui == NULL)
          return;
-      sp(interaction) pui = m_pui->get_top_child();
+      sp(interaction) pui = m_pui->top_child();
       while(pui != NULL)
       {
          try

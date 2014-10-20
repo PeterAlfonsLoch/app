@@ -189,7 +189,7 @@ namespace user
             else if(pwindow != NULL)
                oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&layout);
          }*/
-         for(sp(::user::interaction) oswindow_Child = m_pui->get_top_child(); oswindow_Child != NULL;
+         for(sp(::user::interaction) oswindow_Child = m_pui->top_child(); oswindow_Child != NULL;
             oswindow_Child = oswindow_Child->under_sibling())
          {
             id id = oswindow_Child->GetDlgCtrlId();
@@ -212,7 +212,7 @@ namespace user
             else if(pwindow != NULL)
                oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&layout);
          }*/
-         for(sp(::user::interaction) oswindow_Child = m_pui->get_top_child(); oswindow_Child != NULL;
+         for(sp(::user::interaction) oswindow_Child = m_pui->top_child(); oswindow_Child != NULL;
             oswindow_Child = oswindow_Child->under_sibling())
          {
             id id = oswindow_Child->GetDlgCtrlId();
@@ -675,7 +675,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::get_top_child()
+   sp(interaction) interaction_impl_base::top_child()
    {
 
       return m_pui->first_child();

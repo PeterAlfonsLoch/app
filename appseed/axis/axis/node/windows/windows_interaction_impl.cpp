@@ -3861,7 +3861,7 @@ namespace windows
 
       // walk through HWNDs to avoid creating temporary interaction_impl objects
       // unless we need to call this function recursively
-      sp(::user::interaction) pui = m_pui->get_top_child();
+      sp(::user::interaction) pui = m_pui->top_child();
       while(pui != NULL)
       {
          try

@@ -2708,7 +2708,7 @@ return 0;
             else if (pWnd != NULL)
                hWndChild->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
          }
-         for (sp(::user::interaction) hWndChild = m_pui->get_top_child(); hWndChild != NULL;
+         for (sp(::user::interaction) hWndChild = m_pui->top_child(); hWndChild != NULL;
             hWndChild = hWndChild->under_sibling())
          {
             id id = hWndChild->GetDlgCtrlId();
@@ -2731,7 +2731,7 @@ return 0;
             else if (pWnd != NULL)
                hWndChild->send_message(WM_SIZEPARENT, 0, (LPARAM)&layout);
          }
-         for (sp(::user::interaction) hWndChild = m_pui->get_top_child(); hWndChild != NULL;
+         for (sp(::user::interaction) hWndChild = m_pui->top_child(); hWndChild != NULL;
             hWndChild = hWndChild->under_sibling())
          {
             id id = hWndChild->GetDlgCtrlId();
@@ -5070,7 +5070,7 @@ if(psurface == g_cairosurface)
 
       // walk through oswindows to avoid creating temporary interaction_impl objects
       // unless we need to call this function recursively
-      user::interaction * pui = m_pui->get_top_child();
+      user::interaction * pui = m_pui->top_child();
       while(pui != NULL)
       {
          try

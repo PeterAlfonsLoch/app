@@ -1080,7 +1080,7 @@ namespace user
       }
       // these try catchs are needed for multi threading : multi threaded windows: the hell
       // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
-      sp(::user::interaction) pui = get_top_child();
+      sp(::user::interaction) pui = top_child();
       //      int32_t iSize;
       try
       {
@@ -1131,7 +1131,7 @@ namespace user
       {
          // these try catchs are needed for multi threading : multi threaded windows: the hell
          // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
-         sp(::user::interaction) pui = get_top_child();
+         sp(::user::interaction) pui = top_child();
          //         int32_t iSize;
          try
          {
@@ -1194,7 +1194,7 @@ namespace user
    void interaction::_001OnMouseLeave(signal_details * pobj)
    {
 
-      sp(interaction) pui = get_top_child();
+      sp(interaction) pui = top_child();
       while(pui != NULL)
       {
          if(pui->m_bCursorInside)
@@ -1222,7 +1222,7 @@ namespace user
             || !_001IsPointInside(pt)) // inline version - do not need pointer to the function
             return NULL;
       }
-      sp(interaction) pui = get_top_child();
+      sp(interaction) pui = top_child();
       while(pui != NULL)
       {
          sp(interaction) puie = pui->_001FromPoint(pt,true);
@@ -1289,7 +1289,7 @@ namespace user
 
    sp(interaction) interaction::get_child_by_name(const char * pszName,int32_t iLevel)
    {
-      sp(interaction) pui = get_top_child();
+      sp(interaction) pui = top_child();
       while(pui != NULL)
       {
          if(pui->m_strName == pszName)
@@ -1305,7 +1305,7 @@ namespace user
          {
             iLevel--;
          }
-         sp(interaction) pui = get_top_child();
+         sp(interaction) pui = top_child();
          while(pui != NULL)
          {
             pchild = pui->get_child_by_name(pszName,iLevel);
@@ -1320,7 +1320,7 @@ namespace user
 
    sp(interaction) interaction::get_child_by_id(id id,int32_t iLevel)
    {
-      sp(interaction) pui = get_top_child();
+      sp(interaction) pui = top_child();
       while(pui != NULL)
       {
          if(pui->m_id == id)
@@ -1336,7 +1336,7 @@ namespace user
          {
             iLevel--;
          }
-         sp(interaction) pui = get_top_child();
+         sp(interaction) pui = top_child();
          while(pui != NULL)
          {
             pchild = pui->get_child_by_id(id,iLevel);
@@ -3498,7 +3498,7 @@ namespace user
       if(GetParent() == NULL)
          return NULL;
 
-      return GetParent()->get_top_child();
+      return GetParent()->top_child();
 
    }
 

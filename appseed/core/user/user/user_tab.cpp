@@ -2063,7 +2063,7 @@ namespace user
       else if(pmouse->m_uiMessage == WM_MOUSEMOVE)
       {
       }
-      sp(::user::interaction) pui = get_top_child();
+      sp(::user::interaction) pui = top_child();
 //      int32_t iSize;
       try
       {

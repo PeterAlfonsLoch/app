@@ -159,7 +159,7 @@ namespace plugin
       }
       else
       {
-         sp(::user::interaction) pui = get_top_child();
+         sp(::user::interaction) pui = top_child();
          if(pui != NULL)
          {
             class rect rectClient;

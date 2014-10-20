@@ -449,7 +449,7 @@ namespace bergedge
       }
       else
       {
-         sp(::user::interaction) pui = get_top_child();
+         sp(::user::interaction) pui = top_child();
          if(pui != NULL)
          {
             pui->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
@@ -472,7 +472,7 @@ namespace bergedge
       }
       // these try catchs are needed for multi threading : multi threaded windows: the hell
       // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
-      sp(::user::interaction) pui = get_top_child();
+      sp(::user::interaction) pui = top_child();
       try
       {
          while(pui != NULL)

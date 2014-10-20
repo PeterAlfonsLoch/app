@@ -111,7 +111,7 @@ namespace user
 
 
       virtual sp(interaction) first_child();
-      virtual sp(interaction) get_top_child();
+      virtual sp(interaction) top_child();
       virtual sp(interaction) under_sibling();
       virtual sp(interaction) above_sibling();
 
