@@ -186,6 +186,9 @@ namespace user
          //  never explicitly call 'delete' on a ::user::impact
          delete_this();
       }*/
+
+      release();
+
    }
 
    void impact::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
