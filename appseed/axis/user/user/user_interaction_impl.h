@@ -716,7 +716,7 @@ namespace user
    public:
 
 
-      sp(::user::interaction) m_puiForward;
+      ::user::interaction * m_puiForward;
 
 
       guie_message_wnd(sp(::aura::application) papp);
