@@ -94,6 +94,8 @@ namespace user
 
       ::size calc_text_size();
 
+      virtual bool keyboard_focus_is_focusable();
+
    };
 
 
