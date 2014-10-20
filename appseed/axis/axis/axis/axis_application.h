@@ -106,8 +106,9 @@ namespace axis
       virtual ::user::interaction * get_parent(::user::interaction * pui);
       virtual bool enable_window(::user::interaction * pui,bool bEnable = true);
       virtual bool set_window_text(::user::interaction * pui,const string & strText);
-      virtual ::thread * get_thread(::user::interaction * pui);
-      virtual void set_thread(::user::interaction * pui,::thread * pthread);
+      virtual comparable_array < ::thread * > get_thread(::user::interaction * pui);
+      virtual void add_thread(::user::interaction * pui,::thread * pthread);
+      virtual void remove_thread(::user::interaction * pui,::thread * pthread);
       virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam, int cyParam, int iStride = -1);
       
 

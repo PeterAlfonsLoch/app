@@ -992,7 +992,26 @@ namespace user
 
       UNREFERENCED_PARAMETER(lpfnTimer);
 
-      m_pui->m_pthread->set_timer(m_pui,nIDEvent,nElapse);
+      if(m_pui->m_threadptra.get_count() <= 0)
+      {
+
+         ::thread * pthread = ::get_thread();
+
+         if(pthread != NULL)
+         {
+
+            m_pui->m_threadptra.add(pthread);
+
+         }
+
+      }
+
+      if(m_pui->m_threadptra.get_count() > 0)
+      {
+
+         m_pui->m_threadptra[0]->set_timer(m_pui,nIDEvent,nElapse);
+
+      }
 
       return nIDEvent;
 
@@ -1002,7 +1021,27 @@ namespace user
    bool interaction_impl_base::KillTimer(uint_ptr nIDEvent)
    {
 
-      m_pui->m_pthread->unset_timer(m_pui,nIDEvent);
+      if(m_pui->m_threadptra.get_count() <= 0)
+      {
+
+         ::thread * pthread = ::get_thread();
+
+         if(pthread != NULL)
+         {
+
+            m_pui->m_threadptra.add(pthread);
+
+         }
+
+      }
+
+      if(m_pui->m_threadptra.get_count() > 0)
+      {
+
+         m_pui->m_threadptra[0]->unset_timer(m_pui,nIDEvent);
+
+      }
+
 
       return true;
 

@@ -1861,21 +1861,27 @@ namespace axis
    }
 
 
-   ::thread * application::get_thread(::user::interaction * pui)
+   comparable_array < ::thread * > application::get_thread(::user::interaction * pui)
    {
 
-      return pui->m_pthread;
+      return pui->m_threadptra;
 
    }
 
 
-   void application::set_thread(::user::interaction * pui,::thread * pthread)
+   void application::add_thread(::user::interaction * pui,::thread * pthread)
    {
 
-      pui->m_pthread = pthread;
+      pui->m_threadptra.add_unique(pthread);
 
    }
 
+   void application::remove_thread(::user::interaction * pui,::thread * pthread)
+   {
+
+      pui->m_threadptra.remove(pthread);
+
+   }
 
    void application::window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam, int cyParam, int iStride)
    {

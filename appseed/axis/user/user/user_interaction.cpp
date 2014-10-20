@@ -35,7 +35,6 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
-      m_pthread                  = NULL;
       m_bMayProDevian            = true;
       m_pmutex                   = NULL;
       m_eappearance              = AppearanceNormal;
@@ -584,10 +583,18 @@ namespace user
       try
       {
 
-         if(m_pthread != NULL)
+         for(index i = 0; i < m_threadptra.get_size(); i++)
          {
 
-            m_pthread->remove(this);
+            try
+            {
+
+               m_threadptra[i]->remove(this);
+
+            }
+            catch(...)
+            {
+            }
 
          }
 
