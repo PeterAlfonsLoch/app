@@ -622,6 +622,30 @@ namespace user
 
          }
 
+         sp(::user::place_holder) pholder  = GetParent();
+
+         if(pholder.is_set())
+         {
+
+            ::count c = -1;
+
+            try
+            {
+
+               single_lock sl(GetParent()->m_spmutex,true);
+
+               c = pholder->m_uiptraHold.remove(this);
+
+            }
+            catch(...)
+            {
+
+            }
+
+            TRACE("removed = %d", c);
+
+         }
+
       }
 
       {
@@ -1679,7 +1703,7 @@ namespace user
          DestroyWindow();
       }
       m_signalptra.remove_all();
-      m_pimpl = new ::user::interaction_child(get_app());
+      m_pimpl = canew(::user::interaction_child(get_app()));
       m_pimpl->m_pui = this;
       m_pthread = ::get_thread();
       if(m_pthread == NULL)
@@ -1745,7 +1769,7 @@ namespace user
       else
       {
 
-         pimplNew = new ::user::interaction_child(get_app());
+         pimplNew = canew(::user::interaction_child(get_app()));
 
          pimplNew->m_pui = this;
 
@@ -1870,7 +1894,7 @@ namespace user
          }
 
 
-         m_pimpl = new ::user::interaction_child(get_app());
+         m_pimpl = canew(::user::interaction_child(get_app()));
          m_pimpl->m_pui = this;
          if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rectFrame,pParentWnd,id,lpParam))
          {
