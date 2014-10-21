@@ -1967,7 +1967,7 @@ namespace xml
             if(m_nodea[i]->get_attr(pszAttrName, strValue)
                && stricmp_dup(strValue, pszAttrValue) == 0)
             {
-               return m_nodea(i);
+               return m_nodea[i];
             }
          }
       }
@@ -1985,7 +1985,7 @@ namespace xml
             {
                if(m_nodea[i]->get_attr(straAttrName[j], strValue) && stricmp_dup(strValue, straAttrValue[j]) == 0)
                {
-                  return m_nodea(i);
+                  return m_nodea[i];
                }
             }
          }
@@ -2011,7 +2011,7 @@ namespace xml
             }
             if(bAll)
             {
-               return m_nodea(i);
+               return m_nodea[i];
             }
          }
       }
