@@ -1538,6 +1538,41 @@ namespace user
 
       UNREFERENCED_PARAMETER(pobj);
 
+      SCAST_PTR(::message::base,pbase,pobj);
+
+      if(pbase->m_uiMessage == WM_KEYDOWN)
+      {
+
+         SCAST_PTR(::message::key,pkey,pobj);
+
+         if(pkey->m_ekey == ::user::key_tab)
+         {
+
+            ::user::control_event ev;
+
+            ev.m_puie         = this;
+
+            ev.m_eevent       = ::user::event_tab_key;
+
+            ev.m_actioncontext        = ::action::source_user;
+
+            if(!BaseOnControlEvent(&ev))
+            {
+
+               sp(::user::interaction) pui = keyboard_get_next_focusable();
+
+               if(pui != NULL)
+                  pui->keyboard_set_focus();
+
+            }
+
+            pkey->m_bRet      = true;
+
+         }
+
+      }
+
+
    }
 
 

@@ -8,11 +8,16 @@ namespace user
    combo_list::combo_list()
    {
 
-      oprop("combo_list") = true;
+      m_bComboList                  = true;
 
-      m_pcombo = NULL;
+      m_puiDeactivateTogether       = NULL;
+
+      m_puiDeactivateTogetherSet    = NULL;
+
+      m_pcombo                      = NULL;
 
    }
+
 
    combo_list::~combo_list()
    {
@@ -370,12 +375,12 @@ namespace user
          }
 
 
-         sp(::user::interaction) pframe = oprop("deactivate_together").cast < ::user::interaction >();
+         
 
-         if(pActive != pframe)
+         if(pActive != m_puiDeactivateTogether)
          {
 
-            ::user::wndfrm::frame::WorkSet * pset = oprop("deactivate_together_set").cast < ::user::wndfrm::frame::WorkSet > ();
+            ::user::wndfrm::frame::WorkSet * pset = m_puiDeactivateTogetherSet;
 
             if(pset != NULL)
             {

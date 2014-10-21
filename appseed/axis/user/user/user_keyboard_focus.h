@@ -25,7 +25,7 @@ namespace user
       virtual ::user::interaction * GetParent() const = 0;
       virtual sp(::user::interaction) GetWindow() const = 0;
       virtual bool BaseOnControlEvent(control_event * pevent) = 0;
-      virtual keyboard_focus * keyboard_get_next_focusable(keyboard_focus * pfocus = NULL, bool bSkipChild = false);
+      virtual keyboard_focus * keyboard_get_next_focusable(keyboard_focus * pfocus = NULL, bool bSkipChild = false, bool bSkipParent = false);
       virtual bool keyboard_set_focus();
 
       // focus

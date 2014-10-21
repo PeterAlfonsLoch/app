@@ -6,6 +6,13 @@ namespace user
 
    
    class combo_box;
+   namespace wndfrm
+   {
+      namespace frame
+      {
+         class WorkSet;
+      }
+   }
 
 
    class CLASS_DECL_CORE combo_list : 
@@ -14,8 +21,12 @@ namespace user
    public:
 
 
-      combo_box *    m_pcombo;
-      int32_t            m_iItemHeight;
+      bool                                m_bComboList;
+      combo_box *                         m_pcombo;
+      int32_t                             m_iItemHeight;
+
+      ::user::interaction *               m_puiDeactivateTogether;
+      ::user::wndfrm::frame::WorkSet *    m_puiDeactivateTogetherSet;
 
 
       combo_list();

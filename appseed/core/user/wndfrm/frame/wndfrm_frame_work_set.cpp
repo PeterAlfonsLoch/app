@@ -1016,16 +1016,23 @@ namespace user
             {
 
             }
-            else if(pActive->oprop("combo_list"))
+            else if(base_class < ::user::combo_list >::bases(pActive))
             {
 
-               pactivate->m_bRet = true;
+               ::user::combo_list * plist = dynamic_cast <::user::combo_list *> (pActive.m_p);
 
-               pActive->oprop("deactivate_together") = get_draw_window();
+               if(plist != NULL && plist->m_bComboList)
+               {
 
-               pActive->oprop("deactivate_together_set") = this;
+                  pactivate->m_bRet = true;
 
-               return;
+                  plist->m_puiDeactivateTogether = get_draw_window();
+
+                  plist->m_puiDeactivateTogetherSet = this;
+
+                  return;
+
+               }
 
             }
 
