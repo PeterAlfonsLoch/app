@@ -904,28 +904,28 @@ property_set & property_set::merge(const property_set & set)
             }
             else if(((property &)operator[](set.m_propertya[i]->name())).is_empty())
             {
-               ((property &)operator[](set.m_propertya[i]->name())) = set.m_propertya[i];
+               ((property &)operator[](set.m_propertya[i]->name())) = set.m_propertya(i);
             }
             else
             {
                try {
                   
-               if(((property &)operator[](set.m_propertya[i].name())) == set.m_propertya[i])
+               if(((property &)operator[](set.m_propertya[i]->name())) == set.m_propertya(i))
                {
                   continue;
                }
                } catch(...){
                }
-               ((property &)operator[](set.m_propertya[i].name())).stra().add_unique(set.m_propertya[i].m_var.stra());
+               ((property &)operator[](set.m_propertya[i]->name())).stra().add_unique(set.m_propertya[i]->m_var.stra());
                if (((property &)operator[](set.m_propertya[i].name())).stra().get_size() == 1)
                {
-                  ((property &)operator[](set.m_propertya[i].name())) = ((property &)operator[](set.m_propertya[i].name())).stra()[0];
+                  ((property &)operator[](set.m_propertya[i]->name())) = ((property &)operator[](set.m_propertya[i]->name())).stra()[0];
                }
             }
          }
          else
          {
-            ((property &)operator[](set.m_propertya[i].name())).m_var = set.m_propertya[i].m_var;
+            ((property &)operator[](set.m_propertya[i]->name())).m_var = set.m_propertya[i]->m_var;
          }
 
       }
