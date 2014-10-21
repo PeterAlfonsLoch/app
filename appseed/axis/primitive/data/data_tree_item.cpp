@@ -8,8 +8,12 @@ namespace data
 
    tree_item::tree_item()
    {
+      
       m_dwUser          = 0;
       m_dwState         = 0;
+      m_ptree           = NULL;
+      m_pparent         = NULL;
+
    }
 
 
@@ -59,8 +63,6 @@ namespace data
          {
 
             m_pparent->m_children.remove(this);
-
-            m_pparent.release();
 
          }
 
