@@ -87,11 +87,11 @@ namespace user
       virtual bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
 
 
-      virtual void mouse_hover_add(sp(::user::interaction) pinterface);
-      virtual void mouse_hover_remove(sp(::user::interaction) pinterface);
+      virtual void mouse_hover_add(::user::interaction * pinterface);
+      virtual void mouse_hover_remove(::user::interaction * pinterface);
 
-      //virtual sp(::user::interaction) get_owner();
-      virtual void set_owner(sp(::user::interaction) pOwnerWnd);
+      //virtual ::user::interaction * get_owner();
+      virtual void set_owner(::user::interaction * pOwnerWnd);
 
 
 
@@ -129,9 +129,9 @@ namespace user
       using ::user::interaction_base::create_window;
       using ::user::interaction_base::create_window_ex;
       // for child windows, views, panes etc
-      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,id id,sp(::create_context) pContext = NULL);
+      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create_context) pContext = NULL);
 
-      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,id id,LPVOID lpParam = NULL);
+      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,LPVOID lpParam = NULL);
 
       virtual bool DestroyWindow();
 
@@ -299,10 +299,10 @@ namespace user
 
 
       // capture and focus apply to all windows
-      virtual sp(::user::interaction) SetCapture(sp(::user::interaction) pinterface = NULL);
-      virtual sp(::user::interaction) ReleaseCapture();
-      virtual sp(::user::interaction) GetCapture();
-      virtual sp(::user::interaction) SetFocus();
+      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
+      virtual ::user::interaction * ReleaseCapture();
+      virtual ::user::interaction * GetCapture();
+      virtual ::user::interaction * SetFocus();
 
       // Obsolete and non-portable APIs - not recommended for new code
       virtual void CloseWindow();
@@ -363,18 +363,18 @@ namespace user
 #endif   // WINVER >= 0x0500
 
       // Window Access Functions
-      virtual sp(::user::interaction) ChildWindowFromPoint(POINT point);
-      virtual sp(::user::interaction) ChildWindowFromPoint(POINT point,UINT nFlags);
+      virtual ::user::interaction * ChildWindowFromPoint(POINT point);
+      virtual ::user::interaction * ChildWindowFromPoint(POINT point,UINT nFlags);
 
 #ifdef WINDOWSEX
-      virtual sp(::user::interaction) GetNextWindow(UINT nFlag = GW_HWNDNEXT);
+      virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
 #else
-      virtual sp(::user::interaction) GetNextWindow(UINT nFlag = 0);
+      virtual ::user::interaction * GetNextWindow(UINT nFlag = 0);
 #endif
-      virtual sp(::user::interaction) GetTopWindow();
+      virtual ::user::interaction * GetTopWindow();
 
-      //      virtual sp(::user::interaction) GetWindow(UINT nCmd);
-      virtual sp(::user::interaction) GetLastActivePopup();
+      //      virtual ::user::interaction * GetWindow(UINT nCmd);
+      virtual ::user::interaction * GetLastActivePopup();
 
       virtual bool IsChild(::user::interaction * pwindow) const;
       virtual ::user::interaction * get_parent() const;
@@ -434,7 +434,7 @@ namespace user
 
       // dialog support
       virtual void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
-      virtual void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
+      virtual void CenterWindow(::user::interaction * pAlternateOwner = NULL);
 
 
       virtual bool OnCommand(::message::base * pbase);
@@ -702,6 +702,7 @@ namespace user
       virtual window_graphics * & get_window_graphics();
 
       virtual bool is_composite();
+
 
    };
 
