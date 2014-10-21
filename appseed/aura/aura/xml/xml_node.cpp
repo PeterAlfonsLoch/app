@@ -1291,7 +1291,7 @@ namespace xml
       node::array nodea(get_app());
       for( int32_t i = 0 ; i < m_nodea.get_size(); i++ )
       {
-         node * node = m_nodea(i);
+         node * node = m_nodea[i];
          if( node )
          {
             if( node->m_strName == pszName )
@@ -1313,7 +1313,7 @@ namespace xml
    node * node::child_at(index i )
    {
       if( i >= 0 && i < m_nodea.get_size() )
-         return m_nodea(i);
+         return m_nodea[i];
       return NULL;
    }
 
