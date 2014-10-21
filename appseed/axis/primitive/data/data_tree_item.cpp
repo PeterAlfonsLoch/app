@@ -215,7 +215,7 @@ namespace data
             index iFind = m_pparent->m_children.find_first(this);
             if (iFind <= 0)
                return NULL;
-            return m_pparent->m_children(iFind - 1);
+            return m_pparent->m_children[iFind - 1];
          }
          break;
       case RelativeNextSibling:
@@ -224,7 +224,7 @@ namespace data
             index iFind = m_pparent->m_children.find_first(this);
             if (iFind < 0 || iFind >= m_pparent->m_children.get_upper_bound())
                return NULL;
-            return m_pparent->m_children(iFind + 1);
+            return m_pparent->m_children[iFind + 1];
          }
          break;
       case RelativeLastSibling:
