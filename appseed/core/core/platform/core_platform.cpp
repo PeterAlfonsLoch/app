@@ -1332,12 +1332,12 @@ namespace core
 
       if(m_bShowPlatform)
       {
-         sp(::simple_frame_window) pframeApp =  (get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie().m_p);
+         sp(::simple_frame_window) pframeApp = get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie();
          if(pframeApp != NULL)
          {
             pframeApp->WfiFullScreen();
          }
-         sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame());
+         sp(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame();
          if(pframe != NULL)
          {
             pframe->ShowWindow(SW_SHOW);
@@ -1347,7 +1347,7 @@ namespace core
       {
          if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
          {
-            sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
+            sp(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame();
             if(pframe != NULL)
             {
                pframe->ShowWindow(SW_SHOW);
