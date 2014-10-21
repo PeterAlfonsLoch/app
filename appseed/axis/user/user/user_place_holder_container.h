@@ -23,15 +23,15 @@ namespace user
       virtual bool create_window(const RECT & rect, ::user::interaction * puiParent,id id);
 
 
-      virtual sp(place_holder) get_new_place_holder(const RECT & lpcrectCreate);
-      virtual bool remove_place_holder(sp(place_holder) pholder);
+      virtual ::user::place_holder * get_new_place_holder(const RECT & lpcrectCreate);
+      virtual bool remove_place_holder(::user::place_holder * pholder);
 
 
-      virtual sp(place_holder) place(::user::interaction * pui,const RECT & lpcrectCreate);
+      virtual ::user::place_holder * place(::user::interaction * pui,const RECT & lpcrectCreate);
       virtual bool unplace(::user::interaction * pui);
 
-      virtual bool on_hold(::user::interaction * pui, sp(place_holder) pholder);
-      virtual bool on_unhold(::user::interaction * pui, sp(place_holder) pholder);
+      virtual bool on_hold(::user::interaction * pui, ::user::place_holder * pholder);
+      virtual bool on_unhold(::user::interaction * pui, ::user::place_holder * pholder);
 
    };
 

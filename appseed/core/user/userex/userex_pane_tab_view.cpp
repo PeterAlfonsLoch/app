@@ -118,7 +118,7 @@ namespace userex
    }
 
 
-   bool pane_tab_view::on_hold(::user::interaction * pui, sp(::user::place_holder) pholder)
+   bool pane_tab_view::on_hold(::user::interaction * pui, ::user::place_holder * pholder)
    {
       if(!::user::place_holder_container::on_hold(pui, pholder))
          return false;
@@ -127,7 +127,7 @@ namespace userex
       {
          if(panea[iTab]->m_pholder == pholder)
          {
-            ::user::view_creator_data * pcreatordata = ensure_impact(panea[iTab].m_id, get_data()->m_rectTabClient);
+            ::user::view_creator_data * pcreatordata = ensure_impact(panea[iTab]->m_id, get_data()->m_rectTabClient);
             if(pcreatordata != NULL)
             {
                if(pcreatordata->m_pwnd == NULL)

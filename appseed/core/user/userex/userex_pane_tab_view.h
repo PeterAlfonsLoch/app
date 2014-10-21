@@ -32,7 +32,7 @@ namespace userex
 
       virtual void GetTabClientRect(LPRECT lprect);
 
-      virtual bool on_hold(::user::interaction * pui, sp(::user::place_holder) pholder);
+      virtual bool on_hold(::user::interaction * pui, ::user::place_holder * pholder);
 
       virtual void ensure_tab_by_id(id id);
 

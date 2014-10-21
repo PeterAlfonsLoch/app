@@ -20,7 +20,7 @@ namespace user
    }
 
 
-   sp(place_holder)place_holder_container::get_new_place_holder(const RECT & rectCreate)
+   ::user::place_holder * place_holder_container::get_new_place_holder(const RECT & rectCreate)
    {
       
       m_holdera.add(new place_holder(get_app()));
@@ -42,13 +42,13 @@ namespace user
    }
 
 
-   bool place_holder_container::remove_place_holder(sp(place_holder) pholder)
+   bool place_holder_container::remove_place_holder(::user::place_holder * pholder)
    {
       bool bRemove = m_holdera.remove(pholder) > 0;
       return bRemove;
    }
 
-   sp(place_holder) place_holder_container::place(::user::interaction * pui,const RECT & rectCreate)
+   ::user::place_holder * place_holder_container::place(::user::interaction * pui,const RECT & rectCreate)
    {
       sp(place_holder) pholder = get_new_place_holder(rectCreate);
       if(!on_hold(pui, pholder))
@@ -77,7 +77,7 @@ namespace user
       return false;
    }
 
-   bool place_holder_container::on_hold(::user::interaction * pui, sp(place_holder) pholder)
+   bool place_holder_container::on_hold(::user::interaction * pui, ::user::place_holder * pholder)
    {
       if(pholder->can_merge(pui))
       {
@@ -89,7 +89,7 @@ namespace user
       }
    }
 
-   bool place_holder_container::on_unhold(::user::interaction * pui, sp(place_holder) pholder)
+   bool place_holder_container::on_unhold(::user::interaction * pui, ::user::place_holder * pholder)
    {
       return pholder->unhold(pui);
    }
