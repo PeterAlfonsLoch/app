@@ -54,13 +54,13 @@ namespace user
          try
          {
             
-            if(wndpa[l].oprop("session").is_new())
+            if(wndpa[l]->oprop("session").is_new())
             {
             
-               if(wndpa[l].m_bMayProDevian)
+               if(wndpa[l]->m_bMayProDevian)
                {
                
-                  wndpa[l]._001UpdateScreen();
+                  wndpa[l]->_001UpdateScreen();
                   
                }
                
