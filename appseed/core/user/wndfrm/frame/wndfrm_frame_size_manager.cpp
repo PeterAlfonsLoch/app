@@ -869,7 +869,9 @@ namespace user
                if(bSize)
                {
                   MoveWindow(GetSizingWindow(), rectWindow);
-                  WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
+                  
+                  sp(WorkSetClientInterface) pinterface = m_pworkset->GetEventWindow();
+
                   pinterface->WfiOnSize(pbase->m_uiMessage == WM_MOUSEMOVE);
                   NotifyFramework((EHitTest)m_ehittestMode);
                }

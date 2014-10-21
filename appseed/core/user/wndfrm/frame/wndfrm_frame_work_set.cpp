@@ -1012,7 +1012,7 @@ namespace user
 
             SCAST_PTR(::message::activate,pactivate,pobj);
 
-            sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : get_draw_window().m_p);
+            sp(::user::interaction) pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : get_draw_window());
 
             if(pActive == NULL)
             {
