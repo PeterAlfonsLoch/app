@@ -4704,9 +4704,9 @@ namespace draw2d_direct2d
 
       for(index i = 0; i < ppath->m_elementa.get_size(); i++)
       {
-         if(ppath->m_elementa[i].m_etype == ::draw2d::path::element::type_string)
+         if(ppath->m_elementa[i]->m_etype == ::draw2d::path::element::type_string)
          {
-            draw(ppath->m_elementa[i].m_stringpath, ppen);
+            draw(ppath->m_elementa[i]->m_stringpath, ppen);
          }
       }
 

@@ -275,7 +275,7 @@ namespace draw2d_direct2d
       for(int32_t i = 0; i < m_elementa.get_count(); i++)
       {
 
-         set(m_elementa[i]);
+         set(m_elementa(i));
 
       }
 
