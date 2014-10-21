@@ -96,27 +96,27 @@ namespace user
       virtual void load_template();
 
       virtual ::count get_document_count() const = 0;
-      virtual sp(::user::document) get_document(index index = 0) const = 0;
+      virtual ::user::document * get_document(index index = 0) const = 0;
 
-      virtual void add_document(sp(::user::document) pDoc);      // must override
-      virtual void remove_document(sp(::user::document) pDoc);   // must override
+      virtual void add_document(::user::document * pDoc);      // must override
+      virtual void remove_document(::user::document * pDoc);   // must override
 
       virtual bool GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
-      //sp(::user::frame_window) CreateOleFrame(::window_sp pParentWnd, sp(::user::document) pDoc,
+      //sp(::user::frame_window) CreateOleFrame(::window_sp pParentWnd, ::user::document * pDoc,
       //   bool bCreateView);
 
       void update_all_views(sp(::user::impact) pviewSender, LPARAM lhint, ::object * puh);
 
-      virtual Confidence MatchDocType(const char * lpszPathName, sp(::user::document)& rpDocMatch);
-      virtual sp(::user::document) create_new_document(sp(::create_context) pcreatecontext);
-      virtual sp(::user::frame_window) create_new_frame(sp(::user::document) pDoc, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext);
-      virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::document) pDoc, bool bMakeVisible = TRUE);
+      virtual Confidence MatchDocType(const char * lpszPathName, ::user::document *& rpDocMatch);
+      virtual ::user::document * create_new_document(sp(::create_context) pcreatecontext);
+      virtual sp(::user::frame_window) create_new_frame(::user::document * pDoc, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext);
+      virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, ::user::document * pDoc, bool bMakeVisible = TRUE);
       virtual bool save_all_modified();     // for all documents
       virtual void close_all_documents(bool bEndSession);
       virtual void request_create(sp(::create_context) pcreatecontext) = 0;
       // open named file
       // if lpszPathName == NULL => create new file with this type
-      virtual void set_default_title(sp(::user::document) pdocument) = 0;
+      virtual void set_default_title(::user::document * pdocument) = 0;
 
       virtual ~impact_system() = 0;
 
@@ -128,9 +128,9 @@ namespace user
       virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
 
-      bool on_open_document(sp(::user::document) pdoc, var varFile);
+      bool on_open_document(::user::document * pdoc, var varFile);
 
-      bool do_open_document(sp(::user::document) pdoc, var varFile);
+      bool do_open_document(::user::document * pdoc, var varFile);
 
       static UINT s_on_open_document(LPVOID lpvoid);
 

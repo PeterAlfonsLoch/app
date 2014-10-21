@@ -239,6 +239,17 @@ namespace userex
       {
       }
 
+      try
+      {
+
+         Application.m_pdocmanager.release();
+
+      }
+      catch(...)
+      {
+
+      }
+
       return true;
 
    }
@@ -473,7 +484,7 @@ namespace userex
    void userex::add_document_template(sp(::user::impact_system) ptemplate)
    {
       if(Application.m_pdocmanager == NULL)
-         Application.m_pdocmanager = new ::user::document_manager(get_app());
+         Application.m_pdocmanager = canew(::user::document_manager(get_app()));
       Application.m_pdocmanager->add_document_template(ptemplate);
    }
 

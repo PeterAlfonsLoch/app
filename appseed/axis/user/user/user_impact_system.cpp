@@ -40,7 +40,7 @@ namespace user
       return false;
    }
 
-   void impact_system::add_document(sp(::user::document) pdocument)
+   void impact_system::add_document(::user::document * pdocument)
    {
       ASSERT(pdocument->m_pdocumentemplate == NULL);   // no template attached yet
 //      Application.defer_add_document_template(this);
@@ -48,14 +48,13 @@ namespace user
       pdocument->install_message_handling(pdocument);
    }
 
-   void impact_system::remove_document(sp(::user::document) pdocument)
+   void impact_system::remove_document(::user::document * pdocument)
    {
       ASSERT(pdocument->m_pdocumentemplate == this);   // must be attached to us
       pdocument->m_pdocumentemplate = NULL;
    }
 
-   impact_system::Confidence impact_system::MatchDocType(const char * lpszPathName,
-      sp(::user::document)& rpDocMatch)
+   impact_system::Confidence impact_system::MatchDocType(const char * lpszPathName, ::user::document *& rpDocMatch)
    {
       ASSERT(lpszPathName != NULL);
       rpDocMatch = NULL;
@@ -94,7 +93,7 @@ namespace user
       return yesAttemptForeign;
    }
 
-   sp(::user::document) impact_system::create_new_document(sp(::create_context) pcreatecontext)
+   ::user::document * impact_system::create_new_document(sp(::create_context) pcreatecontext)
    {
       // default implementation constructs one from sp(type)
       if (!m_typeinfoDocument)
@@ -119,7 +118,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Default frame creation
 
-   sp(::user::frame_window) impact_system::create_new_frame(sp(::user::document) pdocument, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext)
+   sp(::user::frame_window) impact_system::create_new_frame(::user::document * pdocument, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext)
    {
 
       // create a frame wired to the specified ::user::document
@@ -172,7 +171,7 @@ namespace user
    }
 
    /*
-   sp(::user::frame_window) impact_system::CreateOleFrame(::window_sp pParentWnd, sp(::user::document) pdocument,
+   sp(::user::frame_window) impact_system::CreateOleFrame(::window_sp pParentWnd, ::user::document * pdocument,
    bool bCreateView)
    {
    create_context context;
@@ -210,7 +209,7 @@ namespace user
    }
    */
 
-   void impact_system::InitialUpdateFrame(sp(::user::frame_window) pFrame, sp(::user::document) pdocument,
+   void impact_system::InitialUpdateFrame(sp(::user::frame_window) pFrame, ::user::document * pdocument,
       bool bMakeVisible)
    {
       // just delagate to implementation in frame_window
@@ -318,7 +317,7 @@ namespace user
       }
    }
 
-   bool impact_system::on_open_document(sp(::user::document) pdocument, var varFile)
+   bool impact_system::on_open_document(::user::document * pdocument, var varFile)
    {
 
       if (m_bQueueDocumentOpening)
@@ -346,7 +345,7 @@ namespace user
 
    }
 
-   bool impact_system::do_open_document(sp(::user::document) pdocument, var varFile)
+   bool impact_system::do_open_document(::user::document * pdocument, var varFile)
    {
 
       if (!pdocument->on_open_document(varFile))

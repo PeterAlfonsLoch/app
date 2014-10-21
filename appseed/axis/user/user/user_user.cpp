@@ -144,26 +144,7 @@ namespace user
 
       }
 
-      // xxx      set_data_server(Application.simpledb().get_data_server());
-
-
-      /* xxx if(!Application.is_system())
-      {
-
-      m_pufeschema      = new ::user::front_end_schema(get_app());
-      m_pufe            = new ::user::front_end();
-
-      }*/
-
-
-
-
-
-      //if(Application.m_pdocmanager != NULL)
-      // Application.m_pdocmanager->add_document_template(NULL);
-
-      //  xxx    if(!BaseMenuCentralContainer::initialize_central_container(get_app()))
-      //       return false;
+      
 
 
       if(!::aura::departament::initialize())

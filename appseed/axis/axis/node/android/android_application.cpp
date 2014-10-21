@@ -14,34 +14,7 @@ namespace android
       m_pthreadimpl.alloc(allocer());
       m_pthreadimpl->m_pthread = this;
 
-      //ANDROID_THREAD(::thread::m_p.m_p)->m_pAppThread = this;
 
-//      m_pfilemanager = NULL;
-//
-//
-//
-//      // in non-running state until WinMain
-//// xxx      m_hInstance = NULL;
-////      m_hLangResourceDLL = NULL;
-//      m_pszHelpFilePath = NULL;
-//      m_pszProfileName = NULL;
-//      m_pszRegistryKey = NULL;
-//      m_pRecentFileList = NULL;
-      //m_pdocmanager = NULL;
-// xxx       m_atomApp = m_atomSystemTopic = NULL;
-      //m_lpCmdLine = NULL;
-//      m_pCmdInfo = NULL;
-
-
-      // initialize current printer state
-// xxx       m_hDevMode = NULL;
-// xxx       m_hDevNames = NULL;
-      //m_nNumPreviewPages = 0;     // not specified (defaults to 1)
-
-      //// other initialization
-      //m_bHelpMode = FALSE;
-//      m_eHelpType = afxWinHelp;
-      //m_nSafetyPoolSize = 512;        // default size
 
       shell::theLinuxShell.Initialize();
    }

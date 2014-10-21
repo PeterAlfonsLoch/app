@@ -667,7 +667,7 @@ namespace user
       for(int32_t i = 0; i < uiptra.get_count(); i++)
       {
 
-         ::user::interaction  * pui = uiptra[i];
+         sp(::user::interaction) pui = uiptra[i];
 
          try
          {
