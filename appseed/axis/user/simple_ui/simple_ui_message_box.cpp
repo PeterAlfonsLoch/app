@@ -222,7 +222,7 @@ namespace simple_ui
       for(index i = 0; i < m_tapaA.get_count(); i++)
       {
 
-         sp(tap) ptap = m_tapaA(i);
+         sp(tap) ptap = m_tapaA[i];
 
          ptap->SetWindowPos(ZORDER_TOP,x,y,cx,cy,SWP_SHOWWINDOW);
 
@@ -235,7 +235,7 @@ namespace simple_ui
       for(index i = m_tapaB.get_upper_bound(); i >= 0; i--)
       {
 
-         sp(tap) ptap = m_tapaB(i);
+         sp(tap) ptap = m_tapaB[i];
 
          ptap->SetWindowPos(ZORDER_TOP,x,y,cx,cy,SWP_SHOWWINDOW);
 
