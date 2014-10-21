@@ -379,7 +379,7 @@ namespace user
                if(pinterface == NULL)
                   return false;
 
-               e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type((pevent->m_puie.m_p)->GetDlgCtrlId());
+               e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type(pevent->m_puie->GetDlgCtrlId());
 
                if(ebutton == ::user::wndfrm::frame::button_dock)
                {
@@ -403,7 +403,7 @@ namespace user
                if(pinterface == NULL)
                   return false;
                ASSERT(pinterface != NULL);
-               e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type((pevent->m_puie.m_p)->GetDlgCtrlId());
+               e_button ebutton = m_pframeschema->get_control_box()->get_control_box_button_type(pevent->m_puie->GetDlgCtrlId());
                switch(ebutton)
                {
                case ::user::wndfrm::frame::button_close:
