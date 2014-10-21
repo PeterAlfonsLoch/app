@@ -112,7 +112,7 @@ namespace user
    {
       ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
       if(pcolumn != NULL && pcolumn->m_iControl >= 0)
-         return m_controldescriptorset[pcolumn->m_iControl].m_pcontrol;
+         return m_controldescriptorset[pcolumn->m_iControl]->m_pcontrol;
       else
          return NULL;
    }
@@ -290,7 +290,7 @@ namespace user
       }
       for(int32_t i = 0; i < m_controldescriptorset.get_count(); i++)
       {
-         class ::user::control::descriptor & control = m_controldescriptorset[i];
+         class ::user::control::descriptor & control = m_controldescriptorset(i);
          if(control.m_etype == type_edit
          || control.m_etype == type_edit_plain_text)
          {
@@ -400,18 +400,18 @@ namespace user
       ::user::list::_001OnColumnChange();
       for(int32_t i = 0; i < m_columna.get_size(); i++)
       {
-         if(m_columna[i].m_iControl >= 0 && m_columna[i].m_iControl < m_controldescriptorset.get_size())
+         if(m_columna[i]->m_iControl >= 0 && m_columna[i]->m_iControl < m_controldescriptorset.get_size())
          {
-            class control::descriptor * pdescriptor = m_controldescriptorset.element_at(m_columna[i].m_iControl);
+            class control::descriptor * pdescriptor = m_controldescriptorset.element_at(m_columna[i]->m_iControl);
             if(pdescriptor != NULL)
             {
-               if(m_columna[i].m_iSubItem >= 0)
+               if(m_columna[i]->m_iSubItem >= 0)
                {
-                  pdescriptor->m_iSubItem = m_columna[i].m_iSubItem;
+                  pdescriptor->m_iSubItem = m_columna[i]->m_iSubItem;
                }
                else if(pdescriptor->m_iSubItem >= 0)
                {
-                  m_columna[i].m_iSubItem = pdescriptor->m_iSubItem;
+                  m_columna[i]->m_iSubItem = pdescriptor->m_iSubItem;
                }
             }
          }

@@ -1532,7 +1532,7 @@ UINT simple_toolbar::GetButtonStyle(int32_t nIndex)
    ASSERT_VALID(this);
    ASSERT(IsWindow());
 
-   ::user::toolbar_item & item = m_itema[nIndex];
+   ::user::toolbar_item & item = m_itema(nIndex);
    return MAKELONG(item.m_fsStyle, item.m_fsState);
 }
 
@@ -1541,7 +1541,7 @@ void simple_toolbar::SetButtonStyle(int32_t nIndex, UINT nStyle)
    ASSERT_VALID(this);
    ASSERT(IsWindow());
 
-   ::user::toolbar_item & item = m_itema[nIndex];
+   ::user::toolbar_item & item = m_itema(nIndex);
    if (item.m_fsStyle != (BYTE)LOWORD(nStyle) || item.m_fsState != (BYTE)HIWORD(nStyle))
    {
       item.m_fsStyle = (BYTE)LOWORD(nStyle);
@@ -1563,10 +1563,10 @@ void simple_toolbar::_001OnNcCalcSize(signal_details * pobj)
    ::user::control_bar::CalcInsideRect(rect, bHorz);
 
    // adjust non-client area for border space
-   pnccalcsize->m_pparams->rgrc[0]->left += rect.left;
-   pnccalcsize->m_pparams->rgrc[0]->top += rect.top;
-   pnccalcsize->m_pparams->rgrc[0]->right += rect.right;
-   pnccalcsize->m_pparams->rgrc[0]->bottom += rect.bottom;
+   pnccalcsize->m_pparams->rgrc[0].left += rect.left;
+   pnccalcsize->m_pparams->rgrc[0].top += rect.top;
+   pnccalcsize->m_pparams->rgrc[0].right += rect.right;
+   pnccalcsize->m_pparams->rgrc[0].bottom += rect.bottom;
 #else
    throw todo(get_app());
 #endif
