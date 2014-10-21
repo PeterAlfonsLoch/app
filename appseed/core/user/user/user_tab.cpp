@@ -173,7 +173,7 @@ namespace user
       for(int32_t i = 0; i < get_data()->m_panea.get_count(); i++)
       {
 
-         if(get_data()->m_panea[i].m_id == id)
+         if(get_data()->m_panea[i]->m_id == id)
          {
 
             get_data()->m_panea.remove_at(i);
@@ -243,7 +243,7 @@ namespace user
       {
          for(int32_t i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
          {
-            if(get_data()->m_panea[i].m_bVisible)
+            if(get_data()->m_panea[i]->m_bVisible)
             {
                if(iPane <= 0)
                {
@@ -428,7 +428,7 @@ namespace user
       for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
 
-         pane & pane = get_data()->m_panea[iPane];
+         pane & pane = get_data()->m_panea(iPane);
 
          if(!pane.m_bVisible)
             continue;
@@ -618,7 +618,7 @@ namespace user
       for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
 
-         pane & pane = get_data()->m_panea[iPane];
+         pane & pane = get_data()->m_panea(iPane);
 
          if(!pane.m_bVisible)
             continue;
@@ -909,7 +909,7 @@ namespace user
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
 
-            pane & pane = get_data()->m_panea[iPane];
+            pane & pane = get_data()->m_panea(iPane);
 
             if(!pane.m_bVisible)
                continue;
@@ -1001,7 +1001,7 @@ namespace user
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
 
-            pane & pane = get_data()->m_panea[iPane];
+            pane & pane = get_data()->m_panea(iPane);
 
             if(!pane.m_bVisible)
                return;
@@ -1070,7 +1070,7 @@ namespace user
          for (int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
 
-            pane & pane = get_data()->m_panea[iPane];
+            pane & pane = get_data()->m_panea(iPane);
 
             pane.m_size.cy = iTabHeight;
 
@@ -1278,21 +1278,21 @@ namespace user
       }
       if(eelement == element_icon)
       {
-         if(get_data()->m_panea[iTabParam].m_dib.is_null())
+         if(get_data()->m_panea[iTabParam]->m_dib.is_null())
             return false;
          if(!get_element_rect(iTabParam, lprect, element_client))
             return false;
-         lprect->right = lprect->left + get_data()->m_panea[iTabParam].m_dib->m_size.cx;
-         lprect->bottom = lprect->top + get_data()->m_panea[iTabParam].m_dib->m_size.cy;
+         lprect->right = lprect->left + get_data()->m_panea[iTabParam]->m_dib->m_size.cx;
+         lprect->bottom = lprect->top + get_data()->m_panea[iTabParam]->m_dib->m_size.cy;
          return true;
       }
       else if(eelement == element_text)
       {
          if(!get_element_rect(iTabParam, lprect, element_client))
             return false;
-         if(get_data()->m_panea[iTabParam].m_dib.is_set())
+         if(get_data()->m_panea[iTabParam]->m_dib.is_set())
          {
-            lprect->left += get_data()->m_panea[iTabParam].m_dib->m_size.cx + 2;
+            lprect->left += get_data()->m_panea[iTabParam]->m_dib->m_size.cx + 2;
          }
          if(!get_data()->m_panea[iTabParam].m_bPermanent)
          {
@@ -1371,7 +1371,7 @@ namespace user
 
          //   rect.left = rect.right;
 
-         //   pane & pane = get_data()->m_panea[iPane];
+         //   pane & pane = get_data()->m_panea(iPane);
 
          //   if(!pane.m_bVisible)
          //      continue;

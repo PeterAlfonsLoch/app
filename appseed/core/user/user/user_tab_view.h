@@ -29,16 +29,16 @@ namespace user
 
       virtual id get_view_id();
 
-      virtual sp(::user::interaction) get_view_uie();
+      virtual ::user::interaction * get_view_uie();
       virtual ::user::view_creator_data * get_view_creator_data();
-      virtual sp(::user::document) get_view_document();
+      virtual ::user::document * get_view_document();
 
 
       void _000OnDraw(::draw2d::graphics * pdc);
 
       void _001OnDropTab(int32_t iPane, e_position eposition);
       
-      sp(::user::interaction) _001GetTabWnd(int32_t iTab);
+      ::user::interaction * _001GetTabWnd(int32_t iTab);
 
       bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 

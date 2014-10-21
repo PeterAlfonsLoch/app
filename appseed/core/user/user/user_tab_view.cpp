@@ -150,7 +150,7 @@ namespace user
 
       int iTabNew = (int) get_tab_by_id(id3);
 
-      get_data()->m_panea[iTabNew].m_pholder = pholder;
+      get_data()->m_panea[iTabNew]->m_pholder = pholder;
 
       sp(::user::split_view) psplitview = impact::create_view < ::user::split_view >(null_rect(),pholder,id3);
 
@@ -175,9 +175,9 @@ namespace user
 
       rect rect1;
 
-      psplitview->m_panea[0].m_pholder->GetClientRect(rect0);
+      psplitview->m_panea[0]->m_pholder->GetClientRect(rect0);
 
-      psplitview->m_panea[1].m_pholder->GetClientRect(rect1);
+      psplitview->m_panea[1]->m_pholder->GetClientRect(rect1);
 
       sp(::user::interaction) pwnd1;
 
@@ -293,28 +293,28 @@ namespace user
          {
             if(pcreatordata->m_pholder != NULL)
             {
-               get_data()->m_panea[iTab].m_pholder = pcreatordata->m_pholder;
+               get_data()->m_panea[iTab]->m_pholder = pcreatordata->m_pholder;
             }
             else if(pcreatordata->m_pwnd != NULL)
             {
                if(get_tab_holder(iTab) == NULL)
                {
-                  get_data()->m_panea[iTab].m_pholder = place(pcreatordata->m_pwnd,get_data()->m_rectTabClient);
+                  get_data()->m_panea[iTab]->m_pholder = place(pcreatordata->m_pwnd,get_data()->m_rectTabClient);
                }
                else
                {
-                  get_data()->m_panea[iTab].m_pholder->m_uiptraHold.remove_all();
-                  get_data()->m_panea[iTab].m_pholder->hold(pcreatordata->m_pwnd);
+                  get_data()->m_panea[iTab]->m_pholder->m_uiptraHold.remove_all();
+                  get_data()->m_panea[iTab]->m_pholder->hold(pcreatordata->m_pwnd);
                }
             }
             else
             {
-               get_data()->m_panea[iTab].m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
+               get_data()->m_panea[iTab]->m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
             }
          }
          if(pcreatordata->m_strTitle.has_char())
          {
-            get_data()->m_panea[_001GetSel()].m_istrTitleEx = pcreatordata->m_strTitle;
+            get_data()->m_panea[_001GetSel()]->m_istrTitleEx = pcreatordata->m_strTitle;
          }
          idSplit = pcreatordata->m_idSplit;
       }
@@ -395,7 +395,7 @@ namespace user
          if(m_pviewdata->m_pholder->m_uiptraHold.get_count() > 0)
          {
 
-            m_pviewdata->m_pwnd = &m_pviewdata->m_pholder->m_uiptraHold[0];
+            m_pviewdata->m_pwnd = m_pviewdata->m_pholder->m_uiptraHold[0];
 
          }
 
@@ -503,7 +503,7 @@ namespace user
       if(pcreatordata->m_pwnd != NULL)
          return pcreatordata->m_pwnd;
       if(pcreatordata->m_pholder != NULL && pcreatordata->m_pholder->m_uiptraHold.get_count() == 1)
-         return pcreatordata->m_pholder->m_uiptraHold(0);
+         return pcreatordata->m_pholder->m_uiptraHold[0];
       return NULL;
    }
 

@@ -844,7 +844,7 @@ namespace user
       ASSERT(iPane < get_pane_count());
       if(iPane < 0 || iPane >= get_pane_count())
          return id();
-      Pane & pane = m_panea[iPane];
+      Pane & pane = m_panea(iPane);
       return pane.m_id;
    }
 

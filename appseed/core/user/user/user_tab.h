@@ -160,7 +160,7 @@ namespace user
 
       void _000OnMouse(::message::mouse * pmouse);
 
-      virtual sp(::user::interaction) get_view_uie();
+      virtual ::user::interaction * get_view_uie();
 
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(::index iTab);

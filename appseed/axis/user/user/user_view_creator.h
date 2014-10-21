@@ -50,7 +50,7 @@ namespace user
 
       virtual void on_update(sp(::user::document) pdocument, sp(::user::impact) pSender, LPARAM lHint, object* pHint);
 
-      virtual sp(::user::interaction) get_view();
+      virtual ::user::interaction * get_view();
 
       virtual id get_view_id();
 

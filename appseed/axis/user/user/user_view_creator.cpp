@@ -161,14 +161,21 @@ namespace user
    {
    }
 
-   sp(::user::interaction) view_creator::get_view()
+   
+   ::user::interaction * view_creator::get_view()
    {
+
       if(m_pviewcontainer != NULL)
       {
+
          m_pviewcontainer->get_view();
+
       }
+
       return NULL;
+
    }
+
 
    id view_creator::get_view_id()
    {
