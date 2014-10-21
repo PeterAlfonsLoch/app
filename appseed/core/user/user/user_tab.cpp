@@ -128,13 +128,13 @@ namespace user
 
    bool tab::set_title(::index iPane, const char * lpcsz)
    {
-      get_data()->m_panea[iPane].m_istrTitleEx = lpcsz;
+      get_data()->m_panea[iPane]->m_istrTitleEx = lpcsz;
       return true;
    }
 
    bool tab::SetTitleById(id id, const char * lpcsz)
    {
-      get_data()->m_panea[get_tab_by_id(id)].m_istrTitleEx = lpcsz;
+      get_data()->m_panea[get_tab_by_id(id)]->m_istrTitleEx = lpcsz;
       return true;
    }
 
