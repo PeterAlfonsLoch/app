@@ -596,7 +596,7 @@ namespace user
    bool button::keyboard_focus_is_focusable()
    {
 
-      return true;
+      return ::user::edit_plain_text::keyboard_focus_is_focusable();;
 
    }
 

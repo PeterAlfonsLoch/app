@@ -2724,7 +2724,9 @@ namespace user
 
    bool edit_plain_text::keyboard_focus_is_focusable()
    {
+
       return is_window_enabled() && IsWindowVisible();
+
    }
 
 
