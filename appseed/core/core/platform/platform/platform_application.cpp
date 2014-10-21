@@ -86,7 +86,7 @@ application * application::get_app() const
       ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
-      m_ptemplate_html->open_document_file(itema[0].m_strPath);
+      m_ptemplate_html->open_document_file(itema[0]->m_strPath);
    }
 
 
