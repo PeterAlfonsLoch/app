@@ -1851,16 +1851,16 @@ namespace xml
 
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i]->m_strName == pszName)
          {
             if(iIndex <= 0)
                return m_nodea.element_at(i);
             iIndex--;
          }
          if(iDepth > 0)
-            m_nodea[i].get_child_at(pszName, iIndex, iDepth - 1);
+            m_nodea[i]->get_child_at(pszName, iIndex, iDepth - 1);
          else if(iDepth < 0)
-            m_nodea[i].get_child_at(pszName, iIndex, -1);
+            m_nodea[i]->get_child_at(pszName, iIndex, -1);
       }
       return NULL;
 
