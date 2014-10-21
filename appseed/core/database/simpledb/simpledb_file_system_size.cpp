@@ -166,14 +166,14 @@ file_size_table::item * file_size_table::item::FindItem(sp(::aura::application) 
       iFindName = FindName(papp, strPath, iIteration);
       if(iFindName < 0)
          return NULL;
-      return m_itema(iFindName);
+      return m_itema[iFindName];
    }
    else
    {
       iFindName = FindName(papp, strPath.Left(iFind), iIteration);
       if(iFindName < 0)
          return NULL;
-      return m_itema[iFindName].FindItem(papp, strPath.Mid(iFind + 1), iIteration);
+      return m_itema[iFindName]->FindItem(papp, strPath.Mid(iFind + 1), iIteration);
 
    }
 }
