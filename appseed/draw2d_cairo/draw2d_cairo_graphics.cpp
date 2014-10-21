@@ -5163,7 +5163,7 @@ synch_lock ml(m_spmutex);
       for(int32_t i = 0; i < ppath->m_elementa.get_count(); i++)
       {
 
-         set(ppath->m_elementa[i]);
+         set(ppath->m_elementa(i));
 
       }
 
