@@ -859,7 +859,7 @@ property_set & property_set::add(const property_set & set)
    {
       for (int32_t i = 0; i < set.m_propertya.get_count(); i++)
       {
-         ((property &)operator[](set.m_propertya[i].name())).m_var = set.m_propertya[i].get_value();
+         ((property &)operator[](set.m_propertya[i]->name())).m_var = set.m_propertya[i]->get_value();
       }
    }
    return *this;
@@ -871,14 +871,14 @@ property_set & property_set::merge(const property_set & set)
    {
       for (int32_t i = 0; i < set.m_propertya.get_count(); i++)
       {
-         const property * pproperty = &set.m_propertya[i];
-         property * ppropertyThis = find(set.m_propertya[i].name());
+         const property * pproperty = set.m_propertya[i];
+         property * ppropertyThis = find(set.m_propertya[i]->name());
          if (ppropertyThis != NULL)
          {
             if (ppropertyThis->m_var.get_type() == ::var::type_element ||
                pproperty->m_var.get_type() == ::var::type_element)
             {
-               ((property &)operator[](set.m_propertya[i].name())).m_var = set.m_propertya[i].m_var;
+               ((property &)operator[](set.m_propertya[i]->name())).m_var = set.m_propertya[i]->m_var;
             }
             else if (ppropertyThis->m_var.get_type() == ::var::type_propset)
             {
