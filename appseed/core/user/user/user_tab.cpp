@@ -1746,7 +1746,7 @@ namespace user
       return pholder->get_hold();
    }
 
-   sp(::user::place_holder) tab::get_tab_holder(::index iPane, bool bVisible)
+   ::user::place_holder * tab::get_tab_holder(::index iPane, bool bVisible)
    {
       pane * ppane = get_pane(iPane, bVisible);
       if(ppane == NULL)

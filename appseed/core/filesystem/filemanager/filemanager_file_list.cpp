@@ -847,8 +847,7 @@ namespace filemanager
             Application.dir().rls(itema[i]->m_strPath, &straSub);
             for(int32_t j = 0; j < straSub.get_size(); j++)
             {
-               if(!Application.dir().is(straSub[j])
-                && straSub[j]->find(".svn") < 0)
+               if(!Application.dir().is(straSub[j]) && straSub[j].find(".svn") < 0)
                {
                   strFileList += straSub[j] + "\n";
                   strFileCheck += straSub[j] + ",";
