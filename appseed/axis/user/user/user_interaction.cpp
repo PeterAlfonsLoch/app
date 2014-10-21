@@ -2332,7 +2332,7 @@ namespace user
 
    }
 
-   sp(::user::frame_window) interaction::GetFrame() const
+   ::user::frame_window * interaction::GetFrame() const
    {
 
       sp(::user::interaction) pui = (::user::interaction *) this;
@@ -2359,7 +2359,7 @@ namespace user
    }
 
 
-   sp(::user::frame_window) interaction::GetParentFrame() const
+   ::user::frame_window * interaction::GetParentFrame() const
    {
 
       sp(::user::interaction) pui = GetParent();
@@ -2372,7 +2372,7 @@ namespace user
    }
 
 
-   sp(::user::frame_window) interaction::GetTopLevelFrame() const
+   ::user::frame_window * interaction::GetTopLevelFrame() const
    {
 
       sp(::user::frame_window) pframe = GetFrame();
@@ -2396,7 +2396,7 @@ namespace user
    }
 
 
-   sp(::user::frame_window) interaction::GetParentTopLevelFrame() const
+   ::user::frame_window * interaction::GetParentTopLevelFrame() const
    {
 
       sp(::user::frame_window) pframe = GetParentFrame();
@@ -2409,10 +2409,10 @@ namespace user
    }
 
 
-   sp(::user::frame_window) interaction::EnsureParentFrame()
+   ::user::frame_window * interaction::EnsureParentFrame()
    {
 
-      sp(::user::frame_window) pFrameWnd = GetParentFrame();
+      ::user::frame_window * pFrameWnd = GetParentFrame();
 
       ENSURE_VALID(pFrameWnd);
 
