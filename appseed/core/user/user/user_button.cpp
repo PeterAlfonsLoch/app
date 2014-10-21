@@ -589,14 +589,17 @@ namespace user
 
    void button::_001OnCreate(signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
       m_pschema   = &::userex::GetUfeSchema(get_app())->m_button;
+
    }
 
    bool button::keyboard_focus_is_focusable()
    {
 
-      return ::user::edit_plain_text::keyboard_focus_is_focusable();;
+      return is_window_enabled() && IsWindowVisible();
 
    }
 

@@ -67,7 +67,7 @@ namespace user
    }
 
    
-   keyboard_focus * keyboard_focus::keyboard_get_next_focusable(keyboard_focus * pfocus, bool bSkipChild, bool bSkipParent)
+   keyboard_focus * keyboard_focus::keyboard_get_next_focusable(keyboard_focus * pfocus,bool bSkipChild,bool bSkipSiblings,bool bSkipParent)
    {
       
       sp(interaction) puiThis = this;
@@ -99,7 +99,7 @@ namespace user
             if(pui->keyboard_focus_is_focusable())
                return pui;
 
-            pui = pui->keyboard_get_next_focusable(puiFocus, false, true);
+            pui = pui->keyboard_get_next_focusable(puiFocus, false, false, true);
 
             if(pui != NULL)
                return pui;
@@ -108,7 +108,7 @@ namespace user
 
       }
 
-      if(!bSkipParent)
+      if(!bSkipSiblings)
       {
 
          pui = puiThis->next_sibling();
@@ -128,6 +128,11 @@ namespace user
 
          }
 
+      }
+
+      if(!bSkipParent)
+      {
+
 
          if(puiThis->GetParent() != NULL)
          {
@@ -138,6 +143,11 @@ namespace user
                return pui;
 
          }
+
+      }
+
+      if(!bSkipSiblings)
+      {
 
          pui = puiThis->first_sibling();
 
@@ -162,6 +172,7 @@ namespace user
          }
 
       }
+
 
       return NULL;
 
