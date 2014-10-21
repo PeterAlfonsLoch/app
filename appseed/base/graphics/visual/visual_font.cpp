@@ -291,23 +291,20 @@ namespace visual
    }
 
 
-   void font::AddXFGlyphs(string2a *p2DTokens)
+   void font::AddXFGlyphs(string2a  & str2aTokens)
    {
-      char            ch;
-      string            str;
-      int32_t               i, j, k;
-      bool             forceInsertion = FALSE;
-      stringa *   p1DTokens;
-
-      ASSERT(p2DTokens != NULL);
+      char           ch;
+      string         str;
+      int32_t        i, j, k;
+      bool           forceInsertion = FALSE;
+      
       SelectFont();
-      for(i = 0; i < p2DTokens->get_size(); i++)
+      for(i = 0; i < str2aTokens.get_size(); i++)
       {
-         p1DTokens = p2DTokens->operator [](i);
-         ASSERT(p1DTokens != NULL);
-         for(j = 0; j < p1DTokens->get_size(); j++)
+         string & straTokens = str2aTokens[i];
+         for(j = 0; j < straTokens.get_size(); j++)
          {
-            str = p1DTokens->operator [](j);
+            str = straTokens[j];
             for(k = 0; k < str.get_length(); k++)
             {
                ch = str.operator[](k);
