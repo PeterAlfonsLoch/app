@@ -454,7 +454,7 @@ namespace filemanager
          && !(dynamic_cast < ::user::tree * > (get_filemanager_data()->m_ptreeFileTreeMerge.m_p))->m_treeptra.contains(this))
       {
 
-         get_filemanager_data()->m_ptreeFileTreeMerge->merge(this);
+         get_filemanager_data()->m_ptreeFileTreeMerge->merge(this, true);
 
       }
 
@@ -528,7 +528,7 @@ namespace filemanager
 
       for(int32_t i = 0; i < itemptraSelected.get_size(); i++)
       {
-         stra.add(( (itemptraSelected[0].m_pitem.cast < ::userfs::item > ()))->m_strPath);
+         stra.add(( (itemptraSelected[0]->m_pitem.cast < ::userfs::item > ()))->m_strPath);
       }
 
    }

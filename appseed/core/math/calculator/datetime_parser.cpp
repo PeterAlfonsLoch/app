@@ -19,7 +19,7 @@ namespace datetime
 
    element * parser::new_node()
    {
-      return m_elementa(m_elementa.add(canew(::datetime::element)));
+      return m_elementa[m_elementa.add(canew(::datetime::element))];
    }
 
    //element * parser::parse(const char * psz)

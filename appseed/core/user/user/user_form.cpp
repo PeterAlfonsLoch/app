@@ -373,7 +373,7 @@ namespace user
       UNREFERENCED_PARAMETER(phint);
       for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
       {
-         sp(control) pcontrol = m_controldescriptorset[i].m_pcontrol;
+         sp(control) pcontrol = m_controldescriptorset[i]->m_pcontrol;
          if(pcontrol == NULL)
             continue;
          _001Update(pcontrol);
@@ -637,7 +637,7 @@ namespace user
       {
          for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
          {
-            sp(control) pcontrol = m_controldescriptorset[i].m_pcontrol;
+            sp(control) pcontrol = m_controldescriptorset[i]->m_pcontrol;
             if(pcontrol == NULL)
                continue;
             _001Update(pcontrol);

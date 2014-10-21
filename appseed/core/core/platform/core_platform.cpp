@@ -1256,24 +1256,30 @@ namespace core
 
 
 
-   void platform::OnFileManagerOpenFile(
-      ::filemanager::data * pdata,
-      ::fs::item_array & itema)
+   void platform::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
    {
+
       UNREFERENCED_PARAMETER(pdata);
-      m_ptemplate_html->open_document_file(itema[0].m_strPath);
+
+      m_ptemplate_html->open_document_file(itema[0]->m_strPath);
+
    }
 
-   bool platform::open_file(
-      ::filemanager::data * pdata,
-      ::fs::item_array & itema)
+
+   bool platform::open_file(::filemanager::data * pdata, ::fs::item_array & itema)
    {
+
       UNREFERENCED_PARAMETER(pdata);
+
       if(itema.get_size() > 0)
       {
+
          return true;
+
       }
+
       return false;
+
    }
 
 

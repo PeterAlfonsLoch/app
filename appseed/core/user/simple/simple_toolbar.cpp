@@ -164,7 +164,7 @@ size simple_toolbar::CalcSimpleLayout()
       /*      int32_t i;
       for (i = 0; i < nCount; i++)
       {
-      m_itema[i].fsState &= ~TBSTATE_WRAP;
+      m_itema[i]->fsState &= ~TBSTATE_WRAP;
       }
       for (i = 0; i < nCount; i++)
       {
@@ -174,7 +174,7 @@ size simple_toolbar::CalcSimpleLayout()
       _GetButton(i, &m_itema[i]);
       for (i = 0; i < nCount; i++)
       {
-      if(m_itema[i].fsState & TBSTATE_WRAP)
+      if(m_itema[i]->fsState & TBSTATE_WRAP)
       ASSERT(FALSE);
       }*/
       rect rectItem;
@@ -352,12 +352,12 @@ void simple_toolbar::OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisab
    {
 
       // ignore separators
-      if(m_itema[state.m_iIndex].m_id != "separator")
+      if(m_itema[state.m_iIndex]->m_id != "separator")
       {
 
-         state.m_id = m_itema[state.m_iIndex].m_id;
+         state.m_id = m_itema[state.m_iIndex]->m_id;
 
-         state.m_bEnableIfHasCommandHandler = m_itema[state.m_iIndex].m_bEnableIfHasCommandHandler;
+         state.m_bEnableIfHasCommandHandler = m_itema[state.m_iIndex]->m_bEnableIfHasCommandHandler;
 
          // allow reflections
          //if (::user::interaction::on_simple_action(0,
@@ -401,7 +401,7 @@ size simple_toolbar::CalcSize(int32_t nCount)
       //  to the other versions which calculate it at 2/3 of that value.
       //  This is actually a bug which should be fixed in IE 4.01, so we
       //  only do the 100% calculation specifically for IE4.
-      ::user::toolbar_item & item = m_itema[i];
+      ::user::toolbar_item & item = m_itema(i);
       int32_t cySep = item.m_iImage;
       //      ASSERT(gen_ComCtlVersion != -1);
       /*      if (!(GetStyle() & TBSTYLE_FLAT) && gen_ComCtlVersion != VERSION_IE4)
@@ -430,23 +430,23 @@ size simple_toolbar::CalcSize(int32_t nCount)
       }
 
 
-      if (m_itema[i].m_fsState & TBSTATE_HIDDEN)
+      if (m_itema[i]->m_fsState & TBSTATE_HIDDEN)
          continue;
 
       //int32_t cx = m_sizeButton.cx;
       int32_t cx = buttonx;
-      if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
+      if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
       {
          // a separator represents either a height or width
-         if (m_itema[i].m_fsState & TBSTATE_WRAP)
+         if (m_itema[i]->m_fsState & TBSTATE_WRAP)
             sizeResult.cy = MAX(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
          else
-            sizeResult.cx = MAX(cur.x + m_itema[i].m_iImage, sizeResult.cx);
+            sizeResult.cx = MAX(cur.x + m_itema[i]->m_iImage, sizeResult.cx);
       }
       else
       {
          // check for dropdown style, but only if the buttons are being drawn
-         /*         if ((m_itema[i].m_fsStyle & TBSTYLE_DROPDOWN) &&
+         /*         if ((m_itema[i]->m_fsStyle & TBSTYLE_DROPDOWN) &&
          (dwExtendedStyle & TBSTYLE_EX_DRAWDDARROWS))
          {
          // add size of drop down
@@ -458,17 +458,17 @@ size simple_toolbar::CalcSize(int32_t nCount)
          sizeResult.cy = MAX(cur.y + buttony, sizeResult.cy);
       }
 
-      if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
-         cur.x += m_itema[i].m_iImage;
+      if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
+         cur.x += m_itema[i]->m_iImage;
       else
          cur.x += cx - CX_OVERLAP;
 
-      if (m_itema[i].m_fsState & TBSTATE_WRAP)
+      if (m_itema[i]->m_fsState & TBSTATE_WRAP)
       {
          cur.x = 0;
          //         cur.y += m_sizeButton.cy;
          cur.y += buttony;
-         if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
+         if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
             cur.y += cySep;
       }
    }
@@ -517,7 +517,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS) || defined(SOLARIS)
 
-   ::user::toolbar_item & item = m_itema[iItem];
+   ::user::toolbar_item & item = m_itema(iItem);
 
 
    UINT nStyle = GetButtonStyle(iItem);
@@ -809,7 +809,7 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect)
    if(iItem >= 0
       && iItem < m_itema.get_size())
    {
-      *lprect = m_itema[iItem].m_rect;
+      *lprect = m_itema[iItem]->m_rect;
       return true;
    }
    else
@@ -829,7 +829,7 @@ bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect, EElement e
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(METROWIN) || defined(APPLEOS) || defined(SOLARIS)
 
-   ::user::toolbar_item & item = m_itema[iItem];
+   ::user::toolbar_item & item = m_itema(iItem);
 
    BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
 
@@ -1122,7 +1122,7 @@ void simple_toolbar::layout()
    spgraphics->SelectObject(System.visual().font_central().GetMenuFont());
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
-      ::user::toolbar_item & item = m_itema[iItem];
+      ::user::toolbar_item & item = m_itema(iItem);
       item.m_rect.left = ix;
       if(item.m_str.is_empty())
       {
@@ -1216,11 +1216,11 @@ void simple_toolbar::layout()
       }
       else if((m_dwCtrlStyle & TBSTYLE_ALIGN_RIGHT) == TBSTYLE_ALIGN_RIGHT)
       {
-         ptOffset.x = rectClient.width() - (m_itema.last_element()->m_rect.right - m_itema[0].m_rect.left);
+         ptOffset.x = rectClient.width() - (m_itema.last_element()->m_rect.right - m_itema[0]->m_rect.left);
       }
       else if((m_dwCtrlStyle & TBSTYLE_ALIGN_CENTER) == TBSTYLE_ALIGN_CENTER)
       {
-         ptOffset.x = (rectClient.width() - (m_itema.last_element()->m_rect.right - m_itema[0].m_rect.left)) / 2;
+         ptOffset.x = (rectClient.width() - (m_itema.last_element()->m_rect.right - m_itema[0]->m_rect.left)) / 2;
       }
       else
       {
@@ -1232,11 +1232,11 @@ void simple_toolbar::layout()
       }
       else if((m_dwCtrlStyle & TBSTYLE_ALIGN_BOTTOM) == TBSTYLE_ALIGN_BOTTOM)
       {
-         ptOffset.y = rectClient.height() - (m_itema.last_element()->m_rect.bottom - m_itema[0].m_rect.top);
+         ptOffset.y = rectClient.height() - (m_itema.last_element()->m_rect.bottom - m_itema[0]->m_rect.top);
       }
       else if((m_dwCtrlStyle & TBSTYLE_ALIGN_VCENTER) == TBSTYLE_ALIGN_VCENTER)
       {
-         ptOffset.y = (rectClient.height() - (m_itema.last_element()->m_rect.bottom - m_itema[0].m_rect.top)) / 2;
+         ptOffset.y = (rectClient.height() - (m_itema.last_element()->m_rect.bottom - m_itema[0]->m_rect.top)) / 2;
       }
       else
       {
@@ -1244,7 +1244,7 @@ void simple_toolbar::layout()
       }
       for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
       {
-         ::user::toolbar_item & item = m_itema[iItem];
+         ::user::toolbar_item & item = m_itema(iItem);
          item.m_rect.offset(ptOffset);
       }
    }
@@ -1308,7 +1308,7 @@ void simple_toolbar::_001OnLButtonUp(signal_details * pobj)
          pmouse->m_bRet = true;
          pmouse->set_lresult(1);
       }
-      sp(::user::frame_window) pTarget = (GetOwner().m_p);
+      sp(::user::frame_window) pTarget = GetOwner();
       if (pTarget == NULL)
          pTarget = GetParentFrame();
       if (pTarget != NULL)
@@ -1324,7 +1324,7 @@ int32_t simple_toolbar::_001HitTest(point pt)
 {
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
-      if(m_itema[iItem].m_rect.contains(pt))
+      if(m_itema[iItem]->m_rect.contains(pt))
          return iItem;
    }
    if(System.get_capture_uie() == this)
@@ -1385,7 +1385,7 @@ void simple_toolbar::_001OnTimer(signal_details * pobj)
 void simple_toolbar::_001OnClick(index iItem)
 {
    sp(::user::interaction) pwnd = GetOwner();
-   pwnd->_001SendCommand(m_itema[iItem].m_id);
+   pwnd->_001SendCommand(m_itema[iItem]->m_id);
 }
 
 void simple_toolbar::_001DiscardImageList()
@@ -1517,7 +1517,7 @@ void SimpleToolCmdUI::SetText(const char *, ::action::context)
 
 int32_t simple_toolbar::GetItemStyle(int32_t iItem)
 {
-   return m_itema[iItem].m_fsStyle;
+   return m_itema[iItem]->m_fsStyle;
 }
 
 bool simple_toolbar::SetItemStyle(int32_t iItem, BYTE bStyle)
@@ -1563,10 +1563,10 @@ void simple_toolbar::_001OnNcCalcSize(signal_details * pobj)
    ::user::control_bar::CalcInsideRect(rect, bHorz);
 
    // adjust non-client area for border space
-   pnccalcsize->m_pparams->rgrc[0].left += rect.left;
-   pnccalcsize->m_pparams->rgrc[0].top += rect.top;
-   pnccalcsize->m_pparams->rgrc[0].right += rect.right;
-   pnccalcsize->m_pparams->rgrc[0].bottom += rect.bottom;
+   pnccalcsize->m_pparams->rgrc[0]->left += rect.left;
+   pnccalcsize->m_pparams->rgrc[0]->top += rect.top;
+   pnccalcsize->m_pparams->rgrc[0]->right += rect.right;
+   pnccalcsize->m_pparams->rgrc[0]->bottom += rect.bottom;
 #else
    throw todo(get_app());
 #endif
@@ -1592,22 +1592,22 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
    string str;
    for (int32_t i = 0; i < nCount; i++)
    {
-      m_itema[i].m_fsState &= ~TBSTATE_WRAP;
+      m_itema[i]->m_fsState &= ~TBSTATE_WRAP;
 
-      if (m_itema[i].m_fsState & TBSTATE_HIDDEN)
+      if (m_itema[i]->m_fsState & TBSTATE_HIDDEN)
          continue;
       GetButtonText(i, str);
       int32_t dx, dxNext;
-      if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
+      if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
       {
-         dx = m_itema[i].m_iImage;
+         dx = m_itema[i]->m_iImage;
          dxNext = dx;
       }
       else if (!str.is_empty())
       {
          dx = m_sizeButton.cx;
          //         string str;
-         //         str = (const wchar_t *) m_itema[i].iString;
+         //         str = (const wchar_t *) m_itema[i]->iString;
          size size;
          ::GetTextExtentPoint32U(
             (HDC)pdc->get_os_data(),
@@ -1626,34 +1626,34 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
       if (x + dx > nWidth)
       {
          bool bFound = FALSE;
-         for (int32_t j = i; j >= 0  &&  !(m_itema[j].m_fsState & TBSTATE_WRAP); j--)
+         for (int32_t j = i; j >= 0  &&  !(m_itema[j]->m_fsState & TBSTATE_WRAP); j--)
          {
             // find last separator that isn't hidden
             // a separator that has a command ID is not
             // a separator, but a custom control.
-            if ((m_itema[j].m_fsStyle & TBSTYLE_SEP) &&
-               (m_itema[j].m_id == "separator") &&
-               !(m_itema[j].m_fsState & TBSTATE_HIDDEN))
+            if ((m_itema[j]->m_fsStyle & TBSTYLE_SEP) &&
+               (m_itema[j]->m_id == "separator") &&
+               !(m_itema[j]->m_fsState & TBSTATE_HIDDEN))
             {
                bFound = TRUE; i = j; x = 0;
-               m_itema[j].m_fsState |= TBSTATE_WRAP;
+               m_itema[j]->m_fsState |= TBSTATE_WRAP;
                nResult++;
                break;
             }
          }
          if (!bFound)
          {
-            for (int32_t j = i - 1; j >= 0 && !(m_itema[j].m_fsState & TBSTATE_WRAP); j--)
+            for (int32_t j = i - 1; j >= 0 && !(m_itema[j]->m_fsState & TBSTATE_WRAP); j--)
             {
                // Never wrap anything that is hidden,
                // or any custom controls
-               if ((m_itema[j].m_fsState & TBSTATE_HIDDEN) ||
-                  ((m_itema[j].m_fsStyle & TBSTYLE_SEP) &&
-                  (m_itema[j].m_id != "separator")))
+               if ((m_itema[j]->m_fsState & TBSTATE_HIDDEN) ||
+                  ((m_itema[j]->m_fsStyle & TBSTYLE_SEP) &&
+                  (m_itema[j]->m_id != "separator")))
                   continue;
 
                bFound = TRUE; i = j; x = 0;
-               m_itema[j].m_fsState |= TBSTATE_WRAP;
+               m_itema[j]->m_fsState |= TBSTATE_WRAP;
                nResult++;
                break;
             }
@@ -1806,7 +1806,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
 
          int32_t i;
          for (i = 0; i < nCount; i++)
-            if ((m_itema[i].m_fsStyle & TBSTYLE_SEP) && (m_itema[i].m_id != "separator"))
+            if ((m_itema[i]->m_fsStyle & TBSTYLE_SEP) && (m_itema[i]->m_id != "separator"))
                nControlCount++;
 
          if (nControlCount > 0)
@@ -1816,15 +1816,15 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
 
             for(int32_t i = 0; i < nCount; i++)
             {
-               if ((m_itema[i].m_fsStyle & TBSTYLE_SEP) && (m_itema[i].m_id != "separator"))
+               if ((m_itema[i]->m_fsStyle & TBSTYLE_SEP) && (m_itema[i]->m_id != "separator"))
                {
-                  pControl[nControlCount].nIndex = i;
-                  pControl[nControlCount].strId = m_itema[i].m_id;
+                  pControl[nControlCount]->nIndex = i;
+                  pControl[nControlCount]->strId = m_itema[i]->m_id;
 
                   rect rect;
                   _001GetItemRect(i, &rect);
                   ClientToScreen(&rect);
-                  pControl[nControlCount].rectOldPos = rect;
+                  pControl[nControlCount]->rectOldPos = rect;
 
                   nControlCount++;
                }
@@ -1883,13 +1883,13 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
          {
             for (int32_t i = 0; i < nControlCount; i++)
             {
-               /* xxx sp(::user::interaction) pwindow = get_child_by_id(pControl[i].strId);
+               /* xxx sp(::user::interaction) pwindow = get_child_by_id(pControl[i]->strId);
                if (pwindow != NULL)
                {
                rect rect;
                pwindow->GetWindowRect(&rect);
-               point pt = rect.top_left() - pControl[i].rectOldPos.top_left();
-               _001GetElementRect(pControl[i].nIndex, &rect);
+               point pt = rect.top_left() - pControl[i]->rectOldPos.top_left();
+               _001GetElementRect(pControl[i]->nIndex, &rect);
                pt = rect.top_left() + pt;
                pwindow->SetWindowPos(0, pt.x, pt.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
                }*/
@@ -1944,27 +1944,27 @@ for (int32_t i = 0; i < nCount; i++)
 //  to the other versions which calculate it at 2/3 of that value.
 //  This is actually a bug which should be fixed in IE 4.01, so we
 //  only do the 100% calculation specifically for IE4.
-int32_t cySep = m_itema[i].iBitmap;
+int32_t cySep = m_itema[i]->iBitmap;
 ASSERT(gen_ComCtlVersion != -1);
 if (!(GetStyle() & TBSTYLE_FLAT) && gen_ComCtlVersion != VERSION_IE4)
 cySep = cySep * 2 / 3;
 
-if (m_itema[i].fsState & TBSTATE_HIDDEN)
+if (m_itema[i]->fsState & TBSTATE_HIDDEN)
 continue;
 
 int32_t cx = m_sizeButton.cx;
-if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
+if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
 {
 // a separator represents either a height or width
-if (m_itema[i].fsState & TBSTATE_WRAP)
+if (m_itema[i]->fsState & TBSTATE_WRAP)
 sizeResult.cy = MAX(cur.y + m_sizeButton.cy + cySep, sizeResult.cy);
 else
-sizeResult.cx = MAX(cur.x + m_itema[i].iBitmap, sizeResult.cx);
+sizeResult.cx = MAX(cur.x + m_itema[i]->iBitmap, sizeResult.cx);
 }
 else
 {
 // check for dropdown style, but only if the buttons are being drawn
-if ((m_itema[i].m_fsStyle & TBSTYLE_DROPDOWN) &&
+if ((m_itema[i]->m_fsStyle & TBSTYLE_DROPDOWN) &&
 (dwExtendedStyle & TBSTYLE_EX_DRAWDDARROWS))
 {
 // add size of drop down
@@ -1975,16 +1975,16 @@ sizeResult.cx = MAX(cur.x + cx, sizeResult.cx);
 sizeResult.cy = MAX(cur.y + m_sizeButton.cy, sizeResult.cy);
 }
 
-if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
-cur.x += m_itema[i].iBitmap;
+if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
+cur.x += m_itema[i]->iBitmap;
 else
 cur.x += cx - CX_OVERLAP;
 
-if (m_itema[i].fsState & TBSTATE_WRAP)
+if (m_itema[i]->fsState & TBSTATE_WRAP)
 {
 cur.x = 0;
 cur.y += m_sizeButton.cy;
-if (m_itema[i].m_fsStyle & TBSTYLE_SEP)
+if (m_itema[i]->m_fsStyle & TBSTYLE_SEP)
 cur.y += cySep;
 }
 }
@@ -2039,7 +2039,7 @@ void simple_toolbar::_001OnMouseLeave(signal_details * pobj)
 
 void simple_toolbar::SetItemImage(int32_t iItem, int32_t iImage)
 {
-   m_itema[iItem].m_iImage = iImage;
+   m_itema[iItem]->m_iImage = iImage;
 }
 
 void simple_toolbar::OnUpdateHover()

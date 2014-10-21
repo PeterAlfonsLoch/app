@@ -378,7 +378,7 @@ namespace html
       }
       for(int32_t i = 0; i < m_imagea.get_size(); i++)
       {
-         if(m_imagea[i].m_strPath == strUrl)
+         if(m_imagea[i]->m_strPath == strUrl)
             return i;
       }
       image * pimage = m_imagea.add_new();

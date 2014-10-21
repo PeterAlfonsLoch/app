@@ -22,7 +22,7 @@ namespace filemanager
       bool                                m_bTransparentBackground;
       string                              m_strDISection;
       sp(::user::place_holder)            m_pholderFileList;
-      sp(::user::interaction)             m_ptreeFileTreeMerge;
+      sp(::user::tree)                    m_ptreeFileTreeMerge;
       bool                                m_bSetBergedgeTopicFile;
 
       string                              m_strToolBar;
