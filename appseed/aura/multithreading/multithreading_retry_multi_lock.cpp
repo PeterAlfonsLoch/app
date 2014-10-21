@@ -106,7 +106,7 @@ bool retry_multi_lock::unlock()
    {
 
       if (m_baLocked[i])
-         m_baLocked[i] = !m_syncobjectptra(i)->unlock();
+         m_baLocked[i] = !m_syncobjectptra[i]->unlock();
 
    }
 
@@ -126,7 +126,7 @@ bool retry_multi_lock::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
          if (pSemaphore != NULL)
          {
             bGotOne = true;
-            m_baLocked[i] = !m_syncobjectptra(i)->unlock(lCount, lpPrevCount);
+            m_baLocked[i] = !m_syncobjectptra[i]->unlock(lCount, lpPrevCount);
          }
       }
    }
