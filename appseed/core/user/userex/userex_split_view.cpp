@@ -48,7 +48,7 @@ namespace userex
 
       ASSERT(iPane < get_pane_count());
 
-      Pane & pane = m_panea[iPane];
+      Pane & pane = m_panea(iPane);
 
       pane.m_bFixedSize = bFixedSize;
 
