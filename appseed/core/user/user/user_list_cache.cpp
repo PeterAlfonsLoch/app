@@ -31,11 +31,8 @@ namespace user
       if(iItemCount > m_cacheArray.get_size())
       {
 
-         while(iItemCount + 200> m_cacheArray.get_size())
-         {
-            //pwstra = new stringa();
-            m_cacheArray.add(new stringa());
-         }
+         m_cacheArray.set_size(iItemCount + 200);
+
       }
 
    //   critical_section * pCs = &pSet->m_cs;
@@ -53,7 +50,7 @@ namespace user
             if(iCacheIndex >= m_cacheArray.get_size())
                break;
          }
-         pwstra = m_cacheArray.element_at(iCacheIndex);
+         pwstra = &m_cacheArray[iCacheIndex];
          m_cacheMap.remove_key(iIndex);
          iCacheIndex++;
          if(pwstra->get_size() < plist->m_columna.get_count())

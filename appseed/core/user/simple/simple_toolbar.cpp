@@ -1818,13 +1818,13 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
             {
                if ((m_itema[i]->m_fsStyle & TBSTYLE_SEP) && (m_itema[i]->m_id != "separator"))
                {
-                  pControl[nControlCount]->nIndex = i;
-                  pControl[nControlCount]->strId = m_itema[i]->m_id;
+                  pControl[nControlCount].nIndex = i;
+                  pControl[nControlCount].strId = m_itema[i]->m_id;
 
                   rect rect;
                   _001GetItemRect(i, &rect);
                   ClientToScreen(&rect);
-                  pControl[nControlCount]->rectOldPos = rect;
+                  pControl[nControlCount].rectOldPos = rect;
 
                   nControlCount++;
                }

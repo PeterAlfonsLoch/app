@@ -89,7 +89,7 @@ namespace user
       single_lock sl(&m_pparent->m_mutex, TRUE);
       m_pparent->m_iIndex = m_iIndex;
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count()
-         && !m_pparent->m_panea[m_iIndex].m_bFixedSize)
+         && !m_pparent->m_panea[m_iIndex]->m_bFixedSize)
       {
          m_pparent->m_iState = split_layout::stateDragging;
          SetCapture();
@@ -122,7 +122,7 @@ namespace user
 
       m_pparent->ScreenToClient(&ptClient);
 
-      if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_panea[m_iIndex].m_bFixedSize)
+      if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_panea[m_iIndex]->m_bFixedSize)
       {
 
          if(m_pparent->GetSplitOrientation() == orientation_horizontal)
@@ -151,7 +151,7 @@ namespace user
          }
          else
          {
-            bMove = nPos > (int32_t) m_pparent->m_splitbara[m_iIndex - 1].m_dwPosition;
+            bMove = nPos > (int32_t) m_pparent->m_splitbara[m_iIndex - 1]->m_dwPosition;
          }
          if(m_pparent->get_pane_count() >= m_iIndex )
          {
@@ -159,7 +159,7 @@ namespace user
          }
          else
          {
-            bMove = bMove && nPos < (int32_t) m_pparent->m_splitbara[m_iIndex].m_dwPosition;
+            bMove = bMove && nPos < (int32_t) m_pparent->m_splitbara[m_iIndex]->m_dwPosition;
          }
          if(bMove)
          {
@@ -182,16 +182,16 @@ namespace user
          }
          if(bMove)
          {
-            bMove = nPos != (int32_t) m_pparent->m_splitbara[m_iIndex].m_dwPosition;
+            bMove = nPos != (int32_t) m_pparent->m_splitbara[m_iIndex]->m_dwPosition;
          }
 
-         TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_pparent->m_splitbara[m_iIndex].m_dwPosition);
+         TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_pparent->m_splitbara[m_iIndex]->m_dwPosition);
          TRACE("split_layout::RelayChildEvent nPos %d\n", nPos);
          if(bMove)
          {
 
-            m_pparent->m_splitbara[m_iIndex].m_dwPosition = nPos;
-            m_pparent->m_splitbara[m_iIndex].m_dRate = dRate;
+            m_pparent->m_splitbara[m_iIndex]->m_dwPosition = nPos;
+            m_pparent->m_splitbara[m_iIndex]->m_dRate = dRate;
             m_pparent->layout();
          }
       }

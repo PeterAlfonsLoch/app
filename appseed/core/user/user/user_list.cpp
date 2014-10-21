@@ -1609,7 +1609,7 @@ namespace user
          {
             rectClient.top += m_rectTopText.height();
          }
-         index iIconSize = MAX(32, m_columna[0].m_sizeIcon.cy);
+         index iIconSize = MAX(32, m_columna[0]->m_sizeIcon.cy);
          index iItemSize = iIconSize * 2;
 
          index ix = (index)( pt.x + m_scrollinfo.m_ptScroll.x);
@@ -1850,7 +1850,7 @@ namespace user
             {
                rectClient.top += m_rectTopText.height();
             }
-            index iIconSize = MAX(32, m_columna[0].m_sizeIcon.cy);
+            index iIconSize = MAX(32, m_columna[0]->m_sizeIcon.cy);
             index iItemSize = iIconSize * 2;
             pdrawitem->m_rectItem.left = (LONG) (iItemSize * (pdrawitem->m_iItem % (MAX(1, rectClient.width() / iItemSize) )));
             pdrawitem->m_rectItem.top = (LONG) (iItemSize * (pdrawitem->m_iItem / (MAX(1, rectClient.width() / iItemSize) )));
@@ -2036,7 +2036,7 @@ namespace user
          {
             if(eelement == ::user::list::ElementImage)
             {
-               int32_t iIconSize                  = m_columna[0].m_sizeIcon.cy;
+               int32_t iIconSize                  = m_columna[0]->m_sizeIcon.cy;
                pdrawitem->m_rectImage.left      = pdrawitem->m_rectItem.left    + iIconSize / 2;
                pdrawitem->m_rectImage.top       = pdrawitem->m_rectItem.top;
                pdrawitem->m_rectImage.right     = pdrawitem->m_rectImage.left  + iIconSize;
@@ -2045,7 +2045,7 @@ namespace user
             }
             else if(eelement == ::user::list::ElementText)
             {
-               int32_t iIconSize               = m_columna[0].m_sizeIcon.cy;
+               int32_t iIconSize               = m_columna[0]->m_sizeIcon.cy;
                pdrawitem->m_rectText.left    = pdrawitem->m_rectItem.left;
                pdrawitem->m_rectText.top     = pdrawitem->m_rectItem.top + iIconSize;
                pdrawitem->m_rectText.right   = pdrawitem->m_rectText.left + iIconSize * 2;

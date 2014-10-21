@@ -783,18 +783,18 @@ namespace user
       for(int32_t iControl = 0; iControl < m_controldescriptorset.get_size(); iControl++)
       {
 
-         sp(control) pcontrol = m_controldescriptorset[iControl].m_pcontrol;
+         sp(control) pcontrol = m_controldescriptorset[iControl]->m_pcontrol;
 
          if(pcontrol == NULL)
             continue;
 
-         if(m_controldescriptorset[iControl].m_eddx == control::ddx_dbflags)
+         if(m_controldescriptorset[iControl]->m_eddx == control::ddx_dbflags)
          {
 
             _001UpdateDbFlags(pcontrol);
 
          }
-         else if(m_controldescriptorset[iControl].m_dataid == pchange->m_key.m_idKey)
+         else if(m_controldescriptorset[iControl]->m_dataid == pchange->m_key.m_idKey)
          {
 
             _001Update(pcontrol);
@@ -812,7 +812,7 @@ namespace user
       for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
       {
 
-         class control::descriptor & descriptor = m_controldescriptorset[i];
+         class control::descriptor & descriptor = m_controldescriptorset(i);
 
          if(descriptor.has_function(control::function_static))
          {
@@ -935,7 +935,7 @@ namespace user
 
       for(int32_t i = 0; i < m_controldescriptorset.get_size() ; i++)
       {
-         class control::descriptor & descriptor = m_controldescriptorset[i];
+         class control::descriptor & descriptor = m_controldescriptorset(i);
          if(descriptor.m_typeinfo)
          {
             if(descriptor.m_bCreated && descriptor.m_pcontrol != NULL)
@@ -1113,7 +1113,7 @@ namespace user
    //   papp->m_pcoreapp->TwfInitializeDescendants(pview->GetSafeoswindow_(), true);
       for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
       {
-         sp(control) pcontrol = m_controldescriptorset[i].m_pcontrol;
+         sp(control) pcontrol = m_controldescriptorset[i]->m_pcontrol;
          if(pcontrol == NULL)
             continue;
          _001Update(pcontrol);

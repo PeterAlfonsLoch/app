@@ -29,7 +29,7 @@ namespace user
       if(pitem->m_iSubItem >= m_array.get_size())
          return_(pitem->m_bOk, false);
 
-      stringa & stra = m_array[pitem->m_iSubItem];
+      stringa & stra = m_array(pitem->m_iSubItem);
 
       if(pitem->m_iItem < 0)
          return_(pitem->m_bOk, false);
@@ -53,7 +53,7 @@ namespace user
          m_array.add(new stringa());
       }
 
-      m_array[iSubItem].set_at_grow(iItem, lpcsz);
+      m_array[iSubItem]->set_at_grow(iItem, lpcsz);
 
    }
 
@@ -86,7 +86,7 @@ namespace user
       {
          if(iColumn != iSubItem)
          {
-            m_array[iSubItem].set_size(stra.get_count());
+            m_array[iSubItem]->set_size(stra.get_count());
          }
       }
       plist->_001OnUpdateItemCount();
@@ -106,7 +106,7 @@ namespace user
          return false;
       for(int32_t iSubItem = 0; iSubItem < m_array.get_size(); iSubItem++)
       {
-         m_array[iSubItem].remove_at(iItem);
+         m_array[iSubItem]->remove_at(iItem);
       }
       return true;
    }
@@ -117,7 +117,7 @@ namespace user
       if(m_array.get_size() <= 0)
          return 0;
       else
-         return m_array[0].get_size();
+         return m_array[0]->get_size();
 
    }
 

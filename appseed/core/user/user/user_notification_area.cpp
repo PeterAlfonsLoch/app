@@ -198,7 +198,7 @@ namespace user
    void notification_area::PostMessageToTrayIcon(int32_t iItem, LPARAM lParam)
    {
 #ifdef WINDOWSEX
-      ::PostMessage(m_infoa[iItem].m_oswindow, m_infoa[iItem].uCallbackMessage, m_infoa[iItem].uID, lParam);
+      ::PostMessage(m_infoa[iItem]->m_oswindow, m_infoa[iItem]->uCallbackMessage, m_infoa[iItem]->uID, lParam);
 #endif
    }
 

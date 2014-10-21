@@ -41,10 +41,10 @@ namespace user
 
       for(::index i = 0; i < m_splitbara.get_count(); i++)
       {
-         if(m_splitbara(i).is_null())
+         if(m_splitbara[i].is_null())
          {
-            m_splitbara(i) = canew(::user::split_bar(get_app()));
-            ::user::split_bar & splitbar = m_splitbara[i];
+            m_splitbara[i] = canew(::user::split_bar(get_app()));
+            ::user::split_bar & splitbar = m_splitbara(i);
             splitbar.m_iIndex = (int)i;
             if(!splitbar.create_window(null_rect(), this))
                return false;
@@ -55,10 +55,10 @@ namespace user
 
       for(::index i = 0; i < m_panea.get_count(); i++)
       {
-         if(m_panea(i).is_null())
+         if(m_panea[i].is_null())
          {
-            m_panea(i) = canew(::user::split_layout::Pane(get_app()));
-            m_panea[i].m_bFixedSize =  false;
+            m_panea[i] = canew(::user::split_layout::Pane(get_app()));
+            m_panea(i).m_bFixedSize =  false;
          }
       }
 
@@ -81,9 +81,9 @@ namespace user
 
       for(::index i = 0; i < m_panea.get_count(); i++)
       {
-         if(m_panea[i].m_pholder.is_null())
+         if(m_panea[i]->m_pholder.is_null())
          {
-            m_panea[i].m_pholder = get_new_place_holder(m_panea[i].m_rectClient);
+            m_panea[i]->m_pholder = get_new_place_holder(m_panea[i]->m_rectClient);
          }
       }
 

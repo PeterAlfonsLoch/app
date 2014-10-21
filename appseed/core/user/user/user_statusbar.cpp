@@ -8,7 +8,7 @@ namespace user
 
    __STATUSPANE* status_bar::_GetPanePtr(int32_t nIndex)
    {
-      return m_panea(nIndex);
+      return m_panea[nIndex];
    }
 
 
