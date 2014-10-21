@@ -468,9 +468,9 @@ namespace user
          ::user::interaction * pParentWnd = GetParent();  // start with one parent up
          while(pParentWnd != NULL)
          {
-            if(dynamic_cast <T *> (pParentWnd.m_p) != NULL)
+            if(dynamic_cast <T *> (pParentWnd) != NULL)
             {
-               return dynamic_cast <T *> (pParentWnd.m_p);
+               return dynamic_cast <T *> (pParentWnd);
             }
             pParentWnd = pParentWnd->GetParent();
          }

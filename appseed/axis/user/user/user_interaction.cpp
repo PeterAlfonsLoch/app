@@ -75,7 +75,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction::GetTopWindow() const
+   ::user::interaction * interaction::GetTopWindow() const
    {
 
       if(m_pimpl != NULL)
@@ -116,7 +116,7 @@ namespace user
    }
 
 
-   sp(place_holder) interaction::place(sp(::user::interaction) pui)
+   sp(place_holder) interaction::place(::user::interaction * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -127,7 +127,7 @@ namespace user
 
 
 
-   bool interaction::on_before_set_parent(sp(interaction) puiParent)
+   bool interaction::on_before_set_parent(::user::interaction * puiParent)
    {
 
       return true;
@@ -136,7 +136,7 @@ namespace user
 
 
 
-   sp(interaction) interaction::SetParent(sp(interaction) puiParent)
+   ::user::interaction * interaction::SetParent(::user::interaction * puiParent)
    {
 
       if(puiParent == this || puiParent == GetParent())
@@ -1241,7 +1241,7 @@ namespace user
       pobj->m_bRet = false;
    }
 
-   sp(interaction) interaction::_001FromPoint(point64 pt,bool bTestedIfParentVisible)
+   ::user::interaction * interaction::_001FromPoint(point64 pt,bool bTestedIfParentVisible)
    {
       if(bTestedIfParentVisible)
       {
@@ -1320,7 +1320,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::get_child_by_name(const char * pszName,int32_t iLevel)
+   ::user::interaction * interaction::get_child_by_name(const char * pszName,int32_t iLevel)
    {
       sp(interaction) pui = top_child();
       while(pui != NULL)
@@ -1351,7 +1351,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::get_child_by_id(id id,int32_t iLevel)
+   ::user::interaction * interaction::get_child_by_id(id id,int32_t iLevel)
    {
       sp(interaction) pui = top_child();
       while(pui != NULL)
@@ -1740,7 +1740,7 @@ namespace user
 #endif
 
 
-   bool interaction::create_window(const RECT & rect, sp(interaction)pparent,id id)
+   bool interaction::create_window(const RECT & rect, ::user::interaction *pparent,id id)
    {
       if(IsWindow())
       {
@@ -1777,7 +1777,7 @@ namespace user
    }
 
 
-   bool interaction::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pParentWnd,id id,sp(::create_context) pContext)
+   bool interaction::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create_context) pContext)
    {
 
       if(IsWindow())
@@ -1900,7 +1900,7 @@ namespace user
    }
 
 
-   bool interaction::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pParentWnd,id id,LPVOID lpParam)
+   bool interaction::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,LPVOID lpParam)
    {
 
       if(IsWindow())
@@ -2070,7 +2070,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::ChildWindowFromPoint(POINT point)
+   ::user::interaction * interaction::ChildWindowFromPoint(POINT point)
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -2078,7 +2078,7 @@ namespace user
          return m_pimpl->ChildWindowFromPoint(point);
    }
 
-   sp(interaction) interaction::ChildWindowFromPoint(POINT point,UINT nFlags)
+   ::user::interaction * interaction::ChildWindowFromPoint(POINT point,UINT nFlags)
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -2086,7 +2086,7 @@ namespace user
          return m_pimpl->ChildWindowFromPoint(point,nFlags);
    }
 
-   sp(interaction) interaction::GetNextWindow(UINT nFlag)
+   ::user::interaction * interaction::GetNextWindow(UINT nFlag)
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -2094,7 +2094,7 @@ namespace user
          return m_pimpl->GetNextWindow(nFlag);
    }
 
-   sp(interaction) interaction::get_next(bool bIgnoreChildren,int32_t * piLevel)
+   ::user::interaction * interaction::get_next(bool bIgnoreChildren,int32_t * piLevel)
    {
       if(!bIgnoreChildren)
       {
@@ -2141,7 +2141,7 @@ namespace user
 
    }
 
-   sp(interaction) interaction::GetTopWindow()
+   ::user::interaction * interaction::GetTopWindow()
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -2149,7 +2149,7 @@ namespace user
          return m_pimpl->GetTopWindow();
    }
 
-   sp(interaction) interaction::GetWindow(UINT nCmd) const
+   ::user::interaction * interaction::GetWindow(UINT nCmd) const
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -2165,7 +2165,7 @@ namespace user
          return m_pimpl->GetActiveWindow();
    }
 
-   sp(interaction) interaction::SetFocus()
+   ::user::interaction * interaction::SetFocus()
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -2190,7 +2190,7 @@ namespace user
          return m_pimpl->SetForegroundWindow();
    }
 
-   sp(interaction) interaction::GetLastActivePopup()
+   ::user::interaction * interaction::GetLastActivePopup()
    {
       if(m_pimpl == NULL)
          return NULL;
@@ -2261,7 +2261,7 @@ namespace user
 
 
 
-   sp(interaction) interaction::GetParentTopLevel() const
+   ::user::interaction * interaction::GetParentTopLevel() const
    {
 
       sp(::user::interaction) puiParent = GetParent();
@@ -2285,7 +2285,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::EnsureParentTopLevel()
+   ::user::interaction * interaction::EnsureParentTopLevel()
    {
 
       sp(interaction) pwindow=GetParentTopLevel();
@@ -2297,7 +2297,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::GetTopLevel() const
+   ::user::interaction * interaction::GetTopLevel() const
    {
 
       sp(::user::interaction) puiParent = (::user::interaction *) this;
@@ -2321,7 +2321,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::EnsureTopLevel()
+   ::user::interaction * interaction::EnsureTopLevel()
    {
 
       sp(interaction) pwindow=GetTopLevel();
@@ -2524,7 +2524,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::SetOwner(sp(interaction) pui)
+   ::user::interaction * interaction::SetOwner(::user::interaction * pui)
    {
 
       if(m_pimpl == NULL)
@@ -2535,7 +2535,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::GetOwner() const
+   ::user::interaction * interaction::GetOwner() const
    {
 
       if(m_pimpl == NULL)
@@ -2545,7 +2545,7 @@ namespace user
 
    }
 
-   sp(interaction) interaction::GetParentOwner() const
+   ::user::interaction * interaction::GetParentOwner() const
    {
 
       sp(::user::interaction) puiParent = GetParent();
@@ -2558,7 +2558,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::GetTopLevelOwner() const
+   ::user::interaction * interaction::GetTopLevelOwner() const
    {
 
       sp(::user::interaction) puiOwner = GetOwner();
@@ -2684,7 +2684,7 @@ namespace user
          return m_pimpl->CheckAutoCenter();
    }
 
-   void interaction::CenterWindow(sp(interaction) pAlternateOwner)
+   void interaction::CenterWindow(::user::interaction * pAlternateOwner)
    {
       if(m_pimpl == NULL)
          return;
@@ -3214,7 +3214,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::SetCapture(sp(interaction) pinterface)
+   ::user::interaction * interaction::SetCapture(::user::interaction * pinterface)
    {
 
       if(m_pimpl != NULL)
@@ -3229,7 +3229,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::GetCapture()
+   ::user::interaction * interaction::GetCapture()
    {
 
       if(m_pimpl != NULL)
@@ -3244,7 +3244,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::ReleaseCapture()
+   ::user::interaction * interaction::ReleaseCapture()
    {
 
       if(m_pimpl != NULL)
@@ -3379,7 +3379,7 @@ namespace user
    }
 
 
-   void interaction::on_set_parent(sp(interaction) puiParent)
+   void interaction::on_set_parent(::user::interaction * puiParent)
    {
 
       try
@@ -3506,7 +3506,7 @@ namespace user
 
 
 
-   void interaction::walk_pre_translate_tree(signal_details * pobj, sp(::user::interaction) puiStop)
+   void interaction::walk_pre_translate_tree(signal_details * pobj, ::user::interaction * puiStop)
    {
 
       if(puiStop == this)
@@ -3585,19 +3585,19 @@ namespace user
 
 
 
-   bool interaction::can_merge(sp(::user::interaction) pui)
+   bool interaction::can_merge(::user::interaction * pui)
    {
       UNREFERENCED_PARAMETER(pui);
       return false;
    }
 
-   bool interaction::merge(sp(::user::interaction) pui)
+   bool interaction::merge(::user::interaction * pui)
    {
       UNREFERENCED_PARAMETER(pui);
       return false;
    }
 
-   sp(interaction) interaction::first_child()
+   ::user::interaction * interaction::first_child()
    {
       
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
@@ -3608,7 +3608,7 @@ namespace user
 
    }
 
-   sp(interaction) interaction::last_child()
+   ::user::interaction * interaction::last_child()
    {
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
       if(m_uiptraChild.get_count() <= 0)
@@ -3619,7 +3619,7 @@ namespace user
 
 
 
-   sp(interaction) interaction::first_sibling()
+   ::user::interaction * interaction::first_sibling()
    {
       
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
@@ -3632,10 +3632,10 @@ namespace user
    }
 
 
-   sp(interaction) interaction::next_sibling()
+   ::user::interaction * interaction::next_sibling()
    {
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
-      sp(interaction) pui = NULL;
+      ::user::interaction * pui = NULL;
       try
       {
          pui = GetParent();
@@ -3656,7 +3656,7 @@ namespace user
          return pui->m_uiptraChild[i];
    }
 
-   sp(interaction) interaction::next_sibling(sp(interaction) pui)
+   ::user::interaction * interaction::next_sibling(::user::interaction * pui)
    {
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
       index i = m_uiptraChild.find_first(pui);
@@ -3680,10 +3680,10 @@ namespace user
       }
    }
 
-   sp(interaction) interaction::previous_sibling()
+   ::user::interaction * interaction::previous_sibling()
    {
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
-      sp(interaction) pui = NULL;
+      ::user::interaction * pui = NULL;
       try
       {
          pui = GetParent();
@@ -3704,7 +3704,7 @@ namespace user
          return pui->m_uiptraChild[i];
    }
 
-   sp(interaction) interaction::last_sibling()
+   ::user::interaction * interaction::last_sibling()
    {
 
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
@@ -3717,7 +3717,7 @@ namespace user
    }
 
 
-   void interaction::mouse_hover_add(sp(::user::interaction) pinterface)
+   void interaction::mouse_hover_add(::user::interaction * pinterface)
    {
 
       if(m_pimpl == NULL)
@@ -3727,7 +3727,7 @@ namespace user
 
    }
 
-   void interaction::mouse_hover_remove(sp(::user::interaction) pinterface)
+   void interaction::mouse_hover_remove(::user::interaction * pinterface)
    {
 
       if(m_pimpl == NULL)
@@ -3738,7 +3738,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::previous_sibling(sp(interaction) pui)
+   ::user::interaction * interaction::previous_sibling(::user::interaction * pui)
    {
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
       index i = m_uiptraChild.find_first(pui);
@@ -3790,7 +3790,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction::get_os_focus_uie()
+   ::user::interaction * interaction::get_os_focus_uie()
    {
 
       return NULL;
@@ -3830,7 +3830,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction::GetWindow() const
+   ::user::interaction * interaction::GetWindow() const
    {
 
       if(m_pimpl != NULL)
@@ -3852,7 +3852,7 @@ namespace user
 
 
    // returns -1 if not descendant
-   int32_t interaction::get_descendant_level(sp(::user::interaction) pui)
+   int32_t interaction::get_descendant_level(::user::interaction * pui)
    {
       int32_t iLevel = 0;
       while(pui != NULL)
@@ -3865,7 +3865,7 @@ namespace user
       return -1;
    }
 
-   bool interaction::is_descendant(sp(::user::interaction) pui,bool bIncludeSelf)
+   bool interaction::is_descendant(::user::interaction * pui,bool bIncludeSelf)
    {
       if(bIncludeSelf)
       {
@@ -3877,7 +3877,7 @@ namespace user
       }
    }
 
-   sp(::user::interaction) interaction::get_focusable_descendant(sp(::user::interaction) pui)
+   ::user::interaction * interaction::get_focusable_descendant(::user::interaction * pui)
    {
       int32_t iLevel = 0;
       if(pui == NULL)
@@ -4560,7 +4560,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction::best_top_level_parent(LPRECT lprect)
+   ::user::interaction * interaction::best_top_level_parent(LPRECT lprect)
    {
 
       sp(::user::interaction) pui = GetTopLevel();
@@ -5592,7 +5592,7 @@ namespace user
 
 /*
 
-   sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+   sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
    {
 
       if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
@@ -5603,7 +5603,7 @@ namespace user
    }
 
 
-   sp(::message::base) interaction::get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+   sp(::message::base) interaction::get_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
    {
 
       if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
@@ -5614,42 +5614,42 @@ namespace user
    }
 
 
-   sp(::message::base) interaction::peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+   sp(::message::base) interaction::peek_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
    {
       MESSAGE msg;
       return peek_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax,wRemoveMsg);
    }
 
 
-   sp(::message::base) interaction::get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+   sp(::message::base) interaction::get_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
    {
       MESSAGE msg;
       return get_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax);
    }
 
 
-   sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+   sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
    {
       if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
          return NULL;
       return get_base(lpmsg,pwnd);
    }
 
-   sp(::message::base) interaction::get_message(LPMESSAGE lpmsg,sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+   sp(::message::base) interaction::get_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
    {
       if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
          return NULL;
       return get_base(lpmsg,pwnd);
    }
 
-   sp(::message::base) interaction::peek_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+   sp(::message::base) interaction::peek_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
    {
       MESSAGE msg;
       return peek_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax,wRemoveMsg);
    }
 
 
-   sp(::message::base) interaction::get_message(sp(::user::interaction) pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+   sp(::message::base) interaction::get_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
    {
       MESSAGE msg;
       return get_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax);

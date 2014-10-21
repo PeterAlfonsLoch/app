@@ -40,7 +40,7 @@ namespace user
    }
 
 
-   void interaction_impl::mouse_hover_add(sp(::user::interaction) pinterface)
+   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
       UNREFERENCED_PARAMETER(pinterface);
@@ -49,7 +49,7 @@ namespace user
    }
 
 
-   void interaction_impl::mouse_hover_remove(sp(::user::interaction) pinterface)
+   void interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
    {
 
       UNREFERENCED_PARAMETER(pinterface);
@@ -173,7 +173,7 @@ namespace user
    }
 
 
-   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,id id,LPVOID lpParam /* = NULL */)
+   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,LPVOID lpParam /* = NULL */)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpszClassName);
@@ -195,7 +195,7 @@ namespace user
       return true;
    }
 
-   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,id id,sp(::create_context) pContext)
+   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create_context) pContext)
    {
       UNREFERENCED_PARAMETER(lpszClassName);
       UNREFERENCED_PARAMETER(lpszWindowName);
@@ -709,7 +709,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Centering dialog support (works for any non-child interaction_impl)
 
-   void interaction_impl::CenterWindow(sp(::user::interaction) pAlternateOwner)
+   void interaction_impl::CenterWindow(::user::interaction * pAlternateOwner)
    {
       UNREFERENCED_PARAMETER(pAlternateOwner);
       throw interface_only_exception(get_app());
@@ -881,7 +881,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_impl::ReleaseCapture()
+   ::user::interaction * interaction_impl::ReleaseCapture()
    {
 
       throw interface_only_exception(get_app());
@@ -889,7 +889,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_impl::GetCapture()
+   ::user::interaction * interaction_impl::GetCapture()
    {
 
       throw interface_only_exception(get_app());
@@ -945,7 +945,7 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   void interaction_impl::set_owner(sp(::user::interaction) pOwnerWnd)
+   void interaction_impl::set_owner(::user::interaction * pOwnerWnd)
    {
       UNREFERENCED_PARAMETER(pOwnerWnd);
       throw interface_only_exception(get_app());
@@ -1236,7 +1236,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_impl::SetCapture(sp(::user::interaction) pinterface)
+   ::user::interaction * interaction_impl::SetCapture(::user::interaction * pinterface)
    {
 
       UNREFERENCED_PARAMETER(pinterface);
@@ -1246,7 +1246,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_impl::SetFocus()
+   ::user::interaction * interaction_impl::SetFocus()
    {
 
       throw interface_only_exception(get_app());
@@ -1384,13 +1384,13 @@ namespace user
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::interaction) interaction_impl::ChildWindowFromPoint(POINT point)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point)
    {
       UNREFERENCED_PARAMETER(point);
       throw interface_only_exception(get_app());
    }
 
-   sp(::user::interaction) interaction_impl::ChildWindowFromPoint(POINT point,UINT nFlags)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point,UINT nFlags)
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(nFlags);
@@ -1398,7 +1398,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_impl::GetNextWindow(UINT nFlag)
+   ::user::interaction * interaction_impl::GetNextWindow(UINT nFlag)
    {
 
       UNREFERENCED_PARAMETER(nFlag);
@@ -1407,7 +1407,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_impl::GetTopWindow()
+   ::user::interaction * interaction_impl::GetTopWindow()
    {
 
       throw interface_only_exception(get_app());
@@ -1417,7 +1417,7 @@ namespace user
 
    /*
 
-   sp(::user::interaction) interaction_impl::GetWindow(UINT nCmd)
+   ::user::interaction * interaction_impl::GetWindow(UINT nCmd)
    {
    UNREFERENCED_PARAMETER(nCmd);
    throw interface_only_exception(get_app());
@@ -1427,7 +1427,7 @@ namespace user
    */
 
 
-   sp(::user::interaction) interaction_impl::GetLastActivePopup()
+   ::user::interaction * interaction_impl::GetLastActivePopup()
    {
 
       throw interface_only_exception(get_app());
@@ -2364,7 +2364,7 @@ namespace user
 
 
    void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
-      sp(::user::interaction) oswindow,LPCRECT lpRect)
+      ::user::interaction * oswindow,LPCRECT lpRect)
    {
       ASSERT(oswindow != NULL);
       ASSERT(lpRect != NULL);

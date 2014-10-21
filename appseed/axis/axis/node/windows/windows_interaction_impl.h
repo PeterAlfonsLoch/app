@@ -49,8 +49,8 @@ namespace windows
       virtual void dump(dump_context & dumpcontext) const;
 
 
-      virtual void mouse_hover_add(sp(::user::interaction) pinterface);
-      virtual void mouse_hover_remove(sp(::user::interaction) pinterface);
+      virtual void mouse_hover_add(::user::interaction * pinterface);
+      virtual void mouse_hover_remove(::user::interaction * pinterface);
 
       bool create_message_queue(const char * pszName);
 
@@ -66,8 +66,8 @@ namespace windows
       virtual bool ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
       virtual bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
 
-      //virtual sp(::user::interaction) get_owner();
-      //virtual void set_owner(sp(::user::interaction) pOwnerWnd);
+      //virtual ::user::interaction * get_owner();
+      //virtual void set_owner(::user::interaction * pOwnerWnd);
 
       virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
@@ -108,10 +108,10 @@ namespace windows
       bool ExecuteDlgInit(LPVOID lpResource);
 
       // for child windows, views, panes etc
-      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) puiParent,id id,sp(::create_context) pContext = NULL);
+      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * puiParent,id id,sp(::create_context) pContext = NULL);
 
       // advanced creation (allows access to extended styles)
-      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) puiParent,id id,LPVOID lpParam = NULL);
+      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * puiParent,id id,LPVOID lpParam = NULL);
 
       // advanced creation (allows access to extended styles)
       virtual bool native_create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,oswindow oswindowParent,id id,LPVOID lpParam = NULL);
@@ -272,13 +272,13 @@ namespace windows
 
 
       // capture and focus apply to all windows
-      static sp(::user::interaction) s_GetCapture();
-      virtual sp(::user::interaction) SetCapture(sp(::user::interaction) pinterface = NULL);
-      virtual sp(::user::interaction) ReleaseCapture();
-      virtual sp(::user::interaction) GetCapture();
-      virtual sp(::user::interaction) SetFocus();
+      static ::user::interaction * s_GetCapture();
+      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
+      virtual ::user::interaction * ReleaseCapture();
+      virtual ::user::interaction * GetCapture();
+      virtual ::user::interaction * SetFocus();
 
-      static  sp(::user::interaction) GetFocus();
+      static  ::user::interaction * GetFocus();
 
       static ::window_sp GetDesktopWindow();
 
@@ -336,24 +336,24 @@ namespace windows
 #endif   // WINVER >= 0x0500
 
       // Window Access Functions
-      virtual sp(::user::interaction) ChildWindowFromPoint(POINT point);
-      virtual sp(::user::interaction) ChildWindowFromPoint(POINT point,UINT nFlags);
+      virtual ::user::interaction * ChildWindowFromPoint(POINT point);
+      virtual ::user::interaction * ChildWindowFromPoint(POINT point,UINT nFlags);
       static ::window_sp FindWindow(const char * lpszClassName,const char * lpszWindowName);
       static ::window_sp FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 
-      virtual sp(::user::interaction) GetNextWindow(UINT nFlag = GW_HWNDNEXT);
-      virtual sp(::user::interaction) GetTopWindow() const;
+      virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
+      virtual ::user::interaction * GetTopWindow() const;
 
-      virtual sp(::user::interaction) GetWindow(UINT nCmd) const;
-      virtual sp(::user::interaction) GetLastActivePopup() const;
+      virtual ::user::interaction * GetWindow(UINT nCmd) const;
+      virtual ::user::interaction * GetLastActivePopup() const;
 
       virtual ::user::interaction * GetParent() const;
-      virtual sp(::user::interaction) SetParent(sp(::user::interaction) pWndNewParent);
-      static sp(::user::interaction) WindowFromPoint(POINT point);
+      virtual ::user::interaction * SetParent(::user::interaction * pWndNewParent);
+      static ::user::interaction * WindowFromPoint(POINT point);
 
 
-      virtual sp(::user::interaction) SetOwner(sp(::user::interaction) pWndNewParent);
-      virtual sp(::user::interaction) GetOwner() const;
+      virtual ::user::interaction * SetOwner(::user::interaction * pWndNewParent);
+      virtual ::user::interaction * GetOwner() const;
 
       virtual bool FlashWindow(bool bInvert);
 
@@ -411,7 +411,7 @@ namespace windows
 
       // dialog support
       void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
-      void CenterWindow(sp(::user::interaction) pAlternateOwner = NULL);
+      void CenterWindow(::user::interaction * pAlternateOwner = NULL);
       //virtual id   RunModalLoop(uint32_t dwFlags = 0,::aura::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
@@ -650,7 +650,7 @@ namespace windows
       string calc_icon_window_class(uint32_t dwDefaultStyle,const char * pszMatter);
       string calc_window_class();
 
-      void on_set_parent(sp(::user::interaction) pui);
+      void on_set_parent(::user::interaction * pui);
 
       
       virtual bool get_rect_normal(LPRECT lprect);

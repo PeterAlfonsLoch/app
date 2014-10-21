@@ -930,6 +930,10 @@ namespace user
 
 
 
+   interaction_spa::interaction_spa()
+   {
+
+   }
 
 
 
