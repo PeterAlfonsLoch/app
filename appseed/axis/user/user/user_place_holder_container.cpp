@@ -64,9 +64,9 @@ namespace user
    {
       for(int32_t i = 0; i < m_holdera.get_count(); i++)
       {
-         if(m_holdera[i].is_holding(pui))
+         if(m_holdera[i]->is_holding(pui))
          {
-            if(on_unhold(pui, m_holdera(i)))
+            if(on_unhold(pui, m_holdera[i]))
             {
                m_holdera.remove_at(i);
                return true;
