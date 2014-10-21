@@ -70,7 +70,7 @@ namespace user
       for(index i = m_uiptraHold.get_upper_bound(); i >= 0; i--)
       {
 
-         System.place_hold(m_uiptraHold(i));
+         System.place_hold(m_uiptraHold[i]);
 
       }
 
@@ -103,7 +103,7 @@ namespace user
       if(m_uiptraHold.get_count() <= 0)
          return;
 
-      sp(::user::interaction) puiHold = m_uiptraHold(0);
+      sp(::user::interaction) puiHold = m_uiptraHold[0];
 
       rect rectClient;
       GetClientRect(rectClient);

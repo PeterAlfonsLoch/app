@@ -146,7 +146,7 @@ namespace data
          if (m_children[i]->get_children_count() > 0)
          {
             if (iCount == iIndex)
-               return m_children(i);
+               return m_children[i];
             iCount++;
          }
       }
