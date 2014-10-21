@@ -181,7 +181,7 @@ namespace xml
    {
       for(index i = iStart; i < m_nodea.get_count(); i++)
       {
-         if(m_nodea[i].m_strName == lpcszName)
+         if(m_nodea[i]->m_strName == lpcszName)
             return i;
       }
       return -1;

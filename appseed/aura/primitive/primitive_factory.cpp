@@ -155,7 +155,7 @@ sp(factory_allocator) base_factory::get_allocator(const char * pszType)
    if(!m_pstridaAllocator->find(id, iFind))
       return NULL;
 
-   return m_itemptraAllocator(iFind);
+   return m_itemptraAllocator[iFind];
 
 }
 

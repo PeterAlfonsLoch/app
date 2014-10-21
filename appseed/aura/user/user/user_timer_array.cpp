@@ -153,7 +153,7 @@ namespace user
       {
          try
          {
-            if(!m_timera[m_iItem].check(sl))
+            if(!m_timera[m_iItem]->check(sl))
             {
                if(m_iItem < m_timera.get_count())
                {
@@ -185,7 +185,7 @@ namespace user
       {
          try
          {
-            if(!m_timera[m_iItem].check(sl))
+            if(!m_timera[m_iItem]->check(sl))
             {
                if(m_iItem < m_timera.get_count())
                {
@@ -232,8 +232,8 @@ namespace user
       if(i >= 0)
       {
 
-         m_timera[i].m_uiElapse = uiElapse;
-         m_timera[i].m_uiLastSent = ::get_tick_count();
+         m_timera[i]->m_uiElapse = uiElapse;
+         m_timera[i]->m_uiLastSent = ::get_tick_count();
 
          return (UINT)i;
 
