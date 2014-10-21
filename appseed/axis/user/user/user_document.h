@@ -78,7 +78,7 @@ namespace user
          ::count count = 0;
          for (index index = 0; index < m_viewptra.get_count(); index++)
          {
-            T * pt = dynamic_cast <T *> (m_viewptra(index).m_p);
+            T * pt = m_viewptra[index].cast < T >();
             if (pt != NULL)
             {
                if (indexFind == count)
