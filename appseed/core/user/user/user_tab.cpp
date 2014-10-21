@@ -2153,7 +2153,7 @@ namespace user
       pane_array & panea = get_data()->m_panea;
       for(int32_t i = 0; i < panea.get_count(); i++)
       {
-         pane & pane = panea[i];
+         pane & pane = panea(i);
          strPath = pane.m_id;
          if(strPrefix.is_empty() || ::str::begins_ci(strPath, strPrefix))
          {
@@ -2183,7 +2183,7 @@ namespace user
       pane_array & panea = get_data()->m_panea;
       for(int32_t i = 0; i < panea.get_count(); i++)
       {
-         pane & pane = panea[i];
+         pane & pane = panea(i);
          strPath = pane.m_id;
          if(strPrefix.is_empty() || ::str::begins_ci(strPath, strPrefix))
          {

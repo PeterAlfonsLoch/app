@@ -717,7 +717,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       for (int32_t i = 0; i <  appptra.get_count(); i++)
       {
 
-         sp(::aura::application) pappChild = &appptra[i];
+         sp(::aura::application) pappChild = appptra[i];
 
          if (!pappChild->m_pcoreapp->_001CloseApplicationByUser(this))
             return;
@@ -1563,7 +1563,7 @@ void simple_frame_window::NotifyFloatingWindows(uint32_t dwFlags)
    // trans   ASSERT(get_handle() != NULL);
 
    // get top level parent frame window first unless this is a child window
-   sp(::user::frame_window) pParent = (GetStyle() & WS_CHILD) ? this : (GetTopLevelFrame().m_p);
+   sp(::user::frame_window) pParent = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame();
    ASSERT(pParent != NULL);
    if (dwFlags & (FS_DEACTIVATE | FS_ACTIVATE))
    {
