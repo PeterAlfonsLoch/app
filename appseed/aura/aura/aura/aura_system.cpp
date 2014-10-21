@@ -192,7 +192,7 @@ namespace aura
             try
             {
 
-               if(&appptra[i] == NULL || appptra[i].is_session() || appptra[i].is_system())
+               if(appptra[i] == NULL || appptra[i]->is_session() || appptra[i]->is_system())
                {
 
                   appptra.remove_at(i);
@@ -200,7 +200,7 @@ namespace aura
                   continue;
 
                }
-               else if(appptra[i].is_serviceable() && appptra[i].m_strAppId != directrix()->m_varTopicQuery["app"].get_string())
+               else if(appptra[i]->is_serviceable() && appptra[i]->m_strAppId != directrix()->m_varTopicQuery["app"].get_string())
                {
 
                   appptra.remove_at(i);
