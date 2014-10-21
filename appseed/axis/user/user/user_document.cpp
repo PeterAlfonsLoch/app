@@ -563,7 +563,7 @@ namespace user
       for (index index = 0; index < m_viewptra.get_count(); index++)
       {
          // get frame attached to the ::user::impact
-         sp(::user::impact) pview = m_viewptra(index);
+         sp(::user::impact) pview = m_viewptra[index];
          ASSERT_VALID(pview);
          sp(::user::frame_window) pFrame = pview->GetParentFrame();
 

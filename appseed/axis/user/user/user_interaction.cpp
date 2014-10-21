@@ -292,7 +292,7 @@ namespace user
       for(int32_t i = 0; i < timera.get_count(); i++)
       {
 
-         SetTimer(timera[i].m_uiId,timera[i].m_uiElapse,NULL);
+         SetTimer(timera[i]->m_uiId,timera[i]->m_uiElapse,NULL);
 
       }
 
