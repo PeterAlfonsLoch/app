@@ -160,7 +160,7 @@ namespace xml
    {
       for(index i = iStart; i < m_nodea.get_count(); i++)
       {
-         if(m_nodea[i].m_strName == lpcszName && m_nodea[i].m_attra.str_contains(attra))
+         if(m_nodea[i]->m_strName == lpcszName && m_nodea[i]->m_attra.str_contains(attra))
             return i;
       }
       return -1;
@@ -170,7 +170,7 @@ namespace xml
    {
       for(index i = iStart; i < m_nodea.get_count(); i++)
       {
-         if(m_nodea[i].m_strName == lpcszName && m_nodea[i].attr(pszAttr) == value)
+         if(m_nodea[i]->m_strName == lpcszName && m_nodea[i]->attr(pszAttr) == value)
             return m_nodea.element_at(i);
       }
       return NULL;

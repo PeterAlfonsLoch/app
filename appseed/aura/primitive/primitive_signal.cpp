@@ -222,7 +222,7 @@ void signal::disconnect(signalizable * psignalizable)
 {
    for(int32_t i = 0; i < m_delegatea.get_size();)
    {
-      if(m_delegatea[i].get_signalizable() == psignalizable)
+      if(m_delegatea[i]->get_signalizable() == psignalizable)
       {
          m_delegatea.remove_at(i);
       }
@@ -237,9 +237,9 @@ void signal::leave_only(signalizable * psignalizable)
 {
    for(int32_t i = 0; i < m_delegatea.get_size();)
    {
-      if(m_delegatea[i].get_signalizable() != psignalizable)
+      if(m_delegatea[i]->get_signalizable() != psignalizable)
       {
-         m_delegatea[i].get_signalizable()->unregister_signal(this);
+         m_delegatea[i]->get_signalizable()->unregister_signal(this);
          m_delegatea.remove_at(i);
       }
       else
