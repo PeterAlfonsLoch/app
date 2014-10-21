@@ -68,7 +68,7 @@ namespace userex
             pui = puiNext;
          }
          //         int32_t i = MAX(0, wnda.get_size() + m_pviewdata->m_iExtendOnParent);
-         pui = wnda(wnda.get_size() + m_pviewdata->m_iExtendOnParent);
+         pui = wnda[wnda.get_size() + m_pviewdata->m_iExtendOnParent];
          pui->GetWindowRect(lprect);
          ScreenToClient(lprect);
       }
