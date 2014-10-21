@@ -370,7 +370,7 @@ namespace dynamic_source
          }
          for(int32_t i = 0; i < m_scriptinstanceptra.get_size();)
          {
-            if(get_tick_count() > (m_scriptinstanceptra[i].m_dwCreate + 30 * 1000))
+            if(get_tick_count() > (m_scriptinstanceptra[i]->m_dwCreate + 30 * 1000))
             {
                m_scriptinstanceptra.remove_at(i);
             }
