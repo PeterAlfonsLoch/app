@@ -939,7 +939,7 @@ namespace html
       index i = m_propertyset.find_index(idName);
       if(i < 0)
          return false;
-      if(!parse_border_width(m_propertyset.m_propertya[i].get_value().get_string(), f))
+      if(!parse_border_width(m_propertysetm_propertya[i]->get_value().get_string(), f))
          return false;
       return true;
    }
@@ -960,7 +960,7 @@ namespace html
       index i = m_propertyset.find_index(idName);
       if(i < 0)
          return false;
-      if(!parse_border_color(m_propertyset.m_propertya[i].get_value().get_string(), cr))
+      if(!parse_border_color(m_propertysetm_propertya[i]->get_value().get_string(), cr))
          return false;
       return true;
    }

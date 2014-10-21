@@ -187,8 +187,8 @@ namespace sockets
       {
          for(int i = 0; i < m_fields.m_propertya.get_count(); i++)
          {
-            string name = m_fields.m_propertya[i].name();
-            var & var = m_fields.m_propertya[i].get_value();
+            string name = m_fieldsm_propertya[i]->name();
+            var & var = m_fieldsm_propertya[i]->get_value();
             tmp = "--" + m_boundary + "\r\n"
                "content-disposition: form-data; name=\"" + name + "\"\r\n"
                "\r\n";
