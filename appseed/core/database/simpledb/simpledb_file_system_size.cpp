@@ -187,7 +187,7 @@ index file_size_table::item::FindName(sp(::aura::application) papp, const char *
    }
    for(index i = 0; i < m_itema.get_size(); i++)
    {
-      if(m_itema[i].m_strName == pszName)
+      if(m_itema[i]->m_strName == pszName)
          return i;
    }
    return -1;
@@ -203,7 +203,7 @@ void file_size_table::item::update_size(sp(::aura::application) papp, index & iI
       m_bPending = false;
       for(int32_t i = 0; i < m_itema.get_size(); i++)
       {
-         m_iSize += m_itema[i].m_iSize;
+         m_iSize += m_itema[i]->m_iSize;
          if(m_itema[i].m_bPending || m_itema[i].m_bPendingLs)
             m_bPending = true;
       }
