@@ -95,7 +95,7 @@ namespace userex
          if(m_menua[i]->m_id == id)
          {
 
-            pmenu = m_menua(i);
+            pmenu = m_menua[i];
 
             break;
 

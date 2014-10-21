@@ -125,7 +125,7 @@ namespace userex
       ::user::tab::pane_array & panea = get_data()->m_panea;
       for(int32_t iTab = 0; iTab < panea.get_count(); iTab++)
       {
-         if(panea[iTab].m_pholder == pholder)
+         if(panea[iTab]->m_pholder == pholder)
          {
             ::user::view_creator_data * pcreatordata = ensure_impact(panea[iTab].m_id, get_data()->m_rectTabClient);
             if(pcreatordata != NULL)
