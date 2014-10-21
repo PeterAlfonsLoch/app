@@ -119,7 +119,7 @@ namespace user
             if(pui->keyboard_focus_is_focusable())
                return pui;
 
-            pfocusTry = pui->keyboard_get_next_focusable(puiFocus,false,true);
+            pfocusTry = pui->keyboard_get_next_focusable(puiFocus,false,true, true);
 
             if(pfocusTry != NULL)
                return pfocusTry;
@@ -160,7 +160,7 @@ namespace user
                if(pui->keyboard_focus_is_focusable())
                   return pui;
 
-               pfocusTry = pui->keyboard_get_next_focusable(puiFocus,false,true);
+               pfocusTry = pui->keyboard_get_next_focusable(puiFocus,false,true, true);
 
                if(pfocusTry != NULL)
                   return pfocusTry;
