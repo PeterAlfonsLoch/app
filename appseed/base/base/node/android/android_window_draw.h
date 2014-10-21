@@ -19,7 +19,7 @@ namespace android
          OptimizeAllNext,
       };
 
-      user::interaction_ptr_array                       m_wndpaOut;
+      user::interaction_spa                       m_wndpaOut;
       mutex                                  m_mutexRendering;
       mutex                                  m_mutexRgnUpdate;
       semaphore                              m_semaphoreBuffer;
@@ -116,7 +116,7 @@ namespace android
          int32_t iIndex,
          const RECT & rect);
 
-      void get_wnda(user::interaction_ptr_array & wndpa);
+      void get_wnda(user::interaction_spa & wndpa);
       void get_wnda(user::oswindow_array & hwnda);
 
       virtual int32_t run();

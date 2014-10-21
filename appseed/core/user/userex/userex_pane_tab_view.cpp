@@ -58,7 +58,7 @@ namespace userex
       {
          sp(::user::interaction) pui = m_pviewdata->m_pwnd;
          sp(::user::interaction) puiNext = m_pviewdata->m_pwnd;
-         user::interaction_ptr_array wnda(get_app());
+         user::interaction_spa wnda(get_app());
          while(true)
          {
             wnda.add(pui);

@@ -179,7 +179,7 @@ namespace user
 
 
 
-      void TwfGetWndArray(::user::interaction_ptr_array & wndpa);
+      void TwfGetWndArray(::user::interaction_spa & wndpa);
       void TwfGetWndArray(::user::oswindow_array & oswindowa);
 
       virtual bool Redraw(rect_array & recta);

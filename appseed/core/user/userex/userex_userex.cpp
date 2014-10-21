@@ -453,7 +453,7 @@ namespace userex
 
    void userex::SendMessageToWindows(UINT message,WPARAM wparam,LPARAM lparam)
    {
-      ::user::interaction_ptr_array wnda = Application.frames();
+      ::user::interaction_spa wnda = Application.frames();
       for(int32_t i = 0; i < wnda.get_size(); i++)
       {
          sp(::user::interaction) pwnd = wnda.element_at(i);
@@ -568,7 +568,7 @@ namespace userex
 
    int32_t userex::GetVisibleFrameCountExcept(sp(::user::interaction) pwndExcept)
    {
-      ::user::interaction_ptr_array wnda = Application.frames();
+      ::user::interaction_spa wnda = Application.frames();
       int32_t iCount = 0;
       for(int32_t i = 0; i < wnda.get_size(); i++)
       {
@@ -585,7 +585,7 @@ namespace userex
 
    int32_t userex::GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept)
    {
-      ::user::interaction_ptr_array wnda = Application.frames();
+      ::user::interaction_spa wnda = Application.frames();
       int32_t iCount = 0;
       for(int32_t i = 0; i < wnda.get_size(); i++)
       {
@@ -604,7 +604,7 @@ namespace userex
 
    int32_t userex::GetVisibleFrameCount()
    {
-      ::user::interaction_ptr_array wnda = Application.frames();
+      ::user::interaction_spa wnda = Application.frames();
       int32_t iCount = 0;
       for(int32_t i = 0; i < wnda.get_size(); i++)
       {

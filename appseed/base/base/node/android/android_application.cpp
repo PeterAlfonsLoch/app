@@ -502,7 +502,7 @@ if(__get_module_state()->m_pmapHWND == NULL)
       sp(::user::interaction) pwnd = ::window_from_handle((oswindow) pdata);
       if(pwnd != NULL)
          return pwnd;
-      user::interaction_ptr_array wndptra = System.frames();
+      user::interaction_spa wndptra = System.frames();
       for(int32_t i = 0; i < wndptra.get_count(); i++)
       {
          if(wndptra[i].get_safe_handle() == (oswindow) pdata)

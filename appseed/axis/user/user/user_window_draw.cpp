@@ -38,7 +38,7 @@ namespace user
       
       keep<bool> keepRender(&m_bRender, true, false, true);
       
-      ::user::interaction_ptr_array wndpa(get_app());
+      ::user::interaction_spa wndpa(get_app());
       
       wndpa = get_wnda();
       

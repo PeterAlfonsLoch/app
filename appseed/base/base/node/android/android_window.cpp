@@ -1618,7 +1618,7 @@ restart_mouse_hover_check:
             }
          }
          user::oswindow_array hwnda;
-         user::interaction_ptr_array wnda(get_app());
+         user::interaction_spa wnda(get_app());
          wnda = System.frames();
          for(int32_t i = 0; i < hwnda.get_size(); i++)
          {

@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      user::interaction_ptr_array *                  m_puiptra;
+      user::interaction_spa *                  m_puiptra;
       ::user::interaction::timer_array *  m_ptimera;
 
 

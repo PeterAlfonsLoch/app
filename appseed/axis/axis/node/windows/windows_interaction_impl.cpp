@@ -1375,7 +1375,7 @@ namespace windows
             }
          }
          user::oswindow_array oswindowa;
-         user::interaction_ptr_array wnda(get_app());
+         user::interaction_spa wnda(get_app());
          wnda = System.frames();
          oswindowa = wnda.get_hwnda();
          user::window_util::SortByZOrder(oswindowa);

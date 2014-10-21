@@ -3225,7 +3225,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    sp(::user::interaction) application::uie_from_point(point pt)
    {
 
-      user::interaction_ptr_array wnda = frames();
+      user::interaction_spa wnda = frames();
 
       user::oswindow_array oswindowa;
 

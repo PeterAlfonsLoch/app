@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      interaction_ptr_array  m_uiptraHold;
+      interaction_spa  m_uiptraHold;
 
 
       place_holder(sp(::aura::application) papp);

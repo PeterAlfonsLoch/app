@@ -96,54 +96,66 @@ namespace user
 
       };
 
+      // idle update of frame ::fontopus::user interface
+      enum IdleFlags
+      {
 
-      static bool             g_bFullScreenAlt;
-      bool                    m_bAutoWindowFrame;
-      bool                    m_bWindowFrame;
-      bool                    m_bLayered;
-      int32_t                     m_iFrameData;
+         idleMenu = 1,
+         idleTitle = 2,
+         idleNotify = 4,
+         idleLayout = 8
 
-
-      ::id           m_idHelp;         // xxx mrs
-      sp(impact_system)           m_pdocumenttemplate;
-
-
+      };
 
 
-      int32_t m_nWindow;  // general purpose interaction_impl number - display as ":n"
+      static bool                g_bFullScreenAlt;
+      bool                       m_bAutoWindowFrame;
+      bool                       m_bWindowFrame;
+      bool                       m_bLayered;
+      int32_t                    m_iFrameData;
+
+      ::id                       m_idHelp;         // xxx mrs
+      impact_system *            m_pdocumenttemplate;
+
+      int32_t                    m_nWindow;  // general purpose interaction_impl number - display as ":n"
       // -1 => unknown, 0 => only interaction_impl viewing ::user::document
       // 1 => first of many windows viewing ::user::document, 2=> second
 
-      HMENU m_hMenuDefault;       // default menu resource for this frame
-      HACCEL m_hAccelTable;       // accelerator table
-      uint32_t m_dwPromptContext;    // current help prompt context for message box
-      bool m_bHelpMode;           // if TRUE, then Shift+F1 help mode is active
-      sp(::user::frame_window) m_pNextFrameWnd; // next frame_window in cast global list
-      rect m_rectBorder;         // for OLE border space negotiation
+      HMENU                      m_hMenuDefault;       // default menu resource for this frame
+      HACCEL                     m_hAccelTable;       // accelerator table
+      uint32_t                   m_dwPromptContext;    // current help prompt context for message box
+      bool                       m_bHelpMode;           // if TRUE, then Shift+F1 help mode is active
+      ::user::frame_window *     m_pNextFrameWnd; // next frame_window in cast global list
+      rect                       m_rectBorder;         // for OLE border space negotiation
 
-      pointer_list m_listControlBars; // array of all control bars that have this
-      // interaction_impl as their dock site
-      int32_t m_nShowDelay;           // SW_ command for delay show/hide
+      pointer_list               m_listControlBars; // array of all control bars that have this interaction_impl as their dock site
+      int32_t                    m_nShowDelay;           // SW_ command for delay show/hide
 
-      bool m_bFrameMoveEnable;
+      bool                       m_bFrameMoveEnable;
 
 
-      string m_strMatterHelp;             // Help ID (0 for none, see HID_AXIS_RESOURCE)
-      UINT m_nIDTracking;         // tracking command ID or string IDS
-      UINT m_nIDLastMessage;      // last displayed message string IDS
-      sp(::user::impact) m_pViewActive;       // current active ::user::impact
+      string                     m_strMatterHelp;             // Help ID (0 for none, see HID_AXIS_RESOURCE)
+      UINT                       m_nIDTracking;         // tracking command ID or string IDS
+      UINT                       m_nIDLastMessage;      // last displayed message string IDS
+      ::user::impact *           m_pviewActive;       // current active ::user::impact
       bool (CALLBACK* m_lpfnCloseProc)(sp(::user::frame_window) pFrameWnd);
-      UINT m_cModalStack;         // BeginModalState depth
-      comparable_array < sp(::user::interaction), sp(::user::interaction) > m_uiptraDisable;       // windows disabled because of BeginModalState
-      HMENU m_hMenuAlt;           // menu to update to (NULL means default)
-      string m_strTitle;         // default title (original)
-      bool m_bInRecalcLayout;     // avoid recursion in layout
-      sp(type) m_pFloatingFrameClass;
-      static const uint32_t dwDockBarMap[4][2];
+      UINT                       m_cModalStack;         // BeginModalState depth
+      comparable_array < ::user::interaction * > m_uiptraDisable;       // windows disabled because of BeginModalState
+      HMENU                      m_hMenuAlt;           // menu to update to (NULL means default)
+      string                     m_strTitle;         // default title (original)
+      bool                       m_bInRecalcLayout;     // avoid recursion in layout
+      sp(type)                   m_pFloatingFrameClass;
+      static const uint32_t      dwDockBarMap[4][2];
+
+      UINT                       m_nIdleFlags;          // set of bit flags for idle processing
 
 
       frame_window();
       virtual ~frame_window();
+
+      void CommonConstruct();
+
+
 
 
       virtual void SetBorderRect(const RECT & rect);
@@ -233,20 +245,6 @@ namespace user
       void ShowOwnedWindows(bool bShow);
 
 
-      /*
-      virtual bool WfiOnMove(bool bTracking);
-      virtual bool WfiOnSize(bool bTracking);
-
-      virtual void WfiOnClose();
-      virtual void WfiOnMaximize();
-      virtual void WfiOnMinimize();
-      virtual void WfiOnRestore();
-
-      virtual bool DeferFullScreen(bool bFullScreen, bool bRestore);
-      */
-
-      // Overridables
-//      virtual void OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState);
       virtual sp(::user::interaction) GetMessageBar();
 
       // border space negotiation
@@ -265,12 +263,6 @@ namespace user
       virtual HACCEL GetDefaultAccelerator();
       virtual void pre_translate_message(signal_details * pobj);
 
-      // idle update of frame ::fontopus::user interface
-      enum IdleFlags
-      {
-         idleMenu = 1, idleTitle = 2, idleNotify = 4, idleLayout = 8
-      };
-      UINT m_nIdleFlags;          // set of bit flags for idle processing
       virtual void DelayUpdateFrameMenu(HMENU hMenuAlt);
       void DelayUpdateFrameTitle();
       void DelayRecalcLayout(bool bNotify = TRUE);
@@ -339,11 +331,6 @@ namespace user
 
 
 
-      void CommonConstruct();
-
-
-
-
 
       virtual void _000OnDraw(::draw2d::graphics * pdc);
 
@@ -351,37 +338,9 @@ namespace user
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
 
-      //      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
-
-      //      void OnUpdateControlBarMenu(cmd_ui * pcmdui);
-      //      bool OnBarCheck(UINT nID);
-      //      virtual void install_message_handling(::message::dispatch * pinterface);
-
-
-      //#ifdef DEBUG
-      //      virtual void assert_valid() const;
-      //      virtual void dump(dump_context & dumpcontext) const;
-      //#endif
-
-
-      // idle update of frame ::fontopus::user interface
-      //    enum IdleFlags
-      //      { idleMenu = 1, idleTitle = 2, idleNotify = 4, idleLayout = 8 };
-      //      UINT m_nIdleFlags;          // set of bit flags for idle processing
-      //      virtual void DelayUpdateFrameMenu(HMENU hMenuAlt);
-      //      void DelayUpdateFrameTitle();
-      //      void DelayRecalcLayout(bool bNotify = TRUE);
-
-
-
       sp(::user::interaction) WindowDataGetWnd();
-      //      virtual bool pre_create_window(::user::create_struct& cs);
 
 
-      friend class ::user::interaction;  // for access to m_bModalDisable
-      friend class BaseReBar; // for access to m_bInRecalcLayout
-
-      //    DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI);
       DECL_GEN_SIGNAL(_001OnSetFocus);
       DECL_GEN_SIGNAL(_001OnSize);

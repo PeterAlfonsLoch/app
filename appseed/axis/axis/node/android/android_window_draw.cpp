@@ -420,7 +420,7 @@ namespace android
 
       get_wnda(hwnda);
 
-      user::interaction_ptr_array wndpa(get_app());
+      user::interaction_spa wndpa(get_app());
 
       get_wnda(wndpa);
 
@@ -1030,7 +1030,7 @@ throw not_implemented(get_app());
    }
 
 
-   void window_draw::get_wnda(user::interaction_ptr_array & wndpa)
+   void window_draw::get_wnda(user::interaction_spa & wndpa)
    {
 
       mutex_lock sl(user_mutex(), true);

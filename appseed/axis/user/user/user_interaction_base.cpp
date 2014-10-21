@@ -35,10 +35,10 @@ namespace user
    }
 
 
-   void interaction_base::TwfGetWndArray(::user::interaction_ptr_array & wndpa)
+   void interaction_base::TwfGetWndArray(::user::interaction_spa & wndpa)
    {
 
-      wndpa = *dynamic_cast < ::user::interaction_ptr_array * >(get_app());
+      wndpa = *dynamic_cast < ::user::interaction_spa * >(get_app());
 
    }
 
@@ -46,7 +46,7 @@ namespace user
    void interaction_base::TwfGetWndArray(::user::oswindow_array & oswindowa)
    {
 
-      ::user::interaction_ptr_array & wndpa = *dynamic_cast < ::user::interaction_ptr_array * >(get_app());
+      ::user::interaction_spa & wndpa = *dynamic_cast < ::user::interaction_spa * >(get_app());
 
       oswindowa = wndpa.get_hwnda();
 

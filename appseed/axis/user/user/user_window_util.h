@@ -14,16 +14,31 @@ namespace user
       void top_windows_by_z_order();
    };
 
+   class CLASS_DECL_AXIS interaction_ptra:
+      virtual public ptr_array < ::user::interaction >
+   {
+   public:
 
-   class CLASS_DECL_AXIS interaction_ptr_array :
+      interaction_ptra();
+      interaction_ptra(const interaction_ptra & array);
+      interaction_ptra(interaction_ptra && array);
+
+
+      interaction_ptra & operator = (const interaction_ptra & array);
+      interaction_ptra & operator = (interaction_ptra && array);
+
+   };
+
+
+   class CLASS_DECL_AXIS interaction_spa :
       virtual public spa(::user::interaction)
    {
    public:
 
 
-      interaction_ptr_array(sp(::aura::application) papp);
-      interaction_ptr_array(const ptr_array < ::user::interaction > & a);
-      interaction_ptr_array(const ::user::interaction_ptr_array & a)
+      interaction_spa(sp(::aura::application) papp);
+      interaction_spa(const ptr_array < ::user::interaction > & a);
+      interaction_spa(const ::user::interaction_spa & a)
       {
 
          copy(a);
@@ -32,7 +47,7 @@ namespace user
 
 #ifdef MOVE_SEMANTICS
 
-      interaction_ptr_array(const ::user::interaction_ptr_array && a)
+      interaction_spa(const ::user::interaction_spa && a)
       {
 
          copy(a);
@@ -50,7 +65,7 @@ namespace user
       void send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
       void send_message_to_descendants(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0, bool bRecursive = true);
 
-      interaction_ptr_array & operator = (const interaction_ptr_array & a);
+      interaction_spa & operator = (const interaction_spa & a);
 
       };
 
@@ -96,10 +111,10 @@ namespace user
    {
    public:
       static void ContraintPosToParent(oswindow oswindow);
-      //static void EnumChildren(::window_sp pwnd, interaction_ptr_array & wndpa);
+      //static void EnumChildren(::window_sp pwnd, interaction_spa & wndpa);
       static void EnumChildren(oswindow oswindow, oswindow_array & oswindowa);
-      /*static void ExcludeChild(interaction_ptr_array & wndpa);*/
-      /*static void SortByZOrder(interaction_ptr_array & wndpa);*/
+      /*static void ExcludeChild(interaction_spa & wndpa);*/
+      /*static void SortByZOrder(interaction_spa & wndpa);*/
       static void SortByZOrder(oswindow_array & oswindowa);
       static HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);
       static void ExcludeChildren(oswindow oswindow, HRGN hrgn, POINT ptOffset);

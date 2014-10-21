@@ -377,7 +377,7 @@ namespace user
    // to the interaction_impl array wndpa. The top
    // windows come first in the enumeration.
 
-   /*void window_util::EnumChildren(::window_sp pwnd, interaction_ptr_array & wndpa)
+   /*void window_util::EnumChildren(::window_sp pwnd, interaction_spa & wndpa)
    {
    if(!::IsWindow(pwnd->GetSafeoswindow_()))
    return;
@@ -430,12 +430,12 @@ namespace user
    // have a permanent interaction_impl associated object
    // and that all interaction_impl array pointers
    // are pointers to permanent objects.
-   /*void window_util::SortByZOrder(interaction_ptr_array & wndpa)
+   /*void window_util::SortByZOrder(interaction_spa & wndpa)
    {
    if(wndpa.get_size() <= 0)
    return;
 
-   interaction_ptr_array wndpa2;
+   interaction_spa wndpa2;
 
    ::window_sp pwnd = wndpa[0];
 
@@ -451,8 +451,8 @@ namespace user
    pwndChild = pwndChild->GetWindow(GW_HWNDNEXT);
    }
 
-   interaction_ptr_array wndpa3;
-   interaction_ptr_array wndpa4;
+   interaction_spa wndpa3;
+   interaction_spa wndpa4;
 
    int32_t i;
    for( i = 0; i < wndpa2.get_size(); i++)
@@ -475,7 +475,7 @@ namespace user
 
    }*/
 
-   /*void window_util::ExcludeChild(interaction_ptr_array & wndpa)
+   /*void window_util::ExcludeChild(interaction_spa & wndpa)
    {
 
    for(int32_t i = 0; i < wndpa.get_size();)
@@ -882,6 +882,39 @@ namespace user
 
 
 
+   template < class TYPE,class ARRAY_TYPE >
+   interaction_ptra::
+      interaction_ptra()
+   {
+   }
+
+   
+   interaction_ptra::
+      interaction_ptra(const interaction_ptra & a)
+   {
+      this->operator = (a);
+   }
+
+   interaction_ptra::
+      interaction_ptra(interaction_ptra && a)
+   {
+      this->operator = (a);
+   }
+
+   interaction_ptra & interaction_ptra::
+      operator = (const interaction_ptra & a)
+   {
+      ptr_array < ::user::interaction >::operator = (a);
+      return *this;
+   }
+
+
+   interaction_ptra & interaction_ptra::
+      operator = (interaction_ptra && a)
+   {
+      ptr_array < ::user::interaction >::operator = (a);
+      return *this;
+   }
 
 
 
@@ -893,13 +926,13 @@ namespace user
 
 
 
-      interaction_ptr_array::interaction_ptr_array(sp(::aura::application) papp) :
+      interaction_spa::interaction_spa(sp(::aura::application) papp) :
       element(papp)
    {
 
    }
 
-   interaction_ptr_array::interaction_ptr_array(const ptr_array < ::user::interaction > & ptra)
+   interaction_spa::interaction_spa(const ptr_array < ::user::interaction > & ptra)
    {
 
     for(index i = 0; i < ptra.get_count(); i++)
@@ -911,7 +944,7 @@ namespace user
 
    }
 
-   sp(::user::interaction) interaction_ptr_array::find_first_typed(sp(type) info)
+   sp(::user::interaction) interaction_spa::find_first_typed(sp(type) info)
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
@@ -923,7 +956,7 @@ namespace user
       return NULL;
    }
 
-   sp(::user::interaction) interaction_ptr_array::find_first(oswindow oswindow)
+   sp(::user::interaction) interaction_spa::find_first(oswindow oswindow)
    {
 
       for(int32_t i = 0; i < this->get_size(); i++)
@@ -941,7 +974,7 @@ namespace user
    }
 
 
-         interaction_ptr_array & interaction_ptr_array::operator = (const interaction_ptr_array & a)
+         interaction_spa & interaction_spa::operator = (const interaction_spa & a)
       {
 
          copy(a);
@@ -952,7 +985,7 @@ namespace user
 
 
 
-   oswindow_array interaction_ptr_array::get_hwnda()
+   oswindow_array interaction_spa::get_hwnda()
    {
 
       oswindow_array oswindowa;
@@ -969,7 +1002,7 @@ namespace user
    }
 
 
-   void interaction_ptr_array::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   void interaction_spa::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
@@ -983,7 +1016,7 @@ namespace user
       }
    }
 
-   void interaction_ptr_array::send_message_to_descendants(UINT uiMessage, WPARAM wparam, LPARAM lparam, bool bRecursive)
+   void interaction_spa::send_message_to_descendants(UINT uiMessage, WPARAM wparam, LPARAM lparam, bool bRecursive)
    {
       for(int32_t i = 0; i < this->get_size(); i++)
       {
