@@ -132,14 +132,14 @@ namespace nature
 
    void appearance_view::_001OnEditAdd(signal_details * pobj)
    {
-      sp(::filemanager::folder_selection_list_view) pview =  (get_view_uie().m_p);
+      sp(::filemanager::folder_selection_list_view) pview = get_view_uie();
       pview->FolderAdd();
       pobj->m_bRet = true;
    }
 
    void appearance_view::_001OnEditRemove(signal_details * pobj)
    {
-      sp(::filemanager::folder_selection_list_view) pview =  (get_view_uie().m_p);
+      sp(::filemanager::folder_selection_list_view) pview = get_view_uie();
       pview->FolderRemove();
       pobj->m_bRet = true;
    }
