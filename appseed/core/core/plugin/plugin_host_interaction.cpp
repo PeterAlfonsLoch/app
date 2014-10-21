@@ -215,7 +215,7 @@ namespace plugin
 
    }
 
-   sp(::user::interaction) host_interaction::get_os_focus_uie()
+   ::user::interaction * host_interaction::get_os_focus_uie()
    {
       return Application.window_from_os_data(m_pplugin->get_host_window());
    }
