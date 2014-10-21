@@ -164,7 +164,7 @@ signal::~signal()
    {
       try
       {
-         m_delegatea[i].get_signalizable()->unregister_signal(this);
+         m_delegatea[i]->get_signalizable()->unregister_signal(this);
       }
       catch(...)
       {
@@ -179,7 +179,7 @@ void signal::emit(signal_details * pobj)
    {
       for(index i = m_delegatea.get_size() - 1; i >= 0 ; i++)
       {
-         m_delegatea[i].emit(NULL);
+         m_delegatea[i]->emit(NULL);
       }
    }
    else

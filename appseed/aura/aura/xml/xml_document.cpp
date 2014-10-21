@@ -114,12 +114,12 @@ namespace xml
       for( ; i < m_nodea.get_size(); i++)
       {
 
-         ::xml::node & node = m_nodea[i];
+         ::xml::node & node = m_nodea(i);
 
          e_node e_type = node.m_etype;
 
          if(e_type == node_element || e_type == node_text)
-            return m_nodea(i);
+            return m_nodea[i];
 
       }
 
