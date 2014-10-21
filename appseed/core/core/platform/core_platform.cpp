@@ -277,7 +277,7 @@ namespace core
          
          createcontextBergedge->m_bMakeVisible = false;
 
-         m_pbergedgedocument =  (m_ptemplate_bergedge->open_document_file(createcontextBergedge).m_p);
+         m_pbergedgedocument = m_ptemplate_bergedge->open_document_file(createcontextBergedge);
 
          //m_pbergedgedocument->m_pauraapp->m_pbasesession->m_pcoreplatform = this;
 
@@ -299,7 +299,7 @@ namespace core
 
             createcontextPlatform->m_puiParent = m_pbergedgedocument->get_bergedge_view();
 
-            m_pplatformdocument  =  (m_ptemplate_platform->open_document_file(createcontextPlatform).m_p);
+            m_pplatformdocument = m_ptemplate_platform->open_document_file(createcontextPlatform);
 
             m_pplatformdocument->m_pbergedgedocument =  m_pbergedgedocument;
 

@@ -37,7 +37,7 @@ namespace filemanager
       DECL_GEN_SIGNAL(_001OnInitialUpdate);
 
       
-      void on_update(sp(::user::impact) pSender,LPARAM lHint,object * pHint);
+      void on_update(::user::impact * pSender,LPARAM lHint,object * pHint);
       sp(operation_document) get_document();
 
 

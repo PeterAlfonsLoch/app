@@ -53,7 +53,7 @@ namespace nature
    }
 
 
-   void appearance_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint)
+   void appearance_view::on_update(::user::impact * pSender, LPARAM lHint, object* pHint)
    {
       
       UNREFERENCED_PARAMETER(pSender);
@@ -116,7 +116,7 @@ namespace nature
    {
       ::filemanager::filemanager & filemanager = Platform.filemanager();
       sp(::filemanager::folder_selection_list_view) pview;
-      pview =  (::user::impact::create_view(System.type_info < ::filemanager::folder_selection_list_view > (), get_document(), null_rect(),this,  pcreatordata->m_id).m_p);
+      pview = ::user::impact::create_view(System.type_info < ::filemanager::folder_selection_list_view > (), get_document(), null_rect(),this,  pcreatordata->m_id);
       switch(pcreatordata->m_id)
       {
       case view_image_folder:

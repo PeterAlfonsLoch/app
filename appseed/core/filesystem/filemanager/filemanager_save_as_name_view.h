@@ -21,7 +21,7 @@ namespace filemanager
       virtual void _001OnAfterChangeText(::action::context actioncontext);
 
 
-      void on_update(sp(::user::impact) pSender,LPARAM lHint,object* phint);
+      void on_update(::user::impact * pSender,LPARAM lHint,object* phint);
 
 
       virtual void browse_sync(::action::context actioncontext);

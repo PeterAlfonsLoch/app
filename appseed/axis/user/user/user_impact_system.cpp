@@ -9,6 +9,19 @@
 namespace user
 {
 
+   
+   impact_system::on_open_document::on_open_document()
+   {
+
+   }
+
+
+   impact_system::on_open_document::~on_open_document()
+   {
+
+   }
+
+
    impact_system::impact_system(sp(::aura::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
       element(papp)
    {

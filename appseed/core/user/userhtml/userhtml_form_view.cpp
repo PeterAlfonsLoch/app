@@ -86,7 +86,7 @@ void html_form_view::_001OnInitialUpdate(signal_details * pobj)
 }
 
 
-void html_form_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
+void html_form_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);

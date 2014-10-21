@@ -127,7 +127,7 @@ namespace filemanager
             virtual count _001GetItemCount();
             virtual void _001SearchGetItemText(::user::list_item * pitem);
 
-            virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
+            virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
 
             virtual void _001OnClick(uint_ptr nFlags, point point);
 

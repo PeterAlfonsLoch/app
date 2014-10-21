@@ -41,7 +41,7 @@ namespace filemanager
    }
 
 
-   void tab_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
+   void tab_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
    {
 
       impact::on_update(pSender, lHint, phint);

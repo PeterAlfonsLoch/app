@@ -118,7 +118,7 @@ namespace userfs
    }
 #endif //DEBUG
 
-   void list::on_update(sp(::user::impact) pSender, LPARAM lHint, object * phint)
+   void list::on_update(::user::impact * pSender, LPARAM lHint, object * phint)
    {
 
 

@@ -176,8 +176,6 @@ namespace core
       // document template to it.
       virtual void on_request(sp(::create_context) pline);
 
-      virtual void defer_add_document_template(sp(::user::impact_system) ptemplate);
-
       // overrides for implementation
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
       virtual void process_window_procedure_exception(::exception::base* e,signal_details * pobj);
@@ -360,7 +358,7 @@ namespace core
       // registered with the doc manager.
       int32_t get_open_document_count();
 
-      bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument);
+      bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::user::impact_system * ptemplate,::user::document * pdocument);
 
       void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -505,7 +503,7 @@ namespace core
       //////////////////////////////////////////////////////////////////////////////////////////////////
       // System/System
       //
-      sp(::user::document) place_hold(sp(::user::interaction) pui);
+      ::user::document * place_hold(::user::interaction * pui);
 
       /*
       virtual ::count get_monitor_count();
@@ -542,8 +540,6 @@ namespace core
 
       //virtual void on_request(sp(::create_context) pcreatecontext);
 
-      //sp(::user::document) _001OpenDocumentFile(var varFile);
-
       //sp(::aura::application) get_system();
 
       //virtual sp(::core::application) assert_running(const char * pszAppdId);
@@ -577,6 +573,15 @@ namespace core
 
       //   virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
       //   virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle = MB_OK);
+
+      virtual void add_document_template(::user::impact_system * ptemplate);
+      virtual void close_all_documents(bool bEndSession,::user::interaction * pwndExcept = NULL);
+
+      virtual ::user::document * open_document_file(const char * lpszFileName);
+
+
+      virtual int32_t GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept);
+      virtual int32_t GetVisibleFrameCount();
 
 
    };

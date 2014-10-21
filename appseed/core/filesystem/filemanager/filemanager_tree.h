@@ -124,7 +124,7 @@ namespace filemanager
 
       void RenameFile(int32_t iLine, string & str, ::action::context actioncontext);
 
-      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
 
 
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);

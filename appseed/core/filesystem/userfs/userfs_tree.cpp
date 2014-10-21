@@ -46,7 +46,7 @@ namespace userfs
 
    }
 
-   void tree::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
+   void tree::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

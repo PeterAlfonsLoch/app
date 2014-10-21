@@ -188,7 +188,7 @@ namespace filemanager
          }
 
 
-         void list_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
+         void list_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
          {
             UNREFERENCED_PARAMETER(pSender);
             UNREFERENCED_PARAMETER(lHint);

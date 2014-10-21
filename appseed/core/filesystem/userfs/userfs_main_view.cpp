@@ -63,9 +63,9 @@ namespace userfs
 
    }
 
-   sp(::user::document) main_view::get_document()
+   ::user::document * main_view::get_document()
    {
-      return  (::user::split_view::get_document());
+      return  ::user::split_view::get_document();
    }
 
 

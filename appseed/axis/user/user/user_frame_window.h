@@ -77,7 +77,7 @@ namespace user
 
 
       bool                          m_bMakeVisible;
-      sp(::user::document)     m_pdoc;
+      ::user::document *            m_pdoc;
 
 
    };
@@ -205,7 +205,7 @@ namespace user
 
 
       // Attributes
-      virtual sp(::user::document) GetActiveDocument();
+      virtual ::user::document * GetActiveDocument();
 
       // Active child ::user::impact maintenance
       sp(::user::impact) GetActiveView() const;           // active ::user::impact or NULL
@@ -226,7 +226,7 @@ namespace user
       // Operations
       virtual void layout();
       virtual void ActivateFrame(int32_t nCmdShow = -1);
-      virtual void InitialUpdateFrame(sp(::user::document) pDoc, bool bMakeVisible);
+      virtual void InitialUpdateFrame(::user::document * pDoc, bool bMakeVisible);
       virtual void InitialFramePosition(bool bForceRestore = false);
       void set_title(const char * lpszTitle);
       string get_title() const;

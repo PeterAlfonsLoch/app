@@ -7,23 +7,23 @@ namespace user
 
 
    template < class VIEW >
-   inline sp(VIEW) impact::create_view(::user::document * pdoc,const RECT & rect, sp(::user::interaction) pwndParent,id id,sp(::user::interaction) pviewLast)
+   inline VIEW * impact::create_view(::user::document * pdoc,const RECT & rect, ::user::interaction * pwndParent,id id, ::user::interaction * pviewLast)
    {
-      return create_view(System.type_info < VIEW >(), pdoc, rect, pwndParent, id, pviewLast);
+      return dynamic_cast < VIEW * > (create_view(System.type_info < VIEW >(), pdoc, rect, pwndParent, id, pviewLast));
    }
 
 
    template < class VIEW >
-   inline sp(VIEW) impact::create_view(const RECT & rect,::user::interaction * pwndParent,id id,sp(::user::interaction) pviewLast)
+   inline VIEW * impact::create_view(const RECT & rect,::user::interaction * pwndParent,id id,::user::interaction * pviewLast)
    {
 
-      return create_view < VIEW >(NULL, rect, pwndParent, id, pviewLast);
+      return dynamic_cast < VIEW * > (create_view < VIEW >(NULL,rect,pwndParent,id,pviewLast));
 
    }
 
 
    template < class VIEW >
-   inline sp(VIEW) impact::create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast)
+   inline VIEW * impact::create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast)
    {
 
       VIEW * pview = create_view < VIEW >(pcreatordata->m_rectCreate, pcreatordata->m_pholder, pcreatordata->m_id, pviewLast);

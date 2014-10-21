@@ -82,7 +82,7 @@ namespace filemanager
    }
 
 
-   void operation_list_view::on_update(sp(::user::impact) pSender,LPARAM lHint,object * pHint)
+   void operation_list_view::on_update(::user::impact * pSender,LPARAM lHint,object * pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(pHint);

@@ -52,7 +52,7 @@ namespace filemanager
       
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::user::impact
-      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(::user::create_struct& cs);
 
       

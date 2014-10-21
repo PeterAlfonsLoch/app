@@ -13,7 +13,7 @@ namespace filemanager
 
 
       ::draw2d::font_sp                   m_spfont;
-      sp(::user::document)                m_pdocumentSave;
+      ::user::document *                  m_pdocumentSave;
       callback   *                        m_pfilemanager;
       sp(manager)                         m_pmanager;
       sp(manager)                         m_pmanagerMain;

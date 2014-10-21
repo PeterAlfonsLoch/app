@@ -19,7 +19,7 @@ namespace filemanager
 
       }
 
-   void save_as_view::on_update(sp(::user::impact) pSender,LPARAM lHint,object* phint)
+   void save_as_view::on_update(::user::impact * pSender,LPARAM lHint,object* phint)
    {
       ::user::impact::on_update(pSender,lHint,phint);
       if(phint != NULL)

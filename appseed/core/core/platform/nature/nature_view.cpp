@@ -69,7 +69,7 @@ namespace nature
    }
 
 
-   void view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
+   void view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -205,9 +205,11 @@ namespace nature
 
 
 
-   sp(::user::document) view::get_document()
+   ::user::document * view::get_document()
    {
-      return  (::user::impact::get_document());
+
+      return ::user::impact::get_document();
+
    }
 
 

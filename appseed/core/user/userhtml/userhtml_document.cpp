@@ -133,17 +133,25 @@ void html_document::soft_reload()
    update_all_views(NULL, 0, &uh);
 }
 
+
 ::html::data * html_document::get_html_data()
 {
+   
    sp(::user::document) pdoc = (this);
+
    if(pdoc->get_data(this) == NULL)
    {
+
       set_data(this, get_typed_view < html_form > ()->get_html_data());
       get_html_data()->m_pcallback = this;
       get_html_data()->m_propset["bReplaceEx1"] = true;
+
    }
+
    return pdoc->m_spadata.get < ::html::data >();
+
 }
+
 
 bool html_document::on_simple_update(cmd_ui * pcmdui)
 {

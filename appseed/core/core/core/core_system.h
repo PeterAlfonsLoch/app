@@ -170,7 +170,7 @@ namespace core
       virtual bool map_application_library(const char * pszLibrary);
 
 
-      sp(::user::document) place_hold(sp(::user::interaction) pui);
+      ::user::document * place_hold(::user::interaction * pui);
 
 
 

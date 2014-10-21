@@ -64,7 +64,7 @@ namespace user
       void _001OnTabClick(int32_t iTab);
 
 
-      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(::user::create_struct& cs);
 
       DECL_GEN_SIGNAL(_001OnMenuMessage);

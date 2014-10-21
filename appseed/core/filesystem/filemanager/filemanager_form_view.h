@@ -15,7 +15,7 @@ namespace filemanager
       form_view(sp(::aura::application) papp);
 
 
-      void on_update(sp(::user::impact) pSender,LPARAM lHint,object* phint);
+      void on_update(::user::impact * pSender,LPARAM lHint,object* phint);
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
 

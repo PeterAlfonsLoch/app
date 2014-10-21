@@ -918,7 +918,7 @@ namespace core
 
 
 
-   sp(::user::document) system::place_hold(sp(::user::interaction) pui)
+   ::user::document * system::place_hold(::user::interaction * pui)
    {
 
 

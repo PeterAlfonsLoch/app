@@ -239,16 +239,16 @@ namespace userex
       {
       }
 
-      try
-      {
+      //try
+      //{
 
-         Application.m_pdocmanager.release();
+      //   Application.m_pdocmanager.release();
 
-      }
-      catch(...)
-      {
+      //}
+      //catch(...)
+      //{
 
-      }
+      //}
 
       return true;
 
@@ -481,32 +481,6 @@ namespace userex
 
 
 
-   void userex::add_document_template(sp(::user::impact_system) ptemplate)
-   {
-      if(Application.m_pdocmanager == NULL)
-         Application.m_pdocmanager = canew(::user::document_manager(get_app()));
-      Application.m_pdocmanager->add_document_template(ptemplate);
-   }
-
-
-   void userex::defer_add_document_template(sp(::user::impact_system) ptemplate)
-   {
-      sp(::user::impact_system) puserbasetemplate = (ptemplate);
-
-      if(puserbasetemplate == NULL)
-         throw "should add user base document template";
-
-      add_document_template(puserbasetemplate);
-
-   }
-
-   sp(::user::document) userex::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
-   {
-      ASSERT(Application.m_pdocmanager != NULL);
-      sp(::create_context) cc(allocer());
-      cc->m_spCommandLine->m_varFile = lpszFileName;
-      return (Application.m_pdocmanager->open_document_file(cc));
-   }
 
 
    void  userex::AddToRecentFileList(const char * lpszPathName)
@@ -516,25 +490,6 @@ namespace userex
 
    }
 
-   void  userex::_001CloseAllDocuments(bool bEndSession,::user::interaction * pwndExcept, ::aura::application * papp)
-   {
-      if(Application.m_pdocmanager != NULL)
-      {
-         Application.m_pdocmanager->close_all_documents(bEndSession);
-      }
-
-      // there are cases where destroying the documents may destroy the
-      //  main window of the application.
-      //bool b::core::ContextIsDll = afxContextIsDLL;
-      //if (!b::core::ContextIsDll && papp->m_pcoreapp->GetVisibleFrameCount() <= 0)
-      if(papp != NULL && GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
-      {
-
-         System.post_thread_message(WM_QUIT);
-
-      }
-
-   }
 
 
    ::user::front_end_schema * GetUfeSchema(sp(::aura::application) papp)
@@ -577,58 +532,6 @@ namespace userex
 
 
 
-   int32_t userex::GetVisibleFrameCountExcept(sp(::user::interaction) pwndExcept)
-   {
-      ::user::interaction_spa wnda = Application.frames();
-      int32_t iCount = 0;
-      for(int32_t i = 0; i < wnda.get_size(); i++)
-      {
-         sp(::user::interaction) pwnd = wnda.element_at(i);
-         if(pwnd != NULL &&
-            pwnd != pwndExcept &&
-            pwnd->IsWindowVisible())
-         {
-            iCount++;
-         }
-      }
-      return iCount;
-   }
-
-   int32_t userex::GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept)
-   {
-      ::user::interaction_spa wnda = Application.frames();
-      int32_t iCount = 0;
-      for(int32_t i = 0; i < wnda.get_size(); i++)
-      {
-         sp(::user::interaction) pwnd = wnda.element_at(i);
-         if(pwnd != NULL &&
-            pwnd != pwndExcept &&
-            pwnd->IsWindow() &&
-            pwnd->IsWindowVisible() &&
-            !(pwnd->GetStyle() & WS_CHILD))
-         {
-            iCount++;
-         }
-      }
-      return iCount;
-   }
-
-   int32_t userex::GetVisibleFrameCount()
-   {
-      ::user::interaction_spa wnda = Application.frames();
-      int32_t iCount = 0;
-      for(int32_t i = 0; i < wnda.get_size(); i++)
-      {
-         sp(::user::interaction) pwnd = wnda.element_at(i);
-         if(pwnd != NULL
-            && pwnd->IsWindow()
-            && pwnd->IsWindowVisible())
-         {
-            iCount++;
-         }
-      }
-      return iCount;
-   }
 
    void userex::VmsGuiiOnAppLanguage(signal_details * pobject)
    {
@@ -748,7 +651,7 @@ namespace userex
    }
 
 
-   sp(::user::document) userex::hold(sp(::user::interaction) pui)
+   ::user::document * userex::hold(sp(::user::interaction) pui)
    {
 
       sp(::create_context) createcontext(pui->allocer());
@@ -756,7 +659,7 @@ namespace userex
       createcontext->m_bMakeVisible    = false;
       createcontext->m_bHold           = false;
 
-      sp(simple_document) pdoc =  (m_ptemplatePlaceHolder->open_document_file(createcontext));
+      sp(simple_document) pdoc = m_ptemplatePlaceHolder->open_document_file(createcontext);
 
       sp(::user::place_holder) pholder = pdoc->get_typed_view < ::user::place_holder  >();
 

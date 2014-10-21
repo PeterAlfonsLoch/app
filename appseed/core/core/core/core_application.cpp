@@ -454,6 +454,17 @@ namespace core
 
       try
       {
+
+         m_pdocmanager.release();
+
+      }
+      catch(...)
+      {
+         
+      }
+
+      try
+      {
          if(!is_system())
          {
             Platform.unregister_bergedge_application(this);
@@ -548,8 +559,6 @@ namespace core
 
       }
 
-      return m_iReturnCode;
-
       try
       {
          ::base::application::exit_instance();
@@ -558,7 +567,8 @@ namespace core
       {
       }
 
-      return 0;
+      return m_iReturnCode;
+
 
    }
 
@@ -1726,7 +1736,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    }
 
    // prompt for file name - used for open and save as
-   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument)
+   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument)
       // if ptemplate==NULL => all document templates
    {
       if(Platform.m_pfilemanager != NULL)
@@ -3404,18 +3414,10 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
       }*/
    }
 
-   void application::defer_add_document_template(sp(::user::impact_system) ptemplate)
-   {
-
-      Platform.userex()->defer_add_document_template(ptemplate);
-
-   }
-
 
    sp(::user::printer) application::get_printer(const char * pszDeviceName)
    {
 
-//      return m_pimpl->get_printer(pszDeviceName);
       return NULL;
 
    }
@@ -3513,17 +3515,12 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
       // hide the application's windows before closing all the documents
       HideApplication();
 
-      // close all documents first
-      //close_all_documents(FALSE);
-
-
-      Platform.userex()->_001CloseAllDocuments(FALSE, pwndExcept, this);
-
-
+      close_all_documents(true, pwndExcept);
 
       return true;
 
    }
+
 
    oswindow application::get_ca2_app_wnd(const char * psz)
    {
@@ -3946,7 +3943,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    }
 
 
-   sp(::user::document) application::place_hold(sp(::user::interaction) pui)
+   ::user::document * application::place_hold(::user::interaction * pui)
    {
 
       return NULL;
@@ -3999,6 +3996,102 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
       return Platform.userex()->simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
 
+   }
+
+
+   void application::add_document_template(::user::impact_system * ptemplate)
+   {
+
+      if(ptemplate == NULL)
+      {
+
+         throw invalid_argument_exception(this,"impact system template should be valid");
+
+         return;
+
+      }
+
+      if(m_pdocmanager == NULL)
+         m_pdocmanager = canew(::user::document_manager(get_app()));
+
+      m_pdocmanager->add_document_template(ptemplate);
+
+   }
+
+
+   ::user::document * application::open_document_file(const char * lpszFileName)
+   {
+      ASSERT(Application.m_pdocmanager != NULL);
+      sp(::create_context) cc(allocer());
+      cc->m_spCommandLine->m_varFile = lpszFileName;
+      return (Application.m_pdocmanager->open_document_file(cc));
+   }
+
+
+   void  application::close_all_documents(bool bEndSession,::user::interaction * pwndExcept)
+   {
+
+      if(m_pdocmanager != NULL)
+      {
+
+         m_pdocmanager->close_all_documents(bEndSession);
+
+      }
+
+      if(bEndSession)
+      {
+
+         // there are cases where destroying the documents may destroy the
+         //  main window of the application.
+         //bool b::core::ContextIsDll = afxContextIsDLL;
+         //if (!b::core::ContextIsDll && papp->m_pcoreapp->GetVisibleFrameCount() <= 0)
+         if(GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
+         {
+
+            System.post_thread_message(WM_QUIT);
+
+         }
+
+      }
+
+   }
+
+
+   int32_t application::GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept)
+   {
+      ::user::interaction_spa wnda = frames();
+      int32_t iCount = 0;
+      for(int32_t i = 0; i < wnda.get_size(); i++)
+      {
+         sp(::user::interaction) pwnd = wnda.element_at(i);
+         if(pwnd != NULL &&
+            pwnd != pwndExcept &&
+            pwnd->IsWindow() &&
+            pwnd->IsWindowVisible() &&
+            !(pwnd->GetStyle() & WS_CHILD))
+         {
+            iCount++;
+         }
+      }
+      return iCount;
+   }
+
+
+   int32_t application::GetVisibleFrameCount()
+   {
+      ::user::interaction_spa wnda = frames();
+      int32_t iCount = 0;
+      for(int32_t i = 0; i < wnda.get_size(); i++)
+      {
+         sp(::user::interaction) pwnd = wnda.element_at(i);
+         if(pwnd != NULL
+            && pwnd->IsWindow()
+            && pwnd->IsWindowVisible())
+         {
+            iCount++;
+         }
+      }
+      return iCount;
    }
 
 

@@ -80,7 +80,7 @@ namespace nature
   //          cc.m_pCurrentDoc = get_document();
     //        cc.m_typeinfoNewView =  System.type_info < ::user::menu_list_view > ();
 
-                                    sp(::user::menu_list_view) pview =  (::user::impact::create_view(System.type_info < ::user::menu_list_view >(),get_document(),null_rect(),pcreatordata->m_pholder,101).m_p);
+            sp(::user::menu_list_view) pview = ::user::impact::create_view(System.type_info < ::user::menu_list_view >(),get_document(),null_rect(),pcreatordata->m_pholder,101);
             if(pview != NULL)
             {
                sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;
@@ -113,7 +113,7 @@ namespace nature
   //          cc.m_pCurrentDoc = get_document();
     //        cc.m_typeinfoNewView =  System.type_info < ::nature::view > ();
 
-                                     sp(::user::interaction) pview =  (::user::impact::create_view(System.type_info < ::nature::view >(),get_document(),null_rect(),pcreatordata->m_pholder,101).m_p);
+            sp(::user::interaction) pview = ::user::impact::create_view(System.type_info < ::nature::view >(),get_document(),null_rect(),pcreatordata->m_pholder,101);
             if(pview != NULL)
             {
                pcreatordata->m_pdoc = get_document();
@@ -123,7 +123,7 @@ namespace nature
          break;
       case PaneViewAppearance:
          {
-            sp(::user::document) pdoc = (m_pdoctemplateAppearance->open_new_document());
+            sp(::user::document) pdoc = m_pdoctemplateAppearance->open_new_document();
             if(pdoc != NULL)
             {
                sp(::user::impact) pview = pdoc->get_view();
@@ -177,7 +177,7 @@ namespace nature
       }
    }
 
-   void pane_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint)
+   void pane_view::on_update(::user::impact * pSender, LPARAM lHint, object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

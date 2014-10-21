@@ -26,7 +26,7 @@ namespace userfs
       document(sp(::aura::application) papp);
       virtual ~document();
 
-      sp(::user::document)                                get_document();
+      ::user::document *                                get_document();
 
 
       virtual void assert_valid() const;

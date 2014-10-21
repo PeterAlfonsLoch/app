@@ -25,7 +25,7 @@ namespace nature
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      void on_update(sp(::user::impact) pview, LPARAM lHint, object* pHint);
+      void on_update(::user::impact * pview, LPARAM lHint, object* pHint);
 
       
    #ifdef DEBUG

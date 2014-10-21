@@ -11,9 +11,9 @@ namespace user
    public:
 
 
-      virtual sp(::user::document) open_new_document();
-      virtual sp(::user::document) open_document_file(sp(::create_context) pcreatecontext);
-      virtual sp(::user::document) open_document_file(var varFile = ::var(), bool bMakeVisible = true, sp(::user::interaction) puiParent = NULL);
+      virtual ::user::document * open_new_document();
+      virtual ::user::document * open_document_file(sp(::create_context) pcreatecontext);
+      virtual ::user::document * open_document_file(var varFile = ::var(), bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
 
 
    };

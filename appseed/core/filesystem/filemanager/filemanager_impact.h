@@ -24,7 +24,7 @@ namespace filemanager
       virtual sp(::filemanager::manager_template)     get_filemanager_template();
       virtual sp(::filemanager::data)                 get_filemanager_data();
 
-      void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
+      void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
 
       virtual void browse_sync(::action::context actioncontext);
       virtual void knowledge(const string & strPath, ::action::context actioncontext);

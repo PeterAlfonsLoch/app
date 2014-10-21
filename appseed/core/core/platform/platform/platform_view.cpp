@@ -154,7 +154,7 @@ namespace platform
 
    }
 
-   void view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
+   void view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -259,11 +259,13 @@ namespace platform
 
    }
 
-   sp(::user::document) view::get_document()
+   
+   ::user::document * view::get_document()
    {
-      return  (form_view::get_document());
-   }
 
+      return form_view::get_document();
+
+   }
 
 
    void view::SetScreen(int32_t iScreen)
@@ -322,8 +324,9 @@ namespace platform
 
    void view:: _001OnDraw(::draw2d::graphics * pdc)
    {
+      
       form_view::_001OnDraw(pdc);
-      //      sp(::user::document) pdoc = get_document();
+      
       class imaging & imaging = System.visual().imaging();
 
 

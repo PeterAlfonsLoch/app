@@ -47,11 +47,12 @@ namespace user
       public:
 
 
-         sp(impact_system)                 m_pschema;
-         sp(::user::document)        m_pdocument;
+         sp(impact_system)                   m_pschema;
+         sp(::user::document)                m_pdocument;
          var                                 m_varFile;
 
-
+         on_open_document();
+         virtual ~on_open_document();
 
       };
 

@@ -24,7 +24,7 @@ namespace filemanager
 
       void FileManagerBrowse(const char * lpcwstr, ::action::context actioncontext);
 
-      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
 
 
    };

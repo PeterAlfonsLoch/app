@@ -29,7 +29,7 @@ namespace filemanager
 
 
 
-   void view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
+   void view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
    {
       ::filemanager::impact::on_update(pSender, lHint, phint);
       ::user::split_view::on_update(pSender, lHint, phint);

@@ -71,9 +71,6 @@ namespace userex
       virtual sp(type) controltype_to_typeinfo(::user::control::e_type type);
 
 
-      virtual int32_t GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept);
-
-
       virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);
 
       virtual void AddToRecentFileList(const char * lpszPathName);
@@ -83,17 +80,12 @@ namespace userex
 
       virtual bool finalize();
 
-      virtual void _001CloseAllDocuments(bool bEndSession, ::user::interaction * pwndExcept = NULL, ::aura::application * papp = NULL);
-      void add_document_template(sp(::user::impact_system) ptemplate);
-      virtual sp(::user::document) _vmsguserbaseOpenDocumentFile(const char * lpszFileName);
-
       virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
 
       virtual void _001OnFileNew();
 
 
-      void defer_add_document_template(sp(::user::impact_system) ptemplate);
 
 
 
@@ -101,8 +93,6 @@ namespace userex
 
 
 
-      int32_t GetVisibleFrameCount();
-      int32_t GetVisibleFrameCountExcept(sp(::user::interaction) pwndExcept);
 
       DECL_GEN_SIGNAL(VmsGuiiOnAppLanguage);
 
@@ -120,7 +110,7 @@ namespace userex
       sp(::form_document)   create_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
       sp(::form_document)   create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
       sp(::form_document)   create_child_form(sp(form_view) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
-      sp(::user::document) hold(sp(::user::interaction) pui);
+      ::user::document * hold(sp(::user::interaction) pui);
 
    };
 

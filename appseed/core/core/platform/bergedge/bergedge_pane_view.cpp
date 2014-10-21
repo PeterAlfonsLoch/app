@@ -66,7 +66,7 @@ namespace bergedge
 
    }
 
-   void pane_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint)
+   void pane_view::on_update(::user::impact * pSender, LPARAM lHint, object* pHint)
    {
       ::user::tab_view::on_update(pSender, lHint, pHint);
       if(lHint == 543218)

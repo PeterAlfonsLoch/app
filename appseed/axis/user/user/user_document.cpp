@@ -137,7 +137,7 @@ namespace user
          sp(::user::impact) pview = m_viewptra[index];
          ASSERT_VALID(pview);
          ASSERT_KINDOF(::user::impact, pview);
-         pview->m_spdocument->release();
+         pview->m_pdocument = NULL;
       }
       m_viewptra.remove_all();
    }
@@ -958,28 +958,46 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact operations
 
+   
    void document::add_view(sp(::user::impact) pview)
    {
+
       single_lock sl(&m_mutex, true);
+
       ASSERT_VALID(pview);
+
       ASSERT(pview->::user::impact::get_document() == NULL); // must not be already attached
+
       if (m_viewptra.add_unique(pview))
       {
-         pview->m_spdocument = this;
+
+         pview->m_pdocument = this;
+
          on_changed_view_list();    // must be the last thing done to the document_interface
+
       }
+
    }
+
 
    void document::remove_view(sp(::user::impact) pview)
    {
+      
       single_lock sl(&m_mutex, true);
+
       ASSERT_VALID(pview);
+
       ASSERT(pview->::user::impact::get_document() == this); // must be attached to us
+
       if (m_viewptra.remove(pview) > 0)
       {
-         pview->m_spdocument = NULL;
+
+         pview->m_pdocument = NULL;
+
          on_changed_view_list();    // must be the last thing done to the document_interface
+
       }
+
    }
 
 

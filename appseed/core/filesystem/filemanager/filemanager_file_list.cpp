@@ -82,7 +82,7 @@ namespace filemanager
    #endif //DEBUG
 
 
-   void file_list::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
+   void file_list::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
    {
 
       ::filemanager::impact::on_update(pSender, lHint, phint);

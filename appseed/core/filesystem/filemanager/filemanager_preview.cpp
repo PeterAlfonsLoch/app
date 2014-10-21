@@ -21,7 +21,7 @@ namespace filemanager
    }
 
 
-   void preview::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
+   void preview::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
    {
       ::filemanager::impact::on_update(pSender, lHint, phint);
       if (phint != NULL)

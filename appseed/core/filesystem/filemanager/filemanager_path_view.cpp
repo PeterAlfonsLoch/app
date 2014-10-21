@@ -21,7 +21,7 @@ namespace filemanager
    }
 
 
-   void path_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
+   void path_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
    {
 
       ::filemanager::impact::on_update(pSender, lHint, phint);

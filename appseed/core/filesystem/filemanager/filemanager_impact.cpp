@@ -51,7 +51,7 @@ namespace filemanager
    }
 
 
-   void impact::on_update(sp(::user::impact) psender, LPARAM lhint, object * phint)
+   void impact::on_update(::user::impact * psender, LPARAM lhint, object * phint)
    {
 
       UNREFERENCED_PARAMETER(psender);

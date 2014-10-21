@@ -74,7 +74,7 @@ namespace data
       virtual bool      selection_set(::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
       virtual bool      selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
 
-      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint);
 
 
       virtual void on_fill_children();

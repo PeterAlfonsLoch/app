@@ -1498,10 +1498,10 @@ namespace user
 
    }
 
-   void tree::on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint)
+   void tree::on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint)
    {
 
-      if (pSender.is_null())
+      if (pSender != NULL)
          pSender = this;
 
       for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)

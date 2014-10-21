@@ -21,7 +21,7 @@ namespace filemanager
       virtual ~preview();
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
-      virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
 

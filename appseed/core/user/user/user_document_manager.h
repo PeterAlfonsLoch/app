@@ -56,7 +56,7 @@ namespace user
       virtual void close_all_documents(bool bEndSession); // close documents before exiting
       virtual ::count get_open_document_count();
 
-      virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, sp(::user::impact_system) ptemplate, sp(::user::document) pdocument);
+      virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
       virtual bool OnDDECommand(LPTSTR lpszCommand);
       virtual void _001OnFileNew();

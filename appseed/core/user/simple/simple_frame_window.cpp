@@ -725,7 +725,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       }
 
    }
-   else if(Plat(papp->m_pcoreapp).userex()->GetVisibleTopLevelFrameCountExcept(this) <= 0)
+   else if(Application.GetVisibleTopLevelFrameCountExcept(this) <= 0)
    {
 
       if (!papp->m_pcoreapp->_001CloseApplicationByUser(this))
@@ -1432,15 +1432,7 @@ void simple_frame_window::OnEndSession(bool bEnding)
    if (!bEnding)
       return;
 
-   ::base::application* pApp = &System;
-   if (pApp != NULL && pApp->m_puiMain == this)
-   {
-
-      pApp->m_pcoreapp->close_all_documents(TRUE);
-
-      pApp->exit_instance();
-
-   }
+   Application.close_all_documents(true, NULL);
 
 }
 
@@ -2038,7 +2030,7 @@ bool simple_frame_window::on_create_bars()
 
 
 
-void simple_frame_window::InitialUpdateFrame(sp(::user::document) pDoc,bool bMakeVisible)
+void simple_frame_window::InitialUpdateFrame(::user::document * pDoc,bool bMakeVisible)
 {
 
    ::user::frame_window::InitialUpdateFrame(pDoc,bMakeVisible);

@@ -38,7 +38,7 @@ namespace android
       virtual HINSTANCE GetHinstance();
       bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual sp(::user::document) _001OpenDocumentFile(var varFile);
+      virtual ::user::document * _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew();
 
 

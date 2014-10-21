@@ -47,9 +47,9 @@ namespace filemanager
 
    void folder_list::OnDraw(::draw2d::graphics * pgraphics)
    {
+      
       UNREFERENCED_PARAMETER(pgraphics);
-      //sp(::user::document) pDoc = get_document();
-      // TODO: add draw code here
+      
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -67,7 +67,7 @@ namespace filemanager
    }
 #endif //DEBUG
 
-   void folder_list::on_update(sp(::user::impact) pSender, LPARAM lHint, object * phint) 
+   void folder_list::on_update(::user::impact * pSender, LPARAM lHint, object * phint) 
    {
       ::filemanager::impact::on_update(pSender, lHint, phint);
       if(phint != NULL)

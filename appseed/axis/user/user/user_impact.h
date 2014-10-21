@@ -49,14 +49,14 @@ namespace user
 
 
 
-      sp(::user::document)         m_spdocument;
+      ::user::document *      m_pdocument;
 
 
 
       impact();
       virtual ~impact();
 
-      sp(::user::document) get_document() const;
+      ::user::document * get_document() const;
 
       template < class DATA >
       DATA * get_typed_data();
@@ -98,27 +98,27 @@ namespace user
       virtual void OnActivateFrame(UINT nState, sp(::user::frame_window) pFrameWnd);
 
       // General drawing/updating
-      virtual void on_update(sp(impact) pSender, LPARAM lHint, ::object* pHint);
+      virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint);
       //virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual void OnViewUpdateHint(sp(impact) pSender, LPARAM lHint, ::user::view_update_hint * pHint);
 
 
 
-      sp(::user::interaction) create_view(type * info, sp(::user::document) pdoc = NULL, const RECT & rect = ::null_rect(), sp(::user::interaction) pwndParent = NULL, ::id id = ::id(), sp(::user::interaction) pviewLast = NULL);
-      static sp(::user::interaction) s_create_view(type * info,sp(::user::document) pdoc,const RECT & rect,sp(::user::interaction) pwndParent,id id,sp(::user::interaction) pviewLast = NULL);
-      static sp(::user::interaction) s_create_view(::create_context * pContext,const RECT & rect,sp(::user::interaction) pwndParent,id id);
+      ::user::interaction * create_view(type * info, ::user::document * pdoc = NULL, const RECT & rect = ::null_rect(), ::user::interaction * pwndParent = NULL, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
+      static ::user::interaction * s_create_view(type * info, ::user::document * pdoc,const RECT & rect, ::user::interaction * pwndParent,id id,::user::interaction * pviewLast = NULL);
+      static ::user::interaction * s_create_view(::create_context * pContext,const RECT & rect,::user::interaction * pwndParent,id id);
 
       template < class VIEW >
-      sp(VIEW) create_view(::user::document * pdoc = NULL,const RECT & rect = ::null_rect(),sp(::user::interaction) pwndParent = NULL,::id id = ::id(),sp(::user::interaction) pviewLast = NULL);
+      VIEW * create_view(::user::document * pdoc = NULL,const RECT & rect = ::null_rect(),::user::interaction * pwndParent = NULL,::id id = ::id(),::user::interaction * pviewLast = NULL);
 
       template < class VIEW >
-      sp(VIEW) create_view(const RECT & rect, ::user::interaction * pwndParent,::id id = ::id(),sp(::user::interaction) pviewLast = NULL);
+      VIEW * create_view(const RECT & rect, ::user::interaction * pwndParent,::id id = ::id(),::user::interaction * pviewLast = NULL);
 
       template < class VIEW >
-      sp(VIEW) create_view(::user::view_creator_data * pcreatordata, sp(::user::interaction) pviewLast = NULL);
+      VIEW * create_view(::user::view_creator_data * pcreatordata, ::user::interaction * pviewLast = NULL);
 
 
-      static sp(::user::document) get_document(sp(::user::interaction) pui);
+      static ::user::document * get_document(::user::interaction * pui);
 
       virtual void dump(dump_context &) const;
       virtual void assert_valid() const;
@@ -174,7 +174,7 @@ namespace user
       virtual void on_select();
 
       // each view can display one or more documents but has only one document interface
-      //sp(::user::document) get_document() const;
+      //::user::document * get_document() const;
 
       //      virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 
@@ -199,7 +199,7 @@ namespace user
       //virtual void OnActivateView(bool bActivate, sp(::user::impact) pActivateView, sp(::user::impact) pDeactiveView);
       //virtual void OnActivateFrame(UINT nState, sp(::user::frame_window) pFrameWnd);
 
-      //virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint);
+      //virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
 
       //      virtual void dump(dump_context &) const;
       //    virtual void assert_valid() const;

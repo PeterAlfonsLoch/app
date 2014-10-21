@@ -53,6 +53,8 @@ namespace user
    impact::impact()
    {
 
+      m_pdocument = NULL;
+
       m_ulFlags |= element::flag_auto_delete;
 
    }
@@ -169,8 +171,8 @@ namespace user
       if (pFrame != NULL && pFrame->GetActiveView() == this)
          pFrame->SetActiveView(NULL);    // deactivate during death
 
-      if(m_spdocument.is_set())
-         m_spdocument->remove_view(this);
+      if(m_pdocument != NULL)
+         m_pdocument->remove_view(this);
 
       //   ::user::interaction::OnDestroy();
    }
@@ -277,9 +279,9 @@ namespace user
       //   trans OnDraw(&spgraphics);
    }
 
-   sp(::user::document) impact::get_document(sp(::user::interaction) pui)
+   ::user::document * impact::get_document(::user::interaction * pui)
    {
-      sp(::user::impact) pview = (pui.m_p);
+      sp(::user::impact) pview = pui;
       if (pview != NULL)
          return NULL;
       return pview->get_document();
@@ -291,7 +293,7 @@ namespace user
       on_update(NULL, 0, NULL);        // initial update
    }
 
-   void impact::on_update(sp(::user::impact) pSender, LPARAM lHint, object* pHint)
+   void impact::on_update(::user::impact * pSender, LPARAM lHint, object* pHint)
    {
       if (pHint != NULL)
       {
@@ -558,7 +560,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) impact::create_view(type * pinfo, sp(::user::document) pdoc,const RECT & rect, sp(::user::interaction) pwndParent, id id, sp(::user::interaction) pviewLast)
+   ::user::interaction * impact::create_view(type * pinfo, ::user::document * pdoc,const RECT & rect, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
    {
 
       sp(type) info(pinfo);
@@ -597,7 +599,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) impact::s_create_view(type * pinfo,sp(::user::document) pdoc,const RECT & rect,sp(::user::interaction) pwndParent,id id,sp(::user::interaction) pviewLast)
+   ::user::interaction * impact::s_create_view(type * pinfo, ::user::document * pdoc,const RECT & rect, ::user::interaction * pwndParent,id id, ::user::interaction * pviewLast)
    {
 
       sp(type) info(pinfo);
@@ -616,7 +618,7 @@ namespace user
 
    }
 
-   sp(::user::interaction) impact::s_create_view(::create_context * pContext,const RECT & rect,sp(::user::interaction) pwndParent,id id)
+   ::user::interaction * impact::s_create_view(::create_context * pContext,const RECT & rect, ::user::interaction * pwndParent,id id)
    {
 
       // trans   ASSERT(pwndParent->get_handle() != NULL);
@@ -728,10 +730,13 @@ namespace user
    }
 
 
-   sp(::user::document) impact::get_document() const
+   ::user::document * impact::get_document() const
    {
+
       ASSERT(this != NULL);
-      return ((::user::impact *) this)->m_spdocument;
+
+      return ((::user::impact *) this)->m_pdocument;
+
    }
 
 
@@ -853,7 +858,7 @@ namespace user
    on_update(NULL, 0, NULL);        // initial update
    }*/
 
-   /*   void impact::on_update(sp(::user::impact) pSender, LPARAM lHint, object * pHint)
+   /*   void impact::on_update(::user::impact * pSender, LPARAM lHint, object * pHint)
    {
    ::user::impact::on_update(pSender, lHint, pHint);
    }

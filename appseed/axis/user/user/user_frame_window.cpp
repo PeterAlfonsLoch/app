@@ -791,7 +791,7 @@ namespace user
       // trans ::SetMenu(get_handle(), hMenuAlt);
    }
 
-   void frame_window::InitialUpdateFrame(sp(::user::document) pDoc, bool bMakeVisible)
+   void frame_window::InitialUpdateFrame(::user::document * pDoc, bool bMakeVisible)
    {
       // if the frame does not have an active ::user::impact, set to first pane
       sp(::user::impact) pview = NULL;
@@ -1233,7 +1233,7 @@ namespace user
       */
    }
 
-   sp(::user::document) frame_window::GetActiveDocument()
+   ::user::document * frame_window::GetActiveDocument()
    {
       ASSERT_VALID(this);
       sp(::user::impact) pview = GetActiveView();

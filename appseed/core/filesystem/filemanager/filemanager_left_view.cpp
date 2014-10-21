@@ -33,7 +33,7 @@ namespace filemanager
 
 
 
-   void left_view::on_update(sp(::user::impact) pSender, LPARAM lHint, object* phint)
+   void left_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
    {
       
       ::filemanager::impact::on_update(pSender, lHint, phint);

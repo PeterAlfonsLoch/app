@@ -1004,7 +1004,7 @@ namespace base
 //#endif
 //
 
-   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,sp(::user::document) pdocument)
+   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate, ::user::document * pdocument)
    {
 
       UNREFERENCED_PARAMETER(varFile);
@@ -1706,119 +1706,6 @@ namespace base
 
 
 
-   //   void application::construct(const char *pszId)
-   //   {
-   //      //if(m_strAppName.has_char())
-   //      //   return;
-   //      //m_strAppName.Empty();
-   //      //m_strId.Empty();
-   //      if (pszId == NULL)
-   //      {
-   //#ifdef WINDOWSEX
-   //         wstring wstr = ::GetCommandLineW();
-   //         string str = ::str::international::unicode_to_utf8(wstr);
-   //         strsize iFind = str.find(" : ");
-   //         if (iFind >= 0)
-   //         {
-   //            iFind = str.find("app=", iFind);
-   //            if (iFind >= 0)
-   //            {
-   //               strsize iEnd = str.find(" ", iFind);
-   //               if (iEnd < 0)
-   //               {
-   //                  m_strId = str.Mid(iFind + 4);
-   //               }
-   //               else
-   //               {
-   //                  m_strId = str.Mid(iFind + 4, iEnd - iFind - 4);
-   //               }
-   //               ::str::begins_eat(m_strId, "\"");
-   //               ::str::ends_eat(m_strId, "\"");
-   //            }
-   //         }
-   //#endif
-   //      }
-   //      else
-   //      {
-   //         m_strId = pszId;
-   //      }
-   //      if (m_strId.is_empty())
-   //         m_strId = "mplite";
-   //      construct();
-   //      if (m_strAppName.is_empty())
-   //      {
-   //         if (m_strAppId.has_char())
-   //            m_strAppName = m_strAppId;
-   //         else if (m_strInstallToken.has_char())
-   //            m_strAppName = m_strInstallToken;
-   //      }
-   //   }
-
-
-   //void application::construct()
-   //{
-   //   string strId = m_strId;
-   //   char chFirst = '\0';
-   //   if (strId.get_length() > 0)
-   //   {
-   //      chFirst = strId[0];
-   //   }
-
-   //   ::core::application::construct();
-
-   //}
-
-
-
-
-   //void application::_001OnFileNew()
-   //{
-   //   string strId = m_strId;
-   //   char chFirst = '\0';
-   //   if (strId.get_length() > 0)
-   //   {
-   //      chFirst = strId[0];
-   //   }
-   //   ::core::application::_001OnFileNew(NULL);
-   //}
-
-
-   //bool application::bergedge_start()
-   //{
-   //   string strId = m_strId;
-   //   char chFirst = '\0';
-   //   if (strId.get_length() > 0)
-   //   {
-   //      chFirst = strId[0];
-   //   }
-   //   return ::core::application::bergedge_start();
-   //}
-
-
-
-   //bool application::on_install()
-   //{
-   //   string strId = m_strId;
-   //   char chFirst = '\0';
-   //   if (strId.get_length() > 0)
-   //   {
-   //      chFirst = strId[0];
-   //   }
-   //   return ::core::application::on_install();
-   //}
-
-   //bool application::on_uninstall()
-   //{
-   //   string strId = m_strId;
-   //   char chFirst = '\0';
-   //   if (strId.get_length() > 0)
-   //   {
-   //      chFirst = strId[0];
-   //   }
-   //   return ::core::application::on_uninstall();
-   //}
-
-
    void application::on_request(sp(::create_context) pcreatecontext)
    {
 
@@ -1827,39 +1714,6 @@ namespace base
       command()->consolidate(pcreatecontext);
 
    }
-
-   //bool application::is_serviceable()
-   //{
-
-
-   //   string strId = m_strId;
-   //   char chFirst = '\0';
-   //   if (strId.get_length() > 0)
-   //   {
-   //      chFirst = strId[0];
-   //   }
-   //   return ::core::application::is_serviceable();
-   //}
-
-   //service_base * application::allocate_new_service()
-   //{
-
-   //   return NULL;
-
-   //}
-
-
-   //sp(::user::document) application::_001OpenDocumentFile(var varFile)
-   //{
-   //   string strId = m_strId;
-   //   char chFirst = '\0';
-   //   if (strId.get_length() > 0)
-   //   {
-   //      chFirst = strId[0];
-   //   }
-   //   return ::core::application::_001OpenDocumentFile(varFile);
-
-   //}
 
 
    int32_t application::run()
