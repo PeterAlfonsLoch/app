@@ -51,7 +51,7 @@ namespace user
 
       for(int32_t i = 0; i < timera.get_count();)
       {
-         if(timera[i].m_pui == pui)
+         if(timera[i]->m_pui == pui)
          {
             i++;
          }
@@ -93,7 +93,7 @@ namespace user
 
       for(index i = 0; i < m_timera.get_count(); i++)
       {
-         if(m_timera[i].m_pui == pui && m_timera[i].m_uiId == uiId)
+         if(m_timera[i]->m_pui == pui && m_timera[i]->m_uiId == uiId)
          {
             return i;
          }
@@ -112,7 +112,7 @@ namespace user
 
       for(index i = iStart; i < m_timera.get_count(); i++)
       {
-         if(m_timera[i].m_pui == pui)
+         if(m_timera[i]->m_pui == pui)
          {
             return i;
          }
