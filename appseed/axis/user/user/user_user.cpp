@@ -462,7 +462,7 @@ namespace user
    }
    */
 
-   sp(::user::keyboard_focus) user::get_keyboard_focus()
+   ::user::keyboard_focus * user::get_keyboard_focus()
    {
       if(Application.is_session())
       {

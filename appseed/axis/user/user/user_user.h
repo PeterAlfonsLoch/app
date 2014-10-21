@@ -38,7 +38,7 @@ namespace user
       class window_map & window_map();
 
 
-      virtual sp(::user::keyboard_focus) get_keyboard_focus();
+      virtual ::user::keyboard_focus * get_keyboard_focus();
       virtual void set_keyboard_focus(sp(::user::keyboard_focus) pkeyboardfocus);
       virtual ::user::mouse_focus * get_mouse_focus_LButtonDown();
       virtual void set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus);
