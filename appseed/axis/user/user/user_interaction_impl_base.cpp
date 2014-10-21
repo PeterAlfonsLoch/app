@@ -667,7 +667,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::first_child()
+   ::user::interaction * interaction_impl_base::first_child()
    {
 
       return m_pui->first_child();
@@ -675,7 +675,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::top_child()
+   ::user::interaction * interaction_impl_base::top_child()
    {
 
       return m_pui->first_child();
@@ -683,7 +683,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::under_sibling()
+   ::user::interaction * interaction_impl_base::under_sibling()
    {
 
       return m_pui->under_sibling();
@@ -691,7 +691,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::above_sibling()
+   ::user::interaction * interaction_impl_base::above_sibling()
    {
 
       return m_pui->above_sibling();
@@ -699,7 +699,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::above_sibling(sp(interaction) pui)
+   ::user::interaction * interaction_impl_base::above_sibling(::user::interaction * pui)
    {
 
       return m_pui->above_sibling(pui);
@@ -707,7 +707,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::under_sibling(sp(interaction) pui)
+   ::user::interaction * interaction_impl_base::under_sibling(::user::interaction * pui)
    {
 
       return m_pui->under_sibling(pui);
@@ -797,7 +797,7 @@ namespace user
 
    }
 
-   sp(::user::interaction) interaction_impl_base::GetWindow() const
+   ::user::interaction * interaction_impl_base::GetWindow() const
    {
 
       return m_pui->GetWindow();
@@ -805,7 +805,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::GetWindow(UINT nCmd) const
+   ::user::interaction * interaction_impl_base::GetWindow(UINT nCmd) const
    {
 
       return m_pui->GetWindow(nCmd);
@@ -813,7 +813,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_impl_base::GetTopWindow() const
+   ::user::interaction * interaction_impl_base::GetTopWindow() const
    {
 
       sp(interaction) pui = GetWindow();
@@ -834,7 +834,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::GetOwner() const
+   ::user::interaction * interaction_impl_base::GetOwner() const
    {
 
       return m_pui->GetOwner();
@@ -842,7 +842,7 @@ namespace user
    }
 
 
-   sp(frame_window) interaction_impl_base::GetFrame() const
+   ::user::frame_window * interaction_impl_base::GetFrame() const
    {
 
       return m_pui->GetFrame();
@@ -850,7 +850,7 @@ namespace user
    }
 
 
-   sp(frame_window) interaction_impl_base::GetParentFrame() const
+   ::user::frame_window * interaction_impl_base::GetParentFrame() const
    {
 
       return m_pui->GetParentFrame();
@@ -858,7 +858,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_impl_base::GetParentOwner() const
+   ::user::interaction * interaction_impl_base::GetParentOwner() const
    {
 
       return m_pui->GetParentOwner();
@@ -866,7 +866,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_impl_base::GetTopLevelOwner() const
+   ::user::interaction * interaction_impl_base::GetTopLevelOwner() const
    {
 
       return m_pui->GetTopLevelOwner();
@@ -874,14 +874,14 @@ namespace user
    }
 
 
-   sp(::user::frame_window) interaction_impl_base::GetTopLevelFrame() const
+   ::user::frame_window * interaction_impl_base::GetTopLevelFrame() const
    {
 
       return m_pui->GetTopLevelFrame();
 
    }
 
-   sp(::user::frame_window) interaction_impl_base::EnsureParentFrame()
+   ::user::frame_window * interaction_impl_base::EnsureParentFrame()
    {
 
       return m_pui->EnsureParentFrame();
@@ -889,7 +889,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::GetTopLevel() const
+   ::user::interaction * interaction_impl_base::GetTopLevel() const
    {
 
       return m_pui->GetTopLevel();
@@ -897,7 +897,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::GetParentTopLevel() const
+   ::user::interaction * interaction_impl_base::GetParentTopLevel() const
    {
 
       return m_pui->GetParentTopLevel();
@@ -905,7 +905,7 @@ namespace user
    }
 
 
-   sp(frame_window) interaction_impl_base::GetParentTopLevelFrame() const
+   ::user::frame_window * interaction_impl_base::GetParentTopLevelFrame() const
    {
 
       return m_pui->GetParentTopLevelFrame();
@@ -913,7 +913,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::EnsureTopLevel()
+   ::user::interaction * interaction_impl_base::EnsureTopLevel()
    {
 
       return m_pui->EnsureTopLevel();
@@ -921,7 +921,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::EnsureParentTopLevel()
+   ::user::interaction * interaction_impl_base::EnsureParentTopLevel()
    {
 
       return m_pui->EnsureParentTopLevel();
@@ -945,7 +945,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::SetCapture(sp(interaction) pinterface)
+   ::user::interaction * interaction_impl_base::SetCapture(::user::interaction * pinterface)
    {
 
       return GetWindow()->SetCapture(pinterface);
@@ -953,7 +953,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::GetCapture()
+   ::user::interaction * interaction_impl_base::GetCapture()
    {
 
       return GetWindow()->GetCapture();
@@ -961,7 +961,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_impl_base::ReleaseCapture()
+   ::user::interaction * interaction_impl_base::ReleaseCapture()
    {
 
       return GetWindow()->ReleaseCapture();
@@ -969,7 +969,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_impl_base::SetFocus()
+   ::user::interaction * interaction_impl_base::SetFocus()
    {
 
       return m_pui->SetFocus();
@@ -1119,14 +1119,14 @@ namespace user
    }
 
 
-   void interaction_impl_base::mouse_hover_add(sp(::user::interaction) pinterface)
+   void interaction_impl_base::mouse_hover_add(::user::interaction * pinterface)
    {
 
       get_wnd()->mouse_hover_add(pinterface);
 
    }
 
-   void interaction_impl_base::mouse_hover_remove(sp(::user::interaction) pinterface)
+   void interaction_impl_base::mouse_hover_remove(::user::interaction * pinterface)
    {
 
       get_wnd()->mouse_hover_remove(pinterface);

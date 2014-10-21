@@ -895,6 +895,18 @@ namespace user
 
    }
 
+   interaction_ptra::interaction_ptra(const interaction_spa & a)
+   {
+
+      for(index i = 0; i < a.get_count(); i++)
+      {
+
+         add(a(i));
+
+      }
+
+   }
+
 
    interaction_ptra::interaction_ptra(interaction_ptra && a)
    {

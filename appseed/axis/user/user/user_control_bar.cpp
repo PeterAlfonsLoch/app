@@ -605,7 +605,7 @@ namespace user
       // the dockbar style must also be visible
       if ((GetStyle() & WS_VISIBLE))
       {
-         sp(::user::frame_window) pTarget = (GetOwner().m_p);
+         sp(::user::frame_window) pTarget = (GetOwner());
          if (pTarget == NULL)
             pTarget = (GetParentFrame());
          if (pTarget != NULL)

@@ -837,7 +837,7 @@ namespace user
 
       single_lock sl(m_pauraapp->m_pmutex, true);
 
-      ptr_array < interaction > ptraChild(m_uiptraChild);
+      interaction_ptra ptraChild(m_uiptraChild);
 
       sl.unlock();
 

@@ -197,7 +197,7 @@ namespace windows
    }
 
    
-   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) puiParent,id id,LPVOID lpParam)
+   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * puiParent,id id,LPVOID lpParam)
    {
 
       if(!native_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,puiParent->get_safe_handle(),id,lpParam))
@@ -346,7 +346,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,id id,sp(::create_context) pContext)
+   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create_context) pContext)
    {
 
       // can't use for desktop or pop-up windows (use create_window_ex instead)
@@ -736,7 +736,7 @@ namespace windows
       dumpcontext << "\n";
    }
 
-   void interaction_impl::on_set_parent(sp(::user::interaction) pui)
+   void interaction_impl::on_set_parent(::user::interaction * pui)
    {
       if(pui != NULL)
       {
@@ -2597,7 +2597,7 @@ namespace windows
    }
 
 
-   void interaction_impl::CenterWindow(sp(::user::interaction) pAlternateOwner)
+   void interaction_impl::CenterWindow(::user::interaction * pAlternateOwner)
    {
       ASSERT(::IsWindow(get_handle()));
 
@@ -3398,7 +3398,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::SetParent(sp(::user::interaction) pWndNewParent)
+   ::user::interaction * interaction_impl::SetParent(::user::interaction * pWndNewParent)
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -3407,7 +3407,7 @@ namespace windows
 
    }
 
-   sp(::user::interaction) interaction_impl::GetOwner() const
+   ::user::interaction * interaction_impl::GetOwner() const
    {
 
       if(!::IsWindow(get_handle()))
@@ -3424,7 +3424,7 @@ namespace windows
       return ::windows::interaction_impl::from_handle(hwndParent);
    }
 
-   sp(::user::interaction) interaction_impl::SetOwner(sp(::user::interaction) pWndNewParent)
+   ::user::interaction * interaction_impl::SetOwner(::user::interaction * pWndNewParent)
    {
 
       return NULL;
@@ -3457,7 +3457,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::ReleaseCapture()
+   ::user::interaction * interaction_impl::ReleaseCapture()
    {
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == NULL)
@@ -3500,7 +3500,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetCapture()
+   ::user::interaction * interaction_impl::GetCapture()
    {
 
       oswindow oswindowCapture = ::GetCapture();
@@ -4045,7 +4045,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::s_GetCapture()
+   ::user::interaction * interaction_impl::s_GetCapture()
    {
 
       return ::windows::interaction_impl::from_handle(::GetCapture());
@@ -4053,7 +4053,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::SetCapture(sp(::user::interaction) pinterface)
+   ::user::interaction * interaction_impl::SetCapture(::user::interaction * pinterface)
    {
 
       if(pinterface != NULL)
@@ -4067,7 +4067,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetFocus()
+   ::user::interaction * interaction_impl::GetFocus()
    {
 
       return ::windows::interaction_impl::from_handle(::GetFocus());
@@ -4075,7 +4075,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::SetFocus()
+   ::user::interaction * interaction_impl::SetFocus()
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4245,20 +4245,20 @@ namespace windows
    {
       ASSERT(::IsWindow(get_handle())); ::ShowScrollBar(get_handle(),nBar,bShow);
    }
-   sp(::user::interaction) interaction_impl::ChildWindowFromPoint(POINT point)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point)
    {
       ASSERT(::IsWindow(get_handle()));
 
-      return (sp(::user::interaction)) ::windows::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(),point));
+      return  ::windows::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(),point));
 
 
    }
 
-   sp(::user::interaction) interaction_impl::ChildWindowFromPoint(POINT point,UINT nFlags)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point,UINT nFlags)
    {
       ASSERT(::IsWindow(get_handle()));
 
-      return (sp(::user::interaction))  ::windows::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(),point,nFlags));
+      return  ::windows::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(),point,nFlags));
 
 
    }
@@ -4273,18 +4273,18 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetNextWindow(UINT nFlag)
+   ::user::interaction * interaction_impl::GetNextWindow(UINT nFlag)
    {
 
       if(!::IsWindow(get_handle()))
          return NULL;
 
-      return (sp(::user::interaction)) ::windows::interaction_impl::from_handle(::GetNextWindow(get_handle(),nFlag));
+      return  ::windows::interaction_impl::from_handle(::GetNextWindow(get_handle(),nFlag));
 
    }
 
 
-   sp(::user::interaction) interaction_impl::GetTopWindow() const
+   ::user::interaction * interaction_impl::GetTopWindow() const
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4294,7 +4294,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetWindow(UINT nCmd) const
+   ::user::interaction * interaction_impl::GetWindow(UINT nCmd) const
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4304,7 +4304,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::GetLastActivePopup() const
+   ::user::interaction * interaction_impl::GetLastActivePopup() const
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4314,7 +4314,7 @@ namespace windows
    }
 
 
-   sp(::user::interaction) interaction_impl::WindowFromPoint(POINT point)
+   ::user::interaction * interaction_impl::WindowFromPoint(POINT point)
    {
 
       return ::windows::interaction_impl::from_handle(::WindowFromPoint(point));
@@ -5377,7 +5377,7 @@ namespace windows
    }
 
 
-   void interaction_impl::mouse_hover_add(sp(::user::interaction) pinterface)
+   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
       m_guieptraMouseHover->add_unique(pinterface);
@@ -5385,7 +5385,7 @@ namespace windows
    }
 
 
-   void interaction_impl::mouse_hover_remove(sp(::user::interaction) pinterface)
+   void interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
    {
 
       m_guieptraMouseHover->remove(pinterface);
@@ -5634,7 +5634,7 @@ __STATIC bool CLASS_DECL_AXIS __register_with_icon(WNDCLASS* pWndCls,
 }
 
 
-string CLASS_DECL_AXIS get_user_interaction_window_class(sp(::user::interaction) pui)
+string CLASS_DECL_AXIS get_user_interaction_window_class(::user::interaction * pui)
 {
 
    ::user::interaction::e_type etype = pui->get_window_type();

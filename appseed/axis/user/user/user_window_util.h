@@ -4,6 +4,9 @@
 namespace user
 {
 
+   
+   class interaction_spa;
+
 
    class CLASS_DECL_AXIS oswindow_array :
       public comparable_array < oswindow, oswindow >
@@ -21,6 +24,7 @@ namespace user
 
       interaction_ptra();
       interaction_ptra(const interaction_ptra & array);
+      interaction_ptra(const interaction_spa & array);
       interaction_ptra(interaction_ptra && array);
 
 

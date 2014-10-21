@@ -516,12 +516,12 @@ namespace user
 
       for(int32_t i = 0; i < m_pui->m_uiptraChild.get_count(); i++)
       {
-         if(m_pui->m_uiptraChild[i]->GetDlgCtrlId() == id)
+         if(m_pui->m_uiptraChild[i].GetDlgCtrlId() == id)
          {
-            if(m_pui->m_uiptraChild[i]->GetDescendantWindow(id))
-               return m_pui->m_uiptraChild[i]->GetDescendantWindow(id);
+            if(m_pui->m_uiptraChild[i].GetDescendantWindow(id))
+               return m_pui->m_uiptraChild[i].GetDescendantWindow(id);
             else
-               return m_pui->m_uiptraChild[i];
+               return m_pui->m_uiptraChild(i);
          }
       }
 
@@ -773,7 +773,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_child::SetOwner(sp(::user::interaction) pui)
+   ::user::interaction * interaction_child::SetOwner(::user::interaction * pui)
    {
 
       m_puiOwner = pui;
@@ -783,7 +783,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_child::GetOwner() const
+   ::user::interaction * interaction_child::GetOwner() const
    {
 
       if(m_puiOwner != NULL)

@@ -707,7 +707,7 @@ namespace user
    }
 
 
-   sp(::user::frame_window) interaction_base::GetTopLevelFrame() const
+   ::user::frame_window * interaction_base::GetTopLevelFrame() const
    {
 
       throw interface_only_exception(get_app());
@@ -1046,7 +1046,7 @@ namespace user
    }
 
 
-   sp(frame_window) interaction_base::GetParentTopLevelFrame() const
+   ::user::frame_window * interaction_base::GetParentTopLevelFrame() const
    {
 
       throw interface_only_exception(get_app());
@@ -1054,7 +1054,7 @@ namespace user
    }
 
 
-   sp(::user::frame_window) interaction_base::EnsureParentFrame()
+   ::user::frame_window * interaction_base::EnsureParentFrame()
    {
 
       throw interface_only_exception(get_app());
@@ -1100,7 +1100,7 @@ namespace user
    }
 
 
-   sp(::user::frame_window) interaction_base::GetParentFrame() const
+   ::user::frame_window * interaction_base::GetParentFrame() const
    {
 
       throw interface_only_exception(get_app());
@@ -1160,7 +1160,7 @@ namespace user
    }
 
 
-   sp(frame_window) interaction_base::GetFrame() const
+   ::user::frame_window * interaction_base::GetFrame() const
    {
 
       throw interface_only_exception(get_app());
