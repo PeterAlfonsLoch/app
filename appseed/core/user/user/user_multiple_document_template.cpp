@@ -34,14 +34,14 @@ namespace user
       return m_docptra.get_count();
    }
 
-   sp(::user::document) multiple_document_template::get_document(index index) const
+   ::user::document * multiple_document_template::get_document(index index) const
    {
       if(index < 0 || index >= m_docptra.get_count())
          return NULL;
       return m_docptra.element_at(index);
    }
 
-   void multiple_document_template::add_document(sp(::user::document) pdocument)
+   void multiple_document_template::add_document(::user::document * pdocument)
    {
       if(m_docptra.add_unique(pdocument))
       {
@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   void multiple_document_template::remove_document(sp(::user::document) pdocument)
+   void multiple_document_template::remove_document(::user::document * pdocument)
    {
       if(m_docptra.remove(pdocument) > 0)
       {
@@ -139,7 +139,7 @@ namespace user
 
    }
 
-   void multiple_document_template::set_default_title(sp(::user::document) pdocument)
+   void multiple_document_template::set_default_title(::user::document * pdocument)
    {
       string strDocName;
       if (GetDocString(strDocName, impact_system::docName) &&
