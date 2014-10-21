@@ -844,7 +844,7 @@ namespace filemanager
 
       if(estep == step_has_subdir_visible)
       {
-         if(pitem->m_pparent.is_set() && ((estep == step_has_subdir_visible && pitem->m_pparent->is_expanded())
+         if(pitem->m_pparent != NULL && ((estep == step_has_subdir_visible && pitem->m_pparent->is_expanded())
             || (estep == step_has_subdir_hidden && !pitem->m_pparent->is_expanded())))
          {
             if(!(pitem->m_dwState & ::data::tree_item_state_expandable))
@@ -882,7 +882,7 @@ namespace filemanager
       {
 
          if((item->m_iImage < 0 ||
-            item->m_iImageSelected < 0) && pitem->m_pparent.is_set() && ((estep == step_image_visible && pitem->m_pparent->is_expanded())
+            item->m_iImageSelected < 0) && pitem->m_pparent != NULL && ((estep == step_image_visible && pitem->m_pparent->is_expanded())
             || (estep == step_image_hidden && !pitem->m_pparent->is_expanded())))
          {
 
