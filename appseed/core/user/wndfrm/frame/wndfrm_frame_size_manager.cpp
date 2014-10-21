@@ -56,7 +56,7 @@ namespace user
             GetEventWindow()->GetWindowRect(rectEvent);
             EHitTest ehittest = hit_test(ptCursor);
 
-            WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->get_draw_window().m_p);
+            sp(WorkSetClientInterface) pinterface = m_pworkset->get_draw_window();
 
             if(ehittest != HitTestNone)
             {

@@ -16,7 +16,6 @@ namespace user
 
 
       mutex                            m_mutex;
-      spa(document)                    m_documentptra;
       string                           m_strTitle;
       string                           m_strPathName;
       sp(impact_system)                m_pdocumentemplate;

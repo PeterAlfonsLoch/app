@@ -169,10 +169,10 @@ namespace user
                }
                else
                {
-                  if (m_pworkset->get_draw_window().cast < simple_frame_window >() != NULL)
+                  if (m_pworkset->get_draw_window() != NULL)
                   {
 
-                     if (m_pworkset->get_draw_window().cast < simple_frame_window >()->WfiIsFullScreen())
+                     if (m_pworkset->get_draw_window()->WfiIsFullScreen())
                      {
 
                         rect rectWindow;
@@ -207,10 +207,10 @@ namespace user
             {
                if ((::get_tick_count() - m_dwShowTime) > 284)
                {
-                  if (m_pworkset->get_draw_window().cast < simple_frame_window >() != NULL)
+                  if (m_pworkset->get_draw_window() != NULL)
                   {
 
-                     if (m_pworkset->get_draw_window().cast < simple_frame_window >()->WfiIsFullScreen())
+                     if (m_pworkset->get_draw_window()->WfiIsFullScreen())
                      {
 
                         rect rectWindow;
@@ -239,7 +239,7 @@ namespace user
             else
             {
 
-               if (m_pworkset->get_draw_window().cast < simple_frame_window >()->WfiIsFullScreen())
+               if (m_pworkset->get_draw_window()->WfiIsFullScreen())
                {
 
                   rect rectWindow;

@@ -36,10 +36,10 @@ namespace user
             rect                          m_rectPending;
             bool                          m_bEnable;
 
-            sp(::user::interaction)         m_pwndRegion;
-            sp(::user::interaction)         m_pwndDraw;
-            sp(::user::interaction)         m_pwndEvent;
-            sp(::user::interaction)         m_pwndCommand;
+            ::user::interaction *         m_pwndRegion;
+            ::user::interaction *         m_pwndDraw;
+            ::user::interaction *         m_pwndEvent;
+            ::user::interaction *         m_pwndCommand;
 
 
             UINT                          m_uiSWPFlags;
@@ -71,10 +71,10 @@ namespace user
             void Enable(bool bEnable);
             void _000OnBeforeSize(const RECT & rect);
 
-            sp(::user::interaction) GetEventWindow();
-            sp(::user::interaction) GetRegionWindow();
-            sp(::user::interaction) get_draw_window();
-            sp(::user::interaction) GetCommandWindow();
+            ::user::interaction * GetEventWindow();
+            ::user::interaction * GetRegionWindow();
+            ::user::interaction * get_draw_window();
+            ::user::interaction * GetCommandWindow();
 
 
             appearance * get_appearance();

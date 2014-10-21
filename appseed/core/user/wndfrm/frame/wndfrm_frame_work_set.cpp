@@ -374,7 +374,7 @@ namespace user
             if(pevent->m_eevent == ::user::event_button_down)
             {
 
-               WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);
+               sp(WorkSetClientInterface) pinterface = m_pwndCommand;
 
                if(pinterface == NULL)
                   return false;
@@ -399,7 +399,9 @@ namespace user
             }
             if(pevent->m_eevent == ::user::event_button_clicked)
             {
-               WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);
+               
+               sp(WorkSetClientInterface) pinterface = m_pwndCommand;
+
                if(pinterface == NULL)
                   return false;
                ASSERT(pinterface != NULL);
@@ -441,7 +443,7 @@ namespace user
             if(pcmdmsg->m_etype == ::aura::cmd_msg::type_command && m_pwndCommand != NULL)
             {
 
-               WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);
+               sp(WorkSetClientInterface) pinterface = m_pwndCommand;
 
                ASSERT(pinterface != NULL);
 
@@ -1066,7 +1068,9 @@ namespace user
 
          void WorkSet::WindowClose()
          {
-            WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pwndCommand.m_p);
+            
+            sp(WorkSetClientInterface) pinterface = m_pwndCommand;
+
             ASSERT(pinterface != NULL);
             if(pinterface->WfiClose())
             {

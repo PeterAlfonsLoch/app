@@ -11,14 +11,13 @@ namespace user
       m_mutex(NULL)
    {
 
-         m_pdocumentemplate = NULL;
-         m_bModified = FALSE;
-         m_bAutoDelete = TRUE;       // default to auto delete document
-         m_bEmbedded = FALSE;        // default to file-based document
-         ASSERT(m_viewptra.is_empty());
+      m_pdocumentemplate = NULL;
+      m_bModified = FALSE;
+      m_bAutoDelete = TRUE;       // default to auto delete document
+      m_bEmbedded = FALSE;        // default to file-based document
+      ASSERT(m_viewptra.is_empty());
 
-         m_documentptra.add(this);
-
+         
    }
 
    document::~document()

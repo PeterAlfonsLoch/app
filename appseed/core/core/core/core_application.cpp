@@ -3184,6 +3184,14 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
          catch(...)
          {
          }
+
+         try
+         {
+            pcreatecontext->m_spCommandLine->m_varQuery["document"].unset();
+         }
+         catch(...)
+         {
+         }
          sp(::core::platform) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].cast < ::core::platform >();
          // todobergedge
          /*if(pbergedge != NULL)

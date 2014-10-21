@@ -47,9 +47,10 @@ namespace user
 
             class point ptCursor = pmouse->m_pt;
 
-            WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
+            sp(WorkSetClientInterface) pinterface = m_pworkset->GetEventWindow();
+
             if(pinterface == NULL)
-               pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->get_draw_window().m_p);
+               pinterface = m_pworkset->get_draw_window();
 
 
             if(pinterface->WfiOnBeginMoving(ptCursor))
@@ -202,9 +203,11 @@ namespace user
 
             }
 
-            WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->GetEventWindow().m_p);
+            sp(WorkSetClientInterface) pinterface = m_pworkset->GetEventWindow();
+
             if(pinterface == NULL)
-               pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->get_draw_window().m_p);
+               pinterface = m_pworkset->get_draw_window();
+
             if(pmouse->m_uiMessage == WM_MOUSEMOVE)
             {
                //TRACE("message_handler call time1= %d ms", dwTime1);
