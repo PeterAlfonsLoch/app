@@ -106,8 +106,8 @@ namespace data
    {
       for (index i = 0; i < m_children.get_count(); i++)
       {
-         if(m_children[i].m_dwUser == iUserData)
-            return m_children(i);
+         if(m_children[i]->m_dwUser == iUserData)
+            return m_children[i];
       }
       return NULL;
    }
