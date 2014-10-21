@@ -24,7 +24,7 @@ namespace userex
       for(int32_t i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(pcmdui->m_id == m_menua[i].m_id)
+         if(pcmdui->m_id == m_menua[i]->m_id)
          {
 
             pcmdui->Enable(TRUE);
@@ -44,7 +44,7 @@ namespace userex
    {
       for(int32_t i = 0; i < m_menua.get_size(); i++)
       {
-         if(id == m_menua[i].m_id)
+         if(id == m_menua[i]->m_id)
          {
             // show_view where??
             return true;
@@ -58,7 +58,7 @@ namespace userex
    {
       for(int32_t i = 0; i < m_menua.get_size(); i++)
       {
-         if(pcreatordata->m_id == m_menua[i].m_id)
+         if(pcreatordata->m_id == m_menua[i]->m_id)
          {
             //create_context cc;
             //cc.m_pCurrentDoc = get_document();
@@ -92,7 +92,7 @@ namespace userex
       for(int32_t i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(m_menua[i].m_id == id)
+         if(m_menua[i]->m_id == id)
          {
 
             pmenu = m_menua(i);
