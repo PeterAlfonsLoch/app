@@ -73,14 +73,14 @@ namespace user
          {
             if(se.m_strMessage == "no more a window")
             {
-               System.frames().remove(&wndpa[l]);
+               System.frames().remove(wndpa[l]);
                wndpa.remove_at(l);
                
             }
          }
          catch(...)
          {
-            System.frames().remove(&wndpa[l]);
+            System.frames().remove(wndpa[l]);
             wndpa.remove_at(l);
          }
       }
