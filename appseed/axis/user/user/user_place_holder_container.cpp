@@ -48,7 +48,7 @@ namespace user
       return bRemove;
    }
 
-   sp(place_holder) place_holder_container::place(sp(::user::interaction) pui,const RECT & rectCreate)
+   sp(place_holder) place_holder_container::place(::user::interaction * pui,const RECT & rectCreate)
    {
       sp(place_holder) pholder = get_new_place_holder(rectCreate);
       if(!on_hold(pui, pholder))
@@ -60,7 +60,7 @@ namespace user
    }
 
 
-   bool place_holder_container::unplace(sp(::user::interaction) pui)
+   bool place_holder_container::unplace(::user::interaction * pui)
    {
       for(int32_t i = 0; i < m_holdera.get_count(); i++)
       {
@@ -77,7 +77,7 @@ namespace user
       return false;
    }
 
-   bool place_holder_container::on_hold(sp(::user::interaction) pui, sp(place_holder) pholder)
+   bool place_holder_container::on_hold(::user::interaction * pui, sp(place_holder) pholder)
    {
       if(pholder->can_merge(pui))
       {
@@ -89,18 +89,18 @@ namespace user
       }
    }
 
-   bool place_holder_container::on_unhold(sp(::user::interaction) pui, sp(place_holder) pholder)
+   bool place_holder_container::on_unhold(::user::interaction * pui, sp(place_holder) pholder)
    {
       return pholder->unhold(pui);
    }
 
 
-   bool place_holder_container::create_window(const RECT & rect, sp(::user::interaction) puiParent,id id)
+   bool place_holder_container::create_window(const RECT & rect, ::user::interaction * puiParent,id id)
    {
       return ::user::interaction::create_window(NULL, NULL,0 /*__WS_DEFAULT_VIEW*/,rect,puiParent,id) != FALSE;
    }
 
-   place_holder_ptra place_holder_container_ptra::place(sp(::user::interaction) pui,const RECT & rectCreate)
+   place_holder_ptra place_holder_container_ptra::place(::user::interaction * pui,const RECT & rectCreate)
    {
       place_holder_ptra holderptra;
       sp(place_holder) pholder;
@@ -115,7 +115,7 @@ namespace user
       return holderptra;
    }
 
-   int32_t place_holder_container_ptra::unplace(sp(::user::interaction) pui)
+   int32_t place_holder_container_ptra::unplace(::user::interaction * pui)
    {
       int32_t count = 0;
       for(int32_t i = 0; i < this->get_count(); i++)

@@ -23,7 +23,7 @@ namespace userex
    {
    }
 
-   sp(::user::interaction) pane_tab_view::get_view_uie()
+   ::user::interaction * pane_tab_view::get_view_uie()
    {
       return ::user::tab_view::get_view_uie();
    }
@@ -118,7 +118,7 @@ namespace userex
    }
 
 
-   bool pane_tab_view::on_hold(sp(::user::interaction) pui, sp(::user::place_holder) pholder)
+   bool pane_tab_view::on_hold(::user::interaction * pui, sp(::user::place_holder) pholder)
    {
       if(!::user::place_holder_container::on_hold(pui, pholder))
          return false;

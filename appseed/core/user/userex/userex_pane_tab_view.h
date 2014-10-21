@@ -22,7 +22,7 @@ namespace userex
       virtual ~pane_tab_view();
 
 
-      virtual sp(::user::interaction) get_view_uie();
+      virtual ::user::interaction * get_view_uie();
 
       virtual id get_view_id();
 
@@ -32,7 +32,7 @@ namespace userex
 
       virtual void GetTabClientRect(LPRECT lprect);
 
-      virtual bool on_hold(sp(::user::interaction) pui, sp(::user::place_holder) pholder);
+      virtual bool on_hold(::user::interaction * pui, sp(::user::place_holder) pholder);
 
       virtual void ensure_tab_by_id(id id);
 
