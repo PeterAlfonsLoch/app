@@ -13,7 +13,7 @@ namespace html
       {
       public:
          int32_t m_iFont;
-         ::user::edit_plain_text * m_pedit;
+         sp(::user::edit_plain_text) m_pedit;
          input_text(data * pdoc);
          virtual ~input_text();
          void _001OnDraw(data * pdoc);

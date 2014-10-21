@@ -29,7 +29,7 @@ namespace html
          }
          try
          {
-            delete m_pedit;
+            m_pedit.release();
          }
          catch(...)
          {

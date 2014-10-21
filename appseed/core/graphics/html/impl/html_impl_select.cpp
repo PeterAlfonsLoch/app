@@ -34,7 +34,7 @@ namespace html
          }
          try
          {
-            delete m_pcombo;
+            m_pcombo.release();
          }
          catch (...)
          {

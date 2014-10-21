@@ -1082,7 +1082,7 @@ namespace user
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
                pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,
                dynamic_cast < ::file::serializable & > (ia));
-            check_interface * pcheck = dynamic_cast < check_interface * > (pevent->m_puie.m_p);
+            sp(check_interface) pcheck = pevent->m_puie;
             if(pcheck->_001GetCheck() == check::checked)
             {
                ia.add_unique(pdescriptor->m_ddx.m_pdbflags->m_value);

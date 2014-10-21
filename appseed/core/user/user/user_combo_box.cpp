@@ -790,6 +790,9 @@ namespace user
 
       }
 
+      if(!IsWindow())
+         return;
+
       string strItem;
 
       _001GetListText(iSel, strItem);
