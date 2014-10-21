@@ -41,7 +41,7 @@ namespace fs
       {
          straFsPath.remove_all();
          straFsTitle.remove_all();
-         m_spafsdata[i].root_ones(straFsPath, straFsTitle);
+         m_spafsdata[i]->root_ones(straFsPath, straFsTitle);
          straPath.add(straFsPath);
          straTitle.add(straFsTitle);
          for(int32_t j = 0; j < straFsPath.get_size(); j++)
