@@ -44,106 +44,39 @@ namespace user
 
       if(m_bCreate)
       {
+
          DestroyWindow();
+
       }
-
-      // great change :
-      // From the thread where the interaction_impl is created, the interaction_impl attach to this thread.
-      // But this thread can be just a temporary worker thread, and just after its initial action,
-      // it can stop dispatching messages to any created interaction_impl, because it finishes.
-      // So, it would be better to use the main stream bias of using just one main thread for the
-      // windows (user interface thread).
-      // It is contrary to assume to polically correct main stream bias, it would be better to
-      // stay at the extreme oposite.
-      // But the need, and it seems good, to use application thread where interaction_impl is created.
-      // Application thread englobes interaction_impl lifetime. While possibly worker threads not.
-
-      //   m_pui->m_pthread = ::get_thread();
-
-      //   if(m_pui->m_pthread == NULL)
 
       m_bCreate = true;
 
-      m_pui->m_bVisible = (dwStyle & WS_VISIBLE) != 0;
-
-
-
-      //m_pui = this;
-      //   m_oswindow = pparent->get_handle();
-      /*::window_sp pwndThis = (this);
-      if(pwndThis != NULL)
-      {
-      pwndThis->set_handle(m_oswindow);
-      }*/
-#if !defined(METROWIN) && !defined(APPLE_IOS)
-      if(dynamic_cast <::message::dispatch *> (pparent.m_p) == NULL)
-         return false;
-#endif
-      //m_pimpl = new interaction_impl(get_app());
-      //m_pimpl->m_pui = m_pui;
-      //m_pimpl->create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pparent, iId, lpParam);
-      ASSERT_VALID(this);
-
-      /*sp(interaction) oswindow_Parent = pparent;
-      sp(interaction) oswindow_T = oswindow_Parent;
-      do
-      {
-      if(oswindow_T->m_pwnd != NULL)
-      break;
-      oswindow_Parent = oswindow_T;
-      }
-      while ((oswindow_T = get_parent_owner(oswindow_Parent)) != NULL);*/
-
-      //   m_pwnd = NULL;
-      // m_pui->m_pwnd = NULL;
-
       m_pui->m_pimpl = this;
+
+      m_pui->m_id      = id;
+
       if(pparent != m_pui && !pparent->is_descendant(m_pui) && !m_pui->is_descendant(pparent))
       {
-         pparent->m_uiptraChild.add_unique(m_pui);
-         m_pui->m_pparent   = pparent;
+
+         m_pui->on_set_parent(pparent);
+
       }
-      m_pui->m_id      = id;
 
       ::user::create_struct cs;
 
-      cs.dwExStyle   = dwExStyle;
-      cs.style       = dwStyle;
-
       cs = rect;
 
-#ifdef WINDOWSEX
-
+      cs.dwExStyle   = dwExStyle;
+      cs.style       = dwStyle;
       cs.lpszClass = lpszClassName;
       cs.lpszName = lpszWindowName;
       cs.hwndParent = pparent->get_handle();
-
-#else
-
-      cs.lpszClass         = NULL;
-      cs.lpszName          = NULL;
-      cs.hwndParent        = NULL;
-
-#endif
-
-      //cs.hMenu = pparent->get_handle() == NULL ? NULL : (HMENU) iId;
       cs.hMenu = NULL;
-
-#ifdef WINDOWS
-
       cs.hInstance = System.m_hinstance;
-
-#else
-
       cs.hInstance = NULL;
-
-#endif
-
       cs.lpCreateParams = lpParam;
 
       m_pui->pre_create_window(cs);
-
-      //m_pui->install_message_handling(dynamic_cast < ::message::dispatch * > (this));
 
       send_message(WM_CREATE,0,(LPARAM)&cs);
 
@@ -152,18 +85,19 @@ namespace user
       if(rectChild.area() > 0)
       {
 
-         m_pui->SetWindowPos(0,rectChild,0);
-
-         send_message(WM_SIZE);
+         m_pui->SetWindowPos(0,rectChild,(dwStyle & WS_VISIBLE) ? SWP_SHOWWINDOW : 0);
 
       }
+      else
+      {
 
-      m_pui->on_set_parent(pparent);
+         ShowWindow(SW_SHOW);
+
+      }
 
       return true;
 
    }
-
 
 
    bool interaction_child::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction)  pparent,id id,sp(::create_context) pContext)
@@ -176,112 +110,50 @@ namespace user
 
       }
 
-      // great change :
-      // From the thread where the interaction_impl is created, the interaction_impl attach to this thread.
-      // But this thread can be just a temporary worker thread, and just after its initial action,
-      // it can stop dispatching messages to any created interaction_impl, because it finishes.
-      // So, it would be better to use the main stream bias of using just one main thread for the
-      // windows (user interface thread).
-      // It is contrary to assume to polically correct main stream bias, it would be better to
-      // stay at the extreme oposite.
-      // But the need, and it seems good, to use application thread where interaction_impl is created.
-      // Application thread englobes interaction_impl lifetime. While possibly worker threads not.
-
-      //   m_pui->m_pthread = ::get_thread();
-
-      //   if(m_pui->m_pthread == NULL)
-
       m_bCreate = true;
 
-      m_pui->m_bVisible = (dwStyle & WS_VISIBLE) != 0;
-
-      //m_pui = this;
-      //   m_oswindow = pparent->get_handle();
-      //   ::window_sp pwndThis = (this);
-      /*   if(pwndThis != NULL)
-         {
-         pwndThis->set_handle(m_oswindow);
-         }*/
-      if(dynamic_cast <::message::dispatch *> (pparent.m_p) == NULL)
-         return false;
-      //m_pimpl = new interaction_impl(get_app());
-      //m_pimpl->m_pui = m_pui;
-      //m_pimpl->create(lpszClassName, lpszWindowName, dwStyle, rect, pparent, iId, pContext);
-      /*sp(interaction) oswindow_Parent = pparent;
-      sp(interaction) oswindow_T = oswindow_Parent;
-      do
-      {
-      if(oswindow_T->m_pwnd != NULL)
-      break;
-      oswindow_Parent = oswindow_T;
-      }
-      while ((oswindow_T = get_parent_owner(oswindow_Parent)) != NULL);*/
-
-      //   m_pwnd = NULL;
-      //   m_pui->m_pwnd = NULL;
-
       m_pui->m_pimpl = this;
+
+      m_pui->m_id      = id;
+
       if(pparent != m_pui && !m_pui->is_descendant(pparent) && ! pparent->is_descendant(m_pui))
       {
-         m_pui->m_pparent   = pparent;
-         pparent->m_uiptraChild.add_unique(m_pui);
+      
+         m_pui->on_set_parent(pparent);
+
       }
-      m_pui->m_id      = id;
-      //m_pui->install_message_handling(dynamic_cast < ::message::dispatch * > (this));
+
       ::user::create_struct cs;
-      cs.dwExStyle = 0;
-      cs.style = dwStyle;
 
       cs = rect;
 
-#ifdef WINDOWSEX
-
+      cs.dwExStyle = 0;
+      cs.style = dwStyle;
       cs.lpszClass   = lpszClassName;
       cs.lpszName    = lpszWindowName;
       cs.hwndParent  = pparent->get_handle();
-
-#else
-
-      cs.lpszClass   = NULL;
-      cs.lpszName    = NULL;
-      cs.hwndParent  = NULL;
-
-#endif
-
-      //   cs.hMenu = pparent->get_handle() == NULL ? NULL : (HMENU) iId;
+      cs.hInstance   = System.m_hinstance;
       cs.hMenu = NULL;
-
-
-#ifdef WINDOWSEX
-
-      cs.hInstance = System.m_hinstance;
-
-#else
-
-      cs.hInstance = NULL;
-
-#endif
-
       cs.lpCreateParams = (LPVOID)pContext;
 
       m_pui->pre_create_window(cs);
-
 
       send_message(WM_CREATE,0,(LPARAM)&cs);
 
       ::rect rectChild(rect);
 
-
       if(rectChild.area() > 0)
       {
 
-         m_pui->SetWindowPos(0,rectChild,SWP_SHOWWINDOW);
-
-         send_message(WM_SIZE);
+         m_pui->SetWindowPos(0,rectChild,(dwStyle & WS_VISIBLE) ? SWP_SHOWWINDOW : 0);
 
       }
+      else
+      {
 
-      m_pui->on_set_parent(pparent);
+         ShowWindow(SW_SHOW);
+
+      }
 
       return true;
 
@@ -298,76 +170,30 @@ namespace user
 
       }
 
+      m_bCreate         = true;
 
-      m_bCreate = true;
+      m_pui->m_pimpl    = this;
 
-      m_pui->m_bVisible = true;
+      m_pui->m_id       = id;
 
-      //m_pui = this;
-      //   m_oswindow = pparent->get_handle();
-      //   ::window_sp pwndThis = (this);
-      /*   if(pwndThis != NULL)
-         {
-         pwndThis->set_handle(m_oswindow);
-         }*/
-      if(dynamic_cast <::message::dispatch *> (pparent.m_p) == NULL)
-         return false;
-      //m_pimpl = new interaction_impl(get_app());
-      //m_pimpl->m_pui = m_pui;
-      //m_pimpl->create(NULL, NULL, WS_CHILD | WS_VISIBLE, rect(0, 0, 0, 0), pparent, iId);
-      /*sp(interaction) oswindow_Parent = pparent;
-      sp(interaction) oswindow_T = oswindow_Parent;
-      do
-      {
-      if(oswindow_T->m_pwnd != NULL)
-      break;
-      oswindow_Parent = oswindow_T;
-      }
-      while ((oswindow_T = get_parent_owner(oswindow_Parent)) != NULL);*/
-
-      //   m_pwnd = NULL;
-      //   m_pui->m_pwnd = NULL;
-
-      m_pui->m_pimpl = this;
       if(pparent != m_pui && !pparent->is_descendant(m_pui) && !m_pui->is_descendant(pparent))
       {
-         m_pui->m_pparent   = pparent;
-         pparent->m_uiptraChild.add_unique(m_pui);
+
+         m_pui->on_set_parent(pparent);
+
       }
-      m_pui->m_id = id;
-      //install_message_handling(dynamic_cast < ::message::dispatch * > (pparent));
-      //m_pui->install_message_handling(dynamic_cast < ::message::dispatch * > (this));
+
       ::user::create_struct cs;
-      cs.dwExStyle = 0;
-      cs.lpszClass = NULL;
-      cs.lpszName = NULL;
-      cs.style = WS_CHILD | WS_VISIBLE;
 
       cs=rect;
 
-#ifdef WINDOWSEX
-
+      cs.style = WS_CHILD | WS_VISIBLE;
+      cs.dwExStyle = 0;
+      cs.lpszClass = NULL;
+      cs.lpszName = NULL;
       cs.hwndParent = pparent->get_handle();
-
-#else
-
-      //throw todo(get_app());
-
-#endif
-
-      //   cs.hMenu = pparent->get_handle() == NULL ? NULL : (HMENU) iId;
       cs.hMenu = NULL;
-
-#ifdef WINDOWS
-
       cs.hInstance = System.m_hinstance;
-
-#else
-
-      //   throw todo(get_app());
-
-#endif
-
       cs.lpCreateParams = (LPVOID)NULL;
 
       m_pui->pre_create_window(cs);
@@ -379,13 +205,15 @@ namespace user
       if(rectChild.area() > 0)
       {
 
-         m_pui->SetWindowPos(0,rectChild,0);
-
-         send_message(WM_SIZE);
+         m_pui->SetWindowPos(0,rectChild, SWP_SHOWWINDOW);
 
       }
+      else
+      {
 
-      m_pui->on_set_parent(pparent);
+         ShowWindow(SW_SHOW);
+
+      }
 
       return true;
 
