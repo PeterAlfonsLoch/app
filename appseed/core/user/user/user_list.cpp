@@ -5060,7 +5060,7 @@ namespace user
                _001GetViewClientRect(rectClient);
                index iIconSize;
                if(m_columna.get_count() > 0)
-                  iIconSize = MAX(32, m_columna[0].m_sizeIcon.cy);
+                  iIconSize = MAX(32, m_columna[0]->m_sizeIcon.cy);
                else
                   iIconSize = 32;
                index iItemSize = iIconSize * 2;
@@ -5127,7 +5127,7 @@ namespace user
          {
             return size(32, 32);
          }
-         index iIconSize = MAX(32, m_columna[0].m_sizeIcon.cy);
+         index iIconSize = MAX(32, m_columna[0]->m_sizeIcon.cy);
          index iItemSize = iIconSize * 2;
          return size(iItemSize, iItemSize);
       }
