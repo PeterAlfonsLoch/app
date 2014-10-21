@@ -686,7 +686,7 @@ void string_array::add(const var & var)
    {
       for(int32_t i = 0; i < var.propset().m_propertya.get_count(); i++)
       {
-         add(var.propset().m_propertya[i].get_value().get_string());
+         add(var.propset().m_propertya[i]->get_value().get_string());
       }
    }
    else

@@ -416,7 +416,7 @@ namespace aura
          try
          {
 
-            m_serviceptra(i)->Stop(0);
+            m_serviceptra[i]->Stop(0);
 
          }
          catch(...)
@@ -431,7 +431,7 @@ namespace aura
       {
          try
          {
-            m_serviceptra(i)->Stop((5000) * 2);
+            m_serviceptra[i]->Stop((5000) * 2);
          }
          catch(...)
          {
