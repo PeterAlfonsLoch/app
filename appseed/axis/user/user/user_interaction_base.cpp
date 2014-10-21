@@ -145,7 +145,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetWindow() const
+   ::user::interaction * interaction_base::GetWindow() const
    {
 
       return NULL;
@@ -600,7 +600,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::_001FromPoint(point64 pt,bool bTestedIfParentVisible)
+   ::user::interaction * interaction_base::_001FromPoint(point64 pt,bool bTestedIfParentVisible)
    {
 
       throw interface_only_exception(get_app());
@@ -616,7 +616,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::get_child_by_name(const char * pszName,int32_t iLevel)
+   ::user::interaction * interaction_base::get_child_by_name(const char * pszName,int32_t iLevel)
    {
 
       throw interface_only_exception(get_app());
@@ -624,7 +624,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::get_child_by_id(id id,int32_t iLevel)
+   ::user::interaction * interaction_base::get_child_by_id(id id,int32_t iLevel)
    {
 
       throw interface_only_exception(get_app());
@@ -773,7 +773,7 @@ namespace user
 #endif
 
 
-   bool interaction_base::create_window(const RECT & rect,sp(interaction)pparent,id id)
+   bool interaction_base::create_window(const RECT & rect,::user::interaction *pparent,id id)
    {
 
       throw interface_only_exception(get_app());
@@ -783,7 +783,7 @@ namespace user
    }
 
 
-   bool interaction_base::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pParentWnd,id id,sp(::create_context) pContext)
+   bool interaction_base::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create_context) pContext)
    {
 
       throw interface_only_exception(get_app());
@@ -793,7 +793,7 @@ namespace user
    }
 
 
-   bool interaction_base::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pParentWnd,id id,LPVOID lpParam)
+   bool interaction_base::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,LPVOID lpParam)
    {
 
       throw interface_only_exception(get_app());
@@ -867,7 +867,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::ChildWindowFromPoint(POINT point)
+   ::user::interaction * interaction_base::ChildWindowFromPoint(POINT point)
    {
 
       throw interface_only_exception(get_app());
@@ -875,7 +875,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::ChildWindowFromPoint(POINT point,UINT nFlags)
+   ::user::interaction * interaction_base::ChildWindowFromPoint(POINT point,UINT nFlags)
    {
 
       throw interface_only_exception(get_app());
@@ -883,7 +883,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetNextWindow(UINT nFlag)
+   ::user::interaction * interaction_base::GetNextWindow(UINT nFlag)
    {
 
       if(nFlag == GW_HWNDNEXT)
@@ -902,7 +902,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::get_next(bool bIgnoreChildren,int32_t * piLevel)
+   ::user::interaction * interaction_base::get_next(bool bIgnoreChildren,int32_t * piLevel)
    {
 
       throw interface_only_exception(get_app());
@@ -918,7 +918,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetTopWindow() const
+   ::user::interaction * interaction_base::GetTopWindow() const
    {
 
       throw interface_only_exception(get_app());
@@ -926,7 +926,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetWindow(UINT nCmd) const
+   ::user::interaction * interaction_base::GetWindow(UINT nCmd) const
    {
 
       throw interface_only_exception(get_app());
@@ -942,7 +942,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::SetFocus()
+   ::user::interaction * interaction_base::SetFocus()
    {
 
       throw interface_only_exception(get_app());
@@ -966,7 +966,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetLastActivePopup()
+   ::user::interaction * interaction_base::GetLastActivePopup()
    {
 
       throw interface_only_exception(get_app());
@@ -1014,7 +1014,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::EnsureTopLevel()
+   ::user::interaction * interaction_base::EnsureTopLevel()
    {
 
       throw interface_only_exception(get_app());
@@ -1022,7 +1022,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::EnsureParentTopLevel()
+   ::user::interaction * interaction_base::EnsureParentTopLevel()
    {
 
       throw interface_only_exception(get_app());
@@ -1030,7 +1030,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetTopLevel() const
+   ::user::interaction * interaction_base::GetTopLevel() const
    {
 
       throw interface_only_exception(get_app());
@@ -1038,7 +1038,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetParentTopLevel() const
+   ::user::interaction * interaction_base::GetParentTopLevel() const
    {
 
       throw interface_only_exception(get_app());
@@ -1128,7 +1128,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::SetOwner(sp(interaction) pui)
+   ::user::interaction * interaction_base::SetOwner(::user::interaction * pui)
    {
 
       throw interface_only_exception(get_app());
@@ -1136,7 +1136,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::SetParent(sp(interaction) pui)
+   ::user::interaction * interaction_base::SetParent(::user::interaction * pui)
    {
 
       throw interface_only_exception(get_app());
@@ -1144,7 +1144,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetOwner() const
+   ::user::interaction * interaction_base::GetOwner() const
    {
 
       throw interface_only_exception(get_app());
@@ -1280,7 +1280,7 @@ namespace user
    }
 
 
-   void interaction_base::CenterWindow(sp(interaction) pAlternateOwner)
+   void interaction_base::CenterWindow(::user::interaction * pAlternateOwner)
    {
 
       throw interface_only_exception(get_app());
@@ -1550,7 +1550,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::SetCapture(sp(interaction) pinterface)
+   ::user::interaction * interaction_base::SetCapture(::user::interaction * pinterface)
    {
 
       throw interface_only_exception(get_app());
@@ -1558,7 +1558,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::GetCapture()
+   ::user::interaction * interaction_base::GetCapture()
    {
 
       throw interface_only_exception(get_app());
@@ -1566,7 +1566,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::ReleaseCapture()
+   ::user::interaction * interaction_base::ReleaseCapture()
    {
 
       throw interface_only_exception(get_app());
@@ -1728,7 +1728,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::top_child()
+   ::user::interaction * interaction_base::top_child()
    {
 
       return last_child();
@@ -1736,7 +1736,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::bottom_child()
+   ::user::interaction * interaction_base::bottom_child()
    {
 
       return first_child();
@@ -1744,7 +1744,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::above_sibling(sp(interaction) pui)
+   ::user::interaction * interaction_base::above_sibling(::user::interaction * pui)
    {
 
       return next_sibling(pui);
@@ -1752,7 +1752,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::above_sibling()
+   ::user::interaction * interaction_base::above_sibling()
    {
 
       return next_sibling();
@@ -1760,7 +1760,7 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::under_sibling(sp(interaction) pui)
+   ::user::interaction * interaction_base::under_sibling(::user::interaction * pui)
    {
 
       return previous_sibling(pui);
@@ -1768,14 +1768,14 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::under_sibling()
+   ::user::interaction * interaction_base::under_sibling()
    {
 
       return previous_sibling();
 
    }
 
-   sp(interaction) interaction_base::top_sibling()
+   ::user::interaction * interaction_base::top_sibling()
    {
 
       return last_sibling();
@@ -1783,14 +1783,14 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::bottom_sibling()
+   ::user::interaction * interaction_base::bottom_sibling()
    {
 
       return first_sibling();
 
    }
 
-   sp(interaction) interaction_base::first_child()
+   ::user::interaction * interaction_base::first_child()
    {
 
       throw interface_only_exception(get_app());
@@ -1798,22 +1798,14 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::last_child()
+   ::user::interaction * interaction_base::last_child()
    {
 
       throw interface_only_exception(get_app());
 
    }
 
-   sp(interaction) interaction_base::first_sibling()
-   {
-
-      throw interface_only_exception(get_app());
-
-   }
-
-
-   sp(interaction) interaction_base::last_sibling()
+   ::user::interaction * interaction_base::first_sibling()
    {
 
       throw interface_only_exception(get_app());
@@ -1821,14 +1813,22 @@ namespace user
    }
 
 
-   sp(interaction) interaction_base::previous_sibling()
+   ::user::interaction * interaction_base::last_sibling()
    {
 
       throw interface_only_exception(get_app());
 
    }
 
-   sp(interaction) interaction_base::previous_sibling(sp(interaction) pui)
+
+   ::user::interaction * interaction_base::previous_sibling()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
+   ::user::interaction * interaction_base::previous_sibling(::user::interaction * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -1837,14 +1837,14 @@ namespace user
 
    }
 
-   sp(interaction) interaction_base::next_sibling()
+   ::user::interaction * interaction_base::next_sibling()
    {
 
       throw interface_only_exception(get_app());
 
    }
 
-   sp(interaction) interaction_base::next_sibling(sp(interaction) pui)
+   ::user::interaction * interaction_base::next_sibling(::user::interaction * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);
