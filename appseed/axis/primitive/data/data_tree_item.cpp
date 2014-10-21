@@ -130,7 +130,7 @@ namespace data
       ::count iCount = 0;
       for (index i = 0; i < m_children.get_count(); i++)
       {
-         if (m_children[i].get_children_count() > 0)
+         if (m_children[i]->get_children_count() > 0)
          {
             iCount++;
          }
@@ -143,7 +143,7 @@ namespace data
       ::count iCount = 0;
       for (index i = 0; i < m_children.get_count(); i++)
       {
-         if (m_children[i].get_children_count() > 0)
+         if (m_children[i]->get_children_count() > 0)
          {
             if (iCount == iIndex)
                return m_children(i);
