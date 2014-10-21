@@ -1559,7 +1559,9 @@ namespace user
             if(!BaseOnControlEvent(&ev))
             {
 
-               sp(::user::interaction) pui = keyboard_get_next_focusable();
+               sp(::user::interaction) pui = Session.user()->get_keyboard_focus();
+
+               pui =  pui.is_set() ? pui->keyboard_get_next_focusable() : keyboard_get_next_focusable();
 
                if(pui != NULL)
                   pui->keyboard_set_focus();

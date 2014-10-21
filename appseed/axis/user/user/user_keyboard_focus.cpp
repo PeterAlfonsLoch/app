@@ -67,7 +67,7 @@ namespace user
    }
 
    
-   keyboard_focus * keyboard_focus::keyboard_get_next_focusable(keyboard_focus * pfocus, bool bSkipChild)
+   keyboard_focus * keyboard_focus::keyboard_get_next_focusable(keyboard_focus * pfocus, bool bSkipChild, bool bSkipParent)
    {
       
       sp(interaction) puiThis = this;
@@ -106,35 +106,18 @@ namespace user
 
       }
 
-      pui = puiThis->next_sibling();
-
-      while(pui != NULL)
+      if(!bSkipParent)
       {
 
-         if(pui->keyboard_focus_is_focusable())
-            return pui;
+         pui = puiThis->next_sibling();
 
-         pfocusTry = pui->keyboard_get_next_focusable(puiFocus, false, true);
-
-         if(pfocusTry != NULL)
-            return pfocusTry;
-
-         pui = pui->next_sibling();
-
-      }
-
-      pui = puiThis->first_sibling();
-
-      if(pui != puiThis)
-      {
-
-         while(pui != NULL && pui != puiFocus)
+         while(pui != NULL)
          {
 
             if(pui->keyboard_focus_is_focusable())
                return pui;
 
-            pfocusTry = pui->keyboard_get_next_focusable(puiFocus);
+            pfocusTry = pui->keyboard_get_next_focusable(puiFocus,bSkipChild,true);
 
             if(pfocusTry != NULL)
                return pfocusTry;
@@ -143,15 +126,37 @@ namespace user
 
          }
 
-      }
+         pui = puiThis->first_sibling();
 
-      if(puiThis->GetParent() != NULL)
-      {
+         if(pui != puiThis)
+         {
 
-         pui = puiThis->GetParent()->keyboard_get_next_focusable(puiFocus, true);
+            while(pui != NULL && pui != puiFocus)
+            {
 
-         if(pui.is_set())
-            return pui;
+               if(pui->keyboard_focus_is_focusable())
+                  return pui;
+
+               pfocusTry = pui->keyboard_get_next_focusable(puiFocus,bSkipChild,true);
+
+               if(pfocusTry != NULL)
+                  return pfocusTry;
+
+               pui = pui->next_sibling();
+
+            }
+
+         }
+
+         if(puiThis->GetParent() != NULL)
+         {
+
+            pui = puiThis->GetParent()->keyboard_get_next_focusable(puiFocus,true);
+
+            if(pui.is_set())
+               return pui;
+
+         }
 
       }
 
