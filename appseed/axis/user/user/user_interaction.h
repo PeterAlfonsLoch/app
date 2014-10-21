@@ -33,7 +33,7 @@ namespace user
       bool                                m_bBackgroundBypass;
 
 
-      ::user::interaction *               m_pparent;
+      sp(::user::interaction)             m_pparent;
 
       sp(mutex)                           m_spmutex;
       EAppearance                         m_eappearance;

@@ -682,6 +682,8 @@ namespace user
 
       }
 
+      m_pparent.release();
+
    }
 
 

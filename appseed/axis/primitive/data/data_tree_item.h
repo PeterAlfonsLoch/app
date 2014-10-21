@@ -46,8 +46,8 @@ namespace data
    public:
 
 
-      sp(tree)                      m_ptree;
-      sp(tree_item)                 m_pparent;
+      tree *                        m_ptree;
+      tree_item *                   m_pparent;
       spa(tree_item)                m_children;
       sp(::data::item)              m_pitem;
       uint_ptr                      m_dwUser;

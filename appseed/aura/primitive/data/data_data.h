@@ -13,7 +13,7 @@ namespace data
    class simple_data;
 
 
-   typedef CLASS_DECL_AURA spa(data_listener) data_listener_ptra;
+   typedef CLASS_DECL_AURA ptr_array < data_listener > data_listener_ptra;
    typedef CLASS_DECL_AURA comparable_array < data * > data_ptra;
    typedef CLASS_DECL_AURA comparable_array < sp(element) > ca_ptra;
 
