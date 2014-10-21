@@ -110,40 +110,6 @@ namespace user
 
       bool bHasUninstall = varTopicQuey.has_property("uninstall");
 
-      if(!(bHasInstall || bHasUninstall)
-         && Application.m_bLicense
-         && strLicense.has_char())
-      {
-
-         if(!Session.assert_user_logged_in())
-         {
-            return false;
-         }
-
-         // call application's is_licensed function
-         // because if delay is needed for authentication -
-         // or either asking for authentication -
-         // current application startup won't be
-         // exited by timeout.
-
-         int32_t iRetry = 3;
-
-      retry_license:
-
-         iRetry--;
-
-         if(!Session.is_licensed(strLicense))
-         {
-
-            if(iRetry > 0)
-               goto retry_license;
-
-            return false;
-
-         }
-
-      }
-
       
 
 

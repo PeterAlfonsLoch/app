@@ -310,19 +310,35 @@ namespace fontopus
       m_loginthread.m_strLicense = m_strLicense;
       string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
-      straRequestingServer.add("account.ca2.cc");
-      //straRequestingServer.add("eu-account.ca2.cc");
-      //straRequestingServer.add("asia-account.ca2.cc");
-      if(System.url().get_server(strHost).has_char())
+
+      string strFirstFontopusServer = Session.fontopus()->m_strFirstFontopusServer;
+
+      if(strFirstFontopusServer.has_char())
       {
-         strHost = System.url().get_server(strHost);
+         
+         straRequestingServer.add(strFirstFontopusServer);
+
+         strHost = strFirstFontopusServer;
+
       }
       else
       {
-         strHost = "account.ca2.cc";
-      }
+         straRequestingServer.add("account.ca2.cc");
 
-      strHost = Session.fontopus()->get_server(strHost);
+         //straRequestingServer.add("eu-account.ca2.cc");
+         //straRequestingServer.add("asia-account.ca2.cc");
+         if(System.url().get_server(strHost).has_char())
+         {
+            strHost = System.url().get_server(strHost);
+         }
+         else
+         {
+            strHost = "account.ca2.cc";
+         }
+
+         strHost = Session.fontopus()->get_server(strHost);
+
+      }
 
       if(straRequestingServer.contains(Application.command_thread()->m_varTopicQuery["fontopus"].get_string())
          && Application.command_thread()->m_varTopicQuery["sessid"].get_string().get_length() > 16)
@@ -334,20 +350,35 @@ namespace fontopus
 
       string strApiHost = strHost;
 
-      strApiHost.replace("account","api");
+      //strApiHost.replace("account","api");
 
-      strAuthUrl = "https://" + strApiHost + "/account/license2";
+      strAuthUrl = "https://" + strHost + "/api/account/license2?sessid=" + Session.fontopus()->m_mapFontopusSessId[strHost];
 
       property_set set;
 
-      string strAuth;
+      
       set["post"]["entered_license"] = m_strLicense;
       //m_puser->set_sessid(ApplicationUser.m_str, strAuthUrl);
       //      uint32_t dwTimeProfile1 = get_tick_count();
 
       set["post"]["entered_license"] = m_strLicense;
 
-      Application.http().get(strAuthUrl,strAuth,set);
+      sp(::sockets::http_session) psession = Session.fontopus()->m_mapFontopusSession[strHost];
+
+      set["get_response"] = "";
+
+      psession = System.http().request(psession,strAuthUrl,set);
+
+      if(psession.is_set())
+      {
+
+         Session.fontopus()->m_mapFontopusSession.set_at(strHost,psession);
+
+
+      }
+
+      string strAuth(set["get_response"]);
+
 
       m_loginthread.m_strFontopusServer = strHost;
 
@@ -379,7 +410,7 @@ namespace fontopus
          if(strDecrypt.has_char())
          {
             
-            string strHash = System.crypto().sha1("\"license granted(093a95faf9e0b59bd4fb2dc60da16260)\"::" + m_puser->get_session_secret());
+            string strHash = System.crypto().sha1("\"license granted(093a95faf9e0b59bd4fb2dc60da16260)\"::" + ApplicationUser.get_session_secret());
 
             if((strHash.CompareNoCase(strDecrypt) == 0))
             {

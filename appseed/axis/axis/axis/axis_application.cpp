@@ -1503,6 +1503,8 @@ namespace axis
 
       if(!::aura::application::initialize())
          return false;
+
+
       
       return true;
 
