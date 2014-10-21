@@ -582,7 +582,7 @@ namespace user
       // clean up contents of document_interface before destroying the document_interface itself
       delete_contents();
 
-      release();
+      //release();
    }
 
    void document::report_save_load_exception(const char * lpszPathName, ::exception::base* e, bool bSaving, const char * nIDPDefault)
