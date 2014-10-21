@@ -29,12 +29,12 @@ base_factory::~base_factory()
 
    for(int32_t i = 0; i < m_itemptra.get_count(); i++)
    {
-      m_itemptra[i].release();
+      m_itemptra[i]->release();
    }
 
    for(int32_t i = 0; i < m_itemptraAllocator.get_count(); i++)
    {
-      m_itemptraAllocator[i].release();
+      m_itemptraAllocator[i]->release();
    }
 
 }
