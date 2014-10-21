@@ -451,7 +451,7 @@ namespace user
    }
 
 
-   sp(place_holder) interaction_base::place(sp(::user::interaction) pui)
+   sp(place_holder) interaction_base::place(::user::interaction * pui)
    {
 
       throw interface_only_exception(get_app());
@@ -1168,7 +1168,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_base::GetParentOwner() const
+   ::user::interaction * interaction_base::GetParentOwner() const
    {
 
       throw interface_only_exception(get_app());
@@ -1176,7 +1176,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_base::GetTopLevelOwner() const
+   ::user::interaction * interaction_base::GetTopLevelOwner() const
    {
 
       throw interface_only_exception(get_app());
@@ -1708,7 +1708,7 @@ namespace user
    }
 
 
-   bool interaction_base::can_merge(sp(::user::interaction) pui)
+   bool interaction_base::can_merge(::user::interaction * pui)
    {
 
       throw interface_only_exception(get_app());
@@ -1718,7 +1718,7 @@ namespace user
    }
 
 
-   bool interaction_base::merge(sp(::user::interaction) pui)
+   bool interaction_base::merge(::user::interaction * pui)
    {
 
       throw interface_only_exception(get_app());
@@ -1854,14 +1854,14 @@ namespace user
    }
 
 
-   void interaction_base::mouse_hover_add(sp(::user::interaction) pinterface)
+   void interaction_base::mouse_hover_add(::user::interaction * pinterface)
    {
 
       throw interface_only_exception(get_app());
 
    }
 
-   void interaction_base::mouse_hover_remove(sp(::user::interaction) pinterface)
+   void interaction_base::mouse_hover_remove(::user::interaction * pinterface)
    {
 
       throw interface_only_exception(get_app());
@@ -1877,7 +1877,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_base::get_os_focus_uie()
+   ::user::interaction * interaction_base::get_os_focus_uie()
    {
 
       throw interface_only_exception(get_app());
@@ -1887,7 +1887,7 @@ namespace user
    }
 
 
-   int32_t interaction_base::get_descendant_level(sp(::user::interaction) pui)
+   int32_t interaction_base::get_descendant_level(::user::interaction * pui)
    {
 
       throw interface_only_exception(get_app());
@@ -1897,7 +1897,7 @@ namespace user
    }
 
 
-   bool interaction_base::is_descendant(sp(::user::interaction) pui,bool bIncludeSelf)
+   bool interaction_base::is_descendant(::user::interaction * pui,bool bIncludeSelf)
    {
 
       throw interface_only_exception(get_app());
@@ -1907,7 +1907,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) interaction_base::get_focusable_descendant(sp(::user::interaction) pui)
+   ::user::interaction * interaction_base::get_focusable_descendant(::user::interaction * pui)
    {
 
       throw interface_only_exception(get_app());

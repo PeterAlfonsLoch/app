@@ -39,7 +39,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction) pparent,id id,LPVOID lpParam)
+   bool interaction_child::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pparent,id id,LPVOID lpParam)
    {
 
       if(m_bCreate)
@@ -100,7 +100,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(interaction)  pparent,id id,sp(::create_context) pContext)
+   bool interaction_child::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction *  pparent,id id,sp(::create_context) pContext)
    {
 
       if(m_bCreate)
@@ -160,7 +160,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window(const RECT & rect, sp(interaction) pparent,id id)
+   bool interaction_child::create_window(const RECT & rect, ::user::interaction * pparent,id id)
    {
 
       if(m_bCreate)
@@ -321,7 +321,7 @@ namespace user
 #endif
 
 
-   sp(interaction) interaction_child::SetFocus()
+   ::user::interaction * interaction_child::SetFocus()
    {
       return NULL;
    }
@@ -351,7 +351,7 @@ namespace user
 
 
    void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
-      sp(interaction) pwnd,LPCRECT lpRect);
+      ::user::interaction * pwnd,LPCRECT lpRect);
 
 
 
