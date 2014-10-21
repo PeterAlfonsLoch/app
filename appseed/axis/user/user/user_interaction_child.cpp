@@ -635,13 +635,6 @@ namespace user
 
       bool bOk = ::user::interaction_impl_base::DestroyWindow();
 
-      if(bOk)
-      {
-
-         m_bCreate = false;
-
-      }
-
       return bOk;
 
    }
@@ -715,9 +708,13 @@ namespace user
 
    void interaction_child::_001OnDestroy(signal_details * pobj)
    {
+      
       UNREFERENCED_PARAMETER(pobj);
 
+      m_bCreate = false;
+
    }
+
 
    void interaction_child::_001OnNcDestroy(signal_details * pobj)
    {
