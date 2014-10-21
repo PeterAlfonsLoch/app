@@ -1047,7 +1047,7 @@ namespace xml
       if( m_etype == node_document )
       {
          for( int32_t i = 0 ; i < m_nodea.get_size(); i++ )
-            ostring += m_nodea[i].get_xml( opt );
+            ostring += m_nodea[i]->get_xml( opt );
          return ostring;
       }
       else
@@ -1060,7 +1060,7 @@ namespace xml
             ostring += ' ';
          for( int32_t i = 0 ; i < m_attra.m_propertya.get_size(); i++ )
          {
-            ostring += m_attra.m_propertya[i].get_xml(opt);
+            ostring += m_attra.m_propertya[i]->get_xml(opt);
          }
          //?>
          ostring += szXMLPIClose;
@@ -1093,7 +1093,7 @@ namespace xml
          ostring += ' ';
       for( int32_t i = 0 ; i < m_attra.m_propertya.get_count(); i++ )
       {
-         ostring += m_attra.m_propertya[i].get_xml(opt);
+         ostring += m_attra.m_propertya[i]->get_xml(opt);
       }
 
       if( m_nodea.is_empty() && m_strValue.is_empty() )
