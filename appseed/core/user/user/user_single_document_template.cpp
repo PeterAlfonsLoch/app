@@ -25,7 +25,7 @@ namespace user
       return (m_pdocument == NULL) ? 0 : 1;
    }
 
-   sp(::user::document) single_document_template::get_document(index index) const
+   ::user::document * single_document_template::get_document(index index) const
    {
       if(index == 0)
          return m_pdocument;
@@ -33,7 +33,7 @@ namespace user
          return NULL;
    }
 
-   void single_document_template::add_document(sp(::user::document) pdocument)
+   void single_document_template::add_document(::user::document * pdocument)
    {
       if(m_pdocument == NULL)
       {
@@ -42,7 +42,7 @@ namespace user
       }
    }
 
-   void single_document_template::remove_document(sp(::user::document) pdocument)
+   void single_document_template::remove_document(::user::document * pdocument)
    {
       if(m_pdocument == pdocument)
       {
@@ -193,7 +193,7 @@ if(bCreated)
 
    }
 
-   void single_document_template::set_default_title(sp(::user::document) pdocument)
+   void single_document_template::set_default_title(::user::document * pdocument)
    {
       string strDocName;
       if (!GetDocString(strDocName, impact_system::docName) ||

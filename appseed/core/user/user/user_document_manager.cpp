@@ -662,7 +662,7 @@ namespace user
       ::count count = m_templateptra.get_count();
       impact_system::Confidence bestMatch = impact_system::noAttempt;
       sp(impact_system) pBestTemplate = NULL;
-      sp(::user::document) pOpenDocument = NULL;
+      ::user::document * pOpenDocument = NULL;
 
       /*char szPath[_MAX_PATH];
       ASSERT(lstrlen(varFileName) < _countof(szPath));
