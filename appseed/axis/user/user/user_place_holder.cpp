@@ -146,7 +146,7 @@ namespace user
       if(m_uiptraHold.get_count() <= 0)
          return NULL;
 
-      return m_uiptraHold(0);
+      return m_uiptraHold[0];
 
    }
 
