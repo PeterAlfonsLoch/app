@@ -268,7 +268,7 @@ namespace sockets
          put_integer(msg, ptr, (int16_t)m_response.headers().m_propertya.get_size() );
          for (int32_t i = 0; i < m_response.headers().m_propertya.get_size(); i++)
          {
-            string strNameLower(m_response.headers().m_propertya[i].name());
+            string strNameLower(m_response.headers().m_propertya[i]->name());
             strNameLower;
             int32_t iValue;
             if(Session.sockets().m_pajpbasesocketinit->ResponseHeader.Lookup(strNameLower, iValue))
@@ -277,9 +277,9 @@ namespace sockets
             }
             else
             {
-               put_string(msg, ptr, m_response.headers().m_propertya[i].name());
+               put_string(msg, ptr, m_response.headers().m_propertya[i]->name());
             }
-            put_string(msg, ptr, m_response.headers().m_propertya[i].name());
+            put_string(msg, ptr, m_response.headers().m_propertya[i]->name());
          }
          throw not_implemented(get_app());
    /*      list<string> vec = m_response.CookieNames();
