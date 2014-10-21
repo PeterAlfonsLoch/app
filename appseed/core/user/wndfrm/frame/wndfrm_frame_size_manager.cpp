@@ -425,7 +425,7 @@ namespace user
 
 
 
-            WorkSetClientInterface * pinterface = dynamic_cast<WorkSetClientInterface *>(m_pworkset->get_draw_window().m_p);
+            sp(WorkSetClientInterface) pinterface = m_pworkset->get_draw_window();
             pinterface->WfiOnSize(bTracking);
             NotifyFramework((EHitTest)m_ehittestMode);
             {
