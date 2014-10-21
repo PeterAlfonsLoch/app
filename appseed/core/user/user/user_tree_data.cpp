@@ -104,7 +104,7 @@ namespace user
       for(int32_t i = 0; i < itemptra.get_count(); i++)
       {
 
-         ca += remove(itemptra(i));
+         ca += remove(itemptra[i]);
 
       }
 

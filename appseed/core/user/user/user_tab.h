@@ -155,8 +155,8 @@ namespace user
       virtual void _001SelectTab(::index iTab);
       virtual void _001CloseTab(::index iTab);
       virtual pane * get_pane(::index iTab, bool bVisible = true);
-      virtual sp(::user::interaction) get_tab_window(::index iTab, bool bVisible = true);
-      virtual sp(::user::place_holder) get_tab_holder(::index iTab, bool bVisible = true);
+      virtual ::user::interaction * get_tab_window(::index iTab, bool bVisible = true);
+      virtual ::user::place_holder * get_tab_holder(::index iTab, bool bVisible = true);
 
       void _000OnMouse(::message::mouse * pmouse);
 

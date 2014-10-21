@@ -836,8 +836,8 @@ namespace user
       for (int i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         if (m_treeptra(i)->contains(pitem))
-            return m_treeptra(i);
+         if (m_treeptra[i]->contains(pitem))
+            return m_treeptra[i];
 
       }
 
@@ -854,7 +854,7 @@ namespace user
       for (int iTree = 0; iTree < m_treeptra.get_count(); iTree++)
       {
 
-         pitemFound = m_treeptra(iTree)->find(pitem, piIndex);
+         pitemFound = m_treeptra[iTree]->find(pitem, piIndex);
 
          if (pitemFound.is_set())
             return pitemFound;
@@ -878,7 +878,7 @@ namespace user
       for (int iTree = 0; iTree < m_treeptra.get_count(); iTree++)
       {
 
-         if (m_treeptra(iTree)->contains(pitem))
+         if (m_treeptra[iTree]->contains(pitem))
             return true;
 
       }
@@ -1127,7 +1127,7 @@ namespace user
       for (index i = 0; i < m_treeptra.get_count(); i++)
       {
 
-         pitem = m_treeptra[i].get_base_item();
+         pitem = m_treeptra[i]->get_base_item();
 
          iLevel = 0;
          iProperIndex = 0;
@@ -1187,7 +1187,7 @@ namespace user
       ::count count = 0;
       for (int32_t i = 0; i < itemptra.get_count(); i++)
       {
-         if (selection_add(itemptra(i)))
+         if (selection_add(itemptra[i]))
             count++;
       }
       return count;
@@ -1220,7 +1220,7 @@ namespace user
       ::count count = 0;
       for (int32_t i = 0; i < itemptra.get_count(); i++)
       {
-         if (contains(itemptra(i)) && m_itemptraSelected.add_unique(itemptra(i)))
+         if (contains(itemptra[i]) && m_itemptraSelected.add_unique(itemptra[i]))
             count++;
       }
       return count;
@@ -1262,7 +1262,7 @@ namespace user
       ::count count = 0;
       for (int32_t i = 0; i < itemptra.get_count(); i++)
       {
-         if (m_itemptraSelected.remove(itemptra(i)))
+         if (m_itemptraSelected.remove(itemptra[i]))
             count++;
       }
       return count;
@@ -1315,7 +1315,7 @@ namespace user
       for (int32_t i = 0; i < m_itemptraSelected.get_count(); i++)
       {
 
-         if (m_itemptraSelected[i].m_pitem == pitemdata)
+         if (m_itemptraSelected[i]->m_pitem == pitemdata)
             return true;
 
       }
@@ -1404,7 +1404,7 @@ namespace user
          if (piLevel != NULL)
             *piLevel = 1;
 
-         pitem = m_treeptra[iTree].get_proper_item(i - iCount, piLevel, &iCount);
+         pitem = m_treeptra[iTree]->get_proper_item(i - iCount, piLevel, &iCount);
 
          if (pitem.is_set())
             return pitem;
@@ -1433,7 +1433,7 @@ namespace user
          if (piLevel != NULL) 
             *piLevel = 1;
 
-         iFound = m_treeptra[i].get_proper_item_index(pitemParam, piLevel, &iCount);
+         iFound = m_treeptra[i]->get_proper_item_index(pitemParam, piLevel, &iCount);
 
          if (iFound >= 0)
             return iCount;
@@ -1455,7 +1455,7 @@ namespace user
 
          iCount++; // per tree
 
-         iCount += m_treeptra[i].get_proper_item_count();
+         iCount += m_treeptra[i]->get_proper_item_count();
 
       }
 
@@ -1507,7 +1507,7 @@ namespace user
       for (index iTree = 0; iTree < m_treeptra.get_count(); iTree++)
       {
 
-         m_treeptra(iTree)->on_update(pSender, lHint, pHint);
+         m_treeptra[iTree]->on_update(pSender, lHint, pHint);
 
       }
 

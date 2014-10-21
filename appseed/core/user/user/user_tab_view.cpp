@@ -220,7 +220,7 @@ namespace user
 
    }
 
-   sp(::user::interaction) tab_view::_001GetTabWnd(int32_t iTab)
+   ::user::interaction * tab_view::_001GetTabWnd(int32_t iTab)
    {
       if(m_pviewcreator == NULL)
          return NULL;
@@ -495,7 +495,7 @@ namespace user
       return m_pviewdata;
    }
 
-   sp(::user::interaction) tab_view::get_view_uie()
+   ::user::interaction * tab_view::get_view_uie()
    {
       ::user::view_creator_data * pcreatordata = get_view_creator_data();
       if(pcreatordata == NULL)
@@ -507,7 +507,7 @@ namespace user
       return NULL;
    }
 
-   sp(::user::document) tab_view::get_view_document()
+   ::user::document * tab_view::get_view_document()
    {
       if(m_pviewdata == NULL)
          return NULL;

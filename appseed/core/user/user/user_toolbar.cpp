@@ -1514,7 +1514,7 @@ throw todo(get_app());
       if(iItem >= 0 && iItem < m_itema.get_size())
       {
 
-         *lprect = m_itema[iItem].m_rect;
+         *lprect = m_itema[iItem]->m_rect;
 
          return true;
 
@@ -1541,7 +1541,7 @@ throw todo(get_app());
       if(iItem >= 0
          && iItem < m_itema.get_size())
       {
-         *pitem = m_itema[iItem];
+         *pitem = m_itema(iItem);
          return true;
       }
       else
@@ -1555,7 +1555,7 @@ throw todo(get_app());
       if(iItem >= 0
          && iItem < m_itema.get_size())
       {
-         m_itema[iItem] = *pitem;
+         m_itema(iItem) = *pitem;
          return true;
       }
       else
@@ -1590,7 +1590,7 @@ throw todo(get_app());
 
       for(int32_t i = 0; i < childs.get_size(); i++)
       {
-         sp(::xml::node) pchild = childs(i);
+         sp(::xml::node) pchild = childs[i];
          if(pchild->get_name() == "button")
          {
             item = canew(::user::toolbar_item);

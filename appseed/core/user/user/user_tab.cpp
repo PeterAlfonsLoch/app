@@ -1294,7 +1294,7 @@ namespace user
          {
             lprect->left += get_data()->m_panea[iTabParam]->m_dib->m_size.cx + 2;
          }
-         if(!get_data()->m_panea[iTabParam].m_bPermanent)
+         if(!get_data()->m_panea[iTabParam]->m_bPermanent)
          {
             lprect->right -= 2 + 16 + 2;
          }
@@ -1303,7 +1303,7 @@ namespace user
       }
       else if(eelement == element_close_tab_button)
       {
-         if(get_data()->m_panea[iTabParam].m_bPermanent)
+         if(get_data()->m_panea[iTabParam]->m_bPermanent)
             return false;
          if(get_data()->get_visible_tab_count() <= 1 && !get_data()->m_bEnableCloseAll)
             return false;
@@ -1331,7 +1331,7 @@ namespace user
             index iPane = iTabParam;
             for(int32_t i = 0; iPane > 0 && i < get_data()->m_panea.get_count(); i++)
             {
-               if(get_data()->m_panea[i].m_bVisible)
+               if(get_data()->m_panea[i]->m_bVisible)
                {
                  iPane--;
                   iPreviousVisibleTabCount++;
@@ -1347,7 +1347,7 @@ namespace user
       }
       else
       {
-         pane & pane = get_data()->m_panea[iTabParam];
+         pane & pane = get_data()->m_panea(iTabParam);
          lprect->left = pane.m_pt.x;
          lprect->top = pane.m_pt.y;
          lprect->right = pane.m_pt.x + pane.m_size.cx;
@@ -1457,7 +1457,7 @@ namespace user
    }
 
    /*
-   bool tab::create(sp(::user::interaction) pinterface, UINT uiId)
+   bool tab::create(::user::interaction * pinterface, UINT uiId)
    {
       if(!m_pui->create(
          pinterface,
@@ -1738,7 +1738,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) tab::get_tab_window(::index iPane, bool bVisible)
+   ::user::interaction * tab::get_tab_window(::index iPane, bool bVisible)
    {
       sp(place_holder) pholder = get_tab_holder(iPane, bVisible);
       if(pholder == NULL)
@@ -1762,7 +1762,7 @@ namespace user
       {
          for(int32_t i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
          {
-            if(get_data()->m_panea[i].m_bVisible)
+            if(get_data()->m_panea[i]->m_bVisible)
             {
                if(iPane <= 0)
                {
@@ -1850,7 +1850,7 @@ namespace user
    {
       for(::index i = 0; i < get_data()->m_panea.get_size(); i++)
       {
-         if(get_data()->m_panea[i].m_id == id)
+         if(get_data()->m_panea[i]->m_id == id)
             return i;
       }
       return -1;
@@ -1863,11 +1863,11 @@ namespace user
       {
          for(int32_t i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
          {
-            if(get_data()->m_panea[i].m_bVisible)
+            if(get_data()->m_panea[i]->m_bVisible)
             {
                if(iPane <= 0)
                {
-                  return get_data()->m_panea[i].m_id;
+                  return get_data()->m_panea[i]->m_id;
                }
                else
                {
@@ -1880,7 +1880,7 @@ namespace user
       else
       {
          if(iPane >= 0 && iPane < get_data()->m_panea.get_size())
-            return get_data()->m_panea[iPane].m_id;
+            return get_data()->m_panea[iPane]->m_id;
          else
             return id();
       }
@@ -2018,7 +2018,7 @@ namespace user
    }
 
 
-   sp(::user::interaction) tab::get_view_uie()
+   ::user::interaction * tab::get_view_uie()
    {
       return NULL;
    }
@@ -2204,7 +2204,7 @@ namespace user
       pane_array & panea = get_data()->m_panea;
       for(int32_t i = 0; i < panea.get_count(); i++)
       {
-         varId = panea[i].m_id;
+         varId = panea[i]->m_id;
          if(matchany.matches(varId))
          {
             vara.add(varId);
@@ -2221,7 +2221,7 @@ namespace user
       pane_array & panea = get_data()->m_panea;
       for(int32_t i = 0; i < panea.get_count(); i++)
       {
-         varId = panea[i].m_id;
+         varId = panea[i]->m_id;
          if(matchany.matches(varId))
          {
             return true;
