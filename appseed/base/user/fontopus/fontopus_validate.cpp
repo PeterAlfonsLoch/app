@@ -931,8 +931,8 @@ namespace fontopus
 
          strFilename = System.file().time_square(get_app());
 
-         set["post"] = m_httpexecutea[i].m_propertysetPost;
-         set["headers"] = m_httpexecutea[i].m_propertysetHeaders;
+         set["post"] = m_httpexecutea[i]->m_propertysetPost;
+         set["headers"] = m_httpexecutea[i]->m_propertysetHeaders;
          set["cookies"] = m_puser->m_phttpcookies;
          set["user"] = m_puser;
 
