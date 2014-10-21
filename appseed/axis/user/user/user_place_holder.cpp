@@ -29,7 +29,7 @@ namespace user
       if(m_uiptraHold.get_count() == 0)
          return false;
 
-      return m_uiptraHold[0].can_merge(pui);
+      return m_uiptraHold[0]->can_merge(pui);
 
    }
 
@@ -40,7 +40,7 @@ namespace user
       if(!can_merge(pui))
          return false;
 
-      if(!m_uiptraHold[0].merge(pui))
+      if(!m_uiptraHold[0]->merge(pui))
          return false;
 
       m_uiptraHold.add(pui);
