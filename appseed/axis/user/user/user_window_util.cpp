@@ -901,7 +901,7 @@ namespace user
       for(index i = 0; i < a.get_count(); i++)
       {
 
-         add(a(i));
+         add(a[i]);
 
       }
 
