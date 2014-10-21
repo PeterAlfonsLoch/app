@@ -516,12 +516,12 @@ namespace user
 
       for(int32_t i = 0; i < m_pui->m_uiptraChild.get_count(); i++)
       {
-         if(m_pui->m_uiptraChild[i].GetDlgCtrlId() == id)
+         if(m_pui->m_uiptraChild[i]->GetDlgCtrlId() == id)
          {
-            if(m_pui->m_uiptraChild[i].GetDescendantWindow(id))
-               return m_pui->m_uiptraChild[i].GetDescendantWindow(id);
+            if(m_pui->m_uiptraChild[i]->GetDescendantWindow(id))
+               return m_pui->m_uiptraChild[i]->GetDescendantWindow(id);
             else
-               return m_pui->m_uiptraChild(i);
+               return m_pui->m_uiptraChild[i];
          }
       }
 
