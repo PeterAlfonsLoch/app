@@ -1881,18 +1881,18 @@ namespace xml
       ::count count = 0;
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i]->m_strName == pszName)
          {
-            if(m_nodea[i].get_attr(pszAttrName, strValue))
+            if(m_nodea[i]->get_attr(pszAttrName, strValue))
             {
                count++;
                stra.add(strValue);
             }
          }
          if(iDepth > 0)
-            count += m_nodea[i].get_child_attr_value(stra, pszName, pszAttrName, iDepth - 1);
+            count += m_nodea[i]->get_child_attr_value(stra, pszName, pszAttrName, iDepth - 1);
          else if(iDepth < 0)
-            count += m_nodea[i].get_child_attr_value(stra, pszName, pszAttrName, -1);
+            count += m_nodea[i]->get_child_attr_value(stra, pszName, pszAttrName, -1);
       }
       return count;
    }
@@ -1914,9 +1914,9 @@ namespace xml
       ::count count = 0;
       for(index i = 0; i < m_nodea.get_size(); )
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i]->m_strName == pszName)
          {
-            if(m_nodea[i].get_attr(pszAttrName, strValue))
+            if(m_nodea[i]->get_attr(pszAttrName, strValue))
             {
                if(iIndex <= 0)
                {
@@ -1939,9 +1939,9 @@ namespace xml
             }
          }
          if(iDepth > 0)
-            nRemoveCount = m_nodea[i].remove_child_with_attr(pszName, pszAttrName, iIndex, iCount, iDepth - 1);
+            nRemoveCount = m_nodea[i]->remove_child_with_attr(pszName, pszAttrName, iIndex, iCount, iDepth - 1);
          else if(iDepth < 0)
-            nRemoveCount = m_nodea[i].remove_child_with_attr(pszName, pszAttrName, iIndex, iCount, -1);
+            nRemoveCount = m_nodea[i]->remove_child_with_attr(pszName, pszAttrName, iIndex, iCount, -1);
          if(nRemoveCount > 0)
          {
             count    += nRemoveCount;
@@ -1962,9 +1962,9 @@ namespace xml
       string strValue;
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i]->m_strName == pszName)
          {
-            if(m_nodea[i].get_attr(pszAttrName, strValue)
+            if(m_nodea[i]->get_attr(pszAttrName, strValue)
                && stricmp_dup(strValue, pszAttrValue) == 0)
             {
                return m_nodea(i);
@@ -1979,11 +1979,11 @@ namespace xml
       string strValue;
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i]->m_strName == pszName)
          {
             for(int32_t j = 0; j < straAttrName.get_size(); j++)
             {
-               if(m_nodea[i].get_attr(straAttrName[j], strValue) && stricmp_dup(strValue, straAttrValue[j]) == 0)
+               if(m_nodea[i]->get_attr(straAttrName[j], strValue) && stricmp_dup(strValue, straAttrValue[j]) == 0)
                {
                   return m_nodea(i);
                }
@@ -1998,12 +1998,12 @@ namespace xml
       string strValue;
       for(int32_t i = 0; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i].m_strName == pszName)
+         if(m_nodea[i]->m_strName == pszName)
          {
             bool bAll = true;
             for(int32_t j = 0; j < straAttrName.get_size(); j++)
             {
-               if(!m_nodea[i].get_attr(straAttrName[j], strValue) || stricmp_dup(strValue, straAttrValue[j]) != 0)
+               if(!m_nodea[i]->get_attr(straAttrName[j], strValue) || stricmp_dup(strValue, straAttrValue[j]) != 0)
                {
                   bAll = false;
                   break;
