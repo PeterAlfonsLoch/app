@@ -768,7 +768,7 @@ void property_set::read(::file::input_stream & istream)
       }
       else
       {*/
-      m_map.set_at(m_propertya[i].name(), i);
+      m_map.set_at(m_propertya[i]->name(), i);
       //}
    }
 }
@@ -778,12 +778,12 @@ string property_set::implode(const char * pszGlue) const
    string str;
    if (m_propertya.get_count() > 0)
    {
-      str = m_propertya[0].get_value().get_string();
+      str = m_propertya[0]->get_value().get_string();
    }
    for (int32_t i = 1; i < m_propertya.get_count(); i++)
    {
       str += pszGlue;
-      str += m_propertya[i].get_value().get_string();
+      str += m_propertya[i]->get_value().get_string();
    }
    return str;
 }
@@ -792,7 +792,7 @@ index property_set::find_value(const char * psz) const
 {
    for (index find = 0; find < m_propertya.get_count(); find++)
    {
-      if (m_propertya[find].get_string() == psz)
+      if (m_propertya[find]->get_string() == psz)
          return find;
    }
    return -1;
@@ -802,7 +802,7 @@ index property_set::find_value_ci(const char * psz) const
 {
    for (index find = 0; find < m_propertya.get_count(); find++)
    {
-      if (m_propertya[find].get_string().CompareNoCase(psz) == 0)
+      if (m_propertya[find]->get_string().CompareNoCase(psz) == 0)
          return find;
    }
    return -1;
