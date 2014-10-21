@@ -83,7 +83,7 @@ namespace data
    public:
 
 
-      spa(data_listener)                     m_listenerptra;
+      data_listener_ptra                     m_listenerptra;
       sp(data)                               m_spdataParentLock;
 
 
