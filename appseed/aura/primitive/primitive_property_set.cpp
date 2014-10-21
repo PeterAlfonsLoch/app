@@ -70,7 +70,7 @@ index property_set::find_var_ci(const var & var) const
 {
    for(index find = 0; find < m_propertya.get_count(); find++)
    {
-      if(m_propertya[find].get_value().compare_ci(var) == 0)
+      if(m_propertya[find]->get_value().compare_ci(var) == 0)
          return find;
    }
    return -1;

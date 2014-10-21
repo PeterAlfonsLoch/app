@@ -99,7 +99,7 @@ bool multi_lock::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
    {
       if (m_baLocked[i])
       {
-         semaphore* pSemaphore = dynamic_cast < semaphore * > (m_syncobjectptra(i).m_p);
+         semaphore* pSemaphore = dynamic_cast < semaphore * > (m_syncobjectptra[i]);
          if (pSemaphore != NULL)
          {
             bGotOne = true;
