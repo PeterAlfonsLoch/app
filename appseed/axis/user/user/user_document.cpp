@@ -134,7 +134,7 @@ namespace user
       single_lock sl(&m_mutex, true);
       for (index index = 0; index < m_viewptra.get_count(); index++)
       {
-         sp(::user::impact) pview = m_viewptra(index);
+         sp(::user::impact) pview = m_viewptra[index];
          ASSERT_VALID(pview);
          ASSERT_KINDOF(::user::impact, pview);
          pview->m_spdocument->release();
