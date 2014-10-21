@@ -303,7 +303,7 @@ e_stock_icon MetaButton::get_stock_icon()
 bool MetaButton::keyboard_focus_is_focusable()
 {
 
-   return false;
+   return false && ::user::button::keyboard_focus_is_focusable();
 
 }
 
