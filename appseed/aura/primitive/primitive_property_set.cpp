@@ -997,7 +997,7 @@ index property_set::str_find(const property & property, index find) const
       find = 0;
    for (; find < this->get_count(); find++)
    {
-      if (m_propertya[find].str_compare(property) == 0)
+      if (m_propertya[find]->str_compare(property) == 0)
          return find;
    }
    return -1;
@@ -1010,7 +1010,7 @@ bool property_set::str_contains(const property_set & set) const
 
    for (index i = 0; i < set.m_propertya.get_count(); i++)
    {
-      if (str_find(set.m_propertya[i]) < 0)
+      if (str_find(set.m_propertya(i)) < 0)
          return false;
    }
    return true;

@@ -1571,7 +1571,7 @@ namespace xml
       i = 0;
       for( ; i < m_nodea.get_size(); i++)
       {
-         node * lpnodeChild = m_nodea(i);
+         node * lpnodeChild = m_nodea[i];
          lpnodeChild = lpnodeChild->rfind(pszName, iDepth);
          if(lpnodeChild != NULL)
             return lpnodeChild;
@@ -1644,7 +1644,7 @@ namespace xml
    //========================================================
    attr * node::attr_at( index i )
    {
-      return &m_attra.m_propertya[i];
+      return m_attra.m_propertya[i];
    }
 
 
