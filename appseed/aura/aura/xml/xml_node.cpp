@@ -1111,7 +1111,7 @@ namespace xml
          }
 
          for( int32_t i = 0 ; i < m_nodea.get_size(); i++ )
-            ostring += m_nodea[i].get_xml( opt );
+            ostring += m_nodea[i]->get_xml( opt );
 
          string strTrimmedValue = m_strValue;
 
@@ -1164,7 +1164,7 @@ namespace xml
       if( m_etype == node_document )
       {
          for( int32_t i = 0 ; i < m_nodea.get_size(); i++ )
-            ostring += m_nodea[i].get_text( opt );
+            ostring += m_nodea[i]->get_text( opt );
       }
       else
       if( m_etype == node_pi )
@@ -1192,7 +1192,7 @@ namespace xml
          {
             // m_nodea text
             for( int32_t i = 0 ; i < m_nodea.get_size(); i++ )
-               ostring += m_nodea[i].get_text();
+               ostring += m_nodea[i]->get_text();
 
             // Text Value
             ostring += (opt->reference_value&&opt->m_pentities?opt->m_pentities->entity_to_ref(m_strValue):m_strValue);
