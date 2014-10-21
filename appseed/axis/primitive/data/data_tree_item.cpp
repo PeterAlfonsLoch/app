@@ -453,10 +453,10 @@ namespace data
       for (index i = 0; i < m_children.get_count(); i++)
       {
 
-         if (m_children(i)->is_expanded())
+         if (m_children[i]->is_expanded())
          {
 
-            m_children(i)->on_fill_children();
+            m_children[i]->on_fill_children();
 
          }
 
