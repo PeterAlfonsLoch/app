@@ -1501,22 +1501,22 @@ namespace user
 
          ::user::interaction * WorkSet::get_draw_window()
          {
-            return (m_pwndDraw.m_p);
+            return m_pwndDraw;
          }
 
          ::user::interaction * WorkSet::GetEventWindow()
          {
-            return (m_pwndEvent.m_p);
+            return m_pwndEvent;
          }
 
          ::user::interaction * WorkSet::GetRegionWindow()
          {
-            return (m_pwndRegion.m_p);
+            return m_pwndRegion;
          }
 
          ::user::interaction * WorkSet::GetCommandWindow()
          {
-            return (m_pwndCommand.m_p);
+            return m_pwndCommand;
          }
 
 
