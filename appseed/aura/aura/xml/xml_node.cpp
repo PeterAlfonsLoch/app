@@ -1505,8 +1505,8 @@ namespace xml
    {
       for(index i = iStartPosition; i < m_nodea.get_size(); i++ )
       {
-         if(m_nodea[i].m_strName.compare(pszName) == 0)
-            return m_nodea(i);
+         if(m_nodea[i]->m_strName.compare(pszName) == 0)
+            return m_nodea[i];
       }
       return NULL;
    }
@@ -1559,8 +1559,8 @@ namespace xml
       index i = 0;
       for( ; i < m_nodea.get_size(); i++)
       {
-         if(m_nodea[i].m_strName == pszName )
-            return m_nodea(i);
+         if(m_nodea[i]->m_strName == pszName )
+            return m_nodea[i];
       }
       if(iDepth == 0)
          return NULL;
