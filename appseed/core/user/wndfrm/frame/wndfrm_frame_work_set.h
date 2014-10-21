@@ -108,8 +108,8 @@ namespace user
             void WindowClose();
             void UpdateApperanceMode(bool bFullScreen);
             void SetDownUpInterface(CWorkSetDownUpInterface *pinterface);
-            void WindowProcBefore(sp(::user::interaction) pwnd, signal_details * pobj);
-            void WindowProcHover(sp(::user::interaction) pwnd, signal_details * pobj);
+            void WindowProcBefore(::user::interaction * pwnd, signal_details * pobj);
+            void WindowProcHover(::user::interaction * pwnd, signal_details * pobj);
             DECL_GEN_SIGNAL(_001OnActivate);
                DECL_GEN_SIGNAL(_001OnCommand);
                DECL_GEN_SIGNAL(_001OnNcActivate);
@@ -127,8 +127,8 @@ namespace user
             void layout();
             bool Hover(bool bHoverActive);
             void hover_relay_event(signal_details * pobj);
-            void ChildWnd(sp(::user::interaction) pwnd, sp(::user::interaction) pwndParent);
-            void FrameWnd(sp(::user::interaction) pwnd);
+            void ChildWnd(::user::interaction * pwnd, ::user::interaction * pwndParent);
+            void FrameWnd(::user::interaction * pwnd);
             bool Start();
             //void OnDown();
             //void OnUp();
@@ -137,14 +137,14 @@ namespace user
             void appearance_title_bar_layout(bool bInitialControlBoxPosition);
 
 
-            sp(::user::interaction) GetWndDraw();
-            sp(::user::interaction) GetWndRegion();
+            ::user::interaction * GetWndDraw();
+            ::user::interaction * GetWndRegion();
 
             bool update(
-               sp(::user::interaction) pwndDraw,
-               sp(::user::interaction) pwndRegion,
-               sp(::user::interaction) pwndEvent,
-               sp(::user::interaction) pwndCommand);
+               ::user::interaction * pwndDraw,
+               ::user::interaction * pwndRegion,
+               ::user::interaction * pwndEvent,
+               ::user::interaction * pwndCommand);
 
             void SetAppearanceTransparency(EAppearanceTransparency nTransparency);
             void SetFrameSchemaStyle(int32_t nStyle);
@@ -157,7 +157,7 @@ namespace user
 
             void GetRegionClientRect(LPRECT lprect);
             void get_draw_client_rect(LPRECT lprect);
-            //void SetWindow(sp(::user::interaction) pwnd);
+            //void SetWindow(::user::interaction * pwnd);
             void relay_event(signal_details * pobj);
             void message_handler(signal_details * pobj);
 

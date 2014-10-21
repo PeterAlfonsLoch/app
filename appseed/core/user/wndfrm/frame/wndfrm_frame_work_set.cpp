@@ -274,10 +274,10 @@ namespace user
          };
 
          bool WorkSet::update(
-            sp(::user::interaction)pwndDraw,
-            sp(::user::interaction)pwndRegion,
-            sp(::user::interaction)pwndEvent,
-            sp(::user::interaction)pwndCommand)
+            ::user::interaction *pwndDraw,
+            ::user::interaction *pwndRegion,
+            ::user::interaction *pwndEvent,
+            ::user::interaction *pwndCommand)
          {
 
             if(m_pappearance == NULL)
@@ -534,12 +534,12 @@ namespace user
          }*/
 
 
-         sp(::user::interaction) WorkSet::GetWndDraw()
+         ::user::interaction * WorkSet::GetWndDraw()
          {
             return m_pwndDraw;
          }
 
-         sp(::user::interaction) WorkSet::GetWndRegion()
+         ::user::interaction * WorkSet::GetWndRegion()
          {
             return m_pwndRegion;
          }
@@ -564,7 +564,7 @@ namespace user
          }
 
 
-         void WorkSet::FrameWnd(sp(::user::interaction)pwnd)
+         void WorkSet::FrameWnd(::user::interaction *pwnd)
          {
 
             UNREFERENCED_PARAMETER(pwnd);
@@ -572,7 +572,7 @@ namespace user
          }
 
 
-         void WorkSet::ChildWnd(sp(::user::interaction)pwnd,sp(::user::interaction) pwndParent)
+         void WorkSet::ChildWnd(::user::interaction *pwnd,::user::interaction * pwndParent)
          {
 
             UNREFERENCED_PARAMETER(pwnd);
@@ -905,7 +905,7 @@ namespace user
             m_wfla.remove(plistener);
          }
 
-         void WorkSet::WindowProcHover(sp(::user::interaction) pwnd,signal_details * pobj)
+         void WorkSet::WindowProcHover(::user::interaction * pwnd,signal_details * pobj)
          {
             UNREFERENCED_PARAMETER(pwnd);
             SCAST_PTR(::message::base,pbase,pobj);
@@ -936,7 +936,7 @@ namespace user
          }
 
 
-         void WorkSet::WindowProcBefore(sp(::user::interaction) pwnd,signal_details * pobj)
+         void WorkSet::WindowProcBefore(::user::interaction * pwnd,signal_details * pobj)
          {
 
             WindowProcHover(pwnd,pobj);
@@ -1499,22 +1499,22 @@ namespace user
 
          }
 
-         sp(::user::interaction) WorkSet::get_draw_window()
+         ::user::interaction * WorkSet::get_draw_window()
          {
             return (m_pwndDraw.m_p);
          }
 
-         sp(::user::interaction) WorkSet::GetEventWindow()
+         ::user::interaction * WorkSet::GetEventWindow()
          {
             return (m_pwndEvent.m_p);
          }
 
-         sp(::user::interaction) WorkSet::GetRegionWindow()
+         ::user::interaction * WorkSet::GetRegionWindow()
          {
             return (m_pwndRegion.m_p);
          }
 
-         sp(::user::interaction) WorkSet::GetCommandWindow()
+         ::user::interaction * WorkSet::GetCommandWindow()
          {
             return (m_pwndCommand.m_p);
          }
