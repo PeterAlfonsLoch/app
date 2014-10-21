@@ -22,24 +22,36 @@ namespace html
 
       select::~select()
       {
+
          try
          {
+
             if (m_pcombo->IsWindow())
             {
+
                m_pcombo->DestroyWindow();
+
             }
+
          }
          catch (...)
          {
+
          }
+
          try
          {
+
             m_pcombo.release();
+
          }
          catch (...)
          {
+
          }
+
       }
+
 
       void select::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {

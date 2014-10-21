@@ -11,15 +11,47 @@ namespace html
 
       input_button::input_button(data * pdata)
       {
+
          m_iFont = -1;
-         m_pbutton = new ::user::button(pdata->get_app());
+
+         m_pbutton = canew(::user::button(pdata->get_app()));
          m_pbutton->m_ulFlags &= ~element::flag_auto_delete;
+
       }
+
 
       input_button::~input_button()
       {
-         delete m_pbutton;
+         
+         try
+         {
+
+            if(m_pbutton->IsWindow())
+            {
+
+               m_pbutton->DestroyWindow();
+
+            }
+
+         }
+         catch(...)
+         {
+
+         }
+
+         try
+         {
+
+            m_pbutton.release();
+
+         }
+         catch(...)
+         {
+
+         }
+
       }
+
 
       void input_button::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {

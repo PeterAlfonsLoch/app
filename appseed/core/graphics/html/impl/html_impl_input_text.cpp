@@ -4,37 +4,54 @@
 namespace html
 {
 
+
    namespace impl
    {
 
+
       input_text::input_text(data * pdata)
       {
+
          m_iFont = -1;
-         m_pedit = new ::user::edit_plain_text(pdata->get_app());
+         m_pedit = canew(::user::edit_plain_text(pdata->get_app()));
          m_pedit->m_ulFlags &= ~element::flag_auto_delete;
          m_pedit->m_bMultiLine      = false;
+
       }
+
 
       input_text::~input_text()
       {
+
          try
          {
+
             if(m_pedit->IsWindow())
             {
+
                m_pedit->DestroyWindow();
+
             }
+
          }
          catch(...)
          {
+
          }
+
          try
          {
+
             m_pedit.release();
+
          }
          catch(...)
          {
+
          }
+
       }
+
 
       void input_text::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {

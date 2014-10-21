@@ -4,17 +4,51 @@
 namespace html
 {
 
+
    namespace impl
    {
 
+
       input_checkbox::input_checkbox(data * pdata)
       {
+
          m_pcheckbox = canew( ::user::check_box(pdata->get_app()));
+
       }
+
 
       input_checkbox::~input_checkbox()
       {
+
+         try
+         {
+
+            if(m_pcheckbox->IsWindow())
+            {
+
+               m_pcheckbox->DestroyWindow();
+
+            }
+
+         }
+         catch(...)
+         {
+
+         }
+
+         try
+         {
+
+            m_pcheckbox.release();
+
+         }
+         catch(...)
+         {
+
+         }
+
       }
+
 
       void input_checkbox::implement_phase1(data * pdata, ::html::elemental * pelemental)
       {
