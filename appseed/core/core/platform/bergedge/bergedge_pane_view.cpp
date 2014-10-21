@@ -94,7 +94,7 @@ namespace bergedge
             pane_view_update_hint * puh = (pane_view_update_hint * ) pHint;
             if(puh->is_type_of(pane_view_update_hint::TypeOnShowKaraoke))
             {
-               ( (GetTopLevelFrame().m_p))->SetActiveView(this);
+               GetTopLevelFrame()->SetActiveView(this);
             }
             else if(puh->is_type_of(pane_view_update_hint::TypeOnShowView))
             {
