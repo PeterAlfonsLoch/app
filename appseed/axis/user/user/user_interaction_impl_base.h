@@ -175,10 +175,27 @@ namespace user
       void mouse_hover_add(::user::interaction * pinterface);
       void mouse_hover_remove(::user::interaction * pinterface);
 
+
    };
 
 
 } // namespace user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
