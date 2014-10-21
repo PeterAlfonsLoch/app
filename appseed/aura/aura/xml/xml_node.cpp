@@ -2042,12 +2042,12 @@ namespace xml
          for(index iCol = 0; iCol < iColCount; iCol++)
          {
             sp(::xml::node) pcol = add_child("ca");
-            iRowCount = str2a[iCol].get_count();
+            iRowCount = str2a[iCol]->get_count();
             pcol->add_attr("row_count", iRowCount);
             for(int32_t iRow = 0; iRow < iRowCount; iRow++)
             {
 //               sp(::xml::node) prow = add_child("r");
-               if(iRow < str2a[iCol].get_count())
+               if(iRow < str2a[iCol]->get_count())
                {
                   pcol->m_strValue = str2a[iCol].element_at(iRow);
                }

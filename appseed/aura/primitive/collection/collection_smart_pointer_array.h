@@ -267,17 +267,17 @@ public:
    }
 
    // overloaded operator helpers
-   const T * operator[](index nIndex) const
+   const smart_pointer < T > & operator[](index nIndex) const
    {
 
-      return this->array < smart_pointer < T > >::operator[](nIndex).m_p;
+      return this->array < smart_pointer < T > >::operator[](nIndex);
 
    }
 
-   T * operator[](index nIndex)
+   smart_pointer < T > & operator[](index nIndex)
    {
 
-      return this->array < smart_pointer < T > >::operator[](nIndex).m_p;
+      return this->array < smart_pointer < T > >::operator[](nIndex);
 
    }
 
