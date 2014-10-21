@@ -301,7 +301,7 @@ namespace visual
       SelectFont();
       for(i = 0; i < str2aTokens.get_size(); i++)
       {
-         string & straTokens = str2aTokens[i];
+         stringa & straTokens = str2aTokens[i];
          for(j = 0; j < straTokens.get_size(); j++)
          {
             str = straTokens[j];
