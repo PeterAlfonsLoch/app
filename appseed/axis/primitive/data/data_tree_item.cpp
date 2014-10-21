@@ -258,7 +258,7 @@ namespace data
 
       }
 
-      return m_pparent->m_children(iFind - 1);
+      return m_pparent->m_children[iFind - 1];
 
    }
 
