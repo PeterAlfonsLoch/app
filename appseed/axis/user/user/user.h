@@ -110,7 +110,7 @@ namespace user
 {
 
 
-   CLASS_DECL_AXIS void __reposition_window(__SIZEPARENTPARAMS* lpLayout,sp(::user::interaction) oswindow,LPCRECT lpRect);
+   CLASS_DECL_AXIS void __reposition_window(__SIZEPARENTPARAMS* lpLayout,::user::interaction * pui,LPCRECT lpRect);
 
 
 } // namespace user

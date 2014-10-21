@@ -1,7 +1,7 @@
 #include "framework.h" // from "axis/user/user.h"
 
 
-void __reposition_window(__SIZEPARENTPARAMS* lpLayout,oswindow oswindow,LPCRECT lpRect);
+void __reposition_window(__SIZEPARENTPARAMS* lpLayout,::user::interaction * pui,LPCRECT lpRect);
 
 
 namespace user

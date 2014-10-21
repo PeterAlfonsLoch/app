@@ -1024,7 +1024,7 @@ namespace user
 
       // get top level frame unless this is a child interaction_impl
       // determine if interaction_impl should be active or not
-      sp(::user::frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame().m_p;
+      sp(::user::frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame();
 
       if (pTopLevel == NULL)
          pTopLevel = this;

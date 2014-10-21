@@ -1,6 +1,6 @@
 #pragma once
 
-CLASS_DECL_AXIS string get_user_interaction_window_class(sp(::user::interaction) pui);
+CLASS_DECL_AXIS string get_user_interaction_window_class(::user::interaction * pui);
 
 
 
