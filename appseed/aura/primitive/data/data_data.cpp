@@ -83,7 +83,7 @@ namespace data
       spa(data_listener) listenerptra = m_listenerptra;
       for(int32_t i = 0; i < listenerptra.get_count(); i++)
       {
-         listenerptra[i].listen(this, false);
+         listenerptra[i]->listen(this, false);
       }
    }
 
@@ -96,7 +96,7 @@ namespace data
    {
       for(int32_t i = 0; i < m_listenerptra.get_count(); i++)
       {
-         m_listenerptra[i].on_update_data(this, iHint);
+         m_listenerptra[i]->on_update_data(this, iHint);
       }
    }
 

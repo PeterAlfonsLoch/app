@@ -42,7 +42,7 @@ namespace action
       for (index i = 0; i < m_spdata->m_spa.get_count(); i++)
       {
 
-         if (m_spdata->m_spa(i).m_p == pobject)
+         if (m_spdata->m_spa[i] == pobject)
             return i;
 
       }

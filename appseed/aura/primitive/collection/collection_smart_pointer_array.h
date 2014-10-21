@@ -142,7 +142,7 @@ public:
       for (index i = 0; i < a.get_count(); i++)
       {
 
-         if (add_unique((T *) &a[i]))
+         if (add_unique((T *) a[i]))
             c++;
 
       }
@@ -267,17 +267,17 @@ public:
    }
 
    // overloaded operator helpers
-   const T & operator[](index nIndex) const
+   const T * operator[](index nIndex) const
    {
 
-      return *this->array < smart_pointer < T > >::operator[](nIndex).m_p;
+      return this->array < smart_pointer < T > >::operator[](nIndex).m_p;
 
    }
 
-   T & operator[](index nIndex)
+   T * operator[](index nIndex)
    {
 
-      return *this->array < smart_pointer < T > >::operator[](nIndex).m_p;
+      return this->array < smart_pointer < T > >::operator[](nIndex).m_p;
 
    }
 
@@ -424,18 +424,18 @@ public:
    }
 
 
-   const smart_pointer < T > & operator() (index nIndex) const
+   const T & operator() (index nIndex) const
    {
 
-      return this->sp_at(nIndex);
+      return *this->sp_at(nIndex);
 
    }
 
 
-   smart_pointer < T > & operator() (index nIndex)
+   T & operator() (index nIndex)
    {
 
-      return this->sp_at(nIndex);
+      return *this->sp_at(nIndex);
 
    }
 
@@ -485,6 +485,7 @@ public:
 
    }
 
+
    smart_pointer_array & append(const smart_pointer_array & a)
    {
 
@@ -492,12 +493,15 @@ public:
 
       for(index i = 0; i < c; i++)
       {
-         this->add(a(i));
+
+         this->add((T *) a[i]);
+
       }
 
       return *this;
 
    }
+
 
    template < class ARRAY >
    smart_pointer_array & append_ptra(const ARRAY * pptra)

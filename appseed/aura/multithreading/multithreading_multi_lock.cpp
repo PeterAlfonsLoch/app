@@ -15,17 +15,17 @@ multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
    for (index i = 0; i < m_syncobjectptra.get_count(); i++)
    {
       //ASSERT_VALID(dynamic_cast < request_interface * > (m_syncobjectptra[i]));
-      if(m_syncobjectptra(i).is_null())
+      if(m_syncobjectptra[i] == NULL)
          throw invalid_argument_exception(::get_thread_app());
 
-      ASSERT(base_class < waitable >::bases (m_syncobjectptra(i)));
+      ASSERT(base_class < waitable >::bases (m_syncobjectptra[i]));
 
       // can't wait for critical sections
 
-      ASSERT(!base_class < critical_section >::bases (m_syncobjectptra(i)));
+      ASSERT(!base_class < critical_section >::bases (m_syncobjectptra[i]));
 
 #ifdef WINDOWS
-      m_objecta[i] = (HANDLE) m_syncobjectptra(i)->get_os_data();
+      m_objecta[i] = (HANDLE) m_syncobjectptra[i]->get_os_data();
 #else
       m_objecta[i] = m_syncobjectptra(i);
 #endif
@@ -87,7 +87,7 @@ bool multi_lock::unlock()
    for (index i=0; i < m_objecta.get_count(); i++)
    {
       if (m_baLocked[i])
-         m_baLocked[i] = !m_syncobjectptra(i)->unlock();
+         m_baLocked[i] = !m_syncobjectptra[i]->unlock();
    }
    return TRUE;
 }
