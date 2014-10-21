@@ -168,7 +168,7 @@ namespace user
       single_lock sl(&((document *) this)->m_mutex, true);
       if (index < 0 || index >= m_viewptra.get_count())
          return NULL;
-      sp(::user::impact) pview = m_viewptra(index);
+      sp(::user::impact) pview = m_viewptra[index];
       ASSERT_KINDOF(::user::impact, pview);
       return pview;
    }
