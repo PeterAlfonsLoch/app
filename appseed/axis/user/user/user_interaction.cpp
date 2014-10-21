@@ -3220,11 +3220,11 @@ namespace user
       if(m_pimpl != NULL)
       {
 
-         return m_pimpl->SetCapture(pinterface.is_null() ? this : pinterface.m_p);
+         return m_pimpl->SetCapture(pinterface == NULL ? this : pinterface);
 
       }
 
-      return GetWindow()->SetCapture(pinterface.is_null() ? this : pinterface.m_p);
+      return GetWindow()->SetCapture(pinterface == NULL ? this : pinterface);
 
    }
 
