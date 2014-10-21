@@ -85,6 +85,7 @@ namespace user
       void _001SetButtonTextId(const char * lpcszText);
       string _001GetButtonText();
 
+      DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       DECL_GEN_SIGNAL(_001OnMouseMove);

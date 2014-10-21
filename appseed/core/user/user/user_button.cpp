@@ -43,6 +43,7 @@ namespace user
       //IGUI_WIN_MSG_LINK(WM_CREATE                  , pinterface, this, &button::_001OnCreate);
       //   IGUI_WIN_MSG_LINK(CVmsGenApp::APPM_LANGUAGE  , pinterface, this, &button::_001OnAppLanguage);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &button::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_KEYDOWN,pinterface,this,&button::_001OnKeyDown);
    }
 
    void button::_001OnDraw(::draw2d::graphics * pdc)
@@ -603,6 +604,31 @@ namespace user
 
    }
 
+
+   void button::_001OnKeyDown(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::key,pkey,pobj);
+
+      ::user::e_key iKey = pkey->m_ekey;
+
+      if(iKey == ::user::key_return || iKey == ::user::key_space)
+      {
+
+         ::user::control_event ev;
+         ev.m_puie = this;
+         ev.m_eevent = ::user::event_button_clicked;
+         ev.m_pobj = pobj;
+         BaseOnControlEvent(&ev);
+         pobj->m_bRet = ev.m_bRet;
+         if(pobj->m_bRet)
+         {
+            pkey->set_lresult(1);
+         }
+
+      }
+
+   }
 } // namespace user
 
 

@@ -670,7 +670,7 @@ namespace user
    bool interaction_child::IsWindow() const
    {
 
-      return m_bCreate && m_pui->m_pauraapp != NULL;
+      return m_bCreate && m_pui != NULL && m_pui->m_pauraapp != NULL;
 
    }
 
