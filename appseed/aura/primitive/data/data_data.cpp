@@ -80,7 +80,7 @@ namespace data
 
    data::~data()
    {
-      spa(data_listener) listenerptra = m_listenerptra;
+      data_listener_ptra listenerptra = m_listenerptra;
       for(int32_t i = 0; i < listenerptra.get_count(); i++)
       {
          listenerptra[i]->listen(this, false);
