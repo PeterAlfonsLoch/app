@@ -303,7 +303,7 @@ namespace visual
       SelectFont();
       for(i = 0; i < p2DTokens->get_size(); i++)
       {
-         p1DTokens = p2DTokens->operator ()(i);
+         p1DTokens = p2DTokens->operator [](i);
          ASSERT(p1DTokens != NULL);
          for(j = 0; j < p1DTokens->get_size(); j++)
          {

@@ -46,7 +46,7 @@ namespace fs
          straTitle.add(straFsTitle);
          for(int32_t j = 0; j < straFsPath.get_size(); j++)
          {
-            m_fsdatamap[straFsPath[j]] = m_spafsdata(i);
+            m_fsdatamap[straFsPath[j]] = m_spafsdata[i];
          }
       }
 

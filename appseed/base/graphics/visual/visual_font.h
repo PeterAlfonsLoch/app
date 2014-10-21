@@ -53,7 +53,7 @@ namespace visual
       bool AddGlyph(UINT ui);
 
 
-      void AddXFGlyphs(string2a *p2DTokens);
+      void AddXFGlyphs(string2a & str2aTokens);
       //void OffsetDataPointers(LPVOID lpData);
 
 
