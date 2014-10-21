@@ -5288,7 +5288,7 @@ namespace user
                      }
                      try
                      {
-                        GetParent()->m_uiptraChild.insert_at(0,this);
+                        GetParent()->m_uiptraChild.add(this);
                      }
                      catch(...)
                      {

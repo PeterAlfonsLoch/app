@@ -129,8 +129,7 @@ namespace html
       smart_pointer_array < font >
                                  m_fonta;
 
-      comparable_array < sp(::user::interaction), sp(::user::interaction) >
-                                 m_focusptra;
+      ::user::interaction_ptra   m_focusptra;
 
       style_sheet_array          m_stylesheeta;
       string                     m_strPathName;

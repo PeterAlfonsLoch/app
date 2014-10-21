@@ -25,18 +25,7 @@ namespace html
    elemental::~elemental()
    {
 
-      ::data::lock lock(m_pdata);
-
-      delete m_pimpl;
-
-      for (int32_t i = 0; i < m_elementalptra.get_size(); i++)
-      {
-
-         delete m_elementalptra[i];
-
-      }
-
-      m_elementalptra.remove_all();
+      delete_implementation();
 
    }
 
@@ -1185,15 +1174,80 @@ namespace html
 
    void elemental::delete_implementation()
    {
-      if (m_pimpl == NULL)
-         return;
-      m_pimpl->delete_implementation();
-      for (int32_t i = 0; i < m_elementalptra.get_size(); i++)
+
+      m_propertyset.clear();
+
+      try
       {
-         if (m_elementalptra[i] != NULL)
-            m_elementalptra[i]->delete_implementation();
+
+         for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
+         {
+
+            try
+            {
+
+               if(m_elementalptra[i] != NULL)
+               {
+
+                  m_elementalptra[i]->delete_implementation();
+
+               }
+
+            }
+            catch(...)
+            {
+
+            }
+
+            try
+            {
+
+               if(m_elementalptra[i] != NULL)
+               {
+
+                  delete m_elementalptra[i];
+
+               }
+
+            }
+            catch(...)
+            {
+
+            }
+
+         }
+
       }
+      catch(...)
+      {
+
+      }
+
+
+      if(m_pimpl != NULL)
+      {
+         try
+         {
+            m_pimpl->delete_implementation();
+         }
+         catch(...)
+         {
+         }
+         try
+         {
+            delete m_pimpl;
+         }
+         catch(...)
+         {
+         }
+         m_pimpl = NULL;
+
+      }
+
+      m_elementalptra.remove_all();
+
    }
+
 
    void elemental::get_html(data * pdata, string & str)
    {

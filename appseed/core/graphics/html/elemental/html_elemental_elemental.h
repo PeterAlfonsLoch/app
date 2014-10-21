@@ -13,23 +13,22 @@ namespace html
 
 
       // always present property?! "text"
-      property_set     m_propertyset;
-      impl::elemental *    m_pimpl;
-      elemental *          m_pparent;
-      base *               m_pbase;
-      data *               m_pdata;
-      //bool                 m_bHasChar;
+      property_set               m_propertyset;
+      impl::elemental *          m_pimpl;
+      elemental *                m_pparent;
+      base *                     m_pbase;
+      data *                     m_pdata;
 
-      style                m_style;
-      comparable_array < elemental *, elemental * > m_elementalptra;
+      style                      m_style;
+      ptr_array < elemental >    m_elementalptra;
 
-      e_tag                m_etag;
-      string               m_strBody;
-      id                   m_idTagName;
-      bool                 m_bParent;
-      bool                 m_bTagVisible;
-      string               m_strClass;
-      string               m_strInlineStyle;
+      e_tag                      m_etag;
+      string                     m_strBody;
+      id                         m_idTagName;
+      bool                       m_bParent;
+      bool                       m_bTagVisible;
+      string                     m_strClass;
+      string                     m_strInlineStyle;
 
 
       elemental(data * pdoc, elemental * pparent = NULL);

@@ -245,7 +245,7 @@ namespace xml
          {
             attr_array attra(this->get_app());
             attra.add("array_index",i);
-            xmlif.import_node(xmlif.get_node_name(m_iNodeNameIndex),attra,this->operator[](i));
+            xmlif.import_node(xmlif.get_node_name(m_iNodeNameIndex),attra,this->operator()(i));
          }
       }
 

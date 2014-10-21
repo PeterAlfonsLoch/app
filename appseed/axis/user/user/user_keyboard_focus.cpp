@@ -33,7 +33,7 @@ namespace user
 
          control_event ev;
 
-         ev.m_puie                  = (this);
+         ev.m_puie                  = dynamic_cast <::user::interaction * > (this);
          ev.m_eevent                = ::user::event_tab_key;
          ev.m_actioncontext         = ::action::source_user;
 

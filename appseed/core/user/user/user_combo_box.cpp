@@ -22,6 +22,19 @@ namespace user
 
    combo_box::~combo_box()
    {
+
+      if(m_plist.is_set())
+      {
+
+         if(m_plist->IsWindow())
+         {
+
+            m_plist->DestroyWindow();
+
+         }
+
+      }
+
    }
 
 

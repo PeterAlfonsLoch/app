@@ -31,7 +31,7 @@ namespace user
 
 
       e_event                       m_eevent;
-      sp(::user::interaction)       m_puie;
+      ::user::interaction *         m_puie;
       uint32_t                      m_uiEvent;
       ::action::context             m_actioncontext;
       uint32_t                      m_uiVKey;
