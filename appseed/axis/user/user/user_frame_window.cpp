@@ -17,7 +17,7 @@ namespace user
       m_bWindowFrame = true;
       m_nWindow = -1;                 // unknown interaction_impl ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
-      m_lpfnCloseProc = NULL;
+      //m_lpfnCloseProc = NULL;
       m_hMenuDefault = NULL;
       m_hAccelTable = NULL;
       //m_nIDHelp = 0;
@@ -38,6 +38,8 @@ namespace user
       m_nShowDelay = -1;              // no delay pending
 
       m_bFrameMoveEnable = true;
+
+      m_pviewActive = NULL;
 
       AddFrameWnd();
 
@@ -190,8 +192,8 @@ namespace user
       }
       try
       {
-         if (m_pViewActive != NULL)
-            ASSERT_VALID(m_pViewActive);
+         if (m_pviewActive != NULL)
+            ASSERT_VALID(m_pviewActive);
       }
       catch (...)
       {
@@ -208,8 +210,8 @@ namespace user
       dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
       dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
       dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
-      if (m_pViewActive != NULL)
-         dumpcontext << "\nwith active ::user::impact: " << m_pViewActive.m_p;
+      if (m_pviewActive != NULL)
+         dumpcontext << "\nwith active ::user::impact: " << m_pviewActive;
       else
          dumpcontext << "\nno active ::user::impact";
 
@@ -1174,9 +1176,9 @@ namespace user
    sp(::user::impact) frame_window::GetActiveView() const
    {
 
-      ASSERT(m_pViewActive == NULL || base_class < ::user::impact >::bases(m_pViewActive));
+      ASSERT(m_pviewActive == NULL || base_class < ::user::impact >::bases(m_pviewActive));
 
-      return m_pViewActive;
+      return m_pviewActive;
 
    }
 
@@ -1191,11 +1193,11 @@ namespace user
       }
 #endif //DEBUG
 
-      sp(::user::impact) pViewOld = m_pViewActive;
+      sp(::user::impact) pViewOld = m_pviewActive;
       if (pViewNew == pViewOld)
          return;     // do not re-activate if SetActiveView called more than once
 
-      m_pViewActive.release();   // no active for the following processing
+      m_pviewActive = NULL;   // no active for the following processing
 
       // deactivate the old one
       if (pViewOld != NULL)
@@ -1203,9 +1205,9 @@ namespace user
 
       // if the OnActivateView moves the active interaction_impl,
       //    that will veto this change
-      if (m_pViewActive != NULL)
+      if (m_pviewActive != NULL)
          return;     // already set
-      m_pViewActive = pViewNew;
+      m_pviewActive = pViewNew;
       // activate
       if (pViewNew != NULL)
       {
@@ -1224,8 +1226,8 @@ namespace user
    void frame_window::OnSetFocus(sp(::user::interaction) pOldWnd)
    {
       UNREFERENCED_PARAMETER(pOldWnd);
-      if (m_pViewActive != NULL)
-         m_pViewActive->SetFocus();
+      if (m_pviewActive != NULL)
+         m_pviewActive->SetFocus();
       /*trans else
       user::frame_window::OnSetFocus(pOldWnd);
       */
@@ -1622,7 +1624,7 @@ namespace user
    bool frame_window::OnEraseBkgnd(::draw2d::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
-      if (m_pViewActive != NULL)
+      if (m_pviewActive != NULL)
          return TRUE;        // active ::user::impact will erase/paint itself
       // for ::user::impact-less frame just use the default background fill
       return TRUE;
@@ -1717,8 +1719,8 @@ namespace user
    //   dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
    //   dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
    //   dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
-   //   if (m_pViewActive != NULL)
-   //      dumpcontext << "\nwith active ::user::impact: " << m_pViewActive.m_p;
+   //   if (m_pviewActive != NULL)
+   //      dumpcontext << "\nwith active ::user::impact: " << m_pviewActive.m_p;
    //   else
    //      dumpcontext << "\nno active ::user::impact";
 
@@ -1820,7 +1822,7 @@ namespace user
 
       m_nWindow = -1;                 // unknown interaction_impl ID
       m_bAutoMenuEnable = TRUE;       // auto enable on by default
-      m_lpfnCloseProc = NULL;
+//      m_lpfnCloseProc = NULL;
       m_hMenuDefault = NULL;
       m_hAccelTable = NULL;
       //m_nIDHelp = 0;
@@ -1914,8 +1916,8 @@ namespace user
    void frame_window::_001OnSetFocus(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      if (m_pViewActive != NULL)
-         m_pViewActive->SetFocus();
+      if (m_pviewActive != NULL)
+         m_pviewActive->SetFocus();
    }
 
 
@@ -2055,10 +2057,10 @@ namespace user
       if (command_target_interface::_001HasCommandHandler(id))
          return true;
 
-      if (m_pViewActive.is_set())
+      if (m_pviewActive != NULL)
       {
 
-         if (m_pViewActive->_001HasCommandHandler(id))
+         if (m_pviewActive->_001HasCommandHandler(id))
             return true;
 
       }

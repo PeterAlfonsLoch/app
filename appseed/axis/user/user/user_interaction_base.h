@@ -211,29 +211,29 @@ namespace user
 
 
 
-      virtual sp(interaction) first_child();
-      virtual sp(interaction) last_child();
-      virtual sp(interaction) last_sibling();
-      virtual sp(interaction) next_sibling();
-      virtual sp(interaction) previous_sibling();
-      virtual sp(interaction) first_sibling();
-      virtual sp(interaction) next_sibling(sp(interaction) pui);
-      virtual sp(interaction) previous_sibling(sp(interaction) pui);
+      virtual ::user::interaction * first_child();
+      virtual ::user::interaction * last_child();
+      virtual ::user::interaction * last_sibling();
+      virtual ::user::interaction * next_sibling();
+      virtual ::user::interaction * previous_sibling();
+      virtual ::user::interaction * first_sibling();
+      virtual ::user::interaction * next_sibling(::user::interaction * pui);
+      virtual ::user::interaction * previous_sibling(::user::interaction * pui);
 
-      virtual sp(interaction) bottom_child();
-      virtual sp(interaction) top_child();
-      virtual sp(interaction) bottom_sibling();
-      virtual sp(interaction) under_sibling();
-      virtual sp(interaction) above_sibling();
-      virtual sp(interaction) top_sibling();
-      virtual sp(interaction) above_sibling(sp(interaction) pui);
-      virtual sp(interaction) under_sibling(sp(interaction) pui);
-
-
+      virtual ::user::interaction * bottom_child();
+      virtual ::user::interaction * top_child();
+      virtual ::user::interaction * bottom_sibling();
+      virtual ::user::interaction * under_sibling();
+      virtual ::user::interaction * above_sibling();
+      virtual ::user::interaction * top_sibling();
+      virtual ::user::interaction * above_sibling(::user::interaction * pui);
+      virtual ::user::interaction * under_sibling(::user::interaction * pui);
 
 
-      virtual void mouse_hover_add(sp(::user::interaction) pinterface);
-      virtual void mouse_hover_remove(sp(::user::interaction) pinterface);
+
+
+      virtual void mouse_hover_add(::user::interaction * pinterface);
+      virtual void mouse_hover_remove(::user::interaction * pinterface);
 
 
       virtual bool CheckAutoCenter();
@@ -243,7 +243,7 @@ namespace user
 
       // dialog support
       void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
-      virtual void CenterWindow(sp(interaction) pAlternateOwner = NULL);
+      virtual void CenterWindow(::user::interaction * pAlternateOwner = NULL);
       virtual id   run_modal_loop(::user::interaction * pui,uint32_t dwFlags = 0,::aura::live_object * pliveobject = NULL);
       virtual id   RunModalLoop(uint32_t dwFlags = 0,::aura::live_object * pliveobject = NULL);
       virtual id   _001RunModalLoop(uint32_t dwFlags = 0,::aura::live_object * pliveobject = NULL);
@@ -257,7 +257,7 @@ namespace user
       virtual bool update_data(bool bSaveAndValidate = true);
 
 
-      virtual sp(::user::interaction) get_os_focus_uie();
+      virtual ::user::interaction * get_os_focus_uie();
 
 
       virtual void on_keyboard_focus(::user::keyboard_focus * pfocus);
@@ -295,9 +295,9 @@ namespace user
       virtual oswindow unsubclass_window();
 
 
-      virtual bool create_window(const RECT & rect, sp(interaction)pparent,id id);
-      virtual bool create_window(const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, const RECT & rect, sp(interaction) pParentWnd,id id, sp(::create_context) pContext = NULL);
-      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, const RECT & rect,  sp(interaction) pParentWnd,id id,LPVOID lpParam = NULL);
+      virtual bool create_window(const RECT & rect, ::user::interaction *pparent,id id);
+      virtual bool create_window(const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, const RECT & rect, ::user::interaction * pParentWnd,id id, sp(::create_context) pContext = NULL);
+      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, const RECT & rect,  ::user::interaction * pParentWnd,id id,LPVOID lpParam = NULL);
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType = adjustBorder);
 
@@ -375,13 +375,13 @@ namespace user
       virtual id GetDlgCtrlId() const;
       virtual id SetDlgCtrlId(class id id);
 
-      virtual sp(interaction) SetCapture(sp(interaction) pinterface = NULL);
-      virtual sp(interaction) GetCapture();
-      virtual sp(interaction) ReleaseCapture();
+      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
+      virtual ::user::interaction * GetCapture();
+      virtual ::user::interaction * ReleaseCapture();
 
 
       virtual bool has_focus();
-      virtual sp(interaction) SetFocus();
+      virtual ::user::interaction * SetFocus();
       virtual bool SetForegroundWindow();
       virtual interaction * GetActiveWindow();
       virtual interaction * SetActiveWindow();
@@ -401,36 +401,36 @@ namespace user
 
 
       virtual bool _001IsPointInside(point64 pt);
-      virtual sp(interaction) _001FromPoint(point64 pt,bool bTestedIfParentVisible = false);
+      virtual ::user::interaction * _001FromPoint(point64 pt,bool bTestedIfParentVisible = false);
 
       virtual void OnLinkClick(const char * psz,const char * pszTarget = NULL);
 
-      sp(interaction) get_child_by_name(const char * pszName,int32_t iLevel = -1);
-      sp(interaction) get_child_by_id(id id,int32_t iLevel = -1);
+      ::user::interaction * get_child_by_name(const char * pszName,int32_t iLevel = -1);
+      ::user::interaction * get_child_by_id(id id,int32_t iLevel = -1);
 
 
-      virtual sp(::user::interaction) GetWindow() const;
-      virtual sp(::user::interaction) GetWindow(UINT nCmd) const;
+      virtual ::user::interaction * GetWindow() const;
+      virtual ::user::interaction * GetWindow(UINT nCmd) const;
 
 
-      virtual sp(::user::interaction) SetParent(sp(::user::interaction) pui);
-      virtual sp(::user::interaction) SetOwner(sp(::user::interaction) pui);
+      virtual ::user::interaction * SetParent(::user::interaction * pui);
+      virtual ::user::interaction * SetOwner(::user::interaction * pui);
 
 
-      virtual sp(::user::interaction) GetTopWindow() const;
+      virtual ::user::interaction * GetTopWindow() const;
       virtual ::user::interaction * GetParent() const;
-      virtual sp(::user::interaction) GetTopLevel() const;
-      virtual sp(::user::interaction) GetParentTopLevel() const;
-      virtual sp(::user::interaction) EnsureTopLevel();
-      virtual sp(::user::interaction) EnsureParentTopLevel();
-      virtual sp(::user::interaction) GetOwner() const;
-      virtual sp(::user::interaction) GetParentOwner() const;
-      virtual sp(::user::interaction) GetTopLevelOwner() const;
-      virtual sp(::user::frame_window) GetFrame() const;
-      virtual sp(::user::frame_window) GetParentFrame() const;
-      virtual sp(::user::frame_window) GetTopLevelFrame() const;
-      virtual sp(::user::frame_window) GetParentTopLevelFrame() const;
-      virtual sp(::user::frame_window) EnsureParentFrame();
+      virtual ::user::interaction * GetTopLevel() const;
+      virtual ::user::interaction * GetParentTopLevel() const;
+      virtual ::user::interaction * EnsureTopLevel();
+      virtual ::user::interaction * EnsureParentTopLevel();
+      virtual ::user::interaction * GetOwner() const;
+      virtual ::user::interaction * GetParentOwner() const;
+      virtual ::user::interaction * GetTopLevelOwner() const;
+      virtual ::user::frame_window * GetFrame() const;
+      virtual ::user::frame_window * GetParentFrame() const;
+      virtual ::user::frame_window * GetTopLevelFrame() const;
+      virtual ::user::frame_window * GetParentTopLevelFrame() const;
+      virtual ::user::frame_window * EnsureParentFrame();
 
 
 
@@ -438,9 +438,9 @@ namespace user
       virtual void pre_translate_message(signal_details * pobj);
 
 
-      virtual int32_t get_descendant_level(sp(::user::interaction) pui);
-      virtual bool is_descendant(sp(::user::interaction) pui,bool bIncludeSelf = false);
-      virtual sp(::user::interaction) get_focusable_descendant(sp(::user::interaction) pui = NULL);
+      virtual int32_t get_descendant_level(::user::interaction * pui);
+      virtual bool is_descendant(::user::interaction * pui,bool bIncludeSelf = false);
+      virtual ::user::interaction * get_focusable_descendant(::user::interaction * pui = NULL);
 
 
 //      virtual interaction_impl * get_wnd() const;
@@ -451,19 +451,19 @@ namespace user
       virtual void RepositionBars(UINT nIDFirst,UINT nIDLast,id nIDLeftOver,UINT nFlag = reposDefault,LPRECT lpRectParam = NULL,LPCRECT lpRectClient = NULL,bool bStretch = TRUE);
 
 
-      virtual sp(interaction) ChildWindowFromPoint(POINT point);
-      virtual sp(interaction) ChildWindowFromPoint(POINT point,UINT nFlags);
+      virtual ::user::interaction * ChildWindowFromPoint(POINT point);
+      virtual ::user::interaction * ChildWindowFromPoint(POINT point,UINT nFlags);
 
 
 #ifdef WINDOWSEX
-      virtual sp(interaction) GetNextWindow(UINT nFlag = GW_HWNDNEXT);
+      virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
 #else
-      virtual sp(interaction) GetNextWindow(UINT nFlag = 0);
+      virtual ::user::interaction * GetNextWindow(UINT nFlag = 0);
 #endif
 
-      virtual sp(interaction) get_next(bool bIgnoreChildren = false,int32_t * piLevel = NULL);
+      virtual ::user::interaction * get_next(bool bIgnoreChildren = false,int32_t * piLevel = NULL);
 
-      virtual sp(interaction) GetLastActivePopup();
+      virtual ::user::interaction * GetLastActivePopup();
 
       virtual bool is_message_only_window() const;
 
@@ -491,8 +491,8 @@ namespace user
       virtual oswindow detach();
 
 
-      virtual bool can_merge(sp(::user::interaction) pui);
-      virtual bool merge(sp(::user::interaction) pui);
+      virtual bool can_merge(::user::interaction * pui);
+      virtual bool merge(::user::interaction * pui);
 
 
       virtual void _001OnTriggerMouseInside();
@@ -528,7 +528,7 @@ namespace user
 
       virtual bool is_selected(::data::item * pitem);
 
-      virtual sp(place_holder) place(sp(::user::interaction) pui);
+      virtual sp(place_holder) place(::user::interaction * pui);
 
       virtual bool _001HasCommandHandler(id id);
 

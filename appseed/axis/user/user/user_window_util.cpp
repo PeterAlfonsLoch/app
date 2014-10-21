@@ -882,38 +882,45 @@ namespace user
 
 
 
-   template < class TYPE,class ARRAY_TYPE >
-   interaction_ptra::
-      interaction_ptra()
+   interaction_ptra::interaction_ptra()
    {
+
    }
 
    
-   interaction_ptra::
-      interaction_ptra(const interaction_ptra & a)
+   interaction_ptra::interaction_ptra(const interaction_ptra & a)
    {
+
       this->operator = (a);
+
    }
 
-   interaction_ptra::
-      interaction_ptra(interaction_ptra && a)
+
+   interaction_ptra::interaction_ptra(interaction_ptra && a)
    {
+
       this->operator = (a);
-   }
 
-   interaction_ptra & interaction_ptra::
-      operator = (const interaction_ptra & a)
-   {
-      ptr_array < ::user::interaction >::operator = (a);
-      return *this;
    }
 
 
-   interaction_ptra & interaction_ptra::
-      operator = (interaction_ptra && a)
+   interaction_ptra & interaction_ptra::operator = (const interaction_ptra & a)
    {
+
       ptr_array < ::user::interaction >::operator = (a);
+
       return *this;
+
+   }
+
+
+   interaction_ptra & interaction_ptra::operator = (interaction_ptra && a)
+   {
+
+      ptr_array < ::user::interaction >::operator = (a);
+
+      return *this;
+
    }
 
 

@@ -110,13 +110,13 @@ namespace user
       virtual id SetDlgCtrlId(class id id);
 
 
-      virtual sp(interaction) first_child();
-      virtual sp(interaction) top_child();
-      virtual sp(interaction) under_sibling();
-      virtual sp(interaction) above_sibling();
+      virtual ::user::interaction * first_child();
+      virtual ::user::interaction * top_child();
+      virtual ::user::interaction * under_sibling();
+      virtual ::user::interaction * above_sibling();
 
-      virtual sp(interaction) above_sibling(sp(interaction) pui);
-      virtual sp(interaction) under_sibling(sp(interaction) pui);
+      virtual ::user::interaction * above_sibling(::user::interaction * pui);
+      virtual ::user::interaction * under_sibling(::user::interaction * pui);
 
 
       virtual UINT ArrangeIconicWindows();
@@ -130,24 +130,24 @@ namespace user
       virtual bool IsDescendant(const interaction * puiIsDescendant) const;
 
 
-      virtual sp(::user::interaction) GetWindow() const;
-      virtual sp(::user::interaction) GetWindow(UINT nCmd) const;
+      virtual ::user::interaction * GetWindow() const;
+      virtual ::user::interaction * GetWindow(UINT nCmd) const;
 
 
-      virtual sp(::user::interaction) GetTopWindow() const;
+      virtual ::user::interaction * GetTopWindow() const;
       virtual ::user::interaction * GetParent() const;
-      virtual sp(::user::interaction) GetTopLevel() const;
-      virtual sp(::user::interaction) GetParentTopLevel() const;
-      virtual sp(::user::interaction) EnsureTopLevel();
-      virtual sp(::user::interaction) EnsureParentTopLevel();
-      virtual sp(::user::interaction) GetOwner() const;
-      virtual sp(::user::interaction) GetParentOwner() const;
-      virtual sp(::user::interaction) GetTopLevelOwner() const;
-      virtual sp(::user::frame_window) GetFrame() const;
-      virtual sp(::user::frame_window) GetParentFrame() const;
-      virtual sp(::user::frame_window) GetTopLevelFrame() const;
-      virtual sp(::user::frame_window) GetParentTopLevelFrame() const;
-      virtual sp(::user::frame_window) EnsureParentFrame();
+      virtual ::user::interaction * GetTopLevel() const;
+      virtual ::user::interaction * GetParentTopLevel() const;
+      virtual ::user::interaction * EnsureTopLevel();
+      virtual ::user::interaction * EnsureParentTopLevel();
+      virtual ::user::interaction * GetOwner() const;
+      virtual ::user::interaction * GetParentOwner() const;
+      virtual ::user::interaction * GetTopLevelOwner() const;
+      virtual ::user::frame_window * GetFrame() const;
+      virtual ::user::frame_window * GetParentFrame() const;
+      virtual ::user::frame_window * GetTopLevelFrame() const;
+      virtual ::user::frame_window * GetParentTopLevelFrame() const;
+      virtual ::user::frame_window * EnsureParentFrame();
 
       
       virtual void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
@@ -156,12 +156,12 @@ namespace user
       virtual void pre_translate_message(signal_details * pobj);
 
 
-      virtual sp(::user::interaction) SetCapture(sp(::user::interaction) pinterface = NULL);
-      virtual sp(::user::interaction) ReleaseCapture();
-      virtual sp(::user::interaction) GetCapture();
+      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
+      virtual ::user::interaction * ReleaseCapture();
+      virtual ::user::interaction * GetCapture();
 
 
-      virtual sp(::user::interaction) SetFocus();
+      virtual ::user::interaction * SetFocus();
 
 
       virtual bool get_rect_normal(LPRECT lprect);
@@ -172,8 +172,8 @@ namespace user
       virtual bool DestroyWindow();
 
 
-      void mouse_hover_add(sp(::user::interaction) pinterface);
-      void mouse_hover_remove(sp(::user::interaction) pinterface);
+      void mouse_hover_add(::user::interaction * pinterface);
+      void mouse_hover_remove(::user::interaction * pinterface);
 
    };
 

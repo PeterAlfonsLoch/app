@@ -44,7 +44,7 @@ namespace user
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType = adjustBorder);
 
-      virtual sp(::user::interaction) SetFocus();
+      virtual ::user::interaction * SetFocus();
 
       //void RepositionBars(UINT nIDFirst,UINT nIDLast,id nIDLeftOver,UINT nFlags,LPRECT lpRectParam,LPCRECT lpRectClient,bool bStretch);
 
@@ -117,8 +117,8 @@ namespace user
 
       virtual bool RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags);
 
-      virtual sp(::user::interaction) SetOwner(sp(::user::interaction) pui);
-      virtual sp(::user::interaction) GetOwner() const;
+      virtual ::user::interaction * SetOwner(::user::interaction * pui);
+      virtual ::user::interaction * GetOwner() const;
 
       using ::user::interaction_impl_base::GetWindowRect;
       void GetWindowRect(__rect64 * lprect);

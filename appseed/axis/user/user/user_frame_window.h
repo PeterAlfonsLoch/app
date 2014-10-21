@@ -138,9 +138,8 @@ namespace user
       UINT                       m_nIDTracking;         // tracking command ID or string IDS
       UINT                       m_nIDLastMessage;      // last displayed message string IDS
       ::user::impact *           m_pviewActive;       // current active ::user::impact
-      bool (CALLBACK* m_lpfnCloseProc)(sp(::user::frame_window) pFrameWnd);
       UINT                       m_cModalStack;         // BeginModalState depth
-      comparable_array < ::user::interaction * > m_uiptraDisable;       // windows disabled because of BeginModalState
+      ::user::interaction_ptra   m_uiptraDisable;       // windows disabled because of BeginModalState
       HMENU                      m_hMenuAlt;           // menu to update to (NULL means default)
       string                     m_strTitle;         // default title (original)
       bool                       m_bInRecalcLayout;     // avoid recursion in layout
