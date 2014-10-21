@@ -430,7 +430,9 @@ namespace draw2d
 
       for(int i = 0; i < m_elementa.get_count(); i++)
       {
-         get_bounding_rect(lprect, m_elementa[i]);
+
+         get_bounding_rect(lprect, m_elementa(i));
+
       }
 
    }

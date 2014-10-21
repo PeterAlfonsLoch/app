@@ -2103,7 +2103,7 @@ var var::key(index i) const
    case type_vara:
       return i;
    case type_propset:
-      return m_pset->m_propertya[i].name();
+      return m_pset->m_propertya[i]->name();
    default:
       throw "not supported";
    }
@@ -2168,7 +2168,7 @@ var var::at(index i)
    case type_vara:
       return &m_pvara->element_at(i);
    case type_propset:
-      return &m_pset->m_propertya[i].get_value();
+      return &m_pset->m_propertya[i]->get_value();
    case type_pvar:
       return m_pvar->at(i);
    default:

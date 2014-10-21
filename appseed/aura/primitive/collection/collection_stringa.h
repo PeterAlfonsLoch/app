@@ -316,7 +316,7 @@ void SortEx(ARRAYCOMPARE * pacompare,
 
 
 class string2a :
-   public spa(stringa)
+   public array < stringa >
 {
 public:
 };

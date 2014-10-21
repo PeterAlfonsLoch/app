@@ -22,7 +22,7 @@ namespace plugin
       };
 
 
-      sp(::user::interaction)     m_pframe;
+      ::user::interaction *     m_pframe;
       plugin *                m_pplugin;
 
 
@@ -55,7 +55,7 @@ namespace plugin
 
       virtual bool RedrawWindow(const RECT & lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags);
 
-      sp(::user::interaction) get_os_focus_uie();
+      ::user::interaction * get_os_focus_uie();
 
       void _on_start_user_message_handler();
       void _user_message_handler(signal_details * pobj);

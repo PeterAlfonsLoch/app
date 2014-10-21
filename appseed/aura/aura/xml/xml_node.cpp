@@ -2042,15 +2042,18 @@ namespace xml
          for(index iCol = 0; iCol < iColCount; iCol++)
          {
             sp(::xml::node) pcol = add_child("ca");
-            iRowCount = str2a[iCol]->get_count();
+            iRowCount = str2a[iCol].get_count();
             pcol->add_attr("row_count", iRowCount);
             for(int32_t iRow = 0; iRow < iRowCount; iRow++)
             {
-//               sp(::xml::node) prow = add_child("r");
-               if(iRow < str2a[iCol]->get_count())
+               
+               if(iRow < str2a[iCol].get_count())
                {
-                  pcol->m_strValue = str2a[iCol].element_at(iRow);
+
+                  pcol->m_strValue = str2a[iCol][iRow];
+
                }
+
             }
          }
       }
@@ -2077,18 +2080,22 @@ namespace xml
          sp(::xml::node) pcol = pheader->m_nodea.element_at(iCol);
          str2a[iCol].set_size(pcol->attr("row_count"));
       }
+
       for(::index iRow = 0; iRow < iRowCount; iRow++)
       {
-//         sp(::xml::node) prow = m_nodea.element_at(0);
+
          for(int32_t iCol = 0; iCol < str2a[iCol].get_count(); iCol++)
          {
-//            sp(::xml::node) pcol = prow->add_child("ca");
+
             if(iRow < str2a[iCol].get_count())
             {
-               //pcol->m_strValue =
+               
                iRowCount = str2a[iCol].get_count();
+
             }
+
          }
+
       }
 
       return true;
