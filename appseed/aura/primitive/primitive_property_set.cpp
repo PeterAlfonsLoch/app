@@ -829,7 +829,7 @@ property & property_set::at(index iIndex)
    {
       m_propertya.set_size(iIndex + 1);
    }
-   return m_propertya[iIndex];
+   return m_propertya(iIndex);
 }
 
 property property_set::at(index iIndex) const
