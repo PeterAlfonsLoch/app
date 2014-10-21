@@ -1130,8 +1130,8 @@ void CSHA1::GetHash(UINT_8 *puDest)
 
          for(int32_t i=0 ; i < rawParamMap.get_count() ;i++ )
          {
-            string key = rawParamMapm_propertya[i]->name();
-            string value = rawParamMapm_propertya[i]->get_value();
+            string key = rawParamMap.m_propertya[i]->name();
+            string value = rawParamMap.m_propertya[i]->get_value();
             str = key ;
             str +=  "=" ;
             if( strSeparator == ", " )

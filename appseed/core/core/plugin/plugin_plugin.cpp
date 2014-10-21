@@ -825,15 +825,15 @@ namespace plugin
                         for(int32_t i = 0; i < set.m_propertya.get_count(); i++)
                         {
 
-                           if(!setm_propertya[i]->get_string().has_char()
+                           if(!set.m_propertya[i]->get_string().has_char()
                            &&
-                             (setm_propertya[i]->name() == "build_number"
-                           || setm_propertya[i]->name() == "app_type"
-                           || setm_propertya[i]->name() == "locale"
-                           || setm_propertya[i]->name() == "schema"
-                           || setm_propertya[i]->name() == "app"
-                           || setm_propertya[i]->name() == "session_start"
-                           || setm_propertya[i]->name() == "version"
+                             (set.m_propertya[i]->name() == "build_number"
+                           || set.m_propertya[i]->name() == "app_type"
+                           || set.m_propertya[i]->name() == "locale"
+                           || set.m_propertya[i]->name() == "schema"
+                           || set.m_propertya[i]->name() == "app"
+                           || set.m_propertya[i]->name() == "session_start"
+                           || set.m_propertya[i]->name() == "version"
                              )
                            )
                               continue;
@@ -841,14 +841,14 @@ namespace plugin
 
                            strCommandLine += " ";
 
-                           strCommandLine += setm_propertya[i]->name();
+                           strCommandLine += set.m_propertya[i]->name();
 
-                           if(!setm_propertya[i]->get_string().has_char())
+                           if(!set.m_propertya[i]->get_string().has_char())
                               continue;
 
                            strCommandLine += "=";
 
-                           strCommandLine += setm_propertya[i]->get_string();
+                           strCommandLine += set.m_propertya[i]->get_string();
 
                         }
 

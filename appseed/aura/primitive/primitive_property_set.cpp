@@ -764,7 +764,7 @@ void property_set::read(::file::input_stream & istream)
    {
       //if(m_bKeyCaseInsensitive)
       /*{
-      m_map.set_at(m_propertya[i].lowname(), i);
+      m_map.set_at(m_propertya[i]->lowname(), i);
       }
       else
       {*/

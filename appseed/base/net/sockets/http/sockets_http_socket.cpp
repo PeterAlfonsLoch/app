@@ -358,8 +358,8 @@ namespace sockets
 
       for(int i = 0; i < m_response.m_propertysetHeader.m_propertya.get_size(); i++)
       {
-         string strKey = m_response.m_propertysetHeaderm_propertya[i]->name();
-         stringa & straValue = m_response.m_propertysetHeaderm_propertya[i]->m_var.stra();
+         string strKey = m_response.m_propertysetHeader.m_propertya[i]->name();
+         stringa & straValue = m_response.m_propertysetHeader.m_propertya[i]->m_var.stra();
          if(!http_filter_response_header(strKey, straValue))
             continue;
          if(strKey.CompareNoCase("host") == 0)
@@ -412,14 +412,14 @@ namespace sockets
       }
       for(int i = 0; i < m_request.m_propertysetHeader.m_propertya.get_count(); i++)
       {
-         string strValue = m_request.m_propertysetHeaderm_propertya[i]->get_string();
-         if (m_request.m_propertysetHeaderm_propertya[i]->name() == __id(content_type))
+         string strValue = m_request.m_propertysetHeader.m_propertya[i]->get_string();
+         if (m_request.m_propertysetHeader.m_propertya[i]->name() == __id(content_type))
          {
             msg += "Content-Type: " + strValue + "\r\n";
          }
          else
          {
-            string strKey = m_request.m_propertysetHeaderm_propertya[i]->name();
+            string strKey = m_request.m_propertysetHeader.m_propertya[i]->name();
             if (strKey.CompareNoCase("host") == 0)
                continue;
             strValue.trim();
