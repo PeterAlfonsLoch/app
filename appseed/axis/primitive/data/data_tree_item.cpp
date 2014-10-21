@@ -301,11 +301,11 @@ namespace data
          if(pindexLevel != NULL)
             (*pindexLevel)++;
 
-         return m_children(0);
+         return m_children[0];
 
       }
       else if (m_pparent != NULL && (iFind = m_pparent->m_children.find_first(this)) >= 0 && iFind < m_pparent->m_children.get_upper_bound())
-         return m_pparent->m_children(iFind + 1);
+         return m_pparent->m_children[iFind + 1];
       else if(bParent && m_pparent != NULL)
       {
          if(pindexLevel != NULL) (*pindexLevel)--;
