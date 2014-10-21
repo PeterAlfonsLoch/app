@@ -21,7 +21,7 @@ namespace user
       try
       {
          if(m_pholder != NULL && m_pholder->m_uiptraHold.get_count() == 1)
-            return m_pholder->m_uiptraHold(0);
+            return m_pholder->m_uiptraHold[0];
       }
       catch(...)
       {
