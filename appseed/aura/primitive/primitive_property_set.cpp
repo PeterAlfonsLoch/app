@@ -893,7 +893,7 @@ property_set & property_set::merge(const property_set & set)
                   {
                      if (!has_property(str::from(i)))
                      {
-                        operator[](str::from(i)).m_var = set.m_propertya[i].m_var;
+                        operator[](str::from(i)).m_var = set.m_propertya[i]->m_var;
                         break;
                      }
                      i++;
@@ -902,9 +902,9 @@ property_set & property_set::merge(const property_set & set)
                }
 
             }
-            else if(((property &)operator[](set.m_propertya[i].name())).is_empty())
+            else if(((property &)operator[](set.m_propertya[i]->name())).is_empty())
             {
-               ((property &)operator[](set.m_propertya[i].name())) = set.m_propertya[i];
+               ((property &)operator[](set.m_propertya[i]->name())) = set.m_propertya[i];
             }
             else
             {

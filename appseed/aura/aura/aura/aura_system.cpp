@@ -1035,7 +1035,7 @@ namespace aura
             try
             {
 
-               c += m_basesessionptra[iBaseSession].appptra().get_count();
+               c += m_basesessionptra[iBaseSession]->appptra().get_count();
 
             }
             catch(...)
@@ -1070,7 +1070,7 @@ namespace aura
             try
             {
 
-               appptra += m_basesessionptra[iBaseSession].appptra();
+               appptra += m_basesessionptra[iBaseSession]->appptra();
 
             }
             catch(...)

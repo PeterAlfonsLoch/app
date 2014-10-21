@@ -1337,7 +1337,7 @@ namespace xml
          ::count count = 0;
          for(int32_t i = 0; i < m_nodea.get_count(); i++)
          {
-            if(m_nodea[i].m_strName == pszName)
+            if(m_nodea[i]->m_strName == pszName)
                count++;
          }
          return count;
@@ -1361,13 +1361,13 @@ namespace xml
          }
          else
          {
-            if(m_nodea[i].m_strName == pszName)
+            if(m_nodea[i]->m_strName == pszName)
                count++;
          }
          if(iDepth < 0)
-            count += m_nodea[i].get_children_count(pszName, -1);
+            count += m_nodea[i]->get_children_count(pszName, -1);
          else
-            count += m_nodea[i].get_children_count(pszName, iDepth - 1);
+            count += m_nodea[i]->get_children_count(pszName, iDepth - 1);
       }
       return count;
    }
