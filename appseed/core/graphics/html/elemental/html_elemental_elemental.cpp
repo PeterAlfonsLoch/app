@@ -1214,10 +1214,10 @@ namespace html
          for (int32_t i = 0; i < this->m_propertyset.m_propertya.get_size(); i++)
          {
             str += " ";
-            str += m_propertyset.m_propertya[i].name();
+            str += m_propertyset.m_propertya[i]->name();
             str += "=";
             str += "\"";
-            str += m_propertyset.m_propertya[i].get_string();
+            str += m_propertyset.m_propertya[i]->get_string();
             str += "\"";
          }
 
