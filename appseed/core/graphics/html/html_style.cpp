@@ -234,7 +234,7 @@ namespace html
          if(pstyleCur == pstyleLeft && if_then(pstyleLeft == pstyle, iLeft > i))
          {
 
-            box.left =  parse_dimension(pstyleLeft->m_propertyset.m_propertya[iLeft].get_value().get_string());
+            box.left =  parse_dimension(pstyleLeft->m_propertyset.m_propertya[iLeft]->get_value().get_string());
 
          }
          else
@@ -254,7 +254,7 @@ namespace html
          if(pstyleCur == pstyleTop && if_then(pstyleTop == pstyle, iTop > i))
          {
 
-            box.top =  parse_dimension(pstyleTop->m_propertyset.m_propertya[iTop].get_value().get_string());
+            box.top =  parse_dimension(pstyleTop->m_propertyset.m_propertya[iTop]->get_value().get_string());
 
          }
          else
@@ -274,7 +274,7 @@ namespace html
          if(pstyleCur == pstyleRight && if_then(pstyleRight == pstyle, iRight > i))
          {
 
-            box.right =  parse_dimension(pstyleRight->m_propertyset.m_propertya[iRight].get_value().get_string());
+            box.right =  parse_dimension(pstyleRight->m_propertyset.m_propertya[iRight]->get_value().get_string());
 
          }
          else
@@ -294,7 +294,7 @@ namespace html
          if(pstyleCur == pstyleBottom && if_then(pstyleBottom == pstyle, iBottom > i))
          {
 
-            box.bottom =  parse_dimension(pstyleBottom->m_propertyset.m_propertya[iBottom].get_value().get_string());
+            box.bottom =  parse_dimension(pstyleBottom->m_propertyset.m_propertya[iBottom]->get_value().get_string());
 
          }
          else

@@ -17,10 +17,10 @@ namespace html
 
             pdata->m_pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pdata->m_imagea[m_iImage].m_spdib->defer_realize(pdata->m_pdc);
+            pdata->m_imagea[m_iImage]->m_spdib->defer_realize(pdata->m_pdc);
 
             pdata->m_pdc->BitBlt((int32_t)get_x(), (int32_t)get_y(), (int32_t)get_cx(), (int32_t)get_cy(),
-               pdata->m_imagea[m_iImage].m_spdib->get_graphics(), 0, 0, SRCCOPY);
+               pdata->m_imagea[m_iImage]->m_spdib->get_graphics(), 0, 0, SRCCOPY);
 
          }
 
@@ -37,8 +37,8 @@ namespace html
          {
             m_iImage = pdata->get_image_index(pelemental->m_propertyset["src"]);
             synch_lock lockImage(Sys(pdata->m_pauraapp).get_twf());
-            m_cxMax = (float)pdata->m_imagea[m_iImage].m_spdib->m_size.cx;
-            m_cxMin = (float)pdata->m_imagea[m_iImage].m_spdib->m_size.cy;
+            m_cxMax = (float)pdata->m_imagea[m_iImage]->m_spdib->m_size.cx;
+            m_cxMin = (float)pdata->m_imagea[m_iImage]->m_spdib->m_size.cy;
          }
       }
 
@@ -48,11 +48,11 @@ namespace html
          if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
 
-            single_lock lockImage(&pdata->m_imagea[m_iImage]);
+            single_lock lockImage(pdata->m_imagea[m_iImage]);
 
             if (lockImage.lock(duration::zero()))
             {
-               m_box.set_cxy(pdata->m_imagea[m_iImage].m_spdib->size());
+               m_box.set_cxy(pdata->m_imagea[m_iImage]->m_spdib->size());
             }
             else
             {
@@ -73,10 +73,10 @@ namespace html
 
             if (lockImage.lock(duration::zero()))
             {
-               pdata->m_layoutstate3.m_cx = (float)pdata->m_imagea[m_iImage].m_spdib->m_size.cx;
-               if (pdata->m_imagea[m_iImage].m_spdib->m_size.cy > pdata->m_layoutstate3.m_cya.last_element())
+               pdata->m_layoutstate3.m_cx = (float)pdata->m_imagea[m_iImage]->m_spdib->m_size.cx;
+               if (pdata->m_imagea[m_iImage]->m_spdib->m_size.cy > pdata->m_layoutstate3.m_cya.last_element())
                {
-                  pdata->m_layoutstate3.m_cya.last_element() = (float)pdata->m_imagea[m_iImage].m_spdib->m_size.cy;
+                  pdata->m_layoutstate3.m_cya.last_element() = (float)pdata->m_imagea[m_iImage]->m_spdib->m_size.cy;
                }
             }
             else
@@ -85,7 +85,7 @@ namespace html
                pdata->m_layoutstate3.m_cya.last_element() = 0;
             }
 
-            m_box.set_cxy(pdata->m_imagea[m_iImage].m_spdib->size());
+            m_box.set_cxy(pdata->m_imagea[m_iImage]->m_spdib->size());
 
          }
          */

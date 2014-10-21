@@ -161,7 +161,7 @@ namespace filemanager
                {
                   if(get_filemanager_data()->m_pholderFileList->m_uiptraHold.get_size() > 0)
                   {
-                     get_filemanager_data()->m_pholderFileList->m_uiptraHold[0].ShowWindow(SW_HIDE);
+                     get_filemanager_data()->m_pholderFileList->m_uiptraHold[0]->ShowWindow(SW_HIDE);
                   }
                   get_filemanager_data()->m_pholderFileList->hold(this);
                   get_filemanager_data()->m_pholderFileList->layout();
@@ -618,13 +618,13 @@ namespace filemanager
 
       for(int32_t i = 0; i < itema.get_size(); i++)
       {
-         stra.add(itema[i].m_strPath);
+         stra.add(itema[i]->m_strPath);
       }
       /*
       string str;
       if(itema.get_size() > 0)
       {
-         str = itema[0].m_strPath;
+         str = itema[0]->m_strPath;
       }
       for(int32_t i = 1; i < itema.get_size(); i++)
       {
@@ -693,7 +693,7 @@ namespace filemanager
       stringa stra;
       for(int32_t i = 0; i < itema.get_size(); i++)
       {
-         stra.add(itema[i].m_strPath);
+         stra.add(itema[i]->m_strPath);
       }
       Application.file().trash_that_is_not_trash(stra);
       browse_sync(::action::source_user);
@@ -719,7 +719,7 @@ namespace filemanager
             ::fs::item_array itema;
             GetSelected(itema);
 
-            string strPath = itema[0].m_strPath;
+            string strPath = itema[0]->m_strPath;
 
             string strExt = System.file().extension(strPath);
 
@@ -796,7 +796,7 @@ namespace filemanager
       {
          ::fs::item_array itema;
          GetSelected(itema);
-         string strPath = itema[0].m_strPath;
+         string strPath = itema[0]->m_strPath;
 
 #ifdef WINDOWSEX
 
@@ -841,14 +841,14 @@ namespace filemanager
       string strFileCheck;
       for(int32_t i = 0; i < itema.get_size(); i++)
       {
-         if(Application.dir().is(itema[i].m_strPath)
-            && System.file().name_(itema[i].m_strPath) != ".svn")
+         if(Application.dir().is(itema[i]->m_strPath)
+            && System.file().name_(itema[i]->m_strPath) != ".svn")
          {
-            Application.dir().rls(itema[i].m_strPath, &straSub);
+            Application.dir().rls(itema[i]->m_strPath, &straSub);
             for(int32_t j = 0; j < straSub.get_size(); j++)
             {
                if(!Application.dir().is(straSub[j])
-                && straSub[j].find(".svn") < 0)
+                && straSub[j]->find(".svn") < 0)
                {
                   strFileList += straSub[j] + "\n";
                   strFileCheck += straSub[j] + ",";
@@ -859,10 +859,10 @@ namespace filemanager
          }
          else
          {
-            strFileList += itema[i].m_strPath + "\n";
-            strFileCheck += itema[i].m_strPath + ",";
-            strFileCheck += Application.file().length(itema[i].m_strPath).get_string() + ",";
-            strFileCheck += System.file().md5(itema[i].m_strPath) +"\n";
+            strFileList += itema[i]->m_strPath + "\n";
+            strFileCheck += itema[i]->m_strPath + ",";
+            strFileCheck += Application.file().length(itema[i]->m_strPath).get_string() + ",";
+            strFileCheck += System.file().md5(itema[i]->m_strPath) +"\n";
          }
       }
 

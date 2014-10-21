@@ -204,7 +204,7 @@ namespace filemanager
          void tree::_001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext)
          {
 
-            m_pserver->open_folder(m_foldera[pitem->m_dwUser].m_iFolder);
+            m_pserver->open_folder(m_foldera[pitem->m_dwUser]->m_iFolder);
 
          }
 

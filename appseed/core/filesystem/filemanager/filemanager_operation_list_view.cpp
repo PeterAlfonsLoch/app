@@ -132,7 +132,7 @@ namespace filemanager
          }
          if(get_document()->m_thread.m_iOperation < get_document()->m_thread.m_fileoperationa.get_size())
          {
-            iItem += get_document()->m_thread.m_fileoperationa[get_document()->m_thread.m_iOperation].m_iFile;
+            iItem += get_document()->m_thread.m_fileoperationa[get_document()->m_thread.m_iOperation]->m_iFile;
          }
          _001ItemScroll(iItem);
       }

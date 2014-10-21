@@ -794,7 +794,7 @@ namespace html
          m_idTagName = ptag->get_name();
          for (int32_t i = 0; i < ptag->attra().get_size(); i++)
          {
-            m_propertyset[ptag->attra()[i].get_name()] = ptag->attra()[i].get_value();
+            m_propertyset[ptag->attra()[i]->get_name()] = ptag->attra()[i]->get_value();
          }
          if (m_idTagName == __id(html_link) && get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
          {

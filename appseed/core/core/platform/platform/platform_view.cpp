@@ -287,10 +287,10 @@ namespace platform
       {
          for(int32_t i = 0; i < m_linka.get_size(); i++)
          {
-            if(pevent->m_puie->m_id == m_linka[i].m_strBrief)
+            if(pevent->m_puie->m_id == m_linka[i]->m_strBrief)
             {
                SetScreen(1);
-               string strApp = m_linka[i].m_strSrc;
+               string strApp = m_linka[i]->m_strSrc;
                ::str::ends_eat_ci(strApp, ".dll");
 
                sp(::create_context) cc(Application.command_central());
@@ -379,7 +379,7 @@ namespace platform
          {
             ::draw2d::dib_sp dib(allocer());
             dib->create(1920, 1080);
-            keep < bool > keepOnDraw(&GetParentFrame().cast < ::platform::frame > ()->m_bOnDraw, true, false, true);
+            keep < bool > keepOnDraw(&dynamic_cast < ::platform::frame * > (GetParentFrame())->m_bOnDraw, true, false, true);
             Platform.get_document()->get_bergedge_view()->_000OnDraw(dib->get_graphics());
             dib->get_graphics()->SetViewportOrg(0, 0);
             keepOnDraw.KeepAway();
@@ -887,7 +887,7 @@ namespace platform
    {
       for(int32_t i = 0; i < m_linka.get_size(); i++)
       {
-         m_linka[i].m_button.DestroyWindow();
+         m_linka[i]->m_button.DestroyWindow();
       }
       m_linka.remove_all();
 
@@ -939,7 +939,7 @@ namespace platform
       int32_t y = 400;
       for(int32_t i = 0; i < m_linka.get_count(); i++)
       {
-         m_linka[i].m_button.SetWindowPos(ZORDER_TOP, 11, y, 300, h, SWP_SHOWWINDOW);
+         m_linka[i]->m_button.SetWindowPos(ZORDER_TOP, 11, y, 300, h, SWP_SHOWWINDOW);
          y+=h;
       }
    }

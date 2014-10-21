@@ -129,7 +129,7 @@ namespace html
       font.m_strTextDecoration.trim();
       for(int32_t i = 0; i < m_fonta.get_count(); i++)
       {
-         if(m_fonta[i] == font)
+         if(m_fonta(i) == font)
             return i;
       }
       class font * pfont = new class font(font);

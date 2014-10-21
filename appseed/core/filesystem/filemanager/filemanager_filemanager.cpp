@@ -135,7 +135,7 @@ namespace filemanager
 
 
       sp(::create_context) cc(allocer());
-      cc->m_spCommandLine->m_varFile = itema[0].m_strPath;
+      cc->m_spCommandLine->m_varFile = itema[0]->m_strPath;
       request_create(cc);
 
    }

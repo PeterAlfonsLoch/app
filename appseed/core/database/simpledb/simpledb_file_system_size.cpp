@@ -204,7 +204,7 @@ void file_size_table::item::update_size(sp(::aura::application) papp, index & iI
       for(int32_t i = 0; i < m_itema.get_size(); i++)
       {
          m_iSize += m_itema[i]->m_iSize;
-         if(m_itema[i].m_bPending || m_itema[i].m_bPendingLs)
+         if(m_itema[i]->m_bPending || m_itema[i]->m_bPendingLs)
             m_bPending = true;
       }
       if(m_pitemParent != NULL && m_bPending)
@@ -221,7 +221,7 @@ void file_size_table::item::update_size_recursive(sp(::aura::application) papp, 
    }
    for(int32_t i = 0; i < m_itema.get_size(); i++)
    {
-      m_itema[i].update_size_recursive(papp, iIteration);
+      m_itema[i]->update_size_recursive(papp, iIteration);
       if(iIteration > 230)
          break;
    }

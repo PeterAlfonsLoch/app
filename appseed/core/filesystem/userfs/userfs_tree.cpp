@@ -355,7 +355,7 @@ namespace userfs
       for (int32_t i = 0; i < itemptraSelected.get_size(); i++)
       {
 
-         stra.add(itemptraSelected(0)->m_pitem.cast < ::userfs::item >()->m_strPath);
+         stra.add(itemptraSelected[0]->m_pitem.cast < ::userfs::item >()->m_strPath);
 
       }
 

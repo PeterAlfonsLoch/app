@@ -34,7 +34,7 @@ namespace filemanager
       {
       case ::filemanager::state_start:
       {
-                                      if(m_fileoperationa[m_iOperation].start())
+                                      if(m_fileoperationa[m_iOperation]->start())
                                       {
                                          m_estate = ::filemanager::state_step;
                                       }
@@ -47,7 +47,7 @@ namespace filemanager
          break;
       case ::filemanager::state_step:
       {
-                                     if(m_fileoperationa[m_iOperation].step())
+                                     if(m_fileoperationa[m_iOperation]->step())
                                      {
                                         m_estate = ::filemanager::state_step;
                                      }
@@ -59,7 +59,7 @@ namespace filemanager
          break;
       case ::filemanager::state_finish:
       {
-                                       m_fileoperationa[m_iOperation].finish();
+                                       m_fileoperationa[m_iOperation]->finish();
                                        m_estate = ::filemanager::state_start;
                                        m_iOperation++;
       }
@@ -84,9 +84,9 @@ namespace filemanager
       int32_t iUpperBound;
       for(int32_t i = 0; i < m_fileoperationa.get_size(); i++)
       {
-         iUpperBound = iLowerBound + m_fileoperationa[i].get_item_count() - 1;
+         iUpperBound = iLowerBound + m_fileoperationa[i]->get_item_count() - 1;
          if(iItem >= iLowerBound && iItem <= iUpperBound)
-            return m_fileoperationa[i].get_item_progress(iItem - iLowerBound);
+            return m_fileoperationa[i]->get_item_progress(iItem - iLowerBound);
          iLowerBound = iUpperBound + 1;
       }
       return 0.0;
@@ -100,10 +100,10 @@ namespace filemanager
       int32_t iUpperBound;
       for(int32_t i = 0; i < m_fileoperationa.get_size(); i++)
       {
-         iUpperBound = iLowerBound + m_fileoperationa[i].get_item_count() - 1;
+         iUpperBound = iLowerBound + m_fileoperationa[i]->get_item_count() - 1;
          if(iItem >= iLowerBound && iItem <= iUpperBound)
 
-            return m_fileoperationa[i].get_item_message(iItem - iLowerBound);
+            return m_fileoperationa[i]->get_item_message(iItem - iLowerBound);
          iLowerBound = iUpperBound + 1;
       }
       return "";
@@ -117,7 +117,7 @@ namespace filemanager
       int32_t iCount = 0;
       for(int32_t i = 0; i < m_fileoperationa.get_size(); i++)
       {
-         iCount += m_fileoperationa[i].get_item_count();
+         iCount += m_fileoperationa[i]->get_item_count();
       }
       return iCount;
    }
@@ -176,12 +176,12 @@ namespace filemanager
       double dTotal = 0.0;
       for(int32_t i = 0; i < m_fileoperationa.get_size(); i++)
       {
-         dTotal += m_fileoperationa[i].m_dSize;
+         dTotal += m_fileoperationa[i]->m_dSize;
       }
       double dRead = 0.0;
       for(int32_t i = 0; i < m_fileoperationa.get_size(); i++)
       {
-         dRead += m_fileoperationa[i].m_dRead;
+         dRead += m_fileoperationa[i]->m_dRead;
       }
       if(dTotal == 0.0)
          return 0.0;

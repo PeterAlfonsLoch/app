@@ -125,7 +125,7 @@ namespace filemanager
             if(pitem->m_iSubItem == SubItemTitle)
             {
                pitem->m_bOk = true;
-               switch(m_itema[pitem->m_iItem].m_etype)
+               switch(m_itema[pitem->m_iItem]->m_etype)
                {
                case ItemTypeFolder:
                   pitem->m_iImage = m_iIconFolder;
@@ -163,7 +163,7 @@ namespace filemanager
                pitem->m_strText.Empty();
                break;
             case SubItemTitle:
-               pitem->m_strText = m_itema[pitem->m_iItem].m_strTitle;
+               pitem->m_strText = m_itema[pitem->m_iItem]->m_strTitle;
                break;
             case SubItemArtist:
                pitem->m_strText.Empty();
@@ -210,13 +210,13 @@ namespace filemanager
 
             if(_001HitTest_(pmouse->m_pt, iItem))
             {
-               if(m_itema[iItem].IsFolder())
+               if(m_itema[iItem]->IsFolder())
                {
-                  m_pserver->open_folder(m_itema[iItem].m_iFolder);
+                  m_pserver->open_folder(m_itema[iItem]->m_iFolder);
                }
                else
                {
-                  m_pserver->open_file(m_iParentFolder, m_itema[iItem].m_strFileName, m_itema[iItem].m_strExtension);
+                  m_pserver->open_file(m_iParentFolder, m_itema[iItem]->m_strFileName, m_itema[iItem]->m_strExtension);
                }
             }
          }
@@ -228,13 +228,13 @@ namespace filemanager
             index iSubItem;
             if(_001HitTest_(point, iItem, iSubItem))
             {
-               if(m_itema[iItem].IsFolder())
+               if(m_itema[iItem]->IsFolder())
                {
-                  m_pserver->open_folder(m_itema[iItem].m_iFolder);
+                  m_pserver->open_folder(m_itema[iItem]->m_iFolder);
                }
                else
                {
-                  m_pserver->open_file(m_iParentFolder, m_itema[iItem].m_strFileName, m_itema[iItem].m_strExtension);
+                  m_pserver->open_file(m_iParentFolder, m_itema[iItem]->m_strFileName, m_itema[iItem]->m_strExtension);
                }
             }
          }
