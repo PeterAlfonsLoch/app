@@ -936,11 +936,11 @@ namespace fontopus
          set["cookies"] = m_puser->m_phttpcookies;
          set["user"] = m_puser;
 
-         System.http().download(m_httpexecutea[i].m_strUrl,strFilename,set);
+         System.http().download(m_httpexecutea[i]->m_strUrl,strFilename,set);
 
          strResponse = Application.file().as_string(strFilename);
          TRACE0(strResponse);
-         m_httpexecutea[i].m_strResponse = strResponse;
+         m_httpexecutea[i]->m_strResponse = strResponse;
       }
    }
 
