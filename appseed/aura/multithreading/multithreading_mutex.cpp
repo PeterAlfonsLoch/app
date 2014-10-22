@@ -468,7 +468,11 @@ wait_result mutex::wait(const duration & duration)
           else
           {
             // check whether somebody else has the mutex
-            if (irc == EPERM )
+            if(irc == EPERM ) // owned by own thread !! OK !!
+            {
+               return wait_result(wait_result::Failure);
+            }
+            else if (irc == EBUSY)
             {
                // Yes, Resource already in use so sleep
                nanosleep(&delay, NULL);

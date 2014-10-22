@@ -404,10 +404,10 @@ wait_result event::wait (const duration & durationTimeout)
 
 #else
 
-	timespec delay;
-
    if(m_bManualEvent)
    {
+
+      timespec abstime;
 
       ((duration & ) durationTimeout).normalize();
 
@@ -415,47 +415,34 @@ wait_result event::wait (const duration & durationTimeout)
 
       int iSignal = m_iSignalId;
 
-      timeval ts1, ts2;
+      clock_gettime(CLOCK_REALTIME, &abstime);
 
-      gettimeofday(&ts1, 0);
+      abstime.tv_sec += durationTimeout.m_iSeconds;
 
-      int error;
+      abstime.tv_nsec += durationTimeout.m_iNanoseconds;
 
-      int64_t sec = durationTimeout.m_iSeconds;
+      while(abstime.tv_nsec > 1000 * 1000 * 1000)
+      {
 
-      int64_t nsec = durationTimeout.m_iNanoseconds;
+         abstime.tv_nsec -= 1000 * 1000 * 1000;
+
+         abstime.tv_sec++;
+
+      }
 
       while(!m_bSignaled && iSignal == m_iSignalId)
       {
 
-         delay.tv_sec = sec;
+         int32_t error = pthread_cond_timedwait(&m_cond, &m_mutex, &abstime);
 
-         delay.tv_nsec = nsec;
-
-         error = pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
-
-         pthread_mutex_unlock(&m_mutex);
-
-         gettimeofday(&ts2,0);
-
-         sec -= ts2.tv_sec - ts1.tv_sec;
-
-         nsec -= (ts2.tv_usec - ts1.tv_usec) * 1000;
-
-         if(nsec < 0)
+         if(error == EBUSY || error == ETIMEDOUT)
          {
-            nsec  += 1000000000;
-            sec   -= 1;
-         }
 
-         if(sec < 0 || nsec < 0)
-         {
+            pthread_mutex_unlock(&m_mutex);
 
             return wait_result(wait_result::Timeout);
 
          }
-
-         ts1 = ts2;
 
       }
 
@@ -469,6 +456,12 @@ wait_result event::wait (const duration & durationTimeout)
    }
    else
    {
+
+    	timespec delay;
+
+      delay.tv_sec = 0;
+
+      delay.tv_nsec = 1000 * 1000;
 
       uint32_t timeout = durationTimeout.os_lock_duration();
 
@@ -488,7 +481,7 @@ wait_result event::wait (const duration & durationTimeout)
 
          if(ret < 0)
          {
-            if(ret == EPERM)
+            if(ret == EPERM || ret == EBUSY)
             {
                nanosleep(&delay, NULL);
             }
