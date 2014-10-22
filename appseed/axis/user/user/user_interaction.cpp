@@ -843,7 +843,7 @@ namespace user
 
       sl.unlock();
 
-      for(index i = ptraChild.get_upper_bound(); i >= 0; i--)
+      for(index i = 0; i < ptraChild.get_count(); i++)
       {
 
          try
