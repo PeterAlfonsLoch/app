@@ -35,7 +35,7 @@ retry_multi_lock::retry_multi_lock(sync_object_ptra syncobjectptra, duration dur
 #ifdef WINDOWS
       m_objecta[i] = (HANDLE) m_syncobjectptra[i]->get_os_data();
 #else
-      m_objecta[i] = m_syncobjectptra(i);
+      m_objecta[i] = m_syncobjectptra[i];
 #endif
       m_baLocked[i] = FALSE;
    }

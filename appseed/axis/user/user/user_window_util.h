@@ -4,7 +4,7 @@
 namespace user
 {
 
-   
+
    class interaction_spa;
 
 
@@ -24,12 +24,21 @@ namespace user
 
       interaction_ptra();
       interaction_ptra(const interaction_ptra & array);
+      interaction_ptra(const ptr_array < ::user::interaction > & array);
       interaction_ptra(const interaction_spa & array);
       interaction_ptra(interaction_ptra && array);
 
 
       interaction_ptra & operator = (const interaction_ptra & array);
+      interaction_ptra & operator = (const ptr_array < ::user::interaction > & array);
       interaction_ptra & operator = (interaction_ptra && array);
+
+      ::user::oswindow_array get_hwnda();
+
+      using ptr_array < ::user::interaction >::find_first;
+      ::user::interaction * find_first_typed(sp(type) info);
+      ::user::interaction * find_first(oswindow oswindow);
+
 
    };
 

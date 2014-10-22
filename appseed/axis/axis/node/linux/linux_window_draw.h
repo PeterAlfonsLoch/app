@@ -22,7 +22,7 @@ namespace linux
 
       ::aura::message_queue_sp               m_spqueue;
 
-      user::interaction_ptr_array            m_wndpaOut;
+      user::interaction_ptra                 m_wndpaOut;
       mutex                                  m_mutexRendering;
       mutex                                  m_mutexRgnUpdate;
       semaphore                              m_semaphoreBuffer;
@@ -128,7 +128,7 @@ namespace linux
          int32_t iIndex,
          LPCRECT lpcrect);
 
-      ::user::interaction_ptr_array get_wnda();
+      ::user::interaction_ptra get_wnda();
       //::user::oswindow_array get_hwnda();
 
       virtual int32_t run();

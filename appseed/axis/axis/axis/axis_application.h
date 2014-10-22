@@ -50,7 +50,7 @@ namespace axis
       virtual ~application();
 
 
-      
+
       inline ::database::server &               dataserver()   { return *(m_spdataserver.m_p); }
 
 
@@ -110,7 +110,7 @@ namespace axis
       virtual void add_thread(::user::interaction * pui,::thread * pthread);
       virtual void remove_thread(::user::interaction * pui,::thread * pthread);
       virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam, int cyParam, int iStride = -1);
-      
+
 
 
 

@@ -345,12 +345,12 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
    stringa straKey;
 
    straKey.explode(".", pszKey);
-   
+
    if(straKey.get_count() <= 0)
       return;
-   
+
    property_set * pset = this;
-   
+
    int32_t i = 0;
 
    while(i  < straKey.get_upper_bound())
@@ -382,30 +382,30 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
       state_equal,
       state_value
    };
-   
-   
+
+
    ::str::parse parse(pszCmdLine, "= ");
-   
+
    parse.EnableQuote(true);
-   
+
    if(bApp && parse.getrestlen())
    {
       parse.getword(strApp);
    }
 
    string strFile;
-   
-   
+
+
    while(parse.getrestlen())
    {
-   
+
       parse.getword(strFile);
-      
+
       if(strFile == ":")
          break;
 
       strFile.trim("\"'");
-      
+
       if(varFile.is_empty())
       {
          varFile = strFile;
@@ -427,34 +427,34 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
          varFile.propset()["varFile"] = varFile;
          varFile.propset()["stra"].stra().add(strFile);
       }
-      
-   
+
+
    }
 
 
    string str;
    string strKey;
-   
+
 
    e_state state = state_key;
-   
+
    int iEnd = 0;
 
    while(iEnd <= 1)
    {
-      
+
       if(parse.getrestlen() <= 0)
       {
          iEnd++;
       }
-      
+
       if(iEnd <= 0)
       {
          parse.getsplitword(str);
       }
 
       str.trim("\"'");
-      
+
       switch(state)
       {
       case state_key:
@@ -479,7 +479,7 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
          break;
       case state_value:
          {
-      
+
             _008Add(strKey, str);
             strKey.Empty();
             str.Empty();
@@ -488,7 +488,7 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
          }
          break;
       }
-      
+
    }
 
 }
@@ -537,12 +537,12 @@ string property_set::get_json()
 
    for (int i = 0; i < m_propertya.get_count(); i++)
    {
-      
+
       if (i > 0)
       {
          str += ", \r\n";
       }
-      
+
       str += "\"";
       str += m_propertya.element_at(i)->name();
       str += "\"";
@@ -734,7 +734,7 @@ string property_set::gen_eval(const char * psz)
    ASSERT(strlen(psz) >= 2);
 
    str = &psz[1];
-   
+
    return operator[](str);
 
 }
@@ -838,7 +838,7 @@ property property_set::at(index iIndex) const
    {
       const_cast < property_set * > (this)->m_propertya.set_size(iIndex + 1);
    }
-   return const_cast<property_set*>(this)->m_propertya[iIndex];
+   return const_cast<property_set*>(this)->m_propertya(iIndex);
 }
 
 property_set & property_set::operator = (const property_set & set)
@@ -898,7 +898,7 @@ property_set & property_set::merge(const property_set & set)
                      }
                      i++;
                   }
-                  
+
                }
 
             }
@@ -909,7 +909,7 @@ property_set & property_set::merge(const property_set & set)
             else
             {
                try {
-                  
+
                if(((property &)operator[](set.m_propertya[i]->name())) == set.m_propertya(i))
                {
                   continue;

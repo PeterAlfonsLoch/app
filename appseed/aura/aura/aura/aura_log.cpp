@@ -1,6 +1,10 @@
 #include "framework.h"
 #include <stdarg.h>
 
+#ifdef LINUX
+#include <sys/types.h>
+#include <unistd.h>
+#endif
 
 namespace aura
 {
@@ -243,7 +247,21 @@ namespace aura
          string strRelative;
          time.Format(strRelative, "%Y/%m/%d");
          string strIndex;
+         #ifdef WINDOWS
          strIndex.Format("%d-%05d", GetCurrentProcessId(), iRetry);
+         #else
+         strIndex.Format("%d-%05d", getpid(), iRetry);
+         #endif
+
+         string strPath;
+
+         char * psz = br_find_exe("unknown-app");
+
+         strPath = psz;
+
+         free(psz);
+
+         /*
 
          string strPath;
 
@@ -251,7 +269,7 @@ namespace aura
 
          if(!GetModuleFileNameW(NULL,wsz,sizeof(wsz) / sizeof(wchar_t)))
          {
-            
+
             strPath = "_";
 
          }
@@ -261,6 +279,8 @@ namespace aura
             strPath = ::str::international::unicode_to_utf8(wsz);
 
          }
+
+         */
 
          strPath.replace("\\", "/");
 

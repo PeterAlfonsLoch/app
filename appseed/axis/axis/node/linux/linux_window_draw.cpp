@@ -217,7 +217,7 @@ namespace linux
 
       for(int_ptr i = hwndtreea.get_size() - 1; i >= 0; i--)
       {
-         user::oswindow_tree & hwndtreeChild = hwndtreea[i];
+         user::oswindow_tree & hwndtreeChild = hwndtreea(i);
          void * hwndChild = hwndtreeChild.m_oswindow;
          ::GetWindowRect((oswindow) hwndChild, rectChild);
          if(rectNewUpdate.intersect(rectChild, rectUpdate))
@@ -433,7 +433,7 @@ namespace linux
          return false;
       }*/
 
-      user::interaction_ptr_array wndpa(get_app());
+      user::interaction_ptra wndpa;
 
       wndpa = get_wnda();
 
@@ -518,12 +518,12 @@ namespace linux
       {
          try
          {
-            if(wndpa[l].oprop("session").is_new())
+            if(wndpa[l]->oprop("session").is_new())
             {
 
-               wndpa[l]._001UpdateBuffer();
+               wndpa[l]->_001UpdateBuffer();
 
-               wndpa[l]._001UpdateScreen();
+               wndpa[l]->_001UpdateScreen();
             }
             l++;
          }
@@ -531,14 +531,14 @@ namespace linux
          {
             if(se.m_strMessage == "no more a window")
             {
-               System.frames().remove(wndpa(l));
+               System.frames().remove(wndpa[l]);
                wndpa.remove_at(l);
 
             }
          }
          catch(...)
          {
-            System.frames().remove(wndpa(l));
+            System.frames().remove(wndpa[l]);
             wndpa.remove_at(l);
          }
       }
@@ -554,7 +554,7 @@ namespace linux
          //{
          for(int32_t l = 0; l < wndpa.get_count(); l++)
          {
-            if(wndpa[l].get_safe_handle() == hwndTopic)
+            if(wndpa[l]->get_safe_handle() == hwndTopic)
             {
                pwnd = wndpa[l].m_pimpl.m_p;
                break;

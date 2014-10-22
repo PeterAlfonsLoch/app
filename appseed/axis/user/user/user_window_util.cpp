@@ -887,8 +887,15 @@ namespace user
 
    }
 
-   
+
    interaction_ptra::interaction_ptra(const interaction_ptra & a)
+   {
+
+      this->operator = (a);
+
+   }
+
+   interaction_ptra::interaction_ptra(const ptr_array < ::user::interaction > & a)
    {
 
       this->operator = (a);
@@ -926,6 +933,16 @@ namespace user
    }
 
 
+   interaction_ptra & interaction_ptra::operator = (const ptr_array < ::user::interaction > & a)
+   {
+
+      ptr_array < ::user::interaction >::operator = (a);
+
+      return *this;
+
+   }
+
+
    interaction_ptra & interaction_ptra::operator = (interaction_ptra && a)
    {
 
@@ -934,6 +951,100 @@ namespace user
       return *this;
 
    }
+
+
+   oswindow_array interaction_ptra::get_hwnda()
+   {
+
+      oswindow_array oswindowa;
+
+      for(int32_t i = 0; i < this->get_size(); i++)
+      {
+
+         oswindowa.add(this->element_at(i)->get_handle());
+
+      }
+
+      return oswindowa;
+
+   }
+
+
+   ::user::interaction * interaction_ptra::find_first_typed(sp(type) info)
+   {
+      for(int32_t i = 0; i < this->get_size(); i++)
+      {
+         if(typeid(*this->element_at(i)).name() == info->name())
+         {
+            return this->element_at(i);
+         }
+      }
+      return NULL;
+   }
+
+
+   ::user::interaction) * interaction_ptra::find_first(oswindow oswindow)
+   {
+
+      for(int32_t i = 0; i < this->get_size(); i++)
+      {
+
+         if(this->element_at(i)->get_safe_handle() == oswindow)
+         {
+
+            return this->element_at(i);
+         }
+      }
+
+      return NULL;
+
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -997,14 +1108,14 @@ namespace user
    }
 
 
-         interaction_spa & interaction_spa::operator = (const interaction_spa & a)
-      {
+   interaction_spa & interaction_spa::operator = (const interaction_spa & a)
+   {
 
-         copy(a);
+      copy(a);
 
-         return *this;
+      return *this;
 
-      }
+   }
 
 
 
