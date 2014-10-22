@@ -167,6 +167,7 @@
 		<Unit filename="base/install/install_plugin.h" />
 		<Unit filename="base/install/install_plugin_bare_paint_discreet.cpp" />
 		<Unit filename="base/install/install_plugin_bare_paint_full_screen.cpp" />
+		<Unit filename="base/install/install_plugin_bare_paint_veri_discreet.cpp" />
 		<Unit filename="base/install/install_resource.h" />
 		<Unit filename="base/install/install_small_bell.cpp" />
 		<Unit filename="base/install/install_small_bell.h" />
