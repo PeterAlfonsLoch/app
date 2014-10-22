@@ -1971,7 +1971,7 @@ restart_mouse_hover_check:
 
 */
 
-   sp(::user::interaction) interaction_impl::GetParent()
+   ::user::interaction * interaction_impl::GetParent()
    {
 
       if(!::IsWindow((oswindow) get_handle()))

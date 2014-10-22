@@ -48,9 +48,7 @@ namespace aura
       string                                          m_strLibraryName;
       string                                          m_strAppId;
 
-#ifdef WINDOWS
       HINSTANCE                                       m_hinstance;
-#endif
 
 
       bool                                            m_bUpdateMatterOnInstall;
@@ -384,7 +382,7 @@ namespace aura
       virtual string dir_userappdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
       virtual string dir_appdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
       virtual string dir_simple_path(const string & str1,const string & str2);
-      
+
 #ifdef APPLEOS
       virtual CLASS_DECL_AURA string dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
 #endif
@@ -466,7 +464,7 @@ namespace aura
 
 inline allocatorsp element::allocer()
 {
-   
+
    return m_pauraapp->m_allocer;
 
 }

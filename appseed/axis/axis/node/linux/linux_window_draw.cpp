@@ -556,7 +556,7 @@ namespace linux
          {
             if(wndpa[l]->get_safe_handle() == hwndTopic)
             {
-               pwnd = wndpa[l].m_pimpl.m_p;
+               pwnd = wndpa[l]->m_pimpl.m_p;
                break;
             }
          }
@@ -703,7 +703,7 @@ namespace linux
       rect rectClient;
       for(int32_t i = 0; i < hwndtreea.get_size();)
       {
-         user::oswindow_tree & hwndtree = hwndtreea[i];
+         user::oswindow_tree & hwndtree = hwndtreea(i);
          switch(TwfOptimizeRender(
             hwndtree,
             lpcrect))
@@ -750,7 +750,7 @@ namespace linux
       rect rectClient;
       for(int32_t i = iIndex; i < hwndtreea.get_size();)
       {
-         user::oswindow_tree & hwndtree = hwndtreea[i];
+         user::oswindow_tree & hwndtree = hwndtreea(i);
          ::oswindow oswindow = hwndtree.m_oswindow;
          rect rect;
          ::GetClientRect((::oswindow) oswindow, rect);
@@ -868,7 +868,7 @@ namespace linux
       rect rectClient;
       for(int32_t i = 0; i < hwndtreea.get_size(); i++)
       {
-         user::oswindow_tree & hwndtree = hwndtreea[i];
+         user::oswindow_tree & hwndtree = hwndtreea(i);
          if(!TwfGetTopWindow(
             hwnd,
             hwnda,
