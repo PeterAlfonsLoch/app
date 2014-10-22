@@ -248,7 +248,18 @@ CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t
 
          int32_t a = bitmap->buffer[q * bitmap->width + p];
 
-         *((COLORREF *)&((byte *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a * aParam / 255,r * a * aParam / (255 * 255),g * a * aParam / (255 * 255),b * a * aParam / (255 * 255));
+         if(a > 0)
+         {
+
+            *((COLORREF *)&((byte *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = ARGB(a * aParam / 255,r,g,b);
+
+         }
+         else
+         {
+
+            *((COLORREF *)&((byte *)m_p->get_data())[(dy + j) * m_p->m_iScan + (dx + i) * 4]) = 0;
+
+         }
 
       }
    }
