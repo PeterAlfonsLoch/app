@@ -30,7 +30,7 @@ namespace draw2d_cairo
    {
       return m_pcolorref;
    }
-   ::draw2d::bitmap_sp dib::get_bitmap()
+   ::draw2d::bitmap_sp dib::get_bitmap() const
    {
       return m_spbitmap;
    }
@@ -375,9 +375,11 @@ synch_lock ml(&cairo_mutex());
    //}
 
 
-   void dib::map(bool bApplyAlphaTransform)
+   void dib::map(bool bApplyAlphaTransform) const
    {
-synch_lock ml(&cairo_mutex());
+
+      synch_lock ml(&cairo_mutex());
+
       if(m_bMapped)
          return;
 
@@ -422,14 +424,14 @@ synch_lock ml(&cairo_mutex());
       }
       else
       {
-         m_bTrans = true;
+         ((dib *) this)->m_bTrans = true;
       }
 
-      m_bMapped = true;
+      ((dib *) this)->m_bMapped = true;
 
    }
 
-   void dib::unmap()
+   void dib::unmap() const
    {
 synch_lock ml(&cairo_mutex());
       if(!m_bMapped)
@@ -450,7 +452,7 @@ synch_lock ml(&cairo_mutex());
       int size = m_iScan * m_size.cy / sizeof(COLORREF);
       if(m_bTrans)
       {
-         m_bTrans = false;
+         ((dib *) this)->m_bTrans = false;
          while(size > 0)
          {
             pdata[0] = pdata[0] * pdata[3] / 255;
@@ -472,7 +474,7 @@ synch_lock ml(&cairo_mutex());
 
       m_spgraphics->SelectObject(m_spbitmap);
 
-      m_bMapped = false;
+      ((dib *) this)->m_bMapped = false;
 
    }
 
@@ -2483,7 +2485,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   ::draw2d::graphics * dib::get_graphics()
+   ::draw2d::graphics * dib::get_graphics() const
    {
       unmap();
       return m_spgraphics;

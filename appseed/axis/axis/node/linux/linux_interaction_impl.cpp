@@ -4145,7 +4145,7 @@ throw not_implemented(get_app());
       }
    }
 
-   sp(::user::interaction) interaction_impl::GetCapture()
+   ::user::interaction * interaction_impl::GetCapture()
    {
 //      throw not_implemented(get_app());
       oswindow hwndcapture = ::GetCapture();
@@ -4172,7 +4172,7 @@ throw not_implemented(get_app());
             }
             else
             {
-               return this;
+               return NULL;
             }
          }
       }
@@ -4593,7 +4593,7 @@ if(psurface == g_cairosurface)
 
       // walk through oswindows to avoid creating temporary interaction_impl objects
       // unless we need to call this function recursively
-      user::interaction * pui = m_pui->get_top_child();
+      user::interaction * pui = m_pui->first_child();
       while(pui != NULL)
       {
          try
@@ -4616,7 +4616,7 @@ if(psurface == g_cairosurface)
          }
          try
          {
-            pui = pui->under_sibling();
+            pui = pui->next_sibling();
          }
          catch(...)
          {
@@ -4811,7 +4811,7 @@ if(psurface == g_cairosurface)
       if(!::IsWindow(w))
          return NULL;
 
-      return  (w->get_user_interaction()->m_pimpl.m_p);
+      return w->get_user_interaction();
 
    }
 
@@ -4825,7 +4825,7 @@ if(psurface == g_cairosurface)
       if(!::IsWindow(w))
          return NULL;
 
-      return  (w->get_user_interaction()->m_pimpl.m_p);
+      return w->get_user_interaction();
 
    }
 

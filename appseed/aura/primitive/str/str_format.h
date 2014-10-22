@@ -185,7 +185,7 @@ public:
 
    }
 
-   
+
    template < typename T, typename... Args>
    inline void defer_get_additional_argument(const char * & s, const T & value, Args... args)
    {
@@ -197,6 +197,8 @@ public:
          {
 
             ::str::format(this, value);
+
+            m_estate = state_initial;
 
             printf(s, args...);
 
@@ -268,7 +270,7 @@ public:
 
    template<typename T, typename... Args>
    inline void printf(const char * & s, const T & value, Args... args);
-   
+
 };
 
 #endif

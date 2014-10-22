@@ -1105,7 +1105,9 @@ namespace hotplugin
 
 #ifndef METROWIN
 
+#ifndef LINUX
       if(bEnsureTx || ::IsWindow(::small_ipc_tx_channel::m_oswindow))
+#endif
       {
 
          ensure_tx(::hotplugin::message_message,pmsg,sizeof(*pmsg));

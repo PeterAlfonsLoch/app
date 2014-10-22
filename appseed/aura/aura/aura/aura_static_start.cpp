@@ -109,7 +109,6 @@ namespace aura
 
          xxdebug_box("aura.dll base_static_start (0)", "box", MB_OK);
 
-
          /*
 
           if(g_pfnca2_alloc == NULL)
@@ -209,6 +208,8 @@ namespace aura
          g_pmapLibrary = new string_map < INT_PTR,INT_PTR >();
 
          g_pmutexFactory = new mutex;
+
+         br_init(NULL);
 
       }
 
