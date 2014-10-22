@@ -60,7 +60,7 @@ namespace message
 
 namespace draw2d
 {
-   void dib_paste(dib * pdibthis, dib *pdib);
+   void dib_copy(dib * pdibthis, dib *pdib);
    void dib_alloc(::aura::application * papp, dib * & pdib);
    void dib_create(dib * pdib, int w, int h);
    unsigned int * dib_get_data(dib * pdib);

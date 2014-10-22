@@ -983,7 +983,7 @@ namespace user
    }
 
 
-   ::user::interaction) * interaction_ptra::find_first(oswindow oswindow)
+   ::user::interaction * interaction_ptra::find_first(oswindow oswindow)
    {
 
       for(int32_t i = 0; i < this->get_size(); i++)

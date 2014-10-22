@@ -79,7 +79,7 @@ void ca2rdp_end_paint(rdpContext* context)
 	ca2rdpi->h = gdi->height;
 #endif
 
-   ::draw2d::dib_paste(ca2rdpi->surface,ca2rdpi->primary);
+   ::draw2d::dib_copy(ca2rdpi->surface,ca2rdpi->primary);
 
 /*#ifdef WINDOWS
    ::draw2d::graphics_sp g(((ca2rdpContext*)context)->m_papp->allocer());

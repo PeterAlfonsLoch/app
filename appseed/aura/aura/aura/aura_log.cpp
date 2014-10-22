@@ -255,15 +255,7 @@ namespace aura
 
          string strPath;
 
-         char * psz = br_find_exe("unknown-app");
-
-         strPath = psz;
-
-         free(psz);
-
-         /*
-
-         string strPath;
+#ifdef WINDOWSEX
 
          wchar_t wsz[4096];
 
@@ -280,7 +272,15 @@ namespace aura
 
          }
 
-         */
+#else
+
+         char * psz = br_find_exe("unknown-app");
+
+         strPath = psz;
+
+         free(psz);
+
+#endif
 
          strPath.replace("\\", "/");
 
