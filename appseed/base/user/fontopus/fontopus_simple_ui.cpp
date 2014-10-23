@@ -471,8 +471,8 @@ namespace fontopus
             m_bDrag = true;
             POINT ptNow = pmouse->m_pt;
             point pt;
-            pt.x = ptNow.x - m_ptLButtonDown.x - m_ptLButtonDownPos.x;
-            pt.y = ptNow.y - m_ptLButtonDown.y - m_ptLButtonDownPos.y;
+            pt.x = ptNow.x - m_ptLButtonDownPos.x;
+            pt.y = ptNow.y - m_ptLButtonDownPos.y;
             MoveWindow(pt);
             m_bDrag = false;
          }
@@ -605,7 +605,7 @@ namespace fontopus
       }
       else
       {
-         
+
 
       }
 
