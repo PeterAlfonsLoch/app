@@ -1002,6 +1002,40 @@ namespace sort
    }
 
    template < class TYPE >
+   void BubbleSortByGetSize(
+      array < TYPE > & a,
+      bool bAsc)
+   {
+      TYPE t;
+      if(bAsc)
+      {
+         for(index i = 0; i < a.get_size(); i++)
+            for(index j = i + 1; j < a.get_size(); j++)
+            {
+            if(a.element_at(i).get_size() > a.element_at(j).get_size())
+            {
+               a.swap(i,j);
+            }
+            }
+      }
+      else
+      {
+         for(index i = 0; i < a.get_size(); i++)
+            for(index j = i + 1; j < a.get_size(); j++)
+            {
+            if(a.element_at(i).get_size() < a.element_at(j).get_size())
+            {
+               a.swap(i,j);
+            }
+
+            }
+      }
+
+      return;
+   }
+
+
+   template < class TYPE >
    void BubbleSortByPtrAtGetSize(
       spa(TYPE) & a,
       bool bAsc)
