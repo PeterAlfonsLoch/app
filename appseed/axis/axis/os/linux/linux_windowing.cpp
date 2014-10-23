@@ -467,6 +467,30 @@ bool oswindow_data::is_child(::oswindow oswindow)
 
 }
 
+
+Window oswindow_data::get_parent_handle()
+{
+
+   single_lock slOsWindow(s_pmutex, true);
+
+   if(this == NULL)
+      return 0;
+
+   Window root = 0;
+   Window parent = 0;
+   Window * pchildren = NULL;
+   uint32_t ncount = 0;
+
+   XQueryTree(display(), window(), &root, &parent, &pchildren, &ncount);
+
+   if(pchildren != NULL)
+      XFree(pchildren);
+
+   return parent;
+
+}
+
+
 oswindow oswindow_data::get_parent()
 {
 
@@ -479,17 +503,7 @@ oswindow oswindow_data::get_parent()
 
    return NULL;
 
-   Window root = 0;
-   Window parent = 0;
-   Window * pchildren = NULL;
-   uint32_t ncount = 0;
-
-   XQueryTree(display(), window(), &root, &parent, &pchildren, &ncount);
-
-   if(pchildren != NULL)
-      XFree(pchildren);
-
-   return oswindow_get(display(), parent);
+   return oswindow_get(display(), get_parent_handle());
 
 }
 
@@ -812,6 +826,83 @@ oswindow SetActiveWindow(oswindow window)
 }
 
 
+oswindow oswindow_get_next_found(Display * pdisplay, long *array, int iStart, int numItems)
+{
+
+   for(index i = iStart; i < numItems; i++)
+   {
+
+      if(::oswindow_find(array[i]) >= 0)
+      {
+
+         return ::oswindow_get(array[i]);
+
+      }
+
+   }
+
+   return NULL;
+
+}
+
+oswindow oswindow_get_previous_found(Display * pdisplay, long *array, int iStart)
+{
+
+   for(index i = iStart; i >= 0; i--)
+   {
+
+      if(::oswindow_find(array[i]) >= 0)
+      {
+
+         return ::oswindow_get(array[i]);
+
+      }
+
+   }
+
+   return NULL;
+
+}
+
+
+oswindow oswindow_get_next_found(Window *array, int iStart, int numItems)
+{
+
+   for(index i = iStart; i < numItems; i++)
+   {
+
+      if(::oswindow_find(array[i]) >= 0)
+      {
+
+         return ::oswindow_get(array[i]);
+
+      }
+
+   }
+
+   return NULL;
+
+}
+
+oswindow oswindow_get_previous_found(Window *array, int iStart)
+{
+
+   for(index i = iStart; i >= 0; i--)
+   {
+
+      if(::oswindow_find(array[i]) >= 0)
+      {
+
+         return ::oswindow_get(array[i]);
+
+      }
+
+   }
+
+   return NULL;
+
+}
+
 oswindow GetWindow(oswindow windowParam, int iParentHood)
 {
 
@@ -824,10 +915,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 
    xdisplay d(window->display());
 
-   Window root = 0;
-   Window parent = 0;
-   Window * pchildren = NULL;
-   uint32_t ncount = 0;
+   Window w = window->window();
 
    if(iParentHood == GW_HWNDFIRST
    || iParentHood == GW_HWNDLAST
@@ -840,126 +928,131 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
       if(window == NULL)
       {
 
-	Atom a = XInternAtom(windowParam->display(), "_NET_CLIENT_LIST" , true);
-	Atom actualType;
-	int format;
-	unsigned long numItems, bytesAfter;
-	unsigned char *data =0;
-	int status = XGetWindowProperty(windowParam->display(),
-								RootWindow(windowParam->display(), windowParam->m_iScreen),
-								a,
-								0L,
-								(~0L),
-								false,
-								AnyPropertyType,
-								&actualType,
-								&format,
-								&numItems,
-								&bytesAfter,
-								&data);
+         window = windowParam;
 
-	if (status >= Success && numItems)
-	{
-		// success - we have data: Format should always be 32:
-//		Q_ASSERT(format == 32);
-		// cast to proper format, and iterate through values:
-		uint32_t *array = (uint32_t*) data;
-		//for (quint32 k = 0; k < numItems; k++)
-		//{
-			// get window Id:
-			//Window w = (Window) array[k];
+         w = window->get_parent_handle();
 
-			//qDebug() << "Scanned client window:" << w;
-		//}
-   switch(iParentHood)
-   {
-      case GW_CHILD:
-      case GW_HWNDFIRST:
-      {
-
-         if(data == NULL)
-            return NULL;
-
-         window = ::oswindow_get(window->display(), data[0]);
-
-      }
-      break;
-      case GW_HWNDLAST:
-      {
-
-         if(data == NULL)
-            return NULL;
-
-         window = ::oswindow_get(window->display(), data[numItems - 1]);
-
-      }
-      break;
-      case GW_HWNDNEXT:
-      case GW_HWNDPREV:
-      {
-
-         if(data == NULL) // ????
-            return NULL;
-
-         int iFound = -1;
-
-         for(int i = 0; i < ncount; i++)
-         {
-               if(data[i] == windowParam->window())
-               {
-                  iFound = i;
-                  break;
-               }
-         }
-
-         if(iFound < 0)
-         {
-            XFree(data);
-            return NULL;
-         }
-
-         if(iParentHood == GW_HWNDNEXT)
-         {
-
-            if(iFound + 1 >= ncount)
-            {
-               XFree(data);
-               return NULL;
-            }
-
-            window = ::oswindow_get(window->display(), data[iFound - 1]);
-
-         }
-         else
-         {
-
-            if(iFound - 1 < 0)
-            {
-               XFree(data);
-               return NULL;
-            }
-
-            window = ::oswindow_get(window->display(), data[iFound - 1]);
-
-         }
-
-      }
-
-   }
-		XFree(data);
+//	Atom a = XInternAtom(windowParam->display(), "_NET_CLIENT_LIST" , False);
+//	Atom actualType;
+//	int format;
+//	unsigned long numItems, bytesAfter;
+//	unsigned char *data =0;
+//	int status = XGetWindowProperty(windowParam->display(),
+//								RootWindow(windowParam->display(), windowParam->m_iScreen),
+//								a,
+//								0L,
+//								1024,
+//								false,
+//								AnyPropertyType,
+//								&actualType,
+//								&format,
+//								&numItems,
+//								&bytesAfter,
+//								&data);
+//
+//	if (status >= Success && numItems)
+//	{
+//		// success - we have data: Format should always be 32:
+////		Q_ASSERT(format == 32);
+//		// cast to proper format, and iterate through values:
+//		long *array = (long*) data;
+//		//for (quint32 k = 0; k < numItems; k++)
+//		//{
+//			// get window Id:
+//			//Window w = (Window) array[k];
+//
+//			//qDebug() << "Scanned client window:" << w;
+//		//}
+//   switch(iParentHood)
+//   {
+//      case GW_CHILD:
+//      case GW_HWNDFIRST:
+//      {
+//
+//         if(data == NULL)
+//            return NULL;
+//
+//         window = oswindow_get_next_found(windowParam->display(), array, 0, numItems);
+//
+//      }
+//      break;
+//      case GW_HWNDLAST:
+//      {
+//
+//         if(data == NULL)
+//            return NULL;
+//
+//         window = oswindow_get_previous_found(windowParam->display(), array, numItems - 1);
+//
+//      }
+//      break;
+//      case GW_HWNDNEXT:
+//      case GW_HWNDPREV:
+//      {
+//
+//         if(data == NULL) // ????
+//            return NULL;
+//
+//         int iFound = -1;
+//
+//         for(int i = 0; i < numItems; i++)
+//         {
+//               if(array[i] == windowParam->window())
+//               {
+//                  iFound = i;
+//                  break;
+//               }
+//         }
+//
+//         if(iFound < 0)
+//         {
+//            XFree(data);
+//            return NULL;
+//         }
+//
+//         if(iParentHood == GW_HWNDNEXT)
+//         {
+//
+//            if(iFound + 1 >= numItems)
+//            {
+//               XFree(data);
+//               return NULL;
+//            }
+//
+//              window = ::oswindow_get_next_found(windowParam->display(), array, iFound + 1, numItems);
+//
+//         }
+//         else
+//         {
+//
+//            if(iFound - 1 < 0)
+//            {
+//               XFree(data);
+//               return NULL;
+//            }
+//
+//            window = ::oswindow_get_previous_found(windowParam->display(), array, iFound - 1);
+//
+//
+//         }
+//
+//      }
+//
+//   }
+//		XFree(data);
 	}
 
-	return window;
-
-      }
-
 
 
    }
 
+   Window root = 0;
+   Window parent = 0;
+   Window * pchildren = NULL;
+   uint32_t ncount = 0;
 
 
-   XQueryTree(window->display(), window->window(), &root, &parent, &pchildren, &ncount);
+   XQueryTree(window->display(), w, &root, &parent, &pchildren, &ncount);
 
    switch(iParentHood)
    {
@@ -970,7 +1063,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
          if(pchildren == NULL)
             return NULL;
 
-         window = ::oswindow_get(window->display(), pchildren[0]);
+         window = ::oswindow_get_next_found(pchildren, 0, ncount);
 
       }
       break;
@@ -980,7 +1073,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
          if(pchildren == NULL)
             return NULL;
 
-         window = ::oswindow_get(window->display(), pchildren[ncount - 1]);
+         window = ::oswindow_get_previous_found(pchildren, ncount - 1);
 
       }
       break;
@@ -1011,7 +1104,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
             if(iFound + 1 >= ncount)
                return NULL;
 
-            window = ::oswindow_get(window->display(), pchildren[iFound - 1]);
+            window = ::oswindow_get_next_found(pchildren, iFound + 1, ncount);
 
          }
          else
@@ -1020,7 +1113,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
             if(iFound - 1 < 0)
                return NULL;
 
-            window = ::oswindow_get(window->display(), pchildren[iFound - 1]);
+            window = ::oswindow_get_previous_found(pchildren, iFound - 1);
 
          }
 

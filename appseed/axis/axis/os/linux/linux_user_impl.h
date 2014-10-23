@@ -157,6 +157,7 @@ public:
 
    bool is_child(oswindow oswindowcandidateChildOrDescendant); // or descendant
    oswindow get_parent();
+   Window get_parent_handle();
    oswindow set_parent(oswindow oswindowNewParent);
    long get_state();
    bool is_iconic();
