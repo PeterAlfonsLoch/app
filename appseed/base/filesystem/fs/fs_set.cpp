@@ -31,44 +31,74 @@ namespace fs
 
    void set::root_ones(stringa & straPath, stringa & straTitle)
    {
+
+      single_lock sl(data_mutex());
       
       m_fsdatamap.remove_all();
 
       stringa straFsPath;
+
       stringa straFsTitle;
 
       for(int32_t i = 0; i < m_spafsdata.get_count(); i++)
       {
+         
          straFsPath.remove_all();
+         
          straFsTitle.remove_all();
-         m_spafsdata[i]->root_ones(straFsPath, straFsTitle);
+         
+         data * pdata =  m_spafsdata[i];
+         
+         sl.unlock();
+
+         m_spafsdata[i]->root_ones(straFsPath,straFsTitle);
+
+         sl.lock();
+
          straPath.add(straFsPath);
+
          straTitle.add(straFsTitle);
+
          for(int32_t j = 0; j < straFsPath.get_size(); j++)
          {
+
             m_fsdatamap[straFsPath[j]] = m_spafsdata[i];
+
          }
+
       }
 
    }
 
+
    sp(data) set::path_data(const char * psz)
    {
+
+      single_lock sl(data_mutex());
+
       POSITION pos = m_fsdatamap.get_start_position();
 
       string strRoot;
+
       sp(::fs::data) pdata;
 
       while(pos != NULL)
       {
+
          m_fsdatamap.get_next_assoc(pos, strRoot, pdata);
+
          if(pdata.is_set())
          {
+
             if(::str::begins_ci(psz,strRoot))
             {
+
                return pdata;
+
             }
+
          }
+
       }
       
       return NULL;
