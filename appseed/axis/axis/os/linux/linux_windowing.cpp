@@ -840,7 +840,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
       if(window == NULL)
       {
 
-	Atom a = XInternAtom(m_pDisplay, "_NET_CLIENT_LIST" , true);
+	Atom a = XInternAtom(windowParam->display(), "_NET_CLIENT_LIST" , true);
 	Atom actualType;
 	int format;
 	unsigned long numItems, bytesAfter;
