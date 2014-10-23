@@ -71,7 +71,7 @@ namespace draw2d_xlib
    graphics::~graphics()
    {
 
-      synch_lock ml(&user_mutex());
+//      synch_lock ml(&xlib_mutex());
 
 /*      HDC hdc = Detach();
 
@@ -136,7 +136,7 @@ namespace draw2d_xlib
    bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
 
-      synch_lock ml(&user_mutex());
+      //synch_lock ml(&xlib_mutex());
 
       if(m_pdc != NULL)
       {
@@ -1367,7 +1367,7 @@ if(psurfaceNew == xlib_keep::g_xlibsurface)
    bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
    {
 
-      synch_lock ml(&user_mutex());
+      //synch_lock ml(&xlib_mutex());
 
       if(m_pdibAlphaBlend != NULL)
       {
@@ -1511,7 +1511,7 @@ if(psurfaceNew == xlib_keep::g_xlibsurface)
 
       return false;
 
-/*      synch_lock ml(&user_mutex());
+/*      synch_lock ml(&xlib_mutex());
 
       if(pgraphicsSrc == NULL)
          return false;
@@ -2712,7 +2712,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    return this->BitBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, SRCCOPY);
 
-      synch_lock ml(&user_mutex());
+      //synch_lock ml(&xlib_mutex());
 
       if(m_pdibAlphaBlend != NULL)
       {
@@ -3387,7 +3387,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::DeleteDC()
    {
 
-      synch_lock ml(&user_mutex());
+      //synch_lock ml(&xlib_mutex());
 
       m_spbitmap.release();
 
@@ -3872,7 +3872,7 @@ return 1;
    int32_t graphics::SelectClipRgn(::draw2d::region * pregion)
    {
 
-      /*synch_lock ml(&user_mutex());
+      /*synch_lock ml(&xlib_mutex());
       if(pregion == NULL)
       {
 
@@ -4522,7 +4522,7 @@ return 1;
    int32_t graphics::draw_text(const string & str, LPRECT lpRect, UINT nFormat)
    {
 
-      synch_lock ml(&user_mutex());
+      //synch_lock ml(&xlib_mutex());
 
       if(m_spfont.is_null())
          return 0;
@@ -4658,7 +4658,7 @@ return 1;
    size graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
    {
 
-      synch_lock ml(&user_mutex());
+      synch_lock ml(&xlib_mutex());
 
       //int direction = 0, fontAscent = 0, fontDescent = 0;
 
@@ -4752,7 +4752,7 @@ return 1;
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, int32_t iIndex) const
    {
 
-      synch_lock ml(&user_mutex());
+      synch_lock ml(&xlib_mutex());
 
       class ::size  sz = GetTextExtent(lpszString, nCount, iIndex);
 
@@ -4927,7 +4927,7 @@ return 1;
       if(cx <= 0 || cy <= 0)
          return;
 
-      synch_lock ml(&user_mutex());
+      synch_lock ml(&xlib_mutex());
 
       set_os_color(clr);
 
@@ -4939,7 +4939,7 @@ return 1;
    bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
    {
 
-      synch_lock ml(&user_mutex());
+      synch_lock ml(&xlib_mutex());
 
       if(m_spfont.is_null())
          return false;
@@ -5019,7 +5019,7 @@ return 1;
    bool graphics::LineTo(double x, double y)
    {
 
-      synch_lock ml(&user_mutex());
+      synch_lock ml(&xlib_mutex());
 
       set(m_sppen);
 
@@ -5041,7 +5041,7 @@ return 1;
    void graphics::set_alpha_mode(::draw2d::e_alpha_mode ealphamode)
    {
 
-      synch_lock ml(&user_mutex());
+      synch_lock ml(&xlib_mutex());
 
       try
       {

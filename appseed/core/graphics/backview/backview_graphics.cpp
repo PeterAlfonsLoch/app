@@ -438,7 +438,7 @@ namespace backview
    void Graphics::UpdateObjects()
    {
 
-      synch_lock slUserMutex(&user_mutex());
+//      synch_lock slUserMutex(&gcom_mutex());
 
       rect rectClient;
       Interface & iface = HelperGetMain().GetInterface();
@@ -536,17 +536,17 @@ namespace backview
 
    void Graphics::BufferToBack()
    {
-      
+
       single_lock sl1Back(&m_mutex1Back, FALSE);
-      
+
       single_lock sl2Buffer(&m_mutex2Buffer, FALSE);
-      
+
       if(!sl1Back.lock(millis(25)))
          return;
-      
+
       if(!sl2Buffer.lock(millis(25)))
          return;
-      
+
       if (GetDib(_graphics::DibBack).is_null())
          return;
 

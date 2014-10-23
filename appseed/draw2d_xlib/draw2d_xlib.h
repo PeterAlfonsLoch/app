@@ -18,6 +18,9 @@ class window;
 #endif
 
 
+mutex & xlib_mutex();
+void init_xlib_mutex(sp(::aura::application) papp);
+
 
 #include "draw2d_xlib_factory_exchange.h"
 #include "draw2d_xlib_keep.h"

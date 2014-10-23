@@ -9,6 +9,8 @@ namespace draw2d_xlib
       element(papp)
    {
 
+      init_xlib_mutex(papp);
+
       System.factory().cloneable_large < dib                   >  (System.type_info < ::draw2d::dib                 > ());
       System.factory().cloneable_large < graphics              >  (System.type_info < ::draw2d::graphics            > ());
       System.factory().cloneable_large < bitmap                >  (System.type_info < ::draw2d::bitmap              > ());

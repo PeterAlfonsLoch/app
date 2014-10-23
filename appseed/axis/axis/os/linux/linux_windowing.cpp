@@ -1137,7 +1137,7 @@ void wm_nodecorations(oswindow w,int map)
    int set;
 
 
-   single_lock sl(&user_mutex(),true);
+//   single_lock sl(&user_mutex(),true);
 
    xdisplay d(w->display());
    Display * dpy = w->display();

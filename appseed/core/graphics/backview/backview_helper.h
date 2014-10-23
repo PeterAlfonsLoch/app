@@ -20,7 +20,7 @@ namespace backview
       Main & HelperGetMain();
 
 
-      inline mutex & user_mutex() { return m_main.user_mutex();}
+      inline mutex & gcom_mutex() { return m_main.gcom_mutex();}
 
 
    };

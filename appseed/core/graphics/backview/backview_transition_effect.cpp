@@ -338,7 +338,7 @@ true);
       if(m_tool001.m_iStep == 1
          && m_tool001.m_ia.get_size() <= 0)
       {
-         synch_lock sl(&user_mutex());
+         synch_lock sl(&gcom_mutex());
 
          RenderBuffer(recta);
       }
@@ -346,7 +346,7 @@ true);
       {
          if(m_tool001.m_ia.get_size() <= 0)
          {
-            synch_lock sl(&user_mutex());
+            synch_lock sl(&gcom_mutex());
 
             RenderBuffer(recta);
          }
@@ -355,7 +355,7 @@ true);
             rect rect;
             for(int32_t i = 0; i < 1 && m_tool001.m_ia.get_size(); i++)
             {
-               synch_lock sl(&user_mutex());
+               synch_lock sl(&gcom_mutex());
 
                RenderBuffer(recta);
             }
@@ -1833,7 +1833,7 @@ true);
    void TransitionEffect::_Init()
    {
 
-      synch_lock slUserMutex(&user_mutex());
+      synch_lock slUserMutex(&gcom_mutex());
 
       Main & main = HelperGetMain();
 

@@ -1059,7 +1059,7 @@ throw not_implemented(get_app());
    user::oswindow_array window_draw::get_hwnda()
    {
 
-      single_lock sl(&user_mutex(), true);
+//      single_lock sl(&user_mutex(), true);
 
       return System.frames().get_hwnda();
 

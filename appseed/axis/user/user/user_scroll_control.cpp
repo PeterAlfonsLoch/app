@@ -63,7 +63,7 @@ namespace user
       }
       else
       {
-         
+
          m_scrollinfo.m_bVScroll = m_scrollinfo.m_bVScrollBarEnable && (m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.height()) > (rectClient.height());
 
          m_scrollinfo.m_bHScroll = m_scrollinfo.m_bHScrollBarEnable && (m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.width()) > (rectClient.width() - (m_scrollinfo.m_bVScroll ? m_scrollinfo.m_iScrollWidth : 0));
@@ -223,7 +223,8 @@ namespace user
 
       {
 
-         synch_lock slUser(&user_mutex());
+//         synch_lock slUser(&user_mutex());
+         synch_lock slUser(m_spmutex);
 
          m_scrollinfo.m_ptScroll.y = pscroll->m_nPos;
 
@@ -250,7 +251,8 @@ namespace user
 
       {
 
-         synch_lock slUser(&user_mutex());
+//         synch_lock slUser(&user_mutex());
+         synch_lock slUser(m_spmutex);
 
          m_scrollinfo.m_ptScroll.x = pscroll->m_nPos;
 

@@ -460,7 +460,7 @@ namespace core
       }
       catch(...)
       {
-         
+
       }
 
       try
@@ -1616,10 +1616,10 @@ namespace core
 #elif defined(APPLEOS)
 
 setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
-                     
+
 //                     strPath += ".app/Contents/MacOS/app";
                      strPath += ".app";
-                     
+
 #endif
 
 #if defined(APPLEOS)
@@ -2848,7 +2848,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
       throw todo(this);
       /*#elif defined(LINUX)
 
-      synch_lock sl(&user_mutex());
+//      synch_lock sl(&user_mutex());
 
       xdisplay pdisplay.
       pdisplay.open(NULL) = XOpenDisplay(NULL);
