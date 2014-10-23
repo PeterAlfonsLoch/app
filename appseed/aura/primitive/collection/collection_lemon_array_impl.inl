@@ -36,7 +36,7 @@ namespace lemon
       }
       A elema;
       A topermut;
-      smart_pointer_array < A > perm2;
+      A2D perm2;
       for(int32_t i = 0; i < count; i++)
 		{
          elema.remove_all();
