@@ -376,7 +376,7 @@ namespace userstack
       }
       // these try catchs are needed for multi threading : multi threaded windows: the hell
       // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
-      user::interaction * pui = get_top_child();
+      user::interaction * pui = top_child();
       try
       {
          while(pui != NULL)
