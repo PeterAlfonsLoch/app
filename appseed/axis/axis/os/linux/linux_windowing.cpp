@@ -730,6 +730,9 @@ WINBOOL ReleaseCapture()
 
    //single_lock sl(&user_mutex(), true);
 
+   if(g_oswindowCapture == NULL)
+      return FALSE;
+
    xdisplay d(g_oswindowCapture->display());
 
 
