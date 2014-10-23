@@ -64,7 +64,7 @@ int display_lines(const stringa & stra, const string & strTitle)
    XEvent e;
    int s;
 
-   d = x11_get_display(NULL);
+   d = x11_get_display();
    if (d == NULL) {
       fprintf(stderr, "Cannot open display\n");
       return 0;
