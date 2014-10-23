@@ -1001,12 +1001,12 @@ namespace sort
       return;
    }
 
-   template < class TYPE >
+   template < class ARRAY >
    void BubbleSortByGetSize(
-      array < TYPE > & a,
+      ARRAY & a,
       bool bAsc)
    {
-      TYPE t;
+      typename ARRAY::TYPE t;
       if(bAsc)
       {
          for(index i = 0; i < a.get_size(); i++)
