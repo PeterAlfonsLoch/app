@@ -1154,6 +1154,9 @@ d.unlock();
       }
       else if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
+
+         TRACE("WM_LBUTTONDOWN (0)");
+
          //g_pwndLastLButtonDown = this;
       }
       /*      else if(pbase->m_uiMessage == ca2M_BERGEDGE)
@@ -1341,6 +1344,14 @@ restart_mouse_hover_check:
          user::interaction_ptra wnda;
          wnda = System.frames();
          hwnda = wnda.get_hwnda();
+
+         if(pbase->m_uiMessage == WM_LBUTTONDOWN)
+         {
+
+               TRACE("WM_LBUTTONDOWN 2");
+
+         }
+
          user::window_util::SortByZOrder(hwnda);
          for(int32_t i = hwnda.get_upper_bound(); i >= 0 ; i--)
          {
