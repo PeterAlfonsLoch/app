@@ -149,6 +149,9 @@ namespace lemon
    template < class A, class A2D >
    void array_permute(A2D & perm,const A & a);
 
+   template < class A >
+   void array_permute(smart_pointer_array < A > & perm,const A & a);
+
    CLASS_DECL_AURA stringa x1_decode_ida(const char * psz);
 
    CLASS_DECL_AURA string x1_encode_ida(const stringa & stra);
