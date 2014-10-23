@@ -146,8 +146,8 @@ namespace lemon
    return $ret;
    }*/
 
-   template < class A, class ARRAY >
-   void array_permute(ARRAY & perm,const A & a);
+   template < class A, class A2D >
+   void array_permute(A2D & perm,const A & a);
 
    CLASS_DECL_AURA stringa x1_decode_ida(const char * psz);
 

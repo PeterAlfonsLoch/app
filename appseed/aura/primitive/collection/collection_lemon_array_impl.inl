@@ -25,8 +25,8 @@ namespace lemon
 
 
 
-   template < class A >
-	void array_permute(smart_pointer_array < A > & perm, const A & a)
+   template < class A,class A2D >
+	void array_permute(A2D & perm, const A & a)
 	{
 		::count count = a.get_count();
 		if(count == 1)
@@ -36,7 +36,7 @@ namespace lemon
       }
       A elema;
       A topermut;
-      smart_pointer_array < A > perm2;
+      A2D perm2;
       for(int32_t i = 0; i < count; i++)
 		{
          elema.remove_all();
