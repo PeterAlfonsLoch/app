@@ -695,6 +695,8 @@ namespace user
 
       pobj->previous();
 
+      keep<bool> lockWindowUpdate(&GetWindow()->m_bLockWindowUpdate, true, GetWindow()->m_bLockWindowUpdate, true);
+
       if(psize->m_nType == SIZE_MINIMIZED)
       {
 
@@ -1911,7 +1913,7 @@ namespace user
          DestroyWindow();
 
       }
-      
+
       m_signalptra.remove_all();
 
       ::thread * pthread = ::get_thread();
@@ -1935,7 +1937,7 @@ namespace user
 
          if(!Application.defer_initialize_twf())
          {
-            
+
             m_threadptra.remove_all();
 
             return false;
@@ -1947,7 +1949,7 @@ namespace user
          dwStyle &= ~WS_CHILD;
          if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,lpParam))
          {
-            
+
             m_threadptra.remove_all();
 
             m_pimpl.release();
@@ -1990,7 +1992,7 @@ namespace user
          m_pimpl->m_pui = this;
          if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rectFrame,pParentWnd,id,lpParam))
          {
-            
+
             m_threadptra.remove_all();
 
             m_pimpl.release();
@@ -3601,7 +3603,7 @@ namespace user
 
    ::user::interaction * interaction::first_child()
    {
-      
+
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
@@ -3623,9 +3625,9 @@ namespace user
 
    ::user::interaction * interaction::first_sibling()
    {
-      
+
       single_lock sl(m_pauraapp->m_pmutex,TRUE);
-      
+
       if(GetParent() == NULL)
          return NULL;
 
@@ -4609,7 +4611,7 @@ namespace user
 
       if(GetParent() != NULL)
       {
-         
+
          GetParent()->GetClientRect(rectNew);
 
          iMatchingMonitor = 0;

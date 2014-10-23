@@ -824,6 +824,11 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 
    xdisplay d(window->display());
 
+   Window root = 0;
+   Window parent = 0;
+   Window * pchildren = NULL;
+   uint32_t ncount = 0;
+
    if(iParentHood == GW_HWNDFIRST
    || iParentHood == GW_HWNDLAST
    || iParentHood == GW_HWNDNEXT
@@ -833,15 +838,126 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
       window = ::GetParent(window);
 
       if(window == NULL)
-         return NULL;
+      {
+
+	Atom a = XInternAtom(m_pDisplay, "_NET_CLIENT_LIST" , true);
+	Atom actualType;
+	int format;
+	unsigned long numItems, bytesAfter;
+	unsigned char *data =0;
+	int status = XGetWindowProperty(windowParam->display(),
+								RootWindow(windowParam->display(), windowParam->m_iScreen),
+								a,
+								0L,
+								(~0L),
+								false,
+								AnyPropertyType,
+								&actualType,
+								&format,
+								&numItems,
+								&bytesAfter,
+								&data);
+
+	if (status >= Success && numItems)
+	{
+		// success - we have data: Format should always be 32:
+		Q_ASSERT(format == 32);
+		// cast to proper format, and iterate through values:
+		quint32 *array = (quint32*) data;
+		//for (quint32 k = 0; k < numItems; k++)
+		//{
+			// get window Id:
+			//Window w = (Window) array[k];
+
+			//qDebug() << "Scanned client window:" << w;
+		//}
+   switch(iParentHood)
+   {
+      case GW_CHILD:
+      case GW_HWNDFIRST:
+      {
+
+         if(data == NULL)
+            return NULL;
+
+         window = ::oswindow_get(window->display(), data[0]);
+
+      }
+      break;
+      case GW_HWNDLAST:
+      {
+
+         if(data == NULL)
+            return NULL;
+
+         window = ::oswindow_get(window->display(), data[numItems - 1]);
+
+      }
+      break;
+      case GW_HWNDNEXT:
+      case GW_HWNDPREV:
+      {
+
+         if(data == NULL) // ????
+            return NULL;
+
+         int iFound = -1;
+
+         for(int i = 0; i < ncount; i++)
+         {
+               if(data[i] == windowParam->window())
+               {
+                  iFound = i;
+                  break;
+               }
+         }
+
+         if(iFound < 0)
+         {
+            XFree(data);
+            return NULL;
+         }
+
+         if(iParentHood == GW_HWNDNEXT)
+         {
+
+            if(iFound + 1 >= ncount)
+            {
+               XFree(data);
+               return NULL;
+            }
+
+            window = ::oswindow_get(window->display(), data[iFound - 1]);
+
+         }
+         else
+         {
+
+            if(iFound - 1 < 0)
+            {
+               XFree(data);
+               return NULL;
+            }
+
+            window = ::oswindow_get(window->display(), data[iFound - 1]);
+
+         }
+
+      }
+
+   }
+		XFree(data);
+	}
+
+	return window;
+
+      }
+
+
 
    }
 
 
-   Window root = 0;
-   Window parent = 0;
-   Window * pchildren = NULL;
-   uint32_t ncount = 0;
 
    XQueryTree(window->display(), window->window(), &root, &parent, &pchildren, &ncount);
 

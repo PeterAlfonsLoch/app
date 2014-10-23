@@ -32,8 +32,8 @@ namespace fs
    void set::root_ones(stringa & straPath, stringa & straTitle)
    {
 
-      single_lock sl(data_mutex());
-      
+      single_lock sl(data_mutex(), true);
+
       m_fsdatamap.remove_all();
 
       stringa straFsPath;
@@ -42,13 +42,13 @@ namespace fs
 
       for(int32_t i = 0; i < m_spafsdata.get_count(); i++)
       {
-         
+
          straFsPath.remove_all();
-         
+
          straFsTitle.remove_all();
-         
+
          data * pdata =  m_spafsdata[i];
-         
+
          sl.unlock();
 
          m_spafsdata[i]->root_ones(straFsPath,straFsTitle);
@@ -74,7 +74,7 @@ namespace fs
    sp(data) set::path_data(const char * psz)
    {
 
-      single_lock sl(data_mutex());
+      single_lock sl(data_mutex(), true);
 
       POSITION pos = m_fsdatamap.get_start_position();
 
@@ -100,7 +100,7 @@ namespace fs
          }
 
       }
-      
+
       return NULL;
 
    }
@@ -146,21 +146,21 @@ namespace fs
          }
          return true;
       }
-      
+
       ::fs::data * pdata = path_data(psz);
 
       if(pdata != NULL)
       {
          return pdata->ls(psz,pstraPath,pstraTitle,piaSize, pbaDir);
       }
-      
+
       return false;
 
    }
 
    bool set::is_dir(const char * psz)
    {
-      
+
       ::fs::data * pdata = path_data(psz);
 
       if(pdata != NULL)
@@ -190,7 +190,7 @@ namespace fs
 
    bool set::file_move(const char * pszDst, const char * pszSrc)
    {
-      
+
       ::fs::data * pdataDst = path_data(pszDst);
       ::fs::data * pdataSrc = path_data(pszSrc);
 
@@ -216,7 +216,7 @@ namespace fs
 
    bool set::has_subdir(const char * psz)
    {
-      
+
       ::fs::data * pdata = path_data(psz);
 
       if(pdata != NULL)
@@ -245,7 +245,7 @@ namespace fs
 
    bool set::fast_has_subdir(const char * psz)
    {
-      
+
       ::fs::data * pdata = path_data(psz);
 
       if(pdata != NULL)
@@ -286,7 +286,7 @@ namespace fs
 
    string set::eat_end_level(const char * psz, int32_t iLevel)
    {
-      
+
       ::fs::data * pdata = path_data(psz);
 
       if(pdata != NULL)

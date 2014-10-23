@@ -1340,7 +1340,7 @@ restart_mouse_hover_check:
          wnda = System.frames();
          hwnda = wnda.get_hwnda();
          user::window_util::SortByZOrder(hwnda);
-         for(int32_t i = 0; i < hwnda.get_size(); i++)
+         for(int32_t i = hwnda.get_upper_bound(); i >= 0 ; i--)
          {
             sp(::user::interaction) pguie = wnda.find_first(hwnda[i]);
             if(pguie != NULL)
