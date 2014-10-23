@@ -861,7 +861,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 	if (status >= Success && numItems)
 	{
 		// success - we have data: Format should always be 32:
-		Q_ASSERT(format == 32);
+//		Q_ASSERT(format == 32);
 		// cast to proper format, and iterate through values:
 		quint32 *array = (quint32*) data;
 		//for (quint32 k = 0; k < numItems; k++)
