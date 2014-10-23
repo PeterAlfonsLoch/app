@@ -359,7 +359,7 @@ namespace linux
          //single_lock sl(user_mutex(), true);
 
 
-         if(!(display=x11_get_display(NULL)))
+         if(!(display=x11_get_display()))
          {
             fprintf(stderr, "ERROR: Could not open display\n");
 //            exit(1);
