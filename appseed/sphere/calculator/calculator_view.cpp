@@ -184,7 +184,7 @@ namespace calculator
    }
 
 
-   sp(::user::document) view::get_document()
+   ::user::document * view::get_document()
    {
 
       return  (::user::impact::get_document());
@@ -193,6 +193,10 @@ namespace calculator
 
 
 } // namespace calculator
+
+
+
+
 
 
 
