@@ -8,6 +8,20 @@
 #include <stdlib.h>
 #include <string.h>
 
+static Display * s_pdisplay = NULL;
+
+Display * x11_get_display()
+{
+
+   if(s_pdisplay == NULL)
+   {
+      s_pdisplay =  XOpenDisplay(NULL);
+   }
+
+   return s_pdisplay;
+
+}
+
 int display_line(const string & str, const string & strTitle)
 {
    Display *d;
@@ -15,7 +29,7 @@ int display_line(const string & str, const string & strTitle)
    XEvent e;
    int s;
 
-   d = XOpenDisplay(NULL);
+   d = x11_get_display();
    if (d == NULL) {
       fprintf(stderr, "Cannot open display\n");
       return 0;
@@ -50,7 +64,7 @@ int display_lines(const stringa & stra, const string & strTitle)
    XEvent e;
    int s;
 
-   d = XOpenDisplay(NULL);
+   d = x11_get_display(NULL);
    if (d == NULL) {
       fprintf(stderr, "Cannot open display\n");
       return 0;
