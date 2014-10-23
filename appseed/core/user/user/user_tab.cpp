@@ -265,7 +265,7 @@ namespace user
       }
    }
 
-   
+
    void tab::defer_handle_full_screen_show_tabs()
    {
 
@@ -322,7 +322,7 @@ namespace user
                }
 
             }
-            else 
+            else
             {
 
                m_bHidingTabs = true;
@@ -1047,7 +1047,7 @@ namespace user
 
 
 
-            pane.m_size.cx = size.cx + ixAdd 
+            pane.m_size.cx = size.cx + ixAdd
                                      + get_data()->m_rectBorder.left + get_data()->m_rectBorder.right
                                      + get_data()->m_rectMargin.left + get_data()->m_rectMargin.right
                                      + get_data()->m_rectTextMargin.left + get_data()->m_rectTextMargin.right;
@@ -1156,7 +1156,7 @@ namespace user
 
          ScreenToClient(rectWindow);
 
-         pholder->SetWindowPos(ZORDER_TOP, rectChild.left, rectChild.top, rectChild.width(), rectChild.height(), 
+         pholder->SetWindowPos(ZORDER_TOP, rectChild.left, rectChild.top, rectChild.width(), rectChild.height(),
             _001GetSel() == iPane ? (pholder->IsWindowVisible() ? 0 : SWP_SHOWWINDOW) : 0);
 
          //pholder->layout();
@@ -1538,7 +1538,7 @@ namespace user
          get_data()->m_iaSel.add(iSel);
 
       }
-      
+
       on_change_pane_count();
 
       on_show_view();
@@ -1785,15 +1785,15 @@ namespace user
 
    void tab::_001SelectTab(::index iPane)
    {
-      if(get_tab_holder(_001GetSel()) != NULL)
-      {
-         get_tab_holder(_001GetSel())->ShowWindow(SW_HIDE);
-      }
+//      if(get_tab_holder(_001GetSel()) != NULL)
+  //    {
+    //     get_tab_holder(_001GetSel())->ShowWindow(SW_HIDE);
+     // }
       _001SetSel(iPane);
-      if(get_tab_holder(_001GetSel()) != NULL)
-      {
-         get_tab_holder(_001GetSel())->ShowWindow(SW_SHOW);
-      }
+     // if(get_tab_holder(_001GetSel()) != NULL)
+      //{
+        // get_tab_holder(_001GetSel())->ShowWindow(SW_SHOW);
+     // }
       layout();
    }
 
