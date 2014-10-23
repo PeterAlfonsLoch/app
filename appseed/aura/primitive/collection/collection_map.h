@@ -821,6 +821,10 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::get_next_assoc(POSITIO
                                                                          KEY& rKey, VALUE& rValue) const
 {
    ASSERT_VALID(this);
+   if(m_ppassocHash == NULL)
+   {
+      printf("map::get_next_assoc m_ppassocHash == NULL");
+   }
    ENSURE(m_ppassocHash != NULL);  // never call on is_empty map
 
    assoc* passocRet = (assoc*)rNextPosition;
