@@ -6,6 +6,8 @@
 
 #define TEST 0
 
+Display * x11_get_display()
+
 //#include <X11/extensions/Xcomposite.h>
 
 CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
@@ -357,7 +359,7 @@ namespace linux
          //single_lock sl(user_mutex(), true);
 
 
-         if(!(display=XOpenDisplay(NULL)))
+         if(!(display=x11_get_display(NULL)))
          {
             fprintf(stderr, "ERROR: Could not open display\n");
 //            exit(1);

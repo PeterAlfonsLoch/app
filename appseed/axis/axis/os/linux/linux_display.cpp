@@ -1,6 +1,6 @@
 #include "framework.h"
 
-
+Display * x11_get_display();
 
 #define CA2_CCVOTAGUS_WINDOW_LONG "ca2_ccvotagus_window_long"
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE "ca2_ccvotagus_window_long_style"
@@ -131,10 +131,12 @@ Atom osdisplay_data::get_window_long_atom(int32_t nIndex)
   {
       unlock();
 close();
-    m_pdisplay      = XOpenDisplay(display_name);
+    //m_pdisplay      = XOpenDisplay(display_name);
+    m_pdisplay = x11_get_display();
     if(m_pdisplay == NULL)
     return false;
-    m_bOwn          = true;
+    //m_bOwn          = true;
+    m_bOwn = false;
     if(bInitialLock)
         lock();
         return true;

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-
+Display * x11_get_display();
 
 #ifdef LINUX
 #include <dlfcn.h>
@@ -2851,7 +2851,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 //      synch_lock sl(&user_mutex());
 
       xdisplay pdisplay.
-      pdisplay.open(NULL) = XOpenDisplay(NULL);
+      pdisplay.open(NULL) = x11_get_display();
 
       oswindow window(pdisplay, DefaultRootWindow(pdisplay));
 

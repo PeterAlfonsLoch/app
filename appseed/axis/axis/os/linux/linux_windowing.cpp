@@ -1192,12 +1192,12 @@ bool IsWindow(oswindow oswindow)
 
 
 oswindow g_oswindowDesktop;
-
+Display * x11_get_display();
 
 bool c_xstart()
 {
 
-   Display * dpy = XOpenDisplay(NULL);
+   Display * dpy = x11_get_display();
 
    g_oswindowDesktop = oswindow_get(dpy, DefaultRootWindow(dpy));
 

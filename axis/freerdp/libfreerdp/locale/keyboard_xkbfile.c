@@ -41,6 +41,8 @@
 #include <X11/extensions/XKBfile.h>
 #include <X11/extensions/XKBrules.h>
 
+Display * x11_get_display();
+
 struct _XKB_KEY_NAME_SCANCODE
 {
 	const char* xkb_keyname; /* XKB keyname */
@@ -315,7 +317,7 @@ void* freerdp_keyboard_xkb_init()
 {
 	int status;
 
-	Display* display = XOpenDisplay(NULL);
+	Display* display = x11_get_display();
 
 	if (!display)
 		return NULL;
