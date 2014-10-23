@@ -209,10 +209,14 @@ namespace userstack
       ::user::impact::pre_translate_message(pobj);
    }
 
-   sp(::user::document) view::get_document()
+   
+   ::user::document * view::get_document()
    {
-      return  (::user::scroll_view::get_document());
+
+      return ::user::scroll_view::get_document();
+
    }
+
 
    void view::_001OnTimer(signal_details * pobj)
    {

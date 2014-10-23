@@ -183,11 +183,13 @@ namespace command
 
    }
 
-   sp(::user::document) view::get_document()
+   
+   ::user::document * view::get_document()
    {
-      return  (::user::impact::get_document());
-   }
 
+      return ::user::impact::get_document();
+
+   }
 
 
    void view::_001OnLButtonDown(signal_details * pobj)

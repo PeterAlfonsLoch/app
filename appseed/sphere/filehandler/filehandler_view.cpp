@@ -151,7 +151,7 @@ namespace filehandler
       int32_t top = lpcrect->top;
       for(int32_t i = 0; i < get_count(); i++)
       {
-         item & item = operator[](i);
+         item & item = operator()(i);
          item.m_rectItem.left = lpcrect->left;
          item.m_rectItem.right = lpcrect->right;
          item.m_rectItem.top = top;
@@ -238,7 +238,7 @@ namespace filehandler
 
          sp(::create_context) createcontext(allocer());
 
-         createcontext->m_spCommandLine->m_strApp = m_plist->operator [](iItem).m_strApp;
+         createcontext->m_spCommandLine->m_strApp = m_plist->operator [](iItem)->m_strApp;
 
          createcontext->m_spCommandLine->m_varFile                = m_strName;
 
