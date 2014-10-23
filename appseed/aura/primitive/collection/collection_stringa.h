@@ -120,6 +120,8 @@ public:
 
    stringa operator -(const string_array & stra) const;
    stringa operator +(const string_array & stra) const;
+   stringa operator -(const stringa & stra) const;
+   stringa operator +(const stringa & stra) const;
 
 
 

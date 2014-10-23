@@ -925,6 +925,16 @@ stringa stringa::operator +(const string_array & straParam) const
    return stra;
 }
 
+stringa stringa::operator -(const stringa & straParam) const
+{
+   return operator -((const string_array &) straParam);
+}
+
+stringa stringa::operator +(const stringa & straParam) const
+{
+   return operator -((const string_array &)straParam);
+}
+
 stringa & stringa::operator = (var var)
 {
    if(var.get_type() == var::type_stra)
