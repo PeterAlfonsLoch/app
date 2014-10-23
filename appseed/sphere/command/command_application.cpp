@@ -74,9 +74,9 @@ namespace command
          ::ShellExecuteW(
             NULL,
             L"open",
-            ::str::international::utf8_to_unicode(itema[0].m_strPath),
+            ::str::international::utf8_to_unicode(itema[0]->m_strPath),
             NULL,
-            ::str::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)),
+            ::str::international::utf8_to_unicode(System.dir().name(itema[0]->m_strPath)),
             SW_SHOW);
 
 #else
