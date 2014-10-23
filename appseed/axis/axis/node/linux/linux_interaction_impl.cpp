@@ -6,7 +6,7 @@
 
 #define TEST 0
 
-Display * x11_get_display()
+Display * x11_get_display();
 
 //#include <X11/extensions/Xcomposite.h>
 
