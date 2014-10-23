@@ -110,8 +110,11 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD
             }
             if(ml.lock(millis(0)))
             {
+               if(pmq->ma.get_count() > 0)
+               {
+                  return WAIT_OBJECT_0 + dwSize;
+               }
                ml.unlock();
-               return WAIT_OBJECT_0 + dwSize;
             }
          }
 
