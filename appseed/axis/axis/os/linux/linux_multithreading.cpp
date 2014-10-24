@@ -13,26 +13,40 @@ bool axis_defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow win
 
    bool bContinue = true;
 
+   single_lock slOsDisplay(::osdisplay_data::s_pmutex, false);
+
    while(bContinue && !bRet)
    {
 
       bContinue = false;
 
-      for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count() && !bRet; i++)
+      slOsDisplay.lock();
+
+      for(int i = 0; i < ::osdisplay_data::s_pdataptra->get_count() && !bRet; i++)
       {
 
-         ::oswindow_data * pdata = ::oswindow_data::s_pdataptra->element_at(i);
+         //::oswindow_data * pdata = ::oswindow_data::s_pdataptra->element_at(i);
 
-         if(pdata == NULL || pdata->m_bMessageOnlyWindow)
-            continue;
+         ::osdisplay_data * pdata = ::osdisplay_data::s_pdataptra->element_at(i);
 
-         if(pdata->m_hthread != hthread)
-            continue;
+         //if(pdata == NULL || pdata->m_bMessageOnlyWindow)
+         //   continue;
+
+         // if(pdata->m_hthread != hthread)
+            // continue;
 
          Display * display = pdata->display();
 
+         slOsDisplay.unlock();
+
          if(display == NULL)
+         {
+
+            slOsDisplay.lock();
+
             continue;
+
+         }
 
 
          xdisplay d(display);
@@ -59,15 +73,23 @@ bool axis_defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow win
             }
             else if(e.type == ConfigureNotify)
             {
+
                if(e.xconfigure.window == g_oswindowDesktop->window())
                {
+
                   for(int j = 0; j < ::oswindow_data::s_pdataptra->get_count(); j++)
                   {
-                     if(j == i)
-                        continue;
+
                      PostMessage(::oswindow_data::s_pdataptra->element_at(j), WM_DISPLAYCHANGE, 0, 0);
+
                   }
+
+                  d.unlock();
+
+                  slOsDisplay.lock();
+
                   continue;
+
                }
                               //               XClearWindow(w.display(), w.window());
             }
@@ -210,6 +232,8 @@ bool axis_defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow win
             }
 
          }
+
+         slOsDisplay.unlock();
 
       }
 

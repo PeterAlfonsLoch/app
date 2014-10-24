@@ -40,7 +40,9 @@ bool ifs::fast_has_subdir(const char * pszPath)
 
 bool ifs::has_subdir(const char * pszPath)
 {
+
    synch_lock sl(data_mutex());
+
    uint32_t dwTimeout;
 
    string strDir(pszPath);
@@ -60,8 +62,11 @@ bool ifs::has_subdir(const char * pszPath)
 
    }
 
+   sl.unlock();
+
    ls(pszPath, NULL, NULL, NULL, NULL);
 
+   sl.lock();
 
    if(m_maplsTimeout.Lookup(strDir, dwTimeout))
    {
@@ -75,33 +80,40 @@ bool ifs::has_subdir(const char * pszPath)
 
    }
 
-
    return false;
 
 }
 
+
 void ifs::root_ones(stringa & straPath, stringa & straTitle)
 {
-   straPath.add("uifs://");
-   straTitle.add("User Intelligent File System");
-}
 
+   straPath.add("uifs://");
+
+   straTitle.add("User Intelligent File System");
+
+}
 
 
 bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_array * piaSize,bool_array * pbaDir)
 {
+
    synch_lock sl(data_mutex());
+
    uint32_t dwTimeout;
 
    string strDir(pszDir);
 
    ::str::ends_eat(strDir, "/");
+
    ::str::ends_eat(strDir, "\\");
 
    if(m_maplsTimeout.Lookup(strDir, dwTimeout))
    {
+
       if(get_tick_count() < dwTimeout)
       {
+
          if(pstraPath  != NULL)
          {
             pstraPath->add(*m_mapdirFolder[strDir]);
@@ -122,69 +134,50 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
             pbaDir->add(*m_mapdirFolderDir[strDir]);
             pbaDir->add(*m_mapdirFileDir[strDir]);
          }
+
          return true;
+
       }
+
    }
 
+   sl.unlock();
 
    //if(!is_dir(strDir))
      // return false;
 
 
-   if(m_mapdirFolder[strDir].is_null())
-      m_mapdirFolder[strDir] = canew(stringa);
-   if(m_mapdirFolderName[strDir].is_null())
-      m_mapdirFolderName[strDir] = canew(stringa);
-   if(m_mapdirFile[strDir].is_null())
-      m_mapdirFile[strDir] = canew(stringa);
-   if(m_mapdirFileName[strDir].is_null())
-      m_mapdirFileName[strDir] = canew(stringa);
-   if (m_mapdirFileSize[strDir].is_null())
-      m_mapdirFileSize[strDir] = canew(int64_array);
-   if (m_mapdirFolderSize[strDir].is_null())
-      m_mapdirFolderSize[strDir] = canew(int64_array);
-   if(m_mapdirFileDir[strDir].is_null())
-      m_mapdirFileDir[strDir] = canew(bool_array);
-   if(m_mapdirFolderDir[strDir].is_null())
-      m_mapdirFolderDir[strDir] = canew(bool_array);
-
-
-   stringa        & straDir         = *m_mapdirFolder[strDir];
-   stringa        & straDirName     = *m_mapdirFolderName[strDir];
-   stringa        & straFile        = *m_mapdirFile[strDir];
-   stringa        & straFileName    = *m_mapdirFileName[strDir];
-   int64_array    & iaFileSize      = *m_mapdirFileSize[strDir];
-   int64_array    & iaFolderSize    = *m_mapdirFolderSize[strDir];
-   bool_array     & baFileDir       = *m_mapdirFileDir[strDir];
-   bool_array     & baFolderDir     = *m_mapdirFolderDir[strDir];
-
-
-   straDir.remove_all();
-   straDirName.remove_all();
-   straFile.remove_all();
-   straFileName.remove_all();
-   iaFileSize.remove_all();
-   iaFolderSize.remove_all();
-   baFileDir.remove_all();
-   baFolderDir.remove_all();
-
+   stringa        straDir;
+   stringa        straDirName;
+   stringa        straFile;
+   stringa        straFileName;
+   int64_array    iaFileSize;
+   int64_array    iaFolderSize;
+   bool_array     baFileDir;
+   bool_array     baFolderDir;
 
 
 
    try
    {
-      
+
       defer_initialize();
 
    }
    catch(string & str)
    {
+
       if(str == "You have not logged in! Exiting!")
       {
+
          throw string("uifs:// You have not logged in!");
+
       }
+
       m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
+
       return false;
+
    }
 
    xml::document doc(get_app());
@@ -199,9 +192,11 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
 
    strSource = Application.http().get(strUrl, set);
 
+   sl.lock();
+
    if(strSource.is_empty())
    {
-      
+
       m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
 
       return false;
@@ -210,7 +205,7 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
 
    if(!doc.load(strSource))
    {
-      
+
       m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
 
       return false;
@@ -290,6 +285,45 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
       pbaDir->add(baFileDir);
    }
 
+      if(m_mapdirFolder[strDir].is_null())
+      m_mapdirFolder[strDir] = canew(stringa);
+   if(m_mapdirFolderName[strDir].is_null())
+      m_mapdirFolderName[strDir] = canew(stringa);
+   if(m_mapdirFile[strDir].is_null())
+      m_mapdirFile[strDir] = canew(stringa);
+   if(m_mapdirFileName[strDir].is_null())
+      m_mapdirFileName[strDir] = canew(stringa);
+   if (m_mapdirFileSize[strDir].is_null())
+      m_mapdirFileSize[strDir] = canew(int64_array);
+   if (m_mapdirFolderSize[strDir].is_null())
+      m_mapdirFolderSize[strDir] = canew(int64_array);
+   if(m_mapdirFileDir[strDir].is_null())
+      m_mapdirFileDir[strDir] = canew(bool_array);
+   if(m_mapdirFolderDir[strDir].is_null())
+      m_mapdirFolderDir[strDir] = canew(bool_array);
+
+
+   stringa        & straThisDir         = *m_mapdirFolder[strDir];
+   stringa        & straThisDirName     = *m_mapdirFolderName[strDir];
+   stringa        & straThisFile        = *m_mapdirFile[strDir];
+   stringa        & straThisFileName    = *m_mapdirFileName[strDir];
+   int64_array    & iaThisFileSize      = *m_mapdirFileSize[strDir];
+   int64_array    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
+   bool_array     & baThisFileDir       = *m_mapdirFileDir[strDir];
+   bool_array     & baThisFolderDir     = *m_mapdirFolderDir[strDir];
+
+
+   straThisDir          = straDir;
+   straThisDirName      = straDirName;
+   straThisFile         = straFile;
+   straThisFileName     = straFileName;
+   iaThisFileSize       = iaFileSize;
+   iaThisFolderSize     = iaFolderSize;
+   baThisFileDir        = baFileDir;
+   baThisFolderDir      = baFolderDir;
+
+
+
    m_maplsTimeout.set_at(strDir, get_tick_count() + ((5000) * 4));
 
    return true;
@@ -297,8 +331,6 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
 
 bool ifs::is_dir(const char * pszPath)
 {
-   synch_lock sl(data_mutex());
-
    //xml::node node(get_app());
 
    if(pszPath == NULL || strlen(pszPath) == 0)
@@ -323,15 +355,21 @@ bool ifs::is_dir(const char * pszPath)
 
    uint32_t dwTimeout;
 
+   synch_lock sl(data_mutex());
+
    if(m_mapfileTimeout.Lookup(strPath, dwTimeout))
    {
+
       if(::get_tick_count() > dwTimeout)
       {
+
+         sl.unlock();
          stringa straPath;
          stringa straTitle;
          int64_array iaSize;
          bool_array baDir;
          ls(System.dir().name(strPath), &straPath, &straTitle, &iaSize, &baDir);
+         sl.lock();
       }
       else
       {
@@ -343,11 +381,17 @@ bool ifs::is_dir(const char * pszPath)
    {
       if(::get_tick_count() > dwTimeout)
       {
+
+         sl.unlock();
+
          stringa straPath;
          stringa straTitle;
          int64_array iaSize;
          bool_array baDir;
          ls(System.dir().name(strPath),&straPath,&straTitle,&iaSize, &baDir);
+
+         sl.lock();
+
          if(m_mapdirTimeout.Lookup(strPath, dwTimeout))
          {
             return true;
@@ -446,8 +490,8 @@ void ifs::defer_initialize()
 
    if(!m_bInitialized)
    {
-      
-      
+
+
       m_bInitialized = true;
 
    }

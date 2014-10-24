@@ -12,6 +12,8 @@
 #endif
 
 
+static int g_iMutex = 0;
+
 
 
 mutex::mutex(sp(::aura::application) papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
@@ -486,8 +488,9 @@ wait_result mutex::wait(const duration & duration)
      }
    }
 
-   if(dwTimeout == 30000 + 1977)
+   if(dwTimeout == 30000 + 1977 && g_iMutex == 0)
    {
+      g_iMutex++;
       printf("HAHAHA");
    }
 
