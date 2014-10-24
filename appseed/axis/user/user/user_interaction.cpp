@@ -695,7 +695,7 @@ namespace user
 
       pobj->previous();
 
-      keep<bool> lockWindowUpdate(&GetWindow()->m_bLockWindowUpdate, true, GetWindow()->m_bLockWindowUpdate, true);
+//      keep<bool> lockWindowUpdate(&GetWindow()->m_bLockWindowUpdate, true, GetWindow()->m_bLockWindowUpdate, true);
 
       if(psize->m_nType == SIZE_MINIMIZED)
       {
@@ -1033,7 +1033,7 @@ namespace user
       if(!m_bMayProDevian && GetParent() == NULL)
       {
 
-         SetTimer(1984 + 77 + 3,25,NULL);
+         SetTimer(1984 + 77 + 3,250,NULL);
 
       }
       else
@@ -1315,7 +1315,9 @@ namespace user
          if(!m_bMayProDevian && GetParent() == NULL)
          {
 
-            //_001RedrawWindow();
+            //TRACE("Redraw !m_bMayProDevian");
+
+            _001RedrawWindow();
 
          }
 
@@ -3302,7 +3304,13 @@ namespace user
    {
 
       if(m_bLockWindowUpdate)
+      {
+
+         //TRACE("_001UpdateBuffer m_bLockWindowUpdate");
+
          return;
+
+      }
 
       m_pimpl->_001UpdateBuffer();
 
@@ -5303,14 +5311,14 @@ namespace user
          }
       }
 
+      sl.unlock();
+
       if(m_pimpl != NULL)
       {
 
          bOk = m_pimpl->SetWindowPos(z,x,y,cx,cy,nFlags);
 
       }
-
-      sl.unlock();
 
       m_bRectOk = false;
 

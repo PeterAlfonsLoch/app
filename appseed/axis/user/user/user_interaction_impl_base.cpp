@@ -35,6 +35,7 @@ namespace user
    void interaction_impl_base::_001UpdateBuffer()
    {
 
+      TRACE("interaction_impl_base::_001UpdateBuffer Calling Empty Implementation");
 
    }
 
@@ -89,7 +90,7 @@ namespace user
       {
 
          m_pui->set_appearance(AppearanceZoomed);
-      
+
          rect rectNormal;
 
          m_pui->GetWindowRect(rectNormal);
@@ -764,7 +765,7 @@ namespace user
 
    bool interaction_impl_base::IsChild(const interaction * puiIsChild) const
    {
-   
+
       if(puiIsChild == NULL)
          return false;
 
@@ -985,7 +986,7 @@ namespace user
       return true;
 
    }
-   
+
 
    uint_ptr interaction_impl_base::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
    {
@@ -1046,76 +1047,76 @@ namespace user
       return true;
 
    }
-   
-   
+
+
    bool interaction_impl_base::DestroyWindow()
    {
-      
+
       if(!IsWindow())
          return false;
 
       if(m_pui == NULL)
          return false;
-   
+
       {
-      
+
          synch_lock sl(&m_pui->m_pauraapp->m_pthreadimpl->m_mutexUiPtra);
-      
+
          if(m_pui->m_pauraapp->m_pthreadimpl->m_spuiptra.is_set())
          {
-         
+
             m_pui->m_pauraapp->m_pthreadimpl->m_spuiptra->remove(m_pui);
-         
+
          }
-      
+
       }
-   
+
       try
       {
-      
+
          send_message(WM_DESTROY);
-      
+
       }
       catch(...)
       {
-      
+
       }
-   
+
       try
       {
-      
+
          single_lock sl(m_pui->m_pauraapp->m_pmutex,TRUE);
-      
+
          try
          {
-         
+
             m_pui->m_pauraapp->remove(m_pui);
-         
+
          }
          catch(...)
          {
-         
+
          }
-      
+
       }
       catch(...)
       {
-      
+
       }
-   
+
       try
       {
-      
+
          send_message(WM_NCDESTROY);
-      
+
       }
       catch(...)
       {
-      
+
       }
-      
+
       return true;
-   
+
    }
 
 

@@ -63,6 +63,8 @@ namespace user
       ::draw2d::dib_sp              m_spdib;
       ::draw2d::dib_sp              m_spdibBuffer;
 
+      sp(mutex)                     m_spmutexBuffer;
+
       ::user::interaction *         m_puiCapture;
 
 

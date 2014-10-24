@@ -58,12 +58,22 @@ namespace user
 
       sp(::user::interaction) pui = GetWindow();
 
+      TRACE("interaction_base::_001RedrawWindow Is Window set?");
+
       if(pui.is_set())
       {
+
+         TRACE("!! Yes !!");
 
          GetWindow()->_001UpdateBuffer();
 
          GetWindow()->_001UpdateScreen();
+
+      }
+      else
+      {
+
+         TRACE("!!NO!!");
 
       }
 
@@ -1871,7 +1881,7 @@ namespace user
 
    void interaction_base::on_keyboard_focus(::user::keyboard_focus * pfocus)
    {
-      
+
       RedrawWindow();
 
    }

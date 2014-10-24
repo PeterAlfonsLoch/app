@@ -2242,12 +2242,33 @@ namespace user
    void interaction_impl::_001UpdateBuffer()
    {
 
+      if(!m_pui->m_bMayProDevian)
+      {
+
+         //TRACE("interaction_impl::_001UpdateBuffer going to update_graphics_resources");
+
+      }
+
       update_graphics_resources();
 
-      single_lock sl(m_pui->m_spmutex,false);
+      if(!m_pui->m_bMayProDevian)
+      {
 
-      if(!sl.lock())
-         return;
+         //TRACE("interaction_impl::_001UpdateBuffer going to lock");
+
+      }
+
+      synch_lock sl(m_spmutexBuffer);
+
+      //if(!sl.lock())
+        // return;
+
+      if(!m_pui->m_bMayProDevian)
+      {
+
+         //TRACE("interaction_impl::_001UpdateBuffer locked");
+
+      }
 
       if(m_spdibBuffer.is_null())
          return;
@@ -2275,6 +2296,13 @@ namespace user
       if(pgraphics == NULL)
          return;
 
+      if(!m_pui->m_bMayProDevian)
+      {
+
+         //TRACE("Going to top print");
+
+      }
+
       _001Print(pgraphics);
 
       single_lock slDisplay(mutex_display(),false);
@@ -2292,6 +2320,14 @@ namespace user
    void interaction_impl::update_graphics_resources()
    {
 
+      if(m_spmutexBuffer.is_null())
+      {
+
+         m_spmutexBuffer.alloc(allocer());
+
+      }
+
+
       rect rectWindow;
 
       GetWindowRect(rectWindow);
@@ -2303,13 +2339,18 @@ namespace user
 
       if(m_size != rectWindow.size())
       {
+      single_lock sl(m_spmutexBuffer, false);
 
-         single_lock sl(m_pui->m_spmutex,false);
+      if(!sl.lock())
+         return;
 
-         if(!sl.lock())
-         {
-            return;
-         }
+
+//         single_lock sl(m_pui->m_spmutex,false);
+
+  //       if(!sl.lock())
+    //     {
+      //      return;
+        // }
 
          single_lock sl2(mutex_display(),false);
 
