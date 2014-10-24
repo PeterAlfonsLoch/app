@@ -223,19 +223,21 @@ bool axis_defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow win
             if(lpMsg->hwnd->m_hthread != hthread)
             {
 
-               bRet = false;
+               //bRet = false;
 
-               bContinue = true;
+               //bContinue = true;
 
-               PostMessage(lpMsg->hwnd, lpMsg->message, lpMsg->wParam, lpMsg->lParam);
+               //PostMessage(lpMsg->hwnd, lpMsg->message, lpMsg->wParam, lpMsg->lParam);
 
             }
 
          }
 
-         slOsDisplay.unlock();
+         slOsDisplay.lock();
 
       }
+
+      slOsDisplay.unlock();
 
    }
 
