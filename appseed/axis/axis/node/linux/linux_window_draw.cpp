@@ -392,6 +392,11 @@ namespace linux
    // lprect should be in screen coordinates
    bool window_draw::UpdateBuffer()
    {
+
+
+      return ::user::window_draw::UpdateBuffer();
+
+
       if(m_bRender)
          return false;
 
@@ -433,9 +438,9 @@ namespace linux
          return false;
       }*/
 
-      user::interaction_ptra wndpa;
+      //user::interaction_ptra wndpa;
 
-      wndpa = get_wnda();
+      //wndpa = get_wnda();
 
       //hwndtreea = hwnda;
       //hwndtreea.EnumDescendants();
@@ -451,12 +456,12 @@ namespace linux
 
       //rectOptimize = rectUpdate;
 
-      rect rectWindow;
-      rect rect9;
+      //rect rectWindow;
+      //rect rect9;
 
-      user::oswindow_array wndaApp;
+      //user::oswindow_array wndaApp;
 
-      m_wndpaOut.remove_all();
+      //m_wndpaOut.remove_all();
 
 //      _sp rgnWindow(get_app());
   //    _sp rgnIntersect(get_app());
@@ -514,54 +519,54 @@ namespace linux
       }
          */
 
-      for(int32_t l = 0; l < wndpa.get_count();)
-      {
-         try
-         {
-            if(wndpa[l]->oprop("session").is_new())
-            {
-
-               wndpa[l]->_001UpdateBuffer();
-
-               wndpa[l]->_001UpdateScreen();
-            }
-            l++;
-         }
-         catch(simple_exception & se)
-         {
-            if(se.m_strMessage == "no more a window")
-            {
-               System.frames().remove(wndpa[l]);
-               wndpa.remove_at(l);
-
-            }
-         }
-         catch(...)
-         {
-            System.frames().remove(wndpa[l]);
-            wndpa.remove_at(l);
-         }
-      }
-      return true;
-
-      for(index j = wndaApp.get_upper_bound(); j >= 0; j--)
-      {
-         oswindow hwndTopic = wndaApp[j];
-
-         sp(::user::interaction) pwnd = NULL;
-         //::window * pwnd =  (System.window_map().get((int_ptr) hwndTopic));
-         //if(pwnd == NULL)
-         //{
-         for(int32_t l = 0; l < wndpa.get_count(); l++)
-         {
-            if(wndpa[l]->get_safe_handle() == hwndTopic)
-            {
-               pwnd = wndpa[l]->m_pimpl.m_p;
-               break;
-            }
-         }
-         if(!::IsWindowVisible((oswindow) wndaApp[j]) || ::IsIconic((oswindow) wndaApp[j]) || pwnd == NULL)
-            continue;
+//      for(int32_t l = 0; l < wndpa.get_count();)
+//      {
+//         try
+//         {
+//            if(wndpa[l]->oprop("session").is_new())
+//            {
+//
+//               wndpa[l]->_001UpdateBuffer();
+//
+//               wndpa[l]->_001UpdateScreen();
+//            }
+//            l++;
+//         }
+//         catch(simple_exception & se)
+//         {
+//            if(se.m_strMessage == "no more a window")
+//            {
+//               System.frames().remove(wndpa[l]);
+//               wndpa.remove_at(l);
+//
+//            }
+//         }
+//         catch(...)
+//         {
+//            System.frames().remove(wndpa[l]);
+//            wndpa.remove_at(l);
+//         }
+//      }
+//      return true;
+//
+//      for(index j = wndaApp.get_upper_bound(); j >= 0; j--)
+//      {
+//         oswindow hwndTopic = wndaApp[j];
+//
+//         sp(::user::interaction) pwnd = NULL;
+//         //::window * pwnd =  (System.window_map().get((int_ptr) hwndTopic));
+//         //if(pwnd == NULL)
+//         //{
+//         for(int32_t l = 0; l < wndpa.get_count(); l++)
+//         {
+//            if(wndpa[l]->get_safe_handle() == hwndTopic)
+//            {
+//               pwnd = wndpa[l]->m_pimpl.m_p;
+//               break;
+//            }
+//         }
+//         if(!::IsWindowVisible((oswindow) wndaApp[j]) || ::IsIconic((oswindow) wndaApp[j]) || pwnd == NULL)
+//            continue;
 
 
 
@@ -617,7 +622,7 @@ namespace linux
             pwnd->_001Print(m_pbuffer->GetBuffer());
             m_wndpaOut.add(pwnd);
          }*/
-      }
+//      }
 
       //HDC hdc = (HDC) m_pbuffer->GetBuffer()->get_os_data();
       //::SetViewportOrgEx(hdc, 0, 0, NULL);
@@ -641,7 +646,7 @@ namespace linux
    //   TRACE("// TickCount: %d \n", dwTimeOut - dwTimeIn);
    //   TRACE("////////////////////////////////////////////////////\n");
 
-      return true;
+      //return true;
    }
 
    /*

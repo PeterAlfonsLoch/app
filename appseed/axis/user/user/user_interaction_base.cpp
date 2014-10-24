@@ -56,6 +56,9 @@ namespace user
    void interaction_base::_001RedrawWindow()
    {
 
+      if(IsWindow())
+         return;
+
       sp(::user::interaction) pui = GetWindow();
 
       TRACE("interaction_base::_001RedrawWindow Is Window set?");
@@ -2365,7 +2368,7 @@ namespace user
 
       static window_graphics * p = NULL;
 
-      throw interface_only_exception(get_app());
+      //throw interface_only_exception(get_app());
 
       return p;
 

@@ -14,6 +14,7 @@ namespace user
       m_iFramesPerSecond                  = 24.0;
       m_bRunning                          = false;
       m_bRun                              = true;
+      m_bRender                           = false;
    }
 
 
@@ -32,63 +33,83 @@ namespace user
 
    bool window_draw::UpdateBuffer()
    {
-   
+
       if(m_bRender)
          return false;
-      
+
       keep<bool> keepRender(&m_bRender, true, false, true);
-      
-      ::user::interaction_spa wndpa(get_app());
-      
-      wndpa = get_wnda();
-      
-      rect rectWindow;
-      
-      rect rect9;
-      
+
+      //::user::interaction_spa wndpa(get_app());
+
+      //wndpa = get_wnda();
+
+      //rect rectWindow;
+
+      //rect rect9;
+
       ::user::oswindow_array wndaApp;
-      
-      for(int32_t l = 0; l < wndpa.get_count();)
+
+      single_lock sl(&System.m_framea.m_mutex, true);
+
+      ::user::interaction * pui;
+
+      for(int32_t l = 0; l < System.m_framea.get_count();)
       {
-      
+
          try
          {
-            
-            if(wndpa[l]->oprop("session").is_new())
+
+            if(System.m_framea[l]->oprop("session").is_new())
             {
-            
-               if(wndpa[l]->m_bMayProDevian)
+
+               if(System.m_framea[l]->m_bMayProDevian)
                {
-               
-                  wndpa[l]->_001UpdateScreen();
-                  
+
+                  pui = System.m_framea[l];
+
+                  sl.unlock();
+
+                  pui->_001UpdateScreen();
+
                }
-               
+
             }
-            
+
             l++;
-            
+
          }
          catch(simple_exception & se)
          {
             if(se.m_strMessage == "no more a window")
             {
-               System.frames().remove(wndpa[l]);
-               wndpa.remove_at(l);
-               
+
+               TRACE("No more a window explicit");
+               System.frames().remove(System.m_framea[l]);
+             //wndpa.remove_at(l);
+
             }
          }
          catch(...)
          {
-            System.frames().remove(wndpa[l]);
-            wndpa.remove_at(l);
+
+            TRACE("No more a window implicit");
+
+            System.frames().remove(System.m_framea[l]);
+
+
+            //wndpa.remove_at(l);
+
+         }
+         if(!sl.m_bAcquired)
+         {
+            sl.lock();
          }
       }
-      
+
       return true;
-      
+
    }
-   
+
 
    bool window_draw::ScreenOutput()
    {

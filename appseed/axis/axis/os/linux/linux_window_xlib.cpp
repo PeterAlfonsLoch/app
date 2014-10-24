@@ -29,6 +29,9 @@ void window_xlib::create_window_graphics(oswindow window, int64_t cxParam, int64
    if(cxParam <= 0 || cyParam <= 0)
       return;
 
+   if(window == NULL)
+      return;
+
    destroy_window_graphics();
 
 //   single_lock sl(&user_mutex(), true);
