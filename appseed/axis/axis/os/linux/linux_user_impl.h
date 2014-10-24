@@ -60,9 +60,8 @@ public:
    ::user::interaction *         m_pui;
    HTHREAD                       m_hthread;
    int_to_int *                  m_plongmap;
-   bool                          m_bDestroying;
    Colormap                      m_colormap;
-   ptr_array < bool >            m_bptraTellMeDestroyed; // Telmo why!! :-)
+   //ptr_array < bool >            m_bptraTellMeDestroyed; // Telmo why!! :-)
 
 
    static oswindow_dataptra * s_pdataptra;

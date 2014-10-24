@@ -59,6 +59,8 @@ namespace user
 
       m_puserschema              = NULL;
       m_bLockWindowUpdate        = false;
+      m_bDestroying              = false;
+
 
       m_bDefaultWalkPreTranslateParentTree = false;
 
@@ -2492,6 +2494,38 @@ namespace user
 
    bool interaction::DestroyWindow()
    {
+
+      if(!IsWindow())
+      {
+
+         return true;
+
+      }
+
+      {
+
+         synch_lock sl(get_ui_destroyed_mutex());
+
+         m_bDestroying = true;
+
+         try
+         {
+
+            for(index i = 0; i < m_bptraTellMeDestroyed.get_count(); i++)
+            {
+
+               *m_bptraTellMeDestroyed[i] = true;
+
+            }
+
+         }
+         catch(...)
+         {
+
+         }
+
+      }
+
       if(m_pimpl == NULL)
          return FALSE;
       else

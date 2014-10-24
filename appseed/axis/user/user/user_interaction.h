@@ -70,6 +70,9 @@ namespace user
 
       int32_t                             m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
       comparable_array < thread * >       m_threadptra;
+      bool                                m_bDestroying;
+
+      ptr_array < bool >                  m_bptraTellMeDestroyed; // Telmo why!! :-)
 
 
       interaction();

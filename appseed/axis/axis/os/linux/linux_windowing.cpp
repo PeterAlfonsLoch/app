@@ -27,8 +27,6 @@ oswindow_data::oswindow_data()
 
    m_bMessageOnlyWindow    = false;
 
-   m_bDestroying           = false;
-
    m_osdisplay             = NULL;
 
    ZERO(m_visual);
@@ -1170,14 +1168,14 @@ WINBOOL DestroyWindow(oswindow window)
 
    oswindow_data * pdata = (oswindow_data *) (void *) window;
 
-   pdata->m_bDestroying = true;
-
-   for(index i = 0; i < pdata->m_bptraTellMeDestroyed.get_count(); i++)
-   {
-
-      *pdata->m_bptraTellMeDestroyed[i] = true;
-
-   }
+//   pdata->m_bDestroying = true;
+//
+//   for(index i = 0; i < pdata->m_bptraTellMeDestroyed.get_count(); i++)
+//   {
+//
+//      *pdata->m_bptraTellMeDestroyed[i] = true;
+//
+//   }
 
    bool bIs = IsWindow(window);
 

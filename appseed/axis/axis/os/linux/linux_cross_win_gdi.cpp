@@ -105,8 +105,6 @@ WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
 WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 {
 
-
-
    //single_lock sl(&user_mutex(), true);
 
    xdisplay xlock(hwnd->display());
@@ -114,18 +112,20 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
    if(!IsWindow(hwnd) || !IsWindowVisible(hwnd))
       return FALSE;
 
+   //bool bDestroying = hwnd->m_bDestroying;
 
-   bool bDestroying = hwnd->m_bDestroying;
    Display * pdisplay = hwnd->display();
+
    Window window = hwnd->window();
 
-
    if(pdisplay == NULL)
-    return FALSE;
+   {
+
+      return false;
+
+   }
 
    XWindowAttributes attrs;
-
-
 
    /* Fill attribute structure with information about root window */
 

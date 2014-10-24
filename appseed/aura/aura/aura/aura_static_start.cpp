@@ -41,6 +41,8 @@ void destroy_id_space();
 
 extern mutex * g_pmutexFactory;
 
+extern mutex * g_pmutexUiDestroyed;
+
 //extern string * g_pstrLastStatus;
 
 //extern string * g_pstrLastGlsStatus;
@@ -157,6 +159,8 @@ namespace aura
          g_pmapAura =new ::map < void *,void *,::aura::application *,::aura::application * >;
 
          //g_pmutexTrace = new mutex();
+
+         g_pmutexUiDestroyed = new mutex();
 
 
 #if defined(WINDOWSEX)
@@ -332,6 +336,10 @@ namespace aura
          //delete g_pmutexTrace;
 
          //g_pmutexTrace = NULL;
+
+         delete g_pmutexUiDestroyed;
+
+         g_pmutexUiDestroyed = NULL;
 
          delete g_pmapAura;
 

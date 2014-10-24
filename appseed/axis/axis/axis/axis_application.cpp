@@ -1655,22 +1655,54 @@ namespace axis
       return simple_message_box(pwndOwner,pszMessage,fuStyle);
    }
 
-void application::tell_me_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell)
-{
 
-   #ifdef LINUX
-single_lock sl(::oswindow_data::s_pmutex, true);
-   if(bTell)
+   void application::tellme_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell)
    {
-      pui->GetWindow()->get_handle()->m_bptraTellMeDestroyed.add(pDestroyed);
-   }
-   else
-   {
-      pui->GetWindow()->get_handle()->m_bptraTellMeDestroyed.remove(pDestroyed);
-   }
-   #endif
 
-}
+      if(pui == NULL)
+         return;
+
+      try
+      {
+
+#ifdef LINUX
+
+         synch_lock sl(get_ui_destroyed_mutex());
+
+         if(bTell)
+         {
+
+            if(pui->m_bDestroying)
+            {
+
+               *pDestroyed = true;
+
+            }
+            else
+            {
+
+               pui->m_bptraTellMeDestroyed.add(pDestroyed);
+
+            }
+
+         }
+         else
+         {
+
+            pui->m_bptraTellMeDestroyed.remove(pDestroyed);
+
+         }
+
+#endif
+
+      }
+      catch(...)
+      {
+
+      }
+
+   }
+
 
    string application::get_license_id()
    {

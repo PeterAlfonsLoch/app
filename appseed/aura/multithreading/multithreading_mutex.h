@@ -70,7 +70,7 @@ public:
    virtual wait_result wait(const duration & durationTimeout);
 
 #endif
-   
+
    using sync_object::unlock;
    virtual bool unlock();
 
@@ -82,6 +82,10 @@ public:
 
 
 CLASS_DECL_AURA void wait_until_mutex_does_not_exist(const char * pszName);
+
+
+
+CLASS_DECL_AURA mutex * get_ui_destroyed_mutex();
 
 
 
