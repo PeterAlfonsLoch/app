@@ -1,6 +1,7 @@
 #include "framework.h" // from ""axis/user/user.h"
 #include <X11/Xatom.h>
 
+Display * x11_get_display();
 
 /* MWM decorations values */
 #define MWM_DECOR_NONE          0
@@ -534,7 +535,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 
    //single_lock slOsWindow(s_pmutex, true);
 
-   xdisplay d(x11_get_display());
+   //xdisplay d(x11_get_display());
 
    if(this == NULL)
       return NULL;
@@ -954,117 +955,118 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
 
          w = window->get_parent_handle();
 
-//	Atom a = XInternAtom(windowParam->display(), "_NET_CLIENT_LIST" , False);
-//	Atom actualType;
-//	int format;
-//	unsigned long numItems, bytesAfter;
-//	unsigned char *data =0;
-//	int status = XGetWindowProperty(windowParam->display(),
-//								RootWindow(windowParam->display(), windowParam->m_iScreen),
-//								a,
-//								0L,
-//								1024,
-//								false,
-//								AnyPropertyType,
-//								&actualType,
-//								&format,
-//								&numItems,
-//								&bytesAfter,
-//								&data);
-//
-//	if (status >= Success && numItems)
-//	{
-//		// success - we have data: Format should always be 32:
-////		Q_ASSERT(format == 32);
-//		// cast to proper format, and iterate through values:
-//		long *array = (long*) data;
-//		//for (quint32 k = 0; k < numItems; k++)
-//		//{
-//			// get window Id:
-//			//Window w = (Window) array[k];
-//
-//			//qDebug() << "Scanned client window:" << w;
-//		//}
-//   switch(iParentHood)
-//   {
-//      case GW_CHILD:
-//      case GW_HWNDFIRST:
-//      {
-//
-//         if(data == NULL)
-//            return NULL;
-//
-//         window = oswindow_get_next_found(windowParam->display(), array, 0, numItems);
-//
-//      }
-//      break;
-//      case GW_HWNDLAST:
-//      {
-//
-//         if(data == NULL)
-//            return NULL;
-//
-//         window = oswindow_get_previous_found(windowParam->display(), array, numItems - 1);
-//
-//      }
-//      break;
-//      case GW_HWNDNEXT:
-//      case GW_HWNDPREV:
-//      {
-//
-//         if(data == NULL) // ????
-//            return NULL;
-//
-//         int iFound = -1;
-//
-//         for(int i = 0; i < numItems; i++)
-//         {
-//               if(array[i] == windowParam->window())
-//               {
-//                  iFound = i;
-//                  break;
-//               }
-//         }
-//
-//         if(iFound < 0)
-//         {
-//            XFree(data);
-//            return NULL;
-//         }
-//
-//         if(iParentHood == GW_HWNDNEXT)
-//         {
-//
-//            if(iFound + 1 >= numItems)
-//            {
-//               XFree(data);
-//               return NULL;
-//            }
-//
-//              window = ::oswindow_get_next_found(windowParam->display(), array, iFound + 1, numItems);
-//
-//         }
-//         else
-//         {
-//
-//            if(iFound - 1 < 0)
-//            {
-//               XFree(data);
-//               return NULL;
-//            }
-//
-//            window = ::oswindow_get_previous_found(windowParam->display(), array, iFound - 1);
-//
-//
-//         }
-//
-//      }
-//
-//   }
-//		XFree(data);
-	}
+      Atom a = XInternAtom(windowParam->display(), "_NET_CLIENT_LIST_STACKING" , False);
+      Atom actualType;
+      int format;
+      unsigned long numItems, bytesAfter;
+      unsigned char *data =0;
+      int status = XGetWindowProperty(windowParam->display(),
+                           RootWindow(windowParam->display(), windowParam->m_iScreen),
+                           a,
+                           0L,
+                           1024,
+                           false,
+                           AnyPropertyType,
+                           &actualType,
+                           &format,
+                           &numItems,
+                           &bytesAfter,
+                           &data);
+
+         if (status >= Success && numItems)
+         {
+            // success - we have data: Format should always be 32:
+      //		Q_ASSERT(format == 32);
+            // cast to proper format, and iterate through values:
+            long *array = (long*) data;
+            //for (quint32 k = 0; k < numItems; k++)
+            //{
+               // get window Id:
+               //Window w = (Window) array[k];
+
+               //qDebug() << "Scanned client window:" << w;
+            //}
+         switch(iParentHood)
+         {
+            case GW_CHILD:
+            case GW_HWNDFIRST:
+            {
+
+               if(data == NULL)
+                  return NULL;
+
+               window = oswindow_get_next_found(windowParam->display(), array, 0, numItems);
+
+            }
+            break;
+            case GW_HWNDLAST:
+            {
+
+               if(data == NULL)
+                  return NULL;
+
+               window = oswindow_get_previous_found(windowParam->display(), array, numItems - 1);
+
+            }
+            break;
+            case GW_HWNDNEXT:
+            case GW_HWNDPREV:
+            {
+
+               if(data == NULL) // ????
+                  return NULL;
+
+               int iFound = -1;
+
+               for(int i = 0; i < numItems; i++)
+               {
+                     if(array[i] == windowParam->window())
+                     {
+                        iFound = i;
+                        break;
+                     }
+               }
+
+               if(iFound < 0)
+               {
+                  XFree(data);
+                  return NULL;
+               }
+
+               if(iParentHood == GW_HWNDNEXT)
+               {
+
+                  if(iFound + 1 >= numItems)
+                  {
+                     XFree(data);
+                     return NULL;
+                  }
+
+                    window = ::oswindow_get_next_found(windowParam->display(), array, iFound + 1, numItems);
+
+               }
+               else
+               {
+
+                  if(iFound - 1 < 0)
+                  {
+                     XFree(data);
+                     return NULL;
+                  }
+
+                  window = ::oswindow_get_previous_found(windowParam->display(), array, iFound - 1);
 
 
+               }
+
+            }
+
+         }
+         XFree(data);
+         return window;
+
+         }
+      }
 
    }
 
