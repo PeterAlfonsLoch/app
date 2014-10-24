@@ -781,7 +781,7 @@ namespace plugin
                m_strCa2LogoutRuri = string(lpszEnd + 1, iCount - (lpszEnd - lpszStart) - 1);
                start_ca2_logout();
             }
-            else if(str1 == "ca2prompt")
+            else if(str1 == "ca2prompt" || str1 == "native_desktop_launcher")
             {
                if(System.url().get_script(get_host_location_url()) == "/non_auth")
                {
@@ -889,6 +889,70 @@ namespace plugin
 
                         return;
                         //m_puiHost->SetTimer(88881115, (5000 )* 2, NULL);
+
+                     }
+                     else if(str1 == "native_desktop_launcher")
+                     {
+                        string strPath = dir::element("stage/x86/app.exe");
+
+
+                        string strCommandLine;
+
+                        strCommandLine = ": app=session session_start=" + strId;
+
+                        for(int32_t i = 0; i < set.m_propertya.get_count(); i++)
+                        {
+
+                           if(!set.m_propertya[i]->get_string().has_char()
+                              &&
+                              (set.m_propertya[i]->name() == "build_number"
+                              || set.m_propertya[i]->name() == "app_type"
+                              || set.m_propertya[i]->name() == "locale"
+                              || set.m_propertya[i]->name() == "schema"
+                              || set.m_propertya[i]->name() == "app"
+                              || set.m_propertya[i]->name() == "session_start"
+                              || set.m_propertya[i]->name() == "version"
+                              )
+                              )
+                              continue;
+
+
+                           strCommandLine += " ";
+
+                           strCommandLine += set.m_propertya[i]->name();
+
+                           if(!set.m_propertya[i]->get_string().has_char())
+                              continue;
+
+                           strCommandLine += "=";
+
+                           strCommandLine += set.m_propertya[i]->get_string();
+
+                        }
+
+                        if(set["app_type"].is_empty())
+                           strCommandLine += " app_type=" + strType;
+
+
+                        strPath += strCommandLine;
+
+                        bool bTimedOut = false;
+
+                        uint32_t dwExitCode = System.process().synch(strPath,SW_SHOW,seconds(8.41115770402),&bTimedOut);
+
+                        if(bTimedOut)
+                        {
+                           ::simple_message_box(NULL, " - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",MB_ICONINFORMATION | MB_OK);
+                        }
+                        else if(dwExitCode == 0)
+                        {
+                         //  ::simple_message_box(NULL,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+                        }
+                        else
+                        {
+                           ::simple_message_box(NULL,strPath + "\n\nFailed return code : " + ::str::from(dwExitCode),"Error Message",MB_ICONINFORMATION | MB_OK);
+                        }
+
 
                      }
                      else
