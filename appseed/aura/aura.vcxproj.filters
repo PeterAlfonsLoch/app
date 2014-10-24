@@ -3452,6 +3452,8 @@
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\vcomp120d.dll">
       <Filter>Binary Files\x86</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\vcomp120d.dll" />
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x64\vcomp120d.dll">
+      <Filter>Binary Files\x64</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

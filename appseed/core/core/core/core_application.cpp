@@ -1,8 +1,9 @@
 #include "framework.h"
 
+#ifdef LINUX
+
 Display * x11_get_display();
 
-#ifdef LINUX
 #include <dlfcn.h>
 #include <link.h>
 #include <ctype.h>
@@ -1974,8 +1975,21 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
    void application::close_all_documents(bool bEndSession)
    {
-      /*if (m_pdocmanager != NULL)
-      m_pdocmanager->close_all_documents(bEndSession);*/
+
+      if(m_pdocmanager != NULL)
+      {
+
+         m_pdocmanager->close_all_documents(bEndSession);
+
+      }
+
+      if(bEndSession)
+      {
+
+          System.post_thread_message(WM_QUIT);
+
+      }
+
    }
 
 
@@ -3523,7 +3537,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
       // hide the application's windows before closing all the documents
       HideApplication();
 
-      close_all_documents(true, pwndExcept);
+      close_all_documents(false);
 
       return true;
 
@@ -4033,35 +4047,6 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
       sp(::create_context) cc(allocer());
       cc->m_spCommandLine->m_varFile = lpszFileName;
       return (Application.m_pdocmanager->open_document_file(cc));
-   }
-
-
-   void  application::close_all_documents(bool bEndSession,::user::interaction * pwndExcept)
-   {
-
-      if(m_pdocmanager != NULL)
-      {
-
-         m_pdocmanager->close_all_documents(bEndSession);
-
-      }
-
-      if(bEndSession)
-      {
-
-         // there are cases where destroying the documents may destroy the
-         //  main window of the application.
-         //bool b::core::ContextIsDll = afxContextIsDLL;
-         //if (!b::core::ContextIsDll && papp->m_pcoreapp->GetVisibleFrameCount() <= 0)
-         if(GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
-         {
-
-            System.post_thread_message(WM_QUIT);
-
-         }
-
-      }
-
    }
 
 

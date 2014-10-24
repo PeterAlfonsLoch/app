@@ -1432,7 +1432,7 @@ void simple_frame_window::OnEndSession(bool bEnding)
    if (!bEnding)
       return;
 
-   Application.close_all_documents(true, NULL);
+   Application.close_all_documents(true);
 
 }
 

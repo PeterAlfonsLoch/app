@@ -1,17 +1,18 @@
 #pragma once
 
 
+#include "aura/os/os_binreloc.h"
+
+
 #if defined(APPLEOS)
 
 
-#include "aura/os/os_binreloc.h"
 #include "aura/os/macos/os.h"
 
 
 #elif defined(LINUX)
 
 
-#include "aura/os/os_binreloc.h"
 #include "aura/os/linux/linux_linux.h"
 
 
@@ -43,7 +44,6 @@
 #elif defined(ANDROID)
 
 
-#include "aura/os/os_binreloc.h"
 #include "aura/os/android/android_android.h"
 
 
@@ -54,7 +54,6 @@
 #elif defined(SOLARIS)
 
 
-#include "aura/os/os_binreloc.h"
 #include "aura/os/solaris/solaris_solaris.h"
 
 
@@ -67,7 +66,6 @@
 
 
 #include "os/ansios/ansios.h"
-#include "aura/os/os_binreloc.h"
 #include "aura/os/ios/ca_os.h"
 
 
