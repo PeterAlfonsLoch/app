@@ -610,7 +610,7 @@ d.unlock();
       }
 
 
-      
+
 
 //      on_set_parent(pparent);
 
@@ -746,7 +746,7 @@ d.unlock();
    void interaction_impl::_001OnShowWindow(::signal_details * pobj)
    {
       SCAST_PTR(::message::show_window, pshowwindow, pobj);
-      
+
       if(m_pui != NULL)
          m_pui->m_bVisible = pshowwindow->m_bShow != FALSE;
    }
@@ -1317,7 +1317,7 @@ d.unlock();
    void interaction_impl::PrepareForHelp()
    {
       /*
-      
+
       sp(frame_window) pFrameWnd = m_pui;
 
       if (pFrameWnd.is_set())
@@ -4394,8 +4394,14 @@ throw not_implemented(get_app());
 
    void interaction_impl::GetWindowRect(__rect64 * lprect)
    {
+
       if(!::IsWindow((oswindow) get_handle()))
-         throw simple_exception(get_app(), "no more a interaction_impl");
+      {
+
+         throw simple_exception(get_app(), "no more a window");
+
+      }
+
       // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
       //if(m_pui == NULL || m_pui == this)
       {
@@ -4518,7 +4524,7 @@ throw not_implemented(get_app());
       else*/
       {
          ::ShowWindow((oswindow) get_handle(), nCmdShow);
-         //m_bVisible = 
+         //m_bVisible =
          if(m_pui!= NULL)
             m_pui->m_bVisible = ::IsWindowVisible((oswindow)get_handle()) != FALSE;
          return m_pui->m_bVisible;

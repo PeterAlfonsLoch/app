@@ -82,10 +82,11 @@ namespace user
          }
          catch(simple_exception & se)
          {
+
             if(se.m_strMessage == "no more a window")
             {
 
-               TRACE("No more a window explicit");
+               TRACE("No more a window explicitly");
                System.frames().remove(System.m_framea[l]);
              //wndpa.remove_at(l);
 
@@ -94,7 +95,7 @@ namespace user
          catch(...)
          {
 
-            TRACE("No more a window implicit");
+            TRACE("No more a window implicitly");
 
             System.frames().remove(System.m_framea[l]);
 

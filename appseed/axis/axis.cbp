@@ -114,11 +114,6 @@
 		<Unit filename="axis/compress/compress.h" />
 		<Unit filename="axis/compress/gzip_stream.cpp" />
 		<Unit filename="axis/compress/gzip_stream.h" />
-		<Unit filename="axis/message/message.h" />
-		<Unit filename="axis/message/message_base.h" />
-		<Unit filename="axis/message/message_cross_windows.h" />
-		<Unit filename="axis/message/message_definition.h" />
-		<Unit filename="axis/message/message_dispatch.h" />
 		<Unit filename="axis/message/message_user.cpp" />
 		<Unit filename="axis/message/message_user.h" />
 		<Unit filename="axis/node/ansios/ansios.h" />

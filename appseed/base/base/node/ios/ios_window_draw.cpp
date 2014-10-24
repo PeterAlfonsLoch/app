@@ -4,11 +4,11 @@
 class keep_event_reset
 {
 public:
-   
-   
+
+
    event * m_pevent;
-   
-   
+
+
    keep_event_reset(event * pevent)
    {
       m_pevent = pevent;
@@ -18,15 +18,15 @@ public:
    {
       m_pevent->SetEvent();
    }
-   
-   
+
+
 };
 
 
 namespace ios
 {
 
-   
+
    window_draw::window_draw(sp(::aura::application) papp) :
    element(papp),
    ::thread(papp),
@@ -44,19 +44,19 @@ namespace ios
       m_pbuffer->m_spdib.create(allocer());
       m_dwLastUpdate = false;
       m_bProDevianMode = true;
-      
+
    }
-   
+
    extern void _001DeferPaintLayeredWindowBackground(void * hwnd, ::draw2d::graphics * pdc);
    window_draw::~window_draw()
    {
-      
+
       //      ::DestroyWindow((oswindow) m_spwindowMessage->Detach());
-      
+
    }
-   
-   
-   
+
+
+
    /*
     void window_draw::OnPaint(void * hwnd, CPaintDC & spgraphics)
     {
@@ -64,7 +64,7 @@ namespace ios
     UNREFERENCED_PARAMETER(spgraphics);
     }
     */
-   
+
    void window_draw::message_queue_message_handler(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
@@ -73,7 +73,7 @@ namespace ios
          _synch_redraw();
       }
    }
-   
+
    void window_draw::asynch_redraw()
    {
       DWORD dwTick = ::get_tick_count();
@@ -89,7 +89,7 @@ namespace ios
       }
       _asynch_redraw();
    }
-   
+
    void window_draw::_asynch_redraw()
    {
       if(!m_bProDevianMode)
@@ -97,21 +97,21 @@ namespace ios
          m_spuiMessage->post_message(WM_USER + 1984 + 1977);
       }
    }
-   
+
    void window_draw::synch_redraw()
    {
-      
+
       /*      if(!m_bProDevianMode && ::IsWindow((oswindow) m_spwindowMessage->get_os_data()))
        {
        m_spwindowMessage->send_message(WM_USER + 1984 + 1977);
        }*/
    }
-   
+
    void window_draw::_synch_redraw()
    {
-      
+
       keep_event_reset keepeventreset(&m_eventFree);
-      
+
       static DWORD s_dwLastAnalysisFrame = 0;
       static DWORD s_dwLastFrameFrame = 0;
       static DWORD s_iAnalysisFrameFailureCount = 0;
@@ -192,10 +192,10 @@ namespace ios
             }
             s_iFrameFailureCount = 0;
          }
-         
+
       }
    }
-   
+
    bool window_draw::to(
                         ::draw2d::graphics *          pdc,
                         LPCRECT        lpcrectUpdate,
@@ -207,11 +207,11 @@ namespace ios
       UNREFERENCED_PARAMETER(bExcludeParamWnd);
       single_lock sl(&m_mutexRender, TRUE);
       rect rectUpdate(*lpcrectUpdate);
-      
+
       rect rectChild;
-      
+
       rect rectNewUpdate;
-      
+
       for(int_ptr i = hwndtreea.get_size() - 1; i >= 0; i--)
       {
          user::oswindow_tree & hwndtreeChild = hwndtreea[i];
@@ -224,7 +224,7 @@ namespace ios
       }
       return true;
    }
-   
+
    bool window_draw::to(
                         ::draw2d::graphics *          pdc,
                         LPCRECT        lpcrectUpdate,
@@ -235,33 +235,33 @@ namespace ios
       UNREFERENCED_PARAMETER(bGdiLocked);
       single_lock sl(&m_mutexRender, TRUE);
       rect rectUpdate(*lpcrectUpdate);
-      
+
       //      DWORD dwTimeIn = get_tick_count();
-      
+
       void * hwndParam = hwndtree.m_oswindow;
-      
+
       if(hwndParam == NULL)
       {
          return false;
       }
-      
+
       /*      if(!::IsWindow((oswindow) hwndParam))
        {
        return false;
        }*/
-      
-      
-      
-      
-      
+
+
+
+
+
       if(!::IsWindowVisible((oswindow) hwndParam))
       {
          return true;
       }
-      
-      
-      
-      
+
+
+
+
       if(hwndtree.m_dwUser & 1)
       {
          ASSERT(TRUE);
@@ -275,21 +275,21 @@ namespace ios
          //::GetClientRect(hwndParam, rectWindow);
          //::ClientToScreen(hwndParam, &rectWindow.top_left());
          //::ClientToScreen(hwndParam, &rectWindow.bottom_right());
-         
+
          pdc->SetViewportOrg(rectWindow.left, rectWindow.top);
-         
-         
+
+
          if(ptwi != NULL)
          {
-            
-            
+
+
             if(!bExcludeParamWnd &&
                pguie != NULL )
             {
                pguie->_001OnDraw(pdc);
             }
-            
-            
+
+
          }
          else
          {
@@ -303,27 +303,27 @@ namespace ios
             //::RedrawWindow(hwndParam, NULL, rgnClient, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
          }
       }
-      
-      
-      
-      
+
+
+
+
       //      DWORD dwTimeOut = get_tick_count();
       //   TRACE("// Average Window Rendering time\n");
       //   TRACE("// Window Class: %s\n", (pwnd!=NULL) ? pwnd->GetRuntimeClass()->m_lpszClassName : "(Not available)");
       //   TRACE("// TickCount: %d \n", dwTimeOut - dwTimeIn);
       //   TRACE("// \n");
-      
-      
+
+
       return to(
                 pdc,
                 rectUpdate,
                 hwndtree.m_oswindowtreea,
                 true,
                 false);
-      
+
    }
-   
-   
+
+
    UINT window_draw::RedrawProc()
    {
       if(!create_message_queue("ca2::twf - ca2 Transparent Window Framework"))
@@ -369,13 +369,13 @@ namespace ios
       s_bRunning = false;
       return 0;
    }
-   
+
    int32_t window_draw::run()
    {
       return RedrawProc();
    }
-   
-   
+
+
    DWORD g_dwLastWindowDraw;
    // lprect should be in screen coordinates
    bool window_draw::UpdateBuffer()
@@ -389,9 +389,9 @@ namespace ios
       //   TRACE("////////////////////////////////////////////////////\n");
       //   TRACE("// window_draw::TwfRender\n");
       //   TRACE("//\n");
-      
+
       //      DWORD dwTimeIn = get_tick_count();
-      
+
 //      static bool bTest = false;
     //  semaphore * psemaphore = TwfGetBufferSemaphore();
   //    single_lock slSemaphoreBuffer(psemaphore, FALSE);
@@ -400,66 +400,66 @@ namespace ios
          //xxx      AddUpdateRect(rectClip, true);
          //      return false;
       }
-      
-      
-      
-      
-      
+
+
+
+
+
       rect rectScreen;
       System.get_screen_rect(&rectScreen);
       m_pbuffer->UpdateBuffer(rectScreen.bottom_right());
       if(m_pbuffer->GetBuffer()->get_os_data() == NULL)
          return true;
-      
+
       ::draw2d::graphics * pdc = (dynamic_cast < ::draw2d::graphics * > (m_pbuffer->GetBuffer()));
-      
+
       if(pdc == NULL)
       {
          return false;
       }
-      
-      
+
+
       user::oswindow_array hwnda;
-      
+
       get_wnda(hwnda);
-      
+
       user::interaction_ptr_array wndpa(get_app());
-      
-      
-      
+
+
+
       get_wnda(wndpa);
-      
-      
+
+
       user::window_util::SortByZOrder(hwnda);
-      
+
       user::oswindow_tree::Array hwndtreea;
       //hwndtreea = hwnda;
       //hwndtreea.EnumDescendants();
-      
-      
-      
-      
+
+
+
+
       rect rectUpdate;
-      
+
       rectUpdate = rectScreen;
-      
+
       rect rectOptimize;
-      
+
       rectOptimize = rectUpdate;
-      
+
       rect rectWindow;
       rect rect9;
-      
+
       user::oswindow_array wndaApp;
-      
+
       m_wndpaOut.remove_all();
-      
+
       //      ::draw2d::region_sp rgnWindow(get_app());
       //    ::draw2d::region_sp rgnIntersect(get_app());
-      
+
       //      rgnWindow->create_rect(0, 0, 0, 0);
       //    rgnIntersect->create_rect(0, 0, 0, 0);
-      
+
       /*rect rectIntersect;
        ::draw2d::region_sp rgnUpdate(get_app());
        rgnUpdate->create_rect(rectUpdate);
@@ -509,7 +509,7 @@ namespace ios
        hwndOrder = ::GetWindow(hwndOrder, GW_HWNDNEXT);
        }
        */
-      
+
       for(int32_t l = 0; l < wndpa.get_count();)
       {
          try
@@ -522,12 +522,16 @@ namespace ios
          }
          catch(simple_exception & se)
          {
+
             if(se.m_strMessage == "no more a window")
             {
+
                System.frames().remove(&wndpa[l]);
+
                wndpa.remove_at(l);
-               
+
             }
+
          }
          catch(...)
          {
@@ -536,11 +540,11 @@ namespace ios
          }
       }
       return true;
-      
+
       for(index j = wndaApp.get_upper_bound(); j >= 0; j--)
       {
          oswindow hwndTopic = wndaApp[j];
-         
+
          ::window * pwnd = NULL;
          //::window * pwnd = dynamic_cast < ::window * > (System.window_map().get((int_ptr) hwndTopic));
          //if(pwnd == NULL)
@@ -555,9 +559,9 @@ namespace ios
          }
          if(!::IsWindowVisible((oswindow) wndaApp[j]) || ::IsIconic((oswindow) wndaApp[j]) || pwnd == NULL)
             continue;
-         
-         
-         
+
+
+
          /*pwnd->GetWindowRect(rectWindow);
           rectIntersect.intersect(rectWindow, rectUpdate);
           if(rectIntersect.area() <= 0)
@@ -566,13 +570,13 @@ namespace ios
           // TODO: should use iMaxMonitor information to set window
           // to a more visible position in the monitor iMaxMonitor with greatest
           // area.
-          
+
           //
           //
           // !!!! Warning !!!!
           //
           //
-          
+
           // The implementation below potentially uses functions like SendMessage.
           // window_draw - The Transparent Window Interface - should never call
           // SendMessage or other functions that may lock other threads.
@@ -587,9 +591,9 @@ namespace ios
           //       to obbey certain rules like frames per second -
           //       and twf sends a message to the user interface thread,
           //       both threads get deadlocked.
-          
-          
-          
+
+
+
 imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
           if(pframe != NULL)
           {
@@ -611,85 +615,85 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
           m_wndpaOut.add(pwnd);
           }*/
       }
-      
+
       //HDC hdc = (HDC) m_pbuffer->GetBuffer()->get_os_data();
       //::SetViewportOrgEx(hdc, 0, 0, NULL);
-      
-      
-      
-      
-      
+
+
+
+
+
       //   if(TwfIsBuffered())
       /*{
        ScreenOutput(
        m_pbuffer,
        rgnClip);
        }*/
-      
+
       //    TwfReleaseDC(pdc);
-      
+
       //      DWORD dwTimeOut = get_tick_count();
       //   TRACE("//\n");
       //   TRACE("// Rendering Finished\n");
       //   TRACE("// TickCount: %d \n", dwTimeOut - dwTimeIn);
       //   TRACE("////////////////////////////////////////////////////\n");
-      
+
       return true;
    }
-   
+
    bool window_draw::ScreenOutput()
    {
-      
+
       if(m_bRender)
          return false;
-      
+
       single_lock sl(&m_mutexRender, FALSE);
-      
+
       if(!sl.lock(duration::zero()))
          return false;
-      
+
       keeper<bool> keepRender(&m_bRender, true, false, true);
-      
+
 //      static bool bTest = false;
-      
+
       for(int32_t i = 0; i < m_wndpaOut.get_count(); i++)
       {
          ::user::interaction* pwnd = m_wndpaOut(i);
-         
+
          ScreenOutput(m_pbuffer, pwnd);
-         
+
       }
-      
+
       return true;
-      
+
    }
-   
-   
+
+
    semaphore * window_draw::TwfGetBufferSemaphore()
    {
       return &m_semaphoreBuffer;
    }
-   
+
    // The first ::window handle in the array must belong
    // to the higher z order ::window.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
-   
-   
-   
+
+
+
    // Remark: this optimization eliminates top level lnxdows
    // that are lower z order siblings of a higher z order
    // top level ::window that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent lnxdows
    // obscured by opaque children.
-   
+
    window_draw::EOptimize window_draw::TwfOptimizeRender(
                                                          user::oswindow_tree::Array & hwndtreea,
                                                          LPCRECT lpcrect)
    {
       const rect rectUpdate(*lpcrect);
-      
+
       rect rectClient;
       for(int32_t i = 0; i < hwndtreea.get_size();)
       {
@@ -726,16 +730,16 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
          }
       }
       return OptimizeNone;
-      
+
    }
-   
+
    window_draw::EOptimize window_draw::TwfOptimizeRenderRemoveNextProper(
                                                                          user::oswindow_tree::Array & hwndtreea,
                                                                          int32_t iIndex,
                                                                          LPCRECT lpcrect)
    {
-      
-      
+
+
       const rect rectOptimize(*lpcrect);
       rect rectClient;
       for(int32_t i = iIndex; i < hwndtreea.get_size();)
@@ -757,61 +761,61 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
                                               hwndtree.m_oswindowtreea,
                                               0,
                                               lpcrect);
-            
+
             i++;
          }
       }
       return OptimizeNone;
-      
+
    }
-   
-   
+
+
    window_draw::EOptimize window_draw::TwfOptimizeRender(
                                                          user::oswindow_tree & hwndtree,
                                                          LPCRECT lpcrect)
    {
-      
+
       hwndtree.m_dwUser = 0;
-      
+
       ::oswindow oswindow = hwndtree.m_oswindow;
-      
+
       ::user::window_interface * ptwi = oswindow->get_user_interaction();
-      
+
       if(!::IsWindowVisible(oswindow))
       {
          return OptimizeThis;
       }
       const rect rectUpdate(*lpcrect);
-      
+
       rect rectClient;
-      
+
       ::user::interaction * pguie = dynamic_cast < ::user::interaction * > (ptwi);
-      
+
       pguie->GetClientRect(rectClient);
       pguie->ClientToScreen(rectClient);
-      
-      
-      
-      
+
+
+
+
       rect rectIntersect;
-      
+
       if(!rectIntersect.intersect(rectClient, rectUpdate))
       {
          return OptimizeThis;
       }
-      
+
       if(!rectClient.contains(rectUpdate))
       {
-         
+
          return OptimizeNone;
       }
-      
+
       //    ::window * pwnd = window::FromHandlePermanent(hwnd);
-      
-      
+
+
       if(ptwi == NULL)
       {
-         
+
          //      ::user::window_interface::GetProperty getp;
          //      getp.m_eproperty = CTransparentWndInterface::PropertyInterface;
          //      ::SendMessage(hwnd, CTransparentWndInterface::MessageGetProperty, 0, (LPARAM) &getp);
@@ -821,16 +825,16 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
          //         pwnd = ptwi->TwiGetWnd();
          //      }
       }
-      
+
       EOptimize eoptimize = OptimizeNone;
       if(ptwi != NULL)
       {
          if(!ptwi->_001HasTranslucency())
             eoptimize = OptimizeAllNext;
       }
-      
+
       EOptimize eoptimizeChildren = TwfOptimizeRender(hwndtree.m_oswindowtreea, lpcrect);
-      
+
       if(eoptimizeChildren == OptimizeAllNext)
       {
          hwndtree.m_dwUser |= 1; // exclude from drawing;
@@ -844,11 +848,11 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       {
          return OptimizeNone;
       }
-      
-      
+
+
    }
-   
-   
+
+
    bool window_draw::TwfGetTopWindow(
                                      void * hwnd,
                                      user::oswindow_array & hwnda,
@@ -867,12 +871,12 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
                              hwndtree,
                              hrgn))
             return false;
-         
+
       }
       return true;
-      
+
    }
-   
+
    bool window_draw::TwfGetTopWindow(
                                      void * hwndParam,
                                      user::oswindow_array & hwnda,
@@ -880,25 +884,25 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
                                      user::oswindow_tree & hwndtree,
                                      HRGN hrgn)
    {
-      
+
       ::oswindow oswindow = hwndtree.m_oswindow;
-      
-      
+
+
       if(!::IsWindowVisible((::oswindow) oswindow))
       {
          return true;
       }
-      
-      
-      
-      
+
+
+
+
       rect rectWindow;
-      
+
 //      ::GetWindowRect((::oswindow) oswindow, rectWindow);
-      
-      
+
+
       //   ::window * pwnd = ::lnx::window::from_handle(oswindow);
-      
+
       if(!TwfGetTopWindow(
                           hwndParam,
                           hwnda,
@@ -908,11 +912,11 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       {
          return false;
       }
-      
+
 //      HRGN hrgnIntersect;
-      
+
       throw not_implemented(get_app());
-      
+
       //      hrgnIntersect = ::CreateRectRgnIndirect(rectWindow);
       //
       //      int32_t iCombine = ::CombineRgn(hrgnIntersect, hrgn, hrgnIntersect, RGN_AND);
@@ -976,7 +980,7 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       //         return true;
       //      }
    }
-   
+
    // lpcrect must be in screen coordinates
    void window_draw::TwfGetTopWindow(
                                      void * hwnd,
@@ -995,18 +999,18 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       //         hrgn);
       //      ::DeleteObject(hrgn);
    }
-   
+
    void window_draw::TwfGetTopWindowOptimizeOpaque(
                                                    void * hwndOpaque,
                                                    user::oswindow_array & hwnda,
                                                    array < HRGN, HRGN > & hrgna)
    {
       rect rectWindow;
-      
+
       //   ::window * pwndOpaque = window::FromHandlePermanent(hwndOpaque);
-      
+
 //      ::GetWindowRect((oswindow) hwndOpaque, rectWindow);
-      
+
       throw not_implemented(get_app());
       //      HRGN hrgnOpaque = ::CreateRectRgnIndirect(rectWindow);
       //
@@ -1033,23 +1037,23 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       //      }
       //
       //      ::DeleteObject(hrgnOpaque);
-      
+
    }
-   
-   
+
+
    void window_draw::get_wnda(user::interaction_ptr_array & wndpa)
    {
       wndpa = System.frames();
    }
-   
+
    void window_draw::get_wnda(user::oswindow_array & hwnda)
    {
       System.frames().get_wnda(hwnda);
    }
-   
+
    // Both the device context and clip region
    // should be in screen coordinates
-   
+
    bool window_draw::ScreenOutput(
                                   user::buffer * pbuffer,
                                   ::draw2d::region & rgnUpdate)
@@ -1059,15 +1063,15 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       //   TRACE("//\n");
       //   TRACE("window_draw::TwfScreenOutput\n");
       //   TRACE("//\n");
-      
+
       //      DWORD dwTimeIn = get_tick_count();
-      
+
       user::oswindow_array hwnda;
-      
+
       get_wnda(hwnda);
-      
+
       user::window_util::SortByZOrder(hwnda);
-      
+
       ASSERT(FALSE);
       /*for(int32_t i = 0; i  < hwnda.get_size(); i++)
        {
@@ -1082,12 +1086,12 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       //   TRACE("// window_draw::TwfRender\n");
       //   TRACE("// TickCount = %d \n", dwTimeOut - dwTimeIn);
       //   TRACE("//\n");
-      
+
       return true;
    }
-   
-   
-   
+
+
+
    bool window_draw::ScreenOutput(
                                   // pdc is the source primitive::memory device context
                                   // from which bitmap the screen is updated.
@@ -1119,9 +1123,9 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
             return true;
          }
       }
-      
+
 //      oswindow oswindowParam = pwnd->get_handle();
-      
+
       throw not_implemented(get_app());
       //      HDC hdcScreen = ::GetDCEx((oswindow) hwndParam, NULL,  DCX_CLIPSIBLINGS | DCX_WINDOW);
       //
@@ -1318,26 +1322,26 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
       //
       //      return true;
    }
-   
-   
-   
-   
+
+
+
+
    // The first ::window handle in the array must belong
    // to the higher z order ::window.
    // The rectangle must contain all update region.
    // It must be in screen coordinates.
-   
-   
-   
+
+
+
    // Remark: this optimization eliminates top level lnxdows
    // that are lower z order siblings of a higher z order
    // top level ::window that contains all
    // the update region in a opaque area.
    // It doesn´t eliminates from the update parent lnxdows
    // obscured by opaque children.
-   
-   
-   
+
+
+
 } // namespace ios
 
 

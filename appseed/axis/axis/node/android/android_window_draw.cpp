@@ -516,7 +516,7 @@ namespace android
          }
          catch(simple_exception & se)
          {
-            if(se.m_strMessage == "no more a interaction_impl")
+            if(se.m_strMessage == "no more a window")
             {
                System.frames().remove(wndpa(l));
                wndpa.remove_at(l);

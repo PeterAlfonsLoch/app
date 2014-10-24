@@ -1204,7 +1204,10 @@ bool oswindow_data::is_destroying()
    if(this == NULL)
       return true;
 
-   if(m_bDestroying)
+   if(get_user_interaction() == NULL)
+      return true;
+
+   if(get_user_interaction()->m_bDestroying)
       return true;
 
    return false;

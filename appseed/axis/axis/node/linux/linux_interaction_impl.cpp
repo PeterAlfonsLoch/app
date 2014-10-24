@@ -3975,12 +3975,14 @@ throw not_implemented(get_app());
 
    void interaction_impl::GetWindowRect(__rect64 * lprect)
    {
+
       if(!::IsWindow((oswindow) get_handle()))
       {
 
-         throw simple_exception(get_app(), "no more a interaction_impl");
+         throw simple_exception(get_app(), "no more a window");
 
       }
+
       // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
       //if(m_pui == NULL || m_pui == this)
       {

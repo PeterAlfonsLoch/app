@@ -184,7 +184,7 @@ namespace windows
       }
    }
 
-   
+
    bool window_draw::finalize()
    {
 
@@ -388,16 +388,17 @@ namespace windows
          catch(simple_exception & se)
          {
 
-            if(se.m_strMessage == "no more a interaction_impl")
+            if(se.m_strMessage == "no more a window")
             {
+
                bOk = false;
-               
+
             }
 
          }
          catch(...)
          {
-            
+
             bOk = false;
 
          }

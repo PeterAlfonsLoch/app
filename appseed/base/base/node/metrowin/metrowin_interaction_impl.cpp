@@ -466,7 +466,7 @@ namespace metrowin
 
    }
 
-   
+
    void interaction_impl::_001OnShowWindow(signal_details * pobj)
    {
 
@@ -820,7 +820,7 @@ namespace metrowin
 #endif
 
 #ifdef WINDOWSEX
-   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl) 
+   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
    {
       ASSERT(::IsWindow(get_handle()));
       lpwndpl->length = sizeof(WINDOWPLACEMENT);
@@ -901,8 +901,8 @@ namespace metrowin
 
    bool interaction_impl::GetWindowInfo(PWINDOWINFO pwi) const
    {
-      ASSERT(::IsWindow((oswindow)get_os_data())); 
-      return ::GetWindowInfo((oswindow)get_os_data(), pwi) != FALSE; 
+      ASSERT(::IsWindow((oswindow)get_os_data()));
+      return ::GetWindowInfo((oswindow)get_os_data(), pwi) != FALSE;
    }
 
 #endif
@@ -911,7 +911,7 @@ namespace metrowin
    {
 
 #ifdef WINDOWSEX
-      ASSERT(::IsWindow((oswindow)get_os_data())); return  ::metrowin::interaction_impl::from_handle(::GetAncestor((oswindow)get_os_data(), gaFlags)); 
+      ASSERT(::IsWindow((oswindow)get_os_data())); return  ::metrowin::interaction_impl::from_handle(::GetAncestor((oswindow)get_os_data(), gaFlags));
 #else
       throw todo(get_app());
 #endif
@@ -924,14 +924,14 @@ namespace metrowin
 #ifdef WINDOWSEX
    bool interaction_impl::GetScrollBarInfo(LONG idObject, PSCROLLBARINFO psbi) const
    {
-      ASSERT(::IsWindow((oswindow)get_os_data())); 
+      ASSERT(::IsWindow((oswindow)get_os_data()));
       ASSERT(psbi != NULL);
       return ::GetScrollBarInfo((oswindow)get_os_data(), idObject, psbi) != FALSE;
    }
 
    bool interaction_impl::GetTitleBarInfo(PTITLEBARINFO pti) const
    {
-      ASSERT(::IsWindow((oswindow)get_os_data())); 
+      ASSERT(::IsWindow((oswindow)get_os_data()));
       ASSERT(pti != NULL);
       return ::GetTitleBarInfo((oswindow)get_os_data(), pti) != FALSE;
    }
@@ -940,7 +940,7 @@ namespace metrowin
    bool interaction_impl::AnimateWindow(uint32_t dwTime,uint32_t dwFlags)
    {
 #ifdef WINDOWSEX
-      ASSERT(::IsWindow((oswindow)get_os_data())); 
+      ASSERT(::IsWindow((oswindow)get_os_data()));
       return ::AnimateWindow((oswindow)get_os_data(), dwTime, dwFlags) != FALSE;
 #else
       throw todo(get_app());
@@ -951,7 +951,7 @@ namespace metrowin
    {
       throw todo(get_app());
 
-      //   ASSERT(::IsWindow((oswindow)get_os_data())); 
+      //   ASSERT(::IsWindow((oswindow)get_os_data()));
       //   FLASHWINFO fwi;
       //   fwi.cbSize = sizeof(fwi);
       //   fwi.hwnd = (oswindow)get_os_data();
@@ -967,7 +967,7 @@ namespace metrowin
    bool interaction_impl::SetLayeredWindowAttributes(COLORREF crKey,BYTE bAlpha,uint32_t dwFlags)
    {
       throw todo(get_app());
-      //ASSERT(::IsWindow((oswindow)get_os_data())); 
+      //ASSERT(::IsWindow((oswindow)get_os_data()));
       //return ::SetLayeredWindowAttributes((oswindow)get_os_data(), crKey, bAlpha, dwFlags) != FALSE;
    }
 
@@ -975,7 +975,7 @@ namespace metrowin
       ::draw2d::graphics * pDCSrc,POINT *pptSrc,COLORREF crKey,BLENDFUNCTION *pblend,uint32_t dwFlags)
    {
       throw todo(get_app());
-      //ASSERT(::IsWindow((oswindow)get_os_data())); 
+      //ASSERT(::IsWindow((oswindow)get_os_data()));
       //return ::UpdateLayeredWindow((oswindow)get_os_data(), WIN_HDC(pDCDst), pptDst, psize,
       //   WIN_HDC(pDCSrc), pptSrc, crKey, pblend, dwFlags) != FALSE;
    }
@@ -984,14 +984,14 @@ namespace metrowin
    bool interaction_impl::GetLayeredWindowAttributes(COLORREF *pcrKey,BYTE *pbAlpha,uint32_t *pdwFlags) const
    {
       throw todo(get_app());
-      //ASSERT(::IsWindow((oswindow)get_os_data())); 
+      //ASSERT(::IsWindow((oswindow)get_os_data()));
       //return ::GetLayeredWindowAttributes((oswindow)get_os_data(), pcrKey, pbAlpha, pdwFlags) != FALSE;
    }
 
    bool interaction_impl::PrintWindow(::draw2d::graphics * pgraphics,UINT nFlags) const
    {
       throw todo(get_app());
-      //ASSERT(::IsWindow((oswindow)get_os_data())); 
+      //ASSERT(::IsWindow((oswindow)get_os_data()));
       //return ::PrintWindow((oswindow)get_os_data(), (HDC)(dynamic_cast<::metrowin::graphics * >(pgraphics))->get_os_data(), nFlags) != FALSE;
    }
 
@@ -2481,7 +2481,7 @@ namespace metrowin
       //UNREFERENCED_PARAMETER(nIDFirst);
       //UNREFERENCED_PARAMETER(nIDLast);
 
-      //ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || 
+      //ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery ||
       //   (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
       //// walk kids in order, control bars get the resize notification
@@ -3151,8 +3151,8 @@ namespace metrowin
                         0, 0,
                         rect5.width(), rect5.height(),
                         hDCMem,
-                        rectUpdate.left - rect5.left, 
-                        rectUpdate.top - rect5.top, 
+                        rectUpdate.left - rect5.left,
+                        rectUpdate.top - rect5.top,
                         SRCCOPY);
                      ::SelectObject(hDCMem, hOld);
                      ::DeleteObject(hDCMem);
@@ -3230,7 +3230,7 @@ namespace metrowin
 
       //   ::draw2d::graphics * pdc = dib->get_graphics();
 
-      //   if((dynamic_cast<::metrowin::graphics * >(pdc))->get_os_data() == NULL 
+      //   if((dynamic_cast<::metrowin::graphics * >(pdc))->get_os_data() == NULL
       //      || (dynamic_cast<::metrowin::graphics * >(pdc))->get_handle2() == NULL)
       //      return;
 
@@ -3264,7 +3264,7 @@ namespace metrowin
       //   //(dynamic_cast<::metrowin::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
       //   (dynamic_cast<::metrowin::graphics * >(pdc))->SelectClipRgn(NULL);
       //   (dynamic_cast<::metrowin::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-      //   BitBlt(hdc, rectPaint.left, rectPaint.top, 
+      //   BitBlt(hdc, rectPaint.left, rectPaint.top,
       //      rectPaint.width(), rectPaint.height(),
       //      (HDC) pdc->get_os_data(), rectUpdate.left, rectUpdate.top,
       //      SRCCOPY);
@@ -3337,7 +3337,7 @@ namespace metrowin
       //   (dynamic_cast<::metrowin::graphics * >(pdc))->SetViewportOrg(point(0, 0));
 
       //   graphics->SelectClipRgn( NULL);
-      //   graphics->BitBlt(rectPaint.left, rectPaint.top, 
+      //   graphics->BitBlt(rectPaint.left, rectPaint.top,
       //      rectPaint.width(), rectPaint.height(),
       //      pdc, rectUpdate.left, rectUpdate.top,
       //      SRCCOPY);
@@ -3624,7 +3624,7 @@ namespace metrowin
       //      if (lpResource != NULL)
       //      {
       //         UNALIGNED WORD* lpnRes = (WORD*)lpResource;
-      //         while (bSuccess && *lpnRes != 0)   
+      //         while (bSuccess && *lpnRes != 0)
       //         {
       //            WORD nIDC = *lpnRes++;
       //            WORD nMsg = *lpnRes++;
@@ -3664,7 +3664,7 @@ namespace metrowin
       //               COMBOBOXEXITEM item = {0};
       //               item.mask = CBEIF_TEXT;
       //               item.iItem = -1;
-      //               string strText(reinterpret_cast<LPTSTR>(lpnRes));            
+      //               string strText(reinterpret_cast<LPTSTR>(lpnRes));
       //               item.pszText = const_cast<LPTSTR>(strText.GetString());
       //               if (::SendDlgItemMessage(get_handle(), nIDC, nMsg, 0, (LPARAM) &item) == -1)
       //                  bSuccess = FALSE;
@@ -4039,7 +4039,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //if(WIN_WINDOW(pWnd)->_get_handle() == NULL)
       //{
       //   return ::user::interaction::IsChild(pWnd);
@@ -4268,7 +4268,7 @@ namespace metrowin
       lprect->bottom = (int64_t)(lprect->top + rect.Height);
 
       /*if(!::IsWindow(get_handle()))
-         throw simple_exception(get_app(), "no more a interaction_impl");
+         throw simple_exception(get_app(), "no more a window");
          // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
          if(m_pui == NULL || m_pui == this)
          {
@@ -4413,7 +4413,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //if(GetExStyle() & WS_EX_LAYERED)
       //{
       //   return m_pui->m_eappearance == appearance_iconic;
@@ -4543,8 +4543,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //return (uint32_t)::GetWindowLong(get_handle(), GWL_STYLE); 
+      //ASSERT(::IsWindow(get_handle()));
+      //return (uint32_t)::GetWindowLong(get_handle(), GWL_STYLE);
    }
 
    uint32_t interaction_impl::GetExStyle()
@@ -4552,8 +4552,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //return (uint32_t)::GetWindowLong(get_handle(), GWL_EXSTYLE); 
+      //ASSERT(::IsWindow(get_handle()));
+      //return (uint32_t)::GetWindowLong(get_handle(), GWL_EXSTYLE);
    }
 
    bool interaction_impl::ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
@@ -4561,8 +4561,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //return ModifyStyle(get_handle(), dwRemove, dwAdd, nFlags); 
+      //ASSERT(::IsWindow(get_handle()));
+      //return ModifyStyle(get_handle(), dwRemove, dwAdd, nFlags);
    }
 
    bool interaction_impl::ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
@@ -4570,8 +4570,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //return ModifyStyleEx(get_handle(), dwRemove, dwAdd, nFlags); 
+      //ASSERT(::IsWindow(get_handle()));
+      //return ModifyStyleEx(get_handle(), dwRemove, dwAdd, nFlags);
    }
 
    void interaction_impl::SetOwner(::user::interaction * pOwnerWnd)
@@ -4619,7 +4619,7 @@ namespace metrowin
 
       //throw todo(get_app());
 
-      ////ASSERT(::IsWindow(get_handle())); 
+      ////ASSERT(::IsWindow(get_handle()));
       //return ::SendMessage(get_handle(), message, wParam, lParam);
    }
 
@@ -4637,9 +4637,9 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
-      //return ::DragDetect(get_handle(), pt) != FALSE; 
+      //return ::DragDetect(get_handle(), pt) != FALSE;
 
    }
 
@@ -4659,9 +4659,9 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
-      //return ::GetWindowTextLength(get_handle()); 
+      //return ::GetWindowTextLength(get_handle());
 
    }
 
@@ -4682,8 +4682,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //::DragAcceptFiles(get_handle(), bAccept); 
+      //ASSERT(::IsWindow(get_handle()));
+      //::DragAcceptFiles(get_handle(), bAccept);
    }
 
    sp(::user::frame_window) interaction_impl::EnsureParentFrame()
@@ -4710,7 +4710,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); return ::ArrangeIconicWindows(get_handle()); 
+      //ASSERT(::IsWindow(get_handle())); return ::ArrangeIconicWindows(get_handle());
    }
 
    int interaction_impl::SetWindowRgn(HRGN hRgn,bool bRedraw)
@@ -4718,7 +4718,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); return ::SetWindowRgn(get_handle(), hRgn, bRedraw); 
+      //ASSERT(::IsWindow(get_handle())); return ::SetWindowRgn(get_handle(), hRgn, bRedraw);
    }
 
    int interaction_impl::GetWindowRgn(HRGN hRgn)
@@ -4726,7 +4726,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle()) && hRgn != NULL); return ::GetWindowRgn(get_handle(), hRgn); 
+      //ASSERT(::IsWindow(get_handle()) && hRgn != NULL); return ::GetWindowRgn(get_handle(), hRgn);
    }
 
    bool interaction_impl::BringWindowToTop()
@@ -4734,7 +4734,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //return ::BringWindowToTop(get_handle()) != FALSE; 
+      //return ::BringWindowToTop(get_handle()) != FALSE;
 
    }
 
@@ -4743,8 +4743,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), lpPoint, nCount); 
+      //ASSERT(::IsWindow(get_handle()));
+      //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), lpPoint, nCount);
    }
 
    void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,LPRECT lpRect)
@@ -4752,8 +4752,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), (LPPOINT)lpRect, 2); 
+      //ASSERT(::IsWindow(get_handle()));
+      //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), (LPPOINT)lpRect, 2);
    }
 
    ::draw2d::graphics * interaction_impl::GetDC()
@@ -4778,7 +4778,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //::draw2d::graphics_sp g(get_app());
       //g->attach(::GetWindowDC(get_handle()));
       //return g.detach();
@@ -4795,7 +4795,7 @@ namespace metrowin
       //if(((Gdiplus::Graphics *)(dynamic_cast<::metrowin::graphics * >(pgraphics))->get_os_data()) == NULL)
       //   return false;
 
-      //::ReleaseDC(get_handle(), (dynamic_cast<::metrowin::graphics * >(pgraphics))->m_hdc); 
+      //::ReleaseDC(get_handle(), (dynamic_cast<::metrowin::graphics * >(pgraphics))->m_hdc);
 
       //(dynamic_cast<::metrowin::graphics * >(pgraphics))->m_hdc = NULL;
 
@@ -4810,7 +4810,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //::UpdateWindow(get_handle()); 
+      //::UpdateWindow(get_handle());
    }
 
    void interaction_impl::SetRedraw(bool bRedraw)
@@ -4818,8 +4818,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0); 
+      //ASSERT(::IsWindow(get_handle()));
+      //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
    }
 
    bool interaction_impl::GetUpdateRect(LPRECT lpRect,bool bErase)
@@ -4827,8 +4827,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //return ::GetUpdateRect(get_handle(), lpRect, bErase) != FALSE; 
+      //ASSERT(::IsWindow(get_handle()));
+      //return ::GetUpdateRect(get_handle(), lpRect, bErase) != FALSE;
    }
 
    int interaction_impl::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
@@ -4836,8 +4836,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //return ::GetUpdateRgn(get_handle(), (HRGN)pRgn->get_os_data(), bErase); 
+      //ASSERT(::IsWindow(get_handle()));
+      //return ::GetUpdateRgn(get_handle(), (HRGN)pRgn->get_os_data(), bErase);
    }
 
    void interaction_impl::Invalidate(bool bErase)
@@ -4845,8 +4845,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //::InvalidateRect(get_handle(), NULL, bErase); 
+      //ASSERT(::IsWindow(get_handle()));
+      //::InvalidateRect(get_handle(), NULL, bErase);
    }
 
    void interaction_impl::InvalidateRect(LPCRECT lpRect,bool bErase)
@@ -4854,8 +4854,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //::InvalidateRect(get_handle(), lpRect, bErase); 
+      //ASSERT(::IsWindow(get_handle()));
+      //::InvalidateRect(get_handle(), lpRect, bErase);
    }
 
    void interaction_impl::InvalidateRgn(::draw2d::region* pRgn,bool bErase)
@@ -4863,8 +4863,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //::InvalidateRgn(get_handle(), (HRGN)pRgn->get_os_data(), bErase); 
+      //ASSERT(::IsWindow(get_handle()));
+      //::InvalidateRgn(get_handle(), (HRGN)pRgn->get_os_data(), bErase);
    }
 
    void interaction_impl::ValidateRect(LPCRECT lpRect)
@@ -4872,9 +4872,9 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //
-      //::ValidateRect(get_handle(), lpRect); 
+      //::ValidateRect(get_handle(), lpRect);
 
    }
 
@@ -4883,9 +4883,9 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //
-      //::ValidateRgn(get_handle(), (HRGN)pRgn->get_os_data()); 
+      //::ValidateRgn(get_handle(), (HRGN)pRgn->get_os_data());
 
    }
 
@@ -4934,7 +4934,7 @@ namespace metrowin
    void interaction_impl::SendMessageToDescendants(UINT message,WPARAM wParam,lparam lParam,bool bDeep,bool bOnlyPerm)
    {
       ASSERT(::IsWindow(get_handle()));
-      //interaction_impl::SendMessageToDescendants(get_handle(), message, wParam, lParam, bDeep, bOnlyPerm); 
+      //interaction_impl::SendMessageToDescendants(get_handle(), message, wParam, lParam, bDeep, bOnlyPerm);
 
       // walk through HWNDs to avoid creating temporary interaction_impl objects
       // unless we need to call this function recursively
@@ -4982,10 +4982,10 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //::draw2d::graphics_sp g(get_app());
       //g->attach(::GetDCEx(get_handle(), (HRGN)prgnClip->get_os_data(), flags));
-      //return g.detach(); 
+      //return g.detach();
 
    }
 
@@ -4994,7 +4994,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
       //return ::LockWindowUpdate(get_handle()) != FALSE;
 
@@ -5022,7 +5022,7 @@ namespace metrowin
       //if(System.get_twf()->m_bProDevianMode)
       //   return true;
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
       //return ::RedrawWindow(get_handle(), lpRectUpdate, prgnUpdate == NULL ? NULL : (HRGN)prgnUpdate->get_os_data(), flags) != FALSE;
 
@@ -5037,7 +5037,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //
       //return ::EnableScrollBar(get_handle(), nSBFlags, nArrowFlags) != FALSE;
 
@@ -5061,7 +5061,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //
       //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::metrowin::graphics * >(pgraphics))->get_os_data(), lprc, uFlags) != FALSE;
 
@@ -5113,7 +5113,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //
       //return ::EnableWindow(get_handle(), bEnable) != FALSE;
 
@@ -5153,7 +5153,7 @@ namespace metrowin
 
       //throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //
       if(pinterface != NULL)
          m_pguieCapture = pinterface;
@@ -5205,7 +5205,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
       //::CheckDlgButton(get_handle(), nIDButton, nCheck);
 
@@ -5216,9 +5216,9 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
-      //::CheckRadioButton(get_handle(), nIDFirstButton, nIDLastButton, nIDCheckButton); 
+      //::CheckRadioButton(get_handle(), nIDFirstButton, nIDLastButton, nIDCheckButton);
 
    }
 
@@ -5231,27 +5231,27 @@ namespace metrowin
 
       //ASSERT(::IsWindow(get_handle()));
 
-      //return ::DlgDirList(get_handle(), lpPathSpec, nIDListBox, nIDStaticPath, nFileType); 
+      //return ::DlgDirList(get_handle(), lpPathSpec, nIDListBox, nIDStaticPath, nFileType);
 
    }
 
    int interaction_impl::DlgDirListComboBox(__inout_z LPTSTR lpPathSpec, __in int nIDComboBox,  __in int nIDStaticPath, __in UINT nFileType)
-   { 
+   {
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
-      //return ::DlgDirListComboBox(get_handle(), lpPathSpec, nIDComboBox, nIDStaticPath, nFileType); 
+      //return ::DlgDirListComboBox(get_handle(), lpPathSpec, nIDComboBox, nIDStaticPath, nFileType);
 
    }
 
    bool interaction_impl::DlgDirSelect(LPTSTR lpString, int nSize, int nIDListBox)
-   { 
+   {
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
       //return ::DlgDirSelectEx(get_handle(), lpString, nSize, nIDListBox) != FALSE;
 
@@ -5262,7 +5262,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
       //return ::DlgDirSelectComboBoxEx(get_handle(), lpString, nSize, nIDComboBox) != FALSE;
 
@@ -5275,8 +5275,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //ASSERT(phWnd != NULL); 
+      //ASSERT(::IsWindow(get_handle()));
+      //ASSERT(phWnd != NULL);
       //*phWnd = ::GetDlgItem(get_handle(), (int) id);
 
    }
@@ -5286,7 +5286,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
       //return ::GetDlgItemInt(get_handle(), nID, lpTrans, bSigned);
 
@@ -5299,7 +5299,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //
       //return ::GetDlgItemText(get_handle(), nID, lpStr, nMaxCount);
 
@@ -5313,7 +5313,7 @@ namespace metrowin
       throw todo(get_app());
 
       //ASSERT(::IsWindow(get_handle()));
-      //return ::metrowin::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_os_data(), bPrevious)); 
+      //return ::metrowin::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_os_data(), bPrevious));
    }
 
    ::user::interaction_impl * interaction_impl::GetNextDlgTabItem(::user::interaction_impl * pWndCtl,bool bPrevious) const
@@ -5321,8 +5321,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //return ::metrowin::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_os_data(), bPrevious)); 
+      //ASSERT(::IsWindow(get_handle()));
+      //return ::metrowin::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_os_data(), bPrevious));
    }
 
    UINT interaction_impl::IsDlgButtonChecked(int nIDButton) const
@@ -5330,9 +5330,9 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //
-      //return ::IsDlgButtonChecked(get_handle(), nIDButton); 
+      //return ::IsDlgButtonChecked(get_handle(), nIDButton);
 
    }
    LPARAM interaction_impl::SendDlgItemMessage(int nID,UINT message,WPARAM wParam,LPARAM lParam)
@@ -5342,7 +5342,7 @@ namespace metrowin
 
       //ASSERT(::IsWindow(get_handle()));
       //
-      //return ::SendDlgItemMessage(get_handle(), nID, message, wParam, lParam); 
+      //return ::SendDlgItemMessage(get_handle(), nID, message, wParam, lParam);
 
    }
    void interaction_impl::SetDlgItemInt(int nID,UINT nValue,bool bSigned)
@@ -5352,7 +5352,7 @@ namespace metrowin
 
       //ASSERT(::IsWindow(get_handle()));
       //
-      //::SetDlgItemInt(get_handle(), nID, nValue, bSigned); 
+      //::SetDlgItemInt(get_handle(), nID, nValue, bSigned);
 
    }
    void interaction_impl::SetDlgItemText(int nID,const char * lpszString)
@@ -5362,7 +5362,7 @@ namespace metrowin
 
       //ASSERT(::IsWindow(get_handle()));
       //
-      //::SetDlgItemText(get_handle(), nID, lpszString); 
+      //::SetDlgItemText(get_handle(), nID, lpszString);
 
    }
 
@@ -5373,7 +5373,7 @@ namespace metrowin
 
       //ASSERT(::IsWindow(get_handle()));
       //
-      //return ::ScrollWindowEx(get_handle(), dx, dy, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_os_data(), lpRectUpdate, flags); 
+      //return ::ScrollWindowEx(get_handle(), dx, dy, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_os_data(), lpRectUpdate, flags);
 
    }
 
@@ -5384,7 +5384,7 @@ namespace metrowin
 
       //ASSERT(::IsWindow(get_handle()));
       //
-      //::ShowScrollBar(get_handle(), nBar, bShow); 
+      //::ShowScrollBar(get_handle(), nBar, bShow);
 
    }
 
@@ -5416,7 +5416,7 @@ namespace metrowin
 
       throw todo(::get_thread_app());
 
-      //return ::metrowin::interaction_impl::from_handle(::FindWindow(lpszClassName, lpszWindowName)); 
+      //return ::metrowin::interaction_impl::from_handle(::FindWindow(lpszClassName, lpszWindowName));
 
    }
 
@@ -5425,7 +5425,7 @@ namespace metrowin
 
       throw todo(::get_thread_app());
 
-      //return ::metrowin::interaction_impl::from_handle(::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow)); 
+      //return ::metrowin::interaction_impl::from_handle(::FindWindowEx(hwndParent, hwndChildAfter, lpszClass, lpszWindow));
 
    }
 #ifdef WINDOWSEX
@@ -5463,7 +5463,7 @@ namespace metrowin
 
       //ASSERT(::IsWindow(get_handle()));
       //
-      //return ::metrowin::interaction_impl::from_handle(::GetWindow(get_handle(), nCmd)); 
+      //return ::metrowin::interaction_impl::from_handle(::GetWindow(get_handle(), nCmd));
 
    }
 
@@ -5472,7 +5472,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //
       //return ::metrowin::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
 
@@ -5483,8 +5483,8 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
-      //return ::metrowin::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_os_data())); 
+      //ASSERT(::IsWindow(get_handle()));
+      //return ::metrowin::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_os_data()));
    }
 
    sp(::user::interaction_impl) interaction_impl::WindowFromPoint(POINT point)
@@ -5501,7 +5501,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
       //return ::FlashWindow(get_handle(), bInvert) != FALSE;
 
@@ -5512,7 +5512,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
       //return ::ChangeClipboardChain(get_handle(), hWndNext) != FALSE;
 
@@ -5534,7 +5534,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
       //return ::OpenClipboard(get_handle()) != FALSE;
 
@@ -5572,7 +5572,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
       //::CreateCaret(get_handle(), (HBITMAP)pBitmap->get_os_data(), 0, 0);
 
@@ -5583,7 +5583,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
 
       //::CreateCaret(get_handle(), (HBITMAP)0, nWidth, nHeight);
 
@@ -5643,7 +5643,7 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //return ::SetForegroundWindow(get_handle()) != FALSE; 
+      //return ::SetForegroundWindow(get_handle()) != FALSE;
 
    }
 
@@ -5758,7 +5758,7 @@ namespace metrowin
 #ifdef WINDOWSEX
 
    bool interaction_impl::OnCopyData(::user::interaction_impl *, COPYDATASTRUCT*)
-   { 
+   {
 
       return Default() != FALSE;
 
@@ -5849,7 +5849,7 @@ namespace metrowin
       //}
       //pbase->set_lresult(1);
       //pbase->m_bRet = true;
-      ////(bool)Default(); 
+      ////(bool)Default();
 
    }
 
@@ -6089,7 +6089,7 @@ namespace metrowin
          /* defwindow proc should do this for us, but to be safe, we'll do it here too */
          pszName[0]='\0';
       }
-      Default(); 
+      Default();
    }
 
 #endif
@@ -6238,9 +6238,9 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //
-      //::CloseWindow(get_handle()); 
+      //::CloseWindow(get_handle());
 
    }
 
@@ -6249,9 +6249,9 @@ namespace metrowin
 
       throw todo(get_app());
 
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       //
-      //return ::OpenIcon(get_handle()) != FALSE; 
+      //return ::OpenIcon(get_handle()) != FALSE;
 
    }
 
@@ -6490,7 +6490,7 @@ namespace metrowin
             ASSERT(!bContextIsDLL);   // should never get here
 
             static ATOM s_atomMenu = 0;
-            bool bSubclass = true;         
+            bool bSubclass = true;
 
             if (s_atomMenu == 0)
             {
@@ -6508,7 +6508,7 @@ namespace metrowin
                   bSubclass = false;
             }
             else
-            {         
+            {
                char szClassName[256];
                if (::GetClassName(hWnd, szClassName, 256))
                {
@@ -6516,7 +6516,7 @@ namespace metrowin
                   if (_tcscmp(szClassName, "#32768") == 0)
                      bSubclass = false;
                }
-            }         
+            }
             if (bSubclass)
             {
                // subclass the interaction_impl with the proc which does gray backgrounds
@@ -6630,7 +6630,7 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPA
 
    // all other messages route through message ::map
    ::user::interaction_impl * pWnd = ::metrowin::interaction_impl::FromHandlePermanent(hWnd);
-   //ASSERT(pWnd != NULL);               
+   //ASSERT(pWnd != NULL);
    //ASSERT(pWnd==NULL || WIN_WINDOW(pWnd)->get_handle() == hWnd);
    if (pWnd == NULL || WIN_WINDOW(pWnd)->get_handle() != hWnd)
       return ::DefWindowProc(hWnd, nMsg, wParam, lParam);
@@ -6648,7 +6648,7 @@ WNDPROC CLASS_DECL_BASE __get_window_procedure()
 __STATIC void CLASS_DECL_BASE __pre_init_dialog(
    ::user::interaction * pWnd, LPRECT lpRectOld, uint32_t* pdwStyleOld)
 {
-   ASSERT(lpRectOld != NULL);   
+   ASSERT(lpRectOld != NULL);
    ASSERT(pdwStyleOld != NULL);
 
    WIN_WINDOW(pWnd)->GetWindowRect(lpRectOld);
@@ -6658,7 +6658,7 @@ __STATIC void CLASS_DECL_BASE __pre_init_dialog(
 __STATIC void CLASS_DECL_BASE __post_init_dialog(
    ::user::interaction * pWnd, const RECT& rectOld, uint32_t dwStyleOld)
 {
-   // must be hidden to start with      
+   // must be hidden to start with
    if (dwStyleOld & WS_VISIBLE)
       return;
 
@@ -6777,7 +6777,7 @@ CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
 __STATIC void CLASS_DECL_BASE
 __handle_activate(::user::interaction_impl * pWnd, WPARAM nState, ::user::interaction_impl * pWndOther)
 {
-   ASSERT(pWnd != NULL);      
+   ASSERT(pWnd != NULL);
 
    // send WM_ACTIVATETOPLEVEL when top-level parents change
    if (!(WIN_WINDOW(pWnd)->GetStyle() & WS_CHILD))
@@ -6811,7 +6811,7 @@ __handle_set_cursor(::user::interaction_impl * pWnd, UINT nHitTest, UINT nMsg)
       nMsg == WM_RBUTTONDOWN))
    {
       // activate the last active interaction_impl if not active
-      ::user::interaction * pLastActive = WIN_WINDOW(pWnd)->GetTopLevel();      
+      ::user::interaction * pLastActive = WIN_WINDOW(pWnd)->GetTopLevel();
       if (pLastActive != NULL)
          pLastActive = pLastActive->GetLastActivePopup();
       if (pLastActive != NULL &&
@@ -6981,7 +6981,7 @@ LRESULT CALLBACK
 __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
 {
    WNDPROC oldWndProc = (WNDPROC)::GetProp(hWnd, gen_OldWndProc);
-   ASSERT(oldWndProc != NULL);   
+   ASSERT(oldWndProc != NULL);
 
    LRESULT lResult = 0;
    try
@@ -7050,7 +7050,7 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lP
 // like RegisterClass, except will automatically call UnregisterClass
 bool CLASS_DECL_BASE __register_class(WNDCLASS* lpWndClass)
 {
-   WNDCLASS wndcls;      
+   WNDCLASS wndcls;
    if (GetClassInfo(lpWndClass->hInstance, lpWndClass->lpszClassName,
       &wndcls))
    {
@@ -7137,7 +7137,7 @@ namespace metrowin
       //info.bmiHeader.biWidth         = cx;
       //info.bmiHeader.biHeight        = - cy;
       //info.bmiHeader.biPlanes        = 1;
-      //info.bmiHeader.biBitCount      = 32; 
+      //info.bmiHeader.biBitCount      = 32;
       //info.bmiHeader.biCompression   = BI_RGB;
       //info.bmiHeader.biSizeImage     = cx * cy * 4;
 
