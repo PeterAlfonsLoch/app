@@ -141,6 +141,24 @@ bool ifs::ls(const char * pszDir,stringa * pstraPath,stringa * pstraTitle,int64_
 
    }
 
+   if(m_mapdirFolder[strDir].is_null())
+      m_mapdirFolder[strDir] = canew(stringa);
+   if(m_mapdirFolderName[strDir].is_null())
+      m_mapdirFolderName[strDir] = canew(stringa);
+   if(m_mapdirFile[strDir].is_null())
+      m_mapdirFile[strDir] = canew(stringa);
+   if(m_mapdirFileName[strDir].is_null())
+      m_mapdirFileName[strDir] = canew(stringa);
+   if (m_mapdirFileSize[strDir].is_null())
+      m_mapdirFileSize[strDir] = canew(int64_array);
+   if (m_mapdirFolderSize[strDir].is_null())
+      m_mapdirFolderSize[strDir] = canew(int64_array);
+   if(m_mapdirFileDir[strDir].is_null())
+      m_mapdirFileDir[strDir] = canew(bool_array);
+   if(m_mapdirFolderDir[strDir].is_null())
+      m_mapdirFolderDir[strDir] = canew(bool_array);
+
+
    sl.unlock();
 
    //if(!is_dir(strDir))

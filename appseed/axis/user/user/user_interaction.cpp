@@ -758,6 +758,8 @@ namespace user
          catch(...)
          {
 
+            throw simple_exception(::get_thread_app(), "no more a window?");
+
          }
 
          {
@@ -816,6 +818,8 @@ namespace user
          catch(...)
          {
 
+            throw simple_exception(::get_thread_app(), "no more a window?");
+
          }
 
          {
@@ -830,6 +834,8 @@ namespace user
       }
       catch(...)
       {
+
+         throw simple_exception(::get_thread_app(), "no more a window?");
 
       }
 
@@ -952,6 +958,8 @@ namespace user
       }
       catch(...)
       {
+
+         throw simple_exception(::get_thread_app(), "no more a window?");
 
       }
 
@@ -1315,7 +1323,7 @@ namespace user
          if(!m_bMayProDevian && GetParent() == NULL)
          {
 
-            //TRACE("Redraw !m_bMayProDevian");
+            TRACE("Redraw !m_bMayProDevian");
 
             _001RedrawWindow();
 
@@ -3306,7 +3314,7 @@ namespace user
       if(m_bLockWindowUpdate)
       {
 
-         //TRACE("_001UpdateBuffer m_bLockWindowUpdate");
+         TRACE("_001UpdateBuffer m_bLockWindowUpdate");
 
          return;
 
@@ -5671,6 +5679,7 @@ namespace user
 
    sp(::message::base) interaction::get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam)
    {
+
 //      ::user::interaction * pwnd = this;
       sp(::message::base) pbase;
       ::message::e_prototype eprototype = ::message::PrototypeNone;

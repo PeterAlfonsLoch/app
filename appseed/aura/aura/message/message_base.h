@@ -21,10 +21,12 @@ namespace message
       lparam                     m_lparam;
       bool                       m_bConditional;
       bool                       m_bReflect;
+      bool                       m_bDestroyed;
 
       base(sp(::aura::application) papp,class ::signal * psignal = NULL);
       base(sp(::aura::application) papp,::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
       base(const base & base);
+      virtual ~base();
 
 
 

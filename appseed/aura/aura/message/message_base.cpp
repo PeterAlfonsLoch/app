@@ -11,8 +11,10 @@ namespace message
       element(papp),
       signal_details(psignal)
    {
+      m_pwnd = NULL;
       m_lresult = 0;
       m_plresult = &m_lresult;
+      m_bDestroyed = false;
    }
 
    base::base(sp(::aura::application) papp,::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
@@ -21,6 +23,8 @@ namespace message
    {
       m_lresult = 0;
       set(pwnd,uiMessage,wparam,lparam,lresult);
+      m_bDestroyed = false;
+      Application.tellme_destroyed(pwnd, &m_bDestroyed);
    }
 
    base::base(const base & base)
@@ -31,6 +35,19 @@ namespace message
                       m_lparam = base.m_lparam;
                         m_bConditional = base.m_bConditional;
                       m_bReflect = base.m_bReflect;
+                      m_bDestroyed = false;
+                      Application.tellme_destroyed(m_pwnd, &m_bDestroyed);
+   }
+
+   base::~base()
+   {
+
+if(m_pwnd != NULL)
+{
+      Application.tellme_destroyed(m_pwnd, &m_bDestroyed);
+
+}
+
    }
 
    void base::set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)

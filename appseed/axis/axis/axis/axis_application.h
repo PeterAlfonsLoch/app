@@ -53,7 +53,7 @@ namespace axis
 
       inline ::database::server &               dataserver()   { return *(m_spdataserver.m_p); }
 
-
+      virtual void tellme_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell = true);
 
       virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
 

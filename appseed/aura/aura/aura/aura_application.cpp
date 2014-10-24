@@ -17,8 +17,8 @@ extern void * g_pf1;
 
 namespace aura
 {
-   
-   
+
+
    application_signal_details::application_signal_details(sp(application) papp,class ::signal * psignal,e_application_signal esignal):
       element(papp),
       ::signal_details(psignal)
@@ -55,23 +55,23 @@ namespace aura
       {
 
          m_paurasystem           = m_pauraapp->m_paurasystem;
-         
+
          m_paxissystem           = m_pauraapp->m_paxissystem;
-         
+
          m_paxissession          = m_pauraapp->m_paxissession;
-         
+
          m_paxisapp              = m_pauraapp->m_paxisapp;
 
          m_pbasesystem           = m_pauraapp->m_pbasesystem;
-         
+
          m_pbasesession          = m_pauraapp->m_pbasesession;
-         
+
          m_pbaseapp              = m_pauraapp->m_pbaseapp;
 
          m_pcoresystem           = m_pauraapp->m_pcoresystem;
-         
+
          m_pcoreplatform         = m_pauraapp->m_pcoreplatform;
-         
+
          m_pcoreapp              = m_pauraapp->m_pcoreapp;
 
          if(m_pauraapp->m_paurasession == NULL && m_paurasystem != NULL)
@@ -162,6 +162,16 @@ namespace aura
       dumpcontext << "\nm_bHelpMode = " << m_strAppName;
 
       dumpcontext << "\n";
+
+   }
+
+
+   void application::tellme_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell)
+   {
+
+      UNREFERENCED_PARAMETER(pui);
+      UNREFERENCED_PARAMETER(pDestroyed);
+      UNREFERENCED_PARAMETER(bTell);
 
    }
 
@@ -1636,7 +1646,7 @@ namespace aura
 
    bool application::initialize1()
    {
-   
+
 #if defined(WINDOWS)
       g_pf1 = (void *) (uint_ptr) ::str::to_uint64(file_as_string("C:\\ca2\\config\\system\\pf1.txt"));
 #else
@@ -2887,14 +2897,14 @@ namespace aura
    }
 
 #ifdef APPLEOS
-   
+
    string application::dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
    {
-      
+
       throw interface_only_exception(get_app());
-      
+
       return "";
-      
+
    }
 
 #endif
@@ -2905,7 +2915,7 @@ namespace aura
 
       //return get_temp_file_name_template(
       throw interface_only_exception(get_app());
-      
+
       return "";
 
    }
@@ -2915,7 +2925,7 @@ namespace aura
    {
 
       throw interface_only_exception(get_app());
-      
+
       return "";
 
    }

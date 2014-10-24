@@ -1168,18 +1168,24 @@ WINBOOL DestroyWindow(oswindow window)
 
    Window win = window->window();
 
-   xdisplay d(pdisplay);
-
-
    oswindow_data * pdata = (oswindow_data *) (void *) window;
 
    pdata->m_bDestroying = true;
+
+   for(index i = 0; i < pdata->m_bptraTellMeDestroyed.get_count(); i++)
+   {
+
+      *pdata->m_bptraTellMeDestroyed[i] = true;
+
+   }
 
    bool bIs = IsWindow(window);
 
    window->get_user_interaction()->send_message(WM_DESTROY, 0, 0);
 
    window->get_user_interaction()->send_message(WM_NCDESTROY, 0, 0);
+
+   xdisplay d(pdisplay);
 
    XUnmapWindow(pdisplay, win);
 

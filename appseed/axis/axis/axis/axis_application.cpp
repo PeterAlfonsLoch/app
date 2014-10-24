@@ -67,7 +67,7 @@ namespace axis
 
 //      m_pcoreapp                 = NULL;
 
-      
+
 
 
 
@@ -228,7 +228,7 @@ namespace axis
 
    }
 
-   
+
 
    bool application::verb()
    {
@@ -1093,7 +1093,7 @@ namespace axis
 
    int32_t application::application_pre_run()
    {
-   
+
       return ::aura::application::application_pre_run();
 
    }
@@ -1427,7 +1427,7 @@ namespace axis
 
       if(!::aura::application::process_initialize())
          return false;
-      
+
 
       if(is_system())
       {
@@ -1505,7 +1505,7 @@ namespace axis
          return false;
 
 
-      
+
       return true;
 
    }
@@ -1655,7 +1655,22 @@ namespace axis
       return simple_message_box(pwndOwner,pszMessage,fuStyle);
    }
 
+void application::tell_me_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell)
+{
 
+   #ifdef LINUX
+single_lock sl(::oswindow_data::s_pmutex, true);
+   if(bTell)
+   {
+      pui->GetWindow()->get_handle()->m_bptraTellMeDestroyed.add(pDestroyed);
+   }
+   else
+   {
+      pui->GetWindow()->get_handle()->m_bptraTellMeDestroyed.remove(pDestroyed);
+   }
+   #endif
+
+}
 
    string application::get_license_id()
    {
@@ -1716,7 +1731,7 @@ namespace axis
    }
 
 
-   
+
 
    bool application::on_thread_on_idle(::thread_impl * pimpl, LONG lCount)
    {
@@ -2005,7 +2020,7 @@ namespace axis
 
          pbase->m_pwnd->message_handler(pobj);
 
-         
+
       }
       catch(const ::exception::exception & e)
       {

@@ -56,8 +56,12 @@ namespace user
    void interaction_base::_001RedrawWindow()
    {
 
-      if(IsWindow())
+      if(!IsWindow())
+      {
+
          return;
+
+      }
 
       sp(::user::interaction) pui = GetWindow();
 
