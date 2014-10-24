@@ -67,7 +67,9 @@ namespace user
 
                   pui = System.m_framea[l];
 
-                  sl.unlock();
+                  //sl.unlock();
+
+                  pui->_001UpdateBuffer();
 
                   pui->_001UpdateScreen();
 
@@ -100,9 +102,9 @@ namespace user
             //wndpa.remove_at(l);
 
          }
-         if(!sl.m_bAcquired)
+         //if(!sl.m_bAcquired)
          {
-            sl.lock();
+           // sl.lock();
          }
       }
 
