@@ -575,7 +575,7 @@ namespace core
       //   virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle = MB_OK);
 
       virtual void add_document_template(::user::impact_system * ptemplate);
-      virtual void close_all_documents(bool bEndSession,::user::interaction * pwndExcept = NULL);
+      //virtual void close_all_documents(bool bEndSession,::user::interaction * pwndExcept = NULL);
 
       virtual ::user::document * open_document_file(const char * lpszFileName);
 
