@@ -1006,7 +1006,7 @@ namespace sort
       ARRAY & a,
       bool bAsc)
    {
-      typename ARRAY::TYPE t;
+      typename ARRAY::BASE_TYPE t;
       if(bAsc)
       {
          for(index i = 0; i < a.get_size(); i++)
