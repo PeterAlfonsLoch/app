@@ -44,10 +44,10 @@ namespace sockets
    socket::~socket()
    {
 
-      if(&Handler() != NULL)
-      {
-         Handler().remove(this);
-      }
+      //if(&Handler() != NULL)
+      //{
+      //   Handler().remove(this);
+      //}
 
       if (m_socket != INVALID_SOCKET
 #ifdef ENABLE_POOL
@@ -73,30 +73,30 @@ namespace sockets
    {
       if (m_socket == INVALID_SOCKET) // this could happen
       {
-         if(!is_null(Handler()))
-         {
-            log("socket::close", 0, "file descriptor invalid", ::aura::log::level_warning);
-         }
+         //if(!is_null(Handler()))
+         //{
+         //   log("socket::close", 0, "file descriptor invalid", ::aura::log::level_warning);
+         //}
          return;
       }
       int32_t n;
       if ((n = close_socket(m_socket)) == -1)
       {
-         if(!is_null(Handler()))
-         {
-            // failed...
-            log("close", Errno, StrError(Errno), ::aura::log::level_error);
-         }
+         //if(!is_null(Handler()))
+         //{
+         //   // failed...
+         //   log("close", Errno, StrError(Errno), ::aura::log::level_error);
+         //}
       }
-      if(!is_null(Handler()))
-      {
-         Handler().set(m_socket, false, false, false); // remove from fd_set's
-         Handler().AddList(m_socket, LIST_CALLONCONNECT, false);
-         Handler().AddList(m_socket, LIST_DETACH, false);
-         Handler().AddList(m_socket, LIST_TIMEOUT, false);
-         Handler().AddList(m_socket, LIST_RETRY, false);
-         Handler().AddList(m_socket, LIST_CLOSE, false);
-      }
+      //if(!is_null(Handler()))
+      //{
+      //   Handler().set(m_socket, false, false, false); // remove from fd_set's
+      //   Handler().AddList(m_socket, LIST_CALLONCONNECT, false);
+      //   Handler().AddList(m_socket, LIST_DETACH, false);
+      //   Handler().AddList(m_socket, LIST_TIMEOUT, false);
+      //   Handler().AddList(m_socket, LIST_RETRY, false);
+      //   Handler().AddList(m_socket, LIST_CLOSE, false);
+      //}
       m_socket = INVALID_SOCKET;
       //throw n;
    }
