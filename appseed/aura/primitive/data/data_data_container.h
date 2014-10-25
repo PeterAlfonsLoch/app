@@ -75,7 +75,7 @@ namespace data
 
                retry_single_lock rsl2(pdata->data_mutex(), millis(1), millis(1));
 
-               m_spadata(i) = pdata;
+               m_spadata[i] = pdata;
 
                return true;
 
