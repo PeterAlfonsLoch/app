@@ -898,7 +898,7 @@ namespace plugin
 
                         string strCommandLine;
 
-                        strCommandLine = ": app=session session_start=" + strId;
+                        strCommandLine = " : app=" + strId;
 
                         for(int32_t i = 0; i < set.m_propertya.get_count(); i++)
                         {

@@ -1662,6 +1662,8 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
          else
          {
 
+            ::MessageBoxA(NULL, "teste", "teste", MB_OK);
+
             hotplugin::host::host_starter_start_sync(": app=session session_start=" + notinstalled.m_strId + " app_type=" + notinstalled.m_strType + " install locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema,get_app(),NULL);
 
          }

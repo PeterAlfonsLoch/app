@@ -74,7 +74,20 @@ namespace simple_ui
 
       m_stra.add_smallest_tokens(m_strMessage,stra);
 
-      Session.get_main_monitor(rectDesktop);
+      ::user::interaction * puiParent = Session.oprop("plugin_parent").cast < ::user::interaction >();
+
+      if(puiParent != NULL)
+      {
+
+         puiParent->GetWindowRect(rectDesktop);
+
+      }
+      else
+      {
+
+         Session.get_main_monitor(rectDesktop);
+
+      }
 
       SetWindowText(m_strTitle);
 
@@ -110,7 +123,7 @@ namespace simple_ui
 
       rectFontopus.bottom = rectFontopus.top + h;
 
-      if(!create_window_ex(0,NULL,NULL,0,rectFontopus,NULL,"fontopus"))
+      if(!create_window_ex(0,NULL,NULL,0,rectFontopus,puiParent,"fontopus"))
          throw simple_exception(get_app(),"not excepted! Failing Message box!!");
 
       uint32_t uiType = m_uiFlags & MB_TYPEMASK;

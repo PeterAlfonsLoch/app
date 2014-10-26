@@ -96,6 +96,10 @@ namespace install
       m_bPendingStream        = false;
       m_dwLastRestart         = 0;
 
+      m_bPluginDownloaded     = false;
+      m_bPluginTypeTested     = false;
+      m_bNativeLaunch         = false;
+
       m_startca2.m_pplugin = this;
 
       m_startca2.begin();
@@ -193,6 +197,18 @@ namespace install
 
       }
 
+      if(m_phost->m_bInstalling)
+      {
+
+         if(m_bNativeLaunch)
+         {
+
+            m_bNativeLaunch = false;
+
+         }
+
+      }
+
       return m_phost->m_bInstalling;
 
    }
@@ -216,7 +232,17 @@ namespace install
       if(m_bRestartCa2 && m_phost != NULL)
       {
 
-         if(is_rx_tx_ok())
+         if(!m_bNativeLaunch && m_straLinesNativeLaunch.get_count() >= 2 && m_straLinesNativeLaunch[0] == "native_desktop_launcher")
+         {
+
+            m_bNativeLaunch      = true;
+
+            m_bRestartCa2        = false;
+
+            native_launch();
+
+         }
+         else if(is_rx_tx_ok())
          {
 
             m_dwLastOk = get_tick_count();
@@ -347,11 +373,91 @@ namespace install
    }
 
 
+   bool plugin::native_launch()
+   {
+
+      m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
+
+      property_set set(get_app());
+
+      set.parse_url_query(m_straLinesNativeLaunch[1]);
+
+      string strPath = dir::element("stage/x86/app.exe");
+
+      string strCommandLine;
+
+      strCommandLine = " :";
+
+      for(int32_t i = 0; i < set.m_propertya.get_count(); i++)
+      {
+
+         if(!set.m_propertya[i]->get_string().has_char()
+            &&
+            (set.m_propertya[i]->name() == "app"
+            || set.m_propertya[i]->name() == "build_number"
+            || set.m_propertya[i]->name() == "app_type"
+            || set.m_propertya[i]->name() == "locale"
+            || set.m_propertya[i]->name() == "schema"
+            || set.m_propertya[i]->name() == "app"
+            || set.m_propertya[i]->name() == "session_start"
+            || set.m_propertya[i]->name() == "version"
+            )
+            )
+            continue;
+
+         strCommandLine += " ";
+
+         strCommandLine += set.m_propertya[i]->name();
+
+         if(!set.m_propertya[i]->get_string().has_char())
+            continue;
+
+         strCommandLine += "=";
+
+         strCommandLine += set.m_propertya[i]->get_string();
+
+      }
+
+      strPath += strCommandLine;
+
+      bool bTimedOut = false;
+
+      uint32_t dwExitCode = System.process().synch(strPath,SW_SHOW,seconds(8.41115770402),&bTimedOut);
+
+      if(bTimedOut)
+      {
+         
+         ::simple_message_box(NULL," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",MB_ICONINFORMATION | MB_OK);
+         
+         m_phost->m_pbasecomposer->m_strEntryHallText = "***Timeout while trying to start application.";
+
+      }
+      else if(dwExitCode == 0)
+      {
+         
+         //  ::simple_message_box(NULL,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+
+         m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
+
+      }
+      else
+      {
+         
+         ::simple_message_box(NULL,strPath + "\n\nFailed return code : " + ::str::from(dwExitCode),"Error Message",MB_ICONINFORMATION | MB_OK);
+
+         m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
+
+      }
+
+      return true;
+
+   }
+
 
    void plugin::start_ca2()
    {
 
-      if(m_bCa2Login || m_bCa2Logout)
+      if(m_bCa2Login || m_bCa2Logout || m_bNativeLaunch)
          return;
 
       if(!m_bLogged)
@@ -373,6 +479,8 @@ namespace install
          m_bCa2Login = false;
 
          m_bCa2Logout = false;
+
+         m_bNativeLaunch = false;
 
       }
 
@@ -438,10 +546,65 @@ namespace install
          return;
 
       }
+      else if(!m_bPluginTypeTested)
+      {
+
+         if(!m_bPluginDownloaded)
+         {
+
+            string strUrl = m_phost->m_pbasecomposer->m_strPluginUrl;
+
+            property_set set(get_app());
+
+            set["raw_http"] = true;
+
+            for(int32_t iAttempt = 0; iAttempt < 3; iAttempt++)
+            {
+
+               //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
+
+               Application.http().get(strUrl,m_phost->m_pbasecomposer->m_strPluginData,set);
+
+               if(::http::status_succeeded(set["get_status"]))
+                  break;
+
+            }
+
+            if(::http::status_succeeded(set["get_status"]))
+            {
+
+               m_bPluginDownloaded = true;
+
+            }
+
+         }
+
+         
+
+         if(m_bPluginDownloaded && m_phost->m_pbasecomposer->m_strPluginData.has_char())
+         {
+
+            m_bPluginTypeTested = true;
+
+            stringa straSeparator;
+
+            straSeparator.add("\r\n");
+            straSeparator.add("\r");
+            straSeparator.add("\n");
+
+            m_straLinesNativeLaunch.remove_all();
+
+            m_straLinesNativeLaunch.add_smallest_tokens(m_phost->m_pbasecomposer->m_strPluginData,straSeparator,false);
+
+         }
 
 
-      m_phost->m_pbasecomposer->m_strEntryHallText = "";
 
+
+      }
+
+      if(!m_bPluginTypeTested)
+         return;
 
 
       if(System.install().is_installing_ca2())
@@ -464,6 +627,7 @@ namespace install
       }
 
       System.install().update_ca2_installed(true);
+
 
       if(System.install().is_ca2_installed())
       {
@@ -566,7 +730,7 @@ namespace install
 
 
 
-      if (!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !is_installing() && System.install().is_ca2_installed())
+      if(!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
       {
          //DWORD dwTime3 = ::get_tick_count();
 
@@ -821,7 +985,7 @@ namespace install
    void plugin::message_handler(signal_details * pobj)
    {
 
-      if(!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && pobj != NULL && !is_installing() && System.install().is_ca2_installed())
+      if(!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pobj != NULL && !is_installing() && System.install().is_ca2_installed())
       {
 
          ::hotplugin::plugin::message_handler(pobj);
@@ -1062,7 +1226,7 @@ namespace install
 
       bool bOk = ::hotplugin::plugin::SetWindowPos(z, x, y, cx, cy, nFlags);
 
-      if (!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !is_installing() && System.install().is_ca2_installed())
+      if(!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
       {
 
 #ifdef METROWIN

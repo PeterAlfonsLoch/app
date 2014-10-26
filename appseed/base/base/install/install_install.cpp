@@ -1419,6 +1419,7 @@ namespace install
 
    }
 
+   
    bool install::reference_is_file_ok(const char * path1, const char * pszTemplate, const char * pszVersion, const char * pszFormatBuild)
    {
 

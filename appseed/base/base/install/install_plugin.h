@@ -50,6 +50,9 @@ namespace install
       bool                 m_bLogin;
       bool                 m_bCa2Login;
       bool                 m_bCa2Logout;
+      bool                 m_bNativeLaunch;
+      bool                 m_bPluginTypeTested;
+      bool                 m_bPluginDownloaded;
       bool                 m_bRestartCa2;
       bool                 m_bPendingStream;
       uint32_t             m_dwLastOk;
@@ -59,6 +62,7 @@ namespace install
       string               m_strLoginRequestingServer;
 
       ::rect               m_rectSent;
+      stringa              m_straLinesNativeLaunch;
 
 
 
@@ -107,6 +111,8 @@ namespace install
       virtual void on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len);
 
 #endif
+
+      virtual bool native_launch();
 
       virtual bool is_installing();
 

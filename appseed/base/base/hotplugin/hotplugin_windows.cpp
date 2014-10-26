@@ -79,7 +79,6 @@ namespace hotplugin
 
 
       string str(strEntryHallText);
-      
 
       if(str.is_empty())
       {
@@ -90,36 +89,48 @@ namespace hotplugin
 
       }
 
+      bool bStatic = false;
+
+      if(::str::begins_eat(str,"***"))
+      {
+
+         bStatic = true;
+
+      }
 
       SolidBrush brush(Color(184,49,49,49));
 
       pgraphics->FillRectangle(&brush, rectBar.left, rectBar.top, width(rectBar), height(rectBar));
 
-      SolidBrush brushGren(Color(184,77,184,123));
-      
-
-      if(rectDraw.intersect(rectBar,rectBrick))
+      if(!bStatic)
       {
 
-         pgraphics->FillRectangle(&brushGren,rectDraw.left,rectDraw.top,width(rectDraw),height(rectDraw));
+         SolidBrush brushGren(Color(184,77,184,123));
 
-      }
+         if(rectDraw.intersect(rectBar,rectBrick))
+         {
 
-      rectBrick.offset(-rectBar.width(),0);
+            pgraphics->FillRectangle(&brushGren,rectDraw.left,rectDraw.top,width(rectDraw),height(rectDraw));
 
-      if(rectDraw.intersect(rectBar,rectBrick))
-      {
+         }
 
-         pgraphics->FillRectangle(&brushGren,rectDraw.left,rectDraw.top,width(rectDraw),height(rectDraw));
+         rectBrick.offset(-rectBar.width(),0);
 
-      }
+         if(rectDraw.intersect(rectBar,rectBrick))
+         {
 
-      rectBrick.offset(rectBar.width() * 2,0);
+            pgraphics->FillRectangle(&brushGren,rectDraw.left,rectDraw.top,width(rectDraw),height(rectDraw));
 
-      if(rectDraw.intersect(rectBar,rectBrick))
-      {
+         }
 
-         pgraphics->FillRectangle(&brushGren,rectDraw.left,rectDraw.top,width(rectDraw),height(rectDraw));
+         rectBrick.offset(rectBar.width() * 2,0);
+
+         if(rectDraw.intersect(rectBar,rectBrick))
+         {
+
+            pgraphics->FillRectangle(&brushGren,rectDraw.left,rectDraw.top,width(rectDraw),height(rectDraw));
+
+         }
 
       }
 

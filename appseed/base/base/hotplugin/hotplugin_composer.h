@@ -55,6 +55,7 @@ namespace hotplugin
 
       string                                 m_strPluginUrl;
       string                                 m_strPluginHeaders;
+      string                                 m_strPluginData;
 
 
       string                                 m_strHostPluginLocation;
