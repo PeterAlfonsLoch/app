@@ -1325,7 +1325,7 @@ namespace user
          if(!m_bMayProDevian && GetParent() == NULL)
          {
 
-            TRACE("Redraw !m_bMayProDevian");
+            //TRACE("Redraw !m_bMayProDevian");
 
             _001RedrawWindow();
 
