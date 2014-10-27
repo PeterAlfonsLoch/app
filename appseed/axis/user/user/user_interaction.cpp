@@ -3348,7 +3348,7 @@ namespace user
       if(m_bLockWindowUpdate)
       {
 
-         TRACE("_001UpdateBuffer m_bLockWindowUpdate");
+//         TRACE("_001UpdateBuffer m_bLockWindowUpdate");
 
          return;
 

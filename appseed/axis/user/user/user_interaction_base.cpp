@@ -65,12 +65,12 @@ namespace user
 
       sp(::user::interaction) pui = GetWindow();
 
-      TRACE("interaction_base::_001RedrawWindow Is Window set?");
+      //TRACE("interaction_base::_001RedrawWindow Is Window set?");
 
       if(pui.is_set())
       {
 
-         TRACE("!! Yes !!");
+         //TRACE("!! Yes !!");
 
          GetWindow()->_001UpdateBuffer();
 
@@ -80,7 +80,7 @@ namespace user
       else
       {
 
-         TRACE("!!NO!!");
+         TRACE("interaction_base::_001RedrawWindow window is not set.");
 
       }
 
