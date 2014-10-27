@@ -19,6 +19,8 @@ namespace aura
 
       virtual ::visual::cursor * get_default_cursor();
 
+      virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
+
 
    };
 

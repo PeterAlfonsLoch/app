@@ -14,8 +14,6 @@ namespace axis
 
       m_paxissession                = this;
 
-      m_pcoreplatform               = NULL;
-
       m_bMatterFromHttpCache        = m_paxissystem->m_bMatterFromHttpCache;
 
       m_bSystemSynchronizedCursor   = m_paxissystem->m_bSystemSynchronizedCursor;

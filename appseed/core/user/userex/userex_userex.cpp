@@ -135,6 +135,7 @@ namespace userex
 
       // hour (alarm configuration with ease ...
 
+      System.factory().creatable_small < weekday_list_view >();
       System.factory().creatable_small < hour_list_view >();
       System.factory().creatable_small < minute_list_view >();
       System.factory().creatable_small < second_list_view >();

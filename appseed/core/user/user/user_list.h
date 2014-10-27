@@ -802,6 +802,9 @@ namespace user
       index set_cur_sel(index iSel);
       index get_cur_sel();
 
+      void set_cur_sel(const index_array & iaSel);
+      void get_cur_sel(index_array & iaSel);
+
       void _001SetHighlightRange(range & range);
 
       void _001SetView(EView eview);

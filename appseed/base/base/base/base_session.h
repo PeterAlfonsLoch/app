@@ -73,7 +73,6 @@ namespace base
 
 
 
-      virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
 
       
       virtual ::fontopus::fontopus * create_fontopus();

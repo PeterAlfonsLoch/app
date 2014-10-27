@@ -16,8 +16,6 @@ namespace base
 
       m_pbasesession                = this;
 
-      m_pcoreplatform               = NULL;
-
       m_bMatterFromHttpCache        = m_pbasesystem->m_bMatterFromHttpCache;
 
       m_bSystemSynchronizedCursor   = m_pbasesystem->m_bSystemSynchronizedCursor;
@@ -134,17 +132,6 @@ namespace base
       return true;
 
    }
-
-
-   sp(::aura::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext)
-   {
-
-      throw interface_only_exception(this);
-
-      return NULL;
-
-   }
-
 
 
    ::fontopus::user * session::safe_get_user()

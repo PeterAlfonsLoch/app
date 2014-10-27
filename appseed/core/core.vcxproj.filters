@@ -1661,6 +1661,9 @@
     <ClInclude Include="graphics\html\html_form.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
+    <ClInclude Include="user\userex\userex_weekday_list_view.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
@@ -2826,6 +2829,9 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\file_in_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_weekday_list_view.cpp">
+      <Filter>Source Files\user\userex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

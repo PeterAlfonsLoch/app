@@ -82,6 +82,9 @@ namespace sockets
 #ifdef ENABLE_POOL
       m_bEnablePool  = true;
 #endif
+
+      m_timeTimeoutLimit = 30;
+
    }
 
 

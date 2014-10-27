@@ -22,7 +22,6 @@ namespace aura
 
 
 
-      ::core::platform *                                       m_pcoreplatform;
       string_map < sp(::aura::application) >                   m_mapApplication;
 
 

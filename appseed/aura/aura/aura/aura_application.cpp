@@ -72,6 +72,8 @@ namespace aura
 
          m_pcoreplatform         = m_pauraapp->m_pcoreplatform;
 
+         m_pplatform             = m_pauraapp->m_pplatform;
+
          m_pcoreapp              = m_pauraapp->m_pcoreapp;
 
          if(m_pauraapp->m_paurasession == NULL && m_paurasystem != NULL)

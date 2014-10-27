@@ -19,6 +19,7 @@ namespace aura
       m_pcoreapp        = NULL;
       m_pcoresystem     = NULL;
       m_pcoreplatform   = NULL;
+      m_pplatform       = NULL;
 
    }
 

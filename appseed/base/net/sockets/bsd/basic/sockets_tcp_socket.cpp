@@ -283,11 +283,9 @@ void ssl_sigpipe_handle( int x );
             ::net::address local;
             if(!open(ad, local))
                return false;
-            m_strHost = host;
             return true;
          }
          m_resolver_id = Resolve6(host, port);
-         m_strHost = host;
          return true;
       }
       if (!Handler().ResolverEnabled() || Session.sockets().net().isipv4(host) )
@@ -300,15 +298,12 @@ void ssl_sigpipe_handle( int x );
          }
          ::net::address ad(l, port);
          ::net::address local;
-         m_strHost = host;
          if(!open(ad, local))
             return false;
-         m_strHost = host;
          return true;
       }
       // resolve using async resolver thread
       m_resolver_id = Resolve(host, port);
-      m_strHost = host;
       return true;
    }
 

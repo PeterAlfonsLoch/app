@@ -16,6 +16,8 @@ namespace core
 
       m_pbasesession->m_pcoreplatform     = this;
 
+      m_pbasesession->m_pplatform         = this;
+
       m_paxissystem                       = papp->m_paxissystem;
 
       m_pbasesystem                       = papp->m_pbasesystem;
@@ -30,7 +32,7 @@ namespace core
 
       m_pcoreplatform                     = this;
 
-      m_pbasesession->m_pcoreplatform     = this;
+      m_pplatform                         = this;
 
       m_pnaturedocument          = NULL;
       m_pplatformdocument        = NULL;
@@ -705,6 +707,8 @@ namespace core
          }
 
       }
+
+      Session.m_appptra.add(papp);
 
       return papp;
 
@@ -1994,6 +1998,8 @@ namespace core
       pgenapp->m_pcoresystem = &System;
 
       pgenapp->m_pcoreplatform = m_pcoreplatform;
+
+      pgenapp->m_pplatform = m_pplatform;
 
 #ifdef WINDOWS
 

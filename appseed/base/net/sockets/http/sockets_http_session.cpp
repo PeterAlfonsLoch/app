@@ -27,7 +27,6 @@ namespace sockets
       m_phandler                    = phandler;
 
       m_strProtocol                 = protocol,
-      m_strHost                     = host;
       m_host                        = host;
 
       inattr(__id(http_protocol))   = protocol;

@@ -13,8 +13,6 @@ namespace aura
 
       m_paurasession    = this;
 
-      m_pcoreplatform   = NULL;
-
       m_bMatterFromHttpCache = m_paurasystem->m_bMatterFromHttpCache;
 
 #ifdef WINDOWS
@@ -83,9 +81,7 @@ namespace aura
    sp(::aura::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext)
    {
 
-      throw interface_only_exception(this);
-
-      return NULL;
+      return m_pplatform->start_application(pszType,pszAppId,pcreatecontext);
 
    }
 

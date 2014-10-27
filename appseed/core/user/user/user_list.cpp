@@ -5221,6 +5221,19 @@ namespace user
       return iOld;
    }
 
+   void list::set_cur_sel(const index_array & iaSel)
+   {
+      m_rangeSelection.clear();
+      for(index i = 0; i < iaSel.get_count(); i++)
+      {
+         item_range itemrange;
+         itemrange.set_lower_bound(iaSel[i]);
+         itemrange.set_upper_bound(iaSel[i]);
+         m_rangeSelection.add_item(itemrange);
+      }
+      
+   }
+
    index list::get_cur_sel()
    {
       if(m_rangeSelection.get_item_count() != 1)
@@ -5231,6 +5244,24 @@ namespace user
    }
 
 
+   void list::get_cur_sel(index_array & iaSel)
+   {
+      
+      for(index i = 0; i < m_rangeSelection.get_item_count(); i++)
+      {
+
+         for(index iItem = m_rangeSelection.ItemAt(i).get_lower_bound(); iItem <= m_rangeSelection.ItemAt(i).get_upper_bound(); iItem++)
+         {
+
+            iaSel.add_unique(iItem);
+
+         }
+
+      }
+
+   }
+
+   
    ::count list::_001GetGroupItemCount(index iGroup)
    {
       UNREFERENCED_PARAMETER(iGroup);

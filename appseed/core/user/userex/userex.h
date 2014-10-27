@@ -34,6 +34,7 @@ namespace filemanager
 
 #include "userex_split_view.h"
 
+#include "userex_weekday_list_view.h"
 #include "userex_hour_list_view.h"
 #include "userex_minute_list_view.h"
 #include "userex_second_list_view.h"

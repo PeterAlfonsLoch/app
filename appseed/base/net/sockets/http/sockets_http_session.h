@@ -16,7 +16,6 @@
 
          sp(::sockets::base_socket_handler)  m_phandler;
          string                              m_strProtocol;
-         string                              m_strHost;
          bool                                m_bRequestComplete;
          
 

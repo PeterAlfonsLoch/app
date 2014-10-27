@@ -822,6 +822,7 @@ retry:
          }
 
          psession->m_host  =System.url().get_server(pszRequest);
+         psession->m_strHost  =System.url().get_server(pszRequest);
          psession->m_request.m_propertysetHeader[__id(host)] = psession->m_host;
 
 
@@ -869,7 +870,7 @@ retry:
          while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete && (::get_thread() == NULL || ::get_thread()->m_bRun))
          {
             dw1 = ::get_tick_count();
-            psession->m_phandler->select(240, 0);
+            psession->m_phandler->select(1, 0);
             keeplive.keep_alive();
             if(psession->m_estatus == ::sockets::socket::status_connection_timed_out)
             {

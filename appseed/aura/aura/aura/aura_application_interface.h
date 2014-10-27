@@ -14,6 +14,7 @@ namespace aura
 
       ::aura::system *                                m_paurasystem;
       ::aura::session *                               m_paurasession;
+      ::aura::platform_interface *                    m_pplatform;
       :: axis :: application *                        m_paxisapp; // can be used only from axis and upper
       :: axis ::system *                              m_paxissystem; // can be used only from axis and upper
       :: axis ::session *                             m_paxissession; // can be used only from axis and upper
@@ -23,6 +24,8 @@ namespace aura
       ::core::application *                           m_pcoreapp; // can be used only from core and upper
       ::core::system *                                m_pcoresystem; // can be used only from core and upper
       ::core::platform *                              m_pcoreplatform; // can be used only from core and upper
+      
+
 
 
       application_interface();

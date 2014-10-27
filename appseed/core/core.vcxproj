@@ -1796,6 +1796,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="graphics\html\html_form.cpp" />
+    <ClCompile Include="user\userex\userex_weekday_list_view.cpp" />
     <ClCompile Include="user\user\user_orto_button.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_appearance.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_constants.cpp" />
@@ -2245,6 +2246,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\userex\userex_message_box.h" />
     <ClInclude Include="user\userex\userex_userex.h" />
     <ClInclude Include="user\userex\userex_wait_message_dialog.h" />
+    <ClInclude Include="user\userex\userex_weekday_list_view.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\user_00.h" />
     <ClInclude Include="user\user\user_bitmap_button.h" />
