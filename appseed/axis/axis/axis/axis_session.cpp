@@ -20,6 +20,10 @@ namespace axis
 
       m_bSystemSynchronizedScreen   = m_paxissystem->m_bSystemSynchronizedScreen;
 
+      m_bShouldInitializeGTwf       = m_paxissystem->m_bShouldInitializeGTwf;
+
+      m_bEnableOnDemandDrawing      = m_paxissystem->m_bEnableOnDemandDrawing;
+
       m_iMainMonitor                = -1;
 
 #ifdef WINDOWS

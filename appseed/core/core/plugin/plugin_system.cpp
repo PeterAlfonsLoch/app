@@ -34,6 +34,8 @@ namespace plugin
 
       m_bShouldInitializeGTwf    = false;
 
+      m_bEnableOnDemandDrawing   = false;
+
       //m_bRun = true;
 
    }

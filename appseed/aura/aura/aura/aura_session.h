@@ -28,6 +28,8 @@ namespace aura
 
       application_ptra                                         m_appptra;
       sp(::aura::savings)                                      m_psavings;
+
+
  
 
 

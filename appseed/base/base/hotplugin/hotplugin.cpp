@@ -46,6 +46,8 @@ namespace hotplugin
 
          g_pbasesystem->m_bShouldInitializeGTwf = false;
 
+         g_pbasesystem->m_bEnableOnDemandDrawing = false;
+
          g_pbasesystem->construct(NULL);
 
 #ifdef WINDOWS

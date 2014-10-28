@@ -93,6 +93,7 @@ namespace axis
 
 
       m_bShouldInitializeGTwf = true;
+      m_bEnableOnDemandDrawing = true;
       m_bInitializeProDevianMode = true;
 
       m_pinitmaindata = NULL;

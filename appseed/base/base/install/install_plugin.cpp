@@ -488,8 +488,16 @@ namespace install
       if (!m_phost->m_bOk || !m_bLogged)
          return;
 
+      bool bJustLoggedIn = false;
 
-      m_bLogin = false;
+      if(m_bLogin)
+      {
+
+         bJustLoggedIn = true;
+
+         m_bLogin = false;
+
+      }
 
       string strScript = System.url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
@@ -546,7 +554,18 @@ namespace install
          return;
 
       }
-      else if(!m_bPluginTypeTested)
+
+
+      if(bJustLoggedIn)
+      {
+
+         m_phost->m_pbasecomposer->m_strEntryHallText.Empty(); // It was Checking Credentials... no more checking credentials.
+
+      }
+
+      
+
+      if(!m_bPluginTypeTested)
       {
 
          if(!m_bPluginDownloaded)

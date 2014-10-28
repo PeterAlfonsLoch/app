@@ -82,8 +82,6 @@ namespace base
       m_bBaseInitializeInstanceResult  = false;
 
 
-      m_bShouldInitializeGTwf = true;
-      m_bInitializeProDevianMode = true;
 
       m_pinitmaindata = NULL;
 

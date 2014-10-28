@@ -433,6 +433,8 @@ namespace hotplugin
 
          pbasesystem->m_bShouldInitializeGTwf = false;
 
+         pbasesystem->m_bEnableOnDemandDrawing = false;
+
          pbasesystem->construct(NULL);
 
 #ifdef WINDOWS

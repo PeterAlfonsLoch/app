@@ -766,6 +766,9 @@ namespace user
       if(System.get_twf() != NULL && System.get_twf()->m_bProDevianMode && GetWindow()->m_bMayProDevian)
          return true;
 
+      if(!Session.m_bEnableOnDemandDrawing)
+         return true;
+
       _001RedrawWindow();
 
       return true;

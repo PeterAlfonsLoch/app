@@ -3940,6 +3940,9 @@ namespace windows
    bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
    {
 
+      if(!Session.m_bEnableOnDemandDrawing)
+         return true;
+
       if(m_pui->m_bMayProDevian)
       {
 
