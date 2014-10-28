@@ -68,10 +68,10 @@ namespace dynamic_source
       m_mutexImageSize(papp)
    {
 
-      m_pcache                   = new script_cache(papp);
-      m_pcache->m_pmanager       = this;
-      m_pcompiler                = new script_compiler(papp);
-      m_pcompiler->m_pmanager    = this;
+      m_bCompiler = true;
+      m_pcompiler = NULL;
+      m_pcache = NULL;
+
       m_dwBuildTimeWindow        = 84;
       m_dwBuildTimeRandomWindow  = 77;
       m_iDatabaseWaitTimeOut     = 15 * 1000 * 1000 * 60;
@@ -125,7 +125,16 @@ namespace dynamic_source
 
       m_spqueue->create_message_queue("::core::netnode::ca2");
 
-      m_pcompiler->initialize();
+      if(m_bCompiler)
+      {
+
+         m_pcache                   = new script_cache(get_app());
+         m_pcache->m_pmanager       = this;
+         m_pcompiler                = new script_compiler(get_app());
+         m_pcompiler->m_pmanager    = this;
+         m_pcompiler->initialize();
+
+      }
 
 #ifdef WINDOWS
 
@@ -163,6 +172,9 @@ namespace dynamic_source
 
    script_instance * script_manager::get(const string & strName)
    {
+
+      if(m_pcache == NULL)
+         return NULL;
 
       return m_pcache->create_instance(strName);
 

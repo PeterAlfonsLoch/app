@@ -32,7 +32,7 @@ namespace user
 
 
       virtual void clear();
-      virtual void layout() = 0;
+      virtual void layout_menu(point pt) = 0;
 
 
       virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, sp(menu_base) * pthis);

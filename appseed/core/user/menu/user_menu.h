@@ -54,7 +54,7 @@ namespace user
 
       menu_item * GetSubMenu(int32_t i);
 
-      void layout();
+      void layout_menu(point pt);
 
       virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, sp(::user::menu_base) * pthis);
 

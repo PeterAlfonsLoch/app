@@ -105,30 +105,25 @@ namespace user
 
       //System.add_frame(this);
 
-      layout();
+      layout_menu(point(x, y));
 
-   //   ModifyStyle(
-
-      point pt(x, y);
-
-      if(GetParent() != NULL)
-      {
-         GetParent()->ScreenToClient(&pt);
-      }
-
-      m_ptTrack = pt;
-
-      SetWindowPos(ZORDER_TOPMOST, pt.x, pt.y, m_size.cx, m_size.cy, SWP_FRAMECHANGED | SWP_SHOWWINDOW);
-
-      SetTimer(BaseWndMenuCmdUi, 100, NULL);
 
       //set_capture();
 
       return true;
    }
 
-   void menu::layout()
+   void menu::layout_menu(point pt)
    {
+
+      if(GetParent() != NULL)
+      {
+
+         GetParent()->ScreenToClient(&pt);
+
+      }
+
+      m_ptTrack = pt;
 
       ::draw2d::memory_graphics pdc(allocer());
 
@@ -204,11 +199,11 @@ namespace user
       m_buttonClose.SetWindowPos(0, 0, 0, 0, 0, SWP_NOSIZE);
       //m_buttonClose.ShowWindow(SW_NORMAL);
 
+      SetWindowPos(ZORDER_TOPMOST,pt.x,pt.y,m_size.cx,m_size.cy,SWP_FRAMECHANGED | SWP_SHOWWINDOW);
+
+      SetTimer(BaseWndMenuCmdUi,100,NULL);
 
 
-
-
-      SetWindowPos(0, 0, 0, m_size.cx, m_size.cy, SWP_FRAMECHANGED | SWP_NOZORDER | SWP_NOMOVE);
    }
 
 

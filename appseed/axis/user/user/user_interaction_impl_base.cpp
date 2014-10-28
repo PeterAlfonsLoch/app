@@ -1123,14 +1123,28 @@ namespace user
    void interaction_impl_base::mouse_hover_add(::user::interaction * pinterface)
    {
 
-      get_wnd()->mouse_hover_add(pinterface);
+      ::user::interaction * pui = get_wnd();
+
+      if(pui != NULL)
+      {
+
+         pui->mouse_hover_add(pinterface);
+
+      }
 
    }
 
    void interaction_impl_base::mouse_hover_remove(::user::interaction * pinterface)
    {
+      
+      ::user::interaction * pui = get_wnd();
 
-      get_wnd()->mouse_hover_remove(pinterface);
+      if(pui != NULL)
+      {
+
+         pui->mouse_hover_remove(pinterface);
+
+      }
 
    }
 

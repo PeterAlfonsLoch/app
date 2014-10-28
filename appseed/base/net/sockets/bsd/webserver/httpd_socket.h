@@ -47,6 +47,10 @@ namespace sockets
       ~httpd_socket();
 
 
+
+      virtual bool read_file(const char * lpcsz,smart_pointer_array < int_array > * prangea = NULL,const char * pszContentType = NULL);
+
+
    protected:
       httpd_socket(const httpd_socket& s);
       /** Decode and send a base64-encoded string. 
@@ -59,7 +63,7 @@ namespace sockets
    
       virtual void InitSSLServer();
 
-
+      
    
    private:
       httpd_socket& operator=(const httpd_socket& s);

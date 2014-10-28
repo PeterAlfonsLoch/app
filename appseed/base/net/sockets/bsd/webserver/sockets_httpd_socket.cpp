@@ -286,6 +286,215 @@ namespace sockets
    }
 
 
+   bool httpd_socket::read_file(const char * lpcsz,smart_pointer_array < int_array > * prangea,const char * pszContentType)
+   {
+      string strExtension = System.file().extension(lpcsz);
+      string str = strExtension;
+      str.make_lower();
+      string strContentType(pszContentType);
+
+      string strName(lpcsz);
+
+      if(str::ends_ci(strName,"03 Coisa De Acender - Se..... - Djavan.mp3"))
+      {
+         printf(strName);
+      }
+
+      if(outheader(__id(content_type)).get_string().has_char())
+      {
+      }
+      else if(strContentType.has_char() && strContentType.CompareNoCase("unknown") != 0)
+      {
+         outheader(__id(content_type)) = strContentType;
+      }
+      else
+      {
+
+         outheader(__id(content_type)) = get_file_extension_mime_type(strExtension);
+
+      }
+
+      if(strExtension == "ttf")
+      {
+         outheader("access-control-allow-origin") = "*";
+      }
+      else if(strExtension == "otf")
+      {
+         outheader("access-control-allow-origin") = "*";
+      }
+      else if(strExtension == "woff")
+      {
+         outheader("access-control-allow-origin") = "*";
+      }
+
+
+      if(!Application.file().exists(lpcsz))
+      {
+         outattr(__id(http_status_code)) = 404;
+         outattr(__id(http_status)) = "Not Found";
+         return false;
+      }
+      if(prangea == NULL || prangea->get_count() == 0)
+      {
+         if(::str::begins_ci(strContentType,"audio/"))
+         {
+            if(!System.compress().ungz(response().ostream(),lpcsz))
+            {
+               ::file::binary_buffer_sp spfile(allocer());
+               if(!spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none))
+               {
+                  return false;
+               }
+               response().ostream().transfer_from(*spfile);
+            }
+         }
+         else
+         {
+            ::file::binary_buffer_sp spfile(allocer());
+            try
+            {
+               if(!spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none))
+               {
+                  return false;
+               }
+            }
+            catch(...)
+            {
+               return false;
+            }
+
+            response().ostream().transfer_from(*spfile);
+         }
+      }
+      else
+      {
+         ::file::binary_buffer_sp spfile(allocer());
+         try
+         {
+            if(!spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none))
+            {
+               return false;
+            }
+         }
+         catch(...)
+         {
+            return false;
+         }
+         int32_t iLen = Application.file().length(lpcsz);
+         if(prangea->get_count() > 1)
+         {
+            primitive::memory_size uiTotal = 0;
+            primitive::memory mem;
+            mem.allocate(128 * 1024 * 1024);
+            for(int32_t i = 0; i < prangea->get_count(); i++)
+            {
+               int32_t iStart = prangea->element_at(i)->element_at(0);
+               int32_t iEnd = prangea->element_at(i)->element_at(1);
+               if(iStart >= iLen)
+                  continue;
+               // iEnd > iLen is not verified because file may be growing
+               spfile->seek(iStart,::file::seek_begin);
+               primitive::memory_size uiRead;
+               ::file::memory_buffer memfile(get_app());
+               primitive::memory_size iPos = iStart;
+               if(iEnd >= iStart)
+               {
+               }
+               else if(iStart > 0)
+               {
+                  iEnd = iLen - 1;
+               }
+               else
+               {
+                  continue;
+               }
+               response().ostream() << "--THIS_STRING_SEPARATES\r\n\r\n";
+               response().ostream() << "Content-range: bytes " + ::str::from(iStart) + "-" + ::str::from(iEnd) + "/" + ::str::from(iLen) + "\r\n";
+               response().ostream() << "Content-Transfer-Encoding: base64";
+               response().ostream() << "\r\n";
+               while(true)
+               {
+                  if(iEnd >= iStart)
+                  {
+                     uiRead = MIN(mem.get_size(),(::primitive::memory_size) (iEnd - iPos + 1));
+                  }
+                  else
+                  {
+                     uiRead = mem.get_size();
+                  }
+                  uiRead = spfile->read(mem.get_data(),uiRead);
+                  uiTotal += uiRead;
+                  if(uiRead == 0)
+                     break;
+                  memfile.write(mem.get_data(),uiRead);
+                  iPos += uiRead;
+                  if(iPos >= spfile->get_length())
+                     break;
+               }
+               response().ostream() << System.base64().encode(*memfile.get_memory());
+            }
+            response().ostream() << "--THIS_STRING_SEPARATES--\r\n\r\n";
+            outheader(__id(content_type)) = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";
+         }
+         else
+         {
+            primitive::memory_size uiTotal = 0;
+            primitive::memory mem;
+            mem.allocate(128 * 1024 * 1024);
+            int32_t iStart = prangea->element_at(0)->element_at(0);
+            int32_t iEnd = prangea->element_at(0)->element_at(1);
+            if(iStart < iLen)
+            {
+               // iEnd > iLen is not verified because file may be growing
+               spfile->seek(iStart,::file::seek_begin);
+               primitive::memory_size uiRead;
+               ::file::memory_buffer memfile(get_app());
+               primitive::memory_size iPos = iStart;
+               if(iEnd >= iStart)
+               {
+               }
+               else if(iStart > 0)
+               {
+                  iEnd = iLen - 1;
+               }
+               while(true)
+               {
+                  if(iEnd != -1 && iEnd >= iStart)
+                  {
+                     uiRead = MIN(mem.get_size(),(::primitive::memory_size) (iEnd - iPos + 1));
+                  }
+                  else
+                  {
+                     uiRead = mem.get_size();
+                  }
+                  uiRead = spfile->read(mem.get_data(),uiRead);
+                  uiTotal += uiRead;
+                  if(uiRead == 0)
+                     break;
+                  response().file().write(mem.get_data(),uiRead);
+                  iPos += uiRead;
+                  if(iPos >= spfile->get_length())
+                     break;
+               }
+            }
+            outattr("http_status_code") = 206;
+            outattr("http_status") = "Partial Content";
+            if(iEnd == -1)
+            {
+               outheader("Content-range") = "bytes " + ::str::from(iStart) + "-" + ::str::from(iEnd) + "/*";
+            }
+            else
+            {
+               outheader("Content-range") = "bytes " + ::str::from(iStart) + "-" + ::str::from(iEnd) + "/" + ::str::from(iLen);
+            }
+
+         }
+         //      brk1:;
+      }
+      return true;
+   }
+
+
 } // namespace sockets
 
 

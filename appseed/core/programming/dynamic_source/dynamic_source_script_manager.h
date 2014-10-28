@@ -149,6 +149,9 @@ namespace dynamic_source
       string                                    m_strSeed;
 
 
+      bool                                      m_bCompiler;
+
+
       script_manager(sp(::aura::application) papp);
       ~script_manager();
 

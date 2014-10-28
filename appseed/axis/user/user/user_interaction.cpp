@@ -1105,6 +1105,39 @@ namespace user
 
       m_spmutex = canew(::mutex(get_app()));
 
+      try
+      {
+         if(GetParent() != NULL)
+         {
+
+            sp(place_holder) pholder = GetParent();
+
+            if(pholder.is_set())
+            {
+
+               // A Copy Paste error (the commented out code below)?
+               //single_lock sl(puiParent->m_pauraapp->m_pmutex,TRUE);
+               //single_lock sl2(m_pauraapp->m_pmutex,TRUE);
+
+               if(!pholder->is_holding(this))
+               {
+
+                  pholder->hold(this);
+
+               }
+
+            }
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+
    }
 
 
@@ -3470,37 +3503,6 @@ namespace user
       }
       catch(...)
       {
-      }
-
-      try
-      {
-         if(puiParent != NULL)
-         {
-
-            sp(place_holder) pholder = puiParent;
-
-            if(pholder.is_set())
-            {
-
-               // A Copy Paste error (the commented out code below)?
-               //single_lock sl(puiParent->m_pauraapp->m_pmutex,TRUE);
-               //single_lock sl2(m_pauraapp->m_pmutex,TRUE);
-
-               if(!pholder->is_holding(this))
-               {
-
-                  pholder->hold(this);
-
-               }
-
-            }
-
-         }
-
-      }
-      catch(...)
-      {
-
       }
 
    }

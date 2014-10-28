@@ -1123,7 +1123,7 @@ retry:
 
 
 
-   ::sockets::http_client_socket * system::get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set)
+   sp(::sockets::http_client_socket) system::get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set)
    {
 #ifdef BSD_STYLE_SOCKETS
 retry:
@@ -1241,7 +1241,7 @@ retry:
       }
 
 
-      ::sockets::http_client_socket * psocket;
+      sp(::sockets::http_client_socket) psocket;
 
       bool bPost;
       bool bPut;
@@ -1249,23 +1249,23 @@ retry:
       {
          bPost = false;
          bPut = true;
-         psocket = new ::sockets::http_put_socket(handler, strUrl);
-         dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].cast < ::file::stream_buffer >();
+         psocket = canew(::sockets::http_put_socket(handler, strUrl));
+         dynamic_cast < ::sockets::http_put_socket * > (psocket.m_p)->m_file = set["put"].cast < ::file::stream_buffer >();
          psocket->m_emethod = ::sockets::http_method_put;
       }
       else if (set["post"].propset().m_propertya.get_count() > 0)
       {
          bPost = true;
          bPut = false;
-         psocket = new ::sockets::http_post_socket(handler, strUrl);
-         dynamic_cast < ::sockets::http_post_socket * > (psocket)->m_fields = set["post"].propset();
+         psocket = canew(::sockets::http_post_socket(handler, strUrl));
+         dynamic_cast < ::sockets::http_post_socket * > (psocket.m_p)->m_fields = set["post"].propset();
          psocket->m_emethod = ::sockets::http_method_post;
       }
       else
       {
          bPost = false;
          bPut = false;
-         psocket = new ::http::get_socket(handler, strUrl);
+         psocket = canew(::http::get_socket(handler, strUrl));
          psocket->m_emethod = ::sockets::string_http_method(set.lookup(__id(http_method), "GET"));
       }
 

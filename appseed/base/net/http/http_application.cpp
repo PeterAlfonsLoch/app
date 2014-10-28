@@ -53,7 +53,7 @@ namespace http
 
    }
 
-   ::sockets::http_client_socket * application::get(::sockets::socket_handler & handler,  const char * pszUrl, property_set & set)
+   sp(::sockets::http_client_socket) application::get(::sockets::socket_handler & handler,const char * pszUrl,property_set & set)
    {
 
       return System.http().get(handler, pszUrl, process_set(set, pszUrl));
