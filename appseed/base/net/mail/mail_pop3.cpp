@@ -35,10 +35,10 @@ namespace mail
       }
       m_psocket->open(::net::address(get_host(), (port_t) iPort));
       m_handler.add(m_psocket);
-      m_handler.select(1,0);
+      m_handler.select(240,0);
       while(m_bRun && m_psocket->m_estate != pop3_socket::state_finished)
       {
-         m_handler.select(1,0);
+         m_handler.select(240,0);
       }
       m_bRun = false;
       m_evFinish.SetEvent();

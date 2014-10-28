@@ -67,7 +67,7 @@ namespace mail
             m_estate = state_auth_2;
             EnableSSL();
             OnSSLConnect();
-            //Handler().Select(1, 0);
+            //Handler().Select(240, 0);
    /*         if(GetOutputLength())
                OnWrite();
             if(IsReconnect())

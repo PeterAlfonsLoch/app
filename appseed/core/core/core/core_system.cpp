@@ -826,10 +826,10 @@ namespace core
       //s.SetLineProtocol(false);
       s.SetFilename((const char *) filename);
       h.add(&s);
-      h.Select(1,0);
+      h.Select(240,0);
       while (h.get_count())
       {
-      h.Select(1,0);
+      h.Select(240,0);
       }
       bool bOk = s.Complete();
       if(!s.m_strHeaderLocation.is_empty())
