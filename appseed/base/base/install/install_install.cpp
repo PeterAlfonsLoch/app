@@ -392,7 +392,7 @@ namespace install
       else
       {
 
-         if(m_strVersion == CA2_BASIS)
+         if(m_strVersion == "basis")
          {
 
             strVersion = "basis";
@@ -851,7 +851,7 @@ namespace install
 
       sp(::xml::node) lpnodeVersion;
 
-      if(m_strVersion == CA2_BASIS)
+      if(m_strVersion == "basis")
       {
 
          lpnodeVersion = doc.get_root()->get_child("basis");
@@ -867,7 +867,7 @@ namespace install
       if (lpnodeVersion == NULL)
       {
 
-         if(m_strVersion == CA2_BASIS)
+         if(m_strVersion == "basis")
          {
 
             lpnodeVersion = doc.get_root()->add_child("basis");
@@ -983,7 +983,7 @@ namespace install
       if (string(pszVersion).is_empty())
       {
 
-         if(m_strVersion == CA2_BASIS)
+         if(m_strVersion == "basis")
          {
 
             pszVersion = "basis";
