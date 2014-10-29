@@ -30,7 +30,10 @@ namespace sockets
    {
 
       if(m_splogger.is_null())
+      {
+         TRACE("%s - %s [%d]", strUser, strSystem, iError);
          return;
+      }
 
       m_splogger->log(this, psocket, strUser, iError, strSystem, elevel);
 
