@@ -755,7 +755,8 @@ namespace install
 
          //TRACE("eval1 %d",dwTime3 - dwTime1);
 
-         if(ensure_tx(WM_APP+WM_USER, (void *) &lprect, sizeof(lprect)))
+         //if(ensure_tx(::hotplugin::message_paint, (void *) &lprect, sizeof(lprect)))
+         if(ensure_tx(WM_APP+WM_USER,(void *)&lprect,sizeof(lprect)))
          {
 
             //DWORD dwTime5 = ::get_tick_count();
@@ -1245,48 +1246,6 @@ namespace install
 
       bool bOk = ::hotplugin::plugin::SetWindowPos(z, x, y, cx, cy, nFlags);
 
-      if(!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
-      {
-
-#ifdef METROWIN
-
-         throw "todo";
-
-#else
-
-         ::rect rect;
-
-         rect.left = x;
-         rect.top = y;
-         rect.right = x + cx;
-         rect.bottom = y + cy;
-
-         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectSent != rect)
-         {
-
-            m_phost->m_pbasecomposer->m_bRectSent = true;
-
-            m_rectSent = rect;
-
-            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rect,sizeof(RECT)))
-            {
-               
-               m_phost->m_pbasecomposer->m_bRectSent = false;
-
-            }
-
-         }
-         else
-         {
-
-            TRACE("probably very healthly ignoring install::plugin::SetWindowPos");
-
-         }
-
-#endif
-
-      }
-
       return bOk;
 
    }
@@ -1489,6 +1448,47 @@ restart:
          }
 
       }
+
+      if(!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
+      {
+
+#ifdef METROWIN
+
+         throw "todo";
+
+#else
+
+         
+         ::rect rect;
+
+         GetWindowRect(rect);
+
+         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectSent != rect)
+         {
+
+            m_phost->m_pbasecomposer->m_bRectSent = true;
+
+            m_rectSent = rect;
+
+            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rect,sizeof(RECT)))
+            {
+
+               m_phost->m_pbasecomposer->m_bRectSent = false;
+
+            }
+
+         }
+         else
+         {
+
+            // TRACE("probably very healthly ignoring install::plugin::SetWindowPos");
+
+         }
+
+#endif
+
+      }
+
 
    }
 

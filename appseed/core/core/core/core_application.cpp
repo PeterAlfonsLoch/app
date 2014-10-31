@@ -2778,7 +2778,8 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
          puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
       }
 
-      if(puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoreplatform != NULL && !pcreatecontext->m_bClientOnly
+      //if(puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoreplatform != NULL && !pcreatecontext->m_bClientOnly
+      if(puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoreplatform != NULL
          && !pcreatecontext->m_bOuterPopupAlertLike && m_pbasesession->m_pcoreplatform != this)
       {
          puiParent = plat(this).get_request_parent_ui(pinteraction,pcreatecontext);

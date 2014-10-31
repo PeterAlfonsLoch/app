@@ -710,6 +710,21 @@ throw todo(get_thread_app());
 
       }
 
+      try
+      {
+
+         if(m_pplugin != NULL)
+         {
+
+            m_pplugin->SetWindowPos(z,x,y,cx,cy,nFlags);
+
+         }
+
+      }
+      catch(...)
+      {
+      }
+
       return bOk;
 
    }
