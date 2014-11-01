@@ -1610,7 +1610,7 @@ namespace core
 
                      strPath = System.dir().ca2module("app");
 
-                     string strBuildNumber = System.install().m_strVersion;
+                     string strBuildNumber = "latest";
 
 #ifdef WINDOWS
 

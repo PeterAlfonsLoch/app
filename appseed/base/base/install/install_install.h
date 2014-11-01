@@ -43,6 +43,7 @@ namespace install
 
 
       string               m_strVersion;
+      string_to_string     m_strVersionLatestBuildNumber;
 
 
 

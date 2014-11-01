@@ -885,7 +885,14 @@ namespace install
       if(strBuildNumber == "latest")
       {
 
-         strBuildNumber = get_latest_build_number(m_strVersion);
+         if(!m_strVersionLatestBuildNumber.Lookup(m_strVersion,strBuildNumber))
+         {
+
+            strBuildNumber = get_latest_build_number(m_strVersion);
+
+            m_strVersionLatestBuildNumber.set_at(m_strVersion,strBuildNumber);
+
+         }
 
       }
 
