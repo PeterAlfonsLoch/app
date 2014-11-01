@@ -847,8 +847,6 @@ namespace install
 
       }
 
-      string strBuild(pszBuild);
-
       sp(::xml::node) lpnodeVersion;
 
       if(m_strVersion == "basis")
@@ -882,7 +880,17 @@ namespace install
 
       }
 
-      sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuild);
+      string strBuildNumber(pszBuild);
+
+      if(strBuildNumber == "latest")
+      {
+
+         strBuildNumber = get_latest_build_number(m_strVersion);
+
+      }
+
+
+      sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
 
       if (lpnodeInstalled == NULL)
       {

@@ -1610,6 +1610,8 @@ namespace core
 
                      strPath = System.dir().ca2module("app");
 
+                     string strBuildNumber = System.install().m_strVersion;
+
 #ifdef WINDOWS
 
                      strPath += ".exe";
@@ -1624,9 +1626,9 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 #endif
 
 #if defined(APPLEOS)
-                     strPath = "/usr/bin/open " +strPath+" --args : app=" + notinstalled.m_strId + " install build_number=basis locale="+notinstalled.m_strLocale+" schema="+notinstalled.m_strSchema;
+                     strPath = "/usr/bin/open " + strPath + " --args : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
                      #else
-                     strPath += " : app=" + notinstalled.m_strId + " install build_number=basis locale="+notinstalled.m_strLocale+" schema="+notinstalled.m_strSchema;
+                     strPath += " : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
                      #endif
 
                      bool bTimedOut = false;
