@@ -904,7 +904,7 @@ namespace install
 
          lpnodeInstalled = lpnodeVersion->add_child("installed");
 
-         lpnodeInstalled->add_attr("build", pszBuild);
+         lpnodeInstalled->add_attr("build",strBuildNumber);
 
       }
 
