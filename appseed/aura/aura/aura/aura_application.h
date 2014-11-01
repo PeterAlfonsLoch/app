@@ -400,63 +400,29 @@ namespace aura
 
       virtual void message_handler(signal_details * pobj);
 
-   };
+
+      virtual string get_locale();
+      virtual string get_schema();
+      virtual string get_locale_schema_dir(const string & strLocale,const string & strSchema);
+      virtual string get_locale_schema_dir(const string & strLocale);
+      virtual string get_locale_schema_dir();
+
+      virtual void set_locale(const string & lpcsz,::action::context actioncontext);
+      virtual void set_schema(const string & lpcsz,::action::context actioncontext);
+      virtual void on_set_locale(const string & lpcsz,::action::context actioncontext);
+      virtual void on_set_schema(const string & lpcsz,::action::context actioncontext);
 
 
-
-
-
-
-   class CLASS_DECL_AURA application_ptra:
-      virtual public spa(application)
-   {
-   public:
-
-
-      application_ptra() { }
-
-
-      application_ptra(const application_ptra & a):
-         spa(application)(a)
-      {
-
-         }
-
-      inline application_ptra & operator = (const application_ptra & a)
-      {
-
-         spa(application)::operator = (a);
-
-         return *this;
-
-      }
-
-
-#if defined(MOVE_SEMANTICS)
-
-      application_ptra(application_ptra && a):
-         spa(application)(a)
-      {
-
-         }
-
-      inline application_ptra & operator = (application_ptra && a)
-      {
-
-         spa(application)::operator = (a);
-
-         return *this;
-
-      }
-
-#endif
-
-      application * find_by_app_name(const string & strAppName);
-
-      application * find_running_defer_try_quit_damaged(const string & strAppName);
+      virtual void fill_locale_schema(::str::international::locale_schema & localeschema);
+      virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema);
 
 
    };
+
+
+
+
+
 
 
 
@@ -464,20 +430,4 @@ namespace aura
 } // namespace aura
 
 
-
-inline allocatorsp element::allocer()
-{
-
-   return m_pauraapp->m_allocer;
-
-}
-
-
-
-inline sp(::command_thread) object::command_thread()
-{
-
-   return m_pauraapp->command_thread();
-
-}
 

@@ -1952,6 +1952,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_allocate.h" />
     <ClInclude Include="aura\aura\aura_application.h" />
     <ClInclude Include="aura\aura\aura_application_interface.h" />
+    <ClInclude Include="aura\aura\aura_application_ptra.h" />
     <ClInclude Include="aura\aura\aura_application_signal_details.h" />
     <ClInclude Include="aura\aura\aura_async.h" />
     <ClInclude Include="aura\aura\aura_auto_pointer.h" />

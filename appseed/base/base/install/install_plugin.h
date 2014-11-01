@@ -53,6 +53,7 @@ namespace install
       bool                 m_bNativeLaunch;
       bool                 m_bPluginTypeTested;
       bool                 m_bPluginDownloaded;
+      bool                 m_bNativeLaunchFail;
       bool                 m_bRestartCa2;
       bool                 m_bPendingStream;
       uint32_t             m_dwLastOk;

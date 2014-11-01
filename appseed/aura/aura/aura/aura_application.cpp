@@ -1677,6 +1677,133 @@ namespace aura
       if(!m_pimpl->initialize1())
          return false;
 
+
+      string strLocaleSystem;
+
+      string strSchemaSystem;
+
+      string strPath = System.dir_appdata("langstyle_settings.xml");
+
+      if(file_exists(strPath))
+      {
+
+         string strSystem = file_as_string(strPath);
+
+         ::xml::document docSystem(get_app());
+
+         if(docSystem.load(strSystem))
+         {
+
+            if(docSystem.get_child("lang") != NULL)
+            {
+
+               strLocaleSystem = docSystem.get_child("lang")->get_value();
+
+            }
+
+            if(docSystem.get_child("style") != NULL)
+            {
+
+               strSchemaSystem = docSystem.get_child("style")->get_value();
+
+            }
+
+         }
+
+      }
+
+      string strLocale;
+
+      string strSchema;
+
+#ifdef METROWIN
+
+      stringa stra;
+
+      try
+      {
+
+         stra.explode("-",::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
+
+      }
+      catch(long)
+      {
+
+
+      }
+
+      strLocale = stra[0];
+
+      strSchema = stra[0];
+
+#elif defined(WINDOWS)
+
+      LANGID langid = ::GetUserDefaultLangID();
+
+#define SPR_DEUTSCH LANG_GERMAN
+
+      if(langid == LANG_SWEDISH)
+      {
+         strLocale = "se";
+         strSchema = "se";
+      }
+      else if(langid == MAKELANGID(LANG_PORTUGUESE,SUBLANG_PORTUGUESE_BRAZILIAN))
+      {
+         strLocale = "pt-br";
+         strSchema = "pt-br";
+      }
+      else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
+      {
+         strLocale = "de";
+         strSchema = "de";
+      }
+      else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
+      {
+         strLocale = "en";
+         strSchema = "en";
+      }
+      else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
+      {
+         strLocale = "jp";
+         strSchema = "jp";
+      }
+      else if(PRIMARYLANGID(langid) == LANG_POLISH)
+      {
+         strLocale = "pl";
+         strSchema = "pl";
+      }
+
+#endif
+
+      if(strLocale.is_empty())
+         strLocale = "se";
+
+      if(strSchema.is_empty())
+         strSchema = "se";
+
+      if(strLocaleSystem.has_char())
+         strLocale = strLocaleSystem;
+
+      if(strSchemaSystem.has_char())
+         strSchema = strSchemaSystem;
+
+      if(Sys(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
+         strLocale = Sys(this).directrix()->m_varTopicQuery["locale"].stra()[0];
+
+      if(Sys(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
+         strSchema = Sys(this).directrix()->m_varTopicQuery["schema"].stra()[0];
+
+      if(App(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
+         strLocale = App(this).directrix()->m_varTopicQuery["locale"].stra()[0];
+
+      if(App(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
+         strSchema = App(this).directrix()->m_varTopicQuery["schema"].stra()[0];
+
+
+      set_locale(strLocale,::action::source::database());
+      set_schema(strSchema,::action::source::database());
+
+
       m_bAuraInitialize1Result = true;
 
       return true;
@@ -3164,6 +3291,221 @@ namespace aura
       message_handler(pobj);
 
    }
+
+
+   void application::set_locale(const string & lpcsz,::action::context actioncontext)
+   {
+      string strLocale(lpcsz);
+      strLocale.trim();
+      m_strLocale = strLocale;
+      on_set_locale(m_strLocale,actioncontext);
+   }
+
+   void application::set_schema(const string & lpcsz,::action::context actioncontext)
+   {
+      string strSchema(lpcsz);
+      strSchema.trim();
+      m_strSchema = strSchema;
+      on_set_schema(m_strSchema,actioncontext);
+   }
+
+   void application::on_set_locale(const string & lpcsz,::action::context actioncontext)
+   {
+      UNREFERENCED_PARAMETER(actioncontext);
+      UNREFERENCED_PARAMETER(lpcsz);
+      //System.appa_load_string_table();
+   }
+
+   void application::on_set_schema(const string & lpcsz,::action::context actioncontext)
+   {
+      UNREFERENCED_PARAMETER(actioncontext);
+      UNREFERENCED_PARAMETER(lpcsz);
+      //System.appa_load_string_table();
+   }
+
+
+   string application::get_locale()
+   {
+      return m_strLocale;
+   }
+
+   string application::get_schema()
+   {
+      return m_strSchema;
+   }
+
+
+   string application::get_locale_schema_dir()
+   {
+
+      return dir_simple_path(get_locale(),get_schema());
+
+   }
+
+
+   string application::get_locale_schema_dir(const string & strLocale)
+   {
+
+      if(strLocale.is_empty())
+      {
+
+         return dir_simple_path(get_locale(),get_schema());
+
+      }
+      else
+      {
+
+         return dir_simple_path(strLocale,get_schema());
+
+      }
+
+   }
+
+
+   string application::get_locale_schema_dir(const string & strLocale,const string & strSchema)
+   {
+
+      if(strLocale.is_empty())
+      {
+
+         if(strSchema.is_empty())
+         {
+
+            return dir_simple_path(get_locale(),get_schema());
+
+         }
+         else
+         {
+
+            return dir_simple_path(get_locale(),strSchema);
+
+         }
+
+      }
+      else
+      {
+
+         if(strSchema.is_empty())
+         {
+
+            return dir_simple_path(strLocale,get_schema());
+
+         }
+         else
+         {
+
+            return dir_simple_path(strLocale,strSchema);
+
+         }
+
+      }
+
+   }
+
+
+   void application::fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema)
+   {
+
+
+      localeschema.m_idaLocale.remove_all();
+      localeschema.m_idaSchema.remove_all();
+
+
+      string strLocale(pszLocale);
+      string strSchema(pszSchema);
+
+
+      localeschema.m_idLocale = pszLocale;
+      localeschema.m_idSchema = pszSchema;
+
+
+      localeschema.add_locale_variant(strLocale,strSchema);
+      localeschema.add_locale_variant(get_locale(),strSchema);
+      localeschema.add_locale_variant(__id(std),strSchema);
+      localeschema.add_locale_variant(__id(en),strSchema);
+
+
+      localeschema.finalize();
+
+
+   }
+
+
+   void application::fill_locale_schema(::str::international::locale_schema & localeschema)
+   {
+
+
+      localeschema.m_idaLocale.remove_all();
+      localeschema.m_idaSchema.remove_all();
+
+
+      //localeschema.m_bAddAlternateStyle = true;
+
+
+      stringa straLocale;
+      stringa straSchema;
+
+      straLocale.add(get_locale());
+      straSchema.add(get_schema());
+
+
+      stringa stra;
+
+      stra = Application.directrix()->m_varTopicQuery["locale"].stra();
+
+      stra.remove_ci("_std");
+
+      straLocale.add_unique(Application.directrix()->m_varTopicQuery["locale"].stra());
+
+      stra = Application.directrix()->m_varTopicQuery["schema"].stra();
+
+      stra.remove_ci("_std");
+
+      straSchema.add_unique(Application.directrix()->m_varTopicQuery["schema"].stra());
+
+
+      localeschema.m_idLocale = straLocale[0];
+      localeschema.m_idSchema = straSchema[0];
+
+      for(index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+      {
+
+         for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+         {
+
+            localeschema.add_locale_variant(straLocale[iLocale],straSchema[iSchema]);
+
+         }
+
+      }
+
+      for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+      {
+
+         localeschema.add_locale_variant(get_locale(),straSchema[iSchema]);
+
+      }
+
+      for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+      {
+
+         localeschema.add_locale_variant(__id(std),straSchema[iSchema]);
+
+      }
+
+
+      for(index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+      {
+
+         localeschema.add_locale_variant(__id(en),straSchema[iSchema]);
+
+      }
+
+      localeschema.finalize();
+
+
+   }
+
 
 
 } // namespace aura

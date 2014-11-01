@@ -47,7 +47,7 @@ void request_interface::add_line(const char * pszCommandLine, application_bias *
    else if (createcontext->m_spCommandLine->m_varQuery["build_number"].is_empty())
    {
 
-      createcontext->m_spCommandLine->m_varQuery["build_number"] = "basis";
+      createcontext->m_spCommandLine->m_varQuery["build_number"] = "latest";
 
    }
 

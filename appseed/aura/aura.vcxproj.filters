@@ -2075,6 +2075,9 @@
     <ClInclude Include="aura\exception\exception_throw.h">
       <Filter>Header Files\aura\exception</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\aura_application_ptra.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">

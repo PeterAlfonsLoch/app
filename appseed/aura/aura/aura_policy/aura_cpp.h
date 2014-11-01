@@ -786,6 +786,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 #include "aura/aura/aura/aura_application_interface.h"
 #include "aura/aura/aura/aura_application.h"
+#include "aura/aura/aura/aura_application_ptra.h"
 
 
 #include "aura/aura/aura/aura_gudo_application.inl"

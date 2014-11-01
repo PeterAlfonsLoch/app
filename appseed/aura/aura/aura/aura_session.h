@@ -64,20 +64,6 @@ namespace aura
 
       inline ::aura::savings &                  savings()      { return *m_psavings; }
 
-      virtual string get_locale();
-      virtual string get_schema();
-      virtual string get_locale_schema_dir(const string & strLocale,const string & strSchema);
-      virtual string get_locale_schema_dir(const string & strLocale);
-      virtual string get_locale_schema_dir();
-
-      virtual void set_locale(const string & lpcsz,::action::context actioncontext);
-      virtual void set_schema(const string & lpcsz,::action::context actioncontext);
-      virtual void on_set_locale(const string & lpcsz,::action::context actioncontext);
-      virtual void on_set_schema(const string & lpcsz,::action::context actioncontext);
-
-
-      virtual void fill_locale_schema(::str::international::locale_schema & localeschema);
-      virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const char * pszLocale,const char * pszSchema);
 
       virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
 

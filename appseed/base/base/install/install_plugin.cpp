@@ -99,6 +99,7 @@ namespace install
       m_bPluginDownloaded     = false;
       m_bPluginTypeTested     = false;
       m_bNativeLaunch         = false;
+      m_bNativeLaunchFail     = false;
 
       m_startca2.m_pplugin = this;
 
@@ -232,14 +233,21 @@ namespace install
       if(m_bRestartCa2 && m_phost != NULL)
       {
 
-         if(!m_bNativeLaunch && m_straLinesNativeLaunch.get_count() >= 2 && m_straLinesNativeLaunch[0] == "native_desktop_launcher")
+         if(m_straLinesNativeLaunch.get_count() >= 2 && m_straLinesNativeLaunch[0] == "native_desktop_launcher")
          {
-
-            m_bNativeLaunch      = true;
 
             m_bRestartCa2        = false;
 
-            native_launch();
+            if(!m_bNativeLaunch || m_bNativeLaunchFail)
+            {
+
+               m_bNativeLaunchFail  = false;
+
+               m_bNativeLaunch      = true;
+
+               native_launch();
+
+            }
 
          }
          else if(is_rx_tx_ok())
@@ -422,30 +430,42 @@ namespace install
 
       bool bTimedOut = false;
 
-      uint32_t dwExitCode = System.process().synch(strPath,SW_SHOW,seconds(8.41115770402),&bTimedOut);
+      uint32_t dwExitCode = System.process().synch(strPath,SW_SHOW,seconds(1.984 + 0.1977),&bTimedOut);
 
       if(bTimedOut)
       {
          
-         ::simple_message_box(NULL," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",MB_ICONINFORMATION | MB_OK);
+         //::simple_message_box(NULL," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",MB_ICONINFORMATION | MB_OK);
          
-         m_phost->m_pbasecomposer->m_strEntryHallText = "***Timeout while trying to start application.";
+         //m_phost->m_pbasecomposer->m_strEntryHallText = "Starting Application...";
+
+         //m_bNativeLaunchFail = true; 
+
+         m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
+
+         m_bNativeLaunchFail = false;
 
       }
-      else if(dwExitCode == 0)
+      else if(dwExitCode >= 0)
       {
          
          //  ::simple_message_box(NULL,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
 
          m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
 
+         m_bNativeLaunchFail = false;
+
       }
       else
       {
          
-         ::simple_message_box(NULL,strPath + "\n\nFailed return code : " + ::str::from(dwExitCode),"Error Message",MB_ICONINFORMATION | MB_OK);
+         //::simple_message_box(NULL,strPath + "\n\nFailed return code : " + ::str::from(dwExitCode),"Error Message",MB_ICONINFORMATION | MB_OK);
 
-         m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
+         //m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
+
+         m_phost->m_pbasecomposer->m_strEntryHallText = "Starting Application...";
+
+         m_bNativeLaunchFail = true;
 
       }
 
@@ -457,7 +477,7 @@ namespace install
    void plugin::start_ca2()
    {
 
-      if(m_bCa2Login || m_bCa2Logout || m_bNativeLaunch)
+      if(m_bCa2Login || m_bCa2Logout)
          return;
 
       if(!m_bLogged)
@@ -629,6 +649,12 @@ namespace install
       if(System.install().is_installing_ca2())
       {
 
+         m_phost->m_pbasecomposer->m_strEntryHallText = "";
+
+         m_bRestartCa2     = false;
+
+         m_bNativeLaunch   = false;
+
          if(!m_phost->m_bInstalling)
          {
 
@@ -654,6 +680,10 @@ namespace install
          m_bRestartCa2        = true;
 
          m_bPendingStream     = false;
+
+         //m_bNativeLaunch      = false;
+
+         m_bNativeLaunchFail  = false;
 
       }
       else
@@ -1266,6 +1296,9 @@ namespace install
       if(!m_bLogged)
          return;
 
+      if(System.install().is_installing_ca2())
+         return;
+
       string strScript = System.url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
       if (!m_bInstalling && System.install().is_ca2_installed())
@@ -1435,7 +1468,21 @@ restart:
    void plugin::on_host_timer()
    {
 
-      if((m_bLogin && !m_bLogged) || !m_phost->m_bOk)
+      //if(m_bNativeLaunch && !m_bNativeLaunchFail)
+      //{
+
+      //   System.install().update_ca2_installed();
+
+      //   if(!System.install().is_ca2_installed() || System.install().is_installing_ca2())
+      //   {
+
+      //      m_bNativeLaunchFail = true;
+
+      //   }
+
+      //}
+
+      if((m_bLogin && !m_bLogged) || !m_phost->m_bOk || m_bNativeLaunch)
       {
 
          if((get_tick_count() - m_dwLastRestart) > (840 + 770))
