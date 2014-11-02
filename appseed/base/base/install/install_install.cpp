@@ -73,6 +73,65 @@ namespace install
 
    }
 
+   bool install::is_file_ok(const stringa & straPath,const stringa & straTemplate,stringa & straMd5,const string & strFormatBuild)
+   {
+
+      bool bOk = true;
+
+      if(straPath.get_count() != straTemplate.get_count())
+         return false;
+
+      if(bOk)
+      {
+
+         for(index i = 0; i < straPath.get_count(); i++)
+         {
+
+            if(!file_exists_dup(straPath[i]))
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+         }
+
+      }
+
+      string strUrl;
+
+      strUrl = "http://" + m_strVersion + "-server.ca2.cc/api/spaignition/md5a?authnone&version=" + m_strVersion + "&stage=";
+      strUrl += straTemplate.implode(",");
+      strUrl += "&build=";
+      strUrl += strFormatBuild;
+
+      property_set set(get_app());
+
+      set["raw_http"] = true;
+
+      string strMd5List = Application.http().get(strUrl,set);
+
+      straMd5.add_tokens(strMd5List, ",", false);
+
+      if(straMd5.get_count() != straPath.get_count())
+         return false;
+
+      if(!bOk)
+         return false;
+
+      for(index i = 0; i < straMd5.get_count(); i++)
+      {
+
+         if(System.file().md5(straPath[i]).CompareNoCase(straMd5[i]) != 0)
+            return false;
+
+      }
+
+      return true;
+
+   }
 
    int32_t install::spalib_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int32_t nCmdShow)
    {
@@ -1285,6 +1344,8 @@ namespace install
 
          ::install::get_plugin_base_library_list(straFile);
 
+         stringa straDownload;
+
          for(index iFile = 0; iFile < straFile.get_size(); iFile++)
          {
 
@@ -1292,109 +1353,143 @@ namespace install
 
             string strDownload = System.dir().path(System.dir().name(strPath),strFile);
 
-            if(!System.install().is_file_ok(strDownload,strFile,strFormatBuild))
+            straDownload.add(strDownload);
+
+         }
+
+         stringa straMd5;
+
+         int iMd5Retry = 0;
+
+         md5retry:
+
+         if(!System.install().is_file_ok(straDownload,straFile,straMd5,strFormatBuild))
+         {
+
+            if(straMd5.get_count() != straFile.get_count())
             {
 
-               trace().rich_trace("***Downloading installer");
+               iMd5Retry++;
 
-               string strUrlPrefix = "http://ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/";
+               if(iMd5Retry < 5)
+                  goto md5retry;
 
-               string strUrl;
+               return "";
 
-               property_set set;
+            }
 
-               set["disable_ca2_sessid"] = true;
+            for(index iFile = 0; iFile < straFile.get_size(); iFile++)
+            {
 
-               set["raw_http"] = true;
+               string strFile = straFile[iFile];
 
-               double dRate = 1.0 / (straFile.get_count() * 3.0);
+               string strDownload = System.dir().path(System.dir().name(strPath),strFile);
 
-               if(pinstaller != NULL)
+               if(!file_exists_dup(strDownload) || System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) != 0)
                {
 
-                  set["int_scalar_source_listener"] = pinstaller;
+                  trace().rich_trace("***Downloading installer");
 
-               }
+                  string strUrlPrefix = "http://ca2.cc/ccvotagus/" + strVersion + "/" + strFormatBuild + "/install/x86/";
 
-               int32_t iRetry;
+                  string strUrl;
 
-               bool bFileNice;
+                  property_set set;
 
-               iRetry = 0;
+                  set["disable_ca2_sessid"] = true;
 
-               strUrl = strUrlPrefix + strFile + ".bz";
+                  set["raw_http"] = true;
 
-               bFileNice = false;
-
-               while(iRetry < 8)
-               {
+                  double dRate = 1.0 / (straFile.get_count() * 3.0);
 
                   if(pinstaller != NULL)
                   {
 
-                     pinstaller->m_dAppInstallProgressStart = iFile * (dRate  * 3.0);
-                     pinstaller->m_dAppInstallProgressEnd = iFile * (dRate * 3.0) + dRate;
+                     set["int_scalar_source_listener"] = pinstaller;
 
                   }
 
-                  if(Application.http().download(strUrl,strDownload + ".bz",set))
-                  {
+                  int32_t iRetry;
 
-                     System.compress().unbz(get_app(),strDownload,strDownload + ".bz");
+                  bool bFileNice;
+
+                  iRetry = 0;
+
+                  strUrl = strUrlPrefix + strFile + ".bz";
+
+                  bFileNice = false;
+
+                  while(iRetry < 8)
+                  {
 
                      if(pinstaller != NULL)
                      {
 
-                        pinstaller->set_progress(iFile * (dRate * 3.0) + (dRate * 2.0));
+                        pinstaller->m_dAppInstallProgressStart = iFile * (dRate  * 3.0);
+                        pinstaller->m_dAppInstallProgressEnd = iFile * (dRate * 3.0) + dRate;
 
                      }
 
-                     if(System.install().is_file_ok(strDownload,strFile,strFormatBuild))
+                     if(Application.http().download(strUrl,strDownload + ".bz",set))
                      {
+
+                        System.compress().unbz(get_app(),strDownload,strDownload + ".bz");
 
                         if(pinstaller != NULL)
                         {
 
                            pinstaller->set_progress(iFile * (dRate * 3.0) + (dRate * 2.0));
 
-                           bFileNice = true;
+                        }
 
-                           break;
+                        if(file_exists_dup(strDownload) && System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) == 0)
+                        {
+
+                           if(pinstaller != NULL)
+                           {
+
+                              pinstaller->set_progress(iFile * (dRate * 3.0) + (dRate * 2.0));
+
+                              bFileNice = true;
+
+                              break;
 
 
+
+                           }
 
                         }
 
+
                      }
 
+                     iRetry++;
 
                   }
 
-                  iRetry++;
+                  if(!bFileNice)
+                  {
+
+                     // failed by too much retry in any number of the files already downloaded :
+                     // so, return failure (no eligible app.install.exe file).
+                     return "";
+
+                  }
+
 
                }
-
-               if(!bFileNice)
-               {
-
-                  // failed by too much retry in any number of the files already downloaded :
-                  // so, return failure (no eligible app.install.exe file).
-                  return "";
-
-               }
-
 
             }
 
          }
 
 
-         if (!System.install().is_file_ok(strPath, "app.install.exe", strFormatBuild))
-         {
+         //if (!System.install().is_file_ok(strPath, "app.install.exe", strFormatBuild))
+         //{
 
-            return "";
+         //   return "";
 
-         }
+         //}
 
       }
 

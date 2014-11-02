@@ -56,6 +56,7 @@ namespace install
 
 
       virtual bool is_file_ok(const char * path1, const char * pszTemplate, const char * pszFormatBuild);
+      virtual bool is_file_ok(const stringa & straPath,const stringa & straTemplate,stringa & straMd5, const string & strFormatBuild);
       virtual bool reference_is_file_ok(const char * path1, const char * pszTemplate, const char * pszVersion, const char * pszFormatBuild);
 
       virtual int32_t synch_install(const char * pszCommandLine, const char * pszBuild, bool bBackground = true);
