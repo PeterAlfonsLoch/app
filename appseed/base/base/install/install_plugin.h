@@ -65,7 +65,8 @@ namespace install
       ::rect               m_rectSent;
       stringa              m_straLinesNativeLaunch;
 
-
+      bool                 m_bHasCred;
+      bool                 m_bHasCredEval;
 
 
       plugin(sp(::aura::application) papp);

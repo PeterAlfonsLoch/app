@@ -78,6 +78,9 @@ namespace install
       m_bAppStarted           = false;
       m_pbReady               = NULL;
 
+      m_bHasCred              = false;
+      m_bHasCredEval          = false;
+
 
 #ifdef METROWIN
 
@@ -477,10 +480,39 @@ namespace install
    void plugin::start_ca2()
    {
 
+      if(!m_bHasCredEval)
+      {
+         
+         string strUsername;
+
+         string strPassword;
+
+         string str = ::fontopus::get_cred(get_app(),strUsername,strPassword,"ca2");
+
+         if(strUsername.has_char() && strPassword.has_char() && str == "ok")
+         {
+
+            m_bHasCred = true;
+
+         }
+         else
+         {
+
+            m_bHasCred = false;
+
+         }
+
+         m_bHasCredEval = true;
+
+      }
+
+
       if(m_bCa2Login || m_bCa2Logout)
          return;
 
-      if(!m_bLogged)
+      string strScript = System.url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
+
+      if(!m_bHasCred || (!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout")))
       {
 
          m_phost->m_pbasecomposer->m_strEntryHallText = "Checking credentials...";
@@ -505,7 +537,7 @@ namespace install
       }
 
 
-      if (!m_phost->m_bOk || !m_bLogged)
+      if(!m_phost->m_bOk || (!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout")) || (!m_bHasCred && !m_bLogged))
          return;
 
       bool bJustLoggedIn = false;
@@ -518,8 +550,6 @@ namespace install
          m_bLogin = false;
 
       }
-
-      string strScript = System.url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
       if(!m_bCa2Login && strScript == "/ca2login")
       {

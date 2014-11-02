@@ -1940,10 +1940,10 @@ namespace core
       if(!System.directrix()->m_varTopicQuery.has_property("install")
          && !System.directrix()->m_varTopicQuery.has_property("uninstall")
          && strId.has_char()
-         && !System.install().is(NULL,strBuildNumber,pszType,strApplicationId,m_strLocale,m_strSchema))
+         && !System.install().is(NULL,strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema))
       {
 
-         throw not_installed(get_app(),NULL,strBuildNumber,pszType,strApplicationId,m_strLocale,m_strSchema);
+         throw not_installed(get_app(),NULL,strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
 
       }
 
@@ -1966,7 +1966,7 @@ namespace core
       if(strLibrary.is_empty())
       {
 
-         throw not_installed(get_app(),NULL,strBuildNumber,pszType,strApplicationId,m_strLocale,m_strSchema);
+         throw not_installed(get_app(),NULL,strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
 
       }
 

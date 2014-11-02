@@ -1010,7 +1010,9 @@ namespace core
 
       command()->add_fork_uri(pszUri,pbiasCreate);
 
-      if(command()->m_varTopicQuery["locale"].array_get_count() > 0 && command()->m_varTopicQuery["locale"].stra().get_count_except_ci("_std") > 0)
+      //if(command()->m_varTopicQuery["locale"].array_get_count() > 0 && command()->m_varTopicQuery["locale"].stra().get_count_except_ci("_std") > 0)
+
+      if(command()->m_varTopicQuery["locale"].array_get_count() > 0)
       {
          Session.set_locale(command()->m_varTopicQuery["locale"].stra()[0],::action::source::user());
       }
