@@ -771,7 +771,7 @@ namespace windows
       if(App(papp).is_user_service())
       {
 
-         if(getCredentialsForService(papp->m_strAppId,pszName,pszPass))
+         if(getCredentialsForService(papp, papp->m_strAppId,pszName,pszPass))
          {
 
             pname = pszName;
