@@ -225,7 +225,7 @@ namespace process
    int32_t departament::process_thread::run_elevated()
    {
 
-      int32_t iRetCode = m_spprocess->synch_elevated(m_strCmdLine,SW_HIDE,millis(m_uiTimeout),m_pbPotentialTimeout)
+      int32_t iRetCode = m_spprocess->synch_elevated(m_strCmdLine,SW_HIDE,millis(m_uiTimeout),m_pbPotentialTimeout);
 
       if(m_puiRetCode != NULL)
       {
@@ -233,6 +233,14 @@ namespace process
          *m_puiRetCode = iRetCode;
 
       }
+
+      if(m_pevReady != NULL)
+      {
+
+         m_pevReady->SetEvent();
+
+      }
+
 
       return 0;
 

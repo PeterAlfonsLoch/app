@@ -1635,9 +1635,9 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
 #if defined(APPLEOS)
                      strPath = "/usr/bin/open " + strPath + " --args : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
-                     #else
-                     strParam = " : app=" + notinstalled.m_strId + " install build_number=basis locale="+notinstalled.m_strLocale+" schema="+notinstalled.m_strSchema;
-                     #endif
+#else
+                     strParam = " : app=" + notinstalled.m_strId + " install build_number=" + notinstalled.m_strBuild + " version=" + notinstalled.m_strVersion + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
+#endif
 
                      bool bTimedOut = false;
 

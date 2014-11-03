@@ -219,7 +219,9 @@ namespace windows
 
       DWORD dwStart = ::get_tick_count();
 
-      while(::get_tick_count() - dwStart < 8411)
+      DWORD dwTimeOut = durationTimeOut.get_total_milliseconds();
+
+      while(::get_tick_count() - dwStart < dwTimeOut)
       {
 
          if(!::GetExitCodeProcess(h,&dwExitCode))
@@ -233,6 +235,8 @@ namespace windows
             break;
 
          }
+
+         Sleep(84);
 
       }
 
