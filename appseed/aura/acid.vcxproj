@@ -4085,6 +4085,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\os\windows\windows_dll.cpp" />
     <ClCompile Include="aura\os\windows\windows_error.cpp" />
     <ClCompile Include="aura\os\windows\windows_file_watcher.cpp" />
+    <ClCompile Include="aura\os\windows\windows_gdi.cpp" />
+    <ClCompile Include="aura\os\windows\windows_gdi_cursor.cpp" />
+    <ClCompile Include="aura\os\windows\windows_gdi_icon.cpp" />
     <ClCompile Include="aura\os\windows\windows_launcher.cpp" />
     <ClCompile Include="aura\os\windows\windows_library.cpp" />
     <ClCompile Include="aura\os\windows\windows_lock.cpp" />
