@@ -1002,7 +1002,7 @@ namespace windows
       WCHAR pszName[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
       WCHAR pszPass[CREDUI_MAX_PASSWORD_LENGTH + 1];
 
-      if(App(papp).is_user_service())
+      //if(App(papp).is_user_service())
       {
 
          if(getCredentialsForService(papp, papp->m_strAppId,pszName,pszPass))
@@ -1065,7 +1065,7 @@ namespace windows
          || !papp->is_serviceable())
          return false;
 
-      SC_HANDLE hdlSCM = OpenSCManagerW(0, 0, SC_MANAGER_ALL_ACCESS);
+      SC_HANDLE hdlSCM = OpenSCManagerW(0,0,SC_MANAGER_ALL_ACCESS);
 
       if(hdlSCM == 0)
       {
@@ -1074,8 +1074,8 @@ namespace windows
       }
       string strServiceName = "ca2-" + papp->m_strAppId;
 
-      strServiceName.replace("/", "-");
-      strServiceName.replace("\\", "-");
+      strServiceName.replace("/","-");
+      strServiceName.replace("\\","-");
       //WCHAR * pname = NULL;
       //WCHAR * ppass = NULL;
 
@@ -1105,22 +1105,30 @@ namespace windows
       SC_HANDLE hdlServ = ::OpenServiceW(
          hdlSCM,                    // SCManager database 
          wstring(strServiceName),
-         DELETE);                     
+         DELETE);
 
-      if (!hdlServ)
+      if(!hdlServ)
       {
-         // Ret = ::GetLastError();
+         DWORD Ret = ::GetLastError();
          CloseServiceHandle(hdlSCM);
+         if(Ret == 1060) // O serviço já não existe. Service already doesn't exist.
+            return true; // do self-healing
          return false;
       }
 
-      ::DeleteService(hdlServ);
+      if(!::DeleteService(hdlServ))
+      {
+         DWORD Ret = ::GetLastError();
+         CloseServiceHandle(hdlServ);
+         CloseServiceHandle(hdlSCM);
+         return false;
+      }
 
       CloseServiceHandle(hdlServ);
 
       CloseServiceHandle(hdlSCM);
 
-      return false;
+      return true;
 
    }
 

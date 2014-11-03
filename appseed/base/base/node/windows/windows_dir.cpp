@@ -983,11 +983,11 @@ namespace windows
 
 #endif
 
-         /*      SHGetSpecialFolderPath(
-         NULL,
-         m_strCommonAppData,
-         CSIDL_COMMON_APPDATA,
-         FALSE);*/
+         SHGetSpecialFolderPath(
+            NULL,
+            m_strCommonAppData,
+            CSIDL_COMMON_APPDATA,
+            FALSE);
          SHGetSpecialFolderPath(
             NULL,
             m_strProfile,
