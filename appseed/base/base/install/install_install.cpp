@@ -436,10 +436,10 @@ namespace install
 
       string strVersion(pszVersion);
 
-      if(file_as_string_dup("C:\\ca2\\config\\gtech_sensible\\ignition_server.txt").has_char())
+      if(file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt").has_char())
       {
 
-         strSpaIgnitionBaseUrl = "http://" + file_as_string_dup("C:\\ca2\\config\\gtech_sensible\\ignition_server.txt") + "/api/spaignition";
+         strSpaIgnitionBaseUrl = "http://" + file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt") + "/api/spaignition";
 
       }
       else if(pszVersion != NULL && !strcmp(pszVersion,"basis"))
