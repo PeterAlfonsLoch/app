@@ -33,7 +33,7 @@ namespace user
          if(strBuildNumber.is_empty())
          {
 
-            strBuildNumber = "latest";
+            strBuildNumber = "installed";
 
          }
 

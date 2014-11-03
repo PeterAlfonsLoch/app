@@ -1927,7 +1927,7 @@ namespace core
       if(strBuildNumber.is_empty())
       {
 
-         strBuildNumber = "latest";
+         strBuildNumber = "installed";
 
       }
 

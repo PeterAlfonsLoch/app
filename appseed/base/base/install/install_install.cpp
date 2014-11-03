@@ -941,7 +941,7 @@ namespace install
 
       string strBuildNumber(pszBuild);
 
-      if(strBuildNumber == "latest")
+      if(strBuildNumber == "latest" || strBuildNumber == "installed")
       {
 
          if(!m_strVersionLatestBuildNumber.Lookup(m_strVersion,strBuildNumber))
@@ -1079,14 +1079,38 @@ namespace install
 
       string strBuildNumber(pszBuild);
 
+      sp(::xml::node) lpnodeInstalled;
+
       if (strBuildNumber == "latest")
       {
 
          strBuildNumber = get_latest_build_number(pszVersion);
 
+         lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
+
+      }
+      else if(strBuildNumber == "installed")
+      {
+         for(index i = lpnodeVersion->get_children_count() - 1; i >= 0 ; i--)
+         {
+            if(lpnodeVersion->child_at(i)->get_name() == "installed")
+            {
+               lpnodeInstalled = lpnodeVersion->child_at(i);
+               break;
+            }
+
+         }
+         if(lpnodeInstalled.is_null())
+            return false;
+      }
+      else
+      {
+
+         lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
+
       }
 
-      sp(::xml::node) lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed", "build", strBuildNumber);
+      
 
       if (lpnodeInstalled == NULL)
          return false;
