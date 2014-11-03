@@ -78,14 +78,14 @@ namespace process
    uint32_t departament::elevated_synch(const char * pszCmdLine,int32_t iShow,const ::duration & dur,bool * pbPotentialTimeout)
    {
 
-      process_processor proc(get_app(),pszCmdLine,dur,pbPotentialTimeout);
+      process_processor proc(get_app(),pszCmdLine,dur,pbPotentialTimeout, NULL, true);
 
       return proc.m_uiRetCode;
 
    }
 
 
-   departament::process_thread::process_thread(sp(::aura::application) papp,const string & strCmdLine,const ::duration & dur,bool * pbPotentialTimeout,string * pstrRead):
+   departament::process_thread::process_thread(sp(::aura::application) papp,const string & strCmdLine,const ::duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
       element(papp),
       thread(papp),
       simple_thread(papp),
@@ -110,13 +110,37 @@ namespace process
 
       m_pbPotentialTimeout    = pbPotentialTimeout;
       m_pbInitFailure         = NULL;
+      m_bElevated             = bElevated;
 
    }
 
 
    int32_t departament::process_thread::run()
    {
-   
+
+      int iRetCode;
+
+      if(m_bElevated)
+      {
+
+         iRetCode = run_elevated();
+
+      }
+      else
+      {
+
+         iRetCode = run_normal();
+
+      }
+
+      return iRetCode;
+
+   }
+
+
+      
+   int32_t departament::process_thread::run_normal()
+   {
    
       if(!m_spprocess->create_child_process(m_strCmdLine,true))
       {
@@ -198,6 +222,21 @@ namespace process
 
    }
 
+   int32_t departament::process_thread::run_elevated()
+   {
+
+      int32_t iRetCode = m_spprocess->synch_elevated(m_strCmdLine,SW_HIDE,millis(m_uiTimeout),m_pbPotentialTimeout)
+
+      if(m_puiRetCode != NULL)
+      {
+         
+         *m_puiRetCode = iRetCode;
+
+      }
+
+      return 0;
+
+   }
 
    bool departament::process_thread::retry()
    {
@@ -221,7 +260,7 @@ namespace process
    }
 
 
-   departament::process_processor::process_processor(sp(::aura::application) papp, const string & strCmdLine, const duration & dur, bool * pbPotentialTimeout, string * pstrRead) :
+   departament::process_processor::process_processor(sp(::aura::application) papp,const string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
       element(papp),
       m_evReady(papp)
    {
@@ -234,7 +273,9 @@ namespace process
 
       m_pbPotentialTimeout = pbPotentialTimeout;
 
-      m_pthread = new process_thread(papp, strCmdLine, dur, &m_bPotentialTimeout, pstrRead);
+      m_bElevated = bElevated;
+
+      m_pthread = new process_thread(papp,strCmdLine,dur,&m_bPotentialTimeout,pstrRead, bElevated);
 
       m_pthread->m_bAutoDelete = true;
 

@@ -181,6 +181,75 @@ namespace windows
    }
 
 
+   int32_t process::synch_elevated(const char * pszCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+   {
+
+      DWORD dwExitCode = 0;
+
+      HANDLE h = NULL;
+
+      ::str::parse parse(pszCmdLine,"= ");
+
+      parse.EnableQuote(true);
+
+      string strPath;
+
+      if(parse.getrestlen())
+      {
+         parse.getword(strPath);
+      }
+
+      string strParam;
+
+      parse.getrest(strParam);
+
+      if(VistaTools::RunElevated(NULL,strPath,strParam,NULL,&h))
+      {
+         
+         dwExitCode = 0;
+
+      }
+      else
+      {
+         return -1;
+
+      }
+
+      bool bTimedOut = true;
+
+      DWORD dwStart = ::get_tick_count();
+
+      while(::get_tick_count() - dwStart < 8411)
+      {
+
+         if(!::GetExitCodeProcess(h,&dwExitCode))
+            break;
+
+         if(dwExitCode != STILL_ACTIVE)
+         {
+
+            bTimedOut = false;
+
+            break;
+
+         }
+
+      }
+
+      ::CloseHandle(h);
+
+      if(pbTimeOut != NULL)
+      {
+
+         *pbTimeOut = bTimedOut;
+
+      }
+
+      return dwExitCode;
+
+   }
+
+
 } // namespace windows
 
 

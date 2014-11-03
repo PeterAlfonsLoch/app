@@ -1641,56 +1641,27 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
                      bool bTimedOut = false;
 
-                     DWORD dwExitCode;
+                     ::duration durationWait = seconds((1.9841115 + 1.9770402 + 1.9510422) * 3.0); // less than 18 seconds
 
-#ifdef WINDOWSEX
-
-                     
-
-                     HANDLE h = NULL;
-
-                     VistaTools::RunElevated(NULL,strPath,strParam,NULL, &h);
-
-                     bTimedOut = true;
-
-                     DWORD dwStart = ::get_tick_count();
-
-                     while(::get_tick_count() - dwStart < 8411)
-                     {
-
-                        if(!::GetExitCodeProcess(h,&dwExitCode))
-                           break;
-
-                        if(dwExitCode != STILL_ACTIVE)
-                        {
-
-                           bTimedOut = false;
-
-                           break;
-
-                        }
-
-                     }
-
-                     ::CloseHandle(h);
-
-#else
-                     
-                     dwExitCode = System.process().synch(strPath + strParam,SW_HIDE,seconds(8.41115770402),&bTimedOut);
-
-#endif
+                     DWORD dwExitCode = System.process().elevated_synch(strPath + strParam,SW_HIDE,durationWait,&bTimedOut);
 
                      if(bTimedOut)
                      {
+
                         ::simple_message_box(NULL, " - " + notinstalled.m_strId + "\nhas timed out while trying to install.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nIt is recommended to kill manually :\n - \"" +strPath +strParam+ "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+
                      }
                      else if(dwExitCode == 0)
                      {
+
                         ::simple_message_box(NULL,"Successfully run : " + strPath + strParam,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+
                      }
                      else
                      {
+
                         ::simple_message_box(NULL, strPath + strParam + "\n\nFailed return code : " + ::str::from((uint32_t) dwExitCode),"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+
                      }
 
                   }

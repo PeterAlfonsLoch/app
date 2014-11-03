@@ -27,6 +27,7 @@ namespace process
       virtual bool write(const char * psz);
       virtual string read(bool bUntilExit = false);
 
+      virtual int32_t synch_elevated(const char * pszCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut);
 
    };
 

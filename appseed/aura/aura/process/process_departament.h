@@ -24,12 +24,16 @@ namespace process
          bool *                           m_pbInitFailure;
          bool *                           m_pbPotentialTimeout;
          uint32_t *                       m_puiRetCode;
+         bool                             m_bElevated;
 
 
-
-         process_thread(sp(::aura::application) papp, const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = NULL, string * pstrRead = NULL);
+         process_thread(sp(::aura::application) papp,const string & strCmdLine,const ::duration & dur,bool * pbPotentialTimeout = NULL,string * pstrRead = NULL,bool bElevated = false);
 
          int32_t run();
+
+         int32_t run_normal();
+
+         int32_t run_elevated();
 
          bool retry();
 
@@ -47,8 +51,10 @@ namespace process
          bool *                           m_pbPotentialTimeout;
          process_thread *                 m_pthread;
          uint32_t                         m_uiRetCode;
+         bool                             m_bElevated;
 
-         process_processor(sp(::aura::application) papp, const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = NULL, string * pstrRead = NULL);
+
+         process_processor(sp(::aura::application) papp, const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = NULL, string * pstrRead = NULL, bool bElevated = false);
          virtual ~process_processor();
 
       };

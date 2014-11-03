@@ -93,6 +93,14 @@ namespace process
    }
 
 
+   int32_t process::synch_elevated(const char * pszCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+   {
+
+      return 0;
+
+   }
+
+
 } // namespace process
 
 
