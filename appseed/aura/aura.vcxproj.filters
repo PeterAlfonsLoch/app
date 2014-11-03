@@ -3397,6 +3397,12 @@
     <ClCompile Include="aura\exception\exception_throw.cpp">
       <Filter>Source Files\aura\exception</Filter>
     </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_gdi_cursor.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_gdi_icon.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
