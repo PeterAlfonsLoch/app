@@ -1034,7 +1034,7 @@ namespace windows
       SC_HANDLE hdlServ = ::CreateServiceW(
          hdlSCM,                    // SCManager database 
          wstring(strServiceName),
-         wstring("ca2 : " + papp->m_strAppId),        // service name to display 
+         wstring(strDisplay),        // service name to display 
          STANDARD_RIGHTS_REQUIRED,  // desired access 
          SERVICE_WIN32_OWN_PROCESS, // service type 
          SERVICE_AUTO_START,      // start type 
