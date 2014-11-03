@@ -436,16 +436,22 @@ namespace install
 
       string strVersion(pszVersion);
 
-      if (pszVersion != NULL && !strcmp(pszVersion, "basis"))
+      if(file_as_string_dup("C:\\ca2\\config\\gtech_sensible\\ignition_server.txt").has_char())
       {
 
-         strSpaIgnitionBaseUrl = "http://"+Session.fontopus()->m_strFirstFontopusServer+"/api/spaignition";
+         strSpaIgnitionBaseUrl = "http://" + file_as_string_dup("C:\\ca2\\config\\gtech_sensible\\ignition_server.txt") + "/api/spaignition";
+
+      }
+      else if(pszVersion != NULL && !strcmp(pszVersion,"basis"))
+      {
+
+         strSpaIgnitionBaseUrl = "http://basis-server.ca2.cc/api/spaignition";
 
       }
       else if (pszVersion != NULL && !strcmp(pszVersion, "stage"))
       {
 
-         strSpaIgnitionBaseUrl = "http://" + Session.fontopus()->m_strFirstFontopusServer + "/api/spaignition";
+         strSpaIgnitionBaseUrl = "http://stage-server.ca2.cc/api/spaignition";
 
       }
       else
@@ -456,7 +462,7 @@ namespace install
 
             strVersion = "basis";
 
-            strSpaIgnitionBaseUrl = "http://" + Session.fontopus()->m_strFirstFontopusServer + "/api/spaignition";
+            strSpaIgnitionBaseUrl = "http://basis-server.ca2.cc/api/spaignition";
 
          }
          else
@@ -464,7 +470,7 @@ namespace install
 
             strVersion = "stage";
 
-            strSpaIgnitionBaseUrl = "http://" + Session.fontopus()->m_strFirstFontopusServer + "/api/spaignition";
+            strSpaIgnitionBaseUrl = "http://stage-server.ca2.cc/api/spaignition";
 
          }
 
