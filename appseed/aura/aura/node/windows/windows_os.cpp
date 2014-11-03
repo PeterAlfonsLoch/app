@@ -605,7 +605,6 @@ namespace windows
       wstring wstrMessage("The Service \"ca2 : " + strService + "\" requires current user password for installing Windows Service.");
 
 
-      ::draw2d::dib_sp dib(papp->allocer());
 
       if(!LookupAccountSidW(
          NULL,             // Local computer
@@ -678,10 +677,9 @@ namespace windows
       ui.pszCaptionText = wstrCaption;
       ui.pszMessageText = wstrMessage;
 
-      HICON icon = ::LoadIcon(::GetModuleHandle(NULL),MAKEINTRESOURCE(1));
 
 
-      ui.hbmBanner = get_icon_bitmap(;
+      ui.hbmBanner = NULL;
 
 
       dwResult = CredUIPromptForWindowsCredentialsW(
