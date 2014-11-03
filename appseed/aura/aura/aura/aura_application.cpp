@@ -332,6 +332,12 @@ namespace aura
    }
 
 
+   bool application::is_user_service()
+   {
+
+      return false;
+
+   }
 
    bool application::app_map_lookup(const char * psz,void * & p)
    {

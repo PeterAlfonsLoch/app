@@ -1,10 +1,12 @@
 #include "framework.h"
 #include "windows.h"
+#include "aura/graphics/draw2d/draw2d.h"
+
 
 
 #include <Wtsapi32.h>
 #include <Psapi.h>
-
+#include <WinCred.h>
 
 namespace windows
 {
@@ -513,6 +515,230 @@ namespace windows
 
    }
 
+
+   //------------------------------------------------------------------------
+   // The following function retrieves the identity of the current user.
+   // This is a helper function and is not part of the Windows Biometric
+   // Framework API.
+   //
+   struct TOKEN_INFO{
+      TOKEN_USER tokenUser;
+      BYTE buffer[SECURITY_MAX_SID_SIZE];
+   };
+   HRESULT GetCurrentUserIdentity(TOKEN_INFO & tokenInfo)
+   {
+      // Declare variables.
+      bool bOk = true;
+      HANDLE tokenHandle = NULL;
+      DWORD bytesReturned = 0;
+
+
+      // Open the access token associated with the
+      // current process
+      if(!OpenProcessToken(
+         GetCurrentProcess(),            // Process handle
+         TOKEN_READ,                     // Read access only
+         &tokenHandle))                  // Access token handle
+      {
+         DWORD win32Status = GetLastError();
+         printf("Cannot open token handle: %d\n",win32Status);
+         bOk = false;
+      }
+
+      // Zero the tokenInfoBuffer structure.
+      ZeroMemory(&tokenInfo,sizeof(tokenInfo));
+
+      // Retrieve information about the access token. In this case,
+      // retrieve a SID.
+      if(!GetTokenInformation(
+         tokenHandle,                    // Access token handle
+         TokenUser,                      // User for the token
+         &tokenInfo.tokenUser,     // Buffer to fill
+         sizeof(tokenInfo),        // Size of the buffer
+         &bytesReturned))                // Size needed
+      {
+         DWORD win32Status = GetLastError();
+         printf("Cannot query token information: %d\n",win32Status);
+         bOk = false;
+      }
+
+      if(tokenHandle != NULL)
+      {
+         CloseHandle(tokenHandle);
+      }
+
+      return bOk;
+   }
+
+
+   bool getCredentialsForService(sp(::aura::application) papp, const string & strService,WCHAR * szUsername,WCHAR *szPassword)
+   {
+
+
+      HRESULT hr = S_OK;
+      DWORD   dwResult;
+      PVOID   pvInAuthBlob = NULL;
+      ULONG   cbInAuthBlob = 0;
+      PVOID   pvAuthBlob = NULL;
+      ULONG   cbAuthBlob = 0;
+      CREDUI_INFOW ui;
+      ULONG   ulAuthPackage = 0;
+      BOOL    fSave = FALSE;
+      WCHAR szDomainAndUser[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
+      WCHAR szDomain[CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
+      TOKEN_INFO ti;
+
+      DWORD maxLenName = CREDUI_MAX_USERNAME_LENGTH + 1;
+      DWORD maxLenPass = CREDUI_MAX_PASSWORD_LENGTH + 1;
+      DWORD maxLenDomain = CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1;
+
+      if(!GetCurrentUserIdentity(ti))
+         return false;
+
+      // Retrieve the user name and domain name.
+      SID_NAME_USE    SidUse;
+      DWORD           cchTmpUsername = CREDUI_MAX_USERNAME_LENGTH +1;
+      DWORD           cchTmpDomain = CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1;
+      DWORD           cchDomainAndUser = CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1;
+
+      wstring wstrCaption("\"ca2 : " + strService + "\" Authentication");
+      wstring wstrMessage("The Service \"ca2 : " + strService + "\" requires current user password for installing Windows Service.");
+
+
+      ::draw2d::dib_sp dib(papp->allocer());
+
+      if(!LookupAccountSidW(
+         NULL,             // Local computer
+         ti.tokenUser.User.Sid,             // Security identifier for user
+         szUsername,       // User name
+         &cchTmpUsername,  // Size of user name
+         szDomain,         // Domain name
+         &cchTmpDomain,    // Size of domain name
+         &SidUse))         // Account type
+      {
+         dwResult = GetLastError();
+         printf("\n getCredentialsForService LookupAccountSidLocalW failed: win32 error = 0x%x\n",dwResult);
+         return false;
+      }
+
+      // Combine the domain and user names.
+      swprintf_s(
+         szDomainAndUser,
+         cchDomainAndUser,
+         L"%s\\%s",
+         szDomain,
+         szUsername);
+
+      DWORD dwLastError = 0;
+
+   retry:
+
+
+      // Call CredPackAuthenticationBufferW once to determine the size,
+      // in bytes, of the authentication buffer.
+      if(!CredPackAuthenticationBufferW(
+         0,                // Reserved
+         szDomainAndUser,  // Domain\User name
+         szPassword,       // User Password
+         NULL,             // Packed credentials
+         &cbInAuthBlob)    // Size, in bytes, of credentials
+         && GetLastError() != ERROR_INSUFFICIENT_BUFFER)
+      {
+         dwResult = GetLastError();
+         printf("\n getCredentialsForService CredPackAuthenticationBufferW (1) failed: win32 error = 0x%x\n",dwResult);
+         return false;
+      }
+
+      // Allocate memory for the input buffer.
+      pvInAuthBlob = CoTaskMemAlloc(cbInAuthBlob);
+      if(!pvInAuthBlob)
+      {
+         cbInAuthBlob = 0;
+         printf("\n getCredentialsForService CoTaskMemAlloc() Out of memory.\n");
+         return false;
+      }
+
+      // Call CredPackAuthenticationBufferW again to retrieve the
+      // authentication buffer.
+      if(!CredPackAuthenticationBufferW(
+         0,
+         szDomainAndUser,
+         szPassword,
+         (PBYTE)pvInAuthBlob,
+         &cbInAuthBlob))
+      {
+         dwResult = GetLastError();
+         printf("\n CredPackAuthenticationBufferW (2) failed: win32 error = 0x%x\n",dwResult);
+      }
+
+
+      // Display a dialog box to request credentials.
+      ui.cbSize = sizeof(ui);
+      ui.hwndParent = NULL;
+      ui.pszCaptionText = wstrCaption;
+      ui.pszMessageText = wstrMessage;
+
+      HICON icon = ::LoadIcon(::GetModuleHandle(NULL),MAKEINTRESOURCE(1));
+
+
+      ui.hbmBanner = get_icon_bitmap(;
+
+
+      dwResult = CredUIPromptForWindowsCredentialsW(
+         &ui,             // Customizing information
+         dwLastError,               // Error code to display
+         &ulAuthPackage,  // Authorization package
+         pvInAuthBlob,    // Credential byte array
+         cbInAuthBlob,    // Size of credential input buffer
+         &pvAuthBlob,     // Output credential byte array
+         &cbAuthBlob,     // Size of credential byte array
+         &fSave,          // Select the save check box.
+         CREDUIWIN_SECURE_PROMPT |
+         CREDUIWIN_IN_CRED_ONLY |
+         CREDUIWIN_ENUMERATE_CURRENT_USER
+         );
+      
+      if(dwResult == NO_ERROR)
+      {
+         bool bOk = CredUnPackAuthenticationBufferW(CRED_PACK_PROTECTED_CREDENTIALS,
+            pvAuthBlob,
+            cbAuthBlob,
+            szUsername,
+            &maxLenName,
+            szDomain,
+            &maxLenDomain,
+            szPassword,
+            &maxLenPass) != FALSE;
+
+         if(!bOk)
+         {
+            dwLastError = ::GetLastError();
+            goto retry;
+         }
+           
+         SecureZeroMemory(pvAuthBlob,cbAuthBlob);
+         CoTaskMemFree(pvAuthBlob);
+         pvAuthBlob = NULL;
+
+         return bOk;
+      }
+      else
+      {
+
+         if(dwResult != ERROR_CANCELLED)
+            goto retry;
+
+         hr = HRESULT_FROM_WIN32(dwResult);
+         if(pvInAuthBlob)
+         {
+            SecureZeroMemory(pvInAuthBlob,cbInAuthBlob);
+            CoTaskMemFree(pvInAuthBlob);
+            pvInAuthBlob = NULL;
+         }
+         return false;
+      }
+
+   }
    bool os::create_service(sp(::aura::application) papp)
    {
 
@@ -520,6 +746,7 @@ namespace windows
          || papp->m_strAppName.CompareNoCase("bergedge") == 0
          || !papp->is_serviceable())
          return false;
+
 
       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
 
@@ -531,33 +758,61 @@ namespace windows
          return false;
       }
 
-      string strServiceName = "core-" + papp->m_strAppId;
+      string strServiceName = "ca2-" + papp->m_strAppId;
 
       strServiceName.replace("/", "-");
       strServiceName.replace("\\", "-");
       //strServiceName.replace("-", "_");
 
-      SC_HANDLE hdlServ = ::CreateService(
+      WCHAR * pname = NULL;
+      WCHAR * ppass = NULL;
+
+      WCHAR pszName[CREDUI_MAX_USERNAME_LENGTH + 1];
+      WCHAR pszPass[CREDUI_MAX_PASSWORD_LENGTH + 1];
+
+      if(App(papp).is_user_service())
+      {
+
+         if(getCredentialsForService(papp->m_strAppId,pszName,pszPass))
+         {
+
+            pname = pszName;
+            ppass = pszPass;
+
+         }
+         else
+         {
+
+            return false;
+
+         }
+
+      }
+
+      SC_HANDLE hdlServ = ::CreateServiceW(
          hdlSCM,                    // SCManager database 
-         strServiceName,
-         "core : " + papp->m_strAppId,        // service name to display 
+         wstring(strServiceName),
+         wstring("ca2 : " + papp->m_strAppId),        // service name to display 
          STANDARD_RIGHTS_REQUIRED,  // desired access 
          SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS, // service type 
          SERVICE_AUTO_START,      // start type 
          SERVICE_ERROR_NORMAL,      // error control type 
-         strCalling,                   // service's binary Path name
+         wstring(strCalling),                   // service's binary Path name
          0,                      // no load ordering group 
          0,                      // no tag identifier 
          0,                      // no dependencies 
-         0,                      // LocalSystem account 
-         0);                     // no password 
+         pname,                      // LocalSystem account 
+         ppass);                     // no password 
 
-      if (!hdlServ)
+      SecureZeroMemory(pszName,sizeof(pszName));
+      SecureZeroMemory(pszPass,sizeof(pszPass));
+
+      if(!hdlServ)
       {
          CloseServiceHandle(hdlSCM);
          //DWORD Ret = ::GetLastError();
          TRACELASTERROR();
-         return FALSE;
+         return false;
       }
 
       CloseServiceHandle(hdlServ);
@@ -583,7 +838,7 @@ namespace windows
          //::GetLastError();
          return false;
       }
-      string strServiceName = "core-" + papp->m_strAppId;
+      string strServiceName = "ca2-" + papp->m_strAppId;
 
       strServiceName.replace("/", "-");
       strServiceName.replace("\\", "-");
@@ -627,7 +882,7 @@ namespace windows
          return false;
       }
 
-      string strServiceName = "core-" + papp->m_strAppId;
+      string strServiceName = "ca2-" + papp->m_strAppId;
 
       strServiceName.replace("/", "-");
       strServiceName.replace("\\", "-");
@@ -669,7 +924,7 @@ namespace windows
          return false;
       }
 
-      string strServiceName = "core-" + papp->m_strAppId;
+      string strServiceName = "ca2-" + papp->m_strAppId;
 
       strServiceName.replace("/", "-");
       strServiceName.replace("\\", "-");

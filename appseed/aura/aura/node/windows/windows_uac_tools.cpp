@@ -96,6 +96,8 @@ The first release.
 */
 
 #include "framework.h"
+#include "windows.h"
+
 
 #ifdef IMPLEMENT_VISTA_TOOLS
 

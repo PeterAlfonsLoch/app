@@ -2,6 +2,7 @@
 #include "windows.h"
 
 
+
 namespace windows
 {
 
@@ -85,7 +86,6 @@ namespace windows
 
       // create the child process.
 
-
       if(::str::ends_ci(szCmdline,".bat"))
       {
          string strCmd;
@@ -120,6 +120,7 @@ namespace windows
             &m_si,  // STARTUPINFO pointer
             &m_pi) != FALSE;  // receives PROCESS_INFORMATION
       }
+
       // If an error occurs, exit the application.
       if(! bSuccess)
          return false;

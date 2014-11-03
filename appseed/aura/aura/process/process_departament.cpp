@@ -74,7 +74,18 @@ namespace process
 
    }
 
-   departament::process_thread::process_thread(sp(::aura::application) papp, const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout, string * pstrRead):
+
+   uint32_t departament::elevated_synch(const char * pszCmdLine,int32_t iShow,const ::duration & dur,bool * pbPotentialTimeout)
+   {
+
+      process_processor proc(get_app(),pszCmdLine,dur,pbPotentialTimeout);
+
+      return proc.m_uiRetCode;
+
+   }
+
+
+   departament::process_thread::process_thread(sp(::aura::application) papp,const string & strCmdLine,const ::duration & dur,bool * pbPotentialTimeout,string * pstrRead):
       element(papp),
       thread(papp),
       simple_thread(papp),

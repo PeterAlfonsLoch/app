@@ -16,6 +16,9 @@ Display * x11_get_display();
 #ifdef WINDOWS
 #include <cderr.h>      // Commdlg Error definitions
 #include <winspool.h>
+#ifdef WINDOWSEX
+#include "app/appseed/aura/aura/node/windows/windows.h"
+#endif
 #endif
 
 
@@ -1611,6 +1614,8 @@ namespace core
 
                      strPath = System.dir().ca2module("app");
 
+                     string strParam;
+
                      string strBuildNumber = "latest";
 
 #ifdef WINDOWS
@@ -1629,24 +1634,61 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 #if defined(APPLEOS)
                      strPath = "/usr/bin/open " + strPath + " --args : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
                      #else
-                     strPath += " : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
+                     strParam = " : app=" + notinstalled.m_strId + " install build_number=basis locale="+notinstalled.m_strLocale+" schema="+notinstalled.m_strSchema;
                      #endif
 
                      bool bTimedOut = false;
 
-                     uint32_t dwExitCode = System.process().synch(strPath, SW_HIDE, seconds(8.41115770402), &bTimedOut);
+                     DWORD dwExitCode;
+
+#ifdef WINDOWSEX
+
+                     
+
+                     HANDLE h = NULL;
+
+                     VistaTools::RunElevated(NULL,strPath,strParam,NULL, &h);
+
+                     bTimedOut = true;
+
+                     DWORD dwStart = ::get_tick_count();
+
+                     while(::get_tick_count() - dwStart < 8411)
+                     {
+
+                        if(!::GetExitCodeProcess(h,&dwExitCode))
+                           break;
+
+                        if(dwExitCode != STILL_ACTIVE)
+                        {
+
+                           bTimedOut = false;
+
+                           break;
+
+                        }
+
+                     }
+
+                     ::CloseHandle(h);
+
+#else
+                     
+                     dwExitCode = System.process().synch(strPath + strParam,SW_HIDE,seconds(8.41115770402),&bTimedOut);
+
+#endif
 
                      if(bTimedOut)
                      {
-                        ::simple_message_box(NULL, " - " + notinstalled.m_strId + "\nhas timed out while trying to install.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nIt is recommended to kill manually :\n - \"" +strPath+ "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+                        ::simple_message_box(NULL, " - " + notinstalled.m_strId + "\nhas timed out while trying to install.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nIt is recommended to kill manually :\n - \"" +strPath +strParam+ "\"\nif it has not been terminated yet.","Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
                      }
                      else if(dwExitCode == 0)
                      {
-                        ::simple_message_box(NULL,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+                        ::simple_message_box(NULL,"Successfully run : " + strPath + strParam,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
                      }
                      else
                      {
-                        ::simple_message_box(NULL, strPath + "\n\nFailed return code : " + ::str::from(dwExitCode),"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
+                        ::simple_message_box(NULL, strPath + strParam + "\n\nFailed return code : " + ::str::from((uint32_t) dwExitCode),"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
                      }
 
                   }
@@ -3330,6 +3372,9 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
    bool application::on_uninstall()
    {
+
+      bool bOk = ::base::application::on_uninstall();
+
       string strId = m_strId;
       char chFirst = '\0';
       if(strId.get_length() > 0)
@@ -3337,7 +3382,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
          chFirst = strId[0];
       }
 
-      return true;
+      return bOk;
    }
 
    bool application::on_run_uninstall()

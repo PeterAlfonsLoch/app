@@ -66,7 +66,7 @@ namespace process
       virtual uint32_t retry(const char * pszCmdLine,const ::duration & dur,int32_t iShow = SW_HIDE, bool * pbPotentialTimeout = NULL);
       virtual uint32_t synch(const char * pszCmdLine,int32_t iShow = SW_HIDE, const ::duration & dur = ::duration::infinite(), bool * pbPotentialTimeout = NULL);
       virtual bool launch(const char * pszCmdLine,int32_t iShow = SW_HIDE);
-
+      virtual uint32_t elevated_synch(const char * pszCmdLine,int32_t iShow = SW_HIDE,const ::duration & dur = ::duration::infinite(),bool * pbPotentialTimeout = NULL);
 
 
 

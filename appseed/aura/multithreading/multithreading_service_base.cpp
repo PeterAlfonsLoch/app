@@ -89,6 +89,8 @@ void service_base::serve(service_base& service)
 
    };
 
+   //::MessageBox(NULL,"attach","attach",MB_OK);
+
    if (!::StartServiceCtrlDispatcherW(serviceTable))
    {
 

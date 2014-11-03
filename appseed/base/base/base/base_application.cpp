@@ -1646,6 +1646,9 @@ namespace base
    bool application::on_install()
    {
 
+      if(!axis::application::on_install())
+         return false;
+
       return true;
 
    }
@@ -1654,7 +1657,9 @@ namespace base
    bool application::on_uninstall()
    {
 
-      return true;
+      bool bOk = axis::application::on_uninstall();
+
+      return bOk;
 
    }
 

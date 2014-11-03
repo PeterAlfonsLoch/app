@@ -1121,6 +1121,18 @@ namespace axis
    bool application::on_install()
    {
 
+      if(!aura::application::on_install())
+         return false;
+
+
+      if(is_serviceable())
+      {
+
+         if(!create_service())
+            return false;
+
+      }
+
       return true;
 
    }
@@ -1129,7 +1141,18 @@ namespace axis
    bool application::on_uninstall()
    {
 
-      return true;
+      bool bOk = aura::application::on_uninstall();
+
+
+      if(is_serviceable())
+      {
+
+         if(!remove_service())
+            bOk = false;
+
+      }
+
+      return bOk;
 
    }
 

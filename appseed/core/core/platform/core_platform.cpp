@@ -1786,8 +1786,8 @@ namespace core
    {
 
 
-      bool bOk1 = false;
-      bool bOk2 = false;
+      bool bOk1 = true;
+      bool bOk2 = true;
 
       try
       {

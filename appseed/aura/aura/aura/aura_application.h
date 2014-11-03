@@ -110,6 +110,7 @@ namespace aura
       virtual bool is_system();
       virtual bool is_session();
       virtual bool is_serviceable();
+      virtual bool is_user_service();
 
       void process_machine_event_data(machine_event_data * pdata);
 
