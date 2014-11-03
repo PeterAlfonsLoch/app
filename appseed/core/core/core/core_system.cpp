@@ -551,7 +551,7 @@ namespace core
 
 
 
-      int32_t iRet = 0;
+      int32_t iRet = m_iReturnCode;
 
 
       try

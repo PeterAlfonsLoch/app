@@ -300,7 +300,7 @@ namespace base
       }
 
 
-      int32_t iRet = 0;
+      int32_t iRet = m_iReturnCode;
 
 
       try
@@ -382,7 +382,7 @@ namespace base
 
 
 
-      ::base::application::exit_instance();
+      //::base::application::exit_instance();
 
 #ifdef METROWIN
       m_pdevicecontext = nullptr;

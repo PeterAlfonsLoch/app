@@ -1307,7 +1307,7 @@ int32_t thread_impl::run()
 
 stop_run:
 
-   return 0;
+   return m_pthread->m_iReturnCode;
 
 }
 

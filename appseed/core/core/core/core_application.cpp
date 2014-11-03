@@ -132,10 +132,12 @@ namespace core
 
       try
       {
-         thread::exit();
+         iExit = thread::exit();
       }
       catch(...)
       {
+
+         iExit = -1;
       }
 
       return iExit;

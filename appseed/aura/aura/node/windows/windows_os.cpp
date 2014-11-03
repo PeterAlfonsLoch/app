@@ -571,6 +571,115 @@ namespace windows
 
       return bOk;
    }
+   BOOL
+      GetAccountSid(
+      LPTSTR SystemName,
+      LPTSTR AccountName,
+      PSID *Sid
+      )
+   {
+      LPTSTR ReferencedDomain=NULL;
+      DWORD cbSid=128;    // initial allocation attempt
+      DWORD cchReferencedDomain=16; // initial allocation size
+      SID_NAME_USE peUse;
+      BOOL bSuccess=FALSE; // assume this function will fail
+
+      __try {
+
+         // 
+         // initial memory allocations
+         // 
+         if((*Sid=HeapAlloc(
+            GetProcessHeap(),
+            0,
+            cbSid
+            )) == NULL) __leave;
+
+         if((ReferencedDomain=(LPTSTR)HeapAlloc(
+            GetProcessHeap(),
+            0,
+            cchReferencedDomain * sizeof(TCHAR)
+            )) == NULL) __leave;
+
+         // 
+         // Obtain the SID of the specified account on the specified system.
+         // 
+         while(!LookupAccountName(
+            SystemName,         // machine to lookup account on
+            AccountName,        // account to lookup
+            *Sid,               // SID of interest
+            &cbSid,             // size of SID
+            ReferencedDomain,   // domain account was found on
+            &cchReferencedDomain,
+            &peUse
+            )) {
+            if(GetLastError() == ERROR_INSUFFICIENT_BUFFER) {
+               // 
+               // reallocate memory
+               // 
+               if((*Sid=HeapReAlloc(
+                  GetProcessHeap(),
+                  0,
+                  *Sid,
+                  cbSid
+                  )) == NULL) __leave;
+
+               if((ReferencedDomain=(LPTSTR)HeapReAlloc(
+                  GetProcessHeap(),
+                  0,
+                  ReferencedDomain,
+                  cchReferencedDomain * sizeof(TCHAR)
+                  )) == NULL) __leave;
+            }
+            else __leave;
+         }
+
+         // 
+         // Indicate success.
+         // 
+         bSuccess=TRUE;
+
+      } // finally
+      __finally {
+
+         // 
+         // Cleanup and indicate failure, if appropriate.
+         // 
+
+         HeapFree(GetProcessHeap(),0,ReferencedDomain);
+
+         if(!bSuccess) {
+            if(*Sid != NULL) {
+               HeapFree(GetProcessHeap(),0,*Sid);
+               *Sid = NULL;
+            }
+         }
+
+      } // finally
+
+      return bSuccess;
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
    bool getCredentialsForService(sp(::aura::application) papp, const string & strService,WCHAR * szUsername,WCHAR *szPassword)
@@ -603,8 +712,6 @@ namespace windows
       ui.hwndParent = NULL;
 
 
-      if(!GetCurrentUserIdentity(ti))
-         return false;
 
       // Retrieve the user name and domain name.
       SID_NAME_USE    SidUse;
@@ -615,34 +722,48 @@ namespace windows
       wstring wstrCaption("\"ca2 : " + strService + "\" Authentication");
       wstring wstrMessage("The Service \"ca2 : " + strService + "\" requires current user password for installing Windows Service.");
 
+      DWORD lenUserName = CREDUI_MAX_USERNAME_LENGTH + 1;
+
+         //::GetUserNameW(szUsername,&lenUserName);
 
 
-      if(!LookupAccountSidW(
-         NULL,             // Local computer
-         ti.tokenUser.User.Sid,             // Security identifier for user
-         szUsername,       // User name
-         &cchTmpUsername,  // Size of user name
-         szDomain,         // Domain name
-         &cchTmpDomain,    // Size of domain name
-         &SidUse))         // Account type
-      {
-         dwResult = GetLastError();
-         printf("\n getCredentialsForService LookupAccountSidLocalW failed: win32 error = 0x%x\n",dwResult);
-         return false;
-      }
+      DWORD dwLastError = 0;
+
+
+
+      bool bOk;
+
+
+      //if(!GetCurrentUserIdentity(ti))
+      //   return false;
+      ////szDomain[0] ='.';
+      ////         szDomain[1] ='\0';
+      //if(!LookupAccountSidW(
+      //   NULL,             // Local computer
+      //   ti.tokenUser.User.Sid,             // Security identifier for user
+      //   szUsername,       // User name
+      //   &cchTmpUsername,  // Size of user name
+      //   szDomain,         // Domain name
+      //   &cchTmpDomain,    // Size of domain name
+      //   &SidUse))         // Account type
+      //{
+      //   dwResult = GetLastError();
+      //   printf("\n getCredentialsForService LookupAccountSidLocalW failed: win32 error = 0x%x\n",dwResult);
+      //   return false;
+      //}
+
+      ULONG l = sizeof(szDomainAndUser) / sizeof(WCHAR);
+
+      ::GetUserNameExW(NameSamCompatible,szDomainAndUser,&l);
 
       // Combine the domain and user names.
-      swprintf_s(
+      /*swprintf_s(
          szDomainAndUser,
          cchDomainAndUser,
          L"%s\\%s",
          szDomain,
-         szUsername);
-
-      DWORD dwLastError = 0;
-
-   retry:
-
+         szUsername);*/
+      zero(szPassword,CREDUI_MAX_PASSWORD_LENGTH);
 
       // Call CredPackAuthenticationBufferW once to determine the size,
       // in bytes, of the authentication buffer.
@@ -684,7 +805,7 @@ namespace windows
 
       ui.pszCaptionText = wstrCaption;
       ui.pszMessageText = wstrMessage;
-      hicon = ::LoadIcon(::GetModuleHandle(NULL),MAKEINTRESOURCE(1));
+      hicon = (HICON) ::LoadImageW(::GetModuleHandle(NULL),MAKEINTRESOURCEW(1),IMAGE_ICON,48,48,LR_DEFAULTCOLOR);
 
 
       if(hicon != NULL)
@@ -692,8 +813,11 @@ namespace windows
 
          ui.hbmBanner = get_icon_hbitmap(hicon);
 
+         ::DeleteObject(hicon);
+
       }
 
+   retry:
 
       dwResult = CredUIPromptForWindowsCredentialsW(
          &ui,             // Customizing information
@@ -704,41 +828,81 @@ namespace windows
          &pvAuthBlob,     // Output credential byte array
          &cbAuthBlob,     // Size of credential byte array
          &fSave,          // Select the save check box.
-         CREDUIWIN_SECURE_PROMPT |
+         //CREDUIWIN_SECURE_PROMPT |
          CREDUIWIN_IN_CRED_ONLY |
          CREDUIWIN_ENUMERATE_CURRENT_USER
          );
 
-      if(ui.hbmBanner != NULL)
-      {
-
-         ::DeleteObject(ui.hbmBanner);
-
-      }
       
       if(dwResult == NO_ERROR)
       {
-         bool bOk = CredUnPackAuthenticationBufferW(CRED_PACK_PROTECTED_CREDENTIALS,
+
+         DWORD lenName = maxLenName;
+         DWORD lenDomain = maxLenDomain;
+         DWORD lenPass = maxLenPass;
+
+         bOk = CredUnPackAuthenticationBufferW(CRED_PACK_PROTECTED_CREDENTIALS,
             pvAuthBlob,
             cbAuthBlob,
             szUsername,
-            &maxLenName,
+            &lenName,
             szDomain,
-            &maxLenDomain,
+            &lenDomain,
             szPassword,
-            &maxLenPass) != FALSE;
+            &lenPass) != FALSE;
+      
+         SecureZeroMemory(pvAuthBlob,cbAuthBlob);
+         CoTaskMemFree(pvAuthBlob);
+         pvAuthBlob = NULL;
+         cbAuthBlob = 0;
 
          if(!bOk)
          {
             dwLastError = ::GetLastError();
             goto retry;
          }
-           
-         SecureZeroMemory(pvAuthBlob,cbAuthBlob);
-         CoTaskMemFree(pvAuthBlob);
-         pvAuthBlob = NULL;
 
-         return bOk;
+         //wcscpy(szDomainAndUser,szUsername);
+
+         ::GetUserNameExW(NameSamCompatible,szDomainAndUser,&l);
+
+         bOk = CredUIParseUserNameW(
+            szDomainAndUser,
+            szUsername,
+            CREDUI_MAX_USERNAME_LENGTH,
+            szDomain,
+            CREDUI_MAX_DOMAIN_TARGET_LENGTH
+            ) == NO_ERROR ;
+
+         if(!bOk)
+         {
+            dwLastError = ::GetLastError();
+            goto retry;
+         }
+
+         HANDLE h;
+
+
+
+         if(::LogonUserW(
+            szUsername,
+            szDomain,
+            szPassword,
+            LOGON32_LOGON_SERVICE,
+            LOGON32_PROVIDER_DEFAULT,
+            &h))
+         {
+            ::CloseHandle(h);
+         }
+         else
+         {
+            dwLastError = ::GetLastError();
+            goto retry;
+         }
+
+         wcscpy(szUsername,szDomainAndUser);
+           
+
       }
       else
       {
@@ -747,16 +911,66 @@ namespace windows
             goto retry;
 
          hr = HRESULT_FROM_WIN32(dwResult);
-         if(pvInAuthBlob)
-         {
-            SecureZeroMemory(pvInAuthBlob,cbInAuthBlob);
-            CoTaskMemFree(pvInAuthBlob);
-            pvInAuthBlob = NULL;
-         }
-         return false;
+         bOk = false;
       }
 
+      if(pvInAuthBlob)
+      {
+         SecureZeroMemory(pvInAuthBlob,cbInAuthBlob);
+         CoTaskMemFree(pvInAuthBlob);
+         pvInAuthBlob = NULL;
+      }
+
+      if(ui.hbmBanner != NULL)
+      {
+
+         ::DeleteObject(ui.hbmBanner);
+
+      }
+
+      return bOk;
+
    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    bool os::create_service(sp(::aura::application) papp)
    {
 
@@ -766,7 +980,7 @@ namespace windows
          return false;
 
 
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
+      SC_HANDLE hdlSCM = OpenSCManagerW(0, 0, SC_MANAGER_CREATE_SERVICE);
 
       string strCalling = Sys(papp).m_strModulePath + " : app=" + papp->m_strAppId + " build_number=\"" + System.command()->m_varTopicQuery["build_number"] + "\" service usehostlogin";
 
@@ -785,7 +999,7 @@ namespace windows
       WCHAR * pname = NULL;
       WCHAR * ppass = NULL;
 
-      WCHAR pszName[CREDUI_MAX_USERNAME_LENGTH + 1];
+      WCHAR pszName[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
       WCHAR pszPass[CREDUI_MAX_PASSWORD_LENGTH + 1];
 
       if(App(papp).is_user_service())
@@ -812,7 +1026,7 @@ namespace windows
          wstring(strServiceName),
          wstring("ca2 : " + papp->m_strAppId),        // service name to display 
          STANDARD_RIGHTS_REQUIRED,  // desired access 
-         SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS, // service type 
+         SERVICE_WIN32_OWN_PROCESS, // service type 
          SERVICE_AUTO_START,      // start type 
          SERVICE_ERROR_NORMAL,      // error control type 
          wstring(strCalling),                   // service's binary Path name
@@ -822,16 +1036,18 @@ namespace windows
          pname,                      // LocalSystem account 
          ppass);                     // no password 
 
-      SecureZeroMemory(pszName,sizeof(pszName));
-      SecureZeroMemory(pszPass,sizeof(pszPass));
 
       if(!hdlServ)
       {
-         CloseServiceHandle(hdlSCM);
-         //DWORD Ret = ::GetLastError();
+         DWORD Ret = ::GetLastError();
          TRACELASTERROR();
+         CloseServiceHandle(hdlSCM);
          return false;
       }
+
+      SecureZeroMemory(pszName,sizeof(pszName));
+      SecureZeroMemory(pszPass,sizeof(pszPass));
+
 
       CloseServiceHandle(hdlServ);
       CloseServiceHandle(hdlSCM);
@@ -849,7 +1065,7 @@ namespace windows
          || !papp->is_serviceable())
          return false;
 
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+      SC_HANDLE hdlSCM = OpenSCManagerW(0, 0, SC_MANAGER_ALL_ACCESS);
 
       if(hdlSCM == 0)
       {
@@ -860,12 +1076,36 @@ namespace windows
 
       strServiceName.replace("/", "-");
       strServiceName.replace("\\", "-");
+      //WCHAR * pname = NULL;
+      //WCHAR * ppass = NULL;
+
+      //WCHAR pszName[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
+      //WCHAR pszPass[CREDUI_MAX_PASSWORD_LENGTH + 1];
+
+      //if(App(papp).is_user_service())
+      //{
+
+      //   if(getCredentialsForService(papp,papp->m_strAppId,pszName,pszPass))
+      //   {
+
+      //      pname = pszName;
+      //      ppass = pszPass;
+
+      //   }
+      //   else
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //}
 
 
-      SC_HANDLE hdlServ = ::OpenService(
+      SC_HANDLE hdlServ = ::OpenServiceW(
          hdlSCM,                    // SCManager database 
-         strServiceName,
-         DELETE);                     // no password 
+         wstring(strServiceName),
+         DELETE);                     
 
       if (!hdlServ)
       {
@@ -892,7 +1132,7 @@ namespace windows
          || !papp->is_serviceable())
          return false;
 
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+      SC_HANDLE hdlSCM = OpenSCManagerW(0, 0, SC_MANAGER_ALL_ACCESS);
 
       if(hdlSCM == 0)
       {
@@ -905,9 +1145,9 @@ namespace windows
       strServiceName.replace("/", "-");
       strServiceName.replace("\\", "-");
 
-      SC_HANDLE hdlServ = ::OpenService(
+      SC_HANDLE hdlServ = ::OpenServiceW(
          hdlSCM,                    // SCManager database 
-         strServiceName,
+         wstring(strServiceName),
          SERVICE_START);                     // no password 
 
 
@@ -934,7 +1174,7 @@ namespace windows
          || !papp->is_serviceable())
          return false;
 
-      SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+      SC_HANDLE hdlSCM = OpenSCManagerW(0, 0, SC_MANAGER_ALL_ACCESS);
 
       if(hdlSCM == 0)
       {
@@ -947,9 +1187,9 @@ namespace windows
       strServiceName.replace("/", "-");
       strServiceName.replace("\\", "-");
 
-      SC_HANDLE hdlServ = ::OpenService(
+      SC_HANDLE hdlServ = ::OpenServiceW(
          hdlSCM,                    // SCManager database 
-         strServiceName,
+         wstring(strServiceName),
          SERVICE_STOP);                     // no password 
 
       if (!hdlServ)

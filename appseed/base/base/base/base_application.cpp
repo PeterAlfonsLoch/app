@@ -1316,8 +1316,8 @@ namespace base
          if(!initial_check_directrix())
          {
             dappy(string(typeid(*this).name()) + " : initial_check_directrix failure");
-            exit();
             m_iReturnCode = -1;
+            exit();
             m_bReady = true;
             ::OutputDebugStringW(L"exiting on check directrix");
             return false;
@@ -1555,7 +1555,10 @@ namespace base
       {
 
          if(!on_install())
+         {
+            System.m_iReturnCode = -1;
             return false;
+         }
 
          string strId = m_strAppId;
 
@@ -2497,9 +2500,6 @@ namespace base
 
          }
 
-         return 0;
-
-
       }
       catch(...)
       {
@@ -2508,27 +2508,27 @@ namespace base
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         if(Session.appptra().get_count() <= 1)
-         {
+      //   if(Session.appptra().get_count() <= 1)
+      //   {
 
-            if(System.thread::get_os_data() != NULL)
-            {
-               System.post_thread_message(WM_QUIT);
+      //      if(System.thread::get_os_data() != NULL)
+      //      {
+      //         System.post_thread_message(WM_QUIT);
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
-      catch(...)
-      {
+      //}
+      //catch(...)
+      //{
 
-         m_iReturnCode = -1;
+      //   m_iReturnCode = -1;
 
-      }
+      //}
 
       return m_iReturnCode;
 

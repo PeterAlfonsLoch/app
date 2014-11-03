@@ -878,8 +878,8 @@ namespace axis
          if(!initial_check_directrix())
          {
             dappy(string(typeid(*this).name()) + " : initial_check_directrix failure");
-            exit();
             m_iReturnCode = -1;
+            exit();
             m_bReady = true;
             ::OutputDebugStringW(L"exiting on check directrix");
             return false;
