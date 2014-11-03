@@ -9,7 +9,7 @@
 // 10714
 
 
-HBITMAP get_icon_hbitmap(HICON hICON)
+CLASS_DECL_AURA HBITMAP get_icon_hbitmap(HICON hICON)
 {
 
 //HICON hICON = /*your code here*/

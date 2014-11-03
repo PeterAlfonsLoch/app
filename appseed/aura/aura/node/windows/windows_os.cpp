@@ -8,6 +8,8 @@
 #include <Psapi.h>
 #include <WinCred.h>
 
+CLASS_DECL_AURA HBITMAP get_icon_hbitmap(HICON hICON);
+
 namespace windows
 {
 
@@ -592,6 +594,15 @@ namespace windows
       DWORD maxLenPass = CREDUI_MAX_PASSWORD_LENGTH + 1;
       DWORD maxLenDomain = CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1;
 
+      HICON hicon = NULL;
+
+
+      // Display a dialog box to request credentials.
+      ZERO(ui);
+      ui.cbSize = sizeof(ui);
+      ui.hwndParent = NULL;
+
+
       if(!GetCurrentUserIdentity(ti))
          return false;
 
@@ -671,15 +682,17 @@ namespace windows
       }
 
 
-      // Display a dialog box to request credentials.
-      ui.cbSize = sizeof(ui);
-      ui.hwndParent = NULL;
       ui.pszCaptionText = wstrCaption;
       ui.pszMessageText = wstrMessage;
+      hicon = ::LoadIcon(::GetModuleHandle(NULL),MAKEINTRESOURCE(1));
 
 
+      if(hicon != NULL)
+      {
 
-      ui.hbmBanner = NULL;
+         ui.hbmBanner = get_icon_hbitmap(hicon);
+
+      }
 
 
       dwResult = CredUIPromptForWindowsCredentialsW(
@@ -695,6 +708,13 @@ namespace windows
          CREDUIWIN_IN_CRED_ONLY |
          CREDUIWIN_ENUMERATE_CURRENT_USER
          );
+
+      if(ui.hbmBanner != NULL)
+      {
+
+         ::DeleteObject(ui.hbmBanner);
+
+      }
       
       if(dwResult == NO_ERROR)
       {
