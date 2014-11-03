@@ -982,8 +982,6 @@ namespace windows
 
       SC_HANDLE hdlSCM = OpenSCManagerW(0, 0, SC_MANAGER_CREATE_SERVICE);
 
-      string strCalling = Sys(papp).m_strModulePath + " : app=" + papp->m_strAppId + " build_number=\"" + System.command()->m_varTopicQuery["build_number"] + "\" service usehostlogin";
-
       if(hdlSCM == 0)
       {
          //::GetLastError()
@@ -995,6 +993,18 @@ namespace windows
       strServiceName.replace("/", "-");
       strServiceName.replace("\\", "-");
       //strServiceName.replace("-", "_");
+
+      string strDisplay(strServiceName);
+
+      strDisplay.replace("-"," ");
+
+      string strExe(strServiceName);
+
+      strExe.replace("-","_");
+
+      strExe += ".exe";
+
+      string strCalling = System.dir_path(Sys(papp).m_strModuleFolder, strExe) + " : service";
 
       WCHAR * pname = NULL;
       WCHAR * ppass = NULL;
