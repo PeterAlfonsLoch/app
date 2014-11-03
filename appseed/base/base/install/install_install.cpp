@@ -439,13 +439,13 @@ namespace install
       if (pszVersion != NULL && !strcmp(pszVersion, "basis"))
       {
 
-         strSpaIgnitionBaseUrl = "http://basis-server.ca2.cc/api/spaignition";
+         strSpaIgnitionBaseUrl = "http://"+Session.fontopus()->m_strFirstFontopusServer+"/api/spaignition";
 
       }
       else if (pszVersion != NULL && !strcmp(pszVersion, "stage"))
       {
 
-         strSpaIgnitionBaseUrl = "http://stage-server.ca2.cc/api/spaignition";
+         strSpaIgnitionBaseUrl = "http://" + Session.fontopus()->m_strFirstFontopusServer + "/api/spaignition";
 
       }
       else
@@ -456,7 +456,7 @@ namespace install
 
             strVersion = "basis";
 
-            strSpaIgnitionBaseUrl = "http://basis-server.ca2.cc/api/spaignition";
+            strSpaIgnitionBaseUrl = "http://" + Session.fontopus()->m_strFirstFontopusServer + "/api/spaignition";
 
          }
          else
@@ -464,7 +464,7 @@ namespace install
 
             strVersion = "stage";
 
-            strSpaIgnitionBaseUrl = "http://stage-server.ca2.cc/api/spaignition";
+            strSpaIgnitionBaseUrl = "http://" + Session.fontopus()->m_strFirstFontopusServer + "/api/spaignition";
 
          }
 
