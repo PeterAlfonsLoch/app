@@ -30,7 +30,7 @@ namespace hotplugin
       m_bOk                   = false;
       m_bResponsive           = true;
       m_bWrite                = false;
-
+      m_bEntryHallTextStarted = false;
       
 
    }
@@ -346,17 +346,34 @@ namespace hotplugin
       if((!m_bOk || !m_bResponsive) || m_pbasehost == NULL || !m_pbasehost->hotplugin_host_is_initialized() || m_strEntryHallText.has_char())
       {
 
-         ::rect rect = m_rect;
+         if(!m_bEntryHallTextStarted)
+         {
 
-         POINT pt;
+            m_bEntryHallTextStarted = true;
 
-         //::SetViewportOrgEx(hdc, rect.left, rect.top, &pt);
+            m_dwEntryHallTextStart = get_tick_count();
 
-         ::hotplugin::entry_hall_windows_on_paint(hdc,m_rect,m_strEntryHallText);
+         }
+
+         if(get_tick_count() - m_dwEntryHallTextStart > (1984 + 1951 + 1977))
+         {
+
+            ::rect rect = m_rect;
+
+            POINT pt;
+
+            //::SetViewportOrgEx(hdc, rect.left, rect.top, &pt);
+
+            ::hotplugin::entry_hall_windows_on_paint(hdc,m_rect,m_strEntryHallText);
+
+         }
 
          return true;
 
       }
+
+      m_bEntryHallTextStarted = false;
+
       /*else 
       {
 

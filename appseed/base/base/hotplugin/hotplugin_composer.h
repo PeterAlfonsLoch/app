@@ -44,6 +44,8 @@ namespace hotplugin
       rect                                   m_rect;
       bool                                   m_bResponsive;
       string                                 m_strEntryHallText;
+      DWORD                                  m_dwEntryHallTextStart;
+      bool                                   m_bEntryHallTextStarted;
 
 
       ::hotplugin::host *                    m_pbasehost;

@@ -80,6 +80,7 @@ namespace install
 
       m_bHasCred              = false;
       m_bHasCredEval          = false;
+      m_bPendingRestartCa2    = false;
 
 
 #ifdef METROWIN
@@ -222,7 +223,7 @@ namespace install
    bool plugin::thread_start_ca2_on_idle()
    {
 
-      if (m_bLogin || !m_bLogged || m_bCa2Login || m_bCa2Logout)
+      if (!m_bHasCred && (m_bLogin || !m_bLogged || m_bCa2Login || m_bCa2Logout))
          return false;
 
 #ifdef METROWIN
@@ -494,6 +495,8 @@ namespace install
 
             m_bHasCred = true;
 
+            m_bPendingRestartCa2 = true;
+
          }
          else
          {
@@ -681,6 +684,8 @@ namespace install
 
          m_phost->m_pbasecomposer->m_strEntryHallText = "";
 
+         m_bPendingRestartCa2 = true;
+
          m_bRestartCa2     = false;
 
          m_bNativeLaunch   = false;
@@ -706,6 +711,8 @@ namespace install
 
       if(System.install().is_ca2_installed())
       {
+
+         m_bPendingRestartCa2 = false;
 
          m_bRestartCa2        = true;
 
@@ -809,7 +816,7 @@ namespace install
 
 
 
-      if(!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
+      if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
       {
          //DWORD dwTime3 = ::get_tick_count();
 
@@ -990,9 +997,14 @@ namespace install
 
          m_canvas.on_paint(pgraphics, rect);
 
+         m_bPendingRestartCa2 = true;
+
       }
       else if (!System.install().is_ca2_installed())
       {
+
+         m_bPendingRestartCa2 = true;
+
          /* HPEN hpen = (HPEN) ::create_solid(1, RGB(0, 0, 0));
          HPEN hpenOld = (HPEN) ::SelectObject(hdc, hpen);
          HBRUSH hbrush = (HBRUSH) ::create_solid(RGB(255, 0, 255));
@@ -1512,7 +1524,7 @@ restart:
 
       //}
 
-      if((m_bLogin && !m_bLogged) || !m_phost->m_bOk || m_bNativeLaunch)
+      if((m_bLogin && !m_bLogged) || !m_phost->m_bOk || m_bNativeLaunch || m_bPendingRestartCa2)
       {
 
          if((get_tick_count() - m_dwLastRestart) > (840 + 770))
