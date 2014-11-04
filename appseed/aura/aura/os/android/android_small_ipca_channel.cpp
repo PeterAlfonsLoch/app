@@ -182,7 +182,7 @@ bool small_ipc_rx_channel::destroy()
    int32_t iRetry = 23;
    while(m_bRunning && iRetry > 0)
    {
-      set_end_thread();
+      m_bRun = false;
       sleep(1);
       iRetry--;
    }
@@ -213,7 +213,7 @@ bool small_ipc_rx_channel::start_receiving()
 
       m_bRunning = false;
 
-      set_end_thread();
+      m_bRun = false;
 
       return false;
 

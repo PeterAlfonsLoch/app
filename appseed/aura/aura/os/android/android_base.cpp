@@ -83,7 +83,7 @@ void output_debug_string(const char * psz)
 bool __node_aura_pre_init()
 {
 
-   c_xstart();
+   //c_xstart();
 
    return true;
 

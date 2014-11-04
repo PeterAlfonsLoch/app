@@ -7,7 +7,7 @@
 
 #include "framework.h"
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
 #define QS_ALLEVENTS 0xffff
 #endif
 
