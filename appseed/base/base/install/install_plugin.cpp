@@ -988,6 +988,7 @@ namespace install
 
       if(m_bLogin)
       {
+         ::OutputDebugString("m_bLogin");
          //get_login().draw(pgraphics);
       }
       else if (System.install().is_installing_ca2())
@@ -1027,6 +1028,7 @@ namespace install
       }
       else
       {
+         ::OutputDebugString("Neither");
       }
 
 #ifdef WINDOWS
@@ -1057,6 +1059,11 @@ namespace install
          on_bare_paint(pgraphics, lprect);
 
       }
+      else
+      {
+
+         ::OutputDebugString("m_bLogin || !bInstallingCa2");
+      }
 
 
    }
@@ -1077,7 +1084,7 @@ namespace install
    void plugin::message_handler(signal_details * pobj)
    {
 
-      if(!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pobj != NULL && !is_installing() && System.install().is_ca2_installed())
+      if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pobj != NULL && !is_installing() && System.install().is_ca2_installed())
       {
 
          ::hotplugin::plugin::message_handler(pobj);
@@ -1158,39 +1165,38 @@ namespace install
          iTell--;
          string strLine;
          int32_t iSkip = 0;
-         bool bNormal = false;
-         bool bBold = false;
-//         bool bPreNormal = false;
-         bool bStart = false;
          bool bStatus2 = false;
          char ch = '\0';
-         while(iTell >= 0 && !bStart && !(bNormal && bBold))
+         bool bFirst = true;
+         while(iTell >= 0)
          {
-            if(iTell > 0)
-            {
-               ::SetFilePointer(hfile, iTell, NULL, SEEK_SET);
-               if(!ReadFile(hfile, &ch,  1, &dwRead, NULL))
-                  break;
-               if(dwRead <= 0)
-                  break;
-            }
+            ::SetFilePointer(hfile, iTell, NULL, SEEK_SET);
+            if(!ReadFile(hfile, &ch,  1, &dwRead, NULL))
+               break;
+            if(dwRead <= 0)
+               break;
 
-            if(iTell > 0 && ch == '\r')
+            if(ch == '\r')
             {
                iSkip++;
             }
-            else if(iTell > 0 && ch == '\n')
+            else if(ch == '\n')
             {
                iSkip++;
             }
-            else if(iTell <= 0 || iSkip > 0)
+            else if(bFirst || iSkip > 0)
             {
+               bFirst = false;
                iSkip = 0;
                strLine.trim();
-               if(::str::begins_eat(strLine, "get application name"))
+               if(::str::begins_eat(strLine, "***Getting build number"))
                {
-                  m_strStatus = "";
-                  return 0.0;
+                  m_strStatus = "Thank you";
+                  bStatus = true;
+                  m_strStatus2 = strLine;
+                  bStatus2 = true;
+                  dRate = 0.0;
+                  bRate = true;
                }
                else if(!bRate && ::str::begins_eat(strLine, "|||"))
                {
@@ -1335,7 +1341,7 @@ namespace install
       if(m_bLogin)
          return;
 
-      if(!m_bLogged)
+      if(!m_bLogged && !m_bHasCred)
          return;
 
       if(System.install().is_installing_ca2())
@@ -1538,7 +1544,7 @@ restart:
 
       }
 
-      if(!m_bLogin && m_bLogged && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
+      if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
       {
 
 #ifdef METROWIN
