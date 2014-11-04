@@ -51,23 +51,23 @@ bool __node_term_thread(::thread * pthread)
 
    bool bOk1 = false;
 
-   try
-   {
+   //try
+   //{
 
-      if(pthread != NULL)
-      {
+   //   if(pthread != NULL)
+   //   {
 
-         pthread->::exception::translator::detach();
+   //      pthread->::exception::translator::detach();
 
-      }
+   //   }
 
-      bOk1 = true;
+   //   bOk1 = true;
 
-   }
-   catch(...)
-   {
+   //}
+   //catch(...)
+   //{
 
-   }
+   //}
 
    return bOk1;
 
