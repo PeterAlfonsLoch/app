@@ -988,10 +988,10 @@ namespace windows
          return false;
       }
 
-      string strServiceName = "ca2-" + papp->m_strAppId;
+      string strServiceName = papp->m_strAppId;
 
-      strServiceName.replace("/", "-");
-      strServiceName.replace("\\", "-");
+      strServiceName.replace("/","-");
+      strServiceName.replace("\\","-");
       //strServiceName.replace("-", "_");
 
       string strDisplay(strServiceName);
@@ -1082,7 +1082,7 @@ namespace windows
          //::GetLastError();
          return false;
       }
-      string strServiceName = "ca2-" + papp->m_strAppId;
+      string strServiceName = papp->m_strAppId;
 
       strServiceName.replace("/","-");
       strServiceName.replace("\\","-");
