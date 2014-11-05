@@ -104,7 +104,7 @@ namespace hotplugin
 
       virtual int32_t host_starter_start(const char * pszCommandLine);
 
-      static int32_t host_starter_start(const char * pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = NULL,);
+      static int32_t host_starter_start(const char * pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = NULL);
 
       static int32_t host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin = NULL);
 
