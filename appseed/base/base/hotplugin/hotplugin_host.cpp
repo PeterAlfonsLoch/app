@@ -373,17 +373,17 @@ namespace hotplugin
    }
 
 
-   int32_t host::host_starter_start(const char * pszCommandLine, ::aura::application * papp, plugin * pplugin)
+   int32_t host::host_starter_start(const char * pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
-      if(pplugin->m_phost->m_bHostStarterStart)
+      if(phost->m_bHostStarterStart)
          return 0;
 
-      pplugin->m_phost->m_bHostStarterStart = true;
+      phost->m_bHostStarterStart = true;
 
       ::install::starter_start * pstart    = new ::install::starter_start(papp);
 
-      pstart->m_phost               = pplugin->m_phost;
+      pstart->m_phost               = phost;
 
       pstart->m_pplugin             = pplugin;
 
@@ -415,10 +415,17 @@ throw todo(get_thread_app());
    }
 
 
-   int32_t host::host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, plugin * pplugin)
+   int32_t host::host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
+      if(phost->m_bHostStarterStart)
+         return 0;
+
+      phost->m_bHostStarterStart = true;
+
       ::install::starter_start * pstart = new ::install::starter_start(papp);
+
+      pstart->m_phost               = phost;
 
       pstart->m_pplugin             = pplugin;
 
