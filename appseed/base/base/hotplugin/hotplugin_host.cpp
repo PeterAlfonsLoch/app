@@ -46,6 +46,7 @@ namespace hotplugin
 
       m_pbitmap                  = NULL;
       m_pmutexBitmap             = NULL;
+      m_bHostStarterStart        = false;
 
    }
 

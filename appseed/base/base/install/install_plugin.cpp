@@ -988,7 +988,7 @@ namespace install
 
       if(m_bLogin)
       {
-         ::OutputDebugString("m_bLogin");
+         //::OutputDebugString("m_bLogin");
          //get_login().draw(pgraphics);
       }
       else if (System.install().is_installing_ca2())
@@ -1028,7 +1028,7 @@ namespace install
       }
       else
       {
-         ::OutputDebugString("Neither");
+         //::OutputDebugString("Neither");
       }
 
 #ifdef WINDOWS
@@ -1062,7 +1062,7 @@ namespace install
       else
       {
 
-         ::OutputDebugString("m_bLogin || !bInstallingCa2");
+         //::OutputDebugString("m_bLogin || !bInstallingCa2");
       }
 
 
@@ -1359,7 +1359,7 @@ namespace install
          m_bPendingStream = false;
 
       }
-      else
+      else if(!m_phost->m_bHostStarterStart)
       {
 
          string strPrompt;
