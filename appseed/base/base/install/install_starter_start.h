@@ -11,6 +11,7 @@ namespace install
    public:
 
 
+      ::hotplugin::host *              m_phost;
       ::hotplugin::plugin  *           m_pplugin;
       string                           m_strCommandLine;
 

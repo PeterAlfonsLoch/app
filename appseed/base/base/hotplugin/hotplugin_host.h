@@ -33,7 +33,7 @@ namespace hotplugin
       rect                          m_rectClient;
       rect                          m_rectWindow;
 
-
+      bool                          m_bHostStarterStart;
 
 
 
@@ -104,9 +104,9 @@ namespace hotplugin
 
       virtual int32_t host_starter_start(const char * pszCommandLine);
 
-      static int32_t host_starter_start(const char * pszCommandLine, ::aura::application * papp, plugin * pplugin = NULL);
+      static int32_t host_starter_start(const char * pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = NULL,);
 
-      static int32_t host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, plugin * pplugin = NULL);
+      static int32_t host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin = NULL);
 
       virtual void deferred_prodevian_redraw();
 

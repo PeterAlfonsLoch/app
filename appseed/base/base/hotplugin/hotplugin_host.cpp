@@ -376,7 +376,14 @@ namespace hotplugin
    int32_t host::host_starter_start(const char * pszCommandLine, ::aura::application * papp, plugin * pplugin)
    {
 
+      if(pplugin->m_phost->m_bHostStarterStart)
+         return 0;
+
+      pplugin->m_phost->m_bHostStarterStart = true;
+
       ::install::starter_start * pstart    = new ::install::starter_start(papp);
+
+      pstart->m_phost               = pplugin->m_phost;
 
       pstart->m_pplugin             = pplugin;
 

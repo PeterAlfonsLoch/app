@@ -15,6 +15,8 @@ namespace install
    UINT starter_start::start()
    {
 
+      keep < bool > keepStarterStart(&m_phost->m_bHostStarterStart,true,false,true);
+
       static bool s_bStarting = false;
 
       if (s_bStarting)
