@@ -1502,7 +1502,7 @@ namespace user
 
          var_array vara;
 
-         if(data_get("restore_tab", "", vara))
+         if(data_get(".local://restore_tab", "", vara))
          {
 
             open_tabs(vara);
