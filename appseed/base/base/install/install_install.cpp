@@ -1299,6 +1299,22 @@ namespace install
    }
 
 
+   string get_module_path(HMODULE hmodule)
+   {
+      wstring wstrPath;
+      DWORD dwSize = 1;
+      while(natural(wstrPath.get_length() + 1) == dwSize)
+      {
+         dwSize = ::GetModuleFileNameW(
+            hmodule,
+            wstrPath.alloc(dwSize + 1024),
+            (dwSize + 1024));
+         wstrPath.release_buffer();
+      }
+      return ::str::international::unicode_to_utf8(wstrPath);
+   }
+
+
 
    string install::app_install_get_extern_executable_path(const char * pszVersion, const char * pszBuild, ::install::installer * pinstaller)
    {
@@ -1396,6 +1412,7 @@ namespace install
          if(!System.install().is_file_ok(straDownload,straFile,straMd5,strFormatBuild))
          {
 
+
             if(straMd5.get_count() != straFile.get_count())
             {
 
@@ -1407,6 +1424,45 @@ namespace install
                return "";
 
             }
+
+#ifdef WINDOWSEX
+
+            // first try to copy from current path (may be there is a version of app.install at the same folder).
+
+            HMODULE hmodule = ::GetModuleHandle("aura.dll");
+
+            if(hmodule != NULL)
+            {
+
+               string str = get_module_path(hmodule);
+
+               if(str.has_char())
+               {
+
+                  string strAuraDir = ::dir::name(str);
+
+                  for(index iFile = 0; iFile < straFile.get_size(); iFile++)
+                  {
+
+                     string strFile = System.dir().path(strAuraDir,straFile[iFile]);
+
+                     if(!file_exists_dup(straDownload[iFile]) && file_exists_dup(strFile) && System.file().md5(strFile) == straMd5[iFile])
+                     {
+
+                        ::file_copy_dup(straDownload[iFile], strFile, false);
+
+                     }
+
+                  }
+
+
+               }
+
+
+            }
+
+#endif
+
 
             for(index iFile = 0; iFile < straFile.get_size(); iFile++)
             {
