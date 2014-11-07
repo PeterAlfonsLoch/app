@@ -1,4 +1,3 @@
 app\stage\metastage\appseedcore-all.spa
-app\stage\metastage\app-core\deepfish.spa
-app\stage\metastage\app-core\alatel.spa
-stage\basis\app_core_deepfish_alatel.dll
+app\stage\metastage\app-core\alarm.spa
+stage\basis\app_core_deepfish_alarm.dll
