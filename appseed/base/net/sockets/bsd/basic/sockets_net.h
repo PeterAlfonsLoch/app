@@ -114,6 +114,7 @@ namespace sockets
          in_addr           m_ipaddr;
          uint32_t          m_dwLastChecked;
          bool              r;
+         bool              m_bTimeout;
 
 
          dns_cache_item();
@@ -137,6 +138,7 @@ namespace sockets
          string            m_strReverse;
          uint32_t          m_dwLastChecked;
          bool              r;
+         bool              m_bTimeout;
 
 
          reverse_cache_item();

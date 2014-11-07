@@ -219,7 +219,7 @@ namespace sockets
 
       single_lock sl(&m_mutexCache, true);
       dns_cache_item item;
-      if(m_mapCache.Lookup(str, item) && ((::get_tick_count() - item.m_dwLastChecked) < (11 *((84 + 77) * 1000))))
+      if(m_mapCache.Lookup(str, item) && (!item.m_bTimeout || ((::get_tick_count() - item.m_dwLastChecked) < (11 *((84 + 77) * 1000)))))
       {
          l = item.m_ipaddr;
          //         uint32_t dwTimeProfile2 = get_tick_count();
@@ -795,7 +795,7 @@ namespace sockets
       single_lock sl(&m_mutexCache,true);
       reverse_cache_item item;
       string strIpString = to_vsstring(sa);
-      if(m_mapReverseCache.Lookup(strIpString,item) && ((::get_tick_count() - item.m_dwLastChecked) < (11 * ((84 + 77) * 1000))))
+      if(m_mapReverseCache.Lookup(strIpString,item) && (!item.m_bTimeout || ((::get_tick_count() - item.m_dwLastChecked) < (11 * ((84 + 77) * 1000)))))
       {
          hostname = item.m_strReverse;
          return item.r;
@@ -1058,7 +1058,7 @@ namespace sockets
       ZERO(m_ipaddr);
       m_dwLastChecked = 0;
       r = false;
-
+      m_bTimeout = true;
    }
 
 
@@ -1076,6 +1076,7 @@ namespace sockets
       ostream.write(&m_ipaddr, sizeof(m_ipaddr));
       ostream.write(&m_dwLastChecked,sizeof(m_dwLastChecked));
       ostream.write(&r,sizeof(r));
+      ostream.write(&m_bTimeout,sizeof(m_bTimeout));
 
    }
 
@@ -1086,6 +1087,7 @@ namespace sockets
       istream.read(&m_ipaddr,sizeof(m_ipaddr));
       istream.read(&m_dwLastChecked,sizeof(m_dwLastChecked));
       istream.read(&r,sizeof(r));
+      istream.read(&m_bTimeout,sizeof(m_bTimeout));
 
    }
 
@@ -1099,6 +1101,7 @@ namespace sockets
       memcpy(&m_ipaddr,&item.m_ipaddr,sizeof(m_ipaddr));
       m_dwLastChecked = item.m_dwLastChecked;
       r = item.r;
+      m_bTimeout = item.m_bTimeout;
 
       return *this;
 
@@ -1111,6 +1114,7 @@ namespace sockets
       ZERO(m_ipaddr);
       m_dwLastChecked = 0;
       r = false;
+      m_bTimeout = true;
 
    }
 
@@ -1129,6 +1133,7 @@ namespace sockets
       ostream.write(m_strReverse);
       ostream.write(&m_dwLastChecked,sizeof(m_dwLastChecked));
       ostream.write(&r,sizeof(r));
+      ostream.write(&m_bTimeout,sizeof(m_bTimeout));
 
    }
 
@@ -1140,7 +1145,7 @@ namespace sockets
       istream.read(m_strReverse);
       istream.read(&m_dwLastChecked,sizeof(m_dwLastChecked));
       istream.read(&r,sizeof(r));
-
+      istream.read(&m_bTimeout,sizeof(m_bTimeout));
    }
 
 
@@ -1154,6 +1159,7 @@ namespace sockets
       m_dwLastChecked = item.m_dwLastChecked;
       m_strReverse = item.m_strReverse;
       r = item.r;
+      m_bTimeout = item.m_bTimeout;
 
       return *this;
 
