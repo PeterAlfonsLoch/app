@@ -502,7 +502,7 @@ void numeric_array < TYPE >::each_subtract(const TYPE & t,::index i,::count iEnd
    if(i < 0)
    {
 
-      iCount += i;
+      iEnd += i;
 
       i = 0;
 
