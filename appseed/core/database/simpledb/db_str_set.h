@@ -6,7 +6,7 @@ class CLASS_DECL_CORE db_str_set :
 {
 public:
 
-
+   mutex                         m_mutex;
    class db_str_set_core *       m_pcore;
 
    db_str_set(db_server * pserver);

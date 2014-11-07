@@ -238,7 +238,8 @@ void db_str_sync_queue::queue(const char * pszKey,const char * psz)
 
 
 db_str_set::db_str_set(db_server * pserver):
-element(pserver->get_app())
+element(pserver->get_app()),
+m_mutex(pserver->get_app())
 {
 
    m_pcore = new db_str_set_core(pserver);
@@ -272,6 +273,8 @@ bool db_str_set::load(const char * lpKey, string & strValue)
    {
 
       Application.assert_user_logged_in();
+
+      synch_lock sl(&m_mutex);
 
       if(m_pcore->m_phttpsession == NULL)
       {
