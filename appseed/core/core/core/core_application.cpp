@@ -269,6 +269,7 @@ namespace core
       if(!m_simpledb.initialize2())
          return false;
 
+      set_data_server(simpledb().get_data_server());
 
       if(!is_system() && !is_session() && !is_installing() && !is_uninstalling())
       {

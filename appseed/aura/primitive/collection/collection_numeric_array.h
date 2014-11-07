@@ -182,8 +182,13 @@ public:
 
    string get_json();
 
+   void each_add(const TYPE & t,::index iStart = 0, ::count iCount = -1);
+   void each_subtract(const TYPE & t,::index iStart = 0, ::count iCount = -1);
+
 
 };
+
+
 
 template < class TYPE >
 class unique_number_sort_array :
@@ -418,6 +423,102 @@ string numeric_array < TYPE >::surround_and_implode(const char * pszSeparator, c
    }
    return str;
 }
+
+template < class TYPE >
+void numeric_array < TYPE >::each_add(const TYPE & t,::index i, ::count iEnd)
+{
+
+   if(iEnd == 0)
+      return ;
+
+   if(iEnd < 0)
+   {
+
+      iEnd += get_size();
+
+   }
+   else
+   {
+
+      iEnd--;
+
+   }
+
+   if(i < 0)
+   {
+
+      i += get_size();
+
+   }
+
+   if(i < 0)
+   {
+
+      iEnd += i;
+    
+      i = 0;
+
+   }
+
+   while(i <= iEnd)
+   {
+
+      element_at(i) += t;
+
+      i++;
+
+   }
+
+
+}
+
+template < class TYPE >
+void numeric_array < TYPE >::each_subtract(const TYPE & t,::index i,::count iEnd)
+{
+
+   if(iEnd == 0)
+      return;
+
+   if(iEnd < 0)
+   {
+
+      iEnd += get_size();
+
+   }
+   else
+   {
+
+      iEnd--;
+
+   }
+
+   if(i < 0)
+   {
+
+      i += get_size();
+
+   }
+
+   if(i < 0)
+   {
+
+      iCount += i;
+
+      i = 0;
+
+   }
+
+   while(i <= iEnd)
+   {
+
+      element_at(i) -= t;
+
+      i++;
+
+   }
+
+}
+
 
 
 template < class TYPE >

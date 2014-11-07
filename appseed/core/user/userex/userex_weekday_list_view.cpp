@@ -105,6 +105,8 @@ namespace userex
 
       index_array ia = iaWeekday;
 
+      ia.each_subtract(1);
+
       set_cur_sel(ia);
 
    }
@@ -114,6 +116,8 @@ namespace userex
    {
 
       index_array ia;
+
+      ia.each_add(1);
       
       get_cur_sel(ia);
 
