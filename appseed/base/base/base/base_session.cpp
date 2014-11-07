@@ -1375,9 +1375,7 @@ namespace base
    bool session::initialize_instance()
    {
 
-      if(m_pfontopus->m_puser == NULL &&
-         (Application.directrix()->m_varTopicQuery.has_property("install")
-         || Application.directrix()->m_varTopicQuery.has_property("uninstall")))
+      if(m_pfontopus->m_puser == NULL && Application.directrix()->m_varTopicQuery.has_property("uninstall"))
       {
 
          if(m_pfontopus->create_system_user("system") == NULL)
@@ -1387,6 +1385,25 @@ namespace base
 
       if(!m_pfontopus->initialize_instance())
          return false;
+
+      if(m_pfontopus->m_puser == NULL && Application.directrix()->m_varTopicQuery.has_property("install"))
+      {
+
+         if(System.directrix()->m_varTopicQuery["app"] == "app-core/netnodelite")
+         {
+
+            if(m_pfontopus->create_system_user("system") == NULL)
+               return false;
+         }
+         else
+         {
+
+            if(m_pfontopus->create_current_user() == NULL)
+               return false;
+
+         }
+
+      }
 
       if(!::axis::session::initialize_instance())
          return false;

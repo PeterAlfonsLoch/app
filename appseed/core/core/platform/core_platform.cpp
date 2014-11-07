@@ -1966,6 +1966,10 @@ namespace core
       if(strLibrary.is_empty())
       {
 
+         if(System.directrix()->m_varTopicQuery.has_property("uninstall") &&
+            System.directrix()->m_varTopicQuery["app"] == strApplicationId)
+            return NULL;
+
          throw not_installed(get_app(),System.install().m_strVersion,strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
 
       }

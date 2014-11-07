@@ -1131,6 +1131,8 @@ namespace axis
          if(!create_service())
             return false;
 
+         start_service();
+
       }
 
       return true;
