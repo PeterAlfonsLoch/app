@@ -396,3 +396,18 @@ inline int64_t duration::total_seconds() const
    return (total_milliseconds() + 500) / 1000;
 }
 
+
+CLASS_DECL_AURA void Sleep(const duration & duration);
+
+
+
+
+
+
+
+
+
+
+
+
+

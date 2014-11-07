@@ -1050,6 +1050,16 @@ inline void string_format::printf(const char * & s)
 
 
 
+#include "aura/aura/aura/aura_assert_running_task.h"
+
+
+
+
+
+
+
+
+
 
 #include "aura/aura/aura/aura_libc.h"
 

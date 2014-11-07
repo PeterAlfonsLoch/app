@@ -94,3 +94,17 @@ void duration::fset(double d, double dNano)
    raw_set((int64_t)(floor(d) + floor((dNano / (1000.0 * 1000.0 * 1000.0)))), (int64_t)fmod(dNano, 1000.0 * 1000.0 * 1000.0));
 
 }
+
+
+
+CLASS_DECL_AURA void Sleep(const duration & duration)
+{
+
+   ::Sleep(duration.get_total_milliseconds());
+
+}
+
+
+
+
+
