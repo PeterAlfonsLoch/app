@@ -1390,6 +1390,13 @@ namespace install
 
          ::install::get_plugin_base_library_list(straFile);
 
+         if(!::dir::is(System.dir().name(strPath)))
+         {
+
+            ::dir::mk(System.dir().name(strPath));
+
+         }
+
          stringa straDownload;
 
          for(index iFile = 0; iFile < straFile.get_size(); iFile++)
