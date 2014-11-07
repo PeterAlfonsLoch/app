@@ -685,7 +685,7 @@ namespace user
       }
 
       m_pparent.release();
-
+      
    }
 
 
@@ -2534,6 +2534,8 @@ namespace user
          return true;
 
       }
+
+      sp(::user::interaction) pui = this; // keep a reference to this while destroying
 
       {
 

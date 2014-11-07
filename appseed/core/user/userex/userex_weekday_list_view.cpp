@@ -117,10 +117,9 @@ namespace userex
 
       index_array ia;
 
-      ia.each_add(1);
-      
       get_cur_sel(ia);
 
+      ia.each_add(1);
 
       return ia;
 
