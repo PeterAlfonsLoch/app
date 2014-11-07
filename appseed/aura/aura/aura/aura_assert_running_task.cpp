@@ -14,7 +14,6 @@ namespace aura
 
       m_durationCheckPeriod = millis(184 + 1951 + 1977);
 
-
    }
 
 
@@ -54,6 +53,8 @@ namespace aura
          Sleep(m_durationCheckPeriod);
 
       }
+
+      return 0;
 
    }
 
