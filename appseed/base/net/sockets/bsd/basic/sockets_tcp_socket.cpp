@@ -372,8 +372,15 @@ void ssl_sigpipe_handle( int x );
                SetFlushBeforeClose(false);
                SetLost();
                break;
+            case SSL_ERROR_SYSCALL:
+               TRACE("SSL read problem, errcode = 5 (SSL_ERROR_SYSCALL) errno = %d \n",n, errno);
+               OnDisconnect();
+               SetCloseAndDelete(true);
+               SetFlushBeforeClose(false);
+               SetLost();
+               break;
             default:
-   TRACE("SSL read problem, errcode = %d\n",n);
+               TRACE("SSL read problem, errcode = %d\n",n);
                OnDisconnect();
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
