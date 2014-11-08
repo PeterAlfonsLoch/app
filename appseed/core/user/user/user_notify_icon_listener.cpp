@@ -17,7 +17,7 @@ namespace user
    {
       switch(message)
       {
-      case WM_CONTEXTMENU:
+      case WM_RBUTTONDOWN:
         OnNotifyIconContextMenu(uiNotifyIcon);
         break;
       case WM_LBUTTONDBLCLK:
