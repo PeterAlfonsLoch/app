@@ -962,6 +962,8 @@ namespace user
    bool frame_window::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
    {
 
+      if(::user::interaction::_001OnCmdMsg(pcmdmsg))
+         return true;
 
       return false;
    }

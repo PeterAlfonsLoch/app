@@ -296,8 +296,8 @@ namespace user
 
    void menu::PostNcDestroy()
    {
-      if(m_bAutoDelete)      // Automatic cleanup?
-         delete_this();
+    //  if(m_bAutoDelete)      // Automatic cleanup?
+      //   delete_this();
    }
 
    void menu::_001OnLButtonDown(signal_details * pobj)
