@@ -87,7 +87,8 @@ bool db_server::initialize()
    || System.directrix()->m_varTopicQuery["app"] == "app-core/netnodecfg"
    || System.directrix()->m_varTopicQuery["app"] == "app-core/mydns"
    || System.directrix()->m_varTopicQuery["app"] == "app-gtech/sensible_netnode"
-   || System.directrix()->m_varTopicQuery["app"] == "app-gtech/sensible_service")
+   || System.directrix()->m_varTopicQuery["app"] == "app-gtech/sensible_service"
+   || System.directrix()->m_varTopicQuery.has_property("no_remote_simpledb"))
    {
 
       m_bRemote = false;

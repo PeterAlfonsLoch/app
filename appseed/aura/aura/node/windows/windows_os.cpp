@@ -1004,7 +1004,16 @@ namespace windows
 
       strExe += ".exe";
 
+      
+
       string strCalling = System.dir_path(Sys(papp).m_strModuleFolder, strExe) + " : service";
+
+      if(System.directrix()->m_varTopicQuery.has_property("no_remote_simpledb"))
+      {
+
+         strCalling += " no_remote_simpledb";
+
+      }
 
       WCHAR * pname = NULL;
       WCHAR * ppass = NULL;

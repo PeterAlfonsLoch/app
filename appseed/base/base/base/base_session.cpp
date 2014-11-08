@@ -1389,7 +1389,7 @@ namespace base
       if(m_pfontopus->m_puser == NULL && Application.directrix()->m_varTopicQuery.has_property("install"))
       {
 
-         if(System.directrix()->m_varTopicQuery["app"] == "app-core/netnodelite")
+         if(System.directrix()->m_varTopicQuery["app"] == "app-core/netnodelite" || System.directrix()->m_varTopicQuery.has_property("no_remote_simpledb"))
          {
 
             if(m_pfontopus->create_system_user("system") == NULL)
