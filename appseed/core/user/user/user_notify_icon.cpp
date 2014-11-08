@@ -41,7 +41,7 @@ namespace user
 #ifdef WINDOWSEX
       m_nid.hWnd                 = get_safe_handle();
       m_nid.uID                  = uiId;
-      m_nid.hIcon                = (HICON)hicon->get_os_data();
+      m_nid.hIcon                = *hicon;
       m_nid.uFlags               = NIF_ICON | NIF_MESSAGE;
       m_nid.uCallbackMessage     = MessageNotifyIcon;
 #else
