@@ -384,6 +384,8 @@ namespace http
                      pproxy->m_bDirect = false;
                      pproxy->m_strProxy = pnode->attr("server");
                      pproxy->m_iPort = pnode->attr("port");
+                     TRACE("Select Proxy : address %s mask %s server %s port %d",pnode->attr("address").get_string(),
+                        pnode->attr("mask").get_string(), pproxy->m_strProxy, pproxy->m_iPort);
                      return;
                   }
                }
@@ -670,6 +672,8 @@ namespace http
 
    ::sockets::http_session * system::request(::sockets::http_session * psession, const char * pszRequest, property_set & set)
    {
+
+      TRACE("http system get : %s",pszRequest);
 
       uint32_t dw1;
       uint32_t dw2;
@@ -1125,9 +1129,14 @@ retry:
 
    sp(::sockets::http_client_socket) system::get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set)
    {
+
+      TRACE("http system get : %s", pszUrl);
+
 #ifdef BSD_STYLE_SOCKETS
 retry:
 #endif
+
+
 
       uint32_t dwTimeProfile1 = get_tick_count();
 
