@@ -849,7 +849,18 @@ namespace datetime
 
    }
 
+   time time::get_sunday() const
+   {
 
+      time sunday(*this);
+
+      sunday = time(sunday.GetYear(),sunday.GetMonth(),sunday.GetDay(),0,0,0);
+
+      sunday -= time_span(sunday.GetDayOfWeek() - 1,0,0,0);
+
+      return sunday;
+
+   }
 
 
    /////////////////////////////////////////////////////////////////////////////
