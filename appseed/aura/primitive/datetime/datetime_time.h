@@ -144,7 +144,7 @@ namespace datetime
       string Format(const string & strFormat);
       string FormatGmt(const string & strFormat);
 
-      time get_sunday() const NOTHROW;
+      time get_sunday() const;
 
    };
 
