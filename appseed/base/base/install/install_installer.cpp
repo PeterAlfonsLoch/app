@@ -1049,6 +1049,8 @@ RetryHost:
 
       d = 0.0;
 
+      string strFileName;
+
       for(i = 0; i < stringa.get_count(); i++)
       {
 
@@ -1061,6 +1063,8 @@ RetryHost:
          str += strCurrent;
 
          string str2 = dir::name(str);
+
+         strFileName = file_title_dup(strCurrent);
 
          if(str2.substr(0, m_strInstall.length()) == m_strInstall)
          {
@@ -1092,6 +1096,25 @@ RetryHost:
          strStageInplace = ca2inplace_get_dir(strCurrent) + ca2inplace_get_file(strCurrent);
 
          System.install().trace().rich_trace(str::replace(file_title_dup((str2 + str)), "\\", "/"));
+
+         if(::str::ends_ci(strFileName,".exe") || ::str::ends_ci(strFileName,".dll"))
+         {
+
+            string strPlatform = System.install().get_platform();
+
+            string strCandidate = ::dir::element("install\\stage\\" + strPlatform + "\\" + strFileName);
+
+            if(file_exists_dup(strCandidate)
+               && (iLen != -1) && file_length_dup(strCandidate) == iLen
+               && strMd5.has_char() && stricmp_dup(System.file().md5(strCandidate),strMd5) == 0)
+            {
+
+               ::file_copy_dup(strStageInplace,strCandidate);
+
+            }
+
+         }
+
 
          if(file_exists_dup(strStageInplace)
          && (iLen != -1) && file_length_dup(strStageInplace) == iLen
