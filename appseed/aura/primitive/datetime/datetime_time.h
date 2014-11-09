@@ -129,7 +129,7 @@ namespace datetime
       int32_t GetHour() const NOTHROW;
       int32_t GetMinute() const NOTHROW;
       int32_t GetSecond() const NOTHROW;
-      int32_t GetDayOfWeek() const NOTHROW;
+      int32_t GetDayOfWeek() const NOTHROW; // 1 = Sunday, 7 = Saturday
 
       int32_t GetGmtYear() const NOTHROW;
       int32_t GetGmtMonth() const NOTHROW;
