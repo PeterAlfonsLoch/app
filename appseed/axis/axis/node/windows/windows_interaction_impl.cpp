@@ -3275,12 +3275,12 @@ namespace windows
          if(nCmdShow == SW_HIDE)
          {
 
-            if(GetStyle() & WS_VISIBLE)
+            /*if(GetStyle() & WS_VISIBLE)
             {
 
                ModifyStyle(get_handle(),WS_VISIBLE,0,0);
 
-            }
+            }*/
 
          }
          else
@@ -5408,7 +5408,7 @@ namespace windows
 LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
 {
 
-   ::user::interaction * pui = ::window_from_handle(oswindow);
+   sp(::user::interaction) pui = ::window_from_handle(oswindow);
 
    if(pui == NULL || pui->get_safe_handle() != oswindow)
       return ::DefWindowProc(oswindow,message,wparam,lparam);

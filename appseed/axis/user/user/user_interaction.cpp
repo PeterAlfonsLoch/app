@@ -2792,7 +2792,10 @@ namespace user
       if(m_pimpl == NULL)
          return;
       else
-         return m_pimpl->message_handler(pobj);
+      {
+         sp(interaction_impl_base) pimpl = m_pimpl;
+         return pimpl->message_handler(pobj);
+      }
    }
 
 
