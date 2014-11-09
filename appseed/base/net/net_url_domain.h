@@ -51,6 +51,13 @@ public:
    string      m_strTopLevel;
    string      m_strName;
 
+   string      m_strTextRadix;
+   string      m_strTextSuffix;
+   string      m_strTextDomain;
+   string      m_strTextPrefix;
+   string      m_strTextTopLevel;
+   string      m_strTextName;
+
    void create(const char * pszServerName);
 
 

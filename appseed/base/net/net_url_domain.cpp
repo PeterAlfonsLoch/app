@@ -253,33 +253,58 @@ void url_domain::create(const char * pszServerName)
 
    if(m_pszRadix != NULL)
    {
+      
       m_strRadix.assign(m_pszRadix, m_iLenRadix);
+
+      m_strTextRadix = ::url::departament::from_punycode(m_strRadix);
+
    }
 
    if(m_pszSuffix != NULL)
    {
+
       m_strSuffix.assign(m_pszSuffix, m_iLenSuffix);
+
+      m_strTextRadix = ::url::departament::from_punycode(m_strRadix);
+
    }
 
    if(m_pszDomain != NULL)
    {
+
       m_strDomain.assign(m_pszDomain, m_iLenDomain);
+
+      m_strTextRadix = ::url::departament::from_punycode(m_strRadix);
+
    }
 
    if(m_pszPrefix != NULL)
    {
+
       m_strPrefix.assign(m_pszPrefix, m_iLenPrefix);
+
+      m_strTextRadix = ::url::departament::from_punycode(m_strRadix);
+
    }
 
    if(m_pszTopLevel != NULL)
    {
+
       m_strTopLevel.assign(m_pszTopLevel, m_iLenTopLevel);
+
+      m_strTextRadix = ::url::departament::from_punycode(m_strRadix);
+
    }
 
    if(m_pszName != NULL)
    {
+
       m_strName.assign(m_pszName, m_iLenName);
+
+      m_strTextRadix = ::url::departament::from_punycode(m_strRadix);
+
    }
+
 }
 
 
@@ -1078,5 +1103,7 @@ return false;
 $prefix = substr($url, 0, $pos - 1);
 return true;
 }*/
+
+
 
 

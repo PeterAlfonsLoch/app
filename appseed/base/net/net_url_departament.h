@@ -90,8 +90,8 @@ namespace url
       virtual bool locale_is_oceania(id pszLocale);
 
 
-      virtual string to_punycode(const char * psz);
-      virtual string from_punycode(const char * psz);
+      static string to_punycode(const char * psz);
+      static string from_punycode(const char * psz);
 
    };
 
