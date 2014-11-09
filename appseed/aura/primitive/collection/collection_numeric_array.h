@@ -185,6 +185,25 @@ public:
    void each_add(const TYPE & t,::index iStart = 0, ::count iCount = -1);
    void each_subtract(const TYPE & t,::index iStart = 0, ::count iCount = -1);
 
+   int compare(const numeric_array < TYPE > & a) const
+   {
+      int iCompare = get_size() - a.get_size();
+      if(iCompare != 0)
+         return iCompare;
+      TYPE t;
+      for(index i = 0; i < get_size(); i++)
+      {
+         
+         t = element_at(i) - a[i];
+
+         if(t != 0)
+            return ::sgn(t);
+
+      }
+
+      return 0;
+
+   }
 
 };
 
