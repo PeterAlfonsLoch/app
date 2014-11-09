@@ -2010,6 +2010,12 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
           System.post_thread_message(WM_QUIT);
 
       }
+      else
+      {
+
+         Application.post_thread_message(WM_QUIT);
+
+      }
 
    }
 

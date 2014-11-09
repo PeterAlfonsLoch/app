@@ -86,7 +86,7 @@ namespace sockets
 
       m_request.attr(__id(http_method))    = "PUT";
       m_request.attr(__id(http_version))   = "HTTP/1.1";
-      inheader(__id(host))                = GetUrlHost();
+      //inheader(__id(host))                = GetUrlHost();
       if(m_content_type.has_char())
       {
          outheader(__id(content_type))     = m_content_type;
