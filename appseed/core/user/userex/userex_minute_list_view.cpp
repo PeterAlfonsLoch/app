@@ -74,7 +74,7 @@ namespace userex
       pobj->previous();
       if(pobj->m_bRet)
          return;
-      m_dataid = string(m_dataid) + string(get_document()->m_dataid);
+      m_dataid = m_dataid.get_id() + "." + get_document()->m_dataid.get_id();
       _001UpdateColumns();
       _001OnUpdateItemCount();
    }
