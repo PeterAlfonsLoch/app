@@ -55,7 +55,7 @@ namespace simpledb
    {
       if(actioncontext.is_user_source())
       {
-         data_set("locale", lpcsz);
+         data_set(".local://locale", lpcsz);
       }
       m_pauraapp->m_pbasesession->on_set_locale(lpcsz, actioncontext);
    }
@@ -64,7 +64,7 @@ namespace simpledb
    {
       if(actioncontext.is_user_source())
       {
-         data_set("schema", lpcsz);
+         data_set(".local://schema", lpcsz);
       }
       m_pauraapp->m_pbasesession->on_set_schema(lpcsz,actioncontext);
    }

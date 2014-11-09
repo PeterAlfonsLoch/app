@@ -277,7 +277,7 @@ namespace core
          string str;
          // if system locale has changed (compared to last recorded one by core)
          // use the system locale
-         if(data_get("system_locale",str))
+         if(data_get(".local://system_locale",str))
          {
             if(str.has_char())
             {
@@ -285,7 +285,7 @@ namespace core
                {
                   try
                   {
-                     data_set("system_locale",Session.get_locale());
+                     data_set(".local://system_locale",Session.get_locale());
                      data_set("locale",Session.get_locale());
                   }
                   catch(...)
@@ -296,24 +296,24 @@ namespace core
          }
          else
          {
-            data_set("system_locale",Session.get_locale());
+            data_set(".local://system_locale",Session.get_locale());
          }
 
          if(command()->m_varTopicQuery["locale"].get_count() > 0)
          {
             str = command()->m_varTopicQuery["locale"].stra()[0];
-            data_set("system_locale",str);
+            data_set(".local://system_locale",str);
             data_set("locale",str);
             Session.set_locale(str,::action::source::database());
          }
          else if(command()->m_varTopicQuery["lang"].get_count() > 0)
          {
             str = command()->m_varTopicQuery["lang"].stra()[0];
-            data_set("system_locale",str);
-            data_set("locale",str);
+            data_set(".local://system_locale",str);
+            data_set(".local://locale",str);
             Session.set_locale(str,::action::source::database());
          }
-         else if(data_get("locale",str))
+         else if(data_get(".local://locale",str))
          {
             if(str.has_char())
             {
@@ -322,7 +322,7 @@ namespace core
          }
          // if system schema has changed (compared to last recorded one by core)
          // use the system schema
-         if(data_get("system_schema",str))
+         if(data_get(".local://system_schema",str))
          {
             if(str.has_char())
             {
@@ -330,7 +330,7 @@ namespace core
                {
                   try
                   {
-                     data_set("system_schema",Session.get_schema());
+                     data_set(".local://system_schema",Session.get_schema());
                      data_set("schema",Session.get_schema());
                   }
                   catch(...)
@@ -341,17 +341,17 @@ namespace core
          }
          else
          {
-            data_set("system_schema",Session.get_schema());
+            data_set(".local://system_schema",Session.get_schema());
          }
 
          if(command()->m_varTopicQuery["schema"].get_count() > 0)
          {
             str = command()->m_varTopicQuery["schema"].stra()[0];
-            data_set("system_schema",str);
-            data_set("schema",str);
+            data_set(".local://system_schema",str);
+            data_set(".local://schema",str);
             Session.set_schema(str,::action::source::database());
          }
-         else if(data_get("schema",str))
+         else if(data_get(".local://schema",str))
          {
             if(str.has_char())
             {
