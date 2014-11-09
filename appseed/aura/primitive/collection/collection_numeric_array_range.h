@@ -50,7 +50,7 @@ public:
       if(iCount < 0)
       {
 
-         iEnd = iCount + get_size();
+         iEnd = iCount + a.get_size();
 
       }
       else
@@ -63,7 +63,7 @@ public:
       if(iStart < 0)
       {
 
-         iStart += get_size();
+         iStart += a.get_size();
 
       }
 
@@ -77,10 +77,10 @@ public:
       }
 
       if(iBeg < 0)
-         throw invalid_argument_exception(::get_thread_app());
+         throw invalid_argument_exception(a.get_app() == NULL ? ::get_thread_app() : a.get_app());
 
       if(iEnd >= a.get_count())
-         throw invalid_argument_exception(::get_thread_app());
+         throw invalid_argument_exception(a.get_app() == NULL ? ::get_thread_app() : a.get_app());
 
       m_iBeg = iStart;
 
