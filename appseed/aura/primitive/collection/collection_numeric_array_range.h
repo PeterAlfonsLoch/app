@@ -39,7 +39,7 @@ public:
 
    inline numeric_array_range(numeric_array_range && r):a(r.a),m_iBeg(a.m_iBeg),m_iEnd(a.m_iEnd) {}
 
-   inline numeric_array_range(A & array,index iBeg,index iCount = -1):a(array)
+   inline numeric_array_range(A & array,index iStart,index iCount = -1):a(array)
    {
       
       if(iCount == 0)
@@ -67,16 +67,22 @@ public:
 
       }
 
-      if(iBeg < 0)
+      if(iStart < 0)
       {
 
-         iBeg += i;
+         iEnd += iStart;
 
-         iEnd = 0;
+         iStart = 0;
 
       }
 
-      if(iBeg < 0)
+      if(iStart < 0)
+         throw invalid_argument_exception(a.get_app() == NULL ? ::get_thread_app() : a.get_app());
+
+      if(iStart >= a.get_count())
+         throw invalid_argument_exception(a.get_app() == NULL ? ::get_thread_app() : a.get_app());
+
+      if(iEnd < 0)
          throw invalid_argument_exception(a.get_app() == NULL ? ::get_thread_app() : a.get_app());
 
       if(iEnd >= a.get_count())
