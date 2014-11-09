@@ -16,6 +16,7 @@
 #include "collection_comparable_primitive_array.h"
 
 #include "collection_primitive_array.h"
+#include "collection_numeric_array_range.h"
 #include "collection_numeric_array.h"
 
 #include "collection_logic_array.h"

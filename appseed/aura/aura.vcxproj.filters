@@ -2081,6 +2081,9 @@
     <ClInclude Include="aura\aura\aura_assert_running_task.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\collection\collection_numeric_array_range.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">

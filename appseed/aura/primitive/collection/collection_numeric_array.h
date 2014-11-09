@@ -182,8 +182,13 @@ public:
 
    string get_json();
 
-   void each_add(const TYPE & t,::index iStart = 0, ::count iCount = -1);
-   void each_subtract(const TYPE & t,::index iStart = 0, ::count iCount = -1);
+   numeric_array_each < numeric_array > each() { return *this; }
+   numeric_array_each < numeric_array > all() { return *this; }
+   numeric_array_each < numeric_array > range() { return *this; }
+
+   numeric_array_range < numeric_array > each(index iBeg,::count iCount) { return numeric_array_range < numeric_array >(*this, iBeg, iCount); }
+   numeric_array_range < numeric_array > all(index iBeg,::count iCount) { return numeric_array_range < numeric_array >(*this,iBeg,iCount); }
+   numeric_array_range < numeric_array > range(index iBeg,::count iCount) { return numeric_array_range < numeric_array >(*this,iBeg,iCount); }
 
    int compare(const numeric_array < TYPE > & a) const
    {
@@ -443,100 +448,100 @@ string numeric_array < TYPE >::surround_and_implode(const char * pszSeparator, c
    return str;
 }
 
-template < class TYPE >
-void numeric_array < TYPE >::each_add(const TYPE & t,::index i, ::count iEnd)
-{
-
-   if(iEnd == 0)
-      return ;
-
-   if(iEnd < 0)
-   {
-
-      iEnd += get_size();
-
-   }
-   else
-   {
-
-      iEnd--;
-
-   }
-
-   if(i < 0)
-   {
-
-      i += get_size();
-
-   }
-
-   if(i < 0)
-   {
-
-      iEnd += i;
-    
-      i = 0;
-
-   }
-
-   while(i <= iEnd)
-   {
-
-      element_at(i) += t;
-
-      i++;
-
-   }
-
-
-}
-
-template < class TYPE >
-void numeric_array < TYPE >::each_subtract(const TYPE & t,::index i,::count iEnd)
-{
-
-   if(iEnd == 0)
-      return;
-
-   if(iEnd < 0)
-   {
-
-      iEnd += get_size();
-
-   }
-   else
-   {
-
-      iEnd--;
-
-   }
-
-   if(i < 0)
-   {
-
-      i += get_size();
-
-   }
-
-   if(i < 0)
-   {
-
-      iEnd += i;
-
-      i = 0;
-
-   }
-
-   while(i <= iEnd)
-   {
-
-      element_at(i) -= t;
-
-      i++;
-
-   }
-
-}
+//template < class TYPE >
+//void numeric_array < TYPE >::each_add(const TYPE & t,::index i, ::count iEnd)
+//{
+//
+//   if(iEnd == 0)
+//      return ;
+//
+//   if(iEnd < 0)
+//   {
+//
+//      iEnd += get_size();
+//
+//   }
+//   else
+//   {
+//
+//      iEnd--;
+//
+//   }
+//
+//   if(i < 0)
+//   {
+//
+//      i += get_size();
+//
+//   }
+//
+//   if(i < 0)
+//   {
+//
+//      iEnd += i;
+//    
+//      i = 0;
+//
+//   }
+//
+//   while(i <= iEnd)
+//   {
+//
+//      element_at(i) += t;
+//
+//      i++;
+//
+//   }
+//
+//
+//}
+//
+//template < class TYPE >
+//void numeric_array < TYPE >::each_subtract(const TYPE & t,::index i,::count iEnd)
+//{
+//
+//   if(iEnd == 0)
+//      return;
+//
+//   if(iEnd < 0)
+//   {
+//
+//      iEnd += get_size();
+//
+//   }
+//   else
+//   {
+//
+//      iEnd--;
+//
+//   }
+//
+//   if(i < 0)
+//   {
+//
+//      i += get_size();
+//
+//   }
+//
+//   if(i < 0)
+//   {
+//
+//      iEnd += i;
+//
+//      i = 0;
+//
+//   }
+//
+//   while(i <= iEnd)
+//   {
+//
+//      element_at(i) -= t;
+//
+//      i++;
+//
+//   }
+//
+//}
 
 
 
