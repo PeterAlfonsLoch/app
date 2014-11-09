@@ -155,6 +155,18 @@ namespace html
 
       m_focusptra.remove_all();
 
+      m_elemental.destroy();
+
+      m_bImplemented = false;
+
+   }
+
+
+   void data::delete_implementation()
+   {
+
+      m_focusptra.remove_all();
+
       m_elemental.delete_implementation();
 
       m_bImplemented = false;
