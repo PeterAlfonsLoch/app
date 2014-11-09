@@ -145,12 +145,12 @@ namespace html
       
       ::data::lock lock(this);
 
-      delete_implementation();
+      destroy();
 
    }
 
 
-   void data::delete_implementation()
+   void data::destroy()
    {
 
       m_focusptra.remove_all();

@@ -199,7 +199,7 @@ namespace html
       elemental * get_element_by_id(id id);
 
       void delete_contents();
-      void delete_implementation();
+      void destroy();
 
       virtual bool contains(sp(::user::interaction) pui);
 

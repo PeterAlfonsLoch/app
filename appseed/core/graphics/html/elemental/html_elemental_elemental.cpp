@@ -25,7 +25,7 @@ namespace html
    elemental::~elemental()
    {
 
-      delete_implementation();
+      destroy();
 
    }
 
@@ -1172,7 +1172,36 @@ namespace html
 
    }
 
+
    void elemental::delete_implementation()
+   {
+
+      m_propertyset.clear();
+
+      if(m_pimpl != NULL)
+      {
+         try
+         {
+            m_pimpl->delete_implementation();
+         }
+         catch(...)
+         {
+         }
+         try
+         {
+            delete m_pimpl;
+         }
+         catch(...)
+         {
+         }
+         m_pimpl = NULL;
+
+      }
+
+   }
+
+
+   void elemental::destroy()
    {
 
       m_propertyset.clear();
@@ -1189,7 +1218,7 @@ namespace html
                if(m_elementalptra[i] != NULL)
                {
 
-                  m_elementalptra[i]->delete_implementation();
+                  m_elementalptra[i]->destroy();
 
                }
 

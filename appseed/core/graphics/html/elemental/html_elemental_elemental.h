@@ -43,6 +43,8 @@ namespace html
 
       virtual void delete_implementation();
 
+      virtual void destroy();
+
       
       
 
