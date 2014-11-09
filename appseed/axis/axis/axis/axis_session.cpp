@@ -1146,7 +1146,8 @@ namespace axis
       if(!::axis::application::initialize())
          return false;
 
-      if(!is_installing() && !is_uninstalling() && System.m_bAdvancedGUI)
+      //if(!is_installing() && !is_uninstalling() && System.m_bAdvancedGUI)
+      if(!is_uninstalling() && System.m_bAdvancedGUI)
       {
 
          if(!user()->keyboard().initialize())

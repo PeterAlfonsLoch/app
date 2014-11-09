@@ -1386,6 +1386,14 @@ namespace base
       if(!m_pfontopus->initialize_instance())
          return false;
 
+      if(!::axis::session::initialize_instance())
+         return false;
+
+
+      if(!::base::application::initialize_instance())
+         return false;
+
+
       if(m_pfontopus->m_puser == NULL && Application.directrix()->m_varTopicQuery.has_property("install"))
       {
 
@@ -1404,14 +1412,6 @@ namespace base
          }
 
       }
-
-      if(!::axis::session::initialize_instance())
-         return false;
-
-
-      if(!::base::application::initialize_instance())
-         return false;
-
 
       return true;
 
