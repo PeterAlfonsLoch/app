@@ -257,7 +257,11 @@ namespace install
 
       m_strSpaIgnitionBaseUrl = "http://" + strVersion + "-server.ca2.cc/api/spaignition";
 
-      int32_t iRet = ca2_build_version();
+      string strSpaHost;
+
+      int32_t iHostRetry = 0;
+
+      int32_t iRet = ca2_build_version_etc(strSpaHost,iHostRetry);
 
       if (iRet < 0)
          return iRet;
@@ -294,23 +298,24 @@ install_begin:;
 
 //         set_progress(0.1);
 
-         int32_t iRetry = 0;
-         iRet = application_name();
-         if(iRet < 0)
-            return iRet;
+         //int32_t iRetry = 0;
+         //iRet = application_name();
+         //if(iRet < 0)
+           // return iRet;
 
          set_progress(0.2);
 
-         int32_t iHostRetry = 0;
+      RetryHost:
 
-RetryHost:
-         
-         string strSpaHost;
-         
-         iRet= calc_host(strSpaHost, iHostRetry);
-         
-         if(iRet < 0)
-            return iRet;
+         if(iHostRetry > 0)
+         {
+
+            iRet= calc_host(strSpaHost,iHostRetry);
+
+            if(iRet < 0)
+               return iRet;
+
+         }
          
          m_strCurrentHost = strSpaHost;
          
@@ -341,86 +346,86 @@ RetryHost:
 
          string strUrl;
 
-#ifdef WINDOWSEX
-         HKEY hkey;
+//#ifdef WINDOWSEX
+//         HKEY hkey;
+//
+//
+//         strUrl = m_strSpaIgnitionBaseUrl + "/install_filter_list";
+
+         //property_set set1;
+
+         //set1["disable_ca2_sessid"] = true;
+
+         //set1["raw_http"] = true;
+
+         //string strInstallFilterList = Application.http().get(strUrl, set1);
+         //::xml::document nodeInstallFilter(get_app());
+         //nodeInstallFilter.load(strInstallFilterList);
+         //strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
+         //strUrl += m_strApplicationId;
+         //strUrl += "&key=install_filter";
 
 
-         strUrl = m_strSpaIgnitionBaseUrl + "/install_filter_list";
+         //property_set set2;
 
-         property_set set1;
+         //set2["disable_ca2_sessid"] = true;
 
-         set1["disable_ca2_sessid"] = true;
+         //set2["raw_http"] = true;
 
-         set1["raw_http"] = true;
+         //string strInstallFilter = Application.http().get(strUrl, set2);
+         //for(int32_t ui = 0; ui < nodeInstallFilter.get_root()->get_children_count(); ui++)
+         //{
+         //   ::xml::node * lpchild = nodeInstallFilter.get_root()->child_at(ui);
+         //   string strId;
+         //   strId = lpchild->attr("id");
+         //   string strFilter;
+         //   strFilter = "|" + strId + "|"; // ex. "|multimedia|"
+         //   if(strInstallFilter.find(strFilter) >= 0)
+         //   {
+         //      string strKey;
+         //      strKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\ca2_" + strId;
 
-         string strInstallFilterList = Application.http().get(strUrl, set1);
-         ::xml::document nodeInstallFilter(get_app());
-         nodeInstallFilter.load(strInstallFilterList);
-         strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
-         strUrl += m_strApplicationId;
-         strUrl += "&key=install_filter";
+         //      if(::RegCreateKey(HKEY_LOCAL_MACHINE,
+         //         strKey,
+         //         &hkey) == ERROR_SUCCESS)
+         //      {
+         //         ::RegSetValueEx(
+         //            hkey,
+         //            "DisplayIcon",
+         //            0,
+         //            REG_SZ,
+         //            (const BYTE *) (const char *) strFile,
+         //            (uint32_t) strFile.length());
+         //         string strDisplayName;
+         //         strDisplayName = "core - ";
+         //         strKey = "install_filter_title_" + strId;
+         //         strDisplayName += load_string(strKey, strId);
+         //         ::RegSetValueEx(
+         //            hkey,
+         //            "DisplayName",
+         //            0,
+         //            REG_SZ,
+         //            (const BYTE *) (const char *) strDisplayName,
+         //            (uint32_t) strDisplayName.length());
+         //         ::RegSetValueEx(
+         //            hkey,
+         //            "UninstallString",
+         //            0,
+         //            REG_SZ,
+         //            (const BYTE *) (const char *) strInstallFilter,
+         //            (uint32_t) strInstallFilter.length());
+         //         ::RegSetValueEx(
+         //            hkey,
+         //            "ModifyString",
+         //            0,
+         //            REG_SZ,
+         //            (const BYTE *) (const char *) strInstallFilter,
+         //            (uint32_t) strInstallFilter.length());
+         //      }
+         //   }
+         //}
 
-
-         property_set set2;
-
-         set2["disable_ca2_sessid"] = true;
-
-         set2["raw_http"] = true;
-
-         string strInstallFilter = Application.http().get(strUrl, set2);
-         for(int32_t ui = 0; ui < nodeInstallFilter.get_root()->get_children_count(); ui++)
-         {
-            ::xml::node * lpchild = nodeInstallFilter.get_root()->child_at(ui);
-            string strId;
-            strId = lpchild->attr("id");
-            string strFilter;
-            strFilter = "|" + strId + "|"; // ex. "|multimedia|"
-            if(strInstallFilter.find(strFilter) >= 0)
-            {
-               string strKey;
-               strKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\ca2_" + strId;
-
-               if(::RegCreateKey(HKEY_LOCAL_MACHINE,
-                  strKey,
-                  &hkey) == ERROR_SUCCESS)
-               {
-                  ::RegSetValueEx(
-                     hkey,
-                     "DisplayIcon",
-                     0,
-                     REG_SZ,
-                     (const BYTE *) (const char *) strFile,
-                     (uint32_t) strFile.length());
-                  string strDisplayName;
-                  strDisplayName = "core - ";
-                  strKey = "install_filter_title_" + strId;
-                  strDisplayName += load_string(strKey, strId);
-                  ::RegSetValueEx(
-                     hkey,
-                     "DisplayName",
-                     0,
-                     REG_SZ,
-                     (const BYTE *) (const char *) strDisplayName,
-                     (uint32_t) strDisplayName.length());
-                  ::RegSetValueEx(
-                     hkey,
-                     "UninstallString",
-                     0,
-                     REG_SZ,
-                     (const BYTE *) (const char *) strInstallFilter,
-                     (uint32_t) strInstallFilter.length());
-                  ::RegSetValueEx(
-                     hkey,
-                     "ModifyString",
-                     0,
-                     REG_SZ,
-                     (const BYTE *) (const char *) strInstallFilter,
-                     (uint32_t) strInstallFilter.length());
-               }
-            }
-         }
-
-#endif // WINDOWS
+//#endif // WINDOWS
 
          set_progress(0.4);
 
@@ -793,7 +798,7 @@ RetryHost:
          //CopyFileList(straFileList, mapFlag);
 
          new_progress_end(1.0);
-         iRetry = 0;
+         int iRetry = 0;
          while((!machine_unsignalize_close_application()
             || machine_check_close_application(true))&& iRetry < 840)
          {
@@ -2816,7 +2821,72 @@ RetryHost:
 
       m_strInstall               = "http://ca2os.com/stage/";
 
-      m_strInstallStatusTemplate = Application.http().get_locale_schema("http://account.ca2.cc/defer_ls_get?sessid=noauth&id=spa::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
+      if(m_strInstallLocale.CompareNoCase("sv") == 0 || ::str::begins_ci(m_strInstallLocale,"sv-") || m_strInstallLocale.CompareNoCase("se") == 0)
+      {
+
+         m_strInstallStatusTemplate = "Installera %APPNAME%";
+
+      }
+      else if(m_strInstallLocale.CompareNoCase("_std") == 0 || m_strInstallLocale.CompareNoCase("en") == 0 || ::str::begins_ci(m_strInstallLocale,"en-"))
+      {
+         
+         m_strInstallStatusTemplate = "Installing %APPNAME%";
+
+      }
+      else if(m_strInstallLocale.CompareNoCase("pt") == 0 || ::str::begins_ci(m_strInstallLocale,"pt-"))
+      {
+
+         m_strInstallStatusTemplate = "Instalando %APPNAME%";
+
+      }
+      else if(m_strInstallLocale.CompareNoCase("fr") == 0 || ::str::begins_ci(m_strInstallLocale,"fr-"))
+      {
+
+         m_strInstallStatusTemplate = "Installation %APPNAME%";
+
+      }
+      else if(m_strInstallLocale.CompareNoCase("es") == 0 || ::str::begins_ci(m_strInstallLocale,"es-"))
+      {
+
+         m_strInstallStatusTemplate = unitext("Instalación de %APPNAME%");
+         
+      }
+      else if(m_strInstallLocale.CompareNoCase("it") == 0 || ::str::begins_ci(m_strInstallLocale,"it-"))
+      {
+
+         m_strInstallStatusTemplate = "L'installazione di %APPNAME%";
+
+      }
+      else if(m_strInstallLocale.CompareNoCase("de") == 0 || ::str::begins_ci(m_strInstallLocale,"de-"))
+      {
+
+         m_strInstallStatusTemplate = unitext("Installieren %APPNAME%");
+
+      }
+      else if(m_strInstallLocale.CompareNoCase("ja") == 0 || ::str::begins_ci(m_strInstallLocale,"ja-") || m_strInstallLocale.CompareNoCase("jp") == 0)
+      {
+
+         m_strInstallStatusTemplate = unitext("%APPNAME%をインストールする");
+
+      }
+      else if(m_strInstallLocale.CompareNoCase("zh-cn") == 0 || ::str::begins_ci(m_strInstallLocale,"zh-") || m_strInstallLocale.CompareNoCase("zh") == 0)
+      {
+
+         m_strInstallStatusTemplate = unitext("安装%APPNAME%");
+
+      }
+      else if(m_strInstallLocale.CompareNoCase("zh-tw") == 0)
+      {
+
+         m_strInstallStatusTemplate = unitext("安裝%APPNAME%");
+
+      }
+      else
+      {
+
+         m_strInstallStatusTemplate = Application.http().get_locale_schema("http://account.ca2.cc/defer_ls_get?sessid=noauth&id=spa::InstallStatusTemplate",m_strInstallLocale,m_strInstallSchema);
+
+      }
 
       m_bForceUpdatedBuild       = true;
 
@@ -2974,6 +3044,112 @@ RetryBuildNumber:
          }
       }
       System.install().trace().rich_trace(m_strBuild);
+      return 0;
+   }
+
+
+   int32_t installer::ca2_build_version_etc(string & strSpaHost,int32_t &iHostRetry)
+   {
+      int32_t iRetry = 0;
+      string strEtc;
+      stringa stra;
+
+      string strName;
+
+   RetryBuildNumber:
+      
+      if(m_strBuildResource.length() == 19) // heuristically valid
+      {
+         System.install().trace().rich_trace("***Internal build number");
+         m_strBuild = m_strBuildResource;
+      }
+      else
+      {
+         System.install().trace().rich_trace("***Getting build number");
+         if(iRetry > 10)
+         {
+            System.install().trace().rich_trace("could not get build number. exiting");
+            //            exit(-1);
+            return -1;
+         }
+         iRetry++;
+         //         m_strBuild = Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
+
+         ::property_set set;
+
+         set["int_scalar_source_listener"] = this;
+
+         set["disable_ca2_sessid"] = true;
+
+         set["raw_http"] = true;
+
+         Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build__host_and_application_name&sessid=noauth&version=" + m_strVersion + "&appid=" + m_strApplicationId,strEtc,set);
+
+         if(strEtc.length() < 19)
+         {
+            Sleep(184);
+            goto RetryBuildNumber;
+         }
+         stringa straSep;
+
+         straSep.add("\r");
+         straSep.add("\n");
+         straSep.add("\r\n");
+
+         stra.remove_all();
+         stra.add_smallest_tokens(strEtc,straSep,true);
+         if(stra.get_count() < 3)
+         {
+            Sleep(184);
+            goto RetryBuildNumber;
+         }
+         if(stra[0].length() != 19)
+         {
+            Sleep(184);
+            goto RetryBuildNumber;
+         }
+         strName = stra[1];
+         if(strName.length() <= 0)
+         {
+            Sleep(184);
+            goto RetryBuildNumber;
+         }
+         strSpaHost = stra[2];
+         if(strSpaHost.length() <= 0)
+         {
+            Sleep(184);
+            goto RetryBuildNumber;
+         }
+
+      }
+
+      m_strBuild = stra[0];
+
+      System.install().trace().rich_trace(m_strBuild);
+
+      string strStatusTemplate;
+
+      if(m_strInstallStatusTemplate.get_length() >= strlen_dup("%APPNAME%"))
+      {
+         strStatusTemplate = m_strInstallStatusTemplate;
+      }
+      else
+      {
+         strStatusTemplate = "Installing %APPNAME%";
+      }
+
+      strStatusTemplate.replace("%APPNAME%",strName);
+
+      strName = strStatusTemplate;
+      strName = strName + " " + m_strBuild;
+      strName = strName + " \"" + get_command_line_param(m_strCommandLine,"locale").trimmed();
+      strName = strName + "\" \"" + get_command_line_param(m_strCommandLine,"schema").trimmed() + "\"";
+      System.install().trace().rich_trace((":::::" + strName));
+
+      m_strTitle = strName;
+
+
+
       return 0;
    }
 

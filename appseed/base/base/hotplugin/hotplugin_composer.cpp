@@ -355,7 +355,7 @@ namespace hotplugin
 
          }
 
-         if(get_tick_count() - m_dwEntryHallTextStart > (1984 + 1951 + 1977))
+         if(get_tick_count() - m_dwEntryHallTextStart > ((1984 + 1951 + 1977) / 3))
          {
 
             ::rect rect = m_rect;

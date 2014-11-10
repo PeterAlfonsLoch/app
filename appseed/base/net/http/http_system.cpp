@@ -673,7 +673,7 @@ namespace http
    ::sockets::http_session * system::request(::sockets::http_session * psession, const char * pszRequest, property_set & set)
    {
 
-      TRACE("http system get : %s",pszRequest);
+      TRACE("http system request : %s",pszRequest);
 
       uint32_t dw1;
       uint32_t dw2;

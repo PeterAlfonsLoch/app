@@ -1147,23 +1147,15 @@ namespace axis
          return false;
 
       //if(!is_installing() && !is_uninstalling() && System.m_bAdvancedGUI)
-      if(!is_uninstalling() && System.m_bAdvancedGUI)
-      {
+      //if(!is_uninstalling() && System.m_bAdvancedGUI)
+      //{
 
-         if(!user()->keyboard().initialize())
-            return false;
 
-      }
+      //}
 
       if(!m_puser->initialize())
          return false;
 
-      if(!is_installing() && !is_uninstalling() && System.m_bAdvancedGUI)
-      {
-
-         user()->set_keyboard_layout(NULL,::action::source::database());
-
-      }
 
       return true;
 

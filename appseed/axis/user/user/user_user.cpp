@@ -21,7 +21,6 @@ namespace user
       //::core::user * papp = dynamic_cast <::core::user *>(::get_thread()->m_pAppThread);
       //::core::connect(papp->m_pcoreapp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
 
-      m_pkeyboard = NULL;
       //m_pwindowmap = NULL;
 
    }
@@ -42,11 +41,6 @@ namespace user
       {
          m_pwindowmap = Session.user()->m_pwindowmap;
       }
-
-      m_pkeyboard = new ::user::keyboard(m_pauraapp);
-
-      if(m_pkeyboard == NULL)
-         return false;
 
 
 
@@ -538,9 +532,26 @@ namespace user
    ::user::keyboard & user::keyboard()
    {
 
+      if(m_pkeyboard == NULL)
+      {
+         
+         m_pkeyboard = new ::user::keyboard(m_pauraapp);
+
+         if(m_pkeyboard == NULL)
+            throw simple_exception(get_app(), "Could not create keyboard");
+
+         if(!m_pkeyboard->initialize())
+            throw simple_exception(get_app(),"Could not initialize keyboard");
+
+         Application.on_create_keyboard();
+
+      }
+
       return *m_pkeyboard;
 
    }
+
+
 
 
    class window_map & user::window_map()

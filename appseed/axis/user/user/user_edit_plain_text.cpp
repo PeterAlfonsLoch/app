@@ -46,7 +46,6 @@ namespace user
          m_scrollinfo.m_bVScrollBarEnable = false;
          m_scrollinfo.m_bVScrollBarEnable = false;
 
-
       }
 
    edit_plain_text::~edit_plain_text()
@@ -468,6 +467,10 @@ namespace user
    {
 
       SCAST_PTR(::message::create,pcreate,pobj);
+
+      Session.user()->keyboard();
+
+
 
       if(m_ptree == NULL)
       {

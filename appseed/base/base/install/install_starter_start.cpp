@@ -65,7 +65,9 @@ namespace install
          if ((i % 5) == 0 || strBuildNumber.is_empty())
          {
 
-            strBuildNumber = System.install().get_latest_build_number(strVersion);
+            //strBuildNumber = System.install().get_latest_build_number(strVersion);
+
+            strBuildNumber = "latest";
 
          }
 

@@ -208,6 +208,8 @@ namespace install
 
       int32_t ca2_build_version();
 
+      int32_t ca2_build_version_etc(string & strSpaHost,int32_t &iHostRetry);
+
       int32_t calc_host(string & strSpaHost, int32_t &iHostRetry);
 
 

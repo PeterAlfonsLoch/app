@@ -69,6 +69,8 @@ namespace axis
       virtual ::user::user * create_user();
 
 
+      virtual void on_create_keyboard();
+
 
       virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 

@@ -237,13 +237,6 @@ namespace core
       if(!m_pwndfrm->initialize())
          return false;
 
-      if(!is_installing() && !is_uninstalling() && !is_system())
-      {
-
-         simpledb().set_keyboard_layout(NULL,::action::source::system());
-
-      }
-
 
 
       m_dwAlive = ::get_tick_count();
@@ -359,17 +352,8 @@ namespace core
             }
          }
 
-         // keyboard layout
-         if(data_get("keyboard_layout",str) && str.has_char())
-         {
-            Session.user()->set_keyboard_layout(str,::action::source::database());
-         }
-         else
-         {
-            Session.user()->set_keyboard_layout(NULL,::action::source::database());
-         }
 
-         data_pulse_change("ca2","savings",NULL);
+         data_pulse_change("ca2",".local://savings",NULL);
 
 
          Sess(this).fill_locale_schema(*Session.str_context()->m_plocaleschema);
@@ -463,6 +447,12 @@ namespace core
                ApplicationUser;
 
             }
+
+         }
+         else
+         {
+
+            Session.user()->keyboard();
 
          }
 
@@ -4133,6 +4123,24 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
          }
       }
       return iCount;
+   }
+
+
+   void application::on_create_keyboard()
+   {
+
+      string str;
+
+      // keyboard layout
+      if(data_get("keyboard_layout",str) && str.has_char())
+      {
+         Session.user()->set_keyboard_layout(str,::action::source::database());
+      }
+      else
+      {
+         Session.user()->set_keyboard_layout(NULL,::action::source::database());
+      }
+
    }
 
 

@@ -583,6 +583,7 @@ namespace core
       virtual int32_t GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept);
       virtual int32_t GetVisibleFrameCount();
 
+      virtual void on_create_keyboard();
 
    };
 

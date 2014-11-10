@@ -1442,7 +1442,12 @@ d.unlock();
 
          ::message::key * pkey = (::message::key *) pbase;
 
-         Session.user()->keyboard().translate_os_key_message(pkey);
+         //if(Session.user()->m_pkeyboard != NULL)
+         {
+
+            Session.user()->keyboard().translate_os_key_message(pkey);
+
+         }
 
          if(pbase->m_uiMessage == WM_KEYDOWN)
          {

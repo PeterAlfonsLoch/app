@@ -78,8 +78,8 @@ namespace install
       m_bAppStarted           = false;
       m_pbReady               = NULL;
 
-      m_bHasCred              = false;
-      m_bHasCredEval          = false;
+      //m_bHasCred              = false;
+      //m_bHasCredEval          = false;
       m_bPendingRestartCa2    = false;
 
 
@@ -619,69 +619,6 @@ namespace install
 
       }
 
-      
-
-      if(!m_bPluginTypeTested)
-      {
-
-         if(!m_bPluginDownloaded)
-         {
-
-            string strUrl = m_phost->m_pbasecomposer->m_strPluginUrl;
-
-            property_set set(get_app());
-
-            set["raw_http"] = true;
-
-            for(int32_t iAttempt = 0; iAttempt < 3; iAttempt++)
-            {
-
-               //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
-
-               Application.http().get(strUrl,m_phost->m_pbasecomposer->m_strPluginData,set);
-
-               if(::http::status_succeeded(set["get_status"]))
-                  break;
-
-            }
-
-            if(::http::status_succeeded(set["get_status"]))
-            {
-
-               m_bPluginDownloaded = true;
-
-            }
-
-         }
-
-         
-
-         if(m_bPluginDownloaded && m_phost->m_pbasecomposer->m_strPluginData.has_char())
-         {
-
-            m_bPluginTypeTested = true;
-
-            stringa straSeparator;
-
-            straSeparator.add("\r\n");
-            straSeparator.add("\r");
-            straSeparator.add("\n");
-
-            m_straLinesNativeLaunch.remove_all();
-
-            m_straLinesNativeLaunch.add_smallest_tokens(m_phost->m_pbasecomposer->m_strPluginData,straSeparator,false);
-
-         }
-
-
-
-
-      }
-
-      if(!m_bPluginTypeTested)
-         return;
-
-
       if(System.install().is_installing_ca2())
       {
 
@@ -715,6 +652,66 @@ namespace install
       if(System.install().is_ca2_installed())
       {
 
+         if(!m_bPluginTypeTested)
+         {
+
+            if(!m_bPluginDownloaded)
+            {
+
+               string strUrl = m_phost->m_pbasecomposer->m_strPluginUrl;
+
+               property_set set(get_app());
+
+               set["raw_http"] = true;
+
+               for(int32_t iAttempt = 0; iAttempt < 3; iAttempt++)
+               {
+
+                  //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
+
+                  Application.http().get(strUrl,m_phost->m_pbasecomposer->m_strPluginData,set);
+
+                  if(::http::status_succeeded(set["get_status"]))
+                     break;
+
+               }
+
+               if(::http::status_succeeded(set["get_status"]))
+               {
+
+                  m_bPluginDownloaded = true;
+
+               }
+
+            }
+
+
+
+            if(m_bPluginDownloaded && m_phost->m_pbasecomposer->m_strPluginData.has_char())
+            {
+
+               m_bPluginTypeTested = true;
+
+               stringa straSeparator;
+
+               straSeparator.add("\r\n");
+               straSeparator.add("\r");
+               straSeparator.add("\n");
+
+               m_straLinesNativeLaunch.remove_all();
+
+               m_straLinesNativeLaunch.add_smallest_tokens(m_phost->m_pbasecomposer->m_strPluginData,straSeparator,false);
+
+            }
+
+
+
+
+         }
+
+         if(!m_bPluginTypeTested)
+            return;
+
          m_bPendingRestartCa2 = false;
 
          m_bRestartCa2        = true;
@@ -732,6 +729,10 @@ namespace install
          set_ready();
 
       }
+
+
+
+
 
 
    }
@@ -1378,37 +1379,54 @@ namespace install
          else
          {
 
-            int32_t iTry = 0;
+         //   int32_t iTry = 0;
 
-         retry_get_prompt:
+         //retry_get_prompt:
 
-            property_set set(get_app());
+         //   property_set set(get_app());
 
-            set["raw_http"] = true;
+         //   set["raw_http"] = true;
 
-            strPrompt = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
+         //   strPrompt = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
 
-            if (strPrompt.is_empty())
-            {
+         //   if (strPrompt.is_empty())
+         //   {
 
-               if (iTry < 9)
-               {
+         //      if (iTry < 9)
+         //      {
 
-                  Sleep(iTry * 84);
+         //         Sleep(iTry * 84);
 
-                  iTry++;
+         //         iTry++;
 
-                  goto retry_get_prompt;
+         //         goto retry_get_prompt;
 
-               }
+         //      }
 
-            }
+         //   }
 
          }
 
+         //string strLocale;
+
+         //if (strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
+         //   strLocale = str_get_system_default_locale_dup();
+
+         //if (strLocale.is_empty())
+         //   strLocale = "en";
+
+         //string strSchema;
+
+         //if (strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
+         //   strSchema = str_get_system_default_schema_dup();
+
+         //if (strSchema.is_empty())
+         //   strSchema = "en";
+
+
          string strLocale;
 
-         if (strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
+         if(m_phost->m_pbasecomposer->m_strPluginUrl.is_empty() || !url_query_get_param_dup(strLocale,"locale",m_phost->m_pbasecomposer->m_strPluginUrl) || strLocale.is_empty())
             strLocale = str_get_system_default_locale_dup();
 
          if (strLocale.is_empty())
@@ -1416,12 +1434,12 @@ namespace install
 
          string strSchema;
 
-         if (strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
+         if(m_phost->m_pbasecomposer->m_strPluginUrl.is_empty() || !url_query_get_param_dup(strSchema,"schema",m_phost->m_pbasecomposer->m_strPluginUrl) || strSchema.is_empty())
             strSchema = str_get_system_default_schema_dup();
 
          if (strSchema.is_empty())
             strSchema = "en";
-
+            
          string strVersion = ::install::get_version();
 
          m_phost->host_starter_start(": app=session session_start=session app_type=application install locale=" + strLocale + " schema=" + strSchema + " version=" + strVersion);

@@ -1748,6 +1748,13 @@ namespace axis
    }
 
 
+   void application::on_create_keyboard()
+   {
+      
+      Session.user()->set_keyboard_layout(NULL,::action::source::database());
+
+   }
+
 
    bool application::defer_initialize_twf()
    {
