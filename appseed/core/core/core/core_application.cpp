@@ -451,6 +451,23 @@ namespace core
       if(!::base::application::initialize_instance())
          return false;
 
+      if(!is_session())
+      {
+
+         if(directrix()->m_varTopicQuery.has_property("install"))
+         {
+
+            if(is_user_service())
+            {
+
+               ApplicationUser;
+
+            }
+
+         }
+
+      }
+
       return true;
 
    }

@@ -223,7 +223,9 @@ namespace install
    bool plugin::thread_start_ca2_on_idle()
    {
 
-      if (!m_bHasCred && (m_bLogin || !m_bLogged || m_bCa2Login || m_bCa2Logout))
+      //if (!m_bHasCred && (m_bLogin || !m_bLogged || m_bCa2Login || m_bCa2Logout))
+      //if(!m_bHasCred && (m_bLogin || !m_bLogged || m_bCa2Login || m_bCa2Logout))
+      if(m_bLogin || m_bCa2Login || m_bCa2Logout)
          return false;
 
 #ifdef METROWIN
@@ -481,33 +483,33 @@ namespace install
    void plugin::start_ca2()
    {
 
-      if(!m_bHasCredEval)
-      {
-         
-         string strUsername;
+      //if(!m_bHasCredEval)
+      //{
+      //   
+      //   string strUsername;
 
-         string strPassword;
+      //   string strPassword;
 
-         string str = ::fontopus::get_cred(get_app(),strUsername,strPassword,"ca2");
+      //   string str = ::fontopus::get_cred(get_app(),strUsername,strPassword,"ca2");
 
-         if(strUsername.has_char() && strPassword.has_char() && str == "ok")
-         {
+      //   if(strUsername.has_char() && strPassword.has_char() && str == "ok")
+      //   {
 
-            m_bHasCred = true;
+      //      m_bHasCred = true;
 
-            m_bPendingRestartCa2 = true;
+      //      m_bPendingRestartCa2 = true;
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
-            m_bHasCred = false;
+      //      m_bHasCred = false;
 
-         }
+      //   }
 
-         m_bHasCredEval = true;
+      //   m_bHasCredEval = true;
 
-      }
+      //}
 
 
       if(m_bCa2Login || m_bCa2Logout)
@@ -515,7 +517,8 @@ namespace install
 
       string strScript = System.url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
-      if(!m_bHasCred || (!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout")))
+      //if(!m_bHasCred || (!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout")))
+      if(!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout"))
       {
 
          m_phost->m_pbasecomposer->m_strEntryHallText = "Checking credentials...";
@@ -539,8 +542,8 @@ namespace install
 
       }
 
-
-      if(!m_phost->m_bOk || (!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout")) || (!m_bHasCred && !m_bLogged))
+      ///if(!m_phost->m_bOk || (!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout")) || (!m_bHasCred && !m_bLogged))
+      if(!m_phost->m_bOk || (!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout")))
          return;
 
       bool bJustLoggedIn = false;
@@ -816,7 +819,8 @@ namespace install
 
 
 
-      if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
+      //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
+      if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
       {
          //DWORD dwTime3 = ::get_tick_count();
 
@@ -1084,7 +1088,8 @@ namespace install
    void plugin::message_handler(signal_details * pobj)
    {
 
-      if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pobj != NULL && !is_installing() && System.install().is_ca2_installed())
+      if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pobj != NULL && !is_installing() && System.install().is_ca2_installed())
+      //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pobj != NULL && !is_installing() && System.install().is_ca2_installed())
       {
 
          ::hotplugin::plugin::message_handler(pobj);
@@ -1341,8 +1346,8 @@ namespace install
       if(m_bLogin)
          return;
 
-      if(!m_bLogged && !m_bHasCred)
-         return;
+      //if(!m_bLogged && !m_bHasCred)
+        // return;
 
       if(System.install().is_installing_ca2())
          return;
@@ -1544,7 +1549,8 @@ restart:
 
       }
 
-      if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
+      //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
+      if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && System.install().is_ca2_installed())
       {
 
 #ifdef METROWIN
