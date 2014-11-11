@@ -261,7 +261,9 @@ namespace install
 
       int32_t iHostRetry = 0;
 
-      int32_t iRet = ca2_build_version_etc(strSpaHost,iHostRetry);
+      stringa straMd5AppInstall;
+
+      int32_t iRet = ca2_build_version_etc(strSpaHost,iHostRetry,straMd5AppInstall);
 
       if (iRet < 0)
          return iRet;
@@ -270,7 +272,7 @@ namespace install
 
       new_progress_end(0.02);
 
-      System.install().app_install_get_extern_executable_path(m_strVersion, m_strBuild, this); // defer install install extern app.install.exe executable
+      System.install().app_install_get_extern_executable_path(m_strVersion, m_strBuild, &straMd5AppInstall, this); // defer install install extern app.install.exe executable
 
       m_bProgressModeAppInstall = false;
 
@@ -1102,7 +1104,16 @@ install_begin:;
 
          System.install().trace().rich_trace(str::replace(file_title_dup((str2 + str)), "\\", "/"));
 
-         if(::str::ends_ci(strFileName,".exe") || ::str::ends_ci(strFileName,".dll"))
+         if(file_exists_dup(strStageInplace)
+         && (iLen != -1) && file_length_dup(strStageInplace) == iLen
+         && strMd5.has_char() && stricmp_dup(System.file().md5(strStageInplace), strMd5) == 0)
+         {
+
+            bDownload = false;
+
+         }
+
+         if(bDownload && (::str::ends_ci(strFileName,".exe") || ::str::ends_ci(strFileName,".dll")))
          {
 
             string strPlatform = System.install().get_platform();
@@ -1114,21 +1125,12 @@ install_begin:;
                && strMd5.has_char() && stricmp_dup(System.file().md5(strCandidate),strMd5) == 0)
             {
 
-               ::file_copy_dup(strStageInplace,strCandidate);
+               bDownload  = !::file_copy_dup(strStageInplace,strCandidate);
 
             }
 
          }
 
-
-         if(file_exists_dup(strStageInplace)
-         && (iLen != -1) && file_length_dup(strStageInplace) == iLen
-         && strMd5.has_char() && stricmp_dup(System.file().md5(strStageInplace), strMd5) == 0)
-         {
-
-            bDownload = false;
-
-         }
 
 
          if(bDownload && file_exists_dup(strStageGz))
@@ -3048,13 +3050,17 @@ RetryBuildNumber:
    }
 
 
-   int32_t installer::ca2_build_version_etc(string & strSpaHost,int32_t &iHostRetry)
+   int32_t installer::ca2_build_version_etc(string & strSpaHost,int32_t &iHostRetry,stringa & straMd5)
    {
       int32_t iRetry = 0;
       string strEtc;
       stringa stra;
 
       string strName;
+
+      stringa straTemplate;
+
+      ::install::get_plugin_base_library_list(straTemplate);
 
    RetryBuildNumber:
       
@@ -3083,7 +3089,8 @@ RetryBuildNumber:
 
          set["raw_http"] = true;
 
-         Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build__host_and_application_name&sessid=noauth&version=" + m_strVersion + "&appid=" + m_strApplicationId,strEtc,set);
+         Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build__host_and_application_name&sessid=noauth&version=" + m_strVersion + "&appid=" + m_strApplicationId 
+            + "&stage=" + straTemplate.implode(","),strEtc,set);
 
          if(strEtc.length() < 19)
          {
@@ -3098,7 +3105,7 @@ RetryBuildNumber:
 
          stra.remove_all();
          stra.add_smallest_tokens(strEtc,straSep,true);
-         if(stra.get_count() < 3)
+         if(stra.get_count() < 3 + straTemplate.get_count())
          {
             Sleep(184);
             goto RetryBuildNumber;
@@ -3120,7 +3127,17 @@ RetryBuildNumber:
             Sleep(184);
             goto RetryBuildNumber;
          }
+         stra.slice(straMd5, 3,straTemplate.get_count());
+         for(index i = 0; i < straMd5.get_size(); i++)
+         {
+            straMd5[i].trim();
+            if(straMd5[i].length() != 32)
+            {
+               Sleep(184);
+               goto RetryBuildNumber;
+            }
 
+         }
       }
 
       m_strBuild = stra[0];

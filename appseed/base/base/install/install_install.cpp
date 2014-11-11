@@ -73,7 +73,7 @@ namespace install
 
    }
 
-   bool install::is_file_ok(const stringa & straPath,const stringa & straTemplate,stringa & straMd5,const string & strFormatBuild)
+   bool install::is_file_ok(const stringa & straPath,const stringa & straTemplate,stringa & straMd5,const string & strFormatBuild, int iMd5Retry)
    {
 
       bool bOk = true;
@@ -100,26 +100,31 @@ namespace install
 
       }
 
-      string strUrl;
+      if(iMd5Retry > 0 || straMd5.get_count() != straPath.get_count())
+      {
 
-      strUrl = "http://" + m_strVersion + "-server.ca2.cc/api/spaignition/md5a?authnone&version=" + m_strVersion + "&stage=";
-      strUrl += straTemplate.implode(",");
-      strUrl += "&build=";
-      strUrl += strFormatBuild;
+         string strUrl;
 
-      property_set set(get_app());
+         strUrl = "http://" + m_strVersion + "-server.ca2.cc/api/spaignition/md5a?authnone&version=" + m_strVersion + "&stage=";
+         strUrl += straTemplate.implode(",");
+         strUrl += "&build=";
+         strUrl += strFormatBuild;
 
-      set["raw_http"] = true;
+         property_set set(get_app());
 
-      string strMd5List = Application.http().get(strUrl,set);
+         set["raw_http"] = true;
 
-      straMd5.add_tokens(strMd5List, ",", false);
+         string strMd5List = Application.http().get(strUrl,set);
 
-      if(straMd5.get_count() != straPath.get_count())
-         return false;
+         straMd5.add_tokens(strMd5List,",",false);
 
-      if(!bOk)
-         return false;
+         if(straMd5.get_count() != straPath.get_count())
+            return false;
+
+         if(!bOk)
+            return false;
+
+      }
 
       for(index i = 0; i < straMd5.get_count(); i++)
       {
@@ -1316,7 +1321,7 @@ namespace install
 
 
 
-   string install::app_install_get_extern_executable_path(const char * pszVersion, const char * pszBuild, ::install::installer * pinstaller)
+   string install::app_install_get_extern_executable_path(const char * pszVersion, const char * pszBuild, stringa * pstraMd5, ::install::installer * pinstaller)
    {
 
       string strVersion(pszVersion);
@@ -1412,11 +1417,18 @@ namespace install
 
          stringa straMd5;
 
+         if(pstraMd5 != NULL)
+         {
+
+            straMd5 = *pstraMd5;
+
+         }
+
          int iMd5Retry = 0;
 
          md5retry:
 
-         if(!System.install().is_file_ok(straDownload,straFile,straMd5,strFormatBuild))
+         if(!System.install().is_file_ok(straDownload,straFile,straMd5,strFormatBuild, iMd5Retry))
          {
 
 
@@ -1425,7 +1437,7 @@ namespace install
 
                iMd5Retry++;
 
-               if(iMd5Retry < 5)
+               if(iMd5Retry < 8)
                   goto md5retry;
 
                return "";
