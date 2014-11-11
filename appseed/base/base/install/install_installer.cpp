@@ -231,8 +231,11 @@ namespace install
 
       System.install().trace().rich_trace(":::::Thank you");
       System.install().trace().rich_trace("***Thank you");
+      System.install().trace().rich_trace("Thank you");
 
       new_progress_end(0.01);
+
+      set_progress(0.001);
 
       m_bProgressModeAppInstall = true;
 
