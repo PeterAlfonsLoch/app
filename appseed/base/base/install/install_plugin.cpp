@@ -1195,7 +1195,7 @@ namespace install
                bFirst = false;
                iSkip = 0;
                strLine.trim();
-               if(::str::begins_eat(strLine, "***Getting build number"))
+               if(::str::begins_eat(strLine, "#----------"))
                {
                   m_strStatus = "Thank you";
                   bStatus = true;
