@@ -3169,7 +3169,7 @@ RetryBuildNumber:
 
       m_strTitle = strName;
 
-
+      strSpaHost = "server.ca2.cc";
 
       return 0;
    }
