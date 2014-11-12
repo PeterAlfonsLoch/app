@@ -266,12 +266,18 @@ namespace install
 
       int32_t iHostRetry = 0;
 
-      stringa straMd5AppInstall;
+      stringa straMd5;
 
-      int32_t iRet = ca2_build_version_etc(strSpaHost,iHostRetry,straMd5AppInstall);
+      int32_t iRet = ca2_build_version_etc(strSpaHost,iHostRetry,straMd5);
 
       if (iRet < 0)
          return iRet;
+
+      stringa straMd5AppInstall;
+
+      straMd5.slice(straMd5AppInstall,0, straMd5.get_count() - 1);
+
+      string strIndexMd5 = straMd5.last_element();
 
       set_progress(1.0);
 
@@ -442,7 +448,20 @@ install_begin:;
          string_to_intptr mapGzLen;
          string_to_intptr mapFlag;
 
+         string strBuild(m_strBuild);
 
+         strBuild.replace(" ","_");
+
+         strBuild.replace(":","-");
+
+         if(iHostRetry > 0)
+         {
+
+            strUrl = "http://" + strSpaHost + "/ccvotagus/" + m_strVersion + "/app/stage/metastage/index-" + strBuild + ".md5";
+
+            strIndexMd5 = http_get(strUrl,false);
+
+         }
 
          ::xml::document nodeInstall(get_app());
 
@@ -452,11 +471,9 @@ install_begin:;
 
          System.install().trace().rich_trace("***Downloading file list.");
 
-         string strBuild(m_strBuild);
-         strBuild.replace(" ", "_");
-         strBuild.replace(":", "-");
          string strIndexPath;
-         if(!ca2_fy_url(strIndexPath, ("app/stage/metastage/index-"+strBuild+".spa.bz"), false, -1, NULL, -1, true))
+
+         if(!ca2_fy_url(strIndexPath, ("app/stage/metastage/index-"+strBuild+".spa.bz"), true, -1, strIndexMd5, -1, true))
          {
             System.install().trace().rich_trace("Failed to download file list!");
             System.install().trace().rich_trace("Going to retry host...");
@@ -464,13 +481,7 @@ install_begin:;
             goto RetryHost;
          }
 
-
-         strUrl = "http://" + strSpaHost + "/ccvotagus/" + m_strVersion + "/app/stage/metastage/index-" + strBuild + ".md5";
-
-         string strIndexMd5 = http_get(strUrl, false);
-
-         if(strIndexMd5.length() != 32
-            || stricmp_dup(System.file().md5(strIndexPath), strIndexMd5) != 0)
+         if(strIndexMd5.length() != 32 || stricmp_dup(System.file().md5(strIndexPath), strIndexMd5) != 0)
          {
             System.install().trace().rich_trace("Invalid file list!");
             System.install().trace().rich_trace("Going to retry host...");
@@ -1239,7 +1250,7 @@ install_begin:;
       {
          if(file_exists_dup(dir2 + file2))
          {
-            if(iLength != -1 && iLength == file_length_dup((dir2 + file2)))
+            if(iLength == -1 || iLength == file_length_dup((dir2 + file2)))
             {
                if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(System.file().md5((dir2 + file2)), pszMd5) == 0)
                {
@@ -3076,7 +3087,7 @@ RetryBuildNumber:
 
          stra.remove_all();
          stra.add_smallest_tokens(strEtc,straSep,true);
-         if(stra.get_count() < 3 + straTemplate.get_count())
+         if(stra.get_count() < 3 + straTemplate.get_count() + 1)
          {
             Sleep(184);
             goto RetryBuildNumber;
@@ -3086,6 +3097,7 @@ RetryBuildNumber:
             Sleep(184);
             goto RetryBuildNumber;
          }
+
          strName = stra[1];
          if(strName.length() <= 0)
          {
@@ -3098,7 +3110,7 @@ RetryBuildNumber:
             Sleep(184);
             goto RetryBuildNumber;
          }
-         stra.slice(straMd5, 3,straTemplate.get_count());
+         stra.slice(straMd5, 3,straTemplate.get_count() + 1);
          for(index i = 0; i < straMd5.get_size(); i++)
          {
             straMd5[i].trim();
@@ -3136,10 +3148,12 @@ RetryBuildNumber:
 
       m_strTitle = strName;
 
-      strSpaHost = "server.ca2.cc";
+      //strSpaHost = "server.ca2.cc";
 
       return 0;
+
    }
+
 
    int32_t installer::calc_host(string & strSpaHost, int32_t &iHostRetry)
    {
