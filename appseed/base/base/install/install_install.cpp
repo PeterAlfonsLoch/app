@@ -45,6 +45,8 @@ namespace install
 
 #endif
 
+         m_phttpsession = NULL;
+
 
       }
 
@@ -1535,7 +1537,7 @@ namespace install
 
                      }
 
-                     if(Application.http().download(strUrl,strDownload + ".bz",set))
+                     if((m_phttpsession = Application.http().download(m_phttpsession, strUrl,strDownload + ".bz",set)) != NULL)
                      {
 
                         System.compress().unbz(get_app(),strDownload,strDownload + ".bz");

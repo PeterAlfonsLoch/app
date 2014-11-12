@@ -144,10 +144,16 @@ namespace install
 
       stringa           m_straHttpFailure;
 
+      ::sockets::http_session * m_phttpsessionServer;
+      ::sockets::http_session * m_phttpsession;
+
       installer(sp(::aura::application) papp);
       ~installer();
 
       uint32_t run();
+
+
+      string http_get(const string & strUrl, bool bScalarListener);
 
 
       void set_progress(double dProgress);

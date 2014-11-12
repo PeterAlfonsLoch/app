@@ -41,6 +41,7 @@ namespace http
 
       bool request(const char * pszRequest, const char * pszUrl, property_set & set);
 
+      ::sockets::http_session * download(::sockets::http_session * psession,const char * pszUrl,const char * pszFile,property_set & set);
       bool download(const char * pszUrl, const char * pszFile, property_set & set);
 
 

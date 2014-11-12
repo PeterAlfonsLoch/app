@@ -149,6 +149,7 @@ namespace install
       m_strVersion = "stage";
 
 #endif
+      m_phttpsession = NULL;
 
    }
 
@@ -466,13 +467,8 @@ install_begin:;
 
          strUrl = "http://" + strSpaHost + "/ccvotagus/" + m_strVersion + "/app/stage/metastage/index-" + strBuild + ".md5";
 
-         property_set set;
+         string strIndexMd5 = http_get(strUrl, false);
 
-         set["disable_ca2_sessid"] = true;
-
-         set["raw_http"] = true;
-
-         string strIndexMd5 = Application.http().get(strUrl, set);
          if(strIndexMd5.length() != 32
             || stricmp_dup(System.file().md5(strIndexPath), strIndexMd5) != 0)
          {
@@ -1269,7 +1265,9 @@ install_begin:;
 
       set["raw_http"] = true;
 
-      return Application.http().download(strUrl, (dir + file), set);
+      System.install().m_phttpsession = Application.http().download(System.install().m_phttpsession,strUrl,(dir + file),set);
+
+      return System.install().m_phttpsession != NULL;
 
    }
 
@@ -1456,7 +1454,7 @@ install_begin:;
 
             set["raw_http"] = true;
 
-            bOk = Application.http().download(strUrl, strBsPatch, set);
+            bOk = (m_phttpsessionServer = Application.http().download(m_phttpsessionServer, strUrl,strBsPatch,set)) != NULL;
 
 //            if(iStatus == 404)
   //             break;
@@ -1612,7 +1610,8 @@ install_begin:;
 
             set["raw_http"] = true;
 
-            bOk = Application.http().download((url_in + "." + pszMd5), (dir + file + "." + pszMd5), set);
+            bOk = (m_phttpsessionServer = Application.http().download(m_phttpsessionServer,(url_in + "." + pszMd5),(dir + file + "." + pszMd5),set)) != NULL;
+            //bOk = Application.http().download((url_in + "." + pszMd5), (dir + file + "." + pszMd5), set);
 //            if(iStatus == 404)
   //             break;
             if (!bOk)
@@ -2543,14 +2542,10 @@ install_begin:;
       strUrl += m_strApplicationId;
       strUrl += "&key=post_install_count";
 
-      property_set set;
+      string strCount = http_get(strUrl, false);
 
-      set["disable_ca2_sessid"] = true;
-
-      set["raw_http"] = true;
-
-      string strCount = Application.http().get(strUrl, set);
       int32_t iCount = atoi_dup(strCount);
+
       //set_progress(0.2);
       for(int32_t i = 0; i < iCount; i++)
       {
@@ -2560,13 +2555,7 @@ install_begin:;
          sprintf(szFormat, "[%d]", i);
          strUrl += szFormat;
 
-         property_set set;
-
-         set["disable_ca2_sessid"] = true;
-
-         set["raw_http"] = true;
-
-         string strExec = Application.http().get(strUrl, set);
+         string strExec = http_get(strUrl, false);
 
          if(!spa_exec(strExec))
          {
@@ -2980,13 +2969,7 @@ install_begin:;
       while(true)
       {
 
-         property_set set;
-
-         set["disable_ca2_sessid"] = true;
-
-         set["raw_http"] = true;
-
-         str = Application.http().get(strUrl, set);
+         str = http_get(strUrl, false);
 
          if(str.length() > 0)
             break;
@@ -3031,15 +3014,7 @@ RetryBuildNumber:
          iRetry++;
 //         m_strBuild = Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
 
-         ::property_set set;
-
-         set["int_scalar_source_listener"] = this;
-
-         set["disable_ca2_sessid"] = true;
-
-         set["raw_http"] = true;
-
-         Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build&sessid=noauth&version=" + m_strVersion, m_strBuild, set);
+         m_strBuild = http_get(m_strSpaIgnitionBaseUrl + "/query?node=build&sessid=noauth&version=" + m_strVersion, false);
 
          m_strBuild.trim();
 
@@ -3085,16 +3060,8 @@ RetryBuildNumber:
          iRetry++;
          //         m_strBuild = Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
 
-         ::property_set set;
-
-         set["int_scalar_source_listener"] = this;
-
-         set["disable_ca2_sessid"] = true;
-
-         set["raw_http"] = true;
-
-         Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build__host_and_application_name&sessid=noauth&version=" + m_strVersion + "&appid=" + m_strApplicationId 
-            + "&stage=" + straTemplate.implode(","),strEtc,set);
+         strEtc = http_get(m_strSpaIgnitionBaseUrl + "/query?node=build__host_and_application_name&sessid=noauth&version=" + m_strVersion + "&appid=" + m_strApplicationId 
+            + "&stage=" + straTemplate.implode(","), true);
 
          if(strEtc.length() < 19)
          {
@@ -3213,13 +3180,7 @@ RetryBuildNumber:
       while(iGuessRetry < 30)
       {
 
-         property_set set;
-
-         set["disable_ca2_sessid"] = true;
-
-         set["raw_http"] = true;
-
-         strSpaHost = Application.http().get(strUrl, set);
+         http_get(strUrl, false);
 
          if(strSpaHost.is_empty())
          {
@@ -4060,6 +4021,35 @@ RetryBuildNumber:
 //
 //
 
+   string installer::http_get(const string & strUrl, bool bScalarListener)
+   {
+
+      ::property_set set(get_app());
+
+      if(bScalarListener)
+      {
+
+         set["int_scalar_source_listener"] = this;
+
+      }
+
+      string str;
+
+      set["get_response"].get_value() = &str;
+
+      set["disable_ca2_sessid"] = true;
+
+      set["raw_http"] = true;
+
+      m_phttpsession = System.http().request(m_phttpsession,strUrl,set);
+
+      if(m_phttpsession == NULL)
+         return "";
+
+
+      return str;
+
+   }
 
 } // namespace install
 

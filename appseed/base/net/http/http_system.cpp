@@ -812,6 +812,14 @@ retry:
          {
             psession->m_pfile = set["file"].cast < ::file::binary_buffer >();
          }
+         if(set.has_property("int_scalar_source_listener"))
+         {
+            psession->::int_scalar_source::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
+         }
+         else
+         {
+            psession->::int_scalar_source::m_plistener = NULL;
+         }
          if (set["cookies"].cast < ::http::cookies >() != NULL && set["cookies"].cast < ::http::cookies >()->get_size() > 0)
          {
             psession->request().header(__id(cookie)) = set["cookies"].cast < ::http::cookies >()->get_cookie_header();
@@ -1624,6 +1632,22 @@ retry:
       psignal->m_bRet = iStatusCode == 200;
 
       return;
+
+   }
+
+   ::sockets::http_session * system::download(::sockets::http_session * psession,const char * pszRequest,const char * pszFile,property_set & set)
+   {
+    
+      ::file::buffer_sp spfile = set.cast < ::aura::application >("app",get_app())->m_pbasesession->file().get_file(pszFile,
+         ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
+
+      set["file"] = spfile;
+
+      psession = request(psession, pszRequest,set);
+
+      set["file"].null();
+
+      return psession;
 
    }
 

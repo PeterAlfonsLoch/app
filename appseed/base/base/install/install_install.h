@@ -45,6 +45,7 @@ namespace install
       string               m_strVersion;
       string_to_string     m_strVersionLatestBuildNumber;
 
+      ::sockets::http_session * m_phttpsession;
 
 
       install(sp(::aura::application) papp);
