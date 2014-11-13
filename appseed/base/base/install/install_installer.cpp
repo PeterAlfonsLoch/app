@@ -3122,7 +3122,7 @@ RetryBuildNumber:
 
       string strBuildPath;
 
-      strBuildPath = System.dir().appdata("spa_build.txt");
+      strBuildPath = System.dir().element_commonappdata(::dir::element(), "spa_build.txt");
 
       // using a guess for build number (the latest installed one)
       {

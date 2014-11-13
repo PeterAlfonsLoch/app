@@ -87,6 +87,7 @@ namespace windows
 
       virtual string appdata(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
       virtual string commonappdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
+      virtual string element_commonappdata(const string & strElement, const char * lpcsz = NULL,const char * lpcsz2 = NULL);
 
       virtual string usersystemappdata(sp(::aura::application) papp, const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
       virtual string userappdata(sp(::aura::application) papp, const char * lpcsz = NULL, const char * lpcsz2 = NULL);

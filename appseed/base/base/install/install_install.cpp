@@ -904,11 +904,11 @@ namespace install
 
       string strPath;
 
-      strPath = System.dir().appdata("spa_install.xml");
+      strPath = System.dir().commonappdata("spa_install.xml");
 
       string strBuildPath;
 
-      strBuildPath = System.dir().appdata("spa_build.txt");
+      strBuildPath = System.dir().commonappdata("spa_build.txt");
 
       System.dir().mk(System.dir().name(strPath), get_app());
 
@@ -1044,7 +1044,7 @@ namespace install
 
       string strPath;
 
-      strPath = System.dir().appdata("spa_install.xml");
+      strPath = System.dir().commonappdata("spa_install.xml");
 
       string strContents;
 

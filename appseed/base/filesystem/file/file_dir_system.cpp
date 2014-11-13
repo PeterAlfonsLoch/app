@@ -2351,12 +2351,25 @@ ret:
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
+      
       string system::commonappdata(const char * lpcsz,const char * lpcsz2)
       {
+         
+         return element_commonappdata(element(),lpcsz,lpcsz2);
+
+      }
+
+      
+      string system::element_commonappdata(const string & strElement,const char * lpcsz,const char * lpcsz2)
+      {
+
+         UNREFERENCED_PARAMETER(strElement);
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(),"this is an interface");
+
       }
+
 
       string system::usersystemappdata(sp(::aura::application) papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
       {
