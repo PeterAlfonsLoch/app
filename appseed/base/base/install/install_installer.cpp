@@ -2016,16 +2016,26 @@ install_begin:;
 
       if(bExist)
       {
+
          if(file_exists_dup(strStage))
          {
+
             if(iLength == -1 || iLength == file_length_dup((strStage)))
             {
+
                if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(System.file().md5((strStage)),pszMd5) == 0)
                {
+
+                  str = strStage;
+
                   return true;
+
                }
+
             }
+
          }
+
       }
 
       if(bIndex)
