@@ -2011,6 +2011,23 @@ install_begin:;
       string strStageGz;
       string strUrl;
       strUrl = lpcszPath;
+
+      strStage = ca2_get_dir(strUrl) + ca2_get_file(strUrl);
+
+      if(bExist)
+      {
+         if(file_exists_dup(strStage))
+         {
+            if(iLength == -1 || iLength == file_length_dup((strStage)))
+            {
+               if(pszMd5 != NULL && strlen_dup(pszMd5) > 0 && stricmp_dup(System.file().md5((strStage)),pszMd5) == 0)
+               {
+                  return true;
+               }
+            }
+         }
+      }
+
       if(bIndex)
       {
          if (!get(m_strInstall + lpcszPath, bExist, iLength, pszMd5, iGzLen))
@@ -2045,7 +2062,6 @@ install_begin:;
             strStageGz = ca2bz_get_dir(strUrl) + ca2bz_get_file(strUrl, pszMd5);
          }
       }
-      strStage = ca2_get_dir(strUrl) + ca2_get_file(strUrl);
       dir::mk(dir::name(strStage));
       bzuncompress(strStage, strStageGz);
       str = strStage;
