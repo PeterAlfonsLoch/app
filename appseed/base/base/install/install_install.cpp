@@ -906,6 +906,10 @@ namespace install
 
       strPath = System.dir().appdata("spa_install.xml");
 
+      string strBuildPath;
+
+      strBuildPath = System.dir().appdata("spa_build.txt");
+
       System.dir().mk(System.dir().name(strPath), get_app());
 
       ::xml::document doc(get_app());
@@ -1028,6 +1032,8 @@ namespace install
       opt.newline = true;
 
       Application.file().put_contents(strPath, doc.get_xml(&opt));
+
+      Application.file().put_contents(strBuildPath,strBuildNumber);
 
    }
 

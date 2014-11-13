@@ -87,8 +87,8 @@ namespace http
 
       bool request(const char * pszMethod, const char * pszUrl, property_set & set);
 
-      ::sockets::http_session * download(::sockets::http_session * psession,const char * pszRequest,const char * pszFile,property_set & set);
-      bool download(const char * pszUrl, const char * pszFile, property_set & set);
+      ::sockets::http_session * download(::sockets::http_session * psession,const char * pszRequest, var varFile,property_set & set);
+      bool download(const char * pszUrl, var varFile, property_set & set);
 
 
       bool put(const char * pszUrl, primitive::memory_base & memory, property_set & set);

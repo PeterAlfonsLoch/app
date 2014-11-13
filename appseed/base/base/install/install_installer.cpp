@@ -473,7 +473,9 @@ install_begin:;
 
          string strIndexPath;
 
-         if(!ca2_fy_url(strIndexPath, ("app/stage/metastage/index-"+strBuild+".spa.bz"), true, -1, strIndexMd5, -1, true))
+         bool bOkIndexPath = false;
+
+         if(!ca2_fy_url(strIndexPath, ("app/stage/metastage/index-"+strBuild+".spa.bz"), true, -1, strIndexMd5, -1, true, &bOkIndexPath))
          {
             System.install().trace().rich_trace("Failed to download file list!");
             System.install().trace().rich_trace("Going to retry host...");
@@ -481,12 +483,17 @@ install_begin:;
             goto RetryHost;
          }
 
-         if(strIndexMd5.length() != 32 || stricmp_dup(System.file().md5(strIndexPath), strIndexMd5) != 0)
+         if(iHostRetry > 0 || !bOkIndexPath)
          {
-            System.install().trace().rich_trace("Invalid file list!");
-            System.install().trace().rich_trace("Going to retry host...");
-            Sleep(184);
-            goto RetryHost;
+
+            if(strIndexMd5.length() != 32 || stricmp_dup(System.file().md5(strIndexPath),strIndexMd5) != 0)
+            {
+               System.install().trace().rich_trace("Invalid file list!");
+               System.install().trace().rich_trace("Going to retry host...");
+               Sleep(184);
+               goto RetryHost;
+            }
+
          }
 
          set_progress(0.5);
@@ -495,7 +502,12 @@ install_begin:;
 
          set_progress(0.6);
 
-         appmatter_list();
+         if(iHostRetry > 0)
+         {
+
+            appmatter_list();
+
+         }
 
          set_progress(0.7);
 
@@ -2005,7 +2017,7 @@ install_begin:;
    }
 
 
-   bool installer::ca2_fy_url(string & str, LPCSTR lpcszPath, bool bExist, int64_t iLength, const char * pszMd5, int64_t iGzLen, bool bIndex)
+   bool installer::ca2_fy_url(string & str,LPCSTR lpcszPath,bool bExist,int64_t iLength,const char * pszMd5,int64_t iGzLen,bool bIndex, bool * pbFileOk)
    {
       string strStage;
       string strStageGz;
@@ -2028,6 +2040,13 @@ install_begin:;
 
                   str = strStage;
 
+                  if(pbFileOk != NULL)
+                  {
+
+                     *pbFileOk = true;
+
+                  }
+
                   return true;
 
                }
@@ -2037,6 +2056,14 @@ install_begin:;
          }
 
       }
+
+      if(pbFileOk != NULL)
+      {
+
+         *pbFileOk = false;
+
+      }
+
 
       if(bIndex)
       {
@@ -2155,7 +2182,7 @@ install_begin:;
       string str;
       string strMd5 = mapMd5[strPath];
       strUrl.replace_ci("\\", "/");
-      if(!ca2_fy_url(str, strUrl, false, -1, strMd5, -1))
+      if(!ca2_fy_url(str, strUrl, true, -1, strMd5, -1))
          return -2;
       _FILE * f = fopen_dup(str, "rb");
       string strPlatform = System.install().get_platform();
@@ -3070,13 +3097,58 @@ RetryBuildNumber:
    {
       int32_t iRetry = 0;
       string strEtc;
-      stringa stra;
 
       string strName;
 
       stringa straTemplate;
 
+      string strBuild;
+
       ::install::get_plugin_base_library_list(straTemplate);
+
+      string strUrl;
+      ::file::memory_buffer file(get_app());
+
+      string strAppMatterList;
+
+      string strLen;
+
+      ::file_size len;
+
+      string strIndexBuild;
+      string strIndexPath;
+      string strIndexMd5;
+      ::primitive::memory mem(get_app());
+
+      string strBuildPath;
+
+      strBuildPath = System.dir().appdata("spa_build.txt");
+
+      // using a guess for build number (the latest installed one)
+      {
+
+         strBuild = Application.file().as_string(strBuildPath);
+
+         strIndexBuild = strBuild;
+
+         strIndexBuild.replace(" ","_");
+
+         strIndexBuild.replace(":","-");
+
+         strIndexPath = "app/stage/metastage/index-" + strIndexBuild + ".spa.bz";
+
+         strIndexPath = ca2_get_dir(strIndexPath) + ca2_get_file(strIndexPath);
+
+         if(file_exists_dup(strIndexPath))
+         {
+            
+            strIndexMd5 = System.file().md5(strIndexPath);
+
+         }
+
+      }
+
+      string strStatus;
 
    RetryBuildNumber:
       
@@ -3097,48 +3169,89 @@ RetryBuildNumber:
          iRetry++;
          //         m_strBuild = Application.http().get(m_strSpaIgnitionBaseUrl + "/query?node=build", false, &::ms_get_callback, (void *) this);
 
-         strEtc = http_get(m_strSpaIgnitionBaseUrl + "/query?node=build__host_and_application_name&sessid=noauth&version=" + m_strVersion + "&appid=" + m_strApplicationId 
-            + "&stage=" + straTemplate.implode(","), true);
 
-         if(strEtc.length() < 19)
+
+
+         strUrl = m_strSpaIgnitionBaseUrl + "/query?node=build__host_and_application_name&sessid=noauth";
+         strUrl += "&version=";
+         strUrl += m_strVersion;
+         strUrl += "&appid=";
+         strUrl += m_strApplicationId;
+         strUrl += "&stage=";
+         strUrl += straTemplate.implode(",");
+         strUrl += "&locale=";
+         strUrl += m_strInstallLocale;
+         strUrl += "&schema=";
+         strUrl += m_strInstallSchema;
+
+         if(strIndexMd5.has_char())
+         {
+
+            strUrl += "&index_md5=";
+            strUrl += strIndexMd5;
+
+         }
+
+
+
+         property_set set;
+
+         set["disable_ca2_sessid"] = true;
+
+         set["raw_http"] = true;
+
+         file.Truncate(0);
+
+         file.seek_to_begin();
+
+         System.install().m_phttpsession = Application.http().download(System.install().m_phttpsession,strUrl, &file,set);
+
+         file.seek_to_begin();
+//         strEtc = http_get(strUrl, true);
+
+         if(file.get_size() < 19)
          {
             Sleep(184);
             goto RetryBuildNumber;
          }
-         stringa straSep;
 
-         straSep.add("\r");
-         straSep.add("\n");
-         straSep.add("\r\n");
 
-         stra.remove_all();
-         stra.add_smallest_tokens(strEtc,straSep,true);
-         if(stra.get_count() < 3 + straTemplate.get_count() + 1)
-         {
-            Sleep(184);
-            goto RetryBuildNumber;
-         }
-         if(stra[0].length() != 19)
+         strBuild.Empty();
+
+         file.read_string(strBuild);
+
+         if(strBuild.length() != 19)
          {
             Sleep(184);
             goto RetryBuildNumber;
          }
 
-         strName = stra[1];
+         strName.Empty();
+
+         file.read_string(strName);
+
          if(strName.length() <= 0)
          {
             Sleep(184);
             goto RetryBuildNumber;
          }
-         strSpaHost = stra[2];
+
+         strSpaHost.Empty();
+
+         file.read_string(strSpaHost);
+
          if(strSpaHost.length() <= 0)
          {
             Sleep(184);
             goto RetryBuildNumber;
          }
-         stra.slice(straMd5, 3,straTemplate.get_count() + 1);
+
+         straMd5.set_size(straTemplate.get_count() + 1);
+         
          for(index i = 0; i < straMd5.get_size(); i++)
          {
+            straMd5[i].Empty();
+            file.read_string(straMd5[i]);
             straMd5[i].trim();
             if(straMd5[i].length() != 32)
             {
@@ -3147,9 +3260,70 @@ RetryBuildNumber:
             }
 
          }
+
+         file.read_string(strAppMatterList);
+
+         strLen.Empty();
+
+         file.read_string(strStatus);
+
+         if(strStatus == "ok")
+         {
+            if(strIndexMd5.is_empty())
+            {
+               Sleep(184);
+               goto RetryBuildNumber;
+            }
+         }
+         else if(strStatus != "send")
+         {
+            Sleep(184);
+            goto RetryBuildNumber;
+         }
+         else
+         {
+
+            file.read_string(strLen);
+
+            if(strLen.length() <= 0)
+            {
+               Sleep(184);
+               goto RetryBuildNumber;
+            }
+
+            len = atoi(strLen);
+
+            strIndexBuild = strBuild;
+
+            strIndexBuild.replace(" ","_");
+
+            strIndexBuild.replace(":","-");
+
+            strIndexPath = "app/stage/metastage/index-" + strIndexBuild + ".spa.bz";
+
+            strIndexPath = ca2_get_dir(strIndexPath) + ca2_get_file(strIndexPath);
+
+            {
+
+               ::file::buffer_sp file2 = Application.file_get_file(strIndexPath,::file::mode_create | ::file::type_binary | ::file::mode_write | ::file::defer_create_directory);
+
+               mem.allocate(len);
+
+               if(len != file.read(mem,len))
+               {
+                  Sleep(184);
+                  goto RetryBuildNumber;
+               }
+
+               file2->write(mem,len);
+
+            }
+
+         }
+
       }
 
-      m_strBuild = stra[0];
+      m_strBuild = strBuild;
 
       System.install().trace().rich_trace(m_strBuild);
 
@@ -3175,6 +3349,10 @@ RetryBuildNumber:
       m_strTitle = strName;
 
       //strSpaHost = "server.ca2.cc";
+
+      strAppMatterList.replace(",","\n");
+
+      m_strAppMatterList = strAppMatterList;
 
       return 0;
 

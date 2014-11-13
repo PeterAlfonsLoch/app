@@ -238,15 +238,15 @@ namespace http
       return System.http().request(pszRequest, pszUrl, process_set(set, pszUrl));
    }
 
-   ::sockets::http_session * application::download(::sockets::http_session * psession,const char * pszUrl,const char * pszFile,property_set & set)
+   ::sockets::http_session * application::download(::sockets::http_session * psession,const char * pszUrl,var varFile,property_set & set)
    {
-      return System.http().download(psession, pszUrl,pszFile,process_set(set,pszUrl));
+      return System.http().download(psession, pszUrl,varFile,process_set(set,pszUrl));
    }
 
 
-   bool application::download(const char * pszUrl, const char * pszFile, property_set & set)
+   bool application::download(const char * pszUrl, var varFile, property_set & set)
    {
-      return System.http().download(pszUrl, pszFile, process_set(set, pszUrl));
+      return System.http().download(pszUrl, varFile, process_set(set, pszUrl));
    }
 
    bool application::put(const char * pszUrl, primitive::memory & memory, property_set & set)

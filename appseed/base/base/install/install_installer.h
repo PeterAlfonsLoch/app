@@ -183,7 +183,7 @@ namespace install
 
       string ca2inplace_get_file(LPCSTR lpcszUrl);
 
-      bool ca2_fy_url(string & str, LPCSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false);
+      bool ca2_fy_url(string & str, LPCSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false, bool * pbFileOk = NULL);
 
       int32_t GetFileList(stringa & stringa, LPCSTR lpcszPath, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapCrc, string_to_intptr & mapFlag);
       int32_t GetFileListEx(stringa & stringa, class stringa & straPath, string_to_intptr & mapLen, string_to_intptr & mapGzLen, string_to_string & mapCrc, string_to_intptr & mapFlag);

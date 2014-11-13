@@ -810,7 +810,7 @@ retry:
          }
          if(set.has_property("file"))
          {
-            psession->m_pfile = set["file"].cast < ::file::binary_buffer >();
+            psession->m_pfile = set["file"].cast < ::file::stream_buffer >();
          }
          if(set.has_property("int_scalar_source_listener"))
          {
@@ -1635,10 +1635,10 @@ retry:
 
    }
 
-   ::sockets::http_session * system::download(::sockets::http_session * psession,const char * pszRequest,const char * pszFile,property_set & set)
+   ::sockets::http_session * system::download(::sockets::http_session * psession,const char * pszRequest,var varFile,property_set & set)
    {
     
-      ::file::buffer_sp spfile = set.cast < ::aura::application >("app",get_app())->m_pbasesession->file().get_file(pszFile,
+      ::file::buffer_sp spfile = set.cast < ::aura::application >("app",get_app())->m_pbasesession->file().get_file(varFile,
          ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;
@@ -1652,12 +1652,12 @@ retry:
    }
 
 
-   bool system::download(const char * pszUrl, const char * pszFile, property_set & set)
+   bool system::download(const char * pszUrl, var varFile, property_set & set)
    {
 
       ::sockets::socket_handler handler(get_app());
 
-      ::file::buffer_sp spfile = set.cast < ::aura::application >("app", get_app())->m_pbasesession->file().get_file(pszFile,
+      ::file::buffer_sp spfile = set.cast < ::aura::application >("app", get_app())->m_pbasesession->file().get_file(varFile,
          ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;
