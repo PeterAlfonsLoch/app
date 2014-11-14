@@ -3194,7 +3194,20 @@ namespace base
    bool application::assert_user_logged_in()
    {
 
-      if(&AppUser(this) == NULL)
+      const char * pszRequestUrl = NULL;
+
+      string strRequestUrl;
+
+      if(file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt").has_char())
+      {
+
+         strRequestUrl = "https://" + file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt") + "/api/spaignition";
+
+         pszRequestUrl = strRequestUrl;
+
+      }
+
+      if(m_pbasesession->fontopus()->get_user(true,pszRequestUrl) == NULL)
          //   throw exit_exception(get_app(),"You have not logged in!! db_str_set::load");
          return false;
 
