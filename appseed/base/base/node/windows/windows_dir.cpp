@@ -1104,10 +1104,6 @@ namespace windows
    string dir::element_commonappdata(const string & strElement, const char * lpcsz,const char * lpcsz2)
    {
 
-      string str;
-      
-      str = m_strCommonAppData;
-
       string strRelative;
 
       strRelative = strElement;
@@ -1127,7 +1123,7 @@ namespace windows
 
       }
 
-      return path(path(str,"ca2\\common"),lpcsz,lpcsz2);
+      return path(path(m_strCommonAppData,"ca2",strRelative),lpcsz,lpcsz2);
 
    }
 

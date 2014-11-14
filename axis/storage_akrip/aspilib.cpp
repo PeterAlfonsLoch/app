@@ -226,11 +226,15 @@ bool deinitMutexes( void )
 {
   int32_t i;
 
-  for( i = 0; i < MAXCDHAND; i++ )
-    {
-      if ( cdMutexes[i] )
-	CloseHandle( cdMutexes[i] );
-    }
+  if(cdMutexes != NULL)
+  {
+
+     for(i = 0; i < MAXCDHAND; i++)
+     {
+        if(cdMutexes[i])
+           CloseHandle(cdMutexes[i]);
+     }
+  }
   if ( hCacheMutex )
     CloseHandle( hCacheMutex );
   DeleteCriticalSection( &csCache );
