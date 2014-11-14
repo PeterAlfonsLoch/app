@@ -23,7 +23,6 @@ namespace user
    {
    }
 
-   #ifdef DEBUG
    void tab_view::assert_valid() const
    {
       impact::assert_valid();
@@ -33,7 +32,6 @@ namespace user
    {
       impact::dump(dumpcontext);
    }
-   #endif //DEBUG
 
 
    void tab_view::_001OnCreate(signal_details * pobj)

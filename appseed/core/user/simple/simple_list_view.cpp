@@ -34,7 +34,6 @@ void simple_list_view::OnDraw(::draw2d::graphics * pgraphics)
    ASSERT(FALSE);
 }
 
-#ifdef DEBUG
 void simple_list_view::assert_valid() const
 {
    ::user::impact::assert_valid();
@@ -44,7 +43,6 @@ void simple_list_view::dump(dump_context & dumpcontext) const
 {
    ::user::impact::dump(dumpcontext);
 }
-#endif //DEBUG
 
 bool simple_list_view::pre_create_window(::user::create_struct& cs)
 {
