@@ -2366,7 +2366,14 @@ namespace user
             || rectWindow.height() > m_spdib->m_size.cy)
          {
 
-            m_spdib->create(rectWindow.size() + size(100, 100));
+            if(!m_spdib->create(rectWindow.size() + size(100,100)))
+            {
+
+               TRACE("Could not create window graphics buffer (1) requested_size = %d, %d", rectWindow.width() + 100, rectWindow.height() + 100);
+
+               return;
+
+            }
 
          }
 
