@@ -47,7 +47,18 @@ void request_interface::add_line(const char * pszCommandLine, application_bias *
    else if (createcontext->m_spCommandLine->m_varQuery["build_number"].is_empty())
    {
 
-      createcontext->m_spCommandLine->m_varQuery["build_number"] = "installed";
+      if(createcontext->m_spCommandLine->m_strApp.CompareNoCase("app-core/netnodelite") == 0)
+      {
+
+         createcontext->m_spCommandLine->m_varQuery["build_number"] = "static";
+
+      }
+      else
+      {
+
+         createcontext->m_spCommandLine->m_varQuery["build_number"] = "installed";
+
+      }
 
    }
 

@@ -1108,7 +1108,7 @@ namespace install
          lpnodeInstalled = lpnodeVersion->GetChildByAttr("installed","build",strBuildNumber);
 
       }
-      else if(strBuildNumber == "installed")
+      else if(strBuildNumber == "installed" || strBuildNumber == "static")
       {
          for(index i = lpnodeVersion->get_children_count() - 1; i >= 0 ; i--)
          {
