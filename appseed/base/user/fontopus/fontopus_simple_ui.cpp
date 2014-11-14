@@ -20,6 +20,8 @@ namespace fontopus
       m_login(papp, 0, 0, strRequestUrl)
    {
 
+      ASSERT(m_login.m_strRequestUrl.has_char());
+
       m_bMayProDevian = false;
       m_eschema = schema_normal;
       m_login.m_pstyle = this;
@@ -71,7 +73,6 @@ namespace fontopus
 
       }
 
-      if(m_login.m_strRequestUrl.has_char())
       {
 
          add_ref();
@@ -491,7 +492,7 @@ namespace fontopus
 
 
 
-   string CLASS_DECL_BASE get_cred(::aura::application * papp, const string & strRequestUrl, const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   string CLASS_DECL_BASE get_cred(::aura::application * papp, const string & strRequestUrlParam, const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       string str = get_cred(papp, strUsername, strPassword, strToken);
@@ -503,6 +504,28 @@ namespace fontopus
          return "failed";
 
       sp(::fontopus::simple_ui) pui;
+
+      string strRequestUrl(strRequestUrlParam);
+
+      if(strRequestUrl.is_empty())
+      {
+
+         string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
+
+         if(strIgnitionServer.has_char())
+         {
+            
+            strRequestUrl = "https://" + strIgnitionServer + "/";
+
+         }
+         else
+         {
+
+            strRequestUrl = "https://account.ca2.cc/";
+
+         }
+
+      }
 
       pui = canew(::fontopus::simple_ui(papp, strRequestUrl));
 
