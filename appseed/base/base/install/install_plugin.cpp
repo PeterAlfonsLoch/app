@@ -68,7 +68,8 @@ namespace install
       m_startca2(papp)
    {
 
-
+      m_bCa2Login             = false;
+      m_bCa2Logout            = false;
          
 
       m_pstyle = this;
