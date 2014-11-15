@@ -32,6 +32,7 @@ namespace hotplugin
       m_bWrite                = false;
       m_bEntryHallTextStarted = false;
       
+      m_pcomposersystem       = NULL;
 
    }
    
