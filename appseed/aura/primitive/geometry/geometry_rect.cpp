@@ -1435,13 +1435,13 @@ double rectd::minimum_signed_absolute_dimension(bool bNegativePreference) const 
 
    double h = height();
 
-   if(abs(w) < abs(h))
+   if(fabs(w) < fabs(h))
    {
 
       return w;
 
    }
-   else if(abs(h) < abs(w))
+   else if(fabs(h) < fabs(w))
    {
 
       return h;
@@ -1471,13 +1471,13 @@ double rectd::maximum_signed_absolute_dimension(bool bPositivePreference) const 
 
    double h = height();
 
-   if(abs(w) > abs(h))
+   if(fabs(w) > fabs(h))
    {
 
       return w;
 
    }
-   else if(abs(h) > abs(w))
+   else if(fabs(h) > fabs(w))
    {
 
       return h;
@@ -1501,5 +1501,5 @@ double rectd::maximum_signed_absolute_dimension(bool bPositivePreference) const 
 
 
 
-double rectd::minimum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
-double rectd::maximum_absolute_dimension() const throw(){ return MIN(abs(width()),abs(height())); }
+double rectd::minimum_absolute_dimension() const throw(){ return MIN(fabs(width()),fabs(height())); }
+double rectd::maximum_absolute_dimension() const throw(){ return MIN(fabs(width()),fabs(height())); }

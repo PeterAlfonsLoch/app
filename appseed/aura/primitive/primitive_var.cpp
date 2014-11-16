@@ -3199,7 +3199,7 @@ bool var::is_real() const
       string str = get_string();
       if(is_scalar()
       && (fmod(atof(str), 1.0) == 0.0
-      && abs(atof(str)) <= pow(2.0, 31.0)))
+      && fabs(atof(str)) <= pow(2.0, 31.0)))
       {
          str.trim();
          if(str.get_length() == 0)
@@ -3312,7 +3312,7 @@ bool var::is_double() const
       string str = get_string();
       if(is_scalar()
       && (fmod(atof(str), 1.0) == 0.0
-      && abs(atof(str)) <= pow(2.0, 31.0)))
+      && fabs(atof(str)) <= pow(2.0, 31.0)))
       {
          str.trim();
          if(str.get_length() == 0)
@@ -3424,7 +3424,7 @@ bool var::is_integer() const
       string str = get_string();
       if(is_scalar()
       && (fmod(atof(str), 1.0) == 0.0
-      && abs(atof(str)) <= pow(2.0, 31.0)))
+      && fabs(atof(str)) <= pow(2.0, 31.0)))
       {
          str.trim();
          if(str.get_length() == 0)
@@ -3464,7 +3464,7 @@ bool var::is_natural() const
       string str = get_string();
       if(is_scalar()
       && (fmod(atof(str), 1.0) == 0.0
-      && abs(atof(str)) <= pow(2.0, 31.0)))
+      && fabs(atof(str)) <= pow(2.0, 31.0)))
       {
          str.trim();
          if(str.get_length() == 0)

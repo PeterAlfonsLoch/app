@@ -152,6 +152,14 @@ public:
    template<class ARRAY>
    friend bool lemon::array::binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia);
 
+   sort_array & operator = (const sort_array & a)
+   {
+	   if (&a == this)
+		   return *this;
+	   BASE_ARRAY_TYPE::operator = ((const BASE_ARRAY_TYPE &)a);
+	   return *this;
+   }
+
 };
 
 

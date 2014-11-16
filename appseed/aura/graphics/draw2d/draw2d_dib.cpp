@@ -2716,8 +2716,8 @@ namespace draw2d
             //x=abs((int32_t(dCos * i - dSin * j) + ioff) % m_size.cx);
             //y=abs((int32_t(dSin * i + dCos * j) + joff) % m_size.cy);
 
-            x = (int32_t) abs((dCos * i - dSin * j) + ioff);
-            y = (int32_t) abs((dSin * i + dCos * j) + joff);
+            x = (int32_t) fabs((dCos * i - dSin * j) + ioff);
+            y = (int32_t) fabs((dSin * i + dCos * j) + joff);
 
             if((x / m_size.cx) % 2 == 0)
             {
@@ -2784,8 +2784,8 @@ namespace draw2d
             //x=abs((int32_t(dCos * i - dSin * j) + ioff) % m_size.cx);
             //y=abs((int32_t(dSin * i + dCos * j) + joff) % m_size.cy);
 
-            x = (int32_t) abs((dCos * i - dSin * j) + ioff);
-            y = (int32_t) abs((dSin * i + dCos * j) + joff);
+            x = (int32_t) fabs((dCos * i - dSin * j) + ioff);
+            y = (int32_t) fabs((dSin * i + dCos * j) + joff);
 
             if((x / m_size.cx) % 2 == 0)
             {
@@ -2873,8 +2873,8 @@ namespace draw2d
             //x=abs((int32_t(dCos * i - dSin * j) + ioff) % m_size.cx);
             //y=abs((int32_t(dSin * i + dCos * j) + joff) % m_size.cy);
 
-            x = (int32_t) abs((dCos * i - dSin * j) + ioff);
-            y = (int32_t) abs((dSin * i + dCos * j) + joff);
+            x = (int32_t) fabs((dCos * i - dSin * j) + ioff);
+            y = (int32_t) fabs((dSin * i + dCos * j) + joff);
 
             if((x / m_size.cx) % 2 == 0)
             {
@@ -4000,7 +4000,7 @@ namespace draw2d
 
          ::draw2d::dib_sp dib(allocer());
 
-         if(abs(dx) > abs(dy))
+         if(fabs(dx) > fabs(dy))
          {
 
             double sin = ::sin(angle);
