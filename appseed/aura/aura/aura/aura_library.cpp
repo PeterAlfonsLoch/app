@@ -147,7 +147,18 @@ namespace aura
 
       }
 
-      m_pca2library = pfn_get_new_library(get_app());
+      try
+      {
+
+         m_pca2library = pfn_get_new_library(get_app());
+
+      }
+      catch(...)
+      {
+
+         m_pca2library = NULL;
+
+      }
 
       if(m_pca2library == NULL)
       {
