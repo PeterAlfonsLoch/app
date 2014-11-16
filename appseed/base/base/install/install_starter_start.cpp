@@ -45,6 +45,13 @@ namespace install
 
       string strSchema = get_command_line_param(m_strCommandLine, "schema").trimmed();
 
+      if(get_command_line_param(m_strCommandLine,"version").trimmed().has_char())
+      {
+
+         strVersion = get_command_line_param(m_strCommandLine,"version").trimmed();
+
+      }
+
       if (strId.is_empty())
          return -1;
 

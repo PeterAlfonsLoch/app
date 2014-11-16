@@ -34,6 +34,10 @@ namespace hotplugin
       
       m_pcomposersystem       = NULL;
 
+      m_pbasehost             = NULL;
+
+      m_bHostInit             = false;
+
    }
    
    

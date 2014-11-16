@@ -1012,6 +1012,13 @@ namespace core
 
       //if(command()->m_varTopicQuery["locale"].array_get_count() > 0 && command()->m_varTopicQuery["locale"].stra().get_count_except_ci("_std") > 0)
 
+      if(command()->m_varTopicQuery.has_property("version"))
+      {
+
+         install().m_strVersion = command()->m_varTopicQuery["version"];
+
+      }
+
       if(command()->m_varTopicQuery["locale"].array_get_count() > 0)
       {
          Session.set_locale(command()->m_varTopicQuery["locale"].stra()[0],::action::source::user());

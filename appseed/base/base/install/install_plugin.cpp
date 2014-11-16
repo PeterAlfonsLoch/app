@@ -1380,68 +1380,60 @@ namespace install
          else
          {
 
-         //   int32_t iTry = 0;
+            int32_t iTry = 0;
 
-         //retry_get_prompt:
+         retry_get_prompt:
 
-         //   property_set set(get_app());
+            property_set set(get_app());
 
-         //   set["raw_http"] = true;
+            set["raw_http"] = true;
 
-         //   strPrompt = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
+            strPrompt = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
 
-         //   if (strPrompt.is_empty())
-         //   {
+            if (strPrompt.is_empty())
+            {
 
-         //      if (iTry < 9)
-         //      {
+               if (iTry < 9)
+               {
 
-         //         Sleep(iTry * 84);
+                  Sleep(iTry * 84);
 
-         //         iTry++;
+                  iTry++;
 
-         //         goto retry_get_prompt;
+                  goto retry_get_prompt;
 
-         //      }
+               }
 
-         //   }
+            }
 
          }
 
-         //string strLocale;
-
-         //if (strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
-         //   strLocale = str_get_system_default_locale_dup();
-
-         //if (strLocale.is_empty())
-         //   strLocale = "en";
-
-         //string strSchema;
-
-         //if (strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
-         //   strSchema = str_get_system_default_schema_dup();
-
-         //if (strSchema.is_empty())
-         //   strSchema = "en";
-
-
          string strLocale;
 
-         if(m_phost->m_pbasecomposer->m_strPluginUrl.is_empty() || !url_query_get_param_dup(strLocale,"locale",m_phost->m_pbasecomposer->m_strPluginUrl) || strLocale.is_empty())
-            strLocale = str_get_system_default_locale_dup();
-
-         if (strLocale.is_empty())
-            strLocale = "en";
+         if (strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
+            if(!url_query_get_param_dup(strLocale,"locale",m_phost->m_pbasecomposer->m_strPluginUrl) || strLocale.is_empty())
+               strLocale = str_get_system_default_locale_dup();
 
          string strSchema;
 
-         if(m_phost->m_pbasecomposer->m_strPluginUrl.is_empty() || !url_query_get_param_dup(strSchema,"schema",m_phost->m_pbasecomposer->m_strPluginUrl) || strSchema.is_empty())
-            strSchema = str_get_system_default_schema_dup();
+         if (strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
+            if(!url_query_get_param_dup(strSchema,"schema",m_phost->m_pbasecomposer->m_strPluginUrl) || strSchema.is_empty())
+               strSchema = str_get_system_default_schema_dup();
+
+         string strVersion;
+
+         if(strPrompt.is_empty() || !url_query_get_param_dup(strVersion,"version",strPrompt) || strVersion.is_empty())
+            if(!url_query_get_param_dup(strVersion,"schema",m_phost->m_pbasecomposer->m_strPluginUrl) || strVersion.is_empty())
+               strVersion = ::install::get_version();
+
+         if (strLocale.is_empty())
+            strLocale = "_std";
 
          if (strSchema.is_empty())
-            strSchema = "en";
-            
-         string strVersion = ::install::get_version();
+            strSchema = "_std";
+         
+         if(strVersion.is_empty())
+            strVersion = "stage";
 
          m_phost->host_starter_start(": app=session session_start=session app_type=application install locale=" + strLocale + " schema=" + strSchema + " version=" + strVersion);
 

@@ -419,10 +419,15 @@ throw todo(get_thread_app());
    int32_t host::host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
-      if(phost->m_bHostStarterStart)
-         return 0;
+      if(phost != NULL)
+      {
 
-      phost->m_bHostStarterStart = true;
+         if(phost->m_bHostStarterStart)
+            return 0;
+
+         phost->m_bHostStarterStart = true;
+
+      }
 
       ::install::starter_start * pstart = new ::install::starter_start(papp);
 
