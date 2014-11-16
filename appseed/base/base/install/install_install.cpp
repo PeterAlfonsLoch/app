@@ -1401,7 +1401,7 @@ namespace install
 
          stringa straFile;
 
-         ::install::get_plugin_base_library_list(straFile);
+         ::install::get_plugin_base_library_list(straFile, pszVersion);
 
          if(!::dir::is(System.dir().name(strPath)))
          {

@@ -2195,6 +2195,12 @@ install_begin:;
          }
          string str2;
          string strPathParam(buf);
+         if(m_strVersion == "stage")
+         {
+            strPathParam = ::str::replace_ci("msvcp120d.dll","msvcp120.dll",strPathParam);
+            strPathParam = ::str::replace_ci("msvcr120d.dll","msvcr120.dll",strPathParam);
+            strPathParam = ::str::replace_ci("vcomp120d.dll","vcomp120.dll",strPathParam);
+         }
          if(strPathParam.begins_ci("stage\\basis\\"))
          {
             strPathParam = "stage\\" + strPlatform + strPathParam.substr(11);
@@ -3095,7 +3101,9 @@ RetryBuildNumber:
 
    int32_t installer::ca2_build_version_etc(string & strSpaHost,int32_t &iHostRetry,stringa & straMd5)
    {
+      
       int32_t iRetry = 0;
+      
       string strEtc;
 
       string strName;
@@ -3104,9 +3112,10 @@ RetryBuildNumber:
 
       string strBuild;
 
-      ::install::get_plugin_base_library_list(straTemplate);
+      ::install::get_plugin_base_library_list(straTemplate, m_strVersion);
 
       string strUrl;
+
       ::file::memory_buffer file(get_app());
 
       string strAppMatterList;

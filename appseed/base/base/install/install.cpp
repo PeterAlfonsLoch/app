@@ -178,7 +178,7 @@ namespace install
 {
 
 
-   CLASS_DECL_BASE void get_plugin_base_library_list(stringa & straFile)
+   CLASS_DECL_BASE void get_plugin_base_library_list(stringa & straFile, const string & strVersion)
    {
 
 
@@ -194,9 +194,23 @@ namespace install
       straFile.add("axiszlib.dll");
       straFile.add("base.dll");
       straFile.add("draw2d_gdiplus.dll");
-      straFile.add("msvcp120d.dll");
-      straFile.add("msvcr120d.dll");
-      straFile.add("vcomp120d.dll");
+
+      if(strVersion == "stage")
+      {
+         
+         straFile.add("msvcp120.dll");
+         straFile.add("msvcr120.dll");
+         straFile.add("vcomp120.dll");
+
+      }
+      else
+      {
+       
+         straFile.add("msvcp120d.dll");
+         straFile.add("msvcr120d.dll");
+         straFile.add("vcomp120d.dll");
+
+      }
 
 
    }
