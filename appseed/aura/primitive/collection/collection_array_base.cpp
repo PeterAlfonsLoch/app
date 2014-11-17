@@ -62,7 +62,7 @@ void array_base::copy_element(index i, void * p) { on_copy_element(i, p); }
 void array_base::on_construct_element(void *) {}
 void array_base::on_construct_element(void *,::count) {}
 void array_base::on_destruct_element(void *) {}
-void array_base::on_copy_element(index i, void * p) { ::memcpy(m_pData + i*m_iTypeSize,p,m_iTypeSize; }
+void array_base::on_copy_element(index i, void * p) { ::memcpy(m_pData + i*m_iTypeSize,p,m_iTypeSize); }
 
 
 void array_base::destroy()
