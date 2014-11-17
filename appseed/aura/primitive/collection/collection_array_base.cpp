@@ -1,6 +1,44 @@
 #include "framework.h"
 
 
+array_base::array_base(sp(::aura::application) papp):
+   element(papp)
+{
+   
+   m_iTypeSize = sizeof(int_ptr); // default
+   m_nGrowBy = 32;
+   m_pData = NULL;
+   m_nSize = 0;
+   m_nMaxSize = 0;
+
+}
+
+array_base::~array_base()
+{
+
+   destroy();
+
+}
+
+
+::count array_base::resize(::count nNewSize,::count nGrowBy)
+{
+   return allocate(nNewSize,nGrowBy);
+}
+
+::count array_base::allocate_in_bytes(::count nNewSize,::count nGrowBy)
+{
+   if(nGrowBy < 0)
+   {
+      return allocate(nNewSize / m_iTypeSize,-1);
+   }
+   else
+   {
+      return allocate(nNewSize / m_iTypeSize,nGrowBy / m_iTypeSize);
+   }
+}
+
+
 index array_base::remove_at(index nIndex,::count nCount)
 {
 

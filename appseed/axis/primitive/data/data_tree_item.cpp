@@ -30,7 +30,7 @@ namespace data
    void tree_item::sort_children(index ( * lpfnCompare )(sp(tree_item) * pitem, sp(tree_item) * pitem2))
    {
 
-      m_children.quick_sort(lpfnCompare);
+      ::sort::quick_sort(m_children, lpfnCompare);
 
    }
 
