@@ -35,10 +35,10 @@ void array_base::free_extra()
 #ifdef SIZE_T_MAX
       ASSERT(m_nSize <= SIZE_T_MAX / m_iTypeSize); // no overflow
 #endif
-      void* pNewData = NULL;
+      byte* pNewData = NULL;
       if(m_nSize != 0)
       {
-         pNewData = memory_alloc(m_nSize * m_iTypeSize);
+         pNewData = (byte *) memory_alloc(m_nSize * m_iTypeSize);
          // copy new data from old
          ::aura::memcpy_s(pNewData,m_nSize * m_iTypeSize,
             m_pData,m_nSize * m_iTypeSize);
