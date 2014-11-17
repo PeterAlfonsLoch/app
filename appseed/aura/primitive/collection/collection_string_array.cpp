@@ -245,7 +245,7 @@ void string_array::InsertEmpty(index nIndex, ::count nCount)
       // re-init slots we copied from
       for(index i = nIndex; i < nIndex + nCount; i++)
       {
-         m_pData[i].construct();
+         get_data()[i].construct();
       }
 
    }

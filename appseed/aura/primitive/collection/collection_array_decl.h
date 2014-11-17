@@ -114,6 +114,9 @@ public:
    inline bool has_elements(::count countMinimum = 1) const;
    inline index get_upper_bound(index i = -1) const;
 
+
+   void * element_at(index iIndex) const { return m_pData + i * m_iTypeSize; }
+
    ::count set_size(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count allocate(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count allocate_in_bytes(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
