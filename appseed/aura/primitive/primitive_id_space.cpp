@@ -91,8 +91,8 @@ void id_space::sort()
    id * pid1 = NULL;
     id * pid2 = NULL;
 
-   id * pida = m_ida.m_pData;
-   index * pia = m_iaStr.m_pData;
+    id * pida = m_ida.get_data();
+    index * pia = m_iaStr.get_data();
 
     index iU;
     index iM = 0;
