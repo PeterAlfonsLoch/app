@@ -266,7 +266,7 @@ void string_array::insert_at(index nIndex, const char * newElement, ::count nCou
    // copy elements into the is_empty space
    string temp = newElement;
    while (nCount--)
-      m_pData[nIndex++] = temp;
+      get_data()[nIndex++] = temp;
 
 }
 
@@ -278,7 +278,7 @@ void string_array::insert_at(index nIndex, const string & newElement, ::count nC
 
    // copy elements into the is_empty space
    while (nCount--)
-      m_pData[nIndex++] = newElement;
+      get_data()[nIndex++] = newElement;
 }
 
 

@@ -196,19 +196,19 @@ bool id_space::find(const id & t, index & iIndex)
    iIndex = (iUpperBound + iLowerBound) / 2;
    while(iUpperBound - iLowerBound >= 8)
    {
-      if(m_ida.m_pData[m_iaStr.m_pData[iIndex]].m_pstr == NULL)
+      if(m_ida.get_data()[m_iaStr.get_data()[iIndex]].m_pstr == NULL)
       {
-         m_ida.remove_at(m_iaStr.m_pData[iIndex]);
+         m_ida.remove_at(m_iaStr.get_data()[iIndex]);
          m_iaStr.remove_at(iIndex);
          goto restart;
       }
-      if(m_ida.m_pData[m_iaStr.m_pData[iIndex]].m_pstr->m_pszData == NULL)
+      if(m_ida.get_data()[m_iaStr.get_data()[iIndex]].m_pstr->m_pszData == NULL)
       {
-         m_ida.remove_at(m_iaStr.m_pData[iIndex]);
+         m_ida.remove_at(m_iaStr.get_data()[iIndex]);
          m_iaStr.remove_at(iIndex);
          goto restart;
       }
-      iCompare = id_strcmp(&m_ida.m_pData[m_iaStr.m_pData[iIndex]],&t);
+      iCompare = id_strcmp(&m_ida.get_data()[m_iaStr.get_data()[iIndex]],&t);
       if(iCompare == 0)
       {
          return true;
