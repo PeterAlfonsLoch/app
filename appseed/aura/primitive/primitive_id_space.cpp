@@ -408,7 +408,7 @@ bool strid_array::find(const char * psz, index & iIndex) const
    iIndex = (iUpperBound + iLowerBound) / 2;
    while(iUpperBound - iLowerBound >= 8)
    {
-      iCompare = m_idptra.m_pData[m_iaId.m_pData[iIndex]] - psz;
+      iCompare = m_idptra.get_data()[m_iaId.m_pData[iIndex]] - psz;
       if(iCompare == 0)
       {
          return true;
@@ -436,7 +436,7 @@ bool strid_array::find(const char * psz, index & iIndex) const
    // do sequential search
    while(iIndex < m_idptra.m_nSize)
    {
-      iCompare = m_idptra.m_pData[m_iaId.m_pData[iIndex]] - psz;
+      iCompare = m_idptra.get_data()[m_iaId.m_pData[iIndex]] - psz;
       if(iCompare == 0)
          return true;
       else if(iCompare < 0)
@@ -448,7 +448,7 @@ bool strid_array::find(const char * psz, index & iIndex) const
       return false;
    while(iIndex >= 0)
    {
-      iCompare = m_idptra.m_pData[m_iaId.m_pData[iIndex]] - psz;
+      iCompare = m_idptra.get_data()[m_iaId.m_pData[iIndex]] - psz;
       if(iCompare == 0)
          return true;
       else if(iCompare > 0)
@@ -470,7 +470,7 @@ void strid_array::add(const id & id)
    if(find(id, iIndex))
       return;
 
-   m_idptra.add(id);
+   m_idptra.add(*id.m_pstr);
    m_iaId.insert_at(iIndex, m_idptra.get_upper_bound());
    //m_iaId.add(m_idptra.get_upper_bound());
    //sort();

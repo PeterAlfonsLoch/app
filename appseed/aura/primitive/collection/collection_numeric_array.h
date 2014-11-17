@@ -1599,7 +1599,7 @@ bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::binary_search(ARG_TYPE t, index 
    iIndex = (iUpperBound + iLowerBound) / 2;
    while(iUpperBound - iLowerBound >= 8)
    {
-      iCompare = fCompare((TYPE *) &this->m_pData[ia[iIndex]], (TYPE *) &t);
+      iCompare = fCompare((TYPE *) &this->get_data()[ia[iIndex]], (TYPE *) &t);
       if(iCompare == 0)
       {
          return true;
@@ -1627,7 +1627,7 @@ bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::binary_search(ARG_TYPE t, index 
    // do sequential search
    while(iIndex < this->get_count())
    {
-      iCompare = fCompare((TYPE *) &this->m_pData[ia[iIndex]], (TYPE *) &t);
+      iCompare = fCompare((TYPE *) &this->get_data()[ia[iIndex]], (TYPE *) &t);
       if(iCompare == 0)
          return true;
       else if(iCompare < 0)
@@ -1639,7 +1639,7 @@ bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::binary_search(ARG_TYPE t, index 
       return false;
    while(iIndex >= 0)
    {
-      iCompare = fCompare((TYPE *) &this->m_pData[ia[iIndex]], (TYPE *)  &t);
+      iCompare = fCompare((TYPE *)&this->get_data()[ia[iIndex]],(TYPE *)&t);
       if(iCompare == 0)
          return true;
       else if(iCompare > 0)

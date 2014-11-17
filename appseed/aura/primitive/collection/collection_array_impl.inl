@@ -8,88 +8,74 @@
 // array is an array that call default constructors, copy constructs and destructors in elements
 
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_size() const
+inline ::count array_base::get_size() const
 {
    return m_nSize;
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_size_in_bytes() const
+inline ::count array_base::get_size_in_bytes() const
 {
-   return m_nSize * sizeof(TYPE);
+   return m_nSize * m_iTypeSize;
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_count() const
+inline ::count array_base::get_count() const
 {
    return this->get_size();
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_byte_count() const
+inline ::count array_base::get_byte_count() const
 {
    return this->get_size_in_bytes();
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::size() const
+inline ::count array_base::size() const
 {
    return this->get_size();
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::count() const
+inline ::count array_base::count() const
 {
    return this->get_count();
 }
 
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::is_empty(::count countMinimum) const
+inline bool array_base::is_empty(::count countMinimum) const
 {
    return m_nSize < countMinimum;
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::empty(::count countMinimum) const
+inline bool array_base::empty(::count countMinimum) const
 {
    return is_empty(countMinimum);
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::has_elements(::count countMinimum) const
+inline bool array_base::has_elements(::count countMinimum) const
 {
    return m_nSize >= countMinimum;
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_upper_bound(index index) const
+inline index array_base::get_upper_bound(index index) const
 {
    return m_nSize + index;
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::remove_all()
+inline ::count array_base::remove_all()
 {
    return allocate(0, -1);
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline ::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::set_size(index nNewSize, ::count nGrowBy) // does not call default constructors on new items/elements
+inline ::count array_base::set_size(index nNewSize, ::count nGrowBy) // does not call default constructors on new items/elements
 {
    return allocate(nNewSize, nGrowBy);
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::clear()
+inline void array_base::clear()
 {
    remove_all();
 }
 
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::remove_last()
+inline void array_base::remove_last()
 {
    remove_at(get_upper_bound());
 }
@@ -98,21 +84,21 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_at(index nIndex)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
-   return m_pData[nIndex];
+   return get_data()[nIndex];
    //   throw invalid_argument_exception(get_app());
 }
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_at(index nIndex) const
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
-   return m_pData[nIndex];
+   return get_data()[nIndex];
    // throw invalid_argument_exception(get_app());
 }
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::set_at(index nIndex, ARG_TYPE newElement)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
-   m_pData[nIndex] = newElement;
+   get_data()[nIndex] = newElement;
    // else
    //  throw invalid_argument_exception(get_app());
 }
@@ -120,14 +106,14 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::element_at(index nIndex) const
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
-   return m_pData[nIndex];
+   return get_data()[nIndex];
    // throw invalid_argument_exception(get_app());
 }
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::element_at(index nIndex)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
-   return m_pData[nIndex];
+   return get_data()[nIndex];
    // throw invalid_argument_exception(get_app());
 }
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
@@ -182,13 +168,13 @@ inline const TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::back(index n) con
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline const TYPE* array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_data() const
 {
-   return (const TYPE*)m_pData;
+   return (const TYPE*)get_data();
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline TYPE* array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_data()
 {
-   return (TYPE*)m_pData;
+   return (TYPE*)get_data();
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
@@ -282,9 +268,9 @@ inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::operator[](index nIndex)
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::swap(index index1, index index2)
 {
-   TYPE t = m_pData[index1];
-   m_pData[index1] = m_pData[index2];
-   m_pData[index2] = t;
+   TYPE t = get_data()[index1];
+   get_data()[index1] = get_data()[index2];
+   get_data()[index2] = t;
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
@@ -305,6 +291,7 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::array(sp(::aura::application) papp, ::count nGrowBy) :
 element(papp)
 {
+   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = MAX(0, nGrowBy);
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
@@ -314,6 +301,7 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::array(const array <TYPE, ARG_TYPE> & a) :
 element(a.get_app())
 {
+   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
@@ -327,6 +315,7 @@ element(a.get_app())
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > :: array(::count n)
 {
+   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
@@ -345,44 +334,25 @@ array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::~array()
 
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::destroy()
-{
-   ASSERT_VALID(this);
 
-   if (m_pData != NULL)
-   {
-      for( int32_t i = 0; i < m_nSize; i++ )
-         (m_pData + i)->~TYPE();
-      delete[] (BYTE*)m_pData;
-      m_pData     = NULL;
-      m_nSize     = 0;
-      m_nMaxSize  = 0;
-   }
-
-}
-
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::resize(::count nNewSize, ::count nGrowBy)
+::count array_base::resize(::count nNewSize, ::count nGrowBy)
 {
    return allocate(nNewSize, nGrowBy);
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::allocate_in_bytes(::count nNewSize, ::count nGrowBy)
+::count array_base::allocate_in_bytes(::count nNewSize, ::count nGrowBy)
 {
    if(nGrowBy < 0)
    {
-      return allocate(nNewSize / sizeof(TYPE), -1);
+      return allocate(nNewSize / m_iTypeSize, -1);
    }
    else
    {
-      return allocate(nNewSize / sizeof(TYPE), nGrowBy / sizeof(TYPE));
+      return allocate(nNewSize / m_iTypeSize,nGrowBy / m_iTypeSize);
    }
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::allocate(::count nNewSize, ::count nGrowBy)
+::count array_base::allocate(::count nNewSize, ::count nGrowBy)
 {
 
    ::count countOld = get_count();
@@ -401,8 +371,8 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
       if (m_pData != NULL)
       {
          for( int32_t i = 0; i < m_nSize; i++ )
-            (m_pData + i)->~TYPE();
-         delete[] (BYTE*)m_pData;
+            destruct_element((byte *) m_pData + i * m_iTypeSize);
+         memory_free(m_pData);
          m_pData = NULL;
       }
       m_nSize = m_nMaxSize = 0;
@@ -412,13 +382,13 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
-      if(nNewSize > SIZE_T_MAX/sizeof(TYPE))
+      if(nNewSize > SIZE_T_MAX/m_iTypeSize)
          throw memory_exception(get_app());
-      ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
+      ASSERT(nNewSize <= SIZE_T_MAX/m_iTypeSize);    // no overflow
 #endif
       ::count nAllocSize = MAX(nNewSize, m_nGrowBy);
-      m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
-      DEFCONSTRUCTOR::construct( m_pData, nNewSize );
+      m_pData = memory_alloc(nAllocSize * m_iTypeSize);
+      construct_element((byte *)  m_pData + nNewSize * m_iTypeSize );
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
@@ -427,13 +397,13 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
       // it fits
       if (nNewSize > m_nSize)
       {
-         DEFCONSTRUCTOR::construct( m_pData + m_nSize, nNewSize - m_nSize );
+         construct_element( (byte *) m_pData + m_nSize * m_iTypeSize, nNewSize - m_nSize );
       }
       else if (m_nSize > nNewSize)
       {
          // destroy the old elements
          for( int32_t i = 0; i < m_nSize-nNewSize; i++ )
-            (m_pData + nNewSize + i)->~TYPE();
+            destruct_element((byte*) m_pData + (nNewSize + i) * m_iTypeSize);
       }
       m_nSize = nNewSize;
    }
@@ -460,18 +430,18 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
          throw invalid_argument_exception(get_app());
 
 #ifdef SIZE_T_MAX
-      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
+      ASSERT(nNewMax <= SIZE_T_MAX/m_iTypeSize); // no overflow
 #endif
-      TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
+      void* pNewData = memory_alloc(nNewMax * m_iTypeSize);
 
       // copy new data from old
-      ::aura::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE), m_pData, (size_t)m_nSize * sizeof(TYPE));
+      ::aura::memcpy_s(pNewData, (size_t)nNewMax * m_iTypeSize, m_pData, (size_t)m_nSize * m_iTypeSize);
 
       // construct remaining elements
       ASSERT(nNewSize > m_nSize);
-      DEFCONSTRUCTOR::construct(pNewData + m_nSize, nNewSize - m_nSize);
+      construct_element((byte *) pNewData + m_nSize * m_iTypeSize, nNewSize - m_nSize);
       // get rid of old stuff (note: no destructors called)
-      delete[] (BYTE*)m_pData;
+      memory_free(m_pData);
       m_pData = pNewData;
       m_nSize = nNewSize;
       m_nMaxSize = nNewMax;
@@ -479,8 +449,7 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
    return countOld;
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-::count array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::set_raw_size(::count nNewSize, ::count nGrowBy)
+::count array_base::set_raw_size(::count nNewSize, ::count nGrowBy)
 {
    ::count countOld = get_count();
    ASSERT_VALID(this);
@@ -507,12 +476,12 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
-      if(nNewSize > SIZE_T_MAX/sizeof(TYPE))
+      if(nNewSize > SIZE_T_MAX/m_iTypeSize)
          throw memory_exception(get_app());
-      ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
+      ASSERT(nNewSize <= SIZE_T_MAX/m_iTypeSize);    // no overflow
 #endif
       ::count nAllocSize = MAX(nNewSize, m_nGrowBy);
-      m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
+      m_pData = memory_alloc(nAllocSize * m_iTypeSize);
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
@@ -543,16 +512,16 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
          throw invalid_argument_exception(get_app());
 
 #ifdef SIZE_T_MAX
-      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
+      ASSERT(nNewMax <= SIZE_T_MAX/m_iTypeSize); // no overflow
 #endif
-      TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
+      void * pNewData = memory_alloc(nNewMax * m_iTypeSize);
       // copy new data from old
-      ::aura::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
-         m_pData, (size_t)m_nSize * sizeof(TYPE));
+      ::aura::memcpy_s(pNewData, (size_t)nNewMax * m_iTypeSize,
+         m_pData, (size_t)m_nSize * m_iTypeSize);
 
       for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
          // get rid of old stuff (note: no destructors called)
-            delete[] (BYTE*)m_pData;
+            memory_free(m_pData);
       m_pData = pNewData;
       m_nSize = nNewSize;
       m_nMaxSize = nNewMax;
@@ -564,7 +533,7 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::append(const array& src)
+inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::append(const array& src)
 {
    ASSERT_VALID(this);
    ASSERT(this != &src);   // cannot append to itself
@@ -574,12 +543,12 @@ index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::append(const array& src)
 
    ::count nOldSize = m_nSize;
    allocate(m_nSize + src.m_nSize);
-   CopyElements<TYPE>(m_pData + nOldSize, src.m_pData, src.m_nSize);
+   CopyElements<TYPE>((TYPE *)((byte*) m_pData + nOldSize * m_iTypeSize), (TYPE*) src.m_pData, src.m_nSize);
    return nOldSize;
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::copy(const array& src)
+inline void array < TYPE,ARG_TYPE,DEFCONSTRUCTOR > ::copy(const array& src)
 {
    ASSERT_VALID(this);
    ASSERT(this != &src);   // cannot append to itself
@@ -587,63 +556,12 @@ void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::copy(const array& src)
    if(this != &src)
    {
       allocate(src.m_nSize);
-      CopyElements<TYPE>(m_pData, src.m_pData, src.m_nSize);
-   }
-}
-
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::free_extra()
-{
-   ASSERT_VALID(this);
-
-   if (m_nSize != m_nMaxSize)
-   {
-      // shrink to desired size
-#ifdef SIZE_T_MAX
-      ASSERT(m_nSize <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
-#endif
-      TYPE* pNewData = NULL;
-      if (m_nSize != 0)
-      {
-         pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
-         // copy new data from old
-         ::aura::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
-            m_pData, m_nSize * sizeof(TYPE));
-      }
-
-      // get rid of old stuff (note: no destructors called)
-      delete[] (BYTE*)m_pData;
-      m_pData = pNewData;
-      m_nMaxSize = m_nSize;
+      CopyElements<TYPE>((TYPE*) m_pData,(TYPE*)src.m_pData,src.m_nSize);
    }
 }
 
 
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::remove_at(index nIndex, ::count nCount)
-{
-
-   //ASSERT_VALID(this);
-
-   index nUpperBound = nIndex + nCount;
-
-   if(nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
-      throw invalid_argument_exception(get_app());
-
-   // just remove a range
-   ::count nMoveCount = m_nSize - (nUpperBound);
-   for( int32_t i = 0; i < nCount; i++ )
-      (m_pData + nIndex + i)->~TYPE();
-
-   if (nMoveCount)
-   {
-      ::aura::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
-         m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
-   }
-   m_nSize -= nCount;
-   return nIndex;
-}
 
 
 
@@ -657,7 +575,7 @@ void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::dump(dump_context & dumpcontext)
    if (dumpcontext.GetDepth() > 0)
    {
       dumpcontext << "\n";
-      dump_elements<TYPE>(dumpcontext, m_pData, m_nSize);
+      dump_elements<TYPE>(dumpcontext, (TYPE *) m_pData, m_nSize);
    }
 
    dumpcontext << "\n";
@@ -767,7 +685,7 @@ bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::binary_search(ARG_TYPE t, index 
    iIndex = (iUpperBound + iLowerBound) / 2;
    while(iUpperBound - iLowerBound >= 8)
    {
-      iCompare = fCompare((TYPE *) &this->m_pData[iIndex], (TYPE *) &t);
+      iCompare = fCompare((TYPE *) &this->get_data()[iIndex], (TYPE *) &t);
       if(iCompare == 0)
       {
          return true;
@@ -795,7 +713,7 @@ bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::binary_search(ARG_TYPE t, index 
    // do sequential search
    while(iIndex < this->get_count())
    {
-      iCompare = fCompare((TYPE *) &this->m_pData[iIndex], (TYPE *) &t);
+      iCompare = fCompare((TYPE *) &this->get_data()[iIndex], (TYPE *) &t);
       if(iCompare == 0)
          return true;
       else if(iCompare < 0)
@@ -807,7 +725,7 @@ bool array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::binary_search(ARG_TYPE t, index 
       return false;
    while(iIndex >= 0)
    {
-      iCompare = fCompare((TYPE *) &this->m_pData[iIndex], (TYPE *)  &t);
+      iCompare = fCompare((TYPE *)&this->get_data()[iIndex],(TYPE *)&t);
       if(iCompare == 0)
          return true;
       else if(iCompare > 0)
@@ -852,42 +770,7 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
 
-   ASSERT_VALID(this);
-
-   ASSERT(nIndex >= 0);    // will expand to meet need
-
-   if(nCount <= 0)
-      return -1;
-
-   if(nIndex < 0)
-      throw invalid_argument_exception(get_app());
-
-   if (nIndex >= m_nSize)
-   {
-      // adding after the end of the array
-      set_size(nIndex + nCount, -1);   // grow so nIndex is valid
-   }
-   else
-   {
-      // inserting in the middle of the array
-      ::count nOldSize = m_nSize;
-      set_size(m_nSize + nCount, -1);  // grow it to new size
-      // destroy intial data before copying over it
-      // shift old data up to fill gap
-      ::aura::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE), m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
-
-      DEFCONSTRUCTOR::construct(m_pData + nIndex, nCount);
-   }
-
-   // insert new value in the gap
-   ASSERT(nIndex + nCount <= m_nSize);
-
-   index nIndexParam = nIndex;
-
-   while (nCount--)
-      m_pData[nIndex++] = newElement;
-
-   return nIndexParam;
+   return array_base::insert_at(nIndex,&newElement,nCount);
 
 }
 
@@ -944,7 +827,7 @@ inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::set_at_grow(index nIndex,
    if (nIndex >= m_nSize)
       set_size(nIndex+1, -1);
 
-   m_pData[nIndex] = newElement;
+   get_data()[nIndex] = newElement;
 
 }
 
@@ -964,6 +847,6 @@ inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::element_at_grow(index n
    if (nIndex >= m_nSize)
       set_size(nIndex+1, -1);
 
-   return m_pData[nIndex];
+   return get_data()[nIndex];
 
 }

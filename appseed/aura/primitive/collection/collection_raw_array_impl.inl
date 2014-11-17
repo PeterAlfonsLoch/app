@@ -7,66 +7,66 @@
 // array is an array that call only copy constructor and destructor in elements
 // array is an array that call default constructors, copy constructs and destructors in elements
 
-template<class TYPE, class ARG_TYPE>
-inline ::count raw_array<TYPE, ARG_TYPE>::get_size() const
-{
-   return m_nSize;
-}
-
-template<class TYPE, class ARG_TYPE>
-inline ::count raw_array<TYPE, ARG_TYPE>::get_size_in_bytes() const
-{
-   return m_nSize * sizeof(TYPE);
-}
-
-template<class TYPE, class ARG_TYPE>
-inline ::count raw_array<TYPE, ARG_TYPE>::get_count() const
-{
-   return this->get_size();
-}
-
-template<class TYPE, class ARG_TYPE>
-inline ::count raw_array<TYPE, ARG_TYPE>::get_byte_count() const
-{
-   return this->get_size_in_bytes();
-}
-
-template<class TYPE, class ARG_TYPE>
-inline ::count raw_array<TYPE, ARG_TYPE>::size() const
-{
-   return this->get_size();
-}
-
-template<class TYPE, class ARG_TYPE>
-inline ::count raw_array<TYPE, ARG_TYPE>::count() const
-{
-   return this->get_count();
-}
-
-template<class TYPE, class ARG_TYPE>
-inline bool raw_array<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
-{
-   return m_nSize < countMinimum;
-}
-
-template<class TYPE, class ARG_TYPE>
-inline bool raw_array<TYPE, ARG_TYPE>::empty(::count countMinimum) const
-{
-   return m_nSize < countMinimum;
-}
-
-template<class TYPE, class ARG_TYPE>
-inline bool raw_array<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
-{
-   return m_nSize >= countMinimum;
-}
-
-template<class TYPE, class ARG_TYPE>
-inline index raw_array<TYPE, ARG_TYPE>::get_upper_bound(index index) const
-{
-   return m_nSize + index;
-}
-
+//template<class TYPE, class ARG_TYPE>
+//inline ::count raw_array<TYPE, ARG_TYPE>::get_size() const
+//{
+//   return m_nSize;
+//}
+//
+//template<class TYPE, class ARG_TYPE>
+//inline ::count raw_array<TYPE, ARG_TYPE>::get_size_in_bytes() const
+//{
+//   return m_nSize * sizeof(TYPE);
+//}
+//
+//template<class TYPE, class ARG_TYPE>
+//inline ::count raw_array<TYPE, ARG_TYPE>::get_count() const
+//{
+//   return this->get_size();
+//}
+//
+//template<class TYPE, class ARG_TYPE>
+//inline ::count raw_array<TYPE, ARG_TYPE>::get_byte_count() const
+//{
+//   return this->get_size_in_bytes();
+//}
+//
+//template<class TYPE, class ARG_TYPE>
+//inline ::count raw_array<TYPE, ARG_TYPE>::size() const
+//{
+//   return this->get_size();
+//}
+//
+//template<class TYPE, class ARG_TYPE>
+//inline ::count raw_array<TYPE, ARG_TYPE>::count() const
+//{
+//   return this->get_count();
+//}
+//
+//template<class TYPE, class ARG_TYPE>
+//inline bool raw_array<TYPE, ARG_TYPE>::is_empty(::count countMinimum) const
+//{
+//   return m_nSize < countMinimum;
+//}
+//
+//template<class TYPE, class ARG_TYPE>
+//inline bool raw_array<TYPE, ARG_TYPE>::empty(::count countMinimum) const
+//{
+//   return m_nSize < countMinimum;
+//}
+//
+//template<class TYPE, class ARG_TYPE>
+//inline bool raw_array<TYPE, ARG_TYPE>::has_elements(::count countMinimum) const
+//{
+//   return m_nSize >= countMinimum;
+//}
+//
+//template<class TYPE, class ARG_TYPE>
+//inline index raw_array<TYPE, ARG_TYPE>::get_upper_bound(index index) const
+//{
+//   return m_nSize + index;
+//}
+//
 template<class TYPE, class ARG_TYPE>
 inline ::count raw_array<TYPE, ARG_TYPE>::remove_all()
 {
@@ -91,21 +91,21 @@ template<class TYPE, class ARG_TYPE>
 inline TYPE& raw_array<TYPE, ARG_TYPE>::get_at(index nIndex)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
-   return m_pData[nIndex];
+   return get_data()[nIndex];
    //   throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
-   return m_pData[nIndex];
+   return get_data()[nIndex];
    // throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
 inline void raw_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
-   m_pData[nIndex] = newElement;
+   get_data()[nIndex] = newElement;
    // else
    //  throw invalid_argument_exception(get_app());
 }
@@ -113,14 +113,14 @@ template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
-   return m_pData[nIndex];
+   return get_data()[nIndex];
    // throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex)
 {
    //   if(nIndex >= 0 && nIndex < m_nSize)
-   return m_pData[nIndex];
+   return get_data()[nIndex];
    // throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
@@ -365,162 +365,162 @@ raw_array<TYPE, ARG_TYPE>::~raw_array()
 
 }
 
-template<class TYPE, class ARG_TYPE>
-void raw_array<TYPE, ARG_TYPE>::destroy()
-{
-   if (m_pData != NULL)
-   {
-      for( int32_t i = 0; i < m_nSize; i++ )
-         (m_pData + i)->~TYPE();
-      delete[] (BYTE*)m_pData;
-      m_pData     = NULL;
-      m_nSize     = 0;
-      m_nMaxSize  = 0;
-   }
-
-}
-
-
-template<class TYPE, class ARG_TYPE>
-::count raw_array<TYPE, ARG_TYPE>::set_size(::count nNewSize, ::count nGrowBy)
-{
-   return allocate(nNewSize, nGrowBy);
-}
+//template<class TYPE, class ARG_TYPE>
+//void raw_array<TYPE, ARG_TYPE>::destroy()
+//{
+//   if (m_pData != NULL)
+//   {
+//      for( int32_t i = 0; i < m_nSize; i++ )
+//         destruct_element(m_pData + i)->~TYPE();
+//      delete[] (BYTE*)m_pData;
+//      m_pData     = NULL;
+//      m_nSize     = 0;
+//      m_nMaxSize  = 0;
+//   }
+//
+//}
 
 
-template<class TYPE, class ARG_TYPE>
-::count raw_array<TYPE, ARG_TYPE>::resize(::count nNewSize, ::count nGrowBy)
-{
-   return allocate(nNewSize, nGrowBy);
-}
+//template<class TYPE, class ARG_TYPE>
+//::count raw_array<TYPE, ARG_TYPE>::set_size(::count nNewSize, ::count nGrowBy)
+//{
+//   return allocate(nNewSize, nGrowBy);
+//}
+//
+//
+//template<class TYPE, class ARG_TYPE>
+//::count raw_array<TYPE, ARG_TYPE>::resize(::count nNewSize, ::count nGrowBy)
+//{
+//   return allocate(nNewSize, nGrowBy);
+//}
+//
+//
+//template<class TYPE, class ARG_TYPE>
+//::count raw_array<TYPE, ARG_TYPE>::allocate_in_bytes(::count nNewSize, ::count nGrowBy)
+//{
+//   if(nGrowBy < 0)
+//   {
+//      return allocate(nNewSize / sizeof(TYPE), -1);
+//   }
+//   else
+//   {
+//      return allocate(nNewSize / sizeof(TYPE), nGrowBy / sizeof(TYPE));
+//   }
+//}
 
-
-template<class TYPE, class ARG_TYPE>
-::count raw_array<TYPE, ARG_TYPE>::allocate_in_bytes(::count nNewSize, ::count nGrowBy)
-{
-   if(nGrowBy < 0)
-   {
-      return allocate(nNewSize / sizeof(TYPE), -1);
-   }
-   else
-   {
-      return allocate(nNewSize / sizeof(TYPE), nGrowBy / sizeof(TYPE));
-   }
-}
-
-template<class TYPE, class ARG_TYPE>
-::count raw_array<TYPE, ARG_TYPE>::allocate(::count nNewSize, ::count nGrowBy)
-{
-   ::count countOld = get_count();
-   ASSERT_VALID(this);
-   ASSERT(nNewSize >= 0);
-
-   if(nNewSize < 0 )
-      throw invalid_argument_exception(get_app());
-
-   if (nGrowBy >= 0)
-      m_nGrowBy = nGrowBy;  // set new size
-
-   if (nNewSize == 0)
-   {
-      // shrink to nothing
-      if (m_pData != NULL)
-      {
-//         for( int32_t i = 0; i < m_nSize; i++ )
-//            (m_pData + i)->~TYPE();
-         delete[] (BYTE*)m_pData;
-         m_pData = NULL;
-      }
-      m_nSize = m_nMaxSize = 0;
-   }
-   else if (m_pData == NULL)
-   {
-      // create buffer big enough to hold number of requested elements or
-      // m_nGrowBy elements, whichever is larger.
-#ifdef SIZE_T_MAX
-      if(nNewSize > SIZE_T_MAX/sizeof(TYPE))
-         throw memory_exception(get_app());
-      ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
-#endif
-      ::count nAllocSize = MAX(nNewSize, m_nGrowBy);
+//template<class TYPE, class ARG_TYPE>
+//::count raw_array<TYPE, ARG_TYPE>::allocate(::count nNewSize, ::count nGrowBy)
+//{
+//   ::count countOld = get_count();
+//   ASSERT_VALID(this);
+//   ASSERT(nNewSize >= 0);
+//
+//   if(nNewSize < 0 )
+//      throw invalid_argument_exception(get_app());
+//
+//   if (nGrowBy >= 0)
+//      m_nGrowBy = nGrowBy;  // set new size
+//
+//   if (nNewSize == 0)
+//   {
+//      // shrink to nothing
+//      if (m_pData != NULL)
+//      {
+////         for( int32_t i = 0; i < m_nSize; i++ )
+////            (m_pData + i)->~TYPE();
+//         delete[] (BYTE*)m_pData;
+//         m_pData = NULL;
+//      }
+//      m_nSize = m_nMaxSize = 0;
+//   }
+//   else if (m_pData == NULL)
+//   {
+//      // create buffer big enough to hold number of requested elements or
+//      // m_nGrowBy elements, whichever is larger.
+//#ifdef SIZE_T_MAX
+//      if(nNewSize > SIZE_T_MAX/sizeof(TYPE))
+//         throw memory_exception(get_app());
+//      ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
+//#endif
+//      ::count nAllocSize = MAX(nNewSize, m_nGrowBy);
+////#undef new
+//      m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
+//      //memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
+////      for( index i = 0; i < nNewSize; i++ )
+//  //       ::new( (void *)( m_pData + i ) ) TYPE;
+////#define new AURA_NEW
+//      m_nSize = nNewSize;
+//      m_nMaxSize = nAllocSize;
+//   }
+//   else if (nNewSize <= m_nMaxSize)
+//   {
+//      // it fits
+//      if (nNewSize > m_nSize)
+//      {
+//         // initialize the new elements
+////         memset((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
+////         for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
+////#undef new
+////            ::new( (void *)( m_pData + m_nSize + i ) ) TYPE;
+////#define new AURA_NEW
+//      }
+//      else if (m_nSize > nNewSize)
+//      {
+//         // destroy the old elements
+////         for( int32_t i = 0; i < m_nSize-nNewSize; i++ )
+//  //          (m_pData + nNewSize + i)->~TYPE();
+//      }
+//      m_nSize = nNewSize;
+//   }
+//   else
+//   {
+//      // otherwise, grow aaa_base_array
+//      nGrowBy = m_nGrowBy;
+//      if (nGrowBy == 0)
+//      {
+//         // heuristically determine growth when nGrowBy == 0
+//         //  (this avoids heap fragmentation in many situations)
+//         nGrowBy = m_nSize / 8;
+//         nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
+//      }
+//      ::count nNewMax;
+//      if (nNewSize < m_nMaxSize + nGrowBy)
+//         nNewMax = m_nMaxSize + nGrowBy;  // granularity
+//      else
+//         nNewMax = nNewSize;  // no slush
+//
+//      ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
+//
+//      if(nNewMax  < m_nMaxSize)
+//         throw invalid_argument_exception(get_app());
+//
+//#ifdef SIZE_T_MAX
+//      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
+//#endif
 //#undef new
-      m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
-      //memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
-//      for( index i = 0; i < nNewSize; i++ )
-  //       ::new( (void *)( m_pData + i ) ) TYPE;
+//      TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
 //#define new AURA_NEW
-      m_nSize = nNewSize;
-      m_nMaxSize = nAllocSize;
-   }
-   else if (nNewSize <= m_nMaxSize)
-   {
-      // it fits
-      if (nNewSize > m_nSize)
-      {
-         // initialize the new elements
-//         memset((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-//         for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
-//#undef new
-//            ::new( (void *)( m_pData + m_nSize + i ) ) TYPE;
-//#define new AURA_NEW
-      }
-      else if (m_nSize > nNewSize)
-      {
-         // destroy the old elements
-//         for( int32_t i = 0; i < m_nSize-nNewSize; i++ )
-  //          (m_pData + nNewSize + i)->~TYPE();
-      }
-      m_nSize = nNewSize;
-   }
-   else
-   {
-      // otherwise, grow aaa_base_array
-      nGrowBy = m_nGrowBy;
-      if (nGrowBy == 0)
-      {
-         // heuristically determine growth when nGrowBy == 0
-         //  (this avoids heap fragmentation in many situations)
-         nGrowBy = m_nSize / 8;
-         nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
-      }
-      ::count nNewMax;
-      if (nNewSize < m_nMaxSize + nGrowBy)
-         nNewMax = m_nMaxSize + nGrowBy;  // granularity
-      else
-         nNewMax = nNewSize;  // no slush
-
-      ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
-
-      if(nNewMax  < m_nMaxSize)
-         throw invalid_argument_exception(get_app());
-
-#ifdef SIZE_T_MAX
-      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
-#endif
-#undef new
-      TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
-#define new AURA_NEW
-
-      // copy new data from old
-      ::aura::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
-         m_pData, (size_t)m_nSize * sizeof(TYPE));
-
-      // construct remaining elements
-      ASSERT(nNewSize > m_nSize);
-//      memset((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-//      for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
-//#undef new
-//         ::new( (void *)( pNewData + m_nSize + i ) ) TYPE;
-//#define new AURA_NEW
-      // get rid of old stuff (note: no destructors called)
-      delete[] (BYTE*)m_pData;
-      m_pData = pNewData;
-      m_nSize = nNewSize;
-      m_nMaxSize = nNewMax;
-   }
-   return countOld;
-}
-
+//
+//      // copy new data from old
+//      ::aura::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+//         m_pData, (size_t)m_nSize * sizeof(TYPE));
+//
+//      // construct remaining elements
+//      ASSERT(nNewSize > m_nSize);
+////      memset((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
+////      for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
+////#undef new
+////         ::new( (void *)( pNewData + m_nSize + i ) ) TYPE;
+////#define new AURA_NEW
+//      // get rid of old stuff (note: no destructors called)
+//      delete[] (BYTE*)m_pData;
+//      m_pData = pNewData;
+//      m_nSize = nNewSize;
+//      m_nMaxSize = nNewMax;
+//   }
+//   return countOld;
+//}
+//
 template<class TYPE, class ARG_TYPE>
 index raw_array<TYPE, ARG_TYPE>::append(const raw_array & src)
 {
@@ -555,33 +555,33 @@ void raw_array<TYPE, ARG_TYPE>::copy(const raw_array & src)
 
 }
 
-
-template<class TYPE, class ARG_TYPE>
-void raw_array<TYPE, ARG_TYPE>::free_extra()
-{
-   ASSERT_VALID(this);
-
-   if (m_nSize != m_nMaxSize)
-   {
-      // shrink to desired size
-#ifdef SIZE_T_MAX
-      ASSERT(m_nSize <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
-#endif
-      TYPE* pNewData = NULL;
-      if (m_nSize != 0)
-      {
-         pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
-         // copy new data from old
-         ::aura::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
-            m_pData, m_nSize * sizeof(TYPE));
-      }
-
-      // get rid of old stuff (note: no destructors called)
-      delete[] (BYTE*)m_pData;
-      m_pData = pNewData;
-      m_nMaxSize = m_nSize;
-   }
-}
+//
+//template<class TYPE, class ARG_TYPE>
+//void raw_array<TYPE, ARG_TYPE>::free_extra()
+//{
+//   ASSERT_VALID(this);
+//
+//   if (m_nSize != m_nMaxSize)
+//   {
+//      // shrink to desired size
+//#ifdef SIZE_T_MAX
+//      ASSERT(m_nSize <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
+//#endif
+//      TYPE* pNewData = NULL;
+//      if (m_nSize != 0)
+//      {
+//         pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
+//         // copy new data from old
+//         ::aura::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+//            m_pData, m_nSize * sizeof(TYPE));
+//      }
+//
+//      // get rid of old stuff (note: no destructors called)
+//      delete[] (BYTE*)m_pData;
+//      m_pData = pNewData;
+//      m_nMaxSize = m_nSize;
+//   }
+//}
 
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)

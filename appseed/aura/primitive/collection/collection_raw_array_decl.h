@@ -8,7 +8,7 @@
 
 template<class TYPE, class ARG_TYPE = const TYPE &>
 class raw_array :
-   virtual public ::object
+   virtual public array_base
 {
 public:
 
@@ -344,10 +344,10 @@ public:
 
    };
 
-   TYPE *      m_pData;    // the actual raw_array of data
-   ::count     m_nSize;    // # of elements (upperBound - 1)
-   ::count     m_nMaxSize; // MAX allocated
-   ::count     m_nGrowBy;  // grow amount
+   //TYPE *      m_pData;    // the actual raw_array of data
+   //::count     m_nSize;    // # of elements (upperBound - 1)
+   //::count     m_nMaxSize; // MAX allocated
+   //::count     m_nGrowBy;  // grow amount
 
 
 
@@ -361,25 +361,25 @@ public:
    raw_array(TYPE * ptypea, ::count n);
    virtual ~raw_array();
 
-   virtual void destroy();
+   //virtual void destroy();
 
-   inline ::count get_size() const;
-   inline ::count get_size_in_bytes() const;
-   inline ::count get_count() const;
-   inline ::count get_byte_count() const;
-   inline ::count size() const;
-   inline ::count count() const;
+   //inline ::count get_size() const;
+   //inline ::count get_size_in_bytes() const;
+   //inline ::count get_count() const;
+   //inline ::count get_byte_count() const;
+   //inline ::count size() const;
+   //inline ::count count() const;
 
-   inline bool is_empty(::count countMinimum = 1) const;
-   inline bool empty(::count countMinimum = 1) const;
-   inline bool has_elements(::count countMinimum = 1) const;
-   inline index get_upper_bound(index i = -1) const;
-   ::count allocate(index nNewSize, ::count nGrowBy = -1);
-   ::count set_size(index nNewSize, ::count nGrowBy = -1);
-   ::count allocate_in_bytes(index nNewSize, ::count nGrowBy = -1);
-   ::count resize(index nNewSize, ::count nGrowBy = -1);
+   //inline bool is_empty(::count countMinimum = 1) const;
+   //inline bool empty(::count countMinimum = 1) const;
+   //inline bool has_elements(::count countMinimum = 1) const;
+   //inline index get_upper_bound(index i = -1) const;
+   //::count allocate(index nNewSize, ::count nGrowBy = -1);
+   //::count set_size(index nNewSize, ::count nGrowBy = -1);
+   //::count allocate_in_bytes(index nNewSize, ::count nGrowBy = -1);
+   //::count resize(index nNewSize, ::count nGrowBy = -1);
 
-   void free_extra();
+   //void free_extra();
 
    void remove_last();
 

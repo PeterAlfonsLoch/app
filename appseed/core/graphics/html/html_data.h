@@ -73,8 +73,8 @@ namespace html
          //bool     m_bHasChar;
 
 
-         //xxxarray < impl::table *, impl::table *> m_tableptraStack;
-         //xxxarray < impl::table_row *, impl::table_row *> m_tablerowptraStack;
+         //ptr_array < impl::table > m_tableptraStack;
+         //ptr_array < impl::table_row > m_tablerowptraStack;
 
 
          void reset();
@@ -102,8 +102,8 @@ namespace html
          //bool     m_bHasChar;
 
 
-         //xxxarray < impl::table *, impl::table *> m_tableptraStack;
-         //xxxarray < impl::table_row *, impl::table_row *> m_tablerowptraStack;
+         //ptr_array < impl::table > m_tableptraStack;
+         //ptr_array < impl::table_row > m_tablerowptraStack;
 
 
          void reset();

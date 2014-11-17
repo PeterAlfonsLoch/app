@@ -91,11 +91,59 @@ namespace constructor
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
 // array is an array that call default constructors, copy constructs and destructors in elements
+class CLASS_DECL_AURA array_base:
+   virtual public ::object
+{
+public:
+
+   int            m_iTypeSize;
+   void *         m_pData;    // the actual array of data
+   ::count        m_nSize;    // # of elements (upperBound - 1)
+   ::count        m_nMaxSize; // MAX allocated
+   ::count        m_nGrowBy;  // grow amount
+
+   inline ::count get_size() const;
+   inline ::count get_size_in_bytes() const;
+   inline ::count get_count() const;
+   inline ::count get_byte_count() const;
+   inline ::count size() const;
+   inline ::count count() const;
+
+   inline bool is_empty(::count countMinimum = 1) const;
+   inline bool empty(::count countMinimum = 1) const;
+   inline bool has_elements(::count countMinimum = 1) const;
+   inline index get_upper_bound(index i = -1) const;
+
+   ::count set_size(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
+   ::count allocate(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
+   ::count allocate_in_bytes(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
+   ::count set_raw_size(index nNewSize,::count nGrowBy = -1); // does not call constructors and destructors on items/elements
+   ::count resize(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
+   void free_extra();
+   virtual void destroy();
+
+   inline void remove_last();
+   inline ::count remove_all();
+   inline void clear();
+  
+
+   void construct_element(void * p);
+   void construct_element(void * p,::count c);
+   void destruct_element(void * p);
+   
+   virtual void on_construct_element(void *);
+   virtual void on_construct_element(void *,::count);
+   virtual void on_destruct_element(void *);
+
+   index insert_at(index nIndex,const void * newElement,::count nCount = 1);
+   index remove_at(index nIndex,::count nCount = 1);
+
+};
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
 class array :
-   virtual public ::object
+   virtual public ::array_base
 {
 public:
 
@@ -437,10 +485,6 @@ public:
 
    };
 
-   TYPE *      m_pData;    // the actual array of data
-   ::count     m_nSize;    // # of elements (upperBound - 1)
-   ::count     m_nMaxSize; // MAX allocated
-   ::count     m_nGrowBy;  // grow amount
 
 
 
@@ -451,35 +495,13 @@ public:
    //array(TYPE * ptypea, ::count n);
    virtual ~array();
 
-   virtual void destroy();
-
-   inline ::count get_size() const;
-   inline ::count get_size_in_bytes() const;
-   inline ::count get_count() const;
-   inline ::count get_byte_count() const;
-   inline ::count size() const;
-   inline ::count count() const;
-
-   inline bool is_empty(::count countMinimum = 1) const;
-   inline bool empty(::count countMinimum = 1) const;
-   inline bool has_elements(::count countMinimum = 1) const;
-   inline index get_upper_bound(index i = -1) const;
-   ::count set_size(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
-   ::count allocate(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
-   ::count allocate_in_bytes(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
-   ::count set_raw_size(index nNewSize, ::count nGrowBy = -1); // does not call constructors and destructors on items/elements
-   ::count resize(index nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
-
-
-   void free_extra();
-
-   void remove_last();
-
-   ::count remove_all();
-   void clear();
 
 
 
+
+   virtual void on_construct_element(void * p) { DEFCONSTRUCTOR::construct(p); }
+   virtual void on_construct_element(void * p, ::count c) { DEFCONSTRUCTOR::construct(p, c); }
+   virtual void on_destruct_element(void * p) { ((TYPE*)p)->~TYPE(); }
 
    // Accessing elements
    inline const TYPE& get_at(index nIndex) const;
@@ -510,10 +532,10 @@ public:
    inline TYPE* get_data();
 
    // Potentially growing the array
-   index add(ARG_TYPE newElement);
-   index add(const array& src);
-   index append(const array& src);
-   void copy(const array& src);
+   inline index add(ARG_TYPE newElement);
+   inline index add(const array& src);
+   inline index append(const array& src);
+   inline void copy(const array& src);
 
    index push_back(ARG_TYPE newElement);
 
@@ -558,7 +580,6 @@ public:
 
    // Operations that move elements around
    index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
-   index remove_at(index nIndex, ::count nCount = 1);
    void _001RemoveIndexes(index_array & ia);
    void remove_indexes(const index_array & ia); // remove indexes from index array upper bound to index array lower bound
    void remove_descending_indexes(const index_array & ia); // remove indexes from index array lower bound to index array upper bound

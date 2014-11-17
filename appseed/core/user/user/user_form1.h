@@ -27,7 +27,7 @@ namespace core
          virtual ~form();
 
 
-         //xxxarray < CTransparentStatic *, CTransparentStatic * > m_staticpa;
+         //ptr_array < CTransparentStatic > m_staticpa;
 
          virtual string get_path();
          virtual bool open_document(var varFile);

@@ -49,7 +49,7 @@ bool event_collection::add(event_base& waitableItem)
    wStruct.item=&waitableItem;
    wStruct.callback=static_cast<waitable_callback*>(0);
 #ifdef WINDOWS
-   m_objecta.add(waitableItem.item());
+   m_objecta.add((HANDLE) waitableItem.item());
 #else
    m_objecta.add(&waitableItem);
 #endif
@@ -71,7 +71,7 @@ bool event_collection::add(event_base& waitableItem, waitable_callback *waitCall
    wStruct.callback=waitCallback;
 
 #ifdef WINDOWS
-   m_objecta.add(waitableItem.item());
+   m_objecta.add((HANDLE) waitableItem.item());
 #else
    m_objecta.add(&waitableItem);
 #endif

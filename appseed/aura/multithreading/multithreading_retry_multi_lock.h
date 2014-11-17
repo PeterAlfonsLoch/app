@@ -8,7 +8,7 @@ protected:
 
    sync_object_ptra           m_syncobjectptra;
 #ifdef WINDOWS
-   ptr_array < HANDLE >      m_objecta;
+   raw_ptr_array < HANDLE >      m_objecta;
 #else
    ptr_array < waitable >  m_objecta;
 #endif

@@ -7,7 +7,7 @@ class CLASS_DECL_AURA event_collection : public waitable
 {
 public:
 #ifdef WINDOWS
-   typedef ptr_array < HANDLE > CollectionType;
+   typedef raw_ptr_array < HANDLE > CollectionType;
 #else
     typedef ptr_array < waitable > CollectionType;
 #endif

@@ -2,14 +2,14 @@
 
 
 
-void itemswap(void * pswaparg, index i1, index i2);
-
-
-void itemswap(void * pswaparg, index i1, index i2)
-{
-   array < factory_item_base * > * pitemptra = (array < factory_item_base * > *) pswaparg;
-   pitemptra->swap(i1, i2);
-}
+//void itemswap(void * pswaparg, index i1, index i2);
+//
+//
+//void itemswap(void * pswaparg, index i1, index i2)
+//{
+//   ptr_array < factory_item_base > * pitemptra = (ptr_array < factory_item_base > *) pswaparg;
+//   pitemptra->swap(i1, i2);
+//}
 
 bool is_safe_set(void * p);
 
