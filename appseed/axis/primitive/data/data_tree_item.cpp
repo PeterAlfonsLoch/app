@@ -83,7 +83,7 @@ namespace data
       while(m_children.has_elements())
       {
 
-         ca += m_children.back_sp()->remove_tree_item();
+         ca += m_children.last_sp()->remove_tree_item();
 
       }
 
@@ -194,12 +194,12 @@ namespace data
       {
       case RelativeFirstChild:
          {
-            return m_children.has_elements() ? m_children.front_sp() : NULL;
+            return m_children.has_elements() ? m_children.first_sp() : NULL;
          }
          break;
       case RelativeLastChild:
          {
-            return m_children.has_elements() ? m_children.back_sp() : NULL;
+            return m_children.has_elements() ? m_children.last_sp() : NULL;
          }
       case RelativeParent:
          {
@@ -272,7 +272,7 @@ namespace data
       if (m_children.is_empty())
          return NULL;
 
-      return m_children.front_sp();
+      return m_children.first_sp();
 
    }
 

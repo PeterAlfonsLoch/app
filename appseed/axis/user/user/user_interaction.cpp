@@ -3665,7 +3665,7 @@ namespace user
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
-         return m_uiptraChild.front_sp();
+         return m_uiptraChild.first_sp();
 
    }
 
@@ -3675,7 +3675,7 @@ namespace user
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
-         return m_uiptraChild.back_sp();
+         return m_uiptraChild.last_sp();
    }
 
 

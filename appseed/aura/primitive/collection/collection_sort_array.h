@@ -50,7 +50,7 @@ public:
    };
 
    class sort_index_map :
-      virtual public mapsp(index ( * ) (TYPE *, TYPE *), index ( * ) (TYPE *, TYPE *), sort_index)
+      virtual public mapsp(index ( * ) (ARG_TYPE, ARG_TYPE), index ( * ) (ARG_TYPE, ARG_TYPE), sort_index)
    {
    public:
 
@@ -100,27 +100,27 @@ public:
    }
 
 
-   index_array & defer_update(index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+   index_array & defer_update(index ( * fCompare ) (ARG_TYPE, ARG_TYPE) = DEFAULT_COMPARE);
 
-   index add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+   index add(ARG_TYPE t, index ( * fCompare ) (ARG_TYPE, ARG_TYPE) = DEFAULT_COMPARE);
 
-   ::count add(const array <TYPE, ARG_TYPE> & a, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+   ::count add(const array <TYPE, ARG_TYPE> & a, index ( * fCompare ) (ARG_TYPE, ARG_TYPE) = DEFAULT_COMPARE);
 
-   ::count remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+   ::count remove(ARG_TYPE t, index ( * fCompare ) (ARG_TYPE, ARG_TYPE) = DEFAULT_COMPARE);
 
-   bool find(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE) const;
+   bool find(ARG_TYPE t, index & iIndex, index ( * fCompare ) (ARG_TYPE, ARG_TYPE) = DEFAULT_COMPARE) const;
 
-   bool contains(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE) const;
+   bool contains(ARG_TYPE t, index ( * fCompare ) (ARG_TYPE, ARG_TYPE) = DEFAULT_COMPARE) const;
 
-   bool add_unique(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+   bool add_unique(ARG_TYPE t, index ( * fCompare ) (ARG_TYPE, ARG_TYPE) = DEFAULT_COMPARE);
 
-   void quick_sort(index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+   void quick_sort(index(* fCompare) (ARG_TYPE,ARG_TYPE) = DEFAULT_COMPARE);
 
    void set_size(::count ca);
 
-   const TYPE & element_at (::index i, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE) const;
+   const TYPE & element_at (::index i, index ( * fCompare ) (ARG_TYPE, ARG_TYPE) = DEFAULT_COMPARE) const;
 
-   TYPE & element_at (::index i, index ( * fCompare ) (TYPE *, TYPE *) = DEFAULT_COMPARE);
+   TYPE & element_at (::index i, index ( * fCompare ) (ARG_TYPE, ARG_TYPE) = DEFAULT_COMPARE);
 
    const TYPE & operator [] (::index i) const;
 
@@ -165,7 +165,7 @@ public:
 
 template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
 bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
-find(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *)) const
+find(ARG_TYPE t, index & iIndex, index ( * fCompare ) (ARG_TYPE, ARG_TYPE)) const
 {
 
    if(this->get_size() == 0)
@@ -180,7 +180,7 @@ find(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *)) const
 
 template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
 bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
-contains(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *)) const
+contains(ARG_TYPE t, index ( * fCompare ) (ARG_TYPE, ARG_TYPE)) const
 {
    index iIndex = 0;
    return find(t, iIndex, fCompare);
@@ -188,7 +188,7 @@ contains(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *)) const
 
 template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
 bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
-add_unique(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
+add_unique(ARG_TYPE t, index ( * fCompare ) (ARG_TYPE, ARG_TYPE))
 {
    if(contains(t, fCompare))
       return false;
@@ -199,7 +199,7 @@ add_unique(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 
 template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
 ::index sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
-add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
+add(ARG_TYPE t, index ( * fCompare ) (ARG_TYPE, ARG_TYPE))
 {
 
    ::index i = ::lemon::array::sort_add(*this, t, fCompare, defer_update(fCompare));
@@ -212,10 +212,10 @@ add(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 
 template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
 ::count sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
-add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (TYPE *, TYPE *))
+add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (ARG_TYPE, ARG_TYPE))
 {
 
-   ::count ca = sort_add(a, fCompare, defer_update(fCompare));
+   ::count ca = ::lemon::array::sort_add(*this,a, fCompare,defer_update(fCompare));
 
    m_indexmap.mark_dirty();
 
@@ -225,7 +225,7 @@ add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (TYPE *, TYPE *))
 
 template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
 ::count sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
-remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
+remove(ARG_TYPE t, index ( * fCompare ) (ARG_TYPE, ARG_TYPE))
 {
 
    ::count ca = this->sort_remove(t, fCompare, defer_update(fCompare));
@@ -239,7 +239,7 @@ remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *))
 
 template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
 void sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
-quick_sort(index ( * fCompare ) (TYPE *, TYPE *))
+quick_sort(index(* fCompare) (ARG_TYPE,ARG_TYPE))
 {
 
    defer_update(fCompare);
@@ -259,7 +259,7 @@ set_size(::count n)
 
 template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
 TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
-element_at(::index i, index ( * fCompare ) (TYPE *, TYPE *))
+element_at(::index i, index ( * fCompare ) (ARG_TYPE, ARG_TYPE))
 {
 
    return BASE_ARRAY::element_at(defer_update(fCompare)[i]);
@@ -268,7 +268,7 @@ element_at(::index i, index ( * fCompare ) (TYPE *, TYPE *))
 
 template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
 const TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
-element_at(::index i, index ( * fCompare ) (TYPE *, TYPE *)) const
+element_at(::index i, index ( * fCompare ) (ARG_TYPE, ARG_TYPE)) const
 {
 
    return ((sort_array *) this)->element_at(i, fCompare);

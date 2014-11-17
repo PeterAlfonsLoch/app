@@ -258,7 +258,7 @@ namespace user
       while(oswindowChild != NULL)
       {
          m_oswindowtreea.add_new();
-         oswindow_tree & oswindowtreeChild = m_oswindowtreea.back();
+         oswindow_tree & oswindowtreeChild = m_oswindowtreea.last();
          oswindowtreeChild.m_oswindow = oswindowChild;
          oswindowtreeChild.m_dwUser = 0;
          oswindowtreeChild.m_pvoidUser = NULL;

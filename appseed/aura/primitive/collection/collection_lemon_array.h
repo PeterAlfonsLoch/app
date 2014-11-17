@@ -112,6 +112,23 @@ namespace lemon
          }
       }
 
+
+      template < typename ARRAY >
+      index find_first(const ARRAY & a, typename ARRAY::BASE_ARG_TYPE t,index(* lpfnCompare)(typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index find = 0,index last = -1)
+      {
+         if(find < 0)
+            find += a.get_count();
+         if(last < 0)
+            last += a.get_count();
+         for(; find <= last; find++)
+         {
+            if(lpfnCompare((ARG_TYPE)a.element_at(find),(ARG_TYPE)t) == 0)
+               return find;
+         }
+         return -1;
+      }
+
+
    } // namespace array
 
 

@@ -10,22 +10,22 @@ public:
 
    inline TYPE * operator ->()
    {
-      return &BASE_CONTAINER::back();
+      return &BASE_CONTAINER::last();
    }
 
    inline const TYPE * operator ->() const
    {
-      return &BASE_CONTAINER::back();
+      return &BASE_CONTAINER::last();
    }
 
    inline TYPE & top()
    {
-      return BASE_CONTAINER::back();
+      return BASE_CONTAINER::last();
    }
 
    inline const TYPE & top() const
    {
-      return BASE_CONTAINER::back();
+      return BASE_CONTAINER::last();
    }
 
    inline void push(ARG_TYPE t)
@@ -87,12 +87,12 @@ public:
 
    TYPE * operator ->()
    {
-      return &m_stack.back();
+      return &m_stack.last();
    }
 
    const TYPE * operator ->() const
    {
-      return &m_stack.back();
+      return &m_stack.last();
    }
 
 };

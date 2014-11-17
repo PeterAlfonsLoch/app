@@ -1072,7 +1072,7 @@ namespace sort
    namespace array
    {
 
-      template <class ARRAY_TYPE >
+      template < typename ARRAY_TYPE >
       void quick_sort(
          ARRAY_TYPE  & a,
          index(* lpfnCompare)(typename ARRAY_TYPE::BASE_ARG_TYPE,typename ARRAY_TYPE::BASE_ARG_TYPE))
@@ -1142,6 +1142,82 @@ namespace sort
                   break;
             }
          }
+      }
+
+      template < typename ARRAY_TYPE >
+      void quick_sort(ARRAY_TYPE  & a,index(* lpfnCompare)(typename ARRAY_TYPE::BASE_ARG_TYPE,typename ARRAY_TYPE::BASE_ARG_TYPE),index_array & ia)
+      {
+      
+         // minimum check
+         if(ia.get_size() != get_size())
+            throw invalid_argument_exception(get_app());
+      
+         index_array stackLowerBound;
+         index_array stackUpperBound;
+         index iLowerBound;
+         index iUpperBound;
+         index iLPos, iUPos, iMPos;
+         //   uint32_t t;
+      
+         if(get_size() >= 2)
+         {
+            stackLowerBound.push(0);
+            stackUpperBound.push(get_upper_bound());
+            while(true)
+            {
+               iLowerBound = stackLowerBound.pop();
+               iUpperBound = stackUpperBound.pop();
+               iLPos = iLowerBound;
+               iMPos = iLowerBound;
+               iUPos = iUpperBound;
+               while(true)
+               {
+                  while(true)
+                  {
+                     if(iMPos == iUPos)
+                        break;
+                     if(fCompare(&element_at(ia[iMPos]), &element_at(ia[iUPos])) <= 0)
+                        iUPos--;
+                     else
+                     {
+                        ia.swap(iMPos, iUPos);
+                        break;
+                     }
+                  }
+                  if(iMPos == iUPos)
+                     break;
+                  iMPos = iUPos;
+                  while(true)
+                  {
+                     if(iMPos == iLPos)
+                        break;
+                     if(fCompare(&element_at(ia[iLPos]), &element_at(ia[iMPos])) <= 0)
+                        iLPos++;
+                     else
+                     {
+                        ia.swap(iLPos, iMPos);
+                        break;
+                     }
+                  }
+                  if(iMPos == iLPos)
+                     break;
+                  iMPos = iLPos;
+               }
+               if(iLowerBound < iMPos - 1)
+               {
+                  stackLowerBound.push(iLowerBound);
+                  stackUpperBound.push(iMPos - 1);
+               }
+               if(iMPos + 1 < iUpperBound)
+               {
+                  stackLowerBound.push(iMPos + 1);
+                  stackUpperBound.push(iUpperBound);
+               }
+               if(stackLowerBound.get_size() == 0)
+                  break;
+            }
+         }
+      
       }
 
 

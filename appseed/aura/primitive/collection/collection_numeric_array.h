@@ -91,74 +91,75 @@ public:
    void unique();
 
 
-   void quick_sort(bool bAsc = true);
+//   void quick_sort(bool bAsc = true);
 
-   bool sort_type(TYPE t, index & iIndex, index iStart, index iEnd) const
-   {
-      if(this->get_size() == 0)
-      {
-         return false;
-      }
-      index iLowerBound = iStart;
-      index iMaxBound = iEnd;
-      index iUpperBound = iMaxBound;
-      typename ::numeric_info < TYPE >::OFFSET_TYPE iCompare;
-      // do binary search
-      iIndex = (iUpperBound + iLowerBound) / 2;
-      while(iUpperBound - iLowerBound >= 8)
-      {
-         iCompare = this->element_at(iIndex) - t;
-         if(iCompare == ::numeric_info < TYPE > ::get_null_value())
-         {
-            return true;
-         }
-         else if(iCompare > (typename ::numeric_info < TYPE >::OFFSET_TYPE) ::numeric_info < TYPE > ::get_null_value())
-         {
-            iUpperBound = iIndex - 1;
-            if(iUpperBound < 0)
-            {
-               iIndex = 0;
-               break;
-            }
-         }
-         else
-         {
-            iLowerBound = iIndex + 1;
-            if(iLowerBound > iMaxBound)
-            {
-               iIndex = iMaxBound + 1;
-               break;
-            }
-         }
-         iIndex = (iUpperBound + iLowerBound) / 2;
-      }
-      // do sequential search
-      while(iIndex < this->get_count())
-      {
-         iCompare = this->element_at(iIndex) - t;
-         if(iCompare == ::numeric_info < TYPE >:: get_null_value())
-            return true;
-         else if(iCompare < (typename ::numeric_info < TYPE >::OFFSET_TYPE) ::numeric_info < TYPE >::get_null_value ())
-            iIndex++;
-         else
-            break;
-      }
-      if(iIndex >= this->get_count())
-         return false;
-      while(iIndex >= 0)
-      {
-         iCompare = this->element_at(iIndex) - t;
-         if(iCompare == ::numeric_info < TYPE >::get_null_value())
-            return true;
-         else if(iCompare > (typename ::numeric_info < TYPE >::OFFSET_TYPE) ::numeric_info < TYPE >::get_null_value ())
-            iIndex--;
-         else
-            break;
-      }
-      iIndex++;
-      return false;
+   // binary_search
+   //bool sort_type(TYPE t, index & iIndex, index iStart, index iEnd) const
+   //{
+   //   if(this->get_size() == 0)
+   //   {
+   //      return false;
+   //   }
+   //   index iLowerBound = iStart;
+   //   index iMaxBound = iEnd;
+   //   index iUpperBound = iMaxBound;
+   //   typename ::numeric_info < TYPE >::OFFSET_TYPE iCompare;
+   //   // do binary search
+   //   iIndex = (iUpperBound + iLowerBound) / 2;
+   //   while(iUpperBound - iLowerBound >= 8)
+   //   {
+   //      iCompare = this->element_at(iIndex) - t;
+   //      if(iCompare == ::numeric_info < TYPE > ::get_null_value())
+   //      {
+   //         return true;
+   //      }
+   //      else if(iCompare > (typename ::numeric_info < TYPE >::OFFSET_TYPE) ::numeric_info < TYPE > ::get_null_value())
+   //      {
+   //         iUpperBound = iIndex - 1;
+   //         if(iUpperBound < 0)
+   //         {
+   //            iIndex = 0;
+   //            break;
+   //         }
+   //      }
+   //      else
+   //      {
+   //         iLowerBound = iIndex + 1;
+   //         if(iLowerBound > iMaxBound)
+   //         {
+   //            iIndex = iMaxBound + 1;
+   //            break;
+   //         }
+   //      }
+   //      iIndex = (iUpperBound + iLowerBound) / 2;
+   //   }
+   //   // do sequential search
+   //   while(iIndex < this->get_count())
+   //   {
+   //      iCompare = this->element_at(iIndex) - t;
+   //      if(iCompare == ::numeric_info < TYPE >:: get_null_value())
+   //         return true;
+   //      else if(iCompare < (typename ::numeric_info < TYPE >::OFFSET_TYPE) ::numeric_info < TYPE >::get_null_value ())
+   //         iIndex++;
+   //      else
+   //         break;
+   //   }
+   //   if(iIndex >= this->get_count())
+   //      return false;
+   //   while(iIndex >= 0)
+   //   {
+   //      iCompare = this->element_at(iIndex) - t;
+   //      if(iCompare == ::numeric_info < TYPE >::get_null_value())
+   //         return true;
+   //      else if(iCompare > (typename ::numeric_info < TYPE >::OFFSET_TYPE) ::numeric_info < TYPE >::get_null_value ())
+   //         iIndex--;
+   //      else
+   //         break;
+   //   }
+   //   iIndex++;
+   //   return false;
 
-   }
+   //}
 
 
 #if defined(MOVE_SEMANTICS)
@@ -182,13 +183,6 @@ public:
 
    string get_json();
 
-   numeric_array_each < numeric_array > each() { return *this; }
-   numeric_array_each < numeric_array > all() { return *this; }
-   numeric_array_each < numeric_array > range() { return *this; }
-
-   numeric_array_range < numeric_array > each(index iBeg,::count iCount) { return numeric_array_range < numeric_array >(*this, iBeg, iCount); }
-   numeric_array_range < numeric_array > all(index iBeg,::count iCount) { return numeric_array_range < numeric_array >(*this,iBeg,iCount); }
-   numeric_array_range < numeric_array > range(index iBeg,::count iCount) { return numeric_array_range < numeric_array >(*this,iBeg,iCount); }
 
    int compare(const numeric_array < TYPE > & a) const
    {
@@ -2147,7 +2141,7 @@ namespace lemon
 
 
       template<class ARRAY>
-      index sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia)
+      index sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia)
       {
          index iIndex = 0;
          binary_search(a, t, iIndex, fCompare, ia);
@@ -2156,10 +2150,33 @@ namespace lemon
          return iIndex;
       }
 
+      template<class ARRAY>
+      ::count sort_add(ARRAY & a,ARRAY & a2,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia)
+      {
+         for(index i = 0; i < a2.get_count(); i++)
+         {
+            sort_add(a,a2[i],fCompare,ia);
+         }
+         return a2.get_count();
+      }
 
 
    } // namespace array
 
+
+   template < typename TYPE >
+   numeric_array_each < numeric_array < TYPE > > each(numeric_array < TYPE > & a) { return a; }
+   template < typename TYPE >
+   numeric_array_each < numeric_array < TYPE > > all(numeric_array < TYPE > & a) { return a; }
+   template < typename TYPE >
+   numeric_array_each < numeric_array < TYPE > > range(numeric_array < TYPE > & a) { return a; }
+
+   template < typename TYPE >
+   numeric_array_range < numeric_array < TYPE > > each(numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < numeric_array >(a,iBeg,iCount); }
+   template < typename TYPE >
+   numeric_array_range < numeric_array < TYPE > > all(numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < numeric_array >(a,iBeg,iCount); }
+   template < typename TYPE >
+   numeric_array_range < numeric_array < TYPE > > range(numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < numeric_array >(a,iBeg,iCount); }
 
 } // namespace lemon
 
