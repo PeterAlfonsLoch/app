@@ -56,13 +56,13 @@ void array_base::free_extra()
 void array_base::construct_element(void * p) { on_construct_element(p); }
 void array_base::construct_element(void * p,::count c) { on_construct_element(p,c); }
 void array_base::destruct_element(void * p) { try { on_destruct_element(p); } catch(...) {} }
-void array_base::copy_element(void * p) { on_copy_element(i, p); }
+void array_base::copy_element(index i, void * p) { on_copy_element(i, p); }
 
 
 void array_base::on_construct_element(void *) {}
 void array_base::on_construct_element(void *,::count) {}
 void array_base::on_destruct_element(void *) {}
-void array_base::on_copy_element(i, void * p) { ::memcpy(m_pData + i*m_iTypeSize,p,m_iTypeSize; }
+void array_base::on_copy_element(index i, void * p) { ::memcpy(m_pData + i*m_iTypeSize,p,m_iTypeSize; }
 
 
 void array_base::destroy()
@@ -259,4 +259,184 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
 
    return nStartIndex;
 
+}
+
+
+
+::count array_base::set_raw_size(::count nNewSize,::count nGrowBy)
+{
+   ::count countOld = get_count();
+   ASSERT_VALID(this);
+   ASSERT(nNewSize >= 0);
+
+   if(nNewSize < 0)
+      throw invalid_argument_exception(get_app());
+
+   if(nGrowBy >= 0)
+      m_nGrowBy = nGrowBy;  // set new size
+
+   if(nNewSize == 0)
+   {
+      // shrink to nothing
+      if(m_pData != NULL)
+      {
+         delete[](BYTE*)m_pData;
+         m_pData = NULL;
+      }
+      m_nSize = m_nMaxSize = 0;
+   }
+   else if(m_pData == NULL)
+   {
+      // create buffer big enough to hold number of requested elements or
+      // m_nGrowBy elements, whichever is larger.
+#ifdef SIZE_T_MAX
+      if(nNewSize > SIZE_T_MAX / m_iTypeSize)
+         throw memory_exception(get_app());
+      ASSERT(nNewSize <= SIZE_T_MAX / m_iTypeSize);    // no overflow
+#endif
+      ::count nAllocSize = MAX(nNewSize,m_nGrowBy);
+      m_pData = (byte *)memory_alloc(nAllocSize * m_iTypeSize);
+      m_nSize = nNewSize;
+      m_nMaxSize = nAllocSize;
+   }
+   else if(nNewSize <= m_nMaxSize)
+   {
+      m_nSize = nNewSize;
+   }
+   else
+   {
+      // otherwise, grow aaa_base_array
+      nGrowBy = m_nGrowBy;
+      if(nGrowBy == 0)
+      {
+         // heuristically determine growth when nGrowBy == 0
+         //  (this avoids heap fragmentation in many situations)
+         nGrowBy = m_nSize / 8;
+         nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
+      }
+      ::count nNewMax;
+      if(nNewSize < m_nMaxSize + nGrowBy)
+         nNewMax = m_nMaxSize + nGrowBy;  // granularity
+      else
+         nNewMax = nNewSize;  // no slush
+
+      ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
+
+      if(nNewMax  < m_nMaxSize)
+         throw invalid_argument_exception(get_app());
+
+#ifdef SIZE_T_MAX
+      ASSERT(nNewMax <= SIZE_T_MAX / m_iTypeSize); // no overflow
+#endif
+      byte * pNewData = (byte *)memory_alloc(nNewMax * m_iTypeSize);
+      // copy new data from old
+      ::aura::memcpy_s(pNewData,(size_t)nNewMax * m_iTypeSize,
+         m_pData,(size_t)m_nSize * m_iTypeSize);
+
+      for(int32_t i = 0; i < nNewSize - m_nSize; i++)
+         // get rid of old stuff (note: no destructors called)
+         memory_free(m_pData);
+      m_pData = pNewData;
+      m_nSize = nNewSize;
+      m_nMaxSize = nNewMax;
+   }
+
+   return countOld;
+
+}
+::count array_base::allocate(::count nNewSize,::count nGrowBy)
+{
+
+   ::count countOld = get_count();
+   ASSERT_VALID(this);
+   ASSERT(nNewSize >= 0);
+
+   if(nNewSize < 0)
+      throw invalid_argument_exception(get_app());
+
+   if(nGrowBy >= 0)
+      m_nGrowBy = nGrowBy;  // set new size
+
+   if(nNewSize == 0)
+   {
+      // shrink to nothing
+      if(m_pData != NULL)
+      {
+         for(int32_t i = 0; i < m_nSize; i++)
+            destruct_element((byte *)m_pData + i * m_iTypeSize);
+         memory_free(m_pData);
+         m_pData = NULL;
+      }
+      m_nSize = m_nMaxSize = 0;
+   }
+   else if(m_pData == NULL)
+   {
+      // create buffer big enough to hold number of requested elements or
+      // m_nGrowBy elements, whichever is larger.
+#ifdef SIZE_T_MAX
+      if(nNewSize > SIZE_T_MAX / m_iTypeSize)
+         throw memory_exception(get_app());
+      ASSERT(nNewSize <= SIZE_T_MAX / m_iTypeSize);    // no overflow
+#endif
+      ::count nAllocSize = MAX(nNewSize,m_nGrowBy);
+      m_pData = (byte *)memory_alloc(nAllocSize * m_iTypeSize);
+      construct_element((byte *)m_pData + nNewSize * m_iTypeSize);
+      m_nSize = nNewSize;
+      m_nMaxSize = nAllocSize;
+   }
+   else if(nNewSize <= m_nMaxSize)
+   {
+      // it fits
+      if(nNewSize > m_nSize)
+      {
+         construct_element((byte *)m_pData + m_nSize * m_iTypeSize,nNewSize - m_nSize);
+      }
+      else if(m_nSize > nNewSize)
+      {
+         // destroy the old elements
+         for(int32_t i = 0; i < m_nSize - nNewSize; i++)
+            destruct_element((byte*)m_pData + (nNewSize + i) * m_iTypeSize);
+      }
+      m_nSize = nNewSize;
+   }
+   else
+   {
+      // otherwise, grow aaa_base_array
+      nGrowBy = m_nGrowBy;
+      if(nGrowBy == 0)
+      {
+         // heuristically determine growth when nGrowBy == 0
+         //  (this avoids heap fragmentation in many situations)
+         nGrowBy = m_nSize / 8;
+         nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
+      }
+      ::count nNewMax;
+      if(nNewSize < m_nMaxSize + nGrowBy)
+         nNewMax = m_nMaxSize + nGrowBy;  // granularity
+      else
+         nNewMax = nNewSize;  // no slush
+
+      ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
+
+      if(nNewMax  < m_nMaxSize)
+         throw invalid_argument_exception(get_app());
+
+#ifdef SIZE_T_MAX
+      ASSERT(nNewMax <= SIZE_T_MAX / m_iTypeSize); // no overflow
+#endif
+      byte* pNewData = (byte *)memory_alloc(nNewMax * m_iTypeSize);
+
+      // copy new data from old
+      ::aura::memcpy_s(pNewData,(size_t)nNewMax * m_iTypeSize,m_pData,(size_t)m_nSize * m_iTypeSize);
+
+      // construct remaining elements
+      ASSERT(nNewSize > m_nSize);
+      construct_element((byte *)pNewData + m_nSize * m_iTypeSize,nNewSize - m_nSize);
+      // get rid of old stuff (note: no destructors called)
+      memory_free(m_pData);
+      m_pData = pNewData;
+      m_nSize = nNewSize;
+      m_nMaxSize = nNewMax;
+   }
+   return countOld;
 }
