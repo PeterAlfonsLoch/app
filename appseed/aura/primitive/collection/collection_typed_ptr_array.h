@@ -3,7 +3,7 @@
 /*
 
 class CLASS_DECL_AURA ptr_array :
-   virtual public comparable_raw_array < void * >::type
+   virtual public ptr_array < void >
 {
 public:
 

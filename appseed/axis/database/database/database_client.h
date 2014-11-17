@@ -88,7 +88,7 @@ namespace database
    };
 
    class CLASS_DECL_AXIS client_array :
-      public comparable_array < client * , client * >
+      public ptr_array < client >
    {
    public:
 

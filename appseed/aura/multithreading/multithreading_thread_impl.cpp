@@ -650,7 +650,7 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
    {
 
       single_lock sl(::multithreading::s_pmutex,true);
-      comparable_array < thread * > threadptra = *::multithreading::s_pthreadptra;
+      ptr_array < thread > threadptra = *::multithreading::s_pthreadptra;
 
       for(index i = 0; i < threadptra.get_size(); i++)
       {

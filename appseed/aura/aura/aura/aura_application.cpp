@@ -3250,7 +3250,7 @@ namespace aura
    }
 
 
-   comparable_array < ::thread * > application::get_thread(::user::interaction * pui)
+   ptr_array < ::thread > application::get_thread(::user::interaction * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);

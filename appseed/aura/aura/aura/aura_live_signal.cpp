@@ -95,7 +95,7 @@ namespace aura
 
       if(this != &signal)
       {
-         ::comparable_array < live_object * >::operator = ((::comparable_array < live_object * >) (signal));
+         ptr_array < live_object >::operator = ((ptr_array < live_object >) (signal));
       }
 
       return *this;

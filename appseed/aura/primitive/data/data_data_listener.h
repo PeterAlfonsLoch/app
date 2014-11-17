@@ -13,7 +13,7 @@ namespace data
    public:
 
 
-      comparable_array < data * > m_dataptra;
+      ptr_array < data > m_dataptra;
 
 
       data_listener(sp(::aura::application) papp);

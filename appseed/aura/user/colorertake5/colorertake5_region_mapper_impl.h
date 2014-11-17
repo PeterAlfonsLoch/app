@@ -33,7 +33,7 @@ public:
   RegionDefine *getRegionDefine(const char * name);
 
   string_map< RegionDefine *> regionDefines;
-  comparable_raw_array< RegionDefine *>::type regionDefinesVector;
+  ptr_array < RegionDefine > regionDefinesVector;
 
   RegionMapperImpl(const RegionMapperImpl&);
   void operator=(const RegionMapperImpl&);

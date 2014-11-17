@@ -609,7 +609,7 @@ namespace user
 
 
 
-      array < ::user::interaction  * > uiptra;
+      ptr_array <  ::user::interaction  > uiptra;
 
       {
 

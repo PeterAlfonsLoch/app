@@ -251,8 +251,8 @@ namespace colorertake5
       LineRegionsSupport *lrSupport;
 
       file_type *currentFileType;
-      comparable_array<RegionHandler*> regionHandlers;
-      comparable_array<EditorListener*> editorListeners;
+      ptr_array < RegionHandler > regionHandlers;
+      ptr_array < EditorListener > editorListeners;
 
       int32_t backParse;
       // window area

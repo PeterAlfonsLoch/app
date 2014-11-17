@@ -54,8 +54,8 @@ bool font_central::Initialize()
 
    m_fontStandard->create_point_font(FONTFACENAME_LUCIDA, 8);
 
-   m_pTitleFonts = new primitive_array < visual::font *>;
-   m_pSubTitleFonts = new primitive_array < visual::font *>;
+   m_pTitleFonts = new ptr_array <  visual::font >;
+   m_pSubTitleFonts = new ptr_array <  visual::font >;
 
    CreateLyricViewFonts();
 
@@ -112,14 +112,14 @@ void font_central::Finalize()
     return m_fontMenu;
 }
 
-//primitive_array < visual::font *> *
+//ptr_array <  visual::font > *
 //   font_central::GetLyricViewFonts_()
 //{
 //   return m_pLyricViewFonts;
 
 //}
 
-//primitive_array < visual::font *> *
+//ptr_array <  visual::font > *
 //   font_central::GetLyricViewCompactFonts_()
 //{
 //   return m_pLyricViewCompactFonts;
@@ -137,13 +137,13 @@ visual::font *
    return m_pfontLyricCompact;
 }
 
-primitive_array < visual::font *> *
+ptr_array <  visual::font > *
    font_central::GetTitleFonts()
 {
    return m_pTitleFonts;
 }
 
-primitive_array < visual::font *> *
+ptr_array <  visual::font > *
    font_central::GetSubTitleFonts()
 {
    return m_pSubTitleFonts;

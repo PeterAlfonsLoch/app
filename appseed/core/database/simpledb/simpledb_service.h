@@ -15,7 +15,7 @@ namespace simpledb
 
 
       manager *            m_pmanager;
-      array < socket_thread *, socket_thread * > m_threadptra;
+      ptr_array < socket_thread > m_threadptra;
 
 
       service(sp(::aura::application) papp);

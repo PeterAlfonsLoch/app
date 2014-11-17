@@ -42,7 +42,7 @@ namespace math
 
       string strNumber;
 //      binary_operation * pbinopNew;
-      array < number *, number * > stackptra;
+      ptr_array < number > stackptra;
 
       throw not_implemented(get_thread_app());
 

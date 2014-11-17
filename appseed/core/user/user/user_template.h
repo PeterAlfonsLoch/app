@@ -34,7 +34,7 @@ namespace user
 
 } // namespace user
 
-typedef comparable_array < ::command_target * > command_target_ptra;
+typedef ptr_array < ::command_target > command_target_ptra;
 
 namespace user
 {

@@ -326,7 +326,7 @@ public:
     CScriptVar *root;   /// root of symbol table
 private:
     CScriptLex *l;             /// current lexer
-    comparable_raw_array < CScriptVar * >::type  scopes; /// stack of scopes when parsing
+    ptr_array <  CScriptVar >  scopes; /// stack of scopes when parsing
 #ifdef TINYJS_CALL_STACK
     stringa call_stack; /// Names of places called so we can show when erroring
 #endif

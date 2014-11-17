@@ -174,25 +174,31 @@ class ptr_array :
 public:
 
 
-   ptr_array() {}
-   ptr_array(const ptr_array & a) { this->operator = (a); }
-   ptr_array(ptr_array && a) { this->operator = (a); }
+   inline ptr_array() {}
+   inline ptr_array(const ptr_array & a) { this->operator = (a); }
+   inline ptr_array(ptr_array && a) { this->operator = (a); }
 
 
-   ptr_array & operator = (const ptr_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }
-   ptr_array & operator = (ptr_array && a){ this->ARRAY_TYPE::operator = (a); return *this; }
+   inline ptr_array & operator = (const ptr_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }
+   inline ptr_array & operator = (ptr_array && a){ this->ARRAY_TYPE::operator = (a); return *this; }
 
-   TYPE * & element_at(index i) { return (TYPE* &)ARRAY_TYPE::element_at(i); }
-   TYPE * element_at(index i) const { return (TYPE*)ARRAY_TYPE::element_at(i); }
+   inline TYPE * & element_at(index i) { return (TYPE* &)ARRAY_TYPE::element_at(i); }
+   inline TYPE * element_at(index i) const { return (TYPE*)ARRAY_TYPE::element_at(i); }
 
-   TYPE * & operator[](index i) { return element_at(i); }
-   TYPE * operator[](index i) const { return element_at(i); }
+   inline TYPE * & operator[](index i) { return element_at(i); }
+   inline TYPE * operator[](index i) const { return element_at(i); }
    
-   TYPE * & first_element(index i = 0) { return (TYPE* &)ARRAY_TYPE::first_element(i); }
-   TYPE * first_element(index i = 0) const { return (TYPE*)this->first_element(i); }
+   inline TYPE * & first_element(index i = 0) { return (TYPE* &)ARRAY_TYPE::first_element(i); }
+   inline TYPE * first_element(index i = 0) const { return (TYPE*)this->first_element(i); }
 
-   TYPE * & last_element(index i = -1) { return (TYPE* &)ARRAY_TYPE::last_element(i); }
-   TYPE * last_element(index i = 0) const { return (TYPE*)ARRAY_TYPE::last_element(i); }
+   inline TYPE * & last_element(index i = -1) { return (TYPE* &)ARRAY_TYPE::last_element(i); }
+   inline TYPE * last_element(index i = 0) const { return (TYPE*)ARRAY_TYPE::last_element(i); }
+
+   inline TYPE * & back(index i = -1) { return (TYPE* &)ARRAY_TYPE::back(i); }
+   inline TYPE * back(index i = 0) const { return (TYPE*)ARRAY_TYPE::back(i); }
+
+   inline TYPE** get_data() { return (TYPE**)ARRAY_TYPE::get_data(); }
+
 
 };
 

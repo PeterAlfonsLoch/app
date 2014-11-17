@@ -383,7 +383,7 @@ DWORD DwThreadId()
 static DWORD nextTlsIndex = 0;
 
 mutex * os_thread::s_pmutex = NULL;
-comparable_raw_array < os_thread * >::type * os_thread::s_pptra = NULL;
+ptr_array <  os_thread > * os_thread::s_pptra = NULL;
 
 
 // Converts a Win32 thread priority to WinRT format.

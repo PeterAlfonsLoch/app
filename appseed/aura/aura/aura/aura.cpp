@@ -113,7 +113,7 @@ bool aura_init()
 
    ::os_thread::s_pmutex = new mutex();
 
-   ::os_thread::s_pptra = new comparable_raw_array < os_thread * >::type();
+   ::os_thread::s_pptra = new ptr_array <  os_thread >();
 
 
    if(!__node_aura_pos_init())

@@ -6,7 +6,7 @@ namespace fontopus
 
 
    class CLASS_DECL_BASE usera :
-      virtual public comparable_array < user * >
+      virtual public ptr_array < user >
    {
    public:
 

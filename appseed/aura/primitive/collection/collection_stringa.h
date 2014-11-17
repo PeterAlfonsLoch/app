@@ -105,7 +105,7 @@ public:
 
    comparable_array < id > get_comparable_ida() const;
 
-   ::count explode_command_line(const string & str, raw_array < char * > * argv = NULL);
+   ::count explode_command_line(const string & str, ptr_array < char > * argv = NULL);
 
 
 

@@ -51,7 +51,7 @@ namespace aura
       ::cmd_ui  *                                    m_pcmdui;
       id                                           m_id;
       e_type                                       m_etype;
-      comparable_array < ::command_target * >      m_commandtargetptraHandle;
+      ptr_array < ::command_target >      m_commandtargetptraHandle;
 
 
       cmd_msg();

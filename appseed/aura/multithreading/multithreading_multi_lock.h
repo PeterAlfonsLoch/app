@@ -9,9 +9,9 @@ public:
 
    sync_object_ptra           m_syncobjectptra;
 #ifdef WINDOWS
-   raw_array < HANDLE >      m_objecta;
+   ptr_array < HANDLE >      m_objecta;
 #else
-   raw_array < waitable * >  m_objecta;
+   ptr_array < waitable >  m_objecta;
 #endif
    bool_array                 m_baLocked;
 

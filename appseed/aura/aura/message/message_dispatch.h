@@ -44,7 +44,7 @@ namespace message
 
 
       class CLASS_DECL_AURA HandlerItemArray:
-         public array < HandlerItemBase *,HandlerItemBase *>
+         public ptr_array < HandlerItemBase >
       {
       public:
 
@@ -79,7 +79,7 @@ namespace message
 
 
       class CLASS_DECL_AURA SignalPtrArray:
-         public array < Signal *,Signal * >
+         public ptr_array < Signal >
       {
 
 

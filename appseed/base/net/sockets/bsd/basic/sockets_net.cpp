@@ -305,7 +305,7 @@ namespace sockets
    #endif // NO_GETADDRINFO
       }
       item.r = true;
-      comparable_array < addrinfo * > vec;
+      ptr_array <  addrinfo > vec;
       addrinfo *ai = res;
       while (ai)
       {
@@ -628,7 +628,7 @@ namespace sockets
       int32_t n = getaddrinfo(host, NULL, &hints, &res);
       if (!n)
       {
-         comparable_array < addrinfo * > vec;
+         ptr_array <  addrinfo > vec;
          addrinfo *ai = res;
          while (ai)
          {
@@ -742,7 +742,7 @@ namespace sockets
       int32_t n = getaddrinfo(host, NULL, &hints, &res);
       if (!n)
       {
-         comparable_array < addrinfo * > vec;
+         ptr_array <  addrinfo > vec;
          struct addrinfo *ai = res;
          while (ai)
          {

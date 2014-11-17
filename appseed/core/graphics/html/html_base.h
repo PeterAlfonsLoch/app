@@ -45,12 +45,7 @@ namespace html
    };
 
 
-   class base_ptr_array : public array < base * , base * >
-   {
-   public:
-
-
-   };
+   typedef ptr_array < base > base_ptr_array;
 
 
 } // namespace html

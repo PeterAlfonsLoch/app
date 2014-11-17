@@ -38,12 +38,12 @@ namespace colorertake5
      // types and packages
      string_map<file_type_impl *>       fileTypeHash;
      // types, not packages
-     comparable_raw_array<file_type_impl *>::type       fileTypeVector;
+     ptr_array < file_type_impl >       fileTypeVector;
 
      string_map<scheme_impl *>          schemeHash;
      string_map<int32_t>                   disabledSchemes;
 
-     comparable_raw_array<region *>::type   regionNamesVector;
+     ptr_array < region >   regionNamesVector;
      string_map<region *>   regionNamesHash;
      string_to_string              schemeEntitiesHash;
 

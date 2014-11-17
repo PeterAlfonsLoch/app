@@ -167,7 +167,7 @@ namespace aura
 
          os_thread::s_pmutex = new mutex();
 
-         os_thread::s_pptra = new comparable_raw_array < os_thread * >::type ();
+         os_thread::s_pptra = new ptr_array <  os_thread > ();
 
 #endif
 
@@ -183,7 +183,7 @@ namespace aura
 
          os_thread::s_pmutex = new mutex();
 
-         os_thread::s_pptra = new comparable_raw_array < os_thread * >::type ();
+         os_thread::s_pptra = new ptr_array <  os_thread > ();
 
 #endif // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 

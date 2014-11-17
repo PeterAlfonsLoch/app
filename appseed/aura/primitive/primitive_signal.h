@@ -49,7 +49,7 @@ class CLASS_DECL_AURA signalizable :
 public:
 
 
-   comparable_eq_array < class signal *, class signal * > m_signalptra;
+   ptr_array < class signal > m_signalptra;
 
 
    signalizable();
@@ -71,25 +71,25 @@ public:
 };
 
 class CLASS_DECL_AURA base_signalizable_array :
-   virtual protected comparable_array < signalizable * >
+   virtual protected ptr_array < signalizable >
 {
 public:
 
    inline index add(signalizable * psignalizable)
    {
       install_handlers(psignalizable);
-      return ::comparable_array < signalizable * >::add(psignalizable);
+      return ::ptr_array < signalizable >::add(psignalizable);
    }
    inline index remove(signalizable * psignalizable)
    {
-      return ::comparable_array < signalizable * >::remove(psignalizable);
+      return ::ptr_array < signalizable >::remove(psignalizable);
    }
 
-   inline signalizable * element_at(index i) { return ::comparable_array < signalizable * >::element_at(i); }
-   inline ::count get_size() { return ::comparable_array < signalizable * >::get_size(); }
-   inline ::count get_count() { return ::comparable_array < signalizable * >::get_count(); }
-   inline ::count size() { return ::comparable_array < signalizable * >::size(); }
-   inline ::count count() { return ::comparable_array < signalizable * >::count(); }
+   inline signalizable * element_at(index i) { return ::ptr_array < signalizable >::element_at(i); }
+   inline ::count get_size() { return ::ptr_array < signalizable >::get_size(); }
+   inline ::count get_count() { return ::ptr_array < signalizable >::get_count(); }
+   inline ::count size() { return ::ptr_array < signalizable >::size(); }
+   inline ::count count() { return ::ptr_array < signalizable >::count(); }
 
    virtual void install_handlers(signalizable *) {}
 
@@ -229,7 +229,7 @@ public:
 };
 
 class CLASS_DECL_AURA signalid_array :
-   virtual public array < signalid *, signalid * >
+   virtual public ptr_array < signalid >
 {
 public:
 
@@ -269,7 +269,7 @@ public:
 
 
    class CLASS_DECL_AURA handler_item_array :
-      public array < handler_item_base *, handler_item_base *>
+      public ptr_array < handle_item_base >
    {
    public:
       bool HasSignalizable(signalizable* psignalizable);
@@ -295,7 +295,7 @@ public:
 
 
    class CLASS_DECL_AURA signal_item_ptr_array :
-      public array < signal_item * , signal_item * >
+      public ptr_array < signal_item >
    {
    public:
 

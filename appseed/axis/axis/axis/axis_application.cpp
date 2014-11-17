@@ -1943,7 +1943,7 @@ namespace axis
    }
 
 
-   comparable_array < ::thread * > application::get_thread(::user::interaction * pui)
+   ptr_array < ::thread > application::get_thread(::user::interaction * pui)
    {
 
       return pui->m_threadptra;

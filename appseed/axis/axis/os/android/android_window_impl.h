@@ -23,7 +23,7 @@ namespace user
 } // namespace user
 
 
-typedef comparable_array < oswindow_data * > oswindow_dataptra;
+typedef ptr_array < oswindow_data > oswindow_dataptra;
 
 
 

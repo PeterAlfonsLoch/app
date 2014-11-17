@@ -98,7 +98,7 @@ protected:
   HRCParserImpl *hrcParser;
   scheme_impl *baseScheme;
 
-  array< FileTypeChooser *> chooserVector;
+  ptr_array < FileTypeChooser > chooserVector;
   string_to_string paramDefaultHash;
   string_to_string paramHash;
   string_to_string paramDescriptionHash;

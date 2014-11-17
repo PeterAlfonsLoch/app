@@ -130,7 +130,7 @@ namespace user
 
 
 
-      comparable_array < str_schema * >         m_schemaptra;
+      ptr_array < str_schema >         m_schemaptra;
 
 
 

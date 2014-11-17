@@ -17,7 +17,7 @@ namespace android
    public:
 
 
-      comparable_array < ::user::interaction * >   m_guieptraMouseHover;
+      ptr_array <  ::user::interaction >   m_guieptraMouseHover;
       ::message_queue_listener *                   m_pcallback;
       string                                       m_strWindowText;
       ::user::interaction_base *       m_pbasewnd;

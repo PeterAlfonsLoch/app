@@ -20,7 +20,7 @@ public:
 #endif
 
    static mutex *                  s_pmutex;
-   static comparable_raw_array < os_thread * >::type *  s_pptra;
+   static ptr_array <  os_thread > *  s_pptra;
 
 
    os_thread(uint32_t ( * pfn)(void *), void * pv);
@@ -194,7 +194,7 @@ namespace multithreading
    CLASS_DECL_AURA uint32_t __on_thread_finally(thread * pthread);
 
    CLASS_DECL_AURA extern comparable_array < HTHREAD > * s_phaThread;
-   CLASS_DECL_AURA extern comparable_array < thread * > * s_pthreadptra;
+   CLASS_DECL_AURA extern ptr_array < thread > * s_pthreadptra;
    CLASS_DECL_AURA extern mutex * s_pmutex;
 
 

@@ -57,7 +57,7 @@ protected:
 
    index_array                      stackLowerBound;
    index_array                      stackUpperBound;
-   array < const char * >           m_idptra; // ordered as added
+   ptr_array < const char >           m_idptra; // ordered as added
    index_array                      m_iaId; // ordered by id_cmp
 
    

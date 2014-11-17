@@ -802,7 +802,7 @@ void stringa::replace(const char * lpszSearch, const char * lpszReplace)
 }
 
 
-::count stringa::explode_command_line(const string & str, raw_array < char * > * argv)
+::count stringa::explode_command_line(const string & str, ptr_array < char > * argv)
 {
 
    string strParse(str);

@@ -7,7 +7,7 @@ namespace aura
 
    class CLASS_DECL_AURA live_signal :
       virtual public ::aura::live_object,
-      virtual protected ::comparable_array < live_object * >
+      virtual protected ptr_array < live_object >
    {
    public:
 

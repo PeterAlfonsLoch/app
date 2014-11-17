@@ -51,7 +51,7 @@ namespace core
 
       strid_map < ::aura::library * >              m_idmapCreateViewLibrary;
 
-      comparable_array < ::aura::library * >       m_libraryptra;
+      ptr_array < ::aura::library >       m_libraryptra;
 
 #ifdef METROWIN
       Agile < Windows::UI::Core::CoreWindow > m_window;

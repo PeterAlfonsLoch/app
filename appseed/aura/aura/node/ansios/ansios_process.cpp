@@ -47,7 +47,7 @@ namespace ansios
 
       stringa straParam;
 
-      raw_array < char * > argv;
+      ptr_array < char > argv;
 
       straParam.explode_command_line(pszCmdLine, &argv);
 

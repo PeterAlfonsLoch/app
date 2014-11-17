@@ -127,7 +127,7 @@ public:
    };
 
 
-   comparable_array < pair *, pair * >   m_ptra;
+   ptr_array < pair >   m_ptra;
 
 
 

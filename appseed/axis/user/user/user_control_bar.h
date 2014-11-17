@@ -91,7 +91,7 @@ public:
    uint32_t m_dwMRUFloatStyle; // most recent floating orientation
    point m_ptMRUFloatPos; // most recent floating position
 
-   primitive_array < void * > m_arrBarID;   // bar IDs for bars contained within this one
+   ptr_array < void > m_arrBarID;   // bar IDs for bars contained within this one
    ::user::control_bar * m_pBar;    // bar which this refers to (transient)
 
    //   void Serialize(CArchive& ar, BaseDockState* pDockState);
