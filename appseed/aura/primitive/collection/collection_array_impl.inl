@@ -774,27 +774,6 @@ index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::insert_at(index nIndex, ARG_TYP
 
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::insert_at(index nStartIndex, array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  * pNewArray)
-{
-   ASSERT_VALID(this);
-   ASSERT(pNewArray != NULL);
-   ASSERT_VALID(pNewArray);
-   ASSERT(nStartIndex >= 0);
-
-   if(pNewArray == NULL || nStartIndex < 0)
-      throw invalid_argument_exception(get_app());
-
-   if (pNewArray->get_size() > 0)
-   {
-      insert_at(nStartIndex, pNewArray->element_at(0), pNewArray->get_size());
-      for (index i = 1; i < pNewArray->get_size(); i++)
-         insert_at(nStartIndex + i, pNewArray->element_at(i));
-   }
-
-   return nStartIndex;
-
-}
 
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >

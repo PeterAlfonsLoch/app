@@ -124,6 +124,7 @@ public:
 
    void _001RemoveIndexes(index_array & ia);
    void remove_indexes(const index_array & ia);
+   void remove_descending_indexes(const index_array & ia);
 
    inline void remove_last();
    inline ::count remove_all();
@@ -140,6 +141,8 @@ public:
 
    index insert_at(index nIndex,const void * newElement,::count nCount = 1);
    index remove_at(index nIndex,::count nCount = 1);
+   index insert_at(index nStartIndex,array_base * pNewArray);
+
 
    virtual ::count append(const array_base & src); // return old size
    virtual void copy(const array_base & src);
@@ -587,10 +590,10 @@ public:
 
    // Operations that move elements around
    index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
-   void _001RemoveIndexes(index_array & ia);
-   void remove_indexes(const index_array & ia); // remove indexes from index array upper bound to index array lower bound
-   void remove_descending_indexes(const index_array & ia); // remove indexes from index array lower bound to index array upper bound
-   index insert_at(index nStartIndex, array* pNewArray);
+   //void _001RemoveIndexes(index_array & ia);
+   //void remove_indexes(const index_array & ia); // remove indexes from index array upper bound to index array lower bound
+   //void remove_descending_indexes(const index_array & ia); // remove indexes from index array lower bound to index array upper bound
+   //index insert_at(index nStartIndex, array* pNewArray);
    void swap(index index1, index index2);
 
    array & operator = (const array & src);

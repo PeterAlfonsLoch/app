@@ -455,11 +455,11 @@ public:
 
    // Operations that move elements around
    index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
-   index remove_at(index nIndex, ::count nCount = 1);
+   //index remove_at(index nIndex, ::count nCount = 1);
    //void _001RemoveIndexes(index_array & ia);
-   void remove_indexes(const index_array & ia); // remove indexes from index raw_array upper bound to index raw_array lower bound
-   void remove_descending_indexes(const index_array & ia); // remove indexes from index raw_array lower bound to index raw_array upper bound
-   index insert_at(index nStartIndex, raw_array* pNewArray);
+   //void remove_indexes(const index_array & ia); // remove indexes from index raw_array upper bound to index raw_array lower bound
+   //void remove_descending_indexes(const index_array & ia); // remove indexes from index raw_array lower bound to index raw_array upper bound
+   //index insert_at(index nStartIndex, raw_array* pNewArray);
    void swap(index index1, index index2);
 
    raw_array & operator = (const raw_array & src);
