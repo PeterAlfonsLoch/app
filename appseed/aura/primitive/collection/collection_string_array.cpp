@@ -206,7 +206,7 @@ void string_array::set_at_grow(index nIndex, const char * newElement)
 
    if (nIndex >= m_nSize)
       set_size(nIndex+1);
-   m_pData[nIndex] = newElement;
+   get_data()[nIndex] = newElement;
 }
 
 
@@ -217,7 +217,7 @@ void string_array::set_at_grow(index nIndex, const string & newElement)
 
    if (nIndex >= m_nSize)
       set_size(nIndex+1);
-   m_pData[nIndex] = newElement;
+   get_data()[nIndex] = newElement;
 }
 
 
