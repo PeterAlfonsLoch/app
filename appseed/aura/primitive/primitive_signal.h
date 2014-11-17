@@ -269,7 +269,7 @@ public:
 
 
    class CLASS_DECL_AURA handler_item_array :
-      public ptr_array < handle_item_base >
+      public ptr_array < handler_item_base >
    {
    public:
       bool HasSignalizable(signalizable* psignalizable);
