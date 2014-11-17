@@ -661,7 +661,7 @@ namespace user
 
          synch_lock sl(m_spmutex);
 
-         m_uiptraChild.get_array(uiptra);
+         m_uiptraChild.slice(uiptra);
 
       }
 

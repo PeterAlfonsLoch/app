@@ -10,15 +10,15 @@ public:
     typedef TYPE BASE_TYPE;
     typedef ARG_TYPE BASE_ARG_TYPE;
 
-    void push_back(ARG_TYPE t)
+    inline void push_back(ARG_TYPE t)
     {
        BASE_ARRAY::add(t);
     }
 
-    void pop_back()
+    inline void pop_back(index i = -1)
     {
-       BASE_ARRAY::remove_last();
+       remove_at(get_upper_bound(i));
     }
-    
+
 
 };

@@ -329,7 +329,7 @@ namespace data
 
    }
 
-   void tree::sort(index ( * lpfnCompare )(sp(tree_item) *, sp(tree_item) *))
+   void tree::sort(index ( * lpfnCompare )(const sp(tree_item) &, const sp(tree_item) &))
    {
       sp(tree_item) pitem = get_base_item();
       while(pitem != NULL)

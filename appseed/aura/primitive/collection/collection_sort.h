@@ -918,9 +918,9 @@ namespace sort
       spa(TYPE) & a,
       bool bAsc = true);
 
-   template <class TYPE, class ARG_TYPE>
+   template < class TYPE,class ARG_TYPE = const TYPE &,class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
    void quick_sort(
-      array < TYPE, ARG_TYPE > & a,
+      array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > & a,
       index (* lpfnCompare)(ARG_TYPE, ARG_TYPE));
 
 

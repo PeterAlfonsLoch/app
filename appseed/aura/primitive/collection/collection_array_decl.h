@@ -472,32 +472,19 @@ public:
    array(sp(::aura::application) papp = NULL, ::count nGrowBy = 32);
    array(const array <TYPE, ARG_TYPE> & a);
    array(::count n);
- //  array(ARG_TYPE t, ::count n = 1);
-   //array(TYPE * ptypea, ::count n);
    virtual ~array();
-
-
-
-
 
    virtual void on_construct_element(void * p) { DEFCONSTRUCTOR::construct(p); }
    virtual void on_construct_element(void * p, ::count c) { DEFCONSTRUCTOR::construct(p, c); }
    virtual void on_destruct_element(void * p) { ((TYPE*)p)->~TYPE(); }
    virtual void on_copy_element(index i,const void * p) { *((TYPE*)((byte *) m_pData + m_iTypeSize * i)) = *((const TYPE*)p); }
 
-   // Accessing elements
    inline const TYPE& get_at(index nIndex) const;
    inline TYPE& get_at(index nIndex);
    inline void set_at(index nIndex, ARG_TYPE newElement);
 
    inline const TYPE & element_at(index nIndex) const;
    inline TYPE & element_at(index nIndex);
-
-   inline const TYPE& first_element(index index = 0) const;
-   inline TYPE& first_element(index index = 0);
-
-   inline const TYPE& last_element(index index = -1) const;
-   inline TYPE& last_element(index index = -1);
 
    inline TYPE & front(index n = 0);
    inline const TYPE & front(index n = 0) const;
@@ -506,32 +493,17 @@ public:
    inline const TYPE & back(index n = -1) const;
 
 
-   inline const TYPE & at(index nIndex) const { return element_at(nIndex);  }
-   inline TYPE & at(index nIndex) { return element_at(nIndex); }
-
-   // Direct Access to the element data (may return NULL)
    inline const TYPE* get_data() const;
    inline TYPE* get_data();
 
-   // Potentially growing the array
+   
    inline index add(ARG_TYPE newElement);
    inline index add(const array& src);
    inline index append(const array& src);
    inline void copy(const array& src);
 
-   index push_back(ARG_TYPE newElement);
-
    inline TYPE & add_new();
    inline index add_new( ::count count);
-
-
-   inline void push_last();
-
-
-   inline TYPE pop(index index = -1);
-   inline void pop_back(index index = -1);
-
-   inline TYPE pop_to();
 
 
    inline iterator erase(iterator pos);
@@ -686,3 +658,6 @@ public:
    virtual ~nodefctr_array() {}
 
 };
+
+
+

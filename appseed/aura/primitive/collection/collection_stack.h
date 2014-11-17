@@ -8,38 +8,34 @@ class stack :
 public:
 
 
-   TYPE * operator ->()
+   inline TYPE * operator ->()
    {
-      return &BASE_CONTAINER::last_element();
+      return &BASE_CONTAINER::back();
    }
 
-   const TYPE * operator ->() const
+   inline const TYPE * operator ->() const
    {
-      return &BASE_CONTAINER::last_element();
+      return &BASE_CONTAINER::back();
    }
 
-   TYPE & top()
+   inline TYPE & top()
    {
-      return BASE_CONTAINER::last_element();
+      return BASE_CONTAINER::back();
    }
 
-   const TYPE & top() const
+   inline const TYPE & top() const
    {
-      return BASE_CONTAINER::last_element();
+      return BASE_CONTAINER::back();
    }
 
-   void push(ARG_TYPE t)
+   inline void push(ARG_TYPE t)
    {
       BASE_CONTAINER::push_back(t);
    }
 
+   inline TYPE pop(index index = -1);
 
-   void pop()
-   {
-
-      BASE_CONTAINER::pop_back();
-
-   }
+   inline TYPE pop_to();
 
 };
 

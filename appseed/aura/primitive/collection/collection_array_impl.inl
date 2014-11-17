@@ -109,30 +109,6 @@ inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::element_at(index nIndex)
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::first_element(index nIndex) const
-{
-   return this->element_at(nIndex);
-}
-
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::first_element(index nIndex)
-{
-   return this->element_at(nIndex);
-}
-
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::last_element(index index) const
-{
-   return element_at(get_upper_bound(index));
-}
-
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::last_element(index index)
-{
-   return element_at(get_upper_bound(index));
-}
-
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::front(index n)
 {
    return first_element(n);

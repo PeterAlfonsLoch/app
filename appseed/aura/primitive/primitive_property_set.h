@@ -228,7 +228,7 @@ inline property * property_set::add(id idName)
 
    m_map.set_at(idName, m_propertya.get_upper_bound());
 
-   return m_propertya.last_element();
+   return m_propertya.back();
 
 }
 
@@ -243,7 +243,7 @@ inline property * property_set::add(id idName, var var)
 
    m_map.set_at(idName, m_propertya.get_upper_bound());
 
-   return m_propertya.last_element();
+   return m_propertya.back();
 
 }
 
