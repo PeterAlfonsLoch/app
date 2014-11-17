@@ -27,7 +27,7 @@ namespace data
       return m_ptree;
    }
 
-   void tree_item::sort_children(index ( * lpfnCompare )(sp(tree_item) * pitem, sp(tree_item) * pitem2))
+   void tree_item::sort_children(index ( * lpfnCompare )(const sp(tree_item) & pitem, const sp(tree_item) & pitem2))
    {
 
       ::sort::quick_sort(m_children, lpfnCompare);

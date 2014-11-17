@@ -74,7 +74,7 @@ namespace data
       sp(tree_item) next();
 
 
-      void sort_children(index ( * lpfnCompare )(sp(tree_item) *, sp(tree_item) *));
+      void sort_children(index ( * lpfnCompare )(const sp(tree_item) &, const sp(tree_item) &));
 
       sp(tree_item) get_item(ETreeNavigation enavigation, index * piLevelOffset = NULL);
       sp(tree_item) get_item(ERelative erelative);

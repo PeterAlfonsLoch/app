@@ -400,6 +400,12 @@ public:
       typedef ARG_TYPE BASE_ARG_TYPE;
       typedef array < TYPE,ARG_TYPE > BASE_ARRAY;
 
+
+      iterator() {}
+      iterator(index i,array_base * parray): iterator_base(i,parray) {}
+      iterator(const iterator_base & it): iterator_base(it){}
+
+
       TYPE & operator * ()
       {
          return *(TYPE*) m_parray->element_at(m_i);
@@ -427,27 +433,10 @@ public:
       index            m_i;
       const array *     m_parray;
 
-      const_iterator()
-      {
-         m_i = 0;
-         m_parray = NULL;
-      }
-
-      const_iterator(index i, const array * parray)
-      {
-         m_i = i;
-         m_parray = parray;
-      }
-
-      const_iterator(const iterator & it)
-      {
-         operator = (it);
-      }
-
-      const_iterator(const const_iterator & it)
-      {
-         operator = (it);
-      }
+      const_iterator() {}
+      const_iterator(index i,const array_base * parray): const_iterator_base(i,parray) {}
+      const_iterator(const iterator & it): const_iterator_base(it){}
+      const_iterator(const const_iterator & it): const_iterator_base(it){}
 
       const TYPE & operator * ()
       {
@@ -474,72 +463,6 @@ public:
          return *this;
       }
 
-      bool operator == (const const_iterator & it)
-      {
-         if(this == &it)
-            return true;
-         if(m_parray != it.m_parray)
-            return false;
-         if(m_i >= m_parray->get_size() && it.m_i >= m_parray->get_size())
-            return true;
-         if(m_i <= 0 && it.m_i <= 0)
-            return true;
-         return m_i == it.m_i;
-      }
-
-      bool operator != (const const_iterator & it)
-      {
-         return !operator==(it);
-      }
-
-      const_iterator & operator ++()
-      {
-         m_i++;
-         if(m_i >= m_parray->get_size())
-            m_i = m_parray->get_size();
-         return *this;
-      }
-
-      const_iterator & operator +(index i)
-      {
-         m_i += i;
-         if(m_i >= m_parray->get_size())
-            m_i = m_parray->get_size();
-         return *this;
-      }
-
-      const_iterator & operator --()
-      {
-         m_i--;
-         if(m_i < 0)
-            m_i = 0;
-         return *this;
-      }
-
-      const_iterator mid(const const_iterator & i) const
-      {
-         return const_iterator((m_i + i.m_i + 1) / 2,m_parray);
-      }
-
-      const_iterator & operator -(::count c)
-      {
-         m_i-=c;
-         if(m_i < 0)
-            m_i = 0;
-         return *this;
-      }
-
-      bool operator < (const const_iterator & i) const
-      {
-
-         return m_i < i.m_i;
-
-      }
-
-      ::count get_count() const
-      {
-         return m_parray->get_count();
-      }
 
    };
 
@@ -602,13 +525,13 @@ public:
    inline index add_new( ::count count);
 
 
-   void push_last();
+   inline void push_last();
 
 
-   TYPE pop(index index = -1);
-   void pop_back(index index = -1);
+   inline TYPE pop(index index = -1);
+   inline void pop_back(index index = -1);
 
-   TYPE pop_to();
+   inline TYPE pop_to();
 
 
    inline iterator erase(iterator pos);
@@ -647,17 +570,17 @@ public:
 
    inline array & operator = (const array & src);
 
-   inline index find_first(ARG_TYPE t, index (* lpfnCompare)(ARG_TYPE, ARG_TYPE), index start = 0, index last = -1) const;
+   //inline index find_first(ARG_TYPE t, index (* lpfnCompare)(ARG_TYPE, ARG_TYPE), index start = 0, index last = -1) const;
    //index raw_find_first(TYPE * pt, index first = 0, index last = -1) const;
 
-   template < class DERIVED >
-   inline index find_first(DERIVED * pt, index first = 0, index last = -1)
-   {
-      return raw_find_first(dynamic_cast < TYPE * > (pt), first, last);
-   }
+   //template < class DERIVED >
+   //inline index find_first(DERIVED * pt, index first = 0, index last = -1)
+   //{
+   //   return raw_find_first(dynamic_cast < TYPE * > (pt), first, last);
+   //}
 
    template < class ARRAY >
-   inline ::count get_array(ARRAY & a, index iStart = 0, ::count nCount = -1)
+   inline ::count slice(ARRAY & a, index iStart = 0, ::count nCount = -1)
    {
 
       ::count ca = 0;

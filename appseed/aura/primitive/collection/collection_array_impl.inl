@@ -401,20 +401,20 @@ inline typename  array < TYPE,ARG_TYPE,DEFCONSTRUCTOR > ::iterator array < TYPE,
 //   return -1;
 //}
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_TYPE, ARG_TYPE), index find, index last) const
-{
-   if(find < 0)
-      find += this->get_count();
-   if(last < 0)
-      last += this->get_count();
-   for(; find <= last; find++)
-   {
-      if(lpfnCompare((ARG_TYPE)this->element_at(find), (ARG_TYPE)t) == 0)
-         return find;
-   }
-   return -1;
-}
+//template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+//inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::find_first(ARG_TYPE t, index ( * lpfnCompare )(ARG_TYPE, ARG_TYPE), index find, index last) const
+//{
+//   if(find < 0)
+//      find += this->get_count();
+//   if(last < 0)
+//      last += this->get_count();
+//   for(; find <= last; find++)
+//   {
+//      if(lpfnCompare((ARG_TYPE)this->element_at(find), (ARG_TYPE)t) == 0)
+//         return find;
+//   }
+//   return -1;
+//}
 
 
 

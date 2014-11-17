@@ -46,7 +46,7 @@ namespace data
       virtual ::count   remove(item * pitem, index i = 0);
 
 
-      void sort(index ( * lpfnCompare )(sp(tree_item) * pitem, sp(tree_item) * pitem2));
+      void sort(index ( * lpfnCompare )(const sp(tree_item) & pitem, const sp(tree_item) & pitem2));
 
       virtual sp(tree_item) get_proper_item(index iIndex, index * piLevel, index * piCount = NULL);
       virtual index get_proper_item_index(tree_item * pitemParam, index * piLevel, index * piCount = NULL);
