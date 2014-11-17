@@ -167,7 +167,7 @@ void string_array::copy(const int64_array & src)
 
    for(int32_t i = 0; i < m_nSize; i++)
    {
-      m_pData[i] = ::str::from(src[i]);
+      get_data()[i] = ::str::from(src[i]);
    }
 
 }

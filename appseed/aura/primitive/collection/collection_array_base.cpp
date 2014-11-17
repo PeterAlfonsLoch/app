@@ -163,8 +163,7 @@ void array_base::copy(const array_base & src)
 // the index raw_array by sorting it and returning
 // only the indexes that could be removed
 // without indexes duplicates
-template<class TYPE,class ARG_TYPE>
-inline void array_base::_001RemoveIndexes(index_array & ia)
+void array_base::_001RemoveIndexes(index_array & ia)
 {
 
    // sort
