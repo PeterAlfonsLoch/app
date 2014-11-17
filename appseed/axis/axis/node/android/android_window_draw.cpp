@@ -845,7 +845,7 @@ namespace android
    bool window_draw::TwfGetTopWindow(
       void * hwnd,
       user::oswindow_array & hwnda,
-      array < HRGN, HRGN > & hrgna,
+      ptr_array < HRGN > & hrgna,
       user::oswindow_tree::Array & hwndtreea,
       HRGN hrgn)
    {
@@ -869,7 +869,7 @@ namespace android
    bool window_draw::TwfGetTopWindow(
       void * hwndParam,
       user::oswindow_array & hwnda,
-      array < HRGN, HRGN > & hrgna,
+      ptr_array < HRGN > & hrgna,
       user::oswindow_tree & hwndtree,
       HRGN hrgn)
    {
@@ -974,7 +974,7 @@ throw not_implemented(get_app());
    void window_draw::TwfGetTopWindow(
       void * hwnd,
       user::oswindow_array & hwnda,
-      array < HRGN, HRGN > & hrgna,
+      ptr_array < HRGN > & hrgna,
       user::oswindow_tree::Array & hwndtreea,
       const RECT & rect)
    {
@@ -992,7 +992,7 @@ throw not_implemented(get_app());
    void window_draw::TwfGetTopWindowOptimizeOpaque(
       void * hwndOpaque,
       user::oswindow_array & hwnda,
-      array < HRGN, HRGN > & hrgna)
+      ptr_array < HRGN > & hrgna)
    {
       rect rectWindow;
 

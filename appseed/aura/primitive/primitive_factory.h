@@ -7,6 +7,9 @@ class mutex;
 
 extern CLASS_DECL_AURA mutex * g_pmutexFactory;
 
+CLASS_DECL_AURA bool safe_destroy_element(element * pelement);
+
+CLASS_DECL_AURA bool safe_free_memory(void * ptype);
 
 class CLASS_DECL_AURA factory_allocator :
    virtual public ::object
@@ -80,27 +83,24 @@ public:
 
    virtual void discard(element * pca)
    {
+      
       TYPE * ptype = (TYPE *) pca->m_pthis;
+
       if(ptype == NULL)
          return;
-      try
+
+      safe_destroy_element(ptype);
+
+      if(safe_free_memory(ptype))
       {
-         ptype->~TYPE();
-      }
-      catch(...)
-      {
-      }
-      synch_lock sl(g_pmutexFactory);
-      try
-      {
-         memory_free(ptype);
+
          m_iAllocCount--;
+
       }
-      catch(...)
-      {
-      }
-      //m_alloc.Free(ptype);
+
    }
+
+
 };
 
 

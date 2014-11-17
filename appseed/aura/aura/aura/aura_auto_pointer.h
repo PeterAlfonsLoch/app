@@ -34,16 +34,9 @@ public:
       if(m_p != NULL)
       {
 
-         try
-         {
+         safe_destroy_element(m_p);
 
-            delete m_p;
-
-         }
-         catch(...)
-         {
-
-         }
+         safe_free_memory(m_p);
 
          m_p = NULL;
 

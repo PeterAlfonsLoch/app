@@ -350,16 +350,7 @@ namespace aura
       catch(...)
       {
 
-         try
-         {
-
-            papp.release();
-
-         }
-         catch(...)
-         {
-
-         }
+         papp.release();
 
          return NULL;
 

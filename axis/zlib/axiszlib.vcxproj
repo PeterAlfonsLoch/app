@@ -177,6 +177,8 @@
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
     <LinkIncremental>true</LinkIncremental>
@@ -316,7 +318,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)match.o" /c /Fl"$(IntDir)match.lst" "$(Projec
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <StringPooling>false</StringPooling>
+      <StringPooling>true</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -340,6 +342,10 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)match.o" /c /Fl"$(IntDir)match.lst" "$(Projec
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <MergeSections>
+      </MergeSections>
     </Link>
     <PreLinkEvent>
       <Command>ml /safeseh /coff /Zi /Fo"$(IntDir)inffas.o" /c /Fl"$(IntDir)inffas.lst" "$(ProjectDir)contrib/masmx86/inffas32.asm"

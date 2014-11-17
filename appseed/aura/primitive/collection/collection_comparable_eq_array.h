@@ -226,13 +226,7 @@ remove_first(ARG_TYPE t, index find, index last)
 {
    if((find = find_first(t, find, last)) >= 0)
    {
-      try
-      {
-         this->remove_at(find);
-      }
-      catch(...)
-      {
-      }
+      this->remove_at(find);
    }
    return find;
 }

@@ -768,7 +768,6 @@ bool sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::delete_node(n
 
    }
 
-
    try
    {
 

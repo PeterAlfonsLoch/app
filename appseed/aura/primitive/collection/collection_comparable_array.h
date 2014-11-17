@@ -167,7 +167,7 @@ ARRAY_TYPE(a)
 
 
 
-template < class TYPE, class ARRAY_TYPE = full_comparable_array < TYPE * > >
+template < class TYPE, class ARRAY_TYPE = full_comparable_array < void * > >
 class ptr_array :
    virtual public ARRAY_TYPE
 {

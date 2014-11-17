@@ -87,28 +87,28 @@ namespace android
       void TwfGetTopWindow(
          void * hwnd,
          user::oswindow_array & hwnda,
-         array < HRGN, HRGN > & hrgna,
+         ptr_array < HRGN > & hrgna,
          user::oswindow_tree::Array & hwndtreea,
          const RECT & rect);
 
       bool TwfGetTopWindow(
          void * hwnd,
          user::oswindow_array & hwnda,
-         array < HRGN, HRGN > & hrgna,
+         ptr_array < HRGN > & hrgna,
          user::oswindow_tree::Array & hwndtreea,
          HRGN hrgn);
 
       bool TwfGetTopWindow(
          void * hwnd,
          user::oswindow_array & hwnda,
-         array < HRGN, HRGN > & hrgna,
+         ptr_array < HRGN > & hrgna,
          user::oswindow_tree & hwndtree,
          HRGN hrgn);
 
       void TwfGetTopWindowOptimizeOpaque(
          void * hwndOpaque,
          user::oswindow_array & hwnda,
-         array < HRGN, HRGN > & hrgna);
+         ptr_array < HRGN > & hrgna);
 
 
       EOptimize TwfOptimizeRenderRemoveNextProper(

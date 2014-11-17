@@ -288,6 +288,49 @@ CLASS_DECL_AURA mutex * g_pmutexFactory = NULL;
 
 
 
+CLASS_DECL_AURA bool safe_destroy_element(element * pelement)
+{
+
+   try
+   {
+
+      pelement->~element();
+
+   }
+   catch(...)
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+CLASS_DECL_AURA bool safe_free_memory(void * ptype)
+{
+
+
+   try
+   {
+
+      memory_free(ptype);
+      
+   }
+   catch(...)
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
 
 
 
