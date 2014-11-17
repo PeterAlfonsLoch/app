@@ -328,98 +328,98 @@ public:
 
    }
 
-   const smart_pointer < T > & first_sp(index n = 0) const
+   const smart_pointer < T > & front_sp(index n = 0) const
    {
 
-      return this->array < smart_pointer < T > >::first_element(n);
+      return this->array < smart_pointer < T > >::front(n);
 
    }
 
 
-   smart_pointer < T > & first_sp(index n = 0)
+   smart_pointer < T > & front_sp(index n = 0)
    {
 
-      return this->array < smart_pointer < T > >::first_element(n);
+      return this->array < smart_pointer < T > >::front(n);
 
    }
 
 
-   T * first_ptr(index n = 0) const
+   T * front_ptr(index n = 0) const
    {
 
-      return this->first_sp(n);
+      return this->front_sp(n);
 
    }
 
 
-   T * first_ptr(index n = 0)
+   T * front_ptr(index n = 0)
    {
 
-      return this->first_sp(n);
+      return this->front_sp(n);
 
    }
 
 
-   T & first(index n = 0) const
+   T & front(index n = 0) const
    {
 
-      return *this->first_ptr(n);
+      return *this->front_ptr(n);
 
    }
 
 
-   T & first(index n = 0)
+   T & front(index n = 0)
    {
 
-      return *this->first_ptr(n);
+      return *this->front_ptr(n);
 
    }
 
 
-   T * last_sp(index n = -1) const
+   T * back_sp(index n = -1) const
    {
 
-      return this->array < smart_pointer < T > >::last_element(n);
+      return this->array < smart_pointer < T > >::back(n);
 
    }
 
 
-   smart_pointer < T > & last_sp(index n = -1)
+   smart_pointer < T > & back_sp(index n = -1)
    {
 
-      return this->array < smart_pointer < T > >::last_element(n);
+      return this->array < smart_pointer < T > >::back(n);
 
    }
 
 
-   T * last_ptr(index n = -1) const
+   T * back_ptr(index n = -1) const
    {
 
-      return this->last_sp(n);
+      return this->back_sp(n);
 
    }
 
 
-   T * last_ptr(index n = -1)
+   T * back_ptr(index n = -1)
    {
 
-      return this->last_sp(n);
+      return this->back_sp(n);
 
    }
 
 
-   T & last(index n = -1) const
+   T & back(index n = -1) const
    {
 
-      return *last_ptr(n);
+      return *back_ptr(n);
 
    }
 
 
-   T & last(index n = -1)
+   T & back(index n = -1)
    {
 
-      return *this->last_ptr(n);
+      return *this->back_ptr(n);
 
    }
 

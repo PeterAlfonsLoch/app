@@ -15,9 +15,9 @@ public:
        BASE_ARRAY::add(t);
     }
 
-    inline void pop_back(index i = -1)
+    inline void pop_back(index n = -1)
     {
-       remove_at(get_upper_bound(i));
+       remove_at(get_upper_bound(n));
     }
 
 

@@ -117,19 +117,19 @@ inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::front(index n)
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline const TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::front(index n) const
 {
-   return first_element(n);
+   return element_at(n);
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::back(index n)
 {
-   return last_element(n);
+   return element_at(get_upper_bound(n));
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline const TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::back(index n) const
 {
-   return last_element(n);
+   return element_at(get_upper_bound(n));
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
@@ -144,18 +144,13 @@ inline TYPE* array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_data()
    return (TYPE*)m_pData;
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::push_last()
-{
-   add(last_element());
-}
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::push_back(ARG_TYPE newElement)
-{
-   return add(newElement);
-}
-
+//template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+//inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::push_back(ARG_TYPE newElement)
+//{
+//   return add(newElement);
+//}
+//
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::add(ARG_TYPE newElement)
 {
@@ -168,30 +163,7 @@ inline index array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::add(const array & src)
    return append(src);
 }
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline TYPE array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::pop(index n)
-{
-   index i = get_upper_bound(n);
-   TYPE t = element_at(i);
-   remove_at(i);
-   return t;
-}
 
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline TYPE array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::pop_to()
-{
-   TYPE lastelement = pop();
-   last_element() = lastelement;
-   return last_element();
-}
-
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::pop_back(index n)
-{
-
-   remove_at(get_upper_bound(n));
-
-}
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::operator[](index nIndex) const

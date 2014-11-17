@@ -33,9 +33,27 @@ public:
       BASE_CONTAINER::push_back(t);
    }
 
-   inline TYPE pop(index index = -1);
+   inline TYPE pop(index n)
+   {
+      index i = get_upper_bound(n);
+      TYPE t = element_at(i);
+      remove_at(i);
+      return t;
+   }
 
-   inline TYPE pop_to();
+
+   inline TYPE pop_to()
+   {
+      TYPE lastelement = pop();
+      last_element() = lastelement;
+      return last_element();
+   }
+
+   inline void push_last()
+   {
+      add(last_element());
+   }
+
 
 };
 
