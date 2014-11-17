@@ -134,12 +134,12 @@ public:
    void construct_element(void * p);
    void construct_element(void * p,::count c);
    void destruct_element(void * p);
-   void copy_element(index i, void * p);
+   void copy_element(index i, const void * p);
    
    virtual void on_construct_element(void *);
    virtual void on_construct_element(void *,::count);
    virtual void on_destruct_element(void *);
-   virtual void on_copy_element(index i, void *);
+   virtual void on_copy_element(index i, const void *);
 
    index insert_at(index nIndex,const void * newElement,::count nCount = 1);
    index remove_at(index nIndex,::count nCount = 1);
@@ -514,7 +514,7 @@ public:
    virtual void on_construct_element(void * p) { DEFCONSTRUCTOR::construct(p); }
    virtual void on_construct_element(void * p, ::count c) { DEFCONSTRUCTOR::construct(p, c); }
    virtual void on_destruct_element(void * p) { ((TYPE*)p)->~TYPE(); }
-   virtual void on_copy_element(index i,void * p) { *((TYPE*)((byte *) m_pData + m_iTypeSize * i)) = *((TYPE*)p); }
+   virtual void on_copy_element(index i,const void * p) { *((TYPE*)((byte *) m_pData + m_iTypeSize * i)) = *((const TYPE*)p); }
 
    // Accessing elements
    inline const TYPE& get_at(index nIndex) const;
