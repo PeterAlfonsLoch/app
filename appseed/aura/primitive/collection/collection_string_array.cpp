@@ -139,7 +139,7 @@ string_array::~string_array()
    ::count nOldSize = m_nSize;
    set_size(m_nSize + src.m_nSize);
 
-   CopyElements(m_pData + nOldSize, src.m_pData, src.m_nSize);
+   CopyElements((string *) ((byte *) m_pData + nOldSize * m_iTypeSize), src.m_pData, src.m_nSize);
 
    return nOldSize;
 }

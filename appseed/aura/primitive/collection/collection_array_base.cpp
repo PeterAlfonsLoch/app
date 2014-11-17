@@ -56,11 +56,13 @@ void array_base::free_extra()
 void array_base::construct_element(void * p) { on_construct_element(p); }
 void array_base::construct_element(void * p,::count c) { on_construct_element(p,c); }
 void array_base::destruct_element(void * p) { try { on_destruct_element(p); } catch(...) {} }
+void array_base::copy_element(void * p) { on_copy_element(i, p); }
 
 
 void array_base::on_construct_element(void *) {}
 void array_base::on_construct_element(void *,::count) {}
 void array_base::on_destruct_element(void *) {}
+void array_base::on_copy_element(i, void * p) { ::memcpy(m_pData + i*m_iTypeSize,p,m_iTypeSize; }
 
 
 void array_base::destroy()
@@ -105,9 +107,9 @@ index array_base::insert_at(index nIndex,const void * newElement,::count nCount 
       set_size(m_nSize + nCount,-1);  // grow it to new size
       // destroy intial data before copying over it
       // shift old data up to fill gap
-      ::aura::memmove_s(m_pData + (nIndex + nCount) * m_iTypeSize,(nOldSize - nIndex) * sizeof(TYPE),m_pData + nIndex,(nOldSize - nIndex) * sizeof(TYPE));
+      ::aura::memmove_s((byte *) m_pData + (nIndex + nCount) * m_iTypeSize,(nOldSize - nIndex) * m_iTypeSize,(byte *) m_pData + nIndex * m_iTypeSize,(nOldSize - nIndex) * m_iTypeSize);
 
-      DEFCONSTRUCTOR::construct(m_pData + nIndex,nCount);
+      construct_element((byte*)m_pData + nIndex*m_iTypeSize,nCount);
    }
 
    // insert new value in the gap
@@ -116,7 +118,7 @@ index array_base::insert_at(index nIndex,const void * newElement,::count nCount 
    index nIndexParam = nIndex;
 
    while(nCount--)
-      m_pData[nIndex++] = newElement;
+      copy_element(nIndex++,newElement);
 
    return nIndexParam;
 

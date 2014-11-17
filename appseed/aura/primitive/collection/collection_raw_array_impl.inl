@@ -289,6 +289,7 @@ template<class TYPE, class ARG_TYPE>
 raw_array<TYPE, ARG_TYPE>::raw_array(sp(::aura::application) papp, ::count nGrowBy) :
 element(papp)
 {
+   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = MAX(0, nGrowBy);
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
@@ -298,6 +299,7 @@ template<class TYPE, class ARG_TYPE>
 raw_array<TYPE, ARG_TYPE>::raw_array(const raw_array <TYPE, ARG_TYPE> & a) :
 element(a.get_app())
 {
+   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
@@ -309,7 +311,7 @@ template<class TYPE,class ARG_TYPE>
 raw_array<TYPE,ARG_TYPE>::raw_array(raw_array <TYPE,ARG_TYPE> && a):
 element(a.get_app())
 {
-
+   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = a.m_nGrowBy;
    m_pData = a.m_pData;
    m_nSize = a.m_nSize;
@@ -326,6 +328,7 @@ element(a.get_app())
 template<class TYPE, class ARG_TYPE>
 raw_array<TYPE, ARG_TYPE>:: raw_array(::count n)
 {
+   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
@@ -335,6 +338,7 @@ raw_array<TYPE, ARG_TYPE>:: raw_array(::count n)
 template<class TYPE, class ARG_TYPE>
 raw_array<TYPE, ARG_TYPE>::raw_array(ARG_TYPE t, ::count n)
 {
+   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
@@ -345,6 +349,7 @@ raw_array<TYPE, ARG_TYPE>::raw_array(ARG_TYPE t, ::count n)
 template<class TYPE, class ARG_TYPE>
 raw_array<TYPE, ARG_TYPE>::raw_array(TYPE * ptypea, ::count n)
 {
+   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
