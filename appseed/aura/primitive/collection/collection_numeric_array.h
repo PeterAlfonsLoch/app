@@ -1068,70 +1068,6 @@ inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::remove_descending_indexes
 }
 
 
-// take in ac::count that _001RemoveIndexes change
-// the index raw_array by sorting it and returning
-// only the indexes that could be removed
-// without indexes duplicates
-template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::_001RemoveIndexes( /* [in, out] */ index_array & ia /* [in, out] */ )
-{
-
-   // sort
-   ia.quick_sort(true);
-
-   index i = ia.get_upper_bound();
-
-   // filter out of upper bound indexes
-   while(i >= 0 && ia[i] >= get_size())
-   {
-
-      ia.remove_at(i);
-
-      i--;
-
-   }
-
-   // filter out of lower bound indexes
-   while(ia.get_size() > 0 && ia[0] < 0)
-   {
-
-      ia.remove_at(0);
-
-   }
-
-   i = ia.get_upper_bound();
-
-   // filter out duplicates
-   while(i > 0 && ia[i] >= get_size())
-   {
-
-      if(ia[i] == ia[i - 1])
-         ia.remove_at(i);
-
-      i--;
-
-   }
-
-   remove_indexes(ia);
-
-}
-
-
-
-template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::remove_indexes(const index_array & ia)
-{
-
-
-   // remove indexes
-   for(index i = ia.get_upper_bound(); i >= 0; i--)
-   {
-
-      remove_at(ia[i]);
-
-   }
-
-}
 
 
 template<class TYPE, class ARG_TYPE>
@@ -2006,7 +1942,7 @@ binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *),
    iIndex = (iUpperBound + iLowerBound) / 2;
    while(iUpperBound - iLowerBound >= 8)
    {
-      iCompare = fCompare((TYPE *) &this->m_pData[ia[iIndex]], (TYPE *) &t);
+      iCompare = fCompare((TYPE *)&this->get_data()[ia[iIndex]],(TYPE *)&t);
       if(iCompare == 0)
       {
          return true;

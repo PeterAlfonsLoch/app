@@ -425,10 +425,10 @@ public:
    index add(const raw_array& src);
    virtual index add_new(::count count);
    virtual TYPE & add_new();
-   index append(const raw_array& src);
-   void copy(const raw_array& src);
+   //index append(const raw_array& src);
+   //void copy(const raw_array& src);
 
-
+   
    TYPE pop(index index = -1);
    index push(ARG_TYPE newElement, index i = 0);
    void pop_back(index index = -1);
@@ -456,7 +456,7 @@ public:
    // Operations that move elements around
    index insert_at(index nIndex, ARG_TYPE newElement, ::count nCount = 1);
    index remove_at(index nIndex, ::count nCount = 1);
-   void _001RemoveIndexes(index_array & ia);
+   //void _001RemoveIndexes(index_array & ia);
    void remove_indexes(const index_array & ia); // remove indexes from index raw_array upper bound to index raw_array lower bound
    void remove_descending_indexes(const index_array & ia); // remove indexes from index raw_array lower bound to index raw_array upper bound
    index insert_at(index nStartIndex, raw_array* pNewArray);

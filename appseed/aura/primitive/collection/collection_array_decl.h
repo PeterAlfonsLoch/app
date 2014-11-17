@@ -122,6 +122,9 @@ public:
    void free_extra();
    virtual void destroy();
 
+   void _001RemoveIndexes(index_array & ia);
+   void remove_indexes(const index_array & ia);
+
    inline void remove_last();
    inline ::count remove_all();
    inline void clear();
@@ -137,6 +140,10 @@ public:
 
    index insert_at(index nIndex,const void * newElement,::count nCount = 1);
    index remove_at(index nIndex,::count nCount = 1);
+
+   virtual ::count append(const array_base & src); // return old size
+   virtual void copy(const array_base & src);
+ 
 
 };
 

@@ -266,9 +266,9 @@ inline TYPE& raw_array<TYPE, ARG_TYPE>::operator[](index nIndex)
 template<class TYPE, class ARG_TYPE>
 inline void raw_array<TYPE, ARG_TYPE>::swap(index index1, index index2)
 {
-   TYPE t = m_pData[index1];
-   m_pData[index1] = m_pData[index2];
-   m_pData[index2] = t;
+   TYPE t = get_data()[index1];
+   get_data()[index1] = get_data()[index2];
+   get_data()[index2] = t;
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -521,39 +521,6 @@ raw_array<TYPE, ARG_TYPE>::~raw_array()
 //   return countOld;
 //}
 //
-template<class TYPE, class ARG_TYPE>
-index raw_array<TYPE, ARG_TYPE>::append(const raw_array & src)
-{
-
-   ASSERT_VALID(this);
-
-   ::count nOldSize = m_nSize;
-
-   ::count nSrcSize = src.m_nSize;   // to enable to append to itself
-
-   allocate(m_nSize + nSrcSize);
-
-   memcpy(m_pData + nOldSize, src.m_pData, nSrcSize * sizeof(TYPE));
-
-   return nOldSize;
-
-}
-
-
-template<class TYPE, class ARG_TYPE>
-void raw_array<TYPE, ARG_TYPE>::copy(const raw_array & src)
-{
-
-   ASSERT_VALID(this);
-
-   if(this == &src)
-      return;
-
-   allocate(src.m_nSize);
-
-   memcpy(m_pData, src.m_pData, src.m_nSize * sizeof(TYPE));
-
-}
 
 //
 //template<class TYPE, class ARG_TYPE>
@@ -594,7 +561,7 @@ void raw_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 
    if (nIndex >= m_nSize)
       allocate(nIndex+1, -1);
-   m_pData[nIndex] = newElement;
+   get_data()[nIndex] = newElement;
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -615,73 +582,14 @@ TYPE & raw_array<TYPE, ARG_TYPE>::element_at_grow(index nIndex)
 
    if (nIndex >= m_nSize)
       allocate(nIndex+1, -1);
-   return m_pData[nIndex];
+   return get_data()[nIndex];
 }
 
 
 template<class TYPE, class ARG_TYPE>
 index raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
-   //ASSERT_VALID(this);
-   //ASSERT(nIndex >= 0);    // will expand to meet need
-
-   if(nCount <= 0)
-      return -1;
-
-   if(nIndex < 0)
-      throw invalid_argument_exception(get_app());
-
-   if (nIndex >= m_nSize)
-   {
-      // adding after the end of the raw_array
-      allocate(nIndex + nCount, -1);   // grow so nIndex is valid
-   }
-   else
-   {
-      // inserting in the middle of the raw_array
-      ::count nOldSize = m_nSize;
-      allocate(m_nSize + nCount, -1);  // grow it to new size
-      // destroy intial data before copying over it
-      // shift old data up to fill gap
-      ::aura::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
-         m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
-
-      // re-init slots we copied from
-      memset((void *)(m_pData + nIndex), 0, (size_t)nCount * sizeof(TYPE));
-   }
-
-   // insert new value in the gap
-   ASSERT(nIndex + nCount <= m_nSize);
-
-   index nIndexParam = nIndex;
-
-   while (nCount--)
-      m_pData[nIndex++] = newElement;
-
-   return nIndexParam;
-
-}
-
-template<class TYPE, class ARG_TYPE>
-inline index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
-{
-
-   //ASSERT_VALID(this);
-
-   index nUpperBound = nIndex + nCount;
-
-   if(nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
-      throw invalid_argument_exception(get_app());
-
-   // just remove a range
-   ::count nMoveCount = m_nSize - (nUpperBound);
-   if (nMoveCount)
-   {
-      ::aura::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
-         m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
-   }
-   m_nSize -= nCount;
-   return nIndex;
+   return array_base::insert_at(nIndex,&newElement,nCount);
 }
 
 
