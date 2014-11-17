@@ -14,12 +14,11 @@ index array_base::remove_at(index nIndex,::count nCount)
    // just remove a range
    ::count nMoveCount = m_nSize - (nUpperBound);
    for(int32_t i = 0; i < nCount; i++)
-      (m_pData + nIndex + i)->~TYPE();
+      destruct_element((byte*)m_pData + (nIndex + i) *m_iTypeSize);
 
    if(nMoveCount)
    {
-      ::aura::memmove_s(m_pData + nIndex,(size_t)nMoveCount * m_iTypeSize,
-         m_pData + nUpperBound,(size_t)nMoveCount * m_iTypeSize);
+      ::aura::memmove_s((byte*)m_pData + nIndex*m_iTypeSize,(size_t)nMoveCount * m_iTypeSize, (byte*) m_pData + nUpperBound * m_iTypeSize,(size_t)nMoveCount * m_iTypeSize);
    }
    m_nSize -= nCount;
    return nIndex;
@@ -81,7 +80,7 @@ void array_base::destroy()
 }
 
 
-index array_base::insert_at(index nIndex,void * newElement,::count nCount /*=1*/)
+index array_base::insert_at(index nIndex,const void * newElement,::count nCount /*=1*/)
 {
 
    ASSERT_VALID(this);

@@ -625,7 +625,7 @@ void raw_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
    if (dumpcontext.GetDepth() > 0)
    {
       dumpcontext << "\n";
-      dump_elements<TYPE>(dumpcontext, m_pData, m_nSize);
+      dump_elements<TYPE>(dumpcontext,get_data(),m_nSize);
    }
 
    dumpcontext << "\n";
@@ -636,7 +636,7 @@ void raw_array<TYPE, ARG_TYPE>::assert_valid() const
 {
    object::assert_valid();
 
-   if (m_pData == NULL)
+   if (get_data() == NULL)
    {
       ASSERT(m_nSize == 0);
       ASSERT(m_nMaxSize == 0);

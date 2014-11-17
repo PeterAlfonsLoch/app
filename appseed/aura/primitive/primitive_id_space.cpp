@@ -55,7 +55,7 @@ id id_space::operator()(const string & str)
    index iIndex = 0;
    
    if(find(idSearch, iIndex))
-      return m_ida.element_at(m_iaStr.m_pData[iIndex]);
+      return m_ida.element_at(m_iaStr.get_data()[iIndex]);
 
    id id;
    string * pstr = new string(str);

@@ -2092,7 +2092,7 @@ namespace lemon
          iIndex = (iUpperBound + iLowerBound) / 2;
          while(iUpperBound - iLowerBound >= 8)
          {
-            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
+            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.get_data()[ia[iIndex]],(typename ARRAY::BASE_TYPE *) &t);
             if(iCompare == 0)
             {
                return true;
@@ -2120,7 +2120,7 @@ namespace lemon
          // do sequential search
          while(iIndex < a.get_count())
          {
-            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *) &t);
+            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.get_data()[ia[iIndex]],(typename ARRAY::BASE_TYPE *) &t);
             if(iCompare == 0)
                return true;
             else if(iCompare < 0)
@@ -2132,7 +2132,7 @@ namespace lemon
             return false;
          while(iIndex >= 0)
          {
-            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.m_pData[ia[iIndex]], (typename ARRAY::BASE_TYPE *)  &t);
+            iCompare = fCompare((typename ARRAY::BASE_TYPE *) &a.get_data()[ia[iIndex]],(typename ARRAY::BASE_TYPE *)  &t);
             if(iCompare == 0)
                return true;
             else if(iCompare > 0)
