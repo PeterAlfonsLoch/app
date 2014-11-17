@@ -2165,18 +2165,31 @@ namespace lemon
 
 
    template < typename TYPE >
-   numeric_array_each < numeric_array < TYPE > > each(numeric_array < TYPE > & a) { return a; }
+   numeric_array_each < ::numeric_array < TYPE > > each(::numeric_array < TYPE > & a) { return a; }
    template < typename TYPE >
-   numeric_array_each < numeric_array < TYPE > > all(numeric_array < TYPE > & a) { return a; }
+   numeric_array_each < ::numeric_array < TYPE > > all(::numeric_array < TYPE > & a) { return a; }
    template < typename TYPE >
-   numeric_array_each < numeric_array < TYPE > > range(numeric_array < TYPE > & a) { return a; }
+   numeric_array_each < ::numeric_array < TYPE > > range(::numeric_array < TYPE > & a) { return a; }
 
    template < typename TYPE >
-   numeric_array_range < numeric_array < TYPE > > each(numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < numeric_array >(a,iBeg,iCount); }
+   numeric_array_range < ::numeric_array < TYPE > > each(::numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < numeric_array >(a,iBeg,iCount); }
    template < typename TYPE >
-   numeric_array_range < numeric_array < TYPE > > all(numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < numeric_array >(a,iBeg,iCount); }
+   numeric_array_range < ::numeric_array < TYPE > > all(::numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < numeric_array >(a,iBeg,iCount); }
    template < typename TYPE >
-   numeric_array_range < numeric_array < TYPE > > range(numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < numeric_array >(a,iBeg,iCount); }
+   numeric_array_range < ::numeric_array < TYPE > > range(::numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < numeric_array >(a,iBeg,iCount); }
+
+   template < class TYPE >
+   void quick_sort(::numeric_array < TYPE > & a, bool bAsc = true)
+   {
+      if(bAsc)
+      {
+         sort::QuickSortAsc(a);
+      }
+      else
+      {
+         sort::QuickSortDesc(a);
+      }
+   }
 
 } // namespace lemon
 

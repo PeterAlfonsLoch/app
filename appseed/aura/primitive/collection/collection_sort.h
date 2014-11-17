@@ -1532,19 +1532,6 @@ void comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE >::quick_sort(bool bAsc)
 
 
 
-template < class TYPE >
-void numeric_array < TYPE >::
-quick_sort(bool bAsc)
-{
-   if(bAsc)
-   {
-      sort::QuickSortAsc(*this);
-   }
-   else
-   {
-      sort::QuickSortDesc(*this);
-   }
-}
 
 
 
