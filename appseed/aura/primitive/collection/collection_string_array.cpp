@@ -731,19 +731,23 @@ void string_array::add(const id & id)
       return m_pData[nIndex]; }
  void string_array::set_at(index nIndex, const char * newElement)
    { ASSERT(nIndex >= 0 && nIndex < m_nSize);
-      m_pData[nIndex] = newElement; }
+ get_data()[nIndex] = newElement;
+ }
 
  void string_array::set_at(index nIndex, const string & newElement)
    { ASSERT(nIndex >= 0 && nIndex < m_nSize);
-      m_pData[nIndex] = newElement; }
+ get_data()[nIndex] = newElement;
+ }
 
  string & string_array::element_at(index nIndex)
    { ASSERT(nIndex >= 0 && nIndex < m_nSize);
-      return m_pData[nIndex]; }
+ return get_data()[nIndex];
+ }
 
  const string & string_array::element_at(index nIndex) const
    { ASSERT(nIndex >= 0 && nIndex < m_nSize);
-      return m_pData[nIndex]; }
+ return get_data()[nIndex];
+ }
 
  const string* string_array::get_data() const
    { return (const string*)m_pData; }

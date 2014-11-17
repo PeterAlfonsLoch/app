@@ -236,7 +236,7 @@ bool id_space::find(const id & t, index & iIndex)
    // do sequential search
    while(iIndex < m_ida.m_nSize)
    {
-      iCompare = id_strcmp(&m_ida.m_pData[m_iaStr.m_pData[iIndex]], &t);
+      iCompare = id_strcmp(&m_ida.get_data()[m_iaStr.get_data()[iIndex]],&t);
       if(iCompare == 0)
          return true;
       else if(iCompare < 0)
@@ -248,7 +248,7 @@ bool id_space::find(const id & t, index & iIndex)
       return false;
    while(iIndex >= 0)
    {
-      iCompare = id_strcmp(&m_ida.m_pData[m_iaStr.m_pData[iIndex]], &t);
+      iCompare = id_strcmp(&m_ida.get_data()[m_iaStr.get_data()[iIndex]],&t);
       if(iCompare == 0)
          return true;
       else if(iCompare > 0)
