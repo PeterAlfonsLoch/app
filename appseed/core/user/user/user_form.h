@@ -23,7 +23,7 @@ namespace user
       virtual ~form();
 
 
-      //array < CTransparentStatic *, CTransparentStatic * > m_staticpa;
+      //xxxarray < CTransparentStatic *, CTransparentStatic * > m_staticpa;
 
       virtual string get_path();
       virtual bool open_document(var varFile);

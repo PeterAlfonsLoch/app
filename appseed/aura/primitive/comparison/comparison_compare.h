@@ -9,7 +9,6 @@ inline int_ptr CompareElements(const TYPE * pElement1,const ARG_TYPE element2)
 
 }
 
-
 namespace comparison
 {
 

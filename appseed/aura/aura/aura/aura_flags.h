@@ -57,7 +57,7 @@ public:
    flags < ENUM > & operator = (const flags < ENUM >  & f);
    bool operator == (const flags < ENUM >  & f);
    bool operator != (const flags < ENUM >  & f);
-
+   bool operator == (const ENUM e) { return get_size() == 1 && (ENUM) element_at(0) == e; }
 
 };
 

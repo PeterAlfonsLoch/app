@@ -167,20 +167,32 @@ ARRAY_TYPE(a)
 
 
 
-template < class TYPE, class ARRAY_TYPE = full_comparable_array < void * > >
+template < class TYPE, class ARRAY_TYPE = comparable_array < void * > >
 class ptr_array :
    virtual public ARRAY_TYPE
 {
 public:
 
 
-   ptr_array();
-   ptr_array(const ptr_array & array);
-   ptr_array(ptr_array && array);
+   ptr_array() {}
+   ptr_array(const ptr_array & a) { this->operator = (a); }
+   ptr_array(ptr_array && a) { this->operator = (a); }
 
 
-   ptr_array & operator = (const ptr_array & array);
-   ptr_array & operator = (ptr_array && array);
+   ptr_array & operator = (const ptr_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }
+   ptr_array & operator = (ptr_array && a){ this->ARRAY_TYPE::operator = (a); return *this; }
+
+   TYPE * & element_at(index i) { return (TYPE* &)ARRAY_TYPE::element_at(i); }
+   TYPE * element_at(index i) const { return (TYPE*)ARRAY_TYPE::element_at(i); }
+
+   TYPE * & operator[](index i) { return element_at(i); }
+   TYPE * operator[](index i) const { return element_at(i); }
+   
+   TYPE * & first_element(index i = 0) { return (TYPE* &)ARRAY_TYPE::first_element(i); }
+   TYPE * first_element(index i = 0) const { return (TYPE*)this->first_element(i); }
+
+   TYPE * & last_element(index i = -1) { return (TYPE* &)ARRAY_TYPE::last_element(i); }
+   TYPE * last_element(index i = 0) const { return (TYPE*)ARRAY_TYPE::last_element(i); }
 
 };
 
@@ -189,42 +201,6 @@ public:
 
 
 
-template < class TYPE, class ARRAY_TYPE >
-ptr_array<  TYPE,  ARRAY_TYPE>::
-ptr_array()
-{
-}
-
-template < class TYPE, class ARRAY_TYPE >
-ptr_array<  TYPE,  ARRAY_TYPE>::
-ptr_array(const ptr_array<  TYPE, ARRAY_TYPE> & a)
-{
-   this->operator = (a);
-}
-
-template < class TYPE, class ARRAY_TYPE >
-ptr_array<  TYPE,  ARRAY_TYPE>::
-ptr_array(ptr_array<  TYPE, ARRAY_TYPE> && a)
-{
-   this->operator = (a);
-}
-
-template < class TYPE, class ARRAY_TYPE >
-ptr_array<  TYPE,  ARRAY_TYPE> & ptr_array<  TYPE,  ARRAY_TYPE>::
-operator = (const ptr_array<  TYPE, ARRAY_TYPE> & a)
-{
-   this->ARRAY_TYPE::operator = (a);
-   return *this;
-}
-
-
-template < class TYPE, class ARRAY_TYPE >
-ptr_array<  TYPE,  ARRAY_TYPE> & ptr_array<  TYPE,  ARRAY_TYPE>::
-operator = (ptr_array<  TYPE, ARRAY_TYPE> && a)
-{
-   this->ARRAY_TYPE::operator = (a);
-   return *this;
-}
 
 
 

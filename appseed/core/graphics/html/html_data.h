@@ -73,8 +73,8 @@ namespace html
          //bool     m_bHasChar;
 
 
-         //array < impl::table *, impl::table *> m_tableptraStack;
-         //array < impl::table_row *, impl::table_row *> m_tablerowptraStack;
+         //xxxarray < impl::table *, impl::table *> m_tableptraStack;
+         //xxxarray < impl::table_row *, impl::table_row *> m_tablerowptraStack;
 
 
          void reset();
@@ -102,8 +102,8 @@ namespace html
          //bool     m_bHasChar;
 
 
-         //array < impl::table *, impl::table *> m_tableptraStack;
-         //array < impl::table_row *, impl::table_row *> m_tablerowptraStack;
+         //xxxarray < impl::table *, impl::table *> m_tableptraStack;
+         //xxxarray < impl::table_row *, impl::table_row *> m_tablerowptraStack;
 
 
          void reset();
@@ -120,8 +120,7 @@ namespace html
       layout_state2               m_layoutstate2;
       layout_state3               m_layoutstate3;
 
-      array < impl::table *, impl::table * >
-                                 m_tableptra;
+      ptr_array < impl::table >  m_tableptra;
 
       smart_pointer_array < image>
                                  m_imagea;

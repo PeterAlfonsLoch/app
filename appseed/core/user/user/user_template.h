@@ -46,14 +46,14 @@ namespace user
       {
 
          class CLASS_DECL_CORE DispatchHandlerItemArray :
-            public array < DispatchHandlerItemBase *, DispatchHandlerItemBase *>
+            public ptr_array < DispatchHandlerItemBase >
          {
          public:
             bool HasSignalizable(signalizable* psignalizable);
          };
 
          class DispatchSignalPtrArray :
-            public array < DispatchSignal * , DispatchSignal * >
+            public ptr_array < DispatchSignal >
          {
          };
 
