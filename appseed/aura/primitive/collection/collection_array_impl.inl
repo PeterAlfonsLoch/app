@@ -109,25 +109,25 @@ inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::element_at(index nIndex)
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::front(index n)
-{
-   return first_element(n);
-}
-
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline const TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::front(index n) const
+inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::first(index n)
 {
    return element_at(n);
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::back(index n)
+inline const TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::first(index n) const
+{
+   return element_at(n);
+}
+
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::last(index n)
 {
    return element_at(get_upper_bound(n));
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline const TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::back(index n) const
+inline const TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::last(index n) const
 {
    return element_at(get_upper_bound(n));
 }
@@ -477,7 +477,7 @@ template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::add_new()
 {
    set_size(m_nSize + 1);
-   return last_element();
+   return back();
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/primitive/collection/collection_sort.h"
 
 
 namespace data
@@ -30,7 +31,7 @@ namespace data
    void tree_item::sort_children(index ( * lpfnCompare )(const sp(tree_item) & pitem, const sp(tree_item) & pitem2))
    {
 
-      ::sort::quick_sort((array < sp(tree_item) > &)m_children, lpfnCompare);
+      ::sort::array::quick_sort((array < sp(tree_item) > &)m_children, lpfnCompare);
 
    }
 
@@ -82,7 +83,7 @@ namespace data
       while(m_children.has_elements())
       {
 
-         ca += m_children.last_element()->remove_tree_item();
+         ca += m_children.back_sp()->remove_tree_item();
 
       }
 
@@ -193,12 +194,12 @@ namespace data
       {
       case RelativeFirstChild:
          {
-            return m_children.has_elements() ? m_children.first_element() : NULL;
+            return m_children.has_elements() ? m_children.front_sp() : NULL;
          }
          break;
       case RelativeLastChild:
          {
-            return m_children.has_elements() ? m_children.last_element() : NULL;
+            return m_children.has_elements() ? m_children.back_sp() : NULL;
          }
       case RelativeParent:
          {
@@ -271,7 +272,7 @@ namespace data
       if (m_children.is_empty())
          return NULL;
 
-      return m_children.first_element();
+      return m_children.front_sp();
 
    }
 

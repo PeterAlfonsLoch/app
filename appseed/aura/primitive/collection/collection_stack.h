@@ -33,7 +33,7 @@ public:
       BASE_CONTAINER::push_back(t);
    }
 
-   inline TYPE pop(index n)
+   inline TYPE pop(index n = -1)
    {
       index i = get_upper_bound(n);
       TYPE t = element_at(i);
@@ -87,12 +87,12 @@ public:
 
    TYPE * operator ->()
    {
-      return &m_stack.last_element();
+      return &m_stack.back();
    }
 
    const TYPE * operator ->() const
    {
-      return &m_stack.last_element();
+      return &m_stack.back();
    }
 
 };

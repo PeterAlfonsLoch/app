@@ -25,10 +25,10 @@ namespace user
       
       m_holdera.add(new place_holder(get_app()));
       
-      if(m_holdera.last_element().is_null())
+      if(m_holdera.back_sp().is_null())
          return NULL;
 
-      if(!m_holdera.last_element()->::user::interaction::create_window(NULL, NULL,WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/,rectCreate,(sp(::user::place_holder_container))this,m_holdera.get_upper_bound()))
+      if(!m_holdera.back_sp()->::user::interaction::create_window(NULL,NULL,WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/,rectCreate,(sp(::user::place_holder_container))this,m_holdera.get_upper_bound()))
       {
 
          m_holdera.remove_last();
@@ -37,7 +37,7 @@ namespace user
 
       }
 
-      return m_holdera.last_element();
+      return m_holdera.back_sp();
 
    }
 

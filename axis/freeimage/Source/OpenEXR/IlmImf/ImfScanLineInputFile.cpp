@@ -163,7 +163,7 @@ struct ScanLineInputFile::Data: public Mutex
     vector<InSliceInfo>	slices;             // info about channels in file
     IStream *		is;                 // file stream to read from
     
-    vector<LineBuffer*> lineBuffers;        // each holds one line buffer
+    ptr_array < LineBuffer > lineBuffers;        // each holds one line buffer
     int			linesInBuffer;      // number of scanlines each buffer
                                             // holds
     size_t		lineBufferSize;     // size of the line buffer
@@ -769,7 +769,7 @@ ScanLineInputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
 	    // will be skipped during readPixels().
 	    //
 
-	    slices.push_back (InSliceInfo (i.channel().type,
+	    slices.add (InSliceInfo (i.channel().type,
 					   i.channel().type,
 					   0, // base
 					   0, // xStride
@@ -794,7 +794,7 @@ ScanLineInputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
 	    fill = true;
 	}
 
-	slices.push_back (InSliceInfo (j.slice().type,
+	slices.add (InSliceInfo (j.slice().type,
 				       fill? j.slice().type:
 				             i.channel().type,
 				       j.slice().base,

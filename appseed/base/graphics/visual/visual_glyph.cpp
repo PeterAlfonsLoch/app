@@ -297,8 +297,8 @@ namespace visual
       // connect the first and last points by a line segment
       //startpt = pt[cTotal-1];
       //endpt = pt[0];
-      startpt = pointset.last_element();
-      endpt = pointset.first_element();
+      startpt = pointset.back();
+      endpt = pointset.front();
 
       //points.set_size(points.get_size() + 3);
       // convert a line to a bezier representation
@@ -434,8 +434,8 @@ namespace visual
             // may not always be needed.
 
             //            if ( pt[cTotal-1].x != pt[0].x || pt[cTotal-1].y != pt[0].y )
-            if (pointset.last_element().x != pointset.first_element().x ||
-               pointset.last_element().y != pointset.first_element().y )
+            if (pointset.back().x != pointset.front().x ||
+               pointset.back().y != pointset.front().y)
             {
                //cTotal += CloseContour( pt, cTotal );
                cTotal = CloseContour(pointset, cTotal );

@@ -227,7 +227,7 @@ struct TiledOutputFile::Data: public Mutex
 						// over all channels
 
     
-    vector<TileBuffer*> tileBuffers;
+    ptr_array < TileBuffer > tileBuffers;
     size_t		tileBufferSize;         // size of a tile buffer
 
     Int64		tileOffsetsPosition;	// position of the tile index
@@ -1025,7 +1025,7 @@ TiledOutputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
 	    // In the file, channel i will contain only zeroes.
 	    //
 
-	    slices.push_back (TOutSliceInfo (i.channel().type,
+	    slices.add (TOutSliceInfo (i.channel().type,
 					     0, // base
 					     0, // xStride,
 					     0, // yStride,
@@ -1037,7 +1037,7 @@ TiledOutputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
 	    // Channel i is present in the frame buffer.
 	    //
 
-	    slices.push_back (TOutSliceInfo (j.slice().type,
+	    slices.add (TOutSliceInfo (j.slice().type,
 					     j.slice().base,
 					     j.slice().xStride,
 					     j.slice().yStride,

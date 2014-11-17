@@ -193,7 +193,7 @@ struct TiledInputFile::Data: public Mutex
 					    // over all channels
 
     
-    vector<TileBuffer*> tileBuffers;        // each holds a single tile
+    ptr_array < TileBuffer > tileBuffers;        // each holds a single tile
     size_t          tileBufferSize;	    // size of the tile buffers
 
      Data (bool deleteStream, int numThreads);
@@ -826,7 +826,7 @@ TiledInputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
             // will be skipped during readPixels().
             //
 
-            slices.push_back (TInSliceInfo (i.channel().type,
+            slices.add (TInSliceInfo (i.channel().type,
 					    i.channel().type,
 					    0,      // base
 					    0,      // xStride
@@ -849,7 +849,7 @@ TiledInputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
             fill = true;
         }
 
-        slices.push_back (TInSliceInfo (j.slice().type,
+        slices.add (TInSliceInfo (j.slice().type,
                                         fill? j.slice().type: i.channel().type,
                                         j.slice().base,
                                         j.slice().xStride,
@@ -872,7 +872,7 @@ TiledInputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
 	// will be skipped during readPixels().
 	//
 
-	slices.push_back (TInSliceInfo (i.channel().type,
+	slices.add (TInSliceInfo (i.channel().type,
 					i.channel().type,
 					0, // base
 					0, // xStride

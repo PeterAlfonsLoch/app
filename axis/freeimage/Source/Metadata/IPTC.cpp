@@ -286,7 +286,7 @@ write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size) {
 						std::string value = (const char*)FreeImage_GetTagValue(tag);
 
 						// split the tag value
-						std::vector<std::string> output;
+						::stack<std::string> output;
 						std::string delimiter = IPTC_DELIMITER;
 
 						size_t offset = 0;

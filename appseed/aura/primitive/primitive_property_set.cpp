@@ -506,8 +506,8 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
    while(true)
    {
       m_propertya.add(canew(property));
-      m_propertya.last_element()->parse_json(pszJson, pszEnd);
-      m_map.set_at(m_propertya.last_element()->name(), m_propertya.get_upper_bound());
+      m_propertya.back().parse_json(pszJson, pszEnd);
+      m_map.set_at(m_propertya.back().name(), m_propertya.get_upper_bound());
       ::str::consume_spaces(pszJson, 0, pszEnd);
       if(*pszJson == ',')
       {

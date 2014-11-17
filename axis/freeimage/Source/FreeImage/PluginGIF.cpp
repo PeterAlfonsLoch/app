@@ -568,9 +568,9 @@ Open(FreeImageIO *io, fi_handle handle, WINBOOL read) {
 					throw "EOF reading blocks";
 				}
 				if( block == GIF_BLOCK_IMAGE_DESCRIPTOR ) {
-					info->image_descriptor_offsets.push_back(io->tell_proc(handle));
+					info->image_descriptor_offsets.add(io->tell_proc(handle));
 					//GCE may be 0, meaning no GCE preceded this ID
-					info->graphic_control_extension_offsets.push_back(gce_offset);
+					info->graphic_control_extension_offsets.add(gce_offset);
 					gce_offset = 0;
 
 					io->seek_proc(handle, 8, SEEK_CUR);
@@ -595,9 +595,9 @@ Open(FreeImageIO *io, fi_handle handle, WINBOOL read) {
 						//overwrite previous offset if more than one GCE found before an ID
 						gce_offset = io->tell_proc(handle);
 					} else if( ext == GIF_EXT_COMMENT ) {
-						info->comment_extension_offsets.push_back(io->tell_proc(handle));
+						info->comment_extension_offsets.add(io->tell_proc(handle));
 					} else if( ext == GIF_EXT_APPLICATION ) {
-						info->application_extension_offsets.push_back(io->tell_proc(handle));
+						info->application_extension_offsets.add(io->tell_proc(handle));
 					}
 				} else if( block == GIF_BLOCK_TRAILER ) {
 					continue;

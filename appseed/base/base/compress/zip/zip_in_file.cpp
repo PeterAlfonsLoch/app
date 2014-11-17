@@ -66,7 +66,7 @@ namespace zip
          return FALSE;
 
       m_filea.add(new File(get_app()));
-      if(!m_filea.last_element()->zip_open(m_straPath[0]))
+      if(!m_filea.back().zip_open(m_straPath[0]))
          return false;
 
       string str;
@@ -75,7 +75,7 @@ namespace zip
       {
          m_izfilea.add(new InFile(get_app()));
          str = m_straPath[i];
-         if(!m_izfilea.last_element()->zip_open(m_filea.last_element(), str))
+         if(!m_izfilea.back().zip_open(m_filea.back_sp(), str))
          {
             m_filea.remove_all();
             m_izfilea.remove_all();

@@ -918,7 +918,7 @@ namespace sort
       spa(TYPE) & a,
       bool bAsc = true);
 
-   template < class TYPE,class ARG_TYPE = const TYPE &,class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
+   template < class TYPE,class ARG_TYPE = const TYPE &,class DEFCONSTRUCTOR >
    void quick_sort(
       array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > & a,
       index (* lpfnCompare)(ARG_TYPE, ARG_TYPE));
@@ -1068,19 +1068,20 @@ namespace sort
       return;
    }
 
-   namespace array // hyper generic array template sort
-      ////////////////////////////////////////////////////
+
+   namespace array
    {
-      template <class ARRAY_TYPE, class ARG_TYPE>
+
+      template <class ARRAY_TYPE >
       void quick_sort(
          ARRAY_TYPE  & a,
-         index (* lpfnCompare)(ARG_TYPE, ARG_TYPE))
+         index(* lpfnCompare)(typename ARRAY_TYPE::BASE_ARG_TYPE,typename ARRAY_TYPE::BASE_ARG_TYPE))
       {
          index_array stackLowerBound;
          index_array stackUpperBound;
          index iLowerBound;
          index iUpperBound;
-         index iLPos, iUPos, iMPos;
+         index iLPos,iUPos,iMPos;
          //   TYPE t;
 
          if(a.get_size() >= 2)
@@ -1100,11 +1101,11 @@ namespace sort
                   {
                      if(iMPos == iUPos)
                         break;
-                     if(lpfnCompare((ARG_TYPE) a.element_at(iMPos), (ARG_TYPE) a.element_at(iUPos)) <= 0)
+                     if(lpfnCompare((typename ARRAY_TYPE::BASE_ARG_TYPE)a.element_at(iMPos),(typename ARRAY_TYPE::BASE_ARG_TYPE)a.element_at(iUPos)) <= 0)
                         iUPos--;
                      else
                      {
-                        a.swap(iMPos, iUPos);
+                        a.swap(iMPos,iUPos);
                         break;
                      }
                   }
@@ -1115,11 +1116,11 @@ namespace sort
                   {
                      if(iMPos == iLPos)
                         break;
-                     if(lpfnCompare((ARG_TYPE) a.element_at(iLPos), (ARG_TYPE) a.element_at(iMPos)) <= 0)
+                     if(lpfnCompare((typename ARRAY_TYPE::BASE_ARG_TYPE)a.element_at(iLPos),(typename ARRAY_TYPE::BASE_ARG_TYPE)a.element_at(iMPos)) <= 0)
                         iLPos++;
                      else
                      {
-                        a.swap(iLPos, iMPos);
+                        a.swap(iLPos,iMPos);
                         break;
                      }
                   }
@@ -1143,7 +1144,8 @@ namespace sort
          }
       }
 
-   } // namespace array
+
+   } // namespace array 
 
 
 

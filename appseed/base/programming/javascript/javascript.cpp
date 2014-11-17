@@ -161,8 +161,8 @@ bool isAlphaNum(const string &str);
 
 #if DEBUG_MEMORY
 
-vector<CScriptVar*> allocatedVars;
-vector<CScriptVarLink*> allocatedLinks;
+ptr_array < CScriptVar > allocatedVars;
+ptr_array < CScriptVarLink > allocatedLinks;
 
 
 

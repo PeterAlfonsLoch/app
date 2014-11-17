@@ -486,12 +486,11 @@ public:
    inline const TYPE & element_at(index nIndex) const;
    inline TYPE & element_at(index nIndex);
 
-   inline TYPE & front(index n = 0);
-   inline const TYPE & front(index n = 0) const;
+   inline TYPE & first(index n = 0);
+   inline const TYPE & first(index n = 0) const;
 
-   inline TYPE & back(index n = -1);
-   inline const TYPE & back(index n = -1) const;
-
+   inline TYPE & last(index n = -1);
+   inline const TYPE & last(index n = -1) const;
 
    inline const TYPE* get_data() const;
    inline TYPE* get_data();

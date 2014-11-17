@@ -136,7 +136,7 @@ public:
 
    using BASE_ARRAY::clear;
 
-   using BASE_ARRAY::quick_sort;
+//   using BASE_ARRAY::quick_sort;
 
    using BASE_ARRAY::operator new;
 

@@ -407,7 +407,7 @@ static void findMaxMinPercentile(FIBITMAP *Y, float minPrct, float *minLum, floa
 		float *pixel = (float*)bits;
 		for(x = 0; x < width; x++) {
 			if(pixel[x] != 0) {
-				vY.push_back(pixel[x]);
+				vY.add(pixel[x]);
 			}
 		}
 		bits += pitch;
@@ -415,8 +415,8 @@ static void findMaxMinPercentile(FIBITMAP *Y, float minPrct, float *minLum, floa
 
 	std::sort(vY.begin(), vY.end());
 
-	*minLum = vY.at( int(minPrct * vY.size()) );
-	*maxLum = vY.at( int(maxPrct * vY.size()) );
+	*minLum = vY.element_at( int(minPrct * vY.size()) );
+	*maxLum = vY.element_at( int(maxPrct * vY.size()) );
 }
 
 /**

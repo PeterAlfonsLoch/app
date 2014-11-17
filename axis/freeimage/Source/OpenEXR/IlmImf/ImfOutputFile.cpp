@@ -161,7 +161,7 @@ struct OutputFile::Data: public Mutex
                                                 // offset table
     Int64		 currentPosition;       // current file position
 
-    vector<LineBuffer*>  lineBuffers;           // each holds one line buffer
+    ptr_array < LineBuffer >  lineBuffers;           // each holds one line buffer
     int			 linesInBuffer;         // number of scanlines each
                                                 // buffer holds
     size_t		 lineBufferSize;        // size of the line buffer
@@ -828,7 +828,7 @@ OutputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
 	    // In the file, channel i will contain only zeroes.
 	    //
 
-	    slices.push_back (OutSliceInfo (i.channel().type,
+	    slices.add (OutSliceInfo (i.channel().type,
 					    0, // base
 					    0, // xStride,
 					    0, // yStride,
@@ -842,7 +842,7 @@ OutputFile::setFrameBuffer (const FrameBuffer &frameBuffer)
 	    // Channel i is present in the frame buffer.
 	    //
 
-	    slices.push_back (OutSliceInfo (j.slice().type,
+	    slices.add (OutSliceInfo (j.slice().type,
 					    j.slice().base,
 					    j.slice().xStride,
 					    j.slice().yStride,

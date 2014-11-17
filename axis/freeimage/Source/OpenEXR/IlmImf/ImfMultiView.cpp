@@ -43,7 +43,7 @@ parseString (string name, char c = '.')
 	while (sec.size() > 0 && sec[sec.size() - 1] == ' ')
 	    sec.erase (sec.size() - 1);
 
-	r.push_back (sec);
+	r.add (sec);
 
 	//
 	// Strip off name including ending 'c'

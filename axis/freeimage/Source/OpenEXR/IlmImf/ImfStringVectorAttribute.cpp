@@ -57,7 +57,7 @@ StringVectorAttribute::readValueFrom (IStream &is, int size, int version)
 
        str.ReleaseBuffer(strSize);
 
-       _value.push_back (str);
+       _value.add (str);
     }
 }
 
