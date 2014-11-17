@@ -56,13 +56,13 @@ void array_base::free_extra()
 void array_base::construct_element(void * p) { on_construct_element(p); }
 void array_base::construct_element(void * p,::count c) { on_construct_element(p,c); }
 void array_base::destruct_element(void * p) { try { on_destruct_element(p); } catch(...) {} }
-void array_base::copy_element(index i, void * p) { on_copy_element(i, p); }
+void array_base::copy_element(index i, const void * p) { on_copy_element(i, p); }
 
 
 void array_base::on_construct_element(void *) {}
 void array_base::on_construct_element(void *,::count) {}
 void array_base::on_destruct_element(void *) {}
-void array_base::on_copy_element(index i, void * p) { ::memcpy(m_pData + i*m_iTypeSize,p,m_iTypeSize); }
+void array_base::on_copy_element(index i, const void * p) { ::memcpy(m_pData + i*m_iTypeSize,p,m_iTypeSize); }
 
 
 void array_base::destroy()
