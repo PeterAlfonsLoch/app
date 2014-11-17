@@ -1871,7 +1871,7 @@ binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *))
    iIndex = (iUpperBound + iLowerBound) / 2;
    while(iUpperBound - iLowerBound >= 8)
    {
-      iCompare = fCompare((TYPE *) &this->m_pData[iIndex], (TYPE *) &t);
+      iCompare = fCompare((TYPE *)&this->get_data()[iIndex],(TYPE *)&t);
       if(iCompare == 0)
       {
          return true;
@@ -1899,7 +1899,7 @@ binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *))
    // do sequential search
    while(iIndex < this->get_count())
    {
-      iCompare = fCompare((TYPE *) &this->m_pData[iIndex], (TYPE *) &t);
+      iCompare = fCompare((TYPE *)&this->get_data()[iIndex],(TYPE *)&t);
       if(iCompare == 0)
          return true;
       else if(iCompare < 0)
@@ -1911,7 +1911,7 @@ binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *))
       return false;
    while(iIndex >= 0)
    {
-      iCompare = fCompare((TYPE *) &this->m_pData[iIndex], (TYPE *)  &t);
+      iCompare = fCompare((TYPE *)&this->get_data()[iIndex],(TYPE *)&t);
       if(iCompare == 0)
          return true;
       else if(iCompare > 0)
@@ -1970,7 +1970,7 @@ binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *),
    // do sequential search
    while(iIndex < this->get_count())
    {
-      iCompare = fCompare((TYPE *) &this->m_pData[ia[iIndex]], (TYPE *) &t);
+      iCompare = fCompare((TYPE *) &this->get_data()[ia[iIndex]], (TYPE *) &t);
       if(iCompare == 0)
          return true;
       else if(iCompare < 0)
@@ -1982,7 +1982,7 @@ binary_search(ARG_TYPE t, index & iIndex, index ( * fCompare ) (TYPE *, TYPE *),
       return false;
    while(iIndex >= 0)
    {
-      iCompare = fCompare((TYPE *) &this->m_pData[ia[iIndex]], (TYPE *)  &t);
+      iCompare = fCompare((TYPE *)&this->get_data()[ia[iIndex]],(TYPE *)&t);
       if(iCompare == 0)
          return true;
       else if(iCompare > 0)
