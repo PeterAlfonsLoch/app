@@ -446,12 +446,9 @@ namespace userex
    void userex::data_on_after_change(signal_details * pobj)
    {
       SCAST_PTR(::database::change_event,pchange,pobj);
-      if(pchange->m_key.m_idKey == "ca2")
+      if(pchange->m_key.m_id == "ca2.savings")
       {
-         if(pchange->m_key.m_idIndex == "savings")
-         {
-            pchange->data_get(Session.savings().m_eresourceflagsShouldSave);
-         }
+         pchange->data_get(Session.savings().m_eresourceflagsShouldSave);
       }
    }
 
