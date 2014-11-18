@@ -362,3 +362,19 @@ inline bool operator !=(int i, const smart_pointer < T > & sp) { return ((T *) i
 #endif
 
 
+
+
+template < class T >
+::file::output_stream & operator << (::file::output_stream & os,const smart_pointer < T > & sp)
+{
+   os << *sp.m_p;
+   return os;
+}
+
+template < class T >
+::file::input_stream & operator >> (::file::input_stream & is, smart_pointer < T > & sp)
+{
+   is >> *sp.m_p;
+   return is;
+}
+

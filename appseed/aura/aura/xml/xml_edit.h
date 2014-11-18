@@ -45,7 +45,7 @@ namespace xml
 
    class CLASS_DECL_AURA edit :
       public ::edit < ::xml::document >,
-      public ::file::byte_serializable_pointer_array < spa(edit_item) >
+      public  spa(edit_item)
    {
    public:
 

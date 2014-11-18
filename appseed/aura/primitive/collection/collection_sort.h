@@ -1506,6 +1506,86 @@ namespace sort
       }
    }
 
+   template < class ARRAY >
+   inline bool sort_find(ARRAY & a, typename ARRAY::BASE_ARG_TYPE arg,index & iIndex,index iStart,index iEnd)
+   {
+      if(a.get_size() == 0)
+      {
+         return false;
+      }
+      index iLowerBound = iStart;
+      index iMaxBound = iEnd;
+      index iUpperBound = iMaxBound;
+      ::primitive::memory_offset iCompare;
+      // do binary search
+      iIndex = (iUpperBound + iLowerBound) / 2;
+      while(iUpperBound - iLowerBound >= 8)
+      {
+         iCompare = COMPARE::CompareElements(a.element_at(iIndex),arg);
+         if(iCompare == 0)
+         {
+            return true;
+         }
+         else if(iCompare > 0)
+         {
+            iUpperBound = iIndex - 1;
+            if(iUpperBound < 0)
+            {
+               iIndex = 0;
+               break;
+            }
+         }
+         else
+         {
+            iLowerBound = iIndex + 1;
+            if(iLowerBound > iMaxBound)
+            {
+               iIndex = iMaxBound + 1;
+               break;
+            }
+         }
+         iIndex = (iUpperBound + iLowerBound) / 2;
+      }
+      // do sequential search
+      while(iIndex < a.get_count())
+      {
+         iCompare = COMPARE::CompareElements(a.element_at(iIndex),arg);
+         if(iCompare == 0)
+            return true;
+         else if(iCompare < 0)
+            iIndex++;
+         else
+            break;
+      }
+      if(iIndex >= a.get_count())
+         return false;
+      while(iIndex >= 0)
+      {
+         iCompare = COMPARE::CompareElements(a.element_at(iIndex),arg);
+         if(iCompare == 0)
+            return true;
+         else if(iCompare > 0)
+            iIndex--;
+         else
+            break;
+      }
+      iIndex++;
+      return false;
+
+   }
+
+   template < class ARRAY >
+   void quick_sort(ARRAY & a, bool bAsc)
+   {
+      if(bAsc)
+      {
+         sort::QuickSortAsc(a);
+      }
+      else
+      {
+         sort::QuickSortDesc(a);
+      }
+   }
 
 } // namespace sort
 
@@ -1516,18 +1596,18 @@ namespace sort
 #include "collection_key_sort_array.h"
 
 
-template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-void comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE >::quick_sort(bool bAsc)
-{
-   if(bAsc)
-   {
-      sort::QuickSortAsc(*this);
-   }
-   else
-   {
-      sort::QuickSortDesc(*this);
-   }
-}
+//template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//void comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE >::quick_sort(bool bAsc)
+//{
+//   if(bAsc)
+//   {
+//      sort::QuickSortAsc(*this);
+//   }
+//   else
+//   {
+//      sort::QuickSortDesc(*this);
+//   }
+//}
 
 
 

@@ -4,7 +4,7 @@
 
 
 class CLASS_DECL_AURA var_array : 
-   public ::file::serializable_array < array < var > >
+   public array < var >
 {
 public:
 

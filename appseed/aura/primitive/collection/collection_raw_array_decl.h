@@ -527,3 +527,18 @@ inline operator ::count () const {return get_count(); }
 
 };
 
+
+
+template<class TYPE,class ARG_TYPE = const TYPE &>
+::file::output_stream & operator << (::file::output_stream & os,const raw_array < TYPE,ARG_TYPE> & a)
+{
+   ::file::array::write(os,a);
+   return os;
+}
+
+template<class TYPE,class ARG_TYPE = const TYPE &>
+::file::input_stream & operator >> (::file::input_stream & is,raw_array < TYPE,ARG_TYPE > & a)
+{
+   ::file::array::read(is,a);
+   return is;
+}

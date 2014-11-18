@@ -12,7 +12,7 @@ public:
    comparable_array(const comparable_array & array);
    comparable_array(comparable_array && array);
 
-   void quick_sort(bool bAsc = true);
+   //void quick_sort(bool bAsc = true);
 
 
    comparable_array & operator = (const comparable_array & array);
@@ -79,72 +79,72 @@ public:
    full_comparable_array();
    full_comparable_array(const full_comparable_array & array);
 
-   inline bool sort_find(ARG_TYPE & arg,index & iIndex,index iStart,index iEnd) const
-   {
-      if(this->get_size() == 0)
-      {
-         return false;
-      }
-      index iLowerBound = iStart;
-      index iMaxBound = iEnd;
-      index iUpperBound = iMaxBound;
-      ::primitive::memory_offset iCompare;
-      // do binary search
-      iIndex = (iUpperBound + iLowerBound) / 2;
-      while(iUpperBound - iLowerBound >= 8)
-      {
-         iCompare = COMPARE::CompareElements(&this->element_at(iIndex),arg);
-         if(iCompare == 0)
-         {
-            return true;
-         }
-         else if(iCompare > 0)
-         {
-            iUpperBound = iIndex - 1;
-            if(iUpperBound < 0)
-            {
-               iIndex = 0;
-               break;
-            }
-         }
-         else
-         {
-            iLowerBound = iIndex + 1;
-            if(iLowerBound > iMaxBound)
-            {
-               iIndex = iMaxBound + 1;
-               break;
-            }
-         }
-         iIndex = (iUpperBound + iLowerBound) / 2;
-      }
-      // do sequential search
-      while(iIndex < this->get_count())
-      {
-         iCompare = COMPARE::CompareElements(&this->element_at(iIndex),arg);
-         if(iCompare == 0)
-            return true;
-         else if(iCompare < 0)
-            iIndex++;
-         else
-            break;
-      }
-      if(iIndex >= this->get_count())
-         return false;
-      while(iIndex >= 0)
-      {
-         iCompare = COMPARE::CompareElements(&this->element_at(iIndex),arg);
-         if(iCompare == 0)
-            return true;
-         else if(iCompare > 0)
-            iIndex--;
-         else
-            break;
-      }
-      iIndex++;
-      return false;
+   //inline bool sort_find(ARG_TYPE & arg,index & iIndex,index iStart,index iEnd) const
+   //{
+   //   if(this->get_size() == 0)
+   //   {
+   //      return false;
+   //   }
+   //   index iLowerBound = iStart;
+   //   index iMaxBound = iEnd;
+   //   index iUpperBound = iMaxBound;
+   //   ::primitive::memory_offset iCompare;
+   //   // do binary search
+   //   iIndex = (iUpperBound + iLowerBound) / 2;
+   //   while(iUpperBound - iLowerBound >= 8)
+   //   {
+   //      iCompare = COMPARE::CompareElements(&this->element_at(iIndex),arg);
+   //      if(iCompare == 0)
+   //      {
+   //         return true;
+   //      }
+   //      else if(iCompare > 0)
+   //      {
+   //         iUpperBound = iIndex - 1;
+   //         if(iUpperBound < 0)
+   //         {
+   //            iIndex = 0;
+   //            break;
+   //         }
+   //      }
+   //      else
+   //      {
+   //         iLowerBound = iIndex + 1;
+   //         if(iLowerBound > iMaxBound)
+   //         {
+   //            iIndex = iMaxBound + 1;
+   //            break;
+   //         }
+   //      }
+   //      iIndex = (iUpperBound + iLowerBound) / 2;
+   //   }
+   //   // do sequential search
+   //   while(iIndex < this->get_count())
+   //   {
+   //      iCompare = COMPARE::CompareElements(&this->element_at(iIndex),arg);
+   //      if(iCompare == 0)
+   //         return true;
+   //      else if(iCompare < 0)
+   //         iIndex++;
+   //      else
+   //         break;
+   //   }
+   //   if(iIndex >= this->get_count())
+   //      return false;
+   //   while(iIndex >= 0)
+   //   {
+   //      iCompare = COMPARE::CompareElements(&this->element_at(iIndex),arg);
+   //      if(iCompare == 0)
+   //         return true;
+   //      else if(iCompare > 0)
+   //         iIndex--;
+   //      else
+   //         break;
+   //   }
+   //   iIndex++;
+   //   return false;
 
-   }
+   //}
 
 
 };

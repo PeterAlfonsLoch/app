@@ -117,7 +117,7 @@ void array_base::copy_element(index i, const void * p) { on_copy_element(i, p); 
 void array_base::on_construct_element(void *) {}
 void array_base::on_construct_element(void *,::count) {}
 void array_base::on_destruct_element(void *) {}
-void array_base::on_copy_element(index i, const void * p) { ::memcpy(m_pData + i*m_iTypeSize,p,m_iTypeSize); }
+void array_base::on_copy_element(index i, const void * p) { ::memcpy((byte *) m_pData + i*m_iTypeSize,p,m_iTypeSize); }
 
 
 void array_base::destroy()
@@ -228,7 +228,7 @@ void array_base::_001RemoveIndexes(index_array & ia)
 {
 
    // sort
-   ia.quick_sort(true);
+   ::sort::quick_sort(ia,true);
 
    index i = ia.get_upper_bound();
 
@@ -445,7 +445,7 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
       m_pData = (byte *)memory_alloc(nAllocSize * m_iTypeSize);
       if(!m_bRaw)
       {
-         construct_element((byte *)m_pData + nNewSize * m_iTypeSize);
+         construct_element(m_pData, nNewSize);
       }
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
@@ -511,6 +511,15 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
       m_nMaxSize = nNewMax;
    }
    return countOld;
+}
+
+
+
+
+void array_base::on_after_read()
+{
+
+
 }
 
 

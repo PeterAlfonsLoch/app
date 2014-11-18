@@ -341,13 +341,13 @@ void strid_array::sort()
          {
             if(iMPos == iUPos)
                break;
-            if(m_idptra.m_pData[m_iaId.m_pData[iMPos]] <= m_idptra.m_pData[m_iaId.m_pData[iUPos]])
+            if(m_idptra.get_data()[m_iaId.get_data()[iMPos]] <= m_idptra.get_data()[m_iaId.get_data()[iUPos]])
                iUPos--;
             else
             {
-                i = m_iaId.m_pData[iMPos];
-                m_iaId.m_pData[iMPos] = m_iaId.m_pData[iUPos];
-                m_iaId.m_pData[iUPos] = i;
+               i = m_iaId.get_data()[iMPos];
+                m_iaId.get_data()[iMPos] = m_iaId.get_data()[iUPos];
+                m_iaId.get_data()[iUPos] = i;
                 break;
             }
          }
@@ -358,13 +358,13 @@ void strid_array::sort()
          {
             if(iMPos == iLPos)
                break;
-            if(m_idptra.m_pData[m_iaId.m_pData[iLPos]] <= m_idptra.m_pData[m_iaId.m_pData[iMPos]])
+            if(m_idptra.get_data()[m_iaId.get_data()[iLPos]] <= m_idptra.get_data()[m_iaId.get_data()[iMPos]])
                iLPos++;
             else
             {
-                i = m_iaId.m_pData[iMPos];
-                m_iaId.m_pData[iMPos] = m_iaId.m_pData[iUPos];
-                m_iaId.m_pData[iUPos] = i;
+               i = m_iaId.get_data()[iMPos];
+               m_iaId.get_data()[iMPos] = m_iaId.get_data()[iUPos];
+               m_iaId.get_data()[iUPos] = i;
                break;
             }
          }
@@ -408,7 +408,7 @@ bool strid_array::find(const char * psz, index & iIndex) const
    iIndex = (iUpperBound + iLowerBound) / 2;
    while(iUpperBound - iLowerBound >= 8)
    {
-      iCompare = m_idptra.get_data()[m_iaId.m_pData[iIndex]] - psz;
+      iCompare = m_idptra.get_data()[m_iaId.get_data()[iIndex]] - psz;
       if(iCompare == 0)
       {
          return true;
@@ -436,7 +436,7 @@ bool strid_array::find(const char * psz, index & iIndex) const
    // do sequential search
    while(iIndex < m_idptra.m_nSize)
    {
-      iCompare = m_idptra.get_data()[m_iaId.m_pData[iIndex]] - psz;
+      iCompare = m_idptra.get_data()[m_iaId.get_data()[iIndex]] - psz;
       if(iCompare == 0)
          return true;
       else if(iCompare < 0)
@@ -448,7 +448,7 @@ bool strid_array::find(const char * psz, index & iIndex) const
       return false;
    while(iIndex >= 0)
    {
-      iCompare = m_idptra.get_data()[m_iaId.m_pData[iIndex]] - psz;
+      iCompare = m_idptra.get_data()[m_iaId.get_data()[iIndex]] - psz;
       if(iCompare == 0)
          return true;
       else if(iCompare > 0)

@@ -55,7 +55,3 @@ namespace ___FlagsDebug
 
 
 
-void base_sort_serializable_int_ptr_array::on_after_read()
-{
-   quick_sort();
-}

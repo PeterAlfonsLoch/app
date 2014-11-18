@@ -163,6 +163,8 @@ public:
 	   return *this;
    }
 
+   virtual void on_after_read();
+
 };
 
 
@@ -341,9 +343,16 @@ void sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::copy(const BASE
 
 }
 
-
-
+template < class TYPE,class ARG_TYPE,class BASE_ARRAY,index(* DEFAULT_COMPARE)(ARG_TYPE,ARG_TYPE) >
+void sort_array < TYPE,ARG_TYPE,BASE_ARRAY,DEFAULT_COMPARE >::on_after_read()
+{
+   m_indexmap.mark_dirty();
+}
 
 
 // smart_pointer_sort_array
 #define spsa(T) sort_array < sp(T), const sp(T) &, spa(T) >
+
+
+using sort_int_ptr_array = sort_array < int_ptr  > ;
+

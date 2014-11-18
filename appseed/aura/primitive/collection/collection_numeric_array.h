@@ -28,14 +28,14 @@ namespace str
 
 template < typename TYPE >
 class numeric_array :
-   virtual public ::file::serializable_array < typename comparable_primitive_array < TYPE >::type::type >
+   virtual public comparable_raw_array < TYPE >
 {
 public:
 
 
    typedef TYPE BASE_TYPE;
    typedef const TYPE & BASE_ARG_TYPE;
-   typedef ::file::serializable_array < typename comparable_primitive_array < TYPE >::type::type > BASE_ARRAY;
+   typedef typename comparable_primitive_array < TYPE > BASE_ARRAY;
 
 
    numeric_array();
@@ -1878,24 +1878,24 @@ namespace lemon
 
          ::lemon::array::set_sequence(a, start,end,increment);
 
-         ca += remove_lesser_than_or_greater_than(a, start,end);
+         ca += remove_lesser_than_or_greater_than(aParam, start,end);
 
-         for(index i = a.get_upper_bound(); i >= 0; i--)
+         for(index i = aParam.get_upper_bound(); i >= 0; i--)
          {
             index iFind = 0;
-            if(::lemon::array::binary_search(aParam,a.element_at(i),iFind,&::numeric_compare < TYPE >))
+            if(::lemon::array::binary_search(a,aParam.element_at(i),iFind,&::numeric_compare < TYPE >))
             {
                a.remove_at(iFind);
                ca++;
             }
             else
             {
-               a.remove_at(i);
+               aParam.remove_at(i);
                ca++;
             }
          }
 
-         ca += a.add(a);
+         ca += aParam.add(a);
 
          return ca;
 

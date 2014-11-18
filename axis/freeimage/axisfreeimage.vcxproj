@@ -533,7 +533,7 @@
       <OpenMPSupport>true</OpenMPSupport>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalOptions />
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

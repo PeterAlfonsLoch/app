@@ -8,14 +8,6 @@
 // "primitive" type data and it is proper for use with primitive data types.
 
 template < class TYPE >
-class comparable_primitive_array
-{
-public:
-
-
-   typedef comparable_raw_array < TYPE, const TYPE & > type;
-
-
-};
+using comparable_primitive_array = comparable_raw_array < TYPE, const TYPE & >;
 
 

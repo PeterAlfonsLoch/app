@@ -318,7 +318,7 @@ public:
 
    bool           m_bRaw; // if raw, does not call destructors or constructors
    int            m_iTypeSize;
-   byte *         m_pData;    // the actual array of data
+   void *         m_pData;    // the actual array of data
    ::count        m_nSize;    // # of elements (upperBound - 1)
    ::count        m_nMaxSize; // MAX allocated
    ::count        m_nGrowBy;  // grow amount
@@ -340,7 +340,7 @@ public:
    inline index get_upper_bound(index i = -1) const;
 
 
-   void * element_at(index i) const { return m_pData + i * m_iTypeSize; }
+   void * element_at(index i) const { return (byte *) m_pData + i * m_iTypeSize; }
 
    ::count set_size(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count allocate(index nNewSize,::count nGrowBy = -1); // does not call default constructors on new items/elements
@@ -377,6 +377,7 @@ public:
    virtual ::count append(const array_base & src); // return old size
    virtual void copy(const array_base & src);
  
+   virtual void on_after_read();
 
 };
 
@@ -658,6 +659,22 @@ public:
    virtual ~nodefctr_array() {}
 
 };
+
+
+template < class TYPE,class ARG_TYPE = const TYPE &,class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
+::file::output_stream & operator << (::file::output_stream & os,const array < TYPE,ARG_TYPE,DEFCONSTRUCTOR > & a)
+{
+   ::file::array::write(os,a);
+   return os;
+}
+
+template < class TYPE,class ARG_TYPE = const TYPE &,class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
+::file::input_stream & operator >> (::file::input_stream & is,array < TYPE,ARG_TYPE,DEFCONSTRUCTOR > & a)
+{
+   ::file::array::read(is,a);
+   return is;
+}
+
 
 
 

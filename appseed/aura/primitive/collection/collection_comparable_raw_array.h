@@ -4,29 +4,12 @@
 
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
-class comparable_eq_raw_array
-{
-public:
-
-
-   typedef comparable_eq_array < TYPE, ARG_TYPE, raw_array < TYPE, ARG_TYPE > > type;
-
-
-};
-
+using comparable_eq_raw_array = comparable_eq_array < TYPE, ARG_TYPE, raw_array < TYPE, ARG_TYPE > >;
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
-class comparable_raw_array
-{
-public:
+using comparable_raw_array = comparable_array < TYPE, ARG_TYPE, typename comparable_eq_raw_array < TYPE, ARG_TYPE > >;
 
-
-   typedef comparable_array < TYPE, ARG_TYPE, typename comparable_eq_raw_array < TYPE, ARG_TYPE >::type > type;
-
-
-};
-
-template < typename POINTER,class ARRAY_TYPE = comparable_raw_array < void * >::type  >
+template < typename POINTER,class ARRAY_TYPE = comparable_raw_array < void * >  >
 class raw_ptr_array:
    public ARRAY_TYPE
 {

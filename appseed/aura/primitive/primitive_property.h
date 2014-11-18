@@ -661,7 +661,7 @@ public:
 
 
 class CLASS_DECL_AURA property_array :
-   public ::file::byte_serializable_pointer_array < spa(property) >
+   public spa(property)
 {
 public:
 

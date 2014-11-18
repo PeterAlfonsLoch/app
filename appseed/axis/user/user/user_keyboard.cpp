@@ -375,7 +375,7 @@ namespace user
             layoutida.add(layoutid);
          }
       }
-      layoutida.quick_sort(true);
+      ::sort::quick_sort(layoutida, true);
 
 #ifdef WINDOWSEX
 

@@ -59,7 +59,7 @@ namespace userex // ca8 + cube
          }
       }
 
-      m_layoutida.quick_sort(true);
+      ::sort::quick_sort(m_layoutida,true);
       if(&Session.user()->keyboard().layout() != NULL)
       {
          int32_t iFind = -1;

@@ -1,8 +1,9 @@
 #pragma once
 
+using bool_array_base = raw_array < bool,bool  > ;
 
 class CLASS_DECL_AURA bool_array :
-   virtual public ::file::serializable_array < raw_array < bool, bool > >
+   virtual public bool_array_base
 {
 public:
 
@@ -28,13 +29,13 @@ public:
 
    bool_array & operator = (const bool_array & a)
    {
-      ::file::serializable_array < raw_array < bool, bool > >::operator = (a);
+      bool_array_base::operator = (a);
       return *this;
    }
 
    bool_array & operator = (bool_array && a)
    {
-      ::file::serializable_array < raw_array < bool, bool > >::operator = (a);
+      bool_array_base::operator = (a);
       return *this;
    }
 

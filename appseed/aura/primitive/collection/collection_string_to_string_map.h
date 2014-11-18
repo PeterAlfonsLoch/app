@@ -5,7 +5,7 @@ typedef CLASS_DECL_AURA string_map < string, const string & > base_string_to_str
 
 
 class CLASS_DECL_AURA string_to_string :
-   virtual public ::file::byte_serializable_map < attrib_map < base_string_to_string >  >
+   virtual public attrib_map < base_string_to_string >
 {
 public:
 

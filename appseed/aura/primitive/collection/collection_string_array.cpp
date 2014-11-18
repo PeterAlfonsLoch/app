@@ -239,8 +239,7 @@ void string_array::InsertEmpty(index nIndex, ::count nCount)
       ::count nOldSize = m_nSize;
       set_size(m_nSize + nCount);  // grow it to new size
       // shift old data up to fill gap
-      memmove(&m_pData[nIndex+nCount], &m_pData[nIndex],
-         (nOldSize-nIndex) * sizeof(string));
+      memmove(&get_data()[nIndex + nCount],&get_data()[nIndex], (nOldSize-nIndex) * sizeof(string));
 
       // re-init slots we copied from
       for(index i = nIndex; i < nIndex + nCount; i++)
@@ -352,7 +351,7 @@ void string_array::dump(dump_context & dumpcontext) const
    if (dumpcontext.GetDepth() > 0)
    {
       for (int32_t i = 0; i < m_nSize; i++)
-         dumpcontext << "\n\t[" << i << "] = " << m_pData[i];
+         dumpcontext << "\n\t[" << i << "] = " << get_data()[i];
    }
 
    dumpcontext << "\n";
@@ -728,7 +727,8 @@ void string_array::add(const id & id)
 
  string string_array::get_at(index nIndex) const
    { ASSERT(nIndex >= 0 && nIndex < m_nSize);
-      return m_pData[nIndex]; }
+ return get_data()[nIndex];
+ }
  void string_array::set_at(index nIndex, const char * newElement)
    { ASSERT(nIndex >= 0 && nIndex < m_nSize);
  get_data()[nIndex] = newElement;
