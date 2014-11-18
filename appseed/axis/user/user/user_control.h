@@ -118,7 +118,7 @@ namespace user
          bool has_function(efunction efunction);
          edatatype get_data_type();
          void set_data_type(edatatype edatatype);
-         void set_ddx_dbflags(::database::id idSection, ::database::id idKey, ::database::id idIndex, int_ptr value);
+         void set_ddx_dbflags(::database::id id, int_ptr value);
 
 
       };

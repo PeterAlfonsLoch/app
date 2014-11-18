@@ -98,16 +98,11 @@ namespace database
 
             defer_update_display();
 
-            ::database::id idWindow    = m_dataidWindow;
-
-            ::id idKey                 = ".local://WindowRect." + m_strDisplay;
+            ::id idKey                 = m_dataidWindow.m_id + ".local://WindowRect." + m_strDisplay;
 
             sl.unlock();
 
-            bSave = SaveWindowRect_(
-               idWindow,
-               idKey,
-               this);
+            bSave = SaveWindowRect_(idKey, this);
          }
 
          return true;
@@ -126,13 +121,11 @@ namespace database
 
          defer_update_display();
 
-         ::database::id idWindow       = m_dataidWindow;
-
-         ::id idKey                    = ".local://WindowRect." + m_strDisplay;
+         ::id idKey                    = m_dataidWindow.m_id + ".local://WindowRect." + m_strDisplay;
 
          sl.unlock();
 
-         bLoad = LoadWindowRect_(idWindow, idKey, this, bForceRestore, bInitialFramePosition);
+         bLoad = LoadWindowRect_(idKey, this, bForceRestore, bInitialFramePosition);
 
          if(!bLoad && (bForceRestore || bInitialFramePosition))
          {
@@ -156,7 +149,7 @@ namespace database
       }
 
 
-      bool interaction::LoadWindowRect_(::database::id key, ::database::id idIndex, sp(::user::interaction) pwindow, bool bForceRestore, bool bInitialFramePosition)
+      bool interaction::LoadWindowRect_(::database::id id, sp(::user::interaction) pwindow, bool bForceRestore, bool bInitialFramePosition)
       {
 
          try
@@ -166,7 +159,7 @@ namespace database
 
             ::file::byte_stream_memory_buffer memstream(get_app());
 
-            if(!data_get(key,idIndex,memstream))
+            if(!data_get(id,memstream))
                return false;
 
             memstream.seek_to_begin();
@@ -272,16 +265,13 @@ namespace database
       }
 
 
-      bool interaction::SaveWindowRect_(::database::id key, ::database::id idIndex,  sp(::user::interaction) pwindow)
+      bool interaction::SaveWindowRect_(::database::id id,  sp(::user::interaction) pwindow)
       {
          //WINDOWPLACEMENT wp;
          //pwindow->GetWindowPlacement(&wp);
          ::file::byte_stream_memory_buffer memstream(get_app());
          ::file::byte_stream_memory_buffer memstreamGet(get_app());
-         bool bGet = data_get(
-            key,
-            idIndex,
-            memstreamGet);
+         bool bGet = data_get(id, memstreamGet);
          memstreamGet.seek_to_begin();
          int iBeforeOld = 0;
          bool bZoomedOld = false;
@@ -327,7 +317,7 @@ namespace database
             pwindow->GetWindowRect(rect);
             memstream << rect;
          }
-         return data_set(key, idIndex, memstream);
+         return data_set(id, memstream);
       }
 
 
@@ -378,7 +368,7 @@ namespace database
          if(m_strDisplay.is_empty())
          {
 
-            if(!data_get(m_dataidWindow,"local://lastdisplay",m_strDisplay) || m_strDisplay.is_empty())
+            if(!data_get(m_dataidWindow.m_id + ".local://lastdisplay",m_strDisplay) || m_strDisplay.is_empty())
             {
 
                m_strDisplay = calc_display();
@@ -391,7 +381,7 @@ namespace database
 
             m_strDisplay = calc_display();
 
-            data_set(m_dataidWindow,"local://lastdisplay",m_strDisplay);
+            data_set(m_dataidWindow.m_id +".local://lastdisplay",m_strDisplay);
 
          }
 

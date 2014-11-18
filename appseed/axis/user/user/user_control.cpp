@@ -149,12 +149,12 @@ namespace user
    }
 
 
-   void control::descriptor::set_ddx_dbflags(::database::id idSection, ::database::id idKey, ::database::id idIndex, int_ptr value)
+   void control::descriptor::set_ddx_dbflags(::database::id id, int_ptr value)
    {
 
       m_eddx = ::user::control::ddx_dbflags;
 
-      class ::database::key key(NULL, idSection, idKey, idIndex);
+      class ::database::key key(NULL, id);
 
       m_ddx.m_pdbflags = new class ::user::control::ddx_dbflags(key, value);
 

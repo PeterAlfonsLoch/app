@@ -84,7 +84,7 @@ namespace database
 
    bool server::data_pulse_change(client * pclient, class id id, update_hint * puh)
    {
-      return on_after_data_change(pclient, idSection, key, idIndex, puh);
+      return on_after_data_change(pclient, id, puh);
    }
 
 
@@ -93,9 +93,7 @@ namespace database
       ::database::change_event signal(var);
       signal.m_pserver = this;
       signal.m_key.m_pclient = pclient;
-      signal.m_key.m_idSection = idSection;
-      signal.m_key.m_idKey = key;
-      signal.m_key.m_idIndex = idIndex;
+      signal.m_key.m_id = id;
       signal.m_puh = puh;
       for(int32_t i = 0; i < client_array::get_count(); i++)
       {
@@ -112,9 +110,7 @@ namespace database
       ::database::change_event signal;
       signal.m_pserver       = this;
       signal.m_key.m_pclient     = pclient;
-      signal.m_key.m_idSection   = idSection;
-      signal.m_key.m_idKey       = key;
-      signal.m_key.m_idIndex     = idIndex;
+      signal.m_key.m_id          = id;
       signal.m_puh = puh;
       for(int32_t i = 0; i < client_array::get_count(); i++)
       {

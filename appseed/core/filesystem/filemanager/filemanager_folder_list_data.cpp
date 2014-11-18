@@ -23,7 +23,7 @@ namespace filemanager
       if(pitem->m_iSubItem == 0)
       {
          stringa stra;
-         if(!data_get(::base::system::idEmpty, ::base::system::idEmpty, stra))
+         if(!data_get(::base::system::idEmpty, stra))
          {
             pitem->m_bOk = false;
             return;
@@ -33,7 +33,7 @@ namespace filemanager
       else if(pitem->m_iSubItem == 1)
       {
          bool_array ba;
-         data_is("recursive",::base::system::idEmpty) >> ba;
+         data_get("recursive") >> ba;
          bool b = ba[pitem->m_iItem];
          if(b)
          {
@@ -50,7 +50,7 @@ namespace filemanager
    void folder_list_data::GetSel(::user::list * plist , stringa & stra)
    {
       stringa wstraTotal;
-      if(!data_get(::base::system::idEmpty, ::base::system::idEmpty, wstraTotal))
+      if(!data_get(::base::system::idEmpty, wstraTotal))
          return;
       ::user::list::range range;
       plist->_001GetSelection(range);
@@ -70,7 +70,7 @@ namespace filemanager
    ::count folder_list_data::_001GetItemCount()
    {
       stringa straTotal;
-      if(!data_get(::base::system::idEmpty, ::base::system::idEmpty, straTotal))
+      if(!data_get(::base::system::idEmpty, straTotal))
          return -1;
       return straTotal.get_size();
    }
@@ -79,9 +79,9 @@ namespace filemanager
    bool folder_list_data::add_unique(const stringa & stra, bool_array & baRecursive)
    {
       stringa straData;
-      data_get(::base::system::idEmpty, ::base::system::idEmpty, straData);
+      data_get(::base::system::idEmpty, straData);
       bool_array baData;
-      data_is("recursive", ::base::system::idEmpty) >> baData;
+      data_get("recursive") >> baData;
       for(int32_t i = 0; i < stra.get_count(); i++)
       {
          if(!straData.contains(stra[i]))
@@ -101,20 +101,27 @@ namespace filemanager
       {
          baData.remove_last();
       }
-      if(!data_set(::base::system::idEmpty, ::base::system::idEmpty, straData))
+      if(!data_set(::base::system::idEmpty, straData))
          return false;
-      if(!data_set("recursive", ::base::system::idEmpty, baData))
+      try
+      {
+         data_set("recursive") << baData;
+      }
+      catch(...)
+      {
          return false;
+      }
+         
       return true;
    }
 
    bool folder_list_data::remove(const stringa & stra)
    {
       stringa straData;
-      if(!data_get(::base::system::idEmpty, ::base::system::idEmpty, straData))
+      if(!data_get(::base::system::idEmpty, straData))
          return true;
       bool_array baData;
-      data_is("recursive", ::base::system::idEmpty) >> baData;
+      data_get("recursive") >> baData;
       index iFind;
       for(int32_t i = 0; i < stra.get_count(); i++)
       {
@@ -135,10 +142,16 @@ namespace filemanager
       {
          baData.remove_last();
       }
-      if(!data_set(::base::system::idEmpty, ::base::system::idEmpty, straData))
+      if(!data_set(::base::system::idEmpty, straData))
          return false;
-      if(!data_set("recursive", ::base::system::idEmpty, baData))
+      try
+      {
+         data_set("recursive") >> baData;
+      }
+      catch(...)
+      {
          return false;
+      }
 
       return true;
 

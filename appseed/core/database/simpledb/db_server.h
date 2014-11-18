@@ -50,13 +50,13 @@ public:
    sp(::sqlite::base) get_database();
 
    using database::server::data_server_load;
-   virtual bool data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::file::output_stream & writable, ::database::update_hint * phint = NULL);
+   virtual bool data_server_load(::database::client * pclient, ::database::id id, ::file::output_stream & writable, ::database::update_hint * phint = NULL);
 
    using database::server::data_server_save;
-   virtual bool data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::file::input_stream & readable, ::database::update_hint * phint = NULL);
+   virtual bool data_server_save(::database::client * pclient, ::database::id id, ::file::input_stream & readable, ::database::update_hint * phint = NULL);
 
 
-   virtual bool data_pulse_change(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::database::update_hint * puh);
+   virtual bool data_pulse_change(::database::client * pclient, ::database::id id, ::database::update_hint * puh);
 
    void close();
 
@@ -67,7 +67,7 @@ public:
    bool save(const char * lpKey, ::file::input_stream & reader);
 
 
-   virtual string calc_key(::database::client * pclient, ::database::id & idSection, ::database::id & id, ::database::id & idIndex);
+   virtual string calc_key(::database::client * pclient, ::database::id & idSection, ::database::id & id);
 
    virtual bool initialize_user(mysql::database * pmysqldbUser, const char * pszUser);
    virtual bool initialize();

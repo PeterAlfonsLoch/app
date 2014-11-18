@@ -47,7 +47,7 @@ namespace filemanager
 
       m_plistview->_001UpdateColumns();
 
-      if(data_get(".local://InitialBrowsePath",::base::system::idEmpty,str))
+      if(data_get(".local://InitialBrowsePath",str))
       {
          get_filemanager_manager()->FileManagerBrowse(str,::action::source::database_default());
       }

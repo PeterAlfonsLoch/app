@@ -134,7 +134,7 @@ namespace database
       virtual bool data_get(class id, ::file::output_stream & obj);
 //      virtual bool data_get(class id, ::file::serializable & obj);
       //virtual bool data_get(class id, ::core::plain_text_output_stream & obj);
-      virtual bool data_get(class id dataid, class id, string & str);
+//      virtual bool data_get(class id dataid, class id, string & str);
 
 
       inline ::file::data_trigger_input_stream data_get(class id id) { return ::file::data_trigger_input_stream(this,id); }

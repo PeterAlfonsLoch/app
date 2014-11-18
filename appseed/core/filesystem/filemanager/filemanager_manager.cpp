@@ -295,7 +295,7 @@ namespace filemanager
          if(::str::begins(strPath,"uifs://")
             || ::str::begins(strPath,"fs://"))
          {
-            data_set(".local://InitialBrowsePath",::base::system::idEmpty,strPath);
+            data_set(".local://InitialBrowsePath",strPath);
          }
          else
          {
@@ -308,8 +308,8 @@ namespace filemanager
             idMachine = "Windows Desktop";
 #endif
 
-            data_set(".local://InitialBrowsePath",::base::system::idEmpty,"machinefs://");
-            data_set(".local://InitialBrowsePath",idMachine,strPath);
+            data_set(".local://InitialBrowsePath","machinefs://");
+            data_set(".local://InitialBrowsePath."+idMachine,strPath);
 
          }
 

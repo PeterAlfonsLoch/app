@@ -28,13 +28,13 @@ db_server::~db_server()
 }
 
 
-string db_server::calc_key(::database::client * pclient, ::database::id & idSection, ::database::id & id, ::database::id & idIndex)
+string db_server::calc_key(::database::client * pclient, ::database::id & idSection, ::database::id & id)
 {
 
    if(pclient != NULL)
    {
 
-      return pclient->calc_key(idSection, id, idIndex);
+      return pclient->calc_key(idSection, id);
 
    }
    else
@@ -44,8 +44,6 @@ string db_server::calc_key(::database::client * pclient, ::database::id & idSect
       str = idSection.get_id().str();
       str += ".";
       str += id.get_id().str();
-      str += ".";
-      str += idIndex.get_id().str();
 
       return str;
 
@@ -342,7 +340,7 @@ sp(::sqlite::base) db_server::get_database()
 bool db_server::data_pulse_change(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::database::update_hint * puh)
 {
 
-   return ::database::server::data_pulse_change(pclient, idSection, id, idIndex, puh);
+   return ::database::server::data_pulse_change(pclient, id, puh);
 
 }
 

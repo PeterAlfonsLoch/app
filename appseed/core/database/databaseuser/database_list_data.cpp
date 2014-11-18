@@ -26,7 +26,7 @@ namespace databaseuser
 
       if(Map(pitem->m_plist, key1, key2, pitem->m_iItem, pitem->m_iSubItem, pitem->m_iListItem))
       {
-         if(data_get(key1, key2, pitem->m_strText))
+         if(data_get(key1.m_id + "." + key2.m_id, pitem->m_strText))
          {
             return_(pitem->m_bOk, true);
          }

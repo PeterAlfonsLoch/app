@@ -373,13 +373,12 @@ namespace file
 {
 
 
-   data_trigger_output_stream::data_trigger_output_stream(::database::client * pclient,class ::database::id id,class ::database::id idIndex) :
+   data_trigger_output_stream::data_trigger_output_stream(::database::client * pclient,class ::database::id id) :
       ::element(pclient->get_app()),
       byte_stream_memory_buffer(pclient->get_app())
    {
 
       m_id = id;
-      m_idIndex = idIndex;
       m_pclient = pclient;
 
    }
@@ -390,22 +389,19 @@ namespace file
       if(m_pclient != NULL)
       {
          seek_to_begin();
-         m_pclient->data_set(m_id,m_idIndex,*this);
+         m_pclient->data_set(m_id,*this);
 
       }
    
    }
 
    
-   data_trigger_input_stream::data_trigger_input_stream(::database::client * pclient,class ::database::id id,class ::database::id idIndex) :
+   data_trigger_input_stream::data_trigger_input_stream(::database::client * pclient,class ::database::id id) :
       ::element(pclient->get_app()),
       byte_stream_memory_buffer(pclient->get_app())
    {
       
-      //m_id = id;
-      //m_idIndex = idIndex;
-      //m_pclient = pclient;
-      pclient->data_get(id,idIndex,*this);
+      pclient->data_get(id,*this);
       seek_to_begin();
    }
 
