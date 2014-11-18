@@ -1,7 +1,7 @@
 #pragma once
 
 
-template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)( TYPE *, TYPE *) >
+template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPARE)(ARG_TYPE, ARG_TYPE) >
 index_array & sort_array < TYPE, ARG_TYPE, BASE_ARRAY, DEFAULT_COMPARE >::
 defer_update(index(* fCompare) (ARG_TYPE,ARG_TYPE))
 {
@@ -13,7 +13,7 @@ defer_update(index(* fCompare) (ARG_TYPE,ARG_TYPE))
 
    if(!sortindex->m_bUpdated)
    {
-      sortindex->m_indexa.ensure_sequence(0, this->get_upper_bound());
+      ::lemon::array::ensure_sequence(sortindex->m_indexa,0,this->get_upper_bound());
       ::sort::array::quick_sort(*this, fCompare, sortindex->m_indexa);
       sortindex->m_bUpdated = true;
    }

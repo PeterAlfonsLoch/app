@@ -2052,7 +2052,7 @@ namespace lemon
 
          ::count ca = 0;
 
-         numeric_array < TYPE > a;
+         ::numeric_array < TYPE > a;
 
          a.set_sequence(start,end,increment);
 
