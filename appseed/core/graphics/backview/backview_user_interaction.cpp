@@ -116,7 +116,7 @@ namespace backview
       void interaction::BackViewSetCurrentBackgroundImagePath(const char * psz)
       {
 
-         data_set("::backview::CurrentBackgroundImagePath", ::base::system::idEmpty, psz);
+         data_set("::backview::CurrentBackgroundImagePath", psz);
 
       }
 
