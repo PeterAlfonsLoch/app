@@ -194,11 +194,9 @@ namespace filemanager
 
       strId.Format("manager(%s)", m_ptemplateStd->m_strDISection);
 
-      database::id dataid = strId;
-
       string strPath;
 
-      if(data_get(dataid, ".local://InitialBrowsePath", ::base::system::idEmpty, strPath))
+      if(data_get(strId + ".local://InitialBrowsePath", strPath))
       {
 
          Sess(get_app()).dir().mk(strPath);
@@ -225,7 +223,7 @@ namespace filemanager
 
       }
 
-      if(data_set(dataid, ".local://InitialBrowsePath", ::base::system::idEmpty, strPath))
+      if(data_set(strId + ".local://InitialBrowsePath", ::base::system::idEmpty, strPath))
       {
 
          return strPath;
