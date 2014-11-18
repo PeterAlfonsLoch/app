@@ -372,6 +372,13 @@ namespace database
 namespace file
 {
 
+   data_trigger_output_stream::data_trigger_output_stream(data_trigger_output_stream && d):
+      byte_stream_memory_buffer((byte_stream_memory_buffer &&)d)
+   {
+      m_pclient = d.m_pclient;
+      m_id = d.m_id;
+      d.m_pclient = NULL;
+   }
 
    data_trigger_output_stream::data_trigger_output_stream(::database::client * pclient,class ::database::id id) :
       ::element(pclient->get_app()),
@@ -395,7 +402,11 @@ namespace file
    
    }
 
-   
+   data_trigger_input_stream::data_trigger_input_stream(data_trigger_input_stream && d):
+      byte_stream_memory_buffer((byte_stream_memory_buffer &&) d)
+   {
+   }
+
    data_trigger_input_stream::data_trigger_input_stream(::database::client * pclient,class ::database::id id) :
       ::element(pclient->get_app()),
       byte_stream_memory_buffer(pclient->get_app())

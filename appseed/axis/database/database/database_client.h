@@ -23,14 +23,7 @@ namespace file
       ::database::client * m_pclient;
       class ::database::id m_id;
 
-      data_trigger_output_stream(data_trigger_output_stream && d):
-         element(d),
-         byte_stream_memory_buffer(d)
-      {
-         m_pclient = d.m_pclient;
-         m_id = d.m_id;
-         d.m_pclient = NULL;
-      }
+      data_trigger_output_stream(data_trigger_output_stream && d);
       data_trigger_output_stream(::database::client * pclient,class ::database::id);
       virtual ~data_trigger_output_stream();
 
@@ -46,11 +39,7 @@ namespace file
       //::database::client * m_pclient;
       //class ::database::id m_id;
 
-      data_trigger_input_stream(data_trigger_input_stream && d):
-         element(d),
-         byte_stream_memory_buffer(d)
-      {
-      }
+      data_trigger_input_stream(data_trigger_input_stream && d);
       data_trigger_input_stream(::database::client * pclient,class ::database::id);
       virtual ~data_trigger_input_stream();
 
@@ -155,7 +144,7 @@ namespace database
       inline ::file::data_trigger_input_stream data_get(class id id) { return ::file::data_trigger_input_stream(this,id); }
 
       template < typename T >
-      inline bool data_read(class id id,T & t)
+      inline bool data_load(class id id,T & t)
       {
          try
          {

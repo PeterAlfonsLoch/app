@@ -1079,7 +1079,7 @@ namespace user
          if(pdescriptor->m_eddx == control::ddx_dbflags)
          {
             int_ptr_array ia;
-            pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient->data_read(
+            pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient->data_load(
                pdescriptor->m_ddx.m_pdbflags->m_key.m_id,
                ia);
             sp(check_interface) pcheck = pevent->m_puie;
@@ -1091,7 +1091,7 @@ namespace user
             {
                ia.remove(pdescriptor->m_ddx.m_pdbflags->m_value);
             }
-            pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient->data_read(
+            pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient->data_load(
                pdescriptor->m_ddx.m_pdbflags->m_key.m_id,
                ia);
          }

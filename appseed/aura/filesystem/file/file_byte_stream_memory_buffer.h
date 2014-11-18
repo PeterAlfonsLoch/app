@@ -17,6 +17,7 @@ namespace file
       byte_stream_memory_buffer(::aura::application * papp);
       byte_stream_memory_buffer(::primitive::memory_base * pbase);
       byte_stream_memory_buffer(::aura::application * papp, const void * data, ::primitive::memory_size c);
+      byte_stream_memory_buffer(byte_stream_memory_buffer && b);
       virtual ~byte_stream_memory_buffer();
 
 

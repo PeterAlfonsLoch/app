@@ -279,18 +279,26 @@ namespace user
 
    index list_header::ItemToColumnKey(index iItem)
    {
+      
       list * plist = m_plistctrlinterface;
+
       return plist->_001MapColumnToOrder(iItem);
+
    }
+
 
    bool list_header::DIDDXLayout(bool bSave)
    {
+      
       bool bFail = false;
+      
       if(!DIDDXColumn(bSave))
          bFail = true;
+   
       return !bFail;
 
    }
+
 
    bool list_header::DIDDXColumn(bool bSave)
    {
@@ -305,32 +313,53 @@ namespace user
 
       if(bSave)
       {
+         
          for (index iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
          {
+
             item.m_iWidthColumn = iColumn;
+
             m_plistctrlinterface->_001GetColumnWidth(&item);
+
             if (item.m_bOk)
             {
+
                iaWidth.add(item.m_iColumnWidth);
+
             }
             else
             {
+
                iaWidth.add(-1);
+
             }
+
          }
+         
          if(!data_set(str + m_plistctrlinterface->m_dataid.m_id, iaWidth))
             return false;
+
       }
       else
       {
-         data_get(str +m_plistctrlinterface->m_dataid.m_id) >> iaWidth;
-         for (index iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
+         
+         data_load(str +m_plistctrlinterface->m_dataid.m_id,iaWidth);
+
+         ::count c = MIN(iaWidth.get_count(),m_plistctrlinterface->_001GetColumnCount());
+
+         for (index iColumn = 0; iColumn < c; iColumn++)
          {
+
             m_plistctrlinterface->_001SetColumnWidth(iColumn, MAX(iaWidth[iColumn], 50));
+
          }
+
       }
+
       return true;
+
    }
+
 
    void list_header::install_message_handling(::message::dispatch *pinterface)
    {

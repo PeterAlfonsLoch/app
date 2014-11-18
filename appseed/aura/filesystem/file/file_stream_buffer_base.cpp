@@ -19,7 +19,7 @@ namespace file
    void * stream_buffer_base::get_internal_data()
    {
 
-      return (void *) ((const stream_buffer_base *) this)->get_internal_data();
+      return NULL;
 
    }
 

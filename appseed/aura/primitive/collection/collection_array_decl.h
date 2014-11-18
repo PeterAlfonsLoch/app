@@ -432,9 +432,6 @@ public:
       typedef ARG_TYPE BASE_ARG_TYPE;
       typedef array < TYPE,ARG_TYPE > BASE_ARRAY;
 
-      index            m_i;
-      const array *     m_parray;
-
       const_iterator() {}
       const_iterator(index i,const array_base * parray): const_iterator_base(i,parray) {}
       const_iterator(const iterator & it): const_iterator_base(it){}

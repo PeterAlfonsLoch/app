@@ -35,6 +35,15 @@ namespace file
 
    }
 
+   byte_stream_memory_buffer::byte_stream_memory_buffer(byte_stream_memory_buffer && b) :
+      element(b)
+   {
+
+      m_spmemorybuffer = b.m_spmemorybuffer;
+
+      m_spbuffer = b.m_spmemorybuffer;
+
+   }
 
    byte_stream_memory_buffer::~byte_stream_memory_buffer()
    {
