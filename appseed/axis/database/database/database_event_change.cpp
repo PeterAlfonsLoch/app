@@ -24,12 +24,7 @@ namespace database
    {
       if(m_pserver != NULL)
       {
-         return m_pserver->data_server_load(
-            m_key.m_pclient,
-            m_key.m_idSection,
-            m_key.m_idKey,
-            m_key.m_idIndex,
-            obj);
+         return m_key.m_pclient->data_get(m_key.m_id, obj);
       }
       return false;
    }

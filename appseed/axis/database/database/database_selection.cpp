@@ -15,7 +15,7 @@ namespace database
 
    void selection::add_item(class id id, class id idIndex)
    {
-      selection_item item(id, idIndex);
+      selection_item item(id);
       m_itema.add(item);
    }
 

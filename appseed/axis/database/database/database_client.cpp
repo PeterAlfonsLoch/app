@@ -51,27 +51,8 @@ namespace database
       UNREFERENCED_PARAMETER(pobj);
    }
 
+
    bool client::data_set(class id id, bool b, update_hint * phint)
-   {
-      return data_set(id, ::axis::system::idEmpty, b, phint);
-   }
-
-   bool client::data_set(class id id, const char * lpcsz, update_hint * phint)
-   {
-      return data_set(id, ::axis::system::idEmpty, lpcsz, phint);
-   }
-
-   bool client::data_get(class id id, bool & b)
-   {
-      return data_get(id, ::axis::system::idEmpty, b);
-   }
-
-   bool client::data_get(class id id, string & str)
-   {
-      return data_get(id, ::axis::system::idEmpty, str);
-   }
-
-   bool client::data_set(class id id, class id idIndex, bool b, update_hint * phint)
    {
       UNREFERENCED_PARAMETER(phint);
       int32_t i;
@@ -83,87 +64,63 @@ namespace database
       {
          i = 0;
       }
-      return data_set(id, idIndex, i, phint);
+      return data_set(id, i, phint);
    }
 
 
    bool client::data_set(
       class id id,
-      class id idIndex,
+      
       var & var,
       update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
-         return m_pdataserver->data_server_save(this, get_data_id(), id, idIndex, var, puh);
+         return m_pdataserver->data_server_save(this, get_data_id(id), var, puh);
       }
       return false;
    }
-
-   bool client::data_set(class id id, class id idIndex, int32_t i, update_hint * puh)
-   {
-      if(m_pdataserver != NULL)
-      {
-         var var(i);
-         return m_pdataserver->data_server_save(this, get_data_id(), id, idIndex, var, puh);
-      }
-      return false;
-   }
-
-   bool client::data_set(class id id, class id idIndex, int64_t i, update_hint * puh)
-   {
-      if(m_pdataserver != NULL)
-      {
-         var var(i);
-         return m_pdataserver->data_server_save(this, get_data_id(), id, idIndex, var, puh);
-      }
-      return false;
-   }
-
 
    bool client::data_set(class id id, int32_t i, update_hint * puh)
    {
-      return data_set(id, ::axis::system::idEmpty, i, puh);
+      if(m_pdataserver != NULL)
+      {
+         var var(i);
+         return m_pdataserver->data_server_save(this, get_data_id(id), var, puh);
+      }
+      return false;
    }
 
    bool client::data_set(class id id, int64_t i, update_hint * puh)
    {
-      return data_set(id, ::axis::system::idEmpty, i, puh);
-   }
-
-   bool client::data_get(class id id, int32_t & i)
-   {
-      return data_get(id, ::axis::system::idEmpty, i);
-   }
-
-   bool client::data_get(class id id, int64_t & i)
-   {
-      return data_get(id, ::axis::system::idEmpty, i);
-   }
-
-   bool client::data_set(class id id, class id idIndex, const char * lpsz, update_hint * puh)
-   {
-      return data_set(get_data_id(), id, idIndex, lpsz, puh);
-   }
-
-   bool client::data_set(class id dataid, class id id, class id idIndex, const char * lpsz, update_hint * puh)
-   {
       if(m_pdataserver != NULL)
       {
-         var var;
-         var = lpsz;
-         return m_pdataserver->data_server_save(this, dataid, id, idIndex, var, puh);
+         var var(i);
+         return m_pdataserver->data_server_save(this, get_data_id(id), var, puh);
       }
       return false;
    }
 
-   bool client::data_set(class id id, class id idIndex, const wchar_t * lpsz, update_hint * puh)
+
+
+   bool client::data_set(class id id, const char * lpsz, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
          var var;
          var = lpsz;
-         return m_pdataserver->data_server_save(this, get_data_id(), id, idIndex, var, puh);
+         return m_pdataserver->data_server_save(this, get_data_id(id), var, puh);
+      }
+      return false;
+   }
+
+   bool client::data_set(class id id, const wchar_t * lpsz, update_hint * puh)
+   {
+      if(m_pdataserver != NULL)
+      {
+         var var;
+         var = lpsz;
+         return m_pdataserver->data_server_save(this, get_data_id(id), var, puh);
       }
       return false;
    }
@@ -176,11 +133,7 @@ namespace database
       for(index iItem = 0; iItem < iCount; iItem++)
       {
          selection_item & item = selection.get_item(iItem);
-         if(!data_set(
-            item.m_id,
-            item.m_idIndex,
-            lpsz,
-            puh))
+         if(!data_set(get_data_id(item.m_id), lpsz, puh))
          {
             bOk = false;
          }
@@ -196,11 +149,7 @@ namespace database
       for(index iItem = 0; iItem < iCount; iItem++)
       {
          selection_item & item = selection.get_item(iItem);
-         if(!data_set(
-            item.m_id,
-            item.m_idIndex,
-            var,
-            puh))
+         if(!data_set(get_data_id(item.m_id),var,puh))
          {
             bOk = false;
          }
@@ -209,61 +158,61 @@ namespace database
       return bOk;
    }
 
-   bool client::data_set(class id id, class id idIndex, ::file::stream_buffer & readable, update_hint * puh)
+   bool client::data_set(class id id, ::file::stream_buffer & readable, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
-         return m_pdataserver->data_server_save(this, get_data_id(), id, idIndex, readable, puh);
+         return m_pdataserver->data_server_save(this, get_data_id(id), readable, puh);
       }
       return false;
    }
 
-   bool client::data_set(class id id, class id idIndex, ::file::serializable & obj, update_hint * puh)
+   bool client::data_set(class id id, ::file::serializable & obj, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
-         if(!m_pdataserver->data_server_save(this, get_data_id(), id, idIndex, obj, puh))
+         if(!m_pdataserver->data_server_save(this, get_data_id(id), obj, puh))
             return false;
          return true;
       }
       return false;
    }
 
-   bool client::data_set(class id id, class id idIndex, ::file::input_stream & istream, update_hint * puh)
+   bool client::data_set(class id id, ::file::input_stream & istream, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
-         return m_pdataserver->data_server_save(this, get_data_id(), id, idIndex, istream, puh);
+         return m_pdataserver->data_server_save(this, get_data_id(id), istream, puh);
       }
       return false;
    }
 
 
-   bool client::data_get(class id id, class id idIndex, bool & b)
+   bool client::data_get(class id id, bool & b)
    {
       int32_t i;
-      if(!data_get(id, idIndex, i))
+      if(!data_get(id, i))
          return false;
       b = i != 0;
       return true;
    }
 
 
-   bool client::data_get(class id id, class id idIndex, var & var)
+   bool client::data_get(class id id, var & var)
    {
       if(m_pdataserver != NULL)
       {
-         return m_pdataserver->data_server_load(this, get_data_id(), id, idIndex, var);
+         return m_pdataserver->data_server_load(this, get_data_id(id), var);
       }
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, int32_t & i)
+   bool client::data_get(class id id, int32_t & i)
    {
       if(m_pdataserver != NULL)
       {
          var var;
-         if(!m_pdataserver->data_server_load(this, get_data_id(), id, idIndex, var))
+         if(!m_pdataserver->data_server_load(this, get_data_id(id), var))
             return false;
          i = var;
          return true;
@@ -271,12 +220,12 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, int64_t & i)
+   bool client::data_get(class id id, int64_t & i)
    {
       if(m_pdataserver != NULL)
       {
          var var;
-         if(!m_pdataserver->data_server_load(this, get_data_id(), id, idIndex, var))
+         if(!m_pdataserver->data_server_load(this, get_data_id(id), var))
             return false;
          i = var;
          return true;
@@ -284,17 +233,12 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, string & str)
-   {
-      return data_get(get_data_id(), id, idIndex, str);
-   }
-
-   bool client::data_get(class id dataid, class id id, class id idIndex, string & str)
+   bool client::data_get(class id id, string & str)
    {
       if(m_pdataserver != NULL)
       {
          var var;
-         if(!m_pdataserver->data_server_load(this, dataid, id, idIndex, var))
+         if(!m_pdataserver->data_server_load(this, get_data_id(id), var))
             return false;
          if(var.get_type() != var::type_string)
             return false;
@@ -304,33 +248,33 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, ::file::stream_buffer & writable)
+   bool client::data_get(class id id, ::file::stream_buffer & writable)
    {
       if(m_pdataserver != NULL)
       {
-         if(!m_pdataserver->data_server_load(this, get_data_id(), id, idIndex, writable))
+         if(!m_pdataserver->data_server_load(this, get_data_id(id), writable))
             return false;
          return true;
       }
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, ::file::serializable & obj)
+   bool client::data_get(class id id, ::file::serializable & obj)
    {
       if(m_pdataserver != NULL)
       {
-         if(!m_pdataserver->data_server_load(this, get_data_id(), id, idIndex, obj))
+         if(!m_pdataserver->data_server_load(this, get_data_id(id), obj))
             return false;
          return true;
       }
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, ::file::output_stream & ostream)
+   bool client::data_get(class id id, ::file::output_stream & ostream)
    {
       if(m_pdataserver != NULL)
       {
-         if(!m_pdataserver->data_server_load(this, get_data_id(), id, idIndex, ostream))
+         if(!m_pdataserver->data_server_load(this, get_data_id(id), ostream))
             return false;
          return true;
       }
@@ -338,11 +282,11 @@ namespace database
    }
 
    
-   bool client::data_pulse_change(class id id, class id idIndex, update_hint * puh)
+   bool client::data_pulse_change(class id id, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
-         if(!m_pdataserver->data_pulse_change(this, get_data_id(), id, idIndex, puh))
+         if(!m_pdataserver->data_pulse_change(this, get_data_id(id), puh))
             return false;
          return true;
       }
@@ -386,22 +330,20 @@ namespace database
       remove(pclient);
    }
 
-   string client::calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex)
+   string client::calc_key(::database::id & idSection, ::database::id & id)
    {
       string str;
       str = idSection.get_id().str();
       str += ".";
       str += id.get_id().str();
-      str += ".";
-      str += idIndex.get_id().str();
       return str;
    }
 
 
-   id client::get_data_id()
+   id client::get_data_id(class id id)
    {
 
-      return m_dataid;
+      return m_dataid.m_id + "." + id.m_id;
 
    }
 

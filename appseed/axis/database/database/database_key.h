@@ -13,18 +13,40 @@ namespace database
 
 
       client *          m_pclient; // client may intefere in default key calculation
-      id                m_idSection;
-      id                m_idKey;
-      id                m_idIndex;
+      id                m_id;
 
 
 
-      key();
-      key(const key & key);
-      key(client * pclient, id idSection, id idKey, id idIndex);
+      key()
+      {
+         m_pclient = NULL;
+      }
+
+      key(const key & key)
+      {
+         operator = (key);
+      }
 
 
-      key & operator = (const key & key);
+      key(client * pclient,::database::id id)
+      {
+
+         m_pclient      = pclient;
+         m_id           = id;
+
+      }
+
+
+
+      key & operator = (const key & key)
+      {
+         if(&key != this)
+         {
+            m_pclient      = key.m_pclient;
+            m_id           = key.m_id;
+         }
+         return *this;
+      }
 
 
    };

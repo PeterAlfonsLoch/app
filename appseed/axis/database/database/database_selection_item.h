@@ -11,11 +11,10 @@ namespace database
 
       
       id     m_id;
-      id     m_idIndex;
       
       
       selection_item();
-      selection_item(id & key, id & idIndex);
+      selection_item(id & key);
       virtual ~selection_item();
 
 

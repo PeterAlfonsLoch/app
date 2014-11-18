@@ -45,7 +45,6 @@ namespace file
 
       //::database::client * m_pclient;
       //class ::database::id m_id;
-      //class ::database::id m_idIndex;
 
       data_trigger_input_stream(data_trigger_input_stream && d):
          element(d),
@@ -115,7 +114,7 @@ namespace database
       virtual bool data_set(class id, const wchar_t * lpsz, update_hint * puh = NULL);
       virtual bool data_set(class id, ::file::stream_buffer & obj, update_hint * puh = NULL);
       virtual bool data_set(class id, ::file::serializable & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id,, ::file::input_stream & obj, update_hint * puh = NULL);
+      virtual bool data_set(class id, ::file::input_stream & obj, update_hint * puh = NULL);
 //      virtual bool data_set(class id, ::file::serializable & obj, update_hint * puh = NULL);
       //virtual bool data_set(class id, ::core::plain_text_input_stream & obj, update_hint * puh = NULL);
       virtual bool data_set(selection & selection, const char * lpsz, update_hint * puh = NULL);
@@ -144,9 +143,9 @@ namespace database
 
 
 
-      virtual string calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex);
+      virtual string calc_key(::database::id & idSection, ::database::id & id);
 
-      virtual id get_data_id();
+      virtual id get_data_id(class id id);
       virtual id calc_data_id();
       virtual bool update_data_id();
 
