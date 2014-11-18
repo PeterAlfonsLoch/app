@@ -2008,7 +2008,7 @@ namespace lemon
    {
 
       template < class TYPE >
-      ::count append_sequence(numeric_array < TYPE > & a, TYPE iterator,TYPE end,TYPE increment)
+      ::count append_sequence(::numeric_array < TYPE > & a, TYPE iterator,TYPE end,TYPE increment)
       {
          if(increment == 0)
          {
@@ -2040,14 +2040,14 @@ namespace lemon
 
 
       template < class TYPE >
-      ::count set_sequence(numeric_array < TYPE > & a, TYPE start,TYPE end,TYPE increment)
+      ::count set_sequence(::numeric_array < TYPE > & a, TYPE start,TYPE end,TYPE increment)
       {
          a.remove_all();
          return append_sequence(a, start,end,increment);
       }
 
       template < class TYPE >
-      ::count ensure_sequence(numeric_array < TYPE > & a, TYPE start,TYPE end,TYPE increment)
+      ::count ensure_sequence(::numeric_array < TYPE > & a, TYPE start,TYPE end,TYPE increment)
       {
 
          ::count ca = 0;
