@@ -146,11 +146,11 @@ public:
 
    using BASE_ARRAY::get_size;
 
-   template<class ARRAY>
-   friend index lemon::array::sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia);
+   //template<class ARRAY>
+   //friend index lemon::array::sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia);
 
-   template<class ARRAY>
-   friend bool lemon::array::binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia);
+   //template<class ARRAY>
+   //friend bool lemon::array::binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia);
 
    sort_array & operator = (const sort_array & a)
    {
@@ -173,7 +173,7 @@ find(ARG_TYPE t, index & iIndex, index ( * fCompare ) (ARG_TYPE, ARG_TYPE)) cons
       return false;
    }
 
-   return this->binary_search(t, iIndex, fCompare, ((sort_array *) this)->defer_update(fCompare));
+   return ::lemon::array::binary_search(*this, t, iIndex, fCompare, ((sort_array *) this)->defer_update(fCompare));
 
 
 }
@@ -228,7 +228,7 @@ template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPA
 remove(ARG_TYPE t, index ( * fCompare ) (ARG_TYPE, ARG_TYPE))
 {
 
-   ::count ca = this->sort_remove(t, fCompare, defer_update(fCompare));
+   ::count ca = ::lemon::array::sort_remove(*this, t,fCompare,defer_update(fCompare));
 
    m_indexmap.mark_dirty();
 

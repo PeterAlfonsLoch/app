@@ -316,7 +316,7 @@ public:
 
    };
 
-
+   bool           m_bRaw; // if raw, does not call destructors or constructors
    int            m_iTypeSize;
    byte *         m_pData;    // the actual array of data
    ::count        m_nSize;    // # of elements (upperBound - 1)
