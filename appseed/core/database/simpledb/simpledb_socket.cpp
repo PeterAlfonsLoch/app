@@ -140,7 +140,7 @@ namespace simpledb
 
    void socket::OnSSLAccept()
    {
-      m_strCat = System.m_simpledb.db().data_load(NULL, "netnodec", GetLocalAddress().get_display_number(), ::database::id());
+      m_strCat = System.m_simpledb.db().data_load(NULL, "netnodec." + GetLocalAddress().get_display_number());
       ::sockets::httpd_socket::OnSSLAccept();
    }
 

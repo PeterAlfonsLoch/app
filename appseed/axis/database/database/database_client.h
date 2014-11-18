@@ -124,6 +124,21 @@ namespace database
 
       inline ::file::data_trigger_output_stream data_set(class id id) { return ::file::data_trigger_output_stream(this,id);  }
 
+      template < typename T >
+      inline bool data_save(class id id, const T & t)
+      {
+         try
+         {
+            data_set(id) << t;
+         }
+         catch(...)
+         {
+            return false;
+         }
+         return true;
+      }
+
+
       virtual bool data_get(class id,  bool & b);
       virtual bool data_get(class id, var & var);
       virtual bool data_get(class id, int32_t & i);
@@ -138,6 +153,20 @@ namespace database
 
 
       inline ::file::data_trigger_input_stream data_get(class id id) { return ::file::data_trigger_input_stream(this,id); }
+
+      template < typename T >
+      inline bool data_read(class id id,T & t)
+      {
+         try
+         {
+            data_get(id) >> t;
+         }
+         catch(...)
+         {
+            return false;
+         }
+         return true;
+      }
 
       virtual bool data_pulse_change(class id, update_hint * puh);
 

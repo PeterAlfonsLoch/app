@@ -389,7 +389,7 @@ namespace file
       if(m_pclient != NULL)
       {
          seek_to_begin();
-         m_pclient->data_set(m_id,*this);
+         m_pclient->data_set(m_id,(::file::input_stream &)*this);
 
       }
    
@@ -401,7 +401,7 @@ namespace file
       byte_stream_memory_buffer(pclient->get_app())
    {
       
-      pclient->data_get(id,*this);
+      pclient->data_get(id,(::file::output_stream &)*this);
       seek_to_begin();
    }
 

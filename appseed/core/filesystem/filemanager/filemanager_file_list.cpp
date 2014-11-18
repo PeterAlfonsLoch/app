@@ -1026,7 +1026,7 @@ namespace filemanager
 
          stringa stra;
 
-         get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic,::base::system::idEmpty,stra);
+         get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic,stra);
 
          for(int32_t i = 0; i < stra.get_size(); i++)
          {
@@ -1069,14 +1069,10 @@ namespace filemanager
 
       stringa straStrictOrder;
 
-      data_get(
-         data_get_current_sort_id(),
-         string(data_get_current_list_layout_id()) + ".straStrictOrder",
-         straStrictOrder);
+      data_get(     data_get_current_sort_id() + "." + data_get_current_list_layout_id() + ".straStrictOrder",      straStrictOrder);
       index_biunique iaDisplayToStrict;
       icon_layout iconlayout;
-      data_get(data_get_current_sort_id(),data_get_current_list_layout_id(),
-         iconlayout);
+      data_get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(),     iconlayout);
       iaDisplayToStrict = iconlayout.m_iaDisplayToStrict;
       index_biunique iaDisplayToStrictNew;
 
@@ -1188,10 +1184,7 @@ namespace filemanager
       }*/
       if(m_eview == ViewIcon)
       {
-         data_set(
-            data_get_current_sort_id(),
-            string(data_get_current_list_layout_id()) + ".straStrictOrder",
-            m_straStrictOrder);
+         data_set(     data_get_current_sort_id() + "."+data_get_current_list_layout_id() + ".straStrictOrder",          m_straStrictOrder);
          m_iconlayout.m_iaDisplayToStrict = iaDisplayToStrictNew;
          data_set_DisplayToStrict();
       }

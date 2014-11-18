@@ -437,11 +437,16 @@ namespace user
          return;
       ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
       ASSERT(pcontrol->descriptor().m_eddx == control::ddx_dbflags);
-      sort_int_ptr_array ia;
-      if(pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_pclient->data_get(
-         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idSection + "."+         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idKey,
-         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idIndex,
-         ia))
+      int_ptr_array ia;
+      try
+      {
+         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_pclient->data_get(
+            pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_id) >> ia;
+      }
+      catch(...)
+      {
+         return;
+      }
       {
 /*         check_box * pcheck = dynamic_cast < check_box * > (pcontrol);
          if(pcheck != NULL)
@@ -467,7 +472,7 @@ namespace user
          return;
       ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
       int32_t i;
-      if(data_get(pcontrol->descriptor().m_dataid, ::base::system::idEmpty, i))
+      if(data_get(pcontrol->descriptor().m_dataid, i))
       {
    /* linux      simple_button * pbutton = (simple_button *) get_child_by_id(pcontrol->m_id);
          pbutton->SetCheck((i != 0) ? 1 : 0); */
@@ -524,7 +529,7 @@ namespace user
             }
             if(ptext == NULL)
                return;
-            if(data_get(pcontrol->descriptor().m_dataid, item.m_idIndex, var))
+            if(data_get(pcontrol->descriptor().m_dataid.m_id + "."+item.m_id.m_id, var))
             {
                switch(var.get_type())
                {
@@ -604,7 +609,7 @@ namespace user
          return false;
 
       int32_t i;
-      if(!data_get(pcontrol->descriptor().m_dataid, ::base::system::idEmpty, i))
+      if(!data_get(pcontrol->descriptor().m_dataid, i))
          return false;
 
       bData = (i != 0) ? 1 : 0;
@@ -620,7 +625,7 @@ namespace user
          return false;
 
       int32_t i = bData ? 1 : 0;
-      data_set(pcontrol->descriptor().m_dataid, ::base::system::idEmpty, i);
+      data_set(pcontrol->descriptor().m_dataid, i);
       return true;
 
    }
@@ -792,7 +797,7 @@ namespace user
             _001UpdateDbFlags(pcontrol);
 
          }
-         else if(m_controldescriptorset[iControl]->m_dataid == pchange->m_key.m_idKey)
+         else if(m_controldescriptorset[iControl]->m_dataid == pchange->m_key.m_id)
          {
 
             _001Update(pcontrol);
@@ -1073,13 +1078,10 @@ namespace user
             return false;
          if(pdescriptor->m_eddx == control::ddx_dbflags)
          {
-            base_sort_serializable_int_ptr_array ia;
-            m_pdataserver->data_server_load(
-               pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient,
-               pdescriptor->m_ddx.m_pdbflags->m_key.m_idSection,
-               pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
-               pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,
-               dynamic_cast < ::file::serializable & > (ia));
+            int_ptr_array ia;
+            pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient->data_read(
+               pdescriptor->m_ddx.m_pdbflags->m_key.m_id,
+               ia);
             sp(check_interface) pcheck = pevent->m_puie;
             if(pcheck->_001GetCheck() == check::checked)
             {
@@ -1089,12 +1091,9 @@ namespace user
             {
                ia.remove(pdescriptor->m_ddx.m_pdbflags->m_value);
             }
-            m_pdataserver->data_server_save(
-               pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient,
-               pdescriptor->m_ddx.m_pdbflags->m_key.m_idSection,
-               pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
-               pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,
-               dynamic_cast < ::file::serializable & > (ia));
+            pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient->data_read(
+               pdescriptor->m_ddx.m_pdbflags->m_key.m_id,
+               ia);
          }
       }
       return false;

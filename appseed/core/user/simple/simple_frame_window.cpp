@@ -1679,7 +1679,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
             System.m_nCmdShow = -1; // set to default after first time
          }
          bool bFullScreen;
-         data_get("FullScreen", ::base::system::idEmpty, bFullScreen);
+         data_get("FullScreen", bFullScreen);
          if (bFullScreen)
          {
             WfiFullScreen();
@@ -1945,8 +1945,7 @@ void simple_frame_window::data_on_after_change(signal_details * pobj)
 {
    database::user::interaction::data_on_after_change(pobj);
    SCAST_PTR(database::change_event, phint, pobj);
-   if (phint->m_key.m_idKey == "ca2"
-      && phint->m_key.m_idIndex == "savings")
+   if (phint->m_key.m_id == "ca2.savings")
    {
       defer_synch_layered();
    }

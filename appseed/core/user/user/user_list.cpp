@@ -1090,7 +1090,7 @@ namespace user
       if (m_columna.VisibleGetCount() > 0 || m_columna.NonVisibleGetCount() > 0)
       {
 
-         data_get("VisibleSubItem", ::base::system::idEmpty, iaVisible);
+         data_get("VisibleSubItem") >> iaVisible;
 
       }
 
@@ -2879,10 +2879,7 @@ namespace user
       {
          str.Format("list_column[%d].width", i);
          width = m_columna.element_at(i)->m_iWidth;
-         data_set(
-            str,
-            ::base::system::idEmpty,
-            width);
+         data_set(str, width);
       }
 
       return true;
@@ -2909,10 +2906,7 @@ namespace user
    {
       string str;
       str.Format("SubItem[%d].Visible", iSubItem);
-      data_set(
-         str,
-         ::base::system::idEmpty,
-         bShow ? 1 : 0);
+      data_set(str, bShow ? 1 : 0);
       m_columna.ShowSubItem(iSubItem, bShow);
       _001OnColumnChange();
       Redraw();
@@ -3353,13 +3347,11 @@ namespace user
          str.Format("list_column[%d].Next", iKey);
          m_plist->data_set(
             str,
-            ::base::system::idEmpty,
             column->m_iNextGlobalOrderKey);
       }
       str.Format("list_column[-1].Next");
       m_plist->data_set(
          str,
-         ::base::system::idEmpty,
          m_iFirstGlobalOrderKey);
 
 
@@ -3375,13 +3367,11 @@ namespace user
          str.Format("list_column[%d].Next", iKey);
          m_plist->data_get(
             str,
-            ::base::system::idEmpty,
             column->m_iNextGlobalOrderKey);
       }
       str.Format("list_column[-1].Next");
       m_plist->data_get(
          str,
-         ::base::system::idEmpty,
          m_iFirstGlobalOrderKey);
 
       GlobalToVisibleOrder();
@@ -4918,11 +4908,11 @@ namespace user
    {
       if(m_eview == ViewIcon)
       {
-         data_get(data_get_current_sort_id(), data_get_current_list_layout_id(), m_iconlayout);
+         data_get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), m_iconlayout);
       }
       else
       {
-         data_get(data_get_current_sort_id(), data_get_current_list_layout_id(), m_listlayout);
+         data_get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), m_listlayout);
       }
    }
 
@@ -4930,11 +4920,11 @@ namespace user
    {
       if(m_eview == ViewIcon)
       {
-         data_set(data_get_current_sort_id(), data_get_current_list_layout_id(), m_iconlayout);
+         data_set(data_get_current_sort_id() + "." + data_get_current_list_layout_id(),m_iconlayout);
       }
       else
       {
-         data_set(data_get_current_sort_id(), data_get_current_list_layout_id(), m_listlayout);
+         data_set(data_get_current_sort_id() + "." + data_get_current_list_layout_id(),m_listlayout);
       }
    }
 
