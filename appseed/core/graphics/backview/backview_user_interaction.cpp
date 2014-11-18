@@ -102,7 +102,7 @@ namespace backview
 
             string strCurrentImagePath;
 
-            data_get("::backview::CurrentBackgroundImagePath", ::base::system::idEmpty, strCurrentImagePath);
+            data_get("::backview::CurrentBackgroundImagePath", strCurrentImagePath);
 
             return m_spfilesetBackgroundImage->get_next_file(strCurrentImagePath);
 
