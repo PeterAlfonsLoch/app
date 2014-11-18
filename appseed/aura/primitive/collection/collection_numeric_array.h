@@ -2,9 +2,9 @@
 
 
 template < typename T >
-index numeric_compare(const T & T1, const T & p2)
+index numeric_compare(const T & t1, const T & t2)
 {
-   T t = p1 - p2;
+   T t = t1 - t2;
    if(t > ::numeric_info< T >::null())
       return 1;
    else if(t < ::numeric_info < T >::null())
@@ -53,15 +53,15 @@ public:
    //::count set_sequence(TYPE start, TYPE end, TYPE increment = 1);
    //::count ensure_sequence(TYPE start, TYPE end, TYPE increment = 1);
 
-   ::count remove_greater_than(TYPE hi);
-   ::count remove_greater_than_or_equal(TYPE hi);
-   ::count remove_lesser_than(TYPE lo);
-   ::count remove_lesser_than_or_equal(TYPE lo);
+   //::count remove_greater_than(TYPE hi);
+   //::count remove_greater_than_or_equal(TYPE hi);
+   //::count remove_lesser_than(TYPE lo);
+   //::count remove_lesser_than_or_equal(TYPE lo);
 
-   ::count remove_lesser_than_or_greater_than(TYPE lo, TYPE hi);
-   ::count remove_lesser_than_or_greater_than_or_equal(TYPE lo, TYPE hi);
-   ::count remove_lesser_than_or_equal_or_greater_than(TYPE lo, TYPE hi);
-   ::count remove_lesser_than_or_equal_or_greater_than_or_equal(TYPE lo, TYPE hi);
+   //::count remove_lesser_than_or_greater_than(TYPE lo, TYPE hi);
+   //::count remove_lesser_than_or_greater_than_or_equal(TYPE lo, TYPE hi);
+   //::count remove_lesser_than_or_equal_or_greater_than(TYPE lo, TYPE hi);
+   //::count remove_lesser_than_or_equal_or_greater_than_or_equal(TYPE lo, TYPE hi);
 
 
    void push_last();
@@ -868,15 +868,15 @@ unique_number_sort_array < TYPE >::
 
 
 
-typedef CLASS_DECL_AURA numeric_array < int8_t > int8_array;
-typedef CLASS_DECL_AURA numeric_array < int16_t > int16_array;
-typedef CLASS_DECL_AURA numeric_array < int32_t > int32_array;
-typedef CLASS_DECL_AURA numeric_array < int64_t > int64_array;
+typedef CLASS_DECL_AURA numeric_array < int8_t  > int8_array;
+typedef CLASS_DECL_AURA numeric_array < int16_t  > int16_array;
+typedef CLASS_DECL_AURA numeric_array < int32_t  > int32_array;
+typedef CLASS_DECL_AURA numeric_array < int64_t  > int64_array;
 
-typedef CLASS_DECL_AURA numeric_array < uint8_t > uint8_array;
-typedef CLASS_DECL_AURA numeric_array < uint16_t > uint16_array;
-typedef CLASS_DECL_AURA numeric_array < uint32_t > uint32_array;
-typedef CLASS_DECL_AURA numeric_array < uint64_t > uint64_array;
+typedef CLASS_DECL_AURA numeric_array < uint8_t  > uint8_array;
+typedef CLASS_DECL_AURA numeric_array < uint16_t  > uint16_array;
+typedef CLASS_DECL_AURA numeric_array < uint32_t  > uint32_array;
+typedef CLASS_DECL_AURA numeric_array < uint64_t  > uint64_array;
 
 typedef CLASS_DECL_AURA int32_array int_array;
 typedef CLASS_DECL_AURA uint32_array uint_array;
@@ -893,8 +893,8 @@ typedef CLASS_DECL_AURA uint32_array uint_ptr_array;
 
 #endif
 
-typedef CLASS_DECL_AURA numeric_array < float > float_array;
-typedef CLASS_DECL_AURA numeric_array < double > double_array;
+typedef CLASS_DECL_AURA numeric_array < float  > float_array;
+typedef CLASS_DECL_AURA numeric_array < double  > double_array;
 
 typedef CLASS_DECL_AURA uint8_array byte_array;
 
@@ -1049,184 +1049,6 @@ typedef CLASS_DECL_AURA unique_number_sort_array < index > unique_index_sort_arr
 
 
 
-template < class TYPE >
-::count numeric_array < TYPE >::remove_greater_than(TYPE hi)
-{
-
-   ::count ca = 0;
-
-   for(index i = this->get_upper_bound(); i >= 0; i--)
-   {
-      if(this->element_at(i) > hi)
-      {
-         this->remove_at(i);
-         ca++;
-      }
-   }
-
-   return ca;
-
-}
-
-
-template < class TYPE >
-::count numeric_array < TYPE >::remove_greater_than_or_equal(TYPE hi)
-{
-
-   ::count ca = 0;
-
-   for(index i = this->get_upper_bound(); i >= 0; i--)
-   {
-      if(this->element_at(i) >= hi)
-      {
-         this->remove_at(i);
-         ca++;
-      }
-   }
-
-   return ca;
-
-}
-
-
-template < class TYPE >
-::count numeric_array < TYPE >::remove_lesser_than(TYPE lo)
-{
-
-   ::count ca = 0;
-
-   for(index i = this->get_upper_bound(); i >= 0; i--)
-   {
-      if(this->element_at(i) < lo)
-      {
-         this->remove_at(i);
-         ca++;
-      }
-   }
-
-   return ca;
-
-}
-
-
-template < class TYPE >
-::count numeric_array < TYPE >::remove_lesser_than_or_equal(TYPE lo)
-{
-
-   ::count ca = 0;
-
-   for(index i = this->get_upper_bound(); i >= 0; i--)
-   {
-      if(this->element_at(i) <= lo)
-      {
-         this->remove_at(i);
-         ca++;
-      }
-   }
-
-   return ca;
-
-}
-
-
-template < class TYPE >
-::count numeric_array < TYPE >::remove_lesser_than_or_greater_than(TYPE lo, TYPE hi)
-{
-
-   ::count ca = 0;
-
-   for(index i = this->get_upper_bound(); i >= 0; i--)
-   {
-      if(this->element_at(i) < lo)
-      {
-         this->remove_at(i);
-         ca++;
-      }
-      else if(this->element_at(i) > hi)
-      {
-         this->remove_at(i);
-         ca++;
-      }
-   }
-
-   return ca;
-
-}
-
-
-template < class TYPE >
-::count numeric_array < TYPE >::remove_lesser_than_or_greater_than_or_equal(TYPE lo, TYPE hi)
-{
-
-   ::count ca = 0;
-
-   for(index i = this->get_upper_bound(); i >= 0; i--)
-   {
-      if(this->element_at(i) < lo)
-      {
-         this->remove_at(i);
-         ca++;
-      }
-      else if(this->element_at(i) >= hi)
-      {
-         this->remove_at(i);
-         ca++;
-      }
-   }
-
-   return ca;
-
-}
-
-
-template < class TYPE >
-::count numeric_array < TYPE >::remove_lesser_than_or_equal_or_greater_than(TYPE lo, TYPE hi)
-{
-
-   ::count ca = 0;
-
-   for(index i = this->get_upper_bound(); i >= 0; i--)
-   {
-      if(this->element_at(i) <= lo)
-      {
-         this->remove_at(i);
-         ca++;
-      }
-      else if(this->element_at(i) > hi)
-      {
-         this->remove_at(i);
-         ca++;
-      }
-   }
-
-   return ca;
-
-}
-
-
-template < class TYPE >
-::count numeric_array < TYPE >::remove_lesser_than_or_equal_or_greater_than_or_equal(TYPE lo, TYPE hi)
-{
-
-   ::count ca = 0;
-
-   for(index i = this->get_upper_bound(); i >= 0; i--)
-   {
-      if(this->element_at(i) <= lo)
-      {
-         this->remove_at(i);
-         ca++;
-      }
-      else if(this->element_at(i) >= hi)
-      {
-         this->remove_at(i);
-         ca++;
-      }
-   }
-
-   return ca;
-
-}
 
 
 
@@ -2047,21 +1869,21 @@ namespace lemon
       }
 
       template < class TYPE >
-      ::count ensure_sequence(::numeric_array < TYPE > & a, TYPE start,TYPE end,TYPE increment)
+      ::count ensure_sequence(::numeric_array < TYPE > & aParam, TYPE start,TYPE end,TYPE increment)
       {
 
          ::count ca = 0;
 
          ::numeric_array < TYPE > a;
 
-         a.set_sequence(start,end,increment);
+         ::lemon::array::set_sequence(a, start,end,increment);
 
-         ca += a.remove_lesser_than_or_greater_than(start,end);
+         ca += remove_lesser_than_or_greater_than(a, start,end);
 
          for(index i = a.get_upper_bound(); i >= 0; i--)
          {
             index iFind = 0;
-            if(::lemon::array::binary_search(*this,a.element_at(i),iFind,&::numeric_compare < TYPE >))
+            if(::lemon::array::binary_search(aParam,a.element_at(i),iFind,&::numeric_compare < TYPE >))
             {
                a.remove_at(iFind);
                ca++;
@@ -2294,6 +2116,185 @@ namespace lemon
       {
          sort::QuickSortDesc(a);
       }
+   }
+
+   template < class TYPE >
+   ::count remove_greater_than(::numeric_array < TYPE > & a,TYPE hi)
+   {
+
+      ::count ca = 0;
+
+      for(index i = a.get_upper_bound(); i >= 0; i--)
+      {
+         if(a.element_at(i) > hi)
+         {
+            a.remove_at(i);
+            ca++;
+         }
+      }
+
+      return ca;
+
+   }
+
+
+   template < class TYPE >
+   ::count remove_greater_than_or_equal(::numeric_array < TYPE > & a,TYPE hi)
+   {
+
+      ::count ca = 0;
+
+      for(index i = a.get_upper_bound(); i >= 0; i--)
+      {
+         if(a.element_at(i) >= hi)
+         {
+            a.remove_at(i);
+            ca++;
+         }
+      }
+
+      return ca;
+
+   }
+
+
+   template < class TYPE >
+   ::count remove_lesser_than(::numeric_array < TYPE > & a,TYPE lo)
+   {
+
+      ::count ca = 0;
+
+      for(index i = a.get_upper_bound(); i >= 0; i--)
+      {
+         if(a.element_at(i) < lo)
+         {
+            a.remove_at(i);
+            ca++;
+         }
+      }
+
+      return ca;
+
+   }
+
+
+   template < class TYPE >
+   ::count remove_lesser_than_or_equal(::numeric_array < TYPE > & a,TYPE lo)
+   {
+
+      ::count ca = 0;
+
+      for(index i = a.get_upper_bound(); i >= 0; i--)
+      {
+         if(a.element_at(i) <= lo)
+         {
+            a.remove_at(i);
+            ca++;
+         }
+      }
+
+      return ca;
+
+   }
+
+
+   template < class TYPE >
+   ::count remove_lesser_than_or_greater_than(::numeric_array < TYPE > & a,TYPE lo,TYPE hi)
+   {
+
+      ::count ca = 0;
+
+      for(index i = a.get_upper_bound(); i >= 0; i--)
+      {
+         if(a.element_at(i) < lo)
+         {
+            a.remove_at(i);
+            ca++;
+         }
+         else if(a.element_at(i) > hi)
+         {
+            a.remove_at(i);
+            ca++;
+         }
+      }
+
+      return ca;
+
+   }
+
+
+   template < class TYPE >
+   ::count remove_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE > & a,TYPE lo,TYPE hi)
+   {
+
+      ::count ca = 0;
+
+      for(index i = a.get_upper_bound(); i >= 0; i--)
+      {
+         if(a.element_at(i) < lo)
+         {
+            a.remove_at(i);
+            ca++;
+         }
+         else if(a.element_at(i) >= hi)
+         {
+            a.remove_at(i);
+            ca++;
+         }
+      }
+
+      return ca;
+
+   }
+
+
+   template < class TYPE >
+   ::count remove_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE > & a,TYPE lo,TYPE hi)
+   {
+
+      ::count ca = 0;
+
+      for(index i = a.get_upper_bound(); i >= 0; i--)
+      {
+         if(a.element_at(i) <= lo)
+         {
+            a.remove_at(i);
+            ca++;
+         }
+         else if(a.element_at(i) > hi)
+         {
+            a.remove_at(i);
+            ca++;
+         }
+      }
+
+      return ca;
+
+   }
+
+
+   template < class TYPE >
+   ::count remove_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE > & a, TYPE lo,TYPE hi)
+   {
+
+      ::count ca = 0;
+
+      for(index i = a.get_upper_bound(); i >= 0; i--)
+      {
+         if(a.element_at(i) <= lo)
+         {
+            a.remove_at(i);
+            ca++;
+         }
+         else if(a.element_at(i) >= hi)
+         {
+            a.remove_at(i);
+            ca++;
+         }
+      }
+
+      return ca;
+
    }
 
 } // namespace lemon

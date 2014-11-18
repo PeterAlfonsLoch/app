@@ -45,9 +45,9 @@ namespace html
       {
       public:
 
-         numeric_array < float >       m_cxa;
-         numeric_array < float >       m_cxMax;
-         numeric_array < float >       m_cya;
+         float_array       m_cxa;
+         float_array       m_cxMax;
+         float_array       m_cya;
          bool                          m_bHasChar;
          float                         m_cy;
 
@@ -87,11 +87,11 @@ namespace html
       {
       public:
          int32_t                       m_iBody;
-         numeric_array < float >       m_yParent;
+         float_array       m_yParent;
          float                         m_y;
-//         numeric_array < float >       m_cyStack;
-         numeric_array < float >       m_xParent;
-         numeric_array < float >       m_cya;
+//         float_array       m_cyStack;
+         float_array       m_xParent;
+         float_array       m_cya;
   //       int                           m_iy;
          float                         m_x;
          float                         m_cx;

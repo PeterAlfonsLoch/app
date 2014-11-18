@@ -45,7 +45,7 @@ namespace user
       virtual ::count   remove(::data::item * pitem,index i = 0);
 
 
-      void sort(index(* lpfnCompare)(sp(::data::tree_item) * pitem,sp(::data::tree_item) * pitem2));
+      void sort(index(* lpfnCompare)(const sp(::data::tree_item) & pitem,const sp(::data::tree_item)  & pitem2));
 
       virtual sp(::data::tree_item) get_proper_item(index iIndex,index * piLevel,index * piCount = NULL);
       virtual index get_proper_item_index(::data::tree_item * pitemParam,index * piLevel,index * piCount = NULL);

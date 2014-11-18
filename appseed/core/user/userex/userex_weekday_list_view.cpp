@@ -106,7 +106,7 @@ namespace userex
 
       index_array ia = iaWeekday;
 
-      ia.each() -= 1;
+      ::lemon::each(ia) -= 1;
 
       set_cur_sel(ia);
 
@@ -120,7 +120,7 @@ namespace userex
 
       get_cur_sel(ia);
 
-      ia.each() += 1;
+      ::lemon::each(ia) += 1;
 
       return ia;
 

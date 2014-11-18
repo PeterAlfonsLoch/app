@@ -14,13 +14,13 @@ namespace userfs
          public spsa(list_item)
       {
       public:
-         list_item & get_item(index i, index (* fCompare)(sp(list_item) *, sp(list_item) *));
+         list_item & get_item(index i, index (* fCompare)(const sp(list_item) &, const sp(list_item) &));
          void SoftSwap(index i1, index i2);
       };
 
 
       base_list_item_array m_itema;
-      index (* m_pfnCompare)(sp(list_item) *, sp(list_item) *);
+      index (* m_pfnCompare)(const sp(list_item) &, const sp(list_item) &);
 
    public:
 

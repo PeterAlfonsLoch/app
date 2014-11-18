@@ -332,6 +332,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)match.o" /c /Fl"$(IntDir)match.lst" "$(Projec
       <OpenMPSupport>true</OpenMPSupport>
       <SDLCheck>
       </SDLCheck>
+      <AdditionalOptions />
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

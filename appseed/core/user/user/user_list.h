@@ -70,10 +70,10 @@ namespace user
       virtual ~list_column();
 
 
-      static index CompareOrderSectEndNonVisible(list_column * columna, list_column * columnb);
-      static index CompareOrder(list_column * columna, list_column * columnb);
+      static index CompareOrderSectEndNonVisible(const sp(list_column) & columna, const sp(list_column) & columnb);
+      static index CompareOrder(const sp(list_column) & columna, const sp(list_column) & columnb);
 
-      static index CompareKey(list_column * columna, list_column * columnb);
+      static index CompareKey(const sp(list_column) & columna, const sp(list_column) & columnb);
 
       bool operator ==(const ::user::list_column & pcolumn) const;
       list_column & operator = (const list_column & column);

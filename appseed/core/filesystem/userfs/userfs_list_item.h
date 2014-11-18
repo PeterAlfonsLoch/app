@@ -20,7 +20,7 @@ namespace userfs
       list_item(sp(::aura::application) papp);
       list_item(const list_item & item);
 
-      static index CompareArrangeByName(sp(list_item) * pitema, sp(list_item) * pitemb);
+      static index CompareArrangeByName(const sp(list_item) & pitema, const sp(list_item) & pitemb);
       index CompareArrangeByName(const list_item & item) const;
       index GetIndex() const;
       bool IsFolder() const;

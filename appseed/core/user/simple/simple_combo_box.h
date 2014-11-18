@@ -18,7 +18,7 @@ public:
 
    e_data_mode                   m_edatamode;
    stringa                       m_straList;
-   numeric_array < uint_ptr >    m_uiptra;
+   uint_ptr_array    m_uiptra;
 
 
 

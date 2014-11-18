@@ -1010,7 +1010,7 @@ namespace user
 
 
 
-   int_ptr list_column::CompareOrderSectEndNonVisible(list_column  * pcolumna, list_column * pcolumnb)
+   int_ptr list_column::CompareOrderSectEndNonVisible(const sp(list_column) & pcolumna,const sp(list_column) & pcolumnb)
    {
       if(pcolumna->m_bVisible && pcolumnb->m_bVisible)
          return pcolumna->m_iOrder - pcolumnb->m_iOrder;
@@ -1022,12 +1022,12 @@ namespace user
          return 0;
    }
 
-   int_ptr list_column::CompareOrder(list_column * pcolumna, list_column * pcolumnb)
+   int_ptr list_column::CompareOrder(const sp(list_column) & pcolumna,const sp(list_column) & pcolumnb)
    {
       return pcolumna->m_iOrder - pcolumnb->m_iOrder;
    }
 
-   int_ptr list_column::CompareKey(list_column * pcolumna, list_column * pcolumnb)
+   int_ptr list_column::CompareKey(const sp(list_column) & pcolumna,const sp(list_column) & pcolumnb)
    {
       return pcolumna->m_iKey - pcolumnb->m_iKey;
    }

@@ -678,7 +678,8 @@
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>

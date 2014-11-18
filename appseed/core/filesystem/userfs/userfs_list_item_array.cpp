@@ -11,7 +11,7 @@ namespace userfs
       this->element_at(i2)->m_iArrange = iArrange;
    }
 
-   list_item & list_item_array::base_list_item_array::get_item(index i, index (* fCompare)(sp(list_item) *, sp(list_item) *))
+   list_item & list_item_array::base_list_item_array::get_item(index i, index (* fCompare)(const sp(list_item) &, const sp(list_item) &))
    {
       return *this->element_at(i, fCompare);
    }

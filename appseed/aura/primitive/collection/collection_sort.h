@@ -1149,8 +1149,8 @@ namespace sort
       {
       
          // minimum check
-         if(ia.get_size() != get_size())
-            throw invalid_argument_exception(get_app());
+         if(ia.get_size() != a.get_size())
+            throw invalid_argument_exception(::get_thread_app());
       
          index_array stackLowerBound;
          index_array stackUpperBound;
@@ -1159,10 +1159,10 @@ namespace sort
          index iLPos, iUPos, iMPos;
          //   uint32_t t;
       
-         if(get_size() >= 2)
+         if(a.get_size() >= 2)
          {
             stackLowerBound.push(0);
-            stackUpperBound.push(get_upper_bound());
+            stackUpperBound.push(a.get_size() - 1);
             while(true)
             {
                iLowerBound = stackLowerBound.pop();
@@ -1176,7 +1176,7 @@ namespace sort
                   {
                      if(iMPos == iUPos)
                         break;
-                     if(fCompare(&element_at(ia[iMPos]), &element_at(ia[iUPos])) <= 0)
+                     if(lpfnCompare(a.element_at(ia[iMPos]),a.element_at(ia[iUPos])) <= 0)
                         iUPos--;
                      else
                      {
@@ -1191,7 +1191,7 @@ namespace sort
                   {
                      if(iMPos == iLPos)
                         break;
-                     if(fCompare(&element_at(ia[iLPos]), &element_at(ia[iMPos])) <= 0)
+                     if(lpfnCompare(a.element_at(ia[iLPos]),a.element_at(ia[iMPos])) <= 0)
                         iLPos++;
                      else
                      {

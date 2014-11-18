@@ -501,6 +501,7 @@
       <OpenMPSupport>true</OpenMPSupport>
       <SDLCheck>
       </SDLCheck>
+      <AdditionalOptions />
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

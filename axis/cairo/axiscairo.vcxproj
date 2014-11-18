@@ -559,7 +559,8 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>

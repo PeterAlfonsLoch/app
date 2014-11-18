@@ -122,7 +122,7 @@ namespace lemon
             last += a.get_count();
          for(; find <= last; find++)
          {
-            if(lpfnCompare((ARG_TYPE)a.element_at(find),(ARG_TYPE)t) == 0)
+            if(lpfnCompare((typename ARRAY::BASE_ARG_TYPE)a.element_at(find),(typename ARRAY::BASE_ARG_TYPE)t) == 0)
                return find;
          }
          return -1;

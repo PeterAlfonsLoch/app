@@ -163,12 +163,12 @@ namespace simpledb
                if(straRange.get_count() == 2)
                {
                   rangea.add(new int_array());
-                  rangea.last_element()->add(atoi(straRange[0]));
+                  rangea.last_sp()->add(atoi(straRange[0]));
                   straRange[1].trim();
                   if(strlen(straRange[1]) == 0)
-                     rangea.last_element()->add(-1);
+                     rangea.last_sp()->add(-1);
                   else
-                     rangea.last_element()->add(atoi(straRange[1]));
+                     rangea.last_sp()->add(atoi(straRange[1]));
                }
             }
          }

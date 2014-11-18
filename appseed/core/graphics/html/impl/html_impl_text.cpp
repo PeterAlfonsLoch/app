@@ -466,7 +466,7 @@ namespace html
             if (m_straLines.get_size() > 1)
             {
 
-               cx = m_sizea.last_element().cx;
+               cx = m_sizea.last().cx;
 
             }
             else if (m_straLines.get_size() > 0)

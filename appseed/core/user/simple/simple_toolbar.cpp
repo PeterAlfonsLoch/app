@@ -1216,11 +1216,11 @@ void simple_toolbar::layout()
       }
       else if((m_dwCtrlStyle & TBSTYLE_ALIGN_RIGHT) == TBSTYLE_ALIGN_RIGHT)
       {
-         ptOffset.x = rectClient.width() - (m_itema.last_element()->m_rect.right - m_itema[0]->m_rect.left);
+         ptOffset.x = rectClient.width() - (m_itema.last_sp()->m_rect.right - m_itema[0]->m_rect.left);
       }
       else if((m_dwCtrlStyle & TBSTYLE_ALIGN_CENTER) == TBSTYLE_ALIGN_CENTER)
       {
-         ptOffset.x = (rectClient.width() - (m_itema.last_element()->m_rect.right - m_itema[0]->m_rect.left)) / 2;
+         ptOffset.x = (rectClient.width() - (m_itema.last_sp()->m_rect.right - m_itema[0]->m_rect.left)) / 2;
       }
       else
       {
@@ -1232,11 +1232,11 @@ void simple_toolbar::layout()
       }
       else if((m_dwCtrlStyle & TBSTYLE_ALIGN_BOTTOM) == TBSTYLE_ALIGN_BOTTOM)
       {
-         ptOffset.y = rectClient.height() - (m_itema.last_element()->m_rect.bottom - m_itema[0]->m_rect.top);
+         ptOffset.y = rectClient.height() - (m_itema.last_sp()->m_rect.bottom - m_itema[0]->m_rect.top);
       }
       else if((m_dwCtrlStyle & TBSTYLE_ALIGN_VCENTER) == TBSTYLE_ALIGN_VCENTER)
       {
-         ptOffset.y = (rectClient.height() - (m_itema.last_element()->m_rect.bottom - m_itema[0]->m_rect.top)) / 2;
+         ptOffset.y = (rectClient.height() - (m_itema.last_sp()->m_rect.bottom - m_itema[0]->m_rect.top)) / 2;
       }
       else
       {

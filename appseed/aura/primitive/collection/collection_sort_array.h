@@ -146,11 +146,14 @@ public:
 
    using BASE_ARRAY::get_size;
 
-   //template<class ARRAY>
-   //friend index lemon::array::sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia);
+   template<class ARRAY>
+   friend index lemon::array::sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia);
 
-   //template<class ARRAY>
-   //friend bool lemon::array::binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index ( * fCompare ) (typename ARRAY::BASE_TYPE *, typename ARRAY::BASE_TYPE *), index_array & ia);
+   template<class ARRAY>
+   friend index lemon::array::sort_remove(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia);
+
+   template<class ARRAY>
+   friend bool lemon::array::binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia);
 
    sort_array & operator = (const sort_array & a)
    {
@@ -311,7 +314,7 @@ operator == (const sort_array & a) const
 
    for(index i = 0; i < get_size(); i++)
    {
-      if(DEFAULT_COMPARE(&((sort_array *) this)->BASE_ARRAY::element_at(ia1[i]), &((sort_array *) &a)->BASE_ARRAY::element_at(ia2[i])) != 0)
+      if(DEFAULT_COMPARE(((sort_array *) this)->BASE_ARRAY::element_at(ia1[i]), ((sort_array *) &a)->BASE_ARRAY::element_at(ia2[i])) != 0)
          return false;
    }
 

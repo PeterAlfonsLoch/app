@@ -59,9 +59,9 @@ namespace userfs
       }
    }
 
-   index list_item::CompareArrangeByName(sp(list_item) * pitema, sp(list_item) * pitemb)
+   index list_item::CompareArrangeByName(const sp(list_item) & pitema, const sp(list_item) & pitemb)
    {
-      return (*pitema)->CompareArrangeByName(*(*pitemb));
+      return (pitema)->CompareArrangeByName(*pitemb);
    }
 
    index list_item::GetIndex() const

@@ -30,7 +30,7 @@ namespace userfs
       index data_item_get_image(object * pobject) const;
       image_list * data_item_get_image_list(object * pobject) const;
 
-      static index CompareArrangeByName(sp(::data::tree_item) * pitema, sp(::data::tree_item) * pitemb);
+      static index CompareArrangeByName(const sp(::data::tree_item) & pitema, const sp(::data::tree_item) & pitemb);
       int32_t get_index() const;
       bool is_folder() const;
 

@@ -19,16 +19,16 @@ namespace userfs
    
 
 
-   index item::CompareArrangeByName(sp(::data::tree_item) * pitem1, sp(::data::tree_item)  * pitem2)
+   index item::CompareArrangeByName(const sp(::data::tree_item) & pitem1, const sp(::data::tree_item) & pitem2)
    {
       
-      if(pitem1->m_p->m_ptree == pitem2->m_p->m_ptree)
+      if(pitem1->m_ptree == pitem2->m_ptree)
       {
-         return pitem1->m_p->m_pitem.cast < item >()->m_strName.CompareNoCase(pitem2->m_p->m_pitem.cast < item >()->m_strName);
+         return pitem1->m_pitem.cast < item >()->m_strName.CompareNoCase(pitem2->m_pitem.cast < item >()->m_strName);
       }
       else
       {
-         return strcmp(typeid(pitem1->m_p).name(), typeid(pitem2->m_p).name());
+         return strcmp(typeid(pitem1).name(), typeid(pitem2).name());
       }
 
    }
