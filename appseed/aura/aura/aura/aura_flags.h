@@ -30,7 +30,7 @@ public:
    flags < ENUM > & operator = (const flags < ENUM >  & f);
    bool operator == (const flags < ENUM >  & f);
    bool operator != (const flags < ENUM >  & f);
-   bool operator == (const ENUM e) { return m_ia.get_size() == 1 && (ENUM) element_at(0) == e; }
+   bool operator == (const ENUM e) { return m_ia.get_size() == 1 && (ENUM) m_ia.element_at(0) == e; }
 
    void write(::file::output_stream & os) const
    {
