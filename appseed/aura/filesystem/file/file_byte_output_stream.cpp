@@ -259,14 +259,14 @@ namespace file
 
    }
 
-   void byte_output_stream:: write (SIZE & size)
+   void byte_output_stream:: write (const SIZE & size)
    {
       m_spbuffer->write(&size.cx,     sizeof(size.cx));
       m_spbuffer->write(&size.cy,     sizeof(size.cy));
 
    }
 
-   void byte_output_stream:: write (sp(type) info)
+   void byte_output_stream:: write (const sp(type) info)
    {
       strsize iLen = strlen(info->name());
       m_spbuffer->write(&iLen, sizeof(iLen));
@@ -277,7 +277,7 @@ namespace file
 
    }
 
-   void byte_output_stream:: write (serializable & serializable)
+   void byte_output_stream:: write (const serializable & serializable)
    {
       serializable.write(*this);
 

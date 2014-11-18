@@ -208,7 +208,7 @@ namespace primitive
    }
 
 
-   void memory_base::write(::file::output_stream & ostream)
+   void memory_base::write(::file::output_stream & ostream) const
    {
 
       transfer_to(ostream);
@@ -277,7 +277,7 @@ namespace primitive
    }
 
 
-   void memory_base::transfer_to(::file::writer & writer, ::primitive::memory_size uiBufferSize)
+   void memory_base::transfer_to(::file::writer & writer, ::primitive::memory_size uiBufferSize) const
    {
 
       if(get_data() == NULL || get_size() <= 0)

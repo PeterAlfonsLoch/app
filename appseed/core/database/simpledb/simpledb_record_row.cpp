@@ -9,7 +9,7 @@ namespace simpledb
   //    stringa     m_straFields;
     //  var         m_var;
 
-      void record_row::write(::file::output_stream & ostream)
+      void record_row::write(::file::output_stream & ostream) const
       {
          if(m_straFields.get_size() <= 0)
          {

@@ -88,7 +88,7 @@ namespace database
       field_properties & operator = (const field_properties & field_properties);
 
 
-      virtual void write(::file::output_stream & ostream);
+      virtual void write(::file::output_stream & ostream) const;
       virtual void read(::file::input_stream & istream);
 
    };
@@ -126,15 +126,14 @@ namespace database
    };
 
    class CLASS_DECL_AXIS query_data :
-      public ::file::serializable_array < array < record, record & > >
+      public array < record, record & >
    {
    };
 
    typedef array <field, field &> CFields;
-   typedef ::file::serializable_array < array < field_properties, field_properties & > > record_properties;
+   typedef array < field_properties, field_properties & > record_properties;
 
    class CLASS_DECL_AXIS result_set :
-      public object,
       public ::file::serializable
    {
    public:
@@ -149,7 +148,7 @@ namespace database
       result_set(const result_set & set);
 
 
-      virtual void write(::file::output_stream & ostream);
+      virtual void write(::file::output_stream & ostream) const;
       virtual void read(::file::input_stream & istream);
 
 

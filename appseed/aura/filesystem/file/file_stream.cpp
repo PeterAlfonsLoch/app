@@ -63,7 +63,7 @@ namespace file
    }
 
 
-   ::primitive::memory_size stream::get_internal_data_size()
+   ::primitive::memory_size stream::get_internal_data_size() const
    {
       
       return m_spbuffer->get_internal_data_size();

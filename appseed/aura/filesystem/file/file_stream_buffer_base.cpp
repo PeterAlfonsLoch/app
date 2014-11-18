@@ -19,11 +19,19 @@ namespace file
    void * stream_buffer_base::get_internal_data()
    {
 
-      return NULL;
+      return (void *) ((const stream_buffer_base *) this)->get_internal_data();
 
    }
 
-   ::primitive::memory_size stream_buffer_base::get_internal_data_size()
+
+   const void * stream_buffer_base::get_internal_data() const
+   {
+
+      return ((stream_buffer_base *) this)->get_internal_data();
+
+   }
+
+   ::primitive::memory_size stream_buffer_base::get_internal_data_size() const
    {
 
       return 0;

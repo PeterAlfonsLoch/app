@@ -1026,7 +1026,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   string node::get_xml( disp_option * opt /*= &optDefault*/ )
+   string node::get_xml( disp_option * opt /*= &optDefault*/ ) const
    {
       string ostring;
 
@@ -1157,7 +1157,7 @@ namespace xml
    // ﾀﾛｼｺﾀﾚ   ﾀﾛｼｺﾀﾏ                 ﾀﾛｼｺﾀﾌﾀｯ
    // ﾁｶｰ貉ﾎ   2004-06-15
    //========================================================
-   string node::get_text( disp_option * opt /*= &optDefault*/ )
+   string node::get_text( disp_option * opt /*= &optDefault*/ ) const
    {
       string ostring;
 
@@ -2102,7 +2102,7 @@ namespace xml
 
    }
 
-   void node::write(::file::output_stream & ostream)
+   void node::write(::file::output_stream & ostream) const
    {
 
       string str = get_xml();

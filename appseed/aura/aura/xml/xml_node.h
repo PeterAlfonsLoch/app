@@ -101,8 +101,8 @@ namespace xml
       // Load/Save XML
       char *   load(const char * pszXml, parse_info * pi = NULL);
 
-      string get_xml(disp_option * opt = NULL);
-      string get_text(disp_option * opt = NULL);
+      string get_xml(disp_option * opt = NULL) const;
+      string get_text(disp_option * opt = NULL) const;
 
       bool consume(const char * & pszXml, const char * psz);
       bool consume_whitespaces(const char * & pszXml, int32_t iMinimumCount = 1);
@@ -197,7 +197,7 @@ namespace xml
       void close();
 
 
-      virtual void write(::file::output_stream & ostream);
+      virtual void write(::file::output_stream & ostream) const;
       virtual void read(::file::input_stream & istream);
 
 

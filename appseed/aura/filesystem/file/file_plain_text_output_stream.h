@@ -32,9 +32,9 @@ namespace file
       virtual void write (double d);
       virtual void write (const RECT & rect);
       virtual void write (LPCRECT lpcrect);
-      virtual void write (SIZE & size);
-      virtual void write (sp(type) info);
-      virtual void write (serializable & serializable);
+      virtual void write (const SIZE & size);
+      virtual void write (const sp(type) info);
+      virtual void write (const serializable & serializable);
       virtual void write (const char * psz);
 
       virtual void raw_print(const string & str);

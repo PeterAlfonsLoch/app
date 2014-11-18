@@ -84,11 +84,11 @@ namespace primitive
       //::primitive::memory_size read(::file::stream_buffer & buffer);
 
 
-      virtual void write(::file::output_stream & ostream);
+      virtual void write(::file::output_stream & ostream) const;
       virtual void read(::file::input_stream & istream);
 
 
-      virtual void transfer_to(::file::writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024);
+      virtual void transfer_to(::file::writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024) const;
       virtual void transfer_from(::file::reader & reader, ::primitive::memory_size uiBufferSize = 1024 * 1024);
       virtual void transfer_from_begin(::file::reader & reader, ::primitive::memory_size uiBufferSize = 1024 * 1024);
 

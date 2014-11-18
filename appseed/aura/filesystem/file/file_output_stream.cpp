@@ -177,17 +177,17 @@ namespace file
       write(*lpcrect);
    }
 
-   void output_stream:: write(SIZE & size)
+   void output_stream:: write(const SIZE & size)
    {
 
    }
 
-   void output_stream:: write (sp(type) info)
+   void output_stream:: write(const sp(type) info)
    {
 
    }
 
-   void output_stream:: write (serializable & serializable)
+   void output_stream:: write (const serializable & serializable)
    {
 
    }

@@ -121,7 +121,7 @@ namespace file
 
       };
 
-      class ItemPtrArray: public array < sp(Item),sp(Item) >
+      class ItemPtrArray: public ::array < sp(Item),sp(Item) >
       {
       public:
       };

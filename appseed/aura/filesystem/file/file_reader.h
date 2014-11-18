@@ -24,7 +24,7 @@ namespace file
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
       virtual file_position find(const void * pFind, ::primitive::memory_size size, const file_position * limit);
 
-      virtual void transfer_to(writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024);
+      virtual void transfer_to(writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024) const;
 
       virtual file_position get_position() const;
 

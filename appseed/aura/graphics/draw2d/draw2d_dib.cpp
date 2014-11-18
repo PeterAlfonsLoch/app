@@ -3448,7 +3448,7 @@ namespace draw2d
       }
    }
 
-   void dib::write(::file::output_stream & ostream)
+   void dib::write(::file::output_stream & ostream) const
    {
 
       //synch_lock ml(&user_mutex());
@@ -3903,7 +3903,7 @@ namespace draw2d
    }
 
 
-   void dib::map(bool bApplyAlphaTransform)
+   void dib::map(bool bApplyAlphaTransform) const
    {
 
       UNREFERENCED_PARAMETER(bApplyAlphaTransform);

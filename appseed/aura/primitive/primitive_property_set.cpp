@@ -746,7 +746,7 @@ void property_set::clear()
    m_map.remove_all();
 }
 
-void property_set::write(::file::output_stream & ostream)
+void property_set::write(::file::output_stream & ostream) const
 {
    ostream << m_bAutoAdd;
    ostream << m_bMultiValue;

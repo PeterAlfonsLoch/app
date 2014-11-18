@@ -349,7 +349,7 @@ namespace file
    }
 
 
-   ::primitive::memory_size memory_buffer::get_internal_data_size()
+   ::primitive::memory_size memory_buffer::get_internal_data_size() const
    {
 
       return get_size();
@@ -366,7 +366,7 @@ namespace file
 
    }
 
-   void memory_buffer::transfer_to(writer & writer, ::primitive::memory_size uiSize)
+   void memory_buffer::transfer_to(writer & writer, ::primitive::memory_size uiSize) const
    {
 
       if(get_internal_data() == NULL || get_internal_data_size() <= 0)

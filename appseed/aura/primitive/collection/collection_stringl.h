@@ -20,7 +20,7 @@ public:
    void add_tail_tokens(const char * lpcsz, const char * lpcszSeparator, bool bAddEmpty);
 
 
-   void write(::file::output_stream & ostream);
+   void write(::file::output_stream & ostream) const;
    void read(::file::input_stream & istream);
 
 

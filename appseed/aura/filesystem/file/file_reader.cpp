@@ -78,7 +78,7 @@ namespace file
 
    }
 
-   void reader::transfer_to(writer & writer, ::primitive::memory_size uiBufMax)
+   void reader::transfer_to(writer & writer, ::primitive::memory_size uiBufMax) const
    {
 
 

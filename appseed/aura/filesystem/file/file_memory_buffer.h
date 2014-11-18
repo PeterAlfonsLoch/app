@@ -65,10 +65,10 @@ namespace file
       virtual void dump(dump_context & dumpcontext) const;
 
       virtual void * get_internal_data();
-      virtual ::primitive::memory_size get_internal_data_size();
+      virtual ::primitive::memory_size get_internal_data_size() const;
       virtual bool set_internal_data_size(::primitive::memory_size c);
 
-      virtual void transfer_to(writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024);
+      virtual void transfer_to(writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024) const;
 
       
    };

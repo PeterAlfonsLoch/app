@@ -53,7 +53,7 @@ public:
 
    void copy_data(const biunique & ia);
 
-   virtual void write(::file::output_stream & ostream);
+   virtual void write(::file::output_stream & ostream) const;
    virtual void read(::file::input_stream & ostream);
 
    biunique & operator = (const biunique & ia);
@@ -382,7 +382,7 @@ void serialize_read(::file::input_stream & istream, map < t1, t2, t3, t4 > & m)
 }
 
 template < class T, class T_to_T >
-void biunique < T, T_to_T > ::write(::file::output_stream & ostream)
+void biunique < T, T_to_T > ::write(::file::output_stream & ostream) const
 {
    ostream << m_bBiunivoca;
    ostream << m_iMaxA;

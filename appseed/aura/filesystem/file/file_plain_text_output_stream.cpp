@@ -111,14 +111,14 @@ namespace file
    }
 
 
-   void plain_text_output_stream:: write (SIZE & size)
+   void plain_text_output_stream:: write (const SIZE & size)
    {
        write (size.cx);
        write (size.cy);
       
    }
 
-   void plain_text_output_stream:: write (sp(type) info)
+   void plain_text_output_stream:: write (const sp(type) info)
    {
 
       raw_print(info->name());
@@ -127,7 +127,7 @@ namespace file
       
    }
 
-   void plain_text_output_stream:: write (serializable & serializable)
+   void plain_text_output_stream:: write (const serializable & serializable)
    {
       serializable.write(*this);
       
