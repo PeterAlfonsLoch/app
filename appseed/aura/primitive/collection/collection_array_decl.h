@@ -323,7 +323,8 @@ public:
    ::count        m_nMaxSize; // MAX allocated
    ::count        m_nGrowBy;  // grow amount
 
-   array_base(sp(::aura::application) papp = NULL);
+   array_base(int iTypeSize,bool bRaw);
+   array_base(sp(::aura::application) papp, int iTypeSize, bool bRaw);
    virtual ~array_base();
 
    inline ::count get_size() const;
@@ -382,7 +383,7 @@ public:
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
 class array :
-   virtual public ::array_base
+   public ::array_base
 {
 public:
 
@@ -595,10 +596,10 @@ public:
 
 #ifdef MOVE_SEMANTICS
    array(array && a) :
-   element(a.get_app())
+   element(a.get_app()),
+   array_base(a.get_app(),sizeof(TYPE),false)
    {
 
-      m_iTypeSize    = a.m_iTypeSize;
       m_nGrowBy      = a.m_nGrowBy;
       m_pData        = a.m_pData;
       m_nSize        = a.m_nSize;

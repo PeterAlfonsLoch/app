@@ -8,7 +8,7 @@
 
 template<class TYPE, class ARG_TYPE = const TYPE &>
 class raw_array :
-   virtual public array_base
+   public array_base
 {
 public:
 

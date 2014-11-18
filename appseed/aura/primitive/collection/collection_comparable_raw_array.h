@@ -28,7 +28,7 @@ public:
 
 template < typename POINTER,class ARRAY_TYPE = comparable_raw_array < void * >::type  >
 class raw_ptr_array:
-   virtual public ARRAY_TYPE
+   public ARRAY_TYPE
 {
 public:
 
@@ -70,7 +70,7 @@ public:
 
 template < class TYPE,class ARRAY_TYPE = raw_ptr_array < TYPE * > >
 class ptr_array:
-   virtual public ARRAY_TYPE
+   public ARRAY_TYPE
 {
 public:
 

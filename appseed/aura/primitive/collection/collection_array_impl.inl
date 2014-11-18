@@ -145,13 +145,13 @@ inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::last(index index)
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline const TYPE* array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_data() const
 {
-   return (const TYPE*)get_data();
+   return (const TYPE*)m_pData;
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline TYPE* array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_data()
 {
-   return (TYPE*)get_data();
+   return (TYPE*)m_pData;
 }
 
 
@@ -213,9 +213,9 @@ inline array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  & array < TYPE, ARG_TYPE, DEFCO
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::array(sp(::aura::application) papp, ::count nGrowBy) :
-element(papp)
+element(papp),
+array_base(papp,sizeof(TYPE),false)
 {
-   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = MAX(0, nGrowBy);
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
@@ -223,9 +223,9 @@ element(papp)
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::array(const array <TYPE, ARG_TYPE> & a) :
-element(a.get_app())
+element(a.get_app()),
+array_base(a.get_app(),sizeof(TYPE),false)
 {
-   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;
@@ -237,9 +237,9 @@ element(a.get_app())
 
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > :: array(::count n)
+array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > :: array(::count n) :
+array_base(sizeof(TYPE),false)
 {
-   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = m_nMaxSize = 0;

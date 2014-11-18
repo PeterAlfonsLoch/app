@@ -10,13 +10,13 @@ namespace lemon
    {
 
       template < class TYPE >
-      ::count ensure_sequence(numeric_array < TYPE > & a,TYPE start,TYPE end,TYPE increment);
+      ::count ensure_sequence(numeric_array < TYPE > & a,TYPE start,TYPE end,TYPE increment = 1);
 
       template < class TYPE >
-      ::count append_sequence(numeric_array < TYPE > & a, TYPE iterator,TYPE end,TYPE increment);
+      ::count append_sequence(numeric_array < TYPE > & a, TYPE iterator,TYPE end,TYPE increment = 1);
       
       template < class TYPE >
-      ::count set_sequence(numeric_array < TYPE > & a, TYPE start,TYPE end,TYPE increment);
+      ::count set_sequence(numeric_array < TYPE > & a,TYPE start,TYPE end,TYPE increment = 1);
 
 
       template<class ARRAY>

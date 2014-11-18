@@ -1,11 +1,25 @@
 #include "framework.h"
 
 
-array_base::array_base(sp(::aura::application) papp):
+array_base::array_base(int iTypeSize,bool bRaw)
+{
+
+   m_iTypeSize = iTypeSize;
+   m_bRaw = bRaw;
+   m_nGrowBy = 32;
+   m_pData = NULL;
+   m_nSize = 0;
+   m_nMaxSize = 0;
+
+}
+
+
+array_base::array_base(sp(::aura::application) papp, int iTypeSize, bool bRaw):
    element(papp)
 {
    
-   m_iTypeSize = sizeof(int_ptr); // default
+   m_iTypeSize = iTypeSize;
+   m_bRaw = bRaw;
    m_nGrowBy = 32;
    m_pData = NULL;
    m_nSize = 0;

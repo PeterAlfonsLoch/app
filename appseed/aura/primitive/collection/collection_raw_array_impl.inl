@@ -287,31 +287,25 @@ inline raw_array<TYPE, ARG_TYPE> & raw_array<TYPE, ARG_TYPE>::operator = (const 
 
 template<class TYPE, class ARG_TYPE>
 raw_array<TYPE, ARG_TYPE>::raw_array(sp(::aura::application) papp, ::count nGrowBy) :
-element(papp)
+element(papp),
+array_base(papp, sizeof(TYPE), true)
 {
-   m_iTypeSize = sizeof(TYPE);
-   m_nGrowBy = MAX(0, nGrowBy);
-   m_pData = NULL;
-   m_nSize = m_nMaxSize = 0;
 }
 
 template<class TYPE, class ARG_TYPE>
 raw_array<TYPE, ARG_TYPE>::raw_array(const raw_array <TYPE, ARG_TYPE> & a) :
-element(a.get_app())
+element(a.get_app()),
+array_base(a.get_app(),sizeof(TYPE),true)
 {
-   m_iTypeSize = sizeof(TYPE);
-   m_nGrowBy = 32;
-   m_pData = NULL;
-   m_nSize = m_nMaxSize = 0;
    operator = (a);
 }
 
 #ifdef MOVE_SEMANTICS
 template<class TYPE,class ARG_TYPE>
 raw_array<TYPE,ARG_TYPE>::raw_array(raw_array <TYPE,ARG_TYPE> && a):
-element(a.get_app())
+element(a.get_app()),
+array_base(a.get_app(),sizeof(TYPE),true)
 {
-   m_iTypeSize = sizeof(TYPE);
    m_nGrowBy = a.m_nGrowBy;
    m_pData = a.m_pData;
    m_nSize = a.m_nSize;
@@ -326,33 +320,24 @@ element(a.get_app())
 #endif
 
 template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>:: raw_array(::count n)
+raw_array<TYPE, ARG_TYPE>:: raw_array(::count n) :
+array_base(sizeof(TYPE),true)
 {
-   m_iTypeSize = sizeof(TYPE);
-   m_nGrowBy = 32;
-   m_pData = NULL;
-   m_nSize = m_nMaxSize = 0;
    allocate(n);
 }
 
 template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>::raw_array(ARG_TYPE t, ::count n)
+raw_array<TYPE, ARG_TYPE>::raw_array(ARG_TYPE t, ::count n) :
+array_base(sizeof(TYPE),true)
 {
-   m_iTypeSize = sizeof(TYPE);
-   m_nGrowBy = 32;
-   m_pData = NULL;
-   m_nSize = m_nMaxSize = 0;
    insert_at(0, t, n);
 }
 
 
 template<class TYPE, class ARG_TYPE>
-raw_array<TYPE, ARG_TYPE>::raw_array(TYPE * ptypea, ::count n)
+raw_array<TYPE, ARG_TYPE>::raw_array(TYPE * ptypea, ::count n) :
+array_base(sizeof(TYPE),true)
 {
-   m_iTypeSize = sizeof(TYPE);
-   m_nGrowBy = 32;
-   m_pData = NULL;
-   m_nSize = m_nMaxSize = 0;
    allocate(n);
    for(int i = 0; i < n; i++)
    {
