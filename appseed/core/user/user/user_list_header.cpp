@@ -318,12 +318,12 @@ namespace user
                iaWidth.add(-1);
             }
          }
-         if(!data_set(str, m_plistctrlinterface->m_dataid, iaWidth))
+         if(!data_set(str + m_plistctrlinterface->m_dataid.m_id, iaWidth))
             return false;
       }
       else
       {
-         data_is(str,m_plistctrlinterface->m_dataid) >> iaWidth;
+         data_get(str +m_plistctrlinterface->m_dataid.m_id) >> iaWidth;
          for (index iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
          {
             m_plistctrlinterface->_001SetColumnWidth(iColumn, MAX(iaWidth[iColumn], 50));
