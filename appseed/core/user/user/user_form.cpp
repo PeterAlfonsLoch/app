@@ -437,13 +437,11 @@ namespace user
          return;
       ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
       ASSERT(pcontrol->descriptor().m_eddx == control::ddx_dbflags);
-      base_sort_serializable_int_ptr_array ia;
-      if(m_pdataserver->data_server_load(
-         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_pclient,
-         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idSection,
-         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idKey,
+      sort_int_ptr_array ia;
+      if(pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_pclient->data_get(
+         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idSection + "."+         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idKey,
          pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idIndex,
-         dynamic_cast < ::file::serializable & > (ia)))
+         ia))
       {
 /*         check_box * pcheck = dynamic_cast < check_box * > (pcontrol);
          if(pcheck != NULL)

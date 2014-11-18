@@ -364,6 +364,8 @@ public:
 
    }
 
+   virtual void on_after_read() {}
+
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -986,4 +988,23 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assert_valid() const
 
 
 #define ptrptr(T1, T2) map < T1 *, T1 *, T2 *, T2 * >
+
+
+
+template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY > >
+::file::output_stream & operator << (::file::output_stream & os,const map < KEY,ARG_KEY,VALUE,ARG_VALUE,HASH,EQUALS> & a)
+{
+   ::file::map::write(os,a);
+   return os;
+}
+
+template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY > >
+::file::input_stream & operator >> (::file::input_stream & is,map < KEY,ARG_KEY,VALUE,ARG_VALUE,HASH,EQUALS> & a)
+{
+   ::file::map::read(is,a);
+   return is;
+}
+
+
+
 

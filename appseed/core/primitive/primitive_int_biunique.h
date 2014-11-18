@@ -1,6 +1,6 @@
 #pragma once
 
-template < class T, class T_to_T = attrib_map < map < T, T, T, T > > >
+template < class T, class T_to_T = map < T, T, T, T > >
 class  biunique :
    public object,
    public ::file::serializable
@@ -391,12 +391,12 @@ void biunique < T, T_to_T > ::write(::file::output_stream & ostream) const
    ostream << m_iEmptyB;
    if(m_bBiunivoca)
    {
-      serialize_write(ostream, m_ab);
+      ostream << m_ab;
    }
    else
    {
-      serialize_write(ostream, m_ab);
-      serialize_write(ostream, m_ba);
+      ostream << m_ab;
+      ostream << m_ba;
    }
 }
 
@@ -413,7 +413,7 @@ void biunique < T, T_to_T > ::read(::file::input_stream & istream)
       if(m_bBiunivoca)
       {
          T_to_T ab;
-         serialize_read(istream, ab);
+         istream >> ab;
          typename T_to_T::pair * ppair = ab.PGetFirstAssoc();
          while(ppair != NULL)
          {
@@ -423,8 +423,8 @@ void biunique < T, T_to_T > ::read(::file::input_stream & istream)
       }
       else
       {
-         serialize_read(istream, m_ab);
-         serialize_read(istream, m_ba);
+         istream >> m_ab;
+         istream >> m_ba;
       }
    }
    catch(const char * psz)

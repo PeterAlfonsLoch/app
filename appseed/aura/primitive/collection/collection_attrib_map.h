@@ -1,58 +1,23 @@
 #pragma once
 
 
-
-template < class type_map >
-class attrib_map :
-   virtual public type_map
+template <class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH = ::comparison::hash < ARG_KEY >,class EQUALS = ::comparison::equals_type_arg_type < KEY,ARG_KEY > >
+map < KEY,ARG_KEY, VALUE,ARG_VALUE,HASH,EQUALS > & copy(map < KEY,ARG_KEY, VALUE,ARG_VALUE,HASH,EQUALS > & m,const map < KEY,ARG_KEY, VALUE,ARG_VALUE,HASH,EQUALS > & attribmap)
 {
-public:
-
-
-   attrib_map(sp(::aura::application) papp = NULL, ::count nBlockSize = 10);
-   attrib_map(const attrib_map & map);
-
-   attrib_map & operator = (const attrib_map & map);
-
-
-};
-
-
-template < class type_map >
-attrib_map < type_map >::attrib_map(sp(::aura::application) papp, ::count nBlockSize) :
-   element(papp),
-   type_map(papp, nBlockSize)
-{
-}
-
-template < class type_map >
-attrib_map < type_map >::attrib_map(const attrib_map & attribmap) :
-   element(attribmap.get_app())
-{
-   operator = (attribmap);
-}
-
-template < class type_map >
-attrib_map < type_map > & attrib_map < type_map >::operator = (const attrib_map & attribmap)
-{
-
-   if(this != &attribmap)
+   if(&m != &attribmap)
    {
-      this->remove_all();
+      m.remove_all();
       type_map::m_nBlockSize = attribmap.type_map::m_nBlockSize;
       const typename type_map::pair * ppair = attribmap.PGetFirstAssoc();
       while(ppair != NULL)
       {
-         this->set_at(ppair->m_element1, ppair->m_element2);
+         m.set_at(ppair->m_element1,ppair->m_element2);
          ppair  = attribmap.PGetNextAssoc(ppair);
       }
    }
-
-   return *this;
-
+   return m;
 }
 
 
 
-
-typedef attrib_map < ::map < id, id, index, index > > id_to_index;
+using id_to_index = ::map < id,id,index,index > ;

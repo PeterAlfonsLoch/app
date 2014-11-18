@@ -23,7 +23,6 @@ namespace file
 
    public:
    
-
       memory_buffer(sp(::aura::application) papp, ::primitive::memory_size iSize = 0);
       memory_buffer(sp(::aura::application) papp, void * pMemory, ::primitive::memory_size dwSize);
       memory_buffer(sp(::aura::application) papp, const memory_buffer & memoryfile);
@@ -64,11 +63,12 @@ namespace file
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
+      using ::file::stream_buffer::get_internal_data;
       virtual void * get_internal_data();
       virtual ::primitive::memory_size get_internal_data_size() const;
       virtual bool set_internal_data_size(::primitive::memory_size c);
 
-      virtual void transfer_to(writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024) const;
+      virtual void transfer_to(writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024);
 
       
    };

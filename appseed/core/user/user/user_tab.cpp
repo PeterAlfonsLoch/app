@@ -187,12 +187,12 @@ namespace user
 
          var_array vara;
 
-         data_get("restore_tab", "", vara);
+         data_is("restore_tab", "") >> vara;
 
          if(vara.remove_ci(id) > 0)
          {
 
-            data_set("restore_tab", "", vara);
+            data_os("restore_tab", "") << vara;
 
          }
 

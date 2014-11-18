@@ -426,3 +426,53 @@ namespace database
 } // namespace database
 
 
+
+namespace file
+{
+
+
+   data_trigger_output_stream::data_trigger_output_stream(::database::client * pclient,class ::database::id id,class ::database::id idIndex) :
+      ::element(pclient->get_app()),
+      byte_stream_memory_buffer(pclient->get_app())
+   {
+
+      m_id = id;
+      m_idIndex = idIndex;
+      m_pclient = pclient;
+
+   }
+   
+   data_trigger_output_stream::~data_trigger_output_stream()
+   {
+   
+      if(m_pclient != NULL)
+      {
+         seek_to_begin();
+         m_pclient->data_set(m_id,m_idIndex,*this);
+
+      }
+   
+   }
+
+   
+   data_trigger_input_stream::data_trigger_input_stream(::database::client * pclient,class ::database::id id,class ::database::id idIndex) :
+      ::element(pclient->get_app()),
+      byte_stream_memory_buffer(pclient->get_app())
+   {
+      
+      //m_id = id;
+      //m_idIndex = idIndex;
+      //m_pclient = pclient;
+      pclient->data_get(id,idIndex,*this);
+      seek_to_begin();
+   }
+
+   data_trigger_input_stream::~data_trigger_input_stream()
+   {
+
+   }
+
+
+} // namespace file
+
+

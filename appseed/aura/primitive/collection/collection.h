@@ -65,7 +65,7 @@
    class string_list;          // list of Strings
    class CMapStringToPtr;      // map from string to void *
    class CMapStringToOb;       // map from string to object*
-   class string_to_string;   // map from string to string
+//   class string_to_string;   // map from string to string
 
 
 

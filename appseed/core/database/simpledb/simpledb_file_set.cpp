@@ -48,7 +48,7 @@ namespace simpledb
       if(!data_get(::base::system::idEmpty, ::base::system::idEmpty, stra))
          return false;
 
-      data_get("recursive", ::base::system::idEmpty, baRecursive);
+      data_is("recursive", ::base::system::idEmpty) >> baRecursive;
       
       // add_search calls Ex2FileSet refresh internally
       m_p->add_search(stra, baRecursive);

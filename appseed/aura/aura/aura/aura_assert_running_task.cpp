@@ -41,7 +41,7 @@ namespace aura
             Application.post_to_all_threads(WM_QUIT,0,0);
 
          }
-         catch(::exception::exception & e)
+         catch(::exception::exception &)
          {
 
          }

@@ -323,18 +323,11 @@ namespace user
       }
       else
       {
-         if(data_get(
-            str,
-            m_plistctrlinterface->m_dataid,
-            iaWidth))
+         data_is(str,m_plistctrlinterface->m_dataid) >> iaWidth;
+         for (index iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
          {
-            for (index iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
-            {
-               m_plistctrlinterface->_001SetColumnWidth(iColumn, MAX(iaWidth[iColumn], 50));
-            }
+            m_plistctrlinterface->_001SetColumnWidth(iColumn, MAX(iaWidth[iColumn], 50));
          }
-         else
-            return false;
       }
       return true;
    }

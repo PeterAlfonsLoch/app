@@ -155,12 +155,25 @@ public:
    template<class ARRAY>
    friend bool lemon::array::binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia);
 
+   template < class ARRAY >
+   friend void ::file::array::write(::file::output_stream & ostream,const ARRAY & a);
+
+   template < class ARRAY >
+   friend void ::file::array::read(::file::input_stream & ostream,ARRAY & a);
+
+
    sort_array & operator = (const sort_array & a)
    {
-	   if (&a == this)
-		   return *this;
-	   BASE_ARRAY_TYPE::operator = ((const BASE_ARRAY_TYPE &)a);
-	   return *this;
+	   return copy(a);
+   }
+
+   sort_array & copy (const sort_array & a)
+   {
+      if(&a == this)
+         return *this;
+      BASE_ARRAY_TYPE::operator = ((const BASE_ARRAY_TYPE &)a);
+      m_indexmap = a.m_indexmap;
+      return *this;
    }
 
    virtual void on_after_read();

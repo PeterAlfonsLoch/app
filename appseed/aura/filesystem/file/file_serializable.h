@@ -64,11 +64,11 @@ namespace file
    {
 
       template < class type_map >
-      void write(output_stream & ostream,type_map & m)
+      void write(output_stream & ostream,const type_map & m)
       {
          ::count count = m.get_count();
          ostream.write_arbitrary(count);
-         typename type_map::pair * p = m.PGetFirstAssoc();
+         typename const type_map::pair * p = m.PGetFirstAssoc();
          for(index index = 0; index < count; index++)
          {
             ostream << p->m_element1;

@@ -6,9 +6,11 @@
 
 template < class ENUM >
 class flags :
-   virtual public sort_int_ptr_array
+   virtual public ::file::serializable
 {
 public:
+
+   sort_int_ptr_array m_ia;
 
 
    flags();
@@ -28,7 +30,17 @@ public:
    flags < ENUM > & operator = (const flags < ENUM >  & f);
    bool operator == (const flags < ENUM >  & f);
    bool operator != (const flags < ENUM >  & f);
-   bool operator == (const ENUM e) { return get_size() == 1 && (ENUM) element_at(0) == e; }
+   bool operator == (const ENUM e) { return m_ia.get_size() == 1 && (ENUM) element_at(0) == e; }
+
+   void write(::file::output_stream & os) const
+   {
+      ::file::array::write(os, m_ia);
+   }
+
+   void read(::file::input_stream & is)
+   {
+      ::file::array::read(is,m_ia);
+   }
 
 };
 
@@ -58,16 +70,16 @@ flags < ENUM > ::~flags()
 template < class ENUM >
 bool flags < ENUM > ::signalize(ENUM eenum)
 {
-   return add_unique((int_ptr)eenum);
+   return m_ia.add_unique((int_ptr)eenum);
 }
 
 template < class ENUM >
 int32_t flags < ENUM > ::signalize(flags < ENUM > & f)
 {
    int32_t iCount = 0;
-   for (int32_t i = 0; i < f.get_size(); i++)
+   for (int32_t i = 0; i < f.m_ia.get_size(); i++)
    {
-      if (signalize((ENUM)f[i]))
+      if (signalize((ENUM)f.m_ia[i]))
          iCount++;
    }
    return iCount;
@@ -76,13 +88,13 @@ int32_t flags < ENUM > ::signalize(flags < ENUM > & f)
 template < class ENUM >
 bool flags < ENUM > ::is_signalized(ENUM eenum) const
 {
-   return contains((int_ptr)eenum);
+   return m_ia.contains((int_ptr)eenum);
 }
 
 template < class ENUM >
 bool flags < ENUM > ::unsignalize(ENUM eenum)
 {
-   return remove((int_ptr)eenum) > 0;
+   return m_ia.remove((int_ptr)eenum) > 0;
 }
 
 template < class ENUM >
@@ -102,27 +114,27 @@ bool flags < ENUM > ::toggle_signalization(ENUM eenum)
 template < class ENUM >
 bool flags < ENUM > ::unsignalize_all()
 {
-   remove_all();
+   m_ia.remove_all();
    return true;
 }
 
 template < class ENUM >
 flags < ENUM > & flags < ENUM > ::operator = (const flags < ENUM > & f)
 {
-   sort_int_ptr_array::copy(f);
+   m_ia.copy(f.m_ia);
    return *this;
 }
 
 template < class ENUM >
 bool flags < ENUM > ::operator == (const flags < ENUM > & f)
 {
-   return sort_int_ptr_array::operator == (f);
+   return m_ia.operator == (f.m_ia);
 }
 
 template < class ENUM >
 bool flags < ENUM > ::operator != (const flags < ENUM > & f)
 {
-   return sort_int_ptr_array::operator != (f);
+   return m_ia.operator != (f.m_ia);
 }
 
 template < class ENUM >

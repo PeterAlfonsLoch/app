@@ -152,9 +152,9 @@ namespace sockets
 
       };
 
-      mutex                                                                                  m_mutexCache;
-      ::file::byte_serializable_map < string_map < dns_cache_item > >                        m_mapCache;
-      ::file::byte_serializable_map < string_map < reverse_cache_item > >                    m_mapReverseCache;
+      mutex                                              m_mutexCache;
+      string_map < dns_cache_item >                      m_mapCache;
+      string_map < reverse_cache_item >                  m_mapReverseCache;
 
 
       net(sp(::aura::application) papp);

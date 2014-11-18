@@ -639,15 +639,32 @@ namespace user
       _001GetElementRect(pdrawitem, ::user::list::ElementImage);
       if(pdrawitem->m_bOk)
       {
-         _001GetItemImage(pdrawitem);
+         try
+         {
+            _001GetItemImage(pdrawitem);
+         }
+         catch(...)
+         {
+            pdrawitem->m_bOk = false;
+         }
          pdrawitem->draw_image();
       }
       pdrawitem->m_iListItem = -1;
       _001GetElementRect(pdrawitem, ::user::list::ElementText);
       if(pdrawitem->m_bOk)
       {
-         _001GetItemText(pdrawitem);
-         pdrawitem->draw_text();
+         try
+         {
+            _001GetItemText(pdrawitem);
+         }
+         catch(...)
+         {
+            pdrawitem->m_bOk = false;
+         }
+         if(pdrawitem->m_bOk)
+         {
+            pdrawitem->draw_text();
+         }
       }
 
    }

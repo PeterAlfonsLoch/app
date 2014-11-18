@@ -2,49 +2,7 @@
 
 
 template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::comparison::strid_hash, class EQUALS = ::comparison::strid_equals  >
-class strid_map :
-   virtual public attrib_map < map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > >
-{
-public:
-
-   strid_map(sp(::aura::application) papp = NULL, ::count nBlockSize = 256);
-   strid_map(const strid_map & map);
-
-
-   strid_map & operator = (const strid_map & map);
-
-
-};
-
-
-template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(sp(::aura::application) papp, ::count nBlockSize) :
-   element(papp),
-   map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > (papp, nBlockSize)
-{
-}
-
-
-template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::strid_map(const strid_map & map) :
-   element(map.get_app()),
-   attrib_map < ::map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > > (map)
-{
-}
-
-template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-strid_map < VALUE, ARG_VALUE, HASH, EQUALS > & strid_map < VALUE, ARG_VALUE, HASH, EQUALS >::operator = (const strid_map & map)
-{
-
-   if(this != &map)
-   {
-      this->attrib_map < ::map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > >::operator = (map);
-   }
-
-   return *this;
-
-}
-
+using strid_map = map < id,const id &,VALUE,ARG_VALUE,HASH,EQUALS > ;
 
 template < class T >
 class CLASS_DECL_AURA string_to_pointer :
