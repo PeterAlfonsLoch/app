@@ -175,14 +175,12 @@ namespace filemanager
    }
 
 
-   string manager::calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex)
+   string manager::calc_data_key(::database::id & id)
    {
       string str;
-      str += idSection.get_id().str();
+      str += m_dataid.m_id;
       str += ".";
-      str += id.get_id().str();
-      str += ".";
-      str += idIndex.get_id().str();
+      str += id.m_id;
       return str;
    }
 

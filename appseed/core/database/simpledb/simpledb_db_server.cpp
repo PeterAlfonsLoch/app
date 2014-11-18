@@ -28,24 +28,19 @@ db_server::~db_server()
 }
 
 
-string db_server::calc_key(::database::client * pclient, ::database::id & idSection, ::database::id & id)
+string db_server::calc_data_key(::database::client * pclient,  ::database::id & id)
 {
 
    if(pclient != NULL)
    {
 
-      return pclient->calc_key(idSection, id);
+      return pclient->calc_data_key(id);
 
    }
    else
    {
 
-      string str;
-      str = idSection.get_id().str();
-      str += ".";
-      str += id.get_id().str();
-
-      return str;
+      return id.m_id;
 
    }
 
@@ -240,12 +235,12 @@ void db_server::close()
 }
 
 
-bool db_server::data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::file::output_stream & writable, ::database::update_hint * phint)
+bool db_server::data_server_load(::database::client * pclient, ::database::id id, ::file::output_stream & writable, ::database::update_hint * phint)
 {
 
    UNREFERENCED_PARAMETER(phint);
 
-   if(!load(calc_key(pclient, idSection, id, idIndex), writable))
+   if(!load(calc_data_key(pclient,id),writable))
       return false;
 
    return true;
@@ -253,12 +248,12 @@ bool db_server::data_server_load(::database::client * pclient, ::database::id id
 }
 
 
-bool db_server::data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::file::input_stream & readable, ::database::update_hint * phint)
+bool db_server::data_server_save(::database::client * pclient, ::database::id id, ::file::input_stream & readable, ::database::update_hint * phint)
 {
 
    UNREFERENCED_PARAMETER(phint);
 
-   if(!save(calc_key(pclient, idSection, id, idIndex), readable))
+   if(!save(calc_data_key(pclient,id),readable))
       return false;
 
    return true;
@@ -337,7 +332,7 @@ sp(::sqlite::base) db_server::get_database()
 }
 
 
-bool db_server::data_pulse_change(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ::database::update_hint * puh)
+bool db_server::data_pulse_change(::database::client * pclient, ::database::id id, ::database::update_hint * puh)
 {
 
    return ::database::server::data_pulse_change(pclient, id, puh);

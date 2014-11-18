@@ -87,7 +87,7 @@ namespace filemanager
       
 
 
-      string calc_key(::database::id & idSection, ::database::id & id, ::database::id & idIndex);
+      string calc_data_key(::database::id & id);
 
       virtual void on_create(sp(::create_context) pcreatecontext);
 

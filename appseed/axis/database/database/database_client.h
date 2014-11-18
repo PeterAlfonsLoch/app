@@ -143,9 +143,9 @@ namespace database
 
 
 
-      virtual string calc_key(::database::id & idSection, ::database::id & id);
+      virtual string calc_data_key(::database::id & id);
 
-      virtual id get_data_id(class id id);
+      virtual id get_data_id();
       virtual id calc_data_id();
       virtual bool update_data_id();
 

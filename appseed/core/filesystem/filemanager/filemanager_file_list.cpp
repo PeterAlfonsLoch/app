@@ -94,7 +94,7 @@ namespace filemanager
 
          stringa stra;
 
-         get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic, ::base::system::idEmpty, stra);
+         get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic, stra);
 
          string strPath = get_filemanager_item().m_strPath;
 
@@ -106,7 +106,7 @@ namespace filemanager
             if(stra.add_unique(strPath) >= 0)
             {
 
-               get_filemanager_manager()->data_set(get_filemanager_template()->m_dataidStatic, ::base::system::idEmpty, stra);
+               get_filemanager_manager()->data_set(get_filemanager_template()->m_dataidStatic, stra);
 
                add_item(get_filemanager_item().m_strPath, System.file().name_(get_filemanager_item().m_strPath));
             

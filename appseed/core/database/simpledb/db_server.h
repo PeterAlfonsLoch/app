@@ -67,7 +67,7 @@ public:
    bool save(const char * lpKey, ::file::input_stream & reader);
 
 
-   virtual string calc_key(::database::client * pclient, ::database::id & idSection, ::database::id & id);
+   virtual string calc_data_key(::database::client * pclient, ::database::id & id);
 
    virtual bool initialize_user(mysql::database * pmysqldbUser, const char * pszUser);
    virtual bool initialize();

@@ -76,7 +76,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         return m_pdataserver->data_server_save(this, get_data_id(id), var, puh);
+         return m_pdataserver->data_server_save(this, id, var, puh);
       }
       return false;
    }
@@ -86,7 +86,7 @@ namespace database
       if(m_pdataserver != NULL)
       {
          var var(i);
-         return m_pdataserver->data_server_save(this, get_data_id(id), var, puh);
+         return m_pdataserver->data_server_save(this, id, var, puh);
       }
       return false;
    }
@@ -96,7 +96,7 @@ namespace database
       if(m_pdataserver != NULL)
       {
          var var(i);
-         return m_pdataserver->data_server_save(this, get_data_id(id), var, puh);
+         return m_pdataserver->data_server_save(this, id, var, puh);
       }
       return false;
    }
@@ -109,7 +109,7 @@ namespace database
       {
          var var;
          var = lpsz;
-         return m_pdataserver->data_server_save(this, get_data_id(id), var, puh);
+         return m_pdataserver->data_server_save(this, id, var, puh);
       }
       return false;
    }
@@ -120,7 +120,7 @@ namespace database
       {
          var var;
          var = lpsz;
-         return m_pdataserver->data_server_save(this, get_data_id(id), var, puh);
+         return m_pdataserver->data_server_save(this, id, var, puh);
       }
       return false;
    }
@@ -133,7 +133,7 @@ namespace database
       for(index iItem = 0; iItem < iCount; iItem++)
       {
          selection_item & item = selection.get_item(iItem);
-         if(!data_set(get_data_id(item.m_id), lpsz, puh))
+         if(!data_set(item.m_id, lpsz, puh))
          {
             bOk = false;
          }
@@ -149,7 +149,7 @@ namespace database
       for(index iItem = 0; iItem < iCount; iItem++)
       {
          selection_item & item = selection.get_item(iItem);
-         if(!data_set(get_data_id(item.m_id),var,puh))
+         if(!data_set(item.m_id,var,puh))
          {
             bOk = false;
          }
@@ -162,7 +162,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         return m_pdataserver->data_server_save(this, get_data_id(id), readable, puh);
+         return m_pdataserver->data_server_save(this, id, readable, puh);
       }
       return false;
    }
@@ -171,7 +171,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         if(!m_pdataserver->data_server_save(this, get_data_id(id), obj, puh))
+         if(!m_pdataserver->data_server_save(this, id, obj, puh))
             return false;
          return true;
       }
@@ -182,7 +182,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         return m_pdataserver->data_server_save(this, get_data_id(id), istream, puh);
+         return m_pdataserver->data_server_save(this, id, istream, puh);
       }
       return false;
    }
@@ -202,7 +202,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         return m_pdataserver->data_server_load(this, get_data_id(id), var);
+         return m_pdataserver->data_server_load(this, id, var);
       }
       return false;
    }
@@ -212,7 +212,7 @@ namespace database
       if(m_pdataserver != NULL)
       {
          var var;
-         if(!m_pdataserver->data_server_load(this, get_data_id(id), var))
+         if(!m_pdataserver->data_server_load(this, id, var))
             return false;
          i = var;
          return true;
@@ -225,7 +225,7 @@ namespace database
       if(m_pdataserver != NULL)
       {
          var var;
-         if(!m_pdataserver->data_server_load(this, get_data_id(id), var))
+         if(!m_pdataserver->data_server_load(this, id, var))
             return false;
          i = var;
          return true;
@@ -238,7 +238,7 @@ namespace database
       if(m_pdataserver != NULL)
       {
          var var;
-         if(!m_pdataserver->data_server_load(this, get_data_id(id), var))
+         if(!m_pdataserver->data_server_load(this, id, var))
             return false;
          if(var.get_type() != var::type_string)
             return false;
@@ -252,7 +252,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         if(!m_pdataserver->data_server_load(this, get_data_id(id), writable))
+         if(!m_pdataserver->data_server_load(this, id, writable))
             return false;
          return true;
       }
@@ -263,7 +263,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         if(!m_pdataserver->data_server_load(this, get_data_id(id), obj))
+         if(!m_pdataserver->data_server_load(this, id, obj))
             return false;
          return true;
       }
@@ -274,7 +274,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         if(!m_pdataserver->data_server_load(this, get_data_id(id), ostream))
+         if(!m_pdataserver->data_server_load(this, id, ostream))
             return false;
          return true;
       }
@@ -286,7 +286,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         if(!m_pdataserver->data_pulse_change(this, get_data_id(id), puh))
+         if(!m_pdataserver->data_pulse_change(this, id, puh))
             return false;
          return true;
       }
@@ -330,20 +330,20 @@ namespace database
       remove(pclient);
    }
 
-   string client::calc_key(::database::id & idSection, ::database::id & id)
+   string client::calc_data_key(::database::id & id)
    {
       string str;
-      str = idSection.get_id().str();
+      str = get_data_id().m_id;
       str += ".";
-      str += id.get_id().str();
+      str += id.m_id;
       return str;
    }
 
 
-   id client::get_data_id(class id id)
+   id client::get_data_id()
    {
 
-      return m_dataid.m_id + "." + id.m_id;
+      return m_dataid;
 
    }
 

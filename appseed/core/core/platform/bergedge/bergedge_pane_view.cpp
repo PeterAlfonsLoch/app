@@ -673,9 +673,7 @@ namespace bergedge
       control.set_type(user::control::type_check_box);
       control.m_id = "save_display_bandwidth";
       control.set_ddx_dbflags(
-            "",
-            "ca2",
-            "savings",
+            "ca2.savings",
             ::aura::resource_display_bandwidth);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
@@ -684,9 +682,7 @@ namespace bergedge
       control.set_type(user::control::type_check_box);
       control.m_id = "save_processing";
       control.set_ddx_dbflags(
-            "",
-            "ca2",
-            "savings",
+            "ca2.savings",
             ::aura::resource_processing);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
