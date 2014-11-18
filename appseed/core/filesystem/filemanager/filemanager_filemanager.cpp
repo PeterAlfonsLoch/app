@@ -223,7 +223,7 @@ namespace filemanager
 
       }
 
-      if(data_set(strId + ".local://InitialBrowsePath", ::base::system::idEmpty, strPath))
+      if(data_set(strId + ".local://InitialBrowsePath", strPath))
       {
 
          return strPath;

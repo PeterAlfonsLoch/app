@@ -500,7 +500,7 @@ namespace filemanager
 
       uh.m_pmanager = this;
 
-      if(data_get(".local://InitialBrowsePath",::base::system::idEmpty,str))
+      if(data_get(".local://InitialBrowsePath",str))
       {
 
          if(str == "machinefs://")
@@ -514,7 +514,7 @@ namespace filemanager
             idMachine = "Windows Desktop";
 #endif
 
-            if(data_get(".local://InitialBrowsePath",idMachine,str))
+            if(data_get(".local://InitialBrowsePath." + idMachine,str))
             {
                FileManagerBrowse(str,::action::source::database_default());
             }
