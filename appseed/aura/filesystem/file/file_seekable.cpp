@@ -32,7 +32,7 @@ namespace file
    {
       UNREFERENCED_PARAMETER(offset);
       UNREFERENCED_PARAMETER(seekOrigin);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    file_position seekable::get_position() const

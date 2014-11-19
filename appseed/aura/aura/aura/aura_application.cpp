@@ -419,7 +419,7 @@ namespace aura
    void application::TermThread(HINSTANCE hInstTerm)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -427,7 +427,7 @@ namespace aura
    string application::get_version()
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -459,7 +459,7 @@ namespace aura
    void application::set_env_var(const string & var,const string & value)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -469,7 +469,7 @@ namespace aura
    bool application::_001OnDDECommand(const char * lpcsz)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -477,7 +477,7 @@ namespace aura
    void application::_001EnableShellOpen()
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -485,7 +485,7 @@ namespace aura
    ::user::document *  application::_001OpenDocumentFile(var varFile)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -493,7 +493,7 @@ namespace aura
    void application::_001OnFileNew(signal_details * pobj)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -3036,7 +3036,7 @@ namespace aura
    string application::dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return "";
 
@@ -3049,7 +3049,7 @@ namespace aura
    {
 
       //return get_temp_file_name_template(
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return "";
 
@@ -3059,7 +3059,7 @@ namespace aura
    string application::http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return "";
 
@@ -3255,7 +3255,7 @@ namespace aura
 
       UNREFERENCED_PARAMETER(pui);
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 

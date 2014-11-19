@@ -36,7 +36,7 @@ namespace draw2d
    void font::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 

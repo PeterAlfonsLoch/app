@@ -411,7 +411,7 @@ namespace user
          sp(::user::wndfrm::frame::control_box_button) appearance::get_box_button(e_button ebutton)
          {
 
-            throw interface_only_exception(get_app());
+            ::exception::throw_interface_only(get_app());
 
             return NULL;
 

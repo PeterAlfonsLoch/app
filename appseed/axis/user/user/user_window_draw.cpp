@@ -116,7 +116,7 @@ namespace user
 
    bool window_draw::ScreenOutput()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool window_draw::twf_stop()
@@ -130,12 +130,12 @@ namespace user
 
    void window_draw::asynch_redraw()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void window_draw::synch_redraw()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 

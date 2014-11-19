@@ -1811,7 +1811,7 @@ namespace user
    bool frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle, uint32_t dwStyle)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 

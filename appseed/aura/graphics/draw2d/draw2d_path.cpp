@@ -414,7 +414,7 @@ namespace draw2d
    void * path::detach()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 

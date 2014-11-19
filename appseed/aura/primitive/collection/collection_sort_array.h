@@ -42,9 +42,22 @@ public:
       index_array    m_indexa;
 
 
+      sort_index(sort_index && si)
+      {
+
+         m_bUpdated = si.m_bUpdated;
+         m_indexa = si.m_indexa;
+
+      }
+
       sort_index()
       {
          m_bUpdated = false;
+      }
+
+      virtual ~sort_index()
+      {
+
       }
 
    };
@@ -79,13 +92,15 @@ public:
    sort_array(sort_array && a) :
       BASE_ARRAY_TYPE(a)
    {
-
+      m_indexmap = a.m_indexmap;
    }
 
    inline sort_array & operator = (sort_array && a)
    {
 
       BASE_ARRAY_TYPE::operator = (a);
+
+      m_indexmap = a.m_indexmap;
 
       return *this;
 
@@ -172,7 +187,7 @@ public:
       if(&a == this)
          return *this;
       BASE_ARRAY_TYPE::operator = ((const BASE_ARRAY_TYPE &)a);
-      m_indexmap = a.m_indexmap;
+      ::lemon::map::copy(m_indexmap, a.m_indexmap);
       return *this;
    }
 

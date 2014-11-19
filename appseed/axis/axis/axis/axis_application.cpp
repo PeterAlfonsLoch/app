@@ -369,7 +369,7 @@ namespace axis
    void application::TermThread(HINSTANCE hInstTerm)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -378,7 +378,7 @@ namespace axis
    sp(::user::interaction) application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -386,7 +386,7 @@ namespace axis
    sp(::user::interaction) application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -394,7 +394,7 @@ namespace axis
    string application::get_version()
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -426,7 +426,7 @@ namespace axis
    void application::set_env_var(const string & var,const string & value)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -436,7 +436,7 @@ namespace axis
    bool application::_001OnDDECommand(const char * lpcsz)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -444,7 +444,7 @@ namespace axis
    void application::_001EnableShellOpen()
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -452,7 +452,7 @@ namespace axis
    ::user::document * application::_001OpenDocumentFile(var varFile)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -460,7 +460,7 @@ namespace axis
    void application::_001OnFileNew(signal_details * pobj)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -468,7 +468,7 @@ namespace axis
    sp(::user::printer) application::get_printer(const char * pszDeviceName)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 

@@ -358,12 +358,6 @@ public:
    inline ::count remove_all();
    inline void clear();
   
-
-   void construct_element(void * p);
-   void construct_element(void * p,::count c);
-   void destruct_element(void * p);
-   void copy_element(index i, const void * p);
-   
    virtual void on_construct_element(void *);
    virtual void on_construct_element(void *,::count);
    virtual void on_destruct_element(void *);
@@ -410,12 +404,12 @@ public:
 
       TYPE & operator * ()
       {
-         return *(TYPE*) m_parray->element_at(m_i);
+         return ((TYPE*) m_parray->m_pData)[m_i];
       }
 
       const TYPE & operator * () const
       {
-         return *(TYPE*)m_parray->element_at(m_i);
+         return ((const TYPE*)m_parray->m_pData)[m_i];
       }
 
 
@@ -439,29 +433,8 @@ public:
 
       const TYPE & operator * ()
       {
-         return m_parray->element_at(m_i);
+         return ((const TYPE*)m_parray->m_pData)[m_i];
       }
-
-      const_iterator & operator = (const iterator & it)
-      {
-
-         m_i         = it.m_i;
-         m_parray    = it.m_parray;
-
-         return *this;
-
-      }
-
-      const_iterator & operator = (const const_iterator & it)
-      {
-         if(this != &it)
-         {
-            m_i         = it.m_i;
-            m_parray    = it.m_parray;
-         }
-         return *this;
-      }
-
 
    };
 

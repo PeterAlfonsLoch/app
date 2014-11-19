@@ -23,7 +23,7 @@ namespace net
 
       UNREFERENCED_PARAMETER(stra);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return 0;
 

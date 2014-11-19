@@ -1738,7 +1738,7 @@ namespace sockets
    /*   port_t base_socket::GetSockPort()
    {
 
-   throw interface_only_exception(get_app());
+   ::exception::throw_interface_only(get_app());
 
    }
    */
@@ -1746,7 +1746,7 @@ namespace sockets
    /** Returns local ipv4 address for bound base_socket file descriptor. */
    /*   ipaddr_t base_socket::GetSockIP4()
    {
-   throw interface_only_exception(get_app());
+   ::exception::throw_interface_only(get_app());
    }
    */
 
@@ -1919,7 +1919,7 @@ namespace sockets
    port_t base_socket::GetLocalPort()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1927,7 +1927,7 @@ namespace sockets
    ::net::address base_socket::GetLocalAddress()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 

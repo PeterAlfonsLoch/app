@@ -77,44 +77,39 @@ inline void array_base::clear()
 
 inline void array_base::remove_last()
 {
+   ASSERT(m_nSize > 0);
    remove_at(get_upper_bound());
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_at(index nIndex)
 {
-   //   if(nIndex >= 0 && nIndex < m_nSize)
+   ASSERT(nIndex >= 0 && nIndex < m_nSize);
    return get_data()[nIndex];
-   //   throw invalid_argument_exception(get_app());
 }
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_at(index nIndex) const
 {
-   //   if(nIndex >= 0 && nIndex < m_nSize)
+   ASSERT(nIndex >= 0 && nIndex < m_nSize);
    return get_data()[nIndex];
-   // throw invalid_argument_exception(get_app());
 }
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::set_at(index nIndex, ARG_TYPE newElement)
 {
-   //   if(nIndex >= 0 && nIndex < m_nSize)
+   ASSERT(nIndex >= 0 && nIndex < m_nSize)
    get_data()[nIndex] = newElement;
-   // else
-   //  throw invalid_argument_exception(get_app());
 }
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::element_at(index nIndex) const
 {
-   //   if(nIndex >= 0 && nIndex < m_nSize)
+   ASSERT(nIndex >= 0 && nIndex < m_nSize);
    return get_data()[nIndex];
-   // throw invalid_argument_exception(get_app());
 }
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::element_at(index nIndex)
 {
-   //   if(nIndex >= 0 && nIndex < m_nSize)
+   ASSERT(nIndex >= 0 && nIndex < m_nSize);
    return get_data()[nIndex];
-   // throw invalid_argument_exception(get_app());
 }
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::first(index nIndex) const
@@ -328,7 +323,7 @@ void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::assert_valid() const
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-typename array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::iterator array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::erase(iterator pos)
+inline typename array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::iterator array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::erase(iterator pos)
 {
    if(pos.m_parray == this)
    {
@@ -342,7 +337,7 @@ typename array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::iterator array < TYPE, ARG_T
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-typename  array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::iterator array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::erase(iterator begin, iterator last)
+inline typename  array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::iterator array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::erase(iterator begin, iterator last)
 {
    if(begin.m_parray == this && last.m_parray == this)
    {
@@ -368,7 +363,7 @@ typename  array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::iterator array < TYPE, ARG_
 
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::operator += (const array & a)
+inline array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::operator += (const array & a)
 {
 
    if(&a == this)
@@ -385,7 +380,7 @@ array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  & array < TYPE, ARG_TYPE, DEFCONSTRUCT
 }
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::operator + (const array & a) const
+inline array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::operator + (const array & a) const
 {
    array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >  aNew(*this);
    aNew += a;
@@ -426,9 +421,6 @@ inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::set_at_grow(index nIndex,
 
    ASSERT(nIndex >= 0);
 
-   if(nIndex < 0)
-      throw invalid_argument_exception(get_app());
-
    if (nIndex >= m_nSize)
       set_size(nIndex+1, -1);
 
@@ -445,9 +437,6 @@ inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::element_at_grow(index n
    ASSERT_VALID(this);
 
    ASSERT(nIndex >= 0);
-
-   if(nIndex < 0)
-      throw invalid_argument_exception(get_app());
 
    if (nIndex >= m_nSize)
       set_size(nIndex+1, -1);

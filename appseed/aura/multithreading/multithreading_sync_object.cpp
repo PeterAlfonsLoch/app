@@ -32,7 +32,7 @@ bool sync_object::lock(const duration & durationTimeout)
    else
       return FALSE;
 #else
-   throw interface_only_exception(get_app());
+   ::exception::throw_interface_only(get_app());
 #endif
 }
 
@@ -41,7 +41,7 @@ wait_result sync_object::wait(const duration & durationTimeout)
 #ifdef WINDOWS
    return wait_result((uint32_t) ::WaitForSingleObjectEx(m_object,durationTimeout.os_lock_duration(), FALSE));
 #else
-   throw interface_only_exception(get_app());
+   ::exception::throw_interface_only(get_app());
 #endif
 }
 

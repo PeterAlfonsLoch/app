@@ -1,5 +1,18 @@
 #include "framework.h"
 
+#define construct_element(p) \
+   on_construct_element(p)
+
+#define construct_element_set(p, c) \
+   on_construct_element(p,c)
+
+#define destruct_element(p) \
+   try { on_destruct_element(p); } catch(...) {}
+
+#define copy_element(i,p) \
+   on_copy_element(i, p)
+
+
 
 array_base::array_base(int iTypeSize,bool bRaw)
 {
@@ -108,10 +121,10 @@ void array_base::free_extra()
 
 
 
-void array_base::construct_element(void * p) { on_construct_element(p); }
-void array_base::construct_element(void * p,::count c) { on_construct_element(p,c); }
-void array_base::destruct_element(void * p) { try { on_destruct_element(p); } catch(...) {} }
-void array_base::copy_element(index i, const void * p) { on_copy_element(i, p); }
+//void array_base::construct_element(void * p) { on_construct_element(p); }
+//void array_base::construct_element(void * p,::count c) { on_construct_element(p,c); }
+//void array_base::destruct_element(void * p) { try { on_destruct_element(p); } catch(...) {} }
+//void array_base::copy_element(index i, const void * p) { on_copy_element(i, p); }
 
 
 void array_base::on_construct_element(void *) {}
@@ -169,7 +182,7 @@ index array_base::insert_at(index nIndex,const void * newElement,::count nCount 
 
       if(!m_bRaw)
       {
-         construct_element((byte*)m_pData + nIndex*m_iTypeSize,nCount);
+         construct_element_set((byte*)m_pData + nIndex*m_iTypeSize,nCount);
       }
    }
 
@@ -445,7 +458,7 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
       m_pData = (byte *)memory_alloc(nAllocSize * m_iTypeSize);
       if(!m_bRaw)
       {
-         construct_element(m_pData, nNewSize);
+         construct_element_set(m_pData, nNewSize);
       }
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
@@ -457,7 +470,7 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
       {
          if(nNewSize > m_nSize)
          {
-            construct_element((byte *)m_pData + m_nSize * m_iTypeSize,nNewSize - m_nSize);
+            construct_element_set((byte *)m_pData + m_nSize * m_iTypeSize,nNewSize - m_nSize);
          }
          else if(m_nSize > nNewSize)
          {
@@ -502,7 +515,7 @@ index array_base::insert_at(index nStartIndex,array_base * pNewArray)
       ASSERT(nNewSize > m_nSize);
       if(!m_bRaw)
       {
-         construct_element((byte *)pNewData + m_nSize * m_iTypeSize,nNewSize - m_nSize);
+         construct_element_set((byte *)pNewData + m_nSize * m_iTypeSize,nNewSize - m_nSize);
       }
       // get rid of old stuff (note: no destructors called)
       memory_free(m_pData);

@@ -35,7 +35,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(pszName);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -44,7 +44,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(pinterface);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -53,7 +53,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(pinterface);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -62,20 +62,20 @@ namespace user
    bool interaction_impl::GetWindowInfo(PWINDOWINFO pwi) const
    {
       UNREFERENCED_PARAMETER(pwi);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::GetScrollBarInfo(LONG idObject,PSCROLLBARINFO psbi) const
    {
       UNREFERENCED_PARAMETER(idObject);
       UNREFERENCED_PARAMETER(psbi);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::GetTitleBarInfo(PTITLEBARINFO pti) const
    {
       UNREFERENCED_PARAMETER(pti);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #endif
@@ -85,7 +85,7 @@ namespace user
    ::window_sp interaction_impl::GetAncestor(UINT gaFlags) const
    {
       UNREFERENCED_PARAMETER(gaFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -94,7 +94,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(dwTime);
       UNREFERENCED_PARAMETER(dwFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::FlashWindowEx(uint32_t dwFlags,UINT uCount,uint32_t dwTimeout)
@@ -102,7 +102,7 @@ namespace user
       UNREFERENCED_PARAMETER(dwFlags);
       UNREFERENCED_PARAMETER(uCount);
       UNREFERENCED_PARAMETER(dwTimeout);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::SetLayeredWindowAttributes(COLORREF crKey,BYTE bAlpha,uint32_t dwFlags)
@@ -110,7 +110,7 @@ namespace user
       UNREFERENCED_PARAMETER(crKey);
       UNREFERENCED_PARAMETER(bAlpha);
       UNREFERENCED_PARAMETER(dwFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT * pptDst,SIZE * psize,
@@ -124,7 +124,7 @@ namespace user
       UNREFERENCED_PARAMETER(crKey);
       UNREFERENCED_PARAMETER(pblend);
       UNREFERENCED_PARAMETER(dwFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::GetLayeredWindowAttributes(COLORREF * pcrKey,BYTE * pbAlpha,uint32_t * pdwFlags) const
@@ -132,26 +132,26 @@ namespace user
       UNREFERENCED_PARAMETER(pcrKey);
       UNREFERENCED_PARAMETER(pbAlpha);
       UNREFERENCED_PARAMETER(pdwFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::PrintWindow(::draw2d::graphics * pgraphics,UINT nFlags) const
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #endif
 
    LRESULT interaction_impl::Default()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::pre_subclass_window()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -160,7 +160,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pdata);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -168,7 +168,7 @@ namespace user
    void * interaction_impl::get_os_data() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -183,7 +183,7 @@ namespace user
       UNREFERENCED_PARAMETER(pParentWnd);
       UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(lpParam);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -204,7 +204,7 @@ namespace user
       UNREFERENCED_PARAMETER(pParentWnd);
       UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(pContext);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
@@ -287,20 +287,20 @@ namespace user
    void interaction_impl::pre_translate_message(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::GetWindowText(string & rString)
    {
       UNREFERENCED_PARAMETER(rString);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t interaction_impl::GetChildByIdText(int32_t nID,string & rString) const
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(rString);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #ifdef WINDOWSEX
@@ -308,13 +308,13 @@ namespace user
    bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
    {
       UNREFERENCED_PARAMETER(lpwndpl);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
    {
       UNREFERENCED_PARAMETER(lpwndpl);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #endif
@@ -326,27 +326,27 @@ namespace user
    void interaction_impl::OnDrawItem(int32_t /*nIDCtl*/,LPDRAWITEMSTRUCT lpDrawItemStruct)
    {
       UNREFERENCED_PARAMETER(lpDrawItemStruct);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    // Drawing: for all 4 control types
    int32_t interaction_impl::OnCompareItem(int32_t /*nIDCtl*/,LPCOMPAREITEMSTRUCT lpCompareItemStruct)
    {
       UNREFERENCED_PARAMETER(lpCompareItemStruct);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnDeleteItem(int32_t /*nIDCtl*/,LPDELETEITEMSTRUCT lpDeleteItemStruct)
    {
       UNREFERENCED_PARAMETER(lpDeleteItemStruct);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    // Measure item implementation relies on unique control/menu IDs
    void interaction_impl::OnMeasureItem(int32_t /*nIDCtl*/,LPMEASUREITEMSTRUCT lpMeasureItemStruct)
    {
       UNREFERENCED_PARAMETER(lpMeasureItemStruct);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 #endif
 
@@ -355,7 +355,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #ifdef WINDOWSEX
@@ -365,20 +365,20 @@ namespace user
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::HtmlHelp(uint_ptr dwData,UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 #endif
 
    void interaction_impl::PrepareForHelp()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #ifdef WINDOWSEX
@@ -386,7 +386,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 #endif
 
@@ -396,7 +396,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pcmdmsg);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -406,7 +406,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pobj);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -427,19 +427,19 @@ namespace user
 
       UNREFERENCED_PARAMETER(pbase);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
 
    bool interaction_impl::IsTopParentActive()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::ActivateTopParent()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -448,7 +448,7 @@ namespace user
       UNREFERENCED_PARAMETER(lpszText);
       UNREFERENCED_PARAMETER(lpszCaption);
       UNREFERENCED_PARAMETER(nType);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -460,7 +460,7 @@ namespace user
 
    /*   CScrollBar* interaction_impl::GetScrollBarCtrl(int32_t) const
    {
-   throw interface_only_exception(get_app());
+   ::exception::throw_interface_only(get_app());
    }*/
 
    int32_t interaction_impl::SetScrollPos(int32_t nBar,int32_t nPos,bool bRedraw)
@@ -468,13 +468,13 @@ namespace user
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(nPos);
       UNREFERENCED_PARAMETER(bRedraw);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t interaction_impl::GetScrollPos(int32_t nBar) const
    {
       UNREFERENCED_PARAMETER(nBar);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::SetScrollRange(int32_t nBar,int32_t nMinPos,int32_t nMaxPos,bool bRedraw)
@@ -483,7 +483,7 @@ namespace user
       UNREFERENCED_PARAMETER(nMinPos);
       UNREFERENCED_PARAMETER(nMaxPos);
       UNREFERENCED_PARAMETER(bRedraw);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -493,7 +493,7 @@ namespace user
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(lpMinPos);
       UNREFERENCED_PARAMETER(lpMaxPos);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -505,7 +505,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(bEnable);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -518,7 +518,7 @@ namespace user
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(lpScrollInfo);
       UNREFERENCED_PARAMETER(bRedraw);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -529,7 +529,7 @@ namespace user
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(lpScrollInfo);
       UNREFERENCED_PARAMETER(nMask);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -538,7 +538,7 @@ namespace user
    int32_t interaction_impl::GetScrollLimit(int32_t nBar)
    {
       UNREFERENCED_PARAMETER(nBar);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::ScrollWindow(int32_t xAmount,int32_t yAmount,LPCRECT lpRect,LPCRECT lpClipRect)
@@ -547,7 +547,7 @@ namespace user
       UNREFERENCED_PARAMETER(yAmount);
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(lpClipRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -556,7 +556,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(lpClientRect);
       UNREFERENCED_PARAMETER(nAdjustType);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -566,7 +566,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::OnChildNotify(::message::base * pbase)
@@ -574,7 +574,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pbase);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -584,7 +584,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pbase);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -593,50 +593,50 @@ namespace user
    {
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnSetFocus(::window_sp)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    LRESULT interaction_impl::OnActivateTopLevel(WPARAM wParam,LPARAM)
    {
       UNREFERENCED_PARAMETER(wParam);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnSysColorChange()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnSettingChange(UINT uFlags,const char * lpszSection)
    {
       UNREFERENCED_PARAMETER(uFlags);
       UNREFERENCED_PARAMETER(lpszSection);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #ifdef WINDOWS
    void interaction_impl::OnDevModeChange(__in LPTSTR lpDeviceName)
    {
       UNREFERENCED_PARAMETER(lpDeviceName);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #ifdef WINDOWSEX
    bool interaction_impl::OnHelpInfo(HELPINFO* /*pHelpInfo*/)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 #endif
 #endif
 
    LRESULT interaction_impl::OnDisplayChange(WPARAM,LPARAM)
    {
-      //   throw interface_only_exception(get_app());
+      //   ::exception::throw_interface_only(get_app());
 
       return 0;
 
@@ -645,55 +645,55 @@ namespace user
    LRESULT interaction_impl::OnDragList(WPARAM,LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    /*   void interaction_impl::OnHScroll(UINT, UINT, CScrollBar* pScrollBar)
    {
    UNREFERENCED_PARAMETER(pScrollBar);
-   throw interface_only_exception(get_app());
+   ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnVScroll(UINT, UINT, CScrollBar* pScrollBar)
    {
    UNREFERENCED_PARAMETER(pScrollBar);
-   throw interface_only_exception(get_app());
+   ::exception::throw_interface_only(get_app());
    }
    */
 
    void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::_001OnPaint(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::_001OnPrint(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnEnterIdle(UINT /*nWhy*/,::window_sp /*pWho*/)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void * interaction_impl::OnCtlColor(::draw2d::graphics *,::window_sp pwindow,UINT)
    {
       UNREFERENCED_PARAMETER(pwindow);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -703,7 +703,7 @@ namespace user
    bool interaction_impl::update_data(bool bSaveAndValidate)
    {
       UNREFERENCED_PARAMETER(bSaveAndValidate);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -712,12 +712,12 @@ namespace user
    void interaction_impl::CenterWindow(::user::interaction * pAlternateOwner)
    {
       UNREFERENCED_PARAMETER(pAlternateOwner);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::CheckAutoCenter()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -726,20 +726,20 @@ namespace user
    bool interaction_impl::ExecuteDlgInit(const char * lpszResourceName)
    {
       UNREFERENCED_PARAMETER(lpszResourceName);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::ExecuteDlgInit(LPVOID lpResource)
    {
       UNREFERENCED_PARAMETER(lpResource);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::UpdateDialogControls(command_target * pTarget,bool bDisableIfNoHndler)
    {
       UNREFERENCED_PARAMETER(pTarget);
       UNREFERENCED_PARAMETER(bDisableIfNoHndler);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -747,40 +747,40 @@ namespace user
    bool interaction_impl::subclass_window(oswindow oswindow)
    {
       UNREFERENCED_PARAMETER(oswindow);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::SubclassDlgItem(UINT nID,::window_sp pParent)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(pParent);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    oswindow interaction_impl::unsubclass_window()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::IsChild(::user::interaction * pui) const
    {
       UNREFERENCED_PARAMETER(pui);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::IsWindow() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    /*   ::visual::icon * interaction_impl::SetIcon(::visual::icon * picon, bool bBigIcon)
    {
-   throw interface_only_exception(get_app());
+   ::exception::throw_interface_only(get_app());
    }
 
    ::visual::icon * interaction_impl::GetIcon(bool bBigIcon) const
    {
-   throw interface_only_exception(get_app());
+   ::exception::throw_interface_only(get_app());
    }*/
 
    bool interaction_impl::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
@@ -791,7 +791,7 @@ namespace user
       UNREFERENCED_PARAMETER(cx);
       UNREFERENCED_PARAMETER(cy);
       UNREFERENCED_PARAMETER(nFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -800,7 +800,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(id);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -808,7 +808,7 @@ namespace user
    id interaction_impl::GetDlgCtrlId() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -818,7 +818,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(nCmdShow);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -826,7 +826,7 @@ namespace user
    bool interaction_impl::WfiIsIconic()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -834,7 +834,7 @@ namespace user
    bool interaction_impl::WfiIsZoomed()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -851,7 +851,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(nIndex);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -860,7 +860,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(lValue);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -868,7 +868,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(nIndex);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -877,14 +877,14 @@ namespace user
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(lValue);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
    ::user::interaction * interaction_impl::ReleaseCapture()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -892,7 +892,7 @@ namespace user
    ::user::interaction * interaction_impl::GetCapture()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -903,20 +903,20 @@ namespace user
    bool interaction_impl::operator==(const interaction_impl& wnd) const
    {
       UNREFERENCED_PARAMETER(wnd);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::operator!=(const interaction_impl& wnd) const
    {
       UNREFERENCED_PARAMETER(wnd);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
    uint32_t interaction_impl::GetStyle() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -924,7 +924,7 @@ namespace user
    uint32_t interaction_impl::GetExStyle() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -934,7 +934,7 @@ namespace user
       UNREFERENCED_PARAMETER(dwRemove);
       UNREFERENCED_PARAMETER(dwAdd);
       UNREFERENCED_PARAMETER(nFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
@@ -942,13 +942,13 @@ namespace user
       UNREFERENCED_PARAMETER(dwRemove);
       UNREFERENCED_PARAMETER(dwAdd);
       UNREFERENCED_PARAMETER(nFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::set_owner(::user::interaction * pOwnerWnd)
    {
       UNREFERENCED_PARAMETER(pOwnerWnd);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -976,7 +976,7 @@ namespace user
    LRESULT interaction_impl::send_message(XEvent * pevent)
    {
       UNREFERENCED_PARAMETER(pevent);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #endif
@@ -986,33 +986,33 @@ namespace user
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::DragDetect(POINT pt) const
    {
       UNREFERENCED_PARAMETER(pt);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::SetWindowText(const char * lpszString)
    {
       UNREFERENCED_PARAMETER(lpszString);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    strsize interaction_impl::GetWindowText(char * lpszString,int32_t nMaxCount)
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nMaxCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
    strsize interaction_impl::GetWindowTextLength()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1020,14 +1020,14 @@ namespace user
    void interaction_impl::DragAcceptFiles(bool bAccept)
    {
       UNREFERENCED_PARAMETER(bAccept);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
    UINT interaction_impl::ArrangeIconicWindows()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1035,18 +1035,18 @@ namespace user
    {
       UNREFERENCED_PARAMETER(hRgn);
       UNREFERENCED_PARAMETER(bRedraw);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t interaction_impl::GetWindowRgn(HRGN hRgn)
    {
       UNREFERENCED_PARAMETER(hRgn);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::BringWindowToTop()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::MapWindowPoints(::window_sp pwndTo,LPPOINT lpPoint,UINT nCount)
@@ -1054,82 +1054,82 @@ namespace user
       UNREFERENCED_PARAMETER(pwndTo);
       UNREFERENCED_PARAMETER(lpPoint);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::MapWindowPoints(::window_sp pwndTo,LPRECT lpRect)
    {
       UNREFERENCED_PARAMETER(pwndTo);
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::UpdateWindow()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::SetRedraw(bool bRedraw)
    {
       UNREFERENCED_PARAMETER(bRedraw);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::GetUpdateRect(LPRECT lpRect,bool bErase)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(bErase);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t interaction_impl::GetUpdateRgn(::draw2d::region* pRgn,bool bErase)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(bErase);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::Invalidate(bool bErase)
    {
       UNREFERENCED_PARAMETER(bErase);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::InvalidateRect(LPCRECT lpRect,bool bErase)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(bErase);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::InvalidateRgn(::draw2d::region* pRgn,bool bErase)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(bErase);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::ValidateRect(LPCRECT lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::ValidateRgn(::draw2d::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::IsWindowVisible()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::ShowOwnedPopups(bool bShow)
    {
       UNREFERENCED_PARAMETER(bShow);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::SendMessageToDescendants(UINT message,WPARAM wParam,lparam lParam,bool bDeep,bool bOnlyPerm)
@@ -1139,30 +1139,30 @@ namespace user
       UNREFERENCED_PARAMETER(lParam);
       UNREFERENCED_PARAMETER(bDeep);
       UNREFERENCED_PARAMETER(bOnlyPerm);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    ::user::interaction * interaction_impl::GetDescendantWindow(id id) const
    {
       UNREFERENCED_PARAMETER(id);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region * prgnClip,uint32_t flags)
    {
       UNREFERENCED_PARAMETER(prgnClip);
       UNREFERENCED_PARAMETER(flags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::LockWindowUpdate()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::UnlockWindowUpdate()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region * prgnUpdate,UINT flags)
@@ -1170,14 +1170,14 @@ namespace user
       UNREFERENCED_PARAMETER(lpRectUpdate);
       UNREFERENCED_PARAMETER(prgnUpdate);
       UNREFERENCED_PARAMETER(flags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::EnableScrollBar(int32_t nSBFlags,UINT nArrowFlags)
    {
       UNREFERENCED_PARAMETER(nSBFlags);
       UNREFERENCED_PARAMETER(nArrowFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::DrawAnimatedRects(int32_t idAni,CONST RECT *lprcFrom,CONST RECT * lprcTo)
@@ -1185,7 +1185,7 @@ namespace user
       UNREFERENCED_PARAMETER(idAni);
       UNREFERENCED_PARAMETER(lprcFrom);
       UNREFERENCED_PARAMETER(lprcTo);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::DrawCaption(::draw2d::graphics * pgraphics,LPCRECT lprc,UINT uFlags)
@@ -1193,7 +1193,7 @@ namespace user
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(lprc);
       UNREFERENCED_PARAMETER(uFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    uint_ptr interaction_impl::SetTimer(uint_ptr nIDEvent,UINT nElapse,void (CALLBACK* lpfnTimer)(oswindow,UINT,uint_ptr,uint32_t))
@@ -1202,14 +1202,14 @@ namespace user
 /*      UNREFERENCED_PARAMETER(nIDEvent);
       UNREFERENCED_PARAMETER(nElapse);
       UNREFERENCED_PARAMETER(lpfnTimer);
-      throw interface_only_exception(get_app());*/
+      ::exception::throw_interface_only(get_app());*/
    }
 
    bool interaction_impl::KillTimer(uint_ptr nIDEvent)
    {
       return ::user::interaction_impl_base::KillTimer(nIDEvent);
     /*  UNREFERENCED_PARAMETER(nIDEvent);
-      throw interface_only_exception(get_app());*/
+      ::exception::throw_interface_only(get_app());*/
    }
 
    bool interaction_impl::is_window_enabled()
@@ -1222,17 +1222,17 @@ namespace user
    bool interaction_impl::enable_window(bool bEnable)
    {
       UNREFERENCED_PARAMETER(bEnable);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    ::user::interaction * interaction_impl::GetActiveWindow()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    ::user::interaction * interaction_impl::SetActiveWindow()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -1241,7 +1241,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pinterface);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1249,7 +1249,7 @@ namespace user
    ::user::interaction * interaction_impl::SetFocus()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1258,7 +1258,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(nIDButton);
       UNREFERENCED_PARAMETER(nCheck);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::CheckRadioButton(int32_t nIDFirstButton,int32_t nIDLastButton,int32_t nIDCheckButton)
@@ -1266,7 +1266,7 @@ namespace user
       UNREFERENCED_PARAMETER(nIDFirstButton);
       UNREFERENCED_PARAMETER(nIDLastButton);
       UNREFERENCED_PARAMETER(nIDCheckButton);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t interaction_impl::DlgDirList(LPTSTR lpPathSpec,int32_t nIDListBox,int32_t nIDStaticPath,UINT nFileType)
@@ -1275,7 +1275,7 @@ namespace user
       UNREFERENCED_PARAMETER(nIDListBox);
       UNREFERENCED_PARAMETER(nIDStaticPath);
       UNREFERENCED_PARAMETER(nFileType);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t interaction_impl::DlgDirListComboBox(LPTSTR lpPathSpec,int32_t nIDComboBox,int32_t nIDStaticPath,UINT nFileType)
@@ -1284,7 +1284,7 @@ namespace user
       UNREFERENCED_PARAMETER(nIDComboBox);
       UNREFERENCED_PARAMETER(nIDStaticPath);
       UNREFERENCED_PARAMETER(nFileType);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::DlgDirSelect(LPTSTR lpString,int32_t nSize,int32_t nIDListBox)
@@ -1292,7 +1292,7 @@ namespace user
       UNREFERENCED_PARAMETER(lpString);
       UNREFERENCED_PARAMETER(nSize);
       UNREFERENCED_PARAMETER(nIDListBox);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::DlgDirSelectComboBox(LPTSTR lpString,int32_t nSize,int32_t nIDComboBox)
@@ -1300,7 +1300,7 @@ namespace user
       UNREFERENCED_PARAMETER(lpString);
       UNREFERENCED_PARAMETER(nSize);
       UNREFERENCED_PARAMETER(nIDComboBox);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    UINT interaction_impl::GetChildByIdInt(int32_t nID,bool* lpTrans,bool bSigned) const
@@ -1308,7 +1308,7 @@ namespace user
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpTrans);
       UNREFERENCED_PARAMETER(bSigned);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t interaction_impl::GetChildByIdText(int32_t nID,LPTSTR lpStr,int32_t nMaxCount) const
@@ -1316,27 +1316,27 @@ namespace user
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpStr);
       UNREFERENCED_PARAMETER(nMaxCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    ::window_sp interaction_impl::GetNextDlgGroupItem(::window_sp pWndCtl,bool bPrevious) const
    {
       UNREFERENCED_PARAMETER(pWndCtl);
       UNREFERENCED_PARAMETER(bPrevious);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    ::window_sp interaction_impl::GetNextDlgTabItem(::window_sp pWndCtl,bool bPrevious) const
    {
       UNREFERENCED_PARAMETER(pWndCtl);
       UNREFERENCED_PARAMETER(bPrevious);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    UINT interaction_impl::IsDlgButtonChecked(int32_t nIDButton) const
    {
       UNREFERENCED_PARAMETER(nIDButton);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    LPARAM interaction_impl::SendDlgItemMessage(int32_t nID,UINT message,WPARAM wParam,LPARAM lParam)
@@ -1345,7 +1345,7 @@ namespace user
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::SetDlgItemInt(int32_t nID,UINT nValue,bool bSigned)
@@ -1353,14 +1353,14 @@ namespace user
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(nValue);
       UNREFERENCED_PARAMETER(bSigned);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::SetDlgItemText(int32_t nID,const char * lpszString)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpszString);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t interaction_impl::ScrollWindowEx(int32_t dx,int32_t dy,
@@ -1374,27 +1374,27 @@ namespace user
       UNREFERENCED_PARAMETER(prgnUpdate);
       UNREFERENCED_PARAMETER(lpRectUpdate);
       UNREFERENCED_PARAMETER(flags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::ShowScrollBar(UINT nBar,bool bShow)
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(bShow);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point)
    {
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point,UINT nFlags)
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(nFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -1402,7 +1402,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(nFlag);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1410,7 +1410,7 @@ namespace user
    ::user::interaction * interaction_impl::GetTopWindow()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1420,7 +1420,7 @@ namespace user
    ::user::interaction * interaction_impl::GetWindow(UINT nCmd)
    {
    UNREFERENCED_PARAMETER(nCmd);
-   throw interface_only_exception(get_app());
+   ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1430,7 +1430,7 @@ namespace user
    ::user::interaction * interaction_impl::GetLastActivePopup()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1439,7 +1439,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(pWndNewParent);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1448,7 +1448,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(bInvert);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1457,7 +1457,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(oswindow_Next);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1465,7 +1465,7 @@ namespace user
    oswindow interaction_impl::SetClipboardViewer()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1473,7 +1473,7 @@ namespace user
    bool interaction_impl::OpenClipboard()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1481,37 +1481,37 @@ namespace user
    void interaction_impl::CreateCaret(::draw2d::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::CreateSolidCaret(int32_t nWidth,int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::CreateGrayCaret(int32_t nWidth,int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
    void interaction_impl::HideCaret()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::ShowCaret()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::SetForegroundWindow()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -1520,7 +1520,7 @@ namespace user
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    // Win4
@@ -1529,56 +1529,56 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(dwFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::PrintClient(::draw2d::graphics * pgraphics,uint32_t dwFlags) const
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(dwFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::SetWindowContextHelpId(uint32_t dwContextHelpId)
    {
       UNREFERENCED_PARAMETER(dwContextHelpId);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    uint32_t interaction_impl::GetWindowContextHelpId() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    // Default message map implementations
    void interaction_impl::OnActivateApp(bool,uint32_t)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnActivate(UINT,::window_sp,bool)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnCancelMode()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnChildActivate()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnClose()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnContextMenu(::window_sp,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -1586,7 +1586,7 @@ namespace user
 
    bool interaction_impl::OnCopyData(::window_sp,COPYDATASTRUCT*)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #endif
@@ -1609,17 +1609,17 @@ namespace user
 
    void interaction_impl::OnEnable(bool)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnEndSession(bool)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::OnEraseBkgnd(::draw2d::graphics *)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -1629,7 +1629,7 @@ namespace user
    void interaction_impl::OnGetMinMaxInfo(MINMAXINFO*)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1639,62 +1639,62 @@ namespace user
 
    void interaction_impl::OnIconEraseBkgnd(::draw2d::graphics *)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnKillFocus(::window_sp)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    LRESULT interaction_impl::OnMenuChar(UINT,UINT,::user::menu*)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnMenuSelect(UINT,UINT,HMENU)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
    void interaction_impl::OnMove(int32_t,int32_t)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
    bool interaction_impl::OnQueryEndSession()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::OnQueryNewPalette()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::OnQueryOpen()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::OnSetCursor(::window_sp,UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnShowWindow(bool,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnSize(UINT,int32_t,int32_t)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnTCard(UINT,uint32_t)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -1704,7 +1704,7 @@ namespace user
    void interaction_impl::OnWindowPosChanging(WINDOWPOS*)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1712,7 +1712,7 @@ namespace user
    void interaction_impl::_001OnWindowPosChanged(signal_details * pobj)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1720,7 +1720,7 @@ namespace user
    void interaction_impl::OnDropFiles(HDROP)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1730,12 +1730,12 @@ namespace user
 
    void interaction_impl::OnPaletteIsChanging(::window_sp)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::OnNcActivate(bool)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -1745,7 +1745,7 @@ namespace user
    void interaction_impl::OnNcCalcSize(bool,NCCALCSIZE_PARAMS*)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -1755,217 +1755,217 @@ namespace user
 
    bool interaction_impl::OnNcCreate(::user::create_struct *)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    LRESULT interaction_impl::OnNcHitTest(point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnNcLButtonDblClk(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnNcLButtonDown(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnNcLButtonUp(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnNcMButtonDblClk(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnNcMButtonDown(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnNcMButtonUp(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnNcMouseMove(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnNcPaint()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnNcRButtonDblClk(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnNcRButtonDown(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnNcRButtonUp(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnSysChar(UINT,UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnSysCommand(UINT,LPARAM)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnSysDeadChar(UINT,UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnSysKeyDown(UINT,UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnSysKeyUp(UINT,UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnCompacting(UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnFontChange()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnPaletteChanged(::window_sp)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnSpoolerStatus(UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnTimeChange()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnChar(UINT,UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnDeadChar(UINT,UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnKeyDown(UINT,UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnKeyUp(UINT,UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnLButtonDblClk(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnLButtonDown(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnLButtonUp(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnMButtonDblClk(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnMButtonDown(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnMButtonUp(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t interaction_impl::OnMouseActivate(::window_sp,UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnMouseMove(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::OnMouseWheel(UINT,int16_t,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    LRESULT interaction_impl::OnRegisteredMouseWheel(WPARAM,LPARAM)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnRButtonDblClk(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnRButtonDown(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnRButtonUp(UINT,point)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnTimer(uint_ptr)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnInitMenu(::user::menu*)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnInitMenuPopup(::user::menu*,UINT,bool)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -1976,74 +1976,74 @@ namespace user
    {
       UNREFERENCED_PARAMETER(nMaxCount);
       UNREFERENCED_PARAMETER(pszName);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnChangeCbChain(oswindow,oswindow)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnDestroyClipboard()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnDrawClipboard()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnHScrollClipboard(::window_sp,UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnPaintClipboard(::window_sp,HGLOBAL)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnRenderAllFormats()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnRenderFormat(UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnSizeClipboard(::window_sp,HGLOBAL)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnVScrollClipboard(::window_sp,UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #endif
 
    UINT interaction_impl::OnGetDlgCode()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnMDIActivate(bool,::window_sp,::window_sp)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnEnterMenuLoop(bool)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnExitMenuLoop(bool)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -2054,7 +2054,7 @@ namespace user
    void interaction_impl::OnStyleChanged(int32_t,LPSTYLESTRUCT)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -2062,7 +2062,7 @@ namespace user
    void interaction_impl::OnStyleChanging(int32_t,LPSTYLESTRUCT)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -2072,59 +2072,59 @@ namespace user
 
    void interaction_impl::OnSizing(UINT,LPRECT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnMoving(UINT,LPRECT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnCaptureChanged(::window_sp)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::OnDeviceChange(UINT,uint_ptr)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnWinIniChange(const char *)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnChangeUIState(UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::OnUpdateUIState(UINT,UINT)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    UINT interaction_impl::OnQueryUIState()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    // interaction_impl dialog data support
    //   void interaction_impl::do_data_exchange(CDataExchange*)
    // {
-   //  throw interface_only_exception(get_app());
+   //  ::exception::throw_interface_only(get_app());
    //}
 
    // interaction_impl modality support
    void interaction_impl::BeginModalState()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void interaction_impl::EndModalState()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -2132,12 +2132,12 @@ namespace user
 
    void interaction_impl::CloseWindow()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::OpenIcon()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -2155,14 +2155,14 @@ namespace user
    {
       UNREFERENCED_PARAMETER(nIDFirstButton);
       UNREFERENCED_PARAMETER(nIDLastButton);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool interaction_impl::_EnableToolTips(bool bEnable,UINT nFlag)
    {
       UNREFERENCED_PARAMETER(bEnable);
       UNREFERENCED_PARAMETER(nFlag);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 

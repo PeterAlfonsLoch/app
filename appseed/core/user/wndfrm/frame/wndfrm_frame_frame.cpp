@@ -40,7 +40,7 @@ namespace user
          ::user::front_end_schema * frame::get_user_front_end_schema()
          {
 
-            throw interface_only_exception(get_app());
+            ::exception::throw_interface_only(get_app());
 
             return NULL;
 

@@ -17,7 +17,7 @@ namespace axis
    int32_t copydesk::get_file_count()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -26,7 +26,7 @@ namespace axis
    {
 
       UNREFERENCED_PARAMETER(stra);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -35,7 +35,7 @@ namespace axis
    {
 
       UNREFERENCED_PARAMETER(stra);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -59,7 +59,7 @@ namespace axis
    {
 
       UNREFERENCED_PARAMETER(psz);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -67,7 +67,7 @@ namespace axis
    string copydesk::get_plain_text()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -75,7 +75,7 @@ namespace axis
    {
 
       UNREFERENCED_PARAMETER(pdib);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 

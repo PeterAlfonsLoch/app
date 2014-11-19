@@ -319,7 +319,6 @@ public:
    const_iterator find (ARG_KEY key) const;
 
    // Implementation
-protected:
    assoc **          m_ppassocHash;
    UINT              m_nHashTableSize;
    ::count           m_nCount;
@@ -332,7 +331,6 @@ protected:
    void free_assoc(assoc * passoc);
    assoc * get_assoc_at(ARG_KEY, UINT&, UINT&) const;
 
-public:
    virtual ~map();
    //   void Serialize(CArchive&);
    void dump(dump_context &) const;

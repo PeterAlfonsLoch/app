@@ -41,12 +41,12 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
    void brush::construct(::draw2d::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 */
@@ -57,14 +57,14 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(hPackedDIB);
       UNREFERENCED_PARAMETER(nUsage);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 #endif
 
    void brush::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool brush::create_null()
@@ -103,35 +103,35 @@ namespace draw2d
 
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool brush::CreateBrushIndirect(const LOGBRUSH* lpLogBrush)
    {
       UNREFERENCED_PARAMETER(lpLogBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool brush::CreatePatternBrush(::draw2d::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
    bool brush::CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage)
    {
       UNREFERENCED_PARAMETER(lpPackedDIB);
       UNREFERENCED_PARAMETER(nUsage);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
    bool brush::CreateSysColorBrush(int32_t nIndex)
    {
       UNREFERENCED_PARAMETER(nIndex);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
    int32_t brush::GetLogBrush(LOGBRUSH* pLogBrush)
    {
       UNREFERENCED_PARAMETER(pLogBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool brush::CreateLinearGradientBrush(point p1, point p2, COLORREF cr1, COLORREF cr2)

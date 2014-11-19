@@ -21,7 +21,7 @@ namespace user
    bool menu_base_item::create_menu(const stringa & straCommand, const stringa & straCommandTitle)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -30,7 +30,7 @@ namespace user
    bool menu_base_item::load_menu(sp(::xml::node) lpnode)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 

@@ -43,12 +43,12 @@ public:
 
       TYPE & element_at(index i)
       {
-         return *(TYPE *)m_parray->element_at(i);
+         return ((TYPE*)m_parray->m_pData)[m_i];
       }
 
       const TYPE & element_at(index i) const
       {
-         return *(const TYPE *)m_parray->element_at(i);
+         return ((const TYPE*)m_parray->m_pData)[m_i];
       }
 
 
@@ -83,12 +83,12 @@ public:
 
       const TYPE & element_at(index i)
       {
-         return *(const TYPE *)m_parray->element_at(i);
+         return ((const TYPE*)m_parray->m_pData)[m_i];
       }
 
       const TYPE & element_at(index i) const
       {
-         return *(const TYPE *)m_parray->element_at(i);
+         return ((const TYPE*)m_parray->m_pData)[m_i];
       }
 
    };

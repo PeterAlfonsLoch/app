@@ -110,7 +110,7 @@ namespace draw2d
    void ::draw2d::bitmap::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -125,12 +125,12 @@ namespace draw2d
    bool bitmap::attach(void * posdata)
    {
       UNREFERENCED_PARAMETER(posdata);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void * bitmap::detach()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return NULL;
    }
 

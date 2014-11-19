@@ -677,7 +677,7 @@ namespace base
    //void application::TermThread(HINSTANCE hInstTerm)
    //{
 
-   //   throw interface_only_exception(this);
+   //   ::exception::throw_interface_only(this);
 
    //}
 
@@ -686,7 +686,7 @@ namespace base
    //sp(::user::interaction) application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
    //{
 
-   //   throw interface_only_exception(this);
+   //   ::exception::throw_interface_only(this);
 
    //}
 
@@ -694,7 +694,7 @@ namespace base
    //sp(::user::interaction) application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
    //{
 
-   //   throw interface_only_exception(this);
+   //   ::exception::throw_interface_only(this);
 
    //}
 
@@ -702,7 +702,7 @@ namespace base
    //string application::get_version()
    //{
 
-   //   throw interface_only_exception(this);
+   //   ::exception::throw_interface_only(this);
 
    //}
 
@@ -756,7 +756,7 @@ namespace base
    //void application::set_env_var(const string & var,const string & value)
    //{
 
-   //   throw interface_only_exception(this);
+   //   ::exception::throw_interface_only(this);
 
    //}
 
@@ -766,7 +766,7 @@ namespace base
    bool application::_001OnDDECommand(const char * lpcsz)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -774,7 +774,7 @@ namespace base
    void application::_001EnableShellOpen()
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -782,7 +782,7 @@ namespace base
    ::user::document * application::_001OpenDocumentFile(var varFile)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -790,7 +790,7 @@ namespace base
    void application::_001OnFileNew(signal_details * pobj)
    {
 
-      throw interface_only_exception(this);
+      ::exception::throw_interface_only(this);
 
    }
 
@@ -798,7 +798,7 @@ namespace base
    //sp(::user::printer) application::get_printer(const char * pszDeviceName)
    //{
 
-   //   throw interface_only_exception(this);
+   //   ::exception::throw_interface_only(this);
 
    //}
 

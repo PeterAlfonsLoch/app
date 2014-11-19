@@ -70,7 +70,7 @@ synch_lock ml(&cairo_mutex());
    void * font::get_os_data() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return NULL;
 

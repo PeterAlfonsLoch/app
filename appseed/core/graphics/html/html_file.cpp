@@ -32,13 +32,13 @@ namespace html
    void file::printf(const string & str, ...)
    {
       UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void file::printstr(const string & str, ...)
    {
       UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #else
@@ -54,7 +54,7 @@ namespace html
    void file::dprint(const char * lpcsz)
    {
       UNREFERENCED_PARAMETER(lpcsz);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 

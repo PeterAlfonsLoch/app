@@ -25,7 +25,7 @@ namespace user
    int32_t print_job::run()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return -1;
 

@@ -798,7 +798,7 @@ namespace crypto
    string crypto::get_crypt_key_file_path()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 

@@ -59,7 +59,7 @@ namespace draw2d
    ::draw2d::graphics * dib::get_graphics() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -67,7 +67,7 @@ namespace draw2d
    ::draw2d::bitmap_sp dib::get_bitmap() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -75,7 +75,7 @@ namespace draw2d
    ::draw2d::bitmap_sp dib::detach_bitmap()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -86,7 +86,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(cx);
       UNREFERENCED_PARAMETER(cy);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -147,7 +147,7 @@ namespace draw2d
    bool dib::dc_select(bool bSelect)
    {
       UNREFERENCED_PARAMETER(bSelect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool dib::create(::draw2d::graphics * pdc)
@@ -170,7 +170,7 @@ namespace draw2d
 
    bool dib::Destroy ()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool dib::to(::draw2d::graphics * pgraphics)
@@ -204,7 +204,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
       UNREFERENCED_PARAMETER(ptSrc);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    //bool dib::from(::draw2d::dib * pdib)
@@ -229,7 +229,7 @@ namespace draw2d
    bool dib::from(::draw2d::graphics * pdc)
    {
       UNREFERENCED_PARAMETER(pdc);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool dib::from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, class size size)
@@ -3254,45 +3254,45 @@ namespace draw2d
    void dib::stretch_dib(dib * pdib)
    {
       UNREFERENCED_PARAMETER(pdib);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t dib::cos(int32_t i, int32_t iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t dib::sin(int32_t i, int32_t iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t dib::cos10(int32_t i, int32_t iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t dib::sin10(int32_t i, int32_t iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 /*   int32_t dib::m_size.cx
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t dib::m_size.cy
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int64_t dib::area()
@@ -3932,7 +3932,7 @@ namespace draw2d
       // default implementation does nothing, dib should be now updated (before calling update interaction_impl)
       // and ready to be queried if post queried
 
-//      throw interface_only_exception(get_app());
+//      ::exception::throw_interface_only(get_app());
 
 
       return true;
@@ -3944,7 +3944,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(pwnd);
       UNREFERENCED_PARAMETER(pobj);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 

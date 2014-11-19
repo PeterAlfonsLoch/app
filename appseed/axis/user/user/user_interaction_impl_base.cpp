@@ -537,7 +537,7 @@ namespace user
    void interaction_impl_base::set_viewport_org(::draw2d::graphics * pgraphics)
    {
 
-      //throw interface_only_exception(get_app());
+      //::exception::throw_interface_only(get_app());
 
    }
 

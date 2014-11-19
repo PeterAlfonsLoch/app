@@ -195,7 +195,7 @@ namespace draw2d
    bool region::CreateFromPath(::draw2d::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #ifdef WINDOWS
@@ -205,14 +205,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpXForm);
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(pRgnData);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t region::GetRegionData(LPRGNDATA lpRgnData, int32_t nDataSize) const
    {
       UNREFERENCED_PARAMETER(lpRgnData);
       UNREFERENCED_PARAMETER(nDataSize);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #endif
@@ -223,13 +223,13 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y1);
       UNREFERENCED_PARAMETER(x2);
       UNREFERENCED_PARAMETER(y2);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void region::SetRectRgn(LPCRECT lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t region::CombineRgn(const region* pRgn1, const region* pRgn2, int32_t nCombineMode)
@@ -237,38 +237,38 @@ namespace draw2d
       UNREFERENCED_PARAMETER(pRgn1);
       UNREFERENCED_PARAMETER(pRgn2);
       UNREFERENCED_PARAMETER(nCombineMode);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t region::CopyRgn(const region* pRgnSrc)
    {
       UNREFERENCED_PARAMETER(pRgnSrc);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool region::EqualRgn(const region* pRgn) const
    {
       UNREFERENCED_PARAMETER(pRgn);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t region::OffsetRgn(int32_t x, int32_t y)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t region::OffsetRgn(POINT point)
    {
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t region::GetRgnBox(LPRECT lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    int32_t region::GetRgnBox(rect64 * lpRect) const
@@ -283,19 +283,19 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool region::PtInRegion(POINT point) const
    {
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool region::RectInRegion(LPCRECT lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 */
 
@@ -620,7 +620,7 @@ namespace draw2d
    bool region::get_bounding_box(LPRECT lprect) const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 

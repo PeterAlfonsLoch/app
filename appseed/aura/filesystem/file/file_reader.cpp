@@ -17,7 +17,7 @@ namespace file
    ::primitive::memory_size reader::read(void * lpBuf, ::primitive::memory_size nCount)
    {
       
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       
       return 0;
 
@@ -160,7 +160,7 @@ namespace file
 
    file_position reader::get_position() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return 0;
    }
 

@@ -64,7 +64,7 @@ namespace aura
    bool message_queue::message_queue_set_timer(uint_ptr uiId,DWORD dwMillis)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -74,7 +74,7 @@ namespace aura
    bool message_queue::message_queue_post_message(uint32_t uiMessage, WPARAM wparam, lparam lparam)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -83,7 +83,7 @@ namespace aura
    LRESULT message_queue::message_queue_send_message(uint32_t uiMessage, WPARAM wparam, lparam lparam)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return 0;
 
@@ -94,7 +94,7 @@ namespace aura
    bool message_queue::message_queue_del_timer(uint_ptr uiId)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -104,7 +104,7 @@ namespace aura
    bool message_queue::message_queue_destroy()
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 

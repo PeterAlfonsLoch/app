@@ -11,13 +11,13 @@ namespace draw2d
 
       UNREFERENCED_PARAMETER(dumpcontext);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
    void object::assert_valid() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    object::~object()
@@ -32,7 +32,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(lpObject);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 */
 
@@ -52,29 +52,29 @@ namespace draw2d
 
    bool object::CreateStockObject(int32_t nIndex)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool object::UnrealizeObject()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    UINT object::GetObjectType() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool object::operator==(const object & obj) const
    {
       UNREFERENCED_PARAMETER(obj);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool object::operator!=(const object & obj) const
    {
       UNREFERENCED_PARAMETER(obj);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    

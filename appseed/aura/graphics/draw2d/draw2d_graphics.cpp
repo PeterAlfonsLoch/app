@@ -57,7 +57,7 @@ namespace draw2d
 
    void *  graphics::get_os_data() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return 0;
    }
 
@@ -84,12 +84,12 @@ namespace draw2d
 
    bool graphics::attach(HDC hdc)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    HDC graphics::detach()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 #endif
@@ -99,7 +99,7 @@ namespace draw2d
    bool graphics::attach(void * pdata)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -109,7 +109,7 @@ namespace draw2d
    void * graphics::detach()
    {
 
-       throw interface_only_exception(get_app());
+       ::exception::throw_interface_only(get_app());
 
        return NULL;
 
@@ -119,7 +119,7 @@ namespace draw2d
    bool graphics::IsPrinting() const
    {
 
-       throw interface_only_exception(get_app());
+       ::exception::throw_interface_only(get_app());
 
        return false;
 
@@ -133,7 +133,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpszDeviceName);
       UNREFERENCED_PARAMETER(lpszOutput);
       UNREFERENCED_PARAMETER(lpInitData);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -147,7 +147,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpszDeviceName);
       UNREFERENCED_PARAMETER(lpszOutput);
       UNREFERENCED_PARAMETER(lpInitData);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -158,7 +158,7 @@ namespace draw2d
    {
 
        UNREFERENCED_PARAMETER(pgraphics);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -168,14 +168,14 @@ namespace draw2d
 /*   int32_t graphics::ExcludeUpdateRgn(::window_sp pwindow)
    {
       UNREFERENCED_PARAMETER(pwindow);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
    */
 
    int32_t graphics::GetDeviceCaps(int32_t nIndex) const
    {
       UNREFERENCED_PARAMETER(nIndex);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return -1;
 
@@ -184,7 +184,7 @@ namespace draw2d
    point graphics::GetBrushOrg() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return null_point();
 
@@ -207,7 +207,7 @@ namespace draw2d
 
        UNREFERENCED_PARAMETER(x);
         UNREFERENCED_PARAMETER(y);
-        throw interface_only_exception(get_app());
+        ::exception::throw_interface_only(get_app());
 
       return null_point();
 
@@ -216,7 +216,7 @@ namespace draw2d
    point graphics::SetBrushOrg(POINT point)
    {
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
 
       return null_point();
@@ -228,7 +228,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nObjectType);
       UNREFERENCED_PARAMETER(lpfn);
       UNREFERENCED_PARAMETER(lpData);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return -1;
 
@@ -237,7 +237,7 @@ namespace draw2d
    ::draw2d::bitmap* graphics::SelectObject(::draw2d::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return NULL;
 
@@ -284,7 +284,7 @@ namespace draw2d
    COLORREF graphics::GetNearestColor(COLORREF crColor) const
    {
       UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return 0;
 
@@ -292,7 +292,7 @@ namespace draw2d
 
    UINT graphics::RealizePalette()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return -1;
 
@@ -300,7 +300,7 @@ namespace draw2d
 
    void graphics::UpdateColors()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
 
 
@@ -310,7 +310,7 @@ namespace draw2d
    int32_t graphics::GetPolyFillMode() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return -1;
 
@@ -320,7 +320,7 @@ namespace draw2d
    int32_t graphics::GetROP2() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return -1;
 
@@ -330,7 +330,7 @@ namespace draw2d
    int32_t graphics::GetStretchBltMode() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return -1;
 
@@ -340,7 +340,7 @@ namespace draw2d
    int32_t graphics::GetMapMode() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return -1;
 
@@ -350,7 +350,7 @@ namespace draw2d
    int32_t graphics::GetGraphicsMode() const
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return -1;
 
@@ -362,7 +362,7 @@ namespace draw2d
    bool graphics::GetWorldTransform(XFORM* pXform) const
    {
       UNREFERENCED_PARAMETER(pXform);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -372,7 +372,7 @@ namespace draw2d
 
    point graphics::GetViewportOrg() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return null_point();
 
@@ -380,7 +380,7 @@ namespace draw2d
 
    size graphics::GetViewportExt() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return size(0, 0);
 
@@ -388,14 +388,14 @@ namespace draw2d
 
    point graphics::GetWindowOrg() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return null_point();
    }
 
    size graphics::GetWindowExt() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return size(0, 0);
 
@@ -405,7 +405,7 @@ namespace draw2d
    point graphics::SetViewportOrg(POINT point)
    {
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return null_point();
    }
@@ -413,14 +413,14 @@ namespace draw2d
    size graphics::SetViewportExt(SIZE size)
    {
       UNREFERENCED_PARAMETER(size);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return ::size(0, 0);
    }
 
    point graphics::SetWindowOrg(POINT point)
    {
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
 
       return null_point();
@@ -430,7 +430,7 @@ namespace draw2d
    size graphics::SetWindowExt(SIZE size)
    {
       UNREFERENCED_PARAMETER(size);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return ::size(0, 0);
 
@@ -440,33 +440,33 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::DPtoLP(LPRECT lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::LPtoDP(LPPOINT lpPoints, int32_t nCount) const
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::LPtoDP(LPRECT lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool graphics::FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(pBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
    }
@@ -477,14 +477,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(pBrush);
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::InvertRgn(::draw2d::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
 
    }
@@ -492,7 +492,7 @@ namespace draw2d
    bool graphics::PaintRgn(::draw2d::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -500,7 +500,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
    }
@@ -508,7 +508,7 @@ namespace draw2d
    bool graphics::PtVisible(POINT point) const
    {
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
    }
@@ -516,14 +516,14 @@ namespace draw2d
    bool graphics::RectVisible(const RECT &  lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
    }
 
    point graphics::GetCurrentPosition() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return null_point();
    }
@@ -556,7 +556,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y3);
       UNREFERENCED_PARAMETER(x4);
       UNREFERENCED_PARAMETER(y4);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -609,7 +609,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y3);
       UNREFERENCED_PARAMETER(x4);
       UNREFERENCED_PARAMETER(y4);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
    }
@@ -657,7 +657,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
    }
@@ -666,20 +666,20 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(pBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::FrameRect(const RECT &  lpRect, ::draw2d::brush* pBrush)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(pBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::InvertRect(const RECT &  lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool graphics::DrawIcon(int32_t x, int32_t y, ::visual::icon * picon)
@@ -687,7 +687,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(picon);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
    }
@@ -696,7 +696,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(picon);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
 
       return false;
@@ -713,7 +713,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(istepIfAniCur);
       UNREFERENCED_PARAMETER(hbrFlickerFreeDraw);
       UNREFERENCED_PARAMETER(diFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -726,7 +726,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(hBitmap);
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(hBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -739,7 +739,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(pBitmap);
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(pBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
    }
@@ -753,7 +753,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(hIcon);
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(hBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -766,7 +766,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(hIcon);
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(pBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -783,7 +783,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(bPrefixText);
       UNREFERENCED_PARAMETER(nTextLen);
       UNREFERENCED_PARAMETER(hBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -798,7 +798,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(bPrefixText);
       UNREFERENCED_PARAMETER(nTextLen);
       UNREFERENCED_PARAMETER(pBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -815,7 +815,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lData);
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(hBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -829,7 +829,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lData);
       UNREFERENCED_PARAMETER(nFlags);
       UNREFERENCED_PARAMETER(pBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
    }
@@ -841,7 +841,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(nEdge);
       UNREFERENCED_PARAMETER(nFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -850,7 +850,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(nType);
       UNREFERENCED_PARAMETER(nState);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -864,7 +864,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y3);
       UNREFERENCED_PARAMETER(x4);
       UNREFERENCED_PARAMETER(y4);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -873,14 +873,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(ptStart);
       UNREFERENCED_PARAMETER(ptEnd);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    void graphics::DrawFocusRect(const RECT &  lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    bool graphics::Ellipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
@@ -912,14 +912,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y1);
       UNREFERENCED_PARAMETER(x2);
       UNREFERENCED_PARAMETER(y2);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::DrawEllipse(const RECT &  lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -936,7 +936,7 @@ namespace draw2d
    bool graphics::FillEllipse(const RECT &  lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -970,14 +970,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y1);
       UNREFERENCED_PARAMETER(x2);
       UNREFERENCED_PARAMETER(y2);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::DrawEllipse(const RECTD & lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -994,7 +994,7 @@ namespace draw2d
    bool graphics::FillEllipse(const RECTD & lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1008,7 +1008,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y3);
       UNREFERENCED_PARAMETER(x4);
       UNREFERENCED_PARAMETER(y4);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1017,7 +1017,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(ptStart);
       UNREFERENCED_PARAMETER(ptEnd);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1025,7 +1025,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1033,7 +1033,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1041,7 +1041,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1049,7 +1049,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1070,7 +1070,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1079,7 +1079,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(lpPolyCounts);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1125,14 +1125,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y1);
       UNREFERENCED_PARAMETER(x2);
       UNREFERENCED_PARAMETER(y2);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::Rectangle(const RECT &  lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1142,14 +1142,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y1);
       UNREFERENCED_PARAMETER(x2);
       UNREFERENCED_PARAMETER(y2);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::DrawRectangle(const RECT &  lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1159,14 +1159,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y1);
       UNREFERENCED_PARAMETER(x2);
       UNREFERENCED_PARAMETER(y2);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::FillRectangle(const RECT &  lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1178,7 +1178,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y2);
       UNREFERENCED_PARAMETER(x3);
       UNREFERENCED_PARAMETER(y3);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1186,7 +1186,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1197,7 +1197,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
       UNREFERENCED_PARAMETER(dwRop);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1285,7 +1285,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nSrcWidth);
       UNREFERENCED_PARAMETER(nSrcHeight);
       UNREFERENCED_PARAMETER(dwRop);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1293,14 +1293,14 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return 0;
    }
 
    COLORREF graphics::GetPixel(POINT point) const
    {
       UNREFERENCED_PARAMETER(point);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return 0;
    }
 
@@ -1309,7 +1309,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return 0;
    }
 
@@ -1317,7 +1317,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return 0;
    }
 
@@ -1326,7 +1326,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1336,7 +1336,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(crColor);
       UNREFERENCED_PARAMETER(nFillType);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1352,7 +1352,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1448,7 +1448,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(lpDxWidths);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1460,7 +1460,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(lpDxWidths);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1473,7 +1473,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nTabPositions);
       UNREFERENCED_PARAMETER(lpnTabStopPositions);
       UNREFERENCED_PARAMETER(nTabOrigin);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
@@ -1485,7 +1485,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nTabPositions);
       UNREFERENCED_PARAMETER(lpnTabStopPositions);
       UNREFERENCED_PARAMETER(nTabOrigin);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
@@ -1495,7 +1495,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(nTabPositions);
       UNREFERENCED_PARAMETER(lpnTabStopPositions);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
@@ -1504,7 +1504,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(nTabPositions);
       UNREFERENCED_PARAMETER(lpnTabStopPositions);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
@@ -1514,7 +1514,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(nTabPositions);
       UNREFERENCED_PARAMETER(lpnTabStopPositions);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
@@ -1523,7 +1523,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(nTabPositions);
       UNREFERENCED_PARAMETER(lpnTabStopPositions);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
@@ -1537,13 +1537,13 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    UINT graphics::GetTextAlign() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1551,34 +1551,34 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(lpszFacename);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    int32_t graphics::GetTextFace(string & rString) const
    {
       UNREFERENCED_PARAMETER(rString);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    bool graphics::get_text_metrics(text_metric * lpMetrics) const
    {
       UNREFERENCED_PARAMETER(lpMetrics);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::get_output_text_metrics(text_metric * lpMetrics) const
    {
       UNREFERENCED_PARAMETER(lpMetrics);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    int32_t graphics::GetTextCharacterExtra() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1587,7 +1587,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nFirstChar);
       UNREFERENCED_PARAMETER(nLastChar);
       UNREFERENCED_PARAMETER(lpBuffer);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1596,13 +1596,13 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nFirstChar);
       UNREFERENCED_PARAMETER(nLastChar);
       UNREFERENCED_PARAMETER(lpBuffer);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    uint32_t graphics::GetFontLanguageInfo() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1615,7 +1615,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nMaxExtent);
       UNREFERENCED_PARAMETER(lpResults);
       UNREFERENCED_PARAMETER(dwFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1625,7 +1625,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nMaxExtent);
       UNREFERENCED_PARAMETER(lpResults);
       UNREFERENCED_PARAMETER(dwFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1633,7 +1633,7 @@ namespace draw2d
 
    size graphics::GetAspectRatioFilter() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
@@ -1645,7 +1645,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpRectClip);
       UNREFERENCED_PARAMETER(pRgnUpdate);
       UNREFERENCED_PARAMETER(lpRectUpdate);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1656,7 +1656,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(lpszInData);
       UNREFERENCED_PARAMETER(lpOutData);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1665,7 +1665,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpRectBounds);
       UNREFERENCED_PARAMETER(flags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1673,7 +1673,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpRectBounds);
       UNREFERENCED_PARAMETER(flags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1682,7 +1682,7 @@ namespace draw2d
    bool graphics::ResetDC(const DEVMODE* lpDevMode)
    {
       UNREFERENCED_PARAMETER(lpDevMode);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1695,7 +1695,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(cbData);
       UNREFERENCED_PARAMETER(lpotm);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1704,7 +1704,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nFirstChar);
       UNREFERENCED_PARAMETER(nLastChar);
       UNREFERENCED_PARAMETER(lpabc);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1716,7 +1716,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(dwOffset);
       UNREFERENCED_PARAMETER(lpData);
       UNREFERENCED_PARAMETER(cbData);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1726,7 +1726,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(nPairs);
       UNREFERENCED_PARAMETER(lpkrnpair);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1738,7 +1738,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(cbBuffer);
       UNREFERENCED_PARAMETER(lpBuffer);
       UNREFERENCED_PARAMETER(lpmat2);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1746,7 +1746,7 @@ namespace draw2d
    int32_t graphics::StartDoc(LPDOCINFO lpDocInfo)
    {
       UNREFERENCED_PARAMETER(lpDocInfo);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1754,32 +1754,32 @@ namespace draw2d
 
    int32_t graphics::StartPage()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    int32_t graphics::EndPage()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    int32_t graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, int32_t))
    {
       UNREFERENCED_PARAMETER(lpfn);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    int32_t graphics::AbortDoc()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    int32_t graphics::EndDoc()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1798,7 +1798,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(yMask);
       UNREFERENCED_PARAMETER(dwRop);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
    bool graphics::PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc,
@@ -1814,7 +1814,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(xMask);
       UNREFERENCED_PARAMETER(yMask);
       UNREFERENCED_PARAMETER(ySrc);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1823,7 +1823,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1831,7 +1831,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1842,7 +1842,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nRadius);
       UNREFERENCED_PARAMETER(fStartAngle);
       UNREFERENCED_PARAMETER(fSweepAngle);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1851,13 +1851,13 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(ptStart);
       UNREFERENCED_PARAMETER(ptEnd);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    int32_t graphics::GetArcDirection() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1866,7 +1866,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(lpPolyPoints);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1875,7 +1875,7 @@ namespace draw2d
    bool graphics::GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const
    {
       UNREFERENCED_PARAMETER(lpColorAdjust);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1883,31 +1883,31 @@ namespace draw2d
 
    ::draw2d::pen_sp graphics::get_current_pen() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return NULL;
    }
 
    ::draw2d::brush_sp graphics::get_current_brush() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return NULL;
    }
 
    ::draw2d::palette_sp graphics::get_current_palette() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return NULL;
    }
 
    ::draw2d::font_sp graphics::get_current_font() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return NULL;
    }
 
    ::draw2d::bitmap_sp graphics::get_current_bitmap() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return NULL;
    }
 
@@ -1915,7 +1915,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1924,7 +1924,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nEscape);
       UNREFERENCED_PARAMETER(nInputSize);
       UNREFERENCED_PARAMETER(lpszInputData);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1935,7 +1935,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpszInputData);
       UNREFERENCED_PARAMETER(nOutputSize);
       UNREFERENCED_PARAMETER(lpszOutputData);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -1946,7 +1946,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nFirstChar);
       UNREFERENCED_PARAMETER(nLastChar);
       UNREFERENCED_PARAMETER(lpABCF);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -1957,49 +1957,49 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nFirstChar);
       UNREFERENCED_PARAMETER(nLastChar);
       UNREFERENCED_PARAMETER(lpFloatBuffer);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::AbortPath()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::BeginPath()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::CloseFigure()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::EndPath()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::FillPath()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::FlattenPath()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    float graphics::GetMiterLimit() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2008,32 +2008,32 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(lpTypes);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::SetMiterLimit(float fMiterLimit)
    {
       UNREFERENCED_PARAMETER(fMiterLimit);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::StrokeAndFillPath()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::StrokePath()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::WidenPath()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2041,7 +2041,7 @@ namespace draw2d
    bool graphics::draw_path(::draw2d::path * ppath)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
 
    }
@@ -2050,7 +2050,7 @@ namespace draw2d
    bool graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
 
    }
@@ -2059,7 +2059,7 @@ namespace draw2d
    bool graphics::fill_path(::draw2d::path * ppath)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
 
    }
@@ -2068,7 +2068,7 @@ namespace draw2d
    bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
 
    }
@@ -2090,7 +2090,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(nDataSize);
       UNREFERENCED_PARAMETER(pCommentData);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2100,7 +2100,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(hEnhMF);
       UNREFERENCED_PARAMETER(lpBounds);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2119,7 +2119,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nSrcWidth);
       UNREFERENCED_PARAMETER(nSrcHeight);
       UNREFERENCED_PARAMETER(crTransparent);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2130,7 +2130,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(pMesh);
       UNREFERENCED_PARAMETER(nMeshElements);
       UNREFERENCED_PARAMETER(dwMode);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2138,27 +2138,27 @@ namespace draw2d
 
    COLORREF graphics::GetDCBrushColor() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return 0;
    }
 
    COLORREF graphics::SetDCBrushColor(COLORREF crColor)
    {
       UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return 0;
    }
 
    COLORREF graphics::GetDCPenColor() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return 0;
    }
 
    COLORREF graphics::SetDCPenColor(COLORREF crColor)
    {
       UNREFERENCED_PARAMETER(crColor);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return 0;
    }
 
@@ -2170,7 +2170,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(cgi);
       UNREFERENCED_PARAMETER(pgi);
       UNREFERENCED_PARAMETER(lpabc);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2180,7 +2180,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(cgi);
       UNREFERENCED_PARAMETER(pgi);
       UNREFERENCED_PARAMETER(lpBuffer);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2194,7 +2194,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpnFit);
       UNREFERENCED_PARAMETER(alpDx);
       UNREFERENCED_PARAMETER(lpSize);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2203,7 +2203,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(pgiIn);
       UNREFERENCED_PARAMETER(cgi);
       UNREFERENCED_PARAMETER(lpSize);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2212,30 +2212,30 @@ namespace draw2d
    void graphics::DPtoHIMETRIC(LPSIZE lpSize) const
    {
       UNREFERENCED_PARAMETER(lpSize);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::HIMETRICtoDP(LPSIZE lpSize) const
    {
       UNREFERENCED_PARAMETER(lpSize);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::LPtoHIMETRIC(LPSIZE lpSize) const
    {
       UNREFERENCED_PARAMETER(lpSize);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::HIMETRICtoLP(LPSIZE lpSize) const
    {
       UNREFERENCED_PARAMETER(lpSize);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    ::draw2d::brush * graphics::GetHalftoneBrush()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return NULL;
    }
 
@@ -2249,21 +2249,21 @@ namespace draw2d
       UNREFERENCED_PARAMETER(sizeLast);
       UNREFERENCED_PARAMETER(pBrush);
       UNREFERENCED_PARAMETER(pBrushLast);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::FillSolidRect(const RECT &  lpRect, COLORREF clr)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(clr);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::FillSolidRect(const __rect64 * lpRect, COLORREF clr)
    {
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(clr);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::FillSolidRect(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr)
@@ -2273,7 +2273,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(cx);
       UNREFERENCED_PARAMETER(cy);
       UNREFERENCED_PARAMETER(clr);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::Draw3dRect(const RECT &  lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight)
@@ -2281,7 +2281,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(clrTopLeft);
       UNREFERENCED_PARAMETER(clrBottomRight);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::Draw3dRect(int32_t x, int32_t y, int32_t cx, int32_t cy,  COLORREF clrTopLeft, COLORREF clrBottomRight)
@@ -2292,7 +2292,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(cy);
       UNREFERENCED_PARAMETER(clrTopLeft);
       UNREFERENCED_PARAMETER(clrBottomRight);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -2300,13 +2300,13 @@ namespace draw2d
 
    void graphics::assert_valid() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
 
@@ -2314,7 +2314,7 @@ namespace draw2d
 
    bool graphics::DeleteDC()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2324,41 +2324,41 @@ namespace draw2d
    int32_t graphics::StartDoc(const char * lpszDocName)
    {
       UNREFERENCED_PARAMETER(lpszDocName);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    int32_t graphics::SaveDC()
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    bool graphics::RestoreDC(int32_t nSavedDC)
    {
       UNREFERENCED_PARAMETER(nSavedDC);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    ::draw2d::object* graphics::SelectStockObject(int32_t nIndex)
    {
       UNREFERENCED_PARAMETER(nIndex);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return NULL;
    }
 
    ::draw2d::pen* graphics::SelectObject(::draw2d::pen * pPen)
    {
       UNREFERENCED_PARAMETER(pPen);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return NULL;
    }
 
    ::draw2d::brush* graphics::SelectObject(::draw2d::brush * pBrush)
    {
       UNREFERENCED_PARAMETER(pBrush);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return NULL;
    }
 
@@ -2376,7 +2376,7 @@ namespace draw2d
    int32_t graphics::SelectObject(::draw2d::region * pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2384,7 +2384,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(pPalette);
       UNREFERENCED_PARAMETER(bForceBackground);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return NULL;
    }
 
@@ -2392,21 +2392,21 @@ namespace draw2d
    int32_t graphics::SetPolyFillMode(int32_t nPolyFillMode)
    {
       UNREFERENCED_PARAMETER(nPolyFillMode);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    int32_t graphics::SetROP2(int32_t nDrawMode)
    {
       UNREFERENCED_PARAMETER(nDrawMode);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    int32_t graphics::SetStretchBltMode(int32_t nStretchMode)
    {
       UNREFERENCED_PARAMETER(nStretchMode);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2414,7 +2414,7 @@ namespace draw2d
    int32_t graphics::SetGraphicsMode(int32_t iMode)
    {
       UNREFERENCED_PARAMETER(iMode);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2423,7 +2423,7 @@ namespace draw2d
    bool graphics::SetWorldTransform(const XFORM* pXform)
    {
       UNREFERENCED_PARAMETER(pXform);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2431,7 +2431,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(pXform);
       UNREFERENCED_PARAMETER(iMode);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2440,7 +2440,7 @@ namespace draw2d
    int32_t graphics::SetMapMode(int32_t nMapMode)
    {
       UNREFERENCED_PARAMETER(nMapMode);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2448,7 +2448,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return null_point();
    }
 
@@ -2456,7 +2456,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return null_point();
    }
 
@@ -2464,7 +2464,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
@@ -2474,7 +2474,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(xDenom);
       UNREFERENCED_PARAMETER(yNum);
       UNREFERENCED_PARAMETER(yDenom);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
@@ -2482,7 +2482,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return null_point();
    }
 
@@ -2490,7 +2490,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return null_point();
    }
 
@@ -2498,7 +2498,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
@@ -2508,14 +2508,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(xDenom);
       UNREFERENCED_PARAMETER(yNum);
       UNREFERENCED_PARAMETER(yDenom);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
    int32_t graphics::GetClipBox(LPRECT lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2531,7 +2531,7 @@ namespace draw2d
    int32_t graphics::SelectClipRgn(::draw2d::region* pRgn)
    {
       UNREFERENCED_PARAMETER(pRgn);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2541,14 +2541,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y1);
       UNREFERENCED_PARAMETER(x2);
       UNREFERENCED_PARAMETER(y2);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    int32_t graphics::ExcludeClipRect(const RECT &  lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2558,14 +2558,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y1);
       UNREFERENCED_PARAMETER(x2);
       UNREFERENCED_PARAMETER(y2);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    int32_t graphics::IntersectClipRect(const RECT &  lpRect)
    {
       UNREFERENCED_PARAMETER(lpRect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2573,14 +2573,14 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    int32_t graphics::OffsetClipRgn(SIZE size)
    {
       UNREFERENCED_PARAMETER(size);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2612,7 +2612,7 @@ namespace draw2d
    UINT graphics::SetTextAlign(UINT nFlags)
    {
       UNREFERENCED_PARAMETER(nFlags);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2620,34 +2620,34 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(nBreakExtra);
       UNREFERENCED_PARAMETER(nBreakCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    int32_t graphics::SetTextCharacterExtra(int32_t nCharExtra)
    {
       UNREFERENCED_PARAMETER(nCharExtra);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    uint32_t graphics::SetMapperFlags(uint32_t dwFlag)
    {
       UNREFERENCED_PARAMETER(dwFlag);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    uint32_t graphics::GetLayout() const
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
    uint32_t graphics::SetLayout(uint32_t dwSetLayout)
    {
       UNREFERENCED_PARAMETER(dwSetLayout);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2664,14 +2664,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(y3);
       UNREFERENCED_PARAMETER(x4);
       UNREFERENCED_PARAMETER(y4);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    int32_t graphics::SetArcDirection(int32_t nArcDirection)
    {
       UNREFERENCED_PARAMETER(nArcDirection);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2680,7 +2680,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(lpTypes);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2688,7 +2688,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2700,7 +2700,7 @@ namespace draw2d
    {
 
       UNREFERENCED_PARAMETER(lpColorAdjust);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
 
    }
@@ -2713,14 +2713,14 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
    bool graphics::SelectClipPath(int32_t nMode)
    {
       UNREFERENCED_PARAMETER(nMode);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2728,7 +2728,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(nMode);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2737,7 +2737,7 @@ namespace draw2d
    bool graphics::PlayMetaFile(HMETAFILE hMF)
    {
       UNREFERENCED_PARAMETER(hMF);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 
@@ -2749,13 +2749,13 @@ namespace draw2d
    void graphics::LPtoDP(LPSIZE lpSize) const
    {
       UNREFERENCED_PARAMETER(lpSize);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void graphics::DPtoLP(LPSIZE lpSize) const
    {
       UNREFERENCED_PARAMETER(lpSize);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
@@ -2769,14 +2769,14 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
    size graphics::GetTextExtent(const string & str) const
    {
       UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
@@ -2820,14 +2820,14 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
    size graphics::GetOutputTextExtent(const string & str) const
    {
       UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return size(0, 0);
    }
 
@@ -2944,7 +2944,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(nFormat);
       UNREFERENCED_PARAMETER(lpDTParams);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2954,7 +2954,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(nFormat);
       UNREFERENCED_PARAMETER(lpDTParams);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
    int32_t graphics::draw_text_ex(const char * lpszString,strsize nCount,const RECTD & lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
@@ -2964,7 +2964,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(nFormat);
       UNREFERENCED_PARAMETER(lpDTParams);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -2974,7 +2974,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(lpRect);
       UNREFERENCED_PARAMETER(nFormat);
       UNREFERENCED_PARAMETER(lpDTParams);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return -1;
    }
 
@@ -3011,7 +3011,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nSrcHeight);
       UNREFERENCED_PARAMETER(dOpacity);
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -3072,7 +3072,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nSrcWidth);
       UNREFERENCED_PARAMETER(nSrcHeight);
       UNREFERENCED_PARAMETER(blend);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }*/
 
 /*   bool graphics::alpha_blend(point ptDst, size szDst,::draw2d::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend)
@@ -3112,7 +3112,7 @@ namespace draw2d
 
    bool graphics::blur(bool bExpand, double dRadius, const RECT & rect)
    {
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
       return false;
    }
 

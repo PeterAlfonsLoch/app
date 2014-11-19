@@ -194,7 +194,7 @@ namespace aura
    bool os::open_in_ie(const char * lpcsz)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
       return false;
 
@@ -267,7 +267,7 @@ namespace aura
    void os::set_file_status(const char * lpszFileName, const ::file::file_status& status)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 

@@ -27,7 +27,7 @@ namespace file
    void writer::write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten)
    {
 
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
 
    }
 
@@ -122,121 +122,121 @@ namespace file
    void writer::write (char ch)
    {
       UNREFERENCED_PARAMETER(ch);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (uchar uch)
    {
       UNREFERENCED_PARAMETER(uch);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (int16_t sh)
    {
       UNREFERENCED_PARAMETER(sh);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (uint16_t ui)
    {
       UNREFERENCED_PARAMETER(ui);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (wchar_t wch)
    {
       UNREFERENCED_PARAMETER(wch);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (bool b)
    {
       UNREFERENCED_PARAMETER(b);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (int32_t i)
    {
       UNREFERENCED_PARAMETER(i);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (uint32_t ui)
    {
       UNREFERENCED_PARAMETER(ui);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (int64_t i)
    {
       UNREFERENCED_PARAMETER(i);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (uint64_t ui)
    {
       UNREFERENCED_PARAMETER(ui);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (float f)
    {
       UNREFERENCED_PARAMETER(f);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (double d)
    {
       UNREFERENCED_PARAMETER(d);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (const RECT & rect)
    {
       UNREFERENCED_PARAMETER(lpcrect);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (SIZE & size)
    {
       UNREFERENCED_PARAMETER(size);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (sp(type) info)
    {
       UNREFERENCED_PARAMETER(info);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (serializable & serializable)
    {
       UNREFERENCED_PARAMETER(serializable);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (const char * psz)
    {
       UNREFERENCED_PARAMETER(psz);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (const id & id)
    {
       UNREFERENCED_PARAMETER(id);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (const var & var)
    {
       UNREFERENCED_PARAMETER(var);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
 
    void writer::write (const string & str)
    {
       UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception(get_app());
+      ::exception::throw_interface_only(get_app());
    }
    */
 
