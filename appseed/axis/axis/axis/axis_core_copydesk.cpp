@@ -19,6 +19,8 @@ namespace axis
 
       ::exception::throw_interface_only(get_app());
 
+      return 0;
+
    }
 
 
@@ -69,6 +71,8 @@ namespace axis
 
       ::exception::throw_interface_only(get_app());
 
+      return "";
+
    }
 
    bool copydesk::desk_to_dib(::draw2d::dib * pdib)
@@ -76,6 +80,8 @@ namespace axis
 
       UNREFERENCED_PARAMETER(pdib);
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 

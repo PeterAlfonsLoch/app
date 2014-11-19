@@ -380,6 +380,8 @@ namespace axis
 
       ::exception::throw_interface_only(this);
 
+      return NULL;
+
    }
 
 
@@ -388,6 +390,8 @@ namespace axis
 
       ::exception::throw_interface_only(this);
 
+      return NULL;
+
    }
 
 
@@ -395,6 +399,8 @@ namespace axis
    {
 
       ::exception::throw_interface_only(this);
+
+      return "";
 
    }
 
@@ -438,6 +444,8 @@ namespace axis
 
       ::exception::throw_interface_only(this);
 
+      return false;
+
    }
 
 
@@ -454,6 +462,8 @@ namespace axis
 
       ::exception::throw_interface_only(this);
 
+      return NULL;
+
    }
 
 
@@ -469,6 +479,8 @@ namespace axis
    {
 
       ::exception::throw_interface_only(this);
+
+      return NULL;
 
    }
 

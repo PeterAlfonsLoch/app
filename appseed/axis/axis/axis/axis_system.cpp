@@ -827,6 +827,7 @@ namespace axis
 
       ::exception::throw_not_implemented(get_app());
 
+      return "";
    }
 
 

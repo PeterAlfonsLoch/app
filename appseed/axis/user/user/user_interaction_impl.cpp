@@ -37,6 +37,8 @@ namespace user
       UNREFERENCED_PARAMETER(pszName);
       ::exception::throw_interface_only(get_app());
 
+      return false;
+
    }
 
 
@@ -63,6 +65,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pwi);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    bool interaction_impl::GetScrollBarInfo(LONG idObject,PSCROLLBARINFO psbi) const
@@ -70,12 +73,14 @@ namespace user
       UNREFERENCED_PARAMETER(idObject);
       UNREFERENCED_PARAMETER(psbi);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    bool interaction_impl::GetTitleBarInfo(PTITLEBARINFO pti) const
    {
       UNREFERENCED_PARAMETER(pti);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
 #endif
@@ -86,6 +91,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(gaFlags);
       ::exception::throw_interface_only(get_app());
+      return NULL;
    }
 
 
@@ -95,6 +101,7 @@ namespace user
       UNREFERENCED_PARAMETER(dwTime);
       UNREFERENCED_PARAMETER(dwFlags);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    bool interaction_impl::FlashWindowEx(uint32_t dwFlags,UINT uCount,uint32_t dwTimeout)
@@ -103,6 +110,7 @@ namespace user
       UNREFERENCED_PARAMETER(uCount);
       UNREFERENCED_PARAMETER(dwTimeout);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    bool interaction_impl::SetLayeredWindowAttributes(COLORREF crKey,BYTE bAlpha,uint32_t dwFlags)
@@ -111,6 +119,7 @@ namespace user
       UNREFERENCED_PARAMETER(bAlpha);
       UNREFERENCED_PARAMETER(dwFlags);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT * pptDst,SIZE * psize,
@@ -125,6 +134,8 @@ namespace user
       UNREFERENCED_PARAMETER(pblend);
       UNREFERENCED_PARAMETER(dwFlags);
       ::exception::throw_interface_only(get_app());
+
+      return false;
    }
 
    bool interaction_impl::GetLayeredWindowAttributes(COLORREF * pcrKey,BYTE * pbAlpha,uint32_t * pdwFlags) const
@@ -133,6 +144,8 @@ namespace user
       UNREFERENCED_PARAMETER(pbAlpha);
       UNREFERENCED_PARAMETER(pdwFlags);
       ::exception::throw_interface_only(get_app());
+
+      return false;
    }
 
    bool interaction_impl::PrintWindow(::draw2d::graphics * pgraphics,UINT nFlags) const
@@ -140,6 +153,8 @@ namespace user
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nFlags);
       ::exception::throw_interface_only(get_app());
+
+      return false;
    }
 
 #endif
@@ -147,6 +162,7 @@ namespace user
    LRESULT interaction_impl::Default()
    {
       ::exception::throw_interface_only(get_app());
+      return 0;
    }
 
    void interaction_impl::pre_subclass_window()
@@ -162,6 +178,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return NULL;
+
    }
 
 
@@ -169,6 +187,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
 
    }
 
@@ -184,6 +204,8 @@ namespace user
       UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(lpParam);
       ::exception::throw_interface_only(get_app());
+
+      return false;
    }
 
 
@@ -205,6 +227,8 @@ namespace user
       UNREFERENCED_PARAMETER(id);
       UNREFERENCED_PARAMETER(pContext);
       ::exception::throw_interface_only(get_app());
+
+      return false;
    }
 
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
@@ -301,6 +325,8 @@ namespace user
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(rString);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
 #ifdef WINDOWSEX
@@ -309,12 +335,16 @@ namespace user
    {
       UNREFERENCED_PARAMETER(lpwndpl);
       ::exception::throw_interface_only(get_app());
+
+      return false;
    }
 
    bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
    {
       UNREFERENCED_PARAMETER(lpwndpl);
       ::exception::throw_interface_only(get_app());
+
+      return false;
    }
 
 #endif
@@ -397,6 +427,8 @@ namespace user
       UNREFERENCED_PARAMETER(pcmdmsg);
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
@@ -806,6 +838,7 @@ namespace user
    oswindow interaction_impl::unsubclass_window()
    {
       ::exception::throw_interface_only(get_app());
+      return NULL;
    }
 
    bool interaction_impl::IsChild(::user::interaction * pui) const
@@ -918,6 +951,8 @@ namespace user
       UNREFERENCED_PARAMETER(nIndex);
       ::exception::throw_interface_only(get_app());
 
+      return 0;
+
    }
 
 
@@ -926,6 +961,8 @@ namespace user
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(lValue);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
 
@@ -935,6 +972,8 @@ namespace user
       UNREFERENCED_PARAMETER(nIndex);
       ::exception::throw_interface_only(get_app());
 
+      return 0;
+
    }
 
 
@@ -943,6 +982,8 @@ namespace user
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(lValue);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
 
@@ -951,6 +992,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return NULL;
+
    }
 
 
@@ -958,6 +1001,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
 
    }
 
@@ -985,6 +1030,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return 0;
+
    }
 
 
@@ -992,6 +1039,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return 0;
 
    }
 
@@ -1056,6 +1105,8 @@ namespace user
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
       ::exception::throw_interface_only(get_app());
+
+      return false;
    }
 
    bool interaction_impl::DragDetect(POINT pt) const
@@ -1076,6 +1127,8 @@ namespace user
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nMaxCount);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
 
@@ -1083,6 +1136,7 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+      return 0;
 
    }
 
@@ -1099,6 +1153,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return 0;
+
    }
 
    int32_t interaction_impl::SetWindowRgn(HRGN hRgn,bool bRedraw)
@@ -1106,12 +1162,16 @@ namespace user
       UNREFERENCED_PARAMETER(hRgn);
       UNREFERENCED_PARAMETER(bRedraw);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
    int32_t interaction_impl::GetWindowRgn(HRGN hRgn)
    {
       UNREFERENCED_PARAMETER(hRgn);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
    bool interaction_impl::BringWindowToTop()
@@ -1222,6 +1282,8 @@ namespace user
    {
       UNREFERENCED_PARAMETER(id);
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
    }
 
    ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region * prgnClip,uint32_t flags)
@@ -1229,6 +1291,9 @@ namespace user
       UNREFERENCED_PARAMETER(prgnClip);
       UNREFERENCED_PARAMETER(flags);
       ::exception::throw_interface_only(get_app());
+
+
+      return NULL;
    }
 
    bool interaction_impl::LockWindowUpdate()
@@ -1310,11 +1375,15 @@ namespace user
    ::user::interaction * interaction_impl::GetActiveWindow()
    {
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
    }
 
    ::user::interaction * interaction_impl::SetActiveWindow()
    {
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
    }
 
 
@@ -1325,6 +1394,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return NULL;
+
    }
 
 
@@ -1332,6 +1403,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
 
    }
 
@@ -1358,6 +1431,7 @@ namespace user
       UNREFERENCED_PARAMETER(nIDStaticPath);
       UNREFERENCED_PARAMETER(nFileType);
       ::exception::throw_interface_only(get_app());
+      return 0;
    }
 
    int32_t interaction_impl::DlgDirListComboBox(LPTSTR lpPathSpec,int32_t nIDComboBox,int32_t nIDStaticPath,UINT nFileType)
@@ -1367,6 +1441,8 @@ namespace user
       UNREFERENCED_PARAMETER(nIDStaticPath);
       UNREFERENCED_PARAMETER(nFileType);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
    bool interaction_impl::DlgDirSelect(LPTSTR lpString,int32_t nSize,int32_t nIDListBox)
@@ -1385,6 +1461,8 @@ namespace user
       UNREFERENCED_PARAMETER(nSize);
       UNREFERENCED_PARAMETER(nIDComboBox);
       ::exception::throw_interface_only(get_app());
+
+      return false;
    }
 
    UINT interaction_impl::GetChildByIdInt(int32_t nID,bool* lpTrans,bool bSigned) const
@@ -1393,6 +1471,8 @@ namespace user
       UNREFERENCED_PARAMETER(lpTrans);
       UNREFERENCED_PARAMETER(bSigned);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
    int32_t interaction_impl::GetChildByIdText(int32_t nID,LPTSTR lpStr,int32_t nMaxCount) const
@@ -1401,6 +1481,8 @@ namespace user
       UNREFERENCED_PARAMETER(lpStr);
       UNREFERENCED_PARAMETER(nMaxCount);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
    ::window_sp interaction_impl::GetNextDlgGroupItem(::window_sp pWndCtl,bool bPrevious) const
@@ -1408,6 +1490,8 @@ namespace user
       UNREFERENCED_PARAMETER(pWndCtl);
       UNREFERENCED_PARAMETER(bPrevious);
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
    }
 
    ::window_sp interaction_impl::GetNextDlgTabItem(::window_sp pWndCtl,bool bPrevious) const
@@ -1415,12 +1499,16 @@ namespace user
       UNREFERENCED_PARAMETER(pWndCtl);
       UNREFERENCED_PARAMETER(bPrevious);
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
    }
 
    UINT interaction_impl::IsDlgButtonChecked(int32_t nIDButton) const
    {
       UNREFERENCED_PARAMETER(nIDButton);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
    LPARAM interaction_impl::SendDlgItemMessage(int32_t nID,UINT message,WPARAM wParam,LPARAM lParam)
@@ -1430,6 +1518,8 @@ namespace user
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
    void interaction_impl::SetDlgItemInt(int32_t nID,UINT nValue,bool bSigned)
@@ -1459,6 +1549,8 @@ namespace user
       UNREFERENCED_PARAMETER(lpRectUpdate);
       UNREFERENCED_PARAMETER(flags);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
    void interaction_impl::ShowScrollBar(UINT nBar,bool bShow)
@@ -1472,6 +1564,9 @@ namespace user
    {
       UNREFERENCED_PARAMETER(point);
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
+
    }
 
    ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point,UINT nFlags)
@@ -1479,6 +1574,9 @@ namespace user
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(nFlags);
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
+
    }
 
 
@@ -1488,6 +1586,8 @@ namespace user
       UNREFERENCED_PARAMETER(nFlag);
       ::exception::throw_interface_only(get_app());
 
+      return NULL;
+
    }
 
 
@@ -1495,6 +1595,9 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+
+      return NULL;
 
    }
 
@@ -1516,6 +1619,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return NULL;
+
    }
 
 
@@ -1524,6 +1629,8 @@ namespace user
 
       UNREFERENCED_PARAMETER(pWndNewParent);
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
 
    }
 
@@ -1554,7 +1661,7 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
-
+      return NULL;
 
    }
 
@@ -1563,6 +1670,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
