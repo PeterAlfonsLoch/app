@@ -441,6 +441,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return false;
+
    }
 
 
@@ -448,6 +450,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
@@ -457,6 +461,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return false;
+
    }
 
 
@@ -464,6 +470,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
@@ -492,6 +500,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return false;
+
    }
 
 
@@ -499,6 +509,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
@@ -508,6 +520,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return false;
+
    }
 
 
@@ -515,6 +529,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
@@ -524,6 +540,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return false;
+
    }
 
 
@@ -531,6 +549,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
@@ -540,6 +560,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return false;
+
    }
 
 
@@ -547,6 +569,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
@@ -556,6 +580,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return false;
+
    }
 
 
@@ -563,6 +589,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
@@ -622,6 +650,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return NULL;
+
    }
 
 
@@ -629,6 +659,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
@@ -638,6 +670,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return NULL;
+
    }
 
 
@@ -645,6 +679,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
 
    }
 
@@ -667,6 +703,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return false;
+
    }
 
 
@@ -674,6 +712,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return 0;
 
    }
 
@@ -686,6 +726,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return 0;
+
    }
 
 
@@ -697,6 +739,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return false;
+
    }
 
 
@@ -704,6 +748,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
@@ -713,6 +759,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return false;
+
    }
 
 
@@ -721,6 +769,8 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
+      return false;
+
    }
 
 
@@ -728,6 +778,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
 
    }
 
@@ -760,6 +812,8 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 

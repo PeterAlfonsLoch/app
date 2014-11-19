@@ -321,74 +321,74 @@ namespace user
 
    /////////////////////////////////////////////////////////////////////////////
    // interaction_impl will delegate owner draw messages to self drawing controls
-#ifdef WINDOWSEX
-   // Drawing: for all 4 control types
-   void interaction_impl::OnDrawItem(int32_t /*nIDCtl*/,LPDRAWITEMSTRUCT lpDrawItemStruct)
-   {
-      UNREFERENCED_PARAMETER(lpDrawItemStruct);
-      ::exception::throw_interface_only(get_app());
-   }
+//#ifdef WINDOWSEX
+//   // Drawing: for all 4 control types
+//   void interaction_impl::OnDrawItem(int32_t /*nIDCtl*/,LPDRAWITEMSTRUCT lpDrawItemStruct)
+//   {
+//      UNREFERENCED_PARAMETER(lpDrawItemStruct);
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   // Drawing: for all 4 control types
+//   int32_t interaction_impl::OnCompareItem(int32_t /*nIDCtl*/,LPCOMPAREITEMSTRUCT lpCompareItemStruct)
+//   {
+//      UNREFERENCED_PARAMETER(lpCompareItemStruct);
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   void interaction_impl::OnDeleteItem(int32_t /*nIDCtl*/,LPDELETEITEMSTRUCT lpDeleteItemStruct)
+//   {
+//      UNREFERENCED_PARAMETER(lpDeleteItemStruct);
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   // Measure item implementation relies on unique control/menu IDs
+//   void interaction_impl::OnMeasureItem(int32_t /*nIDCtl*/,LPMEASUREITEMSTRUCT lpMeasureItemStruct)
+//   {
+//      UNREFERENCED_PARAMETER(lpMeasureItemStruct);
+//      ::exception::throw_interface_only(get_app());
+//   }
+//#endif
 
-   // Drawing: for all 4 control types
-   int32_t interaction_impl::OnCompareItem(int32_t /*nIDCtl*/,LPCOMPAREITEMSTRUCT lpCompareItemStruct)
-   {
-      UNREFERENCED_PARAMETER(lpCompareItemStruct);
-      ::exception::throw_interface_only(get_app());
-   }
 
-   void interaction_impl::OnDeleteItem(int32_t /*nIDCtl*/,LPDELETEITEMSTRUCT lpDeleteItemStruct)
-   {
-      UNREFERENCED_PARAMETER(lpDeleteItemStruct);
-      ::exception::throw_interface_only(get_app());
-   }
-
-   // Measure item implementation relies on unique control/menu IDs
-   void interaction_impl::OnMeasureItem(int32_t /*nIDCtl*/,LPMEASUREITEMSTRUCT lpMeasureItemStruct)
-   {
-      UNREFERENCED_PARAMETER(lpMeasureItemStruct);
-      ::exception::throw_interface_only(get_app());
-   }
-#endif
-
-
-   LRESULT interaction_impl::OnNTCtlColor(WPARAM wParam,LPARAM lParam)
-   {
-      UNREFERENCED_PARAMETER(wParam);
-      UNREFERENCED_PARAMETER(lParam);
-      ::exception::throw_interface_only(get_app());
-   }
-
-#ifdef WINDOWSEX
-   /////////////////////////////////////////////////////////////////////////////
-   // interaction_impl extensions for help support
-   void interaction_impl::WinHelp(uint_ptr dwData,UINT nCmd)
-   {
-      UNREFERENCED_PARAMETER(dwData);
-      UNREFERENCED_PARAMETER(nCmd);
-      ::exception::throw_interface_only(get_app());
-   }
-
-   void interaction_impl::HtmlHelp(uint_ptr dwData,UINT nCmd)
-   {
-      UNREFERENCED_PARAMETER(dwData);
-      UNREFERENCED_PARAMETER(nCmd);
-      ::exception::throw_interface_only(get_app());
-   }
-#endif
-
-   void interaction_impl::PrepareForHelp()
-   {
-      ::exception::throw_interface_only(get_app());
-   }
-
-#ifdef WINDOWSEX
-   void interaction_impl::WinHelpInternal(uint_ptr dwData,UINT nCmd)
-   {
-      UNREFERENCED_PARAMETER(dwData);
-      UNREFERENCED_PARAMETER(nCmd);
-      ::exception::throw_interface_only(get_app());
-   }
-#endif
+//   LRESULT interaction_impl::OnNTCtlColor(WPARAM wParam,LPARAM lParam)
+//   {
+//      UNREFERENCED_PARAMETER(wParam);
+//      UNREFERENCED_PARAMETER(lParam);
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//#ifdef WINDOWSEX
+//   /////////////////////////////////////////////////////////////////////////////
+//   // interaction_impl extensions for help support
+//   void interaction_impl::WinHelp(uint_ptr dwData,UINT nCmd)
+//   {
+//      UNREFERENCED_PARAMETER(dwData);
+//      UNREFERENCED_PARAMETER(nCmd);
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   void interaction_impl::HtmlHelp(uint_ptr dwData,UINT nCmd)
+//   {
+//      UNREFERENCED_PARAMETER(dwData);
+//      UNREFERENCED_PARAMETER(nCmd);
+//      ::exception::throw_interface_only(get_app());
+//   }
+//#endif
+//
+//   void interaction_impl::PrepareForHelp()
+//   {
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//#ifdef WINDOWSEX
+//   void interaction_impl::WinHelpInternal(uint_ptr dwData,UINT nCmd)
+//   {
+//      UNREFERENCED_PARAMETER(dwData);
+//      UNREFERENCED_PARAMETER(nCmd);
+//      ::exception::throw_interface_only(get_app());
+//   }
+//#endif
 
 
    bool interaction_impl::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
@@ -422,19 +422,21 @@ namespace user
    }
 
 
-   bool interaction_impl::OnNotify(::message::base * pbase)
-   {
+   //bool interaction_impl::OnNotify(::message::base * pbase)
+   //{
 
-      UNREFERENCED_PARAMETER(pbase);
+   //   UNREFERENCED_PARAMETER(pbase);
 
-      ::exception::throw_interface_only(get_app());
+   //   ::exception::throw_interface_only(get_app());
 
-   }
+   //}
 
 
    bool interaction_impl::IsTopParentActive()
    {
       ::exception::throw_interface_only(get_app());
+
+      return false;
    }
 
    void interaction_impl::ActivateTopParent()
@@ -449,6 +451,8 @@ namespace user
       UNREFERENCED_PARAMETER(lpszCaption);
       UNREFERENCED_PARAMETER(nType);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -469,12 +473,16 @@ namespace user
       UNREFERENCED_PARAMETER(nPos);
       UNREFERENCED_PARAMETER(bRedraw);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
    int32_t interaction_impl::GetScrollPos(int32_t nBar) const
    {
       UNREFERENCED_PARAMETER(nBar);
       ::exception::throw_interface_only(get_app());
+
+      return 0;
    }
 
    void interaction_impl::SetScrollRange(int32_t nBar,int32_t nMinPos,int32_t nMaxPos,bool bRedraw)
@@ -484,6 +492,8 @@ namespace user
       UNREFERENCED_PARAMETER(nMaxPos);
       UNREFERENCED_PARAMETER(bRedraw);
       ::exception::throw_interface_only(get_app());
+
+
    }
 
 
@@ -589,64 +599,64 @@ namespace user
    }
 
 
-   void interaction_impl::OnParentNotify(UINT message,LPARAM lParam)
-   {
-      UNREFERENCED_PARAMETER(message);
-      UNREFERENCED_PARAMETER(lParam);
-      ::exception::throw_interface_only(get_app());
-   }
-
-   void interaction_impl::OnSetFocus(::window_sp)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
-
-   LRESULT interaction_impl::OnActivateTopLevel(WPARAM wParam,LPARAM)
-   {
-      UNREFERENCED_PARAMETER(wParam);
-      ::exception::throw_interface_only(get_app());
-   }
-
-   void interaction_impl::OnSysColorChange()
-   {
-      ::exception::throw_interface_only(get_app());
-   }
-
-   void interaction_impl::OnSettingChange(UINT uFlags,const char * lpszSection)
-   {
-      UNREFERENCED_PARAMETER(uFlags);
-      UNREFERENCED_PARAMETER(lpszSection);
-      ::exception::throw_interface_only(get_app());
-   }
-
-#ifdef WINDOWS
-   void interaction_impl::OnDevModeChange(__in LPTSTR lpDeviceName)
-   {
-      UNREFERENCED_PARAMETER(lpDeviceName);
-      ::exception::throw_interface_only(get_app());
-   }
-
-#ifdef WINDOWSEX
-   bool interaction_impl::OnHelpInfo(HELPINFO* /*pHelpInfo*/)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
-#endif
-#endif
-
-   LRESULT interaction_impl::OnDisplayChange(WPARAM,LPARAM)
-   {
-      //   ::exception::throw_interface_only(get_app());
-
-      return 0;
-
-   }
-
-   LRESULT interaction_impl::OnDragList(WPARAM,LPARAM lParam)
-   {
-      UNREFERENCED_PARAMETER(lParam);
-      ::exception::throw_interface_only(get_app());
-   }
+//   void interaction_impl::OnParentNotify(UINT message,LPARAM lParam)
+//   {
+//      UNREFERENCED_PARAMETER(message);
+//      UNREFERENCED_PARAMETER(lParam);
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   void interaction_impl::OnSetFocus(::window_sp)
+//   {
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   LRESULT interaction_impl::OnActivateTopLevel(WPARAM wParam,LPARAM)
+//   {
+//      UNREFERENCED_PARAMETER(wParam);
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   void interaction_impl::OnSysColorChange()
+//   {
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   void interaction_impl::OnSettingChange(UINT uFlags,const char * lpszSection)
+//   {
+//      UNREFERENCED_PARAMETER(uFlags);
+//      UNREFERENCED_PARAMETER(lpszSection);
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//#ifdef WINDOWS
+//   void interaction_impl::OnDevModeChange(__in LPTSTR lpDeviceName)
+//   {
+//      UNREFERENCED_PARAMETER(lpDeviceName);
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//#ifdef WINDOWSEX
+//   bool interaction_impl::OnHelpInfo(HELPINFO* /*pHelpInfo*/)
+//   {
+//      ::exception::throw_interface_only(get_app());
+//   }
+//#endif
+//#endif
+//
+//   LRESULT interaction_impl::OnDisplayChange(WPARAM,LPARAM)
+//   {
+//      //   ::exception::throw_interface_only(get_app());
+//
+//      return 0;
+//
+//   }
+//
+//   LRESULT interaction_impl::OnDragList(WPARAM,LPARAM lParam)
+//   {
+//      UNREFERENCED_PARAMETER(lParam);
+//      ::exception::throw_interface_only(get_app());
+//   }
 
    /*   void interaction_impl::OnHScroll(UINT, UINT, CScrollBar* pScrollBar)
    {
@@ -2070,45 +2080,49 @@ namespace user
 #endif
 
 
-   void interaction_impl::OnSizing(UINT,LPRECT)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
+   //void interaction_impl::OnSizing(UINT,LPRECT)
+   //{
+   //   ::exception::throw_interface_only(get_app());
+   //}
 
-   void interaction_impl::OnMoving(UINT,LPRECT)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
+   //void interaction_impl::OnMoving(UINT,LPRECT)
+   //{
+   //   ::exception::throw_interface_only(get_app());
+   //}
 
-   void interaction_impl::OnCaptureChanged(::window_sp)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
+   //void interaction_impl::OnCaptureChanged(::window_sp)
+   //{
+   //   ::exception::throw_interface_only(get_app());
+   //}
 
-   bool interaction_impl::OnDeviceChange(UINT,uint_ptr)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
+   //bool interaction_impl::OnDeviceChange(UINT,uint_ptr)
+   //{
+   //   ::exception::throw_interface_only(get_app());
+   //}
 
-   void interaction_impl::OnWinIniChange(const char *)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
+   //void interaction_impl::OnWinIniChange(const char *)
+   //{
+   //   ::exception::throw_interface_only(get_app());
+   //}
 
-   void interaction_impl::OnChangeUIState(UINT,UINT)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
+   //void interaction_impl::OnChangeUIState(UINT,UINT)
+   //{
+   //   ::exception::throw_interface_only(get_app());
+   //}
 
-   void interaction_impl::OnUpdateUIState(UINT,UINT)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
+   //void interaction_impl::OnUpdateUIState(UINT,UINT)
+   //{
+   //   ::exception::throw_interface_only(get_app());
+   //}
 
-   UINT interaction_impl::OnQueryUIState()
-   {
-      ::exception::throw_interface_only(get_app());
-   }
+   //UINT interaction_impl::OnQueryUIState()
+   //{
+   //   
+   //   ::exception::throw_interface_only(get_app());
+
+   //   return 0;
+
+   //}
 
    // interaction_impl dialog data support
    //   void interaction_impl::do_data_exchange(CDataExchange*)
@@ -2138,6 +2152,9 @@ namespace user
    bool interaction_impl::OpenIcon()
    {
       ::exception::throw_interface_only(get_app());
+
+      return false;
+
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -2153,16 +2170,26 @@ namespace user
    // Helper for radio buttons
    int32_t interaction_impl::GetCheckedRadioButton(int32_t nIDFirstButton,int32_t nIDLastButton)
    {
+      
       UNREFERENCED_PARAMETER(nIDFirstButton);
       UNREFERENCED_PARAMETER(nIDLastButton);
+      
       ::exception::throw_interface_only(get_app());
+
+      return 0;
+
    }
 
    bool interaction_impl::_EnableToolTips(bool bEnable,UINT nFlag)
    {
+      
       UNREFERENCED_PARAMETER(bEnable);
       UNREFERENCED_PARAMETER(nFlag);
+
       ::exception::throw_interface_only(get_app());
+
+      return false;
+
    }
 
 

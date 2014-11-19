@@ -116,7 +116,11 @@ namespace user
 
    bool window_draw::ScreenOutput()
    {
+      
       ::exception::throw_interface_only(get_app());
+
+      return false;
+
    }
 
    bool window_draw::twf_stop()

@@ -417,16 +417,16 @@ namespace user
       virtual uint32_t GetWindowContextHelpId() const;
 
 
-      // Help Command Handlers
-      void OnHelp();          // F1 (uses current context)
-      void OnHelpIndex();     // ID_HELP_INDEX
-      void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
-      void OnHelpUsing();     // ID_HELP_USING
-#ifdef WINDOWSEX
-      virtual void WinHelp(uint_ptr dwData,UINT nCmd = HELP_CONTEXT);
-      virtual void HtmlHelp(uint_ptr dwData,UINT nCmd = 0x000F);
-      virtual void WinHelpInternal(uint_ptr dwData,UINT nCmd = HELP_CONTEXT);
-#endif
+//      // Help Command Handlers
+//      void OnHelp();          // F1 (uses current context)
+//      void OnHelpIndex();     // ID_HELP_INDEX
+//      void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
+//      void OnHelpUsing();     // ID_HELP_USING
+//#ifdef WINDOWSEX
+//      virtual void WinHelp(uint_ptr dwData,UINT nCmd = HELP_CONTEXT);
+//      virtual void HtmlHelp(uint_ptr dwData,UINT nCmd = 0x000F);
+//      virtual void WinHelpInternal(uint_ptr dwData,UINT nCmd = HELP_CONTEXT);
+//#endif
 
 
       // Dialog Data support
@@ -439,185 +439,185 @@ namespace user
       virtual void CenterWindow(::user::interaction * pAlternateOwner = NULL);
 
 
-      virtual bool OnCommand(::message::base * pbase);
-      virtual bool OnNotify(::message::base * pbase);
-
-      void OnActivate(UINT nState,::window_sp pWndOther,bool bMinimized);
-      void OnActivateApp(bool bActive,uint32_t dwThreadID);
-      LRESULT OnActivateTopLevel(WPARAM,LPARAM);
-      void OnCancelMode();
-      void OnChildActivate();
-      void OnClose();
-      void OnContextMenu(::window_sp pwindow,point pos);
-
-#ifdef WINDOWSEX
-      bool OnCopyData(::window_sp pwindow,COPYDATASTRUCT* pCopyDataStruct);
-#endif
+//      virtual bool OnCommand(::message::base * pbase);
+//      virtual bool OnNotify(::message::base * pbase);
+//
+//      void OnActivate(UINT nState,::window_sp pWndOther,bool bMinimized);
+//      void OnActivateApp(bool bActive,uint32_t dwThreadID);
+//      LRESULT OnActivateTopLevel(WPARAM,LPARAM);
+//      void OnCancelMode();
+//      void OnChildActivate();
+//      void OnClose();
+//      void OnContextMenu(::window_sp pwindow,point pos);
+//
+//#ifdef WINDOWSEX
+//      bool OnCopyData(::window_sp pwindow,COPYDATASTRUCT* pCopyDataStruct);
+//#endif
       DECL_GEN_SIGNAL(_001OnCreate);
 
 
-      void * OnCtlColor(::draw2d::graphics * pgraphics,::window_sp pwindow,UINT nCtlColor);
-
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      void OnEnable(bool bEnable);
-      void OnEndSession(bool bEnding);
-      void OnEnterIdle(UINT nWhy,::window_sp pWho);
-      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
-
-
-#ifdef WINDOWSEX
-      void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
-      bool OnHelpInfo(HELPINFO* lpHelpInfo);
-#endif
-
-
-      void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
-      void OnKillFocus(::window_sp pNewWnd);
-      LRESULT OnMenuChar(UINT nChar,UINT nFlags,::user::menu* pMenu);
-      void OnMenuSelect(UINT nItemID,UINT nFlags,HMENU hSysMenu);
-      void OnMove(int32_t x,int32_t y);
+//      void * OnCtlColor(::draw2d::graphics * pgraphics,::window_sp pwindow,UINT nCtlColor);
+//
+        DECL_GEN_SIGNAL(_001OnDestroy);
+//      void OnEnable(bool bEnable);
+//      void OnEndSession(bool bEnding);
+//      void OnEnterIdle(UINT nWhy,::window_sp pWho);
+//      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
+//
+//
+//#ifdef WINDOWSEX
+//      void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+//      bool OnHelpInfo(HELPINFO* lpHelpInfo);
+//#endif
+//
+//
+//      void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
+//      void OnKillFocus(::window_sp pNewWnd);
+//      LRESULT OnMenuChar(UINT nChar,UINT nFlags,::user::menu* pMenu);
+//      void OnMenuSelect(UINT nItemID,UINT nFlags,HMENU hSysMenu);
+//      void OnMove(int32_t x,int32_t y);
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
       DECL_GEN_SIGNAL(_001OnCaptureChanged);
-      void OnParentNotify(UINT message,LPARAM lParam);
-      bool OnQueryEndSession();
-      bool OnQueryNewPalette();
-      bool OnQueryOpen();
-      void OnSetFocus(::window_sp pOldWnd);
-      void OnShowWindow(bool bShow,UINT nStatus);
-      void OnSize(UINT nType,int32_t cx,int32_t cy);
+      //void OnParentNotify(UINT message,LPARAM lParam);
+      //bool OnQueryEndSession();
+      //bool OnQueryNewPalette();
+      //bool OnQueryOpen();
+      //void OnSetFocus(::window_sp pOldWnd);
+      //void OnShowWindow(bool bShow,UINT nStatus);
+      //void OnSize(UINT nType,int32_t cx,int32_t cy);
 
 
-      void OnTCard(UINT idAction,uint32_t dwActionData);
+      //void OnTCard(UINT idAction,uint32_t dwActionData);
 
 #ifdef WINDOWSEX
-      void OnWindowPosChanging(WINDOWPOS* lpwndpos);
+      //void OnWindowPosChanging(WINDOWPOS* lpwndpos);
       DECL_GEN_SIGNAL(_001OnWindowPosChanged);
 #endif
 
-      void OnChangeUIState(UINT nAction,UINT nUIElement);
-      void OnUpdateUIState(UINT nAction,UINT nUIElement);
-      UINT OnQueryUIState();
+//      void OnChangeUIState(UINT nAction,UINT nUIElement);
+//      void OnUpdateUIState(UINT nAction,UINT nUIElement);
+//      UINT OnQueryUIState();
+//
+//      // Nonclient-Area message handler member functions
+//      bool OnNcActivate(bool bActive);
+//
+//#ifdef WINDOWSEX
+//      void OnNcCalcSize(bool bCalcValidRects,NCCALCSIZE_PARAMS* lpncsp);
+//#endif
+//      bool OnNcCreate(::user::create_struct * lpCreateStruct);
+//      LRESULT OnNcHitTest(point point);
+//      void OnNcLButtonDblClk(UINT nHitTest,point point);
+//      void OnNcLButtonDown(UINT nHitTest,point point);
+//      void OnNcLButtonUp(UINT nHitTest,point point);
+//      void OnNcMButtonDblClk(UINT nHitTest,point point);
+//      void OnNcMButtonDown(UINT nHitTest,point point);
+//      void OnNcMButtonUp(UINT nHitTest,point point);
+//      void OnNcMouseMove(UINT nHitTest,point point);
+//      void OnNcPaint();
+//      void OnNcRButtonDblClk(UINT nHitTest,point point);
+//      void OnNcRButtonDown(UINT nHitTest,point point);
+//      void OnNcRButtonUp(UINT nHitTest,point point);
+//
+//      // System message handler member functions
+//#ifdef WINDOWSEX
+//      void OnDropFiles(HDROP hDropInfo);
+//#endif
+      //void OnPaletteIsChanging(::window_sp pRealizeWnd);
+      //void OnSysChar(UINT nChar,UINT nRepCnt,UINT nFlags);
+      //void OnSysCommand(UINT nID,LPARAM lParam);
+      //void OnSysDeadChar(UINT nChar,UINT nRepCnt,UINT nFlags);
+      //void OnSysKeyDown(UINT nChar,UINT nRepCnt,UINT nFlags);
+      //void OnSysKeyUp(UINT nChar,UINT nRepCnt,UINT nFlags);
+      //void OnCompacting(UINT nCpuTime);
+      //void OnDevModeChange(LPTSTR lpDeviceName);
+      //void OnFontChange();
+      //void OnPaletteChanged(::window_sp pFocusWnd);
+      //void OnSpoolerStatus(UINT nStatus,UINT nJobs);
+      //void OnSysColorChange();
+      //void OnTimeChange();
+      //void OnSettingChange(UINT uFlags,const char * lpszSection);
+      //void OnWinIniChange(const char * lpszSection);
 
-      // Nonclient-Area message handler member functions
-      bool OnNcActivate(bool bActive);
+      //// Input message handler member functions
+      //void OnChar(UINT nChar,UINT nRepCnt,UINT nFlags);
+      //void OnDeadChar(UINT nChar,UINT nRepCnt,UINT nFlags);
+      ////      void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+      ////    void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+      //void OnKeyDown(UINT nChar,UINT nRepCnt,UINT nFlags);
+      //void OnKeyUp(UINT nChar,UINT nRepCnt,UINT nFlags);
+      //void OnLButtonDblClk(UINT nFlags,point point);
+      //void OnLButtonDown(UINT nFlags,point point);
+      //void OnLButtonUp(UINT nFlags,point point);
+      //void OnMButtonDblClk(UINT nFlags,point point);
+      //void OnMButtonDown(UINT nFlags,point point);
+      //void OnMButtonUp(UINT nFlags,point point);
+      //int32_t OnMouseActivate(::window_sp pDesktopWnd,UINT nHitTest,UINT message);
+      //void OnMouseMove(UINT nFlags,point point);
+      //bool OnMouseWheel(UINT nFlags,int16_t zDelta,point pt);
+      //LRESULT OnRegisteredMouseWheel(WPARAM wParam,LPARAM lParam);
+      //void OnRButtonDblClk(UINT nFlags,point point);
+      //void OnRButtonDown(UINT nFlags,point point);
+      //void OnRButtonUp(UINT nFlags,point point);
+      //bool OnSetCursor(::window_sp pwindow,UINT nHitTest,UINT message);
+      //void OnTimer(uint_ptr nIDEvent);
 
-#ifdef WINDOWSEX
-      void OnNcCalcSize(bool bCalcValidRects,NCCALCSIZE_PARAMS* lpncsp);
-#endif
-      bool OnNcCreate(::user::create_struct * lpCreateStruct);
-      LRESULT OnNcHitTest(point point);
-      void OnNcLButtonDblClk(UINT nHitTest,point point);
-      void OnNcLButtonDown(UINT nHitTest,point point);
-      void OnNcLButtonUp(UINT nHitTest,point point);
-      void OnNcMButtonDblClk(UINT nHitTest,point point);
-      void OnNcMButtonDown(UINT nHitTest,point point);
-      void OnNcMButtonUp(UINT nHitTest,point point);
-      void OnNcMouseMove(UINT nHitTest,point point);
-      void OnNcPaint();
-      void OnNcRButtonDblClk(UINT nHitTest,point point);
-      void OnNcRButtonDown(UINT nHitTest,point point);
-      void OnNcRButtonUp(UINT nHitTest,point point);
-
-      // System message handler member functions
-#ifdef WINDOWSEX
-      void OnDropFiles(HDROP hDropInfo);
-#endif
-      void OnPaletteIsChanging(::window_sp pRealizeWnd);
-      void OnSysChar(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnSysCommand(UINT nID,LPARAM lParam);
-      void OnSysDeadChar(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnSysKeyDown(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnSysKeyUp(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnCompacting(UINT nCpuTime);
-      void OnDevModeChange(LPTSTR lpDeviceName);
-      void OnFontChange();
-      void OnPaletteChanged(::window_sp pFocusWnd);
-      void OnSpoolerStatus(UINT nStatus,UINT nJobs);
-      void OnSysColorChange();
-      void OnTimeChange();
-      void OnSettingChange(UINT uFlags,const char * lpszSection);
-      void OnWinIniChange(const char * lpszSection);
-
-      // Input message handler member functions
-      void OnChar(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnDeadChar(UINT nChar,UINT nRepCnt,UINT nFlags);
-      //      void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-      //    void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-      void OnKeyDown(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnKeyUp(UINT nChar,UINT nRepCnt,UINT nFlags);
-      void OnLButtonDblClk(UINT nFlags,point point);
-      void OnLButtonDown(UINT nFlags,point point);
-      void OnLButtonUp(UINT nFlags,point point);
-      void OnMButtonDblClk(UINT nFlags,point point);
-      void OnMButtonDown(UINT nFlags,point point);
-      void OnMButtonUp(UINT nFlags,point point);
-      int32_t OnMouseActivate(::window_sp pDesktopWnd,UINT nHitTest,UINT message);
-      void OnMouseMove(UINT nFlags,point point);
-      bool OnMouseWheel(UINT nFlags,int16_t zDelta,point pt);
-      LRESULT OnRegisteredMouseWheel(WPARAM wParam,LPARAM lParam);
-      void OnRButtonDblClk(UINT nFlags,point point);
-      void OnRButtonDown(UINT nFlags,point point);
-      void OnRButtonUp(UINT nFlags,point point);
-      bool OnSetCursor(::window_sp pwindow,UINT nHitTest,UINT message);
-      void OnTimer(uint_ptr nIDEvent);
-
-      // Initialization message handler member functions
-      void OnInitMenu(::user::menu* pMenu);
-      void OnInitMenuPopup(::user::menu* pPopupMenu,UINT nIndex,bool bSysMenu);
-
-
-#ifdef WINDOWS
+      //// Initialization message handler member functions
+      //void OnInitMenu(::user::menu* pMenu);
+      //void OnInitMenuPopup(::user::menu* pPopupMenu,UINT nIndex,bool bSysMenu);
 
 
-      // Clipboard message handler member functions
-      void OnAskCbFormatName(UINT nMaxCount,LPTSTR lpszString);
-      void OnChangeCbChain(oswindow oswindow_Remove,oswindow oswindow_After);
-      void OnDestroyClipboard();
-      void OnDrawClipboard();
-      void OnHScrollClipboard(::window_sp pClipAppWnd,UINT nSBCode,UINT nPos);
-      void OnPaintClipboard(::window_sp pClipAppWnd,HGLOBAL hPaintStruct);
-      void OnRenderAllFormats();
-      void OnRenderFormat(UINT nFormat);
-      void OnSizeClipboard(::window_sp pClipAppWnd,HGLOBAL hRect);
-      void OnVScrollClipboard(::window_sp pClipAppWnd,UINT nSBCode,UINT nPos);
+//#ifdef WINDOWS
+//
+//
+//      // Clipboard message handler member functions
+//      void OnAskCbFormatName(UINT nMaxCount,LPTSTR lpszString);
+//      void OnChangeCbChain(oswindow oswindow_Remove,oswindow oswindow_After);
+//      void OnDestroyClipboard();
+//      void OnDrawClipboard();
+//      void OnHScrollClipboard(::window_sp pClipAppWnd,UINT nSBCode,UINT nPos);
+//      void OnPaintClipboard(::window_sp pClipAppWnd,HGLOBAL hPaintStruct);
+//      void OnRenderAllFormats();
+//      void OnRenderFormat(UINT nFormat);
+//      void OnSizeClipboard(::window_sp pClipAppWnd,HGLOBAL hRect);
+//      void OnVScrollClipboard(::window_sp pClipAppWnd,UINT nSBCode,UINT nPos);
+//
+//
+//#endif
+//
 
+//#ifdef WINDOWSEX
+//
+//
+//      // control message handler member functions
+//      int32_t  OnCompareItem(int32_t nIDCtl,LPCOMPAREITEMSTRUCT    lpCompareItemStruct);
+//      void OnDeleteItem(int32_t nIDCtl,LPDELETEITEMSTRUCT     lpDeleteItemStruct);
+//      void OnDrawItem(int32_t nIDCtl,LPDRAWITEMSTRUCT       lpDrawItemStruct);
+//      void OnMeasureItem(int32_t nIDCtl,LPMEASUREITEMSTRUCT    lpMeasureItemStruct);
+//
+//
+//#endif
+//
 
-#endif
-
-
-#ifdef WINDOWSEX
-
-
-      // control message handler member functions
-      int32_t  OnCompareItem(int32_t nIDCtl,LPCOMPAREITEMSTRUCT    lpCompareItemStruct);
-      void OnDeleteItem(int32_t nIDCtl,LPDELETEITEMSTRUCT     lpDeleteItemStruct);
-      void OnDrawItem(int32_t nIDCtl,LPDRAWITEMSTRUCT       lpDrawItemStruct);
-      void OnMeasureItem(int32_t nIDCtl,LPMEASUREITEMSTRUCT    lpMeasureItemStruct);
-
-
-#endif
-
-
-      UINT OnGetDlgCode();
-
-
-      // MDI message handler member functions
-      void OnMDIActivate(bool bActivate,::window_sp pActivateWnd,::window_sp pDeactivateWnd);
-
-      // menu loop notification messages
-      void OnEnterMenuLoop(bool bIsTrackPopupMenu);
-      void OnExitMenuLoop(bool bIsTrackPopupMenu);
-
-      // Win4 messages
-#ifdef WINDOWSEX
-      void OnStyleChanged(int32_t nStyleType,LPSTYLESTRUCT lpStyleStruct);
-      void OnStyleChanging(int32_t nStyleType,LPSTYLESTRUCT lpStyleStruct);
-#endif
-      void OnSizing(UINT nSide,LPRECT lpRect);
-      void OnMoving(UINT nSide,LPRECT lpRect);
-      void OnCaptureChanged(::window_sp pwindow);
-      bool OnDeviceChange(UINT nEventType,uint_ptr dwData);
+//      UINT OnGetDlgCode();
+//
+//
+//      // MDI message handler member functions
+//      void OnMDIActivate(bool bActivate,::window_sp pActivateWnd,::window_sp pDeactivateWnd);
+//
+//      // menu loop notification messages
+//      void OnEnterMenuLoop(bool bIsTrackPopupMenu);
+//      void OnExitMenuLoop(bool bIsTrackPopupMenu);
+//
+//      // Win4 messages
+//#ifdef WINDOWSEX
+//      void OnStyleChanged(int32_t nStyleType,LPSTYLESTRUCT lpStyleStruct);
+//      void OnStyleChanging(int32_t nStyleType,LPSTYLESTRUCT lpStyleStruct);
+//#endif
+//      void OnSizing(UINT nSide,LPRECT lpRect);
+//      void OnMoving(UINT nSide,LPRECT lpRect);
+//      void OnCaptureChanged(::window_sp pwindow);
+//      bool OnDeviceChange(UINT nEventType,uint_ptr dwData);
 
 
       // for dialog data exchange and validation
@@ -672,10 +672,10 @@ namespace user
 
 
 
-      // standard message implementation
-      LRESULT OnNTCtlColor(WPARAM wParam,LPARAM lParam);
-      LRESULT OnDisplayChange(WPARAM,LPARAM);
-      LRESULT OnDragList(WPARAM,LPARAM);
+      //// standard message implementation
+      //LRESULT OnNTCtlColor(WPARAM wParam,LPARAM lParam);
+      //LRESULT OnDisplayChange(WPARAM,LPARAM);
+      //LRESULT OnDragList(WPARAM,LPARAM);
 
       virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
 
