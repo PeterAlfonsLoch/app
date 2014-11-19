@@ -2114,7 +2114,7 @@ namespace user
    void tab::ensure_tab_by_id(id id)
    {
       UNREFERENCED_PARAMETER(id);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
 
    void tab::on_change_pane_count()

@@ -374,7 +374,7 @@ FIBITMAP * imaging::LoadImageFile(::file::buffer_sp  pfile)
 const char * lpszType,
 const char * lpszId)
 {
-throw not_implemented(get_app());
+::exception::throw_not_implemented(get_app());
 /*
 ::file::memory_buffer file(get_app());
 
@@ -744,7 +744,7 @@ bool imaging::GrayVRCP(
    UNREFERENCED_PARAMETER(cx);
    UNREFERENCED_PARAMETER(cy);
    UNREFERENCED_PARAMETER(crAlpha);
-   throw not_implemented(get_app());
+   ::exception::throw_not_implemented(get_app());
    ASSERT(FALSE);
 
 
@@ -1295,7 +1295,7 @@ bool imaging::GetDeviceContext24BitsCC(
       ::draw2d::bitmap * pbmp = pbmpOld;
 #endif
 
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
          /*         if(!pbmp->GetObject(sizeof(bm), &bm))
          {
          pdc->SelectObject(pbmpOld);

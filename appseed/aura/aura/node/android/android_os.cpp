@@ -43,7 +43,7 @@ namespace android
       AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) NULL, 0);
       return retval;*/
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
@@ -104,14 +104,14 @@ namespace android
   /*    tkp.Privileges[0].Attributes = 0;
       AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) NULL, 0);
       return true;*/
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
 
    void os::terminate_processes_by_title(const char * pszName)
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return;
 
 /*      DWORD dwPid;
@@ -196,7 +196,7 @@ namespace android
 
       CloseHandle( hProcess );
       return strName;*/
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return "";
 
    }
@@ -204,7 +204,7 @@ namespace android
    void os::get_all_processes(uint_array & dwa )
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return;
 
 /*
@@ -226,7 +226,7 @@ namespace android
 
    string os::get_module_path(HMODULE hmodule)
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return "";
       /*
       string strPath;
@@ -245,7 +245,7 @@ namespace android
 
    bool os::connection_settings_get_auto_detect()
    {
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -268,7 +268,7 @@ namespace android
    string os::connection_settings_get_auto_config_url()
    {
 
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       return "";
 /*
       registry::Key key;
@@ -286,7 +286,7 @@ namespace android
    bool os::local_machine_set_run(const char * pszKey, const char * pszCommand)
    {
 
-//      throw not_implemented(get_app());
+//      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -305,7 +305,7 @@ namespace android
    {
 
 
-        throw not_implemented(get_app());
+        ::exception::throw_not_implemented(get_app());
       return false;
 /*    registry::Key keyKar(HKEY_LOcaL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
 
@@ -320,7 +320,7 @@ namespace android
    bool os::current_user_set_run(const char * pszKey, const char * pszCommand)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -337,7 +337,7 @@ namespace android
    bool os::current_user_set_run_once(const char * pszKey, const char * pszCommand)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -354,7 +354,7 @@ namespace android
 
    bool os::defer_register_ca2_plugin_for_mozilla()
    {
-    //  throw not_implemented(get_app());
+    //  ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -393,7 +393,7 @@ namespace android
 
    bool os::file_extension_get_open_with_list_keys(stringa & straKey, const char * pszExtension)
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -432,7 +432,7 @@ namespace android
    bool os::file_association_set_default_icon(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszIconPath)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -449,7 +449,7 @@ namespace android
 
    bool os::file_association_set_shell_open_command(const char * pszExtension, const char * pszExtensionNamingClass,  const char * pszCommand, const char * pszParam)
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -481,7 +481,7 @@ namespace android
 
    bool os::file_association_get_shell_open_command(const char * pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -525,7 +525,7 @@ namespace android
    bool os::open_in_ie(const char * lpcsz)
    {
 
-        throw not_implemented(get_app());
+        ::exception::throw_not_implemented(get_app());
       return false;
 
 /*    registry reg;
@@ -574,7 +574,7 @@ namespace android
    bool os::create_service(sp(::aura::application) papp)
    {
 
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       return false;
 
 
@@ -583,21 +583,21 @@ namespace android
 
    bool os::remove_service(sp(::aura::application) papp)
    {
-//      throw not_implemented(get_app());
+//      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
 
    bool os::start_service(sp(::aura::application) papp)
    {
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       return false;
 
    }
 
    bool os::stop_service(sp(::aura::application) papp)
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
@@ -606,7 +606,7 @@ namespace android
    void os::raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return;
 /*
       RaiseException( dwExceptionCode, dwExceptionFlags, 0, NULL );
@@ -616,7 +616,7 @@ namespace android
    bool os::is_remote_session()
    {
 
-//      throw not_implemented(get_app());
+//      ::exception::throw_not_implemented(get_app());
       return false;
 /*
       return GetSystemMetrics(SM_REMOTESESSION) != FALSE;
@@ -627,7 +627,7 @@ namespace android
    void os::post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return;
 
 

@@ -221,7 +221,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnPaint()
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
        /*CPaintDC spgraphics(this);
       ::draw2d::graphics * pdc = &spgraphics;
       pdc->SelectObject(m_font);
@@ -547,7 +547,7 @@ namespace user
 
       if(ptool->m_uiBaseToolTipText != 0xffffffff)
       {
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
          //  str.load_string(ptool->m_uiBaseToolTipText);
          return true;
       }

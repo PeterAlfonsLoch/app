@@ -522,7 +522,7 @@ namespace file
 
    void simple_binary_buffer::SetStatus(const char * lpszFileName, const ::file::file_status& status)
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
 
    bool simple_binary_buffer::IsOpened()

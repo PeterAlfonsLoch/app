@@ -577,7 +577,7 @@ namespace core
             strApp = "bergedge";
             strType = "application";
             //            create_bergedge(pcreatecontext);
-            //          throw not_implemented(get_app());
+            //          ::exception::throw_not_implemented(get_app());
             /*if(get_document() != NULL && get_document()->get_typed_view < ::platform::user::impact >() != NULL)
             {
             sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::platform::user::impact >()->GetParentFrame());

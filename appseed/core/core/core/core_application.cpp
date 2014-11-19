@@ -1931,12 +1931,12 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
       UNREFERENCED_PARAMETER(hDevNames);
       UNREFERENCED_PARAMETER(hDevMode);
       UNREFERENCED_PARAMETER(bFreeOld);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
 
    ::draw2d::graphics * application::CreatePrinterDC()
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -2413,7 +2413,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    {
       //UNREFERENCED_PARAMETER(nIDRegistryKey);
       //ASSERT(m_pszRegistryKey == NULL);
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       ///*char szRegistryKey[256];
       //VERIFY(::core::LoadString(nIDRegistryKey, szRegistryKey));
       //SetRegistryKey(szRegistryKey);*/
@@ -2867,7 +2867,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
    bool application::_001OnDDECommand(const char * lpcsz)
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       //return m_pimpl->_001OnDDECommand(lpcsz);
    }
 

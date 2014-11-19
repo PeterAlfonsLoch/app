@@ -825,7 +825,7 @@ namespace axis
    string system::dir_appmatter_locator(sp(::aura::application) papp)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
    }
 

@@ -1465,7 +1465,7 @@ LRESULT simple_frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
 
 #else
 
-   throw not_implemented(get_app());
+   ::exception::throw_not_implemented(get_app());
 
 #endif
 
@@ -1523,7 +1523,7 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
 
 #else
 
-   throw not_implemented(get_app());
+   ::exception::throw_not_implemented(get_app());
 
 #endif
 
@@ -1540,7 +1540,7 @@ LRESULT simple_frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
 
 #else
 
-   throw not_implemented(get_app());
+   ::exception::throw_not_implemented(get_app());
 
 #endif
 

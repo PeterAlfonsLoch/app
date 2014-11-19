@@ -33,7 +33,7 @@ namespace user
       UNREFERENCED_PARAMETER(lpszBitmapResourceFocus);
       UNREFERENCED_PARAMETER(lpszBitmapResourceDisabled);
       UNREFERENCED_PARAMETER(lpszBitmapResourceHover);
-       throw not_implemented(get_app());
+       ::exception::throw_not_implemented(get_app());
        /*
        if (!m_bitmap.LoadBitmap(lpszBitmapResource))
        {
@@ -109,7 +109,7 @@ namespace user
        else if ((state & ODS_DISABLED) && m_bitmapDisabled.get_os_data() != NULL)
            pBitmap = &m_bitmapDisabled;   // last image for disabled
 
-       throw not_implemented(get_app());
+       ::exception::throw_not_implemented(get_app());
        // draw the whole button
        /*::draw2d::graphics * pgraphics = ::draw2d::graphics_sp::from_handle_dup(lpDIS->hDC);
        ::draw2d::graphics_sp memDC;

@@ -354,7 +354,7 @@ bool FileSystemSizeWnd::CreateClient()
 
 //#else
 
-  // throw not_implemented(get_app());
+  // ::exception::throw_not_implemented(get_app());
 
 //#endif
 
@@ -373,7 +373,7 @@ bool FileSystemSizeWnd::CreateServer()
 
 #else
 
-   throw not_implemented(get_app());
+   ::exception::throw_not_implemented(get_app());
 
 #endif
 
@@ -422,7 +422,7 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
 
 #else
 
-   throw not_implemented(get_app());
+   ::exception::throw_not_implemented(get_app());
 
 #endif
 
@@ -466,7 +466,7 @@ void FileSystemSizeWnd::_001OnCopyData(signal_details * pobj)
 
 #else
 
-   throw not_implemented(get_app());
+   ::exception::throw_not_implemented(get_app());
 
 #endif
 
@@ -506,7 +506,7 @@ void FileSystemSizeWnd::_001OnTimer(signal_details * pobj)
 
 #else
 
-   throw not_implemented(get_app());
+   ::exception::throw_not_implemented(get_app());
 
 #endif
 
@@ -548,7 +548,7 @@ void FileSystemSizeWnd::ClientStartServer()
 
 #else
 
-   throw not_implemented(get_app());
+   ::exception::throw_not_implemented(get_app());
 
 #endif
 

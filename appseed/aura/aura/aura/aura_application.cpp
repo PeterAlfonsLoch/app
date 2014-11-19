@@ -1182,7 +1182,7 @@ namespace aura
    bool application::system_add_app_install(const char * pszId)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       return true;
 
@@ -2848,7 +2848,7 @@ namespace aura
    void application::dir_matter_ls_file(const string & str,stringa & stra)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
    }
 
@@ -2995,7 +2995,7 @@ namespace aura
    void application::dir_ls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
    }
 
@@ -3003,7 +3003,7 @@ namespace aura
    void application::dir_rls(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
    }
 

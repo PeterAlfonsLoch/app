@@ -174,7 +174,7 @@ namespace filemanager
          sp(::create_context) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = this;
-         //throw not_implemented(get_app());
+         //::exception::throw_not_implemented(get_app());
          sp(operation_document) pdoc = (Platform.filemanager().m_ptemplateOperation->open_document_file(createcontext));
          if (pdoc == NULL)
             return;

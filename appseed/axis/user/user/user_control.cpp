@@ -264,7 +264,7 @@ namespace user
 
 #else
 
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
 
 #endif
 

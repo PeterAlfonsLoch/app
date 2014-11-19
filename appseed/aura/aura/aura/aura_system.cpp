@@ -1264,7 +1264,7 @@ namespace aura
    string system::dir_appmatter_locator(sp(::aura::application) papp)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
    }
 
@@ -1272,7 +1272,7 @@ namespace aura
    string system::crypto_md5_text(const string & str)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
    }
 

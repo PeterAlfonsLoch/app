@@ -48,13 +48,13 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nBitcount);
       UNREFERENCED_PARAMETER(lpBits);
       UNREFERENCED_PARAMETER(stride);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
 
    bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pdc,LPBITMAP lpBitmap)
    {
       UNREFERENCED_PARAMETER(lpBitmap);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
 
    bool bitmap::CreateDIBSection(::draw2d::graphics * pdc,const BITMAPINFO * lpbmi,UINT usage,void **ppvBits,int * stride,HANDLE hSection,uint32_t offset)
@@ -66,7 +66,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(stride);
       UNREFERENCED_PARAMETER(hSection);
       UNREFERENCED_PARAMETER(offset);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
    bool bitmap::CreateDIBitmap(::draw2d::graphics * pdc,const BITMAPINFOHEADER *pbmih,uint32_t flInit,const void *pjBits,const BITMAPINFO *pbmi,UINT iUsage)
    {
@@ -76,20 +76,20 @@ namespace draw2d
       UNREFERENCED_PARAMETER(pjBits);
       UNREFERENCED_PARAMETER(pbmi);
       UNREFERENCED_PARAMETER(iUsage);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
 
    uint32_t bitmap::SetBitmapBits(uint32_t dwCount,const void * lpBits)
    {
       UNREFERENCED_PARAMETER(dwCount);
       UNREFERENCED_PARAMETER(lpBits);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
    uint32_t bitmap::GetBitmapBits(uint32_t dwCount,LPVOID lpBits) const
    {
       UNREFERENCED_PARAMETER(dwCount);
       UNREFERENCED_PARAMETER(lpBits);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
 
    bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics,int32_t nWidth,int32_t nHeight)
@@ -97,14 +97,14 @@ namespace draw2d
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
    bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics,int32_t nWidth,int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
 
    void ::draw2d::bitmap::dump(dump_context & dumpcontext) const
@@ -118,7 +118,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
    }
 
 
@@ -147,7 +147,7 @@ namespace draw2d
    {
 
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       class size sizeRet(0,0);
       return sizeRet;
 

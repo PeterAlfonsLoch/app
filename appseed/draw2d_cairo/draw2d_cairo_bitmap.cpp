@@ -34,7 +34,7 @@ synch_lock ml(&cairo_mutex());
       if(nPlanes != 1 || nBitcount != 32)
       {
 
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
 
       }
 
@@ -100,7 +100,7 @@ synch_lock ml(&cairo_mutex());
       if(lpbmi->bmiHeader.biPlanes != 1 || lpbmi->bmiHeader.biBitCount != 32)
       {
 
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
 
       }
 
@@ -203,7 +203,7 @@ synch_lock ml(&cairo_mutex());
    {
 
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       //SIZE size;
       //VERIFY(::SetBitmapDimensionEx((HBITMAP)get_handle(), nWidth, nHeight, &size));

@@ -114,3 +114,35 @@ void __cdecl __clearerr_s(FILE *stream)
    C_RUNTIME_ERROR_CHECK(errno);
 #endif
 }
+
+
+
+namespace exception
+{
+
+   CLASS_DECL_AURA void throw_interface_only(sp(::aura::application) papp)
+   {
+      throw interface_only_exception(papp);
+   }
+
+   CLASS_DECL_AURA void throw_not_implemented(sp(::aura::application) papp)
+   {
+      throw not_implemented(papp);
+   }
+
+} // namespace exception
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

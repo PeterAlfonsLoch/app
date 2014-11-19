@@ -574,7 +574,7 @@ namespace axis
 
 #else
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 #endif
 
@@ -614,7 +614,7 @@ namespace axis
 
 #else
 
-      //      throw not_implemented(get_app());
+      //      ::exception::throw_not_implemented(get_app());
 
       oswindow oswindowCapture = ::GetCapture();
 
@@ -1162,7 +1162,7 @@ namespace axis
    bool application::system_add_app_install(const char * pszId)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       return true;
 

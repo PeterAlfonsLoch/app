@@ -3107,7 +3107,7 @@ namespace draw2d
 
    void graphics::set_text_rendering(e_text_rendering etextrendering)
    {
-//      throw not_implemented(get_app());
+//      ::exception::throw_not_implemented(get_app());
    }
 
    bool graphics::blur(bool bExpand, double dRadius, const RECT & rect)
@@ -3995,7 +3995,7 @@ namespace draw2d
    bool graphics::Attach(HDC hdc)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       return false;
 
@@ -4005,7 +4005,7 @@ namespace draw2d
    HDC graphics::Detach()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       return NULL;
 
@@ -4015,7 +4015,7 @@ namespace draw2d
    bool graphics::AttachPrinter(HDC hdc)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       return false;
 
@@ -4025,7 +4025,7 @@ namespace draw2d
    HDC graphics::DetachPrinter()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       return NULL;
 
@@ -4160,7 +4160,7 @@ namespace draw2d
       else
       {
          
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
          
       }
       

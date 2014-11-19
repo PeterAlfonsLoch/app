@@ -1362,7 +1362,7 @@ restart:
       {
          string strOld = System.file().name_(psz);
       }
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       //if(!System.file_as_string().move(psz, pszNew))
       {
          property_set propertyset;

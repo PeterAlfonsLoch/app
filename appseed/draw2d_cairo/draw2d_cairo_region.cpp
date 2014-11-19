@@ -43,7 +43,7 @@ namespace draw2d_cairo
       case type_combine:
          return false;
       default:
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
       }
 
       return true;
@@ -125,7 +125,7 @@ synch_lock ml(&cairo_mutex());
          mask_combine(m_pdc);
          break;
       default:
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
       }
 
       cairo_mask_surface(pdc, m_psurface, m_rectBoundingBoxInternal.left, m_rectBoundingBoxInternal.top);
@@ -293,7 +293,7 @@ synch_lock ml(&cairo_mutex());
          clip_polygon(pdc);
          break;
       default:
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
       }
 
       return true;

@@ -208,7 +208,7 @@ namespace message
 
    ::user::interaction * mouse_activate::GetDesktopWindow()
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       //      return interaction_impl::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
       return NULL;
    }
@@ -225,7 +225,7 @@ namespace message
 
    ::window_sp context_menu::GetWindow()
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return NULL;
       //            return interaction_impl::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
    }

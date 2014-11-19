@@ -205,7 +205,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    {
   //    ASSERT(get_handle1() != NULL);
 //      return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pwindow)->get_handle());
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
          return 0;
    }
 
@@ -213,7 +213,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    {
 /*      ASSERT(get_handle2() != NULL);
       return ::GetDevicecaps(get_handle2(), nIndex);*/
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
          return 0;
    }
 
@@ -223,7 +223,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
       POINT point;
       VERIFY(::GetBrushOrgEx(get_handle1(), &point));
       return point;*/
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
          return point(0, 0);
 
    }
@@ -234,7 +234,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
       POINT point;
       VERIFY(::SetBrushOrgEx(get_handle1(), x, y, &point));
       return point;*/
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
          return point(0, 0);
 
    }
@@ -244,7 +244,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 /*      ASSERT(get_handle1() != NULL);
       VERIFY(::SetBrushOrgEx(get_handle1(), point.x, point.y, &point));
       return point;*/
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
          return ::point(0, 0);
 
    }
@@ -253,7 +253,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
    {
 /*      ASSERT(get_handle2() != NULL);
       return ::EnumObjects(get_handle2(), nObjectType, (GOBJENUMPROC)lpfn, lpData);*/
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
          return 0;
 
    }
@@ -338,7 +338,7 @@ synch_lock ml(m_spmutex);
 
    COLORREF graphics::GetNearestColor(COLORREF crColor) const
    {
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       return crColor;
 //      return ::GetNearestColor(get_handle2(), crColor);
    }
@@ -469,7 +469,7 @@ synch_lock ml(m_spmutex);
    bool graphics::FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       //return ::FillRgn(get_handle1(), (HRGN)pRgn->get_os_data(), (HBRUSH)pBrush->get_os_data()) != FALSE;
       return false;
 
@@ -479,7 +479,7 @@ synch_lock ml(m_spmutex);
    {
 
 //      return ::FrameRgn(get_handle1(), (HRGN)pRgn->get_os_data(), (HBRUSH)pBrush->get_os_data(), nWidth, nHeight) != FALSE;
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
@@ -490,7 +490,7 @@ synch_lock ml(m_spmutex);
   //    ASSERT(get_handle1() != NULL);
 
 //      return ::InvertRgn(get_handle1(), (HRGN)pRgn->get_os_data()) != FALSE;
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 
@@ -502,7 +502,7 @@ synch_lock ml(m_spmutex);
 //      ASSERT(get_handle1() != NULL);
 
   //    return ::PaintRgn(get_handle1(), (HRGN)pRgn->get_os_data())  != FALSE;
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
@@ -513,7 +513,7 @@ synch_lock ml(m_spmutex);
   //    ASSERT(get_handle1() != NULL);
 
 //      return ::PtVisible(get_handle1(), x, y) != FALSE;
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
@@ -525,7 +525,7 @@ synch_lock ml(m_spmutex);
 
 //      return PtVisible(point.x, point.y);
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
@@ -537,7 +537,7 @@ synch_lock ml(m_spmutex);
 
 //      return ::RectVisible(get_handle1(), lpRect) != FALSE;
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
@@ -548,7 +548,7 @@ synch_lock ml(m_spmutex);
 //      POINT point;
 //      VERIFY(::GetCurrentPositionEx(get_handle2(), &point));
 //      return point;
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::point(0, 0);
 
    }
@@ -627,7 +627,7 @@ synch_lock ml(m_spmutex);
    void graphics::FrameRect(const RECT & lpRect, ::draw2d::brush* pBrush)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return;
 
 //       ASSERT(get_handle1() != NULL); ::FrameRect(get_handle1(), lpRect, (HBRUSH)pBrush->get_os_data());
@@ -659,7 +659,7 @@ synch_lock ml(m_spmutex);
    void graphics::InvertRect(const RECT & lpRect)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return;
 
 //      ASSERT(get_handle1() != NULL); ::InvertRect(get_handle1(), lpRect);
@@ -669,7 +669,7 @@ synch_lock ml(m_spmutex);
    bool graphics::DrawIcon(int32_t x, int32_t y, ::visual::icon * picon)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 
@@ -678,7 +678,7 @@ synch_lock ml(m_spmutex);
    bool graphics::DrawIcon(POINT point, ::visual::icon * picon)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
@@ -798,7 +798,7 @@ synch_lock ml(m_spmutex);
    bool graphics::DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags, HBRUSH hBrush)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 //      ASSERT(get_handle1() != NULL);
 //      return ::DrawState(get_handle1(), hBrush, NULL, (LPARAM)hBitmap, 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_BITMAP) != FALSE;
@@ -808,7 +808,7 @@ synch_lock ml(m_spmutex);
    bool graphics::DrawState(point pt, size size, ::draw2d::bitmap* pBitmap, UINT nFlags, ::draw2d::brush* pBrush)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 //      ASSERT(get_handle1() != NULL);
 //      return ::DrawState(get_handle1(), (HBRUSH)pBrush->get_os_data(), NULL, (LPARAM)pBitmap->get_os_data(), 0, pt.x, pt.y, size.cx, size.cy, nFlags|DST_BITMAP) != FALSE;
@@ -819,7 +819,7 @@ synch_lock ml(m_spmutex);
    bool graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, bool bPrefixText, int32_t nTextLen, HBRUSH hBrush)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
@@ -827,7 +827,7 @@ synch_lock ml(m_spmutex);
    bool graphics::DrawState(point pt, size size, const char * lpszText, UINT nFlags, bool bPrefixText, int32_t nTextLen, ::draw2d::brush* pBrush)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
@@ -835,7 +835,7 @@ synch_lock ml(m_spmutex);
    bool graphics::DrawEdge(LPRECT lpRect, UINT nEdge, UINT nFlags)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -846,7 +846,7 @@ synch_lock ml(m_spmutex);
    bool graphics::DrawFrameControl(LPRECT lpRect, UINT nType, UINT nState)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 //      ASSERT(get_handle1() != NULL);
 //      return ::DrawFrameControl(get_handle1(), lpRect, nType, nState) != FALSE;
@@ -855,7 +855,7 @@ synch_lock ml(m_spmutex);
 
    bool graphics::Chord(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4)
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -865,7 +865,7 @@ synch_lock ml(m_spmutex);
    bool graphics::Chord(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
       //ASSERT(get_handle1() != NULL);
@@ -876,7 +876,7 @@ synch_lock ml(m_spmutex);
    void graphics::DrawFocusRect(const RECT & lpRect)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       //ASSERT(get_handle1() != NULL); ::DrawFocusRect(get_handle1(), lpRect);
 
@@ -973,7 +973,7 @@ synch_lock ml(m_spmutex);
    bool graphics::Pie(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*      ASSERT(get_handle1() != NULL);
@@ -984,7 +984,7 @@ synch_lock ml(m_spmutex);
    bool graphics::Pie(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 
@@ -1110,7 +1110,7 @@ synch_lock ml(m_spmutex);
    bool graphics::PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
    //   ASSERT(get_handle1() != NULL); return ::PolyPolygon(get_handle1(), lpPoints, lpPolyCounts, nCount) != FALSE;
 
@@ -1143,7 +1143,7 @@ synch_lock ml(m_spmutex);
    bool graphics::PolyPolygon(const POINTD* lpPoints,const INT* lpPolyCounts,int32_t nCount)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
       //   ASSERT(get_handle1() != NULL); return ::PolyPolygon(get_handle1(), lpPoints, lpPolyCounts, nCount) != FALSE;
 
@@ -1213,7 +1213,7 @@ synch_lock ml(m_spmutex);
    bool graphics::RoundRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1226,7 +1226,7 @@ synch_lock ml(m_spmutex);
 
       //ASSERT(get_handle1() != NULL);
       //return ::RoundRect(get_handle1(), lpRect.left, lpRect.top, lpRect.right, lpRect.bottom, point.x, point.y) != FALSE;
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 
@@ -1238,7 +1238,7 @@ synch_lock ml(m_spmutex);
 //      ASSERT(get_handle1() != NULL);
 //      return ::PatBlt(get_handle1(), x, y, nWidth, nHeight, dwRop) != FALSE;
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 
@@ -1417,7 +1417,7 @@ synch_lock ml(m_spmutex);
    COLORREF graphics::GetPixel(int32_t x, int32_t y) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1428,7 +1428,7 @@ synch_lock ml(m_spmutex);
    COLORREF graphics::GetPixel(POINT point) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1439,7 +1439,7 @@ synch_lock ml(m_spmutex);
    COLORREF graphics::SetPixel(int32_t x, int32_t y, COLORREF crColor)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1450,7 +1450,7 @@ synch_lock ml(m_spmutex);
    COLORREF graphics::SetPixel(POINT point, COLORREF crColor)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1461,7 +1461,7 @@ synch_lock ml(m_spmutex);
    bool graphics::FloodFill(int32_t x, int32_t y, COLORREF crColor)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1472,7 +1472,7 @@ synch_lock ml(m_spmutex);
    bool graphics::ExtFloodFill(int32_t x, int32_t y, COLORREF crColor, UINT nFillType)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1505,7 +1505,7 @@ synch_lock ml(m_spmutex);
    bool graphics::ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT & lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1516,7 +1516,7 @@ synch_lock ml(m_spmutex);
    bool graphics::ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT & lpRect, const string & str, LPINT lpDxWidths)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1527,7 +1527,7 @@ synch_lock ml(m_spmutex);
    size graphics::TabbedTextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount, int32_t nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
 //      ASSERT(get_handle1() != NULL);
@@ -1538,7 +1538,7 @@ synch_lock ml(m_spmutex);
    size graphics::TabbedTextOut(int32_t x, int32_t y, const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
 //      ASSERT(get_handle1() != NULL);
@@ -1550,7 +1550,7 @@ synch_lock ml(m_spmutex);
    size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, int32_t nTabPositions, LPINT lpnTabStopPositions) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
 //      ASSERT(get_handle2() != NULL);
@@ -1561,7 +1561,7 @@ synch_lock ml(m_spmutex);
    size graphics::GetTabbedTextExtent(const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
 //      ASSERT(get_handle2() != NULL);
@@ -1572,7 +1572,7 @@ synch_lock ml(m_spmutex);
    size graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, int32_t nTabPositions, LPINT lpnTabStopPositions) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
 //      ASSERT(get_handle1() != NULL);
@@ -1583,7 +1583,7 @@ synch_lock ml(m_spmutex);
    size graphics::GetOutputTabbedTextExtent(const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
 //      ASSERT(get_handle1() != NULL);
@@ -1594,7 +1594,7 @@ synch_lock ml(m_spmutex);
    bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int32_t), LPARAM lpData, int32_t nCount,int32_t x, int32_t y, int32_t nWidth, int32_t nHeight)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1605,7 +1605,7 @@ synch_lock ml(m_spmutex);
    UINT graphics::GetTextAlign() const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle2() != NULL);
@@ -1616,7 +1616,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::GetTextFace(int32_t nCount, LPTSTR lpszFacename) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle2() != NULL);
@@ -1627,7 +1627,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::GetTextFace(string & rString) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle2() != NULL);
@@ -1675,7 +1675,7 @@ synch_lock ml(m_spmutex);
    bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1687,7 +1687,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::GetTextCharacterExtra() const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle2() != NULL);
@@ -1698,7 +1698,7 @@ synch_lock ml(m_spmutex);
    bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle2() != NULL);
@@ -1709,7 +1709,7 @@ synch_lock ml(m_spmutex);
    bool graphics::GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1720,7 +1720,7 @@ synch_lock ml(m_spmutex);
    uint32_t graphics::GetFontLanguageInfo() const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1733,7 +1733,7 @@ synch_lock ml(m_spmutex);
    uint32_t graphics::GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1744,7 +1744,7 @@ synch_lock ml(m_spmutex);
    uint32_t graphics::GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1757,7 +1757,7 @@ synch_lock ml(m_spmutex);
    size graphics::GetAspectRatioFilter() const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return size(0, 0);
 
 //      ASSERT(get_handle2() != NULL);
@@ -1771,7 +1771,7 @@ synch_lock ml(m_spmutex);
    bool graphics::ScrollDC(int32_t dx, int32_t dy, const RECT & lpRectScroll, const RECT & lpRectClip, ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1783,7 +1783,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::Escape(int32_t nEscape, int32_t nCount, const char * lpszInData, LPVOID lpOutData)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1795,7 +1795,7 @@ synch_lock ml(m_spmutex);
    UINT graphics::SetBoundsRect(const RECT & lpRectBounds, UINT flags)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1806,7 +1806,7 @@ synch_lock ml(m_spmutex);
    UINT graphics::GetBoundsRect(LPRECT lpRectBounds, UINT flags)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle2() != NULL);
@@ -1819,7 +1819,7 @@ synch_lock ml(m_spmutex);
    bool graphics::ResetDC(const DEVMODE* lpDevMode)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //    ASSERT(get_handle2() != NULL);
@@ -1830,7 +1830,7 @@ synch_lock ml(m_spmutex);
    UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRICW lpotm) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle2() != NULL);
@@ -1841,7 +1841,7 @@ synch_lock ml(m_spmutex);
    bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABC lpabc) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle2() != NULL);
@@ -1854,7 +1854,7 @@ synch_lock ml(m_spmutex);
    uint32_t graphics::GetFontData(uint32_t dwTable, uint32_t dwOffset, LPVOID lpData, uint32_t cbData) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle2() != NULL);
@@ -1867,7 +1867,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::GetKerningPairs(int32_t nPairs, LPKERNINGPAIR lpkrnpair) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle2() != NULL);
@@ -1878,7 +1878,7 @@ synch_lock ml(m_spmutex);
    uint32_t graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm, uint32_t cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle2() != NULL);
@@ -1894,7 +1894,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::StartDoc(LPDOCINFO lpDocInfo)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1907,7 +1907,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::StartPage()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1918,7 +1918,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::EndPage()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1929,7 +1929,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::SetAbortProc(bool (CALLBACK* lpfn)(HDC, int32_t))
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1940,7 +1940,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::AbortDoc()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1951,7 +1951,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::EndDoc()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1962,7 +1962,7 @@ synch_lock ml(m_spmutex);
    bool graphics::MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask, uint32_t dwRop)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1973,7 +1973,7 @@ synch_lock ml(m_spmutex);
    bool graphics::PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nWidth, int32_t nHeight, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1984,7 +1984,7 @@ synch_lock ml(m_spmutex);
    bool graphics::SetPixelV(int32_t x, int32_t y, COLORREF crColor)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -1995,7 +1995,7 @@ synch_lock ml(m_spmutex);
    bool graphics::SetPixelV(POINT point, COLORREF crColor)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2006,7 +2006,7 @@ synch_lock ml(m_spmutex);
    bool graphics::AngleArc(int32_t x, int32_t y, int32_t nRadius, float fStartAngle, float fSweepAngle)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2017,7 +2017,7 @@ synch_lock ml(m_spmutex);
    bool graphics::ArcTo(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2028,7 +2028,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::GetArcDirection() const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle2() != NULL);
@@ -2039,7 +2039,7 @@ synch_lock ml(m_spmutex);
    bool graphics::PolyPolyline(const POINT* lpPoints, const uint32_t* lpPolyPoints, int32_t nCount)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2052,7 +2052,7 @@ synch_lock ml(m_spmutex);
    bool graphics::GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle2() != NULL);
@@ -2101,7 +2101,7 @@ synch_lock ml(m_spmutex);
    bool graphics::PolyBezier(const POINT* lpPoints, int32_t nCount)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2112,7 +2112,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::DrawEscape(int32_t nEscape, int32_t nInputSize, const char * lpszInputData)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2123,7 +2123,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::Escape(int32_t nEscape, int32_t nInputSize, const char * lpszInputData,  int32_t nOutputSize, char * lpszOutputData)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //       ASSERT(get_handle1() != NULL);
@@ -2136,7 +2136,7 @@ synch_lock ml(m_spmutex);
    bool graphics::GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT lpABCF) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle2() != NULL);
@@ -2149,7 +2149,7 @@ synch_lock ml(m_spmutex);
    bool graphics::GetCharWidth(UINT nFirstChar, UINT nLastChar, float* lpFloatBuffer) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle2() != NULL);
@@ -2160,7 +2160,7 @@ synch_lock ml(m_spmutex);
    bool graphics::AbortPath()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -2177,7 +2177,7 @@ synch_lock ml(m_spmutex);
    bool graphics::BeginPath()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -2194,7 +2194,7 @@ synch_lock ml(m_spmutex);
    bool graphics::CloseFigure()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -2206,7 +2206,7 @@ synch_lock ml(m_spmutex);
    bool graphics::EndPath()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -2223,7 +2223,7 @@ synch_lock ml(m_spmutex);
    bool graphics::FillPath()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      return m_pgraphics->FillPath(gdiplus_brush(), m_ppath) == Gdiplus::Status::Ok;
@@ -2233,7 +2233,7 @@ synch_lock ml(m_spmutex);
    bool graphics::FlattenPath()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      return m_ppath->Flatten() == Gdiplus::Status::Ok;
@@ -2243,7 +2243,7 @@ synch_lock ml(m_spmutex);
    float graphics::GetMiterLimit() const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0.f;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2256,7 +2256,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::GetPath(LPPOINT lpPoints, LPBYTE lpTypes, int32_t nCount) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2267,7 +2267,7 @@ synch_lock ml(m_spmutex);
    bool graphics::SetMiterLimit(float fMiterLimit)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2278,7 +2278,7 @@ synch_lock ml(m_spmutex);
    bool graphics::StrokeAndFillPath()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      bool bOk1 = m_pgraphics->FillPath(gdiplus_brush(), m_ppathPaint) == Gdiplus::Status::Ok;
@@ -2292,7 +2292,7 @@ synch_lock ml(m_spmutex);
    bool graphics::StrokePath()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      return m_pgraphics->DrawPath(gdiplus_pen(), m_ppathPaint) == Gdiplus::Status::Ok;
@@ -2302,7 +2302,7 @@ synch_lock ml(m_spmutex);
    bool graphics::WidenPath()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      return m_ppath->Widen(gdiplus_pen()) == Gdiplus::Status::Ok;
@@ -2354,7 +2354,7 @@ synch_lock ml(m_spmutex);
    bool graphics::AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2405,7 +2405,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, const RECT & lpBounds)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 
@@ -2594,7 +2594,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
       ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, BLENDFUNCTION blend)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       //if(get_handle1() == NULL)
         // return false;
 
@@ -2679,7 +2679,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::TransparentBlt(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, UINT crTransparent)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2690,7 +2690,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::GradientFill(TRIVERTEX* pVertices, ULONG nVertices, void * pMesh, ULONG nMeshElements, uint32_t dwMode)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2706,7 +2706,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    COLORREF graphics::GetDCBrushColor() const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2717,7 +2717,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    COLORREF graphics::SetDCBrushColor(COLORREF crColor)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2728,7 +2728,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    COLORREF graphics::GetDCPenColor() const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //       ASSERT(get_handle1() != NULL);
@@ -2738,7 +2738,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    COLORREF graphics::SetDCPenColor(COLORREF crColor)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2753,7 +2753,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::GetCharABCWidthsI(UINT giFirst, UINT cgi, LPWORD pgi, LPABC lpabc) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2764,7 +2764,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::GetCharWidthI(UINT giFirst, UINT cgi, LPWORD pgi, LPINT lpBuffer) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ASSERT(get_handle1() != NULL);
@@ -2779,7 +2779,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::GetTextExtentExPointI(LPWORD pgiIn, int32_t cgi, int32_t nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE lpSize) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ENSURE(lpSize != NULL);
@@ -2792,7 +2792,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::GetTextExtentPointI(LPWORD pgiIn, int32_t cgi, LPSIZE lpSize) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 //      ENSURE(lpSize != NULL);
@@ -2813,7 +2813,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    void graphics::DPtoHIMETRIC(LPSIZE lpSize) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 /*
       ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
@@ -2854,7 +2854,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    void graphics::HIMETRICtoDP(LPSIZE lpSize) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 /*      ASSERT(__is_valid_address(lpSize, sizeof(SIZE)));
 
@@ -2936,7 +2936,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    void graphics::DrawDragRect(const RECT & lpRect, SIZE size, const RECT & lpRectLast, SIZE sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 /*
       ASSERT(__is_valid_address(lpRect, sizeof(RECT), FALSE));
@@ -3191,7 +3191,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    int32_t graphics::StartDoc(const char * lpszDocName)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3207,7 +3207,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    int32_t graphics::SaveDC()
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3224,7 +3224,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::RestoreDC(int32_t nSavedDC)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -3278,7 +3278,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    int32_t graphics::SelectObject(::draw2d::region* pRgn)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -3301,7 +3301,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    int32_t graphics::SetPolyFillMode(int32_t nPolyFillMode)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3318,7 +3318,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    int32_t graphics::SetROP2(int32_t nDrawMode)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3335,7 +3335,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    int32_t graphics::SetStretchBltMode(int32_t nStretchMode)
    {
 
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
 //      return 0;
 
 m_nStretchBltMode = nStretchMode;
@@ -3353,7 +3353,7 @@ return 1;
    int32_t graphics::SetGraphicsMode(int32_t iMode)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3374,7 +3374,7 @@ return 1;
    bool graphics::SetWorldTransform(const XFORM* pXform)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -3395,7 +3395,7 @@ return 1;
    bool graphics::ModifyWorldTransform(const XFORM* pXform,uint32_t iMode)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 
@@ -3417,7 +3417,7 @@ return 1;
    int32_t graphics::SetMapMode(int32_t nMapMode)
    {
 
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       return 0;
 
 
@@ -3505,7 +3505,7 @@ synch_lock ml(m_spmutex);
    size graphics::SetViewportExt(int32_t x, int32_t y)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
 /*
@@ -3521,7 +3521,7 @@ synch_lock ml(m_spmutex);
    size graphics::ScaleViewportExt(int32_t xNum, int32_t xDenom, int32_t yNum, int32_t yDenom)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
 /*
@@ -3538,7 +3538,7 @@ synch_lock ml(m_spmutex);
    point graphics::SetWindowOrg(int32_t x, int32_t y)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::point(0, 0);
 
 /*
@@ -3554,7 +3554,7 @@ synch_lock ml(m_spmutex);
    point graphics::OffsetWindowOrg(int32_t nWidth, int32_t nHeight)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::point(0, 0);
 
 /*
@@ -3571,7 +3571,7 @@ synch_lock ml(m_spmutex);
    size graphics::SetWindowExt(int32_t x, int32_t y)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
 /*
@@ -3588,7 +3588,7 @@ synch_lock ml(m_spmutex);
    size graphics::ScaleWindowExt(int32_t xNum, int32_t xDenom, int32_t yNum, int32_t yDenom)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
 /*
@@ -3605,7 +3605,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::GetClipBox(LPRECT lpRect) const
    {
 
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       return 0;
 
 /*      return ::GetClipBox(get_handle1(), lpRect);*/
@@ -3655,7 +3655,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::ExcludeClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3672,7 +3672,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::ExcludeClipRect(const RECT & lpRect)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3691,7 +3691,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::IntersectClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3708,7 +3708,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::IntersectClipRect(const RECT & lpRect)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*      int32_t nRetVal = ERROR;
@@ -3724,7 +3724,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::OffsetClipRgn(int32_t x, int32_t y)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3741,7 +3741,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::OffsetClipRgn(SIZE size)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3816,7 +3816,7 @@ synch_lock ml(m_spmutex);
    UINT graphics::SetTextAlign(UINT nFlags)
    {
 
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3833,7 +3833,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::SetTextJustification(int32_t nBreakExtra, int32_t nBreakCount)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3850,7 +3850,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::SetTextCharacterExtra(int32_t nCharExtra)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3868,7 +3868,7 @@ synch_lock ml(m_spmutex);
    uint32_t graphics::SetMapperFlags(uint32_t dwFlag)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3889,7 +3889,7 @@ synch_lock ml(m_spmutex);
    uint32_t graphics::GetLayout() const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3915,7 +3915,7 @@ synch_lock ml(m_spmutex);
    uint32_t graphics::SetLayout(uint32_t dwSetLayout)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3963,7 +3963,7 @@ synch_lock ml(m_spmutex);
    bool graphics::ArcTo(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -3984,7 +3984,7 @@ synch_lock ml(m_spmutex);
    {
 
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -4002,7 +4002,7 @@ synch_lock ml(m_spmutex);
    bool graphics::PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int32_t nCount)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -4022,7 +4022,7 @@ synch_lock ml(m_spmutex);
    bool graphics::PolylineTo(const POINT* lpPoints, int32_t nCount)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -4043,7 +4043,7 @@ synch_lock ml(m_spmutex);
    bool graphics::SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -4061,7 +4061,7 @@ synch_lock ml(m_spmutex);
    bool graphics::PolyBezierTo(const POINT* lpPoints, int32_t nCount)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -4081,7 +4081,7 @@ synch_lock ml(m_spmutex);
    bool graphics::SelectClipPath(int32_t nMode)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -4111,7 +4111,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::SelectClipRgn(::draw2d::region* pRgn, int32_t nMode)
    {
 
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       return 0;
 
 /*      ASSERT(get_handle1() != NULL);
@@ -4232,7 +4232,7 @@ synch_lock ml(m_spmutex);
    bool graphics::PlayMetaFile(HMETAFILE hMF)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
 
 /*
@@ -4254,7 +4254,7 @@ synch_lock ml(m_spmutex);
    void graphics::LPtoDP(LPSIZE lpSize) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return;
 
 /*
@@ -4271,7 +4271,7 @@ synch_lock ml(m_spmutex);
    void graphics::DPtoLP(LPSIZE lpSize) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return;
 
 /*
@@ -4355,7 +4355,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::draw_text_ex(LPTSTR lpszString,int32_t nCount,const RECT & lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0 ;
 
 /*
@@ -4372,7 +4372,7 @@ synch_lock ml(m_spmutex);
    int32_t graphics::draw_text_ex(const string & str,const RECT & lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -4416,7 +4416,7 @@ synch_lock ml(m_spmutex);
    size graphics::GetOutputTextExtent(const char * lpszString, strsize nCount) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
 /*
@@ -4433,7 +4433,7 @@ synch_lock ml(m_spmutex);
    size graphics::GetOutputTextExtent(const string & str) const
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return ::size(0, 0);
 
 /*

@@ -3153,7 +3153,7 @@ namespace user
 
             //#else
 
-            //          throw not_implemented(get_app());
+            //          ::exception::throw_not_implemented(get_app());
 
             //#endif
 
@@ -3830,7 +3830,7 @@ namespace user
          pbase->m_lparam == 0)
       {
          class rect rect;
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
          /*         System.get_monitor_rect(0, &rect);
          rect.deflate(rect.width() / 4, rect.height() / 4);
          SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);

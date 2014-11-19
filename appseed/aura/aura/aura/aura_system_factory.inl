@@ -48,7 +48,7 @@ element * creatable_factory_item < CREATABLE_TYPE > ::clone(sp(element) pobject)
 
    UNREFERENCED_PARAMETER(pobject);
 
-   throw not_implemented(get_app());
+   ::exception::throw_not_implemented(get_app());
 
    return NULL;
 

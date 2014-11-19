@@ -466,7 +466,7 @@ namespace user
 //      TEXTMETRICW tm;
       {
          // os independence
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
    /*      CClientDC spgraphics(NULL);
          HFONT hFont = (HFONT)SendMessage(WM_GETFONT);
          HGDIOBJ hOldFont = NULL;

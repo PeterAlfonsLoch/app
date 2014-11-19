@@ -188,7 +188,7 @@ namespace draw2d_direct2d
    {
 
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       //SIZE size;
       //VERIFY(::SetBitmapDimensionEx((HBITMAP)get_handle(), nWidth, nHeight, &size));

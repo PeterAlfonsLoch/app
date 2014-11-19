@@ -207,7 +207,7 @@ namespace aura
    {
 
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 
       return false;
@@ -220,7 +220,7 @@ namespace aura
    {
 
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 
       return false;
@@ -233,7 +233,7 @@ namespace aura
    {
 
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 
       return false;
@@ -246,7 +246,7 @@ namespace aura
    {
 
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 
       return false;

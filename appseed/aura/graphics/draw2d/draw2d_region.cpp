@@ -60,7 +60,7 @@ namespace draw2d
          delete m_pregion2;
          return true;
       default:
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
       };
 
    }
@@ -610,7 +610,7 @@ namespace draw2d
          m_ecombine = regionSrc.m_ecombine;
          return *this;
       default:
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
       };
       return *this;
 
@@ -677,7 +677,7 @@ namespace draw2d
             return bOk1 && bOk2;
          }
       default:
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
       };
       return false;
 
@@ -830,7 +830,7 @@ namespace draw2d
       case type_combine:
          return max_bounding_box_combine(lprect);
       default:
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
       }
 
    }
@@ -967,7 +967,7 @@ namespace draw2d
       case type_combine:
          return internal_combine_contains(point);
       default:
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
       }
 
       return false;

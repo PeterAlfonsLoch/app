@@ -1801,7 +1801,7 @@ namespace user
             }
             else
             {
-               throw not_implemented(get_app());
+               ::exception::throw_not_implemented(get_app());
             }
          }
          else
@@ -3581,7 +3581,7 @@ namespace user
 //      sp(image_list) pil = column.m_pil;
       //   if(pil != NULL)
       //      pil->DeleteImageList();
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       /*if(!pil->create(
          MAKEINTRESOURCE(column.m_uiSmallBitmap),
          column.m_iSmallImageWidth,

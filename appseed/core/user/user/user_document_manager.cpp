@@ -51,7 +51,7 @@ namespace user
 
    void document_manager::UnregisterShellFileTypes()
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
 
       string strPathName, strTemp;
@@ -140,7 +140,7 @@ namespace user
    void document_manager::RegisterShellFileTypes(bool bCompat)
    {
       UNREFERENCED_PARAMETER(bCompat);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
 

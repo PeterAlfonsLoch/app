@@ -908,7 +908,7 @@ namespace android
 
       HRGN hrgnIntersect;
 
-throw not_implemented(get_app());
+::exception::throw_not_implemented(get_app());
 
 //      hrgnIntersect = ::CreateRectRgnIndirect(rectWindow);
 //
@@ -982,7 +982,7 @@ throw not_implemented(get_app());
       user::oswindow_tree::Array & hwndtreea,
       const RECT & rect)
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 //      HRGN hrgn = ::CreateRectRgnIndirect(lpcrect);
 //      TwfGetTopWindow(
 //         hwnd,
@@ -1004,7 +1004,7 @@ throw not_implemented(get_app());
 
       ::GetWindowRect((oswindow) hwndOpaque, rectWindow);
 
-throw not_implemented(get_app());
+::exception::throw_not_implemented(get_app());
 //      HRGN hrgnOpaque = ::CreateRectRgnIndirect(rectWindow);
 //
 //      point ptOffset;
@@ -1126,7 +1126,7 @@ throw not_implemented(get_app());
 
       oswindow oswindowParam = pwnd->get_handle();
 
-throw not_implemented(get_app());
+::exception::throw_not_implemented(get_app());
 //      HDC hdcScreen = ::GetDCEx((oswindow) hwndParam, NULL,  DCX_CLIPSIBLINGS | DCX_WINDOW);
 //
 //      if(hdcScreen == NULL)

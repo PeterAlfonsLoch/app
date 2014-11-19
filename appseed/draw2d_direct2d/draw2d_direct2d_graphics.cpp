@@ -730,7 +730,7 @@ namespace draw2d_direct2d
 
 #ifdef METROWIN
 
-      //throw not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       return false;
 
 #else
@@ -2778,7 +2778,7 @@ namespace draw2d_direct2d
    void graphics::DrawDragRect(const RECT & lpRect, SIZE size, const RECT & lpRectLast, SIZE sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       /*
       ASSERT(__is_valid_address(lpRect, sizeof(RECT), FALSE));

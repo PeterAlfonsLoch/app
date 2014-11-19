@@ -159,7 +159,7 @@ void command_line::_001ParseCommandLine(const char * pszCommandLine)
 void command_line::_001ParseCommandLineUri(const char * pszCommandLine)
 {
 
-   throw not_implemented(get_app());
+   ::exception::throw_not_implemented(get_app());
 
 }
 

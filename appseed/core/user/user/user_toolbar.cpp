@@ -1052,7 +1052,7 @@ throw todo(get_app());
          str = lpszText;
          // add new string to toolbar list
          string strTemp(str, str.get_length());
-         throw not_implemented(get_app());
+         ::exception::throw_not_implemented(get_app());
          // xxx nString = (int32_t)DefWindowProc(TB_ADDSTRINGW, 0, (LPARAM)(const char *)(const wchar_t *)strTemp);
          if (nString == -1)
             return FALSE;

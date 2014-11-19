@@ -527,7 +527,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(bShow);
       // walk through all top-level windows
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       /*   oswindow oswindow = ::GetWindow(::GetDesktopWindow(), GW_CHILD);
       while (oswindow != NULL)
       {
@@ -872,7 +872,7 @@ namespace user
 
    void frame_window::OnClose()
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       /*if (m_lpfnCloseProc != NULL)
       (*m_lpfnCloseProc)(this);
 
@@ -1253,7 +1253,7 @@ namespace user
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(rMessage);
       // load appropriate string
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       /*   LPTSTR lpsz = rMessage.GetBuffer(255);
       if (::core::LoadString(nID, lpsz) != 0)
       {
@@ -1662,7 +1662,7 @@ namespace user
 
 #else
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 #endif
 
@@ -1777,7 +1777,7 @@ namespace user
 
 #else
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 #endif
 

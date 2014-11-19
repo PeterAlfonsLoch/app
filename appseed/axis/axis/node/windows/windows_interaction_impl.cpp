@@ -985,7 +985,7 @@ namespace windows
       ::draw2d::graphics * pDCSrc,POINT *pptSrc,COLORREF crKey,BLENDFUNCTION *pblend,uint32_t dwFlags)
    {
       ASSERT(::IsWindow(get_handle()));
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
       /*      return ::UpdateLayeredWindow(get_handle(), WIN_HDC(pDCDst), pptDst, psize,
       WIN_HDC(pDCSrc), pptSrc, crKey, pblend, dwFlags) != FALSE;*/
@@ -1001,7 +1001,7 @@ namespace windows
    bool interaction_impl::PrintWindow(::draw2d::graphics * pgraphics,UINT nFlags) const
    {
       ASSERT(::IsWindow(((interaction_impl *) this)->get_handle()));
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       //      return ::PrintWindow(get_handle(), (HDC)(dynamic_cast<::windows::graphics * >(pgraphics))->get_handle(), nFlags) != FALSE;
       return false;
    }
@@ -1023,7 +1023,7 @@ namespace windows
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       /*      application* pApp = &System;
       ASSERT_VALID(pApp);
@@ -1049,7 +1049,7 @@ namespace windows
 
    //void interaction_impl::HtmlHelp(uint_ptr dwData, UINT nCmd)
    //{
-   // throw not_implemented(get_app());
+   // ::exception::throw_not_implemented(get_app());
    /*
    application* pApp = &System;
    ASSERT_VALID(pApp);
@@ -1109,7 +1109,7 @@ namespace windows
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       /*
       application* pApp = &System;
       ASSERT_VALID(pApp);
@@ -1149,7 +1149,7 @@ namespace windows
    void interaction_impl::_002OnDraw(::draw2d::graphics * pdc)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::windows::graphics * >(pdc))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
 
    }
@@ -2035,7 +2035,7 @@ namespace windows
 
    void interaction_impl::OnSysColorChange()
    {
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
       /*      application* pApp = &System;
       if (pApp != NULL && pApp->m_puiMain == this)
@@ -2068,7 +2068,7 @@ namespace windows
    void interaction_impl::OnDevModeChange(__in LPTSTR lpDeviceName)
    {
       UNREFERENCED_PARAMETER(lpDeviceName);
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       /*application* pApp = &System;
       if (pApp != NULL && pApp->m_puiMain == this)
       pApp->DevModeChange(lpDeviceName);
@@ -3986,7 +3986,7 @@ namespace windows
 
       ASSERT(::IsWindow(get_handle()));
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       return false;
       //      return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::windows::graphics * >(pgraphics))->get_handle(), lprc, uFlags) != FALSE;
 
@@ -4482,7 +4482,7 @@ namespace windows
 
       ASSERT(::IsWindow(((interaction_impl *) this)->get_handle()));
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       //      const_cast < ::windows::interaction_impl * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::windows::graphics * >(pgraphics))->get_handle(), (LPARAM) dwFlags);
 
    }
@@ -4492,7 +4492,7 @@ namespace windows
 
       ASSERT(::IsWindow(((interaction_impl *) this)->get_handle()));
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       //const_cast < ::windows::interaction_impl * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::windows::graphics * >(pgraphics))->get_handle(), (LPARAM) dwFlags);
 
    }

@@ -156,7 +156,7 @@ namespace draw2d
       if(&bitmap == NULL)
          return FALSE;
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
       /*
       BITMAP bm;
       bitmap.GetObject(sizeof(bm), &bm);
@@ -2564,7 +2564,7 @@ namespace draw2d
 
 #ifdef METROWIN
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 #else
 
@@ -2589,7 +2589,7 @@ namespace draw2d
 
 #ifdef METROWIN
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 #else
 
@@ -2611,7 +2611,7 @@ namespace draw2d
 
 #ifdef METROWIN
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
 #else
 

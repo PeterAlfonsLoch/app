@@ -277,7 +277,7 @@ namespace aura
    bool session::is_licensed(const char * pszId,bool bInteractive)
    {
 
-      throw not_implemented(get_app());
+      ::exception::throw_not_implemented(get_app());
 
    }
 
