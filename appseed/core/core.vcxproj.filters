@@ -1352,9 +1352,6 @@
     <ClInclude Include="core\core\core_debug.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_enum.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_fs_interface.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -1382,12 +1379,6 @@
     <ClInclude Include="core\core\core_main.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_main_init_data.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_map_to_smart_pointer.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_match.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -1395,9 +1386,6 @@
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_os_history.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_os_implementation.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_patch.h">
@@ -2803,16 +2791,10 @@
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_up_down_target.cpp">
-      <Filter>Source Files\user\wndfrm\frame</Filter>
-    </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.cpp">
-      <Filter>Source Files\user\wndfrm\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_down_up_interface.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.cpp">
@@ -2832,6 +2814,12 @@
     </ClCompile>
     <ClCompile Include="user\userex\userex_weekday_list_view.cpp">
       <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_work_set_down_up_interface.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_up_down_target.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

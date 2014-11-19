@@ -19,8 +19,15 @@ namespace user
          public:
 
 
-            WorkSet              m_workset;
-            ::user::EAppearance      m_eappearanceBefore;
+            WorkSet                    m_workset;
+            ::user::EAppearance        m_eappearanceBefore;
+            ::user::interaction *      m_pupdowntarget;
+            int32_t                    m_iType;
+            int32_t                    m_iIndex;
+
+
+            //CWorkSetDownUpInterface();
+
 
 
             WorkSetClientInterface();
@@ -85,6 +92,12 @@ namespace user
             virtual void WfiOnAfterFullScreen();
             virtual void WfiOnAfterNotifyIcon();
 
+
+            virtual bool WndFrameworkDownUpGetUpEnable() = 0;
+            virtual bool WndFrameworkDownUpGetDownEnable() = 0;
+
+            virtual void frame_Attach();
+            virtual void frame_Detach();
 
 
          };

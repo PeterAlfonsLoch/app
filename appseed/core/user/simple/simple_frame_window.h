@@ -30,8 +30,8 @@ class CLASS_DECL_CORE simple_frame_window :
    virtual public ::user::frame_window,
    virtual public database::user::interaction,
    virtual public ::user::wndfrm::frame::WorkSetClientInterface,
-   virtual public ::user::wndfrm::frame::WorkSetListener,
-   virtual public ::user::wndfrm::frame::CWorkSetDownUpInterface
+   virtual public ::user::wndfrm::frame::WorkSetListener//,
+//   virtual public ::user::wndfrm::frame::CWorkSetDownUpInterface
 {
 public:
 

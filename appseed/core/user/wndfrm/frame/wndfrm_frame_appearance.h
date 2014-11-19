@@ -16,7 +16,7 @@ namespace user
          class control_box_button;
 
          class CLASS_DECL_CORE appearance :
-            public CWorkSetDownUpInterface,
+//            public CWorkSetDownUpInterface,
             virtual public signalizable
          {
             friend class WorkSet;
@@ -60,7 +60,7 @@ namespace user
                array < CColorBezier, CColorBezier & > m_colorbezieraOutsideBorder;
             };
 
-            CWorkSetDownUpInterface   *         m_pwndframeworkdownupinterface;
+//            CWorkSetDownUpInterface   *         m_pwndframeworkdownupinterface;
             bool                                m_fActive;
             bool                                m_bUseNc;
 
@@ -78,9 +78,9 @@ namespace user
 
 
             void UpdateAppearance(bool bFullScreen);
-            void SetDownUpInterface(CWorkSetDownUpInterface * pinterface);
-            bool WndFrameworkDownUpGetDownEnable();
-            virtual bool WndFrameworkDownUpGetUpEnable();
+//            void SetDownUpInterface(CWorkSetDownUpInterface * pinterface);
+            //bool WndFrameworkDownUpGetDownEnable();
+            //virtual bool WndFrameworkDownUpGetUpEnable();
             ::user::EAppearance GetAppearance();
             bool update();
             bool IsIconic();
@@ -96,8 +96,8 @@ namespace user
 
             EHitTest hit_test(point pt);
 
-            virtual void frame_Attach();
-            virtual void frame_Detach();
+            //virtual void frame_Attach();
+            //virtual void frame_Detach();
 
             virtual sp(control_box_button) get_box_button(e_button ebutton);
 

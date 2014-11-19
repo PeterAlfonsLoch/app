@@ -109,18 +109,12 @@ inline ::core::platform & plat(sp(::aura::application) papp)
 
 
 
-#if defined(WIN32) && !defined(VC6) && ! defined(VC71)
-#include <vadefs.h>
-#endif
+//#if defined(WIN32) && !defined(VC6) && ! defined(VC71)
+//#include <vadefs.h>
+//#endif
 
 
 class job;
-
-
-#include "core_enum.h"
-
-
-#include "core_main_init_data.h"
 
 
 

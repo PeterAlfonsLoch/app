@@ -17,7 +17,7 @@ namespace user
 
 
          class WorkSet;
-         class UpDownTarget;
+//         class UpDownTarget;
          class WorkSetListener;
          class WorkSetListenerArray;
          class appearance;

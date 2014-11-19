@@ -35,6 +35,8 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      m_eupdown = type_normal_frame;
+
       m_bMayProDevian            = true;
       m_pmutex                   = NULL;
       m_eappearance              = AppearanceNormal;
@@ -5868,6 +5870,91 @@ namespace user
       return true;
 
    }
+
+   // up down target
+
+   //UpDownTarget::UpDownTarget()
+   //{
+   //   m_eupdowntargettype = type_normal_frame;
+   //}
+
+   void interaction::UpDownTargetAttach(::user::wndfrm::frame::WorkSetClientInterface * pupdown)
+   {
+
+      bool bAttached = false;
+
+      if(m_eupdown == type_normal_frame)
+         m_eupdown = type_none;
+
+      try
+      {
+         if(OnUpDownTargetAttach(pupdown))
+            bAttached = true;
+      }
+      catch(...)
+      {
+      }
+
+      if(bAttached)
+      {
+         m_eupdown = type_down;
+      }
+
+   }
+
+
+   void interaction::UpDownTargetDetach(::user::wndfrm::frame::WorkSetClientInterface * pupdown)
+   {
+
+      bool bDetached = false;
+
+
+      if(m_eupdown == type_normal_frame)
+         m_eupdown = type_none;
+
+      try
+      {
+         if(OnUpDownTargetDetach(pupdown))
+            bDetached = true;
+      }
+      catch(...)
+      {
+      }
+
+      if(bDetached)
+      {
+         m_eupdown = type_up;
+      }
+
+   }
+   
+   bool interaction::OnUpDownTargetAttach(::user::wndfrm::frame::WorkSetClientInterface * pupdown)
+   {
+      return false;
+   }
+
+   bool interaction::OnUpDownTargetDetach(::user::wndfrm::frame::WorkSetClientInterface * pupdown)
+   {
+      return false;
+   }
+
+
+   bool interaction::up_down_target_is_up()
+   {
+      return m_eupdown == type_up;
+   }
+
+   bool interaction::up_down_target_is_down()
+   {
+      return m_eupdown == type_down;
+   }
+
+   bool interaction::is_up_down_target()
+   {
+      return m_eupdown != type_normal_frame;
+   }
+
+
 
 
 } // namespace user

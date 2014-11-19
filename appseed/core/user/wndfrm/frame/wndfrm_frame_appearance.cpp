@@ -22,7 +22,7 @@ namespace user
             element(pworkset->get_app())
          {
             m_ptool001 = new CTool001(get_app());
-            m_pwndframeworkdownupinterface = this;
+            //m_pwndframeworkdownupinterface = this;
             m_bEnabled = true;
             m_pworkset = pworkset;
             m_bUseNc = false;
@@ -164,60 +164,60 @@ namespace user
          }
 
 
-         bool appearance::WndFrameworkDownUpGetUpEnable()
-         {
+         //bool appearance::WndFrameworkDownUpGetUpEnable()
+         //{
 
-            CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
-            //dynamic_cast<CWorkSetDownUpInterface *>(get_draw_window());
-            if (pinterface != NULL
-               && pinterface != this)
-            {
-               return pinterface->WndFrameworkDownUpGetUpEnable();
-            }
-            else
-               return false;
-         }
+         //   CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
+         //   //dynamic_cast<CWorkSetDownUpInterface *>(get_draw_window());
+         //   if (pinterface != NULL
+         //      && pinterface != this)
+         //   {
+         //      return pinterface->WndFrameworkDownUpGetUpEnable();
+         //   }
+         //   else
+         //      return false;
+         //}
 
-         bool appearance::WndFrameworkDownUpGetDownEnable()
-         {
+         //bool appearance::WndFrameworkDownUpGetDownEnable()
+         //{
 
-            CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
-            //dynamic_cast<CWorkSetDownUpInterface *>(get_draw_window());
-            if (pinterface != NULL
-               && pinterface != this)
-            {
-               return pinterface->WndFrameworkDownUpGetDownEnable();
-            }
-            else
-               return false;
-         }
-
-
-         void appearance::frame_Attach()
-         {
-            CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
-            if (pinterface != NULL
-               && pinterface != this)
-            {
-               return pinterface->frame_Attach();
-            }
-         }
-
-         void appearance::frame_Detach()
-         {
-            CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
-            if (pinterface != NULL
-               && pinterface != this)
-            {
-               return pinterface->frame_Detach();
-            }
-         }
+         //   CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
+         //   //dynamic_cast<CWorkSetDownUpInterface *>(get_draw_window());
+         //   if (pinterface != NULL
+         //      && pinterface != this)
+         //   {
+         //      return pinterface->WndFrameworkDownUpGetDownEnable();
+         //   }
+         //   else
+         //      return false;
+         //}
 
 
-         void appearance::SetDownUpInterface(CWorkSetDownUpInterface *pinterface)
-         {
-            m_pwndframeworkdownupinterface = pinterface;
-         }
+         //void appearance::frame_Attach()
+         //{
+         //   CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
+         //   if (pinterface != NULL
+         //      && pinterface != this)
+         //   {
+         //      return pinterface->frame_Attach();
+         //   }
+         //}
+
+         //void appearance::frame_Detach()
+         //{
+         //   CWorkSetDownUpInterface * pinterface = m_pwndframeworkdownupinterface;
+         //   if (pinterface != NULL
+         //      && pinterface != this)
+         //   {
+         //      return pinterface->frame_Detach();
+         //   }
+         //}
+
+
+         //void appearance::SetDownUpInterface(CWorkSetDownUpInterface *pinterface)
+         //{
+         //   m_pwndframeworkdownupinterface = pinterface;
+         //}
 
          void appearance::UpdateAppearance(bool bFullScreen)
          {

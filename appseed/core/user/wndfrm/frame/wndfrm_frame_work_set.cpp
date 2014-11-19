@@ -1059,10 +1059,10 @@ namespace user
             pncactivate->m_bRet = true;
          }
 
-         void WorkSet::SetDownUpInterface(CWorkSetDownUpInterface *pinterface)
-         {
-            m_pappearance->SetDownUpInterface(pinterface);
-         }
+         //void WorkSet::SetDownUpInterface(CWorkSetDownUpInterface *pinterface)
+         //{
+         //   m_pappearance->SetDownUpInterface(pinterface);
+         //}
 
 
 

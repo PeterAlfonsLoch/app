@@ -8,6 +8,17 @@
 namespace user
 {
 
+   namespace wndfrm
+   {
+
+      namespace frame
+      {
+         class WorkSetClientInterface;
+
+      }
+
+   }
+
 
    class interaction_impl_base;
 
@@ -20,6 +31,16 @@ namespace user
    {
    public:
 
+      enum e_updown
+      {
+         type_normal_frame,
+         type_none,
+         type_up,
+         type_down,
+      };
+
+
+      e_updown                            m_eupdown;
 
       bool                                m_bMayProDevian;
       bool                                m_bVisible;
@@ -635,6 +656,21 @@ namespace user
       virtual bool is_composite();
 
       virtual bool get_window_minimum_size(::size & sizeMin);
+
+
+
+      // Up Down Target();
+
+
+      virtual void UpDownTargetAttach(::user::wndfrm::frame::WorkSetClientInterface * pupdown);
+      virtual void UpDownTargetDetach(::user::wndfrm::frame::WorkSetClientInterface * pupdown);
+
+      virtual bool OnUpDownTargetAttach(::user::wndfrm::frame::WorkSetClientInterface * pupdown);
+      virtual bool OnUpDownTargetDetach(::user::wndfrm::frame::WorkSetClientInterface * pupdown);
+
+      virtual bool up_down_target_is_up();
+      virtual bool up_down_target_is_down();
+      virtual bool is_up_down_target();
 
    };
 

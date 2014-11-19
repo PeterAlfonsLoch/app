@@ -16,6 +16,7 @@ namespace user
          WorkSetClientInterface::WorkSetClientInterface()
          {
             m_workset.set_app(m_pauraapp);
+            m_pupdowntarget = NULL;
          }
 
          WorkSetClientInterface::~WorkSetClientInterface()
@@ -576,6 +577,24 @@ namespace user
          void WorkSetClientInterface::_001OnDraw(::draw2d::graphics * pgraphics)
          {
             m_workset._001OnDraw(pgraphics);
+         }
+         //WorkSetClientInterface::CWorkSetDownUpInterface()
+         //{
+         //   
+         //}
+         void WorkSetClientInterface::frame_Attach()
+         {
+            if(m_pupdowntarget != NULL)
+            {
+               m_pupdowntarget->UpDownTargetAttach(this);
+            }
+         }
+         void WorkSetClientInterface::frame_Detach()
+         {
+            if(m_pupdowntarget != NULL)
+            {
+               m_pupdowntarget->UpDownTargetDetach(this);
+            }
          }
 
 

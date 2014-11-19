@@ -107,7 +107,7 @@ namespace user
             bool IsFullScreenEnabled();
             void WindowClose();
             void UpdateApperanceMode(bool bFullScreen);
-            void SetDownUpInterface(CWorkSetDownUpInterface *pinterface);
+            //void SetDownUpInterface(CWorkSetDownUpInterface *pinterface);
             void WindowProcBefore(::user::interaction * pwnd, signal_details * pobj);
             void WindowProcHover(::user::interaction * pwnd, signal_details * pobj);
             DECL_GEN_SIGNAL(_001OnActivate);

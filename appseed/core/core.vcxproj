@@ -1814,10 +1814,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_move_manager.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_size_manager.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_up_down_target.cpp" />
+    <ClCompile Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_up_down_target.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_down_up_interface.cpp" />
+    <ClCompile Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_work_set_down_up_interface.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp" />
     <ClCompile Include="user\wndfrm\wndfrm_interaction.cpp" />
@@ -1832,7 +1832,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_constraint.h" />
     <ClInclude Include="core\core\core_contact_list.h" />
     <ClInclude Include="core\core\core_debug.h" />
-    <ClInclude Include="core\core\core_enum.h" />
     <ClInclude Include="core\core\core_fs_interface.h" />
     <ClInclude Include="core\core\core_history.h" />
     <ClInclude Include="core\core\core_insert_iterator.h" />
@@ -1842,12 +1841,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_listener.h" />
     <ClInclude Include="core\core\core_logic.h" />
     <ClInclude Include="core\core\core_main.h" />
-    <ClInclude Include="core\core\core_main_init_data.h" />
-    <ClInclude Include="core\core\core_map_to_smart_pointer.h" />
     <ClInclude Include="core\core\core_match.h" />
     <ClInclude Include="core\core\core_muldiv32.h" />
     <ClInclude Include="core\core\core_os_history.h" />
-    <ClInclude Include="core\core\core_os_implementation.h" />
     <ClInclude Include="core\core\core_patch.h" />
     <ClInclude Include="core\core\core_process_data.h" />
     <ClInclude Include="core\core\core_profiler.h" />

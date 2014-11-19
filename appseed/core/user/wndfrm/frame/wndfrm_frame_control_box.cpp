@@ -347,7 +347,9 @@ namespace user
             get_box_button(button_close)->UpdateWndRgn();
 
 
-            if (pappearance->WndFrameworkDownUpGetUpEnable())
+            sp(WorkSetClientInterface) pinterface = m_pworkset->m_pwndCommand;
+
+            if(pinterface->WndFrameworkDownUpGetUpEnable())
             {
                rect.right = rect.left - m_iButtonMargin;
                rect.left = rect.right - iButtonSize;
@@ -359,7 +361,7 @@ namespace user
                get_box_button(button_up)->ShowWindow(SW_HIDE);
             }
 
-            if (pappearance->WndFrameworkDownUpGetDownEnable())
+            if(pinterface->WndFrameworkDownUpGetDownEnable())
             {
                rect.right = rect.left - m_iButtonMargin;
                rect.left = rect.right - iButtonSize;
