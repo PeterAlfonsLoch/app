@@ -11,12 +11,14 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(lpLogPalette);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    bool palette::CreateHalftonePalette(::draw2d::graphics * pgraphics)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    UINT palette::GetPaletteEntries(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY lpPaletteColors) const
@@ -25,6 +27,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nNumEntries);
       UNREFERENCED_PARAMETER(lpPaletteColors);
       ::exception::throw_interface_only(get_app());
+      return 0;
    }
 
    UINT palette::SetPaletteEntries(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY lpPaletteColors)
@@ -33,6 +36,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nNumEntries);
       UNREFERENCED_PARAMETER(lpPaletteColors);
       ::exception::throw_interface_only(get_app());
+      return 0;
    }
 
    void palette::AnimatePalette(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY lpPaletteColors)
@@ -41,23 +45,27 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nNumEntries);
       UNREFERENCED_PARAMETER(lpPaletteColors);
       ::exception::throw_interface_only(get_app());
+      
    }
 
    UINT palette::GetNearestPaletteIndex(COLORREF crColor) const
    {
       UNREFERENCED_PARAMETER(crColor);
       ::exception::throw_interface_only(get_app());
+      return 0;
    }
 
    bool palette::ResizePalette(UINT nNumEntries)
    {
       UNREFERENCED_PARAMETER(nNumEntries);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    int32_t palette::GetEntryCount()
    {
       ::exception::throw_interface_only(get_app());
+      return 0;
    }
 
 

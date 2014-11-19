@@ -53,28 +53,33 @@ namespace draw2d
    bool object::CreateStockObject(int32_t nIndex)
    {
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    bool object::UnrealizeObject()
    {
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    UINT object::GetObjectType() const
    {
       ::exception::throw_interface_only(get_app());
+      return 0;
    }
 
    bool object::operator==(const object & obj) const
    {
       UNREFERENCED_PARAMETER(obj);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    bool object::operator!=(const object & obj) const
    {
       UNREFERENCED_PARAMETER(obj);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    

@@ -96,7 +96,7 @@ inline const TYPE& array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::get_at(index nInde
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 inline void array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::set_at(index nIndex, ARG_TYPE newElement)
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize)
+   ASSERT(nIndex >= 0 && nIndex < m_nSize);
    get_data()[nIndex] = newElement;
 }
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
