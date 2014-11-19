@@ -209,7 +209,7 @@ namespace user
 
 
 class CLASS_DECL_AURA cmd_ui :
-   virtual public ::user::check_interface
+   virtual public ::object
 {
 public:
 

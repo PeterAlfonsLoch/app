@@ -1082,7 +1082,7 @@ namespace user
             pdescriptor->m_ddx.m_pdbflags->m_key.m_pclient->data_load(
                pdescriptor->m_ddx.m_pdbflags->m_key.m_id,
                ia);
-            sp(check_interface) pcheck = pevent->m_puie;
+            sp(elemental) pcheck = pevent->m_puie;
             if(pcheck->_001GetCheck() == check::checked)
             {
                ia.add_unique(pdescriptor->m_ddx.m_pdbflags->m_value);

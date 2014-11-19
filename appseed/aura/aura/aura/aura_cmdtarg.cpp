@@ -414,7 +414,7 @@ void cmd_ui::Enable(bool bOn, ::action::context actioncontext)
 void cmd_ui::_001SetCheck(bool bCheck, ::action::context actioncontext)
 {
 
-   ::user::check_interface::_001SetCheck(bCheck, actioncontext);
+   ::user::elemental::_001SetCheck(bCheck, actioncontext);
 
 }
 

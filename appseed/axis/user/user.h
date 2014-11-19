@@ -13,8 +13,8 @@
 #define new AURA_NEW
 
 
-#include "user/user/user_keyboard_focus.h"
-#include "user/user/user_mouse_focus.h"
+//#include "user/user/user_keyboard_focus.h"
+//#include "user/user/user_mouse_focus.h"
 #include "user/user/user_elemental.h"
 #include "user/user/user_check_interface.h"
 #include "graphics/visual/visual_const.h"

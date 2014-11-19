@@ -4222,7 +4222,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\simple\simple_message_box.h" />
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\user\user.h" />
-    <ClInclude Include="user\user\user_check_interface.h" />
+    <ClInclude Include="user\user\aaa_want_to_remove_user_check_interface.h" />
     <ClInclude Include="user\user\user_create_context.h" />
     <ClInclude Include="user\user\user_draw_context.h" />
     <ClInclude Include="user\user\user_draw_interface.h" />
@@ -4286,7 +4286,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
-    <ClCompile Include="user\user\user_check_interface.cpp" />
+    <ClCompile Include="user\user\aaa_want_to_remove_user_check_interface.cpp" />
     <ClCompile Include="user\user\user_create_context.cpp" />
     <ClInclude Include="user\user\user_timer_item.h" />
     <ClInclude Include="version.config.h" />

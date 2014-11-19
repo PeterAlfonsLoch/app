@@ -149,7 +149,7 @@ namespace userstack
       else if(get_view_id() == ::bergedge::PaneViewConfiguration)
       {
    /*      sp(::user::interaction) pui = m_pformOptions->ve_display_bandwidth");
-         check_interface * pcheck = dynamic_cast < check_interface * > (puie);
+         elemental * pcheck = dynamic_cast < elemental * > (puie);
          if(Session.savings().save().is_signalized(::ca2::save_display_bandwidth))
          {
             pcheck->_001SetCheck(check::checked, false);

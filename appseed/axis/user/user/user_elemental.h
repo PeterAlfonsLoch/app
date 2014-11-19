@@ -23,12 +23,16 @@ namespace user
       elemental();
       virtual ~elemental();
 
+
+      // elemental
+
       virtual void _001RedrawWindow();
 
 
       virtual void pre_translate_message(signal_details * pobj);
 
 
+      // elemental
 
       virtual void keyboard_focus_OnTimer(int32_t iTimer);
       virtual void keyboard_focus_OnChar(signal_details * pobj);
@@ -45,8 +49,11 @@ namespace user
       virtual bool keyboard_focus_is_focusable();
       virtual bool keyboard_focus_OnSetFocus();
 
+      // elemental
+
       virtual void mouse_focus_OnLButtonUp(signal_details * pobj);
 
+      // text interface
 
       virtual void _001GetText(string & str) const;
       virtual void _001GetSelText(string & str) const;
@@ -57,6 +64,15 @@ namespace user
       using string_interface::get_string;
       virtual void get_string(char * psz,::primitive::memory_size len) const;
       virtual void set_string(const string & str,::action::context actioncontext);
+
+
+      // check interface
+
+      virtual check::e_check _001GetCheck();
+      virtual void _001SetCheck(bool b,::action::context actioncontext);   // 0, 1
+      virtual void _001SetCheck(check::e_check check,::action::context actioncontext);
+      virtual void _001ToggleCheck(::action::context actioncontext);
+
 
    };
 

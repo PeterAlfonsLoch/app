@@ -9,7 +9,7 @@ namespace user
       virtual public elemental,
       virtual public command_target,
       virtual public ::user::elemental,
-      virtual public check_interface,
+      virtual public elemental,
       virtual public draw_interface,
       virtual public ::user::schema
    {

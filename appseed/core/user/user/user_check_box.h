@@ -5,7 +5,7 @@ namespace user
 
    class CLASS_DECL_CORE check_box :
       virtual public control,
-      virtual public check_interface
+      virtual public elemental
    {
    public:
       check_box(sp(::aura::application) papp);
