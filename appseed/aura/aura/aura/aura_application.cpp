@@ -429,6 +429,8 @@ namespace aura
 
       ::exception::throw_interface_only(this);
 
+      return "";
+
    }
 
 
@@ -471,6 +473,8 @@ namespace aura
 
       ::exception::throw_interface_only(this);
 
+      return false;
+
    }
 
 
@@ -486,6 +490,8 @@ namespace aura
    {
 
       ::exception::throw_interface_only(this);
+      
+      return NULL;
 
    }
 
@@ -3256,6 +3262,8 @@ namespace aura
       UNREFERENCED_PARAMETER(pui);
 
       ::exception::throw_interface_only(this);
+
+      return ptr_array < ::thread >();
 
    }
 

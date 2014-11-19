@@ -1580,16 +1580,10 @@
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
-    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_up_down_target.h">
-      <Filter>Header Files\user\wndfrm\frame</Filter>
-    </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.h">
-      <Filter>Header Files\user\wndfrm\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_down_up_interface.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.h">
@@ -1651,6 +1645,12 @@
     </ClInclude>
     <ClInclude Include="user\userex\userex_weekday_list_view.h">
       <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_up_down_target.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_work_set_down_up_interface.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

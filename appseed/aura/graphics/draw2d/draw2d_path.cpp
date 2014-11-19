@@ -416,6 +416,8 @@ namespace draw2d
 
       ::exception::throw_interface_only(get_app());
 
+      return NULL;
+
    }
 
 

@@ -20,20 +20,9 @@ namespace windows
    public:
 
 
-      enum EOptimize
-      {
-         OptimizeNone,
-         OptimizeThis,
-         OptimizeAllNext,
-      };
-
-      mutex                                  m_mutexRendering;
-      mutex                                  m_mutexRgnUpdate;
-      semaphore                              m_semaphoreBuffer;
       bool                                   m_bRender;
       DWORD                                  m_dwLastRedrawRequest;
-      mutex                                  m_mutexRender;
-      critical_section                       m_csWndInterfaceMap;
+      //mutex                                  m_mutexRender;
       DWORD                                  m_dwLastUpdate;
       DWORD                                  m_dwLastDelay;
 

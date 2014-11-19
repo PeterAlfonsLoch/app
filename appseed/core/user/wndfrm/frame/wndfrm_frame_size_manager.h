@@ -19,17 +19,14 @@ namespace user
             friend class WorkSet;
          protected:
             WorkSet *            m_pworkset;
-            ::critical_section   m_cs;
             EHitTest             m_ehittestMode;
             EHitTest             m_ehittestCursor;
             point                m_ptCursorOrigin;
             rect                 m_rcWindowOrigin;
             size                 m_minSize;
             size                 m_minBorder;
-            uint32_t                m_dwLastSizingTime;
             UINT                 m_uiSWPFlags;
             EGrip                  m_egripMask;
-            uint32_t                m_dwPaintDelay;
             int32_t                  m_iPaintCount;
          public:
             SizeManager(WorkSet * pworkset);

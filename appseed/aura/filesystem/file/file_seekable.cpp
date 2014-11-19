@@ -33,6 +33,7 @@ namespace file
       UNREFERENCED_PARAMETER(offset);
       UNREFERENCED_PARAMETER(seekOrigin);
       ::exception::throw_interface_only(get_app());
+      return 0;
    }
 
    file_position seekable::get_position() const

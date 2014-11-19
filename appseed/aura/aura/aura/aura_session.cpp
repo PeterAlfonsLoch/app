@@ -279,6 +279,8 @@ namespace aura
 
       ::exception::throw_not_implemented(get_app());
 
+      return false;
+
    }
 
 

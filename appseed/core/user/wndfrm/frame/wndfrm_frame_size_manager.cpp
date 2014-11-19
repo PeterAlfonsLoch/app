@@ -20,10 +20,8 @@ namespace user
             m_pworkset = pworkset;
             m_ehittestMode = HitTestNone;
             m_ehittestCursor = HitTestNone;
-            m_dwLastSizingTime = 0;
             SetSWPFlags(0);
             m_egripMask = GripAll;
-            m_dwPaintDelay = 25;
          }
 
          SizeManager::~SizeManager()
@@ -137,14 +135,9 @@ namespace user
             if(m_ehittestMode != HitTestNone)
             {
 
-               if(get_tick_count() - m_dwLastSizingTime > 0)
-               {
 
-                  m_dwLastSizingTime = get_tick_count();
+               SizeWindow(GetSizingWindow(), pmouse->m_pt, true);
 
-                  SizeWindow(GetSizingWindow(), pmouse->m_pt, true);
-
-               }
 
                pmouse->m_ecursor = translate(m_ehittestMode);
                pmouse->set_lresult(1);
@@ -440,7 +433,6 @@ namespace user
 
          void SizeManager::MoveWindow(sp(::user::interaction)pwnd, const RECT & rect)
          {
-            m_dwLastSizingTime = get_tick_count();
 
             ::rect rectWindow = rect;
 
@@ -642,13 +634,6 @@ namespace user
                pbase->m_uiMessage == WM_LBUTTONUP)
             {
                SCAST_PTR(::message::mouse, pmouse, pobj);
-               if(pbase->m_uiMessage == WM_MOUSEMOVE &&
-                  (m_dwLastSizingTime + m_dwPaintDelay) > get_tick_count()
-                  && m_ehittestMode != HitTestNone)
-               {
-                  pbase->m_bRet = true;
-                  return;
-               }
                point ptCursor((int16_t)LOWORD(pbase->m_lparam), (int16_t)HIWORD(pbase->m_lparam));
                pwnd->ClientToScreen(&ptCursor);
                rect rectEvent;

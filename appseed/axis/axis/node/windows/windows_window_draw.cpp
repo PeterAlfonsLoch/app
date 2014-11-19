@@ -34,11 +34,11 @@ namespace windows
       thread(papp),
       ::user::window_draw(papp),
       ::aura::message_queue(papp),
-      ::windows::message_queue(papp),
-      m_mutexRendering(papp),
-      m_mutexRgnUpdate(papp),
-      m_semaphoreBuffer(papp),
-      m_mutexRender(papp)
+      ::windows::message_queue(papp)//,
+      //m_mutexRendering(papp),
+      //m_mutexRgnUpdate(papp),
+      //m_semaphoreBuffer(papp),
+      //m_mutexRender(papp)
    {
          m_dwLastRedrawRequest = ::get_tick_count();
          m_bRender = false;

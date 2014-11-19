@@ -485,19 +485,19 @@ namespace user
       size.cx =0;
       size.cy =0;
 
-#ifdef WINDOWSEX
-      int32_t rgBorders[3];
-      TEXTMETRICW tm;
-      DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
-
-      // determine size, including borders
-      size.cx = 32767;
-      size.cy = tm.tmHeight - tm.tmInternalLeading - 1
-         + rgBorders[1] * 2 + ::GetSystemMetrics(SM_CYBORDER) * 2
-         - rect.height();
-      if (size.cy < m_nMinHeight)
-         size.cy = m_nMinHeight;
-#endif
+//#ifdef WINDOWSEX
+//      int32_t rgBorders[3];
+//      TEXTMETRICW tm;
+//      DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
+//
+//      // determine size, including borders
+//      size.cx = 32767;
+//      size.cy = tm.tmHeight - tm.tmInternalLeading - 1
+//         + rgBorders[1] * 2 + ::GetSystemMetrics(SM_CYBORDER) * 2
+//         - rect.height();
+//      if (size.cy < m_nMinHeight)
+//         size.cy = m_nMinHeight;
+//#endif
 
       return size;
    }

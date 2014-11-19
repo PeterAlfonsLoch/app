@@ -63,6 +63,8 @@ namespace draw2d
          ::exception::throw_not_implemented(get_app());
       };
 
+      return false;
+
    }
 
 
@@ -621,6 +623,8 @@ namespace draw2d
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 

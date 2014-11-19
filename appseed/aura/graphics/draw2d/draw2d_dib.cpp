@@ -61,6 +61,8 @@ namespace draw2d
 
       ::exception::throw_interface_only(get_app());
 
+      return NULL;
+
    }
 
 
@@ -69,6 +71,8 @@ namespace draw2d
 
       ::exception::throw_interface_only(get_app());
 
+      return NULL;
+
    }
 
 
@@ -76,6 +80,8 @@ namespace draw2d
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return NULL;
 
    }
 
@@ -136,76 +142,110 @@ namespace draw2d
 
    bool dib::create(class size size)
    {
+
       return create(size.cx, size.cy);
+
    }
+
 
    bool dib::create(int32_t width, int32_t height)
    {
+
       return create(::size(width, height));
+
    }
 
+   
    bool dib::dc_select(bool bSelect)
    {
+   
       UNREFERENCED_PARAMETER(bSelect);
+
       ::exception::throw_interface_only(get_app());
+
+      return false;
+
    }
+
 
    bool dib::create(::draw2d::graphics * pdc)
    {
+
       ::draw2d::bitmap & bitmap = *pdc->get_current_bitmap();
+
       if(&bitmap == NULL)
-         return FALSE;
+         return false;
 
       ::exception::throw_not_implemented(get_app());
-      /*
-      BITMAP bm;
-      bitmap.GetObject(sizeof(bm), &bm);
-      if(!create(bm.bmWidth, bm.bmHeight))
-      {
-         return FALSE;
-      }
-      from(pdc);*/
-      return TRUE;
+
+      return false;
+
    }
+
 
    bool dib::Destroy ()
    {
+
       ::exception::throw_interface_only(get_app());
+
+      return false;
+
    }
+
 
    bool dib::to(::draw2d::graphics * pgraphics)
    {
+
       return to(pgraphics, null_point(), size());
+
    }
+
 
    bool dib::to(::draw2d::graphics * pgraphics, point pt)
    {
+      
       return to(pgraphics, pt, size());
+
    }
+
 
    bool dib::to(::draw2d::graphics * pgraphics, class size size)
    {
+
       return to(pgraphics, null_point(), size);
+
    }
+
 
    bool dib::to(::draw2d::graphics * pgraphics, const RECT & rect)
    {
+
       return to(pgraphics,::top_left(rect),::size(rect));
+
    }
+
 
    bool dib::to(::draw2d::graphics * pgraphics, point pt, class size size)
    {
+
       return to(pgraphics, pt, size, point(0, 0));
+
    }
+
 
    bool dib::to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc)
    {
+
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
       UNREFERENCED_PARAMETER(ptSrc);
       ::exception::throw_interface_only(get_app());
+
+      return false;
+
    }
+
 
    //bool dib::from(::draw2d::dib * pdib)
    //{
@@ -226,11 +266,18 @@ namespace draw2d
    //   return true;
    //}
 
+   
    bool dib::from(::draw2d::graphics * pdc)
    {
+
       UNREFERENCED_PARAMETER(pdc);
+
       ::exception::throw_interface_only(get_app());
+
+      return false;
+
    }
+
 
    bool dib::from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, class size size)
    {
@@ -3257,32 +3304,56 @@ namespace draw2d
       ::exception::throw_interface_only(get_app());
    }
 
+   
    int32_t dib::cos(int32_t i, int32_t iAngle)
    {
+      
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
+
       ::exception::throw_interface_only(get_app());
+      
+      return 0;
+
    }
+
 
    int32_t dib::sin(int32_t i, int32_t iAngle)
    {
+      
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
+
       ::exception::throw_interface_only(get_app());
+
+      return 0;
+
    }
+
 
    int32_t dib::cos10(int32_t i, int32_t iAngle)
    {
+      
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
+
       ::exception::throw_interface_only(get_app());
+
+      return 0;
+
    }
 
+   
    int32_t dib::sin10(int32_t i, int32_t iAngle)
    {
+      
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
+      
       ::exception::throw_interface_only(get_app());
+
+      return 0;
+
    }
 
 /*   int32_t dib::m_size.cx
@@ -3942,10 +4013,16 @@ namespace draw2d
 
    bool dib::print_window(::user::draw_interface * pwnd,signal_details * pobj)
    {
+   
       UNREFERENCED_PARAMETER(pwnd);
       UNREFERENCED_PARAMETER(pobj);
+
       ::exception::throw_interface_only(get_app());
+
+      return false;
+
    }
+
 
 
    void dib::gradient_fill(COLORREF clr1, COLORREF clr2, POINT pt1, POINT pt2)
