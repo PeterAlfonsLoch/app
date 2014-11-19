@@ -763,36 +763,40 @@ namespace base
 
 
 
-   bool application::_001OnDDECommand(const char * lpcsz)
-   {
+   //bool application::_001OnDDECommand(const char * lpcsz)
+   //{
 
-      ::exception::throw_interface_only(this);
+   //   ::exception::throw_interface_only(this);
 
-   }
+   //   return false;
 
-
-   void application::_001EnableShellOpen()
-   {
-
-      ::exception::throw_interface_only(this);
-
-   }
+   //}
 
 
-   ::user::document * application::_001OpenDocumentFile(var varFile)
-   {
+   //void application::_001EnableShellOpen()
+   //{
 
-      ::exception::throw_interface_only(this);
+   //   ::exception::throw_interface_only(this);
 
-   }
+   //}
 
 
-   void application::_001OnFileNew(signal_details * pobj)
-   {
+   //::user::document * application::_001OpenDocumentFile(var varFile)
+   //{
 
-      ::exception::throw_interface_only(this);
+   //   ::exception::throw_interface_only(this);
 
-   }
+   //   return NULL;
+
+   //}
+
+
+   //void application::_001OnFileNew(signal_details * pobj)
+   //{
+
+   //   ::exception::throw_interface_only(this);
+
+   //}
 
 
    //sp(::user::printer) application::get_printer(const char * pszDeviceName)

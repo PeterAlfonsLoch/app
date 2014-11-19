@@ -1921,6 +1921,8 @@ namespace sockets
 
       ::exception::throw_interface_only(get_app());
 
+      return 0;
+
    }
 
 
@@ -1928,6 +1930,8 @@ namespace sockets
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return ::net::address();
 
    }
 

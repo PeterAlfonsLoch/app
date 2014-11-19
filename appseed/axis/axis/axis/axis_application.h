@@ -205,10 +205,10 @@ namespace axis
       virtual uint32_t get_thread_id();
 
 
-      virtual bool _001OnDDECommand(const char * lpcsz);
-      virtual void _001EnableShellOpen();
-      virtual ::user::document * _001OpenDocumentFile(var varFile);
-      virtual void _001OnFileNew(signal_details * pobj);
+      //virtual bool _001OnDDECommand(const char * lpcsz);
+      //virtual void _001EnableShellOpen();
+      //virtual ::user::document * _001OpenDocumentFile(var varFile);
+      //virtual void _001OnFileNew(signal_details * pobj);
 
       virtual sp(::user::printer) get_printer(const char * pszDeviceName);
 

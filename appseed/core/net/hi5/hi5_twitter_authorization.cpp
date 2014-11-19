@@ -251,7 +251,7 @@ namespace hi5
                pevent->m_eevent == ::user::event_enter_key)
             {
                sp(::user::interaction) pui = m_pviewAuth->get_child_by_name("pin");
-               sp(text_interface) ptext =  (pui.m_p);
+               sp(::user::elemental) ptext =  (pui.m_p);
                ptext->_001GetText(m_strPin);
                m_ptabview->GetWindow()->EndModalLoop(IDOK);
                m_ptabview->GetParentFrame()->ShowWindow(SW_HIDE);

@@ -51,7 +51,7 @@ namespace filemanager
       if(m_itema.get_count() <= 0)
          return;
       sp(::user::interaction) pui = m_pviewGeneral->get_child_by_name("name");
-      sp(text_interface) ptext =  (pui.m_p);
+      sp(::user::elemental) ptext =  (pui.m_p);
       ptext->_001SetText(System.file().name_(m_itema[0]->m_strPath), ::action::source_none);
    }
 

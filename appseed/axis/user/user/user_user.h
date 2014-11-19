@@ -16,9 +16,9 @@ namespace user
 
 
 
-      ::user::keyboard_focus *               m_pkeyboardfocus;
-      ::user::mouse_focus *                  m_pmousefocusLButtonDown;
-      ::user::mouse_focus *                  m_pmousefocusRButtonDown;
+      ::user::elemental *                    m_pkeyboardfocus;
+      ::user::elemental *                    m_pmousefocusLButtonDown;
+      ::user::elemental *                    m_pmousefocusRButtonDown;
       sp(::user::window_map)                 m_pwindowmap;
       ::user::keyboard *                     m_pkeyboard;
       stringa                                m_straEscape;
@@ -38,12 +38,12 @@ namespace user
       class window_map & window_map();
 
 
-      virtual ::user::keyboard_focus * get_keyboard_focus();
-      virtual void set_keyboard_focus(sp(::user::keyboard_focus) pkeyboardfocus);
-      virtual ::user::mouse_focus * get_mouse_focus_LButtonDown();
-      virtual void set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus);
-      virtual ::user::mouse_focus * get_mouse_focus_RButtonDown();
-      virtual void set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus);
+      virtual ::user::elemental * get_keyboard_focus();
+      virtual void set_keyboard_focus(sp(::user::elemental) pkeyboardfocus);
+      virtual ::user::elemental * get_mouse_focus_LButtonDown();
+      virtual void set_mouse_focus_LButtonDown(::user::elemental * pmousefocus);
+      virtual ::user::elemental * get_mouse_focus_RButtonDown();
+      virtual void set_mouse_focus_RButtonDown(::user::elemental * pmousefocus);
 
 
 

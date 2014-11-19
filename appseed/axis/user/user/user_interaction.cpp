@@ -3838,7 +3838,7 @@ namespace user
       }
    }
 
-   void interaction::on_keyboard_focus(::user::keyboard_focus * pfocus)
+   void interaction::on_keyboard_focus(::user::elemental * pfocus)
    {
 
       if(m_pimpl == NULL)

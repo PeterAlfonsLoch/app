@@ -382,7 +382,7 @@ void html_form::_001SetText(const string & str, ::action::context actioncontext)
 
    if(bFocus)
    {
-	   sp(::user::keyboard_focus) pfocus = get_focusable_descendant();
+	   sp(::user::elemental) pfocus = get_focusable_descendant();
       if(pfocus != NULL)
       {
          Session.user()->set_keyboard_focus(pfocus);

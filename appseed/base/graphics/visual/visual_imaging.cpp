@@ -747,6 +747,7 @@ bool imaging::GrayVRCP(
    ::exception::throw_not_implemented(get_app());
    ASSERT(FALSE);
 
+   return 0;
 
 }
 

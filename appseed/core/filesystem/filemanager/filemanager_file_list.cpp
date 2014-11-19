@@ -213,7 +213,7 @@ namespace filemanager
                {
                   html::elemental * pelemental = dynamic_cast < html::elemental * > (puh->m_pformview->get_html_data()->get_element_by_name("encontrar"));
                   html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
-                  sp(text_interface) ptext =  (pinput->m_pedit);
+                  sp(::user::elemental) ptext =  (pinput->m_pedit);
                   range range;
                   _001GetSelection(range);
                   if(range.get_item_count() > 0)

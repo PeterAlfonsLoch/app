@@ -497,98 +497,98 @@ namespace user
 
    void window_util::ContraintPosToParent(oswindow oswindow)
    {
-#if !defined(METROWIN) && !defined(APPLE_IOS)
-      rect rectMajor;
-      ::oswindow oswindowParent = ::GetParent(oswindow);
-      if(oswindowParent == NULL)
-      {
-
-#ifdef WINDOWSEX
-
-         rectMajor.left = 0;
-         rectMajor.top = 0;
-         rectMajor.right = GetSystemMetrics(SM_CXSCREEN);
-         rectMajor.bottom = GetSystemMetrics(SM_CYSCREEN);
-
-#else
-
-         throw todo(get_thread_app());
-
-#endif
-
-      }
-      else
-      {
-         ::GetClientRect(oswindowParent, rectMajor);
-      }
-
-      rect rect;
-      ::GetClientRect(oswindow, rect);
-
-#ifdef WINDOWSEX
-
-      ::ClientToScreen(oswindow, &rect.top_left());
-
-      ::ClientToScreen(oswindow, &rect.bottom_right());
-
-      if(oswindowParent != NULL)
-      {
-
-         ::ScreenToClient(oswindowParent, &rect.top_left());
-
-         ::ScreenToClient(oswindowParent, &rect.bottom_right());
-
-      }
-
-#else
-
-      throw todo(get_thread_app());
-
-#endif
-
-      bool bModified = false;
-
-      if(rect.left > rectMajor.right)
-      {
-         rect.offset(- rect.width() - (rect.left - rectMajor.right), 0);
-         bModified = true;
-      }
-      if(rect.right < rectMajor.left)
-      {
-         rect.offset(rect.width() + (rectMajor.left - rect.right), 0);
-         bModified = true;
-      }
-      if(rect.top > rectMajor.bottom)
-      {
-         rect.offset(0, - rect.height() - (rect.top - rectMajor.bottom));
-         bModified = true;
-      }
-
-      if(rect.bottom < rectMajor.top)
-      {
-
-         rect.offset(0, rect.height() + (rectMajor.top - rect.bottom));
-
-         bModified = true;
-
-      }
-
-
-#ifdef WINDOWS
-
-      if(bModified)
-      {
-
-         ::SetWindowPos(oswindow, HWND_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
-
-      }
-
-#else
-
-      throw todo(get_thread_app());
-
-#endif
-#endif
+//#if !defined(METROWIN) && !defined(APPLE_IOS)
+//      rect rectMajor;
+//      ::oswindow oswindowParent = ::GetParent(oswindow);
+//      if(oswindowParent == NULL)
+//      {
+//
+//#ifdef WINDOWSEX
+//
+//         rectMajor.left = 0;
+//         rectMajor.top = 0;
+//         rectMajor.right = GetSystemMetrics(SM_CXSCREEN);
+//         rectMajor.bottom = GetSystemMetrics(SM_CYSCREEN);
+//
+//#else
+//
+//         throw todo(get_thread_app());
+//
+//#endif
+//
+//      }
+//      else
+//      {
+//         ::GetClientRect(oswindowParent, rectMajor);
+//      }
+//
+//      rect rect;
+//      ::GetClientRect(oswindow, rect);
+//
+//#ifdef WINDOWSEX
+//
+//      ::ClientToScreen(oswindow, &rect.top_left());
+//
+//      ::ClientToScreen(oswindow, &rect.bottom_right());
+//
+//      if(oswindowParent != NULL)
+//      {
+//
+//         ::ScreenToClient(oswindowParent, &rect.top_left());
+//
+//         ::ScreenToClient(oswindowParent, &rect.bottom_right());
+//
+//      }
+//
+//#else
+//
+//      throw todo(get_thread_app());
+//
+//#endif
+//
+//      bool bModified = false;
+//
+//      if(rect.left > rectMajor.right)
+//      {
+//         rect.offset(- rect.width() - (rect.left - rectMajor.right), 0);
+//         bModified = true;
+//      }
+//      if(rect.right < rectMajor.left)
+//      {
+//         rect.offset(rect.width() + (rectMajor.left - rect.right), 0);
+//         bModified = true;
+//      }
+//      if(rect.top > rectMajor.bottom)
+//      {
+//         rect.offset(0, - rect.height() - (rect.top - rectMajor.bottom));
+//         bModified = true;
+//      }
+//
+//      if(rect.bottom < rectMajor.top)
+//      {
+//
+//         rect.offset(0, rect.height() + (rectMajor.top - rect.bottom));
+//
+//         bModified = true;
+//
+//      }
+//
+//
+//#ifdef WINDOWS
+//
+//      if(bModified)
+//      {
+//
+//         ::SetWindowPos(oswindow, HWND_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
+//
+//      }
+//
+//#else
+//
+//      throw todo(get_thread_app());
+//
+//#endif
+//#endif
 
    }
 

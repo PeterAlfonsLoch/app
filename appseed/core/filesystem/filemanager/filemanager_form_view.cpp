@@ -40,7 +40,7 @@ namespace filemanager
             uh.m_strForm = "filemanager_add_location_lfs.xhtml";
             get_document()->update_all_views(NULL,0,&uh);
             sp(::user::interaction) pui = get_child_by_name("lfs");
-            sp(text_interface) ptext =  (pui.m_p);
+            sp(::user::elemental) ptext =  (pui.m_p);
             ptext->_001SetText(get_filemanager_item().m_strPath,::action::source_user);
          }
          else if(pevent->m_puie->m_id == "ftp")
@@ -57,7 +57,7 @@ namespace filemanager
                stringa stra;
                get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic,stra);
                sp(::user::interaction) pui = get_child_by_name("lfs");
-               sp(text_interface) ptext =  (pui.m_p);
+               sp(::user::elemental) ptext =  (pui.m_p);
                string str;
                ptext->_001GetText(str);
                stra.add_unique(str);
@@ -71,7 +71,7 @@ namespace filemanager
             {
                form_update_hint uh;
                sp(::user::interaction) pui = get_child_by_name("encontrar");
-               sp(text_interface) ptext =  (pui.m_p);
+               sp(::user::elemental) ptext =  (pui.m_p);
                ptext->_001GetText(uh.m_strFind);
                pui = get_child_by_name("substituir");
                ptext =  (pui.m_p);

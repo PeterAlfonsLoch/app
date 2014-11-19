@@ -8,7 +8,7 @@ namespace user
    class CLASS_DECL_AXIS interaction_base:
       virtual public elemental,
       virtual public command_target,
-      virtual public text_interface,
+      virtual public ::user::elemental,
       virtual public check_interface,
       virtual public draw_interface,
       virtual public ::user::schema
@@ -260,7 +260,7 @@ namespace user
       virtual ::user::interaction * get_os_focus_uie();
 
 
-      virtual void on_keyboard_focus(::user::keyboard_focus * pfocus);
+      virtual void on_keyboard_focus(::user::elemental * pfocus);
 
 
       virtual void _001UpdateScreen();

@@ -1937,6 +1937,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    ::draw2d::graphics * application::CreatePrinterDC()
    {
       ::exception::throw_not_implemented(get_app());
+      return NULL;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -2869,6 +2870,8 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    {
       ::exception::throw_not_implemented(get_app());
       //return m_pimpl->_001OnDDECommand(lpcsz);
+
+      return false;
    }
 
    //   ::core::file_system & application::file_system()

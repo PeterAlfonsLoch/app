@@ -224,7 +224,7 @@ namespace html
       if(pkey->m_ekey == ::user::key_tab)
       {
 
-         user::keyboard_focus * pfocus = Session.user()->get_keyboard_focus();
+         user::elemental * pfocus = Session.user()->get_keyboard_focus();
 
          if(pfocus != NULL)
             pfocus = pfocus->keyboard_get_next_focusable();

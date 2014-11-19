@@ -65,6 +65,7 @@ namespace user
                bAllLoaded = FALSE;
        }*/
        //return bAllLoaded;
+       return false;
    }
 
 

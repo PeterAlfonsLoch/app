@@ -6,7 +6,7 @@ namespace html
 
 
    class CLASS_DECL_CORE elemental : 
-      virtual public text_interface,
+      virtual public ::user::elemental,
       virtual public ::user::schema
    {
    public:

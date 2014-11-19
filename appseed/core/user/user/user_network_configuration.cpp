@@ -52,7 +52,7 @@ namespace user
          string strProxy = node.attr("server");
          int32_t iProxyPort = node.attr("port");
          sp(::user::interaction) pui = m_pview->get_child_by_name("server");
-         sp(text_interface) ptext =  (pui);
+         sp(::user::elemental) ptext =  (pui);
          ptext->_001SetText(strProxy, false);
          pui = m_pview->get_child_by_name("port");
          ptext =  (pui);
@@ -69,7 +69,7 @@ namespace user
          if(pevent->m_puie->m_id == "submit")
          {
             sp(::user::interaction) pui = m_pview->get_child_by_name("server");
-            sp(text_interface) ptext =  (pui);
+            sp(::user::elemental) ptext =  (pui);
             //m_loginthread.m_puser = dynamic_cast < ::fontopus::user * > (System.allocate_user());
             string strServer;
             ptext->_001GetText(strServer);

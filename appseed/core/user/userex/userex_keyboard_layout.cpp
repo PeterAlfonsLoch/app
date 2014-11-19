@@ -114,7 +114,7 @@ namespace userex // ca8 + cube
          string strProxy = node.get_attr("server");
          int32_t iProxyPort = node.get_attr("port");
          sp(::user::interaction) pui = m_pview->get_child_by_name("server");
-         sp(text_interface) ptext =  (pui);
+         sp(::user::elemental) ptext =  (pui);
          ptext->_001SetText(strProxy, false);
          pui = m_pview->get_child_by_name("port");
          ptext =  (pui);
@@ -146,7 +146,7 @@ namespace userex // ca8 + cube
          if(pevent->m_puie->m_id == "submit")
          {
             sp(::user::interaction) pui = m_pview->get_child_by_name("server");
-            sp(text_interface) ptext =  (pui.m_p);
+            sp(::user::elemental) ptext =  (pui.m_p);
             //m_loginthread.m_puser = dynamic_cast < ::fontopus::user * > (System.allocate_user());
             string strServer;
             ptext->_001GetText(strServer);

@@ -313,14 +313,14 @@ namespace user
 
       ASSERT(pcontrol->descriptor().get_type() == control::type_edit || pcontrol->descriptor().get_type() == control::type_edit_plain_text);
 
-      sp(text_interface) pedit = get_child_by_id(pcontrol->m_id);
+      sp(::user::elemental) pedit = get_child_by_id(pcontrol->m_id);
 
       string str;
 
       if(pedit == NULL)
       {
 
-         sp(text_interface) ptext = pcontrol;
+         sp(::user::elemental) ptext = pcontrol;
 
          if(ptext == NULL)
             return false;
@@ -518,7 +518,7 @@ namespace user
          if(selection.get_item_count() > 0)
          {
             ::database::selection_item & item = selection.get_item(0);
-            sp(text_interface) ptext = NULL;
+            sp(::user::elemental) ptext = NULL;
             if(get_child_by_id(pcontrol->m_id) != NULL)
             {
                ptext = get_child_by_id(pcontrol->m_id);
@@ -1043,7 +1043,7 @@ namespace user
       if(pevent->m_eevent == ::user::event_tab_key)
       {
          
-         sp(::user::keyboard_focus) pfocus = pevent->m_puie->keyboard_get_next_focusable();
+         sp(::user::elemental) pfocus = pevent->m_puie->keyboard_get_next_focusable();
 
          if(pfocus != NULL)
          {

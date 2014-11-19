@@ -418,7 +418,7 @@ namespace user
       if(descriptor().get_type() == type_edit)
       {
 
-         sp(text_interface) ptext = pwnd.m_p;
+         sp(::user::elemental) ptext = pwnd.m_p;
 
          if(ptext == NULL)
             return false;
@@ -429,7 +429,7 @@ namespace user
       else
       {
 
-         sp(text_interface) ptext = this;
+         sp(::user::elemental) ptext = this;
 
          if(ptext == NULL)
             return false;

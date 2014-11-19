@@ -155,7 +155,7 @@ namespace user
       virtual ::user::interaction * get_os_focus_uie();
 
 
-      virtual void on_keyboard_focus(::user::keyboard_focus * pfocus);
+      virtual void on_keyboard_focus(::user::elemental * pfocus);
 
 
       virtual void _001UpdateScreen();

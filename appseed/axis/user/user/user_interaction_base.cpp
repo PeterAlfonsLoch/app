@@ -2088,7 +2088,7 @@ namespace user
    }
 
 
-   void interaction_base::on_keyboard_focus(::user::keyboard_focus * pfocus)
+   void interaction_base::on_keyboard_focus(::user::elemental * pfocus)
    {
 
       RedrawWindow();
