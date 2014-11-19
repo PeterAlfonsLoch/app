@@ -3017,9 +3017,17 @@ namespace windows
 
             nFlags |= SWP_NOREDRAW;
 
-            nFlags |= SWP_FRAMECHANGED;
+         }
+         else
+         {
+            
+            nFlags &= ~SWP_NOCOPYBITS;
+
+            nFlags &= ~SWP_NOREDRAW;
 
          }
+
+         nFlags &= ~SWP_FRAMECHANGED;
 
          ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
 

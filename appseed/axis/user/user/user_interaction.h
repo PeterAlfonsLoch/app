@@ -53,6 +53,8 @@ namespace user
       draw_interface *                    m_pdrawinterfaceBackground;
       bool                                m_bBackgroundBypass;
 
+      uint32_t                            m_dwLastFullUpdate;
+
 
       sp(::user::interaction)             m_pparent;
 

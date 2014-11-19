@@ -348,10 +348,13 @@ namespace user
             if(m_pworkset->GetAppearance() != ::user::AppearanceZoomed && m_pworkset->GetAppearance() != ::user::AppearanceFullScreen)
             {
 
-               if(m_pworkset->GetDockingManager()->_000OnMouseMove(pmouse))
+               if(!m_pworkset->GetMovingManager()->IsMoving()
+               && !m_pworkset->GetSizingManager()->IsSizing()
+               && m_pworkset->GetDockingManager()->_000OnMouseMove(pmouse))
                   return true;
 
-               if(m_pworkset->GetSizingManager()->_000OnMouseMove(pmouse))
+               if(!m_pworkset->GetMovingManager()->IsMoving()
+               && m_pworkset->GetSizingManager()->_000OnMouseMove(pmouse))
                   return true;
 
                if(m_pworkset->GetMovingManager()->_000OnMouseMove(pmouse))

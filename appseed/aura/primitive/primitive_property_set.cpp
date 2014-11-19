@@ -848,7 +848,7 @@ property_set & property_set::operator = (const property_set & set)
       ::lemon::copy(m_propertya, set.m_propertya);
       m_bAutoAdd = set.m_bAutoAdd;
       m_bMultiValue = set.m_bMultiValue;
-      m_map = set.m_map;
+      ::lemon::map::copy(m_map, set.m_map);
    }
    return *this;
 }

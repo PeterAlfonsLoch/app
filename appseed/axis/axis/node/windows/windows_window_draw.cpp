@@ -359,10 +359,16 @@ namespace windows
             if(pframe->IsWindowVisible() && pframe->m_bMayProDevian && System.m_framea[l]->m_psession.is_null())
             {
 
+               if(get_tick_count() - pframe->m_dwLastFullUpdate < 25)
+               {
+                  l++;
+                  continue;
+               }
+
                try
                {
 
-                  pframe->_001UpdateBuffer();
+                  //pframe->_001UpdateBuffer();
 
                }
                catch(...)
@@ -372,7 +378,7 @@ namespace windows
                try
                {
 
-                  pframe->_001UpdateScreen();
+//                  pframe->_001UpdateScreen();
 
                }
                catch(...)
