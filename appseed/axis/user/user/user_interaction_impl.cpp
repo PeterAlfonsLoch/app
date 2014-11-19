@@ -695,16 +695,16 @@ namespace user
       ::exception::throw_interface_only(get_app());
    }
 
-   void interaction_impl::OnEnterIdle(UINT /*nWhy*/,::window_sp /*pWho*/)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
+   //void interaction_impl::OnEnterIdle(UINT /*nWhy*/,::window_sp /*pWho*/)
+   //{
+   //   ::exception::throw_interface_only(get_app());
+   //}
 
-   void * interaction_impl::OnCtlColor(::draw2d::graphics *,::window_sp pwindow,UINT)
-   {
-      UNREFERENCED_PARAMETER(pwindow);
-      ::exception::throw_interface_only(get_app());
-   }
+   //void * interaction_impl::OnCtlColor(::draw2d::graphics *,::window_sp pwindow,UINT)
+   //{
+   //   UNREFERENCED_PARAMETER(pwindow);
+   //   ::exception::throw_interface_only(get_app());
+   //}
 
 
    /////////////////////////////////////////////////////////////////////////////
@@ -1560,46 +1560,46 @@ namespace user
       ::exception::throw_interface_only(get_app());
    }
 
-   // Default message map implementations
-   void interaction_impl::OnActivateApp(bool,uint32_t)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
-
-   void interaction_impl::OnActivate(UINT,::window_sp,bool)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
-
-   void interaction_impl::OnCancelMode()
-   {
-      ::exception::throw_interface_only(get_app());
-   }
-
-   void interaction_impl::OnChildActivate()
-   {
-      ::exception::throw_interface_only(get_app());
-   }
-
-   void interaction_impl::OnClose()
-   {
-      ::exception::throw_interface_only(get_app());
-   }
-
-   void interaction_impl::OnContextMenu(::window_sp,point)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
-
-
-#ifdef WINDOWSEX
-
-   bool interaction_impl::OnCopyData(::window_sp,COPYDATASTRUCT*)
-   {
-      ::exception::throw_interface_only(get_app());
-   }
-
-#endif
+//   // Default message map implementations
+//   void interaction_impl::OnActivateApp(bool,uint32_t)
+//   {
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   void interaction_impl::OnActivate(UINT,::window_sp,bool)
+//   {
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   void interaction_impl::OnCancelMode()
+//   {
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   void interaction_impl::OnChildActivate()
+//   {
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   void interaction_impl::OnClose()
+//   {
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//   void interaction_impl::OnContextMenu(::window_sp,point)
+//   {
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//
+//#ifdef WINDOWSEX
+//
+//   bool interaction_impl::OnCopyData(::window_sp,COPYDATASTRUCT*)
+//   {
+//      ::exception::throw_interface_only(get_app());
+//   }
+//
+//#endif
 
 
    void interaction_impl::_001OnCreate(signal_details * pobj)
