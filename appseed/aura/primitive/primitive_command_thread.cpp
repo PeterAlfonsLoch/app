@@ -3,12 +3,11 @@
 
 command_thread::command_thread(sp(::aura::application) papp) :
    element(papp),
-   m_mutex(papp)
+   m_mutex(papp),
+   m_ev(papp)
 {
  
    m_varTopicQuery.propset().set_app(papp);
-
-   m_pthreadEvent = NULL;
 
 }
 
@@ -86,18 +85,25 @@ var command_thread::run()
       sl.unlock();
 
    }
-   if(m_pthreadEvent != NULL && m_pthreadEvent->m_peventEvent->is_locked())
-   {
-      m_pthreadEvent->m_peventEvent->ResetEvent();
-   }
+
+   m_ev.ResetEvent();
+   
    return true;
+
 }
+
 
 void command_thread::request_create(sp(::create_context) pline)
 {
+   
    single_lock sl(&m_mutex, TRUE);
+   
    m_ptra.add(pline);
+   
+   m_ev.SetEvent();
+
 }
+
 
 void command_thread::on_request(sp(::create_context) pline)
 {

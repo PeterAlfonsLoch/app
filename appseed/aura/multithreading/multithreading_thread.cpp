@@ -1114,3 +1114,8 @@ void thread::set_end_thread()
 
 }
 
+
+void thread::defer_add_thread_run_wait(sync_object_ptra & soa)
+{
+
+}

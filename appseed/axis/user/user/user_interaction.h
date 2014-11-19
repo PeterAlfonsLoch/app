@@ -600,6 +600,9 @@ namespace user
       virtual bool WfiDown();
       virtual bool WfiNotifyIcon();
 
+      virtual bool WfiIsMoving();
+      virtual bool WfiIsSizing();
+
       virtual EAppearance get_appearance();
       virtual EAppearance get_appearance_before();
 

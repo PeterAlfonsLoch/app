@@ -1320,6 +1320,22 @@ void simple_frame_window::WfiOnUp()
 
 }
 
+bool simple_frame_window::WfiIsMoving()
+{
+
+   return m_bWindowFrame && m_workset.GetMovingManager() != NULL && m_workset.GetMovingManager()->IsMoving();
+
+}
+
+
+bool simple_frame_window::WfiIsSizing()
+{
+
+   return m_bWindowFrame && m_workset.GetSizingManager() != NULL && m_workset.GetSizingManager()->IsSizing();
+
+}
+
+
 
 bool simple_frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle,sp(::create_context) pContext)
 {

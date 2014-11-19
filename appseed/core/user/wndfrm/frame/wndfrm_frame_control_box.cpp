@@ -157,6 +157,24 @@ namespace user
          void control_box::_001OnTimer(signal_details * pobj)
          {
 
+            if(GetTopLevel()->WfiIsMoving())
+            {
+               
+               //TRACE("wndfrm control_box : top level is moving : ignoring WM_TIMER");
+
+               return;
+
+            }
+            else if(GetTopLevel()->WfiIsSizing())
+            {
+
+               //TRACE("wndfrm control_box : top level is sizing : ignoring WM_TIMER");
+
+               return;
+
+            }
+
+
             point ptCursor;
 
             Session.get_cursor_pos(&ptCursor);

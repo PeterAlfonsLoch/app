@@ -805,15 +805,17 @@ namespace user
 
                   pgraphics->SelectClipRgn(rgnClip);
 
+                  break;
+
                }
                else
                {
 
-                  pgraphics->SelectClipRgn(rgnClip,RGN_AND);
+                  //pgraphics->SelectClipRgn(rgnClip,RGN_AND);
 
                }
 
-               pui = pui->GetParent();
+               //pui = pui->GetParent();
 
             }
 
@@ -4477,6 +4479,23 @@ namespace user
       return false;
 
    }
+
+
+   bool interaction::WfiIsMoving()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::WfiIsSizing()
+   {
+
+      return false;
+
+   }
+
 
 
    EAppearance interaction::get_appearance()

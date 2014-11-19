@@ -100,8 +100,8 @@ namespace user
 
             if(pmouse->m_uiMessage == WM_MOUSEMOVE)
             {
-               TRACE("message_handler call time1= %d ms", dwTime1);
-               TRACE("MoveManager::Ry call time1= %d ms",dwTime1 - t_time1.operator DWORD_PTR());
+               //TRACE("message_handler call time1= %d ms", dwTime1);
+               //TRACE("MoveManager::Ry call time1= %d ms",dwTime1 - t_time1.operator DWORD_PTR());
 
             }
 
@@ -128,7 +128,7 @@ namespace user
                if(puieCapture != NULL
                   && puieCapture == GetEventWindow())
                {
-                  TRACE("MoveManager::message_handler oswindow ReleaseCapture %x\n", System.get_capture_uie().m_p);
+                  //TRACE("MoveManager::message_handler oswindow ReleaseCapture %x\n", System.get_capture_uie().m_p);
                   System.release_capture_uie();
                }
                return false;
@@ -159,8 +159,8 @@ namespace user
             rectEvent.move_to(pt);
             if(pmouse->m_uiMessage == WM_MOUSEMOVE)
             {
-               TRACE("message_handler call time1= %d ms", dwTime1);
-               TRACE("MoveManager::Ry call time4= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
+               //TRACE("message_handler call time1= %d ms", dwTime1);
+               //TRACE("MoveManager::Ry call time4= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
 
             }
 
@@ -176,22 +176,22 @@ namespace user
                }
                if(pmouse->m_uiMessage == WM_MOUSEMOVE)
                {
-                  TRACE("message_handler call time1= %d ms", dwTime1);
-                  TRACE("MoveManager::Ry call time5= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
+                  //TRACE("message_handler call time1= %d ms", dwTime1);
+                  //TRACE("MoveManager::Ry call time5= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
 
                }
                GetMoveWindow()->SetWindowPos(ZORDER_TOP,ptMove.x,ptMove.y,0,0,SWP_NOSIZE | SWP_NOZORDER);
                if(pmouse->m_uiMessage == WM_MOUSEMOVE)
                {
-                  TRACE("message_handler call time1= %d ms", dwTime1);
-                  TRACE("MoveManager::Ry call time6= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
+                  //TRACE("message_handler call time1= %d ms", dwTime1);
+                  //TRACE("MoveManager::Ry call time6= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
 
                }
                GetMoveWindow()->set_appearance(::user::AppearanceNormal);
                if(pmouse->m_uiMessage == WM_MOUSEMOVE)
                {
-                  TRACE("message_handler call time1= %d ms", dwTime1);
-                  TRACE("MoveManager::Ry call time7= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
+                  //TRACE("message_handler call time1= %d ms", dwTime1);
+                  //TRACE("MoveManager::Ry call time7= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
 
                }
 
@@ -204,8 +204,8 @@ namespace user
 
             if(pmouse->m_uiMessage == WM_MOUSEMOVE)
             {
-               TRACE("message_handler call time1= %d ms", dwTime1);
-               TRACE("MoveManager::Ry call time8= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
+               //TRACE("message_handler call time1= %d ms", dwTime1);
+               //TRACE("MoveManager::Ry call time8= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
 
             }
 
@@ -242,8 +242,8 @@ namespace user
             }
             if(pmouse->m_uiMessage == WM_MOUSEMOVE)
             {
-               TRACE("message_handler call time1= %d ms", dwTime1);
-               TRACE("MoveManager::Ry call time9= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
+               //TRACE("message_handler call time1= %d ms", dwTime1);
+               //TRACE("MoveManager::Ry call time9= %d ms",::get_tick_count() - t_time1.operator DWORD_PTR());
 
             }
 

@@ -113,8 +113,6 @@ namespace aura
 
       m_pcommandthread           = canew(::command_thread(this));
 
-      m_pcommandthread->m_pthreadEvent = this;
-
       m_bLicense                 = true;
 
       m_bAuraProcessInitialize         = false;
@@ -3520,6 +3518,27 @@ namespace aura
 
    }
 
+   
+   void application::defer_add_thread_run_wait(sync_object_ptra & soa)
+   {
+
+      soa.add(&axiom()->m_ev);
+
+   }
 
 
 } // namespace aura
+
+
+
+
+
+
+
+
+
+
+
+
+
+

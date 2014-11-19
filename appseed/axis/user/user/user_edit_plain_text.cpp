@@ -509,7 +509,7 @@ namespace user
       m_bGetTextNeedUpdate = true;
 
 
-      SetTimer(100,100,NULL);
+//      SetTimer(100,100,NULL);
       m_ptree->m_iSelStart  = 0;
       m_ptree->m_iSelEnd = 0;
       _001OnUpdate(::action::source_system);

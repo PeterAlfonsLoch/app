@@ -261,10 +261,23 @@ namespace user
 
       spbase = m_pui->get_base(uiMessage,wparam,lparam);
 
-      m_pui->walk_pre_translate_tree(spbase);
+      if(m_pui->WfiIsMoving())
+      {
+         TRACE("moving: skip walk pre translate tree");
+      }
+      else if(m_pui->WfiIsSizing())
+      {
+         TRACE("sizing: skip walk pre translate tree");
+      }
+      else
+      {
 
-      if(spbase->m_bRet)
-         return spbase->get_lresult();
+         m_pui->walk_pre_translate_tree(spbase);
+
+         if(spbase->m_bRet)
+            return spbase->get_lresult();
+
+      }
 
       message_handler(spbase);
 

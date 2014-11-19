@@ -53,6 +53,9 @@ public:
    thread(sp(::aura::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
    virtual ~thread();
 
+
+   
+
    ///  \brief		starts thread on first call
    virtual void start();
 
@@ -190,6 +193,8 @@ public:
 
    virtual void set_run_thread(bool bRun = true);
    virtual void set_end_thread();
+
+   virtual void defer_add_thread_run_wait(sync_object_ptra & soa);
 
 };
 

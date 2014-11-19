@@ -184,6 +184,9 @@ public:
    virtual void WfiOnDown();
    virtual void WfiOnUp();
 
+   virtual bool WfiIsMoving();
+   virtual bool WfiIsSizing();
+
    virtual bool calc_layered();
 
 

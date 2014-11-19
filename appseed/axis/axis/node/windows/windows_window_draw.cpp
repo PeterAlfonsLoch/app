@@ -368,7 +368,7 @@ namespace windows
                try
                {
 
-                  //pframe->_001UpdateBuffer();
+                  pframe->_001UpdateBuffer();
 
                }
                catch(...)
@@ -378,7 +378,7 @@ namespace windows
                try
                {
 
-//                  pframe->_001UpdateScreen();
+                  pframe->_001UpdateScreen();
 
                }
                catch(...)

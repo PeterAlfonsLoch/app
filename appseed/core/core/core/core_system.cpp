@@ -1029,14 +1029,14 @@ namespace core
          Session.set_schema(command()->m_varTopicQuery["schema"].stra()[0],::action::source::user());
       }
 
-      if(command()->m_pthreadEvent->m_peventEvent == NULL)
-      {
+      //if(command()->m_pthreadEvent->m_peventEvent == NULL)
+      //{
 
-         command()->m_pthreadEvent->m_peventEvent = new manual_reset_event(this);
+      //   command()->m_pthreadEvent->m_peventEvent = new manual_reset_event(this);
 
-      }
+      //}
 
-      command()->m_pthreadEvent->m_peventEvent->SetEvent();
+      command()->m_ev.SetEvent();
 
    }
 

@@ -1223,6 +1223,8 @@ int32_t thread_impl::run()
 
    soa.add(m_pthread->m_peventEvent);
 
+   m_pthread->defer_add_thread_run_wait(soa);
+
    multi_lock ml(soa);
 
    while(m_pthread->m_bRun)

@@ -338,7 +338,7 @@ namespace user
 
             m_psizemanager->SetMinSize(m_pframeschema->GetMinSize());
 
-            pwndRegion->SetTimer(16319,100,NULL);
+            //pwndRegion->SetTimer(16319,100,NULL);
 
             _001InstallEventHandling(pwndEvent->m_pimpl);
 

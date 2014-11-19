@@ -1207,9 +1207,21 @@ namespace windows
 
       if(m_pui != NULL)
       {
-         m_pui->pre_translate_message(pobj);
-         if(pobj->m_bRet)
-            return;
+         if(m_pui->WfiIsMoving())
+         {
+            //TRACE("moving: skip pre translate message");
+         }
+         else if(m_pui->WfiIsSizing())
+         {
+            //TRACE("sizing: skip pre translate message");
+         }
+         else
+         {
+            m_pui->pre_translate_message(pobj);
+            if(pobj->m_bRet)
+               return;
+
+         }
       }
 
       if(pbase->m_uiMessage == WM_TIMER)
@@ -1339,10 +1351,6 @@ namespace windows
                goto restart_mouse_hover_check;
             }
          }
-         if(!m_bMouseHover)
-         {
-            m_pui->_001OnTriggerMouseInside();
-         }
          if(::GetCapture() == m_oswindow && m_puiCapture != NULL)
          {
             if(m_puiCapture->m_pimpl != NULL)
@@ -1373,6 +1381,10 @@ namespace windows
                }
                return;
             }
+         }
+         if(!m_bMouseHover)
+         {
+            m_pui->_001OnTriggerMouseInside();
          }
          user::oswindow_array oswindowa;
          user::interaction_spa wnda(get_app());
@@ -3017,17 +3029,20 @@ namespace windows
 
             nFlags |= SWP_NOREDRAW;
 
-         }
-         else
-         {
-            
-            nFlags &= ~SWP_NOCOPYBITS;
+            nFlags |= SWP_FRAMECHANGED;
 
-            nFlags &= ~SWP_NOREDRAW;
 
          }
+         //else
+         //{
+         //   
+         //   nFlags &= ~SWP_NOCOPYBITS;
 
-         nFlags &= ~SWP_FRAMECHANGED;
+         //   nFlags &= ~SWP_NOREDRAW;
+
+         //}
+
+         
 
          ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
 
