@@ -58,6 +58,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(hPackedDIB);
       UNREFERENCED_PARAMETER(nUsage);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 #endif
 
@@ -104,34 +105,40 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(crColor);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    bool brush::CreateBrushIndirect(const LOGBRUSH* lpLogBrush)
    {
       UNREFERENCED_PARAMETER(lpLogBrush);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    bool brush::CreatePatternBrush(::draw2d::bitmap* pBitmap)
    {
       UNREFERENCED_PARAMETER(pBitmap);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
    bool brush::CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage)
    {
       UNREFERENCED_PARAMETER(lpPackedDIB);
       UNREFERENCED_PARAMETER(nUsage);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
    bool brush::CreateSysColorBrush(int32_t nIndex)
    {
       UNREFERENCED_PARAMETER(nIndex);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
    int32_t brush::GetLogBrush(LOGBRUSH* pLogBrush)
    {
       UNREFERENCED_PARAMETER(pLogBrush);
       ::exception::throw_interface_only(get_app());
+      return 0;
    }
 
    bool brush::CreateLinearGradientBrush(point p1, point p2, COLORREF cr1, COLORREF cr2)
