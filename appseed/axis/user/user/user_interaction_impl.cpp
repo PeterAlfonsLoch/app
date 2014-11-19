@@ -2526,10 +2526,7 @@ namespace user
 
       _001Print(pgraphics);
 
-      single_lock slDisplay(mutex_display(),false);
-
-      if(mutex_display() != NULL && !slDisplay.lock())
-         return;
+      single_lock slDisplay(mutex_display(),true);
 
       m_spdib->BitBlt(rectWindow.width(), rectWindow.height(), m_spdibBuffer, 1);
 
@@ -2573,12 +2570,7 @@ namespace user
       //      return;
         // }
 
-         single_lock sl2(mutex_display(),false);
-
-         if(mutex_display() != NULL && !sl2.lock())
-         {
-            return;
-         }
+         single_lock sl2(mutex_display(),true);
 
          if(m_spdib.is_null())
             m_spdib.alloc(allocer());

@@ -714,29 +714,6 @@ d.unlock();
       UNREFERENCED_PARAMETER(pobj);
 
 
-/*      if(!m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
-      {
-         class rect rectWindow;
-         ::GetWindowRect(get_handle(), rectWindow);
-         m_pui->m_rectParentClient = rectWindow;
-         m_rectParentClient = rectWindow;
-      }*/
-
-      /*      if(m_spdibMultAlphaWork.is_null())
-      {
-      m_spdibMultAlphaWork.create(get_app());
-      }
-
-      if(m_spdib.is_null())
-      {
-      m_spdib.create(get_app());
-      }
-
-      if(m_spdib.is_set() && m_rectParentClient.area() > 0)
-      {
-      m_spdib->create(m_rectParentClient.size());
-      }*/
-
       m_pui->layout();
 
 
