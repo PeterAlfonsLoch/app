@@ -187,7 +187,7 @@ namespace filemanager
       bool               m_bCreateImageList;
       bool               m_bCreateImageListRedraw;
       index               m_iAnimate;
-      ::user::buffer   m_gdibuffer;
+//      ::user::buffer   m_gdibuffer;
       create_image_list_thread * m_pcreateimagelistthread;
 
       int64_t          m_iCreateImageListStep;

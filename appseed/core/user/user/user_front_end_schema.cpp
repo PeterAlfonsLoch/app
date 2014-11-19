@@ -127,7 +127,7 @@ namespace user
       //}
    }
 
-   void front_end_schema::DrawCheck(check::check echeck, const RECT & rect, ::draw2d::graphics * pdc)
+   void front_end_schema::DrawCheck(check::e_check echeck, const RECT & rect, ::draw2d::graphics * pdc)
    {
       if(echeck == check::checked)
       {

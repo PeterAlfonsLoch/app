@@ -14,7 +14,7 @@ namespace filemanager
       ::user::scroll_view(papp),
       ::user::list(papp),
       ::userfs::list(papp),
-      m_gdibuffer(papp),
+      //m_gdibuffer(papp),
       m_mutex(papp)
    {
          m_iAnimate = 0;
@@ -1591,13 +1591,13 @@ namespace filemanager
             RGB(255, 255, 255),
             127);
 
-         imaging.bitmap_blend(
-            pdc,
-            null_point(),
-            rectClipBox.size(),
-            m_gdibuffer.GetBuffer(),
-            null_point(),
-            (byte)(255 - m_iAnimate * 25));
+         //imaging.bitmap_blend(
+         //   pdc,
+         //   null_point(),
+         //   rectClipBox.size(),
+         //   m_gdibuffer.GetBuffer(),
+         //   null_point(),
+         //   (byte)(255 - m_iAnimate * 25));
 
       }
 
@@ -1607,7 +1607,7 @@ namespace filemanager
    void file_list::TakeAnimationSnapshot()
    {
       m_iAnimate = 1;
-      ::user::list::_001OnDraw(m_gdibuffer.GetBuffer());
+//      ::user::list::_001OnDraw(m_gdibuffer.GetBuffer());
    }
 
    void file_list::_017OpenSelected(bool bOpenFile, ::action::context actioncontext)

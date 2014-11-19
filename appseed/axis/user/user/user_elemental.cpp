@@ -13,6 +13,8 @@ namespace user
 
    }
 
+   // elemental
+
    void elemental::_001RedrawWindow()
    {
 
@@ -25,6 +27,9 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 
    }
+
+
+   // keyboard focus
 
 
    void elemental::keyboard_focus_OnTimer(int32_t iTimer)
@@ -68,6 +73,31 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
    }
+
+
+   ::user::interaction * elemental::GetParent() const
+   {
+
+      return NULL;
+
+   }
+
+   ::user::interaction * elemental::GetWindow() const
+   {
+
+      return NULL;
+
+   }
+
+   bool elemental::BaseOnControlEvent(control_event * pevent)
+   {
+
+      UNREFERENCED_PARAMETER(pevent);
+
+      return false;
+
+   }
+
 
    bool elemental::keyboard_focus_is_focusable()
    {
@@ -205,11 +235,15 @@ namespace user
       return true;
    }
 
+   // mouse focus
+
    void elemental::mouse_focus_OnLButtonUp(signal_details * pobj)
    {
    }
 
-   void ::user::elemental::_001GetText(string & str) const
+   // text interface
+
+   void elemental::_001GetText(string & str) const
    {
 
       UNREFERENCED_PARAMETER(str);
@@ -217,7 +251,7 @@ namespace user
    }
 
 
-   void ::user::elemental::_001GetSelText(string & str) const
+   void elemental::_001GetSelText(string & str) const
    {
 
       UNREFERENCED_PARAMETER(str);
@@ -225,7 +259,7 @@ namespace user
    }
 
 
-   void ::user::elemental::_001SetText(const string & str,::action::context actioncontext)
+   void elemental::_001SetText(const string & str,::action::context actioncontext)
    {
 
       UNREFERENCED_PARAMETER(str);
@@ -234,7 +268,7 @@ namespace user
    }
 
 
-   strsize ::user::elemental::get_length() const
+   strsize elemental::get_length() const
    {
 
       string str;
@@ -263,7 +297,62 @@ namespace user
    }
 
 
+   // check interface
 
+   check::e_check elemental::_001GetCheck()
+   {
+
+      return check::unchecked;
+
+   }
+
+
+   void elemental::_001SetCheck(bool bChecked,::action::context actioncontext)
+   {
+
+      _001SetCheck((check::e_check) (bChecked ? check::checked : check::unchecked),actioncontext);
+
+   }
+
+
+   void elemental::_001SetCheck(check::e_check echeck,::action::context actioncontext)
+   {
+
+      UNREFERENCED_PARAMETER(echeck);
+      UNREFERENCED_PARAMETER(actioncontext);
+
+   }
+
+
+   void elemental::_001ToggleCheck(::action::context actioncontext)
+   {
+
+      if(_001GetCheck() == check::checked)
+      {
+
+         _001SetCheck(check::unchecked,actioncontext);
+
+      }
+      else if(_001GetCheck() == check::unchecked)
+      {
+
+         _001SetCheck(check::checked,actioncontext);
+
+      }
+      else if(_001GetCheck() == check::tristate)
+      {
+
+         _001SetCheck(check::unchecked,actioncontext);
+
+      }
+      else
+      {
+
+         _001SetCheck(check::unchecked,actioncontext);
+
+      }
+
+   }
 
 
 } // namespace user

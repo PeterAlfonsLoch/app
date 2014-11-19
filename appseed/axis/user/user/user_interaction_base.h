@@ -8,8 +8,8 @@ namespace user
    class CLASS_DECL_AXIS interaction_base:
       virtual public elemental,
       virtual public command_target,
-      virtual public ::user::elemental,
-      virtual public elemental,
+//      virtual public ::user::elemental,
+//      virtual public elemental,
       virtual public draw_interface,
       virtual public ::user::schema
    {

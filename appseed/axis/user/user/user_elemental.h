@@ -8,7 +8,8 @@ namespace user
 
 
    class CLASS_DECL_AXIS elemental :
-      virtual public ::signalizable
+      virtual public ::signalizable,
+      virtual public ::string_interface
    {
    public:
 
@@ -32,16 +33,16 @@ namespace user
       virtual void pre_translate_message(signal_details * pobj);
 
 
-      // elemental
+      // keyboard focus
 
       virtual void keyboard_focus_OnTimer(int32_t iTimer);
       virtual void keyboard_focus_OnChar(signal_details * pobj);
       virtual void keyboard_focus_OnSysChar(signal_details * pobj);
       virtual void keyboard_focus_OnKeyDown(signal_details * pobj);
       virtual void keyboard_focus_OnKeyUp(signal_details * pobj);
-      virtual ::user::interaction * GetParent() const = 0;
-      virtual ::user::interaction * GetWindow() const = 0;
-      virtual bool BaseOnControlEvent(control_event * pevent) = 0;
+      virtual ::user::interaction * GetParent() const;
+      virtual ::user::interaction * GetWindow() const;
+      virtual bool BaseOnControlEvent(control_event * pevent);
       virtual elemental * keyboard_get_next_focusable(elemental * pfocus = NULL,bool bSkipChild = false,bool bSkipSiblings = false,bool bSkipParent = false);
       virtual bool keyboard_set_focus();
 
@@ -49,7 +50,7 @@ namespace user
       virtual bool keyboard_focus_is_focusable();
       virtual bool keyboard_focus_OnSetFocus();
 
-      // elemental
+      // mouse focus
 
       virtual void mouse_focus_OnLButtonUp(signal_details * pobj);
 

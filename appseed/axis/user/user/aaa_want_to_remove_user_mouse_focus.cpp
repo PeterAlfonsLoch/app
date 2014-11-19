@@ -3,19 +3,19 @@
 namespace user
 {
 
-   mouse_focus::mouse_focus()
+   /*elemental::elemental()
    {
    }
 
 
-   mouse_focus::~mouse_focus()
+   elemental::~elemental()
    {
    }
 
 
-   void mouse_focus::mouse_focus_OnLButtonUp(signal_details * pobj)
+   void elemental::mouse_focus_OnLButtonUp(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-   }
+   }*/
 
 } // namespace user
