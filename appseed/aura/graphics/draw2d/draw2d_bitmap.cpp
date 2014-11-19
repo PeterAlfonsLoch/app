@@ -127,6 +127,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
       ::exception::throw_not_implemented(get_app());
+      return ::size(0,0);
    }
 
 
@@ -134,6 +135,7 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(posdata);
       ::exception::throw_interface_only(get_app());
+      return false;
    }
 
    void * bitmap::detach()
