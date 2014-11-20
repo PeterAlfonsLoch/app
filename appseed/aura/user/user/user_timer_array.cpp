@@ -248,7 +248,9 @@ namespace user
          item->m_uiElapse = uiElapse;
          item->m_uiLastSent = ::get_tick_count();
 
-         return (UINT)m_timera.add(item);
+         m_timera.add(item);
+
+         return m_timera.get_upper_bound();
 
       }
 

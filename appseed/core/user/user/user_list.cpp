@@ -3006,19 +3006,22 @@ namespace user
       column.m_iOrder = this->get_size();
       column.m_pcontainer = this;
 
-      index index = smart_pointer_array < list_column >::add(new list_column(column));
+      smart_pointer_array < list_column >::add(new list_column(column));
 
       OnChange();
 
-      return index;
+      return smart_pointer_array < list_column >::get_upper_bound();
 
    }
 
 
    void list_column_array::remove_all()
    {
-      smart_pointer_array < list_column >::remove_all(),
-         OnChange();
+      
+      smart_pointer_array < list_column >::remove_all();
+
+      OnChange();
+
    }
 
    ::count list_column_array::get_count()

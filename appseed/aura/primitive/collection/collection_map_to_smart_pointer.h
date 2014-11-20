@@ -48,6 +48,7 @@ public:
 
 #define mapsp(TYPE, ARG_TYPE, SPTYPE) map_to_smart_pointer < TYPE, ARG_TYPE, SPTYPE >
 #define strsp(SPTYPE) string_to_smart_pointer < SPTYPE >
+#define idsp(SPTYPE) mapsp(id, id, SPTYPE)
 
 
 

@@ -159,13 +159,13 @@ namespace aura
       }
 
       template < class T >
-      sp(type) type_info()
+      sp(type) & type_info()
       {
          return get_type_info(typeid(T));
       }
 
-      virtual sp(::type) get_type_info(const ::std_type_info & info);
-      sp(::type) get_type_info(const class id & idType)
+      virtual sp(::type) & get_type_info(const ::std_type_info & info);
+      sp(::type) & get_type_info(const class id & idType)
       {
 
          synch_lock sl(m_spmutexFactory);

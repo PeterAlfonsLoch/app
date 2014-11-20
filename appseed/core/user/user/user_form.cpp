@@ -29,11 +29,13 @@ namespace user
    index form::_001AddControl(class control::descriptor & descriptorParam)
    {
 
-      index indexNew = m_controldescriptorset.add(new class control::descriptor(descriptorParam));
+      //index indexNew = m_controldescriptorset.add(new class control::descriptor(descriptorParam));
+
+      
+
+      class control::descriptor * pdescriptor = m_controldescriptorset.add(new class control::descriptor(descriptorParam));
 
       descriptorParam.clear();
-
-      class control::descriptor * pdescriptor = m_controldescriptorset.element_at(indexNew);
 
       pdescriptor->m_pform = this;
 
@@ -115,7 +117,7 @@ namespace user
 
       }
 
-      return indexNew;
+      return m_controldescriptorset.get_upper_bound();
 
    }
 

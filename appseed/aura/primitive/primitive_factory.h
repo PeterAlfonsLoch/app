@@ -161,8 +161,11 @@ class CLASS_DECL_AURA base_factory :
 public:
 
 
-   bool                             m_bSimpleFactoryRequest;
-   spa(type)             m_typeinfoptraSimpleFactoryRequest;
+   sp(mutex)                     m_pmutex;
+   idsp(factory_item_base)       m_mapItem;
+   idsp(factory_allocator)       m_mapAllocator;
+   bool                          m_bSimpleFactoryRequest;
+   spa(type)                     m_typeinfoptraSimpleFactoryRequest;
 
 
 
@@ -254,27 +257,17 @@ public:
    }
 
    template < class T >
-   sp(factory_allocator) get_allocator(int32_t iCount, bool bAligned);
+   sp(factory_allocator) & get_allocator(int32_t iCount, bool bAligned);
 
 
-   bool is_set(const char * pszType);
+   inline bool is_set(::id id) {  return m_mapItem[id].is_set(); }
 
-   void set_at(const char * pszType, factory_item_base * pitem);
-   void set_at(const char * pszType, sp(factory_allocator) pitem);
-
-   sp(factory_allocator) get_allocator(const char * pszType);
 
    void discard(sp(element) pobject);
 
    void enable_simple_factory_request(bool bEnable = true);
 
 
-private:
-   sp(mutex)                                                   m_pmutex;
-   sp(strid_array)                                             m_pstrida;
-   spa(factory_item_base)                                      m_itemptra;
-   sp(strid_array)                                             m_pstridaAllocator;
-   spa(factory_allocator)                                      m_itemptraAllocator;
 };
 
 

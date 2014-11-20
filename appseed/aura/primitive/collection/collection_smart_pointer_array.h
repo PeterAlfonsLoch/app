@@ -122,13 +122,21 @@ public:
 
    }
 
+   smart_pointer < T > & add(T * p)
+   {
+
+      return array < smart_pointer < T > >::add_new() = p;
+
+   }
+
+
    bool add_unique(T * p)
    {
 
       if(contains(p))
          return false;
 
-      this->add((const sp(T) &) p);
+      this->add(p);
 
       return true;
 

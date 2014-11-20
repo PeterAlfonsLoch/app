@@ -731,7 +731,7 @@ namespace aura
    }
 
 
-   sp(type) system::get_type_info(const ::std_type_info & info)
+   sp(type) & system::get_type_info(const ::std_type_info & info)
    {
 
       synch_lock sl(m_spmutexFactory);
