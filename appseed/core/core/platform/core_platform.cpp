@@ -661,7 +661,7 @@ namespace core
 
       string strApp(pszAppId);
 
-      ::aura::application * papp = application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      sp(::aura::application) papp = application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       if(papp == NULL)
          return NULL;
 

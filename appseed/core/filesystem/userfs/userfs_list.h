@@ -19,7 +19,7 @@ namespace userfs
 
 
 
-      list(sp(::aura::application) appp);
+      list(::aura::application * papp);
       virtual ~list();
 
       virtual void _001InsertColumns();
