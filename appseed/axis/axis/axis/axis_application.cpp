@@ -1813,13 +1813,13 @@ namespace axis
    bool application::on_thread_on_idle(::thread_impl * pimpl, LONG lCount)
    {
 
-      ASSERT_VALID(this);
-
-#if defined(WINDOWS) && defined(DEBUG) && !defined(___NO_DEBUG_CRT)
-      // check core API's allocator (before idle)
-      if(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-         ASSERT(__check_memory());
-#endif
+//      ASSERT_VALID(this);
+//
+//#if defined(WINDOWS) && defined(DEBUG) && !defined(___NO_DEBUG_CRT)
+//      // check core API's allocator (before idle)
+//      if(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
+//         ASSERT(__check_memory());
+//#endif
 
       single_lock sl(&pimpl->m_mutexUiPtra,TRUE);
 
@@ -1864,12 +1864,12 @@ namespace axis
       {
       }
 
-#if defined(WINDOWS) && defined(DEBUG) && !defined(___NO_DEBUG_CRT)
-      // check core API's allocator (after idle)
-      if(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
-         ASSERT(__check_memory());
-#endif
-
+//#if defined(WINDOWS) && defined(DEBUG) && !defined(___NO_DEBUG_CRT)
+//      // check core API's allocator (after idle)
+//      if(_CrtSetDbgFlag(_CRTDBG_REPORT_FLAG) & _CRTDBG_CHECK_ALWAYS_DF)
+//         ASSERT(__check_memory());
+//#endif
+//
 
 
       return lCount < 0;  // nothing more to do if lCount >= 0
