@@ -69,7 +69,7 @@ namespace message
          UINT                    m_uiIdEnd;
          sp(class ::signal)      m_psignal;
 
-         HandlerItemArray        m_handlera;
+         //HandlerItemArray        m_handlera;
 
          Signal();
          ~Signal();
@@ -122,6 +122,9 @@ namespace message
       template < class T >
       bool AddMessageHandler(UINT message, UINT uiCode, UINT uiIdStart, UINT uiIdEnd, T * psignalizable, void (T::*pfn)(signal_details *), bool bAddUnique = true);
 
+      template < class T >
+      bool RemoveMessageHandler(UINT message,UINT uiCode,UINT uiIdStart,UINT uiIdEnd,T * psignalizable,void (T::*pfn)(signal_details *));
+
       virtual e_prototype GetMessagePrototype(UINT uiMessage,UINT uiCode);
 
       virtual void install_message_handling(::message::dispatch * pinterface);
@@ -165,9 +168,9 @@ namespace message
          psignal->m_eprototype = GetMessagePrototype(message,0);
          psignal->m_psignal = canew(class ::signal());
          psignal->m_psignal->connect(psignalizable,pfn);
-         HandlerItem <T> * pitem = canew(HandlerItem < T >);
-         pitem->m_psignalizable = psignalizable;
-         psignal->m_handlera.add(pitem);
+         //HandlerItem <T> * pitem = canew(HandlerItem < T >);
+         //pitem->m_psignalizable = psignalizable;
+         //psignal->m_handlera.add(pitem);
          m_signala.add(psignal);
       }
       else
@@ -177,9 +180,9 @@ namespace message
          // If a matching Signal is found, connect to
          // this signal.
          psignal->m_psignal->connect(psignalizable,pfn);
-         HandlerItem <T> * pitem = canew(HandlerItem<T>);
-         pitem->m_psignalizable = psignalizable;
-         psignal->m_handlera.add(pitem);
+         //HandlerItem <T> * pitem = canew(HandlerItem<T>);
+         //pitem->m_psignalizable = psignalizable;
+         //psignal->m_handlera.add(pitem);
       }
 
       m_iHandling++;
@@ -188,6 +191,32 @@ namespace message
 
    }
 
+   template < class T >
+   bool dispatch::RemoveMessageHandler(UINT message,UINT uiCode,UINT uiIdStart,UINT uiIdEnd,T * psignalizable,void (T::*pfn)(signal_details *))
+   {
+
+      Signal * psignal = m_signala.GetSignalByMessage(message,uiCode,uiIdStart,uiIdEnd);
+
+      if(psignal == NULL)
+      {
+         return true;
+      }
+      else
+      {
+         if(!psignal->m_psignal->is_connected(psignalizable,pfn))
+            return true;
+         do
+         {
+            psignal->m_psignal->disconnect(psignalizable,pfn);
+         } while(psignal->m_psignal->is_connected(psignalizable,pfn));
+      }
+
+      m_iHandling--;
+
+
+      return true;
+
+   }
 
 
 } // namespace message

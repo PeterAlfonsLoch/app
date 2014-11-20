@@ -1957,7 +1957,7 @@ ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)as
       </HeaderFileName>
     </Midl>
     <ClCompile>
-      <Optimization>Disabled</Optimization>
+      <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app/base/include/;$(SolutionDir)../../../app/base/openssl;$(SolutionDir)../../../app/base/openssl/crypto;crypto/asn1;crypto/evp;crypto/modes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>OPENSSL_NO_ASM;OPENSSL_USING_WINDOWS_DEFINITION_FILE;NO_WINDOWS_BRAINDEATH;OPENSSL_SYSNAME_WIN32;_CRT_SECURE_NO_WARNINGS;OPENSSL_BUILD_SHLIBCRYPTO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
@@ -1974,8 +1974,8 @@ ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)as
       <CompileAs>Default</CompileAs>
       <ExceptionHandling>Async</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
-      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <OmitFramePointers>false</OmitFramePointers>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <FunctionLevelLinking>false</FunctionLevelLinking>
@@ -1988,6 +1988,7 @@ ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)as
       <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -2009,6 +2010,7 @@ ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)as
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PostBuildEvent>
       <Command>

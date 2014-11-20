@@ -90,6 +90,22 @@ namespace message
    }
 
    template < class T1,class T2>
+   void os_disconnect(
+      UINT                              message,
+      dispatch *   pdispatch,
+      T1 *                              psignalizable,
+      void (T2::*                      pfn)(signal_details *))
+   {
+      pdispatch->RemoveMessageHandler(
+         message,
+         0,
+         0,
+         0,
+         dynamic_cast < T2 * > (psignalizable),
+         pfn);
+   }
+
+   template < class T1,class T2>
    void _connect(
       UINT                              message,
       dispatch *   pdispatch,
@@ -165,6 +181,8 @@ namespace message
 #if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS)
 #define IGUI_WIN_MSG_LINK \
    ::message::os_connect
+#define IGUI_WIN_MSG_UNLINK \
+   ::message::os_disconnect
 #else
 #define IGUI_WIN_MSG_LINK(p1, p2, p3, p4) \
    ;

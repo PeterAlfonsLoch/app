@@ -97,6 +97,8 @@ namespace windows
 
    void window_draw::_synch_redraw()
    {
+      
+      return;
 
       keep_event_reset keepeventreset(&m_eventFree);
 

@@ -1048,13 +1048,14 @@ namespace user
       {
 
          SetTimer(1984 + 77 + 3,250,NULL);
+         IGUI_WIN_MSG_LINK(WM_TIMER,m_pimpl,this,&interaction::_001OnTimer);
 
       }
       else
       {
 
          KillTimer(1984 + 77 + 3);
-
+         IGUI_WIN_MSG_UNLINK(WM_TIMER,m_pimpl,this,&interaction::_001OnTimer);
       }
 
    }

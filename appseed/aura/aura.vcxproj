@@ -1900,14 +1900,14 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Full</Optimization>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <OmitFramePointers>true</OmitFramePointers>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <OmitFramePointers>false</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <SDLCheck>
@@ -5213,6 +5213,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <None Include="primitive\collection\collection.inl" />
     <None Include="primitive\primitive_factory_impl.inl" />
     <None Include="primitive\str\str.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\aqua\aqua.vcxproj">
+      <Project>{51778453-c0aa-419d-a87f-4338c9dde3fa}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

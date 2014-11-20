@@ -1746,12 +1746,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Full</Optimization>
       <ExceptionHandling>Async</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <OmitFramePointers>true</OmitFramePointers>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <OmitFramePointers>false</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <StringPooling>false</StringPooling>
@@ -2702,6 +2702,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </ProjectReference>
     <ProjectReference Include="..\..\axis\bzip2\axisbzip2.vcxproj">
       <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\freeimage\axisfreeimage.vcxproj">
+      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\axis\mysql\axismysql.vcxproj" />
     <ProjectReference Include="..\..\axis\openssl\axisopenssl.vcxproj">
