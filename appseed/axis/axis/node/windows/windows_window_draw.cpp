@@ -354,8 +354,9 @@ namespace windows
 
                if(get_tick_count() - pui->m_dwLastFullUpdate < 25)
                {
-                  l++;
+
                   continue;
+
                }
 
                try
@@ -381,8 +382,6 @@ namespace windows
 
             }
 
-            l++;
-
          }
          catch(simple_exception & se)
          {
@@ -405,7 +404,7 @@ namespace windows
          if(!bOk)
          {
 
-            System.m_frameptra.remove(System.m_frameptra[l]);
+            System.remove_frame(pui);
 
          }
 

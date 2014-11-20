@@ -1388,7 +1388,7 @@ namespace windows
          }
          user::oswindow_array oswindowa;
          user::interaction_spa wnda(get_app());
-         wnda = System.frames();
+         wnda = System.m_uiptraFrame;
          oswindowa = wnda.get_hwnda();
          user::window_util::SortByZOrder(oswindowa);
          for(int32_t i = 0; i < oswindowa.get_size(); i++)

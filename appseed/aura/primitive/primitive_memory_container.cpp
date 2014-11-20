@@ -12,6 +12,7 @@ namespace primitive
 //      m_spmemory = canew(primitive::memory(papp));
       
       m_dwAllocationAddUp = 1024;
+      m_pvppa = NULL;
       
    }
 
@@ -19,6 +20,7 @@ namespace primitive
    memory_container ::memory_container(::aura::application * papp, void * pmemory, memory_size dwSize) :
       element(papp)
    {
+      m_pvppa = NULL;
       m_spmemory = canew(primitive::memory(this, pmemory, dwSize));
    }
 
@@ -26,6 +28,7 @@ namespace primitive
    memory_container ::memory_container(::aura::application * papp, memory_base * pmemory) :
       element(papp)
    {
+      m_pvppa = NULL;
       m_spmemory = pmemory;
    }
 
@@ -33,12 +36,19 @@ namespace primitive
    memory_container ::memory_container(const memory_container & container) :
       object(container)
    {
+      m_pvppa = NULL;
       operator = (container);
    }
 
 
    memory_container ::   ~memory_container()
    {
+      if(m_pvppa != NULL)
+      {
+         delete m_pvppa;
+         m_pvppa = NULL;
+
+      }
    }
 
 
@@ -154,15 +164,17 @@ namespace primitive
 
    void memory_container ::keep_pointer(void **ppvoid)
    {
-         m_vppa.add(ppvoid);
+         vppa().add(ppvoid);
    }
 
 
    void memory_container ::offset_kept_pointers(memory_offset iOffset)
    {
-      for(int32_t i = 0; i < m_vppa.get_size(); i++)
+      if(m_pvppa == NULL)
+         return;
+      for(int32_t i = 0; i < m_pvppa->get_size(); i++)
       {
-         *m_vppa.element_at(i) = ((LPBYTE) *m_vppa.element_at(i)) + iOffset;
+         *m_pvppa->element_at(i) = ((LPBYTE)*m_pvppa->element_at(i)) + iOffset;
       }
    }
 
@@ -181,8 +193,20 @@ namespace primitive
          m_spmemory = new primitive::memory(this);
          m_spmemory->copy_from(container.m_spmemory);
       }
-      m_vppa.remove_all();
+
+      if(m_pvppa != NULL)
+      {
+
+         delete m_pvppa;
+
+         m_pvppa = NULL;
+
+      }
+      
+      //m_pvppa->remove_all();
+
       return *this;
+
    }
 
 
@@ -311,6 +335,19 @@ namespace primitive
 
    }
 
+   ptr_array < void * > & memory_container::vppa()
+   {
+
+      if(m_pvppa == NULL)
+      {
+
+         m_pvppa = new ptr_array < void * > ();
+
+      }
+
+      return *m_pvppa;
+
+   }
 
 
 } // namespace primitive

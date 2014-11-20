@@ -3289,7 +3289,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    sp(::user::interaction) application::uie_from_point(point pt)
    {
 
-      user::interaction_spa wnda = frames();
+      user::interaction_spa wnda = m_uiptraFrame;
 
       user::oswindow_array oswindowa;
 
@@ -4084,7 +4084,9 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
    int32_t application::GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept)
    {
-      ::user::interaction_spa wnda = frames();
+
+      ::user::interaction_spa wnda = m_uiptraFrame;
+
       int32_t iCount = 0;
       for(int32_t i = 0; i < wnda.get_size(); i++)
       {
@@ -4104,7 +4106,9 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
    int32_t application::GetVisibleFrameCount()
    {
-      ::user::interaction_spa wnda = frames();
+      
+      ::user::interaction_spa wnda = m_uiptraFrame;
+
       int32_t iCount = 0;
       for(int32_t i = 0; i < wnda.get_size(); i++)
       {

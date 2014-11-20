@@ -16,9 +16,8 @@ namespace primitive
 
 
       sp(memory_base)                        m_spmemory;
-      ptr_array < void * >            m_vppa;
+      ptr_array < void * > *                 m_pvppa;
       memory_size                            m_dwAllocationAddUp;
-
 
    public:
 
@@ -28,6 +27,8 @@ namespace primitive
       memory_container(const memory_container & container);
       virtual ~memory_container();
 
+
+      
 
       void allocate_add_up(memory_size dwAddUp);
       void allocate(memory_size dwNewLength);
@@ -81,6 +82,11 @@ namespace primitive
 
       string str() const;
       void str(const string & str);
+
+   protected:
+
+      ptr_array < void * > & vppa();
+
 
    };
 
