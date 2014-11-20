@@ -785,6 +785,9 @@
     <ClInclude Include="user\user\aaa_want_to_remove_user_text_interface.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_print_job.h">
+      <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\graphics_window_graphics.cpp">
@@ -1301,9 +1304,6 @@
     </None>
     <None Include="axis\axis\axis_system_xml.inl">
       <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

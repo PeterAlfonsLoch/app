@@ -37,7 +37,7 @@ public:
 
    static void system(const char * pszProjectName);
 
-   inline allocatorsp allocer();
+   inline allocatorsp & allocer();
 
    inline ::aura::application * get_app() const { return m_pauraapp; }
 

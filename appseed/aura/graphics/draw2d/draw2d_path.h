@@ -213,7 +213,7 @@ namespace draw2d
       {
       }
 
-      path_sp(allocatorsp allocer) :
+      path_sp(const allocatorsp & allocer) :
          smart_pointer < path > (allocer)
       {
       }

@@ -487,7 +487,7 @@ namespace file
       else if(::str::begins_eat_ci(strPath, "matter://"))
       {
 
-         ::aura::application * papp = NULL;
+         sp(::aura::application) papp;
 
          if(System.url().get_server("matter://" + strPath) == m_pauraapp->m_strAppName)
          {

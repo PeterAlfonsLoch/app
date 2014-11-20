@@ -14,7 +14,7 @@ namespace visual
 {
 
    
-   fastblur::fastblur(allocatorsp allocer) :
+   fastblur::fastblur(const allocatorsp & allocer) :
       dib_sp(allocer)
    {
       

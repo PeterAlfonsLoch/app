@@ -16,7 +16,7 @@ root::root(::aura::application * papp)
 
    m_countReference  = 1;
    m_bHeap           = false;
-   m_pauraapp        = papp.m_p;
+   m_pauraapp        = papp;
 
 }
 

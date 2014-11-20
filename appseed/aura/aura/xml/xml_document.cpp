@@ -6,9 +6,9 @@ namespace xml
 
 
    document::document(::aura::application * papp, parse_info * pparseinfo) :
-      element(papp.is_set() ? papp.m_p : get_thread_app()),
-      data(papp.is_set() ? papp.m_p : get_thread_app()),
-      node(papp.is_set() ? papp.m_p : get_thread_app())
+      element(papp != NULL() ? papp : get_thread_app()),
+      data(papp != NULL ? papp : get_thread_app()),
+      node(papp != NULL ? papp : get_thread_app())
    {
 
       m_pdoc         = this;

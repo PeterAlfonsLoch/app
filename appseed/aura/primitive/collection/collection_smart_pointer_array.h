@@ -494,7 +494,7 @@ public:
       for(index i = 0; i < c; i++)
       {
 
-         this->add((T *) a[i]);
+         this->add(a.sp_at(i));
 
       }
 

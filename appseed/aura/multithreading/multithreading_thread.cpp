@@ -723,7 +723,7 @@ bool thread::on_run_step()
 
    step_timer();
 
-   ::aura::application * papp = (this);
+   sp(::aura::application) papp = (this);
 
    m_dwAlive = ::get_tick_count();
 
@@ -983,7 +983,7 @@ void thread::register_at_required_threads()
 
    // register default dependencies
 
-   ::aura::application * papp = this;
+   sp(::aura::application) papp = this;
 
    sp(::aura::session) psession = this;
 

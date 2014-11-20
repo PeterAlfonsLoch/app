@@ -336,7 +336,7 @@ namespace aura
       if(!contains_app(pszAppId))
          return NULL;
 
-      ::aura::application * papp = canew(APP());
+      sp(::aura::application) papp = canew(APP());
 
       if(papp == NULL)
          return NULL;
@@ -384,7 +384,7 @@ namespace aura
 
 
 
-inline allocatorsp element::allocer()
+inline allocatorsp & element::allocer()
 {
 
    return m_pauraapp->m_allocer;

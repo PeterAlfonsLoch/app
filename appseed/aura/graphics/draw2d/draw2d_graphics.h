@@ -701,7 +701,7 @@ namespace draw2d
       {
       }
 
-      graphics_sp(allocatorsp allocer) :
+      graphics_sp(const allocatorsp & allocer) :
          smart_pointer < graphics > (allocer)
       {
       }
@@ -714,7 +714,7 @@ namespace draw2d
    {
    public:
 
-      memory_graphics(allocatorsp allocer);
+      memory_graphics(const allocatorsp & allocer);
       virtual ~memory_graphics();
 
    };

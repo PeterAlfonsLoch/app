@@ -11,7 +11,7 @@ namespace windows
 	public:
 
 
-	   print_job(sp(::aura::application) papp);
+	   print_job(::aura::application * papp);
 	   virtual ~print_job();
 
 

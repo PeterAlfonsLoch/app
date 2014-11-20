@@ -25,7 +25,7 @@ element * creatable_factory_item < CREATABLE_TYPE > ::create(::aura::application
 
 #undef new
 
-   CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(spapp);
+   CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(spapp.m_p);
 
 #define new AURA_NEW
 

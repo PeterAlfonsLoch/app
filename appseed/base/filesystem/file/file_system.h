@@ -33,7 +33,7 @@ namespace file
 
       path & path();
 
-      virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, sp(::aura::application) app);
+      virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::aura::application * papp);
       virtual void move(const char * pszNew, const char * psz);
       virtual void del(const char * psz);
       virtual string copy(const char * psz, ::aura::application * papp);

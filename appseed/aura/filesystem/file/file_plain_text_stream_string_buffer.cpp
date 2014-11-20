@@ -7,7 +7,7 @@ namespace file
 
 
    plain_text_stream_string_buffer::plain_text_stream_string_buffer(::aura::application * papp) :
-      element(papp.is_set() ? papp.m_p : get_thread_app())
+      element(papp != NULL ? papp : get_thread_app())
    {
 
       m_spstringbuffer.alloc(allocer());

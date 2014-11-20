@@ -13,7 +13,7 @@ namespace plugin
       ::core::system(papp)
    {
 
-      //   if (papp.is_set())
+      //   if (papp != NULL)
       //   {
       //      m_pauraapp = papp;
       //   }

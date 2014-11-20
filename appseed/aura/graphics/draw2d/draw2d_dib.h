@@ -292,7 +292,7 @@ namespace draw2d
       {
       }
 
-      dib_sp(allocatorsp allocer) :
+      dib_sp(const allocatorsp & allocer) :
          smart_pointer < dib > (allocer)
       {
       }

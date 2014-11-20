@@ -266,7 +266,7 @@ command_line_sp::command_line_sp()
 }
 
 
-command_line_sp::command_line_sp(allocatorsp allocer) :
+command_line_sp::command_line_sp(const allocatorsp & allocer) :
    smart_pointer < command_line > (allocer)
 {
 }

@@ -18,7 +18,7 @@ namespace visual
    {
    }
 
-   dib_sp::dib_sp(allocatorsp allocer) :
+   dib_sp::dib_sp(const allocatorsp & allocer) :
       ::draw2d::dib_sp(allocer)
    {
    }

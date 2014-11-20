@@ -40,7 +40,7 @@ protected:
 
 #ifdef WINDOWS
 
-   mutex(sp(::aura::application) pappp, const char * pstrName, HANDLE h);
+   mutex(::aura::application * papp, const char * pstrName, HANDLE h);
 
 #elif defined(ANDROID)
 

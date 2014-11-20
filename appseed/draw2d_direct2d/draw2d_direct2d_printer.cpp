@@ -103,7 +103,7 @@ namespace draw2d_direct2d
       if(m_hdc != NULL)
          return NULL;
       m_hdc = ::CreateDC("WINSPOOL", (LPCSTR) m_pdevmode->dmDeviceName, NULL, m_pdevmode);
-      ::draw2d::graphics_sp g(get_app());
+      ::draw2d::graphics_sp g(allocer());
       g->Attach(m_hdc);
       return g.detach();
    }

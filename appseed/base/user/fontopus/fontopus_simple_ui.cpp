@@ -221,7 +221,7 @@ namespace fontopus
 
       if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != NULL)
       {
-         ::aura::application * papp = puiParent;
+         sp(::aura::application) papp = puiParent->get_app();
          if(papp != NULL)
          {
             papp->open_link("ca2account:this");

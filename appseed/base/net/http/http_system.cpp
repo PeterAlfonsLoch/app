@@ -483,7 +483,7 @@ namespace http
       UNREFERENCED_PARAMETER(pszVersion);
       string strServer = pszHost;
       string strProtocol = pszProtocol;
-      ::aura::application * papp = set["app"].cast < application >();
+      sp(::aura::application) papp = set["app"].cast < application >();
       int32_t iPort;
       if(strProtocol == "https")
       {
@@ -1151,7 +1151,7 @@ retry:
       string strServer = System.url().get_root(pszUrl);
       string strProtocol = System.url().get_protocol(pszUrl);
       string strObject = System.url().get_object(pszUrl);
-      ::aura::application * papp = set["app"].cast < application >();
+      sp(::aura::application) papp = set["app"].cast < application >();
       int32_t iPort;
       if(strProtocol == "https")
       {

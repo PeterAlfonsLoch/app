@@ -57,7 +57,7 @@ namespace user
          }
          else
          {
-            m_timera.add(new timer_item(timera[i]));
+            m_timera.add(new timer_item(timera(i)));
             timera.remove_at(i);
          }
       }
