@@ -52,7 +52,7 @@ namespace user
       COLORREF       m_crTextNormal;
       
 
-      front_end_schema(sp(::aura::application) app);
+      front_end_schema(::aura::application * papp);
       ~front_end_schema();
 
       virtual void DrawCheck(check::e_check echeck, const RECT & rect, ::draw2d::graphics * pdc);

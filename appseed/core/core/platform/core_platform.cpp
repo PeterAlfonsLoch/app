@@ -1732,9 +1732,9 @@ namespace core
    void platform::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      ::aura::application * papp = NULL;
+      sp(::aura::application) papp = NULL;
 
-      if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
+      if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp.is_set())
       {
 
          sp(::bergedge::pane_view) ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
