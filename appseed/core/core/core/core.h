@@ -967,7 +967,8 @@ class Ex1FactoryImpl;
 
 
 #include "core/net/usernet/usernet.h"
-#include "core/net/usermail/usermail.h"
+#include "core/database/simpledb/simpledb.h"
+//#include "core/net/usermail/usermail.h"
 #include "core/net/hi5/hi5.h"
 
 

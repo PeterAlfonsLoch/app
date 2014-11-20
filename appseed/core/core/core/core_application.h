@@ -74,7 +74,7 @@ namespace core
       int32_t                                m_iResourceId;
 
       sp(::user::wndfrm::wndfrm) m_pwndfrm;
-      sp(::usermail::usermail)               m_pusermail;
+
 
       stringa                                m_straAppInterest;
       string_map < oswindow,oswindow >       m_mapAppInterest;
@@ -433,7 +433,6 @@ namespace core
       virtual bool set_keyboard_layout(const char * pszPath,::action::context actioncontext);
 
       inline ::user::wndfrm::wndfrm          & wndfrm() { return *m_pwndfrm; }
-      inline ::usermail::usermail                          & usermail() { return *m_pusermail; }
 
 
       string message_box(const char * pszMatter,property_set & propertyset);
