@@ -17,7 +17,7 @@ namespace aura
       virtual ~departament();
 
 
-      virtual void construct(sp(application) papp);
+      virtual void construct(::aura::application * papp);
       virtual void connect_to_application_signal();
 
 

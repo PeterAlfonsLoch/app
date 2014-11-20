@@ -22,7 +22,7 @@ namespace aura
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   void departament::construct(sp(application) papp)
+   void departament::construct(::aura::application * papp)
    {
 
       set_app(papp);
