@@ -245,8 +245,6 @@ public:
    inline raw_array & operator = (raw_array && a);
 #endif
 
-   inline operator TYPE * () {return get_data(); }
-   inline operator TYPE const * () const {return get_data(); }
 
 };
 

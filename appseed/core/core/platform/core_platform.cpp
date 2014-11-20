@@ -1469,7 +1469,7 @@ namespace core
    sp(::aura::application) platform::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
 
-      ::aura::application * papp = NULL;
+      sp(::aura::application) papp = NULL;
 
       if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszId),papp))
       {
