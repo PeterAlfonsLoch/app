@@ -13,7 +13,7 @@ namespace userex // ca8 + cube
       html_form(papp),
       html_form_view(papp),
       form_view(papp),
-      dialog(allocer())
+      dialog(papp)
    {
       m_dwStartTime = 0;
       m_dwDelay = 0;

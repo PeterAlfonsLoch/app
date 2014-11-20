@@ -336,21 +336,24 @@ namespace user
 
          }
          
-         if(!data_set(str + m_plistctrlinterface->m_dataid.m_id, iaWidth))
+         if(!data_save(str + m_plistctrlinterface->m_dataid.m_id, iaWidth))
             return false;
 
       }
       else
       {
          
-         data_load(str +m_plistctrlinterface->m_dataid.m_id,iaWidth);
-
-         ::count c = MIN(iaWidth.get_count(),m_plistctrlinterface->_001GetColumnCount());
-
-         for (index iColumn = 0; iColumn < c; iColumn++)
+         if(data_load(str + m_plistctrlinterface->m_dataid.m_id,iaWidth))
          {
 
-            m_plistctrlinterface->_001SetColumnWidth(iColumn, MAX(iaWidth[iColumn], 50));
+            ::count c = MIN(iaWidth.get_count(),m_plistctrlinterface->_001GetColumnCount());
+
+            for(index iColumn = 0; iColumn < c; iColumn++)
+            {
+
+               m_plistctrlinterface->_001SetColumnWidth(iColumn,MAX(iaWidth[iColumn],50));
+
+            }
 
          }
 

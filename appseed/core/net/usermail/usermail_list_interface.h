@@ -9,10 +9,6 @@ namespace usermail
       virtual public ::user::list
    {
    public:
-      list_interface(sp(::aura::application) appp);
-      virtual ~list_interface();
-
-      account * m_paccount;
 
       class CLASS_DECL_CORE data :
          virtual public ::user::list_data
@@ -33,7 +29,14 @@ namespace usermail
 
       };
 
+
       data * m_pdata;
+
+      account * m_paccount;
+
+
+      list_interface(::aura::application * papp);
+      virtual ~list_interface();
 
       virtual void   _001InsertColumns();
 
