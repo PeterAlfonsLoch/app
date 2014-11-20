@@ -44,7 +44,7 @@ namespace user
       virtual void synch_redraw();
 
 
-      ptr_array < ::user::interaction > get_wnda();
+      //ptr_array < ::user::interaction > get_wnda();
 
       
    };

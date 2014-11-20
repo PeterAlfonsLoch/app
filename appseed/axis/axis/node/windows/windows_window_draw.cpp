@@ -333,35 +333,26 @@ namespace windows
    // lprect should be in screen coordinates
    bool window_draw::UpdateBuffer()
    {
+
       if(m_bRender)
          return false;
-      //single_lock sl(&m_mutexRender,FALSE);
-      //if(!sl.lock(duration::zero()))
-        // return false;
-      //keep<bool> keepRender(&m_bRender,true,false,true);
-
-
-
-
-
-      synch_lock slFrame(&System.m_framea.m_mutex);
 
       rect rectWindow;
 
-      for(int32_t l = 0; l < System.m_framea.get_count();)
-      {
+      ::user::interaction * pui = NULL;
 
-         sp(::user::interaction) pframe = System.m_framea[l];
+      while(System.get_frame(pui))
+      {
 
          bool bOk = true;
 
          try
          {
 
-            if(pframe->IsWindowVisible() && pframe->m_bMayProDevian && System.m_framea[l]->m_psession.is_null())
+            if(pui->IsWindowVisible() && pui->m_bMayProDevian && pui->m_psession.is_null())
             {
 
-               if(get_tick_count() - pframe->m_dwLastFullUpdate < 25)
+               if(get_tick_count() - pui->m_dwLastFullUpdate < 25)
                {
                   l++;
                   continue;
@@ -370,7 +361,7 @@ namespace windows
                try
                {
 
-                  pframe->_001UpdateBuffer();
+                  pui->_001UpdateBuffer();
 
                }
                catch(...)
@@ -380,7 +371,7 @@ namespace windows
                try
                {
 
-                  pframe->_001UpdateScreen();
+                  pui->_001UpdateScreen();
 
                }
                catch(...)
@@ -414,7 +405,7 @@ namespace windows
          if(!bOk)
          {
 
-            System.frames().remove(System.m_framea[l]);
+            System.m_frameptra.remove(System.m_frameptra[l]);
 
          }
 

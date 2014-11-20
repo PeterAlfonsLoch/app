@@ -937,13 +937,15 @@ namespace axis
 
             System.enum_display_monitors();
 
-            for(index i = 0; i < System.frames().get_count(); i++)
+            ::user::interaction * pui = NULL;
+
+            while(System.get_frame(pui))
             {
 
                try
                {
 
-                  System.frames()[i]->post_message(WM_APP + 1984 + 21);
+                  pui->post_message(WM_APP + 1984 + 21);
 
                }
                catch(...)

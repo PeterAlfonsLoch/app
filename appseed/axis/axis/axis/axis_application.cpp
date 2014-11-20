@@ -11,8 +11,7 @@ namespace axis
    WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;
 
 
-   application::application():
-      m_framea(this)
+   application::application()
    {
 
       m_peventReady = NULL;
@@ -241,10 +240,62 @@ namespace axis
    }
 
 
-   ptr_array < ::user::interaction > application::frames()
+   //ptr_array < ::user::interaction > application::frames()
+   //{
+
+   //   return m_framea.base_ptra();
+
+   //}
+
+   bool application::get_frame(::user::interaction * & pui)
    {
 
-      return m_framea.base_ptra();
+      synch_lock sl(&m_mutexFrame);
+
+      if(m_uiptraFrame.get_count())
+      {
+
+         return 0;
+
+      }
+
+      if(pui == NULL)
+      {
+
+         return m_uiptraFrame[0];
+
+      }
+      else
+      {
+       
+         for(index i = 0; i < m_uiptraFrame.get_count(); i++)
+         {
+
+            if(m_uiptraFrame[i] == pui)
+            {
+
+               i++;
+
+               if(i < m_uiptraFrame.get_count())
+               {
+
+                  return m_uiptraFrame[i];
+
+               }
+               else
+               {
+
+                  return NULL;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return NULL;
 
    }
 
@@ -252,15 +303,13 @@ namespace axis
    void application::add_frame(sp(::user::interaction) pwnd)
    {
 
-      synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
+      synch_lock sl(&m_mutexFrame); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
       System.defer_create_system_frame_window();
 
       Session.on_create_frame_window();
 
-      m_framea.add(pwnd);
-
-      //pwnd->get_app()->register_dependent_thread(System.get_twf());
+      m_uiptraFrame.add(pwnd);
 
       if(m_puiMain == NULL)
       {
@@ -275,7 +324,7 @@ namespace axis
    void application::remove_frame(sp(::user::interaction) pwnd)
    {
 
-      synch_lock sl(&m_framea.m_mutex); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
+      synch_lock sl(&m_mutexFrame); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
       if(m_puiMain == pwnd)
       {
@@ -284,7 +333,7 @@ namespace axis
 
       }
 
-      m_framea.remove(pwnd);
+      m_uiptraFrame.remove(pwnd);
 
 
    }

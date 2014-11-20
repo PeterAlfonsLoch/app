@@ -1549,33 +1549,10 @@ namespace axis
       try
       {
 
-         synch_index_iterator it(m_framea);
+         ::user::interaction * pui = NULL;
 
-         ::user::interaction * pui;
-
-         for(it.m_i = 0; it.m_i < frames().get_count(); it.m_i++)
+         while(get_frame(pui))
          {
-
-            try
-            {
-
-               pui = frames()[it.m_i];
-
-            }
-            catch(...)
-            {
-
-               pui = NULL;
-
-            }
-
-            try
-            {
-               it.unlock();
-            }
-            catch(...)
-            {
-            }
 
             try
             {
@@ -1593,27 +1570,26 @@ namespace axis
             }
             catch(exit_exception & e)
             {
+               
                throw e;
+
             }
             catch(...)
             {
             }
 
-            try
-            {
-               it.lock();
-            }
-            catch(...)
-            {
-            }
          }
+
       }
       catch(exit_exception & e)
       {
+
          throw e;
+
       }
       catch(...)
       {
+
       }
 
    }

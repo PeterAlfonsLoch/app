@@ -23,7 +23,9 @@ namespace axis
       bool                                            m_bAxisInitialize;
       bool                                            m_bAxisInitializeResult;
 
-      synch_ptr_array < ::user::interaction >         m_framea;
+      mutex                                           m_mutexFrame;
+      ptr_array < ::user::interaction >               m_uiptraFrame;
+
       sp(::database::server)                          m_spdataserver;
 
       bool                                            m_bUpdateMatterOnInstall;
@@ -85,7 +87,7 @@ namespace axis
 
       virtual void process_message_filter(int32_t code,signal_details * pobj);
 
-      ptr_array < ::user::interaction > frames();
+      virtual bool get_frame(::user::interaction * & pui);
       virtual void add_frame(sp(::user::interaction) pwnd);
       virtual void remove_frame(sp(::user::interaction) pwnd);
 

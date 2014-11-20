@@ -234,7 +234,7 @@ namespace user
             sp(::user::interaction_child) pimplNew = canew(::user::interaction_child(get_app()));
 
             pimplNew->m_pui = this;
-            ::count cFrame = System.frames().remove(this); // no more a top level frame if it were one
+            System.remove_frame(this); // no more a top level frame if it were one
             m_pimpl = pimplNew;
             string strName;
             int32_t iStyle = get_window_long(GWL_STYLE);
@@ -253,10 +253,8 @@ namespace user
             if(!pimplNew->create_window(NULL,strName,iStyle,rectWindow,puiParent,GetDlgCtrlId()))
             {
                m_pimpl = pimplOld;
-               if(cFrame > 0)
-               {
-                  System.frames().add(this);
-               }
+
+               System.add_frame(this);
 
                pimplNew.release();
 

@@ -49,25 +49,19 @@ namespace user
 
       ::user::oswindow_array wndaApp;
 
-      single_lock sl(&System.m_framea.m_mutex, true);
+      ::user::interaction * pui = NULL;
 
-      ::user::interaction * pui;
-
-      for(int32_t l = 0; l < System.m_framea.get_count();)
+      while(System.get_frame(pui))
       {
 
          try
          {
 
-            if(System.m_framea[l]->oprop("session").is_new())
+            if(pui->oprop("session").is_new())
             {
 
-               if(System.m_framea[l]->m_bMayProDevian)
+               if(pui->m_bMayProDevian)
                {
-
-                  pui = System.m_framea[l];
-
-                  //sl.unlock();
 
                   pui->_001UpdateBuffer();
 
@@ -77,8 +71,6 @@ namespace user
 
             }
 
-            l++;
-
          }
          catch(simple_exception & se)
          {
@@ -87,26 +79,21 @@ namespace user
             {
 
                TRACE("No more a window explicitly");
-               System.frames().remove(System.m_framea[l]);
-             //wndpa.remove_at(l);
+
+               System.remove_frame(pui);
 
             }
+
          }
          catch(...)
          {
 
             TRACE("No more a window implicitly");
 
-            System.frames().remove(System.m_framea[l]);
-
-
-            //wndpa.remove_at(l);
+            System.remove_frame(pui);
 
          }
-         //if(!sl.m_bAcquired)
-         {
-           // sl.lock();
-         }
+
       }
 
       return true;
@@ -143,12 +130,12 @@ namespace user
    }
 
 
-   ptr_array < ::user::interaction > window_draw::get_wnda()
-   {
+   //ptr_array < ::user::interaction > window_draw::get_wnda()
+   //{
 
-      return System.frames();
+   //   return System.frames();
 
-   }
+   //}
 
 
 } // namespace user
