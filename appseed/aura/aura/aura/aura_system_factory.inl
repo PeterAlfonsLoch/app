@@ -8,9 +8,9 @@ element * creatable_factory_item < CREATABLE_TYPE > ::create(::aura::application
 
    void * pv = NULL;
    
-   sp(::aura::application) spapp;
+   //sp(::aura::application) spapp;
    
-   spapp = papp;
+   //spapp = papp;
 
    {
 
@@ -25,7 +25,7 @@ element * creatable_factory_item < CREATABLE_TYPE > ::create(::aura::application
 
 #undef new
 
-   CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(spapp.m_p);
+   CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(papp);
 
 #define new AURA_NEW
 
