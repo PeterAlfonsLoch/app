@@ -60,7 +60,7 @@ namespace base
 
 
 
-      m_psignal                  = canew(class signal());
+      //m_psignal                  = canew(class signal());
 
 
 

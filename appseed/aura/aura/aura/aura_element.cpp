@@ -121,11 +121,11 @@ element * element::clone()
 allocatorsp::allocatorsp(::aura::application * papp)
 {
 
-   sp(allocator) spallocator = canew(allocator());
+   allocator * pallocator = canew(allocator());
 
-   spallocator->m_pauraapp = papp;
+   pallocator->m_pauraapp = papp;
 
-   smart_pointer < allocator >::operator = (spallocator);
+   smart_pointer < allocator >::operator = (pallocator);
 
 }
 

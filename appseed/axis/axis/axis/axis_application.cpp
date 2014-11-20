@@ -71,7 +71,7 @@ namespace axis
 
 
 
-      m_psignal                  = canew(class signal());
+      //m_psignal                  = canew(class signal());
 
 
       m_bLicense                 = true;

@@ -3150,12 +3150,6 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
       xxdebug_box("m_pfilemanager::initialize ok","m_pfilemanager::initialize ok",MB_ICONINFORMATION);
 
-      m_pusermail = canew(::usermail::usermail(this));
-
-      m_pusermail->construct(this);
-
-      if(!m_pusermail->initialize())
-         return false;
 
       xxdebug_box("m_pusermail::initialize ok","m_pusermail::initialize ok",MB_ICONINFORMATION);
 

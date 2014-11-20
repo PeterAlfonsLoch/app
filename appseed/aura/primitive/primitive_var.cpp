@@ -1997,7 +1997,7 @@ const ::duration & var::duration() const
 
 property_set & var::propset(::aura::application * papp)
 {
-   sp(property_set) pset;
+   property_set * pset = NULL;
    if(m_etype == type_pvar)
    {
       pset = &m_pvar->propset();
