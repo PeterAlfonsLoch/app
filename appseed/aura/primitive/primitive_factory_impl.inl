@@ -2,7 +2,7 @@
 
 
 template < class T >
-void base_factory::creatable(sp(type) info, int32_t iCount, bool bOverwrite, bool bAligned)
+void base_factory::creatable(const type * info, int32_t iCount, bool bOverwrite, bool bAligned)
 {
    if(bOverwrite || !is_set(info->name()))
       m_mapItem[info->name()] = canew(creatable_factory_item<T>(get_app(), get_allocator<T>(iCount, bAligned)));
@@ -10,7 +10,7 @@ void base_factory::creatable(sp(type) info, int32_t iCount, bool bOverwrite, boo
 
 
 template < class T >
-void base_factory::cloneable(sp(type)  info, int32_t iCount, bool bOverwrite, bool bAligned)
+void base_factory::cloneable(const type *  info, int32_t iCount, bool bOverwrite, bool bAligned)
 {
    if(bOverwrite || !is_set(info->name()))
       m_mapItem[info->name()] = canew(cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount, bAligned)));
