@@ -123,14 +123,8 @@
     <Filter Include="Header Files\net">
       <UniqueIdentifier>{9513e7e7-9f17-4f12-af08-cdee98c981ca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\net\usermail">
-      <UniqueIdentifier>{1e5a524a-5fca-4e2b-81bf-977d8c45604a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net">
       <UniqueIdentifier>{d00ab034-f21f-4108-9212-58cf93f9db93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\usermail">
-      <UniqueIdentifier>{500e317b-ba38-45a5-9cbf-40d7c3effa13}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\math\calculator">
       <UniqueIdentifier>{6341b23d-6013-4016-983f-e6a4a2341377}</UniqueIdentifier>
@@ -779,24 +773,6 @@
     <ClInclude Include="programming\dynamic_source\dynamic_source_session.h">
       <Filter>Header Files\programming\dynamic_source</Filter>
     </ClInclude>
-    <ClInclude Include="net\usermail\usermail.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_account.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_db_pop3.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_frame.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_list_interface.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_usermail.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\userfs\userfs.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
@@ -979,9 +955,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\userfs\userfs_item.h">
       <Filter>Header Files\filesystem\userfs</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_item.h">
-      <Filter>Header Files\net\usermail</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
@@ -1223,9 +1196,6 @@
     <ClInclude Include="user\userex\userex_userex.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="net\usermail\usermail_tree.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_data.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -1352,6 +1322,9 @@
     <ClInclude Include="core\core\core_debug.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
+    <ClInclude Include="core\core\core_enum.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
     <ClInclude Include="core\core\core_fs_interface.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -1379,6 +1352,12 @@
     <ClInclude Include="core\core\core_main.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
+    <ClInclude Include="core\core\core_main_init_data.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_map_to_smart_pointer.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
     <ClInclude Include="core\core\core_match.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -1386,6 +1365,9 @@
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_os_history.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_os_implementation.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_patch.h">
@@ -1580,10 +1562,16 @@
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_up_down_target.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_down_up_interface.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.h">
@@ -1645,12 +1633,6 @@
     </ClInclude>
     <ClInclude Include="user\userex\userex_weekday_list_view.h">
       <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_up_down_target.h">
-      <Filter>Header Files\user\wndfrm\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_work_set_down_up_interface.h">
-      <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2149,18 +2131,6 @@
     <ClCompile Include="programming\dynamic_source\dynamic_source_session.cpp">
       <Filter>Source Files\programming\dynamic_source</Filter>
     </ClCompile>
-    <ClCompile Include="net\usermail\usermail_account.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_db_pop3.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_list_interface.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_usermail.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_userfs.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
@@ -2262,9 +2232,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_item.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_item.cpp">
-      <Filter>Source Files\net\usermail</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
@@ -2499,9 +2466,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_update_hint.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_tree.cpp">
-      <Filter>Source Files\net\usermail</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
@@ -2791,10 +2755,16 @@
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_up_down_target.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_down_up_interface.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.cpp">
@@ -2814,12 +2784,6 @@
     </ClCompile>
     <ClCompile Include="user\userex\userex_weekday_list_view.cpp">
       <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_work_set_down_up_interface.cpp">
-      <Filter>Source Files\user\wndfrm\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_up_down_target.cpp">
-      <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

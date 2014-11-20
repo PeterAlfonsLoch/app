@@ -633,7 +633,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAsManaged>false</CompileAsManaged>
-      <StringPooling>true</StringPooling>
+      <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
@@ -674,9 +674,6 @@
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ShowProgress>NotSet</ShowProgress>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <RandomizedBaseAddress>true</RandomizedBaseAddress>
-      <MergeSections>
-      </MergeSections>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -1242,16 +1239,16 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <PreprocessorDefinitions>_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Full</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAsManaged>false</CompileAsManaged>
-      <StringPooling>true</StringPooling>
+      <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>true</OpenMPSupport>
+      <OpenMPSupport>false</OpenMPSupport>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -1263,15 +1260,14 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       </SDLCheck>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
-      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
-      <OmitFramePointers>false</OmitFramePointers>
-      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <CreateHotpatchableImage>false</CreateHotpatchableImage>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -1746,12 +1742,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <Optimization>Full</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <ExceptionHandling>Async</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
-      <OmitFramePointers>false</OmitFramePointers>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <StringPooling>false</StringPooling>
@@ -1815,10 +1811,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_move_manager.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_size_manager.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.cpp" />
-    <ClCompile Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_up_down_target.cpp" />
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_up_down_target.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.cpp" />
-    <ClCompile Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_work_set_down_up_interface.cpp" />
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_down_up_interface.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp" />
     <ClCompile Include="user\wndfrm\wndfrm_interaction.cpp" />
@@ -1833,6 +1829,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_constraint.h" />
     <ClInclude Include="core\core\core_contact_list.h" />
     <ClInclude Include="core\core\core_debug.h" />
+    <ClInclude Include="core\core\core_enum.h" />
     <ClInclude Include="core\core\core_fs_interface.h" />
     <ClInclude Include="core\core\core_history.h" />
     <ClInclude Include="core\core\core_insert_iterator.h" />
@@ -1842,9 +1839,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_listener.h" />
     <ClInclude Include="core\core\core_logic.h" />
     <ClInclude Include="core\core\core_main.h" />
+    <ClInclude Include="core\core\core_main_init_data.h" />
+    <ClInclude Include="core\core\core_map_to_smart_pointer.h" />
     <ClInclude Include="core\core\core_match.h" />
     <ClInclude Include="core\core\core_muldiv32.h" />
     <ClInclude Include="core\core\core_os_history.h" />
+    <ClInclude Include="core\core\core_os_implementation.h" />
     <ClInclude Include="core\core\core_patch.h" />
     <ClInclude Include="core\core\core_process_data.h" />
     <ClInclude Include="core\core\core_profiler.h" />
@@ -2184,14 +2184,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\hi5\hi5_oauth.h" />
     <ClInclude Include="net\hi5\hi5_twitter_authorization.h" />
     <ClInclude Include="net\net_email_departament.h" />
-    <ClInclude Include="net\usermail\usermail.h" />
-    <ClInclude Include="net\usermail\usermail_account.h" />
-    <ClInclude Include="net\usermail\usermail_db_pop3.h" />
-    <ClInclude Include="net\usermail\usermail_frame.h" />
-    <ClInclude Include="net\usermail\usermail_list_interface.h" />
-    <ClInclude Include="net\usermail\usermail_tree.h" />
-    <ClInclude Include="net\usermail\usermail_usermail.h" />
-    <ClInclude Include="net\usermail\usermail_item.h" />
     <ClInclude Include="net\usernet\usernet.h" />
     <ClInclude Include="net\usernet\usernet_network_configuration.h" />
     <ClInclude Include="primitive\datetime\datetime.h" />
@@ -2356,10 +2348,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_move_manager.h" />
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_size_manager.h" />
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.h" />
-    <ClInclude Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_up_down_target.h" />
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_up_down_target.h" />
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set.h" />
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.h" />
-    <ClInclude Include="user\wndfrm\frame\aaa_want_to_remove_wndfrm_frame_work_set_down_up_interface.h" />
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_down_up_interface.h" />
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.h" />
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.h" />
     <ClInclude Include="user\wndfrm\wndfrm.h" />
@@ -2546,12 +2538,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\hi5\hi5_oauth.cpp" />
     <ClCompile Include="net\hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="net\net_email_departament.cpp" />
-    <ClCompile Include="net\usermail\usermail_account.cpp" />
-    <ClCompile Include="net\usermail\usermail_db_pop3.cpp" />
-    <ClCompile Include="net\usermail\usermail_list_interface.cpp" />
-    <ClCompile Include="net\usermail\usermail_tree.cpp" />
-    <ClCompile Include="net\usermail\usermail_usermail.cpp" />
-    <ClCompile Include="net\usermail\usermail_item.cpp" />
     <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
     <ClCompile Include="primitive\datetime\datetime_float_time.cpp" />
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp" />
@@ -2702,9 +2688,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </ProjectReference>
     <ProjectReference Include="..\..\axis\bzip2\axisbzip2.vcxproj">
       <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\axis\freeimage\axisfreeimage.vcxproj">
-      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\axis\mysql\axismysql.vcxproj" />
     <ProjectReference Include="..\..\axis\openssl\axisopenssl.vcxproj">
