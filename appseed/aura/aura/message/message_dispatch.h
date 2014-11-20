@@ -96,6 +96,7 @@ namespace message
 
          void GetSignalsByMessage(SignalPtrArray & signalptra,UINT uiMessage,UINT uiCode,UINT uiId);
          Signal * GetSignalByMessage(UINT uiMessage,UINT uiCode,UINT uiIdStart,UINT uiIdEnd);
+         inline Signal * GetSignal(UINT uiMessage,UINT uiCode,UINT uiId,int & i);
 
 
       };

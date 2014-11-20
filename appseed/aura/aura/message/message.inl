@@ -156,6 +156,23 @@ namespace message
          }
       }
 
+   inline dispatch::Signal * dispatch::SignalArray::GetSignal(UINT uiMessage,UINT uiCode,UINT uiId,int & i)
+   {
+      for(; i < this->get_size(); i++)
+      {
+         Signal * psignal = this->element_at(i);
+         if(uiMessage == psignal->m_uiMessage
+            && uiCode == psignal->m_uiCode
+            && uiId >= psignal->m_uiIdStart
+            && uiId <= psignal->m_uiIdEnd)
+         {
+            return psignal;
+         }
+      }
+
+      return NULL;
+   }
+
    inline dispatch::Signal * dispatch::SignalArray::
       GetSignalByMessage(UINT uiMessage,UINT uiCode,UINT uiIdStart,UINT uiIdEnd)
    {

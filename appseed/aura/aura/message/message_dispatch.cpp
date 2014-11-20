@@ -93,11 +93,11 @@ namespace message
          }
          return;
       }
-      m_signala.GetSignalsByMessage(signalptra,pbase->m_uiMessage,0,0);
-      for(int32_t i = 0; i < signalptra.get_size(); i++)
+      int i = 0;
+      Signal * pSignal;
+      while((pSignal = m_signala.GetSignal(pbase->m_uiMessage,0,0,i)) != NULL)
       {
-         Signal & signal = *signalptra[i];
-         class ::signal * psignal = signal.m_psignal;
+         class ::signal * psignal = pSignal->m_psignal;
          pobj->m_psignal = psignal;
          psignal->emit(pobj);
          if(pobj->m_bRet)

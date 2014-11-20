@@ -104,12 +104,12 @@ void thread_impl::dispatch_thread_message(signal_details * pobj)
    }
    LRESULT lresult;
    SignalPtrArray signalptra;
-   m_signala.GetSignalsByMessage(signalptra,pbase->m_uiMessage,0,0);
-   for(int32_t i = 0; i < signalptra.get_size(); i++)
+   int i = 0;
+   Signal * pSignal;
+   while((pSignal = m_signala.GetSignal(signalptra,pbase->m_uiMessage,0,0, i)) != NULL)
    {
-      Signal & signal = *signalptra[i];
-      class signal * psignal = signal.m_psignal;
-      message::e_prototype eprototype = signal.m_eprototype;
+      class signal * psignal = pSignal->m_psignal;
+      message::e_prototype eprototype = pSignal->m_eprototype;
       if(eprototype == message::PrototypeNone)
       {
          //::message::base aura(get_app());
@@ -1354,7 +1354,7 @@ bool thread_impl::pump_message()
 
       }
 
-      __trace_message("pump_message",&msg);
+      //__trace_message("pump_message",&msg);
 
       if(msg.message != WM_KICKIDLE)
       {
