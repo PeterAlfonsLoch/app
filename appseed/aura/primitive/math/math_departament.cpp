@@ -10,7 +10,7 @@ namespace math
 
 
 
-   math::math(sp(::aura::application) papp) :
+   math::math(::aura::application * papp) :
       element(papp),
       ::aura::departament(papp),
       m_mutex(papp)

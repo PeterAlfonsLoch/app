@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   combo_box::combo_box(sp(::aura::application) papp) :
+   combo_box::combo_box(::aura::application * papp) :
       element(papp),
       ::data::data_listener(papp),
       ::colorertake5::base_editor(papp),

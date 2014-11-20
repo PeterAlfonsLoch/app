@@ -25,7 +25,7 @@ public:
 #endif
 
 
-   condition(sp(::aura::application) papp);
+   condition(::aura::application * papp);
    virtual ~condition();
 
 

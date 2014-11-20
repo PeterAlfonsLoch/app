@@ -9,7 +9,7 @@ class CLASS_DECL_AURA invalid_character :
 public:
    
 
-   invalid_character(sp(::aura::application) papp, const char * pszMessage);
+   invalid_character(::aura::application * papp, const char * pszMessage);
    virtual ~invalid_character();
 
 

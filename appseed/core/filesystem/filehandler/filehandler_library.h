@@ -11,7 +11,7 @@ namespace filehandler
    public:
 
 
-      library(sp(::aura::application) papp);
+      library(::aura::application * papp);
       virtual ~library();
 
 

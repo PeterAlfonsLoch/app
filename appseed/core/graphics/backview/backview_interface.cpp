@@ -5,7 +5,7 @@ namespace backview
 {
 
 
-   Interface::Interface(sp(::aura::application) papp) :
+   Interface::Interface(::aura::application * papp) :
       element(papp)
    {
 

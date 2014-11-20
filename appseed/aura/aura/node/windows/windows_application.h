@@ -32,7 +32,7 @@ namespace windows
       main_init_data *     m_pmaininitdata;
 
 
-      application(sp(::aura::application) papp);
+      application(::aura::application * papp);
       virtual ~application();
 
 

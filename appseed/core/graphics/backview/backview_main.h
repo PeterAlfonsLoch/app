@@ -30,7 +30,7 @@ namespace backview
       bool                       m_bPendingLayout;
 
 
-      Main(sp(::aura::application) papp, Interface * pbackviewinterface);
+      Main(::aura::application * papp, Interface * pbackviewinterface);
       virtual ~Main();
 
 

@@ -37,7 +37,7 @@ namespace simpledb
       string_map < ::simpledb::session * >      m_mapSession;
 
 
-      manager(sp(::aura::application) papp);
+      manager(::aura::application * papp);
       ~manager();
 
       bool initialize_instance();

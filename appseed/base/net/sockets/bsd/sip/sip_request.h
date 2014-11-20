@@ -8,7 +8,7 @@ namespace sip
       virtual public transaction
    {
    public:
-      request(sp(::aura::application) papp);
+      request(::aura::application * papp);
       request(const request& src);
       ~request();
 

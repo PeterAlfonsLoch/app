@@ -9,7 +9,7 @@ class CLASS_DECL_AURA overflow_error :
 public:
 
 
-   overflow_error(sp(::aura::application) papp, const char * pszError);
+   overflow_error(::aura::application * papp, const char * pszError);
    virtual ~overflow_error();
 
 

@@ -14,7 +14,7 @@ namespace calculator
    public:
 
 
-      calculator(sp(::aura::application) papp);
+      calculator(::aura::application * papp);
       virtual ~calculator();
 
 

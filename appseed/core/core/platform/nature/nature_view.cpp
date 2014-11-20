@@ -5,7 +5,7 @@ namespace nature
 {
 
 
-   view::view(sp(::aura::application) papp) :
+   view::view(::aura::application * papp) :
       element(papp),
       ::user::interaction(papp),
       

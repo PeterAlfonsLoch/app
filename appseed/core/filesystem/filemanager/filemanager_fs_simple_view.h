@@ -29,7 +29,7 @@ namespace filemanager
             request_interface *  m_prequestinterface;
 
             
-            view(sp(::aura::application) papp);
+            view(::aura::application * papp);
             virtual ~view();
 
 

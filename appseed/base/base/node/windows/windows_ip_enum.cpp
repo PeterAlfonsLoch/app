@@ -6,7 +6,7 @@ namespace windows
 {
 
 
-   ip_enum::ip_enum(sp(::aura::application) papp) :
+   ip_enum::ip_enum(::aura::application * papp) :
       element(papp),
       ::net::ip_enum(papp)
    {

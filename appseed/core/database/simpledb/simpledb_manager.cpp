@@ -7,7 +7,7 @@ namespace simpledb
 {
 
 
-   manager::manager(sp(::aura::application) papp) :
+   manager::manager(::aura::application * papp) :
       element(papp),
       thread(papp),
       m_mutexSession(papp),

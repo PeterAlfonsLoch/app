@@ -21,8 +21,8 @@ namespace aura
 
 
 
-      library(sp(::aura::application) papp);
-      library(sp(::aura::application) papp,int iDesmabi, const char * pszRoot);
+      library(::aura::application * papp);
+      library(::aura::application * papp,int iDesmabi, const char * pszRoot);
       virtual ~library();
 
       virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
@@ -63,7 +63,7 @@ namespace aura
       virtual void get_app_list(stringa & stra);
 
 
-      virtual sp(::object) create_object(sp(::aura::application) papp, const char * pszClass);
+      virtual sp(::object) create_object(::aura::application * papp, const char * pszClass);
       virtual bool has_object_class(const char * pszClass);
 
 
@@ -89,7 +89,7 @@ namespace aura
    {
    public:
 
-      single_application_library(sp(::aura::application) papp,const char * pszRoot): element(papp),::aura::library(papp,0, pszRoot) {}
+      single_application_library(::aura::application * papp,const char * pszRoot): element(papp),::aura::library(papp,0, pszRoot) {}
 
       // impl
       virtual sp(::aura::application) get_new_app(const char * pszAppId);
@@ -99,7 +99,7 @@ namespace aura
 
 
 
-   typedef class library * (* PFN_GET_NEW_LIBRARY)(sp(::aura::application) papp);
+   typedef class library * (* PFN_GET_NEW_LIBRARY)(::aura::application * papp);
 
 
 } // namespace aura

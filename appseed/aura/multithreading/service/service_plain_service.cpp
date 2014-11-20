@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-plain_service::plain_service(sp(::aura::application) papp) :
+plain_service::plain_service(::aura::application * papp) :
    element(papp),
    service_base(papp)
 {

@@ -12,7 +12,7 @@ namespace ansios
 {
 
 
-   pipe::pipe(sp(::aura::application) papp) :
+   pipe::pipe(::aura::application * papp) :
    element(papp),
    ::process::pipe(papp)
    {

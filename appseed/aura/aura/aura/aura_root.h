@@ -14,7 +14,7 @@ public:
 
 
    root();
-   root(sp(::aura::application) papp);
+   root(::aura::application * papp);
    virtual ~root();
 
 

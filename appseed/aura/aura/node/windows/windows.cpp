@@ -91,7 +91,7 @@ namespace windows
    return iLen;
    }*/
 
-   CLASS_DECL_AURA void TimeToFileTime(sp(::aura::application) papp,const ::datetime::time& time,LPFILETIME pFileTime)
+   CLASS_DECL_AURA void TimeToFileTime(::aura::application * papp,const ::datetime::time& time,LPFILETIME pFileTime)
    {
       SYSTEMTIME sysTime;
       sysTime.wYear           = (WORD)time.GetYear();

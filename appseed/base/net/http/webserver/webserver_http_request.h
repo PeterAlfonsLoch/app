@@ -24,7 +24,7 @@ namespace http
 
 
 
-      request(sp(::aura::application) papp);
+      request(::aura::application * papp);
       request(const request& src);
       ~request();
 

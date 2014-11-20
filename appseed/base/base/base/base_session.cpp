@@ -7,7 +7,7 @@ namespace base
 {
 
 
-   session::session(sp(::aura::application) papp) :
+   session::session(::aura::application * papp) :
       element(papp),
       ::thread(papp),
       ::aura::session(papp),
@@ -66,7 +66,7 @@ namespace base
    }
 
 
-   void session::construct(sp(::aura::application) papp, int iPhase)
+   void session::construct(::aura::application * papp, int iPhase)
    {
 
       if(iPhase == 0)
@@ -117,7 +117,7 @@ namespace base
 
          m_mapApplication.get_next_assoc(pos,strId,pbaseapp);
 
-         sp(::aura::application) papp = (pbaseapp);
+         ::aura::application * papp = (pbaseapp);
 
          papp->post_thread_message(WM_QUIT);
 

@@ -5,7 +5,7 @@ namespace draw2d_cairo
 {
 
 
-   brush::brush(sp(::aura::application) papp) :
+   brush::brush(::aura::application * papp) :
       element(papp)
    {
 

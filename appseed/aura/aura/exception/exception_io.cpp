@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-io_exception::io_exception(sp(::aura::application) papp) :
+io_exception::io_exception(::aura::application * papp) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),
@@ -12,7 +12,7 @@ io_exception::io_exception(sp(::aura::application) papp) :
 }
 
 
-io_exception::io_exception(sp(::aura::application) papp, const char * pszMessage) :
+io_exception::io_exception(::aura::application * papp, const char * pszMessage) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

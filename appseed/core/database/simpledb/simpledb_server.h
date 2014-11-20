@@ -13,7 +13,7 @@ namespace simpledb
       base *     m_pbase;
 
 
-      server(sp(::aura::application) papp);
+      server(::aura::application * papp);
       virtual ~server();
 
       

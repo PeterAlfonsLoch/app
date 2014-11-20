@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-form_document::form_document(sp(::aura::application) papp) :
+form_document::form_document(::aura::application * papp) :
    element(papp),
    ::data::data_container_base(papp),
    ::user::document(papp),

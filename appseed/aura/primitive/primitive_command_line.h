@@ -59,7 +59,7 @@ public:
 
 
 
-   command_line(sp(::aura::application) papp);
+   command_line(::aura::application * papp);
    ~command_line();
 
    void common_construct();

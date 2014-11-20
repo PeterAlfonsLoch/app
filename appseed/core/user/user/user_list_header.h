@@ -99,7 +99,7 @@ namespace user
       list *                        m_plistctrlinterface;
 
 
-      list_header(sp(::aura::application) papp);
+      list_header(::aura::application * papp);
       virtual ~list_header();
 
       void install_message_handling(::message::dispatch * pinterface);

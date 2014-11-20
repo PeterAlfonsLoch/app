@@ -19,7 +19,7 @@ namespace file
       string       m_strFileName;
 
 
-      simple_binary_buffer(sp(::aura::application) papp);
+      simple_binary_buffer(::aura::application * papp);
       virtual ~simple_binary_buffer();
 
       virtual file_position get_position() const;
@@ -86,7 +86,7 @@ namespace file
    };
 
 
-   void CLASS_DECL_AURA throw_exception(sp(::aura::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+   void CLASS_DECL_AURA throw_exception(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 } // namespace file
 

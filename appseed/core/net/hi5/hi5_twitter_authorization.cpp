@@ -12,7 +12,7 @@ namespace hi5
    namespace twitter
    {
 
-      authorization::authorization(sp(::aura::application) papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
+      authorization::authorization(::aura::application * papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
          element(papp)
       {
          m_strAuthorizationUrl=pszAuthorizationUrl;

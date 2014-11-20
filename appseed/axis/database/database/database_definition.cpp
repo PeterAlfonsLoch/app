@@ -127,7 +127,7 @@ namespace database
    {
    }
 
-   result_set::result_set(sp(::aura::application) papp) :
+   result_set::result_set(::aura::application * papp) :
    element(papp)
    {
    }

@@ -7,7 +7,7 @@ namespace http
 
 
    // --------------------------------------------------------------------------------------
-   request::request(sp(::aura::application) papp) :
+   request::request(::aura::application * papp) :
       element(papp),
       transaction(papp),
       m_memfileBody(papp),

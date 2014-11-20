@@ -10,7 +10,7 @@
 #if defined(CUBE)
 
 
-void draw2d_factory_exchange(sp(::aura::application) papp);
+void draw2d_factory_exchange(::aura::application * papp);
 
 
 #endif

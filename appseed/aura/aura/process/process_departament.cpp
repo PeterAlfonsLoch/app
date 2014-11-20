@@ -5,7 +5,7 @@ namespace process
 {
 
 
-   departament::departament(sp(::aura::application) papp):
+   departament::departament(::aura::application * papp):
       element(papp),
       ::aura::departament(papp)
    {
@@ -85,7 +85,7 @@ namespace process
    }
 
 
-   departament::process_thread::process_thread(sp(::aura::application) papp,const string & strCmdLine,const ::duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
+   departament::process_thread::process_thread(::aura::application * papp,const string & strCmdLine,const ::duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
       element(papp),
       thread(papp),
       simple_thread(papp),
@@ -268,7 +268,7 @@ namespace process
    }
 
 
-   departament::process_processor::process_processor(sp(::aura::application) papp,const string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
+   departament::process_processor::process_processor(::aura::application * papp,const string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
       element(papp),
       m_evReady(papp)
    {

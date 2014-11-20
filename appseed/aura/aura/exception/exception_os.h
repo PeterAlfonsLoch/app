@@ -7,8 +7,8 @@ class CLASS_DECL_AURA os_exception :
 public:
 
 
-   os_exception(sp(::aura::application) papp);
-   os_exception(sp(::aura::application) papp, const char * pszMessage);
+   os_exception(::aura::application * papp);
+   os_exception(::aura::application * papp, const char * pszMessage);
    virtual ~os_exception();
 
 

@@ -5,7 +5,7 @@ namespace userpresence
 {
 
 
-   presence::presence(sp(::aura::application) papp) :
+   presence::presence(::aura::application * papp) :
       element(papp)
    {
       m_iShortStatusWayTag = status_online;

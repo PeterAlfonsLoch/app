@@ -24,7 +24,7 @@ namespace usermail
       db_pop3 *            m_ppop3;
 
 
-      account(sp(::aura::application) papp);
+      account(::aura::application * papp);
 
 
    };

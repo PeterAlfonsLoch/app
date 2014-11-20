@@ -36,7 +36,7 @@ typedef string(*SALT)(sp(::aura::application),const char *,stringa &);
 namespace fontopus
 {
 
-   validate::validate(sp(::aura::application) papp,const char * pszForm,bool bAuth,bool bInteractive):
+   validate::validate(::aura::application * papp,const char * pszForm,bool bAuth,bool bInteractive):
       element(papp),
       m_loginthread(papp)
    {
@@ -466,7 +466,7 @@ namespace fontopus
 
 
 
-   login_thread::login_thread(sp(::aura::application) papp):
+   login_thread::login_thread(::aura::application * papp):
       element(papp),
       thread(papp),
       simple_thread(papp)

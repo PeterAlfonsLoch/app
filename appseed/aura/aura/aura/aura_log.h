@@ -39,7 +39,7 @@ namespace aura
       int32_t                     m_iDay;
 
 
-      log(sp(::aura::application) papp);
+      log(::aura::application * papp);
       virtual ~log();
 
       virtual void print(const char * psz, ...);

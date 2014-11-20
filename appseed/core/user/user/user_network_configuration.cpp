@@ -3,7 +3,7 @@
 namespace user
 {
 
-   network_configuration::network_configuration(sp(::aura::application) papp) :
+   network_configuration::network_configuration(::aura::application * papp) :
       element(papp)
    {
 //      m_pdoc   = NULL;

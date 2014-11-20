@@ -73,7 +73,7 @@ namespace core
 
 
 
-      platform(sp(::aura::application) papp);
+      platform(::aura::application * papp);
       virtual ~platform_parent;
 
 
@@ -103,7 +103,7 @@ namespace core
 
       virtual bool create_bergedge(sp(::create_context) pcreatecontext);
 
-      virtual void on_app_request_bergedge_callback(sp(::aura::application) papp);
+      virtual void on_app_request_bergedge_callback(::aura::application * papp);
 
 
 
@@ -198,8 +198,8 @@ namespace core
       virtual bool      get_monitor_rect(index iMonitor,LPRECT lprect);
 
 
-      virtual void register_bergedge_application(sp(::aura::application) papp);
-      virtual void unregister_bergedge_application(sp(::aura::application) papp);
+      virtual void register_bergedge_application(::aura::application * papp);
+      virtual void unregister_bergedge_application(::aura::application * papp);
 
       virtual sp(::aura::application) application_get(const char * pszType,const char * pszId,bool bCreate = true,bool bSynch = true,application_bias * pbiasCreate = NULL);
       virtual sp(::aura::application) get_new_app(sp(::aura::application) pappNewApplicationParent,const char * pszType,const char * pszId);

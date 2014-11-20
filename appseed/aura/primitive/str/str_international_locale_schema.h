@@ -30,7 +30,7 @@ namespace str
          comparable_array < id >    m_idaSchema;
 
 
-         locale_schema(sp(::aura::application) papp);
+         locale_schema(::aura::application * papp);
          locale_schema(const locale_schema & ls);
          virtual ~locale_schema();
 

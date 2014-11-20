@@ -3,7 +3,7 @@
 namespace user
 {
 
-   //buffer::buffer(sp(::aura::application) papp) :
+   //buffer::buffer(::aura::application * papp) :
    //   element(papp),
    //   m_spdib(allocer())
    //{

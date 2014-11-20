@@ -7,7 +7,7 @@ namespace android
 
 
 
-stdio_file::stdio_file(sp(::aura::application) papp) :
+stdio_file::stdio_file(::aura::application * papp) :
    element(papp),
    ::android::file(papp)
 {

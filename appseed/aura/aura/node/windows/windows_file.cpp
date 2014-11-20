@@ -10,7 +10,7 @@ namespace windows
 {
 
 
-   file::file(sp(::aura::application) papp) :
+   file::file(::aura::application * papp) :
       element(papp)
    {
 
@@ -19,7 +19,7 @@ namespace windows
 
    }
 
-   file::file(sp(::aura::application) papp, int32_t hFile) :
+   file::file(::aura::application * papp, int32_t hFile) :
       element(papp)
    {
 
@@ -28,7 +28,7 @@ namespace windows
 
    }
 
-   file::file(sp(::aura::application) papp, const char * lpszFileName, UINT nOpenFlags) :
+   file::file(::aura::application * papp, const char * lpszFileName, UINT nOpenFlags) :
       element(papp)
    {
 
@@ -600,13 +600,13 @@ retry:
 
 
 
-   void file_exception::ThrowOsError(sp(::aura::application) papp, LONG lOsError, const char * lpszFileName /* = NULL */)
+   void file_exception::ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
          throw_file_exception(papp, file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
 
-   void file_exception::ThrowErrno(sp(::aura::application) papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
+   void file_exception::ThrowErrno(::aura::application * papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
          throw_file_exception(papp, file_exception::ErrnoToException(nErrno), _doserrno, lpszFileName);

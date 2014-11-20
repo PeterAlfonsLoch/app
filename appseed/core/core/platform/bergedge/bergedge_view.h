@@ -48,7 +48,7 @@ namespace bergedge
       mutex m_mutexDraw;
 
 
-      view(sp(::aura::application) papp);
+      view(::aura::application * papp);
       virtual ~view();
 
       virtual void assert_valid() const;

@@ -63,7 +63,7 @@ namespace axis
 {
 
 
-   system::system(sp(::aura::application) papp):
+   system::system(::aura::application * papp):
       ::aura::system(this),
       m_libraryDraw2d(this)
    {
@@ -822,7 +822,7 @@ namespace axis
 
 */
 
-   string system::dir_appmatter_locator(sp(::aura::application) papp)
+   string system::dir_appmatter_locator(::aura::application * papp)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -905,7 +905,7 @@ namespace axis
 namespace axis
 {
 
-   system_interaction_impl::system_interaction_impl(sp(::aura::application) papp):
+   system_interaction_impl::system_interaction_impl(::aura::application * papp):
       element(papp),
       ::user::interaction(papp)
    {

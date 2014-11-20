@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-os_history::os_history(sp(::aura::application) papp) :
+os_history::os_history(::aura::application * papp) :
    element(papp),
    ::core::history(papp)
 {

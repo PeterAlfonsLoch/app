@@ -12,7 +12,7 @@ namespace xml
    public:
 
 
-      data(sp(::aura::application) papp, ::xml::parse_info * pparseinfo = NULL);
+      data(::aura::application * papp, ::xml::parse_info * pparseinfo = NULL);
       virtual ~data();
 
 

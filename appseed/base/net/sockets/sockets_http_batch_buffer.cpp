@@ -6,7 +6,7 @@ namespace sockets
 
 
 
-   http_batch_buffer::http_batch_buffer(sp(::aura::application) papp) :
+   http_batch_buffer::http_batch_buffer(::aura::application * papp) :
       element(papp)
    {
 

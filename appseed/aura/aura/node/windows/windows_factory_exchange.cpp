@@ -10,7 +10,7 @@ namespace aura
    {
 
 
-      factory_exchange::factory_exchange(sp(::aura::application) papp):
+      factory_exchange::factory_exchange(::aura::application * papp):
          element(papp)
       {
 
@@ -40,7 +40,7 @@ namespace aura
 } // namespace aura
 
 
-void __node_aura_factory_exchange(sp(::aura::application) papp)
+void __node_aura_factory_exchange(::aura::application * papp)
 {
 
    ::aura::windows::factory_exchange factoryexchange(papp);

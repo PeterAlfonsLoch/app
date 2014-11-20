@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   document::document(sp(::aura::application) papp) :
+   document::document(::aura::application * papp) :
       element(papp),
       ::data::data_container_base(papp),
       m_mutex(NULL)
@@ -141,7 +141,7 @@ namespace user
       m_viewptra.remove_all();
    }
 
-   /*void document::on_alloc(sp(::aura::application) papp)
+   /*void document::on_alloc(::aura::application * papp)
    {
       set_app(papp);
    }*/

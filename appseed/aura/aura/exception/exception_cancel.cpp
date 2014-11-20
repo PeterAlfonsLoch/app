@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-cancel_exception::cancel_exception(sp(::aura::application) papp):
+cancel_exception::cancel_exception(::aura::application * papp):
 element(papp),
 ::call_stack(papp),
 ::exception::base(papp)
@@ -9,7 +9,7 @@ element(papp),
    printf(":cancel");
 }
 
-cancel_exception::cancel_exception(sp(::aura::application) papp,const char * pszMessage):
+cancel_exception::cancel_exception(::aura::application * papp,const char * pszMessage):
 element(papp),
 ::call_stack(papp),
 ::exception::base(papp)

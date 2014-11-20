@@ -14,7 +14,7 @@ namespace fontopus
    UINT c_cdecl thread_proc_defer_translate_login(void * p);
 
 
-   simple_ui::simple_ui(sp(::aura::application) papp, const string & strRequestUrl) :
+   simple_ui::simple_ui(::aura::application * papp, const string & strRequestUrl) :
       element(papp),
       ::simple_ui::style(papp),
       m_login(papp, 0, 0, strRequestUrl)
@@ -221,7 +221,7 @@ namespace fontopus
 
       if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != NULL)
       {
-         sp(::aura::application) papp = puiParent;
+         ::aura::application * papp = puiParent;
          if(papp != NULL)
          {
             papp->open_link("ca2account:this");

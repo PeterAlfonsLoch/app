@@ -36,7 +36,7 @@ namespace data
       spa(data)       m_spadata;
 
 
-      data_container_base(sp(::aura::application) papp);
+      data_container_base(::aura::application * papp);
       virtual ~data_container_base();
 
 

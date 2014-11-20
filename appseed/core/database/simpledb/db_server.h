@@ -43,7 +43,7 @@ public:
    string                     m_strUser;
 
 
-   db_server(sp(::aura::application) papp);
+   db_server(::aura::application * papp);
    virtual ~db_server();
 
 

@@ -7,7 +7,7 @@ class CLASS_DECL_AURA todo :
 public:
 
 
-   todo(sp(::aura::application) papp, const char * pszTip = NULL);
+   todo(::aura::application * papp, const char * pszTip = NULL);
    todo(const todo & e);
    virtual ~todo();
 

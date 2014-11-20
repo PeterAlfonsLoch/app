@@ -18,7 +18,7 @@ namespace colorertake5
    public:
       
       
-      StyledHRDMapper(sp(::aura::application) papp);
+      StyledHRDMapper(::aura::application * papp);
       ~StyledHRDMapper();
 
       

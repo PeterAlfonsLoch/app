@@ -27,7 +27,7 @@ namespace nature
       };
 
 
-      appearance_view(sp(::aura::application) papp);
+      appearance_view(::aura::application * papp);
 
       using ::user::tab_view::on_show_view;
 

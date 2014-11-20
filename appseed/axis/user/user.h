@@ -152,7 +152,7 @@ namespace axis
    {
    public:
 
-      system_interaction_impl(sp(::aura::application) papp);
+      system_interaction_impl(::aura::application * papp);
 
       void install_message_handling(::message::dispatch * pdispath);
 

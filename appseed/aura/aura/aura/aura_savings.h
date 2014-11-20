@@ -28,7 +28,7 @@ namespace aura
       flags_ex < e_resource > m_eresourceflagsWarning;
 
 
-      savings(sp(::aura::application) papp);
+      savings(::aura::application * papp);
       virtual ~savings();
 
       virtual void save(e_resource eresource);

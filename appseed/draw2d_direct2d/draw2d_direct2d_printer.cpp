@@ -6,7 +6,7 @@ namespace draw2d_direct2d
 {
 
 
-   printer::printer(sp(::aura::application) papp) :
+   printer::printer(::aura::application * papp) :
       element(papp),
       ::user::printer(papp),
       m_documentproperties(papp)
@@ -49,7 +49,7 @@ namespace draw2d_direct2d
    }
 
 
-   printer::document_properties::document_properties(sp(::aura::application) papp) :
+   printer::document_properties::document_properties(::aura::application * papp) :
       element(papp)
    {
       m_hdc = NULL;

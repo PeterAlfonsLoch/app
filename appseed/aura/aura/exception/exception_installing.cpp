@@ -9,7 +9,7 @@ installing_exception::installing_exception(const installing_exception & e) :
       printf(":installing(copy)");
 }
 
-installing_exception::installing_exception(sp(::aura::application) papp, const char * pszTip) : 
+installing_exception::installing_exception(::aura::application * papp, const char * pszTip) : 
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

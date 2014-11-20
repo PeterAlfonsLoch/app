@@ -49,7 +49,7 @@ namespace user
       };
 
 
-      form_list(sp(::aura::application) papp);
+      form_list(::aura::application * papp);
       virtual ~form_list();
 
 

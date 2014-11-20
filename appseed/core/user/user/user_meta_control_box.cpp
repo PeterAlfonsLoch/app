@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-MetaControlBox::MetaControlBox(sp(::aura::application) papp) :
+MetaControlBox::MetaControlBox(::aura::application * papp) :
 element(papp),
 ::user::interaction(papp),
 ::user::wndfrm::frame::control_box(papp)

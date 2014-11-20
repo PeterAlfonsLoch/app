@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      list_data(sp(::aura::application) papp);
+      list_data(::aura::application * papp);
       virtual ~list_data();
 
 

@@ -481,6 +481,8 @@ namespace user
          void WorkSetClientInterface::WfiOnExitFullScreen()
          {
 
+            m_workset.m_pframeschema->get_control_box()->KillTimer(123);
+
             m_workset.m_pframeschema->get_control_box()->ShowWindow(SW_SHOW);
 
          }
@@ -490,6 +492,8 @@ namespace user
          {
 
             m_workset.m_pframeschema->get_control_box()->ShowWindow(SW_HIDE);
+
+            m_workset.m_pframeschema->get_control_box()->SetTimer(123,184, NULL);
 
             WindowDataSaveWindowRect();
 

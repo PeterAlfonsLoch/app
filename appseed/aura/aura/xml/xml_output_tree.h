@@ -16,8 +16,8 @@ namespace xml
       sp(node)                m_pnode;
 
 
-      output_tree(sp(::aura::application) papp, tree_schema * pschema);
-      output_tree(sp(::aura::application) papp);
+      output_tree(::aura::application * papp, tree_schema * pschema);
+      output_tree(::aura::application * papp);
       virtual ~output_tree();
 
 

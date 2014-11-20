@@ -19,8 +19,8 @@ namespace xml
       sp(::xml::node)         m_pnode;
 
 
-      input_tree(sp(::aura::application) papp);
-      input_tree(sp(::aura::application) papp, tree_schema * pschema);
+      input_tree(::aura::application * papp);
+      input_tree(::aura::application * papp, tree_schema * pschema);
       virtual ~input_tree();
 
 

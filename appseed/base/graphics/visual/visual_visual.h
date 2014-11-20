@@ -17,11 +17,11 @@ namespace visual
 
 
 
-      visual(sp(::aura::application) papp);
+      visual(::aura::application * papp);
       virtual ~visual();
 
 
-      virtual void construct(sp(::aura::application) papp);
+      virtual void construct(::aura::application * papp);
 
       virtual bool process_initialize();
       

@@ -92,7 +92,7 @@ namespace aura
 
 
 
-      system(sp(::aura::application) papp);
+      system(::aura::application * papp);
       virtual ~system();
 
 
@@ -135,9 +135,9 @@ namespace aura
 
 
       virtual void on_allocation_error(::aura::application * papp,sp(type) info);
-      //   sp(element) alloc(sp(::aura::application) papp, sp(type) info);
+      //   sp(element) alloc(::aura::application * papp, sp(type) info);
       element * alloc(::aura::application * papp,const std_type_info & info);
-      //   virtual sp(element) on_alloc(sp(::aura::application) papp, sp(type) info);
+      //   virtual sp(element) on_alloc(::aura::application * papp, sp(type) info);
 
 
 
@@ -317,7 +317,7 @@ namespace aura
       virtual string get_module_name();
 
 
-      virtual string dir_appmatter_locator(sp(::aura::application) papp);
+      virtual string dir_appmatter_locator(::aura::application * papp);
 
       virtual string crypto_md5_text(const string & str);
 

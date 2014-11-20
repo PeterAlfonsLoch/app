@@ -20,7 +20,7 @@ namespace android
    public:
 
 
-      ip_enum(sp(::aura::application) papp);
+      ip_enum(::aura::application * papp);
       virtual ~ip_enum();
 
 

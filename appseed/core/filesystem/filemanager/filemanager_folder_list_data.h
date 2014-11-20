@@ -12,7 +12,7 @@ namespace filemanager
    public:
 
 
-      folder_list_data(sp(::aura::application) papp);
+      folder_list_data(::aura::application * papp);
       virtual ~folder_list_data();
 
 

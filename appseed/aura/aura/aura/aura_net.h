@@ -33,13 +33,13 @@ public:
    string m_strTarget;
    
    
-   open_url(sp(::aura::application) papp, const string & strLink,const string & pszTarget);
+   open_url(::aura::application * papp, const string & strLink,const string & pszTarget);
    
    bool open();
 
    static uint32_t c_cdecl thread_proc(void * p);
 
-   static bool start(sp(::aura::application) papp, const string & strLink,const string & strTarget);
+   static bool start(::aura::application * papp, const string & strLink,const string & strTarget);
 
 };
 

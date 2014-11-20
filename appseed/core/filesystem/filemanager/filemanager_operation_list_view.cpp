@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   operation_list_view::operation_list_view(sp(::aura::application) papp):
+   operation_list_view::operation_list_view(::aura::application * papp):
       element(papp),
       m_headerctrl(papp),
 

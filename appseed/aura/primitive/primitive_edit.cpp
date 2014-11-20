@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-base_edit::base_edit(sp(::aura::application) papp) :
+base_edit::base_edit(::aura::application * papp) :
    element(papp)
 {
 }

@@ -13,7 +13,7 @@ class CLASS_DECL_BASE font_central :
    virtual public ::object
 {
 public:
-   font_central(sp(::aura::application) papp);
+   font_central(::aura::application * papp);
    virtual ~font_central();
 
 protected:

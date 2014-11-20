@@ -14,7 +14,7 @@ namespace file
       string_buffer_sp        m_spstringbuffer;
 
 
-      plain_text_stream_string_buffer(sp(::aura::application) papp = NULL);
+      plain_text_stream_string_buffer(::aura::application * papp = NULL);
       virtual ~plain_text_stream_string_buffer();
 
       string str() const;

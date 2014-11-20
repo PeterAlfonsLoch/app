@@ -19,7 +19,7 @@ namespace user
       form_callback *            m_pcallback;
 
 
-      form(sp(::aura::application) papp);
+      form(::aura::application * papp);
       virtual ~form();
 
 
@@ -95,7 +95,7 @@ namespace user
 
 
       virtual void OnBeforeNavigate2(var & varFile, uint32_t nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel);
-//        form_view(sp(::aura::application) papp);
+//        form_view(::aura::application * papp);
   //    virtual ~form_view();
 
       //virtual void install_message_handling(::message::dispatch * pinterface);

@@ -47,7 +47,7 @@ namespace plugin
       //::visual::dib_sp              m_dib;
       
 
-      plugin(sp(::aura::application) papp);
+      plugin(::aura::application * papp);
 
 
       virtual host_interaction * create_host_interaction() = 0;

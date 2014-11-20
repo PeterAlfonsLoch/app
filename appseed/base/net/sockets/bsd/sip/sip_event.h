@@ -16,7 +16,7 @@ namespace sockets
 
       e_event     m_eevent;
 
-      sip_event(sp(::aura::application) papp);
+      sip_event(::aura::application * papp);
    };
 
 

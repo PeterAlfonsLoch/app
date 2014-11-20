@@ -7,7 +7,7 @@ class CLASS_DECL_AURA parsing_exception:
 public:
 
 
-   parsing_exception(sp(::aura::application) papp,const string & strMessage);
+   parsing_exception(::aura::application * papp,const string & strMessage);
    virtual ~parsing_exception();
 
 

@@ -18,8 +18,8 @@ namespace xml
       tree_schema * m_pschema;
 
 
-      tree_base(sp(::aura::application) papp, tree_schema * pschema);
-      tree_base(sp(::aura::application) papp);
+      tree_base(::aura::application * papp, tree_schema * pschema);
+      tree_base(::aura::application * papp);
       virtual ~tree_base();
 
       string get_node_name(int32_t iNameIndex);

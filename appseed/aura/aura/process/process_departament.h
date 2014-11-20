@@ -27,7 +27,7 @@ namespace process
          bool                             m_bElevated;
 
 
-         process_thread(sp(::aura::application) papp,const string & strCmdLine,const ::duration & dur,bool * pbPotentialTimeout = NULL,string * pstrRead = NULL,bool bElevated = false);
+         process_thread(::aura::application * papp,const string & strCmdLine,const ::duration & dur,bool * pbPotentialTimeout = NULL,string * pstrRead = NULL,bool bElevated = false);
 
          int32_t run();
 
@@ -54,7 +54,7 @@ namespace process
          bool                             m_bElevated;
 
 
-         process_processor(sp(::aura::application) papp, const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = NULL, string * pstrRead = NULL, bool bElevated = false);
+         process_processor(::aura::application * papp, const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = NULL, string * pstrRead = NULL, bool bElevated = false);
          virtual ~process_processor();
 
       };
@@ -62,7 +62,7 @@ namespace process
 
 
 
-      departament(sp(::aura::application) papp);
+      departament(::aura::application * papp);
       virtual ~departament();
 
 

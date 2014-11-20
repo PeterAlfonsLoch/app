@@ -124,7 +124,7 @@ command_target_interface::command_target_interface()
 {
 }
 
-command_target_interface::command_target_interface(sp(::aura::application) papp)
+command_target_interface::command_target_interface(::aura::application * papp)
 : element(papp)
 {
 }

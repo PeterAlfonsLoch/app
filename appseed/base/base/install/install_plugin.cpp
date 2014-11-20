@@ -57,7 +57,7 @@ namespace install
 
    }
 
-   plugin::plugin(sp(::aura::application) papp) :
+   plugin::plugin(::aura::application * papp) :
       element(papp),
       ::simple_ui::style(papp),
       ::aura::session(papp),
@@ -364,7 +364,7 @@ namespace install
 
    }
 
-   plugin::thread_start_ca2::thread_start_ca2(sp(::aura::application) papp) :
+   plugin::thread_start_ca2::thread_start_ca2(::aura::application * papp) :
       element(papp),
       thread(papp)
    {
@@ -1608,7 +1608,7 @@ restart:
 
 #ifndef CUBE
 
-::hotplugin::plugin * new_hotplugin(sp(::aura::application) papp)
+::hotplugin::plugin * new_hotplugin(::aura::application * papp)
 {
    return new ::install::plugin(papp);
 }

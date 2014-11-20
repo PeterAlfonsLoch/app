@@ -20,7 +20,7 @@ namespace html
 {
 
 
-   style::style(sp(::aura::application) papp) :
+   style::style(::aura::application * papp) :
       element(papp)
    {
 

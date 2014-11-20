@@ -13,7 +13,7 @@ namespace android
 
 
 
-      copydesk(sp(::aura::application) papp);
+      copydesk(::aura::application * papp);
       virtual ~copydesk();
 
 

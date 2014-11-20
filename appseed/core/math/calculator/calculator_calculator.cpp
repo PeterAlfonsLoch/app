@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   calculator::calculator(sp(::aura::application) papp) :
+   calculator::calculator(::aura::application * papp) :
       element(papp),
       ::aura::departament(papp)
    {

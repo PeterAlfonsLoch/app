@@ -27,7 +27,7 @@ namespace simple_ui
 
 
 
-   password::password(sp(::aura::application) papp) :
+   password::password(::aura::application * papp) :
       element(papp),
       ::user::interaction(papp),
       ::colorertake5::base_editor(papp),

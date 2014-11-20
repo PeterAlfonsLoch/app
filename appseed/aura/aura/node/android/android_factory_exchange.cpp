@@ -8,7 +8,7 @@ namespace android
    namespace aura
    {
 
-      factory_exchange::factory_exchange(sp(::aura::application) papp):
+      factory_exchange::factory_exchange(::aura::application * papp):
          element(papp)
       {
 
@@ -35,7 +35,7 @@ namespace android
 } // namespace android
 
 
-void __node_aura_factory_exchange(sp(::aura::application) papp)
+void __node_aura_factory_exchange(::aura::application * papp)
 {
 
    ::android::aura::factory_exchange factoryexchange(papp);

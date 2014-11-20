@@ -34,7 +34,7 @@ numbers:
       class token * m_ptoken;
 
 
-      scanner(sp(::aura::application) papp);
+      scanner(::aura::application * papp);
       virtual ~scanner();
 
       

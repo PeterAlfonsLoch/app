@@ -13,7 +13,7 @@ namespace aura
    uint32_t g_dwFirstTick = ::get_tick_count();
 
 
-   log::log(sp(::aura::application) papp) :
+   log::log(::aura::application * papp) :
       element(papp)
    {
 

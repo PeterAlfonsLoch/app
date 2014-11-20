@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   window_draw::window_draw(sp(::aura::application) papp) :
+   window_draw::window_draw(::aura::application * papp) :
       element(papp),
       thread(papp),
       m_eventFree(papp, TRUE, TRUE)

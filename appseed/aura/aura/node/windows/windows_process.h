@@ -15,7 +15,7 @@ namespace windows
       STARTUPINFOW             m_si;
 
 
-      process(sp(::aura::application) papp);
+      process(::aura::application * papp);
       virtual ~process();
 
 

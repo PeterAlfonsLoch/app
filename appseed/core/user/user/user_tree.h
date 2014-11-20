@@ -82,7 +82,7 @@ namespace user
 
 
 
-      tree(sp(::aura::application) papp);
+      tree(::aura::application * papp);
       virtual ~tree();
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
@@ -201,7 +201,7 @@ namespace user
       virtual public ::user::tree
    {
    public:
-      tree_window(sp(::aura::application) papp);
+      tree_window(::aura::application * papp);
       virtual ~tree_window();
 
       virtual void install_message_handling(::message::dispatch * pinterface);

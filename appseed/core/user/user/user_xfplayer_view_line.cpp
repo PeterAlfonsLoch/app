@@ -3,7 +3,7 @@
 const int32_t XfplayerViewLine::AlignLeft = 1;
 const int32_t XfplayerViewLine::AlignRight = 2;
 
-XfplayerViewLine::XfplayerViewLine(sp(::aura::application) papp) :
+XfplayerViewLine::XfplayerViewLine(::aura::application * papp) :
    element(papp),
    m_dibMain(allocer()),
    m_dcextension(papp),

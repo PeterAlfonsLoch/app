@@ -4,7 +4,7 @@ namespace sip
 {
 
    // --------------------------------------------------------------------------------------
-   response::response(sp(::aura::application) papp, const string & version) :
+   response::response(::aura::application * papp, const string & version) :
    element(papp),
    transaction(papp),
    m_memfileBody(papp )

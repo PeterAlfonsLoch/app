@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-MetaButton::MetaButton(sp(::aura::application) papp) :
+MetaButton::MetaButton(::aura::application * papp) :
    element(papp),
    ::user::button(papp),
    ::user::wndfrm::frame::control_box_button(papp),

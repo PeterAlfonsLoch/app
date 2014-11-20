@@ -45,7 +45,7 @@ public:
 
 
 
-   simple_toolbar(sp(::aura::application) papp);
+   simple_toolbar(::aura::application * papp);
    virtual ~simple_toolbar();
 
 

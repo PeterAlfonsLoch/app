@@ -11,7 +11,7 @@ namespace simple_ui
    public:
 
 
-      label(sp(::aura::application) papp);
+      label(::aura::application * papp);
       virtual ~label();
 
 

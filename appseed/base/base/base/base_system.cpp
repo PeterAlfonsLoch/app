@@ -12,7 +12,7 @@ namespace base
 
 
 
-   system::system(sp(::aura::application) papp):
+   system::system(::aura::application * papp):
       aura::system(this),
       axis::system(this),
       m_urldepartament(this),
@@ -515,7 +515,7 @@ namespace base
    }
 
 
-   string system::dir_appmatter_locator(sp(::aura::application) papp)
+   string system::dir_appmatter_locator(::aura::application * papp)
    {
 
       return dir().appmatter_locator(papp);

@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   ssl_client_context_map::ssl_client_context_map(sp(::aura::application) papp) :
+   ssl_client_context_map::ssl_client_context_map(::aura::application * papp) :
       element(papp),
       m_mutex(papp)
    {

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-OrtoButton::OrtoButton(sp(::aura::application) papp):
+OrtoButton::OrtoButton(::aura::application * papp):
 element(papp),
 ::user::button(papp),
 ::user::wndfrm::frame::control_box_button(papp),

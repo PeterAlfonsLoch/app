@@ -17,7 +17,7 @@ namespace simpledb
       int32_t                           m_iErrorCode;
 
 
-      base(sp(::aura::application) papp);
+      base(::aura::application * papp);
 
 
       virtual int32_t connect();

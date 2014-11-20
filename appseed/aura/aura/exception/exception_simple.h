@@ -8,8 +8,8 @@ class CLASS_DECL_AURA simple_exception :
 {
 public:
    
-   simple_exception(sp(::aura::application) papp);
-   simple_exception(sp(::aura::application) papp, const char * pszMessage);
+   simple_exception(::aura::application * papp);
+   simple_exception(::aura::application * papp, const char * pszMessage);
    virtual ~simple_exception();
 
 

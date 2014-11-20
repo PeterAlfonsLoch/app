@@ -33,7 +33,7 @@ public:
 #endif
 
 
-   mutex(sp(::aura::application) papp = NULL, bool bInitiallyOwn = FALSE, const char * lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
+   mutex(::aura::application * papp = NULL, bool bInitiallyOwn = FALSE, const char * lpszName = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
 
 
 protected:
@@ -75,7 +75,7 @@ public:
    virtual bool unlock();
 
 
-   static mutex * open_mutex(sp(::aura::application) papp, const char * pstrName);
+   static mutex * open_mutex(::aura::application * papp, const char * pstrName);
 
 
 };

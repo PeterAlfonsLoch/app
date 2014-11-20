@@ -10,7 +10,7 @@ namespace usermail
    public:
       
    
-      tree(sp(::aura::application) papp);
+      tree(::aura::application * papp);
       virtual ~tree();
 
 

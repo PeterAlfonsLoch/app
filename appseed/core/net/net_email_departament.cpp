@@ -6,7 +6,7 @@ namespace net
 {
 
 
-   email_departament::email_departament(sp(::aura::application) papp) :
+   email_departament::email_departament(::aura::application * papp) :
       element(papp),
       ::aura::departament(papp)
    {

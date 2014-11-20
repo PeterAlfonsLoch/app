@@ -24,7 +24,7 @@ public:
    ::datetime::time    m_timeEnd;
 
 
-   calendar_interface(sp(::aura::application) papp);
+   calendar_interface(::aura::application * papp);
 
 
    virtual void GetRectDay(::datetime::time & time, LPRECT lprect);

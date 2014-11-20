@@ -9,7 +9,7 @@ namespace file
 {
 
 
-   exception::exception(sp(::aura::application) papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
+   exception::exception(::aura::application * papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp),

@@ -2,7 +2,7 @@
 #include <dlfcn.h>
 
 
-::aura::library::aura::library(sp(::aura::application) papp) : element(papp)
+::aura::library::aura::library(::aura::application * papp) : element(papp)
 {
 
    m_plibrary = NULL;
@@ -12,7 +12,7 @@
 }
 
 
-::aura::library::aura::library(sp(::aura::application) papp, const char * pszOpen) :
+::aura::library::aura::library(::aura::application * papp, const char * pszOpen) :
 element(papp)
 {
 
@@ -98,13 +98,13 @@ void * ::aura::library::raw_get(const char * pszElement)
    return dlsym(m_plibrary, pszElement);
 }
 
-ca2_library::ca2_library(sp(::aura::application) papp) :
+ca2_library::ca2_library(::aura::application * papp) :
 element(papp),
 ::aura::library(papp)
 {
 }
 
-ca2_library::ca2_library(sp(::aura::application) papp, const char * pszOpen) :
+ca2_library::ca2_library(::aura::application * papp, const char * pszOpen) :
 element(papp),
 ::aura::library(papp, pszOpen)
 {

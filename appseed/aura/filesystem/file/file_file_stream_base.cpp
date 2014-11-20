@@ -17,7 +17,7 @@ namespace file
    }
 
 
-   void file_stream_base::open(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp)
+   void file_stream_base::open(const char * lpszFileName,uint32_t nOpenFlags,::aura::application * papp)
    {
 
       m_spbuffer.release();

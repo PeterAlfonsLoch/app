@@ -45,7 +45,7 @@ namespace dynamic_source
 
 
 
-      library_class(sp(::aura::application) papp);
+      library_class(::aura::application * papp);
       ~library_class();
 
 

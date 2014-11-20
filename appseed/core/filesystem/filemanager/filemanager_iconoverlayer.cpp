@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   iconoverlayer::iconoverlayer(sp(::aura::application) papp) :
+   iconoverlayer::iconoverlayer(::aura::application * papp) :
       element(papp)
    {
 

@@ -11,7 +11,7 @@ public:
    string      m_strUrl;      // licensing url
 
 
-   not_licensed(sp(::aura::application) papp, const char * pszRealm, const char * pszUrl);
+   not_licensed(::aura::application * papp, const char * pszRealm, const char * pszUrl);
    not_licensed(const not_licensed & e);
    virtual ~not_licensed();
 

@@ -15,7 +15,7 @@ namespace nature
    public:
 
 
-      document(sp(::aura::application) papp);
+      document(::aura::application * papp);
       virtual ~document();
 
       sp(::user::impact)     get_nature_view();

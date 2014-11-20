@@ -3,7 +3,7 @@
 namespace fontopus
 {
 
-   licensing::licensing(sp(::aura::application) papp) :
+   licensing::licensing(::aura::application * papp) :
       element(papp)
    {
    }

@@ -6,7 +6,7 @@ namespace windows
 {
 
 
-   application::application(sp(::aura::application) papp) :
+   application::application(::aura::application * papp) :
       element(papp)
    {
 

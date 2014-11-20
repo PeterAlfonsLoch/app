@@ -5,7 +5,7 @@ namespace process
 {
 
 
-   process::process(sp(::aura::application) papp):
+   process::process(::aura::application * papp):
       element(papp),
       m_pipe(papp)
    {

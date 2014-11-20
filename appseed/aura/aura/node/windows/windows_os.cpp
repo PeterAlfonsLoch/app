@@ -14,7 +14,7 @@ namespace windows
 {
 
 
-   os::os(sp(::aura::application) papp) :
+   os::os(::aura::application * papp) :
       element(papp),
       ::aura::os(papp)
    {
@@ -682,7 +682,7 @@ namespace windows
 
 
 
-   bool getCredentialsForService(sp(::aura::application) papp, const string & strService,WCHAR * szUsername,WCHAR *szPassword)
+   bool getCredentialsForService(::aura::application * papp, const string & strService,WCHAR * szUsername,WCHAR *szPassword)
    {
 
 
@@ -971,7 +971,7 @@ namespace windows
 
 
 
-   bool os::create_service(sp(::aura::application) papp)
+   bool os::create_service(::aura::application * papp)
    {
 
       if(papp->m_strAppName.is_empty()
@@ -1076,7 +1076,7 @@ namespace windows
    }
 
 
-   bool os::remove_service(sp(::aura::application) papp)
+   bool os::remove_service(::aura::application * papp)
    {
 
       if(papp->m_strAppName.is_empty()
@@ -1151,7 +1151,7 @@ namespace windows
 
    }
 
-   bool os::start_service(sp(::aura::application) papp)
+   bool os::start_service(::aura::application * papp)
    {
 
       if(papp->m_strAppName.is_empty()
@@ -1193,7 +1193,7 @@ namespace windows
       return bOk != FALSE;
    }
 
-   bool os::stop_service(sp(::aura::application) papp)
+   bool os::stop_service(::aura::application * papp)
    {
 
       if(papp->m_strAppName.is_empty()

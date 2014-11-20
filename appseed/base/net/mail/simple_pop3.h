@@ -25,7 +25,7 @@ namespace mail
       int32_t                     m_iListSize;
 
 
-      simple_pop3(sp(::aura::application) papp);
+      simple_pop3(::aura::application * papp);
 
 
       virtual string get_user();

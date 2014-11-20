@@ -20,7 +20,7 @@ namespace colorertake5
    public:
    
       
-      TextHRDMapper(sp(::aura::application) papp);
+      TextHRDMapper(::aura::application * papp);
       ~TextHRDMapper();
 
 

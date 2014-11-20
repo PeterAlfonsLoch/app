@@ -19,7 +19,7 @@ thread::thread()
 
 
 
-thread::thread(sp(::aura::application) papp) :
+thread::thread(::aura::application * papp) :
 element(papp)
 {
 
@@ -44,7 +44,7 @@ element(papp)
 }
 
 
-thread::thread(sp(::aura::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
+thread::thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
 element(papp)
 {
 
@@ -723,7 +723,7 @@ bool thread::on_run_step()
 
    step_timer();
 
-   sp(::aura::application) papp = (this);
+   ::aura::application * papp = (this);
 
    m_dwAlive = ::get_tick_count();
 
@@ -983,7 +983,7 @@ void thread::register_at_required_threads()
 
    // register default dependencies
 
-   sp(::aura::application) papp = this;
+   ::aura::application * papp = this;
 
    sp(::aura::session) psession = this;
 

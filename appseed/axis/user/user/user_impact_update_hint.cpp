@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   view_update_hint::view_update_hint(sp(::aura::application) papp) :
+   view_update_hint::view_update_hint(::aura::application * papp) :
       element(papp)
    {
 

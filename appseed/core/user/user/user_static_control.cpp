@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   static_control::static_control(sp(::aura::application) papp) :
+   static_control::static_control(::aura::application * papp) :
       element(papp)
    {
 

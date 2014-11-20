@@ -15,7 +15,7 @@ namespace user
       public:
 
 
-         wndfrm(sp(::aura::application) papp);
+         wndfrm(::aura::application * papp);
          virtual ~wndfrm();
 
 

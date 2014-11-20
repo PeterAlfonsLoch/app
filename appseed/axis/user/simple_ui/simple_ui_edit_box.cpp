@@ -5,7 +5,7 @@ namespace simple_ui
 {
 
 
-   edit_box::edit_box(sp(::aura::application) papp) :
+   edit_box::edit_box(::aura::application * papp) :
       element(papp),
       ::user::interaction(papp),
       ::colorertake5::base_editor(papp),

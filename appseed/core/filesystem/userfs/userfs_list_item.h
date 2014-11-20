@@ -17,7 +17,7 @@ namespace userfs
       index                            m_iArrange;
 
 
-      list_item(sp(::aura::application) papp);
+      list_item(::aura::application * papp);
       list_item(const list_item & item);
 
       static index CompareArrangeByName(const sp(list_item) & pitema, const sp(list_item) & pitemb);

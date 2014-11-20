@@ -3,7 +3,7 @@
 namespace user
 {
 
-   bitmap_button::bitmap_button(sp(::aura::application) papp) :
+   bitmap_button::bitmap_button(::aura::application * papp) :
       element(papp),
       
       ::user::button(papp)

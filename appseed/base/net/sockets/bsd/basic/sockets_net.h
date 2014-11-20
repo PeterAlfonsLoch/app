@@ -157,7 +157,7 @@ namespace sockets
       string_map < reverse_cache_item >                  m_mapReverseCache;
 
 
-      net(sp(::aura::application) papp);
+      net(::aura::application * papp);
       virtual ~net();
 
 

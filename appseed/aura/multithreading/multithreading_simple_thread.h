@@ -10,7 +10,7 @@ public:
    uint32_t          m_dwFinishTimeout;
 
 
-   simple_thread(sp(::aura::application) papp);
+   simple_thread(::aura::application * papp);
    virtual ~simple_thread();
 
 

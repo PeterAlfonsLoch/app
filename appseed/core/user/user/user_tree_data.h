@@ -17,7 +17,7 @@ namespace user
 
 
 
-      tree_data(sp(::aura::application) papp);
+      tree_data(::aura::application * papp);
       virtual ~tree_data();
 
 

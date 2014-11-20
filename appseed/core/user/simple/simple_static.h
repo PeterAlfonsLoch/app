@@ -10,7 +10,7 @@ public:
    ::draw2d::brush_sp       m_brushBkg;
    sp(image_list)         m_pimagelist;
 
-   simple_static(sp(::aura::application) papp);
+   simple_static(::aura::application * papp);
 
    virtual void pre_subclass_window();
    

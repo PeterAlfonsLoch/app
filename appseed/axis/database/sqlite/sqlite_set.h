@@ -17,7 +17,7 @@ namespace sqlite
       database::result_set exec_res;
 
 
-      set(sp(::aura::application) papp);
+      set(::aura::application * papp);
       set(base *newDb);
       ~set();
 

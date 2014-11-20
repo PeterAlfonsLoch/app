@@ -27,7 +27,7 @@ array_base::array_base(int iTypeSize,bool bRaw)
 }
 
 
-array_base::array_base(sp(::aura::application) papp, int iTypeSize, bool bRaw):
+array_base::array_base(::aura::application * papp, int iTypeSize, bool bRaw):
    element(papp)
 {
    

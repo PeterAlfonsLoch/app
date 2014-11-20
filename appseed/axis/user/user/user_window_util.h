@@ -50,7 +50,7 @@ namespace user
 
 
       interaction_spa();
-      interaction_spa(sp(::aura::application) papp);
+      interaction_spa(::aura::application * papp);
       interaction_spa(const ptr_array < ::user::interaction > & a);
       interaction_spa(const ::user::interaction_spa & a)
       {

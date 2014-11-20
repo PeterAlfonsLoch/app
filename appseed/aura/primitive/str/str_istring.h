@@ -14,7 +14,7 @@ protected:
 public:
 
 
-   istring(sp(::aura::application) papp);
+   istring(::aura::application * papp);
    ~istring();
 
 

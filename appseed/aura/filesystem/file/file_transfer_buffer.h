@@ -18,8 +18,8 @@ namespace file
       sp(mutex)                        m_spmutex;
 
 
-      transfer_buffer(sp(::aura::application) papp, mutex * pmutex = NULL);
-      transfer_buffer(sp(::aura::application) papp, ::file::memory_buffer * pmemoryfileIn);
+      transfer_buffer(::aura::application * papp, mutex * pmutex = NULL);
+      transfer_buffer(::aura::application * papp, ::file::memory_buffer * pmemoryfileIn);
       virtual ~transfer_buffer();
 
 

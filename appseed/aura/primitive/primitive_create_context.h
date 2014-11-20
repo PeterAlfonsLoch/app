@@ -49,7 +49,7 @@ public:
 
 
 
-   create_context(sp(::aura::application) papp);
+   create_context(::aura::application * papp);
    create_context(sp(::command_thread) pthreadParent);
    create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
    create_context(const create_context & createcontext);

@@ -17,7 +17,7 @@ namespace plugin
 
 
 
-      instance(sp(::aura::application) papp);
+      instance(::aura::application * papp);
       virtual ~instance();
 
 

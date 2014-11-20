@@ -16,7 +16,7 @@ namespace data
       ptr_array < data > m_dataptra;
 
 
-      data_listener(sp(::aura::application) papp);
+      data_listener(::aura::application * papp);
       virtual ~data_listener();
 
 

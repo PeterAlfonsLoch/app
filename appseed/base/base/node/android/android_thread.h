@@ -10,7 +10,7 @@ namespace android
    public:
 
 
-      thread(sp(::aura::application) papp);
+      thread(::aura::application * papp);
       virtual ~thread();
 
 

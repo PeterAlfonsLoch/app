@@ -170,7 +170,7 @@ namespace file
 
       void FillFilePosition(sp(Item) pitem);
 
-      edit_buffer(sp(::aura::application) papp);
+      edit_buffer(::aura::application * papp);
       virtual ~edit_buffer();
 
       virtual bool IsValid() const;

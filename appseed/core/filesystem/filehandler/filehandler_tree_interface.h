@@ -11,7 +11,7 @@ namespace filehandler
    public:
 
 
-      tree_interface(sp(::aura::application) papp);
+      tree_interface(::aura::application * papp);
       virtual ~tree_interface();
 
 

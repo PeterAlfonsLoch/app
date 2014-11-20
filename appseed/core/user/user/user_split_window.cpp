@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-BaseSplitWnd::BaseSplitWnd(sp(::aura::application) papp) :
+BaseSplitWnd::BaseSplitWnd(::aura::application * papp) :
    element(papp),
    ::user::split_layout(papp),
    place_holder_container(papp)

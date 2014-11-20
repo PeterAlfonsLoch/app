@@ -13,7 +13,7 @@ namespace fs
    {
    public:
 
-      data(sp(::aura::application) papp);
+      data(::aura::application * papp);
 
 
       // optional if ls_dir is implemented

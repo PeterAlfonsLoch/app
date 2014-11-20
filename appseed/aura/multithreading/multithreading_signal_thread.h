@@ -15,7 +15,7 @@ public:
    signal_details * m_pobj;
 
 
-   signal_thread(sp(::aura::application) papp,
+   signal_thread(::aura::application * papp,
       DST * psignalizableDst, void (DST::* pfnDst)(signal_details *),
       SRC * psignalizableSrc, void (SRC::* pfnSrc)(signal_details *),
       signal_details * pobj) :
@@ -49,7 +49,7 @@ public:
 };
 
 template < class DST, class SRC >
-void emit(sp(::aura::application) papp,
+void emit(::aura::application * papp,
    DST * psignalizableDst, void (DST::* pfnDst)(signal_details *),
    SRC * psignalizableSrc, void (SRC::* pfnSrc)(signal_details *),
    signal_details * pobj)

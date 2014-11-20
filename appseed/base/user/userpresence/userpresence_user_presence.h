@@ -26,7 +26,7 @@ namespace userpresence
       string         m_strLongStatus;
 
 
-      presence(sp(::aura::application) papp);
+      presence(::aura::application * papp);
       virtual ~presence();
 
       virtual void report_activity();

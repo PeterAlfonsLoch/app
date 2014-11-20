@@ -70,7 +70,7 @@ void ssl_sigpipe_handle( int x ) {
 
 
 
-   SSLInitializer::SSLInitializer(sp(::aura::application) papp) :
+   SSLInitializer::SSLInitializer(::aura::application * papp) :
       element(papp)
    {
 

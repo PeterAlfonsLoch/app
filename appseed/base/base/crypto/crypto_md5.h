@@ -47,7 +47,7 @@ namespace crypto
 
 #endif
 
-         context(sp(::aura::application) papp);
+         context(::aura::application * papp);
          virtual ~context();
 
          void update(const void * data, size_t size);

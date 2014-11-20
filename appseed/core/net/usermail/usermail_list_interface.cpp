@@ -8,7 +8,7 @@ namespace usermail
 {
 
 
-   list_interface::data::data(sp(::aura::application) papp) :
+   list_interface::data::data(::aura::application * papp) :
       element(papp),
       ::user::list_data(papp)
    {
@@ -16,7 +16,7 @@ namespace usermail
 
 
 
-   list_interface::list_interface(sp(::aura::application) papp) :
+   list_interface::list_interface(::aura::application * papp) :
       element(papp),
       
       ::user::scroll_view(papp),

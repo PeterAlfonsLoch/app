@@ -12,7 +12,7 @@ namespace filemanager
    public:
 
 
-      view(sp(::aura::application) papp);
+      view(::aura::application * papp);
       virtual ~view();
 
 

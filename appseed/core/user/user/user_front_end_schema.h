@@ -15,14 +15,14 @@ namespace user
       class CLASS_DECL_CORE system_menu
       {
       public:
-         system_menu(sp(::aura::application) papp);
+         system_menu(::aura::application * papp);
          ::draw2d::font_sp    m_fontMarlett;
       };
 
       class CLASS_DECL_CORE menu
       {
       public:
-         menu(sp(::aura::application) papp);
+         menu(::aura::application * papp);
          ~menu();
          ::draw2d::font_sp     m_font;
          button *          m_pschemaSysMenuButton;
@@ -38,7 +38,7 @@ namespace user
 
          bool                    m_bBorder;
 
-         button(sp(::aura::application) papp);
+         button(::aura::application * papp);
 
 
       };

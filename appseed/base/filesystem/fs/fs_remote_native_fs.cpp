@@ -5,7 +5,7 @@ namespace fs
 {
 
 
-   remote_native::remote_native(sp(::aura::application) papp, const char * pszRoot) :
+   remote_native::remote_native(::aura::application * papp, const char * pszRoot) :
       element(papp),
       ::data::data(papp),
       ::fs::data(papp)

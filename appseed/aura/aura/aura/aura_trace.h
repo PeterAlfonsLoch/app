@@ -104,7 +104,7 @@ namespace aura
 
          sp(::aura::application) m_pauraapp;
 
-         trace(sp(::aura::application) papp)
+         trace(::aura::application * papp)
          {
             m_pauraapp = papp;
          }

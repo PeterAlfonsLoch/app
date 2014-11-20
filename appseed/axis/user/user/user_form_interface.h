@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      form_interface(sp(::aura::application) papp);
+      form_interface(::aura::application * papp);
       virtual ~form_interface();
 
 

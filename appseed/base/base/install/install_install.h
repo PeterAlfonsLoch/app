@@ -48,7 +48,7 @@ namespace install
       ::sockets::http_session * m_phttpsession;
 
 
-      install(sp(::aura::application) papp);
+      install(::aura::application * papp);
       virtual ~install();
 
 

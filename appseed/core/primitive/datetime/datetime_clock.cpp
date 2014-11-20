@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-clock::clock(sp(::aura::application) papp) :
+clock::clock(::aura::application * papp) :
    element(papp),
    clock_interface(papp)
 {

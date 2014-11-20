@@ -2,7 +2,7 @@
 
 
 
-runtime_error::runtime_error(const string & strError, sp(::aura::application) papp):
+runtime_error::runtime_error(const string & strError, ::aura::application * papp):
 element(papp),
 ::call_stack(papp),
 ::exception::base(papp),
@@ -20,7 +20,7 @@ error_exception(papp,strError)
 
 }
 
-runtime_error::runtime_error(sp(::aura::application) papp, const char * pszError) :
+runtime_error::runtime_error(::aura::application * papp, const char * pszError) :
    element(papp),
    ::call_stack(papp),
    ::exception::base(papp),

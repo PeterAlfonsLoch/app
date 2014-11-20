@@ -19,14 +19,14 @@ namespace core
 #ifndef _WIN32
 extern "C"
 #endif
-::aura::library * get_new_library(sp(::aura::application) papp);
+::aura::library * get_new_library(::aura::application * papp);
 
 
 namespace core
 {
 
 
-   library::library(sp(::aura::application) papp):
+   library::library(::aura::application * papp):
       element(papp),
       ::aura::library(papp,0,"app"),
       ::aura::single_application_library < application >(papp,"app"),
@@ -85,7 +85,7 @@ namespace core
 #ifndef _WIN32
 extern "C"
 #endif
-::aura::library * get_new_library(sp(::aura::application) papp)
+::aura::library * get_new_library(::aura::application * papp)
 {
 
    return canew(::core::library(papp));

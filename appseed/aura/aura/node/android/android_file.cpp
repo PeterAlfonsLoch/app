@@ -25,7 +25,7 @@ namespace android
 {
 
 
-   file::file(sp(::aura::application) papp) :
+   file::file(::aura::application * papp) :
       element(papp)
    {
 
@@ -33,7 +33,7 @@ namespace android
 
    }
 
-   file::file(sp(::aura::application) papp, int32_t hFile) :
+   file::file(::aura::application * papp, int32_t hFile) :
       element(papp)
    {
 
@@ -41,7 +41,7 @@ namespace android
 
    }
 
-   file::file(sp(::aura::application) papp, const char * lpszFileName, UINT nOpenFlags) :
+   file::file(::aura::application * papp, const char * lpszFileName, UINT nOpenFlags) :
       element(papp)
    {
 
@@ -571,13 +571,13 @@ namespace android
 
 
 
-   void PASCAL file_exception::ThrowOsError(sp(::aura::application) papp, LONG lOsError, const char * lpszFileName /* = NULL */)
+   void PASCAL file_exception::ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName /* = NULL */)
    {
       if (lOsError != 0)
          vfxThrowFileException(papp, file_exception::OsErrorToException(lOsError), lOsError, lpszFileName);
    }
 
-   void PASCAL file_exception::ThrowErrno(sp(::aura::application) papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
+   void PASCAL file_exception::ThrowErrno(::aura::application * papp, int32_t nErrno, const char * lpszFileName /* = NULL */)
    {
       if (nErrno != 0)
          vfxThrowFileException(papp, file_exception::ErrnoToException(nErrno), errno, lpszFileName);
@@ -1573,7 +1573,7 @@ return TRUE;
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_AURA vfxThrowFileException(sp(::aura::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_AURA vfxThrowFileException(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;

@@ -54,7 +54,7 @@ namespace message
       m_nIDEvent = static_cast<UINT>(wparam);
    }
 
-   activate::activate(sp(::aura::application) papp):
+   activate::activate(::aura::application * papp):
       element(papp),
       ::message::base(papp)
    {
@@ -70,7 +70,7 @@ namespace message
 
 
 
-   erase_bkgnd::erase_bkgnd(sp(::aura::application) papp):
+   erase_bkgnd::erase_bkgnd(::aura::application * papp):
       element(papp),
       ::message::base(papp)
    {
@@ -82,7 +82,7 @@ namespace message
    }
 
 
-   key::key(sp(::aura::application) papp):
+   key::key(::aura::application * papp):
       element(papp),
       ::message::base(papp)
    {
@@ -139,7 +139,7 @@ namespace message
    }
 
 
-   nc_activate::nc_activate(sp(::aura::application) papp):
+   nc_activate::nc_activate(::aura::application * papp):
       element(papp),
       ::message::base(papp)
    {
@@ -158,7 +158,7 @@ namespace message
       m_size      = ::size(LOWORD(lparam),HIWORD(lparam));
    }
 
-   mouse::mouse(sp(::aura::application) papp):
+   mouse::mouse(::aura::application * papp):
       element(papp),
       ::message::base(papp),
       m_ecursor(::visual::cursor_unmodified)

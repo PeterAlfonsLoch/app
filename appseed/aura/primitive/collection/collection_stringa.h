@@ -10,7 +10,7 @@ class CLASS_DECL_AURA stringa :
 public:
 
 
-   stringa(sp(::aura::application) papp = NULL);
+   stringa(::aura::application * papp = NULL);
    stringa(const char * psz);
    stringa(const string & str);
    stringa(const var & var);

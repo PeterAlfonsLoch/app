@@ -18,7 +18,7 @@ namespace filemanager
       ::fs::item_array                      m_itema;
 
 
-      main_view(sp(::aura::application) papp);
+      main_view(::aura::application * papp);
       virtual ~main_view();
 
 

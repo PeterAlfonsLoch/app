@@ -11,7 +11,7 @@ root::root()
 }
 
 
-root::root(sp(::aura::application) papp)
+root::root(::aura::application * papp)
 {
 
    m_countReference  = 1;

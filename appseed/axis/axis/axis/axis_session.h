@@ -53,14 +53,14 @@ namespace axis
 
 
 
-      session(sp(::aura::application) papp);
+      session(::aura::application * papp);
       virtual ~session_parent;
 
 
       virtual bool is_session();
 
 
-      void construct(sp(::aura::application) papp, int iPhase);
+      void construct(::aura::application * papp, int iPhase);
 
       virtual bool process_initialize();
 

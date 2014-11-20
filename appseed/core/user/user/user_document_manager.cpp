@@ -44,7 +44,7 @@ namespace user
    const char document_manager::gen_ShellNewValue[] = "";
 
 
-   document_manager::document_manager(sp(::aura::application) papp) :
+   document_manager::document_manager(::aura::application * papp) :
       element(papp)
    {
    }

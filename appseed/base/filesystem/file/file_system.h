@@ -24,7 +24,7 @@ namespace file
          void split(stringa & stra, const char * lpcszPath);
          bool is_relative(const char * psz);
 
-         bool rename(const char * pszNew, const char * psz, sp(::aura::application) papp);
+         bool rename(const char * pszNew, const char * psz, ::aura::application * papp);
 
       };
 
@@ -36,11 +36,11 @@ namespace file
       virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, sp(::aura::application) app);
       virtual void move(const char * pszNew, const char * psz);
       virtual void del(const char * psz);
-      virtual string copy(const char * psz, sp(::aura::application) papp);
-      virtual string paste(const char * pszLocation, const char * path, sp(::aura::application) papp);
+      virtual string copy(const char * psz, ::aura::application * papp);
+      virtual string paste(const char * pszLocation, const char * path, ::aura::application * papp);
 
-      virtual void trash_that_is_not_trash(const char * psz, sp(::aura::application) papp);
-      virtual void trash_that_is_not_trash(stringa & stra, sp(::aura::application) papp);
+      virtual void trash_that_is_not_trash(const char * psz, ::aura::application * papp);
+      virtual void trash_that_is_not_trash(stringa & stra, ::aura::application * papp);
 
       virtual string title_(const char * path);
       virtual string name_(const char * path);
@@ -48,31 +48,31 @@ namespace file
 
       
 
-      virtual void replace(const char * pszContext, const char * pszFind, const char * pszReplace, sp(::aura::application) papp);
+      virtual void replace(const char * pszContext, const char * pszFind, const char * pszReplace, ::aura::application * papp);
 
-      virtual bool exists(const char * path, sp(::aura::application) papp);
-      virtual bool exists(const string & path, sp(::aura::application) papp);
+      virtual bool exists(const char * path, ::aura::application * papp);
+      virtual bool exists(const string & path, ::aura::application * papp);
 
-      virtual bool exists(const char * path, var * pvarQuery, sp(::aura::application) papp);
-      virtual bool exists(const string & path, var * pvarQuery, sp(::aura::application) papp);
+      virtual bool exists(const char * path, var * pvarQuery, ::aura::application * papp);
+      virtual bool exists(const string & path, var * pvarQuery, ::aura::application * papp);
 
-      virtual var length(const char * path, sp(::aura::application) papp);
-      virtual var length(const string & path, sp(::aura::application) papp);
+      virtual var length(const char * path, ::aura::application * papp);
+      virtual var length(const string & path, ::aura::application * papp);
 
-      virtual var length(const char * path, var * pvarQuery, sp(::aura::application) papp);
-      virtual var length(const string & path, var * pvarQuery, sp(::aura::application) papp);
+      virtual var length(const char * path, var * pvarQuery, ::aura::application * papp);
+      virtual var length(const string & path, var * pvarQuery, ::aura::application * papp);
 
       void  get_ascendants_path(const char * lpcsz, stringa & stra);
       void  get_ascendants_name(const char * lpcsz, stringa & stra);
 
       template < class T >
-      bool output(sp(::aura::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource);
+      bool output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource);
 
       template < class T >
-      bool output(sp(::aura::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput);
+      bool output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput);
 
       template < class T >
-      bool output(sp(::aura::application) papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),::file::input_stream & istream);
+      bool output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),::file::input_stream & istream);
 
 
 
@@ -81,15 +81,15 @@ namespace file
 
 
 
-      string time(sp(::aura::application) papp, const char * pszBasePath, int32_t iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      string time_square(sp(::aura::application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      string time_log(sp(::aura::application) papp, const char * pszId);
+      string time(::aura::application * papp, const char * pszBasePath, int32_t iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      string time_square(::aura::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      string time_log(::aura::application * papp, const char * pszId);
 
-      virtual ::file::buffer_sp time_square_file(sp(::aura::application) papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-      virtual ::file::buffer_sp get(const char * name, sp(::aura::application) papp);
+      virtual ::file::buffer_sp time_square_file(::aura::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+      virtual ::file::buffer_sp get(const char * name, ::aura::application * papp);
 
       template < class T >
-      string time_square(sp(::aura::application) papp, T * p, bool (T::*lpfnOutput)(::file::output_stream &, const char *), const char * lpszSource)
+      string time_square(::aura::application * papp, T * p, bool (T::*lpfnOutput)(::file::output_stream &, const char *), const char * lpszSource)
       {
          string strTime = time_square(papp);
          if(strTime.has_char())
@@ -103,20 +103,20 @@ namespace file
       int32_t filterex_time_square(const char * pszPrefix, stringa & stra);
       bool mk_time(const char * lpcszCandidate);
 
-      string as_string(var varFile, sp(::aura::application) papp);
-      string as_string(var varFile, var & varQuery, sp(::aura::application) papp);
-      void as_memory(var varFile, primitive::memory_base & mem, sp(::aura::application) papp);
-      void lines(stringa & stra, var varFile, sp(::aura::application) papp);
+      string as_string(var varFile, ::aura::application * papp);
+      string as_string(var varFile, var & varQuery, ::aura::application * papp);
+      void as_memory(var varFile, primitive::memory_base & mem, ::aura::application * papp);
+      void lines(stringa & stra, var varFile, ::aura::application * papp);
 
-      bool put_contents(var varFile, const void * pvoidContents, ::count count, sp(::aura::application) papp);
-      bool put_contents(var varFile, const char * lpcszContents, sp(::aura::application) papp);
-      bool put_contents(var varFile, ::file::reader & reader, sp(::aura::application) papp);
-      bool put_contents(var varFile, primitive::memory & mem, sp(::aura::application) papp);
-      bool put_contents_utf8(var varFile, const char * lpcszContents, sp(::aura::application) papp);
+      bool put_contents(var varFile, const void * pvoidContents, ::count count, ::aura::application * papp);
+      bool put_contents(var varFile, const char * lpcszContents, ::aura::application * papp);
+      bool put_contents(var varFile, ::file::reader & reader, ::aura::application * papp);
+      bool put_contents(var varFile, primitive::memory & mem, ::aura::application * papp);
+      bool put_contents_utf8(var varFile, const char * lpcszContents, ::aura::application * papp);
 
       bool is_read_only(const char * psz);
 
-      string sys_temp(const char * pszName, const char * pszExtension, sp(::aura::application) papp);
+      string sys_temp(const char * pszName, const char * pszExtension, ::aura::application * papp);
       string sys_temp_unique(const char * pszName);
 
 
@@ -136,11 +136,11 @@ namespace file
 
 //      path & path36();
 
-      void dtf(const char * pszFile, const char * pszDir, sp(::aura::application) papp);
-      void dtf(const char * pszFile, stringa & stra, stringa & straRelative, sp(::aura::application) papp);
-      void ftd(const char * pszDir, const char * pszFile, sp(::aura::application) papp);
+      void dtf(const char * pszFile, const char * pszDir, ::aura::application * papp);
+      void dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::aura::application * papp);
+      void ftd(const char * pszDir, const char * pszFile, ::aura::application * papp);
 
-      void is_valid_fileset(const char * pszFile, sp(::aura::application) papp);
+      void is_valid_fileset(const char * pszFile, ::aura::application * papp);
 
       // 'n' (natural) terminated ascii number, example: 245765487n
       static void write_n_number(::file::buffer_sp  pfile, ::md5::md5 * pctx, int64_t iNumber);

@@ -369,7 +369,7 @@ namespace fontopus
 
          sp(::create_context) spcreatecontext(allocer());
 
-         sp(::aura::application) papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
+         ::aura::application * papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
          if(papp == NULL)
          {
@@ -592,7 +592,7 @@ namespace fontopus
          strGetFontopus = "https://" + strRequestingServer + "/get_fontopus_login";
       }
 
-      sp(::aura::application) papp = get_app();
+      ::aura::application * papp = get_app();
 
       url_domain domainFontopus;
 
@@ -612,7 +612,7 @@ namespace fontopus
    }
 
 
-   create_user_thread::create_user_thread(sp(::aura::application) papp) :
+   create_user_thread::create_user_thread(::aura::application * papp) :
       element(papp),
       ::thread(papp),
       m_evReady(papp)

@@ -5,7 +5,7 @@ namespace primitive
 {
 
 
-   command::command(sp(::aura::application) papp) :
+   command::command(::aura::application * papp) :
       element(papp)
    {
 

@@ -18,7 +18,7 @@ namespace user
          property_set       m_set;
 
 
-         interaction(sp(::aura::application) papp);
+         interaction(::aura::application * papp);
          virtual ~interaction();
 
          virtual void update();

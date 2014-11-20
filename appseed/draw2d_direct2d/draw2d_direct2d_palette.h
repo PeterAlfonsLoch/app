@@ -12,7 +12,7 @@ namespace draw2d_direct2d
    public:
 
 
-      palette(sp(::aura::application) papp);
+      palette(::aura::application * papp);
       virtual ~palette();
 
 

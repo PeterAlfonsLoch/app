@@ -92,7 +92,7 @@ namespace data
       ::user::document *                     m_pdocument;
 
 
-      data(sp(::aura::application) papp);
+      data(::aura::application * papp);
       virtual ~data();
 
 

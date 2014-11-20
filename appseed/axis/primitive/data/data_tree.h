@@ -18,7 +18,7 @@ namespace data
 
 
 
-      tree(sp(::aura::application) papp);
+      tree(::aura::application * papp);
       virtual ~tree();
 
 

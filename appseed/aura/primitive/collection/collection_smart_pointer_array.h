@@ -47,7 +47,7 @@ public:
    }
 
 
-   smart_pointer_array(sp(::aura::application) papp) :
+   smart_pointer_array(::aura::application * papp) :
       element(papp),
       array < smart_pointer < T > >(papp)
    {
@@ -128,7 +128,7 @@ public:
       if(contains(p))
          return false;
 
-      this->add(p);
+      this->add((const sp(T) &) p);
 
       return true;
 

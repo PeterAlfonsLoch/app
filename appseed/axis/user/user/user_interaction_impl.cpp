@@ -2618,7 +2618,7 @@ namespace user
    }
 
 
-   guie_message_wnd::guie_message_wnd(sp(::aura::application) papp):
+   guie_message_wnd::guie_message_wnd(::aura::application * papp):
       element(papp)
    {
       m_puiForward = NULL;

@@ -7,7 +7,7 @@ namespace ansios
 {
 
 
-   thread_impl::thread_impl(sp(::aura::application) papp) :
+   thread_impl::thread_impl(::aura::application * papp) :
    element(papp),
    ::thread_impl(papp)
    {

@@ -12,7 +12,7 @@ namespace databaseuser
    public:
 
 
-      data_key_list_data(sp(::aura::application) papp);
+      data_key_list_data(::aura::application * papp);
       virtual ~data_key_list_data();
 
 

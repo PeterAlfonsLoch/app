@@ -15,7 +15,7 @@ public:
    string      m_strSchema;
 
 
-   not_installed(sp(::aura::application) papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
+   not_installed(::aura::application * papp, const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema);
    not_installed(const not_installed & e);
    virtual ~not_installed();
 

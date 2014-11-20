@@ -22,7 +22,7 @@ namespace user
 
 
 
-      split_bar(sp(::aura::application) papp);
+      split_bar(::aura::application * papp);
       virtual ~split_bar();
 
 

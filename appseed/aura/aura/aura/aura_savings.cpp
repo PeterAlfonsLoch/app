@@ -5,7 +5,7 @@ namespace aura
 {
 
 
-   savings::savings(sp(::aura::application) papp) :
+   savings::savings(::aura::application * papp) :
       element(papp)
    {
 

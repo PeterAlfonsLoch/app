@@ -23,7 +23,7 @@ namespace filemanager
       id                                           m_idFileManager;
 
 
-      filemanager(sp(::aura::application) papp);
+      filemanager(::aura::application * papp);
       virtual ~filemanager();
 
       bool initialize();

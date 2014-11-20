@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   core::core(sp(::aura::application) papp) :
+   core::core(::aura::application * papp) :
       element(papp),
       ::aura::departament(papp)
    {

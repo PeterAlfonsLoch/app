@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_form_list_edit::simple_form_list_edit(sp(::aura::application) papp) :
+simple_form_list_edit::simple_form_list_edit(::aura::application * papp) :
     element(papp),
    ::user::interaction(papp),
    ::data::data_listener(papp),

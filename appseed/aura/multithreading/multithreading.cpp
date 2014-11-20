@@ -74,7 +74,7 @@ namespace multithreading
 
       ::multithreading::__node_on_term_thread(pthread);
 
-      sp(::aura::application) papp = pthread->get_app();
+      ::aura::application * papp = pthread->get_app();
 
       int nExitCode = pthread->m_iReturnCode;
 
@@ -118,7 +118,7 @@ void set_thread(::thread* pthread)
 
 
 
-thread* __begin_thread(sp(::aura::application) papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority,UINT nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+thread* __begin_thread(::aura::application * papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority,UINT nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    ASSERT(pfnThreadProc != NULL);

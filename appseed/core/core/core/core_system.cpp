@@ -16,7 +16,7 @@ namespace core
 {
 
 
-   system::system(sp(::aura::application) papp):
+   system::system(::aura::application * papp):
       ::element(papp),
       ::aura::system(papp),
       ::axis::system(papp),
@@ -613,7 +613,7 @@ namespace core
    }
 
    /*
-   sp(element) system::on_alloc(sp(::aura::application) papp, sp(type) info)
+   sp(element) system::on_alloc(::aura::application * papp, sp(type) info)
    {
    /*string str;
    str.Format("Could not alloc %s", info.name());

@@ -25,8 +25,8 @@ namespace primitive
       memory(const memory * pmemory,manager * pmanager);
       memory(const byte * pchSrc,strsize nLength,manager * pmanager);
 
-      memory(sp(::aura::application) papp);
-      memory(sp(::aura::application) papp, bool bAligned);
+      memory(::aura::application * papp);
+      memory(::aura::application * papp, bool bAligned);
       memory(const byte *,memory_size iCount);
       memory(const void *, memory_size iCount);
       memory(const memory_base & memorybase);

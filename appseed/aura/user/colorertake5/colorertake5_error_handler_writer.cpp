@@ -1,6 +1,6 @@
 #include "framework.h" // previously aura/user/user.h
 
-ErrorHandlerWriter::ErrorHandlerWriter(sp(::aura::application) papp) :
+ErrorHandlerWriter::ErrorHandlerWriter(::aura::application * papp) :
 element(papp)
 {
 }

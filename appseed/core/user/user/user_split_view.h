@@ -12,7 +12,7 @@ namespace user
    public:
 
 
-      split_view(sp(::aura::application) papp);
+      split_view(::aura::application * papp);
       virtual ~split_view();
 
 

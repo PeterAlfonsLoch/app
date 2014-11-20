@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   weekday_list_view::weekday_list_view(sp(::aura::application) papp):
+   weekday_list_view::weekday_list_view(::aura::application * papp):
       element(papp),
       ::user::scroll_view(papp),
       ::user::form_interface(papp),

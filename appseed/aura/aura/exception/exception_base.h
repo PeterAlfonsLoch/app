@@ -16,8 +16,8 @@ namespace exception
    public:
 
 
-      base(sp(::aura::application) papp,uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
-      explicit base(sp(::aura::application) papp,bool bAutoDelete,uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
+      base(::aura::application * papp,uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
+      explicit base(::aura::application * papp,bool bAutoDelete,uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
       // Implementation (setting m_bAutoDelete to FALSE is advanced)
       virtual ~base();
 

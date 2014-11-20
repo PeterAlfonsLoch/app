@@ -1,14 +1,14 @@
 #include "framework.h"
 #include "plugin_instance.h"
 
-::hotplugin::plugin * new_hotplugin(sp(::aura::application) papp);
+::hotplugin::plugin * new_hotplugin(::aura::application * papp);
 
 
 namespace plugin
 {
 
 
-   instance::instance(sp(::aura::application) papp) :
+   instance::instance(::aura::application * papp) :
       element(papp),
       hotplugin::plugin(papp),
       ::simple_ui::style(papp),
@@ -101,7 +101,7 @@ namespace plugin
 
 
 
-::hotplugin::plugin * new_hotplugin(sp(::aura::application) papp)
+::hotplugin::plugin * new_hotplugin(::aura::application * papp)
 {
 
    return new ::plugin::instance(papp);

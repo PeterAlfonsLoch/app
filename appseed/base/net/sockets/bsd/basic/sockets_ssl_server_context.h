@@ -25,7 +25,7 @@ typedef struct ssl_session_st SSL_SESSION;
          //int32_t               m_iRetry;
 
 
-         ssl_server_context(sp(::aura::application) papp);
+         ssl_server_context(::aura::application * papp);
          virtual ~ssl_server_context();
 
 

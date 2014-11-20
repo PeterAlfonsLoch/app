@@ -27,7 +27,7 @@ namespace xml
    public:
 
 
-      attr_array(sp(::aura::application) papp);
+      attr_array(::aura::application * papp);
 
 
    };

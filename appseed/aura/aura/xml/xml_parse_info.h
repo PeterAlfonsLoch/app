@@ -28,7 +28,7 @@ namespace xml
       sp(::xml::document)        m_pdoc;
 
       
-      parse_info(sp(::aura::application) papp);
+      parse_info(::aura::application * papp);
       
       
    };

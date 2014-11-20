@@ -17,7 +17,7 @@ namespace user
       ptr_array < interaction >           m_uiptra;
 
 
-      timer_array(sp(::aura::application) papp);
+      timer_array(::aura::application * papp);
       virtual ~timer_array();
 
 

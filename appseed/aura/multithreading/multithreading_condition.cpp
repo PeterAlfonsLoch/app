@@ -10,7 +10,7 @@
 #endif
 
 
-condition::condition(sp(::aura::application) papp) :
+condition::condition(::aura::application * papp) :
    element(papp)
 {
 

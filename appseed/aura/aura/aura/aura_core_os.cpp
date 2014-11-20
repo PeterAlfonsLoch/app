@@ -5,7 +5,7 @@ namespace aura
 {
 
 
-   os::os(sp(::aura::application) papp) :
+   os::os(::aura::application * papp) :
       element(papp)
    {
    }
@@ -203,7 +203,7 @@ namespace aura
 #endif
 
 
-   bool os::create_service(sp(::aura::application) papp)
+   bool os::create_service(::aura::application * papp)
    {
 
 
@@ -216,7 +216,7 @@ namespace aura
    }
 
 
-   bool os::remove_service(sp(::aura::application) papp)
+   bool os::remove_service(::aura::application * papp)
    {
 
 
@@ -229,7 +229,7 @@ namespace aura
    }
 
 
-   bool os::start_service(sp(::aura::application) papp)
+   bool os::start_service(::aura::application * papp)
    {
 
 
@@ -242,7 +242,7 @@ namespace aura
    }
 
 
-   bool os::stop_service(sp(::aura::application) papp)
+   bool os::stop_service(::aura::application * papp)
    {
 
 

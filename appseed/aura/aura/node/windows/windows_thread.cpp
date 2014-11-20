@@ -33,7 +33,7 @@ namespace windows
 {
 
 
-   thread::thread(sp(::aura::application) papp):
+   thread::thread(::aura::application * papp):
       element(papp),
       ::thread_impl(papp)
    {

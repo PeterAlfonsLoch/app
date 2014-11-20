@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   property_page::property_page(sp(::aura::application) papp) :
+   property_page::property_page(::aura::application * papp) :
       element(papp),
       
       ::user::place_holder_container(papp),

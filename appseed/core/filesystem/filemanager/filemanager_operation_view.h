@@ -34,7 +34,7 @@ namespace filemanager
       ::user::view_creator *     m_pviewcreator;
 
 
-      operation_view(sp(::aura::application) papp);
+      operation_view(::aura::application * papp);
       virtual ~operation_view();
 
       sp(operation_document) get_document();

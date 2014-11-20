@@ -9,7 +9,7 @@ namespace sockets
 {
 
 
-   ssl_server_context::ssl_server_context(sp(::aura::application) papp) :
+   ssl_server_context::ssl_server_context(::aura::application * papp) :
       element(papp),
       m_mutex(papp)
    {

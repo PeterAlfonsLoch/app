@@ -334,7 +334,7 @@ void openURL(const string &url_str) {
 
 
 
-open_url::open_url(sp(::aura::application) papp,const string & strLink,const string & pszTarget) :
+open_url::open_url(::aura::application * papp,const string & strLink,const string & pszTarget) :
    element(papp)
 {
 
@@ -347,7 +347,7 @@ open_url::open_url(sp(::aura::application) papp,const string & strLink,const str
 
 
 
-bool open_url::start(sp(::aura::application) papp,const string & strLink,const string & strTarget)
+bool open_url::start(::aura::application * papp,const string & strLink,const string & strTarget)
 {
 
    return __begin_thread(papp,&thread_proc,new open_url(papp,strLink,strTarget)) != FALSE;

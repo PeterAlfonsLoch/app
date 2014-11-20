@@ -8,7 +8,7 @@ namespace user
       virtual public elemental
    {
    public:
-      check_box(sp(::aura::application) papp);
+      check_box(::aura::application * papp);
       virtual ~check_box();
 
    protected:

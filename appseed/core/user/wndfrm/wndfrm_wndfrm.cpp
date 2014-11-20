@@ -9,7 +9,7 @@ namespace user
    {
 
 
-      wndfrm::wndfrm(sp(::aura::application) papp) :
+      wndfrm::wndfrm(::aura::application * papp) :
          element(papp),
          ::aura::departament(papp)
       {

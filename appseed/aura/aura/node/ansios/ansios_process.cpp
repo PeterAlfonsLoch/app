@@ -26,7 +26,7 @@ namespace ansios
 {
 
 
-   process::process(sp(::aura::application) papp):
+   process::process(::aura::application * papp):
       element(papp),
       ::process::process(papp)
    {

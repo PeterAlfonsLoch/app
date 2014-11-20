@@ -26,7 +26,7 @@ namespace datetime
          virtual public ::object
       {
       public:
-         international(sp(::aura::application) papp);
+         international(::aura::application * papp);
          void parse_str(const char * psz,property_set & set);
          string get_gmt_date_time(const ::datetime::time & time);
          string get_gmt_date_time();
@@ -38,7 +38,7 @@ namespace datetime
          virtual public ::object
       {
       public:
-         str(sp(::aura::application) papp);
+         str(::aura::application * papp);
          departament * m_pdatetime;
          string get_gmt_date_time();
       };
@@ -48,7 +48,7 @@ namespace datetime
       class ::datetime::departament::str m_str;
 
 
-      departament(sp(::aura::application) papp);
+      departament(::aura::application * papp);
 
       int32_t get_month_day_count(int32_t year,int32_t month);
       int32_t get_weekday(int32_t year,int32_t month,int32_t day);

@@ -12,7 +12,7 @@ public:
    bool                 m_bFocus;
 
 
-   simple_button(sp(::aura::application) papp);
+   simple_button(::aura::application * papp);
    virtual ~simple_button();
 
 

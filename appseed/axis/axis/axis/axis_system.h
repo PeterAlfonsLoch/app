@@ -76,7 +76,7 @@ namespace axis
       ::user::schema *                             m_pschemaLayeredFrame;
 
 
-      system(sp(::aura::application) papp);
+      system(::aura::application * papp);
       virtual ~system();
 
 
@@ -163,7 +163,7 @@ namespace axis
       virtual string get_module_name();
 */
 
-      virtual string dir_appmatter_locator(sp(::aura::application) papp);
+      virtual string dir_appmatter_locator(::aura::application * papp);
 
    };
 

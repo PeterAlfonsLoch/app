@@ -111,7 +111,7 @@ public:
    var               m_var;
 
 
-   property(sp(::aura::application) papp);
+   property(::aura::application * papp);
    property();
    property(const property & prop);
    property(id strName);
@@ -666,7 +666,7 @@ class CLASS_DECL_AURA property_array :
 public:
 
 
-   property_array(sp(::aura::application) papp = NULL);
+   property_array(::aura::application * papp = NULL);
 
 
 

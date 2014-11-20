@@ -5,7 +5,7 @@ namespace data
 {
 
 
-   tree::tree(sp(::aura::application) papp) :
+   tree::tree(::aura::application * papp) :
       element(papp),
       ::data::data(papp),
       m_mutex(papp)

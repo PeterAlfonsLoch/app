@@ -16,7 +16,7 @@ namespace dynamic_source
    } LOADPARMS32;
 
 
-   library_class::library_class(sp(::aura::application) papp)
+   library_class::library_class(::aura::application * papp)
       :  element(papp),
       m_memfileError(papp),
       m_library(papp)

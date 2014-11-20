@@ -10,7 +10,7 @@ namespace axis
    {
 
 
-      factory_exchange::factory_exchange(sp(::aura::application) papp):
+      factory_exchange::factory_exchange(::aura::application * papp):
          element(papp)
       {
 
@@ -36,7 +36,7 @@ namespace axis
 } // namespace axis
 
 
-void __node_axis_factory_exchange(sp(::aura::application) papp)
+void __node_axis_factory_exchange(::aura::application * papp)
 {
 
    ::axis::windows::factory_exchange factoryexchange(papp);

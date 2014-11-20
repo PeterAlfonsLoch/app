@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   split_bar::split_bar(sp(::aura::application) papp) :
+   split_bar::split_bar(::aura::application * papp) :
       element(papp)
    {
 

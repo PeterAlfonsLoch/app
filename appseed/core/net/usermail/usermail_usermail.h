@@ -11,7 +11,7 @@ namespace usermail
    public:
       
 
-      usermail(sp(::aura::application) papp);
+      usermail(::aura::application * papp);
       virtual ~usermail();
 
 

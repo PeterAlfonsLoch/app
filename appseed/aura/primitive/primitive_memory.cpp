@@ -71,7 +71,7 @@ namespace primitive
    }
 
 
-   memory::memory(sp(::aura::application) papp) :
+   memory::memory(::aura::application * papp) :
       element(papp)
    {
 
@@ -86,7 +86,7 @@ namespace primitive
 
    }
 
-   memory::memory(sp(::aura::application) papp, bool bAligned) :
+   memory::memory(::aura::application * papp, bool bAligned) :
       element(papp)
    {
 

@@ -17,7 +17,7 @@ namespace user
       int64_t                 m_iLButtonDown;
 
 
-      step_slider(sp(::aura::application) papp);
+      step_slider(::aura::application * papp);
       virtual ~step_slider();
 
       bool create_window(const RECT & rect, sp(::user::interaction) pwndParent, id id);

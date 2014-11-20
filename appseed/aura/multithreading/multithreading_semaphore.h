@@ -20,7 +20,7 @@ public:
 
 #endif
 
-   semaphore(sp(::aura::application) papp, LONG lInitialCount = 1, LONG lMaxCount = 1, const char * pstrName=NULL, LPSECURITY_ATTRIBUTES lpsaAttributes = NULL);
+   semaphore(::aura::application * papp, LONG lInitialCount = 1, LONG lMaxCount = 1, const char * pstrName=NULL, LPSECURITY_ATTRIBUTES lpsaAttributes = NULL);
    virtual ~semaphore();
 
    

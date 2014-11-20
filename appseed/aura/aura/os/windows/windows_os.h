@@ -12,7 +12,7 @@ namespace windows
    public:
    
       
-      os(sp(::aura::application) papp);
+      os(::aura::application * papp);
       virtual ~os();
 
 
@@ -48,11 +48,11 @@ namespace windows
       virtual bool open_in_ie(const char * lpcsz);
 
 
-      virtual bool create_service(sp(::aura::application) papp);
-      virtual bool remove_service(sp(::aura::application) papp);
+      virtual bool create_service(::aura::application * papp);
+      virtual bool remove_service(::aura::application * papp);
       
-      virtual bool start_service(sp(::aura::application) papp);
-      virtual bool stop_service(sp(::aura::application) papp);
+      virtual bool start_service(::aura::application * papp);
+      virtual bool stop_service(::aura::application * papp);
 
 
       DECLSPEC_NO_RETURN void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags);

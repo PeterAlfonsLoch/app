@@ -8,8 +8,8 @@ class CLASS_DECL_AURA cancel_exception:
 {
 public:
 
-   cancel_exception(sp(::aura::application) papp);
-   cancel_exception(sp(::aura::application) papp,const char * pszMessage);
+   cancel_exception(::aura::application * papp);
+   cancel_exception(::aura::application * papp,const char * pszMessage);
    virtual ~cancel_exception();
 
 

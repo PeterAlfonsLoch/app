@@ -72,7 +72,7 @@ public:
    mapsp(id, id, ::user::toolbar)     m_toolbarmap;
 
 
-   simple_frame_window(sp(::aura::application) papp);
+   simple_frame_window(::aura::application * papp);
    virtual ~simple_frame_window();
 
 

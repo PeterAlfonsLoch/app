@@ -25,7 +25,7 @@ namespace aura
    class ::id_space * system::s_pidspace = NULL;
 
 
-   system::system(sp(::aura::application) papp) :
+   system::system(::aura::application * papp) :
       m_process(this)
    {
 
@@ -841,7 +841,7 @@ namespace aura
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
   //    {
-    //     sp(::aura::application) papp = appptra()(i);
+    //     ::aura::application * papp = appptra()(i);
       //   papp->load_string_table();
       //}
 
@@ -854,7 +854,7 @@ namespace aura
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
  //     {
-  //       sp(::aura::application) papp = appptra()(i);
+  //       ::aura::application * papp = appptra()(i);
   //       papp->set_locale(pszLocale,actioncontext);
   //    }
 
@@ -867,7 +867,7 @@ namespace aura
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
   //    {
-  //       sp(::aura::application) papp = appptra()(i);
+  //       ::aura::application * papp = appptra()(i);
   //       papp->set_schema(pszStyle,actioncontext);
   //    }
 
@@ -1261,7 +1261,7 @@ namespace aura
    }
 
 
-   string system::dir_appmatter_locator(sp(::aura::application) papp)
+   string system::dir_appmatter_locator(::aura::application * papp)
    {
 
       ::exception::throw_not_implemented(get_app());

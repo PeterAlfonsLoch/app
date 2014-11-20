@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-job::job(sp(::aura::application) papp) :
+job::job(::aura::application * papp) :
 element(papp)
 {
    m_bCancel = false;

@@ -31,7 +31,7 @@ namespace user
       bool                 m_bRender;
 
 
-      window_draw(sp(::aura::application) papp);
+      window_draw(::aura::application * papp);
 
       virtual bool UpdateBuffer();
       virtual bool ScreenOutput();

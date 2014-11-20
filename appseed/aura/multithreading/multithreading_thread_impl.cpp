@@ -13,7 +13,7 @@
 
 uint32_t __thread_entry(void * pparam);
 
-thread_impl::thread_impl(sp(::aura::application) papp):
+thread_impl::thread_impl(::aura::application * papp):
 element(papp),
 m_evFinish(papp),
 m_mutexUiPtra(papp)
@@ -227,7 +227,7 @@ void thread_impl::process_message_filter(int32_t code,signal_details * pobj)
 
 
 
-thread_startup::thread_startup(sp(::aura::application) papp) :
+thread_startup::thread_startup(::aura::application * papp) :
    element(papp),
    m_event(papp),
    m_event2(papp)
@@ -602,7 +602,7 @@ uint32_t __thread_entry(void * pparam)
 }
 
 
-void CLASS_DECL_AURA __end_thread(sp(::aura::application) papp)
+void CLASS_DECL_AURA __end_thread(::aura::application * papp)
 {
 
    __term_thread(papp);
@@ -610,7 +610,7 @@ void CLASS_DECL_AURA __end_thread(sp(::aura::application) papp)
 }
 
 
-void CLASS_DECL_AURA __term_thread(sp(::aura::application) papp)
+void CLASS_DECL_AURA __term_thread(::aura::application * papp)
 {
 
    UNREFERENCED_PARAMETER(papp);

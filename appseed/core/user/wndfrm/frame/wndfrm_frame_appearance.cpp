@@ -13,7 +13,7 @@ namespace user
       {
 
 
-         appearance::CTool001::CTool001(sp(::aura::application) papp) :
+         appearance::CTool001::CTool001(::aura::application * papp) :
             element(papp)
          {
          }

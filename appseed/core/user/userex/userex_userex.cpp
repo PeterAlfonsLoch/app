@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   userex::userex(sp(::aura::application) papp):
+   userex::userex(::aura::application * papp):
       element(papp),
       ::aura::departament(papp),
       ::user::core(papp)
@@ -490,14 +490,14 @@ namespace userex
 
 
 
-   ::user::front_end_schema * GetUfeSchema(sp(::aura::application) papp)
+   ::user::front_end_schema * GetUfeSchema(::aura::application * papp)
    {
 
       return Plat(papp).userex()->GetUfeSchema();
 
    }
 
-   ::user::front_end * GetUfe(sp(::aura::application) papp)
+   ::user::front_end * GetUfe(::aura::application * papp)
    {
       return Plat(papp).userex()->GetUfe();
    }
@@ -569,7 +569,7 @@ namespace userex
       if(m_ptemplateForm == NULL)
          return NULL;
 
-      sp(::aura::application) papp;
+      ::aura::application * papp;
 
       if(pwndParent.is_set())
       {

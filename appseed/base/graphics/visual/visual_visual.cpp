@@ -34,7 +34,7 @@ namespace visual
 {
 
 
-   visual::visual(sp(::aura::application) papp) :
+   visual::visual(::aura::application * papp) :
       element(papp),
       ::aura::departament(papp)
    {
@@ -58,7 +58,7 @@ namespace visual
    }
 
 
-   void visual::construct(sp(::aura::application) papp)
+   void visual::construct(::aura::application * papp)
    {
 
       ::aura::departament::construct(papp);

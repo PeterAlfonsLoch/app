@@ -57,9 +57,9 @@ namespace windows
       DWORD          m_dwAccessMode;
 
 
-      file(sp(::aura::application) papp);
-      file(sp(::aura::application) papp, int32_t hFile);
-      file(sp(::aura::application) papp, const char * lpszFileName, UINT nOpenFlags);
+      file(::aura::application * papp);
+      file(::aura::application * papp, int32_t hFile);
+      file(::aura::application * papp, const char * lpszFileName, UINT nOpenFlags);
       virtual ~file();
 
 
@@ -111,8 +111,8 @@ namespace windows
 
       int32_t OsErrorToException(LONG lOsError);
       int32_t ErrnoToException(int32_t nErrno);
-      void ThrowOsError(sp(::aura::application) papp, LONG lOsError, const char * lpszFileName = NULL);
-      void ThrowErrno(sp(::aura::application) papp, int32_t nErrno, const char * lpszFileName = NULL);
+      void ThrowOsError(::aura::application * papp, LONG lOsError, const char * lpszFileName = NULL);
+      void ThrowErrno(::aura::application * papp, int32_t nErrno, const char * lpszFileName = NULL);
 
 
    }  // namespace file_exception

@@ -99,7 +99,7 @@ namespace user
 
 
       interaction();
-      interaction(sp(::aura::application) papp);
+      interaction(::aura::application * papp);
       virtual ~interaction();
 
 

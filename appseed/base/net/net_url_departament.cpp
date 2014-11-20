@@ -9,7 +9,7 @@ namespace url
 {
 
 
-   departament::departament(sp(::aura::application) papp) :
+   departament::departament(::aura::application * papp) :
 	   element(papp),
       ::aura::departament(papp)
    {

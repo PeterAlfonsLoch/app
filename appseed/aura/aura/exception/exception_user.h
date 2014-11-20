@@ -7,7 +7,7 @@ class CLASS_DECL_AURA user_exception :
 public:
 
 
-   user_exception(sp(::aura::application) papp);
+   user_exception(::aura::application * papp);
    virtual ~user_exception();
 
 

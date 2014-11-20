@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   font::font(sp(::aura::application) papp) :
+   font::font(::aura::application * papp) :
       element(papp),
       m_spfont(allocer())
    {

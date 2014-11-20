@@ -8,7 +8,7 @@ namespace simpledb
       public ::database::client
    {
    public:
-      file_set(sp(::aura::application) papp);
+      file_set(::aura::application * papp);
       virtual ~file_set();
 
       virtual bool refresh();

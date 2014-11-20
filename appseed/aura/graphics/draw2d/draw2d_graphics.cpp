@@ -20,7 +20,7 @@ namespace draw2d
 
 
 
-   graphics::graphics(sp(::aura::application) papp) :
+   graphics::graphics(::aura::application * papp) :
       element(papp),
       m_spmutex(papp)
    {

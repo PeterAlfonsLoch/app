@@ -26,7 +26,7 @@ public:
 
    element();
    element(const element & o);
-   element(sp(::aura::application) papp);
+   element(::aura::application * papp);
    virtual ~element();
 
    virtual void delete_this();
@@ -41,7 +41,7 @@ public:
 
    inline ::aura::application * get_app() const { return m_pauraapp; }
 
-   virtual void set_app(sp(::aura::application) papp);
+   virtual void set_app(::aura::application * papp);
 
    inline bool is_set_ca_flag(element::flag eflag)
    {
@@ -83,7 +83,7 @@ class CLASS_DECL_AURA allocatorsp :
 public:
 
 
-   allocatorsp(sp(::aura::application) papp);
+   allocatorsp(::aura::application * papp);
 
 
 };

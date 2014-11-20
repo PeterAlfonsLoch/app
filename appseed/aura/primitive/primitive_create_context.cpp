@@ -2,7 +2,7 @@
 
 
 
-create_context::create_context(sp(::aura::application) papp) :
+create_context::create_context(::aura::application * papp) :
    element(papp),
    command(papp),
    m_spApplicationBias(allocer()),

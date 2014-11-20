@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      core(sp(::aura::application) papp);
+      core(::aura::application * papp);
       virtual ~core();
 
 

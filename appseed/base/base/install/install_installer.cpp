@@ -113,7 +113,7 @@ namespace install
 
 
 
-   installer::installer(sp(::aura::application) papp) :
+   installer::installer(::aura::application * papp) :
       element(papp),
 
       m_mutex(papp),
@@ -3976,7 +3976,7 @@ RetryBuildNumber:
    }
 
 
-   installer::launcher::launcher(sp(::aura::application) papp, const char * pszVersion, const char * pszBuild) :
+   installer::launcher::launcher(::aura::application * papp, const char * pszVersion, const char * pszBuild) :
       element(papp)
    {
 

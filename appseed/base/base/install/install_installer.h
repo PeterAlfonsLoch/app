@@ -23,7 +23,7 @@ namespace install
          string   m_strBuild;
 
 
-         launcher(sp(::aura::application) papp, const char * pszVersion, const char * pszBuild);
+         launcher(::aura::application * papp, const char * pszVersion, const char * pszBuild);
 
          virtual bool ensure_executable();
 
@@ -147,7 +147,7 @@ namespace install
       ::sockets::http_session * m_phttpsessionServer;
       ::sockets::http_session * m_phttpsession;
 
-      installer(sp(::aura::application) papp);
+      installer(::aura::application * papp);
       ~installer();
 
       uint32_t run();

@@ -27,7 +27,7 @@ public:
    COLORREF                   m_crHoverLiteBorder;
 
 
-   simple_scroll_bar(sp(::aura::application) papp);
+   simple_scroll_bar(::aura::application * papp);
    virtual ~simple_scroll_bar();
 
 

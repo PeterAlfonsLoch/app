@@ -152,7 +152,7 @@ namespace dynamic_source
       bool                                      m_bCompiler;
 
 
-      script_manager(sp(::aura::application) papp);
+      script_manager(::aura::application * papp);
       ~script_manager();
 
       bool initialize_instance();

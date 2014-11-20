@@ -26,7 +26,7 @@ element::element(const element & o)
 }
 
 
-element::element(sp(::aura::application) papp)
+element::element(::aura::application * papp)
 {
 
    m_pauraapp = papp;
@@ -50,7 +50,7 @@ element::~element()
 }*/
 
 
-void element::set_app(sp(::aura::application) papp)
+void element::set_app(::aura::application * papp)
 {
 
    m_pauraapp = papp;
@@ -118,7 +118,7 @@ element * element::clone()
 }
 
 
-allocatorsp::allocatorsp(sp(::aura::application) papp)
+allocatorsp::allocatorsp(::aura::application * papp)
 {
 
    sp(allocator) spallocator = canew(allocator());

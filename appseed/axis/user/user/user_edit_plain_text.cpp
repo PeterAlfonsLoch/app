@@ -9,7 +9,7 @@ namespace user
 {
 
 
-   edit_plain_text::edit_plain_text(sp(::aura::application) papp):
+   edit_plain_text::edit_plain_text(::aura::application * papp):
       element(papp),
       ::user::interaction(papp),
       colorertake5::base_editor(papp),
@@ -537,7 +537,7 @@ namespace user
       /*   ::user::menu menu;
          Ex1TextFile file;
 
-         sp(::aura::application) papp = ::core::get_app();
+         ::aura::application * papp = ::core::get_app();
 
          string strModuleFolder;
          strModuleFolder = papp->m_pcoreapp->get_module_folder();

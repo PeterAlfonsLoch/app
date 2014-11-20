@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   list_data::list_data(sp(::aura::application) papp) :
+   list_data::list_data(::aura::application * papp) :
       element(papp),
       ::data::data(papp)
    {

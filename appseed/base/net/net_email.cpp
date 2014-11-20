@@ -5,7 +5,7 @@ namespace net
 {
 
 
-   email::email(sp(::aura::application) papp) :
+   email::email(::aura::application * papp) :
       element(papp)
    {
    }

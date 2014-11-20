@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   style_sheet::style_sheet(sp(::aura::application) papp) :
+   style_sheet::style_sheet(::aura::application * papp) :
       element(papp)
    {
 

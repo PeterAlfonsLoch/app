@@ -23,7 +23,7 @@ namespace core
    public:
 
 
-      history(sp(::aura::application) papp);
+      history(::aura::application * papp);
          
    
       virtual bool hist(const char *psz);

@@ -92,7 +92,7 @@ public:
    ::dispatch  m_dispatchCommand;
 
    command_target_interface();
-   command_target_interface(sp(::aura::application) papp);
+   command_target_interface(::aura::application * papp);
 
 
    template < class T >
@@ -170,7 +170,7 @@ class CLASS_DECL_AURA command_target :
 {
 public:
    command_target();
-   command_target(sp(::aura::application) papp);
+   command_target(::aura::application * papp);
 
    void CommonConstruct();
 
@@ -236,7 +236,7 @@ public:
    //  (probably a secondary popup menu)
 
 
-   cmd_ui(sp(::aura::application) papp);
+   cmd_ui(::aura::application * papp);
 
 
    // Operations to do in ON_UPDATE_COMMAND_UI
@@ -276,7 +276,7 @@ public:
    bool                    m_bRadioChanged;
 
 
-   CTestCmdUI(sp(::aura::application) papp);
+   CTestCmdUI(::aura::application * papp);
 
 
    virtual void Enable(bool bOn, ::action::context actioncontext = ::action::source_system);

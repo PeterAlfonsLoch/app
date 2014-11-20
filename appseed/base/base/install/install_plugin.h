@@ -33,7 +33,7 @@ namespace install
 
          plugin * m_pplugin;
 
-         thread_start_ca2(sp(::aura::application) papp);
+         thread_start_ca2(::aura::application * papp);
 
          virtual bool on_run_step();
 
@@ -70,7 +70,7 @@ namespace install
       //bool                 m_bHasCredEval;
 
 
-      plugin(sp(::aura::application) papp);
+      plugin(::aura::application * papp);
       virtual ~plugin();
 
 

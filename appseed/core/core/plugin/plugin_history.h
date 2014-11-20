@@ -12,7 +12,7 @@ namespace plugin
       plugin * m_pplugin;
 
 
-      history(sp(::aura::application) papp, plugin * pplugin);
+      history(::aura::application * papp, plugin * pplugin);
          
    
       virtual bool hist(const char *pszUrl);

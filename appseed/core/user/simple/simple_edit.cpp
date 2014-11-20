@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_edit::simple_edit(sp(::aura::application) papp) :
+simple_edit::simple_edit(::aura::application * papp) :
    element(papp),
    ::user::interaction(papp),
    ::data::data_listener(papp),

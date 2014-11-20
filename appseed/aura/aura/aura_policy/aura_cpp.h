@@ -415,7 +415,7 @@ typedef void * HDWP;
 #endif
 
 
-typedef  void(*PFN_ca2_factory_exchange)(sp(::aura::application) papp);
+typedef  void(*PFN_ca2_factory_exchange)(::aura::application * papp);
 
 
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_status_bar::simple_status_bar(sp(::aura::application) papp) :
+simple_status_bar::simple_status_bar(::aura::application * papp) :
    element(papp)
 {
 

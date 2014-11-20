@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   form_interface::form_interface(sp(::aura::application) papp) :
+   form_interface::form_interface(::aura::application * papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp)

@@ -30,7 +30,7 @@ namespace geometry
       void deflate(LPRECT lprect, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
 
 
-      geometry(sp(::aura::application) papp);
+      geometry(::aura::application * papp);
       virtual ~geometry();
 
    };

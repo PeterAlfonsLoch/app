@@ -11,7 +11,7 @@ public:
 
 
 
-   simple_list_header_control(sp(::aura::application) papp);
+   simple_list_header_control(::aura::application * papp);
    virtual ~simple_list_header_control();
 
 

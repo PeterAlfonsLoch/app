@@ -13,7 +13,7 @@ namespace filemanager
       {
 
 
-         tree::tree(sp(::aura::application) papp) :
+         tree::tree(::aura::application * papp) :
             element(papp),
             ::data::data(papp),
             ::data::tree(papp),

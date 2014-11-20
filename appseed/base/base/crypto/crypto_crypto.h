@@ -18,7 +18,7 @@ namespace crypto
       // salt here may be dangerous for the universe
 
 
-      crypto(sp(::aura::application) papp);
+      crypto(::aura::application * papp);
       virtual ~crypto();
 
 
@@ -51,8 +51,8 @@ namespace crypto
       void hmac(void * result, const ::primitive::memory & memMessage, const ::primitive::memory & key);
       void hmac(void * result, const string & memMessage, const string & key);
 
-      bool file_set(var varFile, const char * pszData, const char * pszSalt, sp(::aura::application) papp);
-      bool file_get(var varFile, string & str, const char * pszSalt, sp(::aura::application) papp);
+      bool file_set(var varFile, const char * pszData, const char * pszSalt, ::aura::application * papp);
+      bool file_get(var varFile, string & str, const char * pszSalt, ::aura::application * papp);
 
       // get a new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters
@@ -126,9 +126,9 @@ namespace crypto
       string dmq1;
       string iqmp;
 
-      rsa(sp(::aura::application) papp);
-      rsa(sp(::aura::application) papp, const string & n);
-      rsa(sp(::aura::application) papp,
+      rsa(::aura::application * papp);
+      rsa(::aura::application * papp, const string & n);
+      rsa(::aura::application * papp,
          const string & n,
          const string & e,
          const string & d,

@@ -40,7 +40,7 @@ namespace fontopus
       string                                 m_strFontopusServerInfo;
 
 
-      user(sp(::aura::application) papp);
+      user(::aura::application * papp);
       virtual ~user();
 
       //virtual void start_veiev_synch();

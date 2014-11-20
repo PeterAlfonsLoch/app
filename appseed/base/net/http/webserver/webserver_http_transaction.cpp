@@ -6,7 +6,7 @@ namespace http
 {
 
 
-   transaction::transaction(sp(::aura::application) papp) :
+   transaction::transaction(::aura::application * papp) :
       element(papp)
    {
 

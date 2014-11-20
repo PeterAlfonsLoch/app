@@ -13,7 +13,7 @@ namespace file
 
 
       file_input_stream();
-      file_input_stream(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp = ::get_thread_app());
+      file_input_stream(const char * lpszFileName,uint32_t nOpenFlags,::aura::application * papp = ::get_thread_app());
       file_input_stream(stream_buffer * preader);
       file_input_stream(const file_input_stream & preader);
       virtual ~file_input_stream();

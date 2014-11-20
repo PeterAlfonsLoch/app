@@ -11,7 +11,7 @@ namespace primitive
    public:
 
 
-      command(sp(::aura::application) papp);
+      command(::aura::application * papp);
       virtual ~command();
 
       virtual var run();

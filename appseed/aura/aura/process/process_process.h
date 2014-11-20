@@ -15,7 +15,7 @@ namespace process
       bool                    m_bPiped;
 
 
-      process(sp(::aura::application) papp);
+      process(::aura::application * papp);
       virtual ~process();
 
 

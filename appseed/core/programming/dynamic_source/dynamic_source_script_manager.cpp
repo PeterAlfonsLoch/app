@@ -45,7 +45,7 @@ namespace dynamic_source
    }
 
 
-   script_manager::script_manager(sp(::aura::application) papp) :
+   script_manager::script_manager(::aura::application * papp) :
       element(papp),
       thread(papp),
       m_spqueue(allocer()),

@@ -14,7 +14,7 @@ namespace userex
    public:
 
 
-      property_page(sp(::aura::application) papp);
+      property_page(::aura::application * papp);
       virtual ~property_page();
 
 

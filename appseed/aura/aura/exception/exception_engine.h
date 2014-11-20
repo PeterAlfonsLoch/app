@@ -69,7 +69,7 @@ namespace exception
 
 
 
-      engine(sp(::aura::application) papp);
+      engine(::aura::application * papp);
       ~engine();
 
 

@@ -10,7 +10,7 @@
 
 
 mutex & cairo_mutex();
-void init_cairo_mutex(sp(::aura::application) papp);
+void init_cairo_mutex(::aura::application * papp);
 
 
 #ifdef _DRAW2D_CAIRO_LIBRARY

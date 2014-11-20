@@ -5,7 +5,7 @@ namespace backview
 {
 
 
-   Main::Main(sp(::aura::application) papp, Interface * pinterface) :
+   Main::Main(::aura::application * papp, Interface * pinterface) :
       element(papp),
       m_pinterface(pinterface),
       m_mutexStateMachine(papp)
@@ -159,7 +159,7 @@ namespace backview
       if(!m_bInitialized)
          return false;
 
-      sp(::aura::application) papp = &System;
+      ::aura::application * papp = &System;
       if(papp == NULL)
       {
          // if main application is NULL, there's no reason

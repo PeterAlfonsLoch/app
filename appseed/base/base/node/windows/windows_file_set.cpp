@@ -6,7 +6,7 @@ namespace windows
 {
 
 
-   file_set::file_set(sp(::aura::application) papp) :
+   file_set::file_set(::aura::application * papp) :
       element(papp)
    {
 

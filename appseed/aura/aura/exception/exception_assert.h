@@ -12,7 +12,7 @@ public:
 
 
    assert_exception(const assert_exception & e);
-   assert_exception(sp(::aura::application) papp, const char * pszFile, long lLine);
+   assert_exception(::aura::application * papp, const char * pszFile, long lLine);
    virtual ~assert_exception();
 
 };

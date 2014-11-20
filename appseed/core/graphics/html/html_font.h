@@ -22,7 +22,7 @@ namespace html
       font();
       font(const class font & font);
       
-      bool create(sp(::aura::application) papp);
+      bool create(::aura::application * papp);
 
       bool operator == (const font & font);
 

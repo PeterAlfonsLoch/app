@@ -22,9 +22,9 @@ namespace primitive
 
    public:
 
-      memory_container(sp(::aura::application) papp);
-      memory_container(sp(::aura::application) papp, void * pMemory, memory_size dwSize);
-      memory_container(sp(::aura::application) papp, memory_base * pmemory);
+      memory_container(::aura::application * papp);
+      memory_container(::aura::application * papp, void * pMemory, memory_size dwSize);
+      memory_container(::aura::application * papp, memory_base * pmemory);
       memory_container(const memory_container & container);
       virtual ~memory_container();
 

@@ -16,7 +16,7 @@ namespace android
    public:
 
 
-	   port_forward(sp(::aura::application) papp);
+	   port_forward(::aura::application * papp);
 	   virtual ~port_forward();
 
 

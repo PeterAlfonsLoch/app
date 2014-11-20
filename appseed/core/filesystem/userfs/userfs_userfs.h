@@ -11,7 +11,7 @@ namespace userfs
    public:
 
 
-      userfs(sp(::aura::application) papp);
+      userfs(::aura::application * papp);
       virtual ~userfs();
 
       bool initialize();

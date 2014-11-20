@@ -8,7 +8,7 @@ namespace datetime
 
 
 
-   departament::departament(sp(::aura::application) papp):
+   departament::departament(::aura::application * papp):
       element(papp),
       ::aura::departament(papp),
       m_international(papp),
@@ -109,7 +109,7 @@ namespace datetime
       return time.get_time();
    }
 
-   departament::international::international(sp(::aura::application) papp):
+   departament::international::international(::aura::application * papp):
       element(papp)
    {
    }
@@ -210,7 +210,7 @@ namespace datetime
       return get_local_date_time(time);
    }
 
-   departament::str::str(sp(::aura::application) papp)
+   departament::str::str(::aura::application * papp)
    {
       UNREFERENCED_PARAMETER(papp);
       m_pdatetime = NULL;

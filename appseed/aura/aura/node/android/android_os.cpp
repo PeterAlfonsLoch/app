@@ -9,7 +9,7 @@ namespace android
 {
 
 
-   os::os(sp(::aura::application) papp) :
+   os::os(::aura::application * papp) :
       element(papp),
       ::aura::os(papp)
    {
@@ -571,7 +571,7 @@ namespace android
 
    }
 
-   bool os::create_service(sp(::aura::application) papp)
+   bool os::create_service(::aura::application * papp)
    {
 
       //::exception::throw_not_implemented(get_app());
@@ -581,21 +581,21 @@ namespace android
    }
 
 
-   bool os::remove_service(sp(::aura::application) papp)
+   bool os::remove_service(::aura::application * papp)
    {
 //      ::exception::throw_not_implemented(get_app());
       return false;
 
    }
 
-   bool os::start_service(sp(::aura::application) papp)
+   bool os::start_service(::aura::application * papp)
    {
       //::exception::throw_not_implemented(get_app());
       return false;
 
    }
 
-   bool os::stop_service(sp(::aura::application) papp)
+   bool os::stop_service(::aura::application * papp)
    {
       ::exception::throw_not_implemented(get_app());
       return false;

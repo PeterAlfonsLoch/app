@@ -2,7 +2,7 @@
 #include "simple_tab_control.h"
 
 
-simple_tab_control::simple_tab_control(sp(::aura::application) papp):
+simple_tab_control::simple_tab_control(::aura::application * papp):
    element(papp),
    ::user::interaction(papp),
    

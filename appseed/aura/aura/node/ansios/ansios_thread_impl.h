@@ -13,7 +13,7 @@ namespace ansios
 
 
 
-      thread_impl(sp(::aura::application) papp);
+      thread_impl(::aura::application * papp);
       virtual ~thread_impl();
 
 

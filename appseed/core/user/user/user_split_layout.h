@@ -40,7 +40,7 @@ namespace user
          sp(::user::place_holder)    m_pholder;
 
 
-         Pane(sp(::aura::application) papp);
+         Pane(::aura::application * papp);
 
 
       };
@@ -60,7 +60,7 @@ namespace user
       int                                          m_iPaneCount;
 
 
-      split_layout(sp(::aura::application) papp);
+      split_layout(::aura::application * papp);
       virtual ~split_layout();
 
 

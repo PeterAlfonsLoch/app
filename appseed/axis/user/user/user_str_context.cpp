@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   str_context::str_context(sp(::aura::application) papp) :
+   str_context::str_context(::aura::application * papp) :
       element(papp)
    {
 
@@ -145,7 +145,7 @@ namespace user
 
    }
 
-   str::str(sp(::aura::application) papp) :
+   str::str(::aura::application * papp) :
       element(papp)
    {
 

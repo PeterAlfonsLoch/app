@@ -17,7 +17,7 @@ namespace user
       interaction_spa  m_uiptraHold;
 
 
-      place_holder(sp(::aura::application) papp);
+      place_holder(::aura::application * papp);
       virtual ~place_holder();
 
 

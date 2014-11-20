@@ -7,8 +7,8 @@ class CLASS_DECL_AURA invalid_index_exception :
 public:
 
 
-   invalid_index_exception(sp(::aura::application) papp);
-   invalid_index_exception(sp(::aura::application) papp, const char * pszMessage);
+   invalid_index_exception(::aura::application * papp);
+   invalid_index_exception(::aura::application * papp, const char * pszMessage);
    virtual ~invalid_index_exception();
 
 

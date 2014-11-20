@@ -84,7 +84,7 @@ namespace user
 
 
       interaction_base();
-      interaction_base(sp(::aura::application) papp);
+      interaction_base(::aura::application * papp);
       virtual ~interaction_base();
 
 

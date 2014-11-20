@@ -141,7 +141,7 @@ mutex & draw2d_direct2_mutex()
 }
 
 
-void init_draw2d_direct2_mutex(sp(::aura::application) papp)
+void init_draw2d_direct2_mutex(::aura::application * papp)
 {
 
    s_pmutex = new mutex(papp);

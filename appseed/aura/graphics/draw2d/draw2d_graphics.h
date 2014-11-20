@@ -38,7 +38,7 @@ namespace draw2d
       bool                          m_bPrinting;
 
 
-      graphics(sp(::aura::application) papp);
+      graphics(::aura::application * papp);
       virtual ~graphics();
 
 

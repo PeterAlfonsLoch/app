@@ -7,7 +7,7 @@ namespace filehandler
 {
 
 
-   library::library(sp(::aura::application) papp) :
+   library::library(::aura::application * papp) :
       element(papp),
       ::aura::library(papp, 0, "app")
    {

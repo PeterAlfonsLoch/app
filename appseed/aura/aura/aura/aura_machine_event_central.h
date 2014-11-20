@@ -11,7 +11,7 @@ public:
    bool              m_bInitialized;
 
 
-   machine_event_central(sp(::aura::application) papp);
+   machine_event_central(::aura::application * papp);
    virtual ~machine_event_central();
 
 

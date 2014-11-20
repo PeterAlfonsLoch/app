@@ -11,7 +11,7 @@ namespace filemanager
    public:
    
 
-      tab_view(sp(::aura::application) papp);
+      tab_view(::aura::application * papp);
       virtual ~tab_view();
 
 

@@ -33,8 +33,8 @@ namespace win
 namespace exception
 {
 
-   CLASS_DECL_AURA void throw_interface_only(sp(::aura::application) papp);
-   CLASS_DECL_AURA void throw_not_implemented(sp(::aura::application) papp);
+   CLASS_DECL_AURA void throw_interface_only(::aura::application * papp);
+   CLASS_DECL_AURA void throw_not_implemented(::aura::application * papp);
 
 }
 

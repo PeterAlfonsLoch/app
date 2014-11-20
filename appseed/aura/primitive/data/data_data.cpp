@@ -71,7 +71,7 @@ namespace data
    }
 
 
-   data::data(sp(::aura::application) papp) :
+   data::data(::aura::application * papp) :
       element(papp),
       m_pmutex(NULL)
    {

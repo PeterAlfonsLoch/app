@@ -1060,7 +1060,7 @@ namespace user
 
 
 
-      interaction_spa::interaction_spa(sp(::aura::application) papp) :
+      interaction_spa::interaction_spa(::aura::application * papp) :
       element(papp)
    {
 

@@ -11,7 +11,7 @@ namespace windows
    public:
 
 
-      factory_exchange(sp(::aura::application) papp);
+      factory_exchange(::aura::application * papp);
       virtual ~factory_exchange();
 
 

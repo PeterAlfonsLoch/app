@@ -22,7 +22,7 @@ namespace user
    }
 
 
-   impact_system::impact_system(sp(::aura::application) papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
+   impact_system::impact_system(::aura::application * papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
       element(papp)
    {
 

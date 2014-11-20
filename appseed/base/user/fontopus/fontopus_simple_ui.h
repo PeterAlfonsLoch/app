@@ -26,7 +26,7 @@ namespace fontopus
 
 
 
-      simple_ui(sp(::aura::application) papp, const string & strRequestUrl);
+      simple_ui(::aura::application * papp, const string & strRequestUrl);
       virtual ~simple_ui();
 
 

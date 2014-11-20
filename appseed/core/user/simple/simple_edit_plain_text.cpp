@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_edit_plain_text::simple_edit_plain_text(sp(::aura::application) papp) :
+simple_edit_plain_text::simple_edit_plain_text(::aura::application * papp) :
    element(papp),
    ::user::interaction(papp),
    ::data::data_listener(papp),

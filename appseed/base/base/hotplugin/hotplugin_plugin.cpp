@@ -33,7 +33,7 @@ namespace hotplugin
 {
 
 
-   plugin::plugin(sp(::aura::application) papp) :
+   plugin::plugin(::aura::application * papp) :
       element(papp),
       ::simple_ui::style(papp),
       ::thread(papp),

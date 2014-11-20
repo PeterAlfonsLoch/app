@@ -55,7 +55,7 @@ namespace file
             printf(":file");
       }
 
-      exception(sp(::aura::application) papp, int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
+      exception(::aura::application * papp, int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
       virtual void Construct(int32_t cause = exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 

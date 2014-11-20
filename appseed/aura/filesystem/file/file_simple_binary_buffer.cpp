@@ -20,7 +20,7 @@ namespace file
 {
 
 
-   simple_binary_buffer::simple_binary_buffer(sp(::aura::application) papp) :
+   simple_binary_buffer::simple_binary_buffer(::aura::application * papp) :
       element(papp)
    {
 
@@ -363,7 +363,7 @@ namespace file
    static const char szUnknown[] = "unknown";
 #endif
 
-   void CLASS_DECL_AURA throw_exception(sp(::aura::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+   void CLASS_DECL_AURA throw_exception(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName /* == NULL */)
    {
    #ifdef DEBUG
       const char * lpsz;

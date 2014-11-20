@@ -18,7 +18,7 @@ namespace file
 
 
       file_output_stream();
-      file_output_stream(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp = ::get_thread_app());
+      file_output_stream(const char * lpszFileName,uint32_t nOpenFlags,::aura::application * papp = ::get_thread_app());
       file_output_stream(stream_buffer * pwriter);
       file_output_stream(const file_output_stream & pwriter);
       virtual ~file_output_stream();

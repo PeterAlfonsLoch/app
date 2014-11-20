@@ -17,7 +17,7 @@ public:
    int32_t               m_iImageSubItemHover;
 
 
-   BaseButtonControl(sp(::aura::application) papp);
+   BaseButtonControl(::aura::application * papp);
    virtual ~BaseButtonControl();
 
 

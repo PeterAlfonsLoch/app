@@ -32,7 +32,7 @@ namespace base
 
 
 
-      system(sp(::aura::application) papp);
+      system(::aura::application * papp);
       virtual ~system();
 
 
@@ -72,7 +72,7 @@ namespace base
 
 
 
-      virtual string dir_appmatter_locator(sp(::aura::application) papp);
+      virtual string dir_appmatter_locator(::aura::application * papp);
 
       virtual ::user::interaction * get_active_guie();
       virtual ::user::interaction * get_focus_guie();

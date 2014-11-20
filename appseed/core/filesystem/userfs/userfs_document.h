@@ -23,7 +23,7 @@ namespace userfs
       bool_array                                m_baDir;
 
 
-      document(sp(::aura::application) papp);
+      document(::aura::application * papp);
       virtual ~document();
 
       ::user::document *                                get_document();

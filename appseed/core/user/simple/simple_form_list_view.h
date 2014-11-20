@@ -10,7 +10,7 @@ public:
    simple_list_header_control   m_headerctrl;
 
 
-   simple_form_list_view(sp(::aura::application) papp);
+   simple_form_list_view(::aura::application * papp);
    virtual ~simple_form_list_view();
 
 

@@ -12,7 +12,7 @@ namespace filemanager
 
 
 
-      child_frame(sp(::aura::application) papp);
+      child_frame(::aura::application * papp);
       virtual ~child_frame();
 
       void install_message_handling(::message::dispatch * pinterface);

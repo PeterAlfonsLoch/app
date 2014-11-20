@@ -61,7 +61,7 @@ namespace user
       property_set                   m_setEscape;
 
 
-      keyboard_layout(sp(::aura::application) papp);
+      keyboard_layout(::aura::application * papp);
 
       bool load(const char * pszPath);
 

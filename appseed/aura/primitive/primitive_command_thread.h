@@ -18,7 +18,7 @@ public:
    manual_reset_event               m_ev;
 
 
-   command_thread(sp(::aura::application) papp);
+   command_thread(::aura::application * papp);
    virtual ~command_thread();
 
    virtual var run();

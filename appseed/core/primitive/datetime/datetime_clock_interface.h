@@ -25,7 +25,7 @@ public:
    };
 
 
-   clock_interface(sp(::aura::application) papp);
+   clock_interface(::aura::application * papp);
 
 
    virtual void GetRect(LPRECT lprect, enum EElement eelement);

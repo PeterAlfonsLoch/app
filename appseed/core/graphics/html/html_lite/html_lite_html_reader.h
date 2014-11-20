@@ -193,7 +193,7 @@ public:
 
 // Construction/Destruction
 
-   lite_html_reader(sp(::aura::application) papp)  :
+   lite_html_reader(::aura::application * papp)  :
       element(papp)
    {
       m_bResolveEntities = true;   // entities are resolved, by default

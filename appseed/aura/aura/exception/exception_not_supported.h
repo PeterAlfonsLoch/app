@@ -8,7 +8,7 @@ public:
    
    
    not_supported_exception(const not_supported_exception & e);
-   not_supported_exception(sp(::aura::application) papp, const char * pszTip = NULL);
+   not_supported_exception(::aura::application * papp, const char * pszTip = NULL);
    virtual ~not_supported_exception();
 
 

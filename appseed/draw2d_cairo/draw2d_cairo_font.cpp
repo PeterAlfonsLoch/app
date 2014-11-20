@@ -5,7 +5,7 @@ namespace draw2d_cairo
 {
 
 
-   font::font(sp(::aura::application) papp) :
+   font::font(::aura::application * papp) :
    element(papp)
    {
 

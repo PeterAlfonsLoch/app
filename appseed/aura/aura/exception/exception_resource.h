@@ -7,7 +7,7 @@ class CLASS_DECL_AURA resource_exception :
 public:
 
 
-   resource_exception(sp(::aura::application) papp);
+   resource_exception(::aura::application * papp);
    virtual ~resource_exception();
 
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-menu_frame::menu_frame(sp(::aura::application) papp) :
+menu_frame::menu_frame(::aura::application * papp) :
    element(papp),
    simple_frame_window(papp),
    form_frame(papp)

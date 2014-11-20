@@ -112,7 +112,7 @@ namespace colorertake5
       return Application.dir_matter("colorer.zip:catalog.xml");
    };
 
-   ParserFactory::ParserFactory(sp(::aura::application) papp) :
+   ParserFactory::ParserFactory(::aura::application * papp) :
       element(papp)
    {
 
@@ -126,7 +126,7 @@ namespace colorertake5
 
    }
 
-   ParserFactory::ParserFactory(sp(::aura::application) papp, string catalogPath) :
+   ParserFactory::ParserFactory(::aura::application * papp, string catalogPath) :
       element(papp)
    {
 

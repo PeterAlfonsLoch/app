@@ -9,7 +9,7 @@ extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 namespace user
 {
 
-   tab::data::data(sp(::aura::application) papp) :
+   tab::data::data(::aura::application * papp) :
       element(papp),
       ::data::data(papp),
       m_imagelist(papp),
@@ -60,7 +60,7 @@ namespace user
       return m_panea.get_visible_count();
    }
 
-   tab::tab(sp(::aura::application) papp) :
+   tab::tab(::aura::application * papp) :
       element(papp),
       place_holder_container(papp),
       m_dcextension(papp)
@@ -1553,7 +1553,7 @@ namespace user
    }
 
 
-   tab::pane::pane(sp(::aura::application) papp) :
+   tab::pane::pane(::aura::application * papp) :
       element(papp),
       m_brushFill(allocer()),
       m_brushFillSel(allocer()),
@@ -1601,7 +1601,7 @@ namespace user
    }
 
 
-   tab::pane_array::pane_array(sp(::aura::application) papp) :
+   tab::pane_array::pane_array(::aura::application * papp) :
       element(papp)
    {
    }

@@ -17,7 +17,7 @@ public:
    public:
 
 
-      void connect_to(sp(::aura::application) papp);
+      void connect_to(::aura::application * papp);
 
       void on_call_signal(signal_details * pobj);
 
@@ -32,7 +32,7 @@ public:
 
 
    application_bias();
-   application_bias(sp(::aura::application) papp);
+   application_bias(::aura::application * papp);
    application_bias(const application_bias & bias);
    application_bias & operator = (const application_bias & bias);
 

@@ -13,7 +13,7 @@
 
 bool is_safe_set(void * p);
 
-base_factory::base_factory(sp(::aura::application) papp) :
+base_factory::base_factory(::aura::application * papp) :
    element(papp)
 {
    m_pmutex = new mutex(papp);

@@ -12,7 +12,7 @@ namespace simple_ui
    public:
 
 
-      password(sp(::aura::application) papp);
+      password(::aura::application * papp);
       virtual ~password();
 
 

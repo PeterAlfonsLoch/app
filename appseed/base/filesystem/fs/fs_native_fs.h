@@ -13,7 +13,7 @@ namespace fs
    {
    public:
 
-      native(sp(::aura::application) papp);
+      native(::aura::application * papp);
 
 
       // optional if ls_dir is implemented

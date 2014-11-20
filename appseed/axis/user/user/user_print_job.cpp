@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   print_job::print_job(sp(::aura::application) papp) :
+   print_job::print_job(::aura::application * papp) :
       element(papp),
       ::print_job(papp),
       ::job(papp),

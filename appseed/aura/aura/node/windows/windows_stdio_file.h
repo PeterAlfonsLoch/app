@@ -17,7 +17,7 @@ namespace windows
 
 
 
-      stdio_file(sp(::aura::application) papp);
+      stdio_file(::aura::application * papp);
       virtual ~stdio_file();
 
       virtual void write_string(const char * lpsz);

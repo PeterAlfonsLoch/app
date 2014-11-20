@@ -3,7 +3,7 @@
 namespace user
 {
 
-   check_box::check_box(sp(::aura::application) papp) :
+   check_box::check_box(::aura::application * papp) :
       element(papp),
       ::user::interaction(papp)
    {

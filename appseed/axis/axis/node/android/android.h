@@ -82,7 +82,7 @@ WINBOOL GetMessage(
 int32_t CLASS_DECL_AXIS __android_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_AXIS void vfxThrowFileException(sp(::aura::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_AXIS void vfxThrowFileException(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 #include "android_internal.h"

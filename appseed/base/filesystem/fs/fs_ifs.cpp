@@ -1,7 +1,7 @@
 #include "framework.h" // from "base/net/net_sockets.h"
 
 
-ifs::ifs(sp(::aura::application) papp, const char * pszRoot) :
+ifs::ifs(::aura::application * papp, const char * pszRoot) :
    element(papp),
    ::data::data(papp),
    ::fs::data(papp)

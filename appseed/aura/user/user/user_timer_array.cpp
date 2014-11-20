@@ -6,7 +6,7 @@ namespace user
 
 
 
-   timer_array::timer_array(sp(::aura::application) papp):
+   timer_array::timer_array(::aura::application * papp):
       element(papp),
       m_mutex(papp)
    {

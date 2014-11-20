@@ -78,7 +78,7 @@ namespace exception
       if(g_bExiting)
          return;
       UNREFERENCED_PARAMETER(uiCode);
-      sp(::aura::application) papp = get_thread_app();
+      ::aura::application * papp = get_thread_app();
       switch (ppointers->ExceptionRecord->ExceptionCode)
       {
 #ifdef WINDOWSEX

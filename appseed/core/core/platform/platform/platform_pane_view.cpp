@@ -5,7 +5,7 @@ namespace platform
 {
 
 
-   pane_view::pane_view(sp(::aura::application) papp) :
+   pane_view::pane_view(::aura::application * papp) :
       element(papp),
       ::user::tab(papp),
       

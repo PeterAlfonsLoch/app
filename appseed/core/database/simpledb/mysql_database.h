@@ -28,7 +28,7 @@ namespace mysql
       int       m_protocol;
 
 
-      database(sp(::aura::application) papp);
+      database(::aura::application * papp);
       virtual ~database();
 
 

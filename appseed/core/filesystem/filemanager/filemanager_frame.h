@@ -14,7 +14,7 @@ namespace filemanager
       id m_idTab;
 
 
-      frame(sp(::aura::application) papp);
+      frame(::aura::application * papp);
       virtual ~ frame();
 
       

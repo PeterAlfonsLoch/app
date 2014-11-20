@@ -16,7 +16,7 @@ namespace filemanager
       sp(::filemanager::tree)    m_ptree;
 
 
-      left_view(sp(::aura::application) papp);
+      left_view(::aura::application * papp);
       virtual ~left_view();
 
 

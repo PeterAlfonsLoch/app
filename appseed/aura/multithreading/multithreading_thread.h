@@ -49,8 +49,8 @@ public:
 
 
    thread();
-   thread(sp(::aura::application) papp);
-   thread(sp(::aura::application) papp, __THREADPROC pfnThreadProc, LPVOID pParam);
+   thread(::aura::application * papp);
+   thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam);
    virtual ~thread();
 
 

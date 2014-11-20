@@ -17,7 +17,7 @@ namespace ansios
       int32_t                  m_fd[2];
 
 
-      pipe(sp(::aura::application) papp);
+      pipe(::aura::application * papp);
       virtual ~pipe();
 
 

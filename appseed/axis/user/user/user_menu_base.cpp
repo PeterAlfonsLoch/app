@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   menu_base::menu_base(sp(::aura::application) papp):
+   menu_base::menu_base(::aura::application * papp):
       element(papp)
    {
 

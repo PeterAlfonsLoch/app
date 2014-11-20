@@ -1850,7 +1850,7 @@ namespace base
    sp(::aura::application) application::assert_running(const char * pszAppId)
    {
 
-      sp(::aura::application) papp;
+      ::aura::application * papp;
 
       papp = Session.m_appptra.find_running_defer_try_quit_damaged(pszAppId);
 

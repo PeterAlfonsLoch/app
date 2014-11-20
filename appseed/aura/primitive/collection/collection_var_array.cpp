@@ -5,7 +5,7 @@
 #define ROUND16(x) ROUND(x, 16)
 
 
-var_array::var_array(sp(::aura::application) papp) :
+var_array::var_array(::aura::application * papp) :
    element(papp)
 {
    set_size(0, 64);

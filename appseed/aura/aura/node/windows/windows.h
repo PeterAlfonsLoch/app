@@ -135,7 +135,7 @@ namespace windows
    CLASS_DECL_AURA HICON       ExtractIcon(HINSTANCE hInst,const char * lpszExeFileName,UINT nIconIndex);
    CLASS_DECL_AURA bool        DeleteFile(const char * lpFileName);
    CLASS_DECL_AURA int32_t         GetMenuStringW(HMENU hMenu,UINT uIDItem,string & str,UINT flags);
-   CLASS_DECL_AURA void        TimeToFileTime(sp(::aura::application) papp,const ::datetime::time& time,LPFILETIME pFileTime);
+   CLASS_DECL_AURA void        TimeToFileTime(::aura::application * papp,const ::datetime::time& time,LPFILETIME pFileTime);
 
 
 } // namespace windows

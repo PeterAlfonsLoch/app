@@ -26,7 +26,7 @@ public:
 
 
 
-   signal_details(sp(::aura::application) papp = NULL);
+   signal_details(::aura::application * papp = NULL);
    signal_details(class signal * psignal);
    virtual ~signal_details();
 

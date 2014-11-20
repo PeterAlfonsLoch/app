@@ -22,7 +22,7 @@ namespace calculator
    }
 
 
-   scanner::scanner(sp(::aura::application) papp) :
+   scanner::scanner(::aura::application * papp) :
       element(papp)
    {
       m_ptoken    = NULL;

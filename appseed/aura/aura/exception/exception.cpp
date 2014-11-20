@@ -120,12 +120,12 @@ void __cdecl __clearerr_s(FILE *stream)
 namespace exception
 {
 
-   CLASS_DECL_AURA void throw_interface_only(sp(::aura::application) papp)
+   CLASS_DECL_AURA void throw_interface_only(::aura::application * papp)
    {
       throw interface_only_exception(papp);
    }
 
-   CLASS_DECL_AURA void throw_not_implemented(sp(::aura::application) papp)
+   CLASS_DECL_AURA void throw_not_implemented(::aura::application * papp)
    {
       throw not_implemented(papp);
    }

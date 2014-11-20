@@ -101,7 +101,7 @@ namespace android
 
    }
 
-   interaction_impl::interaction_impl(sp(::aura::application) papp) :
+   interaction_impl::interaction_impl(::aura::application * papp) :
       element(papp)
    {
       m_pcallback = NULL;
@@ -3127,7 +3127,7 @@ return 0;
       oswindow m_hwnd;
       HDC m_hdc;
 
-      print_window(sp(::aura::application) papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
+      print_window(::aura::application * papp, oswindow hwnd, HDC hdc, DWORD dwTimeout) :
          element(papp),
          m_event(papp)
 
@@ -4089,7 +4089,7 @@ return 0;
    }
 
 
-   /*   view_update_hint::view_update_hint(sp(::aura::application) papp) :
+   /*   view_update_hint::view_update_hint(::aura::application * papp) :
    element(papp)
    {
    }
@@ -4447,7 +4447,7 @@ return 0;
    }
 
 
-   /*   guie_message_wnd::guie_message_wnd(sp(::aura::application) papp) :
+   /*   guie_message_wnd::guie_message_wnd(::aura::application * papp) :
    element(papp)
    {
    m_pguieForward = NULL;
@@ -6416,7 +6416,7 @@ if(psurface == g_cairosurface)
 } // namespace android
 
 
-CTestCmdUI::CTestCmdUI(sp(::aura::application) papp) :
+CTestCmdUI::CTestCmdUI(::aura::application * papp) :
    element(papp),
    cmd_ui(papp)
 {

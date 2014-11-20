@@ -71,7 +71,7 @@ WINBOOL GetMessage(
 int32_t CLASS_DECL_AURA __android_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_AURA void vfxThrowFileException(sp(::aura::application) papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+CLASS_DECL_AURA void vfxThrowFileException(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 #include "android_internal.h"

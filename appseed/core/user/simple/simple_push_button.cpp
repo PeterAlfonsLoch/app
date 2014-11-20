@@ -1,6 +1,6 @@
 #include "framework.h"
 
-SimplePushButton::SimplePushButton(sp(::aura::application) papp) :
+SimplePushButton::SimplePushButton(::aura::application * papp) :
    element(papp),
    
    ::user::button(papp)

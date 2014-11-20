@@ -16,7 +16,7 @@ namespace html
    }
 
    
-   bool font::create(sp(::aura::application) papp)
+   bool font::create(::aura::application * papp)
    {
       
       set_app(papp);

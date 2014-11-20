@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   hour_list_view::hour_list_view(sp(::aura::application) papp) :
+   hour_list_view::hour_list_view(::aura::application * papp) :
       element(papp),
       ::user::scroll_view(papp),
       ::user::form_interface(papp),

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-calendar::calendar(sp(::aura::application) papp) :
+calendar::calendar(::aura::application * papp) :
    element(papp),
    m_font(allocer()),
    m_fontYear(allocer()),

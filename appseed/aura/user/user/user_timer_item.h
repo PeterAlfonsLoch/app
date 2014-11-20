@@ -17,7 +17,7 @@ namespace user
       UINT                 m_uiLastSent;
 
 
-      timer_item(sp(::aura::application) papp);
+      timer_item(::aura::application * papp);
       virtual ~timer_item();
 
 

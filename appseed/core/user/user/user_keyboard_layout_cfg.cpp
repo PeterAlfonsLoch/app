@@ -3,7 +3,7 @@
 namespace user
 {
 
-   keyboard_layout_cfg::keyboard_layout_cfg(sp(::aura::application) papp) :
+   keyboard_layout_cfg::keyboard_layout_cfg(::aura::application * papp) :
       element(papp)
 //      ::data::data(papp)
 //      ::user::list_data(papp),

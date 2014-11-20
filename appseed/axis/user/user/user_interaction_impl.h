@@ -722,7 +722,7 @@ namespace user
       ::user::interaction * m_puiForward;
 
 
-      guie_message_wnd(sp(::aura::application) papp);
+      guie_message_wnd(::aura::application * papp);
 
 
       using interaction_impl::message_handler;

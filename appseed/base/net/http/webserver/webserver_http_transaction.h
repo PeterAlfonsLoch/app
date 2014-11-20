@@ -17,7 +17,7 @@ namespace http
       string m_null;
 
 
-      transaction(sp(::aura::application) papp);
+      transaction(::aura::application * papp);
       transaction(const transaction & src);
       virtual ~transaction();
 

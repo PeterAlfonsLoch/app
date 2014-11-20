@@ -70,7 +70,7 @@ CLASS_DECL_AXIS WNDPROC __get_window_procedure();
 
 
 
-CLASS_DECL_AXIS const char * __register_window_class(sp(::aura::application) papp,UINT nClassStyle,HCURSOR hCursor = 0,HBRUSH hbrBackground = 0,HICON hIcon = 0);
+CLASS_DECL_AXIS const char * __register_window_class(::aura::application * papp,UINT nClassStyle,HCURSOR hCursor = 0,HBRUSH hbrBackground = 0,HICON hIcon = 0);
 
 CLASS_DECL_AXIS bool __register_class(WNDCLASS* lpWndClass);
 

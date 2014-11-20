@@ -10,7 +10,7 @@ string keyboard_input_source();
 namespace user
 {
 
-   keyboard::keyboard(sp(::aura::application) papp) :
+   keyboard::keyboard(::aura::application * papp) :
       element(papp)
    {
       

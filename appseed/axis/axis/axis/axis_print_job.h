@@ -12,7 +12,7 @@ public:
    int32_t      m_iPrintingPage;
 
 
-   print_job(sp(::aura::application) papp);
+   print_job(::aura::application * papp);
    virtual ~print_job();
 
 

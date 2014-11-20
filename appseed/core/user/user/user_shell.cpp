@@ -339,7 +339,7 @@ namespace filemanager
       lpmalloc->Release();
    }
 
-   bool _017HasSubFolder(sp(::aura::application) papp, LPITEMIDLIST lpiidl, const char * lpcszExtra)
+   bool _017HasSubFolder(::aura::application * papp, LPITEMIDLIST lpiidl, const char * lpcszExtra)
    {
 
       WCHAR szPath[_MAX_PATH * 10];
@@ -396,12 +396,12 @@ namespace filemanager
 
 #endif
 
-   EFolder GetFolderType(sp(::aura::application) papp, const char * lpcsz)
+   EFolder GetFolderType(::aura::application * papp, const char * lpcsz)
    {
       return GetFolderType(papp, ::str::international::utf8_to_unicode(lpcsz));
    }
 
-   EFolder GetFolderType(sp(::aura::application) papp, const wchar_t * lpcszPath)
+   EFolder GetFolderType(::aura::application * papp, const wchar_t * lpcszPath)
    {
 
       string strPath;
@@ -499,7 +499,7 @@ namespace filemanager
 
 
 
-   ImageSet::ImageSet(sp(::aura::application) papp) :
+   ImageSet::ImageSet(::aura::application * papp) :
       element(papp),
       m_mutex(papp)
    {

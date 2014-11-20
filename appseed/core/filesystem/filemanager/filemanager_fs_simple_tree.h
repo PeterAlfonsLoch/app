@@ -53,7 +53,7 @@ namespace filemanager
             //sp(::data::simple_tree_data)           m_spdataFs;
 
 
-            tree(sp(::aura::application) papp);
+            tree(::aura::application * papp);
             virtual ~tree();
 
 

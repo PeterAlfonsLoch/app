@@ -2776,7 +2776,7 @@ void __cdecl string::format_message(const char * pszFormat, ... )
 
 #endif
 
-bool string::load_string(sp(::aura::application) papp, id id)
+bool string::load_string(::aura::application * papp, id id)
 {
    return App(papp).load_string(*this, id);
 }

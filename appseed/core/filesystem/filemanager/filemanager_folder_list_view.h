@@ -17,7 +17,7 @@ namespace filemanager
       bool                             m_bRecursiveColumn;
 
 
-      folder_list_view(sp(::aura::application) papp);
+      folder_list_view(::aura::application * papp);
       virtual ~folder_list_view();
 
 

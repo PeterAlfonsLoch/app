@@ -18,7 +18,7 @@ namespace nature
       ::user::button    m_buttonHtmlApp;
 
 
-      view(sp(::aura::application) papp);
+      view(::aura::application * papp);
       virtual ~view();
    #ifdef DEBUG
       virtual void assert_valid() const;

@@ -14,7 +14,7 @@ namespace colorertake5
    class CLASS_DECL_AURA HRCParserImpl : public HRCParser
    {
    public:
-      HRCParserImpl(sp(::aura::application) papp);
+      HRCParserImpl(::aura::application * papp);
      virtual ~HRCParserImpl();
 
      void setErrorHandler(ErrorHandler *eh);

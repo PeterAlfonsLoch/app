@@ -19,7 +19,7 @@ namespace crypto
 {
 
 
-   crypto::crypto(sp(::aura::application) papp) :
+   crypto::crypto(::aura::application * papp) :
       element(papp)
    {
    }
@@ -672,7 +672,7 @@ namespace crypto
    }
 
 
-   bool crypto::file_set(var varFile, const char * pszData, const char * pszSalt, sp(::aura::application) papp)
+   bool crypto::file_set(var varFile, const char * pszData, const char * pszSalt, ::aura::application * papp)
    {
       primitive::memory memoryEncrypt;
       encrypt(memoryEncrypt, pszData, pszSalt);
@@ -680,7 +680,7 @@ namespace crypto
       return true;
    }
 
-   bool crypto::file_get(var varFile, string & str, const char * pszSalt, sp(::aura::application) papp)
+   bool crypto::file_get(var varFile, string & str, const char * pszSalt, ::aura::application * papp)
    {
       primitive::memory memoryEncrypt;
       Sess(papp).file().as_memory(varFile, memoryEncrypt);
@@ -960,7 +960,7 @@ namespace crypto
    }
 
 
-   rsa::rsa(sp(::aura::application) papp) :
+   rsa::rsa(::aura::application * papp) :
       element(papp),
       m_mutex(papp)
    {
@@ -974,7 +974,7 @@ namespace crypto
    }
 
 
-   rsa::rsa(sp(::aura::application) papp, const string & nParam)
+   rsa::rsa(::aura::application * papp, const string & nParam)
    {
 
 #ifdef MACOS_DEPRECATED
@@ -1108,7 +1108,7 @@ namespace crypto
 
 #ifdef BSD_STYLE_SOCKETS
 
-   rsa::rsa(sp(::aura::application) papp,
+   rsa::rsa(::aura::application * papp,
       const string & n,
       const string & e,
       const string & d,

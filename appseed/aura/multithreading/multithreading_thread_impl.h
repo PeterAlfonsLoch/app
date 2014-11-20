@@ -23,7 +23,7 @@ public:
    bool                    m_bSynch;
 
 
-   thread_startup(sp(::aura::application) papp);
+   thread_startup(::aura::application * papp);
    ~thread_startup();
 
 };
@@ -59,7 +59,7 @@ public:
    ::aura::message_queue_sp                 m_spqueue;
 
 
-   thread_impl(sp(::aura::application) papp);
+   thread_impl(::aura::application * papp);
    virtual ~thread_impl();
    
    

@@ -155,7 +155,7 @@ namespace exception
 
 #endif
 
-   engine::engine(sp(::aura::application) papp) :
+   engine::engine(::aura::application * papp) :
       element(papp)
 #ifdef WINDOWSEX
       ,m_bOk(false)

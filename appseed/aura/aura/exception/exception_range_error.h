@@ -9,7 +9,7 @@ class CLASS_DECL_AURA range_error :
 public:
    
    
-   range_error(sp(::aura::application) papp, const char * pszError);
+   range_error(::aura::application * papp, const char * pszError);
    virtual ~range_error();
 
 

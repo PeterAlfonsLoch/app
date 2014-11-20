@@ -10,7 +10,7 @@ namespace simpledb
 {
 
 
-   service::service(sp(::aura::application) papp) :
+   service::service(::aura::application * papp) :
       element(papp),
       plain_service(papp)
    {

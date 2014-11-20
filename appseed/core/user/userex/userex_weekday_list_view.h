@@ -11,7 +11,7 @@ namespace userex
    public:
 
 
-      weekday_list_view(sp(::aura::application) papp);
+      weekday_list_view(::aura::application * papp);
       virtual ~weekday_list_view();
 
 

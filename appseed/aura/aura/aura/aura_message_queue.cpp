@@ -5,7 +5,7 @@ namespace aura
 {
 
 
-   message_queue::message_queue(sp(::aura::application) papp):
+   message_queue::message_queue(::aura::application * papp):
       element(papp)
    {
 

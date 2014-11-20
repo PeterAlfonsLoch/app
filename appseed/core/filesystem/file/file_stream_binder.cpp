@@ -73,7 +73,7 @@ namespace file
 
 
 
-   stream_binder::stream_binder(sp(::aura::application) papp) :
+   stream_binder::stream_binder(::aura::application * papp) :
       element(papp),
       _allBytesAreWritenEvent(papp),
       _thereAreBytesToReadEvent(papp),

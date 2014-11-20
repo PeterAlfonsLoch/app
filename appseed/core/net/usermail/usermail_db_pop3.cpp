@@ -9,7 +9,7 @@ namespace usermail
    
    string normalize_datetime(const char * psz);
 
-   db_pop3::db_pop3(sp(::aura::application) papp) :
+   db_pop3::db_pop3(::aura::application * papp) :
       element(papp),
       pop3(papp)
    {

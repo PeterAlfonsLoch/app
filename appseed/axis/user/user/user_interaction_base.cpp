@@ -13,7 +13,7 @@ namespace user
    }
 
 
-   interaction_base::interaction_base(sp(::aura::application) papp) :
+   interaction_base::interaction_base(::aura::application * papp) :
       element(papp),
       command_target_interface(papp)
    {

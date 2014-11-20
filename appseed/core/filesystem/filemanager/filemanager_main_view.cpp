@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   main_view::main_view(sp(::aura::application) papp):
+   main_view::main_view(::aura::application * papp):
       element(papp),
       ::user::split_layout(papp),
       ::user::split_view(papp),

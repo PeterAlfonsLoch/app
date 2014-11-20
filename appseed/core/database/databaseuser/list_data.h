@@ -15,7 +15,7 @@ namespace databaseuser
       ::count m_iItemCount;
 
 
-      list_data(sp(::aura::application) papp);
+      list_data(::aura::application * papp);
       virtual ~list_data();
 
       virtual void _001GetItemText(::user::list_item * pitem);

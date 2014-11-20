@@ -16,7 +16,7 @@ namespace windows
       message_queue_listener *         m_plistener;
 
 
-      message_queue(sp(::aura::application) papp);
+      message_queue(::aura::application * papp);
       virtual ~message_queue();
 
 

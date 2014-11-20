@@ -24,7 +24,7 @@ public:
    bool                          m_bAligned;
 
 
-   factory_allocator(sp(::aura::application) papp, int32_t iCount, UINT uiAllocSize, id idType, bool bAligned) :
+   factory_allocator(::aura::application * papp, int32_t iCount, UINT uiAllocSize, id idType, bool bAligned) :
       element(papp),
       m_iCount(iCount),
       m_uiAllocSize(uiAllocSize),
@@ -70,12 +70,12 @@ class factory_allocator_impl :
 public:
 
 #ifdef WINDOWS
-   factory_allocator_impl(sp(::aura::application) papp, int32_t iCount, bool bAligned) :
+   factory_allocator_impl(::aura::application * papp, int32_t iCount, bool bAligned) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name(), bAligned)
    {
    }
 #else
-   factory_allocator_impl(sp(::aura::application) papp, int32_t iCount, bool bAligned) :
+   factory_allocator_impl(::aura::application * papp, int32_t iCount, bool bAligned) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name(), bAligned)
    {
    }
@@ -111,7 +111,7 @@ public:
 
    sp(factory_allocator)    m_pallocator;
 
-   inline factory_item_base(sp(::aura::application) papp, sp(factory_allocator) pallocator) : element(papp), m_pallocator(pallocator) {}
+   inline factory_item_base(::aura::application * papp, sp(factory_allocator) pallocator) : element(papp), m_pallocator(pallocator) {}
    virtual ~factory_item_base();
 
    
@@ -129,7 +129,7 @@ class creatable_factory_item :
 {
 public:
 
-   inline creatable_factory_item(sp(::aura::application) papp, sp(factory_allocator) pallocator) : element(papp), factory_item_base(papp, pallocator) {}
+   inline creatable_factory_item(::aura::application * papp, sp(factory_allocator) pallocator) : element(papp), factory_item_base(papp, pallocator) {}
 
    using ::factory_item_base::create;
    virtual element * create(::aura::application * papp);
@@ -145,7 +145,7 @@ class cloneable_factory_item :
 {
 public:
 
-   inline cloneable_factory_item(sp(::aura::application) papp, sp(factory_allocator) pallocator) : element(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
+   inline cloneable_factory_item(::aura::application * papp, sp(factory_allocator) pallocator) : element(papp), creatable_factory_item < CLONEABLE_TYPE > (papp, pallocator) {}
 
    
    using creatable_factory_item < CLONEABLE_TYPE >::clone;
@@ -166,7 +166,7 @@ public:
 
 
 
-   base_factory(sp(::aura::application) papp);
+   base_factory(::aura::application * papp);
    virtual ~base_factory();
 
 

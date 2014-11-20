@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   timer_item::timer_item(sp(::aura::application) papp):
+   timer_item::timer_item(::aura::application * papp):
       element(papp)
    {
 

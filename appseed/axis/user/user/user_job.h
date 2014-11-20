@@ -18,7 +18,7 @@ namespace user
       sp(::user::impact)        m_pview;
 
 
-      job(sp(::aura::application) papp);
+      job(::aura::application * papp);
       virtual ~job();
 
 

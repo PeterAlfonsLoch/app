@@ -3789,7 +3789,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
 
 
-   //typedef  void (* PFN_ca2_factory_exchange)(sp(::aura::application) papp);
+   //typedef  void (* PFN_ca2_factory_exchange)(::aura::application * papp);
 
 
 
@@ -3854,7 +3854,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    sp(::aura::application) application::instantiate_application(const char * pszType,const char * pszId,application_bias * pbias)
    {
 
-      sp(::aura::application) papp = NULL;
+      ::aura::application * papp = NULL;
 
       string strId(pszId);
 
@@ -3986,7 +3986,7 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
       if(pbaseapp == NULL)
          return NULL;
 
-      sp(::aura::application) papp = (pbaseapp);
+      ::aura::application * papp = (pbaseapp);
 
       if(!papp->m_pcoreapp->start_application(bSynch,pbias))
       {

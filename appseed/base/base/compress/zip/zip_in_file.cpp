@@ -4,7 +4,7 @@
 namespace zip
 {
 
-   InFile::InFile(sp(::aura::application) papp):
+   InFile::InFile(::aura::application * papp):
       element(papp)
    {
 

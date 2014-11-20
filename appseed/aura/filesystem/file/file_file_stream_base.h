@@ -17,7 +17,7 @@ namespace file
       virtual ~file_stream_base();
 
 
-      virtual void open(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp = ::get_thread_app());
+      virtual void open(const char * lpszFileName,uint32_t nOpenFlags,::aura::application * papp = ::get_thread_app());
 
    };
 

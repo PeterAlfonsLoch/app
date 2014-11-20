@@ -6,7 +6,7 @@ namespace filemanager
 
 
 
-   frame::frame(sp(::aura::application) papp) :
+   frame::frame(::aura::application * papp) :
       element(papp),
       simple_frame_window(papp)
    {

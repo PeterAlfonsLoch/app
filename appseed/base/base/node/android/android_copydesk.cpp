@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   copydesk::copydesk(sp(::aura::application) papp) :
+   copydesk::copydesk(::aura::application * papp) :
       element(papp),
       ::base::copydesk(papp)
    {

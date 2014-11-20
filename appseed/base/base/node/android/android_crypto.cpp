@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   crypto::crypto(sp(::aura::application) papp) :
+   crypto::crypto(::aura::application * papp) :
       element(papp),
       ::crypto::crypto(papp)
    {

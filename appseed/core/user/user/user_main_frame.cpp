@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   main_frame::main_frame(sp(::aura::application) papp) :
+   main_frame::main_frame(::aura::application * papp) :
       element(papp),
       simple_frame_window(papp)
    {

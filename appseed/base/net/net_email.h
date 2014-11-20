@@ -20,7 +20,7 @@ namespace net
       string            m_strBody;
 
 
-      email(sp(::aura::application) papp);
+      email(::aura::application * papp);
 
 
       void prepare_headers();

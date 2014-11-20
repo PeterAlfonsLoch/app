@@ -10,7 +10,7 @@ public:
    HRESULT     m_hresult;
 
 
-   hresult_exception(sp(::aura::application) papp, HRESULT hr);
+   hresult_exception(::aura::application * papp, HRESULT hr);
    virtual ~hresult_exception();
 
 

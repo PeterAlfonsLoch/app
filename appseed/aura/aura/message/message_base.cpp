@@ -7,7 +7,7 @@ namespace message
 
 
 
-   base::base(sp(::aura::application) papp,class ::signal * psignal):
+   base::base(::aura::application * papp,class ::signal * psignal):
       element(papp),
       signal_details(psignal)
    {
@@ -20,7 +20,7 @@ namespace message
    }
 
 
-   base::base(sp(::aura::application) papp,::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
+   base::base(::aura::application * papp,::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
       element(papp),
       signal_details(papp)
    {

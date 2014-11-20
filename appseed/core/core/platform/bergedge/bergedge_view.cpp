@@ -4,7 +4,7 @@ namespace bergedge
 {
 
 
-   view::view(sp(::aura::application) papp) :
+   view::view(::aura::application * papp) :
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
@@ -481,7 +481,7 @@ namespace bergedge
       {
          while(pui != NULL)
          {
-            sp(::aura::application) papp = NULL;
+            ::aura::application * papp = NULL;
             try
             {
                papp = &App(pui->get_app());

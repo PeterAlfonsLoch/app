@@ -3,7 +3,7 @@
 namespace sockets
 {
 
-   sip_server::sip_server(sp(::aura::application) papp) :
+   sip_server::sip_server(::aura::application * papp) :
       element(papp),
       thread(papp)
    {

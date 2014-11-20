@@ -11,7 +11,7 @@ namespace file
    }
 
 
-   file_stream::file_stream(const char * lpszFileName,uint32_t nOpenFlags,sp(::aura::application) papp)
+   file_stream::file_stream(const char * lpszFileName,uint32_t nOpenFlags,::aura::application * papp)
    {
 
       open(lpszFileName,nOpenFlags,papp);

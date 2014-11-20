@@ -11,7 +11,7 @@ namespace visual
    public:
 
 
-      api(sp(::aura::application) papp);
+      api(::aura::application * papp);
       virtual ~api();
 
 

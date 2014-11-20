@@ -92,7 +92,7 @@ public:
 
    smart_pointer_array < db_long_set_queue_item >           m_itema;
 
-   db_long_sync_queue(sp(::aura::application) papp):
+   db_long_sync_queue(::aura::application * papp):
       element(papp),
       thread(papp),
       simple_thread(papp),

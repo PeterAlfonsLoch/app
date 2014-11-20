@@ -58,7 +58,7 @@ namespace hotplugin
       POINT                         m_ptCursorPhase;
 
 
-      plugin(sp(::aura::application) papp);
+      plugin(::aura::application * papp);
       virtual ~plugin();
 
 

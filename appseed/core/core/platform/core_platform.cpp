@@ -5,7 +5,7 @@ namespace core
 {
 
 
-   platform::platform(sp(::aura::application) papp):
+   platform::platform(::aura::application * papp):
       element(papp),
       ::thread(papp)
    {
@@ -500,7 +500,7 @@ namespace core
                if(strType.is_empty())
                   strType = "application";
 
-               sp(::aura::application) papp = (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+               ::aura::application * papp = (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
                if(papp == NULL)
                   return;
 
@@ -661,7 +661,7 @@ namespace core
 
       string strApp(pszAppId);
 
-      sp(::aura::application) papp = application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+      ::aura::application * papp = application_get(pszType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
       if(papp == NULL)
          return NULL;
 
@@ -817,7 +817,7 @@ namespace core
 
       }
 
-      sp(::aura::application) papp = application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias);
+      ::aura::application * papp = application_get("application", strId, true, true, pcreatecontext->m_spApplicationBias);
 
       if(papp == NULL)
          return false;
@@ -1005,7 +1005,7 @@ namespace core
    /*
    sp(::aura::application) platform::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
-   sp(::aura::application) papp = NULL;
+   ::aura::application * papp = NULL;
 
    if(m_mapApplication.Lookup(string(pszType) + ":" + string(pszId), papp))
    return papp;
@@ -1325,7 +1325,7 @@ namespace core
 
 
 
-   void platform::on_app_request_bergedge_callback(sp(::aura::application) papp)
+   void platform::on_app_request_bergedge_callback(::aura::application * papp)
    {
       if(&App(papp) != NULL)
       {
@@ -1469,7 +1469,7 @@ namespace core
    sp(::aura::application) platform::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
 
-      sp(::aura::application) papp = NULL;
+      ::aura::application * papp = NULL;
 
       if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszId),papp))
       {
@@ -1732,7 +1732,7 @@ namespace core
    void platform::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      sp(::aura::application) papp = NULL;
+      ::aura::application * papp = NULL;
 
       if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {
@@ -1862,7 +1862,7 @@ namespace core
 
 
 
-   void platform::register_bergedge_application(sp(::aura::application) papp)
+   void platform::register_bergedge_application(::aura::application * papp)
    {
 
       retry_single_lock rsl(m_pmutex,millis(84),millis(84));
@@ -1885,7 +1885,7 @@ namespace core
 
    }
 
-   void platform::unregister_bergedge_application(sp(::aura::application) papp)
+   void platform::unregister_bergedge_application(::aura::application * papp)
    {
 
       retry_single_lock rsl(m_pmutex,millis(84),millis(84));
@@ -1976,7 +1976,7 @@ namespace core
 
 #endif
 
-      sp(::aura::application) papp = NULL;
+      ::aura::application * papp = NULL;
 
       if(!library.open(strLibrary,false,false))
          return NULL;

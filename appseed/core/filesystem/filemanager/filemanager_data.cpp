@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   data::data(sp(::aura::application) papp) :
+   data::data(::aura::application * papp) :
       element(papp),
       ::data::data(papp)
    {

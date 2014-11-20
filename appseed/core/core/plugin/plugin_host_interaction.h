@@ -28,7 +28,7 @@ namespace plugin
 
       
 
-      host_interaction(sp(::aura::application) papp);
+      host_interaction(::aura::application * papp);
       virtual ~host_interaction();
 
       void install_message_handling(::message::dispatch * pmessage);

@@ -5,7 +5,7 @@
 namespace user
 {
 
-   list_header::list_header(sp(::aura::application) papp) :
+   list_header::list_header(::aura::application * papp) :
       element(papp),
       m_font(allocer()),
       m_dcextension(papp)

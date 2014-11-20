@@ -13,7 +13,7 @@ namespace user
       {
 
 
-         control_box::control_box(sp(::aura::application) papp) :
+         control_box::control_box(::aura::application * papp) :
             element(papp),
             ::user::interaction(papp),
             m_fontMarlett(allocer()),
@@ -307,7 +307,7 @@ namespace user
 
             create_buttons();
 
-            SetTimer(123, 184, NULL);
+            //SetTimer(123, 184, NULL);
 
          }
 

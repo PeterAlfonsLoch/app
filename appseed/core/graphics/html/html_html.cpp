@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   html::html(sp(::aura::application) papp) :
+   html::html(::aura::application * papp) :
       element(papp),
       ::aura::departament(papp)
    {
@@ -23,7 +23,7 @@ namespace html
    }
 
 
-   void html::construct(sp(::aura::application) papp)
+   void html::construct(::aura::application * papp)
    {
 
       ::aura::departament::construct(papp);

@@ -9,7 +9,7 @@ namespace html
    {
 
 
-      text::text(sp(::aura::application) papp) :
+      text::text(::aura::application * papp) :
          element(papp),
          ::data::data_listener(papp),
          ::colorertake5::base_editor(papp),

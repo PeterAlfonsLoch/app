@@ -144,7 +144,7 @@ namespace database
 
 
       result_set();
-      result_set(sp(::aura::application) papp);
+      result_set(::aura::application * papp);
       result_set(const result_set & set);
 
 

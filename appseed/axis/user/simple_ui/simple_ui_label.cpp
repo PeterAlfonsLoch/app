@@ -5,7 +5,7 @@ namespace simple_ui
 {
 
 
-   label::label(sp(::aura::application) papp) :
+   label::label(::aura::application * papp) :
       element(papp)
    {
 

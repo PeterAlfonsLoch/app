@@ -25,7 +25,7 @@ namespace dynamic_source
       spa(script_instance)                      m_scriptinstanceptra;
 
 
-      script(sp(::aura::application) papp);
+      script(::aura::application * papp);
       virtual ~script();
 
 
@@ -70,7 +70,7 @@ namespace dynamic_source
 
 
 
-      ds_script(sp(::aura::application) papp);
+      ds_script(::aura::application * papp);
       ~ds_script();
 
 
@@ -107,7 +107,7 @@ namespace dynamic_source
    public:
 
 
-      t_script(sp(::aura::application) papp) : 
+      t_script(::aura::application * papp) : 
          element(papp),
          script(papp)
       {

@@ -27,7 +27,7 @@ namespace windows
       DWORD                                  m_dwLastDelay;
 
 
-      window_draw(sp(::aura::application) papp);
+      window_draw(::aura::application * papp);
       virtual ~window_draw();
 
 

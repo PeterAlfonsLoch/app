@@ -40,7 +40,7 @@ int simple_frame_window::helper_task::run()
 }
 
 
-simple_frame_window::simple_frame_window(sp(::aura::application) papp) :
+simple_frame_window::simple_frame_window(::aura::application * papp) :
 element(papp),
 m_dibBk(allocer()),
 m_fastblur(allocer())
@@ -704,7 +704,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       return;
    }
 
-   sp(::aura::application) papp = &Application;
+   ::aura::application * papp = &Application;
 
    if (papp->m_pcoreapp->is_system() || papp->m_pcoreapp->is_session())
    {

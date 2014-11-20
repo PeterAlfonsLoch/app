@@ -84,7 +84,7 @@ namespace windows
    }
 
 
-   interaction_impl::interaction_impl(sp(::aura::application) papp):
+   interaction_impl::interaction_impl(::aura::application * papp):
       element(papp)
    {
 
@@ -2179,7 +2179,7 @@ namespace windows
       oswindow m_oswindow;
       HDC m_hdc;
 
-      print_window(sp(::aura::application) papp,oswindow oswindow,HDC hdc,uint32_t dwTimeout):
+      print_window(::aura::application * papp,oswindow oswindow,HDC hdc,uint32_t dwTimeout):
          ::element(papp),
          m_event(papp)
       {
@@ -2980,7 +2980,7 @@ namespace windows
    }
 
 
-   /*   ::user::view_update_hint::user::view_update_hint(sp(::aura::application) papp) :
+   /*   ::user::view_update_hint::user::view_update_hint(::aura::application * papp) :
    element(papp)
    {
    }
@@ -5544,7 +5544,7 @@ CLASS_DECL_AXIS bool unhook_window_create()
 
 __declspec(thread) char t_szTempClassName[___TEMP_CLASS_NAME_SIZE] ={0};
 
-CLASS_DECL_AXIS const char * __register_window_class(sp(::aura::application) papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
+CLASS_DECL_AXIS const char * __register_window_class(::aura::application * papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
 {
    // Returns a temporary string name for the class
    //  Save in a string if you want to use it for a long time

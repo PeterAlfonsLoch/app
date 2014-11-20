@@ -324,7 +324,7 @@ public:
    ::count        m_nGrowBy;  // grow amount
 
    array_base(int iTypeSize,bool bRaw);
-   array_base(sp(::aura::application) papp, int iTypeSize, bool bRaw);
+   array_base(::aura::application * papp, int iTypeSize, bool bRaw);
    virtual ~array_base();
 
    inline ::count get_size() const;
@@ -441,7 +441,7 @@ public:
 
 
 
-   array(sp(::aura::application) papp = NULL, ::count nGrowBy = 32);
+   array(::aura::application * papp = NULL, ::count nGrowBy = 32);
    array(const array <TYPE, ARG_TYPE> & a);
    array(::count n);
    virtual ~array();
@@ -623,7 +623,7 @@ class nodefctr_array :
 public:
 
 
-   nodefctr_array(sp(::aura::application) papp = NULL, ::count nGrowBy = 32) : array < TYPE, ARG_TYPE, ::constructor::nodef > (papp, nGrowBy) {}
+   nodefctr_array(::aura::application * papp = NULL, ::count nGrowBy = 32) : array < TYPE, ARG_TYPE, ::constructor::nodef > (papp, nGrowBy) {}
    nodefctr_array(const array <TYPE, ARG_TYPE> & a) : array < TYPE, ARG_TYPE, ::constructor::nodef > (a) {}
    nodefctr_array(::count n) : array < TYPE, ARG_TYPE, ::constructor::nodef > (n){}
    virtual ~nodefctr_array() {}

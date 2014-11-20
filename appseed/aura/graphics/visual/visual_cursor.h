@@ -24,7 +24,7 @@ namespace visual
 #endif
 
 
-      cursor(sp(::aura::application) papp);
+      cursor(::aura::application * papp);
 
       bool to(::draw2d::graphics * pgraphics, point pt);
 

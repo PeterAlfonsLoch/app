@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   job::job(sp(::aura::application) papp) :
+   job::job(::aura::application * papp) :
       element(papp),
       ::job(papp)
    {

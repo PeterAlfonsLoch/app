@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   handler::handler(sp(::aura::application) papp) :
+   handler::handler(::aura::application * papp) :
       element(papp)
    {
 

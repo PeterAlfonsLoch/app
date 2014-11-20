@@ -18,7 +18,7 @@ public:
    ::draw2d::region_sp                 m_spregion;
 
 
-   OrtoButton(sp(::aura::application) papp);
+   OrtoButton(::aura::application * papp);
    virtual ~OrtoButton();
 
 

@@ -29,10 +29,10 @@ namespace html
       LiteHTMLEntityResolver  *     m_pentityresolver;
 
 
-      html(sp(::aura::application) papp);
+      html(::aura::application * papp);
       virtual ~html();
 
-      virtual void construct(sp(::aura::application) papp);
+      virtual void construct(::aura::application * papp);
 
 
       virtual bool initialize();

@@ -15,7 +15,7 @@ namespace aura
       ::duration           m_durationCheckPeriod;
 
 
-      assert_running_task(sp(::aura::application) papp,const string & strAppId);
+      assert_running_task(::aura::application * papp,const string & strAppId);
       virtual ~assert_running_task();
 
 
