@@ -235,11 +235,11 @@ public:
    void cloneable(const type * info,int32_t iCount,bool bOverwrite = true,bool bAligned = false);
 
    using ::object::create;
-   virtual element * create(::aura::application *  papp, sp(type) info);
+   virtual element * create(::aura::application *  papp, sp(type) & info);
    
-   virtual element * base_clone(sp(element) pobject);
+   virtual element * base_clone(element * pobject);
 
-   virtual element * typed_clone(id idType, sp(element) pobject);
+   virtual element * typed_clone(id idType, element * pobject);
    
    using ::object::clone;
    template < class T >

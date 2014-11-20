@@ -77,7 +77,7 @@ void base_factory::enable_simple_factory_request(bool bEnable)
 
 
 
-element * base_factory::create(::aura::application * papp, sp(type) info)
+element * base_factory::create(::aura::application * papp, sp(type) & info)
 {
 
    if(info->m_spmutex.is_null())
@@ -112,7 +112,7 @@ element * base_factory::create(::aura::application * papp, sp(type) info)
 
 
 
-element * base_factory::base_clone(sp(element) pobject)
+element * base_factory::base_clone(element * pobject)
 {
 
    return typed_clone((id) typeid(*pobject).name(), pobject);
@@ -120,7 +120,7 @@ element * base_factory::base_clone(sp(element) pobject)
 }
 
 
-element * base_factory::typed_clone(id idType, sp(element) pobject)
+element * base_factory::typed_clone(id idType, element * pobject)
 {
 
    single_lock sl(m_pmutex,TRUE);
@@ -128,7 +128,7 @@ element * base_factory::typed_clone(id idType, sp(element) pobject)
    if(pobject == NULL)
       return NULL;
 
-   sp(factory_item_base) pitem = m_mapItem[idType];
+   sp(factory_item_base) & pitem = m_mapItem[idType];
 
    if(pitem.is_null())
       return NULL;
