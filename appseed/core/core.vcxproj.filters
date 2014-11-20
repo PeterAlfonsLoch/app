@@ -78,17 +78,11 @@
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{28024641-f58f-44d6-88a1-5d8e3b99563c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics\gcom">
-      <UniqueIdentifier>{34972fbd-1eed-4d9e-b3c8-680eee3e128f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{9058d0f5-9cd9-4799-ba93-87d295566f56}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\graphics\visual">
       <UniqueIdentifier>{328d023d-57ff-45c9-a8c4-86594aae40ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\gcom">
-      <UniqueIdentifier>{0e6a58f3-07c6-4c9d-a16e-930c3cf37946}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{978dd301-1f2c-4a11-af75-ffb6e7cbb417}</UniqueIdentifier>
@@ -194,12 +188,6 @@
     </Filter>
     <Filter Include="Source Files\filesystem\folder_watch">
       <UniqueIdentifier>{0836171c-654e-4702-8512-85ed485fb89e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\backview">
-      <UniqueIdentifier>{f5765b97-b0f5-4b6c-890b-48cf2dbed288}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\backview">
-      <UniqueIdentifier>{398b5318-2c4d-425a-9d1a-1b88265eb0b7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{ceb2c175-4913-479a-8588-f3271269f0ab}</UniqueIdentifier>
@@ -889,66 +877,6 @@
     </ClInclude>
     <ClInclude Include="net\net_email_departament.h">
       <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_enum.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_graphics.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_helper.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_image_change.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_interface.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_interface_data.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_main.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_thread.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_transition_effect.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_user_interaction.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_visual_effect.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_double3d_point.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_enum.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_pixel_explosion.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_rect.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_space.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_space_util.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_util.h">
-      <Filter>Header Files\graphics\gcom</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filehandler\filehandler_item.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
@@ -2178,54 +2106,6 @@
     </ClCompile>
     <ClCompile Include="net\net_email_departament.cpp">
       <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_graphics.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_helper.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_image_change.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_interface.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_interface_data.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_main.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_thread.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_transition_effect.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_transition_effect_tool001.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_user_interaction.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_visual_effect.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\gcom\gcom_pixel_explosion.cpp">
-      <Filter>Source Files\graphics\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\gcom\gcom_rect.cpp">
-      <Filter>Source Files\graphics\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\gcom\gcom_space.cpp">
-      <Filter>Source Files\graphics\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\gcom\gcom_space_util.cpp">
-      <Filter>Source Files\graphics\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\gcom\gcom_util.cpp">
-      <Filter>Source Files\graphics\gcom</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filehandler\filehandler_item.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
