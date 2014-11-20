@@ -103,10 +103,9 @@ void thread_impl::dispatch_thread_message(signal_details * pobj)
       Application.dispatch_user_message(pbase);
    }
    LRESULT lresult;
-   SignalPtrArray signalptra;
    int i = 0;
    Signal * pSignal;
-   while((pSignal = m_signala.GetSignal(signalptra,pbase->m_uiMessage,0,0, i)) != NULL)
+   while((pSignal = m_signala.GetSignal(pbase->m_uiMessage,0,0, i)) != NULL)
    {
       class signal * psignal = pSignal->m_psignal;
       message::e_prototype eprototype = pSignal->m_eprototype;

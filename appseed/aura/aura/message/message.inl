@@ -166,6 +166,7 @@ namespace message
             && uiId >= psignal->m_uiIdStart
             && uiId <= psignal->m_uiIdEnd)
          {
+            i++;
             return psignal;
          }
       }

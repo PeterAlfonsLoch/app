@@ -81,7 +81,7 @@ namespace message
 
       //         dispatch_event_ok()->wait();
 
-      SignalPtrArray signalptra;
+      //SignalPtrArray signalptra;
       SCAST_PTR(::message::base,pbase,pobj);
       if(pbase->m_uiMessage == (WM_APP + 2014))
       {
