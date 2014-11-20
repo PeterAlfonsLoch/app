@@ -1867,10 +1867,10 @@ namespace core
 
       retry_single_lock rsl(m_pmutex,millis(84),millis(84));
 
-      if(papp.is_null() || papp->m_pcoreapp == NULL)
+      if(papp == NULL || papp->m_pcoreapp == NULL)
          return;
 
-      Session.m_appptra.add_unique(papp.m_p);
+      Session.m_appptra.add_unique(papp);
 
       if(System.is_installing() || System.is_uninstalling())
          System.m_bDoNotExitIfNoApplications = false;
