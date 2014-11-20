@@ -111,7 +111,7 @@ public:
 
    sp(factory_allocator)    m_pallocator;
 
-   inline factory_item_base(::aura::application * papp, sp(factory_allocator) pallocator) : element(papp), m_pallocator(pallocator) {}
+   inline factory_item_base(::aura::application * papp, factory_allocator * pallocator) : element(papp), m_pallocator(pallocator) {}
    virtual ~factory_item_base();
 
    
