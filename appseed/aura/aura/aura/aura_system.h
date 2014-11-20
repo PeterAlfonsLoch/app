@@ -134,7 +134,7 @@ namespace aura
 
 
 
-      virtual void on_allocation_error(::aura::application * papp,sp(type) info);
+      virtual void on_allocation_error(::aura::application * papp,sp(type) & info);
       //   sp(element) alloc(::aura::application * papp, sp(type) info);
       element * alloc(::aura::application * papp,const std_type_info & info);
       //   virtual sp(element) on_alloc(::aura::application * papp, sp(type) info);
@@ -142,10 +142,10 @@ namespace aura
 
 
       using ::aura::application::alloc;
-      virtual element * alloc(::aura::application * papp,sp(type) info);
+      virtual element * alloc(::aura::application * papp,sp(type)  &info);
       virtual element * alloc(::aura::application * papp,const class id & idType);
 
-      virtual element * on_alloc(::aura::application * papp,sp(type) info);
+      virtual element * on_alloc(::aura::application * papp,sp(type) & info);
       virtual element * clone();
       template < class T >
       sp(T) clone(sp(T) p)

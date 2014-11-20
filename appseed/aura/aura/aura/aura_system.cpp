@@ -697,7 +697,7 @@ namespace aura
 
 
 
-   element * system::on_alloc(::aura::application * papp,sp(type) info)
+   element * system::on_alloc(::aura::application * papp,sp(type) & info)
    {
       /*string str;
       str.Format("Could not alloc %s", info.name());
@@ -709,17 +709,17 @@ namespace aura
       return NULL;
    }
 
-   element * system::alloc(::aura::application * papp,sp(type) info)
+   element * system::alloc(::aura::application * papp,sp(type) & info)
    {
       return on_alloc(papp,info);
    }
 
    element * system::alloc(::aura::application * papp,const std_type_info & info)
    {
-      return on_alloc(papp,canew(type(info)));
+      return on_alloc(papp,get_type_info(info));
    }
 
-   void system::on_allocation_error(::aura::application * papp,sp(type) info)
+   void system::on_allocation_error(::aura::application * papp,sp(type) & info)
    {
       UNREFERENCED_PARAMETER(papp);
       UNREFERENCED_PARAMETER(info);
