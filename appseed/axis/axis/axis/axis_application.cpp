@@ -255,14 +255,16 @@ namespace axis
       if(m_uiptraFrame.get_count())
       {
 
-         return 0;
+         return false;
 
       }
 
       if(pui == NULL)
       {
 
-         return m_uiptraFrame[0];
+         pui = m_uiptraFrame[0];
+
+         return true;
 
       }
       else
@@ -279,13 +281,15 @@ namespace axis
                if(i < m_uiptraFrame.get_count())
                {
 
-                  return m_uiptraFrame[i];
+                  pui = m_uiptraFrame[i];
+
+                  return true;
 
                }
                else
                {
 
-                  return NULL;
+                  return false;
 
                }
 
@@ -295,7 +299,7 @@ namespace axis
 
       }
 
-      return NULL;
+      return false;
 
    }
 
