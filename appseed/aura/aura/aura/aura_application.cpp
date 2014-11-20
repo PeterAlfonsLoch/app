@@ -19,7 +19,7 @@ namespace aura
 {
 
 
-   application_signal_details::application_signal_details(sp(application) papp,class ::signal * psignal,e_application_signal esignal):
+   application_signal_details::application_signal_details(application * papp,class ::signal * psignal,e_application_signal esignal):
       element(papp),
       ::signal_details(psignal)
    {

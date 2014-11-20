@@ -13,7 +13,7 @@ void request_interface::create(sp(::create_context) pcreatecontext)
 
 void request_interface::add_line(const char * pszCommandLine, application_bias * pbiasCreate)
 {
-   sp(::command_thread) commandcentral = get_app()->command_central();
+   ::command_thread * commandcentral = get_app()->command_central();
    sp(::create_context) createcontext(canew(create_context(commandcentral)));
    createcontext->m_spApplicationBias = pbiasCreate;
    createcontext->m_spCommandLine->_001ParseCommandLine(pszCommandLine);
