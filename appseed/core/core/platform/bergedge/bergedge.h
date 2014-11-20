@@ -2,8 +2,8 @@
 
 
 #include "core/platform/platform/platform.h"
-#include "core/graphics/gcom/gcom.h"
-#include "core/graphics/backview/backview.h"
+//#include "core/graphics/gcom/gcom.h"
+//#include "core/graphics/backview/backview.h"
 
 
 #include "bergedge_view.h"

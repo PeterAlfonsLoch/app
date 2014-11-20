@@ -2635,16 +2635,10 @@
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_up_down_target.cpp">
-      <Filter>Source Files\user\wndfrm\frame</Filter>
-    </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.cpp">
-      <Filter>Source Files\user\wndfrm\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_down_up_interface.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.cpp">

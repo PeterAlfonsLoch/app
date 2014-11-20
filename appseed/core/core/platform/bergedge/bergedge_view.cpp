@@ -9,8 +9,8 @@ namespace bergedge
       ::user::interaction(papp),
       ::user::scroll_view(papp),
       ::user::place_holder(papp),
-      ::backview::user::interaction(papp),
-      ::backview::Interface(papp),
+//      ::backview::user::interaction(papp),
+  //    ::backview::Interface(papp),
       m_dibV(papp),
       m_dib_veriwell(papp),
       m_dib_winactionarea(papp),
@@ -40,7 +40,7 @@ namespace bergedge
    {
       ::user::impact::install_message_handling(pinterface);
       ::user::place_holder::install_message_handling(pinterface);
-      ::backview::Interface::install_message_handling(pinterface);
+//      ::backview::Interface::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_PAINT, pinterface, this, &view::_001OnPaint);
@@ -110,30 +110,30 @@ namespace bergedge
    void view:: _001OnDraw(::draw2d::graphics * pdc)
    {
 
-      if(::backview::Interface::IsEnabled())
-      {
-
-         rect rectClient;
-         GetClientRect(rectClient);
-
-
-         ::backview::Main & main = ::backview::Interface::GetMain();
-//         ::backview::Graphics & graphics = main.GetGraphics();
-
-         if(main.IsInitialized())
-         {
-
-            ::draw2d::region_sp rgn(allocer());
-//            rect rectFinal(graphics.m_rectFinalPlacement);
-/*            ClientToScreen(rect);
-            rgn->create_rect(rect);
-            pdc->SelectClipRgn(rgn);*/
-            pdc->SelectClipRgn(NULL);
-            ::backview::Interface::BackViewRender(pdc, rectClient);
-
-
-         }
-      }
+//      if(::backview::Interface::IsEnabled())
+//      {
+//
+//         rect rectClient;
+//         GetClientRect(rectClient);
+//
+//
+//         ::backview::Main & main = ::backview::Interface::GetMain();
+////         ::backview::Graphics & graphics = main.GetGraphics();
+//
+//         if(main.IsInitialized())
+//         {
+//
+//            ::draw2d::region_sp rgn(allocer());
+////            rect rectFinal(graphics.m_rectFinalPlacement);
+///*            ClientToScreen(rect);
+//            rgn->create_rect(rect);
+//            pdc->SelectClipRgn(rgn);*/
+//            pdc->SelectClipRgn(NULL);
+//            ::backview::Interface::BackViewRender(pdc, rectClient);
+//
+//
+//         }
+//      }
 
    }
 
@@ -165,8 +165,8 @@ namespace bergedge
          }
       }
 
-      ::backview::Interface::Enable(false);
-      ::backview::Interface::GetMain().GetImageChange().m_dwBackgroundUpdateMillis = 1000 * 30;
+      //::backview::Interface::Enable(false);
+      //::backview::Interface::GetMain().GetImageChange().m_dwBackgroundUpdateMillis = 1000 * 30;
       //::backview::Interface::GetMain().GetTransitionEffect().DisableEffect(::backview::TransitionEffectVisual);
 
 
@@ -304,19 +304,19 @@ namespace bergedge
       UpdateScreen(recta, 0);
    }
 
-   void view::BackViewGetData(::backview::InterfaceData & data)
-   {
+   //void view::BackViewGetData(::backview::InterfaceData & data)
+   //{
 
-      ::backview::user::interaction::BackViewGetData(data);
+   //   ::backview::user::interaction::BackViewGetData(data);
 
-   }
+   //}
 
-   void view::BackViewSetData(::backview::InterfaceData & data)
-   {
+   //void view::BackViewSetData(::backview::InterfaceData & data)
+   //{
 
-      ::backview::user::interaction::BackViewSetData(data);
+   //   ::backview::user::interaction::BackViewSetData(data);
 
-   }
+   //}
 
    bool view::BackViewGetDestroy()
    {

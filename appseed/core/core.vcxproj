@@ -1811,10 +1811,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_move_manager.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_size_manager.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_up_down_target.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_down_up_interface.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp" />
     <ClCompile Include="user\wndfrm\wndfrm_interaction.cpp" />

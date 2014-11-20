@@ -8,8 +8,8 @@ namespace bergedge
 
    class CLASS_DECL_CORE view :
       virtual public ::user::scroll_view,
-      virtual public ::user::place_holder,
-      virtual public ::backview::user::interaction
+      virtual public ::user::place_holder
+//      virtual public ::backview::user::interaction
    {
    public:
 
@@ -81,8 +81,8 @@ namespace bergedge
       void BackViewUpdateScreen(const RECT & rect, UINT uiRedraw);
       void BackViewUpdateScreen(rect_array & recta, UINT uiRedraw);
       void BackViewUpdateScreen();
-      void BackViewGetData(::backview::InterfaceData & data);
-      void BackViewSetData(::backview::InterfaceData & data);
+//      void BackViewGetData(::backview::InterfaceData & data);
+  //    void BackViewSetData(::backview::InterfaceData & data);
       bool BackViewGetDestroy();
 
       string GetNextBackgroundImagePath();
