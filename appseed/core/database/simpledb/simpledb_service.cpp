@@ -49,7 +49,7 @@ namespace simpledb
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          m_threadptra.add(__begin_thread < socket_thread > (get_app()));
-         socket_thread * pthread = m_threadptra.last_element();
+         socket_thread * pthread = m_threadptra.last();
          {
             pthread->m_evInitialized.wait();
             pthread->m_strIp = stra[i];
