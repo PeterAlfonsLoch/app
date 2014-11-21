@@ -13,7 +13,7 @@ defer_update(index(* fCompare) (ARG_TYPE,ARG_TYPE))
 
    if(!sortindex->m_bUpdated)
    {
-      ::lemon::array::ensure_sequence(sortindex->m_indexa,0,this->get_upper_bound());
+      ::lemon::array::ensure_sequence(sortindex->m_indexa,(index) 0,(index)this->get_upper_bound());
       ::sort::array::quick_sort((BASE_ARRAY &) *this, fCompare, sortindex->m_indexa);
       sortindex->m_bUpdated = true;
    }

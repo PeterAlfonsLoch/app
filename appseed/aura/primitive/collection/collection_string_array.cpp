@@ -473,7 +473,7 @@ void string_array::get_quick_sort_ci(index_array & ia)
    index iLPos, iUPos, iMPos;
    string t;
    ia.remove_all();
-   ::lemon::array::append_sequence(ia, 0, get_upper_bound());
+   ::lemon::array::append_sequence(ia, (index)0,(index) get_upper_bound());
    if(this->get_size() >= 2)
    {
       stackLowerBound.push(0);

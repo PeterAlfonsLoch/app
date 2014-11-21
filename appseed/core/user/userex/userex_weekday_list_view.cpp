@@ -104,7 +104,9 @@ namespace userex
    void weekday_list_view::set_weekday(const int_array & iaWeekday)
    {
 
-      index_array ia = iaWeekday;
+      index_array ia;
+      
+      ::lemon::array::copy(ia, iaWeekday);
 
       ::lemon::each(ia) -= 1;
 
@@ -122,7 +124,11 @@ namespace userex
 
       ::lemon::each(ia) += 1;
 
-      return ia;
+      int_array iaRet;
+
+      ::lemon::array::copy(iaRet,ia);
+
+      return iaRet;
 
    }
 

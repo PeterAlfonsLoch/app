@@ -5,6 +5,31 @@ namespace lemon
 {
 
 
+   namespace array
+   {
+
+
+      template < class TDST,class TSRC >
+      ::count copy(TDST & dsta,const TSRC & srca)
+      {
+
+         dsta.remove_all();
+
+         for(int i = 0; i < srca.get_size(); i++)
+         {
+
+            dsta.add(srca[i]);
+
+         }
+
+         return dsta.get_count();
+
+      }
+
+
+   } // namespace array
+
+
    template < class TDST, class TSRC >
    ::count copy(spa(TDST) & dsta, const spa(TSRC) & srca)
    {
