@@ -31,9 +31,9 @@ namespace simpledb
       m_pmanager = new ::simpledb::manager(pbaseapp);
 
 
-      /*App(pbaseapp).m_strFontopusServer		= System.m_simpledb.db().data_load("fontopus_server", ::database::id(), ::database::id());
-      App(pbaseapp).m_strDatabaseServerHost	= System.m_simpledb.db().data_load("database_server", ::database::id(), ::database::id());
-      App(pbaseapp).m_iDatabaseServerPort	= System.m_simpledb.db().data_load("database_port", ::database::id(), ::database::id());
+      /*App(pbaseapp).m_strFontopusServer		= System.m_simpledb.db().data_load("fontopus_server");
+      App(pbaseapp).m_strDatabaseServerHost	= System.m_simpledb.db().data_load("database_server");
+      App(pbaseapp).m_iDatabaseServerPort	= System.m_simpledb.db().data_load("database_port");
       if(App(pbaseapp).m_strDatabaseServerHost.is_empty())
       {
          App(pbaseapp).m_strDatabaseServerHost = "localhost";
