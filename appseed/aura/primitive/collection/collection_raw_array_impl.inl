@@ -124,51 +124,26 @@ inline TYPE& raw_array<TYPE, ARG_TYPE>::element_at(index nIndex)
    // throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& raw_array<TYPE, ARG_TYPE>::first_element(index nIndex) const
+inline const TYPE& raw_array<TYPE, ARG_TYPE>::first(index nIndex) const
 {
    return this->element_at(nIndex);
 }
 template<class TYPE, class ARG_TYPE>
-inline TYPE& raw_array<TYPE, ARG_TYPE>::first_element(index nIndex)
+inline TYPE& raw_array<TYPE,ARG_TYPE>::first(index nIndex)
 {
    return this->element_at(nIndex);
 }
 template<class TYPE, class ARG_TYPE>
-inline const TYPE& raw_array<TYPE, ARG_TYPE>::last_element(index index) const
+inline const TYPE& raw_array<TYPE, ARG_TYPE>::last(index index) const
 {
    return element_at(get_upper_bound(index));
 }
 
 
 template<class TYPE, class ARG_TYPE>
-inline TYPE& raw_array<TYPE, ARG_TYPE>::last_element(index index)
+inline TYPE& raw_array<TYPE,ARG_TYPE>::last(index index)
 {
    return element_at(get_upper_bound(index));
-}
-
-
-template<class TYPE, class ARG_TYPE>
-inline TYPE & raw_array<TYPE, ARG_TYPE>::front(index n)
-{
-   return first_element(n);
-}
-
-template<class TYPE, class ARG_TYPE>
-inline const TYPE & raw_array<TYPE, ARG_TYPE>::front(index n) const
-{
-   return first_element(n);
-}
-
-template<class TYPE, class ARG_TYPE>
-inline TYPE & raw_array<TYPE, ARG_TYPE>::back(index n)
-{
-   return last_element(n);
-}
-
-template<class TYPE, class ARG_TYPE>
-inline const TYPE & raw_array<TYPE, ARG_TYPE>::back(index n) const
-{
-   return last_element(n);
 }
 
 
