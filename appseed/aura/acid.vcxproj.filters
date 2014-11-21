@@ -3304,6 +3304,9 @@
     <ClCompile Include="aura\os\windows\windows_gdi.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\collection\collection_array_base.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3317,9 +3320,6 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

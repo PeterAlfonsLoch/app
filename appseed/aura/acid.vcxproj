@@ -4239,6 +4239,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\user_create_context.h" />
     <ClInclude Include="user\user\user_timer_array.h" />
+    <ClCompile Include="primitive\collection\collection_array_base.cpp" />
     <ClCompile Include="primitive\math\math_cvt.cpp" />
     <ClCompile Include="primitive\math\math_cvt_g.cpp" />
     <ClCompile Include="primitive\math\math_departament.cpp" />
