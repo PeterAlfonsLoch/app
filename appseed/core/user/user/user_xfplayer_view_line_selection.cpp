@@ -222,7 +222,7 @@ bool XfplayerViewLineSelection::SetSelBefore(XfplayerViewLine & viewline)
    m_item.SetLineStart(viewline.GetFirstLine());
    m_item.SetCharStart(0);
    m_item.SetLineEnd(viewline.GetFirstLine() + viewline.GetLineCount() - 1);
-   m_item.SetCharEnd(viewline.m_tokenaMain.last_element().GetCharCount() - 1);
+   m_item.SetCharEnd(viewline.m_tokenaMain.last().GetCharCount() - 1);
    }*/
    return true;
 }

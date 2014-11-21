@@ -377,7 +377,7 @@ namespace datetime
          }
          if(stra.get_count() >= 2)
          {
-            str = stra.implode(", ",0,stra.get_count() - 1) + " and " + stra.last_element();
+            str = stra.implode(", ",0,stra.get_count() - 1) + " and " + stra.last();
          }
          else if(stra.get_count() == 1)
          {

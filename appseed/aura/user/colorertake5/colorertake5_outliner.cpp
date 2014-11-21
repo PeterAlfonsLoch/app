@@ -42,16 +42,16 @@ namespace colorertake5
    index Outliner::manageTree(index_array &treeStack, index newLevel)
    {
 
-      while(treeStack.get_size() > 0 && newLevel < treeStack.last_element())
+      while(treeStack.get_size() > 0 && newLevel < treeStack.last())
          treeStack.remove_last();
 
-      if (treeStack.get_size() == 0 || newLevel > treeStack.last_element())
+      if (treeStack.get_size() == 0 || newLevel > treeStack.last())
       {
          treeStack.add(newLevel);
          return treeStack.get_size()-1;
       };
 
-      if (newLevel == treeStack.last_element())
+      if (newLevel == treeStack.last())
          return treeStack.get_size()-1;
 
       return 0;
@@ -121,7 +121,7 @@ namespace colorertake5
       }
       else
       {
-         OutlineItem *thisItem = outline.last_element();
+         OutlineItem *thisItem = outline.last();
 
          if (itemLabel.has_char() && thisItem->token.has_char() && thisItem->lno == lno)
             thisItem->token += itemLabel;

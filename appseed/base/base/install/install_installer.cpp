@@ -277,7 +277,7 @@ namespace install
 
       straMd5.slice(straMd5AppInstall,0, straMd5.get_count() - 1);
 
-      string strIndexMd5 = straMd5.last_element();
+      string strIndexMd5 = straMd5.last();
 
       set_progress(1.0);
 

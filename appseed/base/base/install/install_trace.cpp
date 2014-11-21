@@ -89,7 +89,7 @@ namespace install
       {
          synch_lock lockTrace(&m_mutex);
          m_stra.add(psz);
-         str = m_stra.last_element();
+         str = m_stra.last();
       }
       string str2(str);
       str2 = "\r\n" + str2;

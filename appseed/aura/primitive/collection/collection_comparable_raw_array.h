@@ -35,11 +35,11 @@ public:
    inline POINTER & operator[](index i) { return element_at(i); }
    inline POINTER operator[](index i) const { return element_at(i); }
 
-   inline POINTER & first_element(index i = 0) { return (POINTER &)ARRAY_TYPE::first_element(i); }
-   inline POINTER first_element(index i = 0) const { return (POINTER)ARRAY_TYPE::first_element(i); }
+   inline POINTER & first(index i = 0) { return (POINTER &)ARRAY_TYPE::first(i); }
+   inline POINTER first(index i = 0) const { return (POINTER)ARRAY_TYPE::first(i); }
 
-   inline POINTER & last_element(index i = -1) { return (POINTER &)ARRAY_TYPE::last_element(i); }
-   inline POINTER last_element(index i = 0) const { return (POINTER)ARRAY_TYPE::last_element(i); }
+   inline POINTER & last(index i = -1) { return (POINTER &)ARRAY_TYPE::last(i); }
+   inline POINTER last(index i = 0) const { return (POINTER)ARRAY_TYPE::last(i); }
 
    inline POINTER & back(index i = -1) { return (POINTER &)ARRAY_TYPE::back(i); }
    inline POINTER back(index i = 0) const { return (POINTER)ARRAY_TYPE::back(i); }

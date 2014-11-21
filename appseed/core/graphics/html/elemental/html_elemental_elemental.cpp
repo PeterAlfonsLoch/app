@@ -459,7 +459,7 @@ namespace html
 
          }
 
-         pdata->m_layoutstate1.m_cya.last_element() += m_pimpl->get_extra_content_cy();
+         pdata->m_layoutstate1.m_cya.last() += m_pimpl->get_extra_content_cy();
 
          m_pimpl->layout_phase1_end(pdata);
 
@@ -471,7 +471,7 @@ namespace html
 
                fLastY = pdata->m_layoutstate1.m_cya.pop();
 
-               pdata->m_layoutstate1.m_cya.last_element() += fLastY;
+               pdata->m_layoutstate1.m_cya.last() += fLastY;
 
             }
             else
@@ -490,7 +490,7 @@ namespace html
 
                fLastX = MAX(xMax, x);
 
-               pdata->m_layoutstate1.m_cxMax.last_element() = fLastX;
+               pdata->m_layoutstate1.m_cxMax.last() = fLastX;
 
             }
 
@@ -507,25 +507,25 @@ namespace html
          if (m_etag == tag_br) //style.m_edisplay == display_block)
          {
 
-            pdata->m_layoutstate1.m_cya.last_element() += m_pimpl->m_box.get_cy();
+            pdata->m_layoutstate1.m_cya.last() += m_pimpl->m_box.get_cy();
 
          }
          else
          {
 
-            pdata->m_layoutstate1.m_cya.last_element() = MAX(pdata->m_layoutstate1.m_cya.last_element(), pdata->m_layoutstate1.m_cy);
+            pdata->m_layoutstate1.m_cya.last() = MAX(pdata->m_layoutstate1.m_cya.last(), pdata->m_layoutstate1.m_cy);
 
-            pdata->m_layoutstate1.m_cxa.last_element() += m_pimpl->m_box.get_cx();
+            pdata->m_layoutstate1.m_cxa.last() += m_pimpl->m_box.get_cx();
 
          }
 
-         xMax = pdata->m_layoutstate1.m_cxMax.last_element();
+         xMax = pdata->m_layoutstate1.m_cxMax.last();
 
-         x = pdata->m_layoutstate1.m_cxa.last_element();
+         x = pdata->m_layoutstate1.m_cxa.last();
 
          fLastX = MAX(xMax, x);
 
-         pdata->m_layoutstate1.m_cxMax.last_element() = fLastX;
+         pdata->m_layoutstate1.m_cxMax.last() = fLastX;
 
       }
 
@@ -618,11 +618,11 @@ namespace html
                || m_style.m_edisplay == display_table_row)
             {
 
-               pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last_element();
+               pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last();
 
-               pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last_element();
+               pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last();
 
-               pdata->m_layoutstate3.m_cya.last_element() = 0;
+               pdata->m_layoutstate3.m_cya.last() = 0;
 
                pdata->m_layoutstate3.m_bLastBlock = false;
 
@@ -686,9 +686,9 @@ namespace html
 
                   pdata->m_layoutstate3.m_y = prow->get_table()->m_box.top;
 
-                  pdata->m_layoutstate3.m_cya.last_element() = prow->get_table()->m_box.get_cy();
+                  pdata->m_layoutstate3.m_cya.last() = prow->get_table()->m_box.get_cy();
 
-                  pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last_element();
+                  pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last();
 
                }
                else
@@ -696,7 +696,7 @@ namespace html
 
                   pdata->m_layoutstate3.m_y = m_pimpl->m_box.top;
 
-                  pdata->m_layoutstate3.m_cya.last_element() = m_pimpl->m_box.get_cy();
+                  pdata->m_layoutstate3.m_cya.last() = m_pimpl->m_box.get_cy();
 
                }
 
@@ -704,11 +704,11 @@ namespace html
             else if (pdata->m_layoutstate3.m_bLastBlock || m_style.m_edisplay == display_block)
             {
 
-               pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last_element();
+               pdata->m_layoutstate3.m_y += pdata->m_layoutstate3.m_cya.last();
 
-               pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last_element();
+               pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last();
 
-               pdata->m_layoutstate3.m_cya.last_element() = 0;
+               pdata->m_layoutstate3.m_cya.last() = 0;
 
                pdata->m_layoutstate3.m_bLastBlock = false;
 

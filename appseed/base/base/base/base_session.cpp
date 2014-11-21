@@ -1552,15 +1552,15 @@ namespace base
 //
 //      m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
 //
-//      ZERO(m_monitorinfoa.last_element());
+//      ZERO(m_monitorinfoa.last());
 //
 //      m_hmonitora.add(hmonitor);
 //
-//      m_monitorinfoa.last_element().cbSize = sizeof(MONITORINFO);
+//      m_monitorinfoa.last().cbSize = sizeof(MONITORINFO);
 //
-//      ::GetMonitorInfo(hmonitor,&m_monitorinfoa.last_element());
+//      ::GetMonitorInfo(hmonitor,&m_monitorinfoa.last());
 //
-//      MONITORINFO mi = m_monitorinfoa.last_element();
+//      MONITORINFO mi = m_monitorinfoa.last();
 //
 //      TRACE0("session::monitor_enum\n");
 //      TRACE("upper_bound %d\n",m_monitorinfoa.get_upper_bound());

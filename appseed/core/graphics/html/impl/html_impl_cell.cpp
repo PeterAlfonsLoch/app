@@ -436,7 +436,7 @@ namespace html
       void cell::layout_phase3_end(data * pdata)
       {
       
-         pdata->m_layoutstate3.m_cya.last_element() = m_box.get_cy();
+         pdata->m_layoutstate3.m_cya.last() = m_box.get_cy();
 
       }
 

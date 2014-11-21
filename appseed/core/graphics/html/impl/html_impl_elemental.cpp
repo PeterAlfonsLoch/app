@@ -520,17 +520,17 @@ namespace html
 
          }
 
-         float cxMax = pdata->m_layoutstate1.m_cxMax.last_element() + get_extra_content_cx();
+         float cxMax = pdata->m_layoutstate1.m_cxMax.last() + get_extra_content_cx();
 
-         float cxTotal = pdata->m_layoutstate1.m_cxa.last_element() + get_extra_content_cx();
+         float cxTotal = pdata->m_layoutstate1.m_cxa.last() + get_extra_content_cx();
 
          cxMax = MAX(cxMax, cxTotal);
 
-         pdata->m_layoutstate1.m_cxMax.last_element() = cxMax;
+         pdata->m_layoutstate1.m_cxMax.last() = cxMax;
 
-         m_box.set_cy(pdata->m_layoutstate1.m_cya.last_element());
+         m_box.set_cy(pdata->m_layoutstate1.m_cya.last());
 
-         m_box.set_cx(pdata->m_layoutstate1.m_cxMax.last_element());
+         m_box.set_cx(pdata->m_layoutstate1.m_cxMax.last());
 
       }
 
@@ -571,9 +571,9 @@ namespace html
 
             pdata->m_layoutstate3.m_y += get_cy();
 
-            pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last_element();
+            pdata->m_layoutstate3.m_x = pdata->m_layoutstate3.m_xParent.last();
 
-            pdata->m_layoutstate3.m_cya.last_element() = 0;
+            pdata->m_layoutstate3.m_cya.last() = 0;
 
 
             return;
@@ -607,7 +607,7 @@ namespace html
 
          pdata->m_layoutstate3.m_cx = get_cx();
 
-         pdata->m_layoutstate3.m_cya.last_element() = MAX(pdata->m_layoutstate3.m_cya.last_element(), get_cy());
+         pdata->m_layoutstate3.m_cya.last() = MAX(pdata->m_layoutstate3.m_cya.last(), get_cy());
 
 
       }

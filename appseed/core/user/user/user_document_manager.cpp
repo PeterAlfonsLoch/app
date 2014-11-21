@@ -585,7 +585,7 @@ namespace user
    return;
    }
 
-   sp(impact_system) ptemplate = (sp(impact_system))m_templateptra.first_element();
+   sp(impact_system) ptemplate = (sp(impact_system))m_templateptra.first();
    if (m_templateptra.get_count() > 1)
    {
    // more than one document template to choose from

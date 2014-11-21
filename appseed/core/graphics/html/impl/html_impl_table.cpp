@@ -250,9 +250,9 @@ namespace html
 //            + m_padding.top
   //          + m_padding.bottom;
 
-         pdata->m_layoutstate1.m_cya.last_element() = m_box.get_cy();
+         pdata->m_layoutstate1.m_cya.last() = m_box.get_cy();
 
-         pdata->m_layoutstate1.m_cxMax.last_element() = MAX(m_box.get_cx(), pdata->m_layoutstate1.m_cxMax.last_element());
+         pdata->m_layoutstate1.m_cxMax.last() = MAX(m_box.get_cx(), pdata->m_layoutstate1.m_cxMax.last());
 
       }
 

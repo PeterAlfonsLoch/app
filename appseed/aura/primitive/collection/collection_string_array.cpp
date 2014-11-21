@@ -592,7 +592,7 @@ string & string_array::new_element(index i)
    add_new(NULL, i);
    if(i == -1)
    {
-      return last_element();
+      return last();
    }
    else
    {

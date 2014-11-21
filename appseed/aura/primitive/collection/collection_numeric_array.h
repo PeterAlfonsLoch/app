@@ -773,7 +773,7 @@ template < class TYPE >
 inline void numeric_array < TYPE > ::push_last()
 {
 
-   this->add(this->last_element());
+   this->add(this->last());
 
 }
 
@@ -782,13 +782,13 @@ template < class TYPE >
 inline TYPE numeric_array < TYPE > ::pop_max()
 {
 
-   TYPE lastelement = this->last_element();
+   TYPE lastelement = this->last();
 
    TYPE nowpop = this->pop();
 
-   this->last_element() = MAX(nowpop, lastelement);
+   this->last() = MAX(nowpop, lastelement);
 
-   return this->last_element();
+   return this->last();
 
 }
 
@@ -798,13 +798,13 @@ template < class TYPE >
 inline TYPE numeric_array < TYPE > ::pop_max_last_add_up(TYPE tLastAddUp)
 {
 
-   TYPE lastelement = this->last_element();
+   TYPE lastelement = this->last();
 
    TYPE nowpop = this->pop();
 
-   this->last_element() = MAX(nowpop, lastelement + tLastAddUp);
+   this->last() = MAX(nowpop, lastelement + tLastAddUp);
 
-   return this->last_element();
+   return this->last();
 
 }
 
@@ -816,9 +816,9 @@ inline TYPE numeric_array < TYPE > ::pop_to()
 
    TYPE lastelement = this->pop();
 
-   this->last_element() = lastelement;
+   this->last() = lastelement;
 
-   return this->last_element();
+   return this->last();
 
 }
 

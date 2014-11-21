@@ -217,7 +217,7 @@ namespace html
 
          pdata->m_layoutstate1.m_cy = m_cyMax;
 
-         pdata->m_layoutstate1.m_cya.last_element() = m_cyMax;
+         pdata->m_layoutstate1.m_cya.last() = m_cyMax;
 
       }
 
@@ -235,7 +235,7 @@ namespace html
       void table_row::layout_phase3_end(data * pdata)
       {
 
-//         pdata->m_layoutstate3.m_cya.last_element() = m_box.get_cy();
+//         pdata->m_layoutstate3.m_cya.last() = m_box.get_cy();
 
       }
 

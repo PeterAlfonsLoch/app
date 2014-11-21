@@ -45,13 +45,13 @@ public:
    inline TYPE pop_to()
    {
       TYPE lastelement = pop();
-      last_element() = lastelement;
-      return last_element();
+      last() = lastelement;
+      return last();
    }
 
    inline void push_last()
    {
-      add(last_element());
+      add(last());
    }
 
 

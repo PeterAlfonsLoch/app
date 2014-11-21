@@ -2242,7 +2242,7 @@ namespace user
             continue;
          if(stra.add_unique(vara[i]) >= 0)
          {
-            ensure_tab_by_id(stra.last_element());
+            ensure_tab_by_id(stra.last());
          }
       }
    }

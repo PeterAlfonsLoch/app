@@ -30,11 +30,11 @@ public:
    index add_new(const char * psz = NULL, index i = -1);
    string & new_element(index i = -1);
 
-   string & first_element(index count = 0);
-   string first_element(index count = 0) const;
+   string & first(index count = 0);
+   string first(index count = 0) const;
 
-   string & last_element(index count = -1);
-   string last_element(index count = -1) const;
+   string & last(index count = -1);
+   string last(index count = -1) const;
 
    const string* get_data() const;
    string* get_data();
@@ -130,24 +130,24 @@ static inline void DestructElement(string* pOldData)
 }
 
 
-inline string & string_array::last_element(index i)
+inline string & string_array::last(index i)
 {
    return this->element_at(get_upper_bound(i));
 }
 
 
-inline string string_array::last_element(index count) const
+inline string string_array::last(index count) const
 {
    return this->element_at(get_upper_bound(count));
 }
 
-inline string & string_array::first_element(index i)
+inline string & string_array::first(index i)
 {
    return this->element_at(get_lower_bound(i));
 }
 
 
-inline string string_array::first_element(index count) const
+inline string string_array::first(index count) const
 {
    return this->element_at(get_lower_bound(count));
 }

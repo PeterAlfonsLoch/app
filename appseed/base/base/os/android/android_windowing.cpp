@@ -810,7 +810,7 @@ public:
 
          m_labela.add(canew(::simple_ui::label(get_app())));
 
-         ::simple_ui::label & label = *m_labela.last_element();
+         ::simple_ui::label & label = *m_labela.last();
 
          label.set_parent(this);
 

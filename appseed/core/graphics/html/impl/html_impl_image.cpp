@@ -74,15 +74,15 @@ namespace html
             if (lockImage.lock(duration::zero()))
             {
                pdata->m_layoutstate3.m_cx = (float)pdata->m_imagea[m_iImage]->m_spdib->m_size.cx;
-               if (pdata->m_imagea[m_iImage]->m_spdib->m_size.cy > pdata->m_layoutstate3.m_cya.last_element())
+               if (pdata->m_imagea[m_iImage]->m_spdib->m_size.cy > pdata->m_layoutstate3.m_cya.last())
                {
-                  pdata->m_layoutstate3.m_cya.last_element() = (float)pdata->m_imagea[m_iImage]->m_spdib->m_size.cy;
+                  pdata->m_layoutstate3.m_cya.last() = (float)pdata->m_imagea[m_iImage]->m_spdib->m_size.cy;
                }
             }
             else
             {
                pdata->m_layoutstate3.m_cx = 0;
-               pdata->m_layoutstate3.m_cya.last_element() = 0;
+               pdata->m_layoutstate3.m_cya.last() = 0;
             }
 
             m_box.set_cxy(pdata->m_imagea[m_iImage]->m_spdib->size());

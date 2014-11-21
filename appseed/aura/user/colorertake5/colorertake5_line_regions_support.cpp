@@ -19,7 +19,7 @@ namespace colorertake5
       while(schemeStack.get_size() > 1)
       {
 
-         delete schemeStack.last_element();
+         delete schemeStack.last();
 
          schemeStack.remove_last();
 
@@ -133,7 +133,7 @@ namespace colorertake5
       while(schemeStack.get_size() > 1)
       {
 
-         delete schemeStack.last_element();
+         delete schemeStack.last();
 
          schemeStack.remove_last();
 
@@ -162,7 +162,7 @@ namespace colorertake5
          ln = lnn;
       }
 
-      LineRegion *lfirst = new LineRegion(*schemeStack.last_element());
+      LineRegion *lfirst = new LineRegion(*schemeStack.last());
       lfirst->start = 0;
       lfirst->end = -1;
       lfirst->next = NULL;
@@ -185,17 +185,17 @@ namespace colorertake5
       lnew->start = sx;
       lnew->end = ex;
       lnew->region = region;
-      lnew->scheme = schemeStack.last_element()->scheme;
+      lnew->scheme = schemeStack.last()->scheme;
       if (region->hasParent(special))
          lnew->special = true;
       if (regionMapper != NULL)
       {
          RegionDefine *rd = regionMapper->getRegionDefine(region);
-         if (rd == NULL) rd = schemeStack.last_element()->rdef;
+         if (rd == NULL) rd = schemeStack.last()->rdef;
          if (rd != NULL)
          {
             lnew->rdef = rd->clone();
-            lnew->rdef->assignParent(schemeStack.last_element()->rdef);
+            lnew->rdef->assignParent(schemeStack.last()->rdef);
          }
       }
       addLineRegion(lno, lnew);
@@ -216,12 +216,12 @@ namespace colorertake5
          const RegionDefine *rd = regionMapper->getRegionDefine(region);
          
          if (rd == NULL) 
-            rd = schemeStack.last_element()->rdef;
+            rd = schemeStack.last()->rdef;
 
          if (rd != NULL)
          {
             lr->rdef = rd->clone();
-            lr->rdef->assignParent(schemeStack.last_element()->rdef);
+            lr->rdef->assignParent(schemeStack.last()->rdef);
          }
 
       }
@@ -245,14 +245,14 @@ namespace colorertake5
       UNREFERENCED_PARAMETER(sx);
       UNREFERENCED_PARAMETER(region);
       UNREFERENCED_PARAMETER(scheme);
-      class region* scheme_region = schemeStack.last_element()->region;
-      delete schemeStack.last_element();
+      class region* scheme_region = schemeStack.last()->region;
+      delete schemeStack.last();
       schemeStack.allocate(schemeStack.get_size()-1);
       // ignoring out of cached interval lines
       if (!checkLine(lno)) return;
       // we have to skip transparent regions
       if (scheme_region != NULL){
-         LineRegion *lr = new LineRegion(*schemeStack.last_element());
+         LineRegion *lr = new LineRegion(*schemeStack.last());
          lr->start = ex;
          lr->end = -1;
          flowBackground->end = lr->start;

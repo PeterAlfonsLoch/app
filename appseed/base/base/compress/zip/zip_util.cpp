@@ -190,7 +190,7 @@ namespace zip
 
 
       filea.add(new File(get_app()));
-      if(!filea.last_element().open(wstraPath[0]))
+      if(!filea.last().open(wstraPath[0]))
          return false;
 
 
@@ -203,11 +203,11 @@ namespace zip
       {
          izfilea.add(new InFile(get_app()));
          str =  wstraPath[i];
-         izfilea.last_element().open(&filea.last_element(), str);
-     //    bzfilea.add(new buffered_buffer(&izfilea.last_element(), 1024 * 1024, 1024 * 1024));
+         izfilea.last().open(&filea.last(), str);
+     //    bzfilea.add(new buffered_buffer(&izfilea.last(), 1024 * 1024, 1024 * 1024));
          filea.add(new File(get_app()));
-         //filea.last_element().open(&bzfilea.last_element());
-         filea.last_element().open(&izfilea.last_element());
+         //filea.last().open(&bzfilea.last());
+         filea.last().open(&izfilea.last());
          wstraPrefix.add(wstraPath[i]);
       }
 
@@ -219,7 +219,7 @@ namespace zip
          wstrPrefix += ":";
       }
 
-      unzFile pf = filea.last_element().m_pf;
+      unzFile pf = filea.last().m_pf;
       string wstrFolder;
       stringa wstraFolder;
       string wstrZip;
