@@ -3468,6 +3468,9 @@
     <None Include="aura\message\message.inl">
       <Filter>Header Files\aura\message</Filter>
     </None>
+    <None Include="primitive\collection\collection_map_impl.inl">
+      <Filter>Header Files\primitive\collection</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcr120d.dll">
