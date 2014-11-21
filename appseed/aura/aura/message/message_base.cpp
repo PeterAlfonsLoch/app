@@ -29,7 +29,7 @@ namespace message
       m_bDestroyed         = false;
       set(pwnd,uiMessage,wparam,lparam,lresult);
 
-      Application.tellme_destroyed(pwnd, &m_bDestroyed);
+      //Application.tellme_destroyed(pwnd, &m_bDestroyed);
 
    }
 
@@ -45,32 +45,32 @@ namespace message
       m_bReflect           = base.m_bReflect;
       m_bDestroyed         = false;
 
-      Application.tellme_destroyed(m_pwnd, &m_bDestroyed);
+      //Application.tellme_destroyed(m_pwnd, &m_bDestroyed);
 
    }
 
    base::~base()
    {
 
-      if(m_pwnd != NULL)
-      {
+      //if(m_pwnd != NULL)
+      //{
 
-         synch_lock sl(get_ui_destroyed_mutex());
+      //   synch_lock sl(get_ui_destroyed_mutex());
 
-         if(m_bDestroyed)
-         {
+      //   if(m_bDestroyed)
+      //   {
 
-            printf("Window Already Destroyed");
+      //      printf("Window Already Destroyed");
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
-            Application.tellme_destroyed(m_pwnd, &m_bDestroyed, false);
+      //      Application.tellme_destroyed(m_pwnd, &m_bDestroyed, false);
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 

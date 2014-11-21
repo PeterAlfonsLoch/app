@@ -92,10 +92,10 @@ namespace user
       sp(::user::menu_base)               m_spmenuPopup;
 
       int32_t                             m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
-      ptr_array < thread >       m_threadptra;
+      ptr_array < thread >                m_threadptra;
       bool                                m_bDestroying;
 
-      ptr_array < bool >                  m_bptraTellMeDestroyed; // Telmo why!! :-)
+      //ptr_array < bool >                  m_bptraTellMeDestroyed; // Telmo why!! :-)
 
 
       interaction();

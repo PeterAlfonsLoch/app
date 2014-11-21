@@ -166,14 +166,14 @@ namespace aura
    }
 
 
-   void application::tellme_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell)
-   {
+   //void application::tellme_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell)
+   //{
 
-      UNREFERENCED_PARAMETER(pui);
-      UNREFERENCED_PARAMETER(pDestroyed);
-      UNREFERENCED_PARAMETER(bTell);
+   //   UNREFERENCED_PARAMETER(pui);
+   //   UNREFERENCED_PARAMETER(pDestroyed);
+   //   UNREFERENCED_PARAMETER(bTell);
 
-   }
+   //}
 
 
    int32_t application::simple_message_box(::user::interaction * puiOwner,const char * pszMessage,UINT fuStyle)

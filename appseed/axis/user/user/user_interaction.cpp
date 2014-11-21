@@ -2540,29 +2540,29 @@ namespace user
 
       sp(::user::interaction) pui = this; // keep a reference to this while destroying
 
-      {
+      //{
 
-         synch_lock sl(get_ui_destroyed_mutex());
+      //   synch_lock sl(get_ui_destroyed_mutex());
 
-         m_bDestroying = true;
+      m_bDestroying = true;
 
-         try
-         {
+      //   try
+      //   {
 
-            for(index i = 0; i < m_bptraTellMeDestroyed.get_count(); i++)
-            {
+      //      for(index i = 0; i < m_bptraTellMeDestroyed.get_count(); i++)
+      //      {
 
-               *m_bptraTellMeDestroyed[i] = true;
+      //         *m_bptraTellMeDestroyed[i] = true;
 
-            }
+      //      }
 
-         }
-         catch(...)
-         {
+      //   }
+      //   catch(...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
       if(m_pimpl == NULL)
          return FALSE;

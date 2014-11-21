@@ -87,7 +87,7 @@ namespace aura
       void alloc(T * & pt);
 
 
-      virtual void tellme_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell = true);
+      //virtual void tellme_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell = true);
 
 
       virtual int32_t simple_message_box(::user::interaction * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);

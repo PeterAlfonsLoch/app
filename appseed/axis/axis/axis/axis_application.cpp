@@ -252,7 +252,7 @@ namespace axis
 
       synch_lock sl(&m_mutexFrame);
 
-      if(m_uiptraFrame.get_count())
+      if(m_uiptraFrame.get_count() <= 0)
       {
 
          return false;
@@ -270,7 +270,7 @@ namespace axis
       else
       {
        
-         for(index i = 0; i < m_uiptraFrame.get_count(); i++)
+         for(index i = m_uiptraFrame.get_upper_bound(); i > 0; i--)
          {
 
             if(m_uiptraFrame[i] == pui)
@@ -309,16 +309,19 @@ namespace axis
 
       synch_lock sl(&m_mutexFrame); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
-      System.defer_create_system_frame_window();
-
-      Session.on_create_frame_window();
-
-      m_uiptraFrame.add(pwnd);
-
-      if(m_puiMain == NULL)
+      if(m_uiptraFrame.add_unique(pwnd))
       {
 
-         m_puiMain = pwnd;
+         System.defer_create_system_frame_window();
+
+         Session.on_create_frame_window();
+
+         if(m_puiMain == NULL)
+         {
+
+            m_puiMain = pwnd;
+
+         }
 
       }
 
@@ -1747,52 +1750,52 @@ namespace axis
    }
 
 
-   void application::tellme_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell)
-   {
-
-      if(pui == NULL)
-         return;
-
-      try
-      {
-
-#ifdef LINUX
-
-         synch_lock sl(get_ui_destroyed_mutex());
-
-         if(bTell)
-         {
-
-            if(pui->m_bDestroying)
-            {
-
-               *pDestroyed = true;
-
-            }
-            else
-            {
-
-               pui->m_bptraTellMeDestroyed.add(pDestroyed);
-
-            }
-
-         }
-         else
-         {
-
-            pui->m_bptraTellMeDestroyed.remove(pDestroyed);
-
-         }
-
-#endif
-
-      }
-      catch(...)
-      {
-
-      }
-
-   }
+//   void application::tellme_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell)
+//   {
+//
+//      if(pui == NULL)
+//         return;
+//
+//      try
+//      {
+//
+//#ifdef LINUX
+//
+//         synch_lock sl(get_ui_destroyed_mutex());
+//
+//         if(bTell)
+//         {
+//
+//            if(pui->m_bDestroying)
+//            {
+//
+//               *pDestroyed = true;
+//
+//            }
+//            else
+//            {
+//
+//               pui->m_bptraTellMeDestroyed.add(pDestroyed);
+//
+//            }
+//
+//         }
+//         else
+//         {
+//
+//            pui->m_bptraTellMeDestroyed.remove(pDestroyed);
+//
+//         }
+//
+//#endif
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
+//
+//   }
 
 
    string application::get_license_id()
