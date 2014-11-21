@@ -217,6 +217,7 @@
     <CLRSupport>false</CLRSupport>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -1552,7 +1553,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <OpenMPSupport>true</OpenMPSupport>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <StringPooling>false</StringPooling>
+      <StringPooling>true</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -1568,7 +1569,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <OmitFramePointers>false</OmitFramePointers>
+      <OmitFramePointers>true</OmitFramePointers>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -1576,6 +1577,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <SDLCheck>
+      </SDLCheck>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -4233,7 +4237,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h" />
     <ClInclude Include="user\simple\simple_message_box.h" />
     <ClInclude Include="user\user\user.h" />
-    <ClInclude Include="user\user\user_check_interface.h" />
     <ClInclude Include="user\user\user_create_context.h" />
     <ClInclude Include="user\user\user_timer_array.h" />
     <ClCompile Include="primitive\math\math_cvt.cpp" />
@@ -4261,7 +4264,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
-    <ClCompile Include="user\user\user_check_interface.cpp" />
     <ClCompile Include="user\user\user_create_context.cpp" />
     <ClInclude Include="user\user\user_timer_item.h" />
     <ClInclude Include="version.config.h" />

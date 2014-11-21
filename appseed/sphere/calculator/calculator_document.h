@@ -11,7 +11,7 @@ namespace calculator
    public:
 
 
-      document(sp(::aura::application) papp);   
+      document(::aura::application * papp);   
       virtual ~document();
 
 

@@ -11,7 +11,7 @@ namespace calculator
       virtual public ::user::impact
    {
    public:
-      view(sp(::aura::application) papp);
+      view(::aura::application * papp);
       virtual ~view();
 
 #ifdef DEBUG

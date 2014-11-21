@@ -21,7 +21,7 @@ namespace command
          OpUpdateCurrentArea,
       };
 
-	   view(sp(::aura::application) papp);
+	   view(::aura::application * papp);
 	   virtual ~view();
 
 

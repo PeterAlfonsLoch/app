@@ -22,7 +22,7 @@ namespace command
       bool                    m_bMoveDrag;
       bool                    m_bLControl;
 
-	   frame(sp(::aura::application) papp);
+	   frame(::aura::application * papp);
       virtual ~frame();
 
       virtual void install_message_handling(::message::dispatch * pinterface);
