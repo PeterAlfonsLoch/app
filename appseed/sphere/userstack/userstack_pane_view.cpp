@@ -546,9 +546,7 @@ namespace userstack
       control.set_type(user::control::type_check_box);
       control.m_id = "save_display_bandwidth";
       control.set_ddx_dbflags(
-            "",
-            "ca2",
-            "savings",
+            "ca2.savings",
             ::aura::resource_display_bandwidth);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
@@ -557,9 +555,7 @@ namespace userstack
       control.set_type(user::control::type_check_box);
       control.m_id = "save_processing";
       control.set_ddx_dbflags(
-            "",
-            "ca2",
-            "savings",
+            "ca2.savings",
             ::aura::resource_processing);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
@@ -568,9 +564,7 @@ namespace userstack
       control.set_type(user::control::type_check_box);
       control.m_id = "save_memory";
       control.set_ddx_dbflags(
-            "",
-            "ca2",
-            "savings",
+            "ca2.savings",
             ::aura::resource_memory);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
@@ -579,9 +573,7 @@ namespace userstack
       control.set_type(user::control::type_check_box);
       control.m_id = "enable_wallpaper";
       control.set_ddx_dbflags(
-            "",
-            "ca2",
-            "bergedge",
+            "ca2.bergedge",
             0);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
