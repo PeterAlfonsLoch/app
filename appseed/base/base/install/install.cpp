@@ -183,7 +183,7 @@ namespace install
 
 
       straFile.add("app.install.exe");
-      straFile.add("aqua.exe");
+      straFile.add("aqua.dll");
       straFile.add("aura.dll");
       straFile.add("aurasqlite.dll");
       straFile.add("axis.dll");
