@@ -25,6 +25,21 @@ namespace lemon
       template<class ARRAY>
       index sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia);
 
+
+      template<class ARRAY>
+      inline typename ARRAY::BASE_TYPE pop(ARRAY & a,index n = -1);
+
+      template<class ARRAY>
+      inline void pop_back(ARRAY & a,index n = -1);
+
+      template<class ARRAY>
+      inline index push(ARRAY & a,typename ARRAY::BASE_ARG_TYPE newElement,index n = 0);
+
+      template<class ARRAY>
+      inline void push_back(ARRAY & a, typename ARRAY::BASE_ARG_TYPE newElement,index n = 0);
+
+
+
    } // namespace array
 
 

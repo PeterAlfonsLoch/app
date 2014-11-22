@@ -129,6 +129,50 @@ namespace lemon
       }
 
 
+      template <class ARRAY >
+      inline typename ARRAY::BASE_TYPE pop(ARRAY & a, index n)
+      {
+
+         index i = a.get_upper_bound(n);
+
+         TYPE t = a.element_at(i);
+
+         a.remove_at(i);
+
+         return t;
+
+      }
+
+
+      template <class ARRAY >
+      inline void pop_back(ARRAY & a,index n)
+      {
+
+         a.remove_at(a.get_upper_bound(n));
+
+      }
+
+
+      template <class ARRAY >
+      inline index push(ARRAY & a,typename ARRAY::BASE_ARG_TYPE newElement,index n)
+      {
+
+         return a.insert_at(a.get_upper_bound(n),newElement);
+
+      }
+
+
+      template <class ARRAY >
+      inline void push_back(ARRAY & a,typename ARRAY::BASE_ARG_TYPE newElement,index n)
+      {
+
+         a.insert_at(a.get_upper_bound(n),newElement);
+
+      }
+
+
+
+
    } // namespace array
 
 
