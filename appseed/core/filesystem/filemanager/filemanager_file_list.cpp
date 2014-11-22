@@ -170,7 +170,7 @@ namespace filemanager
                data_get_DisplayToStrict();
                _001OnUpdateItemCount();
                /*string str;
-               if(data_get("sort-" + get_filemanager_item().m_strPath, ::base::system::idEmpty, str))
+               if(data_get("sort-" + get_filemanager_item().m_strPath, str))
                {
                   stringa stra;
                   stra.add_tokens(str, ";", true);

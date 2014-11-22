@@ -572,7 +572,7 @@ namespace user
       {
          ::user::simple_list_data * pdata = dynamic_cast < ::user::simple_list_data * > (plist->GetDataInterface());
          stringa stra;
-         data_get(pcontrol->descriptor().m_dataid, ::base::system::idEmpty, stra);
+         data_get(pcontrol->descriptor().m_dataid, stra);
          ASSERT(plist != NULL);
          pdata->set_data(plist, stra);
       }*/
@@ -701,7 +701,7 @@ namespace user
    void form::_001GetSelection(
       ::database::id & id, ::database::selection &selection)
    {
-      selection.add_item(id, ::base::system::idEmpty);
+      selection.add_item(id);
    }
 
    bool form::on_simple_action(id id)
