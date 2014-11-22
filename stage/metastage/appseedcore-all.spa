@@ -3,6 +3,7 @@ stage\basis\app.install.exe
 stage\basis\app.plugin.container.exe
 stage\basis\app.sentinel.exe
 stage\basis\app_core.dll
+stage\basis\aqua.dll
 stage\basis\aura.dll
 stage\basis\auracharguess.dll
 stage\basis\aurasqlite.dll
