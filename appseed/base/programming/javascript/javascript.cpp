@@ -1990,7 +1990,7 @@ void tinyjs::statement(bool &execute) {
         while (l->tk != ';') {
           CScriptVarLink *a = 0;
           if (execute)
-            a = scopes.back()->findChildOrCreate(l->tkStr);
+            a = scopes.last()->findChildOrCreate(l->tkStr);
           l->match(LEX_ID);
           // now do stuff defined with dots
           while (l->tk == '.') {
@@ -2122,7 +2122,7 @@ void tinyjs::statement(bool &execute) {
         if (l->tk != ';')
           result = base(execute);
         if (execute) {
-          CScriptVarLink *resultVar = scopes.back()->findChild(TINYJS_RETURN_VAR);
+          CScriptVarLink *resultVar = scopes.last()->findChild(TINYJS_RETURN_VAR);
           if (resultVar)
             resultVar->replaceWith(result);
           else
@@ -2137,7 +2137,7 @@ void tinyjs::statement(bool &execute) {
           if (funcVar->name == TINYJS_TEMP_NAME)
             TRACE("Functions defined at statement-level are meant to have a name\n");
           else
-            scopes.back()->addChildNoDup(funcVar->name, funcVar->var);
+            scopes.last()->addChildNoDup(funcVar->name, funcVar->var);
         }
         CLEAN(funcVar);
     } else l->match(LEX_EOF);
