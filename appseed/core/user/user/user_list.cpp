@@ -2689,10 +2689,9 @@ namespace user
          item_range & itemrange = range.ItemAt(i);
          if(itemrange.has_sub_item(iFilterSubItem))
          {
-            for(index iLine = itemrange.get_lower_bound();
-               iLine <= itemrange.get_upper_bound(); iLine++)
+            for(index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
             {
-               selection.add_item(key, (int32_t) iLine);
+               selection.add_item(key.m_id + "." + ::str::from(iLine));
             }
          }
       }
