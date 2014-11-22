@@ -149,6 +149,20 @@ public:
          return !operator==(it);
       }
 
+      iterator_base operator ++(int)
+      {
+         iterator_base it = *this;
+         operator ++();
+         return it;
+      }
+
+      iterator_base operator --(int)
+      {
+         iterator_base it = *this;
+         operator --();
+         return it;
+      }
+
       iterator_base & operator ++()
       {
          m_i++;
@@ -263,6 +277,20 @@ public:
       bool operator != (const const_iterator_base & it)
       {
          return !operator==(it);
+      }
+
+      const_iterator_base operator ++(int)
+      {
+         const_iterator_base it = *this;
+         operator ++();
+         return it;
+      }
+
+      const_iterator_base operator --(int)
+      {
+         const_iterator_base it = *this;
+         operator --();
+         return it;
       }
 
       const_iterator_base & operator ++()
