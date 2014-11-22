@@ -114,7 +114,7 @@ public:
 
       iterator mid(const iterator & i) const
       {
-         return iterator_base((m_i + i.m_i + 1) / 2,m_parray);
+         return iterator((m_i + i.m_i + 1) / 2,m_parray);
       }
 
       iterator & operator -(::count c)
