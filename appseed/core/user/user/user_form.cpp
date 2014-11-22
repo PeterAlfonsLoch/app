@@ -698,8 +698,7 @@ namespace user
 
    }
 
-   void form::_001GetSelection(
-      ::database::id & id, ::database::selection &selection)
+   void form::_001GetSelection(::database::id & id, ::database::selection &selection)
    {
       selection.add_item(id);
    }

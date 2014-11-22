@@ -8,13 +8,17 @@ namespace database
    {
    public:
 
-      void add_item(class id id, class id idIndex);
-      selection_item & get_item(index iItem);
-      ::count get_item_count();
+
+      array < selection_item,selection_item & > m_itema;
+
+
       selection();
       virtual ~selection();
 
-      array < selection_item, selection_item & > m_itema;
+
+      void add_item(class id id);
+      selection_item & get_item(index iItem);
+      ::count get_item_count();
 
    };
 
