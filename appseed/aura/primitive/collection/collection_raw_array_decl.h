@@ -143,10 +143,10 @@ public:
    //void copy(const raw_array& src);
 
    
-   TYPE pop(index index = -1);
-   index push(ARG_TYPE newElement, index i = 0);
-   void pop_back(index index = -1);
-   void push_back(ARG_TYPE newElement, index = 0);
+   inline TYPE pop(index index = -1);
+   inline index push(ARG_TYPE newElement,index i = 0);
+   inline void pop_back(index index = -1);
+   inline void push_back(ARG_TYPE newElement, index = 0);
 
 
 

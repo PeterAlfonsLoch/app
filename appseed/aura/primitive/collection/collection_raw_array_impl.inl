@@ -190,6 +190,40 @@ inline TYPE & raw_array<TYPE, ARG_TYPE>::add_new()
 }
 
 
+template<class TYPE, class ARG_TYPE>
+inline TYPE raw_array<TYPE, ARG_TYPE>::pop(index n)
+{
+
+   index i = get_upper_bound(n);
+
+   TYPE t = element_at(i);
+
+   remove_at(i);
+
+   return t;
+
+}
+
+template<class TYPE, class ARG_TYPE>
+inline void raw_array<TYPE, ARG_TYPE>::pop_back(index n)
+{
+
+   remove_at(get_upper_bound(n));
+
+}
+
+template<class TYPE, class ARG_TYPE>
+inline index raw_array<TYPE, ARG_TYPE>::push(ARG_TYPE newElement, index n)
+{
+   return insert_at(get_upper_bound(n), newElement);
+}
+
+template<class TYPE, class ARG_TYPE>
+inline void raw_array<TYPE, ARG_TYPE>::push_back(ARG_TYPE newElement, index n)
+{
+   insert_at(get_upper_bound(n), newElement);
+}
+
 
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& raw_array<TYPE, ARG_TYPE>::operator[](index nIndex) const

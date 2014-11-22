@@ -477,6 +477,13 @@ public:
    inline index add_new( ::count count);
 
 
+   inline TYPE pop(index index = -1);
+   inline index push(ARG_TYPE newElement,index i = 0);
+   inline void pop_back(index index = -1);
+   inline void push_back(ARG_TYPE newElement,index = 0);
+
+
+
    inline iterator erase(iterator pos);
    inline iterator erase(iterator first,iterator last);
    inline iterator begin()
