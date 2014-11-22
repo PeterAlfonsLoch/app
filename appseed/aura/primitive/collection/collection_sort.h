@@ -341,88 +341,88 @@ namespace sort
 
 
 
-   template <class TYPE, class ARG_TYPE>
+   //template <class TYPE, class ARG_TYPE>
+   //void quick_sort(
+   //   array<TYPE, ARG_TYPE> & a,
+   //   int32_t (* fCompare)(const ARG_TYPE, const ARG_TYPE))
+   //{
+   //   index_array stackLowerBound;
+   //   index_array stackUpperBound;
+   //   index iLowerBound;
+   //   index iUpperBound;
+   //   index iLPos, iUPos, iMPos;
+   //   TYPE t;
+
+   //   if(a.get_size() >= 2)
+   //   {
+   //      stackLowerBound.push(0);
+   //      stackUpperBound.push(a.get_size() - 1);
+   //      while(true)
+   //      {
+   //         iLowerBound = stackLowerBound.pop();
+   //         iUpperBound = stackUpperBound.pop();
+   //         iLPos = iLowerBound;
+   //         iMPos = iLowerBound;
+   //         iUPos = iUpperBound;
+   //         while(true)
+   //         {
+   //            while(true)
+   //            {
+   //               if(iMPos == iUPos)
+   //                  break;
+   //               if(fCompare(a.element_at(iMPos), a.element_at(iUPos)) <= 0)
+   //                  iUPos--;
+   //               else
+   //               {
+   //                  //    t = a.get_at(iMPos);
+   //                  //  a.set_at(iMPos, a.get_at(iUPos));
+   //                  //a.set_at(iUPos, t);
+   //                  a.swap(iMPos, iUPos);
+   //                  break;
+   //               }
+   //            }
+   //            if(iMPos == iUPos)
+   //               break;
+   //            iMPos = iUPos;
+   //            while(true)
+   //            {
+   //               if(iMPos == iLPos)
+   //                  break;
+   //               if(fCompare(a.element_at(iLPos), a.element_at(iMPos)) <= 0)
+   //                  iLPos++;
+   //               else
+   //               {
+   //                  //                        t = a.get_at(iMPos);
+   //                  //                      a.set_at(iMPos, a.get_at(iLPos));
+   //                  //                    a.set_at(iLPos, t);
+   //                  a.swap(iLPos, iMPos);
+   //                  break;
+   //               }
+   //            }
+   //            if(iMPos == iLPos)
+   //               break;
+   //            iMPos = iLPos;
+   //         }
+   //         if(iLowerBound < iMPos - 1)
+   //         {
+   //            stackLowerBound.push(iLowerBound);
+   //            stackUpperBound.push(iMPos - 1);
+   //         }
+   //         if(iMPos + 1 < iUpperBound)
+   //         {
+   //            stackLowerBound.push(iMPos + 1);
+   //            stackUpperBound.push(iUpperBound);
+   //         }
+   //         if(stackLowerBound.get_size() == 0)
+   //            break;
+   //      }
+   //   }
+   //}
+
+   template <class TYPE, class ARG_TYPE = const TYPE &>
    void quick_sort(
       array<TYPE, ARG_TYPE> & a,
-      int32_t (* fCompare)(const ARG_TYPE, const ARG_TYPE))
-   {
-      index_array stackLowerBound;
-      index_array stackUpperBound;
-      index iLowerBound;
-      index iUpperBound;
-      index iLPos, iUPos, iMPos;
-      TYPE t;
-
-      if(a.get_size() >= 2)
-      {
-         stackLowerBound.push(0);
-         stackUpperBound.push(a.get_size() - 1);
-         while(true)
-         {
-            iLowerBound = stackLowerBound.pop();
-            iUpperBound = stackUpperBound.pop();
-            iLPos = iLowerBound;
-            iMPos = iLowerBound;
-            iUPos = iUpperBound;
-            while(true)
-            {
-               while(true)
-               {
-                  if(iMPos == iUPos)
-                     break;
-                  if(fCompare(a.element_at(iMPos), a.element_at(iUPos)) <= 0)
-                     iUPos--;
-                  else
-                  {
-                     //    t = a.get_at(iMPos);
-                     //  a.set_at(iMPos, a.get_at(iUPos));
-                     //a.set_at(iUPos, t);
-                     a.swap(iMPos, iUPos);
-                     break;
-                  }
-               }
-               if(iMPos == iUPos)
-                  break;
-               iMPos = iUPos;
-               while(true)
-               {
-                  if(iMPos == iLPos)
-                     break;
-                  if(fCompare(a.element_at(iLPos), a.element_at(iMPos)) <= 0)
-                     iLPos++;
-                  else
-                  {
-                     //                        t = a.get_at(iMPos);
-                     //                      a.set_at(iMPos, a.get_at(iLPos));
-                     //                    a.set_at(iLPos, t);
-                     a.swap(iLPos, iMPos);
-                     break;
-                  }
-               }
-               if(iMPos == iLPos)
-                  break;
-               iMPos = iLPos;
-            }
-            if(iLowerBound < iMPos - 1)
-            {
-               stackLowerBound.push(iLowerBound);
-               stackUpperBound.push(iMPos - 1);
-            }
-            if(iMPos + 1 < iUpperBound)
-            {
-               stackLowerBound.push(iMPos + 1);
-               stackUpperBound.push(iUpperBound);
-            }
-            if(stackLowerBound.get_size() == 0)
-               break;
-         }
-      }
-   }
-
-   template <class TYPE, class ARG_TYPE>
-   void quick_sort(
-      array<TYPE, ARG_TYPE> & a,
-      index (* fCompare)(const TYPE &, const TYPE &))
+      index (* fCompare)(ARG_TYPE, ARG_TYPE))
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
