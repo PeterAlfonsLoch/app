@@ -1,6 +1,8 @@
 #include "framework.h" // from "axis/user/user.h"
 
 
+CLASS_DECL_AXIS bool g_bSuppressTwf = false;
+
 namespace user
 {
 
@@ -10,6 +12,9 @@ namespace user
       thread(papp),
       m_eventFree(papp, TRUE, TRUE)
    {
+
+      g_bSuppressTwf = file_exists_dup("C:\\ca2\\config\\system\\suppress_twf.txt");
+
       m_bProDevianMode                    = true;
       m_iFramesPerSecond                  = 24.0;
       m_bRunning                          = false;

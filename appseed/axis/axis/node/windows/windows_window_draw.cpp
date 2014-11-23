@@ -26,6 +26,8 @@ public:
 
 };
 
+extern bool g_bSuppressTwf;
+
 namespace windows
 {
 
@@ -98,7 +100,8 @@ namespace windows
    void window_draw::_synch_redraw()
    {
       
-      return;
+      if(g_bSuppressTwf)
+         return;
 
       keep_event_reset keepeventreset(&m_eventFree);
 
