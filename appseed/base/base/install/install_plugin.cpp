@@ -1408,9 +1408,19 @@ namespace install
 
          }
 
+         string strApp;
+
          string strPrompt(strData);
 
          if(::str::begins_eat_ci(strPrompt,"ca2prompt"))
+         {
+
+            strPrompt.trim();
+
+            strApp = System.url().get_script(strPrompt);
+
+         }
+         else if(::str::begins_eat_ci(strPrompt,"native_desktop_launcher"))
          {
 
             strPrompt.trim();
@@ -1423,23 +1433,25 @@ namespace install
 
          }
 
-         string strApp = System.url().get_script(strPrompt);
-
-         if(strPrompt.is_empty() || strApp.is_empty())
+         if(strApp.is_empty() && (!url_query_get_param_dup(strApp,"app",strApp) || strApp.is_empty()))
             if(!url_query_get_param_dup(strApp,"app",m_phost->m_pbasecomposer->m_strPluginUrl) || strApp.is_empty())
                strApp = "bergedge";
 
          string strLocale;
 
          if (strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
-            if(!url_query_get_param_dup(strLocale,"locale",m_phost->m_pbasecomposer->m_strPluginUrl) || strLocale.is_empty())
-               strLocale = str_get_system_default_locale_dup();
+            if(strPrompt.is_empty() || !url_query_get_param_dup(strLocale,"lang",strPrompt) || strLocale.is_empty())
+               if(!url_query_get_param_dup(strLocale,"locale",m_phost->m_pbasecomposer->m_strPluginUrl) || strLocale.is_empty())
+                  if(!url_query_get_param_dup(strLocale,"lang",m_phost->m_pbasecomposer->m_strPluginUrl) || strLocale.is_empty())
+                     strLocale = str_get_system_default_locale_dup();
 
          string strSchema;
 
          if (strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
-            if(!url_query_get_param_dup(strSchema,"schema",m_phost->m_pbasecomposer->m_strPluginUrl) || strSchema.is_empty())
-               strSchema = str_get_system_default_schema_dup();
+            if(strPrompt.is_empty() || !url_query_get_param_dup(strSchema,"styl",strPrompt) || strSchema.is_empty())
+               if(!url_query_get_param_dup(strSchema,"schema",m_phost->m_pbasecomposer->m_strPluginUrl) || strSchema.is_empty())
+                  if(!url_query_get_param_dup(strSchema,"styl",m_phost->m_pbasecomposer->m_strPluginUrl) || strSchema.is_empty())
+                     strSchema = str_get_system_default_schema_dup();
 
          string strVersion;
 
