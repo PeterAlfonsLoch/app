@@ -1250,9 +1250,6 @@
     <ClInclude Include="core\core\core_debug.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_enum.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_fs_interface.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -1280,12 +1277,6 @@
     <ClInclude Include="core\core\core_main.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_main_init_data.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_map_to_smart_pointer.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_match.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -1293,9 +1284,6 @@
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_os_history.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_os_implementation.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_patch.h">
@@ -1490,16 +1478,10 @@
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
-    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_up_down_target.h">
-      <Filter>Header Files\user\wndfrm\frame</Filter>
-    </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.h">
-      <Filter>Header Files\user\wndfrm\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_down_up_interface.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.h">
