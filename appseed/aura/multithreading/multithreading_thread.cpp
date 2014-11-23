@@ -1036,13 +1036,13 @@ void thread::unregister_from_required_threads()
 
          m_threadptraRequired[i]->unregister_dependent_thread(this);
 
-         i--;
-
       }
       catch(...)
       {
 
       }
+
+      i--;
 
       sl.unlock();
 
