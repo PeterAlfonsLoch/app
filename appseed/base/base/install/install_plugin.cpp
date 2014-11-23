@@ -1369,12 +1369,12 @@ namespace install
       else if(!m_phost->m_bHostStarterStart)
       {
 
-         string strPrompt;
+         string strData;
 
          if (m_phost->m_memory.get_data() != NULL && m_phost->m_memory.get_size() > 0)
          {
 
-            strPrompt = string((const char *)m_phost->m_memory.get_data(), m_phost->m_memory.get_size());
+            strData = string((const char *)m_phost->m_memory.get_data(),m_phost->m_memory.get_size());
 
          }
          else
@@ -1388,9 +1388,9 @@ namespace install
 
             set["raw_http"] = true;
 
-            strPrompt = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
+            strData = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
 
-            if (strPrompt.is_empty())
+            if(strData.is_empty())
             {
 
                if (iTry < 9)
@@ -1407,6 +1407,27 @@ namespace install
             }
 
          }
+
+         string strPrompt(strData);
+
+         if(::str::begins_eat_ci(strPrompt,"ca2prompt"))
+         {
+
+            strPrompt.trim();
+
+         }
+         else
+         {
+
+            strPrompt.Empty();
+
+         }
+
+         string strApp = System.url().get_script(strPrompt);
+
+         if(strPrompt.is_empty() || strApp.is_empty())
+            if(!url_query_get_param_dup(strApp,"app",m_phost->m_pbasecomposer->m_strPluginUrl) || strApp.is_empty())
+               strApp = "bergedge";
 
          string strLocale;
 
@@ -1435,7 +1456,7 @@ namespace install
          if(strVersion.is_empty())
             strVersion = "stage";
 
-         m_phost->host_starter_start(": app=session session_start=session app_type=application install locale=" + strLocale + " schema=" + strSchema + " version=" + strVersion);
+         m_phost->host_starter_start(": app=" + strApp + " app_type=application install locale=" + strLocale + " schema=" + strSchema + " version=" + strVersion);
 
       }
 
