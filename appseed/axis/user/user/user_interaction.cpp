@@ -5369,7 +5369,7 @@ namespace user
                      }
                      try
                      {
-                        GetParent()->m_uiptraChild.add(this);
+                        GetParent()->m_uiptraChild.add_unique(this);
                      }
                      catch(...)
                      {

@@ -270,7 +270,7 @@ namespace axis
       else
       {
        
-         for(index i = m_uiptraFrame.get_upper_bound(); i > 0; i--)
+         for(index i = m_uiptraFrame.get_upper_bound(); i >= 0; i--)
          {
 
             if(m_uiptraFrame[i] == pui)

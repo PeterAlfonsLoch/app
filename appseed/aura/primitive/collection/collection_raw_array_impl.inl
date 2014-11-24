@@ -603,8 +603,8 @@ void raw_array<TYPE, ARG_TYPE>::assert_valid() const
 
    if (get_data() == NULL)
    {
-      ASSERT(m_nSize == 0);
-      ASSERT(m_nMaxSize == 0);
+      //ASSERT(m_nSize == 0);
+      //ASSERT(m_nMaxSize == 0);
    }
    else
    {
