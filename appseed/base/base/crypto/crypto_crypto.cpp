@@ -648,7 +648,7 @@ namespace crypto
 
       primitive::memory memSha1;
 
-      memSha1.allocate(32);
+      memSha1.allocate(20);
 
       string strSha1;
 
