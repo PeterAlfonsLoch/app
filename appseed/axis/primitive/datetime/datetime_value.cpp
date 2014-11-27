@@ -208,6 +208,24 @@ namespace datetime
             iStart = 11;
          }
       }
+      // if is international date time 31/04/2011
+      if(!bBaseTime && str.get_length() >= 10)
+      {
+         if(str.Mid(2,1) == "/"
+            && str.Mid(5,1) == "/")
+         {
+            bBaseTime = true;
+            Sys(pbaseapp->m_paurasystem).datetime().international().parse_str(str,set);
+            time = ::datetime::time(
+               set["year"],
+               set["month"],
+               set["day"],
+               set["hour"],
+               set["minute"],
+               set["second"]);
+            iStart = 11;
+         }
+      }
       if(!bBaseTime && (
          ::str::begins_eat(str,"today") ||
          (pcontext != NULL && pcontext->begins_eat(str,"calendar:today"))))
