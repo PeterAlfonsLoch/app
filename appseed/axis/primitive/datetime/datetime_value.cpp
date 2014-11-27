@@ -130,6 +130,72 @@ namespace datetime
       }
       return time;
    }
+   void parse_br_str(const char * psz,property_set & set)
+   {
+      string src(psz);
+      src.trim();
+      string str;
+      if(src.get_length() >= 2)
+      {
+         str = src.Mid(0,2);
+         str.trim_left('0');
+         set["day"] = str;
+      }
+      else
+      {
+         set["day"]    = 0;
+      }
+      if(src.get_length() >= 5)
+      {
+         str = src.Mid(3,2);
+         str.trim_left('0');
+         set["month"] = str;
+      }
+      else
+      {
+         set["month"] = 0;
+      }
+      if(src.get_length() >= 10)
+      {
+         str = src.Mid(6,4);
+         str.trim_left('0');
+         set["year"] = str;
+      }
+      else
+      {
+         set["year"] = 0;
+      }
+      if(src.get_length() >= 13)
+      {
+         str = src.Mid(11,2);
+         str.trim_left('0');
+         set["hour"] = str;
+      }
+      else
+      {
+         set["hour"] = 0;
+      }
+      if(src.get_length() >= 16)
+      {
+         str = src.Mid(14,2);
+         str.trim_left('0');
+         set["minute"] = str;
+      }
+      else
+      {
+         set["minute"] = 0;
+      }
+      if(src.get_length() >= 19)
+      {
+         str = src.Mid(17,2);
+         str.trim_left('0');
+         set["second"]  = str;
+      }
+      else
+      {
+         set["second"]   = 0;
+      }
+   }
 
 
    value strtotime(sp(::aura::application) pbaseapp,::user::str_context * pcontext,const char * psz,int32_t & iPath,int32_t & iPathCount,bool bUTC)
@@ -215,7 +281,8 @@ namespace datetime
             && str.Mid(5,1) == "/")
          {
             bBaseTime = true;
-            Sys(pbaseapp->m_paurasystem).datetime().international().parse_str(str,set);
+            parse_br_str(str,set);
+            
             time = ::datetime::time(
                set["year"],
                set["month"],
