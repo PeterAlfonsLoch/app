@@ -53,8 +53,6 @@ namespace base
 
       m_pmapKeyPressed              = NULL;
 
-      m_puserstrcontext             = NULL;
-
       m_pbasesystem->m_basesessionptra.add_unique(this);
 
 //      m_puserschema                 = &m_schemasimple;
@@ -1208,147 +1206,6 @@ namespace base
 
       }
 
-      m_puserstrcontext = canew(::user::str_context(this));
-
-      if(m_puserstrcontext == NULL)
-         return false;
-
-      //if(!m_spuser->initialize1())
-      //   return false;
-
-      //if(!m_spuser->initialize2())
-      //   return false;
-
-
-//      string strLocaleSystem;
-//
-//      string strSchemaSystem;
-//
-//      string strPath = System.dir().appdata("langstyle_settings.xml");
-//
-//      if(file().exists(strPath))
-//      {
-//
-//         string strSystem = file().as_string(strPath);
-//
-//         ::xml::document docSystem(get_app());
-//
-//         if(docSystem.load(strSystem))
-//         {
-//
-//            if(docSystem.get_child("lang") != NULL)
-//            {
-//
-//               strLocaleSystem = docSystem.get_child("lang")->get_value();
-//
-//            }
-//
-//            if(docSystem.get_child("style") != NULL)
-//            {
-//
-//               strSchemaSystem = docSystem.get_child("style")->get_value();
-//
-//            }
-//
-//         }
-//
-//      }
-//
-//      string strLocale;
-//
-//      string strSchema;
-//
-//#ifdef METROWIN
-//
-//      stringa stra;
-//
-//      try
-//      {
-//
-//         stra.explode("-",::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
-//
-//      }
-//      catch(long)
-//      {
-//
-//
-//      }
-//
-//      strLocale = stra[0];
-//
-//      strSchema = stra[0];
-//
-//#elif defined(WINDOWS)
-//
-//      LANGID langid = ::GetUserDefaultLangID();
-//
-//#define SPR_DEUTSCH LANG_GERMAN
-//
-//      if(langid == LANG_SWEDISH)
-//      {
-//         strLocale = "se";
-//         strSchema = "se";
-//      }
-//      else if(langid == MAKELANGID(LANG_PORTUGUESE,SUBLANG_PORTUGUESE_BRAZILIAN))
-//      {
-//         strLocale = "pt-br";
-//         strSchema = "pt-br";
-//      }
-//      else if(PRIMARYLANGID(langid) == SPR_DEUTSCH)
-//      {
-//         strLocale = "de";
-//         strSchema = "de";
-//      }
-//      else if(PRIMARYLANGID(langid) == LANG_ENGLISH)
-//      {
-//         strLocale = "en";
-//         strSchema = "en";
-//      }
-//      else if(PRIMARYLANGID(langid) == LANG_JAPANESE)
-//      {
-//         strLocale = "jp";
-//         strSchema = "jp";
-//      }
-//      else if(PRIMARYLANGID(langid) == LANG_POLISH)
-//      {
-//         strLocale = "pl";
-//         strSchema = "pl";
-//      }
-//
-//#endif
-//
-//      if(strLocale.is_empty())
-//         strLocale = "se";
-//
-//      if(strSchema.is_empty())
-//         strSchema = "se";
-//
-//      if(strLocaleSystem.has_char())
-//         strLocale = strLocaleSystem;
-//
-//      if(strSchemaSystem.has_char())
-//         strSchema = strSchemaSystem;
-//
-//      if(Sys(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
-//         strLocale = Sys(this).directrix()->m_varTopicQuery["locale"].stra()[0];
-//
-//      if(Sys(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
-//         strSchema = Sys(this).directrix()->m_varTopicQuery["schema"].stra()[0];
-//
-//      if(App(this).directrix()->m_varTopicQuery["locale"].get_count() > 0)
-//         strLocale = App(this).directrix()->m_varTopicQuery["locale"].stra()[0];
-//
-//      if(App(this).directrix()->m_varTopicQuery["schema"].get_count() > 0)
-//         strSchema = App(this).directrix()->m_varTopicQuery["schema"].stra()[0];
-//
-//
-//      set_locale(strLocale,::action::source::database());
-//      set_schema(strSchema,::action::source::database());
-//
-//
-//      str_context()->localeschema().m_idaLocale.add(strLocale);
-//      str_context()->localeschema().m_idaSchema.add(strSchema);
-
 
       return true;
 
@@ -1701,13 +1558,7 @@ namespace base
 
    //}
 
-   //::user::str_context * session::str_context()
-   //{
-
-   //   return m_puserstrcontext;
-
-   //}
-
+   
 
    //void session::set_locale(const string & lpcsz,::action::context actioncontext)
    //{

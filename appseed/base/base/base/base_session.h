@@ -65,12 +65,6 @@ namespace base
       inline ::sockets::sockets &               sockets()      { return *m_psockets; }
       inline class ::fontopus::licensing &        licensing()      { return *m_splicensing; }
 
-      //::user::str_context *                     str_context();
-
-
-
-
-
 
 
 

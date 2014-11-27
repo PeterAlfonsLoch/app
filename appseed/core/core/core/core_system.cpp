@@ -279,6 +279,8 @@ namespace core
       if(!str().initialize())
          return false;
 
+      Session.m_puserstrcontext->defer_ok(m_puserstr);
+
 
 #if !defined(DEBUG) || defined(WINDOWS)
       try
