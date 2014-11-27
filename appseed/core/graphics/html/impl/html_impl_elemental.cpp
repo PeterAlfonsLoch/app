@@ -40,7 +40,7 @@ namespace html
 
           UNREFERENCED_PARAMETER(pdata);
 
-//          e_tag etype = m_pelemental->m_etag;
+//          e_tag etype = m_pelemental->m_etag;_001
 
          string strValue = m_pelemental->m_strBody;
 
@@ -636,6 +636,8 @@ namespace html
             COLORREF cr;
 
             double d;
+
+            pdata->m_pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
             if (m_pelemental->m_style.get_alpha("", pdata, m_pelemental, d))
             {

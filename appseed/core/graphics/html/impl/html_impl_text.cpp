@@ -551,6 +551,7 @@ namespace html
 
             }
 
+            pdata->m_pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
             COLORREF cr = 0;
 
