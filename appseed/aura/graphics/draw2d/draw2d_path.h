@@ -25,6 +25,18 @@ namespace draw2d
 
 
       };
+     class CLASS_DECL_AURA rect
+     {
+     public:
+
+
+        double   m_x;
+        double   m_y;
+        double   m_cx;
+        double   m_cy;
+
+
+     };
 
       class CLASS_DECL_AURA move
       {
@@ -84,6 +96,7 @@ namespace draw2d
                type_line,
                type_move,
                type_string,
+               type_rect,
                type_end
                   
             };
@@ -97,6 +110,7 @@ namespace draw2d
                move     m_move;
                line     m_line;
                end      m_end;
+               rect     m_rect;
 
             } u;
 

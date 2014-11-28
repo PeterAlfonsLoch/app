@@ -313,14 +313,22 @@ namespace draw2d
    bool path::add_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
-      rect rect;
+      sp(element) e;
 
-      rect.left      = x1;
-      rect.top       = y1;
-      rect.right     = x2;
-      rect.bottom    = y2;
+      e = canew(element);
 
-      return add_rect(rect);
+      e->m_etype               = element::type_rect;
+
+      e->u.m_rect.m_x = x1;
+      e->u.m_rect.m_y = y1;
+      e->u.m_rect.m_cx = x2-x1;
+      e->u.m_rect.m_cy = y2-y1;
+
+      m_elementa.add(e);
+
+      m_bUpdated = false;
+
+      return true;
 
    }
 
