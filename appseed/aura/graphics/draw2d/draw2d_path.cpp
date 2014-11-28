@@ -461,6 +461,9 @@ namespace draw2d
       case ::draw2d::path::element::type_move:
          get_bounding_rect(lprect, e.u.m_move);
          break;
+      case ::draw2d::path::element::type_rect:
+         get_bounding_rect(lprect,e.u.m_rect);
+         break;
       case ::draw2d::path::element::type_string:
          get_bounding_rect(lprect,e.m_stringpath);
          break;
@@ -478,10 +481,20 @@ namespace draw2d
 
    }
 
+   void path::get_bounding_rect(LPRECT lprect,rect & r)
+   {
+
+      lprect->left = r.m_x;
+      lprect->top = r.m_y;
+      lprect->right= r.m_x+r.m_cx;
+      lprect->bottom = r.m_y+r.m_cy;
+
+   }
+
    void path::get_bounding_rect(LPRECT lprect, arc & a)
    {
 
-      rect r;
+      ::rect r;
 
       r.left         = (LONG) (a.m_xCenter - a.m_dRadiusX);
 

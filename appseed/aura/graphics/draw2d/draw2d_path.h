@@ -184,6 +184,7 @@ namespace draw2d
 
       virtual void get_bounding_rect(LPRECT lprect);
       virtual void get_bounding_rect(LPRECT lprect,element & e);
+      virtual void get_bounding_rect(LPRECT lprect,rect & e);
       virtual void get_bounding_rect(LPRECT lprect,arc & a);
       virtual void get_bounding_rect(LPRECT lprect,move & m);
       virtual void get_bounding_rect(LPRECT lprect,line & l);
