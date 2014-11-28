@@ -15,7 +15,8 @@ namespace draw2d
       {
          
          type_null,
-         type_solid
+         type_solid,
+         type_dot,
             
       };
 
