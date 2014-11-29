@@ -680,7 +680,7 @@ namespace simpledb
       m_resultset.records.remove_all();
       edit_object.remove_all();
       fields_object.remove_all();
-      ds_state = database::dsInactive;
+      ds_state = ::database::dsInactive;
       active = false;
    }
 
@@ -748,7 +748,7 @@ namespace simpledb
 
    bool set::seek(index pos)
    {
-      if (ds_state == database::dsSelect)
+      if (ds_state == ::database::dsSelect)
       {
          set::seek(pos);
          fill_fields();
@@ -785,7 +785,7 @@ namespace simpledb
    bool set::SetFieldValue(const char *f_name, const var &value)
    {
       bool found = false;
-      if(ds_state == database::dsSelect)
+      if(ds_state == ::database::dsSelect)
       {
          for (int32_t i=0; i < fields_object.get_size(); i++)
          {
@@ -797,7 +797,7 @@ namespace simpledb
          }
          if (!found)
          {
-            throw database::DbErrors("Field not found: %s",f_name);
+            throw ::database::DbErrors("Field not found: %s",f_name);
          }
          return true;
       }
@@ -805,13 +805,13 @@ namespace simpledb
       {
          return set::SetFieldValue(f_name, value);
       }
-      throw database::DbErrors("Not in Insert or Edit or Select state");
+      throw ::database::DbErrors("Not in Insert or Edit or Select state");
       //  return false;
    }
 
    bool set::SetFieldValue(index iFieldIndex, const var &value)
    {
-      if(ds_state == database::dsSelect)
+      if(ds_state == ::database::dsSelect)
       {
          if(iFieldIndex >= 0 && iFieldIndex < m_resultset.record_header.get_size())
          {
@@ -820,7 +820,7 @@ namespace simpledb
          }
          else
          {
-            throw database::DbErrors("Field not found: %d",iFieldIndex);
+            throw ::database::DbErrors("Field not found: %d",iFieldIndex);
          }
       }
       else
@@ -828,7 +828,7 @@ namespace simpledb
          ASSERT(FALSE);
          //      return set::SetFieldValue(f_name, value);
       }
-      throw database::DbErrors("Not in Insert or Edit or Select state");
+      throw ::database::DbErrors("Not in Insert or Edit or Select state");
       //  return false;
    }
 
@@ -842,7 +842,7 @@ namespace simpledb
          }
          else
          {
-            throw database::DbErrors("Field not found: %d",iFieldIndex);
+            throw ::database::DbErrors("Field not found: %d",iFieldIndex);
          }
       }
       //   else
@@ -851,7 +851,7 @@ namespace simpledb
          //return set::SetFieldValue(f_name, value);
 
       }
-      throw database::DbErrors("Not in Insert or Edit or Select state");
+      throw ::database::DbErrors("Not in Insert or Edit or Select state");
       //  return false;
    }
 
@@ -871,7 +871,7 @@ namespace simpledb
    bool set::find_first(char * fieldname, var & value)
    {
       index iFound = -1;
-      if(ds_state == database::dsSelect)
+      if(ds_state == ::database::dsSelect)
       {
          index i;
          for(i=0; i < fields_object.get_size(); i++)
@@ -880,7 +880,7 @@ namespace simpledb
                iFound = i;
                break;
             }
-            if (iFound < 0) throw database::DbErrors("Field not found: %s",fieldname);
+            if (iFound < 0) throw ::database::DbErrors("Field not found: %s",fieldname);
             ::count iNumRows = num_rows();
             for(i=0; i < iNumRows; i++)
                if(m_resultset.records[i][iFound] == value)
@@ -891,7 +891,7 @@ namespace simpledb
 
                return false;
       }
-      throw database::DbErrors("not in Select state");
+      throw ::database::DbErrors("not in Select state");
    }
 
    void set::query_items(stringa & stra, const char * pszSql)
@@ -940,7 +940,7 @@ namespace simpledb
    int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols)
    {
 
-      database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
+      ::database::result_set* r = (::database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
       ::count sz = r->records.get_size();
 
       //if (reslt == NULL ) cout << "EMPTY!!!\n";
@@ -956,11 +956,11 @@ namespace simpledb
                str.make_lower();
                if(str == "integer")
                {
-                  r->record_header[i].type = database::DataTypeLong;
+                  r->record_header[i].type = ::database::DataTypeLong;
                }
                else if(str == "string")
                {
-                  r->record_header[i].type = database::DataTypeString;
+                  r->record_header[i].type =::database::DataTypeString;
                }
                else if(str == "numeric")
                {
