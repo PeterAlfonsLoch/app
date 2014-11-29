@@ -37,7 +37,7 @@ namespace simpledb
          sp(::xml::node) pfield = pfields->child_at(i);
          if(pfield->get_name() != "field")
             continue;
-         database::field_definition_item item;
+         ::database::field_definition_item item;
          item = *pfield;
          m_fielddefinition.add(item);
       }
