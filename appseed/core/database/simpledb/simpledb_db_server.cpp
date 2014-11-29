@@ -47,7 +47,7 @@ string db_server::calc_data_key(::database::client * pclient,  ::database::id & 
 }
 
 
-bool db_server::initialize_user(mysql::database * pmysqldbUser, const char * pszUser)
+bool db_server::initialize_user(::simpledb::database * pmysqldbUser, const char * pszUser)
 {
 
    if(pmysqldbUser == NULL)
