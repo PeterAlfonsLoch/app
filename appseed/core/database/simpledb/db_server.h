@@ -69,7 +69,7 @@ public:
 
    virtual string calc_data_key(::database::client * pclient, ::database::id & id);
 
-   virtual bool initialize_user(mysql::database * pmysqldbUser, const char * pszUser);
+   virtual bool initialize_user(::simpledb::database * pmysqldbUser, const char * pszUser);
    virtual bool initialize();
    virtual bool finalize();
 
