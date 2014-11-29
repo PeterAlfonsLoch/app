@@ -54,7 +54,7 @@ public:
    string_map < db_long_set_item >           m_map;
    bool                                      m_bIndexed;
 
-   ::mysql::database *                       m_pmysqldbUser;
+   ::mysql::database *                       m_psimpledbUser;
    string                                    m_strUser;
 
    class db_long_sync_queue *                m_pqueue;
@@ -66,7 +66,7 @@ public:
       m_mutex(get_app()),
       m_phttpsession(NULL),
       m_pqueue(NULL),
-      m_pmysqldbUser(pserver->m_pmysqldbUser),
+      m_psimpledbUser(pserver->m_psimpledbUser),
       m_strUser(pserver->m_strUser)
    {
    
@@ -249,13 +249,13 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 
    }
 #ifndef METROWIN
-   else if(m_pcore->m_pmysqldbUser != NULL)
+   else if(m_pcore->m_psimpledbUser != NULL)
    {
 
       try
       {
 
-         *plValue = m_pcore->m_pmysqldbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_pcore->m_strUser + "' AND `key` = '" + m_pcore->m_pmysqldbUser->real_escape_string(lpKey) + "'").int32();
+         *plValue = m_pcore->m_psimpledbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_pcore->m_strUser + "' AND `key` = '" + m_pcore->m_psimpledbUser->real_escape_string(lpKey) + "'").int32();
 
          return true;
 
@@ -334,14 +334,14 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
 
    }
 #ifndef METROWIN
-   else if(m_pcore->m_pmysqldbUser != NULL)
+   else if(m_pcore->m_psimpledbUser != NULL)
    {
 
-      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->real_escape_string(lpKey) + "', " + ::str::from(lValue) + ")";
+      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_psimpledbUser->real_escape_string(lpKey) + "', " + ::str::from(lValue) + ")";
 
       TRACE(strSql);
 
-      return m_pcore->m_pmysqldbUser->query(strSql) != NULL;
+      return m_pcore->m_psimpledbUser->query(strSql) != NULL;
 
    }
 #endif

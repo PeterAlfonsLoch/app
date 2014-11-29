@@ -15,7 +15,7 @@ namespace simpledb
 
 
       ::database::result_set  m_resultset;
-      database::result_set    m_resultsetExec;
+      ::database::result_set    m_resultsetExec;
 
 
       set();

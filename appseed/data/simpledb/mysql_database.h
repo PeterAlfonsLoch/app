@@ -13,19 +13,14 @@ namespace mysql
 {
 
 
-   class CLASS_DECL_CORE database :
-      virtual public ::object
+   class CLASS_DECL_DATA database :
+      virtual public ::simpledb::database
    {
       friend class result;
    public:
 
 
-      //spa(result) m_esultptra;
-      MYSQL * m_pmysql; // MYSQL *
-	  string m_strLastError;
-      int64_t m_iLastUsedTime;
-
-      int       m_protocol;
+      MYSQL * m_pmysql; 
 
 
       database(::aura::application * papp);
@@ -124,3 +119,5 @@ namespace mysql
 
 
 #endif
+
+

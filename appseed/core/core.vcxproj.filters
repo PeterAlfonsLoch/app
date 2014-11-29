@@ -674,12 +674,6 @@
     <ClInclude Include="database\simpledb\im_post.h">
       <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
-    <ClInclude Include="database\simpledb\mysql_database.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\mysql_result.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
     <ClInclude Include="database\simpledb\simpledb.h">
       <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
@@ -1544,6 +1538,12 @@
     <ClInclude Include="user\userex\userex_weekday_list_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_database.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_result.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
@@ -1909,12 +1909,6 @@
     <ClCompile Include="database\simpledb\simpledb_record_row.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_mysql_result.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_mysql_database.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_manager.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
@@ -1934,9 +1928,6 @@
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_dataset.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_database.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
     <ClCompile Include="core\plugin\plugin_history.cpp">
@@ -2640,6 +2631,12 @@
     </ClCompile>
     <ClCompile Include="user\userex\userex_weekday_list_view.cpp">
       <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_base.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_database.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

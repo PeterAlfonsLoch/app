@@ -1803,6 +1803,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="database\simpledb\simpledb_database.cpp" />
     <ClCompile Include="graphics\html\html_form.cpp" />
     <ClCompile Include="user\userex\userex_weekday_list_view.cpp" />
     <ClCompile Include="user\user\user_orto_button.cpp" />
@@ -1906,12 +1907,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="database\simpledb\db_str_set.h" />
     <ClInclude Include="database\simpledb\file_set.h" />
     <ClInclude Include="database\simpledb\im_post.h" />
-    <ClInclude Include="database\simpledb\mysql_database.h" />
-    <ClInclude Include="database\simpledb\mysql_result.h" />
     <ClInclude Include="database\simpledb\simpledb.h" />
     <ClInclude Include="database\simpledb\simpledb_base.h" />
+    <ClInclude Include="database\simpledb\simpledb_database.h" />
     <ClInclude Include="database\simpledb\simpledb_manager.h" />
     <ClInclude Include="database\simpledb\simpledb_record.h" />
+    <ClInclude Include="database\simpledb\simpledb_result.h" />
     <ClInclude Include="database\simpledb\simpledb_server.h" />
     <ClInclude Include="database\simpledb\simpledb_service.h" />
     <ClInclude Include="database\simpledb\simpledb_session.h" />
@@ -2343,7 +2344,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\plugin\plugin_system.cpp" />
     <ClCompile Include="database\databaseuser\database_key_list_data.cpp" />
     <ClCompile Include="database\databaseuser\database_list_data.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_database.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_base.cpp" />
     <ClCompile Include="database\simpledb\simpledb_dataset.cpp" />
     <ClCompile Include="database\simpledb\simpledb_db_server.cpp" />
     <ClCompile Include="database\simpledb\simpledb_file_set.cpp" />
@@ -2351,8 +2352,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="database\simpledb\simpledb_im_post.cpp" />
     <ClCompile Include="database\simpledb\simpledb_long_set.cpp" />
     <ClCompile Include="database\simpledb\simpledb_manager.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_mysql_database.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_mysql_result.cpp" />
     <ClCompile Include="database\simpledb\simpledb_record_row.cpp" />
     <ClCompile Include="database\simpledb\simpledb_server.cpp" />
     <ClCompile Include="database\simpledb\simpledb_service.cpp" />

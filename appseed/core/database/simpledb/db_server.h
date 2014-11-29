@@ -39,7 +39,7 @@ public:
    
    DBFileSystemSizeSet *      m_pfilesystemsizeset;
 
-   mysql::database *          m_pmysqldbUser;
+   ::simpledb::database *          m_psimpledbUser;
    string                     m_strUser;
 
 

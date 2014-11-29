@@ -57,7 +57,7 @@ public:
    sockets::http_session *                      m_phttpsession;
    string_map < db_str_set_item >               m_map;
    bool                                         m_bIndexed;
-   ::mysql::database *                          m_pmysqldbUser;
+   ::mysql::database *                          m_psimpledbUser;
    string                                       m_strUser;
 
    class db_str_sync_queue *                    m_pqueue;
@@ -72,7 +72,7 @@ public:
       m_mutex(get_app()),
       m_phttpsession(NULL),
       m_pqueue(NULL),
-      m_pmysqldbUser(pserver->m_pmysqldbUser),
+      m_psimpledbUser(pserver->m_psimpledbUser),
       m_strUser(pserver->m_strUser)
    {
 
@@ -324,13 +324,13 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
    }
 #ifndef METROWIN
-   else if(m_pcore->m_pmysqldbUser != NULL)
+   else if(m_pcore->m_psimpledbUser != NULL)
    {
 
       try
       {
 
-         strValue = m_pcore->m_pmysqldbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_pcore->m_strUser + "' AND `key` = '" + m_pcore->m_pmysqldbUser->real_escape_string(lpKey) + "'");
+         strValue = m_pcore->m_psimpledbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_pcore->m_strUser + "' AND `key` = '" + m_pcore->m_psimpledbUser->real_escape_string(lpKey) + "'");
 
          return true;
 
@@ -434,14 +434,14 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       return true;
    }
 #ifdef HAVE_MYSQL
-   else if(m_pcore->m_pmysqldbUser != NULL)
+   else if(m_pcore->m_psimpledbUser != NULL)
    {
 
-      string strSql = "REPLACE INTO fun_user_str_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->real_escape_string(lpKey) + "', '" + m_pcore->m_pmysqldbUser->real_escape_string(lpcsz) + "')";
+      string strSql = "REPLACE INTO fun_user_str_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_psimpledbUser->real_escape_string(lpKey) + "', '" + m_pcore->m_psimpledbUser->real_escape_string(lpcsz) + "')";
 
       TRACE(strSql);
 
-      return m_pcore->m_pmysqldbUser->query(strSql) != NULL;
+      return m_pcore->m_psimpledbUser->query(strSql) != NULL;
 
    }
 #endif

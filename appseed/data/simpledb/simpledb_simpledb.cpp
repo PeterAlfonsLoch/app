@@ -27,14 +27,6 @@ namespace simpledb
 
       if(m_pauraapp->is_system())
       {
-#ifndef METROWIN
-         /* initialize client library */
-         if (mysql_library_init (0, NULL, NULL))
-         {
-            TRACE("mysql_library_init() failed\n");
-            return false;
-         }
-#endif
       }
 
       m_pserver = new db_server(m_pauraapp);
@@ -92,15 +84,6 @@ namespace simpledb
       {
 
          m_pserver = NULL;
-#ifndef METROWIN
-         try
-         {
-            mysql_library_end();
-         }
-         catch(...)
-         {
-         }
-#endif
       }
 
       return true;

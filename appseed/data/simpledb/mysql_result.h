@@ -14,16 +14,13 @@ namespace mysql
    class database;
 
 
-   class CLASS_DECL_CORE result :
-      virtual public ::object
+   class CLASS_DECL_DATA result :
+      virtual public ::simpledb::result
    {
    public:
 
 
-      database *     m_pdatabase;
       MYSQL_RES *    m_pres;
-      int32_t        m_iFieldCount;
-      uint64_t       m_uiAffectedRows;
 
 
       result(database * pdatabase, MYSQL_RES * pres);

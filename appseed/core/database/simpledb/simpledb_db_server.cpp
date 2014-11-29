@@ -15,7 +15,7 @@ db_server::db_server(::aura::application * papp) :
    m_bWorking           = false;
    m_pfilesystemsizeset = NULL;
    m_bRemote            = true;
-   m_pmysqldbUser       = NULL;
+   m_psimpledbUser       = NULL;
 
 }
 
@@ -55,7 +55,7 @@ bool db_server::initialize_user(mysql::database * pmysqldbUser, const char * psz
 
    m_bRemote         = false;
 
-   m_pmysqldbUser    = pmysqldbUser;
+   m_psimpledbUser    = pmysqldbUser;
    m_strUser         = pszUser;
 
    m_plongset        = new db_long_set(this);

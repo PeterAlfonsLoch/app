@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace mysql
+namespace simpledb
 {
 
 
    class database;
 
 
-} // namespace mysql
+} // namespace simpledb
 
 
 //////////////////////////////////////////////////////////
@@ -44,8 +44,8 @@ namespace mysql
 
 #include "DBFileSystemSize.h"
 
-#include "mysql_result.h"
-#include "mysql_database.h"
+#include "simpledb_result.h"
+#include "simpledb_database.h"
 
 
 

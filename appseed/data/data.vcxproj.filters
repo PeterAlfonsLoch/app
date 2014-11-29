@@ -21,51 +21,39 @@
     <Filter Include="Header Files\math">
       <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\simpledb">
+      <UniqueIdentifier>{1bf96c34-20d7-4e87-ad01-f490f89f929d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\simpledb">
+      <UniqueIdentifier>{33c31b31-c43c-4307-9c28-64b0c0db9d6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\simpledb\NewFilter1">
+      <UniqueIdentifier>{f6f9914b-5f6a-4a0e-a95d-29a3fe4a544e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="kissfft\kissfft_ifftd.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kissfft_fftd.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kissfft.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kiss_ifft.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kiss_fft.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="kissfft\kiss_fft_guts.h">
-      <Filter>Header Files\kissfft</Filter>
+    <ClInclude Include="simpledb\mysql_database.h">
+      <Filter>Header Files\simpledb</Filter>
     </ClInclude>
-    <ClInclude Include="math\math_math.h">
+    <ClInclude Include="simpledb\mysql_result.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="data\data.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="kissfft\kissfft_ifftd.cpp">
-      <Filter>Source Files\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfft\kissfft_fftd.cpp">
-      <Filter>Source Files\kissfft</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft.cpp">
-      <Filter>Source Files\kissfft</Filter>
+    <ClCompile Include="simpledb\simpledb_mysql_database.cpp">
+      <Filter>Source Files\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft_shared.cpp">
-      <Filter>Source Files\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfft\kiss_ifft.cpp">
-      <Filter>Source Files\kissfft</Filter>
+    <ClCompile Include="simpledb\simpledb_mysql_result.cpp">
+      <Filter>Source Files\simpledb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
