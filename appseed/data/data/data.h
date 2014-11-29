@@ -11,5 +11,5 @@
 #endif
 
 
-#include "simpledb/mysql_result.h"
-#include "simpledb/mysql_database.h"
+#include "app/appseed/data/simpledb/mysql_result.h"
+#include "app/appseed/data/simpledb/mysql_database.h"

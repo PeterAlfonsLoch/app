@@ -9,15 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Source Files\math">
-      <UniqueIdentifier>{6001a4cb-f3c7-42ba-9be8-86ae960dfd8c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\kissfft">
-      <UniqueIdentifier>{534e266d-f55f-434a-9f1d-841e5f40eb59}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\kissfft">
-      <UniqueIdentifier>{e9c79601-1523-4115-b00b-cab433335ec4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\math">
       <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
     </Filter>
@@ -26,9 +17,6 @@
     </Filter>
     <Filter Include="Header Files\simpledb">
       <UniqueIdentifier>{33c31b31-c43c-4307-9c28-64b0c0db9d6c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\simpledb\NewFilter1">
-      <UniqueIdentifier>{f6f9914b-5f6a-4a0e-a95d-29a3fe4a544e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
