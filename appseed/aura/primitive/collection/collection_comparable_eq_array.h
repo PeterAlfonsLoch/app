@@ -14,12 +14,17 @@ public:
    ::count get_count() const;
    ::count get_count(ARG_TYPE t, index start = 0, index last = -1, ::count countMax = -1) const;
    bool contains(ARG_TYPE t, index start = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
-   bool contains(comparable_eq_array & a) const
+   bool contains(comparable_eq_array & a, ::count cMinCount = -1) const
    {
-      for(index i = 0; i < a.get_count(); i++)
+      if(cMinCount < 0)
+      {
+         cMinCount += a.get_count() + 1;
+      }
+      for(index i = 0; cMinCount > 0 && i < a.get_count(); i++)
       {
          if(!this->contains(a[i]))
             return false;
+         cMinCount--;
       }
       return true;
    }
