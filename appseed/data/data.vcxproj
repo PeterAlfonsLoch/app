@@ -896,6 +896,9 @@
     <None Include="math.def" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\axis\mysql\axismysql.vcxproj">
+      <Project>{2652c96f-6e86-4ed1-b3b6-ac977dfb0593}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>

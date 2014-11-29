@@ -36,7 +36,7 @@ namespace simpledb
 
       virtual bool initialize();
 
-      //virtual sp(result) query(const char * pszSql);
+      virtual sp(result) query(const char * pszSql);
       virtual var query_item(const char * pszSql,var varDefault = false);
       virtual bool query_blob(primitive::memory_base & memory,const char * pszSql);
       virtual var query_items(const char * pszSql);

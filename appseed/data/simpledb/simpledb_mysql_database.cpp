@@ -6,7 +6,8 @@ namespace mysql
 {
 
    database::database(::aura::application * papp) :
-      element(papp)
+      element(papp),
+      ::simpledb::database(papp)
    {
       m_pmysql = NULL;
 #ifdef WINDOWS
@@ -130,7 +131,7 @@ namespace mysql
       TRACE0(m_strLastError);
    }
 
-   sp(result) database::query(const char * pszSql)
+   sp(::simpledb::result) database::query(const char * pszSql)
    {
 
       m_strLastError = "";

@@ -8,7 +8,7 @@ namespace mysql
 
 
    result::result(database * pdatabase, MYSQL_RES * pres) :
-      m_pdatabase(pdatabase)
+      ::simpledb::result(pdatabase)
    {
 
 //      m_pdatabase->m_resultptra.add(this);
@@ -69,7 +69,7 @@ namespace mysql
 
       row = mysql_fetch_row((MYSQL_RES *) m_pres);
 
-      if(mysql_errno ((MYSQL *) m_pdatabase->m_pmysql) != 0)
+      if(mysql_errno ((MYSQL *)(dynamic_cast < ::mysql::database * > ( m_pdatabase))->m_pmysql) != 0)
       {
 
          m_pdatabase->trace_error1( "mysql_fetch_row() failed");
@@ -87,7 +87,7 @@ namespace mysql
       if(m_pres == NULL)
          return NULL;
       lengths = mysql_fetch_lengths((MYSQL_RES *) m_pres);
-      if(mysql_errno ((MYSQL *) m_pdatabase->m_pmysql) != 0)
+      if(mysql_errno((MYSQL *)(dynamic_cast < ::mysql::database * > (m_pdatabase))->m_pmysql) != 0)
          m_pdatabase->trace_error1( "mysql_fetch_row() failed");
       return lengths;
    }
