@@ -2638,6 +2638,9 @@
     <ClCompile Include="database\simpledb\simpledb_database.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_result.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core.def">

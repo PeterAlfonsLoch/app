@@ -57,7 +57,7 @@ public:
    sockets::http_session *                      m_phttpsession;
    string_map < db_str_set_item >               m_map;
    bool                                         m_bIndexed;
-   ::mysql::database *                          m_psimpledbUser;
+   ::simpledb::database *                          m_psimpledbUser;
    string                                       m_strUser;
 
    class db_str_sync_queue *                    m_pqueue;
