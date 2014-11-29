@@ -51,9 +51,9 @@ namespace simpledb
          {
             for(int32_t i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
             {
-               database::field_definition_item & item = m_ptable->m_fielddefinition[i];
+               ::database::field_definition_item & item = m_ptable->m_fielddefinition[i];
                var var;
-               if(item.m_etype == database::field_definition_item::type_text)
+               if(item.m_etype == ::database::field_definition_item::type_text)
                {
                   if(item.m_iSize > 0)
                   {
