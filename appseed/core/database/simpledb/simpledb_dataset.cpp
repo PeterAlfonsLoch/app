@@ -32,7 +32,7 @@ namespace simpledb
 
    bool set::exec(const char * pszSql)
    {
-      database::result_set * r = (database::result_set *) &m_resultset;
+      ::database::result_set * r = (::database::result_set *) &m_resultset;
       r->record_header.remove_all();
       r->records.remove_all();
 
