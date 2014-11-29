@@ -472,7 +472,6 @@ namespace user
 //      IGUI_WIN_MSG_LINK(message_set_schema,pinterface,this,&interaction::_001OnSetSchema);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pinterface,this,&interaction::_001OnLButtonDown);
-      Session.user()->set_keyboard_focus(this);
 
 
    }
@@ -5665,10 +5664,19 @@ namespace user
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
 
-      if(keyboard_focus_is_focusable())
+      try
       {
 
-         Session.user()->set_keyboard_focus(this);
+         if(keyboard_focus_is_focusable())
+         {
+
+            Session.user()->set_keyboard_focus(this);
+
+         }
+
+      }
+      catch(...)
+      {
 
       }
 
