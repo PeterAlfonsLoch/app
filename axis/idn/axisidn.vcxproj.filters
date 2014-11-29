@@ -13,9 +13,6 @@
     <ClCompile Include="lib\pr29.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lib\profiles.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lib\punycode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,9 +34,6 @@
     <ClCompile Include="lib\strerror-tld.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lib\stringprep.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lib\tld.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -47,6 +41,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lib\toutf8.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\profiles.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\stringprep.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
