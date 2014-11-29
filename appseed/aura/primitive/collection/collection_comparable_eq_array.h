@@ -14,6 +14,15 @@ public:
    ::count get_count() const;
    ::count get_count(ARG_TYPE t, index start = 0, index last = -1, ::count countMax = -1) const;
    bool contains(ARG_TYPE t, index start = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
+   bool contains(comparable_eq_array & a) const
+   {
+      for(index i = 0; i < a.get_count(); i++)
+      {
+         if(!this->contains(a[i]))
+            return false;
+      }
+      return true;
+   }
    index remove_first(ARG_TYPE t, index find = 0, index last = -1);
    index remove(ARG_TYPE t, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
    typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator it);
