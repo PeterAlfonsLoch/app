@@ -471,7 +471,7 @@ namespace user
       IGUI_WIN_MSG_LINK(message_simple_command,pinterface,this,&interaction::_001OnSimpleCommand);
 //      IGUI_WIN_MSG_LINK(message_set_schema,pinterface,this,&interaction::_001OnSetSchema);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction::_001OnShowWindow);
-      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pinterface,this,&interaction::_001OnLButtonDown);
       Session.user()->set_keyboard_focus(this);
 
 
@@ -5663,17 +5663,12 @@ namespace user
    void interaction::_001OnLButtonDown(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::show_window,pshowwindow,pobj);
+      SCAST_PTR(::message::mouse,pmouse,pobj);
 
-      if(!pshowwindow->m_bShow)
+      if(keyboard_focus_is_focusable())
       {
 
-         if(keyboard_focus_is_focusable())
-         {
-
-            Session.user()->set_keyboard_focus(this);
-
-         }
+         Session.user()->set_keyboard_focus(this);
 
       }
 
