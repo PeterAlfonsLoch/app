@@ -54,7 +54,7 @@ public:
    string_map < db_long_set_item >           m_map;
    bool                                      m_bIndexed;
 
-   ::mysql::database *                       m_psimpledbUser;
+   ::simpledb::database *                       m_psimpledbUser;
    string                                    m_strUser;
 
    class db_long_sync_queue *                m_pqueue;
