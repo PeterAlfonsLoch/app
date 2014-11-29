@@ -964,14 +964,14 @@ namespace simpledb
                }
                else if(str == "numeric")
                {
-                  r->record_header[i].type = database::DataTypeDouble;
+                  r->record_header[i].type = ::database::DataTypeDouble;
                }
             }
          }
       }
 
 
-      database::record rec;
+      ::database::record rec;
       var v;
 
       if (reslt != NULL)
