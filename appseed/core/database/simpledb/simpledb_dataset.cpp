@@ -406,7 +406,7 @@ namespace simpledb
          rec.write(stream);
 
          {
-            database::record rec;
+            ::database::record rec;
             rec.add(string("one row inserted"));
             m_resultset.records.add(rec);
          }
@@ -414,7 +414,7 @@ namespace simpledb
       }
       catch(...)
       {
-         database::record rec;
+         ::database::record rec;
          rec.add(string("could not add row"));
          m_resultset.records.add(rec);
          return false;
@@ -500,7 +500,7 @@ namespace simpledb
             db->start_transaction();
 
          if(db == NULL)
-            throw database::DbErrors("No base Connection");
+            throw ::database::DbErrors("No base Connection");
 
          //close();
 
@@ -522,7 +522,7 @@ namespace simpledb
             db->commit_transaction();
 
          active = true;
-         ds_state = database::dsSelect;
+         ds_state = ::database::dsSelect;
          refresh();
 
       } // end of try
@@ -668,7 +668,7 @@ namespace simpledb
       }
       else
       {
-         ds_state = database::dsInactive;
+         ds_state = ::database::dsInactive;
       }
    }
 
@@ -687,15 +687,15 @@ namespace simpledb
 
    void set::cancel()
    {
-      if ((ds_state == database::dsInsert) || (ds_state==database::dsEdit))
+      if ((ds_state == ::database::dsInsert) || (ds_state==::database::dsEdit))
       {
          if(m_resultset.record_header.get_size())
          {
-            ds_state = database::dsSelect;
+            ds_state = ::database::dsSelect;
          }
          else
          {
-            ds_state = database::dsInactive;
+            ds_state = ::database::dsInactive;
          }
       }
    }
