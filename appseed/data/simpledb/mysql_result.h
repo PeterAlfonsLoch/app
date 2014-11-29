@@ -14,7 +14,7 @@ namespace mysql
    class database;
 
 
-   class CLASS_DECL_DATA result :
+   class CLASS_DECL_CA2_DATA result :
       virtual public ::simpledb::result
    {
    public:

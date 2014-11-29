@@ -13,7 +13,7 @@ namespace mysql
 {
 
 
-   class CLASS_DECL_DATA database :
+   class CLASS_DECL_CA2_DATA database :
       virtual public ::simpledb::database
    {
       friend class result;
@@ -40,7 +40,7 @@ namespace mysql
 
       virtual bool initialize();
 
-      virtual sp(result) query(const char * pszSql);
+      sp(result) query(const char * pszSql);
       virtual var query_item(const char * pszSql, var varDefault = false);
       virtual bool query_blob(primitive::memory_base & memory, const char * pszSql);
       virtual var query_items(const char * pszSql);
