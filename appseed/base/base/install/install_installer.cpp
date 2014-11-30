@@ -912,45 +912,21 @@ install_begin:;
 
       m_iGzLen2 = 0;
 
-
-
-      string str;
-
-      string strMd5;
-
-      string strStageInplace;
-
-      string strStageInplaceFile;
-
-      int_ptr iLen;
-
-      int_ptr iGzLen;
-
-      double d = 0.0;
-
       m_dProgress = 0.0;
 
-      bool bDownload;
-
-      bool bExpandFileSet;
-
       m_iProgressTotalGzLen2 = 0;
-
-      int64_t iPreviousTotalProgress;
-
-      int32_t i = 0;
 
       System.install().trace().rich_trace("***Downloading resource files.");
 
       single_lock sl(&m_mutexOmp);
       {
 
-         for(i = 0; i < stringa.get_count(); i++)
+         for(int i = 0; i < stringa.get_count(); i++)
          {
 
             string strCurrent  = stringa[i];
 
-            bExpandFileSet = strCurrent.ends_ci(".expand_fileset");
+            bool bExpandFileSet = strCurrent.ends_ci(".expand_fileset");
 
             if(!bExpandFileSet)
             {
@@ -961,7 +937,7 @@ install_begin:;
 
             straExpandFileSet.add(strCurrent);
 
-            iGzLen = mapGzLen[strCurrent];
+            int iGzLen = mapGzLen[strCurrent];
 
             m_iProgressTotalGzLen2 += iGzLen;
 
@@ -971,10 +947,10 @@ install_begin:;
 
          m_iGzLen2 = 0;
 
-         for(i = 0; i < straExpandFileSet.get_count(); i++)
+         for(int i = 0; i < straExpandFileSet.get_count(); i++)
          {
 
-            str = m_strInstall;
+            string str = m_strInstall;
 
             str += straExpandFileSet[i];
 
@@ -995,11 +971,11 @@ install_begin:;
 
             string str3  = str;
 
-            strMd5         = mapMd5[strCurrent];
+            string strMd5         = mapMd5[strCurrent];
 
-            iLen           = mapLen[strCurrent];
+            int iLen           = mapLen[strCurrent];
 
-            iGzLen         = mapGzLen[strCurrent];
+            int iGzLen         = mapGzLen[strCurrent];
 
             str += ".";
 
@@ -1007,13 +983,13 @@ install_begin:;
 
             string strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent,strMd5);
 
-            strStageInplaceFile = ca2inplace_get_file(strCurrent);
+            string strStageInplaceFile = ca2inplace_get_file(strCurrent);
 
-            bDownload = true;
+            bool bDownload = true;
 
             System.install().trace().rich_trace(str::replace("\\","/",file_title_dup((str2 + str))));
 
-            strStageInplace = ca2bz_get_dir(strCurrent) + strStageInplaceFile;
+            string strStageInplace = ca2bz_get_dir(strCurrent) + strStageInplaceFile;
 
             if(file_exists_dup(strStageInplace)
                && (iLen != -1) && file_length_dup(strStageInplace) == iLen
@@ -1058,7 +1034,7 @@ install_begin:;
             strExpand = "app\\stage\\metastage\\" + strExpand;
 
 
-            iPreviousTotalProgress = m_iProgressTotalGzLen2; // keep progress rate total calculator
+            int iPreviousTotalProgress = m_iProgressTotalGzLen2; // keep progress rate total calculator
 
             m_iProgressTotalGzLen2 = 0; // avoid progress rate change
 
@@ -1082,19 +1058,18 @@ install_begin:;
 
          m_iProgressTotalGzLen2 = m_iTotalGzLen2;
 
-         d = 0.0;
-
-         string strFileName;
 
 #pragma omp parallel for
-         for(i = 0; i < stringa.get_count(); i++)
+         for(int i = 0; i < stringa.get_count(); i++)
          {
+            string strFileName;
+
 
             string strCurrent  = stringa[i];
 
-            iGzLen         = mapGzLen[strCurrent];
+            int iGzLen         = mapGzLen[strCurrent];
 
-            str = m_strInstall;
+            string str = m_strInstall;
 
             str += strCurrent;
 
@@ -1115,9 +1090,9 @@ install_begin:;
 
             string str3  = str;
 
-            strMd5         = mapMd5[strCurrent];
+            string strMd5         = mapMd5[strCurrent];
 
-            iLen           = mapLen[strCurrent];
+            int iLen           = mapLen[strCurrent];
 
             str += ".";
 
@@ -1125,11 +1100,11 @@ install_begin:;
 
             string strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent,strMd5);
 
-            strStageInplaceFile = ca2inplace_get_file(strCurrent);
+            string strStageInplaceFile = ca2inplace_get_file(strCurrent);
 
-            bDownload = true;
+            bool bDownload = true;
 
-            strStageInplace = ca2inplace_get_dir(strCurrent) + ca2inplace_get_file(strCurrent);
+            string strStageInplace = ca2inplace_get_dir(strCurrent) + ca2inplace_get_file(strCurrent);
 
             System.install().trace().rich_trace(str::replace(file_title_dup((str2 + str)),"\\","/"));
 
