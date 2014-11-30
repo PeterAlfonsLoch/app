@@ -186,30 +186,6 @@
     <Filter Include="Header Files\core\core">
       <UniqueIdentifier>{7bd92b89-bd56-4942-84cc-0cf6c5b11793}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\core\platform">
-      <UniqueIdentifier>{ebdf0424-9e5c-4951-9063-561e2af1ddad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\platform\platform">
-      <UniqueIdentifier>{62b80cd5-7882-4a8f-92ce-3180024248a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\platform\bergedge">
-      <UniqueIdentifier>{98707b66-f36f-4a78-969d-51b180e67642}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\platform\nature">
-      <UniqueIdentifier>{2a8b164a-8a9d-4515-8763-27eba1fa1677}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\platform">
-      <UniqueIdentifier>{041c7c08-f2e9-42d2-89dc-09df3bdae550}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\platform\bergedge">
-      <UniqueIdentifier>{097944df-6a9b-49bc-a257-819d8a7983af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\platform\nature">
-      <UniqueIdentifier>{582d0eea-2636-4c25-8fbe-78a5a61238a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\platform\platform">
-      <UniqueIdentifier>{3512c41c-c826-4d7d-b3b5-d9062c889088}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\wndfrm">
       <UniqueIdentifier>{e4c16e44-2368-45d0-9c4b-74a6e9917542}</UniqueIdentifier>
     </Filter>
@@ -1280,57 +1256,6 @@
     <ClInclude Include="filesystem\filemanager\filemanager_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="core\platform\core_platform.h">
-      <Filter>Header Files\core\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge_document.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge_form_callback.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge_frame.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge_pane_view.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge_pane_view_update_hint.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge_view.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_appearance_view.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_application.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_database.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_document.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_frame.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_pane_view.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_pane_view_update_hint.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_view.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_main_view.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -1339,30 +1264,6 @@
     </ClInclude>
     <ClInclude Include="user\user\user_tree_data.h">
       <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_application.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_document.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_frame.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_pane_view.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_pane_view_update_hint.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_resource.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_view.h">
-      <Filter>Header Files\core\platform\platform</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_file_list.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
@@ -1483,6 +1384,9 @@
     </ClInclude>
     <ClInclude Include="database\simpledb\simpledb_result.h">
       <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_platform.h">
+      <Filter>Header Files\core\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2413,69 +2317,6 @@
     <ClCompile Include="filesystem\filemanager\filemanager_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="core\platform\core_platform.cpp">
-      <Filter>Source Files\core\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\platform\platform_application.cpp">
-      <Filter>Source Files\core\platform\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\platform\platform_document.cpp">
-      <Filter>Source Files\core\platform\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\platform\platform_frame.cpp">
-      <Filter>Source Files\core\platform\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\platform\platform_pane_view.cpp">
-      <Filter>Source Files\core\platform\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\platform\platform_pane_view_update_hint.cpp">
-      <Filter>Source Files\core\platform\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\platform\platform_view.cpp">
-      <Filter>Source Files\core\platform\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_appearance_view.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_application.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_database.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_document.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_frame.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_pane_view.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_pane_view_update_hint.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_view.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\bergedge\bergedge_document.cpp">
-      <Filter>Source Files\core\platform\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\bergedge\bergedge_form_callback.cpp">
-      <Filter>Source Files\core\platform\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\bergedge\bergedge_frame.cpp">
-      <Filter>Source Files\core\platform\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\bergedge\bergedge_pane_view.cpp">
-      <Filter>Source Files\core\platform\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\bergedge\bergedge_pane_view_update_hint.cpp">
-      <Filter>Source Files\core\platform\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\bergedge\bergedge_view.cpp">
-      <Filter>Source Files\core\platform\bergedge</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_main_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -2550,6 +2391,9 @@
     </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_result.cpp">
       <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_platform.cpp">
+      <Filter>Source Files\core\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

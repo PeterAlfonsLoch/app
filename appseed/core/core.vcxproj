@@ -1803,6 +1803,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="core\core\core_platform.cpp" />
     <ClCompile Include="database\simpledb\simpledb_database.cpp" />
     <ClCompile Include="database\simpledb\simpledb_result.cpp" />
     <ClCompile Include="graphics\html\html_form.cpp" />
@@ -1846,6 +1847,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_muldiv32.h" />
     <ClInclude Include="core\core\core_os_history.h" />
     <ClInclude Include="core\core\core_patch.h" />
+    <ClInclude Include="core\core\core_platform.h" />
     <ClInclude Include="core\core\core_process_data.h" />
     <ClInclude Include="core\core\core_profiler.h" />
     <ClInclude Include="core\core\core_progress_interface.h" />
@@ -1864,31 +1866,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_timer.h" />
     <ClInclude Include="core\core\core_types.h" />
     <ClInclude Include="core\core\core_util.h" />
-    <ClInclude Include="core\platform\bergedge\bergedge.h" />
-    <ClInclude Include="core\platform\bergedge\bergedge_document.h" />
-    <ClInclude Include="core\platform\bergedge\bergedge_form_callback.h" />
-    <ClInclude Include="core\platform\bergedge\bergedge_frame.h" />
-    <ClInclude Include="core\platform\bergedge\bergedge_pane_view.h" />
-    <ClInclude Include="core\platform\bergedge\bergedge_pane_view_update_hint.h" />
-    <ClInclude Include="core\platform\bergedge\bergedge_view.h" />
-    <ClInclude Include="core\platform\core_platform.h" />
-    <ClInclude Include="core\platform\nature\nature.h" />
-    <ClInclude Include="core\platform\nature\nature_appearance_view.h" />
-    <ClInclude Include="core\platform\nature\nature_application.h" />
-    <ClInclude Include="core\platform\nature\nature_database.h" />
-    <ClInclude Include="core\platform\nature\nature_document.h" />
-    <ClInclude Include="core\platform\nature\nature_frame.h" />
-    <ClInclude Include="core\platform\nature\nature_pane_view.h" />
-    <ClInclude Include="core\platform\nature\nature_pane_view_update_hint.h" />
-    <ClInclude Include="core\platform\nature\nature_view.h" />
-    <ClInclude Include="core\platform\platform\platform.h" />
-    <ClInclude Include="core\platform\platform\platform_application.h" />
-    <ClInclude Include="core\platform\platform\platform_document.h" />
-    <ClInclude Include="core\platform\platform\platform_frame.h" />
-    <ClInclude Include="core\platform\platform\platform_pane_view.h" />
-    <ClInclude Include="core\platform\platform\platform_pane_view_update_hint.h" />
-    <ClInclude Include="core\platform\platform\platform_resource.h" />
-    <ClInclude Include="core\platform\platform\platform_view.h" />
     <ClInclude Include="core\plugin\plugin.h" />
     <ClInclude Include="core\plugin\plugin_gen.h" />
     <ClInclude Include="core\plugin\plugin_history.h" />
@@ -2025,27 +2002,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\core\core_timer_callback.cpp" />
     <ClCompile Include="core\core\core_timer_listener.cpp" />
     <ClCompile Include="core\core\core_Timer.cpp" />
-    <ClCompile Include="core\platform\bergedge\bergedge_document.cpp" />
-    <ClCompile Include="core\platform\bergedge\bergedge_form_callback.cpp" />
-    <ClCompile Include="core\platform\bergedge\bergedge_frame.cpp" />
-    <ClCompile Include="core\platform\bergedge\bergedge_pane_view.cpp" />
-    <ClCompile Include="core\platform\bergedge\bergedge_pane_view_update_hint.cpp" />
-    <ClCompile Include="core\platform\bergedge\bergedge_view.cpp" />
-    <ClCompile Include="core\platform\core_platform.cpp" />
-    <ClCompile Include="core\platform\nature\nature_appearance_view.cpp" />
-    <ClCompile Include="core\platform\nature\nature_application.cpp" />
-    <ClCompile Include="core\platform\nature\nature_database.cpp" />
-    <ClCompile Include="core\platform\nature\nature_document.cpp" />
-    <ClCompile Include="core\platform\nature\nature_frame.cpp" />
-    <ClCompile Include="core\platform\nature\nature_pane_view.cpp" />
-    <ClCompile Include="core\platform\nature\nature_pane_view_update_hint.cpp" />
-    <ClCompile Include="core\platform\nature\nature_view.cpp" />
-    <ClCompile Include="core\platform\platform\platform_application.cpp" />
-    <ClCompile Include="core\platform\platform\platform_document.cpp" />
-    <ClCompile Include="core\platform\platform\platform_frame.cpp" />
-    <ClCompile Include="core\platform\platform\platform_pane_view.cpp" />
-    <ClCompile Include="core\platform\platform\platform_pane_view_update_hint.cpp" />
-    <ClCompile Include="core\platform\platform\platform_view.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_main_view.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
