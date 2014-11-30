@@ -5,18 +5,12 @@ namespace html
 {
 
 
-   class CLASS_DECL_CORE system :
-      virtual public ::core::application,
-      virtual public ::base::system
-      #ifdef LINUX
-      , virtual public ::exception::translator
-      #endif
+   class CLASS_DECL_CORE application :
+      virtual public ::core::application
    {
    public:
 
 
-      //core::platform::run_start_installer *        m_prunstartinstaller;
-      //core::platform::map *                        m_pbergedgemap;
       index                                        m_iNewEdge;
 
       mutex                                        m_mutex;
@@ -198,14 +192,6 @@ namespace html
 
 } // namespace html
 
-
-
-
-
-
-
-
-void CLASS_DECL_CORE __start_core_system_main(::base::system * psystem);
 
 
 

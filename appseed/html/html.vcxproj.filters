@@ -9,17 +9,20 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Source Files\math">
-      <UniqueIdentifier>{6001a4cb-f3c7-42ba-9be8-86ae960dfd8c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\kissfft">
-      <UniqueIdentifier>{534e266d-f55f-434a-9f1d-841e5f40eb59}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\kissfft">
       <UniqueIdentifier>{e9c79601-1523-4115-b00b-cab433335ec4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\math">
       <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\userhtml">
+      <UniqueIdentifier>{6001a4cb-f3c7-42ba-9be8-86ae960dfd8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{534e266d-f55f-434a-9f1d-841e5f40eb59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{d93fd4b0-3886-4b5b-aa82-7d2a3691f2d6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -47,25 +50,121 @@
     <ClInclude Include="math\math_math.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\html.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_attribute.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_base.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_border.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_box.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_data.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_enum.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_ex.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_font.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_form.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_html.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_html2.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_point.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_reader.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_signal.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_size.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_style.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_style_sheet.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_style_sheet_array.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_tag.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html_value.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\html2.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html_application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="kissfft\kissfft_ifftd.cpp">
-      <Filter>Source Files\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="kissfft\kissfft_fftd.cpp">
-      <Filter>Source Files\kissfft</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft.cpp">
-      <Filter>Source Files\kissfft</Filter>
+    <ClCompile Include="graphics\html_attribute.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="kissfft\kiss_fft_shared.cpp">
-      <Filter>Source Files\kissfft</Filter>
+    <ClCompile Include="graphics\html_base.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="kissfft\kiss_ifft.cpp">
-      <Filter>Source Files\kissfft</Filter>
+    <ClCompile Include="graphics\html_data.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_font.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_form.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_html.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_reader.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_signal.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_style.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_style_sheet.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_style_sheet_array.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_tag.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\html_value.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html_application.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
