@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_CORE html_form :
-   virtual public ::user::form
+   virtual public ::form_view
 {
 public:
 

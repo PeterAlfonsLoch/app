@@ -9,10 +9,10 @@ namespace filemanager
       element(papp),
       ::data::data_container_base(papp),
       ::user::document(papp),
-      html_document(papp),
       ::form_document(papp)
    {
-      }
+
+   }
 
 
 } // namespace filemanager

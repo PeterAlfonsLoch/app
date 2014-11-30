@@ -2,9 +2,7 @@
 
 
 class CLASS_DECL_CORE html_document :
-   virtual public ::user::document,
-   virtual public ::database::client,
-   virtual public ::user::form_callback
+   virtual public ::form_document
 {
 public:
 

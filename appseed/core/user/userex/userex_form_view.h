@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE form_view :
-   virtual public html_form_view
+   virtual public ::user::form
 {
 public:
    form_view(::aura::application * papp);

@@ -2,7 +2,9 @@
 
 
 class CLASS_DECL_CORE form_document :
-   virtual public html_document
+   virtual public ::user::document,
+   virtual public ::database::client,
+   virtual public ::user::form_callback
 {
 public:
    form_document(::aura::application * papp);
