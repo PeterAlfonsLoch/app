@@ -127,9 +127,9 @@ namespace install
 
       int32_t           m_iScreen;
       int32_t           m_iProgressMode;
-      int64_t           m_iTotalGzLen;
-      int64_t           m_iProgressTotalGzLen;
-      int64_t           m_iGzLen;
+      int64_t           m_iTotalGzLen2;
+      int64_t           m_iProgressTotalGzLen2;
+      int64_t           m_iGzLen2;
       int32_t           m_iStyle;
       string            m_strLogin;
       string            m_strSessid;
@@ -144,8 +144,9 @@ namespace install
 
       stringa           m_straHttpFailure;
 
-      ::sockets::http_session * m_phttpsessionServer;
+      ::sockets::http_session * m_phttpsession;
       comparable_array <::sockets::http_session * > m_httpsessionptra;
+      mutex m_mutexOmp;
 
       installer(::aura::application * papp);
       ~installer();

@@ -2,6 +2,7 @@
 #include "axis/compress/compress.h"
 
 #ifdef WINDOWS
+#include <omp.h>
 #include <WinInet.h>
 #include <Winternl.h>
 #endif
@@ -117,7 +118,8 @@ namespace install
       element(papp),
 
       m_mutex(papp),
-      m_xmldocStringTable(papp)
+      m_xmldocStringTable(papp),
+      m_mutexOmp(papp)
    {
 
       m_bProgressModeAppInstall = false;
@@ -299,8 +301,8 @@ install_begin:;
       {
          m_strLastHost = "";
          m_strSpa.remove_all();
-         m_iTotalGzLen = 0;
-         m_iProgressTotalGzLen = 0;
+         m_iTotalGzLen2 = 0;
+         m_iProgressTotalGzLen2 = 0;
          m_NeedRestartBecauseOfReservedFile = false;
          m_NeedRestartFatalError = false;
 //         int32_t iFileError = 0;
@@ -908,7 +910,7 @@ install_begin:;
 
       m_bShowPercentage = true;
 
-      m_iGzLen = 0;
+      m_iGzLen2 = 0;
 
 
 
@@ -932,7 +934,7 @@ install_begin:;
 
       bool bExpandFileSet;
 
-      m_iProgressTotalGzLen = 0;
+      m_iProgressTotalGzLen2 = 0;
 
       int64_t iPreviousTotalProgress;
 
@@ -940,265 +942,275 @@ install_begin:;
 
       System.install().trace().rich_trace("***Downloading resource files.");
 
-      for(; i < stringa.get_count();)
+      single_lock sl(&m_mutexOmp);
       {
 
-         string strCurrent  = stringa[i];
-
-         bExpandFileSet = strCurrent.ends_ci(".expand_fileset");
-
-         if(!bExpandFileSet)
-         {
-            i++;
-            continue;
-         }
-
-         stringa.remove_at(i);
-
-         straExpandFileSet.add(strCurrent);
-
-         iGzLen = mapGzLen[strCurrent];
-
-         m_iProgressTotalGzLen += iGzLen;
-
-         m_iTotalGzLen -= iGzLen;
-
-      }
-
-      m_iGzLen = 0;
-
-      for(i = 0; i < straExpandFileSet.get_count(); i++)
-      {
-
-         str = m_strInstall;
-
-         str += straExpandFileSet[i];
-
-         string strCurrent  = straExpandFileSet[i];
-
-         string str2 = dir::name(str);
-
-         if(str2.substr(0, m_strInstall.length()) == m_strInstall)
+         for(i = 0; i < stringa.get_count(); i++)
          {
 
-            str2 = str2.substr(21);
+            string strCurrent  = stringa[i];
 
-            str2.replace("\\", "/");
+            bExpandFileSet = strCurrent.ends_ci(".expand_fileset");
+
+            if(!bExpandFileSet)
+            {
+               continue;
+            }
+
+            stringa.remove_at(i);
+
+            straExpandFileSet.add(strCurrent);
+
+            iGzLen = mapGzLen[strCurrent];
+
+            m_iProgressTotalGzLen2 += iGzLen;
+
+            m_iTotalGzLen2 -= iGzLen;
 
          }
 
-         str += ".bz";
+         m_iGzLen2 = 0;
 
-         string str3  = str;
-
-         strMd5         = mapMd5[strCurrent];
-
-         iLen           = mapLen[strCurrent];
-
-         iGzLen         = mapGzLen[strCurrent];
-
-         str += ".";
-
-         str += strMd5;
-
-         string strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent, strMd5);
-
-         strStageInplaceFile = ca2inplace_get_file(strCurrent);
-
-         bDownload = true;
-
-         System.install().trace().rich_trace(str::replace("\\", "/", file_title_dup((str2 + str))));
-
-         strStageInplace = ca2bz_get_dir(strCurrent) + strStageInplaceFile;
-
-         if(file_exists_dup(strStageInplace)
-         && (iLen != -1) && file_length_dup(strStageInplace) == iLen
-         && strMd5.has_char() && stricmp_dup(System.file().md5(strStageInplace), strMd5) == 0)
+         for(i = 0; i < straExpandFileSet.get_count(); i++)
          {
 
-            bDownload = false;
+            str = m_strInstall;
 
-         }
+            str += straExpandFileSet[i];
 
-         if(bDownload && file_exists_dup(strStageGz))
-         {
+            string strCurrent  = straExpandFileSet[i];
 
-            dir::mk(dir::name(strStageInplace));
+            string str2 = dir::name(str);
 
-            bzuncompress(strStageInplace, strStageGz);
-
-            if(file_exists_dup(strStageInplace)
-            && (iLen != -1) && file_length_dup(strStageInplace) == iLen
-            && strMd5.has_char() && stricmp_dup(System.file().md5(strStageInplace), strMd5) == 0)
-               bDownload = false;
-
-         }
-
-         if(bDownload && download_file(strStageInplace, str3, false, false, iLen, strMd5, iGzLen, mapFlag[stringa[i]]))
-         {
-
-            m_dProgress = m_dProgress2;
-
-            string strRelative = dir::path(dir::name(strCurrent), file_name_dup(strCurrent));
-
-            string strStageInplace2 = ca2inplace_get_dir(strRelative) + ca2inplace_get_file(strRelative);
-
-            file_ftd_dup(strStageInplace2, strStageInplace);
-
-         }
-
-         string strExpand = strCurrent;
-
-         strExpand += ".spa";
-
-         strExpand = "app\\stage\\metastage\\" + strExpand;
-
-         iPreviousTotalProgress = m_iProgressTotalGzLen; // keep progress rate total calculator
-
-         m_iProgressTotalGzLen = 0; // avoid progress rate change
-
-         GetFileList(stringa, strExpand , mapLen, mapGzLen, mapMd5, mapFlag);
-
-         m_iProgressTotalGzLen = iPreviousTotalProgress; // restore progress rate total calculator
-
-         m_iGzLen += iGzLen;
-
-         dlr(m_iGzLen);
-
-         set_progress((double) m_iGzLen / (double) m_iProgressTotalGzLen);
-
-      }
-
-      new_progress_end(0.84);
-
-      System.install().trace().rich_trace("***Downloading files.");
-
-      m_iGzLen = 0;
-
-      m_iProgressTotalGzLen = m_iTotalGzLen;
-
-      d = 0.0;
-
-      string strFileName;
-
-      for(i = 0; i < stringa.get_count(); i++)
-      {
-
-         string strCurrent  = stringa[i];
-
-         iGzLen         = mapGzLen[strCurrent];
-
-         str = m_strInstall;
-
-         str += strCurrent;
-
-         string str2 = dir::name(str);
-
-         strFileName = file_title_dup(strCurrent);
-
-         if(str2.substr(0, m_strInstall.length()) == m_strInstall)
-         {
-
-            str2 = str2.substr(21);
-
-            str2.replace("\\", "/");
-
-         }
-
-         str += ".bz";
-
-         string str3  = str;
-
-         strMd5         = mapMd5[strCurrent];
-
-         iLen           = mapLen[strCurrent];
-
-         str += ".";
-
-         str += strMd5;
-
-         string strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent, strMd5);
-
-         strStageInplaceFile = ca2inplace_get_file(strCurrent);
-
-         bDownload = true;
-
-         strStageInplace = ca2inplace_get_dir(strCurrent) + ca2inplace_get_file(strCurrent);
-
-         System.install().trace().rich_trace(str::replace(file_title_dup((str2 + str)), "\\", "/"));
-
-         if(file_exists_dup(strStageInplace)
-         && (iLen != -1) && file_length_dup(strStageInplace) == iLen
-         && strMd5.has_char() && stricmp_dup(System.file().md5(strStageInplace), strMd5) == 0)
-         {
-
-            bDownload = false;
-
-         }
-
-         if(bDownload && (::str::ends_ci(strFileName,".exe") || ::str::ends_ci(strFileName,".dll")))
-         {
-
-            string strPlatform = System.install().get_platform();
-
-            string strCandidate = ::dir::element("install\\stage\\" + strPlatform + "\\" + strFileName);
-
-            if(file_exists_dup(strCandidate)
-               && (iLen != -1) && file_length_dup(strCandidate) == iLen
-               && strMd5.has_char() && stricmp_dup(System.file().md5(strCandidate),strMd5) == 0)
+            if(str2.substr(0,m_strInstall.length()) == m_strInstall)
             {
 
-               bDownload  = !::file_copy_dup(strStageInplace,strCandidate);
+               str2 = str2.substr(21);
+
+               str2.replace("\\","/");
 
             }
 
-         }
+            str += ".bz";
 
+            string str3  = str;
 
+            strMd5         = mapMd5[strCurrent];
 
-         if(bDownload && file_exists_dup(strStageGz))
-         {
+            iLen           = mapLen[strCurrent];
 
-            dir::mk(dir::name(strStageInplace));
+            iGzLen         = mapGzLen[strCurrent];
 
-            bzuncompress(strStageInplace, strStageGz);
+            str += ".";
+
+            str += strMd5;
+
+            string strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent,strMd5);
+
+            strStageInplaceFile = ca2inplace_get_file(strCurrent);
+
+            bDownload = true;
+
+            System.install().trace().rich_trace(str::replace("\\","/",file_title_dup((str2 + str))));
+
+            strStageInplace = ca2bz_get_dir(strCurrent) + strStageInplaceFile;
 
             if(file_exists_dup(strStageInplace)
-            && (iLen != -1) && file_length_dup(strStageInplace) == iLen
-            && strMd5.has_char() && stricmp_dup(System.file().md5(strStageInplace), strMd5) == 0)
+               && (iLen != -1) && file_length_dup(strStageInplace) == iLen
+               && strMd5.has_char() && stricmp_dup(System.file().md5(strStageInplace),strMd5) == 0)
+            {
+
                bDownload = false;
 
-         }
+            }
 
-         if(bDownload)
-         {
+            if(bDownload && file_exists_dup(strStageGz))
+            {
 
-            if(download_file(strStageInplace, str3, false, false, iLen, strMd5, iGzLen, mapFlag[stringa[i]]))
+               dir::mk(dir::name(strStageInplace));
+
+               bzuncompress(strStageInplace,strStageGz);
+
+               if(file_exists_dup(strStageInplace)
+                  && (iLen != -1) && file_length_dup(strStageInplace) == iLen
+                  && strMd5.has_char() && stricmp_dup(System.file().md5(strStageInplace),strMd5) == 0)
+                  bDownload = false;
+
+            }
+
+            if(bDownload && download_file(strStageInplace,str3,false,false,iLen,strMd5,iGzLen,mapFlag[stringa[i]]))
             {
 
                m_dProgress = m_dProgress2;
 
+               string strRelative = dir::path(dir::name(strCurrent),file_name_dup(strCurrent));
+
+               string strStageInplace2 = ca2inplace_get_dir(strRelative) + ca2inplace_get_file(strRelative);
+
+               file_ftd_dup(strStageInplace2,strStageInplace);
+
             }
 
+            string strExpand = strCurrent;
+
+            strExpand += ".spa";
+
+            strExpand = "app\\stage\\metastage\\" + strExpand;
+
+
+            iPreviousTotalProgress = m_iProgressTotalGzLen2; // keep progress rate total calculator
+
+            m_iProgressTotalGzLen2 = 0; // avoid progress rate change
+
+            GetFileList(stringa,strExpand,mapLen,mapGzLen,mapMd5,mapFlag);
+
+            m_iProgressTotalGzLen2 = iPreviousTotalProgress; // restore progress rate total calculator
+
+            m_iGzLen2 += iGzLen;
+
+            dlr(m_iGzLen2);
+
+            set_progress((double)m_iGzLen2 / (double)m_iProgressTotalGzLen2);
+
          }
-         else
+
+         new_progress_end(0.84);
+
+         System.install().trace().rich_trace("***Downloading files.");
+
+         m_iGzLen2 = 0;
+
+         m_iProgressTotalGzLen2 = m_iTotalGzLen2;
+
+         d = 0.0;
+
+         string strFileName;
+
+#pragma omp parallel for
+         for(i = 0; i < stringa.get_count(); i++)
          {
 
-            System.install().trace().trace_add(" ok");
+            string strCurrent  = stringa[i];
+
+            iGzLen         = mapGzLen[strCurrent];
+
+            str = m_strInstall;
+
+            str += strCurrent;
+
+            string str2 = dir::name(str);
+
+            strFileName = file_title_dup(strCurrent);
+
+            if(str2.substr(0,m_strInstall.length()) == m_strInstall)
+            {
+
+               str2 = str2.substr(21);
+
+               str2.replace("\\","/");
+
+            }
+
+            str += ".bz";
+
+            string str3  = str;
+
+            strMd5         = mapMd5[strCurrent];
+
+            iLen           = mapLen[strCurrent];
+
+            str += ".";
+
+            str += strMd5;
+
+            string strStageGz = ca2bz_get_dir(strCurrent) + ca2bz_get_file(strCurrent,strMd5);
+
+            strStageInplaceFile = ca2inplace_get_file(strCurrent);
+
+            bDownload = true;
+
+            strStageInplace = ca2inplace_get_dir(strCurrent) + ca2inplace_get_file(strCurrent);
+
+            System.install().trace().rich_trace(str::replace(file_title_dup((str2 + str)),"\\","/"));
+
+            if(file_exists_dup(strStageInplace)
+               && (iLen != -1) && file_length_dup(strStageInplace) == iLen
+               && strMd5.has_char() && stricmp_dup(System.file().md5(strStageInplace),strMd5) == 0)
+            {
+
+               bDownload = false;
+
+            }
+
+            if(bDownload && (::str::ends_ci(strFileName,".exe") || ::str::ends_ci(strFileName,".dll")))
+            {
+
+               string strPlatform = System.install().get_platform();
+
+               string strCandidate = ::dir::element("install\\stage\\" + strPlatform + "\\" + strFileName);
+
+               if(file_exists_dup(strCandidate)
+                  && (iLen != -1) && file_length_dup(strCandidate) == iLen
+                  && strMd5.has_char() && stricmp_dup(System.file().md5(strCandidate),strMd5) == 0)
+               {
+
+                  bDownload  = !::file_copy_dup(strStageInplace,strCandidate);
+
+               }
+
+            }
+
+
+
+            if(bDownload && file_exists_dup(strStageGz))
+            {
+
+               dir::mk(dir::name(strStageInplace));
+
+               bzuncompress(strStageInplace,strStageGz);
+
+               if(file_exists_dup(strStageInplace)
+                  && (iLen != -1) && file_length_dup(strStageInplace) == iLen
+                  && strMd5.has_char() && stricmp_dup(System.file().md5(strStageInplace),strMd5) == 0)
+                  bDownload = false;
+
+            }
+
+            if(bDownload)
+            {
+
+               if(download_file(strStageInplace,str3,false,false,iLen,strMd5,iGzLen,mapFlag[stringa[i]]))
+               {
+
+                  m_dProgress = m_dProgress2;
+
+               }
+
+            }
+            else
+            {
+
+               System.install().trace().trace_add(" ok");
+
+            }
+
+            sl.lock();
+
+            m_iGzLen2 += iGzLen;
+
+            dlr(m_iGzLen2);
+
+            set_progress((double)m_iGzLen2 / (double)m_iProgressTotalGzLen2);
+
+            sl.unlock();
 
          }
 
-         m_iGzLen += iGzLen;
+         if(m_pwindow != NULL)
+         {
 
-         dlr(m_iGzLen);
 
-         set_progress((double) m_iGzLen / (double) m_iProgressTotalGzLen);
-
-      }
-
-      if(m_pwindow != NULL)
-      {
-
+         }
 
       }
 
@@ -1297,6 +1309,7 @@ install_begin:;
 
    bool installer::download_file(const string& inplaceParam, const string& url_in, bool bExist, bool bCheck, int64_t iLength, const char * pszMd5, int64_t iGzLen, int_ptr & iFlag)
    {
+      single_lock sl(&m_mutexOmp);
 
       if(m_bOfflineInstall)
          return true;
@@ -1477,7 +1490,11 @@ install_begin:;
 
             set["raw_http"] = true;
 
-            bOk = (m_phttpsessionServer = Application.http().download(m_phttpsessionServer, strUrl,strBsPatch,set)) != NULL;
+            sl.lock();
+            ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num());
+            sl.unlock();
+
+            bOk = (psession = Application.http().download(psession,strUrl,strBsPatch,set)) != NULL;
 
 //            if(iStatus == 404)
   //             break;
@@ -1632,8 +1649,11 @@ install_begin:;
             set["disable_ca2_sessid"] = true;
 
             set["raw_http"] = true;
+            sl.lock();
+            ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num());
+            sl.unlock();
 
-            bOk = (m_phttpsessionServer = Application.http().download(m_phttpsessionServer,(url_in + "." + pszMd5),(dir + file + "." + pszMd5),set)) != NULL;
+            bOk = (psession = Application.http().download(psession,(url_in + "." + pszMd5),(dir + file + "." + pszMd5),set)) != NULL;
             //bOk = Application.http().download((url_in + "." + pszMd5), (dir + file + "." + pszMd5), set);
 //            if(iStatus == 404)
   //             break;
@@ -2141,7 +2161,7 @@ install_begin:;
             if(stringa.add_unique(strPathParam) >= 0)
             {
 
-               m_iTotalGzLen += mapGzLen[strPathParam];
+               m_iTotalGzLen2 += mapGzLen[strPathParam];
 
             }
 
@@ -2214,7 +2234,7 @@ install_begin:;
          {
             if(stringa.add_unique(strPathParam) >= 0)
             {
-               m_iTotalGzLen += mapGzLen[strPathParam];
+               m_iTotalGzLen2 += mapGzLen[strPathParam];
             }
          }
          else
@@ -3971,7 +3991,7 @@ RetryBuildNumber:
       else
       {
          m_dDownloadRate = ::lemon::numeric_array::big_average(m_daDownloadRate);
-         m_dwDownloadRemain = (uint32_t)(((m_iTotalGzLen - m_iGzLen) / 1024.0) / ::lemon::numeric_array::big_average(m_daDownloadRate));
+         m_dwDownloadRemain = (uint32_t)(((m_iTotalGzLen2 - m_iGzLen2) / 1024.0) / ::lemon::numeric_array::big_average(m_daDownloadRate));
       }
    }
 
@@ -4132,11 +4152,11 @@ RetryBuildNumber:
 
    void installer::on_set_scalar(int_scalar_source * psource, e_scalar escalar, int64_t iValue)
    {
-
       if (escalar == scalar_download_size)
       {
          if (m_bProgressModeAppInstall)
          {
+            synch_lock sl(&m_mutexOmp);
 
             int64_t iMax = 0;
             psource->get_scalar_maximum(escalar, iMax);
@@ -4153,8 +4173,8 @@ RetryBuildNumber:
          else
          {
 
-            dlr(m_iGzLen + iValue);
-            set_progress((double)(m_iGzLen + iValue) / (double)m_iProgressTotalGzLen);
+            dlr(m_iGzLen2 + iValue);
+            set_progress((double)(m_iGzLen2 + iValue) / (double)m_iProgressTotalGzLen2);
 
          }
 

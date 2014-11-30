@@ -108,18 +108,6 @@
     <Filter Include="Header Files\math\calculator">
       <UniqueIdentifier>{6341b23d-6013-4016-983f-e6a4a2341377}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\programming">
-      <UniqueIdentifier>{30cc58b3-f31d-478a-b8b9-87e89bbd75e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\programming\dynamic_source">
-      <UniqueIdentifier>{bed0b41b-327e-4bbe-b146-10a009199798}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\programming">
-      <UniqueIdentifier>{cfd5fe12-0f39-4b56-a3db-8fa8689e58b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\programming\dynamic_source">
-      <UniqueIdentifier>{30cb9173-9abd-434e-a22b-cf6712f5c90d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net\hi5">
       <UniqueIdentifier>{393478fc-0a93-4485-a7e2-ec71d7aed97d}</UniqueIdentifier>
     </Filter>
@@ -605,36 +593,6 @@
     <ClInclude Include="math\calculator\numeric_value.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_exit_exception.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_httpd_socket.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_library_class.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_script.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_script_cache.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_script_compiler.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_script_instance.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_script_interface.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_script_manager.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
     <ClInclude Include="database\simpledb\db_long_set.h">
       <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
@@ -736,9 +694,6 @@
     </ClInclude>
     <ClInclude Include="database\databaseuser\list_data.h">
       <Filter>Header Files\database\databaseuser</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_session.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\userfs\userfs.h">
       <Filter>Header Files\filesystem\userfs</Filter>
@@ -1831,33 +1786,6 @@
     <ClCompile Include="graphics\html\html_value.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_exit_exception.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_httpd_socket.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_library_class.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_script.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_script_cache.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_script_compiler.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_script_instance.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_script_interface.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_script_manager.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
@@ -2013,9 +1941,6 @@
     </ClCompile>
     <ClCompile Include="database\databaseuser\database_list_data.cpp">
       <Filter>Source Files\database\databaseuser</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_session.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_userfs.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
