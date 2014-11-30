@@ -245,9 +245,6 @@
     <ClInclude Include="math\value.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
-    <ClInclude Include=".\primitive\primitive_fixed_string.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include=".\primitive\primitive_int_biunique.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -1404,9 +1401,6 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_fixed_string.cpp">
-      <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_int_biunique.cpp">
       <Filter>Source Files\primitive</Filter>

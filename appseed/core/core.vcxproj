@@ -2129,7 +2129,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="primitive\datetime\datetime_clock_interface.h" />
     <ClInclude Include="primitive\datetime\datetime_float_time.h" />
     <ClInclude Include="primitive\datetime\datetime_windows_file_time.h" />
-    <ClInclude Include=".\primitive\primitive_fixed_string.h" />
     <ClInclude Include=".\primitive\primitive_int_biunique.h" />
     <ClInclude Include="primitive\primitive.h" />
     <ClInclude Include=".\primitive\primitive_shared_file.h" />
@@ -2450,7 +2449,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="primitive\datetime\datetime_clock.cpp" />
     <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp" />
     <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp" />
-    <ClCompile Include="primitive\primitive_fixed_string.cpp" />
     <ClCompile Include="primitive\primitive_int_biunique.cpp" />
     <ClCompile Include="primitive\primitive_shared_file.cpp" />
     <ClCompile Include="user\menu\user_menu.cpp" />
