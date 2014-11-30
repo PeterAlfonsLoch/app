@@ -5,9 +5,7 @@ form_view::form_view(::aura::application * papp) :
    ::user::interaction(papp),
    ::user::scroll_view(papp),
    ::user::form_interface(papp),
-   ::user::form(papp),
-   html_form(papp),
-   html_form_view(papp)
+   ::user::form(papp)
 {
    m_pcallback = NULL;
 }
@@ -16,7 +14,7 @@ form_view::form_view(::aura::application * papp) :
 void form_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
 {
 
-   html_form_view::on_update(pSender, lHint, phint);
+   ::user::impact::on_update(pSender, lHint, phint);
    if(phint != NULL)
    {
       form_update_hint * puh = dynamic_cast < form_update_hint * > (phint);

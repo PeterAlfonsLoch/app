@@ -47,7 +47,7 @@ namespace aura
 
       m_pmath                    = canew(math::math(this));
       m_pgeometry                = canew(geometry::geometry(this));
-      m_phtml = NULL;
+//      m_phtml = NULL;
 
 
       m_paurasystem = this;

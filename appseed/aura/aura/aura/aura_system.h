@@ -80,7 +80,7 @@ namespace aura
       string                                       m_strCmdLine;
       int32_t                                      m_nCmdShow;
       size_t                                       m_nSafetyPoolSize;      // ideal size
-      ::html::html *                               m_phtml; // only defined  in core;
+//      ::html::html *                               m_phtml; // only defined  in core;
 
 
       bool                                         m_bDoNotExitIfNoApplications;

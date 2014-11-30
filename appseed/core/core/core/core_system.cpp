@@ -200,14 +200,14 @@ namespace core
 
 
 
-      m_phtml = create_html();
+      //m_phtml = create_html();
 
-      m_phtml->add_ref();
+      //m_phtml->add_ref();
 
-      if(m_phtml == NULL)
-         return false;
+      //if(m_phtml == NULL)
+      //   return false;
 
-      m_phtml->construct(this);
+      //m_phtml->construct(this);
 
 
       m_bProcessInitializeResult = true;
