@@ -64,6 +64,20 @@ void html_document::data_on_after_change(signal_details * pobj)
    UNREFERENCED_PARAMETER(pobj);
 }
 
+
+void html_document::form_document_set_property_set(const property_set & set)
+{
+   get_html_data()->m_propertyset = set;
+}
+
+
+property_set * html_document::form_document_get_property_set()
+{
+
+   return &get_html_data()->m_propertyset;
+
+}
+
 void html_document::OnBeforeNavigate2(::html::data * pdata, var & varFile, uint32_t nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel)
 {
    UNREFERENCED_PARAMETER(pdata);

@@ -902,6 +902,14 @@
     <ClInclude Include="kissfft\kiss_ifft.h" />
     <ClInclude Include="kissfft\kiss_fft_guts.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="userhtml\userhtml.h" />
+    <ClInclude Include="userhtml\userhtml_child_frame.h" />
+    <ClInclude Include="userhtml\userhtml_document.h" />
+    <ClInclude Include="userhtml\userhtml_form.h" />
+    <ClInclude Include="userhtml\userhtml_form_view.h" />
+    <ClInclude Include="userhtml\userhtml_frame.h" />
+    <ClInclude Include="userhtml\userhtml_view.h" />
+    <ClInclude Include="userhtml\userhtml_view_update_hint.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

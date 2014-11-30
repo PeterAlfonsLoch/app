@@ -211,9 +211,9 @@ namespace filemanager
             {
                if(puh->m_strForm == "filemanager\\replace_name_in_file_system.xhtml")
                {
-                  html::elemental * pelemental = dynamic_cast < html::elemental * > (puh->m_pformview->get_html_data()->get_element_by_name("encontrar"));
-                  html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
-                  sp(::user::elemental) ptext =  (pinput->m_pedit);
+                  //html::elemental * pelemental = dynamic_cast < html::elemental * > (puh->m_pformview->get_html_data()->get_element_by_name("encontrar"));
+                  //html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
+                  sp(::user::interaction) ptext = puh->m_pformview->get_child_by_id("encontrar");
                   range range;
                   _001GetSelection(range);
                   if(range.get_item_count() > 0)

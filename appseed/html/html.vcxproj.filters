@@ -24,6 +24,9 @@
     <Filter Include="Header Files\html">
       <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\userhtml">
+      <UniqueIdentifier>{99475578-1ca1-4aca-9b23-e5916df5c7a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="kissfft\kissfft_ifftd.h">
@@ -118,6 +121,30 @@
     </ClInclude>
     <ClInclude Include="html\html.h">
       <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_child_frame.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_document.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_form.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_form_view.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_frame.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_view.h">
+      <Filter>Header Files\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="userhtml\userhtml_view_update_hint.h">
+      <Filter>Header Files\userhtml</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

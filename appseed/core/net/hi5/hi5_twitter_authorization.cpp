@@ -97,20 +97,22 @@ namespace hi5
 
          property_set set(get_app());
 
-         m_pdocAuth->get_html_data()->m_propertyset["application_name"] = System.http().get(strUrl, set);
+         property_set & setDoc = m_pdocAuth->form_document_property_set();
 
-         m_pdocAuth->get_html_data()->m_propertyset["authorization_link"] = m_strAuthorizationUrl;
+         setDoc["application_name"] = System.http().get(strUrl,set);
+
+         setDoc["authorization_link"] = m_strAuthorizationUrl;
 
          if(m_strLicense.is_empty())
          {
 
-            m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Authenticating";
+            setDoc["reason"] = "Authenticating";
 
          }
          else
          {
 
-            m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
+            setDoc["reason"] = "Licensing";
 
          }
          
@@ -121,9 +123,11 @@ namespace hi5
 
          }
 
-         ::html::elemental * pelemental = m_pdocAuth->get_html_data()->get_element_by_id("authorization_link");
+         //::html::elemental * pelemental = m_pdocAuth->get_html_data()->get_element_by_id("authorization_link");
 
-         ::html::impl::text * ptext = dynamic_cast < ::html::impl::text * > (pelemental->m_pimpl);
+         //::html::impl::text * ptext = dynamic_cast < ::html::impl::text * > (pelemental->m_pimpl);
+
+         sp(::user::interaction) ptext = m_pdocAuth->get_form()->get_child_by_id("authorization_link");
 
          ptext->m_strLink = "ext://" + m_strAuthorizationUrl;
 

@@ -67,7 +67,7 @@ bool dialog::show(const char * pszMatter, property_set  * ppropertyset)
    if(ppropertyset != NULL)
    {
 
-      m_pdocument->get_html_data()->m_propertyset = *ppropertyset;
+      m_pdocument->form_document_set_property_set(*ppropertyset);
 
    }
 
@@ -79,7 +79,7 @@ bool dialog::show(const char * pszMatter, property_set  * ppropertyset)
 
    on_position_parent_frame();
 
-   on_show(m_strMatter, &m_pdocument->get_html_data()->m_propertyset);
+   on_show(m_strMatter, m_pdocument->form_document_get_property_set());
 
    m_pframe->RunModalLoop();
 

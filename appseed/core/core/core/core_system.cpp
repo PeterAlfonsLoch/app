@@ -294,8 +294,8 @@ namespace core
       }
 #endif
 
-      if(!m_phtml->initialize())
-         return false;
+      //if(!m_phtml->initialize())
+      //   return false;
 
 
 

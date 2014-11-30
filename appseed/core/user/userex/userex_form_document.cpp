@@ -32,3 +32,22 @@ void form_document::OnBeforeNavigate2(::html::data * pdata, var & varFile, uint3
 }
 
 
+void form_document::form_document_set_property_set(const property_set & set)
+{
+   UNREFERENCED_PARAMETER(set);
+}
+
+
+property_set * form_document::form_document_get_property_set()
+{
+
+   return NULL;
+
+}
+
+property_set & form_document::form_document_property_set()
+{
+
+   return *form_document_get_property_set();
+
+}
