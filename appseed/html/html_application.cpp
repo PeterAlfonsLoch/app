@@ -1,14 +1,6 @@
 #include "framework.h"
-#include "base/net/net_sockets.h"
-#include "charguess.h"
 
 
-
-#ifdef WINDOWS
-#undef new
-//#include <GdiPlus.h>
-#define new AURA_NEW
-#endif
 
 
 
@@ -16,11 +8,11 @@ namespace html
 {
 
 
-   system::system(::aura::application * papp):
+   application::application(::aura::application * papp):
       ::element(papp),
-      ::aura::system(papp),
-      ::axis::system(papp),
-      ::base::system(papp),
+      ::aura::application(papp),
+      ::axis::application(papp),
+      ::base::application(papp),
       m_mutexDelete(this),
       m_mutex(this),
       m_emaildepartament(this)
@@ -100,52 +92,52 @@ namespace html
 
          m_prunstartinstaller       = NULL;
          m_bLicense                 = false;
-         m_strAppName               = "system";
-         m_strInstallToken          = "system";
+         m_strAppName               = "application";
+         m_strInstallToken          = "application";
 
 
       }
 
 
-   system::~system()
+   application::~application()
    {
 
    }
 
 
 
-   void system::construct(const char * pszAppId)
+   void application::construct(const char * pszAppId)
    {
 
       ::core::application::construct(pszAppId);
 
-      ::base::system::construct(pszAppId);
+      ::base::application::construct(pszAppId);
 
    }
 
 
 
 
-   void system::discard_to_factory(sp(element) pca)
+   void application::discard_to_factory(sp(element) pca)
    {
       UNREFERENCED_PARAMETER(pca);
    }
 
 
-   bool system::is_system()
+   bool application::is_system()
    {
 
       return true;
 
    }
 
-   bool system::initialize2()
+   bool application::initialize2()
    {
 
       if(!::core::application::initialize2())
          return false;
 
-      if(!::base::system::initialize2())
+      if(!::base::application::initialize2())
          return false;
 
       return true;
@@ -153,7 +145,7 @@ namespace html
    }
 
 
-   bool system::InitApplication()
+   bool application::InitApplication()
    {
 
       if(m_bInitApplication)
@@ -168,7 +160,7 @@ namespace html
    }
 
 
-   bool system::process_initialize()
+   bool application::process_initialize()
    {
 
 
@@ -182,7 +174,7 @@ namespace html
       if(!::core::application::process_initialize())
          return false;
 
-      if(!::base::system::process_initialize())
+      if(!::base::application::process_initialize())
          return false;
 
 
@@ -215,7 +207,7 @@ namespace html
    }
 
 
-   bool system::initialize()
+   bool application::initialize()
    {
 
       if(!m_visual.initialize())
@@ -243,13 +235,13 @@ namespace html
 
 
 
-   bool system::initialize1()
+   bool application::initialize1()
    {
 
       if(!directrix()->m_varTopicQuery.has_property("install")
          && !directrix()->m_varTopicQuery.has_property("uninstall"))
       {
-         m_pfnVerb = &system::common_verb;
+         m_pfnVerb = &application::common_verb;
       }
 
       m_visual.construct(this);
@@ -268,7 +260,7 @@ namespace html
          return false;
 
 
-      //if(Session.fontopus()->create_system_user("system") == NULL)
+      //if(Session.fontopus()->create_system_user("application") == NULL)
       // return false;
 
 
@@ -304,7 +296,7 @@ namespace html
    }
 
 
-   bool system::find_applications_from_cache()
+   bool application::find_applications_from_cache()
    {
 
       m_spfilehandler->m_sptree->remove_all();
@@ -328,7 +320,7 @@ namespace html
    }
 
 
-   ::filehandler::handler & system::filehandler()
+   ::filehandler::handler & application::filehandler()
    {
 
       return *m_spfilehandler;
@@ -338,7 +330,7 @@ namespace html
 
 
 
-   bool system::find_applications_to_cache()
+   bool application::find_applications_to_cache()
    {
 
       /*      m_spfilehandler(new ::core::filehandler::handler(this));*/
@@ -397,7 +389,7 @@ namespace html
 
    }
 
-   bool system::map_application_library(const char * pszLibrary)
+   bool application::map_application_library(const char * pszLibrary)
    {
 
       ::aura::library library(this,0, NULL);
@@ -492,7 +484,7 @@ namespace html
 
 
 
-   bool system::initialize3()
+   bool application::initialize3()
    {
 
       if(!::core::application::initialize3())
@@ -506,10 +498,10 @@ namespace html
       return true;
    }
 
-   bool system::initialize_instance()
+   bool application::initialize_instance()
    {
 
-      if(!::base::system::initialize_instance())
+      if(!::base::application::initialize_instance())
       {
          return false;
       }
@@ -537,7 +529,7 @@ namespace html
    }
 
 
-   bool system::bergedge_start()
+   bool application::bergedge_start()
    {
       return true;
    }
@@ -546,7 +538,7 @@ namespace html
 
 
 
-   int32_t system::exit_instance()
+   int32_t application::exit_instance()
    {
 
       __wait_threading_count(::millis((5000) * 8));
@@ -559,7 +551,7 @@ namespace html
       try
       {
 
-         iRet = ::base::system::exit_instance();
+         iRet = ::base::application::exit_instance();
 
       }
       catch(...)
@@ -615,7 +607,7 @@ namespace html
    }
 
    /*
-   sp(element) system::on_alloc(::aura::application * papp, sp(type) & info)
+   sp(element) application::on_alloc(::aura::application * papp, sp(type) & info)
    {
    /*string str;
    str.Format("Could not alloc %s", info.name());
@@ -629,7 +621,7 @@ namespace html
    */
 
 
-   sp(::aura::session) system::query_session(index iEdge)
+   sp(::aura::session) application::query_session(index iEdge)
    {
 
       sp(::core::platform) pbergedge = NULL;
@@ -649,7 +641,7 @@ namespace html
    }
 
 
-   sp(::core::platform) system::get_session(index iEdge,application_bias * pbiasCreation)
+   sp(::core::platform) application::get_session(index iEdge,application_bias * pbiasCreation)
    {
       sp(::core::platform) pbergedge = NULL;
       if(m_pbergedgemap == NULL)
@@ -666,24 +658,24 @@ namespace html
    }
 
 
-   ::core::history & system::hist()
+   ::core::history & application::hist()
    {
       return *m_phistory;
    }
 
 
-   bool system::set_history(::core::history * phistory)
+   bool application::set_history(::core::history * phistory)
    {
       m_phistory = phistory;
       return true;
    }
 
-   ::core::stra & system::stra()
+   ::core::stra & application::stra()
    {
       return m_stra;
    }
 
-   ::core::service & system::service()
+   ::core::service & application::service()
    {
       return m_service;
    }
@@ -691,12 +683,12 @@ namespace html
 
 
 
-   bool system::finalize()
+   bool application::finalize()
    {
 
       bool bOk = true;
 
-      if(!::base::system::finalize())
+      if(!::base::application::finalize())
       {
 
          bOk = false;
@@ -709,7 +701,7 @@ namespace html
 
 
 
-   void system::on_allocation_error(::aura::application * papp,sp(type) info)
+   void application::on_allocation_error(::aura::application * papp,sp(type) info)
    {
 
       UNREFERENCED_PARAMETER(papp);
@@ -720,7 +712,7 @@ namespace html
 
 
 
-   bool system::wait_twf(uint32_t dwTimeOut)
+   bool application::wait_twf(uint32_t dwTimeOut)
    {
       if(dwTimeOut > 1984)
          dwTimeOut = 1984;
@@ -739,7 +731,7 @@ namespace html
       }
    }
 
-   void system::on_request(sp(::create_context) pcreatecontext)
+   void application::on_request(sp(::create_context) pcreatecontext)
    {
 
       sp(::core::platform) psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge,pcreatecontext->m_spCommandLine->m_pbiasCreate);
@@ -764,7 +756,7 @@ namespace html
    }
 
 
-   bool system::sync_load_url(string & str,const char * lpszUrl,::fontopus::user * puser,::http::cookies * pcookies)
+   bool application::sync_load_url(string & str,const char * lpszUrl,::fontopus::user * puser,::http::cookies * pcookies)
    {
       string filename = System.file().time_square(get_app());
       property_set set;
@@ -872,30 +864,30 @@ namespace html
       return bOk;*/
    }
 
-   ::core::patch & system::patch()
+   ::core::patch & application::patch()
    {
       return m_patch;
    }
 
 
-   ::net::email_departament & system::email()
+   ::net::email_departament & application::email()
    {
       return m_emaildepartament;
    }
 
-   ::http::system & system::http()
+   ::http::application & application::http()
    {
       return m_httpsystem;
    }
 
 
 
-   bool system::base_support()
+   bool application::base_support()
    {
       return true;
    }
 
-   index system::get_new_bergedge(application_bias * pbiasCreation)
+   index application::get_new_bergedge(application_bias * pbiasCreation)
    {
       index iNewEdge = m_iNewEdge;
       sp(::core::platform) pbergedge;
@@ -911,7 +903,7 @@ namespace html
 
 
 
-   uint32_t system::guess_code_page(const string & str)
+   uint32_t application::guess_code_page(const string & str)
    {
 
       return charguess(str)();
@@ -920,7 +912,7 @@ namespace html
 
 
 
-   ::user::document * system::place_hold(::user::interaction * pui)
+   ::user::document * application::place_hold(::user::interaction * pui)
    {
 
 
@@ -937,12 +929,12 @@ namespace html
 
 
 
-   bool system::on_install()
+   bool application::on_install()
    {
 
       try
       {
-         xxdebug_box("system::on_install","system::on_install",0);
+         xxdebug_box("application::on_install","application::on_install",0);
          if(!::core::application::on_install())
             return false;
 
@@ -977,7 +969,7 @@ namespace html
 
 
 
-   string system::get_host_location_url()
+   string application::get_host_location_url()
    {
 
       return "";
@@ -985,7 +977,7 @@ namespace html
    }
 
 
-   bool system::add_library(::aura::library * plibrary)
+   bool application::add_library(::aura::library * plibrary)
    {
 
       m_libraryptra.add(plibrary);
@@ -1007,7 +999,7 @@ namespace html
 
    
 
-   void system::post_fork_uri(const char * pszUri,application_bias * pbiasCreate)
+   void application::post_fork_uri(const char * pszUri,application_bias * pbiasCreate)
    {
 
       command()->add_fork_uri(pszUri,pbiasCreate);
@@ -1044,7 +1036,7 @@ namespace html
 
 #ifdef METROWIN
 
-   bool system::GetWindowRect(LPRECT lprect)
+   bool application::GetWindowRect(LPRECT lprect)
    {
 
       Windows::Foundation::Rect rect;
@@ -1069,7 +1061,7 @@ namespace html
 #endif
 
 
-   bool system::set_main_init_data(::aura::main_init_data * pdata)
+   bool application::set_main_init_data(::aura::main_init_data * pdata)
    {
 
       if(pdata != NULL)
@@ -1131,13 +1123,13 @@ namespace html
    }
 
 
-   /*   sp(::command_thread) system::command_thread()
+   /*   sp(::command_thread) application::command_thread()
    {
    return m_pcommandthread;
    }
    */
 
-   /*   ::system::system * system::get_cube()
+   /*   ::application::application * application::get_cube()
    {
 
    return this;
@@ -1146,7 +1138,7 @@ namespace html
    */
 
 
-   /*   sp(::core::platform) system::get_session(index iEdge, application_bias * pbiasCreation)
+   /*   sp(::core::platform) application::get_session(index iEdge, application_bias * pbiasCreation)
    {
    sp(::core::platform) psession = NULL;
    if(m_pbergedgemap == NULL)
@@ -1163,26 +1155,26 @@ namespace html
    }
 
 
-   sp(platform::document) system::get_platform(index iEdge, application_bias * pbiasCreation)
+   sp(platform::document) application::get_platform(index iEdge, application_bias * pbiasCreation)
    {
    sp(::core::platform) pbergedge = get_session(iEdge, pbiasCreation);
    return pbergedge->get_platform();
    }
 
-   sp(nature::document) system::get_nature(index iEdge, application_bias * pbiasCreation)
+   sp(nature::document) application::get_nature(index iEdge, application_bias * pbiasCreation)
    {
    sp(::core::platform) pbergedge = get_session(iEdge, pbiasCreation);
    return pbergedge->get_nature();
    }
 
-   sp(::aura::application) system::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   sp(::aura::application) application::application_get(index iEdge, const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
    sp(::core::platform) pbergedge = get_session(iEdge, pbiasCreate);
    return pbergedge->application_get(pszType, pszId, bCreate, bSynch, pbiasCreate);
    }
    */
 
-   void system::assert_valid() const
+   void application::assert_valid() const
    {
 
       application::assert_valid();
@@ -1191,7 +1183,7 @@ namespace html
    }
 
 
-   void system::dump(dump_context & context) const
+   void application::dump(dump_context & context) const
    {
 
       application::dump(context);
@@ -1202,17 +1194,17 @@ namespace html
 
 
 
-   int32_t system::main()
+   int32_t application::main()
    {
 
-      int iRet = ::base::system::main();
+      int iRet = ::base::application::main();
 
       return iRet;
 
    }
 
 
-   spa(::core::platform) & system::planesessionptra()
+   spa(::core::platform) & application::planesessionptra()
    {
 
       return m_planesessionptra;
@@ -1241,18 +1233,18 @@ uint32_t _thread_proc_start_core_system_main(void * p);
 uint32_t _thread_proc_start_core_system_main(void * p)
 {
 
-   ::base::system * psystem = (::base::system *)p;
+   ::base::application * psystem = (::base::application *)p;
 
-   ::core::system * pplanesystem = dynamic_cast < ::core::system * > (psystem);
+   ::core::application * pplanesystem = dynamic_cast < ::core::application * > (psystem);
 
    ::set_thread(psystem);
 
-   return pplanesystem->::core::system::main();
+   return pplanesystem->::core::application::main();
 
 }
 
 
-CLASS_DECL_HTML void __start_core_system_main(::base::system * psystem)
+CLASS_DECL_HTML void __start_core_system_main(::base::application * psystem)
 {
 
    ::create_thread(NULL,0,&_thread_proc_start_core_system_main,(LPVOID)psystem,0,0);

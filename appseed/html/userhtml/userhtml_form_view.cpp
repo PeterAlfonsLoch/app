@@ -84,10 +84,6 @@ void html_form_view::_001OnInitialUpdate(signal_details * pobj)
 
    html_form::_001OnInitialUpdate(pobj);
 
-   get_document()->get_html_data()->m_pform = pview;
-
-   get_document()->get_html_data()->m_pform->m_pcallback = pcallback;
-
 
 }
 
@@ -244,5 +240,5 @@ void html_form_view::_001OnKillFocus(signal_details * pobj)
 
 html_document * html_form_view::get_document()
 {
-   return (html_document *) html_form::get_document();
+   return dynamic_cast < html_document * > (html_form::get_document());
 }
