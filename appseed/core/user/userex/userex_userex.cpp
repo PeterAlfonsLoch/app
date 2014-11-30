@@ -557,8 +557,8 @@ namespace userex
 
       pdoc = (m_ptemplateForm->open_document_file(createcontext));
       pview = pdoc->get_typed_view < form_view >();
-      pdoc->get_html_data()->m_pform = pview;
-      pdoc->get_html_data()->m_pform->m_pcallback = pcallback;
+      pdoc->form_document_set_view(pview);
+      pdoc->form_document_set_callback(pcallback);
       return pdoc;
    }
 
@@ -603,9 +603,9 @@ namespace userex
       }
 
       pdoc = (m_ptemplateForm->open_document_file(createcontext));
-      sp(::user::impact) pview = pdoc->get_view(0);
-      pdoc->get_html_data()->m_pform =  (pview);
-      pdoc->get_html_data()->m_pform->m_pcallback = pcallback;
+      sp(::form_view) pview = pdoc->get_view(0);
+      pdoc->form_document_set_view(pview);
+      pdoc->form_document_set_callback(pcallback);
       return pdoc;
    }
 
@@ -627,8 +627,8 @@ namespace userex
 
       pdoc = (m_ptemplateChildForm->open_document_file(createcontext));
       pview = pdoc->get_typed_view < form_view >();
-      pdoc->get_html_data()->m_pform = pview;
-      pdoc->get_html_data()->m_pform->m_pcallback = pcallback;
+      pdoc->form_document_set_view(pview);
+      pdoc->form_document_set_callback(pcallback);
       return pdoc;
    }
 
@@ -645,9 +645,9 @@ namespace userex
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       pdoc = (m_ptemplateChildForm->open_document_file(createcontext));
-      sp(::user::impact) pview = pdoc->get_view(0);
-      pdoc->get_html_data()->m_pform =  (pview);
-      pdoc->get_html_data()->m_pform->m_pcallback = pcallback;
+      sp(::form_view) pview = pdoc->get_view(0);
+      pdoc->form_document_set_view(pview);
+      pdoc->form_document_set_callback(pcallback);
       return pdoc;
    }
 

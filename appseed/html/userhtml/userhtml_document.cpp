@@ -4,7 +4,8 @@
 html_document::html_document(::aura::application * papp) :
    element(papp),
    ::data::data_container_base(papp),
-   ::user::document(papp)
+   ::user::document(papp),
+   form_document(papp)
 {
 
 
@@ -238,6 +239,23 @@ sp(::user::interaction) html_document::get_frame()
 
 }
 
+
+
+
+void html_document::form_document_set_view(form_view * pview)
+{
+
+   get_html_data()->m_pform = pview;
+
+}
+
+
+void html_document::form_document_set_callback(form_callback * pcallback)
+{
+
+   get_html_data()->m_pform->m_pcallback = pcallback;
+
+}
 
 
 

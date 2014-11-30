@@ -893,14 +893,9 @@
     <ClInclude Include="graphics\html_style_sheet_array.h" />
     <ClInclude Include="graphics\html_tag.h" />
     <ClInclude Include="graphics\html_value.h" />
+    <ClInclude Include="hi5\hi5_twitter_authorization.h" />
     <ClInclude Include="html\html.h" />
     <ClInclude Include="html_application.h" />
-    <ClInclude Include="kissfft\kissfft.h" />
-    <ClInclude Include="kissfft\kissfft_fftd.h" />
-    <ClInclude Include="kissfft\kissfft_ifftd.h" />
-    <ClInclude Include="kissfft\kiss_fft.h" />
-    <ClInclude Include="kissfft\kiss_ifft.h" />
-    <ClInclude Include="kissfft\kiss_fft_guts.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="userhtml\userhtml.h" />
     <ClInclude Include="userhtml\userhtml_child_frame.h" />
@@ -937,6 +932,7 @@
     <ClCompile Include="graphics\html_style_sheet_array.cpp" />
     <ClCompile Include="graphics\html_tag.cpp" />
     <ClCompile Include="graphics\html_value.cpp" />
+    <ClCompile Include="hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="html_application.cpp" />
     <ClCompile Include="userhtml\userhtml_child_frame.cpp" />
     <ClCompile Include="userhtml\userhtml_document.cpp" />
@@ -945,9 +941,6 @@
     <ClCompile Include="userhtml\userhtml_frame.cpp" />
     <ClCompile Include="userhtml\userhtml_view.cpp" />
     <ClCompile Include="userhtml\userhtml_view_update_hint.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="math.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\aura\aura.vcxproj">
@@ -962,6 +955,9 @@
     <ProjectReference Include="..\core\core.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="html.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

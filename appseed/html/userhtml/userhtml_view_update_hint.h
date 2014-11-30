@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_CORE html_view_update_hint : public object
+class CLASS_DECL_HTML html_view_update_hint : public object
 {
    
 public:

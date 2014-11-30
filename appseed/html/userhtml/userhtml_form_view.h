@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_CORE html_form_view :
+class CLASS_DECL_HTML html_form_view :
    virtual public html_form
 {
 public:
@@ -32,6 +32,8 @@ public:
    DECL_GEN_SIGNAL(_001OnSetFocus);
    DECL_GEN_SIGNAL(_001OnKillFocus);
 
+
+   html_document * get_document();
 
 };
 

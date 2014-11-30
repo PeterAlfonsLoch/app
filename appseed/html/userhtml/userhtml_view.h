@@ -3,7 +3,7 @@
 class html_document;
 
 
-class CLASS_DECL_CORE html_view :
+class CLASS_DECL_HTML html_view :
    virtual public html_form
 {
 public:

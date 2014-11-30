@@ -123,11 +123,11 @@ namespace hi5
 
          }
 
-         //::html::elemental * pelemental = m_pdocAuth->get_html_data()->get_element_by_id("authorization_link");
+         ::html::elemental * pelemental = m_pdocAuth->get_html_data()->get_element_by_id("authorization_link");
 
-         //::html::impl::text * ptext = dynamic_cast < ::html::impl::text * > (pelemental->m_pimpl);
+         ::html::impl::text * ptext = dynamic_cast < ::html::impl::text * > (pelemental->m_pimpl);
 
-         sp(::user::interaction) ptext = m_pdocAuth->get_form()->get_child_by_id("authorization_link");
+         //sp(::user::interaction) ptext = m_pdocAuth->get_html_data()->get_child_by_id("authorization_link");
 
          ptext->m_strLink = "ext://" + m_strAuthorizationUrl;
 

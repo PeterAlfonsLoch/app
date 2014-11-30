@@ -8,7 +8,7 @@ namespace hi5
    namespace twitter
    {
 
-      class CLASS_DECL_CORE authorization :
+      class CLASS_DECL_HTML authorization :
          virtual public ::user::form_callback,
          virtual public ::user::view_creator,
          virtual public ::user::tab_callback,
@@ -19,13 +19,13 @@ namespace hi5
 
          string                                    m_strPin;
          string                                    m_strAuthorizationUrl;
-         int32_t                                       m_iView;
-         sp(::user::single_document_template)    m_ptemplatePane;
-         sp(::form_document)                           m_pdoc;
-         sp(::userex::pane_tab_view)                   m_ptabview;
-         sp(::form_document)                           m_pdocAuth;
-         sp(::form_document)                           m_pdocMessage;
-         sp(form_view)                               m_pviewAuth;
+         int32_t                                   m_iView;
+         sp(::user::single_document_template)      m_ptemplatePane;
+         sp(::form_document)                       m_pdoc;
+         sp(::userex::pane_tab_view)               m_ptabview;
+         sp(::html_document)                       m_pdocAuth;
+         sp(::html_document)                       m_pdocMessage;
+         sp(form_view)                             m_pviewAuth;
          bool                                      m_bAuth;
          string                                    m_strForm;
          string                                    m_strLicense;

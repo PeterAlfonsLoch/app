@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_CORE html_child_frame : public simple_child_frame
+class CLASS_DECL_HTML html_child_frame : public simple_child_frame
 {
    // // DECLARE_DYNCREATE(html_child_frame)
 public:

@@ -31,19 +31,16 @@ namespace html
 CLASS_DECL_HTML void trim001(string & str);
 
 
-#include "html_lite/html_lite.h"
+#include "html/html_lite/html_lite.h"
 
 
 #include "html_enum.h"
 
 
-#include "html_file.h"
-
-
 #include "html_html.h"
 
 
-#include "core/graphics/html/html2.h"
+#include "graphics/html2.h"
 
 
 #include "html_form.h"

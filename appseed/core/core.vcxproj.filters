@@ -635,9 +635,6 @@
     <ClInclude Include="net\hi5\hi5.h">
       <Filter>Header Files\net\hi5</Filter>
     </ClInclude>
-    <ClInclude Include="net\hi5\hi5_twitter_authorization.h">
-      <Filter>Header Files\net\hi5</Filter>
-    </ClInclude>
     <ClInclude Include="net\hi5\hi5_twit.h">
       <Filter>Header Files\net\hi5</Filter>
     </ClInclude>
@@ -1587,9 +1584,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\file_size_count_writer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="net\hi5\hi5_twitter_authorization.cpp">
-      <Filter>Source Files\net\hi5</Filter>
     </ClCompile>
     <ClCompile Include="net\net_email_departament.cpp">
       <Filter>Source Files\net</Filter>

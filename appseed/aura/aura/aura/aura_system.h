@@ -89,6 +89,7 @@ namespace aura
 
       bool                                         m_bAdvancedGUI;
 
+      ::html::html *                               m_phtml; // only defined and set in html library/component
 
 
 

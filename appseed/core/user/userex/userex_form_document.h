@@ -20,6 +20,10 @@ public:
    virtual property_set * form_document_get_property_set();
    virtual property_set & form_document_property_set();
 
+   virtual void form_document_set_view(form_view * pview);
+   virtual void form_document_set_callback(form_callback * pcallback);
+
+
 };
 
 

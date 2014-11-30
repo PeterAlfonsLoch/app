@@ -6,7 +6,8 @@ html_form::html_form(::aura::application * papp) :
    ::user::interaction(papp),
    ::user::scroll_view(papp),
    ::user::form_interface(papp),
-   ::user::form(papp)
+   ::user::form(papp),
+   form_view(papp)
 {
 
    m_phtmlform = new html::form();

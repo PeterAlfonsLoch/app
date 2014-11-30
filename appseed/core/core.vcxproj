@@ -2064,7 +2064,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\hi5\hi5_twit.h" />
     <ClInclude Include="net\hi5\hi5.h" />
     <ClInclude Include="net\hi5\hi5_oauth.h" />
-    <ClInclude Include="net\hi5\hi5_twitter_authorization.h" />
     <ClInclude Include="net\net_email_departament.h" />
     <ClInclude Include="net\usernet\usernet.h" />
     <ClInclude Include="net\usernet\usernet_network_configuration.h" />
@@ -2336,7 +2335,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="math\_integer.cpp" />
     <ClCompile Include="net\hi5\hi5_twit.cpp" />
     <ClCompile Include="net\hi5\hi5_oauth.cpp" />
-    <ClCompile Include="net\hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="net\net_email_departament.cpp" />
     <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
     <ClCompile Include="primitive\datetime\datetime_float_time.cpp" />

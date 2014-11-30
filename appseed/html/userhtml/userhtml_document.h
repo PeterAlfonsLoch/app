@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_CORE html_document :
+class CLASS_DECL_HTML html_document :
    virtual public ::form_document
 {
 public:
@@ -25,6 +25,9 @@ public:
    virtual void form_document_set_property_set(const property_set & set);
    virtual property_set * form_document_get_property_set();
 
+   virtual void form_document_set_view(form_view * pview);
+   virtual void form_document_set_callback(form_callback * pcallback);
+
 #ifdef DEBUG
    virtual void assert_valid() const;
    virtual void dump(dump_context & dumpcontext) const;
@@ -38,6 +41,9 @@ public:
    virtual void soft_reload();
 
    virtual sp(::user::interaction) get_frame();
+
+
+
 
 
 };

@@ -9,9 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\kissfft">
-      <UniqueIdentifier>{e9c79601-1523-4115-b00b-cab433335ec4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\userhtml">
       <UniqueIdentifier>{6001a4cb-f3c7-42ba-9be8-86ae960dfd8c}</UniqueIdentifier>
     </Filter>
@@ -27,28 +24,16 @@
     <Filter Include="Header Files\userhtml">
       <UniqueIdentifier>{99475578-1ca1-4aca-9b23-e5916df5c7a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\hi5">
+      <UniqueIdentifier>{92c5ef0e-7a50-47aa-bf74-b5285a18c4da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hi5">
+      <UniqueIdentifier>{6a0a02d3-cd70-48a5-9c3f-9b75d8b2058b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="kissfft\kissfft_ifftd.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kissfft_fftd.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kissfft.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kiss_ifft.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kiss_fft.h">
-      <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kissfft\kiss_fft_guts.h">
-      <Filter>Header Files\kissfft</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html.h">
       <Filter>Header Files\graphics</Filter>
@@ -146,6 +131,9 @@
     <ClInclude Include="userhtml\userhtml_view_update_hint.h">
       <Filter>Header Files\userhtml</Filter>
     </ClInclude>
+    <ClInclude Include="hi5\hi5_twitter_authorization.h">
+      <Filter>Header Files\hi5</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -214,9 +202,12 @@
     <ClCompile Include="userhtml\userhtml_view_update_hint.cpp">
       <Filter>Source Files\userhtml</Filter>
     </ClCompile>
+    <ClCompile Include="hi5\hi5_twitter_authorization.cpp">
+      <Filter>Source Files\hi5</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="math.def">
+    <None Include="html.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

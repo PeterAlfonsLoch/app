@@ -51,3 +51,24 @@ property_set & form_document::form_document_property_set()
    return *form_document_get_property_set();
 
 }
+
+
+void form_document::form_document_set_view(form_view * pview)
+{
+
+   UNREFERENCED_PARAMETER(pview);
+
+}
+
+
+void form_document::form_document_set_callback(form_callback * pcallback)
+{
+
+   UNREFERENCED_PARAMETER(pcallback);
+
+}
+
+
+
+
+

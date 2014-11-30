@@ -12,3 +12,9 @@
 
 
 #include "html/graphics/html.h"
+
+
+#include "html/userhtml/userhtml.h"
+
+
+#include "html/hi5/hi5_twitter_authorization.h"

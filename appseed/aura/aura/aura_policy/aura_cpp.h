@@ -368,6 +368,12 @@ class thread_impl;
 typedef smart_pointer < thread_impl > thread_impl_sp;
 
 
+namespace html
+{
+
+   class html; // defined and set by html library/component
+
+}
 
 
 #define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);

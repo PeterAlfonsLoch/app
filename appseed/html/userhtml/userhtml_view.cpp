@@ -27,7 +27,8 @@ html_view::html_view(::aura::application * papp) :
    ::user::scroll_view(papp),
    ::user::form_interface(papp),
    ::user::form(papp),
-   html_form(papp)
+   html_form(papp),
+   form_view(papp)
 {
 }
 
