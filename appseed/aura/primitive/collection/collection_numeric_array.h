@@ -70,6 +70,15 @@ public:
    TYPE pop_max();
    TYPE pop_max_last_add_up(TYPE tLastAddUp);
 
+   TYPE get_total()
+   {
+      TYPE t = ::numeric_info < TYPE >:: get_null_value();
+      for(index i = 0; i < this->get_count(); i++)
+      {
+         t+= this->element_at(i);
+      }
+      return t;
+   }
 
    TYPE pop_to();
 
@@ -95,6 +104,9 @@ public:
 
    numeric_array unique() const;
    void unique();
+
+
+
 
 
 //   void quick_sort(bool bAsc = true);

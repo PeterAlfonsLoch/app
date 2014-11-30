@@ -60,8 +60,8 @@ namespace install
       uint32_t          m_dwInstallStartTime;
 
       bool              m_bProgressModeAppInstall;
-      double            m_dAppInstallProgressStart;
-      double            m_dAppInstallProgressEnd;
+      double            m_dAppInstallFileCount;
+      //double            m_dAppInstallProgressEnd;
 
       
 #ifdef WINDOWS
@@ -130,6 +130,12 @@ namespace install
       int64_t           m_iTotalGzLen2;
       int64_t           m_iProgressTotalGzLen2;
       int64_t           m_iGzLen2;
+
+      int64_array       m_iaProgress;
+      double_array      m_daProgress;
+      double            m_dAppInstallProgressBase;
+
+
       int32_t           m_iStyle;
       string            m_strLogin;
       string            m_strSessid;
@@ -145,7 +151,7 @@ namespace install
       stringa           m_straHttpFailure;
 
       ::sockets::http_session * m_phttpsession;
-      comparable_array <::sockets::http_session * > m_httpsessionptra;
+      ptr_array <::sockets::http_session > m_httpsessionptra;
       mutex m_mutexOmp;
 
       installer(::aura::application * papp);

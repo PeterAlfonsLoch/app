@@ -45,7 +45,9 @@ namespace install
       string               m_strVersion;
       string_to_string     m_strVersionLatestBuildNumber;
 
-      ::sockets::http_session * m_phttpsession;
+
+      ptr_array <::sockets::http_session > m_httpsessionptra;
+      //mutex m_mutexOmp;
 
 
       install(::aura::application * papp);

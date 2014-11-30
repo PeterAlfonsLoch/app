@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include <omp.h>
 
 #if defined(LINUX)
 
@@ -45,7 +45,6 @@ namespace install
 
 #endif
 
-         m_phttpsession = NULL;
 
 
       }
@@ -1490,13 +1489,36 @@ namespace install
 
 #endif
 
+            single_lock sl(pinstaller != NULL ? &pinstaller->m_mutexOmp : NULL);
 
+
+            {
+
+               if(pinstaller != NULL)
+               {
+
+                  pinstaller->m_daProgress.remove_all();
+                  pinstaller->m_daProgress.add(0.0);
+                  pinstaller->m_dAppInstallFileCount = straFile.get_size();
+                  pinstaller->m_dAppInstallProgressBase = 0.0;
+
+               }
+            }
+
+#pragma omp parallel for
             for(index iFile = 0; iFile < straFile.get_size(); iFile++)
             {
 
                string strFile = straFile[iFile];
 
                string strDownload = System.dir().path(System.dir().name(strPath),strFile);
+
+               if(pinstaller != NULL)
+               {
+                  sl.lock();
+                  pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1)  = 0.0;
+                  sl.unlock();
+               }
 
                if(!file_exists_dup(strDownload) || System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) != 0)
                {
@@ -1512,8 +1534,6 @@ namespace install
                   set["disable_ca2_sessid"] = true;
 
                   set["raw_http"] = true;
-
-                  double dRate = 1.0 / (straFile.get_count() * 3.0);
 
                   if(pinstaller != NULL)
                   {
@@ -1532,44 +1552,27 @@ namespace install
 
                   bFileNice = false;
 
-                  while(iRetry < 8)
+
+                  sl.lock();
+                  ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
+                  sl.unlock();
+
+
+                  while(iRetry < 8 && !bFileNice)
                   {
 
-                     if(pinstaller != NULL)
-                     {
 
-                        pinstaller->m_dAppInstallProgressStart = iFile * (dRate  * 3.0);
-                        pinstaller->m_dAppInstallProgressEnd = iFile * (dRate * 3.0) + dRate;
 
-                     }
 
-                     if((m_phttpsession = Application.http().download(m_phttpsession, strUrl,strDownload + ".bz",set)) != NULL)
+                     if((psession = Application.http().download(psession,strUrl,strDownload + ".bz",set)) != NULL)
                      {
 
                         System.compress().unbz(get_app(),strDownload,strDownload + ".bz");
 
-                        if(pinstaller != NULL)
-                        {
-
-                           pinstaller->set_progress(iFile * (dRate * 3.0) + (dRate * 2.0));
-
-                        }
-
                         if(file_exists_dup(strDownload) && System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) == 0)
                         {
 
-                           if(pinstaller != NULL)
-                           {
-
-                              pinstaller->set_progress(iFile * (dRate * 3.0) + (dRate * 2.0));
-
                               bFileNice = true;
-
-                              break;
-
-
-
-                           }
 
                         }
 
@@ -1585,11 +1588,32 @@ namespace install
 
                      // failed by too much retry in any number of the files already downloaded :
                      // so, return failure (no eligible app.install.exe file).
-                     return "";
+                     //return "";
+
+                  }
+                  else
+                  {
+                     if(pinstaller != NULL)
+                     {
+                        sl.lock();
+                        pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1)  = 0.0;
+                        pinstaller->m_dAppInstallProgressBase += 1.0;
+                        sl.unlock();
+                     }
 
                   }
 
 
+               }
+               else
+               {
+                  if(pinstaller != NULL)
+                  {
+                     sl.lock();
+                     pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1)  = 0.0;
+                     pinstaller->m_dAppInstallProgressBase += 1.0;
+                     sl.unlock();
+                  }
                }
 
             }

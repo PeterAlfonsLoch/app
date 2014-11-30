@@ -122,6 +122,9 @@ namespace install
       m_mutexOmp(papp)
    {
 
+      m_daProgress.add(0.0);
+      m_iaProgress.add(0);
+      m_dAppInstallProgressBase = 0.0;
       m_bProgressModeAppInstall = false;
       m_bMsDownload              = false;
       m_dAnime                   = 0.0;
@@ -1171,6 +1174,8 @@ install_begin:;
 
             sl.lock();
 
+            m_iaProgress.element_at_grow(omp_get_thread_num() + 1) = 0;
+
             m_iGzLen2 += iGzLen;
 
             dlr(m_iGzLen2);
@@ -1275,9 +1280,15 @@ install_begin:;
 
       set["raw_http"] = true;
 
-      System.install().m_phttpsession = Application.http().download(System.install().m_phttpsession,strUrl,(dir + file),set);
+      single_lock sl(&m_mutexOmp);
 
-      return System.install().m_phttpsession != NULL;
+      sl.lock();
+      ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
+      sl.unlock();
+
+      psession = Application.http().download(psession,strUrl,(dir + file),set);
+
+      return psession != NULL;
 
    }
 
@@ -1466,7 +1477,7 @@ install_begin:;
             set["raw_http"] = true;
 
             sl.lock();
-            ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num());
+            ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num()+1);
             sl.unlock();
 
             bOk = (psession = Application.http().download(psession,strUrl,strBsPatch,set)) != NULL;
@@ -1602,6 +1613,9 @@ install_begin:;
          }
       }
       // then finally try to download the entire file
+      sl.lock();
+      ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
+      sl.unlock();
       if(!bOk)
       {
          dir::mk(dir::name((dir + file)));
@@ -1624,9 +1638,6 @@ install_begin:;
             set["disable_ca2_sessid"] = true;
 
             set["raw_http"] = true;
-            sl.lock();
-            ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num());
-            sl.unlock();
 
             bOk = (psession = Application.http().download(psession,(url_in + "." + pszMd5),(dir + file + "." + pszMd5),set)) != NULL;
             //bOk = Application.http().download((url_in + "." + pszMd5), (dir + file + "." + pszMd5), set);
@@ -3208,7 +3219,14 @@ RetryBuildNumber:
 
          file.seek_to_begin();
 
-         System.install().m_phttpsession = Application.http().download(System.install().m_phttpsession,strUrl, &file,set);
+         
+         single_lock sl(&m_mutexOmp);
+
+         sl.lock();
+         ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
+         sl.unlock();
+
+         psession = Application.http().download(psession,strUrl, &file,set);
 
          file.seek_to_begin();
 //         strEtc = http_get(strUrl, true);
@@ -4129,27 +4147,35 @@ RetryBuildNumber:
    {
       if (escalar == scalar_download_size)
       {
-         if (m_bProgressModeAppInstall)
+         if(m_bProgressModeAppInstall)
          {
-            synch_lock sl(&m_mutexOmp);
-
             int64_t iMax = 0;
             psource->get_scalar_maximum(escalar, iMax);
 
             if (iMax == 0)
                iMax = iValue;
 
-            if (iMax == 0)
+            if(iMax == 0)
+            {
+               iValue = 0;
                iMax = 1;
+            }
 
-            set_progress(((double)iValue / (double)iMax) * (m_dAppInstallProgressEnd - m_dAppInstallProgressStart) + m_dAppInstallProgressStart);
+            synch_lock sl(&m_mutexOmp);
+            int iTest = omp_get_thread_num() + 1;
+            m_daProgress.element_at_grow(iTest) = (double)iValue / (double)iMax;
+            double dTotal = m_daProgress.get_total();
+            dTotal += m_dAppInstallProgressBase;
+            set_progress(dTotal / m_dAppInstallFileCount );
 
          }
          else
          {
 
-            dlr(m_iGzLen2 + iValue);
-            set_progress((double)(m_iGzLen2 + iValue) / (double)m_iProgressTotalGzLen2);
+            synch_lock sl(&m_mutexOmp);
+            m_iaProgress.element_at_grow(omp_get_thread_num() + 1) = iValue;
+            dlr(m_iGzLen2 + m_iaProgress.get_total()) ;
+            set_progress((double)(m_iGzLen2 + m_iaProgress.get_total()) / (double)m_iProgressTotalGzLen2);
 
          }
 

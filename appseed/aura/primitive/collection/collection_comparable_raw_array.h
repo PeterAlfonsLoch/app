@@ -16,10 +16,19 @@ class raw_ptr_array:
 public:
 
 
-   inline raw_ptr_array() {}
-   inline raw_ptr_array(const raw_ptr_array & a) { this->operator = (a); }
-   inline raw_ptr_array(raw_ptr_array && a) { this->operator = (a); }
 
+   inline raw_ptr_array() { m_bRaw = false;  }
+   inline raw_ptr_array(const raw_ptr_array & a) { m_bRaw = false; this->operator = (a); }
+   inline raw_ptr_array(raw_ptr_array && a) { m_bRaw = false; this->operator = (a); }
+
+   virtual void on_construct_element(void * p)
+   {
+      memset(p,0,m_iTypeSize);
+   }
+   virtual void on_construct_element(void *p,::count c)
+   {
+      memset(p,0,m_iTypeSize *c);
+   }
 
    inline raw_ptr_array & operator = (const raw_ptr_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }
    inline raw_ptr_array & operator = (raw_ptr_array && a){ this->ARRAY_TYPE::operator = (a); return *this; }
@@ -31,6 +40,9 @@ public:
 
    inline POINTER & element_at(index i) { return (POINTER &)ARRAY_TYPE::element_at(i); }
    inline POINTER element_at(index i) const { return (POINTER)ARRAY_TYPE::element_at(i); }
+
+   inline POINTER & element_at_grow(index i){ return (POINTER &)ARRAY_TYPE::element_at_grow(i);  }
+
 
    inline POINTER & operator[](index i) { return element_at(i); }
    inline POINTER operator[](index i) const { return element_at(i); }

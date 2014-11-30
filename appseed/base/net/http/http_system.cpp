@@ -956,25 +956,28 @@ retry:
 
          e_status estatus = status_ok;
 
-         if(iStatusCode == 200 || psession->outattr("http_status_code").is_empty())
+         if(iStatusCode == 200 || (psession != NULL && psession->outattr("http_status_code").is_empty()))
          {
             estatus = status_ok;
          }
-         else if(psession->m_estatus == ::sockets::socket::status_connection_timed_out)
+         else if(psession != NULL && psession->m_estatus == ::sockets::socket::status_connection_timed_out)
          {
             estatus = status_connection_timed_out;
          }
          else if(iStatusCode >= 300 && iStatusCode <= 399)
          {
-            string strCa2Realm = psession->outheader("ca2realm-x");
-            if(::str::begins_ci(strCa2Realm, "not licensed: "))
+            if(psession != NULL)
             {
-               uint32_t dwTimeProfile2 = get_tick_count();
-               TRACE0("Not Licensed Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
-               string strLocation = psession->outheader("Location");
-               delete psession;
-               throw not_licensed(get_app(), strCa2Realm, strLocation);
-               return NULL;
+               string strCa2Realm = psession->outheader("ca2realm-x");
+               if(::str::begins_ci(strCa2Realm,"not licensed: "))
+               {
+                  uint32_t dwTimeProfile2 = get_tick_count();
+                  TRACE0("Not Licensed Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
+                  string strLocation = psession->outheader("Location");
+                  delete psession;
+                  throw not_licensed(get_app(),strCa2Realm,strLocation);
+                  return NULL;
+               }
             }
          }
          else
