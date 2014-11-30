@@ -45,7 +45,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="math.def">
+    <None Include="data.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

@@ -5,7 +5,7 @@ namespace dynamic_source
 {
 
    
-   class CLASS_DECL_CORE exit_exception
+   class CLASS_DECL_PROGRAMMING exit_exception
    {
    public:
 

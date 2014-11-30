@@ -5,7 +5,7 @@ namespace dynamic_source
 {
 
 
-   class CLASS_DECL_CORE httpd_socket :
+   class CLASS_DECL_PROGRAMMING httpd_socket :
       virtual public ::sockets::httpd_socket
    {
    public:

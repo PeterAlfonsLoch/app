@@ -24,17 +24,17 @@ namespace dynamic_source
 {
 
    
-   CLASS_DECL_CORE script_instance * get_seed_instance();
+   CLASS_DECL_PROGRAMMING script_instance * get_seed_instance();
 
 
-   class CLASS_DECL_CORE script_manager :
+   class CLASS_DECL_PROGRAMMING script_manager :
       virtual public thread,
       virtual public ::aura::message_queue_listener
    {
    public:
 
       
-      class CLASS_DECL_CORE clear_include_matches_folder_watch :
+      class CLASS_DECL_PROGRAMMING clear_include_matches_folder_watch :
          public ::file_watcher::listener_thread
       
       {
@@ -51,7 +51,7 @@ namespace dynamic_source
 
       
 
-      class CLASS_DECL_CORE plugin_map_item :
+      class CLASS_DECL_PROGRAMMING plugin_map_item :
          virtual public element
       {
       public:
@@ -69,7 +69,7 @@ namespace dynamic_source
 
       };
 
-      class CLASS_DECL_CORE tunnel_map_item
+      class CLASS_DECL_PROGRAMMING tunnel_map_item
       {
       public:
 

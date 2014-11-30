@@ -12,7 +12,7 @@ namespace dynamic_source
    class httpd_socket;
 
    
-   class CLASS_DECL_CORE script_interface :
+   class CLASS_DECL_PROGRAMMING script_interface :
       virtual public ::html::file
    {
    public:

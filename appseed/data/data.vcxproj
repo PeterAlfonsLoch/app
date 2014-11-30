@@ -893,9 +893,6 @@
     <ClCompile Include="simpledb\simpledb_mysql_result.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="math.def" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\axis\mysql\axismysql.vcxproj">
       <Project>{2652c96f-6e86-4ed1-b3b6-ac977dfb0593}</Project>
     </ProjectReference>
@@ -911,6 +908,9 @@
     <ProjectReference Include="..\core\core.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

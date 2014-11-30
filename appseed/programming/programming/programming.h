@@ -4,12 +4,11 @@
 #include "core/core/core.h"
 
 
-#if defined(_CA2_DATA_DLL)
-   #define CLASS_DECL_CA2_DATA  CLASS_DECL_EXPORT
+#if defined(_CA2_PROGRAMMING_DLL)
+   #define CLASS_DECL_PROGRAMMING  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_CA2_DATA  CLASS_DECL_IMPORT
+   #define CLASS_DECL_PROGRAMMING  CLASS_DECL_IMPORT
 #endif
 
 
-#include "app/appseed/data/simpledb/mysql_result.h"
-#include "app/appseed/data/simpledb/mysql_database.h"
+#include "app/appseed/programming/dynamic_source/dynamic_source.h"
