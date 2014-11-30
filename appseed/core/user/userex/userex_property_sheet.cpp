@@ -10,8 +10,6 @@ namespace userex
       ::user::scroll_view(papp),
       ::user::form_interface(papp),
       ::user::form(papp),
-      html_form(papp),
-      html_form_view(papp),
       form_view(papp)
    {
 

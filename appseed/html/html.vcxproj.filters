@@ -12,9 +12,6 @@
     <Filter Include="Header Files\kissfft">
       <UniqueIdentifier>{e9c79601-1523-4115-b00b-cab433335ec4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\math">
-      <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\userhtml">
       <UniqueIdentifier>{6001a4cb-f3c7-42ba-9be8-86ae960dfd8c}</UniqueIdentifier>
     </Filter>
@@ -23,6 +20,9 @@
     </Filter>
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{d93fd4b0-3886-4b5b-aa82-7d2a3691f2d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html">
+      <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -46,9 +46,6 @@
     </ClInclude>
     <ClInclude Include="kissfft\kiss_fft_guts.h">
       <Filter>Header Files\kissfft</Filter>
-    </ClInclude>
-    <ClInclude Include="math\math_math.h">
-      <Filter>Header Files\math</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html.h">
       <Filter>Header Files\graphics</Filter>
@@ -119,6 +116,9 @@
     <ClInclude Include="html_application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="html\html.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -165,6 +165,27 @@
     </ClCompile>
     <ClCompile Include="html_application.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_child_frame.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_document.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_form.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_form_view.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_frame.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_view.cpp">
+      <Filter>Source Files\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="userhtml\userhtml_view_update_hint.cpp">
+      <Filter>Source Files\userhtml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

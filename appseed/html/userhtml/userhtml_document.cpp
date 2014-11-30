@@ -73,6 +73,15 @@ void html_document::OnBeforeNavigate2(::html::data * pdata, var & varFile, uint3
    UNREFERENCED_PARAMETER(baPostedData);
    UNREFERENCED_PARAMETER(lpszHeaders);
    UNREFERENCED_PARAMETER(pbCancel);
+
+
+   if(get_html_data()->m_pform != NULL
+      && get_html_data()->m_pform->m_pcallback != NULL
+      && get_html_data()->m_pform->m_pcallback != dynamic_cast < ::user::form_callback * > (this))
+   {
+      get_html_data()->m_pform->m_pcallback->OnBeforeNavigate2(get_html_data(),varFile,nFlags,lpszTargetFrameName,baPostedData,lpszHeaders,pbCancel);
+   }
+
 }
 
 bool html_document::on_open_document(var varFile)

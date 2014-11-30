@@ -39,32 +39,32 @@ void form_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
       }
       else
       {
-         html_view_update_hint * puh = dynamic_cast < html_view_update_hint * > (phint);
-         if(puh != NULL)
-         {
-            if(puh->m_etype == html_view_update_hint::type_document_complete)
-            {
-               for(int32_t i = 0; i < get_html_data()->m_propertyset.m_propertya.get_count(); i++)
-               {
-                  html::elemental * pelemental = get_html_data()->get_element_by_id(get_html_data()->m_propertyset.m_propertya[i]->name());
-                  if(pelemental != NULL)
-                  {
-                     pelemental->set_string(get_html_data()->m_propertyset.m_propertya[i]->get_string(), ::action::source_data);
-                  }
-               }
-            }
+         //html_view_update_hint * puh = dynamic_cast < html_view_update_hint * > (phint);
+         //if(puh != NULL)
+         //{
+         //   if(puh->m_etype == html_view_update_hint::type_document_complete)
+         //   {
+         //      for(int32_t i = 0; i < get_html_data()->m_propertyset.m_propertya.get_count(); i++)
+         //      {
+         //         html::elemental * pelemental = get_html_data()->get_element_by_id(get_html_data()->m_propertyset.m_propertya[i]->name());
+         //         if(pelemental != NULL)
+         //         {
+         //            pelemental->set_string(get_html_data()->m_propertyset.m_propertya[i]->get_string(), ::action::source_data);
+         //         }
+         //      }
+         //   }
 
-            {
+         //   {
 
-               sp(::draw2d::graphics) dc(allocer());
+         //      sp(::draw2d::graphics) dc(allocer());
 
-               dc->CreateCompatibleDC(NULL);
+         //      dc->CreateCompatibleDC(NULL);
 
-               get_html_data()->implement(dc);
+         //      get_html_data()->implement(dc);
 
-            }
-            
-         }
+         //   }
+         //   
+         //}
 
       }
 
@@ -89,14 +89,14 @@ bool form_view::BaseOnControlEvent(::user::control_event * pevent)
          pevent))
          return true;
    }
-   else if(get_html_data()->m_pform != NULL
-      && get_html_data()->m_pform->m_pcallback != NULL)
-   {
-      if(get_html_data()->m_pform->m_pcallback->BaseOnControlEvent(
-         this,
-         pevent))
-         return true;
-   }
+   //else if(get_html_data()->m_pform != NULL
+   //   && get_html_data()->m_pform->m_pcallback != NULL)
+   //{
+   //   if(get_html_data()->m_pform->m_pcallback->BaseOnControlEvent(
+   //      this,
+   //      pevent))
+   //      return true;
+   //}
    if(form::BaseOnControlEvent(pevent))
       return true;
    return false;

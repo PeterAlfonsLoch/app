@@ -5,7 +5,7 @@
 namespace html
 {
 
-   class CLASS_DECL_CORE style_sheet_array :
+   class CLASS_DECL_HTML style_sheet_array :
       public smart_pointer_array < style_sheet >
    {
    public:

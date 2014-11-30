@@ -14,7 +14,7 @@ namespace html
    typedef string_to_colorref CNamedColors;
 
 
-   class CLASS_DECL_CORE html :
+   class CLASS_DECL_HTML html :
       public ::aura::departament
    {
    public:

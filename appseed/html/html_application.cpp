@@ -1252,7 +1252,7 @@ uint32_t _thread_proc_start_core_system_main(void * p)
 }
 
 
-CLASS_DECL_CORE void __start_core_system_main(::base::system * psystem)
+CLASS_DECL_HTML void __start_core_system_main(::base::system * psystem)
 {
 
    ::create_thread(NULL,0,&_thread_proc_start_core_system_main,(LPVOID)psystem,0,0);

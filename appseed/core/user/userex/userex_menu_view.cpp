@@ -7,8 +7,6 @@ menu_view::menu_view(::aura::application * papp) :
    ::user::scroll_view(papp),
    ::user::form_interface(papp),
    ::user::form(papp),
-   html_form(papp),
-   html_form_view(papp),
    form_view(papp)
 {
    m_pcallback = NULL;
@@ -23,19 +21,19 @@ void menu_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
 
 bool menu_view::BaseOnControlEvent(::user::control_event * pevent)
 {
+
    if(m_pcallback != NULL)
    {
-      m_pcallback->BaseOnControlEvent(
-         this,
-         pevent);
+
+      m_pcallback->BaseOnControlEvent(this, pevent);
+
    }
-   else if(get_html_data()->m_pform != NULL
-     && get_html_data()->m_pform->m_pcallback != NULL)
-   {
-      get_html_data()->m_pform->m_pcallback ->BaseOnControlEvent(
-         this,
-         pevent);
-   }
+   //else if(get_html_data()->m_pform != NULL && get_html_data()->m_pform->m_pcallback != NULL)
+   //{
+   //   
+   //   get_html_data()->m_pform->m_pcallback ->BaseOnControlEvent(this, pevent);
+
+   //}
    if(GetParent() != NULL)
    {
       return GetParent()->BaseOnControlEvent(pevent);

@@ -13,7 +13,7 @@ namespace html
       display_inline,
    };*/
 
-   class CLASS_DECL_CORE style :
+   class CLASS_DECL_HTML style :
       virtual public element
    {
    public:

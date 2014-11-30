@@ -5,14 +5,14 @@ namespace html
 {
 
 
-   class CLASS_DECL_CORE data :
+   class CLASS_DECL_HTML data :
       virtual public signalizable,
       public ::data::data
    {
    public:
 
 
-      class CLASS_DECL_CORE image :
+      class CLASS_DECL_HTML image :
          virtual public ::object
       {
       public:
@@ -29,7 +29,7 @@ namespace html
       };
 
 
-      class CLASS_DECL_CORE load_image
+      class CLASS_DECL_HTML load_image
       {
       public:
          
@@ -41,7 +41,7 @@ namespace html
       };
 
 
-      class CLASS_DECL_CORE layout_state1
+      class CLASS_DECL_HTML layout_state1
       {
       public:
 
@@ -58,7 +58,7 @@ namespace html
       };
 
 
-      class CLASS_DECL_CORE layout_state2
+      class CLASS_DECL_HTML layout_state2
       {
       public:
          int32_t      m_iBody;
@@ -83,7 +83,7 @@ namespace html
       };
 
 
-      class CLASS_DECL_CORE layout_state3
+      class CLASS_DECL_HTML layout_state3
       {
       public:
          int32_t                       m_iBody;

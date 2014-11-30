@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   class CLASS_DECL_CORE application :
+   class CLASS_DECL_HTML application :
       virtual public ::core::application
    {
    public:

@@ -5,7 +5,7 @@
 namespace html
 {
 
-   class CLASS_DECL_CORE style_sheet :
+   class CLASS_DECL_HTML style_sheet :
       virtual public element
    {
    public:

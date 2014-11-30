@@ -10,8 +10,8 @@ namespace userex // ca8 + cube
       ::user::scroll_view(papp),
       ::user::form_interface(papp),
       user::form(papp),
-      html_form(papp),
-      html_form_view(papp),
+      //html_form(papp),
+      //html_form_view(papp),
       form_view(papp),
       dialog(papp)
    {
@@ -32,11 +32,11 @@ namespace userex // ca8 + cube
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(propertyset);
-      if(m_dwDelay > 0)
-      {
-         m_pdocument->get_html_data()->m_propertyset["wait_message_dialog_timeout"] = (int32_t) (m_dwDelay / 1000);
-         m_pdocument->get_view()->SetTimer(5432175, 584, NULL);
-      }
+      //if(m_dwDelay > 0)
+      //{
+      //   m_pdocument->get_html_data()->m_propertyset["wait_message_dialog_timeout"] = (int32_t) (m_dwDelay / 1000);
+      //   m_pdocument->get_view()->SetTimer(5432175, 584, NULL);
+      //}
       m_dwStartTime = ::get_tick_count();
    }
 
@@ -86,12 +86,12 @@ namespace userex // ca8 + cube
    {
       string str;
       str.Format("%d", (int32_t) ((m_dwDelay - dwTimeout) / 1000));
-      html::elemental * pelemental = m_pdocument->get_html_data()->get_element_by_id("timeout");
-      if(pelemental != NULL)
-      {
-         pelemental->set_string(str, ::action::source_system);
-         m_pframe->layout();
-      }
+      //html::elemental * pelemental = m_pdocument->get_html_data()->get_element_by_id("timeout");
+      //if(pelemental != NULL)
+      //{
+      //   pelemental->set_string(str, ::action::source_system);
+      //   m_pframe->layout();
+      //}
       //m_pdocument->m_propertyset["wait_message_dialog_timeout"] = (int32_t) ((m_dwDelay - dwTimeout) / 1000);
       //m_pdocument->soft_reload();
    }
