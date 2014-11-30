@@ -3829,12 +3829,6 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
    }
 
 
-   ::html::html * application::create_html()
-   {
-
-      return canew(::html::html(this));
-
-   }
 
 
 

@@ -12,7 +12,7 @@
 
 
 
-namespace core
+namespace html
 {
 
 
@@ -1219,8 +1219,16 @@ namespace core
 
    }
 
+   ::html::html * application::create_html()
+   {
 
-} // namespace plane
+      return canew(::html::html(this));
+
+   }
+
+
+
+} // namespace html
 
 
 

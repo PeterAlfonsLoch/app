@@ -523,7 +523,7 @@ namespace core
 
       virtual ::userex::userex * create_userex();
       virtual ::userfs::userfs * create_userfs();
-      virtual ::html::html * create_html();
+      
 
 
       //virtual void assert_valid() const;

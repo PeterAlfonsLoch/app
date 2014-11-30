@@ -1160,6 +1160,9 @@
     <ClInclude Include="core\core\core_platform.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\file\file_html_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
@@ -2013,6 +2016,9 @@
     </ClCompile>
     <ClCompile Include="core\core\core_platform.cpp">
       <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_html_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

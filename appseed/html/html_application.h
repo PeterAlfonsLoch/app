@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace core
+namespace html
 {
 
 
@@ -94,7 +94,7 @@ namespace core
 
       spa(::core::platform) &    planesessionptra();
       inline sp(::html::html)                   html()         { return m_phtml; }
-
+      virtual ::html::html * create_html();
 
       virtual bool base_support();
 
@@ -196,7 +196,7 @@ namespace core
    };
 
 
-} // namespace core
+} // namespace html
 
 
 

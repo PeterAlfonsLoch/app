@@ -1806,6 +1806,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\core\core_platform.cpp" />
     <ClCompile Include="database\simpledb\simpledb_database.cpp" />
     <ClCompile Include="database\simpledb\simpledb_result.cpp" />
+    <ClCompile Include="filesystem\file\file_html_buffer.cpp" />
     <ClCompile Include="user\userex\userex_weekday_list_view.cpp" />
     <ClCompile Include="user\user\user_orto_button.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_appearance.cpp" />
@@ -1958,6 +1959,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\file\file_clustered_input_stream.h" />
     <ClInclude Include="filesystem\file\file_dynamic_buffer.h" />
     <ClInclude Include="filesystem\file\file_dynamic_buffered_writer.h" />
+    <ClInclude Include="filesystem\file\file_html_buffer.h" />
     <ClInclude Include="filesystem\file\file_in_buffer.h" />
     <ClInclude Include="filesystem\file\file_io_temp_buffer.h" />
     <ClInclude Include="filesystem\file\file_limited_input_stream.h" />
