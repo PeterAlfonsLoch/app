@@ -883,6 +883,7 @@
     <ClInclude Include="dynamic_source\dynamic_source_script_manager.h" />
     <ClInclude Include="dynamic_source\dynamic_source_session.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="programming\programming.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dynamic_source\dynamic_source_exit_exception.cpp" />
@@ -907,8 +908,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="simpledb\simpledb_mysql_database.cpp" />
-    <ClCompile Include="simpledb\simpledb_mysql_result.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="math.def" />

@@ -9,9 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Source Files\simpledb">
-      <UniqueIdentifier>{1bf96c34-20d7-4e87-ad01-f490f89f929d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\programming">
       <UniqueIdentifier>{1869e265-62d6-4fe8-9244-d64f2c5e16cd}</UniqueIdentifier>
     </Filter>
@@ -59,16 +56,13 @@
     <ClInclude Include="dynamic_source\dynamic_source_session.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
+    <ClInclude Include="programming\programming.h">
+      <Filter>Header Files\programming</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_mysql_database.cpp">
-      <Filter>Source Files\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="simpledb\simpledb_mysql_result.cpp">
-      <Filter>Source Files\simpledb</Filter>
     </ClCompile>
     <ClCompile Include="dynamic_source\dynamic_source_exit_exception.cpp">
       <Filter>Source Files\dynamic_source</Filter>
