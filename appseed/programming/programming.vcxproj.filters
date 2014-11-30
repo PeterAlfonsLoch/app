@@ -9,28 +9,55 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\math">
-      <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\simpledb">
       <UniqueIdentifier>{1bf96c34-20d7-4e87-ad01-f490f89f929d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\simpledb">
+    <Filter Include="Header Files\programming">
+      <UniqueIdentifier>{1869e265-62d6-4fe8-9244-d64f2c5e16cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dynamic_source">
       <UniqueIdentifier>{33c31b31-c43c-4307-9c28-64b0c0db9d6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dynamic_source">
+      <UniqueIdentifier>{f8f71f30-fd78-499e-bcd4-e54d0f7a4e94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simpledb\mysql_database.h">
-      <Filter>Header Files\simpledb</Filter>
+    <ClInclude Include="dynamic_source\dynamic_source.h">
+      <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
-    <ClInclude Include="simpledb\mysql_result.h">
-      <Filter>Header Files\simpledb</Filter>
+    <ClInclude Include="dynamic_source\dynamic_source_exit_exception.h">
+      <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
-    <ClInclude Include="data\data.h">
-      <Filter>Header Files\math</Filter>
+    <ClInclude Include="dynamic_source\dynamic_source_httpd_socket.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_library_class.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_cache.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_compiler.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_instance.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_interface.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_script_manager.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
+    <ClInclude Include="dynamic_source\dynamic_source_session.h">
+      <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +69,36 @@
     </ClCompile>
     <ClCompile Include="simpledb\simpledb_mysql_result.cpp">
       <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_exit_exception.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_httpd_socket.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_library_class.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_cache.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_compiler.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_instance.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_interface.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_script_manager.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\dynamic_source_session.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

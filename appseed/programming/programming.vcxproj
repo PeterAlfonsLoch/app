@@ -46,7 +46,7 @@
     <ProjectGuid>{A33B9D31-3BFE-496C-A4F5-DC3086D5B27F}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>math</RootNamespace>
+    <RootNamespace>programming</RootNamespace>
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and $(VisualStudioVersion) == ''">$(VCTargetsPath11)</VCTargetsPath>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -871,12 +871,30 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="data\data.h" />
+    <ClInclude Include="dynamic_source\dynamic_source.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_exit_exception.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_httpd_socket.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_library_class.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script_cache.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script_compiler.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script_instance.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script_interface.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_script_manager.h" />
+    <ClInclude Include="dynamic_source\dynamic_source_session.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="simpledb\mysql_database.h" />
-    <ClInclude Include="simpledb\mysql_result.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="dynamic_source\dynamic_source_exit_exception.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_httpd_socket.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_library_class.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script_cache.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script_compiler.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script_instance.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script_interface.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_script_manager.cpp" />
+    <ClCompile Include="dynamic_source\dynamic_source_session.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
