@@ -12,7 +12,6 @@ stage\basis\axisbzip2.dll
 stage\basis\axisfreeimage.dll
 stage\basis\axisfreetype.dll
 stage\basis\axisidn.dll
-stage\basis\axismysql.dll
 stage\basis\axisopenssl.dll
 stage\basis\axiszlib.dll
 stage\basis\base.dll
