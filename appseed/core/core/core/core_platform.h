@@ -10,7 +10,7 @@ namespace core
 
 
    class CLASS_DECL_CORE platform :
-      virtual public ::platform::application,
+      virtual public ::core::application,
       virtual public ::filemanager::item_action,
       virtual public ::aura::platform_interface
    {
@@ -60,10 +60,10 @@ namespace core
       sp(::user::single_document_template)               m_ptemplate_platform;
       sp(::user::single_document_template)               m_ptemplate_nature;
       sp(::user::single_document_template)               m_ptemplate_html;
-      sp(::bergedge::document)                           m_pbergedgedocument;
-      sp(::platform::document)                           m_pplatformdocument;
-      sp(::nature::document)                             m_pnaturedocument;
-      nature::database *                                 m_pdatabase;
+      sp(::user::document)                               m_pbergedgedocument;
+      sp(::user::document)                               m_pplatformdocument;
+      sp(::user::document)                               m_pnaturedocument;
+      //nature::database *                                 m_pdatabase;
 
 
       string_map < sp(::user::wndfrm::interaction) >     m_mapUinteraction;
@@ -136,10 +136,10 @@ namespace core
 
       
       
-      sp(::bergedge::document)                  get_document();
-      sp(::bergedge::view)                      get_view();
-      sp(::platform::document)                  get_platform();
-      sp(::nature::document)                    get_nature();
+      sp(::user::document)                  get_document();
+      sp(::user::impact)                      get_view();
+      sp(::user::document)                  get_platform();
+      sp(::user::document)                    get_nature();
       
       
       inline sp(::userex::userex)               userex()       { return m_spuserex; }

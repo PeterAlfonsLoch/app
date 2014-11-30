@@ -1055,10 +1055,7 @@ class form_view;
 #include "core_library.h"
 
 
-#include "core/platform/bergedge/bergedge.h"
-
-
-#include "core/platform/core_platform.h"
+#include "core_platform.h"
 
 
 #include "core/graphics/html/html_enum.h"
