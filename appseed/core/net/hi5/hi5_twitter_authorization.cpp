@@ -162,13 +162,13 @@ namespace hi5
 
          }
 
-         if(&Platform != NULL && Platform.get_document() != NULL && Platform.get_document()->get_bergedge_view() != NULL)
-         {
+         //if(&Platform != NULL && Platform.get_document() != NULL && Platform.get_document()->get_bergedge_view() != NULL)
+         //{
 
-            Platform.get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
+         //   Platform.get_document()->get_bergedge_view()->ShowWindow(SW_SHOW);
 
-         }
-         else
+         //}
+         //else
          {
 
             m_ptabview->GetTopLevelFrame()->ShowWindow(SW_SHOW);

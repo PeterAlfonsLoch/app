@@ -101,7 +101,7 @@ namespace core
 
       void initialize_bergedge_application_interface();
 
-      virtual bool create_bergedge(sp(::create_context) pcreatecontext);
+      //virtual bool create_bergedge(sp(::create_context) pcreatecontext);
 
       virtual void on_app_request_bergedge_callback(::aura::application * papp);
 

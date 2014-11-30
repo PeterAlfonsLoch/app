@@ -258,7 +258,6 @@ struct memory_state;
 
 
 #include "core_strn.h"
-#include "core/primitive/primitive_fixed_string.h"
 
 
 #include "core_less.h"

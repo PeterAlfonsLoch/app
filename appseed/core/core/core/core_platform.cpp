@@ -87,7 +87,7 @@ namespace core
    bool platform::process_initialize()
    {
 
-      if(!::platform::application::process_initialize())
+      if(!::core::application::process_initialize())
          return false;
 
       m_spuserex = create_userex();
@@ -105,7 +105,7 @@ namespace core
    bool platform::initialize1()
    {
 
-      if(!::platform::application::initialize1())
+      if(!::core::application::initialize1())
          return false;
 
       if(!m_spuserex->initialize())
@@ -265,102 +265,102 @@ namespace core
    }
 
 
-   bool platform::create_bergedge(sp(::create_context) pcreatecontext)
-   {
+   //bool platform::create_bergedge(sp(::create_context) pcreatecontext)
+   //{
 
-      if(m_pbergedgedocument == NULL)
-      {
+   //   if(m_pbergedgedocument == NULL)
+   //   {
 
-         sp(::create_context) createcontextBergedge(allocer());
+   //      sp(::create_context) createcontextBergedge(allocer());
 
-         createcontextBergedge.oattrib(pcreatecontext);
+   //      createcontextBergedge.oattrib(pcreatecontext);
 
-         createcontextBergedge->m_spCommandLine->m_varFile.set_type(var::type_empty);
-         
-         createcontextBergedge->m_bMakeVisible = false;
+   //      createcontextBergedge->m_spCommandLine->m_varFile.set_type(var::type_empty);
+   //      
+   //      createcontextBergedge->m_bMakeVisible = false;
 
-         m_pbergedgedocument = m_ptemplate_bergedge->open_document_file(createcontextBergedge);
+   //      m_pbergedgedocument = m_ptemplate_bergedge->open_document_file(createcontextBergedge);
 
-         //m_pbergedgedocument->m_pauraapp->m_pbasesession->m_pcoreplatform = this;
+   //      //m_pbergedgedocument->m_pauraapp->m_pbasesession->m_pcoreplatform = this;
 
-      }
+   //   }
 
-      if(m_bShowPlatform)
-      {
+   //   if(m_bShowPlatform)
+   //   {
 
-         if(m_pplatformdocument == NULL)
-         {
+   //      if(m_pplatformdocument == NULL)
+   //      {
 
-            sp(::create_context) createcontextPlatform;
+   //         sp(::create_context) createcontextPlatform;
 
-            createcontextPlatform.oattrib(pcreatecontext);
+   //         createcontextPlatform.oattrib(pcreatecontext);
 
-            createcontextPlatform->m_spCommandLine->m_varFile.set_type(var::type_empty);
+   //         createcontextPlatform->m_spCommandLine->m_varFile.set_type(var::type_empty);
 
-            createcontextPlatform->m_bMakeVisible = true;
+   //         createcontextPlatform->m_bMakeVisible = true;
 
-            createcontextPlatform->m_puiParent = m_pbergedgedocument->get_bergedge_view();
+   //         createcontextPlatform->m_puiParent = m_pbergedgedocument->get_bergedge_view();
 
-            m_pplatformdocument = m_ptemplate_platform->open_document_file(createcontextPlatform);
+   //         m_pplatformdocument = m_ptemplate_platform->open_document_file(createcontextPlatform);
 
-            m_pplatformdocument->m_pbergedgedocument =  m_pbergedgedocument;
+   //         m_pplatformdocument->m_pbergedgedocument =  m_pbergedgedocument;
 
-            m_pbergedgedocument->set_platform(m_pplatformdocument);
+   //         m_pbergedgedocument->set_platform(m_pplatformdocument);
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return m_pbergedgedocument != NULL;
-
-
-      //if(m_pbergedgeInterface != NULL)
-      {
-
-         //         m_pbergedgeInterface->create_bergedge(pcreatecontext);
-         //return false;
-
-      }
-
-      m_varCurrentViewFile = pcreatecontext->m_spCommandLine->m_varFile;
+   //   return m_pbergedgedocument != NULL;
 
 
-      string strApp;
+   //   //if(m_pbergedgeInterface != NULL)
+   //   {
 
-      if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command()->m_varTopicQuery["show_platform"] == 1)
-         && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command()->m_varTopicQuery["client_only"])
-         && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command()->m_varTopicQuery.has_property("client_only")))
-      {
-         m_bShowPlatform = true;
-      }
+   //      //         m_pbergedgeInterface->create_bergedge(pcreatecontext);
+   //      //return false;
 
-      strApp = "bergedge";
+   //   }
 
-      pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] = 1;
-
-      sp(::aura::application) pbaseapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
-
-      sp(::core::platform) papp = pbaseapp;
-
-      if(papp == NULL)
-      {
-
-         pbaseapp.release();
-
-         return false;
-
-      }
+   //   m_varCurrentViewFile = pcreatecontext->m_spCommandLine->m_varFile;
 
 
-      UINT uiMessage = WM_APP + 2043;
+   //   string strApp;
 
-      papp->m_pcoreapp->post_thread_message(uiMessage, 2, pcreatecontext);
+   //   if((pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] == 1 || command()->m_varTopicQuery["show_platform"] == 1)
+   //      && (!(bool)pcreatecontext->m_spCommandLine->m_varQuery["client_only"] && !(bool)command()->m_varTopicQuery["client_only"])
+   //      && (!pcreatecontext->m_spCommandLine->m_varQuery.has_property("client_only") && !command()->m_varTopicQuery.has_property("client_only")))
+   //   {
+   //      m_bShowPlatform = true;
+   //   }
 
-      pcreatecontext->m_spCommandLine->m_eventReady.wait();
+   //   strApp = "bergedge";
 
-      return false;
+   //   pcreatecontext->m_spCommandLine->m_varQuery["show_platform"] = 1;
 
-   }
+   //   sp(::aura::application) pbaseapp = application_get("application", strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate);
+
+   //   sp(::core::platform) papp = pbaseapp;
+
+   //   if(papp == NULL)
+   //   {
+
+   //      pbaseapp.release();
+
+   //      return false;
+
+   //   }
+
+
+   //   UINT uiMessage = WM_APP + 2043;
+
+   //   papp->m_pcoreapp->post_thread_message(uiMessage, 2, pcreatecontext);
+
+   //   pcreatecontext->m_spCommandLine->m_eventReady.wait();
+
+   //   return false;
+
+   //}
 
    void platform::launch_app(const char * psz)
    {
@@ -425,16 +425,16 @@ namespace core
             }
             else if(m_bShowPlatform)
             {
-               create_bergedge(pcreatecontext);
-               if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
-               {
-                  sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
-                  if(pframe != NULL)
-                  {
-                     pframe->ShowWindow(SW_SHOW);
-                     pframe->InitialFramePosition();
-                  }
-               }
+               //create_bergedge(pcreatecontext);
+               //if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
+               //{
+               //   sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
+               //   if(pframe != NULL)
+               //   {
+               //      pframe->ShowWindow(SW_SHOW);
+               //      pframe->InitialFramePosition();
+               //   }
+               //}
             }
             if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() <= 0)
             {
@@ -884,10 +884,10 @@ namespace core
             && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
             ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
          {
-            if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
-            {
-               get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
-            }
+            //if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+            //{
+            //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
+            //}
             App(m_pappCurrent).request_create(pcreatecontext);
             if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document > () == NULL)
             {
@@ -911,27 +911,27 @@ namespace core
                   }
                   return;
                }
-               else if(pcreatecontext->m_spCommandLine->m_strApp.has_char()
-                  && get_document() != NULL
-                  && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
-               {
-                  get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
-                  App(m_pappCurrent).request_create(pcreatecontext);
-               }
+               //else if(pcreatecontext->m_spCommandLine->m_strApp.has_char()
+               //   && get_document() != NULL
+               //   && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+               //{
+               //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
+               //   App(m_pappCurrent).request_create(pcreatecontext);
+               //}
                else
                {
                   on_request(pcreatecontext);
                }
             }
-            else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() &&
-               get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL
-               && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
-            {
-               //simple_message_box(NULL, "request3", "request3", MB_ICONEXCLAMATION);
-               get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
-               App(m_pappCurrent).request_create(pcreatecontext);
-            }
-            else
+            //else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() &&
+            //   get_document() != NULL && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL
+            //   && (!pcreatecontext->m_spApplicationBias.is_set() || pcreatecontext->m_spApplicationBias->m_puiParent == NULL))
+            //{
+            //   //simple_message_box(NULL, "request3", "request3", MB_ICONEXCLAMATION);
+            //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
+            //   App(m_pappCurrent).request_create(pcreatecontext);
+            //}
+            //else
             {
                //simple_message_box(NULL, "request4", "request4", MB_ICONEXCLAMATION);
                on_request(pcreatecontext);
@@ -1290,36 +1290,6 @@ namespace core
    void platform::initialize_bergedge_application_interface()
    {
       int32_t iCount = 32; // todo: get from bergedge profile
-      System.factory().creatable < ::bergedge::document > (iCount);
-      System.factory().creatable < ::bergedge::view > (iCount);
-      System.factory().creatable < ::bergedge::pane_view > (iCount);
-      System.factory().creatable < ::bergedge::frame > (iCount);
-      System.factory().creatable < ::platform::document > (iCount);
-      System.factory().creatable < ::platform::view > (iCount);
-      System.factory().creatable < ::platform::pane_view > (iCount);
-      System.factory().creatable < ::platform::frame > (iCount);
-      System.factory().creatable < ::nature::document > (iCount);
-      System.factory().creatable < ::nature::view > (iCount);
-      System.factory().creatable < ::nature::pane_view > (iCount);
-      System.factory().creatable < ::nature::frame > (iCount);
-      m_ptemplate_bergedge    = new ::user::single_document_template(
-         this,
-         "bergedge/frame",
-         System.type_info < ::bergedge::document > (),
-         System.type_info < ::bergedge::frame > (),
-         System.type_info < ::bergedge::view > ());
-      m_ptemplate_platform    = new ::user::single_document_template(
-         this,
-         "bergedge/frame",
-         System.type_info < ::platform::document > (),
-         System.type_info < ::platform::frame > (),
-         System.type_info < ::platform::pane_view > ());
-      m_ptemplate_nature      = new ::user::single_document_template(
-         this,
-         "bergedge/frame",
-         System.type_info < ::nature::document > (),
-         System.type_info < ::nature::frame > (),
-         System.type_info < ::nature::view > ());
       m_pnaturedocument = NULL;
    }
 
@@ -1336,35 +1306,35 @@ namespace core
 
       if(m_bShowPlatform)
       {
-         sp(::simple_frame_window) pframeApp = get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie();
-         if(pframeApp != NULL)
-         {
-            pframeApp->WfiFullScreen();
-         }
-         sp(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame();
-         if(pframe != NULL)
-         {
-            pframe->ShowWindow(SW_SHOW);
-         }
+         //sp(::simple_frame_window) pframeApp = get_document()->get_typed_view < ::bergedge::pane_view >()->get_view_uie();
+         //if(pframeApp != NULL)
+         //{
+         //   pframeApp->WfiFullScreen();
+         //}
+         //sp(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame();
+         //if(pframe != NULL)
+         //{
+         //   pframe->ShowWindow(SW_SHOW);
+         //}
       }
       else
       {
-         if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
-         {
-            sp(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame();
-            if(pframe != NULL)
-            {
-               pframe->ShowWindow(SW_SHOW);
-               if(pframe->GetTypedParent < ::plugin::host_interaction > () != NULL)
-               {
-                  pframe->GetTypedParent < ::plugin::host_interaction > ()->layout();
-               }
-               else
-               {
-                  pframe->InitialFramePosition();
-               }
-            }
-         }
+         //if(get_document() != NULL && get_document()->get_typed_view < ::bergedge::view >() != NULL)
+         //{
+         //   sp(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame();
+         //   if(pframe != NULL)
+         //   {
+         //      pframe->ShowWindow(SW_SHOW);
+         //      if(pframe->GetTypedParent < ::plugin::host_interaction > () != NULL)
+         //      {
+         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->layout();
+         //      }
+         //      else
+         //      {
+         //         pframe->InitialFramePosition();
+         //      }
+         //   }
+         //}
       }
 
       if(m_pappCurrent != NULL && m_pappCurrent->m_pbasesession->m_pfontopus->m_puser != NULL)
@@ -1381,24 +1351,25 @@ namespace core
    }
 
 
-   sp(::bergedge::document) platform::get_document()
+   sp(::user::document) platform::get_document()
    {
       return m_pbergedgedocument;
    }
 
-   sp(::bergedge::view) platform::get_view()
+   sp(::user::impact) platform::get_view()
    {
       if(get_document() == NULL)
          return NULL;
-      return get_document()->get_bergedge_view();
+//      return get_document()->get_bergedge_view();
+      return NULL;
    }
 
-   sp(::platform::document) platform::get_platform()
+   sp(::user::document) platform::get_platform()
    {
       return m_pplatformdocument;
    }
 
-   sp(::nature::document) platform::get_nature()
+   sp(::user::document) platform::get_nature()
    {
       return m_pnaturedocument;
    }
@@ -1407,19 +1378,19 @@ namespace core
    bool platform::InitializeLocalDataCentral()
    {
 
-      m_pdatabase = new nature::database(this);
+      //m_pdatabase = new nature::database(this);
 
-      if(m_pdatabase == NULL)
-      {
-         TRACE("VmpLightApp::initialize_instance failed to instatiate LightDB\n");
-         return false;
-      }
+      //if(m_pdatabase == NULL)
+      //{
+      //   TRACE("VmpLightApp::initialize_instance failed to instatiate LightDB\n");
+      //   return false;
+      //}
 
-      if(!m_pdatabase->Initialize())
-      {
-         TRACE("VmpLightApp::initialize_instance failed to initialize LightDB\n");
-         return false;
-      }
+      //if(!m_pdatabase->Initialize())
+      //{
+      //   TRACE("VmpLightApp::initialize_instance failed to initialize LightDB\n");
+      //   return false;
+      //}
 
       return true;
 
@@ -1598,19 +1569,19 @@ namespace core
       }
 
 
-      bool bCreateBergedge = false;
+      //bool bCreateBergedge = false;
 
-      if(bCreateBergedge)
-      {
+      //if(bCreateBergedge)
+      //{
 
-         if(!create_bergedge(pcreatecontext))
-         {
-            return NULL;
+      //   if(!create_bergedge(pcreatecontext))
+      //   {
+      //      return NULL;
 
 
-         }
+      //   }
 
-      }
+      //}
 
 
 
@@ -1625,20 +1596,20 @@ namespace core
          if(get_document() != NULL)
          {
 
-            if(get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
-            {
+            //if(get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+            //{
 
-               get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
+            //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
 
-               puiParent = get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName));
+            //   puiParent = get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName));
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-               puiParent = get_document()->get_typed_view < ::bergedge::view >();
+            //   puiParent = get_document()->get_typed_view < ::bergedge::view >();
 
-            }
+            //}
 
          }
 
@@ -1660,20 +1631,20 @@ namespace core
 
       string strAppName = app.m_strAppName;
 
-      if(get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
-      {
+      //if(get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+      //{
 
-         get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
+      //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
 
-         holderptra.add(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName)));
+      //   holderptra.add(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName)));
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         holderptra.add(get_document()->get_typed_view < ::bergedge::view >());
+      //   holderptra.add(get_document()->get_typed_view < ::bergedge::view >());
 
-      }
+      //}
 
       return holderptra;
 
@@ -1737,25 +1708,25 @@ namespace core
       if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp.is_set())
       {
 
-         sp(::bergedge::pane_view) ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
+         //sp(::bergedge::pane_view) ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
 
-         if(ppaneview != NULL)
-         {
+         //if(ppaneview != NULL)
+         //{
 
-            string strAppName(pszAppId);
+         //   string strAppName(pszAppId);
 
-            ::user::tab::pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
+         //   ::user::tab::pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
 
-            if(ppane != NULL)
-            {
+         //   if(ppane != NULL)
+         //   {
 
-               ppane->m_istrTitleEx = pszTitle;
+         //      ppane->m_istrTitleEx = pszTitle;
 
-               ppaneview->layout();
+         //      ppaneview->layout();
 
-            }
+         //   }
 
-         }
+         //}
 
       }
 
@@ -1776,7 +1747,8 @@ namespace core
    {
 
 
-      return ::platform::application::is_serviceable();
+//      return ::platform::application::is_serviceable();
+      return false;
 
 
    }
@@ -1791,7 +1763,7 @@ namespace core
 
       try
       {
-         bOk1 = ::platform::application::on_uninstall();
+         bOk1 = ::core::application::on_uninstall();
       }
       catch(...)
       {
@@ -1810,7 +1782,7 @@ namespace core
    bool platform::os_native_bergedge_start()
    {
 
-      return ::platform::application::os_native_bergedge_start();
+      return ::core::application::os_native_bergedge_start();
 
    }
 
@@ -1819,7 +1791,7 @@ namespace core
    {
 
 
-      return ::platform::application::allocate_new_service();
+      return ::core::application::allocate_new_service();
 
 
    }
@@ -1850,7 +1822,7 @@ namespace core
    {
 
 
-      return ::platform::application::main();
+      return ::core::application::main();
 
 
    }
