@@ -145,7 +145,7 @@ namespace install
       stringa           m_straHttpFailure;
 
       ::sockets::http_session * m_phttpsessionServer;
-      ::sockets::http_session * m_phttpsession;
+      comparable_array <::sockets::http_session * > m_httpsessionptra;
 
       installer(::aura::application * papp);
       ~installer();

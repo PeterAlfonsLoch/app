@@ -15,15 +15,6 @@
     <Filter Include="Source Files\primitive">
       <UniqueIdentifier>{e90ae53c-46db-4d99-b5f7-280640cb0a22}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\compress">
-      <UniqueIdentifier>{d8559929-e173-4228-989d-58f584272e64}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\7z">
-      <UniqueIdentifier>{8c588445-15a0-436e-9a0b-7e2910735739}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\rar">
-      <UniqueIdentifier>{149e730a-35c0-4a6e-a358-13f57d0d19c7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{c2502810-b053-4d32-a0c1-4543afc8d8d8}</UniqueIdentifier>
     </Filter>
@@ -47,9 +38,6 @@
     </Filter>
     <Filter Include="Source Files\math">
       <UniqueIdentifier>{32b3d148-f464-4be0-b68a-7d78bebab6da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\crypto">
-      <UniqueIdentifier>{92a9349d-bc31-49af-bce5-eceada38f70d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user\simple">
       <UniqueIdentifier>{551953ea-1f97-418b-9a12-55207c62a9d0}</UniqueIdentifier>
@@ -80,9 +68,6 @@
     </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{9058d0f5-9cd9-4799-ba93-87d295566f56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\visual">
-      <UniqueIdentifier>{328d023d-57ff-45c9-a8c4-86594aae40ee}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{978dd301-1f2c-4a11-af75-ffb6e7cbb417}</UniqueIdentifier>
