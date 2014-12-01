@@ -104,7 +104,7 @@ bool form_view::BaseOnControlEvent(::user::control_event * pevent)
 
 void form_view::install_message_handling(::message::dispatch * pinterface)
 {
-   html_form_view::install_message_handling(pinterface);
+   ::user::form::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form_view::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &form_view::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_USER + 123, pinterface, this, &form_view::_001OnUser123);
