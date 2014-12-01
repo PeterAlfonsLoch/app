@@ -72,3 +72,12 @@ void form_document::form_document_set_callback(form_callback * pcallback)
 
 
 
+
+bool form_document::open_document(var varFile)
+{
+
+   UNREFERENCED_PARAMETER(varFile);
+
+   return false;
+
+}
