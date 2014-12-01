@@ -21,7 +21,7 @@ inline index BaseNullCompare(const T & p1, const T & p2)
 
 
 
-template < class TYPE,class ARG_TYPE = const TYPE &,class BASE_ARRAY_TYPE = array < TYPE,ARG_TYPE >,index(* DEFAULT_COMPARE)(ARG_TYPE,ARG_TYPE) = &BaseNullCompare < TYPE > >
+template < class TYPE,class ARG_TYPE = const TYPE &,class BASE_ARRAY_TYPE = array < TYPE,ARG_TYPE >,index(* DEFAULT_COMPARE)(ARG_TYPE,ARG_TYPE) = &BaseSortCompare < TYPE > >
 class sort_array :
    virtual protected BASE_ARRAY_TYPE
 {
