@@ -20,7 +20,7 @@ namespace userfs
       element(papp)
    {
       m_itema.set_app(papp);
-      m_pfnCompare = &BaseNullCompare < sp(list_item) >;
+      m_pfnCompare = &BaseNullCompare < const sp(list_item) & >;
    }
 
    list_item_array::~list_item_array()
@@ -76,7 +76,7 @@ namespace userfs
          m_pfnCompare = &list_item::CompareArrangeByName;
          break;
       default:
-         m_pfnCompare = &BaseNullCompare < sp(list_item) >;
+         m_pfnCompare = &BaseNullCompare < const sp(list_item) & >;
          break;
       }
    }

@@ -2,8 +2,8 @@
 
 
 
-template < class T >
-inline index BaseSortCompare(const T & p1, const T & p2)
+template < typename ARG_TYPE >
+inline index BaseSortCompare(ARG_TYPE p1,ARG_TYPE p2)
 {
    if(p1 > p2)
       return 1;
@@ -13,15 +13,15 @@ inline index BaseSortCompare(const T & p1, const T & p2)
       return 0;
 }
 
-template < class T >
-inline index BaseNullCompare(const T & p1, const T & p2)
+template < typename ARG_TYPE >
+inline index BaseNullCompare(ARG_TYPE p1,ARG_TYPE p2)
 {
    return 0;
 }
 
 
 
-template < class TYPE,class ARG_TYPE = const TYPE &,class BASE_ARRAY_TYPE = array < TYPE,ARG_TYPE >,index(* DEFAULT_COMPARE)(ARG_TYPE,ARG_TYPE) = &BaseSortCompare < TYPE > >
+template < class TYPE,class ARG_TYPE = const TYPE &,class BASE_ARRAY_TYPE = array < TYPE,ARG_TYPE >,index(* DEFAULT_COMPARE)(ARG_TYPE,ARG_TYPE) = &BaseSortCompare < ARG_TYPE > >
 class sort_array :
    virtual protected BASE_ARRAY_TYPE
 {
