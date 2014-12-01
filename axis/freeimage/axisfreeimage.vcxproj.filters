@@ -129,6 +129,12 @@
     <Filter Include="Source\LibOpenJPEG\h">
       <UniqueIdentifier>{0ed47e84-10ef-40df-b2d9-b30dec1f6470}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\OpenEXR">
+      <UniqueIdentifier>{117c1151-fdca-404b-968c-ae9435eb4234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\OpenEXR\Half">
+      <UniqueIdentifier>{9c4b6b71-f603-46aa-bac0-279d4c71a8bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\FreeImage\BitmapAccess.cpp">
@@ -1088,6 +1094,9 @@
     <ClCompile Include="Source\LibOpenJPEG\opj_includes.c">
       <Filter>Source\LibOpenJPEG\c</Filter>
     </ClCompile>
+    <ClCompile Include="Source\OpenEXR\Half\half.cpp">
+      <Filter>Source\OpenEXR\Half</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FreeImage.rc">
@@ -1520,6 +1529,9 @@
     </ClInclude>
     <ClInclude Include="Source\LibOpenJPEG\tgt.h">
       <Filter>Source\LibOpenJPEG\h</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\OpenEXR\Half\half.h">
+      <Filter>Source\OpenEXR\Half</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

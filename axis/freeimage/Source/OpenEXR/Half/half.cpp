@@ -1,4 +1,5 @@
-#include "Imf.h"
+#include "framework.h"
+#include "half.h"
 
 // Primary authors:
 //     Florian Kainz <kainz@ilm.com>

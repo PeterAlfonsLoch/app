@@ -104,7 +104,7 @@
 
 #include <ImfInt64.h>
 #include "IexMathExc.h"
-#include "half.h"
+#include  "app/axis/freeimage/Source/OpenEXR/Half/half.h"
 #include <limits.h>
 
 namespace Imf {

@@ -19,7 +19,7 @@
 //#include <ImfMatrixAttribute.h>
 //#include <ImfChannelList.h>
 //#include <ImfLut.h>
-//#include "half.h"
+//#include  "app/axis/freeimage/Source/OpenEXR/Half/half.h"
 //#include <string.h>
 
 using Imath::Box2i;

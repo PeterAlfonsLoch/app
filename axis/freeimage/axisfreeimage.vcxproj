@@ -7617,6 +7617,7 @@ copy Source\FreeImage.h Dist
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="Source\OpenEXR\Half\half.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FreeImage.rc" />
@@ -7758,6 +7759,7 @@ copy Source\FreeImage.h Dist
     <ClInclude Include="Source\FreeImageIO.h" />
     <ClInclude Include="Source\Metadata\FreeImageTag.h" />
     <ClInclude Include="Source\FreeImage\J2KHelper.h" />
+    <ClInclude Include="Source\OpenEXR\Half\half.h" />
     <ClInclude Include="Source\Plugin.h" />
     <ClInclude Include="Source\FreeImage\PSDParser.h" />
     <ClInclude Include="Source\Quantizers.h" />

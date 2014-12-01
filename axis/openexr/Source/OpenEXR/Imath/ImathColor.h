@@ -44,7 +44,7 @@
 //----------------------------------------------------
 
 #include "ImathVec.h"
-#include "half.h"
+#include  "app/axis/freeimage/Source/OpenEXR/Half/half.h"
 
 namespace Imath {
 

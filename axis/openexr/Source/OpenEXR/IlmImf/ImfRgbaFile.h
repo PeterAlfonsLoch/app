@@ -52,7 +52,7 @@
 #include <ImfRgba.h>
 #include "ImathVec.h"
 #include "ImathBox.h"
-#include "half.h"
+#include  "app/axis/freeimage/Source/OpenEXR/Half/half.h"
 #include <ImfThreading.h>
 //#include <string>
 

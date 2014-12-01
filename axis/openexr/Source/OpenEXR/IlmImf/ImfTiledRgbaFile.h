@@ -49,7 +49,7 @@
 #include <ImfFrameBuffer.h>
 #include "ImathVec.h"
 #include "ImathBox.h"
-#include "half.h"
+#include  "app/axis/freeimage/Source/OpenEXR/Half/half.h"
 #include <ImfTileDescription.h>
 #include <ImfRgba.h>
 #include <ImfThreading.h>

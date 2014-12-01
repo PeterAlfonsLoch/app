@@ -42,7 +42,7 @@
 #include  "Iex.h"
 
 
-#include  "Half/half.h"
+#include  "app/axis/freeimage/Source/OpenEXR/Half/half.h"
 
 
 #include "Iex/Iex.h"
