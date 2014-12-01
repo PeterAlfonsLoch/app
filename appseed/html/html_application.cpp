@@ -89,6 +89,12 @@ namespace html
       }
       else if(psignal->m_esignal == ::aura::application_signal_initialize1)
       {
+
+         System.factory().creatable_small < html_document >();
+         System.factory().creatable_small < html_child_frame >();
+         System.factory().creatable_small < html_frame >();
+         System.factory().creatable_small < html_view >();
+
          
          if(!m_pauraapp->m_pcoresystem->m_phtml->initialize())
          {
@@ -96,6 +102,29 @@ namespace html
             psignal->m_bRet = true;
             return;
          }
+
+         Platform.userex()->m_ptemplateForm = new ::user::multiple_document_template(
+            get_app(),
+            "system/form",
+            System.type_info < html_document >(),
+            System.type_info < html_frame >(),
+            System.type_info < html_view >());
+
+         Platform.userex()->m_ptemplateChildForm = new ::user::multiple_document_template(
+            get_app(),
+            "system/form",
+            System.type_info < html_document >(),
+            System.type_info < html_child_frame >(),
+            System.type_info < html_view >());
+
+         Platform.userex()->m_ptemplatePlaceHolder = new ::user::multiple_document_template(
+            get_app(),
+            "system/form",
+            System.type_info < simple_document >(),
+            System.type_info < simple_frame_window >(),
+            System.type_info < ::user::place_holder >());
+
+
 
       }
       else  if(psignal->m_esignal == ::aura::application_signal_exit_instance)
