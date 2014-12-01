@@ -12,7 +12,7 @@ namespace filehandler
       ::user::form_interface(papp),
       ::user::form(papp),
       html_form(papp),
-      html_form_view(papp),
+      html_view(papp),
       form_view(papp),
       m_document(papp),
       m_spfont(allocer())

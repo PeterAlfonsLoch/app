@@ -89,7 +89,7 @@ namespace userstack
       ::user::tab_view::on_update(pSender, lHint, pHint);
       if(lHint == 543218)
       {
-         set_cur_tab_by_id(::bergedge::PaneViewWinActionArea);
+//         set_cur_tab_by_id(::bergedge::PaneViewWinActionArea);
       }
       if(pHint != NULL)
       {
@@ -140,37 +140,37 @@ namespace userstack
             pframeApp->WfiFullScreen();
          }*/
       }
-      else if(get_view_id() == ::bergedge::PaneViewContextMenu)
-      {
-         /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
-         sp(::filemanager::manager) pdoc = (pview->get_document());
-         pdoc->FileManagerBrowse(Application.dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
-      }
-      else if(get_view_id() == ::bergedge::PaneViewConfiguration)
-      {
-   /*      sp(::user::interaction) pui = m_pformOptions->ve_display_bandwidth");
-         elemental * pcheck = dynamic_cast < elemental * > (puie);
-         if(Session.savings().save().is_signalized(::ca2::save_display_bandwidth))
-         {
-            pcheck->_001SetCheck(check::checked, false);
-         }
-         else
-         {
-            pcheck->_001SetCheck(check::unchecked, false);
-         }*/
-      }
-      else if(get_view_id() == ::bergedge::PaneViewWinActionArea)
-      {
-         string strDirName;
-         strDirName.Format("desktop-%d", m_iDisplay);
-         string strDir = Application.dir().userfolder(strDirName);
-         if(m_iDisplay <= 0)
-         {
-            check_desktop_dir(strDir);
-         }
-         sp(::filemanager::manager) pdoc =  (m_pviewdata->m_pdoc);
-         pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
-      }
+   //   else if(get_view_id() == ::bergedge::PaneViewContextMenu)
+   //   {
+   //      /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
+   //      sp(::filemanager::manager) pdoc = (pview->get_document());
+   //      pdoc->FileManagerBrowse(Application.dir().userappdata("bergedge\\menu"), ::action::source::system_default());*/
+   //   }
+   //   else if(get_view_id() == ::bergedge::PaneViewConfiguration)
+   //   {
+   ///*      sp(::user::interaction) pui = m_pformOptions->ve_display_bandwidth");
+   //      elemental * pcheck = dynamic_cast < elemental * > (puie);
+   //      if(Session.savings().save().is_signalized(::ca2::save_display_bandwidth))
+   //      {
+   //         pcheck->_001SetCheck(check::checked, false);
+   //      }
+   //      else
+   //      {
+   //         pcheck->_001SetCheck(check::unchecked, false);
+   //      }*/
+   //   }
+   //   else if(get_view_id() == ::bergedge::PaneViewWinActionArea)
+   //   {
+   //      string strDirName;
+   //      strDirName.Format("desktop-%d", m_iDisplay);
+   //      string strDir = Application.dir().userfolder(strDirName);
+   //      if(m_iDisplay <= 0)
+   //      {
+   //         check_desktop_dir(strDir);
+   //      }
+   //      sp(::filemanager::manager) pdoc =  (m_pviewdata->m_pdoc);
+   //      pdoc->FileManagerBrowse(strDir, ::action::source::system_default());
+   //   }
       else
       {
 //         pframe->m_bAutoHideOnOutClick = true;
@@ -492,12 +492,12 @@ namespace userstack
 
       UNREFERENCED_PARAMETER(pdata);
 
-      if(get_view_id() == ::bergedge::PaneViewWinActionArea)
-      {
+      //if(get_view_id() == ::bergedge::PaneViewWinActionArea)
+      //{
 
-         track_popup_xml_matter_menu("bergedge/popup_winactionarea.xml", 0);
+      //   track_popup_xml_matter_menu("bergedge/popup_winactionarea.xml", 0);
 
-      }
+      //}
 
 
 
@@ -513,7 +513,7 @@ namespace userstack
    {
       UNREFERENCED_PARAMETER(pdata);
       m_itema = itema;
-      set_cur_tab_by_id(::bergedge::PaneViewFileProperties);
+      //set_cur_tab_by_id(::bergedge::PaneViewFileProperties);
    }
 
 
@@ -521,20 +521,20 @@ namespace userstack
    void pane_view::_001OnProperties(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      if(get_view_id() == ::bergedge::PaneViewWinActionArea)
-      {
-
-#ifndef METROWIN
-         simple_shell_launcher launcher(NULL, NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
-
-         launcher.execute();
-#else
-
-         throw todo(get_app());
-
-#endif
-
-      }
+//      if(get_view_id() == ::bergedge::PaneViewWinActionArea)
+//      {
+//
+//#ifndef METROWIN
+//         simple_shell_launcher launcher(NULL, NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
+//
+//         launcher.execute();
+//#else
+//
+//         throw todo(get_app());
+//
+//#endif
+//
+//      }
    }
 
 

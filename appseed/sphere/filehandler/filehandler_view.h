@@ -6,7 +6,7 @@ namespace filehandler
 
 
    class CLASS_DECL_sphere view :
-      public form_view
+      public html_view
    {
    public:
 
