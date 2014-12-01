@@ -53,9 +53,6 @@
     <ClCompile Include="Source\FreeImage\PluginEXR.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
-    <ClCompile Include="Source\OpenEXR\Half\half.cpp">
-      <Filter>Source\OpenEXR\Half</Filter>
-    </ClCompile>
     <ClCompile Include="Source\OpenEXR\Iex\IexBaseExc.cpp">
       <Filter>Source\OpenEXR\Iex</Filter>
     </ClCompile>

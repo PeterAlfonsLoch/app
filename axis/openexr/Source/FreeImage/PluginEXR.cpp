@@ -20,7 +20,7 @@
 // Use at your own risk!
 // ==========================================================
 
-#include  "FreeImageFramework.h"
+#include  "app/axis/freeimage/Source/FreeImage/FreeImageFramework.h"
 //#include "Utilities.h"
 #include "../OpenEXR/IlmImf/ImfIO.h"
 #include "../OpenEXR/Iex/Iex.h"
@@ -31,7 +31,8 @@
 #include "../OpenEXR/IlmImf/ImfRgba.h"
 #include "../OpenEXR/IlmImf/ImfArray.h"
 #include "../OpenEXR/IlmImf/ImfPreviewImage.h"
-#include "../OpenEXR/Half/half.h"
+#include "../OpenEXR/IlmImf/ImfAttribute.h"
+#include "app/axis/freeimage/Source/OpenEXR/Half/half.h"
 
 
 // ==========================================================

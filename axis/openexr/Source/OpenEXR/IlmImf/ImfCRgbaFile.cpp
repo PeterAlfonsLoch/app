@@ -10,9 +10,10 @@
 //#include <ImfCRgbaFile.h>
 //#include <ImfRgbaFile.h>
 //#include <ImfTiledRgbaFile.h>
-//#include <ImfIntAttribute.h>
-//#include <ImfFloatAttribute.h>
-//#include <ImfDoubleAttribute.h>
+#include <ImfAttribute.h>
+#include <ImfIntAttribute.h>
+#include <ImfFloatAttribute.h>
+#include <ImfDoubleAttribute.h>
 //#include <ImfStringAttribute.h>
 //#include <ImfBoxAttribute.h>
 //#include <ImfVecAttribute.h>

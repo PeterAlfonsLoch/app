@@ -40,7 +40,7 @@
 //#include <ImfCheckedArithmetic.h>
 //#include <ImathFun.h>
 //#include <Iex.h>
-#include <half.h>
+#include  "app/axis/freeimage/Source/OpenEXR/Half/half.h"
 #include "axis/zlib/zlib.h"
 #include <assert.h>
 //#include <algorithm>

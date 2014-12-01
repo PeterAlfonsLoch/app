@@ -87,17 +87,18 @@
 
 //#include <iostream>
 
-#if defined(OPENEXR_DLL)
+
+//#if defined(OPENEXR_DLL)
     #if defined(HALF_EXPORTS)
 	#define HALF_EXPORT __declspec(dllexport)
     #else
 	#define HALF_EXPORT __declspec(dllimport)
     #endif
     #define HALF_EXPORT_CONST
-#else
+/*#else
     #define HALF_EXPORT
     #define HALF_EXPORT_CONST const
-#endif
+#endif*/
 
 class HALF_EXPORT half
 {
