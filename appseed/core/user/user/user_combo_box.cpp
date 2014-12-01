@@ -721,6 +721,8 @@ namespace user
          if(m_plist.is_set())
          {
 
+            m_plist->DestroyWindow();
+
             m_plist.release();
 
          }

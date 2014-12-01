@@ -87,31 +87,30 @@ public:
 
    sort_array() { }
 
-#if defined(MOVE_SEMANTICS)
+//#if defined(MOVE_SEMANTICS)
+//
+//   sort_array(sort_array && a) :
+//      BASE_ARRAY_TYPE(a)
+//   {
+//      m_indexmap.copy(a.m_indexmap);
+//   }
+//
+//   inline sort_array & operator = (sort_array && a)
+//   {
+//
+//      BASE_ARRAY_TYPE::operator = (a);
+//
+//      m_indexmap= a.m_indexmap;
+//
+//      return *this;
+//
+//   }
+//
+//#endif
 
-   sort_array(sort_array && a) :
-      BASE_ARRAY_TYPE(a)
+   sort_array(const sort_array & a)
    {
-      m_indexmap = a.m_indexmap;
-   }
-
-   inline sort_array & operator = (sort_array && a)
-   {
-
-      BASE_ARRAY_TYPE::operator = (a);
-
-      m_indexmap = a.m_indexmap;
-
-      return *this;
-
-   }
-
-#endif
-
-   sort_array(const sort_array & a) :
-      BASE_ARRAY_TYPE(a)
-   {
-
+      copy(a);
    }
 
 
