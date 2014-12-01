@@ -332,7 +332,7 @@ The FreeImage solution is to instantiate the singleton before any other thread i
 i.e. inside the FreeImage_Initialise function (see Plugin.cpp).
 */
 
-class TagLib {
+class DLL_API TagLib {
 public:
 
 	/**
@@ -473,11 +473,11 @@ extern "C" {
 // JPEG Exif profile
 WINBOOL jpeg_read_exif_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned datalen);
 WINBOOL jpeg_read_exif_profile_raw(FIBITMAP *dib, const BYTE *profile, unsigned length);
-WINBOOL jpegxr_read_exif_profile(FIBITMAP *dib, const BYTE *profile, unsigned length);
-WINBOOL jpegxr_read_exif_gps_profile(FIBITMAP *dib, const BYTE *profile, unsigned length);
+WINBOOL DLL_API jpegxr_read_exif_profile(FIBITMAP *dib,const BYTE *profile,unsigned length);
+WINBOOL DLL_API jpegxr_read_exif_gps_profile(FIBITMAP *dib,const BYTE *profile,unsigned length);
 
 // JPEG / TIFF IPTC profile
-WINBOOL read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen);
+WINBOOL DLL_API read_iptc_profile(FIBITMAP *dib,const BYTE *dataptr,unsigned int datalen);
 WINBOOL write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size);
 
 #if defined(__cplusplus)

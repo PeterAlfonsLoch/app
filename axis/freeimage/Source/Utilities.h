@@ -343,7 +343,7 @@ Swap red and blue channels in a 24- or 32-bit dib.
 @return Returns TRUE if successful, returns FALSE otherwise
 @see See definition in Conversion.cpp
 */
-WINBOOL SwapRedBlue32(FIBITMAP* dib);
+WINBOOL DLL_API SwapRedBlue32(FIBITMAP* dib);
 
 /**
 Inplace convert CMYK to RGBA.(8- and 16-bit).
