@@ -12,8 +12,9 @@ namespace html
       ::element(papp)
    {
 
+      m_psignal->connect(this,&application::on_application_signal);
 
-      }
+   }
 
 
    application::~application()
@@ -42,155 +43,6 @@ namespace html
 
    }
 
-   bool application::initialize2()
-   {
-
-      if(!::core::application::initialize2())
-         return false;
-
-      if(!::base::application::initialize2())
-         return false;
-
-      return true;
-
-   }
-
-
-   bool application::InitApplication()
-   {
-
-
-      if(!::core::application::InitApplication())
-         return false;
-
-      return true;
-   }
-
-
-   bool application::process_initialize()
-   {
-
-      if(!::core::application::process_initialize())
-         return false;
-
-      m_pauraapp->m_pcoresystem->m_phtml = create_html();
-
-      m_pauraapp->m_pcoresystem->add_ref();
-
-      if(m_pauraapp->m_pcoresystem->m_phtml == NULL)
-         return false;
-
-      m_pauraapp->m_pcoresystem->m_phtml->construct(this);
-
-      return true;
-
-   }
-
-
-   bool application::initialize()
-   {
-
-      if(!::core::application::initialize())
-         return false;
-
-      return true;
-   }
-
-
-
-   bool application::initialize1()
-   {
-
-
-
-
-      if(!::core::application::initialize1())
-         return false;
-
-
-      if(!m_pauraapp->m_pcoresystem->m_phtml->initialize())
-         return false;
-
-
-
-      return true;
-
-   }
-
-
-
-
-   bool application::initialize3()
-   {
-
-      if(!::core::application::initialize3())
-         return false;
-
-      return true;
-
-   }
-
-
-   bool application::initialize_instance()
-   {
-
-      if(!::core::application::initialize_instance())
-      {
-         return false;
-      }
-
-      return true;
-
-   }
-
-
-   bool application::bergedge_start()
-   {
-      return true;
-   }
-
-
-   int32_t application::exit_instance()
-   {
-
-
-      int32_t iRet = m_iReturnCode;
-
-
-      try
-      {
-
-         iRet = ::core::application::exit_instance();
-
-      }
-      catch(...)
-      {
-
-      }
-
-
-
-      return iRet;
-   }
-
-
-
-
-   bool application::finalize()
-   {
-
-      bool bOk = true;
-
-      if(!::core::application::finalize())
-      {
-
-         bOk = false;
-
-      }
-
-      return bOk;
-
-   }
 
 
 
@@ -213,6 +65,43 @@ namespace html
    }
 
 
+   void application::on_application_signal(signal_details * pobj)
+   {
+      
+      SCAST_PTR(::aura::application_signal_details,psignal,pobj);
+
+      if(psignal->m_esignal == ::aura::application_signal_process_initialize)
+      {
+         
+         m_pauraapp->m_pcoresystem->m_phtml = create_html();
+
+         m_pauraapp->m_pcoresystem->add_ref();
+
+         if(m_pauraapp->m_pcoresystem->m_phtml == NULL)
+         {
+            psignal->m_bOk = false;
+            psignal->m_bRet = true;
+            return;
+         }
+
+         m_pauraapp->m_pcoresystem->m_phtml->construct(this);
+
+      }
+      else if(psignal->m_esignal == ::aura::application_signal_initialize1)
+      {
+         
+         if(!m_pauraapp->m_pcoresystem->m_phtml->initialize())
+         {
+            psignal->m_bOk = false;
+            psignal->m_bRet = true;
+            return;
+         }
+
+      }
+      else  if(psignal->m_esignal == ::aura::application_signal_exit_instance)
+      {
+      }
+   }
 
 
    ::html::html * application::create_html()

@@ -28,26 +28,26 @@ namespace html
 
       virtual bool is_system();
 
-      virtual bool process_initialize();
+      //virtual bool process_initialize();
 
-      virtual bool initialize2();
+      //virtual bool initialize2();
 
-      virtual bool initialize_instance();
+      //virtual bool initialize_instance();
 
-      virtual bool finalize();
+      //virtual bool finalize();
 
-      virtual int32_t exit_instance();
+      //virtual int32_t exit_instance();
 
 
 
       //virtual int32_t main();
-      virtual bool InitApplication();
+      //virtual bool InitApplication();
 
-      virtual bool initialize();
-      virtual bool initialize1();
-      virtual bool initialize3();
+      //virtual bool initialize();
+      //virtual bool initialize1();
+      //virtual bool initialize3();
 
-      virtual bool bergedge_start();
+      //virtual bool bergedge_start();
 
 
       inline ::html::html *                 html()         { return m_pauraapp->m_pcoresystem->m_phtml; }
@@ -55,7 +55,7 @@ namespace html
 
 
 
-
+      DECL_GEN_SIGNAL(on_application_signal);
       void assert_valid() const;
       void dump(dump_context & context) const;
 
