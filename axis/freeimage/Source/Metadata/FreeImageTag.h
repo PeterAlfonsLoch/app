@@ -471,8 +471,8 @@ extern "C" {
 #endif
 
 // JPEG Exif profile
-WINBOOL jpeg_read_exif_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned datalen);
-WINBOOL jpeg_read_exif_profile_raw(FIBITMAP *dib, const BYTE *profile, unsigned length);
+WINBOOL DLL_API jpeg_read_exif_profile(FIBITMAP *dib,const BYTE *dataptr,unsigned datalen);
+WINBOOL DLL_API jpeg_read_exif_profile_raw(FIBITMAP *dib,const BYTE *profile,unsigned length);
 WINBOOL DLL_API jpegxr_read_exif_profile(FIBITMAP *dib,const BYTE *profile,unsigned length);
 WINBOOL DLL_API jpegxr_read_exif_gps_profile(FIBITMAP *dib,const BYTE *profile,unsigned length);
 
