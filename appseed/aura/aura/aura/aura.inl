@@ -227,7 +227,7 @@ namespace xml
          xmlof.set_attr("count",this->get_size());
          for(int32_t i = 0; i < this->get_size(); i++)
          {
-            node * pnode = xmlof.export_node(xmlof.get_node_name(m_iNodeNameIndex),this->operator[](i));
+            node * pnode = xmlof.export_node(xmlof.get_node_name(m_iNodeNameIndex),this->operator()(i));
             pnode->add_attr("array_index",i);
          }
       }
