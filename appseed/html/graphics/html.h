@@ -40,7 +40,7 @@ CLASS_DECL_HTML void trim001(string & str);
 #include "html_html.h"
 
 
-#include "graphics/html2.h"
+#include "html/graphics/html2.h"
 
 
 #include "html_form.h"

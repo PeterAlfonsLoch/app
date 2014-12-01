@@ -9,12 +9,12 @@ namespace html
    {
 
 
-      class CLASS_DECL_CORE table : public elemental
+      class CLASS_DECL_HTML table : public elemental
       {
       public:
 
 
-         class CLASS_DECL_CORE column
+         class CLASS_DECL_HTML column
          {
          public:
 

@@ -9,7 +9,7 @@ namespace html
    {
 
 
-      class CLASS_DECL_CORE input_button : public elemental
+      class CLASS_DECL_HTML input_button : public elemental
       {
       public:
 

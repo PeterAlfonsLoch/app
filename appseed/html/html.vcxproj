@@ -871,6 +871,19 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="graphics\elemental\html_elemental.h" />
+    <ClInclude Include="graphics\elemental\html_elemental_cell.h" />
+    <ClInclude Include="graphics\elemental\html_elemental_elemental.h" />
+    <ClInclude Include="graphics\elemental\html_elemental_form.h" />
+    <ClInclude Include="graphics\elemental\html_elemental_image.h" />
+    <ClInclude Include="graphics\elemental\html_elemental_input_button.h" />
+    <ClInclude Include="graphics\elemental\html_elemental_input_checkbox.h" />
+    <ClInclude Include="graphics\elemental\html_elemental_input_text.h" />
+    <ClInclude Include="graphics\elemental\html_elemental_select.h" />
+    <ClInclude Include="graphics\elemental\html_elemental_table.h" />
+    <ClInclude Include="graphics\elemental\html_elemental_table_elemental.h" />
+    <ClInclude Include="graphics\elemental\html_elemental_table_row.h" />
+    <ClInclude Include="graphics\elemental\html_elemental_text.h" />
     <ClInclude Include="graphics\html.h" />
     <ClInclude Include="graphics\html2.h" />
     <ClInclude Include="graphics\html_attribute.h" />
@@ -893,10 +906,29 @@
     <ClInclude Include="graphics\html_style_sheet_array.h" />
     <ClInclude Include="graphics\html_tag.h" />
     <ClInclude Include="graphics\html_value.h" />
+    <ClInclude Include="graphics\impl\html_impl.h" />
+    <ClInclude Include="graphics\impl\html_impl_cell.h" />
+    <ClInclude Include="graphics\impl\html_impl_elemental.h" />
+    <ClInclude Include="graphics\impl\html_impl_form.h" />
+    <ClInclude Include="graphics\impl\html_impl_image.h" />
+    <ClInclude Include="graphics\impl\html_impl_input_button.h" />
+    <ClInclude Include="graphics\impl\html_impl_input_checkbox.h" />
+    <ClInclude Include="graphics\impl\html_impl_input_text.h" />
+    <ClInclude Include="graphics\impl\html_impl_select.h" />
+    <ClInclude Include="graphics\impl\html_impl_table.h" />
+    <ClInclude Include="graphics\impl\html_impl_table_elemental.h" />
+    <ClInclude Include="graphics\impl\html_impl_table_row.h" />
+    <ClInclude Include="graphics\impl\html_impl_text.h" />
     <ClInclude Include="hi5\hi5_twitter_authorization.h" />
     <ClInclude Include="html\html.h" />
     <ClInclude Include="html_application.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="html_lite\html_lite.h" />
+    <ClInclude Include="html_lite\html_lite_html_attributes.h" />
+    <ClInclude Include="html_lite\html_lite_html_common.h" />
+    <ClInclude Include="html_lite\html_lite_html_entity_resolver.h" />
+    <ClInclude Include="html_lite\html_lite_html_reader.h" />
+    <ClInclude Include="html_lite\html_lite_html_tag.h" />
     <ClInclude Include="userhtml\userhtml.h" />
     <ClInclude Include="userhtml\userhtml_child_frame.h" />
     <ClInclude Include="userhtml\userhtml_document.h" />
@@ -919,6 +951,18 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="graphics\elemental\html_elemental_cell.cpp" />
+    <ClCompile Include="graphics\elemental\html_elemental_elemental.cpp" />
+    <ClCompile Include="graphics\elemental\html_elemental_form.cpp" />
+    <ClCompile Include="graphics\elemental\html_elemental_image.cpp" />
+    <ClCompile Include="graphics\elemental\html_elemental_input_button.cpp" />
+    <ClCompile Include="graphics\elemental\html_elemental_input_checkbox.cpp" />
+    <ClCompile Include="graphics\elemental\html_elemental_input_text.cpp" />
+    <ClCompile Include="graphics\elemental\html_elemental_select.cpp" />
+    <ClCompile Include="graphics\elemental\html_elemental_table.cpp" />
+    <ClCompile Include="graphics\elemental\html_elemental_table_elemental.cpp" />
+    <ClCompile Include="graphics\elemental\html_elemental_table_row.cpp" />
+    <ClCompile Include="graphics\elemental\html_elemental_text.cpp" />
     <ClCompile Include="graphics\html_attribute.cpp" />
     <ClCompile Include="graphics\html_base.cpp" />
     <ClCompile Include="graphics\html_data.cpp" />
@@ -932,8 +976,25 @@
     <ClCompile Include="graphics\html_style_sheet_array.cpp" />
     <ClCompile Include="graphics\html_tag.cpp" />
     <ClCompile Include="graphics\html_value.cpp" />
+    <ClCompile Include="graphics\impl\html_impl.cpp" />
+    <ClCompile Include="graphics\impl\html_impl_cell.cpp" />
+    <ClCompile Include="graphics\impl\html_impl_elemental.cpp" />
+    <ClCompile Include="graphics\impl\html_impl_form.cpp" />
+    <ClCompile Include="graphics\impl\html_impl_image.cpp" />
+    <ClCompile Include="graphics\impl\html_impl_input_button.cpp" />
+    <ClCompile Include="graphics\impl\html_impl_input_checkbox.cpp" />
+    <ClCompile Include="graphics\impl\html_impl_input_text.cpp" />
+    <ClCompile Include="graphics\impl\html_impl_select.cpp" />
+    <ClCompile Include="graphics\impl\html_impl_table.cpp" />
+    <ClCompile Include="graphics\impl\html_impl_table_elemental.cpp" />
+    <ClCompile Include="graphics\impl\html_impl_table_row.cpp" />
+    <ClCompile Include="graphics\impl\html_impl_text.cpp" />
     <ClCompile Include="hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="html_application.cpp" />
+    <ClCompile Include="html_lite\html_lite_html_attributes.cpp" />
+    <ClCompile Include="html_lite\html_lite_html_entity_resolver.cpp" />
+    <ClCompile Include="html_lite\html_lite_html_reader.cpp" />
+    <ClCompile Include="html_lite\html_lite_html_tag.cpp" />
     <ClCompile Include="userhtml\userhtml_child_frame.cpp" />
     <ClCompile Include="userhtml\userhtml_document.cpp" />
     <ClCompile Include="userhtml\userhtml_form.cpp" />

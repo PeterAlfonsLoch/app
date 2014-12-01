@@ -20,11 +20,8 @@ namespace html
 
       class ::core::patch                          m_patch;*/
 
-      ::html::html                                 m_phtml;
-
-
-      system(::aura::application * papp = NULL);
-      virtual ~system();
+      application(::aura::application * papp = NULL);
+      virtual ~application();
 
 
       virtual void construct(const char * pszAppId);
@@ -53,7 +50,7 @@ namespace html
       virtual bool bergedge_start();
 
 
-      inline sp(::html::html)                   html()         { return m_phtml; }
+      inline ::html::html *                 html()         { return m_pauraapp->m_pcoresystem->m_phtml; }
       virtual ::html::html * create_html();
 
 

@@ -316,7 +316,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * lpszV
       if ((iCurPos = m_strValue.find('&', ++iCurPos)) == -1)
          break;
 
-      iParseLen = Sys(preader->m_pauraapp).html()->resolve_entity(m_strValue.Mid(iCurPos), strChar);
+      iParseLen = Sys(preader->m_pauraapp).m_phtml->resolve_entity(m_strValue.Mid(iCurPos), strChar);
 
       if (iParseLen)
       {
@@ -343,7 +343,7 @@ bool LiteHTMLElemAttr::isNamedColorValue(::lite_html_reader * preader) const
 
       strKey.make_lower();
 
-      if(Sys(preader->m_pauraapp).html()->m_namedColors.Lookup(m_strValue, crTemp))
+      if(Sys(preader->m_pauraapp).m_phtml->m_namedColors.Lookup(m_strValue, crTemp))
          return true;
 
    }
@@ -364,7 +364,7 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
 
       strKey.make_lower();
 
-      if(Sys(preader->m_pauraapp).html()->m_namedColors.Lookup(strKey, crTemp))
+      if(Sys(preader->m_pauraapp).m_phtml->m_namedColors.Lookup(strKey, crTemp))
          return (crTemp >= 0x80000000 && crTemp <= 0x80000018);
 
    }
@@ -418,7 +418,7 @@ COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 
       strKey.make_lower();
 
-      if(Sys(preader->m_pauraapp).html()->m_namedColors.Lookup(strKey, crTemp))
+      if(Sys(preader->m_pauraapp).m_phtml->m_namedColors.Lookup(strKey, crTemp))
       {
 
          // is this a system named color value?

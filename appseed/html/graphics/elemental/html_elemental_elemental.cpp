@@ -1284,7 +1284,7 @@ namespace html
       if (m_pbase->get_type() == base::type_value)
       {
 
-         str += Sys(pdata->m_pauraapp).html()->entities(m_strBody);
+         str += Sys(pdata->m_pauraapp).m_phtml->entities(m_strBody);
 
       }
       else
@@ -1309,7 +1309,7 @@ namespace html
          if (m_elementalptra.get_size() <= 0)
          {
 
-            str += Sys(pdata->m_pauraapp).html()->entities(m_strBody);
+            str += Sys(pdata->m_pauraapp).m_phtml->entities(m_strBody);
 
          }
          else
