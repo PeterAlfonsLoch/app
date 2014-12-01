@@ -173,9 +173,6 @@
     <ClCompile Include="Source\FreeImage\PluginDDS.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
-    <ClCompile Include="Source\FreeImage\PluginEXR.cpp">
-      <Filter>Source Files\Plugins</Filter>
-    </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginG3.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
