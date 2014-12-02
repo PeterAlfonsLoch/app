@@ -39,18 +39,6 @@
     <Filter Include="Source\LibPNG">
       <UniqueIdentifier>{59f7e689-1f2f-430b-a01d-6c331f6aaff8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\LibRawLite">
-      <UniqueIdentifier>{aa5a1c3b-cb2e-447e-b80e-e66e0da51356}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\LibRawLite\internal">
-      <UniqueIdentifier>{76854af4-87eb-4dc7-b632-26baeec1e3a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\LibRawLite\libraw">
-      <UniqueIdentifier>{6094d1c5-2826-41d9-b0e2-39e4d97fc3c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\LibRawLite\src">
-      <UniqueIdentifier>{2759a980-4091-4b07-b94d-647a9207e1c2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\LibTIFF4">
       <UniqueIdentifier>{fe768acd-c467-4d3d-82a2-4c66a2c1618a}</UniqueIdentifier>
     </Filter>
@@ -377,24 +365,6 @@
     <ClCompile Include="Source\LibJPEG\wrtarga.c">
       <Filter>Source\LibJPEG</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibRawLite\internal\dcraw_common.cpp">
-      <Filter>Source\LibRawLite\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibRawLite\internal\dcraw_fileio.cpp">
-      <Filter>Source\LibRawLite\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibRawLite\internal\demosaic_packs.cpp">
-      <Filter>Source\LibRawLite\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibRawLite\src\libraw_c_api.cpp">
-      <Filter>Source\LibRawLite\src</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibRawLite\src\libraw_cxx.cpp">
-      <Filter>Source\LibRawLite\src</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibRawLite\src\libraw_datastream.cpp">
-      <Filter>Source\LibRawLite\src</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LibPNG\pngwutil.c">
       <Filter>Source\LibPNG\Source Files</Filter>
     </ClCompile>
@@ -668,9 +638,6 @@
     <ClCompile Include="Source\FreeImage\PluginRAS.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
-    <ClCompile Include="Source\FreeImage\PluginRAW.cpp">
-      <Filter>Source Files\Plugins</Filter>
-    </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginSGI.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
@@ -771,39 +738,6 @@
     <ClInclude Include="Source\LibJPEG\transupp.h">
       <Filter>Source\LibJPEG</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LibRawLite\internal\defines.h">
-      <Filter>Source\LibRawLite\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibRawLite\internal\libraw_bytebuffer.h">
-      <Filter>Source\LibRawLite\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibRawLite\internal\libraw_internal_funcs.h">
-      <Filter>Source\LibRawLite\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibRawLite\internal\var_defines.h">
-      <Filter>Source\LibRawLite\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibRawLite\libraw\libraw.h">
-      <Filter>Source\LibRawLite\libraw</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibRawLite\libraw\libraw_alloc.h">
-      <Filter>Source\LibRawLite\libraw</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibRawLite\libraw\libraw_const.h">
-      <Filter>Source\LibRawLite\libraw</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibRawLite\libraw\libraw_datastream.h">
-      <Filter>Source\LibRawLite\libraw</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibRawLite\libraw\libraw_internal.h">
-      <Filter>Source\LibRawLite\libraw</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibRawLite\libraw\libraw_types.h">
-      <Filter>Source\LibRawLite\libraw</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibRawLite\libraw\libraw_version.h">
-      <Filter>Source\LibRawLite\libraw</Filter>
-    </ClInclude>
     <ClInclude Include="Source\LibPNG\png.h">
       <Filter>Source\LibPNG\Header Files</Filter>
     </ClInclude>
@@ -897,9 +831,6 @@
     </None>
     <None Include="Source\LibPNG\LibPNG.2008.vcxproj.filters">
       <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibRawLite\internal\preprocess.pl">
-      <Filter>Source\LibRawLite\internal</Filter>
     </None>
     <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj.filters">
       <Filter>Source\LibTIFF4</Filter>

@@ -2736,53 +2736,6 @@ copy Source\FreeImage.h Dist
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="Source\FreeImage\PluginRAW.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|Android'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">Use</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='stage|x64'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">FreeImageFramework.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">$(IntDir)FreeImageFramework.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginSGI.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">Use</PrecompiledHeader>
@@ -5099,12 +5052,6 @@ copy Source\FreeImage.h Dist
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)png.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">$(IntDir)png.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="Source\LibRawLite\internal\dcraw_common.cpp" />
-    <ClCompile Include="Source\LibRawLite\internal\dcraw_fileio.cpp" />
-    <ClCompile Include="Source\LibRawLite\internal\demosaic_packs.cpp" />
-    <ClCompile Include="Source\LibRawLite\src\libraw_cxx.cpp" />
-    <ClCompile Include="Source\LibRawLite\src\libraw_c_api.cpp" />
-    <ClCompile Include="Source\LibRawLite\src\libraw_datastream.cpp" />
     <ClCompile Include="Source\LibTIFF4\tiffop.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
@@ -6826,17 +6773,6 @@ copy Source\FreeImage.h Dist
     <ClInclude Include="Source\LibPNG\pnglibconf.h" />
     <ClInclude Include="Source\LibPNG\pngpriv.h" />
     <ClInclude Include="Source\LibPNG\pngstruct.h" />
-    <ClInclude Include="Source\LibRawLite\internal\defines.h" />
-    <ClInclude Include="Source\LibRawLite\internal\libraw_bytebuffer.h" />
-    <ClInclude Include="Source\LibRawLite\internal\libraw_internal_funcs.h" />
-    <ClInclude Include="Source\LibRawLite\internal\var_defines.h" />
-    <ClInclude Include="Source\LibRawLite\libraw\libraw.h" />
-    <ClInclude Include="Source\LibRawLite\libraw\libraw_alloc.h" />
-    <ClInclude Include="Source\LibRawLite\libraw\libraw_const.h" />
-    <ClInclude Include="Source\LibRawLite\libraw\libraw_datastream.h" />
-    <ClInclude Include="Source\LibRawLite\libraw\libraw_internal.h" />
-    <ClInclude Include="Source\LibRawLite\libraw\libraw_types.h" />
-    <ClInclude Include="Source\LibRawLite\libraw\libraw_version.h" />
     <ClInclude Include="Source\LibTIFF4\t4.h" />
     <ClInclude Include="Source\LibTIFF4\tiff.h" />
     <ClInclude Include="Source\LibTIFF4\tiffconf.h" />
@@ -6874,7 +6810,6 @@ copy Source\FreeImage.h Dist
     <None Include="Source\LibJPEG\jmemdosa.asm" />
     <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj.filters" />
     <None Include="Source\LibPNG\LibPNG.2008.vcxproj.filters" />
-    <None Include="Source\LibRawLite\internal\preprocess.pl" />
     <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj.filters" />
   </ItemGroup>
   <ItemGroup>

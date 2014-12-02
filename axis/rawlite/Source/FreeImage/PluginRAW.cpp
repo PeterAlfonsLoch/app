@@ -18,7 +18,7 @@
 //
 // Use at your own risk!
 // ==========================================================
-#include  "FreeImageFramework.h"
+#include  "app/axis/freeimage/Source/FreeImage/FreeImageFramework.h"
 
 #include "../LibRawLite/libraw/libraw.h"
 

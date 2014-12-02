@@ -277,7 +277,7 @@ TagLib::instance();
 			//s_plugins->AddNode(InitJP2);
 			s_plugins->AddNode(InitPFM);
 			s_plugins->AddNode(InitPICT);
-			s_plugins->AddNode(InitRAW);
+			//s_plugins->AddNode(InitRAW);
 			//s_plugins->AddNode(InitWEBP);
 #if !(defined(_MSC_VER) && (_MSC_VER <= 1310))
 			//s_plugins->AddNode(InitJXR);
