@@ -9,8 +9,6 @@ stage\basis\auracharguess.dll
 stage\basis\aurasqlite.dll
 stage\basis\axis.dll
 stage\basis\axisbzip2.dll
-stage\basis\axisfreeimage.dll
-stage\basis\axisfreetype.dll
 stage\basis\axisidn.dll
 stage\basis\axisopenssl.dll
 stage\basis\axiszlib.dll
