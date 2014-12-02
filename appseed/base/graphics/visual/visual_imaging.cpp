@@ -627,6 +627,9 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
          int cy = pbitmap->GetHeight();
 
+         if(!pdib->create(cx,cy))
+            return false;
+
          Gdiplus::BitmapData* bitmapData = new Gdiplus::BitmapData;
 
          Gdiplus::Rect rect(0,0,cx,cy);
@@ -639,13 +642,22 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
             //printf("The stride is %d.\n\n",bitmapData->Stride);
 
             // Display the hexadecimal value of each pixel in the 5x3 rectangle.
-            COLORREF* pixels = (COLORREF*)bitmapData->Scan0;
+            byte* pixels = (byte*)bitmapData->Scan0;
 
-            for(int row = 0; row < cx; ++row)
+            if(bitmapData->Stride == bitmapData->Width * 4)
             {
+               
+               memcpy(pdib->m_pcolorref,pixels,bitmapData->Height*bitmapData->Width *4);
 
-               memcpy(pdib->m_pcolorref,&pixels[row * bitmapData->Stride / 4],bitmapData->Stride);
+            }
+            else
+            {
+               for(int row = 0; row < bitmapData->Height; ++row)
+               {
 
+                  memcpy(&pdib->m_pcolorref[row * bitmapData->Stride / 4],&pixels[row * bitmapData->Stride],bitmapData->Stride);
+
+               }
             }
 
          }
@@ -6750,6 +6762,9 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       if(papp == NULL)
          papp = get_app();
 
+      if(!LoadImageFile(pdib, pfile, papp))
+         return false;
+
 #ifdef BASE_FREEIMAGE
       FIBITMAP * pfi = LoadImageFile(pfile,papp);
 
@@ -6774,7 +6789,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       return true;
 #endif
-      return false;
+      return true;
    }
 
 
