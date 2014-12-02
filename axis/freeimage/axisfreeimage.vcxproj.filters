@@ -602,9 +602,6 @@
     <ClCompile Include="Source\OpenEXR\Half\half.cpp">
       <Filter>Source\OpenEXR\Half</Filter>
     </ClCompile>
-    <ClCompile Include="Source\FreeImage\J2KHelper.cpp">
-      <Filter>Source Files\Plugins</Filter>
-    </ClCompile>
     <ClCompile Include="Source\FreeImage\MNGHelper.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
@@ -635,13 +632,7 @@
     <ClCompile Include="Source\FreeImage\PluginIFF.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
-    <ClCompile Include="Source\FreeImage\PluginJ2K.cpp">
-      <Filter>Source Files\Plugins</Filter>
-    </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginJNG.cpp">
-      <Filter>Source Files\Plugins</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImage\PluginJP2.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginJPEG.cpp">
