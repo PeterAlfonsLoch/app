@@ -3,6 +3,7 @@
 //#include "freeimage/Source/FreeImage.h"
 #define min MIN
 #define max MAX
+#undef new
 #include <gdiplus.h>
 #undef min
 #undef max
