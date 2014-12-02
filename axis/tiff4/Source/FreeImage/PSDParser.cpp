@@ -22,7 +22,7 @@
 // Use at your own risk!
 // ==========================================================
 
-#include  "FreeImageFramework.h"
+#include  "app/axis/freeimage/Source/FreeImage/FreeImageFramework.h"
 //#include "Utilities.h"
 #include "PSDParser.h"
 

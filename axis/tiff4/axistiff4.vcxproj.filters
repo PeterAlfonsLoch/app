@@ -152,6 +152,12 @@
     <ClCompile Include="Source\FreeImage\PluginTIFF.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
+    <ClCompile Include="Source\FreeImage\PSDParser.cpp">
+      <Filter>Source Files\Plugins</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FreeImage\PluginG3.cpp">
+      <Filter>Source Files\Plugins</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CacheFile.h">

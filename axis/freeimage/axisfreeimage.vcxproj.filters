@@ -39,20 +39,11 @@
     <Filter Include="Source\LibPNG">
       <UniqueIdentifier>{59f7e689-1f2f-430b-a01d-6c331f6aaff8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\LibTIFF4">
-      <UniqueIdentifier>{fe768acd-c467-4d3d-82a2-4c66a2c1618a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\LibPNG\Header Files">
       <UniqueIdentifier>{19afcf30-9a04-4076-b4e7-b974ae7e9e40}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\LibPNG\Source Files">
       <UniqueIdentifier>{94fcde32-b059-4fb9-8d31-8ffc133cb2ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\LibTIFF4\c">
-      <UniqueIdentifier>{55fabafa-e125-4bad-8f31-d95f94524421}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\LibTIFF4\h">
-      <UniqueIdentifier>{e6a948cf-8b00-4394-a779-29832a6318fd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\OpenEXR">
       <UniqueIdentifier>{117c1151-fdca-404b-968c-ae9435eb4234}</UniqueIdentifier>
@@ -449,126 +440,6 @@
     <ClCompile Include="Source\FreeImageToolkit\Resize.cpp">
       <Filter>Toolkit Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_aux.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_close.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_codec.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_color.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_compress.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_dir.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_dirinfo.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_dirread.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_dirwrite.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_dumpmode.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_error.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_extension.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_fax3.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_fax3sm.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_flush.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_getimage.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_jbig.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_jpeg.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_jpeg_12.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_luv.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_lzma.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_lzw.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_next.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_ojpeg.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_open.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_packbits.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_pixarlog.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_predict.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_print.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_read.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_stream.cxx">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_strip.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_swab.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_thunder.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_tile.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_version.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_warning.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_write.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tif_zip.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LibTIFF4\tiffop.c">
-      <Filter>Source\LibTIFF4\c</Filter>
-    </ClCompile>
     <ClCompile Include="Source\OpenEXR\Half\half.cpp">
       <Filter>Source\OpenEXR\Half</Filter>
     </ClCompile>
@@ -585,9 +456,6 @@
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginDDS.cpp">
-      <Filter>Source Files\Plugins</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImage\PluginG3.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginGIF.cpp">
@@ -642,9 +510,6 @@
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginTARGA.cpp">
-      <Filter>Source Files\Plugins</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImage\PluginTIFF.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginWBMP.cpp">
@@ -765,54 +630,6 @@
     <ClInclude Include="Source\FreeImageToolkit\Resize.h">
       <Filter>Toolkit Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\t4.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tif_config.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tif_config.vc.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tif_config.wince.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tif_dir.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tif_fax3.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tif_predict.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tiff.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tiffconf.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tiffconf.vc.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tiffconf.wince.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tiffio.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tiffio.hxx">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tiffiop.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\tiffvers.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibTIFF4\uvcode.h">
-      <Filter>Source\LibTIFF4\h</Filter>
-    </ClInclude>
     <ClInclude Include="Source\OpenEXR\Half\half.h">
       <Filter>Source\OpenEXR\Half</Filter>
     </ClInclude>
@@ -831,9 +648,6 @@
     </None>
     <None Include="Source\LibPNG\LibPNG.2008.vcxproj.filters">
       <Filter>Source\LibPNG</Filter>
-    </None>
-    <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj.filters">
-      <Filter>Source\LibTIFF4</Filter>
     </None>
     <None Include="axisfreeimage.def">
       <Filter>Source Files</Filter>
