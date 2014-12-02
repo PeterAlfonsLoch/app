@@ -94,7 +94,7 @@
     #else
 	#define HALF_EXPORT __declspec(dllimport)
     #endif
-    #define HALF_EXPORT_CONST
+    #define HALF_EXPORT_CONST 
 /*#else
     #define HALF_EXPORT
     #define HALF_EXPORT_CONST const

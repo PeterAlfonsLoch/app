@@ -351,27 +351,27 @@ Alpha is filled with the first extra channel if any or white otherwise.
 @return Returns TRUE if successful, returns FALSE otherwise
 @see See definition in Conversion.cpp
 */
-WINBOOL ConvertCMYKtoRGBA(FIBITMAP* dib);
+DLL_API WINBOOL ConvertCMYKtoRGBA(FIBITMAP* dib);
 
 /**
 Inplace convert CIELab to RGBA (8- and 16-bit).
 @return Returns TRUE if successful, returns FALSE otherwise
 @see See definition in Conversion.cpp
 */
-WINBOOL ConvertLABtoRGB(FIBITMAP* dib);
+DLL_API WINBOOL ConvertLABtoRGB(FIBITMAP* dib);
 
 /**
 RGBA to RGB conversion
 @see See definition in Conversion.cpp
 */
-FIBITMAP* RemoveAlphaChannel(FIBITMAP* dib);
+DLL_API FIBITMAP*  RemoveAlphaChannel(FIBITMAP* dib);
 
 /**
 Rotate a dib according to Exif info
 @param dib Input / Output dib to rotate
 @see Exif.cpp, PluginJPEG.cpp
 */
-void RotateExif(FIBITMAP **dib);
+DLL_API void RotateExif(FIBITMAP **dib);
 
 
 // ==========================================================

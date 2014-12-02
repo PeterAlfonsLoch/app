@@ -173,9 +173,6 @@
     <ClCompile Include="Source\Metadata\TagLib.cpp">
       <Filter>Source Files\Metadata</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Metadata\XTIFF.cpp">
-      <Filter>Source Files\Metadata</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LibJPEG\cdjpeg.c">
       <Filter>Source\LibJPEG</Filter>
     </ClCompile>

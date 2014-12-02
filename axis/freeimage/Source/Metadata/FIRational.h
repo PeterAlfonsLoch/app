@@ -26,7 +26,7 @@
 Helper class to deal with rational numbers.
 NB: LONG data type is assumed to be a signed 32-bit number.
 */
-class FIRational {
+class DLL_API FIRational {
 private:
 	/// numerator
 	LONG _numerator;

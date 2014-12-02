@@ -297,7 +297,7 @@ Describes the tag format descriptor
 @return Returns the width of a single element, in bytes
 @see FREE_IMAGE_MDTYPE
 */
-unsigned FreeImage_TagDataWidth(FREE_IMAGE_MDTYPE type);
+DLL_API unsigned FreeImage_TagDataWidth(FREE_IMAGE_MDTYPE type);
 
 // --------------------------------------------------------------------------
 
@@ -478,7 +478,7 @@ WINBOOL DLL_API jpegxr_read_exif_gps_profile(FIBITMAP *dib,const BYTE *profile,u
 
 // JPEG / TIFF IPTC profile
 WINBOOL DLL_API read_iptc_profile(FIBITMAP *dib,const BYTE *dataptr,unsigned int datalen);
-WINBOOL write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size);
+WINBOOL DLL_API write_iptc_profile(FIBITMAP *dib,BYTE **profile,unsigned *profile_size);
 
 #if defined(__cplusplus)
 }

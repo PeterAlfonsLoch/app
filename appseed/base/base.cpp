@@ -75,7 +75,7 @@ bool base_init()
    if(!__node_base_pos_init())
       return false;*/
 
-
+#ifdef BASE_FREEIMAGE
    try
    {
 
@@ -91,7 +91,7 @@ bool base_init()
 
    }
 
-
+#endif
 
    return true;
 
@@ -100,7 +100,7 @@ bool base_init()
 
 bool base_term()
 {
-
+#ifdef BASE_FREEIMAGE
    try
    {
 
@@ -111,7 +111,7 @@ bool base_term()
    {
 
    }
-
+#endif
 
    /*__wait_threading_count(::millis((5000) * 8));
 

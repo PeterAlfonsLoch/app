@@ -3423,9 +3423,6 @@
     <ProjectReference Include="..\freeimage\axisfreeimage.vcxproj">
       <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\freetype\axisfreetype.vcxproj">
-      <Project>{78b079bd-9fc7-4b9e-b4a6-96da0f00248b}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\pixman\axispixman.vcxproj">
       <Project>{0a298e22-839b-4d11-b5a7-456ead013c11}</Project>
     </ProjectReference>

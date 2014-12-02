@@ -285,8 +285,6 @@ public:
 
    virtual bool ColorInvert(::draw2d::graphics * pdc, int32_t x, int32_t y, int32_t cx, int32_t cy);
 
-   virtual ::draw2d::bitmap_sp CreateDIBitmap(::draw2d::graphics * pdc, FIBITMAP * pFreeImage);
-   virtual ::draw2d::bitmap_sp CreateBitmap(::draw2d::graphics * pdc,FIBITMAP * pFreeImage);
 
 /*   virtual ::draw2d::bitmap * LoadSysColorBitmap(
       ::draw2d::graphics * pdcCompatible,
@@ -297,17 +295,21 @@ public:
    virtual bool LoadImageFile(::draw2d::dib * pdib, var varFile, ::aura::application * papp);
    virtual bool LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePath, ::aura::application * papp);
 
-   virtual FIBITMAP * LoadImageFile(var varFile, ::aura::application * papp);
+#ifdef BASE_FREEIMAGE
+   virtual ::draw2d::bitmap_sp CreateDIBitmap(::draw2d::graphics * pdc,FIBITMAP * pFreeImage);
+   virtual ::draw2d::bitmap_sp CreateBitmap(::draw2d::graphics * pdc,FIBITMAP * pFreeImage);
+   virtual bool from(::draw2d::dib * pdib,::draw2d::graphics * pgraphics,FIBITMAP *pfibitmap,bool bUnloadFI,::aura::application * papp = NULL);
+   virtual FIBITMAP * LoadImageFile(var varFile,::aura::application * papp);
    virtual FIBITMAP * LoadImageFile(::file::buffer_sp  pfile);
    virtual ::draw2d::bitmap_sp FItoHBITMAP(FIBITMAP * pfibitmap, bool bDestroyFI);
    virtual FIBITMAP * HBITMAPtoFI(::draw2d::bitmap_sp hbitmap);
-   virtual ::draw2d::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, ::aura::application * papp);
-   virtual void SaveJpeg(const char * lpcszFile, ::draw2d::bitmap_sp pbitmap);
-   virtual void SavePng(const char * lpcszFile, ::draw2d::bitmap_sp pbitmap);
-   virtual void SavePng(const char * lpcszFile, FIBITMAP * pfi, bool bUnload);
-
+   virtual void SavePng(const char * lpcszFile,FIBITMAP * pfi,bool bUnload);
    virtual void free(FIBITMAP * pfibitmap);
+#endif
 
+   virtual ::draw2d::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, ::aura::application * papp);
+   //virtual void SaveJpeg(const char * lpcszFile, ::draw2d::bitmap_sp pbitmap);
+   //virtual void SavePng(const char * lpcszFile, ::draw2d::bitmap_sp pbitmap);
 
    bool load_from_file(::draw2d::dib * pdib, var varFile, bool bCache = true, ::aura::application * papp = NULL);
    bool load_from_matter(::draw2d::dib * pdib, var varFile, ::aura::application * papp = NULL);
@@ -319,7 +321,6 @@ public:
    ::visual::cursor_sp load_cursor_from_file(var varFile, ::aura::application * papp = NULL);
    ::visual::cursor_sp load_cursor_from_matter(var varFile, ::aura::application * papp = NULL);
 
-   virtual bool from(::draw2d::dib * pdib, ::draw2d::graphics * pgraphics, FIBITMAP *pfibitmap, bool bUnloadFI, ::aura::application * papp = NULL);
 
 };
 

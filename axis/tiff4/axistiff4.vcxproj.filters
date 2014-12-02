@@ -24,6 +24,9 @@
     <Filter Include="Source\LibTIFF4\h">
       <UniqueIdentifier>{e6a948cf-8b00-4394-a779-29832a6318fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Metadata">
+      <UniqueIdentifier>{2aa65162-ba57-4577-aaa7-d6da244eda7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\FreeImage\TIFFLogLuv.cpp">
@@ -157,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginG3.cpp">
       <Filter>Source Files\Plugins</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Metadata\XTIFF.cpp">
+      <Filter>Source Files\Metadata</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -54,12 +54,12 @@ namespace base
    {
 
 
-      int32_t error = FT_Init_FreeType((FT_Library *)&m_ftlibrary);
-      if(error)
-      {
-         TRACE("an error occurred during Free Type library initialization");
-         return false;
-      }
+      //int32_t error = FT_Init_FreeType((FT_Library *)&m_ftlibrary);
+      //if(error)
+      //{
+        // TRACE("an error occurred during Free Type library initialization");
+         //return false;
+      //}
 
 
       enum_display_monitors();

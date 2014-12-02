@@ -41,8 +41,8 @@ FI_STRUCT (FIMEMORYHEADER) {
 	void *data;
 };
 
-void SetDefaultIO(FreeImageIO *io);
+DLL_API void SetDefaultIO(FreeImageIO *io);
 
-void SetMemoryIO(FreeImageIO *io);
+DLL_API void SetMemoryIO(FreeImageIO *io);
 
 #endif // !FREEIMAGEIO_H
