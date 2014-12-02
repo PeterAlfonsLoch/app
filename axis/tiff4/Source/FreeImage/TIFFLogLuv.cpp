@@ -19,7 +19,7 @@
 // Use at your own risk!
 // ==========================================================
 
-#include  "FreeImageFramework.h"
+#include  "app/axis/freeimage/Source/FreeImage/FreeImageFramework.h"
 //#include "Utilities.h"
 
 void tiff_ConvertLineXYZToRGB(BYTE *target, BYTE *source, double stonits, int width_in_pixels) {

@@ -23,7 +23,7 @@
 //
 // Use at your own risk!
 // ==========================================================
-#include  "FreeImageFramework.h"
+#include  "app/axis/freeimage/Source/FreeImage/FreeImageFramework.h"
 
 #ifdef _MSC_VER
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
@@ -39,7 +39,7 @@
 //#include "Utilities.h"
 #include "../LibTIFF4/tiffiop.h"
 //#include "../Metadata/FreeImageTag.h"
-#include "../OpenEXR/Half/half.h"
+#include  "app/axis/freeimage/Source/OpenEXR/Half/half.h"
 
 //#include "FreeImageIO.h"
 #include "PSDParser.h"
