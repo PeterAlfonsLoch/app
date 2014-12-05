@@ -81,9 +81,6 @@
     <Filter Include="Source Files\net">
       <UniqueIdentifier>{d00ab034-f21f-4108-9212-58cf93f9db93}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\math\calculator">
-      <UniqueIdentifier>{6341b23d-6013-4016-983f-e6a4a2341377}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net\hi5">
       <UniqueIdentifier>{393478fc-0a93-4485-a7e2-ec71d7aed97d}</UniqueIdentifier>
     </Filter>
@@ -101,9 +98,6 @@
     </Filter>
     <Filter Include="Source Files\core\plugin">
       <UniqueIdentifier>{079ee505-bca6-43e2-9e84-e7fcc53a03df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\math\calculator">
-      <UniqueIdentifier>{77cd1c49-1750-4c7e-99f2-f2dc16fa0e6b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\usernet">
       <UniqueIdentifier>{d2d1dc3a-6586-4253-878f-984f6d547ed6}</UniqueIdentifier>
@@ -125,12 +119,6 @@
     </Filter>
     <Filter Include="Header Files\core\plugin">
       <UniqueIdentifier>{c992cd0f-dbc2-4bfc-9672-d60f6c877d6f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\file">
-      <UniqueIdentifier>{ec0bc585-ba95-4719-91bb-202ddde49dc9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem\file">
-      <UniqueIdentifier>{e51c6660-f414-4fee-a338-a3e074eafd03}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\hi5">
       <UniqueIdentifier>{3728a81f-1e66-4661-8f29-af1e5a81f3e7}</UniqueIdentifier>
@@ -305,9 +293,6 @@
     <ClInclude Include="user\userex\userex_form_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_hour_list_view.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\userex_menu_document.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
@@ -318,9 +303,6 @@
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_mini_dock_frame_window.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userex\userex_minute_list_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_pane_split_view.h">
@@ -336,9 +318,6 @@
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_property_sheet.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userex\userex_second_list_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_split_view.h">
@@ -421,9 +400,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_operation_view.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_value.h">
-      <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\db_long_set.h">
       <Filter>Header Files\database\simpledb</Filter>
@@ -577,57 +553,6 @@
     </ClInclude>
     <ClInclude Include="core\plugin\plugin.h">
       <Filter>Header Files\core\plugin</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_in_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_out_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_bitl_decoder.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_bitl_encoder.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_bitm_decoder.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_bitm_encoder.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_limited_reader.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_limited_input_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dynamic_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_clustered_file_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_limited_writer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_clustered_input_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream_binder.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_locked_in_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_io_temp_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_size_count_writer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dynamic_buffered_writer.h">
-      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="net\hi5\hi5_oauth.h">
       <Filter>Header Files\net\hi5</Filter>
@@ -1100,42 +1025,6 @@
     <ClInclude Include="framework\framework.h">
       <Filter>Header Files\framework</Filter>
     </ClInclude>
-    <ClInclude Include="math\calculator\calculator.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator_calculator.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_element.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_parser.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_parser_exception.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_scanner.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_token.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_element.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_parser.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_parser_exception.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_scanner.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_token.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\simple_toolbar.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -1145,9 +1034,6 @@
     <ClInclude Include="core\core\core.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_weekday_list_view.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
     <ClInclude Include="database\simpledb\simpledb_database.h">
       <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
@@ -1156,9 +1042,6 @@
     </ClInclude>
     <ClInclude Include="core\core\core_platform.h">
       <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_html_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1294,9 +1177,6 @@
     <ClCompile Include="user\userex\userex_form_view.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_hour_list_view.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\userex_menu_document.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -1304,9 +1184,6 @@
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\userex_menu_view.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userex\userex_minute_list_view.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\userex_pane_split_view.cpp">
@@ -1322,9 +1199,6 @@
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\userex_property_sheet.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userex\userex_second_list_view.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\userex_split_view.cpp">
@@ -1462,33 +1336,6 @@
     <ClCompile Include="core\plugin\plugin_system.cpp">
       <Filter>Source Files\core\plugin</Filter>
     </ClCompile>
-    <ClCompile Include="math\calculator\calculator_calculator.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\datetime_element.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\datetime_parser.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\datetime_scanner.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\datetime_token.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\numeric_element.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\numeric_parser.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\numeric_scanner.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\numeric_value.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\userex_keyboard_layout.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -1546,44 +1393,11 @@
     <ClCompile Include="filesystem\userfs\userfs_userfs.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_out_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_clustered_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dynamic_buffered_writer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_sssociation.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="net\hi5\hi5_oauth.cpp">
       <Filter>Source Files\net\hi5</Filter>
     </ClCompile>
     <ClCompile Include="net\hi5\hi5_twit.cpp">
       <Filter>Source Files\net\hi5</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_limited_reader.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_limited_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_limited_writer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream_binder.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_locked_in_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_size_count_writer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="net\net_email_departament.cpp">
       <Filter>Source Files\net</Filter>
@@ -1924,12 +1738,6 @@
     <ClCompile Include="core\core\core_Timer.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="math\calculator\datetime_parser_exception.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\numeric_parser_exception.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_manager_template.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -1993,12 +1801,6 @@
     <ClCompile Include="core\core\core_simple_app.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_in_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userex\userex_weekday_list_view.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_base.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
@@ -2010,9 +1812,6 @@
     </ClCompile>
     <ClCompile Include="core\core\core_platform.cpp">
       <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_html_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

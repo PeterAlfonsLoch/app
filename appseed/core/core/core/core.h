@@ -752,26 +752,26 @@ namespace core
 #include "core_progress_interface.h"
 
 
-// from 7-zip
-#include "core/filesystem/file/file_dynamic_buffer.h"
-#include "core/filesystem/file/file_in_buffer.h"
-#include "core/filesystem/file/file_out_buffer.h"
-//#include "core/filesystem/file/file_circular_buffer.h"
-#include "core/filesystem/file/file_bitl_decoder.h"
-#include "core/filesystem/file/file_bitl_encoder.h"
-#include "core/filesystem/file/file_bitm_decoder.h"
-#include "core/filesystem/file/file_bitm_encoder.h"
-#include "core/filesystem/file/file_limited_reader.h"
-#include "core/filesystem/file/file_limited_input_stream.h"
-#include "core/filesystem/file/file_clustered_input_stream.h"
-#include "core/filesystem/file/file_limited_writer.h"
-
-#include "core/filesystem/file/file_stream_binder.h"
-#include "core/filesystem/file/file_locked_in_stream.h"
-#include "core/filesystem/file/file_io_temp_buffer.h"
-#include "core/filesystem/file/file_size_count_writer.h"
-#include "core/filesystem/file/file_dynamic_buffered_writer.h"
-
+//// from 7-zip
+//#include "core/filesystem/file/file_dynamic_buffer.h"
+//#include "core/filesystem/file/file_in_buffer.h"
+//#include "core/filesystem/file/file_out_buffer.h"
+////#include "core/filesystem/file/file_circular_buffer.h"
+//#include "core/filesystem/file/file_bitl_decoder.h"
+//#include "core/filesystem/file/file_bitl_encoder.h"
+//#include "core/filesystem/file/file_bitm_decoder.h"
+//#include "core/filesystem/file/file_bitm_encoder.h"
+//#include "core/filesystem/file/file_limited_reader.h"
+//#include "core/filesystem/file/file_limited_input_stream.h"
+//#include "core/filesystem/file/file_clustered_input_stream.h"
+//#include "core/filesystem/file/file_limited_writer.h"
+//
+//#include "core/filesystem/file/file_stream_binder.h"
+//#include "core/filesystem/file/file_locked_in_stream.h"
+//#include "core/filesystem/file/file_io_temp_buffer.h"
+//#include "core/filesystem/file/file_size_count_writer.h"
+//#include "core/filesystem/file/file_dynamic_buffered_writer.h"
+//
 
 #include "core_resource.h"
 
@@ -896,7 +896,7 @@ class Ex1FactoryImpl;
 
 
 
-#include "core/math/calculator/calculator.h"
+//#include "core/math/calculator/calculator.h"
 
 
 

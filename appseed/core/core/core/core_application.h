@@ -20,7 +20,7 @@ namespace core
    public:
 
 
-      ::calculator::calculator *             m_pcalculator;
+//      ::calculator::calculator *             m_pcalculator;
 
       sp(::userfs::userfs)                   m_spuserfs;
 
@@ -142,7 +142,7 @@ namespace core
       //virtual bool update_module_paths();
 
 
-      inline ::calculator::calculator           & calculator() { return *m_pcalculator; }
+//      inline ::calculator::calculator           & calculator() { return *m_pcalculator; }
 
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb; }
 
