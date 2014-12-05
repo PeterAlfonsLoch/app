@@ -92,6 +92,12 @@
     <ClInclude Include="primitive\primitive_shared_file.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\file\file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -138,7 +144,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="math.def">
+    <None Include="file.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

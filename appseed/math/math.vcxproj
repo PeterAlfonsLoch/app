@@ -871,6 +871,14 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="calculator\calculator.h" />
+    <ClInclude Include="calculator\calculator_calculator.h" />
+    <ClInclude Include="calculator\numeric_element.h" />
+    <ClInclude Include="calculator\numeric_parser.h" />
+    <ClInclude Include="calculator\numeric_parser_exception.h" />
+    <ClInclude Include="calculator\numeric_scanner.h" />
+    <ClInclude Include="calculator\numeric_token.h" />
+    <ClInclude Include="calculator\numeric_value.h" />
     <ClInclude Include="kissfft\kissfft.h" />
     <ClInclude Include="kissfft\kissfft_fftd.h" />
     <ClInclude Include="kissfft\kissfft_ifftd.h" />
@@ -881,6 +889,12 @@
     <ClInclude Include="math\math_math.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="calculator\calculator_calculator.cpp" />
+    <ClCompile Include="calculator\numeric_element.cpp" />
+    <ClCompile Include="calculator\numeric_parser.cpp" />
+    <ClCompile Include="calculator\numeric_parser_exception.cpp" />
+    <ClCompile Include="calculator\numeric_scanner.cpp" />
+    <ClCompile Include="calculator\numeric_value.cpp" />
     <ClCompile Include="kissfft\kissfft_fftd.cpp" />
     <ClCompile Include="kissfft\kissfft_ifftd.cpp" />
     <ClCompile Include="kissfft\kiss_fft.cpp">

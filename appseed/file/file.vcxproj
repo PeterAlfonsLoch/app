@@ -871,6 +871,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="filesystem\file\file.h" />
     <ClInclude Include="filesystem\file\file_bitl_decoder.h" />
     <ClInclude Include="filesystem\file\file_bitl_encoder.h" />
     <ClInclude Include="filesystem\file\file_bitm_decoder.h" />
@@ -890,6 +891,7 @@
     <ClInclude Include="filesystem\file\file_stream_binder.h" />
     <ClInclude Include="file\file.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="primitive\primitive.h" />
     <ClInclude Include="primitive\primitive_shared_file.h" />
   </ItemGroup>
   <ItemGroup>
@@ -920,9 +922,6 @@
     <ClCompile Include="primitive\primitive_shared_file.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="math.def" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
@@ -935,6 +934,9 @@
     <ProjectReference Include="..\core\core.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="file.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

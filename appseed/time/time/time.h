@@ -11,6 +11,6 @@
 #endif
 
 
-#include "calculator/calculator.h"
+#include "time/calculator/calculator.h"
 
-#include "datetime/datetime.h"
+#include "time/datetime/datetime.h"

@@ -21,6 +21,12 @@
     <Filter Include="Header Files\math">
       <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\calculator">
+      <UniqueIdentifier>{cec474f7-5878-4a21-a059-1975c0d49f8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\calculator">
+      <UniqueIdentifier>{1f2487b8-9e33-4d9f-9933-436d9c0ee0fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="kissfft\kissfft_ifftd.h">
@@ -47,6 +53,30 @@
     <ClInclude Include="math\math_math.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
+    <ClInclude Include="calculator\calculator.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_calculator.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\numeric_element.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\numeric_parser.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\numeric_parser_exception.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\numeric_scanner.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\numeric_token.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\numeric_value.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="kissfft\kissfft_ifftd.cpp">
@@ -66,6 +96,24 @@
     </ClCompile>
     <ClCompile Include="kissfft\kiss_ifft.cpp">
       <Filter>Source Files\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_calculator.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\numeric_element.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\numeric_parser.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\numeric_parser_exception.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\numeric_scanner.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\numeric_value.cpp">
+      <Filter>Source Files\calculator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
