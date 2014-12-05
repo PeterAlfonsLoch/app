@@ -2036,13 +2036,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\net_email_departament.h" />
     <ClInclude Include="net\usernet\usernet.h" />
     <ClInclude Include="net\usernet\usernet_network_configuration.h" />
-    <ClInclude Include="primitive\datetime\datetime.h" />
-    <ClInclude Include="primitive\datetime\datetime_calendar.h" />
-    <ClInclude Include="primitive\datetime\datetime_calendar_interface.h" />
-    <ClInclude Include="primitive\datetime\datetime_clock.h" />
-    <ClInclude Include="primitive\datetime\datetime_clock_interface.h" />
-    <ClInclude Include="primitive\datetime\datetime_float_time.h" />
-    <ClInclude Include="primitive\datetime\datetime_windows_file_time.h" />
     <ClInclude Include=".\primitive\primitive_int_biunique.h" />
     <ClInclude Include="primitive\primitive.h" />
     <ClInclude Include="user\menu\user_menu.h" />
@@ -2053,7 +2046,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\menu\user_menu_list_window.h" />
     <ClInclude Include="user\simple\simple_button.h" />
     <ClInclude Include="user\simple\simple_child_frame.h" />
-    <ClInclude Include="user\simple\simple_combo_box.h" />
     <ClInclude Include="user\simple\simple_combo_list.h" />
     <ClInclude Include="user\simple\simple_document.h" />
     <ClInclude Include="user\simple\simple_edit.h" />
@@ -2278,12 +2270,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="net\hi5\hi5_oauth.cpp" />
     <ClCompile Include="net\net_email_departament.cpp" />
     <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_float_time.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_calendar.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_calendar_interface.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_clock.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp" />
     <ClCompile Include="primitive\primitive_int_biunique.cpp" />
     <ClCompile Include="user\menu\user_menu.cpp" />
     <ClCompile Include="user\menu\user_menu_button.cpp" />
@@ -2292,7 +2278,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\menu\user_menu_list_window.cpp" />
     <ClCompile Include="user\simple\simple_button.cpp" />
     <ClCompile Include="user\simple\simple_child_frame.cpp" />
-    <ClCompile Include="user\simple\simple_combo_box.cpp" />
     <ClCompile Include="user\simple\simple_combo_list.cpp" />
     <ClCompile Include="user\simple\simple_document.cpp" />
     <ClCompile Include="user\simple\simple_edit.cpp" />

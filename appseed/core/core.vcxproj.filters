@@ -27,12 +27,6 @@
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{ee06166a-e342-48b6-88d2-26b9ce17f079}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\datetime">
-      <UniqueIdentifier>{b85d49b2-f206-44f2-8a90-bf42aaa48170}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\datetime">
-      <UniqueIdentifier>{4e31e136-18f5-4ef6-909a-dbde13c0eca0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\math">
       <UniqueIdentifier>{52a6b4e1-6649-4559-8e5c-c5ee16f1f5ae}</UniqueIdentifier>
     </Filter>
@@ -164,24 +158,6 @@
     <ClInclude Include="primitive\primitive.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_calendar.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_clock.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_calendar_interface.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_clock_interface.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_windows_file_time.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
     <ClInclude Include="math\_double.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
@@ -206,16 +182,10 @@
     <ClInclude Include=".\primitive\primitive_int_biunique.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_float_time.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\simple_button.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_child_frame.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple_combo_box.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_combo_list.h">
@@ -1051,21 +1021,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_clock.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_calendar_interface.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_int_biunique.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -1090,16 +1045,10 @@
     <ClCompile Include="math\value.cpp">
       <Filter>Source Files\math</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_float_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\simple_button.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\simple_child_frame.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\simple_combo_box.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\simple_combo_list.cpp">

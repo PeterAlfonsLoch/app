@@ -17,6 +17,7 @@ namespace user
       m_typeComboList         = System.type_info < simple_combo_list > ();
       m_estyle                = style_simply;
       m_bEdit                 = true;
+      m_edatamode             = data_mode_opaque;
 
    }
 
@@ -399,50 +400,12 @@ namespace user
    }
 
 
-   void combo_box::_001GetListText(index iSel, string & str) const
-   {
-
-   }
-
-
-   index combo_box::_001FindListText(const string & str) const
-   {
-
-      ::count ca = _001GetListCount();
-
-      string strItem;
-
-      for(index i = 0; i < ca; i++)
-      {
-
-         _001GetListText(i, strItem);
-
-         if(m_bCaseSensitiveMatch)
-         {
-
-            if(str.Compare(strItem) == 0)
-               return i;
-
-         }
-         else
-         {
-
-            if(str.CompareNoCase(strItem) == 0)
-               return i;
-
-         }
-
-      }
-
-      return -1;
-
-   }
 
 
    index combo_box::_001GetListCount() const
    {
 
-      return 0;
+     return m_straList.get_count();
 
    }
 
@@ -1053,16 +1016,6 @@ namespace user
 
    }
 
-   index combo_box::AddString(const char * lpszString, uint_ptr dwItemData)
-   {
-
-      //ASSERT(IsWindow());
-
-      //return (index) send_message( CB_ADDSTRING, 0, (LPARAM)lpszString);
-
-      return -1;
-
-   }
 
    index combo_box::DeleteString(index nIndex)
    {
@@ -1337,32 +1290,69 @@ namespace user
    }
 
 
-   void combo_box::_001SetCurSelByData(uint_ptr ui, ::action::context actioncontext)
+
+
+
+   void combo_box::_001GetListText(index iSel,string & str) const
    {
 
-      ::count c = _001GetListCount();
+      if(iSel < 0)
+         throw invalid_argument_exception(get_app());
 
-      index iSel = -1;
-      
-      for (index i = 0; i < c; i++)
+      if(iSel >= m_straList.get_count())
+         throw invalid_argument_exception(get_app());
+
+      str = m_straList[iSel];
+
+   }
+
+
+   index combo_box::_001FindListText(const string & str) const
+   {
+
+
+      //index combo_box::_001FindListText(const string & str) const
+      //{
+
+      //   ::count ca = _001GetListCount();
+
+      //   string strItem;
+
+      //   for(index i = 0; i < ca; i++)
+      //   {
+
+      //      _001GetListText(i,strItem);
+
+      //      if(m_bCaseSensitiveMatch)
+      //      {
+
+      //         if(str.Compare(strItem) == 0)
+      //            return i;
+
+      //      }
+      //      else
+      //      {
+
+      //         if(str.CompareNoCase(strItem) == 0)
+      //            return i;
+
+      //      }
+
+      //   }
+
+      //   return -1;
+
+      //}
+
+
+      if(m_bCaseSensitiveMatch)
       {
-
-         if (GetItemData(i) == ui)
-         {
-
-            iSel = i;
-
-            break;
-
-         }
-
+         return m_straList.find_first(str);
       }
-
-      if (iSel < 0)
-         return;
-
-
-      _001SetCurSel(iSel, actioncontext);
+      else
+      {
+         return m_straList.find_first_ci(str);
+      }
 
    }
 
@@ -1370,7 +1360,108 @@ namespace user
 
 
 
+
+
+   index combo_box::AddString(const char * lpszString,uint_ptr dwItemData)
+   {
+
+      ASSERT(m_edatamode == data_mode_opaque);
+
+      if(m_edatamode != data_mode_opaque)
+         return -1;
+
+      m_straList.add(lpszString);
+
+      m_uiptra.add(dwItemData);
+
+      return m_straList.get_upper_bound();
+
+   }
+
+
+   index combo_box::AddString(const char * lpszString,const string & strValue)
+   {
+
+      ASSERT(m_edatamode == data_mode_string);
+
+      if(m_edatamode != data_mode_string)
+         return -1;
+
+      m_straList.add(lpszString);
+
+      m_uiptra.add((uint_ptr)id(strValue).m_pstr);
+
+      return m_straList.get_upper_bound();
+
+   }
+
+   void combo_box::_001SetCurSelByStringValue(const string & strValue,::action::context actioncontext)
+   {
+
+      _001SetCurSelByData((uint_ptr)id(strValue).m_pstr,actioncontext);
+
+   }
+
+
+   void combo_box::_001SetCurSelByData(uint_ptr ui,::action::context actioncontext)
+   {
+
+      //::count c = _001GetListCount();
+
+      //index iSel = -1;
+
+      //for(index i = 0; i < c; i++)
+      //{
+
+      //   if(GetItemData(i) == ui)
+      //   {
+
+      //      iSel = i;
+
+      //      break;
+
+      //   }
+
+      //}
+
+      //if(iSel < 0)
+      //   return;
+
+
+      //_001SetCurSel(iSel,actioncontext);
+
+
+      index iSel = m_uiptra.find_first(ui);
+
+      if(iSel < 0)
+         return;
+
+      _001SetCurSel(iSel,actioncontext);
+
+   }
+
+
+   string combo_box::_001GetCurSelStringValue()
+   {
+
+      index iSel = _001GetCurSel();
+
+      if(iSel < 0)
+         return "";
+
+      uint_ptr ui = m_uiptra[iSel];
+
+      if(ui == 0)
+         return "";
+
+      return *((string *)ui);
+
+   }
+
+
 } // namespace user
+
+
 
 
 

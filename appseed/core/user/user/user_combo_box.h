@@ -22,6 +22,17 @@ namespace user
 
       };
 
+      enum e_data_mode
+      {
+
+         data_mode_opaque,
+         data_mode_string
+
+      };
+
+
+
+
 
       index                      m_iSel;
       string                     m_strText;
@@ -34,6 +45,9 @@ namespace user
       e_style                    m_estyle;
 
       bool                       m_bEdit;
+      e_data_mode                   m_edatamode;
+      stringa                       m_straList;
+      uint_ptr_array    m_uiptra;
 
 
 
@@ -162,6 +176,24 @@ namespace user
 #endif
 
       virtual bool OnChildNotify(::message::base * pbase);
+
+
+      virtual void _001SetCurSelByStringValue(const string & strValue,::action::context eaction_source);
+//      virtual void _001SetCurSelByData(uint_ptr ui,::action::context eaction_source);
+
+      virtual string _001GetCurSelStringValue();
+
+
+
+      //virtual void _001OnDraw(::draw2d::graphics * pdc);
+
+//      virtual void _001GetListText(index iSel,string & str) const;
+  //    virtual index _001FindListText(const string & str) const;
+    //  virtual count _001GetListCount() const;
+
+
+//      virtual index AddString(const char * lpszString,uint_ptr dwItemData);
+      virtual index AddString(const char * lpszString,const string & strValue);
 
 
    };
