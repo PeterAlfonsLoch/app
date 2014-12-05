@@ -99,7 +99,7 @@ namespace user
          return false;
 
 
-      m_buttonClose._001SetButtonText("r");
+      m_buttonClose.SetWindowText("r");
       m_buttonClose.m_pschema = m_pschema->m_pschemaSysMenuButton;
       //m_buttonClose.SetFont(m_buttonClose.m_pschema->m_font);
 
@@ -139,7 +139,7 @@ namespace user
 
       for (int32_t i = 0; i < spitema->get_size(); i++)
       {
-         class size size = pdc->GetTextExtent(spitema->element_at(i)->m_button._001GetButtonText());
+         class size size = pdc->GetTextExtent(spitema->element_at(i)->m_button.GetWindowText());
          if (spitema->element_at(i)->IsPopup())
             size.cx += 12 + 16;
          if(size.cy > iMaxHeight)

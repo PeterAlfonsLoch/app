@@ -151,7 +151,7 @@ namespace user
 
       select_font(pdc);
 
-      pdc->TextOut(0, 0, get_window_text());
+      pdc->TextOut(0, 0, GetWindowText());
 
    }
 

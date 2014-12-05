@@ -2257,10 +2257,14 @@ namespace user
    void interaction::SetWindowText(const char * lpszString)
    {
 
-      if(m_pimpl == NULL)
-         return;
-      else
+      m_strWindowText = lpszString;
+
+      if(m_pimpl != NULL)
+      {
+
          m_pimpl->SetWindowText(lpszString);
+
+      }
 
    }
 
@@ -2268,19 +2272,16 @@ namespace user
    strsize interaction::GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount)
    {
 
-      if(m_pimpl == NULL)
-      {
-         if(nMaxCount > 0)
-            lpszStringBuf[0] = '\0';
-         return 0;
-      }
-      else
-         return m_pimpl->GetWindowText(lpszStringBuf,nMaxCount);
+      strsize n = MIN(nMaxCount,m_strWindowText.get_length());
+
+      strncpy(lpszStringBuf,m_strWindowText, n);
+
+      return n;
 
    }
 
 
-   string interaction::get_window_text()
+   string interaction::GetWindowText()
    {
 
       string str;
@@ -2293,12 +2294,7 @@ namespace user
    void interaction::GetWindowText(string & rString)
    {
 
-      if(m_pimpl == NULL)
-      {
-         rString.Empty();
-      }
-      else
-         m_pimpl->GetWindowText(rString);
+      rString = m_strWindowText;
 
    }
 

@@ -251,7 +251,7 @@ namespace user
 #include "user_combo_list.h"
 #include "user_static_control.h"
 
-#include "user_button_control.h"
+//#include "user_button_control.h"
 
 //#include "user_mdi_frame_window.h"
 //#include "user_mdi_child_window.h"

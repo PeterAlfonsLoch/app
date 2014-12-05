@@ -120,7 +120,7 @@ namespace html
          Platform.userex()->m_ptemplatePlaceHolder = new ::user::multiple_document_template(
             get_app(),
             "system/form",
-            System.type_info < simple_document >(),
+            System.type_info < ::user::document >(),
             System.type_info < simple_frame_window >(),
             System.type_info < ::user::place_holder >());
 

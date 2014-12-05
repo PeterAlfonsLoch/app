@@ -53,7 +53,7 @@ namespace filemanager
       return 0;
    }
 
-   void file_list_callback::InitializeActionButton(id id, sp(BaseButtonControl) pbutton)
+   void file_list_callback::InitializeActionButton(id id, sp(::user::button) pbutton)
    {
       switch (id)
       {

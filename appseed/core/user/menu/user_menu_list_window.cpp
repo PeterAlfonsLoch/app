@@ -102,7 +102,7 @@ namespace user
 
          m_buttonClose.install_message_handling(this);
 
-         m_buttonClose._001SetButtonText("r");
+         m_buttonClose.SetWindowText("r");
          m_buttonClose.m_pschema = m_pschema->m_pschemaSysMenuButton;
       }
 
@@ -154,7 +154,7 @@ namespace user
 
          m_buttonClose.install_message_handling(this);
 
-         m_buttonClose._001SetButtonText("r");
+         m_buttonClose.SetWindowText("r");
          m_buttonClose.m_pschema = m_pschema->m_pschemaSysMenuButton;
       }
 
@@ -223,7 +223,7 @@ namespace user
       for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
          menu_item * pitem = pitemParent->m_spitema->element_at(i);
-         size size = pdc->GetTextExtent(pitem->m_button._001GetButtonText());
+         size size = pdc->GetTextExtent(pitem->m_button.GetWindowText());
          size.cx += pitem->m_iLevel * g_base_menu_indent;
          if(pitem->IsPopup())
             size.cx += 12 + 16;

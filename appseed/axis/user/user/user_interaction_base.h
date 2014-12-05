@@ -391,7 +391,7 @@ namespace user
 
       virtual void SetWindowText(const char * lpszString);
       virtual strsize GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount);
-      virtual string get_window_text();
+      virtual string GetWindowText();
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
 

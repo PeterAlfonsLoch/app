@@ -19,7 +19,6 @@ namespace android
 
       spa(::user::interaction)         m_guieptraMouseHover;
       ::message_queue_listener *       m_pcallback;
-      string                           m_strWindowText;
       ::user::interaction_base *       m_pbasewnd;
       sp(::user::interaction)          m_pguiecapture;
       bool                             m_bExposing;

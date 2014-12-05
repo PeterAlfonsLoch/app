@@ -488,7 +488,6 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 
          // standard windows controls
          class CStatic;          // Static control
-         class simple_button;          // Button control
          class CListBox;         // ListBox control
             class CCheckListBox;// special listbox with checks
          class simple_combo_box;        // ComboBox control

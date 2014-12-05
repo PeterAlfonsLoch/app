@@ -17,7 +17,6 @@ namespace user
       // on m_rectParentClient values of the interaction_impl and its ascendants.
       rect64                              m_rectParentClient;
       size                                m_size;
-      string                              m_strWindowText;
       bool                                m_bEnabled;
       bool                                m_bCreate;
       sp(::user::interaction)             m_puiMessage;
@@ -34,7 +33,6 @@ namespace user
 
       using ::user::interaction_base::SetWindowPos;
       virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
-      void SetWindowText(const char * psz);
 
 
       virtual ::user::interaction * GetDescendantWindow(id id) const;
@@ -96,9 +94,6 @@ namespace user
 
 
 
-      using ::user::interaction_base::GetWindowText;
-      strsize GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount);
-      void GetWindowText(string & str);
 
 
 

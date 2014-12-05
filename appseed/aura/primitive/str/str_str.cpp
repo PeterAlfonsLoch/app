@@ -1085,7 +1085,7 @@ namespace str
 
    }
 
-   string get_window_text(oswindow oswindow)
+   string GetWindowText(oswindow oswindow)
    {
 
       string str;

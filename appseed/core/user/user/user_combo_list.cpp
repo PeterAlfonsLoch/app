@@ -5,7 +5,8 @@ namespace user
 {
 
 
-   combo_list::combo_list()
+   combo_list::combo_list(::aura::application * papp) :
+      element(papp)
    {
 
       m_bComboList                  = true;

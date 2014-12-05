@@ -9,7 +9,7 @@
 //#include "simple_edit.h"
 //#include "simple_edit_plain_text.h"
 #include "simple_static.h"
-#include "simple_push_button.h"
+//#include "simple_push_button.h"
 
 #include "core/user/wndfrm/frame/wndfrm_frame_control_box_button.h"
 #include "core/user/wndfrm/frame/wndfrm_frame_control_box.h"
@@ -24,7 +24,7 @@
 #include "simple_status_bar.h"
 
 
-//#include "simple_document.h"
+//#include "::user::document.h"
 #include "simple_frame_window.h"
 
 
@@ -49,7 +49,7 @@
 
 #include "simple_tab_control.h"
 
-#include "simple_form_list_edit.h"
+//#include "simple_form_list_edit.h"
 
 #include "simple_frame_window.h"
 //#include "simple_mdi_frame_window.h"

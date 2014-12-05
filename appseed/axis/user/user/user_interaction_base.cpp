@@ -1099,7 +1099,7 @@ namespace user
    }
 
 
-   string interaction_base::get_window_text()
+   string interaction_base::GetWindowText()
    {
 
       ::exception::throw_interface_only(get_app());

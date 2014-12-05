@@ -14,7 +14,7 @@ namespace user
 
       m_iSel                  = -1;
       m_bCaseSensitiveMatch   = false;
-      m_typeComboList         = System.type_info < simple_combo_list > ();
+      m_typeComboList         = System.type_info < ::user::combo_list > ();
       m_estyle                = style_simply;
       m_bEdit                 = true;
       m_edatamode             = data_mode_opaque;

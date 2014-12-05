@@ -2067,7 +2067,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\user_00.h" />
     <ClInclude Include="user\user\user_button.h" />
-    <ClInclude Include="user\user\user_button_control.h" />
     <ClInclude Include="user\user\user_check_box.h" />
     <ClInclude Include="user\user\user_combo_box.h" />
     <ClInclude Include="user\user\user_combo_list.h" />
@@ -2277,7 +2276,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\simple\simple_main_frame.cpp" />
     <ClCompile Include="user\simple\simple_menu_bar.cpp" />
     <ClCompile Include="user\simple\simple_printer_list_view.cpp" />
-    <ClCompile Include="user\simple\simple_push_button.cpp" />
     <ClCompile Include="user\simple\simple_static.cpp" />
     <ClCompile Include="user\simple\simple_status_bar.cpp" />
     <ClCompile Include="user\simple\simple_tab_ctrl.cpp" />
@@ -2287,7 +2285,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\userex\userex_userex.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\user_button.cpp" />
-    <ClCompile Include="user\user\user_button_control.cpp" />
     <ClCompile Include="user\user\user_check_box.cpp" />
     <ClCompile Include="user\user\user_combo_box.cpp" />
     <ClCompile Include="user\user\user_combo_list.cpp" />

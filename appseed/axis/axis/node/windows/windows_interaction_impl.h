@@ -18,7 +18,6 @@ namespace windows
       bool                                      m_bRectParentClient;
       ::rect                                    m_rectParentClient;
       sp(ptr_array < ::user::interaction > )    m_guieptraMouseHover;
-      string                                    m_strWindowText;
       bool                                      m_bUpdateGraphics;
 
       size                                      m_size;

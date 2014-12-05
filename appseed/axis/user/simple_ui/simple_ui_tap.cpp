@@ -351,7 +351,7 @@ namespace simple_ui
 
       pgraphics->SelectObject(f);
 
-      pgraphics->draw_text(get_window_text(), rectClient, DT_LEFT | DT_BOTTOM);
+      pgraphics->draw_text(GetWindowText(), rectClient, DT_LEFT | DT_BOTTOM);
 
    }
 

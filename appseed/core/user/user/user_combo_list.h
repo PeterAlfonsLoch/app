@@ -29,7 +29,7 @@ namespace user
       ::user::wndfrm::frame::WorkSet *    m_puiDeactivateTogetherSet;
 
 
-      combo_list();
+      combo_list(::aura::application * papp);
       virtual ~combo_list();
 
 

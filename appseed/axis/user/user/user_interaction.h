@@ -77,6 +77,9 @@ namespace user
       sp(::axis::session)                 m_psession;
       bool                                m_bMessageWindow;
 
+      string                              m_strWindowText;
+
+
 #if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS)
 
       comparable_array < int_ptr >        m_iaModalThread;
@@ -335,7 +338,7 @@ namespace user
 
       virtual void SetWindowText(const char * lpszString);
       virtual strsize GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount);
-      virtual string get_window_text();
+      virtual string GetWindowText();
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
 

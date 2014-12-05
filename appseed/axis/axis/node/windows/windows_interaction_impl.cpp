@@ -812,16 +812,6 @@ namespace windows
    }
 
 
-   void interaction_impl::GetWindowText(string & rString)
-   {
-      /*ASSERT(::IsWindow(get_handle()));
-
-      int32_t nLen = ::GetWindowTextLength(get_handle());
-      ::GetWindowText(get_handle(), rString.GetBufferSetLength(nLen), nLen+1);
-      rString.ReleaseBuffer();*/
-      rString = m_strWindowText;
-
-   }
 
    int32_t interaction_impl::GetChildByIdText(int32_t nID,string & rString) const
    {
@@ -3648,20 +3638,41 @@ namespace windows
 
    void interaction_impl::SetWindowText(const char * lpszString)
    {
-      m_strWindowText = lpszString;
-      wstring wstr(m_strWindowText);
-      wstr = wstr;
-      //single_lock sl(&user_mutex(), true);
-      //if(!sl.lock(millis(0)))
-        // return;
+      
       DWORD_PTR lresult = 0;
-      ::SendMessageTimeout(get_handle(),WM_SETTEXT,0,(LPARAM)(const char *)m_strWindowText,SMTO_ABORTIFHUNG,84,&lresult);
+
+      ::SendMessageTimeoutW(get_handle(),WM_SETTEXT,0,(LPARAM)(const wchar_t *)wstring(m_pui->m_strWindowText),SMTO_ABORTIFHUNG,84,&lresult);
+
    }
 
    strsize interaction_impl::GetWindowText(LPTSTR lpszString,strsize nMaxCount)
    {
-      strncpy(lpszString,m_strWindowText,nMaxCount);
-      return MIN(nMaxCount,m_strWindowText.get_length());
+      
+      string str;
+
+      GetWindowText(str);
+
+      strncpy(lpszString,str,MIN(nMaxCount, str.get_length()));
+
+      return str.get_length();
+
+   }
+
+   void interaction_impl::GetWindowText(string & str)
+   {
+
+      DWORD_PTR lresult = 0;
+
+      if(!::SendMessageTimeoutW(get_handle(),WM_GETTEXTLENGTH,0,0,SMTO_ABORTIFHUNG,84,&lresult))
+         return;
+
+      wstring wstr;
+
+      if(!::SendMessageTimeoutW(get_handle(),WM_GETTEXT,(LPARAM)wstr.alloc(lresult + 1),lresult + 1,SMTO_ABORTIFHUNG,84,&lresult))
+         return;
+
+      str = wstr;
+
    }
 
    strsize interaction_impl::GetWindowTextLength()

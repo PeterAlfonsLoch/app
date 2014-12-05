@@ -184,7 +184,7 @@ namespace userex
       m_ptemplatePlaceHolder = new ::user::multiple_document_template(
          get_app(),
          "system/form",
-         System.type_info < simple_document >(),
+         System.type_info < ::user::document >(),
          System.type_info < simple_frame_window >(),
          System.type_info < ::user::place_holder >());
 
@@ -660,7 +660,7 @@ namespace userex
       createcontext->m_bMakeVisible    = false;
       createcontext->m_bHold           = false;
 
-      sp(simple_document) pdoc = m_ptemplatePlaceHolder->open_document_file(createcontext);
+      sp(::user::document) pdoc = m_ptemplatePlaceHolder->open_document_file(createcontext);
 
       sp(::user::place_holder) pholder = pdoc->get_typed_view < ::user::place_holder  >();
 

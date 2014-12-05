@@ -431,41 +431,6 @@ namespace user
    }
 
 
-   strsize interaction_child::GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount)
-   {
-
-      string str;
-
-      GetWindowText(str);
-
-      strsize iLen = str.get_length();
-
-      if(iLen >= (nMaxCount - 1))
-      {
-
-         memcpy(lpszStringBuf,str,nMaxCount - 1);
-
-         lpszStringBuf[nMaxCount - 1] = '\0';
-
-      }
-      else
-      {
-         memcpy(lpszStringBuf,str,iLen + 1);
-      }
-
-      return iLen;
-
-   }
-
-   void interaction_child::GetWindowText(string & str)
-   {
-      str = m_strWindowText;
-   }
-
-   void interaction_child::SetWindowText(const char * psz)
-   {
-      m_strWindowText = psz;
-   }
 
 
    bool interaction_child::DestroyWindow()

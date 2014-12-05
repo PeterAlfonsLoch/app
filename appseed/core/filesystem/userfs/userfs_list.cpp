@@ -379,7 +379,7 @@ namespace userfs
       /*      filemanager::file_list_callback * pcallback =
       get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
 
-      sp(BaseButtonControl) pbutton =  (pcontrol);
+      sp(::user::button) pbutton =  (pcontrol);
       if(pcallback != NULL && pbutton != NULL)
       {
       pcallback->InitializeActionButton(((int32_t) pcontrol->descriptor().m_id) - 1000, pbutton);

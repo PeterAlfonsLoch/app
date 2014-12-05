@@ -734,7 +734,7 @@ namespace filemanager
             for(int32_t i = 0; i < iCount; i++)
             {
                pmenuitem->m_id = "open with" + stra[i];
-               pmenuitem->m_button._001SetButtonText(stra[i]);
+               pmenuitem->m_button.SetWindowText(stra[i]);
                pmenuitem->m_iLevel = pitema->m_pitemContainer != NULL ? pitema->m_pitemContainer->m_iLevel + 1 : 0;
                pmenuitem->m_pbase = pbase;
                pitema->insert_at(iIndex, pmenuitem);
@@ -1327,7 +1327,7 @@ namespace filemanager
       {
          control.m_bTransparent = true;
          control.set_type(user::control::type_button);
-         control.m_typeinfo = System.type_info < BaseButtonControl >();
+         control.m_typeinfo = System.type_info < ::user::button >();
          control.m_id = 1000 + i;
          control.add_function(user::control::function_action);
          index iControl = _001AddControl(control);
@@ -1375,7 +1375,7 @@ namespace filemanager
       //pcontrol->descriptor().m_id = _vms::FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(user::control::DataTypeString);
       control.add_function(user::control::function_vms_data_edit);
-      control.m_typeinfo = System.type_info < simple_edit_plain_text > ();
+      control.m_typeinfo = System.type_info < ::user::edit_plain_text > ();
       //control.m_typeinfo = sp(type)();
       control.m_iSubItem = i;
       control.m_id = 1000 + i;
@@ -1717,7 +1717,7 @@ namespace filemanager
       file_list_callback * pcallback =
          get_filemanager_template()->m_pfilelistcallback;
 
-      sp(BaseButtonControl) pbutton = (pcontrol);
+      sp(::user::button) pbutton = (pcontrol);
       if (pcallback != NULL && pbutton != NULL)
       {
          pcallback->InitializeActionButton(((int32_t)pcontrol->descriptor().m_id) - 1000, pbutton);

@@ -57,7 +57,7 @@ namespace user
             m_iFullHeightItemCount++;
             pitemNewChild->m_id = strCommand;
             pitemNewChild->m_iLevel = 0;
-            pitemNewChild->m_button._001SetButtonText(strCommandTitle);
+            pitemNewChild->m_button.SetWindowText(strCommandTitle);
          }
          add_item(pitemNewChild);
          ::release(pitemNewChild);
@@ -103,11 +103,11 @@ namespace user
             pitemNewChild->m_iLevel = iLevel;
             if(pitemNewChild->m_bPopup)
             {
-               pitemNewChild->m_button._001SetButtonText(pnodeChild->attr("title"));
+               pitemNewChild->m_button.SetWindowText(pnodeChild->attr("title"));
             }
             else
             {
-               pitemNewChild->m_button._001SetButtonText(pnodeChild->get_value());
+               pitemNewChild->m_button.SetWindowText(pnodeChild->get_value());
             }
          }
          add_item(pitemNewChild);
