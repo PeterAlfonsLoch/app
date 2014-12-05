@@ -70,7 +70,7 @@ namespace core
       m_strLocale = "_std";
       m_strSchema = "_std";
 
-      m_pcalculator = NULL;
+//      m_pcalculator = NULL;
 
    }
 
@@ -3073,12 +3073,12 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
       xxdebug_box("::base::application::initialize ok","::base::application::initialize ok",MB_ICONINFORMATION);
 
-      m_pcalculator = new ::calculator::calculator(this);
+      //m_pcalculator = new ::calculator::calculator(this);
 
-      m_pcalculator->construct(this);
+      //m_pcalculator->construct(this);
 
-      if(!m_pcalculator->initialize())
-         return false;
+      //if(!m_pcalculator->initialize())
+      //   return false;
 
       xxdebug_box("m_pcalculator::initialize ok","m_pcalculator::initialize ok",MB_ICONINFORMATION);
 

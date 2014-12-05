@@ -153,6 +153,12 @@
     <Filter Include="Header Files\framework">
       <UniqueIdentifier>{cd6b8308-5d61-435e-a104-178ece7cf89a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\filesystem\file">
+      <UniqueIdentifier>{554c3bbb-1f9f-4fcb-9fb4-721911cdab29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\file">
+      <UniqueIdentifier>{2e674c0f-aa3c-44c7-acb1-ccb57c1efd07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive.h">
@@ -1043,6 +1049,9 @@
     <ClInclude Include="core\core\core_platform.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\file\file_html_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
@@ -1812,6 +1821,9 @@
     </ClCompile>
     <ClCompile Include="core\core\core_platform.cpp">
       <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_html_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
