@@ -210,7 +210,7 @@ namespace user
       {
       case BN_CLICKED:
          {
-   /*      linux   simple_button * pbutton = (simple_button *) get_child_by_id(pcontrol->m_id);
+   /*      linux   ::user::button * pbutton = (::user::button *) get_child_by_id(pcontrol->m_id);
             int32_t i = pbutton->get_check() != 0;
             VmsDataSet(pcontrol->descriptor().m_dataid, 0, 0, i);*/
          }
@@ -244,7 +244,7 @@ namespace user
       {
       case CBN_SELCHANGE:
          {
-   /* linux         sp(simple_combo_box) pcombo = (sp(simple_combo_box)) get_child_by_id(pcontrol->m_id);
+   /* linux         sp(::user::combo_box) pcombo = (sp(::user::combo_box)) get_child_by_id(pcontrol->m_id);
             int32_t iSel = pcombo->get_cur_sel();
             if(iSel != CB_ERR)
             {
@@ -476,7 +476,7 @@ namespace user
       int32_t i;
       if(data_get(pcontrol->descriptor().m_dataid, i))
       {
-   /* linux      simple_button * pbutton = (simple_button *) get_child_by_id(pcontrol->m_id);
+   /* linux      ::user::button * pbutton = (::user::button *) get_child_by_id(pcontrol->m_id);
          pbutton->SetCheck((i != 0) ? 1 : 0); */
       }
    }
@@ -493,7 +493,7 @@ namespace user
          int_ptr iSel = pcontrol->GetComboBox()->m_dwaData.find_first((uint32_t) i);
          if(iSel >= 0)
          {
-            sp(simple_combo_box) pcombo = (sp(simple_combo_box)) get_child_by_id(pcontrol->m_id);
+            sp(::user::combo_box) pcombo = (sp(::user::combo_box)) get_child_by_id(pcontrol->m_id);
             pcombo->set_cur_sel(iSel);
          }
       }*/
@@ -920,7 +920,7 @@ namespace user
                pcontrol->GetComboBox()->m_datakeyFill,
                0, 0,
                var);
-            sp(simple_combo_box) pcombo = (sp(simple_combo_box)) pcontrol->m_pwnd;
+            sp(::user::combo_box) pcombo = (sp(::user::combo_box)) pcontrol->m_pwnd;
             pcombo->ResetContent();
             string str;
             for(int32_t i = 0; i < pcontrol->GetComboBox()->m_wstra.get_size(); i++)

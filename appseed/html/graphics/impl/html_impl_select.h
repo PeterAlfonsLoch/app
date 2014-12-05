@@ -15,7 +15,7 @@ namespace html
 
 
          int32_t                    m_iFont;
-         sp(::simple_combo_box)     m_pcombo;
+         sp(::user::combo_box)     m_pcombo;
 
 
          select(data * pdoc);

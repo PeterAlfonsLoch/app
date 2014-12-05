@@ -480,6 +480,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
       class document_manager;      // impact_system manager object
       class frame_window;        // standard SDI frame
       class interaction_child;
+      class combo_box;        // ComboBox control
    } // namespace user
 
 
@@ -490,7 +491,6 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          class CStatic;          // Static control
          class CListBox;         // ListBox control
             class CCheckListBox;// special listbox with checks
-         class simple_combo_box;        // ComboBox control
          class CScrollBar;       // ScrollBar control
 
          // frame windows
