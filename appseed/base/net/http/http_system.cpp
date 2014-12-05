@@ -880,6 +880,7 @@ retry:
          TRACE("intertime system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
 
          while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete && (::get_thread() == NULL || ::get_thread()->m_bRun))
+         //while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
          {
             dw1 = ::get_tick_count();
             psession->m_phandler->select(240, 0);
@@ -899,6 +900,7 @@ retry:
             TRACE("system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
             iIteration++;
          }
+
 
          if(set["file_out"].cast < ::file::timeout_buffer >() != NULL)
          {

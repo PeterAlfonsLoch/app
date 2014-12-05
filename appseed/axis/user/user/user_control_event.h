@@ -20,7 +20,8 @@ namespace user
       event_tab_key,
       event_key_down,
       event_after_change_text,
-      event_after_change_cur_sel
+      event_after_change_cur_sel,
+      event_timebar_change
               
    };
 
@@ -39,6 +40,10 @@ namespace user
       bool                          m_bRet;
       bool                          m_bProcessed;
       signal_details *              m_pobj;
+      ::datetime::time              m_timeOuterBeg;
+      ::datetime::time              m_timeOuterEnd;
+      ::datetime::time              m_timeBeg;
+      ::datetime::time              m_timeEnd;
       
       
       control_event();

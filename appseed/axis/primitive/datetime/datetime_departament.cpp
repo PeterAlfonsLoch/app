@@ -253,6 +253,11 @@ namespace datetime
       return System.str().get(pcontext,"datetimestr_month[" + ::str::from(iMonth - 1) + "]");
    }
 
+   string departament::get_short_month_str(user::str_context * pcontext,int32_t iMonth)
+   {
+      return System.str().get(pcontext,"datetimestr_month_short[" + ::str::from(iMonth - 1) + "]");
+   }
+
    ::datetime::time departament::from_gmt_date_time(int32_t iYear,int32_t iMonth,int32_t iDay,int32_t iHour,int32_t iMinute,int32_t iSecond)
    {
       ::datetime::time timeLocalNow = ::datetime::time::get_current_time();

@@ -62,6 +62,7 @@ namespace datetime
       // 1 - domingo
       string get_tiny_week_day_str(user::str_context * pcontext,int32_t iWeekDay);
       string get_month_str(user::str_context * pcontext,int32_t iMonth);
+      string get_short_month_str(user::str_context * pcontext,int32_t iMonth);
 
       time_t mktime(int32_t iHour,int32_t iMinute,int32_t iSecond,int32_t iMonth,int32_t iDay,int32_t iYear);
 
