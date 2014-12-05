@@ -1084,8 +1084,6 @@ namespace user
    void interaction_base::SetWindowText(const char * lpszString)
    {
 
-      ::exception::throw_interface_only(get_app());
-
    }
 
 
