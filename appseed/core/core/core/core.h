@@ -741,7 +741,7 @@ namespace core
 
 
 // memory primitives
-#include "core/primitive/primitive_shared_file.h"
+//#include "core/primitive/primitive_shared_file.h"
 
 
 #include "core_types.h"
