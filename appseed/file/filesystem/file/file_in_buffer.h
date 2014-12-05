@@ -11,7 +11,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_CORE in_buffer_exception :
+   class CLASS_DECL_CA2_FILE in_buffer_exception :
       virtual public system_exception
    {
    public:
@@ -25,7 +25,7 @@ namespace file
       }
    };
 
-   class CLASS_DECL_CORE in_buffer :
+   class CLASS_DECL_CA2_FILE in_buffer :
       virtual public ::object
    {
      byte *_buffer;

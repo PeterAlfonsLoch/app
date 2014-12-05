@@ -70,7 +70,7 @@ static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, uint32_t iDate, uint32_t
  *  Success: TRUE. *pDateOut contains the converted value.
  *  Failure: FALSE, if lpSt cannot be represented in VT_DATE format.
  */
-CLASS_DECL_CORE INT SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut)
+CLASS_DECL_CA2_TIME INT SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut)
 {
   UDATE ud;
 
@@ -239,7 +239,7 @@ static inline double FLOATTIME_JulianFromDMY(USHORT year, USHORT month, USHORT d
  *  This function uses the United States English locale for the conversion. Use
  *  VarDateFromUdateEx() for alternate locales.
  */
-CLASS_DECL_CORE HRESULT FloatTimeFromUdate(UDATE *pUdateIn, ULONG dwFlags, DATE *pDateOut)
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, ULONG dwFlags, DATE *pDateOut)
 {
   LCID lcid = MAKELCID(MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US), SORT_DEFAULT);
 
@@ -262,7 +262,7 @@ CLASS_DECL_CORE HRESULT FloatTimeFromUdate(UDATE *pUdateIn, ULONG dwFlags, DATE 
  *  Success: S_OK. *pDateOut contains the converted value.
  *  Failure: E_INVALIDARG, if pUdateIn cannot be represented in VT_DATE format.
  */
-CLASS_DECL_CORE HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG dwFlags, DATE *pDateOut)
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG dwFlags, DATE *pDateOut)
 {
   UDATE ud;
   double dateVal, dateSign;
@@ -326,7 +326,7 @@ CLASS_DECL_CORE HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG d
  *  the date is invalid in that format, in which the most compatible format
  *  that produces a valid date will be used.
  */
-CLASS_DECL_CORE HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFlags, DATE* pdateOut)
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFlags, DATE* pdateOut)
 {
   static const USHORT ParseDateTokens[] =
   {

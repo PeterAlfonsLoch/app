@@ -60,7 +60,7 @@ namespace file
          void WriteByte(byte b) { m_Stream.WriteByte(b);}
       };
 
-      typedef CLASS_DECL_CORE encoder < out_buffer > out_buffer_encoder;
+      typedef CLASS_DECL_CA2_FILE encoder < out_buffer > out_buffer_encoder;
 
    } // namespace bitl
 

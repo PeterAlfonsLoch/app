@@ -10,7 +10,7 @@
 namespace file
 {
 
-   class CLASS_DECL_CORE out_buffer_exception: 
+   class CLASS_DECL_CA2_FILE out_buffer_exception: 
       virtual public system_exception
    {
    public:
@@ -24,7 +24,7 @@ namespace file
       }
    };
 
-   class CLASS_DECL_CORE out_buffer :
+   class CLASS_DECL_CA2_FILE out_buffer :
       virtual public ::object
    {
    public:

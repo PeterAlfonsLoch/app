@@ -22,19 +22,19 @@ typedef struct
 #define VTDATEGRE_MAX 2958465 /* Maximum possible Gregorian date: 31/12/9999 */
 
 
-CLASS_DECL_CORE HRESULT   VarUdateFromDate(FLOAT_DATE dateIn, ULONG dwFlags, UDATE *lpUdate);
-CLASS_DECL_CORE int_bool   FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft );
-CLASS_DECL_CORE int_bool   FileTimeToSystemTime(const FILETIME * ft, LPSYSTEMTIME syst);
+CLASS_DECL_CA2_TIME HRESULT   VarUdateFromDate(FLOAT_DATE dateIn, ULONG dwFlags, UDATE *lpUdate);
+CLASS_DECL_CA2_TIME int_bool   FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft );
+CLASS_DECL_CA2_TIME int_bool   FileTimeToSystemTime(const FILETIME * ft, LPSYSTEMTIME syst);
 
 
 #endif
 
 
-CLASS_DECL_CORE int32_t       SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut);
-CLASS_DECL_CORE int32_t       FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt);
-CLASS_DECL_CORE HRESULT   FloatTimeFromStr(const char * pstr, LCID lcid, ULONG dwFlags, FLOAT_DATE * pdateOut);
-CLASS_DECL_CORE HRESULT   FloatTimeFromUdate(UDATE *pUdateIn, ULONG dwFlags, FLOAT_DATE *pDateOut);
-CLASS_DECL_CORE HRESULT   FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG dwFlags, FLOAT_DATE *pDateOut);
+CLASS_DECL_CA2_TIME int32_t       SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut);
+CLASS_DECL_CA2_TIME int32_t       FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt);
+CLASS_DECL_CA2_TIME HRESULT   FloatTimeFromStr(const char * pstr, LCID lcid, ULONG dwFlags, FLOAT_DATE * pdateOut);
+CLASS_DECL_CA2_TIME HRESULT   FloatTimeFromUdate(UDATE *pUdateIn, ULONG dwFlags, FLOAT_DATE *pDateOut);
+CLASS_DECL_CA2_TIME HRESULT   FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG dwFlags, FLOAT_DATE *pDateOut);
 
 
 namespace datetime
@@ -72,7 +72,7 @@ namespace datetime
    }
 
 
-   class CLASS_DECL_CORE float_time_span
+   class CLASS_DECL_CA2_TIME float_time_span
    {
    private:
       static const long maxDaysInSpan  = 3615897L;
@@ -139,7 +139,7 @@ namespace datetime
       static const double FLOAT_TIME_HALF_SECOND;
    };
 
-   class CLASS_DECL_CORE float_time
+   class CLASS_DECL_CA2_TIME float_time
    {
       // Constructors
    public:

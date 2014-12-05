@@ -11,7 +11,7 @@ namespace html
 } // namespace html
 
 
-class CLASS_DECL_CORE calendar :
+class CLASS_DECL_CA2_TIME calendar :
    public calendar_interface
 {
 protected:

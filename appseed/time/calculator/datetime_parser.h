@@ -6,7 +6,7 @@ namespace datetime
 
    class element;
 
-   class CLASS_DECL_CORE parser :
+   class CLASS_DECL_CA2_TIME parser :
       virtual public ::object
    {
    public:

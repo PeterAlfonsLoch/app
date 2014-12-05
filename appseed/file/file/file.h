@@ -4,10 +4,10 @@
 #include "core/core/core.h"
 
 
-#if defined(_CA2_MATH_DLL)
-   #define CLASS_DECL_CA2_MATH  CLASS_DECL_EXPORT
+#if defined(_CA2_FILE_DLL)
+   #define CLASS_DECL_CA2_FILE  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_CA2_MATH  CLASS_DECL_IMPORT
+   #define CLASS_DECL_CA2_FILE  CLASS_DECL_IMPORT
 #endif
 
 

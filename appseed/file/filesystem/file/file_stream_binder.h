@@ -9,7 +9,7 @@
 namespace file
 {
 
-   class CLASS_DECL_CORE stream_binder :
+   class CLASS_DECL_CA2_FILE stream_binder :
       virtual public ::object
    {
    public:

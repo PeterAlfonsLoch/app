@@ -1,12 +1,6 @@
 #pragma once
 
 
-#include "numeric_value.h"
-#include "numeric_token.h"
-#include "numeric_scanner.h"
-#include "numeric_element.h"
-#include "numeric_parser.h"
-#include "numeric_parser_exception.h"
 
 
 #include "aura/primitive/datetime/datetime_mktime.h"
@@ -20,13 +14,9 @@
 #include "datetime_parser_exception.h"
 
 
-#include "core/primitive/datetime/datetime_calendar_interface.h"
-#include "core/primitive/datetime/datetime_clock_interface.h"
-#include "core/primitive/datetime/datetime_calendar.h"
-#include "core/primitive/datetime/datetime_clock.h"
 
 
-#include "calculator_calculator.h"
+
 
 
 
