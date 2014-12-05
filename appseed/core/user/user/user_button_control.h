@@ -9,12 +9,6 @@ class CLASS_DECL_CORE BaseButtonControl :
 public:
 
 
-   sp(image_list)      m_pimagelistNormal;
-   sp(image_list)      m_pimagelistItemHover;
-   sp(image_list)      m_pimagelistSubItemHover;
-   int32_t               m_iImageNormal;
-   int32_t               m_iImageItemHover;
-   int32_t               m_iImageSubItemHover;
 
 
    BaseButtonControl(::aura::application * papp);

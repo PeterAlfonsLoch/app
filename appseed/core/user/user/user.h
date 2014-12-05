@@ -246,7 +246,7 @@ namespace user
 
 #include "user_button.h"
 #include "user_meta_button.h"
-#include "user_bitmap_button.h"
+//#include "user_bitmap_button.h"
 #include "user_combo_box.h"
 #include "user_combo_list.h"
 #include "user_static_control.h"

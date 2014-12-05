@@ -2044,13 +2044,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\menu\user_menu_item.h" />
     <ClInclude Include="user\menu\user_menu_list_view.h" />
     <ClInclude Include="user\menu\user_menu_list_window.h" />
-    <ClInclude Include="user\simple\simple_button.h" />
     <ClInclude Include="user\simple\simple_child_frame.h" />
-    <ClInclude Include="user\simple\simple_combo_list.h" />
-    <ClInclude Include="user\simple\simple_document.h" />
-    <ClInclude Include="user\simple\simple_edit.h" />
-    <ClInclude Include="user\simple\simple_edit_plain_text.h" />
-    <ClInclude Include="user\simple\simple_form_list_edit.h" />
     <ClInclude Include="user\simple\simple_form_list_view.h" />
     <ClInclude Include="user\simple\simple_frame_window.h" />
     <ClInclude Include="user\simple\simple_list_control.h" />
@@ -2059,7 +2053,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\simple\simple_main_frame.h" />
     <ClInclude Include="user\simple\simple_menu_bar.h" />
     <ClInclude Include="user\simple\simple_printer_list_view.h" />
-    <ClInclude Include="user\simple\simple_push_button.h" />
     <ClInclude Include="user\simple\simple_static.h" />
     <ClInclude Include="user\simple\simple_status_bar.h" />
     <ClInclude Include="user\simple\simple_tab_control.h" />
@@ -2073,7 +2066,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\userex\userex_wait_message_dialog.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\user_00.h" />
-    <ClInclude Include="user\user\user_bitmap_button.h" />
     <ClInclude Include="user\user\user_button.h" />
     <ClInclude Include="user\user\user_button_control.h" />
     <ClInclude Include="user\user\user_check_box.h" />
@@ -2276,13 +2268,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\menu\user_menu_central.cpp" />
     <ClCompile Include="user\menu\user_menu_item.cpp" />
     <ClCompile Include="user\menu\user_menu_list_window.cpp" />
-    <ClCompile Include="user\simple\simple_button.cpp" />
     <ClCompile Include="user\simple\simple_child_frame.cpp" />
-    <ClCompile Include="user\simple\simple_combo_list.cpp" />
-    <ClCompile Include="user\simple\simple_document.cpp" />
-    <ClCompile Include="user\simple\simple_edit.cpp" />
-    <ClCompile Include="user\simple\simple_edit_plain_text.cpp" />
-    <ClCompile Include="user\simple\simple_form_list_edit.cpp" />
     <ClCompile Include="user\simple\simple_form_list_view.cpp" />
     <ClCompile Include="user\simple\simple_frame_window.cpp" />
     <ClCompile Include="user\simple\simple_list_ctrl.cpp" />
@@ -2300,7 +2286,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="user\simple\simple_tree_view.cpp" />
     <ClCompile Include="user\userex\userex_userex.cpp" />
     <ClCompile Include="user\user\user.cpp" />
-    <ClCompile Include="user\user\user_bitmap_button.cpp" />
     <ClCompile Include="user\user\user_button.cpp" />
     <ClCompile Include="user\user\user_button_control.cpp" />
     <ClCompile Include="user\user\user_check_box.cpp" />
