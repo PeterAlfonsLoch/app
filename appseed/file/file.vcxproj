@@ -871,10 +871,41 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="filesystem\file\file_bitl_decoder.h" />
+    <ClInclude Include="filesystem\file\file_bitl_encoder.h" />
+    <ClInclude Include="filesystem\file\file_bitm_decoder.h" />
+    <ClInclude Include="filesystem\file\file_bitm_encoder.h" />
+    <ClInclude Include="filesystem\file\file_clustered_file_stream.h" />
+    <ClInclude Include="filesystem\file\file_clustered_input_stream.h" />
+    <ClInclude Include="filesystem\file\file_dynamic_buffer.h" />
+    <ClInclude Include="filesystem\file\file_dynamic_buffered_writer.h" />
+    <ClInclude Include="filesystem\file\file_in_buffer.h" />
+    <ClInclude Include="filesystem\file\file_io_temp_buffer.h" />
+    <ClInclude Include="filesystem\file\file_limited_input_stream.h" />
+    <ClInclude Include="filesystem\file\file_limited_reader.h" />
+    <ClInclude Include="filesystem\file\file_limited_writer.h" />
+    <ClInclude Include="filesystem\file\file_locked_in_stream.h" />
+    <ClInclude Include="filesystem\file\file_out_buffer.h" />
+    <ClInclude Include="filesystem\file\file_size_count_writer.h" />
+    <ClInclude Include="filesystem\file\file_stream_binder.h" />
     <ClInclude Include="file\file.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="primitive\primitive_shared_file.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="filesystem\file\aaa_want_to_remove_file_io_temp_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_clustered_input_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_dynamic_buffered_writer.cpp" />
+    <ClCompile Include="filesystem\file\file_in_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_limited_input_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_limited_reader.cpp" />
+    <ClCompile Include="filesystem\file\file_limited_writer.cpp" />
+    <ClCompile Include="filesystem\file\file_locked_in_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_out_buffer.cpp" />
+    <ClCompile Include="filesystem\file\file_size_count_writer.cpp" />
+    <ClCompile Include="filesystem\file\file_sssociation.cpp" />
+    <ClCompile Include="filesystem\file\file_stream.cpp" />
+    <ClCompile Include="filesystem\file\file_stream_binder.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
@@ -887,6 +918,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="primitive\primitive_shared_file.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="math.def" />
