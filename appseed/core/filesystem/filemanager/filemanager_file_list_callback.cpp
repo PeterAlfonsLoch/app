@@ -59,12 +59,12 @@ namespace filemanager
       {
       case 0: // ExecuteButton
       {
-                 pbutton->m_pimagelistNormal = m_pimagelistSubItemHover;
-                 pbutton->m_iImageNormal = 0;
-                 pbutton->m_pimagelistItemHover = m_pimagelistSubItemHover;
-                 pbutton->m_iImageItemHover = 0;
-                 pbutton->m_pimagelistSubItemHover = m_pimagelistSubItemHover;
-                 pbutton->m_iImageSubItemHover = 0;
+                 pbutton->m_plist->m_pimagelistNormal = m_pimagelistSubItemHover;
+                 pbutton->m_plist->m_iImageNormal = 0;
+                 pbutton->m_plist->m_pimagelistItemHover = m_pimagelistSubItemHover;
+                 pbutton->m_plist->m_iImageItemHover = 0;
+                 pbutton->m_plist->m_pimagelistSubItemHover = m_pimagelistSubItemHover;
+                 pbutton->m_plist->m_iImageSubItemHover = 0;
       }
          break;
       }

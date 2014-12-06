@@ -356,10 +356,8 @@ namespace user
       virtual bool KillTimer(uint_ptr nIDEvent);
 
       virtual bool is_window_enabled();
-//      virtual bool enable_window(bool bEnable = TRUE);
 
       virtual void _001Print(::draw2d::graphics * pdc);
-//      virtual void _000OnDraw(::draw2d::graphics *pdc);
       virtual void _001DrawThis(::draw2d::graphics *pdc);
       virtual void _001DrawChildren(::draw2d::graphics *pdc);
       virtual void _001OnDraw(::draw2d::graphics *pdc);

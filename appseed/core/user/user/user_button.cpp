@@ -7,108 +7,47 @@ namespace user
 
    button::button(::aura::application * papp) :
       element(papp),
-      ::user::interaction(papp),
-      m_dib(allocer()),
-      m_brushBkg(allocer())
+      ::user::interaction(papp)
    {
       
-      m_estyle = style_none;
+      m_estyle          = style_none;
 
+      m_pbitmap         = NULL;
+      m_plist           = NULL;
+      m_iHover          = -1;
+      m_echeck          = check::unchecked;
+      m_pschema         = NULL;
+      m_iClick          = 0;
 
-      m_bHover          = false;
-      m_bCommandEnable  = true;
-      m_bFocus = true;
-      m_bTransparent = true;
-      m_iHover = -1;
-         m_bEnabled = true;
-         m_echeck = check::unchecked;
-         m_pschema = NULL;
-
-         m_bLButtonDown = false;
-      
-         m_bTransitionEffect = false;
-         //   m_crPush = RGB(70, 150, 100);
-         //   m_crPushHover = RGB(120, 200, 150);
-         //   m_crNormal = RGB(70, 200, 110);
-         //   m_crHover = RGB(120, 230, 150);
-         m_cr =  RGB(70,200,110);
-         m_bPush = false;
-         m_bHover = false;
-         m_pcolorschema = NULL;
-         m_iClick = 0;
-         m_pimagelistNormal = NULL;
-         m_pimagelistItemHover = NULL;
-         m_pimagelistSubItemHover = NULL;
    }
 
    button::~button()
    {
+
+      set_button_style(style_none);
 
    }
 
 
    void button::install_message_handling(::message::dispatch * pinterface)
    {
-      //::user::interaction_base::install_message_handling(pinterface);
-      ::user::control::install_message_handling(pinterface);
-      //::user::button::install_message_handling(pinterface);
 
-      //   IGUI_WIN_MSG_LINK(WM_SIZE                    , pinterface, this, &button::OnParentSize);
-      USER_MESSAGE_LINK(message_create, pinterface, this, &button::on_create);
+      ::user::control::install_message_handling(pinterface);
+
+      USER_MESSAGE_LINK(message_create, pinterface, this, &button::_001OnCreate);
+
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &button::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &button::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &button::_001OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE, pinterface, this, &button::_001OnMouseLeave);
-      IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &button::_001OnSize);
-      //IGUI_WIN_MSG_LINK(WM_CREATE                  , pinterface, this, &button::_001OnCreate);
-      //   IGUI_WIN_MSG_LINK(CVmsGenApp::APPM_LANGUAGE  , pinterface, this, &button::_001OnAppLanguage);
-      IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &button::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN,pinterface,this,&button::_001OnKeyDown);
 
-      IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&button::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_TIMER,pinterface,this,&button::_001OnTimer);
-      IGUI_WIN_MSG_LINK(WM_SETFOCUS,pinterface,this,&button::_001OnSetFocus);
-
-   }
-
-#include "framework.h"
-
-
-
-   void button::pre_subclass_window()
-   {
-      PreSubClassWindow();
-
-
-      // trans ::user::button::pre_subclass_window();
-   }
-
-   void button::_001OnCtlColor(signal_details * pobj)
-   {
-      SCAST_PTR(::message::ctl_color,pctlcolor,pobj)
-         if(m_bTransparent)
-         {
-            //      pctlcolor->m_pdc->SetBkMode(TRANSPARENT);
-            pctlcolor->m_hbrush = (HBRUSH)m_brushBkg->get_os_data();
-         }
-         else
-         {
-            pctlcolor->m_hbrush = NULL;
-         }
    }
 
 
 
 
-   void button::_001OnSetFocus(signal_details * pobj)
-   {
-      SCAST_PTR(::message::set_focus,psetfocus,pobj)
-         //  if(!m_bFocus)
-         //{
-         // pOldWnd->SetFocus();
-         //}
-         psetfocus->previous();
-   }
+
 
    void button::_001OnDraw(::draw2d::graphics * pdc)
    {
@@ -143,7 +82,7 @@ namespace user
          if(m_pschema == NULL)
          {
 
-            if(m_iHover == 0 || m_bLButtonDown)
+            if(m_iHover == 0 || Session.m_puiLastLButtonDown == this)
             {
 
                pdc->FillSolidRect(rectClient,ARGB(255,127,127,127));
@@ -163,7 +102,7 @@ namespace user
          }
          else
          {
-            if(m_iHover == 0 || m_bLButtonDown)
+            if(m_iHover == 0 || Session.m_puiLastLButtonDown == this)
             {
 
                pdc->Draw3dRect(rectClient,m_pschema->_001GetColor(color_border_hover),m_pschema->_001GetColor(color_border_hover));
@@ -381,7 +320,8 @@ namespace user
       }
       else if(m_estyle == style_bitmap)
       {
-         class size size = m_dib->size();
+
+         class size size = m_pbitmap->m_dib->size();
 
          SetWindowPos(0,0,0,size.cx,size.cy,SWP_NOMOVE | SWP_NOZORDER);
 
@@ -406,28 +346,6 @@ namespace user
    //   m_istrButtonText = lpcszText;
    //}
 
-   //void button::_001SetButtonTextId(const char * lpcszText)
-   //{
-   //   m_istrButtonText = lpcszText;
-   //}
-
-
-   bool button::is_window_enabled()
-   {
-
-      return m_bEnabled;
-
-   }
-
-   
-   bool button::enable_window(bool bEnable)
-   {
-
-      m_bEnabled = bEnable;
-
-      return bEnable;
-
-   }
 
 
    void button::_001SetCheck(check::e_check echeck, ::action::context actioncontext)
@@ -456,11 +374,19 @@ namespace user
    //   pbase->m_bRet = false;
    //}
 
-   void button::on_create(signal_details * pobj)
+   void button::_001OnCreate(signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::message::create, pcreate, pobj)
+
+      if(m_estyle == style_none)
+      {
+
+         set_button_style(style_normal);
+
+      }
+
+      //m_pschema   = &::userex::GetUfeSchema(get_app())->m_button;
 
       sp(::simple_frame_window) pframewindow = GetTypedParent < ::simple_frame_window > ();
 
@@ -555,20 +481,6 @@ namespace user
 
    }
 
-   index button::get_hover()
-   {
-      
-      
-      POINT pt;
-      // netshare
-      // System.get_cursor_position(&pt);
-      Session.get_cursor_pos(&pt);
-      e_element eelement;
-      return hit_test(pt, eelement);
-
-
-   }
-
 
    void button::_002OnDraw(::draw2d::graphics * pdc)
    {
@@ -644,17 +556,17 @@ namespace user
       rectClient.top    += 3;
       rect rectText = m_rectText;
 //      string str = ::str::international::utf8_to_unicode(str);
-      if(m_dib.is_set())
+      if(m_pbitmap->m_dib.is_set())
       {
-         if(m_dib->m_size.cx > 0 && m_dib->m_size.cy > 0)
+         if(m_pbitmap->m_dib->m_size.cx > 0 && m_pbitmap->m_dib->m_size.cy > 0)
          {
             rect rectDib;
             rectDib = m_rectText;
-            rectDib.bottom = MIN(rectText.top + m_dib->m_size.cy, rectText.bottom);
-            rectDib.right = MIN(rectText.left + m_dib->m_size.cx, rectText.right);
+            rectDib.bottom = MIN(rectText.top + m_pbitmap->m_dib->m_size.cy,rectText.bottom);
+            rectDib.right = MIN(rectText.left + m_pbitmap->m_dib->m_size.cx,rectText.right);
             //m_dib->to(pdc, rectDib);
-            m_dib->bitmap_blend(pdc, rectDib);
-            rectText.left += m_dib->m_size.cx;
+            m_pbitmap->m_dib->bitmap_blend(pdc,rectDib);
+            rectText.left += m_pbitmap->m_dib->m_size.cx;
          }
       }
 
@@ -690,22 +602,6 @@ namespace user
       select_font(pdc);
 
       pdc->draw_text(strText, rectText, DT_LEFT | DT_TOP);
-
-   }
-
-   void button::_001OnCreate(signal_details * pobj)
-   {
-
-      UNREFERENCED_PARAMETER(pobj);
-
-      if(m_estyle == style_none)
-      {
-         
-         set_button_style(style_normal);
-
-      }
-
-      m_pschema   = &::userex::GetUfeSchema(get_app())->m_button;
 
    }
 
@@ -765,16 +661,16 @@ namespace user
       ASSERT(m_dib.is_set() && m_dib->area() > 0); // required
 
       // use the main bitmap for up, the selected bitmap for down
-      ::draw2d::dib * pdib = m_dib;
+      ::draw2d::dib * pdib = m_pbitmap->m_dib;
 
-      if(_001GetCheck() == ::check::checked && m_dibSel.is_set() && m_dibSel->area() > 0)
-         pdib = m_dibSel;
-      else if(m_bHover && !m_bCommandEnable && m_dibHover.is_set() && m_dibHover->area() > 0)
-         pdib = m_dibHover;
-      else if(m_bFocus && m_dibFocus.is_set() && m_dibFocus->area() > 0)
-         pdib = m_dibFocus;   // third image for focused
-      else if(!m_bCommandEnable && m_dibDisabled.is_set() && m_dibDisabled->area() > 0)
-         pdib = m_dibDisabled;   // last image for disabled
+      if(_001GetCheck() == ::check::checked && m_pbitmap->m_dibSel.is_set() && m_pbitmap->m_dibSel->area() > 0)
+         pdib = m_pbitmap->m_dibSel;
+      else if(m_iHover >= 0 && is_window_enabled() && m_pbitmap->m_dibHover.is_set() && m_pbitmap->m_dibHover->area() > 0)
+         pdib = m_pbitmap->m_dibHover;
+      else if(Session.get_focus_guie() == this && m_pbitmap->m_dibFocus.is_set() && m_pbitmap->m_dibFocus->area() > 0)
+         pdib = m_pbitmap->m_dibFocus;   // third image for focused
+      else if(!is_window_enabled() && m_pbitmap->m_dibDisabled.is_set() && m_pbitmap->m_dibDisabled->area() > 0)
+         pdib = m_pbitmap->m_dibDisabled;   // last image for disabled
 
       pdc->from(pdib->m_size, pdib->get_graphics(), SRCCOPY);
 
@@ -796,63 +692,74 @@ namespace user
 
       color color;
 
-      color.set_rgb(m_cr);
-
-      COLORREF cr;
-
-      if(m_pcolorschema != NULL)
+      if(m_pschema == NULL)
       {
-         if(is_pushed())
-         {
-            color.hls_rate(m_pcolorschema->m_hlsRatePush);
-         }
-         if(m_bHover)
-         {
-            color.hls_rate(m_pcolorschema->m_hlsRateHover);
-         }
+
+         color.set_rgb(ARGB(255,127,127,127));
+
       }
       else
       {
-         if(is_pushed())
+
+         color.set_rgb(m_pschema->_001GetColor(::user::color_background_normal));
+
+      }
+
+      COLORREF cr;
+
+      //if(m_pcolorschema != NULL)
+      //{
+      //   if(is_pushed())
+      //   {
+      //      color.hls_rate(m_pcolorschema->m_hlsRatePush);
+      //   }
+      //   if(m_bHover)
+      //   {
+      //      color.hls_rate(m_pcolorschema->m_hlsRateHover);
+      //   }
+      //}
+      //else
+      {
+         if(_001GetCheck() == ::check::checked)
          {
             color.hls_rate(0.0,- 0.2,- 0.3);
          }
-         if(m_bHover)
+         if(m_iHover >= 0)
          {
             color.hls_rate(0.0,0.2,0.0);
          }
       }
       cr = color;
-      if(m_bTransitionEffect)
-      {
-         class color color;
-         color.set_rgb(cr);
-         cr = color;
+      //if(m_bTransitionEffect)
+      //{
+      //   class color color;
+      //   color.set_rgb(cr);
+      //   cr = color;
 
-         double dH,dL,dS;
-         color.get_hls(dH,dL,dS);
-         color.set_hls(dH,dL,dS);
-         cr = color;
-         double dRate;
-         if(m_iStep <= m_iStepCount / 2)
-         {
-            dRate = m_iStep * 2.0 / m_iStepCount;
-         }
-         else
-         {
-            dRate = (m_iStepCount - m_iStep) * 2.0 / m_iStepCount;
-         }
-         if(is_pushed())
-         {
-            dL = dL * (1.0 - dRate);
-         }
-         else
-         {
-            dL = (1.0 - dL) * dRate + dL;
-         }
-         color.set_hls(dH,dL,dS);
-         cr = color.get_rgb();
-      }
+      //   double dH,dL,dS;
+      //   color.get_hls(dH,dL,dS);
+      //   color.set_hls(dH,dL,dS);
+      //   cr = color;
+      //   double dRate;
+      //   if(m_iStep <= m_iStepCount / 2)
+      //   {
+      //      dRate = m_iStep * 2.0 / m_iStepCount;
+      //   }
+      //   else
+      //   {
+      //      dRate = (m_iStepCount - m_iStep) * 2.0 / m_iStepCount;
+      //   }
+      //   if(is_pushed())
+      //   {
+      //      dL = dL * (1.0 - dRate);
+      //   }
+      //   else
+      //   {
+      //      dL = (1.0 - dL) * dRate + dL;
+      //   }
+      //   color.set_hls(dH,dL,dS);
+      //   cr = color.get_rgb();
+      //}
 
       class color colorExt1TL;
       class color colorExt2TL;
@@ -863,7 +770,7 @@ namespace user
       colorExt2TL.set_rgb(cr);
       colorExt1BR.set_rgb(cr);
       colorExt2BR.set_rgb(cr);
-      if(is_pushed())
+      if(_001GetCheck() == ::check::checked)
       {
          colorExt1TL.hls_rate(0.0,- 0.5,0.0);
          colorExt2TL.hls_rate(0.0,- 0.2,0.0);
@@ -911,6 +818,9 @@ namespace user
    void button::set_button_style(e_style estyle)
    {
 
+      if(m_estyle == estyle)
+         return;
+
       on_exit_button_style(m_estyle);
 
       m_estyle = estyle;
@@ -923,12 +833,29 @@ namespace user
    void button::on_enter_button_style(e_style estyle)
    {
 
-      if(estyle == style_push)
+      if(estyle == style_bitmap)
+      {
+
+         m_pbitmap = new bitmap();
+
+      }
+      else if(estyle == style_list)
+      {
+
+         m_plist = new list();
+
+         m_plist->m_pimagelistNormal         = NULL;
+         m_plist->m_pimagelistItemHover      = NULL;
+         m_plist->m_pimagelistSubItemHover   = NULL;
+
+      }
+      else if(estyle == style_push)
       {
 
          SetTimer(16384,100,NULL);
 
       }
+
 
    }
 
@@ -936,7 +863,19 @@ namespace user
    void button::on_exit_button_style(e_style estyle)
    {
 
-      if(estyle == style_push)
+      if(estyle == style_bitmap)
+      {
+
+         delete m_pbitmap;
+
+      }
+      else if(estyle == style_bitmap)
+      {
+
+         delete m_plist;
+
+      }
+      else if(estyle == style_push)
       {
 
          KillTimer(16384);
@@ -946,99 +885,29 @@ namespace user
    }
 
 
-   void button::_001OnDestroy(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      //   ::user::button::OnDestroy();
 
-      KillTimer(16384);
-
-   }
-
-   void button::_001OnTimer(signal_details * pobj)
-   {
-      SCAST_PTR(::message::timer,ptimer,pobj);
-      if(ptimer->m_nIDEvent == 16384)
-      {
-         //UpdateHover();
-      }
-      else if(ptimer->m_nIDEvent == 3)
-      {
-         TransitionEffectRunStep();
-      }
-
-      // trans   ::user::button::OnTimer(ptimer->m_nIDEvent);
-   }
-
-
-   void button::Hover(bool bHover)
-   {
-      m_bHover = bHover;
-      RedrawWindow();
-   }
-
-   
-   //void button::push(bool bPush)
-
-
-   //   ASSERT(m_etyle == style_push);
-
-
-   //   if(m_estyle != style_push)
-   //      return;
-
-   //   m_bPush = bPush;
-   //   TransitionEffectStart();
-   //   RedrawWindow();
-   //}
-
-
-   bool button::is_pushed()
-   {
-      return _001GetCheck() == ::check::checked;
-   }
-
-   void button::TransitionEffectRunStep()
-   {
-      m_iStep++;
-      if(m_iStep >= m_iStepCount)
-      {
-         KillTimer(3);
-         m_bTransitionEffect = false;
-      }
-      RedrawWindow();
-
-   }
-
-
-   void button::TransitionEffectStart()
-   {
-      m_bTransitionEffect = true;
-      m_iStepCount = 27;
-      m_iStep = 0;
-      SetTimer(3,20,NULL);
-   }
-
-   void button::SetColorSchema(ColorSchema *pschema)
-   {
-      m_pcolorschema = pschema;
-   }
 
 
    bool button::LoadBitmaps(::var var,::var varSel,::var varFocus,::var varDisabled,::var varHover)
    {
 
+      set_button_style(style_bitmap);
+
       if(!var.is_empty())
       {
 
-         m_dib.load_from_file(var);
+         m_pbitmap->m_dib.alloc(allocer());
+
+         m_pbitmap->m_dib.load_from_file(var);
 
       }
 
       if(!varSel.is_empty())
       {
 
-         m_dibSel.load_from_file(varSel);
+         m_pbitmap->m_dibSel.alloc(allocer());
+
+         m_pbitmap->m_dibSel.load_from_file(varSel);
 
       }
 
@@ -1046,7 +915,9 @@ namespace user
       if(!varFocus.is_empty())
       {
 
-         m_dibFocus.load_from_file(varFocus);
+         m_pbitmap->m_dibFocus.alloc(allocer());
+
+         m_pbitmap->m_dibFocus.load_from_file(varFocus);
 
       }
 
@@ -1054,7 +925,9 @@ namespace user
       if(!varDisabled.is_empty())
       {
 
-         m_dibDisabled.load_from_file(varDisabled);
+         m_pbitmap->m_dibDisabled.alloc(allocer());
+
+         m_pbitmap->m_dibDisabled.load_from_file(varDisabled);
 
       }
 
@@ -1062,11 +935,13 @@ namespace user
       if(!varHover.is_empty())
       {
 
-         m_dibHover.load_from_file(varHover);
+         m_pbitmap->m_dibHover.alloc(allocer());
+
+         m_pbitmap->m_dibHover.load_from_file(varHover);
 
       }
 
-      return m_dib.is_set() && m_dib->area() > 0;
+      return m_pbitmap->m_dib.is_set() && m_pbitmap->m_dib->area() > 0;
 
    }
 

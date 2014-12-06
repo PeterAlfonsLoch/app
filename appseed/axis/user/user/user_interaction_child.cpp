@@ -339,10 +339,24 @@ namespace user
       return NULL;
    }
 
+
    bool interaction_child::is_window_enabled()
    {
+
       return m_bEnabled && ((m_pui == NULL || m_pui->GetParent() == NULL) ? true : m_pui->GetParent()->is_window_enabled());
+
    }
+
+   
+   bool interaction_child::enable_window(bool bEnable)
+   {
+
+      m_bEnabled = bEnable;
+
+      return is_window_enabled();
+
+   }
+
 
    uint32_t interaction_child::GetStyle() const
    {

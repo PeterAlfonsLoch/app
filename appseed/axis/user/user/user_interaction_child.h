@@ -88,6 +88,7 @@ namespace user
 
       virtual bool IsWindow() const;
       virtual bool is_window_enabled();
+      virtual bool enable_window(bool bEnable = true);
       virtual bool IsWindowVisible();
 
       virtual void VirtualOnSize();

@@ -1720,6 +1720,7 @@ namespace filemanager
       sp(::user::button) pbutton = (pcontrol);
       if (pcallback != NULL && pbutton != NULL)
       {
+         pbutton->set_button_style(::user::button::style_list);
          pcallback->InitializeActionButton(((int32_t)pcontrol->descriptor().m_id) - 1000, pbutton);
       }
    }
