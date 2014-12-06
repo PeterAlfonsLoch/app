@@ -896,10 +896,10 @@ class Ex1FactoryImpl;
 
 
 
-#include "core_stra.h"
+//#include "core_stra.h"
 
 
-#include "core_service.h"
+//#include "core_service.h"
 
 
 #include "core/filesystem/filehandler/filehandler.h"

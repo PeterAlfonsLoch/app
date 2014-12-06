@@ -788,9 +788,6 @@
     <ClInclude Include="core\core\core_constraint.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_contact_list.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_debug.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
@@ -836,16 +833,10 @@
     <ClInclude Include="core\core\core_progress_interface.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_service.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_smart_pointer_query.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_std_pair.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_stra.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_strn.h">
@@ -1571,9 +1562,6 @@
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core\core_profiler.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_service.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core\core_str_format.cpp">

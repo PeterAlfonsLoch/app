@@ -24,8 +24,8 @@ namespace core
 
 
       mutex                                        m_mutexDelete;
-      class ::core::stra                           m_stra;
-      class ::core::service                        m_service;
+//      class ::core::stra                           m_stra;
+  //    class ::core::service                        m_service;
 
       class ::core::patch                          m_patch;
       ::net::email_departament                     m_emaildepartament;
@@ -123,8 +123,8 @@ namespace core
       virtual void on_allocation_error(::aura::application * papp,sp(type) info);
 
 
-      ::core::stra                           & stra();
-      ::core::service                        & service();
+//      ::core::stra                           & stra();
+  //    ::core::service                        & service();
       ::core::history                        & hist();
 
       class ::core::patch                    & patch();

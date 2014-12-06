@@ -75,10 +75,7 @@ namespace core
 
 
 
-         m_stra.set_app(this);
-         //      m_url.set_app(this);
          m_userset.set_app(this);
-         m_service.set_app(this);
          m_pdatetime = new class ::datetime::departament(this);
          //      m_email.set_app(this);
 
@@ -677,17 +674,6 @@ namespace core
       m_phistory = phistory;
       return true;
    }
-
-   ::core::stra & system::stra()
-   {
-      return m_stra;
-   }
-
-   ::core::service & system::service()
-   {
-      return m_service;
-   }
-
 
 
 
