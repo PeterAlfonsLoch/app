@@ -448,19 +448,6 @@ namespace user
    }
 
 
-   //string button::_001GetButtonText()
-   //{
-   //   return m_istrButtonText;
-   //}
-
-
-   //void button::VirtualOnSize()
-   //{
-   //   
-   //   _001Layout();
-
-   //}
-
    bool button::create_control(class control::descriptor * pdescriptor)
    {
       
@@ -639,21 +626,6 @@ namespace user
    }
 
 
-
-//   /////////////////////////////////////////////////////////////////////////////
-//   // button message handlers
-//
-//   bool button::pre_create_window(::user::create_struct& cs)
-//   {
-//
-//#ifdef WINDOWS
-//      cs.style |= BS_OWNERDRAW;
-//      cs.style |= BS_PUSHBUTTON;
-//#endif
-//
-//      return ::user::button::pre_create_window(cs);
-//
-//   }
 
    void button::_001OnDrawBitmap(::draw2d::graphics * pdc)
    {
@@ -949,50 +921,6 @@ namespace user
 
 
 
-      //void button::UpdateHover()
-      //{
-      //   point point;
-      //   GetCursorPos(&point);
-
-      //   if(m_bHover || System.get_capture_uie() == this)
-      //   {
-      //      rect rectClient;
-      //      GetWindowRect(rectClient);
-      //      if(!rectClient.contains(point))
-      //      {
-      //         m_bHover = false;
-      //         if(System.get_capture_uie() == this)
-      //         {
-      //            System.release_capture_uie();
-      //         }
-      //         RedrawWindow();
-      //      }
-      //      else
-      //      {
-      //         m_bHover = true;
-      //         if(System.get_capture_uie() != this)
-      //         {
-      //            SetCapture();
-      //         }
-      //      }
-      //   }
-      //   else
-      //   {
-      //      if(!m_bHover)
-      //      {
-      //         rect rectClient;
-      //         GetWindowRect(rectClient);
-      //         if(rectClient.contains(point))
-      //         {
-      //            m_bHover = true;
-      //            SetCapture();
-      //            RedrawWindow();
-      //         }
-      //      }
-      //   }
-
-      //}
-
       
    void button::pre_translate_message(signal_details * pobj)
       {
@@ -1017,14 +945,6 @@ namespace user
          return (int32_t)GetDlgCtrlId();
       }
 
-
-      void button::message_handler(signal_details * pobj)
-      {
-         if(pobj->m_bRet)
-            return;
-
-         return ::user::button::message_handler(pobj);
-      }
 
    
 
@@ -1063,81 +983,81 @@ namespace user
             RGB(255,255,255),
             RGB(155,155,105));
 
-         if(m_pimagelistSubItemHover != NULL)
+         if(m_plist->m_pimagelistSubItemHover != NULL)
          {
-            m_pimagelistSubItemHover->draw(
+            m_plist->m_pimagelistSubItemHover->draw(
                pdc,
-               m_iImageSubItemHover,
+               m_plist->m_iImageSubItemHover,
                pt,
                0);
          }
-         else if(m_pimagelistItemHover != NULL)
+         else if(m_plist->m_pimagelistItemHover != NULL)
          {
-            m_pimagelistItemHover->draw(
+            m_plist->m_pimagelistItemHover->draw(
                pdc,
-               m_iImageItemHover,
+               m_plist->m_iImageItemHover,
                pt,
                0);
          }
-         else if(m_pimagelistNormal != NULL)
+         else if(m_plist->m_pimagelistNormal != NULL)
          {
-            m_pimagelistNormal->draw(
+            m_plist->m_pimagelistNormal->draw(
                pdc,
-               m_iImageNormal,
+               m_plist->m_iImageNormal,
                pt,
                0);
          }
       }
       else if(bItemHover)
       {
-         if(m_pimagelistItemHover != NULL)
+         if(m_plist->m_pimagelistItemHover != NULL)
          {
-            m_pimagelistItemHover->draw(
+            m_plist->m_pimagelistItemHover->draw(
                pdc,
-               m_iImageItemHover,
+               m_plist->m_iImageItemHover,
                pt,
                0);
          }
-         else if(m_pimagelistSubItemHover != NULL)
+         else if(m_plist->m_pimagelistSubItemHover != NULL)
          {
-            m_pimagelistSubItemHover->draw(
+            m_plist->m_pimagelistSubItemHover->draw(
                pdc,
-               m_iImageSubItemHover,
+               m_plist->m_iImageSubItemHover,
                pt,
                0);
          }
-         else if(m_pimagelistNormal != NULL)
+         else if(m_plist->m_pimagelistNormal != NULL)
          {
-            m_pimagelistNormal->draw(
+            m_plist->m_pimagelistNormal->draw(
                pdc,
-               m_iImageNormal,
+               m_plist->m_iImageNormal,
                pt,
                0);
          }
       }
       else
       {
-         if(m_pimagelistNormal != NULL)
+         if(m_plist->m_pimagelistNormal != NULL)
          {
-            m_pimagelistNormal->draw(
+            m_plist->m_pimagelistNormal->draw(
                pdc,
-               m_iImageNormal,
+               m_plist->m_iImageNormal,
                pt,
                0);
          }
-         else if(m_pimagelistItemHover != NULL)
+         else if(m_plist->m_pimagelistItemHover != NULL)
          {
-            m_pimagelistItemHover->draw(
+            m_plist->m_pimagelistItemHover->draw(
                pdc,
-               m_iImageItemHover,
+               m_plist->m_iImageItemHover,
                pt,
                0);
          }
-         else if(m_pimagelistSubItemHover != NULL)
+         else if(m_plist->m_pimagelistSubItemHover != NULL)
          {
-            m_pimagelistSubItemHover->draw(
+            m_plist->m_pimagelistSubItemHover->draw(
                pdc,
-               m_iImageSubItemHover,
+               m_plist->m_iImageSubItemHover,
                pt,
                0);
          }

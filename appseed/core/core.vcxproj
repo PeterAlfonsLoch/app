@@ -1845,8 +1845,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_process_data.h" />
     <ClInclude Include="core\core\core_profiler.h" />
     <ClInclude Include="core\core\core_progress_interface.h" />
-    <ClInclude Include="core\core\core_raw_pointer.h" />
-    <ClInclude Include="core\core\core_reference.h" />
     <ClInclude Include="core\core\core_service.h" />
     <ClInclude Include="core\core\core_simple_app.h" />
     <ClInclude Include="core\core\core_smart_pointer_query.h" />
@@ -1858,7 +1856,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="core\core\core_timer_listener.h" />
     <ClInclude Include="core\core\core_timer.h" />
     <ClInclude Include="core\core\core_types.h" />
-    <ClInclude Include="core\core\core_util.h" />
     <ClInclude Include="core\plugin\plugin.h" />
     <ClInclude Include="core\plugin\plugin_gen.h" />
     <ClInclude Include="core\plugin\plugin_history.h" />

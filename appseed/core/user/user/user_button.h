@@ -115,7 +115,6 @@ namespace user
       virtual int32_t BaseToolTipGetIndex();
 
       virtual void pre_translate_message(signal_details * pobj);
-      virtual void message_handler(signal_details * pobj);
 
 
       virtual void layout();

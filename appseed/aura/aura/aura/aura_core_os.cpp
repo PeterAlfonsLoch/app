@@ -255,6 +255,57 @@ namespace aura
    }
 
 
+   bool os::create_service(const string & strServiceName,const string & strDisplayName,const string & strCommand,const string & strUser,const string & strPass)
+   {
+
+
+      ::exception::throw_not_implemented(get_app());
+
+
+      return false;
+
+
+   }
+
+
+   bool os::remove_service(const string & strServiceName)
+   {
+
+
+      ::exception::throw_not_implemented(get_app());
+
+
+      return false;
+
+
+   }
+
+
+   bool os::start_service(const string & strServiceName)
+   {
+
+
+      ::exception::throw_not_implemented(get_app());
+
+
+      return false;
+
+
+   }
+
+
+   bool os::stop_service(const string & strServiceName)
+   {
+
+
+      ::exception::throw_not_implemented(get_app());
+
+
+      return false;
+
+
+   }
+
 
    bool os::is_remote_session()
    {

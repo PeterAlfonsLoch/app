@@ -965,7 +965,23 @@ namespace windows
 
 
 
+   string os::calc_service_name(::aura::application * papp)
+   {
 
+      if(papp->m_strAppName.is_empty()
+         || papp->m_strAppName.CompareNoCase("bergedge") == 0
+         || !papp->is_serviceable())
+         return "";
+
+      string strServiceName = papp->m_strAppId;
+
+      strServiceName.replace("/","-");
+
+      strServiceName.replace("\\","-");
+      
+      return strServiceName;
+
+   }
 
 
 
@@ -974,37 +990,31 @@ namespace windows
    bool os::create_service(::aura::application * papp)
    {
 
-      if(papp->m_strAppName.is_empty()
-         || papp->m_strAppName.CompareNoCase("bergedge") == 0
-         || !papp->is_serviceable())
-         return false;
+      string strServiceName = calc_service_name(papp);
 
+      if(strServiceName.is_empty())
+         return false;
 
       SC_HANDLE hdlSCM = OpenSCManagerW(0, 0, SC_MANAGER_CREATE_SERVICE);
 
       if(hdlSCM == 0)
       {
-         //::GetLastError()
+
+         DWORD dwLastError = ::GetLastError();
+
          return false;
+
       }
 
-      string strServiceName = papp->m_strAppId;
+      string strDisplayName(strServiceName);
 
-      strServiceName.replace("/","-");
-      strServiceName.replace("\\","-");
-      //strServiceName.replace("-", "_");
-
-      string strDisplay(strServiceName);
-
-      strDisplay.replace("-"," ");
+      strDisplayName.replace("-"," ");
 
       string strExe(strServiceName);
 
       strExe.replace("-","_");
 
       strExe += ".exe";
-
-      
 
       string strCalling = System.dir_path(Sys(papp).m_strModuleFolder, strExe) + " : service";
 
@@ -1040,20 +1050,69 @@ namespace windows
 
       }
 
+      return create_service(strServiceName, strDisplayName, strCalling, pszName, pszPass);
+
+   }
+
+
+   bool os::remove_service(::aura::application * papp)
+   {
+
+      string strServiceName = calc_service_name(papp);
+
+      if(strServiceName.is_empty())
+         return false;
+
+      return remove_service(strServiceName);
+
+   }
+
+   bool os::start_service(::aura::application * papp)
+   {
+
+      string strServiceName = calc_service_name(papp);
+
+      if(strServiceName.is_empty())
+         return false;
+
+      return start_service(strServiceName);
+
+   }
+
+   bool os::create_service(const string & strServiceName,const string & strDisplayName,const string & strCommand,const string & strUser,const string & strPass)
+   {
+
+      if(strServiceName.is_empty())
+         return false;
+
+      SC_HANDLE hdlSCM = OpenSCManagerW(0,0,SC_MANAGER_CREATE_SERVICE);
+
+      if(hdlSCM == 0)
+      {
+         //::GetLastError()
+         return false;
+      }
+
+      WCHAR pszName[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
+      WCHAR pszPass[CREDUI_MAX_PASSWORD_LENGTH + 1];
+
+      wcscpy(pszName,wstring(strUser));
+      wcscpy(pszPass,wstring(strPass));
+
       SC_HANDLE hdlServ = ::CreateServiceW(
          hdlSCM,                    // SCManager database 
          wstring(strServiceName),
-         wstring(strDisplay),        // service name to display 
+         wstring(strDisplayName),        // service name to display 
          STANDARD_RIGHTS_REQUIRED,  // desired access 
          SERVICE_WIN32_OWN_PROCESS, // service type 
          SERVICE_AUTO_START,      // start type 
          SERVICE_ERROR_NORMAL,      // error control type 
-         wstring(strCalling),                   // service's binary Path name
+         wstring(strCommand),                   // service's binary Path name
          0,                      // no load ordering group 
          0,                      // no tag identifier 
          0,                      // no dependencies 
-         pname,                      // LocalSystem account 
-         ppass);                     // no password 
+         strUser.has_char() ? pszName : NULL,                      // LocalSystem account 
+         strPass.has_char() ? pszPass : NULL);                     // no password 
 
 
       if(!hdlServ)
@@ -1076,12 +1135,10 @@ namespace windows
    }
 
 
-   bool os::remove_service(::aura::application * papp)
+   bool os::remove_service(const string & strServiceName)
    {
 
-      if(papp->m_strAppName.is_empty()
-         || papp->m_strAppName.CompareNoCase("bergedge") == 0
-         || !papp->is_serviceable())
+      if(strServiceName.is_empty())
          return false;
 
       SC_HANDLE hdlSCM = OpenSCManagerW(0,0,SC_MANAGER_ALL_ACCESS);
@@ -1091,34 +1148,6 @@ namespace windows
          //::GetLastError();
          return false;
       }
-      string strServiceName = papp->m_strAppId;
-
-      strServiceName.replace("/","-");
-      strServiceName.replace("\\","-");
-      //WCHAR * pname = NULL;
-      //WCHAR * ppass = NULL;
-
-      //WCHAR pszName[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
-      //WCHAR pszPass[CREDUI_MAX_PASSWORD_LENGTH + 1];
-
-      //if(App(papp).is_user_service())
-      //{
-
-      //   if(getCredentialsForService(papp,papp->m_strAppId,pszName,pszPass))
-      //   {
-
-      //      pname = pszName;
-      //      ppass = pszPass;
-
-      //   }
-      //   else
-      //   {
-
-      //      return false;
-
-      //   }
-
-      //}
 
 
       SC_HANDLE hdlServ = ::OpenServiceW(
@@ -1151,26 +1180,32 @@ namespace windows
 
    }
 
-   bool os::start_service(::aura::application * papp)
+   bool os::stop_service(::aura::application * papp)
    {
 
-      if(papp->m_strAppName.is_empty()
-         || papp->m_strAppName.CompareNoCase("bergedge") == 0
-         || !papp->is_serviceable())
+      string strServiceName = calc_service_name(papp);
+
+      if(strServiceName.is_empty())
          return false;
 
-      SC_HANDLE hdlSCM = OpenSCManagerW(0, 0, SC_MANAGER_ALL_ACCESS);
+      return stop_service(strServiceName);
+
+   }
+
+
+   bool os::start_service(const string & strServiceName)
+   {
+
+      if(strServiceName.is_empty())
+         return false;
+
+      SC_HANDLE hdlSCM = OpenSCManagerW(0,0,SC_MANAGER_ALL_ACCESS);
 
       if(hdlSCM == 0)
       {
          //::GetLastError();
          return false;
       }
-
-      string strServiceName = "ca2-" + papp->m_strAppId;
-
-      strServiceName.replace("/", "-");
-      strServiceName.replace("\\", "-");
 
       SC_HANDLE hdlServ = ::OpenServiceW(
          hdlSCM,                    // SCManager database 
@@ -1178,14 +1213,14 @@ namespace windows
          SERVICE_START);                     // no password 
 
 
-      if (!hdlServ)
+      if(!hdlServ)
       {
          CloseServiceHandle(hdlSCM);
          //Ret = ::GetLastError();
          return FALSE;
       }
 
-      bool bOk = StartService(hdlServ, 0, NULL) != FALSE;
+      bool bOk = StartService(hdlServ,0,NULL) != FALSE;
 
       CloseServiceHandle(hdlServ);
       CloseServiceHandle(hdlSCM);
@@ -1193,15 +1228,13 @@ namespace windows
       return bOk != FALSE;
    }
 
-   bool os::stop_service(::aura::application * papp)
+   bool os::stop_service(const string & strServiceName)
    {
 
-      if(papp->m_strAppName.is_empty()
-         || papp->m_strAppName.CompareNoCase("bergedge") == 0
-         || !papp->is_serviceable())
+      if(strServiceName.is_empty())
          return false;
 
-      SC_HANDLE hdlSCM = OpenSCManagerW(0, 0, SC_MANAGER_ALL_ACCESS);
+      SC_HANDLE hdlSCM = OpenSCManagerW(0,0,SC_MANAGER_ALL_ACCESS);
 
       if(hdlSCM == 0)
       {
@@ -1209,17 +1242,12 @@ namespace windows
          return false;
       }
 
-      string strServiceName = "ca2-" + papp->m_strAppId;
-
-      strServiceName.replace("/", "-");
-      strServiceName.replace("\\", "-");
-
       SC_HANDLE hdlServ = ::OpenServiceW(
          hdlSCM,                    // SCManager database 
          wstring(strServiceName),
          SERVICE_STOP);                     // no password 
 
-      if (!hdlServ)
+      if(!hdlServ)
       {
          // Ret = ::GetLastError();
          CloseServiceHandle(hdlSCM);
@@ -1228,9 +1256,9 @@ namespace windows
 
       SERVICE_STATUS ss;
 
-      memset(&ss, 0, sizeof(ss));
+      memset(&ss,0,sizeof(ss));
 
-      bool bOk = ::ControlService(hdlServ, SERVICE_CONTROL_STOP, &ss) != FALSE;
+      bool bOk = ::ControlService(hdlServ,SERVICE_CONTROL_STOP,&ss) != FALSE;
 
       ::DeleteService(hdlServ);
 

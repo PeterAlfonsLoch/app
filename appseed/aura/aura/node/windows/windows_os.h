@@ -54,6 +54,15 @@ namespace windows
       virtual bool start_service(::aura::application * papp);
       virtual bool stop_service(::aura::application * papp);
 
+      virtual bool create_service(const string & strServiceName,const string & strDisplayName, const string & strCommand, const string & strUser = "",const string & strPass = "");
+      virtual bool remove_service(const string & strServiceName);
+
+      virtual bool start_service(const string & strServiceName);
+      virtual bool stop_service(const string & strServiceName);
+
+      virtual string calc_service_name(::aura::application * papp);
+
+
       //virtual bool resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
 
       DECLSPEC_NO_RETURN void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags);
@@ -61,6 +70,7 @@ namespace windows
       virtual bool is_remote_session();
 
       virtual void set_file_status(const char * lpszFileName, const ::file::file_status& status);
+
 
    };
 

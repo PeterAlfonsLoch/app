@@ -63,6 +63,11 @@ namespace aura
         virtual bool start_service(::aura::application * papp);
         virtual bool stop_service(::aura::application * papp);
 
+        virtual bool create_service(const string & strServiceName, const string & strDisplayName, const string & strCommand, const string & strUser = "", const string & strPass = "");
+        virtual bool remove_service(const string & strServiceName);
+
+        virtual bool start_service(const string & strServiceName);
+        virtual bool stop_service(const string & strServiceName);
 
         DECLSPEC_NO_RETURN void raise_exception(uint32_t dwExceptionCode, uint32_t dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
 
