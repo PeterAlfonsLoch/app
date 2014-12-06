@@ -736,7 +736,7 @@ namespace core
 
 
 
-#include "core_fs_interface.h"
+//#include "core_fs_interface.h"
 
 
 // memory primitives
@@ -752,7 +752,7 @@ namespace core
 
 
 
-#include "core_resource.h"
+//#include "core_resource.h"
 
 
 
@@ -782,7 +782,7 @@ namespace core
 
 
 
-#include "core_base64.h"
+//#include "core_base64.h"
 
 #include "core_util1.h"
 

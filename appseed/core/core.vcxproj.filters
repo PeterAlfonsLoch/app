@@ -776,22 +776,13 @@
     <ClInclude Include="user\user\user_core.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_allocator.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_application.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_back_insert_iterator.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\core\core_base64.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
     <ClInclude Include="core\core\core_bstr.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_composite.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_constraint.h">
@@ -801,9 +792,6 @@
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_debug.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_fs_interface.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_history.h">
@@ -819,9 +807,6 @@
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_library.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_listener.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_logic.h">
@@ -855,9 +840,6 @@
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_reference.h">
-      <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="core\core\core_resource.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_service.h">
@@ -1573,22 +1555,13 @@
     <ClCompile Include="core\core\core_application.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_composite.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_constraint.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core\core_Debug.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_fs_interface.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_history.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_keeper.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core\core_library.cpp">
@@ -1600,9 +1573,6 @@
     <ClCompile Include="core\core\core_match.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_memory.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_os_history.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
@@ -1610,9 +1580,6 @@
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core\core_profiler.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_resource.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core\core_service.cpp">
