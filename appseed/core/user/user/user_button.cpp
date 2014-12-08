@@ -630,7 +630,7 @@ namespace user
    void button::_001OnDrawBitmap(::draw2d::graphics * pdc)
    {
 
-      ASSERT(m_dib.is_set() && m_dib->area() > 0); // required
+      ASSERT(m_pbitmap->m_dib.is_set() && m_pbitmap->m_dib->area() > 0); // required
 
       // use the main bitmap for up, the selected bitmap for down
       ::draw2d::dib * pdib = m_pbitmap->m_dib;

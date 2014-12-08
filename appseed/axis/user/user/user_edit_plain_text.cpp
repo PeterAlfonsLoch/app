@@ -512,8 +512,8 @@ namespace user
 //      SetTimer(100,100,NULL);
       m_ptree->m_iSelStart  = 0;
       m_ptree->m_iSelEnd = 0;
-      _001OnUpdate(::action::source_system);
       _001OnSetText(::action::source_system);
+      _001OnUpdate(::action::source_system);
 
 
    }
@@ -2507,8 +2507,8 @@ namespace user
       m_ptree->m_editfile.Delete((::primitive::memory_size)m_ptree->m_editfile.get_length());
       m_ptree->m_editfile.seek(0,::file::seek_begin);
       m_ptree->m_editfile.Insert(str,str.get_length());
-      _001OnUpdate(actioncontext);
       _001OnSetText(actioncontext);
+      _001OnUpdate(actioncontext);
       RedrawWindow();
    }
 
