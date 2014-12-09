@@ -16,7 +16,8 @@ namespace draw2d
 
          type_null,
          type_solid,
-         type_linear_gradient_point_color
+         type_linear_gradient_point_color,
+         type_radial_gradient_color
 
       };
 
@@ -27,6 +28,8 @@ namespace draw2d
       point       m_pt2;
       COLORREF    m_cr1;
       COLORREF    m_cr2;
+      point       m_pt;
+      size        m_size;
 
 
       brush();
@@ -49,6 +52,7 @@ namespace draw2d
       virtual bool CreateSysColorBrush(int32_t nIndex);
 
       virtual bool CreateLinearGradientBrush(point p1, point p2, COLORREF cr1, COLORREF cr2);
+      virtual bool CreateRadialGradientBrush(point p,size s,COLORREF cr1,COLORREF cr2);
 
       virtual int32_t GetLogBrush(LOGBRUSH* pLogBrush);
 

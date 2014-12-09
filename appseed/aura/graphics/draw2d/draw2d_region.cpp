@@ -541,9 +541,9 @@ namespace draw2d
 
       m_etype = type_combine;
 
-      m_pregion1 = new ::draw2d::region(*prgn1);
+      m_pregion1 = dynamic_cast < ::draw2d::region * > (((::draw2d::region *)prgn1)->clone());
 
-      m_pregion2 = new ::draw2d::region(*prgn2);
+      m_pregion2 = dynamic_cast < ::draw2d::region * > (((::draw2d::region *)prgn2)->clone());
 
       m_ecombine  = ecombine;
 

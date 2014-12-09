@@ -162,6 +162,24 @@ namespace draw2d
 
    }
 
+   bool brush::CreateRadialGradientBrush(point p,size s,COLORREF cr1,COLORREF cr2)
+   {
+
+      if(m_etype == type_radial_gradient_color
+         && m_pt == p
+         && m_size == s)
+         return true;
+
+      m_etype           = type_radial_gradient_color;
+      m_pt              = p;
+      m_size            = s;
+      m_cr1             = cr1;
+      m_cr2             = cr2;
+      m_bUpdated        = false;
+
+      return true;
+
+   }
 
    brush & brush::operator = (const brush & brushSrc)
    {
@@ -172,6 +190,8 @@ namespace draw2d
       m_pt2             = brushSrc.m_pt2;
       m_cr1             = brushSrc.m_cr1;
       m_cr2             = brushSrc.m_cr2;
+      m_pt              = brushSrc.m_pt;
+      m_size            = brushSrc.m_size;
       m_bUpdated        = false;
 
       return *this;
