@@ -266,8 +266,7 @@ namespace fontopus
          || strLicense == "app-core/netnodecfg"
          || strLicense == "app-core/netnode_dynamic_web_server"
          || strLicense == "app-core/netnode_dynamic_web_server_cfg"
-         || strLicense == "app-gtech/sensible_netnode"
-         || strLicense == "app-gtech/sensible_service")
+         || strLicense == "app-gtech/sensible_netnode")
       {
          return true;
       }
