@@ -1151,9 +1151,6 @@
     <ClInclude Include="aura\os\android\android_process.h">
       <Filter>Header Files\aura\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\android\android_window_android.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="aura\os\android\android_android.h">
       <Filter>Header Files\aura\os\android</Filter>
     </ClInclude>
@@ -1236,9 +1233,6 @@
       <Filter>Header Files\aura\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="aura\os\windows\windows_multithreading.h">
-      <Filter>Header Files\aura\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_os.h">
       <Filter>Header Files\aura\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="aura\os\windows\windows_port_forward.h">
@@ -3320,9 +3314,6 @@
     </None>
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
