@@ -512,7 +512,7 @@ namespace fontopus
 
          string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
 
-         if(strIgnitionServer.has_char())
+         if(::str::ends_ci(strIgnitionServer, ".ca2.cc"))
          {
             
             strRequestUrl = "https://" + strIgnitionServer + "/";

@@ -3178,7 +3178,23 @@ namespace base
    string application::get_license_id()
    {
 
-      return m_strAppId;
+      if(m_strLicense.is_empty())
+      {
+         
+         m_strLicense = m_strAppId;
+
+         if(m_strLicense.is_empty())
+         {
+
+            m_strLicense = m_strAppName;
+
+         }
+
+      }
+
+
+
+      return m_strLicense;
 
    }
 

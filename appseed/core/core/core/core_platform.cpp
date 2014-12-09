@@ -1963,7 +1963,12 @@ namespace core
 
       sp(::aura::application) pgenapp = (papp);
 
-      pgenapp->m_pcoreapp->m_strAppId = pszAppId;
+      if(pgenapp->m_pcoreapp->m_strAppId.is_empty())
+      {
+
+         pgenapp->m_pcoreapp->m_strAppId = pszAppId;
+
+      }
       
       pgenapp->m_paurasystem = m_paurasystem;
 

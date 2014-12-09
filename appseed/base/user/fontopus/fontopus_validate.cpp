@@ -130,23 +130,51 @@ namespace fontopus
       string strHost(pszRequestingParty);
 
       stringa straRequestingServer;
-      straRequestingServer.add("account.ca2.cc");
+
+      string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
+
+      if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
+      {
+
+         straRequestingServer.add(strIgnitionServer);
+
+      }
+      else
+      {
+
+         straRequestingServer.add("account.ca2.cc");
+      }
+
       //straRequestingServer.add("eu-account.ca2.cc");
       ///straRequestingServer.add("asia-account.ca2.cc");
       if(strHost.is_empty())
       {
+
          if(::get_thread() != NULL && ::get_thread()->m_strWorkUrl.has_char())
          {
+
             strHost = ::get_thread()->m_strWorkUrl;
+
          }
          else
          {
+         
             strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+            
             if(!straRequestingServer.contains_ci(strHost))
             {
-               strHost = "https://account.ca2.cc/";
+            
+               if(straRequestingServer.has_elements())
+               {
+
+                  strHost = straRequestingServer[0];
+
+               }
+
             }
+
          }
+
       }
       if(System.url().get_server(strHost).has_char())
       {
@@ -750,10 +778,27 @@ namespace fontopus
 
    string login_thread::Login(::http::e_status * pestatus)
    {
+
       if(m_straRequestingServer.get_count() <= 0)
       {
+
          stringa straRequestingServer;
-         straRequestingServer.add("account.ca2.cc");
+
+         string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
+
+         if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
+         {
+            
+            straRequestingServer.add(strIgnitionServer);
+
+         }
+         else
+         {
+
+            straRequestingServer.add("account.ca2.cc");
+
+         }
+
          //straRequestingServer.add("eu-account.ca2.cc");
          //straRequestingServer.add("asia-account.ca2.cc");
          if(straRequestingServer.contains_ci(m_strRequestingServer))

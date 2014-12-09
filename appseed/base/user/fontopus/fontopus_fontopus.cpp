@@ -504,6 +504,25 @@ namespace fontopus
 
       strFontopusServer = doc.get_root()->attr("fontopus_server");
 
+      string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
+
+      if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
+      {
+
+         ::net::address addr1(strFontopusServer);
+
+         ::net::address addr2(strIgnitionServer);
+
+         if(addr1 == addr2)
+         {
+
+            strFontopusServer = strIgnitionServer;
+
+         }
+
+      }
+
+
       if(strFontopusServer.is_empty())
          goto retry;
 

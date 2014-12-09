@@ -23,6 +23,8 @@ namespace base
       bool                                            m_bBaseInitialize;
       bool                                            m_bBaseInitializeResult;
 
+      string                                          m_strLicense;
+
 
       ::http::application                             m_http;
       ::file::dir::application                        m_dir;
