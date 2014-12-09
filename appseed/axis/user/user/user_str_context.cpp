@@ -274,7 +274,7 @@ namespace user
             return str;
       }
       str = (*m_pschemaStd)[id]; // lang=_std style=_std
-      return str;
+      return id;
 
    }
 

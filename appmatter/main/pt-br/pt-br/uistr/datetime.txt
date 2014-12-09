@@ -57,3 +57,11 @@
 "calendar:week" = "semana"
 "calendar:year" = "ano"
 "calendar:years" = "anos"
+
+"about %SECONDS% seconds ago"="cerca de %SECONDS% segundos atrás"
+"about 1 minute and %SECONDS% seconds ago"="cerca de 1 minuto e %SECONDS% segundos atrás"
+"about 2 minutes and %SECONDS% seconds ago"="cerca de 2 minutos e %SECONDS% segundos atrás"
+"about %MINUTES% minutes ago"="cerca de %MINUTES% minutos atrás"
+"about 1 hour and %d minutes ago"="cerca de 1 hora e %d minutos atrás"
+"about 2 hours and %d minutes ago"="cerca de 2 horas e %d minutos atrás"
+"about %HOURS% hours ago"="cerca de %HOURS% horas atrás"
