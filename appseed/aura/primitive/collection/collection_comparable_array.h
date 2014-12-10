@@ -36,7 +36,7 @@ comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
 comparable_array(const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
 {
 
-   this->operator = (a);
+   this->ARRAY_TYPE::operator = (a);
 
 }
 
@@ -45,7 +45,7 @@ comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
 comparable_array(comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
 {
 
-   this->operator = (a);
+   this->ARRAY_TYPE::operator = (a);
 
 }
 

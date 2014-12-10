@@ -21,8 +21,8 @@ namespace axis
    int32_t simple_app::main()
    {
 
-      __argc = _init_args();
-      __targv = _argv;
+      m_argc = _init_args();
+      m_argv = _argv;
       _init_file();
 
       TCHAR *cmd = GetCommandLine();

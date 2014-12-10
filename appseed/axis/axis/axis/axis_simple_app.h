@@ -10,8 +10,8 @@ namespace axis
    public:
 
 
-      int32_t                       __argc;
-      TCHAR **                      __targv;
+      int32_t                       m_argc;
+      TCHAR **                      m_argv;
 
       MESSAGE                       m_msg;
 
