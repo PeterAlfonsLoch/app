@@ -74,14 +74,14 @@ template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
 comparable_eq_array(const comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
 {
-   this->ARRAY_TYPE::operator = ((ARRAY_TYPE &)a);
+   this->ARRAY_TYPE::operator = (a);
 }
 
 template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
 comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
 comparable_eq_array( comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
 {
-   this->ARRAY_TYPE::operator = ((ARRAY_TYPE &&) a);
+   this->ARRAY_TYPE::operator = (a);
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
