@@ -248,7 +248,7 @@ array_base(sizeof(TYPE),false)
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
 array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::~array()
 {
-
+   remove_all(); // on_destruct_element is virtual and won't be available for array_base
 }
 
 
