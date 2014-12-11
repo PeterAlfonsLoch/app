@@ -90,8 +90,8 @@ namespace user
 
 
       void set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const char * psz);
-      string get(str_context * pcontext, const ::id & id);
-      string get(str_context * pcontext, const ::id & id, const ::id & idLocale, const ::id & idSchema);
+      string get(str_context * pcontext, const ::id & id, bool bIdAsDefaultValue = true);
+      string get(str_context * pcontext,const ::id & id,const ::id & idLocale,const ::id & idSchema,bool bIdAsDefaultValue = true);
       void get(stringa & stra, str_context * pcontext, const ::id & id);
       void _get(stringa & stra, str_context * pcontext, const ::id & id);
 

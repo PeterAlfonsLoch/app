@@ -220,7 +220,7 @@ namespace user
 
 
 
-   string str::get(str_context * pcontext, const ::id & id)
+   string str::get(str_context * pcontext,const ::id & id, bool bIdAsDefaultValue)
    {
 
       static ::id idEn("en");
@@ -273,12 +273,32 @@ namespace user
          if(str.has_char())
             return str;
       }
+      
       str = (*m_pschemaStd)[id]; // lang=_std style=_std
-      return id;
+
+      if(str.has_char())
+      {
+
+         return str;
+
+      }
+      
+      if(bIdAsDefaultValue)
+      {
+
+         return id;
+
+      }
+      else
+      {
+
+         return "";
+
+      }
 
    }
 
-   string str::get(str_context * pcontext, const ::id & id, const ::id & idLocale, const ::id & idSchema)
+   string str::get(str_context * pcontext,const ::id & id,const ::id & idLocale,const ::id & idSchema,bool bIdAsDefaultValue)
    {
 
       if(!idLocale.is_empty())
@@ -308,7 +328,7 @@ namespace user
             }
          }
       }
-      return get(pcontext, id);
+      return get(pcontext,id,bIdAsDefaultValue);
    }
 
    void str::get(stringa & stra, str_context * pcontext, const ::id & id)
