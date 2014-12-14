@@ -1,14 +1,13 @@
 #pragma once
 
-
 template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
 class comparable_eq_array :
    virtual public ARRAY_TYPE
 {
 public:
-   comparable_eq_array();
-   comparable_eq_array(const comparable_eq_array & array);
-   comparable_eq_array(comparable_eq_array && array);
+   //comparable_eq_array();
+   //comparable_eq_array(const comparable_eq_array & array);
+   //comparable_eq_array(comparable_eq_array && array);
 
    index find_first(ARG_TYPE t, index find = 0, index last = -1) const;
    ::count get_count() const;
@@ -58,31 +57,36 @@ public:
    bool operator != (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a);
 
 
-   comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & operator = (const comparable_eq_array & array);
-   comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & operator = (comparable_eq_array && array);
+   //comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & operator = (const comparable_eq_array & array);
+   //comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & operator = (comparable_eq_array && array);
+   //comparable_eq_array< TYPE, ARG_TYPE, ARRAY_TYPE > & move(comparable_eq_array && array);
 
 
 
 };
 
-template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-comparable_eq_array()
-{
-}
-template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-comparable_eq_array(const comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
-{
-   this->ARRAY_TYPE::operator = (a);
-}
+//template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+//comparable_eq_array()
+//{
+//}
+//template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+//comparable_eq_array(const comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
+//{
+//   this->ARRAY_TYPE::operator = (a);
+//}
+//
+//
+//template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
+//comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
+//comparable_eq_array( comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
+//{
+//   
+//	move(::move(a));
+//
+//}
 
-template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
-comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
-comparable_eq_array( comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
-{
-   this->ARRAY_TYPE::operator = (a);
-}
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
@@ -328,21 +332,35 @@ bool comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::operator != (const com
    return !operator==(a);
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-inline comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::
-operator = (const comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & a)
-{
-   this->ARRAY_TYPE::operator = (a);
-   return *this;
-}
-
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-inline comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::
-operator = (comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> && a)
-{
-   this->ARRAY_TYPE::operator = ((ARRAY_TYPE &&) a);
-   return *this;
-}
+//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//inline comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::
+//operator = (const comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & a)
+//{
+//   this->ARRAY_TYPE::operator = (a);
+//   return *this;
+//}
+//
+//
+//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//inline comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::
+//operator = (comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> && a)
+//{
+//
+//   return move(::move(a));
+//      
+//}
+//
+//
+//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//inline comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> & comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::
+//move(comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE> && a)
+//{
+//
+//	this->ARRAY_TYPE::move(::move(a));
+//
+//	return *this;
+//
+//}
 
 
 

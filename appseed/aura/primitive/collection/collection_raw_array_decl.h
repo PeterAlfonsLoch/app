@@ -430,9 +430,8 @@ public:
    void assert_valid() const;
 
 
-#ifdef MOVE_SEMANTICS
    inline raw_array & operator = (raw_array && a);
-#endif
+   inline raw_array & move(raw_array && a);
 
 
 };

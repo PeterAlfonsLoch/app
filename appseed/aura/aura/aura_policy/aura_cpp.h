@@ -16,7 +16,31 @@
 
 #include "nodeapp/operational_system/operational_system.h"
 
+template<class T>
+struct remove_reference
+{
+	typedef T TYPE;
+};
 
+template<class T>
+struct remove_reference<T&>
+{	
+	typedef T TYPE;
+};
+
+template<class T>
+struct remove_reference<T&&>
+{	
+	typedef T TYPE;
+};
+
+template<class T> inline
+typename remove_reference<T>::TYPE&& move(T && t) _NOEXCEPT
+{	
+
+	return (static_cast<typename remove_reference<T>::TYPE&&>(t));
+
+}
 
 
 template < class T >

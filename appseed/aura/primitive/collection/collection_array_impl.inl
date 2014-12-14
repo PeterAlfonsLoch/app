@@ -478,3 +478,73 @@ inline TYPE & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR > ::element_at_grow(index n
    return get_data()[nIndex];
 
 }
+
+
+
+
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >::array(array && a) :
+element(a.get_app()),
+array_base(a.get_app(), sizeof(TYPE), false)
+{
+
+	m_nGrowBy = a.m_nGrowBy;
+	m_pData = a.m_pData;
+	m_nSize = a.m_nSize;
+	m_nMaxSize = a.m_nMaxSize;
+
+	a.m_pData = NULL;
+	a.m_nSize = 0;
+	a.m_nMaxSize = 0;
+
+}
+
+
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline array< TYPE, ARG_TYPE, DEFCONSTRUCTOR > & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >::move(array && a)
+{
+
+	if (&a != this)
+	{
+		destroy();
+
+		m_iTypeSize = a.m_iTypeSize;
+		m_nGrowBy = a.m_nGrowBy;
+		m_pData = a.m_pData;
+		m_nSize = a.m_nSize;
+		m_nMaxSize = a.m_nMaxSize;
+
+		a.m_pData = NULL;
+		a.m_nSize = 0;
+		a.m_nMaxSize = 0;
+
+	}
+
+	return *this;
+
+}
+
+
+template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
+inline array< TYPE, ARG_TYPE, DEFCONSTRUCTOR > & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >::operator = (array && a)
+{
+
+	return move(::move(a));
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

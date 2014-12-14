@@ -8,69 +8,81 @@ class comparable_array :
 {
 public:
 
-   comparable_array();
-   comparable_array(const comparable_array & array);
-   comparable_array(comparable_array && array);
+   //comparable_array();
+//   comparable_array(const comparable_array & array);
+//   comparable_array(comparable_array && array);
 
    //void quick_sort(bool bAsc = true);
 
 
-   comparable_array & operator = (const comparable_array & array);
-   comparable_array & operator = (comparable_array && array);
+//   comparable_array & operator = (const comparable_array & array);
+//   comparable_array & operator = (comparable_array && array);
+   //comparable_array & move(comparable_array && array);
 
 
 };
 
 
 
-template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
-comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-comparable_array()
-{
-
-}
-
-
-template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
-comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-comparable_array(const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
-{
-
-   this->ARRAY_TYPE::operator = (a);
-
-}
-
-template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
-comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
-comparable_array(comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
-{
-
-   this->ARRAY_TYPE::operator = (a);
-
-}
-
-
-template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
-comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
-operator = (const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
-{
-
-   this->ARRAY_TYPE::operator = (a);
-   return *this;
-
-}
-
-template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
-comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
-operator = (comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
-{
-
-   this->ARRAY_TYPE::operator = (a);
-   return *this;
-
-}
-
-
+//template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+//comparable_array()
+//{
+//
+//}
+//
+//
+//template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
+//comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+//comparable_array(const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
+//{
+//
+//   this->ARRAY_TYPE::operator = (a);
+//
+//}
+//
+//template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
+//comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
+//comparable_array(comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
+//{
+//
+//   move(::move(a));
+//
+//}
+//
+//
+//template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
+//comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
+//operator = (const comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & a)
+//{
+//
+//   this->ARRAY_TYPE::operator = (a);
+//   return *this;
+//
+//}
+//
+//template < class TYPE,class ARG_TYPE,class ARRAY_TYPE>
+//comparable_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE> & comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
+//operator = (comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
+//{
+//
+//   return move(::move(a));
+//
+//}
+//
+//
+//template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
+//comparable_array<  TYPE, ARG_TYPE, ARRAY_TYPE> & comparable_array<  TYPE, ARG_TYPE, ARRAY_TYPE>::
+//move(comparable_array<  TYPE, ARG_TYPE, ARRAY_TYPE> && a)
+//{
+//
+//	this->ARRAY_TYPE::move(::move(a));
+//
+//	return *this;
+//
+//}
+//
+//
 template < class TYPE,class ARG_TYPE = TYPE const &,class ARRAY_TYPE = comparable_array < TYPE,ARG_TYPE >,class COMPARE = ::comparison::compare_type_arg_type < TYPE,ARG_TYPE >  >
 class full_comparable_array:
    virtual public ARRAY_TYPE
