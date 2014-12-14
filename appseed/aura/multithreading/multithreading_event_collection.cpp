@@ -173,12 +173,12 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
             if (ticks-start >= timeout)
                winResult = WAIT_TIMEOUT;
             else
-               winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), &*m_objecta.begin(), waitForAll, start + timeout - ticks, true);
+               winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), (waitable **) &*m_objecta.begin(), waitForAll, start + timeout - ticks, true);
 
          } while (winResult == WAIT_IO_COMPLETION);
       }
       else
-         winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), &*m_objecta.begin(), waitForAll, 0, FALSE);
+         winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), (waitable **) &*m_objecta.begin(), waitForAll, 0, FALSE);
 
       //std_cout << "Finished waiting in wc" << std::endl;
       if(callback_cnt>0 && winResult!=WAIT_TIMEOUT && winResult!=WAIT_FAILED) {
@@ -252,17 +252,17 @@ wait_result event_collection::find_next( const wait_result& result ) const
          return wait_result( static_cast<int32_t>(position), m_objecta.get_size() );
       }
    }
-   
+
    return wait_result( wait_result::Failure );
-   
+
 }
 
 
 event_collection::event_collection( const event_collection& )
 {
-    
+
    throw void_implementation_exception(get_app());
-   
+
 }
 
 
@@ -270,9 +270,9 @@ const event_collection& event_collection::operator=( const event_collection& )
 {
 
     throw void_implementation_exception(get_app());
-   
+
    return *this;
-   
+
 }
 
 

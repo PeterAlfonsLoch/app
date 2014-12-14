@@ -881,7 +881,7 @@ namespace user
 
 
 
-
+/*
    interaction_ptra::interaction_ptra()
    {
 
@@ -900,7 +900,7 @@ namespace user
 
       this->operator = (a);
 
-   }
+   }*/
 
    interaction_ptra::interaction_ptra(const interaction_spa & a)
    {
@@ -914,8 +914,20 @@ namespace user
 
    }
 
+   interaction_ptra & interaction_ptra::operator=(const interaction_spa & a)
+   {
 
-   interaction_ptra::interaction_ptra(interaction_ptra && a)
+      for(index i = 0; i < a.get_count(); i++)
+      {
+
+         add(a[i]);
+
+      }
+
+   }
+
+
+/*   interaction_ptra::interaction_ptra(interaction_ptra && a)
    {
 
       this->operator = (a);
@@ -950,7 +962,7 @@ namespace user
 
       return *this;
 
-   }
+   }*/
 
 
    oswindow_array interaction_ptra::get_hwnda()

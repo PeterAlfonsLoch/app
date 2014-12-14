@@ -34,7 +34,7 @@ namespace linux
 } // namespace win
 
 
-void __node_base_factory_exchange(sp(::aura::application) papp)
+void __node_base_factory_exchange(::aura::application * papp)
 {
 
    linux::base::factory_exchange factoryexchange(papp);

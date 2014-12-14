@@ -2,9 +2,13 @@
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
 class comparable_eq_array :
-   virtual public ARRAY_TYPE
+   public ARRAY_TYPE
 {
 public:
+
+
+//    DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(comparable_eq_array, ARRAY_TYPE)
+
    //comparable_eq_array();
    //comparable_eq_array(const comparable_eq_array & array);
    //comparable_eq_array(comparable_eq_array && array);
@@ -82,7 +86,7 @@ public:
 //comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE>::
 //comparable_eq_array( comparable_eq_array<  TYPE,ARG_TYPE,ARRAY_TYPE> && a)
 //{
-//   
+//
 //	move(::move(a));
 //
 //}
@@ -347,7 +351,7 @@ bool comparable_eq_array < TYPE, ARG_TYPE , ARRAY_TYPE >::operator != (const com
 //{
 //
 //   return move(::move(a));
-//      
+//
 //}
 //
 //

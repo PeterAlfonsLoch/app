@@ -33,7 +33,7 @@ namespace filemanager
       else if(pitem->m_iSubItem == 1)
       {
          bool_array ba;
-         data_get("recursive") >> ba;
+         data_load("recursive", ba);
          bool b = ba[pitem->m_iItem];
          if(b)
          {
@@ -81,7 +81,7 @@ namespace filemanager
       stringa straData;
       data_get(::base::system::idEmpty, straData);
       bool_array baData;
-      data_get("recursive") >> baData;
+      data_load("recursive", baData);
       for(int32_t i = 0; i < stra.get_count(); i++)
       {
          if(!straData.contains(stra[i]))
@@ -105,13 +105,13 @@ namespace filemanager
          return false;
       try
       {
-         data_set("recursive") << baData;
+         data_load("recursive", baData);
       }
       catch(...)
       {
          return false;
       }
-         
+
       return true;
    }
 
@@ -121,7 +121,7 @@ namespace filemanager
       if(!data_get(::base::system::idEmpty, straData))
          return true;
       bool_array baData;
-      data_get("recursive") >> baData;
+      data_load("recursive", baData);
       index iFind;
       for(int32_t i = 0; i < stra.get_count(); i++)
       {
@@ -146,7 +146,7 @@ namespace filemanager
          return false;
       try
       {
-         data_set("recursive") >> baData;
+         data_save("recursive", baData);
       }
       catch(...)
       {

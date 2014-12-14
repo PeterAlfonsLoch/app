@@ -234,7 +234,7 @@ template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPA
 add(ARG_TYPE t, index ( * fCompare ) (ARG_TYPE, ARG_TYPE))
 {
 
-   ::index i = ::lemon::array::sort_add(*this, t, fCompare, defer_update(fCompare));
+   ::index i = ::lemon::array::sort_add(*this, (BASE_ARG_TYPE) t, fCompare, defer_update(fCompare));
 
    m_indexmap.mark_dirty();
 

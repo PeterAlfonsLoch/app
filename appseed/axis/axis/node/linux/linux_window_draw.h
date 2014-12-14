@@ -128,7 +128,7 @@ namespace linux
          int32_t iIndex,
          LPCRECT lpcrect);
 
-      ::user::interaction_ptra get_wnda();
+      //::user::interaction_ptra get_wnda();
       //::user::oswindow_array get_hwnda();
 
       virtual int32_t run();

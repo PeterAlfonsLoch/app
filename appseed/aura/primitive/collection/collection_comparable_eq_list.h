@@ -2,7 +2,7 @@
 
 template < class TYPE, class ARG_TYPE  = const TYPE&, class LIST_TYPE = list < TYPE, ARG_TYPE > >
 class comparable_eq_list :
-   virtual public LIST_TYPE
+   public LIST_TYPE
 {
 public:
    comparable_eq_list();

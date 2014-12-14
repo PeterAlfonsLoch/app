@@ -274,7 +274,6 @@
 		<Unit filename="user/user.inl" />
 		<Unit filename="user/user/user.cpp" />
 		<Unit filename="user/user/user.h" />
-		<Unit filename="user/user/user_buffer.cpp" />
 		<Unit filename="user/user/user_buffer.h" />
 		<Unit filename="user/user/user_control.cpp" />
 		<Unit filename="user/user/user_control.h" />
@@ -317,7 +316,6 @@
 		<Unit filename="user/user/user_key_enum.h" />
 		<Unit filename="user/user/user_keyboard.cpp" />
 		<Unit filename="user/user/user_keyboard.h" />
-		<Unit filename="user/user/user_keyboard_focus.cpp" />
 		<Unit filename="user/user/user_keyboard_focus.h" />
 		<Unit filename="user/user/user_keyboard_layout.cpp" />
 		<Unit filename="user/user/user_keyboard_layout.h" />
@@ -327,7 +325,6 @@
 		<Unit filename="user/user/user_menu_base_item.h" />
 		<Unit filename="user/user/user_message.cpp" />
 		<Unit filename="user/user/user_message.h" />
-		<Unit filename="user/user/user_mouse_focus.cpp" />
 		<Unit filename="user/user/user_mouse_focus.h" />
 		<Unit filename="user/user/user_place_holder.cpp" />
 		<Unit filename="user/user/user_place_holder.h" />
@@ -353,7 +350,6 @@
 		<Unit filename="user/user/user_server.h" />
 		<Unit filename="user/user/user_str_context.cpp" />
 		<Unit filename="user/user/user_str_context.h" />
-		<Unit filename="user/user/user_text_interface.cpp" />
 		<Unit filename="user/user/user_text_interface.h" />
 		<Unit filename="user/user/user_user.cpp" />
 		<Unit filename="user/user/user_user.h" />

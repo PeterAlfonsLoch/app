@@ -1,15 +1,18 @@
 #include "framework.h"
 #ifndef METROWIN
-//#include "freeimage/Source/FreeImage.h"
+#ifdef WINDOWS
 #define min MIN
 #define max MAX
 #undef new
 #include <gdiplus.h>
 #undef min
 #undef max
+int GetEncoderClsid(const WCHAR* format,CLSID* pClsid);
+#elif defined(LINUX)
+#include "freeimage/Source/FreeImage.h"
+#endif
 #endif
 
-int GetEncoderClsid(const WCHAR* format,CLSID* pClsid);
 
 #include "ft2build.h"
 
@@ -87,6 +90,7 @@ namespace visual
       bool b8 = false;
       bool b24 = false;
       int iFreeImageSave = 0;
+      FREE_IMAGE_FORMAT eformat = (FREE_IMAGE_FORMAT) 0;
       switch(psaveimage->m_eformat)
       {
       case ::visual::image::format_png:
@@ -236,7 +240,7 @@ namespace visual
       ULONG ul;
       do
       {
-         
+
          ulRead = 0;
 
          ul = stg.cbSize.QuadPart - ulPos;
@@ -253,7 +257,7 @@ namespace visual
 
       pstream->Release();
 
-      
+
 
 #endif
 
@@ -359,7 +363,7 @@ CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t
 }
 
 
-
+#ifdef _WIN32
 
 
 int GetEncoderClsid(const WCHAR* format,CLSID* pClsid)
@@ -392,3 +396,6 @@ int GetEncoderClsid(const WCHAR* format,CLSID* pClsid)
    free(pImageCodecInfo);
    return -1;  // Failure
 }
+
+
+#endif

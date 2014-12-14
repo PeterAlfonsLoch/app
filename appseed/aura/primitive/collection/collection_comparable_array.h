@@ -4,9 +4,11 @@
 
 template < class TYPE,class ARG_TYPE = TYPE const &,class ARRAY_TYPE = comparable_eq_array < TYPE,ARG_TYPE > >
 class comparable_array :
-   virtual public ARRAY_TYPE
+   public ARRAY_TYPE
 {
 public:
+
+    DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(comparable_array, ARRAY_TYPE)
 
    //comparable_array();
 //   comparable_array(const comparable_array & array);

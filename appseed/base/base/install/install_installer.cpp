@@ -1,8 +1,11 @@
 #include "framework.h" // from "base/net/net_sockets.h"
 #include "axis/compress/compress.h"
 
-#ifdef WINDOWS
+
 #include <omp.h>
+
+
+#ifdef WINDOWS
 #include <WinInet.h>
 #include <Winternl.h>
 #endif
@@ -334,9 +337,9 @@ install_begin:;
                return iRet;
 
          }
-         
+
          m_strCurrentHost = strSpaHost;
-         
+
          System.install().trace().rich_trace(("got server: " + strSpaHost));
 
          m_strInstall = "http://" + strSpaHost + "/ccvotagus/" + m_strVersion + "/";
@@ -1060,7 +1063,6 @@ install_begin:;
          m_iGzLen2 = 0;
 
          m_iProgressTotalGzLen2 = m_iTotalGzLen2;
-
 
 #pragma omp parallel for
          for(int i = 0; i < stringa.get_count(); i++)
@@ -2900,7 +2902,7 @@ install_begin:;
       }
       else if(m_strInstallLocale.CompareNoCase("_std") == 0 || m_strInstallLocale.CompareNoCase("en") == 0 || ::str::begins_ci(m_strInstallLocale,"en-"))
       {
-         
+
          m_strInstallStatusTemplate = "Installing %APPNAME%";
 
       }
@@ -2920,7 +2922,7 @@ install_begin:;
       {
 
          m_strInstallStatusTemplate = unitext("Instalación de %APPNAME%");
-         
+
       }
       else if(m_strInstallLocale.CompareNoCase("it") == 0 || ::str::begins_ci(m_strInstallLocale,"it-"))
       {
@@ -3107,9 +3109,9 @@ RetryBuildNumber:
 
    int32_t installer::ca2_build_version_etc(string & strSpaHost,int32_t &iHostRetry,stringa & straMd5)
    {
-      
+
       int32_t iRetry = 0;
-      
+
       string strEtc;
 
       string strName;
@@ -3156,7 +3158,7 @@ RetryBuildNumber:
 
          if(file_exists_dup(strIndexPath))
          {
-            
+
             strIndexMd5 = System.file().md5(strIndexPath);
 
          }
@@ -3166,7 +3168,7 @@ RetryBuildNumber:
       string strStatus;
 
    RetryBuildNumber:
-      
+
       if(m_strBuildResource.length() == 19) // heuristically valid
       {
          System.install().trace().rich_trace("***Internal build number");
@@ -3219,7 +3221,7 @@ RetryBuildNumber:
 
          file.seek_to_begin();
 
-         
+
          single_lock sl(&m_mutexOmp);
 
          sl.lock();
@@ -3269,7 +3271,7 @@ RetryBuildNumber:
          }
 
          straMd5.set_size(straTemplate.get_count() + 1);
-         
+
          for(index i = 0; i < straMd5.get_size(); i++)
          {
             straMd5[i].Empty();

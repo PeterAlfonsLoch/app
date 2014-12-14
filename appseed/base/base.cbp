@@ -51,6 +51,7 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
+			<Add option="-DBASE_FREEIMAGE" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
@@ -79,6 +80,7 @@
 			<Add option="-laxisfreetype" />
 			<Add option="-laxisidn" />
 			<Add option="-Wl,-z,defs" />
+			<Add option="-fopenmp" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
 		<Unit filename="base.cpp" />

@@ -15,6 +15,8 @@
 #include "collection_comparable_raw_array.h"
 #include "collection_comparable_primitive_array.h"
 
+#include "collection_ptr_array.h"
+
 #include "collection_primitive_array.h"
 #include "collection_numeric_array_range.h"
 #include "collection_numeric_array.h"

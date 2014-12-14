@@ -24,23 +24,35 @@ struct remove_reference
 
 template<class T>
 struct remove_reference<T&>
-{	
+{
 	typedef T TYPE;
 };
 
 template<class T>
 struct remove_reference<T&&>
-{	
+{
 	typedef T TYPE;
 };
 
 template<class T> inline
-typename remove_reference<T>::TYPE&& move(T && t) _NOEXCEPT
-{	
+typename remove_reference<T>::TYPE&& move(T && t)
+{
 
 	return (static_cast<typename remove_reference<T>::TYPE&&>(t));
 
 }
+
+
+#define DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(TYPE, BASE_TYPE) \
+    TYPE() {} \
+    TYPE(const TYPE & t) : BASE_TYPE((const BASE_TYPE &)t) {} \
+    TYPE(TYPE && t) : BASE_TYPE(::move(t)) {} \
+    TYPE(::aura::application * papp) : BASE_TYPE(papp) {} \
+    \
+    TYPE & operator = (const TYPE & t) { if(this != &t) {this->BASE_TYPE::operator=((const BASE_TYPE &)t);} return *this; } \
+    TYPE & operator = (TYPE && t) { if(this != &t) {this->BASE_TYPE::operator=(::move(t));} return *this; }
+
+
 
 
 template < class T >
@@ -548,6 +560,12 @@ namespace file
 #include "aura/primitive/collection/collection_comparable_eq_array.h"
 #include "aura/primitive/collection/collection_comparable_array.h"
 #include "aura/primitive/collection/collection_comparable_raw_array.h"
+
+
+#include "aura/primitive/collection/collection_ptr_array.h"
+
+
+#include "aura/primitive/collection/collection_lemon_heap.h"
 
 
 #include "aura/aura/aura/aura_action_context.h"

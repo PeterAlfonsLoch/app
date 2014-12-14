@@ -18,20 +18,16 @@ namespace user
    };
 
    class CLASS_DECL_AXIS interaction_ptra:
-      virtual public ptr_array < ::user::interaction >
+      public ptr_array < ::user::interaction >
    {
    public:
 
-      interaction_ptra();
-      interaction_ptra(const interaction_ptra & array);
-      interaction_ptra(const ptr_array < ::user::interaction > & array);
-      interaction_ptra(const interaction_spa & array);
-      interaction_ptra(interaction_ptra && array);
+      DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(interaction_ptra, ptr_array < ::user::interaction >)
+
+      interaction_ptra(const interaction_spa & a);
 
 
-      interaction_ptra & operator = (const interaction_ptra & array);
-      interaction_ptra & operator = (const ptr_array < ::user::interaction > & array);
-      interaction_ptra & operator = (interaction_ptra && array);
+      interaction_ptra & operator = (const interaction_spa & a);
 
       ::user::oswindow_array get_hwnda();
 

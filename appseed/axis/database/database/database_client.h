@@ -111,14 +111,16 @@ namespace database
 
       //virtual bool data_set(class id dataid, class id,  const char * lpsz, update_hint * puh = NULL);
 
-      inline ::file::data_trigger_output_stream data_set(class id id) { return ::file::data_trigger_output_stream(this,id);  }
-
       template < typename T >
       inline bool data_save(class id id, const T & t)
       {
          try
          {
-            data_set(id) << t;
+
+            ::file::data_trigger_output_stream os(this,id);
+
+            os << t;
+
          }
          catch(...)
          {
@@ -141,14 +143,16 @@ namespace database
 //      virtual bool data_get(class id dataid, class id, string & str);
 
 
-      inline ::file::data_trigger_input_stream data_get(class id id) { return ::file::data_trigger_input_stream(this,id); }
-
       template < typename T >
       inline bool data_load(class id id,T & t)
       {
          try
          {
-            data_get(id) >> t;
+
+            ::file::data_trigger_input_stream is(this,id);
+
+            is >> t;
+
          }
          catch(...)
          {

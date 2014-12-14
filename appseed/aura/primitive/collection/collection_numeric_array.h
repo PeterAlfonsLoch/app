@@ -1,13 +1,13 @@
 #pragma once
 
 
-template < typename T >
-index numeric_compare(const T & t1, const T & t2)
+template < typename ARG_TYPE >
+index numeric_compare(ARG_TYPE t1, ARG_TYPE t2)
 {
-   T t = t1 - t2;
-   if(t > ::numeric_info< T >::null())
+   typename ::remove_reference < ARG_TYPE >::TYPE t = t1 - t2;
+   if(t > ::numeric_info< typename ::remove_reference < ARG_TYPE >::TYPE >::null())
       return 1;
-   else if(t < ::numeric_info < T >::null())
+   else if(t < ::numeric_info < typename ::remove_reference < ARG_TYPE >::TYPE >::null())
       return -1;
    else
       return 0;
@@ -25,26 +25,18 @@ namespace str
 
 } // namespace ::core::str
 
-
 template < typename TYPE >
 class numeric_array :
-   virtual public comparable_raw_array < TYPE >
+   public comparable_raw_array < TYPE >
 {
 public:
 
+//    DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(numeric_array, comparable_raw_array < TYPE >)
 
    typedef TYPE BASE_TYPE;
    typedef const TYPE & BASE_ARG_TYPE;
    typedef comparable_primitive_array < TYPE > BASE_ARRAY;
 
-
-   numeric_array();
-   numeric_array(::count cSize);
-   numeric_array(::aura::application * papp);
-   numeric_array(const numeric_array & array);
-#ifdef MOVE_SEMANTICS
-   numeric_array(numeric_array && array);
-#endif
 
    index find_first_maximum_value();
    TYPE & get_maximum_value();
@@ -180,10 +172,6 @@ public:
    //}
 
 
-#if defined(MOVE_SEMANTICS)
-      inline numeric_array & operator = (numeric_array && a);
-#endif
-
    void implode(string & rwstr, const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
    string implode(const char * lpcszSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
 
@@ -194,7 +182,6 @@ public:
    numeric_array operator - (const numeric_array & a) const;
    numeric_array operator + (const numeric_array & a) const;
 
-   numeric_array & operator = (const numeric_array & a);
    numeric_array & operator -= (const numeric_array & a);
    numeric_array & operator += (const numeric_array & a);
 
@@ -324,42 +311,7 @@ public:
 
 };
 
-template < class TYPE >
-numeric_array < TYPE >::
-   numeric_array()
-{
-}
 
-template < class TYPE >
-numeric_array < TYPE >::
-numeric_array(::count cSize)
-{
-   this->set_size(cSize);
-}
-
-template < class TYPE >
-numeric_array < TYPE >::
-   numeric_array(::aura::application * papp) :
-   element(papp)
-{
-}
-
-template < class TYPE >
-numeric_array < TYPE >::
-   numeric_array(const numeric_array < TYPE > & a)
-{
-   this->operator = (a);
-}
-
-#ifdef MOVE_SEMANTICS
-template < class TYPE >
-numeric_array < TYPE >::
-numeric_array(numeric_array < TYPE > && a)
-: raw_array < TYPE,const TYPE & >((raw_array < TYPE,const TYPE & > &&) a)
-{
-
-}
-#endif
 
 template < typename T >
 string to_json(const T & t);
@@ -747,17 +699,6 @@ numeric_array < TYPE >  numeric_array < TYPE >::operator + (const numeric_array 
    return aRet;
 
 }
-
-template < class TYPE >
-numeric_array < TYPE >  & numeric_array < TYPE >::operator = (const numeric_array < TYPE >  & a)
-{
-
-   raw_array < TYPE, const TYPE & >::copy(a);
-
-   return *this;
-
-}
-
 
 template < class TYPE >
 numeric_array < TYPE >  & numeric_array < TYPE >::operator -= (const numeric_array < TYPE >  & a)
@@ -1895,7 +1836,7 @@ namespace lemon
          for(index i = aParam.get_upper_bound(); i >= 0; i--)
          {
             index iFind = 0;
-            if(::lemon::array::binary_search(a,aParam.element_at(i),iFind,&::numeric_compare < TYPE >))
+            if(::lemon::array::binary_search(a,aParam.element_at(i),iFind,&::numeric_compare < typename ::numeric_array < TYPE >::BASE_ARG_TYPE >))
             {
                a.remove_at(iFind);
                ca++;
@@ -2065,7 +2006,7 @@ namespace lemon
       }
 
       template<class ARRAY, class ARRAY2>
-      ::count sort_add(ARRAY & a,ARRAY2 & a2,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia)
+      ::count sort_add_array(ARRAY & a,ARRAY2 & a2,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia)
       {
          for(index i = 0; i < a2.get_count(); i++)
          {
@@ -2302,16 +2243,3 @@ namespace lemon
 } // namespace lemon
 
 
-
-#ifdef MOVE_SEMANTICS
-template <class TYPE>
-inline numeric_array<TYPE> & numeric_array<TYPE>::operator = (numeric_array && a)
-{
-
-   raw_array < TYPE,const TYPE & >::operator = (a);
-
-   return *this;
-
-}
-
-#endif

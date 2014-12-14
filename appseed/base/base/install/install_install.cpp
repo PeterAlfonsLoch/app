@@ -648,7 +648,7 @@ namespace install
       if (is_installing_ca2())
       {
 
-         //m_bCa2Installed = false; in fact we cannot determine if ca2 is installed, 
+         //m_bCa2Installed = false; in fact we cannot determine if ca2 is installed,
          // because it may be installed but unusable (installation file is locked)
          return;
 
@@ -664,15 +664,15 @@ namespace install
       m_bCa2Installed = true;
       if (m_bCa2Installed)
       {
-         // this function (update_ca2_installed) calculates is_ca2_installed and 
-         // is used at browser plugins like npca2.dll and iexca2.dll which now is 
+         // this function (update_ca2_installed) calculates is_ca2_installed and
+         // is used at browser plugins like npca2.dll and iexca2.dll which now is
          // linked with os.dll and that are shipped during browser plugin installation
          // with its own version of os.dll. Testing if ca2 is installed by using this
          // os.dll, is not a good indicator anymore, and worst, can potentially make
          // os.dll to be unloaded and make the dependant instatiated browser plugins
          // to malfunction. Using only core.dll test only by now.
          //::aura::library libraryOs(get_app());
-         //m_bCa2Installed = libraryOs.open(dir::path(strStage, "os")); 
+         //m_bCa2Installed = libraryOs.open(dir::path(strStage, "os"));
          //if (m_bCa2Installed)
          //{
          ::aura::library libraryCa2(get_app());
@@ -680,7 +680,7 @@ namespace install
          if (m_bCa2Installed)
          {
 
-            // hey !! 
+            // hey !!
             // now ca2 is installed!!
             // great event!!
             // let's celebrate!!
@@ -1128,7 +1128,7 @@ namespace install
 
       }
 
-      
+
 
       if (lpnodeInstalled == NULL)
          return false;
@@ -1310,6 +1310,7 @@ namespace install
 
    }
 
+#ifdef _WIN32
 
    string get_module_path(HMODULE hmodule)
    {
@@ -1326,7 +1327,7 @@ namespace install
       return ::str::international::unicode_to_utf8(wstrPath);
    }
 
-
+#endif
 
    string install::app_install_get_extern_executable_path(const char * pszVersion, const char * pszBuild, stringa * pstraMd5, ::install::installer * pinstaller)
    {
@@ -1666,7 +1667,7 @@ namespace install
 
    }
 
-   
+
    bool install::reference_is_file_ok(const char * path1, const char * pszTemplate, const char * pszVersion, const char * pszFormatBuild)
    {
 

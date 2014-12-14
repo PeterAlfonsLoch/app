@@ -1,0 +1,286 @@
+# depslib dependency file v1.0
+1418510695 source:/ca2/app/axis/pixman/pixman/pixman-access-accessors.c
+	"pixman-access.c"
+
+1418510703 /ca2/app/axis/pixman/pixman/pixman-access.c
+	"config.h"
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<math.h>
+	"pixman-accessor.h"
+	"pixman-private.h"
+
+1418510690 /ca2/app/axis/pixman/config.h
+
+1418510695 /ca2/app/axis/pixman/pixman/pixman-accessor.h
+
+1418510693 /ca2/app/axis/pixman/pixman/pixman-private.h
+	<float.h>
+	"pixman.h"
+	<time.h>
+	<assert.h>
+	<stdio.h>
+	<string.h>
+	<stddef.h>
+	"pixman-compiler.h"
+
+1418510703 /ca2/app/axis/pixman/pixman/pixman.h
+	<pixman-version.h>
+	<inttypes.h>
+	<sys/inttypes.h>
+	<stdint.h>
+
+1418510694 /ca2/app/axis/pixman/pixman/pixman-version.h
+
+1418510703 /ca2/app/axis/pixman/pixman/pixman-compiler.h
+	<windows.h>
+	<pthread.h>
+
+1418510703 source:/ca2/app/axis/pixman/pixman/pixman-access.c
+	"config.h"
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<math.h>
+	"pixman-accessor.h"
+	"pixman-private.h"
+
+1418510703 source:/ca2/app/axis/pixman/pixman/pixman-arm.c
+	"config.h"
+	"pixman-private.h"
+	<windows.h>
+	"TargetConditionals.h"
+	<cpu-features.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<sys/mman.h>
+	<fcntl.h>
+	<string.h>
+	<elf.h>
+
+1418510691 source:/ca2/app/axis/pixman/pixman/pixman-bits-image.c
+	"config.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"pixman-private.h"
+	"pixman-combine32.h"
+	"pixman-inlines.h"
+
+1418510692 /ca2/app/axis/pixman/pixman/pixman-combine32.h
+
+1418510703 /ca2/app/axis/pixman/pixman/pixman-inlines.h
+	"pixman-private.h"
+
+1418510691 source:/ca2/app/axis/pixman/pixman/pixman-combine-float.c
+	"config.h"
+	<math.h>
+	<string.h>
+	<float.h>
+	"pixman-private.h"
+
+1418510692 source:/ca2/app/axis/pixman/pixman/pixman-combine32.c
+	"config.h"
+	<math.h>
+	<string.h>
+	"pixman-private.h"
+	"pixman-combine32.h"
+
+1418510696 source:/ca2/app/axis/pixman/pixman/pixman-conical-gradient.c
+	"config.h"
+	<stdlib.h>
+	<math.h>
+	"pixman-private.h"
+
+1418510693 source:/ca2/app/axis/pixman/pixman/pixman-edge-accessors.c
+	"pixman-edge.c"
+
+1418510693 /ca2/app/axis/pixman/pixman/pixman-edge.c
+	"config.h"
+	<string.h>
+	"pixman-private.h"
+	"pixman-accessor.h"
+	"pixman-edge-imp.h"
+	"pixman-edge-imp.h"
+
+1418510692 /ca2/app/axis/pixman/pixman/pixman-edge-imp.h
+
+1418510693 source:/ca2/app/axis/pixman/pixman/pixman-edge.c
+	"config.h"
+	<string.h>
+	"pixman-private.h"
+	"pixman-accessor.h"
+	"pixman-edge-imp.h"
+	"pixman-edge-imp.h"
+
+1418510703 source:/ca2/app/axis/pixman/pixman/pixman-fast-path.c
+	"config.h"
+	<string.h>
+	<stdlib.h>
+	"pixman-private.h"
+	"pixman-combine32.h"
+	"pixman-inlines.h"
+
+1418510694 source:/ca2/app/axis/pixman/pixman/pixman-filter.c
+	<string.h>
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	<assert.h>
+	"config.h"
+	"pixman-private.h"
+
+1418510691 source:/ca2/app/axis/pixman/pixman/pixman-general.c
+	"config.h"
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<limits.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"pixman-private.h"
+
+1418510694 source:/ca2/app/axis/pixman/pixman/pixman-glyph.c
+	"config.h"
+	"pixman-private.h"
+	<stdlib.h>
+
+1418510703 source:/ca2/app/axis/pixman/pixman/pixman-gradient-walker.c
+	"config.h"
+	"pixman-private.h"
+
+1418510691 source:/ca2/app/axis/pixman/pixman/pixman-image.c
+	"config.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<assert.h>
+	"pixman-private.h"
+
+1418510692 source:/ca2/app/axis/pixman/pixman/pixman-implementation.c
+	"config.h"
+	<stdlib.h>
+	"pixman-private.h"
+
+1418510695 source:/ca2/app/axis/pixman/pixman/pixman-linear-gradient.c
+	"config.h"
+	<stdlib.h>
+	"pixman-private.h"
+
+1418510703 source:/ca2/app/axis/pixman/pixman/pixman-matrix.c
+	"config.h"
+	<math.h>
+	<string.h>
+	"pixman-private.h"
+
+1418510691 source:/ca2/app/axis/pixman/pixman/pixman-mips.c
+	"config.h"
+	"pixman-private.h"
+	<string.h>
+	<stdlib.h>
+
+1418510703 source:/ca2/app/axis/pixman/pixman/pixman-mmx.c
+	"config.h"
+	<loongson-mmintrin.h>
+	<mmintrin.h>
+	"pixman-private.h"
+	"pixman-combine32.h"
+	"pixman-inlines.h"
+	<xmmintrin.h>
+
+1418510703 /ca2/app/axis/pixman/pixman/loongson-mmintrin.h
+	<stdint.h>
+
+1418510692 source:/ca2/app/axis/pixman/pixman/pixman-noop.c
+	"config.h"
+	<string.h>
+	<stdlib.h>
+	"pixman-private.h"
+	"pixman-combine32.h"
+	"pixman-inlines.h"
+
+1418510703 source:/ca2/app/axis/pixman/pixman/pixman-ppc.c
+	"config.h"
+	"pixman-private.h"
+	<sys/sysctl.h>
+	<sys/param.h>
+	<sys/sysctl.h>
+	<machine/cpu.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<stdio.h>
+	<linux/auxvec.h>
+	<asm/cputable.h>
+	<signal.h>
+	<setjmp.h>
+
+1418510691 source:/ca2/app/axis/pixman/pixman/pixman-radial-gradient.c
+	"config.h"
+	<stdlib.h>
+	<math.h>
+	"pixman-private.h"
+
+1418510703 source:/ca2/app/axis/pixman/pixman/pixman-region16.c
+	"config.h"
+	"pixman-private.h"
+	<stdlib.h>
+	"pixman-region.c"
+
+1418510703 /ca2/app/axis/pixman/pixman/pixman-region.c
+	<stdlib.h>
+	<limits.h>
+	<string.h>
+	<stdio.h>
+	"pixman-private.h"
+
+1418510691 source:/ca2/app/axis/pixman/pixman/pixman-region32.c
+	"config.h"
+	"pixman-private.h"
+	<stdlib.h>
+	"pixman-region.c"
+
+1418510693 source:/ca2/app/axis/pixman/pixman/pixman-solid-fill.c
+	"config.h"
+	"pixman-private.h"
+
+1418510694 source:/ca2/app/axis/pixman/pixman/pixman-sse2.c
+	"config.h"
+	<xmmintrin.h>
+	<emmintrin.h>
+	"pixman-private.h"
+	"pixman-combine32.h"
+	"pixman-inlines.h"
+
+1418510695 source:/ca2/app/axis/pixman/pixman/pixman-timer.c
+	"config.h"
+	<stdlib.h>
+	<stdio.h>
+	"pixman-private.h"
+
+1418510692 source:/ca2/app/axis/pixman/pixman/pixman-trap.c
+	"config.h"
+	<stdio.h>
+	<stdlib.h>
+	"pixman-private.h"
+
+1418510694 source:/ca2/app/axis/pixman/pixman/pixman-utils.c
+	"config.h"
+	<stdio.h>
+	<stdlib.h>
+	"pixman-private.h"
+
+1418510693 source:/ca2/app/axis/pixman/pixman/pixman-x86.c
+	"config.h"
+	"pixman-private.h"
+	<sys/auxv.h>
+
+1418510695 source:/ca2/app/axis/pixman/pixman/pixman.c
+	"config.h"
+	"pixman-private.h"
+	<stdlib.h>
+

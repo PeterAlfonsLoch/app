@@ -69,6 +69,20 @@
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
+		<Unit filename="calculator/calculator.h" />
+		<Unit filename="calculator/calculator_calculator.cpp" />
+		<Unit filename="calculator/calculator_calculator.h" />
+		<Unit filename="calculator/numeric_element.cpp" />
+		<Unit filename="calculator/numeric_element.h" />
+		<Unit filename="calculator/numeric_parser.cpp" />
+		<Unit filename="calculator/numeric_parser.h" />
+		<Unit filename="calculator/numeric_parser_exception.cpp" />
+		<Unit filename="calculator/numeric_parser_exception.h" />
+		<Unit filename="calculator/numeric_scanner.cpp" />
+		<Unit filename="calculator/numeric_scanner.h" />
+		<Unit filename="calculator/numeric_token.h" />
+		<Unit filename="calculator/numeric_value.cpp" />
+		<Unit filename="calculator/numeric_value.h" />
 		<Unit filename="framework.cpp" />
 		<Unit filename="framework.h">
 			<Option compile="1" />

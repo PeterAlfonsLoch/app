@@ -1051,14 +1051,14 @@ throw not_implemented(get_app());
    }
 
 
-   user::interaction_ptra window_draw::get_wnda()
-   {
+//   user::interaction_ptra window_draw::get_wnda()
+  // {
 
 //      single_lock sl(&user_mutex(), true);
 
-      return System.frames();
+    //  return System.frames();
 
-   }
+  // }
 
 /*
    user::oswindow_array window_draw::get_hwnda()

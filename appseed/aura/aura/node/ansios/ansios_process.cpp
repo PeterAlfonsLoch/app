@@ -100,7 +100,7 @@ namespace ansios
       }
 
 
-      int status = posix_spawn(&m_iPid,argv[0],&actions,&attr,argv,environ);
+      int status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
 
 
 #ifdef APPLEOS
@@ -115,7 +115,7 @@ namespace ansios
       }
 
 #endif
-      
+
       return status == 0;
 
 #else

@@ -1341,9 +1341,13 @@ restart_mouse_hover_check:
             }
          }
          user::oswindow_array hwnda;
-         user::interaction_ptra wnda;
-         wnda = System.frames();
-         hwnda = wnda.get_hwnda();
+         //user::interaction_ptra wnda;
+         //wnda = System.get_hwnda();
+         user::oswindow_array oswindowa;
+         user::interaction_spa wnda(get_app());
+         wnda = System.m_uiptraFrame;
+         oswindowa = wnda.get_hwnda();
+         user::window_util::SortByZOrder(oswindowa);
 
          if(pbase->m_uiMessage == WM_LBUTTONDOWN)
          {

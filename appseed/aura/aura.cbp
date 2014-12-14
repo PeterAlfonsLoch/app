@@ -227,6 +227,7 @@
 		<Unit filename="aura/aura_policy/aura_policy_objc.h" />
 		<Unit filename="aura/aura_policy/aura_policy_objcpp.h" />
 		<Unit filename="aura/aura_policy/aura_policy_winrt.h" />
+		<Unit filename="aura/exception/_exception.txt" />
 		<Unit filename="aura/exception/exception.cpp" />
 		<Unit filename="aura/exception/exception.h" />
 		<Unit filename="aura/exception/exception2.h" />
@@ -276,6 +277,7 @@
 		<Unit filename="aura/exception/exception_memory.h" />
 		<Unit filename="aura/exception/exception_memory_state.h" />
 		<Unit filename="aura/exception/exception_misc.h" />
+		<Unit filename="aura/exception/exception_mm.mm" />
 		<Unit filename="aura/exception/exception_not_implemented.cpp" />
 		<Unit filename="aura/exception/exception_not_implemented.h" />
 		<Unit filename="aura/exception/exception_not_installed.cpp" />
@@ -306,6 +308,8 @@
 		<Unit filename="aura/exception/exception_system.h" />
 		<Unit filename="aura/exception/exception_temporary.cpp" />
 		<Unit filename="aura/exception/exception_temporary.h" />
+		<Unit filename="aura/exception/exception_throw.cpp" />
+		<Unit filename="aura/exception/exception_throw.h" />
 		<Unit filename="aura/exception/exception_todo.cpp" />
 		<Unit filename="aura/exception/exception_todo.h" />
 		<Unit filename="aura/exception/exception_trap.h" />
@@ -707,9 +711,12 @@
 		<Unit filename="multithreading/service/service_plain_service.h" />
 		<Unit filename="multithreading/service/service_thread_pool.h" />
 		<Unit filename="primitive/collection/collection.h" />
+		<Unit filename="primitive/collection/collection.inl" />
 		<Unit filename="primitive/collection/collection_2d_array.cpp" />
 		<Unit filename="primitive/collection/collection_array.cpp" />
+		<Unit filename="primitive/collection/collection_array_base.cpp" />
 		<Unit filename="primitive/collection/collection_array_decl.h" />
+		<Unit filename="primitive/collection/collection_array_impl.inl" />
 		<Unit filename="primitive/collection/collection_attrib_map.h" />
 		<Unit filename="primitive/collection/collection_base_2array.h" />
 		<Unit filename="primitive/collection/collection_base_enum.h" />
@@ -728,6 +735,7 @@
 		<Unit filename="primitive/collection/collection_deque.h" />
 		<Unit filename="primitive/collection/collection_elements.h" />
 		<Unit filename="primitive/collection/collection_fifo_map.h" />
+		<Unit filename="primitive/collection/collection_fifo_map_impl.inl" />
 		<Unit filename="primitive/collection/collection_id_array.cpp" />
 		<Unit filename="primitive/collection/collection_id_array.h" />
 		<Unit filename="primitive/collection/collection_int_map.h" />
@@ -736,15 +744,19 @@
 		<Unit filename="primitive/collection/collection_key_sort_array.h" />
 		<Unit filename="primitive/collection/collection_lemon_array.h" />
 		<Unit filename="primitive/collection/collection_lemon_array_decl.h" />
+		<Unit filename="primitive/collection/collection_lemon_array_impl.inl" />
 		<Unit filename="primitive/collection/collection_lemon_heap.h" />
 		<Unit filename="primitive/collection/collection_list.h" />
+		<Unit filename="primitive/collection/collection_list_impl.inl" />
 		<Unit filename="primitive/collection/collection_logic_array.h" />
 		<Unit filename="primitive/collection/collection_map.h" />
 		<Unit filename="primitive/collection/collection_map_association.h" />
+		<Unit filename="primitive/collection/collection_map_impl.inl" />
 		<Unit filename="primitive/collection/collection_map_misc.cpp" />
 		<Unit filename="primitive/collection/collection_map_to_smart_pointer.h" />
 		<Unit filename="primitive/collection/collection_numeric_array.cpp" />
 		<Unit filename="primitive/collection/collection_numeric_array.h" />
+		<Unit filename="primitive/collection/collection_numeric_array_range.h" />
 		<Unit filename="primitive/collection/collection_object_list.cpp" />
 		<Unit filename="primitive/collection/collection_object_list.h" />
 		<Unit filename="primitive/collection/collection_packset.h" />
@@ -755,8 +767,10 @@
 		<Unit filename="primitive/collection/collection_pointer_list.h" />
 		<Unit filename="primitive/collection/collection_primitive_array.h" />
 		<Unit filename="primitive/collection/collection_priority_queue.h" />
+		<Unit filename="primitive/collection/collection_ptr_array.h" />
 		<Unit filename="primitive/collection/collection_queue.h" />
 		<Unit filename="primitive/collection/collection_raw_array_decl.h" />
+		<Unit filename="primitive/collection/collection_raw_array_impl.inl" />
 		<Unit filename="primitive/collection/collection_rect_array.cpp" />
 		<Unit filename="primitive/collection/collection_rect_array.h" />
 		<Unit filename="primitive/collection/collection_set.h" />
@@ -769,7 +783,9 @@
 		<Unit filename="primitive/collection/collection_sort.cpp" />
 		<Unit filename="primitive/collection/collection_sort.h" />
 		<Unit filename="primitive/collection/collection_sort_array.h" />
+		<Unit filename="primitive/collection/collection_sort_array_impl.inl" />
 		<Unit filename="primitive/collection/collection_sort_map.h" />
+		<Unit filename="primitive/collection/collection_sort_map_impl.inl" />
 		<Unit filename="primitive/collection/collection_spreadset.h" />
 		<Unit filename="primitive/collection/collection_stack.h" />
 		<Unit filename="primitive/collection/collection_strid_map.h" />
@@ -1048,8 +1064,6 @@
 		<Unit filename="user/simple/simple_message_box.h" />
 		<Unit filename="user/user.h" />
 		<Unit filename="user/user/user.h" />
-		<Unit filename="user/user/user_check_interface.cpp" />
-		<Unit filename="user/user/user_check_interface.h" />
 		<Unit filename="user/user/user_create_context.cpp" />
 		<Unit filename="user/user/user_create_context.h" />
 		<Unit filename="user/user/user_draw_context.cpp" />
