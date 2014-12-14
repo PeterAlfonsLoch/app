@@ -147,7 +147,7 @@ class CLASS_DECL_AURA string :
 {
 public:
 
-   
+
 
    static const int npos;
 
@@ -1822,3 +1822,132 @@ inline string string::upper() const
 }
 
 
+namespace comparison
+{
+
+
+   template < >
+   class equals_type_arg_type < string, const string & >
+   {
+   public:
+
+      inline static bool CompareElements(const string * pElement1, const string & element2)
+      {
+         return *pElement1 == element2;
+      }
+
+   };
+
+   template < >
+   class less < string, const string & >
+   {
+   public:
+
+      inline bool operator()(const string & element1, const string & element2) const
+      {
+         return element1 < element2;
+      }
+
+   };
+
+   class compare_string_case:
+      public compare_type_arg_type < string,const string & >
+   {
+   public:
+
+
+      inline static int_ptr CompareElements(const string * pElement1,const string & element2)
+      {
+
+         return pElement1->Compare(element2);
+
+      }
+
+
+   };
+
+
+   class compare_string_no_case:
+      public compare_type_arg_type < string,const string & >
+   {
+   public:
+
+      inline static int_ptr CompareElements(const string * pElement1,const string & element2)
+      {
+         return pElement1->CompareNoCase(element2);
+      }
+
+   };
+
+   template < >
+   class CLASS_DECL_AURA hash < const string & >
+   {
+   public:
+
+      inline static UINT HashKey (const string & key)
+      {
+         uint64_t * puiKey = (uint64_t *) (const char *) key;
+         strsize counter = key.get_length();
+         uint64_t nHash = 0;
+         while(counter >= sizeof(*puiKey))
+         {
+            nHash = (nHash<<5) + nHash + *puiKey++;
+            counter -= sizeof(*puiKey);
+         }
+         const char * pszKey = (const char *) puiKey;
+         while(counter-- >= 0) nHash = (nHash<<5) + nHash + *pszKey++;
+         return (UINT) (nHash & 0xffffffff);
+      }
+
+   };
+
+   template < >
+   class compare_type_arg_type < id,const id & >
+   {
+   public:
+
+
+      inline static int_ptr CompareElements(const id * pElement1,const id & element2)
+      {
+
+         return pElement1->m_pstr - element2.m_pstr;
+
+      }
+
+
+   };
+
+
+   class strid_compare
+   {
+   public:
+
+
+      inline static int_ptr CompareElements(const id * pElement1,const id & element2)
+      {
+
+         return pElement1->m_pstr - element2.m_pstr;
+
+      }
+
+
+   };
+
+
+   class CLASS_DECL_AURA strid_binary
+   {
+   public:
+
+
+      inline static int_ptr CompareElements(const id * pElement1, const id * pElement2)
+      {
+
+         return pElement1->m_pstr - pElement2->m_pstr;
+
+      }
+
+
+   };
+
+
+} // namespace comparison

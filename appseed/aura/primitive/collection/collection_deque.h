@@ -6,7 +6,7 @@ class deque:
    virtual public BASE_ARRAY
 {
 public:
-    
+
     typedef TYPE BASE_TYPE;
     typedef ARG_TYPE BASE_ARG_TYPE;
 
@@ -17,7 +17,7 @@ public:
 
     inline void pop_back(index n = -1)
     {
-       remove_at(get_upper_bound(n));
+       this->remove_at(this->get_upper_bound(n));
     }
 
 

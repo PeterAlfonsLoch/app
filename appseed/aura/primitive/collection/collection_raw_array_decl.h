@@ -341,7 +341,7 @@ public:
    //index append(const raw_array& src);
    //void copy(const raw_array& src);
 
-   
+
    inline TYPE pop(index index = -1);
    inline index push(ARG_TYPE newElement,index i = 0);
    inline void pop_back(index index = -1);
@@ -438,17 +438,3 @@ public:
 };
 
 
-
-template<class TYPE,class ARG_TYPE = const TYPE &>
-::file::output_stream & operator << (::file::output_stream & os,const raw_array < TYPE,ARG_TYPE> & a)
-{
-   ::file::array::write(os,a);
-   return os;
-}
-
-template<class TYPE,class ARG_TYPE = const TYPE &>
-::file::input_stream & operator >> (::file::input_stream & is,raw_array < TYPE,ARG_TYPE > & a)
-{
-   ::file::array::read(is,a);
-   return is;
-}

@@ -1147,18 +1147,18 @@ namespace sort
       template < typename ARRAY_TYPE >
       void quick_sort(ARRAY_TYPE  & a,index(* lpfnCompare)(typename ARRAY_TYPE::BASE_ARG_TYPE,typename ARRAY_TYPE::BASE_ARG_TYPE),index_array & ia)
       {
-      
+
          // minimum check
          if(ia.get_size() != a.get_size())
             throw invalid_argument_exception(::get_thread_app());
-      
+
          index_array stackLowerBound;
          index_array stackUpperBound;
          index iLowerBound;
          index iUpperBound;
          index iLPos, iUPos, iMPos;
          //   uint32_t t;
-      
+
          if(a.get_size() >= 2)
          {
             stackLowerBound.push(0);
@@ -1217,11 +1217,11 @@ namespace sort
                   break;
             }
          }
-      
+
       }
 
 
-   } // namespace array 
+   } // namespace array
 
 
 
@@ -1521,7 +1521,7 @@ namespace sort
       iIndex = (iUpperBound + iLowerBound) / 2;
       while(iUpperBound - iLowerBound >= 8)
       {
-         iCompare = COMPARE::CompareElements(a.element_at(iIndex),arg);
+         iCompare = ::comparison::compare_type_arg_type < typename ARRAY::BASE_TYPE, typename ARRAY::BASE_ARG_TYPE > ::CompareElements(a.element_at(iIndex),arg);
          if(iCompare == 0)
          {
             return true;
@@ -1549,7 +1549,7 @@ namespace sort
       // do sequential search
       while(iIndex < a.get_count())
       {
-         iCompare = COMPARE::CompareElements(a.element_at(iIndex),arg);
+         iCompare = ::comparison::compare_type_arg_type < typename ARRAY::BASE_TYPE, typename ARRAY::BASE_ARG_TYPE > ::CompareElements(a.element_at(iIndex),arg);
          if(iCompare == 0)
             return true;
          else if(iCompare < 0)
@@ -1561,7 +1561,7 @@ namespace sort
          return false;
       while(iIndex >= 0)
       {
-         iCompare = COMPARE::CompareElements(a.element_at(iIndex),arg);
+         iCompare = ::comparison::compare_type_arg_type < typename ARRAY::BASE_TYPE, typename ARRAY::BASE_ARG_TYPE > ::CompareElements(a.element_at(iIndex),arg);
          if(iCompare == 0)
             return true;
          else if(iCompare > 0)
@@ -1638,4 +1638,32 @@ SetKeyProperty(KEY (TYPE::* lpfnKeyProperty)())
       m_array,
       m_lpfnKeyProperty);
 }
+
+
+namespace lemon
+{
+
+
+   template < class TYPE >
+   void quick_sort(::numeric_array < TYPE > & a, bool bAsc = true)
+   {
+
+      if(bAsc)
+      {
+
+         sort::QuickSortAsc(a);
+
+      }
+      else
+      {
+
+         sort::QuickSortDesc(a);
+      }
+   }
+
+
+} // namespace lemon
+
+
+
 

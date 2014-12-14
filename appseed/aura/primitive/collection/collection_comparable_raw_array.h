@@ -7,7 +7,7 @@ template < class TYPE, class ARG_TYPE = const TYPE & >
 using comparable_eq_raw_array = comparable_eq_array < TYPE, ARG_TYPE, raw_array < TYPE, ARG_TYPE > >;
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
-using comparable_raw_array = comparable_array < TYPE, ARG_TYPE, typename comparable_eq_raw_array < TYPE, ARG_TYPE > >;
+using comparable_raw_array = comparable_array < TYPE, ARG_TYPE, comparable_eq_raw_array < TYPE, ARG_TYPE > >;
 
 template < typename POINTER,class ARRAY_TYPE = comparable_raw_array < void * >  >
 class raw_ptr_array:
@@ -17,17 +17,17 @@ public:
 
 
 
-   inline raw_ptr_array() { m_bRaw = false;  }
-   inline raw_ptr_array(const raw_ptr_array & a) { m_bRaw = false; this->operator = (a); }
-   inline raw_ptr_array(raw_ptr_array && a) { m_bRaw = false; this->operator = (a); }
+   inline raw_ptr_array() { this->m_bRaw = false;  }
+   inline raw_ptr_array(const raw_ptr_array & a) { this->m_bRaw = false; this->operator = (a); }
+   inline raw_ptr_array(raw_ptr_array && a) { this->m_bRaw = false; this->operator = (a); }
 
    virtual void on_construct_element(void * p)
    {
-      memset(p,0,m_iTypeSize);
+      memset(p,0,this->m_iTypeSize);
    }
    virtual void on_construct_element(void *p,::count c)
    {
-      memset(p,0,m_iTypeSize *c);
+      memset(p,0,this->m_iTypeSize *c);
    }
 
    inline raw_ptr_array & operator = (const raw_ptr_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }

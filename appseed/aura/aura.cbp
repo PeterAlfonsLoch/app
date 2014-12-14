@@ -58,6 +58,7 @@
 			<Add directory="../.." />
 			<Add directory="../../.." />
 			<Add directory="../aura" />
+			<Add directory="../../include" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -735,6 +736,7 @@
 		<Unit filename="primitive/collection/collection_key_sort_array.h" />
 		<Unit filename="primitive/collection/collection_lemon_array.h" />
 		<Unit filename="primitive/collection/collection_lemon_array_decl.h" />
+		<Unit filename="primitive/collection/collection_lemon_heap.h" />
 		<Unit filename="primitive/collection/collection_list.h" />
 		<Unit filename="primitive/collection/collection_logic_array.h" />
 		<Unit filename="primitive/collection/collection_map.h" />

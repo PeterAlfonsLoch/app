@@ -513,6 +513,9 @@ namespace file
 #include "aura/aura/xml/xml_importable.h"
 
 
+#include "aura/primitive/comparison/comparison.h"
+
+
 #include "aura/primitive/collection/collection_decl.h"
 #include "aura/primitive/collection/collection_array_decl.h"
 #include "aura/primitive/collection/collection_raw_array_decl.h"
@@ -559,9 +562,6 @@ namespace file
 
 
 #include "aura/primitive/geometry/geometry.h"
-
-
-#include "aura/primitive/comparison/comparison.h"
 
 
 #include "aura/primitive/collection/collection.h"
@@ -1309,14 +1309,14 @@ namespace std
    {
       ::lemon::sort_heap(first,last,comp);
    }
-   
+
 #ifndef __APPLE__
 
    template <class T> void swap(T& a,T& b)
    {
       T c(a); a=b; b=c;
    }
-   
+
 #endif
 
 }

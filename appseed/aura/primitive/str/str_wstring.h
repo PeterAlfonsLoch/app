@@ -43,7 +43,7 @@ public:
       m_iLength      = 0;
       m_wchFirst     = L'\0';
    }
-   
+
    inline wstring_data * clone() const
    {
       wstring_data * pdata = (wstring_data *) memory_alloc(((m_iAllocation + 1) * sizeof(wchar_t)) + sizeof(count) + sizeof(count) + sizeof(wchar_t));
@@ -287,13 +287,13 @@ public:
 
    inline verisimple_wstring & append(wchar_t wch)
    {
-      
+
       wchar_t wsz[2];
-      
+
       wsz[0] = wch;
-      
+
       wsz[1] = L'\0';
-      
+
       return *this = (*this + wsz);
 
    }
@@ -324,6 +324,5 @@ public:
    void assign(const char * psz);
 
 };
-
 
 

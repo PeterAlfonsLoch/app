@@ -138,7 +138,7 @@ public:
    inline void remove_last();
    inline ::count remove_all();
    inline void clear();
-  
+
    virtual void on_construct_element(void *);
    virtual void on_construct_element(void *,::count);
    virtual void on_destruct_element(void *);
@@ -151,7 +151,7 @@ public:
 
    virtual ::count append(const array_base & src); // return old size
    virtual void copy(const array_base & src);
- 
+
    virtual void on_after_read();
 
 };
@@ -168,7 +168,7 @@ public:
    typedef array < TYPE, ARG_TYPE > BASE_ARRAY;
 
 
-   class iterator 
+   class iterator
    {
    public:
 
@@ -303,7 +303,7 @@ public:
    };
 
 
-   class const_iterator 
+   class const_iterator
    {
    public:
 
@@ -472,7 +472,7 @@ public:
    inline const TYPE* get_data() const;
    inline TYPE* get_data();
 
-   
+
    inline index add(ARG_TYPE newElement);
    inline index add(const array& src);
    inline index append(const array& src);
@@ -641,22 +641,5 @@ public:
    virtual ~nodefctr_array() {}
 
 };
-
-
-template < class TYPE,class ARG_TYPE = const TYPE &,class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
-::file::output_stream & operator << (::file::output_stream & os,const array < TYPE,ARG_TYPE,DEFCONSTRUCTOR > & a)
-{
-   ::file::array::write(os,a);
-   return os;
-}
-
-template < class TYPE,class ARG_TYPE = const TYPE &,class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
-::file::input_stream & operator >> (::file::input_stream & is,array < TYPE,ARG_TYPE,DEFCONSTRUCTOR > & a)
-{
-   ::file::array::read(is,a);
-   return is;
-}
-
-
 
 

@@ -15,7 +15,7 @@ namespace lemon
       a.add(t1);
       return a;
    }
-   
+
    namespace array
    {
 
@@ -135,7 +135,7 @@ namespace lemon
 
          index i = a.get_upper_bound(n);
 
-         TYPE t = a.element_at(i);
+         typename ARRAY::TYPE t = a.element_at(i);
 
          a.remove_at(i);
 

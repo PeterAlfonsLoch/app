@@ -65,7 +65,7 @@ public:
 
 
    virtual void install_message_handling(::message::dispatch * pdispatch);
-   
+
    virtual void signalizable_disconnect_all();
 
 };
@@ -195,6 +195,8 @@ public:
       }
       return false;
    }
+
+
 
 protected:
    spa(signal_delegate) m_delegatea;
@@ -368,17 +370,6 @@ public:
       return true;
    }
 
-   template < class T >
-   bool is_connected(T * psignalizable,void (T::*pfn)(signal_details *))
-   {
-      for(int32_t i = 0; i < m_delegatea.get_size(); i++)
-      {
-         signal_delegate_instance < T > * pdelegate = m_delegatea.typed_ptr_at < signal_delegate_instance < T > >(i);
-         if(pdelegate != NULL && pdelegate->m_psignalizable == psignalizable && pdelegate->m_pfn == pfn)
-            return true;
-      }
-      return false;
-   }
 
 
    int32_t                  m_iHandling;

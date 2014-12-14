@@ -435,3 +435,13 @@ inline double pointd::set_orthogonal_dimension(e_orientation eorientation,double
       return 0;
    }
 }
+
+
+
+template<> inline UINT HashKey<point> (point key)
+{
+   return key.x | key.y;
+}
+
+
+

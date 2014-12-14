@@ -35,7 +35,7 @@ public:
 
    typedef TYPE BASE_TYPE;
    typedef const TYPE & BASE_ARG_TYPE;
-   typedef typename comparable_primitive_array < TYPE > BASE_ARRAY;
+   typedef comparable_primitive_array < TYPE > BASE_ARRAY;
 
 
    numeric_array();
@@ -204,14 +204,14 @@ public:
 
    int compare(const numeric_array < TYPE > & a) const
    {
-      int iCompare = get_size() - a.get_size();
+      int iCompare = this->get_size() - a.get_size();
       if(iCompare != 0)
          return iCompare;
       TYPE t;
-      for(index i = 0; i < get_size(); i++)
+      for(index i = 0; i < this->get_size(); i++)
       {
-         
-         t = element_at(i) - a[i];
+
+         t = this->element_at(i) - a[i];
 
          if(t != 0)
             return ::sgn(t);
@@ -491,7 +491,7 @@ string numeric_array < TYPE >::surround_and_implode(const char * pszSeparator, c
 //   {
 //
 //      iEnd += i;
-//    
+//
 //      i = 0;
 //
 //   }
@@ -1921,7 +1921,7 @@ namespace lemon
          {
             return false;
          }
-      
+
          index iLowerBound = 0;
          index iMaxBound   = a.get_upper_bound();
          index iUpperBound = iMaxBound;
@@ -1980,7 +1980,7 @@ namespace lemon
          }
          iIndex++;
          return false;
-      
+
       }
 
 
@@ -2111,24 +2111,14 @@ namespace lemon
    numeric_array_each < ::numeric_array < TYPE > > range(::numeric_array < TYPE > & a) { return a; }
 
    template < typename TYPE >
-   numeric_array_range < ::numeric_array < TYPE > > each(::numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < numeric_array >(a,iBeg,iCount); }
+   numeric_array_range < ::numeric_array < TYPE > > each(::numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < ::numeric_array < TYPE > >(a,iBeg,iCount); }
    template < typename TYPE >
-   numeric_array_range < ::numeric_array < TYPE > > all(::numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < numeric_array >(a,iBeg,iCount); }
+   numeric_array_range < ::numeric_array < TYPE > > all(::numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < ::numeric_array < TYPE > >(a,iBeg,iCount); }
    template < typename TYPE >
-   numeric_array_range < ::numeric_array < TYPE > > range(::numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range < numeric_array >(a,iBeg,iCount); }
+   numeric_array_range < ::numeric_array < TYPE > > range(::numeric_array < TYPE > & a,index iBeg,::count iCount) { return numeric_array_range <  ::numeric_array < TYPE > >(a,iBeg,iCount); }
 
    template < class TYPE >
-   void quick_sort(::numeric_array < TYPE > & a, bool bAsc = true)
-   {
-      if(bAsc)
-      {
-         sort::QuickSortAsc(a);
-      }
-      else
-      {
-         sort::QuickSortDesc(a);
-      }
-   }
+   void quick_sort(::numeric_array < TYPE > & a, bool bAsc = true);
 
    template < class TYPE >
    ::count remove_greater_than(::numeric_array < TYPE > & a,TYPE hi)

@@ -38,18 +38,6 @@ namespace comparison
 
    };
 
-   class CLASS_DECL_AURA strid_binary
-   {
-   public:
-
-
-      inline static int_ptr CompareElements(const id * pElement1, const id * pElement2)
-      {
-         return pElement1->m_pstr - pElement2->m_pstr;
-      }
-
-
-   };
 
 
 } // namespace comparison

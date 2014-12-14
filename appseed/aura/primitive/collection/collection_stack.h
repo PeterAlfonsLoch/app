@@ -35,23 +35,34 @@ public:
 
    inline TYPE pop(index n = -1)
    {
-      index i = get_upper_bound(n);
-      TYPE t = element_at(i);
-      remove_at(i);
+
+      index i = this->get_upper_bound(n);
+
+      TYPE t = this->element_at(i);
+
+      this->remove_at(i);
+
       return t;
+
    }
 
 
    inline TYPE pop_to()
    {
-      TYPE lastelement = pop();
-      last() = lastelement;
-      return last();
+
+      TYPE lastelement = this->pop();
+
+      this->last() = lastelement;
+
+      return this->last();
+
    }
 
    inline void push_last()
    {
-      add(last());
+
+      this->add(this->last());
+
    }
 
 

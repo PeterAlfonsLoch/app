@@ -724,7 +724,7 @@ inline void rectd::assign(const tagRECTD * lpcrect,e_orientation eorientation) t
    }
    else if(eorientation == orientation_vertical)
    {
-      
+
       top = lpcrect->top;
       bottom = lpcrect->bottom;
 
@@ -753,3 +753,9 @@ inline void rectd::assign_normal(const tagRECTD * lpcrect,e_orientation eorienta
 
 }
 
+
+
+template<> inline UINT HashKey<rect> (rect key)
+{
+   return key.left | key.top | key.bottom | key.right;
+}

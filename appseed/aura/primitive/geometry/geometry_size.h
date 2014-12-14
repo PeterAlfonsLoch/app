@@ -60,15 +60,15 @@ public:
 
    inline LONG get_dimension(e_orientation eorientation) const throw();
    inline LONG get_orthogonal_dimension(e_orientation eorientation) const throw();
-   inline LONG get_orthogonal(e_orientation eorientation)const throw() { return get_orthogonal_dimension(eorientation); } 
-   inline LONG get_normal_dimension(e_orientation eorientation) const throw(){ return get_orthogonal_dimension(eorientation); } 
-   inline LONG get_normal(e_orientation eorientation) const throw(){ return get_orthogonal_dimension(eorientation); } 
+   inline LONG get_orthogonal(e_orientation eorientation)const throw() { return get_orthogonal_dimension(eorientation); }
+   inline LONG get_normal_dimension(e_orientation eorientation) const throw(){ return get_orthogonal_dimension(eorientation); }
+   inline LONG get_normal(e_orientation eorientation) const throw(){ return get_orthogonal_dimension(eorientation); }
 
    inline LONG set_dimension(e_orientation eorientation, LONG l) throw();
    inline LONG set_orthogonal_dimension(e_orientation eorientation, LONG l) throw();
    inline LONG set_orthogonal(e_orientation eorientation,LONG l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
    inline LONG set_normal_dimension(e_orientation eorientation,LONG l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
-   inline LONG set_normal(e_orientation eorientation,LONG l) throw() { return set_orthogonal_dimension(eorientation,l); } 
+   inline LONG set_normal(e_orientation eorientation,LONG l) throw() { return set_orthogonal_dimension(eorientation,l); }
 
 };
 
@@ -429,3 +429,14 @@ inline double sized::set_orthogonal_dimension(e_orientation eorientation,double 
       return 0;
    }
 }
+
+
+
+template<> inline UINT HashKey<size> (size key)
+{
+   return key.cx | key.cy;
+}
+
+
+
+

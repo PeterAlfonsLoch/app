@@ -68,7 +68,7 @@ namespace file
       {
          ::count count = m.get_count();
          ostream.write_arbitrary(count);
-         typename const type_map::pair * p = m.PGetFirstAssoc();
+         const typename type_map::pair * p = m.PGetFirstAssoc();
          for(index index = 0; index < count; index++)
          {
             ostream << p->m_element1;
@@ -98,5 +98,40 @@ namespace file
 
 
 } // namespace file
+
+
+template < class TYPE,class ARG_TYPE = const TYPE &,class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
+::file::output_stream & operator << (::file::output_stream & os,const array < TYPE,ARG_TYPE,DEFCONSTRUCTOR > & a)
+{
+   ::file::array::write(os,a);
+   return os;
+}
+
+template < class TYPE,class ARG_TYPE = const TYPE &,class DEFCONSTRUCTOR = ::constructor::def < TYPE > >
+::file::input_stream & operator >> (::file::input_stream & is,array < TYPE,ARG_TYPE,DEFCONSTRUCTOR > & a)
+{
+   ::file::array::read(is,a);
+   return is;
+}
+
+
+
+
+
+template<class TYPE,class ARG_TYPE = const TYPE &>
+::file::output_stream & operator << (::file::output_stream & os,const raw_array < TYPE,ARG_TYPE> & a)
+{
+   ::file::array::write(os,a);
+   return os;
+}
+
+template<class TYPE,class ARG_TYPE = const TYPE &>
+::file::input_stream & operator >> (::file::input_stream & is,raw_array < TYPE,ARG_TYPE > & a)
+{
+   ::file::array::read(is,a);
+   return is;
+}
+
+
 
 

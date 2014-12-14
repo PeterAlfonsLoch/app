@@ -162,6 +162,124 @@ inline id & id::operator = (const id & id)
 }
 
 
+namespace comparison
+{
+
+
+   template < >
+   class equals_type_arg_type < id, const id & >
+   {
+   public:
+
+      inline static bool CompareElements(const id * pElement1, const id & element2)
+      {
+         return pElement1->m_pstr == element2.m_pstr;
+      }
+
+   };
+
+
+   class strid_equals
+   {
+   public:
+
+      inline static bool CompareElements(const id * pElement1, const id & element2)
+      {
+         return pElement1->m_pstr == element2.m_pstr;
+      }
+
+   };
+
+
+   template < >
+   class less < id, const id & >
+   {
+   public:
+
+      inline bool operator()(const id & element1, const id & element2) const
+      {
+         return element1.m_pstr < element2.m_pstr;
+      }
+
+   };
+
+
+
+
+
+   class strid_less
+   {
+   public:
+
+      inline static bool compare(const id & element1, const id & element2)
+      {
+         return element1.m_pstr < element2.m_pstr;
+      }
+
+   };
+
+
+
+
+
+
+
+
+
+
+
+  class CLASS_DECL_AURA strid_hash
+   {
+   public:
+
+      inline static UINT HashKey (const id & key)
+      {
+         return (UINT) (*((int_ptr*)(&key.m_pstr)) >> 8);
+      }
+
+   };
+
+
+   template < >
+   class CLASS_DECL_AURA hash < id >
+   {
+   public:
+
+      inline static UINT HashKey (const id & key)
+      {
+         return strid_hash::HashKey(key);
+      }
+
+   };
+
+
+
+
+
+
+} // namespace comparison
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+template <> inline UINT HashKey(const id & id)
+{
+   // default identity hash - works for most primitive values
+   return ::comparison::strid_hash::HashKey(id);
+}
+
+
+
 
 
 
