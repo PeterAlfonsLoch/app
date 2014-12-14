@@ -1,4 +1,7 @@
 #include "framework.h"
+#ifdef LINUX
+#include <time.h>
+#endif
 
 
 namespace hi5
@@ -1186,7 +1189,7 @@ namespace hi5
    *--*/
    void twit::prepareCurlUserPass()
    {
-      
+
       if( !m_curlLoginParamsSet )
       {
 
@@ -1238,7 +1241,7 @@ namespace hi5
    *--*/
    bool twit::performGet( const string & getUrl )
    {
-      
+
       property_set set(get_app());
 
       /* set OAuth header */
@@ -1370,7 +1373,7 @@ namespace hi5
       }
       else
       {
-       
+
          property_set setHttp(get_app());
 
          setHttp["post"] = set;

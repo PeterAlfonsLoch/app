@@ -1,4 +1,7 @@
 #include "framework.h"
+#ifdef LINUX
+#include <time.h>
+#endif
 #undef HMAC_SHA1
 
 

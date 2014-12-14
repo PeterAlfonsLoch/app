@@ -179,7 +179,8 @@ namespace file
          virtual string trash_that_is_not_trash(const char * psz);
 
          virtual string appdata(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
-         virtual string commonappdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
+         virtual string commonappdata();
+         virtual string commonappdata(const char * lpcsz,const char * lpcsz2 = NULL);
          virtual string element_commonappdata(const string & strElement, const char * lpcsz = NULL,const char * lpcsz2 = NULL);
 
          virtual string usersystemappdata(::aura::application * papp, const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);

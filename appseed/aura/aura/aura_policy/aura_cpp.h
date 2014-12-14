@@ -53,8 +53,6 @@ typename remove_reference<T>::TYPE&& move(T && t)
     TYPE & operator = (TYPE && t) { if(this != &t) {this->BASE_TYPE::operator=(::move(t));} return *this; }
 
 
-
-
 template < class T >
 class smart_pointer;
 

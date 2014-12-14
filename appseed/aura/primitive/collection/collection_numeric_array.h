@@ -31,7 +31,7 @@ class numeric_array :
 {
 public:
 
-//    DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(numeric_array, comparable_raw_array < TYPE >)
+   DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(numeric_array, comparable_raw_array < TYPE >)
 
    typedef TYPE BASE_TYPE;
    typedef const TYPE & BASE_ARG_TYPE;

@@ -960,39 +960,39 @@ namespace file
             property_set set(get_app());
 
             set["raw_http"] = true;
-            
+
             string strFile = System.dir().commonappdata(path("cache", strDir, "list_dir.list_dir"));
-            
+
             strsize iFind = strFile.find(DIR_SEPARATOR);
-            
+
             if (iFind > 0)
             {
-               
+
                strFile.replace(":", "_", iFind + 1);
-               
+
             }
 
             strFile.replace("////", "//");
             strFile.replace("\\\\","\\", 1);
 
             string strLs;
-            
+
             if(Application.file().exists(strFile))
             {
-               
+
                strLs = Application.file().as_string(strFile);
-            
+
             }
             else
             {
-               
+
                // todo: keep cache timeout information;
                strLs = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strDir),set);
-               
+
                Application.file().put_contents(strFile, strLs);
-               
+
             }
-            
+
 
 
             stringa straLs;
@@ -1019,11 +1019,11 @@ namespace file
          }
          else
          {
-            
+
             ls_file(papp,strDir,&stra);
 
          }
-         
+
 
       }
 
@@ -1526,13 +1526,13 @@ else
          string strLs;
 
          string strPath;
-         
+
          string strFile;
 
          stringa straLs;
 
          string strExistsQuestion;
-         
+
          if (pszRoot != NULL && pszApp != NULL && *pszRoot != '\0' && *pszApp != '\0')
          {
 
@@ -2351,22 +2351,44 @@ ret:
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      
+
+      string system::commonappdata()
+      {
+
+            return "/opt";
+
+      }
+
       string system::commonappdata(const char * lpcsz,const char * lpcsz2)
       {
-         
+
          return element_commonappdata(element(),lpcsz,lpcsz2);
 
       }
 
-      
       string system::element_commonappdata(const string & strElement,const char * lpcsz,const char * lpcsz2)
       {
 
-         UNREFERENCED_PARAMETER(strElement);
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception(get_app(),"this is an interface");
+      string strRelative;
+
+      strRelative = strElement;
+
+      index iFind = strRelative.find(':');
+
+      if(iFind >= 0)
+      {
+
+         strsize iFind1 = strRelative.reverse_find("\\",iFind);
+
+         strsize iFind2 = strRelative.reverse_find("/",iFind);
+
+         strsize iStart = MAX(iFind1 + 1,iFind2 + 1);
+
+         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart,iFind - iStart) + strRelative.Mid(iFind + 1);
+
+      }
+
+      return path(path(commonappdata(),"ca2",strRelative),lpcsz,lpcsz2);
 
       }
 

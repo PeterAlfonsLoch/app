@@ -15,7 +15,7 @@ namespace linux
 {
 
 
-   file_system::file_system(sp(::aura::application) papp) :
+   file_system::file_system(::aura::application *  papp) :
       element(papp)
    {
    }
@@ -178,19 +178,19 @@ namespace linux
    }
 
 
-   string file_system::time_square(sp(::aura::application) papp, const char * pszPrefix, const char * pszSuffix)
+   string file_system::time_square(::aura::application *  papp, const char * pszPrefix, const char * pszSuffix)
    {
       string str;
       System.dir().time_square(str);
       return time(papp, str, 25, pszPrefix, pszSuffix);
    }
 
-   string file_system::time_log(sp(::aura::application) papp, const char * pszId)
+   string file_system::time_log(::aura::application *  papp, const char * pszId)
    {
       return time(papp, System.dir().time_log(pszId), 9);
    }
 
-   string file_system::time(sp(::aura::application) papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
+   string file_system::time(::aura::application *  papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
    {
       single_lock lockMachineEvent(
          (&System.machine_event_central() != NULL) ?
@@ -317,13 +317,13 @@ namespace linux
       return true;
    }
 
-   string file_system::as_string(var varFile, sp(::aura::application) papp)
+   string file_system::as_string(var varFile, ::aura::application *  papp)
    {
        var varQuery;
        return as_string(varFile, varQuery, papp);
    }
 
-   string file_system::as_string(var varFile, var & varQuery, sp(::aura::application) papp)
+   string file_system::as_string(var varFile, var & varQuery, ::aura::application *  papp)
    {
       primitive::memory storage;
       if(varFile.cast < ::file::stream_buffer > () != NULL)
@@ -424,7 +424,7 @@ namespace linux
       return strResult;
    }
 
-   void file_system::as_memory(var varFile, primitive::memory_base & mem, sp(::aura::application) papp)
+   void file_system::as_memory(var varFile, primitive::memory_base & mem, ::aura::application *  papp)
    {
 
       mem.allocate(0);
@@ -476,7 +476,7 @@ namespace linux
 
    }
 
-   void file_system::lines(stringa & stra, var varFile, sp(::aura::application) papp)
+   void file_system::lines(stringa & stra, var varFile, ::aura::application *  papp)
    {
 
       UNREFERENCED_PARAMETER(papp);
@@ -502,7 +502,7 @@ namespace linux
 
    }
 
-   bool file_system::put_contents(var varFile, const void * pvoidContents, count count, sp(::aura::application) papp)
+   bool file_system::put_contents(var varFile, const void * pvoidContents, count count, ::aura::application *  papp)
    {
 
       ::file::buffer_sp spfile;
@@ -518,7 +518,7 @@ namespace linux
 
    }
 
-   bool file_system::put_contents(var varFile, const char * lpcszContents, sp(::aura::application) papp)
+   bool file_system::put_contents(var varFile, const char * lpcszContents, ::aura::application *  papp)
    {
       if(lpcszContents == NULL)
       {
@@ -530,7 +530,7 @@ namespace linux
       }
    }
 
-   bool file_system::put_contents(var varFile, ::file::reader & reader, sp(::aura::application) papp)
+   bool file_system::put_contents(var varFile, ::file::reader & reader, ::aura::application *  papp)
    {
 
       ::file::buffer_sp spfile;
@@ -558,7 +558,7 @@ namespace linux
    }
 
 
-   bool file_system::put_contents(var varFile, primitive::memory & mem, sp(::aura::application) papp)
+   bool file_system::put_contents(var varFile, primitive::memory & mem, ::aura::application *  papp)
    {
 
       return put_contents(varFile, mem.get_data(), (count) mem.get_size(), papp);
@@ -566,7 +566,7 @@ namespace linux
    }
 
 
-   bool file_system::put_contents_utf8(var varFile, const char * lpcszContents, sp(::aura::application) papp)
+   bool file_system::put_contents_utf8(var varFile, const char * lpcszContents, ::aura::application *  papp)
    {
 
       ::file::buffer_sp spfile;
@@ -694,7 +694,7 @@ namespace linux
 
    }
 
-   void file_system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, sp(::aura::application) papp)
+   void file_system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::aura::application *  papp)
    {
       if(bFailIfExists)
       {
@@ -920,7 +920,7 @@ namespace linux
    }
 
 
-   string file_system::copy(const char * psz, sp(::aura::application) papp)
+   string file_system::copy(const char * psz, ::aura::application *  papp)
    {
       string strCopy("copy");
       string strNew;
@@ -961,7 +961,7 @@ namespace linux
    }
 
 
-   bool file_system::exists(const char * pszPath, sp(::aura::application) papp)
+   bool file_system::exists(const char * pszPath, ::aura::application *  papp)
    {
 
       if(::str::begins_ci_iws(pszPath, "uifs://"))
@@ -1013,7 +1013,7 @@ namespace linux
    }
 
 
-   bool file_system::exists(const string & strPath, sp(::aura::application) papp)
+   bool file_system::exists(const string & strPath, ::aura::application *  papp)
    {
 
       if(::str::begins_ci_iws(strPath, "uifs://"))
@@ -1077,7 +1077,7 @@ namespace linux
 
    }
 
-   string file_system::paste(const char * pszLocation, const char * path, sp(::aura::application) papp)
+   string file_system::paste(const char * pszLocation, const char * path, ::aura::application *  papp)
    {
       string strDir = System.dir().name(path);
       string strDest = System.dir().path(pszLocation, "");
@@ -1094,7 +1094,7 @@ namespace linux
       }
    }
 
-   void file_system::trash_that_is_not_trash(stringa & stra, sp(::aura::application) papp)
+   void file_system::trash_that_is_not_trash(stringa & stra, ::aura::application *  papp)
    {
 
       if(stra.get_size() <= 0)
@@ -1115,7 +1115,7 @@ namespace linux
 
    }
 
-   void file_system::trash_that_is_not_trash(const char * psz, sp(::aura::application) papp)
+   void file_system::trash_that_is_not_trash(const char * psz, ::aura::application *  papp)
    {
 
       string strDir = System.dir().trash_that_is_not_trash(psz);
@@ -1131,7 +1131,7 @@ namespace linux
 
    }
 
-   void file_system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, sp(::aura::application) papp)
+   void file_system::replace(const char * pszContext, const char * pszFind, const char * pszReplace, ::aura::application *  papp)
    {
       stringa straTitle;
       System.dir().ls(papp, pszContext, NULL, &straTitle);
@@ -1185,7 +1185,7 @@ namespace linux
 
    }
 
-   string file_system::sys_temp(const char * pszName, const char * pszExtension, sp(::aura::application) papp)
+   string file_system::sys_temp(const char * pszName, const char * pszExtension, ::aura::application *  papp)
    {
 
       string strTempDir = get_sys_temp_path();
@@ -1228,7 +1228,7 @@ namespace linux
    }
 
 
-   ::file::buffer_sp file_system::time_square_file(sp(::aura::application) papp, const char * pszPrefix, const char * pszSuffix)
+   ::file::buffer_sp file_system::time_square_file(::aura::application *  papp, const char * pszPrefix, const char * pszSuffix)
    {
 
       return get(time_square(papp, pszPrefix, pszSuffix), papp);
@@ -1236,7 +1236,7 @@ namespace linux
    }
 
 
-   ::file::buffer_sp file_system::get(const char * name, sp(::aura::application) papp)
+   ::file::buffer_sp file_system::get(const char * name, ::aura::application *  papp)
    {
 
       System.dir().mk(System.dir().name(name), papp);

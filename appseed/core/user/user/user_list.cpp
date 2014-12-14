@@ -66,7 +66,7 @@ namespace user
       m_iClick = 0;
 
 
-      
+
       m_bLockViewUpdate = false;
 
 
@@ -1090,7 +1090,7 @@ namespace user
       if (m_columna.VisibleGetCount() > 0 || m_columna.NonVisibleGetCount() > 0)
       {
 
-         data_get("VisibleSubItem") >> iaVisible;
+         data_load("VisibleSubItem", iaVisible);
 
       }
 
@@ -3016,7 +3016,7 @@ namespace user
 
    void list_column_array::remove_all()
    {
-      
+
       smart_pointer_array < list_column >::remove_all();
 
       OnChange();
@@ -4800,9 +4800,9 @@ namespace user
 
    void list::_001OnMouseMove(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::mouse, pmouse, pobj)
-      
+
       pmouse->set_lresult(1);
 
       point pt = pmouse->m_pt;
@@ -5240,7 +5240,7 @@ namespace user
          itemrange.set_upper_bound(iaSel[i]);
          m_rangeSelection.add_item(itemrange);
       }
-      
+
    }
 
    index list::get_cur_sel()
@@ -5255,7 +5255,7 @@ namespace user
 
    void list::get_cur_sel(index_array & iaSel)
    {
-      
+
       for(index i = 0; i < m_rangeSelection.get_item_count(); i++)
       {
 
@@ -5270,7 +5270,7 @@ namespace user
 
    }
 
-   
+
    ::count list::_001GetGroupItemCount(index iGroup)
    {
       UNREFERENCED_PARAMETER(iGroup);

@@ -31,7 +31,7 @@ namespace user
 
       //index indexNew = m_controldescriptorset.add(new class control::descriptor(descriptorParam));
 
-      
+
 
       class control::descriptor * pdescriptor = m_controldescriptorset.add(new class control::descriptor(descriptorParam));
 
@@ -442,8 +442,7 @@ namespace user
       int_ptr_array ia;
       try
       {
-         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_pclient->data_get(
-            pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_id) >> ia;
+         pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_pclient->data_load(pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_id, ia);
       }
       catch(...)
       {
@@ -1043,7 +1042,7 @@ namespace user
    {
       if(pevent->m_eevent == ::user::event_tab_key)
       {
-         
+
          sp(::user::elemental) pfocus = pevent->m_puie->keyboard_get_next_focusable();
 
          if(pfocus != NULL)
