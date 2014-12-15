@@ -5158,16 +5158,14 @@ synch_lock ml(m_spmutex);
 
       cairo_new_sub_path(m_pdc);
 
+
+
       ::draw2d_cairo::path * ppath = dynamic_cast < ::draw2d_cairo::path * > ((::draw2d::path *) ppathParam);
 
-      for(int32_t i = 0; i < ppath->m_elementa.get_count(); i++)
+      if(ppath->m_bFill)
       {
 
-         set(ppath->m_elementa(i));
-
-      }
-
-      if(ppath->m_efillmode == ::draw2d::fill_mode_alternate)
+            if(ppath->m_efillmode == ::draw2d::fill_mode_alternate)
       {
 
          cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_EVEN_ODD);
@@ -5179,6 +5177,17 @@ synch_lock ml(m_spmutex);
          cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_WINDING);
 
       }
+
+      }
+
+
+      for(int32_t i = 0; i < ppath->m_elementa.get_count(); i++)
+      {
+
+         set(ppath->m_elementa(i));
+
+      }
+
 
       return true;
 

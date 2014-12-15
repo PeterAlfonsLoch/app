@@ -246,8 +246,7 @@ namespace ansios
    int32_t process::synch_elevated(const char * pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
    {
 
-      string pszCmdLine = "gksu " + string(pszCmdLineParam);
-
+      string pszCmdLine = "/usr/bin/gksu " + string(pszCmdLineParam);
 
       stringa straParam;
 
@@ -258,19 +257,19 @@ namespace ansios
       //char * argv[] ={(char *)pszCmdLine,0};
 #if defined(LINUX) || defined(APPLEOS)
 
-//      posix_spawnattr_t attr;
+      posix_spawnattr_t attr;
 
-  //    posix_spawnattr_init(&attr);
-
-
-    //  posix_spawn_file_actions_t actions;
-
-      //posix_spawn_file_actions_init(&actions);
+      posix_spawnattr_init(&attr);
 
 
-      //int status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
+      posix_spawn_file_actions_t actions;
 
-      int status = posix_spawn(&m_iPid,argv[0],NULL,NULL,(char * const *)argv.get_data(),environ);
+      posix_spawn_file_actions_init(&actions);
+
+
+      int status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
+
+      //int status = posix_spawn(&m_iPid,argv[0],NULL,NULL,(char * const *)argv.get_data(),environ);
 
 
 #ifdef APPLEOS

@@ -166,6 +166,7 @@ namespace linux
 
       dwPermission |= S_IRUSR | S_IWUSR | S_IXUSR;
       dwPermission |= S_IRGRP | S_IWGRP | S_IXGRP;
+      dwPermission |= S_IROTH | S_IROTH;
 
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
