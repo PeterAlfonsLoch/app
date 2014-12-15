@@ -8,7 +8,7 @@ class CLASS_DECL_AURA bool_array :
 public:
 
 
-   DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(bool_array, bool_array_base)
+   //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(bool_array, bool_array_base)
 
 
 /*

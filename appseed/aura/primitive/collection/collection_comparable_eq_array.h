@@ -7,7 +7,7 @@ class comparable_eq_array :
 public:
 
 
-   DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(comparable_eq_array, ARRAY_TYPE)
+   //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(comparable_eq_array, ARRAY_TYPE)
 
    //comparable_eq_array();
    //comparable_eq_array(const comparable_eq_array & array);

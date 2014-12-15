@@ -138,6 +138,33 @@ element * base_factory::typed_clone(id idType, element * pobject)
 }
 
 
+element * factory_item_base::create(::aura::application * papp)
+{
+   
+   UNREFERENCED_PARAMETER(papp);
+
+   return NULL;
+
+}
+
+
+element * factory_item_base::create()
+{
+
+   return NULL;
+
+}
+
+element * factory_item_base::clone(sp(element) pobject)
+{
+
+   UNREFERENCED_PARAMETER(pobject);
+
+   return NULL;
+
+}
+
+
 factory_item_base::~factory_item_base()
 {
 

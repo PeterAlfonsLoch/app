@@ -60,7 +60,7 @@ class ptr_array:
 public:
 
 
-   DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(ptr_array, ARRAY_TYPE)
+   //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(ptr_array, ARRAY_TYPE)
    //inline ptr_array() {}
    //inline ptr_array(const ptr_array & a) { this->operator = (a); }
    //inline ptr_array(ptr_array && a) { this->operator = (a); }

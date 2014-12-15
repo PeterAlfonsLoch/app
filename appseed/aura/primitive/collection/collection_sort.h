@@ -1645,7 +1645,7 @@ namespace lemon
 
 
    template < class TYPE >
-   void quick_sort(::numeric_array < TYPE > & a, bool bAsc = true)
+   void quick_sort(::numeric_array < TYPE > & a, bool bAsc)
    {
 
       if(bAsc)
@@ -1658,7 +1658,9 @@ namespace lemon
       {
 
          sort::QuickSortDesc(a);
+
       }
+
    }
 
 

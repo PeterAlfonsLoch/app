@@ -247,7 +247,7 @@ template < class TYPE, class ARG_TYPE, class BASE_ARRAY, index ( * DEFAULT_COMPA
 add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (ARG_TYPE, ARG_TYPE))
 {
 
-   ::count ca = ::lemon::array::sort_add(*this,a, fCompare,defer_update(fCompare));
+   ::count ca = ::lemon::array::sort_add_array(*this,a, fCompare,defer_update(fCompare));
 
    m_indexmap.mark_dirty();
 

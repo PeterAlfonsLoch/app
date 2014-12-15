@@ -43,14 +43,14 @@ typename remove_reference<T>::TYPE&& move(T && t)
 }
 
 
-#define DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(TYPE, BASE_TYPE) \
-    TYPE() {} \
-    TYPE(const TYPE & t) : BASE_TYPE((const BASE_TYPE &)t) {} \
-    TYPE(TYPE && t) : BASE_TYPE(::move(t)) {} \
-    TYPE(::aura::application * papp) : BASE_TYPE(papp) {} \
-    \
-    TYPE & operator = (const TYPE & t) { if(this != &t) {this->BASE_TYPE::operator=((const BASE_TYPE &)t);} return *this; } \
-    TYPE & operator = (TYPE && t) { if(this != &t) {this->BASE_TYPE::operator=(::move(t));} return *this; }
+//#define DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(TYPE, BASE_TYPE) \
+//    TYPE() {} \
+//    TYPE(const TYPE & t) : BASE_TYPE((const BASE_TYPE &)t) {} \
+//    TYPE(TYPE && t) : BASE_TYPE(::move(t)) {} \
+//    TYPE(::aura::application * papp) : BASE_TYPE(papp) {} \
+//    \
+//    TYPE & operator = (const TYPE & t) { if(this != &t) {this->BASE_TYPE::operator=((const BASE_TYPE &)t);} return *this; } \
+//    TYPE & operator = (TYPE && t) { if(this != &t) {this->BASE_TYPE::operator=(::move(t));} return *this; }
 
 
 template < class T >

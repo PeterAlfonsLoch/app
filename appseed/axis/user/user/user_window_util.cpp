@@ -902,17 +902,17 @@ namespace user
 
    }*/
 
-   interaction_ptra::interaction_ptra(const interaction_spa & a)
-   {
+   //interaction_ptra::interaction_ptra(const interaction_spa & a)
+   //{
 
-      for(index i = 0; i < a.get_count(); i++)
-      {
+   //   for(index i = 0; i < a.get_count(); i++)
+   //   {
 
-         add(a[i]);
+   //      add(a[i]);
 
-      }
+   //   }
 
-   }
+   //}
 
    interaction_ptra & interaction_ptra::operator=(const interaction_spa & a)
    {
@@ -923,6 +923,8 @@ namespace user
          add(a[i]);
 
       }
+
+      return *this;
 
    }
 

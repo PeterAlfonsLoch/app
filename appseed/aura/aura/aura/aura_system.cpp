@@ -127,9 +127,9 @@ namespace aura
       m_pfactory->creatable_large < ::file::simple_binary_buffer >(type_info < ::file::binary_buffer >());
       m_pfactory->creatable_large < ::file::string_buffer >();
 
-      factory().cloneable_large < stringa >();
-      factory().cloneable_large < ::primitive::memory >();
-      factory().cloneable_large < int_array >();
+      factory().default_cloneable_large < stringa >();
+      factory().default_cloneable_large < ::primitive::memory >();
+      factory().default_cloneable_large < int_array >();
 
       __node_aura_factory_exchange(this);
 

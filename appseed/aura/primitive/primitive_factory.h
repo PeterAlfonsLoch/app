@@ -116,10 +116,11 @@ public:
 
    
    using ::object::create;
-   virtual element *  create(::aura::application * papp) = 0;
+   virtual element *  create(::aura::application * papp);
+   virtual element *  create();
    
    using ::object::clone;
-   virtual element * clone(sp(element) pobject) = 0;
+   virtual element * clone(sp(element) pobject);
 
 };
 
@@ -153,6 +154,35 @@ public:
 
 };
 
+template < class CREATABLE_TYPE >
+class default_creatable_factory_item:
+   public factory_item_base
+{
+public:
+
+   inline default_creatable_factory_item(::aura::application * papp,factory_allocator * pallocator): element(papp),factory_item_base(papp,pallocator) {}
+
+   using ::factory_item_base::create;
+   virtual element * create();
+
+   using ::factory_item_base::clone;
+   virtual element * clone(sp(element) pobject);
+
+};
+
+template < class CLONEABLE_TYPE >
+class default_cloneable_factory_item:
+   public default_creatable_factory_item < CLONEABLE_TYPE >
+{
+public:
+
+   inline default_cloneable_factory_item(::aura::application * papp,factory_allocator * pallocator): element(papp),default_creatable_factory_item < CLONEABLE_TYPE >(papp,pallocator) {}
+
+
+   using default_creatable_factory_item < CLONEABLE_TYPE >::clone;
+   virtual element * clone(sp(element) pobject);
+
+};
 
 
 class CLASS_DECL_AURA base_factory :
@@ -187,6 +217,18 @@ public:
    }
 
    template < class T >
+   void default_creatable_small(bool bOverwrite = true,bool bAligned = false)
+   {
+      default_creatable < T >(32,bOverwrite,bAligned);
+   }
+
+   template < class T >
+   void default_cloneable_small(bool bOverwrite = true,bool bAligned = false)
+   {
+      default_cloneable < T >(32,bOverwrite,bAligned);
+   }
+
+   template < class T >
    void creatable_large(bool bOverwrite = true, bool bAligned = false)
    {
       creatable < T > (1024, bOverwrite, bAligned);
@@ -196,6 +238,18 @@ public:
    void cloneable_large(bool bOverwrite = true, bool bAligned = false)
    {
       cloneable < T > (1024, bOverwrite, bAligned);
+   }
+
+   template < class T >
+   void default_creatable_large(bool bOverwrite = true,bool bAligned = false)
+   {
+      default_creatable < T >(1024,bOverwrite,bAligned);
+   }
+
+   template < class T >
+   void default_cloneable_large(bool bOverwrite = true,bool bAligned = false)
+   {
+      default_cloneable < T >(1024,bOverwrite,bAligned);
    }
 
    template < class T >
@@ -211,6 +265,18 @@ public:
    }
 
    template < class T >
+   void default_creatable_small(const type * info,bool bOverwrite = true,bool bAligned = false)
+   {
+      default_creatable < T >(info,32,bOverwrite,bAligned);
+   }
+
+   template < class T >
+   void default_cloneable_small(const type * info,bool bOverwrite = true,bool bAligned = false)
+   {
+      default_cloneable < T >(info,32,bOverwrite,bAligned);
+   }
+
+   template < class T >
    void creatable_large(const type * info,bool bOverwrite = true,bool bAligned = false)
    {
       creatable < T > (info, 1024, bOverwrite, bAligned);
@@ -223,16 +289,41 @@ public:
    }
 
    template < class T >
+   void default_creatable_large(const type * info,bool bOverwrite = true,bool bAligned = false)
+   {
+      default_creatable < T >(info,1024,bOverwrite,bAligned);
+   }
+
+   template < class T >
+   void default_cloneable_large(const type * info,bool bOverwrite = true,bool bAligned = false)
+   {
+      default_cloneable < T >(info,1024,bOverwrite,bAligned);
+   }
+
+   template < class T >
    void creatable(int32_t iCount, bool bOverwrite = true, bool bAligned = false);
 
    template < class T >
    void cloneable(int32_t iCount, bool bOverwrite = true, bool bAligned = false);
 
    template < class T >
+   void default_creatable(int32_t iCount,bool bOverwrite = true,bool bAligned = false);
+
+   template < class T >
+   void default_cloneable(int32_t iCount,bool bOverwrite = true,bool bAligned = false);
+
+   template < class T >
    void creatable(const type * info, int32_t iCount, bool bOverwrite = true, bool bAligned = false);
 
    template < class T >
    void cloneable(const type * info,int32_t iCount,bool bOverwrite = true,bool bAligned = false);
+
+   template < class T >
+   void default_creatable(const type * info,int32_t iCount,bool bOverwrite = true,bool bAligned = false);
+
+   template < class T >
+   void default_cloneable(const type * info,int32_t iCount,bool bOverwrite = true,bool bAligned = false);
+
 
    using ::object::create;
    virtual element * create(::aura::application *  papp, sp(type) & info);

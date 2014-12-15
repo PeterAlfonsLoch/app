@@ -22,9 +22,9 @@ namespace user
    {
    public:
 
-      DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(interaction_ptra, ptr_array < ::user::interaction >)
+      //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(interaction_ptra, ptr_array < ::user::interaction >)
 
-      interaction_ptra(const interaction_spa & a);
+      //interaction_ptra(const interaction_spa & a);
 
 
       interaction_ptra & operator = (const interaction_spa & a);

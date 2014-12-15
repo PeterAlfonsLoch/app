@@ -8,7 +8,7 @@ class comparable_array :
 {
 public:
 
-   DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(comparable_array, ARRAY_TYPE)
+   //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(comparable_array, ARRAY_TYPE)
 
    //comparable_array();
 //   comparable_array(const comparable_array & array);
