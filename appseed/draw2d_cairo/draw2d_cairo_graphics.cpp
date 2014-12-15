@@ -24,7 +24,7 @@ namespace draw2d_cairo
       m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;
 
       m_spfont.alloc(allocer());
-      m_spfont->m_strFontFamilyName = "Helvetica";
+      m_spfont->m_strFontFamilyName = "FreeSans";
       m_spfont->m_dFontSize = 12.0;
 
 
@@ -4993,6 +4993,31 @@ synch_lock ml(m_spmutex);
 
       }
 
+      strPath = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf";
+
+      if(g_ft == NULL)
+      {
+
+         iError = FT_New_Face((FT_Library) Sys(get_app()).ftlibrary(), strPath, 0, &g_ft);
+
+         iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE ); /* encoding */
+
+      }
+
+
+
+      strPath = "/usr/share/fonts/truetype/freefont/FreeSans.ttf";
+
+      if(g_ft == NULL)
+      {
+
+         iError = FT_New_Face((FT_Library) Sys(get_app()).ftlibrary(), strPath, 0, &g_ft);
+
+         iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE ); /* encoding */
+
+      }
+
+
       pfont->m_ft = g_ft;
 
       if(iError != 0 || pfont->m_ft == NULL)
@@ -5000,7 +5025,7 @@ synch_lock ml(m_spmutex);
 
 //fallback:
 
-         cairo_select_font_face(m_pdc, "helvetica", pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
+         cairo_select_font_face(m_pdc, "Sans", pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 
 
       }
