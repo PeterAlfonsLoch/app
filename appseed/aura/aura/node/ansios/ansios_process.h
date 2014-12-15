@@ -22,6 +22,8 @@ namespace ansios
 
       virtual bool has_exited(uint32_t * pdwExitCode = NULL);
 
+      virtual int32_t synch_elevated(const char * pszCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut);
+
    };
 
 

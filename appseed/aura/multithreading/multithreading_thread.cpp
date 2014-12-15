@@ -1081,10 +1081,10 @@ void thread::do_events(const duration & duration)
 
 void thread::set_run_thread(bool bRun)
 {
-   
+
    if(bRun)
    {
-      
+
       m_bRun = true;
 
    }
@@ -1117,5 +1117,15 @@ void thread::set_end_thread()
 
 void thread::defer_add_thread_run_wait(sync_object_ptra & soa)
 {
+
+    UNREFERENCED_PARAMETER(soa);
+
+}
+
+
+void thread::message_queue_message_handler(::signal_details * pobj)
+{
+
+    UNREFERENCED_PARAMETER(pobj);
 
 }

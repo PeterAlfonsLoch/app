@@ -688,7 +688,7 @@ namespace user
       }
 
       m_pparent.release();
-      
+
    }
 
 
@@ -855,7 +855,7 @@ namespace user
       single_lock sl(m_pauraapp->m_pmutex, true);
 
       interaction_ptra ptraChild;
-      
+
       ptraChild = m_uiptraChild;
 
       sl.unlock();
@@ -2576,6 +2576,17 @@ namespace user
    // for custom cleanup after WM_NCDESTROY
    void interaction::PostNcDestroy()
    {
+
+      try
+      {
+
+         m_signala.remove_all();
+
+      }
+      catch(...)
+      {
+
+      }
 
       {
 
@@ -5970,7 +5981,7 @@ namespace user
       }
 
    }
-   
+
    bool interaction::OnUpDownTargetAttach(::user::wndfrm::frame::WorkSetClientInterface * pupdown)
    {
       return false;

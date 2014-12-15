@@ -78,6 +78,28 @@ namespace multithreading
 
       int nExitCode = pthread->m_iReturnCode;
 
+      try
+      {
+
+         pthread->m_signala.remove_all();
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
+         pthread->m_pthreadimpl->m_signala.remove_all();
+
+      }
+      catch(...)
+      {
+
+      }
+
       pthread->m_pthreadimpl->thread_term();
 
       __end_thread(papp);

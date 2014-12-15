@@ -20,7 +20,7 @@ namespace linux
       };
 
 
-      ::aura::message_queue_sp               m_spqueue;
+      //::aura::message_queue_sp               m_spqueue;
 
       user::interaction_ptra                 m_wndpaOut;
       mutex                                  m_mutexRendering;

@@ -117,7 +117,6 @@
 		<Unit filename="axis/message/message_user.cpp" />
 		<Unit filename="axis/message/message_user.h" />
 		<Unit filename="axis/node/ansios/ansios.h" />
-		<Unit filename="axis/node/ansios/ansios_thread_impl.h" />
 		<Unit filename="axis/node/linux/linux.h" />
 		<Unit filename="axis/node/linux/linux1.cpp" />
 		<Unit filename="axis/node/linux/linux2.cpp" />

@@ -449,6 +449,7 @@ public:
    array(::aura::application * papp = NULL, ::count nGrowBy = 32);
    array(const array <TYPE, ARG_TYPE> & a);
    array(::count n);
+   array(array && a);
    virtual ~array();
 
    virtual void on_construct_element(void * p) { DEFCONSTRUCTOR::construct(p); }
@@ -524,6 +525,8 @@ public:
    inline void swap(index index1, index index2);
 
    inline array & operator = (const array & src);
+   inline array & operator = (array && a);
+
 
    //inline index find_first(ARG_TYPE t, index (* lpfnCompare)(ARG_TYPE, ARG_TYPE), index start = 0, index last = -1) const;
    //index raw_find_first(TYPE * pt, index first = 0, index last = -1) const;
@@ -577,11 +580,7 @@ public:
    void dump(dump_context &) const;
    void assert_valid() const;
 
-   array(array && a);
-
-   inline array & operator = (array && a);
-
-   inline array & move(array && a);
+   //inline array & move(array && a);
 
    inline void set_at_grow(index nIndex, ARG_TYPE newElement);
 

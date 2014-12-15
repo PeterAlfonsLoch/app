@@ -243,6 +243,131 @@ namespace ansios
 
    }
 
+   int32_t process::synch_elevated(const char * pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+   {
+
+      string pszCmdLine = "gksu " + string(pszCmdLineParam);
+
+
+      stringa straParam;
+
+      ptr_array < char > argv;
+
+      straParam.explode_command_line(pszCmdLine, &argv);
+
+      //char * argv[] ={(char *)pszCmdLine,0};
+#if defined(LINUX) || defined(APPLEOS)
+
+//      posix_spawnattr_t attr;
+
+  //    posix_spawnattr_init(&attr);
+
+
+    //  posix_spawn_file_actions_t actions;
+
+      //posix_spawn_file_actions_init(&actions);
+
+
+      //int status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
+
+      int status = posix_spawn(&m_iPid,argv[0],NULL,NULL,(char * const *)argv.get_data(),environ);
+
+
+#ifdef APPLEOS
+
+      if(iCa2Priority != (int32_t) ::multithreading::priority_none)
+      {
+
+         int32_t iOsPriority = process_get_os_priority(iCa2Priority);
+
+         setpriority(PRIO_PROCESS,m_iPid,iOsPriority);
+
+      }
+
+#endif
+
+    DWORD dwStart = get_tick_count();
+
+        while(!has_exited() && get_tick_count() - dwStart < durationTimeOut.get_total_milliseconds())
+        {
+            Sleep(84);
+        }
+        DWORD dwExitCode = 0;
+        if(!has_exited(&dwExitCode))
+        {
+        if(pbTimeOut != NULL)
+        {
+        *pbTimeOut = true;
+        }
+        }
+
+      return dwExitCode;
+
+#else
+
+      char *	cmd_line;
+
+      cmd_line = (char *) memory_alloc(strlen(pszCmdLine ) + 1 );
+
+      if(cmd_line == NULL)
+      return 0;
+
+      strcpy_dup(cmd_line, pszCmdLine);
+
+      char *   exec_path_name = cmd_line;
+
+      if((m_iPid = fork()) == 0)
+      {
+
+      if(bPiped)
+      {
+         dup2(m_pipe.m_sppipeOut.cast < pipe >()->m_fd[1],STDOUT_FILENO);
+         dup2(m_pipe.m_sppipeOut.cast < pipe >()->m_fd[1],STDERR_FILENO);
+         dup2(m_pipe.m_sppipeIn.cast < pipe >()->m_fd[0],STDIN_FILENO);
+      }
+
+
+      // child
+      char		*pArg, *pPtr;
+      char		*argv[1024 + 1];
+      int32_t		 argc;
+      if( ( pArg = strrchr_dup( exec_path_name, '/' ) ) != NULL )
+      pArg++;
+      else
+      pArg = exec_path_name;
+      argv[0] = pArg;
+      argc = 1;
+
+      if( cmd_line != NULL && *cmd_line != '\0' )
+      {
+      pArg = strtok_r_dup(cmd_line, " ", &pPtr);
+      while( pArg != NULL )
+      {
+      argv[argc] = pArg;
+      argc++;
+      if( argc >= 1024 )
+      break;
+      pArg = strtok_r_dup(NULL, " ", &pPtr);
+      }
+      }
+      argv[argc] = NULL;
+
+      execv(exec_path_name, argv);
+      free(cmd_line);
+      exit( -1 );
+      }
+      else if(m_iPid == -1)
+      {
+      // in parent, but error
+      m_iPid = 0;
+      free(cmd_line);
+      return 0;
+      }
+      // in parent, success
+      return 1;
+#endif
+
+   }
 
 } // namespace ansios
 

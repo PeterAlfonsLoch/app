@@ -7,7 +7,17 @@ class smart_pointer_array :
 {
 public:
 
-   smart_pointer_array() { }
+   smart_pointer_array()
+   {
+
+   }
+
+   virtual ~smart_pointer_array()
+   {
+
+      this->remove_all();
+
+   }
 
 #if defined(MOVE_SEMANTICS)
 

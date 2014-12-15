@@ -501,7 +501,7 @@ array_base(a.get_app(), sizeof(TYPE), false)
 
 
 template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline array< TYPE, ARG_TYPE, DEFCONSTRUCTOR > & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >::move(array && a)
+inline array< TYPE, ARG_TYPE, DEFCONSTRUCTOR > & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >::operator = (array && a)
 {
 
 	if (&a != this)
@@ -521,15 +521,6 @@ inline array< TYPE, ARG_TYPE, DEFCONSTRUCTOR > & array < TYPE, ARG_TYPE, DEFCONS
 	}
 
 	return *this;
-
-}
-
-
-template < class TYPE, class ARG_TYPE, class DEFCONSTRUCTOR >
-inline array< TYPE, ARG_TYPE, DEFCONSTRUCTOR > & array < TYPE, ARG_TYPE, DEFCONSTRUCTOR >::operator = (array && a)
-{
-
-	return move(::move(a));
 
 }
 

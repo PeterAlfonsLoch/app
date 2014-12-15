@@ -72,7 +72,7 @@ void thread_impl::CommonConstruct()
    m_hthread = NULL;
 
 
-   
+
 
 }
 
@@ -1630,7 +1630,7 @@ bool thread_impl::finalize()
    if(m_spqueue.is_set())
    {
 
-      if(m_spqueue->message_queue_is_initialized())
+      //if(m_spqueue->message_queue_is_initialized())
       {
 
          m_spqueue->message_queue_destroy();
@@ -1783,3 +1783,26 @@ bool replace_thread::do_replace(::thread * pthread)
 
 
 
+
+
+void thread_impl::message_queue_message_handler(::signal_details * pobj)
+{
+
+    try
+    {
+
+        m_pthread->message_queue_message_handler(pobj);
+
+    }
+    catch(exit_exception & e)
+    {
+
+        throw e;
+
+    }
+    catch(...)
+    {
+
+    }
+
+}

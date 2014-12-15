@@ -33,13 +33,14 @@ namespace linux
       element(papp),
       ::thread(papp),
       ::user::window_draw(papp),
-      m_spqueue(allocer()),
+//      m_spqueue(allocer()),
       m_mutexRendering(papp),
       m_mutexRgnUpdate(papp),
       m_semaphoreBuffer(papp),
-      m_mutexRender(papp),
-      m_wndpaOut(papp)
+      m_mutexRender(papp)
+
    {
+
       m_dwLastRedrawRequest = ::get_tick_count();
       m_bRender = false;
 //      m_pbuffer = new user::buffer(papp);
@@ -93,10 +94,14 @@ namespace linux
 
    void window_draw::_asynch_redraw()
    {
+
       if(!m_bProDevianMode)
       {
-         m_spqueue->message_queue_post_message(WM_USER + 1984 + 1977);
+
+         m_pthreadimpl->m_spqueue->message_queue_post_message(WM_USER + 1984 + 1977);
+
       }
+
    }
 
    void window_draw::synch_redraw()
@@ -329,11 +334,11 @@ namespace linux
 
    UINT window_draw::RedrawProc()
    {
-      if(!m_spqueue->create_message_queue("ca2::twf - ca2 Transparent Window Framework", this))
-      {
-         TRACE("Could not initialize ca2::twf - ca2 Transparent Window Framework!");
-         return 0;
-      }
+//      if(!m_ptm_spqueue->create_message_queue("ca2::twf - ca2 Transparent Window Framework", this))
+  //    {
+    //     TRACE("Could not initialize ca2::twf - ca2 Transparent Window Framework!");
+      //   return 0;
+      //}
 //      ::AttachThreadInput(::GetCurrentThreadId(), WIN_THREAD(System.::thread_sp::m_p)->m_nThreadID, TRUE);
       MESSAGE msg;
 //      s_bRunning = true;

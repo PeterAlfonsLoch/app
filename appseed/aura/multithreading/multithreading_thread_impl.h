@@ -41,7 +41,7 @@ public:
 
    sp(ptr_array < ::user::interaction >)     m_spuiptra;
    sp(::user::timer_array)                   m_sptimera;
-   
+
    bool                                      m_bDupHandle;
    HTHREAD                                   m_hthread;
    uint32_t                                  m_uiThread;
@@ -61,10 +61,10 @@ public:
 
    thread_impl(::aura::application * papp);
    virtual ~thread_impl();
-   
-   
+
+
    void construct();
-   
+
    void construct(__THREADPROC pfnthread_implProc, LPVOID pParam);
 
    void CommonConstruct();
@@ -145,7 +145,7 @@ public:
    virtual void start();
    virtual uint32_t ResumeThread();
    virtual bool has_message();
-   
+
    virtual void set_priority(int32_t priority);
    virtual int32_t priority();
 
@@ -160,6 +160,8 @@ public:
    virtual int get_x_window_count() const;
 
    virtual void do_events();
+
+   virtual void message_queue_message_handler(::signal_details * pobj);
 
 };
 

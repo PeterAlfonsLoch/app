@@ -731,7 +731,11 @@ d.unlock();
    void interaction_impl::PostNcDestroy()
    {
 
+    ::user::interaction_impl::PostNcDestroy();
+
       m_oswindow->post_nc_destroy();
+
+      //m_pui->PostNcDestroy();
 
    }
 
@@ -813,9 +817,13 @@ d.unlock();
       if(m_oswindow->m_bMessageOnlyWindow)
       {
 
-         ::oswindow_remove_message_only_window(m_pui);
+        ::user::interaction * pui = m_pui;
 
-         m_pui = NULL;
+         send_message(WM_DESTROY, 0, 0);
+
+         send_message(WM_NCDESTROY, 0, 0);
+
+         ::oswindow_remove_message_only_window(pui);
 
          return true;
 
@@ -1340,7 +1348,7 @@ restart_mouse_hover_check:
                return;
             }
          }
-         user::oswindow_array hwnda;
+         //user::oswindow_array hwnda;
          //user::interaction_ptra wnda;
          //wnda = System.get_hwnda();
          user::oswindow_array oswindowa;
@@ -1356,10 +1364,10 @@ restart_mouse_hover_check:
 
          }
 
-         user::window_util::SortByZOrder(hwnda);
-         for(int32_t i = hwnda.get_upper_bound(); i >= 0 ; i--)
+         //user::window_util::SortByZOrder(hwnda);
+         for(int32_t i = oswindowa.get_upper_bound(); i >= 0 ; i--)
          {
-            sp(::user::interaction) pguie = wnda.find_first(hwnda[i]);
+            sp(::user::interaction) pguie = wnda.find_first(oswindowa[i]);
             if(pguie != NULL)
             {
                pguie->_000OnMouse(pmouse);

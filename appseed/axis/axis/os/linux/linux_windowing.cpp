@@ -1159,7 +1159,7 @@ WINBOOL DestroyWindow(oswindow window)
 
    //single_lock sl(&user_mutex(), true);
 
-   if(!IsWindow(window))
+   if(!IsWindow(window) && !window->is_destroying())
       return FALSE;
 
    Display * pdisplay = window->display();

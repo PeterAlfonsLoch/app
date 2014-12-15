@@ -2355,7 +2355,7 @@ ret:
       string system::commonappdata()
       {
 
-            return "/opt";
+            return "/var/lib";
 
       }
 

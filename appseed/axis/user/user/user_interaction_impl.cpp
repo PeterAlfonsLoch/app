@@ -258,7 +258,7 @@ namespace user
    // WM_NCDESTROY is the absolute LAST message sent.
    void interaction_impl::PostNcDestroy()
    {
-
+     ::user::interaction_base::PostNcDestroy();
    }
 
 
@@ -809,7 +809,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pTarget);
       UNREFERENCED_PARAMETER(bDisableIfNoHndler);
-      
+
       ::exception::throw_interface_only(get_app());
 
    }
@@ -2324,7 +2324,7 @@ namespace user
 
    //UINT interaction_impl::OnQueryUIState()
    //{
-   //   
+   //
    //   ::exception::throw_interface_only(get_app());
 
    //   return 0;
@@ -2377,10 +2377,10 @@ namespace user
    // Helper for radio buttons
    int32_t interaction_impl::GetCheckedRadioButton(int32_t nIDFirstButton,int32_t nIDLastButton)
    {
-      
+
       UNREFERENCED_PARAMETER(nIDFirstButton);
       UNREFERENCED_PARAMETER(nIDLastButton);
-      
+
       ::exception::throw_interface_only(get_app());
 
       return 0;
@@ -2389,7 +2389,7 @@ namespace user
 
    bool interaction_impl::_EnableToolTips(bool bEnable,UINT nFlag)
    {
-      
+
       UNREFERENCED_PARAMETER(bEnable);
       UNREFERENCED_PARAMETER(nFlag);
 

@@ -210,6 +210,9 @@ namespace message
 
    dispatch::SignalArray::~SignalArray()
    {
+
+      remove_all();
+
    }
 
 

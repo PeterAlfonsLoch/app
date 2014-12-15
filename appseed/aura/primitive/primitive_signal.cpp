@@ -60,6 +60,7 @@ bool signal_details::emit()
 
 signalizable::signalizable()
 {
+
 }
 
 
@@ -67,7 +68,7 @@ signalizable::~signalizable()
 {
 
    signalizable_disconnect_all();
-   
+
 }
 
 
@@ -76,13 +77,13 @@ void signalizable::signalizable_disconnect_all()
 
    for(int32_t i = 0; i < m_signalptra.get_size(); i++)
    {
-   
+
       m_signalptra[i]->disconnect(this);
-      
+
    }
-   
+
    m_signalptra.remove_all();
-   
+
 }
 
 
@@ -96,23 +97,35 @@ void signalizable::install_message_handling(::message::dispatch * pdispatch)
 
 void signalizable::register_signal(class signal * psignal)
 {
+
    m_signalptra.add_unique(psignal);
+
 }
+
 
 void signalizable::unregister_signal(class signal * psignal)
 {
+
    for(int32_t i = 0; i < m_signalptra.get_size();)
    {
+
       if(m_signalptra[i] == psignal)
       {
+
          m_signalptra.remove_at(i);
+
       }
       else
       {
+
          i++;
+
       }
+
    }
+
 }
+
 
 void signalizable::unregister_target(signalizable* psignalizable)
 {

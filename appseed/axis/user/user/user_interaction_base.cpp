@@ -1228,6 +1228,14 @@ namespace user
    void interaction_base::PostNcDestroy()
    {
 
+      try
+        {
+            m_signala.remove_all();
+        }
+        catch(...)
+        {
+        }
+
    }
 
 
@@ -1427,7 +1435,7 @@ namespace user
    {
 
       ::exception::throw_interface_only(get_app());
-      
+
       return false;
 
    }
