@@ -325,17 +325,17 @@ fd_fixed_fwd (int32_t f[4])
  * so (since a Bezier curve is always bounded by its convex hull), we
  * can say that:
  *
- *  MAX(|B'(t)|) <= 3 MAX (|p1-p0|, |p2-p1|, |p3-p2|)
+ *  max(|B'(t)|) <= 3 max (|p1-p0|, |p2-p1|, |p3-p2|)
  *
  * We can improve this by noticing that a quadratic Bezier (a,b,c) is
  * bounded by the quad (a,lerp(a,b,t),lerp(b,c,t),c) for any t, so
  * (substituting the previous values, using t=0.5 and simplifying):
  *
- *  MAX(|B'(t)|) <= 3 MAX (|p1-p0|, |p2-p0|/2, |p3-p1|/2, |p3-p2|)
+ *  max(|B'(t)|) <= 3 max (|p1-p0|, |p2-p0|/2, |p3-p1|/2, |p3-p2|)
  *
  * So, to guarantee a maximum step length of 1/sqrt(2) we must do:
  *
- *   3 MAX (|p1-p0|, |p2-p0|/2, |p3-p1|/2, |p3-p2|) sqrt(2) steps
+ *   3 max (|p1-p0|, |p2-p0|/2, |p3-p1|/2, |p3-p2|) sqrt(2) steps
  */
 static inline double
 bezier_steps_sq (cairo_point_double_t p[4])
@@ -697,9 +697,9 @@ rasterize_bezier_patch (unsigned char *data, int width, int height, int stride, 
 			cairo_point_double_t p[4][4], double col[4][4])
 {
     double pv[4][2][4], cstart[4], cend[4], dcstart[4], dcend[4];
-    int vsteps, v, i, k;
+    int v, i, k;
 
-    vsteps = 1 << vshift;
+    v = 1 << vshift;
 
     /*
      * pv[i][0] is the function (represented using forward
@@ -724,11 +724,11 @@ rasterize_bezier_patch (unsigned char *data, int width, int height, int stride, 
     for (i = 0; i < 4; ++i) {
 	cstart[i]  = col[0][i];
 	cend[i]    = col[1][i];
-	dcstart[i] = (col[2][i] - col[0][i]) / vsteps;
-	dcend[i]   = (col[3][i] - col[1][i]) / vsteps;
+	dcstart[i] = (col[2][i] - col[0][i]) / v;
+	dcend[i]   = (col[3][i] - col[1][i]) / v;
     }
 
-    for (v = 0; v <= vsteps; ++v) {
+    while (v--) {
 	cairo_point_double_t nodes[4];
 	for (i = 0; i < 4; ++i) {
 	    nodes[i].x = pv[i][0][0];

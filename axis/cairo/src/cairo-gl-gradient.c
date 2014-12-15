@@ -55,27 +55,27 @@ _cairo_gl_gradient_sample_width (unsigned int                 n_stops,
     width = 8;
     for (n = 1; n < n_stops; n++) {
 	double dx = stops[n].offset - stops[n-1].offset;
-	double delta, MAX;
+	double delta, max;
 	int ramp;
 
 	if (dx == 0)
 	    return 1024; /* we need to emulate an infinitely sharp step */
 
-	MAX = fabs (stops[n].color.red - stops[n-1].color.red);
+	max = fabs (stops[n].color.red - stops[n-1].color.red);
 
 	delta = fabs (stops[n].color.green - stops[n-1].color.green);
-	if (delta > MAX)
-	    MAX = delta;
+	if (delta > max)
+	    max = delta;
 
 	delta = fabs (stops[n].color.blue - stops[n-1].color.blue);
-	if (delta > MAX)
-	    MAX = delta;
+	if (delta > max)
+	    max = delta;
 
 	delta = fabs (stops[n].color.alpha - stops[n-1].color.alpha);
-	if (delta > MAX)
-	    MAX = delta;
+	if (delta > max)
+	    max = delta;
 
-	ramp = 128 * MAX / dx;
+	ramp = 128 * max / dx;
 	if (ramp > width)
 	    width = ramp;
     }

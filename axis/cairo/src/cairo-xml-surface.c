@@ -460,10 +460,10 @@ to_xml (cairo_xml_surface_t *surface)
 
 static cairo_status_t
 _cairo_xml_surface_emit_clip_boxes (cairo_xml_surface_t *surface,
-				    cairo_clip_t *clip)
+				    const cairo_clip_t *clip)
 {
     cairo_box_t *box;
-//    cairo_status_t status;
+    cairo_status_t status;
     cairo_xml_t *xml;
     int n;
 
@@ -521,7 +521,7 @@ _cairo_xml_surface_emit_clip_boxes (cairo_xml_surface_t *surface,
 
 static cairo_status_t
 _cairo_xml_surface_emit_clip_path (cairo_xml_surface_t *surface,
-				   cairo_clip_path_t *clip_path)
+				   const cairo_clip_path_t *clip_path)
 {
     cairo_box_t box;
     cairo_status_t status;
@@ -573,7 +573,7 @@ _cairo_xml_surface_emit_clip (cairo_xml_surface_t *surface,
     if (clip == NULL)
 	return CAIRO_STATUS_SUCCESS;
 
-    status = _cairo_xml_surface_emit_clip_boxes(surface,(cairo_clip_t *) clip);
+    status = _cairo_xml_surface_emit_clip_boxes (surface, clip);
     if (unlikely (status))
 	return status;
 

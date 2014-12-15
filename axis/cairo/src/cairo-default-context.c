@@ -56,10 +56,6 @@
 #define INFINITY HUGE_VAL
 #endif
 
-#if !defined(HUGE_VALD)
-#define HUGE_VALD ((double)INFINITY)
-#endif
-
 static freed_pool_t context_pool;
 
 void
@@ -1137,10 +1133,10 @@ _cairo_default_context_clip_extents (void *abstract_cr,
     cairo_default_context_t *cr = abstract_cr;
 
     if (! _cairo_gstate_clip_extents (cr->gstate, x1, y1, x2, y2)) {
-       *x1 = -HUGE_VALD;
-       *y1 = -HUGE_VALD;
-       *x2 = +HUGE_VALD;
-       *y2 = +HUGE_VALD;
+	*x1 = -INFINITY;
+	*y1 = -INFINITY;
+	*x2 = +INFINITY;
+	*y2 = +INFINITY;
     }
 
     return CAIRO_STATUS_SUCCESS;

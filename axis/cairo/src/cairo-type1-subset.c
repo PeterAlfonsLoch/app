@@ -407,6 +407,7 @@ cairo_type1_font_subset_get_fontname (cairo_type1_font_subset_t *font)
     const char *start, *end, *segment_end;
     char *s;
     int i;
+    cairo_status_t status;
 
     segment_end = font->header_segment + font->header_segment_size;
     start = find_token (font->header_segment, segment_end, "/FontName");
@@ -418,6 +419,9 @@ cairo_type1_font_subset_get_fontname (cairo_type1_font_subset_t *font)
     end = find_token (start, segment_end, "def");
     if (end == NULL)
 	return CAIRO_INT_STATUS_UNSUPPORTED;
+
+    while (end > start && _cairo_isspace(end[-1]))
+	end--;
 
     s = malloc (end - start + 1);
     if (unlikely (s == NULL))
@@ -447,13 +451,9 @@ cairo_type1_font_subset_get_fontname (cairo_type1_font_subset_t *font)
     if (unlikely (font->base.base_font == NULL))
 	return _cairo_error (CAIRO_STATUS_NO_MEMORY);
 
-    s = font->base.base_font;
-    while (*s && !is_ps_delimiter(*s))
-	s++;
+    status = _cairo_escape_ps_name (&font->base.base_font);
 
-    *s = 0;
-
-    return CAIRO_STATUS_SUCCESS;
+    return status;
 }
 
 static cairo_status_t
@@ -1128,7 +1128,7 @@ write_used_glyphs (cairo_type1_font_subset_t *font,
     cairo_status_t status;
     char buffer[256];
     int length;
-    int subset_id;
+    unsigned int subset_id;
     int ch;
     const char *wa_name;
 
@@ -1142,13 +1142,14 @@ write_used_glyphs (cairo_type1_font_subset_t *font,
 	 * font with the standard name.
          **/
 	subset_id = font->glyphs[glyph_number].subset_index;
-	if (subset_id > 0) {
+	/* Any additional glyph included for use by the seac operator
+	 * will either have subset_id >= font->scaled_font_subset->num_glyphs
+	 * or will not map to a winansi name (wa_name = NULL).  In this
+	 * case the original name is used.
+	 */
+	if (subset_id > 0 && subset_id < font->scaled_font_subset->num_glyphs) {
 	    ch = font->scaled_font_subset->to_latin_char[subset_id];
 	    wa_name = _cairo_winansi_to_glyphname (ch);
-	    /* If this subset contains any seac glyphs, additional non
-	     * winansi glyphs (wa_name = NULL) may be included in the
-	     * subset. In this case the original name is used.
-	     */
 	    if (wa_name) {
 		name = wa_name;
 		name_length = strlen(name);

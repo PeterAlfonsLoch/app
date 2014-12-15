@@ -64,7 +64,7 @@
 #include "cairo-type3-glyph-surface-private.h"
 
 #include <time.h>
-#include "axis/zlib/zlib.h"
+#include <zlib.h>
 
 /* Issues:
  *
@@ -1323,8 +1323,8 @@ _cairo_pdf_surface_add_source_surface (cairo_pdf_surface_t	    *surface,
     cairo_bool_t interpolate;
     unsigned char *unique_id = NULL;
     unsigned long unique_id_length = 0;
-    cairo_image_surface_t *image = NULL;
-    void *image_extra = NULL;
+    cairo_image_surface_t *image;
+    void *image_extra;
 
     switch (filter) {
     default:
@@ -2104,7 +2104,7 @@ _cairo_pdf_surface_add_padded_image_surface (cairo_pdf_surface_t          *surfa
 {
     cairo_image_surface_t *image;
     cairo_surface_t *pad_image;
-    void *image_extra = NULL;
+    void *image_extra;
     cairo_int_status_t status;
     int w, h;
     cairo_rectangle_int_t extents2;
@@ -2637,6 +2637,18 @@ _cairo_pdf_surface_emit_image_surface (cairo_pdf_surface_t        *surface,
     cairo_int_status_t status;
 
     if (source->type == CAIRO_PATTERN_TYPE_SURFACE) {
+	if (!source->hash_entry->stencil_mask) {
+	    status = _cairo_pdf_surface_emit_jpx_image (surface, source->surface, source->hash_entry->surface_res);
+	    if (status != CAIRO_INT_STATUS_UNSUPPORTED)
+		return status;
+
+	    status = _cairo_pdf_surface_emit_jpeg_image (surface, source->surface, source->hash_entry->surface_res);
+	    if (status != CAIRO_INT_STATUS_UNSUPPORTED)
+		return status;
+	}
+    }
+
+    if (source->type == CAIRO_PATTERN_TYPE_SURFACE) {
 	status = _cairo_surface_acquire_source_image (source->surface, &image, &image_extra);
     } else {
 	status = _cairo_pdf_surface_acquire_source_image_from_pattern (surface, source->raster_pattern,
@@ -2645,22 +2657,11 @@ _cairo_pdf_surface_emit_image_surface (cairo_pdf_surface_t        *surface,
     if (unlikely (status))
 	return status;
 
-    if (!source->hash_entry->stencil_mask) {
-	status = _cairo_pdf_surface_emit_jpx_image (surface, &image->base, source->hash_entry->surface_res);
-	if (status != CAIRO_INT_STATUS_UNSUPPORTED)
-	    goto release_source;
-
-	status = _cairo_pdf_surface_emit_jpeg_image (surface, &image->base, source->hash_entry->surface_res);
-	if (status != CAIRO_INT_STATUS_UNSUPPORTED)
-	    goto release_source;
-    }
-
     status = _cairo_pdf_surface_emit_image (surface, image,
 					    &source->hash_entry->surface_res,
 					    source->hash_entry->interpolate,
 					    source->hash_entry->stencil_mask);
 
-release_source:
     if (source->type == CAIRO_PATTERN_TYPE_SURFACE)
 	_cairo_surface_release_source_image (source->surface, image, image_extra);
     else
