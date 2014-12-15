@@ -26,7 +26,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include "config.h"
+#include <config.h>
 #endif
 
 #include <math.h>
@@ -495,19 +495,19 @@ MAKE_SEPARABLE_PDF_COMBINERS (exclusion)
  * PDF nonseperable blend modes.
  *
  * These are implemented using the following functions to operate in Hsl
- * space, with Cmax, Cmid, Cmin referring to the MAX, mid and MIN value
+ * space, with Cmax, Cmid, Cmin referring to the max, mid and min value
  * of the red, green and blue components.
  *
  * LUM (C) = 0.3 × Cred + 0.59 × Cgreen + 0.11 × Cblue
  *
  * clip_color (C):
  *   l = LUM (C)
- *   MIN = Cmin
- *   MAX = Cmax
+ *   min = Cmin
+ *   max = Cmax
  *   if n < 0.0
- *     C = l + (((C – l) × l) ⁄     (l – MIN))
+ *     C = l + (((C – l) × l) ⁄     (l – min))
  *   if x > 1.0
- *     C = l + (((C – l) × (1 – l)) (MAX – l))
+ *     C = l + (((C – l) × (1 – l)) (max – l))
  *   return C
  *
  * set_lum (C, l):
