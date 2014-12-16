@@ -309,6 +309,10 @@ namespace ansios
       
       string strFallback = ::ca2_module_folder_dup();
       
+      string strFolder = strFallback;
+      
+      ::dir::eat_end_level(strFolder, 2, NULL);
+      
       string strCurrent = getenv("DYLD_FALLBACK_LIBRARY_PATH");
       
       if(strCurrent == strFallback || ::str::ends(strCurrent, ":" + strFallback) || str::begins(strCurrent, strFallback + ":") || strCurrent.contains(":"+strFallback +":"))
@@ -325,10 +329,10 @@ namespace ansios
       }
       
       setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, TRUE);
-
       
       // Create authorization reference
       OSStatus status;
+      
       AuthorizationRef authorizationRef;
       
       // AuthorizationCreate and pass NULL as the initial
@@ -336,12 +340,15 @@ namespace ansios
       // successfully, and then later call AuthorizationCopyRights to
       // determine or extend the allowable rights.
       // http://developer.apple.com/qa/qa2001/qa1172.html
-      status = AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment,
-                                   kAuthorizationFlagDefaults, &authorizationRef);
+      status = AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &authorizationRef);
+      
       if (status != errAuthorizationSuccess)
       {
+         
          TRACE("Error Creating Initial Authorization: %d", status);
+         
          return -1;
+         
       }
       
       // kAuthorizationRightExecute == "system.privilege.admin"
@@ -371,8 +378,9 @@ namespace ansios
 
       straParam.add("-c");
       
-      straParam.add("\"export DYLD_FALLBACK_LIBRARY_PATH="+strFallback+"; "+string(pszCmdLineParam)+";\"");
+      string strC = "export DYLD_FALLBACK_LIBRARY_PATH="+strFallback+" ; cd "+strFolder+" ; "+string(pszCmdLineParam)+" ;";
       
+      straParam.add(strC);
       
       for(index i = 0; i < straParam.get_count(); i++)
       {
@@ -380,6 +388,8 @@ namespace ansios
          argv.add((char *)(const char *)straParam[i]);
          
       }
+      
+      argv.add(NULL);
 
       
       char *tool = (char * )"/bin/bash";
@@ -442,8 +452,7 @@ namespace ansios
       
 //      setuid(uid);
       
-      status = AuthorizationExecuteWithPrivileges(authorizationRef, tool,
-                                                  kAuthorizationFlagDefaults, args, &pipe);
+      status = AuthorizationExecuteWithPrivileges(authorizationRef, tool, kAuthorizationFlagDefaults, args, NULL);
       if (status != errAuthorizationSuccess)
       {
          TRACE("AuthorizationExecuteWithPrivileges Error: %d", status);
