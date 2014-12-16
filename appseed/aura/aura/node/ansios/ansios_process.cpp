@@ -15,8 +15,11 @@ extern char **environ;
 #include <unistd.h>
 #include <spawn.h>
 #include <pthread.h>
+#include <stdlib.h>
 extern char * const * environ;
 #endif
+
+string ca2_module_folder_dup();
 
 
 CLASS_DECL_AURA void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
@@ -98,10 +101,65 @@ namespace ansios
          posix_spawn_file_actions_adddup2(&actions, ppipeIn->m_fd[0],STDIN_FILENO);
 
       }
-
-
-      int status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
-
+      
+      ptr_array < char > env;
+      
+      char * const * e = environ;
+      
+      string strFallback;
+      
+#ifdef MACOS
+      
+      strFallback = ::ca2_module_folder_dup();
+      
+#endif
+      
+      if(::str::begins_ci(strFallback, "/Users/"))
+      {
+      
+         index i = 0;
+      
+         int iPrevious = -1;
+      
+         const char * psz;
+      
+         while((psz = environ[i]) != NULL)
+         {
+            if(i <= iPrevious)
+               break;
+         
+            env.add((char *) psz);
+         
+            iPrevious = i;
+         
+            i++;
+         
+         }
+      
+#ifdef MACOS
+      
+         string strCurrent = getenv("DYLD_FALLBACK_LIBRARY_PATH");
+      
+         if(strCurrent.has_char())
+         {
+         
+            strFallback += ":" + strCurrent;
+         
+         }
+      
+         strFallback = string("DYLD_FALLBACK_LIBRARY_PATH=") + strFallback;
+      
+         env.add((char *) (const char *) strFallback);
+              
+#endif
+      
+         env.add(NULL);
+         
+         e = (char * const *)env.get_data();
+         
+      }
+      
+      int status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),e);
 
 #ifdef APPLEOS
 
@@ -245,14 +303,208 @@ namespace ansios
 
    int32_t process::synch_elevated(const char * pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
    {
+      
+#if defined(MACOS)
+      // Create authorization reference
+      OSStatus status;
+      AuthorizationRef authorizationRef;
+      
+      // AuthorizationCreate and pass NULL as the initial
+      // AuthorizationRights set so that the AuthorizationRef gets created
+      // successfully, and then later call AuthorizationCopyRights to
+      // determine or extend the allowable rights.
+      // http://developer.apple.com/qa/qa2001/qa1172.html
+      status = AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment,
+                                   kAuthorizationFlagDefaults, &authorizationRef);
+      if (status != errAuthorizationSuccess)
+      {
+         TRACE("Error Creating Initial Authorization: %d", status);
+         return -1;
+      }
+      
+      // kAuthorizationRightExecute == "system.privilege.admin"
+      AuthorizationItem right = {kAuthorizationRightExecute, 0, NULL, 0};
+      AuthorizationRights rights = {1, &right};
+      AuthorizationFlags flags = kAuthorizationFlagDefaults |
+      kAuthorizationFlagInteractionAllowed |
+      kAuthorizationFlagPreAuthorize |
+      kAuthorizationFlagExtendRights;
+      
+      
+      string strFallback = ::ca2_module_folder_dup();
+      
+      string strCurrent = getenv("DYLD_FALLBACK_LIBRARY_PATH");
+      
+      //    setenv("DYLD_FALLBACK_LIBRARY_PATH",, 1 );
+      
+      //::dir::eat_end_level(strFallback, 3);
+      
+      if(strCurrent.has_char())
+      {
+         
+         strFallback += ":" + strCurrent;
+         
+      }
+      
+      setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, TRUE);
+
+      // Call AuthorizationCopyRights to determine or extend the allowable rights.
+      status = AuthorizationCopyRights(authorizationRef, &rights, NULL, flags, NULL);
+      if (status != errAuthorizationSuccess)
+      {
+         TRACE("Copy Rights Unsuccessful: %d", status);
+         return -1;
+      }
+      
+      TRACE("\n\n** %s **\n\n", "This command should work.");
+
+
+      stringa straParam;
+      
+      ptr_array < char > argv;
+
+      straParam.explode_command_line(pszCmdLineParam, &argv);
+
+      
+      char *tool = argv[0];
+      char **args = (char **) &argv.get_data()[1];
+      FILE *pipe = NULL;
+      
+//      int uid = getuid();
+      
+       
+      
+//      int i = setuid(0);
+      
+  //    if(i != 0)
+    //  {
+      //   TRACE("Failed to setuid: %d", i);
+        // return -1;
+      //}
+      
+      
+      /*
+      stringa straParam;
+      
+      ptr_array < char > argv;
+      
+      
+      straParam.explode_command_line(pszCmdLineParam, &argv);
+      
+      posix_spawnattr_t attr;
+      
+      posix_spawnattr_init(&attr);
+      
+      
+      posix_spawn_file_actions_t actions;
+      
+      posix_spawn_file_actions_init(&actions);
+      
+      
+      status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
+      
+      //int status = posix_spawn(&m_iPid,argv[0],NULL,NULL,(char * const *)argv.get_data(),environ);
+      
+      printf("synch_elevated : posix_spawn return status %d", status);
+      
+      
+      DWORD dwStart = get_tick_count();
+      
+      while(!has_exited() && get_tick_count() - dwStart < durationTimeOut.get_total_milliseconds())
+      {
+         Sleep(84);
+      }
+      DWORD dwExitCode = 0;
+      if(!has_exited(&dwExitCode))
+      {
+         if(pbTimeOut != NULL)
+         {
+            *pbTimeOut = true;
+         }
+      }
+      */
+      
+//      setuid(uid);
+      
+      status = AuthorizationExecuteWithPrivileges(authorizationRef, tool,
+                                                  kAuthorizationFlagDefaults, args, &pipe);
+      if (status != errAuthorizationSuccess)
+      {
+         TRACE("AuthorizationExecuteWithPrivileges Error: %d", status);
+         return -1;
+      }
+      
+      if(pipe != NULL)
+      {
+      
+         char c;
+      
+         int iRead;
+      
+         string strRead;
+      
+         while(true)
+         {
+            iRead = fread(&c,1,1, pipe);
+            if(iRead == 1)
+            {
+               strRead += c;
+            }
+            else if(ferror(pipe))
+            {
+               TRACE("Error reading from file");
+               break;
+            }
+            else
+            {
+            }
+         }
+         
+         fclose(pipe);
+      
+         TRACE0(strRead);
+         
+         
+      }
+      
+      // The only way to guarantee that a credential acquired when you
+      // request a right is not shared with other authorization instances is
+      // to destroy the credential.  To do so, call the AuthorizationFree
+      // function with the flag kAuthorizationFlagDestroyRights.
+      // http://developer.apple.com/documentation/Security/Conceptual/authorization_concepts/02authconcepts/chapter_2_section_7.html
+      status = AuthorizationFree(authorizationRef, kAuthorizationFlagDestroyRights);
+
+      if (status != errAuthorizationSuccess)
+      {
+         TRACE("AuthorizationFree Error: %d", status);
+      }
+
+      return 0;
+#else
+      
+       stringa straParam;
+       
+       ptr_array < char > argv;
+       
+#ifdef MACOS
+    
+       straParam.add("/usr/bin/osascript");
+       straParam.add("-e");
+       straParam.add("'do shell script \"" + string(pszCmdLineParam) + "\" with administrator privileges'");
+       
+       argv.add((char *) (const char *) straParam[0]);
+       argv.add((char *) (const char *) straParam[1]);
+       argv.add((char *) (const char *) straParam[2]);
+       argv.add(NULL);
+       
+#else
 
       string pszCmdLine = "/usr/bin/gksu " + string(pszCmdLineParam);
 
-      stringa straParam;
-
-      ptr_array < char > argv;
-
       straParam.explode_command_line(pszCmdLine, &argv);
+       
+#endif
+
 
       //char * argv[] ={(char *)pszCmdLine,0};
 #if defined(LINUX) || defined(APPLEOS)
@@ -270,20 +522,9 @@ namespace ansios
       int status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
 
       //int status = posix_spawn(&m_iPid,argv[0],NULL,NULL,(char * const *)argv.get_data(),environ);
+       
+       printf("synch_elevated : posix_spawn return status %d", status);
 
-
-#ifdef APPLEOS
-
-      if(iCa2Priority != (int32_t) ::multithreading::priority_none)
-      {
-
-         int32_t iOsPriority = process_get_os_priority(iCa2Priority);
-
-         setpriority(PRIO_PROCESS,m_iPid,iOsPriority);
-
-      }
-
-#endif
 
     DWORD dwStart = get_tick_count();
 
@@ -364,6 +605,8 @@ namespace ansios
       }
       // in parent, success
       return 1;
+#endif
+      
 #endif
 
    }

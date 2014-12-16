@@ -1043,8 +1043,16 @@ namespace draw2d
    {
       if(op == 1 && m_size == pdib->m_size && pdib->m_iScan == m_iScan) // op == 1 indicates can ignore cxParam and cyParam and perform full memcpy
       {
+         
+#if defined(APPLEOS)
+
+         memcpy(&m_pcolorref[m_iScan / 4 * (pdib->m_size.cy - cyParam)],&pdib->m_pcolorref[m_iScan / 4 * (pdib->m_size.cy - cyParam)],cyParam * m_iScan);
+         
+#else
 
          memcpy(m_pcolorref,pdib->m_pcolorref,cyParam * m_iScan);
+
+#endif
 
       }
       else if(op == 0 || op == 1)
@@ -3574,7 +3582,7 @@ namespace draw2d
       BYTE uchG = (byte) G;
       BYTE uchR = (byte) B;
 
-      int32_t i = 0;;
+//      int32_t i = 0;;
 
 
       while ( size-- )
@@ -3982,7 +3990,7 @@ namespace draw2d
    }
 
 
-   void dib::unmap()
+   void dib::unmap() const
    {
 
    }

@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A98A6031771D67E000AE16E"
-               BuildableName = "libbase.dylib"
-               BlueprintName = "base"
-               ReferencedContainer = "container:base.xcodeproj">
+               BlueprintIdentifier = "07B65763190F3CA2002DAADE"
+               BuildableName = "libmath_ios.dylib"
+               BlueprintName = "math_ios"
+               ReferencedContainer = "container:math.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "07B65772190F3CA2002DAADE"
+               BuildableName = "math_iosTests.xctest"
+               BlueprintName = "math_iosTests"
+               ReferencedContainer = "container:math.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,7 +42,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "07B65772190F3CA2002DAADE"
+               BuildableName = "math_iosTests.xctest"
+               BlueprintName = "math_iosTests"
+               ReferencedContainer = "container:math.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "07B65763190F3CA2002DAADE"
+            BuildableName = "libmath_ios.dylib"
+            BlueprintName = "math_ios"
+            ReferencedContainer = "container:math.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -42,10 +75,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A98A6031771D67E000AE16E"
-            BuildableName = "libbase.dylib"
-            BlueprintName = "base"
-            ReferencedContainer = "container:base.xcodeproj">
+            BlueprintIdentifier = "07B65763190F3CA2002DAADE"
+            BuildableName = "libmath_ios.dylib"
+            BlueprintName = "math_ios"
+            ReferencedContainer = "container:math.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -60,10 +93,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A98A6031771D67E000AE16E"
-            BuildableName = "libbase.dylib"
-            BlueprintName = "base"
-            ReferencedContainer = "container:base.xcodeproj">
+            BlueprintIdentifier = "07B65763190F3CA2002DAADE"
+            BuildableName = "libmath_ios.dylib"
+            BlueprintName = "math_ios"
+            ReferencedContainer = "container:math.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

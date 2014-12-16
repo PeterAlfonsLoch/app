@@ -1634,15 +1634,16 @@ namespace core
 
 #elif defined(APPLEOS)
 
-setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
 //                     strPath += ".app/Contents/MacOS/app";
                      strPath += ".app";
+//                     setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
+//                     setenv("DYLD_FALLBACK_LIBRARY_PATH",strPath, 1 );
 
 #endif
 
 #if defined(APPLEOS)
-                     strPath = "/usr/bin/open " + strPath + " --args : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
+                     strPath = "/usr/bin/open -n " + strPath + " --args : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
 #else
                      strParam = " : app=" + notinstalled.m_strId + " install build_number=" + notinstalled.m_strBuild + " version=" + notinstalled.m_strVersion + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
 #endif
@@ -1651,7 +1652,17 @@ setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 
                      ::duration durationWait = seconds((1.9841115 + 1.9770402 + 1.9510422) * 3.0); // less than 18 seconds
 
+//#ifdef MACOS
+                     
+  //                   TRACE0(strPath);
+
+    //                 DWORD dwExitCode = System.process().synch(strPath,SW_HIDE,durationWait,&bTimedOut);
+                     
+//#else
+
                      DWORD dwExitCode = System.process().elevated_synch(strPath + strParam,SW_HIDE,durationWait,&bTimedOut);
+                     
+//#endif
 
                      if(bTimedOut)
                      {

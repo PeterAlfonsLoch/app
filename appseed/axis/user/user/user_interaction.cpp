@@ -804,7 +804,7 @@ namespace user
 
                   bFirst = false;
 
-                  pgraphics->SelectClipRgn(rgnClip);
+//                  pgraphics->SelectClipRgn(rgnClip);
 
                   break;
 
@@ -5671,7 +5671,9 @@ namespace user
    void interaction::_001OnLButtonDown(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse,pmouse,pobj);
+//      SCAST_PTR(::message::mouse,pmouse,pobj);
+       
+       UNREFERENCED_PARAMETER(pobj);
 
       try
       {

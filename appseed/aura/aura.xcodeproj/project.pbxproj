@@ -11,6 +11,8 @@
 		0751A49F192AB15000CFD2B0 /* multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0751A49D192AB15000CFD2B0 /* multithreading.cpp */; };
 		0751A4A0192AB15000CFD2B0 /* multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0751A49D192AB15000CFD2B0 /* multithreading.cpp */; };
 		0751A4A1192AB15000CFD2B0 /* multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0751A49D192AB15000CFD2B0 /* multithreading.cpp */; };
+		076D09AC1A3FB09C007432B6 /* collection_array_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D09AB1A3FB09C007432B6 /* collection_array_base.cpp */; };
+		076D0A151A3FCCCB007432B6 /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A141A3FCCCB007432B6 /* libatomiconv.dylib */; };
 		077C2A1B190F144000A1F6B0 /* framework_c.c in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A17190F143F00A1F6B0 /* framework_c.c */; };
 		077C2A1C190F144000A1F6B0 /* framework_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A18190F143F00A1F6B0 /* framework_c.h */; };
 		077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A19190F143F00A1F6B0 /* framework.cpp */; };
@@ -20,8 +22,6 @@
 		07857A0B1917B8CE00FFFE51 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07857A0A1917B8CE00FFFE51 /* CoreGraphics.framework */; };
 		07857A0D1917B90400FFFE51 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07857A0C1917B90400FFFE51 /* CoreText.framework */; };
 		07884BDF1897E9A400DC6CEB /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 07884B911897E9A400DC6CEB /* user.h */; };
-		07884BE21897E9A400DC6CEB /* user_check_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884B941897E9A400DC6CEB /* user_check_interface.cpp */; };
-		07884BE31897E9A400DC6CEB /* user_check_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07884B951897E9A400DC6CEB /* user_check_interface.h */; };
 		07884BE81897E9A500DC6CEB /* user_create_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884B9A1897E9A400DC6CEB /* user_create_context.cpp */; };
 		07884BE91897E9A500DC6CEB /* user_create_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 07884B9B1897E9A400DC6CEB /* user_create_context.h */; };
 		07884BEA1897E9A500DC6CEB /* user_draw_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884B9C1897E9A400DC6CEB /* user_draw_context.cpp */; };
@@ -964,7 +964,6 @@
 		9AA6A6AC1907B84D000A1F4A /* primitive_type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE722F517E83B69003E47F9 /* primitive_type.cpp */; };
 		9AA6A6AD1907B84D000A1F4A /* primitive_var.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE722F717E83B69003E47F9 /* primitive_var.cpp */; };
 		9AA6A6AE1907B84D000A1F4A /* primitive_virtual_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE722FA17E83B69003E47F9 /* primitive_virtual_memory.cpp */; };
-		9AA6A6C51907B84E000A1F4A /* user_check_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884B941897E9A400DC6CEB /* user_check_interface.cpp */; };
 		9AA6A6C81907B84E000A1F4A /* user_create_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884B9A1897E9A400DC6CEB /* user_create_context.cpp */; };
 		9AA6A6C91907B84E000A1F4A /* user_draw_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884B9C1897E9A400DC6CEB /* user_draw_context.cpp */; };
 		9AA6A6CA1907B84E000A1F4A /* user_draw_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07884B9E1897E9A400DC6CEB /* user_draw_interface.cpp */; };
@@ -1163,7 +1162,6 @@
 		9AEEADAB19C4DD4E00866C9E /* user_timer_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEADA719C4DD4E00866C9E /* user_timer_array.h */; };
 		9AEEADAC19C4DD4E00866C9E /* user_timer_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADA819C4DD4E00866C9E /* user_timer_item.cpp */; };
 		9AEEADAD19C4DD4E00866C9E /* user_timer_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEADA919C4DD4E00866C9E /* user_timer_item.h */; };
-		9AEEADAF19C4DDD500866C9E /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEADAE19C4DDD500866C9E /* libiconv.2.4.0.dylib */; };
 		9AEEADB119C4E07E00866C9E /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADB019C4E07E00866C9E /* file.cpp */; };
 		9AEEADB519C4E10900866C9E /* simple_message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEADB319C4E10900866C9E /* simple_message_box.cpp */; };
 		9AEEADB619C4E10900866C9E /* simple_message_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEADB419C4E10900866C9E /* simple_message_box.h */; };
@@ -1173,6 +1171,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		076D0A1A1A3FCCD4007432B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A1647A219C4A73900966C5E;
+			remoteInfo = atomiconv;
+		};
+		076D0A1C1A3FCCE0007432B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A1647A119C4A73900966C5E;
+			remoteInfo = atomiconv;
+		};
 		9AE24D491904CEFF001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CEA754BB14411F2B007E04DE /* Project object */;
@@ -1199,6 +1211,9 @@
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		0751A49C192AB15000CFD2B0 /* multithreading_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multithreading_data.h; sourceTree = "<group>"; };
 		0751A49D192AB15000CFD2B0 /* multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multithreading.cpp; sourceTree = "<group>"; };
+		076D09AB1A3FB09C007432B6 /* collection_array_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collection_array_base.cpp; sourceTree = "<group>"; };
+		076D0A141A3FCCCB007432B6 /* libatomiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libatomiconv.dylib; path = ../../atom/iconv/build/Debug/libatomiconv.dylib; sourceTree = "<group>"; };
+		076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = atomiconv.xcodeproj; path = ../../atom/iconv/atomiconv.xcodeproj; sourceTree = "<group>"; };
 		077C2A17190F143F00A1F6B0 /* framework_c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = framework_c.c; sourceTree = "<group>"; };
 		077C2A18190F143F00A1F6B0 /* framework_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework_c.h; sourceTree = "<group>"; };
 		077C2A19190F143F00A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -1207,8 +1222,6 @@
 		07857A0A1917B8CE00FFFE51 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		07857A0C1917B90400FFFE51 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		07884B911897E9A400DC6CEB /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
-		07884B941897E9A400DC6CEB /* user_check_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_check_interface.cpp; sourceTree = "<group>"; };
-		07884B951897E9A400DC6CEB /* user_check_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_check_interface.h; sourceTree = "<group>"; };
 		07884B9A1897E9A400DC6CEB /* user_create_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_create_context.cpp; sourceTree = "<group>"; };
 		07884B9B1897E9A400DC6CEB /* user_create_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_create_context.h; sourceTree = "<group>"; };
 		07884B9C1897E9A400DC6CEB /* user_draw_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_draw_context.cpp; sourceTree = "<group>"; };
@@ -2227,7 +2240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AEEADAF19C4DDD500866C9E /* libiconv.2.4.0.dylib in Frameworks */,
+				076D0A151A3FCCCB007432B6 /* libatomiconv.dylib in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
@@ -2260,12 +2273,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		076D0A171A3FCCD4007432B6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		07884B8F1897E9A400DC6CEB /* user */ = {
 			isa = PBXGroup;
 			children = (
 				07884B911897E9A400DC6CEB /* user.h */,
-				07884B941897E9A400DC6CEB /* user_check_interface.cpp */,
-				07884B951897E9A400DC6CEB /* user_check_interface.h */,
 				07884B9A1897E9A400DC6CEB /* user_create_context.cpp */,
 				07884B9B1897E9A400DC6CEB /* user_create_context.h */,
 				07884B9C1897E9A400DC6CEB /* user_draw_context.cpp */,
@@ -2289,6 +2308,7 @@
 				07B093DD18495C2A007A0560 /* collection.inl */,
 				07B093DE18495C2A007A0560 /* collection_2d_array.cpp */,
 				07B093DF18495C2A007A0560 /* collection_array.cpp */,
+				076D09AB1A3FB09C007432B6 /* collection_array_base.cpp */,
 				07B093E018495C2A007A0560 /* collection_array_decl.h */,
 				07B093E118495C2A007A0560 /* collection_array_impl.inl */,
 				07B093E218495C2A007A0560 /* collection_attrib_map.h */,
@@ -3396,6 +3416,7 @@
 		9AE24D351904CEFE001AEFFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				076D0A141A3FCCCB007432B6 /* libatomiconv.dylib */,
 				9AEEADAE19C4DDD500866C9E /* libiconv.2.4.0.dylib */,
 				07857A0C1917B90400FFFE51 /* CoreText.framework */,
 				07857A0A1917B8CE00FFFE51 /* CoreGraphics.framework */,
@@ -3585,6 +3606,7 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
+				076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
 				9A8897A514C24736006B4023 /* Foundation.framework */,
@@ -4081,7 +4103,6 @@
 				9A16447919C4A4CF00966C5E /* UncaughtExceptionHandler.h in Headers */,
 				9AE7257C17E83B69003E47F9 /* primitive_shared_memory.h in Headers */,
 				9AE7257E17E83B69003E47F9 /* primitive_signal.h in Headers */,
-				07884BE31897E9A400DC6CEB /* user_check_interface.h in Headers */,
 				9AE7258017E83B69003E47F9 /* primitive_type.h in Headers */,
 				07F5B1E3184A3B430092C3E1 /* file_stream2.h in Headers */,
 				9A1641E719C4A4CE00966C5E /* aura_policy_objc.h in Headers */,
@@ -4208,6 +4229,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				076D0A1D1A3FCCE0007432B6 /* PBXTargetDependency */,
 			);
 			name = aura;
 			productName = c;
@@ -4273,6 +4295,12 @@
 			mainGroup = CEA754B914411F2B007E04DE;
 			productRefGroup = CEA754B914411F2B007E04DE;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 076D0A171A3FCCD4007432B6 /* Products */;
+					ProjectRef = 076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9A98A6031771D67E000AE16E /* aura */,
@@ -4281,6 +4309,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libatomiconv.dylib;
+			remoteRef = 076D0A1A1A3FCCD4007432B6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9AE24D411904CEFE001AEFFB /* Resources */ = {
@@ -4330,6 +4368,7 @@
 				9AC315AF198E4CB8008FB109 /* colorertake5_base_editor.cpp in Sources */,
 				9AF885B419D42E2400A3117D /* exception_throw.cpp in Sources */,
 				07B0950818495C2B007A0560 /* comparison_var_strict.cpp in Sources */,
+				076D09AC1A3FB09C007432B6 /* collection_array_base.cpp in Sources */,
 				07F5B1C0184A3B430092C3E1 /* file_exception.cpp in Sources */,
 				9A16424A19C4A4CE00966C5E /* message_dispatch.cpp in Sources */,
 				9A16417219C4A4CE00966C5E /* aura_debug.cpp in Sources */,
@@ -4543,7 +4582,6 @@
 				9A16419E19C4A4CE00966C5E /* aura_log.cpp in Sources */,
 				9AE7251D17E83B69003E47F9 /* multithreading_sync_object.cpp in Sources */,
 				9AE7251F17E83B69003E47F9 /* multithreading_synch_lock.cpp in Sources */,
-				07884BE21897E9A400DC6CEB /* user_check_interface.cpp in Sources */,
 				07F5B1AD184A3B430092C3E1 /* file_byte_output_stream_binary_buffer.cpp in Sources */,
 				9AE7252317E83B69003E47F9 /* multithreading_wait_result.cpp in Sources */,
 				9A16420B19C4A4CE00966C5E /* exception_invalid_argument.cpp in Sources */,
@@ -4874,7 +4912,6 @@
 				9AA6A6AC1907B84D000A1F4A /* primitive_type.cpp in Sources */,
 				9AA6A6AD1907B84D000A1F4A /* primitive_var.cpp in Sources */,
 				9AA6A6AE1907B84D000A1F4A /* primitive_virtual_memory.cpp in Sources */,
-				9AA6A6C51907B84E000A1F4A /* user_check_interface.cpp in Sources */,
 				9AA6A6C81907B84E000A1F4A /* user_create_context.cpp in Sources */,
 				9AA6A6C91907B84E000A1F4A /* user_draw_context.cpp in Sources */,
 				9AA6A6CA1907B84E000A1F4A /* user_draw_interface.cpp in Sources */,
@@ -4894,6 +4931,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		076D0A1D1A3FCCE0007432B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = atomiconv;
+			targetProxy = 076D0A1C1A3FCCE0007432B6 /* PBXContainerItemProxy */;
+		};
 		9AE24D4A1904CEFF001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9AE24D331904CEFE001AEFFB /* aura_ios */;

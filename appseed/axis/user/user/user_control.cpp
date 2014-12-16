@@ -990,7 +990,8 @@ namespace user
    void control::_001OnKeyDown(::signal_details * pobj)
    {
 
-      SCAST_PTR(::message::key,pkey,pobj);
+       UNREFERENCED_PARAMETER(pobj);
+       //      SCAST_PTR(::message::key,pkey,pobj);
 
 
    }

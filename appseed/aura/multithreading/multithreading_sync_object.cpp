@@ -33,6 +33,8 @@ bool sync_object::lock(const duration & durationTimeout)
       return FALSE;
 #else
    ::exception::throw_interface_only(get_app());
+    
+    return false;
 #endif
 }
 
@@ -42,6 +44,8 @@ wait_result sync_object::wait(const duration & durationTimeout)
    return wait_result((uint32_t) ::WaitForSingleObjectEx(m_object,durationTimeout.os_lock_duration(), FALSE));
 #else
    ::exception::throw_interface_only(get_app());
+    
+    return wait_result(wait_result::Failure);
 #endif
 }
 

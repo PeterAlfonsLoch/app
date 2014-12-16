@@ -117,7 +117,7 @@ namespace draw2d
       virtual int32_t sin10(int32_t i, int32_t iAngle);
 
       virtual void map(bool bApplyAlphaTransform = true) const; // some implementations may requrire to map to m_pcolorref before manipulate it
-      virtual void unmap(); // some implementations may require to unmap from m_pcolorref to update *os* bitmap
+      virtual void unmap() const; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
       virtual void set_mapped();
 
 

@@ -26,6 +26,9 @@ void CLASS_DECL_CORE __cdecl _ca2_purecall_()
 
 namespace plugin
 {
+   
+   void copy_colorref(int cxParam,int cyParam,COLORREF * pcolorrefDst,COLORREF * pcolorrefSrc,int iStrideDst = -1, int iStrideSrc = -1);
+
 
    void ms_get_dup_status_callback(void * p, int32_t i, uint_ptr dw);
    void my_se_translator_function(uint32_t, struct _EXCEPTION_POINTERS* );
@@ -258,7 +261,7 @@ namespace plugin
 
    }
 
-   void copy_colorref(int cxParam,int cyParam,COLORREF * pcolorrefDst,COLORREF * pcolorrefSrc,int iStrideDst = -1, int iStrideSrc = -1)
+   void copy_colorref(int cxParam,int cyParam,COLORREF * pcolorrefDst,COLORREF * pcolorrefSrc,int iStrideDst, int iStrideSrc)
    {
 
       if(iStrideDst <= 0)

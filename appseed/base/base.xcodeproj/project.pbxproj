@@ -46,6 +46,7 @@
 		073DBD69192D0A44008EEB76 /* base_static_start.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073DBD62192D0A44008EEB76 /* base_static_start.cpp */; };
 		073DBD6A192D0A44008EEB76 /* base_static_start.h in Headers */ = {isa = PBXBuildFile; fileRef = 073DBD63192D0A44008EEB76 /* base_static_start.h */; };
 		073DBD6E192D356D008EEB76 /* ansios.h in Headers */ = {isa = PBXBuildFile; fileRef = 073DBD6C192D356D008EEB76 /* ansios.h */; };
+		076D09C11A3FC0D0007432B6 /* install_plugin_bare_paint_veri_discreet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D09C01A3FC0D0007432B6 /* install_plugin_bare_paint_veri_discreet.cpp */; };
 		077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A19190F143F00A1F6B0 /* framework.cpp */; };
 		077C2A1E190F144000A1F6B0 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A1A190F144000A1F6B0 /* framework.h */; };
 		07857A091917B82000FFFE51 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07857A081917B82000FFFE51 /* UIKit.framework */; };
@@ -832,6 +833,7 @@
 		073DBD6C192D356D008EEB76 /* ansios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ansios.h; sourceTree = "<group>"; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
+		076D09C01A3FC0D0007432B6 /* install_plugin_bare_paint_veri_discreet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = install_plugin_bare_paint_veri_discreet.cpp; sourceTree = "<group>"; };
 		077C2A19190F143F00A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		077C2A1A190F144000A1F6B0 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		07857A081917B82000FFFE51 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1505,6 +1507,7 @@
 				07B080BC18495B38007A0560 /* install_plugin.h */,
 				07A2247C18F7F6EC002C3B39 /* install_plugin_bare_paint_discreet.cpp */,
 				07A2247D18F7F6EC002C3B39 /* install_plugin_bare_paint_full_screen.cpp */,
+				076D09C01A3FC0D0007432B6 /* install_plugin_bare_paint_veri_discreet.cpp */,
 				07B080BD18495B38007A0560 /* install_resource.h */,
 				07B080BE18495B38007A0560 /* install_small_bell.cpp */,
 				07B080BF18495B38007A0560 /* install_small_bell.h */,
@@ -2820,6 +2823,7 @@
 				07F5B202184A3B430092C3E1 /* fs_item.cpp in Sources */,
 				07B08D6B18495B41007A0560 /* install_install.cpp in Sources */,
 				9A19A0C119C67B6A0018DF7D /* webserver_http_request.cpp in Sources */,
+				076D09C11A3FC0D0007432B6 /* install_plugin_bare_paint_veri_discreet.cpp in Sources */,
 				07B08C4B18495B40007A0560 /* zip_ioapi.cpp in Sources */,
 				07B08C4D18495B40007A0560 /* zip_unzip.cpp in Sources */,
 				07F5B206184A3B430092C3E1 /* fs_native_fs.cpp in Sources */,
@@ -3345,7 +3349,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					BASE_FREEIMAGE,
+					_DEBUG,
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -3403,7 +3410,7 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = BASE_FREEIMAGE;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;

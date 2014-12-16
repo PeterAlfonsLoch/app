@@ -36,7 +36,7 @@ namespace aura
 
 
 
-void __node_aura_factory_exchange(sp(::aura::application) papp)
+void __node_aura_factory_exchange(::aura::application * papp)
 {
    
    ::macos::aura::factory_exchange factoryexchange(papp);

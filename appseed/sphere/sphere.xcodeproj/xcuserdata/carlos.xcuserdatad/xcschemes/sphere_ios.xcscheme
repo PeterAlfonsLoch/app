@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A98A6031771D67E000AE16E"
-               BuildableName = "libbase.dylib"
-               BlueprintName = "base"
-               ReferencedContainer = "container:base.xcodeproj">
+               BlueprintIdentifier = "07B657E1190F3CCB002DAADE"
+               BuildableName = "libsphere_ios.dylib"
+               BlueprintName = "sphere_ios"
+               ReferencedContainer = "container:sphere.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "07B657F0190F3CCC002DAADE"
+               BuildableName = "sphere_iosTests.xctest"
+               BlueprintName = "sphere_iosTests"
+               ReferencedContainer = "container:sphere.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,7 +42,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "07B657F0190F3CCC002DAADE"
+               BuildableName = "sphere_iosTests.xctest"
+               BlueprintName = "sphere_iosTests"
+               ReferencedContainer = "container:sphere.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "07B657E1190F3CCB002DAADE"
+            BuildableName = "libsphere_ios.dylib"
+            BlueprintName = "sphere_ios"
+            ReferencedContainer = "container:sphere.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -42,10 +75,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A98A6031771D67E000AE16E"
-            BuildableName = "libbase.dylib"
-            BlueprintName = "base"
-            ReferencedContainer = "container:base.xcodeproj">
+            BlueprintIdentifier = "07B657E1190F3CCB002DAADE"
+            BuildableName = "libsphere_ios.dylib"
+            BlueprintName = "sphere_ios"
+            ReferencedContainer = "container:sphere.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -60,10 +93,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A98A6031771D67E000AE16E"
-            BuildableName = "libbase.dylib"
-            BlueprintName = "base"
-            ReferencedContainer = "container:base.xcodeproj">
+            BlueprintIdentifier = "07B657E1190F3CCB002DAADE"
+            BuildableName = "libsphere_ios.dylib"
+            BlueprintName = "sphere_ios"
+            ReferencedContainer = "container:sphere.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

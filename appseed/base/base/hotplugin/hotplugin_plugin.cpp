@@ -1105,7 +1105,7 @@ namespace hotplugin
 
 #ifndef METROWIN
 
-#ifndef LINUX
+#if !defined(LINUX) && !defined(APPLEOS)
       if(bEnsureTx || ::IsWindow(::small_ipc_tx_channel::m_oswindow))
 #endif
       {

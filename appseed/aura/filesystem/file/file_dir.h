@@ -19,6 +19,7 @@ public:
    static CLASS_DECL_AURA string afterca2();
    static CLASS_DECL_AURA string module_folder(const char * path = NULL);
    static CLASS_DECL_AURA string path(const char * path1, const char * path2, const char * path3 = NULL, const char * path4 = NULL, const char * path5 = NULL);
+   static CLASS_DECL_AURA bool eat_end_level(string & strPath, int iLevel, const char * lpSeparator = NULL);
    static CLASS_DECL_AURA string name(const char * path1);
    static CLASS_DECL_AURA string appdata(const char * lpcsz);
    static CLASS_DECL_AURA string userappdata(const char * lpcsz);

@@ -51,7 +51,7 @@ namespace fs
 
          sl.unlock();
 
-         m_spafsdata[i]->root_ones(straFsPath,straFsTitle);
+         pdata->root_ones(straFsPath,straFsTitle);
 
          sl.lock();
 

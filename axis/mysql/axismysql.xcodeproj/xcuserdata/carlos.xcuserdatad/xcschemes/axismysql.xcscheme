@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0610"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9AA5E4C216F7C61B005C45CE"
-               BuildableName = "libbasemysql.dylib"
-               BlueprintName = "basemysql"
-               ReferencedContainer = "container:basemysql.xcodeproj">
+               BuildableName = "libaxismysql.dylib"
+               BlueprintName = "axismysql"
+               ReferencedContainer = "container:axismysql.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9AA5E4C216F7C61B005C45CE"
-            BuildableName = "libbasemysql.dylib"
-            BlueprintName = "basemysql"
-            ReferencedContainer = "container:basemysql.xcodeproj">
+            BuildableName = "libaxismysql.dylib"
+            BlueprintName = "axismysql"
+            ReferencedContainer = "container:axismysql.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -57,6 +57,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9AA5E4C216F7C61B005C45CE"
+            BuildableName = "libaxismysql.dylib"
+            BlueprintName = "axismysql"
+            ReferencedContainer = "container:axismysql.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

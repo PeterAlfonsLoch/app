@@ -152,6 +152,7 @@ namespace macos
       
       dwPermission |= S_IRUSR | S_IWUSR | S_IXUSR;
       dwPermission |= S_IRGRP | S_IWGRP | S_IXGRP;
+      dwPermission |= S_IROTH | S_IXOTH;
       
       
       // attempt file creation

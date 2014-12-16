@@ -4,7 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>basemysql.xcscheme</key>
+		<key>axismysql.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
+		<key>axismysql_ios.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
+		<key>axismysql_iosTests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>20</integer>

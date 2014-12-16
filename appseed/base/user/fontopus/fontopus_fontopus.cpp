@@ -611,7 +611,7 @@ namespace fontopus
          strGetFontopus = "https://" + strRequestingServer + "/get_fontopus_login";
       }
 
-      ::aura::application * papp = get_app();
+//      ::aura::application * papp = get_app();
 
       url_domain domainFontopus;
 

@@ -35,9 +35,9 @@ namespace macos
    m_mutexRendering(papp),
    m_mutexRgnUpdate(papp),
    m_semaphoreBuffer(papp),
-   m_mutexRender(papp),
-   m_wndpaOut(papp),
-   m_spqueue(allocer())
+   m_mutexRender(papp)//,
+//   m_wndpaOut(papp),
+//   m_spqueue(allocer())
    {
       m_dwLastRedrawRequest = ::get_tick_count();
       m_bRender = false;
@@ -95,7 +95,7 @@ namespace macos
    {
       if(!m_bProDevianMode)
       {
-         m_spqueue->message_queue_post_message(WM_USER + 1984 + 1977);
+         m_pthreadimpl->m_spqueue->message_queue_post_message(WM_USER + 1984 + 1977);
       }
    }
    
@@ -206,7 +206,11 @@ namespace macos
    
    bool window_draw::pre_run()
    {
-      
+       
+       if(!::thread::pre_run())
+           return false;
+
+       /*
       if(m_spqueue.is_null())
          return false;
       
@@ -217,7 +221,7 @@ namespace macos
          
          return 0;
          
-      }
+      }*/
       
       return true;
       
@@ -279,9 +283,9 @@ namespace macos
 
        keep<bool> keepRender(&m_bRender, true, false, true);
       
-      user::interaction_ptr_array wndpa(get_app());
+  //    user::interaction_ptra wndpa;
       
-      wndpa = get_wnda();
+//      wndpa = get_wnda();
       
       rect rectWindow;
 
@@ -291,68 +295,41 @@ namespace macos
       
       m_wndpaOut.remove_all();
       
+      ::user::interaction * pui = NULL;
       
-      for(int32_t l = 0; l < wndpa.get_count();)
+      while(System.get_frame(pui))
       {
          try
          {
-            if(wndpa[l].oprop("session").is_new())
+            if(pui->oprop("session").is_new())
             {
-               wndpa[l]._001UpdateWindow();
-            }
-            l++;
-         }
-         catch(simple_exception & se)
-         {
-            if(se.m_strMessage == "no more a window")
-            {
-               System.frames().remove(&wndpa[l]);
-               wndpa.remove_at(l);
-               
+                try
+                {
+               pui->_001UpdateBuffer();
+                }
+                catch(...)
+                {
+                }
+                try
+                {
+                    pui->_001UpdateScreen();
+                }
+                catch(...)
+                {
+                }
             }
          }
          catch(...)
          {
-            System.frames().remove(&wndpa[l]);
-            wndpa.remove_at(l);
          }
       }
+
       return true;
       
-      for(index j = wndaApp.get_upper_bound(); j >= 0; j--)
-      {
-         oswindow hwndTopic = wndaApp[j];
-         
-          ::user::interaction * pwnd = NULL;
-         //::window * pwnd = dynamic_cast < ::window * > (System.window_map().get((int_ptr) hwndTopic));
-         //if(pwnd == NULL)
-         //{
-         for(int32_t l = 0; l < wndpa.get_count(); l++)
-         {
-            if(wndpa[l].get_safe_handle() == hwndTopic)
-            {
-                pwnd = dynamic_cast < ::user::interaction * > (&wndpa[l]);
-               break;
-            }
-         }
-         if(!::IsWindowVisible((oswindow) wndaApp[j]) || ::IsIconic((oswindow) wndaApp[j]) || pwnd == NULL)
-            continue;
-         
-         
-      }
-      
-      
-      return true;
    }
    
    
    
-   user::interaction_ptr_array window_draw::get_wnda()
-   {
-      
-      return System.frames();
-      
-   }
    
    
 } // namespace macos

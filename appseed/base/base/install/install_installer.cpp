@@ -1,8 +1,11 @@
 #include "framework.h" // from "base/net/net_sockets.h"
 #include "axis/compress/compress.h"
 
-
+#if defined(WINDOWS) || defined(LINUX)
 #include <omp.h>
+#else
+extern int omp_get_thread_num();
+#endif
 
 
 #ifdef WINDOWS

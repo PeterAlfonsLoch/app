@@ -1289,7 +1289,7 @@ namespace core
 
    void platform::initialize_bergedge_application_interface()
    {
-      int32_t iCount = 32; // todo: get from bergedge profile
+//      int32_t iCount = 32; // todo: get from bergedge profile
       m_pnaturedocument = NULL;
    }
 

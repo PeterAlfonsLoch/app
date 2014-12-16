@@ -104,8 +104,9 @@ namespace user
 
       bool bHasUninstall = varTopicQuey.has_property("uninstall");
 
-      
+      printf("user::initialize bHasInstall %c", bHasInstall);
 
+      printf("user::initialize bHasUninstall %c", bHasUninstall);
 
       if(!::aura::departament::initialize())
          return false;
@@ -407,7 +408,7 @@ namespace user
    {
       if(Application.is_session())
       {
-         sp(::user::interaction) puieFocus = Application.get_focus_guie();
+         ::user::interaction * puieFocus = Application.get_focus_guie();
          if(m_pkeyboardfocus != NULL && puieFocus != NULL)
          {
             if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->GetWindow())

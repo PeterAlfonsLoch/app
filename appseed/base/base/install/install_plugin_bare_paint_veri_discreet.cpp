@@ -17,12 +17,12 @@ namespace hotplugin
 
       }
 
-      static uint32_t s_dwSync = 0;
-      static int32_t s_iDelta = 5000;
+//      static uint32_t s_dwSync = 0;
+  //    static int32_t s_iDelta = 5000;
       RECT rectWindow;
       GetWindowRect(&rectWindow);
-      int32_t cx = rectWindow.right - rectWindow.left;
-      int32_t cy = rectWindow.bottom - rectWindow.top;
+    //  int32_t cx = rectWindow.right - rectWindow.left;
+      //int32_t cy = rectWindow.bottom - rectWindow.top;
       RECT rect = lprect;
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);

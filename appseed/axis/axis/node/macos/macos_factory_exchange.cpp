@@ -35,7 +35,7 @@ namespace macos
 } //   namespace macos
 
 
-void __node_axis_factory_exchange(sp(::aura::application) papp)
+void __node_axis_factory_exchange(::aura::application * papp)
 {
    
    ::macos::axis::factory_exchange factoryexchange(papp);

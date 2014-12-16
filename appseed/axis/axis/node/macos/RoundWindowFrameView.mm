@@ -72,12 +72,16 @@
    
    if(p == NULL)
       return;
+    
+   NSRect e = [m_roundwindow frame];
    
-   NSPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
+   NSPoint point = [event locationInWindow];
    
-   NSRect e = [[NSScreen mainScreen] frame];
+   point.x = point.x + e.origin.x;
+
+   point.y = point.y + e.origin.y;
    
-   int H = (int) e.size.height;
+   int H = (int) [[NSScreen mainScreen] frame].size.height;
    
    int x = point.x;
    
@@ -101,11 +105,15 @@
    if(p == NULL)
       return;
    
-   NSPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
+    NSRect e = [m_roundwindow frame];
+    
+    NSPoint point = [event locationInWindow];
+    
+   point.x = point.x + e.origin.x;
    
-   NSRect e = [[NSScreen mainScreen] frame];
+   point.y = point.y + e.origin.y;
    
-   int H = (int) e.size.height;
+   int H = (int) [[NSScreen mainScreen] frame].size.height;
    
    int x = point.x;
    
@@ -130,11 +138,15 @@
    if(p == NULL)
       return;
    
-   NSPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
+    NSRect e = [m_roundwindow frame];
+    
+    NSPoint point = [event locationInWindow];
+    
+   point.x = point.x + e.origin.x;
    
-   NSRect e = [[NSScreen mainScreen] frame];
+   point.y = point.y + e.origin.y;
    
-   int H = (int) e.size.height;
+   int H = (int) [[NSScreen mainScreen] frame].size.height;
    
    int x = point.x;
    
@@ -165,11 +177,15 @@
    if(p == NULL)
       return;
    
-   NSPoint point = [[self window] convertBaseToScreen:[event locationInWindow]];
+    NSRect e = [m_roundwindow frame];
+    
+    NSPoint point = [event locationInWindow];
+    
+   point.x = point.x + e.origin.x;
    
-   NSRect e = [[NSScreen mainScreen] frame];
+   point.y = point.y + e.origin.y;
    
-   int H = (int) e.size.height;
+   int H = (int) [[NSScreen mainScreen] frame].size.height;
    
    int x = point.x;
    

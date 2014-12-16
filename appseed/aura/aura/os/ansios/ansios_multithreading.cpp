@@ -98,7 +98,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD
       while(true)
       {
 
-         for(i = 0; i < dwSize;)
+         for(i = 0; i < dwSize;i++)
          {
             if(dwTimeout != (DWORD) INFINITE && ::get_tick_count() - start >= dwTimeout)
             {

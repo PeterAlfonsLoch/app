@@ -1627,6 +1627,9 @@ namespace aura
 
       if(is_system())
       {
+         
+         
+         TRACE("\n\n** %s **\n\n", "This command should work.");
 
          if(!update_module_paths())
             return false;

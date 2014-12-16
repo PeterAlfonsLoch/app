@@ -306,6 +306,61 @@ namespace aura
       if(!set_main_init_data(m_pinitmaindata))
          return false;
 
+      
+      if(is_installing() || is_uninstalling())
+      {
+         
+#ifdef MACOS
+         
+/*         if(0 != setuid(0))
+            return false;
+         
+         uid_t uid = getuid();
+         
+         string str("installing or uninstalling as root : getuid() %d", uid);
+         
+         ::dir::mk("/ca2core");
+         
+         file_put_contents_dup("/ca2core/teste.txt", str, str.length());
+         */
+#endif
+         
+#if 0
+         // Create authorization reference
+         OSStatus status;
+         AuthorizationRef authorizationRef;
+         
+         // AuthorizationCreate and pass NULL as the initial
+         // AuthorizationRights set so that the AuthorizationRef gets created
+         // successfully, and then later call AuthorizationCopyRights to
+         // determine or extend the allowable rights.
+         // http://developer.apple.com/qa/qa2001/qa1172.html
+         status = AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment,
+                                      kAuthorizationFlagDefaults, &authorizationRef);
+         if (status != errAuthorizationSuccess)
+         {
+            TRACE("Error Creating Initial Authorization: %d", status);
+            return false;
+         }
+         
+         // kAuthorizationRightExecute == "system.privilege.admin"
+         AuthorizationItem right = {kAuthorizationRightExecute, 0, NULL, 0};
+         AuthorizationRights rights = {1, &right};
+         AuthorizationFlags flags = kAuthorizationFlagDefaults |
+         kAuthorizationFlagInteractionAllowed |
+         kAuthorizationFlagPreAuthorize |
+         kAuthorizationFlagExtendRights;
+         
+         // Call AuthorizationCopyRights to determine or extend the allowable rights.
+         status = AuthorizationCopyRights(authorizationRef, &rights, NULL, flags, NULL);
+         if (status != errAuthorizationSuccess)
+         {
+            TRACE("Copy Rights Unsuccessful: %d", status);
+            return false;
+         }
+#endif  
+      }
+
 
       if(m_pmachineeventcentral == NULL)
       {

@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A98A6031771D67E000AE16E"
-               BuildableName = "libbase.dylib"
-               BlueprintName = "base"
-               ReferencedContainer = "container:base.xcodeproj">
+               BlueprintIdentifier = "9AE24D331904CEFE001AEFFB"
+               BuildableName = "libaura.dylib"
+               BlueprintName = "aura_ios"
+               ReferencedContainer = "container:aura.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9AE24D421904CEFE001AEFFB"
+               BuildableName = "aura_iosTests.xctest"
+               BlueprintName = "aura_iosTests"
+               ReferencedContainer = "container:aura.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,7 +42,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9AE24D421904CEFE001AEFFB"
+               BuildableName = "aura_iosTests.xctest"
+               BlueprintName = "aura_iosTests"
+               ReferencedContainer = "container:aura.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9AE24D331904CEFE001AEFFB"
+            BuildableName = "libaura.dylib"
+            BlueprintName = "aura_ios"
+            ReferencedContainer = "container:aura.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -42,10 +75,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A98A6031771D67E000AE16E"
-            BuildableName = "libbase.dylib"
-            BlueprintName = "base"
-            ReferencedContainer = "container:base.xcodeproj">
+            BlueprintIdentifier = "9AE24D331904CEFE001AEFFB"
+            BuildableName = "libaura.dylib"
+            BlueprintName = "aura_ios"
+            ReferencedContainer = "container:aura.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -60,10 +93,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A98A6031771D67E000AE16E"
-            BuildableName = "libbase.dylib"
-            BlueprintName = "base"
-            ReferencedContainer = "container:base.xcodeproj">
+            BlueprintIdentifier = "9AE24D331904CEFE001AEFFB"
+            BuildableName = "libaura.dylib"
+            BlueprintName = "aura_ios"
+            ReferencedContainer = "container:aura.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

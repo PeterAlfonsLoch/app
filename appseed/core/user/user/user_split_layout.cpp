@@ -221,7 +221,7 @@ namespace user
 
       {
 
-         DWORD dwTime2 = ::get_tick_count();
+//         DWORD dwTime2 = ::get_tick_count();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("usersplitlayout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -313,7 +313,7 @@ namespace user
 
       {
 
-         DWORD dwTime2 = ::get_tick_count();
+//         DWORD dwTime2 = ::get_tick_count();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("usersplitlayout call time5= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -337,7 +337,7 @@ namespace user
          if(pwnd != NULL)
          {
 
-            DWORD dwTime2 = ::get_tick_count();
+//            DWORD dwTime2 = ::get_tick_count();
 
             //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
             //TRACE("usersplitlayout call time6= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(),typeid(*pwnd.m_p->m_uiptraChild[0]).name());
@@ -400,7 +400,7 @@ namespace user
          if(pwnd != NULL)
          {
 
-            DWORD dwTime2 = ::get_tick_count();
+//            DWORD dwTime2 = ::get_tick_count();
 
             //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
             //TRACE("usersplitlayout call time7= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(),typeid(*pwnd.m_p->m_uiptraChild[0]).name());
@@ -427,7 +427,7 @@ namespace user
             pwnd->SetWindowPos(ZORDER_TOP, rectClient, uiFlags);
             {
 
-               DWORD dwTime2 = ::get_tick_count();
+//               DWORD dwTime2 = ::get_tick_count();
 
                //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
                //TRACE("usersplitlayout call time8= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(), typeid(*pwnd.m_p->m_uiptraChild[0]).name());
@@ -440,7 +440,7 @@ namespace user
 
       {
 
-         DWORD dwTime2 = ::get_tick_count();
+//         DWORD dwTime2 = ::get_tick_count();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("usersplitlayout call time9= %d ms",dwTime2 - t_time1.operator DWORD_PTR());

@@ -1383,7 +1383,7 @@ retry:
       if(!psocket->open(bConfigProxy))
       {
          set["get_status"] = (int64_t) status_failed;
-         delete psocket;
+//         delete psocket;
          uint32_t dwTimeProfile2 = get_tick_count();
          TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
          return NULL;
@@ -1479,7 +1479,7 @@ retry:
             uint32_t dwTimeProfile2 = get_tick_count();
             TRACE0("Not Licensed Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
             string strLocation = psocket->outheader("Location");
-            delete psocket;
+//            delete psocket;
             throw not_licensed(get_app(), strCa2Realm, strLocation);
             return NULL;
          }

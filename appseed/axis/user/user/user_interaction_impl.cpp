@@ -2544,6 +2544,19 @@ namespace user
       m_spdib->BitBlt(rectWindow.width(), rectWindow.height(), m_spdibBuffer, 1);
 
       m_spdib->m_bReduced = false;
+      
+      //       ::rect rectClient;
+      
+      //       GetClientRect(rectClient);
+      
+      //       g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
+      
+      //       g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
+      
+      //       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      
+      //       pgraphics->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
+      
 
    }
 

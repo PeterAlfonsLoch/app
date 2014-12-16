@@ -6,14 +6,14 @@ namespace macos
    
    
    class CLASS_DECL_AXIS window_draw :
-      virtual public ::user::window_draw,
-      virtual public ::aura::message_queue_listener
+      virtual public ::user::window_draw//,
+//      virtual public ::aura::message_queue_listener
    {
    public:
       
       
-      ::aura::message_queue_sp               m_spqueue;
-      user::interaction_ptr_array            m_wndpaOut;
+//      ::aura::message_queue_sp               m_spqueue;
+      user::interaction_ptra                 m_wndpaOut;
       mutex                                  m_mutexRendering;
       mutex                                  m_mutexRgnUpdate;
       semaphore                              m_semaphoreBuffer;
@@ -30,7 +30,7 @@ namespace macos
       bool UpdateBuffer(LPCRECT lpcrect);
       virtual bool UpdateBuffer();
       
-      user::interaction_ptr_array get_wnda();
+//      user::interaction_ptra get_wnda();
       
       virtual int32_t run();
       

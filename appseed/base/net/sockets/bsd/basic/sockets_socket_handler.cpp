@@ -350,7 +350,7 @@ namespace sockets
             {
                //TRACE("tmout sckt(%d):\"%s\"", ppair->m_element1, ppair->m_element2->oprop("meta_info").get_string());
 
-               SOCKET s = ppair->m_element1;
+//               SOCKET s = ppair->m_element1;
 
                sp(class socket) psocket = ppair->m_element2;
 

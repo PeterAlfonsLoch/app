@@ -374,6 +374,8 @@ bool FileSystemSizeWnd::CreateServer()
 #else
 
    ::exception::throw_not_implemented(get_app());
+   
+   return false;
 
 #endif
 
@@ -423,6 +425,8 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
 #else
 
    ::exception::throw_not_implemented(get_app());
+   
+   return false;
 
 #endif
 

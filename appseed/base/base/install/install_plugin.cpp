@@ -453,7 +453,7 @@ namespace install
          m_bNativeLaunchFail = false;
 
       }
-      else if(dwExitCode >= 0)
+      else if((int) dwExitCode >= 0)
       {
          
          //  ::simple_message_box(NULL,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);

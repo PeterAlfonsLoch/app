@@ -163,7 +163,7 @@ namespace visual
        byte * p1;
        byte * p2;
       int32_t wm = w - 1;
-      int32_t hm = h - 1;
+//      int32_t hm = h - 1;
       int32_t wr = MIN(w,cx) - 1 - radius;
       int32_t hr = MIN(h,cy) - 1 - radius;
       //   int32_t div        = radius + radius + 1;

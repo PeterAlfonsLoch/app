@@ -48,39 +48,7 @@ namespace file
    bool system::path::eat_end_level(string & str, int32_t iLevelCount, const char * lpSeparator)
    {
 
-      strsize iLast = str.length() - 1;
-
-      if(iLast < 0)
-         return iLevelCount <= 0;
-
-      while(str[iLast] == '/' || str[iLast] == '\\')
-         iLast--;
-
-      for(int32_t i = 0; i < iLevelCount; i++)
-      {
-
-         strsize iFind1 = str.reverse_find('/', iLast);
-
-         strsize iFind2 = str.reverse_find('\\', iLast);
-
-         strsize iFind = MAX(iFind1, iFind2);
-
-         if(iFind >= iLast)
-            return false;
-
-         if(iFind < 0)
-            return false;
-
-         iLast = iFind;
-
-         while(str[iLast] == '/' || str[iLast] == '\\')
-            iLast--;
-
-      }
-
-      str.Truncate(iLast + 1);
-
-      return true;
+      return ::dir::eat_end_level(str, iLevelCount, lpSeparator);
 
    }
 
@@ -643,8 +611,19 @@ restart:
    {
 
       ::file::binary_buffer_sp spfile;
+      
+      try
+      {
 
-      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+         
+      }
+      catch(...)
+      {
+         
+         return false;
+         
+      }
 
       if(spfile.is_null())
          return false;

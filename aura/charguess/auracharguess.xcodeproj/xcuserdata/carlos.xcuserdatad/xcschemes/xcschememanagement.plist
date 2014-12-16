@@ -4,12 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FreeImage.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
-		</dict>
-		<key>_ca2freeimage.xcscheme</key>
+		<key>auracharguess.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>23</integer>

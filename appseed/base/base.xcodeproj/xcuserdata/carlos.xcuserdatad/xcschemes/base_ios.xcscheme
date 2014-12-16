@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A98A6031771D67E000AE16E"
+               BlueprintIdentifier = "9AE24D331904CEFE001AEFFB"
                BuildableName = "libbase.dylib"
-               BlueprintName = "base"
+               BlueprintName = "base_ios"
+               ReferencedContainer = "container:base.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9AE24D421904CEFE001AEFFB"
+               BuildableName = "base_iosTests.xctest"
+               BlueprintName = "base_iosTests"
                ReferencedContainer = "container:base.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,7 +42,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9AE24D421904CEFE001AEFFB"
+               BuildableName = "base_iosTests.xctest"
+               BlueprintName = "base_iosTests"
+               ReferencedContainer = "container:base.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9AE24D331904CEFE001AEFFB"
+            BuildableName = "libbase.dylib"
+            BlueprintName = "base_ios"
+            ReferencedContainer = "container:base.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -42,9 +75,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A98A6031771D67E000AE16E"
+            BlueprintIdentifier = "9AE24D331904CEFE001AEFFB"
             BuildableName = "libbase.dylib"
-            BlueprintName = "base"
+            BlueprintName = "base_ios"
             ReferencedContainer = "container:base.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,9 +93,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A98A6031771D67E000AE16E"
+            BlueprintIdentifier = "9AE24D331904CEFE001AEFFB"
             BuildableName = "libbase.dylib"
-            BlueprintName = "base"
+            BlueprintName = "base_ios"
             ReferencedContainer = "container:base.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

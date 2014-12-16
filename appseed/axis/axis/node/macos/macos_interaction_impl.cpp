@@ -50,12 +50,12 @@ WINBOOL GetMessage(
 namespace macos
 {
 
-   void interaction_impl::mouse_hover_add(sp(::user::interaction) pinterface)
+   void interaction_impl::mouse_hover_add(::user::interaction *  pinterface)
    {
       m_guieptraMouseHover.add_unique(pinterface);
    }
 
-   void interaction_impl::mouse_hover_remove(sp(::user::interaction) pinterface)
+   void interaction_impl::mouse_hover_remove(::user::interaction *  pinterface)
    {
       m_guieptraMouseHover.remove(pinterface);
    }
@@ -112,7 +112,7 @@ namespace macos
 
 
 
-    sp(::user::interaction) interaction_impl::from_os_data(void * pdata)
+    ::user::interaction *  interaction_impl::from_os_data(void * pdata)
     {
 
         return from_handle((oswindow) pdata);
@@ -286,7 +286,7 @@ namespace macos
 
    bool interaction_impl::create_window_ex(DWORD dwExStyle, const char * lpszClassName,
                          const char * lpszWindowName, DWORD dwStyle,
-                         const RECT& rect, sp(::user::interaction) pParentWnd, id id,
+                         const RECT& rect, ::user::interaction *  pParentWnd, id id,
                          LPVOID lpParam /* = NULL */)
    {
 
@@ -496,7 +496,7 @@ namespace macos
    bool interaction_impl::create_window(const char * lpszClassName,
                        const char * lpszWindowName, DWORD dwStyle,
                        const RECT& rect,
-                       sp(::user::interaction) pParentWnd, id id,
+                       ::user::interaction *  pParentWnd, id id,
                        ::create_context * pContext)
    {
       // can't use for desktop or pop-up windows (use CreateEx instead)
@@ -745,7 +745,7 @@ namespace macos
        (p = pMap->lookup_temporary(get_handle())) != NULL);
        }*/
 
-      //ASSERT(dynamic_cast < sp(::user::interaction) > (p) == this);   // must be us
+      //ASSERT(dynamic_cast < ::user::interaction *  > (p) == this);   // must be us
 
       // Note: if either of the above asserts fire and you are
       // writing a multithreaded application, it is likely that
@@ -1304,9 +1304,9 @@ namespace macos
       restart_mouse_hover_check:
          for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
          {
-            if(!m_guieptraMouseHover[i]._001IsPointInside(pmouse->m_pt))
+            if(!m_guieptraMouseHover[i]->_001IsPointInside(pmouse->m_pt))
             {
-               ::user::interaction * pui = &m_guieptraMouseHover[i];
+               ::user::interaction * pui = m_guieptraMouseHover[i];
                //               pui->send_message(WM_MOUSELEAVE);
                m_guieptraMouseHover.remove(pui);
                goto restart_mouse_hover_check;
@@ -1348,8 +1348,8 @@ namespace macos
             }
          }
          user::oswindow_array hwnda;
-         user::interaction_ptr_array wnda(get_app());
-         wnda = System.frames();
+         user::interaction_ptra wnda;
+         wnda = System.m_uiptraFrame;
          hwnda = wnda.get_hwnda();
          user::window_util::SortByZOrder(hwnda);
          for(int32_t i = 0; i < hwnda.get_size(); i++)
@@ -1396,7 +1396,7 @@ namespace macos
          }
          */
 
-         ::user::interaction * puiFocus = dynamic_cast < ::user::interaction * > (Session.user()->get_keyboard_focus().m_p);
+         ::user::interaction * puiFocus = dynamic_cast < ::user::interaction * > (Session.user()->get_keyboard_focus());
          if(puiFocus != NULL
             && puiFocus->IsWindow()
             && puiFocus->GetTopLevel() != NULL)
@@ -1998,7 +1998,7 @@ namespace macos
 
    /*
 
-   sp(::user::interaction) interaction_impl::GetTopLevel() const
+   ::user::interaction *  interaction_impl::GetTopLevel() const
    {
       if (get_handle() == NULL) // no oswindow attached
          return NULL;
@@ -2016,7 +2016,7 @@ namespace macos
    }
 
 
-   sp(::user::interaction) interaction_impl::GetTopLevelOwner()
+   ::user::interaction *  interaction_impl::GetTopLevelOwner()
    {
       if (get_handle() == NULL) // no oswindow attached
          return NULL;
@@ -2032,7 +2032,7 @@ namespace macos
       return NULL;
    }
 
-   sp(::user::interaction) interaction_impl::GetParentOwner()
+   ::user::interaction *  interaction_impl::GetParentOwner()
    {
       if (get_handle() == NULL) // no oswindow attached
          return NULL;
@@ -2122,7 +2122,7 @@ namespace macos
    }
 
 
-   sp(::user::interaction) PASCAL interaction_impl::GetDescendantWindow(sp(::user::interaction) hWnd, id id)
+   ::user::interaction *  PASCAL interaction_impl::GetDescendantWindow(::user::interaction *  hWnd, id id)
    {
       single_lock sl(hWnd->m_pauraapp->m_pmutex, TRUE);
       // GetDlgItem recursive (return first found)
@@ -2651,7 +2651,7 @@ namespace macos
       return false;
    }
 
-   void interaction_impl::WalkPreTranslateTree(sp(::user::interaction) puiStop, signal_details * pobj)
+   void interaction_impl::WalkPreTranslateTree(::user::interaction *  puiStop, signal_details * pobj)
    {
       ASSERT(puiStop == NULL || puiStop->IsWindow());
       ASSERT(pobj != NULL);
@@ -3436,7 +3436,7 @@ namespace macos
    /////////////////////////////////////////////////////////////////////////////
    // Centering dialog support (works for any non-child user::interaction)
 
-   void interaction_impl::CenterWindow(sp(::user::interaction) pAlternateOwner)
+   void interaction_impl::CenterWindow(::user::interaction *  pAlternateOwner)
    {
       throw not_implemented(get_app());
    }
@@ -3691,10 +3691,10 @@ namespace macos
 
 
 
-   bool interaction_impl::IsChild(sp(::user::interaction) pWnd)
+   bool interaction_impl::IsChild(::user::interaction *  pWnd)
    {
       ASSERT(::IsWindow(get_handle()));
-      if(MAC_WINDOW(pWnd.m_p)->get_handle() == NULL)
+      if(MAC_WINDOW(pWnd)->get_handle() == NULL)
       {
          return ::user::interaction_impl::IsChild(pWnd);
       }
@@ -4145,7 +4145,7 @@ namespace macos
    }
 
 
-   sp(::user::interaction) interaction_impl::ReleaseCapture()
+   ::user::interaction *  interaction_impl::ReleaseCapture()
    {
             oswindow hwndCapture = ::GetCapture();
             if(hwndCapture == NULL)
@@ -4169,7 +4169,7 @@ namespace macos
             }
    }
 
-   sp(::user::interaction) interaction_impl::GetCapture()
+   ::user::interaction *  interaction_impl::GetCapture()
    {
             oswindow hwndCapture = ::GetCapture();
             if(hwndCapture == NULL)
@@ -4195,7 +4195,7 @@ namespace macos
                   }
                   else
                   {
-                     return this;
+                     return NULL;
                   }
                }
             }
@@ -4231,7 +4231,7 @@ namespace macos
       return ModifyStyleEx(get_handle(), dwRemove, dwAdd, nFlags);
    }
 
-   sp(::user::interaction) interaction_impl::SetOwner(sp(::user::interaction) pOwnerWnd)
+   ::user::interaction *  interaction_impl::SetOwner(::user::interaction *  pOwnerWnd)
    {
 //      m_puiOwner = pOwnerWnd;
       return NULL;
@@ -4363,7 +4363,7 @@ namespace macos
    }
 
 
-   sp(::user::interaction) interaction_impl::EnsureTopLevelParent()
+   ::user::interaction *  interaction_impl::EnsureTopLevelParent()
    {
 
       ::user::interaction * pWnd = GetTopLevelParent();
@@ -4602,7 +4602,7 @@ namespace macos
 
       // walk through oswindows to avoid creating temporary user::interaction objects
       // unless we need to call this function recursively
-      user::interaction * pui = m_pui->get_top_child();
+      user::interaction * pui = m_pui->top_child();
       while(pui != NULL)
       {
          try
@@ -4634,7 +4634,7 @@ namespace macos
       }
    }
 
-   sp(::user::interaction) interaction_impl::GetDescendantWindow(id id)
+   ::user::interaction *  interaction_impl::GetDescendantWindow(id id)
    {
 //      ASSERT(::IsWindow(get_handle()));
   //    return interaction_impl::GetDescendantWindow(this, id);
@@ -4781,14 +4781,14 @@ namespace macos
 
    }
 
-   sp(::user::interaction) interaction_impl::GetActiveWindow()
+   ::user::interaction *  interaction_impl::GetActiveWindow()
    {
 
       return ::macos::interaction_impl::from_handle(::GetActiveWindow());
 
    }
 
-   sp(::user::interaction) interaction_impl::SetActiveWindow()
+   ::user::interaction *  interaction_impl::SetActiveWindow()
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4799,7 +4799,7 @@ namespace macos
 
 
 
-   sp(::user::interaction) interaction_impl::SetCapture(sp(::user::interaction) pinterface)
+   ::user::interaction *  interaction_impl::SetCapture(::user::interaction *  pinterface)
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -4812,7 +4812,7 @@ namespace macos
    }
 
 
-   sp(::user::interaction) interaction_impl::GetFocus()
+   ::user::interaction *  interaction_impl::GetFocus()
    {
 
       return ::macos::interaction_impl::from_handle(::GetFocus());
@@ -4820,7 +4820,7 @@ namespace macos
    }
 
 
-   sp(::user::interaction) interaction_impl::SetFocus()
+   ::user::interaction *  interaction_impl::SetFocus()
    {
 
       if(!::IsWindow(get_handle()))
@@ -4831,7 +4831,7 @@ namespace macos
    }
 
 
-   sp(::user::interaction) interaction_impl::GetDesktopWindow()
+   ::user::interaction *  interaction_impl::GetDesktopWindow()
    {
 
       return NULL;
@@ -5005,7 +5005,7 @@ namespace macos
 
    }
 
-   sp(::user::interaction) interaction_impl::ChildWindowFromPoint(POINT point)
+   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT point)
    {
 
 
@@ -5015,7 +5015,7 @@ namespace macos
 
    }
 
-   sp(::user::interaction) interaction_impl::ChildWindowFromPoint(POINT point, UINT nFlags)
+   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT point, UINT nFlags)
    {
 
       throw not_implemented(get_app());
@@ -5041,14 +5041,14 @@ namespace macos
 
    }
 
-   sp(::user::interaction) interaction_impl::GetNextWindow(UINT nFlag)
+   ::user::interaction *  interaction_impl::GetNextWindow(UINT nFlag)
    {
 
       return NULL;
 
    }
 
-   sp(::user::interaction) interaction_impl::GetTopWindow()
+   ::user::interaction *  interaction_impl::GetTopWindow()
    {
 
       if(m_pui->m_uiptraChild.get_size() <= 0)
@@ -5058,7 +5058,7 @@ namespace macos
 
    }
 
-   sp(::user::interaction) interaction_impl::GetWindow(UINT nCmd)
+   ::user::interaction *  interaction_impl::GetWindow(UINT nCmd)
    {
 
       ASSERT(::IsWindow(get_handle()));
@@ -5067,7 +5067,7 @@ namespace macos
 
    }
 
-   sp(::user::interaction) interaction_impl::GetLastActivePopup()
+   ::user::interaction *  interaction_impl::GetLastActivePopup()
    {
 
 
@@ -5706,23 +5706,33 @@ namespace macos
 
          update_graphics_resources();
 
-         _001UpdateWindow();
+//         _001UpdateWindow();
 
       }
 
 //      single_lock sl(mutex_display(), true);
 
-      if(m_spdibFlip.is_null())
+      if(m_spdib.is_null())
          return;
 
-      if(m_spdibFlip->get_data() == NULL)
+      if(m_spdib->get_data() == NULL)
          return;
 
       ::draw2d::graphics_sp g(allocer());
 
       g->attach(cgc);
 
-      g->BitBlt(0, 0, m_spdibFlip->m_size.cx, m_spdibFlip->m_size.cy, m_spdibFlip->get_graphics(), 0, 0, SRCCOPY);
+      //       ::rect rectClient;
+      
+      //       GetClientRect(rectClient);
+
+      //       g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
+      
+      g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
+      
+      //       g->set_alpha_mode(::draw2d::alpha_mode_blend);
+      
+      //       g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
 
    }
 
@@ -6104,8 +6114,10 @@ namespace macos
    void interaction_impl::_001UpdateWindow()
    {
 
-      ::user::interaction_impl::_001UpdateWindow();
+      ::user::interaction_impl::_001UpdateBuffer();
 
+       ::user::interaction_impl::_001UpdateScreen();
+       
       if(!m_pui->m_bMayProDevian)
       {
          round_window_redraw();

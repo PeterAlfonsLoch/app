@@ -6,7 +6,40 @@
 #include <sys/sem.h>
 #include <pthread.h>
 #include <sys/time.h>
+
+
+
+#include <time.h>
+#include <sys/time.h>
+
+#ifdef __MACH__
+#include <mach/clock.h>
+#include <mach/mach.h>
 #endif
+
+void clock_getrealtime(struct timespec * pts)
+{
+    
+#ifdef __MACH__ // OS X does not have clock_gettime, use clock_get_time
+    
+    clock_serv_t cclock;
+    mach_timespec_t mts;
+    host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
+    clock_get_time(cclock, &mts);
+    mach_port_deallocate(mach_task_self(), cclock);
+    pts->tv_sec = mts.tv_sec;
+    pts->tv_nsec = mts.tv_nsec;
+    
+#else
+    
+    clock_gettime(CLOCK_REALTIME, pts);
+    
+#endif
+    
+}
+
+#endif
+
 
 
 event::event(::aura::application * papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
@@ -415,7 +448,9 @@ wait_result event::wait (const duration & durationTimeout)
 
       int iSignal = m_iSignalId;
 
-      clock_gettime(CLOCK_REALTIME, &abstime);
+      //clock_gettime(CLOCK_REALTIME, &abstime);
+
+      clock_getrealtime(&abstime);
 
       abstime.tv_sec += durationTimeout.m_iSeconds;
 

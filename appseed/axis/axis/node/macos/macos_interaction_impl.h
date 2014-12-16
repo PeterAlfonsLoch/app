@@ -10,7 +10,7 @@ namespace macos
    
     CLASS_DECL_AXIS LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
     CLASS_DECL_AXIS LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
-    CLASS_DECL_AXIS LRESULT __call_window_procedure(sp(::user::interaction)  pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+    CLASS_DECL_AXIS LRESULT __call_window_procedure(::user::interaction *   pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
    
    
     class CLASS_DECL_AXIS interaction_impl :
@@ -23,7 +23,7 @@ namespace macos
         spa(::user::interaction)        m_guieptraMouseHover;
         string                          m_strWindowText;
         ::user::interaction_base *      m_pbasewnd;
-        sp(::user::interaction)         m_pguieCapture;
+        ::user::interaction *          m_pguieCapture;
         bool                            m_bNeedsUpdate;
       
         
@@ -35,8 +35,8 @@ namespace macos
         virtual void construct(oswindow hwnd);
         
       
-        virtual void mouse_hover_add(sp(::user::interaction)  pinterface);
-        virtual void mouse_hover_remove(sp(::user::interaction)  pinterface);
+        virtual void mouse_hover_add(::user::interaction *   pinterface);
+        virtual void mouse_hover_remove(::user::interaction *   pinterface);
       
         virtual bool create_message_queue(const char * pszName);
       
@@ -52,8 +52,8 @@ namespace macos
         bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
         bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
       
-        //virtual sp(::user::interaction)  GetOwner();
-        virtual sp(::user::interaction) SetOwner(sp(::user::interaction)  pOwnerWnd);
+        //virtual ::user::interaction *   GetOwner();
+        virtual ::user::interaction *  SetOwner(::user::interaction *   pOwnerWnd);
       
         virtual ::user::interaction * get_wnd() const;
       
@@ -77,7 +77,7 @@ namespace macos
       
 #endif   // WINVER >= 0x0500
       
-        virtual sp(::user::interaction) from_os_data(void * pdata);
+        virtual ::user::interaction * from_os_data(void * pdata);
         virtual void * get_os_data() const;
       
         static ::user::interaction * from_handle(oswindow hWnd);
@@ -101,14 +101,14 @@ namespace macos
       virtual bool create_window(const char * lpszClassName,
                           const char * lpszWindowName, DWORD dwStyle,
                           const RECT& rect,
-                          sp(::user::interaction)  pParentWnd, id id,
+                          ::user::interaction *   pParentWnd, id id,
                           ::create_context * pContext = NULL);
       
       // advanced creation (allows access to extended styles)
       virtual bool create_window_ex(DWORD dwExStyle = 0, const char * lpszClassName=0,
                             const char * lpszWindowName= 0, DWORD dwStyle= 0,
                             const RECT& rect= null_rect(),
-                                    sp(::user::interaction)  pParentWnd=NULL, id id=::id(),
+                                    ::user::interaction *   pParentWnd=NULL, id id=::id(),
                             LPVOID lpParam = NULL);
        
        virtual bool native_create_window_ex(DWORD dwExStyle= 0, const char * lpszClassName= NULL,
@@ -132,7 +132,7 @@ namespace macos
       void get_child_by_id(id id, oswindow* phWnd) const;
       // as above, but returns oswindow
       using ::user::interaction_impl::GetDescendantWindow;
-      sp(::user::interaction) GetDescendantWindow(id id);
+      ::user::interaction *  GetDescendantWindow(id id);
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0,
                                     lparam lParam = NULL, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
@@ -283,8 +283,8 @@ namespace macos
         virtual bool IsWindowEnabled();
         virtual bool EnableWindow(bool bEnable = TRUE);
       
-       virtual sp(::user::interaction) GetActiveWindow();
-       virtual sp(::user::interaction) SetActiveWindow();
+       virtual ::user::interaction *  GetActiveWindow();
+       virtual ::user::interaction *  SetActiveWindow();
       
        virtual bool SetForegroundWindow();
        static ::user::interaction * PASCAL GetForegroundWindow();
@@ -294,13 +294,13 @@ namespace macos
       
       
       
-       virtual sp(::user::interaction) GetCapture();
-       virtual sp(::user::interaction) SetCapture(sp(::user::interaction)  pinterface = NULL);
-       virtual sp(::user::interaction) ReleaseCapture();
-       virtual sp(::user::interaction) GetFocus();
-       virtual sp(::user::interaction) SetFocus();
+       virtual ::user::interaction *  GetCapture();
+       virtual ::user::interaction *  SetCapture(::user::interaction *   pinterface = NULL);
+       virtual ::user::interaction *  ReleaseCapture();
+       virtual ::user::interaction *  GetFocus();
+       virtual ::user::interaction *  SetFocus();
       
-       virtual sp(::user::interaction) GetDesktopWindow();
+       virtual ::user::interaction *  GetDesktopWindow();
       
        virtual void CloseWindow();
        virtual bool OpenIcon();
@@ -354,18 +354,18 @@ namespace macos
 #endif   // WINVER >= 0x0500
       
       // oswindow Access Functions
-      virtual sp(::user::interaction) ChildWindowFromPoint(POINT point);
-      virtual sp(::user::interaction) ChildWindowFromPoint(POINT point, UINT nFlags);
+      virtual ::user::interaction *  ChildWindowFromPoint(POINT point);
+      virtual ::user::interaction *  ChildWindowFromPoint(POINT point, UINT nFlags);
         static ::user::interaction * PASCAL FindWindow(const char * lpszClassName, const char * lpszWindowName);
         static ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
       
-      virtual sp(::user::interaction) GetNextWindow(UINT nFlag = GW_HWNDNEXT);
-      virtual sp(::user::interaction) GetTopWindow();
+      virtual ::user::interaction *  GetNextWindow(UINT nFlag = GW_HWNDNEXT);
+      virtual ::user::interaction *  GetTopWindow();
       
-      virtual sp(::user::interaction) GetWindow(UINT nCmd);
-      virtual sp(::user::interaction) GetLastActivePopup();
+      virtual ::user::interaction *  GetWindow(UINT nCmd);
+      virtual ::user::interaction *  GetLastActivePopup();
       
-      virtual bool IsChild(sp(::user::interaction)   pWnd);
+      virtual bool IsChild(::user::interaction *    pWnd);
       virtual ::user::interaction * get_parent() const;
       using ::user::interaction_impl::set_parent;
       ::user::interaction * set_parent(::user::interaction * pWndNewParent);
@@ -438,7 +438,7 @@ namespace macos
       
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
-      void CenterWindow(sp(::user::interaction)  pAlternateOwner = NULL);
+      void CenterWindow(::user::interaction *   pAlternateOwner = NULL);
       
       // oswindow-Management message handler member functions
       virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
@@ -629,8 +629,8 @@ namespace macos
       bool HandleFloatingSysCommand(UINT nID, LPARAM lParam);
       bool IsTopParentActive();
       void ActivateTopParent();
-      virtual void WalkPreTranslateTree(sp(::user::interaction)  puiStop, signal_details * pobj);
-      static sp(::user::interaction)  PASCAL GetDescendantWindow(sp(::user::interaction)  hWnd, id id);
+      virtual void WalkPreTranslateTree(::user::interaction *   puiStop, signal_details * pobj);
+      static ::user::interaction *   PASCAL GetDescendantWindow(::user::interaction *   hWnd, id id);
       static void PASCAL SendMessageToDescendants(void*  hWnd, UINT message, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm);
       virtual bool IsFrameWnd(); // is_kind_of(System.type_info < frame_window > ()))
       virtual void on_final_release();
@@ -660,7 +660,7 @@ namespace macos
       // implementation of message dispatch/hooking
       CLASS_DECL_AXIS friend LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
       CLASS_DECL_AXIS friend LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
-      CLASS_DECL_AXIS friend LRESULT __call_window_procedure(sp(::user::interaction)  pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+      CLASS_DECL_AXIS friend LRESULT __call_window_procedure(::user::interaction *   pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
       
       // standard message implementation
       LRESULT OnNTCtlColor(WPARAM wParam, LPARAM lParam);

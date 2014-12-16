@@ -492,13 +492,13 @@ string ca2_module_folder_dup()
 
       free(pszCurDir);
 
-      if(file_exists_dup(::dir::path(strCurDir, "libca2.dylib")))
+      if(file_exists_dup(::dir::path(strCurDir, "libbase.dylib")))
       {
          return strCurDir;
       }
 
 
-      str = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libca2.dylib", "rfs")); // readable - normal file - non zero sized
+      str = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libbase.dylib", "rfs")); // readable - normal file - non zero sized
 
    }
 
@@ -667,6 +667,46 @@ string dir::module_folder(const char * path1)
    return dir::path("/core/stage", path1);
 
 #endif
+
+}
+
+
+CLASS_DECL_AURA bool dir::eat_end_level(string & str, int iLevelCount, const char * lpSeparator)
+{
+
+strsize iLast = str.length() - 1;
+
+if(iLast < 0)
+   return iLevelCount <= 0;
+
+while(str[iLast] == '/' || str[iLast] == '\\')
+iLast--;
+
+for(int32_t i = 0; i < iLevelCount; i++)
+{
+   
+   strsize iFind1 = str.reverse_find('/', iLast);
+   
+   strsize iFind2 = str.reverse_find('\\', iLast);
+   
+   strsize iFind = MAX(iFind1, iFind2);
+   
+   if(iFind >= iLast)
+      return false;
+   
+   if(iFind < 0)
+      return false;
+   
+   iLast = iFind;
+   
+   while(str[iLast] == '/' || str[iLast] == '\\')
+      iLast--;
+   
+}
+
+str.Truncate(iLast + 1);
+
+return true;
 
 }
 

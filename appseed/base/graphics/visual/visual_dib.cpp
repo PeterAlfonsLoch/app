@@ -8,7 +8,7 @@
 #undef min
 #undef max
 int GetEncoderClsid(const WCHAR* format,CLSID* pClsid);
-#elif defined(LINUX)
+#elif defined(LINUX) || defined(APPLEOS)
 #include "freeimage/Source/FreeImage.h"
 #endif
 #endif

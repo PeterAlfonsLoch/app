@@ -96,7 +96,7 @@ namespace user
             sp(::user::interaction) puieCapture = System.get_capture_uie();
 
 
-            DWORD dwTime1 = ::get_tick_count();
+//            DWORD dwTime1 = ::get_tick_count();
 
             if(pmouse->m_uiMessage == WM_MOUSEMOVE)
             {
