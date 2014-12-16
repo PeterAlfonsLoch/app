@@ -305,6 +305,28 @@ namespace ansios
    {
       
 #if defined(MACOS)
+      
+      
+      string strFallback = ::ca2_module_folder_dup();
+      
+      string strCurrent = getenv("DYLD_FALLBACK_LIBRARY_PATH");
+      
+      if(strCurrent == strFallback || ::str::ends(strCurrent, ":" + strFallback) || str::begins(strCurrent, strFallback + ":") || strCurrent.contains(":"+strFallback +":"))
+      {
+         
+         strFallback = strCurrent;
+         
+      }
+      else if(strCurrent.has_char())
+      {
+         
+         strFallback += ":" + strCurrent;
+         
+      }
+      
+      setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, TRUE);
+
+      
       // Create authorization reference
       OSStatus status;
       AuthorizationRef authorizationRef;
@@ -331,22 +353,6 @@ namespace ansios
       kAuthorizationFlagExtendRights;
       
       
-      string strFallback = ::ca2_module_folder_dup();
-      
-      string strCurrent = getenv("DYLD_FALLBACK_LIBRARY_PATH");
-      
-      //    setenv("DYLD_FALLBACK_LIBRARY_PATH",, 1 );
-      
-      //::dir::eat_end_level(strFallback, 3);
-      
-      if(strCurrent.has_char())
-      {
-         
-         strFallback += ":" + strCurrent;
-         
-      }
-      
-      setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, TRUE);
 
       // Call AuthorizationCopyRights to determine or extend the allowable rights.
       status = AuthorizationCopyRights(authorizationRef, &rights, NULL, flags, NULL);
@@ -363,11 +369,21 @@ namespace ansios
       
       ptr_array < char > argv;
 
-      straParam.explode_command_line(pszCmdLineParam, &argv);
+      straParam.add("-c");
+      
+      straParam.add("\"export DYLD_FALLBACK_LIBRARY_PATH="+strFallback+"; "+string(pszCmdLineParam)+";\"");
+      
+      
+      for(index i = 0; i < straParam.get_count(); i++)
+      {
+         
+         argv.add((char *)(const char *)straParam[i]);
+         
+      }
 
       
-      char *tool = argv[0];
-      char **args = (char **) &argv.get_data()[1];
+      char *tool = (char * )"/bin/bash";
+      char **args = (char **) argv.get_data();
       FILE *pipe = NULL;
       
 //      int uid = getuid();
