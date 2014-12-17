@@ -1213,21 +1213,30 @@ namespace aura
          string strCurDir = pszCurDir;
 
          free(pszCurDir);
+         
+         strModuleFileName = Application.dir_path(strCurDir,"libbase.dylib");
 
-         if(Application.file_exists(Application.dir_path(strCurDir,"core.dylib")))
+         if(Application.file_exists(strModuleFileName))
          {
-            m_strCa2ModuleFolder = strCurDir;
+//            m_strCa2ModuleFolder = strCurDir;
             goto finishedCa2Module;
          }
 
+         strModuleFileName = Application.dir_path(m_strModuleFolder,"libbase.dylib");
 
-         if(Application.file_exists(Application.dir_path(m_strModuleFolder,"core.dylib")))
+         if(Application.file_exists(strModuleFileName))
          {
-            m_strCa2ModuleFolder = m_strModuleFolder;
+//            m_strCa2ModuleFolder = m_strModuleFolder;
             goto finishedCa2Module;
          }
 
-         strModuleFileName = Application.dir_pathfind(getenv("LD_LIBRARY_PATH"),"core.dylib","rfs"); // readable - normal file - non zero sized
+         strModuleFileName = Application.dir_pathfind(getenv("LD_LIBRARY_PATH"),"libbase.dylib","rfs"); // readable - normal file - non zero sized
+
+         if(Application.file_exists(strModuleFileName))
+         {
+//            m_strCa2ModuleFolder = Application.dir_name(strModuleFileName);
+            goto finishedCa2Module;
+         }
 
       }
 

@@ -1227,14 +1227,14 @@ namespace macos
    
    string dir::appdata(const char * lpcsz, const char * lpcsz2)
    {
-      string str;
+//      string str;
       /*SHGetSpecialFolderPath(
        NULL,
        str,
        CSIDL_COMMON_APPDATA,
        FALSE);*/
       
-      str = path(getenv("HOME"), ".ca2/appdata");
+      string str = path(getenv("HOME"), ".ca2/appdata");
       string strRelative;
       strRelative = element();
       //index iFind = strRelative.find(':');
@@ -1258,10 +1258,15 @@ namespace macos
        CSIDL_COMMON_APPDATA,
        FALSE);*/
       
-      str = path(getenv("HOME"), "commmonappdata");
+      str = ::dir::name(System.m_strModuleFolder);
+      
+      ::dir::eat_end_level(str, 2, "");
+
+      //str = path(getenv("HOME"), "commmonappdata");
 //      str = "/var/lib";
-      string strRelative;
-      strRelative = element();
+//      string strRelative;
+  //    strRelative = element();
+      
       //index iFind = strRelative.find(':');
       //if(iFind >= 0)
       {
@@ -1271,7 +1276,7 @@ namespace macos
          
          //strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
       }
-      return path(path(str, "ca2", strRelative), lpcsz, lpcsz2);
+      return path(path(str, "commonappdata"), lpcsz, lpcsz2);
    }
 
    

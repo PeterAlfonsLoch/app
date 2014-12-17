@@ -4,6 +4,7 @@
 #include <sys/time.h>
 
 
+string ca2_module_folder_dup();
 
 namespace macos
 {
@@ -302,7 +303,11 @@ namespace macos
 
 
       {
+         
+         System.m_strCa2ModuleFolder = ca2_module_folder_dup();
 
+/*         
+ 
          char * pszCurDir = getcwd(NULL, 0);
 
          string strCurDir = pszCurDir;
@@ -327,6 +332,7 @@ namespace macos
             System.m_strCa2ModuleFolder = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libcore.dylib", "rfs")); // readable - normal file - non zero sized
             
          }
+ */
 
       }
 

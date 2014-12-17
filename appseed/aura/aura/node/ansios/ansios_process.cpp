@@ -311,7 +311,7 @@ namespace ansios
       
       string strFolder = strFallback;
       
-      ::dir::eat_end_level(strFolder, 2, NULL);
+//      ::dir::eat_end_level(strFolder, 2, NULL);
       
       string strCurrent = getenv("DYLD_FALLBACK_LIBRARY_PATH");
       
@@ -375,10 +375,13 @@ namespace ansios
       stringa straParam;
       
       ptr_array < char > argv;
+      
+      straParam.add("/bin/bash");
 
       straParam.add("-c");
       
-      string strC = "export DYLD_FALLBACK_LIBRARY_PATH="+strFallback+" ; cd "+strFolder+" ; "+string(pszCmdLineParam)+" ;";
+      string strC = "ignit_phase2 () { export DYLD_FALLBACK_LIBRARY_PATH="+strFallback+" ; cd "+strFolder+" ; "+string(pszCmdLineParam)+" ; } ; ignit_phase2 ;";
+//            string strC = "export DYLD_FALLBACK_LIBRARY_PATH="+strFallback;
       
       straParam.add(strC);
       
@@ -390,15 +393,16 @@ namespace ansios
       }
       
       argv.add(NULL);
+      
 
       
-      char *tool = (char * )"/bin/bash";
-      char **args = (char **) argv.get_data();
+      char *tool = (char * )argv[0];
+      char **args = (char **) &argv.get_data()[1];
       FILE *pipe = NULL;
       
 //      int uid = getuid();
       
-       
+      
       
 //      int i = setuid(0);
       
@@ -452,17 +456,64 @@ namespace ansios
       
 //      setuid(uid);
       
-      status = AuthorizationExecuteWithPrivileges(authorizationRef, tool, kAuthorizationFlagDefaults, args, NULL);
+      status = AuthorizationExecuteWithPrivileges(authorizationRef, tool, kAuthorizationFlagDefaults, args, &pipe);
       if (status != errAuthorizationSuccess)
       {
          TRACE("AuthorizationExecuteWithPrivileges Error: %d", status);
          return -1;
       }
+
+      /*
+
+      straParam.remove_all();
+      argv.remove_all();
+      straParam.explode_command_line(pszCmdLineParam, &argv);
+      
+      tool = (char * )argv[0];
+      args = (char **) &argv.get_data()[1];
+      pipe = NULL;
+
+
+      status = AuthorizationExecuteWithPrivileges(authorizationRef, tool, kAuthorizationFlagDefaults, args, &pipe);
+      if (status != errAuthorizationSuccess)
+      {
+         TRACE("AuthorizationExecuteWithPrivileges Error: %d", status);
+         return -1;
+      }
+       
+       */
+      
+      DWORD dwExitCode = 0;
+
       
       if(pipe != NULL)
       {
+         
+         int pptp_pid = 0;
+
+         fscanf(pipe, "%d", &pptp_pid);
+         
+//         pid_t pptp_pid = 0;
+         
+  //       fread(&pptp_pid,sizeof(pptp_pid),1,pipe); // get pid
+         
+         m_iPid = pptp_pid;
+         
+         DWORD dwStart = get_tick_count();
+         
+         while(!has_exited() && get_tick_count() - dwStart < durationTimeOut.get_total_milliseconds())
+         {
+            Sleep(84);
+         }
+         if(!has_exited(&dwExitCode))
+         {
+            if(pbTimeOut != NULL)
+            {
+               *pbTimeOut = true;
+            }
+         }
       
-         char c;
+/*         char c;
       
          int iRead;
       
@@ -487,7 +538,7 @@ namespace ansios
          
          fclose(pipe);
       
-         TRACE0(strRead);
+         TRACE0(strRead);*/
          
          
       }
@@ -504,7 +555,7 @@ namespace ansios
          TRACE("AuthorizationFree Error: %d", status);
       }
 
-      return 0;
+      return dwExitCode;
 #else
       
        stringa straParam;

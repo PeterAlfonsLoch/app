@@ -125,8 +125,13 @@ namespace visual
 
       if(!::aura::departament::initialize())
          return false;
+      
+//      if(Application.dir().is(System.dir().commonappdata("")))
+      {
 
-      __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::multithreading::priority_highest);
+         __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::multithreading::priority_highest);
+         
+      }
 
       return true;
 

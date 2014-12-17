@@ -1636,17 +1636,17 @@ namespace core
 
 
 //                     strPath += ".app/Contents/MacOS/app";
-                     strPath += ".app";
+                     strPath += ".app/Contents/MacOS/app";
 //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",strPath, 1 );
 
 #endif
 
-#if defined(APPLEOS)
-                     strPath = "/usr/bin/open -n " + strPath + " --args : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
-#else
+//#if defined(APPLEOS)
+  //                   strPath = "/usr/bin/open -n " + strPath + " --args : app=" + notinstalled.m_strId + " install build_number=" + strBuildNumber + " locale=" + notinstalled.m_strLocale + " schema=" + //notinstalled.m_strSchema;
+//#else
                      strParam = " : app=" + notinstalled.m_strId + " install build_number=" + notinstalled.m_strBuild + " version=" + notinstalled.m_strVersion + " locale=" + notinstalled.m_strLocale + " schema=" + notinstalled.m_strSchema;
-#endif
+//#endif
 
                      bool bTimedOut = false;
 

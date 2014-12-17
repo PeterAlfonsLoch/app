@@ -141,7 +141,7 @@ namespace core
 
       if(!::core::application::initialize_instance())
          return false;
-
+      
       m_pfilemanager = canew(::filemanager::filemanager(this));
 
       m_pfilemanager->construct(this);

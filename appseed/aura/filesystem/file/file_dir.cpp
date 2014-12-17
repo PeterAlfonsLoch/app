@@ -492,14 +492,24 @@ string ca2_module_folder_dup()
 
       free(pszCurDir);
 
-      if(file_exists_dup(::dir::path(strCurDir, "libbase.dylib")))
+/*      if(file_exists_dup(::dir::path(strCurDir, "libbase.dylib")))
       {
          return strCurDir;
       }
-
+*/
 
       str = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libbase.dylib", "rfs")); // readable - normal file - non zero sized
+      
+      if(str.has_char())
+      {
+         
+         goto found;
+         
+      }
 
+      str = ::dir::name(::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libbase.dylib", "rfs")); // readable - normal file - non zero sized
+
+   found:;
    }
 
 #endif
