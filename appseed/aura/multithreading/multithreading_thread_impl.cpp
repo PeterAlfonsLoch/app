@@ -1546,7 +1546,15 @@ bool thread_impl::pump_message()
 bool thread_impl::set_thread_priority(int32_t priority)
 {
 
+#ifdef METROWIN
+
    return ::__SetThreadPriority(m_hthread, priority) != 0;
+
+#else
+
+   return ::SetThreadPriority(m_hthread,priority) != 0;
+
+#endif
 
 }
 
@@ -1554,7 +1562,15 @@ bool thread_impl::set_thread_priority(int32_t priority)
 int32_t thread_impl::get_thread_priority()
 {
 
+#ifdef METROWIN
+
+   return ::__GetThreadPriority(m_hthread);
+
+#else
+
    return ::GetThreadPriority(m_hthread);
+
+#endif
 
 }
 

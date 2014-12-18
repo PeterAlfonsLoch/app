@@ -7,6 +7,9 @@
 
 #include "framework.h"
 
+void init_draw2d_direct2_mutex();
+
+
 namespace str
 {
 
@@ -215,6 +218,9 @@ namespace aura
 #ifndef METROWIN
          br_init(NULL);
 #endif
+
+         init_draw2d_direct2_mutex();
+
       }
 
 
@@ -390,3 +396,19 @@ namespace aura
 
 
 
+static mutex * s_pmutex = NULL;
+
+mutex & draw2d_direct2_mutex()
+{
+
+   return *s_pmutex;
+
+}
+
+
+void init_draw2d_direct2_mutex()
+{
+
+   s_pmutex = new mutex();
+
+}

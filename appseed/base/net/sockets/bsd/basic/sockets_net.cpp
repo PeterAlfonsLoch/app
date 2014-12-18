@@ -794,7 +794,7 @@ namespace sockets
 
       single_lock sl(&m_mutexCache,true);
       reverse_cache_item item;
-      string strIpString = to_vsstring(sa);
+      string strIpString = to_string((const sockaddr *)sa);
       if(m_mapReverseCache.Lookup(strIpString,item) && (!item.m_bTimeout || ((::get_tick_count() - item.m_dwLastChecked) < (11 * ((84 + 77) * 1000)))))
       {
          hostname = item.m_strReverse;
@@ -1172,33 +1172,33 @@ namespace sockets
 
 
 
-namespace net
-{
-
-
-   int32_t family_len(int32_t family)
-   {
-
-      if(family == AF_INET)
-         return sizeof(sockaddr_in);
-      else if(family == AF_INET6)
-         return sizeof(sockaddr_in6);
-      else
-         return 0;
-
-   }
-
-
-} // namespace net
-
-
-
-
-
-
-
-
-
+//namespace net
+//{
+//
+//
+//   int32_t family_len(int32_t family)
+//   {
+//
+//      if(family == AF_INET)
+//         return sizeof(sockaddr_in);
+//      else if(family == AF_INET6)
+//         return sizeof(sockaddr_in6);
+//      else
+//         return 0;
+//
+//   }
+//
+//
+//} // namespace net
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
