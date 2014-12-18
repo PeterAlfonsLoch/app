@@ -22,7 +22,7 @@ mq * get_mq()
 }
 
 
-DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags)
+DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable * * pwaitableptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags)
 {
 
    DWORD start = 0;

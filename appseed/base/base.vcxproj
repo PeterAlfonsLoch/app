@@ -3358,8 +3358,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\compress\zip\zip_zip.cpp" />
     <ClCompile Include="base\crypto\crypto.cpp" />
     <ClCompile Include="base\crypto\crypto_crypto.cpp" />
-    <ClCompile Include="base\crypto\crypto_md5.cpp" />
-    <ClCompile Include="base\crypto\crypto_nessie.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_host.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp" />

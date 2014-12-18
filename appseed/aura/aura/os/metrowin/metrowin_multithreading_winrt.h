@@ -268,7 +268,7 @@ public:
 
 };
 
-CLASS_DECL_AURA mq * get_mq(HTHREAD h);
+//CLASS_DECL_AURA mq * get_mq(HTHREAD h);
 
 
 

@@ -1294,12 +1294,6 @@
     <ClCompile Include="base\crypto\crypto_crypto.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="base\crypto\crypto_md5.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="base\crypto\crypto_nessie.cpp">
-      <Filter>Source Files\base\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="net\mail\mail_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
@@ -1698,9 +1692,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
