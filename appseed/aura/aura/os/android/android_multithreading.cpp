@@ -426,7 +426,7 @@ struct _TEB * WINAPI NtCurrentTeb(void)
 
 
 
-
+/*
 bool on_init_thread()
 {
 
@@ -467,7 +467,7 @@ void __node_term_multithreading()
 
 }
 
-
+*/
 
 
 thread_int_ptr < HRESULT > t_hresultCoInitialize;

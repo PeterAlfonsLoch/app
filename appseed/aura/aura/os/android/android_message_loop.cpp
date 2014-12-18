@@ -134,7 +134,7 @@ bool TranslateMessage(LPMESSAGE lpmessage)
 //}
 
 
-
+/*
 void _c_simple_message_loop()
 {
 
@@ -153,3 +153,4 @@ void _c_simple_message_loop()
 }
 
 
+*/

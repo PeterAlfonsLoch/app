@@ -282,3 +282,8 @@ bool __node_aura_pos_term()
 
 
 
+
+CLASS_DECL_AURA int __node_is_debugger_attached()
+{
+   return 0;
+}
