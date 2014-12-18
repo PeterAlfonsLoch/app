@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "freeimage/Source/FreeImage.h"
-#include "visual_FreeImageFileProc.h"
+//#include "freeimage/Source/FreeImage.h"
+//#include "visual_FreeImageFileProc.h"
 #ifdef WINDOWSEX
 
 #undef new
@@ -14,8 +14,24 @@
 
 //void fastblur(::draw2d::dib * pimg, int32_t radius);
 
+#elif defined(METROWIN)
+#include <wincodec.h>
+#include <Shcore.h>
 
 #endif
+
+
+
+template <typename T>
+inline void SafeRelease(T *&p)
+{
+   if(nullptr != p)
+   {
+      p->Release();
+      p = nullptr;
+   }
+}
+
 
 #define AC_SRC_ALPHA                0x01
 
@@ -611,6 +627,85 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       return false;
 
    return true;
+#elif defined(METROWIN)
+
+   HRESULT hr = S_OK;
+
+   IWICImagingFactory * pfactory = NULL;
+
+   hr = CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pfactory));
+
+   if(FAILED(hr))
+   {
+
+      return false;
+
+   }
+
+   IWICBitmapDecoder * pdecoder = NULL;
+
+   IStream * pstream = NULL;
+
+   Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new Windows::Storage::Streams::InMemoryRandomAccessStream();
+
+   ::wait(randomAccessStream->WriteAsync(memfile.get_memory()->get_os_buffer()));
+
+   ::CreateStreamOverRandomAccessStream(randomAccessStream,IID_PPV_ARGS(&pstream));
+
+   hr = pfactory->CreateDecoderFromStream(pstream,NULL,WICDecodeMetadataCacheOnDemand,&pdecoder);
+
+   IWICBitmapFrameDecode *pframe = NULL;
+
+   if(SUCCEEDED(hr))
+   {
+
+      hr = pdecoder->GetFrame(0,&pframe);
+
+   }
+
+   IWICFormatConverter * pbitmap = NULL;
+
+   if(SUCCEEDED(hr))
+   {
+
+      hr = pfactory->CreateFormatConverter(&pbitmap);
+
+   }
+
+   if(SUCCEEDED(hr))
+   {
+
+      hr = pbitmap->Initialize(pframe, GUID_WICPixelFormat32bppPBGRA, WICBitmapDitherTypeNone, NULL, 0.f, WICBitmapPaletteTypeCustom);
+   }
+
+   //Step 4: Create render target and D2D bitmap from IWICBitmapSource
+   UINT w=0;
+   UINT h=0;
+   if(SUCCEEDED(hr))
+   {
+      hr = pbitmap->GetSize(&w,&h);
+   }
+
+   if(SUCCEEDED(hr))
+   {
+
+      if(pdib->create(w,h))
+      {
+       
+         hr = pbitmap->CopyPixels(NULL,w * 4,w * h * 4,(BYTE *)pdib->get_data());
+
+      }
+
+   }
+   
+   SafeRelease(pbitmap);
+   SafeRelease(pstream);
+   SafeRelease(pdecoder);
+   SafeRelease(pframe);
+   SafeRelease(pfactory);
+
+   return SUCCEEDED(hr) && pdib->area() > 0;
+
 #else
 
    IStream * pstream = SHCreateMemStream(memfile.get_data(),memfile.get_size());
