@@ -68,11 +68,6 @@ CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread);
 
 CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam);
 
-#define PostMessage  PostMessageW
-
-CLASS_DECL_AURA int_bool WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam);
-
-
 CLASS_DECL_AURA HTHREAD GetCurrentThread();
 
 CLASS_DECL_AURA UINT GetCurrentThreadId();

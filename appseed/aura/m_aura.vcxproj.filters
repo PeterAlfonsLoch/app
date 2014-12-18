@@ -214,6 +214,9 @@
     <Filter Include="Source Files\aura\os\metrowin">
       <UniqueIdentifier>{a43a140b-543c-4dd2-b3f4-3101b06f742e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\aura\os\ansios">
+      <UniqueIdentifier>{bc1f34ec-82da-4af1-82cd-fe91ec180b90}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -847,9 +850,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_check_interface.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_create_context.h">
@@ -1887,9 +1887,6 @@
     <ClInclude Include="aura\os\metrowin\metrowin_user_impl.h">
       <Filter>Header Files\aura\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\metrowin\metrowin_window_impl.h">
-      <Filter>Header Files\aura\os\metrowin</Filter>
-    </ClInclude>
     <ClInclude Include="aura\node\metrowin\metrowin.h">
       <Filter>Header Files\aura\node\metrowin</Filter>
     </ClInclude>
@@ -1954,6 +1951,12 @@
       <Filter>Header Files\aura\os\metrowin</Filter>
     </ClInclude>
     <ClInclude Include="aura\os\metrowin\metrowin_multithreading_winrt.h">
+      <Filter>Header Files\aura\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_assert_running_task.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\metrowin\aaa_want_to_remove_metrowin_window_impl.h">
       <Filter>Header Files\aura\os\metrowin</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2472,9 +2475,6 @@
     </ClCompile>
     <ClCompile Include="multithreading\service\service_plain_service.cpp">
       <Filter>Source Files\multithreading\service</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_check_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_create_context.cpp">
       <Filter>Source Files\user\user</Filter>
@@ -3190,9 +3190,6 @@
     <ClCompile Include="aura\node\metrowin\metrowin_util.cpp">
       <Filter>Source Files\aura\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_window_impl.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\metrowin\metrowin_user.cpp">
       <Filter>Source Files\aura\os\metrowin</Filter>
     </ClCompile>
@@ -3215,9 +3212,6 @@
       <Filter>Source Files\aura\os\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\metrowin\metrowin_multithreading.cpp">
-      <Filter>Source Files\aura\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\metrowin\metrowin_message_loop.cpp">
       <Filter>Source Files\aura\os\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\metrowin\metrowin_lock.cpp">
@@ -3261,6 +3255,18 @@
     </ClCompile>
     <ClCompile Include="aura\os\metrowin\metrowin_direct2d_tls.cpp">
       <Filter>Source Files\aura\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_array_base.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_throw.cpp">
+      <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_assert_running_task.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_message_loop.cpp">
+      <Filter>Header Files\aura\os\ansios</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -116,7 +116,6 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 #elif defined(METROWIN)
 
 #include "base/os/metrowin/metrowin.h"
-#include "base/os/metrowin/metrowin_user_impl.h"
 
 #elif defined(MACOS)
 

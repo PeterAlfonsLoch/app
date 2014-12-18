@@ -577,7 +577,7 @@ namespace aura
       ::aura::application::exit_instance();
 
 #ifdef METROWIN
-      m_pdevicecontext = nullptr;
+//      m_pdevicecontext = nullptr;
 
       m_pmutexDc.release();
 #endif

@@ -337,7 +337,7 @@ public:
    T * clone(sp(T) pobject)
    {
       element * pca =
-#ifdef WINDOWSEX
+#ifdef WINDOWS
       pca = typed_clone(typeid(T).raw_name(), pobject);
 #else
       pca = typed_clone(typeid(T).name(),pobject);

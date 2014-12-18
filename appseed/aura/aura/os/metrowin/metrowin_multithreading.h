@@ -55,16 +55,18 @@ CLASS_DECL_AURA DWORD WINAPI get_thread_id(HTHREAD Thread);
 
 CLASS_DECL_AURA WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam);
 
-#define PostMessage  PostMessageW
-
-CLASS_DECL_AURA WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam);
-
-
 CLASS_DECL_AURA void WINAPI TlsShutdown();
 
 CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread);
+
+#ifndef METROWIN
 
 CLASS_DECL_AURA BOOL WINAPI SetThreadPriority(HTHREAD hThread,int iPriority);
 
 CLASS_DECL_AURA int WINAPI GetThreadPriority(_In_ HTHREAD hThread);
 
+#endif
+
+
+
+DWORD MsgWaitForMultipleObjects(DWORD dwSize,const HANDLE * lphandles,DWORD dwTimeout,DWORD dwWakeMask,DWORD dwFlags);

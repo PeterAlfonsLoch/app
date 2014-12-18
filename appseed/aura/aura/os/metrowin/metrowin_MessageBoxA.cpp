@@ -184,7 +184,7 @@ int32_t WINAPI MessageBoxA(oswindow interaction_impl,const char * lpText,const c
 
    message_box_a a;
 
-   int iResult = a->do_modal(string(lpText),string(lpCaption),uiFlags);
+   int iResult = a.do_modal(string(lpText),string(lpCaption),uiFlags);
 
 
    return iResult;

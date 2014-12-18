@@ -1,5 +1,7 @@
 #include "framework.h"
 
+
+
 multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
 {
    ASSERT(syncobjectptra.get_count() > 0 && syncobjectptra.get_count() <= MAXIMUM_WAIT_OBJECTS);

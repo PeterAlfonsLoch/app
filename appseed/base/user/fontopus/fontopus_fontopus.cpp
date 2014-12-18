@@ -537,7 +537,7 @@ namespace fontopus
 
       strSomeBrothersAndSisters = doc.get_root()->attr("some_brothers_and_sisters");
 
-      ::sockets::net::dns_cache_item item = Session.sockets().net().m_mapCache[strHost];
+      ::sockets::net::dns_cache_item * item = Session.sockets().net().m_mapCache[strHost];
 
       sl.lock();
 

@@ -205,11 +205,18 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    if (m_bAutoWindowFrame)
    {
+      if(Application.command()->m_varTopicQuery["client_only"].is_set())
+      {
+         m_bWindowFrame = false;
+      }
+      else
+      {
 #ifdef METROWIN
-      m_bWindowFrame = GetParent() == NULL || dynamic_cast < window * > (GetParent()->m_pimpl.m_p) != NULL;
+         m_bWindowFrame = GetParent() == NULL || GetParent()->m_pimpl != NULL;
 #else
-      m_bWindowFrame = GetParent() == NULL;
+         m_bWindowFrame = GetParent() == NULL;
 #endif
+      }
    }
 
 #ifdef WINDOWSEX

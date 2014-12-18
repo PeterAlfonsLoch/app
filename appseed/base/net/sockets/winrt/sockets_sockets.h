@@ -6,11 +6,11 @@ namespace sockets
 
 
    class CLASS_DECL_BASE sockets :
-      virtual public ::axis::departament
+      virtual public ::aura::departament
    {
    public:
 
-
+      int32_t                                      m_iReturnCode;
 #ifdef HAVE_OPENSSL
       ssl_client_context_map                       m_clientcontextmap;
 #endif
@@ -24,9 +24,10 @@ namespace sockets
       resolv_socket::timeout_t                     m_resolvtimeout;
       mutex                                        m_mutexResolvCache;
 
+      sp(::sockets::net)                           m_spnet;
 
 
-      sockets(sp(::axis::application) papp);
+      sockets(::aura::application * papp);
 
 
       bool initialize1();
@@ -35,6 +36,8 @@ namespace sockets
 
       virtual void http_config_proxy(const char * pszUrl, http_tunnel * psocket);
 
+
+      class ::sockets::net & net();
 
    };
 

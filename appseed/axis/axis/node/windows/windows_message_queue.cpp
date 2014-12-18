@@ -1,5 +1,9 @@
 #include "framework.h" // from "axis/user/user.h"
+#ifdef METROWIN
+#include "axis/axis/node/metrowin/metrowin.h"
+#else
 #include "windows.h"
+#endif
 
 
 namespace windows

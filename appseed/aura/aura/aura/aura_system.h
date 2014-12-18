@@ -50,6 +50,7 @@ namespace aura
       colorertake5::ParserFactory *                m_pparserfactory;
 
 #ifdef WINDOWS
+      float                                        m_dpi;
       ID2D1DeviceContext *                         m_pdevicecontext;
       sp(mutex)                                    m_pmutexDc;
 #endif

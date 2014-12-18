@@ -41,11 +41,25 @@
 //typedef struct hthread * HTHREAD;
 //#endif
 
+
+#ifdef METROWIN
+
+
+CLASS_DECL_AURA DWORD WINAPI tls_alloc();
+CLASS_DECL_AURA int_bool WINAPI tls_free(DWORD dwTlsIndex);
+CLASS_DECL_AURA LPVOID WINAPI tls_get_value(DWORD dwTlsIndex);
+CLASS_DECL_AURA int_bool WINAPI tls_set_value(DWORD dwTlsIndex, LPVOID lpTlsValue);
+CLASS_DECL_AURA void WINAPI tls_shutdown();
+CLASS_DECL_AURA int_bool WINAPI __SetThreadPriority(HTHREAD hThread,int32_t nPriority);
+CLASS_DECL_AURA int32_t WINAPI __GetThreadPriority(HTHREAD hThread);
+
+#else
+
 CLASS_DECL_AURA HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* lpStartAddress)(void *) , void * lpParameter, uint32_t uiCreationFlags, uint32_t * puiId);
+
 CLASS_DECL_AURA DWORD WINAPI ResumeThread(HTHREAD hThread);
 CLASS_DECL_AURA int_bool WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority);
 CLASS_DECL_AURA int32_t WINAPI GetThreadPriority(HTHREAD hThread);
-
 
 CLASS_DECL_AURA VOID WINAPI Sleep(DWORD dwMilliseconds);
 
@@ -53,8 +67,13 @@ CLASS_DECL_AURA DWORD WINAPI TlsAlloc();
 CLASS_DECL_AURA int_bool WINAPI TlsFree(DWORD dwTlsIndex);
 CLASS_DECL_AURA LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex);
 CLASS_DECL_AURA int_bool WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
-
 CLASS_DECL_AURA void WINAPI TlsShutdown();
+
+#endif
+
+
+
+
 
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)

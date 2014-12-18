@@ -1784,7 +1784,7 @@ namespace user
       m_signalptra.remove_all();
       m_pimpl = (Application.alloc(System.type_info < interaction_impl >()));
       m_pimpl->m_pui = this;
-      m_pui = this;
+      //m_pui = this;
       if (!m_pimpl->initialize(pinitialize))
       {
          m_pimpl.release();
@@ -2271,7 +2271,7 @@ namespace user
    }
 
 
-   strsize interaction::GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount)
+   strsize interaction::GetWindowText(LPSTR lpszStringBuf,int32_t nMaxCount)
    {
 
       strsize n = MIN(nMaxCount,m_strWindowText.get_length());

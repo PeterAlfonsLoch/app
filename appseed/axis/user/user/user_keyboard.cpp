@@ -120,6 +120,7 @@ namespace user
       strPath = Application.dir_matter("keyboard/macos/default.xml");
 #else
 
+#ifndef METROWIN
       WCHAR wsz[KL_NAMELENGTH];
 
       WORD w;
@@ -171,6 +172,8 @@ namespace user
             return true;
 
       }
+
+#endif
 
       strPath = Application.dir_matter("keyboard/windows/default.xml");
 

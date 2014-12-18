@@ -49,6 +49,8 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 extern int __abi___threading_model;
 __abi_Module* __abi_module = nullptr;
 
+#undef Platform
+
 namespace Platform {
 	namespace Details {
 
@@ -131,22 +133,6 @@ extern "C" __declspec(allocate(".CRT$XIY")) void* __abi__initialize = Details::I
 
 
 
-static mutex * s_pmutex = NULL;
-
-mutex & draw2d_direct2_mutex()
-{
-
-   return *s_pmutex;
-
-}
-
-
-void init_draw2d_direct2_mutex(::aura::application * papp)
-{
-
-   s_pmutex = new mutex(papp);
-
-}
 
 
 

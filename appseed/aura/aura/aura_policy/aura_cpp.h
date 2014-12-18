@@ -242,22 +242,22 @@ namespace aura
 
    class live_object;
 
-#if defined METROWIN && defined(__cplusplus_winrt)
-
-   interface class system_window
-   {
-
-      virtual Windows::Foundation::Rect get_window_rect() = 0;
-      virtual Windows::Foundation::Point get_cursor_pos() = 0;
-
-
-
-   };
-
-   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
-   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
-
-#endif
+//#if defined METROWIN && defined(__cplusplus_winrt)
+//
+//   interface class system_window
+//   {
+//
+//      virtual Windows::Foundation::Rect get_window_rect() = 0;
+//      virtual Windows::Foundation::Point get_cursor_pos() = 0;
+//
+//
+//
+//   };
+//
+//   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
+//   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
+//
+//#endif
 
 
    class file;
@@ -805,11 +805,11 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
 
-#if defined(METROWIN)
-
-#include "app/appseed/aura/aura/os/metrowin/metrowin_sockets.h"
-
-#endif
+//#if defined(METROWIN)
+//
+//#include "app/appseed/aura/aura/os/metrowin/metrowin_sockets.h"
+//
+//#endif
 
 
 #include "aura/primitive/primitive_factory.h"

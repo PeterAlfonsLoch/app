@@ -6,10 +6,13 @@
 
 #define max MAX
 
+#ifndef METROWIN
+
 #include <gdiplus.h>
 
-
 using namespace Gdiplus;
+
+#endif
 
 namespace hotplugin
 {
@@ -17,6 +20,8 @@ namespace hotplugin
 
    void entry_hall_windows_on_paint(HDC hdc,const RECT & rect,const string & strEntryHallText)
    {
+
+#ifndef METROWIN
 
       Graphics g(hdc);
 
@@ -158,6 +163,7 @@ namespace hotplugin
 
       pgraphics->DrawString(wstr, wstr.get_length(), &f, PointF(rectBar.left,rectBar.top), &b);
 
+#endif
 
    }
 

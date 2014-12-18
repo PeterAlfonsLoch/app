@@ -66,7 +66,7 @@ CLASS_DECL_AXIS bool oswindow_assign(oswindow oswindow,::user::interaction * pui
 }
 
 
-CLASS_DECL_AXIS bool oswindow_remove(::user::interaction * pui)
+CLASS_DECL_AXIS int_bool oswindow_remove(::user::interaction * pui)
 {
 
    ASSERT(pui != NULL);

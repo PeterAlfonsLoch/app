@@ -6,7 +6,7 @@
 #include "aura/message/message_cross_windows.h"
 
 
-#ifdef cplusplus
+#if defined(__cplusplus) || defined(__cplusplus_winrt)
 
 
 namespace user
@@ -14,7 +14,7 @@ namespace user
 
 
    class CLASS_DECL_AURA create_struct:
-      public CREATESTRUCT
+      public CREATESTRUCTA
    {
    public:
 

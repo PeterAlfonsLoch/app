@@ -22,7 +22,7 @@ namespace simple_ui
    string style::calc_locale()
    {
 
-#if defined(WINDOWS)
+#if defined(WINDOWSEX)
       string strLocale;
       LANGID langid = ::GetUserDefaultLangID();
 #define SPR_DEUTSCH LANG_GERMAN

@@ -19,7 +19,7 @@ String ^ rtstr(const char * psz)
 
 
 
-int MessageBox(oswindow window, const char * pszMessage, const char * pszTitle, int iFlags)
+int MessageBoxW(oswindow window,const wchar_t * pszMessage,const wchar_t * pszTitle,int iFlags)
 {
   
 
@@ -53,6 +53,11 @@ int MessageBox(oswindow window, const char * pszMessage, const char * pszTitle, 
 }
 
 
+#ifndef METROWIN
+
+
+
+
 VOID WINAPI Sleep(DWORD dwMilliseconds)
 {
    static HANDLE singletonEvent = nullptr;
@@ -80,7 +85,7 @@ VOID WINAPI Sleep(DWORD dwMilliseconds)
    // Emulate sleep by waiting with timeout on an event that is never signalled.
    WaitForSingleObjectEx(sleepEvent, dwMilliseconds, false);
 }
-
+#endif
 
 typedef bool
 (WINAPI * LPFN_ChangeWindowMessageFilter)(

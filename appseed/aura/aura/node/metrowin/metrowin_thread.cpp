@@ -138,7 +138,7 @@ void thread::set_p(::thread * p)
 
       //m_frameList.Construct(offsetof(::user::frame_window, m_pNextFrameWnd));
       m_ptimera = canew(::user::interaction::timer_array(get_app()));
-      m_puiptra = canew(::user::interaction_ptr_array(get_app()));
+      m_puiptra = canew(::user::interaction_ptra(get_app()));
 
    }
 
@@ -150,7 +150,7 @@ void thread::set_p(::thread * p)
       if(m_puiptra != NULL)
       {
          single_lock sl(&m_mutexUiPtra, TRUE);
-         ::user::interaction_ptr_array * puiptra = m_puiptra;
+         ::user::interaction_ptra * puiptra = m_puiptra;
          m_puiptra = NULL;
          for(int i = 0; i < puiptra->get_size(); i++)
          {
@@ -718,7 +718,7 @@ void thread::set_p(::thread * p)
 //         if(m_puiptra != NULL)
 //         {
 //            single_lock sl(&m_mutexUiPtra, TRUE);
-//            ::user::interaction_ptr_array * puiptra = m_puiptra;
+//            ::user::interaction_ptra * puiptra = m_puiptra;
 ////            m_puiptra = NULL;
 //            for(int i = 0; i < puiptra->get_size(); i++)
 //            {
@@ -1479,7 +1479,7 @@ void thread::set_p(::thread * p)
 ////      ::user::interaction_impl threadWnd;
 //
 ////      m_ptimera            = new ::user::interaction::timer_array(get_app());
-//  //    m_puiptra            = new user::interaction_ptr_array(get_app());
+//  //    m_puiptra            = new user::interaction_ptra(get_app());
 //
 //      //m_ptimera->m_papp    = m_papp;
 //      //m_puiptra->m_papp    = m_papp;
@@ -2443,3 +2443,53 @@ void thread::set_p(::thread * p)
 ////
 ////// thread
 ////
+
+
+bool __node_init_thread(::thread * pthread)
+{
+
+   try
+   {
+
+      pthread->::exception::translator::attach();
+
+   }
+   catch(...)
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+
+bool __node_term_thread(::thread * pthread)
+{
+
+   bool bOk1 = false;
+
+   try
+   {
+
+      if(pthread != NULL)
+      {
+
+         pthread->::exception::translator::detach();
+
+      }
+
+      bOk1 = true;
+
+   }
+   catch(...)
+   {
+
+   }
+
+   return bOk1;
+
+}

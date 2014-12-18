@@ -272,6 +272,8 @@ namespace aura
 
          }
 
+#elif defined(METROWIN)
+
 #else
 
          char * psz = br_find_exe("unknown-app");

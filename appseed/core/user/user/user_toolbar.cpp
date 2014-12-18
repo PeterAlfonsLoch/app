@@ -121,7 +121,7 @@ namespace user
 
 
 
-      if (!::user::control_bar::create_window(TOOLBARCLASSNAME, NULL, dwStyle, null_rect(), pParentWnd, nID))
+      if (!::user::control_bar::create_window(TOOLBARCLASSNAMEA, NULL, dwStyle, null_rect(), pParentWnd, nID))
          return FALSE;
 
       // sync up the sizes

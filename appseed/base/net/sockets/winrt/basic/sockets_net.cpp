@@ -16,7 +16,7 @@ namespace sockets
 {
 
 
-   net::net(::axis::application * papp) :
+   net::net(::aura::application * papp) :
       element(papp),
       m_mutexCache(papp)
    {
@@ -197,7 +197,7 @@ namespace sockets
          return;
 
       //Pass the returned object to a function that accesses the connection data        
-      //::Platform::String^ strConnectionProfileInfo = GetConnectionProfileInfo(InternetConnectionProfile);
+      //::String^ strConnectionProfileInfo = GetConnectionProfileInfo(InternetConnectionProfile);
 
       //Windows::Networking::Connectivity::NetworkAdapter ^ adp = InternetConnectionProfile->NetworkAdapter();
 

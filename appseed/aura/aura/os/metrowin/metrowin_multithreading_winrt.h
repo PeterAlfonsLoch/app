@@ -13,6 +13,11 @@ inline void waiter_null_result(bool & b)
    b = false;
 }
 
+template < >
+inline void waiter_null_result(unsigned int & ui)
+{
+   ui = NULL;
+}
 
 template < typename T >
 ref class waiter_for_Windows_Foundation_IAsyncOperation sealed

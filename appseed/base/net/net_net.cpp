@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "net_net.h"
 
 
 uint32_t c_inet_to_ui(const char * src)
@@ -183,7 +184,8 @@ static const char *basis_hex = "0123456789abcdef";
 * (Same as inet_ntop(AF_INET6, addr, buf, size), except that errno
 * is not set on failure.)
 */
-CLASS_DECL_BASE string to_vsstring(const in6_addr * addr)
+template < >
+CLASS_DECL_BASE string to_string(const in6_addr * addr)
 {
 
    string str;
@@ -343,8 +345,8 @@ CLASS_DECL_BASE int_bool from_string(in_addr * addrParam, const char * string)
 
 }
 
-
-CLASS_DECL_BASE string to_vsstring(const in_addr * addrParam)
+template < >
+CLASS_DECL_BASE string to_string(const in_addr * addrParam)
 {
 
    c_in_addr * paddr = (c_in_addr *) addrParam;
@@ -373,19 +375,21 @@ CLASS_DECL_BASE string to_vsstring(const in_addr * addrParam)
 
 }
 
-CLASS_DECL_BASE string to_vsstring(const sockaddr *addr)
+
+template < >
+CLASS_DECL_BASE string to_string(const sockaddr *addr)
 {
 
    if(addr->sa_family == AF_INET)
    {
 
-      return to_vsstring((in_addr *)addr->sa_data);
+      return to_string((const in_addr *)addr->sa_data);
 
    }
    else if(addr->sa_family == AF_INET6)
    {
 
-      return to_vsstring((in6_addr *)addr->sa_data);
+      return to_string((const in6_addr *)addr->sa_data);
 
    }
    else
@@ -441,17 +445,17 @@ CLASS_DECL_BASE string c_inet_ntop(int32_t af, const void *src)
    if(af == AF_INET)
    {
 
-      in_addr * addr = (in_addr *) src;
+      const in_addr * addr = (const in_addr *)src;
 
-      str = to_vsstring(addr);
+      str = to_string(addr);
 
    }
    else if(af == AF_INET6)
    {
 
-      in6_addr * addr = (in6_addr *) src;
+      const in6_addr * addr = (const in6_addr *)src;
 
-      str = to_vsstring(addr);
+      str = to_string(addr);
 
    }
 
@@ -720,3 +724,28 @@ string get_file_extension_mime_type(const string & strExtension)
    }
 
 }
+
+
+namespace net
+{
+
+
+   int32_t family_len(int32_t family)
+   {
+
+      if(family == AF_INET)
+         return sizeof(sockaddr_in);
+      else if(family == AF_INET6)
+         return sizeof(sockaddr_in6);
+      else
+         return 0;
+
+   }
+
+
+} // namespace net
+
+
+
+
+

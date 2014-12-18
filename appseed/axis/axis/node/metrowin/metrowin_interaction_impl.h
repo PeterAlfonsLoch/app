@@ -11,19 +11,19 @@ namespace metrowin
    CLASS_DECL_AURA LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
 
-   class CLASS_DECL_AURA interaction_impl : 
+   class CLASS_DECL_AXIS interaction_impl : 
       virtual public ::user::interaction_impl
    {
    public:
 
       
       spa(::user::interaction)      m_guieptraMouseHover;
-      ::message_queue_listener *   m_plistener;
+      ::aura::message_queue_listener *   m_plistener;
       string                        m_strWindowText;
       //visual::dib_sp              m_spdib;
       //visual::dib_sp              m_spdibMultAlphaWork;
 
-      Platform::Agile<Windows::UI::Core::CoreWindow>  m_window;
+      Agile < Windows::UI::Core::CoreWindow >  m_window;
 
 
       interaction_impl();
@@ -36,10 +36,12 @@ namespace metrowin
 
       virtual ::user::interaction * get_wnd() const;
 
-      virtual void mouse_hover_add(sp(::user::interaction) pinterface);
-      virtual void mouse_hover_remove(sp(::user::interaction) pinterface);
+      virtual void mouse_hover_add(::user::interaction *  pinterface);
+      virtual void mouse_hover_remove(::user::interaction *  pinterface);
 
-      bool create_message_queue(const char * pszName, ::message_queue_listener* pcallback = NULL);
+      //bool create_message_queue(const char * pszName, ::aura::message_queue_listener* pcallback = NULL);
+
+      bool create_message_queue(const char * pszName);
 
       virtual bool initialize(::user::native_window_initialize * pinitialize) override;
 
@@ -57,7 +59,7 @@ namespace metrowin
       bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
 
       //virtual ::user::interaction * GetOwner();
-      virtual void SetOwner(::user::interaction * pOwnerWnd);
+      //virtual ::user::interaction * SetOwner(::user::interaction * pOwnerWnd);
 
       virtual oswindow _get_handle();
 
@@ -125,7 +127,7 @@ namespace metrowin
       virtual bool DestroyWindow();
 
       // special pre-creation and ::user::interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(CREATESTRUCT& cs);
+      virtual bool pre_create_window(::user::create_struct& cs);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -136,19 +138,19 @@ namespace metrowin
       //      using ::user::interaction::GetDlgItem;
       void GetDlgItem(id id, oswindow* phWnd) const;
       // as above, but returns oswindow
-      sp(::user::interaction) GetDescendantWindow(id id);
+      //::user::interaction *  GetDescendantWindow(id id);
       // like GetDlgItem but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
-      sp(::user::frame_window) GetParentFrame();
-      sp(::user::frame_window) EnsureParentFrame();
-      sp(::user::interaction) GetTopLevelParent();
-      sp(::user::interaction) EnsureTopLevelParent();
-      sp(::user::interaction) GetTopLevelOwner();
-      sp(::user::interaction) GetParentOwner();
-      sp(::user::frame_window) GetTopLevelFrame();
+      //::user::frame_window * GetParentFrame();
+      //::user::frame_window * EnsureParentFrame();
+      //::user::interaction *  GetTopLevelParent();
+      //::user::interaction *  EnsureTopLevelParent();
+      //::user::interaction *  GetTopLevelOwner();
+      //::user::interaction *  GetParentOwner();
+      //sp(::user::frame_window) GetTopLevelFrame();
       //static ::user::interaction_impl * GetSafeOwner(::user::interaction_impl * pParent = NULL, oswindow* pWndTop = NULL);
 
-      virtual bool IsWindow();
+      virtual bool IsWindow() const;
 
 #if(WINVER >= 0x0500)
 
@@ -176,8 +178,8 @@ namespace metrowin
 
 
       // Window size and position Functions
-      virtual bool IsIconic();
-      virtual bool IsZoomed();
+      //virtual bool IsIconic();
+      //virtual bool IsZoomed();
       void MoveWindow(int x, int y, int nWidth, int nHeight, bool bRepaint = TRUE);
       void MoveWindow(LPCRECT lpRect, bool bRepaint = TRUE);
       int SetWindowRgn(HRGN hRgn, bool bRedraw);
@@ -283,8 +285,8 @@ namespace metrowin
       virtual bool EnableWindow(bool bEnable = TRUE);
 
       // the active ::user::interaction_impl applies only to top-level (frame windows)
-      virtual sp(::user::interaction) GetActiveWindow();
-      virtual sp(::user::interaction) SetActiveWindow();
+      virtual ::user::interaction *  GetActiveWindow();
+      virtual ::user::interaction *  SetActiveWindow();
 
       // the foreground ::user::interaction_impl applies only to top-level windows (frame windows)
       virtual bool SetForegroundWindow();
@@ -296,14 +298,14 @@ namespace metrowin
 
 
       // capture and focus apply to all windows
-      virtual sp(::user::interaction) GetCapture();
-      virtual sp(::user::interaction) set_capture(sp(::user::interaction) pinterface = NULL);
-      virtual sp(::user::interaction) release_capture();
-      virtual sp(::user::interaction) get_capture();
-      static sp(::user::interaction) GetFocus();
-      virtual sp(::user::interaction) SetFocus() override;
+      virtual ::user::interaction *  GetCapture();
+      virtual ::user::interaction *  SetCapture(::user::interaction *  pinterface = NULL);
+      virtual ::user::interaction *  ReleaseCapture();
+      //virtual ::user::interaction *  GetCapture();
+      static ::user::interaction *  GetFocus();
+      virtual ::user::interaction *  SetFocus() override;
 
-      static sp(::user::interaction) GetDesktopWindow();
+      static ::user::interaction *  GetDesktopWindow();
 
       // Obsolete and non-portable APIs - not recommended for new code
       virtual void CloseWindow();
@@ -361,21 +363,21 @@ namespace metrowin
       //#endif   // WINVER >= 0x0500
 
       // Window Access Functions
-      virtual sp(::user::interaction) ChildWindowFromPoint(POINT point);
-      virtual sp(::user::interaction) ChildWindowFromPoint(POINT point, UINT nFlags);
+      virtual ::user::interaction *  ChildWindowFromPoint(POINT point);
+      virtual ::user::interaction *  ChildWindowFromPoint(POINT point, UINT nFlags);
       static sp(::user::interaction_impl) FindWindow(const char * lpszClassName, const char * lpszWindowName);
       static sp(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
       //      virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
-      virtual sp(::user::interaction) GetTopWindow();
+      virtual ::user::interaction *  GetTopWindow();
 
-      virtual sp(::user::interaction) GetWindow(UINT nCmd);
-      virtual sp(::user::interaction) GetLastActivePopup();
+      virtual ::user::interaction *  GetWindow(UINT nCmd);
+      virtual ::user::interaction *  GetLastActivePopup();
 
-      virtual bool IsChild(sp(::user::interaction)  pWnd);
-      virtual sp(::user::interaction) GetParent();
+      virtual bool IsChild(::user::interaction *   pWnd);
+      virtual ::user::interaction *  GetParent();
       using ::user::interaction_impl::SetParent;
-      sp(::user::interaction) SetParent(sp(::user::interaction) pWndNewParent);
+//      ::user::interaction *  SetParent(::user::interaction *  pWndNewParent);
       static sp(::user::interaction_impl) WindowFromPoint(POINT point);
 
       // Alert Functions
@@ -640,7 +642,7 @@ namespace metrowin
 
       // helper routines for implementation
       bool HandleFloatingSysCommand(UINT nID, LPARAM lParam);
-      bool IsTopParentActive();
+      //bool IsTopParentActive();
       void ActivateTopParent();
       virtual void WalkPreTranslateTree(::user::interaction * puiStop, signal_details * pobj);
       static ::user::interaction * GetDescendantWindow(::user::interaction * hWnd, id id);
@@ -703,7 +705,7 @@ namespace metrowin
       void _001OnTriggerMouseInside();
 
 
-         Platform::Agile<Windows::UI::Core::CoreWindow> interaction_impl::get_os_window();
+         Agile < Windows::UI::Core::CoreWindow > get_os_window();
 
           void set_view_port_org(::draw2d::graphics * pgraphics);
 

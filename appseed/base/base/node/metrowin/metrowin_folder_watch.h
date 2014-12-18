@@ -9,7 +9,7 @@ namespace metrowin
    {
    public:
       
-      folder_watch(::axis::application * papp);
+      folder_watch(::aura::application * papp);
 
       virtual bool watch(const char * pszPath);
 

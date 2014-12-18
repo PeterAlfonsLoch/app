@@ -3838,12 +3838,12 @@ namespace metrowin
             if(!ContinueModal(iLevel))
                goto ExitModal;
 
-            // reset "no idle" state after pumping "normal" message
-            if(__is_idle_message(&msg))
-            {
-               bIdle = TRUE;
-               lIdleCount = 0;
-            }
+            //// reset "no idle" state after pumping "normal" message
+            //if(__is_idle_message(&msg))
+            //{
+            //   bIdle = TRUE;
+            //   lIdleCount = 0;
+            //}
 
             m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
@@ -7275,7 +7275,7 @@ namespace metrowin
 
    }
 
-   Platform::Agile<Windows::UI::Core::CoreWindow> interaction_impl::get_os_window()
+   Agile<Windows::UI::Core::CoreWindow> interaction_impl::get_os_window()
    {
       return m_window;
    }

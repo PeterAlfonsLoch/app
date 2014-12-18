@@ -492,7 +492,7 @@ int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( c
 
 #else
 
-   throw todo(papp);
+   throw todo(::get_thread_app());
 
 #endif
 

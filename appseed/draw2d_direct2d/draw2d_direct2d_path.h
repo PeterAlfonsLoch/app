@@ -37,6 +37,9 @@ namespace draw2d_direct2d
 
       virtual bool internal_add_move(int x, int y);
 
+
+      virtual bool internal_add_string(::draw2d_direct2d::graphics * pdc,int32_t x,int32_t y,const string & strText,::draw2d::font_sp spfont);
+
       virtual bool internal_prepare(D2D1_POINT_2F pt);
       virtual bool internal_get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, const RECT & rect, int iStart, int iAngle);
 
@@ -45,15 +48,15 @@ namespace draw2d_direct2d
       virtual void * get_os_data() const;
       virtual void * detach();
 
-      ID2D1PathGeometry * get_os_path();
+      ID2D1PathGeometry * get_os_path(::draw2d_direct2d::graphics * pdc);
 
       virtual bool create();
       virtual bool destroy();
-      bool set(const ::draw2d::path::element & e);
+      bool set(::draw2d_direct2d::graphics * pdc,const ::draw2d::path::element & e);
       bool set(const ::draw2d::path::arc & arc);
       bool set(const ::draw2d::path::move & move);
       bool set(const ::draw2d::path::line & line);
-      bool set(const ::draw2d::path::string_path & path);
+      bool set(::draw2d_direct2d::graphics * pdc,const ::draw2d::path::string_path & path);
 
 
 

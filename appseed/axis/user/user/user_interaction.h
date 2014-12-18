@@ -337,7 +337,7 @@ namespace user
       virtual interaction * GetDescendantWindow(id id) const;
 
       virtual void SetWindowText(const char * lpszString);
-      virtual strsize GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount);
+      virtual strsize GetWindowText(LPSTR lpszStringBuf,int32_t nMaxCount);
       virtual string GetWindowText();
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();

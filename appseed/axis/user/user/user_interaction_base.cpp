@@ -1087,7 +1087,7 @@ namespace user
    }
 
 
-   strsize interaction_base::GetWindowText(LPTSTR lpszStringBuf,int32_t nMaxCount)
+   strsize interaction_base::GetWindowText(LPSTR lpszStringBuf,int32_t nMaxCount)
    {
 
       ::exception::throw_interface_only(get_app());

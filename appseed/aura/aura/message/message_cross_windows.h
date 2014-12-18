@@ -6,7 +6,7 @@ typedef struct tagCREATESTRUCTA
    LPVOID      lpCreateParams;
    HINSTANCE   hInstance;
    HMENU       hMenu;
-   oswindow        oswindowParent;
+   oswindow        hwndParent;
    int32_t         cy;
    int32_t         cx;
    int32_t         y;

@@ -453,7 +453,7 @@ namespace fontopus
       if(m_bInteractive)
       {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          if(get_splash() != NULL)
          {

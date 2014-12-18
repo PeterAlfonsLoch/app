@@ -1,14 +1,34 @@
 #pragma once
 
+
 namespace metrowin
 {
 
-   class CLASS_DECL_AURA factory_exchange :
-      virtual public ::object
+
+   namespace axis
    {
-   public:
-      factory_exchange(::aura::application * papp);
-      virtual ~factory_exchange();
-   };
+
+      class CLASS_DECL_AXIS factory_exchange:
+         virtual public ::object
+      {
+      public:
+         factory_exchange(::aura::application * papp);
+         virtual ~factory_exchange();
+      };
+
+
+   } // namespace metrowin
+
 
 } // namespace metrowin
+
+
+
+
+
+
+
+
+
+
+

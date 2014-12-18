@@ -7,24 +7,25 @@ namespace metrowin
 
    ref class directx_application : 
       public Windows::ApplicationModel::Core::IFrameworkView,
-      public ::aura::system_window
+      public ::axis::system_window
    {
    internal:
 
 
       Windows::Foundation::Point m_ptLastCursor;
 
-      Platform::String ^ m_strId;
+      String ^ m_strId;
 
-      Platform::Agile<Windows::UI::Core::CoreWindow>  m_window;
+      Agile<Windows::UI::Core::CoreWindow>  m_window;
 
-            directx_base ^                         m_directx;
-            bool  m_bFontopusShift;
+      directx_base ^                         m_directx;
+      
+      bool  m_bFontopusShift;
 
       mutex m_mutex;
 
-      ::aura::system * m_psystem;
-      ::aura::application * m_papp;
+      ::axis::system * m_psystem;
+      ::axis::application * m_papp;
 
       bool        m_bLeftButton;
       bool        m_bMiddleButton;
@@ -38,7 +39,7 @@ namespace metrowin
       }
 
 
-      directx_application(::aura::system * psystem, Platform::String ^ strId);
+      directx_application(::axis::system * psystem, String ^ strId);
 
 
       void init_part_2ex();
@@ -55,7 +56,7 @@ namespace metrowin
       // IFrameworkView Methods
       virtual void Initialize(_In_ Windows::ApplicationModel::Core::CoreApplicationView^ applicationView);
       virtual void SetWindow(_In_ Windows::UI::Core::CoreWindow^ window);
-      virtual void Load(_In_ Platform::String^ entryPoint);
+      virtual void Load(_In_ String^ entryPoint);
       virtual void Run();
       virtual void Uninitialize();
       virtual Windows::Foundation::Rect get_window_rect();
@@ -69,9 +70,9 @@ namespace metrowin
          _In_ Windows::UI::Core::WindowSizeChangedEventArgs^ args
          );
 
-      void DpiChanged(::Windows::Graphics::Display::DisplayInformation ^ sender, Platform::Object ^ obj);
+      void DpiChanged(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj);
 
-      void DisplayContentsInvalidated(::Windows::Graphics::Display::DisplayInformation ^ sender, Platform::Object ^ obj);
+      void DisplayContentsInvalidated(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj);
 
       void OnActivated(
          _In_ Windows::ApplicationModel::Core::CoreApplicationView^ applicationView,
@@ -79,13 +80,13 @@ namespace metrowin
          );
 
       void OnSuspending(
-         _In_ Platform::Object^ sender,
+         _In_ Object^ sender,
          _In_ Windows::ApplicationModel::SuspendingEventArgs^ args
          );
 
       void OnResuming(
-         _In_ Platform::Object^ sender,
-         _In_ Platform::Object^ args
+         _In_ Object^ sender,
+         _In_ Object^ args
          );
 
       void OnPointerMoved(Windows::UI::Core::CoreWindow^, Windows::UI::Core::PointerEventArgs^ args);
@@ -111,9 +112,11 @@ namespace metrowin
    {
    internal:
 
-      Platform::String ^ m_strId;
+      ::axis::system * m_paxissystem;
 
-      directx_application_source(Platform::String ^ strId);
+      string m_strId;
+
+      directx_application_source(::axis::system * paxissystem,const string & strId);
 
    public:
 
@@ -122,7 +125,7 @@ namespace metrowin
    };
 
 
-   CLASS_DECL_AURA directx_application_source ^ new_directx_application_source(Platform::String ^ id);
+   CLASS_DECL_AXIS directx_application_source ^ new_directx_application_source(::axis::system * psystem, const string & str);
 
 
 } // namespace metrowin

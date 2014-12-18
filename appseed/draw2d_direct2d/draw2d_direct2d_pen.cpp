@@ -460,7 +460,9 @@ namespace draw2d_direct2d
          ca.g = argb_get_g_value(m_cr) / 255.0f;
          ca.b = argb_get_b_value(m_cr) / 255.0f;
 
-         CreatePatternBrush((ID2D1DeviceContext *) pgraphics->get_os_data(), &ca, &((pen *) this)->m_pimagebrush);
+         pgraphics->m_prendertarget->CreateSolidColorBrush(ca,&((pen *) this)->m_pimagebrush);
+
+         //CreatePatternBrush((ID2D1DeviceContext *) pgraphics->get_os_data(), &ca, &((pen *) this)->m_pimagebrush);
 
          if(m_pimagebrush != NULL)
          {

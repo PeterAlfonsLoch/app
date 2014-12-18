@@ -212,9 +212,9 @@ namespace aura
          g_pmapLibrary = new string_map < INT_PTR,INT_PTR >();
 
          g_pmutexFactory = new mutex;
-
+#ifndef METROWIN
          br_init(NULL);
-
+#endif
       }
 
 

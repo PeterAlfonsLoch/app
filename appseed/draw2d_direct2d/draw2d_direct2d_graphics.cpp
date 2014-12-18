@@ -15,6 +15,8 @@ namespace draw2d_direct2d
       ::draw2d::graphics(papp)
    {
 
+//      &draw2d_direct2_mutex() = &draw2d_direct2_mutex();
+
       m_sppen.alloc(allocer());
 
       m_player    = NULL;
@@ -168,6 +170,7 @@ namespace draw2d_direct2d
          return true;         
       }*/
       //else
+
 
 
       Microsoft::WRL::ComPtr<ID2D1RenderTarget> prendertarget;
@@ -1212,6 +1215,8 @@ namespace draw2d_direct2d
 
    bool graphics::BitBlt(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, uint32_t dwRop)
    { 
+
+      synch_lock sl(&draw2d_direct2_mutex());
 
       if (::draw2d::graphics::BitBlt(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop))
          return true;
@@ -4678,7 +4683,7 @@ namespace draw2d_direct2d
 
       //m_prendertarget->SetTransform(D2D1::Matrix3x2F::Identity());
 
-      m_prendertarget->DrawGeometry((ID2D1PathGeometry *) ppath->get_os_data(), pbrush, (FLOAT) m_sppen->m_dWidth);
+      m_prendertarget->DrawGeometry((ID2D1PathGeometry *)(dynamic_cast < ::draw2d_direct2d::graphics_path * > (ppath))->get_os_path(this),pbrush,(FLOAT)m_sppen->m_dWidth);
 
       //HRESULT hr = m_prendertarget->Flush();
 
@@ -4696,7 +4701,7 @@ namespace draw2d_direct2d
       if(pbrush == NULL)
          return false;
 
-      ID2D1PathGeometry * pg = (ID2D1PathGeometry *)ppath->get_os_data();
+      ID2D1PathGeometry * pg = (ID2D1PathGeometry *)(dynamic_cast < ::draw2d_direct2d::graphics_path * > (ppath))->get_os_path(this);
       if(pg != NULL)
       {
          m_prendertarget->DrawGeometry(pg,pbrush,(FLOAT)ppen->m_dWidth);
@@ -4732,7 +4737,7 @@ namespace draw2d_direct2d
       if(pbrush == NULL)
          return false;
 
-      ID2D1PathGeometry * pgeometry = (ID2D1PathGeometry *) ppath->get_os_data();
+      ID2D1PathGeometry * pgeometry = (ID2D1PathGeometry *)(dynamic_cast < ::draw2d_direct2d::graphics_path * > (ppath))->get_os_path(this);
       
       if(pgeometry == NULL)
          return false;
@@ -4763,7 +4768,7 @@ namespace draw2d_direct2d
       if(pbrush == NULL)
          return false;
 
-      ID2D1PathGeometry * pgeometry = (ID2D1PathGeometry *)ppath->get_os_data();
+      ID2D1PathGeometry * pgeometry = (ID2D1PathGeometry *)(dynamic_cast < ::draw2d_direct2d::graphics_path * > (ppath))->get_os_path(this);
 
       if(pgeometry == NULL)
          return false;

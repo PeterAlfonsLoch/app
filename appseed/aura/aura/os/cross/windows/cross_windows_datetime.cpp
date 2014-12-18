@@ -28,9 +28,13 @@
 
 #if !defined(WINDOWS)
 #include <sys/time.h>
+
 #endif
 
-
+#ifdef METROWIN
+#define STATUS_SUCCESS 0
+#define STATUS_PRIVILEGE_NOT_HELD        ((NTSTATUS) 0xC0000061)
+#endif
 #include <time.h>
 
 #define server_start_time 0

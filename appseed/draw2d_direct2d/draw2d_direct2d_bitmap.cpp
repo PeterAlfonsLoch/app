@@ -22,6 +22,8 @@ namespace draw2d_direct2d
    bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int cx, int cy, UINT nPlanes, UINT nBitcount, const void * lpBits, int stride)
    { 
 
+      synch_lock sl(&draw2d_direct2_mutex());
+
       if(m_pbitmap != NULL)
       {
 
@@ -78,6 +80,8 @@ namespace draw2d_direct2d
 
    bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, int * stride, HANDLE hSection, uint32_t offset)
    { 
+
+      synch_lock sl(&draw2d_direct2_mutex());
 
       if(m_pbitmap != NULL)
       {
@@ -222,6 +226,7 @@ namespace draw2d_direct2d
    bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight)
    {
 
+      synch_lock sl(&draw2d_direct2_mutex());
 
       if(m_pbitmap != NULL)
       {
@@ -269,6 +274,7 @@ namespace draw2d_direct2d
    bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight)
    { 
 
+      synch_lock sl(&draw2d_direct2_mutex());
 
       if(m_pbitmap != NULL)
       {

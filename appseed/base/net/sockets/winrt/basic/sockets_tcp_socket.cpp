@@ -144,7 +144,7 @@ namespace sockets
 
       m_event.ResetEvent();
 
-      Platform::String ^ strService = ::str::from(ad.get_service_number());
+      String ^ strService = ::str::from(ad.get_service_number());
 
       m_posdata->m_streamsocket->ConnectAsync(ad.m_posdata->m_hostname, strService)->Completed = 
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
@@ -182,13 +182,13 @@ namespace sockets
    {
 /*      if (!ad.IsValid())
       {
-         log("open", 0, "Invalid ::net::address", ::core::log::level_fatal);
+         log("open", 0, "Invalid ::net::address", ::aura::log::level_fatal);
          SetCloseAndDelete();
          return false;
       }*/
 /*      if (Handler().get_count() >= FD_SETSIZE)
       {
-         log("open", 0, "no space left in fd_set", ::core::log::level_fatal);
+         log("open", 0, "no space left in fd_set", ::aura::log::level_fatal);
          SetCloseAndDelete();
          return false;
       }*/
@@ -235,7 +235,7 @@ namespace sockets
 
             SetIsClient();
             SetCallOnConnect(); // base_socket_handler must call OnConnect
-            log("SetCallOnConnect", 0, "Found pooled connection", ::core::log::level_info);
+            log("SetCallOnConnect", 0, "Found pooled connection", ::aura::log::level_info);
             return true;
          }
       }*/
@@ -264,8 +264,8 @@ namespace sockets
          ipv4_address sa(get_app(), GetSocks4Host(), GetSocks4Port());
          {
             string sockshost;
-            System.net().l2ip(GetSocks4Host(), sockshost);
-            log("open", 0, "Connecting to socks4 server @ " + sockshost + ":" + ::str::from(GetSocks4Port()), ::core::log::level_info);
+            Session.sockets().net().l2ip(GetSocks4Host(), sockshost);
+            log("open", 0, "Connecting to socks4 server @ " + sockshost + ":" + ::str::from(GetSocks4Port()), ::aura::log::level_info);
          }
          SetSocks4();
          n = connect(s, sa, sa);
@@ -300,14 +300,14 @@ namespace sockets
          if (Reconnect())
          {
             string strError = StrError(iError);
-            log("connect: failed, reconnect pending", iError, StrError(iError), ::core::log::level_info);
+            log("connect: failed, reconnect pending", iError, StrError(iError), ::aura::log::level_info);
             attach(s);
             SetConnecting( true ); // this flag will control fd_set's
          }
          else
          {
             string strError = StrError(iError);
-            log("connect: failed", iError, StrError(iError), ::core::log::level_fatal);
+            log("connect: failed", iError, StrError(iError), ::aura::log::level_fatal);
             SetCloseAndDelete();
             ::closesocket(s);
             return false;
@@ -332,10 +332,10 @@ namespace sockets
 
       /*if (IsIpv6())
       {
-         if (!Handler().ResolverEnabled() || System.net().isipv6(host) )
+         if (!Handler().ResolverEnabled() || Session.sockets().net().isipv6(host) )
          {
             in6_addr a;
-            if (!System.net().u2ip(host, a))
+            if (!Session.sockets().net().u2ip(host, a))
             {
                SetCloseAndDelete();
                return false;
@@ -351,10 +351,10 @@ namespace sockets
          m_strHost = host;
          return true;
       }
-      if (!Handler().ResolverEnabled() || System.net().isipv4(host) )
+      if (!Handler().ResolverEnabled() || Session.sockets().net().isipv4(host) )
       {
          ipaddr_t l;
-         if (!System.net().u2ip(host, l))
+         if (!Session.sockets().net().u2ip(host, l))
          {
             SetCloseAndDelete();
             return false;
@@ -388,13 +388,13 @@ namespace sockets
          }
          else
          {
-            log("OnResolved", 0, "Resolver failed", ::core::log::level_fatal);
+            log("OnResolved", 0, "Resolver failed", ::aura::log::level_fatal);
             SetCloseAndDelete();
          }
       }
       else
       {
-         log("OnResolved", id, "Resolver returned wrong job id", ::core::log::level_fatal);
+         log("OnResolved", id, "Resolver returned wrong job id", ::aura::log::level_fatal);
          SetCloseAndDelete();
       }
    }
@@ -419,7 +419,7 @@ namespace sockets
       }
       else
       {
-         log("OnResolved", id, "Resolver returned wrong job id", ::core::log::level_fatal);
+         log("OnResolved", id, "Resolver returned wrong job id", ::aura::log::level_fatal);
          SetCloseAndDelete();
       }
    }*/
@@ -436,7 +436,7 @@ namespace sockets
 
       if(reader->UnconsumedBufferLength > 0)
       {
-         Platform::Array < unsigned char, 1U > ^ ucha = ref new Platform::Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
+         Array < unsigned char, 1U > ^ ucha = ref new Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
          reader->ReadBytes(ucha);
          on_read((char *) ucha->Data, ucha->Length);
          return ;
@@ -477,7 +477,7 @@ namespace sockets
          else if(asyncStatus == ::Windows::Foundation::AsyncStatus::Completed)
          {
             //int n = reader->UnconsumedBufferLength;
-            Platform::Array < unsigned char, 1U > ^ ucha = ref new Platform::Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
+            Array < unsigned char, 1U > ^ ucha = ref new Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
             reader->ReadBytes(ucha);
             ::primitive::memory mem;
             mem.assign(ucha->Data, ucha->Length);
@@ -556,7 +556,7 @@ namespace sockets
             SetCallOnConnect();
             return;
          }
-         log("tcp: connect failed", err, StrError(err), ::core::log::level_fatal);
+         log("tcp: connect failed", err, StrError(err), ::aura::log::level_fatal);
          Set(false, false); // no more monitoring because connection failed
 
          // failed
@@ -652,7 +652,7 @@ namespace sockets
                SetFlushBeforeClose(false);
                SetLost();
                const char *errbuf = ERR_error_string(errnr, NULL);
-               log("OnWrite/SSL_write", errnr, errbuf, ::core::log::level_fatal);
+               log("OnWrite/SSL_write", errnr, errbuf, ::aura::log::level_fatal);
             }
             return 0;
          }
@@ -683,7 +683,7 @@ namespace sockets
             if (Errno != EWOULDBLOCK)
    #endif
             {
-               log("send", Errno, StrError(Errno), ::core::log::level_fatal);
+               log("send", Errno, StrError(Errno), ::aura::log::level_fatal);
                OnDisconnect();
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
@@ -711,7 +711,7 @@ namespace sockets
 
       }
 
-      m_posdata->m_writer->WriteBytes(ref new Platform::Array < unsigned char, 1U >((unsigned char *)buf, len));
+      m_posdata->m_writer->WriteBytes(ref new Array < unsigned char, 1U >((unsigned char *)buf, len));
 
 
       //int n = reader->UnconsumedBufferLength;
@@ -771,11 +771,11 @@ namespace sockets
       {
          log("SendBuf", -1, "Attempt to write to a non-ready socket" ); // warning
          if (GetSocket() == INVALID_SOCKET)
-            log("SendBuf", 0, " * GetSocket() == INVALID_SOCKET", ::core::log::level_info);
+            log("SendBuf", 0, " * GetSocket() == INVALID_SOCKET", ::aura::log::level_info);
          if (Connecting())
-            log("SendBuf", 0, " * Connecting()", ::core::log::level_info);
+            log("SendBuf", 0, " * Connecting()", ::aura::log::level_info);
          if (CloseAndDelete())
-            log("SendBuf", 0, " * CloseAndDelete()", ::core::log::level_info);
+            log("SendBuf", 0, " * CloseAndDelete()", ::aura::log::level_info);
          return;
       }
       if (!IsConnected())
@@ -849,7 +849,7 @@ namespace sockets
          {
             port_t port = ad.get_service_number();
             in_addr addr;
-            System.net().convert(addr, ad.get_display_number());
+            Session.sockets().net().convert(addr, ad.get_display_number());
             memcpy(request + 2, &port, sizeof(port_t)); // nwbo is ok here
             memcpy(request + 2 + sizeof(port_t), &addr, sizeof(in_addr));
          }
@@ -867,7 +867,7 @@ namespace sockets
 
    void tcp_socket::OnSocks4ConnectFailed()
    {
-      log("OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection",::core::log::level_warning);
+      log("OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection",::aura::log::level_warning);
       if (!Handler().Socks4TryDirect())
       {
          SetConnecting(false);
@@ -914,18 +914,18 @@ namespace sockets
             {
             case 90:
                OnConnect();
-               log("OnSocks4Read", 0, "Connection established", ::core::log::level_info);
+               log("OnSocks4Read", 0, "Connection established", ::aura::log::level_info);
                break;
             case 91:
             case 92:
             case 93:
-               log("OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed",::core::log::level_fatal);
+               log("OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed",::aura::log::level_fatal);
                SetConnecting(false);
                SetCloseAndDelete();
                OnConnectFailed();
                break;
             default:
-               log("OnSocks4Read",m_socks4_cd,"socks4 server unrecognized response",::core::log::level_fatal);
+               log("OnSocks4Read",m_socks4_cd,"socks4 server unrecognized response",::aura::log::level_fatal);
                SetCloseAndDelete();
                break;
             }
@@ -1043,7 +1043,7 @@ namespace sockets
             && x509_err != X509_V_ERR_APPLICATION_VERIFICATION
             && x509_err != X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY)
             {
-               log("SSLNegotiate/cert_common_name_check", 0, "cert_common_name_check failed", ::core::log::level_info);
+               log("SSLNegotiate/cert_common_name_check", 0, "cert_common_name_check failed", ::aura::log::level_info);
                SetSSLNegotiate(false);
                SetCloseAndDelete();
                OnSSLConnectFailed();
@@ -1067,7 +1067,7 @@ namespace sockets
             {
                OnConnect();
             }
-            log("SSLNegotiate/SSL_connect", 0, "Connection established", ::core::log::level_info);
+            log("SSLNegotiate/SSL_connect", 0, "Connection established", ::aura::log::level_info);
             if(m_spsslclientcontext->m_psession == NULL)
             {
                m_spsslclientcontext->m_psession = SSL_get1_session(m_ssl);
@@ -1093,7 +1093,7 @@ namespace sockets
                }
             }
             r = SSL_get_error(m_ssl, r);
-            log("SSLNegotiate/SSL_connect", 0, "Connection failed", ::core::log::level_info);
+            log("SSLNegotiate/SSL_connect", 0, "Connection failed", ::aura::log::level_info);
             SetSSLNegotiate(false);
             SetCloseAndDelete();
             OnSSLConnectFailed();
@@ -1104,7 +1104,7 @@ namespace sockets
             r = SSL_get_error(m_ssl, r);
             if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
             {
-               log("SSLNegotiate/SSL_connect", -1, "Connection failed", ::core::log::level_info);
+               log("SSLNegotiate/SSL_connect", -1, "Connection failed", ::aura::log::level_info);
    TRACE("SSL_connect() failed - closing socket, return code: %d\n",r);
                SetSSLNegotiate(false);
                SetCloseAndDelete(true);
@@ -1130,13 +1130,13 @@ namespace sockets
                }
             }
             OnAccept();
-            log("SSLNegotiate/SSL_accept", 0, "Connection established", ::core::log::level_info);
+            log("SSLNegotiate/SSL_accept", 0, "Connection established", ::aura::log::level_info);
             return true;
          }
          else
          if (!r)
          {
-            log("SSLNegotiate/SSL_accept", 0, "Connection failed", ::core::log::level_info);
+            log("SSLNegotiate/SSL_accept", 0, "Connection failed", ::aura::log::level_info);
             SetSSLNegotiate(false);
             SetCloseAndDelete();
             OnSSLAcceptFailed();
@@ -1146,7 +1146,7 @@ namespace sockets
             r = SSL_get_error(m_ssl, r);
             if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
             {
-               log("SSLNegotiate/SSL_accept", -1, "Connection failed", ::core::log::level_info);
+               log("SSLNegotiate/SSL_accept", -1, "Connection failed", ::aura::log::level_info);
    TRACE("SSL_accept() failed - closing socket, return code: %d\n",r);
                SetSSLNegotiate(false);
                SetCloseAndDelete(true);
@@ -1168,7 +1168,7 @@ namespace sockets
 
    void tcp_socket::InitSSLServer()
    {
-//      log("InitSSLServer", 0, "You MUST implement your own InitSSLServer method", ::core::log::level_fatal);
+//      log("InitSSLServer", 0, "You MUST implement your own InitSSLServer method", ::aura::log::level_fatal);
   //    SetCloseAndDelete();
    }
 
@@ -1224,7 +1224,7 @@ namespace sockets
          /* Load our keys and certificates*/
       /*   if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
          {
-            log("tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::core::log::level_fatal);
+            log("tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::aura::log::level_fatal);
          }
       }
 
@@ -1233,7 +1233,7 @@ namespace sockets
       SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, this);
       if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
       {
-         log("tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::core::log::level_fatal);
+         log("tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::aura::log::level_fatal);
       }
    }
 
@@ -1261,7 +1261,7 @@ namespace sockets
       /* Load our keys and certificates*/
   /*    if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, certfile, SSL_FILETYPE_PEM)))
       {
-         log("tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::core::log::level_fatal);
+         log("tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::aura::log::level_fatal);
       }
 
       m_password = password;
@@ -1269,7 +1269,7 @@ namespace sockets
       SSL_CTX_set_default_passwd_cb_userdata(m_ssl_ctx, this);
       if (!(SSL_CTX_use_PrivateKey_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
       {
-         log("tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::core::log::level_fatal);
+         log("tcp_socket InitializeContext", 0, "Couldn't read private key file " + keyfile, ::aura::log::level_fatal);
       }
    }
 
@@ -1293,7 +1293,7 @@ namespace sockets
    {
 /*      if (GetSocket() == INVALID_SOCKET) // this could happen
       {
-         log("socket::close", 0, "file descriptor invalid", ::core::log::level_warning);
+         log("socket::close", 0, "file descriptor invalid", ::aura::log::level_warning);
          return 0;
       }
       int n;
@@ -1303,7 +1303,7 @@ namespace sockets
          if (shutdown(GetSocket(), SHUT_WR) == -1)
          {
             // failed...
-            log("shutdown", Errno, StrError(Errno), ::core::log::level_error);
+            log("shutdown", Errno, StrError(Errno), ::aura::log::level_error);
          }
       }
       //
@@ -1312,7 +1312,7 @@ namespace sockets
       {
          if (n)
          {
-            log("read() after shutdown", n, "bytes read", ::core::log::level_warning);
+            log("read() after shutdown", n, "bytes read", ::aura::log::level_warning);
          }
       }
    #ifdef HAVE_OPENSSL
@@ -1334,14 +1334,14 @@ namespace sockets
    SSL_CTX *tcp_socket::GetSslContext()
    {
       if (!m_ssl_ctx)
-         log("GetSslContext", 0, "SSL Context is NULL; check InitSSLServer/InitSSLClient", ::core::log::level_warning);
+         log("GetSslContext", 0, "SSL Context is NULL; check InitSSLServer/InitSSLClient", ::aura::log::level_warning);
       return m_ssl_ctx;
    }
 
    SSL *tcp_socket::GetSsl()
    {
       if (!m_ssl)
-         log("GetSsl", 0, "SSL is NULL; check InitSSLServer/InitSSLClient", ::core::log::level_warning);
+         log("GetSsl", 0, "SSL is NULL; check InitSSLServer/InitSSLClient", ::aura::log::level_warning);
       return m_ssl;
    }
    #endif
@@ -1439,16 +1439,16 @@ namespace sockets
 
    bool tcp_socket::SetTcpNodelay(bool x)
    {
-   #ifdef TCP_NODELAY
+#if defined(TCP_NODELAY) && defined(BSD_STYLE_SOCKETS)
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_TCP, TCP_NODELAY, (char *)&optval, sizeof(optval)) == -1)
       {
-         log("setsockopt(IPPROTO_TCP, TCP_NODELAY)", Errno, StrError(Errno), ::core::log::level_fatal);
+         log("setsockopt(IPPROTO_TCP, TCP_NODELAY)", Errno, StrError(Errno), ::aura::log::level_fatal);
          return false;
       }
       return true;
    #else
-      log("socket option not available", 0, "TCP_NODELAY", ::core::log::level_info);
+      log("socket option not available", 0, "TCP_NODELAY", ::aura::log::level_info);
       return false;
    #endif
    }
@@ -1457,7 +1457,7 @@ namespace sockets
 
    void tcp_socket::OnConnectTimeout()
    {
-      log("connect", -1, "connect timeout", ::core::log::level_fatal);
+      log("connect", -1, "connect timeout", ::aura::log::level_fatal);
       m_estatus = status_connection_timed_out;
       if (Socks4())
       {
@@ -1527,7 +1527,7 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int err = SoError();
-      log("exception on select", err, StrError(err), ::core::log::level_fatal);
+      log("exception on select", err, StrError(err), ::aura::log::level_fatal);
       SetCloseAndDelete();
    }
    #endif // _WIN32
@@ -1611,6 +1611,20 @@ namespace sockets
 
    }
    */
+   string tcp_socket::get_connect_host()
+   {
+
+      return m_strConnectHost;
+
+   }
+
+
+   port_t tcp_socket::get_connect_port()
+   {
+
+      return m_iConnectPort;
+
+   }
 
 
 } // namespace sockets

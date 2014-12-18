@@ -13,32 +13,8 @@
     <Filter Include="Header Files\axis\os">
       <UniqueIdentifier>{5ce0ad3f-18b2-4094-b5b3-c02ae804d914}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\os\android">
-      <UniqueIdentifier>{8765ddac-ee6e-4d94-8f9e-92839dbe7375}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\os\windows">
-      <UniqueIdentifier>{2faf011c-d2cd-4a77-a02b-042991a82896}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\os\cross">
-      <UniqueIdentifier>{2586ccee-afb3-4e48-8c6e-642c82f7885e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\os\cross\windows">
-      <UniqueIdentifier>{d6fd5ab5-1f26-4726-bcdf-7893c8df18ea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\os\ansios">
-      <UniqueIdentifier>{38111f15-3550-42e6-b6ef-6b89b3bce310}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\node">
       <UniqueIdentifier>{73dbb7d1-4fba-4d49-97db-1fb63421a498}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\node\windows">
-      <UniqueIdentifier>{15d431dc-acf0-4791-9f51-9fdcacd85877}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\node\android">
-      <UniqueIdentifier>{8c0cf939-d58c-4a1a-abb9-10ec8932ef23}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\node\ansios">
-      <UniqueIdentifier>{e4b7a2d2-d1f3-4d7d-a5b0-b494d130fdbb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\axis\message">
       <UniqueIdentifier>{e428e3f6-2714-4260-9040-e59d49ea13c4}</UniqueIdentifier>
@@ -139,15 +115,6 @@
     <Filter Include="Source Files\axis\os\cross\windows">
       <UniqueIdentifier>{5f205022-3804-47e7-a333-0b0c41864445}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\os\android">
-      <UniqueIdentifier>{ca8c092a-ac4f-4833-9bb3-0087b06d050a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\os\windows">
-      <UniqueIdentifier>{826c3f02-5a7b-4860-85bb-c30ad2ceff96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\os\ansios">
-      <UniqueIdentifier>{042a2482-32ad-4712-bb11-925d34b37deb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\axis\axis">
       <UniqueIdentifier>{c06d9923-6120-4ea5-a558-d87e73d6ec27}</UniqueIdentifier>
     </Filter>
@@ -159,15 +126,6 @@
     </Filter>
     <Filter Include="Source Files\axis\node">
       <UniqueIdentifier>{360a8448-933e-457d-aedd-6d4664d4d07a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node\windows">
-      <UniqueIdentifier>{b311aa65-054d-43dd-a2d7-ff44ad3b0d6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node\android">
-      <UniqueIdentifier>{8f776d1d-3d11-4179-bcb2-127328354a7c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node\ansios">
-      <UniqueIdentifier>{001a115a-b753-4f98-9c5e-22a678c68f1e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\compress">
       <UniqueIdentifier>{06910760-3efa-4eea-9de3-b191b03b6ab8}</UniqueIdentifier>
@@ -183,6 +141,24 @@
     </Filter>
     <Filter Include="Source Files\primitive\data">
       <UniqueIdentifier>{cdc42382-11d9-4a00-8715-fb9d1f892150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\os\metrowin">
+      <UniqueIdentifier>{0109a3ec-2d65-483a-8e43-1029e94aab8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\os\ansios">
+      <UniqueIdentifier>{b68737bc-e418-4341-b252-c6c63856cc90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node\metrowin">
+      <UniqueIdentifier>{5f94bec9-a30e-49a4-b84e-6710e3d487a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\os\metrowin">
+      <UniqueIdentifier>{e719fa44-5e6a-4e5b-9970-317a1372a114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\node\metrowin">
+      <UniqueIdentifier>{15d431dc-acf0-4791-9f51-9fdcacd85877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\node\windows">
+      <UniqueIdentifier>{9670e3a2-9d94-4e4e-b286-51d1ab9346ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -234,245 +210,8 @@
     <ClInclude Include="axis\os\os.h">
       <Filter>Header Files\axis\os</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_cross_win_file.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_cross_win_gdi.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_cross_win_gdi_internal.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_file.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_file_watcher.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_graphics.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_internal.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_process.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_window_android.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_window_impl.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_android.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\windows\windows_window_gdi.h">
-      <Filter>Header Files\axis\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\cross.h">
-      <Filter>Header Files\axis\os\cross</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\e.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_base.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_base_tsd.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_common_controls.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_crt.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_crtdefs.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_defs.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_errno.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_error.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_file.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_gdi.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_guid_def.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_internals.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_mmeapi.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_mmsystem.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_nls.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_nt.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_ntstatus.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_ole_automation.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_poppack.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_pshpack2.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_pshpack4.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_pshpack8.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_shared_memory.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_thread.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_thread_impl.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_time.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_types.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_user.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_winnt.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios.h">
-      <Filter>Header Files\axis\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios_file.h">
-      <Filter>Header Files\axis\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios_multithreading.h">
-      <Filter>Header Files\axis\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios_thread.h">
-      <Filter>Header Files\axis\os\ansios</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\node.h">
       <Filter>Header Files\axis\node</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_copydesk.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_factory_exchange.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_implementation.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_interaction_impl.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_message_queue.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_window_draw.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android1.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_application.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_copydesk.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_crypto.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_dir.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_factory_exchange.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_file.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_file_set.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_file_system.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_implementation.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_internal.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_ip_enum.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_os.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_port_forward.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_shell.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_stdio_file.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_thread.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_window.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_window_draw.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\ansios\ansios.h">
-      <Filter>Header Files\axis\node\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\ansios\ansios_thread_impl.h">
-      <Filter>Header Files\axis\node\ansios</Filter>
     </ClInclude>
     <ClInclude Include="axis\message\message_user.h">
       <Filter>Header Files\axis\message</Filter>
@@ -547,9 +286,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_control_event.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_create_context.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_document_data_map.h">
@@ -780,6 +516,69 @@
     <ClInclude Include="primitive\data\data_tree_item.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_file_watcher.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_file_winrt.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_gdi_winrt.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_internal.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_process.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_simple_hold_handle.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_simple_ui.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_sockets.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_user_impl.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin_window_impl.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_copydesk.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_directx.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_directx_application.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_factory_exchange.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_interaction_impl.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_internal.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\metrowin\metrowin_window_draw.h">
+      <Filter>Header Files\axis\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\metrowin\metrowin.h">
+      <Filter>Header Files\axis\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_scroll_control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\windows\windows_message_queue.h">
+      <Filter>Header Files\axis\node</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="axis\axis\axis.inl">
@@ -826,9 +625,6 @@
     <ClCompile Include="user\user\user.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_buffer.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_control.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -871,9 +667,6 @@
     <ClCompile Include="user\user\user_keyboard.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_keyboard_focus.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_keyboard_layout.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -884,9 +677,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_message.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_mouse_focus.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_document.cpp">
@@ -923,9 +713,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_str_context.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_text_interface.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_user.cpp">
@@ -1024,129 +811,6 @@
     <ClCompile Include="axis\os\cross\metrowin\cross_metrowin_user.cpp">
       <Filter>Source Files\axis\os\cross\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_windows.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_crt.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_error.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_locale.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_shared_memory.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_threading.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_datetime.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_user.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_c.c">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_cross_win_file.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_cross_win_gdi.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_base_file.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_file_watcher.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_launcher.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_library.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_locale.c">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_lock.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_message_loop.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_process.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_process_pid.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_simple_shell_launcher.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_small_ipca_channel.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_multithreading.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_windowing.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_window_android.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_window_impl.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_win_base.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_dll.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_gdi.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_os.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_simple_app.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_window_gdi.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_cross_win.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_cross_windows_user.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_cross_win_file.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_base_file.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_file_std.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_multithreading.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\crypto\ansios_crypt.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="axis\axis\axis_print_job.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
@@ -1177,102 +841,6 @@
     <ClCompile Include="axis\node\node.cpp">
       <Filter>Source Files\axis\node</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_copydesk.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_interaction_impl.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_print_job.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_window_draw.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_android.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android1.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android2.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_application.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_copydesk.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_crypto.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_dir.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_dumpinit.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_error.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_exception.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_factory_exchange.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_set.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_system.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_ip_enum.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_main.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_os.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_port_forward.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_shell.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_stdio_file.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_thread.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_trace.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_util.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_window.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_window_draw.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\ansios\ansios_thread_impl.cpp">
-      <Filter>Source Files\axis\node\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="axis\compress\bzip_stream.cpp">
       <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
@@ -1299,6 +867,51 @@
     </ClCompile>
     <ClCompile Include="primitive\data\data_tree_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_copydesk.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_directx.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_directx_application.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_factory_exchange.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_interaction_impl.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\metrowin\metrowin_window_draw.cpp">
+      <Filter>Source Files\axis\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_message_loop.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_process.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_simple_app.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_user.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_scroll_control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_multithreading.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\metrowin\metrowin_windowing.cpp">
+      <Filter>Source Files\axis\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
+      <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

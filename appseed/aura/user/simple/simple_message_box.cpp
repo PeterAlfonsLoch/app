@@ -11,12 +11,12 @@ int32_t(*g_pfn_simple_message_box)(oswindow,const char *,const char *,uint32_t) 
 extern "C"
 CLASS_DECL_AURA int32_t simple_message_box(oswindow window,const char * lpText,const char * lpCaption,uint32_t uiFlags)
 {
-
+#ifndef METROWIN
    if(g_pfn_simple_message_box != NULL)
    {
       return (*g_pfn_simple_message_box)(window,lpText,lpCaption,uiFlags);
    }
-
+#endif
    return aura_simple_message_box(window,lpText,lpCaption,uiFlags);
 
 }

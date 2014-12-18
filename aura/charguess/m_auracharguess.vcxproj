@@ -26,11 +26,71 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\charguess.h" />
+    <ClInclude Include="cpp\big5Prober.h" />
+    <ClInclude Include="cpp\charDistribution.h" />
+    <ClInclude Include="cpp\charsetProber.h" />
+    <ClInclude Include="cpp\codingStateMachine.h" />
+    <ClInclude Include="cpp\config.h" />
+    <ClInclude Include="cpp\EscCharsetProber.h" />
+    <ClInclude Include="cpp\EUCJPProber.h" />
+    <ClInclude Include="cpp\EUCKRProber.h" />
+    <ClInclude Include="cpp\EUCTWProber.h" />
+    <ClInclude Include="cpp\GB2312Prober.h" />
+    <ClInclude Include="cpp\jpCntx.h" />
+    <ClInclude Include="cpp\Latin1Prober.h" />
+    <ClInclude Include="cpp\MBCSGroupProber.h" />
+    <ClInclude Include="cpp\pkgInt.h" />
+    <ClInclude Include="cpp\SBCharsetProber.h" />
+    <ClInclude Include="cpp\SBCSGroupProber.h" />
+    <ClInclude Include="cpp\SJISProber.h" />
+    <ClInclude Include="cpp\types.h" />
+    <ClInclude Include="cpp\universal.h" />
+    <ClInclude Include="cpp\UTF8Prober.h" />
+    <ClInclude Include="framework\framework.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cpp\big5Prober.cpp" />
+    <ClCompile Include="cpp\charDistribution.cpp" />
+    <ClCompile Include="cpp\charguess.cpp" />
+    <ClCompile Include="cpp\EscCharsetProber.cpp" />
+    <ClCompile Include="cpp\EscSM.cpp" />
+    <ClCompile Include="cpp\EUCJPProber.cpp" />
+    <ClCompile Include="cpp\EUCKRProber.cpp" />
+    <ClCompile Include="cpp\EUCTWProber.cpp" />
+    <ClCompile Include="cpp\GB2312Prober.cpp" />
+    <ClCompile Include="cpp\jpCntx.cpp" />
+    <ClCompile Include="cpp\LangBulgarianModel.cpp" />
+    <ClCompile Include="cpp\LangCyrillicModel.cpp" />
+    <ClCompile Include="cpp\LangGreekModel.cpp" />
+    <ClCompile Include="cpp\LangHungarianModel.cpp" />
+    <ClCompile Include="cpp\LangThaiModel.cpp" />
+    <ClCompile Include="cpp\Latin1Prober.cpp" />
+    <ClCompile Include="cpp\MBCSGroupProber.cpp" />
+    <ClCompile Include="cpp\MBCSSM.cpp" />
+    <ClCompile Include="cpp\SBCharsetProber.cpp" />
+    <ClCompile Include="cpp\SBCSGroupProber.cpp" />
+    <ClCompile Include="cpp\SJISProber.cpp" />
+    <ClCompile Include="cpp\universal.cpp" />
+    <ClCompile Include="cpp\UTF8Prober.cpp" />
+    <ClCompile Include="framework\framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="auracharguess.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseed\aura\m_aura.vcxproj">
+      <Project>{55f3f6b8-8baf-4f22-9e77-bcf9d5a23960}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5DA9963D-5824-48A8-B869-BA93618DA5F4}</ProjectGuid>
+    <ProjectGuid>{67C95418-596B-4860-AFAE-B53262AE5E43}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>axisfreeimage</ProjectName>
-    <RootNamespace>axisfreeimage</RootNamespace>
+    <ProjectName>auracharguess</ProjectName>
+    <RootNamespace>auracharguess</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
@@ -136,8 +196,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_BASE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_AURA_CHARGUESS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>cpp;framework;$(ProjectDir)../../../include;$(ProjectDir)../../include;$(ProjectDir)../../..;$(ProjectDir)../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -150,9 +210,8 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>Oleaut32.lib;Msxml6.lib;DWrite.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <IgnoreSpecificDefaultLibraries>
-      </IgnoreSpecificDefaultLibraries>
-      <ModuleDefinitionFile>metrowin_base.def</ModuleDefinitionFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>

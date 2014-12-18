@@ -1600,7 +1600,7 @@ namespace core
    bool application::on_run_exception(::exception::exception & e)
    {
 
-      ::OutputDebugString("An unexpected error has occurred and no special exception handling is available.");
+      ::output_debug_string("An unexpected error has occurred and no special exception handling is available.");
 
       if(typeid(e) == typeid(not_installed))
       {

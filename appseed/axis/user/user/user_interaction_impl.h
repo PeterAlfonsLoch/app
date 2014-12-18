@@ -4,15 +4,24 @@
 #if defined METROWIN && defined(__cplusplus_winrt)
 
 
-class CLASS_DECL_AXIS native_window
+namespace user
 {
-public:
 
 
-   ::axis::system_window ^ m_pwindow;
+   class CLASS_DECL_AXIS native_window
+   {
+   public:
 
 
-};
+      ::axis::system_window ^ m_pwindow;
+
+
+   };
+
+
+} // namespace user
+
+
 
 //#define interaction_impl ::user::interaction
 
@@ -378,9 +387,9 @@ namespace user
       //      virtual ::user::interaction * GetWindow(UINT nCmd);
       virtual ::user::interaction * GetLastActivePopup();
 
-      virtual bool IsChild(::user::interaction * pwindow) const;
-      virtual ::user::interaction * get_parent() const;
-      ::user::interaction * set_parent(::user::interaction * pWndNewParent);
+      //virtual bool IsChild(::user::interaction * pwindow) const;
+      //virtual ::user::interaction * get_parent() const;
+      //::user::interaction * set_parent(::user::interaction * pWndNewParent);
 
       // Alert Functions
       bool FlashWindow(bool bInvert);

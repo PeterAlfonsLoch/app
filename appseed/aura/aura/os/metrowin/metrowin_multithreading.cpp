@@ -32,7 +32,7 @@ mutex * g_pmutexTlsData = NULL;
 thread_data::thread_data()
 {
 
-   g_dwTlsIndex = TlsAlloc();
+   g_dwTlsIndex = tls_alloc();
 
 }
 
@@ -40,7 +40,7 @@ thread_data::thread_data()
 thread_data::~thread_data()
 {
 
-   TlsFree(g_dwTlsIndex);
+   tls_free(g_dwTlsIndex);
 
 }
 
@@ -48,7 +48,7 @@ thread_data::~thread_data()
 void * thread_data::get()
 {
 
-   return TlsGetValue(g_dwTlsIndex);
+   return tls_get_value(g_dwTlsIndex);
 
 }
 
@@ -56,7 +56,7 @@ void * thread_data::get()
 void thread_data::set(void * p)
 {
 
-   TlsSetValue(g_dwTlsIndex,(LPVOID)p);
+   tls_set_value(g_dwTlsIndex,(LPVOID)p);
 
 }
 
@@ -158,7 +158,7 @@ void StartThread(uint32_t (* pfn)(void *), void * pv, HTHREAD hthread, int nPrio
       catch (...) { }
 
       // Clean up any TLS allocations made by this thread.
-      TlsShutdown();
+      tls_shutdown();
 
       // Signal that the thread has completed.
       hthread->m_pevent->set_event();
@@ -258,7 +258,7 @@ HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_p
 }
 
 
-DWORD WINAPI ResumeThread(HTHREAD hThread)
+DWORD WINAPI __ResumeThread(HTHREAD hThread)
 {
    synch_lock lock(g_pmutexPendingThreadsLock);
 
@@ -293,7 +293,7 @@ DWORD WINAPI ResumeThread(HTHREAD hThread)
 }
 
 
-BOOL WINAPI SetThreadPriority(HTHREAD hThread, int iPriority)
+BOOL WINAPI __SetThreadPriority(HTHREAD hThread, int iPriority)
 {
    synch_lock lock(g_pmutexPendingThreadsLock);
 
@@ -316,7 +316,7 @@ BOOL WINAPI SetThreadPriority(HTHREAD hThread, int iPriority)
 
 
 
-DWORD WINAPI TlsAlloc()
+DWORD WINAPI tls_alloc()
 {
    synch_lock lock(g_pmutexTlsData);
 
@@ -333,7 +333,7 @@ DWORD WINAPI TlsAlloc()
 }
 
 
-BOOL WINAPI TlsFree(DWORD dwTlsIndex)
+BOOL WINAPI tls_free(DWORD dwTlsIndex)
 {
    synch_lock lock(g_pmutexTlsData);
 
@@ -375,7 +375,7 @@ BOOL WINAPI TlsFree(DWORD dwTlsIndex)
 }
 
 
-LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
+LPVOID WINAPI tls_get_value(DWORD dwTlsIndex)
 {
    ThreadLocalData* threadData = currentThreadData;
 
@@ -391,7 +391,7 @@ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
    }
 }
 
-LPVOID WINAPI TlsGetValue(HTHREAD hthread, DWORD dwTlsIndex)
+LPVOID WINAPI tls_get_value(HTHREAD hthread, DWORD dwTlsIndex)
 {
    ThreadLocalData* threadData = all_thread_data()[hthread];
 
@@ -408,7 +408,7 @@ LPVOID WINAPI TlsGetValue(HTHREAD hthread, DWORD dwTlsIndex)
 }
 
 
-BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
+BOOL WINAPI tls_set_value(DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
    ThreadLocalData* threadData = currentThreadData;
 
@@ -441,7 +441,7 @@ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
    return true;
 }
 
-BOOL WINAPI TlsSetValue(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
+BOOL WINAPI tls_set_value(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
 
    ThreadLocalData* threadData = all_thread_data()[hthread];
@@ -474,8 +474,9 @@ BOOL WINAPI TlsSetValue(HTHREAD hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
    return true;
 }
 
+
 // Called at thread exit to clean up TLS allocations.
-void WINAPI TlsShutdown()
+void WINAPI tls_shutdown()
 {
 
    ThreadLocalData * threadData = currentThreadData;
@@ -531,8 +532,7 @@ void WINAPI TlsShutdown()
 
 
 
-
-int WINAPI GetThreadPriority(_In_ HTHREAD hThread)
+int WINAPI __GetThreadPriority(_In_ HTHREAD hThread)
 {
 
    synch_lock lock(g_pmutexPendingThreadsLock);
@@ -554,7 +554,7 @@ int WINAPI GetThreadPriority(_In_ HTHREAD hThread)
 
 
 mutex * os_thread::s_pmutex = NULL;
-comparable_raw_array < os_thread * >::type * os_thread::s_pptra = NULL;
+ptr_array < os_thread  > * os_thread::s_pptra = NULL;
 __declspec(thread) os_thread * t_posthread = NULL;
 
 os_thread::os_thread(uint32_t ( * pfn)(void *), void * pv)
@@ -826,7 +826,7 @@ void thread_layer::wait_thread(uint32_t dwMillis)
 HTHREAD g_hMainThread = NULL;
 UINT g_uiMainThread = -1;
 
-void set_main_thread(HTHREAD hThread)
+CLASS_DECL_AURA void set_main_thread(HTHREAD hThread)
 {
 
    //   MSG msg;
@@ -895,14 +895,14 @@ uint32_t thread_layer::proc(void * pv)
 mq * get_mq()
 {
 
-   mq * pmq = (mq *) TlsGetValue(TLS_MESSAGE_QUEUE);
+   mq * pmq = (mq *) tls_get_value(TLS_MESSAGE_QUEUE);
 
    if(pmq != NULL)
       return pmq;
 
    pmq = new mq();
 
-   TlsSetValue(TLS_MESSAGE_QUEUE, pmq);
+   tls_set_value(TLS_MESSAGE_QUEUE, pmq);
 
    return pmq;
 
@@ -917,14 +917,14 @@ mq * get_mq(HTHREAD h)
 {
 
 
-   mq * pmq = (mq *) TlsGetValue(h, TLS_MESSAGE_QUEUE);
+   mq * pmq = (mq *) tls_get_value(h, TLS_MESSAGE_QUEUE);
 
    if(pmq != NULL)
       return pmq;
 
    pmq = new mq();
 
-   TlsSetValue(h, TLS_MESSAGE_QUEUE, pmq);
+   tls_set_value(h, TLS_MESSAGE_QUEUE, pmq);
 
    return pmq;
 
@@ -1293,6 +1293,44 @@ bool __os_term_thread()
 
 
 
+//DWORD MsgWaitForMultipleObjects(DWORD dwSize,const HANDLE * lphandles,DWORD dwTimeout,DWORD dwWakeMask,DWORD dwFlags)
+//{
+//
+//   HANDLE * ph = new HANDLE[dwSize + 1];
+//
+//   memcpy(ph,lphandles,sizeof(HANDLE) *dwSize);
+//
+//   ph[dwSize] = (HANDLE)get_mq()->m_eventNewMessage.m_object;
+//
+//   DWORD r = ::WaitForMultipleObjectsEx(dwSize + 1,lphandles,dwFlags & MWMO_WAITALL,dwTimeout,dwWakeMask & MWMO_ALERTABLE);
+//
+//   delete ph;
+//
+//   return r;
+//
+//}
+
+
+
+
+
+
+DWORD MsgWaitForMultipleObjects(DWORD dwSize,const HANDLE * lphandles,DWORD dwTimeout,DWORD dwWakeMask,DWORD dwFlags)
+{
+
+   HANDLE * ph = new HANDLE[dwSize + 1];
+
+   memcpy(ph,lphandles,sizeof(HANDLE) *dwSize);
+
+   ph[dwSize] = (HANDLE) get_mq()->m_eventNewMessage.m_object;
+
+   DWORD r = ::WaitForMultipleObjectsEx(dwSize + 1,ph,dwFlags & MWMO_WAITALL,dwTimeout,dwWakeMask & MWMO_ALERTABLE);
+
+   delete ph;
+
+   return r;
+
+}
 
 
 

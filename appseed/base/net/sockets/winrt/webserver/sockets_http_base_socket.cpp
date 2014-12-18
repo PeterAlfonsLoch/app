@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "axis/compress/compress.h"
 
 
 namespace sockets
@@ -247,7 +248,7 @@ namespace sockets
 
             ::file::memory_buffer file(get_app());
 
-            gzip_stream gz(&file);
+            ::gzip_stream gz(&file);
 
             gz.transfer_from(response().file());
 

@@ -1361,6 +1361,11 @@ namespace axis
 
 #if defined (METROWIN)
 
+      oswindow window = GetFocus();
+
+      if(window == NULL)
+         return NULL;
+
       return GetFocus()->m_pui;
 
 #elif defined(WINDOWSEX) || defined(LINUX)

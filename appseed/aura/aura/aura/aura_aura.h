@@ -67,7 +67,7 @@
 #ifdef AURA_LANGUAGE
 
 
-#ifdef __cplusplus
+#if defined(__cplusplus) 
 
 
 #define cplusplus

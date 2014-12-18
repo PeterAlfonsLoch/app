@@ -2355,6 +2355,8 @@ namespace user
          m_bGetTextNeedUpdate = 1;
          CreateLineIndex();
          m_y = -1;
+
+
          ::draw2d::graphics_sp dc(allocer());
          dc->CreateCompatibleDC(NULL);
          _001OnCalcLayout(dc);

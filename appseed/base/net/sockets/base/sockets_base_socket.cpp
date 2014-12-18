@@ -314,6 +314,8 @@ namespace sockets
    bool base_socket::SetNonblocking(bool bNb)
    {
       m_bNonBlocking = bNb;
+
+#ifdef BSD_STYLE_SOCKETS
          #ifdef _WIN32
       unsigned long l = bNb ? 1 : 0;
       int n = ioctlsocket(m_socket, FIONBIO, &l);
@@ -342,6 +344,10 @@ namespace sockets
       }
       return true;
       #endif
+#else
+      return false;
+
+#endif
    }
 
 
@@ -922,7 +928,7 @@ namespace sockets
 
    bool base_socket::SetIpOptions(const void *p, socklen_t len)
    {
-#ifdef IP_OPTIONS
+#if defined(IP_OPTIONS) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_OPTIONS, (char *)p, len) == -1)
       {
          log("setsockopt(IPPROTO_IP, IP_OPTIONS)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -936,7 +942,7 @@ namespace sockets
    }
 
 
-#ifdef IP_PKTINFO
+#if defined(IP_PKTINFO) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetIpPktinfo(bool x)
    {
       int optval = x ? 1 : 0;
@@ -950,7 +956,7 @@ namespace sockets
 #endif
 
 
-#ifdef IP_RECVTOS
+#if defined(IP_RECVTOS) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetIpRecvTOS(bool x)
    {
       int optval = x ? 1 : 0;
@@ -964,7 +970,7 @@ namespace sockets
 #endif
 
 
-#ifdef IP_RECVTTL
+#if defined(IP_RECVTTL) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetIpRecvTTL(bool x)
    {
       int optval = x ? 1 : 0;
@@ -978,7 +984,7 @@ namespace sockets
 #endif
 
 
-#ifdef IP_RECVOPTS
+#if defined(IP_RECVOPTS) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetIpRecvopts(bool x)
    {
       int optval = x ? 1 : 0;
@@ -992,7 +998,7 @@ namespace sockets
 #endif
 
 
-#ifdef IP_RETOPTS
+#if defined(IP_RETOPTS) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetIpRetopts(bool x)
    {
       int optval = x ? 1 : 0;
@@ -1008,7 +1014,7 @@ namespace sockets
 
    bool base_socket::SetIpTOS(unsigned char tos)
    {
-#ifdef IP_TOS
+#if defined(IP_TOS) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_TOS, (char *)&tos, sizeof(tos)) == -1)
       {
          log("setsockopt(IPPROTO_IP, IP_TOS)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1025,7 +1031,7 @@ namespace sockets
    unsigned char base_socket::IpTOS()
    {
       unsigned char tos = 0;
-#ifdef IP_TOS
+#if defined(IP_TOS) && defined(BSD_STYLE_SOCKETS)
       socklen_t len = sizeof(tos);
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_TOS, (char *)&tos, &len) == -1)
       {
@@ -1040,7 +1046,7 @@ namespace sockets
 
    bool base_socket::SetIpTTL(int ttl)
    {
-#ifdef IP_TTL
+#if defined(IP_TTL) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_TTL, (char *)&ttl, sizeof(ttl)) == -1)
       {
          log("setsockopt(IPPROTO_IP, IP_TTL)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1057,7 +1063,7 @@ namespace sockets
    int base_socket::IpTTL()
    {
       int ttl = 0;
-#ifdef IP_TTL
+#if defined(IP_TTL) && defined(BSD_STYLE_SOCKETS)
       socklen_t len = sizeof(ttl);
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_TTL, (char *)&ttl, &len) == -1)
       {
@@ -1072,7 +1078,7 @@ namespace sockets
 
    bool base_socket::SetIpHdrincl(bool x)
    {
-#ifdef IP_HDRINCL
+#if defined(IP_HDRINCL) && defined(BSD_STYLE_SOCKETS)
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_HDRINCL, (char *)&optval, sizeof(optval)) == -1)
       {
@@ -1087,7 +1093,7 @@ namespace sockets
    }
 
 
-#ifdef IP_RECVERR
+#if defined(IP_RECVERR) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetIpRecverr(bool x)
    {
       int optval = x ? 1 : 0;
@@ -1101,7 +1107,7 @@ namespace sockets
 #endif
 
 
-#ifdef IP_MTU_DISCOVER
+#if defined(IP_MTU_DISCOVER) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetIpMtudiscover(bool x)
    {
       int optval = x ? 1 : 0;
@@ -1115,7 +1121,7 @@ namespace sockets
 #endif
 
 
-#ifdef IP_MTU
+#if defined(IP_MTU) && defined(BSD_STYLE_SOCKETS)
    int base_socket::IpMtu()
    {
       int mtu = 0;
@@ -1129,7 +1135,7 @@ namespace sockets
 #endif
 
 
-#ifdef IP_ROUTER_ALERT
+#if defined(IP_ROUTER_ALERT) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetIpRouterAlert(bool x)
    {
       int optval = x ? 1 : 0;
@@ -1145,7 +1151,7 @@ namespace sockets
 
    bool base_socket::SetIpMulticastTTL(int ttl)
    {
-#ifdef IP_MULTICAST_TTL
+#if defined(IP_MULTICAST_TTL) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(ttl)) == -1)
       {
          log("setsockopt(IPPROTO_IP, IP_MULTICAST_TTL)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1162,7 +1168,7 @@ namespace sockets
    int base_socket::IpMulticastTTL()
    {
       int ttl = 0;
-#ifdef IP_MULTICAST_TTL
+#if defined(IP_MULTICAST_TTL) && defined(BSD_STYLE_SOCKETS)
       socklen_t len = sizeof(ttl);
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, &len) == -1)
       {
@@ -1177,7 +1183,7 @@ namespace sockets
 
    bool base_socket::SetMulticastLoop(bool x)
    {
-#ifdef IP_MULTICAST_LOOP
+#if defined(IP_MULTICAST_LOOP) && defined(BSD_STYLE_SOCKETS)
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_LOOP, (char *)&optval, sizeof(optval)) == -1)
       {
@@ -1195,7 +1201,7 @@ namespace sockets
 #ifdef LINUX
    bool base_socket::IpAddMembership(struct ip_mreqn& ref)
    {
-#ifdef IP_ADD_MEMBERSHIP
+#if defined(IP_ADD_MEMBERSHIP) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreqn)) == -1)
       {
          log("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1212,7 +1218,7 @@ namespace sockets
 
    bool base_socket::IpAddMembership(struct ip_mreq& ref)
    {
-#ifdef IP_ADD_MEMBERSHIP
+#if defined(IP_ADD_MEMBERSHIP) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreq)) == -1)
       {
          log("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1229,7 +1235,7 @@ namespace sockets
 #ifdef LINUX
    bool base_socket::IpDropMembership(struct ip_mreqn& ref)
    {
-#ifdef IP_DROP_MEMBERSHIP
+#if defined(IP_DROP_MEMBERSHIP) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreqn)) == -1)
       {
          log("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1246,7 +1252,7 @@ namespace sockets
 
    bool base_socket::IpDropMembership(struct ip_mreq& ref)
    {
-#ifdef IP_DROP_MEMBERSHIP
+#if defined(IP_DROP_MEMBERSHIP) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreq)) == -1)
       {
          log("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1265,7 +1271,7 @@ namespace sockets
 
    bool base_socket::SetSoReuseaddr(bool x)
    {
-#ifdef SO_REUSEADDR
+#if defined(SO_REUSEADDR) && defined(BSD_STYLE_SOCKETS)
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_REUSEADDR, (char *)&optval, sizeof(optval)) == -1)
       {
@@ -1282,7 +1288,7 @@ namespace sockets
 
    bool base_socket::SetSoKeepalive(bool x)
    {
-#ifdef SO_KEEPALIVE
+#if defined(SO_KEEPALIVE) && defined(BSD_STYLE_SOCKETS)
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_KEEPALIVE, (char *)&optval, sizeof(optval)) == -1)
       {
@@ -1297,7 +1303,7 @@ namespace sockets
    }
 
 
-#ifdef SO_NOSIGPIPE
+#if defined(SO_NOSIGPIPE) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetSoNosigpipe(bool x)
    {
       int optval = x ? 1 : 0;
@@ -1314,7 +1320,7 @@ namespace sockets
    bool base_socket::SoAcceptconn()
    {
       int value = 0;
-#ifdef SO_ACCEPTCONN
+#if defined(SO_ACCEPTCONN) && defined(BSD_STYLE_SOCKETS)
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_ACCEPTCONN, (char *)&value, &len) == -1)
       {
@@ -1327,7 +1333,7 @@ namespace sockets
    }
 
 
-#ifdef SO_BSDCOMPAT
+#if defined(SO_BSDCOMPAT) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetSoBsdcompat(bool x)
    {
       int optval = x ? 1 : 0;
@@ -1341,7 +1347,7 @@ namespace sockets
 #endif
 
 
-#ifdef SO_BINDTODEVICE
+#if defined(SO_BINDTODEVICE) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetSoBindtodevice(const string & intf)
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.get_length()) == -1)
@@ -1356,7 +1362,7 @@ namespace sockets
 
    bool base_socket::SetSoBroadcast(bool x)
    {
-#ifdef SO_BROADCAST
+#if defined(SO_BROADCAST) && defined(BSD_STYLE_SOCKETS)
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *)&optval, sizeof(optval)) == -1)
       {
@@ -1373,7 +1379,7 @@ namespace sockets
 
    bool base_socket::SetSoDebug(bool x)
    {
-#ifdef SO_DEBUG
+#if defined(SO_DEBUG) && defined(BSD_STYLE_SOCKETS)
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_DEBUG, (char *)&optval, sizeof(optval)) == -1)
       {
@@ -1391,7 +1397,7 @@ namespace sockets
    int base_socket::SoError()
    {
       int value = 0;
-#ifdef SO_ERROR
+#if defined(SO_ERROR) && defined(BSD_STYLE_SOCKETS)
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_ERROR, (char *)&value, &len) == -1)
       {
@@ -1406,7 +1412,7 @@ namespace sockets
 
    bool base_socket::SetSoDontroute(bool x)
    {
-#ifdef SO_DONTROUTE
+#if defined(SO_DONTROUTE) && defined(BSD_STYLE_SOCKETS)
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_DONTROUTE, (char *)&optval, sizeof(optval)) == -1)
       {
@@ -1423,7 +1429,7 @@ namespace sockets
 
    bool base_socket::SetSoLinger(int onoff, int linger)
    {
-#ifdef SO_LINGER
+#if defined(SO_LINGER) && defined(BSD_STYLE_SOCKETS)
       struct linger stl;
       stl.l_onoff = (u_short) onoff;
       stl.l_linger = (u_short) linger;
@@ -1442,7 +1448,7 @@ namespace sockets
 
    bool base_socket::SetSoOobinline(bool x)
    {
-#ifdef SO_OOBINLINE
+#if defined(SO_OOBINLINE) && defined(BSD_STYLE_SOCKETS)
       int optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_OOBINLINE, (char *)&optval, sizeof(optval)) == -1)
       {
@@ -1457,7 +1463,7 @@ namespace sockets
    }
 
 
-#ifdef SO_PASSCRED
+#if defined(SO_PASSCRED) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetSoPasscred(bool x)
    {
       int optval = x ? 1 : 0;
@@ -1471,7 +1477,7 @@ namespace sockets
 #endif
 
 
-#ifdef SO_PEERCRED
+#if defined(SO_PEERCRED) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SoPeercred(struct ::ucred & ucr)
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_PEERCRED, (char *)&ucr, sizeof(ucr)) == -1)
@@ -1484,7 +1490,7 @@ namespace sockets
 #endif
 
 
-#ifdef SO_PRIORITY
+#if defined(SO_PRIORITY) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetSoPriority(int x)
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_PRIORITY, (char *)&x, sizeof(x)) == -1)
@@ -1499,7 +1505,7 @@ namespace sockets
 
    bool base_socket::SetSoRcvlowat(int x)
    {
-#ifdef SO_RCVLOWAT
+#if defined(SO_RCVLOWAT) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVLOWAT, (char *)&x, sizeof(x)) == -1)
       {
          log("setsockopt(SOL_SOCKET, SO_RCVLOWAT)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1515,7 +1521,7 @@ namespace sockets
 
    bool base_socket::SetSoSndlowat(int x)
    {
-#ifdef SO_SNDLOWAT
+#if defined(SO_SNDLOWAT) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDLOWAT, (char *)&x, sizeof(x)) == -1)
       {
          log("setsockopt(SOL_SOCKET, SO_SNDLOWAT)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1531,7 +1537,7 @@ namespace sockets
 
    bool base_socket::SetSoRcvtimeo(struct timeval& tv)
    {
-#ifdef SO_RCVTIMEO
+#if defined(SO_RCVTIMEO) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVTIMEO, (char *)&tv, sizeof(tv)) == -1)
       {
          log("setsockopt(SOL_SOCKET, SO_RCVTIMEO)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1547,7 +1553,7 @@ namespace sockets
 
    bool base_socket::SetSoSndtimeo(struct timeval& tv)
    {
-#ifdef SO_SNDTIMEO
+#if defined(SO_SNDTIMEO) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDTIMEO, (char *)&tv, sizeof(tv)) == -1)
       {
          log("setsockopt(SOL_SOCKET, SO_SNDTIMEO)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1563,7 +1569,7 @@ namespace sockets
 
    bool base_socket::SetSoRcvbuf(int x)
    {
-#ifdef SO_RCVBUF
+#if defined(SO_RCVBUF) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUF, (char *)&x, sizeof(x)) == -1)
       {
          log("setsockopt(SOL_SOCKET, SO_RCVBUF)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1580,7 +1586,7 @@ namespace sockets
    int base_socket::SoRcvbuf()
    {
       int value = 0;
-#ifdef SO_RCVBUF
+#if defined(SO_RCVBUF) && defined(BSD_STYLE_SOCKETS)
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUF, (char *)&value, &len) == -1)
       {
@@ -1593,7 +1599,7 @@ namespace sockets
    }
 
 
-#ifdef SO_RCVBUFFORCE
+#if defined(SO_RCVBUFFORCE) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetSoRcvbufforce(int x)
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUFFORCE, (char *)&x, sizeof(x)) == -1)
@@ -1608,7 +1614,7 @@ namespace sockets
 
    bool base_socket::SetSoSndbuf(int x)
    {
-#ifdef SO_SNDBUF
+#if defined(SO_SNDBUF) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUF, (char *)&x, sizeof(x)) == -1)
       {
          log("setsockopt(SOL_SOCKET, SO_SNDBUF)", Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -1625,7 +1631,7 @@ namespace sockets
    int base_socket::SoSndbuf()
    {
       int value = 0;
-#ifdef SO_SNDBUF
+#if defined(SO_SNDBUF) && defined(BSD_STYLE_SOCKETS)
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUF, (char *)&value, &len) == -1)
       {
@@ -1638,7 +1644,7 @@ namespace sockets
    }
 
 
-#ifdef SO_SNDBUFFORCE
+#if defined(SO_SNDBUFFORCE) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetSoSndbufforce(int x)
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUFFORCE, (char *)&x, sizeof(x)) == -1)
@@ -1651,7 +1657,7 @@ namespace sockets
 #endif
 
 
-#ifdef SO_TIMESTAMP
+#if defined(SO_TIMESTAMP) && defined(BSD_STYLE_SOCKETS)
    bool base_socket::SetSoTimestamp(bool x)
    {
       int optval = x ? 1 : 0;
@@ -1668,7 +1674,8 @@ namespace sockets
    int base_socket::SoType()
    {
       int value = 0;
-#ifdef SO_TYPE
+
+#if defined(SO_TYPE) && defined(BSD_STYLE_SOCKETS)
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_TYPE, (char *)&value, &len) == -1)
       {

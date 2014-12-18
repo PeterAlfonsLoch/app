@@ -1,47 +1,42 @@
 #include "framework.h"
+#include "metrowin.h"
 
 
 namespace metrowin
 {
 
-
-   factory_exchange::factory_exchange(::aura::application * papp) :
-      element(papp)
+   namespace axis
    {
 
-      System.factory().cloneable_large < stdio_file            >  (System.template type_info < ::file::text_buffer         > ()     );
-      System.factory().cloneable_large < file                  >  (System.template type_info < ::file::stream_buffer       > ()     );
-      System.factory().creatable_small < file_set              >  (System.template type_info < ::file::set                 > ()     );
-      System.factory().cloneable       < file_system           >  (System.template type_info < ::file::system              > ()  , 1);
-      System.factory().cloneable       < application           >  (System.template type_info < ::aura::application         > ()  , 1);
-      System.factory().cloneable       < dir                   >  (System.template type_info < ::file::dir::system         > ()  , 1);
-      System.factory().cloneable_small < folder_watch          >  (System.template type_info < ::file::folder_watch        > ()     );
-      System.factory().creatable       < window_draw           >  (System.template type_info < ::user::window_draw         > ()  , 1);
-      System.factory().creatable_large < thread                >  (System.template type_info < ::thread                    > ()     );
-      System.factory().creatable_large < window                >  (System.template type_info < ::user::interaction_impl    > ()     );
-      System.factory().creatable       < os                    >  (System.template type_info < ::aura::os                  > ()  , 1);
-      System.factory().creatable       < port_forward          >  (System.template type_info < ::net::port_forward         > ()  , 1);
-      System.factory().creatable_small < copydesk              >  (System.template type_info < ::aura::copydesk            > ()  , 1);
-      System.factory().creatable_small < crypto                >  (System.template type_info < ::crypto::crypto            > ()  , 1);
-      System.factory().creatable_small < ip_enum               >  (System.template type_info < ::net::ip_enum              > ()     );
-      System.factory().creatable       < printer               >  (System.template type_info < ::user::printer             > ()  , 1);
-      
+      factory_exchange::factory_exchange(::aura::application * papp):
+         element(papp)
+      {
 
-   }
+         System.factory().creatable       < window_draw              >(System.template type_info < ::user::window_draw         >(),1);
+         System.factory().creatable_large < interaction_impl         >(System.template type_info < ::user::interaction_impl    >());
+         System.factory().creatable_small < copydesk                 >(System.template type_info < ::axis::copydesk            >(),1);
+         //      System.factory().creatable       < printer               >  (System.template type_info < ::user::printer             > ()  , 1);
+
+         System.factory().creatable          < ::windows::message_queue      >(System.type_info < ::aura::message_queue       >(),32);
 
 
-   factory_exchange::~factory_exchange()
-   {
-   }
+      }
+
+
+      factory_exchange::~factory_exchange()
+      {
+      }
+
+
+   } // namespace axis
 
 
 } // namespace metrowin
 
 
-
-void ca2_factory_exchange(::aura::application * papp)
+void __node_axis_factory_exchange(::aura::application * papp)
 {
-   metrowin::factory_exchange factoryexchange(papp);
+   ::metrowin::axis::factory_exchange factoryexchange(papp);
 }
 
 

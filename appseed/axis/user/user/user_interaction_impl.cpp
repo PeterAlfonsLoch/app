@@ -14,6 +14,7 @@ namespace user
       m_bComposite = true;
       m_bUpdateGraphics = false;
       m_oswindow = NULL;
+      m_spmutexDisplay = new mutex;
 
    }
 
@@ -841,14 +842,14 @@ namespace user
       return NULL;
    }
 
-   bool interaction_impl::IsChild(::user::interaction * pui) const
-   {
-      UNREFERENCED_PARAMETER(pui);
-      ::exception::throw_interface_only(get_app());
+   //bool interaction_impl::IsChild(::user::interaction * pui) const
+   //{
+   //   UNREFERENCED_PARAMETER(pui);
+   //   ::exception::throw_interface_only(get_app());
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
    bool interaction_impl::IsWindow() const
    {
@@ -937,12 +938,12 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl::get_parent() const
-   {
+   //::user::interaction * interaction_impl::get_parent() const
+   //{
 
-      return NULL;
+   //   return NULL;
 
-   }
+   //}
 
 
    LONG interaction_impl::get_window_long(int32_t nIndex) const
@@ -1637,15 +1638,15 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl::set_parent(::user::interaction * pWndNewParent)
-   {
+   //::user::interaction * interaction_impl::set_parent(::user::interaction * pWndNewParent)
+   //{
 
-      UNREFERENCED_PARAMETER(pWndNewParent);
-      ::exception::throw_interface_only(get_app());
+   //   UNREFERENCED_PARAMETER(pWndNewParent);
+   //   ::exception::throw_interface_only(get_app());
 
-      return NULL;
+   //   return NULL;
 
-   }
+   //}
 
 
    bool interaction_impl::FlashWindow(bool bInvert)
@@ -2540,6 +2541,9 @@ namespace user
       _001Print(pgraphics);
 
       single_lock slDisplay(mutex_display(),true);
+
+      if(m_spdib->get_data() == NULL || m_spdibBuffer->get_data() == NULL)
+         return;
 
       m_spdib->BitBlt(rectWindow.width(), rectWindow.height(), m_spdibBuffer, 1);
 

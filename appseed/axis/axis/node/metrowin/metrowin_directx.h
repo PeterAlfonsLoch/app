@@ -7,8 +7,8 @@
 #include <dwrite_1.h>
 #include <DirectXMath.h>
 #include <wincodec.h>
-#include <memory>
-#include <agile.h>
+//#include <memory>
+//#include <agile.h>
 
 namespace metrowin
 {
@@ -33,7 +33,7 @@ namespace metrowin
    {
    internal:
 
-      ::aura::application * m_paxisapp;
+      ::aura::application * m_pauraapp;
 
       mutex    m_mutexDc;
 
@@ -45,7 +45,7 @@ namespace metrowin
 
       ::aura::application * get_app() const
       {
-         return m_paxisapp;
+         return m_pauraapp;
       }
    
 
@@ -56,12 +56,12 @@ namespace metrowin
       virtual void SetDpi(float dpi);
       virtual void UpdateForWindowSizeChange();
       virtual void CreateWindowSizeDependentResources();
-      virtual void Render(::user::interaction_ptr_array & uiptra);
+      virtual void Render(::user::interaction_ptra & uiptra);
       virtual void Present();
       void ValidateDevice();
 
    protected private:
-      Platform::Agile<Windows::UI::Core::CoreWindow>  m_window;
+      Agile<Windows::UI::Core::CoreWindow>  m_window;
 
       // DirectWrite & Windows Imaging Component Objects.
       Microsoft::WRL::ComPtr<IDWriteFactory1>         m_dwriteFactory;
@@ -106,3 +106,5 @@ namespace metrowin
 
 
 
+
+CLASS_DECL_AXIS mutex & draw2d_direct2_mutex();

@@ -2047,11 +2047,6 @@ namespace axis
 
       ::user::interaction * pwnd = NULL;
 
-#if defined(METROWIN)
-      if(pwnd == NULL && lpmsg->oswindow != NULL)
-      {
-         ::user::interaction * pwindow = lpmsg->oswindow->interaction_impl();
-#else
       if(pwnd == NULL && lpmsg->hwnd != NULL)
       {
 
@@ -2063,7 +2058,7 @@ namespace axis
          }
 
          ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
-#endif
+
          if(pwindow != NULL)
          {
             try

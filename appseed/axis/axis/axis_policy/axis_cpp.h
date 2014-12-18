@@ -173,7 +173,6 @@ namespace axis
 
 
 
-class message_queue_listener;
 class image_list;
 
 

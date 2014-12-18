@@ -1546,7 +1546,7 @@ bool thread_impl::pump_message()
 bool thread_impl::set_thread_priority(int32_t priority)
 {
 
-   return ::SetThreadPriority(m_hthread, priority) != 0;
+   return ::__SetThreadPriority(m_hthread, priority) != 0;
 
 }
 

@@ -1,7 +1,12 @@
 #include "framework.h"
+#include "metrowin.h"
 #include <DirectXMath.h>
 
+
+CLASS_DECL_AXIS int g_iMouse;
+
 #undef System
+#undef Platform
 
 using namespace Platform;
 using namespace Microsoft::WRL;
@@ -394,7 +399,7 @@ namespace metrowin
 {
 
 
-   directx_application::directx_application(::aura::system * psystem, ::Platform::String ^ strId) :
+   directx_application::directx_application(::axis::system * psystem, ::String ^ strId) :
       m_mutex(NULL)
    {
 
@@ -417,9 +422,9 @@ namespace metrowin
       m_psystem = psystem;
 
 
-      m_psystem->m_posdata->m_pui = new ::user::interaction(m_psystem);
+      m_psystem->m_paxissystem->m_posdata->m_pui = new ::user::interaction(m_psystem);
 
-      m_psystem->m_posdata->m_pwindow = this;
+      m_psystem->m_paxissystem->m_posdata->m_pwindow = this;
 
       m_papp = m_psystem;
 
@@ -524,7 +529,7 @@ namespace metrowin
 
       CoreApplication::Suspending += ref new EventHandler<SuspendingEventArgs^>(this, &directx_application::OnSuspending);
 
-      CoreApplication::Resuming += ref new EventHandler<Platform::Object^>(this, &directx_application::OnResuming);
+      CoreApplication::Resuming += ref new EventHandler<Object^>(this, &directx_application::OnResuming);
 
    }
 
@@ -578,7 +583,7 @@ namespace metrowin
 
    }
 
-   void directx_application::Load(Platform::String^ entryPoint)
+   void directx_application::Load(String^ entryPoint)
    {
    }
 
@@ -607,7 +612,7 @@ namespace metrowin
    }
 
 
-   void directx_application::DpiChanged(::Windows::Graphics::Display::DisplayInformation ^ sender, Platform::Object ^ obj)
+   void directx_application::DpiChanged(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
    {
 
       m_rectLastWindowRect = m_window->Bounds;
@@ -627,7 +632,7 @@ namespace metrowin
    }
 
 
-   void directx_application::DisplayContentsInvalidated(::Windows::Graphics::Display::DisplayInformation ^ sender, Platform::Object ^ obj)
+   void directx_application::DisplayContentsInvalidated(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
    {
 
       // Ensure the D3D Device is available for rendering.
@@ -655,13 +660,13 @@ namespace metrowin
    }
 
 
-   void directx_application::OnSuspending(Platform::Object ^ sender, SuspendingEventArgs ^ args)
+   void directx_application::OnSuspending(Object ^ sender, SuspendingEventArgs ^ args)
    {
 
    }
 
 
-   void directx_application::OnResuming(Platform::Object ^ sender, Platform::Object ^ args)
+   void directx_application::OnResuming(Object ^ sender, Object ^ args)
    {
 
    }
@@ -679,7 +684,7 @@ namespace metrowin
       if (m_psystem->m_posdata->m_pui->m_pimpl == NULL)
          return;
 
-      smart_pointer < ::message::aura > spbase;
+      smart_pointer < ::message::base > spbase;
 
       ::message::key * pkey = canew(::message::key(get_app()));
 
@@ -712,7 +717,7 @@ namespace metrowin
       if (m_psystem->m_posdata->m_pui->m_pimpl == NULL)
          return;
 
-      smart_pointer < ::message::aura > spbase;
+      smart_pointer < ::message::base > spbase;
 
       ::message::key * pkey = canew(::message::key(get_app()));
 
@@ -744,7 +749,7 @@ namespace metrowin
       if (m_psystem->m_posdata->m_pui->m_pimpl == NULL)
          return;
 
-      smart_pointer < ::message::aura > spbase;
+      smart_pointer < ::message::base > spbase;
 
       ::message::key * pkey = new  ::message::key(get_app());
 
@@ -763,38 +768,38 @@ namespace metrowin
       pkey->m_wparam          = pkey->m_nChar;
 //      pkey->m_key = args;
 
-      if (m_psystem->m_psimpleui != NULL && m_psystem->m_psimpleui->m_bVisible)
-      {
-         string str;
-         str = (char)pkey->m_nChar;
-         if (m_bFontopusShift)
-         {
-            if (pkey->m_nChar == 0xbe)
-            {
-               str = ">";
-            }
-            else if (str == "2")
-            {
-               str = "@";
-            }
-            else
-            {
-               str.make_upper();
-            }
-         }
-         else
-         {
-            if (pkey->m_nChar == 0xbe)
-            {
-               str = ".";
-            }
-         }
-         m_psystem->m_psimpleui->on_char(virtualkey_to_userkey(args->VirtualKey), str);
-      }
-      else
-      {
+      //if (m_psystem->m_psimpleui != NULL && m_psystem->m_psimpleui->IsWindowVisible())
+      //{
+      //   string str;
+      //   str = (char)pkey->m_nChar;
+      //   if (m_bFontopusShift)
+      //   {
+      //      if (pkey->m_nChar == 0xbe)
+      //      {
+      //         str = ">";
+      //      }
+      //      else if (str == "2")
+      //      {
+      //         str = "@";
+      //      }
+      //      else
+      //      {
+      //         str.make_upper();
+      //      }
+      //   }
+      //   else
+      //   {
+      //      if (pkey->m_nChar == 0xbe)
+      //      {
+      //         str = ".";
+      //      }
+      //   }
+      //   m_psystem->m_psimpleui->on_char(virtualkey_to_userkey(args->VirtualKey), str);
+      //}
+      //else
+      //{
          m_psystem->m_posdata->m_pui->m_pimpl->message_handler(spbase);
-      }
+      //}
 
       
 
@@ -817,7 +822,7 @@ namespace metrowin
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      smart_pointer < ::message::aura > spbase;
+      smart_pointer < ::message::base > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse(get_app());
 
@@ -828,12 +833,12 @@ namespace metrowin
       pmouse->m_uiMessage  = WM_MOUSEMOVE;
       pmouse->m_pwnd       = m_psystem->m_posdata->m_pui;
 
-      if (m_psystem->m_psimpleui != NULL && m_psystem->m_psimpleui->m_bVisible)
-      {
-         m_psystem->m_psimpleui->m_ptCursor = pmouse->m_pt;
-         m_psystem->m_psimpleui->on_mouse_move(pmouse->m_pt.x - m_psystem->m_psimpleui->m_pt.x, pmouse->m_pt.y - m_psystem->m_psimpleui->m_pt.y);
-
-      }
+//      if (m_psystem->m_psimpleui != NULL && m_psystem->m_psimpleui->m_bVisible)
+//      {
+////         m_psystem->m_psimpleui->m_ptCursor = pmouse->m_pt;
+//  //       m_psystem->m_psimpleui->on_mouse_move(pmouse->m_pt.x - m_psystem->m_psimpleui->m_pt.x, pmouse->m_pt.y - m_psystem->m_psimpleui->m_pt.y);
+//
+//      }
 
 
       m_ptLastCursor = pointerPoint->RawPosition;
@@ -858,7 +863,7 @@ namespace metrowin
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      smart_pointer < ::message::aura > spbase;
+      smart_pointer < ::message::base > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse(get_app());
 
@@ -876,11 +881,11 @@ namespace metrowin
          m_bLeftButton           = true;
          m_bMiddleButton         = false;
          m_bRightButton          = false;
-         if (m_psystem->m_psimpleui != NULL && m_psystem->m_psimpleui->m_bVisible)
-         {
-            m_psystem->m_psimpleui->m_ptCursor = pmouse->m_pt;
-            m_psystem->m_psimpleui->on_lbutton_down(pmouse->m_pt.x - m_psystem->m_psimpleui->m_pt.x, pmouse->m_pt.y - m_psystem->m_psimpleui->m_pt.y);
-         }
+         //if (m_psystem->m_psimpleui != NULL && m_psystem->m_psimpleui->m_bVisible)
+         //{
+         //   m_psystem->m_psimpleui->m_ptCursor = pmouse->m_pt;
+         //   m_psystem->m_psimpleui->on_lbutton_down(pmouse->m_pt.x - m_psystem->m_psimpleui->m_pt.x, pmouse->m_pt.y - m_psystem->m_psimpleui->m_pt.y);
+         //}
 
       }
       else if(args->CurrentPoint->Properties->IsRightButtonPressed && !m_bRightButton)
@@ -923,7 +928,7 @@ namespace metrowin
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      smart_pointer < ::message::aura > spbase;
+      smart_pointer < ::message::base > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse(get_app());
 
@@ -939,11 +944,11 @@ namespace metrowin
          pmouse->m_uiMessage     = WM_LBUTTONUP;
          m_bLeftButton           = false;
 
-         if (m_psystem->m_psimpleui != NULL && m_psystem->m_psimpleui->m_bVisible)
-         {
-            m_psystem->m_psimpleui->m_ptCursor = pmouse->m_pt;
-            m_psystem->m_psimpleui->on_lbutton_up(pmouse->m_pt.x - m_psystem->m_psimpleui->m_pt.x, pmouse->m_pt.y - m_psystem->m_psimpleui->m_pt.y);
-         }
+         //if (m_psystem->m_psimpleui != NULL && m_psystem->m_psimpleui->m_bVisible)
+         //{
+         //   m_psystem->m_psimpleui->m_ptCursor = pmouse->m_pt;
+         //   m_psystem->m_psimpleui->on_lbutton_up(pmouse->m_pt.x - m_psystem->m_psimpleui->m_pt.x, pmouse->m_pt.y - m_psystem->m_psimpleui->m_pt.y);
+         //}
          
 
       }
@@ -981,19 +986,33 @@ namespace metrowin
 
    }
 
-   directx_application_source::directx_application_source(Platform::String ^ strId)
+   directx_application_source::directx_application_source(::axis::system * paxissystem, const string & strId)
    {
-      m_strId = strId;
+
+      m_paxissystem     = paxissystem;
+
+      m_strId           = strId;
+
    }
 
+   
    Windows::ApplicationModel::Core::IFrameworkView^ directx_application_source::CreateView()
    {
-      return ref new directx_application(m_strId);
+
+      return ref new directx_application(m_paxissystem,m_strId);
+
    }
 
-   directx_application_source ^ new_directx_application_source(Platform::String ^ id)
+
+   directx_application_source ^ new_directx_application_source(::axis::system * paxissystem, const string & strId)
    {
-      return ref new directx_application_source(id);
+
+      string str = strId;
+
+      str += " client_only";
+
+      return ref new directx_application_source(paxissystem, str);
+
    }
 
 

@@ -5,9 +5,9 @@ namespace sockets
 {
 
 
-   sockets::sockets(sp(::axis::application) papp) :
+   sockets::sockets(::aura::application * papp) :
       element(papp),
-      ::axis::departament(papp),
+      ::aura::departament(papp),
       m_mutexHttpPostBoundary(papp),
       m_mutexResolvCache(papp)
    {
@@ -19,6 +19,23 @@ namespace sockets
 
    bool sockets::initialize1()
    {
+
+      m_spnet = canew(::sockets::net(get_app()));
+      //m_spnet.alloc(allocer());
+
+      if(m_spnet.is_null())
+      {
+
+         m_iReturnCode = -1986;
+
+         return false;
+
+      }
+
+
+      if(!m_spnet->initialize())
+         return false;
+
       if(Application.is_system())
       {
 
@@ -65,6 +82,11 @@ namespace sockets
       psocket->m_bDirect = true;
    }
 
+
+   ::sockets::net & sockets::net()
+   {
+      return *m_spnet;
+   }
 
 } // namespace kar
 

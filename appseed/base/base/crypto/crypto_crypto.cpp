@@ -1,5 +1,11 @@
 #include "framework.h"
+
+
+#include <openssl/whrlpool.h>
+
+
 #ifndef METROWIN
+
 #include <openssl/rsa.h>
 #include <openssl/ssl.h>
 #include <openssl/md5.h>
@@ -8,7 +14,7 @@
 #include <openssl/err.h>
 #include <openssl/crypto.h>
 #include <openssl/hmac.h>
-#include <openssl/whrlpool.h>
+
 #endif
 
 #define CA4_CRYPT_V5_FINAL_HASH_BYTES (WHIRLPOOL_DIGEST_LENGTH * 16)
@@ -589,17 +595,23 @@ namespace crypto
    string crypto::md5(const char * psz)
    {
 
-      primitive::memory buf;
+      primitive::memory mem;
 
-      ::md5::md5 md5;
+      mem.assign(psz,strlen(psz));
 
-      md5.initialize();
+      return md5(mem);
 
-      md5.update(psz, strlen(psz));
+   }
 
-      md5.finalize();
 
-      return md5.to_string();
+   string crypto::sha1(const char * psz)
+   {
+
+      primitive::memory mem;
+
+      mem.assign(psz,strlen(psz));
+
+      return sha1(mem);
 
    }
 
@@ -617,20 +629,7 @@ namespace crypto
 
    }
 
-   void crypto::md5(primitive::memory & memMd5, const primitive::memory & mem)
-   {
 
-      ::md5::md5 md5;
-
-      md5.initialize();
-
-      md5.update(mem, mem.get_size());
-
-      md5.finalize();
-
-      md5.get(memMd5);
-
-   }
 
    string crypto::sha1(const primitive::memory & mem)
    {
@@ -643,20 +642,32 @@ namespace crypto
 
    }
 
-   string crypto::sha1(const char * psz)
+   string crypto::nessie(const primitive::memory & mem)
    {
 
-      primitive::memory memSha1;
+      primitive::memory memNessie;
 
-      memSha1.allocate(20);
+      nessie(memNessie,mem);
 
-      string strSha1;
+      return memNessie.to_hex();
 
-      SHA1((const unsigned char *) psz,strlen(psz),memSha1.get_data());
+   }
 
-      strSha1 = memSha1.to_hex();
 
-      return strSha1;
+   void crypto::md5(primitive::memory & memMd5,const primitive::memory & mem)
+   {
+
+#ifdef METROWIN
+
+      throw interface_only_exception(get_app());
+
+#else
+
+      memMd5.allocate(MD5_DIGEST_LENGTH);
+
+      MD5(mem.get_data(),mem.get_size(),memMd5.get_data());
+
+#endif
 
    }
 
@@ -664,12 +675,30 @@ namespace crypto
    void crypto::sha1(primitive::memory & memSha1, const primitive::memory & mem)
    {
 
-      memSha1.allocate(32);
+#ifdef METROWIN
+
+      throw interface_only_exception(get_app());
+
+#else
+
+      memSha1.allocate(SHA_DIGEST_LENGTH);
 
       SHA1(mem.get_data(), mem.get_size(), memSha1.get_data());
 
+#endif
 
    }
+
+   void crypto::nessie(primitive::memory & memNessie,const primitive::memory & mem)
+   {
+
+      memNessie.allocate(WHIRLPOOL_DIGEST_LENGTH);
+
+      WHIRLPOOL(mem.get_data(),mem.get_size(),memNessie.get_data());
+
+   }
+
+   
 
 
    bool crypto::file_set(var varFile, const char * pszData, const char * pszSalt, ::aura::application * papp)
@@ -779,19 +808,29 @@ namespace crypto
    void crypto::hmac(void * result, const primitive::memory & memMessage, const primitive::memory & memKey)
    {
 
+#ifndef METROWIN
+
       unsigned int md_len = 0;
 
       HMAC(EVP_sha1(), memKey.get_data(), memKey.get_size(), memMessage.get_data(), memMessage.get_size(), (unsigned char *) result, &md_len);
 
+#endif
+
    }
 
 
-   void crypto::hmac(void * result, const string & strMessage, const string & strKey)
+
+
+   void crypto::hmac(void * result,const string & strMessage,const string & strKey)
    {
+
+#ifndef METROWIN
 
       unsigned int md_len = 0;
 
-      HMAC(EVP_sha1(),strKey,strKey.length(),(const unsigned char *) (const char *) strMessage,strMessage.length(),(unsigned char *)result,&md_len);
+      HMAC(EVP_sha1(),strKey,strKey.length(),(const unsigned char *)(const char *)strMessage,strMessage.length(),(unsigned char *)result,&md_len);
+
+#endif
 
    }
 
@@ -1670,6 +1709,9 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
       PKCS7_free(pkcs7);
 #endif
    }
+
+
+
 
 } // namespace crypto
 

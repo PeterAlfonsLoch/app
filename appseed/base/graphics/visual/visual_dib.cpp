@@ -14,10 +14,10 @@ int GetEncoderClsid(const WCHAR* format,CLSID* pClsid);
 #endif
 
 
-#include "ft2build.h"
+//#include "ft2build.h"
 
 
-#include FT_FREETYPE_H
+//#include FT_FREETYPE_H
 
 
 namespace visual
@@ -289,7 +289,7 @@ namespace visual
 } // namespace visual
 
 
-
+#if 0
 
 
 CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int xParam,int yParam)
@@ -362,8 +362,9 @@ CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t
 
 }
 
+#endif
 
-#ifdef _WIN32
+#ifdef WINDOWSEX
 
 
 int GetEncoderClsid(const WCHAR* format,CLSID* pClsid)
@@ -399,3 +400,5 @@ int GetEncoderClsid(const WCHAR* format,CLSID* pClsid)
 
 
 #endif
+
+

@@ -1,8 +1,6 @@
 #pragma once
 
 
-
-
 namespace axis
 {
 
@@ -41,8 +39,7 @@ namespace axis
 
 #endif
 
-
-      ::user::interaction *                      m_psimpleui;
+//      ::user::interaction *                        m_psimpleui;
       os_data *                                    m_posdata;
 
 

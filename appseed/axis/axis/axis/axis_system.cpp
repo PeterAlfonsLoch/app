@@ -70,7 +70,7 @@ namespace axis
 
       m_ptwf            = NULL;
 
-      m_psimpleui       = NULL;
+      //m_psimpleui       = NULL;
 
 #if defined(METROWIN) || defined(APPLE_IOS)
 
@@ -280,7 +280,7 @@ namespace axis
 
 
 #ifdef METROWIN
-      m_pdevicecontext = nullptr;
+//      m_pdevicecontext = nullptr;
 
       m_pmutexDc.release();
 #endif
@@ -694,10 +694,11 @@ namespace axis
 
 #else
 
-      if(frames().get_size() <= 0)
-         return NULL;
+      ::user::interaction * pui = NULL;
 
-      return frames()[0];
+      get_frame(pui);
+
+      return pui;
 
 #endif
 
@@ -709,7 +710,12 @@ namespace axis
 
 #if defined (METROWIN)
 
-      return GetFocus()->m_pui;
+      oswindow window = GetFocus();
+
+      if(window == NULL)
+         return NULL;
+
+      return window->m_pui;
 
 #elif defined(WINDOWSEX) || defined(LINUX)
 

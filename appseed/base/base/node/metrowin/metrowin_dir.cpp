@@ -1,11 +1,11 @@
 #include "framework.h"
-
+#include "metrowin.h"
 
 namespace metrowin
 {
 
 
-   dir::dir(sp(::axis::application) papp) :
+   dir::dir(::aura::application *  papp) :
       ::element(papp),
       ::file::dir::system(papp),
       m_path(papp)
@@ -19,7 +19,7 @@ namespace metrowin
 
    }
 
-   path::path(sp(::axis::application) papp) :
+   path::path(::aura::application *  papp) :
       ::element(papp)
    {
    }
@@ -189,7 +189,7 @@ namespace metrowin
       return System.file().path().is_equal(lpcsz1, lpcsz2);
    }
 
-   void dir::root_ones(stringa & stra, sp(::axis::application) papp)
+   void dir::root_ones(stringa & straPath,  stringa & straTitle, ::aura::application *  papp)
    {
 
 #ifdef WINDOWSEX
@@ -216,13 +216,14 @@ namespace metrowin
 
 #else
 
-      stra.add(Windows::Storage::KnownFolders::DocumentsLibrary->Path);
+      straPath.add(Windows::Storage::KnownFolders::DocumentsLibrary->Path);
+      straTitle.add("Documents");
 
 #endif
 
    }
 
-   void dir::ls_pattern(sp(::axis::application) papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+   void dir::ls_pattern(::aura::application *  papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
 #ifdef WINDOWSEX
       if(::file::dir::system::is(lpcsz, papp)) // if base class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
@@ -297,12 +298,12 @@ namespace metrowin
 #endif
    }
 
-   void dir::rls(sp(::axis::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
+   void dir::rls(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
    {
       rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
    }
 
-   void dir::rls_pattern(sp(::axis::application) papp, const char * lpcsz, const char * lpszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+   void dir::rls_pattern(::aura::application *  papp, const char * lpcsz, const char * lpszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
 
       stringa stra;
@@ -358,7 +359,7 @@ namespace metrowin
       }
    }
 
-   void dir::rls_dir(sp(::axis::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+   void dir::rls_dir(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
    {
 
 #ifdef WINDOWSEX
@@ -406,7 +407,7 @@ namespace metrowin
 #endif
    }
 
-   void dir::ls_dir(sp(::axis::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   void dir::ls_dir(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
 #ifdef WINDOWSEX      
       file_find filefind;
@@ -453,7 +454,7 @@ namespace metrowin
 #endif
    }
 
-   void dir::ls_file(sp(::axis::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   void dir::ls_file(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
 #ifdef WINDOWSEX
       file_find filefind;
@@ -495,12 +496,12 @@ namespace metrowin
 #endif
    }
 
-   void dir::ls(sp(::axis::application) papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+   void dir::ls(::aura::application *  papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
       return ls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pbaIsDir, piaSize);
    }
 
-   bool dir::is(const char * lpcszPath, sp(::axis::application) papp)
+   bool dir::is(const char * lpcszPath, ::aura::application *  papp)
    {
       
       bool bIsDir;
@@ -551,7 +552,7 @@ namespace metrowin
       return bIsDir;
    }
       
-   bool dir::is(const string & strPath, sp(::axis::application) papp)
+   bool dir::is(const string & strPath, ::aura::application *  papp)
    {
       
       if(::file::dir::system::is(strPath, papp))
@@ -600,7 +601,7 @@ namespace metrowin
       return bIsDir;
    }
 
-   bool dir::name_is(const string & str, sp(::axis::application) papp)
+   bool dir::name_is(const string & str, ::aura::application *  papp)
    {
       //OutputDebugString(str);
       strsize iLast = str.get_length() - 1;
@@ -807,7 +808,7 @@ namespace metrowin
       return path(strLogBaseDir, pszId);
    }
 
-   bool dir::mk(const char * lpcsz, sp(::axis::application) papp)
+   bool dir::mk(const char * lpcsz, ::aura::application *  papp)
    {
 
       if(is(lpcsz, papp))
@@ -874,7 +875,7 @@ namespace metrowin
       return true;
    }
 
-   bool dir::rm(sp(::axis::application) papp, const char * psz, bool bRecursive)
+   bool dir::rm(::aura::application *  papp, const char * psz, bool bRecursive)
    {
       if(bRecursive)
       {
@@ -1034,51 +1035,27 @@ namespace metrowin
    string dir::appdata(const char * lpcsz, const char * lpcsz2)
    {
 
-#ifdef WINDOWSEX
-
-      string str;
-      SHGetSpecialFolderPath(
-         NULL,
-         str,
-         CSIDL_COMMON_APPDATA,
-         FALSE);
-      string strRelative;
-      strRelative = ca2();
-      index iFind = strRelative.find(':');
-      if(iFind >= 0)
-      {
-         strsize iFind1 = strRelative.reverse_find("\\", iFind);
-         strsize iFind2 = strRelative.reverse_find("/", iFind);
-         strsize iStart = MAX(iFind1 + 1, iFind2 + 1);
-         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart, iFind - iStart) + strRelative.Mid(iFind + 1);
-      }
-      return path(path(str, "ca2", strRelative), lpcsz, lpcsz2);
-
-#else
-
       return path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path, lpcsz, lpcsz2);
-
-#endif
 
    }
 
-   string dir::usersystemappdata(sp(::axis::application) papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
+   string dir::usersystemappdata(::aura::application *  papp, const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)
    {
       UNREFERENCED_PARAMETER(papp);
       return path(appdata(lpcszPrefix), lpcsz, lpcsz2);
    }
 
-   string dir::userappdata(sp(::axis::application) papp, const char * lpcsz, const char * lpcsz2)
+   string dir::userappdata(::aura::application *  papp, const char * lpcsz, const char * lpcsz2)
    {
       return path(userfolder(papp, "appdata"), lpcsz, lpcsz2);
    }
 
-   string dir::userdata(sp(::axis::application) papp, const char * lpcsz, const char * lpcsz2)
+   string dir::userdata(::aura::application *  papp, const char * lpcsz, const char * lpcsz2)
    {
       return path(userfolder(papp, "data"), lpcsz, lpcsz2);
    }
 
-   string dir::userfolder(sp(::axis::application) papp, const char * lpcsz, const char * lpcsz2)
+   string dir::userfolder(::aura::application *  papp, const char * lpcsz, const char * lpcsz2)
    {
 #ifdef WINDOWSEX
       string str;
@@ -1157,7 +1134,7 @@ namespace metrowin
 
    }
 
-   string dir::default_os_user_path_prefix(sp(::axis::application) papp)
+   string dir::default_os_user_path_prefix(::aura::application *  papp)
    {
       UNREFERENCED_PARAMETER(papp);
 //      wchar_t buf[MAX_PATH];
@@ -1176,17 +1153,17 @@ namespace metrowin
       //return ::str::international::unicode_to_utf8(buf);
    }
 
-   string dir::default_userappdata(sp(::axis::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+   string dir::default_userappdata(::aura::application *  papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
    {
       return path(default_userfolder(papp, lpcszPrefix, lpcszLogin, "appdata"), pszRelativePath);
    }
 
-   string dir::default_userdata(sp(::axis::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+   string dir::default_userdata(::aura::application *  papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
    {
       return path(default_userfolder(papp, lpcszPrefix, lpcszLogin, "data"), pszRelativePath);
    }
 
-   string dir::default_userfolder(sp(::axis::application) papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
+   string dir::default_userfolder(::aura::application *  papp, const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath)
    {
 
       return userfolder(papp, pszRelativePath);
@@ -1201,7 +1178,7 @@ namespace metrowin
       return path(path(str, "ca2\\user", lpcszPrefix), lpcszLogin, pszRelativePath);*/
    }
 
-   string dir::userquicklaunch(sp(::axis::application) papp, const char * lpcszRelativePath, const char * lpcsz2)
+   string dir::userquicklaunch(::aura::application *  papp, const char * lpcszRelativePath, const char * lpcsz2)
    {
 throw todo(get_app());
       //UNREFERENCED_PARAMETER(papp);
@@ -1215,7 +1192,7 @@ throw todo(get_app());
       //return path(str, lpcszRelativePath, lpcsz2);
    }
 
-   string dir::userprograms(sp(::axis::application) papp, const char * lpcszRelativePath, const char * lpcsz2)
+   string dir::userprograms(::aura::application *  papp, const char * lpcszRelativePath, const char * lpcsz2)
    {
 throw todo(get_app());
       //UNREFERENCED_PARAMETER(papp);
@@ -1240,17 +1217,17 @@ throw todo(get_app());
       //return path(str, lpcszRelativePath, lpcsz2);
    }
 
-   bool dir::is_inside_time(const char * pszPath, sp(::axis::application) papp)
+   bool dir::is_inside_time(const char * pszPath, ::aura::application *  papp)
    {
       return is_inside(time(), pszPath, papp);
    }
 
-   bool dir::is_inside(const char * pszDir, const char * pszPath, sp(::axis::application) papp)
+   bool dir::is_inside(const char * pszDir, const char * pszPath, ::aura::application *  papp)
    {
       return ::str::begins_ci(pszDir, pszPath);
    }
 
-   bool dir::has_subdir(sp(::axis::application) papp, const char * pszDir)
+   bool dir::has_subdir(::aura::application *  papp, const char * pszDir)
    {
       throw todo(get_app());
 
@@ -1267,5 +1244,14 @@ throw todo(get_app());
       }
       return false;*/
    }
+
+
+   string dir::commonappdata()
+   {
+
+      return path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path,"commonappdata");
+
+   }
+
 
 } // namespace metrowin

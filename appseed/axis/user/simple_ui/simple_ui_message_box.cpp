@@ -375,7 +375,7 @@ extern "C"
 CLASS_DECL_AXIS int32_t system_message_box(oswindow interaction_impl,const char * lpText,const char * lpCaption,uint32_t uiFlags)
 {
 
-   return MessageBox(interaction_impl,lpText,lpCaption,uiFlags);
+   return MessageBoxW(interaction_impl,wstring(lpText),wstring(lpCaption),uiFlags);
 
 }
 
@@ -489,7 +489,7 @@ int32_t simple_ui_message_box(oswindow interaction_impl,const char * lpText,cons
 
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    if(bQuit)
       PostQuitMessage((int32_t)msg.wParam);
 #endif // WINDOWS

@@ -2574,3 +2574,20 @@ int_bool file_set_length(const char * pszName,size_t iSize)
    return true;
 
 }
+
+uint64_t flen_dup(_FILE *str)
+{
+
+#ifdef WINDOWS
+
+   return fsize_dup((HANDLE)((_FILE*)str)->_base);
+
+#else
+
+   return fsize_dup(str);
+
+#endif
+
+}
+
+

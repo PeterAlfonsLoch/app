@@ -69,10 +69,6 @@ CLASS_DECL_AURA void __try_cleanup();
 CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, signal_details * pobj);
 CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
-CLASS_DECL_AURA bool __cdecl __is_idle_message(signal_details * pobj);
-CLASS_DECL_AURA bool __cdecl __is_idle_message(MESSAGE * pMsg);
-
-
 CLASS_DECL_AURA void __cdecl __pre_translate_message(signal_details * pobj);
 
 

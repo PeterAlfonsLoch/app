@@ -6,7 +6,7 @@
 #include "axis/axis/axis/axis.h"
 
 
-#if defined(cplusplus) && !defined(__OBJC__)
+#if (defined(cplusplus) || defined(__cplusplus_winrt)) && !defined(__OBJC__)
 
 #include "axis/user/user.h"
 

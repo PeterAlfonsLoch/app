@@ -118,11 +118,11 @@ namespace sockets
    TRACE(" *** resolv_socket server; query=%s, data=%s\n", m_query, m_data);
          // %! check cache
          {
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
             string result;
-            if(System.sockets().m_resolvcache[m_query].Lookup(m_data, result))
+            if(Session.sockets().m_resolvcache[m_query].Lookup(m_data, result))
             {
-               if (time(NULL) - System.sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
+               if (time(NULL) - Session.sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
                {
    TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query, m_data, result);
                   write("Cached\n");
@@ -178,10 +178,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            System.sockets().m_resolvcache[m_query][m_data] = value;
-            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+            Session.sockets().m_resolvcache[m_query][m_data] = value;
+            Session.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }
@@ -195,10 +195,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            System.sockets().m_resolvcache[m_query][m_data] = value;
-            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+            Session.sockets().m_resolvcache[m_query][m_data] = value;
+            Session.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }
@@ -208,17 +208,17 @@ namespace sockets
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
             //in_addr l;
-            //System.net().convert(l, value); // ip2ipaddr_t
+            //Session.sockets().net().convert(l, value); // ip2ipaddr_t
 
             m_parent -> OnResolved(m_resolv_id, ::net::address(value, m_resolv_port));
          }
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            System.sockets().m_resolvcache[m_query][m_data] = value;
-            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+            Session.sockets().m_resolvcache[m_query][m_data] = value;
+            Session.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL; // always use first ip in case there are several
       }
@@ -227,16 +227,16 @@ namespace sockets
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
             //in6_addr a;
-            //System.net().convert(a, value);
+            //Session.sockets().net().convert(a, value);
             m_parent -> OnResolved(m_resolv_id, ::net::address(value, m_resolv_port));
          }
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            System.sockets().m_resolvcache[m_query][m_data] = value;
-            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+            Session.sockets().m_resolvcache[m_query][m_data] = value;
+            Session.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }
@@ -249,10 +249,10 @@ namespace sockets
       if(m_query == "gethostbyname")
       {
          in_addr sa;
-         if(System.net().convert(sa, m_data))
+         if(Session.sockets().net().convert(sa, m_data))
          {
             string ip;
-            System.net().convert(ip, sa);
+            Session.sockets().net().convert(ip, sa);
             write("A: " + ip + "\n");
          }
          else
@@ -264,10 +264,10 @@ namespace sockets
       else if(m_query == "gethostbyname2")
       {
          in6_addr sa;
-         if(System.net().convert(sa, m_data))
+         if(Session.sockets().net().convert(sa, m_data))
          {
             string ip;
-            System.net().convert(ip, sa);
+            Session.sockets().net().convert(ip, sa);
             write("AAAA: " + ip + "\n");
          }
          else
@@ -282,12 +282,12 @@ namespace sockets
 
          ::net::address addr(m_data);
 
-         if(System.net().isipv4(m_data) || System.net().isipv6(m_data))
+         if(Session.sockets().net().isipv4(m_data) || Session.sockets().net().isipv6(m_data))
          {
 
-            string strCanonicalName = System.net().canonical_name(addr);
+            string strCanonicalName = Session.sockets().net().canonical_name(addr);
 
-            if(System.net().isipv4(strCanonicalName) || System.net().isipv6(strCanonicalName))
+            if(Session.sockets().net().isipv4(strCanonicalName) || Session.sockets().net().isipv6(strCanonicalName))
             {
                write("Failed: convert to sockaddr_in failed\n");
             }
@@ -326,14 +326,14 @@ namespace sockets
       if (m_resolve_ipv6)
       {
          string tmp;
-         System.net().convert(tmp, m_resolv_address6);
+         Session.sockets().net().convert(tmp, m_resolv_address6);
          m_query = "gethostbyaddr";
          m_data = tmp;
          string msg = "gethostbyaddr " + tmp + "\n";
          write( msg );
       }
       string tmp;
-      System.net().convert(tmp, m_resolv_address);
+      Session.sockets().net().convert(tmp, m_resolv_address);
       m_query = "gethostbyaddr";
       m_data = tmp;
       string msg = "gethostbyaddr " + tmp + "\n";
@@ -352,11 +352,11 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.sockets().m_mutexResolvCache, true);
+            single_lock lock(&Session.sockets().m_mutexResolvCache, true);
             string value;
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            System.sockets().m_resolvcache[m_query][m_data] = value;
-            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
+            Session.sockets().m_resolvcache[m_query][m_data] = value;
+            Session.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }

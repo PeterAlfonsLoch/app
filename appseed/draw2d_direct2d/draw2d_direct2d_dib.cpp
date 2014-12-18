@@ -23,11 +23,11 @@ namespace draw2d_direct2d
       m_bTrans       = false;
    }
 
-   COLORREF * dib::get_data()
+   COLORREF * dib::get_data() const
    {
       return m_pcolorref;
    }
-   ::draw2d::bitmap_sp dib::get_bitmap()
+   ::draw2d::bitmap_sp dib::get_bitmap() const
    {
       return m_spbitmap;
    }
@@ -2447,7 +2447,7 @@ namespace draw2d_direct2d
 
    }
 
-   ::draw2d::graphics * dib::get_graphics()
+   ::draw2d::graphics * dib::get_graphics() const
    {
       unmap();
       return m_spgraphics;
@@ -2531,7 +2531,7 @@ namespace draw2d_direct2d
    //   return (int) (((_int64) i * Sin10N[iAngle]) >> 34);
    //}
 
-   void dib::map(bool bApplyAlphaTransform)
+   void dib::map(bool bApplyAlphaTransform) const
    {
 
       synch_lock ml(&draw2d_direct2_mutex());
@@ -2563,9 +2563,9 @@ namespace draw2d_direct2d
       if (FAILED(hr) || pb->m_map.bits == NULL)
          throw "";
 
-      m_pcolorref = (COLORREF *)pb->m_map.bits;
+      ((dib *) this)->m_pcolorref = (COLORREF *)pb->m_map.bits;
 
-      m_iScan = pb->m_map.pitch;
+      ((dib *) this)->m_iScan = pb->m_map.pitch;
 
       int compare_scan = m_size.cx * sizeof(COLORREF);
 
@@ -2595,15 +2595,15 @@ namespace draw2d_direct2d
             i--;
          }
 
-         m_bTrans = true;
+         ((dib *) this)->m_bTrans = true;
 
       }
 
-      m_bMapped = true;
+      ((dib *) this)->m_bMapped = true; 
 
    }
 
-   void dib::unmap()
+   void dib::unmap() const
    {
 
       synch_lock ml(&draw2d_direct2_mutex());
@@ -2619,9 +2619,9 @@ namespace draw2d_direct2d
 
          HRESULT hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 >(::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
 
-         m_pcolorref = NULL;
+         ((dib *) this)->m_pcolorref = NULL;
 
-         m_bMapped = false;
+         ((dib *) this)->m_bMapped = false;
 
          return;
 
@@ -2662,12 +2662,12 @@ namespace draw2d_direct2d
 
       hr = m_spbitmapMap->get_typed_os_data < ID2D1Bitmap1 >(::draw2d_direct2d::bitmap::data_bitmap1)->Unmap();
 
-      m_pcolorref = NULL;
+      ((dib *) this)->m_pcolorref = NULL;
 
       if (FAILED(hr))
       {
 
-         m_bMapped = false;
+         ((dib *) this)->m_bMapped = false;
 
          throw "";
 
@@ -2677,8 +2677,8 @@ namespace draw2d_direct2d
 
       ((ID2D1DeviceContext *)m_spgraphics->get_os_data())->BeginDraw();
 
-      m_bMapped = false;
-      m_bTrans = false;
+      ((dib *) this)->m_bMapped = false;
+      ((dib *) this)->m_bTrans = false;
 
    }
 
@@ -2708,6 +2708,8 @@ namespace draw2d_direct2d
 
    bool dib::realize(::draw2d::graphics * pgraphics) const
    {
+
+      synch_lock sl(&draw2d_direct2_mutex());
 
       if (is_realized())
          unrealize();

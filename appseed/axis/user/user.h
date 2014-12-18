@@ -5,7 +5,7 @@
 
 #include "axis/axis/axis.h"
 
-#ifdef __cplusplus
+#if defined(__cplusplus) || defined(__cplusplus_winrt)
 
 #include "aura/user/user.h"
 
@@ -52,11 +52,11 @@
 
 
 
-#if defined(METROWIN)
-
-#include "app/appseed/axis/axis/os/metrowin/metrowin_sockets.h"
-
-#endif
+//#if defined(METROWIN)
+//
+//#include "app/appseed/axis/axis/os/metrowin/metrowin_sockets.h"
+//
+//#endif
 
 
 

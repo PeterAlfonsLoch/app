@@ -735,7 +735,7 @@ namespace core
 
          ::simple_message_box(get_splash(),"An error that prevents the application from starting has occurred.\r\n\r\nPlease run app-removal.exe and restart the application, or contact the administrator.","Startup Error",MB_ICONEXCLAMATION);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          ::ExitProcess(-17);
 

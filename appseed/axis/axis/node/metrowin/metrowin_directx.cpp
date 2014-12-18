@@ -1,11 +1,5 @@
-//// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
-//// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-//// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-//// PARTICULAR PURPOSE.
-////
-//// Copyright (ca) Microsoft Corporation. All rights reserved
-
 #include "framework.h"
+#include "metrowin.h"
 
 using namespace Windows::UI::Core;
 using namespace Windows::Foundation;
@@ -13,22 +7,45 @@ using namespace Microsoft::WRL;
 using namespace Windows::Graphics::Display;
 using namespace D2D1;
 
+
+static mutex * s_pmutex = NULL;
+
+mutex & draw2d_direct2_mutex()
+{
+
+   return *s_pmutex;
+
+}
+
+
+void init_draw2d_direct2_mutex(::aura::application * papp)
+{
+
+   s_pmutex = new mutex(papp);
+
+}
+
+
 namespace metrowin
 {
 
    // Constructor.
    directx_base::directx_base(::aura::application * papp) :
-      m_paxisapp(papp),
+      m_pauraapp(papp),
       m_windowSizeChangeInProgress(false),
       m_dpi(-1.0f),
       m_mutexDc(papp)
    {
+
+      init_draw2d_direct2_mutex(papp);
+
       m_bInitialized = false;
    }
 
    // Initialize the DirectX resources required to run.
    void directx_base::Initialize(CoreWindow^ window, float dpi)
    {
+
       m_window = window;
 
       CreateDeviceIndependentResources();
@@ -40,6 +57,7 @@ namespace metrowin
    // Recreate all device resources and set them back to the current state.
    void directx_base::HandleDeviceLost()
    {
+
       // Reset these member variables to ensure that SetDpi recreates all resources.
       float dpi = m_dpi;
       m_dpi = -1.0f;
@@ -54,6 +72,7 @@ namespace metrowin
    // These are the resources required independent of the device.
    void directx_base::CreateDeviceIndependentResources()
    {
+
       D2D1_FACTORY_OPTIONS options;
       ZeroMemory(&options, sizeof(D2D1_FACTORY_OPTIONS));
 
@@ -174,6 +193,8 @@ namespace metrowin
    // These are the resources that depend on the device.
    void directx_base::CreateDeviceResources()
    {
+
+
       // This flag adds support for surfaces with a different color channel ordering
       // than the API default. It is required for compatibility with Direct2D.
       UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
@@ -303,10 +324,13 @@ namespace metrowin
    // This is called in the dpiChanged event handler in the view class.
    void directx_base::SetDpi(float dpi)
    {
+
       if (dpi != m_dpi)
       {
          // Save the DPI of this display in our class.
          m_dpi = dpi;
+
+         System.m_dpi = dpi;
 
          // Update Direct2D's stored DPI.
          m_d2dContext->SetDpi(m_dpi, m_dpi);
@@ -321,6 +345,7 @@ namespace metrowin
    // This routine is called in the event handler for the view SizeChanged event.
    void directx_base::UpdateForWindowSizeChange()
    {
+
       // Only handle window size changed if there is no pending DPI change.
       
       ::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
@@ -341,16 +366,17 @@ namespace metrowin
          CreateWindowSizeDependentResources();
       }
 
-      System.m_posdata->m_pui->m_rectParentClient.left     = 0;
-      System.m_posdata->m_pui->m_rectParentClient.top = 0;
-      System.m_posdata->m_pui->m_rectParentClient.right = (int64_t)m_window->Bounds.Width;
-      System.m_posdata->m_pui->m_rectParentClient.bottom = (int64_t)m_window->Bounds.Height;
+
+
+      System.m_posdata->m_pui->SetWindowPos(ZORDER_TOP,0,0,m_window->Bounds.Width,m_window->Bounds.Height, SWP_SHOWWINDOW);
 
    }
 
    // Allocate all memory resources that change on a window SizeChanged event.
    void directx_base::CreateWindowSizeDependentResources()
    {
+
+
       // Store the window bounds so the next time we get a SizeChanged event we can
       // avoid rebuilding everything if the size is identical.
       m_windowBounds = m_window->Bounds;
@@ -572,7 +598,7 @@ namespace metrowin
 
 
 
-      Platform::String^ text = "Hello World From ... DirectWrite!";
+      String^ text = "Hello World From ... DirectWrite!";
 
       D2D1_SIZE_F size = m_d2dContext->GetSize();
 
@@ -644,10 +670,10 @@ namespace metrowin
    void directx_base::Present()
    {
 
+      synch_lock sl(&draw2d_direct2_mutex());
+
       if(!m_bInitialized)
          return;
-
-      single_lock slDc(System.m_pmutexDc, true);
 
       // The application may optionally specify "dirty" or "scroll" rects to improve efficiency
       // in certain scenarios.  In this sample, however, we do not utilize those features.
@@ -681,7 +707,7 @@ namespace metrowin
          ::metrowin::throw_if_failed(hr);
       }
 
-      slDc.unlock();
+      sl.unlock();
 
       m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([this]()
       {
@@ -737,7 +763,7 @@ namespace metrowin
    }
 
 
-   void directx_base::Render(::user::interaction_ptr_array & uiptra)
+   void directx_base::Render(::user::interaction_ptra & uiptra)
    {
 
       if(!m_bInitialized)
@@ -778,16 +804,16 @@ namespace metrowin
       ::draw2d::graphics_sp dc(get_app()->allocer());
       dc->attach((ID2D1DeviceContext *)m_d2dContext.Get());
 
-      ::os::simple_ui * psimpleui = System.m_psimpleui;
+      //::os::simple_ui * psimpleui = System.m_psimpleui;
 
-      if (psimpleui != NULL && psimpleui->m_bVisible)
-      {
-         System.m_psimpleui->draw(dc);
-      }
-      else
-      {
+      //if (psimpleui != NULL && psimpleui->m_bVisible)
+      //{
+      //   System.m_psimpleui->draw(dc);
+      //}
+      //else
+      //{
          System.m_posdata->m_pui->_000OnDraw(dc);
-      }
+      //}
 
       dc->detach();
 

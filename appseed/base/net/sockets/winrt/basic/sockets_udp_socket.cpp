@@ -43,7 +43,7 @@ namespace sockets
          ([this](Windows::Networking::Sockets::DatagramSocket ^ socket, ::Windows::Networking::Sockets::DatagramSocketMessageReceivedEventArgs ^ args)
       {
 
-         Platform::Array < unsigned char, 1U > ^ ucha = ref new Platform::Array < unsigned char, 1U >(args->GetDataReader()->UnconsumedBufferLength);
+         Array < unsigned char, 1U > ^ ucha = ref new Array < unsigned char, 1U >(args->GetDataReader()->UnconsumedBufferLength);
 
          args->GetDataReader()->ReadBytes(ucha);
 
@@ -230,7 +230,7 @@ namespace sockets
    SetNonblocking(true);
    if ((m_last_size_written = sendto(GetSocket(), data, len, flags, ad, ad)) == -1)
    {
-   log("sendto", Errno, StrError(Errno), ::core::log::level_error);
+   log("sendto", Errno, StrError(Errno), ::aura::log::level_error);
    }
    }
    }
@@ -265,13 +265,13 @@ namespace sockets
    {
       if (!IsConnected())
       {
-         log("SendBuf", 0, "not connected", ::core::log::level_error);
+         log("SendBuf", 0, "not connected", ::aura::log::level_error);
          return;
       }
 
       ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter(m_posdata->m_datagramsocket->OutputStream);
 
-      writer->WriteBytes(ref new Platform::Array < unsigned char, 1U >((unsigned char *) data, len));
+      writer->WriteBytes(ref new Array < unsigned char, 1U >((unsigned char *) data, len));
 
       /*writer->FlushAsync()->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < bool >([this](::Windows::Foundation::IAsyncOperation<bool> asyncInfo, ::Windows::Foundation::AsyncStatus asyncStatus)
       {
@@ -282,7 +282,7 @@ namespace sockets
 
       /*      if ((m_last_size_written = send(GetSocket(), data, (int)len, flags)) == -1)
       {
-      log("send", Errno, StrError(Errno), ::core::log::level_error);
+      log("send", Errno, StrError(Errno), ::aura::log::level_error);
       }*/
 
    }
@@ -391,7 +391,7 @@ namespace sockets
       #else
       if (Errno != EWOULDBLOCK)
       #endif
-      log("recvfrom", Errno, StrError(Errno), ::core::log::level_error);
+      log("recvfrom", Errno, StrError(Errno), ::aura::log::level_error);
       }
       return;
       }
@@ -401,7 +401,7 @@ namespace sockets
       {
       if (sa_len != sizeof(sa))
       {
-      log("recvfrom", 0, "unexpected address struct size", ::core::log::level_warning);
+      log("recvfrom", 0, "unexpected address struct size", ::aura::log::level_warning);
       }
       this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
       if (!q--)
@@ -416,7 +416,7 @@ namespace sockets
       #else
       if (Errno != EWOULDBLOCK)
       #endif
-      log("recvfrom", Errno, StrError(Errno), ::core::log::level_error);
+      log("recvfrom", Errno, StrError(Errno), ::aura::log::level_error);
       }
       return;
       }
@@ -443,7 +443,7 @@ namespace sockets
       #else
       if (Errno != EWOULDBLOCK)
       #endif
-      log("recvfrom", Errno, StrError(Errno), ::core::log::level_error);
+      log("recvfrom", Errno, StrError(Errno), ::aura::log::level_error);
       }
       return;
       }
@@ -453,7 +453,7 @@ namespace sockets
       {
       if (sa_len != sizeof(sa))
       {
-      log("recvfrom", 0, "unexpected address struct size", ::core::log::level_warning);
+      log("recvfrom", 0, "unexpected address struct size", ::aura::log::level_warning);
       }
       this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
       if (!q--)
@@ -468,12 +468,12 @@ namespace sockets
       #else
       if (Errno != EWOULDBLOCK)
       #endif
-      log("recvfrom", Errno, StrError(Errno), ::core::log::level_error);
+      log("recvfrom", Errno, StrError(Errno), ::aura::log::level_error);
       }
       */
       /*::Windows::Storage::Streams::DataReader ^ reader = ref new ::Windows::Storage::Streams::DataReader(m_datagramsocket->OutputStream);
       //int n = reader->UnconsumedBufferLength;
-      Platform::Array < unsigned char, 1U > ^ ucha = nullptr;
+      Array < unsigned char, 1U > ^ ucha = nullptr;
       reader->ReadBytes(ucha);
       if(ucha != nullptr)
       {
@@ -498,14 +498,14 @@ namespace sockets
       {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *) &one, sizeof(one)) == -1)
       {
-      log("SetBroadcast", Errno, StrError(Errno), ::core::log::level_warning);
+      log("SetBroadcast", Errno, StrError(Errno), ::aura::log::level_warning);
       }
       }
       else
       {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *) &zero, sizeof(zero)) == -1)
       {
-      log("SetBroadcast", Errno, StrError(Errno), ::core::log::level_warning);
+      log("SetBroadcast", Errno, StrError(Errno), ::aura::log::level_warning);
       }
       }*/
    }
@@ -523,7 +523,7 @@ namespace sockets
       }
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *)&is_broadcast, &size) == -1)
       {
-      log("IsBroadcast", Errno, StrError(Errno), ::core::log::level_warning);
+      log("IsBroadcast", Errno, StrError(Errno), ::aura::log::level_warning);
       }
       return is_broadcast != 0;*/
    }
@@ -538,7 +538,7 @@ namespace sockets
       }
       if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(int)) == -1)
       {
-      log("SetMulticastTTL", Errno, StrError(Errno), ::core::log::level_warning);
+      log("SetMulticastTTL", Errno, StrError(Errno), ::aura::log::level_warning);
       }*/
    }
 
@@ -555,7 +555,7 @@ namespace sockets
       }
       if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, &size) == -1)
       {
-      log("GetMulticastTTL", Errno, StrError(Errno), ::core::log::level_warning);
+      log("GetMulticastTTL", Errno, StrError(Errno), ::aura::log::level_warning);
       }
       return ttl;*/
    }
@@ -573,14 +573,14 @@ namespace sockets
       int val = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(int)) == -1)
       {
-      log("SetMulticastLoop", Errno, StrError(Errno), ::core::log::level_warning);
+      log("SetMulticastLoop", Errno, StrError(Errno), ::aura::log::level_warning);
       }
       return;
       }
       int val = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(int)) == -1)
       {
-      log("SetMulticastLoop", Errno, StrError(Errno), ::core::log::level_warning);
+      log("SetMulticastLoop", Errno, StrError(Errno), ::aura::log::level_warning);
       }*/
    }
 
@@ -598,7 +598,7 @@ namespace sockets
       socklen_t size = sizeof(int);
       if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       {
-      log("IsMulticastLoop", Errno, StrError(Errno), ::core::log::level_warning);
+      log("IsMulticastLoop", Errno, StrError(Errno), ::aura::log::level_warning);
       }
       return is_loop ? true : false;
       }
@@ -606,7 +606,7 @@ namespace sockets
       socklen_t size = sizeof(int);
       if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       {
-      log("IsMulticastLoop", Errno, StrError(Errno), ::core::log::level_warning);
+      log("IsMulticastLoop", Errno, StrError(Errno), ::aura::log::level_warning);
       }
       return is_loop ? true : false;*/
    }
@@ -624,28 +624,28 @@ namespace sockets
       {
       struct ipv6_mreq x;
       struct in6_addr addr;
-      if (System.net().u2ip( group, addr ))
+      if (Session.sockets().net().u2ip( group, addr ))
       {
       x.ipv6mr_multiaddr = addr;
       x.ipv6mr_interface = if_index;
       if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
       {
-      log("AddMulticastMembership", Errno, StrError(Errno), ::core::log::level_warning);
+      log("AddMulticastMembership", Errno, StrError(Errno), ::aura::log::level_warning);
       }
       }
       return;
       }
       struct ip_mreq x; // ip_mreqn
       ipaddr_t addr;
-      if (System.net().u2ip( group, addr ))
+      if (Session.sockets().net().u2ip( group, addr ))
       {
       memcpy(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
-      System.net().u2ip( local_if, addr);
+      Session.sockets().net().u2ip( local_if, addr);
       memcpy(&x.imr_interface.s_addr, &addr, sizeof(addr));
       //      x.imr_ifindex = if_index;
       if (setsockopt(GetSocket(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
       {
-      log("AddMulticastMembership", Errno, StrError(Errno), ::core::log::level_warning);
+      log("AddMulticastMembership", Errno, StrError(Errno), ::aura::log::level_warning);
       }
       }*/
    }
@@ -663,28 +663,28 @@ namespace sockets
       {
       struct ipv6_mreq x;
       struct in6_addr addr;
-      if (System.net().u2ip( group, addr ))
+      if (Session.sockets().net().u2ip( group, addr ))
       {
       x.ipv6mr_multiaddr = addr;
       x.ipv6mr_interface = if_index;
       if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
       {
-      log("DropMulticastMembership", Errno, StrError(Errno), ::core::log::level_warning);
+      log("DropMulticastMembership", Errno, StrError(Errno), ::aura::log::level_warning);
       }
       }
       return;
       }
       struct ip_mreq x; // ip_mreqn
       ipaddr_t addr;
-      if (System.net().u2ip( group, addr ))
+      if (Session.sockets().net().u2ip( group, addr ))
       {
       memcpy(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
-      System.net().u2ip( local_if, addr);
+      Session.sockets().net().u2ip( local_if, addr);
       memcpy(&x.imr_interface.s_addr, &addr, sizeof(addr));
       //      x.imr_ifindex = if_index;
       if (setsockopt(GetSocket(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
       {
-      log("DropMulticastMembership", Errno, StrError(Errno), ::core::log::level_warning);
+      log("DropMulticastMembership", Errno, StrError(Errno), ::aura::log::level_warning);
       }
       }*/
    }
@@ -699,12 +699,12 @@ namespace sockets
       }
       if (!IsIpv6())
       {
-      log("SetMulticastHops", 0, "Ipv6 only", ::core::log::level_error);
+      log("SetMulticastHops", 0, "Ipv6 only", ::aura::log::level_error);
       return;
       }
       if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(int)) == -1)
       {
-      log("SetMulticastHops", Errno, StrError(Errno), ::core::log::level_warning);
+      log("SetMulticastHops", Errno, StrError(Errno), ::aura::log::level_warning);
       }*/
    }
 
@@ -719,14 +719,14 @@ namespace sockets
       }
       if (!IsIpv6())
       {
-      log("SetMulticastHops", 0, "Ipv6 only", ::core::log::level_error);
+      log("SetMulticastHops", 0, "Ipv6 only", ::aura::log::level_error);
       return -1;
       }
       int hops = 0;
       socklen_t size = sizeof(int);
       if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
       {
-      log("GetMulticastHops", Errno, StrError(Errno), ::core::log::level_warning);
+      log("GetMulticastHops", Errno, StrError(Errno), ::aura::log::level_warning);
       }
       return hops;*/
    }
@@ -778,7 +778,7 @@ namespace sockets
    port_t udp_socket::GetRemotePort()
    {
 
-      return System.net().service_port(m_posdata->m_datagramsocket->Information->RemotePort);
+      return Session.sockets().net().service_port(m_posdata->m_datagramsocket->Information->RemotePort);
 
    }
 
@@ -794,7 +794,7 @@ namespace sockets
    port_t udp_socket::GetLocalPort()
    {
 
-      return System.net().service_port(m_posdata->m_datagramsocket->Information->LocalPort);
+      return Session.sockets().net().service_port(m_posdata->m_datagramsocket->Information->LocalPort);
 
    }
 

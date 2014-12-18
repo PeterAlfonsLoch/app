@@ -18,6 +18,7 @@
          string                              m_strProtocol;
          bool                                m_bRequestComplete;
          
+         
 
 
          http_session(sp(::sockets::base_socket_handler) phandler, const string & protocol, const string & host);

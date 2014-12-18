@@ -32,7 +32,7 @@ namespace fontopus
 
       m_picon95 = NULL;
 
-#if defined(WINDOWS)
+#if defined(WINDOWSEX)
 
       {
 

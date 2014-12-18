@@ -171,7 +171,7 @@ namespace user
 
       if(::IsRectEmpty(layout.rect))
          return;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       if((nFlags & ~reposNoPosLeftOver) != reposQuery)
          layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
       else
@@ -261,7 +261,7 @@ namespace user
          }
       }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       // move and resize all the windows at once!
       if(layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
          TRACE(::aura::trace::category_AppMsg,0,"Warning: DeferWindowPos failed - low system resources.\n");

@@ -17,7 +17,7 @@ namespace metrowin
       stringa        m_straFile;
 
 
-      file_set(::axis::application * papp);
+      file_set(::aura::application * papp);
       virtual ~file_set();
 
 

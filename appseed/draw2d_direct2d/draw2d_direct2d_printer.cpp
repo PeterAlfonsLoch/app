@@ -21,7 +21,12 @@ namespace draw2d_direct2d
    {
       if(is_opened())
          close();
+#ifndef METROWIN
       return OpenPrinter((LPSTR) (LPCSTR) pszDeviceName, &m_hPrinter, NULL) != FALSE && m_hPrinter != NULL;
+#else
+      throw todo(get_app());
+      return false;
+#endif
    }
 
    bool printer::is_opened()
@@ -42,8 +47,13 @@ namespace draw2d_direct2d
       bool bOk = true;
       if(m_hPrinter != NULL)
       {
+#ifndef METROWIN
          bOk = ::ClosePrinter(m_hPrinter) != FALSE;
-         m_hPrinter = NULL;
+#else
+throw todo(get_app());
+return false;
+#endif
+m_hPrinter = NULL;
       }
       return bOk;
    }
@@ -68,6 +78,7 @@ namespace draw2d_direct2d
          return false;
       if(m_hdc != NULL)
          return false;
+#ifndef METROWIN
       int iSize = DocumentProperties(NULL, pprinter->m_hPrinter, (LPSTR)(LPCSTR) pprinter->m_strName, NULL, NULL, 0);
       m_pdevmode = (DEVMODE *) malloc(iSize);
       if(!DocumentProperties(NULL, pprinter->m_hPrinter, (LPSTR) (LPCSTR) pprinter->m_strName, m_pdevmode, NULL, DM_OUT_BUFFER))
@@ -75,18 +86,27 @@ namespace draw2d_direct2d
          throw "failed to get printer DocumentProperties";
          return false;
       }
-      return true;
+#else
+throw todo(get_app());
+return false;
+#endif
+return true;
    }
 
    bool printer::document_properties::close()
    {
       throw todo(get_app());
+#ifndef METROWIN
       if(m_hdc != NULL)
       {
          ::DeleteDC(m_hdc);
          m_hdc = NULL;
       }
-      if(m_pdevmode != NULL)
+#else
+throw todo(get_app());
+return false;
+#endif
+if(m_pdevmode != NULL)
       {
          free(m_pdevmode);
          m_pdevmode = NULL;
@@ -102,10 +122,15 @@ namespace draw2d_direct2d
          return NULL;
       if(m_hdc != NULL)
          return NULL;
+#ifndef METROWIN
       m_hdc = ::CreateDC("WINSPOOL", (LPCSTR) m_pdevmode->dmDeviceName, NULL, m_pdevmode);
-      ::draw2d::graphics_sp g(allocer());
+::draw2d::graphics_sp g(allocer());
       g->Attach(m_hdc);
       return g.detach();
+#else
+      throw todo(get_app());
+      return NULL;
+#endif
    }
 
 

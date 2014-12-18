@@ -91,7 +91,7 @@ namespace hotplugin
                      
                      str.Format("::hotplugin::g_pbasesystem initialization error %d",::hotplugin::get_base_system()->m_iReturnCode);
 
-                     ::OutputDebugString(str);
+                     ::output_debug_string(str);
 
                   }
                   else
@@ -142,7 +142,7 @@ namespace hotplugin
 
                      str.Format("m_pcomposersystem initialization error %d",get_composer_system()->m_iReturnCode);
 
-                     ::OutputDebugString(str);
+                     ::output_debug_string(str);
 
                   }
                   else
@@ -196,7 +196,7 @@ namespace hotplugin
 
                      str.Format("::hotplugin::composer::m_pbasehost initialization error %d",::hotplugin::get_base_system()->m_iReturnCode);
 
-                     ::OutputDebugString(str);
+                     ::output_debug_string(str);
 
                   }
                   else

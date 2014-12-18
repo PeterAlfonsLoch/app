@@ -46,6 +46,7 @@
     <ClInclude Include="aura\aura\aura_application.h" />
     <ClInclude Include="aura\aura\aura_application_interface.h" />
     <ClInclude Include="aura\aura\aura_application_signal_details.h" />
+    <ClInclude Include="aura\aura\aura_assert_running_task.h" />
     <ClInclude Include="aura\aura\aura_async.h" />
     <ClInclude Include="aura\aura\aura_auto_pointer.h" />
     <ClInclude Include="aura\aura\aura_class.h" />
@@ -560,7 +561,7 @@
     <ClInclude Include="aura\os\metrowin\metrowin_multithreading.h" />
     <ClInclude Include="aura\os\metrowin\metrowin_multithreading_winrt.h" />
     <ClInclude Include="aura\os\metrowin\metrowin_user_impl.h" />
-    <ClInclude Include="aura\os\metrowin\metrowin_window_impl.h" />
+    <ClInclude Include="aura\os\metrowin\aaa_want_to_remove_metrowin_window_impl.h" />
     <ClInclude Include="aura\os\os.h" />
     <ClInclude Include="aura\os\os_binreloc.h" />
     <ClInclude Include="aura\os\os_process.h" />
@@ -919,7 +920,6 @@
     <ClInclude Include="user\simple\simple_message_box.h" />
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\user\user.h" />
-    <ClInclude Include="user\user\user_check_interface.h" />
     <ClInclude Include="user\user\user_create_context.h" />
     <ClInclude Include="user\user\user_draw_context.h" />
     <ClInclude Include="user\user\user_draw_interface.h" />
@@ -954,6 +954,7 @@
     <ClCompile Include="aura\aura\aura_application_interface.cpp" />
     <ClCompile Include="aura\aura\aura_argcargv.cpp" />
     <ClCompile Include="aura\aura\aura_assert.cpp" />
+    <ClCompile Include="aura\aura\aura_assert_running_task.cpp" />
     <ClCompile Include="aura\aura\aura_checked.cpp" />
     <ClCompile Include="aura\aura\aura_cmdtarg.cpp" />
     <ClCompile Include="aura\aura\aura_command_target.cpp" />
@@ -1041,6 +1042,7 @@
     <ClCompile Include="aura\exception\exception_simple.cpp" />
     <ClCompile Include="aura\exception\exception_standard_translator.cpp" />
     <ClCompile Include="aura\exception\exception_temporary.cpp" />
+    <ClCompile Include="aura\exception\exception_throw.cpp" />
     <ClCompile Include="aura\exception\exception_todo.cpp" />
     <ClCompile Include="aura\exception\exception_user.cpp" />
     <ClCompile Include="aura\exception\exception_verisimple.cpp" />
@@ -1065,6 +1067,7 @@
     <ClCompile Include="aura\node\metrowin\metrowin_uac_tools.cpp" />
     <ClCompile Include="aura\node\metrowin\metrowin_util.cpp" />
     <ClCompile Include="aura\node\node.cpp" />
+    <ClCompile Include="aura\os\ansios\ansios_message_loop.cpp" />
     <ClCompile Include="aura\os\cross\ansios\ansios_datetime.cpp" />
     <ClCompile Include="aura\os\cross\metrowin\cross_metrowin_user.cpp" />
     <ClCompile Include="aura\os\cross\windows\cross_windows_crt.cpp">
@@ -1164,7 +1167,6 @@
     <ClCompile Include="aura\os\metrowin\metrowin_library.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_lock.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_MessageBoxA.cpp" />
-    <ClCompile Include="aura\os\metrowin\metrowin_message_loop.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_multithreading.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_process.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_simple_app.cpp" />
@@ -1173,7 +1175,6 @@
     <ClCompile Include="aura\os\metrowin\metrowin_sockets.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_time.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_user.cpp" />
-    <ClCompile Include="aura\os\metrowin\metrowin_window_impl.cpp" />
     <ClCompile Include="aura\os\os_file.cpp" />
     <ClCompile Include="aura\os\os_http.cpp" />
     <ClCompile Include="aura\os\os_process.cpp" />
@@ -1339,6 +1340,7 @@
     <ClCompile Include="multithreading\service\service_plain_service.cpp" />
     <ClCompile Include="primitive\collection\collection_2d_array.cpp" />
     <ClCompile Include="primitive\collection\collection_array.cpp" />
+    <ClCompile Include="primitive\collection\collection_array_base.cpp" />
     <ClCompile Include="primitive\collection\collection_bit_array.cpp" />
     <ClCompile Include="primitive\collection\collection_class_sort_array.cpp" />
     <ClCompile Include="primitive\collection\collection_comparable_array.cpp" />
@@ -1791,7 +1793,6 @@
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
-    <ClCompile Include="user\user\user_check_interface.cpp" />
     <ClCompile Include="user\user\user_create_context.cpp" />
     <ClCompile Include="user\user\user_draw_context.cpp" />
     <ClCompile Include="user\user\user_draw_interface.cpp" />
@@ -1905,6 +1906,7 @@
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <GenerateManifest>false</GenerateManifest>
@@ -1962,12 +1964,14 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>Oleaut32.lib;DWrite.lib;D3D11.lib;D2D1.lib;Wtsapi32.lib;version.lib;Shlwapi.lib;Secur32.lib;Crypt32.lib;Ole32.lib;Gdiplus.lib;psapi.lib;msimg32.lib;gdi32.lib;user32.lib;Winmm.lib;WinINet.lib;shell32.lib;advapi32.lib;kernel32.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
       <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"

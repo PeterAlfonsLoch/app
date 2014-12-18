@@ -160,7 +160,7 @@ namespace sockets
    port_t stream_socket::GetRemotePort()
    {
 
-      return System.net().service_port(m_posdata->m_streamsocket->Information->RemotePort);
+      return Session.sockets().net().service_port(m_posdata->m_streamsocket->Information->RemotePort);
 
    }
    
@@ -176,7 +176,7 @@ namespace sockets
    port_t stream_socket::GetLocalPort()
    {
 
-      return System.net().service_port(m_posdata->m_streamsocket->Information->LocalPort);
+      return Session.sockets().net().service_port(m_posdata->m_streamsocket->Information->LocalPort);
 
    }
      

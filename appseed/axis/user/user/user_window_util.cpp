@@ -710,6 +710,11 @@ namespace user
    int32_t window_util::GetZOrder(oswindow oswindow)
    {
 
+#ifdef METROWIN
+
+      return 0;
+
+#else
 
       ::oswindow oswindowOrder = NULL;
 
@@ -744,6 +749,7 @@ namespace user
 
       return 0x7fffffff;
 
+#endif
 
    }
 

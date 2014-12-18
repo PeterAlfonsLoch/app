@@ -5,8 +5,8 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_AURA copydesk : 
-      virtual public ::aura::copydesk
+   class CLASS_DECL_AXIS copydesk : 
+      virtual public ::axis::copydesk
    {
    public:
 

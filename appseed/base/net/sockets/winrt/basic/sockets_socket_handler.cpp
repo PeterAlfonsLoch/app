@@ -35,7 +35,7 @@ namespace sockets
 {
 
 
-   socket_handler::socket_handler(::axis::application * papp, logger * plogger) :
+   socket_handler::socket_handler(::aura::application * papp, logger * plogger) :
    element(papp),
    base_socket_handler(papp, plogger),
    m_mutex(m_mutex),
@@ -61,7 +61,7 @@ namespace sockets
    }
 
 
-   socket_handler::socket_handler(::axis::application * papp, mutex& mutex, logger *plogger) :
+   socket_handler::socket_handler(::aura::application * papp, mutex& mutex, logger *plogger) :
    element(papp),
    base_socket_handler(papp, plogger)
    ,m_mutex(mutex)
@@ -158,7 +158,7 @@ namespace sockets
    {
       if (p -> GetSocket() == INVALID_SOCKET)
       {
-         log(p, "add", -1, "Invalid socket", ::core::log::level_warning);
+         log(p, "add", -1, "Invalid socket", ::aura::log::level_warning);
          if (p -> CloseAndDelete())
          {
             m_delete.add_tail(p);
@@ -168,7 +168,7 @@ namespace sockets
       sp(base_socket) plookup;
       if (m_add.Lookup(p -> GetSocket(), plookup))
       {
-         log(p, "add", (int)p -> GetSocket(), "Attempt to add socket already in add queue", ::core::log::level_fatal);
+         log(p, "add", (int)p -> GetSocket(), "Attempt to add socket already in add queue", ::aura::log::level_fatal);
          m_delete.add_tail(p);
          return;
       }
@@ -380,7 +380,7 @@ namespace sockets
    void socket_handler::SetSocks4Host(const string & host)
    {
 
-      System.net().convert(m_socks4_host, host);
+      Session.sockets().net().convert(m_socks4_host, host);
 
    }
 
@@ -408,10 +408,10 @@ namespace sockets
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       ::net::address local("127.0.0.1", m_resolver_port);
-      //System.net().convert(local, "127.0.0.1");
+      //Session.sockets().net().convert(local, "127.0.0.1");
       if (!resolv -> open(local))
       {
-         log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::core::log::level_fatal);
+         log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -429,7 +429,7 @@ namespace sockets
       ::net::address local("127.0.0.1", m_resolver_port);
       if (!resolv -> open(local))
       {
-         log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::core::log::level_fatal);
+         log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -447,7 +447,7 @@ namespace sockets
       ::net::address local("127.0.0.1", m_resolver_port);
       if (!resolv -> open(local))
       {
-         log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::core::log::level_fatal);
+         log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -465,7 +465,7 @@ namespace sockets
       ::net::address local("127.0.0.1", m_resolver_port);
       if (!resolv -> open(local))
       {
-         log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::core::log::level_fatal);
+         log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -578,7 +578,7 @@ namespace sockets
       {
          if(ppair->m_element2 == p)
          {
-            log(p, "remove", -1, "socket destructor called while still in use", ::core::log::level_warning);
+            log(p, "remove", -1, "socket destructor called while still in use", ::aura::log::level_warning);
             m_sockets.remove_key(ppair->m_element1);
             return;
          }
@@ -589,7 +589,7 @@ namespace sockets
       {
          if (ppair2->m_element2 == p)
          {
-            log(p, "remove", -2, "socket destructor called while still in use", ::core::log::level_warning);
+            log(p, "remove", -2, "socket destructor called while still in use", ::aura::log::level_warning);
             m_add.remove_key(ppair2->m_element1);
             return;
          }
@@ -597,7 +597,7 @@ namespace sockets
       }
       if(m_delete.remove(p) > 0)
       {
-         log(p, "remove", -3, "socket destructor called while still in use", ::core::log::level_warning);
+         log(p, "remove", -3, "socket destructor called while still in use", ::aura::log::level_warning);
          return;
       }
    }
@@ -694,10 +694,10 @@ namespace sockets
             m_trigger_dst[id][dst] = true;
             return true;
          }
-         log(dst, "Subscribe", id, "Already subscribed", ::core::log::level_info);
+         log(dst, "Subscribe", id, "Already subscribed", ::aura::log::level_info);
          return false;
       }
-      log(dst, "Subscribe", id, "Trigger id not found", ::core::log::level_info);
+      log(dst, "Subscribe", id, "Trigger id not found", ::aura::log::level_info);
       return false;
    }
 
@@ -711,10 +711,10 @@ namespace sockets
             m_trigger_dst[id].remove_key(dst);
             return true;
          }
-         log(dst, "Unsubscribe", id, "Not subscribed", ::core::log::level_info);
+         log(dst, "Unsubscribe", id, "Not subscribed", ::aura::log::level_info);
          return false;
       }
-      log(dst, "Unsubscribe", id, "Trigger id not found", ::core::log::level_info);
+      log(dst, "Unsubscribe", id, "Trigger id not found", ::aura::log::level_info);
       return false;
    }
 
@@ -742,7 +742,7 @@ namespace sockets
       }
       else
       {
-         log(NULL, "Trigger", id, "Trigger id not found", ::core::log::level_info);
+         log(NULL, "Trigger", id, "Trigger id not found", ::aura::log::level_info);
       }
    }
 

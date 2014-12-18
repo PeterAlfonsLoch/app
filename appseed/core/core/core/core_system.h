@@ -206,6 +206,9 @@ namespace core
 
 void CLASS_DECL_CORE __start_core_system_main(::base::system * psystem);
 
+#ifdef METROWIN
 
+CLASS_DECL_CORE int app_core_main(const char * psz);
 
+#endif
 

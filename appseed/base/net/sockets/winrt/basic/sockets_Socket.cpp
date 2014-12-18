@@ -124,14 +124,14 @@ namespace sockets
    {
       if (m_socket == INVALID_SOCKET) // this could happen
       {
-         log("base_socket::close", 0, "file descriptor invalid", ::core::log::level_warning);
+         log("base_socket::close", 0, "file descriptor invalid", ::aura::log::level_warning);
          throw io_exception(get_app());
       }
       int n = 0;
       if(close_socket(m_socket) == -1)
       {
          // failed...
-         log("close", Errno, StrError(Errno), ::core::log::level_error);
+         log("close", Errno, StrError(Errno), ::aura::log::level_error);
          n = -1;
       }
       Handler().set(m_socket, false, false, false); // remove from fd_set's

@@ -1,9 +1,11 @@
 #include "framework.h"
 
+
 namespace sip
 {
 
-   request::request(::axis::application * papp) :
+
+   request::request(::aura::application * papp) :
       element(papp),
       transaction(papp),
       m_file(papp),
@@ -110,5 +112,9 @@ namespace sip
       file().Truncate(0);
    }
 
+
 } // namespace sip
+
+
+
 

@@ -31,6 +31,7 @@
 
 #include "windows_time.h"
 
+#include "windows_common_controls.h"
 
 
 #ifndef METROWIN
@@ -40,7 +41,6 @@
 #include "windows_ntstatus.h"
 #include "windows_mmeapi.h"
 #include "windows_mmsystem.h"
-#include "windows_common_controls.h"
 
 
 

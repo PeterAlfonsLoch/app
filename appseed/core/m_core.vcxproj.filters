@@ -7,9 +7,6 @@
     <Filter Include="Header Files\primitive">
       <UniqueIdentifier>{a6fd5ec6-10a2-41f6-be0b-1825e4d56171}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\datetime">
-      <UniqueIdentifier>{eb15f019-ea42-4cfc-ba06-d80272e5c2b9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{112f80fc-77dc-4bcc-855d-7d38e7903a89}</UniqueIdentifier>
     </Filter>
@@ -28,9 +25,6 @@
     <Filter Include="Header Files\user\userex">
       <UniqueIdentifier>{e119f84f-5dcd-4212-94d2-2c27891418a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\userhtml">
-      <UniqueIdentifier>{ca9005ea-412d-4251-bbd8-fea0f8ff9b10}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\menu">
       <UniqueIdentifier>{35bfb742-bea8-492e-9df0-bb486d563946}</UniqueIdentifier>
     </Filter>
@@ -45,30 +39,6 @@
     </Filter>
     <Filter Include="Header Files\math">
       <UniqueIdentifier>{b3cc0353-2787-444a-8e7c-7847fa918975}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\math\calculator">
-      <UniqueIdentifier>{3cf09278-045c-40f1-817a-c226deae10a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics">
-      <UniqueIdentifier>{dcb076d6-0422-4146-9ce5-ba6ac312e38f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\gcom">
-      <UniqueIdentifier>{5e4e6152-2b3b-4b9d-8f22-5b7765143a01}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\html">
-      <UniqueIdentifier>{b393d20e-51a2-4ed7-a387-1cf4efdce946}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\html\html_lite">
-      <UniqueIdentifier>{589c22b0-e5e0-4f8f-865e-4ae4cf9245b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\html\impl">
-      <UniqueIdentifier>{a55f6149-b2d9-4054-9d4e-88d458026963}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\html\elemental">
-      <UniqueIdentifier>{bd9eca18-359f-4d38-8c38-3b3f15c6b309}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\backview">
-      <UniqueIdentifier>{f6b81624-e677-4b90-a951-1e8c3ed873bc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{a9d8d1db-0cb5-4887-b5dd-58dae4d0c646}</UniqueIdentifier>
@@ -88,20 +58,11 @@
     <Filter Include="Header Files\net">
       <UniqueIdentifier>{6931a749-8a57-43ec-902f-ce395c12abc2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\net\usermail">
-      <UniqueIdentifier>{9bd8128a-8923-487d-8785-41767121d05c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net\usernet">
       <UniqueIdentifier>{66807892-e580-451c-9975-137e67d6be65}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\hi5">
       <UniqueIdentifier>{66578d78-7bc8-4453-bf17-5aa38dc4dc93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\programming">
-      <UniqueIdentifier>{2fe51e35-a66b-4b7f-96ef-39947ed876a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\programming\dynamic_source">
-      <UniqueIdentifier>{84a2e49a-9e87-435a-9b09-b83292400e13}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\core">
       <UniqueIdentifier>{3b476ac5-ec47-47e3-ad73-6bfa9a82c9d9}</UniqueIdentifier>
@@ -112,18 +73,6 @@
     <Filter Include="Header Files\core\core">
       <UniqueIdentifier>{bd8a1afc-b4c6-4b88-a4ae-999ced891185}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\core\platform">
-      <UniqueIdentifier>{26267f33-e306-42c0-b2ff-a1e083366ff7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\platform\platform">
-      <UniqueIdentifier>{662505d4-84cb-4f8c-9e6b-795a6e04887d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\platform\bergedge">
-      <UniqueIdentifier>{d6ef5f80-e067-4ad6-b392-cd59d956ae4d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\core\platform\nature">
-      <UniqueIdentifier>{6a09c558-2f17-49e6-b0e5-761771e668dd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\framework">
       <UniqueIdentifier>{95a7375c-65f3-48ea-9ee3-14ca20629a4b}</UniqueIdentifier>
     </Filter>
@@ -133,21 +82,6 @@
     <Filter Include="Source Files\primitive">
       <UniqueIdentifier>{0fbb8efa-56e6-422f-90f3-1879322cf8fa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\datetime">
-      <UniqueIdentifier>{56c89d3e-fe42-4c2b-bd86-e3652c75eca0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress">
-      <UniqueIdentifier>{94a725a2-ffe9-4a64-88aa-b1e75b0bbead}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\7z">
-      <UniqueIdentifier>{02eb02e6-6ca2-49ae-9d49-a6e7c7a7183e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\rar">
-      <UniqueIdentifier>{6fe746bd-4fe5-498f-b49d-2ea8999dc86b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\crypto">
-      <UniqueIdentifier>{f3a1a080-3fe1-4b26-8619-49e9218fd8fe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{dfed8030-8987-41e8-849e-fc2818434da4}</UniqueIdentifier>
     </Filter>
@@ -156,9 +90,6 @@
     </Filter>
     <Filter Include="Source Files\user\userex">
       <UniqueIdentifier>{e2b2b70f-087e-4a22-a07e-2ff2574bc0ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\userhtml">
-      <UniqueIdentifier>{47929ad4-b450-47c2-aee8-a9c63c6ef6f2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user\menu">
       <UniqueIdentifier>{5706141e-98c5-49f4-9387-6e1a313599bc}</UniqueIdentifier>
@@ -184,33 +115,6 @@
     <Filter Include="Source Files\math">
       <UniqueIdentifier>{91771a5c-c3ae-4be8-8fbf-543480ad5baf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\math\calculator">
-      <UniqueIdentifier>{8a324e2f-b4ed-4620-a01e-e6b6648d32da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics">
-      <UniqueIdentifier>{cc7141a2-8979-47ad-aaea-722e4d206937}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\visual">
-      <UniqueIdentifier>{eadb5b08-4b2b-42cc-a74d-fd640bc52455}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\gcom">
-      <UniqueIdentifier>{f38cc14e-9be1-45fb-b893-fe2e16ca3daa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\html">
-      <UniqueIdentifier>{22a399bd-44fe-4527-bb28-db5557c17760}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\html\html_lite">
-      <UniqueIdentifier>{b4e6f4bc-0491-44cf-8b26-2571b614ccdd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\html\impl">
-      <UniqueIdentifier>{fe67a900-43cc-4316-ac19-1fac59ca854d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\html\elemental">
-      <UniqueIdentifier>{0084fdd9-7735-4199-9106-a8da1dd3bba1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\backview">
-      <UniqueIdentifier>{4bde3be1-0ae2-4611-9cd0-fa54502e63ab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{22604c34-225b-4c39-8bb9-fdae71a08de7}</UniqueIdentifier>
     </Filter>
@@ -226,26 +130,14 @@
     <Filter Include="Source Files\filesystem\file">
       <UniqueIdentifier>{68a5ae63-8826-4345-8bbe-8ca0bc9fc59f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\filesystem\folder_watch">
-      <UniqueIdentifier>{b3f1cc7b-631c-4e05-b37d-94a4cce45065}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net">
       <UniqueIdentifier>{506e87bd-fa0f-4ac4-b4a3-2d592e630655}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\usermail">
-      <UniqueIdentifier>{9f26165e-2b71-4aae-8a09-99fd7e751018}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\net\hi5">
       <UniqueIdentifier>{df473743-d83d-46dc-bb77-a7eafcb4426c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\net\usernet">
       <UniqueIdentifier>{17c16e01-c736-481d-a390-401051811318}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\programming">
-      <UniqueIdentifier>{c791c14e-a1b4-48f2-b714-1c965b2826a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\programming\dynamic_source">
-      <UniqueIdentifier>{323a42c7-4ba4-47c2-8a8c-cec78de28edf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\core">
       <UniqueIdentifier>{51cccf40-f5d2-4047-b442-29058faca5e1}</UniqueIdentifier>
@@ -256,52 +148,19 @@
     <Filter Include="Source Files\core\core">
       <UniqueIdentifier>{f45cdaae-ee3f-4135-9310-fdca7484bffd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\platform">
-      <UniqueIdentifier>{7e27e8fe-4ef1-45c5-91fb-8ee6b346336b}</UniqueIdentifier>
+    <Filter Include="Source Files\core\os">
+      <UniqueIdentifier>{aeec8046-f701-492a-9b81-b3c897ef8c69}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\platform\bergedge">
-      <UniqueIdentifier>{5d45be12-67d0-418e-93ad-47fc8c2411b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\platform\nature">
-      <UniqueIdentifier>{c904ed2f-c31f-41d9-a3b0-9b15aa5fde12}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\core\platform\platform">
-      <UniqueIdentifier>{a313fa4c-a582-48b0-b6c1-85f9bd2d1da0}</UniqueIdentifier>
+    <Filter Include="Source Files\core\os\metrowin">
+      <UniqueIdentifier>{8871719b-286c-48a7-b29d-f9b8203d7bfb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="primitive\primitive_fixed_string.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_int_biunique.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive.h">
       <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive_shared_file.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_calendar.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_calendar_interface.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_clock.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_clock_interface.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_float_time.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_windows_file_time.h">
-      <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\DBFileSystemSize.h">
       <Filter>Header Files\database\simpledb</Filter>
@@ -381,28 +240,7 @@
     <ClInclude Include="database\databaseuser\list_data.h">
       <Filter>Header Files\database\databaseuser</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\simple_button.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\simple_child_frame.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple_combo_box.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple_combo_list.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple_document.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple_edit.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple_edit_plain_text.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple_form_list_edit.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_form_list_view.h">
@@ -429,9 +267,6 @@
     <ClInclude Include="user\simple\simple_printer_list_view.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\simple_push_button.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\simple_static.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -448,9 +283,6 @@
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_tree_view.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\simple.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_keyboard_layout.h">
@@ -486,9 +318,6 @@
     <ClInclude Include="user\userex\userex_form_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_hour_list_view.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\userex_menu_document.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
@@ -499,9 +328,6 @@
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_mini_dock_frame_window.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userex\userex_minute_list_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_pane_split_view.h">
@@ -519,35 +345,8 @@
     <ClInclude Include="user\userex\userex_property_sheet.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_second_list_view.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
     <ClInclude Include="user\userex\userex_split_view.h">
       <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_child_frame.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_document.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_form.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_form_view.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_frame.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_view.h">
-      <Filter>Header Files\user\userhtml</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_view_update_hint.h">
-      <Filter>Header Files\user\userhtml</Filter>
     </ClInclude>
     <ClInclude Include="user\menu\user_menu.h">
       <Filter>Header Files\user\menu</Filter>
@@ -573,13 +372,7 @@
     <ClInclude Include="user\user\user_00.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_bitmap_button.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_button.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_button_control.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_check_box.h">
@@ -807,16 +600,10 @@
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
-    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_up_down_target.h">
-      <Filter>Header Files\user\wndfrm\frame</Filter>
-    </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.h">
-      <Filter>Header Files\user\wndfrm\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_down_up_interface.h">
       <Filter>Header Files\user\wndfrm\frame</Filter>
     </ClInclude>
     <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.h">
@@ -845,270 +632,6 @@
     </ClInclude>
     <ClInclude Include="math\_integer.h">
       <Filter>Header Files\math</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\calculator_calculator.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_element.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_parser.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_parser_exception.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_scanner.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\datetime_token.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_element.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_parser.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_parser_exception.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_scanner.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_token.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="math\calculator\numeric_value.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_double3d_point.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_enum.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_pixel_explosion.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_rect.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_space.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_space_util.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\gcom\gcom_util.h">
-      <Filter>Header Files\graphics\gcom</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html2.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_attribute.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_base.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_border.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_box.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_data.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_enum.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_ex.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_file.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_font.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_form.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_html.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_html2.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_point.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_reader.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_signal.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_size.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_style.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_style_sheet.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_style_sheet_array.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_tag.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_value.h">
-      <Filter>Header Files\graphics\html</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_lite\html_lite.h">
-      <Filter>Header Files\graphics\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_lite\html_lite_html_attributes.h">
-      <Filter>Header Files\graphics\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_lite\html_lite_html_common.h">
-      <Filter>Header Files\graphics\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_lite\html_lite_html_entity_resolver.h">
-      <Filter>Header Files\graphics\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_lite\html_lite_html_reader.h">
-      <Filter>Header Files\graphics\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\html_lite\html_lite_html_tag.h">
-      <Filter>Header Files\graphics\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_cell.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_elemental.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_form.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_image.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_input_button.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_input_checkbox.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_input_text.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_select.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_table.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_table_elemental.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_table_row.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\impl\html_impl_text.h">
-      <Filter>Header Files\graphics\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental_cell.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental_elemental.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental_form.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental_image.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental_input_button.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental_input_checkbox.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental_input_text.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental_select.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental_table.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental_table_elemental.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental_table_row.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\html\elemental\html_elemental_text.h">
-      <Filter>Header Files\graphics\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_enum.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_graphics.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_helper.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_image_change.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_interface.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_interface_data.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_main.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_thread.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_transition_effect.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_user_interaction.h">
-      <Filter>Header Files\graphics\backview</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\backview\backview_visual_effect.h">
-      <Filter>Header Files\graphics\backview</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_context_menu.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
@@ -1347,30 +870,6 @@
     <ClInclude Include="net\net_email_departament.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="net\usermail\usermail.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_account.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_db_pop3.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_frame.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_list_interface.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_tree.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_usermail.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\usermail\usermail_item.h">
-      <Filter>Header Files\net\usermail</Filter>
-    </ClInclude>
     <ClInclude Include="net\usernet\usernet.h">
       <Filter>Header Files\net\usernet</Filter>
     </ClInclude>
@@ -1385,42 +884,6 @@
     </ClInclude>
     <ClInclude Include="net\hi5\hi5_oauth.h">
       <Filter>Header Files\net\hi5</Filter>
-    </ClInclude>
-    <ClInclude Include="net\hi5\hi5_twitter_authorization.h">
-      <Filter>Header Files\net\hi5</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_exit_exception.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_httpd_socket.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_library_class.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_script.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_script_cache.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_script_compiler.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_script_instance.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_script_interface.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_script_manager.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
-    </ClInclude>
-    <ClInclude Include="programming\dynamic_source\dynamic_source_session.h">
-      <Filter>Header Files\programming\dynamic_source</Filter>
     </ClInclude>
     <ClInclude Include="core\plugin\plugin.h">
       <Filter>Header Files\core\plugin</Filter>
@@ -1581,83 +1044,11 @@
     <ClInclude Include="core\core\core_util.h">
       <Filter>Header Files\core\core</Filter>
     </ClInclude>
-    <ClInclude Include="core\platform\core_platform.h">
-      <Filter>Header Files\core\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_application.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_document.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_frame.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_pane_view.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_pane_view_update_hint.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_resource.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\platform\platform_view.h">
-      <Filter>Header Files\core\platform\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge_document.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge_form_callback.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge_frame.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge_pane_view.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge_pane_view_update_hint.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\bergedge\bergedge_view.h">
-      <Filter>Header Files\core\platform\bergedge</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_appearance_view.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_application.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_database.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_document.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_frame.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_pane_view.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_pane_view_update_hint.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
-    <ClInclude Include="core\platform\nature\nature_view.h">
-      <Filter>Header Files\core\platform\nature</Filter>
-    </ClInclude>
     <ClInclude Include="framework\framework.h">
       <Filter>Header Files\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_platform.h">
+      <Filter>Header Files\core\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1678,55 +1069,10 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive_fixed_string.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive_int_biunique.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive_shared_file.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_float_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_calendar.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_calendar_interface.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_clock.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\simple_button.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\simple_child_frame.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\simple_combo_box.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\simple_combo_list.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\simple_document.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\simple_edit.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\simple_edit_plain_text.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\simple_form_list_edit.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\simple_form_list_view.cpp">
@@ -1751,9 +1097,6 @@
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\simple_printer_list_view.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\simple_push_button.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\simple_static.cpp">
@@ -1795,9 +1138,6 @@
     <ClCompile Include="user\userex\userex_form_view.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_hour_list_view.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\userex_keyboard_layout.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -1816,9 +1156,6 @@
     <ClCompile Include="user\userex\userex_mini_dock_frame_window.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_minute_list_view.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\userex_pane_split_view.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -1834,35 +1171,11 @@
     <ClCompile Include="user\userex\userex_property_sheet.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_second_list_view.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\userex_split_view.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\userex_wait_message_dialog.cpp">
       <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_child_frame.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_document.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_form.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_form_view.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_frame.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_view.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_view_update_hint.cpp">
-      <Filter>Source Files\user\userhtml</Filter>
     </ClCompile>
     <ClCompile Include="user\menu\user_menu.cpp">
       <Filter>Source Files\user\menu</Filter>
@@ -1885,13 +1198,7 @@
     <ClCompile Include="user\user\user.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_bitmap_button.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_button.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_button_control.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_check_box.cpp">
@@ -2092,16 +1399,10 @@
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_up_down_target.cpp">
-      <Filter>Source Files\user\wndfrm\frame</Filter>
-    </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.cpp">
-      <Filter>Source Files\user\wndfrm\frame</Filter>
-    </ClCompile>
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_down_up_interface.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.cpp">
@@ -2202,216 +1503,6 @@
     </ClCompile>
     <ClCompile Include="math\_integer.cpp">
       <Filter>Source Files\math</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\calculator_calculator.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\datetime_element.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\datetime_parser.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\datetime_parser_exception.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\datetime_scanner.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\datetime_token.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\numeric_element.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\numeric_parser.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\numeric_parser_exception.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\numeric_scanner.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\numeric_value.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\gcom\gcom_pixel_explosion.cpp">
-      <Filter>Source Files\graphics\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\gcom\gcom_rect.cpp">
-      <Filter>Source Files\graphics\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\gcom\gcom_space.cpp">
-      <Filter>Source Files\graphics\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\gcom\gcom_space_util.cpp">
-      <Filter>Source Files\graphics\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\gcom\gcom_util.cpp">
-      <Filter>Source Files\graphics\gcom</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_form.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_attribute.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_base.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_data.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_file.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_font.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_html.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_reader.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_signal.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_style.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_style_sheet.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_style_sheet_array.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_tag.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_value.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html.cpp">
-      <Filter>Source Files\graphics\html</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_lite\html_lite_html_attributes.cpp">
-      <Filter>Source Files\graphics\html\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_lite\html_lite_html_entity_resolver.cpp">
-      <Filter>Source Files\graphics\html\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_lite\html_lite_html_reader.cpp">
-      <Filter>Source Files\graphics\html\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\html_lite\html_lite_html_tag.cpp">
-      <Filter>Source Files\graphics\html\html_lite</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html_impl_cell.cpp">
-      <Filter>Source Files\graphics\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html_impl_elemental.cpp">
-      <Filter>Source Files\graphics\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html_impl_form.cpp">
-      <Filter>Source Files\graphics\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html_impl_image.cpp">
-      <Filter>Source Files\graphics\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html_impl_input_button.cpp">
-      <Filter>Source Files\graphics\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html_impl_input_checkbox.cpp">
-      <Filter>Source Files\graphics\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html_impl_input_text.cpp">
-      <Filter>Source Files\graphics\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html_impl_select.cpp">
-      <Filter>Source Files\graphics\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html_impl_table.cpp">
-      <Filter>Source Files\graphics\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html_impl_table_elemental.cpp">
-      <Filter>Source Files\graphics\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html_impl_table_row.cpp">
-      <Filter>Source Files\graphics\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\impl\html_impl_text.cpp">
-      <Filter>Source Files\graphics\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\elemental\html_elemental_cell.cpp">
-      <Filter>Source Files\graphics\html\elemental</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\elemental\html_elemental_elemental.cpp">
-      <Filter>Source Files\graphics\html\elemental</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\elemental\html_elemental_form.cpp">
-      <Filter>Source Files\graphics\html\elemental</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\elemental\html_elemental_image.cpp">
-      <Filter>Source Files\graphics\html\elemental</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\elemental\html_elemental_input_button.cpp">
-      <Filter>Source Files\graphics\html\elemental</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\elemental\html_elemental_input_checkbox.cpp">
-      <Filter>Source Files\graphics\html\elemental</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\elemental\html_elemental_input_text.cpp">
-      <Filter>Source Files\graphics\html\elemental</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\elemental\html_elemental_select.cpp">
-      <Filter>Source Files\graphics\html\elemental</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\elemental\html_elemental_table.cpp">
-      <Filter>Source Files\graphics\html\elemental</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\elemental\html_elemental_table_elemental.cpp">
-      <Filter>Source Files\graphics\html\elemental</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\elemental\html_elemental_table_row.cpp">
-      <Filter>Source Files\graphics\html\elemental</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\html\elemental\html_elemental_text.cpp">
-      <Filter>Source Files\graphics\html\elemental</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_graphics.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_helper.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_image_change.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_interface.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_interface_data.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_main.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_thread.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_transition_effect.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_transition_effect_tool001.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_user_interaction.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\backview\backview_visual_effect.cpp">
-      <Filter>Source Files\graphics\backview</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_main_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
@@ -2587,62 +1678,8 @@
     <ClCompile Include="filesystem\filehandler\filehandler_item.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_clustered_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dynamic_buffered_writer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_in_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_limited_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_limited_reader.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_limited_writer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_locked_in_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_out_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_size_count_writer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_sssociation.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_stream_binder.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_email_departament.cpp">
       <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_account.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_db_pop3.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_list_interface.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_tree.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_usermail.cpp">
-      <Filter>Source Files\net\usermail</Filter>
-    </ClCompile>
-    <ClCompile Include="net\usermail\usermail_item.cpp">
-      <Filter>Source Files\net\usermail</Filter>
     </ClCompile>
     <ClCompile Include="net\hi5\hi5_twit.cpp">
       <Filter>Source Files\net\hi5</Filter>
@@ -2650,41 +1687,8 @@
     <ClCompile Include="net\hi5\hi5_oauth.cpp">
       <Filter>Source Files\net\hi5</Filter>
     </ClCompile>
-    <ClCompile Include="net\hi5\hi5_twitter_authorization.cpp">
-      <Filter>Source Files\net\hi5</Filter>
-    </ClCompile>
     <ClCompile Include="net\usernet\usernet_network_configuration.cpp">
       <Filter>Source Files\net\usernet</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_exit_exception.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_httpd_socket.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_library_class.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_script.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_script_cache.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_script_compiler.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_script_instance.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_script_interface.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_script_manager.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="programming\dynamic_source\dynamic_source_session.cpp">
-      <Filter>Source Files\programming\dynamic_source</Filter>
     </ClCompile>
     <ClCompile Include="core\plugin\plugin_history.cpp">
       <Filter>Source Files\core\plugin</Filter>
@@ -2710,22 +1714,13 @@
     <ClCompile Include="core\core\core_application.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_composite.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_constraint.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core\core_Debug.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_fs_interface.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_history.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_keeper.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core\core_library.cpp">
@@ -2734,25 +1729,10 @@
     <ClCompile Include="core\core\core_logic.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_match.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_memory.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_os_history.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="core\core\core_patch.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core\core_profiler.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_resource.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_service.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
     <ClCompile Include="core\core\core_simple_app.cpp">
@@ -2776,68 +1756,26 @@
     <ClCompile Include="core\core\core_Timer.cpp">
       <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\platform\core_platform.cpp">
-      <Filter>Source Files\core\platform</Filter>
+    <ClCompile Include="core\core\core_platform.cpp">
+      <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\platform\bergedge\bergedge_document.cpp">
-      <Filter>Source Files\core\platform\bergedge</Filter>
+    <ClCompile Include="core\core\core_match.cpp">
+      <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\platform\bergedge\bergedge_form_callback.cpp">
-      <Filter>Source Files\core\platform\bergedge</Filter>
+    <ClCompile Include="core\core\core_os_history.cpp">
+      <Filter>Source Files\core\core</Filter>
     </ClCompile>
-    <ClCompile Include="core\platform\bergedge\bergedge_frame.cpp">
-      <Filter>Source Files\core\platform\bergedge</Filter>
+    <ClCompile Include="filesystem\file\file_html_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="core\platform\bergedge\bergedge_pane_view.cpp">
-      <Filter>Source Files\core\platform\bergedge</Filter>
+    <ClCompile Include="database\simpledb\simpledb_base.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="core\platform\bergedge\bergedge_pane_view_update_hint.cpp">
-      <Filter>Source Files\core\platform\bergedge</Filter>
+    <ClCompile Include="database\simpledb\simpledb_result.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="core\platform\bergedge\bergedge_view.cpp">
-      <Filter>Source Files\core\platform\bergedge</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_appearance_view.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_application.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_database.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_document.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_frame.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_pane_view.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_pane_view_update_hint.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\nature\nature_view.cpp">
-      <Filter>Source Files\core\platform\nature</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\platform\platform_application.cpp">
-      <Filter>Source Files\core\platform\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\platform\platform_document.cpp">
-      <Filter>Source Files\core\platform\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\platform\platform_frame.cpp">
-      <Filter>Source Files\core\platform\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\platform\platform_pane_view.cpp">
-      <Filter>Source Files\core\platform\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\platform\platform_pane_view_update_hint.cpp">
-      <Filter>Source Files\core\platform\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="core\platform\platform\platform_view.cpp">
-      <Filter>Source Files\core\platform\platform</Filter>
+    <ClCompile Include="core\os\metrowin\metrowin_main.cpp">
+      <Filter>Source Files\core\os\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

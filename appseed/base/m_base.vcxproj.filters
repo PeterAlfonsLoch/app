@@ -16,30 +16,6 @@
     <Filter Include="Header Files\net\sockets">
       <UniqueIdentifier>{facd16c3-6a7e-47b9-b6e2-c3ca8c47c766}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\net\sockets\bsd">
-      <UniqueIdentifier>{69c8de9e-bb95-493d-9faf-c24f06d140a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\asynch_dns">
-      <UniqueIdentifier>{e3b2df9e-7fef-4ae2-be6a-98092ffdff25}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\internal">
-      <UniqueIdentifier>{976e0492-e811-4a57-a847-e935f34d8493}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\sip">
-      <UniqueIdentifier>{394675a5-4799-4500-b3cb-de2897308c39}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\smtp">
-      <UniqueIdentifier>{682ea779-e6f8-4975-801b-fe5449a9a9ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\timer">
-      <UniqueIdentifier>{133a59b1-d40e-4e6a-800a-6b667019c41c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\webserver">
-      <UniqueIdentifier>{775b5d49-c614-4262-9694-70d1d14a175a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\basic">
-      <UniqueIdentifier>{e4d589ab-eb49-4bef-9b36-db8dacbcce09}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net\sockets\base">
       <UniqueIdentifier>{36b7d3bd-9dfb-4e4d-82d5-70e3bd95e3e2}</UniqueIdentifier>
     </Filter>
@@ -73,29 +49,11 @@
     <Filter Include="Header Files\base\os">
       <UniqueIdentifier>{beec9ec0-e3ec-4352-aea3-584a4ce30bac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\os\android">
-      <UniqueIdentifier>{6c4ebcc0-3463-49ac-acf2-00e78e4877ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\os\windows">
-      <UniqueIdentifier>{df941722-0631-4697-987d-36a235a061f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\os\ansios">
-      <UniqueIdentifier>{3c9780c6-f04f-4060-8817-70f08a44b9ff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\geoip">
       <UniqueIdentifier>{7c61a89a-c795-425e-9eac-d877ea3bcfbd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\base\node">
       <UniqueIdentifier>{0bead356-ac79-4037-a836-8c34b1f2e660}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\node\windows">
-      <UniqueIdentifier>{b97b19e1-d424-4960-b84d-b1a68ee441c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\node\android">
-      <UniqueIdentifier>{184105e0-c094-4289-bb04-bf8f3b215123}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\node\ansios">
-      <UniqueIdentifier>{62bb2f89-0e79-4fc8-8d7e-df2f27840568}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{2d2cca6c-ba40-412b-bd92-c19c01e0ea3c}</UniqueIdentifier>
@@ -141,33 +99,6 @@
     </Filter>
     <Filter Include="Source Files\net\sockets">
       <UniqueIdentifier>{b857c2e3-8b3d-4615-b344-af640895e50e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd">
-      <UniqueIdentifier>{eba9ecbb-f218-45fd-8e4a-5851815601d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\asynch_dns">
-      <UniqueIdentifier>{4fb76baa-c477-44fc-b373-f3ed96762160}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\basic">
-      <UniqueIdentifier>{13577b8a-f40c-4c9c-b779-4fc7a41281f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\internal">
-      <UniqueIdentifier>{5d6f40bb-8e96-4e18-a98b-446475aa2ff9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\smtp">
-      <UniqueIdentifier>{290bd063-ea18-4bd1-ba4b-e7678def20ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\smtp\NewFilter1">
-      <UniqueIdentifier>{33bac06e-cb41-46bb-bafe-28a2b033a5b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\sip">
-      <UniqueIdentifier>{aeb4302e-db87-480a-84f6-9a05c44556c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\timer">
-      <UniqueIdentifier>{1c110366-66ba-42ed-957d-ca3b9eaf9a5f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\webserver">
-      <UniqueIdentifier>{0c9d33b6-e965-49ab-ba54-cc2ccbfca81f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\net\sockets\http">
       <UniqueIdentifier>{bfe5a938-8ea5-4ebd-a9e9-71a41f43efb7}</UniqueIdentifier>
@@ -217,15 +148,6 @@
     <Filter Include="Source Files\base\os">
       <UniqueIdentifier>{a1e569e1-d40c-4231-bb2f-fe2424bebeda}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\os\android">
-      <UniqueIdentifier>{b1c9de05-321e-476e-a5dd-9df47fb15778}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\os\windows">
-      <UniqueIdentifier>{92681d06-bed0-423e-bce2-8cf37c8e8ae5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\os\ansios">
-      <UniqueIdentifier>{b1ae9c3d-28ca-48db-943e-ba5f62543b1a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base\install">
       <UniqueIdentifier>{8d81a3f4-8d8e-489c-a7f4-1ca1a97cf18c}</UniqueIdentifier>
     </Filter>
@@ -244,15 +166,6 @@
     <Filter Include="Source Files\base\node">
       <UniqueIdentifier>{60ed7616-ed00-4529-bec9-7ea521109686}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\node\windows">
-      <UniqueIdentifier>{92c8ce2a-e2d9-43e0-bcc2-8c4bb89a4d1b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\node\android">
-      <UniqueIdentifier>{61fe02dc-68dc-41d2-9379-d1af2c803bd5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\node\ansios">
-      <UniqueIdentifier>{75c6b7c2-3e59-40d4-b648-cf97fa47f8a0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{47c6eaa4-a166-496b-9d10-d55dd42098cc}</UniqueIdentifier>
     </Filter>
@@ -261,6 +174,60 @@
     </Filter>
     <Filter Include="Source Files\graphics\visual\NewFilter1">
       <UniqueIdentifier>{d16e7392-87c0-40e8-a44e-ceba2584ae37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\metrowin">
+      <UniqueIdentifier>{a05e9bd8-44e1-45d4-a685-c2f1853687df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node\metrowin">
+      <UniqueIdentifier>{b97b19e1-d424-4960-b84d-b1a68ee441c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node\metrowin">
+      <UniqueIdentifier>{92c8ce2a-e2d9-43e0-bcc2-8c4bb89a4d1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os\metrowin">
+      <UniqueIdentifier>{92681d06-bed0-423e-bce2-8cf37c8e8ae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt">
+      <UniqueIdentifier>{30eb41e8-dad1-4426-a30e-b93c09dcb904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\asynch_dns">
+      <UniqueIdentifier>{e42d986d-8078-4a2c-8c0b-3a9e6aa3df1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\basic">
+      <UniqueIdentifier>{d81352e3-932d-429f-92c5-892d824195b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\sip">
+      <UniqueIdentifier>{9395723e-ef0f-4d2c-81a1-182dbec53a02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\smtp">
+      <UniqueIdentifier>{09db6df6-cebc-49c3-8ae8-55bf329aceac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\timer">
+      <UniqueIdentifier>{90ff0873-a590-472a-bf9a-d9e3bae3b660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\winrt\webserver">
+      <UniqueIdentifier>{192b0962-95a9-4ce1-a5ef-1bd33b5f1c80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt">
+      <UniqueIdentifier>{377b2444-ca17-4da8-b518-e74d66612ecf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\asynch_dns">
+      <UniqueIdentifier>{9705182e-6814-4998-aa03-8dcfddef733b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\timer">
+      <UniqueIdentifier>{b96b4690-667a-4d66-a555-12d6f9f6a808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\webserver">
+      <UniqueIdentifier>{216d5c3e-802c-4b8a-8a03-fc7332bd500e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\basic">
+      <UniqueIdentifier>{5363cb24-52ba-42a7-b5c3-d6bc2250e9fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\smtp">
+      <UniqueIdentifier>{1e856f72-2d85-4fff-9653-9265b67ea597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\winrt\sip">
+      <UniqueIdentifier>{bf37a7a1-bdbb-4dce-9891-7e5e8538adff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -356,138 +323,6 @@
     </ClInclude>
     <ClInclude Include="net\sockets\sockets_trace_logger.h">
       <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets_config.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets_sockets.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_server.h">
-      <Filter>Header Files\net\sockets\bsd\asynch_dns</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_socket.h">
-      <Filter>Header Files\net\sockets\bsd\asynch_dns</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\internal\SSLInitializer.h">
-      <Filter>Header Files\net\sockets\bsd\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_base.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_base_client_socket.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_callback.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_client.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_event.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_request.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_response.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_server.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_socket.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_tcp_client_socket.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_transaction.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_udp_client_socket.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h">
-      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\Event.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\EventHandler.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\EventTime.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\IEventHandler.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\IEventOwner.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\ajp13.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\Ajp13Socket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\AjpBaseSocket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\http_base_socket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_listen_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_net.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_sctp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_sync_socket_handler.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_tls_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_udp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\base\sockets_base_socket.h">
       <Filter>Header Files\net\sockets\base</Filter>
@@ -660,57 +495,6 @@
     <ClInclude Include="base\os\os.h">
       <Filter>Header Files\base\os</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\android\android.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_cross_win_file.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_cross_win_gdi.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_cross_win_gdi_internal.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_file.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_file_watcher.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_graphics.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_internal.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_process.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_window_android.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_window_impl.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\android\android_android.h">
-      <Filter>Header Files\base\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\windows.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\ansios\ansios.h">
-      <Filter>Header Files\base\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\ansios\ansios_file.h">
-      <Filter>Header Files\base\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\ansios\ansios_multithreading.h">
-      <Filter>Header Files\base\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\ansios\ansios_thread.h">
-      <Filter>Header Files\base\os\ansios</Filter>
-    </ClInclude>
     <ClInclude Include="base\geoip\geoip.h">
       <Filter>Header Files\base\geoip</Filter>
     </ClInclude>
@@ -728,93 +512,6 @@
     </ClInclude>
     <ClInclude Include="base\node\node.h">
       <Filter>Header Files\base\node</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_crypto.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_dir.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_factory_exchange.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_file_set.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_file_system.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_ip_enum.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_port_forward.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android1.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_application.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_copydesk.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_crypto.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_dir.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_factory_exchange.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_file.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_file_set.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_file_system.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_implementation.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_internal.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_ip_enum.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_os.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_port_forward.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_shell.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_stdio_file.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_thread.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_window.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_window_draw.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\ansios\ansios.h">
-      <Filter>Header Files\base\node\ansios</Filter>
     </ClInclude>
     <ClInclude Include="user\fontopus\fontopus.h">
       <Filter>Header Files\user\fontopus</Filter>
@@ -984,6 +681,156 @@
     <ClInclude Include="base\compress\zip\zip_internal.h">
       <Filter>Source Files\base\compress\zip</Filter>
     </ClInclude>
+    <ClInclude Include="base\os\metrowin\metrowin.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_crypto.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_dir.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_factory_exchange.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_file_set.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_file_system.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_folder_watch.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_ip_enum.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\metrowin\metrowin_port_forward.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\metrowin\metrowin_sockets.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sockets.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sockets_config.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sockets_sockets.h">
+      <Filter>Header Files\net\sockets\winrt</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\asynch_dns\sockets_resolv_server.h">
+      <Filter>Header Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\asynch_dns\sockets_resolv_socket.h">
+      <Filter>Header Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_listen_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_net.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_sctp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_socket_handler.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_stream_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_sync_socket_handler.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_tcp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_tls_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\basic\sockets_udp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_base.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_base_client_socket.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_callback.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_client.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_event.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_request.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_response.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_server.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_socket.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_tcp_client_socket.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_transaction.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\sip\sip_udp_client_socket.h">
+      <Filter>Header Files\net\sockets\winrt\sip</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\smtp\smtp_socket.h">
+      <Filter>Header Files\net\sockets\winrt\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\smtp\smtpd_socket.h">
+      <Filter>Header Files\net\sockets\winrt\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_event.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_event_handler.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_event_time.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_ievent_handler.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\timer\sockets_ievent_owner.h">
+      <Filter>Header Files\net\sockets\winrt\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_ajp_base_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_ajp13.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_ajp13_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_http_base_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\winrt\webserver\webserver_httpd_socket.h">
+      <Filter>Header Files\net\sockets\winrt\webserver</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="base\base\base.inl">
@@ -1077,123 +924,6 @@
     </ClCompile>
     <ClCompile Include="net\sockets\sockets_trace_logger.cpp">
       <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sockets_include.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_server.cpp">
-      <Filter>Source Files\net\sockets\bsd\asynch_dns</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\asynch_dns</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_sctp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_socket_handler.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_stream_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_sync_socket_handler.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_tcp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_tls_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sockets_udp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\internal\sockets_SSLInitializer.cpp">
-      <Filter>Source Files\net\sockets\bsd\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtpd_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base_client_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_callback.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_client.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_request.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_response.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_server.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_tcp_client_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_transaction.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_udp_client_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\sip</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\sockets_Event.cpp">
-      <Filter>Source Files\net\sockets\bsd\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\sockets_EventHandler.cpp">
-      <Filter>Source Files\net\sockets\bsd\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\sockets_EventTime.cpp">
-      <Filter>Source Files\net\sockets\bsd\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\sockets_IEventOwner.cpp">
-      <Filter>Source Files\net\sockets\bsd\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_Ajp13Socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_AjpBaseSocket.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_httpd_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_base_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\http\sockets_http_client_socket.cpp">
       <Filter>Source Files\net\sockets\http</Filter>
@@ -1372,96 +1102,6 @@
     <ClCompile Include="base\crypto\crypto_nessie.cpp">
       <Filter>Source Files\base\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\android\android_c.c">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_cross_win_file.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_cross_win_gdi.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_base_file.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_file_watcher.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_launcher.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_library.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_locale.c">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_lock.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_message_loop.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_process.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_process_pid.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_simple_shell_launcher.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_small_ipca_channel.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_multithreading.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_windowing.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_window_android.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_window_impl.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_win_base.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_base_crypto.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_dll.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_simple_app.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_cross_win.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_cross_windows_user.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_cross_win_file.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_base_file.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_file_std.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_multithreading.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\crypto\ansios_crypt.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
@@ -1555,105 +1195,6 @@
     <ClCompile Include="base\geoip\geoip_update.cpp">
       <Filter>Source Files\base\geoip</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\windows\windows_crypto.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_dir.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_factory_exchange.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_file_set.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_file_system.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_ip_enum.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_port_forward.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_android.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android1.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android2.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_application.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_copydesk.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_crypto.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_dir.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_dumpinit.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_error.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_exception.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_factory_exchange.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_file.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_file_set.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_file_system.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_ip_enum.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_main.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_os.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_port_forward.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_shell.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_stdio_file.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_thread.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_trace.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_util.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_window.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_window_draw.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\ansios\ansios_thread_impl.cpp">
-      <Filter>Source Files\base\node\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\visual\visual_api.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
@@ -1670,9 +1211,6 @@
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_font_central.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_FreeImageFileProc.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_glyph.cpp">
@@ -1698,6 +1236,144 @@
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_water_routine.cpp">
       <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_crypto.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_dir.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_factory_exchange.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_file_set.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_file_system.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_ip_enum.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\metrowin_port_forward.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_sockets.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_simple_app.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\axis\openssl\crypto\whrlpool\wp_block.c">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\axis\openssl\crypto\whrlpool\wp_dgst.c">
+      <Filter>Source Files\base\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\sockets_Ajp13Socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\sockets_AjpBaseSocket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\sockets_http_base_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\webserver\sockets_httpd_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\timer\sockets_Event.cpp">
+      <Filter>Source Files\net\sockets\winrt\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\timer\sockets_EventHandler.cpp">
+      <Filter>Source Files\net\sockets\winrt\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\timer\sockets_EventTime.cpp">
+      <Filter>Source Files\net\sockets\winrt\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\timer\sockets_IEventOwner.cpp">
+      <Filter>Source Files\net\sockets\winrt\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\smtp\sockets_smtp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\smtp\sockets_smtpd_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_base.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_base_client_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_callback.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_client.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_request.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_response.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_server.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_tcp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_transaction.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sip\sockets_sip_udp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\sip</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_net.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_sctp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_Socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_stream_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_sync_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_tcp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_tls_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\basic\sockets_udp_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\asynch_dns\sockets_resolv_server.cpp">
+      <Filter>Source Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\asynch_dns\sockets_resolv_socket.cpp">
+      <Filter>Source Files\net\sockets\winrt\asynch_dns</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sockets_include.cpp">
+      <Filter>Source Files\net\sockets\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\winrt\sockets_sockets.cpp">
+      <Filter>Source Files\net\sockets\winrt</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_veri_discreet.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_base_crypto.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

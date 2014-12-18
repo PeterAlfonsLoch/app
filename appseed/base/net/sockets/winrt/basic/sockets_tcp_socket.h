@@ -128,6 +128,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool m_bTryingReconnect; ///< Trying to reconnect
          string m_strHost;
 
+         string m_strConnectHost;
+         int m_iConnectPort;
+
       public:
 
          bool m_bCertCommonNameCheckEnabled;
@@ -302,6 +305,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          virtual string get_url();
 
          string m_strUrl;
+         virtual string get_connect_host();
+         virtual port_t get_connect_port();
+
 
       private:
          tcp_socket& operator=(const tcp_socket& ) { return *this; }
@@ -310,7 +316,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int TryWrite(const char *buf, size_t len);
          /** add data to output buffer top */
          void buffer(const char *buf, size_t len);
-
 
       };
 

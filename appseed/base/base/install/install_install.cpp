@@ -1318,7 +1318,7 @@ namespace install
 
    }
 
-#ifdef _WIN32
+#ifdef WINDOWSEX
 
    string get_module_path(HMODULE hmodule)
    {

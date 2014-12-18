@@ -249,13 +249,13 @@ namespace net
       if (is_ipv4())
       {
 
-         return ::to_vsstring(&u.m_addr.sin_addr);
+         return to_string(&u.m_addr.sin_addr);
 
       }
       else if (is_ipv6())
       {
 
-         return ::to_vsstring(&u.m_addr6.sin6_addr);
+         return to_string(&u.m_addr6.sin6_addr);
 
       }
       else

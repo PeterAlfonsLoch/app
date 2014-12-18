@@ -1,5 +1,7 @@
 #include "framework.h"
 
+#include "metrowin.h"
+
 //const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION = ::RegisterWindowMessageA("UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION-{7C29C80A_5712_40e8_A124_A82E4B2795A7}");  
 #define UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION (WM_APP + 123) 
 
@@ -15,7 +17,7 @@ namespace metrowin
    // Construction/Destruction
    //////////////////////////////////////////////////////////////////////
 
-   port_forward::port_forward(::axis::application * papp) :
+   port_forward::port_forward(::aura::application * papp) :
       element(papp)
    {
       /*

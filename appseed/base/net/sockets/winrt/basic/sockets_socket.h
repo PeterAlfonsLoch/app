@@ -23,7 +23,7 @@ namespace sockets
       {
       public:
          
-         ::Platform::Object ^ o;
+         Object ^ o;
 
       };
 #else

@@ -7,11 +7,14 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{17817791-616d-41a9-a3fe-30c324045daf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\framework">
+      <UniqueIdentifier>{e4c55c67-d0d1-481c-80e5-bd9ffdbb1c4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\framework">
+      <UniqueIdentifier>{2b548693-8594-4efa-b409-566cf51f9e79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="draw2d_direct2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,11 +54,14 @@
     <ClCompile Include="draw2d_direct2d_path.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framework\framework.cpp">
+      <Filter>Source Files\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="draw2d_direct2d_printer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="draw2d_direct2d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -97,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="draw2d_direct2d_directx.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\framework.h">
+      <Filter>Header Files\framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
