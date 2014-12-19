@@ -117,10 +117,9 @@ namespace message
 
       virtual sp(::aura::application) calc_app();
 
-      //virtual sp(::signal_details) get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam);
+      sp(::signal_details) get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam);
 
-      //virtual sp(::signal_details) get_base(LPMESSAGE lpmsg);
-
+      //sp(::signal_details) get_base(LPMESSAGE lpmsg);
 
       void RemoveMessageHandler(signalizable* psignalizable);
 
