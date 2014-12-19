@@ -5,7 +5,7 @@ namespace aura
 {
 
 
-   create_context::create()
+   create_context::create_context()
    {
 
       m_pCurrentDoc        = NULL;
