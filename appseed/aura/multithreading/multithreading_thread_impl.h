@@ -31,7 +31,8 @@ public:
 
 
 class CLASS_DECL_AURA thread_impl :
-   virtual public command_target,
+   virtual public signalizable,
+   virtual public ::message::dispatch,
    virtual public ::aura::message_queue_listener
 {
 public:
@@ -39,14 +40,14 @@ public:
 
    thread *                                  m_pthread;
 
-   sp(ptr_array < ::aura::user::interaction >)     m_spuiptra;
-   sp(::user::timer_array)                   m_sptimera;
+   sp(ptr_array < ::aura::interaction >)     m_spuiptra;
+   sp(::aura::timer_array)                   m_sptimera;
 
    bool                                      m_bDupHandle;
    HTHREAD                                   m_hthread;
    uint32_t                                  m_uiThread;
 
-   list < ::user::frame_window * >           m_frameList;
+   list < ::aura::frame_window * >           m_frameList;
 
    LPVOID                                    m_pThreadParams;
    __THREADPROC                              m_pfnThreadProc;
@@ -98,20 +99,20 @@ public:
 
    virtual int_ptr item() const;
 
-   virtual void add(::aura::user::interaction * pui);
-   virtual void remove(::aura::user::interaction * pui);
+   virtual void add(::aura::interaction * pui);
+   virtual void remove(::aura::interaction * pui);
 
    virtual bool is_idle_message(signal_details * pobj);
    virtual bool is_idle_message(LPMESSAGE lpmsg);
 
    virtual void post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam);
    virtual bool post_thread_message(UINT message,WPARAM wParam = 0,lparam lParam = 0);
-   virtual bool post_message(::aura::user::interaction * pui,UINT message,WPARAM wParam = 0,lparam lParam = 0);
+   virtual bool post_message(::aura::interaction * pui,UINT message,WPARAM wParam = 0,lparam lParam = 0);
 
    virtual ::count get_ui_count();
-   virtual ::aura::user::interaction * get_ui(::index iIndex);
-   virtual void set_timer(::aura::user::interaction * pui,uint_ptr nIDEvent,UINT nEllapse);
-   virtual void unset_timer(::aura::user::interaction * pui,uint_ptr nIDEvent);
+   virtual ::aura::interaction * get_ui(::index iIndex);
+   virtual void set_timer(::aura::interaction * pui,uint_ptr nIDEvent,UINT nEllapse);
+   virtual void unset_timer(::aura::interaction * pui,uint_ptr nIDEvent);
    virtual event & get_finish_event();
    virtual void step_timer();
 

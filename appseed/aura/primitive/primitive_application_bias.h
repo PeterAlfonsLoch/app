@@ -26,7 +26,7 @@ public:
    };
 
 
-   ::aura::user::interaction *      m_puiParent;
+   ::aura::interaction *      m_puiParent;
    callback *                 m_pcallback;
    property_set               m_set;
 

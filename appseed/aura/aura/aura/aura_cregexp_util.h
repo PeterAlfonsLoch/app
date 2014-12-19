@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace user
+namespace aura
 {
 
 
    class str_context;
 
 
-} // namespace user
+} // namespace aura
 
 
 class CLASS_DECL_AURA cregexp_util  

@@ -52,7 +52,7 @@ public:
    sp(::aura::application)             m_pappFork;
    string                        m_strApp;
    string                        m_strAppType;
-   ::aura::user::interaction *  m_puiParent;
+   ::aura::interaction *  m_puiParent;
    index                         m_iEdge;
    manual_reset_event            m_eventReady;
    application_bias *            m_pbiasCreate;

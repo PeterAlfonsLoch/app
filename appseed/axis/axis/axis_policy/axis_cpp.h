@@ -397,6 +397,8 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #endif
 
+#include "axis/axis/axis/axis_command_target.h"
+
 #include "axis/primitive/datetime/datetime_value.h"
 
 #include "axis/primitive/datetime/datetime_departament.h"
@@ -416,6 +418,8 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "primitive/data/data_simple_item.h"
 
 #include "filesystem/file/file_edit_buffer.h"
+
+#include "axis/axis/axis_command_target.h"
 
 #include "axis/axis/axis_application.h"
 

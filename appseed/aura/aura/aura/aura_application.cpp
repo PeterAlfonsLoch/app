@@ -166,7 +166,16 @@ namespace aura
    }
 
 
-   //void application::tellme_destroyed(::aura::user::interaction * pui, bool * pDestroyed, bool bTell)
+   void application::install_message_handling(::message::dispatch * pdispatch)
+   {
+
+      ::message::dispatch::install_message_handling(pdispatch);
+      ::signalizable::install_message_handling(pdispatch);
+
+   }
+
+
+   //void application::tellme_destroyed(::aura::interaction * pui, bool * pDestroyed, bool bTell)
    //{
 
    //   UNREFERENCED_PARAMETER(pui);
@@ -176,7 +185,7 @@ namespace aura
    //}
 
 
-   int32_t application::simple_message_box(::aura::user::interaction * puiOwner,const char * pszMessage,UINT fuStyle)
+   int32_t application::simple_message_box(::aura::interaction * puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
       return ::simple_message_box(get_safe_handle(puiOwner), pszMessage, m_strAppName, fuStyle);
@@ -484,14 +493,14 @@ namespace aura
    }
 
 
-   ::user::document *  application::_001OpenDocumentFile(var varFile)
+   /*::user::document *  application::_001OpenDocumentFile(var varFile)
    {
 
       ::exception::throw_interface_only(this);
       
       return NULL;
 
-   }
+   }*/
 
 
    void application::_001OnFileNew(signal_details * pobj)
@@ -2620,7 +2629,7 @@ namespace aura
    }
 
 
-   int32_t application::simple_message_box_timeout(::aura::user::interaction * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
+   int32_t application::simple_message_box_timeout(::aura::interaction * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
    {
       UNREFERENCED_PARAMETER(durationTimeOut);
       return simple_message_box(pwndOwner,pszMessage,fuStyle);
@@ -2836,7 +2845,7 @@ namespace aura
    }
 
 
-   ::aura::user::interaction * application::get_active_guie()
+   ::aura::interaction * application::get_active_guie()
    {
 
       return Session.get_active_guie();
@@ -2844,7 +2853,7 @@ namespace aura
    }
 
 
-   ::aura::user::interaction * application::get_focus_guie()
+   ::aura::interaction * application::get_focus_guie()
    {
 
       return Session.get_focus_guie();
@@ -3096,8 +3105,8 @@ namespace aura
       //SCAST_PTR(::message::base,pbase,pobj);
 
       //sp(::user::frame_window) pTopFrameWnd;
-      //::aura::user::interaction * pMainWnd;
-      //::aura::user::interaction * pMsgWnd;
+      //::aura::interaction * pMainWnd;
+      //::aura::interaction * pMsgWnd;
       //switch(code)
       //{
       ////case MSGF_DDEMGR:
@@ -3165,7 +3174,7 @@ namespace aura
    }
 
 
-   bool application::post_user_message(::thread_impl * pimpl,::aura::user::interaction * pui,UINT message,WPARAM wparam,lparam lparam)
+   bool application::post_user_message(::thread_impl * pimpl,::aura::interaction * pui,UINT message,WPARAM wparam,lparam lparam)
    {
 
       UNREFERENCED_PARAMETER(pimpl);
@@ -3187,7 +3196,7 @@ namespace aura
    }
 
 
-   bool application::is_window(::aura::user::interaction * pui)
+   bool application::is_window(::aura::interaction * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3196,7 +3205,7 @@ namespace aura
 
    }
 
-   LRESULT application::send_message(::aura::user::interaction * pui,UINT message,WPARAM wparam,lparam lparam)
+   LRESULT application::send_message(::aura::interaction * pui,UINT message,WPARAM wparam,lparam lparam)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3208,7 +3217,7 @@ namespace aura
 
    }
 
-   oswindow application::get_safe_handle(::aura::user::interaction * pui)
+   oswindow application::get_safe_handle(::aura::interaction * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3226,7 +3235,7 @@ namespace aura
    }
 
 
-   ::aura::user::interaction * application::get_parent(::aura::user::interaction * pui)
+   ::aura::interaction * application::get_parent(::aura::interaction * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3235,7 +3244,7 @@ namespace aura
 
    }
 
-   bool application::enable_window(::aura::user::interaction * pui,bool bEnable)
+   bool application::enable_window(::aura::interaction * pui,bool bEnable)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3246,7 +3255,7 @@ namespace aura
    }
 
 
-   bool application::set_window_text(::aura::user::interaction * pui,const string & strText)
+   bool application::set_window_text(::aura::interaction * pui,const string & strText)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3257,7 +3266,7 @@ namespace aura
    }
 
 
-   ptr_array < ::thread > application::get_thread(::aura::user::interaction * pui)
+   ptr_array < ::thread > application::get_thread(::aura::interaction * pui)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3269,7 +3278,7 @@ namespace aura
    }
 
 
-   void application::add_thread(::aura::user::interaction * pui,::thread * pthread)
+   void application::add_thread(::aura::interaction * pui,::thread * pthread)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3277,7 +3286,7 @@ namespace aura
 
    }
 
-   void application::remove_thread(::aura::user::interaction * pui,::thread * pthread)
+   void application::remove_thread(::aura::interaction * pui,::thread * pthread)
    {
 
       UNREFERENCED_PARAMETER(pui);
@@ -3292,12 +3301,12 @@ namespace aura
 
    }
 
-   sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
-   {
+   //sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
+   //{
 
-      return NULL;
+   //   return NULL;
 
-   }
+   //}
 
 
    void application::process_message(signal_details * pobj)

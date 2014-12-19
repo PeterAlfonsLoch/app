@@ -83,7 +83,7 @@ public:
 #else
    bool              m_bRunning;
    bool              m_bRun;
-   pthread_t         m_thread;
+   void *            m_pthread;
 #endif
 
 

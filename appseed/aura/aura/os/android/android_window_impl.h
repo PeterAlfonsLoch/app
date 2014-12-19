@@ -1,27 +1,27 @@
 #pragma once
 
 
-namespace boot
-{
+//namespace boot
+//{
+//
+//
+//   class thread_base;
+//   class interaction_impl;
+//
+//
+//} // namespace boot
+//
 
-
-   class thread_base;
-   class interaction_impl;
-
-
-} // namespace boot
-
-
-namespace user
-{
-
-
-   class interaction_base;
-   class interaction;
-
-
-} // namespace user
-
+//namespace user
+//{
+//
+//
+//   class interaction_base;
+//   class interaction;
+//
+//
+//} // namespace user
+//
 
 typedef ptr_array < oswindow_data > oswindow_dataptra;
 
@@ -32,7 +32,7 @@ struct CLASS_DECL_AURA oswindow_data
 
 
    bool                          m_bMessageOnlyWindow;
-   ::aura::user::interaction *         m_pui;
+   ::aura::interaction *         m_pui;
    HTHREAD                       m_hthread;
    COLORREF *                    m_pcolorref;
    RECT                          m_rect;
@@ -45,7 +45,7 @@ struct CLASS_DECL_AURA oswindow_data
 
 
    oswindow_data();
-   oswindow_data(::user::interaction_base * puibaseMessageOnlyWindow);
+   oswindow_data(::aura::interaction * puibaseMessageOnlyWindow);
    oswindow_data(const void * p);
    oswindow_data(const LPARAM & lparam);
    oswindow_data(const WPARAM & wparam);
@@ -83,9 +83,9 @@ struct CLASS_DECL_AURA oswindow_data
    int32_t select_all_input();
    int32_t map_window();
 
-   void set_user_interaction(::aura::user::interaction * pui);
-   ::aura::user::interaction * get_user_interaction();
-   ::aura::user::interaction * get_user_interaction() const;
+   void set_user_interaction(::aura::interaction * pui);
+   ::aura::interaction * get_user_interaction();
+   ::aura::interaction * get_user_interaction() const;
 
 
    void post_nc_destroy();

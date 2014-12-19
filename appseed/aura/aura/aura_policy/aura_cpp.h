@@ -403,6 +403,7 @@ namespace aura
 
 
    class interaction;
+   class frame_window;
 
 
 } // namespace aura

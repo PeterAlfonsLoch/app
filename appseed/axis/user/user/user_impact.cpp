@@ -567,7 +567,7 @@ namespace user
 
       sp(::create_context) cacc(allocer());
 
-      stacker < ::user::create_context > cc(cacc->m_user);
+      stacker < ::aura::create_context > cc(cacc->m_user);
 
       cc->m_typeinfoNewView = info;
 
@@ -606,7 +606,7 @@ namespace user
 
       sp(::create_context) cacc(pdoc->allocer());
 
-      stacker < ::user::create_context > cc(cacc->m_user);
+      stacker < ::aura::create_context > cc(cacc->m_user);
 
       cc->m_typeinfoNewView = info;
 

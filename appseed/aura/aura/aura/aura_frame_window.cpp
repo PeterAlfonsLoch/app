@@ -5,18 +5,29 @@ namespace aura
 {
 
 
-   interaction::interaction()
+   frame_window::frame_window()
    {
 
    }
 
 
-   interaction::~interaction()
+   frame_window::~frame_window()
    {
+
    }
 
 
 } // namespace aura
+
+
+
+
+
+
+
+
+
+
 
 
 

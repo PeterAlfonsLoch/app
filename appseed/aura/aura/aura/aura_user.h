@@ -89,6 +89,8 @@
 
 
 
+#include "aura_interaction.h"
+#include "aura_frame_window.h"
 
 
 

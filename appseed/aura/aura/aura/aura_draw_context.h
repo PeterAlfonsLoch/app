@@ -14,7 +14,8 @@ namespace core
 {
 
    template < class TYPE >
-   class simple_chain
+   class simple_chain :
+      virtual public object
    {
    public:
 
@@ -69,7 +70,7 @@ namespace core
 
 
 
-namespace user
+namespace aura
 {
 
    class CLASS_DECL_AURA draw_context :
@@ -98,4 +99,4 @@ namespace user
 
 
 
-} // namespace user
+} // namespace aura

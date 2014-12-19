@@ -2093,10 +2093,10 @@
     <ClInclude Include="aura\aura\axis.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\user.h">
+    <ClInclude Include="aura\aura\aura_frame_window.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\user_timer_item.h">
+    <ClInclude Include="aura\aura\aura_user.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3427,10 +3427,10 @@
     <ClCompile Include="aura\aura\aura_draw_interface.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_new.cpp">
+    <ClCompile Include="aura\aura\aura_printer.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_printer.cpp">
+    <ClCompile Include="aura\aura\aura_frame_window.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,8 +1,9 @@
 #include "framework.h" // previously aura/user/user.h
 
 
-namespace user
+namespace aura
 {
+
 
    printer::printer(::aura::application * papp) :
       element(papp)
@@ -37,3 +38,48 @@ namespace user
 
 
 } // namespace user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -80,6 +80,9 @@ namespace aura
       virtual ~application();
 
 
+      virtual void install_message_handling(::message::dispatch * pdispatch);
+
+
       virtual element * alloc(sp(type) info);
       virtual element * alloc(const id & idType);
 
@@ -87,11 +90,11 @@ namespace aura
       void alloc(T * & pt);
 
 
-      //virtual void tellme_destroyed(::aura::user::interaction * pui, bool * pDestroyed, bool bTell = true);
+      //virtual void tellme_destroyed(::aura::interaction * pui, bool * pDestroyed, bool bTell = true);
 
 
-      virtual int32_t simple_message_box(::aura::user::interaction * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
-      virtual int32_t simple_message_box_timeout(::aura::user::interaction * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
+      virtual int32_t simple_message_box(::aura::interaction * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box_timeout(::aura::interaction * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
       int32_t simple_message_box(const char * pszMessage,UINT fuStyle);
       virtual string message_box(const string & pszMatter,property_set & propertyset);
 
@@ -130,23 +133,23 @@ namespace aura
       virtual void process_message_filter(int32_t code,signal_details * pobj);
 
       virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
-      virtual bool post_user_message(::thread_impl * pimpl,::aura::user::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+      virtual bool post_user_message(::thread_impl * pimpl,::aura::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
-      virtual bool is_window(::aura::user::interaction * pui);
-      virtual LRESULT send_message(::aura::user::interaction * pui, UINT message, WPARAM wparam = 0, lparam lparam = 0);
-      virtual oswindow get_safe_handle(::aura::user::interaction * pui);
+      virtual bool is_window(::aura::interaction * pui);
+      virtual LRESULT send_message(::aura::interaction * pui, UINT message, WPARAM wparam = 0, lparam lparam = 0);
+      virtual oswindow get_safe_handle(::aura::interaction * pui);
       virtual void dispatch_user_message(::message::base * pbase);
-      virtual ::aura::user::interaction * get_parent(::aura::user::interaction * pui);
-      virtual bool enable_window(::aura::user::interaction * pui, bool bEnable = true);
-      virtual bool set_window_text(::aura::user::interaction * pui, const string & strText);
-      virtual ptr_array < thread > get_thread(::aura::user::interaction * pui);
-      virtual void add_thread(::aura::user::interaction * pui,::thread * pthread);
-      virtual void remove_thread(::aura::user::interaction * pui,::thread * pthread);
+      virtual ::aura::interaction * get_parent(::aura::interaction * pui);
+      virtual bool enable_window(::aura::interaction * pui, bool bEnable = true);
+      virtual bool set_window_text(::aura::interaction * pui, const string & strText);
+      virtual ptr_array < thread > get_thread(::aura::interaction * pui);
+      virtual void add_thread(::aura::interaction * pui,::thread * pthread);
+      virtual void remove_thread(::aura::interaction * pui,::thread * pthread);
       virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam, int cyParam, int iStride = -1);
 
 
-      virtual ::aura::user::interaction * get_active_guie();
-      virtual ::aura::user::interaction * get_focus_guie();
+      virtual ::aura::interaction * get_active_guie();
+      virtual ::aura::interaction * get_focus_guie();
 
 
       // Wall-eeeeee aliases
@@ -267,7 +270,7 @@ namespace aura
 
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual ::user::document *  _001OpenDocumentFile(var varFile);
+      //virtual ::user::document *  _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew(signal_details * pobj);
 
 
@@ -395,7 +398,7 @@ namespace aura
 
       virtual string http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema);
 
-      virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
+      //virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
 
       virtual void process_message(signal_details * pobj);
 

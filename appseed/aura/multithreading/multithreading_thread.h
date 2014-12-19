@@ -7,7 +7,8 @@ class user_interaction_ptr_array;
 
 
 class CLASS_DECL_AURA thread :
-   virtual public command_target,
+   virtual public signalizable,
+   virtual public ::message::dispatch,
 #ifdef WINDOWS
    virtual public ::exception::translator,
 #endif
@@ -32,8 +33,8 @@ public:
    uint_ptr                               m_dwAlive;
    bool                                   m_bReady;
    int32_t                                m_iReturnCode;
-   ::aura::user::interaction *                  m_puiMain;           // main interaction_impl (usually same System.m_puiMain)
-   ::aura::user::interaction *                  m_puiActive;         // active main interaction_impl (may not be m_puiMain)
+   ::aura::interaction *                  m_puiMain;           // main interaction_impl (usually same System.m_puiMain)
+   ::aura::interaction *                  m_puiActive;         // active main interaction_impl (may not be m_puiMain)
    bool *                                 m_pbReady;
    //property_set                           m_set;
    string                                 m_strWorkUrl;
@@ -115,7 +116,7 @@ public:
 
    virtual uint32_t ResumeThread();
    virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
-   virtual bool post_message(::aura::user::interaction * pui, UINT message, WPARAM wParam = 0, lparam lParam = 0);
+   virtual bool post_message(::aura::interaction * pui, UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
    virtual bool pre_init_instance();
 
@@ -139,18 +140,18 @@ public:
 
    virtual void process_message_filter(int32_t code, signal_details * pobj);
 
-   virtual void add(::aura::user::interaction * pui);
-   virtual void remove(::aura::user::interaction * pui);
+   virtual void add(::aura::interaction * pui);
+   virtual void remove(::aura::interaction * pui);
    virtual ::count get_ui_count();
-   virtual ::aura::user::interaction * get_ui(index iIndex);
-   virtual void set_timer(::aura::user::interaction * pui, uint_ptr nIDEvent, UINT nEllapse);
-   virtual void unset_timer(::aura::user::interaction * pui, uint_ptr nIDEvent);
+   virtual ::aura::interaction * get_ui(index iIndex);
+   virtual void set_timer(::aura::interaction * pui, uint_ptr nIDEvent, UINT nEllapse);
+   virtual void unset_timer(::aura::interaction * pui, uint_ptr nIDEvent);
    virtual void set_auto_delete(bool bAutoDelete = true);
    virtual void set_run(bool bRun = true);
    virtual event & get_finish_event();
    virtual bool get_run();
-   virtual ::aura::user::interaction * get_active_ui();
-   virtual ::aura::user::interaction * set_active_ui(::aura::user::interaction * pui);
+   virtual ::aura::interaction * get_active_ui();
+   virtual ::aura::interaction * set_active_ui(::aura::interaction * pui);
    virtual void step_timer();
    virtual bool on_run_step();
 

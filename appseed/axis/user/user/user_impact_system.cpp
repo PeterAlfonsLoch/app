@@ -137,7 +137,7 @@ namespace user
       // create a frame wired to the specified ::user::document
 
       ASSERT(m_strMatter.get_length() > 0); // must have a resource ID to load from
-      stacker < ::user::create_context > context(pcreatecontext->m_user);
+      stacker < ::aura::create_context > context(pcreatecontext->m_user);
       context->m_pCurrentFrame = pOther;
       context->m_pCurrentDoc = pdocument;
       if (pcreatecontext->m_puiAlloc != NULL)

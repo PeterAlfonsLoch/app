@@ -39,7 +39,7 @@ create_context::create_context(sp(::command_thread) pthreadParent) :
 
 }
 
-create_context::create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible, ::aura::user::interaction * puiParent) :
+create_context::create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible, ::aura::interaction * puiParent) :
    element(pthreadParent->get_app()),
    command(pthreadParent->get_app()),
    m_spApplicationBias(allocer()),
