@@ -1685,12 +1685,6 @@
     <ClInclude Include="aura\exception\exception_verisimple.h">
       <Filter>Header Files\aura\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_command_target.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_command.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura_policy\aura_c.h">
       <Filter>Header Files\aura\aura_policy</Filter>
     </ClInclude>
@@ -2738,12 +2732,6 @@
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_checked.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_cmdtarg.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_command_target.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_conv.cpp">

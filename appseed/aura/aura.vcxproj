@@ -1970,8 +1970,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_async.h" />
     <ClInclude Include="aura\aura\aura_aura.h" />
     <ClInclude Include="aura\aura\aura_auto_pointer.h" />
-    <ClInclude Include="aura\aura\aura_command.h" />
-    <ClInclude Include="aura\aura\aura_command_target.h" />
     <ClInclude Include="aura\aura\aura_common.h" />
     <ClInclude Include="aura\aura\aura_conv.h" />
     <ClInclude Include="aura\aura\aura_core.h" />
@@ -4326,8 +4324,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\aura\aura_argcargv.cpp" />
     <ClCompile Include="aura\aura\aura_assert.cpp" />
     <ClCompile Include="aura\aura\aura_checked.cpp" />
-    <ClCompile Include="aura\aura\aura_cmdtarg.cpp" />
-    <ClCompile Include="aura\aura\aura_command_target.cpp" />
     <ClCompile Include="aura\aura\aura_conv.cpp" />
     <ClCompile Include="aura\aura\aura_core_os.cpp" />
     <ClCompile Include="aura\aura\aura_cpu_architecture.cpp" />
