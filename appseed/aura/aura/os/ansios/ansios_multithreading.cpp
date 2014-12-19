@@ -171,7 +171,7 @@ DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwTimeout)
 thread_data::thread_data()
 {
 
-   pthread_key_create(&key, NULL);
+   pthread_key_create((pthread_key_t *) m_pkey, NULL);
 
 }
 
@@ -179,7 +179,7 @@ thread_data::thread_data()
 void * thread_data::get()
 {
 
-   return pthread_getspecific(key);
+   return pthread_getspecific(*(pthread_key_t *)m_pkey);
 
 }
 
@@ -187,7 +187,7 @@ void * thread_data::get()
 void thread_data::set(void * p)
 {
 
-   pthread_setspecific(key, p);
+   pthread_setspecific(*(pthread_key_t *)m_pkey,p);
 
 }
 
@@ -408,7 +408,7 @@ os_thread * StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,HTHREAD hthread,int
 
    hthread->m_posthread = pthread;
 
-   pthread_t & thread = pthread->m_pthread;
+   pthread_t & thread = *(pthread_t*) pthread->m_pthread;
 
    pthread_attr_t threadAttr;
 
@@ -590,7 +590,7 @@ int_bool WINAPI SetThreadPriority(HTHREAD hThread,int32_t nCa2Priority)
 
       thread_get_os_priority(&iPolicy,&schedparam,nCa2Priority);
 
-      pthread_setschedparam(hThread->m_posthread->m_pthread,iPolicy,&schedparam);
+      pthread_setschedparam(*(pthread_t *) hThread->m_posthread->m_pthread,iPolicy,&schedparam);
 
       return TRUE;
 
@@ -872,7 +872,7 @@ int32_t WINAPI GetThreadPriority(HTHREAD  hthread)
 
       schedparam.sched_priority = 0;
 
-      pthread_getschedparam(hthread->m_posthread->m_pthread,&iOsPolicy,&schedparam);
+      pthread_getschedparam(*(pthread_t *) hthread->m_posthread->m_pthread,&iOsPolicy,&schedparam);
 
       return thread_get_scheduling_priority(iOsPolicy,&schedparam);
 
