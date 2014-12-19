@@ -1968,6 +1968,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_application_signal_details.h" />
     <ClInclude Include="aura\aura\aura_assert_running_task.h" />
     <ClInclude Include="aura\aura\aura_async.h" />
+    <ClInclude Include="aura\aura\aura_aura.h" />
     <ClInclude Include="aura\aura\aura_auto_pointer.h" />
     <ClInclude Include="aura\aura\aura_command.h" />
     <ClInclude Include="aura\aura\aura_command_target.h" />
@@ -1976,6 +1977,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_core.h" />
     <ClInclude Include="aura\aura\aura_core_os.h" />
     <ClInclude Include="aura\aura\aura_cpu_architecture.h" />
+    <ClInclude Include="aura\aura\aura_create_context.h" />
     <ClInclude Include="aura\aura\aura_cregexp.h" />
     <ClInclude Include="aura\aura\aura_cregexp_util.h" />
     <ClInclude Include="aura\aura\aura_debug.h" />
@@ -1983,6 +1985,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_departament.h" />
     <ClInclude Include="aura\aura\aura_departament_container.h" />
     <ClInclude Include="aura\aura\aura_draw2d.h" />
+    <ClInclude Include="aura\aura\aura_draw_context.h" />
+    <ClInclude Include="aura\aura\aura_draw_interface.h" />
     <ClInclude Include="aura\aura\aura_element.h" />
     <ClInclude Include="aura\aura\aura_enum.h" />
     <ClInclude Include="aura\aura\aura_file_watcher.h" />
@@ -2003,6 +2007,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_keep.h" />
     <ClInclude Include="aura\aura\aura_net.h" />
     <ClInclude Include="aura\aura\aura_platform_interface.h" />
+    <ClInclude Include="aura\aura\aura_printer.h" />
     <ClInclude Include="aura\aura\aura_progress.h" />
     <ClInclude Include="aura\aura\aura_keep_true.h" />
     <ClInclude Include="aura\aura\aura_launcher.h" />
@@ -2045,11 +2050,15 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_system_str.h" />
     <ClInclude Include="aura\aura\aura_system_trace.h" />
     <ClInclude Include="aura\aura\aura_class.h" />
+    <ClInclude Include="aura\aura\aura_template.h" />
     <ClInclude Include="aura\aura\aura_timer_array.h" />
     <ClInclude Include="aura\aura\aura_timer_item.h" />
     <ClInclude Include="aura\aura\aura_trace.h" />
     <ClInclude Include="aura\aura\aura_types.h" />
     <ClInclude Include="aura\aura\aura_url.h" />
+    <ClInclude Include="aura\aura\axis.h" />
+    <ClInclude Include="aura\aura\user.h" />
+    <ClInclude Include="aura\aura\user_timer_item.h" />
     <ClInclude Include="aura\aura_policy\aura_c.h" />
     <ClInclude Include="aura\aura_policy\aura_cpp.h" />
     <ClInclude Include="aura\aura_policy\aura_policy.h" />
@@ -3231,12 +3240,17 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClCompile>
     <ClCompile Include="aura\aura\aura_application_interface.cpp" />
     <ClCompile Include="aura\aura\aura_assert_running_task.cpp" />
+    <ClCompile Include="aura\aura\aura_create_context.cpp" />
+    <ClCompile Include="aura\aura\aura_draw_context.cpp" />
+    <ClCompile Include="aura\aura\aura_draw_interface.cpp" />
     <ClCompile Include="aura\aura\aura_gudo.cpp" />
     <ClCompile Include="aura\aura\aura_id_pool.cpp" />
     <ClCompile Include="aura\aura\aura_interaction.cpp" />
     <ClCompile Include="aura\aura\aura_library.cpp" />
     <ClCompile Include="aura\aura\aura_net.cpp" />
+    <ClCompile Include="aura\aura\aura_new.cpp" />
     <ClCompile Include="aura\aura\aura_platform_interface.cpp" />
+    <ClCompile Include="aura\aura\aura_printer.cpp" />
     <ClCompile Include="aura\aura\aura_session_interface.cpp" />
     <ClCompile Include="aura\aura\aura_static_start.cpp" />
     <ClCompile Include="aura\aura\aura_timer_array.cpp" />
@@ -4242,12 +4256,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h" />
     <ClInclude Include="user\simple\simple_message_box.h" />
     <ClInclude Include="user\user.h" />
-    <ClInclude Include="user\user\user.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_user_check_interface.h" />
-    <ClInclude Include="user\user\aura_create_context.h" />
-    <ClInclude Include="user\user\aura_draw_context.h" />
-    <ClInclude Include="user\user\aura_draw_interface.h" />
-    <ClInclude Include="user\user\aura_printer.h" />
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_dib.cpp" />
@@ -4307,8 +4315,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
-    <ClCompile Include="user\user\aaa_want_to_remove_user_check_interface.cpp" />
-    <ClCompile Include="user\user\aura_create_context.cpp" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
   </ItemGroup>
@@ -4880,10 +4886,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\str\str_to_integer.cpp" />
     <ClCompile Include="primitive\str\str_verisimple_wstring.cpp" />
     <ClCompile Include="primitive\str\str_wtostring.cpp" />
-    <ClCompile Include="user\user\aura_draw_context.cpp" />
-    <ClCompile Include="user\user\aura_draw_interface.cpp" />
     <ClCompile Include="user\user\user_interaction.cpp" />
-    <ClCompile Include="user\user\aura_printer.cpp" />
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>
