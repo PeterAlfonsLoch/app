@@ -77,7 +77,7 @@ public:
 
 
    using ::user::frame_window::create_window;
-   virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle = WS_OVERLAPPEDWINDOW,const RECT & rect = ::null_rect(),sp(::user::interaction) pParentWnd = NULL,const char * lpszMenuName = NULL,uint32_t dwExStyle = 0,sp(::create_context) pContext = NULL);
+   virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle = WS_OVERLAPPEDWINDOW,const RECT & rect = ::null_rect(),sp(::user::interaction) pParentWnd = NULL,const char * lpszMenuName = NULL,uint32_t dwExStyle = 0,sp(::create) pContext = NULL);
 
    virtual bool create_bars();
    virtual bool on_create_bars();
@@ -108,7 +108,7 @@ public:
 
    virtual sp(::user::wndfrm::frame::frame) create_frame_schema();
 
-   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = NULL, sp(::create_context) pContext = NULL);
+   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, sp(::user::interaction) pParentWnd = NULL, sp(::create) pContext = NULL);
 
    DECL_GEN_SIGNAL(_001OnNcActivate);
    DECL_GEN_SIGNAL(_001OnDisplayChange);
@@ -133,7 +133,7 @@ public:
    sp(::user::interaction) WindowDataGetWnd();
    virtual void layout();
    virtual void ActivateFrame(int32_t nCmdShow = -1);
-   virtual bool on_create_client(::user::create_struct * lpcs, sp(::create_context) pContext);
+   virtual bool on_create_client(::user::create_struct * lpcs, sp(::create) pContext);
    virtual bool pre_create_window(::user::create_struct& cs);
    virtual void pre_translate_message(signal_details * pobj);
 

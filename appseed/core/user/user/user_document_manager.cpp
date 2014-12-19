@@ -607,7 +607,7 @@ namespace user
    {
       // prompt the ::fontopus::user (with all document templates)
 
-      sp(::create_context) createcontext(allocer());
+      sp(::create) createcontext(allocer());
 
       if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
          return; // open cancelled
@@ -650,7 +650,7 @@ namespace user
 
 
 
-   void document_manager::request(sp(::create_context) pcreatecontext)
+   void document_manager::request(sp(::create) pcreatecontext)
    {
 
       if(pcreatecontext->m_spCommandLine->m_varFile.is_empty())

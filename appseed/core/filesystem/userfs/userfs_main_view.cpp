@@ -37,7 +37,7 @@ namespace userfs
       
       initialize_split_layout();
       
-      sp(::create_context) cc(allocer());
+      sp(::create) cc(allocer());
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeinfoNewView = System.type_info < tree > ();

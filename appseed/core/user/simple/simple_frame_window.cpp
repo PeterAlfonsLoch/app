@@ -394,7 +394,7 @@ void simple_frame_window::_001OnMove(signal_details * pobj)
 
 }
 
-bool simple_frame_window::on_create_client(::user::create_struct * lpcs, sp(::create_context) pContext)
+bool simple_frame_window::on_create_client(::user::create_struct * lpcs, sp(::create) pContext)
 {
    // trans   HICON hicon = GetIcon(false);
    return ::user::frame_window::on_create_client(lpcs, pContext);
@@ -794,7 +794,7 @@ void simple_frame_window::_001OnNcActivate(signal_details * pobj)
 
 
 
-bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, sp(::user::interaction) pParentWnd, sp(::create_context) pContext)
+bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, sp(::user::interaction) pParentWnd, sp(::create) pContext)
 {
 
    UNREFERENCED_PARAMETER(pParentWnd);
@@ -1344,7 +1344,7 @@ bool simple_frame_window::WfiIsSizing()
 
 
 
-bool simple_frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle,sp(::create_context) pContext)
+bool simple_frame_window::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,const char * lpszMenuName,uint32_t dwExStyle,sp(::create) pContext)
 {
    return ::user::frame_window::create_window(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);
 
@@ -1412,7 +1412,7 @@ void simple_frame_window::OnDropFiles(HDROP hDropInfo)
       char szFileName[_MAX_PATH];
       ::DragQueryFile(hDropInfo, iFile, szFileName, _MAX_PATH);
 
-      sp(::create_context) createcontext(allocer());
+      sp(::create) createcontext(allocer());
       createcontext->m_spCommandLine->m_varFile = szFileName;
 
       puser->open_document_file(createcontext);

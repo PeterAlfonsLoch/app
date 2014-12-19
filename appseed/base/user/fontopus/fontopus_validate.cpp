@@ -1196,7 +1196,7 @@ namespace fontopus
 
    validate::auth * validate::get_auth()
    {
-      sp(::create_context) createcontext(allocer());
+      sp(::create) createcontext(allocer());
       createcontext->m_bMakeVisible = true;
       return NULL;
    }

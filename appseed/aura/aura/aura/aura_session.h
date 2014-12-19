@@ -65,7 +65,7 @@ namespace aura
       inline ::aura::savings &                  savings()      { return *m_psavings; }
 
 
-      virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext);
+      virtual sp(::aura::application) start_application(const char * pszType,const char * pszAppId,sp(::create) pcreatecontext);
 
       
       virtual COLORREF get_default_color(uint64_t ui);

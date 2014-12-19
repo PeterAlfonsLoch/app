@@ -386,9 +386,6 @@
     <ClInclude Include="primitive\primitive_edit.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive_create_context.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_command.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -2099,6 +2096,9 @@
     <ClInclude Include="aura\aura\aura_user.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive_create.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -2204,9 +2204,6 @@
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_request_interface.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive_create_context.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_command.cpp">
@@ -3432,6 +3429,9 @@
     </ClCompile>
     <ClCompile Include="aura\aura\aura_frame_window.cpp">
       <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_create.cpp">
+      <Filter>Source Files\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

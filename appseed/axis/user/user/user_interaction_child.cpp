@@ -100,7 +100,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction *  pparent,id id,sp(::create_context) pContext)
+   bool interaction_child::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction *  pparent,id id,sp(::create) pContext)
    {
 
       if(m_bCreate)

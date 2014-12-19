@@ -48,7 +48,7 @@ void simple_scroll_bar::install_message_handling(::message::dispatch * pinterfac
 }
 
 
-bool simple_scroll_bar::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,const RECT & rect, sp(::user::interaction) pParentWnd, UINT nID, sp(::create_context) pContext)
+bool simple_scroll_bar::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,const RECT & rect, sp(::user::interaction) pParentWnd, UINT nID, sp(::create) pContext)
 {
 
    if(!::user::interaction::create_window(lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,nID,pContext))

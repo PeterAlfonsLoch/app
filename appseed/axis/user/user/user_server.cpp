@@ -8,15 +8,15 @@ namespace user
    ::user::document * server::open_new_document()
    {
 
-      return open_document_file(sp(::create_context)());
+      return open_document_file(sp(::create)());
 
    }
 
 
-   ::user::document * server::open_document_file(sp(::create_context) pcreatecontext)
+   ::user::document * server::open_document_file(sp(::create) pcreatecontext)
    {
 
-      sp(::create_context) cc(canew(::create_context(Application.creation(), var(var::type_empty), true, NULL)));
+      sp(::create) cc(canew(::create(Application.creation(), var(var::type_empty), true, NULL)));
 
       if (pcreatecontext == NULL)
       {
@@ -33,7 +33,7 @@ namespace user
    ::user::document * server::open_document_file(var varFile, bool bMakeVisible, ::user::interaction * puiParent)
    {
 
-      sp(::create_context) cc(canew(::create_context(Application.creation(), varFile, bMakeVisible, puiParent)));
+      sp(::create) cc(canew(::create(Application.creation(), varFile, bMakeVisible, puiParent)));
 
 
       return open_document_file(cc);

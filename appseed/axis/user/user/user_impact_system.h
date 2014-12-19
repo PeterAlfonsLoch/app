@@ -109,12 +109,12 @@ namespace user
       void update_all_views(sp(::user::impact) pviewSender, LPARAM lhint, ::object * puh);
 
       virtual Confidence MatchDocType(const char * lpszPathName, ::user::document *& rpDocMatch);
-      virtual ::user::document * create_new_document(sp(::create_context) pcreatecontext);
-      virtual sp(::user::frame_window) create_new_frame(::user::document * pDoc, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext);
+      virtual ::user::document * create_new_document(sp(::create) pcreatecontext);
+      virtual sp(::user::frame_window) create_new_frame(::user::document * pDoc, sp(::user::frame_window) pOther, sp(::create) pcreatecontext);
       virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, ::user::document * pDoc, bool bMakeVisible = TRUE);
       virtual bool save_all_modified();     // for all documents
       virtual void close_all_documents(bool bEndSession);
-      virtual void request_create(sp(::create_context) pcreatecontext) = 0;
+      virtual void request_create(sp(::create) pcreatecontext) = 0;
       // open named file
       // if lpszPathName == NULL => create new file with this type
       virtual void set_default_title(::user::document * pdocument) = 0;

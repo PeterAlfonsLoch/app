@@ -51,7 +51,7 @@ namespace user
       virtual sp(::user::impact_system) get_template(index index) const;
       virtual void RegisterShellFileTypes(bool bCompat);
       void UnregisterShellFileTypes();
-      virtual void request(sp(::create_context) pcreatecontext); // open named file
+      virtual void request(sp(::create) pcreatecontext); // open named file
       virtual bool save_all_modified(); // save before exit
       virtual void close_all_documents(bool bEndSession); // close documents before exiting
       virtual ::count get_open_document_count();

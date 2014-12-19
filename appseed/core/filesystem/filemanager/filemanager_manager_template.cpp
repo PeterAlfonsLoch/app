@@ -29,7 +29,7 @@ namespace filemanager
       }
    }
 
-   sp(manager) manager_template::open(sp(::create_context) pcreatecontext,::fs::data * pdata,::filemanager::data * pfilemanagerdataParam,callback * pcallback)
+   sp(manager) manager_template::open(sp(::create) pcreatecontext,::fs::data * pdata,::filemanager::data * pfilemanagerdataParam,callback * pcallback)
    {
       
       sp(::filemanager::data) pfilemanagerdata(pfilemanagerdataParam);
@@ -72,7 +72,7 @@ namespace filemanager
 
    }
 
-   sp(manager) manager_template::create_new_document(callback * pcallback, sp(::create_context) pcreatecontext)
+   sp(manager) manager_template::create_new_document(callback * pcallback, sp(::create) pcreatecontext)
    {
 
       sp(manager) pdoc = (m_pdoctemplate->create_new_document(pcreatecontext));
@@ -104,7 +104,7 @@ namespace filemanager
 
       }
 
-      sp(::create_context) createcontext(allocer());
+      sp(::create) createcontext(allocer());
       
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = pwndParent;
@@ -143,7 +143,7 @@ namespace filemanager
       
       UNREFERENCED_PARAMETER(bMakeVisible);
 
-      sp(::create_context) createcontext(allocer());
+      sp(::create) createcontext(allocer());
 
       createcontext->m_bMakeVisible = false;
 

@@ -33,7 +33,7 @@ public:
 
 
    virtual void pre_translate_message(signal_details * pobj);
-   virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,UINT nID,sp(::create_context) pContext = NULL);
+   virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,UINT nID,sp(::create) pContext = NULL);
    virtual void install_message_handling(::message::dispatch * pinterface);
 
    virtual void _001OnDraw(::draw2d::graphics * pdc);

@@ -134,7 +134,7 @@ namespace filemanager
       }
 
 
-      sp(::create_context) cc(allocer());
+      sp(::create) cc(allocer());
       cc->m_spCommandLine->m_varFile = itema[0]->m_strPath;
       request_create(cc);
 
@@ -235,7 +235,7 @@ namespace filemanager
    }
 
 
-   void filemanager::on_request(sp(::create_context) pcreatecontext)
+   void filemanager::on_request(sp(::create) pcreatecontext)
    {
       filemanager::callback::on_request(pcreatecontext);
    }

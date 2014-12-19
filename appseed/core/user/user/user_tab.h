@@ -138,7 +138,7 @@ namespace user
       DWORD                            m_dwHidingTabs;
       bool                             m_bNoTabs;
       e_element                        m_eelement;
-      sp(::create_context)         m_spcreatecontext;
+      sp(::create)         m_spcreatecontext;
 
 
       tab(::aura::application * papp);
@@ -165,7 +165,7 @@ namespace user
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(::index iTab);
       virtual void _001OnDropTab(::index iTab, e_position eposition);
-      virtual bool set_cur_tab_by_id(id id, sp(::create_context) pcreatecontext = NULL);
+      virtual bool set_cur_tab_by_id(id id, sp(::create) pcreatecontext = NULL);
 
       virtual id get_cur_tab_id();
       virtual id get_current_id();

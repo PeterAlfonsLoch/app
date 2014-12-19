@@ -29,7 +29,7 @@ public:
 
 
 
-class CLASS_DECL_AURA create_context :
+class CLASS_DECL_AURA create :
    virtual public ::primitive::command
 {
 public:
@@ -49,14 +49,14 @@ public:
 
 
 
-   create_context(::aura::application * papp);
-   create_context(sp(::command_thread) pthreadParent);
-   create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, ::aura::interaction * puiParent = NULL);
-   create_context(const create_context & createcontext);
-   virtual ~create_context();
+   create(::aura::application * papp);
+   create(sp(::command_thread) pthreadParent);
+   create(sp(::command_thread) pthreadParent,var varFile,bool bMakeVisible = true,::aura::interaction * puiParent = NULL);
+   create(const create & createcontext);
+   virtual ~create();
 
 
-   create_context & operator = (const create_context & createcontext);
+   create & operator = (const create & createcontext);
 
 };
 

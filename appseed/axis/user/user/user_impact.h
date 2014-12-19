@@ -106,7 +106,7 @@ namespace user
 
       ::user::interaction * create_view(type * info, ::user::document * pdoc = NULL, const RECT & rect = ::null_rect(), ::user::interaction * pwndParent = NULL, ::id id = ::id(), ::user::interaction * pviewLast = NULL);
       static ::user::interaction * s_create_view(type * info, ::user::document * pdoc,const RECT & rect, ::user::interaction * pwndParent,id id,::user::interaction * pviewLast = NULL);
-      static ::user::interaction * s_create_view(::create_context * pContext,const RECT & rect,::user::interaction * pwndParent,id id);
+      static ::user::interaction * s_create_view(::create * pContext,const RECT & rect,::user::interaction * pwndParent,id id);
 
       template < class VIEW >
       VIEW * create_view(::user::document * pdoc = NULL,const RECT & rect = ::null_rect(),::user::interaction * pwndParent = NULL,::id id = ::id(),::user::interaction * pviewLast = NULL);

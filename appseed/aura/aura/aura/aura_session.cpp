@@ -78,7 +78,7 @@ namespace aura
    }
 
 
-   sp(::aura::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext)
+   sp(::aura::application) session::start_application(const char * pszType,const char * pszAppId,sp(::create) pcreatecontext)
    {
 
       return m_pplatform->start_application(pszType,pszAppId,pcreatecontext);

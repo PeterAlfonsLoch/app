@@ -680,7 +680,7 @@ namespace filemanager
 
 
 
-   void manager::on_create(sp(::create_context) pcreatecontext)
+   void manager::on_create(sp(::create) pcreatecontext)
    {
 
       ::user::document::on_create(pcreatecontext);

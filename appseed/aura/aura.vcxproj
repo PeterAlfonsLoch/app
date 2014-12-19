@@ -3982,7 +3982,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\primitive_command.h" />
     <ClInclude Include="primitive\primitive_command_line.h" />
     <ClInclude Include="primitive\primitive_command_thread.h" />
-    <ClInclude Include="primitive\primitive_create_context.h" />
+    <ClInclude Include="primitive\primitive_create.h" />
     <ClInclude Include="primitive\primitive_edit.h" />
     <ClInclude Include="primitive\primitive_interlocked_long.h" />
     <ClInclude Include="primitive\primitive_interlocked_long_pulse.h" />
@@ -4839,7 +4839,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\primitive_command.cpp" />
     <ClCompile Include="primitive\primitive_command_line.cpp" />
     <ClCompile Include="primitive\primitive_command_thread.cpp" />
-    <ClCompile Include="primitive\primitive_create_context.cpp" />
+    <ClCompile Include="primitive\primitive_create.cpp" />
     <ClCompile Include="primitive\primitive_edit.cpp" />
     <ClCompile Include="primitive\primitive_id.cpp" />
     <ClCompile Include="primitive\primitive_id_space.cpp" />

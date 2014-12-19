@@ -106,7 +106,7 @@ namespace user
       return yesAttemptForeign;
    }
 
-   ::user::document * impact_system::create_new_document(sp(::create_context) pcreatecontext)
+   ::user::document * impact_system::create_new_document(sp(::create) pcreatecontext)
    {
       // default implementation constructs one from sp(type)
       if (!m_typeinfoDocument)
@@ -131,7 +131,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Default frame creation
 
-   sp(::user::frame_window) impact_system::create_new_frame(::user::document * pdocument, sp(::user::frame_window) pOther, sp(::create_context) pcreatecontext)
+   sp(::user::frame_window) impact_system::create_new_frame(::user::document * pdocument, sp(::user::frame_window) pOther, sp(::create) pcreatecontext)
    {
 
       // create a frame wired to the specified ::user::document

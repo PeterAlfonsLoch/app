@@ -52,7 +52,7 @@ namespace fontopus
 
       virtual void on_user_login(::fontopus::user * puser);
 
-      virtual void on_request(sp(::create_context) pcreatecontext);
+      virtual void on_request(sp(::create) pcreatecontext);
 
 
       virtual string get_server(const char * pszSourceUrl, int32_t iRetry = 8);

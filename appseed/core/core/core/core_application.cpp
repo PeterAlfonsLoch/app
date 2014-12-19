@@ -408,7 +408,7 @@ namespace core
 
 
 
-   void application::on_request(sp(::create_context) pcreatecontext)
+   void application::on_request(sp(::create) pcreatecontext)
    {
 
       ::base::application::on_request(pcreatecontext);
@@ -2807,7 +2807,7 @@ namespace core
 
 
 
-   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction,sp(::create_context) pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction,sp(::create) pcreatecontext)
    {
 
       sp(::user::interaction) puiParent = NULL;
@@ -3217,7 +3217,7 @@ namespace core
          // that should be treated as command_line on request, i.e.,
          // a fork whose Forking part has been done, now
          // the parameters are going to be passed to this new application
-         sp(::create_context) pcreatecontext(pbase->m_lparam);
+         sp(::create) pcreatecontext(pbase->m_lparam);
          try
          {
 
@@ -3757,7 +3757,7 @@ namespace core
    if(bCreate)
    {
 
-   sp(::create_context) spcreatecontext(allocer());
+   sp(::create) spcreatecontext(allocer());
 
    papp = Session.start_application("application", pszAppId, spcreatecontext);
 
@@ -4081,7 +4081,7 @@ namespace core
    ::user::document * application::open_document_file(const char * lpszFileName)
    {
       ASSERT(Application.m_pdocmanager != NULL);
-      sp(::create_context) cc(allocer());
+      sp(::create) cc(allocer());
       cc->m_spCommandLine->m_varFile = lpszFileName;
       return (Application.m_pdocmanager->open_document_file(cc));
    }

@@ -148,7 +148,7 @@ namespace user
 
       // if ok, wire in the current ::user::document
       ASSERT(::user::impact::get_document() == NULL);
-      sp(::create_context) pContext = (::create_context *) pcreate->m_lpcreatestruct->lpCreateParams;
+      sp(::create) pContext = (::create *) pcreate->m_lpcreatestruct->lpCreateParams;
 
       // A ::user::impact should be created in a given context!
       if (pContext != NULL && pContext->m_user->m_pCurrentDoc != NULL)
@@ -565,7 +565,7 @@ namespace user
 
       sp(type) info(pinfo);
 
-      sp(::create_context) cacc(allocer());
+      sp(::create) cacc(allocer());
 
       stacker < ::aura::create_context > cc(cacc->m_user);
 
@@ -604,7 +604,7 @@ namespace user
 
       sp(type) info(pinfo);
 
-      sp(::create_context) cacc(pdoc->allocer());
+      sp(::create) cacc(pdoc->allocer());
 
       stacker < ::aura::create_context > cc(cacc->m_user);
 
@@ -618,7 +618,7 @@ namespace user
 
    }
 
-   ::user::interaction * impact::s_create_view(::create_context * pContext,const RECT & rect, ::user::interaction * pwndParent,id id)
+   ::user::interaction * impact::s_create_view(::create * pContext,const RECT & rect, ::user::interaction * pwndParent,id id)
    {
 
       // trans   ASSERT(pwndParent->get_handle() != NULL);
@@ -1032,7 +1032,7 @@ namespace user
 
 
    /*
-   sp(::user::interaction) impact::CreateView(sp(::create_context) pContext, UINT nID)
+   sp(::user::interaction) impact::CreateView(sp(::create) pContext, UINT nID)
    {
    ASSERT(IsWindow());
    ASSERT(pContext != NULL);
@@ -1050,7 +1050,7 @@ namespace user
 
    // views are always created with a border!
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
-   rect(0,0,0,0), this, nID, (sp(::create_context)) pContext))
+   rect(0,0,0,0), this, nID, (sp(::create)) pContext))
    {
    TRACE0("Warning: could not create ::user::impact for frame.\n");
    return NULL;        // can't continue without a ::user::impact
@@ -1069,7 +1069,7 @@ namespace user
    }*/
 
 
-   /*sp(::user::interaction) impact::CreateView(sp(::create_context) pContext, UINT nID, ::user::interaction  * pwndParent)
+   /*sp(::user::interaction) impact::CreateView(sp(::create) pContext, UINT nID, ::user::interaction  * pwndParent)
    {
    ASSERT(pwndParent->IsWindow());
    ASSERT(pContext != NULL);
@@ -1087,7 +1087,7 @@ namespace user
 
    // views are always created with a border!
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
-   rect(0,0,0,0), pwndParent, nID, (sp(::create_context)) pContext))
+   rect(0,0,0,0), pwndParent, nID, (sp(::create)) pContext))
    {
    TRACE0("Warning: could not create ::user::impact for frame.\n");
    return NULL;        // can't continue without a ::user::impact

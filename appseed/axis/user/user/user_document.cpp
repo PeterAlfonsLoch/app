@@ -90,7 +90,7 @@ namespace user
    }
 
 
-   void document::on_create(sp(::create_context) pcreatecontext)
+   void document::on_create(sp(::create) pcreatecontext)
    {
 
       //::user::document::on_alloc(papp);
@@ -1008,7 +1008,7 @@ namespace user
    }
 
    
-   void document::on_request(sp(::create_context) pcreatecontext)
+   void document::on_request(sp(::create) pcreatecontext)
    {
 
       if(!on_open_document(pcreatecontext->m_spCommandLine->m_varFile))

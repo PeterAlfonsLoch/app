@@ -296,7 +296,7 @@ namespace user
 
 
       virtual bool create_window(const RECT & rect, ::user::interaction *pparent,id id);
-      virtual bool create_window(const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, const RECT & rect, ::user::interaction * pParentWnd,id id, sp(::create_context) pContext = NULL);
+      virtual bool create_window(const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, const RECT & rect, ::user::interaction * pParentWnd,id id, sp(::create) pContext = NULL);
       virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle, const RECT & rect,  ::user::interaction * pParentWnd,id id,LPVOID lpParam = NULL);
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType = adjustBorder);

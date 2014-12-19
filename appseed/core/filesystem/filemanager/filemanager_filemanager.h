@@ -47,7 +47,7 @@ namespace filemanager
       string get_initial_browse_path(const char * pszDefault = NULL);
 
 
-      virtual void on_request(sp(::create_context) pcreatecontext);
+      virtual void on_request(sp(::create) pcreatecontext);
 
 
    };

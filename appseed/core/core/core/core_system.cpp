@@ -725,7 +725,7 @@ namespace core
       }
    }
 
-   void system::on_request(sp(::create_context) pcreatecontext)
+   void system::on_request(sp(::create) pcreatecontext)
    {
 
       sp(::core::platform) psession = get_session(pcreatecontext->m_spCommandLine->m_iEdge,pcreatecontext->m_spCommandLine->m_pbiasCreate);

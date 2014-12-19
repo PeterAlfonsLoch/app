@@ -545,7 +545,7 @@ namespace userex
       sp(::form_document) pdoc;
       if(m_ptemplateForm == NULL)
          return NULL;
-      sp(::create_context) createcontext(allocer());
+      sp(::create) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_puiAlloc                       = pview;
@@ -593,7 +593,7 @@ namespace userex
 
       }
 
-      sp(::create_context) createcontext(papp->allocer());
+      sp(::create) createcontext(papp->allocer());
 
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
@@ -615,7 +615,7 @@ namespace userex
       sp(::form_document) pdoc;
       if(m_ptemplateChildForm == NULL)
          return NULL;
-      sp(::create_context) createcontext(allocer());
+      sp(::create) createcontext(allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_puiAlloc                       = pview;
@@ -641,7 +641,7 @@ namespace userex
       if(m_ptemplateChildForm == NULL)
          return NULL;
       sp(::form_document) pdoc;
-      sp(::create_context) createcontext(pwndParent->allocer());
+      sp(::create) createcontext(pwndParent->allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       pdoc = (m_ptemplateChildForm->open_document_file(createcontext));
@@ -655,7 +655,7 @@ namespace userex
    ::user::document * userex::hold(sp(::user::interaction) pui)
    {
 
-      sp(::create_context) createcontext(pui->allocer());
+      sp(::create) createcontext(pui->allocer());
 
       createcontext->m_bMakeVisible    = false;
       createcontext->m_bHold           = false;

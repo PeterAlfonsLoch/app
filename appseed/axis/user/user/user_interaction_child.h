@@ -75,7 +75,7 @@ namespace user
          const char * lpszWindowName,uint32_t dwStyle,
          const RECT & rect,
          ::user::interaction * pParentWnd,id id,
-         sp(::create_context) pContext = NULL);
+         sp(::create) pContext = NULL);
       virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName,
          const char * lpszWindowName,uint32_t dwStyle,
          const RECT & rect,

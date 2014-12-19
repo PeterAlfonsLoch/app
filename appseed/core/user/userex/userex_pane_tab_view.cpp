@@ -220,7 +220,7 @@ namespace userex
       else if(pcreatordata->m_id == "tabbed_file_manager")
       {
 
-         sp(::create_context) cc(allocer());
+         sp(::create) cc(allocer());
          cc->m_bTransparentBackground     = true;
          cc->m_bMakeVisible               = true;
          cc->m_puiParent                  = pcreatordata->m_pholder;

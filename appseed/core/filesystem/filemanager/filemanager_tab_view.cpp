@@ -136,7 +136,7 @@ namespace filemanager
       if (pcreatordata->m_id == "add_location"
          || pcreatordata->m_id == "replace_name")
       {
-         sp(::create_context) createcontext(allocer());
+         sp(::create) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = pcreatordata->m_pholder;
          sp(form_document) pdoc = Platform.filemanager().m_ptemplateForm->open_document_file(createcontext);
@@ -171,7 +171,7 @@ namespace filemanager
       }
       else if(pcreatordata->m_id == "filemanager::operation")
       {
-         sp(::create_context) createcontext(allocer());
+         sp(::create) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = this;
          //::exception::throw_not_implemented(get_app());
@@ -194,7 +194,7 @@ namespace filemanager
          pfilemanagerdata->m_bFileSize = true;
          pfilemanagerdata->m_bTransparentBackground = true;
 
-         sp(::create_context) createcontext(allocer());
+         sp(::create) createcontext(allocer());
 
          createcontext->m_bMakeVisible = true;
          createcontext->m_puiParent = pcreatordata->m_pholder;

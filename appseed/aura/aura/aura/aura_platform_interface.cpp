@@ -34,7 +34,7 @@ namespace aura
    }
 
 
-   sp(::aura::application) platform_interface::start_application(const char * pszType,const char * pszAppId,sp(::create_context) pcreatecontext)
+   sp(::aura::application) platform_interface::start_application(const char * pszType,const char * pszAppId,sp(::create) pcreatecontext)
    {
 
       return NULL;

@@ -101,7 +101,7 @@ namespace core
 
       void initialize_bergedge_application_interface();
 
-      //virtual bool create_bergedge(sp(::create_context) pcreatecontext);
+      //virtual bool create_bergedge(sp(::create) pcreatecontext);
 
       virtual void on_app_request_bergedge_callback(::aura::application * papp);
 
@@ -109,16 +109,16 @@ namespace core
 
 
       // semantics defined by application
-      virtual void request_create(sp(::create_context) pcreatecontext);
+      virtual void request_create(sp(::create) pcreatecontext);
       // main loosely coupled semantics
       // varFile   : empty, one file path, many file paths, one file object, one or more file objects to be opened
       // varQuery  : more ellaborated requests for the application - syntax and semantic defined by requested application
 
-      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create_context) pcontext);
+      virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcontext);
 
-      virtual ::user::place_holder_ptra get_place_holder(sp(::user::frame_window) pmainframe, sp(::create_context) pcontext);
+      virtual ::user::place_holder_ptra get_place_holder(sp(::user::frame_window) pmainframe, sp(::create) pcontext);
 
-      virtual bool place(sp(::user::main_frame) pmainframe, sp(::create_context) pcontext);
+      virtual bool place(sp(::user::main_frame) pmainframe, sp(::create) pcontext);
 
       virtual void request_topic_file(var & varQuery);
 
@@ -162,7 +162,7 @@ namespace core
 
       virtual service_base * allocate_new_service();
 
-      void on_request(sp(::create_context) pcreatecontext);
+      void on_request(sp(::create) pcreatecontext);
 
       //sp(::aura::application) application_get(const char * pszType, const char * pszId, bool bCreate = true, bool bSynch = true, application_bias * pbiasCreate = NULL);
 
@@ -179,7 +179,7 @@ namespace core
 
 
       virtual bool open_by_file_extension(const char * pszPathName, application_bias * pbiasCreate = NULL);
-      virtual bool open_by_file_extension(::create_context * pcc);
+      virtual bool open_by_file_extension(::create * pcc);
 
       virtual bool is_session();
 
@@ -188,7 +188,7 @@ namespace core
       virtual bool is_remote_session();
 
       using ::core::application::start_application;
-      sp(::aura::application) start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext);
+      sp(::aura::application) start_application(const char * pszType, const char * pszAppId, sp(::create) pcreatecontext);
 
 
       virtual ::visual::cursor * get_cursor();

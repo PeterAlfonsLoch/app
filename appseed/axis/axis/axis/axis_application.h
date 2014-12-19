@@ -239,7 +239,7 @@ namespace axis
 
       virtual bool final_handle_exception(::exception::exception & e);
 
-      virtual void on_service_request(sp(::create_context) pcreatecontext);
+      virtual void on_service_request(sp(::create) pcreatecontext);
 
       virtual string get_mutex_name_gen();
 
@@ -249,7 +249,7 @@ namespace axis
 
       virtual void draw2d_factory_exchange();
 
-      virtual void on_request(sp(::create_context) pcreatecontext);
+      virtual void on_request(sp(::create) pcreatecontext);
 
       virtual bool defer_initialize_twf();
 

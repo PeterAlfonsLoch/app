@@ -859,7 +859,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/primitive/primitive_command_line.h"
 #include "aura/primitive/primitive_command.h"
 #include "aura/aura/aura/aura_create_context.h"
-#include "aura/primitive/primitive_create_context.h"
+#include "aura/primitive/primitive_create.h"
 #include "aura/primitive/primitive_request_signal.h"
 
 

@@ -647,7 +647,7 @@ d.unlock();
       return TRUE;
    }
 
-   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName, DWORD dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd, id id,sp(::create_context) pContext)
+   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName, DWORD dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd, id id,sp(::create) pContext)
    {
       // can't use for desktop or pop-up windows (use create_window_ex instead)
       ASSERT(pParentWnd != NULL);

@@ -38,7 +38,7 @@ namespace user
 
       virtual void update_title();
 
-      virtual void on_create(sp(::create_context) pcreatecontext);
+      virtual void on_create(sp(::create) pcreatecontext);
 
       const string & get_title() const;
       virtual void set_title(const char * lpszTitle);
@@ -162,7 +162,7 @@ namespace user
 
 
 
-      virtual void on_request(sp(::create_context) pcreatecontext);
+      virtual void on_request(sp(::create) pcreatecontext);
 
 
 

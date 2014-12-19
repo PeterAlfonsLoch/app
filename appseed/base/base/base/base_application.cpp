@@ -1760,7 +1760,7 @@ namespace base
 
 
 
-   void application::on_request(sp(::create_context) pcreatecontext)
+   void application::on_request(sp(::create) pcreatecontext)
    {
 
       ::request_interface::on_request(pcreatecontext);
@@ -1857,7 +1857,7 @@ namespace base
       if(papp.is_null())
       {
 
-         sp(::create_context) spcreatecontext(allocer());
+         sp(::create) spcreatecontext(allocer());
 
          papp = Session.start_application("application",pszAppId,spcreatecontext);
 
@@ -1964,7 +1964,7 @@ namespace base
    //}
 
 
-   //void application::on_service_request(sp(::create_context) pcreatecontext)
+   //void application::on_service_request(sp(::create) pcreatecontext)
    //{
 
    //   if(!is_serviceable())

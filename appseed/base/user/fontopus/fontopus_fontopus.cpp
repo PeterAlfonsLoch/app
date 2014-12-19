@@ -367,7 +367,7 @@ namespace fontopus
          && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
       {
 
-         sp(::create_context) spcreatecontext(allocer());
+         sp(::create) spcreatecontext(allocer());
 
          ::aura::application * papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
 
@@ -388,7 +388,7 @@ namespace fontopus
 
 
 
-   void fontopus::on_request(sp(::create_context) pcreatecontext)
+   void fontopus::on_request(sp(::create) pcreatecontext)
    {
 
       if(pcreatecontext->m_spCommandLine.is_set()

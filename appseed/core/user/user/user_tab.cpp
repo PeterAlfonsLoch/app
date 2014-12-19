@@ -1888,7 +1888,7 @@ namespace user
    }
 
 
-   bool tab::set_cur_tab_by_id(id id, sp(::create_context) pcreatecontext)
+   bool tab::set_cur_tab_by_id(id id, sp(::create) pcreatecontext)
    {
 
       try
@@ -1932,7 +1932,7 @@ namespace user
 
       }
 
-      m_spcreatecontext = (sp(::create_context)) NULL;
+      m_spcreatecontext = (sp(::create)) NULL;
 
       return true;
 

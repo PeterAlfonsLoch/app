@@ -249,7 +249,7 @@ namespace base
       //virtual bool stop_service();
 
 
-      //virtual void on_service_request(sp(::create_context) pcreatecontext);
+      //virtual void on_service_request(sp(::create) pcreatecontext);
 
       virtual sp(::aura::application) assert_running(const char * pszAppId);
 
@@ -292,7 +292,7 @@ namespace base
       //bool safe_is_running();
 
 
-      virtual void on_request(sp(::create_context) pcreatecontext);
+      virtual void on_request(sp(::create) pcreatecontext);
 
       //virtual bool defer_initialize_twf();
 

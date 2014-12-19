@@ -23,9 +23,9 @@ public:
 
    virtual var run();
 
-   virtual void request_create(sp(::create_context) pcreationcontext);
+   virtual void request_create(sp(::create) pcreationcontext);
 
-   virtual void on_request(sp(::create_context) pcreationcontext);
+   virtual void on_request(sp(::create) pcreationcontext);
 
 
    // should transform the following command in a "command_line", a command line can/should/must/shall/ought to be virtually anything
@@ -35,7 +35,7 @@ public:
 
    virtual bool is_thread();
 
-   virtual void consolidate(::create_context * pcreatecontext);
+   virtual void consolidate(::create * pcreatecontext);
    virtual void consolidate(::command_thread * pthread);
 
    virtual var & property(const char * pszKey);

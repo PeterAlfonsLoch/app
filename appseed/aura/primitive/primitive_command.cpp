@@ -26,7 +26,7 @@ namespace primitive
    }
 
 
-   void command::on_request(sp(::create_context) pcreatecontext)
+   void command::on_request(sp(::create) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);

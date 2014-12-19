@@ -25,7 +25,7 @@ namespace filemanager
       m_itema = itema;
       if(itema.get_count() <= 0)
          return NULL;
-      sp(::create_context) createcontext(allocer());
+      sp(::create) createcontext(allocer());
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = puieParent;
       sp(::form_document) pdoc = (m_ptemplatePane->open_document_file(createcontext));

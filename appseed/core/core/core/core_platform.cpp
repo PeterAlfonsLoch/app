@@ -265,13 +265,13 @@ namespace core
    }
 
 
-   //bool platform::create_bergedge(sp(::create_context) pcreatecontext)
+   //bool platform::create_bergedge(sp(::create) pcreatecontext)
    //{
 
    //   if(m_pbergedgedocument == NULL)
    //   {
 
-   //      sp(::create_context) createcontextBergedge(allocer());
+   //      sp(::create) createcontextBergedge(allocer());
 
    //      createcontextBergedge.oattrib(pcreatecontext);
 
@@ -291,7 +291,7 @@ namespace core
    //      if(m_pplatformdocument == NULL)
    //      {
 
-   //         sp(::create_context) createcontextPlatform;
+   //         sp(::create) createcontextPlatform;
 
    //         createcontextPlatform.oattrib(pcreatecontext);
 
@@ -372,10 +372,10 @@ namespace core
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void platform::on_request(sp(::create_context) pcreatecontext)
+   void platform::on_request(sp(::create) pcreatecontext)
    {
 
-      TRACE("::core::platform::on_request(sp(::create_context))");
+      TRACE("::core::platform::on_request(sp(::create))");
 
 
       if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1)
@@ -656,7 +656,7 @@ namespace core
    }
 
 
-   sp(::aura::application) platform::start_application(const char * pszType, const char * pszAppId, sp(::create_context) pcreatecontext)
+   sp(::aura::application) platform::start_application(const char * pszType, const char * pszAppId, sp(::create) pcreatecontext)
    {
 
       string strApp(pszAppId);
@@ -742,7 +742,7 @@ namespace core
    bool platform::open_by_file_extension(const char * pszPathName, application_bias * pbiasCreate)
    {
 
-      sp(::create_context) cc(allocer());
+      sp(::create) cc(allocer());
 
       cc->m_spCommandLine->m_varFile = pszPathName;
 
@@ -756,7 +756,7 @@ namespace core
    }
 
 
-   bool platform::open_by_file_extension(::create_context * pcreatecontext)
+   bool platform::open_by_file_extension(::create * pcreatecontext)
    {
 
       string strId;
@@ -874,7 +874,7 @@ namespace core
    //   }
    //
 
-   void platform::request_create(sp(::create_context) pcreatecontext)
+   void platform::request_create(sp(::create) pcreatecontext)
    {
 
       //      if(m_pbergedgeInterface != NULL)
@@ -1072,7 +1072,7 @@ namespace core
    }*/
    //
    //
-   //   sp(::user::interaction) platform::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create_context) pcreatecontext)
+   //   sp(::user::interaction) platform::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcreatecontext)
    //   {
    //
    //
@@ -1159,7 +1159,7 @@ namespace core
    //
    //   }
    //
-   /*   ::user::place_holder_ptra platform::get_place_holder(sp(::user::main_frame) pmainframe, sp(::create_context) pcreatecontext)
+   /*   ::user::place_holder_ptra platform::get_place_holder(sp(::user::main_frame) pmainframe, sp(::create) pcreatecontext)
    {
 
    UNREFERENCED_PARAMETER(pcreatecontext);
@@ -1191,7 +1191,7 @@ namespace core
    }*/
 
    /*
-   bool platform::place(sp(::user::main_frame) pmainframe, sp(::create_context) pcreatecontext)
+   bool platform::place(sp(::user::main_frame) pmainframe, sp(::create) pcreatecontext)
    {
 
    get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
@@ -1522,7 +1522,7 @@ namespace core
       }
    }
 
-   sp(::user::interaction) platform::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create_context) pcreatecontext)
+   sp(::user::interaction) platform::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcreatecontext)
    {
 
 
@@ -1619,7 +1619,7 @@ namespace core
 
    }
 
-   ::user::place_holder_ptra platform::get_place_holder(sp(::user::frame_window) pmainframe, sp(::create_context) pcreatecontext)
+   ::user::place_holder_ptra platform::get_place_holder(sp(::user::frame_window) pmainframe, sp(::create) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -1650,7 +1650,7 @@ namespace core
 
    }
 
-   bool platform::place(sp(::user::main_frame) pmainframe, sp(::create_context) pcreatecontext)
+   bool platform::place(sp(::user::main_frame) pmainframe, sp(::create) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);

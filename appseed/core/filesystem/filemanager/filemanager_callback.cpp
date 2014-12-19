@@ -43,7 +43,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(actioncontext);
    }
 
-   void callback::on_request(sp(::create_context) pcreatecontext)
+   void callback::on_request(sp(::create) pcreatecontext)
    {
 
       Application.request_create(pcreatecontext);

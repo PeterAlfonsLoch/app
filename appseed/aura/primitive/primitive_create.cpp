@@ -2,7 +2,7 @@
 
 
 
-create_context::create_context(::aura::application * papp) :
+create::create(::aura::application * papp) :
    element(papp),
    command(papp),
    m_spApplicationBias(allocer()),
@@ -20,7 +20,7 @@ create_context::create_context(::aura::application * papp) :
 
 }
 
-create_context::create_context(sp(::command_thread) pthreadParent) :
+create::create(sp(::command_thread) pthreadParent) :
    element(pthreadParent->get_app()),
    command(pthreadParent->get_app()),
    m_spApplicationBias(allocer()),
@@ -39,7 +39,7 @@ create_context::create_context(sp(::command_thread) pthreadParent) :
 
 }
 
-create_context::create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible, ::aura::interaction * puiParent) :
+create::create(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible, ::aura::interaction * puiParent) :
    element(pthreadParent->get_app()),
    command(pthreadParent->get_app()),
    m_spApplicationBias(allocer()),
@@ -59,7 +59,7 @@ create_context::create_context(sp(::command_thread) pthreadParent, var varFile, 
 
 }
 
-create_context::create_context(const create_context & createcontext) :
+create::create(const create & createcontext) :
    element(createcontext.get_app()),
    command(createcontext.get_app()),
    m_spApplicationBias(allocer()),
@@ -71,11 +71,11 @@ create_context::create_context(const create_context & createcontext) :
    operator = (createcontext);
 }
 
-create_context::~create_context()
+create::~create()
 {
 }
 
-create_context & create_context::operator = (const create_context & createcontext)
+create & create::operator = (const create & createcontext)
 {
 
    m_bMakeVisible             = createcontext.m_bMakeVisible;
@@ -88,7 +88,7 @@ create_context & create_context::operator = (const create_context & createcontex
    m_spApplicationBias        .oattrib(createcontext.m_spApplicationBias);
    m_spCommandLine            .oattrib(createcontext.m_spCommandLine);
 
-   m_pthreadParent->consolidate((sp(::create_context)) this);
+   m_pthreadParent->consolidate((sp(::create)) this);
 
    return *this;
 
