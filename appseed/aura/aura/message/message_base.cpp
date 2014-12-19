@@ -75,7 +75,7 @@ namespace message
    }
 
 
-   void base::set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void base::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
    {
 
       m_pwnd            = pwnd;
@@ -87,7 +87,7 @@ namespace message
    }
 
 
-   void base::set(::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
+   void base::set(::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
    {
 
       set(pwnd,uiMessage,wparam,lparam,m_lresult);
@@ -111,7 +111,7 @@ namespace message
    }
 
 
-} // namespace user
+} // namespace message
 
 
 
