@@ -119,7 +119,7 @@ namespace message
 
       sp(::signal_details) get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam);
 
-      //sp(::signal_details) get_base(LPMESSAGE lpmsg);
+      sp(::signal_details) get_base(LPMESSAGE lpmsg);
 
       void RemoveMessageHandler(signalizable* psignalizable);
 

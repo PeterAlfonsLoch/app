@@ -48,12 +48,12 @@ namespace message
 
    }
 
-   //sp(::signal_details) dispatch::get_base(LPMESSAGE lpmsg)
-   //{
+   sp(::signal_details) dispatch::get_base(LPMESSAGE lpmsg)
+   {
 
-   //   return m_pauraapp->get_message_base(lpmsg);
+      return m_pauraapp->get_message_base(lpmsg);
 
-   //}
+   }
 
 
    dispatch::dispatch()
