@@ -384,3 +384,10 @@ struct CPrintInfo;          // print preview customization info
 // extra core API defined TTF_ flags for TOOLINFO::uFlags
 #define TTF_NOTBUTTON       0x80000000L // no status help on buttondown
 #define TTF_ALWAYSTIP       0x40000000L // always show the tip even if not active
+
+
+
+
+
+
+

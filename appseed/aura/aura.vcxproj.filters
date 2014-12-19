@@ -2096,6 +2096,9 @@
     <ClInclude Include="aura\message\message_base.h">
       <Filter>Header Files\aura\message</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\aura_command_target.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3420,6 +3423,9 @@
     </ClCompile>
     <ClCompile Include="aura\message\message_base.cpp">
       <Filter>Source Files\aura\message</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_command_target.cpp">
+      <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
