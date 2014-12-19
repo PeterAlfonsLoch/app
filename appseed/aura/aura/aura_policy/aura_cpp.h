@@ -715,7 +715,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "user/user/user_key_enum.h"
 #include "aura/aura/message/message.h"
 //#include "aura/user/user/user_check_interface.h"
-#include "aura/aura/aura/aura_command_target.h"
+//#include "aura/aura/aura/aura_command_target.h"
 //#include "user/user/user_schema.h"
 //#include "user/user/user_schema_simple_impl.h"
 //#include "user/user/user_schema_layered_frame.h"
