@@ -616,6 +616,17 @@ namespace crypto
    }
 
 
+   string crypto::nessie(const char * psz)
+   {
+
+      primitive::memory mem;
+
+      mem.assign(psz,strlen(psz));
+
+      return nessie(mem);
+
+   }
+
 
    string crypto::md5(const primitive::memory & mem)
    {

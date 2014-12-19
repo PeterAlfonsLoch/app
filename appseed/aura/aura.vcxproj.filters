@@ -2941,9 +2941,6 @@
     <ClCompile Include="aura\os\ansios\ansios_multithreading.cpp">
       <Filter>Source Files\aura\os\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\android\android_c.c">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\math\math_natural.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
@@ -2957,9 +2954,6 @@
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="framework_c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\windows\windows_base_file.cpp">
@@ -3426,6 +3420,9 @@
     </ClCompile>
     <ClCompile Include="user\user\aaa_want_to_remove_user_check_interface.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\android_c.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

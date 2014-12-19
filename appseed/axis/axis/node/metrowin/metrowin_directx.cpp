@@ -8,22 +8,6 @@ using namespace Windows::Graphics::Display;
 using namespace D2D1;
 
 
-static mutex * s_pmutex = NULL;
-
-mutex & draw2d_direct2_mutex()
-{
-
-   return *s_pmutex;
-
-}
-
-
-void init_draw2d_direct2_mutex(::aura::application * papp)
-{
-
-   s_pmutex = new mutex(papp);
-
-}
 
 
 namespace metrowin
@@ -36,8 +20,6 @@ namespace metrowin
       m_dpi(-1.0f),
       m_mutexDc(papp)
    {
-
-      init_draw2d_direct2_mutex(papp);
 
       m_bInitialized = false;
    }

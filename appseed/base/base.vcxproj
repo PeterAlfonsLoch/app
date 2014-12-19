@@ -1980,8 +1980,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\compress\zip\zip_internal.h" />
     <ClInclude Include="base\crypto\crypto.h" />
     <ClInclude Include="base\crypto\crypto_crypto.h" />
-    <ClInclude Include="base\crypto\crypto_md5.h" />
-    <ClInclude Include="base\crypto\crypto_nessie.h" />
+    <ClInclude Include="base\crypto\aaa_want_to_remove_crypto_md5.h" />
+    <ClInclude Include="base\crypto\aaa_want_to_remove_crypto_nessie.h" />
     <ClInclude Include="base\geoip\geoip.h" />
     <ClInclude Include="base\geoip\geoip_city.h" />
     <ClInclude Include="base\geoip\geoip_internal.h" />

@@ -5,7 +5,7 @@
 #endif
 
 
-#ifdef LINUX
+#if defined(LINUX)
 #include <unistd.h>
 #endif
 
@@ -245,11 +245,11 @@ int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( c
    FILE *comp_fh, *cur_db_fh, *gi_fh;
    gzFile gz_fh;
    char * file_path_gz, * file_path_test;
-//   MD5_CTX context;
-//   uchar buffer[1024], digest[16];
-   uchar buffer[1024];
+   MD5_CTX context;
+   uchar buffer[1024], digest[16];
+//   uchar buffer[1024];
    char hex_digest[34] = "00000000000000000000000000000000\0";
-//   uint32_t i;
+   uint32_t i;
    GeoIP * gi;
    char * db_info;
    char block[BLOCK_SIZE];
@@ -263,23 +263,28 @@ int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( c
     GeoIP_printf(f,"%s%s",  NoCurrentDB, GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
    } else {
 
-      ::crypto::md5::context ctx(get_thread_app());
+//      MD5_CTX context;
+
+      //MD5_Init(&ctx);
+
+      //::crypto::md5::context ctx(get_thread_app());
 
 
-      //MD5_Init(&context);
+      MD5_Init(&context);
       while ((len = fread (buffer, 1, 1024, cur_db_fh)) > 0)
-        // MD5_Update (&context, buffer, (uint32_t) len);
-         ctx.update(buffer, len);
-      //MD5_Final (buffer, &context);
-      //memcpy(digest,buffer,16);
+         MD5_Update (&context, buffer, (uint32_t) len);
+        // MD5_Update(&ctx, buffer, len);
+      MD5_Final (buffer, &context);
+      memcpy(digest,buffer,16);
       fclose (cur_db_fh);
-      //for (i = 0; i < 16; i++) {
-        //  "%02x" will write 3 chars
-         //snprintf (&hex_digest[2*i], 3, "%02x", digest[i]);
-      //}
-      string strHex = ctx.to_hex();
-      strHex.make_lower();
-    GeoIP_printf(f, MD5Info, strHex.c_str());
+      for (i = 0; i < 16; i++) {
+       //  "%02x" will write 3 chars
+         snprintf (&hex_digest[2*i], 3, "%02x", digest[i]);
+      }
+      GeoIP_printf(f,MD5Info, hex_digest);
+      //string strHex = ctx.to_hex();
+      //strHex.make_lower();
+//    GeoIP_printf(f, MD5Info, strHex.c_str());
    }
 
    hostlist = GeoIP_get_host_or_proxy();
@@ -515,13 +520,13 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
    FILE *comp_fh, *cur_db_fh, *gi_fh;
    gzFile gz_fh;
    char * file_path_gz, * file_path_test;
-//   MD5_CTX context;
-//   MD5_CTX context2;
+   MD5_CTX context;
+   MD5_CTX context2;
    uchar buffer[1024];
-//   uchar digest[16] ,digest2[16];
+   uchar digest[16] ,digest2[16];
    char hex_digest[33] = "0000000000000000000000000000000\0";
    char hex_digest2[33] = "0000000000000000000000000000000\0";
-//   uint32_t i;
+   uint32_t i;
    char *f_str;
    GeoIP * gi;
    char * db_info;
@@ -607,17 +612,17 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
    if ((cur_db_fh = fopen (geoipfilename, "rb")) == NULL) {
     GeoIP_printf(f, NoCurrentDB, geoipfilename);
    } else {
-      ::crypto::md5::context ctx(get_thread_app());
-      //MD5_Init(&context);
+//      ::crypto::md5::context ctx(get_thread_app());
+      MD5_Init(&context);
       while ((len = fread (buffer, 1, 1024, cur_db_fh)) > 0)
-         ctx.update(buffer, len);
-        // MD5_Update (&context, buffer, (uint32_t) len);
-//      MD5_Final (buffer, &context);
-  //    memcpy(digest,buffer,16);
+        // ctx.update(buffer, len);
+         MD5_Update (&context, buffer, (uint32_t) len);
+      MD5_Final (buffer, &context);
+    memcpy(digest,buffer,16);
       fclose (cur_db_fh);
-    //  for (i = 0; i < 16; i++)
-      //   sprintf (&hex_digest[2*i], "%02x", digest[i]);
-      strcpy(hex_digest, ctx.to_hex());
+      for (i = 0; i < 16; i++)
+         sprintf (&hex_digest[2*i], "%02x", digest[i]);
+      //strcpy(hex_digest, ctx.to_hex());
       to_lower(hex_digest);
     GeoIP_printf(f, MD5Info, hex_digest );
    }
@@ -687,7 +692,9 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
          GeoIP_printf(f, "client ip address: %s\n",ipaddress);
       }
       free(buf);
-//xxx      close(sock);
+#if defined(LINUX)
+      close(sock);
+#endif
    }
 
    ipaddress = client_ipaddr[0];
@@ -695,18 +702,18 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
    /* make a md5 sum of ip address and license_key and store it in hex_digest2 */
    request_uri_len = sizeof(char) * 2036;
    request_uri = (char *) malloc(request_uri_len);
-   ::crypto::md5::context ctx2(get_thread_app());
-//   MD5_Init(&context2);
-//   uchar bufMd5[16];
-   ctx2.update(license_key,12);
-   ctx2.update(ipaddress, strlen(ipaddress));
-//   MD5_Update (&context2, (byte *)license_key, 12);//add license key to the md5 sum
-//   MD5_Update (&context2, (byte *)ipaddress, (uint32_t) strlen(ipaddress));//add ip address to the md5 sum
-//   MD5_Final (bufMd5, &context2);
-//   memcpy(digest2, bufMd5,16);
-  // for (i = 0; i < 16; i++)
-    //  snprintf (&hex_digest2[2*i], 3, "%02x", digest2[i]);// change the digest to a hex digest
-   strcpy(hex_digest2, ctx2.to_hex());
+   //::crypto::md5::context ctx2(get_thread_app());
+   MD5_Init(&context2);
+   uchar bufMd5[16];
+//   ctx2.update(license_key,12);
+   //ctx2.update(ipaddress, strlen(ipaddress));
+   MD5_Update (&context2, (byte *)license_key, 12);//add license key to the md5 sum
+   MD5_Update (&context2, (byte *)ipaddress, (uint32_t) strlen(ipaddress));//add ip address to the md5 sum
+   MD5_Final (bufMd5, &context2);
+   memcpy(digest2, bufMd5,16);
+   for (i = 0; i < 16; i++)
+      snprintf (&hex_digest2[2*i], 3, "%02x", digest2[i]);// change the digest to a hex digest
+   //strcpy(hex_digest2, ctx2.to_hex());
    to_lower(hex_digest2);
    if (verbose == 1) {
       GeoIP_printf(f, "md5sum of ip address and license key is %s \n",hex_digest2);

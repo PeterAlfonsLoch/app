@@ -623,12 +623,6 @@
     <ClInclude Include="base\crypto\crypto_crypto.h">
       <Filter>Header Files\base\crypto</Filter>
     </ClInclude>
-    <ClInclude Include="base\crypto\crypto_md5.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="base\crypto\crypto_nessie.h">
-      <Filter>Header Files\base\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="net\mail\mail.h">
       <Filter>Header Files\net\mail</Filter>
     </ClInclude>
@@ -985,6 +979,12 @@
     </ClInclude>
     <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h">
       <Filter>Header Files\net\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\aaa_want_to_remove_crypto_md5.h">
+      <Filter>Header Files\base\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="base\crypto\aaa_want_to_remove_crypto_nessie.h">
+      <Filter>Header Files\base\crypto</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1692,9 +1692,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
