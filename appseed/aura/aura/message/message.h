@@ -18,7 +18,7 @@
 #include "message_definition.h"
 #include "message_dispatch.h"
 #undef new
-//#include "message_base.h"
+#include "message_base.h"
 //#include "message_user.h"
 #define new AURA_NEW
 #include "message.inl"

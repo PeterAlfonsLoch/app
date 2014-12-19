@@ -2112,6 +2112,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\exception\exception_verisimple.h" />
     <ClInclude Include="aura\exception\exception_void_implementation.h" />
     <ClInclude Include="aura\message\message.h" />
+    <ClInclude Include="aura\message\message_base.h" />
     <ClInclude Include="aura\message\message_cross_windows.h" />
     <ClInclude Include="aura\message\message_definition.h" />
     <ClInclude Include="aura\message\message_dispatch.h" />
@@ -3258,6 +3259,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\exception\exception_throw.cpp" />
     <ClCompile Include="aura\exception\exception_verisimple.cpp" />
     <ClCompile Include="aura\message\message.cpp" />
+    <ClCompile Include="aura\message\message_base.cpp" />
     <ClCompile Include="aura\message\message_dispatch.cpp" />
     <ClCompile Include="aura\node\android\android_android.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>

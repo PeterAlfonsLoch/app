@@ -1977,7 +1977,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\compress\bzip_stream.h" />
     <ClInclude Include="axis\compress\compress.h" />
     <ClInclude Include="axis\compress\gzip_stream.h" />
-    <ClInclude Include="axis\message\message_base.h" />
     <ClInclude Include="axis\message\message_user.h" />
     <ClInclude Include="axis\node\android\android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
@@ -3140,7 +3139,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\compress\bzip_stream.cpp" />
     <ClCompile Include="axis\compress\gzip_stream.cpp" />
     <ClCompile Include="axis\message\message.cpp" />
-    <ClCompile Include="axis\message\message_base.cpp" />
     <ClCompile Include="axis\message\message_user.cpp" />
     <ClCompile Include="axis\node\android\android_android.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>

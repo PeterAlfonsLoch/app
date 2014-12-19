@@ -20,7 +20,7 @@ namespace message
    }
 
 
-   base::base(::aura::application * papp,::user::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
+   base::base(::aura::application * papp,::aura::interaction * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
       element(papp),
       signal_details(papp)
    {
