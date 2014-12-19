@@ -3227,7 +3227,7 @@ namespace aura
    }
 
 
-   void application::dispatch_user_message(::message::base * pbase)
+   void application::dispatch_user_message(::signal_details * pbase)
    {
 
       UNREFERENCED_PARAMETER(pbase);

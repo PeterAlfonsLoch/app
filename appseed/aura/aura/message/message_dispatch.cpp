@@ -76,8 +76,30 @@ namespace message
    }
 
 
-   void dispatch::_user_message_handler(signal_details * pobj)
+   void dispatch::_user_message_handler(signal_details * pbase)
    {
+
+      if(pbase->m_uiMessage == (WM_APP + 2014))
+      {
+         sp(::signal_details) pbase2 = pbase->m_lparam;
+         _user_message_handler(pbase2);
+         if(pbase2->m_wparam != 0)
+         {
+            delete pbase;
+         }
+         return;
+      }
+      int i = 0;
+      Signal * pSignal;
+      while((pSignal = m_signala.GetSignal(pbase->m_uiMessage,0,0,i)) != NULL)
+      {
+         class ::signal * psignal = pSignal->m_psignal;
+         pbase->m_psignal = psignal;
+         psignal->emit(pbase);
+         if(pbase->m_bRet)
+            return;
+      }
+
 
    }
 
@@ -340,7 +362,7 @@ namespace message
 
       synch_lock ml(&message_dispatch_mutex());
 
-      if(m_pfnDispatchWindowProc == &dispatch::_user_message_handler)
+      if(m_pfnDispatchWindowProc == _calc_user_message_handler())
       {
 
          ml.unlock();
@@ -351,7 +373,7 @@ namespace message
 
       }
 
-      m_pfnDispatchWindowProc = &dispatch::_user_message_handler;
+      m_pfnDispatchWindowProc = _calc_user_message_handler();
 
       _on_start_user_message_handler();
 

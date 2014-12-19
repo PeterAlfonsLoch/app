@@ -108,7 +108,7 @@ namespace axis
       virtual bool is_window(::user::interaction * pui);
       virtual LRESULT send_message(::user::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
       virtual oswindow get_safe_handle(::user::interaction * pui);
-      virtual void dispatch_user_message(::message::base * pbase);
+      virtual void dispatch_user_message(::signal_details * pbase);
       virtual ::user::interaction * get_parent(::user::interaction * pui);
       virtual bool enable_window(::user::interaction * pui,bool bEnable = true);
       virtual bool set_window_text(::user::interaction * pui,const string & strText);

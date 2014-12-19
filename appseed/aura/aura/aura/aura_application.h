@@ -138,7 +138,7 @@ namespace aura
       virtual bool is_window(::aura::interaction * pui);
       virtual LRESULT send_message(::aura::interaction * pui, UINT message, WPARAM wparam = 0, lparam lparam = 0);
       virtual oswindow get_safe_handle(::aura::interaction * pui);
-      virtual void dispatch_user_message(::message::base * pbase);
+      virtual void dispatch_user_message(::signal_details * pobj);
       virtual ::aura::interaction * get_parent(::aura::interaction * pui);
       virtual bool enable_window(::aura::interaction * pui, bool bEnable = true);
       virtual bool set_window_text(::aura::interaction * pui, const string & strText);

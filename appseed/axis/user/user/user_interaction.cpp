@@ -1500,7 +1500,7 @@ namespace user
    bool interaction::post(::message::base * pbase)
    {
 
-      return post_message(WM_APP + 2014,1,(LPARAM)pbase);
+      return post_message(WM_APP + 2014,1,(LPARAM)(::signal_details *)pbase );
 
    }
 
