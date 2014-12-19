@@ -402,14 +402,7 @@ namespace aura
 {
 
 
-   namespace user
-   {
-
-
-      class interaction;
-
-
-   } // namespace user
+   class interaction;
 
 
 } // namespace aura
@@ -784,7 +777,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 #include "aura/user/simple/simple_message_box.h"
 
-#include "aura/user/user/user.h"
+#include "aura/aura/aura/aura_user.h"
 
 #include "aura/aura/aura/aura_log.h"
 #include "aura/aura/aura/aura_trace.h"
@@ -864,7 +857,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/aura/aura/aura_plex_heap_impl.h"
 #include "aura/primitive/primitive_command_line.h"
 #include "aura/primitive/primitive_command.h"
-#include "aura/user/user/user_create_context.h"
+#include "aura/aura/aura/aura_create_context.h"
 #include "aura/primitive/primitive_create_context.h"
 #include "aura/primitive/primitive_request_signal.h"
 
