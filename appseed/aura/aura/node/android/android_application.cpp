@@ -2,6 +2,7 @@
 #include "android.h"
 #include <dlfcn.h>
 #include <link.h>
+#include <pthread.h>
 
 
 namespace android

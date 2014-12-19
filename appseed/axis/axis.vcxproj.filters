@@ -1312,6 +1312,9 @@
     <ClCompile Include="axis\message\message.cpp">
       <Filter>Source Files\axis\message</Filter>
     </ClCompile>
+    <ClCompile Include="axis\message\message_trace.cpp">
+      <Filter>Source Files\axis\message</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="axis\axis\axis.inl">

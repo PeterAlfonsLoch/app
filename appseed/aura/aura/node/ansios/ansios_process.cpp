@@ -17,6 +17,8 @@ extern char **environ;
 #include <pthread.h>
 #include <stdlib.h>
 extern char * const * environ;
+#elif defined(ANDROID)
+#include <pthread.h>
 #endif
 
 string ca2_module_folder_dup();
