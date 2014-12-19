@@ -4,6 +4,7 @@
 /*#include <sys/ipc.h>
 #include <sys/msg.h>*/
 #include <unistd.h>
+#include <pthread.h>
 
 
 small_ipc_channel_base::small_ipc_channel_base()
@@ -208,7 +209,7 @@ bool small_ipc_rx_channel::start_receiving()
 
    m_bRun = true;
 
-   if(pthread_create(&m_thread, NULL, &small_ipc_rx_channel::receive_proc, this) != 0)
+   if(pthread_create((pthread_t *) m_pthread, NULL, &small_ipc_rx_channel::receive_proc, this) != 0)
    {
 
       m_bRunning = false;

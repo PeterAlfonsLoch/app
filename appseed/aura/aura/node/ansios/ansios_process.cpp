@@ -5,6 +5,8 @@
 #if defined(ANDROID)
 #include <sys/wait.h>
 #include <unistd.h>
+#include <pthread.h>
+#include <stdlib.h>
 #elif defined(LINUX)
 #include <sys/wait.h>
 #include <unistd.h>
@@ -17,16 +19,12 @@ extern char **environ;
 #include <pthread.h>
 #include <stdlib.h>
 extern char * const * environ;
-#elif defined(ANDROID)
-#include <pthread.h>
 #endif
 
 string ca2_module_folder_dup();
 
 
 CLASS_DECL_AURA void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
-
-
 namespace ansios
 {
 
