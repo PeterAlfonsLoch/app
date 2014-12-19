@@ -1998,6 +1998,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_heap_item.h" />
     <ClInclude Include="aura\aura\aura_heap_item_array.h" />
     <ClInclude Include="aura\aura\aura_id_pool.h" />
+    <ClInclude Include="aura\aura\aura_interaction.h" />
     <ClInclude Include="aura\aura\aura_international.h" />
     <ClInclude Include="aura\aura\aura_keep.h" />
     <ClInclude Include="aura\aura\aura_net.h" />
@@ -2044,6 +2045,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_system_str.h" />
     <ClInclude Include="aura\aura\aura_system_trace.h" />
     <ClInclude Include="aura\aura\aura_class.h" />
+    <ClInclude Include="aura\aura\aura_timer_array.h" />
+    <ClInclude Include="aura\aura\aura_timer_item.h" />
     <ClInclude Include="aura\aura\aura_trace.h" />
     <ClInclude Include="aura\aura\aura_types.h" />
     <ClInclude Include="aura\aura\aura_url.h" />
@@ -3230,11 +3233,14 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\aura\aura_assert_running_task.cpp" />
     <ClCompile Include="aura\aura\aura_gudo.cpp" />
     <ClCompile Include="aura\aura\aura_id_pool.cpp" />
+    <ClCompile Include="aura\aura\aura_interaction.cpp" />
     <ClCompile Include="aura\aura\aura_library.cpp" />
     <ClCompile Include="aura\aura\aura_net.cpp" />
     <ClCompile Include="aura\aura\aura_platform_interface.cpp" />
     <ClCompile Include="aura\aura\aura_session_interface.cpp" />
     <ClCompile Include="aura\aura\aura_static_start.cpp" />
+    <ClCompile Include="aura\aura\aura_timer_array.cpp" />
+    <ClCompile Include="aura\aura\aura_timer_item.cpp" />
     <ClCompile Include="aura\exception\exception_cancel.cpp" />
     <ClCompile Include="aura\exception\exception_parsing.cpp" />
     <ClCompile Include="aura\exception\exception_throw.cpp" />
@@ -4243,7 +4249,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_draw_interface.h" />
     <ClInclude Include="user\user\user_interaction.h" />
     <ClInclude Include="user\user\user_printer.h" />
-    <ClInclude Include="user\user\user_timer_array.h" />
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_dib.cpp" />
@@ -4305,7 +4310,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\simple\simple_message_box.cpp" />
     <ClCompile Include="user\user\aaa_want_to_remove_user_check_interface.cpp" />
     <ClCompile Include="user\user\user_create_context.cpp" />
-    <ClInclude Include="user\user\user_timer_item.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
   </ItemGroup>
@@ -4881,8 +4885,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user\user_draw_interface.cpp" />
     <ClCompile Include="user\user\user_interaction.cpp" />
     <ClCompile Include="user\user\user_printer.cpp" />
-    <ClCompile Include="user\user\user_timer_array.cpp" />
-    <ClCompile Include="user\user\user_timer_item.cpp" />
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>

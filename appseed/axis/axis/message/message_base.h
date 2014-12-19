@@ -9,7 +9,7 @@ namespace message
 {
 
 
-   class CLASS_DECL_AURA base:
+   class CLASS_DECL_AXIS base:
       public signal_details
    {
    public:
