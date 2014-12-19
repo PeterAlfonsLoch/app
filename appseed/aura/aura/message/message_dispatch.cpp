@@ -33,25 +33,25 @@ namespace message
 //      return true;
 //   }
 
-   sp(::message::base) dispatch::get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam)
-   {
+   //sp(::signal_details) dispatch::get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam)
+   //{
 
-      sp(::message::base) pbase;
+   //   sp(::message::base) pbase;
 
-      pbase = canew(::message::base(get_app()));
+   //   pbase = canew(::message::base(get_app()));
 
-      pbase->set(NULL,uiMessage,wparam,lparam);
+   //   pbase->set(NULL,uiMessage,wparam,lparam);
 
-      return pbase;
+   //   return pbase;
 
-   }
+   //}
 
-   sp(::message::base) dispatch::get_base(LPMESSAGE lpmsg)
-   {
+   //sp(::message::base) dispatch::get_base(LPMESSAGE lpmsg)
+   //{
 
-      return m_pauraapp->get_message_base(lpmsg);
+   //   return m_pauraapp->get_message_base(lpmsg);
 
-   }
+   //}
 
 
    dispatch::dispatch()

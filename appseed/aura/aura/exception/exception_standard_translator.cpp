@@ -16,6 +16,11 @@ It is provided "as is" without express or implied warranty.
 */
 #include "framework.h"
 
+#if defined(LINUX) || defined(ANDROID)
+
+#include <pthread.h>
+
+#endif
 
 #ifdef WINDOWSEX
 

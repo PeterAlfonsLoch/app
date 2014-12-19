@@ -6,6 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AXIS interaction_base:
+      virtual public ::aura::interaction,
       virtual public elemental,
       virtual public command_target,
 //      virtual public ::user::elemental,
