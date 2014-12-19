@@ -7,8 +7,7 @@ class user_interaction_ptr_array;
 
 
 class CLASS_DECL_AURA thread :
-   virtual public signalizable,
-   virtual public ::message::dispatch,
+   virtual public command_target,
 #ifdef WINDOWS
    virtual public ::exception::translator,
 #endif

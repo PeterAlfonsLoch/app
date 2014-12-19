@@ -31,8 +31,7 @@ public:
 
 
 class CLASS_DECL_AURA thread_impl :
-   virtual public signalizable,
-   virtual public ::message::dispatch,
+   virtual public command_target,
    virtual public ::aura::message_queue_listener
 {
 public:

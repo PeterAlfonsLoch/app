@@ -404,6 +404,7 @@ namespace aura
 
    class interaction;
    class frame_window;
+   class menu;
 
 
 } // namespace aura
@@ -710,7 +711,10 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/aura/aura/aura_flags.h"
 #include "aura/primitive/primitive_check.h"
 //#include "user/user/user_check_interface.h"
-//#include "aura/aura/aura/aura_command.h"
+#include "aura/aura/aura/aura_command.h"
+#include "aura/aura/aura/aura_command_msg.h"
+#include "aura/aura/aura/aura_command_ui.h"
+#include "aura/aura/aura/aura_command_ui_test.h"
 //#include "graphics/visual/visual_const.h"
 //#include "user/user/user_key_enum.h"
 #include "aura/aura/message/message.h"
