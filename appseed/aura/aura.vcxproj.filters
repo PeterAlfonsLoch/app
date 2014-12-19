@@ -1871,9 +1871,6 @@
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h">
       <Filter>Header Files\user\colorertake5</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_create_context.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_platform_interface.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -2003,15 +2000,6 @@
     <ClInclude Include="graphics\draw2d\draw2d_fwd.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_draw_context.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_printer.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_draw_interface.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\visual\visual.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
@@ -2087,9 +2075,6 @@
     <ClInclude Include="primitive\data\data_item.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_interaction.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_timer_array.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -2098,6 +2083,18 @@
     </ClInclude>
     <ClInclude Include="aura\aura\aura_interaction.h">
       <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aura_create_context.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aura_draw_context.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aura_draw_interface.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aura_printer.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3265,9 +3262,6 @@
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_create_context.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_platform_interface.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
@@ -3343,17 +3337,8 @@
     <ClCompile Include="graphics\draw2d\draw2d_region.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_draw_context.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\windows\windows_gdi.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_printer.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_draw_interface.cpp">
-      <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_cursor.cpp">
       <Filter>Source Files\graphics\visual</Filter>
@@ -3432,6 +3417,18 @@
     </ClCompile>
     <ClCompile Include="aura\aura\aura_interaction.cpp">
       <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\aura_create_context.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\aura_draw_context.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\aura_draw_interface.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\aura_printer.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

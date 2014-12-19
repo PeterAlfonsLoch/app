@@ -4244,11 +4244,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\aaa_want_to_remove_user_check_interface.h" />
-    <ClInclude Include="user\user\user_create_context.h" />
-    <ClInclude Include="user\user\user_draw_context.h" />
-    <ClInclude Include="user\user\user_draw_interface.h" />
-    <ClInclude Include="user\user\user_interaction.h" />
-    <ClInclude Include="user\user\user_printer.h" />
+    <ClInclude Include="user\user\aura_create_context.h" />
+    <ClInclude Include="user\user\aura_draw_context.h" />
+    <ClInclude Include="user\user\aura_draw_interface.h" />
+    <ClInclude Include="user\user\aura_printer.h" />
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_dib.cpp" />
@@ -4309,7 +4308,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
     <ClCompile Include="user\user\aaa_want_to_remove_user_check_interface.cpp" />
-    <ClCompile Include="user\user\user_create_context.cpp" />
+    <ClCompile Include="user\user\aura_create_context.cpp" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
   </ItemGroup>
@@ -4881,10 +4880,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\str\str_to_integer.cpp" />
     <ClCompile Include="primitive\str\str_verisimple_wstring.cpp" />
     <ClCompile Include="primitive\str\str_wtostring.cpp" />
-    <ClCompile Include="user\user\user_draw_context.cpp" />
-    <ClCompile Include="user\user\user_draw_interface.cpp" />
+    <ClCompile Include="user\user\aura_draw_context.cpp" />
+    <ClCompile Include="user\user\aura_draw_interface.cpp" />
     <ClCompile Include="user\user\user_interaction.cpp" />
-    <ClCompile Include="user\user\user_printer.cpp" />
+    <ClCompile Include="user\user\aura_printer.cpp" />
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>
