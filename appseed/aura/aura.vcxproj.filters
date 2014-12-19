@@ -3073,9 +3073,6 @@
     <ClCompile Include="aura\message\message.cpp">
       <Filter>Source Files\aura\message</Filter>
     </ClCompile>
-    <ClCompile Include="aura\message\message_base.cpp">
-      <Filter>Source Files\aura\message</Filter>
-    </ClCompile>
     <ClCompile Include="aura\message\message_dispatch.cpp">
       <Filter>Source Files\aura\message</Filter>
     </ClCompile>

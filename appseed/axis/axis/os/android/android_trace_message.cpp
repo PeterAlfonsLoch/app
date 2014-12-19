@@ -1,3 +1,7 @@
+#include "framework.h"
+#include "android.h"
+
+
 void __trace_message(const char * lpszPrefix,::signal_details * pobj)
 {
    //   ENSURE_ARG(AfxIsValidString(lpszPrefix));

@@ -33,12 +33,12 @@ namespace windows
    }
 
 
-   ::user::document *  application::_001OpenDocumentFile(var varFile)
-   {
+   //::user::document *  application::_001OpenDocumentFile(var varFile)
+   //{
 
-      return NULL;
+   //   return NULL;
 
-   }
+   //}
 
 
    void application::_001EnableShellOpen()

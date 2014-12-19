@@ -1315,6 +1315,9 @@
     <ClCompile Include="axis\message\message_trace.cpp">
       <Filter>Source Files\axis\message</Filter>
     </ClCompile>
+    <ClCompile Include="axis\os\android\android_trace_message.cpp">
+      <Filter>Source Files\axis\os\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="axis\axis\axis.inl">
@@ -1322,12 +1325,6 @@
     </None>
     <None Include="axis\axis\axis_system_xml.inl">
       <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
