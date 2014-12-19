@@ -629,6 +629,7 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>-Wnarrowing</AdditionalOptions>
+      <GccExceptionHandling>true</GccExceptionHandling>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

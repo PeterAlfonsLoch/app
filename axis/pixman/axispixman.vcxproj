@@ -624,6 +624,7 @@
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>-Wnarrowing</AdditionalOptions>
+      <GccExceptionHandling>false</GccExceptionHandling>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1207,15 +1208,21 @@ copy Source\FreeImage.h Dist
     <ClCompile Include="pixman\pixman-linear-gradient.c" />
     <ClCompile Include="pixman\pixman-matrix.c" />
     <ClCompile Include="pixman\pixman-mips.c" />
-    <ClCompile Include="pixman\pixman-mmx.c" />
+    <ClCompile Include="pixman\pixman-mmx.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="pixman\pixman-noop.c" />
     <ClCompile Include="pixman\pixman-ppc.c" />
     <ClCompile Include="pixman\pixman-radial-gradient.c" />
     <ClCompile Include="pixman\pixman-region16.c" />
     <ClCompile Include="pixman\pixman-region32.c" />
     <ClCompile Include="pixman\pixman-solid-fill.c" />
-    <ClCompile Include="pixman\pixman-sse2.c" />
-    <ClCompile Include="pixman\pixman-ssse3.c" />
+    <ClCompile Include="pixman\pixman-sse2.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-ssse3.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="pixman\pixman-timer.c" />
     <ClCompile Include="pixman\pixman-trap.c" />
     <ClCompile Include="pixman\pixman-utils.c" />

@@ -610,6 +610,7 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>-Wnarrowing  -std=c++11</AdditionalOptions>
+      <GccExceptionHandling>true</GccExceptionHandling>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

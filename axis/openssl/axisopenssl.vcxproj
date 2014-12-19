@@ -910,7 +910,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)framework;$(SolutionDir)..\..\..\include;$(SolutionDir)..\..\..\app\include\;.;$(SolutionDir)..\..\..\;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)framework;$(SolutionDir)..\..\..\include;$(SolutionDir)..\..\..\app\include;.;$(SolutionDir)..\..\..;$(SolutionDir)..\..\..\app;$(SolutionDir)..\..\..\app\appseed;$(SolutionDir)..\..\..\app\appseed\base;$(SolutionDir)..\..;$(ProjectDir)..\..\appseed;$(ProjectDir)..\..;$(ProjectDir)..;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -928,7 +928,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <CompileAsWinRT>false</CompileAsWinRT>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <GccExceptionHandling>true</GccExceptionHandling>
+      <GccExceptionHandling>false</GccExceptionHandling>
       <AdditionalOptions>-Wnarrowing -std=c++11 -std=c++11</AdditionalOptions>
       <CppStandard>CppStandard11</CppStandard>
       <ConversionNull>NoConversionNull</ConversionNull>

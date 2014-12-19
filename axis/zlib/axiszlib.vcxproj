@@ -494,6 +494,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)match.o" /c /Fl"$(IntDir)match.lst" "$(Projec
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>-Wnarrowing</AdditionalOptions>
+      <GccExceptionHandling>false</GccExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

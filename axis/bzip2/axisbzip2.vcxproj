@@ -746,6 +746,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <AdditionalOptions>-Wnarrowing</AdditionalOptions>
+      <GccExceptionHandling>false</GccExceptionHandling>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
