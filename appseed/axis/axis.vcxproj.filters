@@ -1315,6 +1315,9 @@
     <ClCompile Include="axis\os\android\android_trace_message.cpp">
       <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
+    <ClCompile Include="axis\os\windows\windows_trace_message.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="axis\axis\axis.inl">
