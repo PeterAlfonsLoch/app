@@ -79,32 +79,15 @@ namespace message
    void dispatch::_user_message_handler(signal_details * pobj)
    {
 
-      //         dispatch_event_ok()->wait();
-
-      //SignalPtrArray signalptra;
-      SCAST_PTR(::message::base,pbase,pobj);
-      if(pbase->m_uiMessage == (WM_APP + 2014))
-      {
-         sp(::message::base) pbase2 = pbase->m_lparam;
-         _user_message_handler(pbase2);
-         if(pbase2->m_wparam != 0)
-         {
-            delete pbase;
-         }
-         return;
-      }
-      int i = 0;
-      Signal * pSignal;
-      while((pSignal = m_signala.GetSignal(pbase->m_uiMessage,0,0,i)) != NULL)
-      {
-         class ::signal * psignal = pSignal->m_psignal;
-         pobj->m_psignal = psignal;
-         psignal->emit(pobj);
-         if(pobj->m_bRet)
-            return;
-      }
    }
 
+
+   ::message::PFN_DISPATCH_MESSAGE_HANDLER dispatch::_calc_user_message_handler()
+   {
+
+      return &::message::dispatch::_user_message_handler;
+
+   }
 
    /////////////////////////////////////////////////////////////////////////////
    // WM_NOTIFY support

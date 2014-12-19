@@ -581,6 +581,12 @@ namespace user
 
       virtual bool is_composite();
 
+
+      virtual void _user_message_handler(signal_details * pobj);
+
+      virtual PFN_DISPATCH_MESSAGE_HANDLER _calc_user_message_handler();
+
+
    };
 
 

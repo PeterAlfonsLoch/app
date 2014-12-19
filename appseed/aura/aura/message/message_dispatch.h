@@ -5,6 +5,10 @@ namespace message
 {
 
 
+   class dispatch;
+
+   typedef void (dispatch::           *  PFN_DISPATCH_MESSAGE_HANDLER)(signal_details * pobj);
+
    class CLASS_DECL_AURA dispatch:
       virtual public ::object
    {
@@ -105,7 +109,7 @@ namespace message
       int32_t                       m_iHandling;
       SignalArray                   m_signala;
       class ::signal                m_signalInstallMessageHandling;
-      void (dispatch::           *  m_pfnDispatchWindowProc)(signal_details * pobj);
+      PFN_DISPATCH_MESSAGE_HANDLER  m_pfnDispatchWindowProc;
 
 
       dispatch();
@@ -139,6 +143,8 @@ namespace message
       virtual void _start_user_message_handler(signal_details * pobj);
 
       virtual void _user_message_handler(signal_details * pobj);
+
+      virtual PFN_DISPATCH_MESSAGE_HANDLER _calc_user_message_handler();
 
 //#ifdef WINDOWS
 //      virtual bool igui_RelayEvent(LPMESSAGE lpmsg);

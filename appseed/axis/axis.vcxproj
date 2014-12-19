@@ -3139,6 +3139,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp" />
     <ClCompile Include="axis\compress\bzip_stream.cpp" />
     <ClCompile Include="axis\compress\gzip_stream.cpp" />
+    <ClCompile Include="axis\message\message.cpp" />
     <ClCompile Include="axis\message\message_base.cpp" />
     <ClCompile Include="axis\message\message_user.cpp" />
     <ClCompile Include="axis\node\android\android_android.cpp">

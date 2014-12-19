@@ -17,7 +17,7 @@ namespace ansios
       virtual ~thread_impl();
 
 
-      operator pthread_t() const;
+      operator void *() const;
       
 
    };
