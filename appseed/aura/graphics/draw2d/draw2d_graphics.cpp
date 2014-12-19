@@ -40,12 +40,12 @@ namespace draw2d
 
    }
 
-   ::user::str_context * graphics::str_context()
+   ::aura::str_context * graphics::str_context()
    {
       return m_puistrcontext;
    }
 
-   ::user::draw_context * graphics::draw_context()
+   ::aura::draw_context * graphics::draw_context()
    {
       return m_pdrawcontext;
    }

@@ -4,12 +4,12 @@
 class job;
 
 
-namespace user
-{
-
-   class interaction_impl;
-
-} // namespace user
+//namespace user
+//{
+//
+//   class interaction_impl;
+//
+//} // namespace user
 
 
 namespace draw2d

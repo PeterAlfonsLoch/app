@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 #include <pthread.h>
 #endif
 
@@ -67,7 +67,7 @@ bool critical_section::Init()
 #endif
 
       // create the mutex with the attributes set
-      pthread_mutex_init(&m_mutex, &mutexattr);
+      pthread_mutex_init((pthread_mutex_t *) m_pmutex, &mutexattr);
 
       //After initializing the mutex, the thread attribute can be destroyed
       pthread_mutexattr_destroy(&mutexattr);
@@ -90,15 +90,15 @@ critical_section::critical_section()
       throw memory_exception(get_app());
 }
 
-critical_section::operator pthread_mutex_t*()
+critical_section::operator void*()
 {
-   return (pthread_mutex_t * ) &m_mutex;
+   return m_pmutex;
 }
 
 critical_section::~critical_section()
 {
    // Destroy / close the mutex
-   pthread_mutex_destroy (&m_mutex);
+   pthread_mutex_destroy ((pthread_mutex_t *) m_pmutex);
 }
 
 void critical_section::lock()
@@ -108,7 +108,7 @@ void critical_section::lock()
    {
 
       // Acquire the mutex to access the shared resource
-      pthread_mutex_lock (&m_mutex);
+      pthread_mutex_lock ((pthread_mutex_t *) m_pmutex);
 
    }
    catch(...)
@@ -133,7 +133,7 @@ bool critical_section::lock(const duration & durationTimeout)
 bool critical_section::unlock()
 {
    // Release the mutex  and release the access to shared resource
-   pthread_mutex_unlock (&m_mutex);
+   pthread_mutex_unlock ((pthread_mutex_t *) m_pmutex);
    return TRUE;
 }
 

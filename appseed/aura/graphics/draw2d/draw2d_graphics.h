@@ -7,14 +7,14 @@ namespace draw2d
 
    class CLASS_DECL_AURA graphics :
       virtual public ::object,
-      public ::core::simple_chain < ::user::draw_context >
+      public ::core::simple_chain < ::aura::draw_context >
    {
    public:
 
 
       sp(mutex)                     m_spmutex;
-      ::user::str_context *         m_puistrcontext;
-      ::user::draw_context *        m_pdrawcontext;
+      ::aura::str_context *         m_puistrcontext;
+      ::aura::draw_context *        m_pdrawcontext;
       ::draw2d::dib *               m_pdibAlphaBlend;
       point                         m_ptAlphaBlend;
       ::job *                       m_pjob;
@@ -62,8 +62,8 @@ namespace draw2d
 //      virtual HDC detach();
 
 
-      virtual ::user::str_context * str_context();
-      virtual ::user::draw_context * draw_context();
+      virtual ::aura::str_context * str_context();
+      virtual ::aura::draw_context * draw_context();
 
 
       virtual void set_alpha_mode(e_alpha_mode ealphamode);

@@ -94,10 +94,10 @@ bool thread_impl::initialize_instance()
 
 }
 
-void thread_impl::dispatch_thread_message(signal_details * pobj)
+void thread_impl::dispatch_thread_message(signal_details * pbase)
 {
 
-   SCAST_PTR(::message::base,pbase,pobj);
+   
    if(!pbase->m_bRet && pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
    {
       Application.dispatch_user_message(pbase);

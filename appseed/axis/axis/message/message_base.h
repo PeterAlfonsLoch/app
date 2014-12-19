@@ -16,9 +16,6 @@ namespace message
 
 
       ::user::interaction *      m_pwnd;
-      UINT                       m_uiMessage;
-      WPARAM                     m_wparam;
-      lparam                     m_lparam;
       bool                       m_bConditional;
       bool                       m_bReflect;
       bool                       m_bDestroyed;

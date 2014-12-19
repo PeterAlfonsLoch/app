@@ -1,16 +1,17 @@
 #include "framework.h"
 
 
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 #include <sys/ipc.h>
-#include <sys/sem.h>
 #include <pthread.h>
 #include <sys/time.h>
-
-
-
 #include <time.h>
 #include <sys/time.h>
+
+#if defined(LINUX) || defined(APPLEOS)
+#include <sys/sem.h>
+#endif
+
 
 #ifdef __MACH__
 #include <mach/clock.h>
@@ -81,7 +82,7 @@ event::event(::aura::application * papp, bool bInitiallyOwn, bool bManualReset, 
 
 #elif defined(ANDROID)
 
-   pthread_cond_init(&m_cond, NULL);
+   pthread_cond_init((pthread_cond_t *) m_pcond, NULL);
 
    m_bManualEvent = bManualReset;
 
@@ -93,7 +94,7 @@ event::event(::aura::application * papp, bool bInitiallyOwn, bool bManualReset, 
       pthread_mutexattr_init(&attr);
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
       int32_t rc;
-      if((rc = pthread_mutex_init(&m_mutex, &attr)))
+      if((rc = pthread_mutex_init((pthread_mutex_t *) m_pmutex,&attr)))
       {
          throw "RC_OBJECT_NOT_CREATED";
       }
@@ -108,9 +109,9 @@ event::event(::aura::application * papp, bool bInitiallyOwn, bool bManualReset, 
    if(bManualReset)
    {
 
-      pthread_mutex_init(&m_mutex, 0);
+      pthread_mutex_init((pthread_mutex_t *) m_pmutex, 0);
 
-      pthread_cond_init(&m_cond, 0);
+      pthread_cond_init((pthread_cond_t *) m_pcond, 0);
 
       m_bSignaled = bInitiallyOwn;
 
@@ -195,7 +196,7 @@ bool event::SetEvent()
 
 #elif defined(ANDROID)
 
-   pthread_mutex_lock(&m_mutex);
+   pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
    if(m_bManualEvent)
    {
@@ -204,17 +205,17 @@ bool event::SetEvent()
 
       m_iSignalId++;
 
-      pthread_cond_broadcast(&m_cond);
+      pthread_cond_broadcast((pthread_cond_t *) m_pcond);
 
    }
    else
    {
 
-      pthread_cond_signal(&m_cond);
+      pthread_cond_signal((pthread_cond_t *) m_pcond);
 
    }
 
-   pthread_mutex_unlock(&m_mutex);
+   pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
 
 #else
@@ -222,15 +223,15 @@ bool event::SetEvent()
    if(m_bManualEvent)
    {
 
-      pthread_mutex_lock(&m_mutex);
+      pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
       m_bSignaled = true;
 
       m_iSignalId++;
 
-      pthread_cond_broadcast(&m_cond);
+      pthread_cond_broadcast((pthread_cond_t *) m_pcond);
 
-      pthread_mutex_unlock(&m_mutex);
+      pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
    }
    else
@@ -293,11 +294,11 @@ bool event::ResetEvent()
    if(m_bManualEvent)
    {
 
-      pthread_mutex_lock(&m_mutex);
+      pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
       m_bSignaled = false;
 
-      pthread_mutex_unlock(&m_mutex);
+      pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
    }
    else
@@ -326,7 +327,7 @@ void event::wait ()
 #elif defined(ANDROID)
 
 
-   pthread_mutex_lock(&m_mutex);
+   pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
    if(m_bManualEvent)
    {
@@ -336,7 +337,7 @@ void event::wait ()
       while(!m_bSignaled && iSignal == m_iSignalId)
       {
 
-         pthread_cond_wait(&m_cond, &m_mutex);
+         pthread_cond_wait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex);
 
       }
 
@@ -344,29 +345,29 @@ void event::wait ()
    else
    {
 
-      pthread_cond_wait(&m_cond, &m_mutex);
+      pthread_cond_wait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex);
 
    }
 
-   pthread_mutex_unlock(&m_mutex);
+   pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
 #else
 
    if(m_bManualEvent)
    {
 
-      pthread_mutex_lock(&m_mutex);
+      pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
       int iSignal = m_iSignalId;
 
       while(!m_bSignaled && iSignal == m_iSignalId)
       {
 
-         pthread_cond_wait(&m_cond, &m_mutex);
+         pthread_cond_wait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex);
 
       }
 
-      pthread_mutex_unlock(&m_mutex);
+      pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
    }
    else
@@ -398,7 +399,7 @@ wait_result event::wait (const duration & durationTimeout)
 
 #elif defined(ANDROID)
 
-   pthread_mutex_lock(&m_mutex);
+   pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
    ((duration & ) durationTimeout).normalize();
 
@@ -414,7 +415,7 @@ wait_result event::wait (const duration & durationTimeout)
          timespec delay;
          delay.tv_sec = durationTimeout.m_iSeconds;
          delay.tv_nsec = durationTimeout.m_iNanoseconds;
-         if(pthread_cond_timedwait(&m_cond, &m_mutex, &delay))
+         if(pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay))
             break;
 
       }
@@ -426,11 +427,11 @@ wait_result event::wait (const duration & durationTimeout)
       timespec delay;
       delay.tv_sec = durationTimeout.m_iSeconds;
       delay.tv_nsec = durationTimeout.m_iNanoseconds;
-      pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
+      pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay);
 
    }
 
-   pthread_mutex_unlock(&m_mutex);
+   pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
    return m_bSignaled ? wait_result(wait_result::Event0) : wait_result(wait_result::Timeout);
 
@@ -444,7 +445,7 @@ wait_result event::wait (const duration & durationTimeout)
 
       ((duration & ) durationTimeout).normalize();
 
-      pthread_mutex_lock(&m_mutex);
+      pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
       int iSignal = m_iSignalId;
 
@@ -468,12 +469,12 @@ wait_result event::wait (const duration & durationTimeout)
       while(!m_bSignaled && iSignal == m_iSignalId)
       {
 
-         int32_t error = pthread_cond_timedwait(&m_cond, &m_mutex, &abstime);
+         int32_t error = pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &abstime);
 
          if(error == EBUSY || error == ETIMEDOUT)
          {
 
-            pthread_mutex_unlock(&m_mutex);
+            pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
             return wait_result(wait_result::Timeout);
 
@@ -481,7 +482,7 @@ wait_result event::wait (const duration & durationTimeout)
 
       }
 
-      pthread_mutex_unlock(&m_mutex);
+      pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
       if(m_bSignaled)
          return wait_result(wait_result::Event0);
@@ -645,7 +646,7 @@ bool event::lock(const duration & durationTimeout)
 
 #elif defined(ANDROID)
 
-   pthread_mutex_lock(&m_mutex);
+   pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
    ((duration & ) durationTimeout).normalize();
 
@@ -661,7 +662,7 @@ bool event::lock(const duration & durationTimeout)
          timespec delay;
          delay.tv_sec = durationTimeout.m_iSeconds;
          delay.tv_nsec = durationTimeout.m_iNanoseconds;
-         if(pthread_cond_timedwait(&m_cond, &m_mutex, &delay))
+         if(pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay))
             break;
 
       }
@@ -675,13 +676,13 @@ bool event::lock(const duration & durationTimeout)
       timespec delay;
       delay.tv_sec = durationTimeout.m_iSeconds;
       delay.tv_nsec = durationTimeout.m_iNanoseconds;
-      pthread_cond_timedwait(&m_cond, &m_mutex, &delay);
+      pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay);
 
       return is_locked();
 
    }
 
-   pthread_mutex_unlock(&m_mutex);
+   pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
 #else
 

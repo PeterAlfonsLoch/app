@@ -18,10 +18,13 @@ class CLASS_DECL_AURA signal_details :
 public:
 
 
-   index                m_iIndex;
-   property_set *  m_pset;
-   index                m_iParam;
-   bool                 m_bRet;
+   UINT                       m_uiMessage;
+   WPARAM                     m_wparam;
+   lparam                     m_lparam;
+   index                      m_iIndex;
+   property_set *             m_pset;
+   index                      m_iParam;
+   bool                       m_bRet;
    class signal *             m_psignal;
 
 

@@ -36,7 +36,7 @@ void draw2d_factory_exchange(::aura::application * papp);
 #include "draw2d_path.h"
 
 
-namespace user
+namespace aura
 {
 
 
