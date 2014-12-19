@@ -67,7 +67,9 @@ typedef
 
 
 #ifndef BZ_IMPORT
+#ifndef BZ_EXPORT
 #define BZ_EXPORT
+#endif
 #endif
 
 #ifndef BZ_NO_STDIO
