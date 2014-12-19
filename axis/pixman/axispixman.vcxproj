@@ -622,7 +622,7 @@
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions>-Wnarrowing</AdditionalOptions>
       <GccExceptionHandling>false</GccExceptionHandling>
     </ClCompile>

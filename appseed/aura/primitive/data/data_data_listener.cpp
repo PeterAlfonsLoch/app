@@ -4,14 +4,14 @@
 namespace data
 {
 
-   data_listener::data_listener(::aura::application * papp) :
+   listener::listener(::aura::application * papp) :
       element(papp)
    {
 
    }
 
 
-   data_listener::~data_listener()
+   listener::~listener()
    {
 
       listen(NULL, false);
@@ -19,7 +19,7 @@ namespace data
    }
 
 
-   bool data_listener::listen(data * pdata, bool bListen)
+   bool listener::listen(data * pdata, bool bListen)
    {
 
       if(bListen)
@@ -65,7 +65,7 @@ namespace data
    }
 
 
-   void data_listener::on_update_data(data *, int32_t)
+   void listener::on_update_data(data *, int32_t)
    {
 
    }

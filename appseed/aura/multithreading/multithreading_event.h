@@ -14,8 +14,8 @@ public:
    bool              m_bManualEvent;
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
    int32_t           m_iSignalId;  // meaningful only when m_bManualEvent
-   pthread_cond_t    m_cond;
-   pthread_mutex_t   m_mutex;
+   void *            m_pcond; // pthread_cond_t
+   void *            m_pmutex; // pthread_mutex_t;
 #endif
 
 

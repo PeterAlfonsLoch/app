@@ -255,7 +255,7 @@ namespace aura
    }
 
 
-   ::user::interaction * session::get_active_guie()
+   ::aura::user::interaction * session::get_active_guie()
    {
 
       return NULL;
@@ -263,7 +263,7 @@ namespace aura
    }
 
 
-   ::user::interaction * session::get_focus_guie()
+   ::aura::user::interaction * session::get_focus_guie()
    {
 
 

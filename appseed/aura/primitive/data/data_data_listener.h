@@ -7,7 +7,7 @@ namespace data
    class data;
 
 
-   class CLASS_DECL_AURA data_listener :
+   class CLASS_DECL_AURA listener :
       virtual public ::object
    {
    public:
@@ -16,8 +16,8 @@ namespace data
       ptr_array < data > m_dataptra;
 
 
-      data_listener(::aura::application * papp);
-      virtual ~data_listener();
+      listener(::aura::application * papp);
+      virtual ~listener();
 
 
       bool listen(data * pdata, bool bListen = true);

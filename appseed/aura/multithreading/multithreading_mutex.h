@@ -1,6 +1,9 @@
 #pragma once
 
 
+
+
+
 class CLASS_DECL_AURA mutex :
    public sync_object
 {
@@ -11,7 +14,9 @@ public:
 
 
    // thread mutex
-   pthread_mutex_t         m_mutex;
+   void *            m_pmutex; // pthread_mutex_t;
+
+
 
    // named process mutex
    string                  m_strName;

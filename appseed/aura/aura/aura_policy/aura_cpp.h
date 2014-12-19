@@ -203,18 +203,6 @@ namespace aura
 
 class image_list;
 
-namespace user
-{
-
-
-   class interaction;
-   class interaction_impl;
-   class document;
-   class frame_window;
-   class create_struct;
-
-
-} // namespace user
 
 
 
@@ -408,6 +396,23 @@ namespace html
    class html; // defined and set by html library/component
 
 }
+
+
+namespace aura
+{
+
+
+   namespace user
+   {
+
+
+      class interaction;
+
+
+   } // namespace user
+
+
+} // namespace aura
 
 
 #define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);

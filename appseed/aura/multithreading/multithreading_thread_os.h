@@ -15,7 +15,7 @@ public:
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
 
-   pthread_t                              m_pthread;
+   void *                                 m_pthread;
 
 #endif
 

@@ -10,7 +10,7 @@ public:
 #ifdef WINDOWS
    CRITICAL_SECTION     m_sect;
 #else
-   pthread_mutex_t      m_mutex;           // Mutex
+   void *            m_pmutex; // pthread_mutex_t;
 #endif
 
    critical_section();
@@ -20,7 +20,7 @@ public:
 #ifdef WINDOWS
    operator CRITICAL_SECTION * ();
 #else
-   operator pthread_mutex_t * ();           // Mutex
+   operator void * ();           // pthread_mutex_t
 #endif
 
    bool unlock();

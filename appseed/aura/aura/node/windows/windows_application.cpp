@@ -240,7 +240,7 @@ namespace windows
    }
 
 
-   ::user::interaction * application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
+   ::aura::user::interaction * application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
    {
 
       return NULL;
@@ -248,7 +248,7 @@ namespace windows
    }
 
 
-   ::user::interaction * application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
+   ::aura::user::interaction * application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
    {
 
       return NULL;

@@ -788,6 +788,12 @@
     <ClInclude Include="axis\node\windows\windows_print_job.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
+    <ClInclude Include="axis\message\message_base.h">
+      <Filter>Header Files\axis\message</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\axis\axis_command_target.h">
+      <Filter>Header Files\axis\axis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\graphics_window_graphics.cpp">
@@ -1297,6 +1303,9 @@
     <ClCompile Include="user\user\aaa_want_to_remove_user_text_interface.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="axis\message\message_base.cpp">
+      <Filter>Source Files\axis\message</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="axis\axis\axis.inl">
@@ -1304,12 +1313,6 @@
     </None>
     <None Include="axis\axis\axis_system_xml.inl">
       <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

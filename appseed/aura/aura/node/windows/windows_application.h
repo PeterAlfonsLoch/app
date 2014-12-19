@@ -99,8 +99,8 @@ namespace windows
 
 
 
-      virtual ::user::interaction * FindWindow(const char * lpszClassName,const char * lpszWindowName);
-      virtual ::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
+      virtual ::aura::user::interaction * FindWindow(const char * lpszClassName,const char * lpszWindowName);
+      virtual ::aura::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 
       virtual void get_time(struct timeval *p);
       virtual void set_env_var(const string & var,const string & value);

@@ -40,8 +40,8 @@ public:
    bool                                                        m_bClientOnly;
    bool                                                        m_bOuterPopupAlertLike;
    bool                                                        m_bHold;
-   ::user::interaction *                                       m_puiParent;
-   ::user::interaction *                                       m_puiAlloc;
+   ::aura::user::interaction *                                       m_puiParent;
+   ::aura::user::interaction *                                       m_puiAlloc;
    sp(application_bias)                                        m_spApplicationBias;
    command_line_sp                                             m_spCommandLine;
    stack < ::user::create_context >                            m_user; 
@@ -51,7 +51,7 @@ public:
 
    create_context(::aura::application * papp);
    create_context(sp(::command_thread) pthreadParent);
-   create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
+   create_context(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible = true, ::aura::user::interaction * puiParent = NULL);
    create_context(const create_context & createcontext);
    virtual ~create_context();
 

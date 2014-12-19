@@ -80,7 +80,7 @@ class thread_data
 public:
 
 
-    pthread_key_t           key;
+    void *    m_pkey; // pthread_key_t           key;
 
 
     thread_data();

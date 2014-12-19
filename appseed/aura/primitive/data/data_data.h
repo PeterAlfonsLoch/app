@@ -8,12 +8,13 @@ namespace data
 {
 
 
-   class data_listener;
+   class listener;
    class data;
    class simple_data;
+   class container;
 
 
-   typedef CLASS_DECL_AURA ptr_array < data_listener > data_listener_ptra;
+   typedef CLASS_DECL_AURA ptr_array < listener > data_listener_ptra;
    typedef CLASS_DECL_AURA ptr_array < data > data_ptra;
    typedef CLASS_DECL_AURA comparable_array < sp(element) > ca_ptra;
 
@@ -89,7 +90,7 @@ namespace data
 
       mutex  *                               m_pmutex;
 
-      ::user::document *                     m_pdocument;
+      ::data::container *                    m_pcontainer;
 
 
       data(::aura::application * papp);
@@ -106,7 +107,7 @@ namespace data
 
       inline mutex * data_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = new ::mutex(get_app()); return m_pmutex; }
 
-      inline ::user::document * get_document() { return m_pdocument; }
+      inline ::data::container * get_container() { return m_pcontainer; }
 
    };
 
