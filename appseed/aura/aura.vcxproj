@@ -4885,7 +4885,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\str\str_to_integer.cpp" />
     <ClCompile Include="primitive\str\str_verisimple_wstring.cpp" />
     <ClCompile Include="primitive\str\str_wtostring.cpp" />
-    <ClCompile Include="user\user\user_interaction.cpp" />
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>

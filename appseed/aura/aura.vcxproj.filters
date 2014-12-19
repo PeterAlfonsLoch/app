@@ -3406,9 +3406,6 @@
     <ClCompile Include="aura\aura\aura_timer_item.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_interaction.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_interaction.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
