@@ -12,6 +12,7 @@ namespace user
 
 
    class interaction;
+   class create_struct;
 
 
 } // namespace user

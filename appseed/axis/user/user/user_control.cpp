@@ -273,7 +273,7 @@ namespace user
    }
 
 
-   void control::_003OnCustomDraw(::draw2d::graphics *pdc, ::user::draw_context * pdrawcontext)
+   void control::_003OnCustomDraw(::draw2d::graphics *pdc, ::aura::draw_context * pdrawcontext)
    {
 
       pdc->chain(pdrawcontext);
@@ -293,7 +293,7 @@ namespace user
    }
 
 
-   void control::_003CallCustomDraw(::draw2d::graphics *pdc, ::user::draw_context * pdrawcontext)
+   void control::_003CallCustomDraw(::draw2d::graphics *pdc, ::aura::draw_context * pdrawcontext)
    {
 
       _003OnCustomDraw(pdc, pdrawcontext);

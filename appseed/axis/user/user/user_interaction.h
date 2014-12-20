@@ -126,7 +126,7 @@ namespace user
       void set_cursor(::visual::e_cursor ecursor);
 
 
-      void set_timer(spa(timer_item) timera);
+      void set_timer(spa(::aura::timer_item) timera);
 
       virtual bool set_may_pro_devian(bool bSet = true);
       virtual void on_set_may_pro_devian();
@@ -658,7 +658,7 @@ namespace user
       sp(::message::base) get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam);
 
 
-      void transfer_from(timer_array & ta, interaction * pui);
+      void transfer_from(::aura::timer_array & ta, interaction * pui);
 
       virtual window_graphics * & get_window_graphics();
 

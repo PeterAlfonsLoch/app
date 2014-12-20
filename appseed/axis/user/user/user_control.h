@@ -175,9 +175,9 @@ namespace user
 
       class descriptor & descriptor();
 
-      virtual void _003CallCustomDraw(::draw2d::graphics * pdc, ::user::draw_context * pitem);
+      virtual void _003CallCustomDraw(::draw2d::graphics * pdc, ::aura::draw_context * pitem);
       virtual bool _003CallCustomWindowProc(sp(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-      virtual void _003OnCustomDraw(::draw2d::graphics * pdc, ::user::draw_context * pitem);
+      virtual void _003OnCustomDraw(::draw2d::graphics * pdc, ::aura::draw_context * pitem);
       virtual void _003CustomWindowProc(signal_details * pobj);
 
       virtual form_interface * get_form();

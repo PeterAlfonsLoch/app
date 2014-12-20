@@ -11,7 +11,7 @@ namespace user
       virtual public command_target,
 //      virtual public ::user::elemental,
 //      virtual public elemental,
-      virtual public draw_interface,
+      virtual public ::aura::draw_interface,
       virtual public ::user::schema
    {
    public:
@@ -199,7 +199,7 @@ namespace user
       void set_cursor(::visual::e_cursor ecursor);
 
 
-      void set_timer(spa(timer_item) timera);
+      void set_timer(spa(::aura::timer_item) timera);
 
 
       virtual bool IsWindow() const;

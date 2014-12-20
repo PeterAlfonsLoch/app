@@ -956,7 +956,7 @@ namespace user
       bool bItemHover;
       bool bSubItemHover;
 
-      ::user::draw_context * pdrawcontext = pdc->::core::simple_chain < ::user::draw_context >::get_last();
+      ::aura::draw_context * pdrawcontext = pdc->::core::simple_chain < ::aura::draw_context >::get_last();
 
       if(pdrawcontext != NULL)
       {
