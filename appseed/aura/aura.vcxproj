@@ -934,7 +934,7 @@
       </EntryPointSymbol>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
-      <AndroidSystemLibs>c;m;log;gcc</AndroidSystemLibs>
+      <AndroidSystemLibs>c;m;log;gcc;atomiconv</AndroidSystemLibs>
     </Link>
     <PreBuildEvent>
       <Command>
