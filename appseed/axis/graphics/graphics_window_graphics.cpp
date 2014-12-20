@@ -3,6 +3,8 @@
 #include "axis/os/windows/windows_window_gdi.h"
 #elif defined (LINUX)
 #include "axis/os/linux/linux_window_xlib.h"
+#elif defined (ANDROID)
+#include "axis/os/android/android_window_android.h"
 #endif
 
 window_graphics::window_graphics()
@@ -57,6 +59,10 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow interact
 #elif defined(LINUX)
 
          pdata = new window_xlib();
+
+#elif defined(ANDROID)
+
+         pdata = new window_android();
 
 #endif
 

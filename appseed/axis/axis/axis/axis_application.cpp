@@ -687,7 +687,7 @@ namespace axis
       if (oswindowCapture == NULL)
          return NULL;
 
-      return ((::user::interaction *) ::GetCapture()->get_user_interaction()->m_pvoidUserInteraction)m_pimpl->GetCapture();
+      return ((::user::interaction *) ::GetCapture()->get_user_interaction()->m_pvoidUserInteraction)->GetCapture();
 
 #endif
 

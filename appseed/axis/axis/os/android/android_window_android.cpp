@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "android_window_android.h"
 
 window_android::window_android()
 {
