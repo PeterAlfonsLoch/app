@@ -781,9 +781,6 @@
     <ClCompile Include="axis\os\ansios\ansios_cross_windows_user.cpp">
       <Filter>Source Files\axis\os\ansios</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\ansios\crypto\ansios_crypt.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\ansios\ansios_file_std.cpp">
       <Filter>Source Files\axis\os\ansios</Filter>
     </ClCompile>
@@ -883,30 +880,6 @@
     <ClCompile Include="axis\os\windows\windows_window_gdi.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_crt.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_datetime.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_error.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_locale.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_shared_memory.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_threading.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_user.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\cross\windows\cross_windows_windows.cpp">
-      <Filter>Source Files\axis\os\cross\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\cross\metrowin\cross_metrowin_user.cpp">
       <Filter>Source Files\axis\os\cross\metrowin</Filter>
     </ClCompile>
@@ -957,9 +930,6 @@
     </ClCompile>
     <ClCompile Include="axis\node\android\android_android.cpp">
       <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_base_file.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\android\android_multithreading.cpp">
       <Filter>Source Files\axis\os\android</Filter>

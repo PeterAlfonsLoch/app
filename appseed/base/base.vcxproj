@@ -934,6 +934,7 @@
       </EntryPointSymbol>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
+      <AndroidSystemLibs>c;m;log;gcc;aura;axis;axisbzip2;axisidn;axisopenssl;axiszlib</AndroidSystemLibs>
     </Link>
     <PreBuildEvent>
       <Command>

@@ -1142,7 +1142,7 @@ int_bool GetWindowRect(oswindow_data * pdata, RECT * prect)
 }
 
 
-int_bool ShowWindow(oswindow_data * pdata, int nCmdShow)
+bool ShowWindow(oswindow_data * pdata, int nCmdShow)
 {
 
    return pdata->ShowWindow(nCmdShow);
@@ -1199,7 +1199,7 @@ oswindow_data * GetParent(oswindow_data * pdata)
    if (!IsWindow(pdata))
       return NULL;
 
-   return pdata->get_parent();
+   return pdata->GetParent();
 
 
 }
@@ -1210,7 +1210,7 @@ int_bool IsAscendant(oswindow_data * pdata, oswindow_data * pdataAscendant)
    if (pdata == NULL)
       return FALSE;
 
-   oswindow_data * pdataParent = pdata->get_parent();
+   oswindow_data * pdataParent = pdata->GetParent();
 
    if (pdataAscendant == NULL)
    {
@@ -1226,7 +1226,7 @@ int_bool IsAscendant(oswindow_data * pdata, oswindow_data * pdataAscendant)
       if (pdataParent == pdataAscendant)
          return TRUE;
 
-      pdataParent = pdataParent->get_parent();
+      pdataParent = pdataParent->GetParent();
    }
 
    return FALSE;
@@ -1398,7 +1398,7 @@ int_bool DestroyWindow(oswindow interaction_impl)
    */
 
 
-   return NULL;
+   return FALSE;
 
 }
 
@@ -1417,7 +1417,7 @@ bool oswindow_data::is_destroying()
 }
 
 
-int_bool IsWindow(oswindow oswindow)
+bool IsWindow(oswindow oswindow)
 {
    return oswindow->get_user_interaction() != NULL && !oswindow->is_destroying();
 }
@@ -1477,8 +1477,8 @@ int_bool GetCursorPos(LPPOINT lppt)
 
 
 
-bool IsWindow(oswindow oswindow)
-{
-   return (oswindow->get_user_interaction() == NULL && oswindow->display() != NULL && oswindow->window() != None)
-      || (oswindow->get_user_interaction() != NULL && !oswindow->is_destroying());
-}
+//bool IsWindow(oswindow oswindow)
+//{
+//   return (oswindow->get_user_interaction() == NULL && oswindow->display() != NULL && oswindow->window() != None)
+//      || (oswindow->get_user_interaction() != NULL && !oswindow->is_destroying());
+//}
