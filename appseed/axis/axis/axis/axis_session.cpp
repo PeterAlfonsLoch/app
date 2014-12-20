@@ -1335,7 +1335,7 @@ namespace axis
 
       }
 
-      pwnd = m_puiActive;
+      pwnd = ((::user::interaction *)m_puiActive->m_pvoidUserInteraction);
       
       if(pwnd != NULL)
       {

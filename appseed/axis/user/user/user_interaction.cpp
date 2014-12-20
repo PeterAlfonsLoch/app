@@ -290,7 +290,7 @@ namespace user
    }
 
 
-   void interaction::set_timer(smart_pointer_array < timer_item > timera)
+   void interaction::set_timer(smart_pointer_array < ::aura::timer_item > timera)
    {
 
       for(int32_t i = 0; i < timera.get_count(); i++)

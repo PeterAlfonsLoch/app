@@ -1951,24 +1951,24 @@ namespace axis
 
 
 
-   bool application::is_window(::user::interaction * pui)
+   bool application::is_window(::aura::interaction * pui)
    {
 
-      return pui->IsWindow();
+      return ((::user::interaction *)pui->m_pvoidUserInteraction)->IsWindow();
 
    }
 
-   LRESULT application::send_message(::user::interaction * pui,UINT message,WPARAM wparam,lparam lparam)
+   LRESULT application::send_message(::aura::interaction * pui,UINT message,WPARAM wparam,lparam lparam)
    {
 
-      return pui->send_message(message, wparam, lparam);
+      return ((::user::interaction *)pui->m_pvoidUserInteraction)->send_message(message,wparam,lparam);
 
    }
 
-   oswindow application::get_safe_handle(::user::interaction * pui)
+   oswindow application::get_safe_handle(::aura::interaction * pui)
    {
 
-      return pui->get_safe_handle();
+      return ((::user::interaction *)pui->m_pvoidUserInteraction)->get_safe_handle();
 
    }
 
@@ -1993,23 +1993,23 @@ namespace axis
    }
 
 
-   bool application::enable_window(::user::interaction * pui, bool bEnable)
+   bool application::enable_window(::aura::interaction * pui, bool bEnable)
    {
 
       // if control has the focus, move the focus before disabling
       if(!bEnable)
       {
-         if(System.get_focus_guie() == pui))
-         {
-            Application.send_message(Application.get_parent(m_pOther),WM_NEXTDLGCTL,0,(LPARAM)FALSE);
 
-            }
+         if(System.get_focus_guie() == ((::user::interaction *)pui->m_pvoidUserInteraction))
+         {
+
+            Application.send_message(Application.get_parent(((::user::interaction *)pui->m_pvoidUserInteraction)),WM_NEXTDLGCTL,0,(LPARAM)FALSE);
+
+         }
 
       }
 
-
-
-      return pui->enable_window(bEnable);
+      return ((::user::interaction *)pui->m_pvoidUserInteraction)->enable_window(bEnable);
 
    }
 

@@ -2599,14 +2599,14 @@ namespace user
    }
 
 
-   void interaction_base::_user_message_handler(signal_details * pobj)
-   {
-   }
+   //void interaction_base::_user_message_handler(signal_details * pobj)
+   //{
+   //}
 
-   ::message::PFN_DISPATCH_MESSAGE_HANDLER interaction_base::_calc_user_message_handler()
-   {
-      return &::user::interaction_base::_user_message_handler;
-   }
+   //::message::PFN_DISPATCH_MESSAGE_HANDLER interaction_base::_calc_user_message_handler()
+   //{
+   //   return &::user::interaction_base::_user_message_handler;
+   //}
 
 
 } // namespace user

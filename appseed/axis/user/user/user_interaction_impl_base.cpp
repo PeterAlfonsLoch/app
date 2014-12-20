@@ -741,7 +741,7 @@ namespace user
    }
 
 
-   bool interaction_impl_base::IsAscendant(const interaction * puiIsAscendant) const
+   bool interaction_impl_base::IsAscendant(const ::user::interaction * puiIsAscendant) const
    {
 
       if(puiIsAscendant == NULL)
@@ -752,7 +752,7 @@ namespace user
    }
 
 
-   bool interaction_impl_base::IsParent(const interaction * puiIsParent) const
+   bool interaction_impl_base::IsParent(const ::user::interaction * puiIsParent) const
    {
 
       if(puiIsParent == NULL)
@@ -763,23 +763,23 @@ namespace user
    }
 
 
-   bool interaction_impl_base::IsChild(const interaction * puiIsChild) const
+   bool interaction_impl_base::IsChild(const ::user::interaction * puiIsChild) const
    {
 
       if(puiIsChild == NULL)
          return false;
 
-      interaction * puiProbe = puiIsChild->GetParent();
+      ::user::interaction * puiProbe = puiIsChild->GetParent();
 
       return puiProbe == m_pui;
 
    }
 
 
-   bool interaction_impl_base::IsDescendant(const interaction * puiIsDescendant) const
+   bool interaction_impl_base::IsDescendant(const ::user::interaction * puiIsDescendant) const
    {
 
-      interaction * puiProbe = puiIsDescendant->GetParent();
+      ::user::interaction * puiProbe = puiIsDescendant->GetParent();
 
       if(puiProbe == NULL)
          return false;
@@ -817,7 +817,7 @@ namespace user
    ::user::interaction * interaction_impl_base::GetTopWindow() const
    {
 
-      sp(interaction) pui = GetWindow();
+      sp(::user::interaction) pui = GetWindow();
 
       if(pui.is_null())
          return NULL;
@@ -827,7 +827,7 @@ namespace user
    }
 
 
-   interaction * interaction_impl_base::GetParent() const
+   ::user::interaction * interaction_impl_base::GetParent() const
    {
 
       return m_pui->GetParent();

@@ -298,7 +298,7 @@ namespace user
 
       try
       {
-         sp(interaction) pui = m_pui;
+         sp(::user::interaction) pui = m_pui;
          while(pui != NULL && pui->GetParent() != NULL)
          {
             try
@@ -501,7 +501,7 @@ namespace user
    }
 
 
-   interaction * interaction_child::GetDescendantWindow(id id) const
+   ::user::interaction * interaction_child::GetDescendantWindow(id id) const
    {
 
       single_lock sl(m_pui->m_pauraapp->m_pmutex,TRUE);
@@ -541,7 +541,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pobj);
 
-      interaction * puie = m_pui;
+      ::user::interaction * puie = m_pui;
 
       m_pui = NULL;
 
@@ -566,7 +566,7 @@ namespace user
       // unless we need to call this function recursively
       if(m_pui == NULL)
          return;
-      sp(interaction) pui = m_pui->top_child();
+      sp(::user::interaction) pui = m_pui->top_child();
       while(pui != NULL)
       {
          try
@@ -773,7 +773,7 @@ namespace user
 
       m_puiOwner = pui;
 
-      return m_puiOwner;
+      return ((::user::interaction *)m_puiOwner->m_pvoidUserInteraction);
 
    }
 
@@ -784,7 +784,7 @@ namespace user
       if(m_puiOwner != NULL)
       {
 
-         return m_puiOwner;
+         return ((::user::interaction *)m_puiOwner->m_pvoidUserInteraction);
 
       }
 

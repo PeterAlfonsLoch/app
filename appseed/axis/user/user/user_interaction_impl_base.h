@@ -124,10 +124,10 @@ namespace user
       virtual bool BringWindowToTop();
 
 
-      virtual bool IsAscendant(const interaction * puiIsAscendant) const;
-      virtual bool IsParent(const interaction * puiIsParent) const;
-      virtual bool IsChild(const interaction * puiIsChild) const;
-      virtual bool IsDescendant(const interaction * puiIsDescendant) const;
+      virtual bool IsAscendant(const ::user::interaction * puiIsAscendant) const;
+      virtual bool IsParent(const ::user::interaction * puiIsParent) const;
+      virtual bool IsChild(const ::user::interaction * puiIsChild) const;
+      virtual bool IsDescendant(const ::user::interaction * puiIsDescendant) const;
 
 
       virtual ::user::interaction * GetWindow() const;
