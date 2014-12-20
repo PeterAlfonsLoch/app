@@ -1195,9 +1195,6 @@
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis_policy\axis_c.c">
-      <Filter>Source Files\axis\axis_policy</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
@@ -1305,6 +1302,9 @@
     </ClCompile>
     <ClCompile Include="axis\os\windows\windows_trace_message.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis_policy\axis_c.cpp">
+      <Filter>Source Files\axis\axis_policy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

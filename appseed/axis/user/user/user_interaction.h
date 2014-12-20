@@ -80,7 +80,7 @@ namespace user
       string                              m_strWindowText;
 
 
-#if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS)
+#if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
       comparable_array < int_ptr >        m_iaModalThread;
 
