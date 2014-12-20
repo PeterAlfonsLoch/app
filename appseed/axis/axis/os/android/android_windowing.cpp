@@ -619,14 +619,7 @@ long oswindow_data::get_state()
 bool oswindow_data::is_iconic()
 {
 
-#ifdef WINDOWS
-
-   return get_state() == IconicState;
-
-#endif
-
-   return false;
-
+   return m_bIconic;
 }
 
 
@@ -1492,5 +1485,39 @@ LONG GetWindowLongA(oswindow window, int nIndex)
       return false;
 
    return window->get_window_long(nIndex);
+
+}
+
+
+LONG SetWindowLongA(oswindow window,int nIndex, LONG lValue)
+{
+
+   if(!IsWindow(window))
+      return false;
+
+   return window->set_window_long(nIndex, lValue);
+
+}
+
+
+oswindow SetParent(oswindow window,oswindow windowNewParent)
+{
+
+   if(!IsWindow(window) || !(windowNewParent == NULL || ::IsWindow(windowNewParent)))
+      return false;
+
+   return window->SetParent(windowNewParent);
+
+}
+
+
+
+bool IsIconic(oswindow window)
+{
+
+   if(!IsWindow(window))
+      return false;
+
+   return window->is_iconic();
 
 }

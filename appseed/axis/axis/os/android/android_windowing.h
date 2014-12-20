@@ -39,6 +39,7 @@ struct CLASS_DECL_AXIS oswindow_data
    int_map < LONG > *            m_plongmap;
    bool                          m_bDestroying;
    bool                          m_bVisible;
+   bool                          m_bIconic;
 
 
    static oswindow_dataptra * s_pdataptra;
