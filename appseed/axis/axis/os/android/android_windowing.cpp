@@ -1504,7 +1504,7 @@ oswindow SetParent(oswindow window,oswindow windowNewParent)
 {
 
    if(!IsWindow(window) || !(windowNewParent == NULL || ::IsWindow(windowNewParent)))
-      return false;
+      return NULL;
 
    return window->SetParent(windowNewParent);
 
@@ -1512,12 +1512,23 @@ oswindow SetParent(oswindow window,oswindow windowNewParent)
 
 
 
-bool IsIconic(oswindow window)
+int32_t IsIconic(oswindow window)
 {
 
    if(!IsWindow(window))
       return false;
 
    return window->is_iconic();
+
+}
+
+
+::user::interaction * window_from_handle(oswindow oswindow)
+{
+
+   if(oswindow == NULL)
+      return NULL;
+
+   return oswindow->m_pui;
 
 }
