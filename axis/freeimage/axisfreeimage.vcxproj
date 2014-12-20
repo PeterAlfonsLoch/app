@@ -4905,7 +4905,9 @@ copy Source\FreeImage.h Dist
     <ClCompile Include="Source\OpenEXR\Half\half.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="FreeImage.rc" />
+    <ResourceCompile Include="FreeImage.rc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CacheFile.h" />
