@@ -22,6 +22,15 @@ It is provided "as is" without express or implied warranty.
 
 #endif
 
+
+
+
+#ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
+#include <signal.h>
+#define SIG(psig) ((::exception::sig_companion *) psig)
+#endif
+
+
 #ifdef WINDOWSEX
 
 // 0x40010005 control C
@@ -64,17 +73,49 @@ bool PreventSetUnhandledExceptionFilter()
 #endif
 
 
+
 namespace exception
 {
+
+#ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
+
+
+   struct sig_companion
+   {
+
+      struct sigaction m_saSeg;
+      struct sigaction m_saFpe;
+      struct sigaction m_saPipe;
+      struct sigaction m_saSegOld;
+      struct sigaction m_saFpeOld;
+      struct sigaction m_saPipeOld;
+
+   };
+
+
+#endif
 
 
    translator::translator()
    {
       m_bSet = false;
+
+#ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
+      m_psig = new sig_companion;
+#endif
    }
 
    translator::~translator()
    {
+
+#ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
+      if(m_psig != NULL)
+      {
+
+         delete (sig_companion *) m_psig;
+
+      }
+#endif
    }
 
 #ifdef WINDOWS
@@ -139,29 +180,29 @@ namespace exception
          void InstallUncaughtExceptionHandler();
 #endif
 
-         memset(&m_saSeg, 0, sizeof(m_saSeg));
-         sigemptyset(&m_saSeg.sa_mask);
+         memset(&SIG(m_psig)->m_saSeg,0,sizeof(SIG(m_psig)->m_saSeg));
+         sigemptyset(&SIG(m_psig)->m_saSeg.sa_mask);
          //sigaddset(&m_saSeg.sa_mask, SIGSEGV);
          //m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
-         m_saSeg.sa_flags = SA_SIGINFO;
-         m_saSeg.sa_sigaction = &translator::filter_sigsegv;
-         sigaction(SIGSEGV, &m_saSeg, &m_saSegOld);
+         SIG(m_psig)-> m_saSeg.sa_flags = SA_SIGINFO;
+         SIG(m_psig)->m_saSeg.sa_sigaction = &translator::filter_sigsegv;
+         sigaction(SIGSEGV,&SIG(m_psig)->m_saSeg,&SIG(m_psig)->m_saSegOld);
 
-         memset(&m_saFpe, 0, sizeof(m_saFpe));
-         sigemptyset(&m_saFpe.sa_mask);
+         memset(&SIG(m_psig)->m_saFpe,0,sizeof(SIG(m_psig)->m_saFpe));
+         sigemptyset(&SIG(m_psig)->m_saFpe.sa_mask);
          //sigaddset(&m_saFpe.sa_mask, SIGFPE);
          //m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
-         m_saSeg.sa_flags = SA_SIGINFO;
-         m_saFpe.sa_sigaction = &translator::filter_sigfpe;
-         sigaction(SIGFPE, &m_saFpe, &m_saFpeOld);
+         SIG(m_psig)->m_saSeg.sa_flags = SA_SIGINFO;
+         SIG(m_psig)->m_saFpe.sa_sigaction = &translator::filter_sigfpe;
+         sigaction(SIGFPE,&SIG(m_psig)->m_saFpe,&SIG(m_psig)->m_saFpeOld);
 
-         memset(&m_saPipe, 0, sizeof(m_saPipe));
-         sigemptyset(&m_saPipe.sa_mask);
+         memset(&SIG(m_psig)->m_saPipe,0,sizeof(SIG(m_psig)->m_saPipe));
+         sigemptyset(&SIG(m_psig)->m_saPipe.sa_mask);
          //sigaddset(&m_saPipe.sa_mask, SIGPIPE);
          //m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
-         m_saSeg.sa_flags = SA_SIGINFO;
-         m_saPipe.sa_sigaction = &translator::filter_sigpipe;
-         sigaction(SIGPIPE, &m_saPipe, &m_saPipeOld);
+         SIG(m_psig)->m_saSeg.sa_flags = SA_SIGINFO;
+         SIG(m_psig)->m_saPipe.sa_sigaction = &translator::filter_sigpipe;
+         sigaction(SIGPIPE,&SIG(m_psig)->m_saPipe,&SIG(m_psig)->m_saPipeOld);
 
 
 #endif
@@ -183,8 +224,8 @@ namespace exception
 #ifdef WINDOWS
          _set_se_translator(m_pfn);
 #else
-         sigaction(SIGSEGV, &m_saSegOld, NULL);
-         sigaction(SIGFPE, &m_saFpeOld, NULL);
+         sigaction(SIGSEGV,&SIG(m_psig)->m_saSegOld,NULL);
+         sigaction(SIGFPE,&SIG(m_psig)->m_saFpeOld,NULL);
 #endif
          m_bSet = false;
          return true;

@@ -69,7 +69,7 @@ namespace base
 
 
 
-      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate,::user::document * pdocument);
+      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::aura::impact_system) ptemplate,::user::document * pdocument);
 
 
 

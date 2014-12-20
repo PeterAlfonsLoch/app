@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace user
+namespace aura
 {
 
 
@@ -140,9 +140,10 @@ namespace user
    };
 
 
+} // namespace aura
 
 
-} // namespace user
+
 
 
 

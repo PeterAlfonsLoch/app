@@ -7,7 +7,7 @@ namespace user
 
    single_document_template::single_document_template(::aura::application * papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass) :
       element(papp),
-      ::user::impact_system(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
+      ::aura::impact_system(papp, pszMatter, pDocClass, pFrameClass, pViewClass)
    {
       m_pdocument = NULL;
    }

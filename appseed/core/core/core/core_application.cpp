@@ -1776,7 +1776,7 @@ namespace core
    }
 
    // prompt for file name - used for open and save as
-   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument)
+   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::aura::impact_system * ptemplate,::user::document * pdocument)
       // if ptemplate==NULL => all document templates
    {
       if(Platform.m_pfilemanager != NULL)
@@ -4058,7 +4058,7 @@ namespace core
    }
 
 
-   void application::add_document_template(::user::impact_system * ptemplate)
+   void application::add_document_template(::aura::impact_system * ptemplate)
    {
 
       if(ptemplate == NULL)

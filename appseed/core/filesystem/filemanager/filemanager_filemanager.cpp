@@ -142,7 +142,7 @@ namespace filemanager
 
 
 
-   bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, ::aura::impact_system * ptemplate, ::user::document * pdocument)
    {
 
       sp(::userex::pane_tab_view) ppanetabview = NULL;

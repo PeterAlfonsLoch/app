@@ -21,9 +21,13 @@
 
 #ifdef WINDOWS
 #include <eh.h>
-#else
-#include <signal.h>
 #endif
+
+
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+#define EXCEPTION_TRANSLATOR_USE_SIGNAL
+#endif
+
 
 extern CLASS_DECL_AURA bool g_bExiting;
 
@@ -37,13 +41,10 @@ namespace exception
    {
    public:
 
-   #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-      struct sigaction m_saSeg;
-      struct sigaction m_saFpe;
-      struct sigaction m_saPipe;
-      struct sigaction m_saSegOld;
-      struct sigaction m_saFpeOld;
-      struct sigaction m_saPipeOld;
+   #ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
+
+      void *      m_psig;
+
    #endif
 
       translator();

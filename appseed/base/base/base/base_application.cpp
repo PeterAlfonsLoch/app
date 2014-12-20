@@ -1006,7 +1006,7 @@ namespace base
 //#endif
 //
 
-   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::user::impact_system) ptemplate, ::user::document * pdocument)
+   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::aura::impact_system) ptemplate, ::user::document * pdocument)
    {
 
       UNREFERENCED_PARAMETER(varFile);
