@@ -3344,7 +3344,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <None Include="user\user.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="axis.rc" />
+    <ResourceCompile Include="axis.rc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\aura\sqlite\aurasqlite.vcxproj">
