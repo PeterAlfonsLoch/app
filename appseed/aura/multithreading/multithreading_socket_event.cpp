@@ -1,5 +1,9 @@
 #include "framework.h"
 
+#if defined(ANDROID)
+#include <unistd.h>
+#endif
+
 
 ///  \brief		constructor with passed socket handle and read state
 ///  \param		socket socket handle (default: -1)
