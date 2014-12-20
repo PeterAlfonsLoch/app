@@ -43,17 +43,17 @@ struct CLASS_DECL_BASE __EXCEPTION_CONTEXT
 
 };
 
-void CLASS_DECL_BASE __abort();
+//void CLASS_DECL_BASE __abort();
 
 
-CLASS_DECL_BASE LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+//CLASS_DECL_BASE LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
-CLASS_DECL_BASE MESSAGE * __get_current_message();
+//CLASS_DECL_BASE MESSAGE * __get_current_message();
 
-CLASS_DECL_BASE void __android_term();
+//CLASS_DECL_BASE void __android_term();
 
-CLASS_DECL_BASE sp(::aura::application)  __get_app();
-CLASS_DECL_BASE sp(::user::interaction) __get_main_window();
-CLASS_DECL_BASE const char * __get_app_name();
+//CLASS_DECL_BASE sp(::aura::application)  __get_app();
+//CLASS_DECL_BASE sp(::user::interaction) __get_main_window();
+//CLASS_DECL_BASE const char * __get_app_name();
 
 

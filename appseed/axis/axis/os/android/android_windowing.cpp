@@ -635,21 +635,7 @@ bool oswindow_data::is_window_visible()
 
    synch_lock sl(&user_mutex());
 
-   /*
-
-   xdisplay d(display());
-
-   if(d.m_pdisplay == NULL)
-    return false;
-
-   XWindowAttributes attr;
-   if(!XGetWindowAttributes(display(), interaction_impl(), &attr))
-      return false;
-   return attr.map_state == IsViewable;
-
-   */
-
-   return true;
+   return m_bVisible;
 
 }
 
@@ -1482,3 +1468,29 @@ int_bool GetCursorPos(LPPOINT lppt)
 //   return (oswindow->get_user_interaction() == NULL && oswindow->display() != NULL && oswindow->window() != None)
 //      || (oswindow->get_user_interaction() != NULL && !oswindow->is_destroying());
 //}
+
+
+
+
+
+int32_t IsWindowVisible(oswindow window)
+{
+
+   if(!IsWindow(window))
+      return false;
+
+   return window->is_window_visible();
+
+}
+
+
+
+LONG GetWindowLongA(oswindow window, int nIndex)
+{
+
+   if(!IsWindow(window))
+      return false;
+
+   return window->get_window_long(nIndex);
+
+}
