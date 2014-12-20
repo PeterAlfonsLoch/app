@@ -188,7 +188,7 @@ namespace user
             {
                iStyle &= ~WS_VISIBLE;
             }
-            smart_pointer_array < timer_item > timera;
+            smart_pointer_array < ::aura::timer_item > timera;
             if(m_pauraapp != NULL && m_pauraapp->m_pthreadimpl != NULL && m_pauraapp->m_pthreadimpl->m_sptimera.is_set())
             {
                m_pauraapp->m_pthreadimpl->m_sptimera->detach(timera,this);

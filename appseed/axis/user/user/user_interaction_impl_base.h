@@ -82,7 +82,7 @@ namespace user
       virtual void draw_control_background(::draw2d::graphics *pdc);
 
 
-      virtual interaction * get_wnd() const;
+      virtual ::user::interaction * get_wnd() const;
 
 
       virtual void set_viewport_org(::draw2d::graphics * pgraphics);

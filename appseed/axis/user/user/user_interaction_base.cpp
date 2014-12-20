@@ -487,7 +487,7 @@ namespace user
 
 
 
-   void interaction_base::set_timer(smart_pointer_array < timer_item > timera)
+   void interaction_base::set_timer(smart_pointer_array < ::aura::timer_item > timera)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -1033,7 +1033,7 @@ namespace user
    }
 
 
-   interaction * interaction_base::GetActiveWindow()
+   ::user::interaction * interaction_base::GetActiveWindow()
    {
 
       ::exception::throw_interface_only(get_app());

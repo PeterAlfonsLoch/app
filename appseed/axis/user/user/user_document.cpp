@@ -1,7 +1,7 @@
 #include "framework.h" // from "axis/user/user.h"
 
 
-namespace user
+namespace aura
 {
 
 
@@ -108,7 +108,7 @@ namespace user
 
       str+= m_strPathName;
 
-      sp(frame_window) pframe = get_view(0)->GetParentFrame();
+      sp(::user::frame_window) pframe = get_view(0)->GetParentFrame();
 
       while(pframe.is_set())
       {
@@ -1019,7 +1019,7 @@ namespace user
    }
 
 
-} // namespace user
+} // namespace aura
 
 
 

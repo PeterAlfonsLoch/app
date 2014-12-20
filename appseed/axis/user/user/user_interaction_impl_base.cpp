@@ -525,7 +525,7 @@ namespace user
    }
 
 
-   interaction * interaction_impl_base::get_wnd() const
+   ::user::interaction * interaction_impl_base::get_wnd() const
    {
 
       return m_pui->GetWindow();

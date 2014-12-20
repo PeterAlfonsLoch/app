@@ -382,11 +382,11 @@ namespace user
       virtual bool has_focus();
       virtual ::user::interaction * SetFocus();
       virtual bool SetForegroundWindow();
-      virtual interaction * GetActiveWindow();
-      virtual interaction * SetActiveWindow();
+      virtual ::user::interaction * GetActiveWindow();
+      virtual ::user::interaction * SetActiveWindow();
 
 
-      virtual interaction * GetDescendantWindow(id id) const;
+      virtual ::user::interaction * GetDescendantWindow(id id) const;
 
       virtual void SetWindowText(const char * lpszString);
       virtual strsize GetWindowText(LPSTR lpszStringBuf,int32_t nMaxCount);

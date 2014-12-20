@@ -1884,7 +1884,7 @@ namespace axis
       {
          for(int32_t i = 0; i <pimpl-> m_spuiptra->get_count();)
          {
-            ::user::interaction * pui = pimpl->m_spuiptra->element_at(i);
+            ::user::interaction * pui = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
             bool bOk = false;
             try
             {
