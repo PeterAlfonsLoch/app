@@ -1,15 +1,18 @@
 #include "framework.h"
 
 
+namespace aura
+{
 
 
+   cmd_ui::cmd_ui(class ::signal * psignal):
+      signal_details(psignal)
+   {
+
+   }
 
 
-
-
-
-
-
+} // namespace aura
 
 
 

@@ -23,6 +23,8 @@ It is provided "as is" without express or implied warranty.
 #include <unistd.h>
 #elif defined(APPLEOS)
 #include <execinfo.h>
+#elif defined(ANDROID) 
+#include <unistd.h>
 #endif
 
 
