@@ -2024,25 +2024,25 @@ namespace axis
    }
 
 
-   ptr_array < ::thread > application::get_thread(::user::interaction * pui)
+   ptr_array < ::thread > application::get_thread(::aura::interaction * pui)
    {
 
-      return pui->m_threadptra;
+      return ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra;
 
    }
 
 
-   void application::add_thread(::user::interaction * pui,::thread * pthread)
+   void application::add_thread(::aura::interaction * pui,::thread * pthread)
    {
 
-      pui->m_threadptra.add_unique(pthread);
+      ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra.add_unique(pthread);
 
    }
 
-   void application::remove_thread(::user::interaction * pui,::thread * pthread)
+   void application::remove_thread(::aura::interaction * pui,::thread * pthread)
    {
 
-      pui->m_threadptra.remove(pthread);
+      ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra.remove(pthread);
 
    }
 
@@ -2159,7 +2159,7 @@ namespace axis
       try
       {
 
-         pbase->m_pwnd->message_handler(pobj);
+         ((::user::interaction *)pbase->m_pwnd->m_pvoidUserInteraction)->message_handler(pobj);
 
 
       }

@@ -5697,13 +5697,13 @@ namespace user
 
 
 
-   void interaction::transfer_from(timer_array & ta, interaction * pui)
+   void interaction::transfer_from(::aura::timer_array & ta, interaction * pui)
    {
 
 
       single_lock sl(&ta.m_mutex,TRUE);
 
-      smart_pointer_array < timer_item > timera;
+      smart_pointer_array < ::aura::timer_item > timera;
 
       ta.detach(timera,this);
 
