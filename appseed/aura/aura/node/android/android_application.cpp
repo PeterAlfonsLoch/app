@@ -442,25 +442,25 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
       */
 
-      for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
-      {
-
-         oswindow interaction_impl = ::oswindow_data::s_pdataptra->element_at(i);
-
-         if(interaction_impl->m_bMessageOnlyWindow)
-            continue;
-
-/*
-         if(interaction_impl->display() == NULL)
-            continue;
-
-         Cursor cursor = XCreateFontCursor(interaction_impl->display(), uiShape);
-
-         XDefineCursor(interaction_impl->display(), interaction_impl->interaction_impl(), cursor);
-
-*/
-
-      }
+//      for(int i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
+//      {
+//
+//         oswindow interaction_impl = ::oswindow_data::s_pdataptra->element_at(i);
+//
+//         if(interaction_impl->m_bMessageOnlyWindow)
+//            continue;
+//
+///*
+//         if(interaction_impl->display() == NULL)
+//            continue;
+//
+//         Cursor cursor = XCreateFontCursor(interaction_impl->display(), uiShape);
+//
+//         XDefineCursor(interaction_impl->display(), interaction_impl->interaction_impl(), cursor);
+//
+//*/
+//
+//      }
 
    }
 

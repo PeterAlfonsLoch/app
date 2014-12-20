@@ -242,30 +242,6 @@
     <ClInclude Include="version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_cross_win_file.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_cross_win_gdi.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_cross_win_gdi_internal.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_file.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_file_watcher.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_graphics.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_internal.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_process.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="axis\os\android\android_window_android.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
