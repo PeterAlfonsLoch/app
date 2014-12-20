@@ -47,7 +47,4 @@ CLASS_DECL_AXIS oswindow WINAPI ReleaseCapture();
 CLASS_DECL_AXIS int_bool IsWindow(oswindow oswindow);
 
 
-#define PostMessage  PostMessageW
-
-CLASS_DECL_AXIS int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam);
 

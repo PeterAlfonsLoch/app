@@ -80,8 +80,6 @@ CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction * p
 
 
 
-#define HWND_MESSAGE ((::oswindow_data *) (int_ptr) 1)
-
 inline bool IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOrDescendant);
 inline oswindow GetParent(::oswindow oswindow);
 inline oswindow SetParent(::oswindow oswindow, ::oswindow oswindowNewParent);
