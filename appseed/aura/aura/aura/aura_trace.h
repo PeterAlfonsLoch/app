@@ -202,3 +202,14 @@ namespace aura
 
 };  // namespace aura
 
+
+
+struct CLASS_DECL_AURA __MAP_MESSAGE
+{
+   UINT    nMsg;
+   const char *  lpszMsg;
+};
+
+
+extern CLASS_DECL_AURA const __MAP_MESSAGE * allMessages;
+

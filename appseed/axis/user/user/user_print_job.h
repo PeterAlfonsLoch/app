@@ -11,7 +11,7 @@ namespace user
    public:
 
       
-      sp(printer)       m_phprinter;
+      sp(::aura::printer)       m_phprinter;
 
 
       print_job(::aura::application * papp);
