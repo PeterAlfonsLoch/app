@@ -47,6 +47,8 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
     if(pstrName != NULL && *pstrName != '\0')
     {
 
+       m_pmutex = NULL;
+
        if(str::begins_ci(pstrName, "Global"))
        {
 
@@ -88,6 +90,9 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
     else
     {
 
+       m_pmutex = new pthread_mutex_t;
+
+
 
       m_psem = SEM_FAILED;
 
@@ -105,6 +110,8 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
    if(pstrName != NULL && *pstrName != '\0')
    {
+
+      m_pmutex = NULL;
 
 
       if(str::begins_ci(pstrName, "Global"))
@@ -144,6 +151,7 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
    else
    {
 
+      m_pmutex = new pthread_mutex_t;
 
       m_key = 0;
 
@@ -220,6 +228,11 @@ mutex::~mutex()
 
       pthread_mutex_destroy((pthread_mutex_t *) m_pmutex);
 
+      if(m_pmutex != NULL)
+      {
+         delete (pthread_mutex_t *)m_pmutex;
+      }
+
    }
 
 
@@ -237,6 +250,11 @@ mutex::~mutex()
    {
 
       pthread_mutex_destroy((pthread_mutex_t *) m_pmutex);
+
+      if(m_pmutex != NULL)
+      {
+         delete (pthread_mutex_t *)m_pmutex;
+      }
 
    }
 

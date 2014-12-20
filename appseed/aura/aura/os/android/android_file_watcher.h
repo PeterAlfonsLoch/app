@@ -74,7 +74,7 @@ namespace file_watcher
 		/// time out data
 		struct timeval mTimeOut;
 		/// File descriptor set
-		fd_set mDescriptorSet;
+		void *  m_pDescriptorSet; // fd_set
 
 
 	};

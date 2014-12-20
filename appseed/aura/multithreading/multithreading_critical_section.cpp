@@ -66,6 +66,8 @@ bool critical_section::Init()
 
 #endif
 
+      m_pmutex = new pthread_mutex_t;
+
       // create the mutex with the attributes set
       pthread_mutex_init((pthread_mutex_t *) m_pmutex, &mutexattr);
 
@@ -99,6 +101,9 @@ critical_section::~critical_section()
 {
    // Destroy / close the mutex
    pthread_mutex_destroy ((pthread_mutex_t *) m_pmutex);
+
+   delete (pthread_mutex_t *)m_pmutex;
+
 }
 
 void critical_section::lock()

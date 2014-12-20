@@ -82,6 +82,8 @@ event::event(::aura::application * papp, bool bInitiallyOwn, bool bManualReset, 
 
 #elif defined(ANDROID)
 
+   m_pcond = new pthread_cond_t;
+
    pthread_cond_init((pthread_cond_t *) m_pcond, NULL);
 
    m_bManualEvent = bManualReset;
@@ -94,12 +96,17 @@ event::event(::aura::application * papp, bool bInitiallyOwn, bool bManualReset, 
       pthread_mutexattr_init(&attr);
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
       int32_t rc;
+      m_pmutex = new pthread_mutex_t;
       if((rc = pthread_mutex_init((pthread_mutex_t *) m_pmutex,&attr)))
       {
          throw "RC_OBJECT_NOT_CREATED";
       }
 
 
+   }
+   else
+   {
+      m_pmutex = NULL;
    }
 
 #else
@@ -168,6 +175,17 @@ event:: ~event()
    semun ignored_argument;
 
    semctl(m_object, 0, IPC_RMID, ignored_argument);
+
+#elif defined(ANDROID)
+
+   if(m_pcond != NULL)
+   {
+      delete (pthread_cond_t *)m_pcond;
+   }
+   if(m_pmutex != NULL)
+   {
+      delete (pthread_mutex_t *)m_pmutex;
+   }
 
 #endif
 

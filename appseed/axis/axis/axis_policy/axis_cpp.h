@@ -419,7 +419,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "filesystem/file/file_edit_buffer.h"
 
-#include "axis/axis/axis_command_target.h"
+//#include "axis/axis/axis_command_target.h"
 
 #include "axis/axis/axis_application.h"
 

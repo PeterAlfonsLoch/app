@@ -22,7 +22,7 @@
 #include "user/user/user_schema_simple_impl.h"
 #include "user/user/user_schema_layered_frame.h"
 //#include "user/user/user_text_interface.h"
-#include "user/user/user_draw_interface.h"
+//#include "user/user/user_draw_interface.h"
 #include "user/user/user_window_util.h"
 #include "user/user/user_interaction_base.h"
 //#include "user/user/user_buffer.h"
@@ -68,7 +68,7 @@
 
 
 
-#include "user/user/user_create_context.h"
+//#include "user/user/user_create_context.h"
 
 
 #include "user/user/user_window_draw.h"
