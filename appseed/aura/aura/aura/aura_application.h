@@ -148,8 +148,8 @@ namespace aura
       virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam, int cyParam, int iStride = -1);
 
 
-      virtual ::aura::interaction * get_active_guie();
-      virtual ::aura::interaction * get_focus_guie();
+      //virtual ::aura::interaction * get_active_guie();
+      //virtual ::aura::interaction * get_focus_guie();
 
 
       // Wall-eeeeee aliases

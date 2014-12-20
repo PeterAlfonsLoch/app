@@ -104,6 +104,7 @@ namespace html
 namespace user
 {
 
+   class interaction;
    class interaction_impl;
    class view_creator_data;
    class schema;

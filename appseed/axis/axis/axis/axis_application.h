@@ -75,7 +75,7 @@ namespace axis
       virtual void on_create_keyboard();
 
 
-      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::aura::impact_system * ptemplate, ::user::document * pdocument);
 
 
       virtual sp(::user::interaction) release_capture_uie();
@@ -105,16 +105,16 @@ namespace axis
       virtual bool post_user_message(::thread_impl * pimpl,::user::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
 
-      virtual bool is_window(::user::interaction * pui);
-      virtual LRESULT send_message(::user::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
-      virtual oswindow get_safe_handle(::user::interaction * pui);
+      virtual bool is_window(::aura::interaction * pui);
+      virtual LRESULT send_message(::aura::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+      virtual oswindow get_safe_handle(::aura::interaction * pui);
       virtual void dispatch_user_message(::signal_details * pbase);
       virtual ::user::interaction * get_parent(::user::interaction * pui);
-      virtual bool enable_window(::user::interaction * pui,bool bEnable = true);
+      virtual bool enable_window(::aura::interaction * pui,bool bEnable = true);
       virtual bool set_window_text(::user::interaction * pui,const string & strText);
-      virtual ptr_array < ::thread > get_thread(::user::interaction * pui);
-      virtual void add_thread(::user::interaction * pui,::thread * pthread);
-      virtual void remove_thread(::user::interaction * pui,::thread * pthread);
+      virtual ptr_array < ::thread > get_thread(::aura::interaction * pui);
+      virtual void add_thread(::aura::interaction * pui,::thread * pthread);
+      virtual void remove_thread(::aura::interaction * pui,::thread * pthread);
       virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam, int cyParam, int iStride = -1);
 
 

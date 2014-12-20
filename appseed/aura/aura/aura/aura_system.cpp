@@ -1345,12 +1345,12 @@ namespace aura
    }
 
 
-   ::aura::interaction * system::get_focus_guie()
-   {
+   //::aura::interaction * system::get_focus_guie()
+   //{
 
-      return NULL;
+   //   return NULL;
 
-   }
+   //}
 
 
    uint32_t _thread_proc_start_system(void * p)

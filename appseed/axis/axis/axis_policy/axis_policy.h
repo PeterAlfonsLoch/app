@@ -7,6 +7,17 @@
 #ifdef cplusplus
 
 
+namespace user
+{
+
+
+   class interaction;
+
+
+} // namespace user
+
+
+
 #include "axis_c.h"
 #include "axis_cpp.h"
 

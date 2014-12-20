@@ -1996,6 +1996,19 @@ namespace axis
    bool application::enable_window(::user::interaction * pui, bool bEnable)
    {
 
+      // if control has the focus, move the focus before disabling
+      if(!bEnable)
+      {
+         if(System.get_focus_guie() == pui))
+         {
+            Application.send_message(Application.get_parent(m_pOther),WM_NEXTDLGCTL,0,(LPARAM)FALSE);
+
+            }
+
+      }
+
+
+
       return pui->enable_window(bEnable);
 
    }

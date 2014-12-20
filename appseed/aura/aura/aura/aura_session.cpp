@@ -255,21 +255,21 @@ namespace aura
    }
 
 
-   ::aura::interaction * session::get_active_guie()
-   {
+   //::aura::interaction * session::get_active_guie()
+   //{
 
-      return NULL;
+   //   return NULL;
 
-   }
-
-
-   ::aura::interaction * session::get_focus_guie()
-   {
+   //}
 
 
-      return NULL;
+   //::aura::interaction * session::get_focus_guie()
+   //{
 
-   }
+
+   //   return NULL;
+
+   //}
 
 
 

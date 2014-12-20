@@ -55,10 +55,6 @@ void cmd_ui::Enable(bool bOn,::action::context actioncontext)
       // enable/disable a control (i.e. child interaction_impl)
       ENSURE(m_pOther != NULL);
 
-      // if control has the focus, move the focus before disabling
-      if(!bOn && (System.get_focus_guie() == m_pOther))
-         Application.send_message(Application.get_parent(m_pOther),WM_NEXTDLGCTL,0,(LPARAM)FALSE);
-
       Application.enable_window(m_pOther,bOn);
 
    }
