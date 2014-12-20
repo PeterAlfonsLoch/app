@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <stdarg.h>
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
 #include <sys/types.h>
 #include <unistd.h>
 #endif
