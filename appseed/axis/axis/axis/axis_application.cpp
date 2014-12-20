@@ -181,7 +181,7 @@ namespace axis
          //return;
 
       case MSGF_MENU:
-         pMsgWnd = pbase->m_pwnd;
+         pMsgWnd = dynamic_cast < ::user::interaction * > (pbase->m_pwnd);
          if(pMsgWnd != NULL)
          {
             pTopFrameWnd = pMsgWnd->GetTopLevelFrame();
@@ -513,7 +513,7 @@ namespace axis
    //}
 
 
-   //::user::document * application::_001OpenDocumentFile(var varFile)
+   //::aura::document * application::_001OpenDocumentFile(var varFile)
    //{
 
    //   ::exception::throw_interface_only(this);
@@ -531,7 +531,7 @@ namespace axis
    //}
 
 
-   sp(::user::printer) application::get_printer(const char * pszDeviceName)
+   sp(::aura::printer) application::get_printer(const char * pszDeviceName)
    {
 
       ::exception::throw_interface_only(this);
@@ -720,7 +720,7 @@ namespace axis
 #endif
 
 
-   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::aura::impact_system * ptemplate, ::user::document * pdocument)
+   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::aura::impact_system * ptemplate, ::aura::document * pdocument)
    {
 
       UNREFERENCED_PARAMETER(varFile);
@@ -1399,7 +1399,7 @@ namespace axis
    //}
 
 
-   //sp(::user::document) application::_001OpenDocumentFile(var varFile)
+   //sp(::aura::document) application::_001OpenDocumentFile(var varFile)
    //{
    //   string strId = m_strId;
    //   char chFirst = '\0';

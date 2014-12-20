@@ -4,7 +4,7 @@
 menu_document::menu_document(::aura::application * papp) :
    element(papp),
    ::data::data_container_base(papp),
-   ::user::document(papp),
+   ::aura::document(papp),
    form_document(papp)
 {
 

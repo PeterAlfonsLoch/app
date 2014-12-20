@@ -704,7 +704,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
 
    pobj->m_bRet = true;
    // Note: only queries the active document
-   sp(::user::document) pdocument = GetActiveDocument();
+   sp(::aura::document) pdocument = GetActiveDocument();
    if (pdocument != NULL && !pdocument->can_close_frame(this))
    {
       // document can't close right now -- don't close it
@@ -1716,7 +1716,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
 
       }
 
-      sp(::user::document) pdoc = pfiu->m_pdoc;
+      sp(::aura::document) pdoc = pfiu->m_pdoc;
       // update frame counts and frame title (may already have been visible)
       if (pdoc != NULL)
          pdoc->update_frame_counts();
@@ -2052,7 +2052,7 @@ bool simple_frame_window::on_create_bars()
 
 
 
-void simple_frame_window::InitialUpdateFrame(::user::document * pDoc,bool bMakeVisible)
+void simple_frame_window::InitialUpdateFrame(::aura::document * pDoc,bool bMakeVisible)
 {
 
    ::user::frame_window::InitialUpdateFrame(pDoc,bMakeVisible);

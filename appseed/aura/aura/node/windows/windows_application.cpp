@@ -33,7 +33,7 @@ namespace windows
    }
 
 
-   //::user::document *  application::_001OpenDocumentFile(var varFile)
+   //::aura::document *  application::_001OpenDocumentFile(var varFile)
    //{
 
    //   return NULL;

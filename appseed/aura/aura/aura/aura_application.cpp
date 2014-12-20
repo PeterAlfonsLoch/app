@@ -493,7 +493,7 @@ namespace aura
    }
 
 
-   /*::user::document *  application::_001OpenDocumentFile(var varFile)
+   /*::aura::document *  application::_001OpenDocumentFile(var varFile)
    {
 
       ::exception::throw_interface_only(this);
@@ -1363,7 +1363,7 @@ namespace aura
    //}
 
 
-   //::user::document *  application::_001OpenDocumentFile(var varFile)
+   //::aura::document *  application::_001OpenDocumentFile(var varFile)
    //{
    //   string strId = m_strId;
    //   char chFirst = '\0';

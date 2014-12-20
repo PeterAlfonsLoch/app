@@ -24,7 +24,7 @@ namespace user
       id                               m_id;
       ::user::interaction *            m_pwnd;
       ::user::place_holder *           m_pholder;
-      ::user::document *     m_pdoc;
+      ::aura::document *     m_pdoc;
       id                               m_idSplit;
       bool                             m_bTabSplitSwap;
       int32_t                              m_iExtendOnParent;

@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE form_document :
-   virtual public ::user::document,
+   virtual public ::aura::document,
    virtual public ::database::client,
    virtual public ::user::form_callback
 {

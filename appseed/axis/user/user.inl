@@ -7,7 +7,7 @@ namespace user
 
 
    template < class VIEW >
-   inline VIEW * impact::create_view(::user::document * pdoc,const RECT & rect, ::user::interaction * pwndParent,id id, ::user::interaction * pviewLast)
+   inline VIEW * impact::create_view(::aura::document * pdoc,const RECT & rect, ::user::interaction * pwndParent,id id, ::user::interaction * pviewLast)
    {
       return dynamic_cast < VIEW * > (create_view(System.type_info < VIEW >(), pdoc, rect, pwndParent, id, pviewLast));
    }

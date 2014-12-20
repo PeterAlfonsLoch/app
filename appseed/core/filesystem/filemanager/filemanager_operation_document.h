@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE operation_document:
-      public ::user::document
+      public ::aura::document
    {
    public:
 

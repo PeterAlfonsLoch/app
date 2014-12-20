@@ -8,7 +8,7 @@ namespace userfs
    document::document(::aura::application * papp) :
       element(papp),
       ::data::data_container_base(papp),
-      ::user::document(papp)
+      ::aura::document(papp)
    {
 
       m_fsset = canew(::fs::set(papp));
@@ -21,12 +21,12 @@ namespace userfs
 
    void document::assert_valid() const
    {
-      ::user::document::assert_valid();
+      ::aura::document::assert_valid();
    }
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::user::document::dump(dumpcontext);
+      ::aura::document::dump(dumpcontext);
    }
 
    bool document::browse(const char * pszFolder, ::action::context actioncontext)

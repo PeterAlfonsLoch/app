@@ -93,7 +93,7 @@ namespace user
    void document::on_create(sp(::create) pcreatecontext)
    {
 
-      //::user::document::on_alloc(papp);
+      //::aura::document::on_alloc(papp);
       ::database::client::initialize_data_client(&Application.dataserver());
 
    }

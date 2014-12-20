@@ -31,7 +31,7 @@ namespace user
 
       virtual ::user::interaction * get_view_uie();
       virtual ::user::view_creator_data * get_view_creator_data();
-      virtual ::user::document * get_view_document();
+      virtual ::aura::document * get_view_document();
 
 
       void _000OnDraw(::draw2d::graphics * pdc);

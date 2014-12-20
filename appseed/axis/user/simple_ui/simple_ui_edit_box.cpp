@@ -9,7 +9,7 @@ namespace simple_ui
       element(papp),
       ::user::interaction(papp),
       ::colorertake5::base_editor(papp),
-      ::data::data_listener(papp),
+      ::data::listener(papp),
       ::user::edit_plain_text(papp)
    {
 

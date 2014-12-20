@@ -18,6 +18,7 @@ namespace user
 } // namespace user
 
 
+using user_interaction = ::user::interaction;
 
 #include "axis_c.h"
 #include "axis_cpp.h"

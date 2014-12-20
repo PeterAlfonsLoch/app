@@ -40,7 +40,7 @@ namespace user
       System.factory().creatable_small < menu_list_view >();
       System.factory().cloneable_small < simple_child_frame >();
       System.factory().cloneable_small < simple_main_frame >();
-      System.factory().cloneable_small < ::user::document >();
+      System.factory().cloneable_small < ::aura::document >();
       System.factory().cloneable_small < split_view >();
       System.factory().cloneable_small < edit_plain_text_view >();
 
@@ -48,7 +48,7 @@ namespace user
 
 
       System.factory().creatable_small < simple_list_view >();
-      System.factory().creatable_small < ::user::document >();
+      System.factory().creatable_small < ::aura::document >();
       System.factory().creatable_small < simple_printer_list_view >();
       System.factory().creatable_small < ::user::combo_list >();
       System.factory().creatable_small < ::user::edit_plain_text >();

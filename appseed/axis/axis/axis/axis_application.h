@@ -75,7 +75,7 @@ namespace axis
       virtual void on_create_keyboard();
 
 
-      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::aura::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::aura::impact_system * ptemplate, ::aura::document * pdocument);
 
 
       virtual sp(::user::interaction) release_capture_uie();
@@ -210,7 +210,7 @@ namespace axis
 
       //virtual bool _001OnDDECommand(const char * lpcsz);
       //virtual void _001EnableShellOpen();
-      //virtual ::user::document * _001OpenDocumentFile(var varFile);
+      //virtual ::aura::document * _001OpenDocumentFile(var varFile);
       //virtual void _001OnFileNew(signal_details * pobj);
 
       virtual sp(::aura::printer) get_printer(const char * pszDeviceName);

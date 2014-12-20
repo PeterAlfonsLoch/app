@@ -1742,7 +1742,7 @@ namespace draw2d
       return -1;
    }
 
-   // ::user::document handling functions
+   // ::aura::document handling functions
    int32_t graphics::StartDoc(LPDOCINFO lpDocInfo)
    {
       UNREFERENCED_PARAMETER(lpDocInfo);

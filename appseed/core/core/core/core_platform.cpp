@@ -889,7 +889,7 @@ namespace core
             //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
             //}
             App(m_pappCurrent).request_create(pcreatecontext);
-            if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document > () == NULL)
+            if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::aura::document > () == NULL)
             {
   //             goto alt1;
             }
@@ -1351,7 +1351,7 @@ namespace core
    }
 
 
-   sp(::user::document) platform::get_document()
+   sp(::aura::document) platform::get_document()
    {
       return m_pbergedgedocument;
    }
@@ -1364,12 +1364,12 @@ namespace core
       return NULL;
    }
 
-   sp(::user::document) platform::get_platform()
+   sp(::aura::document) platform::get_platform()
    {
       return m_pplatformdocument;
    }
 
-   sp(::user::document) platform::get_nature()
+   sp(::aura::document) platform::get_nature()
    {
       return m_pnaturedocument;
    }

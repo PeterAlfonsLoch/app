@@ -169,7 +169,7 @@ namespace core
       virtual bool map_application_library(const char * pszLibrary);
 
 
-      ::user::document * place_hold(::user::interaction * pui);
+      ::aura::document * place_hold(::user::interaction * pui);
 
 
 

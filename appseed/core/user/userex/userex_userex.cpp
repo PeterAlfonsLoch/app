@@ -184,7 +184,7 @@ namespace userex
       m_ptemplatePlaceHolder = new ::user::multiple_document_template(
          get_app(),
          "system/form",
-         System.type_info < ::user::document >(),
+         System.type_info < ::aura::document >(),
          System.type_info < simple_frame_window >(),
          System.type_info < ::user::place_holder >());
 
@@ -652,7 +652,7 @@ namespace userex
    }
 
 
-   ::user::document * userex::hold(sp(::user::interaction) pui)
+   ::aura::document * userex::hold(sp(::user::interaction) pui)
    {
 
       sp(::create) createcontext(pui->allocer());
@@ -660,7 +660,7 @@ namespace userex
       createcontext->m_bMakeVisible    = false;
       createcontext->m_bHold           = false;
 
-      sp(::user::document) pdoc = m_ptemplatePlaceHolder->open_document_file(createcontext);
+      sp(::aura::document) pdoc = m_ptemplatePlaceHolder->open_document_file(createcontext);
 
       sp(::user::place_holder) pholder = pdoc->get_typed_view < ::user::place_holder  >();
 

@@ -358,7 +358,7 @@ namespace core
       // registered with the doc manager.
       int32_t get_open_document_count();
 
-      bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::aura::impact_system * ptemplate,::user::document * pdocument);
+      bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::aura::impact_system * ptemplate,::aura::document * pdocument);
 
       void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -417,7 +417,7 @@ namespace core
       //      virtual ::core::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      virtual ::user::document * _001OpenDocumentFile(var varFile);
+      virtual ::aura::document * _001OpenDocumentFile(var varFile);
       DECL_GEN_SIGNAL(_001OnFileNew);
 
 
@@ -468,7 +468,7 @@ namespace core
       virtual int32_t send_simple_command(const char * psz,void * osdataSender);
       virtual int32_t send_simple_command(void * osdata,const char * psz,void * osdataSender);
 
-      virtual sp(::user::printer) get_printer(const char * pszDeviceName);
+      virtual sp(::aura::printer) get_printer(const char * pszDeviceName);
 
       /*
       virtual string draw2d_get_default_library_name();
@@ -502,7 +502,7 @@ namespace core
       //////////////////////////////////////////////////////////////////////////////////////////////////
       // System/System
       //
-      ::user::document * place_hold(::user::interaction * pui);
+      ::aura::document * place_hold(::user::interaction * pui);
 
       /*
       virtual ::count get_monitor_count();
@@ -576,7 +576,7 @@ namespace core
       virtual void add_document_template(::aura::impact_system * ptemplate);
       //virtual void close_all_documents(bool bEndSession,::user::interaction * pwndExcept = NULL);
 
-      virtual ::user::document * open_document_file(const char * lpszFileName);
+      virtual ::aura::document * open_document_file(const char * lpszFileName);
 
 
       virtual int32_t GetVisibleTopLevelFrameCountExcept(sp(::user::interaction) pwndExcept);

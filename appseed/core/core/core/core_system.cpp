@@ -906,7 +906,7 @@ namespace core
 
 
 
-   ::user::document * system::place_hold(::user::interaction * pui)
+   ::aura::document * system::place_hold(::user::interaction * pui)
    {
 
 

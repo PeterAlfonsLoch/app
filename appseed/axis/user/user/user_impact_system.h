@@ -17,7 +17,7 @@ namespace aura
       {
          
          windowTitle,        // default interaction_impl title
-         docName,            // ::fontopus::user visible name for default ::user::document
+         docName,            // ::fontopus::user visible name for default ::aura::document
          fileNewName,        // ::fontopus::user visible name for FileNew
          // for file based documents:
          filterName,         // ::fontopus::user visible name for FileOpen
@@ -48,7 +48,7 @@ namespace aura
 
 
          sp(impact_system)                   m_pschema;
-         sp(::user::document)                m_pdocument;
+         sp(::aura::document)                m_pdocument;
          var                                 m_varFile;
 
          on_open_document();
@@ -89,7 +89,7 @@ namespace aura
       //sp(type)       m_pOleViewClass;     // class for creating in-place ::user::impact
 
       string                  m_strDocStrings;    // '\n' separated names
-      // The ::user::document names sub-strings are represented as _one_ string:
+      // The ::aura::document names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
       impact_system(::aura::application * papp, const char * pszMatter, sp(type) pDocClass, sp(type) pFrameClass, sp(type) pViewClass);
@@ -97,27 +97,27 @@ namespace aura
       virtual void load_template();
 
       virtual ::count get_document_count() const = 0;
-      virtual ::user::document * get_document(index index = 0) const = 0;
+      virtual ::aura::document * get_document(index index = 0) const = 0;
 
-      virtual void add_document(::user::document * pDoc);      // must override
-      virtual void remove_document(::user::document * pDoc);   // must override
+      virtual void add_document(::aura::document * pDoc);      // must override
+      virtual void remove_document(::aura::document * pDoc);   // must override
 
       virtual bool GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
-      //sp(::user::frame_window) CreateOleFrame(::window_sp pParentWnd, ::user::document * pDoc,
+      //sp(::user::frame_window) CreateOleFrame(::window_sp pParentWnd, ::aura::document * pDoc,
       //   bool bCreateView);
 
       void update_all_views(sp(::user::impact) pviewSender, LPARAM lhint, ::object * puh);
 
-      virtual Confidence MatchDocType(const char * lpszPathName, ::user::document *& rpDocMatch);
-      virtual ::user::document * create_new_document(sp(::create) pcreatecontext);
-      virtual sp(::user::frame_window) create_new_frame(::user::document * pDoc, sp(::user::frame_window) pOther, sp(::create) pcreatecontext);
-      virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, ::user::document * pDoc, bool bMakeVisible = TRUE);
+      virtual Confidence MatchDocType(const char * lpszPathName, ::aura::document *& rpDocMatch);
+      virtual ::aura::document * create_new_document(sp(::create) pcreatecontext);
+      virtual sp(::user::frame_window) create_new_frame(::aura::document * pDoc, sp(::user::frame_window) pOther, sp(::create) pcreatecontext);
+      virtual void InitialUpdateFrame(sp(::user::frame_window) pFrame, ::aura::document * pDoc, bool bMakeVisible = TRUE);
       virtual bool save_all_modified();     // for all documents
       virtual void close_all_documents(bool bEndSession);
       virtual void request_create(sp(::create) pcreatecontext) = 0;
       // open named file
       // if lpszPathName == NULL => create new file with this type
-      virtual void set_default_title(::user::document * pdocument) = 0;
+      virtual void set_default_title(::aura::document * pdocument) = 0;
 
       virtual ~impact_system() = 0;
 
@@ -129,9 +129,9 @@ namespace aura
       virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
 
-      bool on_open_document(::user::document * pdoc, var varFile);
+      bool on_open_document(::aura::document * pdoc, var varFile);
 
-      bool do_open_document(::user::document * pdoc, var varFile);
+      bool do_open_document(::aura::document * pdoc, var varFile);
 
       static UINT s_on_open_document(LPVOID lpvoid);
 

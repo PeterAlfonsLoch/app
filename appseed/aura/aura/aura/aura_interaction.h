@@ -10,6 +10,9 @@ namespace aura
    {
    public:
 
+      
+      void *         m_pvoidUserInteraction; // ::user::interaction * 
+
 
       interaction();
       virtual ~interaction();

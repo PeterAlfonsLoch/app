@@ -7,12 +7,16 @@ namespace aura
 
    interaction::interaction()
    {
+      
+      m_pvoidUserInteraction = NULL;
 
    }
 
 
    interaction::~interaction()
    {
+
+
    }
 
 

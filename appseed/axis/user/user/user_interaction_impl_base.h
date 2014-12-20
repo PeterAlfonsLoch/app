@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      interaction *                 m_pui;
+      ::user::interaction *         m_pui;
       bool                          m_bIgnoreSizeEvent;
       bool                          m_bIgnoreMoveEvent;
 

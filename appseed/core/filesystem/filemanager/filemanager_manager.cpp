@@ -8,7 +8,7 @@ namespace filemanager
    manager::manager(::aura::application * papp):
       element(papp),
       ::data::data_container_base(papp),
-      ::user::document(papp),
+      ::aura::document(papp),
       ::userfs::document(papp)
    {
 
@@ -188,7 +188,7 @@ namespace filemanager
    bool manager::on_new_document()
    {
 
-      if(!::user::document::on_new_document())
+      if(!::aura::document::on_new_document())
          return FALSE;
 
 
@@ -212,12 +212,12 @@ namespace filemanager
 
    void manager::assert_valid() const
    {
-      ::user::document::assert_valid();
+      ::aura::document::assert_valid();
    }
 
    void manager::dump(dump_context & dumpcontext) const
    {
-      ::user::document::dump(dumpcontext);
+      ::aura::document::dump(dumpcontext);
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -340,7 +340,7 @@ namespace filemanager
             return true;
          }
       }
-      return ::user::document::on_simple_action(id);
+      return ::aura::document::on_simple_action(id);
    }
 
    bool manager::on_simple_update(cmd_ui * pcmdui)
@@ -350,7 +350,7 @@ namespace filemanager
       FileManagerOnUpdateLevelUp(pcmdui);
       return true;
       }*/
-      return ::user::document::on_simple_update(pcmdui);
+      return ::aura::document::on_simple_update(pcmdui);
    }
 
 
@@ -383,7 +383,7 @@ namespace filemanager
    }
    }
    }*/
-   /*   return ::user::document::_001OnCmdMsg(pcmdmsg);
+   /*   return ::aura::document::_001OnCmdMsg(pcmdmsg);
    }
    */
 
@@ -662,7 +662,7 @@ namespace filemanager
    }
 
 
-   void manager::FileManagerSaveAs(::user::document * pdocument)
+   void manager::FileManagerSaveAs(::aura::document * pdocument)
    {
 
       get_filemanager_data()->m_pdocumentSave = pdocument;
@@ -683,7 +683,7 @@ namespace filemanager
    void manager::on_create(sp(::create) pcreatecontext)
    {
 
-      ::user::document::on_create(pcreatecontext);
+      ::aura::document::on_create(pcreatecontext);
 
       m_spfilemanagerdata = pcreatecontext->oprop("filemanager::data").cast < ::filemanager::data >();
 

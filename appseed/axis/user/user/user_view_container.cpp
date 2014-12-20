@@ -27,7 +27,7 @@ namespace user
    }
 
    
-   ::user::document * view_container::get_view_document()
+   ::aura::document * view_container::get_view_document()
    {
 
       return impact::get_document(get_view());

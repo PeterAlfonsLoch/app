@@ -20,7 +20,7 @@ namespace user
 
       virtual id get_view_id();
       virtual ::user::interaction * get_view();
-      virtual ::user::document * get_view_document();
+      virtual ::aura::document * get_view_document();
 
 
       virtual void on_new_view_creator_data(view_creator_data * pcreatordata);

@@ -781,7 +781,7 @@ namespace base
    //}
 
 
-   //::user::document * application::_001OpenDocumentFile(var varFile)
+   //::aura::document * application::_001OpenDocumentFile(var varFile)
    //{
 
    //   ::exception::throw_interface_only(this);
@@ -799,7 +799,7 @@ namespace base
    //}
 
 
-   //sp(::user::printer) application::get_printer(const char * pszDeviceName)
+   //sp(::aura::printer) application::get_printer(const char * pszDeviceName)
    //{
 
    //   ::exception::throw_interface_only(this);
@@ -1006,7 +1006,7 @@ namespace base
 //#endif
 //
 
-   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::aura::impact_system) ptemplate, ::user::document * pdocument)
+   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::aura::impact_system) ptemplate, ::aura::document * pdocument)
    {
 
       UNREFERENCED_PARAMETER(varFile);

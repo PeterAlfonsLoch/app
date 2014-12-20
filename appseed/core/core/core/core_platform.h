@@ -60,9 +60,9 @@ namespace core
       sp(::user::single_document_template)               m_ptemplate_platform;
       sp(::user::single_document_template)               m_ptemplate_nature;
       sp(::user::single_document_template)               m_ptemplate_html;
-      sp(::user::document)                               m_pbergedgedocument;
-      sp(::user::document)                               m_pplatformdocument;
-      sp(::user::document)                               m_pnaturedocument;
+      sp(::aura::document)                               m_pbergedgedocument;
+      sp(::aura::document)                               m_pplatformdocument;
+      sp(::aura::document)                               m_pnaturedocument;
       //nature::database *                                 m_pdatabase;
 
 
@@ -136,10 +136,10 @@ namespace core
 
       
       
-      sp(::user::document)                  get_document();
+      sp(::aura::document)                  get_document();
       sp(::user::impact)                      get_view();
-      sp(::user::document)                  get_platform();
-      sp(::user::document)                    get_nature();
+      sp(::aura::document)                  get_platform();
+      sp(::aura::document)                    get_nature();
       
       
       inline sp(::userex::userex)               userex()       { return m_spuserex; }

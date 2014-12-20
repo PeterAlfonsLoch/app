@@ -13,7 +13,7 @@ namespace user
       element(papp),
       ::user::interaction(papp),
       colorertake5::base_editor(papp),
-      ::data::data_listener(papp),
+      ::data::listener(papp),
       m_keymessageLast(papp)
    {
 
@@ -2684,7 +2684,7 @@ namespace user
       sp(::user::impact) pview =  (this);
       if(pview != NULL)
       {
-         sp(::user::document) pdoc = pview->get_document();
+         sp(::aura::document) pdoc = pview->get_document();
          if(type == NULL)
          {
             string textStart;

@@ -35,7 +35,9 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
-      m_eupdown = type_normal_frame;
+      m_pvoidUserInteraction     = this;
+
+      m_eupdown                  = type_normal_frame;
 
       m_bMayProDevian            = true;
       m_pmutex                   = NULL;

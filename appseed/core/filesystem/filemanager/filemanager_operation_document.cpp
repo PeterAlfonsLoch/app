@@ -8,7 +8,7 @@ namespace filemanager
    operation_document::operation_document(::aura::application * papp):
       element(papp),
       ::data::data_container_base(papp),
-      ::user::document(papp),
+      ::aura::document(papp),
       m_thread(papp)
    {
 

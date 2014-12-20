@@ -47,7 +47,7 @@ namespace filemanager
    void child_frame::OnChangeEditSearch()
    {
 
-      sp(::user::document) pdoc = GetActiveDocument();
+      sp(::aura::document) pdoc = GetActiveDocument();
 
       if (pdoc != NULL)
       {

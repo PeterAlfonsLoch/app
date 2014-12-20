@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace user
+namespace aura
 {
 
 
@@ -24,7 +24,7 @@ namespace user
       bool                             m_bNew;
       bool                             m_bAutoDelete;     // TRUE => delete document when no more views
       bool                             m_bEmbedded;       // TRUE => document is being created by OLE
-      document_data_map                m_datamap;
+      ::user::document_data_map        m_datamap;
       property_set                     m_set;
 
 
@@ -226,7 +226,7 @@ namespace user
    };
 
 
-} // namespace user
+} // namespace aura
 
 
 

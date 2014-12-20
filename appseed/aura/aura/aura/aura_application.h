@@ -270,7 +270,7 @@ namespace aura
 
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
-      //virtual ::user::document *  _001OpenDocumentFile(var varFile);
+      //virtual ::aura::document *  _001OpenDocumentFile(var varFile);
       virtual void _001OnFileNew(signal_details * pobj);
 
 
