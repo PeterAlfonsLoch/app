@@ -7,7 +7,7 @@ namespace android
 
    class CLASS_DECL_AXIS window_draw :
       virtual public ::user::window_draw,
-      virtual public ::message_queue_listener
+      virtual public ::aura::message_queue_listener
    {
    public:
 
@@ -19,7 +19,7 @@ namespace android
          OptimizeAllNext,
       };
 
-      user::interaction_spa                       m_wndpaOut;
+      user::interaction_spa                  m_wndpaOut;
       mutex                                  m_mutexRendering;
       mutex                                  m_mutexRgnUpdate;
       semaphore                              m_semaphoreBuffer;

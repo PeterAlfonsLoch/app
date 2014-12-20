@@ -6,7 +6,7 @@ namespace android
 
 
    class CLASS_DECL_AXIS copydesk :
-      virtual public ::aura::copydesk
+      virtual public ::axis::copydesk
    {
    public:
 
