@@ -437,49 +437,16 @@
     <ClInclude Include="axis\node\android\android.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_application.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\android\android_copydesk.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_dir.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\android\android_factory_exchange.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_file.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_file_set.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_file_system.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\android\android_implementation.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_internal.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_ip_enum.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\android\android_os.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_port_forward.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_shell.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_stdio_file.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_thread.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\android\android_window.h">
@@ -499,9 +466,6 @@
     </ClInclude>
     <ClInclude Include="axis\axis\axis_static_start.h">
       <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_crypto.h">
-      <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_interaction_base.h">
       <Filter>Header Files\user\user</Filter>
@@ -761,6 +725,12 @@
     <ClInclude Include="axis\os\android\android.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
+    <ClInclude Include="axis\node\android\android_interaction_impl.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\android_message_queue.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\graphics_window_graphics.cpp">
@@ -1009,55 +979,10 @@
     <ClCompile Include="user\user\user_windowing.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_application.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\android\android_copydesk.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_dir.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_dumpinit.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_error.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_exception.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\android\android_factory_exchange.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_set.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_system.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_ip_enum.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_main.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_os.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_port_forward.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_shell.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_stdio_file.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_thread.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\android\android_trace.cpp">
@@ -1098,9 +1023,6 @@
     </ClCompile>
     <ClCompile Include="axis\axis\axis_static_start.cpp">
       <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_crypto.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_interaction_base.cpp">
       <Filter>Source Files\user\user</Filter>
@@ -1276,6 +1198,12 @@
     <ClCompile Include="axis\axis_policy\axis_c.cpp">
       <Filter>Source Files\axis\axis_policy</Filter>
     </ClCompile>
+    <ClCompile Include="axis\node\android\android_interaction_impl.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\android_message_queue.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="axis\axis\axis.inl">
@@ -1283,9 +1211,6 @@
     </None>
     <None Include="axis\axis\axis_system_xml.inl">
       <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

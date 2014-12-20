@@ -6,7 +6,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA interaction :
-      virtual public object
+      virtual public command_target
    {
    public:
 
