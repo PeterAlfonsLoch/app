@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
 #include <unistd.h>
 #endif
 

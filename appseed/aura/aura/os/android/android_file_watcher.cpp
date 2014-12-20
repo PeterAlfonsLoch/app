@@ -52,6 +52,9 @@ namespace file_watcher
 	//--------
 	os_file_watcher::os_file_watcher()
 	{
+
+      m_pDescriptorSet = new fd_set;
+
 		mFD = inotify_init();
 		if (mFD < 0)
 			fprintf (stderr, "Error: %s\n", strerror(errno));
@@ -59,7 +62,9 @@ namespace file_watcher
 		mTimeOut.tv_sec = 0;
 		mTimeOut.tv_usec = 0;
 
-		FD_ZERO(&mDescriptorSet);
+      FD_ZERO((fd_set *) m_pDescriptorSet);
+
+
 	}
 
 	//--------
@@ -71,6 +76,9 @@ namespace file_watcher
 			delete ppair->m_element2;
 		}
 		m_watchmap.remove_all();
+
+      delete (fd_set*) m_pDescriptorSet;
+
 	}
 
 	//--------
@@ -176,15 +184,15 @@ namespace file_watcher
 	void os_file_watcher::update()
 	{
 
-		FD_SET(mFD, &mDescriptorSet);
+		FD_SET(mFD, (fd_set *) m_pDescriptorSet);
 
-		int32_t ret = select(mFD + 1, &mDescriptorSet, NULL, NULL, &mTimeOut);
+      int32_t ret = select(mFD + 1,(fd_set *)m_pDescriptorSet,NULL,NULL,&mTimeOut);
 
 		if(ret < 0)
 		{
 			perror("select");
 		}
-		else if(FD_ISSET(mFD, &mDescriptorSet))
+		else if(FD_ISSET(mFD, (fd_set *) m_pDescriptorSet))
 		{
 
 			ssize_t len, i = 0;
