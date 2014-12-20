@@ -118,8 +118,9 @@ namespace user
       strPath = Application.dir_matter("keyboard/linux/default.xml");
 #elif defined(APPLEOS)
       strPath = Application.dir_matter("keyboard/macos/default.xml");
+#elif defined(ANDROID)
+      strPath = Application.dir_matter("keyboard/android/default.xml");
 #else
-
 #ifndef METROWIN
       WCHAR wsz[KL_NAMELENGTH];
 
