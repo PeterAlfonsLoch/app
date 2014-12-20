@@ -215,7 +215,7 @@ oswindow oswindow_defer_get(::user::interaction * pui)
 
 
 
-bool oswindow_remove(::user::interaction * pui)
+int_bool oswindow_remove(::user::interaction * pui)
 {
 
    synch_lock slOsWindow(::oswindow_data::s_pmutex);
@@ -346,7 +346,7 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 
    m_pui = pui;
 
-   m_hthread = pui->m_pthread->get_os_handle();
+   m_hthread = pui->m_pauraapp->get_os_handle();
 
 }
 
@@ -389,7 +389,7 @@ bool oswindow_data::is_child(::oswindow oswindow)
 
    synch_lock slOsWindow(s_pmutex);
 
-   oswindow = oswindow->get_parent();
+   oswindow = oswindow->GetParent();
 
    while(!oswindow->is_null())
    {
@@ -401,7 +401,7 @@ bool oswindow_data::is_child(::oswindow oswindow)
 
 }
 
-oswindow oswindow_data::get_parent()
+oswindow oswindow_data::GetParent()
 {
 
    synch_lock sl(&user_mutex());
@@ -433,7 +433,7 @@ oswindow oswindow_data::get_parent()
 
 }
 
-oswindow oswindow_data::set_parent(oswindow oswindow)
+oswindow oswindow_data::SetParent(oswindow oswindow)
 {
 
    synch_lock sl(&user_mutex());
@@ -459,7 +459,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 
 }
 
-bool oswindow_data::show_window(int32_t nCmdShow)
+bool oswindow_data::ShowWindow(int32_t nCmdShow)
 {
 
    synch_lock sl(&user_mutex());
@@ -704,187 +704,187 @@ void message_box_paint(::draw2d::graphics * pdc, stringa & stra, bool_array  & b
 }
 
 
-class xlib_simple_message_box :
-   virtual public ::user::interaction
-{
-public:
-
-
-   spa(::simple_ui::label) m_labela;
-
-   rect m_rectDesktop;
-
-   xlib_simple_message_box(::aura::application * papp) : element(papp), ::user::interaction(papp), ::user::interaction(papp)
-   {
-   }
-
-
-   void _001OnDraw(::draw2d::graphics *  pdc)
-   {
-      rect rect;
-
-      GetClientRect(rect);
-
-      pdc->FillSolidRect(rect, ARGB(255, 240, 240, 240));
-   }
-
-   int32_t show_window(const char * lpText, const char * lpCaption)
-   {
-
-      ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
-
-
-      rect rect(100, 100, 200, 200);
-
-      if (!create_window(rect))
-         return 0;
-
-
-      draw2d::graphics_sp g(allocer());
-
-      g->CreateCompatibleDC(NULL);
-
-      ::draw2d::font_sp font(allocer());
-
-      font->create_point_font("helvetica", 12.0);
-
-      g->selectFont(font);
-
-      stringa stra;
-
-      stra.add_tokens(lpText, "\n");
-
-      bool_array baTab;
-
-      int_array ya;
-
-      size sz;
-
-      sz.cx = 0;
-      sz.cy = 0;
-
-      for (index i = 0; i < stra.get_count(); i++)
-      {
-
-         string str = stra[i];
-
-         bool bTab = str_begins_dup(str, "\t");
-
-         str.trim();
-
-         bool bEmpty = str.is_empty();
-
-         if (bEmpty)
-            str = "L";
-
-         SIZE sizeItem = g->GetTextExtent(str);
-
-         int x = bTab ? 25 : 0;
-
-         if (sizeItem.cx + x > sz.cx)
-         {
-
-            sz.cx = sizeItem.cx + x;
-
-         }
-
-         baTab.add(bTab);
-
-         ya.add(sz.cy);
-
-         sz.cy += sizeItem.cy;
-
-         if (bEmpty)
-         {
-            stra[i] = "";
-         }
-         else
-         {
-            stra[i] = str;
-         }
-
-      }
-
-      for (index i = 0; i < stra.get_count(); i++)
-      {
-
-         m_labela.add(canew(::simple_ui::label(get_app())));
-
-         ::simple_ui::label & label = *m_labela.last();
-
-         label.set_parent(this);
-
-         label.m_strText = stra[i];
-
-         label.m_bVisible = true;
-
-         label.m_rect.left = 10;
-         label.m_rect.top = 10 + (sz.cy / stra.get_count()) * i;
-         label.m_rect.right = label.m_rect.left + sz.cx - 20;
-         label.m_rect.bottom = label.m_rect.top + (sz.cy / stra.get_count());
-
-      }
-
-      sz.cx += 20;
-      sz.cy += 20;
-
-      rect.left = m_rectDesktop.left + ((m_rectDesktop.width() - sz.cx) / 2);
-      rect.top = m_rectDesktop.top + ((m_rectDesktop.height() - sz.cy) / 4);
-      rect.right = rect.left + sz.cx;
-      rect.bottom = rect.top + sz.cy;
-
-
-      if (!prepare_window(rect))
-         return 0;
-
-
-
-      SetWindowPos(m_window, NULL, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW);
-
-      run_loop();
-
-      return 0;
-
-   }
-
-};
-
-int32_t message_box_show_xlib(::aura::application * papp, const char * lpText, const char * lpCaption)
-{
-
-   xlib_simple_message_box box(papp);
-
-   return box.show_window(lpText, lpCaption);
-
-
-}
-
-
-
-int32_t WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
-{
-
-   ::aura::application * papp = NULL;
-
-   if (hWnd == NULL || hWnd->get_user_interaction() == NULL || hWnd->get_user_interaction()->get_app() == NULL)
-   {
-
-      papp = get_thread_app();
-
-   }
-   else
-   {
-
-      papp = hWnd->get_user_interaction()->get_app();
-
-   }
-
-   return message_box_show_xlib(get_thread_app(), lpText, lpCaption);
-
-}
-
-
-
+//class xlib_simple_message_box :
+//   virtual public ::user::interaction
+//{
+//public:
+//
+//
+//   spa(::simple_ui::label) m_labela;
+//
+//   rect m_rectDesktop;
+//
+//   xlib_simple_message_box(::aura::application * papp) : element(papp), ::user::interaction(papp)
+//   {
+//   }
+//
+//
+//   void _001OnDraw(::draw2d::graphics *  pdc)
+//   {
+//      rect rect;
+//
+//      GetClientRect(rect);
+//
+//      pdc->FillSolidRect(rect, ARGB(255, 240, 240, 240));
+//   }
+//
+//   int32_t show_window(const char * lpText, const char * lpCaption)
+//   {
+//
+//      ::GetWindowRect(::GetDesktopWindow(), &m_rectDesktop);
+//
+//
+//      rect rect(100, 100, 200, 200);
+//
+//      if (!create_window(rect))
+//         return 0;
+//
+//
+//      draw2d::graphics_sp g(allocer());
+//
+//      g->CreateCompatibleDC(NULL);
+//
+//      ::draw2d::font_sp font(allocer());
+//
+//      font->create_point_font("helvetica", 12.0);
+//
+//      g->selectFont(font);
+//
+//      stringa stra;
+//
+//      stra.add_tokens(lpText, "\n");
+//
+//      bool_array baTab;
+//
+//      int_array ya;
+//
+//      size sz;
+//
+//      sz.cx = 0;
+//      sz.cy = 0;
+//
+//      for (index i = 0; i < stra.get_count(); i++)
+//      {
+//
+//         string str = stra[i];
+//
+//         bool bTab = str_begins_dup(str, "\t");
+//
+//         str.trim();
+//
+//         bool bEmpty = str.is_empty();
+//
+//         if (bEmpty)
+//            str = "L";
+//
+//         SIZE sizeItem = g->GetTextExtent(str);
+//
+//         int x = bTab ? 25 : 0;
+//
+//         if (sizeItem.cx + x > sz.cx)
+//         {
+//
+//            sz.cx = sizeItem.cx + x;
+//
+//         }
+//
+//         baTab.add(bTab);
+//
+//         ya.add(sz.cy);
+//
+//         sz.cy += sizeItem.cy;
+//
+//         if (bEmpty)
+//         {
+//            stra[i] = "";
+//         }
+//         else
+//         {
+//            stra[i] = str;
+//         }
+//
+//      }
+//
+//      for (index i = 0; i < stra.get_count(); i++)
+//      {
+//
+//         m_labela.add(canew(::simple_ui::label(get_app())));
+//
+//         ::simple_ui::label & label = *m_labela.last();
+//
+//         label.set_parent(this);
+//
+//         label.m_strText = stra[i];
+//
+//         label.m_bVisible = true;
+//
+//         label.m_rect.left = 10;
+//         label.m_rect.top = 10 + (sz.cy / stra.get_count()) * i;
+//         label.m_rect.right = label.m_rect.left + sz.cx - 20;
+//         label.m_rect.bottom = label.m_rect.top + (sz.cy / stra.get_count());
+//
+//      }
+//
+//      sz.cx += 20;
+//      sz.cy += 20;
+//
+//      rect.left = m_rectDesktop.left + ((m_rectDesktop.width() - sz.cx) / 2);
+//      rect.top = m_rectDesktop.top + ((m_rectDesktop.height() - sz.cy) / 4);
+//      rect.right = rect.left + sz.cx;
+//      rect.bottom = rect.top + sz.cy;
+//
+//
+//      if (!prepare_window(rect))
+//         return 0;
+//
+//
+//
+//      SetWindowPos(m_window, NULL, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW);
+//
+//      run_loop();
+//
+//      return 0;
+//
+//   }
+//
+//};
+//
+//int32_t message_box_show_xlib(::aura::application * papp, const char * lpText, const char * lpCaption)
+//{
+//
+//   xlib_simple_message_box box(papp);
+//
+//   return box.show_window(lpText, lpCaption);
+//
+//
+//}
+//
+//
+//
+//int32_t WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
+//{
+//
+//   ::aura::application * papp = NULL;
+//
+//   if (hWnd == NULL || hWnd->get_user_interaction() == NULL || hWnd->get_user_interaction()->get_app() == NULL)
+//   {
+//
+//      papp = get_thread_app();
+//
+//   }
+//   else
+//   {
+//
+//      papp = hWnd->get_user_interaction()->get_app();
+//
+//   }
+//
+//   return message_box_show_xlib(get_thread_app(), lpText, lpCaption);
+//
+//}
+//
+//
+//
 
 /*
 
@@ -1145,7 +1145,7 @@ int_bool GetWindowRect(oswindow_data * pdata, RECT * prect)
 int_bool ShowWindow(oswindow_data * pdata, int nCmdShow)
 {
 
-   return pdata->show_window(nCmdShow);
+   return pdata->ShowWindow(nCmdShow);
 
 }
 
@@ -1469,4 +1469,16 @@ int_bool GetCursorPos(LPPOINT lppt)
 {
    *lppt = g_ptCursor;
    return TRUE;
+}
+
+
+
+
+
+
+
+bool IsWindow(oswindow oswindow)
+{
+   return (oswindow->get_user_interaction() == NULL && oswindow->display() != NULL && oswindow->window() != None)
+      || (oswindow->get_user_interaction() != NULL && !oswindow->is_destroying());
 }

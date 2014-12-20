@@ -16,10 +16,10 @@ window_android::~window_android()
 }
 
 
-void window_android::create(oswindow interaction_impl, int64_t cxParam, int64_t cyParam, int iStrideParam)
+void window_android::create_window_graphics(oswindow interaction_impl,int64_t cxParam,int64_t cyParam,int iStrideParam)
 {
 
-   destroy();
+   destroy_window_graphics();
 
 
    synch_lock sl(&user_mutex());
@@ -47,7 +47,7 @@ void window_android::create(oswindow interaction_impl, int64_t cxParam, int64_t 
 
    //m_cairoSource = cairo_create(m_cairosurfaceSource);
 
-   window_graphics::create(interaction_impl, cxParam, cyParam, iStride);
+   ::window_graphics::create_window_graphics(interaction_impl, cxParam, cyParam, iStride);
 
 }
 
@@ -55,10 +55,10 @@ void window_android::create(oswindow interaction_impl, int64_t cxParam, int64_t 
 
 
 
-void window_android::destroy()
+void window_android::destroy_window_graphics()
 {
 
-   window_graphics::destroy();
+   ::window_graphics::destroy_window_graphics();
 
 
 }
@@ -68,7 +68,7 @@ void window_android::update_window(oswindow interaction_impl, COLORREF * pOsBitm
 {
 
 
-   copy_colorref((COLORREF *) m_mem.get_data(), pOsBitmapData, iStride);
+   copy_colorref(width(rect), height(rect), (COLORREF *) m_mem.get_data(), pOsBitmapData, iStride);
 
 
 }

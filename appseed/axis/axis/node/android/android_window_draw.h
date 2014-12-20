@@ -38,34 +38,34 @@ namespace android
       bool UpdateBuffer(const RECT & rect);
       //void OnPaint(void * hwnd, CPaintDC & spgraphics);
 
-      semaphore * TwfGetBufferSemaphore();
+      //semaphore * TwfGetBufferSemaphore();
 
       // Bit blitting spread functions
-      virtual bool ScreenOutput(
-         user::buffer *,
-         ::draw2d::region & rgnUpdate);
+      //virtual bool ScreenOutput(
+      //   user::buffer *,
+      //   ::draw2d::region & rgnUpdate);
 
-      virtual bool ScreenOutput();
+      //virtual bool ScreenOutput();
 
-      virtual bool ScreenOutput(user::buffer *, sp(::user::interaction) pwnd);
+      //virtual bool ScreenOutput(user::buffer *, sp(::user::interaction) pwnd);
 
       // Transparent drawing operations
       // controllers
       virtual bool UpdateBuffer();
 
-      virtual bool to(
-         ::draw2d::graphics *       pdc,
-         LPCRECT     lprectUpdate,
-         user::oswindow_tree & hwndtree,
-         bool        bGdiLocked,
-         bool        bExcludeParamWnd);
+      //virtual bool to(
+      //   ::draw2d::graphics *       pdc,
+      //   LPCRECT     lprectUpdate,
+      //   user::oswindow_tree & hwndtree,
+      //   bool        bGdiLocked,
+      //   bool        bExcludeParamWnd);
 
-      virtual bool to(
-         ::draw2d::graphics *       pdc,
-         LPCRECT     lprectUpdate,
-         user::oswindow_tree::Array & hwndtreea,
-         bool        bGdiLocked,
-         bool        bExcludeParamWnd);
+      //virtual bool to(
+      //   ::draw2d::graphics *       pdc,
+      //   LPCRECT     lprectUpdate,
+      //   user::oswindow_tree::Array & hwndtreea,
+      //   bool        bGdiLocked,
+      //   bool        bExcludeParamWnd);
 
    /*     EOptimize TwfOptimizeRender2(
          user::oswindow_tree::Array & hwndtreea,
@@ -76,48 +76,48 @@ namespace android
          const RECT & rect);*/
 
 
-      EOptimize TwfOptimizeRender(
-         user::oswindow_tree::Array & hwndtreea,
-         const RECT & rect);
+      //EOptimize TwfOptimizeRender(
+      //   user::oswindow_tree::Array & hwndtreea,
+      //   const RECT & rect);
 
-      EOptimize TwfOptimizeRender(
-         user::oswindow_tree & hwndtree,
-         const RECT & rect);
+      //EOptimize TwfOptimizeRender(
+      //   user::oswindow_tree & hwndtree,
+      //   const RECT & rect);
 
-      void TwfGetTopWindow(
-         void * hwnd,
-         user::oswindow_array & hwnda,
-         ptr_array < HRGN > & hrgna,
-         user::oswindow_tree::Array & hwndtreea,
-         const RECT & rect);
+      //void TwfGetTopWindow(
+      //   void * hwnd,
+      //   user::oswindow_array & hwnda,
+      //   ptr_array < HRGN > & hrgna,
+      //   user::oswindow_tree::Array & hwndtreea,
+      //   const RECT & rect);
 
-      bool TwfGetTopWindow(
-         void * hwnd,
-         user::oswindow_array & hwnda,
-         ptr_array < HRGN > & hrgna,
-         user::oswindow_tree::Array & hwndtreea,
-         HRGN hrgn);
+      //bool TwfGetTopWindow(
+      //   void * hwnd,
+      //   user::oswindow_array & hwnda,
+      //   ptr_array < HRGN > & hrgna,
+      //   user::oswindow_tree::Array & hwndtreea,
+      //   HRGN hrgn);
 
-      bool TwfGetTopWindow(
-         void * hwnd,
-         user::oswindow_array & hwnda,
-         ptr_array < HRGN > & hrgna,
-         user::oswindow_tree & hwndtree,
-         HRGN hrgn);
+      //bool TwfGetTopWindow(
+      //   void * hwnd,
+      //   user::oswindow_array & hwnda,
+      //   ptr_array < HRGN > & hrgna,
+      //   user::oswindow_tree & hwndtree,
+      //   HRGN hrgn);
 
-      void TwfGetTopWindowOptimizeOpaque(
-         void * hwndOpaque,
-         user::oswindow_array & hwnda,
-         ptr_array < HRGN > & hrgna);
+      //void TwfGetTopWindowOptimizeOpaque(
+      //   void * hwndOpaque,
+      //   user::oswindow_array & hwnda,
+      //   ptr_array < HRGN > & hrgna);
 
 
-      EOptimize TwfOptimizeRenderRemoveNextProper(
-         user::oswindow_tree::Array & hwndtreea,
-         int32_t iIndex,
-         const RECT & rect);
+      //EOptimize TwfOptimizeRenderRemoveNextProper(
+      //   user::oswindow_tree::Array & hwndtreea,
+      //   int32_t iIndex,
+      //   const RECT & rect);
 
-      void get_wnda(user::interaction_spa & wndpa);
-      void get_wnda(user::oswindow_array & hwnda);
+      //void get_wnda(user::interaction_spa & wndpa);
+      //void get_wnda(user::oswindow_array & hwnda);
 
       virtual int32_t run();
 

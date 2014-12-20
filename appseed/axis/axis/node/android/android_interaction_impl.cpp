@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "android.h"
 //#include <X11/Xatom.h>
 
 #define TEST 0
@@ -69,20 +70,20 @@ const char gen_Wnd[] = __WND;
 namespace android
 {
 
-   void interaction_impl::mouse_hover_add(sp(::user::interaction) pinterface)
+   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
    {
       m_guieptraMouseHover.add_unique(pinterface);
    }
 
-   void interaction_impl::mouse_hover_remove(sp(::user::interaction) pinterface)
+   void interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
    {
       m_guieptraMouseHover.remove(pinterface);
    }
 
    interaction_impl::interaction_impl()
    {
-      m_pcallback = NULL;
-      m_nModalResult = 0;
+      //m_pcallback = NULL;
+      //m_nModalResult = 0;
       m_bMouseHover = false;
       m_pguiecapture = NULL;
       m_bExposing = false;
@@ -92,9 +93,9 @@ namespace android
    void interaction_impl::construct(oswindow hWnd)
    {
 
-      m_pcallback = NULL;
+      //m_pcallback = NULL;
       m_oswindow = hWnd;
-      m_nModalResult = 0;
+      //m_nModalResult = 0;
       m_bMouseHover = false;
       m_pguiecapture = NULL;
       m_bExposing = false;
@@ -104,8 +105,8 @@ namespace android
    interaction_impl::interaction_impl(::aura::application * papp):
       element(papp)
    {
-      m_pcallback = NULL;
-      m_nModalResult = 0;
+      //m_pcallback = NULL;
+      //m_nModalResult = 0;
       m_bMouseHover = false;
       m_pguiecapture = NULL;
       m_bExposing = false;
@@ -116,7 +117,7 @@ namespace android
    interaction_impl::~interaction_impl()
    {
 
-      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession->user().is_set() && m_pauraapp->m_paxissession->user()->m_pwindowmap != NULL)
+      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession->user() != NULL && m_pauraapp->m_paxissession->user()->m_pwindowmap != NULL)
       {
          m_pauraapp->m_paxissession->user()->m_pwindowmap->m_map.remove_key((int_ptr)get_handle());
       }
@@ -124,7 +125,7 @@ namespace android
    }
 
 
-   sp(::user::interaction) interaction_impl::from_os_data(void * pdata)
+   ::user::interaction * interaction_impl::from_os_data(void * pdata)
    {
 
       if(pdata == NULL)
@@ -206,7 +207,7 @@ namespace android
 
 
    /*
-   sp(::user::interaction) interaction_impl::from_handle(oswindow oswindow)
+   ::user::interaction * interaction_impl::from_handle(oswindow oswindow)
    {
 
    if(oswindow->get_user_interaction() == NULL)
@@ -214,20 +215,20 @@ namespace android
 
    ::user::interaction * pui = oswindow->get_user_interaction()->m_pimpl.m_p;
 
-   return dynamic_cast < sp(::user::interaction) > (pui);
+   return dynamic_cast < ::user::interaction * > (pui);
 
    }
 
    */
 
    /*
-   sp(::user::interaction) interaction_impl::FromHandlePermanent(oswindow oswindow)
+   ::user::interaction * interaction_impl::FromHandlePermanent(oswindow oswindow)
    {
 
    if(oswindow->get_user_interaction() == NULL)
    return NULL;
 
-   return dynamic_cast < sp(::user::interaction) > (oswindow->get_user_interaction()->m_pimpl.m_p);
+   return dynamic_cast < ::user::interaction * > (oswindow->get_user_interaction()->m_pimpl.m_p);
 
    }
 
@@ -389,10 +390,10 @@ namespace android
       cs.lpszClass = lpszClassName;
       cs.lpszName = lpszWindowName;
       cs.style = dwStyle;
-      cs.x = x;
-      cs.y = y;
-      cs.cx = nWidth;
-      cs.cy = nHeight;
+      cs.x = rect.left;
+      cs.y = rect.top;
+      cs.cx = ::width(rect);
+      cs.cy = ::height(rect);
       cs.hwndParent = hWndParent;
       //   cs.hMenu = hWndParent == NULL ? NULL : nIDorHMenu;
       cs.hMenu = NULL;
@@ -647,18 +648,17 @@ namespace android
       return TRUE;
    }
 
-   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,DWORD dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,id id,sp(::create) pContext)
+   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,DWORD dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create) pContext)
    {
       // can't use for desktop or pop-up windows (use create_window_ex instead)
       ASSERT(pParentWnd != NULL);
       ASSERT((dwStyle & WS_POPUP) == 0);
 
-      return create_window_ex(0,lpszClassName,lpszWindowName,dwStyle | WS_CHILD,lpcrect,pParentWnd->get_handle(),id,(LPVOID)pContext);
+      return create_window_ex(0,lpszClassName,lpszWindowName,dwStyle | WS_CHILD,rect,pParentWnd->get_handle(),id,(LPVOID)pContext);
    }
 
-   bool interaction_impl::create_message_window(const char * pszName,::message_queue_listener * pcallback)
+   bool interaction_impl::create_message_queue(const char * pszName)
    {
-      m_pcallback = pcallback;
       if(IsWindow())
       {
          SetWindowText(pszName);
@@ -666,7 +666,7 @@ namespace android
       else
       {
          string strName = "ca2::fontopus::message_wnd::winservice_1";
-         if(!create_window_ex(0,NULL,pszName,WS_CHILD,NULL,HWND_MESSAGE,id(),NULL))
+         if(!create_window_ex(0,NULL,pszName,WS_CHILD,::null_rect(),HWND_MESSAGE,id(),NULL))
          {
             return false;
          }
@@ -903,7 +903,7 @@ namespace android
       //
       // In general, interaction_impl objects should be passed by oswindow from
       // one thread to another.  The receiving thread can wrap
-      // the oswindow with a interaction_impl object by using sp(::user::interaction)::from_handle.
+      // the oswindow with a interaction_impl object by using ::user::interaction *::from_handle.
       //
       // It is dangerous to pass C++ objects from one thread to
       // another, unless the objects are designed to be used in
@@ -940,8 +940,8 @@ namespace android
 
       // dump out interaction_impl specific statistics
       char szBuf[64];
-      //      if (!const_cast < sp(::user::interaction) > (this)->send_message(WM_QUERYAFXWNDPROC, 0, 0) && pWnd == this)
-      //       ((::sp(::user::interaction)) this)->GetWindowText(szBuf, _countof(szBuf));
+      //      if (!const_cast < ::user::interaction * > (this)->send_message(WM_QUERYAFXWNDPROC, 0, 0) && pWnd == this)
+      //       ((::user::interaction *) this)->GetWindowText(szBuf, _countof(szBuf));
       //    else
       //         ::DefWindowProc(get_handle(), WM_GETTEXT, _countof(szBuf), (LPARAM)&szBuf[0]);
       //  dumpcontext << "\ncaption = \"" << szBuf << "\"";
@@ -952,7 +952,7 @@ namespace android
       rect rect;
       ((::user::interaction_impl *) this)->GetWindowRect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent sp(::user::interaction) = " << (void *)((::user::interaction *) this)->GetParent();
+      dumpcontext << "\nparent ::user::interaction * = " << (void *)((::user::interaction *) this)->GetParent();
 
       //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
       //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1061,7 +1061,7 @@ namespace android
       int32_t nLen = ::GetWindowTextLength(get_handle());
       ::GetWindowText(get_handle(), rString.GetBufferSetLength(nLen), nLen+1);
       rString.ReleaseBuffer();*/
-      rString = m_strWindowText;
+      rString = m_pui->m_strWindowText;
 
    }
 
@@ -1410,12 +1410,12 @@ namespace android
             return;
       }
 
-      if(m_pcallback != NULL)
-      {
-         m_pcallback->message_queue_message_handler(pobj);
-         if(pobj->m_bRet)
-            return;
-      }
+      //if(m_pcallback != NULL)
+      //{
+      //   m_pcallback->message_queue_message_handler(pobj);
+      //   if(pobj->m_bRet)
+      //      return;
+      //}
       if(pbase->m_uiMessage == WM_TIMER)
       {
          //m_pauraapp->step_timer();
@@ -1493,40 +1493,42 @@ namespace android
          pbase->m_uiMessage == WM_MOUSEMOVE)
          //         pbase->m_uiMessage == WM_MOUSEWHEEL)
       {
-         // user presence status activity reporting
-         if(pbase->m_uiMessage == WM_LBUTTONDOWN
-            || pbase->m_uiMessage == WM_RBUTTONDOWN
-            || pbase->m_uiMessage == WM_MBUTTONDOWN
-            || pbase->m_uiMessage == WM_MOUSEMOVE)
-         {
-            if(Session.fontopus()->m_puser != NULL)
-            {
-               if(&ApplicationUser != NULL)
-               {
-                  if(ApplicationUser.m_ppresence != NULL)
-                  {
-                     try
-                     {
-                        ApplicationUser.m_ppresence->report_activity();
-                     }
-                     catch(...)
-                     {
-                     }
-                  }
-               }
-            }
-         }
+         //// user presence status activity reporting
+         //if(pbase->m_uiMessage == WM_LBUTTONDOWN
+         //   || pbase->m_uiMessage == WM_RBUTTONDOWN
+         //   || pbase->m_uiMessage == WM_MBUTTONDOWN
+         //   || pbase->m_uiMessage == WM_MOUSEMOVE)
+         //{
+         //   if(Session.fontopus()->m_puser != NULL)
+         //   {
+         //      if(&ApplicationUser != NULL)
+         //      {
+         //         if(ApplicationUser.m_ppresence != NULL)
+         //         {
+         //            try
+         //            {
+         //               ApplicationUser.m_ppresence->report_activity();
+         //            }
+         //            catch(...)
+         //            {
+         //            }
+         //         }
+         //      }
+         //   }
+         //}
 
-         if(pbase->m_uiMessage == WM_LBUTTONDOWN)
-         {
+         //if(pbase->m_uiMessage == WM_LBUTTONDOWN)
+         //{
 
-            TRACE("WM_LBUTTONDOWN");
+         //   TRACE("WM_LBUTTONDOWN");
 
-         }
+         //}
 
          ::message::mouse * pmouse = (::message::mouse *) pbase;
 
-         Session.m_ptCursor = pmouse->m_pt;
+         Session.on_ui_mouse_message(pmouse);
+
+         //Session.m_ptCursor = pmouse->m_pt;
 
 
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
@@ -1574,9 +1576,9 @@ namespace android
       restart_mouse_hover_check:
          for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
          {
-            if(!m_guieptraMouseHover[i]._001IsPointInside(pmouse->m_pt))
+            if(!m_guieptraMouseHover[i]->_001IsPointInside(pmouse->m_pt))
             {
-               sp(::user::interaction) pui = m_guieptraMouseHover(i);
+               sp(::user::interaction) pui = m_guieptraMouseHover[i];
                //               pui->send_message(WM_MOUSELEAVE);
                m_guieptraMouseHover.remove(pui);
                goto restart_mouse_hover_check;
@@ -1617,15 +1619,17 @@ namespace android
                return;
             }
          }
-         user::oswindow_array hwnda;
+         user::oswindow_array oswindowa;
          user::interaction_spa wnda(get_app());
-         wnda = System.frames();
-         for(int32_t i = 0; i < hwnda.get_size(); i++)
+         wnda = System.m_uiptraFrame;
+         oswindowa = wnda.get_hwnda();
+         user::window_util::SortByZOrder(oswindowa);
+         for(int32_t i = 0; i < oswindowa.get_size(); i++)
          {
-            sp(::user::interaction) pguie = wnda.find_first(hwnda[i]);
-            if(pguie != NULL)
+            sp(::user::interaction) pui = wnda.find_first(oswindowa[i]);
+            if(pui != NULL)
             {
-               pguie->_000OnMouse(pmouse);
+               pui->_000OnMouse(pmouse);
                if(pmouse->m_bRet)
                   return;
             }
@@ -2216,7 +2220,7 @@ namespace android
 
    ASSERT_VALID(this);
 
-   sp(::user::interaction) pParentWnd = get_parent();  // start with one parent up
+   sp(::user::interaction) pParentWnd = GetParent();  // start with one parent up
 
    while (pParentWnd != NULL)
    {
@@ -2225,7 +2229,7 @@ namespace android
    {
    return  pframe;
    }
-   pParentWnd = pParentWnd->get_parent();
+   pParentWnd = pParentWnd->GetParent();
    }
 
    return NULL;
@@ -2233,7 +2237,7 @@ namespace android
    }
    */
 
-   /* trans oswindow CLASS_DECL_AXIS __get_parent_owner(sp(::user::interaction) hWnd)
+   /* trans oswindow CLASS_DECL_AXIS __get_parent_owner(::user::interaction * hWnd)
    {
    // check for permanent-owned interaction_impl first
    sp(::user::interaction) pWnd = sp(::user::interaction)::FromHandlePermanent(hWnd);
@@ -2247,7 +2251,7 @@ namespace android
 
    /*
 
-   sp(::user::interaction) interaction_impl::GetTopLevel()
+   ::user::interaction * interaction_impl::GetTopLevel()
    {
    if (get_handle() == NULL) // no oswindow attached
    return NULL;
@@ -2262,7 +2266,7 @@ namespace android
    return hWndParent;
    }
 
-   sp(::user::interaction) interaction_impl::GetTopLevelOwner()
+   ::user::interaction * interaction_impl::GetTopLevelOwner()
    {
    if (get_handle() == NULL) // no oswindow attached
    return NULL;
@@ -2278,7 +2282,7 @@ namespace android
    return NULL;
    }
 
-   sp(::user::interaction) interaction_impl::GetParentOwner()
+   ::user::interaction * interaction_impl::GetParentOwner()
    {
    if (get_handle() == NULL) // no oswindow attached
    return NULL;
@@ -2362,7 +2366,7 @@ namespace android
       return nResult;
    }
 
-   sp(::user::interaction) PASCAL interaction_impl::GetDescendantWindow(sp(::user::interaction) hWnd,id id)
+   ::user::interaction * PASCAL interaction_impl::GetDescendantWindow(::user::interaction * hWnd,id id)
    {
 
       single_lock sl(hWnd->m_pauraapp->m_pmutex,TRUE);
@@ -3432,7 +3436,7 @@ namespace android
    }
 
 
-   void interaction_impl::OnEnterIdle(UINT /*nWhy*/,sp(::user::interaction) /*pWho*/)
+   void interaction_impl::OnEnterIdle(UINT /*nWhy*/,::user::interaction * /*pWho*/)
    {
       // In some OLE inplace active scenarios, OLE will post a
       // message instead of sending it.  This causes so many WM_ENTERIDLE
@@ -3451,7 +3455,7 @@ namespace android
       Default();
    }
 
-   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *,sp(::user::interaction) pWnd,UINT)
+   HBRUSH interaction_impl::OnCtlColor(::draw2d::graphics *,::user::interaction * pWnd,UINT)
    {
       ASSERT(pWnd != NULL && ANDROID_WINDOW(pWnd)->get_handle() != NULL);
       LRESULT lResult;
@@ -3546,7 +3550,7 @@ namespace android
    /////////////////////////////////////////////////////////////////////////////
    // Centering dialog support (works for any non-child interaction_impl)
 
-   void interaction_impl::CenterWindow(sp(::user::interaction) pAlternateOwner)
+   void interaction_impl::CenterWindow(::user::interaction * pAlternateOwner)
    {
       ::exception::throw_not_implemented(get_app());
       //      ASSERT(::IsWindow((oswindow) get_handle()));
@@ -4076,7 +4080,9 @@ namespace android
 
    oswindow interaction_impl::UnsubclassWindow()
    {
-      ASSERT(::IsWindow((oswindow)get_handle()));
+      
+      if(::IsWindow((oswindow)get_handle()))
+         return NULL;
 
       ::exception::throw_not_implemented(get_app());
       //      // set WNDPROC back to original value
@@ -4097,7 +4103,7 @@ namespace android
 
 
 
-   bool interaction_impl::IsChild(sp(::user::interaction) pWnd)
+   bool interaction_impl::IsChild(::user::interaction * pWnd)
    {
 
       ASSERT(::IsWindow((oswindow)get_handle()));
@@ -4551,7 +4557,7 @@ namespace android
    }
 
 
-   sp(::user::interaction) interaction_impl::GetParent() const
+   ::user::interaction * interaction_impl::GetParent() const
    {
       if(!::IsWindow((oswindow)get_handle()))
          return NULL;
@@ -4572,7 +4578,7 @@ namespace android
    }
 
 
-   sp(::user::interaction) interaction_impl::release_capture()
+   ::user::interaction * interaction_impl::ReleaseCapture()
    {
       //::exception::throw_not_implemented(get_app());
       oswindow hwndcapture = ::GetCapture();
@@ -4580,7 +4586,7 @@ namespace android
          return NULL;
       if(((void *)hwndcapture) == get_handle())
       {
-         sp(::user::interaction) puiecapture = get_capture();
+         sp(::user::interaction) puiecapture = GetCapture();
          if(::ReleaseCapture())
          {
             m_pguiecapture = NULL;
@@ -4593,11 +4599,11 @@ namespace android
       }
       else
       {
-         return interaction_impl::GetCapture()->release_capture();
+         return interaction_impl::GetCapture()->ReleaseCapture();
       }
    }
 
-   sp(::user::interaction) interaction_impl::get_capture()
+   ::user::interaction * interaction_impl::GetCapture()
    {
       //      ::exception::throw_not_implemented(get_app());
       oswindow hwndcapture = ::GetCapture();
@@ -4613,9 +4619,9 @@ namespace android
          {
             if(m_pui != NULL)
             {
-               if(m_pui->get_wnd() != NULL && ANDROID_WINDOW(m_pui->get_wnd())->m_pguiecapture != NULL)
+               if(m_pui->m_pimpl != NULL && ANDROID_WINDOW(m_pui)->m_pguiecapture != NULL)
                {
-                  return ANDROID_WINDOW(m_pui->get_wnd())->m_pguiecapture;
+                  return ANDROID_WINDOW(m_pui)->m_pguiecapture;
                }
                else
                {
@@ -4624,13 +4630,13 @@ namespace android
             }
             else
             {
-               return this;
+               return NULL;
             }
          }
       }
       else
       {
-         return interaction_impl::GetCapture()->get_capture();
+         return interaction_impl::GetCapture()->GetCapture();
       }
    }
 
@@ -4639,14 +4645,14 @@ namespace android
    // interaction_impl
    /* interaction_impl::operator oswindow() const
    { return this == NULL ? NULL : get_handle(); }*/
-   bool interaction_impl::operator==(const ::interaction_impl& wnd) const
+   bool interaction_impl::operator==(const interaction_impl& wnd) const
    {
-      return ANDROID_WINDOW(const_cast < ::sp(::user::interaction) >  (&wnd))->get_handle() == get_handle();
+      return ANDROID_WINDOW(wnd.m_pui)->get_handle() == get_handle();
    }
 
-   bool interaction_impl::operator!=(const ::interaction_impl& wnd) const
+   bool interaction_impl::operator!=(const interaction_impl& wnd) const
    {
-      return ANDROID_WINDOW(const_cast < ::sp(::user::interaction) >  (&wnd))->get_handle() != get_handle();
+      return ANDROID_WINDOW(wnd.m_pui)->get_handle() != get_handle();
    }
 
    DWORD interaction_impl::GetStyle()
@@ -4673,24 +4679,24 @@ namespace android
       return ModifyStyleEx((oswindow)get_handle(),dwRemove,dwAdd,nFlags);
    }
 
-   void interaction_impl::set_owner(sp(::user::interaction) pOwnerWnd)
-   {
-      m_pguieOwner = pOwnerWnd;
-   }
+   //void interaction_impl::set_owner(::user::interaction * pOwnerWnd)
+   //{
+   //   m_pguieOwner = pOwnerWnd;
+   //}
 
    LRESULT interaction_impl::send_message(UINT message,WPARAM wparam,lparam lparam)
    {
 
-      ::ca::smart_pointer < ::message::base > spbase;
+      sp(::message::base) spbase;
 
-      spbase =get_base(this,message,wparam,lparam);
+      spbase =get_base(message,wparam,lparam);
 
       try
       {
 
          sp(::user::interaction) pui = m_pui;
 
-         while(pui != NULL && pui->get_parent() != NULL)
+         while(pui != NULL && pui->GetParent() != NULL)
          {
 
             try
@@ -4712,7 +4718,7 @@ namespace android
             try
             {
 
-               pui = pui->get_parent();
+               pui = pui->GetParent();
 
             }
             catch(...)
@@ -4740,7 +4746,7 @@ namespace android
    bool interaction_impl::post_message(UINT message,WPARAM wparam,lparam lparam)
    {
 
-      return ::PostMessage((oswindow)get_handle(),message,wparam,lparam) != FALSE;
+      return ::PostMessageW((oswindow)get_handle(),message,wparam,lparam) != FALSE;
 
    }
 
@@ -4759,7 +4765,7 @@ namespace android
    void interaction_impl::SetWindowText(const char * lpszString)
    {
 
-      m_strWindowText = lpszString;
+      m_pui->m_strWindowText = lpszString;
 
    }
 
@@ -4767,9 +4773,9 @@ namespace android
    strsize interaction_impl::GetWindowText(LPTSTR lpszString,strsize nMaxCount)
    {
 
-      strncpy(lpszString,m_strWindowText,nMaxCount);
+      strncpy(lpszString,m_pui->m_strWindowText,nMaxCount);
 
-      return MIN(nMaxCount,m_strWindowText.get_length());
+      return MIN(nMaxCount,m_pui->m_strWindowText.get_length());
 
    }
 
@@ -4777,10 +4783,7 @@ namespace android
    strsize interaction_impl::GetWindowTextLength()
    {
 
-      ::exception::throw_not_implemented(get_app());
-      //ASSERT(::IsWindow((oswindow) get_handle()));
-
-      //return ::GetWindowTextLength(get_handle());
+      return m_pui->m_strWindowText.length();
 
    }
 
@@ -4797,28 +4800,28 @@ namespace android
    }
 
 
-   sp(::user::frame_window) interaction_impl::EnsureParentFrame()
-   {
+   //sp(::user::frame_window) interaction_impl::EnsureParentFrame()
+   //{
 
-      sp(::user::frame_window) pFrameWnd=GetParentFrame();
+   //   sp(::user::frame_window) pFrameWnd=GetParentFrame();
 
-      ENSURE_VALID(pFrameWnd);
+   //   ENSURE_VALID(pFrameWnd);
 
-      return pFrameWnd;
+   //   return pFrameWnd;
 
-   }
+   //}
 
 
-   sp(::user::interaction) interaction_impl::EnsureTopLevelParent()
-   {
+   //::user::interaction * interaction_impl::EnsureTopLevelParent()
+   //{
 
-      sp(::user::interaction)pWnd=GetTopLevel();
+   //   sp(::user::interaction)pWnd=GetTopLevel();
 
-      ENSURE_VALID(pWnd);
+   //   ENSURE_VALID(pWnd);
 
-      return pWnd;
+   //   return pWnd;
 
-   }
+   //}
 
 
    void interaction_impl::MoveWindow(LPCRECT lpRect,bool bRepaint)
@@ -4868,26 +4871,26 @@ namespace android
    }
 
 
-   void interaction_impl::MapWindowPoints(::sp(::user::interaction) pwndTo,LPPOINT lpPoint,UINT nCount)
-   {
+   //void interaction_impl::MapWindowPoints(::user::interaction * pwndTo,LPPOINT lpPoint,UINT nCount)
+   //{
 
-      ::exception::throw_not_implemented(get_app());
+   //   ::exception::throw_not_implemented(get_app());
 
-      //      ASSERT(::IsWindow((oswindow) get_handle()));
-      //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), lpPoint, nCount);
+   //   //      ASSERT(::IsWindow((oswindow) get_handle()));
+   //   //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), lpPoint, nCount);
 
-   }
+   //}
 
 
-   void interaction_impl::MapWindowPoints(::sp(::user::interaction) pwndTo,LPRECT lpRect)
-   {
+   //void interaction_impl::MapWindowPoints(::user::interaction * pwndTo,LPRECT lpRect)
+   //{
 
-      ::exception::throw_not_implemented(get_app());
+   //   ::exception::throw_not_implemented(get_app());
 
-      //      ASSERT(::IsWindow((oswindow) get_handle()));
-      //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), (LPPOINT)lpRect, 2);
+   //   //      ASSERT(::IsWindow((oswindow) get_handle()));
+   //   //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), (LPPOINT)lpRect, 2);
 
-   }
+   //}
 
 
    ::draw2d::graphics * interaction_impl::GetDC()
@@ -5046,7 +5049,7 @@ namespace android
          if(!m_pui->m_bVisible)
             return false;
 
-         if(m_pui->get_parent() != NULL && !m_pui->get_parent()->IsWindowVisible())
+         if(m_pui->GetParent() != NULL && !m_pui->GetParent()->IsWindowVisible())
             return false;
 
       }
@@ -5107,10 +5110,14 @@ namespace android
       }
    }
 
-   sp(::user::interaction) interaction_impl::GetDescendantWindow(id id)
+   ::user::interaction * interaction_impl::GetDescendantWindow(id id)
    {
-      ASSERT(::IsWindow((oswindow)get_handle()));
-      return interaction_impl::GetDescendantWindow(this,id);
+      
+      if(::IsWindow((oswindow)get_handle()))
+         return NULL;
+
+      return interaction_impl::GetDescendantWindow(id);
+
    }
 
 
@@ -5244,7 +5251,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) interaction_impl::GetActiveWindow()
+   ::user::interaction * interaction_impl::GetActiveWindow()
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -5252,7 +5259,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) interaction_impl::SetActiveWindow()
+   ::user::interaction * interaction_impl::SetActiveWindow()
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -5261,22 +5268,22 @@ namespace android
 
    }
 
-   sp(::user::interaction) PASCAL interaction_impl::GetCapture()
-   {
+   //::user::interaction * PASCAL interaction_impl::GetCapture()
+   //{
 
-      if(::GetCapture() == NULL)
-         return NULL;
+   //   if(::GetCapture() == NULL)
+   //      return NULL;
 
-      return  (::GetCapture()->get_user_interaction()->m_pimpl.m_p);
+   //   return  (::GetCapture()->get_user_interaction()->m_pimpl.m_p);
 
-   }
+   //}
 
-   sp(::user::interaction) interaction_impl::set_capture(sp(::user::interaction) pinterface)
+   ::user::interaction * interaction_impl::SetCapture(::user::interaction * pinterface)
    {
 
       ASSERT(::IsWindow((oswindow)get_handle()));
 
-      oswindow w = SetCapture(get_handle());
+      oswindow w = ::SetCapture(get_handle());
 
       if(GetCapture() != NULL)
       {
@@ -5290,7 +5297,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) PASCAL interaction_impl::GetFocus()
+   ::user::interaction * PASCAL interaction_impl::GetFocus()
    {
 
       oswindow w = ::GetFocus();
@@ -5298,11 +5305,11 @@ namespace android
       if(!::IsWindow(w))
          return NULL;
 
-      return  (w->get_user_interaction()->m_pimpl.m_p);
+      return  w->get_user_interaction();
 
    }
 
-   sp(::user::interaction) interaction_impl::SetFocus()
+   ::user::interaction * interaction_impl::SetFocus()
    {
 
       ASSERT(::IsWindow((oswindow)get_handle()));
@@ -5312,11 +5319,11 @@ namespace android
       if(!::IsWindow(w))
          return NULL;
 
-      return  (w->get_user_interaction()->m_pimpl.m_p);
+      return  w->get_user_interaction();
 
    }
 
-   sp(::user::interaction) PASCAL interaction_impl::GetDesktopWindow()
+   ::user::interaction * PASCAL interaction_impl::GetDesktopWindow()
    {
       /*
       return sp(::user::interaction)::from_handle(::GetDesktopWindow());
@@ -5418,7 +5425,7 @@ namespace android
    //      ::exception::throw_not_implemented(get_app());
    //      ASSERT(::IsWindow((oswindow) get_handle())); return ::GetDlgItemText(get_handle(), nID, lpStr, nMaxCount);}
 
-   sp(::user::interaction) interaction_impl::GetNextDlgGroupItem(::sp(::user::interaction) pWndCtl,bool bPrevious) const
+   ::user::interaction * interaction_impl::GetNextDlgGroupItem(::user::interaction * pWndCtl,bool bPrevious) const
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -5427,7 +5434,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) interaction_impl::GetNextDlgTabItem(::sp(::user::interaction) pWndCtl,bool bPrevious) const
+   ::user::interaction * interaction_impl::GetNextDlgTabItem(::user::interaction * pWndCtl,bool bPrevious) const
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -5490,7 +5497,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) interaction_impl::ChildWindowFromPoint(POINT point)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point)
    {
 
 
@@ -5500,7 +5507,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) interaction_impl::ChildWindowFromPoint(POINT point,UINT nFlags)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point,UINT nFlags)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -5509,7 +5516,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) PASCAL interaction_impl::FindWindow(const char * lpszClassName,const char * lpszWindowName)
+   ::user::interaction * PASCAL interaction_impl::FindWindow(const char * lpszClassName,const char * lpszWindowName)
    {
 
       //      ::exception::throw_not_implemented(get_app());
@@ -5518,7 +5525,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) interaction_impl::FindWindowEx(oswindow hwndParent,oswindow hwndChildAfter,const char * lpszClass,const char * lpszWindow)
+   ::user::interaction * interaction_impl::FindWindowEx(oswindow hwndParent,oswindow hwndChildAfter,const char * lpszClass,const char * lpszWindow)
    {
 
       throw not_implemented(::get_thread_app());
@@ -5526,7 +5533,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) interaction_impl::GetNextWindow(UINT nFlag)
+   ::user::interaction * interaction_impl::GetNextWindow(UINT nFlag)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -5535,20 +5542,20 @@ namespace android
 
    }
 
-   sp(::user::interaction) interaction_impl::GetTopWindow()
+   ::user::interaction * interaction_impl::GetTopWindow()
    {
 
       if(m_pui->m_uiptraChild.get_size() <= 0)
          return NULL;
 
-      return m_pui->m_uiptraChild(0);
+      return m_pui->m_uiptraChild[0];
       //  ::exception::throw_not_implemented(get_app());
       //      ASSERT(::IsWindow((oswindow) get_handle()));
       //      return sp(::user::interaction)::from_handle(::GetTopWindow(get_handle()));
 
    }
 
-   sp(::user::interaction) interaction_impl::GetWindow(UINT nCmd)
+   ::user::interaction * interaction_impl::GetWindow(UINT nCmd)
    {
 
       ASSERT(::IsWindow((oswindow)get_handle()));
@@ -5557,7 +5564,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) interaction_impl::GetLastActivePopup()
+   ::user::interaction * interaction_impl::GetLastActivePopup()
    {
 
 
@@ -5567,15 +5574,15 @@ namespace android
 
    }
 
-   sp(::user::interaction) interaction_impl::set_parent(::sp(::user::interaction) pWndNewParent)
+   ::user::interaction * interaction_impl::SetParent(::user::interaction * pWndNewParent)
    {
 
       ASSERT(::IsWindow((oswindow)get_handle()));
-      return sp(::user::interaction)::from_handle(::SetParent(get_handle(),(oswindow)pWndNewParent->get_handle()));
+      return from_os_data(::SetParent(get_handle(),(oswindow)pWndNewParent->get_handle()));
 
    }
 
-   sp(::user::interaction) PASCAL interaction_impl::oswindowFromPoint(POINT point)
+   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(POINT point)
    {
 
 
@@ -5621,7 +5628,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) PASCAL interaction_impl::GetOpenClipboardWindow()
+   ::user::interaction * PASCAL interaction_impl::GetOpenClipboardWindow()
    {
 
       throw not_implemented(::get_thread_app());
@@ -5629,7 +5636,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) PASCAL interaction_impl::GetClipboardOwner()
+   ::user::interaction * PASCAL interaction_impl::GetClipboardOwner()
    {
 
       throw not_implemented(::get_thread_app());
@@ -5637,7 +5644,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) PASCAL interaction_impl::GetClipboardViewer()
+   ::user::interaction * PASCAL interaction_impl::GetClipboardViewer()
    {
 
       throw not_implemented(::get_thread_app());
@@ -5713,7 +5720,7 @@ namespace android
 
    }
 
-   sp(::user::interaction) PASCAL interaction_impl::GetForegroundWindow()
+   ::user::interaction * PASCAL interaction_impl::GetForegroundWindow()
    {
 
       return NULL;
@@ -5774,7 +5781,7 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnActivate(UINT,sp(::user::interaction),bool)
+   void interaction_impl::OnActivate(UINT,::user::interaction *,bool)
    {
       Default();
    }
@@ -5790,12 +5797,12 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnContextMenu(::sp(::user::interaction),point)
+   void interaction_impl::OnContextMenu(::user::interaction *,point)
    {
       Default();
    }
 
-   bool interaction_impl::OnCopyData(::sp(::user::interaction),COPYDATASTRUCT*)
+   bool interaction_impl::OnCopyData(::user::interaction *,COPYDATASTRUCT*)
    {
 
       return Default() != FALSE;
@@ -5826,7 +5833,7 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnKillFocus(::sp(::user::interaction))
+   void interaction_impl::OnKillFocus(::user::interaction *)
    {
       Default();
    }
@@ -5906,7 +5913,7 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnPaletteIsChanging(::sp(::user::interaction))
+   void interaction_impl::OnPaletteIsChanging(::user::interaction *)
    {
       Default();
    }
@@ -6006,7 +6013,7 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnPaletteChanged(::sp(::user::interaction))
+   void interaction_impl::OnPaletteChanged(::user::interaction *)
    {
       Default();
    }
@@ -6058,7 +6065,7 @@ namespace android
    {
       Default();
    }
-   int32_t interaction_impl::OnMouseActivate(::sp(::user::interaction),UINT,UINT)
+   int32_t interaction_impl::OnMouseActivate(::user::interaction *,UINT,UINT)
    {
       return (int32_t)Default();
    }
@@ -6124,11 +6131,11 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnHScrollClipboard(::sp(::user::interaction),UINT,UINT)
+   void interaction_impl::OnHScrollClipboard(::user::interaction *,UINT,UINT)
    {
       Default();
    }
-   void interaction_impl::OnPaintClipboard(::sp(::user::interaction),HGLOBAL)
+   void interaction_impl::OnPaintClipboard(::user::interaction *,HGLOBAL)
    {
       Default();
    }
@@ -6140,11 +6147,11 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OnSizeClipboard(::sp(::user::interaction),HGLOBAL)
+   void interaction_impl::OnSizeClipboard(::user::interaction *,HGLOBAL)
    {
       Default();
    }
-   void interaction_impl::OnVScrollClipboard(::sp(::user::interaction),UINT,UINT)
+   void interaction_impl::OnVScrollClipboard(::user::interaction *,UINT,UINT)
    {
       Default();
    }
@@ -6152,7 +6159,7 @@ namespace android
    {
       return (UINT)Default();
    }
-   void interaction_impl::OnMDIActivate(bool,sp(::user::interaction),sp(::user::interaction))
+   void interaction_impl::OnMDIActivate(bool,::user::interaction *,::user::interaction *)
    {
       Default();
    }
@@ -6177,7 +6184,7 @@ namespace android
    {
       Default();
    }
-   void interaction_impl::OncaptureChanged(::sp(::user::interaction))
+   void interaction_impl::OncaptureChanged(::user::interaction *)
    {
       Default();
    }
@@ -6317,93 +6324,93 @@ namespace android
       return hWnd;    // return the owner as oswindow
    }
 
-   void interaction_impl::on_delete(::ca2::ca2 * pui)
-   {
-      UNREFERENCED_PARAMETER(pui);
-   }
+   //void interaction_impl::on_delete(::ca2::ca2 * pui)
+   //{
+   //   UNREFERENCED_PARAMETER(pui);
+   //}
 
 
    /////////////////////////////////////////////////////////////////////////////
    // Official way to send message to a interaction_impl
 
-   CLASS_DECL_AXIS LRESULT __call_window_procedure(sp(::user::interaction) pinteraction,oswindow hWnd,UINT nMsg,WPARAM wparam,LPARAM lparam)
-   {
-      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-      MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
+   //CLASS_DECL_AXIS LRESULT __call_window_procedure(::user::interaction * pinteraction,oswindow hWnd,UINT nMsg,WPARAM wparam,LPARAM lparam)
+   //{
+   //   ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+   //   MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
 
-      throw not_implemented(pinteraction->get_app());
+   //   throw not_implemented(pinteraction->get_app());
 
-      //      pThreadState->m_lastSentMsg.m_pwnd = pinteraction;
-      pThreadState->m_lastSentMsg.message = nMsg;
-      pThreadState->m_lastSentMsg.wParam = wparam;
-      pThreadState->m_lastSentMsg.lParam = lparam;
+   //   //      pThreadState->m_lastSentMsg.m_pwnd = pinteraction;
+   //   pThreadState->m_lastSentMsg.message = nMsg;
+   //   pThreadState->m_lastSentMsg.wParam = wparam;
+   //   pThreadState->m_lastSentMsg.lParam = lparam;
 
-      // catch exceptions thrown outside the scope of a CALLBACK
-      // in debug builds and warn the ::fontopus::user.
-      //      ::ca2::smart_pointer < ::message::base > spbase;
-      //
-      //      spbase(pinteraction->get_base(pinteraction, nMsg, wparam, lparam));
-      //
-      //      __trace_message("WndProc", spbase);
-      //
-      //      try
-      //      {
-      //
-      //         // special case for WM_INITDIALOG
-      //         rect rectOld;
-      //         DWORD dwStyle = 0;
-      //         if (nMsg == WM_INITDIALOG)
-      //            __pre_init_dialog(pinteraction, &rectOld, &dwStyle);
-      //
-      //         // delegate to object's message_handler
-      //         if(pinteraction->m_pui != NULL && pinteraction->m_pui != pinteraction)
-      //         {
-      //            pinteraction->m_pui->message_handler(spbase);
-      //         }
-      //         else
-      //         {
-      //            pinteraction->message_handler(spbase);
-      //         }
-      //         // more special case for WM_INITDIALOG
-      //         if (nMsg == WM_INITDIALOG)
-      //            __post_init_dialog(pinteraction, rectOld, dwStyle);
-      //      }
-      //      catch(const ::ca2::exception & e)
-      //      {
-      //         try
-      //         {
-      //            if(App(pinteraction->m_pauraapp).on_run_exception((::ca2::exception &) e))
-      //               goto run;
-      //         }
-      //         catch(...)
-      //         {
-      //         }
-      //         return -1;
-      //      }
-      //      catch(::exception::base * pe)
-      //      {
-      //         __process_window_procedure_exception(pe, spbase);
-      //         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", spbase->get_lresult());
-      //         pe->Delete();
-      //      }
-      //      catch(...)
-      //      {
-      //      }
-      //run:
-      //      try
-      //      {
-      //         pThreadState->m_lastSentMsg = oldState;
-      //         LRESULT lresult = spbase->get_lresult();
-      //         return lresult;
-      //      }
-      //      catch(...)
-      //      {
-      //         return 0;
-      //      }
-   }
+   //   // catch exceptions thrown outside the scope of a CALLBACK
+   //   // in debug builds and warn the ::fontopus::user.
+   //   //      ::ca2::smart_pointer < ::message::base > spbase;
+   //   //
+   //   //      spbase(pinteraction->get_base(pinteraction, nMsg, wparam, lparam));
+   //   //
+   //   //      __trace_message("WndProc", spbase);
+   //   //
+   //   //      try
+   //   //      {
+   //   //
+   //   //         // special case for WM_INITDIALOG
+   //   //         rect rectOld;
+   //   //         DWORD dwStyle = 0;
+   //   //         if (nMsg == WM_INITDIALOG)
+   //   //            __pre_init_dialog(pinteraction, &rectOld, &dwStyle);
+   //   //
+   //   //         // delegate to object's message_handler
+   //   //         if(pinteraction->m_pui != NULL && pinteraction->m_pui != pinteraction)
+   //   //         {
+   //   //            pinteraction->m_pui->message_handler(spbase);
+   //   //         }
+   //   //         else
+   //   //         {
+   //   //            pinteraction->message_handler(spbase);
+   //   //         }
+   //   //         // more special case for WM_INITDIALOG
+   //   //         if (nMsg == WM_INITDIALOG)
+   //   //            __post_init_dialog(pinteraction, rectOld, dwStyle);
+   //   //      }
+   //   //      catch(const ::ca2::exception & e)
+   //   //      {
+   //   //         try
+   //   //         {
+   //   //            if(App(pinteraction->m_pauraapp).on_run_exception((::ca2::exception &) e))
+   //   //               goto run;
+   //   //         }
+   //   //         catch(...)
+   //   //         {
+   //   //         }
+   //   //         return -1;
+   //   //      }
+   //   //      catch(::exception::base * pe)
+   //   //      {
+   //   //         __process_window_procedure_exception(pe, spbase);
+   //   //         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: Uncaught exception in message_handler (returning %ld).\n", spbase->get_lresult());
+   //   //         pe->Delete();
+   //   //      }
+   //   //      catch(...)
+   //   //      {
+   //   //      }
+   //   //run:
+   //   //      try
+   //   //      {
+   //   //         pThreadState->m_lastSentMsg = oldState;
+   //   //         LRESULT lresult = spbase->get_lresult();
+   //   //         return lresult;
+   //   //      }
+   //   //      catch(...)
+   //   //      {
+   //   //         return 0;
+   //   //      }
+   //}
 
 
-   /*CDataExchange::CDataExchange(::sp(::user::interaction) pDlgWnd, bool bSaveAndValidate)
+   /*CDataExchange::CDataExchange(::user::interaction * pDlgWnd, bool bSaveAndValidate)
    {
    ASSERT_VALID(pDlgWnd);
    m_bSaveAndValidate = bSaveAndValidate;
@@ -6414,141 +6421,141 @@ namespace android
    /////////////////////////////////////////////////////////////////////////////
    // oswindow creation hooks
 
-   LRESULT CALLBACK __cbt_filter_hook(int32_t code,WPARAM wparam,LPARAM lparam)
-   {
+   //LRESULT CALLBACK __cbt_filter_hook(int32_t code,WPARAM wparam,LPARAM lparam)
+   //{
 
-      throw not_implemented(::get_thread_app());
+   //   throw not_implemented(::get_thread_app());
 
-      //      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-      //      if (code != HCBT_CREATEWND)
-      //      {
-      //         // wait for HCBT_CREATEWND just pass others on...
-      //         return callNextHookEx(pThreadState->m_hHookOldCbtFilter, code,
-      //            wparam, lparam);
-      //      }
-      //
-      //      ASSERT(lparam != NULL);
-      //      ::user::create_struct * lpcs = ((LPCBT_CREATEWND)lparam)->lpcs;
-      //      ASSERT(lpcs != NULL);
-      //
-      //      sp(::user::interaction) pWndInit = pThreadState->m_pWndInit;
-      //      bool bContextIsDLL = afxContextIsDLL;
-      //      if (pWndInit != NULL || (!(lpcs->style & WS_CHILD) && !bContextIsDLL))
-      //      {
-      //         // Note: special check to avoid subclassing the IME interaction_impl
-      //         //if (gen_DBCS)
-      //         {
-      //            // check for cheap CS_IME style first...
-      //            if (GetClassLong((oswindow)wparam, GCL_STYLE) & CS_IME)
-      //               goto lcallNextHook;
-      //
-      //            // get class name of the interaction_impl that is being created
-      //            const char * pszClassName;
-      //            char szClassName[_countof("ime")+1];
-      //            if (dword_ptr(lpcs->lpszClass) > 0xffff)
-      //            {
-      //               pszClassName = lpcs->lpszClass;
-      //            }
-      //            else
-      //            {
-      //               szClassName[0] = '\0';
-      //               GlobalGetAtomName((ATOM)lpcs->lpszClass, szClassName, _countof(szClassName));
-      //               pszClassName = szClassName;
-      //            }
-      //
-      //            // a little more expensive to test this way, but necessary...
-      //            if (::__invariant_stricmp(pszClassName, "ime") == 0)
-      //               goto lcallNextHook;
-      //         }
-      //
-      //         ASSERT(wparam != NULL); // should be non-NULL oswindow
-      //         oswindow hWnd = (oswindow)wparam;
-      //         WNDPROC oldWndProc;
-      //         if (pWndInit != NULL)
-      //         {
-      //            // the interaction_impl should not be in the permanent ::collection::map at this time
-      //            ASSERT(sp(::user::interaction)::FromHandlePermanent(hWnd) == NULL);
-      //
-      //            pWndInit->m_pauraapp = dynamic_cast < ::thread * > (::android::get_thread());
-      //            pWndInit->m_pauraapp->add(pWndInit);
-      //            pWndInit->m_pui->m_pauraapp = pWndInit->m_pauraapp;
-      //            pWndInit->m_pui->m_pauraapp->add(pWndInit->m_pui);
-      //            pWndInit->m_pui->m_pimpl = pWndInit;
-      //
-      //            // connect the oswindow to pWndInit...
-      //            pWndInit->Attach(hWnd);
-      //            // allow other subclassing to occur first
-      //            pWndInit->pre_subclass_window();
-      //
-      //            WNDPROC *pOldWndProc = pWndInit->GetSuperWndProcaddr();
-      //            ASSERT(pOldWndProc != NULL);
-      //
-      //            // subclass the interaction_impl with standard __window_procedure
-      //            WNDPROC afxWndProc = __get_window_procedure();
-      //            oldWndProc = (WNDPROC)SetWindowLongPtr(hWnd, GWLP_WNDPROC,
-      //               (dword_ptr)afxWndProc);
-      //            ASSERT(oldWndProc != NULL);
-      //            if (oldWndProc != afxWndProc)
-      //               *pOldWndProc = oldWndProc;
-      //
-      //            pThreadState->m_pWndInit = NULL;
-      //         }
-      //         else
-      //         {
-      //            ASSERT(!bContextIsDLL);   // should never get here
-      //
-      //            static ATOM s_atomMenu = 0;
-      //            bool bSubclass = true;
-      //
-      //            if (s_atomMenu == 0)
-      //            {
-      //               WNDCLASSEX wc;
-      //               memset(&wc, 0, sizeof(WNDCLASSEX));
-      //               wc.cbSize = sizeof(WNDCLASSEX);
-      //               s_atomMenu = (ATOM)::GetClassInfoEx(NULL, "#32768", &wc);
-      //            }
-      //
-      //            // Do not subclass menus.
-      //            if (s_atomMenu != 0)
-      //            {
-      //               ATOM atomWnd = (ATOM)::GetClassLongPtr(hWnd, GCW_ATOM);
-      //               if (atomWnd == s_atomMenu)
-      //                  bSubclass = false;
-      //            }
-      //            else
-      //            {
-      //               char szClassName[256];
-      //               if (::GetClassName(hWnd, szClassName, 256))
-      //               {
-      //                  szClassName[255] = NULL;
-      //                  if (_tcscmp(szClassName, "#32768") == 0)
-      //                     bSubclass = false;
-      //               }
-      //            }
-      //            if (bSubclass)
-      //            {
-      //               // subclass the interaction_impl with the proc which does gray backgrounds
-      //               oldWndProc = (WNDPROC)GetWindowLongPtr(hWnd, GWLP_WNDPROC);
-      //               if (oldWndProc != NULL && GetProp(hWnd, gen_OldWndProc) == NULL)
-      //               {
-      //                  SetProp(hWnd, gen_OldWndProc, oldWndProc);
-      //                  if ((WNDPROC)GetProp(hWnd, gen_OldWndProc) == oldWndProc)
-      //                  {
-      //                     GlobalAddAtom(gen_OldWndProc);
-      //                     SetWindowLongPtr(hWnd, GWLP_WNDPROC, (dword_ptr)__activation_window_procedure);
-      //                     ASSERT(oldWndProc != NULL);
-      //                  }
-      //               }
-      //            }
-      //         }
-      //      }
-      //
-      //lcallNextHook:
-      //      LRESULT lResult = callNextHookEx(pThreadState->m_hHookOldCbtFilter, code,
-      //         wparam, lparam);
-      //
-      //      return lResult;
-   }
+   //   //      ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+   //   //      if (code != HCBT_CREATEWND)
+   //   //      {
+   //   //         // wait for HCBT_CREATEWND just pass others on...
+   //   //         return callNextHookEx(pThreadState->m_hHookOldCbtFilter, code,
+   //   //            wparam, lparam);
+   //   //      }
+   //   //
+   //   //      ASSERT(lparam != NULL);
+   //   //      ::user::create_struct * lpcs = ((LPCBT_CREATEWND)lparam)->lpcs;
+   //   //      ASSERT(lpcs != NULL);
+   //   //
+   //   //      sp(::user::interaction) pWndInit = pThreadState->m_pWndInit;
+   //   //      bool bContextIsDLL = afxContextIsDLL;
+   //   //      if (pWndInit != NULL || (!(lpcs->style & WS_CHILD) && !bContextIsDLL))
+   //   //      {
+   //   //         // Note: special check to avoid subclassing the IME interaction_impl
+   //   //         //if (gen_DBCS)
+   //   //         {
+   //   //            // check for cheap CS_IME style first...
+   //   //            if (GetClassLong((oswindow)wparam, GCL_STYLE) & CS_IME)
+   //   //               goto lcallNextHook;
+   //   //
+   //   //            // get class name of the interaction_impl that is being created
+   //   //            const char * pszClassName;
+   //   //            char szClassName[_countof("ime")+1];
+   //   //            if (dword_ptr(lpcs->lpszClass) > 0xffff)
+   //   //            {
+   //   //               pszClassName = lpcs->lpszClass;
+   //   //            }
+   //   //            else
+   //   //            {
+   //   //               szClassName[0] = '\0';
+   //   //               GlobalGetAtomName((ATOM)lpcs->lpszClass, szClassName, _countof(szClassName));
+   //   //               pszClassName = szClassName;
+   //   //            }
+   //   //
+   //   //            // a little more expensive to test this way, but necessary...
+   //   //            if (::__invariant_stricmp(pszClassName, "ime") == 0)
+   //   //               goto lcallNextHook;
+   //   //         }
+   //   //
+   //   //         ASSERT(wparam != NULL); // should be non-NULL oswindow
+   //   //         oswindow hWnd = (oswindow)wparam;
+   //   //         WNDPROC oldWndProc;
+   //   //         if (pWndInit != NULL)
+   //   //         {
+   //   //            // the interaction_impl should not be in the permanent ::collection::map at this time
+   //   //            ASSERT(sp(::user::interaction)::FromHandlePermanent(hWnd) == NULL);
+   //   //
+   //   //            pWndInit->m_pauraapp = dynamic_cast < ::thread * > (::android::get_thread());
+   //   //            pWndInit->m_pauraapp->add(pWndInit);
+   //   //            pWndInit->m_pui->m_pauraapp = pWndInit->m_pauraapp;
+   //   //            pWndInit->m_pui->m_pauraapp->add(pWndInit->m_pui);
+   //   //            pWndInit->m_pui->m_pimpl = pWndInit;
+   //   //
+   //   //            // connect the oswindow to pWndInit...
+   //   //            pWndInit->Attach(hWnd);
+   //   //            // allow other subclassing to occur first
+   //   //            pWndInit->pre_subclass_window();
+   //   //
+   //   //            WNDPROC *pOldWndProc = pWndInit->GetSuperWndProcaddr();
+   //   //            ASSERT(pOldWndProc != NULL);
+   //   //
+   //   //            // subclass the interaction_impl with standard __window_procedure
+   //   //            WNDPROC afxWndProc = __get_window_procedure();
+   //   //            oldWndProc = (WNDPROC)SetWindowLongPtr(hWnd, GWLP_WNDPROC,
+   //   //               (dword_ptr)afxWndProc);
+   //   //            ASSERT(oldWndProc != NULL);
+   //   //            if (oldWndProc != afxWndProc)
+   //   //               *pOldWndProc = oldWndProc;
+   //   //
+   //   //            pThreadState->m_pWndInit = NULL;
+   //   //         }
+   //   //         else
+   //   //         {
+   //   //            ASSERT(!bContextIsDLL);   // should never get here
+   //   //
+   //   //            static ATOM s_atomMenu = 0;
+   //   //            bool bSubclass = true;
+   //   //
+   //   //            if (s_atomMenu == 0)
+   //   //            {
+   //   //               WNDCLASSEX wc;
+   //   //               memset(&wc, 0, sizeof(WNDCLASSEX));
+   //   //               wc.cbSize = sizeof(WNDCLASSEX);
+   //   //               s_atomMenu = (ATOM)::GetClassInfoEx(NULL, "#32768", &wc);
+   //   //            }
+   //   //
+   //   //            // Do not subclass menus.
+   //   //            if (s_atomMenu != 0)
+   //   //            {
+   //   //               ATOM atomWnd = (ATOM)::GetClassLongPtr(hWnd, GCW_ATOM);
+   //   //               if (atomWnd == s_atomMenu)
+   //   //                  bSubclass = false;
+   //   //            }
+   //   //            else
+   //   //            {
+   //   //               char szClassName[256];
+   //   //               if (::GetClassName(hWnd, szClassName, 256))
+   //   //               {
+   //   //                  szClassName[255] = NULL;
+   //   //                  if (_tcscmp(szClassName, "#32768") == 0)
+   //   //                     bSubclass = false;
+   //   //               }
+   //   //            }
+   //   //            if (bSubclass)
+   //   //            {
+   //   //               // subclass the interaction_impl with the proc which does gray backgrounds
+   //   //               oldWndProc = (WNDPROC)GetWindowLongPtr(hWnd, GWLP_WNDPROC);
+   //   //               if (oldWndProc != NULL && GetProp(hWnd, gen_OldWndProc) == NULL)
+   //   //               {
+   //   //                  SetProp(hWnd, gen_OldWndProc, oldWndProc);
+   //   //                  if ((WNDPROC)GetProp(hWnd, gen_OldWndProc) == oldWndProc)
+   //   //                  {
+   //   //                     GlobalAddAtom(gen_OldWndProc);
+   //   //                     SetWindowLongPtr(hWnd, GWLP_WNDPROC, (dword_ptr)__activation_window_procedure);
+   //   //                     ASSERT(oldWndProc != NULL);
+   //   //                  }
+   //   //               }
+   //   //            }
+   //   //         }
+   //   //      }
+   //   //
+   //   //lcallNextHook:
+   //   //      LRESULT lResult = callNextHookEx(pThreadState->m_hHookOldCbtFilter, code,
+   //   //         wparam, lparam);
+   //   //
+   //   //      return lResult;
+   //}
 
 
 
@@ -6582,70 +6589,70 @@ namespace android
 } // namespace android
 
 
-CTestCmdUI::CTestCmdUI(::aura::application * papp):
-element(papp),
-cmd_ui(papp)
-{
-   m_bEnabled = TRUE;  // assume it is enabled
-}
-
-void CTestCmdUI::Enable(bool bOn)
-{
-   m_bEnabled = bOn;
-   m_bEnableChanged = TRUE;
-}
-
-void CTestCmdUI::SetCheck(int32_t)
-{
-   // do nothing -- just want to know about calls to Enable
-}
-
-void CTestCmdUI::SetRadio(bool)
-{
-   // do nothing -- just want to know about calls to Enable
-}
-
-void CTestCmdUI::SetText(const char *)
-{
-   // do nothing -- just want to know about calls to Enable
-}
-
-
+//CTestCmdUI::CTestCmdUI(::aura::application * papp):
+//element(papp),
+//cmd_ui(papp)
+//{
+//   m_bEnabled = TRUE;  // assume it is enabled
+//}
+//
+//void CTestCmdUI::Enable(bool bOn)
+//{
+//   m_bEnabled = bOn;
+//   m_bEnableChanged = TRUE;
+//}
+//
+//void CTestCmdUI::SetCheck(int32_t)
+//{
+//   // do nothing -- just want to know about calls to Enable
+//}
+//
+//void CTestCmdUI::SetRadio(bool)
+//{
+//   // do nothing -- just want to know about calls to Enable
+//}
+//
+//void CTestCmdUI::SetText(const char *)
+//{
+//   // do nothing -- just want to know about calls to Enable
+//}
+//
+//
 /////////////////////////////////////////////////////////////////////////////
 // Map from oswindow to sp(::user::interaction)
 
-hwnd_map* PASCAL afxMapHWND(bool bCreate)
-{
-   UNREFERENCED_PARAMETER(bCreate);
-   try
-   {
-      __MODULE_STATE* pState = __get_module_state();
-      if(pState == NULL)
-         return NULL;
-      return pState->m_pmapHWND;
-   }
-   catch(...)
-   {
-      return NULL;
-   }
-}
-
-
-mutex * PASCAL afxMutexHwnd()
-{
-   try
-   {
-      __MODULE_STATE* pState = __get_module_state();
-      if(pState == NULL)
-         return NULL;
-      return pState->m_pmutexHwnd;
-   }
-   catch(...)
-   {
-      return NULL;
-   }
-}
-
+//hwnd_map* PASCAL afxMapHWND(bool bCreate)
+//{
+//   UNREFERENCED_PARAMETER(bCreate);
+//   try
+//   {
+//      __MODULE_STATE* pState = __get_module_state();
+//      if(pState == NULL)
+//         return NULL;
+//      return pState->m_pmapHWND;
+//   }
+//   catch(...)
+//   {
+//      return NULL;
+//   }
+//}
+//
+//
+//mutex * PASCAL afxMutexHwnd()
+//{
+//   try
+//   {
+//      __MODULE_STATE* pState = __get_module_state();
+//      if(pState == NULL)
+//         return NULL;
+//      return pState->m_pmutexHwnd;
+//   }
+//   catch(...)
+//   {
+//      return NULL;
+//   }
+//}
+//
 /////////////////////////////////////////////////////////////////////////////
 // The WndProc for all interaction_impl's and derived classes
 
@@ -6677,7 +6684,7 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd,UINT nMsg,WPARAM wparam,LPARAM
 // Special helpers for certain windows messages
 
 __STATIC void CLASS_DECL_AXIS __pre_init_dialog(
-   sp(::user::interaction) pWnd,LPRECT lpRectOld,DWORD* pdwStyleOld)
+   ::user::interaction * pWnd,LPRECT lpRectOld,DWORD* pdwStyleOld)
 {
    ASSERT(lpRectOld != NULL);
    ASSERT(pdwStyleOld != NULL);
@@ -6687,7 +6694,7 @@ __STATIC void CLASS_DECL_AXIS __pre_init_dialog(
 }
 
 __STATIC void CLASS_DECL_AXIS __post_init_dialog(
-   sp(::user::interaction) pWnd,const RECT& rectOld,DWORD dwStyleOld)
+   ::user::interaction * pWnd,const RECT& rectOld,DWORD dwStyleOld)
 {
    // must be hidden to start with
    if(dwStyleOld & WS_VISIBLE)
@@ -6705,7 +6712,7 @@ __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 
    // must be unowned or owner disabled
    sp(::user::interaction) pParent = ANDROID_WINDOW(pWnd)->GetWindow(GW_OWNER);
-   if(pParent != NULL && pParent->IsWindowEnabled())
+   if(pParent != NULL && pParent->is_window_enabled())
       return;
 
    if(!ANDROID_WINDOW(pWnd)->CheckAutoCenter())
@@ -6717,156 +6724,156 @@ __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 
 
 
-CLASS_DECL_AXIS bool hook_window_create(sp(::user::interaction) pWnd)
-{
-
-   //      throw not_implemented(::get_thread_app());
-   ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-   if(pThreadState->m_pWndInit == pWnd)
-      return true;
-
-   //   if (pThreadState->m_hHookOldCbtFilter == NULL)
-   //   {
-   //      pThreadState->m_hHookOldCbtFilter = ::SetWindowsHookEx(WH_CBT,
-   //         android::__cbt_filter_hook, NULL, ::GetCurrentThreadId());
-   //      if (pThreadState->m_hHookOldCbtFilter == NULL)
-   //         throw memory_exception();
-   //   }
-   //   ASSERT(pThreadState->m_hHookOldCbtFilter != NULL);
-   //   ASSERT(pWnd != NULL);
-   //   // trans   ASSERT(ANDROID_WINDOW(pWnd)->get_handle() == NULL);   // only do once
-   //
-   ASSERT(pThreadState->m_pWndInit == NULL);   // hook not already in progress
-   //pThreadState->m_pWndInit = pWnd;
-}
-
-
-CLASS_DECL_AXIS bool unhook_window_create()
-{
-   ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
-   if(pThreadState->m_pWndInit != NULL)
-   {
-      pThreadState->m_pWndInit = NULL;
-      return FALSE;   // was not successfully hooked
-   }
-   return TRUE;
-}
-
-
-
-CLASS_DECL_AXIS const char * __register_window_class(UINT nClassStyle,
-   HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
-{
-
-   return NULL;
-
-   throw not_implemented(::get_thread_app());
-
-   //   // Returns a temporary string name for the class
-   //   //  Save in a string if you want to use it for a long time
-   //   LPTSTR lpszName = __get_thread_state()->m_szTempClassName;
-   //
-   //   // generate a synthetic name for this class
-   //   HINSTANCE hInst = Sys(::android::get_thread()->m_pauraapp).m_hInstance;
-   //
-   //   if (hCursor == NULL && hbrBackground == NULL && hIcon == NULL)
-   //   {
-   //      C_RUNTIME_ERRORCHECK_SPRINTF(_sntprintf_s(lpszName, ___TEMP_CLASS_NAME_SIZE, ___TEMP_CLASS_NAME_SIZE - 1, "::ca2:::%p:%x", hInst, nClassStyle));
-   //   }
-   //   else
-   //   {
-   //      C_RUNTIME_ERRORCHECK_SPRINTF(_sntprintf_s(lpszName, ___TEMP_CLASS_NAME_SIZE, ___TEMP_CLASS_NAME_SIZE - 1, "::ca2:::%p:%x:%p:%p:%p", hInst, nClassStyle,
-   //         hCursor, hbrBackground, hIcon));
-   //   }
-   //
-   //   // see if the class already exists
-   //   WNDCLASS wndcls;
-   //   if (::GetClassInfo(hInst, lpszName, &wndcls))
-   //   {
-   //      // already registered, assert everything is good
-   //      ASSERT(wndcls.style == nClassStyle);
-   //
-   //      // NOTE: We have to trust that the hIcon, hbrBackground, and the
-   //      //  hCursor are semantically the same, because sometimes oswindows does
-   //      //  some internal translation or copying of those handles before
-   //      //  storing them in the internal WNDCLASS retrieved by GetClassInfo.
-   //      return lpszName;
-   //   }
-   //
-   //   // otherwise we need to register a new class
-   //   wndcls.style = nClassStyle;
-   //   wndcls.lpfnWndProc = DefWindowProc;
-   //   wndcls.cbClsExtra = wndcls.cbWndExtra = 0;
-   //   wndcls.hInstance = hInst;
-   //   wndcls.hIcon = hIcon;
-   //   //wndcls.hCursor = hCursor;
-   //   wndcls.hCursor = NULL;
-   //   wndcls.hbrBackground = hbrBackground;
-   //   wndcls.lpszMenuName = NULL;
-   //   wndcls.lpszClassName = lpszName;
-   //   if (!__register_class(&wndcls))
-   //      throw resource_exception();
-   //
-   //   // return thread-local pointer
-   //   return lpszName;
-}
+//CLASS_DECL_AXIS bool hook_window_create(sp(::user::interaction) pWnd)
+//{
+//
+//   //      throw not_implemented(::get_thread_app());
+//   ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+//   if(pThreadState->m_pWndInit == pWnd)
+//      return true;
+//
+//   //   if (pThreadState->m_hHookOldCbtFilter == NULL)
+//   //   {
+//   //      pThreadState->m_hHookOldCbtFilter = ::SetWindowsHookEx(WH_CBT,
+//   //         android::__cbt_filter_hook, NULL, ::GetCurrentThreadId());
+//   //      if (pThreadState->m_hHookOldCbtFilter == NULL)
+//   //         throw memory_exception();
+//   //   }
+//   //   ASSERT(pThreadState->m_hHookOldCbtFilter != NULL);
+//   //   ASSERT(pWnd != NULL);
+//   //   // trans   ASSERT(ANDROID_WINDOW(pWnd)->get_handle() == NULL);   // only do once
+//   //
+//   ASSERT(pThreadState->m_pWndInit == NULL);   // hook not already in progress
+//   //pThreadState->m_pWndInit = pWnd;
+//}
+//
+//
+//CLASS_DECL_AXIS bool unhook_window_create()
+//{
+//   ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
+//   if(pThreadState->m_pWndInit != NULL)
+//   {
+//      pThreadState->m_pWndInit = NULL;
+//      return FALSE;   // was not successfully hooked
+//   }
+//   return TRUE;
+//}
 
 
-__STATIC void CLASS_DECL_AXIS
-__handle_activate(::sp(::user::interaction) pWnd,WPARAM nState,sp(::user::interaction) pWndOther)
-{
 
-   throw not_implemented(::get_thread_app());
-   //   ASSERT(pWnd != NULL);
-   //
-   //   // send WM_ACTIVATETOPLEVEL when top-level parents change
-   //   if (!(ANDROID_WINDOW(pWnd)->GetStyle() & WS_CHILD))
-   //   {
-   //      sp(::user::interaction) pTopLevel= ANDROID_WINDOW(pWnd)->GetTopLevel();
-   //      if (pTopLevel && (pWndOther == NULL || !::IsWindow(ANDROID_WINDOW(pWndOther)->get_handle()) || pTopLevel != ANDROID_WINDOW(pWndOther)->GetTopLevel()))
-   //      {
-   //         // lparam points to interaction_impl getting the WM_ACTIVATE message and
-   //         //  hWndOther from the WM_ACTIVATE.
-   //         oswindow hWnd2[2];
-   //         hWnd2[0] = ANDROID_WINDOW(pWnd)->get_handle();
-   //         if(pWndOther == NULL || ANDROID_WINDOW(pWndOther) == NULL)
-   //         {
-   //            hWnd2[1] = NULL;
-   //         }
-   //         else
-   //         {
-   //            hWnd2[1] = ANDROID_WINDOW(pWndOther)->get_handle();
-   //         }
-   //         // send it...
-   //         pTopLevel->send_message(WM_ACTIVATETOPLEVEL, nState, (LPARAM)&hWnd2[0]);
-   //      }
-   //   }
-}
-
-__STATIC bool CLASS_DECL_AXIS
-__handle_set_cursor(::sp(::user::interaction) pWnd,UINT nHitTest,UINT nMsg)
-{
-
-   throw not_implemented(::get_thread_app());
-   //   if (nHitTest == HTERROR &&
-   //      (nMsg == WM_LBUTTONDOWN || nMsg == WM_MBUTTONDOWN ||
-   //      nMsg == WM_RBUTTONDOWN))
-   //   {
-   //      // activate the last active interaction_impl if not active
-   //      sp(::user::interaction) pLastActive = ANDROID_WINDOW(pWnd)->GetTopLevel();
-   //      if (pLastActive != NULL)
-   //         pLastActive = pLastActive->GetLastActivePopup();
-   //      if (pLastActive != NULL &&
-   //         pLastActive != sp(::user::interaction)::GetForegroundWindow() &&
-   //         pLastActive->IsWindowEnabled())
-   //      {
-   //         pLastActive->SetForegroundWindow();
-   //         return TRUE;
-   //      }
-   //   }
-   //   return FALSE;
-}
-
+//CLASS_DECL_AXIS const char * __register_window_class(UINT nClassStyle,
+//   HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
+//{
+//
+//   return NULL;
+//
+//   throw not_implemented(::get_thread_app());
+//
+//   //   // Returns a temporary string name for the class
+//   //   //  Save in a string if you want to use it for a long time
+//   //   LPTSTR lpszName = __get_thread_state()->m_szTempClassName;
+//   //
+//   //   // generate a synthetic name for this class
+//   //   HINSTANCE hInst = Sys(::android::get_thread()->m_pauraapp).m_hInstance;
+//   //
+//   //   if (hCursor == NULL && hbrBackground == NULL && hIcon == NULL)
+//   //   {
+//   //      C_RUNTIME_ERRORCHECK_SPRINTF(_sntprintf_s(lpszName, ___TEMP_CLASS_NAME_SIZE, ___TEMP_CLASS_NAME_SIZE - 1, "::ca2:::%p:%x", hInst, nClassStyle));
+//   //   }
+//   //   else
+//   //   {
+//   //      C_RUNTIME_ERRORCHECK_SPRINTF(_sntprintf_s(lpszName, ___TEMP_CLASS_NAME_SIZE, ___TEMP_CLASS_NAME_SIZE - 1, "::ca2:::%p:%x:%p:%p:%p", hInst, nClassStyle,
+//   //         hCursor, hbrBackground, hIcon));
+//   //   }
+//   //
+//   //   // see if the class already exists
+//   //   WNDCLASS wndcls;
+//   //   if (::GetClassInfo(hInst, lpszName, &wndcls))
+//   //   {
+//   //      // already registered, assert everything is good
+//   //      ASSERT(wndcls.style == nClassStyle);
+//   //
+//   //      // NOTE: We have to trust that the hIcon, hbrBackground, and the
+//   //      //  hCursor are semantically the same, because sometimes oswindows does
+//   //      //  some internal translation or copying of those handles before
+//   //      //  storing them in the internal WNDCLASS retrieved by GetClassInfo.
+//   //      return lpszName;
+//   //   }
+//   //
+//   //   // otherwise we need to register a new class
+//   //   wndcls.style = nClassStyle;
+//   //   wndcls.lpfnWndProc = DefWindowProc;
+//   //   wndcls.cbClsExtra = wndcls.cbWndExtra = 0;
+//   //   wndcls.hInstance = hInst;
+//   //   wndcls.hIcon = hIcon;
+//   //   //wndcls.hCursor = hCursor;
+//   //   wndcls.hCursor = NULL;
+//   //   wndcls.hbrBackground = hbrBackground;
+//   //   wndcls.lpszMenuName = NULL;
+//   //   wndcls.lpszClassName = lpszName;
+//   //   if (!__register_class(&wndcls))
+//   //      throw resource_exception();
+//   //
+//   //   // return thread-local pointer
+//   //   return lpszName;
+//}
+//
+//
+//__STATIC void CLASS_DECL_AXIS
+//__handle_activate(::user::interaction * pWnd,WPARAM nState,::user::interaction * pWndOther)
+//{
+//
+//   throw not_implemented(::get_thread_app());
+//   //   ASSERT(pWnd != NULL);
+//   //
+//   //   // send WM_ACTIVATETOPLEVEL when top-level parents change
+//   //   if (!(ANDROID_WINDOW(pWnd)->GetStyle() & WS_CHILD))
+//   //   {
+//   //      sp(::user::interaction) pTopLevel= ANDROID_WINDOW(pWnd)->GetTopLevel();
+//   //      if (pTopLevel && (pWndOther == NULL || !::IsWindow(ANDROID_WINDOW(pWndOther)->get_handle()) || pTopLevel != ANDROID_WINDOW(pWndOther)->GetTopLevel()))
+//   //      {
+//   //         // lparam points to interaction_impl getting the WM_ACTIVATE message and
+//   //         //  hWndOther from the WM_ACTIVATE.
+//   //         oswindow hWnd2[2];
+//   //         hWnd2[0] = ANDROID_WINDOW(pWnd)->get_handle();
+//   //         if(pWndOther == NULL || ANDROID_WINDOW(pWndOther) == NULL)
+//   //         {
+//   //            hWnd2[1] = NULL;
+//   //         }
+//   //         else
+//   //         {
+//   //            hWnd2[1] = ANDROID_WINDOW(pWndOther)->get_handle();
+//   //         }
+//   //         // send it...
+//   //         pTopLevel->send_message(WM_ACTIVATETOPLEVEL, nState, (LPARAM)&hWnd2[0]);
+//   //      }
+//   //   }
+//}
+//
+//__STATIC bool CLASS_DECL_AXIS
+//__handle_set_cursor(::user::interaction * pWnd,UINT nHitTest,UINT nMsg)
+//{
+//
+//   throw not_implemented(::get_thread_app());
+//   //   if (nHitTest == HTERROR &&
+//   //      (nMsg == WM_LBUTTONDOWN || nMsg == WM_MBUTTONDOWN ||
+//   //      nMsg == WM_RBUTTONDOWN))
+//   //   {
+//   //      // activate the last active interaction_impl if not active
+//   //      sp(::user::interaction) pLastActive = ANDROID_WINDOW(pWnd)->GetTopLevel();
+//   //      if (pLastActive != NULL)
+//   //         pLastActive = pLastActive->GetLastActivePopup();
+//   //      if (pLastActive != NULL &&
+//   //         pLastActive != sp(::user::interaction)::GetForegroundWindow() &&
+//   //         pLastActive->IsWindowEnabled())
+//   //      {
+//   //         pLastActive->SetForegroundWindow();
+//   //         return TRUE;
+//   //      }
+//   //   }
+//   //   return FALSE;
+//}
+//
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -7210,10 +7217,10 @@ namespace android
 
       }
 
-      if(!m_bVisible || (m_pui != NULL && !m_pui->m_bVisible))
+      if(!m_pui->m_bVisible || (m_pui != NULL && !m_pui->m_bVisible))
       {
 
-         m_bVisible = true;
+         m_pui->m_bVisible = true;
 
          if(m_pui != NULL)
          {
@@ -7230,12 +7237,12 @@ namespace android
       if(bSize || bMove)
       {
 
-         if(m_pui != NULL)
-         {
+         //if(m_pui != NULL)
+         //{
 
-            m_pui->m_rectParentClient = m_rectParentClient;
+         //   m_pui->m_rectParentClient = m_rectParentClient;
 
-         }
+         //}
 
 
          if(bSize)
@@ -7257,7 +7264,7 @@ namespace android
 
       }
 
-      ::interaction_impl::_001UpdateScreen();
+      ::user::interaction_impl::_001UpdateScreen();
 
    }
 
@@ -7266,7 +7273,7 @@ namespace android
    void interaction_impl::_001UpdateScreen()
    {
 
-      single_lock sl(mutex_graphics(),false);
+      single_lock sl(m_pui->m_spmutex,false);
 
       if(!sl.lock(millis(84)))
          return;

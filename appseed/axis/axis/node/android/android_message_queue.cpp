@@ -1,8 +1,8 @@
 #include "framework.h" // from ""axis/user/user.h"
-#include "linux.h"
+#include "android.h"
 
 
-namespace linux
+namespace android
 {
 
 
@@ -98,7 +98,7 @@ namespace linux
    bool message_queue::message_queue_destroy()
    {
 
-      return DestroyWindow() != NULL;
+      return DestroyWindow();
 
    }
 
@@ -111,7 +111,7 @@ namespace linux
    }
 
 
-} // namespace linux
+} // namespace android
 
 
 

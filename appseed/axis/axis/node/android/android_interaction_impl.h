@@ -16,7 +16,7 @@ namespace android
    {
    public:
 
-
+      rect64                              m_rectParentClient;
       spa(::user::interaction)         m_guieptraMouseHover;
       //::message_queue_listener *       m_pcallback;
       ::user::interaction_base *       m_pbasewnd;
@@ -48,8 +48,8 @@ namespace android
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      //bool operator==(const ::interaction_impl& wnd) const;
-      //bool operator!=(const ::interaction_impl& wnd) const;
+      bool operator==(const interaction_impl& wnd) const;
+      bool operator!=(const interaction_impl& wnd) const;
 
       DWORD GetStyle();
       DWORD GetExStyle();
@@ -57,7 +57,7 @@ namespace android
       bool ModifyStyleEx(DWORD dwRemove,DWORD dwAdd,UINT nFlags = 0);
 
       //virtual ::user::interaction * GetOwner();
-      virtual void set_owner(::user::interaction * pOwnerWnd);
+      //virtual void set_owner(::user::interaction * pOwnerWnd);
 
       virtual oswindow get_handle() const;
 
@@ -269,9 +269,8 @@ namespace android
 
       // capture and focus apply to all windows
       virtual ::user::interaction * GetCapture();
-      virtual ::user::interaction * set_capture(::user::interaction * pinterface = NULL);
-      virtual ::user::interaction * release_capture();
-      virtual ::user::interaction * get_capture();
+      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
+      virtual ::user::interaction * ReleaseCapture();
       static ::user::interaction * PASCAL GetFocus();
       ::user::interaction * SetFocus();
 
