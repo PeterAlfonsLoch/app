@@ -77,7 +77,8 @@ namespace aura
    class platform_interface;
 
    class command;
-
+   class impact_system;
+   class printer;
 
 
 } // namespace aura

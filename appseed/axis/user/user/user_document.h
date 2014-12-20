@@ -18,7 +18,7 @@ namespace user
       mutex                            m_mutex;
       string                           m_strTitle;
       string                           m_strPathName;
-      sp(impact_system)                m_pdocumentemplate;
+      sp(::aura::impact_system)        m_pdocumentemplate;
       spa(::user::impact)              m_viewptra;
       bool                             m_bModified;
       bool                             m_bNew;
@@ -45,7 +45,7 @@ namespace user
       const string & get_path_name() const;
       virtual void set_path_name(var varFile, bool bAddToMRU = TRUE);
 
-      sp(impact_system) get_document_template() const;
+      sp(::aura::impact_system) get_document_template() const;
       virtual bool is_modified();
       virtual void set_modified_flag(bool bModified = TRUE);
       virtual void set_new(bool bNew = true);

@@ -134,7 +134,6 @@ namespace user
    class control_event;
    class create_context;
    class impact;
-   class printer;
    class user;
    class document;
    class frame_window;

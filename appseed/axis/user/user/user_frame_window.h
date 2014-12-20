@@ -80,7 +80,6 @@ namespace user
    class frame_window;
    class mdi_child_window;
    class control_bar;
-   class impact_system;
 
 
    struct PrintPreviewState;  // forward reference (see afxext.h)
@@ -135,7 +134,7 @@ namespace user
       int32_t                    m_iFrameData;
 
       ::id                       m_idHelp;         // xxx mrs
-      impact_system *            m_pdocumenttemplate;
+      ::aura::impact_system *    m_pdocumenttemplate;
 
       int32_t                    m_nWindow;  // general purpose interaction_impl number - display as ":n"
       // -1 => unknown, 0 => only interaction_impl viewing ::user::document
