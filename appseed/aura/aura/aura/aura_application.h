@@ -398,7 +398,7 @@ namespace aura
 
       virtual string http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema);
 
-      virtual sp(::signal_details) get_message_base(LPMESSAGE lpmsg);
+      virtual sp(::message::base) get_message_base(LPMESSAGE lpmsg);
 
       virtual void process_message(signal_details * pobj);
 

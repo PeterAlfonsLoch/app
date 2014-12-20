@@ -3301,12 +3301,12 @@ namespace aura
 
    }
 
-   //sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
-   //{
+   sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
+   {
 
-   //   return NULL;
+      return NULL;
 
-   //}
+   }
 
 
    void application::process_message(signal_details * pobj)

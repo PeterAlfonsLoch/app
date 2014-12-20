@@ -106,13 +106,13 @@ extern "C"
       {0,31,60,91,121,152,182,213,244,274,305,335,366}
    };
 
-   static time_t ydhms_tm_diff __P((int,int,int,int,int,const struct tm *));
-   time_t __mktime_internal __P((struct tm *,
-   struct tm *(*) (const time_t *,struct tm *),
-      time_t *));
+//   static time_t ydhms_tm_diff __P((int,int,int,int,int,const struct tm *));
+//   time_t __mktime_internal __P((struct tm *,
+  // struct tm *(*) (const time_t *,struct tm *),
+    //  time_t *));
 
 
-   static struct tm *my_localtime_r __P((const time_t *,struct tm *));
+//   static struct tm *my_localtime_r __P((const time_t *,struct tm *));
    static struct tm *
       my_localtime_r(const time_t * t,struct tm * tp)
    {
@@ -176,7 +176,7 @@ extern "C"
    compared to what the result would be for UTC without leap seconds.
    If *OFFSET's guess is correct, only one CONVERT call is needed.  */
    time_t
-      __mktime_internal(struct tm *tp,struct tm *(*convert) __P((const time_t *,struct tm *)),time_t *offset)
+      __mktime_internal(struct tm *tp,struct tm *(*convert) (const time_t *,struct tm *),time_t *offset)
    {
       time_t t,dt,t0;
       struct tm tm;
