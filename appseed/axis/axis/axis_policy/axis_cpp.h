@@ -397,7 +397,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #endif
 
-#include "axis/axis/axis/axis_command_target.h"
+//#include "axis/axis/axis/axis_command_target.h"
 
 #include "axis/primitive/datetime/datetime_value.h"
 

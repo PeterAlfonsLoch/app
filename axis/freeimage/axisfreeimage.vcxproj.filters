@@ -230,9 +230,6 @@
     <ClCompile Include="Source\FreeImage\PluginJNG.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
-    <ClCompile Include="Source\FreeImage\PluginJPEG.cpp">
-      <Filter>Source Files\Plugins</Filter>
-    </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginKOALA.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
@@ -249,9 +246,6 @@
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPICT.cpp">
-      <Filter>Source Files\Plugins</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FreeImage\PluginPNG.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
     <ClCompile Include="Source\FreeImage\PluginPNM.cpp">

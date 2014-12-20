@@ -53,7 +53,7 @@ static const BYTE BI_ALPHABITFIELDS = 6;	// compression: Bit field (this value i
 #pragma pack(1)
 #endif
 
-#if !defined(_WIN32) && !defined(LINUX) && !defined(APPLEOS)
+#if !defined(_WIN32) && !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
 typedef struct tagBITMAPCOREHEADER {
   DWORD   bcSize;
   WORD    bcWidth;
