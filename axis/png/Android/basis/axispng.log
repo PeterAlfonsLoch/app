@@ -1,0 +1,5 @@
+﻿C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1492,5): warning : The referenced project '..\aura\aura.vcxproj' does not exist.
+C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1492,5): warning : The referenced project '..\axis\axis.vcxproj' does not exist.
+C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1492,5): warning : The referenced project '..\base\base.vcxproj' does not exist.
+C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1492,5): warning : The referenced project '..\core\core.vcxproj' does not exist.
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Platforms\Android\Microsoft.Cpp.Android.targets(475,5): error MSB8008: Specified platform toolset (v120) is not installed or invalid. Please make sure that a supported PlatformToolset value is selected.

@@ -1,6 +1,26 @@
 #include "framework.h" // from "axis/user/user.h"
 #include <time.h>
 
+#ifdef ANDROID
+
+time_t timegm(tm * p)
+{
+   
+   time_t t1 = 60 * 60 * 24 * 2; // (sec * min * hours) * (safety 2 days); // 1970-01-03 00:00:00 +0000 (UTC). 
+   
+   tm tm1;
+
+   gmtime_r(&t1,&tm1);
+
+   time_t t2 = mktime(&tm1); // in reverse in Brazil (UTC -3) 1970-01-03 03:00:00 +0000
+
+   time_t t3 = mktime(p); // now (in Brazil) direct (UTC -3)
+
+   return t3 - t2 + t1;
+
+}
+
+#endif
 
 namespace datetime
 {

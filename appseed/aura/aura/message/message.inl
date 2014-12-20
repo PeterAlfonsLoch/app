@@ -196,7 +196,7 @@ namespace message
 
 
 
-#if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS)
+#if defined(WINDOWS) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 #define IGUI_WIN_MSG_LINK \
    ::message::os_connect
 #define IGUI_WIN_MSG_UNLINK \

@@ -4,9 +4,9 @@
 #include "aura/sqlite/sqlite3.h"
 
 
-#ifdef LINUX
-#include <unistd.h>
-#endif
+//#ifdef LINUX
+//#include <unistd.h>
+//#endif
 
 
 namespace sqlite
@@ -132,8 +132,18 @@ namespace sqlite
    int32_t base::drop() {
       if (active == false) return DB_ERROR;
       disconnect();
-      if (!_unlink(db))
+      try
+      {
+         Application.file_del(db);
+
+      }
+      catch(...)
+      {
          return DB_ERROR;
+
+      }
+      //if (!_unlink(db))
+        // return DB_ERROR;
       return DB_COMMAND_OK;
    };
 
