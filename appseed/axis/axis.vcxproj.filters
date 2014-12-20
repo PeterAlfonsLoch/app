@@ -949,9 +949,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework_c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_dll.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
@@ -1286,9 +1283,6 @@
     </None>
     <None Include="axis\axis\axis_system_xml.inl">
       <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
