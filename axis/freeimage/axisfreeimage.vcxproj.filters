@@ -188,9 +188,6 @@
     <ClCompile Include="Source\FreeImageToolkit\Flip.cpp">
       <Filter>Toolkit Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\FreeImageToolkit\JPEGTransform.cpp">
-      <Filter>Toolkit Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\FreeImageToolkit\MultigridPoissonSolver.cpp">
       <Filter>Toolkit Files</Filter>
     </ClCompile>
