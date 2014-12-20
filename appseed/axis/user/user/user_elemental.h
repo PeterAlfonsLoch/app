@@ -8,7 +8,8 @@ namespace user
 
 
    class CLASS_DECL_AXIS elemental :
-      virtual public command_target
+      virtual public signalizable,
+      virtual public string_interface
    {
    public:
 
