@@ -206,9 +206,6 @@
     <ClInclude Include="axis\os\android\android_window_impl.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple_ui\simple_ui.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
@@ -270,9 +267,6 @@
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\os\android\android_window_android.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\android\android_android.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\os\cross\windows\windows.h">
@@ -787,6 +781,9 @@
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows_print_job.h">
       <Filter>Header Files\axis\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\android\android.h">
+      <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1313,9 +1310,6 @@
     </None>
     <None Include="axis\axis\axis_system_xml.inl">
       <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

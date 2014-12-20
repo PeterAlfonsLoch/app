@@ -588,6 +588,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalOptions>-Wl,-z,defs %(AdditionalOptions)</AdditionalOptions>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
+      <AndroidSystemLibs>c;m;log;gcc;axispng;axisbzip2</AndroidSystemLibs>
     </Link>
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
@@ -3291,6 +3292,9 @@
     </ProjectReference>
     <ProjectReference Include="..\openssl\axisopenssl.vcxproj">
       <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\png\axispng.vcxproj">
+      <Project>{84517714-2000-419d-a87f-4338c9dde3fa}</Project>
     </ProjectReference>
     <ProjectReference Include="..\zlib\axiszlib.vcxproj">
       <Project>{34fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
