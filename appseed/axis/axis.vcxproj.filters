@@ -242,54 +242,6 @@
     <ClInclude Include="axis\os\android\android_window_android.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_crt.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_defs.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_error.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_file.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_gdi.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_guid_def.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_internals.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_ole_automation.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_shared_memory.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_thread.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_thread_impl.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_time.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_types.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_user.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_winnt.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\os\ansios\ansios.h">
       <Filter>Header Files\axis\os\ansios</Filter>
     </ClInclude>
@@ -303,9 +255,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_control_event.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_create_context.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_elemental.h">
@@ -503,51 +452,6 @@
     <ClInclude Include="user\simple_ui\simple_ui_message_box.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\e.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_base.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_base_tsd.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_common_controls.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_crtdefs.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_errno.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_mmeapi.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_mmsystem.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_nls.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_nt.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_ntstatus.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_poppack.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_pshpack2.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_pshpack4.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross\windows\windows_pshpack8.h">
-      <Filter>Header Files\axis\os\cross\windows</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_value.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -715,6 +619,12 @@
     </ClInclude>
     <ClInclude Include="axis\os\android\android_windowing.h">
       <Filter>Header Files\axis\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\cross\windows\windows.h">
+      <Filter>Header Files\axis\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\os\cross\windows\windows_user.h">
+      <Filter>Header Files\axis\os\cross\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1118,9 +1028,6 @@
     </None>
     <None Include="axis\axis\axis_system_xml.inl">
       <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
