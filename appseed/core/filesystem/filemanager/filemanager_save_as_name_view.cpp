@@ -7,7 +7,7 @@ namespace filemanager
 
    save_as_view::save_as_view(::aura::application * papp):
       element(papp),
-      ::data::data_listener(papp),
+      ::data::listener(papp),
       colorertake5::base_editor(papp),
       ::user::edit_plain_text(papp),
       ::user::edit_plain_text_view(papp),

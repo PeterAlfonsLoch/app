@@ -7,7 +7,7 @@ namespace user
 
    // MDI support (zero or more documents)
    class CLASS_DECL_CORE multiple_document_template :
-      virtual public impact_system
+      virtual public ::aura::impact_system
    {
    public:
 

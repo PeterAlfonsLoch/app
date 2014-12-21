@@ -355,7 +355,7 @@ namespace user
    }
    */
 
-   void document_manager::add_document_template(sp(impact_system) ptemplate)
+   void document_manager::add_document_template(sp(::aura::impact_system) ptemplate)
    {
       ASSERT_VALID(ptemplate);
       if(m_templateptra.add_unique(ptemplate))
@@ -369,7 +369,7 @@ namespace user
       return m_templateptra.get_count();
    }
 
-   sp(impact_system) document_manager::get_template(index index) const
+   sp(::aura::impact_system) document_manager::get_template(index index) const
    {
       if(index < 0 || index >= m_templateptra.get_count())
          return NULL;
@@ -381,8 +381,8 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         sp(impact_system) ptemplate = m_templateptra[index];
-         ASSERT_KINDOF(impact_system, ptemplate);
+         sp(::aura::impact_system) ptemplate = m_templateptra[index];
+         ASSERT_KINDOF(::aura::impact_system, ptemplate);
          if (!ptemplate->save_all_modified())
             return FALSE;
       }
@@ -394,8 +394,8 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         sp(impact_system) ptemplate = m_templateptra[index];
-         ASSERT_KINDOF(impact_system, ptemplate);
+         sp(::aura::impact_system) ptemplate = m_templateptra[index];
+         ASSERT_KINDOF(::aura::impact_system, ptemplate);
          ptemplate->close_all_documents(bEndSession);
       }
    }
@@ -412,7 +412,7 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         sp(impact_system) ptemplate = m_templateptra[index];
+         sp(::aura::impact_system) ptemplate = m_templateptra[index];
          nCount += ptemplate->get_document_count();
       }
       return nCount;
@@ -624,7 +624,7 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         sp(impact_system) ptemplate = (sp(impact_system)) m_templateptra[index];
+         sp(::aura::impact_system) ptemplate = (sp(::aura::impact_system)) m_templateptra[index];
          ASSERT_VALID(ptemplate);
       }
    }
@@ -639,7 +639,7 @@ namespace user
          ::count count = m_templateptra.get_count();
          for(index index = 0; index < count; index++)
          {
-            sp(impact_system) ptemplate = m_templateptra[index];
+            sp(::aura::impact_system) ptemplate = m_templateptra[index];
             dumpcontext << "\ntemplate " << ptemplate.m_p;
          }
          dumpcontext << "}";
@@ -660,8 +660,8 @@ namespace user
 
       // find the highest confidence
       ::count count = m_templateptra.get_count();
-      impact_system::Confidence bestMatch = impact_system::noAttempt;
-      sp(impact_system) pBestTemplate = NULL;
+      ::aura::impact_system::Confidence bestMatch = ::aura::impact_system::noAttempt;
+      sp(::aura::impact_system) pBestTemplate = NULL;
       ::aura::document * pOpenDocument = NULL;
 
       /*char szPath[_MAX_PATH];
@@ -688,10 +688,10 @@ namespace user
 
       for(index index = 0; index < count; index++)
       {
-         sp(impact_system) ptemplate = m_templateptra[index];
-         ASSERT_KINDOF(impact_system, ptemplate);
+         sp(::aura::impact_system) ptemplate = m_templateptra[index];
+         ASSERT_KINDOF(::aura::impact_system, ptemplate);
 
-         impact_system::Confidence match;
+         ::aura::impact_system::Confidence match;
          ASSERT(pOpenDocument == NULL);
          match = ptemplate->MatchDocType(pcreatecontext->m_spCommandLine->m_varFile, pOpenDocument);
          if (match > bestMatch)
@@ -699,7 +699,7 @@ namespace user
             bestMatch = match;
             pBestTemplate = ptemplate;
          }
-         if (match == impact_system::yesAlreadyOpen)
+         if (match == ::aura::impact_system::yesAlreadyOpen)
             break;      // stop here
       }
 
@@ -747,7 +747,7 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         sp(impact_system) ptemplate = m_templateptra[index];
+         sp(::aura::impact_system) ptemplate = m_templateptra[index];
          nOpen += ptemplate->get_document_count();
       }
       return nOpen;
@@ -760,7 +760,7 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         sp(impact_system) ptemplate = m_templateptra[index];
+         sp(::aura::impact_system) ptemplate = m_templateptra[index];
          if (ptemplate->m_bAutoDelete)
          {
             ptemplate.release();

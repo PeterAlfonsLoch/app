@@ -178,7 +178,7 @@ namespace user
 
    class CLASS_DECL_CORE draw_list_item :
       virtual public list_item,
-      virtual public draw_context
+      virtual public ::aura::draw_context
    {
    public:
 

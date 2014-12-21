@@ -293,13 +293,7 @@
     <ClInclude Include="axis\os\ansios\ansios.h">
       <Filter>Header Files\axis\os\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios_file.h">
-      <Filter>Header Files\axis\os\ansios</Filter>
-    </ClInclude>
     <ClInclude Include="axis\os\ansios\ansios_multithreading.h">
-      <Filter>Header Files\axis\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios_thread.h">
       <Filter>Header Files\axis\os\ansios</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user.h">
@@ -450,9 +444,6 @@
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\ansios\ansios.h">
-      <Filter>Header Files\axis\node\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\ansios\ansios_thread_impl.h">
       <Filter>Header Files\axis\node\ansios</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis_static_start.h">
@@ -1127,9 +1118,6 @@
     </None>
     <None Include="axis\axis\axis_system_xml.inl">
       <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>

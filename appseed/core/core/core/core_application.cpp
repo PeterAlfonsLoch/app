@@ -1976,7 +1976,7 @@ namespace core
 
       ASSERT(m_puiMain != NULL);
 
-      m_puiMain->send_message(WM_CLOSE);
+      ((::user::interaction *) m_puiMain->m_pvoidUserInteraction)->send_message(WM_CLOSE);
 
    }
 
@@ -1989,11 +1989,11 @@ namespace core
             return;
 
          // hide the application's windows before closing all the documents
-         m_puiMain->ShowWindow(SW_HIDE);
+         ((::user::interaction *) m_puiMain->m_pvoidUserInteraction)->ShowWindow(SW_HIDE);
          // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
          // put the window at the bottom of zorder, so it isn't activated
-         m_puiMain->SetWindowPos(ZORDER_BOTTOM,0,0,0,0,
+         ((::user::interaction *) m_puiMain->m_pvoidUserInteraction)->SetWindowPos(ZORDER_BOTTOM,0,0,0,0,
             SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
       }
       catch(...)
@@ -2763,7 +2763,7 @@ namespace core
    {
       if(m_puiMain != NULL)
       {
-         m_puiMain->ShowWindow(SW_SHOWNORMAL);
+         ((::user::interaction *) m_puiMain->m_pvoidUserInteraction)->ShowWindow(SW_SHOWNORMAL);
       }
       return true;
    }
@@ -2864,7 +2864,9 @@ namespace core
          chFirst = strId[0];
       }
 
-      return m_pimpl->_001OpenDocumentFile(varFile);
+      return NULL;
+
+//      return m_pimpl->_001OpenDocumentFile(varFile);
 
    }
 

@@ -542,8 +542,8 @@ namespace filemanager
       {
          case MessageMainPostCreateImageListItemRedraw:
          {
-            pbase->m_pwnd->RedrawWindow();
-            pbase->m_pwnd->KillTimer(123);
+            ((::user::interaction *) pbase->m_pwnd->m_pvoidUserInteraction)->RedrawWindow();
+            ((::user::interaction *) pbase->m_pwnd->m_pvoidUserInteraction)->KillTimer(123);
             /*
             rect rect;
             int32_t iArrange = (int32_t) lparam;
@@ -934,16 +934,16 @@ namespace filemanager
          if (m_iAnimate >= 11)
          {
             m_iAnimate = 0;
-            ptimer->m_pwnd->KillTimer(ptimer->m_nIDEvent);
+            ((::user::interaction *) ptimer->m_pwnd->m_pvoidUserInteraction)->KillTimer(ptimer->m_nIDEvent);
 
          }
-         ptimer->m_pwnd->RedrawWindow();
+         ((::user::interaction *) ptimer->m_pwnd->m_pvoidUserInteraction)->RedrawWindow();
       }
       else if (ptimer->m_nIDEvent == 123)
       {
-         ptimer->m_pwnd->RedrawWindow();
+         ((::user::interaction *) ptimer->m_pwnd->m_pvoidUserInteraction)->RedrawWindow();
          m_bTimer123 = false;
-         ptimer->m_pwnd->KillTimer(123);
+         ((::user::interaction *) ptimer->m_pwnd->m_pvoidUserInteraction)->KillTimer(123);
       }
 
    }
