@@ -6189,12 +6189,12 @@ namespace android
       Default();
    }
 
-   bool interaction_impl::OnDeviceChange(UINT,dword_ptr)
-   {
+   //bool interaction_impl::OnDeviceChange(UINT,dword_ptr)
+   //{
 
-      return Default() != FALSE;
+   //   return Default() != FALSE;
 
-   }
+   //}
 
    void interaction_impl::OnWinIniChange(const char *)
    {

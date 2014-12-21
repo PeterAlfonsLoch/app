@@ -2874,12 +2874,6 @@
     <None Include="asm\x64-win32-masm\aes\aes-x86_64.asm">
       <Filter>Assembler Files\aes</Filter>
     </None>
-    <None Include="asm\x64-win32-masm\rc4\rc4-md5-x86_64.asm">
-      <Filter>Assembler Files\rc4</Filter>
-    </None>
-    <None Include="asm\x64-win32-masm\rc4\rc4-x86_64.asm">
-      <Filter>Assembler Files\rc4</Filter>
-    </None>
     <None Include="asm\x64-win32-masm\md5\md5-x86_64.asm">
       <Filter>Assembler Files\md5</Filter>
     </None>
@@ -2903,6 +2897,12 @@
     </None>
     <None Include="asm\x64-win32-masm\x86_64cpuid.asm">
       <Filter>Assembler Files</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\rc4\rc4-md5-x86_64.asm">
+      <Filter>Assembler Files\rc4</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\rc4\rc4-x86_64.asm">
+      <Filter>Assembler Files\rc4</Filter>
     </None>
   </ItemGroup>
 </Project>
