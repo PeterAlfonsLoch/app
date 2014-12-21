@@ -1,8 +1,10 @@
 #include "framework.h"
 
-
-
-int MessageBoxA(oswindow_data * window,const char * pszText,const char * pszTitle,unsigned int uiFlags)
+//----------------------------------------------------------------------------------------------------------------
+// TODO(casey) : Handmade Hero Casei Muratori (Casey) contribution!! Thank you, (casey)!!
+// Casey Muratori stub function concept contribution!!
+//
+int MessageBoxW(oswindow_data * window,const wchar_t * pszText,const wchar_t * pszTitle,unsigned int uiFlags)
 {
    
    UNREFERENCED_PARAMETER(window);
@@ -13,3 +15,6 @@ int MessageBoxA(oswindow_data * window,const char * pszText,const char * pszTitl
    return 0;
 
 }
+//
+//
+//----------------------------------------------------------------------------------------------------------------

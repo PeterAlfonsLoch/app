@@ -34,8 +34,8 @@ namespace android
 } // namespace android
 
 
-extern "C"
-void ca2_factory_exchange(::aura::application * papp)
+
+void __node_axis_factory_exchange(::aura::application * papp)
 {
    ::android::axis::factory_exchange factoryexchange(papp);
 }

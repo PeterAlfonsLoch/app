@@ -215,21 +215,21 @@ oswindow oswindow_defer_get(::user::interaction * pui)
 
 
 
-int_bool oswindow_remove(::user::interaction * pui)
-{
-
-   synch_lock slOsWindow(::oswindow_data::s_pmutex);
-
-   int_ptr iFind = oswindow_find(pui);
-
-   if(iFind < 0)
-      return false;
-
-   ::oswindow_data::s_pdataptra->remove_at(iFind);
-
-   return true;
-
-}
+//int_bool oswindow_remove(::user::interaction * pui)
+//{
+//
+//   synch_lock slOsWindow(::oswindow_data::s_pmutex);
+//
+//   int_ptr iFind = oswindow_find(pui);
+//
+//   if(iFind < 0)
+//      return false;
+//
+//   ::oswindow_data::s_pdataptra->remove_at(iFind);
+//
+//   return true;
+//
+//}
 
 
 bool oswindow_remove_message_only_window(::user::interaction * pui)
@@ -1530,5 +1530,19 @@ int32_t IsIconic(oswindow window)
       return NULL;
 
    return oswindow->m_pui;
+
+}
+
+
+
+bool IsChild(oswindow windowParent,oswindow oswindowCandidateChildOrDescendant)
+{
+
+   if(!IsWindow(windowParent) || !IsWindow(oswindowCandidateChildOrDescendant))
+      return false;
+
+
+   return windowParent->is_child(oswindowCandidateChildOrDescendant);
+
 
 }

@@ -21,7 +21,21 @@ CLASS_DECL_AURA int32_t simple_message_box(oswindow window,const char * lpText,c
 
 }
 
+#ifndef WINDOWSEX
+//----------------------------------------------------------------------------------------------------------------
+// TODO(casey) : Handmade Hero Casei Muratori (Casey) contribution!! Thank you, (casey)!!
+// Casey Muratori fallback concept - meets my self-healing concept - < count paranoid?!?!?!!
+//
+int MessageBoxA(oswindow_data * window,const char * pszText,const char * pszTitle,unsigned int uiFlags)
+{
 
+   return ::MessageBoxW(window,wstring(pszText),wstring(pszTitle),uiFlags);
+
+}
+//
+//
+//----------------------------------------------------------------------------------------------------------------
+#endif
 
 extern "C"
 CLASS_DECL_AURA int32_t aura_simple_message_box(oswindow interaction_impl,const char * lpText,const char * lpCaption,uint32_t uiFlags)

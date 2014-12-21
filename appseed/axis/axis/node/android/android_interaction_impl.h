@@ -177,12 +177,12 @@ namespace android
       virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
 
       // Coordinate Mapping Functions
-      virtual void MapWindowPoints(::user::interaction * pwndTo,LPPOINT lpPoint,UINT nCount);
-      virtual void MapWindowPoints(::user::interaction * pwndTo,LPRECT lpRect);
+      //virtual void MapWindowPoints(::user::interaction * pwndTo,LPPOINT lpPoint,UINT nCount);
+      //virtual void MapWindowPoints(::user::interaction * pwndTo,LPRECT lpRect);
 
       // Update/Painting Functions
-      virtual ::draw2d::graphics * GetDC();
-      virtual ::draw2d::graphics * GetWindowDC();
+  //    virtual ::draw2d::graphics * GetDC();
+//      virtual ::draw2d::graphics * GetWindowDC();
       virtual bool ReleaseDC(::draw2d::graphics * pgraphics);
       virtual void Print(::draw2d::graphics * pgraphics,DWORD dwFlags) const;
       virtual void PrintClient(::draw2d::graphics * pgraphics,DWORD dwFlags) const;

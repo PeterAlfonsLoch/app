@@ -2361,7 +2361,7 @@ namespace android
    int32_t interaction_impl::message_box(const char * lpszText,const char * lpszcaption,UINT nType)
    {
       if(lpszcaption == NULL)
-         lpszcaption = __get_app_name();
+         lpszcaption = Application.m_strAppName;
       int32_t nResult = ::simple_message_box((oswindow)get_handle(),lpszText,lpszcaption,nType);
       return nResult;
    }
@@ -4893,50 +4893,50 @@ namespace android
    //}
 
 
-   ::draw2d::graphics * interaction_impl::GetDC()
-   {
+   //::draw2d::graphics * interaction_impl::GetDC()
+   //{
 
-      ::draw2d::graphics_sp g(allocer());
+   //   ::draw2d::graphics_sp g(allocer());
 
-      /*
-      xdisplay d(m_oswindow->display());
+   //   /*
+   //   xdisplay d(m_oswindow->display());
 
-      oswindow oswindow;
+   //   oswindow oswindow;
 
-      if(get_handle() == NULL)
-      {
+   //   if(get_handle() == NULL)
+   //   {
 
-      //         oswindow = ::GetDesktopWindow();
+   //   //         oswindow = ::GetDesktopWindow();
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-      oswindow = (::oswindow) get_handle();
+   //   oswindow = (::oswindow) get_handle();
 
-      }
+   //   }
 
-      rect rectClient;
+   //   rect rectClient;
 
-      //oswindow->get_client_rect(rectClient);
+   //   //oswindow->get_client_rect(rectClient);
 
-      rectClient.left = 0;
-      rectClient.top = 0;
-      rectClient.right = 500;
-      rectClient.bottom = 500;
-      //      (dynamic_cast < ::android::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->interaction_impl(), oswindow->visual(),rectClient.width(), rectClient.height())));
-      return g.detach();
-      */
-      return NULL;
-   }
+   //   rectClient.left = 0;
+   //   rectClient.top = 0;
+   //   rectClient.right = 500;
+   //   rectClient.bottom = 500;
+   //   //      (dynamic_cast < ::android::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->interaction_impl(), oswindow->visual(),rectClient.width(), rectClient.height())));
+   //   return g.detach();
+   //   */
+   //   return NULL;
+   //}
 
-   ::draw2d::graphics * interaction_impl::GetWindowDC()
-   {
-      ASSERT(::IsWindow((oswindow)get_handle()));
-      ::draw2d::graphics_sp g(allocer());
-      g->attach(::GetWindowDC(get_handle()));
-      return g.detach();
-   }
+   //::draw2d::graphics * interaction_impl::GetWindowDC()
+   //{
+   //   ASSERT(::IsWindow((oswindow)get_handle()));
+   //   ::draw2d::graphics_sp g(allocer());
+   //   g->attach(::GetWindowDC(get_handle()));
+   //   return g.detach();
+   //}
 
    bool interaction_impl::ReleaseDC(::draw2d::graphics * pgraphics)
    {

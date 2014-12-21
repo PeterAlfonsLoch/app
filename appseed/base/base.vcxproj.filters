@@ -848,21 +848,6 @@
     <ClInclude Include="base\node\android\android_shell.h">
       <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="base\node\android\android_stdio_file.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_thread.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_window.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android_window_draw.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\android\android1.h">
-      <Filter>Header Files\base\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\ansios\ansios.h">
       <Filter>Header Files\base\node\ansios</Filter>
     </ClInclude>
@@ -1504,28 +1489,10 @@
     <ClCompile Include="base\node\windows\windows_port_forward.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\android\android_application.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_copydesk.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\android\android_dir.cpp">
       <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\android\android_dumpinit.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_error.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_exception.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\android\android_factory_exchange.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_file.cpp">
       <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
     <ClCompile Include="base\node\android\android_file_set.cpp">
@@ -1537,47 +1504,14 @@
     <ClCompile Include="base\node\android\android_ip_enum.cpp">
       <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\android\android_main.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_os.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\android\android_port_forward.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_shell.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_stdio_file.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_thread.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_trace.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_util.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_window.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_window_draw.cpp">
       <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
     <ClCompile Include="base\node\android\android1.cpp">
       <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\android\android2.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\ansios\ansios_thread_impl.cpp">
       <Filter>Source Files\base\node\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_android.cpp">
-      <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
     <ClCompile Include="base\os\ansios\ansios_base_file.cpp">
       <Filter>Source Files\base\os\ansios</Filter>
