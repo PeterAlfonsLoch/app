@@ -7,6 +7,7 @@
 
 #include "framework.h"
 
+
 extern CLASS_DECL_THREAD HTHREAD currentThread;
 //#undef System
 //
