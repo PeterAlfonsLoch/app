@@ -1119,7 +1119,13 @@ namespace hotplugin
    }
 
 
+   void plugin::install_message_handling(::message::dispatch * pdispatch)
+   {
 
+      ::simple_ui::interaction::install_message_handling(pdispatch);
+      ::base::session::install_message_handling(pdispatch);
+
+   }
 
 } // namespace hotplugin
 

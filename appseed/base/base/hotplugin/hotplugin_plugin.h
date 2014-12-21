@@ -62,6 +62,8 @@ namespace hotplugin
       virtual ~plugin();
 
 
+      virtual void install_message_handling(::message::dispatch * pdispatch);
+
       // host should implement
       virtual bool         open_link(const string & strLink,const string & pszTarget);
       virtual bool         reload_plugin();

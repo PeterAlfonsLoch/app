@@ -119,7 +119,7 @@ namespace android
 
 #if(WINVER >= 0x0500)
 
-      ::user::interaction * GetAncestor(UINT gaFlags) const;
+      ::window_sp GetAncestor(UINT gaFlags) const;
 
 #endif   // WINVER >= 0x0500
 
@@ -371,8 +371,8 @@ namespace android
 
 
       // Context Help Functions
-      virtual bool SetWindowContextHelpId(DWORD dwContextHelpId);
-      virtual DWORD GetWindowContextHelpId() const;
+      virtual bool SetWindowContextHelpId(uint32_t dwContextHelpId);
+      virtual uint32_t GetWindowContextHelpId() const;
 
       // Dialog Data support
       //virtual bool update_data(bool bSaveAndValidate = TRUE);
@@ -546,7 +546,7 @@ namespace android
       void OnSizing(UINT nSide,LPRECT lpRect);
       void OnMoving(UINT nSide,LPRECT lpRect);
       void OncaptureChanged(::user::interaction * pWnd);
-      bool OnDeviceChange(UINT nEventType,dword_ptr dwData);
+      //bool OnDeviceChange(UINT nEventType,dword_ptr dwData);
 
       // Overridables and other helpers (for implementation of derived classes)
       // for deriving from a standard control
