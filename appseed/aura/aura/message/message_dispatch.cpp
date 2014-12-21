@@ -38,7 +38,7 @@ namespace message
 
       sp(::signal_details) pbase;
 
-      pbase = canew(::signal_details(get_app()));
+      pbase = canew(::message::base(get_app()));
 
       pbase->m_uiMessage = uiMessage;
       pbase->m_wparam =wparam;
