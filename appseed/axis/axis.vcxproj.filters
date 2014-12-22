@@ -470,9 +470,6 @@
     <ClInclude Include="axis\axis_policy\axis_cpp.h">
       <Filter>Header Files\axis\axis_policy</Filter>
     </ClInclude>
-    <ClInclude Include="axis\axis_policy\axis_policy.h">
-      <Filter>Header Files\axis\axis_policy</Filter>
-    </ClInclude>
     <ClInclude Include="axis\axis_policy\axis_policy_objc.h">
       <Filter>Header Files\axis\axis_policy</Filter>
     </ClInclude>
@@ -580,9 +577,6 @@
     </ClInclude>
     <ClInclude Include="axis\compress\bsdiff\libbsdiff.h">
       <Filter>Header Files\axis\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis.h">
-      <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\windows\windows.h">
       <Filter>Header Files\axis\node\windows</Filter>
@@ -1028,6 +1022,9 @@
     </None>
     <None Include="axis\axis\axis_system_xml.inl">
       <Filter>Header Files\axis\axis</Filter>
+    </None>
+    <None Include="base.def">
+      <Filter>Source Files</Filter>
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
