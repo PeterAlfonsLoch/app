@@ -3,10 +3,10 @@
 #include <ShObjIdl.h>
 
 
-bool CLASS_DECL_BASE vfxResolveShortcut(string & strTarget,const char * pszSource,sp(::user::interaction) puiMessageParentOptional)
+bool CLASS_DECL_AXIS vfxResolveShortcut(string & strTarget,const char * pszSource,sp(::aura::interaction) puiMessageParentOptional)
 {
 
-   sp(::user::interaction) pui = puiMessageParentOptional;
+   sp(::aura::interaction) pui = puiMessageParentOptional;
 
    wstring wstrFileOut;
    wstring wstrFileIn = ::str::international::utf8_to_unicode(pszSource);

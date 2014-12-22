@@ -89,6 +89,7 @@
 
 
 
+#include "aura_draw_interface.h"
 #include "aura_interaction.h"
 #include "aura_frame_window.h"
 
@@ -96,4 +97,3 @@
 
 #include "aura_draw_context.h"
 #include "aura_printer.h"
-#include "aura_draw_interface.h"
