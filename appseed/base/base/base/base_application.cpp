@@ -1,7 +1,7 @@
 #include "framework.h" // from "axis/user/user.h"
 
 
-namespace axis
+namespace base
 {
 
 
@@ -28,7 +28,7 @@ namespace axis
 
       }
 
-      m_paxisapp                 = this;
+      m_pbaseapp                 = this;
 
       if(m_pauraapp != NULL)
       {
@@ -731,7 +731,7 @@ namespace axis
    }
 
 
-   string CLASS_DECL_AXIS application::get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   string CLASS_DECL_BASE application::get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       throw not_implemented(this);
@@ -2280,21 +2280,21 @@ namespace axis
    }
 
 
-   int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
-   {
-      UNREFERENCED_PARAMETER(durationTimeOut);
-      return simple_message_box(pwndOwner,pszMessage,fuStyle);
-   }
+   //int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
+   //{
+   //   UNREFERENCED_PARAMETER(durationTimeOut);
+   //   return simple_message_box(pwndOwner,pszMessage,fuStyle);
+   //}
 
 
-   ::user::user * application::create_user()
-   {
+   //::user::user * application::create_user()
+   //{
 
-      return canew(::user::user(this));
+   //   return canew(::user::user(this));
 
-   }
+   //}
 
-} // namespace axis
+} // namespace base
 
 
 

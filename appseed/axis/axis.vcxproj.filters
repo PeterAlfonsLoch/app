@@ -264,6 +264,15 @@
     <Filter Include="Header Files\primitive\datetime">
       <UniqueIdentifier>{1a859d2b-d142-4063-970a-9ff5768d370b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\primitive">
+      <UniqueIdentifier>{944b09dd-6b10-45c3-af11-f1f1949d45ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\data">
+      <UniqueIdentifier>{f7ad2647-47bf-4d92-9059-f448632e2d7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\datetime">
+      <UniqueIdentifier>{0cb59b7e-2810-4e45-a4c9-3aea7616f232}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -1627,11 +1636,17 @@
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\data\data_simple_item.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\data_tree.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\data_tree_item.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

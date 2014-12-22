@@ -152,10 +152,10 @@ namespace userpresence
 
       if(ApplicationUser.m_ppresence != NULL)
       {
-         ApplicationUser.m_ppresence.release();
-      }
+         
+         ::release(ApplicationUser.m_ppresence);
 
-      return true;
+      }
 
       return true;
 

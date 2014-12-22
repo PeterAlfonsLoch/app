@@ -8,7 +8,7 @@ namespace base
 
 
    class CLASS_DECL_BASE session:
-      virtual public ::aura::session,
+      virtual public ::axis::session,
       virtual public :: base ::application,
       virtual public ::user::schema
    {
@@ -158,6 +158,9 @@ namespace base
       virtual bool is_licensed(const char * pszId,bool bInteractive = true);
 
       virtual void defer_initialize_user_presence();
+
+      virtual string get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
+
 
    };
 

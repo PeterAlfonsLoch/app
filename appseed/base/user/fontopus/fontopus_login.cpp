@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-CLASS_DECL_AXIS void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr);
-CLASS_DECL_AXIS void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crOut);
-CLASS_DECL_AXIS void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
-CLASS_DECL_AXIS void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
+CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr);
+CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crOut);
+CLASS_DECL_BASE void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
+CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
 
 
 namespace fontopus
@@ -364,7 +364,7 @@ namespace fontopus
             string strText;
             m_ppassword->_001GetText(strText);
             strText = System.crypto().nessie(strText);
-            m_ppassword->_001SetText(strText,::action::source::dataaxis());
+            m_ppassword->_001SetText(strText,::action::source::database());
          }
          GetParent()->EndModalLoop("ok");
 
@@ -375,7 +375,7 @@ namespace fontopus
       {
 
          GetParent()->ShowWindow(SW_HIDE);
-         m_ppassword->_001SetText("",::action::source::dataaxis());
+         m_ppassword->_001SetText("",::action::source::database());
          GetParent()->EndModalLoop("cancel");
 
          return true;

@@ -339,7 +339,7 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 
 #undef App
 #define App(pauraapp) (*pauraapp->m_pbaseapp)
-#define Application (App(m_pauraapp))
+//#define Application (App(m_pauraapp))
 
 
 
@@ -429,7 +429,9 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 
 #include "base/base/base_system.h"
 
-#include "base/hotplugin/hotplugin.h"
+#include "base/user/user.h"
+
+#include "base/base/hotplugin/hotplugin.h"
 
 #include "base/install/install.h"
 

@@ -6,7 +6,7 @@ namespace base
 
 
    class CLASS_DECL_BASE system:
-      virtual public ::aura::system,
+      virtual public ::axis::system,
       virtual public :: base ::application
    {
    public:

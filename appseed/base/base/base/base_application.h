@@ -6,7 +6,7 @@ namespace base
 
 
    class CLASS_DECL_BASE application :
-      virtual public ::aura::application
+      virtual public ::axis::application
    {
    public:
 
@@ -58,7 +58,7 @@ namespace base
 
       //virtual void tellme_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell = true);
 
-      virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
+      //virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
 
 
 
@@ -265,8 +265,8 @@ namespace base
 
       virtual void process_message(signal_details * pobj);
 
-      virtual ::user::interaction * get_active_guie();
-      virtual ::user::interaction * get_focus_guie();
+      //virtual ::user::interaction * get_active_guie();
+      //virtual ::user::interaction * get_focus_guie();
 
    };
 

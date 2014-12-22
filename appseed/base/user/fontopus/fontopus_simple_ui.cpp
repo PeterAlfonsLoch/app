@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-CLASS_DECL_AXIS void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr);
-CLASS_DECL_AXIS void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crOut);
-CLASS_DECL_AXIS void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
-CLASS_DECL_AXIS void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
+CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr);
+CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crOut);
+CLASS_DECL_BASE void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
+CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
 
 
 namespace fontopus
@@ -492,104 +492,8 @@ namespace fontopus
 
 
 
-   string CLASS_DECL_AXIS get_cred(::aura::application * papp, const string & strRequestUrlParam, const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
-   {
-
-      string str = get_cred(papp, strUsername, strPassword, strToken);
-
-      if (str == "ok")
-         return "ok";
-
-      if(!bInteractive)
-         return "failed";
-
-      sp(::fontopus::simple_ui) pui;
-
-      string strRequestUrl(strRequestUrlParam);
-
-      if(strRequestUrl.is_empty())
-      {
-
-         string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
-
-         if(::str::ends_ci(strIgnitionServer, ".ca2.cc"))
-         {
-            
-            strRequestUrl = "https://" + strIgnitionServer + "/";
-
-         }
-         else
-         {
-
-            strRequestUrl = "https://account.ca2.cc/";
-
-         }
-
-      }
-
-      pui = canew(::fontopus::simple_ui(papp, strRequestUrl));
-
-      pui->m_login.m_peditUser->SetWindowText(strUsername);
-
-      pui->m_login.m_ppassword->SetWindowText("");
-
-      string strResult = pui->get_cred(rect, strUsername, strPassword, strToken, strTitle);
-
-      pui->DestroyWindow();
-
-      return strResult;
-
-   }
-
-   string CLASS_DECL_AXIS get_cred(::aura::application * papp, string & strUsername, string & strPassword, string strToken)
-   {
-
-      string str;
-      crypto_file_get(::dir::userappdata("cred/" + strToken + "_a.data"), strUsername, "");
-      crypto_file_get(::dir::userappdata("cred/" + strToken + "_b.data"), strPassword, strToken);
-      crypto_file_get(::dir::userappdata("cred/" + strToken + "_c.data"), str, strToken);
-
-      return str;
-
-   }
-
-   void set_cred(::aura::application * papp, string strToken, const char * pszUsername, const char * pszPassword)
-   {
-
-      string strUsername(pszUsername);
-      string strPassword(pszPassword);
-      string strUsernamePrevious;
-      string strPasswordPrevious;
-
-      get_cred(papp, strUsernamePrevious, strPasswordPrevious, strToken);
-
-      if ((strUsername.has_char() && strPassword.has_char())
-         && (strUsernamePrevious != strUsername || strPasswordPrevious != strPassword))
-      {
-         dir::mk(::dir::userappdata("cred"));
-         crypto_file_set(::dir::userappdata("cred/" + strToken + "_a.data"), strUsername, "");
-         crypto_file_set(::dir::userappdata("cred/" + strToken + "_b.data"), strPassword, strToken);
-      }
-
-   }
 
 
-   void set_cred_ok(::aura::application * papp,string strToken,bool bOk)
-   {
-
-      if(bOk)
-      {
-
-         crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"),"ok",strToken);
-
-      }
-      else
-      {
-         crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"),"failed",strToken);
-
-      }
-
-   }
 
 
 
@@ -677,7 +581,7 @@ namespace fontopus
 } // namespace fontopus
 
 
-CLASS_DECL_AXIS void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
+CLASS_DECL_BASE void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
 {
    int w = z / 19;
 
@@ -716,7 +620,7 @@ CLASS_DECL_AXIS void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, in
 
 }
 
-CLASS_DECL_AXIS void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
+CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
 {
 
    draw_ca2(pdc, x + bIn + bOut, y + bIn + bOut, z, crBk, cr);
@@ -726,7 +630,7 @@ CLASS_DECL_AXIS void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int 
 }
 
 
-CLASS_DECL_AXIS void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crBorder)
+CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crBorder)
 {
 
    draw_ca2(pdc, x + b, y + b, z, crBk, cr);
@@ -758,7 +662,7 @@ CLASS_DECL_AXIS void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y
 }
 
 
-CLASS_DECL_AXIS void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr)
+CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr)
 {
 
    ::draw2d::brush_sp b(pdc->allocer());

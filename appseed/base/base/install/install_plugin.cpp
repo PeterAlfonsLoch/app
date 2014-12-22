@@ -62,7 +62,6 @@ namespace install
       ::simple_ui::style(papp),
       ::aura::session(papp),
       ::axis::session(papp),
-      ::axis::session(papp),
       hotplugin::plugin(papp),
       m_canvas(papp),
       m_startca2(papp)
@@ -855,7 +854,7 @@ namespace install
 
                   LRESULT lresult;
 
-                  sp(message::axis) paxis = canew(message::axis(get_app(),this,WM_ACTIVATE,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
+                  sp(message::base) paxis = canew(message::base(get_app(),this,WM_ACTIVATE,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -872,7 +871,7 @@ namespace install
 
                   LRESULT lresult;
 
-                  sp(message::axis) paxis = canew(message::axis(get_app(),this,WM_ACTIVATE,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
+                  sp(message::base) paxis = canew(message::base(get_app(),this,WM_ACTIVATE,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -890,7 +889,7 @@ namespace install
 
                   LRESULT lresult;
 
-                  sp(message::axis) paxis = canew(message::axis(get_app(),this,WM_KILLFOCUS,0,0,lresult));
+                  sp(message::base) paxis = canew(message::base(get_app(),this,WM_KILLFOCUS,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -907,7 +906,7 @@ namespace install
 
                   LRESULT lresult;
 
-                  sp(message::axis) paxis = canew(message::axis(get_app(),this,WM_SETFOCUS,0,0,lresult));
+                  sp(message::base) paxis = canew(message::base(get_app(),this,WM_SETFOCUS,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 

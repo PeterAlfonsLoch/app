@@ -33,3 +33,79 @@ string url_get_root(const char * psz)
    else
       return str.Mid(iStart, iEnd - iStart);
 }
+
+
+namespace fontopus
+{
+
+
+   void set_cred_ok(::aura::application * papp,string strToken,bool bOk)
+   {
+
+      if(bOk)
+      {
+
+         crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"),"ok",strToken);
+
+      }
+      else
+      {
+         crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"),"failed",strToken);
+
+      }
+
+   }
+
+   void set_cred(::aura::application * papp,string strToken,const char * pszUsername,const char * pszPassword)
+   {
+
+      string strUsername(pszUsername);
+      string strPassword(pszPassword);
+      string strUsernamePrevious;
+      string strPasswordPrevious;
+
+      get_cred(papp,strUsernamePrevious,strPasswordPrevious,strToken);
+
+      if((strUsername.has_char() && strPassword.has_char())
+         && (strUsernamePrevious != strUsername || strPasswordPrevious != strPassword))
+      {
+         dir::mk(::dir::userappdata("cred"));
+         crypto_file_set(::dir::userappdata("cred/" + strToken + "_a.data"),strUsername,"");
+         crypto_file_set(::dir::userappdata("cred/" + strToken + "_b.data"),strPassword,strToken);
+      }
+
+   }
+
+
+   string CLASS_DECL_AXIS get_cred(::aura::application * papp,string & strUsername,string & strPassword,string strToken)
+   {
+
+      string str;
+      crypto_file_get(::dir::userappdata("cred/" + strToken + "_a.data"),strUsername,"");
+      crypto_file_get(::dir::userappdata("cred/" + strToken + "_b.data"),strPassword,strToken);
+      crypto_file_get(::dir::userappdata("cred/" + strToken + "_c.data"),str,strToken);
+
+      return str;
+
+   }
+
+
+   string CLASS_DECL_AXIS get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   {
+
+      return Sess(papp).get_cred(papp,strRequestUrlParam,rect,strUsername,strPassword,strToken,strTitle,bInteractive);
+      
+   }
+
+
+} // namespace fontopus
+
+
+
+
+
+
+
+
+
+

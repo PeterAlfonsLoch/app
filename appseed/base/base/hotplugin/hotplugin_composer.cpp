@@ -48,7 +48,7 @@ namespace hotplugin
 
 
 
-   ::hotplugin::host * composer::create_host(sp(::axis::system) psystem)
+   ::hotplugin::host * composer::create_host(sp(::base::system) psystem)
    {
 
       return NULL;
@@ -89,7 +89,7 @@ namespace hotplugin
 
                      string str;
                      
-                     str.Format("::hotplugin::g_paxissystem initialization error %d",::hotplugin::get_axis_system()->m_iReturnCode);
+                     str.Format("::hotplugin::g_pbasesystem initialization error %d",::hotplugin::get_axis_system()->m_iReturnCode);
 
                      ::output_debug_string(str);
 
@@ -445,31 +445,31 @@ namespace hotplugin
       try
       {
 
-         m_pcomposersystem = new ::axis::system(NULL);
+         m_pcomposersystem = new ::base::system(NULL);
 
-         ::axis::system * paxissystem = m_pcomposersystem;
+         ::base::system * pbasesystem = m_pcomposersystem;
 
-         paxissystem->m_bMatterFromHttpCache = true;
+         pbasesystem->m_bMatterFromHttpCache = true;
 
-         paxissystem->m_bSystemSynchronizedCursor = false;
+         pbasesystem->m_bSystemSynchronizedCursor = false;
 
-         paxissystem->m_bShouldInitializeGTwf = false;
+         pbasesystem->m_bShouldInitializeGTwf = false;
 
-         paxissystem->m_bEnableOnDemandDrawing = false;
+         pbasesystem->m_bEnableOnDemandDrawing = false;
 
-         paxissystem->construct(NULL);
+         pbasesystem->construct(NULL);
 
 #ifdef WINDOWS
 
-         paxissystem->m_hinstance = (HINSTANCE)get_hinstance();
+         pbasesystem->m_hinstance = (HINSTANCE)get_hinstance();
 
 #endif
 
          xxdebug_box("box1","box1",MB_ICONINFORMATION);
 
-         paxissystem->m_bReady = false;
+         pbasesystem->m_bReady = false;
 
-         ::create_thread(NULL,0,&::hotplugin::composer::composer_system_main,paxissystem,0,NULL);
+         ::create_thread(NULL,0,&::hotplugin::composer::composer_system_main,pbasesystem,0,NULL);
 
       }
       catch(...)
@@ -489,22 +489,22 @@ namespace hotplugin
 
       int32_t iReturnCode = 0;
 
-      ::axis::system * paxissystem = (::axis::system *) lpVoid;
+      ::axis::system * pbasesystem = (::axis::system *) lpVoid;
 
       try
       {
 
-         if(!paxissystem->pre_run())
+         if(!pbasesystem->pre_run())
          {
 
-            if(paxissystem->m_iReturnCode == 0)
+            if(pbasesystem->m_iReturnCode == 0)
             {
 
-               paxissystem->m_iReturnCode = -1;
+               pbasesystem->m_iReturnCode = -1;
 
             }
 
-            paxissystem->m_bReady = true;
+            pbasesystem->m_bReady = true;
 
             return -1;
 
@@ -514,20 +514,20 @@ namespace hotplugin
       catch(...)
       {
 
-         if(paxissystem->m_iReturnCode == 0)
+         if(pbasesystem->m_iReturnCode == 0)
          {
 
-            paxissystem->m_iReturnCode = -1;
+            pbasesystem->m_iReturnCode = -1;
 
          }
 
-         paxissystem->m_bReady = true;
+         pbasesystem->m_bReady = true;
 
          return -1;
 
       }
 
-      return paxissystem->main();
+      return pbasesystem->main();
 
    }
 

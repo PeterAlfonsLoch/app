@@ -2,27 +2,28 @@
 
 
 
-namespace axis
+namespace base
 {
 
 
    session::session(::aura::application * papp) :
       element(papp),
       ::thread(papp),
-      ::aura::session(papp)
+      ::aura::session(papp),
+      axis::session(papp)
    {
 
-      m_paxissession                = this;
+      m_pbasesession                = this;
 
-      m_bMatterFromHttpCache        = m_paxissystem->m_bMatterFromHttpCache;
+      m_bMatterFromHttpCache        = m_pbasesystem->m_bMatterFromHttpCache;
 
-      m_bSystemSynchronizedCursor   = m_paxissystem->m_bSystemSynchronizedCursor;
+      m_bSystemSynchronizedCursor   = m_pbasesystem->m_bSystemSynchronizedCursor;
 
-      m_bSystemSynchronizedScreen   = m_paxissystem->m_bSystemSynchronizedScreen;
+      m_bSystemSynchronizedScreen   = m_pbasesystem->m_bSystemSynchronizedScreen;
 
-      m_bShouldInitializeGTwf       = m_paxissystem->m_bShouldInitializeGTwf;
+      m_bShouldInitializeGTwf       = m_pbasesystem->m_bShouldInitializeGTwf;
 
-      m_bEnableOnDemandDrawing      = m_paxissystem->m_bEnableOnDemandDrawing;
+      m_bEnableOnDemandDrawing      = m_pbasesystem->m_bEnableOnDemandDrawing;
 
       m_iMainMonitor                = -1;
 
@@ -201,7 +202,7 @@ namespace axis
 
 
 
-   ::axis::copydesk & session::copydesk()
+   ::base::copydesk & session::copydesk()
    {
 
       return *m_pcopydesk;
@@ -1098,9 +1099,9 @@ namespace axis
       if(!::axis::application::initialize1())
          return false;
 
-      m_puserpresence = canew(::userpresence::userpresence(this));
+      m_puserpresence = new ::userpresence::userpresence(this);
 
-      if(m_puserpresence.is_null())
+      if(m_puserpresence == NULL)
       {
 
          TRACE("Failed to create new User Presence");
@@ -1137,7 +1138,7 @@ namespace axis
 
       m_splicensing = new class ::fontopus::licensing(this);
 
-      m_puserstrcontext = canew(::user::str_context(this));
+      m_puserstrcontext = canew(::aura::str_context(this));
 
       if(m_puserstrcontext == NULL)
          return false;
@@ -1297,7 +1298,7 @@ namespace axis
 
       m_monitorinfoa.remove_all();
 
-      ::EnumDisplayMonitors(NULL,NULL,&system::monitor_enum_proc,(LPARAM)(dynamic_cast < ::axis::system * > (this)));
+      ::EnumDisplayMonitors(NULL,NULL,&system::monitor_enum_proc,(LPARAM)(dynamic_cast < ::base::system * > (this)));
 
 #else
 
@@ -1315,7 +1316,7 @@ namespace axis
    BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData)
    {
 
-      ::axis::system * psystem = (::axis::system *) dwData;
+      ::base::system * psystem = (::base::system *) dwData;
 
       psystem->monitor_enum(hmonitor,hdcMonitor,lprcMonitor);
 
@@ -1585,26 +1586,16 @@ namespace axis
 
    }
 
-   ::user::str_context * session::str_context()
+   /*::aura::str_context * session::str_context()
    {
 
       return m_puserstrcontext;
 
    }
+*/
 
 
 
-
-
-
-   bool session::on_ui_mouse_message(::message::mouse * pmouse)
-   {
-
-      m_ptCursor = pmouse->m_pt;
-
-      return true;
-
-   }
 
 
    bool session::is_licensed(const char * pszId,bool bInteractive)
@@ -1737,69 +1728,16 @@ namespace axis
    //}
 
 
-   ::fontopus::user * session::get_user()
-   {
-
-      return m_pfontopus->get_user();
-
-   }
-
-
-   /*::fontopus::user * application::create_user(const string & pszLogin)
-   {
-   return NULL;
-   }*/
-
-   ::fontopus::user * session::create_current_user()
-   {
-      return NULL;
-      /*   string str = get_current_user_login();
-      return create_user(str);*/
-   }
-
-   /*string application::get_current_user_login()
-   {
-   return "";
-   }*/
-
-
-
-   bool session::is_licensed(const char * pszId,bool bInteractive)
-   {
-
-      if(directrix()->m_varTopicQuery.has_property("install"))
-         return true;
-
-      if(directrix()->m_varTopicQuery.has_property("uninstall"))
-         return true;
-
-      if(&licensing() == NULL)
-      {
-
-         return false;
-
-      }
-
-      if(!licensing().has(pszId,bInteractive))
-      {
-
-         licensing().m_mapInfo.remove_key(pszId);
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
 
    bool session::on_ui_mouse_message(::message::mouse * pmouse)
    {
 
 
-      ::axis::session::on_ui_mouse_message(pmouse);
+      //::axis::session::on_ui_mouse_message(pmouse);
+
+      m_ptCursor = pmouse->m_pt;
+
+
 
       // user presence status activity reporting
       if(pmouse->m_uiMessage == WM_LBUTTONDOWN
@@ -1843,8 +1781,56 @@ namespace axis
 
    }
 
+   string session::get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   {
 
-} // namespace axis
+      string str = ::fontopus::get_cred(papp,strUsername,strPassword,strToken);
+
+      if(str == "ok")
+         return "ok";
+
+      if(!bInteractive)
+         return "failed";
+
+      sp(::fontopus::simple_ui) pui;
+
+      string strRequestUrl(strRequestUrlParam);
+
+      if(strRequestUrl.is_empty())
+      {
+
+         string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
+
+         if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
+         {
+
+            strRequestUrl = "https://" + strIgnitionServer + "/";
+
+         }
+         else
+         {
+
+            strRequestUrl = "https://account.ca2.cc/";
+
+         }
+
+      }
+
+      pui = canew(::fontopus::simple_ui(papp,strRequestUrl));
+
+      pui->m_login.m_peditUser->SetWindowText(strUsername);
+
+      pui->m_login.m_ppassword->SetWindowText("");
+
+      string strResult = pui->get_cred(rect,strUsername,strPassword,strToken,strTitle);
+
+      pui->DestroyWindow();
+
+      return strResult;
+
+   }
+
+} // namespace base
 
 
 

@@ -6,7 +6,7 @@
 #ifdef WINDOWSEX
 
 
-CLASS_DECL_AXIS HMONITOR GetUiMonitorHandle(HWND hwnd)
+CLASS_DECL_BASE HMONITOR GetUiMonitorHandle(HWND hwnd)
 {
 
    return MonitorFromWindow(hwnd,MONITOR_DEFAULTTOPRIMARY);
@@ -14,7 +14,7 @@ CLASS_DECL_AXIS HMONITOR GetUiMonitorHandle(HWND hwnd)
 }
 
 
-CLASS_DECL_AXIS HMONITOR GetPrimaryMonitorHandle()
+CLASS_DECL_BASE HMONITOR GetPrimaryMonitorHandle()
 {
 
    const POINT ptZero ={0,0};
@@ -24,7 +24,7 @@ CLASS_DECL_AXIS HMONITOR GetPrimaryMonitorHandle()
 }
 
 
-CLASS_DECL_AXIS bool GetPrimaryMonitorRect(LPRECT lprect)
+CLASS_DECL_BASE bool GetPrimaryMonitorRect(LPRECT lprect)
 {
 
    MONITORINFO mi;
@@ -59,12 +59,13 @@ CLASS_DECL_AXIS bool GetPrimaryMonitorRect(LPRECT lprect)
 #endif
 
 
-namespace axis
+namespace base
 {
 
 
    system::system(::aura::application * papp):
       ::aura::system(this),
+      ::axis::system(this),
       m_libraryDraw2d(this)
    {
 
@@ -834,7 +835,7 @@ namespace axis
 
    }
 
-   CLASS_DECL_AXIS void __start_system(::axis::system * psystem)
+   CLASS_DECL_BASE void __start_system(::axis::system * psystem)
    {
 
       ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
@@ -846,7 +847,7 @@ namespace axis
 
 
 
-   CLASS_DECL_AXIS bool get_window_rect(::axis::system_window ^ pwindow,RECTD * lprect)
+   CLASS_DECL_BASE bool get_window_rect(::axis::system_window ^ pwindow,RECTD * lprect)
    {
 
       Windows::Foundation::Rect rect =  pwindow->get_window_rect();
@@ -860,7 +861,7 @@ namespace axis
    }
 
 
-   CLASS_DECL_AXIS bool get_window_rect(::axis::system_window ^ pwindow,LPRECT lprect)
+   CLASS_DECL_BASE bool get_window_rect(::axis::system_window ^ pwindow,LPRECT lprect)
    {
 
       rectd r;
@@ -879,7 +880,7 @@ namespace axis
 #endif
 
 
-} // namespace axis
+} // namespace base
 
 
 
@@ -896,7 +897,7 @@ namespace axis
 #ifdef WINDOWSEX
 
 
-namespace axis
+namespace base
 {
 
    system_interaction_impl::system_interaction_impl(::aura::application * papp):
@@ -955,7 +956,7 @@ namespace axis
 
    }
 
-} // namespace axis
+} // namespace base
 
 
 #endif

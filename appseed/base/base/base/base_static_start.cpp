@@ -23,7 +23,7 @@ extern oswindow_dataptra * g_poswindowdataptra;
 #undef new
 
 
-namespace axis
+namespace base
 {
 
 
@@ -31,7 +31,7 @@ namespace axis
    {
 
 
-      CLASS_DECL_AXIS void init()
+      CLASS_DECL_BASE void init()
       {
 
          ::set_simple_message_box(&::simple_ui_message_box);
@@ -113,7 +113,7 @@ namespace axis
 
 
 
-      CLASS_DECL_AXIS void term()
+      CLASS_DECL_BASE void term()
       {
 
 
@@ -153,7 +153,7 @@ namespace axis
    } // namespace static_start
 
 
-} // namespace axis
+} // namespace base
 
 
 

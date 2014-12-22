@@ -940,7 +940,7 @@ namespace axis
    bool session::process_initialize()
    {
 
-      if(!::axis::session::process_initialize())
+      if(!::aura::session::process_initialize())
          return false;
 
       if(!::axis::application::process_initialize())
@@ -1002,7 +1002,7 @@ namespace axis
    bool session::initialize2()
    {
 
-      if(!::axis::session::initialize2())
+      if(!::aura::session::initialize2())
          return false;
 
       if(!::axis::application::initialize2())
@@ -1046,7 +1046,7 @@ namespace axis
    bool session::initialize()
    {
 
-      if(!::axis::session::initialize())
+      if(!::aura::session::initialize())
          return false;
 
       if(!::axis::application::initialize())
@@ -1138,11 +1138,70 @@ namespace axis
 
       ::axis::application::exit_instance();
 
-      ::axis::session::exit_instance();
+      ::aura::session::exit_instance();
 
       return 0;
 
    }
+
+
+
+   bool session::is_licensed(const char * pszId,bool bInteractive)
+   {
+
+      if(directrix()->m_varTopicQuery.has_property("install"))
+         return true;
+
+      if(directrix()->m_varTopicQuery.has_property("uninstall"))
+         return true;
+
+      if(&licensing() == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!licensing().has(pszId,bInteractive))
+      {
+
+         licensing().m_mapInfo.remove_key(pszId);
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+   ::fontopus::user * session::get_user()
+   {
+
+      return m_pfontopus->get_user();
+
+   }
+
+
+   /*::fontopus::user * application::create_user(const string & pszLogin)
+   {
+   return NULL;
+   }*/
+
+   ::fontopus::user * session::create_current_user()
+   {
+      return NULL;
+      /*   string str = get_current_user_login();
+      return create_user(str);*/
+   }
+
+   /*string application::get_current_user_login()
+   {
+   return "";
+   }*/
+
+
+
 
 
 //   void system::enum_display_monitors()
@@ -1556,6 +1615,15 @@ namespace axis
    {
 
       //userpresence().defer_initialize_user_presence();
+
+   }
+
+   string session::get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   {
+
+      throw interface_only_exception(papp);
+
+      return "";
 
    }
 

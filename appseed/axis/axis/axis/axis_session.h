@@ -116,6 +116,9 @@ namespace axis
 
       virtual void defer_initialize_user_presence();
 
+
+      virtual string get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
+
    };
 
 

@@ -4,24 +4,24 @@
 namespace hotplugin
 {
 
-   ::axis::system * g_paxissystem = NULL;
+   ::base::system * g_pbasesystem = NULL;
 
    int g_iSystemCount = 0;
 
    uint32_t c_cdecl axis_system_main(LPVOID lpVoid);
 
 
-   CLASS_DECL_AXIS ::axis::system * get_axis_system()
+   CLASS_DECL_BASE ::base::system * get_base_system()
    {
       
-      return g_paxissystem;
+      return g_pbasesystem;
 
    }
 
-   CLASS_DECL_AXIS bool defer_start_axis_system()
+   CLASS_DECL_BASE bool defer_start_axis_system()
    {
 
-      if(g_paxissystem != NULL)
+      if(g_pbasesystem != NULL)
          return true;
 
       g_iSystemCount++;
@@ -29,7 +29,7 @@ namespace hotplugin
       try
       {
 
-         g_paxissystem = new ::axis::system(NULL);
+         g_pbasesystem = new ::base::system(NULL);
 
          if(file_exists_dup("C:\\ca2\\config\\plugin\\npca2_beg_debug_box.txt"))
          {
@@ -38,21 +38,21 @@ namespace hotplugin
 
          }
 
-         ::set_thread(g_paxissystem);
+         ::set_thread(g_pbasesystem);
 
-         g_paxissystem->m_bMatterFromHttpCache = true;
+         g_pbasesystem->m_bMatterFromHttpCache = true;
 
-         g_paxissystem->m_bSystemSynchronizedCursor = false;
+         g_pbasesystem->m_bSystemSynchronizedCursor = false;
 
-         g_paxissystem->m_bShouldInitializeGTwf = false;
+         g_pbasesystem->m_bShouldInitializeGTwf = false;
 
-         g_paxissystem->m_bEnableOnDemandDrawing = false;
+         g_pbasesystem->m_bEnableOnDemandDrawing = false;
 
-         g_paxissystem->construct(NULL);
+         g_pbasesystem->construct(NULL);
 
 #ifdef WINDOWS
 
-         g_paxissystem->m_hinstance = (HINSTANCE)get_hinstance;
+         g_pbasesystem->m_hinstance = (HINSTANCE)get_hinstance;
 
 #endif
 
@@ -66,7 +66,7 @@ namespace hotplugin
 
 #endif
 
-         g_paxissystem->m_bReady = false;
+         g_pbasesystem->m_bReady = false;
 
          ::create_thread(NULL,0,&axis_system_main,NULL,0,NULL);
          
@@ -93,17 +93,17 @@ namespace hotplugin
       try
       {
 
-         if(!g_paxissystem->pre_run())
+         if(!g_pbasesystem->pre_run())
          {
 
-            if(g_paxissystem->m_iReturnCode == 0)
+            if(g_pbasesystem->m_iReturnCode == 0)
             {
 
-               g_paxissystem->m_iReturnCode = -1;
+               g_pbasesystem->m_iReturnCode = -1;
 
             }
 
-            g_paxissystem->m_bReady = true;
+            g_pbasesystem->m_bReady = true;
 
             return -1;
 
@@ -113,20 +113,20 @@ namespace hotplugin
       catch(...)
       {
 
-         if(g_paxissystem->m_iReturnCode == 0)
+         if(g_pbasesystem->m_iReturnCode == 0)
          {
 
-            g_paxissystem->m_iReturnCode = -1;
+            g_pbasesystem->m_iReturnCode = -1;
 
          }
 
-         g_paxissystem->m_bReady = true;
+         g_pbasesystem->m_bReady = true;
 
          return -1;
 
       }
 
-      return g_paxissystem->main();
+      return g_pbasesystem->main();
 
    }
 
@@ -134,14 +134,14 @@ namespace hotplugin
 
    HINSTANCE g_hinstance = NULL; // hotplugin plugin dll HINSTANCE
 
-   CLASS_DECL_AXIS HINSTANCE get_hinstance()
+   CLASS_DECL_BASE HINSTANCE get_hinstance()
    {
 
       return g_hinstance;
 
    }
 
-   CLASS_DECL_AXIS void set_hinstance(HINSTANCE hinstance)
+   CLASS_DECL_BASE void set_hinstance(HINSTANCE hinstance)
    {
 
       g_hinstance = hinstance;
@@ -151,7 +151,7 @@ namespace hotplugin
 #endif
 
 
-   CLASS_DECL_AXIS void defer_stop_axis_system()
+   CLASS_DECL_BASE void defer_stop_axis_system()
    {
 
       g_iSystemCount--;
@@ -159,12 +159,12 @@ namespace hotplugin
       if(g_iSystemCount == 0)
       {
 
-         if(g_paxissystem != NULL)
+         if(g_pbasesystem != NULL)
          {
 
-            g_paxissystem->post_thread_message(WM_QUIT);
+            g_pbasesystem->post_thread_message(WM_QUIT);
 
-            g_paxissystem = NULL;
+            g_pbasesystem = NULL;
 
          }
 

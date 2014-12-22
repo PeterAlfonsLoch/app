@@ -1187,11 +1187,6 @@ inline void string_format::printf(const char * & s)
 #include "aura/aura/aura/aura_async.h"
 
 
-//#include "aura/hotplugin/hotplugin.h"
-
-
-
-
 #include "aura/aura/aura/aura_message_loop.h"
 
 #include "aura/aura/aura/aura_url.h"

@@ -23,7 +23,6 @@ namespace hotplugin
       hotplugin::plugin(this),
       ::simple_ui::style(this),
       ::aura::session(this),
-      ::axis::session(this),
       ::axis::session(this)
    {
 

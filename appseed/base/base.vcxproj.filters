@@ -204,6 +204,12 @@
     <Filter Include="Source Files\user\fontopus">
       <UniqueIdentifier>{560f0660-4e41-4f5c-b0db-219cdba059ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\base\install">
+      <UniqueIdentifier>{563b77ab-6692-49b1-bc6f-7644b8c56728}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\install">
+      <UniqueIdentifier>{45cb13cf-a3e1-4627-833e-10c83bc06da8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\graphics.h">
@@ -461,9 +467,6 @@
     <ClInclude Include="filesystem\file\file_edit_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_str_context.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="base\node\windows\windows_message_queue.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
@@ -662,9 +665,6 @@
     <ClInclude Include="base\hotplugin\hotplugin_plugin.h">
       <Filter>Header Files\base\hotplugin</Filter>
     </ClInclude>
-    <ClInclude Include="base\hotplugin\resource.h">
-      <Filter>Header Files\base\hotplugin</Filter>
-    </ClInclude>
     <ClInclude Include="user\userpresence\userpresence.h">
       <Filter>Header Files\user\userpresence</Filter>
     </ClInclude>
@@ -685,6 +685,15 @@
     </ClInclude>
     <ClInclude Include="user\fontopus\simple_ui_style.h">
       <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_plugin.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_starter_start.h">
+      <Filter>Header Files\base\install</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -934,32 +943,11 @@
     <ClCompile Include="base\os\windows\windows_gdi.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_str_context.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_value.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\windows_message_queue.cpp">
       <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_simple_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\windows\windows_os.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="database\database\database_application.cpp">
       <Filter>Source Files\database\database</Filter>
@@ -1066,9 +1054,6 @@
     <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
     </ClCompile>
-    <ClCompile Include="base\hotplugin\local_memory_map.cpp">
-      <Filter>Source Files\base\hotplugin</Filter>
-    </ClCompile>
     <ClCompile Include="base\base\base_application.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
@@ -1101,6 +1086,21 @@
     </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp">
       <Filter>Source Files\user\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_veri_discreet.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_starter_start.cpp">
+      <Filter>Source Files\base\install</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

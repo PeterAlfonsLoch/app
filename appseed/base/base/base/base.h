@@ -4,7 +4,7 @@
 #ifndef CA2_APP_BASE_BASE_BASE_BASE_H
 #define CA2_APP_BASE_BASE_BASE_BASE_H
 
-#include "axis/axis/axis.h"
+#include "axis/axis/axis/axis.h"
 
 
 #ifdef _BASE_STATIC

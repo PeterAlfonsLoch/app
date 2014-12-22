@@ -5,7 +5,7 @@ namespace hotplugin
 {
 
 
-   class CLASS_DECL_AXIS composer
+   class CLASS_DECL_BASE composer
    {
    public:
 
@@ -64,14 +64,14 @@ namespace hotplugin
 
       bool                                   m_bWrite;
 
-      ::axis::system *                       m_pcomposersystem;
+      ::base::system *                       m_pcomposersystem;
 
       
       composer();
       virtual ~composer();
 
 
-      virtual ::hotplugin::host * create_host(sp(::axis::system) psystem) ;
+      virtual ::hotplugin::host * create_host(sp(::base::system) psystem) ;
 
       virtual void hotplugin_composer_on_timer();
 

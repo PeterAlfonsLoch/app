@@ -591,7 +591,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_BASE_LIBRARY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAsManaged>false</CompileAsManaged>
@@ -1962,7 +1962,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\hotplugin\hotplugin_container_launcher.h" />
     <ClInclude Include="base\hotplugin\hotplugin_host.h" />
     <ClInclude Include="base\hotplugin\hotplugin_plugin.h" />
-    <ClInclude Include="base\hotplugin\resource.h" />
+    <ClInclude Include="base\install\install.h" />
+    <ClInclude Include="base\install\install_plugin.h" />
+    <ClInclude Include="base\install\install_starter_start.h" />
     <ClInclude Include="base\node\android\android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2242,7 +2244,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\hotplugin\hotplugin_host.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_windows.cpp" />
-    <ClCompile Include="base\hotplugin\local_memory_map.cpp" />
+    <ClCompile Include="base\install\install_plugin.cpp" />
+    <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp" />
+    <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp" />
+    <ClCompile Include="base\install\install_plugin_bare_paint_veri_discreet.cpp" />
+    <ClCompile Include="base\install\install_starter_start.cpp" />
     <ClCompile Include="base\message\message.cpp" />
     <ClCompile Include="base\message\message_user.cpp" />
     <ClCompile Include="base\node\android\android_android.cpp">
@@ -2513,9 +2519,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\os\windows\windows_gdi.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="base\os\windows\windows_os.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="base\os\windows\windows_simple_app.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
@@ -2640,7 +2643,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\user\user_scroll_control.h" />
     <ClInclude Include="user\user\user_scroll_view.h" />
     <ClInclude Include="user\user\user_server.h" />
-    <ClInclude Include="user\user\user_str_context.h" />
     <ClInclude Include="user\user\aaa_want_to_remove_user_text_interface.h" />
     <ClInclude Include="user\user\user_user.h" />
     <ClInclude Include="user\user\user_view_container.h" />
@@ -2757,11 +2759,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClCompile>
     <ClCompile Include="base\os\cross\metrowin\cross_metrowin_user.cpp" />
     <ClCompile Include="graphics\graphics_window_graphics.cpp" />
-    <ClCompile Include="primitive\data\data_simple_item.cpp" />
-    <ClCompile Include="primitive\data\data_tree.cpp" />
-    <ClCompile Include="primitive\data\data_tree_item.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_value.cpp" />
     <ClCompile Include="user\fontopus\fontopus.cpp" />
     <ClCompile Include="user\fontopus\fontopus_login.cpp" />
     <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp" />
@@ -2809,7 +2806,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\user\user_scroll_control.cpp" />
     <ClCompile Include="user\user\user_scroll_view.cpp" />
     <ClCompile Include="user\user\user_server.cpp" />
-    <ClCompile Include="user\user\user_str_context.cpp" />
     <ClCompile Include="user\user\aaa_want_to_remove_user_text_interface.cpp" />
     <ClCompile Include="user\user\user_user.cpp" />
     <ClCompile Include="user\user\user_view_container.cpp" />
@@ -2837,12 +2833,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
   <ItemGroup>
     <ProjectReference Include="..\..\aura\sqlite\aurasqlite.vcxproj">
       <Project>{424f72d6-053a-41c5-be03-3b0bd535f1eb}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\base\bzip2\axisbzip2.vcxproj">
-      <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\base\zlib\axiszlib.vcxproj">
-      <Project>{34fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
     </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
