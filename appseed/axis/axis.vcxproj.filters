@@ -18,12 +18,6 @@
     <Filter Include="Source Files\net">
       <UniqueIdentifier>{116e3076-c458-43fe-92e9-72e6aae3c491}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user">
-      <UniqueIdentifier>{dc109c06-f55b-48ea-ac46-06302b3262f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user">
-      <UniqueIdentifier>{8832ff75-5113-4095-b832-a6e62e777cfd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\net\http">
       <UniqueIdentifier>{87154103-1603-4ede-93b7-a339452693d9}</UniqueIdentifier>
     </Filter>
@@ -105,9 +99,6 @@
     <Filter Include="Header Files\programming\javascript">
       <UniqueIdentifier>{1523f2fe-95c5-4ef8-aeb6-44864f6d2cc6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\userpresence">
-      <UniqueIdentifier>{5f8d1e2a-7a7d-40d2-b25c-52033b755438}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\compress">
       <UniqueIdentifier>{81b4689d-269d-4f05-8d03-9fd0d7fb0783}</UniqueIdentifier>
     </Filter>
@@ -125,9 +116,6 @@
     </Filter>
     <Filter Include="Header Files\axis\crypto">
       <UniqueIdentifier>{827d6b98-e29f-4ba3-9835-3a7b78877deb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\userpresence">
-      <UniqueIdentifier>{4ee52bef-9322-45b6-adda-5d44ac5a67ac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
@@ -487,15 +475,6 @@
     </ClInclude>
     <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h">
       <Filter>Header Files\programming\javascript</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence_user_presence.h">
-      <Filter>Header Files\user\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="user\userpresence\userpresence_userpresence.h">
-      <Filter>Header Files\user\userpresence</Filter>
     </ClInclude>
     <ClInclude Include="net\net_url_domain.h">
       <Filter>Header Files\net</Filter>
@@ -1246,12 +1225,6 @@
     <ClCompile Include="axis\compress\compress_compress.cpp">
       <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
-    <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
-      <Filter>Source Files\user\userpresence</Filter>
-    </ClCompile>
-    <ClCompile Include="user\userpresence\userpresence_userpresence.cpp">
-      <Filter>Source Files\user\userpresence</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_url_domain.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
@@ -1593,6 +1566,9 @@
     </ClCompile>
     <ClCompile Include="axis\fontopus\fontopus_user_authentication.cpp">
       <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\windows\windows_os.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

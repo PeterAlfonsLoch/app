@@ -1,6 +1,16 @@
 #pragma once
 
 
+namespace userpresence
+{
+
+
+   class presence;
+
+
+} // namespace userpresence
+
+
 namespace fontopus
 {
 
@@ -33,7 +43,7 @@ namespace fontopus
 
       sp(contact_list)                       m_pcontactlist;
 
-      sp(::userpresence::presence)           m_ppresence;
+      ::userpresence::presence *             m_ppresence;
 
       sp(::ifs)                              m_pifs;
       string                                 m_strLoginStats;

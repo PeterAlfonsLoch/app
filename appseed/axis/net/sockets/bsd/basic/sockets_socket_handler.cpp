@@ -1040,9 +1040,9 @@ namespace sockets
       sp(resolv_socket) resolv = canew(resolv_socket(*this, p, host, port));
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      in_addr local;
-      Session.sockets().net().convert(local, "127.0.0.1");
-      if (!resolv -> open(::net::address(local, m_resolver_port)))
+      in_addr addrLocal;
+      Session.sockets().net().convert(addrLocal,"127.0.0.1");
+      if(!resolv -> open(::net::address(addrLocal,m_resolver_port)))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
       }
@@ -1059,9 +1059,9 @@ namespace sockets
       sp(resolv_socket) resolv = canew(resolv_socket(*this, p, host, port, true));
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      in_addr local;
-      Session.sockets().net().convert(local, "127.0.0.1");
-      if (!resolv -> open(::net::address(local, m_resolver_port)))
+      in_addr addrLocal;
+      Session.sockets().net().convert(addrLocal,"127.0.0.1");
+      if(!resolv -> open(::net::address(addrLocal,m_resolver_port)))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
       }
@@ -1077,9 +1077,9 @@ namespace sockets
       sp(resolv_socket) resolv = canew(resolv_socket(*this, p, a));
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      in_addr local;
-      Session.sockets().net().convert(local, "127.0.0.1");
-      if (!resolv -> open(::net::address(local, m_resolver_port)))
+      in_addr addrLocal;
+      Session.sockets().net().convert(addrLocal,"127.0.0.1");
+      if(!resolv -> open(::net::address(addrLocal,m_resolver_port)))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
       }
@@ -1095,9 +1095,9 @@ namespace sockets
       sp(resolv_socket) resolv = canew(resolv_socket(*this, p, a));
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      in_addr local;
-      Session.sockets().net().convert(local, "127.0.0.1");
-      if (!resolv -> open(::net::address(local, m_resolver_port)))
+      in_addr addrLocal;
+      Session.sockets().net().convert(addrLocal,"127.0.0.1");
+      if(!resolv -> open(::net::address(addrLocal,m_resolver_port)))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
       }

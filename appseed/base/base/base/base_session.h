@@ -157,7 +157,7 @@ namespace base
 
       virtual bool is_licensed(const char * pszId,bool bInteractive = true);
 
-
+      virtual void defer_initialize_user_presence();
 
    };
 

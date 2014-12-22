@@ -3,15 +3,6 @@
 
 
 
-#ifdef cplusplus
-
-
-CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget,const char * pszSource,sp(::user::interaction) puiMessageParentOptional);
-
-
-
-#endif
-
 
 
 

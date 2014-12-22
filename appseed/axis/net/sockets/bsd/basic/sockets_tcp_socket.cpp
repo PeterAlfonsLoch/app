@@ -280,8 +280,8 @@ void ssl_sigpipe_handle( int x );
                return false;
             }
             ::net::address ad(a, port);
-            ::net::address local;
-            if(!open(ad, local))
+            ::net::address addrLocal;
+            if(!open(ad,addrLocal))
                return false;
             return true;
          }
@@ -297,8 +297,8 @@ void ssl_sigpipe_handle( int x );
             return false;
          }
          ::net::address ad(l, port);
-         ::net::address local;
-         if(!open(ad, local))
+         ::net::address addrLocal;
+         if(!open(ad,addrLocal))
             return false;
          return true;
       }
@@ -317,8 +317,8 @@ void ssl_sigpipe_handle( int x );
       {
          if (a.is_valid() && a.u.s.m_port)
          {
-            ::net::address local;
-            if (open(a, local))
+            ::net::address addrLocal;
+            if(open(a,addrLocal))
             {
                if (!Handler().Valid(this))
                {

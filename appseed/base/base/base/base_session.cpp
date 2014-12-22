@@ -1123,6 +1123,43 @@ namespace axis
       if(!::axis::application::initialize1())
          return false;
 
+      m_puserpresence = canew(::userpresence::userpresence(this));
+
+      if(m_puserpresence.is_null())
+      {
+
+         TRACE("Failed to create new User Presence");
+
+         return false;
+
+      }
+
+      try
+      {
+
+         m_puserpresence->construct(this);
+
+      }
+      catch(...)
+      {
+
+         TRACE("Failed to construct User Presence");
+
+         return false;
+
+      }
+
+
+      if(!m_puserpresence->initialize())
+      {
+
+         TRACE("Failed to initialize User Presence");
+
+         return false;
+
+      }
+
+
       m_splicensing = new class ::fontopus::licensing(this);
 
       m_puserstrcontext = canew(::user::str_context(this));
@@ -1221,6 +1258,20 @@ namespace axis
    {
 
       bool bOk = true;
+
+
+      try
+      {
+
+         bOk = m_puserpresence->finalize();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+      }
+
 
       try
       {
@@ -1835,6 +1886,14 @@ namespace axis
       }
 
       return true;
+
+   }
+
+
+   void session::defer_initialize_user_presence()
+   {
+
+      userpresence().defer_initialize_user_presence();
 
    }
 

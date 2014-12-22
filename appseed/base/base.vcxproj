@@ -2584,6 +2584,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\data\data_tree_item.h" />
     <ClInclude Include="primitive\datetime\datetime_departament.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
+    <ClInclude Include="user\fontopus\fontopus.h" />
+    <ClInclude Include="user\fontopus\fontopus_login.h" />
+    <ClInclude Include="user\fontopus\fontopus_simple_ui.h" />
+    <ClInclude Include="user\fontopus\simple_ui_style.h" />
     <ClInclude Include="user\simple\simple.h" />
     <ClInclude Include="user\simple\simple_scroll_bar.h" />
     <ClInclude Include="user\simple_ui\simple_ui.h" />
@@ -2595,6 +2599,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="user\simple_ui\simple_ui_style.h" />
     <ClInclude Include="user\simple_ui\simple_ui_tap.h" />
     <ClInclude Include="user\user.h" />
+    <ClInclude Include="user\userpresence\userpresence.h" />
+    <ClInclude Include="user\userpresence\userpresence_userpresence.h" />
+    <ClInclude Include="user\userpresence\userpresence_user_presence.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\aaa_want_to_remove_user_buffer.h" />
     <ClInclude Include="user\user\user_control.h" />
@@ -2755,6 +2762,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\data\data_tree_item.cpp" />
     <ClCompile Include="primitive\datetime\datetime_departament.cpp" />
     <ClCompile Include="primitive\datetime\datetime_value.cpp" />
+    <ClCompile Include="user\fontopus\fontopus.cpp" />
+    <ClCompile Include="user\fontopus\fontopus_login.cpp" />
+    <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp" />
     <ClCompile Include="user\simple\simple_scroll_bar.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp" />
@@ -2763,6 +2773,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="user\simple_ui\simple_ui_password.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_style.cpp" />
     <ClCompile Include="user\simple_ui\simple_ui_tap.cpp" />
+    <ClCompile Include="user\userpresence\userpresence_userpresence.cpp" />
+    <ClCompile Include="user\userpresence\userpresence_user_presence.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\aaa_want_to_remove_user_buffer.cpp" />
     <ClCompile Include="user\user\user_control.cpp" />

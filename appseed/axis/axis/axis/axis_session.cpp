@@ -45,6 +45,8 @@ namespace axis
 
     //  m_schemasimple.m_pfont->create_pixel_font("Helvetica",16);
 
+      m_puserpresence               = NULL;
+
    }
 
 
@@ -965,41 +967,6 @@ namespace axis
       if(!::axis::application::initialize1())
          return false;
 
-      m_puserpresence = canew(::userpresence::userpresence(this));
-
-      if(m_puserpresence.is_null())
-      {
-
-         TRACE("Failed to create new User Presence");
-
-         return false;
-
-      }
-
-      try
-      {
-
-         m_puserpresence->construct(this);
-
-      }
-      catch(...)
-      {
-
-         TRACE("Failed to construct User Presence");
-
-         return false;
-
-      }
-
-
-      if(!m_puserpresence->initialize())
-      {
-
-         TRACE("Failed to initialize User Presence");
-
-         return false;
-
-      }
 
 
       return true;
@@ -1084,17 +1051,6 @@ namespace axis
 
       bool bOk = true;
 
-      try
-      {
-
-         bOk = m_puserpresence->finalize();
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-      }
 
       try
       {
@@ -1559,6 +1515,12 @@ namespace axis
 
 
 
+   void session::defer_initialize_user_presence()
+   {
+
+      //userpresence().defer_initialize_user_presence();
+
+   }
 
 
 } // namespace axis

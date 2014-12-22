@@ -928,15 +928,15 @@ namespace axis
 //#endif
 //
 
-   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::aura::impact_system) ptemplate, ::aura::document * pdocument)
-   {
+   //bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::aura::impact_system) ptemplate, ::aura::document * pdocument)
+   //{
 
-      UNREFERENCED_PARAMETER(varFile);
-      UNREFERENCED_PARAMETER(nIDSTitle);
+   //   UNREFERENCED_PARAMETER(varFile);
+   //   UNREFERENCED_PARAMETER(nIDSTitle);
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
    string CLASS_DECL_AXIS application::get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
@@ -3145,20 +3145,20 @@ namespace axis
    }
 
 
-   ::user::interaction * application::get_active_guie()
-   {
+   //::user::interaction * application::get_active_guie()
+   //{
 
-      return Session.get_active_guie();
+   //   return Session.get_active_guie();
 
-   }
+   //}
 
 
-   ::user::interaction * application::get_focus_guie()
-   {
+   //::user::interaction * application::get_focus_guie()
+   //{
 
-      return Session.get_focus_guie();
+   //   return Session.get_focus_guie();
 
-   }
+   //}
 
 
 

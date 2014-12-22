@@ -3,6 +3,16 @@
 
 #ifdef cplusplus
 
+
+CLASS_DECL_AXIS bool vfxResolveShortcut(string & strTarget,const char * pszSource,sp(::aura::interaction) puiMessageParentOptional);
+
+
+
+#endif
+
+
+#ifdef cplusplus
+
 namespace axis
 {
 

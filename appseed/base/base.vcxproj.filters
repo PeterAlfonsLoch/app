@@ -192,6 +192,18 @@
     <Filter Include="Source Files\base\hotplugin">
       <UniqueIdentifier>{b423da12-3cdd-4f7a-8701-5857cf2e774b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\userpresence">
+      <UniqueIdentifier>{b2191c98-1b19-486e-924a-b22cb955491a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\fontopus">
+      <UniqueIdentifier>{57c62571-07f8-44c7-9593-be33c83fb3a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\userpresence">
+      <UniqueIdentifier>{07eae521-a2f9-44ec-a1c0-8e7aab144d41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\fontopus">
+      <UniqueIdentifier>{560f0660-4e41-4f5c-b0db-219cdba059ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\graphics.h">
@@ -653,6 +665,27 @@
     <ClInclude Include="base\hotplugin\resource.h">
       <Filter>Header Files\base\hotplugin</Filter>
     </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence_user_presence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence_userpresence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\fontopus.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\fontopus_login.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\fontopus_simple_ui.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\simple_ui_style.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\graphics_window_graphics.cpp">
@@ -1053,6 +1086,21 @@
     </ClCompile>
     <ClCompile Include="base\base\base_system.cpp">
       <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
+      <Filter>Source Files\user\userpresence</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userpresence\userpresence_userpresence.cpp">
+      <Filter>Source Files\user\userpresence</Filter>
+    </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus.cpp">
+      <Filter>Source Files\user\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus_login.cpp">
+      <Filter>Source Files\user\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp">
+      <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

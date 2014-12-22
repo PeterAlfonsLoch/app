@@ -1598,7 +1598,7 @@ restart:
    }
 
 
-   bool system::resolve_link(string & strTarget,const char * pszSource,sp(::user::interaction) puiMessageParentOptional)
+   bool system::resolve_link(string & strTarget,const char * pszSource,sp(::aura::interaction) puiMessageParentOptional)
    {
 
 #ifdef WINDOWSEX

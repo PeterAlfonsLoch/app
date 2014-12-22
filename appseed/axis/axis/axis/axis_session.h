@@ -1,6 +1,16 @@
 #pragma once
 
 
+namespace userpresence
+{
+
+
+   class userpresence;
+
+
+} // namespace userpresence
+
+
 namespace axis
 {
 
@@ -13,7 +23,7 @@ namespace axis
 
       
 
-      sp(::userpresence::userpresence)                         m_puserpresence;
+      ::userpresence::userpresence *                           m_puserpresence;
       sp(::ifs)                                                m_pifs;
       sp(::fs::remote_native)                                  m_prfs;
       sp(::fs::fs)                                             m_spfs;
@@ -102,6 +112,9 @@ namespace axis
 
       //virtual bool is_inside_time_dir(const char * pszPath);
       //virtual bool file_is_read_only(const char * pszPath);
+
+
+      virtual void defer_initialize_user_presence();
 
    };
 

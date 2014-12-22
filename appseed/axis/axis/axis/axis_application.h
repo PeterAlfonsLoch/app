@@ -64,7 +64,7 @@ namespace axis
 
 
 
-      virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::aura::impact_system) ptemplate,::aura::document * pdocument);
+      //virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::aura::impact_system) ptemplate,::aura::document * pdocument);
 
 
 
