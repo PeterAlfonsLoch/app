@@ -9,7 +9,7 @@ local_memory_map::local_memory_map()
 }
 
 
-local_memory_map::local_memory_map(const char * psz,bool bRead,bool bWrite, bool bCreate,int64_t size)
+local_memory_map::local_memory_map(const char * psz,bool bRead,bool bWrite, bool bCreate,::primitive::memory_size size)
 {
 
    construct();
