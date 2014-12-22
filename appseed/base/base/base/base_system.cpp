@@ -345,12 +345,6 @@ namespace axis
 
 
 
-   ::datetime::departament & system::datetime()
-   {
-
-      return *m_pdatetime;
-
-   }
 
 
 

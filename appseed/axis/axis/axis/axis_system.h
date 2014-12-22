@@ -83,6 +83,9 @@ namespace axis
       virtual void install_progress_add_up(int iAddUp = 1);
 
 
+      ::datetime::departament                      & datetime();
+
+
    };
 
 

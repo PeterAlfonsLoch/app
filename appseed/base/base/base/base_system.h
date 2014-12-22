@@ -92,7 +92,6 @@ namespace base
 
 
 
-      ::datetime::departament                      & datetime();
       ::user::str                                  & str();
       sp(::user::window_draw)                         get_twf();
 
