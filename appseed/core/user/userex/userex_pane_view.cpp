@@ -50,7 +50,7 @@ namespace userex
             return true;
          }
       }
-      return ::user::impact::on_simple_action(id);
+      return ::aura::impact::on_simple_action(id);
    }
 
 
@@ -64,7 +64,7 @@ namespace userex
             //cc.m_pCurrentDoc = get_document();
             //cc.m_typeinfoNewView = System.type_info < ::user::menu_list_view > ();
 
-            sp(::user::impact) pview = create_view < ::user::impact > ();
+            sp(::aura::impact) pview = create_view < ::aura::impact > ();
             if(pview != NULL)
             {
 //               sp(::user::menu_list_view) pmenuview = (sp(::user::menu_list_view)) pview;

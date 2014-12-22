@@ -211,9 +211,9 @@ namespace user
       dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
       dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
       if (m_pviewActive != NULL)
-         dumpcontext << "\nwith active ::user::impact: " << m_pviewActive;
+         dumpcontext << "\nwith active ::aura::impact: " << m_pviewActive;
       else
-         dumpcontext << "\nno active ::user::impact";
+         dumpcontext << "\nno active ::aura::impact";
 
       dumpcontext << "\n";
    }
@@ -653,7 +653,7 @@ namespace user
    sp(::user::interaction) pview =  (System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
-   TRACE(::aura::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::impact type %hs failed.\n",
+   TRACE(::aura::trace::category_AppMsg, 0, "Warning: Dynamic create of ::aura::impact type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
    return NULL;
    }
@@ -663,13 +663,13 @@ namespace user
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
    rect(0,0,0,0), this, nID, pContext))
    {
-   TRACE(::aura::trace::category_AppMsg, 0, "Warning: could not create ::user::impact for frame.\n");
-   return NULL;        // can't continue without a ::user::impact
+   TRACE(::aura::trace::category_AppMsg, 0, "Warning: could not create ::aura::impact for frame.\n");
+   return NULL;        // can't continue without a ::aura::impact
    }
 
    if (pview->GetExStyle() & WS_EX_CLIENTEDGE)
    {
-   // remove the 3d style from the frame, since the ::user::impact is
+   // remove the 3d style from the frame, since the ::aura::impact is
    //  providing it.
    // make sure to recalc the non-client area
    ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
@@ -684,7 +684,7 @@ namespace user
       if (pContext != NULL && (pContext->m_user->m_typeinfoNewView || pContext->m_user->m_puiNew != NULL))
       {
 
-         if (::user::impact::s_create_view(pContext, null_rect(), this, "pane_first") == NULL)
+         if (::aura::impact::s_create_view(pContext, null_rect(), this, "pane_first") == NULL)
             return false;
 
       }
@@ -718,7 +718,7 @@ namespace user
       // create special children first
       if (!on_create_client(lpcs, pContext))
       {
-         TRACE(::aura::trace::category_AppMsg, 0, "Failed to create client pane/::user::impact for frame.\n");
+         TRACE(::aura::trace::category_AppMsg, 0, "Failed to create client pane/::aura::impact for frame.\n");
          return -1;
       }
 
@@ -793,12 +793,12 @@ namespace user
 
    void frame_window::InitialUpdateFrame(::aura::document * pDoc, bool bMakeVisible)
    {
-      // if the frame does not have an active ::user::impact, set to first pane
-      sp(::user::impact) pview = NULL;
+      // if the frame does not have an active ::aura::impact, set to first pane
+      sp(::aura::impact) pview = NULL;
       if (GetActiveView() == NULL)
       {
          sp(::user::interaction) pwindow = GetDescendantWindow("pane_first");
-         if (pwindow != NULL && base_class < ::user::impact > ::bases(pwindow))
+         if (pwindow != NULL && base_class < ::aura::impact > ::bases(pwindow))
          {
             pview = pwindow;
             SetActiveView(pview, FALSE);
@@ -822,7 +822,7 @@ namespace user
          // send initial update to all views (and other controls) in the frame
          SendMessageToDescendants(WM_INITIALUPDATE, 0, (LPARAM)0, TRUE, TRUE);
 
-         // give ::user::impact a chance to save the focus (CFormView needs this)
+         // give ::aura::impact a chance to save the focus (CFormView needs this)
          if (pview != NULL)
             pview->OnActivateFrame(WA_INACTIVE, this);
 
@@ -914,7 +914,7 @@ namespace user
       POSITION pos = pdocument->get_view_count();
       while (pos != NULL)
       {
-      sp(::user::impact) pview = pdocument->get_view(pos);
+      sp(::aura::impact) pview = pdocument->get_view(pos);
       ENSURE_VALID(pview);
       if (pview->GetParentFrame() != this)
       {
@@ -971,7 +971,7 @@ namespace user
 
 
    /*
-   // Delegate scroll messages to active ::user::impact as well
+   // Delegate scroll messages to active ::aura::impact as well
    void frame_window::OnHScroll(UINT, UINT, CScrollBar*)
    {
       sp(::user::interaction) pActiveView = GetActiveView();
@@ -1003,10 +1003,10 @@ namespace user
       ExitHelpMode();
 
 
-      // deactivate current active ::user::impact
+      // deactivate current active ::aura::impact
       thread *pThread = get_thread();
       ASSERT(pThread);
-      sp(::user::impact) pActiveView = GetActiveView();
+      sp(::aura::impact) pActiveView = GetActiveView();
       if (pActiveView == NULL)
          pActiveView = GetActiveFrame()->GetActiveView();
       if (pActiveView != NULL)
@@ -1045,18 +1045,18 @@ namespace user
       // sync floating windows to the new state
       NotifyFloatingWindows(bStayActive ? FS_ACTIVATE : FS_DEACTIVATE);
 
-      // get active ::user::impact (use active frame if no active ::user::impact)
-      sp(::user::impact) pActiveView = GetActiveView();
+      // get active ::aura::impact (use active frame if no active ::aura::impact)
+      sp(::aura::impact) pActiveView = GetActiveView();
       if (pActiveView == NULL)
          pActiveView = (GetActiveFrame()->GetActiveView());
 
-      // when frame gets activated, re-activate current ::user::impact
+      // when frame gets activated, re-activate current ::aura::impact
       if (pActiveView != NULL)
       {
          if (pactivate->m_nState != WA_INACTIVE && !pactivate->m_bMinimized)
             pActiveView->OnActivateView(TRUE, pActiveView, pActiveView);
 
-         // always notify the ::user::impact of frame activations
+         // always notify the ::aura::impact of frame activations
          pActiveView->OnActivateFrame(pactivate->m_nState, this);
       }
       if (pactivate->m_nState == WA_ACTIVE)
@@ -1175,27 +1175,27 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // frame_window attributes
 
-   sp(::user::impact) frame_window::GetActiveView() const
+   sp(::aura::impact) frame_window::GetActiveView() const
    {
 
-      ASSERT(m_pviewActive == NULL || base_class < ::user::impact >::bases(m_pviewActive));
+      ASSERT(m_pviewActive == NULL || base_class < ::aura::impact >::bases(m_pviewActive));
 
       return m_pviewActive;
 
    }
 
 
-   void frame_window::SetActiveView(sp(::user::impact) pViewNew, bool bNotify)
+   void frame_window::SetActiveView(sp(::aura::impact) pViewNew, bool bNotify)
    {
 #ifdef DEBUG
       if (pViewNew != NULL)
       {
          //trans      ASSERT(IsChild(pViewNew));
-         //trans      ASSERT_KINDOF(::user::impact, pViewNew);
+         //trans      ASSERT_KINDOF(::aura::impact, pViewNew);
       }
 #endif //DEBUG
 
-      sp(::user::impact) pViewOld = m_pviewActive;
+      sp(::aura::impact) pViewOld = m_pviewActive;
       if (pViewNew == pViewOld)
          return;     // do not re-activate if SetActiveView called more than once
 
@@ -1223,7 +1223,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Special ::user::impact swapping/activation
+   // Special ::aura::impact swapping/activation
 
    void frame_window::OnSetFocus(sp(::user::interaction) pOldWnd)
    {
@@ -1238,7 +1238,7 @@ namespace user
    ::aura::document * frame_window::GetActiveDocument()
    {
       ASSERT_VALID(this);
-      sp(::user::impact) pview = GetActiveView();
+      sp(::aura::impact) pview = GetActiveView();
       if (pview != NULL)
          return pview->get_document();
       return NULL;
@@ -1382,7 +1382,7 @@ namespace user
 
       if (GetStyle() & FWS_PREFIXTITLE)
       {
-         // get name of currently active ::user::impact
+         // get name of currently active ::aura::impact
          if (lpszDocName != NULL)
          {
             WindowText += lpszDocName;
@@ -1407,7 +1407,7 @@ namespace user
       }
       else
       {
-         // get name of currently active ::user::impact
+         // get name of currently active ::aura::impact
          WindowText += m_strTitle;
          if (lpszDocName != NULL)
          {
@@ -1627,8 +1627,8 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pgraphics);
       if (m_pviewActive != NULL)
-         return TRUE;        // active ::user::impact will erase/paint itself
-      // for ::user::impact-less frame just use the default background fill
+         return TRUE;        // active ::aura::impact will erase/paint itself
+      // for ::aura::impact-less frame just use the default background fill
       return TRUE;
       //   return user::frame_window::OnEraseBkgnd(pgraphics);
    }
@@ -1722,9 +1722,9 @@ namespace user
    //   dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
    //   dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
    //   if (m_pviewActive != NULL)
-   //      dumpcontext << "\nwith active ::user::impact: " << m_pviewActive.m_p;
+   //      dumpcontext << "\nwith active ::aura::impact: " << m_pviewActive.m_p;
    //   else
-   //      dumpcontext << "\nno active ::user::impact";
+   //      dumpcontext << "\nno active ::aura::impact";
 
    //   dumpcontext << "\n";
    //}
@@ -1913,7 +1913,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // Special ::user::impact swapping/activation
+   // Special ::aura::impact swapping/activation
 
    void frame_window::_001OnSetFocus(signal_details * pobj)
    {
@@ -2001,7 +2001,7 @@ namespace user
 
    // in this file for is_kind_of library granularity (is_kind_of references these)
    //// IMPLEMENT_DYNCREATE(frame_window, ::user::interaction)
-   //// IMPLEMENT_DYNAMIC(::user::impact, ::user::interaction)
+   //// IMPLEMENT_DYNAMIC(::aura::impact, ::user::interaction)
    //// IMPLEMENT_DYNAMIC(::user::control_bar, ::user::interaction)
 
    /////////////////////////////////////////////////////////////////////////////

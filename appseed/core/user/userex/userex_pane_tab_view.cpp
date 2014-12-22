@@ -198,7 +198,7 @@ namespace userex
             
             m_pfilemanager = pmanager;
 
-            sp(::user::impact) pview = pmanager->get_view();
+            sp(::aura::impact) pview = pmanager->get_view();
 
             if(pview != NULL)
             {
@@ -232,7 +232,7 @@ namespace userex
 
             m_pfilemanagerTabbed = pmanager;
 
-            sp(::user::impact) pview = pmanager->get_view();
+            sp(::aura::impact) pview = pmanager->get_view();
 
             if(pview != NULL)
             {

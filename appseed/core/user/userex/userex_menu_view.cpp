@@ -13,7 +13,7 @@ menu_view::menu_view(::aura::application * papp) :
 }
 
 
-void menu_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint) 
+void menu_view::on_update(::aura::impact * pSender, LPARAM lHint, object* phint) 
 {
    form_view::on_update(pSender, lHint, phint);
 }

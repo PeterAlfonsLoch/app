@@ -184,7 +184,7 @@ namespace user
 
       virtual void      _001EnsureVisible(::data::tree_item * pitem);
 
-      virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint);
+      virtual void on_update(::aura::impact * pSender, LPARAM lHint, ::object* pHint);
 
    };
 

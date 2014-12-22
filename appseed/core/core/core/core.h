@@ -478,7 +478,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
    {
       class menu;                 // a menu
       class edit_plain_text;            // Edit control
-      class view;            // a ::user::impact on a document
+      class view;            // a ::aura::impact on a document
       class document_manager;      // impact_system manager object
       class frame_window;        // standard SDI frame
       class interaction_child;
@@ -501,7 +501,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
             class CMiniFrameWnd;// half-height caption frame wnd
 
          // views on a document
-            class CScrollView;  // a scrolling ::user::impact
+            class CScrollView;  // a scrolling ::aura::impact
 
                class thread;           // thread base class
 

@@ -438,7 +438,7 @@ namespace data
    }
 
 
-   void tree::_001OnItemContextMenu(::data::tree_item * pitem, ::action::context actioncontext, ::user::tree * ptree, point pt)
+   void tree::_001OnItemContextMenu(::data::tree_item * pitem, ::action::context actioncontext, ::aura::interaction * ptree, point pt)
    {
 
 
@@ -484,7 +484,7 @@ namespace data
 
    }
 
-   void tree::on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint)
+   void tree::on_update(::aura::impact * pSender, LPARAM lHint, ::object* pHint)
    {
 
    }

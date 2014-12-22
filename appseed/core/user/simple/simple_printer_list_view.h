@@ -8,7 +8,7 @@ public:
 
       
    ::user::simple_list_data   m_listdata;
-   sp(::user::impact)                   m_pview;
+   sp(::aura::impact)                   m_pview;
 
 
    simple_printer_list_view(::aura::application * papp);

@@ -68,7 +68,7 @@ namespace user
    void edit_plain_text_view::walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop)
    {
 
-      ::user::impact::walk_pre_translate_tree(pobj,puiStop);
+      ::aura::impact::walk_pre_translate_tree(pobj,puiStop);
 
    }
 

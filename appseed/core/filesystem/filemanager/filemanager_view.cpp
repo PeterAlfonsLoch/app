@@ -29,7 +29,7 @@ namespace filemanager
 
 
 
-   void view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
+   void view::on_update(::aura::impact * pSender, LPARAM lHint, object* phint)
    {
       ::filemanager::impact::on_update(pSender, lHint, phint);
       ::user::split_view::on_update(pSender, lHint, phint);
@@ -96,7 +96,7 @@ namespace filemanager
                      ::filemanager::save_as_view * ptopview = create_view < ::filemanager::save_as_view >();
                      if (ptopview == NULL)
                      {
-                        System.simple_message_box(NULL, "Could not create folder tree ::user::impact");
+                        System.simple_message_box(NULL, "Could not create folder tree ::aura::impact");
                      }
                      ptopview->m_pmanager = get_filemanager_manager();
                      InsertPaneAt(0, ptopview, true);
@@ -230,7 +230,7 @@ namespace filemanager
       if (pmainview == NULL)
       {
 
-         System.simple_message_box(NULL, "Could not create file list ::user::impact");
+         System.simple_message_box(NULL, "Could not create file list ::aura::impact");
 
       }
 

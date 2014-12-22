@@ -33,7 +33,7 @@ namespace filemanager
 
 
 
-   void left_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
+   void left_view::on_update(::aura::impact * pSender, LPARAM lHint, object* phint)
    {
       
       ::filemanager::impact::on_update(pSender, lHint, phint);
@@ -86,7 +86,7 @@ namespace filemanager
 
       if (plist == NULL)
       {
-         System.simple_message_box(NULL, "Could not create folder tree ::user::impact");
+         System.simple_message_box(NULL, "Could not create folder tree ::aura::impact");
       }
 
       plist->m_bStatic = true;
@@ -101,7 +101,7 @@ namespace filemanager
 
       if(m_pusertree == NULL)
       {
-         System.simple_message_box(NULL, "Could not create file list ::user::impact");
+         System.simple_message_box(NULL, "Could not create file list ::aura::impact");
       }
 
       m_ptree = new tree(get_app());

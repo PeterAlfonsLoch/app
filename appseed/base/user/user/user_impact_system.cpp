@@ -167,7 +167,7 @@ namespace aura
       pFrame->m_pdocumenttemplate = this;
 
       if (!context->m_typeinfoNewView)
-         TRACE(::aura::trace::category_AppMsg, 0, "Warning: creating frame with no default ::user::impact.\n");
+         TRACE(::aura::trace::category_AppMsg, 0, "Warning: creating frame with no default ::aura::impact.\n");
 
       // create new from resource
       if (!pFrame->LoadFrame(m_strMatter,
@@ -320,7 +320,7 @@ namespace aura
 
 
 
-   void impact_system::update_all_views(sp(::user::impact) pviewSender, LPARAM lhint, ::object * puh)
+   void impact_system::update_all_views(sp(::aura::impact) pviewSender, LPARAM lhint, ::object * puh)
    {
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)

@@ -1637,7 +1637,7 @@ namespace windows
    /////////////////////////////////////////////////////////////////////////////
    // Scroll bar helpers
    //  hook for interaction_impl functions
-   //    only works for derived class (eg: ::user::impact) that override 'GetScrollBarCtrl'
+   //    only works for derived class (eg: ::aura::impact) that override 'GetScrollBarCtrl'
    // if the interaction_impl doesn't have a _visible_ windows scrollbar - then
    //   look for a sibling with the appropriate ID
 

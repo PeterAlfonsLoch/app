@@ -254,7 +254,7 @@ namespace user
    void control::install_message_handling(::message::dispatch * pdispatch)
    {
 
-//      ::user::impact::install_message_handling(pdispatch);
+//      ::aura::impact::install_message_handling(pdispatch);
       ::database::user::interaction::install_message_handling(pdispatch);
       IGUI_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &::user::control::_001OnMouseMove);
 

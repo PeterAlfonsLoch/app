@@ -125,7 +125,7 @@ namespace user
       void key_to_char(::message::key * pkey);
 
       virtual void install_message_handling(::message::dispatch * pinterface);
-      virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::user::impact
+      virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::aura::impact
       DECL_GEN_SIGNAL(_001OnInitialUpdate);
 
 

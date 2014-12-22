@@ -582,9 +582,9 @@ namespace core
             strType = "application";
             //            create_bergedge(pcreatecontext);
             //          ::exception::throw_not_implemented(get_app());
-            /*if(get_document() != NULL && get_document()->get_typed_view < ::platform::user::impact >() != NULL)
+            /*if(get_document() != NULL && get_document()->get_typed_view < ::platform::aura::impact >() != NULL)
             {
-            sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::platform::user::impact >()->GetParentFrame());
+            sp(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::platform::aura::impact >()->GetParentFrame());
             if(pframe != NULL)
             {
             pframe->ShowWindow(SW_SHOW);
@@ -724,7 +724,7 @@ namespace core
    return m_pbergedgedocument;
    }
 
-   ::sessionsp(::user::impact) platform::get_view()
+   ::sessionsp(::aura::impact) platform::get_view()
    {
    if(get_document() == NULL)
    return NULL;
@@ -1151,7 +1151,7 @@ namespace core
    //            else
    //            {
    //
-   //               puiParent = get_document()->get_typed_view < ::platform::user::impact >();
+   //               puiParent = get_document()->get_typed_view < ::platform::aura::impact >();
    //
    //            }
    //
@@ -1186,7 +1186,7 @@ namespace core
    else
    {
 
-   holderptra.add(get_document()->get_typed_view < ::platform::user::impact >());
+   holderptra.add(get_document()->get_typed_view < ::platform::aura::impact >());
 
    }
 
@@ -1360,7 +1360,7 @@ namespace core
       return m_pbergedgedocument;
    }
 
-   sp(::user::impact) platform::get_view()
+   sp(::aura::impact) platform::get_view()
    {
       if(get_document() == NULL)
          return NULL;

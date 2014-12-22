@@ -2681,7 +2681,7 @@ namespace user
         }
         }*/
       //  if (typeDescription == NULL || type == NULL){
-      sp(::user::impact) pview =  (this);
+      sp(::aura::impact) pview =  (this);
       if(pview != NULL)
       {
          sp(::aura::document) pdoc = pview->get_document();

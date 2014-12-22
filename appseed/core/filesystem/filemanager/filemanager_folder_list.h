@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE folder_list :
-      virtual public ::user::impact,
+      virtual public ::aura::impact,
       virtual public ::user::list,
       virtual public impact
    {
@@ -51,8 +51,8 @@ namespace filemanager
       virtual ~folder_list ();
       
       virtual void install_message_handling(::message::dispatch * pinterface);
-      virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::user::impact
-      virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
+      virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::aura::impact
+      virtual void on_update(::aura::impact * pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(::user::create_struct& cs);
 
       

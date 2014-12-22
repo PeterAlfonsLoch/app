@@ -1,6 +1,8 @@
 #include "framework.h"
-//#include "freeimage/Source/FreeImage.h"
-//#include "visual_FreeImageFileProc.h"
+#ifdef AXIS_FREEIMAGE
+#include "freeimage/Source/FreeImage.h"
+#include "visual_FreeImageFileProc.h"
+#endif
 #ifdef WINDOWSEX
 
 #undef new

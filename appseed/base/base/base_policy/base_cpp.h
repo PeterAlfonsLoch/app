@@ -107,12 +107,13 @@ namespace user
 
 }
 
+
+
 namespace user
 {
 
    class control_event;
    class create_context;
-   class impact;
    class printer;
    class user;
    class document;
@@ -147,7 +148,6 @@ namespace user
    class tree;
    class str_context;
    class schema_simple_impl;
-   class impact;
    class window_draw;
    class str;
 
@@ -169,7 +169,6 @@ namespace user
    class interaction;
    class control_event;
    class create_context;
-   class impact;
    class user;
    class document;
    class frame_window;

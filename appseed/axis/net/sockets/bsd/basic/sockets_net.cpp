@@ -3,7 +3,7 @@
 
 
 
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 #include <unistd.h>
 #if defined(APPLEOS)
 #define	NI_MAXHOST	1025

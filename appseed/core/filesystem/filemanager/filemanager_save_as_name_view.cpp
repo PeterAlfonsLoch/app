@@ -19,9 +19,9 @@ namespace filemanager
 
       }
 
-   void save_as_view::on_update(::user::impact * pSender,LPARAM lHint,object* phint)
+   void save_as_view::on_update(::aura::impact * pSender,LPARAM lHint,object* phint)
    {
-      ::user::impact::on_update(pSender,lHint,phint);
+      ::aura::impact::on_update(pSender,lHint,phint);
       if(phint != NULL)
       {
          if(base_class < ::filemanager::update_hint >::bases(phint))

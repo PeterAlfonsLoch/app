@@ -118,7 +118,7 @@ namespace userfs
    }
 #endif //DEBUG
 
-   void list::on_update(::user::impact * pSender, LPARAM lHint, object * phint)
+   void list::on_update(::aura::impact * pSender, LPARAM lHint, object * phint)
    {
 
 
@@ -141,7 +141,7 @@ namespace userfs
    void list::_001OnCancelMode(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-   // trans   ::user::impact::OnCancelMode();
+   // trans   ::aura::impact::OnCancelMode();
 
       // TODO: add your message handler code here
 

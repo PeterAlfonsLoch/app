@@ -27,13 +27,13 @@ namespace filemanager
 
    void folder_list::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::impact::install_message_handling(pinterface);
+      ::aura::impact::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &folder_list::_001OnLButtonDblClk);
       IGUI_WIN_MSG_LINK(WM_CANCELMODE, pinterface, this, &folder_list::_001OnCancelMode);
    }
 
 
-   // BEGIN_MESSAGE_MAP(folder_list, ::user::impact)
+   // BEGIN_MESSAGE_MAP(folder_list, ::aura::impact)
    //{{__MSG_MAP(folder_list)
    /*
    ON_WM_LBUTTONDBLCLK()
@@ -58,16 +58,16 @@ namespace filemanager
 #ifdef DEBUG
    void folder_list::assert_valid() const
    {
-      ::user::impact::assert_valid();
+      ::aura::impact::assert_valid();
    }
 
    void folder_list::dump(dump_context & dumpcontext) const
    {
-      ::user::impact::dump(dumpcontext);
+      ::aura::impact::dump(dumpcontext);
    }
 #endif //DEBUG
 
-   void folder_list::on_update(::user::impact * pSender, LPARAM lHint, object * phint) 
+   void folder_list::on_update(::aura::impact * pSender, LPARAM lHint, object * phint) 
    {
       ::filemanager::impact::on_update(pSender, lHint, phint);
       if(phint != NULL)
@@ -103,7 +103,7 @@ namespace filemanager
    void folder_list::_001OnCancelMode(signal_details * pobj) 
    {
       UNREFERENCED_PARAMETER(pobj);
-      // trans   ::user::impact::OnCancelMode();
+      // trans   ::aura::impact::OnCancelMode();
 
       // TODO: add your message handler code here
 
@@ -114,7 +114,7 @@ namespace filemanager
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::user::impact::pre_create_window(cs);
+      return ::aura::impact::pre_create_window(cs);
    }
 
    void folder_list::_001InsertColumns()

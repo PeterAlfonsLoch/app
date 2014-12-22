@@ -67,8 +67,8 @@ namespace aura
          ::count count = get_view_count();
          for (index index = 0; index < count; index++)
          {
-            sp(::user::impact) pview = get_view(index);
-            dumpcontext << "\nwith ::user::impact " << (void *)pview;
+            sp(::aura::impact) pview = get_view(index);
+            dumpcontext << "\nwith ::aura::impact " << (void *)pview;
          }
       }
 
@@ -84,7 +84,7 @@ namespace aura
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         sp(::aura::impact) pview = get_view(index);
          ASSERT_VALID(pview);
       }
    }
@@ -133,9 +133,9 @@ namespace aura
       single_lock sl(&m_mutex, true);
       for (index index = 0; index < m_viewptra.get_count(); index++)
       {
-         sp(::user::impact) pview = m_viewptra[index];
+         sp(::aura::impact) pview = m_viewptra[index];
          ASSERT_VALID(pview);
-         ASSERT_KINDOF(::user::impact, pview);
+         ASSERT_KINDOF(::aura::impact, pview);
          pview->m_pdocument = NULL;
       }
       m_viewptra.remove_all();
@@ -162,17 +162,17 @@ namespace aura
    }
 
 
-   sp(::user::impact) document::get_view(index index) const
+   sp(::aura::impact) document::get_view(index index) const
    {
       single_lock sl(&((document *) this)->m_mutex, true);
       if (index < 0 || index >= m_viewptra.get_count())
          return NULL;
-      sp(::user::impact) pview = m_viewptra[index];
-      ASSERT_KINDOF(::user::impact, pview);
+      sp(::aura::impact) pview = m_viewptra[index];
+      ASSERT_KINDOF(::aura::impact, pview);
       return pview;
    }
 
-   void document::update_all_views(sp(::user::impact) pSender, LPARAM lHint, ::object * pHint)
+   void document::update_all_views(sp(::aura::impact) pSender, LPARAM lHint, ::object * pHint)
       // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
@@ -181,14 +181,14 @@ namespace aura
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         sp(::aura::impact) pview = get_view(index);
          ASSERT_VALID(pview);
          if (pview != pSender)
             pview->on_update(pSender, lHint, pHint);
       }
    }
 
-   void document::send_update(sp(::user::impact) pSender, LPARAM lHint, ::object * pHint)
+   void document::send_update(sp(::aura::impact) pSender, LPARAM lHint, ::object * pHint)
       // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
@@ -198,7 +198,7 @@ namespace aura
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         sp(::aura::impact) pview = get_view(index);
 
          pupdate = new update;
          pupdate->m_pSender = pSender;
@@ -215,7 +215,7 @@ namespace aura
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         sp(::aura::impact) pview = get_view(index);
          ASSERT_VALID(pview);
          pview->_001OnInitialUpdate(NULL);
       }
@@ -237,12 +237,12 @@ namespace aura
    }
 
 
-   sp(::user::impact) document::get_typed_view(sp(type) info, index indexFind)
+   sp(::aura::impact) document::get_typed_view(sp(type) info, index indexFind)
    {
       single_lock sl(&m_mutex, true);
       ::count countView = get_view_count();
       ::count countFind = 0;
-      sp(::user::impact) pview;
+      sp(::aura::impact) pview;
       for (index index = 0; index < countView; index++)
       {
          pview = get_view(index);
@@ -263,7 +263,7 @@ namespace aura
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         sp(::aura::impact) pview = get_view(index);
          pview->GetParentFrame()->ShowWindow(nCmdShow);
       }
    }
@@ -561,8 +561,8 @@ namespace aura
       m_bAutoDelete = FALSE;  // don't destroy document_interface while closing views
       for (index index = 0; index < m_viewptra.get_count(); index++)
       {
-         // get frame attached to the ::user::impact
-         sp(::user::impact) pview = m_viewptra[index];
+         // get frame attached to the ::aura::impact
+         sp(::aura::impact) pview = m_viewptra[index];
          ASSERT_VALID(pview);
          sp(::user::frame_window) pFrame = pview->GetParentFrame();
 
@@ -571,7 +571,7 @@ namespace aura
             // and close it
             pre_close_frame(pFrame);
             pFrame->DestroyWindow();
-            // will destroy the ::user::impact as well
+            // will destroy the ::aura::impact as well
          }
       }
       m_viewptra.remove_all();
@@ -689,7 +689,7 @@ namespace aura
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         sp(::aura::impact) pview = get_view(index);
          ASSERT_VALID(pview);
          sp(::user::frame_window) pFrame = pview->GetParentFrame();
          // assume frameless views are ok to close
@@ -884,7 +884,7 @@ namespace aura
       index index;
       for (index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         sp(::aura::impact) pview = get_view(index);
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
@@ -900,7 +900,7 @@ namespace aura
       count = get_view_count();
       for (index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         sp(::aura::impact) pview = get_view(index);
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
@@ -921,7 +921,7 @@ namespace aura
       count = get_view_count();
       for (index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         sp(::aura::impact) pview = get_view(index);
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
@@ -955,17 +955,17 @@ namespace aura
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact operations
+   // ::aura::impact operations
 
    
-   void document::add_view(sp(::user::impact) pview)
+   void document::add_view(sp(::aura::impact) pview)
    {
 
       single_lock sl(&m_mutex, true);
 
       ASSERT_VALID(pview);
 
-      ASSERT(pview->::user::impact::get_document() == NULL); // must not be already attached
+      ASSERT(pview->::aura::impact::get_document() == NULL); // must not be already attached
 
       if (m_viewptra.add_unique(pview))
       {
@@ -979,14 +979,14 @@ namespace aura
    }
 
 
-   void document::remove_view(sp(::user::impact) pview)
+   void document::remove_view(sp(::aura::impact) pview)
    {
       
       single_lock sl(&m_mutex, true);
 
       ASSERT_VALID(pview);
 
-      ASSERT(pview->::user::impact::get_document() == this); // must be attached to us
+      ASSERT(pview->::aura::impact::get_document() == this); // must be attached to us
 
       if (m_viewptra.remove(pview) > 0)
       {

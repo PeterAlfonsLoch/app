@@ -12,7 +12,7 @@ public:
 
    form_view(::aura::application * papp);
 
-   void on_update(::user::impact * pSender, LPARAM lHint, object* phint);
+   void on_update(::aura::impact * pSender, LPARAM lHint, object* phint);
    virtual bool BaseOnControlEvent(::user::control_event * pevent);
    DECL_GEN_SIGNAL(_001OnCreate);
    DECL_GEN_SIGNAL(_001OnTimer);

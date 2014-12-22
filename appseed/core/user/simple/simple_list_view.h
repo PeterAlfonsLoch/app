@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_CORE simple_list_view :
-   virtual public ::user::impact,
+   virtual public ::aura::impact,
    virtual public ::user::form_list
 {
 public:

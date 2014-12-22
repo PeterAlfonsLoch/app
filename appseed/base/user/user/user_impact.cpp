@@ -15,13 +15,13 @@
 /*#define ON_MESSAGE_VOID(message, memberFxn) \
 { message, 0, 0, 0, ::core::Sig_vv, \
 (__PMSG)(__PMSGW)(void (__MSG_CALL ::user::interaction::*)())&memberFxn },*/
-// IMPLEMENT_DYNAMIC(::user::impact, ::user::interaction)
+// IMPLEMENT_DYNAMIC(::aura::impact, ::user::interaction)
 
 /////////////////////////////////////////////////////////////////////////////
-// ::user::impact
+// ::aura::impact
 
-// BEGIN_MESSAGE_MAP(::user::impact, ::user::interaction)
-//{{__MSG_MAP(::user::impact)
+// BEGIN_MESSAGE_MAP(::aura::impact, ::user::interaction)
+//{{__MSG_MAP(::aura::impact)
 /*   ON_WM_PAINT()
 ON_WM_MOUSEACTIVATE()
 
@@ -117,7 +117,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact second phase construction - bind to ::aura::document
+   // ::aura::impact second phase construction - bind to ::aura::document
 
    bool impact::pre_create_window(::user::create_struct & cs)
    {
@@ -147,14 +147,14 @@ namespace user
          return;
 
       // if ok, wire in the current ::aura::document
-      ASSERT(::user::impact::get_document() == NULL);
+      ASSERT(::aura::impact::get_document() == NULL);
       sp(::create) pContext = (::create *) pcreate->m_lpcreatestruct->lpCreateParams;
 
-      // A ::user::impact should be created in a given context!
+      // A ::aura::impact should be created in a given context!
       if (pContext != NULL && pContext->m_user->m_pCurrentDoc != NULL)
       {
          pContext->m_user->m_pCurrentDoc->add_view(this);
-         ASSERT(::user::impact::get_document() != NULL);
+         ASSERT(::aura::impact::get_document() != NULL);
       }
       else
       {
@@ -185,7 +185,7 @@ namespace user
       {
          // default for views is to allocate them on the heap
          //  the default post-cleanup is to 'delete this'.
-         //  never explicitly call 'delete' on a ::user::impact
+         //  never explicitly call 'delete' on a ::aura::impact
          delete_this();
       }*/
 
@@ -235,7 +235,7 @@ namespace user
       if (::user::interaction::_001OnCmdMsg(pcmdmsg))
          return TRUE;
       sp(::user::interaction) pwndex;
-      if (base_class < ::user::impact > ::bases(GetParent()))
+      if (base_class < ::aura::impact > ::bases(GetParent()))
       {
          pwndex = GetParent();
          if (pwndex != NULL)
@@ -246,11 +246,11 @@ namespace user
       }
 
       // then pump through document
-      if (::user::impact::get_document() != NULL)
+      if (::aura::impact::get_document() != NULL)
       {
-         if (::user::impact::get_document()->_001OnCmdMsg(pcmdmsg))
+         if (::aura::impact::get_document()->_001OnCmdMsg(pcmdmsg))
             return TRUE;
-         sp(::user::impact) pview = ::user::impact::get_document()->get_view(0);
+         sp(::aura::impact) pview = ::aura::impact::get_document()->get_view(0);
          ASSERT_VALID(pview);
          if (pview != this && pview != GetParent())
          {
@@ -269,7 +269,7 @@ namespace user
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact drawing support
+   // ::aura::impact drawing support
 
    void impact::OnPaint()
    {
@@ -281,7 +281,7 @@ namespace user
 
    ::aura::document * impact::get_document(::user::interaction * pui)
    {
-      sp(::user::impact) pview = pui;
+      sp(::aura::impact) pview = pui;
       if (pview != NULL)
          return NULL;
       return pview->get_document();
@@ -293,7 +293,7 @@ namespace user
       on_update(NULL, 0, NULL);        // initial update
    }
 
-   void impact::on_update(::user::impact * pSender, LPARAM lHint, object* pHint)
+   void impact::on_update(::aura::impact * pSender, LPARAM lHint, object* pHint)
    {
       if (pHint != NULL)
       {
@@ -314,7 +314,7 @@ namespace user
       //Invalidate(TRUE);
    }
 
-   void impact::on_simple_view_update_hint(sp(::user::impact) pviewSender, e_hint ehint, object * phint)
+   void impact::on_simple_view_update_hint(sp(::aura::impact) pviewSender, e_hint ehint, object * phint)
    {
 
       switch (ehint)
@@ -330,7 +330,7 @@ namespace user
 
    }
 
-   void impact::OnViewUpdateHint(sp(::user::impact) pSender, LPARAM lHint, ::user::view_update_hint * pHint)
+   void impact::OnViewUpdateHint(sp(::aura::impact) pSender, LPARAM lHint, ::user::view_update_hint * pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -339,7 +339,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact selection support
+   // ::aura::impact selection support
 
    bool impact::IsSelected(const object* pDocItem) const
    {
@@ -349,7 +349,7 @@ namespace user
       return FALSE;   // not implemented, so not selected
    }
 
-   void impact::OnActivateView(bool bActivate, sp(::user::impact) pActivateView, sp(::user::impact))
+   void impact::OnActivateView(bool bActivate, sp(::aura::impact) pActivateView, sp(::aura::impact))
    {
       UNUSED(pActivateView);   // unused in release builds
 
@@ -357,7 +357,7 @@ namespace user
       {
          ASSERT(pActivateView == this);
 
-         // take the focus if this frame/::user::impact/pane is now active
+         // take the focus if this frame/::aura::impact/pane is now active
          // trans      if (IsTopParentActive())
          //trans   SetFocus();
       }
@@ -380,18 +380,18 @@ namespace user
    // eat it if this will cause activation
    ASSERT(pParentFrame == pDesktopWnd || pDesktopWnd->IsChild(pParentFrame));
 
-   // either re-activate the current ::user::impact, or set this ::user::impact to be active
-   sp(::user::impact) pview = pParentFrame->GetActiveView();
+   // either re-activate the current ::aura::impact, or set this ::aura::impact to be active
+   sp(::aura::impact) pview = pParentFrame->GetActiveView();
    oswindow oswindow_Focus = ::GetFocus();
    if (pview == this &&
    get_handle() != oswindow_Focus && !::IsChild(get_handle(), oswindow_Focus))
    {
-   // re-activate this ::user::impact
+   // re-activate this ::aura::impact
    OnActivateView(TRUE, this, this);
    }
    else
    {
-   // activate this ::user::impact
+   // activate this ::aura::impact
    pParentFrame->SetActiveView(this);
    }
    }
@@ -400,7 +400,7 @@ namespace user
    */
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact scrolling support
+   // ::aura::impact scrolling support
 
    bool impact::OnScroll(UINT /*nScrollCode*/, UINT /*nPos*/, bool /*bDoScroll*/)
    {
@@ -413,7 +413,7 @@ namespace user
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact drag/drop support
+   // ::aura::impact drag/drop support
 
    ///*DROPEFFECT impact::OnDragScroll(uint32_t /*dwKeyState*/, point /*point*/)
    //{
@@ -453,7 +453,7 @@ namespace user
    //}
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact splitting commands
+   // ::aura::impact splitting commands
 
 
 /*   CScrollBar* impact::GetScrollBarCtrl(int32_t nBar) const
@@ -528,14 +528,14 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact diagnostics
+   // ::aura::impact diagnostics
 
 
    void impact::dump(dump_context & dumpcontext) const
    {
       ::user::interaction::dump(dumpcontext);
 
-      if (((impact *) this)->::user::impact::get_document() != NULL)
+      if (((impact *) this)->::aura::impact::get_document() != NULL)
          dumpcontext << "with ::aura::document: ";
       else
          dumpcontext << "with no ::aura::document\n";
@@ -646,7 +646,7 @@ namespace user
          pui = App(papp).alloc(pContext->m_user->m_typeinfoNewView);
          if (pui == NULL)
          {
-            //         TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n", pContext->m_typeinfoNewView.name());
+            //         TRACE1("Warning: Dynamic create of ::aura::impact type %hs failed.\n", pContext->m_typeinfoNewView.name());
             return NULL;
          }
 
@@ -659,20 +659,20 @@ namespace user
       if (!pui->create_window(NULL, NULL, WS_VISIBLE | WS_CHILD, rect, pwndParent, id, pContext))
       {
 
-         //TRACE0("Warning: could not create ::user::impact for frame.\n");
-         return NULL;        // can't continue without a ::user::impact
+         //TRACE0("Warning: could not create ::aura::impact for frame.\n");
+         return NULL;        // can't continue without a ::aura::impact
 
       }
 
 
-      sp(::user::impact) pview = pui;
+      sp(::aura::impact) pview = pui;
       if (pview != NULL)
       {
          pview->_001OnInitialUpdate(NULL);
       }
       /*   if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
       {
-      // remove the 3d style from the frame, since the ::user::impact is
+      // remove the 3d style from the frame, since the ::aura::impact is
       //  providing it.
       // make sure to recalc the non-client area
       ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
@@ -735,7 +735,7 @@ namespace user
 
       ASSERT(this != NULL);
 
-      return ((::user::impact *) this)->m_pdocument;
+      return ((::aura::impact *) this)->m_pdocument;
 
    }
 
@@ -842,7 +842,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact second phase construction - bind to document
+   // ::aura::impact second phase construction - bind to document
 
    //const CHAR _vfxWndFrameOrView[] = __WNDFRAMEORVIEW;
 
@@ -850,7 +850,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact drawing support
+   // ::aura::impact drawing support
 
 
    /*void impact::_001OnInitialUpdate(signal_details * pobj)
@@ -858,13 +858,13 @@ namespace user
    on_update(NULL, 0, NULL);        // initial update
    }*/
 
-   /*   void impact::on_update(::user::impact * pSender, LPARAM lHint, object * pHint)
+   /*   void impact::on_update(::aura::impact * pSender, LPARAM lHint, object * pHint)
    {
-   ::user::impact::on_update(pSender, lHint, pHint);
+   ::aura::impact::on_update(pSender, lHint, pHint);
    }
    */
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact selection support
+   // ::aura::impact selection support
 
    /*   bool impact::IsSelected(const object* pDocItem) const
    {
@@ -895,18 +895,18 @@ namespace user
          ASSERT(pParentFrame == pmouseactivate->GetDesktopWindow()
             || pmouseactivate->GetDesktopWindow()->IsChild(pParentFrame));
 
-         // either re-activate the current ::user::impact, or set this ::user::impact to be active
-         sp(::user::impact) pview = pParentFrame->GetActiveView();
+         // either re-activate the current ::aura::impact, or set this ::aura::impact to be active
+         sp(::aura::impact) pview = pParentFrame->GetActiveView();
          sp(::user::interaction) oswindow_Focus = System.get_focus_guie();
          if (pview == this &&
             this != oswindow_Focus && !IsChild(oswindow_Focus))
          {
-            // re-activate this ::user::impact
+            // re-activate this ::aura::impact
             OnActivateView(TRUE, this, this);
          }
          else
          {
-            // activate this ::user::impact
+            // activate this ::aura::impact
             pParentFrame->SetActiveView(this);
          }
       }
@@ -926,18 +926,18 @@ namespace user
          /*      ASSERT(pParentFrame == pmouseactivate->GetDesktopWindow()
          || pmouseactivate->GetDesktopWindow()->IsChild(pParentFrame));*/
 
-         // either re-activate the current ::user::impact, or set this ::user::impact to be active
-         sp(::user::impact) pview = pParentFrame->GetActiveView();
+         // either re-activate the current ::aura::impact, or set this ::aura::impact to be active
+         sp(::aura::impact) pview = pParentFrame->GetActiveView();
          sp(::user::interaction) oswindow_Focus = System.get_focus_guie();
          if (pview == this &&
             this != oswindow_Focus && !IsChild(oswindow_Focus))
          {
-            // re-activate this ::user::impact
+            // re-activate this ::aura::impact
             OnActivateView(TRUE, this, this);
          }
          else
          {
-            // activate this ::user::impact
+            // activate this ::aura::impact
             pParentFrame->SetActiveView(this);
          }
       }
@@ -945,7 +945,7 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact drag/drop support
+   // ::aura::impact drag/drop support
 
    DROPEFFECT impact::OnDragScroll(uint32_t /*dwKeyState*/, point /*point*/)
    {
@@ -1007,16 +1007,16 @@ namespace user
    }
 
 
-   // // IMPLEMENT_DYNAMIC for ::user::impact is in wincore.cpp for .OBJ granularity reasons
+   // // IMPLEMENT_DYNAMIC for ::aura::impact is in wincore.cpp for .OBJ granularity reasons
 
    //// IMPLEMENT_DYNAMIC(CSplitterWnd, ::user::interaction)   // for swap tuning
-   //// IMPLEMENT_DYNAMIC(CCtrlView, ::user::impact)
+   //// IMPLEMENT_DYNAMIC(CCtrlView, ::aura::impact)
 
    /////////////////////////////////////////////////////////////////////////////
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact's OnPrintPreview.  Here to force linkage
+   // ::aura::impact's OnPrintPreview.  Here to force linkage
 
    void impact::_001OnFilePrintPreview(signal_details * pobj)
    {
@@ -1042,7 +1042,7 @@ namespace user
    sp(::user::interaction) pview =  (System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
-   TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
+   TRACE1("Warning: Dynamic create of ::aura::impact type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
    return NULL;
    }
@@ -1052,15 +1052,15 @@ namespace user
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
    rect(0,0,0,0), this, nID, (sp(::create)) pContext))
    {
-   TRACE0("Warning: could not create ::user::impact for frame.\n");
-   return NULL;        // can't continue without a ::user::impact
+   TRACE0("Warning: could not create ::aura::impact for frame.\n");
+   return NULL;        // can't continue without a ::aura::impact
    }
 
-   sp(::user::impact) pview =  (pview);
+   sp(::aura::impact) pview =  (pview);
    pview->_001OnInitialUpdate(NULL);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
-   // remove the 3d style from the frame, since the ::user::impact is
+   // remove the 3d style from the frame, since the ::aura::impact is
    //  providing it.
    // make sure to recalc the non-client area
    ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
@@ -1079,7 +1079,7 @@ namespace user
    ::window_sp pview = (pwndParent->System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
-   TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
+   TRACE1("Warning: Dynamic create of ::aura::impact type %hs failed.\n",
    pContext->m_typeinfoNewView.name());
    return NULL;
    }
@@ -1089,14 +1089,14 @@ namespace user
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
    rect(0,0,0,0), pwndParent, nID, (sp(::create)) pContext))
    {
-   TRACE0("Warning: could not create ::user::impact for frame.\n");
-   return NULL;        // can't continue without a ::user::impact
+   TRACE0("Warning: could not create ::aura::impact for frame.\n");
+   return NULL;        // can't continue without a ::aura::impact
    }
 
    ( (pview))->_001OnInitialUpdate(NULL);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
-   // remove the 3d style from the frame, since the ::user::impact is
+   // remove the 3d style from the frame, since the ::aura::impact is
    //  providing it.
    // make sure to recalc the non-client area
    ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);

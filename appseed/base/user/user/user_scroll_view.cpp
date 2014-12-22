@@ -21,7 +21,7 @@ namespace user
    {
 
       ::user::scroll_control::install_message_handling(pdispatch);
-      ::user::impact::install_message_handling(pdispatch);
+      ::aura::impact::install_message_handling(pdispatch);
 
    }
 

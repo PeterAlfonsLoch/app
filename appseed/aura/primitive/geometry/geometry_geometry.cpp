@@ -70,8 +70,8 @@ namespace geometry
    // of the width from left to right.
    //
    // Output:
-   // -1 if the creation of the ::user::impact failed.
-   // 0 if the creation of the ::user::impact succeeded.
+   // -1 if the creation of the ::aura::impact failed.
+   // 0 if the creation of the ::aura::impact succeeded.
    //
    // Author:
    // Vanessa Testoni

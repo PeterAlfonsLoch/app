@@ -793,7 +793,7 @@
       </EntryPointSymbol>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
-      <AndroidSystemLibs>c;m;log;gcc;aura;aurasqlite;axisbzip2;axiszlib;axisfreetype</AndroidSystemLibs>
+      <AndroidSystemLibs>c;m;log;gcc;aura;aurasqlite;axisbzip2;axiszlib;axisfreetype;axispixman;axispng</AndroidSystemLibs>
     </Link>
     <PreBuildEvent>
       <Command>

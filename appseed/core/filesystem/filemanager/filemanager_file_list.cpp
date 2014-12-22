@@ -52,7 +52,7 @@ namespace filemanager
 
    void file_list::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::impact::install_message_handling(pinterface);
+      ::aura::impact::install_message_handling(pinterface);
       ::user::form_list::install_message_handling(pinterface);
       ::userfs::list::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageMainPost, pinterface, this, &file_list::_001OnMainPostMessage);
@@ -72,17 +72,17 @@ namespace filemanager
    #ifdef DEBUG
    void file_list::assert_valid() const
    {
-      ::user::impact::assert_valid();
+      ::aura::impact::assert_valid();
    }
 
    void file_list::dump(dump_context & dumpcontext) const
    {
-      ::user::impact::dump(dumpcontext);
+      ::aura::impact::dump(dumpcontext);
    }
    #endif //DEBUG
 
 
-   void file_list::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
+   void file_list::on_update(::aura::impact * pSender, LPARAM lHint, object* phint)
    {
 
       ::filemanager::impact::on_update(pSender, lHint, phint);
@@ -331,7 +331,7 @@ namespace filemanager
 
       cs.style |= WS_CLIPCHILDREN;
 
-      return ::user::impact::pre_create_window(cs);
+      return ::aura::impact::pre_create_window(cs);
    }
 
    UINT c_cdecl file_list::ThreadProcFileSize(LPVOID lpparam)
@@ -445,7 +445,7 @@ namespace filemanager
       GetSelected(itema);
       if(get_filemanager_manager()->HandleDefaultFileManagerItemCmdMsg(pcmdmsg, itema))
          return TRUE;
-      return ::user::impact::_001OnCmdMsg(pcmdmsg);
+      return ::aura::impact::_001OnCmdMsg(pcmdmsg);
    }
 
    void file_list::_001OnShellCommand(signal_details * pobj)
@@ -771,7 +771,7 @@ namespace filemanager
       }
       else
       {
-         return ::user::impact::on_simple_update(pcmdui);
+         return ::aura::impact::on_simple_update(pcmdui);
       }
    }
 
@@ -815,7 +815,7 @@ namespace filemanager
       }
       else
       {
-         return ::user::impact::on_simple_action(id);
+         return ::aura::impact::on_simple_action(id);
       }
 
    }

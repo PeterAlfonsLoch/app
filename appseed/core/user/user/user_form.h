@@ -63,7 +63,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch *pinterface);
       virtual void _001InitializeFormPreData();
-      virtual void _001OnUpdate(sp(::user::impact) pviewSender, LPARAM lhint, object* phint);
+      virtual void _001OnUpdate(sp(::aura::impact) pviewSender, LPARAM lhint, object* phint);
       virtual void _001Update(sp(control) pcontrol);
       virtual void _001UpdateCheckBox(sp(control) pcontrol);
       virtual void _001UpdateComboBox(sp(control) pcontrol);

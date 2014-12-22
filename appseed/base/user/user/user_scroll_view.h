@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_BASE scroll_view:
-      virtual public impact,
+      virtual public ::aura::impact,
       virtual public scroll_control
    {
    public:

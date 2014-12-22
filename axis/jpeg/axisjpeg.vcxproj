@@ -1354,7 +1354,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Source\FreeImage\PluginJPEG.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginJPEG.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|Android'">-Wnarrowing -std=c++11 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="Source\LibJPEG\ansi2knr.c" />
     <ClCompile Include="Source\LibJPEG\cdjpeg.c" />
     <ClCompile Include="Source\LibJPEG\cjpeg_main.c" />

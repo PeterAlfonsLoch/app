@@ -26,7 +26,7 @@ namespace filemanager
 
       DECL_GEN_SIGNAL(_001OnCreate);
       
-      virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
+      virtual void on_update(::aura::impact * pSender, LPARAM lHint, object* pHint);
       
 
    };

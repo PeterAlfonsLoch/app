@@ -129,8 +129,8 @@ class preview_dc;               // Virtual DC for print preview
 
 //command_target
 //interaction_impl
-//::user::impact
-class CPreviewView;     // Print preview ::user::impact
+//::aura::impact
+class CPreviewView;     // Print preview ::aura::impact
 //frame_window
 class COleCntrFrameWnd;
 //CMiniFrameWnd

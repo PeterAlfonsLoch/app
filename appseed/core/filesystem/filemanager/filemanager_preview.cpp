@@ -17,11 +17,11 @@ namespace filemanager
 
    void preview::install_message_handling(::message::dispatch * pdispatch)
    {
-      ::user::impact::install_message_handling(pdispatch);
+      ::aura::impact::install_message_handling(pdispatch);
    }
 
 
-   void preview::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
+   void preview::on_update(::aura::impact * pSender, LPARAM lHint, object* phint)
    {
       ::filemanager::impact::on_update(pSender, lHint, phint);
       if (phint != NULL)

@@ -449,7 +449,7 @@ int32_t my_open(const char * psz,int32_t i)
 
 }
 
-void _get_errno(int32_t * perrno)
+void my_get_errno(int32_t * perrno)
 {
    *perrno = errno;
 }

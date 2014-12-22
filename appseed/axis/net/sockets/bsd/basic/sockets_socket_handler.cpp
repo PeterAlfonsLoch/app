@@ -1,5 +1,7 @@
 #include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
-
+#ifdef ANDROID
+#include <unistd.h>
+#endif
 
 #if defined(APPLEOS)
 
