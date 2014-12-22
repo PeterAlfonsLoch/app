@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 #include "windows_dir.h"
 #include "windows_factory_exchange.h"
 #include "windows_port_forward.h"
@@ -35,7 +35,7 @@ namespace windows
 } // namespace windows
 
 
-void __node_base_factory_exchange(::aura::application * papp)
+void __node_axis_factory_exchange(::aura::application * papp)
 {
 
    windows::factory_exchange factoryexchange(papp);

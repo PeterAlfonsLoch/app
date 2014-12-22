@@ -26,10 +26,10 @@
 
 #if defined(APPLE_IOS)
 
-#include "axis/os/ios/ios_m.h"
+#include "base/os/ios/ios_m.h"
 
 #else
 
-#include "axis/os/macos/macos_mm.h"
+#include "base/os/macos/macos_mm.h"
 
 #endif

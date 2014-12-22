@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_BASE signal :
+   class CLASS_DECL_AXIS signal :
       public signal_details
    {
    public:

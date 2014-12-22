@@ -13,13 +13,13 @@
 #define CLASS_DECL_AXIS  CLASS_DECL_IMPORT
 #endif
 
-#ifdef _BASE_STATIC
-#define CLASS_DECL_BASE
-#elif defined(_BASE_LIBRARY)
-#define CLASS_DECL_BASE  CLASS_DECL_EXPORT
+#ifdef _AXIS_STATIC
+#define CLASS_DECL_AXIS
+#elif defined(_AXIS_LIBRARY)
+#define CLASS_DECL_AXIS  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING
 #else
-#define CLASS_DECL_BASE  CLASS_DECL_IMPORT
+#define CLASS_DECL_AXIS  CLASS_DECL_IMPORT
 #endif
 
 
@@ -46,7 +46,7 @@
 #endif
 
 
-#include "base/net/net_sockets.h"
+#include "axis/net/net_sockets.h"
 
 
 

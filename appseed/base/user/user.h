@@ -3,7 +3,7 @@
 #endif
 
 
-#include "axis/axis/axis.h"
+#include "base/base/base.h"
 
 #if defined(__cplusplus) || defined(__cplusplus_winrt)
 
@@ -18,7 +18,7 @@
 #include "user/user/user_elemental.h"
 //#include "user/user/user_check_interface.h"
 #include "graphics/visual/visual_const.h"
-#include "axis/axis/message/message_user.h"
+#include "base/base/message/message_user.h"
 #include "user/user/user_schema_simple_impl.h"
 #include "user/user/user_schema_layered_frame.h"
 //#include "user/user/user_text_interface.h"
@@ -41,9 +41,9 @@
 
 
 
-#include "axis/user/simple_ui/simple_ui_style.h"
-#include "axis/user/simple_ui/simple_ui_interaction.h"
-#include "axis/database/sqlite/sqlite.h"
+#include "base/user/simple_ui/simple_ui_style.h"
+#include "base/user/simple_ui/simple_ui_interaction.h"
+#include "base/database/sqlite/sqlite.h"
 #include "user/user/user_document_data_map.h"
 #include "user/user/user_document.h"
 #include "database/database/database_user_interaction.h"
@@ -54,7 +54,7 @@
 
 //#if defined(METROWIN)
 //
-//#include "app/appseed/axis/axis/os/metrowin/metrowin_sockets.h"
+//#include "app/appseed/base/base/os/metrowin/metrowin_sockets.h"
 //
 //#endif
 
@@ -76,8 +76,8 @@
 #include "user/user/user_str_context.h"
 
 
-#include "axis/user/user/user.h"
-#include "axis/axis/axis_print_job.h"
+#include "base/user/user/user.h"
+#include "base/base/base_print_job.h"
 #include "user/user/user_control_event.h"
 
 #include "user/user/user_control.h"
@@ -99,7 +99,7 @@
 #include "user/user/user_view_creator.h"
 
 
-#include "axis/axis/axis_core_copydesk.h"
+#include "base/base/base_core_copydesk.h"
 
 
 
@@ -116,17 +116,17 @@
 
 
 
-#include "app/appseed/axis/axis/node/node.h"
+#include "app/appseed/base/base/node/node.h"
 
 
 
-#include "axis/user/simple/simple.h"
-#include "axis/user/simple_ui/simple_ui.h"
+#include "base/user/simple/simple.h"
+#include "base/user/simple_ui/simple_ui.h"
 
 
 
 
-#include "axis/user/user.inl"
+#include "base/user/user.inl"
 
 
 
@@ -142,12 +142,12 @@
 #ifdef WINDOWSEX
 
 
-namespace axis
+namespace base
 {
 
    // top level window for receiving system messages broadcasted to top level windows in Windows
 
-   class CLASS_DECL_AXIS system_interaction_impl:
+   class CLASS_DECL_BASE system_interaction_impl:
       virtual public ::user::interaction
    {
    public:
@@ -162,7 +162,7 @@ namespace axis
    };
 
 
-} // namespace axis
+} // namespace base
 
 
 

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS server :
+   class CLASS_DECL_BASE server :
       virtual public ::object
    {
    public:

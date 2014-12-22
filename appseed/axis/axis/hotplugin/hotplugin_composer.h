@@ -5,7 +5,7 @@ namespace hotplugin
 {
 
 
-   class CLASS_DECL_BASE composer
+   class CLASS_DECL_AXIS composer
    {
    public:
 
@@ -13,7 +13,7 @@ namespace hotplugin
       enum e_status
       {
 
-         status_start_base_system,
+         status_start_axis_system,
          status_start_composer_system,
          status_start_host,
          status_init_host,
@@ -48,7 +48,7 @@ namespace hotplugin
       bool                                   m_bEntryHallTextStarted;
 
 
-      ::hotplugin::host *                    m_pbasehost;
+      ::hotplugin::host *                    m_paxishost;
 
 
       bool                                   m_bOpenUrl;
@@ -64,14 +64,14 @@ namespace hotplugin
 
       bool                                   m_bWrite;
 
-      ::base::system *                       m_pcomposersystem;
+      ::axis::system *                       m_pcomposersystem;
 
       
       composer();
       virtual ~composer();
 
 
-      virtual ::hotplugin::host * create_host(sp(::base::system) psystem) ;
+      virtual ::hotplugin::host * create_host(sp(::axis::system) psystem) ;
 
       virtual void hotplugin_composer_on_timer();
 
@@ -95,7 +95,7 @@ namespace hotplugin
 
       virtual bool is_active();
    
-      virtual ::base::system * get_composer_system();
+      virtual ::axis::system * get_composer_system();
       virtual bool defer_start_composer_system();
       static uint32_t c_cdecl composer_system_main(LPVOID lpVoid);
       virtual void defer_stop_composer_system();

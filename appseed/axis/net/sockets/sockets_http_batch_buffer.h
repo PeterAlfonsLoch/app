@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_BASE http_batch_buffer : 
+   class CLASS_DECL_AXIS http_batch_buffer : 
       virtual public ::file::binary_buffer
    {
    public:

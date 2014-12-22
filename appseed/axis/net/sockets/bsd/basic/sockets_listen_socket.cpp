@@ -1,13 +1,13 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 
 
 namespace sockets
 {
 
 
-   listen_socket_base::listen_socket_base(base_socket_handler & h) : 
+   listen_socket_axis::listen_socket_axis(axis_socket_handler & h) : 
       element(h.get_app()), 
-      base_socket(h),
+      axis_socket(h),
       socket(h), 
       m_depth(0),
       m_bDetach(false)
@@ -15,20 +15,20 @@ namespace sockets
 
    }
 
-   listen_socket_base::listen_socket_base(const listen_socket_base& s) : 
+   listen_socket_axis::listen_socket_axis(const listen_socket_axis& s) : 
       element(s.get_app()), 
-      base_socket(s),
+      axis_socket(s),
       socket(s)
    {
 
    }
 
-   listen_socket_base::~listen_socket_base() 
+   listen_socket_axis::~listen_socket_axis() 
    {
    }
 
    /** close file descriptor. */
-   void listen_socket_base::close()
+   void listen_socket_axis::close()
    {
 
       if (GetSocket() != INVALID_SOCKET)
@@ -43,7 +43,7 @@ namespace sockets
    /** Bind and listen to any interface.
    \param port Port (0 is random)
    \param depth Listen queue depth */
-   int32_t listen_socket_base::Bind(port_t port,int32_t depth) 
+   int32_t listen_socket_axis::Bind(port_t port,int32_t depth) 
    {
       if (IsIpv6())
       {
@@ -57,7 +57,7 @@ namespace sockets
       }
    }
 
-   int32_t listen_socket_base::Bind(const ::net::address & ad,int32_t depth)
+   int32_t listen_socket_axis::Bind(const ::net::address & ad,int32_t depth)
    {
 #ifdef USE_SCTP
       if (dynamic_cast<SctpSocket *>(m_creator))
@@ -72,7 +72,7 @@ namespace sockets
    \param port Port (0 is random)
    \param protocol Network protocol
    \param depth Listen queue depth */
-   int32_t listen_socket_base::Bind(port_t port,const string & protocol,int32_t depth)
+   int32_t listen_socket_axis::Bind(port_t port,const string & protocol,int32_t depth)
    {
       if (IsIpv6())
       {
@@ -90,7 +90,7 @@ namespace sockets
    \param intf Interface hostname
    \param port Port (0 is random)
    \param depth Listen queue depth */
-   int32_t listen_socket_base::Bind(const string & intf,port_t port,int32_t depth)
+   int32_t listen_socket_axis::Bind(const string & intf,port_t port,int32_t depth)
    {
       ::net::address ad(intf, port);
       if (ad.is_valid())
@@ -106,7 +106,7 @@ namespace sockets
    \param port Port (0 is random)
    \param protocol Network protocol
    \param depth Listen queue depth */
-   int32_t listen_socket_base::Bind(const string & intf,port_t port,const string & protocol,int32_t depth)
+   int32_t listen_socket_axis::Bind(const string & intf,port_t port,const string & protocol,int32_t depth)
    {
       ::net::address ad(intf, port);
       if (ad.is_valid())
@@ -121,7 +121,7 @@ namespace sockets
    \param a Ipv4 interface address
    \param port Port (0 is random)
    \param depth Listen queue depth */
-   int32_t listen_socket_base::Bind(in_addr a,port_t port,int32_t depth)
+   int32_t listen_socket_axis::Bind(in_addr a,port_t port,int32_t depth)
    {
       ::net::address ad(a, port);
 #ifdef USE_SCTP
@@ -137,7 +137,7 @@ namespace sockets
    \param port Port (0 is random)
    \param protocol Network protocol
    \param depth Listen queue depth */
-   int32_t listen_socket_base::Bind(in_addr a,port_t port,const string & protocol,int32_t depth)
+   int32_t listen_socket_axis::Bind(in_addr a,port_t port,const string & protocol,int32_t depth)
    {
       ::net::address ad(a, port);
       return Bind(ad, protocol, depth);
@@ -147,7 +147,7 @@ namespace sockets
    \param a Ipv6 interface address
    \param port Port (0 is random)
    \param depth Listen queue depth */
-   int32_t listen_socket_base::Bind(in6_addr a,port_t port,int32_t depth) 
+   int32_t listen_socket_axis::Bind(in6_addr a,port_t port,int32_t depth) 
    {
       ::net::address ad(a, port);
 #ifdef USE_SCTP
@@ -163,7 +163,7 @@ namespace sockets
    \param port Port (0 is random)
    \param protocol Network protocol
    \param depth Listen queue depth */
-   int32_t listen_socket_base::Bind(in6_addr a,port_t port,const string & protocol,int32_t depth)
+   int32_t listen_socket_axis::Bind(in6_addr a,port_t port,const string & protocol,int32_t depth)
    {
       ::net::address ad(a, port);
       return Bind(ad, protocol, depth);
@@ -173,7 +173,7 @@ namespace sockets
    \param ad Interface address
    \param protocol Network protocol
    \param depth Listen queue depth */
-   int32_t listen_socket_base::Bind(const ::net::address & ad,const string & protocol,int32_t depth)
+   int32_t listen_socket_axis::Bind(const ::net::address & ad,const string & protocol,int32_t depth)
    {
 
       SOCKET s;
@@ -207,13 +207,13 @@ namespace sockets
    //   }
 
    /** Return listen queue depth. */
-   int32_t listen_socket_base::GetDepth()
+   int32_t listen_socket_axis::GetDepth()
    {
       return m_depth;
    }
 
-   /** OnRead on a listen_socket_base receives an incoming connection. */
-   void listen_socket_base::OnRead()
+   /** OnRead on a listen_socket_axis receives an incoming connection. */
+   void listen_socket_axis::OnRead()
    {
 
       struct sockaddr sa;
@@ -233,7 +233,7 @@ namespace sockets
       }
       if (Handler().get_count() >= FD_SETSIZE)
       {
-         log("accept", (int32_t)Handler().get_count(), "base_socket_handler fd_set limit reached", ::aura::log::level_fatal);
+         log("accept", (int32_t)Handler().get_count(), "axis_socket_handler fd_set limit reached", ::aura::log::level_fatal);
          close_socket(a_s);
          return;
       }
@@ -277,29 +277,29 @@ namespace sockets
 
    /** Please don't use this method.
    "accept()" is handled automatically in the OnRead() method. */
-   SOCKET listen_socket_base::Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
+   SOCKET listen_socket_axis::Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
    {
       return accept(socket, saptr, lenptr);
    }
 
-   bool listen_socket_base:: HasCreator()
+   bool listen_socket_axis:: HasCreator()
    { 
       return false; 
    }
 
-   void listen_socket_base::OnOptions(int32_t,int32_t,int32_t,SOCKET)
+   void listen_socket_axis::OnOptions(int32_t,int32_t,int32_t,SOCKET)
    {
       SetSoReuseaddr(true);
    }
 
-   listen_socket_base& listen_socket_base::operator=(const listen_socket_base& )
+   listen_socket_axis& listen_socket_axis::operator=(const listen_socket_axis& )
    { 
 
       return *this; 
 
    }
 
-   sp(socket) listen_socket_base::create_listen_socket()
+   sp(socket) listen_socket_axis::create_listen_socket()
    {
       return NULL;
    }

@@ -39,11 +39,11 @@ namespace sockets
    /** \defgroup webserver Webserver framework */
    /** Web server socket framework. 
       \ingroup webserver */
-   class CLASS_DECL_BASE httpd_socket : 
-      virtual public http_base_socket
+   class CLASS_DECL_AXIS httpd_socket : 
+      virtual public http_axis_socket
    {
    public:
-      httpd_socket(base_socket_handler& );
+      httpd_socket(axis_socket_handler& );
       ~httpd_socket();
 
 
@@ -53,7 +53,7 @@ namespace sockets
 
    protected:
       httpd_socket(const httpd_socket& s);
-      /** Decode and send a base64-encoded string. 
+      /** Decode and send a axis64-encoded string. 
          \param str64 Base64-encoded string
          \param type Mime type of content (content-type header) */
       void Send64(const string & str64, const string & type);

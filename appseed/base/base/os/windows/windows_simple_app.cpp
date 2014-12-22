@@ -1,13 +1,13 @@
 #include "framework.h"
 
 
-namespace axis
+namespace base
 {
 
 
    simple_app::simple_app():
       ::aura::system(this),
-      ::axis::system(this)
+      ::base::system(this)
    {
 
    }
@@ -216,7 +216,7 @@ namespace axis
    }
 
 
-} // namespace axis
+} // namespace base
 
 
 

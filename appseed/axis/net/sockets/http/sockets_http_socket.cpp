@@ -1,4 +1,4 @@
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 
 #if defined(LINUX) || defined(APPLEOS)
 
@@ -10,9 +10,9 @@ namespace sockets
 {
 
 
-   http_socket::http_socket(base_socket_handler& h) :
+   http_socket::http_socket(axis_socket_handler& h) :
       element(h.get_app()),
-      base_socket(h),
+      axis_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

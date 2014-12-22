@@ -178,7 +178,7 @@ namespace install
 {
 
 
-   CLASS_DECL_BASE void get_plugin_base_library_list(stringa & straFile, const string & strVersion)
+   CLASS_DECL_AXIS void get_plugin_axis_library_list(stringa & straFile, const string & strVersion)
    {
 
 
@@ -193,7 +193,7 @@ namespace install
       straFile.add("axisidn.dll");
       straFile.add("axisopenssl.dll");
       straFile.add("axiszlib.dll");
-      straFile.add("base.dll");
+      straFile.add("axis.dll");
       straFile.add("draw2d_gdiplus.dll");
 
       if(strVersion == "stage")

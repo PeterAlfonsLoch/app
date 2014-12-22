@@ -4,7 +4,7 @@
 namespace sockets
 {
 
-   class CLASS_DECL_BASE http_tunnel :
+   class CLASS_DECL_AXIS http_tunnel :
       virtual public http_socket
    {
       public:
@@ -20,7 +20,7 @@ namespace sockets
       };
 
 
-      http_tunnel(base_socket_handler & h);
+      http_tunnel(axis_socket_handler & h);
       string      m_strProxy;
       int32_t         m_iProxyPort;
       bool        m_bSslTunnel;

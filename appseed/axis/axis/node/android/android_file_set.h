@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_BASE file_set :
+   class CLASS_DECL_AXIS file_set :
       virtual public ::file::set
    {
    public:

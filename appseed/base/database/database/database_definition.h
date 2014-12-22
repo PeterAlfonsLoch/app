@@ -1,5 +1,5 @@
-#ifndef CA2_APP_AXIS_DATAAXIS_DEFINITION_H
-#define CA2_APP_AXIS_DATAAXIS_DEFINITION_H
+#ifndef CA2_APP_BASE_DATABASE_DEFINITION_H
+#define CA2_APP_BASE_DATABASE_DEFINITION_H
 
 
 #include "database_stringhelper.h"
@@ -31,7 +31,7 @@ namespace database
                error handling
 
    ******************************************************************/
-   class CLASS_DECL_AXIS DbErrors
+   class CLASS_DECL_BASE DbErrors
    {
 
    public:
@@ -66,7 +66,7 @@ namespace database
 
 
 
-   class CLASS_DECL_AXIS field_properties :
+   class CLASS_DECL_BASE field_properties :
       virtual public ::file::serializable
    {
    public:
@@ -93,7 +93,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_AXIS field
+   class CLASS_DECL_BASE field
    {
    public:
 
@@ -111,7 +111,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_AXIS record :
+   class CLASS_DECL_BASE record :
       virtual public var_array
    {
    public:
@@ -125,7 +125,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_AXIS query_data :
+   class CLASS_DECL_BASE query_data :
       public array < record, record & >
    {
    };
@@ -133,7 +133,7 @@ namespace database
    typedef array <field, field &> CFields;
    typedef array < field_properties, field_properties & > record_properties;
 
-   class CLASS_DECL_AXIS result_set :
+   class CLASS_DECL_BASE result_set :
       public ::file::serializable
    {
    public:
@@ -157,7 +157,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_AXIS parameter_list
+   class CLASS_DECL_BASE parameter_list
    {
    public:
 
@@ -180,7 +180,7 @@ namespace database
 
 
 
-#endif // CA2_APP_AXIS_DATAAXIS_DEFINITION_H
+#endif // CA2_APP_BASE_DATABASE_DEFINITION_H
 
 
 

@@ -1,4 +1,4 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 
 
 namespace simple_ui
@@ -73,7 +73,7 @@ namespace simple_ui
 
    /*
 
-   CLASS_DECL_AXIS char to_upper(int32_t ch)
+   CLASS_DECL_BASE char to_upper(int32_t ch)
    {
 
    if(ch >= 'a' && ch <= 'z')
@@ -86,7 +86,7 @@ namespace simple_ui
    }
 
 
-   CLASS_DECL_AXIS char * to_upper(char * pchParam)
+   CLASS_DECL_BASE char * to_upper(char * pchParam)
    {
    char * pch = pchParam;
    while(*pch == '\0')

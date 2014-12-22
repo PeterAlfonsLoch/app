@@ -8,8 +8,8 @@ namespace sockets
    class sip_socket;
 
 
-   class CLASS_DECL_BASE sip_callback :
-      virtual public base_object
+   class CLASS_DECL_AXIS sip_callback :
+      virtual public axis_object
    {
    public:
 

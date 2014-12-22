@@ -1,13 +1,13 @@
 #pragma once
 
 
-namespace axis
+namespace base
 {
 
 
-   class CLASS_DECL_AXIS system:
+   class CLASS_DECL_BASE system:
       virtual public ::aura::system,
-      virtual public :: axis ::application
+      virtual public :: base ::application
    {
    public:
 
@@ -18,7 +18,7 @@ namespace axis
       public:
 
          sp(::user::interaction)                      m_pui;
-         ::axis::system_window ^                      m_pwindow;
+         ::base::system_window ^                      m_pwindow;
 
 
       };
@@ -62,7 +62,7 @@ namespace axis
 #ifdef WINDOWSEX
 
 
-      ::axis::system_interaction_impl *            m_psystemwindow;
+      ::base::system_interaction_impl *            m_psystemwindow;
 
       raw_array < MONITORINFO >                    m_monitorinfoa;
       raw_array < HMONITOR >                       m_hmonitora;
@@ -165,7 +165,7 @@ namespace axis
    };
 
 
-} // namespace axis
+} // namespace base
 
 
 
@@ -194,7 +194,7 @@ inline ::file::input_stream & operator >>(::file::input_stream &  _Istr,bitset<_
 
 
 
-void CLASS_DECL_AXIS __start_system(::axis::system * psystem);
+void CLASS_DECL_BASE __start_system(::base::system * psystem);
 
 
 

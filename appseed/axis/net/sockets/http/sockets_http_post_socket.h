@@ -34,11 +34,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
 
 
-      class base_socket_handler;
+      class axis_socket_handler;
 
       /** Generate a http post request, get response.
       \ingroup http */
-      class CLASS_DECL_BASE http_post_socket :
+      class CLASS_DECL_AXIS http_post_socket :
          virtual public http_client_socket
       {
       public:
@@ -53,10 +53,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          //static mutex                   m_boundary_mutex;
 
 
-         http_post_socket(base_socket_handler&);
+         http_post_socket(axis_socket_handler&);
          /* client constructor,
          \param url_in = 'http://host:port/resource' */
-         http_post_socket(base_socket_handler&,const string & url_in);
+         http_post_socket(axis_socket_handler&,const string & url_in);
          virtual ~http_post_socket();
 
          // these must be specified before connecting / adding to handler

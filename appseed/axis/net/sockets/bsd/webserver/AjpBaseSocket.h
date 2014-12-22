@@ -27,7 +27,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_BASE AjpBaseSocket : public tcp_socket
+   class CLASS_DECL_AXIS AjpBaseSocket : public tcp_socket
    {
    public:
 
@@ -44,7 +44,7 @@ namespace sockets
 
       };
 
-      AjpBaseSocket(base_socket_handler& h);
+      AjpBaseSocket(axis_socket_handler& h);
 
       void OnRawData(char *buf, primitive::memory_size sz);
 

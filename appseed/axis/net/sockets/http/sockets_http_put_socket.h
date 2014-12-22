@@ -33,11 +33,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    namespace sockets
    {
 
-      class base_socket_handler;
+      class axis_socket_handler;
 
       /** Put http page.
       \ingroup http */
-      class CLASS_DECL_BASE http_put_socket :
+      class CLASS_DECL_AXIS http_put_socket :
          virtual public http_client_socket
       {
       public:
@@ -49,10 +49,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          ::file::buffer_sp     m_file;
 
 
-         http_put_socket(base_socket_handler&);
+         http_put_socket(axis_socket_handler&);
          /** client constructor,
          \param url_in = 'http://host:port/resource' */
-         http_put_socket(base_socket_handler&,const string & url_in);
+         http_put_socket(axis_socket_handler&,const string & url_in);
          ~http_put_socket();
 
          // these must be specified before connecting / adding to handler

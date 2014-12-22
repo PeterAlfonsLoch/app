@@ -1,4 +1,4 @@
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 
 
 namespace http
@@ -7,7 +7,7 @@ namespace http
 
    get_socket::get_socket(::sockets::socket_handler & handler, const string & url) :
       element(handler.get_app()),
-      ::sockets::base_socket(handler),
+      ::sockets::axis_socket(handler),
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),
       ::sockets::tcp_socket(handler),
@@ -23,7 +23,7 @@ namespace http
       
    get_socket::get_socket(::sockets::socket_handler & handler, const string & host, port_t port, const string & url) :
       element(handler.get_app()),
-      ::sockets::base_socket(handler),
+      ::sockets::axis_socket(handler),
       ::sockets::socket(handler),
       ::sockets::stream_socket(handler),
       ::sockets::tcp_socket(handler),

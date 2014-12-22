@@ -8,7 +8,7 @@ namespace sockets
    class link_in_socket;
 
    
-   class CLASS_DECL_BASE link_out_socket : public tcp_socket
+   class CLASS_DECL_AXIS link_out_socket : public tcp_socket
    {
    public:
       
@@ -17,7 +17,7 @@ namespace sockets
       socket * m_out;
       
 
-      link_out_socket(base_socket_handler & h);
+      link_out_socket(axis_socket_handler & h);
       virtual ~link_out_socket();
 
       using ::sockets::tcp_socket::OnRead;

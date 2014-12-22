@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 #include "windows_port_forward.h"
 
 //const UINT UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION = ::RegisterWindowMessageA("UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFICATION-{7C29C80A_5712_40e8_A124_A82E4B2795A7}");  
@@ -720,7 +720,7 @@ namespace windows
 	
 	   // now traverse the collection of piFoundDevices
 	
-	   // the following code is based on code provided by MSDN in its Control Point API:
+	   // the following code is axisd on code provided by MSDN in its Control Point API:
 	   // "Device Collections Returned By Synchronous Searches" at
 	   // http://msdn.microsoft.com/library/en-us/upnp/upnp/device_collections_returned_by_synchronous_searches.asp
 	

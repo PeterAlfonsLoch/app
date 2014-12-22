@@ -1,5 +1,5 @@
 /**
-	Implementation header file for Linux based on inotify.
+	Implementation header file for Linux axisd on inotify.
 
 	@author James Wynn
 	@date 4/15/2009
@@ -29,7 +29,7 @@
 
 namespace file_watcher
 {
-	/// Implementation for Linux based on inotify.
+	/// Implementation for Linux axisd on inotify.
 	/// @class os_file_watcher
 	class os_file_watcher : public file_watcher_impl
 	{

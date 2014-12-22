@@ -39,7 +39,7 @@ namespace hotplugin
       ::thread(papp),
       ::aura::session(papp),
       ::axis::session(papp),
-      ::base::session(papp)
+      ::axis::session(papp)
    {
 
       m_pstyle          = this;
@@ -64,8 +64,8 @@ namespace hotplugin
       m_eschema         = schema_normal;
 
       m_pauraapp = this;
-      m_pauraapp->m_pbasesession = this;
-      m_pbasesession = this;
+      m_pauraapp->m_paxissession = this;
+      m_paxissession = this;
 
    }
 
@@ -993,7 +993,7 @@ namespace hotplugin
 
       m_phost = phost;
       m_pauraapp = m_phost;
-      m_pbasesession = m_phost;
+      m_paxissession = m_phost;
 
       return true;
 
@@ -1009,7 +1009,7 @@ namespace hotplugin
    void plugin::message_handler(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::axis,paxis,pobj);
 
       UINT message;
 
@@ -1017,9 +1017,9 @@ namespace hotplugin
 
       LPARAM lparam;
 
-      message    = pbase->m_uiMessage;
+      message    = paxis->m_uiMessage;
 
-      wparam     = pbase->m_wparam;
+      wparam     = paxis->m_wparam;
 
       sp(::message::mouse) spmouse = pobj;
 
@@ -1032,7 +1032,7 @@ namespace hotplugin
       else
       {
 
-         lparam     = pbase->m_lparam;
+         lparam     = paxis->m_lparam;
 
       }
 
@@ -1088,7 +1088,7 @@ namespace hotplugin
    {
 
       ::simple_ui::interaction::install_message_handling(pdispatch);
-      ::base::session::install_message_handling(pdispatch);
+      ::axis::session::install_message_handling(pdispatch);
 
    }
 

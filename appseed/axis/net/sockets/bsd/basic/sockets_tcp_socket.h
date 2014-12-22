@@ -44,7 +44,7 @@ namespace sockets
 
    /** socket implementation for TCP.
    \ingroup basic */
-   class CLASS_DECL_BASE tcp_socket :
+   class CLASS_DECL_AXIS tcp_socket :
       virtual public stream_socket
    {
       /** \defgroup internal Internal utility */
@@ -122,12 +122,12 @@ namespace sockets
 
       tcp_socket(const tcp_socket& );
       /** Constructor with standard values on input/output buffers. */
-      tcp_socket(base_socket_handler& );
+      tcp_socket(axis_socket_handler& );
       /** Constructor with custom values for i/o buffer.
-      \param h base_socket_handler reference
+      \param h axis_socket_handler reference
       \param isize Input buffer size
       \param osize Output buffer size */
-      tcp_socket(base_socket_handler& h,size_t isize,size_t osize);
+      tcp_socket(axis_socket_handler& h,size_t isize,size_t osize);
       virtual ~tcp_socket();
 
       

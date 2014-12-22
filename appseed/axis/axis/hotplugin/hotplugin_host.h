@@ -5,13 +5,13 @@ namespace hotplugin
 {
 
    
-   class CLASS_DECL_BASE host :
+   class CLASS_DECL_AXIS host :
       virtual public plugin
    {
    public:
 
 
-      ::hotplugin::composer *       m_pbasecomposer;
+      ::hotplugin::composer *       m_paxiscomposer;
       plugin *                      m_pplugin;
       primitive::memory             m_memory;
       double                        m_dProgressRate;

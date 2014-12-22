@@ -7,15 +7,15 @@
 //#include <X11/extensions/Xcomposite.h>
 
 
-CLASS_DECL_AXIS int32_t oswindow_find_message_only_window(::user::interaction * puibaseMessageWindow);
-//CLASS_DECL_AXIS int32_t oswindow_find(Display * pdisplay,Window window);
-//CLASS_DECL_AXIS int32_t oswindow_find(Window window);
-CLASS_DECL_AXIS oswindow_data * oswindow_get_message_only_window(::user::interaction * puibaseMessageWindow);
-//CLASS_DECL_AXIS oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = NULL);
-//CLASS_DECL_AXIS oswindow_data * oswindow_get(Window window);
-//CLASS_DECL_AXIS oswindow oswindow_defer_get(Window w);
-//CLASS_DECL_AXIS bool oswindow_remove(Display * pdisplay,Window window);
-CLASS_DECL_AXIS bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow);
+CLASS_DECL_BASE int32_t oswindow_find_message_only_window(::user::interaction * puibaseMessageWindow);
+//CLASS_DECL_BASE int32_t oswindow_find(Display * pdisplay,Window window);
+//CLASS_DECL_BASE int32_t oswindow_find(Window window);
+CLASS_DECL_BASE oswindow_data * oswindow_get_message_only_window(::user::interaction * puibaseMessageWindow);
+//CLASS_DECL_BASE oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = NULL);
+//CLASS_DECL_BASE oswindow_data * oswindow_get(Window window);
+//CLASS_DECL_BASE oswindow oswindow_defer_get(Window w);
+//CLASS_DECL_BASE bool oswindow_remove(Display * pdisplay,Window window);
+CLASS_DECL_BASE bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow);
 
 
 
@@ -26,11 +26,11 @@ CLASS_DECL_AXIS bool oswindow_remove_message_only_window(::user::interaction * p
 
 //#include "sal.h"
 
-//CLASS_DECL_AXIS void hook_window_create(sp(::user::interaction) pWnd);
-//CLASS_DECL_AXIS bool unhook_window_create();
-//void CLASS_DECL_AXIS __pre_init_dialog(
+//CLASS_DECL_BASE void hook_window_create(sp(::user::interaction) pWnd);
+//CLASS_DECL_BASE bool unhook_window_create();
+//void CLASS_DECL_BASE __pre_init_dialog(
 //   sp(::user::interaction) pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
-//void CLASS_DECL_AXIS __post_init_dialog(
+//void CLASS_DECL_BASE __post_init_dialog(
 //   sp(::user::interaction) pWnd, const RECT& rectOld, DWORD dwStyleOld);
 //LRESULT CALLBACK
 //   __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);
@@ -117,9 +117,9 @@ namespace android
    interaction_impl::~interaction_impl()
    {
 
-      if(m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL && m_pauraapp->m_paxissession->user() != NULL && m_pauraapp->m_paxissession->user()->m_pwindowmap != NULL)
+      if(m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL && m_pauraapp->m_pbasesession->user() != NULL && m_pauraapp->m_pbasesession->user()->m_pwindowmap != NULL)
       {
-         m_pauraapp->m_paxissession->user()->m_pwindowmap->m_map.remove_key((int_ptr)get_handle());
+         m_pauraapp->m_pbasesession->user()->m_pwindowmap->m_map.remove_key((int_ptr)get_handle());
       }
 
    }
@@ -146,7 +146,7 @@ namespace android
 
    // Change a interaction_impl's style
 
-   /*__STATIC bool CLASS_DECL_AXIS __modify_style(oswindow hWnd, int32_t nStyleOffset,
+   /*__STATIC bool CLASS_DECL_BASE __modify_style(oswindow hWnd, int32_t nStyleOffset,
    DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {
    ASSERT(hWnd != NULL);
@@ -1896,7 +1896,7 @@ namespace android
    case ::ca2::Sig_CTLCOLOR_REFLECT:
    {
    // special case for CtlColor to avoid too many temporary objects
-   ASSERT(message == WM_REFLECT_AXIS+WM_CTLCOLOR);
+   ASSERT(message == WM_REFLECT_BASE+WM_CTLCOLOR);
    __CTLCOLOR* pCtl = reinterpret_cast<__CTLCOLOR*>(lparam);
    ::draw2d::graphics_sp dcTemp;
    dcTemp.set_handle1(pCtl->hDC);
@@ -2024,7 +2024,7 @@ namespace android
    {
    // special case for WM_VSCROLL and WM_HSCROLL
    ASSERT(message == WM_VSCROLL || message == WM_HSCROLL ||
-   message == WM_VSCROLL+WM_REFLECT_AXIS || message == WM_HSCROLL+WM_REFLECT_AXIS);
+   message == WM_VSCROLL+WM_REFLECT_BASE || message == WM_HSCROLL+WM_REFLECT_BASE);
    int32_t nScrollCode = (short)LOWORD(wparam);
    int32_t nPos = (short)HIWORD(wparam);
    if (lpEntry->nSig == ::ca2::Sig_SCROLL)
@@ -2237,7 +2237,7 @@ namespace android
    }
    */
 
-   /* trans oswindow CLASS_DECL_AXIS __get_parent_owner(::user::interaction * hWnd)
+   /* trans oswindow CLASS_DECL_BASE __get_parent_owner(::user::interaction * hWnd)
    {
    // check for permanent-owned interaction_impl first
    sp(::user::interaction) pWnd = sp(::user::interaction)::FromHandlePermanent(hWnd);
@@ -2899,8 +2899,8 @@ namespace android
       case WM_VKEYTOITEM:
       case WM_CHARTOITEM:
       case WM_COMPAREITEM:
-         // reflect the message through the message ::collection::map as WM_REFLECT_AXIS+uMsg
-         //return interaction_impl::OnWndMsg(WM_REFLECT_AXIS+uMsg, wparam, lparam, pResult);
+         // reflect the message through the message ::collection::map as WM_REFLECT_BASE+uMsg
+         //return interaction_impl::OnWndMsg(WM_REFLECT_BASE+uMsg, wparam, lparam, pResult);
          return FALSE;
 
          // special case for WM_COMMAND
@@ -2908,7 +2908,7 @@ namespace android
       {
          // reflect the message through the message ::collection::map as OCM_COMMAND
          /* xxx         int32_t nCode = HIWORD(wparam);
-         if (interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_AXIS+WM_COMMAND), NULL, NULL))
+         if (interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_COMMAND), NULL, NULL))
          {
          if (pResult != NULL)
          *pResult = 1;
@@ -2926,7 +2926,7 @@ namespace android
       //            __NOTIFY notify;
       //          notify.pResult = pResult;
       //        notify.pNMHDR = pNMHDR;
-      // xxxx         return interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_AXIS+WM_NOTIFY), &notify, NULL);
+      // xxxx         return interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_NOTIFY), &notify, NULL);
       }
 
       // other special cases (WM_CTLCOLOR family)*/
@@ -2941,7 +2941,7 @@ namespace android
             ASSERT(ctl.nCtlType <= CTLCOLOR_STATIC);
 
             // reflect the message through the message ::collection::map as OCM_CTLCOLOR
-            bool bResult = interaction_impl::OnWndMsg(WM_REFLECT_AXIS+WM_CTLCOLOR, 0, (LPARAM)&ctl, pResult);
+            bool bResult = interaction_impl::OnWndMsg(WM_REFLECT_BASE+WM_CTLCOLOR, 0, (LPARAM)&ctl, pResult);
             if ((HBRUSH)*pResult == NULL)
             bResult = FALSE;
             return bResult;*/
@@ -3778,7 +3778,7 @@ namespace android
       {
       // call it directly to disable any routing
       if (ANDROID_WINDOW(pWnd)->interaction_impl::_001OnCommand(0, MAKELONG(0xffff,
-      WM_COMMAND+WM_REFLECT_AXIS), &state, NULL))
+      WM_COMMAND+WM_REFLECT_BASE), &state, NULL))
       continue;
       }
 
@@ -6333,7 +6333,7 @@ namespace android
    /////////////////////////////////////////////////////////////////////////////
    // Official way to send message to a interaction_impl
 
-   //CLASS_DECL_AXIS LRESULT __call_window_procedure(::user::interaction * pinteraction,oswindow hWnd,UINT nMsg,WPARAM wparam,LPARAM lparam)
+   //CLASS_DECL_BASE LRESULT __call_window_procedure(::user::interaction * pinteraction,oswindow hWnd,UINT nMsg,WPARAM wparam,LPARAM lparam)
    //{
    //   ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
    //   MESSAGE oldState = pThreadState->m_lastSentMsg;   // save for nesting
@@ -6676,14 +6676,14 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd,UINT nMsg,WPARAM wparam,LPARAM
 }
 
 // always indirectly accessed via __get_window_procedure
-//WNDPROC CLASS_DECL_AXIS __get_window_procedure()
+//WNDPROC CLASS_DECL_BASE __get_window_procedure()
 //{
 //   return __get_module_state()->m_pfn_window_procedure;
 //}
 /////////////////////////////////////////////////////////////////////////////
 // Special helpers for certain windows messages
 
-__STATIC void CLASS_DECL_AXIS __pre_init_dialog(
+__STATIC void CLASS_DECL_BASE __pre_init_dialog(
    ::user::interaction * pWnd,LPRECT lpRectOld,DWORD* pdwStyleOld)
 {
    ASSERT(lpRectOld != NULL);
@@ -6693,7 +6693,7 @@ __STATIC void CLASS_DECL_AXIS __pre_init_dialog(
    *pdwStyleOld = ANDROID_WINDOW(pWnd)->GetStyle();
 }
 
-__STATIC void CLASS_DECL_AXIS __post_init_dialog(
+__STATIC void CLASS_DECL_BASE __post_init_dialog(
    ::user::interaction * pWnd,const RECT& rectOld,DWORD dwStyleOld)
 {
    // must be hidden to start with
@@ -6724,7 +6724,7 @@ __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 
 
 
-//CLASS_DECL_AXIS bool hook_window_create(sp(::user::interaction) pWnd)
+//CLASS_DECL_BASE bool hook_window_create(sp(::user::interaction) pWnd)
 //{
 //
 //   //      throw not_implemented(::get_thread_app());
@@ -6748,7 +6748,7 @@ __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 //}
 //
 //
-//CLASS_DECL_AXIS bool unhook_window_create()
+//CLASS_DECL_BASE bool unhook_window_create()
 //{
 //   ___THREAD_STATE* pThreadState = gen_ThreadState.get_data();
 //   if(pThreadState->m_pWndInit != NULL)
@@ -6761,7 +6761,7 @@ __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 
 
 
-//CLASS_DECL_AXIS const char * __register_window_class(UINT nClassStyle,
+//CLASS_DECL_BASE const char * __register_window_class(UINT nClassStyle,
 //   HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
 //{
 //
@@ -6819,7 +6819,7 @@ __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 //}
 //
 //
-//__STATIC void CLASS_DECL_AXIS
+//__STATIC void CLASS_DECL_BASE
 //__handle_activate(::user::interaction * pWnd,WPARAM nState,::user::interaction * pWndOther)
 //{
 //
@@ -6850,7 +6850,7 @@ __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 //   //   }
 //}
 //
-//__STATIC bool CLASS_DECL_AXIS
+//__STATIC bool CLASS_DECL_BASE
 //__handle_set_cursor(::user::interaction * pWnd,UINT nHitTest,UINT nMsg)
 //{
 //
@@ -6879,7 +6879,7 @@ __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 /////////////////////////////////////////////////////////////////////////////
 // Standard init called by WinMain
 
-//__STATIC bool CLASS_DECL_AXIS __register_with_icon(WNDCLASS* pWndCls,
+//__STATIC bool CLASS_DECL_BASE __register_with_icon(WNDCLASS* pWndCls,
 //                                                  const char * lpszClassName, UINT nIDIcon)
 //{
 //   pWndCls->lpszClassName = lpszClassName;
@@ -6888,7 +6888,7 @@ __STATIC void CLASS_DECL_AXIS __post_init_dialog(
 //}
 
 
-//bool CLASS_DECL_AXIS __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
+//bool CLASS_DECL_BASE __end_defer_register_class(LONG fToRegisterParam, const char ** ppszClass)
 //{
 //   // mask off all classes that are already registered
 //   __MODULE_STATE* pModuleState = __get_module_state();
@@ -7100,7 +7100,7 @@ __activation_window_procedure(oswindow hWnd,UINT nMsg,WPARAM wparam,LPARAM lpara
 // Additional helpers for WNDCLASS init
 
 // like RegisterClass, except will automatically call UnregisterClass
-//bool CLASS_DECL_AXIS __register_class(WNDCLASS* lpWndClass)
+//bool CLASS_DECL_BASE __register_class(WNDCLASS* lpWndClass)
 //{
 //   WNDCLASS wndcls;
 //   if (GetClassInfo(lpWndClass->hInstance, lpWndClass->lpszClassName,

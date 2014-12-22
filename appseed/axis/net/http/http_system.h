@@ -8,13 +8,13 @@ namespace http
 {
 
 
-   class CLASS_DECL_BASE system :
+   class CLASS_DECL_AXIS system :
       virtual public signalizable
    {
    public:
 
 
-      class CLASS_DECL_BASE pac :
+      class CLASS_DECL_AXIS pac :
          virtual public ::object
       {
       public:
@@ -33,7 +33,7 @@ namespace http
       };
 
 
-      class CLASS_DECL_BASE proxy :
+      class CLASS_DECL_AXIS proxy :
          virtual public ::object
       {
       public:

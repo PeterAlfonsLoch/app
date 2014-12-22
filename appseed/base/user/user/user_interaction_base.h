@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS interaction_base:
+   class CLASS_DECL_BASE interaction_base:
       virtual public ::aura::interaction,
       virtual public elemental,
       virtual public ::aura::draw_interface,

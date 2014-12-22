@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 
 #ifndef WINDOWS
 #include "ft2build.h"
@@ -8,7 +8,7 @@
 
 
 
-namespace base
+namespace axis
 {
 
 
@@ -22,13 +22,13 @@ namespace base
 
       m_purldepartament = new url::departament(this);
 
-      m_pbasesystem = this;
+      m_paxissystem = this;
 
       m_spinstall = new ::install::install(this);
 
-      __node_base_factory_exchange(this);
+      __node_axis_factory_exchange(this);
 
-      m_pcompress = new ::base::compress;
+      m_pcompress = new ::axis::compress;
 
       m_pcompress->set_app(this);
 
@@ -40,7 +40,7 @@ namespace base
    void system::construct(const char * pszAppId)
    {
 
-      ::base::application::construct(pszAppId);
+      ::axis::application::construct(pszAppId);
 
    }
 
@@ -90,12 +90,12 @@ namespace base
 
       //#ifdef WINDOWSEX
       //
-      //      dappy(string(typeid(*this).name()) + " : Going to ::base::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
+      //      dappy(string(typeid(*this).name()) + " : Going to ::axis::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
       //
-      //      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::base::system::interaction_impl::no_twf"))
+      //      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::axis::system::interaction_impl::no_twf"))
       //      {
       //
-      //         dappy(string(typeid(*this).name()) + " : ::base::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
+      //         dappy(string(typeid(*this).name()) + " : ::axis::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
       //
       //         return false;
       //
@@ -103,35 +103,35 @@ namespace base
       //
       //#endif
 
-      dappy(string(typeid(*this).name()) + " : Going to ::base::session " + ::str::from(m_iReturnCode));
+      dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
       m_spfile.alloc(allocer());
 
 
       m_spdir.alloc(allocer());
 
 
-      m_pbasesession = new ::base::session(this);
+      m_paxissession = new ::axis::session(this);
 
-      m_paxissession = m_pbasesession;
+      m_paxissession = m_paxissession;
 
-      m_paurasession = m_pbasesession;
+      m_paurasession = m_paxissession;
 
-      if(m_pbasesession == NULL)
+      if(m_paxissession == NULL)
          return false;
 
       if(!m_spdir->initialize())
          throw simple_exception(this,"failed to construct system m_spdir->initialize");
 
-      m_pbasesession->construct(this,0);
+      m_paxissession->construct(this,0);
 
 
 
-      if(!m_pbasesession->begin_synch(&m_iReturnCode))
+      if(!m_paxissession->begin_synch(&m_iReturnCode))
       {
          return false;
       }
 
-      dappy(string(typeid(*this).name()) + " : ::base::session OK " + ::str::from(m_iReturnCode));
+      dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));
 
       return true;
 
@@ -141,7 +141,7 @@ namespace base
    bool system::initialize2()
    {
 
-      if(!::base::application::initialize2())
+      if(!::axis::application::initialize2())
          return false;
 
       return true;
@@ -194,7 +194,7 @@ namespace base
       try
       {
 
-         bOk = ::base::application::finalize();
+         bOk = ::axis::application::finalize();
 
       }
       catch(...)
@@ -316,7 +316,7 @@ namespace base
       try
       {
 
-         iRet = ::base::application::exit_instance();
+         iRet = ::axis::application::exit_instance();
 
       }
       catch(...)
@@ -392,7 +392,7 @@ namespace base
 
 
 
-      //::base::application::exit_instance();
+      //::axis::application::exit_instance();
 
 #ifdef METROWIN
       m_pdevicecontext = nullptr;
@@ -500,7 +500,7 @@ namespace base
 
 
 
-   //::base::compress & system::compress()
+   //::axis::compress & system::compress()
    //{
    //   return m_compress;
    //}
@@ -544,13 +544,13 @@ namespace base
    uint32_t _thread_proc_start_system(void * p)
    {
 
-      ::base::system * psystem = (::base::system *)p;
+      ::axis::system * psystem = (::axis::system *)p;
 
       return psystem->main();
 
    }
 
-   CLASS_DECL_BASE void __start_system(::base::system * psystem)
+   CLASS_DECL_AXIS void __start_system(::axis::system * psystem)
    {
 
       ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
@@ -569,7 +569,7 @@ namespace base
 
 
 
-} // namespace base
+} // namespace axis
 
 
 

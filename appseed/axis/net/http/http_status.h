@@ -17,10 +17,10 @@ namespace http
    };
 
 
-   bool CLASS_DECL_BASE succeeded(e_status estatus);
-   bool CLASS_DECL_BASE status_succeeded(int64_t i);
-   bool CLASS_DECL_BASE failed(e_status estatus);
-   bool CLASS_DECL_BASE status_failed(int64_t i);
+   bool CLASS_DECL_AXIS succeeded(e_status estatus);
+   bool CLASS_DECL_AXIS status_succeeded(int64_t i);
+   bool CLASS_DECL_AXIS failed(e_status estatus);
+   bool CLASS_DECL_AXIS status_failed(int64_t i);
 
 
 } // namespace http

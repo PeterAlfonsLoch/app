@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_BASE main_init_data :
+   class CLASS_DECL_AXIS main_init_data :
       public ::aura::main_init_data
    {
    public:
@@ -19,7 +19,7 @@ namespace android
    };
 
 
-   class CLASS_DECL_BASE application :
+   class CLASS_DECL_AXIS application :
       virtual public ::aura::application
    {
    public:
@@ -140,7 +140,7 @@ namespace android
       virtual int32_t exit_instance(); // default will 'delete this'
 
       // Advanced: exception handling
-      virtual LRESULT ProcessWndProcException(::exception::base* e, const MESSAGE* pMsg);
+      virtual LRESULT ProcessWndProcException(::exception::axis* e, const MESSAGE* pMsg);
 
       // Advanced: handling messages sent to message filter hook
       virtual bool ProcessMessageFilter(int32_t code, LPMESSAGE lpMsg);

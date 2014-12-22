@@ -5,7 +5,7 @@ namespace visual
 {
 
 
-   class CLASS_DECL_BASE visual  :
+   class CLASS_DECL_AXIS visual  :
       virtual public ::aura::departament
    {
    public:

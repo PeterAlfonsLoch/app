@@ -1,7 +1,7 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 
 
-CLASS_DECL_AXIS bool g_bSuppressTwf = false;
+CLASS_DECL_BASE bool g_bSuppressTwf = false;
 
 namespace user
 {

@@ -1,4 +1,4 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 
 
 
@@ -696,7 +696,7 @@ namespace user
 
 
    // pbase object should be allocated with new in
-   // axis or derived object and will be delete after
+   // base or derived object and will be delete after
    // handling
    bool interaction_base::post(::message::base * pbase)
    {

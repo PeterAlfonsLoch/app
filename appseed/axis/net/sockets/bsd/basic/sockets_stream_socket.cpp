@@ -1,12 +1,12 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 
 
 namespace sockets
 {
 
-   stream_socket::stream_socket(base_socket_handler& h) : 
+   stream_socket::stream_socket(axis_socket_handler& h) : 
       element(h.get_app())
-      ,base_socket(h)
+      ,axis_socket(h)
       ,socket(h)
       ,m_bConnecting(false)
       ,m_connect_timeout(5)

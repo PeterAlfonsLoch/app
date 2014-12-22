@@ -1,4 +1,4 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 
 
 namespace sockets
@@ -18,7 +18,7 @@ namespace sockets
 
       m_psslinit = new ::sockets::SSLInitializer(get_app());
 
-      m_pajpbasesocketinit    = NULL;
+      m_pajpaxissocketinit    = NULL;
 
    }
 
@@ -72,7 +72,7 @@ namespace sockets
 
          System.factory().creatable_small < ::file::memory_buffer > ();
 
-         m_pajpbasesocketinit = new AjpBaseSocket::Initializer;
+         m_pajpaxissocketinit = new AjpBaseSocket::Initializer;
 
       }
 
@@ -166,10 +166,10 @@ namespace sockets
 
       if(Application.is_system())
       {
-         if(m_pajpbasesocketinit != NULL)
+         if(m_pajpaxissocketinit != NULL)
          {
-            delete m_pajpbasesocketinit;
-            m_pajpbasesocketinit = NULL;
+            delete m_pajpaxissocketinit;
+            m_pajpaxissocketinit = NULL;
          }
       }
 

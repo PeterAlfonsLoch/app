@@ -1,4 +1,4 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 
 #if defined(LINUX)
 // Ubuntu apt-get install libx11-dev
@@ -171,7 +171,7 @@ namespace message
       try
       {
 
-         if(m_ecursor != ::visual::cursor_unmodified && m_pauraapp != NULL && m_pauraapp->m_paxissession != NULL)
+         if(m_ecursor != ::visual::cursor_unmodified && m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL)
          {
 
             Session.set_cursor(m_ecursor);

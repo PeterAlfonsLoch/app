@@ -20,7 +20,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 
 namespace sockets
 {
@@ -79,7 +79,7 @@ namespace sockets
       Method[HTTP_METHOD_UPDATE] = "UPDATE";
       Method[HTTP_METHOD_LABEL] = "LABEL";
       Method[HTTP_METHOD_MERGE] = "MERGE";
-      Method[HTTP_METHOD_BASELINE_CONTROL] = "BASELINE_CONTROL";
+      Method[HTTP_METHOD_AXISLINE_CONTROL] = "AXISLINE_CONTROL";
       Method[HTTP_METHOD_MKACTIVITY] = "MKACTIVITY";
 
       Attribute[ATTR_CONTEXT] = "context";
@@ -110,9 +110,9 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   AjpBaseSocket::AjpBaseSocket(base_socket_handler& h) : 
+   AjpBaseSocket::AjpBaseSocket(axis_socket_handler& h) : 
       element(h.get_app()),
-      base_socket(h),
+      axis_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

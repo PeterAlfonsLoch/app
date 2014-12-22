@@ -1,7 +1,7 @@
 #pragma once
 
 
-//class CLASS_DECL_AXIS ::user::elemental :
+//class CLASS_DECL_BASE ::user::elemental :
 //   virtual public string_interface
 //{
 //public:

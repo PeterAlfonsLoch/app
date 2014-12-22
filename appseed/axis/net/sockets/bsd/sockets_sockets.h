@@ -5,7 +5,7 @@
    {
 
 
-      class CLASS_DECL_BASE sockets :
+      class CLASS_DECL_AXIS sockets :
          virtual public ::aura::departament
       {
       public:
@@ -20,7 +20,7 @@
          ssl_client_context_map                       m_clientcontextmap;
          ssl_server_context_map                       m_servercontextmap;
 #endif
-         AjpBaseSocket::Initializer *                 m_pajpbasesocketinit;
+         AjpBaseSocket::Initializer *                 m_pajpaxissocketinit;
 
          ::count m_countHttpPostBoundary;
          mutex                                        m_mutexHttpPostBoundary;

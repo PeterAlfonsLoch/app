@@ -1,4 +1,4 @@
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 
 
 #ifdef BSD_STYLE_SOCKETS
@@ -159,7 +159,7 @@ namespace fontopus
          else
          {
          
-            strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+            strHost = Application.file().as_string(System.dir().appdata("dataaxis\\text\\last_good_known_fontopus_com.txt"));
             
             if(!straRequestingServer.contains_ci(strHost))
             {
@@ -335,7 +335,7 @@ namespace fontopus
       }
       m_strLicense = psz;
       m_loginthread.m_strLicense = m_strLicense;
-      string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
+      string strHost = Application.file().as_string(System.dir().appdata("dataaxis\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
 
       string strFirstFontopusServer = Session.fontopus()->m_strFirstFontopusServer;
@@ -689,7 +689,7 @@ namespace fontopus
                iAuth = result_auth;
                if(m_bFontopusServer)
                {
-                  Application.file().put_contents(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"),m_strFontopusServer);
+                  Application.file().put_contents(System.dir().appdata("dataaxis\\text\\last_good_known_fontopus_com.txt"),m_strFontopusServer);
                }
                execute();
                if(m_strLicense.has_char())

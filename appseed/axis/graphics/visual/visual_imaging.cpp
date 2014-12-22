@@ -80,7 +80,7 @@ imaging::~imaging()
 
 
 
-#ifdef BASE_FREEIMAGE
+#ifdef AXIS_FREEIMAGE
 
 FIBITMAP * imaging::LoadImageFile(var varFile,::aura::application * papp)
 {
@@ -612,7 +612,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    if(memfile.get_size() <= 0)
       return false;
-#ifdef BASE_FREEIMAGE
+#ifdef AXIS_FREEIMAGE
 
    FIBITMAP * pfi = LoadImageFile(&memfile);
 
@@ -2780,7 +2780,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    ::draw2d::bitmap_sp imaging::LoadImageSync(const char * lpcszImageFilePath,::aura::application * papp)
    {
-#ifdef BASE_FREEIMAGE
+#ifdef AXIS_FREEIMAGE
       FIBITMAP * pfi = imaging::LoadImageFile(lpcszImageFilePath,papp);
 
       if(pfi == NULL)
@@ -6860,7 +6860,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       if(!LoadImageFile(pdib, pfile, papp))
          return false;
 
-#ifdef BASE_FREEIMAGE
+#ifdef AXIS_FREEIMAGE
       FIBITMAP * pfi = LoadImageFile(pfile,papp);
 
       if(pfi == NULL)

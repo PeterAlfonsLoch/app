@@ -1,4 +1,4 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 #include <openssl/ssl.h>
 
 
@@ -6,9 +6,9 @@ namespace sockets
 {
 
 
-   tls_socket::tls_socket(::sockets::base_socket_handler& h) :
+   tls_socket::tls_socket(::sockets::axis_socket_handler& h) :
       element(h.get_app()),
-      base_socket(h),
+      axis_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)

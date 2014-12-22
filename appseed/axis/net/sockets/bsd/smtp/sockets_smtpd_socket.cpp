@@ -1,13 +1,13 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 
 
 namespace sockets
 {
 
 
-   smtpd_socket::smtpd_socket(base_socket_handler& h) :
+   smtpd_socket::smtpd_socket(axis_socket_handler& h) :
       element(h.get_app()),
-      base_socket(h),
+      axis_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -162,7 +162,7 @@ namespace sockets
 
          strEmailAddress.make_lower();
 
-         // %! reject based on ::fontopus::user / domain?
+         // %! reject axisd on ::fontopus::user / domain?
 
          ::net::email_address addr(strEmailAddress);
 

@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 
 
 
-namespace base
+namespace axis
 {
    
    
@@ -11,16 +11,16 @@ namespace base
    {
 
       
-      CLASS_DECL_BASE void init()
+      CLASS_DECL_AXIS void init()
       {
    
-         xxdebug_box("base.dll base_static_start (0)", "box", MB_OK);
+         xxdebug_box("axis.dll axis_static_start (0)", "box", MB_OK);
          
    
     
 #ifdef BSD_STYLE_SOCKETS
    
-         ::sockets::base_socket::s_pmutex = new mutex();
+         ::sockets::axis_socket::s_pmutex = new mutex();
    
 #endif
    
@@ -72,16 +72,16 @@ namespace base
       
 
       
-      CLASS_DECL_BASE void term()
+      CLASS_DECL_AXIS void term()
       {
 
 
    
 #ifdef BSD_STYLE_SOCKETS
          
-         delete ::sockets::base_socket::s_pmutex;
+         delete ::sockets::axis_socket::s_pmutex;
    
-         ::sockets::base_socket::s_pmutex = NULL;
+         ::sockets::axis_socket::s_pmutex = NULL;
    
 #endif
    
@@ -92,7 +92,7 @@ namespace base
    } // namespace static_start
 
    
-} // namespace base
+} // namespace axis
 
 
 

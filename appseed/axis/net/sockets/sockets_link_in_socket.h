@@ -8,7 +8,7 @@ namespace sockets
    class link_out_socket;
 
 
-   class CLASS_DECL_BASE link_in_socket : public tcp_socket
+   class CLASS_DECL_AXIS link_in_socket : public tcp_socket
    {
    public:
 
@@ -17,7 +17,7 @@ namespace sockets
       event                m_eventFinished;
 
 
-      link_in_socket(base_socket_handler& h);
+      link_in_socket(axis_socket_handler& h);
       ~link_in_socket();
 
 

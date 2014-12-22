@@ -5,9 +5,9 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_BASE sip_server :
+   class CLASS_DECL_AXIS sip_server :
       public thread,
-      public sip_base
+      public sip_axis
    {
    public:
       

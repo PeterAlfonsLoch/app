@@ -1,4 +1,4 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 #include "windows.h"
 #include <shlobj.h>
 
@@ -11,7 +11,7 @@ namespace windows
 
    copydesk::copydesk(::aura::application * papp) :
       element(papp),
-      ::axis::copydesk(papp),
+      ::base::copydesk(papp),
       ::user::interaction(papp)
    {
    }
@@ -107,7 +107,7 @@ namespace windows
    bool copydesk::initialize()
    {
       
-      if(!::axis::copydesk::initialize())
+      if(!::base::copydesk::initialize())
          return false;
 
       if(!create_window_ex())
@@ -123,7 +123,7 @@ namespace windows
 
       bool bOk;
       
-      bOk = ::axis::copydesk::finalize();
+      bOk = ::base::copydesk::finalize();
 
       return bOk;
 

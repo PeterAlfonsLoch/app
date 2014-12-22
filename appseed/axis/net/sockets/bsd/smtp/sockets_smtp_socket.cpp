@@ -1,13 +1,13 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 
 
 namespace sockets
 {
 
 
-   smtp_socket::smtp_socket(base_socket_handler& h) :
+   smtp_socket::smtp_socket(axis_socket_handler& h) :
       element(h.get_app()),
-      base_socket(h),
+      axis_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -61,16 +61,16 @@ namespace sockets
          if(code == "334")
          {
             string strWord = pa.getword();
-            string strRequest = System.base64().decode(strWord);
+            string strRequest = System.axis64().decode(strWord);
             string strResponse;
             if(::str::find_ci("username", strRequest) >= 0)
             {
-               strResponse = System.base64().encode("mail@ca2.cc");
+               strResponse = System.axis64().encode("mail@ca2.cc");
                write(strResponse + "\r\n");
             }
             else if(::str::find_ci("password", strRequest) >= 0)
             {
-               strResponse = System.base64().encode("anos514Lund");
+               strResponse = System.axis64().encode("anos514Lund");
                write(strResponse + "\r\n");
             }
          }
@@ -101,7 +101,7 @@ namespace sockets
          if(code.Mid(0, 1) == "3")
          {
             m_estate = state_body;
-            write("Subject:  =?utf-8?B?" + System.base64().encode(m_email.m_strSubject) + "?=\r\n");
+            write("Subject:  =?utf-8?B?" + System.axis64().encode(m_email.m_strSubject) + "?=\r\n");
             m_email.prepare_headers();
             write(m_email.m_strHeaders);
             write("Content-Type: text/plain; charset=\"utf-8\"\r\n");

@@ -16,7 +16,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 
 //   ASSERT(FALSE);
 
-   xxdebug_box("base.dll DllMain (0)", "box", MB_OK);
+   xxdebug_box("axis.dll DllMain (0)", "box", MB_OK);
 
    UNREFERENCED_PARAMETER(hInstance);
    UNREFERENCED_PARAMETER(lpReserved);
@@ -28,9 +28,9 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    if (dwReason == DLL_PROCESS_ATTACH)
    {
 
-      OutputDebugStringW(L"base.dll initializing!\n");
+      OutputDebugStringW(L"axis.dll initializing!\n");
 
-      xxdebug_box("base.dll DllMain", "box", MB_OK);
+      xxdebug_box("axis.dll DllMain", "box", MB_OK);
       
    }
    else if (dwReason == DLL_PROCESS_DETACH)
@@ -63,7 +63,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
       }
 
 
-      OutputDebugStringW(L"base.dll terminating!\n");
+      OutputDebugStringW(L"axis.dll terminating!\n");
 
 
    }

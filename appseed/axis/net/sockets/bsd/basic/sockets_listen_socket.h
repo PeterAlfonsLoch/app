@@ -13,7 +13,7 @@ namespace sockets
 
    /** Binds incoming port number to new socket class X.
    \ingroup basic */
-   class CLASS_DECL_BASE listen_socket_base :
+   class CLASS_DECL_AXIS listen_socket_axis :
       virtual public socket
    {
    public:
@@ -24,22 +24,22 @@ namespace sockets
 
 
       /** Constructor.
-      \param h base_socket_handler reference
+      \param h axis_socket_handler reference
       \param use_creator Optional use of creator (default true) */
-      listen_socket_base(base_socket_handler& h);
+      listen_socket_axis(axis_socket_handler& h);
 
 
    protected:
 
 
-      listen_socket_base(const listen_socket_base& s);
-      listen_socket_base& operator=(const listen_socket_base& );
+      listen_socket_axis(const listen_socket_axis& s);
+      listen_socket_axis& operator=(const listen_socket_axis& );
 
 
    public:
 
 
-      virtual ~listen_socket_base();
+      virtual ~listen_socket_axis();
 
 
       virtual sp(socket) create_listen_socket();
@@ -134,7 +134,7 @@ namespace sockets
    \ingroup basic */
    template < class LISTENER >
    class listen_socket :
-      virtual public listen_socket_base
+      virtual public listen_socket_axis
    {
    public:
 
@@ -145,13 +145,13 @@ namespace sockets
 
 
       /** Constructor.
-      \param h base_socket_handler reference
+      \param h axis_socket_handler reference
       \param use_creator Optional use of creator (default true) */
-      listen_socket(base_socket_handler& h,bool use_creator = true) :
+      listen_socket(axis_socket_handler& h,bool use_creator = true) :
          element(h.get_app()),
-         base_socket(h),
+         axis_socket(h),
          socket(h),
-         listen_socket_base(h),
+         listen_socket_axis(h),
          m_bHasCreate(false),
          m_creator(NULL)
       {
@@ -161,7 +161,7 @@ namespace sockets
 
             m_creator = new LISTENER(h);
 
-            base_socket * plistener = m_creator->create();
+            axis_socket * plistener = m_creator->create();
 
             if(plistener != NULL)
             {

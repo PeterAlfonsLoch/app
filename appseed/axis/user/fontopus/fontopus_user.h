@@ -8,7 +8,7 @@ namespace fontopus
    class contact_list;
 
 
-   class CLASS_DECL_BASE user :
+   class CLASS_DECL_AXIS user :
       public object
    {
    public:

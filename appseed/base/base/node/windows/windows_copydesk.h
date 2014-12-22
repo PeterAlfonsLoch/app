@@ -5,8 +5,8 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AXIS copydesk : 
-      virtual public ::axis::copydesk,
+   class CLASS_DECL_BASE copydesk : 
+      virtual public ::base::copydesk,
       virtual public ::user::interaction
    {
    public:

@@ -1,4 +1,4 @@
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 
 
 namespace http
@@ -41,11 +41,11 @@ namespace http
       if ((bool)set["optional_ca2_sessid"])
       {
          if (Session.fontopus()->m_puser != NULL)
-            set["user"] = get_app()->m_pbasesession->fontopus()->get_user(true,pszUrl);
+            set["user"] = get_app()->m_paxissession->fontopus()->get_user(true,pszUrl);
       }
       else
       {
-         set["user"] = get_app()->m_pbasesession->fontopus()->get_user(true,pszUrl);
+         set["user"] = get_app()->m_paxissession->fontopus()->get_user(true,pszUrl);
       }
       set["app"] = get_app();
 
@@ -93,7 +93,7 @@ namespace http
       }
       else if(psignal->m_puser == NULL)
       {
-         psignal->m_puser = get_app()->m_pbasesession->fontopus()->get_user(true, psignal->m_strUrl);
+         psignal->m_puser = get_app()->m_paxissession->fontopus()->get_user(true, psignal->m_strUrl);
          psignal->m_set["app"] = get_app();
       }
       System.http().get(pobj);

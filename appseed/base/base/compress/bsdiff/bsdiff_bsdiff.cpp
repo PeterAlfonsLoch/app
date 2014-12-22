@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "libbsdiff.h"
-#include "axis/bzip2/bzlib.h"
+#include "base/bzip2/bzlib.h"
 
 
 

@@ -18,7 +18,7 @@
 
 
 
-namespace axis
+namespace base
 {
 
    class application;
@@ -30,7 +30,7 @@ namespace axis
 
 
 
-} // namespace axis
+} // namespace base
 
 
 namespace database
@@ -156,7 +156,7 @@ namespace simple_ui
 
 }
 
-namespace axis
+namespace base
 {
 
    template < typename T >
@@ -169,7 +169,7 @@ namespace axis
       }
    }
 
-} // namespace axis
+} // namespace base
 
 
 
@@ -178,7 +178,7 @@ class image_list;
 
 
 
-namespace axis
+namespace base
 {
 
 #if defined METROWIN && defined(__cplusplus_winrt)
@@ -193,15 +193,15 @@ namespace axis
 
    };
 
-   CLASS_DECL_AXIS bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
-   CLASS_DECL_AXIS bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
+   CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
+   CLASS_DECL_BASE bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
 
 #endif
 
 
    class session;
 
-} // namespace axis
+} // namespace base
 
 
 namespace data
@@ -223,20 +223,20 @@ namespace user
 
 #if defined METROWIN && defined(__cplusplus_winrt)
 
-   class CLASS_DECL_AXIS native_window_initialize
+   class CLASS_DECL_BASE native_window_initialize
    {
    public:
 
 
       Agile<Windows::UI::Core::CoreWindow> window;
-      ::axis::system_window ^ pwindow;
+      ::base::system_window ^ pwindow;
 
 
    };
 
 #elif defined(APPLE_IOS)
 
-   class CLASS_DECL_AXIS native_window_initialize
+   class CLASS_DECL_BASE native_window_initialize
    {
    public:
 
@@ -259,7 +259,7 @@ namespace user
 
 
 
-   CLASS_DECL_AXIS bool is_descendant(::user::interaction * puiParent,::user::interaction * puiChild);
+   CLASS_DECL_BASE bool is_descendant(::user::interaction * puiParent,::user::interaction * puiChild);
 
 
 } // namespace user
@@ -324,71 +324,71 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 #define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource));
 
 #undef CaSys
-#define CaSys(pca) (*pca->m_pauraapp->m_paxissystem)
+#define CaSys(pca) (*pca->m_pauraapp->m_pbasesystem)
 #undef Sys
-#define Sys(pauraapp) (*pauraapp->m_paxissystem)
+#define Sys(pauraapp) (*pauraapp->m_pbasesystem)
 //#define System (Sys(this->m_pauraapp))
 //#define threadSystem (Sys(get_thread_app()))
 
 #undef Sess
-#define Sess(pauraapp) (*pauraapp->m_paxissession)
+#define Sess(pauraapp) (*pauraapp->m_pbasesession)
 //#define Session (Sess(m_pauraapp))
 //#define Plat(pauraapp) (*pauraapp->m_pcoreplatform)
 //#define Platform (Plat(m_pauraapp))
 
 
 #undef App
-#define App(pauraapp) (*pauraapp->m_paxisapp)
+#define App(pauraapp) (*pauraapp->m_pbaseapp)
 #define Application (App(m_pauraapp))
 
 
 
-CLASS_DECL_AXIS bool axis_init();
-CLASS_DECL_AXIS bool axis_term();
+CLASS_DECL_BASE bool base_init();
+CLASS_DECL_BASE bool base_term();
 
-CLASS_DECL_AXIS bool __node_axis_pre_init();
-CLASS_DECL_AXIS bool __node_axis_pos_init();
+CLASS_DECL_BASE bool __node_base_pre_init();
+CLASS_DECL_BASE bool __node_base_pos_init();
 
-CLASS_DECL_AXIS bool __node_axis_pre_term();
-CLASS_DECL_AXIS bool __node_axis_pos_term();
+CLASS_DECL_BASE bool __node_base_pre_term();
+CLASS_DECL_BASE bool __node_base_pos_term();
 
 
 
 #if defined(LINUX)
 
-#include "axis/os/ansios/ansios.h"
-#include "axis/os/linux/linux_user_impl.h"
+#include "base/os/ansios/ansios.h"
+#include "base/os/linux/linux_user_impl.h"
 
 #elif defined(METROWIN)
 
-#include "axis/os/metrowin/metrowin.h"
-#include "axis/os/metrowin/metrowin_user_impl.h"
+#include "base/os/metrowin/metrowin.h"
+#include "base/os/metrowin/metrowin_user_impl.h"
 
 #elif defined(MACOS)
 
-#include "axis/os/ansios/ansios.h"
-#include "axis/os/macos/macos.h"
-#include "axis/os/macos/macos_windowing.h"
+#include "base/os/ansios/ansios.h"
+#include "base/os/macos/macos.h"
+#include "base/os/macos/macos_windowing.h"
 
 #elif defined(ANDROID)
 
-#include "axis/os/ansios/ansios.h"
-#include "axis/os/android/android.h"
+#include "base/os/ansios/ansios.h"
+#include "base/os/android/android.h"
 
 #elif defined(WINDOWS)
 
-#include "axis/os/windows/windows.h"
+#include "base/os/windows/windows.h"
 
 #elif defined(APPLE_IOS)
 
-#include "axis/os/ansios/ansios.h"
-#include "axis/os/ios/ios.h"
-#include "axis/os/ios/ios_windowing.h"
+#include "base/os/ansios/ansios.h"
+#include "base/os/ios/ios.h"
+#include "base/os/ios/ios_windowing.h"
 
 #elif defined(SOLARIS)
 
-#include "axis/os/ansios/ansios.h"
-#include "axis/os/solaris/solaris_user_impl.h"
+#include "base/os/ansios/ansios.h"
+#include "base/os/solaris/solaris_user_impl.h"
 
 #else
 
@@ -397,19 +397,19 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #endif
 
-//#include "axis/axis/axis/axis_command_target.h"
+//#include "base/base/base/base_command_target.h"
 
-#include "axis/primitive/datetime/datetime_value.h"
+#include "base/primitive/datetime/datetime_value.h"
 
-#include "axis/primitive/datetime/datetime_departament.h"
+#include "base/primitive/datetime/datetime_departament.h"
 
-#include "axis/database/database/database.h"
+#include "base/database/database/database.h"
 
-#include "axis/axis/axis_static_start.h"
+#include "base/base/base_static_start.h"
 
-#include "axis/graphics/graphics.h"
+#include "base/graphics/graphics.h"
 
-#include "axis/axis/axis_platform_interface.h"
+#include "base/base/base_platform_interface.h"
 
 #include "primitive/data/data_tree_item.h"
 
@@ -419,9 +419,9 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "filesystem/file/file_edit_buffer.h"
 
-//#include "axis/axis/axis_command_target.h"
+//#include "base/base/base_command_target.h"
 
-#include "axis/axis/axis_application.h"
+#include "base/base/base_application.h"
 
 #include "user/user/user_enum.h"
 
@@ -429,13 +429,13 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "user/user/user_schema.h"
 
-#include "axis/axis/axis_session.h"
+#include "base/base/base_session.h"
 
-#include "axis/axis/axis_system.h"
+#include "base/base/base_system.h"
 
-#include "axis/axis/axis_simple_app.h"
+#include "base/base/base_simple_app.h"
 
-#include "axis/axis/axis.inl"
+#include "base/base/base.inl"
 
 
 

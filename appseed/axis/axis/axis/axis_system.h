@@ -2,13 +2,13 @@
 
 
 
-namespace base
+namespace axis
 {
 
 
-   class CLASS_DECL_BASE system:
+   class CLASS_DECL_AXIS system:
       virtual public ::axis::system,
-      virtual public ::base::application
+      virtual public ::axis::application
    {
    public:
 
@@ -87,7 +87,7 @@ namespace base
    };
 
 
-} // namespace base
+} // namespace axis
 
 
 
@@ -95,7 +95,7 @@ namespace base
 
 
 
-void CLASS_DECL_BASE __start_system(::base::system * psystem);
+void CLASS_DECL_AXIS __start_system(::axis::system * psystem);
 
 
 

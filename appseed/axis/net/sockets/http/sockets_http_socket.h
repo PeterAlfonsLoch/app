@@ -6,9 +6,9 @@ namespace sockets
 
 
    /** \defgroup http HTTP Sockets */
-   /** HTTP request/response base class.
+   /** HTTP request/response axis class.
    \ingroup http */
-   class CLASS_DECL_BASE http_socket :
+   class CLASS_DECL_AXIS http_socket :
       virtual public tcp_socket
    {
    public:
@@ -44,7 +44,7 @@ namespace sockets
 
 
 
-      http_socket(base_socket_handler& );
+      http_socket(axis_socket_handler& );
       ~http_socket();
 
       void OnRawData(char *buf,size_t len);

@@ -39,7 +39,7 @@ namespace sockets
       /** SctpSocket constructor.
          \param h Owner
          \param type SCTP_STREAM or SCTP_SEQPACKET */
-      SctpSocket(base_socket_handler& h,int32_t type);
+      SctpSocket(axis_socket_handler& h,int32_t type);
       ~SctpSocket();
 
       /** bind() */

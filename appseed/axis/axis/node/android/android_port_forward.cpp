@@ -723,7 +723,7 @@ namespace android
 
 	   // now traverse the collection of piFoundDevices
 
-	   // the following code is based on code provided by MSDN in its Control Point API:
+	   // the following code is axisd on code provided by MSDN in its Control Point API:
 	   // "Device Collections Returned By Synchronous Searches" at
 	   // http://msdn.microsoft.com/library/en-us/upnp/upnp/device_collections_returned_by_synchronous_searches.asp
 

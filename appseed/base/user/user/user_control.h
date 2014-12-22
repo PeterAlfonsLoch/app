@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS control :
+   class CLASS_DECL_BASE control :
       virtual public ::database::user::interaction
    {
    public:
@@ -53,7 +53,7 @@ namespace user
       };
 
    // sort_array < INT_PR, int_ptr >
-      class CLASS_DECL_AXIS ddx_dbflags
+      class CLASS_DECL_BASE ddx_dbflags
       {
       public:
 
@@ -67,7 +67,7 @@ namespace user
 
       };
 
-      class CLASS_DECL_AXIS descriptor :
+      class CLASS_DECL_BASE descriptor :
          virtual public element
       {
       public:
@@ -123,7 +123,7 @@ namespace user
 
       };
 
-      class CLASS_DECL_AXIS descriptor_set :
+      class CLASS_DECL_BASE descriptor_set :
          public smart_pointer_array < descriptor >
       {
       public:

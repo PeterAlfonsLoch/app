@@ -6,10 +6,10 @@ namespace sockets
 
 
    /** \defgroup basic Basic sockets */
-   /** socket base class.
+   /** socket axis class.
    \ingroup basic */
-   class CLASS_DECL_BASE socket :
-      virtual public ::sockets::base_socket
+   class CLASS_DECL_AXIS socket :
+      virtual public ::sockets::axis_socket
    {
    public:
 
@@ -26,7 +26,7 @@ namespace sockets
 
 
       /** "Default" constructor */
-      socket(base_socket_handler & h);
+      socket(axis_socket_handler & h);
 
       virtual ~socket();
 
@@ -66,7 +66,7 @@ namespace sockets
       //@}
 
 
-      using base_socket::SetNonblocking;
+      using axis_socket::SetNonblocking;
       bool SetNonblocking(bool bNb, SOCKET s);
 
 

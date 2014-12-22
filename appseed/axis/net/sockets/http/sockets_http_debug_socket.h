@@ -33,13 +33,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
 
 
-      class base_socket_handler;
+      class axis_socket_handler;
 
 
       /** HTTP request "echo" class. This class echoes a http request/body
       with a html formatted page.
       \ingroup http */
-      class CLASS_DECL_BASE http_debug_socket :
+      class CLASS_DECL_AXIS http_debug_socket :
          public http_socket
       {
       public:
@@ -49,7 +49,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          ::primitive::memory_position     m_read_ptr;
 
 
-         http_debug_socket(base_socket_handler&);
+         http_debug_socket(axis_socket_handler&);
          ~http_debug_socket();
 
          void Init();

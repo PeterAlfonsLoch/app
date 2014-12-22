@@ -8,7 +8,7 @@ namespace android
 
    copydesk::copydesk(::aura::application * papp) :
       element(papp),
-      ::axis::copydesk(papp)
+      ::base::copydesk(papp)
    {
 
    }
@@ -59,7 +59,7 @@ namespace android
    bool copydesk::initialize()
    {
 
-      if(!::axis::copydesk::initialize())
+      if(!::base::copydesk::initialize())
          return false;
 
 
@@ -73,7 +73,7 @@ namespace android
 
       bool bOk;
 
-      bOk = ::axis::copydesk::finalize();
+      bOk = ::base::copydesk::finalize();
 
       return bOk;
 

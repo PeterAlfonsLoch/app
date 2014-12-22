@@ -5,7 +5,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AXIS message_queue:
+   class CLASS_DECL_BASE message_queue:
       virtual public ::aura::message_queue,
       virtual public ::user::interaction
    {

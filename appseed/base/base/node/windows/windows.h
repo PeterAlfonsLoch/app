@@ -25,9 +25,9 @@ namespace windows
 
 
 // interaction_impl creation hooking
-CLASS_DECL_AXIS bool hook_window_create(::windows::interaction_impl * pwindow);
-CLASS_DECL_AXIS bool unhook_window_create();
-CLASS_DECL_AXIS void reset_message_cache();
+CLASS_DECL_BASE bool hook_window_create(::windows::interaction_impl * pwindow);
+CLASS_DECL_BASE bool unhook_window_create();
+CLASS_DECL_BASE void reset_message_cache();
 
 
 
@@ -38,7 +38,7 @@ CLASS_DECL_AXIS void reset_message_cache();
 #include "windows_window_draw.h"
 #include "windows_interaction_impl.h"
 
-CLASS_DECL_AXIS WNDPROC __get_window_procedure();
+CLASS_DECL_BASE WNDPROC __get_window_procedure();
 
 #define NODE_WINDOW(pwnd) ((sp(::windows::interaction_impl))(pwnd))
 
@@ -70,11 +70,11 @@ CLASS_DECL_AXIS WNDPROC __get_window_procedure();
 
 
 
-CLASS_DECL_AXIS const char * __register_window_class(::aura::application * papp,UINT nClassStyle,HCURSOR hCursor = 0,HBRUSH hbrBackground = 0,HICON hIcon = 0);
+CLASS_DECL_BASE const char * __register_window_class(::aura::application * papp,UINT nClassStyle,HCURSOR hCursor = 0,HBRUSH hbrBackground = 0,HICON hIcon = 0);
 
-CLASS_DECL_AXIS bool __register_class(WNDCLASS* lpWndClass);
+CLASS_DECL_BASE bool __register_class(WNDCLASS* lpWndClass);
 
 
-CLASS_DECL_AXIS LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam);
-CLASS_DECL_AXIS WNDPROC __get_window_procedure();
+CLASS_DECL_BASE LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT nMsg,WPARAM wParam,LPARAM lParam);
+CLASS_DECL_BASE WNDPROC __get_window_procedure();
 #define __window_procedure (*__get_window_procedure())

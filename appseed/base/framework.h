@@ -3,12 +3,12 @@
 #endif
 
 
-#include "axis/axis/axis/axis.h"
+#include "base/base/base/base.h"
 
 
 #if (defined(cplusplus) || defined(__cplusplus_winrt)) && !defined(__OBJC__)
 
-#include "axis/user/user.h"
+#include "base/user/user.h"
 
 #endif
 

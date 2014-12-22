@@ -1,4 +1,4 @@
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 
 #ifdef LINUX
 
@@ -11,9 +11,9 @@ namespace sockets
 {
 
 
-   http_client_socket::http_client_socket(base_socket_handler& h) :
+   http_client_socket::http_client_socket(axis_socket_handler& h) :
       element(h.get_app()),
-      base_socket(h),
+      axis_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -36,9 +36,9 @@ namespace sockets
    }
 
 
-   http_client_socket::http_client_socket(base_socket_handler & h, const string & strUrlParam) :
+   http_client_socket::http_client_socket(axis_socket_handler & h, const string & strUrlParam) :
       element(h.get_app()),
-      base_socket(h),
+      axis_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -449,7 +449,7 @@ namespace sockets
 
    }
 
-   CLASS_DECL_BASE string http_method_string(e_http_method emethod)
+   CLASS_DECL_AXIS string http_method_string(e_http_method emethod)
    {
 
       switch (emethod)
@@ -475,7 +475,7 @@ namespace sockets
    }
 
 
-   CLASS_DECL_BASE e_http_method string_http_method(const string & str)
+   CLASS_DECL_AXIS e_http_method string_http_method(const string & str)
    {
 
       string strMethod(str);

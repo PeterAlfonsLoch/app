@@ -3,7 +3,7 @@
 namespace visual
 {
 
-   class CLASS_DECL_BASE font :
+   class CLASS_DECL_AXIS font :
       virtual public ::object
    {
    public:

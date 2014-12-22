@@ -6,7 +6,7 @@
    {
 
 
-      class CLASS_DECL_BASE ssl_server_context_map :
+      class CLASS_DECL_AXIS ssl_server_context_map :
          virtual public string_map < sp(ssl_server_context) >
       {
       public:

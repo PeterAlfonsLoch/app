@@ -1,13 +1,13 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 
 
 namespace sockets
 {
 
 
-   udp_socket::udp_socket(base_socket_handler& h, int32_t ibufsz, bool ipv6, int32_t retries) : 
+   udp_socket::udp_socket(axis_socket_handler& h, int32_t ibufsz, bool ipv6, int32_t retries) : 
       element(h.get_app())
-      ,base_socket(h)
+      ,axis_socket(h)
       ,socket(h)
    , m_ibuf(new char[ibufsz])
    , m_ibufsz(ibufsz)
@@ -293,7 +293,7 @@ namespace sockets
       struct cmsghdr *cmsg;
       struct timeval *tv;
 
-      vec[0].iov_base = ioBuf;
+      vec[0].iov_axis = ioBuf;
       vec[0].iov_len = inBufSize;
 
       memset(&msg, 0, sizeof(msg));

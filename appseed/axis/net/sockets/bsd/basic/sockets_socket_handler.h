@@ -5,12 +5,12 @@ namespace sockets
 {
 
 
-   class base_socket;
+   class axis_socket;
    class resolv_server;
 
 
-   class CLASS_DECL_BASE socket_handler : 
-      public base_socket_handler
+   class CLASS_DECL_AXIS socket_handler : 
+      public axis_socket_handler
    {
    public:
 
@@ -49,9 +49,9 @@ namespace sockets
       socket_bool          m_resolve_q; ///< resolve queue
       bool                 m_b_enable_pool; ///< Connection pool enabled if true
       int32_t              m_next_trigger_id; ///< Unique trigger id counter
-      socket_map           m_trigger_src; ///< mapping trigger id to source base_socket
+      socket_map           m_trigger_src; ///< mapping trigger id to source axis_socket
       socket_socket_bool   m_trigger_dst; ///< mapping trigger id to destination sockets
-      bool                 m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
+      bool                 m_slave; ///< Indicates that this is a axis_socket_handler run in socket_thread
 
 
       socket_handler(::aura::application * papp, logger * plogger = NULL);
@@ -62,10 +62,10 @@ namespace sockets
       mutex & GetMutex() const;
 
 
-      /** add base_socket instance to base_socket map. Removal is always automatic. */
-      void add(base_socket *);
+      /** add axis_socket instance to axis_socket map. Removal is always automatic. */
+      void add(axis_socket *);
 
-      /** get status of read/write/exception file descriptor set for a base_socket. */
+      /** get status of read/write/exception file descriptor set for a axis_socket. */
       void get(SOCKET s,bool& r,bool& w,bool& e);
 
       /** set read/write/exception file descriptor sets (fd_set). */
@@ -80,17 +80,17 @@ namespace sockets
       /** Wait for events, generate callbacks. */
       int32_t select(struct timeval *tsel);
 
-      /** Check that a base_socket really is handled by this base_socket handler. */
-      bool Valid(base_socket *);
+      /** Check that a axis_socket really is handled by this axis_socket handler. */
+      bool Valid(axis_socket *);
 
       /** Return number of sockets handled by this handler.  */
       size_t get_count();
 
       /** Override and return false to deny all incoming connections.
       \param p listen_socket class pointer (use GetPort to identify which one) */
-      bool OkToAccept(base_socket *p);
+      bool OkToAccept(axis_socket *p);
 
-      /** Called by base_socket when a base_socket changes state. */
+      /** Called by axis_socket when a axis_socket changes state. */
       void AddList(SOCKET s,list_t which_one,bool add);
 
       // Connection pool
@@ -135,31 +135,31 @@ namespace sockets
       bool ResolverEnabled();
       /** Queue a dns request.
       \param host Hostname to be resolved
-      \param port Port number will be echoed in base_socket::OnResolved callback */
-      int32_t Resolve(base_socket *,const string & host,port_t port);
-      int32_t Resolve6(base_socket *,const string & host,port_t port);
+      \param port Port number will be echoed in axis_socket::OnResolved callback */
+      int32_t Resolve(axis_socket *,const string & host,port_t port);
+      int32_t Resolve6(axis_socket *,const string & host,port_t port);
       /** Do a reverse dns lookup. */
-      int32_t Resolve(base_socket *,in_addr a);
-      int32_t Resolve(base_socket *,in6_addr& a);
+      int32_t Resolve(axis_socket *,in_addr a);
+      int32_t Resolve(axis_socket *,in6_addr& a);
       /** get listen port of asynchronous dns server. */
       port_t GetResolverPort();
       /** Resolver thread ready for queries. */
       bool ResolverReady();
-      /** Returns true if the base_socket is waiting for a resolve event. */
-      bool Resolving(base_socket *);
+      /** Returns true if the axis_socket is waiting for a resolve event. */
+      bool Resolving(axis_socket *);
 
       /** Fetch unique trigger id. */
-      int32_t TriggerID(base_socket *src);
-      /** Subscribe base_socket to trigger id. */
-      bool Subscribe(int32_t id, base_socket *dst);
-      /** Unsubscribe base_socket from trigger id. */
-      bool Unsubscribe(int32_t id, base_socket *dst);
+      int32_t TriggerID(axis_socket *src);
+      /** Subscribe axis_socket to trigger id. */
+      bool Subscribe(int32_t id, axis_socket *dst);
+      /** Unsubscribe axis_socket from trigger id. */
+      bool Unsubscribe(int32_t id, axis_socket *dst);
       /** Execute OnTrigger for subscribed sockets.
       \param id Trigger ID
       \param data Data passed from source to destination
       \param erase Empty trigger id source and destination maps if 'true',
       Leave them in place if 'false' - if a trigger should be called many times */
-      void Trigger(int32_t id, base_socket::trigger_data & data, bool erase = true);
+      void Trigger(int32_t id, axis_socket::trigger_data & data, bool erase = true);
 
       /** Indicates that the handler runs under socket_thread. */
       void SetSlave(bool x = true);
@@ -171,8 +171,8 @@ namespace sockets
 
 
       void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
-      /** remove base_socket from base_socket map, used by base_socket class. */
-      void remove(base_socket *);
+      /** remove axis_socket from axis_socket map, used by axis_socket class. */
+      void remove(axis_socket *);
    };
 
 

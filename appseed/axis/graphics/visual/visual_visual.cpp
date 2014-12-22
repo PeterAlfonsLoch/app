@@ -351,7 +351,7 @@ namespace visual
       return count;
    }
 
-   // should not call base class implementation because visual::visual is inside a n-furcation of user::visual
+   // should not call axis class implementation because visual::visual is inside a n-furcation of user::visual
    int32_t visual::exit_instance()
    {
 

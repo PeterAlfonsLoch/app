@@ -1,6 +1,6 @@
 #include "framework.h"
 
-url_domain_base::url_domain_base()
+url_domain_axis::url_domain_axis()
 {
 
    m_pszRadix     = NULL;
@@ -21,7 +21,7 @@ url_domain_base::url_domain_base()
 
 }
 
-void url_domain_base::create(const char * pszServerName)
+void url_domain_axis::create(const char * pszServerName)
 {
    m_strOriginalName = pszServerName;
    if(m_strOriginalName.is_empty())
@@ -232,15 +232,15 @@ void url_domain_base::create(const char * pszServerName)
 }
 
 
-string url_domain_base::get_name(const char * pszServerName)
+string url_domain_axis::get_name(const char * pszServerName)
 {
 
-   url_domain_base domainbase;
+   url_domain_axis domainaxis;
 
-   domainbase.create(pszServerName);
+   domainaxis.create(pszServerName);
 
-   if(domainbase.m_pszName != NULL)
-      return string(domainbase.m_pszName, domainbase.m_iLenName);
+   if(domainaxis.m_pszName != NULL)
+      return string(domainaxis.m_pszName, domainaxis.m_iLenName);
    else
       return "";
 
@@ -249,7 +249,7 @@ string url_domain_base::get_name(const char * pszServerName)
 void url_domain::create(const char * pszServerName)
 {
 
-   url_domain_base::create(pszServerName);
+   url_domain_axis::create(pszServerName);
 
    if(m_pszRadix != NULL)
    {
@@ -308,7 +308,7 @@ void url_domain::create(const char * pszServerName)
 }
 
 
-bool CLASS_DECL_BASE server_is_top_domain(const char * pszTop1, strsize blen, const char * pszTop2, strsize alen)
+bool CLASS_DECL_AXIS server_is_top_domain(const char * pszTop1, strsize blen, const char * pszTop2, strsize alen)
 {
    char a1;
    char a2;

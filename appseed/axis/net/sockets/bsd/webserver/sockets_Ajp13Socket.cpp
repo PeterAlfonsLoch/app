@@ -20,7 +20,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 
 namespace sockets
 {
@@ -33,10 +33,10 @@ namespace sockets
 
 
    // --------------------------------------------------------------------------------------
-   Ajp13Socket::Ajp13Socket(base_socket_handler& h) :
+   Ajp13Socket::Ajp13Socket(axis_socket_handler& h) :
       element(h.get_app()),
       socket(h),
-      base_socket(h),
+      axis_socket(h),
       stream_socket(h),
       AjpBaseSocket(h),
       m_request(h.get_app()),
@@ -126,7 +126,7 @@ namespace sockets
       bool      is_ssl        = get_boolean(buf, ptr);
 
       string method_str = ::str::from( method );
-      Session.sockets().m_pajpbasesocketinit->Method.Lookup(method, method_str);
+      Session.sockets().m_pajpaxissocketinit->Method.Lookup(method, method_str);
       m_request.attr("http_method") = method_str;
       m_request.attr("http_protocol") = protocol;
       m_request.attr("request_uri") = req_uri;
@@ -146,7 +146,7 @@ namespace sockets
          case 0xa0:
             {
                uint16_t x = (uint16_t)get_integer(buf, ptr);
-               if (!Session.sockets().m_pajpbasesocketinit->header.Lookup(x, key))
+               if (!Session.sockets().m_pajpaxissocketinit->header.Lookup(x, key))
                {
                   TRACE("Unknown header key value: %x\n", x);
                   SetCloseAndDelete();
@@ -179,7 +179,7 @@ namespace sockets
             break;
          default:
             {
-               if(!Session.sockets().m_pajpbasesocketinit->Attribute.Lookup(code, key))
+               if(!Session.sockets().m_pajpaxissocketinit->Attribute.Lookup(code, key))
                {
                   TRACE("Unknown attribute key: 0x%02x\n", buf[ptr]);
                   SetCloseAndDelete();
@@ -271,7 +271,7 @@ namespace sockets
             string strNameLower(m_response.headers().m_propertya[i]->name());
             strNameLower;
             int32_t iValue;
-            if(Session.sockets().m_pajpbasesocketinit->ResponseHeader.Lookup(strNameLower, iValue))
+            if(Session.sockets().m_pajpaxissocketinit->ResponseHeader.Lookup(strNameLower, iValue))
             {
                put_integer(msg, ptr, (int16_t) iValue);
             }
@@ -286,8 +286,8 @@ namespace sockets
          {
             for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
             {
-               Utility::ncmap<int32_t>::const_iterator it2 = dynamic_cast < application_interface * >(::get_app())->m_pajpbasesocketinit->ResponseHeader.find( __id(set_cookie) );
-               if (it2 != dynamic_cast < application_interface * >(::get_app())->m_pajpbasesocketinit->ResponseHeader.end())
+               Utility::ncmap<int32_t>::const_iterator it2 = dynamic_cast < application_interface * >(::get_app())->m_pajpaxissocketinit->ResponseHeader.find( __id(set_cookie) );
+               if (it2 != dynamic_cast < application_interface * >(::get_app())->m_pajpaxissocketinit->ResponseHeader.end())
                {
                   put_integer(msg, ptr, it2 -> m_element2);
                }

@@ -11,7 +11,7 @@ namespace net
 {
 
 
-   CLASS_DECL_BASE int32_t family_len(int32_t family);
+   CLASS_DECL_AXIS int32_t family_len(int32_t family);
 
 
 
@@ -32,8 +32,8 @@ namespace sockets
 
 #include "net_net.h"
 
-#include "base/net/net_url_departament.h"
-#include "base/net/net_url_domain.h"
+#include "axis/net/net_url_departament.h"
+#include "axis/net/net_url_domain.h"
 
 
 

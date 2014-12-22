@@ -1,4 +1,4 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 
 
 #ifdef USE_SCTP
@@ -8,7 +8,7 @@ namespace sockets
 {
 
 
-   SctpSocket::SctpSocket(base_socket_handler& h,int32_t type) : stream_socket(h)
+   SctpSocket::SctpSocket(axis_socket_handler& h,int32_t type) : stream_socket(h)
    ,m_type(type)
    ,m_buf(new char[SCTP_BUFSIZE_READ])
    {

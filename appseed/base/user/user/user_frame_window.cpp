@@ -1,10 +1,10 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 
 #ifdef WINDOWS
 #include <dde.h>        // for DDE execute shell requests
 #endif
 
-extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
+extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
 
 namespace user
 {
@@ -416,9 +416,9 @@ namespace user
    if (lParam == 0)
    {
    if (IsTracking())
-   lParam = HID_AXIS_COMMAND+m_nIDTracking;
+   lParam = HID_BASE_COMMAND+m_nIDTracking;
    else
-   lParam = HID_AXIS_RESOURCE+m_nIDHelp;
+   lParam = HID_BASE_RESOURCE+m_nIDHelp;
    }
    if (lParam != 0)
    {
@@ -433,7 +433,7 @@ namespace user
    /*LRESULT frame_window::OnHelpHitTest(WPARAM, LPARAM)
    {
    if (m_nIDHelp != 0)
-   return HID_AXIS_RESOURCE+m_nIDHelp;
+   return HID_BASE_RESOURCE+m_nIDHelp;
    else
    return 0;
    }*/
@@ -450,7 +450,7 @@ namespace user
    //   nID != ID_HELP && nID != ID_DEFAULT_HELP && nID != ID_CONTEXT_HELP)
    //   {
    //   // route as help
-   //   if (!SendMessage(WM_COMMANDHELP, 0, HID_AXIS_COMMAND+nID))
+   //   if (!SendMessage(WM_COMMANDHELP, 0, HID_BASE_COMMAND+nID))
    //   SendMessage(WM_COMMAND, ID_DEFAULT_HELP);
    //   return TRUE;
    //   }
@@ -744,7 +744,7 @@ namespace user
       //   ASSERT_VALID_IDR(nIDResource);
       //   ASSERT(m_nIDHelp == 0 || m_nIDHelp == nIDResource);
 
-      /*m_nIDHelp = pszMatter;    // ID for help context (+HID_AXIS_RESOURCE)
+      /*m_nIDHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
 
       string strFullString;
       if (strFullString.load_string(nIDResource))
@@ -1102,7 +1102,7 @@ namespace user
          case SC_RESTORE:
          case SC_TASKLIST:
          if (!SendMessage(WM_COMMANDHELP, 0,
-         HID_AXIS_COMMAND+ID_COMMAND_FROM_SC(nItemID)))
+         HID_BASE_COMMAND+ID_COMMAND_FROM_SC(nItemID)))
          SendMessage(WM_COMMAND, ID_DEFAULT_HELP);
          return;
          }*/

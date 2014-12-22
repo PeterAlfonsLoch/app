@@ -1,13 +1,13 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
-   class CLASS_DECL_BASE session:
+   class CLASS_DECL_AXIS session:
       virtual public ::axis::session,
-      virtual public ::base::application
+      virtual public ::axis::application
    {
    public:
 
@@ -107,7 +107,7 @@ namespace base
    };
 
 
-} // namespace base
+} // namespace axis
 
 
 
@@ -116,7 +116,7 @@ namespace base
 
 
 
-//inline ::base::session & Sess(::aura::application * papp);
+//inline ::axis::session & Sess(::aura::application * papp);
 
 
 

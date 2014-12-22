@@ -3,7 +3,7 @@
 
 #ifdef cplusplus
 
-namespace base
+namespace axis
 {
 
 
@@ -11,7 +11,7 @@ namespace base
    static int32_t simple_app_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
    {
 
-      if(!defer_base_init())
+      if(!defer_axis_init())
       {
          return -1;
       }
@@ -36,14 +36,14 @@ namespace base
       {
       }
 
-      defer_base_term();
+      defer_axis_term();
 
       return iRet;
 
    }
 
 
-} // namespace base
+} // namespace axis
 
 
 

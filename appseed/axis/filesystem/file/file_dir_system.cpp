@@ -887,7 +887,7 @@ namespace file
       string system::locale_schema(::aura::application * papp, const string & strLocale, const string & strSchema)
       {
 
-         return papp->m_pbasesession->get_locale_schema_dir(strLocale, strSchema);
+         return papp->m_paxissession->get_locale_schema_dir(strLocale, strSchema);
 
       }
 
@@ -905,11 +905,11 @@ namespace file
             if(Session.m_bMatterFromHttpCache)
             {
 
-               return path(simple_path(strRoot,"appmatter",strDomain),papp->m_pbasesession->get_locale_schema_dir(strLocale,strSchema));
+               return path(simple_path(strRoot,"appmatter",strDomain),papp->m_paxissession->get_locale_schema_dir(strLocale,strSchema));
             }
             else
             {
-               return path(element(simple_path(strRoot,"appmatter",strDomain)),papp->m_pbasesession->get_locale_schema_dir(strLocale,strSchema));
+               return path(element(simple_path(strRoot,"appmatter",strDomain)),papp->m_paxissession->get_locale_schema_dir(strLocale,strSchema));
 
             }
 
@@ -922,7 +922,7 @@ namespace file
             for (index i = 0; i < papp->m_straMatterLocator.get_count(); i++)
             {
 
-               stra.add_unique(path(papp->m_straMatterLocator[i], papp->m_pbasesession->get_locale_schema_dir(strLocale, strSchema)));
+               stra.add_unique(path(papp->m_straMatterLocator[i], papp->m_paxissession->get_locale_schema_dir(strLocale, strSchema)));
 
             }
 
@@ -1081,7 +1081,7 @@ namespace file
 
                   strLs = straLs[l];
 
-                  strFile = System.dir().commonappdata(path("cache", papp->m_pbasesession->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
+                  strFile = System.dir().commonappdata(path("cache", papp->m_paxissession->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
 
                   strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1278,7 +1278,7 @@ namespace file
             {
                strLs = straLs[l];
 
-               strFile = System.dir().commonappdata(path("cache", papp->m_pbasesession->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
+               strFile = System.dir().commonappdata(path("cache", papp->m_paxissession->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
 
                strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1453,10 +1453,10 @@ else
             }
 
 
-            if (papp->m_pbasesession != NULL && papp->m_pbasesession != papp &&
-               (sp(::aura::application)) papp->m_pbasesystem != (sp(::aura::application)) papp)
+            if (papp->m_paxissession != NULL && papp->m_paxissession != papp &&
+               (sp(::aura::application)) papp->m_paxissystem != (sp(::aura::application)) papp)
             {
-               strPath = matter(papp->m_pbasesession, stra, bDir);
+               strPath = matter(papp->m_paxissession, stra, bDir);
                if (bDir)
                {
                   if (System.dir().is(strPath, get_app()))
@@ -1469,10 +1469,10 @@ else
                }
             }
 
-            if (papp->m_pbasesystem != NULL && papp->m_pbasesystem != papp &&
-               (sp(::aura::application)) papp->m_pbasesystem != (sp(::aura::application)) papp->m_pbasesession)
+            if (papp->m_paxissystem != NULL && papp->m_paxissystem != papp &&
+               (sp(::aura::application)) papp->m_paxissystem != (sp(::aura::application)) papp->m_paxissession)
             {
-               strPath = matter(papp->m_pbasesystem, stra, bDir);
+               strPath = matter(papp->m_paxissystem, stra, bDir);
                if (bDir)
                {
                   if (System.dir().is(strPath, get_app()))
@@ -1552,7 +1552,7 @@ else
                strSchema = pcontext->m_plocaleschema->m_idSchema;
                straLs = locale_schema_matter(papp, strLocale, strSchema, pszRoot, pszApp);
 
-               strFile = System.dir().commonappdata(path("cache", papp->m_pbasesession->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
+               strFile = System.dir().commonappdata(path("cache", papp->m_paxissession->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
 
                strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1714,7 +1714,7 @@ else
             strSchema  = pcontext->m_plocaleschema->m_idSchema;
             straLs      = locale_schema_matter(papp, strLocale, strSchema);
 
-            strFile = System.dir().commonappdata(path("cache", papp->m_pbasesession->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
+            strFile = System.dir().commonappdata(path("cache", papp->m_paxissession->get_locale_schema_dir(strLocale, strSchema), str + ::str::has_char(str2, ",") + ".map_question"));
 
             strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1862,11 +1862,11 @@ else
             }
 
 
-            if(papp->m_pbasesession != NULL && papp->m_pbasesession != papp &&
-               (sp(::aura::application)) papp->m_pbasesystem != (sp(::aura::application)) papp
-               && papp->m_pbasesession->m_bBaseInitialize1)
+            if(papp->m_paxissession != NULL && papp->m_paxissession != papp &&
+               (sp(::aura::application)) papp->m_paxissystem != (sp(::aura::application)) papp
+               && papp->m_paxissession->m_bBaseInitialize1)
             {
-               strPath = matter(papp->m_pbasesession, str, str2, bDir);
+               strPath = matter(papp->m_paxissession, str, str2, bDir);
                if(bDir)
                {
                   if(System.dir().is(strPath, papp))
@@ -1883,11 +1883,11 @@ else
 
 
 
-         if(papp->m_pbasesystem != NULL && papp->m_pbasesystem != papp &&
-            (sp(::aura::application)) papp->m_pbasesystem != (sp(::aura::application)) papp->m_pbasesession
-            && papp->m_pbasesystem->m_bBaseInitialize1)
+         if(papp->m_paxissystem != NULL && papp->m_paxissystem != papp &&
+            (sp(::aura::application)) papp->m_paxissystem != (sp(::aura::application)) papp->m_paxissession
+            && papp->m_paxissystem->m_bBaseInitialize1)
          {
-            strPath = matter(papp->m_pbasesystem, str, str2, bDir);
+            strPath = matter(papp->m_paxissystem, str, str2, bDir);
             if(bDir)
             {
                if(System.dir().is(strPath, get_app()))
@@ -2303,7 +2303,7 @@ ret:
 
       }
 
-      string system::base_appmatter_locator(const string & strBase, const string & strLibraryName, const string & strAppName)
+      string system::axis_appmatter_locator(const string & strBase, const string & strLibraryName, const string & strAppName)
       {
 
          string strRoot;
@@ -2315,7 +2315,7 @@ ret:
 
       }
 
-      string system::base_appmatter_locator(const string & strBase, const string & strAppName)
+      string system::axis_appmatter_locator(const string & strBase, const string & strAppName)
       {
 
          string strRoot;

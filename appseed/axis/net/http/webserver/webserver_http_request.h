@@ -6,7 +6,7 @@ namespace http
 
    class form;
 
-   class CLASS_DECL_BASE request : public transaction
+   class CLASS_DECL_AXIS request : public transaction
    {
    public:
 

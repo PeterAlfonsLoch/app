@@ -1,4 +1,4 @@
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 
 
 #ifdef HAVE_OPENSSL
@@ -17,7 +17,7 @@ namespace mail
 
    pop3_socket::pop3_socket(::sockets::socket_handler & h) :
       element(h.get_app()),
-      base_socket(h),
+      axis_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

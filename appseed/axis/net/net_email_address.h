@@ -5,7 +5,7 @@ namespace net
 {
 
 
-   class CLASS_DECL_BASE email_address
+   class CLASS_DECL_AXIS email_address
    {
    public:
 

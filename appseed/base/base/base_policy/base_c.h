@@ -34,25 +34,25 @@
 
 
 #if defined(ANDROID)
-#include "axis/axis/os/android/android.h"
+#include "base/base/os/android/android.h"
 #elif defined(MACOS)
-#include "axis/axis/os/macos/macos.h"
+#include "base/base/os/macos/macos.h"
 #elif defined(LINUX)
-#include "axis/axis/os/linux/linux.h"
+#include "base/base/os/linux/linux.h"
 #elif defined(METROWIN)
-#include "axis/axis/os/metrowin/metrowin.h"
+#include "base/base/os/metrowin/metrowin.h"
 #elif defined(WINDOWS)
-#include "axis/axis/os/windows/windows.h"
+#include "base/base/os/windows/windows.h"
 #elif defined(SOLARIS)
-#include "axis/axis/os/solaris/solaris.h"
+#include "base/base/os/solaris/solaris.h"
 #elif defined(APPLE_IOS)
-#include "axis/axis/os/ios/ios.h"
+#include "base/base/os/ios/ios.h"
 #else
 #error Not Supported Operational System
 #endif
 
 
 
-CLASS_DECL_AXIS int get_axis_init();
-CLASS_DECL_AXIS int_bool defer_axis_init();
-CLASS_DECL_AXIS int_bool defer_axis_term();
+CLASS_DECL_BASE int get_base_init();
+CLASS_DECL_BASE int_bool defer_base_init();
+CLASS_DECL_BASE int_bool defer_base_term();

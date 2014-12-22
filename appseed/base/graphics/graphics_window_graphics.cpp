@@ -1,10 +1,10 @@
 #include "framework.h"
 #ifdef WINDOWSEX
-#include "axis/os/windows/windows_window_gdi.h"
+#include "base/os/windows/windows_window_gdi.h"
 #elif defined (LINUX)
-#include "axis/os/linux/linux_window_xlib.h"
+#include "base/os/linux/linux_window_xlib.h"
 #elif defined (ANDROID)
-#include "axis/os/android/android_window_android.h"
+#include "base/os/android/android_window_android.h"
 #endif
 
 window_graphics::window_graphics()

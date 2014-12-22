@@ -7,7 +7,7 @@ namespace http
 
    /** Parse/store a http query_string/form-data body.
       \ingroup webserver */
-   class CLASS_DECL_BASE form :
+   class CLASS_DECL_AXIS form :
       virtual public ::object
    {
    public:

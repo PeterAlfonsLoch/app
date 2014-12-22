@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 
 
 
-namespace base
+namespace axis
 {
 
 
@@ -14,13 +14,13 @@ namespace base
       ::axis::session(papp)
    {
 
-      m_pbasesession                = this;
+      m_paxissession                = this;
 
-      m_bMatterFromHttpCache        = m_pbasesystem->m_bMatterFromHttpCache;
+      m_bMatterFromHttpCache        = m_paxissystem->m_bMatterFromHttpCache;
 
-      m_bSystemSynchronizedCursor   = m_pbasesystem->m_bSystemSynchronizedCursor;
+      m_bSystemSynchronizedCursor   = m_paxissystem->m_bSystemSynchronizedCursor;
 
-      m_bSystemSynchronizedScreen   = m_pbasesystem->m_bSystemSynchronizedScreen;
+      m_bSystemSynchronizedScreen   = m_paxissystem->m_bSystemSynchronizedScreen;
 
       m_iMainMonitor                = -1;
 
@@ -53,7 +53,7 @@ namespace base
 
       m_pmapKeyPressed              = NULL;
 
-      m_pbasesystem->m_basesessionptra.add_unique(this);
+      m_paxissystem->m_axissessionptra.add_unique(this);
 
 //      m_puserschema                 = &m_schemasimple;
 
@@ -76,7 +76,7 @@ namespace base
             m_pfontopus = create_fontopus();
 
             if(m_pfontopus == NULL)
-               throw simple_exception(this,"could not create fontopus for ::base::session (::base::session::construct)");
+               throw simple_exception(this,"could not create fontopus for ::axis::session (::axis::session::construct)");
 
             m_pfontopus->construct(this);
 
@@ -98,24 +98,24 @@ namespace base
    session::~session_parent
    {
 
-      m_pbasesystem->m_basesessionptra.remove(this);
+      m_paxissystem->m_axissessionptra.remove(this);
 
       POSITION pos = m_mapApplication.get_start_position();
 
       string strId;
 
-      sp(::aura::application) pbaseapp;
+      sp(::aura::application) paxisapp;
 
       while(pos != NULL)
       {
 
          strId.Empty();
 
-         pbaseapp = NULL;
+         paxisapp = NULL;
 
-         m_mapApplication.get_next_assoc(pos,strId,pbaseapp);
+         m_mapApplication.get_next_assoc(pos,strId,paxisapp);
 
-         ::aura::application * papp = (pbaseapp);
+         ::aura::application * papp = (paxisapp);
 
          papp->post_thread_message(WM_QUIT);
 
@@ -1119,7 +1119,7 @@ namespace base
       if(!::axis::session::process_initialize())
          return false;
 
-      if(!::base::application::process_initialize())
+      if(!::axis::application::process_initialize())
          return false;
 
       //m_spuser = create_user();
@@ -1167,7 +1167,7 @@ namespace base
       if(!::axis::session::initialize1())
          return false;
 
-      if(!::base::application::initialize1())
+      if(!::axis::application::initialize1())
          return false;
 
       m_puserpresence = canew(::userpresence::userpresence(this));
@@ -1218,7 +1218,7 @@ namespace base
       if(!::axis::session::initialize2())
          return false;
 
-      if(!::base::application::initialize2())
+      if(!::axis::application::initialize2())
          return false;
 
       //fill_locale_schema(*str_context()->m_plocaleschema);
@@ -1247,7 +1247,7 @@ namespace base
       if(!::axis::session::initialize_instance())
          return false;
 
-      if(!::base::application::initialize_instance())
+      if(!::axis::application::initialize_instance())
          return false;
 
       return true;
@@ -1261,7 +1261,7 @@ namespace base
       if(!::axis::session::initialize())
          return false;
 
-      if(!::base::application::initialize())
+      if(!::axis::application::initialize())
          return false;
 
       //if(!is_installing() && !is_uninstalling())
@@ -1275,7 +1275,7 @@ namespace base
       //if(!m_spuser->initialize())
       //   return false;
 
-      //user()->set_keyboard_layout(NULL,::action::source::database());
+      //user()->set_keyboard_layout(NULL,::action::source::dataaxis());
 
 
       if(m_bIfs)
@@ -1315,7 +1315,7 @@ namespace base
       try
       {
 
-         bOk = ::base::application::finalize();
+         bOk = ::axis::application::finalize();
 
       }
       catch(...)
@@ -1359,7 +1359,7 @@ namespace base
       //}
 
 
-      ::base::application::exit_instance();
+      ::axis::application::exit_instance();
 
       ::axis::session::exit_instance();
 
@@ -1375,7 +1375,7 @@ namespace base
 //
 //      m_monitorinfoa.remove_all();
 //
-//      ::EnumDisplayMonitors(NULL,NULL,&system::monitor_enum_proc,(LPARAM)(dynamic_cast < ::base::system * > (this)));
+//      ::EnumDisplayMonitors(NULL,NULL,&system::monitor_enum_proc,(LPARAM)(dynamic_cast < ::axis::system * > (this)));
 //
 //#else
 //
@@ -1393,7 +1393,7 @@ namespace base
 //   BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData)
 //   {
 //
-//      ::base::system * psystem = (::base::system *) dwData;
+//      ::axis::system * psystem = (::axis::system *) dwData;
 //
 //      psystem->monitor_enum(hmonitor,hdcMonitor,lprcMonitor);
 //
@@ -1816,7 +1816,7 @@ namespace base
    }
 
 
-} // namespace base
+} // namespace axis
 
 
 

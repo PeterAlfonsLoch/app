@@ -11,7 +11,7 @@ namespace crypto
    {
 
 
-      class CLASS_DECL_BASE context :
+      class CLASS_DECL_AXIS context :
          public object
       {
       public:

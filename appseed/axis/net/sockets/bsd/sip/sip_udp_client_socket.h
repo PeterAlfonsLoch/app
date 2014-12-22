@@ -5,13 +5,13 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_BASE sip_udp_client_socket :
+   class CLASS_DECL_AXIS sip_udp_client_socket :
       virtual public udp_socket,
-      virtual public sip_base_client_socket
+      virtual public sip_axis_client_socket
    {
    public:
 
-      sip_udp_client_socket(base_socket_handler& );
+      sip_udp_client_socket(axis_socket_handler& );
 
 
       /** Called when incoming data has been received.

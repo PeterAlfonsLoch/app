@@ -20,7 +20,7 @@ namespace hotplugin
 
       m_bInit                 = true; // default implemenation assume initialized on construction, derivations may change it
 
-      m_estatus               = status_start_base_system;
+      m_estatus               = status_start_axis_system;
       m_bBaseSystemOk         = false;
       m_bComposerSystemOk     = false;
       m_bTryInitHost          = false;
@@ -34,7 +34,7 @@ namespace hotplugin
       
       m_pcomposersystem       = NULL;
 
-      m_pbasehost             = NULL;
+      m_paxishost             = NULL;
 
       m_bHostInit             = false;
 
@@ -48,7 +48,7 @@ namespace hotplugin
 
 
 
-   ::hotplugin::host * composer::create_host(sp(::base::system) psystem)
+   ::hotplugin::host * composer::create_host(sp(::axis::system) psystem)
    {
 
       return NULL;
@@ -59,7 +59,7 @@ namespace hotplugin
    void composer::hotplugin_composer_on_timer()
    {
 
-      if(m_estatus == status_start_base_system)
+      if(m_estatus == status_start_axis_system)
       {
 
          if(m_bBaseSystemOk)
@@ -71,25 +71,25 @@ namespace hotplugin
          else
          {
 
-            if(::hotplugin::get_base_system() == NULL)
+            if(::hotplugin::get_axis_system() == NULL)
             {
 
-               ::hotplugin::defer_start_base_system();
+               ::hotplugin::defer_start_axis_system();
 
             }
             else
             {
 
 
-               if(::hotplugin::get_base_system()->m_bReady)
+               if(::hotplugin::get_axis_system()->m_bReady)
                {
 
-                  if(::hotplugin::get_base_system()->m_iReturnCode != 0)
+                  if(::hotplugin::get_axis_system()->m_iReturnCode != 0)
                   {
 
                      string str;
                      
-                     str.Format("::hotplugin::g_pbasesystem initialization error %d",::hotplugin::get_base_system()->m_iReturnCode);
+                     str.Format("::hotplugin::g_paxissystem initialization error %d",::hotplugin::get_axis_system()->m_iReturnCode);
 
                      ::output_debug_string(str);
 
@@ -173,28 +173,28 @@ namespace hotplugin
          else if(m_bInit)
          {
 
-            if(m_pbasehost == NULL)
+            if(m_paxishost == NULL)
             {
 
-               m_pbasehost = create_host(get_composer_system());
+               m_paxishost = create_host(get_composer_system());
 
-               m_pbasehost->m_pbasecomposer = this;
+               m_paxishost->m_paxiscomposer = this;
 
-               m_pbasehost->hotplugin_host_begin();
+               m_paxishost->hotplugin_host_begin();
 
             }
             else
             {
 
-               if(m_pbasehost->m_bReady)
+               if(m_paxishost->m_bReady)
                {
 
-                  if(m_pbasehost->m_iReturnCode != 0)
+                  if(m_paxishost->m_iReturnCode != 0)
                   {
 
                      string str;
 
-                     str.Format("::hotplugin::composer::m_pbasehost initialization error %d",::hotplugin::get_base_system()->m_iReturnCode);
+                     str.Format("::hotplugin::composer::m_paxishost initialization error %d",::hotplugin::get_axis_system()->m_iReturnCode);
 
                      ::output_debug_string(str);
 
@@ -227,10 +227,10 @@ namespace hotplugin
 
             m_bTryInitHost = true;
 
-            if(!m_pbasehost->hotplugin_host_is_initialized())
+            if(!m_paxishost->hotplugin_host_is_initialized())
             {
 
-               if(m_pbasehost->hotplugin_host_initialize())
+               if(m_paxishost->hotplugin_host_initialize())
                {
 
                   m_bHostInit = true;
@@ -278,7 +278,7 @@ namespace hotplugin
       }
 
 
-      if(m_pbasehost != NULL && m_pbasehost->hotplugin_host_is_initialized())
+      if(m_paxishost != NULL && m_paxishost->hotplugin_host_is_initialized())
       {
 
          if(m_bWrite)
@@ -286,7 +286,7 @@ namespace hotplugin
 
             m_bWrite = false;
 
-            m_pbasehost->hotplugin_host_on_write(); // at least m_strPluginUrl is ready
+            m_paxishost->hotplugin_host_on_write(); // at least m_strPluginUrl is ready
 
          }
 
@@ -348,7 +348,7 @@ namespace hotplugin
    bool composer::windows_on_paint(HDC hdc)
    {
 
-      if((!m_bOk || !m_bResponsive) || m_pbasehost == NULL || !m_pbasehost->hotplugin_host_is_initialized() || m_strEntryHallText.has_char())
+      if((!m_bOk || !m_bResponsive) || m_paxishost == NULL || !m_paxishost->hotplugin_host_is_initialized() || m_strEntryHallText.has_char())
       {
 
          if(!m_bEntryHallTextStarted)
@@ -382,21 +382,21 @@ namespace hotplugin
       /*else 
       {
 
-         m_pbasehost->m_bOnPaint = true;
+         m_paxishost->m_bOnPaint = true;
 
-         ::draw2d::graphics_sp g(m_pbasehost->allocer());
+         ::draw2d::graphics_sp g(m_paxishost->allocer());
 
          g->Attach((HDC)hdc);
 
          ::rect rect;
 
-         m_pbasehost->GetWindowRect(rect);
+         m_paxishost->GetWindowRect(rect);
 
-         m_pbasehost->on_paint(g,rect);
+         m_paxishost->on_paint(g,rect);
 
          g->Detach();
 
-         m_pbasehost->m_bOnPaint = false;
+         m_paxishost->m_bOnPaint = false;
 
       }*/
       
@@ -410,10 +410,10 @@ namespace hotplugin
    void composer::deferred_prodevian_redraw()
    {
 
-      if(m_pbasehost != NULL && m_pbasehost->hotplugin_host_is_initialized())
+      if(m_paxishost != NULL && m_paxishost->hotplugin_host_is_initialized())
       {
 
-         m_pbasehost->deferred_prodevian_redraw();
+         m_paxishost->deferred_prodevian_redraw();
 
       }
 
@@ -428,7 +428,7 @@ namespace hotplugin
    }
 
 
-   ::base::system * composer::get_composer_system()
+   ::axis::system * composer::get_composer_system()
    {
 
       return m_pcomposersystem;
@@ -445,31 +445,31 @@ namespace hotplugin
       try
       {
 
-         m_pcomposersystem = new ::base::system(NULL);
+         m_pcomposersystem = new ::axis::system(NULL);
 
-         ::base::system * pbasesystem = m_pcomposersystem;
+         ::axis::system * paxissystem = m_pcomposersystem;
 
-         pbasesystem->m_bMatterFromHttpCache = true;
+         paxissystem->m_bMatterFromHttpCache = true;
 
-         pbasesystem->m_bSystemSynchronizedCursor = false;
+         paxissystem->m_bSystemSynchronizedCursor = false;
 
-         pbasesystem->m_bShouldInitializeGTwf = false;
+         paxissystem->m_bShouldInitializeGTwf = false;
 
-         pbasesystem->m_bEnableOnDemandDrawing = false;
+         paxissystem->m_bEnableOnDemandDrawing = false;
 
-         pbasesystem->construct(NULL);
+         paxissystem->construct(NULL);
 
 #ifdef WINDOWS
 
-         pbasesystem->m_hinstance = (HINSTANCE)get_hinstance();
+         paxissystem->m_hinstance = (HINSTANCE)get_hinstance();
 
 #endif
 
          xxdebug_box("box1","box1",MB_ICONINFORMATION);
 
-         pbasesystem->m_bReady = false;
+         paxissystem->m_bReady = false;
 
-         ::create_thread(NULL,0,&::hotplugin::composer::composer_system_main,pbasesystem,0,NULL);
+         ::create_thread(NULL,0,&::hotplugin::composer::composer_system_main,paxissystem,0,NULL);
 
       }
       catch(...)
@@ -489,22 +489,22 @@ namespace hotplugin
 
       int32_t iReturnCode = 0;
 
-      ::base::system * pbasesystem = (::base::system *) lpVoid;
+      ::axis::system * paxissystem = (::axis::system *) lpVoid;
 
       try
       {
 
-         if(!pbasesystem->pre_run())
+         if(!paxissystem->pre_run())
          {
 
-            if(pbasesystem->m_iReturnCode == 0)
+            if(paxissystem->m_iReturnCode == 0)
             {
 
-               pbasesystem->m_iReturnCode = -1;
+               paxissystem->m_iReturnCode = -1;
 
             }
 
-            pbasesystem->m_bReady = true;
+            paxissystem->m_bReady = true;
 
             return -1;
 
@@ -514,20 +514,20 @@ namespace hotplugin
       catch(...)
       {
 
-         if(pbasesystem->m_iReturnCode == 0)
+         if(paxissystem->m_iReturnCode == 0)
          {
 
-            pbasesystem->m_iReturnCode = -1;
+            paxissystem->m_iReturnCode = -1;
 
          }
 
-         pbasesystem->m_bReady = true;
+         paxissystem->m_bReady = true;
 
          return -1;
 
       }
 
-      return pbasesystem->main();
+      return paxissystem->main();
 
    }
 

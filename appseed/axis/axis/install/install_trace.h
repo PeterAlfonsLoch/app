@@ -6,7 +6,7 @@ namespace install
 {
 
 
-   class CLASS_DECL_BASE trace :
+   class CLASS_DECL_AXIS trace :
       virtual public object,
       virtual public progress_listener
    {

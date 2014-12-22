@@ -8,7 +8,7 @@ namespace fs
    // fs::interface - file system interface access to remote file system through fontopus proxy
 
 
-   class CLASS_DECL_BASE remote_native :
+   class CLASS_DECL_AXIS remote_native :
       virtual public ::fs::data
    {
    public:

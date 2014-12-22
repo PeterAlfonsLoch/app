@@ -1,4 +1,4 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 
 
 namespace user
@@ -183,7 +183,7 @@ namespace user
       {
          return m_pviewcontainer->get_view_id();
       }
-      //return ::axis::system::idEmpty;
+      //return ::base::system::idEmpty;
       return id();
    }
 

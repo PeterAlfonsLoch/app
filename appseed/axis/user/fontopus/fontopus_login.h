@@ -5,7 +5,7 @@ namespace fontopus
 {
 
 
-   class CLASS_DECL_BASE login :
+   class CLASS_DECL_AXIS login :
       virtual public ::simple_ui::interaction
    {
    public:

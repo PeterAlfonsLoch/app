@@ -1,4 +1,4 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
 
@@ -618,10 +618,10 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
       // update the indicators before becoming visible
-      ::message::base axis(get_app());
+      ::message::base base(get_app());
       LRESULT lresult;
-      axis.set(this, WM_IDLEUPDATECMDUI, TRUE, 0L, lresult);
-      _001OnIdleUpdateCmdUI(&axis);
+      base.set(this, WM_IDLEUPDATECMDUI, TRUE, 0L, lresult);
+      _001OnIdleUpdateCmdUI(&base);
    }
 
    uint32_t control_bar::RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout)

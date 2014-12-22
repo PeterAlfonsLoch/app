@@ -5,7 +5,7 @@ namespace install
 {
 
 
-   class CLASS_DECL_BASE starter_start :
+   class CLASS_DECL_AXIS starter_start :
       virtual public object
    {
    public:

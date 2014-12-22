@@ -6,13 +6,13 @@
 #include <unistd.h>
 
 
-small_ipc_channel_base::small_ipc_channel_base()
+small_ipc_channel_axis::small_ipc_channel_axis()
 {
       m_key = 0;
       m_iQueue = -1;
 }
 
-small_ipc_channel_base::~small_ipc_channel_base()
+small_ipc_channel_axis::~small_ipc_channel_axis()
 {
 }
 

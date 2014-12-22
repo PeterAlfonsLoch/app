@@ -200,7 +200,7 @@ namespace sockets {
 
 #elif defined(METROWIN)
 
-CLASS_DECL_BASE const char *StrError(int32_t x);
+CLASS_DECL_AXIS const char *StrError(int32_t x);
 #define Errno GetLastError()
 
 #elif defined(WINDOWSEX)
@@ -219,7 +219,7 @@ CLASS_DECL_BASE const char *StrError(int32_t x);
 #define SHUT_WR 1
 
 #define Errno WSAGetLastError()
-CLASS_DECL_BASE const char *StrError(int32_t x);
+CLASS_DECL_AXIS const char *StrError(int32_t x);
 
 namespace sockets
 {
@@ -266,7 +266,7 @@ namespace sockets
 namespace sockets
 {
    /** List type containing file descriptors. */
-   class CLASS_DECL_BASE socket_id_list :
+   class CLASS_DECL_AXIS socket_id_list :
       public ::comparable_list<SOCKET>
    {
    };

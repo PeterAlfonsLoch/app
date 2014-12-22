@@ -1,13 +1,13 @@
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 
 
 namespace sockets
 {
 
 
-   http_tunnel::http_tunnel(base_socket_handler & h) :
+   http_tunnel::http_tunnel(axis_socket_handler & h) :
       element(h.get_app()),
-      base_socket(h),
+      axis_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

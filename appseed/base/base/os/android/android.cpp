@@ -12,14 +12,14 @@ dword get_tick_count()
 
 __thread DWORD g_dwLastError = 0;
 
-CLASS_DECL_AXIS DWORD GetLastError()
+CLASS_DECL_BASE DWORD GetLastError()
 {
 
    return g_dwLastError;
 
 }
 
-CLASS_DECL_AXIS DWORD SetLastError(DWORD dw)
+CLASS_DECL_BASE DWORD SetLastError(DWORD dw)
 {
 
    DWORD dwLastError = g_dwLastError;
@@ -31,7 +31,7 @@ CLASS_DECL_AXIS DWORD SetLastError(DWORD dw)
 }
 
 
-CLASS_DECL_AXIS bool _istlead(int32_t ch)
+CLASS_DECL_BASE bool _istlead(int32_t ch)
 {
 
    return false;
@@ -80,7 +80,7 @@ void output_debug_string(const char * psz)
 
 
 
-bool __node_axis_pre_init()
+bool __node_base_pre_init()
 {
 
    c_xstart();
@@ -89,14 +89,14 @@ bool __node_axis_pre_init()
 
 }
 
-bool __node_axis_pos_init()
+bool __node_base_pos_init()
 {
 
    return true;
 
 }
 
-bool __node_axis_pre_term()
+bool __node_base_pre_term()
 {
 
    return true;
@@ -104,7 +104,7 @@ bool __node_axis_pre_term()
 }
 
 
-bool __node_axis_pos_term()
+bool __node_base_pos_term()
 {
 
    return true;

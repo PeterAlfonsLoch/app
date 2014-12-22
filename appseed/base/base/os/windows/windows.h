@@ -6,7 +6,7 @@
 #ifdef cplusplus
 
 
-CLASS_DECL_AXIS bool vfxResolveShortcut(string & strTarget,const char * pszSource,sp(::user::interaction) puiMessageParentOptional);
+CLASS_DECL_BASE bool vfxResolveShortcut(string & strTarget,const char * pszSource,sp(::user::interaction) puiMessageParentOptional);
 
 
 
@@ -27,7 +27,7 @@ CLASS_DECL_AXIS bool vfxResolveShortcut(string & strTarget,const char * pszSourc
 
 
 
-namespace axis
+namespace base
 {
 
 
@@ -35,7 +35,7 @@ namespace axis
    static int32_t simple_app_main(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR lpCmdLine,int32_t nCmdShow)
    {
 
-      if(!defer_axis_init())
+      if(!defer_base_init())
       {
          return -1;
       }
@@ -67,14 +67,14 @@ namespace axis
       {
       }
 
-      defer_axis_term();
+      defer_base_term();
 
       return iRet;
 
    }
 
 
-} // namespace axis
+} // namespace base
 
 
 

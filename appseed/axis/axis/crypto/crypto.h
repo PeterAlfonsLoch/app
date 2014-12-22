@@ -3,11 +3,11 @@
 
 
 
-//CLASS_DECL_BASE bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt);
+//CLASS_DECL_AXIS bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt);
 
 #ifdef MACOS_DEPRECATED
 
-#define BASE_RSA_KEY SecKeyRef
+#define AXIS_RSA_KEY SecKeyRef
 
 #elif defined(BSD_STYLE_SOCKETS)
 
@@ -15,15 +15,15 @@
 
 typedef struct rsa_st RSA;
 
-#define BASE_RSA_KEY RSA *
+#define AXIS_RSA_KEY RSA *
 
 #elif defined(METROWIN)
 
-#define BASE_RSA_KEY ::Windows::Security::Cryptography::Core::CryptographicKey ^
+#define AXIS_RSA_KEY ::Windows::Security::Cryptography::Core::CryptographicKey ^
 
 #else
 
-#error "BASE_RSA_KEY could not be defined, is RSA implementation missing?"
+#error "AXIS_RSA_KEY could not be defined, is RSA implementation missing?"
 
 #endif
 
@@ -39,8 +39,8 @@ typedef struct rsa_st RSA;
 
 
 
-CLASS_DECL_BASE bool hex_to_memory(primitive::memory & memory, const char * pszHex);
-CLASS_DECL_BASE void memory_to_hex(string & strHex, primitive::memory & memory);
+CLASS_DECL_AXIS bool hex_to_memory(primitive::memory & memory, const char * pszHex);
+CLASS_DECL_AXIS void memory_to_hex(string & strHex, primitive::memory & memory);
 
 
 

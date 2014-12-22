@@ -7,4 +7,4 @@ WINBOOL GetCursorPos(LPPOINT lpptCursor);
 
 #define PostMessage  PostMessageW
 
-CLASS_DECL_AXIS int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam);
+CLASS_DECL_BASE int_bool WINAPI PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam);

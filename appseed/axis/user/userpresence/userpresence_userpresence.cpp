@@ -178,9 +178,9 @@ namespace userpresence
    void userpresence::message_queue_message_handler(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::base, pbase, pobj);
+      SCAST_PTR(::message::axis, paxis, pobj);
 
-      if(pbase->m_uiMessage == WM_TIMER)
+      if(paxis->m_uiMessage == WM_TIMER)
       {
 
          SCAST_PTR(::message::timer, ptimer, pobj);

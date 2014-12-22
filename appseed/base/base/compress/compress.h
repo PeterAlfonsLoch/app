@@ -2,8 +2,8 @@
 #pragma once
 #endif
 
-#include "axis/zlib/zlib.h"
-#include "axis/zlib/zutil.h"
+#include "base/zlib/zlib.h"
+#include "base/zlib/zutil.h"
 
 
 #include "gzip_stream.h"

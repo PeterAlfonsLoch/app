@@ -5,7 +5,7 @@
 //{
 //
 //
-//   class CLASS_DECL_AXIS elemental
+//   class CLASS_DECL_BASE elemental
 //   {
 //   public:
 //      elemental();

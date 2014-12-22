@@ -211,7 +211,7 @@ namespace install
    }
 
 
-   CLASS_DECL_BASE bool install::app_install_send_short_message(const char * psz, bool bLaunch, const char * pszBuild)
+   CLASS_DECL_AXIS bool install::app_install_send_short_message(const char * psz, bool bLaunch, const char * pszBuild)
    {
 
 #ifdef METROWIN
@@ -1409,7 +1409,7 @@ namespace install
 
          stringa straFile;
 
-         ::install::get_plugin_base_library_list(straFile, pszVersion);
+         ::install::get_plugin_axis_library_list(straFile, pszVersion);
 
          if(!::dir::is(System.dir().name(strPath)))
          {

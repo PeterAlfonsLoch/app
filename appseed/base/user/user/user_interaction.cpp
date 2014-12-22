@@ -1,4 +1,4 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 
 
 namespace user
@@ -545,7 +545,7 @@ namespace user
          try
          {
 
-            if(m_pauraapp->m_paxissession != NULL)
+            if(m_pauraapp->m_pbasesession != NULL)
             {
 
                Session.remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
@@ -561,7 +561,7 @@ namespace user
          try
          {
 
-            if(m_pauraapp->m_paxissystem != NULL)
+            if(m_pauraapp->m_pbasesystem != NULL)
             {
 
                System.remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
@@ -1088,14 +1088,14 @@ namespace user
 
             synch_lock sl(m_spmutex);
 
-            if(m_pauraapp->m_paxissystem != NULL)
+            if(m_pauraapp->m_pbasesystem != NULL)
             {
 
                System.add_frame(this);
 
             }
 
-            if(m_pauraapp->m_paxissession != NULL)
+            if(m_pauraapp->m_pbasesession != NULL)
             {
 
                Session.add_frame(this);
@@ -1484,7 +1484,7 @@ namespace user
 
 
    // pbase object should be allocated with new in
-   // axis or derived object and will be delete after
+   // base or derived object and will be delete after
    // handling
    LRESULT interaction::send(::message::base * pbase)
    {
@@ -1497,7 +1497,7 @@ namespace user
 
 
    // pbase object should be allocated with new in
-   // axis or derived object and will be delete after
+   // base or derived object and will be delete after
    // handling
    bool interaction::post(::message::base * pbase)
    {
@@ -5638,7 +5638,7 @@ namespace user
    }
 
 
-   CLASS_DECL_AXIS bool is_docking_appearance(::user::EAppearance eappearance)
+   CLASS_DECL_BASE bool is_docking_appearance(::user::EAppearance eappearance)
    {
       return eappearance == ::user::AppearanceLeft
          || eappearance == ::user::AppearanceTop

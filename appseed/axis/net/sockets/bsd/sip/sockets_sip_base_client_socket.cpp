@@ -1,4 +1,4 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 
 #if defined(LINUX) || defined(APPLEOS)
 
@@ -10,9 +10,9 @@ namespace sockets
 {
 
 
-   sip_base_client_socket::sip_base_client_socket(base_socket_handler& h) :
+   sip_axis_client_socket::sip_axis_client_socket(axis_socket_handler& h) :
       element(h.get_app()),
-      base_socket(h),
+      axis_socket(h),
       socket(h),
       m_request(h.get_app()),
       m_response(h.get_app()),
@@ -32,9 +32,9 @@ namespace sockets
       SetLineProtocol();
    }
 
-   sip_base_client_socket::sip_base_client_socket(const sip_base_client_socket& s) :
+   sip_axis_client_socket::sip_axis_client_socket(const sip_axis_client_socket& s) :
       element(s.get_app()),
-      base_socket(s),
+      axis_socket(s),
       socket(s),
       m_request(s.get_app()),
       m_response(s.get_app())
@@ -42,12 +42,12 @@ namespace sockets
    }
 
 
-   sip_base_client_socket::~sip_base_client_socket()
+   sip_axis_client_socket::~sip_axis_client_socket()
    {
    }
 
 
-   void sip_base_client_socket::OnRawData(char *buf,size_t len)
+   void sip_axis_client_socket::OnRawData(char *buf,size_t len)
    {
       if (!m_bHeader)
       {
@@ -172,7 +172,7 @@ namespace sockets
    }
 
 
-   void sip_base_client_socket::OnLine(const string & line)
+   void sip_axis_client_socket::OnLine(const string & line)
    {
       if (m_bFirst)
       {
@@ -298,7 +298,7 @@ namespace sockets
    }
 
 
-   void sip_base_client_socket::SendResponse()
+   void sip_axis_client_socket::SendResponse()
    {
       TRACE("\n");
       TRACE("SendResponse\n");
@@ -324,13 +324,13 @@ namespace sockets
       write( msg );
    }
 
-   void sip_base_client_socket::SendResponseBody()
+   void sip_axis_client_socket::SendResponseBody()
    {
       //SendBuf((const char *) response().file().get_data(), response().file().get_size());
    }
 
 
-   void sip_base_client_socket::SendRequest()
+   void sip_axis_client_socket::SendRequest()
    {
       string msg;
       msg = m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
@@ -343,7 +343,7 @@ namespace sockets
    }
 
 
-   string sip_base_client_socket::MyUseragent()
+   string sip_axis_client_socket::MyUseragent()
    {
       string version = "C++Sockets/";
    #ifdef _VERSION
@@ -353,7 +353,7 @@ namespace sockets
    }
 
 
-   void sip_base_client_socket::Reset()
+   void sip_axis_client_socket::Reset()
    {
       m_bFirst = true;
       m_bHeader = true;
@@ -367,13 +367,13 @@ namespace sockets
 
 
 
-   bool sip_base_client_socket::IsRequest()
+   bool sip_axis_client_socket::IsRequest()
    {
       return m_bRequest;
    }
 
 
-   bool sip_base_client_socket::IsResponse()
+   bool sip_axis_client_socket::IsResponse()
    {
       return m_bResponse;
    }
@@ -382,7 +382,7 @@ namespace sockets
 
 
 
-   void sip_base_client_socket::url_this(const string & url_in,string & protocol,string & host,port_t& port,string & url,string & file)
+   void sip_axis_client_socket::url_this(const string & url_in,string & protocol,string & host,port_t& port,string & url,string & file)
    {
       ::str::parse pa(url_in,"/");
       protocol = pa.getword(); // http
@@ -419,59 +419,59 @@ namespace sockets
    } // url_this
 
 
-   sip::request & sip_base_client_socket::request()
+   sip::request & sip_axis_client_socket::request()
    {
       return m_request;
    }
 
-   sip::response & sip_base_client_socket::response()
+   sip::response & sip_axis_client_socket::response()
    {
       return m_response;
    }
 
-   property & sip_base_client_socket::inattr(const char * pszName)
+   property & sip_axis_client_socket::inattr(const char * pszName)
    {
       return m_request.attr(pszName);
    }
 
-   property_set & sip_base_client_socket::inattrs()
+   property_set & sip_axis_client_socket::inattrs()
    {
       return m_request.attrs();
    }
 
-   property & sip_base_client_socket::outattr(const char * pszName)
+   property & sip_axis_client_socket::outattr(const char * pszName)
    {
       return m_response.attr(pszName);
    }
 
-   property_set & sip_base_client_socket::outattrs()
+   property_set & sip_axis_client_socket::outattrs()
    {
       return m_response.attrs();
    }
 
-   property & sip_base_client_socket::inheader(const char * pszName)
+   property & sip_axis_client_socket::inheader(const char * pszName)
    {
       return m_request.header(pszName);
    }
 
-   property_set & sip_base_client_socket::inheaders()
+   property_set & sip_axis_client_socket::inheaders()
    {
       return m_request.headers();
    }
 
-   property & sip_base_client_socket::outheader(const char * pszName)
+   property & sip_axis_client_socket::outheader(const char * pszName)
    {
       return m_response.header(pszName);
    }
 
-   property_set & sip_base_client_socket::outheaders()
+   property_set & sip_axis_client_socket::outheaders()
    {
       return m_response.headers();
    }
 
-   void sip_base_client_socket::OnHeader(id key, const string & value)
+   void sip_axis_client_socket::OnHeader(id key, const string & value)
    {
-      //sip_base_client_socket::OnHeader(key, value);
+      //sip_axis_client_socket::OnHeader(key, value);
       TRACE("  (request)OnHeader %s: %s\n", (const char *) key.to_string(), (const char *) value);
       if(key == "cookie")
       {
@@ -483,7 +483,7 @@ namespace sockets
    }
 
 
-   void sip_base_client_socket::OnHeaderComplete()
+   void sip_axis_client_socket::OnHeaderComplete()
    {
       int32_t iStatusCode = m_response.attr("http_status_code").int32();
       string strMethod = m_response.attr("http_method");

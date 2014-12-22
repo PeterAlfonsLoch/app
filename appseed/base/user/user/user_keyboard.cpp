@@ -1,7 +1,7 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 
 #if defined(LINUX) || defined(SOLARIS)
-#include "axis/axis/os/x11/x11_keyboard.h"
+#include "base/base/os/x11/x11_keyboard.h"
 #elif defined(APPLEOS)
 string keyboard_input_source();
 #endif

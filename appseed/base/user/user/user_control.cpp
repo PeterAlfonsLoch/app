@@ -1,4 +1,4 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 
 
 namespace user
@@ -308,11 +308,11 @@ namespace user
 
       keep <bool> keepOnCustomMessage(&m_bCustomWindowProc, true, false, true);
 
-      ::message::base axis(get_app(), pwnd, message, wparam, lparam, lresult);
+      ::message::base base(get_app(), pwnd, message, wparam, lparam, lresult);
 
-      _003CustomWindowProc(&axis);
+      _003CustomWindowProc(&base);
 
-      return axis.m_bRet;
+      return base.m_bRet;
 
    }
 

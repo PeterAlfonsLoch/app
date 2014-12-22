@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_BASE http_buffer :
+   class CLASS_DECL_AXIS http_buffer :
       virtual public ::file::transfer_buffer
    {
    public:

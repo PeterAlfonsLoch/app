@@ -3,13 +3,13 @@
 
 
 
-namespace axis
+namespace base
 {
 
 
-   class CLASS_DECL_AXIS session:
+   class CLASS_DECL_BASE session:
       virtual public ::aura::session,
-      virtual public :: axis ::application,
+      virtual public :: base ::application,
       virtual public ::user::schema
    {
    public:
@@ -37,7 +37,7 @@ namespace axis
 
       ::visual::e_cursor                                       m_ecursor;
       ::visual::e_cursor                                       m_ecursorDefault;
-      ::axis::copydesk *                                       m_pcopydesk;
+      ::base::copydesk *                                       m_pcopydesk;
 
 
       ::user::interaction *                                   m_puiFocus;
@@ -77,7 +77,7 @@ namespace axis
       virtual int32_t exit_instance();
 
 
-      ::axis::copydesk & copydesk();
+      ::base::copydesk & copydesk();
       inline ::user::user *            user()         { return m_puser; }
 
       ::user::str_context *                     str_context();
@@ -165,7 +165,7 @@ namespace axis
    };
 
 
-} // namespace axis
+} // namespace base
 
 
 

@@ -5,9 +5,9 @@
    {
 
 
-      /** SOCK_STREAM socket base class.
+      /** SOCK_STREAM socket axis class.
       \ingroup basic */
-      class CLASS_DECL_BASE stream_socket : 
+      class CLASS_DECL_AXIS stream_socket : 
          virtual public socket
       {
       public:
@@ -18,11 +18,11 @@
          bool m_flush_before_close; ///< Send all data before closing (default true)
          int32_t m_connection_retry; ///< Maximum connection retries (tcp)
          int32_t m_retries; ///< Actual number of connection retries (tcp)
-         bool m_call_on_connect; ///< OnConnect will be called next base_socket_handler cycle if true
-         bool m_b_retry_connect; ///< Try another connection attempt next base_socket_handler cycle
+         bool m_call_on_connect; ///< OnConnect will be called next axis_socket_handler cycle if true
+         bool m_b_retry_connect; ///< Try another connection attempt next axis_socket_handler cycle
          int32_t m_shutdown; ///< Shutdown status
 
-         stream_socket(base_socket_handler& );
+         stream_socket(axis_socket_handler& );
          ~stream_socket();
 
 

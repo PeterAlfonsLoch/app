@@ -72,9 +72,9 @@ void memory_to_hex(string & strHex, primitive::memory & memory)
 
 
 
-CLASS_DECL_BASE int32_t crypto_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, ::primitive::memory & key);
+CLASS_DECL_AXIS int32_t crypto_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, ::primitive::memory & key);
 
-CLASS_DECL_BASE int32_t crypto_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, ::primitive::memory & key);
+CLASS_DECL_AXIS int32_t crypto_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, ::primitive::memory & key);
 
 bool crypto_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, const char * pszSalt)
 {
@@ -111,9 +111,9 @@ int32_t crypto_encrypt(string & strEncrypt, const char * pszDecrypt, const char 
       return 0;
    }
    storageDecrypt.from_string(pszDecrypt);
-   threadSystem.base64().decode(storageKey, pszKey);
+   threadSystem.axis64().decode(storageKey, pszKey);
    int32_t cipherlen = crypto_encrypt(storageEncrypt, storageDecrypt, storageKey);
-   strEncrypt = threadSystem.base64().encode(storageEncrypt);
+   strEncrypt = threadSystem.axis64().encode(storageEncrypt);
    return cipherlen;
 }
 

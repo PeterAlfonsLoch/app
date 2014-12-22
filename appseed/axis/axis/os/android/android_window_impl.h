@@ -5,7 +5,7 @@ namespace boot
 {
 
 
-   class thread_base;
+   class thread_axis;
    class interaction_impl;
 
 
@@ -16,7 +16,7 @@ namespace user
 {
 
 
-   class interaction_base;
+   class interaction_axis;
    class interaction;
 
 
@@ -27,7 +27,7 @@ typedef ptr_array < oswindow_data > oswindow_dataptra;
 
 
 
-struct CLASS_DECL_BASE oswindow_data
+struct CLASS_DECL_AXIS oswindow_data
 {
 
 
@@ -45,7 +45,7 @@ struct CLASS_DECL_BASE oswindow_data
 
 
    oswindow_data();
-   oswindow_data(::user::interaction_base * puibaseMessageOnlyWindow);
+   oswindow_data(::user::interaction_axis * puiaxisMessageOnlyWindow);
    oswindow_data(const void * p);
    oswindow_data(const LPARAM & lparam);
    oswindow_data(const WPARAM & wparam);

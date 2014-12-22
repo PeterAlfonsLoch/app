@@ -9,7 +9,7 @@ namespace database
    class id;
 
    
-   class CLASS_DECL_AXIS server :
+   class CLASS_DECL_BASE server :
       public client_array
    {
    public:

@@ -1,30 +1,29 @@
 #pragma once
 
 
-#ifndef CA2_APP_BASE_BASE_BASE_BASE_H
-#define CA2_APP_BASE_BASE_BASE_BASE_H
+#ifndef CA2_APP_AXIS_AXIS_AXIS_AXIS_H
+#define CA2_APP_AXIS_AXIS_AXIS_AXIS_H
 
 
-#include "axis/axis/axis/axis.h"
-
-
-#include "axis/user/user.h"
+#include "aura/aura/aura.h"
 
 
 
-#ifdef _BASE_STATIC
-   #define CLASS_DECL_BASE
-#elif defined(_BASE_LIBRARY)
-   #define CLASS_DECL_BASE  CLASS_DECL_EXPORT
+
+
+#ifdef _AXIS_STATIC
+   #define CLASS_DECL_AXIS
+#elif defined(_AXIS_LIBRARY)
+   #define CLASS_DECL_AXIS  CLASS_DECL_EXPORT
    #define LIBIDN_BUILDING
 #else
-   #define CLASS_DECL_BASE  CLASS_DECL_IMPORT
+   #define CLASS_DECL_AXIS  CLASS_DECL_IMPORT
 #endif
 
 
-#include "base/base/os/os.h"
+#include "axis/axis/os/os.h"
 
-//#include "base_number.h"
+//#include "axis_number.h"
 
 
 #ifdef AURA_LANGUAGE
@@ -33,8 +32,8 @@
 #ifdef cplusplus
 
 
-#include "base_c.h"
-#include "base_c_cpp.h"
+#include "axis_c.h"
+#include "axis_c_cpp.h"
 
 
 #else
@@ -43,7 +42,7 @@
 BEGIN_EXTERN_C
 
 
-#include "base_c.h"
+#include "axis_c.h"
 
 
 END_EXTERN_C
@@ -58,24 +57,24 @@ END_EXTERN_C
 #if defined(__M)
 
 
-#include "base_c.h"
-#include "base_c_objc.h"
+#include "axis_c.h"
+#include "axis_c_objc.h"
 
 
 #elif defined(__MM)
 
 
-#include "base_c.h"
-#include "base_c_objc.h"
-#include "base_c_objcpp.h"
+#include "axis_c.h"
+#include "axis_c_objc.h"
+#include "axis_c_objcpp.h"
 
 
 #elif defined(__cplusplus_winrt)
 
 
-#include "base_c.h"
-#include "base_c_cpp.h"
-#include "base_c_winrt.h"
+#include "axis_c.h"
+#include "axis_c_cpp.h"
+#include "axis_c_winrt.h"
 
 
 #else
@@ -94,7 +93,7 @@ END_EXTERN_C
 
 
 
-#endif // CA2_APP_BASE_BASE_BASE_BASE_H
+#endif // CA2_APP_AXIS_AXIS_AXIS_AXIS_H
 
 
 

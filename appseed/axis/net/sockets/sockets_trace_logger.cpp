@@ -1,11 +1,11 @@
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 
 
 namespace sockets
 {
 
 
-   void trace_logger::log(base_socket_handler * phandler, base_socket * sock, const string & strUser, int32_t iError, const string & strSystem, ::aura::log::e_level elevel)
+   void trace_logger::log(axis_socket_handler * phandler, axis_socket * sock, const string & strUser, int32_t iError, const string & strSystem, ::aura::log::e_level elevel)
    {
 
       string strLevel = ::log_level_name(elevel);

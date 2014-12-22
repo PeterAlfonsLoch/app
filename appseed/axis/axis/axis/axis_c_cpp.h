@@ -68,79 +68,79 @@ namespace install
 
 #undef CaSys
 #undef Sys
-#define CaSys(pca) (*pca->m_pauraapp->m_pbasesystem)
-#define Sys(pbaseapp) (*pbaseapp->m_pbasesystem)
+#define CaSys(pca) (*pca->m_pauraapp->m_paxissystem)
+#define Sys(paxisapp) (*paxisapp->m_paxissystem)
 #define threadSystem (Sys(get_thread_app()))
 
 #undef Sess
-#define Sess(paxisapp) (*paxisapp->m_pbasesession)
+#define Sess(paxisapp) (*paxisapp->m_paxissession)
 //#define Session (Sess(m_pauraapp))
 //#define Plat(paxisapp) (*paxisapp->m_pcoreplatform)
 //#define Platform (Plat(m_pauraapp))
 
 #undef App
 #undef Application
-#define App(paxisapp) (*paxisapp->m_pbaseapp)
-#define Application (App(m_pauraapp->m_pbaseapp))
+#define App(paxisapp) (*paxisapp->m_paxisapp)
+#define Application (App(m_pauraapp->m_paxisapp))
 
-#define AppUser(pbaseapp) (*pbaseapp->m_pbasesession->fontopus()->get_user())
-#define ApplicationUser (AppUser(m_pauraapp->m_pbaseapp))
-
-
-
-
-CLASS_DECL_BASE bool base_init();
-CLASS_DECL_BASE bool base_term();
-
-CLASS_DECL_BASE bool __node_base_pre_init();
-CLASS_DECL_BASE bool __node_base_pos_init();
-
-CLASS_DECL_BASE bool __node_base_pre_term();
-CLASS_DECL_BASE bool __node_base_pos_term();
+#define AppUser(paxisapp) (*paxisapp->m_paxissession->fontopus()->get_user())
+#define ApplicationUser (AppUser(m_pauraapp->m_paxisapp))
 
 
 
-#include "base/net/net.h"
+
+CLASS_DECL_AXIS bool axis_init();
+CLASS_DECL_AXIS bool axis_term();
+
+CLASS_DECL_AXIS bool __node_axis_pre_init();
+CLASS_DECL_AXIS bool __node_axis_pos_init();
+
+CLASS_DECL_AXIS bool __node_axis_pre_term();
+CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
-#include "base/filesystem/filesystem.h"
+
+#include "axis/net/net.h"
 
 
-#include "base/base/geoip/geoip.h"
+#include "axis/filesystem/filesystem.h"
+
+
+#include "axis/axis/geoip/geoip.h"
 
 
 #if defined(LINUX)
 
-#include "base/os/ansios/ansios.h"
+#include "axis/os/ansios/ansios.h"
 
 #elif defined(METROWIN)
 
-#include "base/os/metrowin/metrowin.h"
+#include "axis/os/metrowin/metrowin.h"
 
 #elif defined(MACOS)
 
-#include "base/os/ansios/ansios.h"
-#include "base/os/macos/macos.h"
+#include "axis/os/ansios/ansios.h"
+#include "axis/os/macos/macos.h"
 
 #elif defined(ANDROID)
 
-#include "base/os/ansios/ansios.h"
-#include "base/os/android/android.h"
+#include "axis/os/ansios/ansios.h"
+#include "axis/os/android/android.h"
 
 #elif defined(WINDOWS)
 
-#include "base/os/windows/windows.h"
+#include "axis/os/windows/windows.h"
 
 #elif defined(APPLE_IOS)
 
-#include "base/os/ansios/ansios.h"
-#include "base/os/ios/ios.h"
-#include "base/os/ios/ios_windowing.h"
+#include "axis/os/ansios/ansios.h"
+#include "axis/os/ios/ios.h"
+#include "axis/os/ios/ios_windowing.h"
 
 #elif defined(SOLARIS)
 
-#include "base/os/ansios/ansios.h"
-#include "base/os/solaris/solaris_user_impl.h"
+#include "axis/os/ansios/ansios.h"
+#include "axis/os/solaris/solaris_user_impl.h"
 
 #else
 
@@ -152,47 +152,47 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 
 #if defined(METROWIN)
 
-#include "app/appseed/base/base/os/metrowin/metrowin_sockets.h"
+#include "app/appseed/axis/axis/os/metrowin/metrowin_sockets.h"
 
 #endif
 
 
-#include "base/programming/javascript/javascript.h"
+#include "axis/programming/javascript/javascript.h"
 
-#include "base/user/userpresence/userpresence.h"
+#include "axis/user/userpresence/userpresence.h"
 
-#include "base/filesystem/fs/fs.h"
+#include "axis/filesystem/fs/fs.h"
 
-#include "base/user/fontopus/fontopus.h"
+#include "axis/user/fontopus/fontopus.h"
 
-#include "base/filesystem/file/file_application.h"
-#include "base/filesystem/file/file_dir_application.h"
-
-
-#include "base/graphics/graphics.h"
+#include "axis/filesystem/file/file_application.h"
+#include "axis/filesystem/file/file_dir_application.h"
 
 
-#include "base_application.h"
+#include "axis/graphics/graphics.h"
 
 
-#include "base_session.h"
+#include "axis_application.h"
 
 
-#include "base/filesystem/file/file_system.h"
-#include "base/filesystem/file/file_dir_system.h"
+#include "axis_session.h"
 
 
-#include "base/compress/compress.h"
+#include "axis/filesystem/file/file_system.h"
+#include "axis/filesystem/file/file_dir_system.h"
 
 
-#include "base/crypto/crypto.h"
+#include "axis/compress/compress.h"
 
 
-#include "base_system.h"
+#include "axis/crypto/crypto.h"
 
-#include "base/hotplugin/hotplugin.h"
 
-#include "base/install/install.h"
+#include "axis_system.h"
+
+#include "axis/hotplugin/hotplugin.h"
+
+#include "axis/install/install.h"
 
 
 
@@ -213,19 +213,16 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 #endif
 
 
-#include "base_os.h"
+#include "axis_os.h"
 
 
-#include "base_static_start.h"
+#include "axis_static_start.h"
 
 
-#include "base_simple_app.h"
+#include "axis_simple_app.h"
 
 
-#include "app/appseed/base/base/node/node.h"
-
-
-
+#include "app/appseed/axis/axis/node/node.h"
 
 
 
@@ -234,6 +231,9 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 
 
 
-#include "base.inl"
+
+
+
+#include "axis.inl"
 
 

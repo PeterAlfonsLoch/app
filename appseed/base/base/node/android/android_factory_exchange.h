@@ -5,10 +5,10 @@ namespace android
 {
 
 
-   namespace axis
+   namespace base
    {
 
-      class CLASS_DECL_AXIS factory_exchange:
+      class CLASS_DECL_BASE factory_exchange:
          virtual public ::object
       {
       public:
@@ -21,7 +21,7 @@ namespace android
       };
 
 
-   } // namespace axis
+   } // namespace base
 
 
 } // namespace android

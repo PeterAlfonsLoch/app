@@ -16,7 +16,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_BASE path :
+   class CLASS_DECL_AXIS path :
       virtual public ::object
 
    {
@@ -29,14 +29,14 @@ namespace file
    {
 
 
-      class CLASS_DECL_BASE system :
+      class CLASS_DECL_AXIS system :
          virtual public ::object
       {
       public:
 
 
 
-         class CLASS_DECL_BASE is_dir
+         class CLASS_DECL_AXIS is_dir
          {
          public:
 
@@ -49,7 +49,7 @@ namespace file
          };
 
 
-         class CLASS_DECL_BASE is_dir_map :
+         class CLASS_DECL_AXIS is_dir_map :
             virtual public string_map < is_dir >
          {
          public:
@@ -171,8 +171,8 @@ namespace file
          virtual string appmatter_locator(::aura::application * papp);
          virtual string appmatter_locator(const string & strLibraryName, const string & strAppName);
          virtual string appmatter_locator(const string & strAppName);
-         virtual string base_appmatter_locator(const string & strBase, const string & strLibraryName, const string & strAppName);
-         virtual string base_appmatter_locator(const string & strBase, const string & strAppName);
+         virtual string axis_appmatter_locator(const string & strBase, const string & strLibraryName, const string & strAppName);
+         virtual string axis_appmatter_locator(const string & strBase, const string & strAppName);
 
 
 

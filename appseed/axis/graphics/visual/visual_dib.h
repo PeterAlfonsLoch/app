@@ -20,7 +20,7 @@ namespace visual
 
    } // namespace image
 
-   class CLASS_DECL_BASE save_image
+   class CLASS_DECL_AXIS save_image
    {
    public:
 
@@ -33,7 +33,7 @@ namespace visual
    };
 
 
-   class CLASS_DECL_BASE dib_sp :
+   class CLASS_DECL_AXIS dib_sp :
       public ::draw2d::dib_sp
    {
    public:
@@ -54,7 +54,7 @@ namespace visual
       virtual bool save_to_file(var varFile, save_image * psaveimage = NULL);
       virtual bool write_to_file(::file::buffer_sp  pfile, save_image * psaveimage = NULL);
 
-#ifdef BASE_FREEIMAGE
+#ifdef AXIS_FREEIMAGE
       virtual bool from(::draw2d::graphics * pgraphics, FIBITMAP * pfibitmap, bool bUnloadFI);
 #endif
       
@@ -65,8 +65,8 @@ namespace visual
 } // namespace visual
 
 
-CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int x,int y);
-CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int x,int y,byte a,byte r,byte g,byte b);
+CLASS_DECL_AXIS void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int x,int y);
+CLASS_DECL_AXIS void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int x,int y,byte a,byte r,byte g,byte b);
 
 
 

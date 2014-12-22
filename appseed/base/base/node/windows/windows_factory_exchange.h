@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace axis
+namespace base
 {
 
 
@@ -9,7 +9,7 @@ namespace axis
    {
 
 
-      class CLASS_DECL_AXIS factory_exchange:
+      class CLASS_DECL_BASE factory_exchange:
          virtual public ::object
       {
       public:
@@ -25,7 +25,7 @@ namespace axis
    } // namespace windows
 
 
-} // namespace axis
+} // namespace base
 
 
 

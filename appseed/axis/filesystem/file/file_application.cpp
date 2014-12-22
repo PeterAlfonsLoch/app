@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 
 
 namespace file
@@ -12,22 +12,22 @@ namespace file
 
    void application::copy(const char * pszNew, const char * pszOld, bool bFailIfExists, e_extract eextract)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->copy(pszNew, pszOld, bFailIfExists, eextract, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->copy(pszNew, pszOld, bFailIfExists, eextract, m_pauraapp);
    }
 
    void application::trash_that_is_not_trash(const char * psz)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->trash_that_is_not_trash(psz, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->trash_that_is_not_trash(psz, m_pauraapp);
    }
 
    void application::trash_that_is_not_trash(stringa & stra)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->trash_that_is_not_trash(stra, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->trash_that_is_not_trash(stra, m_pauraapp);
    }
 
    void application::replace(const char * pszContext, const char * pszFind, const char * pszReplace)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->replace(pszContext, pszFind, pszReplace, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->replace(pszContext, pszFind, pszReplace, m_pauraapp);
    }
 
    bool application::exists(const char * pszPath)
@@ -38,7 +38,7 @@ namespace file
          return AppUser(m_pauraapp).m_pifs->file_exists(pszPath);
       }
 
-      return m_pauraapp->m_pbasesystem->m_spfile->exists(pszPath, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->exists(pszPath, m_pauraapp);
 
    }
 
@@ -52,7 +52,7 @@ namespace file
          return user.m_pifs->file_exists(strPath);
       }
 
-      return m_pauraapp->m_pbasesystem->m_spfile->exists(strPath, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->exists(strPath, m_pauraapp);
 
    }
 
@@ -66,7 +66,7 @@ namespace file
          return AppUser(m_pauraapp).m_pifs->file_exists(strPath);
       }
 
-      return m_pauraapp->m_pbasesystem->m_spfile->exists(strPath, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->exists(strPath, m_pauraapp);
 
    }
 
@@ -81,7 +81,7 @@ namespace file
 
       }
 
-      return m_pauraapp->m_pbasesystem->m_spfile->length(pszPath, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->length(pszPath, m_pauraapp);
 
    }
 
@@ -96,7 +96,7 @@ namespace file
 
       }
 
-      return m_pauraapp->m_pbasesystem->m_spfile->length(strPath, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->length(strPath, m_pauraapp);
 
    }
 
@@ -113,7 +113,7 @@ namespace file
 
       }
 
-      return m_pauraapp->m_pbasesystem->m_spfile->length(strPath, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->length(strPath, m_pauraapp);
 
    }
 
@@ -121,7 +121,7 @@ namespace file
    string application::time(const char * pszBasePath, int32_t iDepth, const char * pszPrefix, const char * pszSuffix)
    {
 
-      return m_pauraapp->m_pbasesystem->m_spfile->time(m_pauraapp, pszBasePath, iDepth, pszPrefix, pszSuffix);
+      return m_pauraapp->m_paxissystem->m_spfile->time(m_pauraapp, pszBasePath, iDepth, pszPrefix, pszSuffix);
 
    }
 
@@ -129,74 +129,74 @@ namespace file
    string application::time_square(const char * pszPrefix, const char * pszSuffix)
    {
 
-      return m_pauraapp->m_pbasesystem->m_spfile->time_square(m_pauraapp, pszPrefix, pszSuffix);
+      return m_pauraapp->m_paxissystem->m_spfile->time_square(m_pauraapp, pszPrefix, pszSuffix);
 
    }
 
 
    string application::time_log(const char * pszId)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->time_log(m_pauraapp, pszId);
+      return m_pauraapp->m_paxissystem->m_spfile->time_log(m_pauraapp, pszId);
    }
 
    ::file::buffer_sp application::time_square_file(const char * pszPrefix, const char * pszSuffix)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->time_square_file(m_pauraapp, pszPrefix, pszSuffix);
+      return m_pauraapp->m_paxissystem->m_spfile->time_square_file(m_pauraapp, pszPrefix, pszSuffix);
    }
 
    ::file::buffer_sp application::get(const char * name)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->get(name, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->get(name, m_pauraapp);
    }
 
    string application::as_string(var varFile)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->as_string(varFile, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->as_string(varFile, m_pauraapp);
    }
 
    string application::as_string(var varFile, var & varQuery)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->as_string(varFile, varQuery, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->as_string(varFile, varQuery, m_pauraapp);
    }
 
    void application::as_memory(var varFile, primitive::memory & mem)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->as_memory(varFile, mem, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->as_memory(varFile, mem, m_pauraapp);
    }
 
    void application::lines(stringa & stra, var varFile)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->lines(stra, varFile, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->lines(stra, varFile, m_pauraapp);
    }
 
    bool application::put_contents(var varFile, const void * pvoidContents, ::count count)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->put_contents(varFile, pvoidContents, count, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->put_contents(varFile, pvoidContents, count, m_pauraapp);
    }
 
    bool application::put_contents(var varFile, const char * lpcszContents)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->put_contents(varFile, lpcszContents, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->put_contents(varFile, lpcszContents, m_pauraapp);
    }
 
    bool application::put_contents(var varFile, ::file::reader & reader)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->put_contents(varFile, reader, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->put_contents(varFile, reader, m_pauraapp);
    }
 
    bool application::put_contents(var varFile, primitive::memory & mem)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->put_contents(varFile, mem, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->put_contents(varFile, mem, m_pauraapp);
    }
 
    bool application::put_contents_utf8(var varFile, const char * lpcszContents)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->put_contents_utf8(varFile, lpcszContents, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->put_contents_utf8(varFile, lpcszContents, m_pauraapp);
    }
 
    string application::sys_temp(const char * pszName, const char * pszExtension)
    {
-      return m_pauraapp->m_pbasesystem->m_spfile->sys_temp(pszName, pszExtension, m_pauraapp);
+      return m_pauraapp->m_paxissystem->m_spfile->sys_temp(pszName, pszExtension, m_pauraapp);
    }
 
 
@@ -414,7 +414,7 @@ namespace file
 
                      ::file::input_stream is(spfile);
 
-                     System.file().output(m_pauraapp, strFile, &System.compress(), &::base::compress::null, is);
+                     System.file().output(m_pauraapp, strFile, &System.compress(), &::axis::compress::null, is);
 
                   }
                   catch (...)

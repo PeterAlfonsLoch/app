@@ -25,8 +25,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
-#include "base/base/compress/compress_compress.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
+#include "axis/axis/compress/compress_compress.h"
 #include <openssl/ssl.h>
 
 
@@ -38,13 +38,13 @@ namespace sockets
 
 
 
-   httpd_socket::httpd_socket(base_socket_handler& h) :
+   httpd_socket::httpd_socket(axis_socket_handler& h) :
       element(h.get_app()),
-      base_socket(h),
+      axis_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
-      http_base_socket(h),
+      http_axis_socket(h),
       http_socket(h),
       m_received(0)
    {
@@ -53,11 +53,11 @@ namespace sockets
 
    httpd_socket::httpd_socket(const httpd_socket& s) :
       element(s.get_app()),
-      base_socket(s),
+      axis_socket(s),
       socket(s),
       stream_socket(s),
       tcp_socket(s),
-      http_base_socket(s),
+      http_axis_socket(s),
       http_socket(s)
    {
    }
@@ -85,7 +85,7 @@ namespace sockets
       else*/
       {
          primitive::memory mem;
-         System.base64().decode(mem, str64);
+         System.axis64().decode(mem, str64);
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 
@@ -411,7 +411,7 @@ namespace sockets
                }
                response().ostream() << "--THIS_STRING_SEPARATES\r\n\r\n";
                response().ostream() << "Content-range: bytes " + ::str::from(iStart) + "-" + ::str::from(iEnd) + "/" + ::str::from(iLen) + "\r\n";
-               response().ostream() << "Content-Transfer-Encoding: base64";
+               response().ostream() << "Content-Transfer-Encoding: axis64";
                response().ostream() << "\r\n";
                while(true)
                {
@@ -432,7 +432,7 @@ namespace sockets
                   if(iPos >= spfile->get_length())
                      break;
                }
-               response().ostream() << System.base64().encode(*memfile.get_memory());
+               response().ostream() << System.axis64().encode(*memfile.get_memory());
             }
             response().ostream() << "--THIS_STRING_SEPARATES--\r\n\r\n";
             outheader(__id(content_type)) = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";

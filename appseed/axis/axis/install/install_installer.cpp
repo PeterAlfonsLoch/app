@@ -1,4 +1,4 @@
-#include "framework.h" // from "base/net/net_sockets.h"
+#include "framework.h" // from "axis/net/net_sockets.h"
 #include "axis/compress/compress.h"
 
 #if defined(WINDOWS) || defined(LINUX)
@@ -23,7 +23,7 @@ CHAR szTitle[1024];					// The title bar text
 CHAR szWindowClassSpaAdmin[1024];			// the main interaction_impl class name
 
 //void ensure_trace_file();
-//CLASS_DECL_BASE bool g_bInstalling = false;
+//CLASS_DECL_AXIS bool g_bInstalling = false;
 
 typedef PVOID * PPVOID;
 
@@ -667,13 +667,13 @@ install_begin:;
          uint_array dwa;
 #ifndef METROWIN
 #ifdef X86
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\base.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\axis.dll"));
          dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\core.dll"));
          dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\os.dll"));
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\npca2.dll"));
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x86\\iexca2.dll"));
 #else
-         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\base.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\axis.dll"));
          dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\core.dll"));
          dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\os.dll"));
          //dll_processes(dwa, m_straTerminateProcesses, dir::element("stage\\x64\\npca2.dll"));
@@ -2583,7 +2583,7 @@ install_begin:;
    }
 
 
-   CLASS_DECL_BASE void send_spaboot_install_post(int32_t a, int32_t b)
+   CLASS_DECL_AXIS void send_spaboot_install_post(int32_t a, int32_t b)
    {
 
 #ifdef METROWIN
@@ -3123,7 +3123,7 @@ RetryBuildNumber:
 
       string strBuild;
 
-      ::install::get_plugin_base_library_list(straTemplate, m_strVersion);
+      ::install::get_plugin_axis_library_list(straTemplate, m_strVersion);
 
       string strUrl;
 

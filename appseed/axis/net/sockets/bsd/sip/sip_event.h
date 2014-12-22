@@ -5,8 +5,8 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_BASE sip_event :
-      virtual public base_object
+   class CLASS_DECL_AXIS sip_event :
+      virtual public axis_object
    {
    public:
       enum e_event

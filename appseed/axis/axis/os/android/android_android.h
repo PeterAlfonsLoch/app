@@ -46,7 +46,7 @@ DWORD get_tick_count();
 
 #define WAIT_IO_COMPLETION                   STATUS_USER_APC
 
-// based on Windows implementation and also a good limit for iterations with nanosleep and multiple locks in objects up to MAXIMUM_WAIT_OBJECTS in a single call
+// axisd on Windows implementation and also a good limit for iterations with nanosleep and multiple locks in objects up to MAXIMUM_WAIT_OBJECTS in a single call
 #define MAXIMUM_WAIT_OBJECTS      64
 
 
@@ -63,11 +63,11 @@ union semun
 
 #endif
 
-CLASS_DECL_BASE DWORD GetLastError();
-CLASS_DECL_BASE DWORD SetLastError(DWORD dw);
+CLASS_DECL_AXIS DWORD GetLastError();
+CLASS_DECL_AXIS DWORD SetLastError(DWORD dw);
 
 
-CLASS_DECL_BASE bool _istlead(int32_t ch);
+CLASS_DECL_AXIS bool _istlead(int32_t ch);
 
 //
 //oswindow GetCapture();

@@ -86,7 +86,7 @@ namespace visual
 
       bool bOk = false;
 
-#ifdef BASE_FREEIMAGE
+#ifdef AXIS_FREEIMAGE
       bool b8 = false;
       bool b24 = false;
       int iFreeImageSave = 0;
@@ -277,7 +277,7 @@ namespace visual
    }
 
 
-#ifdef BASE_FREEIMAGE
+#ifdef AXIS_FREEIMAGE
    bool dib_sp::from(class draw2d::graphics * pgraphics,struct FIBITMAP * pfi,bool bUnload)
    {
 
@@ -292,7 +292,7 @@ namespace visual
 #if 0
 
 
-CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int xParam,int yParam)
+CLASS_DECL_AXIS void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int xParam,int yParam)
 {
 
    FT_Bitmap * bitmap = (FT_Bitmap *) pftbitmap;
@@ -322,7 +322,7 @@ CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t
 }
 
 
-CLASS_DECL_BASE void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int xParam,int yParam,byte aParam,byte r,byte g,byte b)
+CLASS_DECL_AXIS void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t dy,void * pftbitmap,int xParam,int yParam,byte aParam,byte r,byte g,byte b)
 {
 
    FT_Bitmap * bitmap = (FT_Bitmap *)pftbitmap;

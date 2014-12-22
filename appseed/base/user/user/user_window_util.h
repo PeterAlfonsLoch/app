@@ -8,7 +8,7 @@ namespace user
    class interaction_spa;
 
 
-   class CLASS_DECL_AXIS oswindow_array :
+   class CLASS_DECL_BASE oswindow_array :
       public comparable_array < oswindow, oswindow >
    {
    public:
@@ -17,7 +17,7 @@ namespace user
       void top_windows_by_z_order();
    };
 
-   class CLASS_DECL_AXIS interaction_ptra:
+   class CLASS_DECL_BASE interaction_ptra:
       public ptr_array < ::user::interaction >
    {
    public:
@@ -39,7 +39,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_AXIS interaction_spa :
+   class CLASS_DECL_BASE interaction_spa :
       virtual public spa(::user::interaction)
    {
    public:
@@ -80,12 +80,12 @@ namespace user
       };
 
 
-   class CLASS_DECL_AXIS oswindow_tree :
+   class CLASS_DECL_BASE oswindow_tree :
       virtual public element
    {
    public:
 
-      class CLASS_DECL_AXIS Array :
+      class CLASS_DECL_BASE Array :
          public spa(oswindow_tree)
       {
       public:
@@ -117,7 +117,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_AXIS window_util
+   class CLASS_DECL_BASE window_util
    {
    public:
       static void ContraintPosToParent(oswindow oswindow);

@@ -1,4 +1,4 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 #include <openssl/ssl.h>
 
 
@@ -40,9 +40,9 @@ void ssl_sigpipe_handle( int x );
    #ifdef _MSC_VER
    #pragma warning(disable:4355)
    #endif
-   tcp_socket::tcp_socket(base_socket_handler& h) :
+   tcp_socket::tcp_socket(axis_socket_handler& h) :
    element(h.get_app()),
-   base_socket(h),
+   axis_socket(h),
    socket(h),
    stream_socket(h)
    ,ibuf(TCP_BUFSIZE_READ)
@@ -74,9 +74,9 @@ void ssl_sigpipe_handle( int x );
    #ifdef _MSC_VER
    #pragma warning(disable:4355)
    #endif
-   tcp_socket::tcp_socket(base_socket_handler& h,size_t isize,size_t osize) :
+   tcp_socket::tcp_socket(axis_socket_handler& h,size_t isize,size_t osize) :
    element(h.get_app()),
-   base_socket(h),
+   axis_socket(h),
    socket(h),
    stream_socket(h)
    ,ibuf(isize)
@@ -168,14 +168,14 @@ void ssl_sigpipe_handle( int x );
       // check for pooling
       if (Handler().PoolEnabled())
       {
-         base_socket_handler::pool_socket *pools = Handler().FindConnection(SOCK_STREAM, "tcp", ad);
+         axis_socket_handler::pool_socket *pools = Handler().FindConnection(SOCK_STREAM, "tcp", ad);
          if (pools)
          {
             CopyConnection( pools );
             delete pools;
 
             SetIsClient();
-            SetCallOnConnect(); // base_socket_handler must call OnConnect
+            SetCallOnConnect(); // axis_socket_handler must call OnConnect
             log("SetCallOnConnect", 0, "Found pooled connection", ::aura::log::level_info);
             return true;
          }
@@ -258,7 +258,7 @@ void ssl_sigpipe_handle( int x );
       else
       {
          attach(s);
-         SetCallOnConnect(); // base_socket_handler must call OnConnect
+         SetCallOnConnect(); // axis_socket_handler must call OnConnect
       }
 
       // 'true' means connected or connecting(not yet connected)
@@ -862,7 +862,7 @@ void ssl_sigpipe_handle( int x );
    #endif
    tcp_socket::tcp_socket(const tcp_socket& s) :
       element(s.get_app()),
-      base_socket(s),
+      axis_socket(s),
       socket(s),
       stream_socket(s),
       ibuf(0)

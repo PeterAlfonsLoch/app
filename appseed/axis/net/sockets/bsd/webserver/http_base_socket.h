@@ -1,5 +1,5 @@
 /**
- **   \file http_base_socket.h
+ **   \file http_axis_socket.h
  **   \date  2007-10-05
  **   \author grymse@alhem.net
 **/
@@ -28,14 +28,14 @@ namespace sockets
 
    class response;
 
-   class CLASS_DECL_BASE http_base_socket : 
+   class CLASS_DECL_AXIS http_axis_socket : 
       virtual public http_socket
    {
    public:
 
 
-      http_base_socket(base_socket_handler& h);
-      ~http_base_socket();
+      http_axis_socket(axis_socket_handler& h);
+      ~http_axis_socket();
 
 
       virtual void OnFirst();
@@ -64,12 +64,12 @@ namespace sockets
 
 
 
-      http_base_socket(const http_base_socket& s);
+      http_axis_socket(const http_axis_socket& s);
    protected:
       void Reset();
 
    private:
-      http_base_socket& operator=(const http_base_socket& ) { return *this; } // assignment operator
+      http_axis_socket& operator=(const http_axis_socket& ) { return *this; } // assignment operator
       void Execute();
       int32_t m_iContentLength;
    };

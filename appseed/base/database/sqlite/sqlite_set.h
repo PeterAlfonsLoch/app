@@ -7,7 +7,7 @@ namespace sqlite
 
    /* class 'set' does a query to SQLite-server */
 
-   class CLASS_DECL_AXIS set :
+   class CLASS_DECL_BASE set :
       public ::database::set
    {
    public:

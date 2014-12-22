@@ -9,10 +9,10 @@ namespace hotplugin
    class host;
 
 
-   class CLASS_DECL_BASE plugin :
+   class CLASS_DECL_AXIS plugin :
       virtual public ::simple_ui::style,
       virtual public ::simple_ui::interaction,
-      virtual public ::base::session
+      virtual public ::axis::session
 #ifndef METROWIN
       , virtual public ::small_ipc_channel
 #endif

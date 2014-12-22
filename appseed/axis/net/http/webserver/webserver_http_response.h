@@ -5,7 +5,7 @@ namespace http
 {
 
 
-   class CLASS_DECL_BASE response : public http::transaction
+   class CLASS_DECL_AXIS response : public http::transaction
    {
    public:
 

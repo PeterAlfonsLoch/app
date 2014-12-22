@@ -345,7 +345,7 @@ private:
     CScriptVarLink *condition(bool &execute);
     CScriptVarLink *logic(bool &execute);
     CScriptVarLink *ternary(bool &execute);
-    CScriptVarLink *base(bool &execute);
+    CScriptVarLink *axis(bool &execute);
     void block(bool &execute);
     void statement(bool &execute);
     // parsing utility functions

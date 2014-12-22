@@ -5,8 +5,8 @@
 
 namespace sockets
 {
-   /** Smtp server base class. */
-   class CLASS_DECL_BASE smtp_socket : public tcp_socket
+   /** Smtp server axis class. */
+   class CLASS_DECL_AXIS smtp_socket : public tcp_socket
    {
    public:
       typedef enum {
@@ -40,7 +40,7 @@ namespace sockets
 
 
    public:
-      smtp_socket(base_socket_handler&);
+      smtp_socket(axis_socket_handler&);
 
 
       void OnLine(const string &);

@@ -9,7 +9,7 @@ namespace simple_ui
 
 
 
-   class CLASS_DECL_AXIS interaction :
+   class CLASS_DECL_BASE interaction :
       virtual public ::user::interaction
    {
    public:

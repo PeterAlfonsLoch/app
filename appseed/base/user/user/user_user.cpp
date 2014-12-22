@@ -1,4 +1,4 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 
 
 namespace user
@@ -424,11 +424,11 @@ namespace user
       {
          return m_pkeyboardfocus;
       }
-      else if(Application.m_paxissession != NULL)
+      else if(Application.m_pbasesession != NULL)
       {
          return Sess(get_app()).user()->get_keyboard_focus();
       }
-      else if(Application.m_paxissystem != NULL)
+      else if(Application.m_pbasesystem != NULL)
       {
          return Sess(get_app()).user()->get_keyboard_focus();
       }
@@ -484,7 +484,7 @@ namespace user
    bool user::set_keyboard_layout(const char * pszPath,::action::context actioncontext)
    {
 
-      if(get_app()->m_paxissession == NULL)
+      if(get_app()->m_pbasesession == NULL)
          return false;
 
       if(pszPath == NULL)

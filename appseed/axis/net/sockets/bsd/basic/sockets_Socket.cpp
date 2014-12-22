@@ -1,4 +1,4 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 
 
 #ifdef _WIN32
@@ -29,9 +29,9 @@ namespace sockets
 #endif
 
 
-   socket::socket(base_socket_handler& h) :
+   socket::socket(axis_socket_handler& h) :
       element(h),
-      base_socket(h)
+      axis_socket(h)
    {
 
       m_iBindPort    = -1;

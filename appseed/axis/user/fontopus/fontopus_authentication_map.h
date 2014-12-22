@@ -5,7 +5,7 @@ namespace fontopus
 {
 
 
-   class CLASS_DECL_BASE authentication_map :
+   class CLASS_DECL_AXIS authentication_map :
       virtual public string_map < user_authentication >
    {
    public:

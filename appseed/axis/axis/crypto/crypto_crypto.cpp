@@ -559,7 +559,7 @@ namespace crypto
    {
       primitive::memory storage;
       key(storage);
-      return System.base64().encode(storage);
+      return System.axis64().encode(storage);
    }
 
    int32_t crypto::encrypt(string & strEncrypt, const char * pszDecrypt, const char * pszKey)
@@ -573,9 +573,9 @@ namespace crypto
          return 0;
       }
       storageDecrypt.from_string(pszDecrypt);
-      System.base64().decode(storageKey, pszKey);
+      System.axis64().decode(storageKey, pszKey);
       int32_t cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
-      strEncrypt = System.base64().encode(storageEncrypt);
+      strEncrypt = System.axis64().encode(storageEncrypt);
       return cipherlen;
    }
 
@@ -584,8 +584,8 @@ namespace crypto
       primitive::memory storageEncrypt;
       primitive::memory storageDecrypt;
       primitive::memory storageKey;
-      System.base64().decode(storageEncrypt, pszEncrypt);
-      System.base64().decode(storageKey, pszKey);
+      System.axis64().decode(storageEncrypt, pszEncrypt);
+      System.axis64().decode(storageKey, pszKey);
       int32_t plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
       storageDecrypt.to_string(strDecrypt);
       return plainlen;
@@ -1133,7 +1133,7 @@ namespace crypto
       memKey.prefix_der_sequence();
 
       //      string strRsaPrivateKey = "-----BEGIN RSA PRIVATE KEY-----\r\n";
-      //    strRsaPrivateKey += chunk_split(System.base64().encode(memKey));
+      //    strRsaPrivateKey += chunk_split(System.axis64().encode(memKey));
       //  strRsaPrivateKey += "-----END RSA PRIVATE KEY-----";
 
       //memKey.allocate(strRsaPrivateKey.get_length());

@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace base
+namespace axis
 {
 
 
-   class CLASS_DECL_BASE application :
+   class CLASS_DECL_AXIS application :
       virtual public :: axis ::application
    {
    public:
@@ -238,8 +238,8 @@ namespace base
 
 
 
-      //service_base * get_service();
-      //virtual service_base * allocate_new_service();
+      //service_axis * get_service();
+      //virtual service_axis * allocate_new_service();
       //virtual bool create_new_service();
 
       //virtual bool create_service();
@@ -356,7 +356,7 @@ namespace base
 
 
 
-} // namespace base
+} // namespace axis
 
 
 

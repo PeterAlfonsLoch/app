@@ -32,8 +32,8 @@ const char *GeoIPHTTPRequestClientIP = "GET %s%s/app/update_getipaddr HTTP/1.0\n
 const char *GeoIPHTTPRequestMD5 = "GET %s%s/app/update_secure?db_md5=%s&challenge_md5=%s&user_id=%s&edition_id=%s HTTP/1.0\nHost: updates.maxmind.com\n\n";
 
 /* messages */
-const char *NoCurrentDB = "%s can't be opened, proceeding to download database\n";
-const char *MD5Info = "MD5 Digest of installed database is %s\n";
+const char *NoCurrentDB = "%s can't be opened, proceeding to download dataaxis\n";
+const char *MD5Info = "MD5 Digest of installed dataaxis is %s\n";
 const char *SavingGzip = "Saving gzip file to %s ... ";
 const char *WritingFile = "Writing uncompressed data to %s ...";
 
@@ -66,7 +66,7 @@ const char * GeoIP_get_error_message(int32_t i) {
   case GEOIP_SANITY_OPEN_ERR:
     return "Sanity check GeoIP_open error";
   case GEOIP_SANITY_INFO_FAIL:
-    return "Sanity check database_info string failed";
+    return "Sanity check dataaxis_info string failed";
   case GEOIP_SANITY_LOOKUP_FAIL:
     return "Sanity check ip address lookup failed";
   case GEOIP_RENAME_ERR:
@@ -223,10 +223,10 @@ string GeoIP_get_host_or_proxy ()
 #endif
 }
 
-int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( char * ));
+int16_t GeoIP_update_dataaxis (char * license_key, int32_t verbose, void (*f)( char * ));
 
 
-int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( char * ))
+int16_t GeoIP_update_dataaxis (char * license_key, int32_t verbose, void (*f)( char * ))
 {
 
 #ifdef BSD_STYLE_SOCKETS
@@ -255,7 +255,7 @@ int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( c
    size_t written;
    _GeoIP_setup_dbfilename();
 
-   /* get MD5 of current GeoIP database file */
+   /* get MD5 of current GeoIP dataaxis file */
    if ((cur_db_fh = fopen (GeoIPDBFileName[GEOIP_COUNTRY_EDITION], "rb")) == NULL) {
     GeoIP_printf(f,"%s%s",  NoCurrentDB, GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
    } else {
@@ -323,7 +323,7 @@ int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( c
       return GEOIP_OUT_OF_MEMORY_ERR;
 
    if (verbose == 1)
-      GeoIP_printf(f,"Downloading gzipped GeoIP Database...\n");
+      GeoIP_printf(f,"Downloading gzipped GeoIP Dataaxis...\n");
 
    for (;;) {
       int32_t amt;
@@ -441,15 +441,15 @@ int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( c
       GeoIP_printf(f,"Performing santity checks ... ");
 
    if (gi == NULL) {
-      GeoIP_printf(f,"Error opening sanity check database\n");
+      GeoIP_printf(f,"Error opening sanity check dataaxis\n");
       return GEOIP_SANITY_OPEN_ERR;
    }
 
    /* this checks to make sure the files is complete, since info is at the end */
-   /* dependent on future databases having MaxMind in info */
+   /* dependent on future dataaxiss having MaxMind in info */
    if (verbose == 1)
-      GeoIP_printf(f,"database_info  ");
-   db_info = GeoIP_database_info(gi);
+      GeoIP_printf(f,"dataaxis_info  ");
+   db_info = GeoIP_dataaxis_info(gi);
    if (db_info == NULL) {
       GeoIP_delete(gi);
       if (verbose == 1)
@@ -500,10 +500,10 @@ int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( c
 
 }
 
-int16_t GeoIP_update_database_general (::aura::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
+int16_t GeoIP_update_dataaxis_general (::aura::application * papp, char * user_id,char * license_key,char *data_axis_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *));
 
 
-int16_t GeoIP_update_database_general (::aura::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *)) {
+int16_t GeoIP_update_dataaxis_general (::aura::application * papp, char * user_id,char * license_key,char *data_axis_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *)) {
 
 #ifdef BSD_STYLE_SOCKETS
    struct hostent *hostlist;
@@ -567,7 +567,7 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
       return GEOIP_OUT_OF_MEMORY_ERR;
 
    /* get the file name from a web page using the product id */
-   sprintf(request_uri,GeoIPHTTPRequestFilename,GeoIPProxyHTTP,GeoIPProxiedHost,data_base_type,GeoIPUpdateHost);
+   sprintf(request_uri,GeoIPHTTPRequestFilename,GeoIPProxyHTTP,GeoIPProxiedHost,data_axis_type,GeoIPUpdateHost);
    if (verbose == 1) {
       GeoIP_printf(f, "sending request %s \n",request_uri);
    }
@@ -599,13 +599,13 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
    geoipfilename = _GeoIP_full_path_to(tmpstr);
    free(buf);
 
-   /* print the database product id and the database filename */
+   /* print the dataaxis product id and the dataaxis filename */
    if (verbose == 1){
-      GeoIP_printf(f, "database product id %s database file name %s \n",data_base_type,geoipfilename);
+      GeoIP_printf(f, "dataaxis product id %s dataaxis file name %s \n",data_axis_type,geoipfilename);
    }
    _GeoIP_setup_dbfilename();
 
-   /* get MD5 of current GeoIP database file */
+   /* get MD5 of current GeoIP dataaxis file */
    if ((cur_db_fh = fopen (geoipfilename, "rb")) == NULL) {
     GeoIP_printf(f, NoCurrentDB, geoipfilename);
    } else {
@@ -624,7 +624,7 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
     GeoIP_printf(f, MD5Info, hex_digest );
    }
    if (verbose == 1) {
-      GeoIP_printf(f,"MD5 sum of database %s is %s \n",geoipfilename,hex_digest);
+      GeoIP_printf(f,"MD5 sum of dataaxis %s is %s \n",geoipfilename,hex_digest);
    }
    if (client_ipaddr[0] == NULL) {
       /* We haven't gotten our IP address yet, so let's request it */
@@ -717,7 +717,7 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
    }
 
    /* send the request using the ::fontopus::user id,product id,
-    * md5 sum of the prev database and
+    * md5 sum of the prev dataaxis and
     * the md5 sum of the license_key and ip address */
    if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
    {
@@ -729,7 +729,7 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
    sa.sin_family = AF_INET;
    if (connect(sock, (struct sockaddr *)&sa, sizeof(struct sockaddr))< 0)
       return GEOIP_CONNECTION_ERR;
-   snprintf(request_uri, request_uri_len, GeoIPHTTPRequestMD5,GeoIPProxyHTTP,GeoIPProxiedHost,hex_digest,hex_digest2,user_id,data_base_type);
+   snprintf(request_uri, request_uri_len, GeoIPHTTPRequestMD5,GeoIPProxyHTTP,GeoIPProxiedHost,hex_digest,hex_digest2,user_id,data_axis_type);
    send(sock, request_uri, (int32_t) strlen(request_uri),0);
    if (verbose == 1) {
       GeoIP_printf(f, "sending request %s\n",request_uri);
@@ -743,7 +743,7 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
       return GEOIP_OUT_OF_MEMORY_ERR;
 
    if (verbose == 1)
-      GeoIP_printf(f,"Downloading gzipped GeoIP Database...\n");
+      GeoIP_printf(f,"Downloading gzipped GeoIP Dataaxis...\n");
 
    for (;;) {
       int32_t amt;
@@ -872,25 +872,25 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
       GeoIP_printf(f,"Performing santity checks ... ");
 
    if (gi == NULL) {
-      GeoIP_printf(f,"Error opening sanity check database\n");
+      GeoIP_printf(f,"Error opening sanity check dataaxis\n");
       return GEOIP_SANITY_OPEN_ERR;
    }
 
 
-   /* get the database type */
-   dbtype = GeoIP_database_edition(gi);
+   /* get the dataaxis type */
+   dbtype = GeoIP_dataaxis_edition(gi);
    if (verbose == 1) {
-      GeoIP_printf(f, "Database type is %d\n",dbtype);
+      GeoIP_printf(f, "Dataaxis type is %d\n",dbtype);
    }
 
    /* this checks to make sure the files is complete, since info is at the end
-       dependent on future databases having MaxMind in info (ISP and Organization databases currently don't have info string */
+       dependent on future dataaxiss having MaxMind in info (ISP and Organization dataaxiss currently don't have info string */
 
    if ((dbtype != GEOIP_ISP_EDITION)&&
          (dbtype != GEOIP_ORG_EDITION)) {
       if (verbose == 1)
-         GeoIP_printf(f,"database_info  ");
-      db_info = GeoIP_database_info(gi);
+         GeoIP_printf(f,"dataaxis_info  ");
+      db_info = GeoIP_dataaxis_info(gi);
       if (db_info == NULL) {
          GeoIP_delete(gi);
          if (verbose == 1)
@@ -920,7 +920,7 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
       }
    }
    if (dbtype == GEOIP_COUNTRY_EDITION) {
-      /* if data base type is country then call the function
+      /* if data axis type is country then call the function
        * named GeoIP_country_code_by_addr */
       lookupresult = 1;
       if (strcmp(GeoIP_country_code_by_addr(gi,"24.24.24.24"), "US") != 0) {
@@ -931,7 +931,7 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
       }
    }
    if (dbtype == GEOIP_REGION_EDITION_REV1) {
-      /* if data base type is region then call the function
+      /* if data axis type is region then call the function
        * named GeoIP_region_by_addr */
       GeoIPRegion *r = GeoIP_region_by_addr(gi,"24.24.24.24");
       lookupresult = 0;
@@ -944,7 +944,7 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
       }
    }
    if (dbtype == GEOIP_CITY_EDITION_REV1) {
-      /* if data base type is city then call the function
+      /* if data axis type is city then call the function
        * named GeoIP_record_by_addr */
       GeoIPRecord *r = GeoIP_record_by_addr(gi,"24.24.24.24");
       lookupresult = 0;
@@ -958,7 +958,7 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
    }
    if ((dbtype == GEOIP_ISP_EDITION)||
          (dbtype == GEOIP_ORG_EDITION)) {
-      /* if data base type is isp or org then call the function
+      /* if data axis type is isp or org then call the function
        * named GeoIP_org_by_addr */
       GeoIPRecord *r = (GeoIPRecord*)GeoIP_org_by_addr(gi,"24.24.24.24");
       lookupresult = 0;

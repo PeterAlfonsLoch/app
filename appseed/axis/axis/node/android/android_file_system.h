@@ -6,13 +6,13 @@ namespace android
 
 
 
-   class CLASS_DECL_BASE file_system :
+   class CLASS_DECL_AXIS file_system :
       virtual public ::file::system
    {
    public:
 
 
-      class CLASS_DECL_BASE path :
+      class CLASS_DECL_AXIS path :
         virtual public ::file::system::path
       {
       public:

@@ -11,7 +11,7 @@ struct FIBITMAP;
 
 class image_list;
 
-class CLASS_DECL_BASE imaging :
+class CLASS_DECL_AXIS imaging :
    virtual public ::object
 {
 public:
@@ -295,7 +295,7 @@ public:
    virtual bool LoadImageFile(::draw2d::dib * pdib, var varFile, ::aura::application * papp);
    virtual bool LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePath, ::aura::application * papp);
 
-#ifdef BASE_FREEIMAGE
+#ifdef AXIS_FREEIMAGE
    virtual ::draw2d::bitmap_sp CreateDIBitmap(::draw2d::graphics * pdc,FIBITMAP * pFreeImage);
    virtual ::draw2d::bitmap_sp CreateBitmap(::draw2d::graphics * pdc,FIBITMAP * pFreeImage);
    virtual bool from(::draw2d::dib * pdib,::draw2d::graphics * pgraphics,FIBITMAP *pfibitmap,bool bUnloadFI,::aura::application * papp = NULL);

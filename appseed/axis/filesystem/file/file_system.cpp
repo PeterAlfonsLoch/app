@@ -11,9 +11,9 @@
 //#include <ctype.h>
 #endif
 
-CLASS_DECL_BASE void NESSIEinit(struct NESSIEstruct * const structpointer);
-CLASS_DECL_BASE void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
-CLASS_DECL_BASE void NESSIEfinalize(struct NESSIEstruct * const structpointer, uchar * const result);
+CLASS_DECL_AXIS void NESSIEinit(struct NESSIEstruct * const structpointer);
+CLASS_DECL_AXIS void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
+CLASS_DECL_AXIS void NESSIEfinalize(struct NESSIEstruct * const structpointer, uchar * const result);
 
 
 
@@ -151,10 +151,10 @@ namespace file
 
          property_set set(papp);
 
-/*         if(papp->m_pbasesession != NULL)
+/*         if(papp->m_paxissession != NULL)
          {
 
-            set["user"] = papp->m_pbasesession->safe_get_user();
+            set["user"] = papp->m_paxissession->safe_get_user();
 
          }*/
 
@@ -183,7 +183,7 @@ namespace file
 
       }
 
-      if (!papp->m_pbasesystem->dir().name_is(strPath, papp))
+      if (!papp->m_paxissystem->dir().name_is(strPath, papp))
          return false;
 
 #ifdef WINDOWS

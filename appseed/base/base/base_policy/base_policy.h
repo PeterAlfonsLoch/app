@@ -20,8 +20,8 @@ namespace user
 
 using user_interaction = ::user::interaction;
 
-#include "axis_c.h"
-#include "axis_cpp.h"
+#include "base_c.h"
+#include "base_cpp.h"
 
 
 #else
@@ -30,7 +30,7 @@ using user_interaction = ::user::interaction;
 BEGIN_EXTERN_C
 
 
-#include "axis_c.h"
+#include "base_c.h"
 
 
 END_EXTERN_C
@@ -45,24 +45,24 @@ END_EXTERN_C
 #if defined(__M)
 
 
-#include "axis_c.h"
-#include "axis_policy_objc.h"
+#include "base_c.h"
+#include "base_policy_objc.h"
 
 
 #elif defined(__MM)
 
 
-#include "axis_c.h"
-#include "axis_policy_objc.h"
-#include "axis_policy_objcpp.h"
+#include "base_c.h"
+#include "base_policy_objc.h"
+#include "base_policy_objcpp.h"
 
 
 #elif defined(__cplusplus_winrt)
 
 
-#include "axis_c.h"
-#include "axis_cpp.h"
-#include "axis_policy_winrt.h"
+#include "base_c.h"
+#include "base_cpp.h"
+#include "base_policy_winrt.h"
 
 
 #else

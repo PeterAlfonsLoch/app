@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace base
+namespace axis
 {
 
 
@@ -17,23 +17,23 @@ namespace base
 
 #endif
 
-      m_pbaseapp              = this;
+      m_paxisapp              = this;
 
       if(m_pauraapp != NULL)
       {
 
-         m_pbasesystem           = m_pauraapp->m_pbasesystem;
+         m_paxissystem           = m_pauraapp->m_paxissystem;
 
-         if(m_pauraapp->m_pbasesession == NULL && m_pbasesystem != NULL)
+         if(m_pauraapp->m_paxissession == NULL && m_paxissystem != NULL)
          {
 
-            m_pbasesession       = m_pbasesystem->m_pbasesession;
+            m_paxissession       = m_paxissystem->m_paxissession;
 
          }
          else
          {
 
-            m_pbasesession       = m_pauraapp->m_pbasesession;
+            m_paxissession       = m_pauraapp->m_paxissession;
 
          }
 
@@ -47,7 +47,7 @@ namespace base
       else
       {
 
-         m_pbasesystem           = NULL;
+         m_paxissystem           = NULL;
 
       }
 
@@ -545,7 +545,7 @@ namespace base
    //ptr_array < ::user::interaction > application::frames()
    //{
 
-   //   return m_framea.base_ptra();
+   //   return m_framea.axis_ptra();
 
    //}
 
@@ -1016,7 +1016,7 @@ namespace base
 
    }
 
-   string CLASS_DECL_BASE application::get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   string CLASS_DECL_AXIS application::get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       return ::fontopus::get_cred(this,strRequestUrl, rect,strUsername,strPassword,strToken,strTitle,bInteractive);
@@ -1102,7 +1102,7 @@ namespace base
             try
             {
 
-               m_pbasesystem->file().del(strRet);
+               m_paxissystem->file().del(strRet);
 
             }
             catch(...)
@@ -1795,7 +1795,7 @@ namespace base
          else if(command()->m_varTopicQuery.has_property("service"))
          {
             create_new_service();
-            ::service_base::serve(*m_pservice);
+            ::service_axis::serve(*m_pservice);
          }
          else if(command()->m_varTopicQuery.has_property("run") || is_serviceable())
          {
@@ -2571,7 +2571,7 @@ namespace base
       return is_alive();
    }
 
-   //service_base * application::allocate_new_service()
+   //service_axis * application::allocate_new_service()
    //{
 
    //   return NULL;
@@ -3164,7 +3164,7 @@ namespace base
 
 
 
-   //service_base * application::get_service()
+   //service_axis * application::get_service()
    //{
 
    //   return m_pservice;
@@ -3227,7 +3227,7 @@ namespace base
 
       }
 
-      if(m_pbasesession->fontopus()->get_user(true,pszRequestUrl) == NULL)
+      if(m_paxissession->fontopus()->get_user(true,pszRequestUrl) == NULL)
          //   throw exit_exception(get_app(),"You have not logged in!! db_str_set::load");
          return false;
 
@@ -3498,7 +3498,7 @@ namespace base
 
 
 
-} // namespace base
+} // namespace axis
 
 
 

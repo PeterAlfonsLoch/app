@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace axis
+namespace base
 {
 
 
-   class CLASS_DECL_AXIS copydesk :
+   class CLASS_DECL_BASE copydesk :
       virtual public ::object
    {
    public:
@@ -37,7 +37,7 @@ namespace axis
    typedef smart_pointer < copydesk > copydesk_sp;
 
 
-} // namespace axis
+} // namespace base
 
 
 

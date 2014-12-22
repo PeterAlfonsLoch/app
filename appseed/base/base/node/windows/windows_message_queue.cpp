@@ -1,6 +1,6 @@
-#include "framework.h" // from "axis/user/user.h"
+#include "framework.h" // from "base/user/user.h"
 #ifdef METROWIN
-#include "axis/axis/node/metrowin/metrowin.h"
+#include "base/base/node/metrowin/metrowin.h"
 #else
 #include "windows.h"
 #endif

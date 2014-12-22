@@ -6,13 +6,13 @@
    namespace sockets
    {
 
-      class CLASS_DECL_BASE tls_socket : 
+      class CLASS_DECL_AXIS tls_socket : 
          virtual public tcp_socket
       {
       public:
 
 
-         tls_socket(base_socket_handler& );
+         tls_socket(axis_socket_handler& );
          ~tls_socket();
 
 

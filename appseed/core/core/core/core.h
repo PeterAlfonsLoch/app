@@ -2,6 +2,8 @@
 
 #include "app/appseed/base/base/base/base.h"
 
+#include "base/user/user.h"
+
 #if !defined(_MM) && !defined(_M)
 
 #include "nodeapp/operational_system/operational_system.h"

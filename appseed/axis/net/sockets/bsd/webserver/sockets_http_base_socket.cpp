@@ -1,4 +1,4 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
 #include "axis/compress/compress.h"
 
 namespace sockets
@@ -11,9 +11,9 @@ namespace sockets
    #endif
 
 
-   http_base_socket::http_base_socket(base_socket_handler& h) :
+   http_axis_socket::http_axis_socket(axis_socket_handler& h) :
       element(h.get_app()),
-      base_socket(h),
+      axis_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -21,9 +21,9 @@ namespace sockets
    {
    }
 
-   http_base_socket::http_base_socket(const http_base_socket& s) :
+   http_axis_socket::http_axis_socket(const http_axis_socket& s) :
       element(((http_socket&) s).get_app()),
-      base_socket(s),
+      axis_socket(s),
       socket(s),
       stream_socket(s),
       tcp_socket(s),
@@ -32,18 +32,18 @@ namespace sockets
    }
 
 
-   http_base_socket::~http_base_socket()
+   http_axis_socket::~http_axis_socket()
    {
    }
 
 
-   void http_base_socket::OnFirst()
+   void http_axis_socket::OnFirst()
    {
       m_iContentLength = 0;
    }
 
 
-   void http_base_socket::OnHeader(id key, const string & value)
+   void http_axis_socket::OnHeader(id key, const string & value)
    {
 
       http_socket::OnHeader(key, value);
@@ -56,7 +56,7 @@ namespace sockets
    }
 
 
-   void http_base_socket::OnHeaderComplete()
+   void http_axis_socket::OnHeaderComplete()
    {
       http_socket::OnHeaderComplete();
 #ifndef DEBUG
@@ -115,14 +115,14 @@ namespace sockets
    }
 
 
-   void http_base_socket::OnData(const char *buf,size_t sz)
+   void http_axis_socket::OnData(const char *buf,size_t sz)
    {
 
       m_request.write( buf, sz );
 
    }
 
-   void http_base_socket::OnDataComplete()
+   void http_axis_socket::OnDataComplete()
    {
 
       m_request.CloseBody();
@@ -133,7 +133,7 @@ namespace sockets
 
 
    // --------------------------------------------------------------------------------------
-   void http_base_socket::Execute()
+   void http_axis_socket::Execute()
    {
       // parse form data / query_string and cookie header if available
       m_request.ParseBody();
@@ -161,10 +161,10 @@ namespace sockets
 
 
    // --------------------------------------------------------------------------------------
-   void http_base_socket::Respond()
+   void http_axis_socket::Respond()
    {
 
-      //TRACE0("http_base_socket::Respond");
+      //TRACE0("http_axis_socket::Respond");
 
       if(outheader(__id(content_type)).get_string().find("text") >= 0
       || outheader(__id(content_type)).get_string().find("javascript") >= 0)
@@ -210,11 +210,11 @@ namespace sockets
 
 
    // --------------------------------------------------------------------------------------
-   void http_base_socket::OnWriteComplete()
+   void http_axis_socket::OnWriteComplete()
    {
-      //Debug deb("http_base_socket::OnTransferLimit");
+      //Debug deb("http_axis_socket::OnTransferLimit");
       //TRACE("\n");
-      //TRACE("http_base_socket::OnTransferLimit\n");
+      //TRACE("http_axis_socket::OnTransferLimit\n");
    //   char msg[32768];
       OnResponseComplete();
       if (!m_b_keepalive)
@@ -230,20 +230,20 @@ namespace sockets
 
 
    // --------------------------------------------------------------------------------------
-   void http_base_socket::Reset()
+   void http_axis_socket::Reset()
    {
       http_socket::Reset();
       m_body_size_left = 0;
    }
 
 
-   void http_base_socket::OnResponseComplete()
+   void http_axis_socket::OnResponseComplete()
    {
    }
 
 
 
-   string http_base_socket::set_cookie(
+   string http_axis_socket::set_cookie(
          const char * name,
          var var,
          int32_t iExpire,
@@ -267,7 +267,7 @@ namespace sockets
          bSecure);
    }
 
-   void http_base_socket::on_compress()
+   void http_axis_socket::on_compress()
    {
        
       if(inheader("accept-encoding").get_string().find("gzip") >= 0)

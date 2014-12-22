@@ -5,7 +5,7 @@ namespace aura
 {
 
 
-   class CLASS_DECL_AXIS document :
+   class CLASS_DECL_BASE document :
       virtual public command_target,
       virtual public ::data::data_container_base,
       virtual public ::file::serializable,
