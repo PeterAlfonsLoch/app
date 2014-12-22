@@ -934,7 +934,7 @@
       </EntryPointSymbol>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
-      <AndroidSystemLibs>c;m;log;gcc;aura;aurasqlite;axisbzip2;axiszlib</AndroidSystemLibs>
+      <AndroidSystemLibs>c;m;log;gcc;aura;aurasqlite;axisbzip2;axiszlib;axis</AndroidSystemLibs>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -2243,7 +2243,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_host.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp" />
-    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="base\install\install_plugin.cpp" />
     <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp" />
     <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp" />

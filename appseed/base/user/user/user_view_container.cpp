@@ -30,7 +30,7 @@ namespace user
    ::aura::document * view_container::get_view_document()
    {
 
-      return impact::get_document(get_view());
+      return ::aura::impact::get_document(get_view());
 
    }
 

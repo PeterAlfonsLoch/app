@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE split_view :
-      virtual public impact,
+      virtual public ::aura::impact,
       virtual public split_layout
    {
    public:

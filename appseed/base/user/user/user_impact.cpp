@@ -46,7 +46,7 @@ ON_MESSAGE_VOID(WM_INITIALUPDATE, OnInitialUpdate)*/
 #define WM_INITIALUPDATE    0x0364  // (params unused) - sent to children
 
 
-namespace user
+namespace aura
 {
 
 
@@ -944,6 +944,8 @@ namespace user
    }
 
 
+#ifndef ANDROID
+
    /////////////////////////////////////////////////////////////////////////////
    // ::aura::impact drag/drop support
 
@@ -983,6 +985,10 @@ namespace user
    void impact::OnDragLeave()
    {
    }
+
+
+#endif // ANDROID
+
 
 
 
@@ -1167,4 +1173,16 @@ namespace user
 
 
 
-} // namespace user
+} // namespace aura
+
+
+
+
+
+
+
+
+
+
+
+

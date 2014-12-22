@@ -2,7 +2,7 @@
 
 
 
-namespace user
+namespace aura
 {
 
 
@@ -62,7 +62,7 @@ namespace user
    }
 
 
-} //   namespace user
+} //   namespace aura
 
 
 

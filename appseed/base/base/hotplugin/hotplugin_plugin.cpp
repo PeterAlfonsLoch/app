@@ -1070,7 +1070,7 @@ namespace hotplugin
 
 #ifndef METROWIN
 
-#if !defined(LINUX) && !defined(APPLEOS)
+#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
       if(bEnsureTx || ::IsWindow(::small_ipc_tx_channel::m_oswindow))
 #endif
       {
