@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "framework.h"
+#include "aura/aura/aura.h"
 
 
 #ifdef LINUX
@@ -18,8 +18,9 @@
 #include <sys/socket.h>
 #include <netdb.h>
 
-
 #endif
+
+
 
 
 #include "net.h"

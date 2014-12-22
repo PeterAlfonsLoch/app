@@ -1,9 +1,10 @@
 #include "framework.h"
 #include "framework.h" // from "base/net/net_sockets.h"
 
-
-//#include "ft2build.h"
-//#include FT_FREETYPE_H
+#ifndef WINDOWS
+#include "ft2build.h"
+#include FT_FREETYPE_H
+#endif
 
 
 

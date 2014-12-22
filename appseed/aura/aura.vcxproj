@@ -2009,6 +2009,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_interaction.h" />
     <ClInclude Include="aura\aura\aura_international.h" />
     <ClInclude Include="aura\aura\aura_keep.h" />
+    <ClInclude Include="aura\aura\aura_local_memory_map.h" />
     <ClInclude Include="aura\aura\aura_net.h" />
     <ClInclude Include="aura\aura\aura_platform_interface.h" />
     <ClInclude Include="aura\aura\aura_printer.h" />
@@ -2598,6 +2599,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\os\cross.h" />
     <ClInclude Include="aura\os\cross\ansios\ansios.h" />
     <ClInclude Include="aura\os\cross\ansios\ansios_datetime.h" />
+    <ClInclude Include="aura\os\cross\ansios\ansios_file.h" />
     <ClInclude Include="aura\os\cross\cross.h" />
     <ClInclude Include="aura\os\cross\windows\e.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3258,6 +3260,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\aura\aura_id_pool.cpp" />
     <ClCompile Include="aura\aura\aura_interaction.cpp" />
     <ClCompile Include="aura\aura\aura_library.cpp" />
+    <ClCompile Include="aura\aura\aura_local_memory_map.cpp" />
     <ClCompile Include="aura\aura\aura_net.cpp" />
     <ClCompile Include="aura\aura\aura_platform_interface.cpp" />
     <ClCompile Include="aura\aura\aura_printer.cpp" />
@@ -3687,6 +3690,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_local_memory_map.cpp" />
     <ClCompile Include="aura\os\ansios\ansios_message_loop.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -3718,6 +3722,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="aura\os\cross\ansios\cross_ansios_file.cpp" />
     <ClCompile Include="aura\os\cross\windows\cross_windows_windows.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -4088,6 +4093,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_local_memory_map.cpp" />
     <ClCompile Include="aura\os\windows\windows_lock.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>

@@ -1,3 +1,5 @@
+#pragma once
+
 #ifdef _WIN32
 #define _CRT_SECURE_NO_WARNINGS
 #endif
@@ -32,12 +34,12 @@
 #undef CAIRO_HAS_INTERPRETER
 
 /* Define to 1 to enable cairo's pthread feature */
-#if defined(LINUX)
+#if defined(LINUX) || defined(ANDROID)
 #define CAIRO_HAS_PTHREAD 1
 #endif
 
 /* Define to 1 if we have full pthread support */
-#if defined(LINUX)
+#if defined(LINUX) || defined(ANDROID)
 #define CAIRO_HAS_REAL_PTHREAD 1
 #endif
 
@@ -122,14 +124,14 @@
 /* Define to 1 if you have the `FT_GlyphSlot_Embolden' function. */
 #undef HAVE_FT_GLYPHSLOT_EMBOLDEN
 
-#if defined(_WIN32) || defined(LINUX)
+#if defined(_WIN32) || defined(LINUX)  || defined(ANDROID)
 #define HAVE_FT_GLYPHSLOT_EMBOLDEN 1
 #endif
 
 /* Define to 1 if you have the `FT_GlyphSlot_Oblique' function. */
 #undef HAVE_FT_GLYPHSLOT_OBLIQUE
 
-#if defined(_WIN32) || defined(LINUX)
+#if defined(_WIN32) || defined(LINUX) || defined(ANDROID)
 #define HAVE_FT_GLYPHSLOT_OBLIQUE 1
 #endif
 
@@ -138,7 +140,7 @@
 #undef HAVE_FT_LIBRARY_SETLCDFILTER
 
 
-#if defined(_WIN32) || defined(LINUX)
+#if defined(_WIN32) || defined(LINUX) || defined(ANDROID)
 #define HAVE_FT_LIBRARY_SETLCDFILTER 1
 #endif
 
@@ -146,7 +148,7 @@
 /* Define to 1 if you have the `FT_Load_Sfnt_Table' function. */
 #undef HAVE_FT_LOAD_SFNT_TABLE
 
-#if defined(_WIN32) || defined(LINUX)
+#if defined(_WIN32) || defined(LINUX) || defined(ANDROID)
 #define HAVE_FT_LOAD_SFNT_TABLE 1
 #endif
 
@@ -225,21 +227,21 @@
 #undef HAVE_SIGNAL_H
 
 /* Define to 1 if you have the <stdint.h> header file. */
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
 #define HAVE_STDINT_H 1
 #endif
 
 /* Define to 1 if you have the <stdlib.h> header file. */
 #undef HAVE_STDLIB_H
 
-#if defined(_WIN32) || defined(LINUX)
+#if defined(_WIN32) || defined(LINUX) || defined(ANDROID)
 #define HAVE_STDLIB_H 1
 #endif
 
 /* Define to 1 if you have the <strings.h> header file. */
 #undef HAVE_STRINGS_H
 
-#if defined(_WIN32) || defined(LINUX)
+#if defined(_WIN32) || defined(LINUX) || defined(ANDROID)
 #define HAVE_STRINGS_H 1
 #endif
 
@@ -279,7 +281,7 @@
 /* Define to 1 if you have the <time.h> header file. */
 #undef HAVE_TIME_H
 
-#if defined(_WIN32) || defined(LINUX)
+#if defined(_WIN32) || defined(LINUX) || defined(ANDROID)
 #define HAVE_TIME_H 1
 #endif
 
@@ -288,7 +290,7 @@
 
 /* Define to 1 if the system has the type `uint64_t'. */
 
-#if defined(_WIN32) || defined(LINUX)
+#if defined(_WIN32) || defined(LINUX) || defined(ANDROID)
 #define HAVE_UINT64_T 1
 #endif
 
@@ -464,3 +466,16 @@
 
 
 #define CAIRO_HAS_FT_FONT 1
+
+#ifdef ANDROID
+
+struct lconv
+{
+
+   const char * decimal_point;
+
+};
+
+struct lconv *localeconv(void);
+
+#endif

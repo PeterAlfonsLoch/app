@@ -1,44 +1,6 @@
 #include "framework.h"
 #include "axis/compress/compress.h"
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-#define _O_BINARY 0
-#define _O_RDONLY O_RDONLY
-#else
-#include <io.h>
-#endif
-#include <wchar.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
-#include <share.h>
-#endif
-
-#ifdef WINDOWS
-int32_t my_open(const char * psz, int32_t i)
-{
-   return _wopen(::str::international::utf8_to_unicode(psz), i);
-}
-FILE * my_fopen(const char * psz, const char * pszMode)
-{
-   return _wfopen(::str::international::utf8_to_unicode(psz), ::str::international::utf8_to_unicode(pszMode));
-}
-#else
-
-void _get_errno(int32_t * perrno)
-{
-   *perrno = errno;
-}
-
-int32_t my_open(const char * psz, int32_t i)
-{
-   return open(psz, i);
-}
-FILE * my_fopen(const char * psz, const char * pszMode)
-{
-   return fopen(psz, pszMode);
-}
-#endif
 
 
 
@@ -48,7 +10,7 @@ namespace base
 
    bool compress::ungz(::file::output_stream & ostreamUncompressed, const char * lpcszGzFileCompressed)
    {
-      int32_t fileUn = my_open(lpcszGzFileCompressed, _O_BINARY | _O_RDONLY);
+      int32_t fileUn = my_open(lpcszGzFileCompressed, my_file_flag(::file::type_binary | ::file::mode_read));
       if (fileUn == -1)
       {
          TRACE("ungz wopen error %s", lpcszGzFileCompressed);

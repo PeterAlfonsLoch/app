@@ -5,9 +5,6 @@
 #endif
 
 
-#if defined(LINUX)
-#include <unistd.h>
-#endif
 
 
 int16_t parse_http_proxy(char **proxy_host, int32_t *port);
@@ -426,7 +423,7 @@ int16_t GeoIP_update_database (char * license_key, int32_t verbose, void (*f)( c
       }
    }
    gzclose(gz_fh);
-   _unlink(file_path_gz);
+   my_unlink(file_path_gz);
    free(file_path_gz);
    fclose(gi_fh);
 
@@ -854,7 +851,7 @@ int16_t GeoIP_update_database_general (::aura::application * papp, char * user_i
       }
    }
    gzclose(gz_fh);
-   _unlink(file_path_gz);
+   my_unlink(file_path_gz);
    free(file_path_gz);
    fclose(gi_fh);
 

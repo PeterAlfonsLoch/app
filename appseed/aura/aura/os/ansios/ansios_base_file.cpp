@@ -5,8 +5,13 @@
 #include <sys/mman.h>
 #include <unistd.h>
 #define PACKAGE "mmap"
+#include <wchar.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+
 
 void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);
+
 
 int_bool ensure_file_size_fd(int32_t fd, size_t iSize)
 {
@@ -427,4 +432,88 @@ int_bool file_is_equal_path(const char * psz1,const char * psz2)
    return iCmp == 0;
 
 }
+
+
+
+
+
+
+BEGIN_EXTERN_C
+
+
+
+int32_t my_open(const char * psz,int32_t i)
+{
+
+   return open(psz,i);
+
+}
+
+void _get_errno(int32_t * perrno)
+{
+   *perrno = errno;
+}
+
+FILE * my_fopen(const char * psz,const char * pszMode)
+{
+
+   return fopen(psz,pszMode);
+
+}
+
+
+int my_file_flag(int iFlag)
+{
+
+   int i = 0;
+
+   if(iFlag & ::file::type_binary)
+   {
+
+      i |= O_BINARY;
+
+   }
+
+   if(iFlag & ::file::mode_read)
+   {
+
+      if(iFlag & ::file::mode_write)
+      {
+
+         i |= O_RDWR;
+
+      }
+      else
+      {
+
+         i |= O_RDONLY;
+
+      }
+
+   }
+   else if(iFlag & ::file::mode_write)
+   {
+
+      i |= O_WRONLY;
+
+   }
+
+   return i;
+
+}
+
+
+void my_unlink(const char * psz)
+{
+
+   unlink(psz);
+
+}
+
+
+
+END_EXTERN_C
+
+
+
 

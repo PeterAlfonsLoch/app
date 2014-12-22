@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #ifdef _WIN32
 #else
-#include <sys/select.h>
+//#include <sys/select.h>
 #endif
 
 

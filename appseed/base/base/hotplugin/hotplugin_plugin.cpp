@@ -2,18 +2,12 @@
 
 #undef new
 
-#if defined(LINUX) || defined(ANDROID) || defined(SOLARIS) || defined(APPLEOS)
-#include <sys/mman.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#endif
 
 
 #ifdef LINUX
 #include "axis/os/linux/linux_cross_win_gdi_internal.h"
 #elif defined(ANDROID)
-#include "axis/os/android/android_cross_win_gdi_internal.h"
+//#include "axis/os/android/android_cross_win_gdi_internal.h"
 #endif
 
 
@@ -23,6 +17,12 @@
 #include <gdiplus.h>
 #undef min
 #undef max
+#endif
+
+#if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
+int_ptr get_map_failed();
+void my_munmap(void * pcolorref,HANDLE hfile);
+void * my_open_map(const char * psz,HANDLE * pfile,bool bRead,bool bWrite,int64_t size);
 #endif
 
 
@@ -730,66 +730,10 @@ namespace hotplugin
          m_sizeBitmapData.cx = cx;
          m_sizeBitmapData.cy = cy;
 
-#ifdef WINDOWS
-         if(m_pcolorref != NULL)
-#else
-         if(m_pcolorref != MAP_FAILED)
-#endif
+         if(m_pcolorref != (void *) get_map_failed())
          {
-            try
-            {
-#ifdef WINDOWS
-               UnmapViewOfFile(m_pcolorref);
-#else
-               ::munmap(m_pcolorref, ::get_file_size(m_hfileBitmap));
-#endif
-            }
-            catch(...)
-            {
-            }
-#ifdef WINDOWS
-            m_pcolorref = NULL;
-#else
-            m_pcolorref = (uint32_t *)  MAP_FAILED;
-#endif
-         }
-
-#ifdef WINDOWS
-         if(m_hfilemapBitmap != NULL)
-         {
-            try
-            {
-               ::CloseHandle(m_hfilemapBitmap);
-            }
-            catch(...)
-            {
-            }
-            m_hfilemapBitmap = NULL;
-         }
-#endif
-
-#ifdef WINDOWS
-         if(m_hfileBitmap != INVALID_HANDLE_VALUE)
-#else
-         if(m_hfileBitmap != -1)
-#endif
-         {
-            try
-            {
-#ifdef WINDOWS
-               ::CloseHandle(m_hfileBitmap);
-#else
-               ::close(m_hfileBitmap);
-#endif
-            }
-            catch(...)
-            {
-            }
-#ifdef WINDOWS
-            m_hfileBitmap = INVALID_HANDLE_VALUE;
-#else
-            m_hfileBitmap = -1;
-#endif
+            my_munmap(m_pcolorref, m_hfileBitmap);
+            m_pcolorref = (uint32_t *)get_map_failed();
          }
 
          dir::mk(dir::path(dir::userappdata("time"), "core"));
@@ -813,6 +757,10 @@ namespace hotplugin
 #endif
          }
 
+         uint_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
+         dir::path(dir::userappdata("time"),string("core\\app.plugin.container-") + m_strBitmapChannel)
+         m_pcolorref = my_open_map(dir::path(dir::userappdata("time"),string("core\\app.plugin.container-") + m_strBitmapChannel,&m_hfileBitmap, size);
+
 #ifdef METROWIN
          CREATEFILE2_EXTENDED_PARAMETERS ps;
          zero(&ps, sizeof(ps));
@@ -824,7 +772,7 @@ namespace hotplugin
          wstring wstr(dir::path(dir::userappdata("time"), string("core\\app.plugin.container-") + m_strBitmapChannel));
          m_hfileBitmap = CreateFileW(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, iOpen, FILE_ATTRIBUTE_NORMAL, NULL);
 #else
-         m_hfileBitmap = ::open(dir::path(dir::userappdata("time"), string("core\\app.plugin.container-") + m_strBitmapChannel), iOpen, S_IRUSR | S_IWUSR);
+         m_hfileBitmap = ::open(), iOpen, S_IRUSR | S_IWUSR);
 #endif
 
 

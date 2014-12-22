@@ -1299,7 +1299,7 @@
 
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
 #define c_strncasecmp strncasecmp
 #define c_strcasecmp strcasecmp
 #endif

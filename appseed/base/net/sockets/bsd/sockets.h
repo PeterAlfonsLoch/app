@@ -1,6 +1,15 @@
 #pragma once
 
 
+#include "aura/aura/aura.h"
+
+
+//#ifdef ANDROID
+//
+//#include <sys/select.h>
+//
+//#endif
+
 
 
 #include "basic/sockets_ssl_client_context.h"

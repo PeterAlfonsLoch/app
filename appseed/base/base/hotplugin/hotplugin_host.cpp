@@ -7,11 +7,11 @@
 #undef min
 #undef max
 #endif
+
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
-#include <sys/mman.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <pthread.h>
+int_ptr get_map_failed();
+void my_munmap(void * pcolorref,HANDLE hfile);
+void * my_open_map(const char * psz,HANDLE * pfile,bool bRead,bool bWrite,int64_t size);
 #endif
 
 namespace hotplugin
@@ -40,7 +40,7 @@ namespace hotplugin
       m_hfilemapBitmap           = NULL;
       m_hfileBitmap              = INVALID_HANDLE_VALUE;
 #else
-      m_pcolorref                = (uint32_t *) MAP_FAILED;
+      m_pcolorref                = (uint32_t *) get_map_failed();
       m_hfileBitmap              = -1;
 #endif
 
@@ -390,26 +390,7 @@ namespace hotplugin
 
       pstart->m_strCommandLine      = pszCommandLine;
 
-#ifdef WINDOWS
-
       ::create_thread(NULL, 0, &::install::_ca2_starter_start, pstart, 0, pplugin == NULL ? NULL : &pplugin->m_nCa2StarterStartThreadID);
-
-#else
-//      pthread_t threadId;
-      pthread_attr_t  attr;
-      int32_t rc = 0;
-
-      if((rc = pthread_attr_init(&attr)))
-         return -1;
-
-      if((rc = pthread_attr_setstacksize(&attr, 1024 * 1024)))
-         return -1;
-
-throw todo(get_thread_app());
-
-//      if((rc = pthread_create(&threadId, &attr, (void*(*)(void*))&::_ca2_starter_start,  pstart)))
-  //       return -1;
-#endif
 
       return 0;
 

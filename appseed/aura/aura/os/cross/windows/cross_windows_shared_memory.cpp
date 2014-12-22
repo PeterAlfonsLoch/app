@@ -35,9 +35,6 @@ reading and writing.
 
 */
 
-#ifndef O_BINARY
-# define O_BINARY 0
-#endif
 
 int
 mkstemps(char *pattern, int suffix_len)

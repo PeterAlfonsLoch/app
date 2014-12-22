@@ -2111,6 +2111,12 @@
     <ClInclude Include="aura\os\android\aaa_want_to_remove_android_window_impl.h">
       <Filter>Header Files\aura\os\android</Filter>
     </ClInclude>
+    <ClInclude Include="aura\os\cross\ansios\ansios_file.h">
+      <Filter>Header Files\aura\os\cross\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_local_memory_map.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3452,6 +3458,18 @@
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_command_msg.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\cross\ansios\cross_ansios_file.cpp">
+      <Filter>Source Files\aura\os\cross\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_local_memory_map.cpp">
+      <Filter>Source Files\aura\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_local_memory_map.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_local_memory_map.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>

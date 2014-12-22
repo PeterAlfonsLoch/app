@@ -1,1 +1,8 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Platforms\Android\Microsoft.Cpp.Android.targets(475,5): error MSB8008: Specified platform toolset (v120) is not installed or invalid. Please make sure that a supported PlatformToolset value is selected.
+﻿  idn-free.c
+  Z:\nordroid\app\appseed\aura\aura\aura\aura.h(17): includes this header: 0,
+                   from ./config.h:4,
+  Z:\nordroid\app\axis\idn\from lib\idn-free.c(30): 
+Z:\nordroid\nodeapp\operational_system\config.h(41,22): fatal error : features.h: No such file or directory
+   #include <features.h>
+                        ^
+  compilation terminated.

@@ -1624,14 +1624,11 @@
     <ClCompile Include="base\install\install_plugin_bare_paint_veri_discreet.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
+    <ClCompile Include="base\hotplugin\local_memory_map.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
