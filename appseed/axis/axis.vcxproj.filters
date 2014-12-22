@@ -1603,7 +1603,10 @@
     <ClCompile Include="axis\os\windows\windows_os.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\libbsdiff.c">
+    <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp">
+      <Filter>Source Files\axis\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp">
       <Filter>Source Files\axis\compress\bsdiff</Filter>
     </ClCompile>
     <ClCompile Include="axis\fontopus\fontopus_contact_list.cpp">
@@ -1623,9 +1626,6 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Header Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bspatch.c">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -74,7 +74,9 @@ bool local_memory_map::open()
 
    }
 
-   m_iFile = ::open(psz,iOpen,(bRead ? S_IRUSR : 0) | (bWrite ? S_IWUSR : 0));
+   string strPath(get_path());
+
+   m_iFile = ::open(strPath,iOpen,(m_bRead ? S_IRUSR : 0) | (m_bWrite ? S_IWUSR : 0));
 
 
    if(m_iFile == -1)
@@ -86,9 +88,9 @@ bool local_memory_map::open()
 
    }
 
-   ensure_file_size_fd(m_iFile,size);
+   ensure_file_size_fd(m_iFile,m_size);
 
-   m_pdata = (COLORREF *)mmap(NULL,size,(bRead ? PROT_READ : 0) | (bWrite ? PROT_WRITE : 0),MAP_SHARED,m_hfileBitmap,0);
+   m_pdata = (COLORREF *)mmap(NULL,m_size,(m_bRead ? PROT_READ : 0) | (m_bWrite ? PROT_WRITE : 0),MAP_SHARED,m_iFile,0);
 
    if(m_pdata == (void *)MAP_FAILED)
    {

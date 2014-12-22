@@ -50,6 +50,26 @@ string local_memory_map::get_path()
 }
 
 
+bool local_memory_map::open(const char * psz,bool bRead,bool bWrite,bool bCreate,::primitive::memory_size size)
+{
+
+   m_strName   = psz;
+
+   m_bRead     = bRead;
+
+   m_bWrite    = bWrite;
+
+   m_bCreate   = bCreate;
+
+   m_size      = size;
+
+   return open();
+
+}
+
+
+
+
 // SALADA AND PASTA and me pig searching for food is good EAT IT!! But mama te
 
 #ifdef WINDOWS
@@ -73,24 +93,6 @@ bool local_memory_map::is_mapped()
 {
    
    return m_pdata != NULL;
-
-}
-
-
-bool local_memory_map::open(const char * psz,bool bRead,bool bWrite,bool bCreate,::primitive::memory_size size)
-{
-
-   m_strName   = psz;
-
-   m_bRead     = bRead;
-
-   m_bWrite    = bWrite;
-
-   m_bCreate   = bCreate;
-
-   m_size      = size;
-
-   return open();
 
 }
 
