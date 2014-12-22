@@ -86,6 +86,7 @@
     <ClInclude Include="aura\aura\aura_library.h" />
     <ClInclude Include="aura\aura\aura_live_object.h" />
     <ClInclude Include="aura\aura\aura_live_signal.h" />
+    <ClInclude Include="aura\aura\aura_local_memory_map.h" />
     <ClInclude Include="aura\aura\aura_log.h" />
     <ClInclude Include="aura\aura\aura_lparam.h" />
     <ClInclude Include="aura\aura\aura_machine_event.h" />
@@ -980,6 +981,7 @@
     <ClCompile Include="aura\aura\aura_library.cpp" />
     <ClCompile Include="aura\aura\aura_live_object.cpp" />
     <ClCompile Include="aura\aura\aura_live_signal.cpp" />
+    <ClCompile Include="aura\aura\aura_local_memory_map.cpp" />
     <ClCompile Include="aura\aura\aura_log.cpp" />
     <ClCompile Include="aura\aura\aura_machine_event.cpp" />
     <ClCompile Include="aura\aura\aura_machine_event_central.cpp" />
@@ -1165,6 +1167,7 @@
     <ClCompile Include="aura\os\metrowin\metrowin_file_watcher.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_launcher.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_library.cpp" />
+    <ClCompile Include="aura\os\metrowin\metrowin_local_memory_map.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_lock.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_MessageBoxA.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_multithreading.cpp" />

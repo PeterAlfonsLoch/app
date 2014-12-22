@@ -1959,6 +1959,9 @@
     <ClInclude Include="aura\os\metrowin\aaa_want_to_remove_metrowin_window_impl.h">
       <Filter>Header Files\aura\os\metrowin</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\aura_local_memory_map.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive_factory_impl.inl">
@@ -3267,6 +3270,12 @@
     </ClCompile>
     <ClCompile Include="aura\os\ansios\ansios_message_loop.cpp">
       <Filter>Header Files\aura\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\metrowin\metrowin_local_memory_map.cpp">
+      <Filter>Source Files\aura\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_local_memory_map.cpp">
+      <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

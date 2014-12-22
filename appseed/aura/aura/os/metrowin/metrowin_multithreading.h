@@ -7,7 +7,6 @@
 
 
 
-
 class CLASS_DECL_AURA thread_data
 {
 public:
@@ -58,6 +57,17 @@ CLASS_DECL_AURA WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPAR
 CLASS_DECL_AURA void WINAPI TlsShutdown();
 
 CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread);
+
+
+#ifdef __cplusplus
+
+class mq;
+
+CLASS_DECL_AURA mq * get_mq();
+CLASS_DECL_AURA mq * get_mq(HTHREAD hthread);
+
+
+#endif
 
 #ifndef METROWIN
 
