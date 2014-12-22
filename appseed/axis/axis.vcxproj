@@ -1970,8 +1970,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\axis\axis_static_start.h" />
     <ClInclude Include="axis\axis\axis_system.h" />
     <ClInclude Include="axis\axis\base.h" />
+    <ClInclude Include="axis\compress\bsdiff\libbsdiff.h" />
+    <ClInclude Include="axis\compress\bzip_stream.h" />
     <ClInclude Include="axis\compress\compress.h" />
     <ClInclude Include="axis\compress\compress_compress.h" />
+    <ClInclude Include="axis\compress\gzip_stream.h" />
     <ClInclude Include="axis\compress\zip\api.h" />
     <ClInclude Include="axis\compress\zip\crypt.h" />
     <ClInclude Include="axis\compress\zip\File.h" />
@@ -2574,6 +2577,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis\axis_session.cpp" />
     <ClCompile Include="axis\axis\axis_static_start.cpp" />
     <ClCompile Include="axis\axis\axis_system.cpp" />
+    <ClCompile Include="axis\compress\bsdiff\libbsdiff.c" />
+    <ClCompile Include="axis\compress\bzip_stream.cpp" />
+    <ClCompile Include="axis\compress\gzip_stream.cpp" />
     <ClCompile Include="axis\geoip\geoip.cpp" />
     <ClCompile Include="axis\geoip\geoip_city.cpp" />
     <ClCompile Include="axis\geoip\geoip_region_name.cpp" />

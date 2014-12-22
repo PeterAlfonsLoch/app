@@ -2236,10 +2236,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\base\base_session.cpp" />
     <ClCompile Include="base\base\base_static_start.cpp" />
     <ClCompile Include="base\base\base_system.cpp" />
-    <ClCompile Include="base\compress\bsdiff\bsdiff_bsdiff.cpp" />
-    <ClCompile Include="base\compress\bsdiff\bsdiff_bspatch.cpp" />
-    <ClCompile Include="base\compress\bzip_stream.cpp" />
-    <ClCompile Include="base\compress\gzip_stream.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_composer.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp" />

@@ -1123,6 +1123,8 @@ namespace axis
       if(!::axis::application::initialize1())
          return false;
 
+      m_splicensing = new class ::fontopus::licensing(this);
+
       m_puserstrcontext = canew(::user::str_context(this));
 
       if(m_puserstrcontext == NULL)
@@ -1163,11 +1165,27 @@ namespace axis
    bool session::initialize_instance()
    {
 
+      if(!m_pfontopus->initialize_instance())
+         return false;
+
+      if(Application.directrix()->m_varTopicQuery.has_property("uninstall")
+         || Application.directrix()->m_varTopicQuery.has_property("install"))
+      {
+
+         if(m_pfontopus->create_system_user("system") == NULL)
+            return false;
+
+      }
+
       if(!::aura::session::initialize_instance())
          return false;
 
       if(!::axis::application::initialize_instance())
          return false;
+
+
+
+
 
       return true;
 
@@ -1779,6 +1797,46 @@ namespace axis
 
    }
 
+
+   bool session::on_ui_mouse_message(::message::mouse * pmouse)
+   {
+
+
+      ::axis::session::on_ui_mouse_message(pmouse);
+
+      // user presence status activity reporting
+      if(pmouse->m_uiMessage == WM_LBUTTONDOWN
+         || pmouse->m_uiMessage == WM_RBUTTONDOWN
+         || pmouse->m_uiMessage == WM_MBUTTONDOWN
+         || pmouse->m_uiMessage == WM_MOUSEMOVE)
+      {
+
+         if(fontopus() != NULL && fontopus()->m_puser != NULL)
+         {
+
+            if(ApplicationUser.m_ppresence != NULL)
+            {
+
+               try
+               {
+
+                  ApplicationUser.m_ppresence->report_activity();
+
+               }
+               catch(...)
+               {
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return true;
+
+   }
 
 
 } // namespace axis

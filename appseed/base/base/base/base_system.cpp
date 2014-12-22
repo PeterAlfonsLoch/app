@@ -287,12 +287,10 @@ namespace axis
 
 #ifdef WINDOWSEX
 
-
-
       try
       {
 
-         m_psystemwindow->release();
+         ::release(m_psystemwindow);
 
       }
       catch(...)
@@ -301,6 +299,8 @@ namespace axis
          m_iReturnCode = -2;
 
       }
+
+
 #endif
 
       try

@@ -71,7 +71,7 @@ namespace axis
 
 #endif
 
-      enum_display_monitors();
+      //enum_display_monitors();
 
       m_peengine = new ::exception::engine(this);
 
@@ -403,18 +403,6 @@ namespace axis
 
 
 
-      try
-      {
-
-         ::release(m_psystemwindow);
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -2;
-
-      }
 #endif
 
       if(m_peengine != NULL)

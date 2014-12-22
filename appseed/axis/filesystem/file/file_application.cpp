@@ -35,7 +35,9 @@ namespace file
 
       if(::str::begins_ci(pszPath, "uifs://"))
       {
+         
          return AppUser(m_pauraapp).m_pifs->file_exists(pszPath);
+
       }
 
       return m_pauraapp->m_paxissystem->m_spfile->exists(pszPath, m_pauraapp);

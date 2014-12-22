@@ -36,6 +36,8 @@ namespace axis
 
       m_bZipIsDir                   = true;
 
+      m_puserstrcontext             = NULL;
+
 
 //      m_puserschema                 = &m_schemasimple;
 
@@ -942,8 +944,6 @@ namespace axis
    bool session::initialize1()
    {
 
-      m_splicensing = new class ::fontopus::licensing(this);
-
       m_spfs = canew(::fs::fs(this));
 
       if(m_spfs == NULL)
@@ -1027,17 +1027,6 @@ namespace axis
    bool session::initialize_instance()
    {
 
-      if(!m_pfontopus->initialize_instance())
-         return false;
-
-      if(Application.directrix()->m_varTopicQuery.has_property("uninstall")
-         || Application.directrix()->m_varTopicQuery.has_property("install"))
-      {
-
-         if(m_pfontopus->create_system_user("system") == NULL)
-            return false;
-
-      }
 
       if(!::axis::session::initialize_instance())
          return false;
@@ -1259,20 +1248,20 @@ namespace axis
 //   }
 
 
-   ::user::interaction * session::get_active_guie()
-   {
+   //::user::interaction * session::get_active_guie()
+   //{
 
-      return ::axis::session::get_active_guie();
+   //   return ::axis::session::get_active_guie();
 
-   }
+   //}
 
 
-   ::user::interaction * session::get_focus_guie()
-   {
+   //::user::interaction * session::get_focus_guie()
+   //{
 
-      return ::axis::session::get_focus_guie();
+   //   return ::axis::session::get_focus_guie();
 
-   }
+   //}
 
 
 
@@ -1570,45 +1559,6 @@ namespace axis
 
 
 
-   bool session::on_ui_mouse_message(::message::mouse * pmouse)
-   {
-
-
-      ::axis::session::on_ui_mouse_message(pmouse);
-
-      // user presence status activity reporting
-      if(pmouse->m_uiMessage == WM_LBUTTONDOWN
-         || pmouse->m_uiMessage == WM_RBUTTONDOWN
-         || pmouse->m_uiMessage == WM_MBUTTONDOWN
-         || pmouse->m_uiMessage == WM_MOUSEMOVE)
-      {
-
-         if(fontopus() != NULL && fontopus()->m_puser != NULL)
-         {
-
-            if(ApplicationUser.m_ppresence != NULL)
-            {
-
-               try
-               {
-
-                  ApplicationUser.m_ppresence->report_activity();
-
-               }
-               catch(...)
-               {
-
-               }
-
-            }
-
-         }
-
-      }
-
-      return true;
-
-   }
 
 
 } // namespace axis

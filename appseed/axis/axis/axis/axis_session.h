@@ -23,8 +23,11 @@ namespace axis
       //::sockets::sockets *                                     m_psockets;
       bool                                                     m_bIfs;
       
+      ::aura::str_context *                                   m_puserstrcontext;
 
 
+      sp(::fontopus::fontopus)                                 m_pfontopus;
+      sp(class ::fontopus::licensing)                          m_splicensing;
 
       //::user::schema_simple_impl                               m_schemasimple;
 
@@ -60,8 +63,24 @@ namespace axis
 
       inline sp(class ::fs::data)               fs()           { return m_spfsdata; }
       //inline ::sockets::sockets &               sockets()      { return *m_psockets; }
+      ::aura::str_context *                        str_context() { return m_puserstrcontext;  }
 
 
+      inline sp(::fontopus::fontopus)              fontopus()     { return m_pfontopus; }
+      inline class ::fontopus::licensing &         licensing()      { return *m_splicensing; }
+
+
+      virtual ::fontopus::fontopus * create_fontopus();
+
+
+      virtual ::fontopus::user * safe_get_user();
+
+
+      virtual ::fontopus::user * get_user();
+      virtual ::fontopus::user * create_current_user();
+
+
+      virtual bool is_licensed(const char * pszId,bool bInteractive = true);
 
 
       

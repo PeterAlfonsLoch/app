@@ -159,6 +159,8 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis/programming/javascript/javascript.h"
 
+#include "axis/axis/fontopus/fontopus.h"
+
 #include "axis/user/userpresence/userpresence.h"
 
 #include "axis/filesystem/fs/fs.h"
