@@ -1630,6 +1630,9 @@
     <ClCompile Include="base\hotplugin\local_memory_map.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
     </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sockets_bsd.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="base.def">

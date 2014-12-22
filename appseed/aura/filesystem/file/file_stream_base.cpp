@@ -15,7 +15,7 @@ namespace file
    }
 
 
-   stream_base::stream_base(sp(stream_buffer) pbuffer) :
+   stream_base::stream_base(buffer_sp pbuffer):
       m_spbuffer(pbuffer)
    {
 

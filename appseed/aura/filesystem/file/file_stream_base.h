@@ -16,11 +16,6 @@ namespace file
    };
 
 
-   class stream_buffer;
-
-   typedef sp(stream_buffer) buffer_sp;
-
-
    enum e_iostate
    {
       goodbit        = 0x00,
@@ -94,7 +89,7 @@ namespace file
       file_size                  m_precision;
 
       stream_base();
-      stream_base(sp(stream_buffer) pbuffer);
+      stream_base(buffer_sp pbuffer);
       stream_base(const stream_base & stream);
       virtual ~stream_base();
 

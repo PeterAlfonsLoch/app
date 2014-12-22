@@ -1,22 +1,6 @@
 #pragma once
 
 
-#ifdef LINUX
-
-
-#include <time.h>
-
-
-#endif
-
-#ifdef APPLEOS
-
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netdb.h>
-
-#endif
-
 
 
 

@@ -54,14 +54,6 @@ namespace plugin
       m_pbitmap               = NULL;
       m_pgraphics             = NULL;
 
-#ifdef WINDOWS
-      m_hfileBitmap           = INVALID_HANDLE_VALUE;
-      m_hfilemapBitmap        = NULL;
-      m_pcolorref             = NULL;
-#else
-      m_hfileBitmap           = -1;
-      m_pcolorref             = (uint32_t *) MAP_FAILED;
-#endif
       m_pmutexBitmap          = NULL;
 
    }
@@ -348,7 +340,7 @@ namespace plugin
             copy_colorref(
                MIN(dib->m_size.cx,m_sizeBitmap.cx),
                MIN(dib->m_size.cy,m_sizeBitmap.cy),
-               m_pcolorref,
+               (COLORREF *) m_memBitmap.get_data(),
                dib->m_pcolorref,
                abs_dup(m_sizeBitmap.cx) * sizeof(COLORREF),
                abs_dup(dib->m_size.cx) * sizeof(COLORREF));

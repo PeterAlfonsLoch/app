@@ -526,7 +526,7 @@ namespace file
 {
 
 
-   typedef sp(stream_buffer) buffer_sp;
+   using buffer_sp = sp(stream_buffer);
 
 
 } // namespace file
