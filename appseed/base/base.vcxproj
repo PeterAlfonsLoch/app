@@ -1957,6 +1957,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="base\hotplugin\hotplugin.h" />
+    <ClInclude Include="base\hotplugin\hotplugin_composer.h" />
+    <ClInclude Include="base\hotplugin\hotplugin_container_launcher.h" />
+    <ClInclude Include="base\hotplugin\hotplugin_host.h" />
+    <ClInclude Include="base\hotplugin\hotplugin_plugin.h" />
+    <ClInclude Include="base\hotplugin\resource.h" />
     <ClInclude Include="base\node\android\android.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
@@ -2238,6 +2244,13 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\compress\bsdiff\bsdiff_bspatch.cpp" />
     <ClCompile Include="base\compress\bzip_stream.cpp" />
     <ClCompile Include="base\compress\gzip_stream.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_composer.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_host.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp" />
+    <ClCompile Include="base\hotplugin\local_memory_map.cpp" />
     <ClCompile Include="base\message\message.cpp" />
     <ClCompile Include="base\message\message_user.cpp" />
     <ClCompile Include="base\node\android\android_android.cpp">

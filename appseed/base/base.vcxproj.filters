@@ -192,6 +192,12 @@
     <Filter Include="Header Files\base\compress\zip\NewFilter1">
       <UniqueIdentifier>{3e96b298-4033-4729-b2a9-8d3cb81244e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\base\hotplugin">
+      <UniqueIdentifier>{d45740f5-a7b5-45c5-b93c-11f6da3e827b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\hotplugin">
+      <UniqueIdentifier>{b423da12-3cdd-4f7a-8701-5857cf2e774b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\graphics.h">
@@ -635,6 +641,24 @@
     <ClInclude Include="base\message\message_user.h">
       <Filter>Header Files\base\message</Filter>
     </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin_composer.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin_container_launcher.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin_host.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin_plugin.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\resource.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\graphics_window_graphics.cpp">
@@ -1029,6 +1053,27 @@
     </ClCompile>
     <ClCompile Include="base\base\axis_system.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_composer.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_host.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\local_memory_map.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

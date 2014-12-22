@@ -433,6 +433,8 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 
 #include "base/base/base_system.h"
 
+#include "base/hotplugin/hotplugin.h"
+
 #include "base/base/base_simple_app.h"
 
 #include "base/user/fontopus/fontopus.h"
