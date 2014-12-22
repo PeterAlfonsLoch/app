@@ -19,14 +19,14 @@ namespace core
 
 
 
-namespace user
+namespace aura
 {
 
 
    class str_context;
 
 
-   class CLASS_DECL_BASE str_schema :
+   class CLASS_DECL_AURA str_schema :
       public strid_map < string >
    {
    public:
@@ -40,7 +40,7 @@ namespace user
 
    };
 
-   class CLASS_DECL_BASE str_locale :
+   class CLASS_DECL_AURA str_locale :
       public strid_map < str_schema >
    {
    public:
@@ -63,7 +63,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_BASE str :
+   class CLASS_DECL_AURA str :
       public strid_map < str_locale >
    {
    public:
@@ -109,7 +109,7 @@ namespace user
 
 
 
-   class CLASS_DECL_BASE str_context :
+   class CLASS_DECL_AURA str_context :
       virtual public ::object
    {
    public:
@@ -205,7 +205,7 @@ namespace user
 
 
 
-} // namespace user
+} // namespace aura
 
 
 

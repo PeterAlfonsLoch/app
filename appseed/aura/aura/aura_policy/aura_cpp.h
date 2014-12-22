@@ -1412,6 +1412,9 @@ CLASS_DECL_AURA void dappy(const char * psz);
 #include "aura/primitive/primitive_color.h"
 
 
+#include "aura/aura/aura/aura_str_context.h"
+
+
 
 
 

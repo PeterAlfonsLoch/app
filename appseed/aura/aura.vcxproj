@@ -2051,6 +2051,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="aura\aura\aura_smart_pointer2.h" />
     <ClInclude Include="aura\aura\aura_sprintf.h" />
     <ClInclude Include="aura\aura\aura_static_start.h" />
+    <ClInclude Include="aura\aura\aura_str_context.h" />
     <ClInclude Include="aura\aura\aura_system.h" />
     <ClInclude Include="aura\aura\aura_system_str.h" />
     <ClInclude Include="aura\aura\aura_system_trace.h" />
@@ -3266,6 +3267,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\aura\aura_printer.cpp" />
     <ClCompile Include="aura\aura\aura_session_interface.cpp" />
     <ClCompile Include="aura\aura\aura_static_start.cpp" />
+    <ClCompile Include="aura\aura\aura_str_context.cpp" />
     <ClCompile Include="aura\aura\aura_timer_array.cpp" />
     <ClCompile Include="aura\aura\aura_timer_item.cpp" />
     <ClCompile Include="aura\exception\exception_cancel.cpp" />

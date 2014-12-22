@@ -2117,6 +2117,9 @@
     <ClInclude Include="aura\aura\aura_local_memory_map.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\aura_str_context.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3467,6 +3470,9 @@
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_local_memory_map.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_str_context.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>

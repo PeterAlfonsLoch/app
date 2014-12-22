@@ -229,18 +229,14 @@ inline string_data * string_manager::GetNilString()
 
 
 
-namespace aura
+namespace str
 {
 
-   namespace str
-   {
+   CLASS_DECL_AURA inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
+   CLASS_DECL_AURA inline void copy(wchar_t * pszDest, const wchar_t * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
 
-      CLASS_DECL_AURA inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
-      CLASS_DECL_AURA inline void copy(wchar_t * pszDest, const wchar_t * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
+} // namespace str
 
-   } // namespace str
-
-} // namespace aura
 
 
 

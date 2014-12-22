@@ -1717,7 +1717,7 @@ namespace axis
          else if(command()->m_varTopicQuery.has_property("service"))
          {
             create_new_service();
-            ::service_axis::serve(*m_pservice);
+            ::service_base::serve(*m_pservice);
          }
          else if(command()->m_varTopicQuery.has_property("run") || is_serviceable())
          {
@@ -2493,7 +2493,7 @@ namespace axis
       return is_alive();
    }
 
-   //service_axis * application::allocate_new_service()
+   //service_base * application::allocate_new_service()
    //{
 
    //   return NULL;
@@ -3086,7 +3086,7 @@ namespace axis
 
 
 
-   //service_axis * application::get_service()
+   //service_base * application::get_service()
    //{
 
    //   return m_pservice;

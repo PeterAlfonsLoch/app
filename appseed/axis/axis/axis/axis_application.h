@@ -233,8 +233,8 @@ namespace axis
 
 
 
-      //service_axis * get_service();
-      //virtual service_axis * allocate_new_service();
+      //service_base * get_service();
+      //virtual service_base * allocate_new_service();
       //virtual bool create_new_service();
 
       //virtual bool create_service();
