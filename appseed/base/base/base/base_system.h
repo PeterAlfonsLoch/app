@@ -49,7 +49,6 @@ namespace base
       string_map < string_to_int >                 m_mapNameToEnum;
       ::user::window_draw *                        m_ptwf;
       ::user::str *                                m_puserstr;
-      class ::fontopus::user_set                   m_userset;
 
 
 
@@ -95,7 +94,6 @@ namespace base
 
       ::datetime::departament                      & datetime();
       ::user::str                                  & str();
-      ::fontopus::user_set                         & userset();
       sp(::user::window_draw)                         get_twf();
 
 

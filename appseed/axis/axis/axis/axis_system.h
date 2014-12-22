@@ -28,6 +28,8 @@ namespace axis
 
       ::visual::visual                             m_visual;
 
+      class ::fontopus::user_set                   m_userset;
+
 
 
       system(::aura::application * papp);
@@ -56,6 +58,7 @@ namespace axis
 
       inline class ::visual::visual                & visual()     { return m_visual       ; } 
 
+      ::fontopus::user_set                         & userset();
 
 
 

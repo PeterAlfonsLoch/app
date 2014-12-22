@@ -482,7 +482,9 @@ namespace axis
 
    ::fontopus::user_set & system::userset()
    {
+      
       return m_userset;
+
    }
 
 
@@ -496,20 +498,20 @@ namespace axis
 
 
 
-   ::user::interaction * system::get_active_guie()
-   {
+   //::user::interaction * system::get_active_guie()
+   //{
 
-      return ::axis::system::get_active_guie();
+   //   return ::axis::system::get_active_guie();
 
-   }
+   //}
 
 
-   ::user::interaction * system::get_focus_guie()
-   {
+   //::user::interaction * system::get_focus_guie()
+   //{
 
-      return ::axis::system::get_focus_guie();
+   //   return ::axis::system::get_focus_guie();
 
-   }
+   //}
 
 
    string system::dir_appmatter_locator(::aura::application * papp)
