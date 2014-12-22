@@ -1009,7 +1009,7 @@ namespace hotplugin
    void plugin::message_handler(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::axis,paxis,pobj);
+      SCAST_PTR(::message::base,paxis,pobj);
 
       UINT message;
 

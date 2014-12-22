@@ -3117,13 +3117,6 @@ namespace axis
 
 
 
-   ::user::user * application::create_user()
-   {
-
-      return canew(::user::user(this));
-
-   }
-
 
 
 

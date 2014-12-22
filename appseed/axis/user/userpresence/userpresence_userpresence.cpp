@@ -178,7 +178,7 @@ namespace userpresence
    void userpresence::message_queue_message_handler(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::axis, paxis, pobj);
+      SCAST_PTR(::message::base, paxis, pobj);
 
       if(paxis->m_uiMessage == WM_TIMER)
       {
