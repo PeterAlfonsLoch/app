@@ -230,6 +230,12 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
 
+#include "primitive/data/data_tree_item.h"
+
+#include "primitive/data/data_tree.h"
+
+#include "primitive/data/data_simple_item.h"
+
 
 
 

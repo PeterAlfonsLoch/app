@@ -62,6 +62,7 @@ namespace install
       ::simple_ui::style(papp),
       ::aura::session(papp),
       ::axis::session(papp),
+      ::base::session(papp),
       hotplugin::plugin(papp),
       m_canvas(papp),
       m_startca2(papp)
@@ -339,7 +340,7 @@ namespace install
 
                //set_ready();
 
-               ensure_tx(::hotplugin::message_set_plugin_url,(void *)(const char*)m_phost->m_paxiscomposer->m_strPluginUrl,(int32_t)m_phost->m_paxiscomposer->m_strPluginUrl.length());
+               ensure_tx(::hotplugin::message_set_plugin_url,(void *)(const char*)m_phost->m_pbasecomposer->m_strPluginUrl,(int32_t)m_phost->m_pbasecomposer->m_strPluginUrl.length());
 
                ensure_tx(::hotplugin::message_set_ready, m_phost->m_memory.get_data(), (int32_t)m_phost->m_memory.get_size());
 
@@ -390,7 +391,7 @@ namespace install
    bool plugin::native_launch()
    {
 
-      m_phost->m_paxiscomposer->m_strEntryHallText = "***Application started.";
+      m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
 
       property_set set(get_app());
 
@@ -443,11 +444,11 @@ namespace install
          
          //::simple_message_box(NULL," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",MB_ICONINFORMATION | MB_OK);
          
-         //m_phost->m_paxiscomposer->m_strEntryHallText = "Starting Application...";
+         //m_phost->m_pbasecomposer->m_strEntryHallText = "Starting Application...";
 
          //m_bNativeLaunchFail = true; 
 
-         m_phost->m_paxiscomposer->m_strEntryHallText = "***Application started.";
+         m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
 
          m_bNativeLaunchFail = false;
 
@@ -457,7 +458,7 @@ namespace install
          
          //  ::simple_message_box(NULL,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
 
-         m_phost->m_paxiscomposer->m_strEntryHallText = "***Application started.";
+         m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
 
          m_bNativeLaunchFail = false;
 
@@ -467,9 +468,9 @@ namespace install
          
          //::simple_message_box(NULL,strPath + "\n\nFailed return code : " + ::str::from(dwExitCode),"Error Message",MB_ICONINFORMATION | MB_OK);
 
-         //m_phost->m_paxiscomposer->m_strEntryHallText = "***Failed to start application.";
+         //m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
 
-         m_phost->m_paxiscomposer->m_strEntryHallText = "Starting Application...";
+         m_phost->m_pbasecomposer->m_strEntryHallText = "Starting Application...";
 
          m_bNativeLaunchFail = true;
 
@@ -515,22 +516,22 @@ namespace install
       if(m_bCa2Login || m_bCa2Logout)
          return;
 
-      string strScript = System.url().get_script(m_phost->m_paxiscomposer->m_strPluginUrl);
+      string strScript = System.url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
       //if(!m_bHasCred || (!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout")))
       if(!m_bLogged && (strScript == "/ca2login" || strScript == "/ca2logout"))
       {
 
-         m_phost->m_paxiscomposer->m_strEntryHallText = "Checking credentials...";
+         m_phost->m_pbasecomposer->m_strEntryHallText = "Checking credentials...";
 
          xxdebug_box("plugin::start_ca2 not logged", "not logged", 0);
 
          m_bLogin = true;
 
-         if(m_phost->m_paxiscomposer->m_strPluginUrl.has_char())
+         if(m_phost->m_pbasecomposer->m_strPluginUrl.has_char())
          {
 
-            m_bLogged = Session.fontopus()->get_user(false,m_phost->m_paxiscomposer->m_strPluginUrl) != NULL;
+            m_bLogged = Session.fontopus()->get_user(false,m_phost->m_pbasecomposer->m_strPluginUrl) != NULL;
 
          }
 
@@ -568,18 +569,18 @@ namespace install
          
          property_set set(get_app());
          
-         set.parse_url_query(System.url().get_query(m_phost->m_paxiscomposer->m_strPluginUrl));
+         set.parse_url_query(System.url().get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
          
          string strUrl(set["ruri"]);
 
          if(strUrl.is_empty())
          {
           
-            strUrl = "http://" + Session.fontopus()->get_server(m_phost->m_paxiscomposer->m_strPluginUrl) + "/";
+            strUrl = "http://" + Session.fontopus()->get_server(m_phost->m_pbasecomposer->m_strPluginUrl) + "/";
 
          }
 
-         System.url().set_param(strUrl,strUrl,"sessid",ApplicationUser.get_sessid(System.url().get_server(m_phost->m_paxiscomposer->m_strPluginUrl)));
+         System.url().set_param(strUrl,strUrl,"sessid",ApplicationUser.get_sessid(System.url().get_server(m_phost->m_pbasecomposer->m_strPluginUrl)));
 
          m_phost->open_link(strUrl, "");
 
@@ -591,7 +592,7 @@ namespace install
       else if(!m_bCa2Logout && strScript == "/ca2logout")
       {
          
-         m_phost->m_paxiscomposer->m_strEntryHallText = "Performing Log Out...";
+         m_phost->m_pbasecomposer->m_strEntryHallText = "Performing Log Out...";
 
          m_bCa2Logout = true;
 
@@ -601,7 +602,7 @@ namespace install
 
          property_set set(get_app());
 
-         set.parse_url_query(System.url().get_query(m_phost->m_paxiscomposer->m_strPluginUrl));
+         set.parse_url_query(System.url().get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
          
          //ca2logout(set);
 
@@ -615,14 +616,14 @@ namespace install
       if(bJustLoggedIn)
       {
 
-         m_phost->m_paxiscomposer->m_strEntryHallText.Empty(); // It was Checking Credentials... no more checking credentials.
+         m_phost->m_pbasecomposer->m_strEntryHallText.Empty(); // It was Checking Credentials... no more checking credentials.
 
       }
 
       if(System.install().is_installing_ca2())
       {
 
-         m_phost->m_paxiscomposer->m_strEntryHallText = "";
+         m_phost->m_pbasecomposer->m_strEntryHallText = "";
 
          m_bPendingRestartCa2 = true;
 
@@ -658,7 +659,7 @@ namespace install
             if(!m_bPluginDownloaded)
             {
 
-               string strUrl = m_phost->m_paxiscomposer->m_strPluginUrl;
+               string strUrl = m_phost->m_pbasecomposer->m_strPluginUrl;
 
                property_set set(get_app());
 
@@ -669,7 +670,7 @@ namespace install
 
                   //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
-                  Application.http().get(strUrl,m_phost->m_paxiscomposer->m_strPluginData,set);
+                  Application.http().get(strUrl,m_phost->m_pbasecomposer->m_strPluginData,set);
 
                   if(::http::status_succeeded(set["get_status"]))
                      break;
@@ -687,7 +688,7 @@ namespace install
 
 
 
-            if(m_bPluginDownloaded && m_phost->m_paxiscomposer->m_strPluginData.has_char())
+            if(m_bPluginDownloaded && m_phost->m_pbasecomposer->m_strPluginData.has_char())
             {
 
                m_bPluginTypeTested = true;
@@ -700,7 +701,7 @@ namespace install
 
                m_straLinesNativeLaunch.remove_all();
 
-               m_straLinesNativeLaunch.add_smallest_tokens(m_phost->m_paxiscomposer->m_strPluginData,straSeparator,false);
+               m_straLinesNativeLaunch.add_smallest_tokens(m_phost->m_pbasecomposer->m_strPluginData,straSeparator,false);
 
             }
 
@@ -835,22 +836,22 @@ namespace install
 
             //TRACE("ensure_tx %d",dwTime5 - dwTime3);
 
-            if(m_phost->m_paxiscomposer->m_bSendActivationState)
+            if(m_phost->m_pbasecomposer->m_bSendActivationState)
             {
 
-               m_phost->m_paxiscomposer->m_bSendActivationState = false;
+               m_phost->m_pbasecomposer->m_bSendActivationState = false;
 
-               m_phost->m_paxiscomposer->m_bActivationStateSent = false;
+               m_phost->m_pbasecomposer->m_bActivationStateSent = false;
 
             }
 
-            if(m_phost->m_paxiscomposer->m_bActive)
+            if(m_phost->m_pbasecomposer->m_bActive)
             {
 
-               if(!m_phost->m_paxiscomposer->is_active() || !m_phost->m_paxiscomposer->m_bActivationStateSent)
+               if(!m_phost->m_pbasecomposer->is_active() || !m_phost->m_pbasecomposer->m_bActivationStateSent)
                {
 
-                  m_phost->m_paxiscomposer->m_bActive = false;
+                  m_phost->m_pbasecomposer->m_bActive = false;
 
                   LRESULT lresult;
 
@@ -864,10 +865,10 @@ namespace install
             else
             {
 
-               if(m_phost->m_paxiscomposer->is_active() || !m_phost->m_paxiscomposer->m_bActivationStateSent)
+               if(m_phost->m_pbasecomposer->is_active() || !m_phost->m_pbasecomposer->m_bActivationStateSent)
                {
 
-                  m_phost->m_paxiscomposer->m_bActive = true;
+                  m_phost->m_pbasecomposer->m_bActive = true;
 
                   LRESULT lresult;
 
@@ -879,13 +880,13 @@ namespace install
             }
 
 
-            if(m_phost->m_paxiscomposer->m_bFocus)
+            if(m_phost->m_pbasecomposer->m_bFocus)
             {
 
-               if(!has_focus() || !m_phost->m_paxiscomposer->m_bActivationStateSent)
+               if(!has_focus() || !m_phost->m_pbasecomposer->m_bActivationStateSent)
                {
 
-                  m_phost->m_paxiscomposer->m_bFocus = false;
+                  m_phost->m_pbasecomposer->m_bFocus = false;
 
                   LRESULT lresult;
 
@@ -899,10 +900,10 @@ namespace install
             else
             {
 
-               if(has_focus() || !m_phost->m_paxiscomposer->m_bActivationStateSent)
+               if(has_focus() || !m_phost->m_pbasecomposer->m_bActivationStateSent)
                {
 
-                  m_phost->m_paxiscomposer->m_bFocus = true;
+                  m_phost->m_pbasecomposer->m_bFocus = true;
 
                   LRESULT lresult;
 
@@ -914,10 +915,10 @@ namespace install
 
             }
 
-            if(!m_phost->m_paxiscomposer->m_bActivationStateSent)
+            if(!m_phost->m_pbasecomposer->m_bActivationStateSent)
             {
 
-               m_phost->m_paxiscomposer->m_bActivationStateSent = true;
+               m_phost->m_pbasecomposer->m_bActivationStateSent = true;
 
             }
 
@@ -941,17 +942,17 @@ namespace install
 
       System.install().update_ca2_installed();
 
-      if(!m_phost->m_paxiscomposer->m_bSendActivationState)
+      if(!m_phost->m_pbasecomposer->m_bSendActivationState)
       {
 
-         m_phost->m_paxiscomposer->m_bSendActivationState = true;
+         m_phost->m_pbasecomposer->m_bSendActivationState = true;
 
       }
 
-      if(m_phost->m_paxiscomposer->m_bRectSent)
+      if(m_phost->m_pbasecomposer->m_bRectSent)
       {
 
-         m_phost->m_paxiscomposer->m_bRectSent = false;
+         m_phost->m_pbasecomposer->m_bRectSent = false;
 
       }
 
@@ -1353,7 +1354,7 @@ namespace install
       if(System.install().is_installing_ca2())
          return;
 
-      string strScript = System.url().get_script(m_phost->m_paxiscomposer->m_strPluginUrl);
+      string strScript = System.url().get_script(m_phost->m_pbasecomposer->m_strPluginUrl);
 
       if (!m_bInstalling && System.install().is_ca2_installed())
       {
@@ -1387,7 +1388,7 @@ namespace install
 
             set["raw_http"] = true;
 
-            strData = Application.http().get(m_phost->m_paxiscomposer->m_strPluginUrl,set);
+            strData = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
 
             if(strData.is_empty())
             {
@@ -1433,29 +1434,29 @@ namespace install
          }
 
          if(strApp.is_empty() && (!url_query_get_param_dup(strApp,"app",strApp) || strApp.is_empty()))
-            if(!url_query_get_param_dup(strApp,"app",m_phost->m_paxiscomposer->m_strPluginUrl) || strApp.is_empty())
+            if(!url_query_get_param_dup(strApp,"app",m_phost->m_pbasecomposer->m_strPluginUrl) || strApp.is_empty())
                strApp = "bergedge";
 
          string strLocale;
 
          if (strPrompt.is_empty() || !url_query_get_param_dup(strLocale, "locale", strPrompt) || strLocale.is_empty())
             if(strPrompt.is_empty() || !url_query_get_param_dup(strLocale,"lang",strPrompt) || strLocale.is_empty())
-               if(!url_query_get_param_dup(strLocale,"locale",m_phost->m_paxiscomposer->m_strPluginUrl) || strLocale.is_empty())
-                  if(!url_query_get_param_dup(strLocale,"lang",m_phost->m_paxiscomposer->m_strPluginUrl) || strLocale.is_empty())
+               if(!url_query_get_param_dup(strLocale,"locale",m_phost->m_pbasecomposer->m_strPluginUrl) || strLocale.is_empty())
+                  if(!url_query_get_param_dup(strLocale,"lang",m_phost->m_pbasecomposer->m_strPluginUrl) || strLocale.is_empty())
                      strLocale = str_get_system_default_locale_dup();
 
          string strSchema;
 
          if (strPrompt.is_empty() || !url_query_get_param_dup(strSchema, "schema", strPrompt) || strSchema.is_empty())
             if(strPrompt.is_empty() || !url_query_get_param_dup(strSchema,"styl",strPrompt) || strSchema.is_empty())
-               if(!url_query_get_param_dup(strSchema,"schema",m_phost->m_paxiscomposer->m_strPluginUrl) || strSchema.is_empty())
-                  if(!url_query_get_param_dup(strSchema,"styl",m_phost->m_paxiscomposer->m_strPluginUrl) || strSchema.is_empty())
+               if(!url_query_get_param_dup(strSchema,"schema",m_phost->m_pbasecomposer->m_strPluginUrl) || strSchema.is_empty())
+                  if(!url_query_get_param_dup(strSchema,"styl",m_phost->m_pbasecomposer->m_strPluginUrl) || strSchema.is_empty())
                      strSchema = str_get_system_default_schema_dup();
 
          string strVersion;
 
          if(strPrompt.is_empty() || !url_query_get_param_dup(strVersion,"version",strPrompt) || strVersion.is_empty())
-            if(!url_query_get_param_dup(strVersion,"schema",m_phost->m_paxiscomposer->m_strPluginUrl) || strVersion.is_empty())
+            if(!url_query_get_param_dup(strVersion,"schema",m_phost->m_pbasecomposer->m_strPluginUrl) || strVersion.is_empty())
                strVersion = ::install::get_version();
 
          if (strLocale.is_empty())
@@ -1516,7 +1517,7 @@ restart:
          Sleep(iAttemptStream * 84);
       }
 
-      while(m_phost->m_paxiscomposer->m_strPluginUrl.is_empty())
+      while(m_phost->m_pbasecomposer->m_strPluginUrl.is_empty())
       {
          if(!m_phost->m_bStream)
          {
@@ -1531,7 +1532,7 @@ restart:
 
       property_set set(get_app());
 
-      while((str = Application.http().get(m_phost->m_paxiscomposer->m_strPluginUrl,set)).is_empty())
+      while((str = Application.http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
       {
          if(!m_phost->m_bStream)
          {
@@ -1607,17 +1608,17 @@ restart:
 
          GetWindowRect(rect);
 
-         if(!m_phost->m_paxiscomposer->m_bRectSent || m_rectSent != rect)
+         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectSent != rect)
          {
 
-            m_phost->m_paxiscomposer->m_bRectSent = true;
+            m_phost->m_pbasecomposer->m_bRectSent = true;
 
             m_rectSent = rect;
 
             if(!ensure_tx(::hotplugin::message_set_window,(void *)&rect,sizeof(RECT)))
             {
 
-               m_phost->m_paxiscomposer->m_bRectSent = false;
+               m_phost->m_pbasecomposer->m_bRectSent = false;
 
             }
 

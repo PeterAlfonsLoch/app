@@ -48,7 +48,7 @@ namespace hotplugin
 
 
 
-   CLASS_DECL_BASE ::axis::system * get_axis_system();
+   CLASS_DECL_BASE ::base::system * get_base_system();
 
    CLASS_DECL_BASE bool defer_start_axis_system();
    CLASS_DECL_BASE void defer_stop_axis_system();

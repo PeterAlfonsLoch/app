@@ -23,10 +23,11 @@ namespace hotplugin
       hotplugin::plugin(this),
       ::simple_ui::style(this),
       ::aura::session(this),
-      ::axis::session(this)
+      ::axis::session(this),
+      ::base::session(this)
    {
 
-      m_paxiscomposer            = NULL;
+      m_pbasecomposer            = NULL;
       m_pplugin                  = NULL;
       m_dProgressRate            = 0.0;
       m_bShowProgress            = true;
@@ -50,10 +51,10 @@ namespace hotplugin
    bool host::open_link(const string & strLink,const string & strTarget)
    {
 
-      if(m_paxiscomposer != NULL)
+      if(m_pbasecomposer != NULL)
       {
 
-         return m_paxiscomposer->open_link(strLink, strTarget);
+         return m_pbasecomposer->open_link(strLink, strTarget);
 
       }
 
@@ -73,10 +74,10 @@ namespace hotplugin
    string host::get_host_location_url()
    {
 
-      if(m_paxiscomposer != NULL)
+      if(m_pbasecomposer != NULL)
       {
 
-         return m_paxiscomposer->m_strHostPluginLocation;
+         return m_pbasecomposer->m_strHostPluginLocation;
 
       }
 

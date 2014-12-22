@@ -100,10 +100,9 @@ namespace axis
 
    bool session::get_auth(const string & pszForm,string & strUsername,string & strPassword)
    {
-      UNREFERENCED_PARAMETER(pszForm);
-      UNREFERENCED_PARAMETER(strUsername);
-      UNREFERENCED_PARAMETER(strPassword);
-      return false;
+      
+      return fontopus()->get_auth(pszForm, strUsername, strPassword);
+
    }
 
 

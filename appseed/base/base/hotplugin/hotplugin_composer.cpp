@@ -71,7 +71,7 @@ namespace hotplugin
          else
          {
 
-            if(::hotplugin::get_axis_system() == NULL)
+            if(::hotplugin::get_base_system() == NULL)
             {
 
                ::hotplugin::defer_start_axis_system();
@@ -81,15 +81,15 @@ namespace hotplugin
             {
 
 
-               if(::hotplugin::get_axis_system()->m_bReady)
+               if(::hotplugin::get_base_system()->m_bReady)
                {
 
-                  if(::hotplugin::get_axis_system()->m_iReturnCode != 0)
+                  if(::hotplugin::get_base_system()->m_iReturnCode != 0)
                   {
 
                      string str;
                      
-                     str.Format("::hotplugin::g_pbasesystem initialization error %d",::hotplugin::get_axis_system()->m_iReturnCode);
+                     str.Format("::hotplugin::g_pbasesystem initialization error %d",::hotplugin::get_base_system()->m_iReturnCode);
 
                      ::output_debug_string(str);
 
@@ -178,7 +178,7 @@ namespace hotplugin
 
                m_paxishost = create_host(get_composer_system());
 
-               m_paxishost->m_paxiscomposer = this;
+               m_paxishost->m_pbasecomposer = this;
 
                m_paxishost->hotplugin_host_begin();
 
@@ -194,7 +194,7 @@ namespace hotplugin
 
                      string str;
 
-                     str.Format("::hotplugin::composer::m_paxishost initialization error %d",::hotplugin::get_axis_system()->m_iReturnCode);
+                     str.Format("::hotplugin::composer::m_paxishost initialization error %d",::hotplugin::get_base_system()->m_iReturnCode);
 
                      ::output_debug_string(str);
 

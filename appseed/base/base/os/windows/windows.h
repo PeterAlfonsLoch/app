@@ -3,7 +3,7 @@
 
 
 
-
+#include "axis/axis/os/windows/windows.h"
 
 
 
@@ -32,15 +32,8 @@ namespace base
       }
 
       APP  * papp = new APP;
-      ::windows::main_init_data * pmaininitdata = new ::windows::main_init_data;
 
-
-      pmaininitdata->m_hInstance = hInstance;
-      pmaininitdata->m_hPrevInstance = hPrevInstance;
-      pmaininitdata->m_vssCommandLine = ::str::international::unicode_to_utf8(::GetCommandLineW());
-      pmaininitdata->m_nCmdShow = nCmdShow;
-
-      papp->init_main_data(pmaininitdata);
+      __node_init_main_data(papp,hInstance,hPrevInstance,lpCmdLine,nCmdShow);
 
       int32_t iRet;
 

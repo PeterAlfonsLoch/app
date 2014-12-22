@@ -397,6 +397,10 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 
 #endif
 
+CLASS_DECL_BASE void __trace_message(const char * lpszPrefix,::signal_details * pobj);
+CLASS_DECL_BASE void __trace_message(const char * lpszPrefix,LPMESSAGE lpmsg);
+
+
 //#include "base/base/base/base_command_target.h"
 
 #include "base/database/database/database.h"
@@ -406,12 +410,6 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 #include "base/graphics/graphics.h"
 
 #include "base/base/base_platform_interface.h"
-
-#include "primitive/data/data_tree_item.h"
-
-#include "primitive/data/data_tree.h"
-
-#include "primitive/data/data_simple_item.h"
 
 #include "filesystem/file/file_edit_buffer.h"
 

@@ -81,7 +81,7 @@ namespace base
 
 
 
-      virtual bool get_auth(const string & pszForm,string & strUsername,string & strPassword);
+      //virtual bool get_auth(const string & pszForm,string & strUsername,string & strPassword);
 
 
       virtual bool on_create_frame_window();

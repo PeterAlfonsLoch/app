@@ -12,7 +12,7 @@ namespace hotplugin
    class CLASS_DECL_BASE plugin :
       virtual public ::simple_ui::style,
       virtual public ::simple_ui::interaction,
-      virtual public ::axis::session
+      virtual public ::base::session
 #ifndef METROWIN
       , virtual public ::small_ipc_channel
 #endif

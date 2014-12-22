@@ -97,7 +97,7 @@ namespace base
       }
 
 
-      __node_axis_factory_exchange(this);
+      __node_base_factory_exchange(this);
 
       m_bSystemSynchronizedCursor = true;
 

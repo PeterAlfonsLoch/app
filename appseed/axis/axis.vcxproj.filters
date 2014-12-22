@@ -135,9 +135,6 @@
     <Filter Include="Header Files\axis\install">
       <UniqueIdentifier>{90021ec4-d01a-4f04-a062-a622ecf9d870}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\hotplugin">
-      <UniqueIdentifier>{4e7f61cf-cc47-428d-8f33-b8f921606eb1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\axis">
       <UniqueIdentifier>{5dc0d2bc-fc5d-4202-9b04-2343b93cccb5}</UniqueIdentifier>
     </Filter>
@@ -179,9 +176,6 @@
     </Filter>
     <Filter Include="Source Files\graphics\visual">
       <UniqueIdentifier>{76550fd3-6119-42b3-b4f8-1fc25f9d98ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\visual\NewFilter1">
-      <UniqueIdentifier>{3ec8c6a1-1474-462a-a796-52c0eea9b4aa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\http\webserver">
       <UniqueIdentifier>{ec42121c-51b9-4fdd-a944-73a138916178}</UniqueIdentifier>
@@ -611,18 +605,6 @@
     <ClInclude Include="axis\os\android\android.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin_container_launcher.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin_host.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin_plugin.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
     <ClInclude Include="axis\install\install.h">
       <Filter>Header Files\axis\install</Filter>
     </ClInclude>
@@ -641,13 +623,7 @@
     <ClInclude Include="axis\install\install_installer.h">
       <Filter>Header Files\axis\install</Filter>
     </ClInclude>
-    <ClInclude Include="axis\install\install_plugin.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
     <ClInclude Include="axis\install\install_small_bell.h">
-      <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\install\install_starter_start.h">
       <Filter>Header Files\axis\install</Filter>
     </ClInclude>
     <ClInclude Include="axis\install\install_trace.h">
@@ -699,15 +675,6 @@
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\os\ansios\ansios.h">
-      <Filter>Header Files\axis\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios_file.h">
-      <Filter>Header Files\axis\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios_multithreading.h">
-      <Filter>Header Files\axis\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\ansios\ansios_thread.h">
       <Filter>Header Files\axis\os\ansios</Filter>
     </ClInclude>
     <ClInclude Include="axis\geoip\geoip.h">
@@ -803,9 +770,6 @@
     <ClInclude Include="axis\node\windows\windows_crypto.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\hotplugin\hotplugin_composer.h">
-      <Filter>Header Files\axis\hotplugin</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\windows\windows_port_forward.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
@@ -896,17 +860,8 @@
     <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h">
       <Filter>Header Files\net\sockets\bsd\basic</Filter>
     </ClInclude>
-    <ClInclude Include="axis\crypto\aaa_want_to_remove_crypto_md5.h">
-      <Filter>Header Files\axis\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\crypto\aaa_want_to_remove_crypto_nessie.h">
-      <Filter>Header Files\axis\crypto</Filter>
-    </ClInclude>
     <ClInclude Include="net\sockets\bsd\sockets_bsd.h">
       <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\base.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="axis\axis\axis.h">
       <Filter>Header Files\axis\axis</Filter>
@@ -1630,12 +1585,6 @@
     <ClCompile Include="axis\fontopus\fontopus_validate.cpp">
       <Filter>Source Files\axis\fontopus</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_value.cpp">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\data\data_simple_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
@@ -1644,6 +1593,12 @@
     </ClCompile>
     <ClCompile Include="primitive\data\data_tree_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_value.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1913,12 +1868,6 @@
     </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="axis\axis\base.inl">
-      <Filter>Header Files</Filter>
     </None>
     <None Include="axis\axis\axis.inl">
       <Filter>Header Files\axis\axis</Filter>

@@ -11,7 +11,7 @@ namespace hotplugin
    public:
 
 
-      ::hotplugin::composer *       m_paxiscomposer;
+      ::hotplugin::composer *       m_pbasecomposer;
       plugin *                      m_pplugin;
       primitive::memory             m_memory;
       double                        m_dProgressRate;

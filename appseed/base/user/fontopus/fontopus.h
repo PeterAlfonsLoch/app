@@ -5,8 +5,8 @@
 //#include "fontopus_authentication_map.h"
 
 
-CLASS_DECL_BASE string url_get_server(const char * psz);
-CLASS_DECL_BASE string url_get_root(const char * psz);
+CLASS_DECL_AXIS string url_get_server(const char * psz);
+CLASS_DECL_AXIS string url_get_root(const char * psz);
 
 
 //namespace fontopus

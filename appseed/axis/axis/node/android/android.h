@@ -54,8 +54,8 @@ CLASS_DECL_AXIS void AfxResetMsgCache();
 
 #include "android_shell.h"
 
-CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, ::signal_details * pobj);
-CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+//CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, ::signal_details * pobj);
+//CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
 CLASS_DECL_AXIS void __cdecl __pre_translate_message(::signal_details * pobj);
 
