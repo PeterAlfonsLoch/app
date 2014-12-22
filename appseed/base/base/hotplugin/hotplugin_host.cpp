@@ -35,14 +35,6 @@ namespace hotplugin
       m_bStream                  = false;
 
 
-#ifdef WINDOWS
-      m_pcolorref                = NULL;
-      m_hfilemapBitmap           = NULL;
-      m_hfileBitmap              = INVALID_HANDLE_VALUE;
-#else
-      m_pcolorref                = (uint32_t *) get_map_failed();
-      m_hfileBitmap              = -1;
-#endif
 
       m_pbitmap                  = NULL;
       m_pmutexBitmap             = NULL;

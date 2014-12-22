@@ -8,6 +8,7 @@
 class CLASS_DECL_AURA local_memory_map :
    virtual public object
 {
+public:
 
    string                     m_strName;
    void *                     m_pdata;

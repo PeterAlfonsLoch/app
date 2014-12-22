@@ -1,10 +1,4 @@
-#include "aura/aura/aura.h"
-
-
-
-
-
-
+#include "framework.h"
 
 
 bool local_memory_map::open()
@@ -38,7 +32,7 @@ bool local_memory_map::open()
 
    }
 
-   ensure_file_size_handle(m_hfile,size);
+   ensure_file_size_handle(m_hfile,m_size);
 
    m_hfilemap = CreateFileMapping(m_hfile, NULL, PAGE_READWRITE, 0, 0, NULL);
 
@@ -49,7 +43,7 @@ bool local_memory_map::open()
       return false;
    }
 
-   m_pdata = MapViewOfFile(m_hfilemap,(bRead ? FILE_MAP_READ : 0) | (bWrite ? FILE_MAP_WRITE : 0),0,0,0);
+   m_pdata = MapViewOfFile(m_hfilemap,(m_bRead ? FILE_MAP_READ : 0) | (m_bWrite ? FILE_MAP_WRITE : 0),0,0,0);
 
    if(m_pdata == NULL)
    {
@@ -65,22 +59,37 @@ bool local_memory_map::open()
 }
 
 
-bool local_memory_map::open(const char * psz,bool bRead,bool bWrite,bool bCreate,int64_t size)
-{
 
-   m_strName   = psz;
 
-   m_bRead     = bRead;
 
-   m_bWrite    = bWrite;
 
-   m_bCreate   = bCreate;
 
-   m_size      = size;
 
-   return open();
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

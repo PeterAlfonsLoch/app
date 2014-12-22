@@ -83,7 +83,7 @@ typedef struct rdp_freerdp freerdp;
 CLASS_DECL_AURA int_bool freerdp_authenticate(freerdp * instance, char** username,char** password,char** domain, const char * pszServerName);
 
 
-#ifndef O_BINARY
+#if !defined(O_BINARY) && !defined(WINDOWS)
 # define O_BINARY 0
 #endif
 

@@ -47,6 +47,12 @@
 #define c_strncasecmp strncasecmp
 #define c_strcasecmp strcasecmp
 #elif defined(WINDOWS)
+#ifdef c_strncasecmp
+#undef c_strncasecmp
+#endif
+#ifdef c_strcasecmp
+#undef c_strcasecmp
+#endif
 #define c_strncasecmp _strnicmp
 #define c_strcasecmp _stricmp
 #endif

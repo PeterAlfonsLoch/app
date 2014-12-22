@@ -36,7 +36,7 @@ namespace hotplugin
 
       void *                        m_pbitmap;
       void *                        m_pgraphics;
-      COLORREF *                    m_pcolorref;
+      local_memory_map              m_memBitmap;
       SIZE                          m_sizeBitmap;
 
       string                        m_strStatus;
@@ -47,12 +47,6 @@ namespace hotplugin
       bool                          m_bInstalling;
       const char *                  m_pszReloadCommandLine;
 
-#ifdef WINDOWS
-      HANDLE                        m_hfileBitmap;
-      HANDLE                        m_hfilemapBitmap;
-#else
-      int32_t                       m_hfileBitmap;
-#endif
       mutex *                       m_pmutexBitmap;
       SIZE                          m_sizeBitmapData;
       string                        m_strBitmapChannel;

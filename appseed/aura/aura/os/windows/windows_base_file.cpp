@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <share.h>
 #include <io.h>
-
+#include <fcntl.h>
 
 
 
@@ -1339,7 +1339,7 @@ int32_t my_open(const char * psz,int32_t i)
    return _wopen(::str::international::utf8_to_unicode(psz),i);
 }
 
-void _get_errno(int32_t * perrno)
+void my_get_errno(int32_t * perrno)
 {
    *perrno = errno;
 }
