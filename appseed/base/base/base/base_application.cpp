@@ -2280,6 +2280,12 @@ namespace axis
    }
 
 
+   int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
+   {
+      UNREFERENCED_PARAMETER(durationTimeOut);
+      return simple_message_box(pwndOwner,pszMessage,fuStyle);
+   }
+
 
 } // namespace axis
 

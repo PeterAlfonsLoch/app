@@ -85,7 +85,7 @@ namespace sockets
       else*/
       {
          primitive::memory mem;
-         System.axis64().decode(mem, str64);
+         System.base64().decode(mem, str64);
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";
 
@@ -411,7 +411,7 @@ namespace sockets
                }
                response().ostream() << "--THIS_STRING_SEPARATES\r\n\r\n";
                response().ostream() << "Content-range: bytes " + ::str::from(iStart) + "-" + ::str::from(iEnd) + "/" + ::str::from(iLen) + "\r\n";
-               response().ostream() << "Content-Transfer-Encoding: axis64";
+               response().ostream() << "Content-Transfer-Encoding: base64";
                response().ostream() << "\r\n";
                while(true)
                {
@@ -432,7 +432,7 @@ namespace sockets
                   if(iPos >= spfile->get_length())
                      break;
                }
-               response().ostream() << System.axis64().encode(*memfile.get_memory());
+               response().ostream() << System.base64().encode(*memfile.get_memory());
             }
             response().ostream() << "--THIS_STRING_SEPARATES--\r\n\r\n";
             outheader(__id(content_type)) = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";

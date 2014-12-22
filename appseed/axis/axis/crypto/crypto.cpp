@@ -111,9 +111,9 @@ int32_t crypto_encrypt(string & strEncrypt, const char * pszDecrypt, const char 
       return 0;
    }
    storageDecrypt.from_string(pszDecrypt);
-   threadSystem.axis64().decode(storageKey, pszKey);
+   threadSystem.base64().decode(storageKey, pszKey);
    int32_t cipherlen = crypto_encrypt(storageEncrypt, storageDecrypt, storageKey);
-   strEncrypt = threadSystem.axis64().encode(storageEncrypt);
+   strEncrypt = threadSystem.base64().encode(storageEncrypt);
    return cipherlen;
 }
 

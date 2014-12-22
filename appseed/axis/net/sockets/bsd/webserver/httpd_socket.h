@@ -53,7 +53,7 @@ namespace sockets
 
    protected:
       httpd_socket(const httpd_socket& s);
-      /** Decode and send a axis64-encoded string. 
+      /** Decode and send a base64-encoded string. 
          \param str64 Base64-encoded string
          \param type Mime type of content (content-type header) */
       void Send64(const string & str64, const string & type);
