@@ -105,12 +105,6 @@
     <Filter Include="Header Files\programming\javascript">
       <UniqueIdentifier>{1523f2fe-95c5-4ef8-aeb6-44864f6d2cc6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\fontopus">
-      <UniqueIdentifier>{52423014-d461-4259-bfeb-967df0f4f8af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\fontopus">
-      <UniqueIdentifier>{d0c65bf7-e04b-4672-a73c-349e12dc5e5d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\userpresence">
       <UniqueIdentifier>{5f8d1e2a-7a7d-40d2-b25c-52033b755438}</UniqueIdentifier>
     </Filter>
@@ -266,6 +260,12 @@
     </Filter>
     <Filter Include="Source Files\axis\compress\bsdiff">
       <UniqueIdentifier>{6fabeb5e-e915-44e7-bf8d-83d306caae72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\axis\fontopus">
+      <UniqueIdentifier>{26f038ab-32c4-4427-ac9c-28327cfe4906}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\fontopus">
+      <UniqueIdentifier>{dc227b1d-ec5c-47a2-ad78-290446c62dbd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -488,33 +488,6 @@
     <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h">
       <Filter>Header Files\programming\javascript</Filter>
     </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_authentication_map.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_contact_list.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_fontopus.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_user.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_user_authentication.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_user_set.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_usera.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_validate.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
     <ClInclude Include="user\userpresence\userpresence.h">
       <Filter>Header Files\user\userpresence</Filter>
     </ClInclude>
@@ -682,12 +655,6 @@
     </ClInclude>
     <ClInclude Include="axis\install\install_trace.h">
       <Filter>Header Files\axis\install</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_login.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_simple_ui.h">
-      <Filter>Header Files\user\fontopus</Filter>
     </ClInclude>
     <ClInclude Include="net\net_ip_enum.h">
       <Filter>Header Files\net</Filter>
@@ -902,9 +869,6 @@
     <ClInclude Include="graphics\visual\visual_const.h">
       <Filter>Header Files\graphics\visual</Filter>
     </ClInclude>
-    <ClInclude Include="user\fontopus\fontopus_licensing.h">
-      <Filter>Header Files\user\fontopus</Filter>
-    </ClInclude>
     <ClInclude Include="net\net_sockets.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
@@ -1000,6 +964,24 @@
     </ClInclude>
     <ClInclude Include="axis\compress\bsdiff\libbsdiff.h">
       <Filter>Header Files\axis\compress\bsdiff</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\fontopus\fontopus.h">
+      <Filter>Header Files\axis\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\fontopus\fontopus_authentication_map.h">
+      <Filter>Header Files\axis\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\fontopus\fontopus_fontopus.h">
+      <Filter>Header Files\axis\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\fontopus\fontopus_licensing.h">
+      <Filter>Header Files\axis\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\fontopus\fontopus_user.h">
+      <Filter>Header Files\axis\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\fontopus\fontopus_user_authentication.h">
+      <Filter>Header Files\axis\fontopus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1192,24 +1174,6 @@
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_contact_list.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_fontopus.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_user.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_user_set.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_usera.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_validate.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
     <ClCompile Include="axis\compress\zip\zip_api.cpp">
       <Filter>Source Files\axis\compress\zip</Filter>
     </ClCompile>
@@ -1282,12 +1246,6 @@
     <ClCompile Include="axis\compress\compress_compress.cpp">
       <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_authentication_map.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
     <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
       <Filter>Source Files\user\userpresence</Filter>
     </ClCompile>
@@ -1354,12 +1312,6 @@
     <ClCompile Include="axis\install\install_trace.cpp">
       <Filter>Source Files\axis\install</Filter>
     </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_login.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_ip_enum.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
@@ -1371,9 +1323,6 @@
     </ClCompile>
     <ClCompile Include="net\http\http_status.cpp">
       <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_user_authentication.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\android\android.cpp">
       <Filter>Source Files\axis\os\android</Filter>
@@ -1528,9 +1477,6 @@
     <ClCompile Include="axis\os\windows\windows_base_crypto.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="user\fontopus\fontopus_licensing.cpp">
-      <Filter>Source Files\user\fontopus</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\visual\visual_dib.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
@@ -1629,6 +1575,24 @@
     </ClCompile>
     <ClCompile Include="axis\compress\bsdiff\libbsdiff.c">
       <Filter>Source Files\axis\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\fontopus.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\fontopus_authentication_map.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\fontopus_fontopus.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\fontopus_licensing.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\fontopus_user.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\fontopus_user_authentication.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

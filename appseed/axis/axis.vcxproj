@@ -1991,6 +1991,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\crypto\crypto_crypto.h" />
     <ClInclude Include="axis\crypto\aaa_want_to_remove_crypto_md5.h" />
     <ClInclude Include="axis\crypto\aaa_want_to_remove_crypto_nessie.h" />
+    <ClInclude Include="axis\fontopus\fontopus.h" />
+    <ClInclude Include="axis\fontopus\fontopus_authentication_map.h" />
+    <ClInclude Include="axis\fontopus\fontopus_fontopus.h" />
+    <ClInclude Include="axis\fontopus\fontopus_licensing.h" />
+    <ClInclude Include="axis\fontopus\fontopus_user.h" />
+    <ClInclude Include="axis\fontopus\fontopus_user_authentication.h" />
     <ClInclude Include="axis\geoip\geoip.h" />
     <ClInclude Include="axis\geoip\geoip_city.h" />
     <ClInclude Include="axis\geoip\geoip_internal.h" />
@@ -2580,6 +2586,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\compress\bsdiff\libbsdiff.c" />
     <ClCompile Include="axis\compress\bzip_stream.cpp" />
     <ClCompile Include="axis\compress\gzip_stream.cpp" />
+    <ClCompile Include="axis\fontopus\fontopus.cpp" />
+    <ClCompile Include="axis\fontopus\fontopus_authentication_map.cpp" />
+    <ClCompile Include="axis\fontopus\fontopus_fontopus.cpp" />
+    <ClCompile Include="axis\fontopus\fontopus_licensing.cpp" />
+    <ClCompile Include="axis\fontopus\fontopus_user.cpp" />
+    <ClCompile Include="axis\fontopus\fontopus_user_authentication.cpp" />
     <ClCompile Include="axis\geoip\geoip.cpp" />
     <ClCompile Include="axis\geoip\geoip_city.cpp" />
     <ClCompile Include="axis\geoip\geoip_region_name.cpp" />
@@ -3003,18 +3015,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='stage|Android'">CompileAsCppHeader</CompileAs>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CompileAsCppHeader</CompileAs>
     </ClCompile>
-    <ClInclude Include="user\fontopus\fontopus.h" />
-    <ClInclude Include="user\fontopus\fontopus_authentication_map.h" />
-    <ClInclude Include="user\fontopus\fontopus_contact_list.h" />
-    <ClInclude Include="user\fontopus\fontopus_fontopus.h" />
-    <ClInclude Include="user\fontopus\fontopus_licensing.h" />
-    <ClInclude Include="user\fontopus\fontopus_login.h" />
-    <ClInclude Include="user\fontopus\fontopus_simple_ui.h" />
-    <ClInclude Include="user\fontopus\fontopus_user.h" />
-    <ClInclude Include="user\fontopus\fontopus_usera.h" />
-    <ClInclude Include="user\fontopus\fontopus_user_authentication.h" />
-    <ClInclude Include="user\fontopus\fontopus_user_set.h" />
-    <ClInclude Include="user\fontopus\fontopus_validate.h" />
     <ClInclude Include="user\userpresence\userpresence.h" />
     <ClInclude Include="user\userpresence\userpresence_userpresence.h" />
     <ClInclude Include="user\userpresence\userpresence_user_presence.h" />
@@ -3828,18 +3828,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="programming\javascript\javascript.cpp" />
     <ClCompile Include="programming\javascript\javascript_functions.cpp" />
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp" />
-    <ClCompile Include="user\fontopus\fontopus.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_authentication_map.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_contact_list.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_fontopus.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_licensing.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_login.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_user.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_usera.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_user_authentication.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_user_set.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_validate.cpp" />
     <ClCompile Include="user\userpresence\userpresence_userpresence.cpp" />
     <ClCompile Include="user\userpresence\userpresence_user_presence.cpp" />
   </ItemGroup>
