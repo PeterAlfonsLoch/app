@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/graphics.h"
+
+
 #include "visual_dib.h"
 #include "visual_fastblur.h"
 #include "visual_rgb_quad_array.h"

@@ -74,6 +74,13 @@ namespace base
       virtual void on_create_keyboard();
 
 
+      virtual int32_t simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
+      int32_t simple_message_box(const char * pszMessage,UINT fuStyle);
+      virtual string message_box(const string & pszMatter,property_set & propertyset);
+
+
+
       virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog, ::aura::impact_system * ptemplate, ::aura::document * pdocument);
 
 
@@ -258,6 +265,8 @@ namespace base
 
       virtual void process_message(signal_details * pobj);
 
+      virtual ::user::interaction * get_active_guie();
+      virtual ::user::interaction * get_focus_guie();
 
    };
 

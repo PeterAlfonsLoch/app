@@ -26,7 +26,7 @@ namespace datetime
 {
 
 
-   value span_strtotime(sp(::aura::application) pbaseapp,::user::str_context * pcontext,const char * pszSpanExpression)
+   value span_strtotime(sp(::aura::application) pbaseapp,::aura::str_context * pcontext,const char * pszSpanExpression)
    {
 
       static id idCalendarDay("calendar:day");
@@ -218,7 +218,7 @@ namespace datetime
    }
 
 
-   value strtotime(sp(::aura::application) pbaseapp,::user::str_context * pcontext,const char * psz,int32_t & iPath,int32_t & iPathCount,bool bUTC)
+   value strtotime(sp(::aura::application) pbaseapp,::aura::str_context * pcontext,const char * psz,int32_t & iPath,int32_t & iPathCount,bool bUTC)
    {
       ::datetime::time time;
       string str(psz);
@@ -401,7 +401,7 @@ namespace datetime
       }
    }
 
-   string to_string(sp(::aura::application) pbaseapp,::user::str_context * pcontext, const ::datetime::value & value)
+   string to_string(sp(::aura::application) pbaseapp,::aura::str_context * pcontext, const ::datetime::value & value)
    {
       string str;
       if(value.m_bSpan)

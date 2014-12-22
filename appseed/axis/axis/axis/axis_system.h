@@ -7,7 +7,7 @@ namespace axis
 
 
    class CLASS_DECL_AXIS system:
-      virtual public ::axis::system,
+      virtual public ::aura::system,
       virtual public ::axis::application
    {
    public:
@@ -21,7 +21,6 @@ namespace axis
       ::http::system                               m_httpsystem;
       
 
-      class ::fontopus::user_set                   m_userset;
       ::crypto::crypto_sp                          m_spcrypto;
       sp(::install::install)                       m_spinstall;
 
@@ -51,8 +50,7 @@ namespace axis
       inline class ::http::system                  & http()    { return m_httpsystem; }
       inline ::file::system                        & file()    { return *m_spfile; }
       inline ::file::dir::system                   & dir()     { return *m_spdir; }
-      ::fontopus::user_set                         & userset();
-
+      
       class ::crypto::crypto                       & crypto();
       ::install::install                           & install() { return *m_spinstall; }
 
@@ -72,8 +70,6 @@ namespace axis
 
       virtual string dir_appmatter_locator(::aura::application * papp);
 
-      virtual ::user::interaction * get_active_guie();
-      virtual ::user::interaction * get_focus_guie();
 
 
       virtual bool is_system();

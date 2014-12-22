@@ -28,6 +28,8 @@ namespace base
       rect_array                                               m_rectaWkspace;
       index                                                    m_iMainMonitor;
       index                                                    m_iMainWkspace;
+      sp(::fontopus::fontopus)                                 m_pfontopus;
+      sp(class ::fontopus::licensing)                          m_splicensing;
 
 
 
@@ -41,7 +43,7 @@ namespace base
 
 
       ::user::interaction *                                   m_puiFocus;
-      ::user::str_context *                                   m_puserstrcontext;
+      ::aura::str_context *                                   m_puserstrcontext;
       map < ::user::e_key,::user::e_key,bool,bool > *         m_pmapKeyPressed;
       ::user::user *                                          m_puser;
 
@@ -77,13 +79,28 @@ namespace base
       virtual int32_t exit_instance();
 
 
-      ::base::copydesk & copydesk();
-      inline ::user::user *            user()         { return m_puser; }
+      ::base::copydesk &                           copydesk();
+      inline ::user::user *                        user()         { return m_puser; }
 
-      ::user::str_context *                     str_context();
+      ::aura::str_context *                        str_context();
+      inline sp(::fontopus::fontopus)              fontopus()     { return m_pfontopus; }
+      inline class ::fontopus::licensing &         licensing()      { return *m_splicensing; }
 
 
+      virtual ::fontopus::fontopus * create_fontopus();
 
+
+      virtual ::fontopus::user * safe_get_user();
+
+
+      virtual ::fontopus::user * get_user();
+      virtual ::fontopus::user * create_current_user();
+
+
+      virtual bool is_licensed(const char * pszId,bool bInteractive = true);
+
+
+      virtual bool get_auth(const string & pszForm,string & strUsername,string & strPassword);
 
 
       virtual bool on_create_frame_window();
@@ -158,7 +175,6 @@ namespace base
 
 
       virtual bool is_licensed(const char * pszId,bool bInteractive = true);
-
 
 
 

@@ -150,7 +150,7 @@ namespace file
       static void read_gen_string(::file::buffer_sp  pfile, ::md5::md5 * pctx, string & str);
 
 
-      virtual bool resolve_link(string & strTarget,const char * pszSource,sp(::user::interaction) puiMessageParentOptional = NULL);
+      virtual bool resolve_link(string & strTarget,const char * pszSource,sp(::aura::interaction) puiMessageParentOptional = NULL);
 
 
 

@@ -186,6 +186,12 @@
     <Filter Include="Header Files\base\base_policy">
       <UniqueIdentifier>{a16fcaca-ea5f-4d72-8dee-7ab35a286c93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\base\compress\zip">
+      <UniqueIdentifier>{716df1e3-eea1-4120-b87a-01f7dbfa443f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\compress\zip\NewFilter1">
+      <UniqueIdentifier>{3e96b298-4033-4729-b2a9-8d3cb81244e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\graphics.h">

@@ -16,13 +16,13 @@ namespace html
 
       string                     m_strOptions;
       string                     m_strStyle;
-      sp(::user::str_context)    m_puistrcontext;
+      sp(::aura::str_context)    m_puistrcontext;
 
 
       file();
 
 
-      virtual ::user::str_context *  str_context();
+      virtual ::aura::str_context *  str_context();
 
       virtual void print(const string & str);
 

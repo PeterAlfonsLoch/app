@@ -163,8 +163,6 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis/filesystem/fs/fs.h"
 
-#include "axis/user/fontopus/fontopus.h"
-
 #include "axis/filesystem/file/file_application.h"
 #include "axis/filesystem/file/file_dir_application.h"
 

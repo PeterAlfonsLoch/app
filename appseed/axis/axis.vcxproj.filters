@@ -986,6 +986,9 @@
     <ClInclude Include="axis\axis\axis_system.h">
       <Filter>Header Files\axis\axis</Filter>
     </ClInclude>
+    <ClInclude Include="axis\compress\zip\zipImpl.h">
+      <Filter>Header Files\axis\compress\zip</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">

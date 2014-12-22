@@ -1030,7 +1030,7 @@ namespace file
       string system::matter(::aura::application * papp, const stringa & stra, bool bDir, const char * pszRoot, const char * pszApp)
       {
 
-         ::user::str_context * pcontext = Sess(papp).str_context();
+         ::aura::str_context * pcontext = Sess(papp).str_context();
 
          ::index j;
 
@@ -1062,7 +1062,7 @@ namespace file
             if (ca <= 0)
                return "";
 
-            ::user::str_context * pcontext = Sess(papp).str_context();
+            ::aura::str_context * pcontext = Sess(papp).str_context();
 
             string strFile;
 
@@ -1517,7 +1517,7 @@ else
       string system::matter(::aura::application * papp, const string & str, const string & str2, bool bDir, const char * pszRoot, const char * pszApp)
       {
 
-         ::user::str_context * pcontext = Sess(papp).str_context();
+         ::aura::str_context * pcontext = Sess(papp).str_context();
 
          string strLocale;
 
@@ -1996,7 +1996,7 @@ ret:
          return matter(papp, str, str2);
       }
 
-      string system::matter_from_locator(::user::str_context * pcontext, const string & strLocator)
+      string system::matter_from_locator(::aura::str_context * pcontext, const string & strLocator)
       {
          string str;
 
@@ -2007,7 +2007,7 @@ ret:
 
       }
 
-      string system::matter_from_locator(::user::str_context * pcontext, const string & strLocator, const string & str)
+      string system::matter_from_locator(::aura::str_context * pcontext, const string & strLocator, const string & str)
       {
 
          string str2;
@@ -2050,7 +2050,7 @@ ret:
             return strPath;
       */
 
-      string system::matter_from_locator(::user::str_context * pcontext, const string & strLocator,  const string & str, const string & str2)
+      string system::matter_from_locator(::aura::str_context * pcontext, const string & strLocator,  const string & str, const string & str2)
       {
 
          string strPath;

@@ -162,9 +162,9 @@ namespace file
 
          virtual string matter(::aura::application * papp);
 
-         virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator);
-         virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator, const string & str);
-         virtual string matter_from_locator(::user::str_context * pcontext, const string & strLocator, const string & str, const string & str2);
+         virtual string matter_from_locator(::aura::str_context * pcontext, const string & strLocator);
+         virtual string matter_from_locator(::aura::str_context * pcontext, const string & strLocator, const string & str);
+         virtual string matter_from_locator(::aura::str_context * pcontext, const string & strLocator, const string & str, const string & str2);
          virtual void appmatter_locators(string & strRoot, string & strDomain, ::aura::application * papp);
          virtual void appmatter_locators(string & strRoot, string & strDomain, const string & strLibraryName, const string & strAppName);
          virtual void appmatter_locators(string & strRoot, string & strDomain, const string & strAppName);

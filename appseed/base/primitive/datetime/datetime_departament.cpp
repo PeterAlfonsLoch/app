@@ -77,7 +77,7 @@ namespace datetime
       return strtotime(NULL,strInternationalDate,0,i);
    }
 
-   int64_t departament::strtotime(::user::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount)
+   int64_t departament::strtotime(::aura::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount)
    {
       ::datetime::time time;
       ::datetime::value val =::datetime::strtotime(get_app(),pcontext,psz,iPath,iPathCount,false);
@@ -88,7 +88,7 @@ namespace datetime
       return time.get_time();
    }
 
-   int64_t departament::strtotime(::user::str_context * pcontext,const char * psz,time_t timeParam,int32_t iPath,int32_t & iPathCount)
+   int64_t departament::strtotime(::aura::str_context * pcontext,const char * psz,time_t timeParam,int32_t iPath,int32_t & iPathCount)
    {
       UNREFERENCED_PARAMETER(iPath);
       ::datetime::time time(timeParam);
@@ -98,7 +98,7 @@ namespace datetime
       return val.get_time().get_time();
    }
 
-   int64_t departament::gmt_strtotime(::user::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount)
+   int64_t departament::gmt_strtotime(::aura::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount)
    {
       ::datetime::time time;
       ::datetime::value val = ::datetime::strtotime(get_app(),pcontext,psz,iPath,iPathCount,true);

@@ -1982,6 +1982,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="axis\compress\zip\unzip.h" />
     <ClInclude Include="axis\compress\zip\Util.h" />
     <ClInclude Include="axis\compress\zip\zip.h" />
+    <ClInclude Include="axis\compress\zip\zipImpl.h" />
     <ClInclude Include="axis\compress\zip\zip_internal.h" />
     <ClInclude Include="axis\crypto\crypto.h" />
     <ClInclude Include="axis\crypto\crypto_crypto.h" />

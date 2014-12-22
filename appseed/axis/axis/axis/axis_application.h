@@ -6,7 +6,7 @@ namespace axis
 
 
    class CLASS_DECL_AXIS application :
-      virtual public :: axis ::application
+      virtual public :: aura ::application
    {
    public:
 
@@ -37,11 +37,6 @@ namespace axis
 
 
 
-
-      virtual int32_t simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
-      virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle);
-      int32_t simple_message_box(const char * pszMessage,UINT fuStyle);
-      virtual string message_box(const string & pszMatter,property_set & propertyset);
 
 
       virtual string load_string(id id);
@@ -138,8 +133,8 @@ namespace axis
       virtual string get_license_id();
 
 
-      virtual ::user::interaction * get_active_guie();
-      virtual ::user::interaction * get_focus_guie();
+      //virtual ::user::interaction * get_active_guie();
+      //virtual ::user::interaction * get_focus_guie();
 
 
       //virtual sp(::user::interaction) window_from_os_data(void * pdata);

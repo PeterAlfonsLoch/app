@@ -10,7 +10,7 @@ namespace html
       m_puistrcontext = NULL;
    }
 
-   ::user::str_context * file::str_context()
+   ::aura::str_context * file::str_context()
    {
       return m_puistrcontext;
    }
