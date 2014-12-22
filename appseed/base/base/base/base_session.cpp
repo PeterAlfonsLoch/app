@@ -90,7 +90,7 @@ namespace base
    void session::construct(::aura::application * papp, int iPhase)
    {
 
-
+      ::axis::session::construct(papp,iPhase);
    }
 
    session::~session_parent
@@ -1054,10 +1054,10 @@ namespace base
    bool session::process_initialize()
    {
 
-      if(!::aura::session::process_initialize())
+      if(!::axis::session::process_initialize())
          return false;
 
-      if(!::axis::application::process_initialize())
+      if(!::base::application::process_initialize())
          return false;
 
       m_puser = create_user();
@@ -1093,10 +1093,10 @@ namespace base
    bool session::initialize1()
    {
 
-      if(!::aura::session::initialize1())
+      if(!::axis::session::initialize1())
          return false;
 
-      if(!::axis::application::initialize1())
+      if(!::base::application::initialize1())
          return false;
 
       m_puserpresence = new ::userpresence::userpresence(this);
@@ -1136,13 +1136,6 @@ namespace base
       }
 
 
-      m_splicensing = new class ::fontopus::licensing(this);
-
-      m_puserstrcontext = canew(::aura::str_context(this));
-
-      if(m_puserstrcontext == NULL)
-         return false;
-
       if(!m_puser->initialize1())
          return false;
 
@@ -1161,10 +1154,10 @@ namespace base
    bool session::initialize2()
    {
 
-      if(!::aura::session::initialize2())
+      if(!::axis::session::initialize2())
          return false;
 
-      if(!::axis::application::initialize2())
+      if(!::base::application::initialize2())
          return false;
 
       fill_locale_schema(*str_context()->m_plocaleschema);
@@ -1178,10 +1171,10 @@ namespace base
    bool session::initialize_instance()
    {
 
-      if(!::aura::session::initialize_instance())
+      if(!::axis::session::initialize_instance())
          return false;
 
-      if(!::axis::application::initialize_instance())
+      if(!::base::application::initialize_instance())
          return false;
 
 
@@ -1196,10 +1189,10 @@ namespace base
    bool session::initialize()
    {
 
-      if(!::aura::session::initialize())
+      if(!::axis::session::initialize())
          return false;
 
-      if(!::axis::application::initialize())
+      if(!::base::application::initialize())
          return false;
 
       //if(!is_installing() && !is_uninstalling() && System.m_bAdvancedGUI)
@@ -1240,7 +1233,7 @@ namespace base
       try
       {
 
-         bOk = ::axis::application::finalize();
+         bOk = ::base::application::finalize();
 
       }
       catch(...)
@@ -1252,7 +1245,7 @@ namespace base
       try
       {
 
-         bOk = ::aura::session::finalize();
+         bOk = ::axis::session::finalize();
 
       }
       catch(...)
@@ -1282,9 +1275,9 @@ namespace base
 
       }
 
-      ::axis::application::exit_instance();
+      ::base::application::exit_instance();
 
-      ::aura::session::exit_instance();
+      ::axis::session::exit_instance();
 
       return 0;
 

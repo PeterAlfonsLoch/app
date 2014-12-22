@@ -52,7 +52,7 @@ namespace aura
       virtual bool is_session();
 
 
-      void construct(::aura::application * papp, int iPhase);
+      virtual void construct(::aura::application * papp, int iPhase);
 
       virtual bool process_initialize();
 

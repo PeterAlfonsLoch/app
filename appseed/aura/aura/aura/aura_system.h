@@ -332,6 +332,10 @@ namespace aura
 
       virtual void install_progress_add_up(int iAddUp = 1);
 
+      virtual bool alloc_session();
+
+      virtual ::aura::session * on_create_session();
+
 
    };
 

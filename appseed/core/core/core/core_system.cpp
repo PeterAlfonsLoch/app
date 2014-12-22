@@ -268,15 +268,6 @@ namespace core
       // return false;
 
 
-      m_puserstr = new ::user::str(this);
-      if(m_puserstr == NULL)
-         return false;
-
-      if(!str().initialize())
-         return false;
-
-      Session.m_puserstrcontext->defer_ok(m_puserstr);
-
 
 #if !defined(DEBUG) || defined(WINDOWS)
       try

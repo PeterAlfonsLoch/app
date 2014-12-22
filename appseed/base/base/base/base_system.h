@@ -104,6 +104,8 @@ namespace base
 
       virtual bool process_initialize();
 
+      virtual bool initialize1();
+
       virtual bool initialize2();
 
       virtual void wait_twf();
@@ -156,7 +158,11 @@ namespace base
       virtual string get_module_name();
 */
 
-      virtual string dir_appmatter_locator(::aura::application * papp);
+      //virtual string dir_appmatter_locator(::aura::application * papp);
+
+      virtual ::aura::session * on_create_session();
+
+
 
    };
 

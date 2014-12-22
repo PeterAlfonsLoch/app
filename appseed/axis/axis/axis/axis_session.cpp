@@ -962,6 +962,15 @@ namespace axis
       if(!m_psockets->initialize())
          throw simple_exception(this,"could not initialize sockets for application (application::construct)");
 
+      m_splicensing = new class ::fontopus::licensing(this);
+
+      m_puserstrcontext = canew(::aura::str_context(this));
+
+      if(m_puserstrcontext == NULL)
+         return false;
+
+
+
       return true;
 
    }
@@ -985,7 +994,7 @@ namespace axis
       //if(!m_spcopydesk->initialize())
       //   return false;
 
-      if(!::axis::session::initialize1())
+      if(!::aura::session::initialize1())
          return false;
 
       if(!::axis::application::initialize1())
@@ -1031,7 +1040,7 @@ namespace axis
 
 
 
-      if(!::axis::session::initialize_instance())
+      if(!::aura::session::initialize_instance())
          return false;
 
       if(!::axis::application::initialize_instance())
@@ -1103,7 +1112,7 @@ namespace axis
       try
       {
 
-         bOk = ::axis::session::finalize();
+         bOk = ::aura::session::finalize();
 
       }
       catch(...)
@@ -1302,7 +1311,7 @@ namespace axis
    //::user::interaction * session::get_active_guie()
    //{
 
-   //   return ::axis::session::get_active_guie();
+   //   return ::aura::session::get_active_guie();
 
    //}
 
@@ -1310,7 +1319,7 @@ namespace axis
    //::user::interaction * session::get_focus_guie()
    //{
 
-   //   return ::axis::session::get_focus_guie();
+   //   return ::aura::session::get_focus_guie();
 
    //}
 

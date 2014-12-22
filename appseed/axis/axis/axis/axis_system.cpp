@@ -83,7 +83,7 @@ namespace axis
       m_peengine = new ::exception::engine(this);
 
 
-      if(!::axis::system::process_initialize())
+      if(!::aura::system::process_initialize())
          return false;
 
       m_spos.alloc(allocer());
@@ -96,12 +96,12 @@ namespace axis
 
       //#ifdef WINDOWSEX
       //
-      //      dappy(string(typeid(*this).name()) + " : Going to ::axis::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
+      //      dappy(string(typeid(*this).name()) + " : Going to ::aura::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
       //
-      //      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::axis::system::interaction_impl::no_twf"))
+      //      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::aura::system::interaction_impl::no_twf"))
       //      {
       //
-      //         dappy(string(typeid(*this).name()) + " : ::axis::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
+      //         dappy(string(typeid(*this).name()) + " : ::aura::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
       //
       //         return false;
       //
@@ -116,28 +116,41 @@ namespace axis
       m_spdir.alloc(allocer());
 
 
-      m_paxissession = new ::axis::session(this);
+      if(!alloc_session())
+      {
 
-      m_paxissession = m_paxissession;
+         TRACE("Failed to allocate session");
 
-      m_paurasession = m_paxissession;
-
-      if(m_paxissession == NULL)
          return false;
+
+      }
 
       if(!m_spdir->initialize())
          throw simple_exception(this,"failed to construct system m_spdir->initialize");
 
-      m_paxissession->construct(this,0);
+      return true;
+
+   }
 
 
+   bool system::initialize1()
+   {
 
-      if(!m_paxissession->begin_synch(&m_iReturnCode))
-      {
+      m_puserstr = new ::aura::str(this);
+
+      if(m_puserstr == NULL)
          return false;
-      }
 
-      dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));
+      if(!str().initialize())
+         return false;
+
+      Session.m_puserstrcontext->defer_ok(m_puserstr);
+
+      if(!::axis::application::initialize2())
+         return false;
+
+      if(!::aura::system::initialize2())
+         return false;
 
       return true;
 
@@ -160,7 +173,7 @@ namespace axis
 
       m_pfactory->enable_simple_factory_request();
 
-      if(!::axis::system::initialize_instance())
+      if(!::aura::system::initialize_instance())
          return false;
 
       return true;
@@ -430,7 +443,7 @@ namespace axis
    bool system::verb()
    {
 
-      return ::axis::system::verb();
+      return ::aura::system::verb();
 
    }
 
@@ -508,7 +521,7 @@ namespace axis
    //::user::interaction * system::get_active_guie()
    //{
 
-   //   return ::axis::system::get_active_guie();
+   //   return ::aura::system::get_active_guie();
 
    //}
 
@@ -516,7 +529,7 @@ namespace axis
    //::user::interaction * system::get_focus_guie()
    //{
 
-   //   return ::axis::system::get_focus_guie();
+   //   return ::aura::system::get_focus_guie();
 
    //}
 
@@ -570,6 +583,15 @@ namespace axis
       return *m_pdatetime;
 
    }
+
+
+   ::aura::session * system::on_create_session()
+   {
+
+      return new ::axis::session(this);
+
+   }
+
 
 } // namespace axis
 

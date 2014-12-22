@@ -35,16 +35,16 @@ namespace base
 
          m_paxissystem           = m_pauraapp->m_paxissystem;
 
-         if(m_pauraapp->m_paxissession == NULL && m_paxissystem != NULL)
+         if(m_pauraapp->m_pbasesession == NULL && m_paxissystem != NULL)
          {
 
-            m_paxissession       = m_paxissystem->m_paxissession;
+            m_pbasesession       = m_paxissystem->m_pbasesession;
 
          }
          else
          {
 
-            m_paxissession       = m_pauraapp->m_paxissession;
+            m_pbasesession       = m_pauraapp->m_pbasesession;
 
          }
 
@@ -1163,7 +1163,7 @@ namespace base
    int32_t application::application_pre_run()
    {
 
-      return ::aura::application::application_pre_run();
+      return ::axis::application::application_pre_run();
 
    }
 

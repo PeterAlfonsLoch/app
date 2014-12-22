@@ -1390,6 +1390,32 @@ namespace aura
 
    }
 
+   bool system::alloc_session()
+   {
+
+      ::aura::session * paurasession = on_create_session();
+
+      if(paurasession == NULL)
+         return false;
+
+      m_paurasession = paurasession;
+
+      m_paxissession = paurasession->m_paxissession;
+
+      m_pbasesession = paurasession->m_pbasesession;
+
+      m_paurasession->construct(this,0);
+
+      return true;
+
+   }
+
+   ::aura::session * system::on_create_session()
+   {
+
+      return new ::aura::session(this);
+
+   }
 
 } // namespace aura
 

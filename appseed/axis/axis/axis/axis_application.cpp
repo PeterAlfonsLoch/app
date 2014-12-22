@@ -631,7 +631,7 @@ namespace axis
    void application::SetCurrentHandles()
    {
 
-      ::axis::application::SetCurrentHandles();
+      ::aura::application::SetCurrentHandles();
 
 
       if(is_installing() || is_uninstalling())
@@ -1458,7 +1458,7 @@ namespace axis
    int32_t application::application_pre_run()
    {
 
-      return ::axis::application::application_pre_run();
+      return ::aura::application::application_pre_run();
 
    }
 
@@ -1574,7 +1574,7 @@ namespace axis
    bool application::on_install()
    {
 
-      if(!axis::application::on_install())
+      if(!aura::application::on_install())
          return false;
 
       return true;
@@ -1585,7 +1585,7 @@ namespace axis
    bool application::on_uninstall()
    {
 
-      bool bOk = axis::application::on_uninstall();
+      bool bOk = aura::application::on_uninstall();
 
       return bOk;
 
@@ -1927,7 +1927,7 @@ namespace axis
       m_bBaseProcessInitializeResult = false;
 
 
-      if(!::axis::application::process_initialize())
+      if(!::aura::application::process_initialize())
          return false;
       
 
@@ -2107,7 +2107,7 @@ namespace axis
 
       m_dwAlive = ::get_tick_count();
 
-      if(!::axis::application::initialize1())
+      if(!::aura::application::initialize1())
          return false;
 
       m_bBaseInitialize1Result = true;

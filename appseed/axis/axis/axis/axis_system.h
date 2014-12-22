@@ -70,6 +70,8 @@ namespace axis
 
       virtual bool process_initialize();
 
+      virtual bool initialize1();
+
       virtual bool initialize2();
 
 
@@ -88,6 +90,8 @@ namespace axis
 
       virtual void install_progress_add_up(int iAddUp = 1);
 
+
+      virtual ::aura::session * on_create_session();
 
    };
 

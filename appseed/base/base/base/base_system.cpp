@@ -81,7 +81,7 @@ namespace base
 
       set_app(this);
 
-      m_paxissystem     = this;
+      m_pbasesystem     = this;
 
       if(papp == NULL)
       {
@@ -119,7 +119,7 @@ namespace base
    void system::construct(const char * pszAppId)
    {
 
-      ::axis::application::construct(pszAppId);
+      ::base::application::construct(pszAppId);
 
    }
 
@@ -139,12 +139,24 @@ namespace base
 
       enum_display_monitors();
 
-      if(!::aura::system::process_initialize())
+
+
+      if(!::base::application::process_initialize())
          return false;
 
 
-      if(!::axis::application::process_initialize())
+      if(!::axis::system::process_initialize())
          return false;
+
+
+      if(!m_pbasesession->begin_synch(&m_iReturnCode))
+      {
+         return false;
+      }
+
+      dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));
+
+
 
 
       return true;
@@ -186,14 +198,27 @@ namespace base
 
    }
 
+   bool system::initialize1()
+   {
+
+      if(!::axis::system::initialize1())
+         return false;
+
+      if(!::base::application::initialize1())
+         return false;
+
+
+      return true;
+
+   }
 
    bool system::initialize2()
    {
 
-      if(!::aura::system::initialize2())
+      if(!::axis::system::initialize2())
          return false;
 
-      if(!::axis::application::initialize2())
+      if(!::base::application::initialize2())
          return false;
 
 
@@ -205,10 +230,10 @@ namespace base
    bool system::initialize_instance()
    {
 
-      if(!::aura::system::initialize_instance())
+      if(!::axis::system::initialize_instance())
          return false;
 
-      if(!::axis::application::initialize_instance())
+      if(!::base::application::initialize_instance())
          return false;
 
       return true;
@@ -229,7 +254,7 @@ namespace base
       try
       {
 
-         bOk = ::axis::application::finalize();
+         bOk = ::base::application::finalize();
 
       }
       catch(...)
@@ -242,7 +267,7 @@ namespace base
       try
       {
 
-         bOk = ::aura::system::finalize();
+         bOk = ::axis::system::finalize();
 
       }
       catch(...)
@@ -270,7 +295,7 @@ namespace base
       try
       {
 
-         iRet = ::axis::application::exit_instance();
+         iRet = ::base::application::exit_instance();
 
       }
       catch(...)
@@ -307,7 +332,7 @@ namespace base
       try
       {
 
-         iRet = ::aura::system::exit_instance();
+         iRet = ::axis::system::exit_instance();
 
       }
       catch(...)
@@ -331,7 +356,7 @@ namespace base
    bool system::verb()
    {
 
-      return ::aura::system::verb();
+      return ::axis::system::verb();
 
    }
 
@@ -817,13 +842,13 @@ namespace base
 
 */
 
-   string system::dir_appmatter_locator(::aura::application * papp)
-   {
+   //string system::dir_appmatter_locator(::aura::application * papp)
+   //{
 
-      ::exception::throw_not_implemented(get_app());
+   //   ::exception::throw_not_implemented(get_app());
 
-      return "";
-   }
+   //   return "";
+   //}
 
 
    uint32_t _thread_proc_start_system(void * p)
@@ -878,6 +903,15 @@ namespace base
 
 
 #endif
+
+
+   ::aura::session * system::on_create_session()
+   {
+
+      return new ::base::session(this);
+
+   }
+
 
 
 } // namespace base
@@ -955,6 +989,8 @@ namespace base
       }
 
    }
+
+
 
 } // namespace base
 
