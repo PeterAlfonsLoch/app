@@ -12,10 +12,10 @@ namespace http
 
 
       
-      string      m_strRequestUri;
-      string      m_strQueryString;
-      string      m_strHttpHost;
-      id          m_idHttpMethod;
+      string                           m_strRequestUri;
+      string                           m_strQueryString;
+      string                           m_strHttpHost;
+      id                               m_idHttpMethod;
       file::memory_buffer              m_memfileBody;
       ::http::output_stream            m_ostream;
       string m_null;

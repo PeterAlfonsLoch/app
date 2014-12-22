@@ -54,4 +54,10 @@ inline string local_memory_map::get_name()
 }
 
 
+inline void * local_memory_map::get_data()
+{
+
+   return m_pdata;
+
+}
 

@@ -11,6 +11,8 @@ namespace aura
       ::thread(papp)
    {
 
+      m_psockets = NULL;
+
       m_paurasession    = this;
 
       m_bMatterFromHttpCache = m_paurasystem->m_bMatterFromHttpCache;
@@ -239,6 +241,16 @@ namespace aura
       return m_appptra;
 
    }
+
+   //// only usable from base.dll and dependants
+   //::sockets::sockets & session::sockets()
+   //{ 
+
+   //   throw interface_only_exception(get_app());
+   //   
+   //   return *((::sockets::sockets *) NULL); // only usable from base.dll and dependants
+   //
+   //}
 
 
 

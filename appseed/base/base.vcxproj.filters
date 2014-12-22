@@ -971,6 +971,9 @@
     <ClInclude Include="base\crypto\aaa_want_to_remove_crypto_nessie.h">
       <Filter>Header Files\base\crypto</Filter>
     </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sockets_bsd.h">
+      <Filter>Header Files\net\sockets\bsd</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1629,12 +1632,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

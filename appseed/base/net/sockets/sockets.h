@@ -31,7 +31,7 @@
 
 
 #if defined(BSD_STYLE_SOCKETS)
-#include "bsd/sockets.h"
+#include "bsd/sockets_bsd.h"
 #elif defined(METROWIN)
 #include "winrt/sockets.h"
 #else

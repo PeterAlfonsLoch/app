@@ -84,6 +84,33 @@ namespace aura
 } // namespace aura
 
 
+namespace sockets // only usable from base.dll and dependants
+{ 
+   
+   class sockets; // only usable from base.dll and dependants
+
+
+} // namespace sockets // only usable from base.dll and dependants
+
+
+namespace url 
+{
+
+   class departament; // only usable from base.dll and dependants
+
+
+} // namespace url
+
+
+namespace base // only usable from base.dll and dependants
+{
+
+   class compress; // only usable from base.dll and dependants
+
+
+} // namespace base // only usable from base.dll and dependants
+
+
 class dump_context;
 class string_interface;
 class id_space;

@@ -16,10 +16,11 @@ namespace base
    system::system(::aura::application * papp):
       aura::system(this),
       axis::system(this),
-      m_urldepartament(this),
       m_httpsystem(this),
       m_visual(this)
    {
+
+      m_purldepartament = new url::departament(this);
 
       m_pbasesystem = this;
 
@@ -27,7 +28,9 @@ namespace base
 
       __node_base_factory_exchange(this);
 
-      m_compress.set_app(this);
+      m_pcompress = new ::base::compress;
+
+      m_pcompress->set_app(this);
 
 
 
@@ -44,6 +47,10 @@ namespace base
 
    system::~system()
    {
+
+      delete m_purldepartament;
+
+      delete m_pcompress;
 
    }
 
@@ -493,10 +500,10 @@ namespace base
 
 
 
-   ::base::compress & system::compress()
-   {
-      return m_compress;
-   }
+   //::base::compress & system::compress()
+   //{
+   //   return m_compress;
+   //}
 
 
 

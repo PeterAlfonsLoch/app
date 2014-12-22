@@ -157,6 +157,10 @@ namespace aura
 
       m_pthreadimpl->m_pthread = this;
 
+      m_purldepartament = NULL;
+
+      m_pcompress = NULL;
+
    }
 
 

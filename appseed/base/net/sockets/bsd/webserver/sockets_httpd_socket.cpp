@@ -25,7 +25,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "base/net/sockets/bsd/sockets.h"
+#include "base/base/compress/compress_compress.h"
 #include <openssl/ssl.h>
 
 
@@ -218,7 +219,7 @@ namespace sockets
 
             int keylength = ia[i];
 
-            string strTitle = System.file().name_(m_strCat);
+            string strTitle = System.file_name(m_strCat);
 
             if (strTitle.find_ci(".") >= 0)
             {
@@ -228,7 +229,7 @@ namespace sockets
             }
 
 
-            string strFile = System.dir().path(System.dir().name(m_strCat), strTitle + ".dh" + ::str::from(keylength) + ".pem");
+            string strFile = System.dir_path(System.dir_name(m_strCat), strTitle + ".dh" + ::str::from(keylength) + ".pem");
 
             FILE * paramfile = fopen(strFile, "r");
 
@@ -288,7 +289,7 @@ namespace sockets
 
    bool httpd_socket::read_file(const char * lpcsz,smart_pointer_array < int_array > * prangea,const char * pszContentType)
    {
-      string strExtension = System.file().extension(lpcsz);
+      string strExtension = System.file_extension(lpcsz);
       string str = strExtension;
       str.make_lower();
       string strContentType(pszContentType);
@@ -328,7 +329,7 @@ namespace sockets
       }
 
 
-      if(!Application.file().exists(lpcsz))
+      if(!Application.file_exists(lpcsz))
       {
          outattr(__id(http_status_code)) = 404;
          outattr(__id(http_status)) = "Not Found";
@@ -380,7 +381,7 @@ namespace sockets
          {
             return false;
          }
-         int32_t iLen = Application.file().length(lpcsz);
+         int32_t iLen = spfile->get_length();
          if(prangea->get_count() > 1)
          {
             primitive::memory_size uiTotal = 0;

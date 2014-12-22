@@ -76,8 +76,8 @@ namespace hotplugin
 #if !defined(APPLEOS) && !defined(LINUX) && !defined(METROWIN) && !defined(ANDROID) && !defined(SOLARIS)
       if(m_pbitmap != NULL)
          delete (Gdiplus::Bitmap *) m_pbitmap;
-      if(m_pcolorref != NULL)
-         memory_free_dbg(m_pcolorref, 0);
+      //if(m_pcolorref != NULL)
+      //   memory_free_dbg(m_pcolorref, 0);
 #endif
       //delete m_pinfo;
    }
@@ -716,13 +716,13 @@ namespace hotplugin
    }
 
 
-   void plugin::ensure_bitmap_data(int32_t cx, int32_t cy, bool bCreateFile)
+   void plugin::ensure_bitmap_data(int32_t cx, int32_t cy, bool bCreate)
    {
 
       if((cx * cy) <= 0)
          return;
 
-      if(m_pcolorref == NULL
+      if(m_memBitmap.get_data() == NULL
          || m_sizeBitmapData.cx != cx
          || m_sizeBitmapData.cy != cy)
       {
@@ -730,155 +730,172 @@ namespace hotplugin
          m_sizeBitmapData.cx = cx;
          m_sizeBitmapData.cy = cy;
 
-         if(m_pcolorref != (void *) get_map_failed())
-         {
-            my_munmap(m_pcolorref, m_hfileBitmap);
-            m_pcolorref = (uint32_t *)get_map_failed();
-         }
+         //m_memB
+         //{
+         //   my_munmap(m_pcolorref, m_hfileBitmap);
+         //   m_pcolorref = (uint32_t *)get_map_failed();
+         //}
 
          dir::mk(dir::path(dir::userappdata("time"), "core"));
 
          int32_t iOpen;
 
-         if(bCreateFile)
-         {
-#ifdef WINDOWS
-            iOpen = OPEN_ALWAYS;
-#else
-            iOpen = O_RDWR | O_CREAT;
-#endif
-         }
-         else
-         {
-#ifdef WINDOWS
-            iOpen = OPEN_EXISTING;
-#else
-            iOpen = O_RDWR;
-#endif
-         }
-
-         uint_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
-         dir::path(dir::userappdata("time"),string("core\\app.plugin.container-") + m_strBitmapChannel)
-         m_pcolorref = my_open_map(dir::path(dir::userappdata("time"),string("core\\app.plugin.container-") + m_strBitmapChannel,&m_hfileBitmap, size);
-
-#ifdef METROWIN
-         CREATEFILE2_EXTENDED_PARAMETERS ps;
-         zero(&ps, sizeof(ps));
-         ps.dwSize = sizeof(ps);
-         ps.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
-         wstring wstr(dir::path(dir::userappdata("time"), string("core\\app.plugin.container-") + m_strBitmapChannel));
-         m_hfileBitmap = CreateFile2(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, iOpen, &ps);
-#elif defined(WINDOWS)
-         wstring wstr(dir::path(dir::userappdata("time"), string("core\\app.plugin.container-") + m_strBitmapChannel));
-         m_hfileBitmap = CreateFileW(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, iOpen, FILE_ATTRIBUTE_NORMAL, NULL);
-#else
-         m_hfileBitmap = ::open(), iOpen, S_IRUSR | S_IWUSR);
-#endif
-
-
-#ifdef WINDOWS
-         uint32_t dwError = GetLastError();
-         if(m_hfileBitmap == INVALID_HANDLE_VALUE)
-#else
-         if(m_hfileBitmap == -1)
-#endif
-         {
-
-            if(bCreateFile)
-            {
-
-               throw "resource exception";
-
-            }
-            else
-            {
-
-               return;
-
-            }
-
-         }
+//         if(bCreateFile)
+//         {
+//#ifdef WINDOWS
+//            iOpen = OPEN_ALWAYS;
+//#else
+//            iOpen = O_RDWR | O_CREAT;
+//#endif
+//         }
+//         else
+//         {
+//#ifdef WINDOWS
+//            iOpen = OPEN_EXISTING;
+//#else
+//            iOpen = O_RDWR;
+//#endif
+//         }
 
          uint_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
-
-#ifdef METROWIN
-
-         ensure_file_size_handle(m_hfileBitmap, size);
-
-         m_hfilemapBitmap = CreateFileMappingFromApp(
-            m_hfileBitmap,
-            NULL,
-            PAGE_READWRITE,
-            size,
-            NULL);
-
-         if(m_hfilemapBitmap == NULL)
+         string strName = string("core\\app.plugin.container-") + m_strBitmapChannel;
+         
+         if(!m_memBitmap.open(strName,true,true,bCreate,size))
          {
-            CloseHandle(m_hfileBitmap);
-            m_hfileBitmap = INVALID_HANDLE_VALUE;
-            throw "resource exception";
+
+            if(bCreate)
+            {
+
+               throw "resource_exception";
+
+            }
+
+            return;
+
          }
 
-#elif defined(WINDOWS)
 
-         ensure_file_size_handle(m_hfileBitmap, size);
+         //m_pcolorref = my_open_map(dir::path(dir::userappdata("time"),string("core\\app.plugin.container-") + m_strBitmapChannel,&m_hfileBitmap, size);
 
-         m_hfilemapBitmap = CreateFileMapping(
-            m_hfileBitmap,
-            NULL,
-            PAGE_READWRITE,
-            0,
-            0,
-            NULL);
-
-         if(m_hfilemapBitmap == NULL)
-         {
-            CloseHandle(m_hfileBitmap);
-            m_hfileBitmap = INVALID_HANDLE_VALUE;
-            throw "resource exception";
-         }
-#else
-
-         ensure_file_size_fd(m_hfileBitmap, size);
-
-#endif
-
-#ifdef METROWIN
-      m_pcolorref = (COLORREF *) MapViewOfFileFromApp(
-         m_hfilemapBitmap,
-         FILE_MAP_READ | FILE_MAP_WRITE,
-         0,
-         0);
-#elif defined(WINDOWS)
-         m_pcolorref = (COLORREF *) MapViewOfFile(
-            m_hfilemapBitmap,
-            FILE_MAP_READ | FILE_MAP_WRITE,
-            0,
-            0,
-            0
-            );
-#else
-         m_pcolorref = (COLORREF *) mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, m_hfileBitmap, 0);
-#endif
-
-#ifdef WINDOWS
-         if(m_pcolorref == NULL)
-#else
-         if(m_pcolorref == MAP_FAILED)
-#endif
-         {
-#ifdef WINDOWS
-            CloseHandle(m_hfilemapBitmap);
-            m_hfilemapBitmap = NULL;
-            CloseHandle(m_hfileBitmap);
-            m_hfileBitmap = INVALID_HANDLE_VALUE;
-#else
-            ::close(m_hfileBitmap);
-            m_hfileBitmap = -1;
-#endif
-            throw "resource exception";
-         }
+//#ifdef METROWIN
+//         CREATEFILE2_EXTENDED_PARAMETERS ps;
+//         zero(&ps, sizeof(ps));
+//         ps.dwSize = sizeof(ps);
+//         ps.dwFileAttributes = FILE_ATTRIBUTE_NORMAL;
+//         wstring wstr(dir::path(dir::userappdata("time"), string("core\\app.plugin.container-") + m_strBitmapChannel));
+//         m_hfileBitmap = CreateFile2(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, iOpen, &ps);
+//#elif defined(WINDOWS)
+//         wstring wstr(dir::path(dir::userappdata("time"), string("core\\app.plugin.container-") + m_strBitmapChannel));
+//         m_hfileBitmap = CreateFileW(wstr, FILE_READ_DATA | FILE_WRITE_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, NULL, iOpen, FILE_ATTRIBUTE_NORMAL, NULL);
+//#else
+//         m_hfileBitmap = ::open(), iOpen, S_IRUSR | S_IWUSR);
+//#endif
+//
+//
+//#ifdef WINDOWS
+//         uint32_t dwError = GetLastError();
+//         if(m_hfileBitmap == INVALID_HANDLE_VALUE)
+//#else
+//         if(m_hfileBitmap == -1)
+//#endif
+//         {
+//
+//            if(bCreateFile)
+//            {
+//
+//               throw "resource exception";
+//
+//            }
+//            else
+//            {
+//
+//               return;
+//
+//            }
+//
+//         }
+//
+//         uint_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
+//
+//
+//#ifdef METROWIN
+//
+//         ensure_file_size_handle(m_hfileBitmap, size);
+//
+//         m_hfilemapBitmap = CreateFileMappingFromApp(
+//            m_hfileBitmap,
+//            NULL,
+//            PAGE_READWRITE,
+//            size,
+//            NULL);
+//
+//         if(m_hfilemapBitmap == NULL)
+//         {
+//            CloseHandle(m_hfileBitmap);
+//            m_hfileBitmap = INVALID_HANDLE_VALUE;
+//            throw "resource exception";
+//         }
+//
+//#elif defined(WINDOWS)
+//
+//         ensure_file_size_handle(m_hfileBitmap, size);
+//
+//         m_hfilemapBitmap = CreateFileMapping(
+//            m_hfileBitmap,
+//            NULL,
+//            PAGE_READWRITE,
+//            0,
+//            0,
+//            NULL);
+//
+//         if(m_hfilemapBitmap == NULL)
+//         {
+//            CloseHandle(m_hfileBitmap);
+//            m_hfileBitmap = INVALID_HANDLE_VALUE;
+//            throw "resource exception";
+//         }
+//#else
+//
+//         ensure_file_size_fd(m_hfileBitmap, size);
+//
+//#endif
+//
+//#ifdef METROWIN
+//      m_pcolorref = (COLORREF *) MapViewOfFileFromApp(
+//         m_hfilemapBitmap,
+//         FILE_MAP_READ | FILE_MAP_WRITE,
+//         0,
+//         0);
+//#elif defined(WINDOWS)
+//         m_pcolorref = (COLORREF *) MapViewOfFile(
+//            m_hfilemapBitmap,
+//            FILE_MAP_READ | FILE_MAP_WRITE,
+//            0,
+//            0,
+//            0
+//            );
+//#else
+//         m_pcolorref = (COLORREF *) mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, m_hfileBitmap, 0);
+//#endif
+//
+//#ifdef WINDOWS
+//         if(m_pcolorref == NULL)
+//#else
+//         if(m_pcolorref == MAP_FAILED)
+//#endif
+//         {
+//#ifdef WINDOWS
+//            CloseHandle(m_hfilemapBitmap);
+//            m_hfilemapBitmap = NULL;
+//            CloseHandle(m_hfileBitmap);
+//            m_hfileBitmap = INVALID_HANDLE_VALUE;
+//#else
+//            ::close(m_hfileBitmap);
+//            m_hfileBitmap = -1;
+//#endif
+//            throw "resource exception";
+//         }
 
          m_pmutexBitmap = new mutex(get_thread_app(), false, string("Global\\app.plugin.container-") + hex::lower_from((int_ptr)this));
 

@@ -1,4 +1,4 @@
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "base/net/sockets/bsd/sockets.h"
 
 
 #if defined(APPLEOS)
@@ -41,9 +41,12 @@ namespace sockets
    ,m_slave(false)
    {
       ZERO(m_socks4_host);
-      FD_ZERO(&m_rfds);
-      FD_ZERO(&m_wfds);
-      FD_ZERO(&m_efds);
+      m_prfds = new fd_set;
+      m_pwfds = new fd_set;
+      m_pefds = new fd_set;
+      FD_ZERO(((fd_set *) m_prfds));
+      FD_ZERO(((fd_set *) m_pwfds));
+      FD_ZERO(((fd_set *) m_pefds));
    }
 
 
@@ -66,9 +69,14 @@ namespace sockets
    {
       ZERO(m_socks4_host);
       m_pmutex->lock();
-      FD_ZERO(&m_rfds);
-      FD_ZERO(&m_wfds);
-      FD_ZERO(&m_efds);
+
+      m_prfds = new fd_set;
+      m_pwfds = new fd_set;
+      m_pefds = new fd_set;
+
+      FD_ZERO(((fd_set *) m_prfds));
+      FD_ZERO(((fd_set *) m_pwfds));
+      FD_ZERO(((fd_set *) m_pefds));
    }
 
 
@@ -116,6 +124,9 @@ namespace sockets
       {
          m_pmutex->unlock();
       }
+      delete (fd_set *)m_prfds;
+      delete (fd_set *)m_pwfds;
+      delete (fd_set *)m_pefds;
    }
 
 
@@ -167,9 +178,9 @@ namespace sockets
    {
       if (s >= 0)
       {
-         r = FD_ISSET(s, &m_rfds) ? true : false;
-         w = FD_ISSET(s, &m_wfds) ? true : false;
-         e = FD_ISSET(s, &m_efds) ? true : false;
+         r = FD_ISSET(s, ((fd_set *) m_prfds)) ? true : false;
+         w = FD_ISSET(s, ((fd_set *) m_pwfds)) ? true : false;
+         e = FD_ISSET(s, ((fd_set *) m_pefds)) ? true : false;
       }
    }
 
@@ -181,36 +192,36 @@ namespace sockets
       {
          if (bRead)
          {
-            if (!FD_ISSET(s, &m_rfds))
+            if (!FD_ISSET(s, ((fd_set *) m_prfds)))
             {
-               FD_SET(s, &m_rfds);
+               FD_SET(s, ((fd_set *) m_prfds));
             }
          }
          else
          {
-            FD_CLR(s, &m_rfds);
+            FD_CLR(s, ((fd_set *) m_prfds));
          }
          if (bWrite)
          {
-            if (!FD_ISSET(s, &m_wfds))
+            if (!FD_ISSET(s, ((fd_set *) m_pwfds)))
             {
-               FD_SET(s, &m_wfds);
+               FD_SET(s, ((fd_set *) m_pwfds));
             }
          }
          else
          {
-            FD_CLR(s, &m_wfds);
+            FD_CLR(s, ((fd_set *) m_pwfds));
          }
          if (bException)
          {
-            if (!FD_ISSET(s, &m_efds))
+            if (!FD_ISSET(s, ((fd_set *) m_pefds)))
             {
-               FD_SET(s, &m_efds);
+               FD_SET(s, ((fd_set *) m_pefds));
             }
          }
          else
          {
-            FD_CLR(s, &m_efds);
+            FD_CLR(s, ((fd_set *) m_pefds));
          }
       }
    }
@@ -321,9 +332,9 @@ namespace sockets
       fd_set wfds;
       fd_set efds;
 
-      FD_COPY(&m_rfds, &rfds);
-      FD_COPY(&m_wfds, &wfds);
-      FD_COPY(&m_efds, &efds);
+      FD_COPY(((fd_set *) m_prfds), &rfds);
+      FD_COPY(((fd_set *) m_pwfds), &wfds);
+      FD_COPY(((fd_set *) m_pefds), &efds);
 
       int32_t n;
       dw1 = ::get_tick_count();
@@ -409,17 +420,17 @@ namespace sockets
                FD_ZERO(&rfds);
                FD_ZERO(&wfds);
                FD_ZERO(&efds);
-               if (FD_ISSET(i, &m_rfds))
+               if (FD_ISSET(i, ((fd_set *) m_prfds)))
                {
                   FD_SET(i, &rfds);
                   t = true;
                }
-               if (FD_ISSET(i, &m_wfds))
+               if (FD_ISSET(i, ((fd_set *) m_pwfds)))
                {
                   FD_SET(i, &wfds);
                   t = true;
                }
-               if (FD_ISSET(i, &m_efds))
+               if (FD_ISSET(i, ((fd_set *) m_pefds)))
                {
                   FD_SET(i, &efds);
                   t = true;
@@ -480,17 +491,17 @@ namespace sockets
 				         else
 				         {
                         bool bAnySet = false;
-					         if(FD_ISSET(s, &m_rfds))
+					         if(FD_ISSET(s, ((fd_set *) m_prfds)))
                         {
 						         FD_SET(s, &rfds);
                            bAnySet = true;
                         }
-					         if(FD_ISSET(s, &m_wfds))
+					         if(FD_ISSET(s, ((fd_set *) m_pwfds)))
                         {
 						         FD_SET(s, &wfds);
                            bAnySet = true;
                         }
-					         if(FD_ISSET(s, &m_efds))
+					         if(FD_ISSET(s, ((fd_set *) m_pefds)))
                         {
 						         FD_SET(s, &efds);
                            bAnySet = true;
@@ -518,9 +529,9 @@ namespace sockets
 				      m_fds_erase.push_back(s);
                }
             }
-		      m_rfds = rfds;
-		      m_wfds = wfds;
-		      m_efds = efds;
+		      *(fd_set*)m_prfds = rfds;
+            *(fd_set*)m_pwfds = wfds;
+            *(fd_set*)m_pefds = efds;
          }
       }
       else

@@ -134,10 +134,25 @@ namespace http
    }
 
    system::pac::pac(::aura::application * papp) :
-      element(papp),
-      m_js(papp)
+      element(papp)
    {
+
+      m_pjs = new tinyjs(papp);
+
    }
+
+   system::pac::~pac()
+   {
+
+      if(m_pjs == NULL)
+      {
+       
+         delete m_pjs;
+
+      }
+
+   }
+
 
    system::pac * system::get_pac(const char * pszUrl)
    {
@@ -175,9 +190,9 @@ namespace http
             return NULL;
          }
 
-         registerFunctions(&ppac->m_js);
-         registerJavascriptFunctions(&ppac->m_js);
-         ppac->m_js.execute(ppac->m_strAutoConfigScript);
+         registerFunctions(ppac->m_pjs);
+         registerJavascriptFunctions(ppac->m_pjs);
+         ppac->m_pjs->execute(ppac->m_strAutoConfigScript);
 
          ppair = m_mapPac.PLookup(pszUrl);
 
@@ -271,7 +286,7 @@ namespace http
       string var;
       try
       {
-         var = ppac->m_js.evaluate("FindProxyForURL('" + string(pszUrl) + "', '" +strHost +"');");
+         var = ppac->m_pjs->evaluate("FindProxyForURL('" + string(pszUrl) + "', '" +strHost +"');");
       }
       catch(...)
       {

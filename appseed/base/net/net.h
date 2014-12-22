@@ -1,6 +1,5 @@
 #pragma once
 
-
 typedef uint32_t ipaddr_t;
 typedef uint16_t port_t;
 #ifdef WINDOWS
@@ -33,6 +32,9 @@ namespace sockets
 
 #include "net_net.h"
 
+#include "base/net/net_url_departament.h"
+#include "base/net/net_url_domain.h"
+
 
 
 #include "net_address.h"
@@ -53,6 +55,14 @@ namespace sockets
 
 
 
+
+
+#include "net/http/http_output_stream.h"
+
+
+
+
+#include "net/http/http_http.h"
 
 
 

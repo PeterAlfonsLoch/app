@@ -91,6 +91,8 @@ namespace aura
       bool                                         m_bAdvancedGUI;
 
       ::html::html *                               m_phtml; // only defined and set in html library/component
+      ::url::departament *                         m_purldepartament;
+      ::base::compress *                             m_pcompress;
 
 
 
@@ -132,7 +134,8 @@ namespace aura
       geometry::geometry                           &  geometry() { return *m_pgeometry; }
       math::math                                   &  math() { return *m_pmath; }
       ::colorertake5::ParserFactory                &  parser_factory();
-
+      inline ::url::departament                    & url() { return *m_purldepartament; } // only usable from base.dll and dependants
+      inline class ::base::compress                & compress() { return *m_pcompress; } // only usable from base.dll and dependants
 
 
 

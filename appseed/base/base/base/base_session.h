@@ -21,7 +21,7 @@ namespace base
 
 
       sp(::fontopus::fontopus)                                 m_pfontopus;
-      ::sockets::sockets *                                     m_psockets;
+      //::sockets::sockets *                                     m_psockets;
       bool                                                     m_bIfs;
       sp(class ::fontopus::licensing)                   m_splicensing;
 
@@ -62,7 +62,7 @@ namespace base
 
 
       inline sp(class ::fs::data)               fs()           { return m_spfsdata; }
-      inline ::sockets::sockets &               sockets()      { return *m_psockets; }
+      //inline ::sockets::sockets &               sockets()      { return *m_psockets; }
       inline class ::fontopus::licensing &        licensing()      { return *m_splicensing; }
 
 

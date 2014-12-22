@@ -5,6 +5,7 @@
 #define session_parent session( )
 
 
+
 namespace aura
 {
 
@@ -28,6 +29,7 @@ namespace aura
 
       application_ptra                                         m_appptra;
       sp(::aura::savings)                                      m_psavings;
+      ::sockets::sockets *                                     m_psockets;
 
 
  
@@ -41,6 +43,11 @@ namespace aura
 
 
       application_ptra & appptra();
+
+
+      virtual ::sockets::sockets & sockets() { return *m_psockets;  }; // only usable from base.dll and dependants
+
+
 
       virtual bool is_session();
 

@@ -20,7 +20,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#include "framework.h" // #include "base/net/sockets/bsd/sockets.h"
+#include "base/net/sockets/bsd/sockets.h"
 #ifdef HAVE_OPENSSL
 #include <openssl/ssl.h>
 #include <openssl/crypto.h>
@@ -66,7 +66,7 @@ void ssl_sigpipe_handle( int x ) {
 
    RAND_METHOD rand_meth;
 
-   ::base::system * g_psystem = NULL;
+   ::aura::system * g_psystem = NULL;
 
 
 
@@ -81,7 +81,7 @@ void ssl_sigpipe_handle( int x ) {
       bio_err = NULL;
       m_rand_size = 1024;
 
-      g_psystem = &Sys(papp->m_pbasesystem);
+      g_psystem = papp->m_paurasystem;
 
       /* An error write context */
       bio_err = BIO_new_fp(stderr, BIO_NOCLOSE);
@@ -202,7 +202,7 @@ void ssl_sigpipe_handle( int x ) {
    {
       if (m_rand_file.get_length())
       {
-         System.file().del(m_rand_file);
+         System.file_del(m_rand_file);
       }
    }
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+class tinyjs;
+
+
 namespace http
 {
 
@@ -17,13 +20,14 @@ namespace http
       public:
 
 
-         string      m_strUrl;
-         string      m_strAutoConfigScript;
-         tinyjs      m_js;
+         string         m_strUrl;
+         string         m_strAutoConfigScript;
+         tinyjs *       m_pjs;
          uint32_t       m_dwLastChecked;
 
 
          pac(::aura::application * papp);
+         virtual ~pac();
 
 
       };
