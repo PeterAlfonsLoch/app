@@ -356,12 +356,6 @@ namespace axis
    }
 
 
-   ::user::str & system::str()
-   {
-
-      return *m_puserstr;
-
-   }
 
 
    ::aura::document * system::place_hold(::user::interaction * pui)

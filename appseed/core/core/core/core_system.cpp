@@ -76,7 +76,6 @@ namespace core
 
 
          m_userset.set_app(this);
-         m_pdatetime = new class ::datetime::departament(this);
          //      m_email.set_app(this);
 
 

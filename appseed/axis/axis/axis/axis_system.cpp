@@ -31,6 +31,7 @@ namespace axis
 
       m_pcompress->set_app(this);
 
+      m_pdatetime = new class ::datetime::departament(this);
 
 
    }
@@ -55,6 +56,12 @@ namespace axis
 
 
 
+   ::aura::str & system::str()
+   {
+
+      return *m_puserstr;
+
+   }
 
 
    bool system::process_initialize()

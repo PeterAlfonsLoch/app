@@ -44,11 +44,9 @@ namespace base
 
 
 
-      sp(class ::datetime::departament)            m_pdatetime;
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
       ::user::window_draw *                        m_ptwf;
-      ::user::str *                                m_puserstr;
 
 
 
@@ -92,7 +90,6 @@ namespace base
 
 
 
-      ::user::str                                  & str();
       sp(::user::window_draw)                         get_twf();
 
 

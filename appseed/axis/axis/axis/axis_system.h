@@ -14,6 +14,7 @@ namespace axis
 
 
       //::url::departament                           m_urldepartament;
+      sp(class ::datetime::departament)            m_pdatetime;
 
 
       ::file::system_sp                            m_spfile;
@@ -29,6 +30,7 @@ namespace axis
       ::visual::visual                             m_visual;
 
       class ::fontopus::user_set                   m_userset;
+      ::aura::str *                                m_puserstr;
 
 
 
@@ -60,6 +62,10 @@ namespace axis
 
       ::fontopus::user_set                         & userset();
 
+      ::datetime::departament                      & datetime();
+
+
+      ::aura::str                                  & str();
 
 
       virtual bool process_initialize();
@@ -81,9 +87,6 @@ namespace axis
       virtual string crypto_md5_text(const string & str);
 
       virtual void install_progress_add_up(int iAddUp = 1);
-
-
-      ::datetime::departament                      & datetime();
 
 
    };

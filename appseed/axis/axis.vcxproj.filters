@@ -255,6 +255,15 @@
     <Filter Include="Header Files\axis\fontopus">
       <UniqueIdentifier>{dc227b1d-ec5c-47a2-ad78-290446c62dbd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\primitive">
+      <UniqueIdentifier>{3720e2ae-fc8c-4049-be3d-6960616d2669}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\data">
+      <UniqueIdentifier>{c2632396-fa32-4ff4-baf6-ff2531410268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\datetime">
+      <UniqueIdentifier>{1a859d2b-d142-4063-970a-9ff5768d370b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -974,6 +983,21 @@
     <ClInclude Include="axis\fontopus\fontopus_validate.h">
       <Filter>Header Files\axis\fontopus</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\data\data_simple_item.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\data_tree.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\data_tree_item.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_departament.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_value.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1594,11 +1618,17 @@
     <ClCompile Include="axis\fontopus\fontopus_validate.cpp">
       <Filter>Source Files\axis\fontopus</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_value.cpp">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\bsdiff\bspatch.c">
+      <Filter>Source Files\axis\compress\bsdiff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

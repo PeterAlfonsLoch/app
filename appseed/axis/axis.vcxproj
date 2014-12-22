@@ -2572,6 +2572,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\axis\axis_session.cpp" />
     <ClCompile Include="axis\axis\axis_static_start.cpp" />
     <ClCompile Include="axis\axis\axis_system.cpp" />
+    <ClCompile Include="axis\compress\bsdiff\bspatch.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="axis\compress\bsdiff\libbsdiff.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -2966,6 +2970,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\sockets\sockets_link_out_socket.h" />
     <ClInclude Include="net\sockets\sockets_logger.h" />
     <ClInclude Include="net\sockets\sockets_trace_logger.h" />
+    <ClInclude Include="primitive\data\data_simple_item.h" />
+    <ClInclude Include="primitive\data\data_tree.h" />
+    <ClInclude Include="primitive\data\data_tree_item.h" />
+    <ClInclude Include="primitive\datetime\datetime_departament.h" />
+    <ClInclude Include="primitive\datetime\datetime_value.h" />
     <ClInclude Include="programming\javascript\javascript.h" />
     <ClInclude Include="programming\javascript\javascript_functions.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs.h" />
@@ -3818,6 +3827,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_departament.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_value.cpp" />
     <ClCompile Include="programming\javascript\javascript.cpp" />
     <ClCompile Include="programming\javascript\javascript_functions.cpp" />
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp" />

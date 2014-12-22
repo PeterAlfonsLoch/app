@@ -1,4 +1,4 @@
-#include "framework.h" // from "base/user/user.h"
+#include "framework.h" // from "base/aura/aura.h"
 #include <time.h>
 
 
@@ -238,22 +238,22 @@ namespace datetime
 #endif
    }
 
-   string departament::get_week_day_str(user::str_context * pcontext,int32_t iWeekDay) // 1 - domingo
+   string departament::get_week_day_str(aura::str_context * pcontext,int32_t iWeekDay) // 1 - domingo
    {
       return System.str().get(pcontext,"datetimestr_weekday_long[" + ::str::from(iWeekDay - 1) + "]");
    }
 
-   string departament::get_tiny_week_day_str(user::str_context * pcontext,int32_t iWeekDay) // 1 - domingo
+   string departament::get_tiny_week_day_str(aura::str_context * pcontext,int32_t iWeekDay) // 1 - domingo
    {
       return System.str().get(pcontext,"datetimestr_weekday_tiny[" + ::str::from(iWeekDay - 1) + "]");
    }
 
-   string departament::get_month_str(user::str_context * pcontext,int32_t iMonth)
+   string departament::get_month_str(aura::str_context * pcontext,int32_t iMonth)
    {
       return System.str().get(pcontext,"datetimestr_month[" + ::str::from(iMonth - 1) + "]");
    }
 
-   string departament::get_short_month_str(user::str_context * pcontext,int32_t iMonth)
+   string departament::get_short_month_str(aura::str_context * pcontext,int32_t iMonth)
    {
       return System.str().get(pcontext,"datetimestr_month_short[" + ::str::from(iMonth - 1) + "]");
    }
@@ -482,7 +482,7 @@ namespace datetime
       return str;
    }
 
-   string departament::friend_time(user::str_context * pcontext,::datetime::time timeNow,::datetime::time time)
+   string departament::friend_time(aura::str_context * pcontext,::datetime::time timeNow,::datetime::time time)
    {
       bool bDiff = false;
       bool bSolved = false;
