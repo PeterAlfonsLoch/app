@@ -2230,16 +2230,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="database\database\database_template.h" />
     <ClInclude Include="database\database\database_update_hint.h" />
     <ClInclude Include="database\database\database_user_interaction.h" />
-    <ClCompile Include="base\base\axis_print_job.cpp" />
-    <ClCompile Include="base\base\axis_static_start.cpp" />
-    <ClCompile Include="base\axis_policy\axis_c.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="base\base\base_application.cpp" />
+    <ClCompile Include="base\base\base_core_copydesk.cpp" />
+    <ClCompile Include="base\base\base_print_job.cpp" />
+    <ClCompile Include="base\base\base_session.cpp" />
+    <ClCompile Include="base\base\base_static_start.cpp" />
+    <ClCompile Include="base\base\base_system.cpp" />
     <ClCompile Include="base\compress\bsdiff\bsdiff_bsdiff.cpp" />
     <ClCompile Include="base\compress\bsdiff\bsdiff_bspatch.cpp" />
     <ClCompile Include="base\compress\bzip_stream.cpp" />
@@ -2660,10 +2656,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp" />
-    <ClCompile Include="base\base\axis_application.cpp" />
-    <ClCompile Include="base\base\axis_core_copydesk.cpp" />
-    <ClCompile Include="base\base\axis_session.cpp" />
-    <ClCompile Include="base\base\axis_system.cpp" />
     <ClCompile Include="base\os\android\android.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>

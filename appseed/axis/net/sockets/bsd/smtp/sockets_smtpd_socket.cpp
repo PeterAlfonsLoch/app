@@ -5,9 +5,9 @@ namespace sockets
 {
 
 
-   smtpd_socket::smtpd_socket(axis_socket_handler& h) :
+   smtpd_socket::smtpd_socket(base_socket_handler& h) :
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

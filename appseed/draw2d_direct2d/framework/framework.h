@@ -2,7 +2,7 @@
 
 
 #include "draw2d_direct2d.h"
-mutex & draw2d_direct2_mutex();
+//mutex & draw2d_direct2_mutex();
 void init_draw2d_direct2_mutex(::aura::application * papp);
 
 

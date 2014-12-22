@@ -281,7 +281,7 @@ namespace draw2d_direct2d
    }
 
 
-   int graphics::ExcludeUpdateRgn(::user::interaction * pwindow)
+   int graphics::ExcludeUpdateRgn(::aura::interaction * pwindow)
    { 
       
       throw todo(get_app());

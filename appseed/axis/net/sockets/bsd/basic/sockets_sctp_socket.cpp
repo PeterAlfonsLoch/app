@@ -8,7 +8,7 @@ namespace sockets
 {
 
 
-   SctpSocket::SctpSocket(axis_socket_handler& h,int32_t type) : stream_socket(h)
+   SctpSocket::SctpSocket(base_socket_handler& h,int32_t type) : stream_socket(h)
    ,m_type(type)
    ,m_buf(new char[SCTP_BUFSIZE_READ])
    {

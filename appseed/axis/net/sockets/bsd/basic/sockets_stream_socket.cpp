@@ -4,9 +4,9 @@
 namespace sockets
 {
 
-   stream_socket::stream_socket(axis_socket_handler& h) : 
+   stream_socket::stream_socket(base_socket_handler& h) : 
       element(h.get_app())
-      ,axis_socket(h)
+      ,base_socket(h)
       ,socket(h)
       ,m_bConnecting(false)
       ,m_connect_timeout(5)

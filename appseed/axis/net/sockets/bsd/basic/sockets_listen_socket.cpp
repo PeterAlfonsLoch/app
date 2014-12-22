@@ -5,9 +5,9 @@ namespace sockets
 {
 
 
-   listen_socket_axis::listen_socket_axis(axis_socket_handler & h) : 
+   listen_socket_axis::listen_socket_axis(base_socket_handler & h) : 
       element(h.get_app()), 
-      axis_socket(h),
+      base_socket(h),
       socket(h), 
       m_depth(0),
       m_bDetach(false)
@@ -17,7 +17,7 @@ namespace sockets
 
    listen_socket_axis::listen_socket_axis(const listen_socket_axis& s) : 
       element(s.get_app()), 
-      axis_socket(s),
+      base_socket(s),
       socket(s)
    {
 
@@ -233,7 +233,7 @@ namespace sockets
       }
       if (Handler().get_count() >= FD_SETSIZE)
       {
-         log("accept", (int32_t)Handler().get_count(), "axis_socket_handler fd_set limit reached", ::aura::log::level_fatal);
+         log("accept", (int32_t)Handler().get_count(), "base_socket_handler fd_set limit reached", ::aura::log::level_fatal);
          close_socket(a_s);
          return;
       }

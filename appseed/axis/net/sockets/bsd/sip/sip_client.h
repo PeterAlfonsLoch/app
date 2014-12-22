@@ -10,7 +10,7 @@ namespace sockets
    {
    public:
 
-      sip_axis_client_socket *   m_psocket;
+      sip_base_client_socket *   m_psocket;
 
       void invite(const char * pszTo, const char * pszFrom);
 

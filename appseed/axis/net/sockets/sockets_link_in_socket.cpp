@@ -6,9 +6,9 @@ namespace sockets
 
 
 
-   link_in_socket::link_in_socket(axis_socket_handler & h) :
+   link_in_socket::link_in_socket(base_socket_handler & h) :
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h, 32000, 32000),
@@ -44,7 +44,7 @@ namespace sockets
    {
       socket_handler & h = dynamic_cast < socket_handler & > (psocket->Handler());
       POSITION pos = h.m_sockets.get_start_position();
-      sp(::sockets::axis_socket) psocket2;
+      sp(::sockets::base_socket) psocket2;
       SOCKET key;
       while(pos != NULL)
       {
@@ -62,8 +62,8 @@ namespace sockets
       m_flush_before_close = psocket->m_flush_before_close; ///< Send all data before closing (default true)
       m_connection_retry   = psocket->m_connection_retry; ///< Maximum connection retries (tcp)
       m_retries            = psocket->m_retries; ///< Actual number of connection retries (tcp)
-      m_call_on_connect    = psocket->m_call_on_connect; ///< OnConnect will be called next axis_socket_handler cycle if true
-      m_b_retry_connect    = psocket->m_b_retry_connect; ///< Try another connection attempt next axis_socket_handler cycle
+      m_call_on_connect    = psocket->m_call_on_connect; ///< OnConnect will be called next base_socket_handler cycle if true
+      m_b_retry_connect    = psocket->m_b_retry_connect; ///< Try another connection attempt next base_socket_handler cycle
       m_shutdown           = psocket->m_shutdown; ///< Shutdown status
 
       m_bSsl               = psocket->m_bSsl;

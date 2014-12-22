@@ -44,7 +44,7 @@ namespace sockets
 
 
 
-      http_socket(axis_socket_handler& );
+      http_socket(base_socket_handler& );
       ~http_socket();
 
       void OnRawData(char *buf,size_t len);

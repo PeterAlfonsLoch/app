@@ -27,7 +27,7 @@ namespace sockets
 
       e_error m_eerrorLast;
 
-      sip_socket(axis_socket_handler& );
+      sip_socket(base_socket_handler& );
       void invite(const char * pszAddress);
       void OnHeaderComplete();
 

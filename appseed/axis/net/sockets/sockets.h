@@ -27,7 +27,7 @@
 #include "sockets_trace_logger.h"
 
 
-#include "axis/sockets_axis_socket.h"
+#include "base/sockets_base_socket.h"
 
 
 #if defined(BSD_STYLE_SOCKETS)

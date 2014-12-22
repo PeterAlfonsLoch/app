@@ -102,13 +102,13 @@ namespace url
 } // namespace url
 
 
-namespace base // only usable from base.dll and dependants
+namespace axis // only usable from axis.dll and dependants
 {
 
-   class compress; // only usable from base.dll and dependants
+   class compress; // only usable from axis.dll and dependants
 
 
-} // namespace base // only usable from base.dll and dependants
+} // namespace axis // only usable from axis.dll and dependants
 
 
 class dump_context;

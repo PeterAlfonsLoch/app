@@ -20,7 +20,7 @@ namespace axis
     
 #ifdef BSD_STYLE_SOCKETS
    
-         ::sockets::axis_socket::s_pmutex = new mutex();
+         ::sockets::base_socket::s_pmutex = new mutex();
    
 #endif
    
@@ -79,9 +79,9 @@ namespace axis
    
 #ifdef BSD_STYLE_SOCKETS
          
-         delete ::sockets::axis_socket::s_pmutex;
+         delete ::sockets::base_socket::s_pmutex;
    
-         ::sockets::axis_socket::s_pmutex = NULL;
+         ::sockets::base_socket::s_pmutex = NULL;
    
 #endif
    

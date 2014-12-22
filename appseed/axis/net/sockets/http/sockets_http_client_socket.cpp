@@ -11,9 +11,9 @@ namespace sockets
 {
 
 
-   http_client_socket::http_client_socket(axis_socket_handler& h) :
+   http_client_socket::http_client_socket(base_socket_handler& h) :
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -36,9 +36,9 @@ namespace sockets
    }
 
 
-   http_client_socket::http_client_socket(axis_socket_handler & h, const string & strUrlParam) :
+   http_client_socket::http_client_socket(base_socket_handler & h, const string & strUrlParam) :
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

@@ -10,9 +10,9 @@ namespace sockets
 {
 
 
-   http_socket::http_socket(axis_socket_handler& h) :
+   http_socket::http_socket(base_socket_handler& h) :
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

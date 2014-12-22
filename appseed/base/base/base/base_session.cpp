@@ -39,6 +39,18 @@ namespace axis
 
       m_bDrawCursor                 = false;
 
+
+      m_bDrawCursor                 = false;
+
+      m_ecursorDefault              = ::visual::cursor_arrow;
+
+      m_ecursor                     = ::visual::cursor_default;
+
+      m_puiMouseMoveCapture         = NULL;
+
+      m_puiLastLButtonDown          = NULL;
+
+
       m_ecursorDefault              = ::visual::cursor_arrow;
 
       m_ecursor                     = ::visual::cursor_default;
@@ -77,6 +89,31 @@ namespace axis
    void session::construct(::aura::application * papp, int iPhase)
    {
 
+      if(iPhase == 0)
+      {
+
+         if(papp->is_system())
+         {
+
+            m_pfontopus = create_fontopus();
+
+            if(m_pfontopus == NULL)
+               throw simple_exception(this,"could not create fontopus for ::axis::session (::axis::session::construct)");
+
+            m_pfontopus->construct(this);
+
+         }
+         m_pifs                     = new ifs(this,"");
+         m_prfs                     = new ::fs::remote_native(this,"");
+
+         ::fs::set * pset = new class ::fs::set(this);
+         ::fs::link * plink = new ::fs::link(this);
+         plink->fill_os_user();
+         pset->m_spafsdata.add(plink);
+         pset->m_spafsdata.add(new ::fs::native(this));
+         m_spfsdata = pset;
+
+      }
 
    }
 
@@ -1598,6 +1635,150 @@ namespace axis
       }
 
    }
+
+
+   ::fontopus::user * session::safe_get_user()
+   {
+
+      if(m_pfontopus == NULL)
+         return NULL;
+
+      return m_pfontopus->m_puser;
+
+   }
+
+
+   //   void session::set_cursor(::visual::e_cursor ecursor)
+   //   {
+   //
+   //      m_ecursor = ecursor;
+   //
+   //#ifdef WINDOWSEX
+   //
+   //      ::visual::cursor * pcursor = get_cursor();
+   //
+   //      if(pcursor != NULL)
+   //      {
+   //
+   //         ::SetCursor(pcursor->get_HCURSOR());
+   //
+   //      }
+   //
+   //#endif
+   //
+   //   }
+   //
+   //
+   //   void session::set_default_cursor(::visual::e_cursor ecursor)
+   //   {
+   //
+   //      if(ecursor == ::visual::cursor_default)
+   //      {
+   //
+   //         m_ecursorDefault = ::visual::cursor_arrow;
+   //
+   //      }
+   //      else
+   //      {
+   //
+   //         m_ecursorDefault = ecursor;
+   //
+   //      }
+   //
+   //   }
+   //
+
+
+   //COLORREF session::get_default_color(uint64_t ui)
+   //{
+
+   //   switch(ui)
+   //   {
+   //   case COLOR_3DFACE:
+   //      return ARGB(127,192,192,184);
+   //   case COLOR_WINDOW:
+   //      return ARGB(127,255,255,255);
+   //   case COLOR_3DLIGHT:
+   //      return ARGB(127,218,218,210);
+   //   case COLOR_3DHIGHLIGHT:
+   //      return ARGB(127,238,238,230);
+   //   case COLOR_3DSHADOW:
+   //      return ARGB(127,138,138,130);
+   //   case COLOR_3DDKSHADOW:
+   //      return ARGB(127,84,84,77);
+   //   default:
+   //      break;
+   //   }
+
+   //   return ARGB(127,0,0,0);
+
+   //}
+
+
+   ::fontopus::user * session::get_user()
+   {
+
+      return m_pfontopus->get_user();
+
+   }
+
+
+   /*::fontopus::user * application::create_user(const string & pszLogin)
+   {
+   return NULL;
+   }*/
+
+   ::fontopus::user * session::create_current_user()
+   {
+      return NULL;
+      /*   string str = get_current_user_login();
+      return create_user(str);*/
+   }
+
+   /*string application::get_current_user_login()
+   {
+   return "";
+   }*/
+
+
+
+   bool session::is_licensed(const char * pszId,bool bInteractive)
+   {
+
+      if(directrix()->m_varTopicQuery.has_property("install"))
+         return true;
+
+      if(directrix()->m_varTopicQuery.has_property("uninstall"))
+         return true;
+
+      if(&licensing() == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!licensing().has(pszId,bInteractive))
+      {
+
+         licensing().m_mapInfo.remove_key(pszId);
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   ::fontopus::fontopus * session::create_fontopus()
+   {
+
+      return canew(::fontopus::fontopus(this));
+
+   }
+
 
 
 } // namespace axis

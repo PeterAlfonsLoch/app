@@ -29,9 +29,9 @@ namespace sockets
 #endif
 
 
-   socket::socket(axis_socket_handler& h) :
+   socket::socket(base_socket_handler& h) :
       element(h),
-      axis_socket(h)
+      base_socket(h)
    {
 
       m_iBindPort    = -1;

@@ -92,7 +92,7 @@ namespace aura
 
       ::html::html *                               m_phtml; // only defined and set in html library/component
       ::url::departament *                         m_purldepartament;
-      ::base::compress *                             m_pcompress;
+      ::axis::compress *                           m_pcompress;
 
 
 
@@ -135,7 +135,7 @@ namespace aura
       math::math                                   &  math() { return *m_pmath; }
       ::colorertake5::ParserFactory                &  parser_factory();
       inline ::url::departament                    & url() { return *m_purldepartament; } // only usable from base.dll and dependants
-      inline class ::base::compress                & compress() { return *m_pcompress; } // only usable from base.dll and dependants
+      inline class ::axis::compress                & compress() { return *m_pcompress; } // only usable from base.dll and dependants
 
 
 

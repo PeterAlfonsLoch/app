@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    namespace sockets
    {
 
-      class axis_socket_handler;
+      class base_socket_handler;
 
       /** Put http page.
       \ingroup http */
@@ -49,10 +49,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          ::file::buffer_sp     m_file;
 
 
-         http_put_socket(axis_socket_handler&);
+         http_put_socket(base_socket_handler&);
          /** client constructor,
          \param url_in = 'http://host:port/resource' */
-         http_put_socket(axis_socket_handler&,const string & url_in);
+         http_put_socket(base_socket_handler&,const string & url_in);
          ~http_put_socket();
 
          // these must be specified before connecting / adding to handler

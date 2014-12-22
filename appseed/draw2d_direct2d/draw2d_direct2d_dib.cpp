@@ -2846,7 +2846,7 @@ namespace draw2d_direct2d
 #if defined(WINDOWSEX)
 
 
-   bool dib::update_window(::user::draw_interface * pwnd, signal_details * pobj)
+   bool dib::update_window(::aura::draw_interface * pwnd, signal_details * pobj)
    {
 
       rect64 rectWindow;

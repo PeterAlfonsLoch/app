@@ -5,9 +5,9 @@ namespace sockets
 {
 
 
-   http_put_socket::http_put_socket(axis_socket_handler& h) : 
+   http_put_socket::http_put_socket(base_socket_handler& h) : 
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -21,9 +21,9 @@ namespace sockets
    }
 
 
-   http_put_socket::http_put_socket(axis_socket_handler& h,const string & url_in) : 
+   http_put_socket::http_put_socket(base_socket_handler& h,const string & url_in) : 
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

@@ -5,7 +5,7 @@ namespace sockets
 {
 
    
-   class CLASS_DECL_AXIS sip_axis_client_socket :
+   class CLASS_DECL_AXIS sip_base_client_socket :
       virtual public sip_axis,
       virtual public socket
    {
@@ -47,7 +47,7 @@ namespace sockets
       bool m_b_http_1_1;
       bool m_b_keepalive;
 
-      sip_axis_client_socket& operator=(const sip_axis_client_socket& ) { return *this; }
+      sip_base_client_socket& operator=(const sip_base_client_socket& ) { return *this; }
       bool     m_bFirst;
       bool     m_bHeader;
       string   m_strLine;
@@ -59,8 +59,8 @@ namespace sockets
       int32_t m_chunk_state;
       string m_chunk_line;
 
-      sip_axis_client_socket(axis_socket_handler& );
-      ~sip_axis_client_socket();
+      sip_base_client_socket(base_socket_handler& );
+      ~sip_base_client_socket();
 
       void OnRawData(char *buf,size_t len);
       void OnLine(const string & line);
@@ -117,7 +117,7 @@ namespace sockets
       sip::response & response();
 
    protected:
-      sip_axis_client_socket(const sip_axis_client_socket& s);
+      sip_base_client_socket(const sip_base_client_socket& s);
       /** Reset state of socket to sucessfully implement keep-alive. */
       virtual void Reset();
 

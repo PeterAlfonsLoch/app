@@ -57,10 +57,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int m_iWriteFlags;
 
          /** Constructor.
-         \param h axis_socket_handler reference
+         \param h base_socket_handler reference
          \param ibufsz Maximum size of receive message (extra bytes will be truncated)
          \param ipv6 'true' if this is an ipv6 socket */
-         udp_socket(axis_socket_handler& h,int32_t ibufsz = 16384,bool ipv6 = false, int32_t retries = 0);
+         udp_socket(base_socket_handler& h,int32_t ibufsz = 16384,bool ipv6 = false, int32_t retries = 0);
          ~udp_socket();
 
          /** Called when incoming data has been received.
@@ -181,7 +181,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void SetTimestamp(bool = true);
 
       protected:
-         udp_socket(const udp_socket& s) : axis_socket(s), socket(s) {}
+         udp_socket(const udp_socket& s) : base_socket(s), socket(s) {}
          void OnRead();
 #if defined(LINUX) || defined(MACOSX)
          /** This method emulates socket recvfrom, but uses messages so we can get the timestamp */

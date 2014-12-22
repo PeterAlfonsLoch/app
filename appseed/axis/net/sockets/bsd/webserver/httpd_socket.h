@@ -40,10 +40,10 @@ namespace sockets
    /** Web server socket framework. 
       \ingroup webserver */
    class CLASS_DECL_AXIS httpd_socket : 
-      virtual public http_axis_socket
+      virtual public http_base_socket
    {
    public:
-      httpd_socket(axis_socket_handler& );
+      httpd_socket(base_socket_handler& );
       ~httpd_socket();
 
 

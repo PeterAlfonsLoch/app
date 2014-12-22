@@ -16,7 +16,7 @@
 #include "basic/sockets_tls_socket.h"
 
 
-#include "axis/net/sockets/axis/sockets_axis_socket_handler.h"
+#include "axis/net/sockets/base/sockets_base_socket_handler.h"
 #include "basic/sockets_socket_handler.h"
 #include "basic/sockets_listen_socket.h"
 
@@ -35,16 +35,16 @@
 #include "webserver/AjpBaseSocket.h"
 #include "webserver/Ajp13Socket.h"
 #include "webserver/ajp13.h"
-#include "webserver/http_axis_socket.h"
+#include "webserver/http_base_socket.h"
 #include "webserver/httpd_socket.h"
 
-#include "sip/sip_axis.h"
+#include "sip/sip_base.h"
 
 #include "sip/sip_transaction.h"
 #include "sip/sip_request.h"
 #include "sip/sip_response.h"
 
-#include "sip/sip_axis_client_socket.h"
+#include "sip/sip_base_client_socket.h"
 #include "sip/sip_tcp_client_socket.h"
 #include "sip/sip_udp_client_socket.h"
 #include "sip/sip_client.h"

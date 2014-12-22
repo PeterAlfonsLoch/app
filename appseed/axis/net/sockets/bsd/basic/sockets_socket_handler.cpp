@@ -25,7 +25,7 @@ namespace sockets
 
    socket_handler::socket_handler(::aura::application * papp, logger *plogger) :
    element(papp),
-   axis_socket_handler(papp, plogger),
+   base_socket_handler(papp, plogger),
    m_pmutex(NULL),
    m_b_use_mutex(false)
    ,m_maxsock(0)
@@ -52,7 +52,7 @@ namespace sockets
 
    socket_handler::socket_handler(::aura::application * papp, mutex& mutex, logger * plogger) :
    element(papp),
-   axis_socket_handler(papp, plogger)
+   base_socket_handler(papp, plogger)
    ,m_pmutex(&mutex)
    ,m_b_use_mutex(true)
    ,m_maxsock(0)
@@ -91,7 +91,7 @@ namespace sockets
          SOCKET s;
          while(pos != NULL)
          {
-            sp(axis_socket) p = NULL;
+            sp(base_socket) p = NULL;
             m_sockets.get_next_assoc(pos, s, p);
             if(p)
             {
@@ -148,7 +148,7 @@ namespace sockets
    }
 
 
-   void socket_handler::add(axis_socket * paxissocket)
+   void socket_handler::add(base_socket * paxissocket)
    {
 
       socket * p = dynamic_cast < socket * > (paxissocket);
@@ -162,7 +162,7 @@ namespace sockets
          }
          return;
       }
-      sp(axis_socket) plookup;
+      sp(base_socket) plookup;
       if (m_add.Lookup(p -> GetSocket(), plookup))
       {
          log(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in add queue", ::aura::log::level_info);
@@ -276,11 +276,11 @@ namespace sockets
 
          POSITION pos = m_add.get_start_position();
          SOCKET s;
-         sp(axis_socket) p;
+         sp(base_socket) p;
          m_add.get_next_assoc(pos, s, p);
          //TRACE("Trying to add fd %d,  m_add.size() %d,  ignore %d\n", (int32_t)s, (int32_t)m_add.get_size(), (int32_t)ignore);
          //
-         sp(axis_socket) plookup;
+         sp(base_socket) plookup;
          if (m_sockets.Lookup(p -> GetSocket(), plookup))
          {
             log(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in controlled queue", ::aura::log::level_fatal);
@@ -435,7 +435,7 @@ namespace sockets
                   FD_SET(i, &efds);
                   t = true;
                }
-               sp(axis_socket) psocket;
+               sp(base_socket) psocket;
                if (t && m_sockets.Lookup(i, psocket))
                {
                   TRACE("Bad fd in fd_set: %d\n", i);
@@ -463,7 +463,7 @@ namespace sockets
 		      FD_ZERO(&efds);
 
             SOCKET s;
-            sp(axis_socket) psocket;
+            sp(base_socket) psocket;
             POSITION pos = m_sockets.get_start_position();
             while(pos != NULL)
             {
@@ -548,7 +548,7 @@ namespace sockets
             SOCKET socket = m_fds.get_next(pos);;
             if (FD_ISSET(socket, &rfds))
             {
-               sp(axis_socket) psocket = NULL;
+               sp(base_socket) psocket = NULL;
                if(m_sockets.Lookup(socket, psocket)) // found
                {
                   // new SSL negotiate method
@@ -569,7 +569,7 @@ namespace sockets
             }
             if (FD_ISSET(socket, &wfds))
             {
-               sp(axis_socket) psocket = NULL;
+               sp(base_socket) psocket = NULL;
                if(m_sockets.Lookup(socket, psocket)) // found
                {
                   // new SSL negotiate method
@@ -590,7 +590,7 @@ namespace sockets
             }
             if(FD_ISSET(socket, &efds))
             {
-               sp(axis_socket) psocket = NULL;
+               sp(base_socket) psocket = NULL;
                if(m_sockets.Lookup(socket, psocket)) // found
                {
                   time_t tnow = time(NULL);
@@ -626,7 +626,7 @@ namespace sockets
          for(; pos != NULL; )
          {
             SOCKET socket = tmp.get_next(pos);
-            sp(axis_socket) psocket = NULL;
+            sp(base_socket) psocket = NULL;
             if(!m_sockets.Lookup(socket, psocket)) // not found
             {
                log(NULL, "GetSocket/handler/4", (int32_t)socket, "Did not find expected socket using file descriptor", ::aura::log::level_warning);
@@ -677,7 +677,7 @@ namespace sockets
          POSITION pos = m_fds_detach.get_head_position();
          for(; pos != NULL; )
          {
-            sp(axis_socket) p = NULL;
+            sp(base_socket) p = NULL;
             SOCKET socket = m_fds_detach.get_next(pos);
             if(m_sockets.Lookup(socket, p) && p != NULL)
             {
@@ -726,7 +726,7 @@ namespace sockets
             POSITION pos = tmp.get_head_position();
             for(; pos != NULL;)
             {
-               sp(axis_socket) p = NULL;
+               sp(base_socket) p = NULL;
                SOCKET socket = tmp.get_next(pos);
                if (!m_sockets.Lookup(socket, p)) // not found
                {
@@ -759,7 +759,7 @@ namespace sockets
          for(; pos != NULL;)
          {
             SOCKET socket = tmp.get_next(pos);
-            sp(axis_socket) p = NULL;
+            sp(base_socket) p = NULL;
             if(m_sockets.Lookup(socket, p))
             {
                log(NULL, "GetSocket/handler/7", (int32_t)socket, "Did not find expected socket using file descriptor", ::aura::log::level_warning);
@@ -801,7 +801,7 @@ namespace sockets
          while(pos != NULL)
          {
             SOCKET socket = tmp.get_next(pos);
-            sp(axis_socket) p = NULL;
+            sp(base_socket) p = NULL;
             if(!m_sockets.Lookup(socket, p)) // not found
             {
                if(!m_add.Lookup(socket, p))
@@ -898,7 +898,7 @@ namespace sockets
          SOCKET socket = m_fds_erase.remove_head();
          m_fds_detach.remove(socket);
          m_fds.remove(socket);
-         sp(::sockets::axis_socket) psocket;
+         sp(::sockets::base_socket) psocket;
          if(m_sockets.Lookup(socket, psocket))
          {
             psocket->SetErasedByHandler();
@@ -943,14 +943,14 @@ namespace sockets
                while(posSrc != NULL)
                {
                   SOCKET id = 0;
-                  sp(axis_socket) src = NULL;
+                  sp(base_socket) src = NULL;
                   m_trigger_src.get_next_assoc(posSrc, id, src);
                   if (src == p)
                   {
                      POSITION posDst = m_trigger_dst[id].get_start_position();
                      while(posDst != NULL)
                      {
-                        axis_socket * dst = NULL;
+                        base_socket * dst = NULL;
                         bool b = false;
                         m_trigger_dst[id].get_next_assoc(posDst, dst, b);
                         if (Valid(dst))
@@ -972,13 +972,13 @@ namespace sockets
    }
 
 
-   bool socket_handler::Resolving(axis_socket * p0)
+   bool socket_handler::Resolving(base_socket * p0)
    {
       return m_resolve_q.PLookup(p0) != NULL;
    }
 
 
-   bool socket_handler::Valid(axis_socket * p0)
+   bool socket_handler::Valid(base_socket * p0)
    {
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
@@ -991,7 +991,7 @@ namespace sockets
    }
 
 
-   bool socket_handler::OkToAccept(axis_socket *)
+   bool socket_handler::OkToAccept(base_socket *)
    {
 
       return true;
@@ -1034,7 +1034,7 @@ namespace sockets
    }
 
 
-   int32_t socket_handler::Resolve(axis_socket * p, const string & host,port_t port)
+   int32_t socket_handler::Resolve(base_socket * p, const string & host,port_t port)
    {
       // check cache
       sp(resolv_socket) resolv = canew(resolv_socket(*this, p, host, port));
@@ -1053,7 +1053,7 @@ namespace sockets
    }
 
 
-   int32_t socket_handler::Resolve6(axis_socket * p,const string & host,port_t port)
+   int32_t socket_handler::Resolve6(base_socket * p,const string & host,port_t port)
    {
       // check cache
       sp(resolv_socket) resolv = canew(resolv_socket(*this, p, host, port, true));
@@ -1071,7 +1071,7 @@ namespace sockets
    }
 
 
-   int32_t socket_handler::Resolve(axis_socket * p, in_addr a)
+   int32_t socket_handler::Resolve(base_socket * p, in_addr a)
    {
       // check cache
       sp(resolv_socket) resolv = canew(resolv_socket(*this, p, a));
@@ -1089,7 +1089,7 @@ namespace sockets
    }
 
 
-   int32_t socket_handler::Resolve(axis_socket * p, in6_addr& a)
+   int32_t socket_handler::Resolve(base_socket * p, in6_addr& a)
    {
       // check cache
       sp(resolv_socket) resolv = canew(resolv_socket(*this, p, a));
@@ -1162,7 +1162,7 @@ namespace sockets
       return m_resolver_port;
    }
 
-   axis_socket_handler::pool_socket *socket_handler::FindConnection(int32_t type, const string & protocol, const ::net::address & ad)
+   base_socket_handler::pool_socket *socket_handler::FindConnection(int32_t type, const string & protocol, const ::net::address & ad)
    {
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)
@@ -1198,7 +1198,7 @@ namespace sockets
    }
 
 
-   void socket_handler::remove(axis_socket * p)
+   void socket_handler::remove(base_socket * p)
    {
       bool b;
       if(m_resolve_q.Lookup(p, b))
@@ -1311,7 +1311,7 @@ namespace sockets
    }
 
 
-   int32_t socket_handler::TriggerID(axis_socket * src)
+   int32_t socket_handler::TriggerID(base_socket * src)
    {
       int32_t id = m_next_trigger_id++;
       m_trigger_src[id] = src;
@@ -1319,7 +1319,7 @@ namespace sockets
    }
 
 
-   bool socket_handler::Subscribe(int32_t id, axis_socket * dst)
+   bool socket_handler::Subscribe(int32_t id, base_socket * dst)
    {
       if(m_trigger_src.PLookup(id) != NULL)
       {
@@ -1336,7 +1336,7 @@ namespace sockets
    }
 
 
-   bool socket_handler::Unsubscribe(int32_t id, axis_socket * dst)
+   bool socket_handler::Unsubscribe(int32_t id, base_socket * dst)
    {
       if (m_trigger_src.PLookup(id) != NULL)
       {

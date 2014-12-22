@@ -24,9 +24,9 @@ namespace sockets
 
 
       /** Constructor.
-      \param h axis_socket_handler reference
+      \param h base_socket_handler reference
       \param use_creator Optional use of creator (default true) */
-      listen_socket_axis(axis_socket_handler& h);
+      listen_socket_axis(base_socket_handler& h);
 
 
    protected:
@@ -145,11 +145,11 @@ namespace sockets
 
 
       /** Constructor.
-      \param h axis_socket_handler reference
+      \param h base_socket_handler reference
       \param use_creator Optional use of creator (default true) */
-      listen_socket(axis_socket_handler& h,bool use_creator = true) :
+      listen_socket(base_socket_handler& h,bool use_creator = true) :
          element(h.get_app()),
-         axis_socket(h),
+         base_socket(h),
          socket(h),
          listen_socket_axis(h),
          m_bHasCreate(false),
@@ -161,7 +161,7 @@ namespace sockets
 
             m_creator = new LISTENER(h);
 
-            axis_socket * plistener = m_creator->create();
+            base_socket * plistener = m_creator->create();
 
             if(plistener != NULL)
             {

@@ -14,14 +14,14 @@
       public:
 
 
-         sp(::sockets::axis_socket_handler)  m_phandler;
+         sp(::sockets::base_socket_handler)  m_phandler;
          string                              m_strProtocol;
          bool                                m_bRequestComplete;
          
          
 
 
-         http_session(sp(::sockets::axis_socket_handler) phandler, const string & protocol, const string & host);
+         http_session(sp(::sockets::base_socket_handler) phandler, const string & protocol, const string & host);
          ~http_session();
 
 

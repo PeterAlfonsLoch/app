@@ -8,7 +8,7 @@
 int g_iBaseRefCount = 0;
 
 
-CLASS_DECL_BASE int get_base_init()
+CLASS_DECL_AXIS int get_axis_init()
 {
 
    return g_iBaseRefCount;
@@ -16,7 +16,7 @@ CLASS_DECL_BASE int get_base_init()
 }
 
 
-CLASS_DECL_BASE int_bool defer_base_init()
+CLASS_DECL_AXIS int_bool defer_axis_init()
 {
 
    g_iBaseRefCount++;
@@ -24,7 +24,7 @@ CLASS_DECL_BASE int_bool defer_base_init()
    if(g_iBaseRefCount > 1)
       return TRUE;
 
-   if(!base_init())
+   if(!axis_init())
       return FALSE;
 
    return TRUE;
@@ -32,7 +32,7 @@ CLASS_DECL_BASE int_bool defer_base_init()
 }
 
 
-CLASS_DECL_BASE int_bool defer_base_term()
+CLASS_DECL_AXIS int_bool defer_axis_term()
 {
 
    g_iBaseRefCount--;
@@ -40,7 +40,7 @@ CLASS_DECL_BASE int_bool defer_base_term()
    if(g_iBaseRefCount >= 1)
       return TRUE;
 
-   base_term();
+   axis_term();
 
    return TRUE;
 
@@ -48,18 +48,18 @@ CLASS_DECL_BASE int_bool defer_base_term()
 
 
 
-bool base_init()
+bool axis_init()
 {
 
    if(!defer_axis_init())
       return false;
 
-   ::base::static_start::init();
+   ::axis::static_start::init();
 
-   /*if(!__node_base_pre_init())
+   /*if(!__node_axis_pre_init())
       return false;
 
-   ::base::static_start::init();
+   ::axis::static_start::init();
 
    __init_threading_count();
 
@@ -72,7 +72,7 @@ bool base_init()
    ::os_thread::s_pptra = new ptr_array <  os_thread >();
 
 
-   if(!__node_base_pos_init())
+   if(!__node_axis_pos_init())
       return false;*/
 
 #ifdef BASE_FREEIMAGE
@@ -98,7 +98,7 @@ bool base_init()
 }
 
 
-bool base_term()
+bool axis_term()
 {
 #ifdef BASE_FREEIMAGE
    try
@@ -115,7 +115,7 @@ bool base_term()
 
    /*__wait_threading_count(::millis((5000) * 8));
 
-   __node_base_pre_term();
+   __node_axis_pre_term();
 
    ::user::term_windowing();
 
@@ -123,9 +123,9 @@ bool base_term()
 
    __term_threading_count();
 
-   __node_base_pos_term();*/
+   __node_axis_pos_term();*/
 
-   ::base::static_start::term();
+   ::axis::static_start::term();
 
    defer_axis_term();
 

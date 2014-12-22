@@ -5,8 +5,8 @@ namespace sockets
 {
 
 
-   class axis_socket_handler;
-   class axis_socket;
+   class base_socket_handler;
+   class base_socket;
 
 
    class CLASS_DECL_AXIS logger :
@@ -15,7 +15,7 @@ namespace sockets
    public:
 
 
-      virtual void log(axis_socket_handler *, axis_socket * , const string & strUser, int32_t err, const string & strSystem, ::aura::log::e_level elevel = ::aura::log::level_warning) = 0;
+      virtual void log(base_socket_handler *, base_socket * , const string & strUser, int32_t err, const string & strSystem, ::aura::log::e_level elevel = ::aura::log::level_warning) = 0;
 
 
    };

@@ -10,9 +10,9 @@ namespace sockets
 {
 
 
-   http_session::http_session(sp(::sockets::axis_socket_handler) phandler,const string & protocol,const string & host) :
+   http_session::http_session(sp(::sockets::base_socket_handler) phandler,const string & protocol,const string & host) :
       element(phandler->get_app()),
-      axis_socket(*phandler),
+      base_socket(*phandler),
       socket(*phandler),
       stream_socket(*phandler),
       tcp_socket(*phandler),

@@ -198,7 +198,7 @@ namespace sockets
    }
 
 
-   void EventHandler::add(axis_socket *p)
+   void EventHandler::add(base_socket *p)
    {
       if (!m_socket)
       {

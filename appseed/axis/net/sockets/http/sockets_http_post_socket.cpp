@@ -5,9 +5,9 @@ namespace sockets
 {
 
 
-   http_post_socket::http_post_socket(axis_socket_handler& h) :
+   http_post_socket::http_post_socket(base_socket_handler& h) :
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
@@ -23,9 +23,9 @@ namespace sockets
    }
 
 
-   http_post_socket::http_post_socket(axis_socket_handler& h,const string & url_in) :
+   http_post_socket::http_post_socket(base_socket_handler& h,const string & url_in) :
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),

@@ -40,9 +40,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          virtual public http_client_socket
       {
       public:
-         http_get_socket(axis_socket_handler&);
-         http_get_socket(axis_socket_handler&,const string & url);
-         http_get_socket(axis_socket_handler&,const string & host,port_t port,const string & url);
+         http_get_socket(base_socket_handler&);
+         http_get_socket(base_socket_handler&,const string & url);
+         http_get_socket(base_socket_handler&,const string & host,port_t port,const string & url);
          ~http_get_socket();
 
          void step();

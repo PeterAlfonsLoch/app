@@ -50,8 +50,8 @@
 
 
 
-         http_client_socket(axis_socket_handler&);
-         http_client_socket(axis_socket_handler&,const string & url_in);
+         http_client_socket(base_socket_handler&);
+         http_client_socket(base_socket_handler&,const string & url_in);
          ~http_client_socket();
 
 

@@ -38,13 +38,13 @@ namespace sockets
 
 
 
-   httpd_socket::httpd_socket(axis_socket_handler& h) :
+   httpd_socket::httpd_socket(base_socket_handler& h) :
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
-      http_axis_socket(h),
+      http_base_socket(h),
       http_socket(h),
       m_received(0)
    {
@@ -53,11 +53,11 @@ namespace sockets
 
    httpd_socket::httpd_socket(const httpd_socket& s) :
       element(s.get_app()),
-      axis_socket(s),
+      base_socket(s),
       socket(s),
       stream_socket(s),
       tcp_socket(s),
-      http_axis_socket(s),
+      http_base_socket(s),
       http_socket(s)
    {
    }

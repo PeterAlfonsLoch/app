@@ -41,9 +41,9 @@ namespace sockets
 
 
 
-   resolv_socket::resolv_socket(axis_socket_handler& h) :
+   resolv_socket::resolv_socket(base_socket_handler& h) :
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -56,9 +56,9 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(axis_socket_handler& h, axis_socket *parent, const string & host, port_t port, bool ipv6) :
+   resolv_socket::resolv_socket(base_socket_handler& h, base_socket *parent, const string & host, port_t port, bool ipv6) :
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -73,9 +73,9 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(axis_socket_handler& h, axis_socket *parent, in_addr a) :
+   resolv_socket::resolv_socket(base_socket_handler& h, base_socket *parent, in_addr a) :
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
@@ -90,9 +90,9 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(axis_socket_handler& h, axis_socket *parent, in6_addr& a) :
+   resolv_socket::resolv_socket(base_socket_handler& h, base_socket *parent, in6_addr& a) :
       element(h.get_app()),
-      axis_socket(h),
+      base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h)

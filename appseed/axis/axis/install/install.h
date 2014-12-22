@@ -19,8 +19,8 @@ namespace install
 
 
 #include "install_canvas.h"
-#include "install_plugin.h"
-#include "install_starter_start.h"
+//#include "install_plugin.h"
+//#include "install_starter_start.h"
 #include "install_focus.h"
 #include "install_installer.h"
 #include "install_trace.h"

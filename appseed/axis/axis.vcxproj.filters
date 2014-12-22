@@ -87,9 +87,6 @@
     <Filter Include="Header Files\net\sockets\bsd\webserver">
       <UniqueIdentifier>{cfa9b769-297b-4db9-98ca-510975595975}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\net\sockets\axis">
-      <UniqueIdentifier>{f43de315-2e56-41f7-a09d-08a1e060ea43}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net\sockets\http">
       <UniqueIdentifier>{16d3ab4a-a67a-4333-96da-7245b291e6e9}</UniqueIdentifier>
     </Filter>
@@ -177,6 +174,45 @@
     <Filter Include="Header Files\axis\geoip">
       <UniqueIdentifier>{a1196ae1-643e-46d0-9f06-361c06e383d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\axis\node">
+      <UniqueIdentifier>{cbc7bdb2-868d-47ca-9594-7ff7e1135989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\node\windows">
+      <UniqueIdentifier>{8a9f35dd-3924-4dfe-bc44-6a823f0200b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\node\android">
+      <UniqueIdentifier>{7e1d30ab-0995-45f2-b0b9-64e3a5d68c5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\axis\node\ansios">
+      <UniqueIdentifier>{69195050-6ed5-49b9-b26e-60f94ca26561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{77a62835-eec4-4402-8c83-6e76b4a45e29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\visual">
+      <UniqueIdentifier>{9664df1f-ad34-48c6-b5d6-da6868f70346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{f1b3691d-552d-4920-a0b6-6a011536c58e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\visual">
+      <UniqueIdentifier>{76550fd3-6119-42b3-b4f8-1fc25f9d98ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\visual\NewFilter1">
+      <UniqueIdentifier>{3ec8c6a1-1474-462a-a796-52c0eea9b4aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\http\webserver">
+      <UniqueIdentifier>{ec42121c-51b9-4fdd-a944-73a138916178}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\http\webserver">
+      <UniqueIdentifier>{b61f0f14-23c5-48cc-8816-99689890b656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\sockets\base">
+      <UniqueIdentifier>{df5a8a68-274c-4fd3-8b02-5a2837bf1e2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\sockets\base">
+      <UniqueIdentifier>{6f80b300-33ea-4785-ad5c-1cbe0e30cace}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\axis">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
     </Filter>
@@ -207,9 +243,6 @@
     <Filter Include="Source Files\axis\install\windows">
       <UniqueIdentifier>{754bf363-6d72-4e59-a58c-2692948bf105}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\hotplugin">
-      <UniqueIdentifier>{f616a747-70f4-495b-a334-8a945ffeca0d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\axis\axis">
       <UniqueIdentifier>{b15f9423-6971-4587-b04f-ca13192a9bcf}</UniqueIdentifier>
     </Filter>
@@ -222,47 +255,11 @@
     <Filter Include="Source Files\axis\node\windows">
       <UniqueIdentifier>{bf60306d-2d73-4340-8890-4402c6ebccab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\node">
-      <UniqueIdentifier>{cbc7bdb2-868d-47ca-9594-7ff7e1135989}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\node\windows">
-      <UniqueIdentifier>{8a9f35dd-3924-4dfe-bc44-6a823f0200b7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\axis\node\android">
       <UniqueIdentifier>{8e87a155-a76c-44a0-8114-25921d3dd914}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\axis\node\android">
-      <UniqueIdentifier>{7e1d30ab-0995-45f2-b0b9-64e3a5d68c5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\node\ansios">
-      <UniqueIdentifier>{69195050-6ed5-49b9-b26e-60f94ca26561}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\axis\node\ansios">
       <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics">
-      <UniqueIdentifier>{77a62835-eec4-4402-8c83-6e76b4a45e29}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\visual">
-      <UniqueIdentifier>{9664df1f-ad34-48c6-b5d6-da6868f70346}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics">
-      <UniqueIdentifier>{f1b3691d-552d-4920-a0b6-6a011536c58e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\visual">
-      <UniqueIdentifier>{76550fd3-6119-42b3-b4f8-1fc25f9d98ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\graphics\visual\NewFilter1">
-      <UniqueIdentifier>{3ec8c6a1-1474-462a-a796-52c0eea9b4aa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\http\webserver">
-      <UniqueIdentifier>{ec42121c-51b9-4fdd-a944-73a138916178}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\http\webserver">
-      <UniqueIdentifier>{b61f0f14-23c5-48cc-8816-99689890b656}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\axis">
-      <UniqueIdentifier>{e1cfdcb3-5c36-4daf-bf60-bee8dda845b8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -289,12 +286,6 @@
     </ClInclude>
     <ClInclude Include="net\http\http_system.h">
       <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\axis\sockets_base_socket.h">
-      <Filter>Header Files\net\sockets\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\axis\sockets_base_socket_handler.h">
-      <Filter>Header Files\net\sockets\axis</Filter>
     </ClInclude>
     <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_server.h">
       <Filter>Header Files\net\sockets\bsd\asynch_dns</Filter>
@@ -989,6 +980,12 @@
     <ClInclude Include="axis\compress\zip\zipImpl.h">
       <Filter>Header Files\axis\compress\zip</Filter>
     </ClInclude>
+    <ClInclude Include="net\sockets\base\sockets_base_socket.h">
+      <Filter>Header Files\net\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\base\sockets_base_socket_handler.h">
+      <Filter>Header Files\net\sockets\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1011,12 +1008,6 @@
     </ClCompile>
     <ClCompile Include="net\http\http_system.cpp">
       <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\axis\sockets_base_socket.cpp">
-      <Filter>Source Files\net\sockets\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\axis\sockets_base_socket_handler.cpp">
-      <Filter>Source Files\net\sockets\axis</Filter>
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
@@ -1312,15 +1303,6 @@
     <ClCompile Include="axis\os\android\android_window_impl.cpp">
       <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_container_launcher.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_host.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_plugin.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
     <ClCompile Include="axis\install\windows\install_windows_boot.cpp">
       <Filter>Source Files\axis\install\windows</Filter>
     </ClCompile>
@@ -1351,13 +1333,7 @@
     <ClCompile Include="axis\install\install_installer.cpp">
       <Filter>Source Files\axis\install</Filter>
     </ClCompile>
-    <ClCompile Include="axis\install\install_plugin.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
     <ClCompile Include="axis\install\install_small_bell.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_starter_start.cpp">
       <Filter>Source Files\axis\install</Filter>
     </ClCompile>
     <ClCompile Include="axis\install\install_trace.cpp">
@@ -1462,12 +1438,6 @@
     <ClCompile Include="axis\geoip\geoip_update.cpp">
       <Filter>Source Files\axis\geoip</Filter>
     </ClCompile>
-    <ClCompile Include="axis\install\install_plugin_bare_paint_full_screen.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_plugin_bare_paint_discreet.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1543,18 +1513,6 @@
     <ClCompile Include="axis\os\windows\windows_base_crypto.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_composer.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\hotplugin_windows.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="user\fontopus\fontopus_licensing.cpp">
       <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
@@ -1627,15 +1585,6 @@
     <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
     </ClCompile>
-    <ClCompile Include="axis\install\install_plugin_bare_paint_veri_discreet.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\hotplugin\local_memory_map.cpp">
-      <Filter>Source Files\axis\hotplugin</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sockets_bsd.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
     <ClCompile Include="axis\axis\axis_application.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
@@ -1646,6 +1595,15 @@
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis_system.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket.cpp">
+      <Filter>Source Files\net\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\axis\axis.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1935,10 +1893,8 @@
     <None Include="axis\axis\axis.inl">
       <Filter>Header Files\axis\axis</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="base.rc">
+    <None Include="axis.def">
       <Filter>Source Files</Filter>
-    </ResourceCompile>
+    </None>
   </ItemGroup>
 </Project>
