@@ -55,7 +55,7 @@ namespace axis
       virtual bool is_serviceable();
 
 
-      virtual ::user::user * create_user();
+      //virtual ::user::user * create_user();
 
 
       inline class ::http::application &        http()         { return m_http; }

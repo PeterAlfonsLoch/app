@@ -1427,3 +1427,23 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 
 
 
+
+
+namespace aura
+{
+
+
+   inline oswindow interaction::get_safe_handle() const
+   {
+      if(((byte *)this) < (byte *)(((byte *)NULL) + (16 * 1024))) // consider invalid
+      {
+         return NULL;
+      }
+      return get_handle();
+   }
+
+
+} // namespace aura
+
+
+

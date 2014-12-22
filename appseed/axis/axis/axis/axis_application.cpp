@@ -328,7 +328,6 @@ namespace axis
       return false;
 
    }
-
    
 
    //bool application::app_map_lookup(const char * psz,void * & p)

@@ -18,6 +18,7 @@ namespace aura
       interaction();
       virtual ~interaction();
 
+      inline oswindow get_safe_handle() const;
 
    };
 

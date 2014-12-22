@@ -32,6 +32,9 @@
 
 #include "aura/aura/aura.h"
 
+
+#define CLASS_DECL_AXIS CLASS_DECL_EXPORT
+
 #include <string.h>
 
 #if defined(_WIN32) || defined(LINUX)

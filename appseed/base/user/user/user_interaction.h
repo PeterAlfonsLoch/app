@@ -481,7 +481,6 @@ namespace user
       virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
 
 
-      oswindow get_safe_handle() const;
       virtual oswindow get_handle() const;
       virtual bool attach(oswindow oswindow_New);
       virtual oswindow detach();

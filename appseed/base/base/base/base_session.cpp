@@ -89,31 +89,6 @@ namespace axis
    void session::construct(::aura::application * papp, int iPhase)
    {
 
-      if(iPhase == 0)
-      {
-
-         if(papp->is_system())
-         {
-
-            m_pfontopus = create_fontopus();
-
-            if(m_pfontopus == NULL)
-               throw simple_exception(this,"could not create fontopus for ::axis::session (::axis::session::construct)");
-
-            m_pfontopus->construct(this);
-
-         }
-         m_pifs                     = new ifs(this,"");
-         m_prfs                     = new ::fs::remote_native(this,"");
-
-         ::fs::set * pset = new class ::fs::set(this);
-         ::fs::link * plink = new ::fs::link(this);
-         plink->fill_os_user();
-         pset->m_spafsdata.add(plink);
-         pset->m_spafsdata.add(new ::fs::native(this));
-         m_spfsdata = pset;
-
-      }
 
    }
 
@@ -1202,18 +1177,6 @@ namespace axis
    bool session::initialize_instance()
    {
 
-      if(!m_pfontopus->initialize_instance())
-         return false;
-
-      if(Application.directrix()->m_varTopicQuery.has_property("uninstall")
-         || Application.directrix()->m_varTopicQuery.has_property("install"))
-      {
-
-         if(m_pfontopus->create_system_user("system") == NULL)
-            return false;
-
-      }
-
       if(!::aura::session::initialize_instance())
          return false;
 
@@ -1706,16 +1669,6 @@ namespace axis
    }
 
 
-   ::fontopus::user * session::safe_get_user()
-   {
-
-      if(m_pfontopus == NULL)
-         return NULL;
-
-      return m_pfontopus->m_puser;
-
-   }
-
 
    //   void session::set_cursor(::visual::e_cursor ecursor)
    //   {
@@ -1840,13 +1793,6 @@ namespace axis
 
    }
 
-
-   ::fontopus::fontopus * session::create_fontopus()
-   {
-
-      return canew(::fontopus::fontopus(this));
-
-   }
 
 
    bool session::on_ui_mouse_message(::message::mouse * pmouse)

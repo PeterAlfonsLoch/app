@@ -962,6 +962,18 @@
     <ClInclude Include="axis\fontopus\fontopus_user_authentication.h">
       <Filter>Header Files\axis\fontopus</Filter>
     </ClInclude>
+    <ClInclude Include="axis\fontopus\fontopus_contact_list.h">
+      <Filter>Header Files\axis\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\fontopus\fontopus_user_set.h">
+      <Filter>Header Files\axis\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\fontopus\fontopus_usera.h">
+      <Filter>Header Files\axis\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\fontopus\fontopus_validate.h">
+      <Filter>Header Files\axis\fontopus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1546,9 +1558,6 @@
     <ClCompile Include="axis\compress\gzip_stream.cpp">
       <Filter>Source Files\axis\compress</Filter>
     </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\libbsdiff.c">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
     <ClCompile Include="axis\fontopus\fontopus.cpp">
       <Filter>Source Files\axis\fontopus</Filter>
     </ClCompile>
@@ -1569,6 +1578,21 @@
     </ClCompile>
     <ClCompile Include="axis\os\windows\windows_os.cpp">
       <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\bsdiff\libbsdiff.c">
+      <Filter>Source Files\axis\compress\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\fontopus_contact_list.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\fontopus_user_set.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\fontopus_usera.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\fontopus_validate.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
