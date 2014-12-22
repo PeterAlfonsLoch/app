@@ -731,10 +731,52 @@ namespace base
    }
 
 
-   string CLASS_DECL_BASE application::get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   string CLASS_DECL_BASE application::get_cred(const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
-      throw not_implemented(this);
+      string str = ::fontopus::get_cred(this,strUsername,strPassword,strToken);
+
+      if(str == "ok")
+         return "ok";
+
+      if(!bInteractive)
+         return "failed";
+
+      sp(::fontopus::simple_ui) pui;
+
+      string strRequestUrl(strRequestUrlParam);
+
+      if(strRequestUrl.is_empty())
+      {
+
+         string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
+
+         if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
+         {
+
+            strRequestUrl = "https://" + strIgnitionServer + "/";
+
+         }
+         else
+         {
+
+            strRequestUrl = "https://account.ca2.cc/";
+
+         }
+
+      }
+
+      pui = canew(::fontopus::simple_ui(this,strRequestUrl));
+
+      pui->m_login.m_peditUser->SetWindowText(strUsername);
+
+      pui->m_login.m_ppassword->SetWindowText("");
+
+      string strResult = pui->get_cred(rect,strUsername,strPassword,strToken,strTitle);
+
+      pui->DestroyWindow();
+
+      return strResult;
 
    }
 
@@ -1189,7 +1231,7 @@ namespace base
    bool application::on_install()
    {
 
-      if(!aura::application::on_install())
+      if(!axis::application::on_install())
          return false;
 
 
@@ -1211,7 +1253,7 @@ namespace base
    bool application::on_uninstall()
    {
 
-      bool bOk = aura::application::on_uninstall();
+      bool bOk = axis::application::on_uninstall();
 
 
       if(is_serviceable())
@@ -1519,7 +1561,7 @@ namespace base
       m_bAxisProcessInitializeResult = false;
 
 
-      if(!::aura::application::process_initialize())
+      if(!::axis::application::process_initialize())
          return false;
 
 
@@ -1540,7 +1582,7 @@ namespace base
    bool application::initialize_instance()
    {
 
-      if(!::aura::application::initialize_instance())
+      if(!::axis::application::initialize_instance())
          return false;
 
       return true;
@@ -1558,7 +1600,7 @@ namespace base
 
       m_bAxisInitialize1Result = false;
 
-      if(!::aura::application::initialize1())
+      if(!::axis::application::initialize1())
          return false;
 
       m_dwAlive = ::get_tick_count();
@@ -1573,7 +1615,7 @@ namespace base
    bool application::initialize2()
    {
 
-      if(!::aura::application::initialize2())
+      if(!::axis::application::initialize2())
          return false;
 
       return true;
@@ -1584,7 +1626,7 @@ namespace base
    bool application::initialize3()
    {
 
-      if(!::aura::application::initialize3())
+      if(!::axis::application::initialize3())
          return false;
 
       return true;
@@ -1595,7 +1637,7 @@ namespace base
    bool application::initialize()
    {
 
-      if(!::aura::application::initialize())
+      if(!::axis::application::initialize())
          return false;
 
 
@@ -1612,7 +1654,7 @@ namespace base
       try
       {
 
-         m_iReturnCode = ::aura::application::exit_instance();
+         m_iReturnCode = ::axis::application::exit_instance();
 
       }
       catch(...)
@@ -1636,7 +1678,7 @@ namespace base
       try
       {
 
-         bOk = ::aura::application::finalize();
+         bOk = ::axis::application::finalize();
 
       }
       catch(...)

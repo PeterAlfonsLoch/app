@@ -13,6 +13,8 @@ namespace userfs
 
       m_fsset = canew(::fs::set(papp));
 
+      //m_fsset.m_p->m_pcontainerbase = this;
+
    }
 
    document::~document()

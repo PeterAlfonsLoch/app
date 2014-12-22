@@ -1383,7 +1383,7 @@ namespace user
 
       }
 
-      ptree->m_pcontainer = (::data::data_container *) get_document();
+      ptree->m_pcontainerbase = (::data::data_container_base *) get_document();
 
       ptree->install_message_handling(m_pimpl);
 

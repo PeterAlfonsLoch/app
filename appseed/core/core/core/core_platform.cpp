@@ -22,6 +22,10 @@ namespace core
 
       m_pbasesystem                       = papp->m_pbasesystem;
 
+      m_paxissystem->m_pcoreplatform     = this;
+
+      m_paxissystem->m_pplatform         = this;
+
       m_pbasesession->m_pplatformcomposite = this;
 
       m_pauraapp                          = this;

@@ -11,7 +11,7 @@ namespace data
    class listener;
    class data;
    class simple_data;
-   class data_container;
+   class data_container_base;
 
 
    typedef CLASS_DECL_AURA ptr_array < listener > data_listener_ptra;
@@ -90,7 +90,7 @@ namespace data
 
       mutex  *                               m_pmutex;
 
-      ::data::data_container *               m_pcontainer;
+      ::data::data_container_base *          m_pcontainerbase;
 
 
       data(::aura::application * papp);
@@ -107,7 +107,7 @@ namespace data
 
       inline mutex * data_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = new ::mutex(get_app()); return m_pmutex; }
 
-      inline ::data::data_container * get_data_container() { return m_pcontainer; }
+      inline ::data::data_container_base * get_data_container_base() { return m_pcontainerbase; }
 
    };
 

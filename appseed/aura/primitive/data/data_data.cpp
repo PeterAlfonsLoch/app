@@ -75,6 +75,9 @@ namespace data
       element(papp),
       m_pmutex(NULL)
    {
+      
+      m_pcontainerbase = NULL;
+
    }
 
 

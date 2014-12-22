@@ -4137,11 +4137,11 @@ namespace core
       string str;
 
       // keyboard layout
-      if(data_get("keyboard_layout",str) && str.has_char())
+      //if(data_get("keyboard_layout",str) && str.has_char())
       {
-         Session.user()->set_keyboard_layout(str,::action::source::database());
+        // Session.user()->set_keyboard_layout(str,::action::source::database());
       }
-      else
+      //else
       {
          Session.user()->set_keyboard_layout(NULL,::action::source::database());
       }

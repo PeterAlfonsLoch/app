@@ -200,8 +200,20 @@ namespace windows
    bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * puiParent,id id,LPVOID lpParam)
    {
 
-      if(!native_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,puiParent->get_safe_handle(),id,lpParam))
-         return false;
+      if(puiParent == NULL)
+      {
+
+         if(!native_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,NULL,id,lpParam))
+            return false;
+
+      }
+      else
+      {
+         
+         if(!native_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,puiParent->get_safe_handle(),id,lpParam))
+            return false;
+
+      }
 
       return true;
 

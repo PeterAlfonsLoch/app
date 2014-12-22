@@ -533,7 +533,7 @@ namespace userfs
 
    sp(::userfs::document) tree::get_document()
    {
-      return  (::data::data::get_data_container());
+      return  (::data::data::get_data_container_base());
    }
 
 
