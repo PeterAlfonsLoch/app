@@ -20,43 +20,12 @@ namespace html
 } // namespace html
 
 
-namespace user
+namespace aura
 {
 
-   class schema;
-   class tree;
-
-}
-
-namespace user
-{
-
-   class control_event;
-   class create_context;
    class impact;
-   class printer;
-   class user;
-   class document;
-   class frame_window;
-
-   class form_interface;
-   class form_list;
-   class form_callback;
-
-
-} // namespace user
-
-
-namespace simple_ui
-{
-
-   class label;
-   class edit_box;
-   class password;
-   class tap;
 
 }
-
 
 namespace install
 {

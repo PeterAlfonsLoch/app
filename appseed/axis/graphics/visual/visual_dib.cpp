@@ -8,10 +8,14 @@
 #undef min
 #undef max
 int GetEncoderClsid(const WCHAR* format,CLSID* pClsid);
-#elif defined(LINUX) || defined(APPLEOS)
+#elif defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 #include "freeimage/Source/FreeImage.h"
+#ifndef AXIS_FREEIMAGE
+#define AXIS_FREEIMAGE
 #endif
 #endif
+#endif
+
 
 
 //#include "ft2build.h"

@@ -100,7 +100,7 @@ namespace axis
       if (fileUn == NULL)
       {
          int32_t err;
-         _get_errno(&err);
+         my_get_errno(&err);
          fprintf(stderr, "gz fopen error %d %s", err, lpcszUncompressed);
          return false;
       }

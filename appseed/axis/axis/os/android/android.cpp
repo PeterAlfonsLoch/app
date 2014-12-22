@@ -80,31 +80,31 @@ void output_debug_string(const char * psz)
 
 
 
-bool __node_pre_init()
+bool __node_pre_axis_init()
 {
 
-   c_xstart();
+   //c_xstart();
 
    return true;
 
 }
 
-bool __node_pos_init()
-{
-
-   return true;
-
-}
-
-bool __node_pre_term()
+bool __node_pos_axis_init()
 {
 
    return true;
 
 }
 
+bool __node_pre_axis_term()
+{
 
-bool __node_pos_term()
+   return true;
+
+}
+
+
+bool __node_pos_axis_term()
 {
 
    return true;

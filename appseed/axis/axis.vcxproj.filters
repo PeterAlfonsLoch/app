@@ -722,19 +722,10 @@
     <ClInclude Include="axis\node\android\android.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_application.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_copydesk.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\android\android_dir.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\android\android_factory_exchange.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_file.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\android\android_file_set.h">
@@ -743,22 +734,10 @@
     <ClInclude Include="axis\node\android\android_file_system.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_implementation.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_internal.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\android\android_ip_enum.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_os.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\android\android_port_forward.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\android\android_shell.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\ansios\ansios.h">
@@ -1243,12 +1222,6 @@
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android_locale.c">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_window_impl.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="axis\install\windows\install_windows_boot.cpp">
       <Filter>Source Files\axis\install\windows</Filter>
     </ClCompile>
@@ -1298,66 +1271,6 @@
       <Filter>Source Files\net\http</Filter>
     </ClCompile>
     <ClCompile Include="axis\os\android\android.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_cross_win_file.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_cross_win_gdi.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_file_watcher.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_launcher.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_library.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_lock.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_message_loop.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_process.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_process_pid.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_simple_shell_launcher.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_small_ipca_channel.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_win_base.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_window_android.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_cross_win.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_cross_win_file.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_cross_windows_user.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\crypto\ansios_crypt.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_file_std.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_multithreading.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_c.c">
       <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
     <ClCompile Include="axis\geoip\geoip.cpp">
@@ -1425,21 +1338,6 @@
     </ClCompile>
     <ClCompile Include="axis\node\android\android1.cpp">
       <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\ansios\ansios_thread_impl.cpp">
-      <Filter>Source Files\axis\node\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_base_file.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_multithreading.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_base_file.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\android\android_windowing.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\windows\windows_crypto.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
@@ -1600,11 +1498,11 @@
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
+    <ClCompile Include="axis\os\ansios\ansios_crypt.cpp">
+      <Filter>Source Files\axis\os\ansios</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

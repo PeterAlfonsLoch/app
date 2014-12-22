@@ -39,7 +39,7 @@ namespace data
       virtual void _001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext);
       virtual void _001OnItemCollapse(::data::tree_item * pitem, ::action::context actioncontext);
       virtual void _001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext);
-      virtual void _001OnItemContextMenu(::data::tree_item * pitem, ::action::context actioncontext, ::user::tree * ptree, point pt);
+      virtual void _001OnItemContextMenu(::data::tree_item * pitem, ::action::context actioncontext, ::aura::interaction * ptree, point pt);
 
       virtual ::count   remove(tree_item_ptr_array & itemptra);
       virtual ::count   remove(tree_item * pitem);
@@ -74,7 +74,7 @@ namespace data
       virtual bool      selection_set(::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
       virtual bool      selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
 
-      virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint);
+      virtual void on_update(::aura::impact * pSender, LPARAM lHint, ::object* pHint);
 
 
       virtual void on_fill_children();

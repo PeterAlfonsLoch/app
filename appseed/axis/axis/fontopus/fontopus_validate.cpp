@@ -462,13 +462,14 @@ namespace fontopus
 
          }
 
-#endif // WINDOWS
-
          {
 
             ::PostMessage(get_splash(),WM_CLOSE,0,0);
 
          }
+
+#endif // WINDOWS
+
 
          ::simple_message_box(NULL,"No license to use the application/feature \"" + string(psz) + "\" for the user \"" + ApplicationUser.m_strLogin + "\". Contact your system administrator.",psz,MB_ICONEXCLAMATION);
 
