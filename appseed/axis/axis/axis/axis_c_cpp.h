@@ -68,7 +68,6 @@ CLASS_DECL_AXIS bool __node_axis_pre_term();
 CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 
-
 #include "axis/net/net.h"
 
 

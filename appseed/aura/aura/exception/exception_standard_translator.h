@@ -54,10 +54,6 @@ namespace exception
       void filter(uint32_t uiCode, _EXCEPTION_POINTERS * p);
       static void __cdecl filter2(uint32_t uiCode, _EXCEPTION_POINTERS * p);
       //void filter( _EXCEPTION_POINTERS * p);
-   #else
-      static void filter_sigsegv(int32_t signal, siginfo_t * psiginfo, void * pc);
-      static void filter_sigfpe(int32_t signal, siginfo_t * psiginfo, void * pc);
-      static void filter_sigpipe(int32_t signal, siginfo_t * psiginfo, void * pc);
    #endif
 
       static string name(uint32_t uiCode);

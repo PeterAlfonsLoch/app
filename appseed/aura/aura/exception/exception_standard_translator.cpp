@@ -165,6 +165,11 @@ namespace exception
 
 #endif
 
+   void filter_sigsegv(int32_t signal,siginfo_t * psiginfo,void * pc);
+   void filter_sigfpe(int32_t signal,siginfo_t * psiginfo,void * pc);
+   void filter_sigpipe(int32_t signal,siginfo_t * psiginfo,void * pc);
+
+
    bool translator::attach()
    {
       if(!m_bSet)
@@ -185,7 +190,7 @@ namespace exception
          //sigaddset(&m_saSeg.sa_mask, SIGSEGV);
          //m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
          SIG(m_psig)-> m_saSeg.sa_flags = SA_SIGINFO;
-         SIG(m_psig)->m_saSeg.sa_sigaction = &translator::filter_sigsegv;
+         SIG(m_psig)->m_saSeg.sa_sigaction = &filter_sigsegv;
          sigaction(SIGSEGV,&SIG(m_psig)->m_saSeg,&SIG(m_psig)->m_saSegOld);
 
          memset(&SIG(m_psig)->m_saFpe,0,sizeof(SIG(m_psig)->m_saFpe));
@@ -193,7 +198,7 @@ namespace exception
          //sigaddset(&m_saFpe.sa_mask, SIGFPE);
          //m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
          SIG(m_psig)->m_saSeg.sa_flags = SA_SIGINFO;
-         SIG(m_psig)->m_saFpe.sa_sigaction = &translator::filter_sigfpe;
+         SIG(m_psig)->m_saFpe.sa_sigaction = &filter_sigfpe;
          sigaction(SIGFPE,&SIG(m_psig)->m_saFpe,&SIG(m_psig)->m_saFpeOld);
 
          memset(&SIG(m_psig)->m_saPipe,0,sizeof(SIG(m_psig)->m_saPipe));
@@ -201,7 +206,7 @@ namespace exception
          //sigaddset(&m_saPipe.sa_mask, SIGPIPE);
          //m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
          SIG(m_psig)->m_saSeg.sa_flags = SA_SIGINFO;
-         SIG(m_psig)->m_saPipe.sa_sigaction = &translator::filter_sigpipe;
+         SIG(m_psig)->m_saPipe.sa_sigaction = &filter_sigpipe;
          sigaction(SIGPIPE,&SIG(m_psig)->m_saPipe,&SIG(m_psig)->m_saPipeOld);
 
 
@@ -405,7 +410,7 @@ namespace exception
    }
 #else
 
-   void translator::filter_sigsegv(int32_t signal, siginfo_t * psiginfo, void * pc)
+   void filter_sigsegv(int32_t signal, siginfo_t * psiginfo, void * pc)
    {
 
       sigset_t set;
@@ -417,7 +422,7 @@ namespace exception
 
    }
 
-   void translator::filter_sigfpe(int32_t signal, siginfo_t * psiginfo, void * pc)
+   void filter_sigfpe(int32_t signal, siginfo_t * psiginfo, void * pc)
    {
 
       //sigset_t set;
@@ -430,7 +435,7 @@ namespace exception
    }
 
 
-   void translator::filter_sigpipe(int32_t signal, siginfo_t * psiginfo, void * pc)
+   void filter_sigpipe(int32_t signal, siginfo_t * psiginfo, void * pc)
    {
 
       sigset_t set;
@@ -464,6 +469,85 @@ namespace exception
 
 
 CLASS_DECL_AURA bool g_bExiting;
+
+
+
+
+#ifndef WINDOWS
+
+
+void * standard_exception::siginfodup(void * psiginfo)
+{
+
+   siginfo_t * psiginfoDup = new siginfo_t;
+
+   *psiginfoDup = * (siginfo_t *) psiginfo;
+
+   return psiginfoDup;
+
+}
+
+void * standard_exception::siginfofree(void * psiginfo)
+{
+
+   delete (siginfo_t *)psiginfo;
+
+}
+
+
+uint32_t         standard_exception::code() const         
+{
+
+   return ((siginfo_t *)m_psiginfo)->si_code; 
+
+}
+
+
+void *               standard_exception::address() const  
+{
+
+   return ((siginfo_t *)m_psiginfo)->si_addr; 
+
+}
+
+
+const void *    standard_exception::info() const    
+{
+
+   return m_psiginfo; 
+
+}
+
+
+const char *         standard_exception::name() const    
+{
+
+   return ::exception::translator::name(code()); 
+
+}
+
+
+const char *         standard_exception::description() const
+{
+
+   return ::exception::translator::description(code()); 
+
+}
+
+
+#ifndef ANDROID
+
+
+const ucontext_t *   standard_exception::context() const;  
+{
+
+   return &m_ucontext; 
+
+}
+
+
+#endif
+#endif
 
 
 

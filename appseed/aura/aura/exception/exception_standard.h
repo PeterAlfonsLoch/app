@@ -62,7 +62,7 @@ public:
    EXCEPTION_POINTERS * m_ppointers;
 #else
    int32_t            m_iSignal;
-   siginfo_t      m_siginfo;
+   void *      m_psiginfo;
 #ifndef ANDROID
    ucontext_t     m_ucontext;
 #endif
@@ -76,16 +76,17 @@ public:
    const char *         name() const         { return ::exception::translator::name(code()); }
    const char *         description() const  { return ::exception::translator::description(code()); }
 #else
-   uint32_t         code() const         { return m_siginfo.si_code; }
-   void *               address() const      { return m_siginfo.si_addr; }
-   const siginfo_t *    info() const         { return &m_siginfo; }
-   const char *         name() const         { return ::exception::translator::name(code()); }
-   const char *         description() const  { return ::exception::translator::description(code()); }
+   uint32_t         code() const;        
+   void *               address() const; 
+   const void *    info() const;    // siginfo_t *
+   const char *         name() const;      
+   const char *         description() const; 
 #ifndef ANDROID
-   const ucontext_t *   context() const      { return &m_ucontext; }
+   const ucontext_t *   context() const;     
 #endif
 #endif
 
+   
 
 #ifdef WINDOWS
    standard_exception(::aura::application * papp, EXCEPTION_POINTERS * ppointers) :
@@ -111,12 +112,15 @@ public:
    }
 
 #else
-   standard_exception(::aura::application * papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+
+   static void * siginfodup(void * psiginfo);
+   static void * siginfofree(void * psiginfo);
+   standard_exception(::aura::application * papp, int32_t iSignal, void * psiginfo, void * pc) :
       element(papp),
       ::call_stack(papp),
       ::exception::base(papp),
       m_iSignal(iSignal),
-      m_siginfo(*psiginfo)
+      m_psiginfo(siginfodup(psiginfo))
 #ifndef ANDROID
       ,m_ucontext(*(ucontext_t *)pc)
 #endif
@@ -126,7 +130,7 @@ public:
       ::call_stack(se),
       ::exception::base(se),
       m_iSignal(se.m_iSignal),
-      m_siginfo(se.m_siginfo)
+      m_psiginfo(siginfodup(se.m_psiginfo))
 #ifndef ANDROID
       ,m_ucontext(se.m_ucontext)
 #endif
@@ -134,7 +138,9 @@ public:
 #endif
    virtual ~standard_exception()
    {
-
+#ifndef WINDOWS
+      siginfofree(m_psiginfo);
+#endif
    }
 
 
@@ -159,18 +165,16 @@ namespace exception
 
    class standard_access_violation : public standard_exception
    {
-      friend class translator;
-   protected:
-   #if defined(ANDROID)
-      standard_access_violation (::aura::application * papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
+   public:
+#if defined(ANDROID)
+      standard_access_violation (::aura::application * papp, int32_t signal, void * psiginfo, void * pc) :
          element(papp),
          ::call_stack(papp),
          ::exception::base(papp),
          ::standard_exception(papp, signal, psiginfo, pc)
       {printf(":standard");}
-   public:
 #elif defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
-      standard_access_violation (::aura::application * papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
+      standard_access_violation (::aura::application * papp, int32_t signal, void * psiginfo, void * pc) :
          element(papp),
 #ifdef LINUX
 #ifdef _LP64
@@ -221,14 +225,12 @@ namespace exception
 
    class standard_sigfpe : public standard_exception
    {
-      friend class translator;
-   protected:
-      standard_sigfpe (::aura::application * papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
+   public:
+      standard_sigfpe(::aura::application * papp,int32_t iSignal,void * psiginfo,void * pc):
          element(papp),
       ::call_stack(papp),
          ::exception::base(papp),
          standard_exception(papp, iSignal, psiginfo, pc) {printf(":sigfpe");}
-   public:
    //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
      // uint_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
    };
@@ -237,8 +239,7 @@ namespace exception
 
    class standard_sigfpe : public standard_exception
    {
-      friend class translator;
-   protected:
+   public:
       standard_sigfpe (::aura::application * papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
          element(papp),
 #ifdef LINUX
@@ -272,8 +273,7 @@ namespace exception
 
    class standard_no_memory : public standard_exception
    {
-      friend class translator;
-   protected:
+   public:
       standard_no_memory (::aura::application * papp, EXCEPTION_POINTERS * ppointers) :
          element(papp),
          ::call_stack(papp),

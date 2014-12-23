@@ -1,5 +1,7 @@
 #include "framework.h" // previously aura/user/user.h
+#include "aura/user/colorertake5/colorertake5.h"
 #include <stdarg.h>
+
 
 namespace colorertake5
 {
