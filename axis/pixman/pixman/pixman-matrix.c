@@ -117,7 +117,7 @@ rounded_sdiv_128_by_49 (int64_t   hi,
         if (lo != 0)
             hi++;
         hi = -hi;
-        lo = -lo;
+        lo = (uint64_t) -(int64_t)lo;
         sign ^= 1;
     }
     result_lo = rounded_udiv_128_by_48 (hi, lo, div, &result_hi);
@@ -125,8 +125,8 @@ rounded_sdiv_128_by_49 (int64_t   hi,
     {
         if (result_lo != 0)
             result_hi++;
-        result_hi = -result_hi;
-        result_lo = -result_lo;
+        result_hi = (uint64_t)-(int64_t)result_hi;
+        result_lo = (uint64_t)-(int64_t)result_lo;
     }
     if (signed_result_hi)
     {

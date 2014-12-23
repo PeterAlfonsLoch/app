@@ -17,7 +17,7 @@ namespace command
 
    void view::install_message_handling(::message::dispatch * pinterface)
    {
-      ::user::impact::install_message_handling(pinterface);
+      ::aura::impact::install_message_handling(pinterface);
 
 	   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
 	   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &view::_001OnSize);
@@ -57,12 +57,12 @@ namespace command
    #ifdef DEBUG
    void view::assert_valid() const
    {
-	   ::user::impact::assert_valid();
+	   ::aura::impact::assert_valid();
    }
 
    void view::dump(dump_context & dumpcontext) const
    {
-	   ::user::impact::dump(dumpcontext);
+	   ::aura::impact::dump(dumpcontext);
    }
    #endif //DEBUG
 
@@ -82,18 +82,18 @@ namespace command
       
       cs.style &= ~WS_EX_CLIENTEDGE;
 
-	   return ::user::impact::pre_create_window(cs);
+	   return ::aura::impact::pre_create_window(cs);
 
    }
 
 
    void view::_001OnInitialUpdate(signal_details * pobj)
    {
-      ::user::impact::_001OnInitialUpdate(pobj);
+      ::aura::impact::_001OnInitialUpdate(pobj);
    }
 
 
-   void view::on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* phint)
+   void view::on_update(sp(::aura::impact) pSender, LPARAM lHint, ::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -106,7 +106,7 @@ namespace command
 
    void view::_001OnDestroy(signal_details * pobj)
    {
-	   ::user::impact::_001OnDestroy(pobj);
+	   ::aura::impact::_001OnDestroy(pobj);
    }
 
    void view::_001OnSize(signal_details * pobj)
@@ -187,7 +187,7 @@ namespace command
    ::user::document * view::get_document()
    {
 
-      return ::user::impact::get_document();
+      return ::aura::impact::get_document();
 
    }
 

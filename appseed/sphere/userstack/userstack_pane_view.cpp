@@ -36,12 +36,12 @@ namespace userstack
 #ifdef DEBUG
    void pane_view::assert_valid() const
    {
-      ::user::impact::assert_valid();
+      ::aura::impact::assert_valid();
    }
 
    void pane_view::dump(dump_context & dumpcontext) const
    {
-      ::user::impact::dump(dumpcontext);
+      ::aura::impact::dump(dumpcontext);
    }
 #endif //DEBUG
 
@@ -84,7 +84,7 @@ namespace userstack
 
    }
 
-   void pane_view::on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint)
+   void pane_view::on_update(sp(::aura::impact) pSender, LPARAM lHint, ::object* pHint)
    {
       ::user::tab_view::on_update(pSender, lHint, pHint);
       if(lHint == 543218)
@@ -188,7 +188,7 @@ namespace userstack
    {
       cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
-      return ::user::impact::pre_create_window(cs);
+      return ::aura::impact::pre_create_window(cs);
    }
 
 

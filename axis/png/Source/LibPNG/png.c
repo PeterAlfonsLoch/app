@@ -1,4 +1,3 @@
-
 /* png.c - location for general purpose libpng functions
  *
  * Last changed in libpng 1.6.9 [February 6, 2014]
@@ -10,7 +9,6 @@
  * For conditions of distribution and use, see the disclaimer
  * and license in png.h
  */
-
 #include "pngpriv.h"
 
 /* Generate a compiler error if there is an old png.h in the search path. */

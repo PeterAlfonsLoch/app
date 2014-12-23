@@ -2690,7 +2690,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="programming\javascript\javascript_functions.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs.h" />
     <ClInclude Include="programming\javascript\javascript_tinyjs_functions.h" />
-    <ClCompile Include="axis\os\ansios\ansios_crypt.cpp" />
+    <ClCompile Include="axis\os\ansios\ansios_crypt.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="axis\os\windows\windows_base_crypto.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>

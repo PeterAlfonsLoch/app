@@ -1,4 +1,3 @@
-
 /* pngget.c - retrieval of values from info struct
  *
  * Last changed in libpng 1.6.1 [March 28, 2013]
@@ -11,7 +10,6 @@
  * and license in png.h
  *
  */
-
 #include "pngpriv.h"
 
 #if defined(PNG_READ_SUPPORTED) || defined(PNG_WRITE_SUPPORTED)

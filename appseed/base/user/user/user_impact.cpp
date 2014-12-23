@@ -944,50 +944,50 @@ namespace aura
    }
 
 
-#ifndef ANDROID
-
-   /////////////////////////////////////////////////////////////////////////////
-   // ::aura::impact drag/drop support
-
-   DROPEFFECT impact::OnDragScroll(uint32_t /*dwKeyState*/, point /*point*/)
-   {
-#if !defined(___NO_OLE_SUPPORT) && !defined(METROWIN) && !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID) && !defined(SOLARIS)
-      return DROPEFFECT_SCROLL; // this means do the default
-#else
-      return 0;
-#endif
-   }
-
-   DROPEFFECT impact::OnDragEnter(COleDataObject* /*pDataObject*/,
-      uint32_t /*dwKeyState*/, point /*point*/)
-   {
-      return 0;   // DROPEFFECT_NONE
-   }
-
-   DROPEFFECT impact::OnDragOver(COleDataObject* /*pDataObject*/,
-      uint32_t /*dwKeyState*/, point /*point*/)
-   {
-      return 0;   // DROPEFFECT_NONE
-   }
-
-   bool impact::OnDrop(COleDataObject* /*pDataObject*/,
-      DROPEFFECT /*dropEffect*/, point /*point*/)
-   {
-      return FALSE;
-   }
-
-   DROPEFFECT impact::OnDropEx(COleDataObject* /*pDataObject*/,
-      DROPEFFECT /*dropEffect*/, DROPEFFECT /*dropEffectList*/, point /*point*/)
-   {
-      return (DROPEFFECT)-1;  // not implemented
-   }
-
-   void impact::OnDragLeave()
-   {
-   }
-
-
-#endif // ANDROID
+//#ifndef ANDROID
+//
+//   /////////////////////////////////////////////////////////////////////////////
+//   // ::aura::impact drag/drop support
+//
+//   DROPEFFECT impact::OnDragScroll(uint32_t /*dwKeyState*/, point /*point*/)
+//   {
+//#if !defined(___NO_OLE_SUPPORT) && !defined(METROWIN) && !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID) && !defined(SOLARIS)
+//      return DROPEFFECT_SCROLL; // this means do the default
+//#else
+//      return 0;
+//#endif
+//   }
+//
+//   DROPEFFECT impact::OnDragEnter(COleDataObject* /*pDataObject*/,
+//      uint32_t /*dwKeyState*/, point /*point*/)
+//   {
+//      return 0;   // DROPEFFECT_NONE
+//   }
+//
+//   DROPEFFECT impact::OnDragOver(COleDataObject* /*pDataObject*/,
+//      uint32_t /*dwKeyState*/, point /*point*/)
+//   {
+//      return 0;   // DROPEFFECT_NONE
+//   }
+//
+//   bool impact::OnDrop(COleDataObject* /*pDataObject*/,
+//      DROPEFFECT /*dropEffect*/, point /*point*/)
+//   {
+//      return FALSE;
+//   }
+//
+//   DROPEFFECT impact::OnDropEx(COleDataObject* /*pDataObject*/,
+//      DROPEFFECT /*dropEffect*/, DROPEFFECT /*dropEffectList*/, point /*point*/)
+//   {
+//      return (DROPEFFECT)-1;  // not implemented
+//   }
+//
+//   void impact::OnDragLeave()
+//   {
+//   }
+//
+//
+//#endif // ANDROID
 
 
 

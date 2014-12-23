@@ -130,9 +130,6 @@
     <ClCompile Include="Source\LibPNG\pngset.c">
       <Filter>Source\LibPNG</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngtest_main.c">
-      <Filter>Source\LibPNG</Filter>
-    </ClCompile>
     <ClCompile Include="Source\LibPNG\pngtrans.c">
       <Filter>Source\LibPNG</Filter>
     </ClCompile>

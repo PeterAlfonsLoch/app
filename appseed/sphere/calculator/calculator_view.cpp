@@ -22,7 +22,7 @@ namespace calculator
    void view::install_message_handling(::message::dispatch * pinterface)
    {
 
-      ::user::impact::install_message_handling(pinterface);
+      ::aura::impact::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &view::_001OnSize);
@@ -33,9 +33,9 @@ namespace calculator
 
       //   IGUI_WIN_MSG_LINK(WM_USER + 177     , this, this, &view::_001OnTabClick);
       IGUI_WIN_MSG_LINK(WM_APP + 119      , this, this, &view::_001OnWavePlayerEvent);
-      //connect_command(ID_FILE_PRINT, ::user::impact::OnFilePrint)
-      //connect_command(ID_FILE_PRINT_DIRECT, ::user::impact::OnFilePrint)
-      //connect_command(ID_FILE_PRINT_PREVIEW, ::user::impact::OnFilePrintPreview)
+      //connect_command(ID_FILE_PRINT, ::aura::impact::OnFilePrint)
+      //connect_command(ID_FILE_PRINT_DIRECT, ::aura::impact::OnFilePrint)
+      //connect_command(ID_FILE_PRINT_PREVIEW, ::aura::impact::OnFilePrintPreview)
       //  IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
       //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &::user::interaction::_001OnKeyDown);
@@ -47,12 +47,12 @@ namespace calculator
 #ifdef DEBUG
    void view::assert_valid() const
    {
-      ::user::impact::assert_valid();
+      ::aura::impact::assert_valid();
    }
 
    void view::dump(dump_context & dumpcontext) const
    {
-      ::user::impact::dump(dumpcontext);
+      ::aura::impact::dump(dumpcontext);
    }
 #endif //DEBUG
 
@@ -72,19 +72,19 @@ namespace calculator
 
       cs.style &= ~WS_EX_CLIENTEDGE;
 
-      return ::user::impact::pre_create_window(cs);
+      return ::aura::impact::pre_create_window(cs);
 
    }
 
 
    void view::_001OnInitialUpdate(signal_details * pobj)
    {
-      ::user::impact::_001OnInitialUpdate(pobj);
+      ::aura::impact::_001OnInitialUpdate(pobj);
 
 
    }
 
-   void view::on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* phint)
+   void view::on_update(sp(::aura::impact) pSender, LPARAM lHint, ::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -97,7 +97,7 @@ namespace calculator
    }
    void view::_001OnDestroy(signal_details * pobj)
    {
-      ::user::impact::_001OnDestroy(pobj);
+      ::aura::impact::_001OnDestroy(pobj);
 
    }
 
@@ -187,7 +187,7 @@ namespace calculator
    ::user::document * view::get_document()
    {
 
-      return  (::user::impact::get_document());
+      return  (::aura::impact::get_document());
 
    }
 

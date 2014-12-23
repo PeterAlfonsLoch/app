@@ -201,7 +201,7 @@ if(psurfaceNew == cairo_keep::g_cairosurface)
 
    }
 
-   int32_t graphics::ExcludeUpdateRgn(::user::interaction * pwindow)
+   int32_t graphics::ExcludeUpdateRgn(::aura::interaction * pwindow)
    {
   //    ASSERT(get_handle1() != NULL);
 //      return ::ExcludeUpdateRgn(get_handle1(), WIN_WINDOW(pwindow)->get_handle());

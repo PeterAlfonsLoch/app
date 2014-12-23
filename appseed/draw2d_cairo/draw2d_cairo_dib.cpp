@@ -2582,7 +2582,7 @@ synch_lock ml(&cairo_mutex());
 
 #if defined(WINDOWS)
 
-   bool dib::update_window(::user::draw_interface * pwnd, signal_details * pobj)
+   bool dib::update_window(::aura::draw_interface * pwnd, signal_details * pobj)
    {
 
 
@@ -2603,7 +2603,7 @@ synch_lock ml(&cairo_mutex());
    }
 
 
-   bool dib::print_window(::user::draw_interface * pwnd, signal_details * pobj)
+   bool dib::print_window(::aura::draw_interface * pwnd, signal_details * pobj)
    {
 
       SCAST_PTR(::message::base, pbase, pobj);

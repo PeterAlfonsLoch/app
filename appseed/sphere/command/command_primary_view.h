@@ -21,7 +21,7 @@ namespace command
 
 
       virtual void _001OnAfterChangeText(::action::context actioncontext);
-      void on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* phint);
+      void on_update(sp(::aura::impact) pSender, LPARAM lHint, ::object* phint);
 
 
       DECL_GEN_SIGNAL(_001OnUpdateEditCopy);

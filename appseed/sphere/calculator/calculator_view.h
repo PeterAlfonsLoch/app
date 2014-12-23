@@ -8,7 +8,7 @@ namespace calculator
 
 
    class CLASS_DECL_sphere view :
-      virtual public ::user::impact
+      virtual public ::aura::impact
    {
    public:
       view(::aura::application * papp);
@@ -27,7 +27,7 @@ namespace calculator
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool pre_create_window(::user::create_struct& cs);
       DECL_GEN_SIGNAL(_001OnInitialUpdate);
-         virtual void on_update(sp(::user::impact) pSender, LPARAM lHint, ::object* pHint);
+         virtual void on_update(sp(::aura::impact) pSender, LPARAM lHint, ::object* pHint);
 
       ::user::document * get_document();
 
