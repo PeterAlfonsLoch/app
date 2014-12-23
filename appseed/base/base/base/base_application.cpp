@@ -1223,7 +1223,7 @@ namespace base
    bool application::initial_check_directrix()
    {
 
-      return true;
+      return axis::application::initial_check_directrix();
 
    }
 
@@ -1272,9 +1272,9 @@ namespace base
    bool application::system_add_app_install(const char * pszId)
    {
 
-      ::exception::throw_not_implemented(get_app());
+      
 
-      return true;
+      return axis::application::system_add_app_install(pszId);
 
    }
 
@@ -1283,7 +1283,7 @@ namespace base
    bool application::os_native_bergedge_start()
    {
 
-      return true;
+      return axis::application::os_native_bergedge_start();
 
    }
 
@@ -1456,6 +1456,7 @@ namespace base
 
    int32_t application::run()
    {
+      return ::axis::application::run();
 
       if(is_system() || is_session())
       {

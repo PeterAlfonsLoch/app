@@ -165,10 +165,13 @@ namespace exception
 
 #endif
 
+#ifndef WINDOWS
+
    void filter_sigsegv(int32_t signal,siginfo_t * psiginfo,void * pc);
    void filter_sigfpe(int32_t signal,siginfo_t * psiginfo,void * pc);
    void filter_sigpipe(int32_t signal,siginfo_t * psiginfo,void * pc);
 
+#endif
 
    bool translator::attach()
    {

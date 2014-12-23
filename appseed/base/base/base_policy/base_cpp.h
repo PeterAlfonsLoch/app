@@ -116,7 +116,6 @@ namespace user
    class create_context;
    class printer;
    class user;
-   class document;
    class frame_window;
 
    class form_interface;
@@ -170,7 +169,6 @@ namespace user
    class control_event;
    class create_context;
    class user;
-   class document;
    class frame_window;
 
    class form_interface;

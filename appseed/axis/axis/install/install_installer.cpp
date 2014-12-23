@@ -1,5 +1,7 @@
 #include "framework.h" // from "axis/net/net_sockets.h"
+#include "axis/net/net_sockets.h"
 #include "axis/compress/compress.h"
+
 
 #if defined(WINDOWS) || defined(LINUX)
 #include <omp.h>

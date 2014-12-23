@@ -402,14 +402,6 @@ typedef struct tag_TimerCallbackCreateTimer
 
 
 
-namespace user
-{
-
-
-   class document;
-
-
-} // namespace user
 
 
 // Avoid mapping GetFileTitle to GetFileTitle[A/W]

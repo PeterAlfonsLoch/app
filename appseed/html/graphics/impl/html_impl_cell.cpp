@@ -11,8 +11,7 @@ namespace html
 
       cell::cell(::aura::application * papp) :
          element(papp),
-         ::data::data_listener(papp),
-         ::colorertake5::base_editor(papp),
+         ::data::listener(papp),
          user::edit_plain_text(papp),
          ::html::impl::text(papp)
       {

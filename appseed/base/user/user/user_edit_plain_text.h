@@ -4,6 +4,13 @@
 class elemental;
 class element_2d;
 
+namespace colorertake5
+{
+   class base_editor;
+   class text_lines;
+   class file_type;
+} // namespace colorertake5
+
 
 namespace user
 {
@@ -11,7 +18,6 @@ namespace user
 
    class CLASS_DECL_BASE edit_plain_text :
       virtual public scroll_control,
-      virtual public colorertake5::base_editor,
       virtual public ::data::listener
    {
    public:
@@ -41,7 +47,8 @@ namespace user
       uint32_t                      m_dwCaretTime;
       index                         m_iLineOffset;
       stringa                       m_straSep;
-      colorertake5::text_lines      m_lines;
+      colorertake5::base_editor *   m_peditor;
+      colorertake5::text_lines *    m_plines;
       int32_t                       m_y;
       bool                          m_bGetTextNeedUpdate;
       bool                          m_bNeedScrollUpdate;

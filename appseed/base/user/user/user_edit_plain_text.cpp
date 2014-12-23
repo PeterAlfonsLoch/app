@@ -1,4 +1,5 @@
 ﻿#include "framework.h" // from "base/user/user.h"
+#include "aura/user/colorertake5/colorertake5.h"
 
 
 void str_fill(string & str,char ch);
@@ -12,11 +13,12 @@ namespace user
    edit_plain_text::edit_plain_text(::aura::application * papp):
       element(papp),
       ::user::interaction(papp),
-      colorertake5::base_editor(papp),
       ::data::listener(papp),
       m_keymessageLast(papp)
    {
 
+      m_peditor = new colorertake5::base_editor(papp);
+      m_plines = new colorertake5::text_lines;
          m_bPassword = false;
          m_ptree              = NULL;
          m_bOwnData           = false;
@@ -55,6 +57,8 @@ namespace user
          delete m_ptree;
          m_ptree = NULL;
       }
+      delete m_peditor;
+      delete m_plines;
    }
 
 
@@ -320,7 +324,7 @@ namespace user
       size size3;
       size3 = pdc->GetTextExtent(unitext("gGYIﾍ"));
       int32_t iLineHeight = size3.cy;
-      stringa & straLines = m_lines.lines;
+      stringa & straLines = m_plines->lines;
       stringa straLineFeed;
       string strLine;
       string str1;
@@ -346,7 +350,7 @@ namespace user
          }
          colorertake5::LineRegion * pregion = NULL;
          if(m_bColorerTake5)
-            pregion = getLineRegions(i);
+            pregion = m_peditor->getLineRegions(i);
          if(pregion != NULL)
          {
             for(; pregion != NULL; pregion = pregion->next)
@@ -496,8 +500,8 @@ namespace user
       m_ptree->m_pfile = new ::file::memory_buffer(get_app());
       if(m_bColorerTake5)
       {
-         colorertake5::base_editor::initialize(&m_lines);
-         colorertake5::base_editor::setRegionMapper("rgb","default");
+         m_peditor->colorertake5::base_editor::initialize(m_plines);
+         m_peditor->colorertake5::base_editor::setRegionMapper("rgb","default");
       }
 
       //  m_peditfile = new ::file::edit_buffer(get_app());
@@ -1204,7 +1208,7 @@ namespace user
 
       select_font(pdc);
 
-      stringa & straLines = m_lines.lines;
+      stringa & straLines = m_plines->lines;
 
       strsize iSelStart;
 
@@ -1272,7 +1276,7 @@ namespace user
 
       iSel -= m_iViewOffset;
 
-      stringa & straLines = m_lines.lines;
+      stringa & straLines = m_plines->lines;
 
       strsize i1;
 
@@ -1306,7 +1310,7 @@ namespace user
 
       iSel -= m_iViewOffset;
 
-      stringa & straLines = m_lines.lines;
+      stringa & straLines = m_plines->lines;
 
       strsize i1;
 
@@ -1368,7 +1372,7 @@ namespace user
 
       }
 
-      stringa & straLines = m_lines.lines;
+      stringa & straLines = m_plines->lines;
 
       if(iLine >= straLines.get_size())
       {
@@ -1457,7 +1461,7 @@ namespace user
 
       iSel -= m_iViewOffset;
 
-      stringa & straLines = m_lines.lines;
+      stringa & straLines = m_plines->lines;
 
       strsize i1;
 
@@ -1512,7 +1516,7 @@ namespace user
 
       }
 
-      stringa & straLines = m_lines.lines;
+      stringa & straLines = m_plines->lines;
 
       strsize iSelStart;
 
@@ -2263,7 +2267,7 @@ namespace user
       UNREFERENCED_PARAMETER(iSel);
       UNREFERENCED_PARAMETER(iCount);
       CreateLineIndex();
-      modifyEvent(0);
+      m_peditor->modifyEvent(0);
       /*   char flag;
          m_iViewOffset = 0;
          int32_t iLineSize;
@@ -2328,7 +2332,7 @@ namespace user
       UNREFERENCED_PARAMETER(iSel);
       UNREFERENCED_PARAMETER(lpcszWhat);
       CreateLineIndex();
-      modifyEvent(0);
+      m_peditor->modifyEvent(0);
    }
 
 
@@ -2360,7 +2364,7 @@ namespace user
          ::draw2d::graphics_sp dc(allocer());
          dc->CreateCompatibleDC(NULL);
          _001OnCalcLayout(dc);
-         lineCountEvent(m_lines.lines.get_count());
+         m_peditor->lineCountEvent(m_plines->lines.get_count());
 
       }
 
@@ -2628,7 +2632,7 @@ namespace user
       {
          m_iViewSize += m_iaLineIndex[iLine];
       }
-      m_lines.lines.set_size(0,100);
+      m_plines->lines.set_size(0,100);
       string str;
       m_ptree->m_editfile.seek(m_iViewOffset,::file::seek_begin);
       iLine = m_iLineOffset;
@@ -2642,12 +2646,12 @@ namespace user
          m_ptree->m_editfile.read(lpsz,iLen);
          lpsz[iLen] = '\0';
          str.ReleaseBuffer();
-         m_lines.lines.add(str);
+         m_plines->lines.add(str);
       }
 
       m_y = m_scrollinfo.m_ptScroll.y;
 
-      visibleTextEvent(m_iLineOffset,m_iLineCount);
+      m_peditor->visibleTextEvent(m_iLineOffset,m_iLineCount);
 
 
 
@@ -2689,8 +2693,8 @@ namespace user
          {
             string textStart;
             strsize totalLength = 0;
-            for(int32_t i = 0; i < 4 && i < m_lines.getLineCount(); i++){
-               string iLine = m_lines.getLine(i);
+            for(int32_t i = 0; i < 4 && i < m_plines->getLineCount(); i++){
+               string iLine = m_plines->getLine(i);
                textStart += iLine;
                textStart += "\n";
                totalLength += iLine.get_length();
@@ -2702,7 +2706,7 @@ namespace user
       if(type != NULL)
       {
          type->getBaseScheme();
-         setFileType(type);
+         m_peditor->setFileType(type);
       }
       return type;
    }

@@ -430,7 +430,31 @@ namespace windows
 
    string application::multimedia_audio_get_default_library_name()
    {
-      return "audio_directsound";
+
+      string str;
+
+      if(file_exists_dup("C:\\ca2\\config\\system\\audio.txt"))
+      {
+
+         str = file_as_string_dup("C:\\ca2\\config\\system\\audio.txt");
+
+      }
+      else
+      {
+
+         string strPath;
+
+         strPath = ::dir::userappdata("audio.txt");
+
+         str = file_as_string_dup(strPath);
+
+      }
+
+      if(str.has_char())
+         return "audio_" + str;
+      else
+         return "audio_mmsystem";
+
    }
 
    string application::draw2d_get_default_library_name()

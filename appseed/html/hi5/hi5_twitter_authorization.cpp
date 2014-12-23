@@ -53,7 +53,7 @@ namespace hi5
       {
          if(m_pdoc != NULL)
             return;
-         sp(create_context) createcontext(allocer());
+         sp(::create) createcontext(allocer());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").cast < ::user::interaction > ();
          createcontext->m_bOuterPopupAlertLike = true;

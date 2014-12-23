@@ -7,7 +7,6 @@ namespace user
 
    class interaction;
    class interaction_impl;
-   class document;
    class frame_window;
    class create_struct;
    class menu;

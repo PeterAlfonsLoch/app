@@ -26,6 +26,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h" // #include "axis/net/sockets/bsd/sockets.h"
+#include "axis/net/net_sockets.h"
 #include "axis/axis/compress/compress_compress.h"
 #include <openssl/ssl.h>
 

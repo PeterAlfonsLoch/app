@@ -8,7 +8,6 @@ namespace user
    combo_box::combo_box(::aura::application * papp) :
       element(papp),
       ::data::listener(papp),
-      ::colorertake5::base_editor(papp),
       ::user::edit_plain_text(papp)
    {
 

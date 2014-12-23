@@ -1,4 +1,5 @@
 ﻿#include "framework.h" // from "base/user/user.h"
+#include "aura/user/colorertake5/colorertake5.h"
 
 
 string str_block(char ch,int32_t iSize);
@@ -30,7 +31,6 @@ namespace simple_ui
    password::password(::aura::application * papp) :
       element(papp),
       ::user::interaction(papp),
-      ::colorertake5::base_editor(papp),
       ::data::listener(papp),
       ::user::edit_plain_text(papp),
       edit_box(papp)
@@ -204,7 +204,7 @@ namespace simple_ui
       size size3;
       size3 = pdc->GetTextExtent(unitext("gGYIﾍ"));
       int32_t iLineHeight = size3.cy;
-      stringa & straLines = m_lines.lines;
+      stringa & straLines = m_plines->lines;
       stringa straLineFeed;
       string strLine;
       string str1;

@@ -51,9 +51,6 @@
     <Filter Include="Source Files\net\sockets\http">
       <UniqueIdentifier>{a5c7501f-8541-45c3-a3a3-755c723b2e05}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\smtp\NewFilter1">
-      <UniqueIdentifier>{4d9ffa81-d63c-4b08-9569-b94adbe41760}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\net\http">
       <UniqueIdentifier>{2451c210-f24a-4626-b8cc-97b3f5930555}</UniqueIdentifier>
     </Filter>
@@ -1503,9 +1500,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
