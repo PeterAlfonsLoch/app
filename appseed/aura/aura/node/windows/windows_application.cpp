@@ -430,7 +430,7 @@ namespace windows
 
    string application::multimedia_audio_get_default_library_name()
    {
-      return "audio_mmsystem";
+      return "audio_directsound";
    }
 
    string application::draw2d_get_default_library_name()
