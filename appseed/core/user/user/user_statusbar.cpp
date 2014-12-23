@@ -65,7 +65,8 @@ namespace user
       if (pParentWnd->GetStyle() & WS_THICKFRAME)
          dwStyle |= SBARS_SIZEGRIP;
       
-      return ::user::interaction::create_window(STATUSCLASSNAMEA, NULL, dwStyle, rect, pParentWnd, strId);
+      //return ::user::interaction::create_window(STATUSCLASSNAMEA, NULL, dwStyle, rect, pParentWnd, strId);
+      return ::user::interaction::create_window("msctls_statusbar32",NULL,dwStyle,rect,pParentWnd,strId);
 
    }
 

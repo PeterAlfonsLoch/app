@@ -120,8 +120,10 @@ namespace user
       m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
 
 
-
-      if (!::user::control_bar::create_window(TOOLBARCLASSNAMEA, NULL, dwStyle, null_rect(), pParentWnd, nID))
+      
+//         if(!::user::control_bar::create_window(TOOLBARCLASSNAMEA,NULL,dwStyle,null_rect(),pParentWnd,nID))
+  //          return FALSE;
+      if(!::user::control_bar::create_window("ToolbarWindow32",NULL,dwStyle,null_rect(),pParentWnd,nID))
          return FALSE;
 
       // sync up the sizes

@@ -11,8 +11,9 @@ namespace user
    bool toolbar_control::create_window(uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,
       UINT nID)
    {
-
-      return create_window(TOOLBARCLASSNAMEA, NULL, dwStyle, rect, pParentWnd, nID);
+      //return create_window(TOOLBARCLASSNAMEA,NULL,dwStyle,rect,pParentWnd,nID);
+      
+      return create_window("ToolbarWindow32",NULL,dwStyle,rect,pParentWnd,nID);
    }
 
    int32_t toolbar_control::AddBitmap(int32_t nNumButtons, ::draw2d::bitmap* pBitmap)
