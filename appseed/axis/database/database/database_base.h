@@ -11,7 +11,7 @@ namespace database
    represents  connection with database server;
 
    ******************************************************************/
-   class CLASS_DECL_BASE base :
+   class CLASS_DECL_AXIS base :
       virtual public ::object
    {
    public:

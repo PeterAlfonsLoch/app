@@ -4,7 +4,7 @@
 namespace database
 {
 
-   class CLASS_DECL_BASE selection
+   class CLASS_DECL_AXIS selection
    {
    public:
 

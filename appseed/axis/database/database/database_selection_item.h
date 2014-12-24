@@ -5,7 +5,7 @@ namespace database
 {
 
    
-   class CLASS_DECL_BASE selection_item  
+   class CLASS_DECL_AXIS selection_item  
    {
    public:
 

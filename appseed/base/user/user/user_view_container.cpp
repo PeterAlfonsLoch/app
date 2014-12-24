@@ -25,7 +25,7 @@ namespace user
    id view_container::get_view_id()
    {
    return id(var::type_empty);
-//      return ::base::system::idEmpty;
+//      return ::aura::system::idEmpty;
    }
 
    

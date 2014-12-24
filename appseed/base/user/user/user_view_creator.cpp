@@ -184,7 +184,7 @@ namespace user
       {
          return m_pviewcontainer->get_view_id();
       }
-      //return ::base::system::idEmpty;
+      //return ::aura::system::idEmpty;
       return id();
    }
 

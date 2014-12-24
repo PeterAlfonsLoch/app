@@ -2419,9 +2419,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="database\simpledb\simpledb_socket_thread.h" />
     <ClInclude Include="database\simpledb\simpledb_table.h" />
     <ClInclude Include="database\simpledb\veiev_post.h" />
-    <ClInclude Include="database\sqlite\sqlite.h" />
-    <ClInclude Include="database\sqlite\sqlite_base.h" />
-    <ClInclude Include="database\sqlite\sqlite_set.h" />
+    <ClInclude Include="database\simpledb\_simpledb.cpp" />
+    <ClInclude Include="database\sqlitedb\sqlitedb.h" />
+    <ClInclude Include="database\sqlitedb\sqlitedb_base.h" />
+    <ClInclude Include="database\sqlitedb\sqlitedb_set.h" />
     <ClInclude Include="filesystem\filesystem.h" />
     <ClInclude Include="filesystem\file\file_application.h" />
     <ClInclude Include="filesystem\file\file_dir_application.h" />
@@ -2763,32 +2764,80 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="database\database\database_set.cpp" />
     <ClCompile Include="database\database\database_stringhelper.cpp" />
     <ClCompile Include="database\database\database_update_hint.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_base.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_database.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_dataset.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_db_server.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_file_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_im_post.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_long_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_manager.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_mysql_database.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_mysql_result.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_record_row.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_result.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_server.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_service.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_session.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_simpledb.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_socket.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_stra_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_str_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_table.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp" />
-    <ClCompile Include="database\sqlite\sqlite_base.cpp" />
-    <ClCompile Include="database\sqlite\sqlite_set.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_database.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_dataset.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_db_server.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_im_post.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_long_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_mysql_database.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_mysql_result.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_record_row.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_result.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_server.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_service.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_session.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_simpledb.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_socket.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_stra_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_str_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_table.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\sqlitedb\sqlitedb_base.cpp" />
+    <ClCompile Include="database\sqlitedb\sqlitedb_set.cpp" />
     <ClCompile Include="filesystem\fs\fs_link.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>

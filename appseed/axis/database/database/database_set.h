@@ -8,7 +8,7 @@ namespace database
    class base;
 
 
-   class CLASS_DECL_BASE set :
+   class CLASS_DECL_AXIS set :
       virtual public ::object
    {
    protected:

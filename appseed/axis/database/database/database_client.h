@@ -15,7 +15,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_BASE data_trigger_output_stream :
+   class CLASS_DECL_AXIS data_trigger_output_stream :
       virtual public byte_stream_memory_buffer
    {
    public:
@@ -31,7 +31,7 @@ namespace file
    };
 
 
-   class CLASS_DECL_BASE data_trigger_input_stream :
+   class CLASS_DECL_AXIS data_trigger_input_stream :
       virtual public byte_stream_memory_buffer
    {
    public:
@@ -58,7 +58,7 @@ namespace database
 
 
 
-   class CLASS_DECL_BASE client :
+   class CLASS_DECL_AXIS client :
       virtual public ::object
    {
    public:
@@ -175,7 +175,7 @@ namespace database
 
    };
 
-   class CLASS_DECL_BASE client_array :
+   class CLASS_DECL_AXIS client_array :
       public ptr_array < client >
    {
    public:

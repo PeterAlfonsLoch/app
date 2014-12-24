@@ -484,7 +484,7 @@ namespace user
    id tab_view::get_view_id()
    {
       if(m_pviewdata == NULL)
-         return ::base::system::idEmpty;
+         return ::aura::system::idEmpty;
       return m_pviewdata->m_id;
    }
 
