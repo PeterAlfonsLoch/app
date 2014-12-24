@@ -6,7 +6,7 @@ namespace simpledb
 
    class base;
 
-   class CLASS_DECL_CORE table : 
+   class CLASS_DECL_AXIS table : 
       virtual public ::object
    {
    public:

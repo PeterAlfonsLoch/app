@@ -6,7 +6,7 @@ namespace simpledb
 {
 
 
-   class CLASS_DECL_CORE database:
+   class CLASS_DECL_AXIS database:
       virtual public ::object
    {
       friend class result;

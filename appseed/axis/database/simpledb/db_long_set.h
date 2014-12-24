@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_CORE db_long_set :
+class CLASS_DECL_AXIS db_long_set :
    virtual public ::object
 {
 public:
@@ -59,10 +59,10 @@ public:
    bool find(const char * lpKey);
 
 
-   bool MoveWindow_(const char * lpKey, ::window_sp pwindow);
-   bool SaveWindowRect_(const char * lpKey, ::window_sp pwindow);
-   bool SetWindowPlacement(const char * lpKey, ::window_sp pwindow);
-   bool SaveWindowPlacement(const char * lpKey, ::window_sp pwindow);
+   bool MoveWindow_(const char * lpKey, ::aura::interaction * pwindow);
+   bool SaveWindowRect_(const char * lpKey,::aura::interaction * pwindow);
+   bool SetWindowPlacement(const char * lpKey,::aura::interaction * pwindow);
+   bool SaveWindowPlacement(const char * lpKey,::aura::interaction * pwindow);
 
 };
 

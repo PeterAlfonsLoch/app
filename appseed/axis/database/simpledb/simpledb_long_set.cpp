@@ -2,7 +2,7 @@
 #include "axis/net/net_sockets.h"
 
 
-class CLASS_DECL_CORE db_long_set_item
+class CLASS_DECL_AXIS db_long_set_item
 {
 public:
 
@@ -11,7 +11,7 @@ public:
 
 };
 
-class CLASS_DECL_CORE db_long_set_queue_item:
+class CLASS_DECL_AXIS db_long_set_queue_item:
    virtual public element
 {
 public:
@@ -40,7 +40,7 @@ public:
 
 
 
-class CLASS_DECL_CORE db_long_set_core:
+class CLASS_DECL_AXIS db_long_set_core:
    public db_set
 {
 public:
@@ -79,7 +79,7 @@ public:
 };
 
 
-class CLASS_DECL_CORE db_long_sync_queue:
+class CLASS_DECL_AXIS db_long_sync_queue:
    public simple_thread
 {
 public:

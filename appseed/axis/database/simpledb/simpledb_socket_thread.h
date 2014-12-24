@@ -9,7 +9,7 @@ namespace simpledb
    class service;
 
 
-   class CLASS_DECL_CORE socket_thread : 
+   class CLASS_DECL_AXIS socket_thread : 
       public thread,
       public ::sockets::socket_handler
    {

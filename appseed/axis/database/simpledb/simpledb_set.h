@@ -8,7 +8,7 @@ namespace simpledb
    class base;
 
 
-   class CLASS_DECL_CORE set : 
+   class CLASS_DECL_AXIS set : 
       public ::database::set
    {
    public:

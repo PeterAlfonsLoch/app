@@ -4,7 +4,7 @@
 namespace simpledb
 {
 
-   class CLASS_DECL_CORE record_row : 
+   class CLASS_DECL_AXIS record_row : 
       virtual public ::file::serializable
    {
    public:

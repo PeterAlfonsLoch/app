@@ -3,7 +3,7 @@
 #include "db_str_set.h"
 
 
-class CLASS_DECL_CORE db_str_set_item
+class CLASS_DECL_AXIS db_str_set_item
 {
 public:
 
@@ -15,7 +15,7 @@ public:
 };
 
 
-class CLASS_DECL_CORE db_str_set_queue_item:
+class CLASS_DECL_AXIS db_str_set_queue_item:
    virtual public element
 {
 public:
@@ -46,7 +46,7 @@ public:
 };
 
 
-class CLASS_DECL_CORE db_str_set_core:
+class CLASS_DECL_AXIS db_str_set_core:
    virtual public ::db_set
 {
 public:
@@ -88,7 +88,7 @@ public:
 };
 
 
-class CLASS_DECL_CORE db_str_sync_queue:
+class CLASS_DECL_AXIS db_str_sync_queue:
    public simple_thread
 {
 public:

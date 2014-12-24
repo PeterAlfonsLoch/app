@@ -8,7 +8,7 @@ namespace simpledb
    class socket;
 
 
-   class CLASS_DECL_CORE manager :
+   class CLASS_DECL_AXIS manager :
       virtual public thread,
       virtual public ::aura::message_queue_listener
    {

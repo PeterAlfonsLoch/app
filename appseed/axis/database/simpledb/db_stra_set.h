@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_CORE db_stra_set :
+class CLASS_DECL_AXIS db_stra_set :
    public ::database::client
 {
 public:

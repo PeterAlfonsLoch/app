@@ -18,7 +18,7 @@ namespace simpledb
 {
 
 
-   class CLASS_DECL_CORE simpledb :
+   class CLASS_DECL_AXIS simpledb :
       virtual public ::aura::departament,
       virtual public ::database::database
    {

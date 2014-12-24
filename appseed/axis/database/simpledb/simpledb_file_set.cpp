@@ -43,7 +43,7 @@ namespace simpledb
 
       bool_array baRecursive;
 
-      if(!data_get(::base::system::idEmpty, stra))
+      if(!data_get(::aura::system::idEmpty, stra))
          return false;
 
       data_load("recursive", baRecursive);
@@ -61,12 +61,12 @@ namespace simpledb
 
       stringa stra;
 
-      data_get(::base::system::idEmpty, stra);
+      data_get(::aura::system::idEmpty, stra);
 
       if(stra.add_unique(pszSearchDirectory) < 0)
          return true;
 
-      if(!data_set(::base::system::idEmpty, stra))
+      if(!data_set(::aura::system::idEmpty, stra))
          return false;
 
       if(!refresh())
@@ -82,7 +82,7 @@ namespace simpledb
 
       stringa stra;
 
-      if(!data_set(::base::system::idEmpty, stra))
+      if(!data_set(::aura::system::idEmpty, stra))
          return false;
 
       if(!refresh())

@@ -4,7 +4,7 @@
 class db_server;
 
 
-class CLASS_DECL_CORE im_post :
+class CLASS_DECL_AXIS im_post :
    public db_set
 {
 public:
@@ -13,7 +13,7 @@ public:
    virtual ~im_post();
 
 
-   /*class CLASS_DECL_CORE record
+   /*class CLASS_DECL_AXIS record
    {
    public:
       var sender;

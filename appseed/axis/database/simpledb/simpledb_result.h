@@ -10,7 +10,7 @@ namespace simpledb
    class database;
 
 
-   class CLASS_DECL_CORE result :
+   class CLASS_DECL_AXIS result :
       virtual public ::object
    {
    public:

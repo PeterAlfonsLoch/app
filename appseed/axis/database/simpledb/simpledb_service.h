@@ -8,7 +8,7 @@ namespace simpledb
    class socket_thread;
 
 
-   class CLASS_DECL_CORE service :
+   class CLASS_DECL_AXIS service :
       public plain_service
    {
    public:

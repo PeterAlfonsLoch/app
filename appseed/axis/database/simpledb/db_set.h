@@ -2,7 +2,7 @@
 
 class db_server;
 
-class CLASS_DECL_CORE db_set :
+class CLASS_DECL_AXIS db_set :
    virtual public ::database::client
 {
 public:
@@ -17,7 +17,7 @@ public:
 };
 
 
-class CLASS_DECL_CORE simpledb_set :
+class CLASS_DECL_AXIS simpledb_set :
    virtual public ::database::client
 {
 public:
