@@ -76,7 +76,7 @@ namespace filehandler
 
    }
 
-   void application::on_request(sp(::create_context) pcreatecontext)
+   void application::on_request(sp(::create) pcreatecontext)
    {
 
       if(m_ppaneview == NULL)

@@ -87,12 +87,6 @@
     <Filter Include="Header Files\user\simple">
       <UniqueIdentifier>{87359dfc-dc8d-48ea-9e7a-cc1bd37769e0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive">
-      <UniqueIdentifier>{c3a3f335-1f74-414c-af73-a3b4680deb20}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\datetime">
-      <UniqueIdentifier>{1ef22db4-5227-45fc-a00c-f15772d44e99}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive">
       <UniqueIdentifier>{a436f96b-c593-4991-9fba-6ed7210b6d8b}</UniqueIdentifier>
     </Filter>
@@ -104,9 +98,6 @@
     </Filter>
     <Filter Include="Source Files\base\base_policy">
       <UniqueIdentifier>{2be2ffd3-b100-458f-88e6-49eb5577055f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\data">
-      <UniqueIdentifier>{fc9dbcd3-5ad0-45d8-9b45-200ec76c6729}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\database\database">
       <UniqueIdentifier>{06558f64-95d7-4ec0-81d1-5502727314ef}</UniqueIdentifier>
@@ -168,23 +159,11 @@
     <Filter Include="Header Files\base\message">
       <UniqueIdentifier>{6ea91d16-af59-4653-ad87-aaa3548a7437}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\base\compress">
-      <UniqueIdentifier>{aa64ea9e-1344-463d-b1e9-004e327ca47d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\compress\bsdiff">
-      <UniqueIdentifier>{f760d837-b8a1-41ee-b528-eefc089d1d54}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\base\base">
       <UniqueIdentifier>{5dc0d2bc-fc5d-4202-9b04-2343b93cccb5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\base\base_policy">
       <UniqueIdentifier>{a16fcaca-ea5f-4d72-8dee-7ab35a286c93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\compress\zip">
-      <UniqueIdentifier>{716df1e3-eea1-4120-b87a-01f7dbfa443f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\compress\zip\NewFilter1">
-      <UniqueIdentifier>{3e96b298-4033-4729-b2a9-8d3cb81244e5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\base\hotplugin">
       <UniqueIdentifier>{d45740f5-a7b5-45c5-b93c-11f6da3e827b}</UniqueIdentifier>
@@ -458,26 +437,11 @@
     <ClInclude Include="user\simple_ui\simple_ui_message_box.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_value.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_departament.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_edit_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="base\node\windows\windows_message_queue.h">
       <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_simple_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_tree.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data_tree_item.h">
-      <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
     <ClInclude Include="database\database\database.h">
       <Filter>Header Files\database\database</Filter>
@@ -634,18 +598,6 @@
     </ClInclude>
     <ClInclude Include="base\base_policy\base_policy_winrt.h">
       <Filter>Header Files\base\base_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\bsdiff\libbsdiff.h">
-      <Filter>Header Files\base\compress\bsdiff</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\bzip_stream.h">
-      <Filter>Header Files\base\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\compress.h">
-      <Filter>Header Files\base\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="base\compress\gzip_stream.h">
-      <Filter>Header Files\base\compress</Filter>
     </ClInclude>
     <ClInclude Include="base\message\message_user.h">
       <Filter>Header Files\base\message</Filter>

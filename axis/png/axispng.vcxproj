@@ -1273,22 +1273,6 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="calculator\calculator.h" />
-    <ClInclude Include="calculator\calculator_calculator.h" />
-    <ClInclude Include="calculator\numeric_element.h" />
-    <ClInclude Include="calculator\numeric_parser.h" />
-    <ClInclude Include="calculator\numeric_parser_exception.h" />
-    <ClInclude Include="calculator\numeric_scanner.h" />
-    <ClInclude Include="calculator\numeric_token.h" />
-    <ClInclude Include="calculator\numeric_value.h" />
-    <ClInclude Include="kissfft\kissfft.h" />
-    <ClInclude Include="kissfft\kissfft_fftd.h" />
-    <ClInclude Include="kissfft\kissfft_ifftd.h" />
-    <ClInclude Include="kissfft\kiss_fft.h" />
-    <ClInclude Include="kissfft\kiss_ifft.h" />
-    <ClInclude Include="kissfft\kiss_fft_guts.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="math\math_math.h" />
     <ClInclude Include="Source\LibPNG\png.h" />
     <ClInclude Include="Source\LibPNG\pngconf.h" />
     <ClInclude Include="Source\LibPNG\pngdebug.h" />

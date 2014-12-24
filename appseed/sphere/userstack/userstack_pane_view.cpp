@@ -208,7 +208,7 @@ namespace userstack
             application_bias * pbiasCreate = new application_bias;
             pbiasCreate->m_puiParent = pcreatordata->m_pholder;
 
-            sp(::create_context) createcontext(allocer());
+            sp(::create) createcontext(allocer());
             createcontext->m_spApplicationBias = pbiasCreate;
             createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 

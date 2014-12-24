@@ -3289,6 +3289,7 @@
     <ProjectReference Include="..\bzip2\axisbzip2.vcxproj">
       <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\openssl\axisopenssl.vcxproj" />
     <ProjectReference Include="..\png\axispng.vcxproj">
       <Project>{84517714-2000-419d-a87f-4338c9dde3fa}</Project>
     </ProjectReference>

@@ -72,7 +72,7 @@ namespace userstack
       virtual void OnDraw(::draw2d::graphics * pgraphics);
       virtual void on_update(sp(::aura::impact) pSender, LPARAM lHint, ::object* pHint);
 
-      ::user::document * get_document();
+      ::aura::document * get_document();
 
       void GetAreaThumbRect(LPRECT lprect, int32_t iArea);
 

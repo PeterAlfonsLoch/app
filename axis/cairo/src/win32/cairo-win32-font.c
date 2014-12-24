@@ -54,6 +54,7 @@
 
 #include <wchar.h>
 
+
 #ifndef SPI_GETFONTSMOOTHINGTYPE
 #define SPI_GETFONTSMOOTHINGTYPE 0x200a
 #endif
@@ -260,7 +261,7 @@ _compute_transform (cairo_win32_scaled_font_t *scaled_font,
 static cairo_bool_t
 _have_cleartype_quality (void)
 {
-    OSVERSIONINFO version_info;
+/*    OSVERSIONINFO version_info;
 
     version_info.dwOSVersionInfoSize = sizeof (OSVERSIONINFO);
 
@@ -272,6 +273,9 @@ _have_cleartype_quality (void)
     return (version_info.dwMajorVersion > 5 ||
 	    (version_info.dwMajorVersion == 5 &&
 	     version_info.dwMinorVersion >= 1));	/* XP or newer */
+   
+   return is_windows_xp_or_greater();
+
 }
 
 static BYTE

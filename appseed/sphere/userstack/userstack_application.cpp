@@ -152,7 +152,7 @@ namespace userstack
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void application::on_request(sp(::create_context) pcreatecontext)
+   void application::on_request(sp(::create) pcreatecontext)
    {
 
       ::asphere::application::on_request(pcreatecontext);
@@ -183,7 +183,7 @@ namespace userstack
    }
 
 
-/*   void application::request(sp(::create_context) pcreatecontext)
+/*   void application::request(sp(::create) pcreatecontext)
    {
 
       if(m_pappCurrent != NULL && m_pappCurrent != this
@@ -195,7 +195,7 @@ namespace userstack
             get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }
          App(m_pappCurrent).request(pcreatecontext);
-         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::user::document > () == NULL)
+         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].cast < ::aura::document > () == NULL)
          {
             goto alt1;
          }
@@ -293,14 +293,14 @@ namespace userstack
       }
    }
 
-/*   sp(::user::interaction) application::get_request_parent_ui(sp(::user::main_frame) pmainframe, sp(::create_context) pcreatecontext)
+/*   sp(::user::interaction) application::get_request_parent_ui(sp(::user::main_frame) pmainframe, sp(::create) pcreatecontext)
    {
 
       return get_request_parent_ui((sp(::user::interaction) ) pmainframe, pcreatecontext);
 
    }
 
-   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create_context) pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcreatecontext)
    {
 
 
@@ -387,7 +387,7 @@ namespace userstack
 
    }
 
-   ::user::place_holder_ptra application::get_place_holder(sp(::user::main_frame) pmainframe, sp(::create_context) pcreatecontext)
+   ::user::place_holder_ptra application::get_place_holder(sp(::user::main_frame) pmainframe, sp(::create) pcreatecontext)
    {
 
       UNREFERENCED_PARAMETER(pcreatecontext);
@@ -418,7 +418,7 @@ namespace userstack
 
    }
 
-   bool application::place(sp(::user::main_frame) pmainframe, sp(::create_context) pcreatecontext)
+   bool application::place(sp(::user::main_frame) pmainframe, sp(::create) pcreatecontext)
    {
 
       get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);

@@ -8,7 +8,7 @@ namespace filehandler
    document::document(::aura::application * papp) :
       element(papp),
       ::data::data_container_base(papp),
-      ::user::document(papp),
+      ::aura::document(papp),
       form_document(papp),
       html_document(papp)
    {
@@ -16,7 +16,7 @@ namespace filehandler
 
    bool document::on_new_document()
    {
-      if (!::user::document::on_new_document())
+      if (!::aura::document::on_new_document())
          return FALSE;
 
 //      if(!get_data()->on_open_document("rtp://10.10.100.97:19847"))
@@ -45,12 +45,12 @@ namespace filehandler
    #ifdef DEBUG
    void document::assert_valid() const
    {
-      ::user::document::assert_valid();
+      ::aura::document::assert_valid();
    }
 
    void document::dump(dump_context & dumpcontext) const
    {
-      ::user::document::dump(dumpcontext);
+      ::aura::document::dump(dumpcontext);
    }
    #endif //DEBUG
 

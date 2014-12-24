@@ -10,8 +10,7 @@ namespace command
       element(papp),
       ::user::interaction(papp),
       ::user::scroll_view(papp),
-      ::colorertake5::base_editor(papp),
-      ::data::data_listener(papp),
+      ::data::listener(papp),
       ::user::edit_plain_text(papp),
       ::user::edit_plain_text_view(papp)
    {

@@ -4932,6 +4932,7 @@ copy Source\FreeImage.h Dist
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj" />
+    <ProjectReference Include="..\zlib\axiszlib.vcxproj" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

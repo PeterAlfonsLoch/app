@@ -95,7 +95,7 @@ namespace filehandler
       POSITION pos = papp->m_ptemplate_html->get_document_count();
       while(pos != NULL)
       {
-      sp(::user::document) pdoc = papp->m_ptemplate_html->get_document(index);
+      sp(::aura::document) pdoc = papp->m_ptemplate_html->get_document(index);
       pdoc->update_all_views(pSender, lHint, pHint);
       }*/
 
@@ -166,7 +166,7 @@ namespace filehandler
       {
       case pane_view_new:
          {
-            /*               sp(::create_context) createcontext(get_app());
+            /*               sp(::create) createcontext(get_app());
             createcontext->m_bMakeVisible = true;
             createcontext->m_puiParent = this;
             rtprxsp(::document) pdoc = dynamic_cast < rtprxsp(::document) > (papp->m_ptemplateVideo->open_document_file(createcontext));

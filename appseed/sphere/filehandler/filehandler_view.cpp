@@ -236,7 +236,7 @@ namespace filehandler
          Session.request(varRequest);
          */
 
-         sp(::create_context) createcontext(allocer());
+         sp(::create) createcontext(allocer());
 
          createcontext->m_spCommandLine->m_strApp = m_plist->operator [](iItem)->m_strApp;
 

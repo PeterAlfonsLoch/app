@@ -2210,10 +2210,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base_policy\base_policy_objc.h" />
     <ClInclude Include="base\base_policy\base_policy_objcpp.h" />
     <ClInclude Include="base\base_policy\base_policy_winrt.h" />
-    <ClInclude Include="base\compress\bsdiff\libbsdiff.h" />
-    <ClInclude Include="base\compress\bzip_stream.h" />
-    <ClInclude Include="base\compress\compress.h" />
-    <ClInclude Include="base\compress\gzip_stream.h" />
     <ClInclude Include="base\message\message_user.h" />
     <ClInclude Include="database\database\database.h" />
     <ClInclude Include="database\database\database_base.h" />
@@ -2584,11 +2580,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='stage|Android'">CompileAsCppHeader</CompileAs>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">CompileAsCppHeader</CompileAs>
     </ClCompile>
-    <ClInclude Include="primitive\data\data_simple_item.h" />
-    <ClInclude Include="primitive\data\data_tree.h" />
-    <ClInclude Include="primitive\data\data_tree_item.h" />
-    <ClInclude Include="primitive\datetime\datetime_departament.h" />
-    <ClInclude Include="primitive\datetime\datetime_value.h" />
     <ClInclude Include="user\fontopus\fontopus.h" />
     <ClInclude Include="user\fontopus\fontopus_login.h" />
     <ClInclude Include="user\fontopus\fontopus_simple_ui.h" />

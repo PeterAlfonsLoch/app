@@ -29,7 +29,7 @@ namespace calculator
       DECL_GEN_SIGNAL(_001OnInitialUpdate);
          virtual void on_update(sp(::aura::impact) pSender, LPARAM lHint, ::object* pHint);
 
-      ::user::document * get_document();
+      ::aura::document * get_document();
 
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnSize);

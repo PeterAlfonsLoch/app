@@ -1890,7 +1890,7 @@ synch_lock ml(m_spmutex);
 
 /*
 
-   // ::user::document handling functions
+   // ::aura::document handling functions
    int32_t graphics::StartDoc(LPDOCINFO lpDocInfo)
    {
 

@@ -46,7 +46,7 @@ namespace command
       DECL_GEN_SIGNAL(_001OnRButtonUp);
 	   virtual void on_update(sp(::aura::impact) pSender, LPARAM lHint, ::object* pHint);
 
-      ::user::document * get_document();
+      ::aura::document * get_document();
 
 	   DECL_GEN_SIGNAL(_001OnDestroy);
 	   DECL_GEN_SIGNAL(_001OnSize);

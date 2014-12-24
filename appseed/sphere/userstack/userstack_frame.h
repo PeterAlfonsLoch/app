@@ -19,7 +19,7 @@ namespace userstack
       string                     m_strAnimatedStatusBarText;
       int32_t                        m_iAnimateStep;
       image_list  *              m_pimagelist;
-      sp(::user::document)                 m_pdocument;
+      sp(::aura::document)                 m_pdocument;
       bool                       m_bHoverMouse;
       uint32_t                      m_dwLastHover;
       bool                       m_bTimerOn;
