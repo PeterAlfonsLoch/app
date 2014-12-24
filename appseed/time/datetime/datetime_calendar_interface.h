@@ -45,11 +45,11 @@ public:
 
    void set_pos(point pt, size sz);
 
-   virtual void GetDateTime(::user::str_context * pcontext, string & strDateTime);
+   virtual void GetDateTime(::aura::str_context * pcontext, string & strDateTime);
 
-   virtual string GetTinyWeekDay(::user::str_context * pcontext, int32_t iWeekDay); // 1 - domingo
-   virtual string GetWeekDay(::user::str_context * pcontext, int32_t iWeekDay); // 1 - domingo
-   virtual string GetMonth(::user::str_context * pcontext, int32_t iMonth); // 1 - janeiro
+   virtual string GetTinyWeekDay(::aura::str_context * pcontext, int32_t iWeekDay); // 1 - domingo
+   virtual string GetWeekDay(::aura::str_context * pcontext, int32_t iWeekDay); // 1 - domingo
+   virtual string GetMonth(::aura::str_context * pcontext, int32_t iMonth); // 1 - janeiro
 
    virtual void previous_month();
    virtual void next_month();

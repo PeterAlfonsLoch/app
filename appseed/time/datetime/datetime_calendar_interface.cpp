@@ -66,7 +66,7 @@ void calendar_interface::set_pos(point pt, size sz)
 }
 
 
-void calendar_interface::GetDateTime(::user::str_context * pcontext, string & strDateTime)
+void calendar_interface::GetDateTime(::aura::str_context * pcontext, string & strDateTime)
 {
    ::datetime::time time = ::datetime::time::get_current_time();
    string strDate;
@@ -86,18 +86,18 @@ void calendar_interface::GetDateTime(::user::str_context * pcontext, string & st
 }
 
 
-string calendar_interface::GetWeekDay(::user::str_context * pcontext, int32_t iWeekDay) // 1 - domingo
+string calendar_interface::GetWeekDay(::aura::str_context * pcontext, int32_t iWeekDay) // 1 - domingo
 {
    return System.datetime().get_week_day_str(pcontext, iWeekDay);
 }
 
 
-string calendar_interface::GetTinyWeekDay(::user::str_context * pcontext, int32_t iWeekDay) // 1 - domingo
+string calendar_interface::GetTinyWeekDay(::aura::str_context * pcontext, int32_t iWeekDay) // 1 - domingo
 {
    return System.datetime().get_tiny_week_day_str(pcontext, iWeekDay);
 }
 
-string calendar_interface::GetMonth(::user::str_context * pcontext, int32_t iMonth)
+string calendar_interface::GetMonth(::aura::str_context * pcontext, int32_t iMonth)
 {
    return System.datetime().get_month_str(pcontext, iMonth);
 }

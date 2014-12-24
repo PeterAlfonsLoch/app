@@ -1,0 +1,26 @@
+ O volume na unidade Z ‚ eco
+ O N£mero de S‚rie do Volume ‚ 4A91-94E4
+
+ Pasta de Z:\ca2\app\appseed\core\core\core
+
+2014-09-19  17:31             5.503 core.cpp
+2014-12-22  15:40            98.486 core_application.cpp
+2014-09-19  17:31                24 core_constraint.cpp
+2014-09-19  17:31               621 core_Debug.cpp
+2014-11-20  13:46               413 core_history.cpp
+2014-11-20  13:46             1.428 core_library.cpp
+2014-09-19  17:31               314 core_logic.cpp
+2014-09-19  17:31             1.927 core_match.cpp
+2014-11-20  13:46               351 core_os_history.cpp
+2014-09-19  17:31               573 core_patch.cpp
+2014-12-23  02:37            51.102 core_platform.cpp
+2014-09-19  17:31             1.291 core_profiler.cpp
+2014-09-19  17:31               265 core_simple_app.cpp
+2014-09-19  17:31             1.591 core_strn.cpp
+2014-12-14  21:15                30 core_str_format.cpp
+2014-12-22  13:36            24.310 core_system.cpp
+2014-09-19  17:31             2.549 core_Timer.cpp
+2014-09-19  17:31               743 core_timer_callback.cpp
+2014-12-06  07:11                74 core_timer_listener.cpp
+              19 arquivo(s)        191.595 bytes
+               0 pasta(s)   65.238.601.728 bytes dispon¡veis

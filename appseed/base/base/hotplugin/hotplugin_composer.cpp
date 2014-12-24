@@ -74,7 +74,7 @@ namespace hotplugin
             if(::hotplugin::get_base_system() == NULL)
             {
 
-               ::hotplugin::defer_start_axis_system();
+               ::hotplugin::defer_start_base_system();
 
             }
             else

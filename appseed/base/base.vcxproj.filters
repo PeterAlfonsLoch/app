@@ -227,12 +227,6 @@
     <ClInclude Include="user\simple_ui\simple_ui_style.h">
       <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
-    <ClInclude Include="version.config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\android\android_window_android.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>

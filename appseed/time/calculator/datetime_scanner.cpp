@@ -37,7 +37,7 @@ namespace datetime
          return true;
    }
 
-   string check_unit(::user::str_context * pcontext, const char * input, const char * & scanner)
+   string check_unit(::aura::str_context * pcontext, const char * input, const char * & scanner)
    {
       static id idCalendarDays("calendar:days");
       scanner = input;
@@ -487,7 +487,7 @@ namespace datetime
       }
    }
 
-   string check_offset(::user::str_context * pcontext, const char * input, const char * & scanner)
+   string check_offset(::aura::str_context * pcontext, const char * input, const char * & scanner)
    {
       if(check_end_expression(input, scanner))
          return "";
@@ -515,7 +515,7 @@ namespace datetime
       return string(start, scanner - start);
    }
 
-   string consume_date_expression(::user::str_context * pcontext, const char * & input)
+   string consume_date_expression(::aura::str_context * pcontext, const char * & input)
    {
       const char * scanner;
       if(check_end_expression(input, scanner))
@@ -603,7 +603,7 @@ namespace datetime
       }
    }
 
-   scanner::scanner(::aura::application * papp, ::user::str_context * pcontext)
+   scanner::scanner(::aura::application * papp, ::aura::str_context * pcontext)
    {
       m_pstrcontext     = pcontext;
       m_ptoken          = NULL;
