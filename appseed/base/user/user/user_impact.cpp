@@ -41,6 +41,7 @@ ON_COMMAND_EX(ID_PREV_PANE, OnNextPaneCmd)
 ON_MESSAGE_VOID(WM_INITIALUPDATE, OnInitialUpdate)*/
 // END_MESSAGE_MAP()
 #include "framework.h" // from "base/user/user.h"
+#include "base/user/user.h"
 
 
 #define WM_INITIALUPDATE    0x0364  // (params unused) - sent to children

@@ -1,4 +1,6 @@
 #include "framework.h" // from "base/user/user.h"
+#include "base/user/user.h"
+
 
 #ifdef WINDOWS
 #include <dde.h>        // for DDE execute shell requests
