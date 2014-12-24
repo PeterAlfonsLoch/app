@@ -934,7 +934,7 @@
       </EntryPointSymbol>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
-      <AndroidSystemLibs>c;m;log;gcc;aura;axisbzip2;axisidn;axisopenssl;axiszlib;axisfreetype;axisfreeimage</AndroidSystemLibs>
+      <AndroidSystemLibs>c;m;log;gcc;aura;axisbzip2;axisidn;axisopenssl;axiszlib;axisfreetype;axisfreeimage;aurasqlite</AndroidSystemLibs>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -2380,6 +2380,48 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </ClInclude>
     <ClInclude Include="axis\os\os.h" />
     <ClInclude Include="axis\os\windows\windows.h" />
+    <ClInclude Include="database\database\database.h" />
+    <ClInclude Include="database\database\database_base.h" />
+    <ClInclude Include="database\database\database_change_event.h" />
+    <ClInclude Include="database\database\database_client.h" />
+    <ClInclude Include="database\database\database_database.h" />
+    <ClInclude Include="database\database\database_definition.h" />
+    <ClInclude Include="database\database\database_field_definition.h" />
+    <ClInclude Include="database\database\database_id.h" />
+    <ClInclude Include="database\database\database_key.h" />
+    <ClInclude Include="database\database\database_selection.h" />
+    <ClInclude Include="database\database\database_selection_item.h" />
+    <ClInclude Include="database\database\database_server.h" />
+    <ClInclude Include="database\database\database_set.h" />
+    <ClInclude Include="database\database\database_stringhelper.h" />
+    <ClInclude Include="database\database\database_template.h" />
+    <ClInclude Include="database\database\database_update_hint.h" />
+    <ClInclude Include="database\simpledb\DBFileSystemSize.h" />
+    <ClInclude Include="database\simpledb\db_long_set.h" />
+    <ClInclude Include="database\simpledb\db_server.h" />
+    <ClInclude Include="database\simpledb\db_set.h" />
+    <ClInclude Include="database\simpledb\db_stra_set.h" />
+    <ClInclude Include="database\simpledb\db_str_set.h" />
+    <ClInclude Include="database\simpledb\file_set.h" />
+    <ClInclude Include="database\simpledb\im_post.h" />
+    <ClInclude Include="database\simpledb\simpledb.h" />
+    <ClInclude Include="database\simpledb\simpledb_base.h" />
+    <ClInclude Include="database\simpledb\simpledb_database.h" />
+    <ClInclude Include="database\simpledb\simpledb_manager.h" />
+    <ClInclude Include="database\simpledb\simpledb_record.h" />
+    <ClInclude Include="database\simpledb\simpledb_result.h" />
+    <ClInclude Include="database\simpledb\simpledb_server.h" />
+    <ClInclude Include="database\simpledb\simpledb_service.h" />
+    <ClInclude Include="database\simpledb\simpledb_session.h" />
+    <ClInclude Include="database\simpledb\simpledb_set.h" />
+    <ClInclude Include="database\simpledb\simpledb_simpledb.h" />
+    <ClInclude Include="database\simpledb\simpledb_socket.h" />
+    <ClInclude Include="database\simpledb\simpledb_socket_thread.h" />
+    <ClInclude Include="database\simpledb\simpledb_table.h" />
+    <ClInclude Include="database\simpledb\veiev_post.h" />
+    <ClInclude Include="database\sqlite\sqlite.h" />
+    <ClInclude Include="database\sqlite\sqlite_base.h" />
+    <ClInclude Include="database\sqlite\sqlite_set.h" />
     <ClInclude Include="filesystem\filesystem.h" />
     <ClInclude Include="filesystem\file\file_application.h" />
     <ClInclude Include="filesystem\file\file_dir_application.h" />
@@ -2707,6 +2749,46 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\os\windows\windows_simple_app.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="database\database\database_application.cpp" />
+    <ClCompile Include="database\database\database_base.cpp" />
+    <ClCompile Include="database\database\database_client.cpp" />
+    <ClCompile Include="database\database\database_definition.cpp" />
+    <ClCompile Include="database\database\database_event_change.cpp" />
+    <ClCompile Include="database\database\database_field_definition.cpp" />
+    <ClCompile Include="database\database\database_id.cpp" />
+    <ClCompile Include="database\database\database_key.cpp" />
+    <ClCompile Include="database\database\database_selection.cpp" />
+    <ClCompile Include="database\database\database_selection_item.cpp" />
+    <ClCompile Include="database\database\database_server.cpp" />
+    <ClCompile Include="database\database\database_set.cpp" />
+    <ClCompile Include="database\database\database_stringhelper.cpp" />
+    <ClCompile Include="database\database\database_update_hint.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_base.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_database.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_dataset.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_db_server.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_file_set.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_im_post.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_long_set.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_manager.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_mysql_database.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_mysql_result.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_record_row.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_result.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_server.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_service.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_session.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_set.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_simpledb.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_socket.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_stra_set.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_str_set.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_table.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp" />
+    <ClCompile Include="database\sqlite\sqlite_base.cpp" />
+    <ClCompile Include="database\sqlite\sqlite_set.cpp" />
     <ClCompile Include="filesystem\fs\fs_link.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
@@ -3263,6 +3345,9 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <None Include="axis\axis\axis.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\aura\sqlite\aurasqlite.vcxproj">
+      <Project>{424f72d6-053a-41c5-be03-3b0bd535f1eb}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\axis\bzip2\axisbzip2.vcxproj">
       <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
     </ProjectReference>
