@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "base/user/user.h"
 
 
 oswindow_data::oswindow_data()

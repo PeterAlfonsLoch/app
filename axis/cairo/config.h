@@ -473,13 +473,13 @@
 
 #ifdef ANDROID
 
-struct lconv
-{
-
-   const char * decimal_point;
-
-};
-
-struct lconv *localeconv(void);
+//struct lconv
+//{
+//
+//   const char * decimal_point;
+//
+//};
+//
+//struct lconv *localeconv(void);
 
 #endif

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "base/user/user.h"
 #include "android.h"
 
 class keep_event_reset

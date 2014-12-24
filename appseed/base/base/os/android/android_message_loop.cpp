@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "base/user/user.h"
 
 /*
 class sys_message_queue
