@@ -24,6 +24,8 @@
  */
 
 #include "framework.h"
+#include "net/net_sockets.h"
+
 
 #ifdef DEBUG
 #	ifdef _MSC_VER

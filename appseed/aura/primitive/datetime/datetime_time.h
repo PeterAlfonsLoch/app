@@ -1,6 +1,13 @@
 #pragma once
 
 
+#ifdef ANDROID
+
+struct tm;
+
+#endif
+
+
 namespace datetime
 {
 
@@ -108,8 +115,8 @@ namespace datetime
       bool operator<=( time time ) const NOTHROW;
       bool operator>=( time time ) const NOTHROW;
 
-      struct tm* GetGmtTm( struct tm* ptm ) const;
-      struct tm* GetLocalTm( struct tm* ptm ) const;
+      struct ::tm* GetGmtTm( struct ::tm* ptm ) const;
+      struct ::tm* GetLocalTm( struct ::tm* ptm ) const;
       /*
       #if !_SECURE_TEMPLATE
       _INSECURE_DEPRECATE("Pass an output time structure to time::GetGmtTm")

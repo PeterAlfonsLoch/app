@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "net/net_sockets.h"
+#include "geoip.h"
 
 static
 const int32_t FULL_RECORD_LENGTH = 50;

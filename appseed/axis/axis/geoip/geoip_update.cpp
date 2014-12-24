@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "net/net_sockets.h"
+#include "geoip.h"
 #ifdef BSD_STYLE_SOCKETS
 #include <openssl/ssl.h>
 #include <openssl/md5.h>

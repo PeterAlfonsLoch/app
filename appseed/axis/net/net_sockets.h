@@ -7,6 +7,40 @@
 #include "net.h"
 
 
+#ifdef ANDROID
+
+#include <sys/select.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+#endif
+
+#ifdef LINUX
+
+
+#include <time.h>
+
+
+#endif
+
+#ifdef APPLEOS
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+
+#endif
+
+
+#include "net_net.h"
+
+
+#include "net_address.h"
+
+
 #include "net_port_forward.h"
 
 

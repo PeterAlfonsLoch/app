@@ -1,5 +1,8 @@
 #include "framework.h" // from "base/aura/aura.h"
 #include <time.h>
+//#ifdef ANDROID
+//#include <sys/time.h>
+//#endif
 
 
 namespace datetime
@@ -223,7 +226,7 @@ namespace datetime
 
    time_t departament::mktime(int32_t iHour,int32_t iMinute,int32_t iSecond,int32_t iMonth,int32_t iDay,int32_t iYear)
    {
-      struct tm tm;
+      struct ::tm tm;
       ZERO(tm);
       tm.tm_hour  = iHour;
       tm.tm_min   = iMinute;
@@ -261,7 +264,7 @@ namespace datetime
    ::datetime::time departament::from_gmt_date_time(int32_t iYear,int32_t iMonth,int32_t iDay,int32_t iHour,int32_t iMinute,int32_t iSecond)
    {
       ::datetime::time timeLocalNow = ::datetime::time::get_current_time();
-      struct tm tmLocalNow;
+      struct ::tm tmLocalNow;
       timeLocalNow.GetGmtTm(&tmLocalNow);
       ::datetime::time timeUTCNow(tmLocalNow.tm_year + 1900,tmLocalNow.tm_mon + 1,tmLocalNow.tm_mday,tmLocalNow.tm_hour,tmLocalNow.tm_min,tmLocalNow.tm_sec);
       ::datetime::time timeUTC(tmLocalNow.tm_year + 1900,tmLocalNow.tm_mon + 1,tmLocalNow.tm_mday,tmLocalNow.tm_hour,tmLocalNow.tm_min,tmLocalNow.tm_sec);

@@ -525,7 +525,8 @@ const void *    standard_exception::info() const
 const char *         standard_exception::name() const    
 {
 
-   return ::exception::translator::name(code()); 
+   //return ::exception::translator::name(code()); 
+   return "";
 
 }
 
@@ -533,7 +534,8 @@ const char *         standard_exception::name() const
 const char *         standard_exception::description() const
 {
 
-   return ::exception::translator::description(code()); 
+   //return ::exception::translator::description(code()); 
+   return "";
 
 }
 
