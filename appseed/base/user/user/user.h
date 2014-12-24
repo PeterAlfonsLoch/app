@@ -381,6 +381,18 @@ CLASS_DECL_BASE char * ::core::TaskStringW2A(const wchar_t * lpw);
 #include "user_inline.h"
 
 
+#include "base/base/hotplugin/hotplugin.h"
+
+
+#include "base/install/install.h"
+
+
+#include "base/user/fontopus/fontopus.h"
+
+
+
+
+
 
 
 

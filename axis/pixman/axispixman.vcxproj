@@ -642,7 +642,7 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>-Wl,-z,defs %(AdditionalOptions)</AdditionalOptions>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
-      <AndroidSystemLibs>c;m;log;gcc;axispixman;aura</AndroidSystemLibs>
+      <AndroidSystemLibs>c;m;log;gcc;aura</AndroidSystemLibs>
     </Link>
     <PostBuildEvent>
       <Command>

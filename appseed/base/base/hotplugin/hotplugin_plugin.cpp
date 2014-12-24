@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "base/user/user.h"
+
 
 #undef new
 

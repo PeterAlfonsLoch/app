@@ -1,4 +1,5 @@
-#include "framework.h" // from "base/user/user.h"
+#include "framework.h"
+#include "base/user/user.h"
 
 /*
 namespace std
