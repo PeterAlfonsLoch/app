@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "base/user/user.h"
+//#include "framework.h"
+//#include "base/user/user.h"
 
 
 CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr);

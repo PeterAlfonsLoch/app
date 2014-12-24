@@ -689,7 +689,7 @@ namespace base
       if (oswindowCapture == NULL)
          return NULL;
 
-      return ((::user::interaction *) ::GetCapture()->get_user_interaction()->m_pvoidUserInteraction)->GetCapture();
+      return window_from_handle(::GetCapture());
 
 #endif
 

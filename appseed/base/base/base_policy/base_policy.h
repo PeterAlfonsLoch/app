@@ -7,18 +7,6 @@
 #ifdef cplusplus
 
 
-namespace user
-{
-
-
-   class interaction;
-   class create_struct;
-
-
-} // namespace user
-
-
-using user_interaction = ::user::interaction;
 
 #include "base_c.h"
 #include "base_cpp.h"

@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "core/filesystem/filemanager/filemanager.h"
+#include "core/user/user/user.h"
+
 
 #ifdef LINUX
 
@@ -209,12 +212,12 @@ namespace core
       if(!::base::application::process_initialize())
          return false;
 
-      m_spuserfs = create_userfs();
+      m_puserfs = create_userfs();
 
-      if(m_spuserfs == NULL)
+      if(m_puserfs == NULL)
          return false;
 
-      m_spuserfs->construct(this);
+      m_puserfs->construct(this);
 
 
       return true;
@@ -251,7 +254,7 @@ namespace core
 
 
 
-      if(!m_spuserfs->initialize())
+      if(!m_puserfs->initialize())
          return false;
 
       m_simpledb.construct(this);

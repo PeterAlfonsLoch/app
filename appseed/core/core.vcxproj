@@ -1804,9 +1804,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="core\core\core_platform.cpp" />
+    <ClCompile Include="core\core\_core.cpp" />
     <ClCompile Include="database\simpledb\simpledb_database.cpp" />
     <ClCompile Include="database\simpledb\simpledb_result.cpp" />
+    <ClCompile Include="filesystem\filemanager\_filemanager.cpp" />
     <ClCompile Include="filesystem\file\file_html_buffer.cpp" />
+    <ClCompile Include="filesystem\userfs\_userfs.cpp" />
     <ClCompile Include="user\user\user_orto_button.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_appearance.cpp" />
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_constants.cpp" />
@@ -1967,7 +1970,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\core\core_timer_callback.cpp" />
     <ClCompile Include="core\core\core_timer_listener.cpp" />
     <ClCompile Include="core\core\core_Timer.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_main_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_main_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
@@ -2180,58 +2185,162 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="filesystem\filehandler\filehandler_menu_library.cpp" />
     <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp" />
     <ClCompile Include="filesystem\filehandler\filehandler_item.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_child_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_file_list_callback.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_manager.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_left_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_main_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_path_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_tab_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_manager_template.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_impact.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_update_hint.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_data.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_filemanager.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_data.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_folder_selection_list_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_form_child_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_form_document.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_form_update_hint.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_form_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_iconoverlayer.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_item_action.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_child_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_document.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_info_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_list_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_thread.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_file_list.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_file_properties_form.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_folder_list.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_tree.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_document.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_update_hint.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_userfs.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_list.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_list_data.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_list_item.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_list_item_array.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_main_view.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_tree.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_item.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_child_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_list_callback.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_left_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_main_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_path_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_tab_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_manager_template.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_impact.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_update_hint.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_filemanager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_selection_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_child_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_document.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_update_hint.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_iconoverlayer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_item_action.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_child_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_document.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_info_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_properties_form.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_tree.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_document.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_update_hint.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_userfs.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_item.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_item_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_main_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_tree.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_item.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="math\binary_operation.cpp" />
     <ClCompile Include="math\math.cpp" />
     <ClCompile Include="math\number.cpp" />

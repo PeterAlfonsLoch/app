@@ -1,6 +1,6 @@
-﻿#include "framework.h" // from "base/user/user.h"
-#include "base/user/user.h"
-#include "aura/user/colorertake5/colorertake5.h"
+﻿//#include "framework.h" // from "base/user/user.h"
+//#include "base/user/user.h"
+//#include "aura/user/colorertake5/colorertake5.h"
 
 
 string str_block(char ch,int32_t iSize);

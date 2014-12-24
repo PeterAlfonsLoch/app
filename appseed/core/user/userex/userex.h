@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "core/user/user/user.h"
+
 
 namespace filemanager
 {

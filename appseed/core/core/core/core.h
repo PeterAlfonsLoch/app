@@ -2,7 +2,7 @@
 
 #include "app/appseed/base/base/base/base.h"
 
-#include "base/user/user.h"
+//#include "base/user/user.h"
 
 #if !defined(_MM) && !defined(_M)
 
@@ -36,6 +36,9 @@ namespace user
 
    class printer;
    class tree;
+   class form;
+   class single_document_template;
+   class main_frame;
 
    namespace wndfrm
    {
@@ -44,8 +47,34 @@ namespace user
 
    }
 
+   enum e_mouse
+   {
+
+      mouse_left_button,
+      mouse_right_button,
+      mouse_middle_button
+
+   };
 
 } // namespace user
+
+
+namespace userfs
+{
+
+   class userfs;
+
+} // namespace userfs
+
+
+namespace userex
+{
+
+
+   class userex;
+
+
+} // namespace userex
 
 
 namespace filemanager
@@ -53,6 +82,8 @@ namespace filemanager
 
 
    class manager;
+   class data;
+   class filemanager;
 
 
 } // namespace filemanager
@@ -651,10 +682,6 @@ namespace user
 
 
 #include "core_profiler.h"
-#include "core_timer.h"
-#include "core_timer_callback.h"
-#include "core_timer_listener.h"
-#include "user/user/user_window_draw.h"
 #include "core_history.h"
 
 
@@ -799,7 +826,7 @@ inline bool is_null(const TYPE & ref)
 //#endif
 
 
-#include "core_timer.h"
+//#include "core_timer.h"
 
 //#include "core/filesystem/file/file_set.h"
 
@@ -927,29 +954,32 @@ class Ex1FactoryImpl;
 #include "core/net/hi5/hi5_oauth.h"
 #include "core/net/hi5/hi5_twit.h"
 
+#include "base/database/sqlite/sqlite.h"
+
 
 //#include "core/programming/dynamic_source/dynamic_source.h"
 
 
-#include "core/user/user/user.h"
+//#include "core/user/user/user.h"
 
 
 
-#include "core/user/userex/userex.h"
+//#include "core/user/userex/userex.h"
 
 
 
-#include "core/filesystem/filemanager/filemanager.h"
+//#include "core/filesystem/filemanager/filemanager.h"
 
 
 
-#include "core/net/usernet/usernet.h"
+//#include "core/net/usernet/usernet.h"
 #include "core/database/simpledb/simpledb.h"
 //#include "core/net/usermail/usermail.h"
 #include "core/net/hi5/hi5.h"
 
 
-
+#include "filesystem/filemanager/filemanager_callback.h"
+#include "filesystem/filemanager/filemanager_item_action.h"
 #include "core_application.h"
 
 
@@ -1049,16 +1079,6 @@ class form_view;
 
 #include "app/appseed/core/filesystem/file/file_html_buffer.h"
 
-
-#include "core/core/plugin/plugin.h"
-
-
-
-
-#include "app/appseed/core/user/user/user_inline.h"
-
-
-#define new AURA_NEW
 
 
 

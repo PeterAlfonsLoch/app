@@ -22,8 +22,8 @@ namespace sqlite
 
 
 class CLASS_DECL_CORE db_server :
-   virtual public ::database::server,
-   virtual public ::user::interaction
+   virtual public ::database::server //,
+   //virtual public ::user::interaction
 {
 public:
 

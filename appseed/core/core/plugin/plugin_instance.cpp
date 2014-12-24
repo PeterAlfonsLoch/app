@@ -1,5 +1,7 @@
 #include "framework.h"
+#include "core/user/user/user.h"
 #include "plugin_instance.h"
+
 
 ::hotplugin::plugin * new_hotplugin(::aura::application * papp);
 

@@ -1,4 +1,7 @@
-#include "framework.h"
+//#include "framework.h"
+//#include "framework.h"
+
+
 
 
 namespace filemanager

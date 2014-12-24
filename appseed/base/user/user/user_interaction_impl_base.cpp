@@ -1,4 +1,7 @@
-#include "framework.h" // from "base/user/user.h"
+//#include "framework.h" // from "base/user/user.h"
+//#include "base/user/user.h"
+
+
 
 
 namespace user
@@ -257,7 +260,8 @@ namespace user
          if((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
          {
             pLeftOver->CalcWindowRect(&layout.rect);
-            __reposition_window(&layout,pLeftOver,&layout.rect);
+            //__reposition_window(&layout,pLeftOver,&layout.rect);
+            pLeftOver->SetPlacement(layout.rect);
          }
       }
 

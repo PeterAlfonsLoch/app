@@ -1,5 +1,12 @@
 #pragma once
 
+#include "base/user/user.h"
+
+//#include "core/core/core_timer.h"
+//#include "core/core/core_timer_callback.h"
+//#include "core/core/core_timer_listener.h"
+#include "user/user/user_window_draw.h"
+//
 
 namespace html
 {
@@ -11,20 +18,6 @@ namespace html
 } // namespace html
 
 
-namespace user
-{
-
-   enum e_mouse
-   {
-
-      mouse_left_button,
-      mouse_right_button,
-      mouse_middle_button
-
-   };
-
-
-} // namespace user
 
 
 enum e_position
@@ -325,4 +318,30 @@ namespace user
 
 
 
+
+
+#include "core/user/userex/userex.h"
+
+
+
+//#include "core/filesystem/filemanager/filemanager.h"
+
+
+
+
+#include "core/net/usernet/usernet.h"
+
+
+
+
+
+#include "core/core/plugin/plugin.h"
+
+
+
+
+#include "app/appseed/core/user/user/user_inline.h"
+
+
+#define new AURA_NEW
 

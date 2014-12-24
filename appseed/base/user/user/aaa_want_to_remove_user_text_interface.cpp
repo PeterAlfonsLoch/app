@@ -1,4 +1,4 @@
-#include "framework.h" // from "base/user/user.h"
+//#include "framework.h" // from "base/user/user.h"
 
 
 //void ::user::elemental::_001GetText(string & str) const

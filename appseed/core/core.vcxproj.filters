@@ -117,9 +117,6 @@
     <Filter Include="Header Files\net\hi5">
       <UniqueIdentifier>{3728a81f-1e66-4661-8f29-af1e5a81f3e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\filesystem\folder_watch">
-      <UniqueIdentifier>{0836171c-654e-4702-8512-85ed485fb89e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{ceb2c175-4913-479a-8588-f3271269f0ab}</UniqueIdentifier>
     </Filter>
@@ -1659,6 +1656,12 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\file_html_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\_filemanager.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\_userfs.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

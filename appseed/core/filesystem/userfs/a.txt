@@ -1,0 +1,18 @@
+ O volume na unidade Z ‚ eco
+ O N£mero de S‚rie do Volume ‚ 4A91-94E4
+
+ Pasta de Z:\nordroid\app\appseed\core\filesystem\userfs
+
+#include "userfs_document.cpp"
+#include "userfs_item.cpp"
+#include "userfs_list.cpp"
+#include "userfs_list_data.cpp"
+#include "userfs_list_item.cpp"
+#include "userfs_list_item_array.cpp"
+#include "userfs_main_view.cpp"
+#include "userfs_tree.cpp"
+#include "userfs_update_hint.cpp"
+#include "userfs_userfs.cpp"
+#include "_userfs.cpp"
+              11 arquivo(s)         45.290 bytes
+               0 pasta(s)   65.233.739.776 bytes dispon¡veis

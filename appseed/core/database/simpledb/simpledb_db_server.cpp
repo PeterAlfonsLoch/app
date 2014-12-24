@@ -174,19 +174,19 @@ bool db_server::finalize()
 bool db_server::create_message_queue()
 {
 
-   if(!IsWindow())
-   {
-      string strName = "::draw2d::fontopus::message_wnd::simpledb::db_server";
-      if(!::user::interaction::create_message_queue(strName))
-      {
-         return false;
-      }
+   //if(!IsWindow())
+   //{
+   //   string strName = "::draw2d::fontopus::message_wnd::simpledb::db_server";
+   //   if(!::user::interaction::create_message_queue(strName))
+   //   {
+   //      return false;
+   //   }
 
-      //SetTimer(1258477, 484, NULL);
+   //   //SetTimer(1258477, 484, NULL);
 
-      //IGUI_WIN_MSG_LINK(WM_TIMER, m_pimpl, this, &db_server::_001OnTimer);
+   //   //IGUI_WIN_MSG_LINK(WM_TIMER, m_pimpl, this, &db_server::_001OnTimer);
 
-   }
+   //}
 
    return true;
 
@@ -195,22 +195,22 @@ bool db_server::create_message_queue()
 
 bool db_server::destroy_message_queue()
 {
-   if(IsWindow())
-   {
-      return DestroyWindow() != FALSE;
-   }
+   //if(IsWindow())
+   //{
+   //   return DestroyWindow() != FALSE;
+   //}
    return true;
 }
 
 void db_server::_001OnTimer(signal_details * pobj)
 {
    
-   SCAST_PTR(::message::timer, ptimer, pobj);
-   
-   if(ptimer->m_nIDEvent == 1258477)
-   {
+   //SCAST_PTR(::message::timer, ptimer, pobj);
+   //
+   //if(ptimer->m_nIDEvent == 1258477)
+   //{
 
-   }
+   //}
 
 }
 

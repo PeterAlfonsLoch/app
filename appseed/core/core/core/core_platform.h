@@ -54,12 +54,12 @@ namespace core
       var                                                m_varTopicFile;
       var                                                m_varCurrentViewFile;
 
-      sp(::filemanager::filemanager)                     m_pfilemanager;
+      ::filemanager::filemanager *                       m_pfilemanager;
 
-      sp(::user::single_document_template)               m_ptemplate_bergedge;
-      sp(::user::single_document_template)               m_ptemplate_platform;
-      sp(::user::single_document_template)               m_ptemplate_nature;
-      sp(::user::single_document_template)               m_ptemplate_html;
+      ::user::single_document_template *                 m_ptemplate_bergedge;
+      ::user::single_document_template *                 m_ptemplate_platform;
+      ::user::single_document_template *                 m_ptemplate_nature;
+      ::user::single_document_template *                 m_ptemplate_html;
       sp(::aura::document)                               m_pbergedgedocument;
       sp(::aura::document)                               m_pplatformdocument;
       sp(::aura::document)                               m_pnaturedocument;
@@ -68,7 +68,7 @@ namespace core
 
       string_map < sp(::user::wndfrm::interaction) >     m_mapUinteraction;
       
-      sp(::userex::userex)                               m_spuserex;
+      ::userex::userex *                               m_puserex;
       
 
 
@@ -116,9 +116,9 @@ namespace core
 
       virtual sp(::user::interaction) get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcontext);
 
-      virtual ::user::place_holder_ptra get_place_holder(sp(::user::frame_window) pmainframe, sp(::create) pcontext);
+      //virtual ::user::place_holder_ptra get_place_holder(sp(::user::frame_window) pmainframe, sp(::create) pcontext);
 
-      virtual bool place(sp(::user::main_frame) pmainframe, sp(::create) pcontext);
+      virtual bool place(::user::main_frame * pmainframe, sp(::create) pcontext);
 
       virtual void request_topic_file(var & varQuery);
 
@@ -142,7 +142,7 @@ namespace core
       sp(::aura::document)                    get_nature();
       
       
-      inline sp(::userex::userex)               userex()       { return m_spuserex; }
+      inline ::userex::userex *               userex()       { return m_puserex; }
       
       
 

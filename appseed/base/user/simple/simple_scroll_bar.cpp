@@ -1,5 +1,5 @@
-#include "framework.h" // from "base/user/user.h"
-#include "base/user/user.h"
+//#include "framework.h" // from "base/user/user.h"
+//#include "base/user/user.h"
 
 
 simple_scroll_bar::simple_scroll_bar(::aura::application * papp) :

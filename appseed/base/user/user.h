@@ -12,6 +12,20 @@
 
 #define new AURA_NEW
 
+namespace user
+{
+
+
+   class interaction;
+   class create_struct;
+
+
+} // namespace user
+
+
+using user_interaction = ::user::interaction;
+
+
 
 //#include "user/user/user_keyboard_focus.h"
 //#include "user/user/user_mouse_focus.h"
@@ -43,7 +57,6 @@
 
 #include "base/user/simple_ui/simple_ui_style.h"
 #include "base/user/simple_ui/simple_ui_interaction.h"
-#include "base/database/sqlite/sqlite.h"
 #include "user/user/user_document_data_map.h"
 #include "user/user/user_document.h"
 #include "database/database/database_user_interaction.h"

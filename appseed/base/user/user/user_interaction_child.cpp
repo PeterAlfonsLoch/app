@@ -1,4 +1,7 @@
-#include "framework.h" // from "base/user/user.h"
+//#include "framework.h" // from "base/user/user.h"
+//#include "base/user/user.h"
+
+
 
 
 void __reposition_window(__SIZEPARENTPARAMS* lpLayout,::user::interaction * pui,LPCRECT lpRect);
@@ -377,72 +380,71 @@ namespace user
    }
 
 
-   void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
-      ::user::interaction * pwnd,LPCRECT lpRect);
-
-
-
-   void __reposition_window(__SIZEPARENTPARAMS* lpLayout,oswindow oswindow,LPCRECT lpRect)
-   {
-#ifdef METROWIN
-
-      throw todo(get_thread_app());
-
-#else
-
-      ASSERT(oswindow != NULL);
-      ASSERT(lpRect != NULL);
-      ::oswindow oswindow_Parent = ::GetParent(oswindow);
-      ASSERT(oswindow_Parent != NULL);
-
-      if(lpLayout != NULL && lpLayout->hDWP == NULL)
-         return;
-
-      // first check if the new rectangle is the same as the current
-      rect rectOld;
-
-#ifdef WINDOWS
-
-      ::GetWindowRect(oswindow,rectOld);
-      ::ScreenToClient(oswindow_Parent,&rectOld.top_left());
-      ::ScreenToClient(oswindow_Parent,&rectOld.bottom_right());
-
-#else
-
-      throw todo(get_thread_app());
-
-#endif
-
-      if(::EqualRect(rectOld,lpRect))
-         return;     // nothing to do
-
-      // try to use DeferWindowPos for speed, otherwise use SetWindowPos
-      if(lpLayout != NULL)
-      {
-
-#ifdef WINDOWS
-
-         lpLayout->hDWP = ::DeferWindowPos(lpLayout->hDWP,oswindow,NULL,
-            lpRect->left,lpRect->top,lpRect->right - lpRect->left,
-            lpRect->bottom - lpRect->top,SWP_NOACTIVATE | SWP_NOZORDER);
-
-#else
-
-         throw todo(get_thread_app());
-
-#endif
-
-      }
-      else
-      {
-         ::SetWindowPos(oswindow,NULL,lpRect->left,lpRect->top,
-            lpRect->right - lpRect->left,lpRect->bottom - lpRect->top,
-            SWP_NOACTIVATE | SWP_NOZORDER);
-      }
-
-#endif
-
-   }
+//   void __reposition_window(__SIZEPARENTPARAMS* lpLayout, ::user::interaction * pwnd,LPCRECT lpRect);
+//
+//
+//
+//   void __reposition_window(__SIZEPARENTPARAMS* lpLayout,::user::interaction * pwnd,LPCRECT lpRect)
+//   {
+//#ifdef METROWIN
+//
+//      throw todo(get_thread_app());
+//
+//#else
+//
+//      ASSERT(pwnd != NULL);
+//      ASSERT(lpRect != NULL);
+//      ::oswindow oswindow_Parent = ::GetParent(pwnd->get_safe_handle());
+//      ASSERT(oswindow_Parent != NULL);
+//
+//      if(lpLayout != NULL && lpLayout->hDWP == NULL)
+//         return;
+//
+//      // first check if the new rectangle is the same as the current
+//      rect rectOld;
+//
+//#ifdef WINDOWS
+//
+//      ::GetWindowRect(oswindow,rectOld);
+//      ::ScreenToClient(oswindow_Parent,&rectOld.top_left());
+//      ::ScreenToClient(oswindow_Parent,&rectOld.bottom_right());
+//
+//#else
+//
+//      throw todo(get_thread_app());
+//
+//#endif
+//
+//      if(::EqualRect(rectOld,lpRect))
+//         return;     // nothing to do
+//
+//      // try to use DeferWindowPos for speed, otherwise use SetWindowPos
+//      if(lpLayout != NULL)
+//      {
+//
+//#ifdef WINDOWS
+//
+//         lpLayout->hDWP = ::DeferWindowPos(lpLayout->hDWP,oswindow,NULL,
+//            lpRect->left,lpRect->top,lpRect->right - lpRect->left,
+//            lpRect->bottom - lpRect->top,SWP_NOACTIVATE | SWP_NOZORDER);
+//
+//#else
+//
+//         throw todo(get_thread_app());
+//
+//#endif
+//
+//      }
+//      else
+//      {
+//         ::SetWindowPos(oswindow,NULL,lpRect->left,lpRect->top,
+//            lpRect->right - lpRect->left,lpRect->bottom - lpRect->top,
+//            SWP_NOACTIVATE | SWP_NOZORDER);
+//      }
+//
+//#endif
+//
+//   }
 
 
 

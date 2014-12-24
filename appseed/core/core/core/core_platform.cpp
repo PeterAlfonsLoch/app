@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "core/user/user/user.h"
+#include "core/filesystem/filemanager/filemanager.h"
 
 
 namespace core
@@ -94,12 +96,12 @@ namespace core
       if(!::core::application::process_initialize())
          return false;
 
-      m_spuserex = create_userex();
+      m_puserex = create_userex();
 
-      if(m_spuserex == NULL)
+      if(m_puserex == NULL)
          return false;
 
-      m_spuserex->construct(this);
+      m_puserex->construct(this);
 
       return true;
 
@@ -112,13 +114,13 @@ namespace core
       if(!::core::application::initialize1())
          return false;
 
-      if(!m_spuserex->initialize())
+      if(!m_puserex->initialize())
          return false;
 
-      if(!m_spuserex->initialize1())
+      if(!m_puserex->initialize1())
          return false;
 
-      if(!m_spuserex->initialize2())
+      if(!m_puserex->initialize2())
          return false;
 
       return true;
@@ -1623,41 +1625,41 @@ namespace core
 
    }
 
-   ::user::place_holder_ptra platform::get_place_holder(sp(::user::frame_window) pmainframe, sp(::create) pcreatecontext)
+   //::user::place_holder_ptra platform::get_place_holder(sp(::user::frame_window) pmainframe, sp(::create) pcreatecontext)
+   //{
+
+   //   UNREFERENCED_PARAMETER(pcreatecontext);
+
+   //   ::user::place_holder_ptra holderptra;
+
+
+   //   ::core::application & app = App(pmainframe->get_app());
+
+   //   string strAppName = app.m_strAppName;
+
+   //   //if(get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+   //   //{
+
+   //   //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
+
+   //   //   holderptra.add(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName)));
+
+   //   //}
+   //   //else
+   //   //{
+
+   //   //   holderptra.add(get_document()->get_typed_view < ::bergedge::view >());
+
+   //   //}
+
+   //   return holderptra;
+
+   //}
+
+   bool platform::place(::user::main_frame * pmainframe, sp(::create) pcreatecontext)
    {
 
-      UNREFERENCED_PARAMETER(pcreatecontext);
-
-      ::user::place_holder_ptra holderptra;
-
-
-      ::core::application & app = App(pmainframe->get_app());
-
-      string strAppName = app.m_strAppName;
-
-      //if(get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
-      //{
-
-      //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
-
-      //   holderptra.add(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName)));
-
-      //}
-      //else
-      //{
-
-      //   holderptra.add(get_document()->get_typed_view < ::bergedge::view >());
-
-      //}
-
-      return holderptra;
-
-   }
-
-   bool platform::place(sp(::user::main_frame) pmainframe, sp(::create) pcreatecontext)
-   {
-
-      get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
+      //get_place_holder(pmainframe, pcreatecontext).hold(pmainframe);
 
       return true;
 

@@ -1,9 +1,9 @@
-#include "framework.h" // from "base/user/user.h"
-#include "base/user/user.h"
+//#include "framework.h" // from "base/user/user.h"
+//#include "base/user/user.h"
 
 
 #ifdef WINDOWS
-#include <dde.h>        // for DDE execute shell requests
+//#include <dde.h>        // for DDE execute shell requests
 #endif
 
 extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;

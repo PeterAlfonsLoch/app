@@ -22,7 +22,7 @@ namespace core
 
 //      ::calculator::calculator *             m_pcalculator;
 
-      sp(::userfs::userfs)                   m_spuserfs;
+      ::userfs::userfs *                     m_puserfs;
 
       ::simpledb::simpledb                   m_simpledb;
 

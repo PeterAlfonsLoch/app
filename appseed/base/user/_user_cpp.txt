@@ -1,0 +1,92 @@
+ O volume na unidade Z ‚ eco
+ O N£mero de S‚rie do Volume ‚ 4A91-94E4
+
+ Pasta de Z:\nordroid\app\appseed\base\user
+
+2014-12-22  10:29                52 framework_user.cpp
+2013-07-22  02:18                 0 _user.cpp
+               2 arquivo(s)             52 bytes
+
+ Pasta de Z:\nordroid\app\appseed\base\user\fontopus
+
+2014-09-23  12:07               637 fontopus.cpp
+2014-12-24  15:55            10.707 fontopus_login.cpp
+2014-12-24  15:55            14.675 fontopus_simple_ui.cpp
+               3 arquivo(s)         26.019 bytes
+
+ Pasta de Z:\nordroid\app\appseed\base\user\simple
+
+2014-12-24  15:55            36.589 simple_scroll_bar.cpp
+               1 arquivo(s)         36.589 bytes
+
+ Pasta de Z:\nordroid\app\appseed\base\user\simple_ui
+
+2014-12-24  15:55             2.044 simple_ui_edit_box.cpp
+2014-12-24  15:56            19.763 simple_ui_interaction.cpp
+2014-12-24  15:56             1.514 simple_ui_label.cpp
+2014-12-24  15:56             9.278 simple_ui_message_box.cpp
+2014-12-24  15:56             8.552 simple_ui_password.cpp
+2014-12-24  15:57             2.891 simple_ui_style.cpp
+2014-12-24  15:57             8.005 simple_ui_tap.cpp
+               7 arquivo(s)         52.047 bytes
+
+ Pasta de Z:\nordroid\app\appseed\base\user\user
+
+2014-12-22  10:29             1.591 aaa_want_to_remove_user_buffer.cpp
+2014-12-22  10:29                99 aaa_want_to_remove_user_keyboard_focus.cpp
+2014-12-22  10:29               302 aaa_want_to_remove_user_mouse_focus.cpp
+2014-12-22  10:29             1.003 aaa_want_to_remove_user_text_interface.cpp
+2014-12-22  10:29             3.099 aaa_want_to_remove_user_window_draw.cpp
+2014-12-24  15:57               899 user.cpp
+2014-12-24  15:57            21.097 user_control.cpp
+2014-12-24  15:58            33.553 user_control_bar.cpp
+2014-12-24  15:58               944 user_control_event.cpp
+2014-12-24  15:58            28.499 user_document.cpp
+2014-12-24  15:59            71.472 user_edit_plain_text.cpp
+2014-12-24  15:59             6.422 user_elemental.cpp
+2014-12-24  15:59             1.026 user_form_interface.cpp
+2014-12-24  15:59            58.119 user_frame_window.cpp
+2014-12-24  16:00            32.420 user_impact.cpp
+2014-12-24  16:00            11.659 user_impact_system.cpp
+2014-12-24  16:00               487 user_impact_update_hint.cpp
+2014-12-24  16:00           117.745 user_interaction.cpp
+2014-12-24  16:01            42.643 user_interaction_base.cpp
+2014-12-24  16:01            21.897 user_interaction_child.cpp
+2014-12-24  16:02            68.007 user_interaction_impl.cpp
+2014-12-24  16:04            22.924 user_interaction_impl_base.cpp
+2014-12-24  16:04               278 user_job.cpp
+2014-12-24  16:04            14.280 user_keyboard.cpp
+2014-12-24  16:05             6.736 user_keyboard_layout.cpp
+2014-12-24  16:05             2.464 user_menu_base.cpp
+2014-12-24  16:05               649 user_menu_base_item.cpp
+2014-12-24  16:05               897 user_message.cpp
+2014-12-24  16:06             4.303 user_place_holder.cpp
+2014-12-24  16:06             3.411 user_place_holder_container.cpp
+2014-12-24  16:06             2.048 user_plain_text_data.cpp
+2014-12-24  16:06               493 user_print_job.cpp
+2014-12-22  10:29             6.113 user_schema.cpp
+2014-12-24  16:07               275 user_schema_layered_frame.cpp
+2014-12-24  16:07             1.030 user_schema_simple_impl.cpp
+2014-12-24  16:07             1.624 user_scroll_bar.cpp
+2014-12-24  16:08            14.042 user_scroll_control.cpp
+2014-12-24  16:08               489 user_scroll_view.cpp
+2014-12-24  16:08               957 user_server.cpp
+2014-12-24  16:08            13.917 user_user.cpp
+2014-12-24  16:11               734 user_view_container.cpp
+2014-12-24  16:11             5.423 user_view_creator.cpp
+2014-12-24  16:11               399 user_wait_cursor.cpp
+2014-12-24  16:12             1.795 user_windowing.cpp
+2014-12-24  16:11             2.570 user_window_draw.cpp
+2014-12-24  16:11               658 user_window_map.cpp
+2014-12-24  16:12            24.730 user_window_util.cpp
+              47 arquivo(s)        656.222 bytes
+
+ Pasta de Z:\nordroid\app\appseed\base\user\userpresence
+
+2014-12-24  16:12             4.693 userpresence_userpresence.cpp
+2014-12-22  10:32             1.946 userpresence_user_presence.cpp
+               2 arquivo(s)          6.639 bytes
+
+     Total de Arquivos na Lista:
+              62 arquivo(s)        777.568 bytes
+               0 pasta(s)   65.245.597.696 bytes dispon¡veis

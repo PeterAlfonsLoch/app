@@ -189,6 +189,9 @@
     <Filter Include="Source Files\base\install">
       <UniqueIdentifier>{45cb13cf-a3e1-4627-833e-10c83bc06da8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\NewFilter1">
+      <UniqueIdentifier>{3f77e34d-3cd2-4a8d-a5f9-0d92015a2c60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\graphics.h">
@@ -1053,6 +1056,9 @@
     </ClCompile>
     <ClCompile Include="base\install\install_starter_start.cpp">
       <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="user\_user.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
