@@ -1957,6 +1957,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="database\database\database_user_interaction.cpp" />
     <ClCompile Include="user\_user.cpp" />
     <ClInclude Include="base\hotplugin\hotplugin.h" />
     <ClInclude Include="base\hotplugin\hotplugin_composer.h" />
@@ -2212,23 +2213,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="base\base_policy\base_policy_objcpp.h" />
     <ClInclude Include="base\base_policy\base_policy_winrt.h" />
     <ClInclude Include="base\message\message_user.h" />
-    <ClInclude Include="database\database\database.h" />
-    <ClInclude Include="database\database\database_base.h" />
-    <ClInclude Include="database\database\database_change_event.h" />
-    <ClInclude Include="database\database\database_client.h" />
-    <ClInclude Include="database\database\database_database.h" />
-    <ClInclude Include="database\database\database_definition.h" />
-    <ClInclude Include="database\database\database_field_definition.h" />
-    <ClInclude Include="database\database\database_id.h" />
-    <ClInclude Include="database\database\database_key.h" />
-    <ClInclude Include="database\database\database_selection.h" />
-    <ClInclude Include="database\database\database_selection_item.h" />
-    <ClInclude Include="database\database\database_server.h" />
-    <ClInclude Include="database\database\database_set.h" />
-    <ClInclude Include="database\database\database_stringhelper.h" />
-    <ClInclude Include="database\database\database_template.h" />
-    <ClInclude Include="database\database\database_update_hint.h" />
-    <ClInclude Include="database\database\database_user_interaction.h" />
     <ClCompile Include="base\base\base_application.cpp" />
     <ClCompile Include="base\base\base_core_copydesk.cpp" />
     <ClCompile Include="base\base\base_print_job.cpp" />
@@ -2501,9 +2485,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClInclude Include="database\sqlite\sqlite.h" />
-    <ClInclude Include="database\sqlite\sqlite_base.h" />
-    <ClInclude Include="database\sqlite\sqlite_set.h" />
+    <ClInclude Include="database\database\database_user_interaction.h" />
     <ClInclude Include="filesystem\file\file_edit_buffer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
@@ -2527,23 +2509,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="database\database\database_application.cpp" />
-    <ClCompile Include="database\database\database_base.cpp" />
-    <ClCompile Include="database\database\database_client.cpp" />
-    <ClCompile Include="database\database\database_definition.cpp" />
-    <ClCompile Include="database\database\database_event_change.cpp" />
-    <ClCompile Include="database\database\database_field_definition.cpp" />
-    <ClCompile Include="database\database\database_id.cpp" />
-    <ClCompile Include="database\database\database_key.cpp" />
-    <ClCompile Include="database\database\database_selection.cpp" />
-    <ClCompile Include="database\database\database_selection_item.cpp" />
-    <ClCompile Include="database\database\database_server.cpp" />
-    <ClCompile Include="database\database\database_set.cpp" />
-    <ClCompile Include="database\database\database_stringhelper.cpp" />
-    <ClCompile Include="database\database\database_update_hint.cpp" />
-    <ClCompile Include="database\database\database_user_interaction.cpp" />
-    <ClCompile Include="database\sqlite\sqlite_base.cpp" />
-    <ClCompile Include="database\sqlite\sqlite_set.cpp" />
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>

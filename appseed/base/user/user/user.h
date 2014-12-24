@@ -1,5 +1,85 @@
 #pragma once
 
+namespace user
+{
+
+   class schema;
+   class tree;
+
+}
+
+
+namespace simple_ui
+{
+
+   class label;
+   class edit_box;
+   class password;
+   class tap;
+
+}
+
+
+
+
+namespace user
+{
+
+   class control_event;
+   class create_context;
+   class printer;
+   class user;
+   class frame_window;
+
+   class form_interface;
+   class form_list;
+   class form_callback;
+
+
+} // namespace user
+
+namespace user
+{
+
+   class interaction;
+   class interaction_impl;
+   class view_creator_data;
+   class schema;
+   class tree;
+   class str_context;
+   class schema_simple_impl;
+   class window_draw;
+   class str;
+
+}
+typedef sp(::user::interaction_impl) window_sp;
+
+namespace user
+{
+
+   class interaction;
+   class control_event;
+   class create_context;
+   class user;
+   class frame_window;
+
+   class form_interface;
+   class form_list;
+   class form_callback;
+
+
+} // namespace user
+
+
+namespace simple_ui
+{
+
+   class label;
+   class edit_box;
+   class password;
+   class tap;
+
+}
 
 namespace user
 {
@@ -13,6 +93,58 @@ namespace user
 
 
 } // namespace user
+
+
+namespace user
+{
+
+   class place_holder;
+   class menu_base_item;
+
+#if defined METROWIN && defined(__cplusplus_winrt)
+
+   class CLASS_DECL_BASE native_window_initialize
+   {
+   public:
+
+
+      Agile<Windows::UI::Core::CoreWindow> window;
+      ::base::system_window ^ pwindow;
+
+
+   };
+
+#elif defined(APPLE_IOS)
+
+   class CLASS_DECL_BASE native_window_initialize
+   {
+   public:
+
+      RECT   m_rect;
+
+   };
+
+#else
+
+   class native_window_initialize;
+
+#endif
+
+
+   class control_event;
+   class frame_window;
+   class menu_base;
+
+
+
+
+
+   CLASS_DECL_BASE bool is_descendant(::user::interaction * puiParent,::user::interaction * puiChild);
+
+
+} // namespace user
+
+
 
 #if defined(__cplusplus) || defined(__cplusplus_winrt)
 

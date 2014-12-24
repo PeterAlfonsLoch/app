@@ -1,20 +1,20 @@
-#include "framework.h"
-#include "core/user/user/user.h"
+//#include "framework.h"
+//#include "core/user/user/user.h"
 
 
 #ifdef WINDOWS
 #undef new
 #define min MIN
 #define max MAX
-//#include <gdiplus.h>
+////#include <gdiplus.h>
 #undef min
 #undef max
 #endif
 
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS)
-#include <sys/mman.h>
-//#include <sys/stat.h>
-//#include <fcntl.h>
+//#include <sys/mman.h>
+////#include <sys/stat.h>
+////#include <fcntl.h>
 #endif
 
 void CLASS_DECL_CORE __cdecl _ca2_purecall_();

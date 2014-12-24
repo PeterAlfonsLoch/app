@@ -39,12 +39,6 @@
     <Filter Include="Source Files\user\simple_ui">
       <UniqueIdentifier>{b9ff5070-0942-458c-8d35-e0f4e463f2ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\database">
-      <UniqueIdentifier>{bbfdffee-c80a-4e8a-af08-72aae226b215}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database">
-      <UniqueIdentifier>{1d5d8dc4-0d8b-4334-b743-43678a161c7a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user\user">
       <UniqueIdentifier>{6d60439d-8fc1-4d30-963f-b0f9e77abb41}</UniqueIdentifier>
     </Filter>
@@ -98,18 +92,6 @@
     </Filter>
     <Filter Include="Source Files\base\base_policy">
       <UniqueIdentifier>{2be2ffd3-b100-458f-88e6-49eb5577055f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\database">
-      <UniqueIdentifier>{06558f64-95d7-4ec0-81d1-5502727314ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database\database">
-      <UniqueIdentifier>{abcdef4b-6e71-4a3d-9d71-24462964903d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database\sqlite">
-      <UniqueIdentifier>{d6fd16d7-620f-4fd1-8e53-4b3afd1030e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\sqlite">
-      <UniqueIdentifier>{f0d65683-66e5-47f0-b31c-aeb2d6be1747}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\base\node">
       <UniqueIdentifier>{57540175-8b21-49ef-a8b9-0ccf5f3f4a56}</UniqueIdentifier>
@@ -191,6 +173,18 @@
     </Filter>
     <Filter Include="Source Files\user\NewFilter1">
       <UniqueIdentifier>{3f77e34d-3cd2-4a8d-a5f9-0d92015a2c60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database">
+      <UniqueIdentifier>{d6be1c1f-abbc-4e33-b6e7-fcf262aeb999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\database">
+      <UniqueIdentifier>{a59cbcfc-658d-4077-9050-77acfd275cc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{320fc213-9af4-45bf-bec5-15ffbbd1ae52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\database">
+      <UniqueIdentifier>{8cf8a461-7ef8-4d80-98ba-9330669250bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -440,66 +434,6 @@
     <ClInclude Include="base\node\windows\windows_message_queue.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_base.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_change_event.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_client.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_database.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_definition.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_field_definition.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_id.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_key.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_selection.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_selection_item.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_server.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_set.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_stringhelper.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_template.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_update_hint.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_user_interaction.h">
-      <Filter>Header Files\database\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\sqlite\sqlite_base.h">
-      <Filter>Header Files\database\sqlite</Filter>
-    </ClInclude>
-    <ClInclude Include="database\sqlite\sqlite_set.h">
-      <Filter>Header Files\database\sqlite</Filter>
-    </ClInclude>
-    <ClInclude Include="database\sqlite\sqlite.h">
-      <Filter>Header Files\database\sqlite</Filter>
-    </ClInclude>
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -643,6 +577,9 @@
     </ClInclude>
     <ClInclude Include="base\install\install_starter_start.h">
       <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database\database_user_interaction.h">
+      <Filter>Header Files\database\database</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -898,57 +835,6 @@
     <ClCompile Include="base\node\windows\windows_message_queue.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_application.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_base.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_client.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_definition.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_id.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_key.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_selection.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_selection_item.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_server.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_event_change.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_field_definition.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_set.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_stringhelper.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_update_hint.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_user_interaction.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\sqlite\sqlite_base.cpp">
-      <Filter>Source Files\database\sqlite</Filter>
-    </ClCompile>
-    <ClCompile Include="database\sqlite\sqlite_set.cpp">
-      <Filter>Source Files\database\sqlite</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\windows\windows.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
@@ -1053,6 +939,9 @@
     </ClCompile>
     <ClCompile Include="user\_user.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_user_interaction.cpp">
+      <Filter>Source Files\database\database</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

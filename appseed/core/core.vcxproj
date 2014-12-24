@@ -1803,10 +1803,20 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="core\core\core_platform.cpp" />
+    <ClCompile Include="core\core\core_platform.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="core\core\_core.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_database.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_result.cpp" />
+    <ClCompile Include="core\plugin\_plugin.cpp" />
+    <ClCompile Include="database\databaseuser\_databaseuser.cpp" />
+    <ClCompile Include="database\simpledb\simpledb_database.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_result.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\_simpledb.cpp" />
+    <ClCompile Include="filesystem\filehandler\_filehandler.cpp" />
     <ClCompile Include="filesystem\filemanager\_filemanager.cpp" />
     <ClCompile Include="filesystem\file\file_html_buffer.cpp" />
     <ClCompile Include="filesystem\userfs\_userfs.cpp" />
@@ -1952,24 +1962,60 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="filesystem\userfs\userfs_main_view.h" />
     <ClInclude Include="filesystem\userfs\userfs_tree.h" />
     <ClInclude Include="filesystem\userfs\userfs_item.h" />
-    <ClCompile Include="core\core\core.cpp" />
-    <ClCompile Include="core\core\core_application.cpp" />
-    <ClCompile Include="core\core\core_constraint.cpp" />
-    <ClCompile Include="core\core\core_Debug.cpp" />
-    <ClCompile Include="core\core\core_history.cpp" />
-    <ClCompile Include="core\core\core_library.cpp" />
-    <ClCompile Include="core\core\core_logic.cpp" />
-    <ClCompile Include="core\core\core_match.cpp" />
-    <ClCompile Include="core\core\core_os_history.cpp" />
-    <ClCompile Include="core\core\core_patch.cpp" />
-    <ClCompile Include="core\core\core_profiler.cpp" />
-    <ClCompile Include="core\core\core_simple_app.cpp" />
-    <ClCompile Include="core\core\core_strn.cpp" />
-    <ClCompile Include="core\core\core_str_format.cpp" />
-    <ClCompile Include="core\core\core_system.cpp" />
-    <ClCompile Include="core\core\core_timer_callback.cpp" />
-    <ClCompile Include="core\core\core_timer_listener.cpp" />
-    <ClCompile Include="core\core\core_Timer.cpp" />
+    <ClCompile Include="core\core\core.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_application.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_constraint.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_Debug.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_history.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_logic.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_match.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_os_history.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_patch.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_profiler.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_simple_app.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_strn.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_str_format.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_system.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_timer_callback.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_timer_listener.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\core\core_Timer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_main_view.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
@@ -2152,39 +2198,105 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="user\wndfrm\wndfrm_wndfrm.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="core\plugin\plugin_history.cpp" />
-    <ClCompile Include="core\plugin\plugin_host_interaction.cpp" />
-    <ClCompile Include="core\plugin\plugin_instance.cpp" />
-    <ClCompile Include="core\plugin\plugin_plugin.cpp" />
-    <ClCompile Include="core\plugin\plugin_run_start_installer.cpp" />
-    <ClCompile Include="core\plugin\plugin_system.cpp" />
-    <ClCompile Include="database\databaseuser\database_key_list_data.cpp" />
-    <ClCompile Include="database\databaseuser\database_list_data.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_base.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_dataset.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_db_server.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_file_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_im_post.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_long_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_manager.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_record_row.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_server.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_service.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_session.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_simpledb.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_socket.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_stra_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_str_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_table.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_library.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_menu_library.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_item.cpp" />
+    <ClCompile Include="core\plugin\plugin_history.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_host_interaction.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_instance.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_plugin.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_run_start_installer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_system.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\database_key_list_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\database_list_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_dataset.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_db_server.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_im_post.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_long_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_record_row.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_server.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_service.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_session.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_simpledb.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_socket.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_stra_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_str_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_table.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_menu_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_item.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>

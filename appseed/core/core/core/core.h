@@ -954,7 +954,6 @@ class Ex1FactoryImpl;
 #include "core/net/hi5/hi5_oauth.h"
 #include "core/net/hi5/hi5_twit.h"
 
-#include "base/database/sqlite/sqlite.h"
 
 
 //#include "core/programming/dynamic_source/dynamic_source.h"
@@ -973,7 +972,7 @@ class Ex1FactoryImpl;
 
 
 //#include "core/net/usernet/usernet.h"
-#include "core/database/simpledb/simpledb.h"
+//#include "core/database/simpledb/simpledb.h"
 //#include "core/net/usermail/usermail.h"
 #include "core/net/hi5/hi5.h"
 

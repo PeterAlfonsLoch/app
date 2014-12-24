@@ -25,9 +25,6 @@ typedef ptr_array < oswindow_data > oswindow_dataptra;
 
 
 
-#pragma once
-
-
 // define portable types for 32-bit / 64-bit OS
 //typedef int32_t WINBOOL;
 typedef uint8_t BYTE;
@@ -68,15 +65,6 @@ namespace ca2
 
 
 
-namespace user
-{
-
-
-   class interaction;
-   class interaction;
-
-
-} // namespace user
 
 
 //class oswindow_dataptra;
@@ -94,15 +82,6 @@ class mutex;
 class oswindow_data;
 
 
-CLASS_DECL_AURA int32_t oswindow_find_message_only_window(::user::interaction * puibaseMessageWindow);
-//CLASS_DECL_AURA int32_t oswindow_find(Display * pdisplay,Window window);
-//CLASS_DECL_AURA int32_t oswindow_find(Window window);
-CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::user::interaction * puibaseMessageWindow);
-//CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay,Window window,Visual * pvisual = NULL,int iDepth = -1,int iScreen = -1,Colormap colormap = None);
-//CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
-//CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
-//CLASS_DECL_AURA bool oswindow_remove(Display * pdisplay,Window window);
-CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow);
 
 
 

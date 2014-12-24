@@ -1,26 +1,26 @@
-#include "framework.h"
-#include "core/filesystem/filemanager/filemanager.h"
-#include "core/user/user/user.h"
+//#include "framework.h"
+//#include "core/filesystem/filemanager/filemanager.h"
+//#include "core/user/user/user.h"
 
 
 #ifdef LINUX
 
 Display * x11_get_display();
 
-#include <dlfcn.h>
-#include <link.h>
-#include <ctype.h>
-#include <unistd.h>
+//#include <dlfcn.h>
+//#include <link.h>
+//#include <ctype.h>
+//#include <unistd.h>
 #elif defined(APPLEOS)
-#include <dlfcn.h>
-#include <mach-o/dyld.h>
+//#include <dlfcn.h>
+//#include <mach-o/dyld.h>
 #endif
 
 #ifdef WINDOWS
-#include <cderr.h>      // Commdlg Error definitions
-#include <winspool.h>
+//#include <cderr.h>      // Commdlg Error definitions
+//#include <winspool.h>
 #ifdef WINDOWSEX
-#include "app/appseed/aura/aura/node/windows/windows.h"
+//#include "app/appseed/aura/aura/node/windows/windows.h"
 #endif
 #endif
 
@@ -2735,7 +2735,7 @@ namespace core
    return bResult;
    }
 
-   #include "framework.h"*/
+   //#include "framework.h"*/
 
 
 

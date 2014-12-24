@@ -1,13 +1,13 @@
-#include "framework.h"
-#include "core/user/user/user.h"
-//#include "axis/net/net_sockets.h"
-#include "charguess.h"
+//#include "framework.h"
+//#include "core/user/user/user.h"
+////#include "axis/net/net_sockets.h"
+//#include "charguess.h"
 
 
 
 #ifdef WINDOWS
 #undef new
-//#include <GdiPlus.h>
+////#include <GdiPlus.h>
 #define new AURA_NEW
 #endif
 

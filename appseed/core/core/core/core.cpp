@@ -1,8 +1,8 @@
-#include "framework.h"
+//#include "framework.h"
 
 #ifdef WINDOWS
-#include <cderr.h>      // Commdlg Error definitions
-#include <winspool.h>
+//#include <cderr.h>      // Commdlg Error definitions
+//#include <winspool.h>
 #endif
 
 

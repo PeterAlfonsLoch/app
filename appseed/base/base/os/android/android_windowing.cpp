@@ -1,6 +1,18 @@
 #include "framework.h"
 #include "base/user/user.h"
 
+
+CLASS_DECL_AURA int32_t oswindow_find_message_only_window(::user::interaction * puibaseMessageWindow);
+//CLASS_DECL_AURA int32_t oswindow_find(Display * pdisplay,Window window);
+//CLASS_DECL_AURA int32_t oswindow_find(Window window);
+CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::user::interaction * puibaseMessageWindow);
+//CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay,Window window,Visual * pvisual = NULL,int iDepth = -1,int iScreen = -1,Colormap colormap = None);
+//CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
+//CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
+//CLASS_DECL_AURA bool oswindow_remove(Display * pdisplay,Window window);
+CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnlyWindow);
+
+
 namespace user
 {
 

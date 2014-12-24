@@ -1528,57 +1528,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_application.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_constraint.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_Debug.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_history.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_library.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_logic.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_match.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_os_history.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_patch.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_profiler.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_str_format.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_strn.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_system.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_timer_callback.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_timer_listener.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
-    <ClCompile Include="core\core\core_Timer.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_manager_template.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -1639,9 +1588,6 @@
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_simple_app.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_base.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
@@ -1651,9 +1597,6 @@
     <ClCompile Include="database\simpledb\simpledb_result.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="core\core\core_platform.cpp">
-      <Filter>Source Files\core\core</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_html_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -1662,6 +1605,78 @@
     </ClCompile>
     <ClCompile Include="filesystem\userfs\_userfs.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\_core.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_application.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_constraint.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_Debug.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_history.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_library.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_logic.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_match.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_os_history.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_patch.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_platform.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_profiler.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_simple_app.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_str_format.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_strn.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_system.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_Timer.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_timer_callback.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_timer_listener.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\_databaseuser.cpp">
+      <Filter>Source Files\database\databaseuser</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\_simpledb.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\_plugin.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\_filehandler.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

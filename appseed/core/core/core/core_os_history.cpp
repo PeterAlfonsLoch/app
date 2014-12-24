@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 os_history::os_history(::aura::application * papp) :
