@@ -1,6 +1,6 @@
-#include "framework.h"
+//#include "framework.h"
 #ifdef WINDOWSEX
-#include <dde.h>
+//#include <dde.h>
 #endif
 
 #define TEST 0

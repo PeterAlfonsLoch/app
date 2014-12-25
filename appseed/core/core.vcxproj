@@ -834,7 +834,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>aura;axis;base;axiszlib;axisfreeimage;axisfreetype;axiscairo;axisopenssl;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
@@ -844,6 +844,7 @@
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
+      <AndroidSystemLibs>c;m;log;gcc;aura;axis;base;axiszlib;axisfreeimage;axisfreetype;axiscairo;axisopenssl;auracharguess;base</AndroidSystemLibs>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -1809,33 +1810,59 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="core\core\_core.cpp" />
     <ClCompile Include="core\plugin\_plugin.cpp" />
     <ClCompile Include="database\databaseuser\_databaseuser.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_database.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_result.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\_simpledb.cpp" />
     <ClCompile Include="filesystem\filehandler\_filehandler.cpp" />
     <ClCompile Include="filesystem\filemanager\_filemanager.cpp" />
     <ClCompile Include="filesystem\file\file_html_buffer.cpp" />
     <ClCompile Include="filesystem\userfs\_userfs.cpp" />
-    <ClCompile Include="user\user\user_orto_button.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_appearance.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_constants.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_control_box.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_control_box_button.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_dock_manager.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_frame.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_move_manager.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_size_manager.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp" />
-    <ClCompile Include="user\wndfrm\wndfrm_interaction.cpp" />
-    <ClCompile Include="user\wndfrm\wndfrm_wndfrm.cpp" />
+    <ClCompile Include="user\user\user_orto_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_appearance.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_constants.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_control_box.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_control_box_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_dock_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_move_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_size_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\wndfrm_interaction.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\wndfrm_wndfrm.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\_user.cpp" />
     <ClInclude Include="core\core\core.h" />
     <ClInclude Include="core\core\core_application.h" />
     <ClInclude Include="core\core\core_back_insert_iterator.h" />
@@ -2066,7 +2093,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="net\hi5\hi5_twit.h" />
     <ClInclude Include="net\hi5\hi5.h" />
     <ClInclude Include="net\hi5\hi5_oauth.h" />
-    <ClInclude Include="net\net_email_departament.h" />
     <ClInclude Include="net\usernet\usernet.h" />
     <ClInclude Include="net\usernet\usernet_network_configuration.h" />
     <ClInclude Include=".\primitive\primitive_int_biunique.h" />
@@ -2222,65 +2248,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="database\databaseuser\database_list_data.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_base.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_dataset.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_db_server.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_file_set.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_im_post.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_long_set.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_manager.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_record_row.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_server.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_service.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_session.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_set.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_simpledb.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_socket.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_stra_set.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_str_set.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_table.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
@@ -2462,106 +2431,299 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="math\_integer.cpp" />
     <ClCompile Include="net\hi5\hi5_twit.cpp" />
     <ClCompile Include="net\hi5\hi5_oauth.cpp" />
-    <ClCompile Include="net\net_email_departament.cpp" />
     <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
     <ClCompile Include="primitive\primitive_int_biunique.cpp" />
-    <ClCompile Include="user\menu\user_menu.cpp" />
-    <ClCompile Include="user\menu\user_menu_button.cpp" />
-    <ClCompile Include="user\menu\user_menu_central.cpp" />
-    <ClCompile Include="user\menu\user_menu_item.cpp" />
-    <ClCompile Include="user\menu\user_menu_list_window.cpp" />
-    <ClCompile Include="user\simple\simple_child_frame.cpp" />
-    <ClCompile Include="user\simple\simple_form_list_view.cpp" />
-    <ClCompile Include="user\simple\simple_frame_window.cpp" />
-    <ClCompile Include="user\simple\simple_list_ctrl.cpp" />
-    <ClCompile Include="user\simple\simple_list_header_ctrl.cpp" />
-    <ClCompile Include="user\simple\simple_list_view.cpp" />
-    <ClCompile Include="user\simple\simple_main_frame.cpp" />
-    <ClCompile Include="user\simple\simple_menu_bar.cpp" />
-    <ClCompile Include="user\simple\simple_printer_list_view.cpp" />
-    <ClCompile Include="user\simple\simple_static.cpp" />
-    <ClCompile Include="user\simple\simple_status_bar.cpp" />
-    <ClCompile Include="user\simple\simple_tab_ctrl.cpp" />
-    <ClCompile Include="user\simple\simple_tab_view.cpp" />
-    <ClCompile Include="user\simple\simple_toolbar.cpp" />
-    <ClCompile Include="user\simple\simple_tree_view.cpp" />
-    <ClCompile Include="user\userex\userex_userex.cpp" />
-    <ClCompile Include="user\user\user.cpp" />
-    <ClCompile Include="user\user\user_button.cpp" />
-    <ClCompile Include="user\user\user_check_box.cpp" />
-    <ClCompile Include="user\user\user_combo_box.cpp" />
-    <ClCompile Include="user\user\user_combo_list.cpp" />
-    <ClCompile Include="user\user\user_control_property.cpp" />
-    <ClCompile Include="user\user\user_core.cpp" />
-    <ClCompile Include="user\user\user_data_exchange.cpp" />
-    <ClCompile Include="user\user\user_document_manager.cpp" />
-    <ClCompile Include="user\user\user_edit_plain_text_view.cpp" />
-    <ClCompile Include="user\user\user_elastic_slider.cpp" />
-    <ClCompile Include="user\user\user_form.cpp" />
-    <ClCompile Include="user\user\user_form_callback.cpp" />
-    <ClCompile Include="user\user\user_form_list.cpp" />
-    <ClCompile Include="user\user\user_front_end.cpp" />
-    <ClCompile Include="user\user\user_front_end_schema.cpp" />
-    <ClCompile Include="user\user\user_image_manager.cpp" />
-    <ClCompile Include="user\user\user_keyboard_layout_cfg.cpp" />
-    <ClCompile Include="user\user\user_list.cpp" />
-    <ClCompile Include="user\user\user_list_cache.cpp" />
-    <ClCompile Include="user\user\user_list_cache_interface.cpp" />
-    <ClCompile Include="user\user\user_list_data.cpp" />
-    <ClCompile Include="user\user\user_list_data_interface.cpp" />
-    <ClCompile Include="user\user\user_list_header.cpp" />
-    <ClCompile Include="user\user\user_main_frame.cpp" />
-    <ClCompile Include="user\user\user_menu_list_view.cpp" />
-    <ClCompile Include="user\user\user_meta_button.cpp" />
-    <ClCompile Include="user\user\user_meta_control_box.cpp" />
-    <ClCompile Include="user\user\user_multiple_document_template.cpp" />
-    <ClCompile Include="user\user\user_network_configuration.cpp" />
-    <ClCompile Include="user\user\user_notification_area.cpp" />
-    <ClCompile Include="user\user\user_notify_icon.cpp" />
-    <ClCompile Include="user\user\user_notify_icon_listener.cpp" />
-    <ClCompile Include="user\user\user_shell.cpp" />
-    <ClCompile Include="user\user\user_single_document_template.cpp" />
-    <ClCompile Include="user\user\user_split_bar.cpp" />
-    <ClCompile Include="user\user\user_split_layout.cpp" />
-    <ClCompile Include="user\user\user_split_view.cpp" />
-    <ClCompile Include="user\user\user_split_window.cpp" />
-    <ClCompile Include="user\user\user_static_control.cpp" />
-    <ClCompile Include="user\user\user_statusbar.cpp" />
-    <ClCompile Include="user\user\user_step_slider.cpp" />
-    <ClCompile Include="user\user\user_tab.cpp" />
-    <ClCompile Include="user\user\user_tab_callback.cpp" />
-    <ClCompile Include="user\user\user_tab_view.cpp" />
-    <ClCompile Include="user\user\user_tab_view_update_hint.cpp" />
-    <ClCompile Include="user\user\user_toolbar.cpp" />
-    <ClCompile Include="user\user\user_toolbar_ctrl.cpp" />
-    <ClCompile Include="user\user\user_tool_cmd_ui.cpp" />
-    <ClCompile Include="user\user\user_tool_tip_tool.cpp" />
-    <ClCompile Include="user\user\user_tool_tip_window.cpp" />
-    <ClCompile Include="user\user\user_tree.cpp" />
-    <ClCompile Include="user\user\user_tree_data.cpp" />
-    <ClCompile Include="user\user\user_tree_window.cpp" />
-    <ClCompile Include="user\user\user_xfplayer_view_line.cpp" />
-    <ClCompile Include="user\userex\userex_dialog.cpp" />
-    <ClCompile Include="user\userex\userex_form_child_frame.cpp" />
-    <ClCompile Include="user\userex\userex_form_document.cpp" />
-    <ClCompile Include="user\userex\userex_form_frame.cpp" />
-    <ClCompile Include="user\userex\userex_form_update_hint.cpp" />
-    <ClCompile Include="user\userex\userex_form_view.cpp" />
-    <ClCompile Include="user\userex\userex_keyboard_layout.cpp" />
-    <ClCompile Include="user\userex\userex_menu_document.cpp" />
-    <ClCompile Include="user\userex\userex_menu_frame.cpp" />
-    <ClCompile Include="user\userex\userex_menu_view.cpp" />
-    <ClCompile Include="user\userex\userex_message_box.cpp" />
-    <ClCompile Include="user\userex\userex_mini_dock_frame_window.cpp" />
-    <ClCompile Include="user\userex\userex_pane_split_view.cpp" />
-    <ClCompile Include="user\userex\userex_pane_tab_view.cpp" />
-    <ClCompile Include="user\userex\userex_pane_view.cpp" />
-    <ClCompile Include="user\userex\userex_property_page.cpp" />
-    <ClCompile Include="user\userex\userex_property_sheet.cpp" />
-    <ClCompile Include="user\userex\userex_split_view.cpp" />
-    <ClCompile Include="user\userex\userex_wait_message_dialog.cpp" />
-    <ClCompile Include="user\user\user_xfplayer_view_lines.cpp" />
-    <ClCompile Include="user\user\user_xfplayer_view_line_selection.cpp" />
+    <ClCompile Include="user\menu\user_menu.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_central.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_item.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_list_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_child_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_form_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_frame_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_list_ctrl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_list_header_ctrl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_main_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_menu_bar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_printer_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_static.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_status_bar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_tab_ctrl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_tab_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_toolbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_tree_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_userex.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_check_box.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_combo_box.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_combo_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_control_property.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_core.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_data_exchange.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_document_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_edit_plain_text_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_elastic_slider.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_form.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_form_callback.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_form_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_front_end.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_front_end_schema.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_image_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_keyboard_layout_cfg.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_cache.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_cache_interface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_data_interface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_header.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_main_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_menu_list_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_meta_button.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_meta_control_box.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_multiple_document_template.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_network_configuration.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_notification_area.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_notify_icon.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_notify_icon_listener.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_shell.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_single_document_template.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_split_bar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_split_layout.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_split_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_split_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_static_control.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_statusbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_step_slider.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tab.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tab_callback.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tab_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tab_view_update_hint.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_toolbar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_toolbar_ctrl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tool_cmd_ui.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tool_tip_tool.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tool_tip_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tree.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tree_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tree_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_xfplayer_view_line.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_dialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_child_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_document.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_update_hint.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_keyboard_layout.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_menu_document.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_menu_frame.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_menu_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_message_box.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_mini_dock_frame_window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_pane_split_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_pane_tab_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_pane_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_property_page.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_property_sheet.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_split_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_wait_message_dialog.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_xfplayer_view_lines.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\user_xfplayer_view_line_selection.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core.def" />

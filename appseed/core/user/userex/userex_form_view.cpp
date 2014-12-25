@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 form_view::form_view(::aura::application * papp) :
    element(papp),

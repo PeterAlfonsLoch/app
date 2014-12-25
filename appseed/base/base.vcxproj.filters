@@ -943,6 +943,9 @@
     <ClCompile Include="database\database\database_user_interaction.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
+    <ClCompile Include="base\os\android\android_simple_app.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="base.def">

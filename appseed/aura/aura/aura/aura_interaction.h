@@ -20,6 +20,8 @@ namespace aura
 
       inline oswindow get_safe_handle() const;
 
+      virtual bool SetPlacement(const RECT & rect,UINT nFlags = SWP_SHOWWINDOW);
+
    };
 
 

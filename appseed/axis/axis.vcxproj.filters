@@ -1031,9 +1031,6 @@
     <ClInclude Include="database\simpledb\db_stra_set.h">
       <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
-    <ClInclude Include="database\simpledb\DBFileSystemSize.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
     <ClInclude Include="database\simpledb\file_set.h">
       <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
@@ -1094,8 +1091,8 @@
     <ClInclude Include="database\sqlitedb\sqlitedb_set.h">
       <Filter>Header Files\database\sqlitedb</Filter>
     </ClInclude>
-    <ClInclude Include="database\simpledb\_simpledb.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
+    <ClInclude Include="net\net_email_departament.h">
+      <Filter>Header Files\net</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1714,9 +1711,6 @@
     <ClCompile Include="database\simpledb\simpledb_file_set.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_im_post.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
@@ -1777,17 +1771,17 @@
     <ClCompile Include="database\sqlitedb\sqlitedb_set.cpp">
       <Filter>Source Files\database\sqlitedb</Filter>
     </ClCompile>
+    <ClCompile Include="net\net_email_departament.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\_database.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\_simpledb.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

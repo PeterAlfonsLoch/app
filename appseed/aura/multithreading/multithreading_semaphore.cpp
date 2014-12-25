@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <semaphore.h>
 #endif
 
 
@@ -36,7 +37,7 @@ semaphore::semaphore(::aura::application * papp, LONG lInitialCount, LONG lMaxCo
       m_strName = "/core/time/ftok/event/" + string(pstrName);
 
 
-      if ((m_psem = sem_open(m_strName, O_CREAT | O_EXCL, 0666, lInitialCount)) != SEM_FAILED)
+      if((m_psem= sem_open(m_strName,O_CREAT | O_EXCL,0666,lInitialCount)) != SEM_FAILED)
       {
 
          // We got here first
@@ -50,7 +51,7 @@ semaphore::semaphore(::aura::application * papp, LONG lInitialCount, LONG lMaxCo
 
          // We're not first.  Try again
 
-         m_psem = sem_open(m_strName, 0);
+         m_psem = sem_open(m_strName,0);
 
          if (m_psem == SEM_FAILED)
             throw resource_exception(get_app());;

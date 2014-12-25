@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "axis/net/net_sockets.h"
+#include "net_email_departament.h"
 
 
 namespace net

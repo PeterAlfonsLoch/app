@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 menu_frame::menu_frame(::aura::application * papp) :

@@ -25,7 +25,7 @@
  * THE SOFTWARE.
  *
  **********************************************************************/
-#include "framework.h"
+//#include "framework.h"
 
 str_helper::str_helper() {work_str = "";}
 

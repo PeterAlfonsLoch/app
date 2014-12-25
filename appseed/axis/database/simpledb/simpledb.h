@@ -42,8 +42,6 @@ namespace simpledb
 
 #include "db_server.h"
 
-#include "DBFileSystemSize.h"
-
 #include "simpledb_result.h"
 #include "simpledb_database.h"
 

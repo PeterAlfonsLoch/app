@@ -96,7 +96,8 @@ bool ClientToScreen(::oswindow oswindow,LPPOINT lppoint);
 bool ScreenToClient(::oswindow oswindow,LPPOINT lppoint);
 int32_t IsIconic(::oswindow oswindow);
 int32_t IsWindowVisible(::oswindow oswindow);
-
+void on_post_nc_destroy(::oswindow oswindow);
+bool is_message_only_window(::oswindow oswindow);
 
 #define GetWindowLong GetWindowLongA
 #define SetWindowLong SetWindowLongA

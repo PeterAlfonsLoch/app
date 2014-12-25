@@ -1,8 +1,8 @@
-#include "framework.h"
+//#include "framework.h"
 
 #ifdef WINDOWS
-#include <Shellapi.h>
-#include <CommonControls.h>
+//#include <Shellapi.h>
+//#include <CommonControls.h>
 #endif
 
 

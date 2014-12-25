@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "db_str_set.h"
+//#include "framework.h"
+//#include "db_str_set.h"
 
 
 int32_t g_idbchange;
@@ -140,11 +140,11 @@ bool db_server::finalize()
 
    destroy_message_queue();
 
-   if(m_pfilesystemsizeset != NULL)
-   {
-      delete m_pfilesystemsizeset;
-      m_pfilesystemsizeset = NULL;
-   }
+   //if(m_pfilesystemsizeset != NULL)
+   //{
+   //   delete m_pfilesystemsizeset;
+   //   m_pfilesystemsizeset = NULL;
+   //}
 
 
    if(m_pstrset != NULL)

@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "axis/net/net_sockets.h"
+//#include "framework.h"
+//#include "axis/net/net_sockets.h"
 
 
 class CLASS_DECL_AXIS db_long_set_item
@@ -542,7 +542,7 @@ bool db_long_set::save(const char * lpKey, LPCRECT lpRect)
 }
 
 
-bool db_long_set::MoveWindow_(const char * lpKey, ::window_sp pwindow)
+bool db_long_set::MoveWindow_(const char * lpKey, ::aura::interaction * pwindow)
 {
    
    rect rect;
@@ -557,7 +557,7 @@ bool db_long_set::MoveWindow_(const char * lpKey, ::window_sp pwindow)
 }
 
 
-bool db_long_set::SaveWindowRect_(const char * lpKey, ::window_sp pwindow)
+bool db_long_set::SaveWindowRect_(const char * lpKey,::aura::interaction * pwindow)
 {
 
 #ifdef WINDOWSEX
@@ -710,7 +710,7 @@ return hr;
 
 //}
 
-bool db_long_set::SetWindowPlacement(const char * lpKey, ::window_sp pwindow)
+bool db_long_set::SetWindowPlacement(const char * lpKey, ::aura::interaction * pwindow)
 {
 
 #ifdef WINDOWSEX
@@ -747,7 +747,7 @@ bool db_long_set::SetWindowPlacement(const char * lpKey, ::window_sp pwindow)
 
 }
 
-bool db_long_set::SaveWindowPlacement(const char * lpKey, ::window_sp pwindow)
+bool db_long_set::SaveWindowPlacement(const char * lpKey, ::aura::interaction * pwindow)
 {
 
 #ifdef WINDOWSEX

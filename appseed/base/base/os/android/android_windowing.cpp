@@ -1659,3 +1659,21 @@ bool IsChild(oswindow windowParent,oswindow oswindowCandidateChildOrDescendant)
 
 
 }
+
+void on_post_nc_destroy(oswindow window)
+{
+
+   window->post_nc_destroy();
+
+}
+
+
+bool is_message_only_window(oswindow window)
+{
+
+   return window->m_bMessageOnlyWindow;
+
+}
+
+
+

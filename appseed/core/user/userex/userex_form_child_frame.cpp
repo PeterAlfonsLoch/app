@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 form_child_frame::form_child_frame(::aura::application * papp) :

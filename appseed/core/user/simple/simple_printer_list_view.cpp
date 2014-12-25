@@ -1,6 +1,6 @@
-#include "framework.h"
+//#include "framework.h"
 #ifdef WINDOWSEX
-#include <winspool.h>
+//#include <winspool.h>
 #endif
 
 

@@ -1,8 +1,8 @@
-#include "framework.h"
+//#include "framework.h"
 
 //#ifdef WINDOWS
 //#undef new
-//#include <gdiplus.h>
+////#include <gdiplus.h>
 //#endif
 extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 

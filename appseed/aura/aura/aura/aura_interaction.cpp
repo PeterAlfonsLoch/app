@@ -20,6 +20,17 @@ namespace aura
    }
 
 
+   bool interaction::SetPlacement(const RECT & rect,UINT nFlags)
+   {
+
+      UNREFERENCED_PARAMETER(rect);
+      UNREFERENCED_PARAMETER(nFlags);
+
+      return false;
+
+   }
+
+
 } // namespace aura
 
 

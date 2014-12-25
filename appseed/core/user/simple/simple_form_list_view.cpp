@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 simple_form_list_view::simple_form_list_view(::aura::application * papp) :

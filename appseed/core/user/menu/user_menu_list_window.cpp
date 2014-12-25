@@ -1,11 +1,11 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 namespace user
 {
 
 
-   const int32_t BaseWndMenuCmdUi = 117;
+   //const int32_t BaseWndMenuCmdUi = 117;
    const int32_t g_base_menu_indent = 11;
 
 

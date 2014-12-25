@@ -6,7 +6,8 @@ namespace axis
 
 
    class CLASS_DECL_AXIS application :
-      virtual public :: aura ::application
+      virtual public :: aura ::application,
+      virtual public ::database::client
    {
    public:
 
@@ -29,6 +30,10 @@ namespace axis
       ::http::application                             m_http;
       ::file::dir::application                        m_dir;
       ::file::application                             m_file;
+
+      ::simpledb::simpledb                            m_simpledb;
+      sp(::database::server)                          m_spdataserver;
+
 
 
 
@@ -62,6 +67,7 @@ namespace axis
       inline class ::file::dir::application &   dir()          { return m_dir; }
       inline class ::file::application &        file()         { return m_file; }
 
+      inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb; }
 
 
       //virtual bool do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,sp(::aura::impact_system) ptemplate,::aura::document * pdocument);

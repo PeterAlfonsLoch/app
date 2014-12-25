@@ -56,9 +56,20 @@ namespace visual
 namespace user
 {
 
-   class interaction
+   class interaction;
+   class user;
+   class schema_simple_impl;
+   class window_draw;
+   class control_event;
+   class interaction_impl;
+   class frame_window;
+   class place_holder;
+   class menu_base_item;
+   class menu_base;
 
 } // namespace user
+
+using window_sp = sp(::user::interaction_impl);
 
 namespace primitive
 {

@@ -144,6 +144,11 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis/primitive/datetime/datetime_departament.h"
 
+#include "axis/database/database/database.h"
+
+#include "axis/database/sqlitedb/sqlitedb.h"
+
+#include "axis/database/simpledb/simpledb.h"
 
 #include "axis_application.h"
 
@@ -160,6 +165,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis/crypto/crypto.h"
 
+#include "axis/net/net_email_departament.h"
 
 #include "axis_system.h"
 
@@ -205,11 +211,11 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "primitive/data/data_simple_item.h"
 
 
-#include "axis/database/database/database.h"
-
-#include "axis/database/sqlitedb/sqlitedb.h"
-
-#include "axis/database/simpledb/simpledb.h"
+//#include "axis/database/database/database.h"
+//
+//#include "axis/database/sqlitedb/sqlitedb.h"
+//
+//#include "axis/database/simpledb/simpledb.h"
 
 
 

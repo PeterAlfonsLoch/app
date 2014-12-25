@@ -14,7 +14,6 @@ namespace core
 
    class CLASS_DECL_CORE application:
       virtual public ::base::application,
-      virtual public ::database::client,
       virtual public ::filemanager::callback
    {
    public:
@@ -23,8 +22,6 @@ namespace core
 //      ::calculator::calculator *             m_pcalculator;
 
       ::userfs::userfs *                     m_puserfs;
-
-      ::simpledb::simpledb                   m_simpledb;
 
       bool                                   m_bService;
 
@@ -144,7 +141,6 @@ namespace core
 
 //      inline ::calculator::calculator           & calculator() { return *m_pcalculator; }
 
-      inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb; }
 
 
 

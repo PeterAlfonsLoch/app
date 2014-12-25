@@ -16,7 +16,8 @@ namespace axis
    system::system(::aura::application * papp):
       aura::system(this),
       m_httpsystem(this),
-      m_visual(this)
+      m_visual(this),
+      m_emaildepartament(this)
    {
 
       m_purldepartament = new url::departament(this);
@@ -591,6 +592,15 @@ namespace axis
       return new ::axis::session(this);
 
    }
+
+
+   ::net::email_departament & system::email()
+   {
+      
+      return m_emaildepartament;
+
+   }
+
 
 
 } // namespace axis

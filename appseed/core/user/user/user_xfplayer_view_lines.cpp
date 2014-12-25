@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 XfplayerViewLines::XfplayerViewLines(::aura::application * papp) :
    element(papp)

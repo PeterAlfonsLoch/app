@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "base/user/user.h"
 #include "android.h"
+#include "base/base/os/android/android_windowing.h"
 //#include <X11/Xatom.h>
 
 #define TEST 0
@@ -132,7 +133,7 @@ namespace android
       if(pdata == NULL)
          return NULL;
 
-      return ((oswindow)pdata)->get_user_interaction();
+      return window_from_handle((oswindow)pdata);
 
    }
 
@@ -167,20 +168,20 @@ namespace android
 
    bool  interaction_impl::ModifyStyle(oswindow hWnd,DWORD dwRemove,DWORD dwAdd,UINT nFlags)
    {
-      DWORD dw = hWnd->get_window_long(GWL_STYLE);
+      DWORD dw = ::GetWindowLong(hWnd,GWL_STYLE);
       dw &= ~dwRemove;
       dw |= dwAdd;
-      hWnd->set_window_long(GWL_STYLE,dw);
+      ::SetWindowLong(hWnd,GWL_STYLE,dw);
       //return __modify_style(hWnd, GWL_STYLE, dwRemove, dwAdd, nFlags);
       return true;
    }
 
    bool interaction_impl::ModifyStyleEx(oswindow hWnd,DWORD dwRemove,DWORD dwAdd,UINT nFlags)
    {
-      DWORD dw = hWnd->get_window_long(GWL_EXSTYLE);
+      DWORD dw = ::GetWindowLong(hWnd,GWL_EXSTYLE);
       dw &= ~dwRemove;
       dw |= dwAdd;
-      hWnd->set_window_long(GWL_EXSTYLE,dw);
+      ::SetWindowLong(hWnd,GWL_EXSTYLE,dw);
       return true;
       //      return __modify_style(hWnd, GWL_EXSTYLE, dwRemove, dwAdd, nFlags);
    }
@@ -847,7 +848,7 @@ namespace android
    void interaction_impl::PostNcDestroy()
    {
       //set_handle(NULL);
-      m_oswindow->post_nc_destroy();
+      on_post_nc_destroy(m_oswindow);
       // default to nothing
    }
 
@@ -968,7 +969,7 @@ namespace android
       if((get_handle() == NULL))
          return true;
 
-      if(m_oswindow->m_bMessageOnlyWindow)
+      if(::is_message_only_window(m_oswindow))
       {
 
          ::oswindow_remove_message_only_window(m_pui);
@@ -5294,7 +5295,7 @@ namespace android
 
       }
 
-      return w->get_user_interaction();
+      return window_from_handle(w);
 
    }
 
@@ -5306,7 +5307,7 @@ namespace android
       if(!::IsWindow(w))
          return NULL;
 
-      return  w->get_user_interaction();
+      return window_from_handle(w);
 
    }
 
@@ -5320,7 +5321,7 @@ namespace android
       if(!::IsWindow(w))
          return NULL;
 
-      return  w->get_user_interaction();
+      return window_from_handle(w);
 
    }
 

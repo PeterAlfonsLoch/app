@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 form_document::form_document(::aura::application * papp) :

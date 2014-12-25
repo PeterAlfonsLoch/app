@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "simple_tab_control.h"
+//#include "framework.h"
+//#include "simple_tab_control.h"
 
 
 simple_tab_control::simple_tab_control(::aura::application * papp):

@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 const int32_t XfplayerViewLine::AlignLeft = 1;
 const int32_t XfplayerViewLine::AlignRight = 2;

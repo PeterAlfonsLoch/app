@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "core/user/user/user.h"
+#include "usernet_network_configuration.h"
 
 
 namespace usernet // ca8 + cube

@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 #define SBPF_UPDATE 0x0001  // pending update of text
 #define CX_PANE_BORDER 6    // 3 pixels on each side of each pane

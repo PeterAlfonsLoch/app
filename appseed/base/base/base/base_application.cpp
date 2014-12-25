@@ -1851,7 +1851,7 @@ namespace base
 
 
 
-   ::user::user * application::create_user()
+   sp(::user::user) application::create_user()
    {
 
       return canew(::user::user(this));
@@ -2336,6 +2336,14 @@ namespace base
    //   return canew(::user::user(this));
 
    //}
+
+   bool application::set_keyboard_layout(const char * pszPath,::action::context actioncontext)
+   {
+
+      return Session.user()->set_keyboard_layout(pszPath,actioncontext);
+
+   }
+
 
 } // namespace base
 

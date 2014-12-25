@@ -130,7 +130,7 @@ LRESULT DispatchMessage(LPMESSAGE lpmessage)
    if(lpmessage->hwnd == NULL)
       return false;
 
-   return lpmessage->hwnd->get_user_interaction()->message_handler(lpmessage);
+   return window_from_handle(lpmessage->hwnd)->message_handler(lpmessage);
 
 }
 

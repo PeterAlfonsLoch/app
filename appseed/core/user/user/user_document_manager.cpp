@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? NULL : (_cpc2)-1)
 

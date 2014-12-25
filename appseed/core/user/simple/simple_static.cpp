@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 simple_static::simple_static(::aura::application * papp) :

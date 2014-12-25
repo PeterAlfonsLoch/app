@@ -1957,6 +1957,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="base\os\android\android_simple_app.cpp" />
     <ClCompile Include="database\database\database_user_interaction.cpp" />
     <ClCompile Include="user\_user.cpp" />
     <ClInclude Include="base\hotplugin\hotplugin.h" />

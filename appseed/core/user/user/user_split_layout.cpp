@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
 

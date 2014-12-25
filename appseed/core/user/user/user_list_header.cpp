@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 //CLASS_DECL_CORE COLORREF Session.get_default_color(uint32_t dw);
 

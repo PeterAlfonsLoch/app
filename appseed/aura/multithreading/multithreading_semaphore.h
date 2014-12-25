@@ -11,7 +11,7 @@ public:
 #if defined(ANDROID)
 
    LONG              m_lMaxCount;
-   sem_t             m_psem;
+   sem_t *           m_psem;
 
 #elif defined(LINUX) || defined(APPLEOS)
 

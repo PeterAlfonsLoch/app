@@ -23,8 +23,7 @@ namespace core
       ::axis::system(papp),
       ::base::system(papp),
       m_mutexDelete(this),
-      m_mutex(this),
-      m_emaildepartament(this)
+      m_mutex(this)
    {
 
 #ifdef METROWIN
@@ -854,11 +853,6 @@ namespace core
       return m_patch;
    }
 
-
-   ::net::email_departament & system::email()
-   {
-      return m_emaildepartament;
-   }
 
    ::http::system & system::http()
    {

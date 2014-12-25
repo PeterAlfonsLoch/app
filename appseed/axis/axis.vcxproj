@@ -2396,7 +2396,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="database\database\database_stringhelper.h" />
     <ClInclude Include="database\database\database_template.h" />
     <ClInclude Include="database\database\database_update_hint.h" />
-    <ClInclude Include="database\simpledb\DBFileSystemSize.h" />
     <ClInclude Include="database\simpledb\db_long_set.h" />
     <ClInclude Include="database\simpledb\db_server.h" />
     <ClInclude Include="database\simpledb\db_set.h" />
@@ -2419,7 +2418,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="database\simpledb\simpledb_socket_thread.h" />
     <ClInclude Include="database\simpledb\simpledb_table.h" />
     <ClInclude Include="database\simpledb\veiev_post.h" />
-    <ClInclude Include="database\simpledb\_simpledb.cpp" />
+    <ClCompile Include="database\simpledb\_simpledb.cpp" />
     <ClInclude Include="database\sqlitedb\sqlitedb.h" />
     <ClInclude Include="database\sqlitedb\sqlitedb_base.h" />
     <ClInclude Include="database\sqlitedb\sqlitedb_set.h" />
@@ -2654,6 +2653,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\net_address.h" />
     <ClInclude Include="net\net_email.h" />
     <ClInclude Include="net\net_email_address.h" />
+    <ClInclude Include="net\net_email_departament.h" />
     <ClInclude Include="net\net_ip_enum.h" />
     <ClInclude Include="net\net_net.h" />
     <ClInclude Include="net\net_port_forward.h" />
@@ -2750,20 +2750,49 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\os\windows\windows_simple_app.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="database\database\database_application.cpp" />
-    <ClCompile Include="database\database\database_base.cpp" />
-    <ClCompile Include="database\database\database_client.cpp" />
-    <ClCompile Include="database\database\database_definition.cpp" />
-    <ClCompile Include="database\database\database_event_change.cpp" />
-    <ClCompile Include="database\database\database_field_definition.cpp" />
-    <ClCompile Include="database\database\database_id.cpp" />
-    <ClCompile Include="database\database\database_key.cpp" />
-    <ClCompile Include="database\database\database_selection.cpp" />
-    <ClCompile Include="database\database\database_selection_item.cpp" />
-    <ClCompile Include="database\database\database_server.cpp" />
-    <ClCompile Include="database\database\database_set.cpp" />
-    <ClCompile Include="database\database\database_stringhelper.cpp" />
-    <ClCompile Include="database\database\database_update_hint.cpp" />
+    <ClCompile Include="database\database\database_application.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_client.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_definition.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_event_change.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_field_definition.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_id.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_key.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_selection.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_selection_item.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_server.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_stringhelper.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\database_update_hint.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="database\database\_database.cpp" />
     <ClCompile Include="database\simpledb\simpledb_base.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
@@ -2777,9 +2806,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_file_set.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="database\simpledb\simpledb_im_post.cpp">
@@ -2965,6 +2991,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="net\net_address.cpp" />
     <ClCompile Include="net\net_email.cpp" />
     <ClCompile Include="net\net_email_address.cpp" />
+    <ClCompile Include="net\net_email_departament.cpp" />
     <ClCompile Include="net\net_ip_enum.cpp" />
     <ClCompile Include="net\net_net.cpp" />
     <ClCompile Include="net\net_port_forward.cpp" />

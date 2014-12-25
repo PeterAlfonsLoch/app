@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "core/filesystem/filemanager/filemanager.h"
+#include "core/filesystem/filemanager/filemanager.h"
 //
 //
 //

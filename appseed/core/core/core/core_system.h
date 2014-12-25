@@ -28,7 +28,6 @@ namespace core
   //    class ::core::service                        m_service;
 
       class ::core::patch                          m_patch;
-      ::net::email_departament                     m_emaildepartament;
 
       sp(::core::platform::run_start_installer)    m_prunstartinstaller;
       sp(::core::platform::map)                    m_pbergedgemap;
@@ -130,7 +129,6 @@ namespace core
       class ::core::patch                    & patch();
 
       ::http::system                         & http();
-      ::net::email_departament               & email();
 
       ::filehandler::handler                 & filehandler();
 

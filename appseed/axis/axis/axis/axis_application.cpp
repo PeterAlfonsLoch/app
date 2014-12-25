@@ -5,7 +5,8 @@ namespace axis
 {
 
 
-   application::application()
+   application::application() :
+      m_simpledb(this)
    {
 
       m_peventReady = NULL;
@@ -2097,6 +2098,16 @@ namespace axis
 
    bool application::initialize1()
    {
+
+      m_simpledb.construct(this);
+
+      if(!m_simpledb.initialize())
+         return false;
+
+      if(!m_simpledb.initialize2())
+         return false;
+
+      set_data_server(simpledb().get_data_server());
 
       if(m_bBaseInitialize1)
          return m_bBaseInitialize1Result;

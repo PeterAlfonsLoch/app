@@ -26,8 +26,6 @@ namespace base
       mutex                                           m_mutexFrame;
       ptr_array < ::user::interaction >               m_uiptraFrame;
 
-      sp(::database::server)                          m_spdataserver;
-
       bool                                            m_bUpdateMatterOnInstall;
 
 
@@ -68,7 +66,7 @@ namespace base
       virtual bool is_serviceable();
 
 
-      virtual ::user::user * create_user();
+      virtual sp(::user::user) create_user();
 
 
       virtual void on_create_keyboard();
@@ -267,6 +265,9 @@ namespace base
 
       //virtual ::user::interaction * get_active_guie();
       //virtual ::user::interaction * get_focus_guie();
+
+      virtual bool set_keyboard_layout(const char * pszPath,::action::context actioncontext);
+
 
    };
 

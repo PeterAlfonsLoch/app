@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 BaseSplitWnd::BaseSplitWnd(::aura::application * papp) :

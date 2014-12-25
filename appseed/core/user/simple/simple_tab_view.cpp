@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 simple_tab_view::simple_tab_view(::aura::application * papp) :

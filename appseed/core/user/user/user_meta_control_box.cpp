@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 MetaControlBox::MetaControlBox(::aura::application * papp) :

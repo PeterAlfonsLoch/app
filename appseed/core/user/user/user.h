@@ -345,3 +345,7 @@ namespace user
 
 #define new AURA_NEW
 
+
+#include "core/core/core/core_timer.h"
+
+
