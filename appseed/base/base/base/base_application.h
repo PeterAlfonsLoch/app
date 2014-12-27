@@ -66,7 +66,7 @@ namespace base
       virtual bool is_serviceable();
 
 
-      virtual sp(::user::user) create_user();
+      virtual ::user::user * create_user();
 
 
       virtual void on_create_keyboard();
@@ -106,7 +106,7 @@ namespace base
 #endif
 
       virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
-      virtual bool post_user_message(::thread_impl * pimpl,::user::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+      virtual bool post_user_message(::thread_impl * pimpl,::aura::interaction * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
 
       virtual bool is_window(::aura::interaction * pui);

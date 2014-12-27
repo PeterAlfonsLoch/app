@@ -61,17 +61,17 @@ namespace core
 
       if(m_pnaturedocument != NULL)
       {
-         m_pnaturedocument->on_close_document();
+         m_pnaturedocument.cast < ::aura::document> ()->on_close_document();
       }
 
       if(m_pplatformdocument != NULL)
       {
-         m_pplatformdocument->on_close_document();
+         m_pplatformdocument.cast < ::aura::document>()->on_close_document();
       }
 
       if(m_pbergedgedocument != NULL)
       {
-         m_pbergedgedocument->on_close_document();
+         m_pbergedgedocument.cast < ::aura::document>()->on_close_document();
       }
 
    }

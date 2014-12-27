@@ -25,7 +25,6 @@ public:
    T * m_p;
 
 
-
    smart_pointer();
    smart_pointer(const lparam & lparam);
    smart_pointer(const smart_pointer < T > & t);

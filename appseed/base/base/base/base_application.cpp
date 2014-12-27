@@ -1851,7 +1851,7 @@ namespace base
 
 
 
-   sp(::user::user) application::create_user()
+   ::user::user * application::create_user()
    {
 
       return canew(::user::user(this));
@@ -1976,14 +1976,14 @@ namespace base
    }
 
 
-   bool application::post_user_message(::thread_impl * pimpl,::user::interaction * pui,UINT message,WPARAM wparam,lparam lparam)
+   bool application::post_user_message(::thread_impl * pimpl,::aura::interaction * pui,UINT message,WPARAM wparam,lparam lparam)
    {
 
       if(pimpl->m_hthread == NULL)
          return false;
 
       ::user::message * pmessage    = new ::user::message;
-      pmessage->m_pui               = pui;
+      pmessage->m_pui               = (::user::interaction *) pui->m_pvoidUserInteraction;
       pmessage->m_uiMessage         = message;
       pmessage->m_wparam            = wparam;
       pmessage->m_lparam            = lparam;

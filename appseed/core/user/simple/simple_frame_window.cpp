@@ -5,7 +5,7 @@
 
 #define TEST 0
 
-extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
+extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
 simple_frame_window::helper_task::helper_task(simple_frame_window * pframe) :
 ::thread(pframe->get_app()),

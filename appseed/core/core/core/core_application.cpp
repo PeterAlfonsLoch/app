@@ -234,9 +234,9 @@ namespace core
 
       m_pwndfrm = canew(::user::wndfrm::wndfrm(this));
 
-      m_pwndfrm->construct(this);
+      wndfrm().construct(this);
 
-      if(!m_pwndfrm->initialize())
+      if(!wndfrm().initialize())
          return false;
 
 
@@ -923,11 +923,11 @@ namespace core
       // call doc-template idle hook
       ::count count = 0;
       if (m_pdocmanager != NULL)
-      count = m_pdocmanager->get_template_count();
+      count = document_manager().get_template_count();
 
       for(index index = 0; index < count; index++)
       {
-      sp(impact_system) ptemplate = m_pdocmanager->get_template(index);
+      sp(impact_system) ptemplate = document_manager().get_template(index);
       ASSERT_KINDOF(impact_system, ptemplate);
       ptemplate->on_idle();
       }
@@ -1759,13 +1759,13 @@ namespace core
          chFirst = strId[0];
       }
       /*      if (m_pdocmanager != NULL)
-      m_pdocmanager->_001OnFileNew();*/
+      document_manager()._001OnFileNew();*/
    }
 
    void application::on_file_open()
    {
       ENSURE(m_pdocmanager != NULL);
-      //m_pdocmanager->on_file_open();
+      //document_manager().on_file_open();
    }
 
    // prompt for file name - used for open and save as
@@ -1777,7 +1777,7 @@ namespace core
          return Platform.m_pfilemanager->do_prompt_file_name(varFile,nIDSTitle,lFlags,bOpenFileDialog,ptemplate,pdocument);
       }
       ENSURE(m_pdocmanager != NULL);
-      /*      return m_pdocmanager->do_prompt_file_name(fileName, nIDSTitle, lFlags,
+      /*      return document_manager().do_prompt_file_name(fileName, nIDSTitle, lFlags,
       bOpenFileDialog, ptemplate);*/
       return FALSE;
    }
@@ -2002,7 +2002,7 @@ namespace core
    bool application::save_all_modified()
    {
       /*      if (m_pdocmanager != NULL)
-      return m_pdocmanager->save_all_modified();*/
+      return document_manager().save_all_modified();*/
       return TRUE;
    }
 
@@ -2012,7 +2012,7 @@ namespace core
       if(m_pdocmanager != NULL)
       {
 
-         m_pdocmanager->close_all_documents(bEndSession);
+         document_manager().close_all_documents(bEndSession);
 
       }
 
@@ -2035,7 +2035,7 @@ namespace core
    bool application::OnDDECommand(LPTSTR lpszCommand)
    {
       /*      if (m_pdocmanager != NULL)
-      return m_pdocmanager->OnDDECommand(lpszCommand);
+      return document_manager().OnDDECommand(lpszCommand);
       else*/
       return FALSE;
    }
@@ -2368,20 +2368,20 @@ namespace core
    void application::RegisterShellFileTypes(bool bCompat)
    {
       ENSURE(m_pdocmanager != NULL);
-      //      m_pdocmanager->RegisterShellFileTypes(bCompat);
+      //      document_manager().RegisterShellFileTypes(bCompat);
    }
 
    void application::UnregisterShellFileTypes()
    {
       ENSURE(m_pdocmanager != NULL);
-      //    m_pdocmanager->UnregisterShellFileTypes();
+      //    document_manager().UnregisterShellFileTypes();
    }
 
 
    int32_t application::get_open_document_count()
    {
       ENSURE(m_pdocmanager != NULL);
-      //  return m_pdocmanager->get_open_document_count();
+      //  return document_manager().get_open_document_count();
       return 0;
    }
 
@@ -2968,7 +2968,7 @@ namespace core
 
 
       /*      if (m_pdocmanager != NULL)
-      m_pdocmanager->dump(dumpcontext);*/
+      document_manager().dump(dumpcontext);*/
 
       dumpcontext << "\nm_nWaitCursorCount = " << m_iWaitCursorCount;
       dumpcontext << "\nm_nNumPreviewPages = " << m_nNumPreviewPages;
@@ -3492,6 +3492,22 @@ namespace core
    {
 
       return Session.user()->keyboard().load_layout(pszPath,actioncontext);
+
+   }
+
+
+   ::user::wndfrm::wndfrm          &application::wndfrm()
+   {
+   
+      return *m_pwndfrm.cast < ::user::wndfrm::wndfrm>() ;
+
+   }
+
+
+   ::user::document_manager          &application::document_manager()
+   {
+      
+      return *m_pdocmanager.cast < ::user::document_manager >() ;
 
    }
 
@@ -4067,8 +4083,10 @@ namespace core
 
       if(m_pdocmanager == NULL)
          m_pdocmanager = canew(::user::document_manager(get_app()));
+      
+      //m_pdocmanager->add_ref();
 
-      m_pdocmanager->add_document_template(ptemplate);
+      document_manager().add_document_template(ptemplate);
 
    }
 
@@ -4078,7 +4096,7 @@ namespace core
       ASSERT(Application.m_pdocmanager != NULL);
       sp(::create) cc(allocer());
       cc->m_spCommandLine->m_varFile = lpszFileName;
-      return (Application.m_pdocmanager->open_document_file(cc));
+      return (Application.document_manager().open_document_file(cc));
    }
 
 

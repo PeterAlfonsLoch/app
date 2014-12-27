@@ -508,7 +508,7 @@ namespace userex
 
    void userex::_001OnFileNew()
    {
-      Application.m_pdocmanager->_001OnFileNew();
+      Application.document_manager()._001OnFileNew();
    }
 
    ::user::front_end_schema * userex::GetUfeSchema()

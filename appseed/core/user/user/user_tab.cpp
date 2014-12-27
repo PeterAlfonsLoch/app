@@ -4,7 +4,7 @@
 //#undef new
 ////#include <gdiplus.h>
 //#endif
-extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
+extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
 namespace user
 {

@@ -334,14 +334,14 @@ bool DBFileSystemSizeSet::get_fs_size(int64_t & i64Size, const char * pszPath, b
 }
 
 FileSystemSizeWnd::FileSystemSizeWnd(::aura::application * papp) :
-   element(papp),
-   ::window_sp(papp)
+   element(papp)
 {
+   m_pui = new ::user::interaction(papp);
 }
 
 void FileSystemSizeWnd::install_message_handling(::message::dispatch * pinterface)
 {
-   m_p->install_message_handling(pinterface);
+   m_pui->install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_COPYDATA, pinterface, this, &FileSystemSizeWnd::_001OnCopyData);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &FileSystemSizeWnd::_001OnTimer);
 }
@@ -352,10 +352,10 @@ bool FileSystemSizeWnd::CreateClient()
 //#ifdef WINDOWS
 
    m_bServer = false;
-   return m_p->create_message_queue("::draw2d::fontopus::FileSystemSizeWnd::Client");
+   return m_pui->create_message_queue("::draw2d::fontopus::FileSystemSizeWnd::Client");
 /*  sp(::user::interaction) puiMessage = NULL;
    puiMessage = System.window_from_os_data(HWND_MESSAGE);
-   return m_p->create(NULL, "::draw2d::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
+   return m_pui->create(NULL, "::draw2d::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
 
 //#else
 
@@ -371,9 +371,9 @@ bool FileSystemSizeWnd::CreateServer()
 #ifdef WINDOWS
 
    m_bServer = true;
-   if(!m_p->create_window(NULL,"Local\\::draw2d::fontopus::FileSystemSizeWnd::Server",0,null_rect(),System.window_from_os_data(HWND_MESSAGE),id()))
+   if(!m_pui->create_window(NULL,"Local\\::draw2d::fontopus::FileSystemSizeWnd::Server",0,null_rect(),System.window_from_os_data(HWND_MESSAGE),id()))
       return false;
-   m_p->SetTimer(100, 100, NULL);
+   m_pui->SetTimer(100, 100, NULL);
    return true;
 
 #else
@@ -413,7 +413,7 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
    data.dwData = 0;
    data.cbData = (uint32_t) file.get_length();
    data.lpData = file.get_data();
-   ::oswindow oswindowWparam = (::oswindow) m_p->get_os_data();
+   ::oswindow oswindowWparam = (::oswindow) m_pui->get_os_data();
    WPARAM wparam = (WPARAM) oswindowWparam;
    if(::SendMessage(oswindow, WM_COPYDATA, wparam, (LPARAM) &data))
    {
@@ -507,7 +507,7 @@ void FileSystemSizeWnd::_001OnTimer(signal_details * pobj)
             size.write(file);
             data.cbData = (uint32_t) file.get_length();
             data.lpData = file.get_data();
-            ::SendMessage(size.m_oswindow, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
+            ::SendMessage(size.m_oswindow, WM_COPYDATA, (WPARAM) m_pui->get_os_data(), (LPARAM) &data);
             m_sizea.remove_at(0);
          }
       }

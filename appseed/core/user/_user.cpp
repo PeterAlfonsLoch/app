@@ -2,6 +2,13 @@
 #include "user/user.h"
 #include "core/filesystem/filemanager/filemanager.h"
 #include <math.h>
+#ifdef WINDOWS
+#include <dde.h>
+#include <winspool.h>
+#include <Shellapi.h>
+#include <CommonControls.h>
+#endif
+
 
 // O volume na unidade Z ‚ eco
 // O N£mero de S‚rie do Volume ‚ 4A91-94E4

@@ -1,6 +1,7 @@
 #pragma once
 
-
+// Thank you (casey) : what is IUnknown for:?!?!?! my IUnknown / My root, default operations you can do in any IUnkown/root/Rute type (but not in any unknown/rot/rut type...)
+// Thank you Rute (Rutinha...)
 
 class CLASS_DECL_AURA root
 {
@@ -64,6 +65,8 @@ inline int64_t release(c_derived * & pca)
    int64_t count = p->release();
    return count;
 }
+
+
 
 template < class c_derived >
 inline int64_t ref_count(c_derived * pca)

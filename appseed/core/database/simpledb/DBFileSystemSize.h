@@ -5,7 +5,7 @@ class db_server;
 class FileSystemSizeWnd;
 
 
-class CLASS_DECL_AXIS file_size_table :
+class CLASS_DECL_CORE file_size_table :
    virtual public ::object
 {
 public:
@@ -94,7 +94,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS DBFileSystemSizeSet :
+class CLASS_DECL_CORE DBFileSystemSizeSet :
    virtual public ::object
 {
 public:
@@ -122,7 +122,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS FileSystemSizeServerThread :
+class CLASS_DECL_CORE FileSystemSizeServerThread :
    virtual public thread
 {
 public:
@@ -136,8 +136,7 @@ public:
 
 
 
-class CLASS_DECL_AXIS FileSystemSizeWnd :
-   public ::window_sp,
+class CLASS_DECL_CORE FileSystemSizeWnd :
    public signalizable
 {
 public:
@@ -158,7 +157,7 @@ public:
    array < file_size_table::get_fs_size, file_size_table::get_fs_size & > m_sizea;
 
    size_map                         m_map;
-
+   ::user::interaction *            m_pui;
 
    FileSystemSizeWnd(::aura::application * papp);
 

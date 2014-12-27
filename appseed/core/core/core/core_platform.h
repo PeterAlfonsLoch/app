@@ -60,15 +60,15 @@ namespace core
       ::user::single_document_template *                 m_ptemplate_platform;
       ::user::single_document_template *                 m_ptemplate_nature;
       ::user::single_document_template *                 m_ptemplate_html;
-      sp(::aura::document)                               m_pbergedgedocument;
-      sp(::aura::document)                               m_pplatformdocument;
-      sp(::aura::document)                               m_pnaturedocument;
+      sp(::root)                                         m_pbergedgedocument;
+      sp(::root)                                         m_pplatformdocument;
+      sp(::root)                                         m_pnaturedocument;
       //nature::database *                                 m_pdatabase;
 
 
-      string_map < sp(::user::wndfrm::interaction) >     m_mapUinteraction;
+      string_map < sp(::root) >                          m_mapUinteraction; // ::user::wndfrm::wndfrm
       
-      ::userex::userex *                               m_puserex;
+      ::userex::userex *                                 m_puserex;
       
 
 
