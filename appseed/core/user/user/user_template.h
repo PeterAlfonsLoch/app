@@ -12,14 +12,14 @@ namespace check
 
 #ifdef _WIN64
 template <>
-inline UINT HashKey(INT_PTR key)
+inline UINT HashKey(int_ptr key)
 {
 	// default identity hash - works for most primitive values
 	return (DWORD)(((DWORD_PTR)key)>>32);
 }
 #else
 template <>
-inline UINT HashKey(INT_PTR key)
+inline UINT HashKey(int_ptr key)
 {
 	// default identity hash - works for most primitive values
 	return (DWORD)(((DWORD_PTR)key)>>16);

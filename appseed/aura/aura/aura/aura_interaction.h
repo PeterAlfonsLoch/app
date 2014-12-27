@@ -20,6 +20,11 @@ namespace aura
 
       inline oswindow get_safe_handle() const;
 
+#ifdef WINDOWSEX
+      virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
+      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
+#endif
+
       virtual bool SetPlacement(const RECT & rect,UINT nFlags = SWP_SHOWWINDOW);
 
    };

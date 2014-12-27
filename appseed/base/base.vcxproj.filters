@@ -171,9 +171,6 @@
     <Filter Include="Source Files\base\install">
       <UniqueIdentifier>{45cb13cf-a3e1-4627-833e-10c83bc06da8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\NewFilter1">
-      <UniqueIdentifier>{3f77e34d-3cd2-4a8d-a5f9-0d92015a2c60}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{d6be1c1f-abbc-4e33-b6e7-fcf262aeb999}</UniqueIdentifier>
     </Filter>

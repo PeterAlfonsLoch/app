@@ -1,20 +1,20 @@
 #pragma once
 
-#ifdef _WIN64
-template <>
-inline UINT HashKey(int_ptr key)
-{
-   // default identity hash - works for most primitive values
-   return (uint32_t)(((uint_ptr)key) >> 32);
-}
-#else
-template <>
-inline UINT HashKey(int_ptr key)
-{
-   // default identity hash - works for most primitive values
-   return (uint32_t)(((uint_ptr)key) >> 16);
-}
-#endif
+//#ifdef _WIN64
+//template <>
+//inline UINT HashKey(int_ptr key)
+//{
+//   // default identity hash - works for most primitive values
+//   return (uint32_t)(((uint_ptr)key) >> 32);
+//}
+//#else
+//template <>
+//inline UINT HashKey(int_ptr key)
+//{
+//   // default identity hash - works for most primitive values
+//   return (uint32_t)(((uint_ptr)key) >> 16);
+//}
+//#endif
 
 namespace user
 {

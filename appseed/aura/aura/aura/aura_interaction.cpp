@@ -20,6 +20,31 @@ namespace aura
    }
 
 
+#ifdef WINDOWSEX
+
+
+   bool interaction::GetWindowPlacement(WINDOWPLACEMENT * lpwndpl)
+   {
+
+      UNREFERENCED_PARAMETER(lpwndpl);
+
+      return false;
+
+   }
+
+   bool interaction::SetWindowPlacement(const WINDOWPLACEMENT * lpcwndpl)
+   {
+
+      UNREFERENCED_PARAMETER(lpcwndpl);
+
+      return false;
+
+   }
+
+
+#endif WINDOWSEX
+
+
    bool interaction::SetPlacement(const RECT & rect,UINT nFlags)
    {
 

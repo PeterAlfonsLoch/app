@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "base/user/user.h"
+#include "hotplugin.h"
 
 
 namespace hotplugin
@@ -52,7 +54,7 @@ namespace hotplugin
 
 #ifdef WINDOWS
 
-         g_pbasesystem->m_hinstance = (HINSTANCE)get_hinstance;
+         g_pbasesystem->m_hinstance = (HINSTANCE)get_hinstance();
 
 #endif
 

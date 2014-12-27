@@ -725,7 +725,7 @@ bool db_long_set::SetWindowPlacement(const char * lpKey, ::aura::interaction * p
    if(!load(strKey, &wp.ptMinPosition))
       return false;
    strKey = lpKey;
-   strKey += ".ptMaxPosition";
+   strKey += ".ptMaxPosition";                                                                                                                                                                                          
    if(!load(strKey, &wp.ptMaxPosition))
       return false;
    strKey = lpKey;
