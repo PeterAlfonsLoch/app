@@ -827,7 +827,7 @@ namespace metrowin
       return bOk != FALSE;
    }
 
-   bool os::resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
+   bool os::resolve_link(string & strTarget, const char * pszSource, ::aura::interaction * puiMessageParentOptional)
    {
 
       return vfxResolveShortcut(strTarget, pszSource, puiMessageParentOptional);

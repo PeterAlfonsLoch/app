@@ -33,10 +33,10 @@ namespace metrowin
       m_pimpl->_001OnFileNew(NULL);
    }
 
-   ::user::document * application::_001OpenDocumentFile(var varFile)
-   {
-      return m_pimpl->_001OpenDocumentFile(varFile);
-   }
+   //::user::document * application::_001OpenDocumentFile(var varFile)
+   //{
+   //   return m_pimpl->_001OpenDocumentFile(varFile);
+   //}
 
    void application::_001EnableShellOpen()
    {

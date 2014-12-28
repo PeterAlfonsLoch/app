@@ -363,7 +363,7 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3bae8362-f135-4513-9163-58532baba44a}</ProjectGuid>
+    <ProjectGuid>{5487686F-8A2F-401A-A38E-FDA8900E1984}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>axis</ProjectName>
     <RootNamespace>axis</RootNamespace>

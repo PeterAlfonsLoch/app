@@ -1582,7 +1582,7 @@ namespace metrowin
 
 
 
-   bool CLASS_DECL_AURA vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional)
+   bool CLASS_DECL_AURA vfxResolveShortcut(string & strTarget, const char * pszSource, ::aura::interaction * puiMessageParentOptional)
    {
 
 #ifdef WINDOWSEX

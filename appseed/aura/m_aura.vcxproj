@@ -936,13 +936,6 @@
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h" />
     <ClInclude Include="user\simple\simple_message_box.h" />
     <ClInclude Include="user\user.h" />
-    <ClInclude Include="user\user\user.h" />
-    <ClInclude Include="user\user\user_create_context.h" />
-    <ClInclude Include="user\user\user_draw_context.h" />
-    <ClInclude Include="user\user\user_draw_interface.h" />
-    <ClInclude Include="user\user\user_printer.h" />
-    <ClInclude Include="user\user\user_timer_array.h" />
-    <ClInclude Include="user\user\user_timer_item.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
   </ItemGroup>
@@ -1028,7 +1021,6 @@
     <ClCompile Include="aura\aura\aura_session.cpp" />
     <ClCompile Include="aura\aura\aura_session_interface.cpp" />
     <ClCompile Include="aura\aura\aura_simple_shell_launcher.cpp" />
-    <ClCompile Include="aura\aura\aura_small_ipc_channel.cpp" />
     <ClCompile Include="aura\aura\aura_sprintf.cpp" />
     <ClCompile Include="aura\aura\aura_static_start.cpp" />
     <ClCompile Include="aura\aura\aura_system.cpp" />
@@ -1199,7 +1191,7 @@
     <ClCompile Include="aura\os\metrowin\metrowin_library.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_local_memory_map.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_lock.cpp" />
-    <ClCompile Include="aura\os\metrowin\metrowin_MessageBoxA.cpp" />
+    <ClCompile Include="aura\os\metrowin\metrowin_MessageBoxW.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_multithreading.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_process.cpp" />
     <ClCompile Include="aura\os\metrowin\metrowin_simple_app.cpp" />
@@ -1401,11 +1393,7 @@
     <ClCompile Include="primitive\data\data_item.cpp" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_mktime.c">
-      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</CompileAsWinRT>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">framework_c.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_mktime.cpp" />
     <ClCompile Include="primitive\datetime\datetime_time.cpp" />
     <ClCompile Include="primitive\datetime\datetime_value.cpp" />
     <ClCompile Include="primitive\geometry\geometry_geometry.cpp" />
@@ -1427,7 +1415,7 @@
     <ClCompile Include="primitive\primitive_command.cpp" />
     <ClCompile Include="primitive\primitive_command_line.cpp" />
     <ClCompile Include="primitive\primitive_command_thread.cpp" />
-    <ClCompile Include="primitive\primitive_create_context.cpp" />
+    <ClCompile Include="primitive\primitive_create.cpp" />
     <ClCompile Include="primitive\primitive_edit.cpp" />
     <ClCompile Include="primitive\primitive_factory.cpp" />
     <ClCompile Include="primitive\primitive_id.cpp" />
@@ -1826,12 +1814,6 @@
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
-    <ClCompile Include="user\user\user_create_context.cpp" />
-    <ClCompile Include="user\user\user_draw_context.cpp" />
-    <ClCompile Include="user\user\user_draw_interface.cpp" />
-    <ClCompile Include="user\user\user_printer.cpp" />
-    <ClCompile Include="user\user\user_timer_array.cpp" />
-    <ClCompile Include="user\user\user_timer_item.cpp" />
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>

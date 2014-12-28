@@ -93,7 +93,7 @@ CLASS_DECL_AURA void __init_thread();
 CLASS_DECL_AURA void __term_thread(::aura::application * papp, HINSTANCE hInstTerm = NULL);
 
 
-CLASS_DECL_AURA sp(::user::interaction) __get_main_window();
+//CLASS_DECL_AURA sp(::user::interaction) __get_main_window();
 
 
 CLASS_DECL_AURA void __delete_object(HGDIOBJ* pObject);

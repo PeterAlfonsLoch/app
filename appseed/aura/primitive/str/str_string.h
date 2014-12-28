@@ -1595,7 +1595,7 @@ inline string to_string(wstring & wstr)
 
 
 template < >
-inline string to_string(String ^ str)
+inline string to_string(String ^ & str)
 {
 
    return (const wchar_t *) wstring(begin(str));

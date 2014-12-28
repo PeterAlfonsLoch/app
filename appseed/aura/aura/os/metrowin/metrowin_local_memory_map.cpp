@@ -36,11 +36,11 @@ bool local_memory_map::open()
 
    }
 
-   ensure_file_size_handle(m_hfile,size);
+   ensure_file_size_handle(m_hfile,m_size);
 
-   m_hfile = CreateFileMappingFromApp(m_hfileBitmap, NULL, PAGE_READWRITE, size, NULL);
+   m_hfilemap = CreateFileMappingFromApp(m_hfile, NULL, PAGE_READWRITE, m_size, NULL);
 
-   if(m_hfile == NULL)
+   if(m_hfilemap == NULL)
    {
       
       close();
