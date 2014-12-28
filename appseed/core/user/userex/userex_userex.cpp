@@ -339,7 +339,7 @@ namespace userex
       }
    }
 
-   int32_t userex::simple_message_box_timeout(sp(::user::interaction) puiOwner,const char * pszMessage,::duration durationTimeout,UINT fuStyle)
+   int32_t userex::simple_message_box_timeout(::aura::interaction * puiOwner,const char * pszMessage,::duration durationTimeout,UINT fuStyle)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
