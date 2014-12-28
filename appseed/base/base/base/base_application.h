@@ -69,6 +69,9 @@ namespace base
       virtual ::user::user * create_user();
 
 
+      virtual ::user::interaction * main_window();
+
+
       virtual void on_create_keyboard();
 
 

@@ -2345,6 +2345,17 @@ namespace base
    }
 
 
+   ::user::interaction * application::main_window()
+   {
+
+      if(m_puiMain == NULL)
+         return NULL;
+
+      return (::user::interaction *) m_puiMain->m_pvoidUserInteraction;
+    
+   }
+
+
 } // namespace base
 
 
