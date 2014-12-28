@@ -16,6 +16,8 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+typedef in6_addr in_addr6;
+
 #endif
 
 #ifdef LINUX
