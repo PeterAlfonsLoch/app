@@ -502,50 +502,50 @@ END_EXTERN_C
 
 
 
-void file_read_n_number_dup(HANDLE hfile,::md5::md5 * pctx,int32_t & iNumber)
-{
-
-   string str;
-
-   char ch;
-
-   DWORD dwRead;
-
-   while(ReadFile(hfile,&ch,1,&dwRead,NULL) && dwRead == 1)
-   {
-      if(ch >= '0' && ch <= '9')
-         str += ch;
-      else
-         break;
-      if(pctx != NULL)
-      {
-         pctx->update(&ch,1);
-      }
-   }
-   if(ch != 'n')
-      return;
-   if(pctx != NULL)
-   {
-      pctx->update(&ch,1);
-   }
-   iNumber = atoi_dup(str);
-}
-
-void file_read_gen_string_dup(HANDLE hfile,::md5::md5 * pctx,string & str)
-{
-   int32_t iLen;
-   file_read_n_number_dup(hfile,pctx,iLen);
-   LPSTR lpsz = (LPSTR)memory_alloc(iLen + 1);
-   DWORD dwRead;
-   ReadFile(hfile,lpsz,iLen,&dwRead,NULL);
-   if(pctx != NULL)
-   {
-      pctx->update(lpsz,iLen);
-   }
-   lpsz[iLen] = '\0';
-   str = lpsz;
-   memory_free_dbg(lpsz,0);
-}
+//void file_read_n_number_dup(HANDLE hfile,::md5::md5 * pctx,int32_t & iNumber)
+//{
+//
+//   string str;
+//
+//   char ch;
+//
+//   DWORD dwRead;
+//
+//   while(ReadFile(hfile,&ch,1,&dwRead,NULL) && dwRead == 1)
+//   {
+//      if(ch >= '0' && ch <= '9')
+//         str += ch;
+//      else
+//         break;
+//      if(pctx != NULL)
+//      {
+//         pctx->update(&ch,1);
+//      }
+//   }
+//   if(ch != 'n')
+//      return;
+//   if(pctx != NULL)
+//   {
+//      pctx->update(&ch,1);
+//   }
+//   iNumber = atoi_dup(str);
+//}
+//
+//void file_read_gen_string_dup(HANDLE hfile,::md5::md5 * pctx,string & str)
+//{
+//   int32_t iLen;
+//   file_read_n_number_dup(hfile,pctx,iLen);
+//   LPSTR lpsz = (LPSTR)memory_alloc(iLen + 1);
+//   DWORD dwRead;
+//   ReadFile(hfile,lpsz,iLen,&dwRead,NULL);
+//   if(pctx != NULL)
+//   {
+//      pctx->update(lpsz,iLen);
+//   }
+//   lpsz[iLen] = '\0';
+//   str = lpsz;
+//   memory_free_dbg(lpsz,0);
+//}
 
 
 string file_module_path_dup()
@@ -1828,12 +1828,6 @@ uint64_t fsize_dup(HANDLE h)
 
 
 
-
-#include "framework.h"
-#include <io.h>
-
-
-void file_read_ex1_string_dup(HANDLE hfile,::md5::md5 * pctx,string & str);
 
 
 void ensure_file_size(HANDLE h,int64_t iSize)

@@ -132,6 +132,7 @@
     <ClInclude Include="aura\aura\aura_smart_pointer2.h" />
     <ClInclude Include="aura\aura\aura_sprintf.h" />
     <ClInclude Include="aura\aura\aura_static_start.h" />
+    <ClInclude Include="aura\aura\aura_str_context.h" />
     <ClInclude Include="aura\aura\aura_system.h" />
     <ClInclude Include="aura\aura\aura_system_str.h" />
     <ClInclude Include="aura\aura\aura_system_trace.h" />
@@ -1023,6 +1024,7 @@
     <ClCompile Include="aura\aura\aura_simple_shell_launcher.cpp" />
     <ClCompile Include="aura\aura\aura_sprintf.cpp" />
     <ClCompile Include="aura\aura\aura_static_start.cpp" />
+    <ClCompile Include="aura\aura\aura_str_context.cpp" />
     <ClCompile Include="aura\aura\aura_system.cpp" />
     <ClCompile Include="aura\aura\aura_template.cpp" />
     <ClCompile Include="aura\aura\aura_timer_array.cpp" />

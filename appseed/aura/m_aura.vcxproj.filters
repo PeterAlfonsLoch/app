@@ -1983,6 +1983,9 @@
     <ClInclude Include="aura\aura\axis.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\aura_str_context.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive_factory_impl.inl">
@@ -3318,6 +3321,9 @@
     </ClCompile>
     <ClCompile Include="aura\os\metrowin\metrowin_MessageBoxW.cpp">
       <Filter>Source Files\aura\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_str_context.cpp">
+      <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
