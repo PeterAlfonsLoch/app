@@ -473,7 +473,11 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 
          class resource_exception;// Win resource failure exception
          class user_exception;    // Message Box alert and stop operation
+         namespace aura
+         {
+            class menu;                 // a menu
 
+         }
 
       namespace draw2d
       {
@@ -499,7 +503,6 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 
    namespace user
    {
-      class menu;                 // a menu
       class edit_plain_text;            // Edit control
       class view;            // a ::aura::impact on a document
       class document_manager;      // impact_system manager object

@@ -5,7 +5,6 @@ namespace user
 {
 
 
-   //const int32_t BaseWndMenuCmdUi = 117;
    const int32_t g_base_menu_indent = 11;
 
 
@@ -120,7 +119,7 @@ namespace user
 
       SetWindowPos(0, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
 
-      SetTimer(BaseWndMenuCmdUi, 300, NULL);
+      SetTimer(::aura::BaseWndMenuCmdUi,300,NULL);
 
       return true;
    }
@@ -172,7 +171,7 @@ namespace user
 
       SetWindowPos(0, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
 
-      SetTimer(BaseWndMenuCmdUi, 300, NULL);
+      SetTimer(::aura::BaseWndMenuCmdUi, 300, NULL);
 
       return true;
    }
@@ -208,7 +207,7 @@ namespace user
    void menu_list_window::_001OnTimer(signal_details * pobj)
    {
       SCAST_PTR(::message::timer, ptimer, pobj)
-      if(ptimer->m_nIDEvent == BaseWndMenuCmdUi)
+         if(ptimer->m_nIDEvent == ::aura::BaseWndMenuCmdUi)
       {
          _UpdateCmdUi(m_pitem);
          RedrawWindow();

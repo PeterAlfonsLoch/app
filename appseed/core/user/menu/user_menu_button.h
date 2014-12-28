@@ -1,11 +1,9 @@
 #pragma once
 
+
 namespace user
 {
 
-   class menu_base;
-   class menu_item;
-   class menu_item_ptra;
 
    class CLASS_DECL_CORE menu_button_cmd_ui : public cmd_ui
    {

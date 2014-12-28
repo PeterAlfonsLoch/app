@@ -5,10 +5,6 @@ namespace aura
 {
 
 
-   class front_end;
-   class menu_item;
-
-
    class CLASS_DECL_CORE menu : 
       virtual public ::user::control,
       virtual public menu_base
@@ -48,11 +44,11 @@ namespace aura
 
 
       menu(::aura::application * papp);
-      menu(::aura::application * papp, sp(menu_item) pitem);
+      menu(::aura::application * papp, sp(::user::menu_item) pitem);
       virtual ~menu();
 
 
-      menu_item * GetSubMenu(int32_t i);
+      ::user::menu_item * GetSubMenu(int32_t i);
 
       void layout_menu(point pt);
 
@@ -85,10 +81,10 @@ namespace aura
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
 
-      sp(menu_item) get_item();
+      sp(::user::menu_item) get_item();
 
 
-      virtual bool get_color(COLORREF & cr,e_color ecolor);
+      virtual bool get_color(COLORREF & cr,::user::e_color ecolor);
 
    };
 

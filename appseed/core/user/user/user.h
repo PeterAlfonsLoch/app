@@ -18,6 +18,25 @@ namespace html
 } // namespace html
 
 
+namespace user
+{
+
+
+   class menu_item_ptra;
+   class menu_item;
+   class menu_item_ptra;
+   class front_end;
+   class menu_item;
+
+
+
+
+
+
+
+
+
+} // namespace user
 
 
 enum e_position
@@ -289,6 +308,10 @@ namespace user
 
 #include "user_single_document_template.h"
 #include "user_multiple_document_template.h"
+
+
+
+
 
 #include "core/user/menu/user_menu_button.h"
 #include "core/user/menu/user_menu_item.h"

@@ -1,13 +1,11 @@
 #pragma once
 
+
 namespace user
 {
 
-   class menu_item;
-
-
    class CLASS_DECL_CORE menu_list_window :
-      virtual public menu
+      virtual public ::aura::menu
    {
    public:
 

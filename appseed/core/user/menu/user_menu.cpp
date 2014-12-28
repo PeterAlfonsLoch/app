@@ -2,7 +2,7 @@
 //#include "core/user/user/user.h"
 
 
-namespace user
+namespace aura
 {
 
 
@@ -18,7 +18,7 @@ namespace user
 
       m_bAutoDelete        = true;
       m_pschema            = NULL;
-      m_pitem              = new menu_item(papp);
+      m_pitem              = new ::user::menu_item(papp);
       m_bOwnItem           = true;
       m_oswindowParent         = NULL;
       m_pmenuParent        = NULL;
@@ -28,7 +28,7 @@ namespace user
    }
 
 
-   menu::menu(::aura::application * papp, sp(menu_item) pitem) :
+   menu::menu(::aura::application * papp,sp(::user::menu_item) pitem):
       element(papp),
       menu_base(papp),
       m_buttonClose(papp)
@@ -52,7 +52,7 @@ namespace user
    }
 
 
-   menu_item * menu::GetSubMenu(int32_t i)
+   ::user::menu_item * menu::GetSubMenu(int32_t i)
    {
 
       return get_item()->m_spitema->element_at(i);
@@ -134,9 +134,9 @@ namespace user
       int32_t iMaxWidth = size.cx;
       m_iHeaderHeight = size.cy;
 
-      sp(menu_item) pitem = get_item();
+      sp(::user::menu_item) pitem = get_item();
 
-      sp(menu_item_ptra) spitema = pitem->m_spitema;
+      sp(::user::menu_item_ptra) spitema = pitem->m_spitema;
 
       for (int32_t i = 0; i < spitema->get_size(); i++)
       {
@@ -161,7 +161,7 @@ namespace user
       string str;
       for(int32_t i = 0; i < iItemCount; i++)
       {
-         menu_item * pitem = spitema->element_at(i);
+         ::user::menu_item * pitem = spitema->element_at(i);
          if(pitem->m_id == "separator")
          {
             rect.bottom = rect.top + 3;
@@ -202,7 +202,7 @@ namespace user
 
       SetWindowPos(ZORDER_TOPMOST,pt.x,pt.y,m_size.cx,m_size.cy,SWP_FRAMECHANGED | SWP_SHOWWINDOW);
 
-      SetTimer(BaseWndMenuCmdUi,100,NULL);
+      SetTimer(::aura::BaseWndMenuCmdUi,100,NULL);
 
 
    }
@@ -330,11 +330,11 @@ namespace user
          else
          {
 
-            sp(menu_item) pitemThis = get_item();
+            sp(::user::menu_item) pitemThis = get_item();
 
-            sp(menu_item_ptra) spitema = pitemThis->m_spitema;
+            sp(::user::menu_item_ptra) spitema = pitemThis->m_spitema;
 
-            sp(menu_item) pitem = spitema->find(pevent->m_puie->m_id);
+            sp(::user::menu_item) pitem = spitema->find(pevent->m_puie->m_id);
 
             if(pitem != NULL && !pitem->m_bPopup)
             {
@@ -383,11 +383,11 @@ namespace user
                else*/
                {
 
-                  sp(menu_item) pitemThis = get_item();
+                  sp(::user::menu_item) pitemThis = get_item();
 
-                  sp(menu_item_ptra) spitema = pitemThis->m_spitema;
+                  sp(::user::menu_item_ptra) spitema = pitemThis->m_spitema;
 
-                  sp(menu_item) pitem = spitema->find(pevent->m_puie->m_id);
+                  sp(::user::menu_item) pitem = spitema->find(pevent->m_puie->m_id);
 
                   if(pitem != NULL)
                   {
@@ -421,9 +421,9 @@ namespace user
    {
       SCAST_PTR(::message::timer, ptimer, pobj);
 
-      sp(menu_item) pitemThis = get_item();
+      sp(::user::menu_item) pitemThis = get_item();
 
-      sp(menu_item_ptra) spitema = pitemThis->m_spitema;
+      sp(::user::menu_item_ptra) spitema = pitemThis->m_spitema;
 
       if(ptimer->m_nIDEvent == BaseWndMenuTimer)
       {
@@ -446,11 +446,11 @@ namespace user
          }
          m_idTimerMenu.is_empty();
       }
-      else if(ptimer->m_nIDEvent == BaseWndMenuCmdUi)
+      else if(ptimer->m_nIDEvent == ::aura::BaseWndMenuCmdUi)
       {
          if(spitema != NULL)
          {
-            menu_button_cmd_ui cmdui(get_app());
+            ::user::menu_button_cmd_ui cmdui(get_app());
             cmdui.m_pitema          = spitema;
             for(int32_t i = 0; i < spitema->get_size(); i++)
             {
@@ -507,13 +507,13 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::message::base, pbase, pobj)
 
-      sp(menu_item) pitemThis = get_item();
+      sp(::user::menu_item) pitemThis = get_item();
 
-      sp(menu_item_ptra) spitema = pitemThis->m_spitema;
+      sp(::user::menu_item_ptra) spitema = pitemThis->m_spitema;
 
       if(spitema != NULL)
       {
-         menu_button_cmd_ui cmdui(get_app());
+         ::user::menu_button_cmd_ui cmdui(get_app());
          cmdui.m_pitema          = spitema;
          for(int32_t i = 0; i < spitema->get_size(); i++)
          {
@@ -599,7 +599,7 @@ namespace user
    }
 
 
-   sp(menu_item) menu::get_item()
+   sp(::user::menu_item) menu::get_item()
    {
 
       return m_pitem;
@@ -607,10 +607,10 @@ namespace user
    }
 
 
-   bool menu::get_color(COLORREF & cr,e_color ecolor)
+   bool menu::get_color(COLORREF & cr,::user::e_color ecolor)
    {
 
-      if(ecolor == color_background)
+      if(ecolor == ::user::color_background)
       {
 
          cr = ARGB(255,185,184,177);

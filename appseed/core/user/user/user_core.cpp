@@ -53,8 +53,8 @@ namespace user
       System.factory().creatable_small < ::user::combo_list >();
       System.factory().creatable_small < ::user::edit_plain_text >();
 
-      System.factory().creatable_small < menu_item >(System.type_info < menu_base_item >());
-      System.factory().creatable_small < menu >(System.type_info < menu_base >());
+      System.factory().creatable_small < menu_item >(System.type_info < ::aura::menu_base_item >());
+      System.factory().creatable_small < ::aura::menu >(System.type_info < ::aura::menu_base >());
 
 
       System.factory().creatable_small < ::user::button >();

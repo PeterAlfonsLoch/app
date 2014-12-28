@@ -8,14 +8,10 @@ typedef void * HHOOK ;
 #endif // defined(LINUX)
 
 
-namespace user
-{
-   class menu;
-
-} // namespace user
 
 namespace user
 {
+
 
    class CLASS_DECL_CORE front_end
    {
