@@ -81,18 +81,6 @@
     <Filter Include="Header Files\user\simple">
       <UniqueIdentifier>{87359dfc-dc8d-48ea-9e7a-cc1bd37769e0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive">
-      <UniqueIdentifier>{a436f96b-c593-4991-9fba-6ed7210b6d8b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\datetime">
-      <UniqueIdentifier>{5c8f0aee-045e-4927-b077-38db80b4391c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\data">
-      <UniqueIdentifier>{bef40cbe-3ae4-49c1-b9d7-dbbc2ca62a45}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\base_policy">
-      <UniqueIdentifier>{2be2ffd3-b100-458f-88e6-49eb5577055f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base\node">
       <UniqueIdentifier>{57540175-8b21-49ef-a8b9-0ccf5f3f4a56}</UniqueIdentifier>
     </Filter>
@@ -318,9 +306,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows.h">
@@ -934,14 +919,14 @@
     <ClCompile Include="base\install\install_starter_start.cpp">
       <Filter>Source Files\base\install</Filter>
     </ClCompile>
-    <ClCompile Include="user\_user.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="database\database\database_user_interaction.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="base\os\android\android_simple_app.cpp">
       <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="user\_user.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

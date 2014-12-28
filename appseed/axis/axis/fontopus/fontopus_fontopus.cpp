@@ -419,7 +419,7 @@ namespace fontopus
    string fontopus::get_server(const char * pszUrl, int32_t iRetry)
    {
 
-      string strHost(url_get_server(pszUrl));
+      string strHost(System.url().get_server(pszUrl));
 
       if(strHost.is_empty())
       {

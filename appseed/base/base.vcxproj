@@ -1562,7 +1562,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <MinimalRebuild>false</MinimalRebuild>
       <CompileAsManaged>false</CompileAsManaged>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <PrecompiledHeaderFile>base/net/sockets/bsd/sockets.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <OmitFramePointers>true</OmitFramePointers>
@@ -2499,7 +2499,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="database\database\database_user_interaction.h" />
     <ClInclude Include="filesystem\file\file_edit_buffer.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="framework_c.h" />
     <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="graphics\graphics.h" />
     <ClCompile Include="base\os\windows\windows.cpp">
@@ -2525,13 +2524,10 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">Create</PrecompiledHeader>
@@ -2539,7 +2535,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">Create</PrecompiledHeader>
@@ -2547,8 +2542,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Android'">Create</PrecompiledHeader>
