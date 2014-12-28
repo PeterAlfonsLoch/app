@@ -145,99 +145,99 @@ uint64_t file_length_dup(const char * path)
 
 
 
-
-
-
-int_bool file_ftd_dup(const char * pszDir,const char * pszFile)
-{
-
-   HANDLE hfile1 = NULL;
-
-   HANDLE hfile2 = NULL;
-
-   wstring wstr(pszFile);
-
-   hfile1 = create_file(pszFile,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-
-   if(hfile1 == INVALID_HANDLE_VALUE)
-      return FALSE;
-
-   string strVersion;
-
-
-   file_read_gen_string_dup(hfile1,NULL,strVersion);
-
-   int32_t n;
-
-   string strRelative;
-
-   string strMd5;
-
-   string strMd5New;
-
-   int32_t iBufSize = 1024 * 1024;
-
-   uchar * buf = (uchar *)memory_alloc(iBufSize);
-
-   int32_t iLen;
-   md5::md5 ctx;
-   DWORD dwRead;
-   DWORD dwWritten;
-   if(strVersion == "fileset v1")
-   {
-      while(true)
-      {
-         file_read_n_number_dup(hfile1,NULL,n);
-         if(n == 2)
-            break;
-         file_read_gen_string_dup(hfile1,NULL,strMd5);
-         ctx.initialize();
-         file_read_gen_string_dup(hfile1,&ctx,strRelative);
-         string strPath = dir::path(pszDir,strRelative);
-         dir::mk(dir::name(strPath));
-         hfile2 = create_file(strPath,GENERIC_WRITE,0,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
-         if(hfile2 == INVALID_HANDLE_VALUE)
-            return FALSE;
-         file_read_n_number_dup(hfile1,&ctx,iLen);
-         while(iLen > 0)
-         {
-            if(!ReadFile(hfile1,buf,MIN(iBufSize,iLen),&dwRead,NULL))
-               break;
-            if(dwRead == 0)
-               break;
-            WriteFile(hfile2,buf,dwRead,&dwWritten,NULL);
-            ctx.update(buf,dwRead);
-            iLen -= dwRead;
-         }
-         CloseHandle(hfile2);
-         hfile2 = NULL;
-         ctx.finalize();
-
-         strMd5New.clear();
-         string strFormat;
-         strMd5New = ctx.to_string();
-         if(strMd5.CompareNoCase(strMd5New) != 0)
-            return FALSE;
-      }
-   }
-   CloseHandle(hfile1);
-   if(hfile2 != INVALID_HANDLE_VALUE)
-      CloseHandle(hfile2);
-   return true;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
+//
+//
+//
+//int_bool file_ftd_dup(const char * pszDir,const char * pszFile)
+//{
+//
+//   HANDLE hfile1 = NULL;
+//
+//   HANDLE hfile2 = NULL;
+//
+//   wstring wstr(pszFile);
+//
+//   hfile1 = create_file(pszFile,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+//
+//   if(hfile1 == INVALID_HANDLE_VALUE)
+//      return FALSE;
+//
+//   string strVersion;
+//
+//
+//   file_read_gen_string_dup(hfile1,NULL,strVersion);
+//
+//   int32_t n;
+//
+//   string strRelative;
+//
+//   string strMd5;
+//
+//   string strMd5New;
+//
+//   int32_t iBufSize = 1024 * 1024;
+//
+//   uchar * buf = (uchar *)memory_alloc(iBufSize);
+//
+//   int32_t iLen;
+//   md5::md5 ctx;
+//   DWORD dwRead;
+//   DWORD dwWritten;
+//   if(strVersion == "fileset v1")
+//   {
+//      while(true)
+//      {
+//         file_read_n_number_dup(hfile1,NULL,n);
+//         if(n == 2)
+//            break;
+//         file_read_gen_string_dup(hfile1,NULL,strMd5);
+//         ctx.initialize();
+//         file_read_gen_string_dup(hfile1,&ctx,strRelative);
+//         string strPath = dir::path(pszDir,strRelative);
+//         dir::mk(dir::name(strPath));
+//         hfile2 = create_file(strPath,GENERIC_WRITE,0,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
+//         if(hfile2 == INVALID_HANDLE_VALUE)
+//            return FALSE;
+//         file_read_n_number_dup(hfile1,&ctx,iLen);
+//         while(iLen > 0)
+//         {
+//            if(!ReadFile(hfile1,buf,MIN(iBufSize,iLen),&dwRead,NULL))
+//               break;
+//            if(dwRead == 0)
+//               break;
+//            WriteFile(hfile2,buf,dwRead,&dwWritten,NULL);
+//            ctx.update(buf,dwRead);
+//            iLen -= dwRead;
+//         }
+//         CloseHandle(hfile2);
+//         hfile2 = NULL;
+//         ctx.finalize();
+//
+//         strMd5New.clear();
+//         string strFormat;
+//         strMd5New = ctx.to_string();
+//         if(strMd5.CompareNoCase(strMd5New) != 0)
+//            return FALSE;
+//      }
+//   }
+//   CloseHandle(hfile1);
+//   if(hfile2 != INVALID_HANDLE_VALUE)
+//      CloseHandle(hfile2);
+//   return true;
+//}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 int_bool file_copy_dup(const char * pszNew,const char * pszSrc,int_bool bOverwrite)
 {
 
