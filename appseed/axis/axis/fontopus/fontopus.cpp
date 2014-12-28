@@ -45,12 +45,12 @@ namespace fontopus
       if(bOk)
       {
 
-         crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"),"ok",strToken);
+         Sys(papp).crypto().file_set(::dir::userappdata("cred/" + strToken + "_c.data"),"ok",strToken, papp);
 
       }
       else
       {
-         crypto_file_set(::dir::userappdata("cred/" + strToken + "_c.data"),"failed",strToken);
+         Sys(papp).crypto().file_set(::dir::userappdata("cred/" + strToken + "_c.data"),"failed",strToken, papp);
 
       }
 
@@ -70,8 +70,8 @@ namespace fontopus
          && (strUsernamePrevious != strUsername || strPasswordPrevious != strPassword))
       {
          dir::mk(::dir::userappdata("cred"));
-         crypto_file_set(::dir::userappdata("cred/" + strToken + "_a.data"),strUsername,"");
-         crypto_file_set(::dir::userappdata("cred/" + strToken + "_b.data"),strPassword,strToken);
+         Sys(papp).crypto().file_set(::dir::userappdata("cred/" + strToken + "_a.data"),strUsername,"", papp);
+         Sys(papp).crypto().file_set(::dir::userappdata("cred/" + strToken + "_b.data"),strPassword,strToken, papp);
       }
 
    }
@@ -81,9 +81,9 @@ namespace fontopus
    {
 
       string str;
-      crypto_file_get(::dir::userappdata("cred/" + strToken + "_a.data"),strUsername,"");
-      crypto_file_get(::dir::userappdata("cred/" + strToken + "_b.data"),strPassword,strToken);
-      crypto_file_get(::dir::userappdata("cred/" + strToken + "_c.data"),str,strToken);
+      Sys(papp).crypto().file_get(::dir::userappdata("cred/" + strToken + "_a.data"),strUsername,"", papp);
+      Sys(papp).crypto().file_get(::dir::userappdata("cred/" + strToken + "_b.data"),strPassword,strToken, papp);
+      Sys(papp).crypto().file_get(::dir::userappdata("cred/" + strToken + "_c.data"),str,strToken, papp);
 
       return str;
 

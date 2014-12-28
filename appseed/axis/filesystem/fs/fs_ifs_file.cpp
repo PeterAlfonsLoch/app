@@ -95,15 +95,20 @@ void ifs_file::set_file_data()
 
       set.parse_url_query(strResponse);
 
-      md5::md5 md5;
+      string strMd5Here;
 
-      md5.initialize();
+      {
 
-      md5.update(m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_data(), m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_size());
+         MD5_CTX ctx;
 
-      md5.finalize();
+         MD5_Init(&ctx);
 
-      string strMd5Here = md5.to_string();
+         MD5_Update(&ctx, m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_data(),m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_size());
+
+         strMd5Here = ::to_string(ctx);
+
+      }
+
       string strMd5There = set["md5"];
 
       if(strMd5Here == strMd5There)

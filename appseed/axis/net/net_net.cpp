@@ -69,9 +69,9 @@ static const uchar index_hex[256] = {
 * or 0 if the input is not a valid IPv6 address string.
 * (Same as inet_pton(AF_INET6, string, addr).)
 */
-CLASS_DECL_AXIS int_bool from_string(in6_addr * addr, const char * string)
+CLASS_DECL_AXIS int_bool from_string(in6_addr & addr, const string & string)
 {
-   const uchar *s = (const uchar *)string;
+   const uchar *s = (const uchar *)(const char *) string;
    int32_t departament = 0;        /* index of the current departament (a 16-bit
                            * piece of the address */
    int32_t double_colon = -1;  /* index of the departament after the first
@@ -84,7 +84,7 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr * addr, const char * string)
    if (*s == ':') {
       if (s[1] != ':') return 0;
       s += 2;
-      addr->pr_s6_addr16[0] = 0;
+      addr.pr_s6_addr16[0] = 0;
       departament = double_colon = 1;
    }
 
@@ -92,7 +92,7 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr * addr, const char * string)
       if (departament == 8) return 0; /* too long */
       if (*s == ':') {
          if (double_colon != -1) return 0; /* two double colons */
-         addr->pr_s6_addr16[departament++] = 0;
+         addr.pr_s6_addr16[departament++] = 0;
          double_colon = departament;
          s++;
          continue;
@@ -110,7 +110,7 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr * addr, const char * string)
       } else if (*s) {
          return 0; /* bad character */
       }
-      addr->pr_s6_addr16[departament++] = htons((uint16_t)val);
+      addr.pr_s6_addr16[departament++] = htons((uint16_t)val);
    }
 
    if (*s == '.') {
@@ -124,7 +124,7 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr * addr, const char * string)
       */
       if (val > 0x0255 || (val & 0xf0) > 0x90 || (val & 0xf) > 9) return 0;
       val = (val >> 8) * 100 + ((val >> 4) & 0xf) * 10 + (val & 0xf);
-      addr->pr_s6_addr[2 * departament] = val;
+      addr.pr_s6_addr[2 * departament] = val;
 
       s++;
       val = index_hex[*s++];
@@ -134,7 +134,7 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr * addr, const char * string)
          if (val > 255) return 0;
       }
       if (*s != '.') return 0; /* must have exactly 4 decimal numbers */
-      addr->pr_s6_addr[2 * departament + 1] = val;
+      addr.pr_s6_addr[2 * departament + 1] = val;
       departament++;
 
       s++;
@@ -145,7 +145,7 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr * addr, const char * string)
          if (val > 255) return 0;
       }
       if (*s != '.') return 0; /* must have exactly 4 decimal numbers */
-      addr->pr_s6_addr[2 * departament] = val;
+      addr.pr_s6_addr[2 * departament] = val;
 
       s++;
       val = index_hex[*s++];
@@ -155,7 +155,7 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr * addr, const char * string)
          if (val > 255) return 0;
       }
       if (*s) return 0; /* must have exactly 4 decimal numbers */
-      addr->pr_s6_addr[2 * departament + 1] = val;
+      addr.pr_s6_addr[2 * departament + 1] = val;
       departament++;
    }
 
@@ -164,11 +164,11 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr * addr, const char * string)
       int32_t tosection;
       int32_t ncopy = departament - double_colon;
       for (tosection = 7; ncopy--; tosection--) {
-         addr->pr_s6_addr16[tosection] =
-            addr->pr_s6_addr16[double_colon + ncopy];
+         addr.pr_s6_addr16[tosection] =
+            addr.pr_s6_addr16[double_colon + ncopy];
       }
       while (tosection >= double_colon) {
-         addr->pr_s6_addr16[tosection--] = 0;
+         addr.pr_s6_addr16[tosection--] = 0;
       }
    } else if (departament != 8) {
       return 0; /* too int16_t */
@@ -186,7 +186,7 @@ static const char *basis_hex = "0123456789abcdef";
 * is not set on failure.)
 */
 template < >
-CLASS_DECL_AXIS string to_string(const in6_addr * addr)
+CLASS_DECL_AXIS string to_string(in6_addr  & addr)
 {
 
    string str;
@@ -205,10 +205,10 @@ CLASS_DECL_AXIS string to_string(const in6_addr * addr)
 
    /* Scan to find the placement of the double colon */
    for (departament = 0; departament < 8; departament++) {
-      if (addr->pr_s6_addr16[departament] == 0) {
+      if (addr.pr_s6_addr16[departament] == 0) {
          zero_length = 1;
          departament++;
-         while (departament < 8 && addr->pr_s6_addr16[departament] == 0) {
+         while (departament < 8 && addr.pr_s6_addr16[departament] == 0) {
             zero_length++;
             departament++;
          }
@@ -225,7 +225,7 @@ CLASS_DECL_AXIS string to_string(const in6_addr * addr)
 
    if (double_colon == 0) {
       if (double_colon_length == 6 ||
-         (double_colon_length == 5 && addr->pr_s6_addr16[5] == 0xffff)) {
+         (double_colon_length == 5 && addr.pr_s6_addr16[5] == 0xffff)) {
             /* ipv4 format address */
             STUFF(':');
             STUFF(':');
@@ -236,21 +236,21 @@ CLASS_DECL_AXIS string to_string(const in6_addr * addr)
                STUFF('f');
                STUFF(':');
             }
-            if (addr->pr_s6_addr[12] > 99) STUFF(addr->pr_s6_addr[12]/100 + '0');
-            if (addr->pr_s6_addr[12] > 9) STUFF((addr->pr_s6_addr[12]%100)/10 + '0');
-            STUFF(addr->pr_s6_addr[12]%10 + '0');
+            if (addr.pr_s6_addr[12] > 99) STUFF(addr.pr_s6_addr[12]/100 + '0');
+            if (addr.pr_s6_addr[12] > 9) STUFF((addr.pr_s6_addr[12]%100)/10 + '0');
+            STUFF(addr.pr_s6_addr[12]%10 + '0');
             STUFF('.');
-            if (addr->pr_s6_addr[13] > 99) STUFF(addr->pr_s6_addr[13]/100 + '0');
-            if (addr->pr_s6_addr[13] > 9) STUFF((addr->pr_s6_addr[13]%100)/10 + '0');
-            STUFF(addr->pr_s6_addr[13]%10 + '0');
+            if (addr.pr_s6_addr[13] > 99) STUFF(addr.pr_s6_addr[13]/100 + '0');
+            if (addr.pr_s6_addr[13] > 9) STUFF((addr.pr_s6_addr[13]%100)/10 + '0');
+            STUFF(addr.pr_s6_addr[13]%10 + '0');
             STUFF('.');
-            if (addr->pr_s6_addr[14] > 99) STUFF(addr->pr_s6_addr[14]/100 + '0');
-            if (addr->pr_s6_addr[14] > 9) STUFF((addr->pr_s6_addr[14]%100)/10 + '0');
-            STUFF(addr->pr_s6_addr[14]%10 + '0');
+            if (addr.pr_s6_addr[14] > 99) STUFF(addr.pr_s6_addr[14]/100 + '0');
+            if (addr.pr_s6_addr[14] > 9) STUFF((addr.pr_s6_addr[14]%100)/10 + '0');
+            STUFF(addr.pr_s6_addr[14]%10 + '0');
             STUFF('.');
-            if (addr->pr_s6_addr[15] > 99) STUFF(addr->pr_s6_addr[15]/100 + '0');
-            if (addr->pr_s6_addr[15] > 9) STUFF((addr->pr_s6_addr[15]%100)/10 + '0');
-            STUFF(addr->pr_s6_addr[15]%10 + '0');
+            if (addr.pr_s6_addr[15] > 99) STUFF(addr.pr_s6_addr[15]/100 + '0');
+            if (addr.pr_s6_addr[15] > 9) STUFF((addr.pr_s6_addr[15]%100)/10 + '0');
+            STUFF(addr.pr_s6_addr[15]%10 + '0');
             STUFF('\0');
             return str;
       }
@@ -263,7 +263,7 @@ CLASS_DECL_AXIS string to_string(const in6_addr * addr)
          departament += double_colon_length;
          continue;
       }
-      val = ntohs(addr->pr_s6_addr16[departament]);
+      val = ntohs(addr.pr_s6_addr16[departament]);
       if (val > 0xfff) {
          STUFF(basis_hex[val >> 12]);
       }
@@ -299,10 +299,10 @@ struct c_in_addr
    } S_un;
 };
 
-CLASS_DECL_AXIS int_bool from_string(in_addr * addrParam, const char * string)
+CLASS_DECL_AXIS int_bool from_string(in_addr & addrParam, const string & string)
 {
 
-   c_in_addr * addr = (c_in_addr *) addrParam;
+   c_in_addr & addr = (c_in_addr &) addrParam;
 
 
    stringa stra;
@@ -332,27 +332,27 @@ CLASS_DECL_AXIS int_bool from_string(in_addr * addrParam, const char * string)
    if(i4 < 0 || i4 > 255)
       return false;
 
-   addr->S_un.S_un_b.s_b1 = i1;
+   addr.S_un.S_un_b.s_b1 = i1;
 
-   addr->S_un.S_un_b.s_b2 = i2;
+   addr.S_un.S_un_b.s_b2 = i2;
 
-   addr->S_un.S_un_b.s_b3 = i3;
+   addr.S_un.S_un_b.s_b3 = i3;
 
-   addr->S_un.S_un_b.s_b4 = i4;
+   addr.S_un.S_un_b.s_b4 = i4;
 
-   //addr->S_un.S_addr = HTONL(addr->S_un.S_addr);
+   //addr.S_un.S_addr = HTONL(addr.S_un.S_addr);
 
    return true;
 
 }
 
 template < >
-CLASS_DECL_AXIS string to_string(const in_addr * addrParam)
+CLASS_DECL_AXIS string to_string(in_addr &  addrParam)
 {
 
-   c_in_addr * paddr = (c_in_addr *) addrParam;
+   c_in_addr & addr = (c_in_addr &) addrParam;
 
-   c_in_addr & addr = *paddr;
+   //c_in_addr & addr = addr;
 
    //addr.S_un.S_addr = NTOHL(paddr->S_un.S_addr);
 
@@ -378,19 +378,19 @@ CLASS_DECL_AXIS string to_string(const in_addr * addrParam)
 
 
 template < >
-CLASS_DECL_AXIS string to_string(const sockaddr *addr)
+CLASS_DECL_AXIS string to_string(sockaddr & addr)
 {
 
-   if(addr->sa_family == AF_INET)
+   if(addr.sa_family == AF_INET)
    {
 
-      return to_string((const in_addr *)addr->sa_data);
+      return to_string(*(in_addr *)addr.sa_data);
 
    }
-   else if(addr->sa_family == AF_INET6)
+   else if(addr.sa_family == AF_INET6)
    {
 
-      return to_string((const in6_addr *)addr->sa_data);
+      return to_string(*(in6_addr *)addr.sa_data);
 
    }
    else
@@ -409,7 +409,7 @@ CLASS_DECL_AXIS int32_t c_inet_pton(int32_t af, const char *src, void *dst)
    if(af == AF_INET)
    {
 
-      in_addr * addr = (in_addr *) dst;
+      in_addr & addr = *(in_addr *) dst;
 
       if(!from_string(addr, src))
          return 0;
@@ -420,7 +420,7 @@ CLASS_DECL_AXIS int32_t c_inet_pton(int32_t af, const char *src, void *dst)
    else if(af == AF_INET6)
    {
 
-      in6_addr * addr = (in6_addr *) dst;
+      in6_addr & addr = *(in6_addr *) dst;
 
       if(!from_string(addr, src))
          return 0;
@@ -561,7 +561,7 @@ CLASS_DECL_AXIS uint32_t c_inet_addr(const char * src)
       else if(stra.get_count() == 4)
       {
 
-         if(from_string((in_addr *) &addr, src))
+         if(from_string((in_addr &)addr, src))
             return C_INADDR_NONE;
 
          return addr.S_un.S_addr;

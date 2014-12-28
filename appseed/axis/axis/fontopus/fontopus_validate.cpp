@@ -1038,8 +1038,8 @@ namespace fontopus
 
       string strUsernamePrevious;
       string strPasshashPrevious;
-      crypto_file_get(::dir::userappdata("license_auth/00001.data"),strUsernamePrevious,"");
-      crypto_file_get(::dir::userappdata("license_auth/00002.data"),strPasshashPrevious,calc_key_hash());
+      Sy.crypto().file_get(::dir::userappdata("license_auth/00001.data"),strUsernamePrevious,"", papp);
+      Sys(papp).crypto().file_get(::dir::userappdata("license_auth/00002.data"),strPasshashPrevious,calc_key_hash(), papp);
 
       if((strUsername.has_char() && strPasshash.has_char())
          && (strUsernamePrevious != strUsername || strPasshashPrevious != strPasshash))

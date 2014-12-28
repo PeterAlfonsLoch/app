@@ -201,6 +201,17 @@ namespace file
       return m_pauraapp->m_paxissystem->m_spfile->sys_temp(pszName, pszExtension, m_pauraapp);
    }
 
+   bool application::crypto_set(var varFile,const char * pszData,const char * pszSalt)
+   {
+      // attention: operation on System crypto
+      return m_pauraapp->m_paxissystem->m_spcrypto->file_set(varFile, pszData, pszSalt, m_pauraapp);
+   }
+
+   bool application::crypto_get(var varFile,string & str,const char * pszSalt)
+   {
+      // attention: operation on System crypto
+      return m_pauraapp->m_paxissystem->m_spcrypto->file_get(varFile,str,pszSalt,m_pauraapp);
+   }
 
    ::file::buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {

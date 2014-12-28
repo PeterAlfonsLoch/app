@@ -288,6 +288,9 @@
     <Filter Include="Source Files\database\sqlitedb">
       <UniqueIdentifier>{8bcc8a4b-3d30-4fa2-959d-aa62d9eec869}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\filesystem\file\NewFilter1">
+      <UniqueIdentifier>{bd156e53-bffb-46e2-bf2b-a37ced8ac946}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -1360,9 +1363,6 @@
     <ClCompile Include="net\net_url_domain.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-    <ClCompile Include="axis\crypto\crypto.cpp">
-      <Filter>Source Files\axis\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="axis\crypto\crypto_crypto.cpp">
       <Filter>Source Files\axis\crypto</Filter>
     </ClCompile>
@@ -1782,15 +1782,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

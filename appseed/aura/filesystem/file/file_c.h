@@ -37,10 +37,6 @@ CLASS_DECL_AURA uint64_t file_length_dup(const char * path);
 CLASS_DECL_AURA int_bool file_is_equal_path_dup(const char * pszPath1, const char * pszPath2);
 
 
-CLASS_DECL_AURA int_bool file_ftd_dup(const char * pszDir, const char * pszFile);
-
-
-
 CLASS_DECL_AURA int_bool file_copy_dup(const char * pszDup, const char * pszSrc, int_bool bOverwrite);
 
 
@@ -301,23 +297,15 @@ CLASS_DECL_AURA int_bool file_put_contents_dup(const char * path, const char * c
 CLASS_DECL_AURA bool file_get_memory_dup(::primitive::memory_base & memory, const char * path);
 
 
-namespace md5
-{
+//namespace md5
+//{
+//
+//
+//   class md5;
+//
+//
+//} // namespace md5
 
-
-   class md5;
-
-
-} // namespace md5
-
-
-#ifdef WINDOWS
-CLASS_DECL_AURA void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int32_t & iNumber);
-CLASS_DECL_AURA void file_read_gen_string_dup(HANDLE hfile, ::md5::md5 * pctx, string & str);
-#else
-CLASS_DECL_AURA void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int32_t & iNumber);
-CLASS_DECL_AURA void file_read_gen_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);
-#endif
 
 
 template < typename N > class numeric_array;

@@ -2,6 +2,7 @@
 
 
 #include "core/core/core.h"
+#include "core/user/user/user.h"
 
 
 #if defined(_CA2_HTML_DLL)

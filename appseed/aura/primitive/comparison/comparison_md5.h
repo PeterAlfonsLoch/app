@@ -60,49 +60,49 @@
 #pragma once
 
 
-namespace md5
-{
-
-
-	class CLASS_DECL_AURA md5
-	{
-	public:
-
-
-		typedef struct
-		{
-			size_t            lo;
-			size_t            hi;
-			uint32_t             a;
-			uint32_t             b;
-			uint32_t             c;
-			uint32_t             d;
-			uchar             buffer[64];
-			uint32_t             block[16];
-		} context;
-
-
-		context     m_ctx;
-		uchar       m_uchaDigest[16];
-
-
-		md5();
-
-
-		void	            initialize();
-		void	            update(const void * pdata, size_t nInputLen);
-		void	            finalize();
-		const unsigned char *   
-                        digest();
-		string			   to_string();
-		const void *		body(const void *data, uint32_t size);
-      void              get(::primitive::memory & mem);
-
-
-	};
-
-
-} // namespace md5
+//namespace md5
+//{
+//
+//
+//	class CLASS_DECL_AURA md5
+//	{
+//	public:
+//
+//
+//		typedef struct
+//		{
+//			size_t            lo;
+//			size_t            hi;
+//			uint32_t             a;
+//			uint32_t             b;
+//			uint32_t             c;
+//			uint32_t             d;
+//			uchar             buffer[64];
+//			uint32_t             block[16];
+//		} context;
+//
+//
+//		context     m_ctx;
+//		uchar       m_uchaDigest[16];
+//
+//
+//		md5();
+//
+//
+//		void	            initialize();
+//		void	            update(const void * pdata, size_t nInputLen);
+//		void	            finalize();
+//		const unsigned char *   
+//                        digest();
+//		string			   to_string();
+//		const void *		body(const void *data, uint32_t size);
+//      void              get(::primitive::memory & mem);
+//
+//
+//	};
+//
+//
+//} // namespace md5
 
 
 

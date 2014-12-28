@@ -33,6 +33,21 @@ typedef struct rsa_st RSA;
 //#include "crypto_md5.h"
 
 
+#include <openssl/md5.h>
+
+template < >
+inline string to_string(MD5_CTX & ctx)
+{
+
+   unsigned char digest[MD5_DIGEST_LENGTH];
+
+   MD5_Final(digest,&ctx);
+
+   return ::hex::lower_from(digest,MD5_DIGEST_LENGTH);
+
+}
+
+
 
 #include "crypto_crypto.h"
 

@@ -1,15 +1,15 @@
 #pragma once
 
 
-CLASS_DECL_AXIS int_bool from_string(in6_addr * addr,const char * string);
+CLASS_DECL_AXIS int_bool from_string(in6_addr & addr,const string & str);
 template < >
-CLASS_DECL_AXIS string to_string(const in6_addr *addr);
-CLASS_DECL_AXIS int_bool from_string(in_addr * addr,const char * string);
+CLASS_DECL_AXIS string to_string(in6_addr & addr);
+CLASS_DECL_AXIS int_bool from_string(in_addr & addr,const string & str);
 template < >
-CLASS_DECL_AXIS string to_string(const in_addr *addr);
+CLASS_DECL_AXIS string to_string(in_addr & addr);
 #ifdef BSD_STYLE_SOCKETS
 template < >
-CLASS_DECL_AXIS string to_string(const sockaddr *addr);
+CLASS_DECL_AXIS string to_string(sockaddr & addr);
 #endif
 
 

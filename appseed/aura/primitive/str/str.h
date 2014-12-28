@@ -19,8 +19,8 @@ class string_array;
 #include "str_from_integer.h"
 
 
-CLASS_DECL_AURA string get_md5(const void * data, ::count c);
-CLASS_DECL_AURA string get_md5(const char * psz);
+//CLASS_DECL_AURA string get_md5(const void * data, ::count c);
+//CLASS_DECL_AURA string get_md5(const char * psz);
 CLASS_DECL_AURA void zero_pad(string & str, count iPad);
 
 

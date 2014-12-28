@@ -12,6 +12,7 @@ namespace boot
 } // namespace boot
 
 
+struct oswindow_data;
 
 
 typedef ptr_array < oswindow_data > oswindow_dataptra;

@@ -122,9 +122,6 @@
     <ClInclude Include="html_application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="html\html.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
     <ClInclude Include="userhtml\userhtml.h">
       <Filter>Header Files\userhtml</Filter>
     </ClInclude>
@@ -247,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="graphics\elemental\html_elemental_text.h">
       <Filter>Header Files\graphics\elemental</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html.h">
+      <Filter>Header Files\html</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

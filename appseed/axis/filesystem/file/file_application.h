@@ -61,6 +61,11 @@ namespace file
       // get a file and if there are exceptions, should show end user friendly messages
       virtual ::file::buffer_sp friendly_get_file(var varFile, UINT nOpenFlags);
 
+
+      virtual bool crypto_set(var varFile,const char * pszData,const char * pszSalt);
+      virtual bool crypto_get(var varFile,string & str,const char * pszSalt);
+
+
    };
 
 

@@ -122,7 +122,7 @@ namespace windows
          
             memcpy(&a, pent->h_addr_list[nAdapter], 4);
 
-            str = ::to_string((const in_addr *) &a);
+            str = ::to_string(a);
 
             if(str.has_char())
             {
@@ -146,7 +146,7 @@ namespace windows
          
             memcpy(&a, pent->h_addr_list[nAdapter], sizeof(in6_addr));
 
-            str = ::to_string((const in_addr6 *)&a);
+            str = ::to_string(a);
 
             if(str.has_char())
             {

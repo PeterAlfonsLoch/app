@@ -2,18 +2,19 @@
 
 #ifndef METROWIN
 #include <openssl/ssl.h>
-#include <openssl/md5.h>
 #endif
 
+#include <openssl/md5.h>
+#include <openssl/whrlpool.h>
 
 #ifndef WINDOWS
 #include <sys/stat.h>
 //#include <ctype.h>
 #endif
 
-CLASS_DECL_AXIS void NESSIEinit(struct NESSIEstruct * const structpointer);
-CLASS_DECL_AXIS void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
-CLASS_DECL_AXIS void NESSIEfinalize(struct NESSIEstruct * const structpointer, uchar * const result);
+//CLASS_DECL_AXIS void NESSIEinit(struct NESSIEstruct * const structpointer);
+//CLASS_DECL_AXIS void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
+//CLASS_DECL_AXIS void NESSIEfinalize(struct NESSIEstruct * const structpointer, uchar * const result);
 
 
 
@@ -1373,22 +1374,20 @@ restart:
 
       buf.allocate(1024 * 256);
 
-      ::md5::md5 md5;
+      MD5_CTX ctx;
 
-      md5.initialize();
+      MD5_Init(&ctx);
 
       int32_t iRead;
 
       while((iRead = (int32_t) spfile->read(buf, iBufSize)) > 0)
       {
 
-         md5.update(buf.get_data(), iRead);
+         MD5_Update(&ctx, buf.get_data(), iRead);
 
       }
 
-      md5.finalize();
-
-      return md5.to_string();
+      return ::to_string(ctx);
 
    }
 
@@ -1413,7 +1412,7 @@ restart:
 
       strVersion = "fileset v1";
 
-      ::md5::md5 md5;
+      MD5_CTX ctx;
 
       write_gen_string(spfile, NULL, strVersion);
 
@@ -1441,19 +1440,18 @@ restart:
          write_n_number(spfile, NULL, 1);
          iPos = spfile->get_position();
          write_gen_string(spfile, NULL, strMd5);
-         md5.initialize();
-         write_gen_string(spfile, &md5, straRelative[i]);
+         MD5_Init(&ctx);
+         write_gen_string(spfile, &ctx, straRelative[i]);
          if(!file2->open(stra[i], ::file::mode_read | ::file::type_binary))
             throw "failed";
-         write_n_number(spfile, &md5, (int32_t) file2->get_length());
+         write_n_number(spfile, &ctx, (int32_t) file2->get_length());
          while((uiRead = file2->read(buf, iBufSize)) > 0)
          {
             spfile->write(buf, uiRead);
-            md5.update(buf, uiRead);
+            MD5_Update(&ctx, buf, uiRead);
          }
          spfile->seek(iPos, ::file::seek_begin);
-         md5.finalize();
-         strMd5 = md5.to_string();
+         strMd5 = ::to_string(ctx);
          write_gen_string(spfile, NULL, strMd5);
          spfile->seek_to_end();
 
@@ -1476,7 +1474,7 @@ restart:
       primitive::memory buf;
       buf.allocate(iBufSize);
       int64_t iLen;
-      ::md5::md5 md5;
+      MD5_CTX ctx;
       ::file::binary_buffer_sp file2(allocer());
       ::primitive::memory_size uiRead;
       if(strVersion == "fileset v1")
@@ -1487,32 +1485,31 @@ restart:
             if(n == 2)
                break;
             read_gen_string(spfile, NULL, strMd5);
-            md5.initialize();
-            read_gen_string(spfile, &md5, strRelative);
+            MD5_Init(&ctx);
+            read_gen_string(spfile, &ctx, strRelative);
             string strPath = System.dir().path(pszDir, strRelative);
             App(papp).dir().mk(System.dir().name(strPath));
             if(!file2->open(strPath, ::file::mode_create | ::file::type_binary | ::file::mode_write))
                throw "failed";
-            read_n_number(spfile, &md5, iLen);
+            read_n_number(spfile, &ctx, iLen);
             while(iLen > 0)
             {
                uiRead = spfile->read(buf, (UINT)  (MIN(iBufSize, iLen )));
                if(uiRead == 0)
                   break;
                file2->write(buf, uiRead);
-               md5.update(buf, uiRead);
+               MD5_Update(&ctx, buf,uiRead);
                iLen -= uiRead;
             }
             file2->close();
-            md5.finalize();
-            strMd5New = md5.to_string();
+            strMd5New = ::to_string(ctx);
             if(strMd5 != strMd5New)
                throw "failed";
          }
       }
    }
 
-   void system::write_n_number(::file::buffer_sp  pfile, ::md5::md5 * pctx, int64_t iNumber)
+   void system::write_n_number(::file::buffer_sp  pfile, MD5_CTX * pctx, int64_t iNumber)
    {
 
       string str;
@@ -1524,13 +1521,13 @@ restart:
       if(pctx != NULL)
       {
 
-         pctx->update((const char *) str, (int32_t) str.get_length());
+         MD5_Update(pctx,(const char *) str, (int32_t) str.get_length());
 
       }
 
    }
 
-   void system::read_n_number(::file::buffer_sp  pfile, ::md5::md5 * pctx, int64_t & iNumber)
+   void system::read_n_number(::file::buffer_sp  pfile, MD5_CTX * pctx, int64_t & iNumber)
    {
 
       uint64_t uiRead;
@@ -1549,7 +1546,7 @@ restart:
 
          if(pctx != NULL)
          {
-            pctx->update(&ch, 1);
+            MD5_Update(pctx, &ch,1);
          }
 
       }
@@ -1559,25 +1556,25 @@ restart:
 
       if(pctx != NULL)
       {
-         pctx->update(&ch, 1);
+         MD5_Update(pctx,&ch,1);
       }
 
       iNumber = ::str::to_int64(str);
 
    }
 
-   void system::write_gen_string(::file::buffer_sp  pfile, ::md5::md5 * pctx, string & str)
+   void system::write_gen_string(::file::buffer_sp  pfile, MD5_CTX * pctx, string & str)
    {
       ::count iLen = str.get_length();
       write_n_number(pfile, pctx, iLen);
       pfile->write((const char *) str, str.get_length());
       if(pctx != NULL)
       {
-         pctx->update((const char *) str, (int32_t) str.get_length());
+         MD5_Update(pctx,(const char *)str,(int32_t)str.get_length());
       }
    }
 
-   void system::read_gen_string(::file::buffer_sp  pfile, ::md5::md5 * pctx, string & str)
+   void system::read_gen_string(::file::buffer_sp  pfile, MD5_CTX * pctx, string & str)
    {
       int64_t iLen;
       read_n_number(pfile, pctx, iLen);
@@ -1589,7 +1586,7 @@ restart:
          while(iLen - iProcessed > 0)
          {
             int32_t iProcess = (int32_t) MIN(1024 * 1024, iLen - iProcessed);
-            pctx->update(&lpsz[iProcessed], iProcess);
+            MD5_Update(pctx,&lpsz[iProcessed],iProcess);
             iProcessed += iProcess;
          }
       }
@@ -1614,6 +1611,52 @@ restart:
 #endif
 
    }
+   string system::nessie(const char * psz)
+   {
+
+      ::file::binary_buffer_sp spfile(allocer());
+      try
+      {
+         if(!spfile->open(psz,::file::type_binary | ::file::mode_read))
+            return "";
+      }
+      catch(::file::exception &)
+      {
+         return "";
+      }
+      return nessie(spfile);
+
+   }
+
+
+   string system::nessie(::file::buffer_sp  pfile)
+   {
+
+      ::primitive::memory mem(get_app());
+
+      mem.allocate(1024 * 256);
+
+      WHIRLPOOL_CTX ns;
+
+      WHIRLPOOL_Init(&ns);
+
+      file_size iRead;
+
+      while((iRead = pfile->read(mem.get_data(),mem.get_size())) > 0)
+      {
+
+         WHIRLPOOL_Update(&ns,mem.get_data(),iRead);
+
+      }
+
+      unsigned char digest[WHIRLPOOL_DIGEST_LENGTH];
+
+      WHIRLPOOL_Final(digest,&ns);
+
+      return ::hex::lower_from(digest,WHIRLPOOL_DIGEST_LENGTH);
+
+   }
+
 
 
 } // namespace file

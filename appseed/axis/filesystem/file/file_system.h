@@ -140,14 +140,17 @@ namespace file
       void dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::aura::application * papp);
       void ftd(const char * pszDir, const char * pszFile, ::aura::application * papp);
 
-      void is_valid_fileset(const char * pszFile, ::aura::application * papp);
 
       // 'n' (natural) terminated ascii number, example: 245765487n
-      static void write_n_number(::file::buffer_sp  pfile, ::md5::md5 * pctx, int64_t iNumber);
-      static void read_n_number(::file::buffer_sp  pfile, ::md5::md5 * pctx, int64_t & iNumber);
+      void write_n_number(::file::buffer_sp  pfile,MD5_CTX * pctx,int64_t iNumber);
+      void read_n_number(::file::buffer_sp  pfile,MD5_CTX * pctx,int64_t & iNumber);
 
-      static void write_gen_string(::file::buffer_sp  pfile, ::md5::md5 * pctx, string & str);
-      static void read_gen_string(::file::buffer_sp  pfile, ::md5::md5 * pctx, string & str);
+      void write_gen_string(::file::buffer_sp  pfile,MD5_CTX * pctx,string & str);
+      void read_gen_string(::file::buffer_sp  pfile,MD5_CTX * pctx,string & str);
+
+
+      void is_valid_fileset(const char * pszFile, ::aura::application * papp);
+
 
 
       virtual bool resolve_link(string & strTarget,const char * pszSource,sp(::aura::interaction) puiMessageParentOptional = NULL);

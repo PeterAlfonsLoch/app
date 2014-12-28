@@ -2737,6 +2737,8 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="axis\os\windows\windows_base_crypto.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
@@ -3136,7 +3138,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="axis\compress\zip\zip_unzip.cpp" />
     <ClCompile Include="axis\compress\zip\zip_util.cpp" />
     <ClCompile Include="axis\compress\zip\zip_zip.cpp" />
-    <ClCompile Include="axis\crypto\crypto.cpp" />
     <ClCompile Include="axis\crypto\crypto_crypto.cpp" />
     <ClCompile Include="axis\install\install.cpp" />
     <ClCompile Include="axis\install\install_boot.cpp" />

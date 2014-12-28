@@ -153,7 +153,7 @@ public:
 
 
    template < typename T >
-   friend inline string to_string(T o);
+   friend inline string to_string(T & o);
 
 
    operator class string_composite ();
@@ -774,7 +774,7 @@ inline operator String ^()
 
 
 template < typename T >
-inline string to_string(T o)
+inline string to_string(const T & o)
 {
 
    return o.to_string();
@@ -1513,7 +1513,7 @@ inline bool CLASS_DECL_AURA operator<=(int32_t i, const string & str)           
 
 
 template < >
-inline string to_string(const char * psz)
+inline string to_string(const char * & psz)
 {
 
    return string(psz);
@@ -1521,7 +1521,7 @@ inline string to_string(const char * psz)
 }
 
 template < >
-inline string to_string(char * psz)
+inline string to_string(char * & psz)
 {
 
    return string(psz);
@@ -1529,7 +1529,7 @@ inline string to_string(char * psz)
 }
 
 template < >
-inline string to_string(unsigned char * psz)
+inline string to_string(unsigned char * & psz)
 {
 
    return string(psz);
@@ -1537,7 +1537,7 @@ inline string to_string(unsigned char * psz)
 }
 
 template < >
-inline string to_string(const char ch)
+inline string to_string(const char & ch)
 {
 
    return string((char) ch);
@@ -1545,7 +1545,7 @@ inline string to_string(const char ch)
 }
 
 template < >
-inline string to_string(const wchar_t * pwsz)
+inline string to_string(const wchar_t * & pwsz)
 {
 
    return string(pwsz);
@@ -1553,7 +1553,7 @@ inline string to_string(const wchar_t * pwsz)
 }
 
 template < >
-inline string to_string(wchar_t * pwsz)
+inline string to_string(wchar_t * & pwsz)
 {
 
    return string(pwsz);
@@ -1561,7 +1561,7 @@ inline string to_string(wchar_t * pwsz)
 }
 
 template < >
-inline string to_string(string_composite ca)
+inline string to_string(string_composite & ca)
 {
 
    string str;
@@ -1576,7 +1576,7 @@ inline string to_string(string_composite ca)
 
 
 template < >
-inline string to_string(verisimple_wstring wstr)
+inline string to_string(const verisimple_wstring & wstr)
 {
 
    return string((const wchar_t *) wstr);
@@ -1584,7 +1584,7 @@ inline string to_string(verisimple_wstring wstr)
 }
 
 template < >
-inline string to_string(wstring wstr)
+inline string to_string(const wstring & wstr)
 {
 
    return string((const wchar_t *) wstr);
