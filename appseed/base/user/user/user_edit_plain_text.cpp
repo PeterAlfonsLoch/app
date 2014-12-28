@@ -58,8 +58,16 @@ namespace user
          delete m_ptree;
          m_ptree = NULL;
       }
-      delete m_peditor;
-      delete m_plines;
+      if(m_peditor != NULL)
+      {
+         delete m_peditor;
+         m_peditor = NULL;
+      }
+      if(m_plines != NULL)
+      {
+         delete m_plines;
+         m_plines = NULL;
+      }
    }
 
 

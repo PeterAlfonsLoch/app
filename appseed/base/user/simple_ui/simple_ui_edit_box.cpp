@@ -13,8 +13,6 @@ namespace simple_ui
       ::data::listener(papp),
       ::user::edit_plain_text(papp)
    {
-      m_peditor = new ::colorertake5::base_editor(papp);
-      m_plines = new ::colorertake5::text_lines();
 
       m_iPos = 0;
 
@@ -23,8 +21,6 @@ namespace simple_ui
 
    edit_box::~edit_box()
    {
-      delete m_peditor;
-      delete m_plines;
    }
 
    void edit_box::install_message_handling(::message::dispatch * pdispatch)

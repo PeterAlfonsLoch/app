@@ -1594,9 +1594,7 @@ namespace base
    bool session::is_licensed(const char * pszId,bool bInteractive)
    {
 
-      ::exception::throw_not_implemented(get_app());
-
-      return false;
+      return ::axis::session::is_licensed(pszId,bInteractive);
 
    }
 

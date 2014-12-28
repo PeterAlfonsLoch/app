@@ -1886,7 +1886,7 @@ namespace base
    bool application::assert_user_logged_in()
    {
 
-      return false;
+      return axis::application::assert_user_logged_in();
 
    }
 
