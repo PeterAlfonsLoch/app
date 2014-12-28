@@ -1034,7 +1034,7 @@ install_begin:;
 
                string strStageInplace2 = ca2inplace_get_dir(strRelative) + ca2inplace_get_file(strRelative);
 
-               file_ftd_dup(strStageInplace2,strStageInplace);
+               Application.file().ftd(strStageInplace2,strStageInplace);
 
             }
 

@@ -171,7 +171,7 @@ CLASS_DECL_AURA uint64_t file_length_dup(const char * path);
 CLASS_DECL_AURA int_bool file_is_equal_path(const char * pszPath1, const char * pszPath2);
 
 
-CLASS_DECL_AURA int_bool file_ftd_dup(const char * pszDir, const char * pszFile);
+//CLASS_DECL_AURA int_bool file_ftd_dup(const char * pszDir, const char * pszFile);
 
 CLASS_DECL_AURA int_bool file_copy_dup(const char * pszDup, const char * pszSrc, int_bool bOverwrite);
 

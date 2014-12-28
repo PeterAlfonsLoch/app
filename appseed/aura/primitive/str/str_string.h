@@ -1576,7 +1576,7 @@ inline string to_string(string_composite & ca)
 
 
 template < >
-inline string to_string(const verisimple_wstring & wstr)
+inline string to_string(verisimple_wstring & wstr)
 {
 
    return string((const wchar_t *) wstr);
@@ -1584,7 +1584,7 @@ inline string to_string(const verisimple_wstring & wstr)
 }
 
 template < >
-inline string to_string(const wstring & wstr)
+inline string to_string(wstring & wstr)
 {
 
    return string((const wchar_t *) wstr);

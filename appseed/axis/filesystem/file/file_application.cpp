@@ -201,6 +201,23 @@ namespace file
       return m_pauraapp->m_paxissystem->m_spfile->sys_temp(pszName, pszExtension, m_pauraapp);
    }
 
+
+   void application::dtf(const char * pszFile,const char * pszDir)
+   {
+      return m_pauraapp->m_paxissystem->m_spfile->dtf(pszFile,pszDir,m_pauraapp);
+   }
+
+   void application::dtf(const char * pszFile,stringa & stra,stringa & straRelative)
+   {
+      return m_pauraapp->m_paxissystem->m_spfile->dtf(pszFile,stra,straRelative, m_pauraapp);
+   }
+
+   void application::ftd(const char * pszDir,const char * pszFile)
+   {
+      return m_pauraapp->m_paxissystem->m_spfile->ftd(pszDir,pszFile,m_pauraapp);
+   }
+
+
    bool application::crypto_set(var varFile,const char * pszData,const char * pszSalt)
    {
       // attention: operation on System crypto

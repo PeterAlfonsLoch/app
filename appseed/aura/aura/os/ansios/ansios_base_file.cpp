@@ -176,114 +176,114 @@ string file_module_path_dup()
 
 
 
-int_bool file_ftd_dup(const char * pszDir, const char * pszFile)
-{
-
-   FILE * hfile1 = NULL;
-   FILE * hfile2 = NULL;
-   hfile1 = fopen(pszFile, "rb");
-   if(hfile1 == NULL)
-      return false;
-
-   string strVersion;
-
-
-   file_read_ex1_string_dup(hfile1, NULL, strVersion);
-   int32_t n;
-   string strRelative;
-   string strMd5;
-   string strMd5New;
-   int32_t iBufSize = 1024 * 1024;
-   uchar * buf = (uchar *)  memory_alloc(iBufSize);
-   int32_t iLen;
-   ::md5::md5 ctx;
-   ::count dwRead;
-   ::count dwWritten;
-   if(strVersion == "fileset v1")
-   {
-      while(true)
-      {
-         file_read_n_number_dup(hfile1, NULL, n);
-         if(n == 2)
-            break;
-         file_read_ex1_string_dup(hfile1, NULL, strMd5);
-         ctx.initialize();
-         file_read_ex1_string_dup(hfile1, &ctx, strRelative);
-         string strPath = dir::path(pszDir, strRelative);
-         dir::mk(dir::name(strPath));
-         hfile2 = fopen(strPath, "wb");
-         if(hfile2 == NULL)
-            return false;
-         file_read_n_number_dup(hfile1, &ctx, iLen);
-         while(iLen > 0)
-         {
-            dwRead = ::fread(buf, MIN(iBufSize, iLen), 1, hfile1);
-            break;
-            if(dwRead == 0)
-               break;
-            dwWritten = ::fwrite(buf, dwRead,  1, hfile2);
-            ctx.update(buf, dwRead);
-            iLen -= dwRead;
-         }
-         fclose(hfile2);
-         hfile2 = NULL;
-         ctx.finalize();
-
-         strMd5New.clear();
-         string strFormat;
-         strMd5New = ctx.to_string();
-         if(strMd5.CompareNoCase(strMd5New) != 0)
-            return false;
-      }
-   }
-   fclose(hfile1);
-   if(hfile2 != NULL)
-      fclose(hfile2);
-   return true;
-}
-
-
-void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int32_t & iNumber)
-{
-   string str;
-   char ch;
-   ::count dwRead;
-   while(((dwRead = fread(&ch, 1, 1, (FILE *) hfile))) && dwRead == 1)
-   {
-      if(ch >= '0' && ch <= '9')
-         str += ch;
-      else
-         break;
-      if(pctx != NULL)
-      {
-         pctx->update(&ch, 1);
-      }
-   }
-   if(ch != 'n')
-      return;
-   if(pctx != NULL)
-   {
-      pctx->update(&ch, 1);
-   }
-   iNumber = atoi_dup(str);
-}
-
-void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str)
-{
-   int32_t iLen;
-   file_read_n_number_dup(hfile, pctx, iLen);
-   LPSTR lpsz = (LPSTR) memory_alloc(iLen + 1);
-   ::count dwRead;
-   dwRead = fread(lpsz, iLen, 1, (FILE *) hfile);
-   if(pctx != NULL)
-   {
-      pctx->update(lpsz, iLen);
-   }
-   lpsz[iLen] = '\0';
-   str = lpsz;
-   memory_free_dbg(lpsz, 0);
-}
-
+//int_bool file_ftd_dup(const char * pszDir, const char * pszFile)
+//{
+//
+//   FILE * hfile1 = NULL;
+//   FILE * hfile2 = NULL;
+//   hfile1 = fopen(pszFile, "rb");
+//   if(hfile1 == NULL)
+//      return false;
+//
+//   string strVersion;
+//
+//
+//   file_read_ex1_string_dup(hfile1, NULL, strVersion);
+//   int32_t n;
+//   string strRelative;
+//   string strMd5;
+//   string strMd5New;
+//   int32_t iBufSize = 1024 * 1024;
+//   uchar * buf = (uchar *)  memory_alloc(iBufSize);
+//   int32_t iLen;
+//   ::md5::md5 ctx;
+//   ::count dwRead;
+//   ::count dwWritten;
+//   if(strVersion == "fileset v1")
+//   {
+//      while(true)
+//      {
+//         file_read_n_number_dup(hfile1, NULL, n);
+//         if(n == 2)
+//            break;
+//         file_read_ex1_string_dup(hfile1, NULL, strMd5);
+//         ctx.initialize();
+//         file_read_ex1_string_dup(hfile1, &ctx, strRelative);
+//         string strPath = dir::path(pszDir, strRelative);
+//         dir::mk(dir::name(strPath));
+//         hfile2 = fopen(strPath, "wb");
+//         if(hfile2 == NULL)
+//            return false;
+//         file_read_n_number_dup(hfile1, &ctx, iLen);
+//         while(iLen > 0)
+//         {
+//            dwRead = ::fread(buf, MIN(iBufSize, iLen), 1, hfile1);
+//            break;
+//            if(dwRead == 0)
+//               break;
+//            dwWritten = ::fwrite(buf, dwRead,  1, hfile2);
+//            ctx.update(buf, dwRead);
+//            iLen -= dwRead;
+//         }
+//         fclose(hfile2);
+//         hfile2 = NULL;
+//         ctx.finalize();
+//
+//         strMd5New.clear();
+//         string strFormat;
+//         strMd5New = ctx.to_string();
+//         if(strMd5.CompareNoCase(strMd5New) != 0)
+//            return false;
+//      }
+//   }
+//   fclose(hfile1);
+//   if(hfile2 != NULL)
+//      fclose(hfile2);
+//   return true;
+//}
+//
+//
+//void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int32_t & iNumber)
+//{
+//   string str;
+//   char ch;
+//   ::count dwRead;
+//   while(((dwRead = fread(&ch, 1, 1, (FILE *) hfile))) && dwRead == 1)
+//   {
+//      if(ch >= '0' && ch <= '9')
+//         str += ch;
+//      else
+//         break;
+//      if(pctx != NULL)
+//      {
+//         pctx->update(&ch, 1);
+//      }
+//   }
+//   if(ch != 'n')
+//      return;
+//   if(pctx != NULL)
+//   {
+//      pctx->update(&ch, 1);
+//   }
+//   iNumber = atoi_dup(str);
+//}
+//
+//void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str)
+//{
+//   int32_t iLen;
+//   file_read_n_number_dup(hfile, pctx, iLen);
+//   LPSTR lpsz = (LPSTR) memory_alloc(iLen + 1);
+//   ::count dwRead;
+//   dwRead = fread(lpsz, iLen, 1, (FILE *) hfile);
+//   if(pctx != NULL)
+//   {
+//      pctx->update(lpsz, iLen);
+//   }
+//   lpsz[iLen] = '\0';
+//   str = lpsz;
+//   memory_free_dbg(lpsz, 0);
+//}
+//
 
 
 

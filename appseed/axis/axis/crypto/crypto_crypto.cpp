@@ -1518,7 +1518,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       primitive::memory memIn;
 
-      hex_to_memory(memIn, psz);
+      memIn.from_hex(psz);
 
       memory.allocate(2048);
 
@@ -1533,11 +1533,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       }
 
-      string strHex;
-
-      memory_to_hex(strHex, memory);
-
-      return strHex;
+      return memory.to_hex();
 
    }
 
@@ -1551,7 +1547,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       primitive::memory memIn;
 
-      hex_to_memory(memIn,psz);
+      memIn.from_hex(psz);
 
       memory.allocate(2048);
 
@@ -1566,11 +1562,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       }
 
-      string strHex;
-
-      memory_to_hex(strHex,memory);
-
-      return strHex;
+      return memory.to_hex();
 
    }
 
@@ -1583,7 +1575,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       primitive::memory memIn;
 
-      hex_to_memory(memIn,psz);
+      memIn.from_hex(psz);
 
       memory.allocate(2048);
 
@@ -1598,11 +1590,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       }
 
-      string strHex;
-
-      memory_to_hex(strHex,memory);
-
-      return strHex;
+      return memory.to_hex();
 
    }
 
@@ -1614,7 +1602,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       primitive::memory memIn;
 
-      hex_to_memory(memIn,psz);
+      memIn.from_hex(psz);
 
       memory.allocate(2048);
 
@@ -1629,11 +1617,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       }
 
-      string strHex;
-
-      memory_to_hex(strHex,memory);
-
-      return strHex;
+      return memory.to_hex();
 
    }
 

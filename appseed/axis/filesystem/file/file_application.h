@@ -62,6 +62,11 @@ namespace file
       virtual ::file::buffer_sp friendly_get_file(var varFile, UINT nOpenFlags);
 
 
+      void dtf(const char * pszFile,const char * pszDir);
+      void dtf(const char * pszFile,stringa & stra,stringa & straRelative);
+      void ftd(const char * pszDir,const char * pszFile);
+
+
       virtual bool crypto_set(var varFile,const char * pszData,const char * pszSalt);
       virtual bool crypto_get(var varFile,string & str,const char * pszSalt);
 
