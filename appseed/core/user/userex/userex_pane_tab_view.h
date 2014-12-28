@@ -14,8 +14,8 @@ namespace userex
 
 
       sp(pane_view)                 m_ppaneview;
-      sp(filemanager::manager)      m_pfilemanager;
-      sp(filemanager::manager)      m_pfilemanagerTabbed;
+      sp(::root)                    m_pfilemanager;
+      sp(::root)                    m_pfilemanagerTabbed;
 
 
       pane_tab_view(::aura::application * papp);
@@ -38,9 +38,9 @@ namespace userex
 
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
 
-      virtual sp(::filemanager::manager) get_filemanager_manager();
+      virtual ::filemanager::manager & filemanager_manager();
 
-      virtual sp(::filemanager::manager) get_tabbed_filemanager_document();
+      virtual ::filemanager::manager & tabbed_filemanager_document();
 
       virtual void _001OnTabClose(int32_t iTab);
 

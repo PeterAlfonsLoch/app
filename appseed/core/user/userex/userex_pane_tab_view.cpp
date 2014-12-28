@@ -85,9 +85,9 @@ namespace userex
          {
             GetParentFrame()->EndModalLoop("yes");
          }
-         if(get_filemanager_manager() != NULL)
+         if(&filemanager_manager() != NULL)
          {
-            get_filemanager_manager()->get_filemanager_data()->m_pdocumentSave = NULL;
+            filemanager_manager().get_filemanager_data()->m_pdocumentSave = NULL;
          }
       }
 
@@ -257,17 +257,17 @@ namespace userex
    }
 
 
-   sp(::filemanager::manager) pane_tab_view::get_filemanager_manager()
+   ::filemanager::manager & pane_tab_view::filemanager_manager()
    {
 
-      return  m_pfilemanager;
+      return  *m_pfilemanager.cast <::filemanager::manager>();
 
    }
 
-   sp(::filemanager::manager) pane_tab_view::get_tabbed_filemanager_document()
+   ::filemanager::manager & pane_tab_view::tabbed_filemanager_document()
    {
 
-      return  m_pfilemanagerTabbed;
+      return  *m_pfilemanagerTabbed.cast <::filemanager::manager>();
 
    }
 
@@ -277,8 +277,8 @@ namespace userex
 
       ::user::tab::_001OnTabClose(iTab);
 
-      if(GetParentFrame()->ContinueModal(0) && get_filemanager_manager() != NULL
-         && get_filemanager_manager()->get_filemanager_data()->m_pdocumentSave != NULL)
+      if(GetParentFrame()->ContinueModal(0) && &filemanager_manager() != NULL
+         && filemanager_manager().get_filemanager_data()->m_pdocumentSave != NULL)
       {
          GetParentFrame()->EndModalLoop("yes");
       }

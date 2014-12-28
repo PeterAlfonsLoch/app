@@ -155,10 +155,10 @@ namespace filemanager
          ppanetabview->set_cur_tab_by_id("file_manager");
          ppanetabview->get_pane_by_id("file_manager")->m_bPermanent = false;
          ppanetabview->layout();
-         ppanetabview->get_filemanager_manager()->FileManagerSaveAs(pdocument);
+         ppanetabview->filemanager_manager().FileManagerSaveAs(pdocument);
          if(ppanetabview->GetParentFrame()->RunModalLoop() != "yes")
             return FALSE;
-         varFile = ppanetabview->get_filemanager_manager()->get_filemanager_data()->m_pmanager->m_strTopic;
+         varFile = ppanetabview->filemanager_manager().get_filemanager_data()->m_pmanager->m_strTopic;
          return TRUE;
       }
 

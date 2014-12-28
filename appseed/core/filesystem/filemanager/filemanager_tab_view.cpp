@@ -79,7 +79,7 @@ namespace filemanager
 
                string str;
 
-               str.Format("frame(%d,%d)",get_filemanager_manager()->get_filemanager_data()->m_iTemplate,get_filemanager_manager()->get_filemanager_data()->m_iDocument);
+               str.Format("frame(%d,%d)",filemanager_manager().get_filemanager_data()->m_iTemplate,filemanager_manager().get_filemanager_data()->m_iDocument);
 
                sp(frame) pframe = ((::window_sp) GetParentFrame());
 
