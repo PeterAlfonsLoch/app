@@ -446,7 +446,7 @@ CLASS_DECL_AXIS string c_inet_ntop(int32_t af, const void *src)
    if(af == AF_INET)
    {
 
-      const in_addr * addr = (const in_addr *)src;
+      in_addr & addr = *(in_addr *)src;
 
       str = to_string(addr);
 
@@ -454,7 +454,7 @@ CLASS_DECL_AXIS string c_inet_ntop(int32_t af, const void *src)
    else if(af == AF_INET6)
    {
 
-      const in6_addr * addr = (const in6_addr *)src;
+      in6_addr & addr = *(in6_addr *)src;
 
       str = to_string(addr);
 

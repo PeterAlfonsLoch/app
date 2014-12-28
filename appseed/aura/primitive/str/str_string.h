@@ -774,7 +774,7 @@ inline operator String ^()
 
 
 template < typename T >
-inline string to_string(const T & o)
+inline string to_string(T & o)
 {
 
    return o.to_string();
