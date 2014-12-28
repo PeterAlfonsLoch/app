@@ -942,6 +942,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aura\aura\aura_gudo_application.inl" />
+    <None Include="..\..\..\nodeapp\stage\matter\msvc++\x86\msvcp120.dll" />
+    <None Include="..\..\..\nodeapp\stage\matter\msvc++\x86\msvcp120d.dll" />
+    <None Include="..\..\..\nodeapp\stage\matter\msvc++\x86\msvcr120.dll" />
+    <None Include="..\..\..\nodeapp\stage\matter\msvc++\x86\msvcr120d.dll" />
+    <None Include="..\..\..\nodeapp\stage\matter\msvc++\x86\vccorlib120.dll" />
+    <None Include="..\..\..\nodeapp\stage\matter\msvc++\x86\vccorlib120d.dll" />
+    <None Include="..\..\..\nodeapp\stage\matter\msvc++\x86\vcomp120.dll" />
+    <None Include="..\..\..\nodeapp\stage\matter\msvc++\x86\vcomp120d.dll" />
+    <None Include="..\..\..\nodeapp\thirdparty\binary\x86\msvcp120.dll" />
     <None Include="aura.def" />
     <None Include="aura\aura\aura.inl" />
     <None Include="aura\aura\aura_system_factory.inl" />
@@ -1991,8 +2000,8 @@
       <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
     </Link>
     <PreBuildEvent>
-      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcr110d.dll" "$(OutDir)"</Command>
+      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp120d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcr120d.dll" "$(OutDir)"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

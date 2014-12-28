@@ -211,6 +211,27 @@
     <Filter Include="Header Files\aura\os\ansios">
       <UniqueIdentifier>{bc1f34ec-82da-4af1-82cd-fe91ec180b90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Binary Files">
+      <UniqueIdentifier>{3be8a30d-8c98-4b4d-8eeb-98a84e3572a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Binary Files\Release">
+      <UniqueIdentifier>{2e1e41ec-462a-477f-86ea-bf2397f2a3ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Binary Files\Release\x86">
+      <UniqueIdentifier>{de335543-7499-4d52-8fc0-b5a8af66df80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Binary Files\Debug">
+      <UniqueIdentifier>{f47f1979-1381-47ae-a815-744eaf62e01e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Binary Files\Debug\x86">
+      <UniqueIdentifier>{6d58dc1e-535a-46f8-997f-67b2134f4fc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Binary Files\Debug\x64">
+      <UniqueIdentifier>{4d0ccd71-75f2-4a94-9112-58e22bfded47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Binary Files\Release\x64">
+      <UniqueIdentifier>{76877c31-ab1d-4eb6-95af-9fc8dd5a127b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
