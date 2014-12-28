@@ -1,5 +1,17 @@
 #pragma once
 
+
+namespace aura
+{
+
+
+   class menu_base_item;
+   class menu;
+   class menu_base;
+
+
+}
+
 namespace user
 {
 
@@ -89,7 +101,6 @@ namespace user
    class interaction_impl;
    class frame_window;
    class create_struct;
-   class menu;
 
 
 } // namespace user
@@ -99,7 +110,6 @@ namespace user
 {
 
    class place_holder;
-   class menu_base_item;
 
 #if defined METROWIN && defined(__cplusplus_winrt)
 
@@ -133,7 +143,6 @@ namespace user
 
    class control_event;
    class frame_window;
-   class menu_base;
 
 
 
