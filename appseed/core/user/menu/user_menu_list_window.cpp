@@ -449,7 +449,7 @@ namespace user
       {
          DestroyWindow();
       }*/
-      ::user::menu_base::clear();
+      ::aura::menu_base::clear();
    }
 
 } // namespace user

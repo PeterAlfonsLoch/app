@@ -4328,7 +4328,7 @@ namespace user
    bool interaction::track_popup_menu(sp(::user::menu_base_item) pitem,int32_t iFlags,int32_t x,int32_t y)
    {
 
-      m_spmenuPopup = Application.alloc(System.type_info < ::user::menu_base >());
+      m_spmenuPopup = Application.alloc(System.type_info < ::aura::menu_base >());
 
       m_spmenuPopup->m_pitem = pitem;
 
@@ -4348,7 +4348,7 @@ namespace user
    bool interaction::track_popup_menu(sp(::xml::node) lpnode,int32_t iFlags,int32_t x,int32_t y)
    {
 
-      m_spmenuPopup = Application.alloc(System.type_info < ::user::menu_base >());
+      m_spmenuPopup = Application.alloc(System.type_info < ::aura::menu_base >());
 
       if(!m_spmenuPopup->LoadMenu(lpnode))
       {
@@ -4375,7 +4375,7 @@ namespace user
    bool interaction::track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags,int32_t x,int32_t y)
    {
 
-      m_spmenuPopup = Application.alloc(System.type_info < ::user::menu_base >());
+      m_spmenuPopup = Application.alloc(System.type_info < ::aura::menu_base >());
 
       if(!m_spmenuPopup->LoadXmlMenu(pszMatter))
       {

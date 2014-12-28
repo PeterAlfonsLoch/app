@@ -292,13 +292,13 @@ namespace filemanager
       ::user::list::ScreenToClient(&ptClient);
         if(_001HitTest_(ptClient, iItem))
       {
-         ::user::menu menu(get_app());
+         ::aura::menu menu(get_app());
          if(get_fs_list_data()->m_itema.get_item(iItem).IsFolder())
          {
             _017OpenContextMenuFolder(new ::fs::item(get_fs_list_data()->m_itema.get_item(iItem)), ::action::source_user);
             /*if (menu.LoadXmlMenu(get_filemanager_template()->m_strFolderPopup))
             {
-               ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
+               ::aura::menu menuPopup(get_app(), menu.GetSubMenu(0));
                //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
                //ASSERT(pPopup != NULL);
                sp(::user::frame_window) pframe = ( (GetParentFrame()));
@@ -512,7 +512,7 @@ namespace filemanager
       if(straCommand.get_size() > 0)
       {
          
-         m_spmenuPopup = canew(::user::menu(get_app()));
+         m_spmenuPopup = canew(::aura::menu(get_app()));
          
          point ptCursor;
          
@@ -709,7 +709,7 @@ namespace filemanager
          {
             ::user::menu_item_ptra * pitema = pcmdui1->m_pitema;
 
-            ::user::menu_base * pbase = pitema->element_at(pcmdui->m_pcmdui->m_iIndex)->m_pbase;
+            ::aura::menu_base * pbase = pitema->element_at(pcmdui->m_pcmdui->m_iIndex)->m_pbase;
             pitema->remove_at(pcmdui->m_pcmdui->m_iIndex);
 
 

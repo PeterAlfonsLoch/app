@@ -479,7 +479,7 @@ namespace user
    void menu::install_message_handling(::message::dispatch * pinterface)
    {
       
-      ::user::menu_base::install_message_handling(pinterface);
+      ::aura::menu_base::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(MessageDestroyWindow, pinterface, this, &menu::OnMessageDestroyWindow);
       IGUI_WIN_MSG_LINK(WM_IDLEUPDATECMDUI  , pinterface, this, &menu::_001OnIdleUpdateCmdUI);

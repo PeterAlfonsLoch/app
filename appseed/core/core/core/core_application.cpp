@@ -693,7 +693,7 @@ namespace core
 
       ASSERT(m_pRecentFileList->m_arrNames != NULL);
 
-      ::user::menu* pMenu = pcmdui->m_pMenu;
+      ::aura::menu* pMenu = pcmdui->m_pMenu;
       if (m_pRecentFileList->m_strOriginal.is_empty() && pMenu != NULL)
       pMenu->GetMenuString(pcmdui->m_nID, m_pRecentFileList->m_strOriginal, MF_BYCOMMAND);
 
@@ -709,7 +709,7 @@ namespace core
       if (pcmdui->m_pMenu == NULL)
       return;
 
-      ::user::menu * pmenu = CMenuUtil::FindPopupMenuFromID(pcmdui->m_pMenu, pcmdui->m_nID);
+      ::aura::menu * pmenu = CMenuUtil::FindPopupMenuFromID(pcmdui->m_pMenu, pcmdui->m_nID);
 
       //if(pmenu == NULL)
       //{

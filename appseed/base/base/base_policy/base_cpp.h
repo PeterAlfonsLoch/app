@@ -15,6 +15,15 @@
 
 #include "nodeapp/operational_system/operational_system.h"
 
+namespace aura
+{
+
+
+   class menu_base;
+   class menu;
+
+
+}
 
 
 
@@ -65,7 +74,6 @@ namespace user
    class frame_window;
    class place_holder;
    class menu_base_item;
-   class menu_base;
 
 } // namespace user
 

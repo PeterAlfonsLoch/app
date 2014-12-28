@@ -547,7 +547,7 @@ namespace user
       //      class point ptClient = point;
       ClientToScreen(&point);
       //ScreenToClient(&ptClient);
-      /*   ::user::menu menu;
+      /*   ::aura::menu menu;
          Ex1TextFile file;
 
          ::aura::application * papp = ::core::get_app();
@@ -567,7 +567,7 @@ namespace user
 
          if (menu.LoadMenu(get_app(), &node))
          {
-         //::user::menu* pPopup = (::user::menu_item *) menu.GetSubMenu(0);
+         //::aura::menu* pPopup = (::user::menu_item *) menu.GetSubMenu(0);
          //ASSERT(pPopup != NULL);
          sp(::user::frame_window) pframe = (sp(::user::frame_window)) (::window_sp) GetParentFrame();
          //pPopup->TrackPopupMenu(

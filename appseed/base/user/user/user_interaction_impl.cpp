@@ -1868,7 +1868,7 @@ namespace user
 //      ::exception::throw_interface_only(get_app());
 //   }
 //
-//   LRESULT interaction_impl::OnMenuChar(UINT,UINT,::user::menu*)
+//   LRESULT interaction_impl::OnMenuChar(UINT,UINT,::aura::menu*)
 //   {
 //      ::exception::throw_interface_only(get_app());
 //   }
@@ -2179,12 +2179,12 @@ namespace user
 //      ::exception::throw_interface_only(get_app());
 //   }
 //
-//   void interaction_impl::OnInitMenu(::user::menu*)
+//   void interaction_impl::OnInitMenu(::aura::menu*)
 //   {
 //      ::exception::throw_interface_only(get_app());
 //   }
 //
-//   void interaction_impl::OnInitMenuPopup(::user::menu*,UINT,bool)
+//   void interaction_impl::OnInitMenuPopup(::aura::menu*,UINT,bool)
 //   {
 //      ::exception::throw_interface_only(get_app());
 //   }

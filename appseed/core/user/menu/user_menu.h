@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace user
+namespace aura
 {
 
 
@@ -56,7 +56,7 @@ namespace user
 
       void layout_menu(point pt);
 
-      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, sp(::user::menu_base) * pthis);
+      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, sp(::aura::menu_base) * pthis);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
 

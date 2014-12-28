@@ -4624,7 +4624,7 @@ namespace windows
    {
       Default();
    }
-   LRESULT interaction_impl::OnMenuChar(UINT,UINT,::user::menu*)
+   LRESULT interaction_impl::OnMenuChar(UINT,UINT,::aura::menu*)
    {
       return Default();
    }
@@ -5052,11 +5052,11 @@ namespace windows
    {
       Default();
    }
-   void interaction_impl::OnInitMenu(::user::menu*)
+   void interaction_impl::OnInitMenu(::aura::menu*)
    {
       Default();
    }
-   void interaction_impl::OnInitMenuPopup(::user::menu*,UINT,bool)
+   void interaction_impl::OnInitMenuPopup(::aura::menu*,UINT,bool)
    {
       Default();
    }

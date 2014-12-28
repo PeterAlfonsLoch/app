@@ -1116,10 +1116,10 @@ namespace filemanager
          }
          else
          {
-         ::user::menu menu;
+         ::aura::menu menu;
          if (menu.LoadMenu(get_filemanager_template()->m_uiPopup))
          {
-         ::user::menu* pPopup = menu.GetSubMenu(0);
+         ::aura::menu* pPopup = menu.GetSubMenu(0);
          ASSERT(pPopup != NULL);
          sp(::user::frame_window) pframe = GetTopLevelFrame();
          pPopup->TrackPopupMenu(
