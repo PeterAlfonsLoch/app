@@ -276,7 +276,7 @@ namespace userex
    }
 
 
-   int32_t userex::simple_message_box(sp(::user::interaction) pwndOwner,const char * pszMessage,UINT fuStyle)
+   int32_t userex::simple_message_box(::aura::interaction * pwndOwner,const char * pszMessage,UINT fuStyle)
    {
 
       int iRet = ::simple_message_box(pwndOwner->get_safe_handle(), pszMessage, "ca2", fuStyle);
@@ -304,7 +304,7 @@ namespace userex
          {
             string strMessage = pszMessage;
             strMessage.replace("<br>","\r\n");
-            return ::simple_message_box((oswindow)(pwndOwner.is_null() ? NULL : pwndOwner->GetWindow()->get_os_data()),strMessage,Application.m_strAppName,fuStyle);
+            return ::simple_message_box(pwndOwner->get_safe_handle(),strMessage,Application.m_strAppName,fuStyle);
          }
       }
       catch(...)
