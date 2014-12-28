@@ -3125,7 +3125,7 @@ RetryBuildNumber:
 
       string strBuild;
 
-      ::install::get_plugin_axis_library_list(straTemplate, m_strVersion);
+      ::install::get_plugin_base_library_list(straTemplate, m_strVersion);
 
       string strUrl;
 
