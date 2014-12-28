@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   pane_tab_view::pane_tab_view(::aura::application * papp) :
+   pane_tab_view::pane_tab_view(::aura::application * papp):
       element(papp),
 
       ::user::tab_view(papp),
@@ -101,7 +101,7 @@ namespace userex
       if(iTab < 0)
          return;
 
-      pane * ppane = (pane *) get_data()->m_panea.element_at(iTab);
+      pane * ppane = (pane *)get_data()->m_panea.element_at(iTab);
 
       if(ppane == NULL)
          return;
@@ -113,21 +113,21 @@ namespace userex
       if(ppane->m_pholder == NULL)
          return;
 
-      pcreatordata->m_pviewdata = (void *) ppane;
+      pcreatordata->m_pviewdata = (void *)ppane;
 
    }
 
 
-   bool pane_tab_view::on_hold(::user::interaction * pui, ::user::place_holder * pholder)
+   bool pane_tab_view::on_hold(::user::interaction * pui,::user::place_holder * pholder)
    {
-      if(!::user::place_holder_container::on_hold(pui, pholder))
+      if(!::user::place_holder_container::on_hold(pui,pholder))
          return false;
       ::user::tab::pane_array & panea = get_data()->m_panea;
       for(int32_t iTab = 0; iTab < panea.get_count(); iTab++)
       {
          if(panea[iTab]->m_pholder == pholder)
          {
-            ::user::view_creator_data * pcreatordata = ensure_impact(panea[iTab]->m_id, get_data()->m_rectTabClient);
+            ::user::view_creator_data * pcreatordata = ensure_impact(panea[iTab]->m_id,get_data()->m_rectTabClient);
             if(pcreatordata != NULL)
             {
                if(pcreatordata->m_pwnd == NULL)
@@ -155,10 +155,10 @@ namespace userex
 
       ::aura::library * plibrary = NULL;
 
-      if(System.m_idmapCreateViewLibrary.Lookup(pcreatordata->m_id, plibrary) && plibrary != NULL)
+      if(System.m_idmapCreateViewLibrary.Lookup(pcreatordata->m_id,plibrary) && plibrary != NULL)
       {
 
-         
+
          //plibrary->on_create_view(pcreatordata);
 
       }
@@ -171,7 +171,7 @@ namespace userex
 
          ::filemanager::data * pfilemanagerdata = oprop("data." + *pcreatordata->m_id.m_pstr).cast < ::filemanager::data >();
 
-         if (pfilemanagerdata == NULL)
+         if(pfilemanagerdata == NULL)
             pfilemanagerdata = new ::filemanager::data(get_app());
 
 
@@ -191,11 +191,11 @@ namespace userex
 
          pfilemanagerdata->m_strDISection = Application.m_strAppName;
 
-         sp(::filemanager::manager) pmanager = Platform.filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata, get_app()->m_pcoreapp);
+         sp(::filemanager::manager) pmanager = Platform.filemanager().std().open_child(true,pfilemanagerdata->m_bTransparentBackground,pcreatordata->m_pholder,pfilemanagerdata,get_app()->m_pcoreapp);
 
          if(pmanager != NULL)
          {
-            
+
             m_pfilemanager = pmanager;
 
             sp(::aura::impact) pview = pmanager->get_view();
@@ -264,12 +264,31 @@ namespace userex
 
    }
 
-   ::filemanager::manager & pane_tab_view::tabbed_filemanager_document()
+   ::filemanager::manager & pane_tab_view::tabbed_filemanager_manager()
    {
 
       return  *m_pfilemanagerTabbed.cast <::filemanager::manager>();
 
    }
+
+
+   void pane_tab_view::FileManagerSaveAs(::aura::document * pdocument)
+   {
+
+      set_cur_tab_by_id("file_manager");
+      filemanager_manager().FileManagerSaveAs(pdocument);
+
+   }
+
+
+   void pane_tab_view::TabbedFileManagerSaveAs(::aura::document * pdocument)
+   {
+
+      set_cur_tab_by_id("tabbed_file_manager");
+      tabbed_filemanager_manager().FileManagerSaveAs(pdocument);
+
+   }
+
 
 
    void pane_tab_view::_001OnTabClose(int32_t iTab)

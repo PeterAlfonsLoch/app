@@ -40,7 +40,11 @@ namespace userex
 
       virtual ::filemanager::manager & filemanager_manager();
 
-      virtual ::filemanager::manager & tabbed_filemanager_document();
+      virtual ::filemanager::manager & tabbed_filemanager_manager();
+
+      virtual void FileManagerSaveAs(::aura::document * pdocument);
+
+      virtual void TabbedFileManagerSaveAs(::aura::document * pdocument);
 
       virtual void _001OnTabClose(int32_t iTab);
 
