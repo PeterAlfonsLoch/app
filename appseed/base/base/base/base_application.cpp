@@ -1786,7 +1786,7 @@ namespace base
 
 
 
-   int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
+   int32_t application::simple_message_box_timeout(::aura::interaction * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
    {
       UNREFERENCED_PARAMETER(durationTimeOut);
       return simple_message_box(pwndOwner,pszMessage,fuStyle);
@@ -2245,7 +2245,7 @@ namespace base
 
    }
 
-   int32_t application::simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle)
+   int32_t application::simple_message_box(::aura::interaction * puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
 #if defined(WINDOWSEX)

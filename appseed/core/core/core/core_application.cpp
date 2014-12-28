@@ -2079,7 +2079,7 @@ namespace core
 
 #ifdef WINDOWS
 
-   int32_t application::simple_message_box(sp(::user::interaction) pwndOwner,UINT fuStyle,const char * pszFormat,...)
+   int32_t application::simple_message_box(::aura::interaction * pwndOwner,UINT fuStyle,const char * pszFormat,...)
    {
       va_list va;
       va_start(va,pszFormat);
@@ -4047,7 +4047,7 @@ namespace core
    }
 
 
-   int32_t application::simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle)
+   int32_t application::simple_message_box(::aura::interaction * puiOwner,const char * pszMessage,UINT fuStyle)
    {
 
       if(&Platform == NULL || Platform.userex() == NULL)
@@ -4058,7 +4058,7 @@ namespace core
    }
 
 
-   int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
+   int32_t application::simple_message_box_timeout(::aura::interaction * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
    {
 
       if(Platform.userex() == NULL)

@@ -204,18 +204,18 @@ namespace core
       void EnableHtmlHelp();
 
 
-      virtual int32_t simple_message_box_timeout(sp(::user::interaction) puiOwner,const char * pszMessage,::duration durationTimeout,UINT fuStyle = MB_OK);
-      virtual int32_t simple_message_box(sp(::user::interaction) puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box_timeout(::aura::interaction * puiOwner,const char * pszMessage,::duration durationTimeout,UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box(::aura::interaction * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
 
 
 #ifdef WINDOWS
 
-      virtual int32_t simple_message_box(sp(::user::interaction) puiOwner,UINT fuStyle,const char * pszFormat,...);
+      virtual int32_t simple_message_box(::aura::interaction * puiOwner,UINT fuStyle,const char * pszFormat,...);
 
 #else
 
       template<typename T, typename... Args>
-      int32_t simple_message_box(sp(::user::interaction) puiOwner, UINT fuStyle, const char * pszFormat, const T & value, Args... args)
+      int32_t simple_message_box(::aura::interaction * puiOwner, UINT fuStyle, const char * pszFormat, const T & value, Args... args)
       {
 
          string str;
