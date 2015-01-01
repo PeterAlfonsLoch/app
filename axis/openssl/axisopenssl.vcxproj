@@ -127,7 +127,7 @@
     <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <AndroidStlType>gnustl_dynamic</AndroidStlType>
+    <AndroidStlType>gnustl_static</AndroidStlType>
     <AndroidAPILevel>android-9</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'" Label="Configuration">
@@ -913,6 +913,8 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <Attributes>NoAttributes</Attributes>
       <Permissive>Yes</Permissive>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <OptimizationLevel>O0</OptimizationLevel>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

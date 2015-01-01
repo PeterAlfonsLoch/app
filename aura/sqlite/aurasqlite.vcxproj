@@ -91,7 +91,7 @@
     <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <AndroidStlType>gnustl_dynamic</AndroidStlType>
+    <AndroidStlType>gnustl_static</AndroidStlType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -630,6 +630,8 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions>-Wnarrowing</AdditionalOptions>
       <GccExceptionHandling>true</GccExceptionHandling>
+      <OptimizationLevel>O0</OptimizationLevel>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -660,6 +662,12 @@
     <Xdcmake>
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">
     <Midl>
