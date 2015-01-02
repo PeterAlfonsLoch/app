@@ -60,7 +60,7 @@ namespace html
 
          elemental::implement_phase1(pdata, pelemental);
 
-         if (!m_pcombo->IsWindow())
+         if(pelemental->m_pbase->get_type() == ::html::base::type_tag && !m_pcombo->IsWindow())
          {
             m_pcombo->oprop("parent_lock_data") = (::data::data *) pdata;
             m_pcombo->create_window(null_rect(),pdata->m_pui,100);
@@ -72,6 +72,8 @@ namespace html
 
             for (index i = 0; i < pelemental->m_pbase->get_tag()->baseptra().get_count(); i++)
             {
+               if(pelemental->m_pbase->get_tag()->baseptra()[i]->get_type() != ::html::base::type_tag)
+                  continue;
                string strText = pelemental->m_pbase->get_tag()->baseptra()[i]->get_tag()->baseptra()[0]->get_value()->get_value();
                string strValue = pelemental->m_pbase->get_tag()->baseptra()[i]->get_tag()->get_attr_value("value");
                m_pcombo->AddString(strText, strValue);
@@ -97,6 +99,9 @@ namespace html
       void select::layout_phase1(data * pdata)
       {
 
+         if(m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+            return;
+
          string strSize = m_pelemental->m_pbase->get_tag()->get_attr_value("size");
 
          int iSize = 20;
@@ -120,8 +125,12 @@ namespace html
       
       void select::layout_phase3(data * pdata)
       {
+
          
          elemental::layout_phase3(pdata);
+         if(m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+            return;
+
 
          m_pcombo->SetWindowPos(0, (int32_t)m_box.left, (int32_t)m_box.top, (int32_t)m_box.get_cx(), (int32_t)m_box.get_cy(), SWP_NOREDRAW);
 
@@ -141,8 +150,20 @@ namespace html
 
       void select::on_change_layout(data * pdata)
       {
+
+         if(m_pelemental->m_pbase->get_type() != ::html::base::type_tag)
+            return;
+
          UNREFERENCED_PARAMETER(pdata);
          m_pcombo->SetWindowPos(0, (int32_t)m_box.left, (int32_t)m_box.top, (int32_t)m_box.get_cx(), (int32_t)m_box.get_cy(), SWP_NOREDRAW);
+      }
+
+      void select::set_pos(data * pdoc,float x,float y,float cx,float cy)
+      {
+
+         m_box.set_pos_dim(x,y,m_box.get_cx(),m_box.get_cy());
+         on_change_layout(pdoc);
+
       }
 
    }

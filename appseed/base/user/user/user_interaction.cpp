@@ -79,6 +79,17 @@ namespace user
 
       DestroyWindow();
 
+      try
+      {
+
+         System.remove_frame(this);
+
+      }
+      catch(...)
+      {
+
+      }
+
    }
 
 

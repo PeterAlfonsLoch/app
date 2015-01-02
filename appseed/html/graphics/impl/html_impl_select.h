@@ -35,6 +35,8 @@ namespace html
 
          void on_change_layout(data * pdoc);
 
+         void set_pos(data * pdoc,float x,float y,float cx,float cy);
+
       };
 
 

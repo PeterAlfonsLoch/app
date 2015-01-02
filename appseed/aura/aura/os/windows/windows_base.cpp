@@ -369,6 +369,36 @@ int_bool is_windows_nt()
 
 }
 
+int_bool is_windows_7_or_lower()
+{
+   
+   return !is_windows_8_or_greater();
+
+}
+
+int_bool is_windows_8_or_greater()
+{
+
+#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
+
+   return IsWindows8OrGreater();
+
+#else
+
+   OSVERSIONINFO osversioninfo;
+
+   osversioninfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+
+   if(!GetVersionEx(&osversioninfo))
+      return 0;
+
+   throw todo(get_app());
+
+   return osversioninfo.dwPlatformId == VER_PLATFORM_WIN32_NT && osversioninfo.dwMajorVersion >= 6 && osversioninfo.dwMinorVersion >= 2;
+
+#endif
+
+}
 
 int_bool is_windows_vista_or_greater()
 {
