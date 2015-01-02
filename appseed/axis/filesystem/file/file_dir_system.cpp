@@ -2533,7 +2533,14 @@ ret:
 
          string strApiServer;
 
-         string strGetFontopus("https://api.ca2.cc/get_fontopus_login");
+         if(Session.fontopus()->m_strFirstFontopusServer.has_char())
+         {
+
+            strApiServer = ::str::replace("account","api",Session.fontopus()->m_strFirstFontopusServer);
+
+         }
+
+         string strGetFontopus("https://" + strApiServer + "/get_fontopus_login"); //("https://api.ca2.cc/get_fontopus_login");
 
          string strFontopusServer = Session.fontopus()->get_server(strGetFontopus,8);
 
