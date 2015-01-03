@@ -486,6 +486,7 @@ typedef struct cert_pkey_st
 	const EVP_MD *digest;
 	} CERT_PKEY;
 
+#undef CERT
 typedef struct cert_st
 	{
 	/* Current active set */

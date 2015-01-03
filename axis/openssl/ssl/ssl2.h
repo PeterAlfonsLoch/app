@@ -152,6 +152,7 @@ extern "C" {
 #define SSL2_MAX_KEY_MATERIAL_LENGTH	24
 
 #ifndef HEADER_SSL_LOCL_H
+
 #define  CERT		char
 #endif
 

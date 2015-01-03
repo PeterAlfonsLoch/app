@@ -5244,6 +5244,7 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
     <ClCompile Include="ssl\t1_reneg.c" />
     <ClCompile Include="ssl\t1_srvr.c" />
     <ClCompile Include="ssl\tls_srp.c" />
+    <ClCompile Include="ssl\_ssl.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\openssl\aes.h" />

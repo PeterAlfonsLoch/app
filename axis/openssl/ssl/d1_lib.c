@@ -66,6 +66,8 @@
 #include <sys/timeb.h>
 #endif
 
+struct sockaddr;
+
 static void get_current_time(struct timeval *t);
 const char dtls1_version_str[]="DTLSv1" OPENSSL_VERSION_PTEXT;
 int dtls1_listen(SSL *s, struct sockaddr *client);

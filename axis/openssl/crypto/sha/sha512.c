@@ -510,6 +510,8 @@ static void sha512_block_data_order (SHA512_CTX *ctx, const void *in, size_t num
 
 #else
 
+#undef ROUND_00_15
+
 #define	ROUND_00_15(i,a,b,c,d,e,f,g,h)		do {	\
 	T1 += h + Sigma1(e) + Ch(e,f,g) + K512[i];	\
 	h = Sigma0(a) + Maj(a,b,c);			\
