@@ -20,11 +20,11 @@ namespace sockets
 {
 
 
-   #ifdef DEBUG
-   #define DEB(x) x; fflush(stderr);
-   #else
-   #define DEB(x)
-   #endif
+   //#ifdef DEBUG
+   //#define DEB(x) x; fflush(stderr);
+   //#else
+   //#define DEB(x)
+   //#endif
 
 
    socket_handler::socket_handler(::aura::application * papp, logger *plogger) :

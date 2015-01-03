@@ -26,11 +26,11 @@ namespace sockets
 void ssl_sigpipe_handle( int x );
 #endif
 
-   #ifdef DEBUG
-   #define DEB(x) x
-   #else
-   #define DEB(x)
-   #endif
+   //#ifdef DEBUG
+   //#define DEB(x) x
+   //#else
+   //#define DEB(x)
+   //#endif
 
 
    // statics
