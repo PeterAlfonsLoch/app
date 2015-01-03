@@ -3475,14 +3475,14 @@
     <ClCompile Include="aura\aura\aura_str_context.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\_primitive.cpp">
-      <Filter>Source Files\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\_multithreading.cpp">
       <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\_primitive.cpp">
+      <Filter>Source Files\primitive</Filter>
     </ClCompile>
     <ClCompile Include="user\colorertake5\_colorertake5.cpp">
       <Filter>Source Files\user\colorertake5</Filter>

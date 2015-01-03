@@ -52,15 +52,7 @@
 # define HAVE_LANGINFO_CODESET 1
 #endif
 
-#define index system_index
-#define lconv system_lconv
-#define localeconv system_localeconv
-
 #include "include/aura/locale.h"
-
-#undef index
-#undef lconv
-#undef localeconv
 
 #ifdef HAVE_LANGINFO_CODESET
 # include <langinfo.h>

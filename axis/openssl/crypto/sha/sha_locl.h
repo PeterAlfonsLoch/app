@@ -64,6 +64,16 @@
 
 #define DATA_ORDER_IS_BIG_ENDIAN
 
+
+#undef HASH_LONG
+#undef HASH_CTX
+#undef HASH_CBLOCK
+#undef HASH_UPDATE
+#undef HASH_TRANSFORM
+#undef HASH_MAKE_STRING
+#undef HASH_FINAL
+#undef HASH_BLOCK_DATA_ORDER
+
 #define HASH_LONG               SHA_LONG
 #define HASH_CTX                SHA_CTX
 #define HASH_CBLOCK             SHA_CBLOCK
@@ -88,6 +98,13 @@
 static void sha_block_data_order (SHA_CTX *c, const void *p,size_t num);
 
 #elif defined(SHA_1)
+
+#undef HASH_UPDATE
+#undef HASH_TRANSFORM
+#undef HASH_FINAL
+#undef HASH_BLOCK_DATA_ORDER
+#undef HASH_INIT
+#undef Xupdate
 
 # define HASH_UPDATE             	SHA1_Update
 # define HASH_TRANSFORM          	SHA1_Transform

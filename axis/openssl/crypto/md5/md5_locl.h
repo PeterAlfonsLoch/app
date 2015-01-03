@@ -78,6 +78,14 @@ void md5_block_data_order (MD5_CTX *c, const void *p,size_t num);
 
 #define DATA_ORDER_IS_LITTLE_ENDIAN
 
+#undef HASH_LONG
+#undef HASH_CTX
+#undef HASH_CBLOCK
+#undef HASH_UPDATE
+#undef HASH_TRANSFORM
+#undef HASH_FINAL
+#undef HASH_BLOCK_DATA_ORDER
+
 #define HASH_LONG		MD5_LONG
 #define HASH_CTX		MD5_CTX
 #define HASH_CBLOCK		MD5_CBLOCK
@@ -94,6 +102,11 @@ void md5_block_data_order (MD5_CTX *c, const void *p,size_t num);
 #define	HASH_BLOCK_DATA_ORDER	md5_block_data_order
 
 #include "md32_common.h"
+
+#undef G
+#undef R0
+#undef R1
+#undef R2
 
 /*
 #define	F(x,y,z)	(((x) & (y))  |  ((~(x)) & (z)))

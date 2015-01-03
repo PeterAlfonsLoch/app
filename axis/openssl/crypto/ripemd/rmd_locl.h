@@ -80,6 +80,15 @@ void ripemd160_block_data_order (RIPEMD160_CTX *c, const void *p,size_t num);
 
 #define DATA_ORDER_IS_LITTLE_ENDIAN
 
+#undef HASH_LONG
+#undef HASH_CTX
+#undef HASH_CBLOCK
+#undef HASH_UPDATE
+#undef HASH_TRANSFORM
+#undef HASH_MAKE_STRING
+#undef HASH_FINAL
+#undef HASH_BLOCK_DATA_ORDER
+
 #define HASH_LONG               RIPEMD160_LONG
 #define HASH_CTX                RIPEMD160_CTX
 #define HASH_CBLOCK             RIPEMD160_CBLOCK

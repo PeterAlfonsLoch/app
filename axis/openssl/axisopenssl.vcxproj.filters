@@ -228,6 +228,9 @@
     <Filter Include="Assembler Files\whrlpool">
       <UniqueIdentifier>{5b4aa46f-1c3f-45d5-a91b-5092318e7b80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\crypto\NewFilter1">
+      <UniqueIdentifier>{5654a4a7-659a-4ae1-b227-64ad6e962137}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ssl\bio_ssl.c">
@@ -2530,6 +2533,9 @@
     </ClCompile>
     <ClCompile Include="engines\ccgost\gostsum.c">
       <Filter>Source Files\engines\ccgost</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\_digest.c">
+      <Filter>Source Files\crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

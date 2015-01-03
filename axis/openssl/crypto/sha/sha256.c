@@ -71,6 +71,15 @@ int SHA224_Final (unsigned char *md, SHA256_CTX *c)
 
 #define	DATA_ORDER_IS_BIG_ENDIAN
 
+#undef HASH_LONG
+#undef HASH_CTX
+#undef HASH_CBLOCK
+#undef HASH_UPDATE
+#undef HASH_TRANSFORM
+#undef HASH_MAKE_STRING
+#undef HASH_FINAL
+#undef HASH_BLOCK_DATA_ORDER
+
 #define	HASH_LONG		SHA_LONG
 #define	HASH_CTX		SHA256_CTX
 #define	HASH_CBLOCK		SHA_CBLOCK

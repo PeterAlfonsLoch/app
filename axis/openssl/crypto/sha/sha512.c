@@ -390,6 +390,11 @@ static const SHA_LONG64 K512[80] = {
 #define ROTR(x,s)	(((x)>>s) | (x)<<(64-s))
 #endif
 
+#undef Sigma0
+#undef Sigma1
+#undef sigma0
+#undef sigma1
+
 #define Sigma0(x)	(ROTR((x),28) ^ ROTR((x),34) ^ ROTR((x),39))
 #define Sigma1(x)	(ROTR((x),14) ^ ROTR((x),18) ^ ROTR((x),41))
 #define sigma0(x)	(ROTR((x),1)  ^ ROTR((x),8)  ^ ((x)>>7))
