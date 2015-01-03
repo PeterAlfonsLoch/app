@@ -71,6 +71,9 @@ typedef struct
 	CAMELLIA_KEY ks;
 	} EVP_CAMELLIA_KEY;
 
+
+#undef data
+
 /* Attribute operation for Camellia */
 #define data(ctx)	EVP_C_DATA(EVP_CAMELLIA_KEY,ctx)
 

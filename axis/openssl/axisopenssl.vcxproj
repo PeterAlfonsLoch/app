@@ -5002,6 +5002,7 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
     <ClCompile Include="crypto\evp\p_seal.c" />
     <ClCompile Include="crypto\evp\p_sign.c" />
     <ClCompile Include="crypto\evp\p_verify.c" />
+    <ClCompile Include="crypto\evp\_evp.c" />
     <ClCompile Include="crypto\ex_data.c" />
     <ClCompile Include="crypto\fips_ers.c" />
     <ClCompile Include="crypto\hmac\hmac.c" />
