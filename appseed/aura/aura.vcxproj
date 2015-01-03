@@ -4298,8 +4298,12 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="graphics\visual\visual_cursor.cpp" />
     <ClCompile Include="graphics\visual\visual_icon.cpp" />
     <ClCompile Include="multithreading\service\service_plain_service.cpp" />
-    <ClCompile Include="primitive\collection\collection_array_base.cpp" />
-    <ClCompile Include="primitive\datetime\datetime.cpp" />
+    <ClCompile Include="primitive\collection\collection_array_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_mktime.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">framework_c.h</PrecompiledHeaderFile>
@@ -4311,10 +4315,18 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">$(IntDir)framework_c.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
       </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="primitive\math\math_cvt.cpp" />
-    <ClCompile Include="primitive\math\math_cvt_g.cpp" />
-    <ClCompile Include="primitive\math\math_departament.cpp" />
+    <ClCompile Include="primitive\math\math_cvt.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_cvt_g.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_departament.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\_primitive.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_default_error_handler.cpp" />
@@ -4813,99 +4825,285 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="multithreading\multithreading_thread_impl.cpp" />
     <ClCompile Include="multithreading\multithreading_waitable.cpp" />
     <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
-    <ClCompile Include="primitive\collection\collection_2d_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_bit_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_class_sort_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_comparable_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_id_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_key_sort_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_map_misc.cpp" />
-    <ClCompile Include="primitive\collection\collection_numeric_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_object_list.cpp" />
-    <ClCompile Include="primitive\collection\collection_pointer_list.cpp" />
-    <ClCompile Include="primitive\collection\collection_point_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_rect_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_sort.cpp" />
-    <ClCompile Include="primitive\collection\collection_stringa.cpp" />
-    <ClCompile Include="primitive\collection\collection_stringl.cpp" />
-    <ClCompile Include="primitive\collection\collection_string_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_string_list.cpp" />
-    <ClCompile Include="primitive\collection\collection_string_sort_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_string_to_string_map.cpp" />
-    <ClCompile Include="primitive\collection\collection_var_array.cpp" />
-    <ClCompile Include="primitive\comparison\comparison_md5.cpp" />
-    <ClCompile Include="primitive\comparison\comparison_var_strict.cpp" />
-    <ClCompile Include="primitive\data\data_data.cpp" />
-    <ClCompile Include="primitive\data\data_data_container.cpp" />
-    <ClCompile Include="primitive\data\data_data_listener.cpp" />
-    <ClCompile Include="primitive\data\data_item.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_time.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_value.cpp" />
-    <ClCompile Include="primitive\geometry\geometry_geometry.cpp" />
-    <ClCompile Include="primitive\geometry\geometry_point.cpp" />
-    <ClCompile Include="primitive\geometry\geometry_rect.cpp" />
-    <ClCompile Include="primitive\geometry\geometry_size.cpp" />
-    <ClCompile Include="primitive\geometry\geometry_types.cpp" />
-    <ClCompile Include="primitive\math\math_math.cpp" />
-    <ClCompile Include="primitive\math\math_math_rng.cpp" />
-    <ClCompile Include="primitive\math\math_mkint_c.cpp" />
-    <ClCompile Include="primitive\math\math_natural.cpp" />
-    <ClCompile Include="primitive\math\math_scalar.cpp" />
-    <ClCompile Include="primitive\primitive_application_bias.cpp" />
-    <ClCompile Include="primitive\primitive_bit.cpp" />
-    <ClCompile Include="primitive\primitive_color.cpp" />
-    <ClCompile Include="primitive\primitive_command.cpp" />
-    <ClCompile Include="primitive\primitive_command_line.cpp" />
-    <ClCompile Include="primitive\primitive_command_thread.cpp" />
-    <ClCompile Include="primitive\primitive_create.cpp" />
-    <ClCompile Include="primitive\primitive_edit.cpp" />
-    <ClCompile Include="primitive\primitive_id.cpp" />
-    <ClCompile Include="primitive\primitive_id_space.cpp" />
-    <ClCompile Include="primitive\primitive_interlocked_long.cpp" />
-    <ClCompile Include="primitive\primitive_interlocked_long_pulse.cpp" />
-    <ClCompile Include="primitive\primitive_factory.cpp" />
-    <ClCompile Include="primitive\primitive_job.cpp" />
-    <ClCompile Include="primitive\primitive_memory.cpp" />
-    <ClCompile Include="primitive\primitive_memory_base.cpp" />
-    <ClCompile Include="primitive\primitive_memory_c.cpp" />
-    <ClCompile Include="primitive\primitive_memory_container.cpp" />
-    <ClCompile Include="primitive\primitive_object.cpp" />
-    <ClCompile Include="primitive\primitive_property.cpp" />
-    <ClCompile Include="primitive\primitive_property_set.cpp" />
-    <ClCompile Include="primitive\primitive_relation_set.cpp" />
-    <ClCompile Include="primitive\primitive_request_interface.cpp" />
-    <ClCompile Include="primitive\primitive_request_signal.cpp" />
-    <ClCompile Include="primitive\primitive_shared_memory.cpp" />
-    <ClCompile Include="primitive\primitive_signal.cpp" />
-    <ClCompile Include="primitive\primitive_type.cpp" />
-    <ClCompile Include="primitive\primitive_var.cpp" />
-    <ClCompile Include="primitive\primitive_virtual_memory.cpp" />
-    <ClCompile Include="primitive\str\str_base64.cpp" />
-    <ClCompile Include="primitive\str\str_c.cpp" />
-    <ClCompile Include="primitive\str\str_ch.cpp" />
-    <ClCompile Include="primitive\str\str_ch_class.cpp" />
-    <ClCompile Include="primitive\str\str_core.cpp" />
-    <ClCompile Include="primitive\str\str_dup.cpp" />
-    <ClCompile Include="primitive\str\str_format.cpp" />
-    <ClCompile Include="primitive\str\str_from_integer.cpp" />
-    <ClCompile Include="primitive\str\str_hex.cpp" />
-    <ClCompile Include="primitive\str\str_international.cpp" />
-    <ClCompile Include="primitive\str\str_international_locale_schema.cpp" />
-    <ClCompile Include="primitive\str\str_istring.cpp" />
-    <ClCompile Include="primitive\str\str_manager.cpp" />
-    <ClCompile Include="primitive\str\str_parse.cpp" />
-    <ClCompile Include="primitive\str\str_simple.cpp" />
-    <ClCompile Include="primitive\str\str_str.cpp" />
-    <ClCompile Include="primitive\str\str_string.cpp" />
-    <ClCompile Include="primitive\str\str_stringtow.cpp" />
-    <ClCompile Include="primitive\str\str_strw.cpp" />
-    <ClCompile Include="primitive\str\str_strx.cpp" />
-    <ClCompile Include="primitive\str\str_tokenizer.cpp" />
-    <ClCompile Include="primitive\str\str_to_integer.cpp" />
-    <ClCompile Include="primitive\str\str_verisimple_wstring.cpp" />
-    <ClCompile Include="primitive\str\str_wtostring.cpp" />
+    <ClCompile Include="primitive\collection\collection_2d_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_bit_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_class_sort_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_comparable_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_id_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_key_sort_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_map_misc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_numeric_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_object_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_pointer_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_point_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_rect_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_sort.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_stringa.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_stringl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_string_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_string_list.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_string_sort_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_string_to_string_map.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\collection_var_array.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\comparison\comparison_md5.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\comparison\comparison_var_strict.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\data\data_data.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\data\data_data_container.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\data\data_data_listener.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\data\data_item.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_duration.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_time.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_value.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry\geometry_geometry.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry\geometry_point.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry\geometry_rect.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry\geometry_size.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry\geometry_types.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_math.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_math_rng.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_mkint_c.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_natural.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_scalar.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_application_bias.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_bit.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_color.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_command.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_command_line.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_command_thread.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_create.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_edit.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_id.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_id_space.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_interlocked_long.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_interlocked_long_pulse.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_factory.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_job.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_memory.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_memory_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_memory_c.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_memory_container.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_object.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_property.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_property_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_relation_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_request_interface.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_request_signal.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_shared_memory.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_signal.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_type.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_var.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_virtual_memory.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_base64.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_c.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_ch.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_ch_class.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_core.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_dup.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_format.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_from_integer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_hex.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_international.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_international_locale_schema.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_istring.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_manager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_parse.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_simple.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_str.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_string.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_stringtow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_strw.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_strx.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_tokenizer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_to_integer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_verisimple_wstring.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_wtostring.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>
