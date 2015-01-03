@@ -155,7 +155,7 @@ bool semaphore::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
 
    return ::ReleaseSemaphore(m_object, lCount, lpPrevCount) != FALSE;
 
-#elif ANDROID
+#elif defined(ANDROID)
 
    int val;;
 

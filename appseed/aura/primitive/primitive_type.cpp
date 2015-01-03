@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-#ifndef WINDOWS
+#if !defined(WINDOWS) && !defined(VSNORD)
 
 
 string demangle (const char* name);
@@ -58,6 +58,9 @@ type::type(const std_type_info & info)
 #ifdef WINDOWS
    m_idFriendly      = info.name();
    m_id              = info.raw_name();
+#elif defined(VSNORD)
+	m_idFriendly	   = info.name();
+	m_id			      = info.name();
 #elif defined(APPLEOS)
    m_idFriendly      = demangle(info.name());
    m_id              = info.name();
@@ -97,6 +100,9 @@ type & type::operator = (const std_type_info & info)
 #ifdef WINDOWS
    m_idFriendly      = info.name();
    m_id              = info.raw_name();
+#elif defined(VSNORD)
+   m_idFriendly      = info.name();
+   m_id              = info.name();
 #elif defined(APPLEOS)
    m_idFriendly      = demangle(info.name());
    m_id              = info.name();

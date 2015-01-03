@@ -51,19 +51,21 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <OutDir>$(SolutionDir)..\..\stage\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\stage\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../include;$(SolutionDir)../../app/include/;.;$(SolutionDir)../../;$(SolutionDir)../../app;$(SolutionDir)../../app/appseed/base/base;$(SolutionDir)../../app/base/include;$(SolutionDir)../../app/thirdparty/appseed;$(SolutionDir)../../app/appseed;$(SolutionDir)../../app/appseed/core;$(SolutionDir)../../nodeapp/thirdparty/include;$(SolutionDir)../../nodeapp/thirdparty/appseed;$(SolutionDir)../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_AURA_LIBRARY;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>c++11</CppLanguageStandard>
-      <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -279,53 +281,7 @@
     <ClCompile Include="aura\xml\xml_var_exchange.cpp" />
     <ClCompile Include="aura\xml\xml_xml.cpp" />
     <ClCompile Include="aura\xml\xml_xmlite.cpp" />
-    <ClCompile Include="filesystem\file\file.cpp" />
-    <ClCompile Include="filesystem\file\file_binary_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_buffered_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_input_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_input_stream_binary_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_output_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_output_stream_binary_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_stream_memory_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_c.cpp" />
-    <ClCompile Include="filesystem\file\file_circular_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_composite.cpp" />
-    <ClCompile Include="filesystem\file\file_dir.cpp" />
-    <ClCompile Include="filesystem\file\file_dir2.cpp" />
-    <ClCompile Include="filesystem\file\file_exception.cpp" />
-    <ClCompile Include="filesystem\file\file_file_input_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_file_output_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_file_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_file_stream_base.cpp" />
-    <ClCompile Include="filesystem\file\file_folder_watch.cpp" />
-    <ClCompile Include="filesystem\file\file_input_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_memory_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_output_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_input_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_output_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_output_stream_string_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_stream_base.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_stream_memory_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_stream_string_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_reader.cpp" />
-    <ClCompile Include="filesystem\file\file_seekable.cpp" />
-    <ClCompile Include="filesystem\file\file_serializable.cpp" />
-    <ClCompile Include="filesystem\file\file_set.cpp" />
-    <ClCompile Include="filesystem\file\file_simple_binary_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_stream2.cpp" />
-    <ClCompile Include="filesystem\file\file_streambuf.cpp" />
-    <ClCompile Include="filesystem\file\file_stream_base.cpp" />
-    <ClCompile Include="filesystem\file\file_stream_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_stream_buffer_base.cpp" />
-    <ClCompile Include="filesystem\file\file_string_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_text_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_transfer_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_writer.cpp" />
-    <ClCompile Include="filesystem\file\file_writer_flush.cpp" />
+    <ClCompile Include="filesystem\file\_file.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_bitmap.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_brush.cpp" />
@@ -366,105 +322,9 @@
     <ClCompile Include="multithreading\multithreading_waitable.cpp" />
     <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
     <ClCompile Include="multithreading\service\service_plain_service.cpp" />
-    <ClCompile Include="primitive\collection\collection_2d_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_array_base.cpp" />
-    <ClCompile Include="primitive\collection\collection_bit_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_class_sort_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_comparable_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_id_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_key_sort_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_map_misc.cpp" />
-    <ClCompile Include="primitive\collection\collection_numeric_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_object_list.cpp" />
-    <ClCompile Include="primitive\collection\collection_pointer_list.cpp" />
-    <ClCompile Include="primitive\collection\collection_point_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_rect_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_sort.cpp" />
-    <ClCompile Include="primitive\collection\collection_stringa.cpp" />
-    <ClCompile Include="primitive\collection\collection_stringl.cpp" />
-    <ClCompile Include="primitive\collection\collection_string_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_string_list.cpp" />
-    <ClCompile Include="primitive\collection\collection_string_sort_array.cpp" />
-    <ClCompile Include="primitive\collection\collection_string_to_string_map.cpp" />
-    <ClCompile Include="primitive\collection\collection_var_array.cpp" />
-    <ClCompile Include="primitive\comparison\comparison_md5.cpp" />
-    <ClCompile Include="primitive\comparison\comparison_var_strict.cpp" />
-    <ClCompile Include="primitive\data\data_data.cpp" />
-    <ClCompile Include="primitive\data\data_data_container.cpp" />
-    <ClCompile Include="primitive\data\data_data_listener.cpp" />
-    <ClCompile Include="primitive\data\data_item.cpp" />
-    <ClCompile Include="primitive\datetime\datetime.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_mktime.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_time.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_value.cpp" />
-    <ClCompile Include="primitive\geometry\geometry_geometry.cpp" />
-    <ClCompile Include="primitive\geometry\geometry_point.cpp" />
-    <ClCompile Include="primitive\geometry\geometry_rect.cpp" />
-    <ClCompile Include="primitive\geometry\geometry_size.cpp" />
-    <ClCompile Include="primitive\geometry\geometry_types.cpp" />
-    <ClCompile Include="primitive\math\math_cvt.cpp" />
-    <ClCompile Include="primitive\math\math_cvt_g.cpp" />
-    <ClCompile Include="primitive\math\math_departament.cpp" />
-    <ClCompile Include="primitive\math\math_math.cpp" />
-    <ClCompile Include="primitive\math\math_math_rng.cpp" />
-    <ClCompile Include="primitive\math\math_mkint_c.cpp" />
-    <ClCompile Include="primitive\math\math_natural.cpp" />
-    <ClCompile Include="primitive\math\math_scalar.cpp" />
-    <ClCompile Include="primitive\primitive_application_bias.cpp" />
-    <ClCompile Include="primitive\primitive_bit.cpp" />
-    <ClCompile Include="primitive\primitive_color.cpp" />
-    <ClCompile Include="primitive\primitive_command.cpp" />
-    <ClCompile Include="primitive\primitive_command_line.cpp" />
-    <ClCompile Include="primitive\primitive_command_thread.cpp" />
-    <ClCompile Include="primitive\primitive_create.cpp" />
-    <ClCompile Include="primitive\primitive_edit.cpp" />
-    <ClCompile Include="primitive\primitive_factory.cpp" />
-    <ClCompile Include="primitive\primitive_id.cpp" />
-    <ClCompile Include="primitive\primitive_id_space.cpp" />
-    <ClCompile Include="primitive\primitive_interlocked_long.cpp" />
-    <ClCompile Include="primitive\primitive_interlocked_long_pulse.cpp" />
-    <ClCompile Include="primitive\primitive_job.cpp" />
-    <ClCompile Include="primitive\primitive_memory.cpp" />
-    <ClCompile Include="primitive\primitive_memory_base.cpp" />
-    <ClCompile Include="primitive\primitive_memory_c.cpp" />
-    <ClCompile Include="primitive\primitive_memory_container.cpp" />
-    <ClCompile Include="primitive\primitive_object.cpp" />
-    <ClCompile Include="primitive\primitive_property.cpp" />
-    <ClCompile Include="primitive\primitive_property_set.cpp" />
-    <ClCompile Include="primitive\primitive_relation_set.cpp" />
-    <ClCompile Include="primitive\primitive_request_interface.cpp" />
-    <ClCompile Include="primitive\primitive_request_signal.cpp" />
-    <ClCompile Include="primitive\primitive_shared_memory.cpp" />
-    <ClCompile Include="primitive\primitive_signal.cpp" />
-    <ClCompile Include="primitive\primitive_type.cpp" />
-    <ClCompile Include="primitive\primitive_var.cpp" />
-    <ClCompile Include="primitive\primitive_virtual_memory.cpp" />
-    <ClCompile Include="primitive\str\str_base64.cpp" />
-    <ClCompile Include="primitive\str\str_c.cpp" />
     <ClCompile Include="primitive\str\str_ch.cpp" />
     <ClCompile Include="primitive\str\str_ch_class.cpp" />
-    <ClCompile Include="primitive\str\str_core.cpp" />
-    <ClCompile Include="primitive\str\str_dup.cpp" />
-    <ClCompile Include="primitive\str\str_format.cpp" />
-    <ClCompile Include="primitive\str\str_from_integer.cpp" />
-    <ClCompile Include="primitive\str\str_hex.cpp" />
-    <ClCompile Include="primitive\str\str_international.cpp" />
-    <ClCompile Include="primitive\str\str_international_locale_schema.cpp" />
-    <ClCompile Include="primitive\str\str_istring.cpp" />
-    <ClCompile Include="primitive\str\str_manager.cpp" />
-    <ClCompile Include="primitive\str\str_parse.cpp" />
-    <ClCompile Include="primitive\str\str_simple.cpp" />
-    <ClCompile Include="primitive\str\str_str.cpp" />
-    <ClCompile Include="primitive\str\str_string.cpp" />
-    <ClCompile Include="primitive\str\str_stringtow.cpp" />
-    <ClCompile Include="primitive\str\str_strw.cpp" />
-    <ClCompile Include="primitive\str\str_strx.cpp" />
-    <ClCompile Include="primitive\str\str_tokenizer.cpp" />
-    <ClCompile Include="primitive\str\str_to_integer.cpp" />
-    <ClCompile Include="primitive\str\str_verisimple_wstring.cpp" />
-    <ClCompile Include="primitive\str\str_wtostring.cpp" />
+    <ClCompile Include="primitive\_primitive.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_default_error_handler.cpp" />

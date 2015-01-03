@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <math.h>
 
-#ifndef WINDOWS
+#if !defined(WINDOWS) && !defined(VSNORD)
 
 #include <cxxabi.h>
 
