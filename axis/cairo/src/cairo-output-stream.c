@@ -43,7 +43,7 @@
 #include "cairo-compiler-private.h"
 
 #include <stdio.h>
-#include <locale.h>
+#include "include/aura/locale.h"
 #include <errno.h>
 
 /* Numbers printed with %f are printed with this number of significant

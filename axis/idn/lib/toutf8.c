@@ -56,7 +56,7 @@
 #define lconv system_lconv
 #define localeconv system_localeconv
 
-#include <locale.h>
+#include "include/aura/locale.h"
 
 #undef index
 #undef lconv

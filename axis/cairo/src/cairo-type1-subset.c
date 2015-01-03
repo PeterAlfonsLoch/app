@@ -53,7 +53,7 @@
 #include "cairo-output-stream-private.h"
 
 #include <ctype.h>
-#include <locale.h>
+#include "include/aura/locale.h"
 
 #define TYPE1_STACKSIZE 24 /* Defined in Type 1 Font Format */
 

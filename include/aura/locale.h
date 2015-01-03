@@ -11,7 +11,7 @@
 
 
 #if defined(ANDROID)
-#undef index system_index
-#undef lconv system_lconv
-#undef localeconv system_localeconv
+#undef index
+#undef lconv
+#undef localeconv
 #endif //ANDROID
