@@ -208,6 +208,8 @@ typedef struct tagLC_ID {
 #define _TAGLC_ID_DEFINED
 #endif
 
+#undef lconv
+
 #ifndef _THREADLOCALEINFO
 typedef struct threadlocaleinfostruct {
     int32_t refcount;
@@ -235,6 +237,7 @@ typedef struct threadlocaleinfostruct {
     struct __lc_time_data *lc_time_curr;
 } threadlocinfo;
 #define _THREADLOCALEINFO
+#define lconv system_lconv
 #endif
 
 #endif /* __WINE_CRTDEFS_H */

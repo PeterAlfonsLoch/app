@@ -42,7 +42,7 @@ namespace aura
    }
 
 
-#endif WINDOWSEX
+#endif // WINDOWSEX
 
 
    bool interaction::SetPlacement(const RECT & rect,UINT nFlags)
