@@ -1,13 +1,13 @@
-#include "framework.h"
+//#include "framework.h"
 
-#include <sys/stat.h>
-////#include <errno.h>
-//#include <io.h>
-//#include <fcntl.h>
+//#include <sys/stat.h>
+//////#include <errno.h>
+////#include <io.h>
+////#include <fcntl.h>
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
 
-#include <unistd.h>
+//#include <unistd.h>
 #define _doserrno errno
 #define _fputts fputs
 #define _TEOF EOF

@@ -4155,14 +4155,31 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\process\process_departament.cpp" />
     <ClCompile Include="aura\process\process_pipe.cpp" />
     <ClCompile Include="aura\process\process_process.cpp" />
-    <ClCompile Include="filesystem\file\file.cpp" />
-    <ClCompile Include="filesystem\file\file_c.cpp" />
-    <ClCompile Include="filesystem\file\file_file_input_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_file_output_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_file_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_file_stream_base.cpp" />
-    <ClCompile Include="filesystem\file\file_serializable.cpp" />
-    <ClCompile Include="filesystem\file\file_streambuf.cpp" />
+    <ClCompile Include="filesystem\file\file.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_c.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_file_input_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_file_output_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_file_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_file_stream_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_serializable.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_streambuf.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\_file.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
@@ -4760,45 +4777,123 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="aura\xml\xml_var_exchange.cpp" />
     <ClCompile Include="aura\xml\xml_xml.cpp" />
     <ClCompile Include="aura\xml\xml_xmlite.cpp" />
-    <ClCompile Include="filesystem\file\file_binary_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_buffered_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_input_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_input_stream_binary_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_output_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_output_stream_binary_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_byte_stream_memory_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_circular_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_composite.cpp" />
-    <ClCompile Include="filesystem\file\file_dir.cpp" />
-    <ClCompile Include="filesystem\file\file_dir2.cpp" />
-    <ClCompile Include="filesystem\file\file_exception.cpp" />
-    <ClCompile Include="filesystem\file\file_folder_watch.cpp" />
-    <ClCompile Include="filesystem\file\file_input_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_memory_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_output_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_input_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_output_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_output_stream_string_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_stream_base.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_stream_memory_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_plain_text_stream_string_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_reader.cpp" />
-    <ClCompile Include="filesystem\file\file_seekable.cpp" />
-    <ClCompile Include="filesystem\file\file_set.cpp" />
-    <ClCompile Include="filesystem\file\file_simple_binary_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_stream.cpp" />
-    <ClCompile Include="filesystem\file\file_stream2.cpp" />
-    <ClCompile Include="filesystem\file\file_stream_base.cpp" />
-    <ClCompile Include="filesystem\file\file_stream_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_stream_buffer_base.cpp" />
-    <ClCompile Include="filesystem\file\file_string_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_text_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_transfer_buffer.cpp" />
-    <ClCompile Include="filesystem\file\file_writer.cpp" />
-    <ClCompile Include="filesystem\file\file_writer_flush.cpp" />
+    <ClCompile Include="filesystem\file\file_binary_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_buffered_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_input_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_input_stream_binary_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_output_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_output_stream_binary_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_byte_stream_memory_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_circular_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_composite.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_dir.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_dir2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_exception.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_folder_watch.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_input_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_memory_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_output_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_input_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_output_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_output_stream_string_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_stream_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_stream_memory_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_plain_text_stream_string_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_reader.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_seekable.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_set.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_simple_binary_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_stream_buffer_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_string_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_text_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_timeout_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_transfer_buffer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_writer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_writer_flush.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="multithreading\multithreading.cpp" />
     <ClCompile Include="multithreading\multithreading_condition.cpp" />
     <ClCompile Include="multithreading\multithreading_core.cpp" />

@@ -1,5 +1,5 @@
-#include "framework.h"
-#include <stdarg.h>
+//#include "framework.h"
+//#include <stdarg.h>
 
 thread_int_ptr < int_ptr > g_iGenerateSyncIoError;
 thread_int_ptr < int_ptr > g_iSyncIoError;
