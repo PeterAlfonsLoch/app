@@ -2423,49 +2423,25 @@
     <ClCompile Include="engines\e_4758cca.c">
       <Filter>Source Files\engines</Filter>
     </ClCompile>
-    <ClCompile Include="engines\e_4758cca_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
     <ClCompile Include="engines\e_aep.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_aep_err.c">
       <Filter>Source Files\engines</Filter>
     </ClCompile>
     <ClCompile Include="engines\e_atalla.c">
       <Filter>Source Files\engines</Filter>
     </ClCompile>
-    <ClCompile Include="engines\e_atalla_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
     <ClCompile Include="engines\e_capi.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_capi_err.c">
       <Filter>Source Files\engines</Filter>
     </ClCompile>
     <ClCompile Include="engines\e_chil.c">
       <Filter>Source Files\engines</Filter>
     </ClCompile>
-    <ClCompile Include="engines\e_chil_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
     <ClCompile Include="engines\e_cswift.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_cswift_err.c">
       <Filter>Source Files\engines</Filter>
     </ClCompile>
     <ClCompile Include="engines\e_gmp.c">
       <Filter>Source Files\engines</Filter>
     </ClCompile>
-    <ClCompile Include="engines\e_gmp_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
     <ClCompile Include="engines\e_nuron.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_nuron_err.c">
       <Filter>Source Files\engines</Filter>
     </ClCompile>
     <ClCompile Include="engines\e_padlock.c">
@@ -2474,13 +2450,7 @@
     <ClCompile Include="engines\e_sureware.c">
       <Filter>Source Files\engines</Filter>
     </ClCompile>
-    <ClCompile Include="engines\e_sureware_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
     <ClCompile Include="engines\e_ubsec.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_ubsec_err.c">
       <Filter>Source Files\engines</Filter>
     </ClCompile>
     <ClCompile Include="engines\ccgost\e_gost_err.c">
@@ -2539,9 +2509,6 @@
     </ClCompile>
     <ClCompile Include="ssl\_ssl.c">
       <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\_e.c">
-      <Filter>Source Files\engines</Filter>
     </ClCompile>
     <ClCompile Include="engines\ccgost\_ccgost.c">
       <Filter>Source Files\engines\ccgost</Filter>
