@@ -11,8 +11,9 @@
 
 #pragma once
 
-
+#ifdef WINDOWS
 #pragma warning(disable: 4251)
+#endif
 
 #include "nodeapp/operational_system/operational_system.h"
 

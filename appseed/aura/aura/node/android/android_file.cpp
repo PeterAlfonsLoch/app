@@ -124,7 +124,7 @@ namespace android
       }
 
       // ::collection::map share mode
-      DWORD dwShareMode = 0;
+      //DWORD dwShareMode = 0;
       switch (nOpenFlags & 0x70)    // ::collection::map compatibility mode to exclusive
       {
       default:
@@ -161,7 +161,7 @@ namespace android
       int32_t hFile = ::open(m_strFileName, dwFlags, dwPermission); //::open(m_strFileName, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
       if(hFile == -1)
       {
-         int iError = errno;
+         //int iError = errno;
          DWORD dwLastError = ::GetLastError();
 
          if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
@@ -443,7 +443,7 @@ namespace android
       void ** /*ppBufStart*/, void ** /*ppBufMax*/)
    {
       ASSERT(nCommand == bufferCheck);
-      UNUSED(nCommand);    // not used in retail build
+      UNREFERENCED_PARAMETER(nCommand);    // not used in retail build
 
       return 0;   // no support
    }

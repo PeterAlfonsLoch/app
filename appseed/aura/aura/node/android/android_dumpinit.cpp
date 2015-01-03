@@ -53,7 +53,7 @@ void __cdecl __crt_dump_client(void * pvData, size_t nBytes)
       }
       if(false) // else
       {
-         ::object & obj = *pobject;
+         //::object & obj = *pobject;
          // short form
 // xxx         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "a %hs object at $%p, %u bytes long\n", typeid(obj).name(), pvData, nBytes));
          g_dumpcontext << sz;

@@ -57,8 +57,8 @@ bool stdio_file::open(const char * lpszFileName, UINT nOpenFlags)
       szMode[nMode++] = 'r';
 
    // add '+' if necessary (when read/write modes mismatched)
-   if(szMode[0] == 'r' && (nOpenFlags & ::file::mode_read_write) ||
-      szMode[0] != 'r' && !(nOpenFlags & ::file::mode_write))
+   if((szMode[0] == 'r' && (nOpenFlags & ::file::mode_read_write)) ||
+      (szMode[0] != 'r' && !(nOpenFlags & ::file::mode_write)))
    {
       // current szMode mismatched, need to add '+' to fix
       szMode[nMode++] = '+';

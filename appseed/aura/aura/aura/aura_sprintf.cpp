@@ -26,7 +26,7 @@ int32_t sprintf_dup(char *buffer, const char *format, ...)
 
 int32_t snprintf_dup(char *dest, size_t n, const char *fmt, ...)
 {
-	n;
+	UNREFERENCED_PARAMETER(n);
 
 	va_list args;
 	va_start(args, fmt);
@@ -37,7 +37,7 @@ int32_t snprintf_dup(char *dest, size_t n, const char *fmt, ...)
 
 int32_t vsnprintf_dup(char *dest, size_t n, const char *fmt, va_list args)
 {
-	n;
+	UNREFERENCED_PARAMETER(n);
 	return vsprintf_dup(dest, fmt, args);
 }
 

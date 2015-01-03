@@ -170,7 +170,7 @@ typedef __time64_t time_t;
 
 */
 
-#ifndef _WCHAR_T_DEFINED
+#if !defined(_WCHAR_T_DEFINED)  && !defined(VSNORD)
 #ifndef __cplusplus
 typedef unsigned short wchar_t;
 #endif

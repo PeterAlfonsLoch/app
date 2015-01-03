@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A2E70E72-5407-4131-AD91-881A861114ED}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <ProjectName>axisopenssl</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_4</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_4</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_4</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_4</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <OutDir>$(SolutionDir)..\..\stage\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app/base/include/;crypto;crypto/asn1;crypto/evp;crypto/modes;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>USE_SOCKETS;_CRT_SECURE_NO_WARNINGS;OPENSSL_BUILD_SHLIBCRYPTO;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-variable %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="crypto\bn\bn_add.c" />
+    <ClCompile Include="crypto\bn\bn_asm.c" />
+    <ClCompile Include="crypto\bn\bn_blind.c" />
+    <ClCompile Include="crypto\bn\bn_const.c" />
+    <ClCompile Include="crypto\bn\bn_ctx.c" />
+    <ClCompile Include="crypto\bn\bn_depr.c" />
+    <ClCompile Include="crypto\bn\bn_div.c" />
+    <ClCompile Include="crypto\bn\bn_err.c" />
+    <ClCompile Include="crypto\bn\bn_exp.c" />
+    <ClCompile Include="crypto\bn\bn_exp2.c" />
+    <ClCompile Include="crypto\bn\bn_gcd.c" />
+    <ClCompile Include="crypto\bn\bn_gf2m.c" />
+    <ClCompile Include="crypto\bn\bn_kron.c" />
+    <ClCompile Include="crypto\bn\bn_lib.c" />
+    <ClCompile Include="crypto\bn\bn_mod.c" />
+    <ClCompile Include="crypto\bn\bn_mont.c" />
+    <ClCompile Include="crypto\bn\bn_mpi.c" />
+    <ClCompile Include="crypto\bn\bn_mul.c" />
+    <ClCompile Include="crypto\bn\bn_nist.c" />
+    <ClCompile Include="crypto\bn\bn_prime.c" />
+    <ClCompile Include="crypto\bn\bn_print.c" />
+    <ClCompile Include="crypto\bn\bn_rand.c" />
+    <ClCompile Include="crypto\bn\bn_recp.c" />
+    <ClCompile Include="crypto\bn\bn_shift.c" />
+    <ClCompile Include="crypto\bn\bn_sqr.c" />
+    <ClCompile Include="crypto\bn\bn_sqrt.c" />
+    <ClCompile Include="crypto\bn\bn_word.c" />
+    <ClCompile Include="crypto\bn\bn_x931p.c" />
+    <ClCompile Include="crypto\camellia\camellia.c" />
+    <ClCompile Include="crypto\camellia\cmll_cbc.c" />
+    <ClCompile Include="crypto\camellia\cmll_cfb.c" />
+    <ClCompile Include="crypto\camellia\cmll_ctr.c" />
+    <ClCompile Include="crypto\camellia\cmll_ecb.c" />
+    <ClCompile Include="crypto\camellia\cmll_misc.c" />
+    <ClCompile Include="crypto\camellia\cmll_ofb.c" />
+    <ClCompile Include="crypto\camellia\cmll_utl.c" />
+    <ClCompile Include="crypto\_crypto_vsnord.c" />
+    <ClCompile Include="engines\ccgost\e_gost_err.c" />
+    <ClCompile Include="engines\ccgost\gost2001.c" />
+    <ClCompile Include="engines\ccgost\gost2001_keyx.c" />
+    <ClCompile Include="engines\ccgost\gost89.c" />
+    <ClCompile Include="engines\ccgost\gost94_keyx.c" />
+    <ClCompile Include="engines\ccgost\gosthash.c" />
+    <ClCompile Include="engines\ccgost\gost_ameth.c" />
+    <ClCompile Include="engines\ccgost\gost_asn1.c" />
+    <ClCompile Include="engines\ccgost\gost_crypt.c" />
+    <ClCompile Include="engines\ccgost\gost_ctl.c" />
+    <ClCompile Include="engines\ccgost\gost_eng.c" />
+    <ClCompile Include="engines\ccgost\gost_keywrap.c" />
+    <ClCompile Include="engines\ccgost\gost_md.c" />
+    <ClCompile Include="engines\ccgost\gost_params.c" />
+    <ClCompile Include="engines\ccgost\gost_pmeth.c" />
+    <ClCompile Include="engines\ccgost\gost_sign.c" />
+    <ClCompile Include="engines\e_4758cca.c" />
+    <ClCompile Include="engines\e_4758cca_err.c" />
+    <ClCompile Include="engines\e_aep.c" />
+    <ClCompile Include="engines\e_aep_err.c" />
+    <ClCompile Include="engines\e_atalla.c" />
+    <ClCompile Include="engines\e_atalla_err.c" />
+    <ClCompile Include="engines\e_capi.c" />
+    <ClCompile Include="engines\e_capi_err.c" />
+    <ClCompile Include="engines\e_chil.c" />
+    <ClCompile Include="engines\e_chil_err.c" />
+    <ClCompile Include="engines\e_cswift.c" />
+    <ClCompile Include="engines\e_cswift_err.c" />
+    <ClCompile Include="engines\e_gmp.c" />
+    <ClCompile Include="engines\e_gmp_err.c" />
+    <ClCompile Include="engines\e_nuron.c" />
+    <ClCompile Include="engines\e_nuron_err.c" />
+    <ClCompile Include="engines\e_padlock.c" />
+    <ClCompile Include="engines\e_sureware.c" />
+    <ClCompile Include="engines\e_sureware_err.c" />
+    <ClCompile Include="engines\e_ubsec.c" />
+    <ClCompile Include="engines\e_ubsec_err.c" />
+    <ClCompile Include="ssl\bio_ssl.c" />
+    <ClCompile Include="ssl\d1_both.c" />
+    <ClCompile Include="ssl\d1_clnt.c" />
+    <ClCompile Include="ssl\d1_enc.c" />
+    <ClCompile Include="ssl\d1_lib.c" />
+    <ClCompile Include="ssl\d1_meth.c" />
+    <ClCompile Include="ssl\d1_pkt.c" />
+    <ClCompile Include="ssl\d1_srtp.c" />
+    <ClCompile Include="ssl\d1_srvr.c" />
+    <ClCompile Include="ssl\kssl.c" />
+    <ClCompile Include="ssl\s23_clnt.c" />
+    <ClCompile Include="ssl\s23_lib.c" />
+    <ClCompile Include="ssl\s23_meth.c" />
+    <ClCompile Include="ssl\s23_pkt.c" />
+    <ClCompile Include="ssl\s23_srvr.c" />
+    <ClCompile Include="ssl\s2_clnt.c" />
+    <ClCompile Include="ssl\s2_enc.c" />
+    <ClCompile Include="ssl\s2_lib.c" />
+    <ClCompile Include="ssl\s2_meth.c" />
+    <ClCompile Include="ssl\s2_pkt.c" />
+    <ClCompile Include="ssl\s2_srvr.c" />
+    <ClCompile Include="ssl\s3_both.c" />
+    <ClCompile Include="ssl\s3_cbc.c" />
+    <ClCompile Include="ssl\s3_clnt.c" />
+    <ClCompile Include="ssl\s3_enc.c" />
+    <ClCompile Include="ssl\s3_lib.c" />
+    <ClCompile Include="ssl\s3_meth.c" />
+    <ClCompile Include="ssl\s3_pkt.c" />
+    <ClCompile Include="ssl\s3_srvr.c" />
+    <ClCompile Include="ssl\ssl_algs.c" />
+    <ClCompile Include="ssl\ssl_asn1.c" />
+    <ClCompile Include="ssl\ssl_cert.c" />
+    <ClCompile Include="ssl\ssl_ciph.c" />
+    <ClCompile Include="ssl\ssl_err.c" />
+    <ClCompile Include="ssl\ssl_err2.c" />
+    <ClCompile Include="ssl\ssl_lib.c" />
+    <ClCompile Include="ssl\ssl_rsa.c" />
+    <ClCompile Include="ssl\ssl_sess.c" />
+    <ClCompile Include="ssl\ssl_stat.c" />
+    <ClCompile Include="ssl\ssl_txt.c" />
+    <ClCompile Include="ssl\ssl_utst.c" />
+    <ClCompile Include="ssl\t1_clnt.c" />
+    <ClCompile Include="ssl\t1_enc.c" />
+    <ClCompile Include="ssl\t1_lib.c" />
+    <ClCompile Include="ssl\t1_meth.c" />
+    <ClCompile Include="ssl\t1_reneg.c" />
+    <ClCompile Include="ssl\t1_srvr.c" />
+    <ClCompile Include="ssl\tls_srp.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\openssl\aes.h" />
+    <ClInclude Include="..\..\include\openssl\asn1.h" />
+    <ClInclude Include="..\..\include\openssl\asn1t.h" />
+    <ClInclude Include="..\..\include\openssl\asn1_mac.h" />
+    <ClInclude Include="..\..\include\openssl\bio.h" />
+    <ClInclude Include="..\..\include\openssl\blowfish.h" />
+    <ClInclude Include="..\..\include\openssl\bn.h" />
+    <ClInclude Include="..\..\include\openssl\buffer.h" />
+    <ClInclude Include="..\..\include\openssl\camellia.h" />
+    <ClInclude Include="..\..\include\openssl\cast.h" />
+    <ClInclude Include="..\..\include\openssl\cmac.h" />
+    <ClInclude Include="..\..\include\openssl\cms.h" />
+    <ClInclude Include="..\..\include\openssl\comp.h" />
+    <ClInclude Include="..\..\include\openssl\conf.h" />
+    <ClInclude Include="..\..\include\openssl\conf_api.h" />
+    <ClInclude Include="..\..\include\openssl\crypto.h" />
+    <ClInclude Include="..\..\include\openssl\des.h" />
+    <ClInclude Include="..\..\include\openssl\des_old.h" />
+    <ClInclude Include="..\..\include\openssl\dh.h" />
+    <ClInclude Include="..\..\include\openssl\dsa.h" />
+    <ClInclude Include="..\..\include\openssl\dso.h" />
+    <ClInclude Include="..\..\include\openssl\dtls1.h" />
+    <ClInclude Include="..\..\include\openssl\ebcdic.h" />
+    <ClInclude Include="..\..\include\openssl\ec.h" />
+    <ClInclude Include="..\..\include\openssl\ecdh.h" />
+    <ClInclude Include="..\..\include\openssl\ecdsa.h" />
+    <ClInclude Include="..\..\include\openssl\engine.h" />
+    <ClInclude Include="..\..\include\openssl\err.h" />
+    <ClInclude Include="..\..\include\openssl\evp.h" />
+    <ClInclude Include="..\..\include\openssl\e_os2.h" />
+    <ClInclude Include="..\..\include\openssl\hmac.h" />
+    <ClInclude Include="..\..\include\openssl\idea.h" />
+    <ClInclude Include="..\..\include\openssl\krb5_asn.h" />
+    <ClInclude Include="..\..\include\openssl\kssl.h" />
+    <ClInclude Include="..\..\include\openssl\lhash.h" />
+    <ClInclude Include="..\..\include\openssl\md4.h" />
+    <ClInclude Include="..\..\include\openssl\md5.h" />
+    <ClInclude Include="..\..\include\openssl\mdc2.h" />
+    <ClInclude Include="..\..\include\openssl\modes.h" />
+    <ClInclude Include="..\..\include\openssl\objects.h" />
+    <ClInclude Include="..\..\include\openssl\obj_mac.h" />
+    <ClInclude Include="..\..\include\openssl\ocsp.h" />
+    <ClInclude Include="..\..\include\openssl\opensslconf.h" />
+    <ClInclude Include="..\..\include\openssl\opensslv.h" />
+    <ClInclude Include="..\..\include\openssl\ossl_typ.h" />
+    <ClInclude Include="..\..\include\openssl\pem.h" />
+    <ClInclude Include="..\..\include\openssl\pem2.h" />
+    <ClInclude Include="..\..\include\openssl\pkcs12.h" />
+    <ClInclude Include="..\..\include\openssl\pkcs7.h" />
+    <ClInclude Include="..\..\include\openssl\pqueue.h" />
+    <ClInclude Include="..\..\include\openssl\rand.h" />
+    <ClInclude Include="..\..\include\openssl\rc2.h" />
+    <ClInclude Include="..\..\include\openssl\rc4.h" />
+    <ClInclude Include="..\..\include\openssl\ripemd.h" />
+    <ClInclude Include="..\..\include\openssl\rsa.h" />
+    <ClInclude Include="..\..\include\openssl\safestack.h" />
+    <ClInclude Include="..\..\include\openssl\seed.h" />
+    <ClInclude Include="..\..\include\openssl\sha.h" />
+    <ClInclude Include="..\..\include\openssl\srp.h" />
+    <ClInclude Include="..\..\include\openssl\srtp.h" />
+    <ClInclude Include="..\..\include\openssl\ssl.h" />
+    <ClInclude Include="..\..\include\openssl\ssl2.h" />
+    <ClInclude Include="..\..\include\openssl\ssl23.h" />
+    <ClInclude Include="..\..\include\openssl\ssl3.h" />
+    <ClInclude Include="..\..\include\openssl\stack.h" />
+    <ClInclude Include="..\..\include\openssl\symhacks.h" />
+    <ClInclude Include="..\..\include\openssl\tls1.h" />
+    <ClInclude Include="..\..\include\openssl\ts.h" />
+    <ClInclude Include="..\..\include\openssl\txt_db.h" />
+    <ClInclude Include="..\..\include\openssl\ui.h" />
+    <ClInclude Include="..\..\include\openssl\ui_compat.h" />
+    <ClInclude Include="..\..\include\openssl\whrlpool.h" />
+    <ClInclude Include="..\..\include\openssl\x509.h" />
+    <ClInclude Include="..\..\include\openssl\x509v3.h" />
+    <ClInclude Include="..\..\include\openssl\x509_vfy.h" />
+    <ClInclude Include="crypto\arm_arch.h" />
+    <ClInclude Include="crypto\asn1\asn1.h" />
+    <ClInclude Include="crypto\asn1\asn1t.h" />
+    <ClInclude Include="crypto\asn1\asn1_locl.h" />
+    <ClInclude Include="crypto\asn1\asn1_mac.h" />
+    <ClInclude Include="crypto\asn1\charmap.h" />
+    <ClInclude Include="crypto\cryptlib.h" />
+    <ClInclude Include="crypto\crypto.h" />
+    <ClInclude Include="crypto\ebcdic.h" />
+    <ClInclude Include="crypto\fips_err.h" />
+    <ClInclude Include="crypto\md32_common.h" />
+    <ClInclude Include="crypto\opensslconf.h" />
+    <ClInclude Include="crypto\opensslv.h" />
+    <ClInclude Include="crypto\ossl_typ.h" />
+    <ClInclude Include="crypto\o_dir.h" />
+    <ClInclude Include="crypto\o_str.h" />
+    <ClInclude Include="crypto\o_time.h" />
+    <ClInclude Include="crypto\symhacks.h" />
+    <ClInclude Include="crypto\vms_rms.h" />
+    <ClInclude Include="e_os.h" />
+    <ClInclude Include="e_os2.h" />
+    <ClInclude Include="e_os2_ca2specific.h" />
+    <ClInclude Include="e_os2_original.h" />
+    <ClInclude Include="ssl\dtls1.h" />
+    <ClInclude Include="ssl\kssl.h" />
+    <ClInclude Include="ssl\kssl_lcl.h" />
+    <ClInclude Include="ssl\srtp.h" />
+    <ClInclude Include="ssl\ssl.h" />
+    <ClInclude Include="ssl\ssl2.h" />
+    <ClInclude Include="ssl\ssl23.h" />
+    <ClInclude Include="ssl\ssl3.h" />
+    <ClInclude Include="ssl\ssl_locl.h" />
+    <ClInclude Include="ssl\tls1.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="asm\x64-win32-masm\aes\aes-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\aes\aesni-sha1-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\aes\aesni-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\bn\modexp512-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\bn\x86_64-mont.asm" />
+    <None Include="asm\x64-win32-masm\camellia\cmll-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\md5\md5-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\rc4\rc4-md5-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\rc4\rc4-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\sha\sha1-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\sha\sha512-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\whrlpool\wp-x86_64.asm" />
+    <None Include="asm\x64-win32-masm\x86_64cpuid.asm" />
+    <None Include="axisopenssl.def" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

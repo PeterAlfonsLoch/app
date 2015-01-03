@@ -577,10 +577,10 @@ if(__get_module_state()->m_pmapHWND == NULL)
    {
          ASSERT(pdata->m_hPrevInstance == NULL);
 
-         HINSTANCE hInstance        = pdata->m_hInstance;
+         //HINSTANCE hInstance        = pdata->m_hInstance;
 //         HINSTANCE hPrevInstance    = pdata->m_hPrevInstance;
          string strCmdLine          = pdata->m_vssCommandLine;
-         UINT nCmdShow              = pdata->m_nCmdShow;
+         //UINT nCmdShow              = pdata->m_nCmdShow;
 
          // handle critical errors and avoid Windows message boxes
 // xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);

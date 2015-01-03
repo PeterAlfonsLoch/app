@@ -36,7 +36,7 @@ assert_exception::assert_exception(::aura::application * papp, const char * pszF
    simple_exception(papp)
 {
    
-#ifdef _LP64
+#if defined(_LP64) || defined(VSNORD)
    
    if(pszFile == NULL)
    {

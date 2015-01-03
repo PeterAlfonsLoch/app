@@ -114,7 +114,7 @@ public:
 #else
 
    static void * siginfodup(void * psiginfo);
-   static void * siginfofree(void * psiginfo);
+   static void siginfofree(void * psiginfo);
    standard_exception(::aura::application * papp, int32_t iSignal, void * psiginfo, void * pc) :
       element(papp),
       ::call_stack(papp),

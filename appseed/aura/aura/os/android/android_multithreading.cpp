@@ -414,6 +414,7 @@ namespace core
 } // namespace core
 
 
+#ifndef VSNORD
 __thread struct _TEB * t_pteb = NULL;
 
 struct _TEB * WINAPI NtCurrentTeb(void)
@@ -425,7 +426,7 @@ struct _TEB * WINAPI NtCurrentTeb(void)
    return t_pteb;
 
 }
-
+#endif
 
 
 

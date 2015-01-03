@@ -15,7 +15,12 @@ struct tm *gmtime_r(const time_t *timep,struct tm *result)
 
 #else
 
-   throw todo;
+	static mutex m;
+	synch_lock sl(&m);
+	struct tm *tmp;
+	tmp = gmtime(timep);
+	*result = *tmp;
+	return result;
 
 #endif
 

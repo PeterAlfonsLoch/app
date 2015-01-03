@@ -1049,9 +1049,11 @@ FIBITMAP* psdParser::Load(FreeImageIO *io, fi_handle handle, int s_format_id, in
 	} catch(const char *text) {
 		FreeImage_OutputMessageProc(s_format_id, text);
 	}
+#ifndef VSNORD
 	catch(const std::exception& e) {
 		FreeImage_OutputMessageProc(s_format_id, "%s", e.what());
 	}
+#endif
 
 	return Bitmap;
 }

@@ -117,7 +117,7 @@ HGLOBAL WINAPI GlobalAlloc(UINT uFlags, SIZE_T dwBytes)
    int32_t result;
 
 
-   HGLOBAL hglobal = new class hglobal();
+   HGLOBAL hglobal = new struct hglobal();
 
    strcpy(hglobal->m_szFile, "/ca2/time/global_alloc/XXXXXX.mmap");
 

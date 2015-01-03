@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="pixman\pixman-access-accessors.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-access.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-arm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-bits-image.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-combine-float.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-combine32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-conical-gradient.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-edge-accessors.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-edge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-fast-path.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-filter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-general.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-glyph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-gradient-walker.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-image.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-implementation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-linear-gradient.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-mips.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-mmx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-noop.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-ppc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-radial-gradient.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-region16.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-region32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-solid-fill.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-sse2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-ssse3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-timer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-trap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-utils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-x86.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\loongson-mmintrin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman-accessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman-arm-common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman-arm-neon-asm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman-arm-simd-asm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman-combine32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman-compiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman-edge-imp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman-inlines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman-mips-dspr2-asm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman-mips-dspr2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman-private.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman-version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pixman\pixman.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{2ab30f6e-01b7-4573-a7bf-16744df85012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{43d2e09a-6355-4eff-bd7e-0d58767c62f9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axispixman.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

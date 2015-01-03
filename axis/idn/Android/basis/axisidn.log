@@ -1,8 +1,0 @@
-﻿  idn-free.c
-  Z:\nordroid\app\appseed\aura\aura\aura\aura.h(17): includes this header: 0,
-                   from ./config.h:4,
-  Z:\nordroid\app\axis\idn\from lib\idn-free.c(30): 
-Z:\nordroid\nodeapp\operational_system\config.h(41,22): fatal error : features.h: No such file or directory
-   #include <features.h>
-                        ^
-  compilation terminated.

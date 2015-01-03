@@ -490,7 +490,7 @@ void * standard_exception::siginfodup(void * psiginfo)
 
 }
 
-void * standard_exception::siginfofree(void * psiginfo)
+void standard_exception::siginfofree(void * psiginfo)
 {
 
    delete (siginfo_t *)psiginfo;

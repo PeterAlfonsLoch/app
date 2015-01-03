@@ -219,6 +219,7 @@ inline uint32_t __swap32gen(uint32_t x)
 #define _QUAD_LOWWORD 0
 #endif
 
+#ifndef VSNORD
 #define htobe16 swap16
 #define htobe32 swap32
 #define betoh16 swap16
@@ -228,6 +229,7 @@ inline uint32_t __swap32gen(uint32_t x)
 #define htole32(x) (x)
 #define letoh16(x) (x)
 #define letoh32(x) (x)
+#endif
 
 #endif /* BYTE_ORDER */
 

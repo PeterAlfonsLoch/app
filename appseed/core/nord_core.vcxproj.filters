@@ -1,0 +1,1625 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_int_biunique.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="user\_user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_child_frame.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_form_list_view.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_frame_window.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_list_ctrl.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_list_header_ctrl.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_list_view.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_main_frame.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_menu_bar.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_printer_list_view.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_static.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_status_bar.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_tab_ctrl.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_tab_view.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_toolbar.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\simple_tree_view.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_userex.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_dialog.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_child_frame.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_document.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_frame.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_update_hint.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_form_view.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_keyboard_layout.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_menu_document.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_menu_frame.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_menu_view.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_message_box.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_mini_dock_frame_window.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_pane_split_view.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_pane_tab_view.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_pane_view.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_property_page.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_property_sheet.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_split_view.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\userex_wait_message_dialog.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_button.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_central.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_item.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\user_menu_list_window.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_orto_button.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_button.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_check_box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_combo_box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_combo_list.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_control_property.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_core.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_data_exchange.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_document_manager.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_edit_plain_text_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_elastic_slider.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_form.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_form_callback.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_form_list.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_front_end.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_front_end_schema.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_image_manager.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_keyboard_layout_cfg.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_cache.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_cache_interface.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_data_interface.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_list_header.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_main_frame.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_menu_list_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_meta_button.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_meta_control_box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_multiple_document_template.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_network_configuration.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_notification_area.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_notify_icon.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_notify_icon_listener.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_shell.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_single_document_template.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_split_bar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_split_layout.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_split_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_split_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_static_control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_statusbar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_step_slider.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tab.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tab_callback.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tab_view.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tab_view_update_hint.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_toolbar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_toolbar_ctrl.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tool_cmd_ui.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tool_tip_tool.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tool_tip_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tree.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tree_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tree_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_xfplayer_view_line.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_xfplayer_view_lines.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_xfplayer_view_line_selection.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\wndfrm_interaction.cpp">
+      <Filter>Source Files\user\wndfrm</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\wndfrm_wndfrm.cpp">
+      <Filter>Source Files\user\wndfrm</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_appearance.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_constants.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_control_box.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_control_box_button.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_dock_manager.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_frame.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_move_manager.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_size_manager.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp">
+      <Filter>Source Files\user\wndfrm\frame</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\_databaseuser.cpp">
+      <Filter>Source Files\database\databaseuser</Filter>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\database_key_list_data.cpp">
+      <Filter>Source Files\database\databaseuser</Filter>
+    </ClCompile>
+    <ClCompile Include="database\databaseuser\database_list_data.cpp">
+      <Filter>Source Files\database\databaseuser</Filter>
+    </ClCompile>
+    <ClCompile Include="math\binary_operation.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\math.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\number.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\value.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\_double.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\_float.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\_integer.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\_filemanager.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_main_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_child_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_list_callback.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_manager.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_left_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_main_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_path_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_tab_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_manager_template.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_impact.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_update_hint.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_data.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_filemanager.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_data.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_selection_list_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_child_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_document.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_update_hint.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_form_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_iconoverlayer.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_item_action.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_child_frame.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_document.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_info_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_list_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_thread.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_view.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_operation.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_list.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_file_properties_form.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_tree.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\_userfs.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_document.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_update_hint.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_userfs.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_data.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_item.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_list_item_array.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_main_view.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_tree.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\userfs_item.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\_filehandler.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_library.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_menu_library.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\filehandler_item.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_html_buffer.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="net\hi5\hi5_twit.cpp">
+      <Filter>Source Files\net\hi5</Filter>
+    </ClCompile>
+    <ClCompile Include="net\hi5\hi5_oauth.cpp">
+      <Filter>Source Files\net\hi5</Filter>
+    </ClCompile>
+    <ClCompile Include="net\usernet\usernet_network_configuration.cpp">
+      <Filter>Source Files\net\usernet</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\_plugin.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_history.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_host_interaction.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_instance.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_plugin.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_run_start_installer.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\plugin_system.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_platform.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\_core.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_application.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_constraint.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_Debug.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_history.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_library.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_logic.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_match.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_os_history.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_patch.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_profiler.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_simple_app.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_strn.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_str_format.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_system.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_timer_callback.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_timer_listener.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\core_Timer.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="primitive\primitive_int_biunique.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\DBFileSystemSize.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_long_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_server.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_stra_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\db_str_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\file_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\im_post.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_base.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_database.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_manager.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_record.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_result.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_server.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_service.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_session.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_set.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_simpledb.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_socket.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_socket_thread.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\simpledb_table.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\simpledb\veiev_post.h">
+      <Filter>Header Files\database\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\databaseuser\databaseuser.h">
+      <Filter>Header Files\database\databaseuser</Filter>
+    </ClInclude>
+    <ClInclude Include="database\databaseuser\data_key_list_data.h">
+      <Filter>Header Files\database\databaseuser</Filter>
+    </ClInclude>
+    <ClInclude Include="database\databaseuser\list_data.h">
+      <Filter>Header Files\database\databaseuser</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_child_frame.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_form_list_view.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_frame_window.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_list_control.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_list_header_control.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_list_view.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_main_frame.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_menu_bar.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_printer_list_view.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_static.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_status_bar.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_tab_control.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_tab_view.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_toolbar.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple_tree_view.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\simple.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_keyboard_layout.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_message_box.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_userex.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_wait_message_dialog.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_dialog.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_form_child_frame.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_form_document.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_form_frame.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_form_update_hint.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_form_view.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_menu_document.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_menu_frame.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_menu_view.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_mini_dock_frame_window.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_pane_split_view.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_pane_tab_view.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_pane_view.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_property_page.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_property_sheet.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userex\userex_split_view.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\user_menu.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\user_menu_button.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\user_menu_central.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\user_menu_item.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\user_menu_list_view.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\user_menu_list_window.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_00.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_button.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_check_box.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_combo_box.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_combo_list.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_control_property.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_core.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_data_exchange.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_dock_context.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_dock_state.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_document_manager.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_edit_plain_text_view.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_elastic_slider.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_form.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_form1.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_form_callback.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_form_list.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_front_end.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_front_end_schema.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_image_manager.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_inline.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_keyboard_layout_cfg.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_list.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_list_cache.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_list_cache_interface.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_list_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_list_data_interface.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_list_header.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_main_frame.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_meta_button.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_meta_control_box.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_multiple_document_template.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_network_configuration.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_notification_area.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_notify_icon.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_notify_icon_listener.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_orto_button.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_shell.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_simple_list_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_single_document_template.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_split_bar.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_split_layout.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_split_view.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_split_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_static_control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_statusbar.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_step_slider.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_tab.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_tab_callback.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_tab_view.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_tab_view_update_hint.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_template.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_thread.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_toolbar.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_toolbar_control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_tool_cmd_ui.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_tool_tip_tool.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_tool_tip_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_tree.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_tree_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_xfplayer_view_line.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_xfplayer_view_lines.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_xfplayer_view_line_selection.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\wndfrm.h">
+      <Filter>Header Files\user\wndfrm</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\wndfrm_interaction.h">
+      <Filter>Header Files\user\wndfrm</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\wndfrm_wndfrm.h">
+      <Filter>Header Files\user\wndfrm</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_appearance.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_constants.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_control_box.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_control_box_button.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_dock_manager.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_enum.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_frame.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_move_manager.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_size_manager.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.h">
+      <Filter>Header Files\user\wndfrm\frame</Filter>
+    </ClInclude>
+    <ClInclude Include="math\binary_operation.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math_math.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\number.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\value.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\_double.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\_float.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\_integer.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_context_menu.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_callback.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_child_frame.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_file_list.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_file_list_callback.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_frame.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_main_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_manager.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_left_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_main_frame.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_path_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_save_as_name_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_tab_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_manager_template.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_impact.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_update_hint.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_const.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_data.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_filemanager.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_folder_list_data.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_folder_list_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_folder_selection_list_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_form_child_frame.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_form_document.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_form_update_hint.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_form_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_list_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_icon.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_iconoverlayer.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_item_action.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_child_frame.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_document.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_info_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_list_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_thread.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_view.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_operation.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_file_properties_form.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_folder_list.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_tree.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\filemanager_preview.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_document.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_userfs.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_list.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_list_data.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_list_item.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_list_item_array.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_main_view.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_tree.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\userfs_item.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler_handler.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler_library.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler_menu_library.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler_tree_interface.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\filehandler_item.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\file_html_buffer.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usernet\usernet.h">
+      <Filter>Header Files\net\usernet</Filter>
+    </ClInclude>
+    <ClInclude Include="net\usernet\usernet_network_configuration.h">
+      <Filter>Header Files\net\usernet</Filter>
+    </ClInclude>
+    <ClInclude Include="net\hi5\hi5_twit.h">
+      <Filter>Header Files\net\hi5</Filter>
+    </ClInclude>
+    <ClInclude Include="net\hi5\hi5.h">
+      <Filter>Header Files\net\hi5</Filter>
+    </ClInclude>
+    <ClInclude Include="net\hi5\hi5_oauth.h">
+      <Filter>Header Files\net\hi5</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_gen.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_history.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_host_interaction.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_instance.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_plugin.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_run_start_installer.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\plugin\plugin_system.h">
+      <Filter>Header Files\core\plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_application.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_back_insert_iterator.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_bstr.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_constraint.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_debug.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_history.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_insert_iterator.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_iterator.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_less.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_library.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_logic.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_main.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_match.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_muldiv32.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_os_history.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_patch.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_platform.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_process_data.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_profiler.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_progress_interface.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_simple_app.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_smart_pointer_query.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_std_pair.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_strn.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_system.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_timer_callback.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_timer_listener.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_timer.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core\core_types.h">
+      <Filter>Header Files\core\core</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\framework.h">
+      <Filter>Header Files\framework</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{b5708f70-da76-4e59-8ab1-78491eb46632}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive">
+      <UniqueIdentifier>{d2e3b0a9-5475-4c95-bb96-3ddf39b8f9df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{3ac6c494-6597-4c98-b9de-ef75c6eca44b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\simpledb">
+      <UniqueIdentifier>{c6eeabe2-df06-4eff-a09b-5e93074edc23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\databaseuser">
+      <UniqueIdentifier>{24de9d6f-b99f-477c-bf07-96aaf53b50be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{c8d6e7b5-8ebc-4d88-900a-71299a456094}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\simple">
+      <UniqueIdentifier>{3006fce3-c296-46ab-83a0-80013be4ae2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\userex">
+      <UniqueIdentifier>{3d7d18be-62cd-40f9-8f1e-6b1c8e36c295}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\menu">
+      <UniqueIdentifier>{2331a1ff-9e4a-4060-bfaa-2990612b1d5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{779a20ed-f5b5-48c4-b9ea-b08b5114fb3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\wndfrm">
+      <UniqueIdentifier>{011c6183-9b1a-4c72-8b6a-b4b780fd6c3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\wndfrm\frame">
+      <UniqueIdentifier>{bef9e63f-7504-45eb-b475-682d3fca20ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{1e2a0fbc-d613-4d5e-a1b4-6fe86d28e405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem">
+      <UniqueIdentifier>{129b05ae-8043-41ee-9185-bfc145fb3ffa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\filemanager">
+      <UniqueIdentifier>{6aadc1b7-67e3-476a-8a2a-a796e2fbd41f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\userfs">
+      <UniqueIdentifier>{ab5dcac6-e5fb-46a5-a821-da362421fcb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\filehandler">
+      <UniqueIdentifier>{c8b61747-0896-4209-8c64-d39c3faa2020}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\file">
+      <UniqueIdentifier>{90aa2f85-2e7b-4729-8ef2-bc2f7d040d97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net">
+      <UniqueIdentifier>{858bc6ac-f159-4630-b427-ff30279b0544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\usernet">
+      <UniqueIdentifier>{ee49966e-e1e4-418d-8ab5-e3d4af4291ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\hi5">
+      <UniqueIdentifier>{ac09d53d-a20f-4ddb-be47-7806260f5ea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{419b7e39-5919-4e23-9241-a94f418624ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\plugin">
+      <UniqueIdentifier>{f8ea19b3-628f-4d27-b90e-f979e7a7cf6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\core\core">
+      <UniqueIdentifier>{b0bcd86a-d789-47ff-82e6-f4bcc91276a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\framework">
+      <UniqueIdentifier>{a02ffee6-03aa-4536-a048-ec5ea12a535b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{64996864-2477-4c39-9fe9-080783d20ff0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive">
+      <UniqueIdentifier>{a2e24caa-5bc1-47a6-9b62-5061f631d367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{44a387a1-61e6-4111-8bc7-4a641d5e4adc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\simple">
+      <UniqueIdentifier>{5793753a-3e5d-4676-b073-17c04ce43432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\userex">
+      <UniqueIdentifier>{b6a35fb2-5ba8-4bc1-bbf8-be7a08d7436c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\menu">
+      <UniqueIdentifier>{f95b6408-3a98-48b1-956b-bd5001b60ab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{88ef6eba-e572-4d24-b75d-c708db9d4347}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\wndfrm">
+      <UniqueIdentifier>{c95efb38-89cc-4ed1-aabc-1eb0c915a0c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\wndfrm\frame">
+      <UniqueIdentifier>{a6f336d4-777f-4843-8dbf-33f4d2329c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database">
+      <UniqueIdentifier>{c3301ace-d8aa-4cfa-b363-0ab138dbabef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\simpledb">
+      <UniqueIdentifier>{7fa628b6-1fc3-4d84-ac08-05cabb1c9f15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\databaseuser">
+      <UniqueIdentifier>{e7570ca7-f4bb-4125-934d-d19f81dda329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{b23dd287-3ccb-4597-b451-acd354ee31e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem">
+      <UniqueIdentifier>{b089fda6-9323-4728-9f06-14a03c1f5b58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filemanager">
+      <UniqueIdentifier>{0de1074b-2047-40db-a2d1-f30490c9d28a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\userfs">
+      <UniqueIdentifier>{44ff9300-b7bf-4015-b298-1567127c903d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filehandler">
+      <UniqueIdentifier>{476730ad-42ff-4f92-8159-1f05842a5ad7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\file">
+      <UniqueIdentifier>{09d92fa4-983f-4a67-8843-914339044731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net">
+      <UniqueIdentifier>{f7a5ac47-e883-462e-97f8-fa42eee7286b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\hi5">
+      <UniqueIdentifier>{e7783e09-cdec-4e5d-a45b-9347fe7c0b05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\net\usernet">
+      <UniqueIdentifier>{1abfd638-9ea0-4575-af92-2d3e22694ebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{2d30ea30-520b-4a0c-b192-2ff7b56ec97d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\plugin">
+      <UniqueIdentifier>{6324b753-1a82-4d32-a2b5-b7f9b202bc19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core\core">
+      <UniqueIdentifier>{f297b23f-6569-4fcf-899c-f0286296a0c0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="user\user\interaction.inl">
+      <Filter>Header Files\user\user</Filter>
+    </None>
+    <None Include="user\user\user_interaction.inl">
+      <Filter>Header Files\user\user</Filter>
+    </None>
+    <None Include="core\core\core.inl">
+      <Filter>Header Files\core\core</Filter>
+    </None>
+    <None Include="core.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
