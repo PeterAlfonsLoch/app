@@ -2540,6 +2540,12 @@
     <ClCompile Include="ssl\_ssl.c">
       <Filter>Source Files\ssl</Filter>
     </ClCompile>
+    <ClCompile Include="engines\_e.c">
+      <Filter>Source Files\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="engines\ccgost\_ccgost.c">
+      <Filter>Source Files\engines\ccgost</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ssl\tls1.h">
