@@ -2,6 +2,7 @@
  //O N£mero de S‚rie do Volume ‚ 4A91-94E4
 
  //Pasta de Z:\nordroid\app\axis\openssl\engines\ccgost
+#define static
 
 #include "e_gost_err.c"
 #include "gost2001.c"
@@ -10,7 +11,7 @@
 #include "gost94_keyx.c"
 #include "gosthash.c"
 //#include "gostsum.c"
-#include "gost_ameth.c"
+//#include "gost_ameth.c"
 #include "gost_asn1.c"
 #include "gost_crypt.c"
 #include "gost_ctl.c"
