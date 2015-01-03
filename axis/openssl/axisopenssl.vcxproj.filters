@@ -2513,6 +2513,9 @@
     <ClCompile Include="engines\ccgost\_ccgost.c">
       <Filter>Source Files\engines\ccgost</Filter>
     </ClCompile>
+    <ClCompile Include="crypto\asn1\_a.c">
+      <Filter>Source Files\crypto\asn1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ssl\tls1.h">
