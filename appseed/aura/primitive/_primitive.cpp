@@ -1,5 +1,7 @@
 #include "framework.h"
 
+
+
 // Thank you (casey) Thank you Mummi Thank you Carlos. primitive _amalgamation... Visual Studio 2015 Preview seems to need it (too long filename or extension).
 
 //O volume na unidade Z ‚ eco
@@ -113,8 +115,8 @@
 
 #include "str/str_base64.cpp"
 #include "str/str_c.cpp"
-#include "str/str_ch.cpp"
-#include "str/str_ch_class.cpp"
+//#include "str/str_ch.cpp"
+//#include "str/str_ch_class.cpp"
 #include "str/str_core.cpp"
 #include "str/str_dup.cpp"
 #include "str/str_format.cpp"
