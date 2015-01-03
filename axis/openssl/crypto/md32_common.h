@@ -193,6 +193,9 @@
 #define ROTATE(a,n)     (((a)<<(n))|(((a)&0xffffffff)>>(32-(n))))
 #endif
 
+#undef HOST_c2l
+#undef HOST_l2c
+
 #if defined(DATA_ORDER_IS_BIG_ENDIAN)
 
 #ifndef PEDANTIC

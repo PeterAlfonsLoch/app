@@ -1,7 +1,7 @@
- O volume na unidade Z ‚ eco
- O N£mero de S‚rie do Volume ‚ 4A91-94E4
+ //O volume na unidade Z ‚ eco
+ //O N£mero de S‚rie do Volume ‚ 4A91-94E4
 
- Pasta de Z:\nordroid\app\axis\openssl\engines
+ //Pasta de Z:\nordroid\app\axis\openssl\engines
 
 #include "e_4758cca.c
 #include "e_4758cca_err.c
@@ -24,6 +24,6 @@
 #include "e_sureware_err.c
 #include "e_ubsec.c
 #include "e_ubsec_err.c
-2015-01-03  21:10                 0 _e.c
-              22 arquivo(s)        376.161 bytes
-               0 pasta(s)   36.935.651.328 bytes dispon¡veis
+//2015-01-03  21:10                 0 _e.c
+//              22 arquivo(s)        376.161 bytes
+//               0 pasta(s)   36.935.651.328 bytes dispon¡veis

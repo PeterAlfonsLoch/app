@@ -1,261 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="ssl\bio_ssl.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\d1_both.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\d1_clnt.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\d1_enc.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\d1_lib.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\d1_meth.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\d1_pkt.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\d1_srtp.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\d1_srvr.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\kssl.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s23_clnt.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s23_lib.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s23_meth.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s23_pkt.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s23_srvr.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s2_clnt.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s2_enc.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s2_lib.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s2_meth.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s2_pkt.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s2_srvr.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s3_both.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s3_cbc.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s3_clnt.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s3_enc.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s3_lib.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s3_meth.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s3_pkt.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\s3_srvr.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\ssl_algs.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\ssl_asn1.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\ssl_cert.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\ssl_ciph.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\ssl_err.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\ssl_err2.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\ssl_lib.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\ssl_rsa.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\ssl_sess.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\ssl_stat.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\ssl_txt.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\ssl_utst.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\t1_clnt.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\t1_enc.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\t1_lib.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\t1_meth.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\t1_reneg.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\t1_srvr.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="ssl\tls_srp.c">
-      <Filter>Source Files\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_4758cca.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_4758cca_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_aep.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_aep_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_atalla.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_atalla_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_capi.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_capi_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_chil.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_chil_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_cswift.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_cswift_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_gmp.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_gmp_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_nuron.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_nuron_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_padlock.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_sureware.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_sureware_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_ubsec.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\e_ubsec_err.c">
-      <Filter>Source Files\engines</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\e_gost_err.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost2001.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost2001_keyx.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost89.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost94_keyx.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gosthash.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_ameth.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_asn1.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_crypt.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_ctl.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_eng.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_keywrap.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_md.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_params.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_pmeth.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
-    <ClCompile Include="engines\ccgost\gost_sign.c">
-      <Filter>Source Files\engines\ccgost</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\aes\aes_cbc.c">
       <Filter>Source Files\crypto\aes</Filter>
     </ClCompile>
@@ -1384,24 +1129,6 @@
     <ClCompile Include="crypto\lhash\lh_stats.c">
       <Filter>Source Files\crypto\lhash</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\md4\md4_dgst.c">
-      <Filter>Source Files\crypto\md4</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\md4\md4_one.c">
-      <Filter>Source Files\crypto\md4</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\md5\md5_dgst.c">
-      <Filter>Source Files\crypto\md5</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\md5\md5_one.c">
-      <Filter>Source Files\crypto\md5</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\mdc2\mdc2dgst.c">
-      <Filter>Source Files\crypto\mdc2</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\mdc2\mdc2_one.c">
-      <Filter>Source Files\crypto\mdc2</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\modes\cbc128.c">
       <Filter>Source Files\crypto\modes</Filter>
     </ClCompile>
@@ -1636,12 +1363,6 @@
     <ClCompile Include="crypto\rc4\rc4_utl.c">
       <Filter>Source Files\crypto\rc4</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\ripemd\rmd_dgst.c">
-      <Filter>Source Files\crypto\ripemd</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\ripemd\rmd_one.c">
-      <Filter>Source Files\crypto\ripemd</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\rsa\rsa_ameth.c">
       <Filter>Source Files\crypto\rsa</Filter>
     </ClCompile>
@@ -1797,12 +1518,6 @@
     </ClCompile>
     <ClCompile Include="crypto\ui\ui_util.c">
       <Filter>Source Files\crypto\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\whrlpool\wp_block.c">
-      <Filter>Source Files\crypto\whrlpool</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\whrlpool\wp_dgst.c">
-      <Filter>Source Files\crypto\whrlpool</Filter>
     </ClCompile>
     <ClCompile Include="crypto\x509\by_dir.c">
       <Filter>Source Files\crypto\x509</Filter>
@@ -2025,6 +1740,18 @@
     </ClCompile>
     <ClCompile Include="crypto\uid.c">
       <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\_digest.c">
+      <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\_ssl.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="engines\_e.c">
+      <Filter>Source Files\engines</Filter>
+    </ClCompile>
+    <ClCompile Include="engines\ccgost\_ccgost.c">
+      <Filter>Source Files\engines\ccgost</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

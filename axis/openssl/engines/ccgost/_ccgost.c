@@ -9,7 +9,7 @@
 #include "gost89.c"
 #include "gost94_keyx.c"
 #include "gosthash.c"
-#include "gostsum.c"
+//#include "gostsum.c"
 #include "gost_ameth.c"
 #include "gost_asn1.c"
 #include "gost_crypt.c"
@@ -20,6 +20,6 @@
 #include "gost_params.c"
 #include "gost_pmeth.c"
 #include "gost_sign.c"
-#include "_ccgost.c"
+//#include "_ccgost.c"
               //18 arquivo(s)        154.482 bytes
               // 0 pasta(s)   36.935.647.232 bytes dispon¡veis

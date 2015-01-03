@@ -30,6 +30,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Clang_3_4</PlatformToolset>
+    <UseOfStl>c++_static</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -61,10 +62,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(ProjectDir)../../axis/freetype/include;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_AXIS_LIBRARY;_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>AXIS_FREEIMAGE;_AXIS_LIBRARY;_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>c++11</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
+      <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts -Wno-unused-private-field -Wno-deprecated-register %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -124,57 +126,9 @@
     <ClCompile Include="axis\node\android\android_file_system.cpp" />
     <ClCompile Include="axis\node\android\android_ip_enum.cpp" />
     <ClCompile Include="axis\node\android\android_port_forward.cpp" />
-    <ClCompile Include="axis\node\windows\windows_crypto.cpp" />
-    <ClCompile Include="axis\node\windows\windows_dir.cpp" />
-    <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp" />
-    <ClCompile Include="axis\node\windows\windows_file_set.cpp" />
-    <ClCompile Include="axis\node\windows\windows_file_system.cpp" />
-    <ClCompile Include="axis\node\windows\windows_ip_enum.cpp" />
-    <ClCompile Include="axis\node\windows\windows_port_forward.cpp" />
     <ClCompile Include="axis\os\android\android.cpp" />
     <ClCompile Include="axis\os\ansios\ansios_crypt.cpp" />
-    <ClCompile Include="axis\os\windows\windows_base_crypto.cpp" />
-    <ClCompile Include="axis\os\windows\windows_dll.cpp" />
-    <ClCompile Include="axis\os\windows\windows_os.cpp" />
-    <ClCompile Include="axis\os\windows\windows_simple_app.cpp" />
-    <ClCompile Include="database\database\database_application.cpp" />
-    <ClCompile Include="database\database\database_base.cpp" />
-    <ClCompile Include="database\database\database_client.cpp" />
-    <ClCompile Include="database\database\database_definition.cpp" />
-    <ClCompile Include="database\database\database_event_change.cpp" />
-    <ClCompile Include="database\database\database_field_definition.cpp" />
-    <ClCompile Include="database\database\database_id.cpp" />
-    <ClCompile Include="database\database\database_key.cpp" />
-    <ClCompile Include="database\database\database_selection.cpp" />
-    <ClCompile Include="database\database\database_selection_item.cpp" />
-    <ClCompile Include="database\database\database_server.cpp" />
-    <ClCompile Include="database\database\database_set.cpp" />
-    <ClCompile Include="database\database\database_stringhelper.cpp" />
-    <ClCompile Include="database\database\database_update_hint.cpp" />
     <ClCompile Include="database\database\_database.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_base.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_database.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_dataset.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_db_server.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_file_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_im_post.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_long_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_manager.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_mysql_database.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_mysql_result.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_record_row.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_result.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_server.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_service.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_session.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_simpledb.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_socket.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_stra_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_str_set.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_table.cpp" />
-    <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp" />
     <ClCompile Include="database\simpledb\_simpledb.cpp" />
     <ClCompile Include="database\sqlitedb\sqlitedb_base.cpp" />
     <ClCompile Include="database\sqlitedb\sqlitedb_set.cpp" />
@@ -209,86 +163,14 @@
     <ClCompile Include="graphics\visual\visual_rgb_quad_array.cpp" />
     <ClCompile Include="graphics\visual\visual_visual.cpp" />
     <ClCompile Include="graphics\visual\visual_water_routine.cpp" />
-    <ClCompile Include="net\http\http.cpp" />
-    <ClCompile Include="net\http\http_application.cpp" />
-    <ClCompile Include="net\http\http_get_socket.cpp" />
-    <ClCompile Include="net\http\http_output_stream.cpp" />
-    <ClCompile Include="net\http\http_signal.cpp" />
-    <ClCompile Include="net\http\http_status.cpp" />
-    <ClCompile Include="net\http\http_system.cpp" />
     <ClCompile Include="net\http\webserver\webserver_http_cookie.cpp" />
     <ClCompile Include="net\http\webserver\webserver_http_form.cpp" />
     <ClCompile Include="net\http\webserver\webserver_http_request.cpp" />
     <ClCompile Include="net\http\webserver\webserver_http_response.cpp" />
     <ClCompile Include="net\http\webserver\webserver_http_transaction.cpp" />
-    <ClCompile Include="net\mail\mail_pop3.cpp" />
-    <ClCompile Include="net\mail\mail_pop3_socket.cpp" />
-    <ClCompile Include="net\mail\mail_simple_pop3.cpp" />
-    <ClCompile Include="net\net_address.cpp" />
-    <ClCompile Include="net\net_email.cpp" />
-    <ClCompile Include="net\net_email_address.cpp" />
-    <ClCompile Include="net\net_email_departament.cpp" />
-    <ClCompile Include="net\net_ip_enum.cpp" />
-    <ClCompile Include="net\net_net.cpp" />
-    <ClCompile Include="net\net_port_forward.cpp" />
-    <ClCompile Include="net\net_sockets.cpp" />
-    <ClCompile Include="net\net_url_departament.cpp" />
-    <ClCompile Include="net\net_url_domain.cpp" />
-    <ClCompile Include="net\sockets\base\sockets_base_socket.cpp" />
-    <ClCompile Include="net\sockets\base\sockets_base_socket_handler.cpp" />
-    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_server.cpp" />
-    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_sctp_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_socket_handler.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_stream_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_sync_socket_handler.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_tcp_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_tls_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_udp_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\internal\sockets_SSLInitializer.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base_client_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_callback.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_client.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_request.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_response.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_server.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_tcp_client_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_transaction.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_udp_client_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtpd_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtp_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\sockets_include.cpp" />
-    <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp" />
-    <ClCompile Include="net\sockets\bsd\timer\sockets_Event.cpp" />
-    <ClCompile Include="net\sockets\bsd\timer\sockets_EventHandler.cpp" />
-    <ClCompile Include="net\sockets\bsd\timer\sockets_EventTime.cpp" />
-    <ClCompile Include="net\sockets\bsd\timer\sockets_IEventOwner.cpp" />
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_Ajp13Socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_AjpBaseSocket.cpp" />
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_httpd_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_base_socket.cpp" />
-    <ClCompile Include="net\sockets\http\sockets_http_client_socket.cpp" />
-    <ClCompile Include="net\sockets\http\sockets_http_debug_socket.cpp" />
-    <ClCompile Include="net\sockets\http\sockets_http_get_socket.cpp" />
-    <ClCompile Include="net\sockets\http\sockets_http_listener.cpp" />
-    <ClCompile Include="net\sockets\http\sockets_http_post_socket.cpp" />
-    <ClCompile Include="net\sockets\http\sockets_http_put_socket.cpp" />
-    <ClCompile Include="net\sockets\http\sockets_http_session.cpp" />
-    <ClCompile Include="net\sockets\http\sockets_http_socket.cpp" />
-    <ClCompile Include="net\sockets\http\sockets_http_tunnel.cpp" />
-    <ClCompile Include="net\sockets\sockets_http_batch_buffer.cpp" />
-    <ClCompile Include="net\sockets\sockets_http_buffer.cpp" />
-    <ClCompile Include="net\sockets\sockets_link_in_socket.cpp" />
-    <ClCompile Include="net\sockets\sockets_link_out_socket.cpp" />
-    <ClCompile Include="net\sockets\sockets_trace_logger.cpp" />
+    <ClCompile Include="net\sockets\bsd\_bsd.cpp" />
+    <ClCompile Include="net\sockets\_sockets.cpp" />
+    <ClCompile Include="net\_net.cpp" />
     <ClCompile Include="primitive\data\data_simple_item.cpp" />
     <ClCompile Include="primitive\data\data_tree.cpp" />
     <ClCompile Include="primitive\data\data_tree_item.cpp" />
@@ -573,6 +455,9 @@
     <None Include="axis\axis\axis.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\axis\openssl\nord_axisopenssl.vcxproj">
+      <Project>{a2e70e72-5407-4131-ad91-881a861114ed}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\nord_aura.vcxproj">
       <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
     </ProjectReference>

@@ -30,6 +30,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Clang_3_4</PlatformToolset>
+    <UseOfStl>c++_static</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -457,12 +458,6 @@
     <ClCompile Include="crypto\krb5\krb5_asn.c" />
     <ClCompile Include="crypto\lhash\lhash.c" />
     <ClCompile Include="crypto\lhash\lh_stats.c" />
-    <ClCompile Include="crypto\md4\md4_dgst.c" />
-    <ClCompile Include="crypto\md4\md4_one.c" />
-    <ClCompile Include="crypto\md5\md5_dgst.c" />
-    <ClCompile Include="crypto\md5\md5_one.c" />
-    <ClCompile Include="crypto\mdc2\mdc2dgst.c" />
-    <ClCompile Include="crypto\mdc2\mdc2_one.c" />
     <ClCompile Include="crypto\mem.c" />
     <ClCompile Include="crypto\mem_clr.c" />
     <ClCompile Include="crypto\mem_dbg.c" />
@@ -549,8 +544,6 @@
     <ClCompile Include="crypto\rc4\rc4_enc.c" />
     <ClCompile Include="crypto\rc4\rc4_skey.c" />
     <ClCompile Include="crypto\rc4\rc4_utl.c" />
-    <ClCompile Include="crypto\ripemd\rmd_dgst.c" />
-    <ClCompile Include="crypto\ripemd\rmd_one.c" />
     <ClCompile Include="crypto\rsa\rsa_ameth.c" />
     <ClCompile Include="crypto\rsa\rsa_asn1.c" />
     <ClCompile Include="crypto\rsa\rsa_chk.c" />
@@ -604,8 +597,6 @@
     <ClCompile Include="crypto\ui\ui_lib.c" />
     <ClCompile Include="crypto\ui\ui_openssl.c" />
     <ClCompile Include="crypto\ui\ui_util.c" />
-    <ClCompile Include="crypto\whrlpool\wp_block.c" />
-    <ClCompile Include="crypto\whrlpool\wp_dgst.c" />
     <ClCompile Include="crypto\x509v3\pcy_cache.c" />
     <ClCompile Include="crypto\x509v3\pcy_data.c" />
     <ClCompile Include="crypto\x509v3\pcy_lib.c" />
@@ -666,91 +657,10 @@
     <ClCompile Include="crypto\x509\x509_vfy.c" />
     <ClCompile Include="crypto\x509\x509_vpm.c" />
     <ClCompile Include="crypto\x509\x_all.c" />
-    <ClCompile Include="engines\ccgost\e_gost_err.c" />
-    <ClCompile Include="engines\ccgost\gost2001.c" />
-    <ClCompile Include="engines\ccgost\gost2001_keyx.c" />
-    <ClCompile Include="engines\ccgost\gost89.c" />
-    <ClCompile Include="engines\ccgost\gost94_keyx.c" />
-    <ClCompile Include="engines\ccgost\gosthash.c" />
-    <ClCompile Include="engines\ccgost\gost_ameth.c" />
-    <ClCompile Include="engines\ccgost\gost_asn1.c" />
-    <ClCompile Include="engines\ccgost\gost_crypt.c" />
-    <ClCompile Include="engines\ccgost\gost_ctl.c" />
-    <ClCompile Include="engines\ccgost\gost_eng.c" />
-    <ClCompile Include="engines\ccgost\gost_keywrap.c" />
-    <ClCompile Include="engines\ccgost\gost_md.c" />
-    <ClCompile Include="engines\ccgost\gost_params.c" />
-    <ClCompile Include="engines\ccgost\gost_pmeth.c" />
-    <ClCompile Include="engines\ccgost\gost_sign.c" />
-    <ClCompile Include="engines\e_4758cca.c" />
-    <ClCompile Include="engines\e_4758cca_err.c" />
-    <ClCompile Include="engines\e_aep.c" />
-    <ClCompile Include="engines\e_aep_err.c" />
-    <ClCompile Include="engines\e_atalla.c" />
-    <ClCompile Include="engines\e_atalla_err.c" />
-    <ClCompile Include="engines\e_capi.c" />
-    <ClCompile Include="engines\e_capi_err.c" />
-    <ClCompile Include="engines\e_chil.c" />
-    <ClCompile Include="engines\e_chil_err.c" />
-    <ClCompile Include="engines\e_cswift.c" />
-    <ClCompile Include="engines\e_cswift_err.c" />
-    <ClCompile Include="engines\e_gmp.c" />
-    <ClCompile Include="engines\e_gmp_err.c" />
-    <ClCompile Include="engines\e_nuron.c" />
-    <ClCompile Include="engines\e_nuron_err.c" />
-    <ClCompile Include="engines\e_padlock.c" />
-    <ClCompile Include="engines\e_sureware.c" />
-    <ClCompile Include="engines\e_sureware_err.c" />
-    <ClCompile Include="engines\e_ubsec.c" />
-    <ClCompile Include="engines\e_ubsec_err.c" />
-    <ClCompile Include="ssl\bio_ssl.c" />
-    <ClCompile Include="ssl\d1_both.c" />
-    <ClCompile Include="ssl\d1_clnt.c" />
-    <ClCompile Include="ssl\d1_enc.c" />
-    <ClCompile Include="ssl\d1_lib.c" />
-    <ClCompile Include="ssl\d1_meth.c" />
-    <ClCompile Include="ssl\d1_pkt.c" />
-    <ClCompile Include="ssl\d1_srtp.c" />
-    <ClCompile Include="ssl\d1_srvr.c" />
-    <ClCompile Include="ssl\kssl.c" />
-    <ClCompile Include="ssl\s23_clnt.c" />
-    <ClCompile Include="ssl\s23_lib.c" />
-    <ClCompile Include="ssl\s23_meth.c" />
-    <ClCompile Include="ssl\s23_pkt.c" />
-    <ClCompile Include="ssl\s23_srvr.c" />
-    <ClCompile Include="ssl\s2_clnt.c" />
-    <ClCompile Include="ssl\s2_enc.c" />
-    <ClCompile Include="ssl\s2_lib.c" />
-    <ClCompile Include="ssl\s2_meth.c" />
-    <ClCompile Include="ssl\s2_pkt.c" />
-    <ClCompile Include="ssl\s2_srvr.c" />
-    <ClCompile Include="ssl\s3_both.c" />
-    <ClCompile Include="ssl\s3_cbc.c" />
-    <ClCompile Include="ssl\s3_clnt.c" />
-    <ClCompile Include="ssl\s3_enc.c" />
-    <ClCompile Include="ssl\s3_lib.c" />
-    <ClCompile Include="ssl\s3_meth.c" />
-    <ClCompile Include="ssl\s3_pkt.c" />
-    <ClCompile Include="ssl\s3_srvr.c" />
-    <ClCompile Include="ssl\ssl_algs.c" />
-    <ClCompile Include="ssl\ssl_asn1.c" />
-    <ClCompile Include="ssl\ssl_cert.c" />
-    <ClCompile Include="ssl\ssl_ciph.c" />
-    <ClCompile Include="ssl\ssl_err.c" />
-    <ClCompile Include="ssl\ssl_err2.c" />
-    <ClCompile Include="ssl\ssl_lib.c" />
-    <ClCompile Include="ssl\ssl_rsa.c" />
-    <ClCompile Include="ssl\ssl_sess.c" />
-    <ClCompile Include="ssl\ssl_stat.c" />
-    <ClCompile Include="ssl\ssl_txt.c" />
-    <ClCompile Include="ssl\ssl_utst.c" />
-    <ClCompile Include="ssl\t1_clnt.c" />
-    <ClCompile Include="ssl\t1_enc.c" />
-    <ClCompile Include="ssl\t1_lib.c" />
-    <ClCompile Include="ssl\t1_meth.c" />
-    <ClCompile Include="ssl\t1_reneg.c" />
-    <ClCompile Include="ssl\t1_srvr.c" />
-    <ClCompile Include="ssl\tls_srp.c" />
+    <ClCompile Include="crypto\_digest.c" />
+    <ClCompile Include="engines\ccgost\_ccgost.c" />
+    <ClCompile Include="engines\_e.c" />
+    <ClCompile Include="ssl\_ssl.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\openssl\aes.h" />

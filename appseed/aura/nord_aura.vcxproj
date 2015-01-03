@@ -30,6 +30,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Clang_3_4</PlatformToolset>
+    <UseOfStl>c++_static</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -65,10 +66,14 @@
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>c++11</CppLanguageStandard>
-      <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts -Wno-unused-private-field %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
+    <Link>
+      <AdditionalOptions>-fexceptions %(AdditionalOptions)</AdditionalOptions>
+      <LibraryDependencies>m;log;android</LibraryDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
@@ -295,57 +300,12 @@
     <ClCompile Include="graphics\draw2d\draw2d_region.cpp" />
     <ClCompile Include="graphics\visual\visual_cursor.cpp" />
     <ClCompile Include="graphics\visual\visual_icon.cpp" />
-    <ClCompile Include="multithreading\multithreading.cpp" />
-    <ClCompile Include="multithreading\multithreading_condition.cpp" />
-    <ClCompile Include="multithreading\multithreading_core.cpp" />
-    <ClCompile Include="multithreading\multithreading_critical_section.cpp" />
-    <ClCompile Include="multithreading\multithreading_event.cpp" />
-    <ClCompile Include="multithreading\multithreading_event_base.cpp" />
-    <ClCompile Include="multithreading\multithreading_event_collection.cpp" />
-    <ClCompile Include="multithreading\multithreading_file_change_event.cpp" />
-    <ClCompile Include="multithreading\multithreading_go_thread.cpp" />
-    <ClCompile Include="multithreading\multithreading_manual_reset_event.cpp" />
-    <ClCompile Include="multithreading\multithreading_multi_lock.cpp" />
-    <ClCompile Include="multithreading\multithreading_mutex.cpp" />
-    <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp" />
-    <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp" />
-    <ClCompile Include="multithreading\multithreading_semaphore.cpp" />
-    <ClCompile Include="multithreading\multithreading_service_base.cpp" />
-    <ClCompile Include="multithreading\multithreading_signal_thread.cpp" />
-    <ClCompile Include="multithreading\multithreading_simple_thread.cpp" />
-    <ClCompile Include="multithreading\multithreading_single_lock.cpp" />
-    <ClCompile Include="multithreading\multithreading_socket_event.cpp" />
-    <ClCompile Include="multithreading\multithreading_synch_lock.cpp" />
-    <ClCompile Include="multithreading\multithreading_sync_object.cpp" />
-    <ClCompile Include="multithreading\multithreading_thread.cpp" />
-    <ClCompile Include="multithreading\multithreading_thread_impl.cpp" />
-    <ClCompile Include="multithreading\multithreading_waitable.cpp" />
-    <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
     <ClCompile Include="multithreading\service\service_plain_service.cpp" />
+    <ClCompile Include="multithreading\_multithreading.cpp" />
     <ClCompile Include="primitive\str\str_ch.cpp" />
     <ClCompile Include="primitive\str\str_ch_class.cpp" />
     <ClCompile Include="primitive\_primitive.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_default_error_handler.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_error_handler_writer.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_exception.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_hrc_parser_helpers.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_hrc_parser_impl.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_line_regions_compact_support.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_line_regions_support.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_line_source.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_logging.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_outliner.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_parsed_line_writer.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_parser_factory.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_region_handler.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_region_mapper_impl.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_styled_hrd_mapper.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_text_hrd_mapper.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_text_lines.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp" />
-    <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp" />
+    <ClCompile Include="user\colorertake5\_colorertake5.cpp" />
     <ClCompile Include="user\simple\simple_message_box.cpp" />
     <ClCompile Include="version.cpp" />
   </ItemGroup>
@@ -964,6 +924,9 @@
     <None Include="primitive\str\str.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\atom\iconv\nord_iconv.vcxproj">
+      <Project>{a9d5fc74-a2d7-49bc-b658-ccd5610c5a96}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aqua\nord_aqua.vcxproj">
       <Project>{bd207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
     </ProjectReference>
