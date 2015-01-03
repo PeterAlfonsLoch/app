@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 property_set::property_set(::aura::application * papp, bool bAutoAdd, bool bMultiValue) :

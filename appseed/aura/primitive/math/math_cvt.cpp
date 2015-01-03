@@ -32,8 +32,8 @@
 // SUCH DAMAGE.
 //
 
-#include "framework.h"
-#include <math.h>
+//#include "framework.h"
+//#include <math.h>
 
 //
 // cvt.c - IEEE floating point formatting routines for FreeBSD

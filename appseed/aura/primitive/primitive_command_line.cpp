@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 command_line::command_line(::aura::application * papp) :

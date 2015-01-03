@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 interlocked_long_pulse::interlocked_long_pulse(interlocked_long * plockedlong, long lLevel)

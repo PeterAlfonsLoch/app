@@ -32,14 +32,14 @@
 // These notices must be retained in any copies of any part of this
 // documentation and/or software.
 /////////////////////////////////////////////////////////////////////////
-#include "framework.h"
+//#include "framework.h"
 
 
 //#if defined(LINUX ) || defined(ANDROID) || defined(APPLEOS)
-//#include <sys/mman.h>
-//#include <sys/stat.h>
-//#include <fcntl.h>
-//#include <unistd.h>
+////#include <sys/mman.h>
+////#include <sys/stat.h>
+////#include <fcntl.h>
+////#include <unistd.h>
 //#endif
 //
 //

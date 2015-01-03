@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 base_edit::base_edit(::aura::application * papp) :

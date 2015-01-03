@@ -7,7 +7,7 @@
 * gcvt  - Floating output conversion to minimal length string
 */
 
-#include "framework.h"
+//#include "framework.h"
 
 
 #define GCVTBUFSIZE 2 * DBL_MAX_10_EXP + 33

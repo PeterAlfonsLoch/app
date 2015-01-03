@@ -1,6 +1,11 @@
 #include "framework.h"
+#include <math.h>
 
+#ifndef WINDOWS
 
+#include <cxxabi.h>
+
+#endif
 
 // Thank you (casey) Thank you Mummi Thank you Carlos. primitive _amalgamation... Visual Studio 2015 Preview seems to need it (too long filename or extension).
 

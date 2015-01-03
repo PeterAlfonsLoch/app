@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "signal.h"
+//#include "framework.h"
+//#include "signal.h"
 
 
 signal_details::signal_details(::aura::application * papp) :

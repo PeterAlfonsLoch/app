@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 //string_to_string::string_to_string(::aura::application * papp, int_ptr nBlockSize) :

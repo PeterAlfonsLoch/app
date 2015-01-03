@@ -21,7 +21,7 @@ Boston, MA 02111-1307, USA.  */
 mktime.  */
 /* #define DEBUG 1 */
 
-#include "framework.h"
+//#include "framework.h"
 
 #ifdef _LIBC
 # define HAVE_LIMITS_H 1
@@ -37,20 +37,20 @@ then it supports leap seconds; otherwise it probably doesn't.  */
 #endif
 
 #ifndef VMS
-#include <sys/types.h>		/* Some systems define `time_t' here.  */
+//#include <sys/types.h>		/* Some systems define `time_t' here.  */
 #else
-#include <stddef.h>
+//#include <stddef.h>
 #endif
-#include <time.h>
+//#include <time.h>
 
 #if HAVE_LIMITS_H
-#include <limits.h>
+//#include <limits.h>
 #endif
 
 #if MKTIME_DEBUG
-#include <stdio.h>
+//#include <stdio.h>
 #if STDC_HEADERS
-#include <stdlib.h>
+//#include <stdlib.h>
 #endif
 /* Make it work even if the system's libc has its own mktime routine.  */
 #define mktime my_mktime

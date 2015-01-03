@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 wchar_t * wstring_data::get_nil()

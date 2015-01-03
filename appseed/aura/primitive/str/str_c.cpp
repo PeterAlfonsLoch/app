@@ -1,8 +1,8 @@
-#include "framework.h"
-//#include "ca/x/x_defines.h"
-//#include "ca/x/x_tables.h"
-//#include "ca/x/x_charcategory_names.h"
-//#include "ca/x/x_charcategory.h"
+//#include "framework.h"
+////#include "ca/x/x_defines.h"
+////#include "ca/x/x_tables.h"
+////#include "ca/x/x_charcategory_names.h"
+////#include "ca/x/x_charcategory.h"
 
 
 void strcat_dup(char * dest, const char * cat)

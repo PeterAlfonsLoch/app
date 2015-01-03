@@ -1,5 +1,5 @@
-#include "framework.h"
-#include <math.h>
+//#include "framework.h"
+//#include <math.h>
 
 double primitive_color_round(double d);
 

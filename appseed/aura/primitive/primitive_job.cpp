@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 job::job(::aura::application * papp) :

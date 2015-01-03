@@ -15,7 +15,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#include "framework.h"
+//#include "framework.h"
 
 object_list::object_list(int_ptr nBlockSize)
 {

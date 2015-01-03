@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 stringl::stringl(int_ptr nBlockSize) :

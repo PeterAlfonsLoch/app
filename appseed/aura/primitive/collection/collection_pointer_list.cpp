@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 pointer_list::pointer_list(int_ptr nBlockSize)
 {
