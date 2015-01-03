@@ -52,7 +52,8 @@
 #include "cairo-scaled-font-subsets-private.h"
 #include "cairo-truetype-subset-private.h"
 #include <string.h>
-#include <locale.h>
+
+#include "include/aura/locale.h"
 
 /* CFF Dict Operators. If the high byte is 0 the command is encoded
  * with a single byte. */
