@@ -65,7 +65,11 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>c++11</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
+      <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts -Wno-unused-private-field -Wno-mismatched-tags -Wno-delete-non-virtual-dtor %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <Link>
+      <LibraryDependencies>m;log;android</LibraryDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
@@ -73,98 +77,13 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="core\core\core.cpp" />
-    <ClCompile Include="core\core\core_application.cpp" />
-    <ClCompile Include="core\core\core_constraint.cpp" />
-    <ClCompile Include="core\core\core_Debug.cpp" />
-    <ClCompile Include="core\core\core_history.cpp" />
-    <ClCompile Include="core\core\core_library.cpp" />
-    <ClCompile Include="core\core\core_logic.cpp" />
-    <ClCompile Include="core\core\core_match.cpp" />
-    <ClCompile Include="core\core\core_os_history.cpp" />
-    <ClCompile Include="core\core\core_patch.cpp" />
-    <ClCompile Include="core\core\core_platform.cpp" />
-    <ClCompile Include="core\core\core_profiler.cpp" />
-    <ClCompile Include="core\core\core_simple_app.cpp" />
-    <ClCompile Include="core\core\core_strn.cpp" />
-    <ClCompile Include="core\core\core_str_format.cpp" />
-    <ClCompile Include="core\core\core_system.cpp" />
-    <ClCompile Include="core\core\core_Timer.cpp" />
-    <ClCompile Include="core\core\core_timer_callback.cpp" />
-    <ClCompile Include="core\core\core_timer_listener.cpp" />
     <ClCompile Include="core\core\_core.cpp" />
-    <ClCompile Include="core\plugin\plugin_history.cpp" />
-    <ClCompile Include="core\plugin\plugin_host_interaction.cpp" />
-    <ClCompile Include="core\plugin\plugin_instance.cpp" />
-    <ClCompile Include="core\plugin\plugin_plugin.cpp" />
-    <ClCompile Include="core\plugin\plugin_run_start_installer.cpp" />
-    <ClCompile Include="core\plugin\plugin_system.cpp" />
     <ClCompile Include="core\plugin\_plugin.cpp" />
-    <ClCompile Include="database\databaseuser\database_key_list_data.cpp" />
-    <ClCompile Include="database\databaseuser\database_list_data.cpp" />
     <ClCompile Include="database\databaseuser\_databaseuser.cpp" />
     <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_item.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_library.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_menu_library.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp" />
     <ClCompile Include="filesystem\filehandler\_filehandler.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_callback.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_child_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_data.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_filemanager.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_file_list.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_file_list_callback.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_file_properties_form.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_folder_list.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_data.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_folder_selection_list_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_form_child_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_form_document.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_form_update_hint.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_form_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_iconoverlayer.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_impact.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_item_action.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_left_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_main_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_main_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_manager.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_manager_template.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_child_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_document.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_info_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_list_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_thread.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_path_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_tab_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_tree.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_update_hint.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_view.cpp" />
     <ClCompile Include="filesystem\filemanager\_filemanager.cpp" />
     <ClCompile Include="filesystem\file\file_html_buffer.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_document.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_item.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_list.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_list_data.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_list_item.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_list_item_array.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_main_view.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_tree.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_update_hint.cpp" />
-    <ClCompile Include="filesystem\userfs\userfs_userfs.cpp" />
     <ClCompile Include="filesystem\userfs\_userfs.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="math\binary_operation.cpp" />
@@ -178,119 +97,6 @@
     <ClCompile Include="net\hi5\hi5_twit.cpp" />
     <ClCompile Include="net\usernet\usernet_network_configuration.cpp" />
     <ClCompile Include="primitive\primitive_int_biunique.cpp" />
-    <ClCompile Include="user\menu\user_menu.cpp" />
-    <ClCompile Include="user\menu\user_menu_button.cpp" />
-    <ClCompile Include="user\menu\user_menu_central.cpp" />
-    <ClCompile Include="user\menu\user_menu_item.cpp" />
-    <ClCompile Include="user\menu\user_menu_list_window.cpp" />
-    <ClCompile Include="user\simple\simple_child_frame.cpp" />
-    <ClCompile Include="user\simple\simple_form_list_view.cpp" />
-    <ClCompile Include="user\simple\simple_frame_window.cpp" />
-    <ClCompile Include="user\simple\simple_list_ctrl.cpp" />
-    <ClCompile Include="user\simple\simple_list_header_ctrl.cpp" />
-    <ClCompile Include="user\simple\simple_list_view.cpp" />
-    <ClCompile Include="user\simple\simple_main_frame.cpp" />
-    <ClCompile Include="user\simple\simple_menu_bar.cpp" />
-    <ClCompile Include="user\simple\simple_printer_list_view.cpp" />
-    <ClCompile Include="user\simple\simple_static.cpp" />
-    <ClCompile Include="user\simple\simple_status_bar.cpp" />
-    <ClCompile Include="user\simple\simple_tab_ctrl.cpp" />
-    <ClCompile Include="user\simple\simple_tab_view.cpp" />
-    <ClCompile Include="user\simple\simple_toolbar.cpp" />
-    <ClCompile Include="user\simple\simple_tree_view.cpp" />
-    <ClCompile Include="user\userex\userex_dialog.cpp" />
-    <ClCompile Include="user\userex\userex_form_child_frame.cpp" />
-    <ClCompile Include="user\userex\userex_form_document.cpp" />
-    <ClCompile Include="user\userex\userex_form_frame.cpp" />
-    <ClCompile Include="user\userex\userex_form_update_hint.cpp" />
-    <ClCompile Include="user\userex\userex_form_view.cpp" />
-    <ClCompile Include="user\userex\userex_keyboard_layout.cpp" />
-    <ClCompile Include="user\userex\userex_menu_document.cpp" />
-    <ClCompile Include="user\userex\userex_menu_frame.cpp" />
-    <ClCompile Include="user\userex\userex_menu_view.cpp" />
-    <ClCompile Include="user\userex\userex_message_box.cpp" />
-    <ClCompile Include="user\userex\userex_mini_dock_frame_window.cpp" />
-    <ClCompile Include="user\userex\userex_pane_split_view.cpp" />
-    <ClCompile Include="user\userex\userex_pane_tab_view.cpp" />
-    <ClCompile Include="user\userex\userex_pane_view.cpp" />
-    <ClCompile Include="user\userex\userex_property_page.cpp" />
-    <ClCompile Include="user\userex\userex_property_sheet.cpp" />
-    <ClCompile Include="user\userex\userex_split_view.cpp" />
-    <ClCompile Include="user\userex\userex_userex.cpp" />
-    <ClCompile Include="user\userex\userex_wait_message_dialog.cpp" />
-    <ClCompile Include="user\user\user.cpp" />
-    <ClCompile Include="user\user\user_button.cpp" />
-    <ClCompile Include="user\user\user_check_box.cpp" />
-    <ClCompile Include="user\user\user_combo_box.cpp" />
-    <ClCompile Include="user\user\user_combo_list.cpp" />
-    <ClCompile Include="user\user\user_control_property.cpp" />
-    <ClCompile Include="user\user\user_core.cpp" />
-    <ClCompile Include="user\user\user_data_exchange.cpp" />
-    <ClCompile Include="user\user\user_document_manager.cpp" />
-    <ClCompile Include="user\user\user_edit_plain_text_view.cpp" />
-    <ClCompile Include="user\user\user_elastic_slider.cpp" />
-    <ClCompile Include="user\user\user_form.cpp" />
-    <ClCompile Include="user\user\user_form_callback.cpp" />
-    <ClCompile Include="user\user\user_form_list.cpp" />
-    <ClCompile Include="user\user\user_front_end.cpp" />
-    <ClCompile Include="user\user\user_front_end_schema.cpp" />
-    <ClCompile Include="user\user\user_image_manager.cpp" />
-    <ClCompile Include="user\user\user_keyboard_layout_cfg.cpp" />
-    <ClCompile Include="user\user\user_list.cpp" />
-    <ClCompile Include="user\user\user_list_cache.cpp" />
-    <ClCompile Include="user\user\user_list_cache_interface.cpp" />
-    <ClCompile Include="user\user\user_list_data.cpp" />
-    <ClCompile Include="user\user\user_list_data_interface.cpp" />
-    <ClCompile Include="user\user\user_list_header.cpp" />
-    <ClCompile Include="user\user\user_main_frame.cpp" />
-    <ClCompile Include="user\user\user_menu_list_view.cpp" />
-    <ClCompile Include="user\user\user_meta_button.cpp" />
-    <ClCompile Include="user\user\user_meta_control_box.cpp" />
-    <ClCompile Include="user\user\user_multiple_document_template.cpp" />
-    <ClCompile Include="user\user\user_network_configuration.cpp" />
-    <ClCompile Include="user\user\user_notification_area.cpp" />
-    <ClCompile Include="user\user\user_notify_icon.cpp" />
-    <ClCompile Include="user\user\user_notify_icon_listener.cpp" />
-    <ClCompile Include="user\user\user_orto_button.cpp" />
-    <ClCompile Include="user\user\user_shell.cpp" />
-    <ClCompile Include="user\user\user_single_document_template.cpp" />
-    <ClCompile Include="user\user\user_split_bar.cpp" />
-    <ClCompile Include="user\user\user_split_layout.cpp" />
-    <ClCompile Include="user\user\user_split_view.cpp" />
-    <ClCompile Include="user\user\user_split_window.cpp" />
-    <ClCompile Include="user\user\user_static_control.cpp" />
-    <ClCompile Include="user\user\user_statusbar.cpp" />
-    <ClCompile Include="user\user\user_step_slider.cpp" />
-    <ClCompile Include="user\user\user_tab.cpp" />
-    <ClCompile Include="user\user\user_tab_callback.cpp" />
-    <ClCompile Include="user\user\user_tab_view.cpp" />
-    <ClCompile Include="user\user\user_tab_view_update_hint.cpp" />
-    <ClCompile Include="user\user\user_toolbar.cpp" />
-    <ClCompile Include="user\user\user_toolbar_ctrl.cpp" />
-    <ClCompile Include="user\user\user_tool_cmd_ui.cpp" />
-    <ClCompile Include="user\user\user_tool_tip_tool.cpp" />
-    <ClCompile Include="user\user\user_tool_tip_window.cpp" />
-    <ClCompile Include="user\user\user_tree.cpp" />
-    <ClCompile Include="user\user\user_tree_data.cpp" />
-    <ClCompile Include="user\user\user_tree_window.cpp" />
-    <ClCompile Include="user\user\user_xfplayer_view_line.cpp" />
-    <ClCompile Include="user\user\user_xfplayer_view_lines.cpp" />
-    <ClCompile Include="user\user\user_xfplayer_view_line_selection.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_appearance.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_constants.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_control_box.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_control_box_button.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_dock_manager.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_frame.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_move_manager.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_size_manager.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_sys_menu_manager.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_client_interface.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener.cpp" />
-    <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp" />
-    <ClCompile Include="user\wndfrm\wndfrm_interaction.cpp" />
-    <ClCompile Include="user\wndfrm\wndfrm_wndfrm.cpp" />
     <ClCompile Include="user\_user.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -336,28 +142,6 @@
     <ClInclude Include="database\databaseuser\data_key_list_data.h" />
     <ClInclude Include="database\databaseuser\list_data.h" />
     <ClInclude Include="database\simpledb\DBFileSystemSize.h" />
-    <ClInclude Include="database\simpledb\db_long_set.h" />
-    <ClInclude Include="database\simpledb\db_server.h" />
-    <ClInclude Include="database\simpledb\db_set.h" />
-    <ClInclude Include="database\simpledb\db_stra_set.h" />
-    <ClInclude Include="database\simpledb\db_str_set.h" />
-    <ClInclude Include="database\simpledb\file_set.h" />
-    <ClInclude Include="database\simpledb\im_post.h" />
-    <ClInclude Include="database\simpledb\simpledb.h" />
-    <ClInclude Include="database\simpledb\simpledb_base.h" />
-    <ClInclude Include="database\simpledb\simpledb_database.h" />
-    <ClInclude Include="database\simpledb\simpledb_manager.h" />
-    <ClInclude Include="database\simpledb\simpledb_record.h" />
-    <ClInclude Include="database\simpledb\simpledb_result.h" />
-    <ClInclude Include="database\simpledb\simpledb_server.h" />
-    <ClInclude Include="database\simpledb\simpledb_service.h" />
-    <ClInclude Include="database\simpledb\simpledb_session.h" />
-    <ClInclude Include="database\simpledb\simpledb_set.h" />
-    <ClInclude Include="database\simpledb\simpledb_simpledb.h" />
-    <ClInclude Include="database\simpledb\simpledb_socket.h" />
-    <ClInclude Include="database\simpledb\simpledb_socket_thread.h" />
-    <ClInclude Include="database\simpledb\simpledb_table.h" />
-    <ClInclude Include="database\simpledb\veiev_post.h" />
     <ClInclude Include="filesystem\filehandler\filehandler.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_handler.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_item.h" />
@@ -568,6 +352,9 @@
     <None Include="user\user\user_interaction.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\aura\charguess\nord_auracharguess.vcxproj">
+      <Project>{05207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\nord_aura.vcxproj">
       <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
     </ProjectReference>

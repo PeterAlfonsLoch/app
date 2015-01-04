@@ -122,65 +122,6 @@
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="graphics\graphics_window_graphics.cpp" />
-    <ClCompile Include="user\fontopus\fontopus.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_login.cpp" />
-    <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp" />
-    <ClCompile Include="user\simple\simple_scroll_bar.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_label.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_message_box.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_password.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_style.cpp" />
-    <ClCompile Include="user\simple_ui\simple_ui_tap.cpp" />
-    <ClCompile Include="user\userpresence\userpresence_userpresence.cpp" />
-    <ClCompile Include="user\userpresence\userpresence_user_presence.cpp" />
-    <ClCompile Include="user\user\aaa_want_to_remove_user_buffer.cpp" />
-    <ClCompile Include="user\user\aaa_want_to_remove_user_keyboard_focus.cpp" />
-    <ClCompile Include="user\user\aaa_want_to_remove_user_mouse_focus.cpp" />
-    <ClCompile Include="user\user\aaa_want_to_remove_user_text_interface.cpp" />
-    <ClCompile Include="user\user\user.cpp" />
-    <ClCompile Include="user\user\user_control.cpp" />
-    <ClCompile Include="user\user\user_control_bar.cpp" />
-    <ClCompile Include="user\user\user_control_event.cpp" />
-    <ClCompile Include="user\user\user_document.cpp" />
-    <ClCompile Include="user\user\user_edit_plain_text.cpp" />
-    <ClCompile Include="user\user\user_elemental.cpp" />
-    <ClCompile Include="user\user\user_form_interface.cpp" />
-    <ClCompile Include="user\user\user_frame_window.cpp" />
-    <ClCompile Include="user\user\user_impact.cpp" />
-    <ClCompile Include="user\user\user_impact_system.cpp" />
-    <ClCompile Include="user\user\user_impact_update_hint.cpp" />
-    <ClCompile Include="user\user\user_interaction.cpp" />
-    <ClCompile Include="user\user\user_interaction_base.cpp" />
-    <ClCompile Include="user\user\user_interaction_child.cpp" />
-    <ClCompile Include="user\user\user_interaction_impl.cpp" />
-    <ClCompile Include="user\user\user_interaction_impl_base.cpp" />
-    <ClCompile Include="user\user\user_job.cpp" />
-    <ClCompile Include="user\user\user_keyboard.cpp" />
-    <ClCompile Include="user\user\user_keyboard_layout.cpp" />
-    <ClCompile Include="user\user\user_menu_base.cpp" />
-    <ClCompile Include="user\user\user_menu_base_item.cpp" />
-    <ClCompile Include="user\user\user_message.cpp" />
-    <ClCompile Include="user\user\user_place_holder.cpp" />
-    <ClCompile Include="user\user\user_place_holder_container.cpp" />
-    <ClCompile Include="user\user\user_plain_text_data.cpp" />
-    <ClCompile Include="user\user\user_print_job.cpp" />
-    <ClCompile Include="user\user\user_schema.cpp" />
-    <ClCompile Include="user\user\user_schema_layered_frame.cpp" />
-    <ClCompile Include="user\user\user_schema_simple_impl.cpp" />
-    <ClCompile Include="user\user\user_scroll_bar.cpp" />
-    <ClCompile Include="user\user\user_scroll_control.cpp" />
-    <ClCompile Include="user\user\user_scroll_view.cpp" />
-    <ClCompile Include="user\user\user_server.cpp" />
-    <ClCompile Include="user\user\user_user.cpp" />
-    <ClCompile Include="user\user\user_view_container.cpp" />
-    <ClCompile Include="user\user\user_view_creator.cpp" />
-    <ClCompile Include="user\user\user_wait_cursor.cpp" />
-    <ClCompile Include="user\user\user_windowing.cpp" />
-    <ClCompile Include="user\user\user_window_draw.cpp" />
-    <ClCompile Include="user\user\user_window_map.cpp" />
-    <ClCompile Include="user\user\user_window_util.cpp" />
     <ClCompile Include="user\_user.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -243,7 +184,6 @@
     <ClInclude Include="database\database\database_user_interaction.h" />
     <ClInclude Include="filesystem\file\file_edit_buffer.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="framework_c.h" />
     <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="user\fontopus\fontopus.h" />
@@ -321,9 +261,6 @@
     <None Include="base\base\base.inl" />
     <None Include="base\base\base_system_xml.inl" />
     <None Include="user\user.inl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="base.rc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\aura\nord_aura.vcxproj">
