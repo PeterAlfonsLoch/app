@@ -80,6 +80,7 @@ typedef struct
 	RC2_KEY ks;	/* key schedule */
 	} EVP_RC2_KEY;
 
+#undef data
 #define data(ctx)	((EVP_RC2_KEY *)(ctx)->cipher_data)
 
 IMPLEMENT_BLOCK_CIPHER(rc2, ks, RC2, EVP_RC2_KEY, NID_rc2,

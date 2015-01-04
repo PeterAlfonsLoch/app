@@ -74,6 +74,7 @@ typedef struct
     RC4_KEY ks;	/* working key */
     } EVP_RC4_KEY;
 
+#undef data
 #define data(ctx) ((EVP_RC4_KEY *)(ctx)->cipher_data)
 
 static int rc4_init_key(EVP_CIPHER_CTX *ctx, const unsigned char *key,

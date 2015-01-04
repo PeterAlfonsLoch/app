@@ -79,6 +79,7 @@ typedef struct
     DES_cblock outw;
     } DESX_CBC_KEY;
 
+#undef data
 #define data(ctx) ((DESX_CBC_KEY *)(ctx)->cipher_data)
 
 static const EVP_CIPHER d_xcbc_cipher=

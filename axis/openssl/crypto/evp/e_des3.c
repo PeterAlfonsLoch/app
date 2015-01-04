@@ -82,6 +82,7 @@ typedef struct
     DES_key_schedule ks3;/* key schedule (for ede3) */
     } DES_EDE_KEY;
 
+#undef data
 #define data(ctx) ((DES_EDE_KEY *)(ctx)->cipher_data)
 
 /* Because of various casts and different args can't use IMPLEMENT_BLOCK_CIPHER */

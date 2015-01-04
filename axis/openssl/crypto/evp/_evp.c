@@ -39,17 +39,86 @@
 #include "e_rc5.c"
 #include "e_seed.c"
 #include "e_xcbc_d.c"
+#define init init_dss
+#define update update_dss
+#define final final_dss
 #include "m_dss.c"
+#undef init
+#undef update
+#undef final
+#define init init_dss1
+#define update update_dss1
+#define final final_dss1
 #include "m_dss1.c"
+#undef init
+#undef update
+#undef final
+#define init init_ecdsa
+#define update update_ecdsa
+#define final final_ecdsa
 #include "m_ecdsa.c"
+#undef init
+#undef update
+#undef final
+#define init init_md2
+#define update update_md2
+#define final final_md2
 #include "m_md2.c"
+#undef init
+#undef update
+#undef final
+#define init init_md4
+#define update update_md4
+#define final final_md4
 #include "m_md4.c"
+#undef init
+#undef update
+#undef final
+#define init init_md5
+#define update update_md5
+#define final final_md5
 #include "m_md5.c"
+#undef init
+#undef update
+#undef final
+#define init init_mdc2
+#define update update_mdc2
+#define final final_mdc2
 #include "m_mdc2.c"
+#undef init
+#undef update
+#undef final
+#define init init_null
+#define update update_null
+#define final final_null
 #include "m_null.c"
+#undef init
+#undef update
+#undef final
+#define init init_ripemd2
+#define update update_ripemd2
+#define final final_ripemd2
 #include "m_ripemd.c"
+#undef init
+#undef update
+#undef final
+#define init init_sha
+#define update update_sha
+#define final final_sha
 #include "m_sha.c"
+#undef init
+#undef update
+#undef final
+#define init init_sha1
+#define update update_sha1
+#define final final_sha1
 #include "m_sha1.c"
+#undef init
+#undef update
+#undef final
+//#define init init_sigver
+//#define update update_sigver
+//#define final final_sigver
 #include "m_sigver.c"
 #include "m_wp.c"
 #include "names.c"
