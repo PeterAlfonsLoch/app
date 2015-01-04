@@ -92,7 +92,7 @@ synch_lock ml(&cairo_mutex());
 
       m_info.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
       m_info.bmiHeader.biWidth         = width;
-      m_info.bmiHeader.biHeight        =- height;
+      m_info.bmiHeader.biHeight        = -height;
       m_info.bmiHeader.biPlanes        = 1;
       m_info.bmiHeader.biBitCount      = 32;
       m_info.bmiHeader.biCompression   = BI_RGB;

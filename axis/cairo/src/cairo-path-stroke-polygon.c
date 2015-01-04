@@ -48,6 +48,10 @@
 #include "cairo-path-fixed-private.h"
 #include "cairo-slope-private.h"
 
+#ifdef DEBUG
+#undef DEBUG
+#endif
+
 #define DEBUG 0
 
 struct stroker {
