@@ -120,7 +120,7 @@ namespace user
 
 
       Agile<Windows::UI::Core::CoreWindow> window;
-      ::axis::system_window ^ pwindow;
+      ::base::system_window ^ pwindow;
 
 
    };
