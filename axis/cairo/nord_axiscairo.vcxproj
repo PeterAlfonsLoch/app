@@ -63,6 +63,7 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(ProjectDir)../../..;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);src;$(ProjectDir)../../include;$(ProjectDir)../pixman/pixman;$(ProjectDir)../freetype/include;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>__STDC__;HAVE_CONFIG_H;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>-Wno-typedef-redefinition -Wno-enum-conversion -Wno-unused-function -Wno-unused-variable -Wno-tautological-constant-out-of-range-compare %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -90,10 +91,6 @@
     <ClCompile Include="src\cairo-clip-surface.c" />
     <ClCompile Include="src\cairo-clip-tor-scan-converter.c" />
     <ClCompile Include="src\cairo-clip.c" />
-    <ClCompile Include="src\cairo-cogl-context.c" />
-    <ClCompile Include="src\cairo-cogl-gradient.c" />
-    <ClCompile Include="src\cairo-cogl-surface.c" />
-    <ClCompile Include="src\cairo-cogl-utils.c" />
     <ClCompile Include="src\cairo-color.c" />
     <ClCompile Include="src\cairo-composite-rectangles.c" />
     <ClCompile Include="src\cairo-compositor.c" />
@@ -103,8 +100,6 @@
     <ClCompile Include="src\cairo-default-context.c" />
     <ClCompile Include="src\cairo-deflate-stream.c" />
     <ClCompile Include="src\cairo-device.c" />
-    <ClCompile Include="src\cairo-directfb-surface.c" />
-    <ClCompile Include="src\cairo-egl-context.c" />
     <ClCompile Include="src\cairo-fallback-compositor.c" />
     <ClCompile Include="src\cairo-fixed.c" />
     <ClCompile Include="src\cairo-font-face-twin-data.c" />
@@ -114,20 +109,6 @@
     <ClCompile Include="src\cairo-freed-pool.c" />
     <ClCompile Include="src\cairo-freelist.c" />
     <ClCompile Include="src\cairo-ft-font.c" />
-    <ClCompile Include="src\cairo-gl-composite.c" />
-    <ClCompile Include="src\cairo-gl-device.c" />
-    <ClCompile Include="src\cairo-gl-dispatch.c" />
-    <ClCompile Include="src\cairo-gl-glyphs.c" />
-    <ClCompile Include="src\cairo-gl-gradient.c" />
-    <ClCompile Include="src\cairo-gl-info.c" />
-    <ClCompile Include="src\cairo-gl-msaa-compositor.c" />
-    <ClCompile Include="src\cairo-gl-operand.c" />
-    <ClCompile Include="src\cairo-gl-shaders.c" />
-    <ClCompile Include="src\cairo-gl-source.c" />
-    <ClCompile Include="src\cairo-gl-spans-compositor.c" />
-    <ClCompile Include="src\cairo-gl-surface.c" />
-    <ClCompile Include="src\cairo-gl-traps-compositor.c" />
-    <ClCompile Include="src\cairo-glx-context.c" />
     <ClCompile Include="src\cairo-gstate.c" />
     <ClCompile Include="src\cairo-hash.c" />
     <ClCompile Include="src\cairo-hull.c" />
@@ -145,7 +126,6 @@
     <ClCompile Include="src\cairo-mutex.c" />
     <ClCompile Include="src\cairo-no-compositor.c" />
     <ClCompile Include="src\cairo-observer.c" />
-    <ClCompile Include="src\cairo-os2-surface.c" />
     <ClCompile Include="src\cairo-output-stream.c" />
     <ClCompile Include="src\cairo-paginated-surface.c" />
     <ClCompile Include="src\cairo-path-bounds.c" />
@@ -238,14 +218,6 @@
     <ClCompile Include="src\test-compositor-surface.c" />
     <ClCompile Include="src\test-null-compositor-surface.c" />
     <ClCompile Include="src\test-paginated-surface.c" />
-    <ClCompile Include="src\win32\cairo-win32-debug.c" />
-    <ClCompile Include="src\win32\cairo-win32-device.c" />
-    <ClCompile Include="src\win32\cairo-win32-display-surface.c" />
-    <ClCompile Include="src\win32\cairo-win32-font.c" />
-    <ClCompile Include="src\win32\cairo-win32-gdi-compositor.c" />
-    <ClCompile Include="src\win32\cairo-win32-printing-surface.c" />
-    <ClCompile Include="src\win32\cairo-win32-surface.c" />
-    <ClCompile Include="src\win32\cairo-win32-system.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />

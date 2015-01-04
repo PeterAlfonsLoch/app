@@ -253,7 +253,7 @@ typedef unsigned int JDIMENSION;
 #ifdef _WIN32
 #define EXTERN(type)		__declspec(dllexport) type
 #else
-#define EXTERN(type)		CLASS_DECL_EXPORT type
+#define EXTERN(type)		type
 #endif
 #else
 #define EXTERN(type)		extern type

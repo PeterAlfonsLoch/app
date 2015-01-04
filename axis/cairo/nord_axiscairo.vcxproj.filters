@@ -64,18 +64,6 @@
     <ClCompile Include="src\cairo-clip.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cairo-cogl-context.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-cogl-gradient.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-cogl-surface.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-cogl-utils.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cairo-color.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -101,12 +89,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cairo-device.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-directfb-surface.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-egl-context.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cairo-cairoerror.c">
@@ -137,48 +119,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cairo-ft-font.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-composite.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-device.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-dispatch.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-glyphs.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-gradient.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-info.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-msaa-compositor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-operand.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-shaders.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-source.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-spans-compositor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-surface.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-gl-traps-compositor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-glx-context.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cairo-gstate.c">
@@ -230,9 +170,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cairo-observer.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-os2-surface.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cairo-output-stream.c">
@@ -510,30 +447,6 @@
     </ClCompile>
     <ClCompile Include="src\test-paginated-surface.c">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-debug.c">
-      <Filter>Source Files\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-device.c">
-      <Filter>Source Files\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-display-surface.c">
-      <Filter>Source Files\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-font.c">
-      <Filter>Source Files\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-gdi-compositor.c">
-      <Filter>Source Files\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-printing-surface.c">
-      <Filter>Source Files\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-surface.c">
-      <Filter>Source Files\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-system.c">
-      <Filter>Source Files\win32</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -961,9 +874,6 @@
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{5db996a6-7123-4dea-a603-2cc5936f7271}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\win32">
-      <UniqueIdentifier>{30c6479a-b097-43ed-babc-f6d00cc1359d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\android">
       <UniqueIdentifier>{c29914ba-0f96-46b5-8aa9-26e916cdea03}</UniqueIdentifier>

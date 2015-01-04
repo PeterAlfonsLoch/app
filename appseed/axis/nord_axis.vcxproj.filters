@@ -4,21 +4,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="net\http\webserver\webserver_http_cookie.cpp">
-      <Filter>Source Files\net\http\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\webserver\webserver_http_form.cpp">
-      <Filter>Source Files\net\http\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\webserver\webserver_http_request.cpp">
-      <Filter>Source Files\net\http\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\webserver\webserver_http_response.cpp">
-      <Filter>Source Files\net\http\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\webserver\webserver_http_transaction.cpp">
-      <Filter>Source Files\net\http\webserver</Filter>
-    </ClCompile>
     <ClCompile Include="programming\javascript\javascript.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>

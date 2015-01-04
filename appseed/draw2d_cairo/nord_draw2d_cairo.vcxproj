@@ -109,6 +109,9 @@
     <None Include="draw2d_cairo.def" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\axis\cairo\nord_axiscairo.vcxproj">
+      <Project>{0d31523b-0c88-474f-a5c8-4091bb3d10ac}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\nord_aura.vcxproj">
       <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
     </ProjectReference>

@@ -68,7 +68,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\FreeImage\PluginJPEG.cpp" />
+    <ClCompile Include="Source\FreeImage\PluginJPEG.cpp">
+      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Enabled</ExceptionHandling>
+      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</RuntimeTypeInfo>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="Source\LibJPEG\cdjpeg.c" />
     <ClCompile Include="Source\LibJPEG\jaricom.c" />
     <ClCompile Include="Source\LibJPEG\jcapimin.c" />
@@ -148,6 +152,9 @@
     <None Include="axisjpeg.def" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\appseed\aura\nord_aura.vcxproj">
+      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\freeimage\nord_axisfreeimage.vcxproj">
       <Project>{3f63b8ba-14b8-4147-a78a-0894b7207e37}</Project>
     </ProjectReference>
