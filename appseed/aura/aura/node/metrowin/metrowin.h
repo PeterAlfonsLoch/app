@@ -66,8 +66,8 @@ CLASS_DECL_AURA void __try_cleanup();
 #define WIN_THREAD(pthread) (dynamic_cast < ::metrowin::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
-CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, signal_details * pobj);
-CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+//CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, signal_details * pobj);
+//CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
 //CLASS_DECL_AURA void __cdecl __pre_translate_message(signal_details * pobj);
 

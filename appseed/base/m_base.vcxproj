@@ -368,6 +368,7 @@
     <ClCompile Include="base\os\metrowin\metrowin_multithreading.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_process.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_simple_app.cpp" />
+    <ClCompile Include="base\os\metrowin\metrowin_trace_message.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_user.cpp" />
     <ClCompile Include="base\os\metrowin\metrowin_windowing.cpp" />
     <ClCompile Include="database\database\database_user_interaction.cpp" />

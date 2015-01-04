@@ -883,6 +883,9 @@
     <ClCompile Include="base\node\windows\windows_message_queue.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
+    <ClCompile Include="base\os\metrowin\metrowin_trace_message.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="base.rc">
