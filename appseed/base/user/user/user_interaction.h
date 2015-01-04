@@ -113,7 +113,7 @@ namespace user
 
 
 #if defined(METROWIN) || defined(APPLE_IOS)
-      virtual bool initialize(native_window_initialize * pinitialize);
+      virtual bool initialize(::user::native_window_initialize * pinitialize);
 #endif
 
 

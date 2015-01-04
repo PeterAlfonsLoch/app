@@ -292,6 +292,7 @@
     <ClCompile Include="draw2d_direct2d_preview_dc.cpp" />
     <ClCompile Include="draw2d_direct2d_printer.cpp" />
     <ClCompile Include="draw2d_direct2d_region.cpp" />
+    <ClCompile Include="draw2d_direct2d_win_tls.cpp" />
     <ClCompile Include="framework\framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
     </ClCompile>
@@ -305,12 +306,6 @@
     </ProjectReference>
     <ProjectReference Include="..\axis\m_axis.vcxproj">
       <Project>{3bae8362-f135-4513-9163-58532baba44a}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\base\m_base.vcxproj">
-      <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\core\m_core.vcxproj">
-      <Project>{420d7aeb-cfca-45de-bb6e-95055df21987}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

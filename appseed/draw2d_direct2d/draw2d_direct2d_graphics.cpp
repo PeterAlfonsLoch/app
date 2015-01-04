@@ -173,6 +173,8 @@ namespace draw2d_direct2d
 
 
 
+      //Microsoft::WRL::ComPtr<ID2D1RenderTarget> prendertarget = pgraphics->get_typed_os_data < ID2D1RenderTarget >(::draw2d_direct2d::graphics::data_render_target);
+
       Microsoft::WRL::ComPtr<ID2D1RenderTarget> prendertarget;
 
       if(pgraphics == NULL || pgraphics->get_os_data() == NULL)
@@ -183,7 +185,7 @@ namespace draw2d_direct2d
          }
          else
          {
-            System.m_pdevicecontext->QueryInterface(IID_ID2D1DeviceContext, (void **) &prendertarget);
+            System.m_pdevicecontext->QueryInterface(IID_ID2D1RenderTarget,(void **)&prendertarget);
          }
       }
       else

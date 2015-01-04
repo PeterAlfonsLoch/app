@@ -1,11 +1,14 @@
 #include "framework.h"
 
-namespace axis
+
+namespace base
 {
+
 
    simple_app::simple_app():
       ::aura::system(this),
-      ::axis::system(this)
+      ::axis::system(this),
+      ::base::system(this)
    {
 
       m_iReturnCode = 0;
@@ -177,7 +180,7 @@ namespace axis
    }
 
 
-} // namespace axis
+} // namespace base
 
 
 

@@ -27,6 +27,50 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
       ::OutputDebugStringW(L"::core:: draw2d_direct2d.dll :: terminating!\n");
 
    }
+   else if(dwReason == DLL_THREAD_DETACH)
+   {
+
+      try
+      {
+
+         IDWriteFactory * pfactory = TlsGetWriteFactory(false);
+
+         if(pfactory != NULL)
+         {
+
+            pfactory->Release();
+
+         }
+
+         try
+         {
+
+            ID2D1Factory1 * pfactory = GetD2D1Factory1(false);
+
+            if(pfactory != NULL)
+            {
+
+               pfactory->Release();
+
+            }
+
+         }
+         catch(...)
+         {
+         }
+
+
+
+      }
+      catch(...)
+      {
+      }
+
+
+
+      ::OutputDebugStringW(L"::core:: draw2d_direct2d.dll :: terminating!\n");
+
+   }
 
    return 1;   // ok
 

@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   class CLASS_DECL_BASE sip_event :
+   class CLASS_DECL_AXIS sip_event :
       virtual public base_object
    {
    public:

@@ -16,7 +16,7 @@
 
 
 
-#ifndef WINDOWS
+#ifndef WINDOWSEX
 
 #include "windows/windows.h"
 

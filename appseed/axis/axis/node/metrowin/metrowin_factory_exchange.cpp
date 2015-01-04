@@ -5,7 +5,7 @@
 namespace metrowin
 {
 
-   namespace base
+   namespace axis
    {
 
       factory_exchange::factory_exchange(::aura::application * papp):
@@ -35,10 +35,10 @@ namespace metrowin
 
 
 
-void __node_base_factory_exchange(::aura::application * papp)
+void __node_axis_factory_exchange(::aura::application * papp)
 {
 
-   ::metrowin::base::factory_exchange factoryexchange(papp);
+   ::metrowin::axis::factory_exchange factoryexchange(papp);
 
 }
 

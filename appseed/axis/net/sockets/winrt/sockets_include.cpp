@@ -1,8 +1,8 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 // only to be included in win32 projects
-CLASS_DECL_BASE const char *StrError(int x)
+CLASS_DECL_AXIS const char *StrError(int x)
 {
 static   char tmp[100];
    switch (x)

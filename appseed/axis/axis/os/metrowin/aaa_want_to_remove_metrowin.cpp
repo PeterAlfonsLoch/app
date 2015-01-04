@@ -187,108 +187,108 @@ ulong_ptr                        g_gdiplusToken             = NULL;
 ulong_ptr                        g_gdiplusHookToken         = NULL;
 */
 
-int_bool main_initialize()
-{
-
-   //Sleep(15 * 1000);
-
-/*   g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
-   g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
-   g_gdiplusToken             = NULL;
-   g_gdiplusHookToken         = NULL;
-
-   //MessageBox(NULL, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
-
-   g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
-
-   // Initialize GDI+.
-   Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken, g_pgdiplusStartupInput, g_pgdiplusStartupOutput);
-
-   if(statusStartup != Gdiplus::Ok)
-   {
-      
-      MessageBox(NULL, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
-      
-      return FALSE;
-
-   }
-
-   statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
-   
-
-   if(statusStartup != Gdiplus::Ok)
-   {
-      
-      MessageBox(NULL, "Gdiplus Failed to Hook. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
-      
-      return FALSE;
-
-   }
-   */
-
-   t_posthread = new os_thread(NULL, NULL);
-
-   t_posthread->m_bRun = true;
-
-   currentThread = new hthread();
-
-
-   return TRUE;
-
-} 
-
-
-int_bool main_finalize()
-{
-
-   /*g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
-
-   Gdiplus::GdiplusShutdown(g_gdiplusToken);
-   */
-
-   return TRUE;
-
-}
+//int_bool main_initialize()
+//{
+//
+//   //Sleep(15 * 1000);
+//
+///*   g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
+//   g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
+//   g_gdiplusToken             = NULL;
+//   g_gdiplusHookToken         = NULL;
+//
+//   //MessageBox(NULL, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+//
+//   g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
+//
+//   // Initialize GDI+.
+//   Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken, g_pgdiplusStartupInput, g_pgdiplusStartupOutput);
+//
+//   if(statusStartup != Gdiplus::Ok)
+//   {
+//      
+//      MessageBox(NULL, "Gdiplus Failed to Startup. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+//      
+//      return FALSE;
+//
+//   }
+//
+//   statusStartup = g_pgdiplusStartupOutput->NotificationHook(&g_gdiplusHookToken);
+//   
+//
+//   if(statusStartup != Gdiplus::Ok)
+//   {
+//      
+//      MessageBox(NULL, "Gdiplus Failed to Hook. ca2 cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+//      
+//      return FALSE;
+//
+//   }
+//   */
+//
+//   t_posthread = new os_thread(NULL, NULL);
+//
+//   t_posthread->m_bRun = true;
+//
+//   currentThread = new hthread();
+//
+//
+//   return TRUE;
+//
+//} 
 
 
-int g_iMouse = -1;
+//int_bool main_finalize()
+//{
+//
+//   /*g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
+//
+//   Gdiplus::GdiplusShutdown(g_gdiplusToken);
+//   */
+//
+//   return TRUE;
+//
+//}
 
 
-WINBOOL GetCursorPos(LPPOINT lppoint)
-{
-   
-   lppoint->x = 0;
-
-   lppoint->y = 0;
-
-   if(g_iMouse < 0)
-      return FALSE;
-
-   Windows::Foundation::Collections::IVectorView < Windows::Devices::Input::PointerDevice ^ > ^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
-
-   for(unsigned int ui = 0; ui < deva->Size; ui++)
-   {
-
-      Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(ui);
-
-      if(dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
-      {
-
-          Windows::UI::Input::PointerPoint ^ pointerPoint = Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
-
-          lppoint->x = (LONG) pointerPoint->RawPosition.X;
-
-          lppoint->y = (LONG) pointerPoint->RawPosition.Y;
-
-          return TRUE; 
-
-      }
-
-   }
-
-   return FALSE;
-
-}
+//int g_iMouse = -1;
+//
+//
+//WINBOOL GetCursorPos(LPPOINT lppoint)
+//{
+//   
+//   lppoint->x = 0;
+//
+//   lppoint->y = 0;
+//
+//   if(g_iMouse < 0)
+//      return FALSE;
+//
+//   Windows::Foundation::Collections::IVectorView < Windows::Devices::Input::PointerDevice ^ > ^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
+//
+//   for(unsigned int ui = 0; ui < deva->Size; ui++)
+//   {
+//
+//      Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(ui);
+//
+//      if(dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
+//      {
+//
+//          Windows::UI::Input::PointerPoint ^ pointerPoint = Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
+//
+//          lppoint->x = (LONG) pointerPoint->RawPosition.X;
+//
+//          lppoint->y = (LONG) pointerPoint->RawPosition.Y;
+//
+//          return TRUE; 
+//
+//      }
+//
+//   }
+//
+//   return FALSE;
+//
+//}
 
 
 string normalize_path(const char * lpcszPath)
@@ -420,7 +420,7 @@ DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_BASE
+CLASS_DECL_AXIS
 HANDLE
 WINAPI
 CreateMutex(
@@ -432,13 +432,13 @@ CreateMutex(
    return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
 }
 
-CLASS_DECL_BASE char* getenv (const char* name)
+CLASS_DECL_AXIS char* getenv (const char* name)
 {
    return "";
 }
 END_EXTERN_C
 
-CLASS_DECL_BASE
+CLASS_DECL_AXIS
 HANDLE
 WINAPI
 CreateMutexW(

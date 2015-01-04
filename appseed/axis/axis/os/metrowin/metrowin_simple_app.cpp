@@ -1,14 +1,14 @@
 #include "framework.h"
+#include "metrowin.h"
 
 
-namespace base
+namespace axis
 {
 
 
    simple_app::simple_app():
       ::aura::system(this),
-      ::axis::system(this),
-      ::base::system(this)
+      ::axis::system(this)
    {
 
       m_iReturnCode = 0;
@@ -180,7 +180,7 @@ namespace base
    }
 
 
-} // namespace base
+} // namespace axis
 
 
 

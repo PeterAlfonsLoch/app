@@ -97,6 +97,8 @@ namespace draw2d_direct2d
 
       D2D1_BITMAP_PROPERTIES1 props;
 
+      ZERO(props);
+
 //#ifdef WINDOWSEX
   //    props.pixelFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
     //  props.pixelFormat.format = DXGI_FORMAT_UNKNOWN;

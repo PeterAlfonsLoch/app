@@ -2843,7 +2843,7 @@ namespace draw2d_direct2d
 
    }*/
 
-#if defined(WINDOWSEX)
+//#if defined(WINDOWSEX)
 
 
    bool dib::update_window(::aura::draw_interface * pwnd, signal_details * pobj)
@@ -2953,7 +2953,7 @@ namespace draw2d_direct2d
    */
 
 
-#endif
+//#endif
 
 
 } // namespace draw2d_direct2d

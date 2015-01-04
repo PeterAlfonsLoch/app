@@ -484,39 +484,39 @@ void WINAPI tls_shutdown()
    if (threadData)
    {
 
-      try
-      {
+      //try
+      //{
 
-         IDWriteFactory * pfactory = TlsGetWriteFactory();
+      //   IDWriteFactory * pfactory = TlsGetWriteFactory();
 
-         if(pfactory != NULL)
-         {
+      //   if(pfactory != NULL)
+      //   {
 
-            pfactory->Release();
+      //      pfactory->Release();
 
-         }
+      //   }
 
-      }
-      catch(...)
-      {
-      }
+      //}
+      //catch(...)
+      //{
+      //}
 
-      try
-      {
+      //try
+      //{
 
-         ID2D1Factory1 * pfactory = GetD2D1Factory1();
+      //   ID2D1Factory1 * pfactory = GetD2D1Factory1();
 
-         if(pfactory != NULL)
-         {
+      //   if(pfactory != NULL)
+      //   {
 
-            //pfactory->Release();
+      //      //pfactory->Release();
 
-         }
+      //   }
 
-      }
-      catch(...)
-      {
-      }
+      //}
+      //catch(...)
+      //{
+      //}
 
 
 

@@ -1,5 +1,7 @@
 #include "framework.h"
+#include "base/user/user.h"
 #include "metrowin.h"
+#include "app/appseed/draw2d_direct2d/draw2d_direct2d.h"
 
 using namespace Windows::UI::Core;
 using namespace Windows::Foundation;
@@ -20,8 +22,10 @@ namespace metrowin
       m_dpi(-1.0f),
       m_mutexDc(papp)
    {
-
+      m_dpiIni = 1.0f;
+      m_dpi = -999.0f;
       m_bInitialized = false;
+      m_bInit = false;
    }
 
    // Initialize the DirectX resources required to run.
@@ -30,12 +34,33 @@ namespace metrowin
 
       m_window = window;
 
+      m_dpiIni = dpi;
+
       CreateDeviceIndependentResources();
-      CreateDeviceResources();
-      SetDpi(dpi);
-      m_bInitialized = true;
+      //CreateDeviceResources();
+      //SetDpi(dpi);
+      m_bInit = true;
    }
 
+
+   bool directx_base::defer_init()
+   {
+
+      if(m_bInitialized)
+         return true;
+
+      if(!m_bInit)
+         return false;
+
+      CreateDeviceResources();
+
+      SetDpi(m_dpiIni);
+
+      m_bInitialized = true;
+
+      return true;
+
+   }
    // Recreate all device resources and set them back to the current state.
    void directx_base::HandleDeviceLost()
    {
@@ -177,81 +202,95 @@ namespace metrowin
    {
 
 
-      // This flag adds support for surfaces with a different color channel ordering
-      // than the API default. It is required for compatibility with Direct2D.
-      UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
-      ComPtr<IDXGIDevice> dxgiDevice;
+//      // This flag adds support for surfaces with a different color channel ordering
+//      // than the API default. It is required for compatibility with Direct2D.
+//      UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+//      ComPtr<IDXGIDevice> dxgiDevice;
+//
+//#if defined(_DEBUG)
+//      // If the project is in a debug build, enable debugging via SDK Layers with this flag.
+//      creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
+//#endif
+//
+//      // This array defines the set of DirectX hardware feature levels this app will support.
+//      // Note the ordering should be preserved.
+//      // Don't forget to declare your application's minimum required feature level in its
+//      // description.  All applications are assumed to support 9.1 unless otherwise stated.
+//      D3D_FEATURE_LEVEL featureLevels[] =
+//      {
+//         D3D_FEATURE_LEVEL_11_1,
+//         D3D_FEATURE_LEVEL_11_0,
+//         D3D_FEATURE_LEVEL_10_1,
+//         D3D_FEATURE_LEVEL_10_0,
+//         D3D_FEATURE_LEVEL_9_3,
+//         D3D_FEATURE_LEVEL_9_2,
+//         D3D_FEATURE_LEVEL_9_1
+//      };
+//
+//      // Create the Direct3D 11 API device object and a corresponding context.
+//      ComPtr<ID3D11Device> device;
+//      ComPtr<ID3D11DeviceContext> context;
+//      ::metrowin::throw_if_failed(
+//         D3D11CreateDevice(
+//         nullptr,                    // Specify nullptr to use the default adapter.
+//         D3D_DRIVER_TYPE_HARDWARE,
+//         0,
+//         creationFlags,              // Set debug and Direct2D compatibility flags.
+//         featureLevels,              // List of feature levels this app can support.
+//         ARRAYSIZE(featureLevels),
+//         D3D11_SDK_VERSION,          // Always set this to D3D11_SDK_VERSION for Metro style apps.
+//         &device,                    // Returns the Direct3D device created.
+//         &m_featureLevel,            // Returns feature level of device created.
+//         &context                    // Returns the device immediate context.
+//         )
+//         );
 
-#if defined(_DEBUG)
-      // If the project is in a debug build, enable debugging via SDK Layers with this flag.
-      creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
-#endif
 
-      // This array defines the set of DirectX hardware feature levels this app will support.
-      // Note the ordering should be preserved.
-      // Don't forget to declare your application's minimum required feature level in its
-      // description.  All applications are assumed to support 9.1 unless otherwise stated.
-      D3D_FEATURE_LEVEL featureLevels[] =
-      {
-         D3D_FEATURE_LEVEL_11_1,
-         D3D_FEATURE_LEVEL_11_0,
-         D3D_FEATURE_LEVEL_10_1,
-         D3D_FEATURE_LEVEL_10_0,
-         D3D_FEATURE_LEVEL_9_3,
-         D3D_FEATURE_LEVEL_9_2,
-         D3D_FEATURE_LEVEL_9_1
-      };
+      
 
-      // Create the Direct3D 11 API device object and a corresponding context.
-      ComPtr<ID3D11Device> device;
-      ComPtr<ID3D11DeviceContext> context;
-      ::metrowin::throw_if_failed(
-         D3D11CreateDevice(
-         nullptr,                    // Specify nullptr to use the default adapter.
-         D3D_DRIVER_TYPE_HARDWARE,
-         0,
-         creationFlags,              // Set debug and Direct2D compatibility flags.
-         featureLevels,              // List of feature levels this app can support.
-         ARRAYSIZE(featureLevels),
-         D3D11_SDK_VERSION,          // Always set this to D3D11_SDK_VERSION for Metro style apps.
-         &device,                    // Returns the Direct3D device created.
-         &m_featureLevel,            // Returns feature level of device created.
-         &context                    // Returns the device immediate context.
-         )
-         );
+//
+//      // Get the Direct3D 11.1 API device and context interfaces.
+//      ::metrowin::throw_if_failed(
+//         device.As(&m_d3dDevice)
+//         );
 
-      // Get the Direct3D 11.1 API device and context interfaces.
-      ::metrowin::throw_if_failed(
-         device.As(&m_d3dDevice)
-         );
+      m_d3dDevice = TlsGetD3D11Device1();
 
-      ::metrowin::throw_if_failed(
-         context.As(&m_d3dContext)
-         );
+      m_d3dContext = TlsGetD3D11DeviceContext1();
 
-      // Get the underlying DXGI device of the Direct3D device.
-      ::metrowin::throw_if_failed(
-         m_d3dDevice.As(&dxgiDevice)
-         );
+      //m_d2dDevice = TlsGetD3D11DeviceCo1();
 
+//
+//      ::metrowin::throw_if_failed(
+//         context.As(&m_d3dContext)
+//         );
+//
+//      // Get the underlying DXGI device of the Direct3D device.
+//      ::metrowin::throw_if_failed(
+//         m_d3dDevice.As(&dxgiDevice)
+//         );
+//
       // Create the Direct2D device object and a corresponding context.
-      ::metrowin::throw_if_failed(
-         GetD2D1Factory1()->CreateDevice(dxgiDevice.Get(), &m_d2dDevice)
-         );
+      //::metrowin::throw_if_failed(
+      //   GetD2D1Factory1()->CreateDevice(TlsGetDXGIDevice(),&m_d2dDevice)
+      //   );
 
-      ::metrowin::throw_if_failed(
-         m_d2dDevice->CreateDeviceContext(
-         D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
-         //D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS,
-         &m_d2dContext
-         )
-         );
+      m_d2dDevice = TlsGetD2D1Device();
+//
+      //::metrowin::throw_if_failed(
+      //   m_d2dDevice->CreateDeviceContext(
+      //   D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
+      //   //D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS,
+      //   &m_d2dContext
+      //   )
+      //   );
 
-
-      ID2D1DeviceContext * pdevicecontext = m_d2dContext.Get();
-
-      System.m_pdevicecontext    = pdevicecontext;
-      System.m_pmutexDc          = &m_mutexDc;
+      m_d2dContext = TlsGetD2D1DeviceContext();
+//
+//      ID2D1DeviceContext * pdevicecontext = m_d2dContext.Get();
+//
+//      System.m_pdevicecontext    = pdevicecontext;
+//      System.m_pmutexDc          = &m_mutexDc;
 
 
 
@@ -654,7 +693,7 @@ namespace metrowin
 
       synch_lock sl(&draw2d_direct2_mutex());
 
-      if(!m_bInitialized)
+      if(!defer_init())
          return;
 
       // The application may optionally specify "dirty" or "scroll" rects to improve efficiency
@@ -748,7 +787,7 @@ namespace metrowin
    void directx_base::Render(::user::interaction_ptra & uiptra)
    {
 
-      if(!m_bInitialized)
+      if(!defer_init())
          return;
 
       m_d2dContext->BeginDraw();

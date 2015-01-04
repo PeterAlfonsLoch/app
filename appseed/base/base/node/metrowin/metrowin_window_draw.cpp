@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "base/user/user.h"
 #include "metrowin.h"
 
 class keep_event_reset

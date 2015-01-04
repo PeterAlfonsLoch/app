@@ -1,4 +1,5 @@
 #include "framework.h"
+//#include "base/os/metrowin/metrowin.h"
 
 
 namespace draw2d_direct2d
@@ -54,6 +55,23 @@ namespace draw2d_direct2d
 
          stretch = DWRITE_FONT_STRETCH_NORMAL;
 
+         float fFontSize;
+
+         if(m_eunitFontSize == ::draw2d::unit_point)
+         {
+            
+            fFontSize = point_dpi(m_dFontSize);
+
+         }
+         else
+         {
+
+            fFontSize = dpiy(m_dFontSize);
+
+         }
+
+         fFontSize *= pgraphics->m_dFontFactor;
+
          HRESULT hr = pfactory->CreateTextFormat(
             //wstring(lplf->lfFaceName),
             wstring(m_strFontFamilyName),
@@ -62,7 +80,7 @@ namespace draw2d_direct2d
             (DWRITE_FONT_WEIGHT) m_iFontWeight ,
             style,
             stretch,
-            (float) ((m_eunitFontSize == ::draw2d::unit_point ? point_dpi((float) m_dFontSize) : dpiy((float) m_dFontSize)) * pgraphics->m_dFontFactor),
+            fFontSize,
             L"",
             &((font *)  this)->m_pformat);
 

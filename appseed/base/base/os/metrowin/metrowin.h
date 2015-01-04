@@ -3,14 +3,14 @@
 
 #ifdef __cplusplus
 
-//CLASS_DECL_AXIS string normalize_path(const char * lpcszPath);
+//CLASS_DECL_BASE string normalize_path(const char * lpcszPath);
 
 
 //string key_to_char(WPARAM wparam,LPARAM lparam);
 
 #endif
 
-extern CLASS_DECL_AXIS int g_iMouse;
+extern CLASS_DECL_BASE int g_iMouse;
 
 #define GW_HWNDFIRST        0
 #define GW_HWNDLAST         1
@@ -26,25 +26,26 @@ extern CLASS_DECL_AXIS int g_iMouse;
 #endif
 
 
-//CLASS_DECL_AURA bool __cdecl __is_idle_message(signal_details * pobj);
-//CLASS_DECL_AURA bool __cdecl __is_idle_message(MESSAGE * pMsg);
+//CLASS_DECL_BASE bool __cdecl __is_idle_message(signal_details * pobj);
+//CLASS_DECL_BASE bool __cdecl __is_idle_message(MESSAGE * pMsg);
 
 
 
 
-//CLASS_DECL_AXIS int WINAPI GetSystemMetrics(int i);
+//CLASS_DECL_BASE int WINAPI GetSystemMetrics(int i);
 
-CLASS_DECL_AXIS oswindow WINAPI GetFocus();
-CLASS_DECL_AXIS oswindow WINAPI SetFocus(oswindow oswindow);
+CLASS_DECL_BASE oswindow WINAPI GetFocus();
+CLASS_DECL_BASE oswindow WINAPI SetFocus(oswindow oswindow);
 
-CLASS_DECL_AXIS oswindow WINAPI GetCapture();
-CLASS_DECL_AXIS oswindow WINAPI SetCapture(oswindow oswindow);
-CLASS_DECL_AXIS oswindow WINAPI ReleaseCapture();
-
-
-
-
-CLASS_DECL_AXIS int_bool IsWindow(oswindow oswindow);
+CLASS_DECL_BASE oswindow WINAPI GetCapture();
+CLASS_DECL_BASE oswindow WINAPI SetCapture(oswindow oswindow);
+CLASS_DECL_BASE oswindow WINAPI ReleaseCapture();
 
 
 
+
+CLASS_DECL_BASE int_bool IsWindow(oswindow oswindow);
+
+
+
+#include "metrowin_gdi_winrt.h"

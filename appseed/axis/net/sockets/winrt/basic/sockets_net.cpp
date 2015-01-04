@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 #if defined(LINUX) || defined(MACOS)
 #if defined(MACOS)
@@ -6,9 +6,9 @@
 #define	NI_MAXSERV	32
 #endif
 #define __USE_MISC
-#include <ctype.h>
-#include <sys/socket.h>
-#include <netdb.h>
+//#include <ctype.h>
+//#include <sys/socket.h>
+//#include <netdb.h>
 #endif
 
 
@@ -392,7 +392,7 @@ namespace sockets
       if(!net::isipv6(str))
          return false;
 
-      from_string(&sa, str);
+      from_string(sa, str);
 
       return true;
 
@@ -402,7 +402,7 @@ namespace sockets
    bool net::convert(string & str, const in_addr & addr, int ai_flags)
    {
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(to_string(&addr)), "0"));
+      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(to_string((in_addr &)addr)),"0"));
 
       if(data->Size <= 0)
          return false;
@@ -417,7 +417,7 @@ namespace sockets
    bool net::convert(string & str, const in6_addr & addr, int ai_flags)
    {
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(to_string(&addr)), "0"));
+      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(to_string((in6_addr &) addr) ),"0"));
 
       if(data->Size <= 0)
          return false;

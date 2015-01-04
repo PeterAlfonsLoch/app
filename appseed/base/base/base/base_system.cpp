@@ -105,6 +105,9 @@ namespace base
 
       ::draw2d::dib::static_initialize();
 
+//      draw2d_factory_exchange();
+
+
       m_pschemaLayeredFrame = new ::user::schema_layered_frame;
 
       #ifdef WINDOWSEX
@@ -872,7 +875,7 @@ namespace base
 
 
 
-   CLASS_DECL_BASE bool get_window_rect(::axis::system_window ^ pwindow,RECTD * lprect)
+   CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,RECTD * lprect)
    {
 
       Windows::Foundation::Rect rect =  pwindow->get_window_rect();
@@ -886,7 +889,7 @@ namespace base
    }
 
 
-   CLASS_DECL_BASE bool get_window_rect(::axis::system_window ^ pwindow,LPRECT lprect)
+   CLASS_DECL_BASE bool get_window_rect(::base::system_window ^ pwindow,LPRECT lprect)
    {
 
       rectd r;

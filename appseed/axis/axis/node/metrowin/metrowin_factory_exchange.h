@@ -5,11 +5,11 @@ namespace metrowin
 {
 
 
-   namespace base
+   namespace axis
    {
 
 
-      class CLASS_DECL_BASE factory_exchange:
+      class CLASS_DECL_AXIS factory_exchange:
          virtual public ::object
       {
       public:

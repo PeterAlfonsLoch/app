@@ -297,7 +297,7 @@ struct PendingThreadInfo
 };
 
 
-CLASS_DECL_AURA IDWriteFactory * TlsGetWriteFactory();
-
-CLASS_DECL_AURA ID2D1Factory1 * GetD2D1Factory1();
+//CLASS_DECL_AURA IDWriteFactory * TlsGetWriteFactory();
+//
+//CLASS_DECL_AURA ID2D1Factory1 * GetD2D1Factory1();
 

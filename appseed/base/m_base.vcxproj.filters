@@ -2,249 +2,162 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{0cc6cc5d-9b93-480d-8120-e05eef23fa72}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis">
-      <UniqueIdentifier>{2a3a590d-06e2-4ac6-a496-b242e145bba7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\axis">
-      <UniqueIdentifier>{0e40f41d-9f99-46db-aca9-5dbac0dcb2bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\os">
-      <UniqueIdentifier>{5ce0ad3f-18b2-4094-b5b3-c02ae804d914}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\node">
-      <UniqueIdentifier>{73dbb7d1-4fba-4d49-97db-1fb63421a498}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\message">
-      <UniqueIdentifier>{e428e3f6-2714-4260-9040-e59d49ea13c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\axis_policy">
-      <UniqueIdentifier>{c807d017-e641-4115-bf17-0b090b768d91}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\compress">
-      <UniqueIdentifier>{cf10b2ab-87d3-41ff-b706-71a2da8f49b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\compress\bsdiff">
-      <UniqueIdentifier>{8006b378-7670-4bd2-9666-4e939cce3bac}</UniqueIdentifier>
+      <UniqueIdentifier>{3b3ab7f4-19b1-49c8-b7a1-556b3528f79e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user">
-      <UniqueIdentifier>{b9d25ae2-b919-426d-8ec8-150d6b329d7b}</UniqueIdentifier>
+      <UniqueIdentifier>{20fbf140-891d-44d3-a7e6-bda6c38442d6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user\simple_ui">
-      <UniqueIdentifier>{ea50e392-b9e4-42fe-945f-4e64381ba06a}</UniqueIdentifier>
+      <UniqueIdentifier>{7322fe08-6e40-4019-92e3-99c35ca839d6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user\user">
-      <UniqueIdentifier>{5fb8377e-34fd-4d7e-b5d7-030677b7fb3a}</UniqueIdentifier>
+      <UniqueIdentifier>{8aeaf4bd-4976-4a88-9a07-ff7e80bde653}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user\simple">
-      <UniqueIdentifier>{188046a7-43f7-4c72-9a69-20a2c4e02be4}</UniqueIdentifier>
+      <UniqueIdentifier>{6ad34c78-950a-491d-8eb8-05686c80c24c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\userpresence">
+      <UniqueIdentifier>{1d88a5e7-03b0-437a-b9cf-bbcf5c8ee65b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\fontopus">
+      <UniqueIdentifier>{04f4eb47-145d-42aa-811d-78455dac2eef}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\graphics">
-      <UniqueIdentifier>{56db0ebd-8b8d-4200-bb00-5487c99326f8}</UniqueIdentifier>
+      <UniqueIdentifier>{96eecf95-5ec5-42ca-8dd2-31a8cd7d5a18}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem">
-      <UniqueIdentifier>{ea5b6e50-d65d-4e36-a4a9-fed2aefa2f11}</UniqueIdentifier>
+      <UniqueIdentifier>{385bbdd9-726e-4a36-bc69-ba0b6b65529d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem\file">
-      <UniqueIdentifier>{c7aef7da-db96-4def-ba39-3bfb77d59fec}</UniqueIdentifier>
+      <UniqueIdentifier>{5c134c8b-c273-4992-be82-ecf51a52ba1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base">
+      <UniqueIdentifier>{e7d066c3-96b8-476b-86a7-86d4f3de92f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os">
+      <UniqueIdentifier>{b0824209-1185-4427-98bf-18fb8d79f3a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\cross">
+      <UniqueIdentifier>{c88a243d-ea89-44ae-88c1-a7eb12fee78d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\cross\windows">
+      <UniqueIdentifier>{89cf7ad9-a30d-4539-8f1a-041af7ee39e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\os\ansios">
+      <UniqueIdentifier>{0b2dffd2-f406-4f5e-b72c-797b2005c88b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node">
+      <UniqueIdentifier>{160945ac-b096-4e83-a384-b93571020d06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node\android">
+      <UniqueIdentifier>{03811a81-d7ca-4690-beba-54aa863bb310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\node\ansios">
+      <UniqueIdentifier>{fad75534-463b-4712-9fda-24524c72f486}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\message">
+      <UniqueIdentifier>{bc9c350c-ffc5-4629-90f5-59b309fdbd6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\base">
+      <UniqueIdentifier>{3fef69f8-cbac-49fb-bba4-df4a344084ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\base_policy">
+      <UniqueIdentifier>{61304eec-f2ac-453b-9941-7e9552f923f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\hotplugin">
+      <UniqueIdentifier>{67e158d5-d5d0-4078-a214-e89115ddcd1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base\install">
+      <UniqueIdentifier>{a2689cd8-199f-446f-9b8a-d92630b80df5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\database">
-      <UniqueIdentifier>{215cfd72-717f-4817-b2f9-7cf0c92153ff}</UniqueIdentifier>
+      <UniqueIdentifier>{2a802c67-31dd-4fc0-8b8f-bbb0c18c788c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\database\database">
-      <UniqueIdentifier>{526a62c1-4145-4178-b596-7669aac26af5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\sqlite">
-      <UniqueIdentifier>{80be1555-82c0-4746-a246-cc047c94fd61}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive">
-      <UniqueIdentifier>{94283fc5-43eb-45b6-b015-573ef2da7984}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\datetime">
-      <UniqueIdentifier>{aa55e355-1fab-4843-81a1-5ad89541a2fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\data">
-      <UniqueIdentifier>{2d6ed068-d1e4-4b0d-82b2-fb2f7d64eee9}</UniqueIdentifier>
+      <UniqueIdentifier>{50b67301-b626-4844-bb11-0aca0cad9891}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{742d4bfa-1290-4f44-9c83-45406154eaf8}</UniqueIdentifier>
+      <UniqueIdentifier>{8fcaa52b-d854-4bba-8c7c-f4dc69c374fe}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user">
-      <UniqueIdentifier>{24a5ff7e-a9fa-4955-8467-7dfe9b81718e}</UniqueIdentifier>
+      <UniqueIdentifier>{d6aeedea-1f77-489c-81a8-7554eedd8635}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user\simple_ui">
-      <UniqueIdentifier>{329a03c1-0904-429e-a1d1-cb6c925e8ac2}</UniqueIdentifier>
+      <UniqueIdentifier>{1ef4a838-fce4-43e2-a34c-bb43cd4a0a2f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user\user">
-      <UniqueIdentifier>{ee63dfe9-1b19-46aa-b9f8-a608b8d32837}</UniqueIdentifier>
+      <UniqueIdentifier>{0d50d3a5-104c-49b5-94b0-63bb5a793adb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user\simple">
-      <UniqueIdentifier>{7fe6c78e-2315-4502-9850-718aea25a8fb}</UniqueIdentifier>
+      <UniqueIdentifier>{0ab65b17-9853-482b-8bf0-d420cb4c9e71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\userpresence">
+      <UniqueIdentifier>{4556a50b-d076-45f2-bdc8-edf2e856c53d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\fontopus">
+      <UniqueIdentifier>{599964bd-a6d8-4f91-b5ca-14c00765fb1c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\graphics">
-      <UniqueIdentifier>{6d5ec643-5fd7-462d-a992-042e4e7ffc1e}</UniqueIdentifier>
+      <UniqueIdentifier>{fec85b81-471b-4899-991e-feb32ab02a86}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem">
-      <UniqueIdentifier>{bad9eb49-4688-4614-a4fb-cf109bed7cd6}</UniqueIdentifier>
+      <UniqueIdentifier>{3a7eb474-02b3-4c1c-a6d4-353ff2f3bb07}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem\file">
-      <UniqueIdentifier>{164b32bb-7b48-42cf-9122-285d519a8dce}</UniqueIdentifier>
+      <UniqueIdentifier>{28509ec1-96ea-42db-b958-7340412f8e5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base">
+      <UniqueIdentifier>{6ed33d01-d052-4a72-9f9e-77b5b4438df3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\os">
+      <UniqueIdentifier>{93f0dfa3-4aad-4d38-9f27-aba60b0af802}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\base">
+      <UniqueIdentifier>{76b7c51c-7bef-40d8-b6e3-3ce5e0931405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\message">
+      <UniqueIdentifier>{8cb384aa-d2e7-496c-b5fa-35e9e8e680dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node">
+      <UniqueIdentifier>{a9ed8987-6901-4cff-aa36-711ef122ebb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\node\ansios">
+      <UniqueIdentifier>{5a967011-37fc-49f8-b09d-35d76892f983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\hotplugin">
+      <UniqueIdentifier>{1ae53a88-713d-453d-9dee-e4ce1d55a0f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\base\install">
+      <UniqueIdentifier>{701ff595-3c1d-4676-8383-a7cc11f8647b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\database">
-      <UniqueIdentifier>{f071eef9-9352-47cb-ae3a-9e63c22a719d}</UniqueIdentifier>
+      <UniqueIdentifier>{e2458457-af1d-4364-8020-22a5f9dd8eeb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\database\database">
-      <UniqueIdentifier>{eb87202e-6b82-45ef-bda8-06ed9a935d9b}</UniqueIdentifier>
+      <UniqueIdentifier>{cf8f4165-2f1c-4813-96c2-0e012a96e5d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\database\sqlite">
-      <UniqueIdentifier>{08d91d1f-4d86-491f-a8ba-bddfc989f90c}</UniqueIdentifier>
+    <Filter Include="Source Files\base\os\metrowin">
+      <UniqueIdentifier>{97fc2bbd-dc4a-4309-a7e2-9786f857c8c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis">
-      <UniqueIdentifier>{36f62f31-c1d6-4a82-9110-edb7c8d40454}</UniqueIdentifier>
+    <Filter Include="Source Files\base\node\metrowin">
+      <UniqueIdentifier>{c6f853b9-3507-4f2e-beea-5d006c757a66}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\os">
-      <UniqueIdentifier>{430c5d7a-0963-487f-bbf4-cc28e363cc5f}</UniqueIdentifier>
+    <Filter Include="Header Files\base\os\metrowin">
+      <UniqueIdentifier>{3a2b81d2-221a-47a7-b77a-fac01eaec095}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\os\cross">
-      <UniqueIdentifier>{156fc825-48b3-4900-b8fa-ce3a92508b98}</UniqueIdentifier>
+    <Filter Include="Header Files\base\node\metrowin">
+      <UniqueIdentifier>{e01ad26e-a459-4050-b15e-cc570711c165}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\os\cross\metrowin">
-      <UniqueIdentifier>{26c7fc6e-768c-4b81-83b3-aa7e181317bf}</UniqueIdentifier>
+    <Filter Include="Header Files\base\node\windows">
+      <UniqueIdentifier>{8d43b251-2a63-400f-83a5-e6a9cc2ebe20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\os\cross\windows">
-      <UniqueIdentifier>{5f205022-3804-47e7-a333-0b0c41864445}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\axis">
-      <UniqueIdentifier>{c06d9923-6120-4ea5-a558-d87e73d6ec27}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\message">
-      <UniqueIdentifier>{5b8ffacb-6c27-478b-b523-586cd865dae0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\axis_policy">
-      <UniqueIdentifier>{d03e98cd-5188-4d94-871c-2351c245bfc5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node">
-      <UniqueIdentifier>{360a8448-933e-457d-aedd-6d4664d4d07a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\compress">
-      <UniqueIdentifier>{06910760-3efa-4eea-9de3-b191b03b6ab8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\compress\bsdiff">
-      <UniqueIdentifier>{e5e0b7d8-a03f-4662-bcdb-4d708afcfeff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive">
-      <UniqueIdentifier>{f2fa7dd3-6f85-4c4a-9ab1-d4aaa3badd74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\datetime">
-      <UniqueIdentifier>{cbc39337-799e-4973-ac8f-21d8bef320c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\data">
-      <UniqueIdentifier>{cdc42382-11d9-4a00-8715-fb9d1f892150}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\os\metrowin">
-      <UniqueIdentifier>{0109a3ec-2d65-483a-8e43-1029e94aab8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\os\ansios">
-      <UniqueIdentifier>{b68737bc-e418-4341-b252-c6c63856cc90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node\metrowin">
-      <UniqueIdentifier>{5f94bec9-a30e-49a4-b84e-6710e3d487a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\os\metrowin">
-      <UniqueIdentifier>{e719fa44-5e6a-4e5b-9970-317a1372a114}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\axis\node\metrowin">
-      <UniqueIdentifier>{15d431dc-acf0-4791-9f51-9fdcacd85877}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node\windows">
-      <UniqueIdentifier>{9670e3a2-9d94-4e4e-b286-51d1ab9346ba}</UniqueIdentifier>
+    <Filter Include="Source Files\base\node\windows">
+      <UniqueIdentifier>{390f3b77-3809-4053-a3b1-e3f6372e4029}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework_c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="version.config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_application.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_core_copydesk.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_platform_interface.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_print_job.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_session.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_simple_app.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_static_start.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_system.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis\axis_system_str.h">
-      <Filter>Header Files\axis\axis</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\cross.h">
-      <Filter>Header Files\axis\os</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\os.h">
-      <Filter>Header Files\axis\os</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\node.h">
-      <Filter>Header Files\axis\node</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\message\message_user.h">
-      <Filter>Header Files\axis\message</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis_policy\axis_c.h">
-      <Filter>Header Files\axis\axis_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis_policy\axis_cpp.h">
-      <Filter>Header Files\axis\axis_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis_policy\axis_policy.h">
-      <Filter>Header Files\axis\axis_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis_policy\axis_policy_objc.h">
-      <Filter>Header Files\axis\axis_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis_policy\axis_policy_objcpp.h">
-      <Filter>Header Files\axis\axis_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\axis_policy\axis_policy_winrt.h">
-      <Filter>Header Files\axis\axis_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\bzip_stream.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\compress.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\gzip_stream.h">
-      <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\bsdiff\libbsdiff.h">
-      <Filter>Header Files\axis\compress\bsdiff</Filter>
     </ClInclude>
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
@@ -276,7 +189,7 @@
     <ClInclude Include="user\user\user.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_buffer.h">
+    <ClInclude Include="user\user\aaa_want_to_remove_user_buffer.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_control.h">
@@ -330,7 +243,7 @@
     <ClInclude Include="user\user\user_keyboard.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_keyboard_focus.h">
+    <ClInclude Include="user\user\aaa_want_to_remove_user_keyboard_focus.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_keyboard_layout.h">
@@ -348,7 +261,7 @@
     <ClInclude Include="user\user\user_message.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_mouse_focus.h">
+    <ClInclude Include="user\user\aaa_want_to_remove_user_mouse_focus.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_document.h">
@@ -378,16 +291,16 @@
     <ClInclude Include="user\user\user_scroll_bar.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_scroll_control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
     <ClInclude Include="user\user\user_scroll_view.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_server.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_str_context.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_text_interface.h">
+    <ClInclude Include="user\user\aaa_want_to_remove_user_text_interface.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_user.h">
@@ -432,6 +345,27 @@
     <ClInclude Include="user\simple\simple_scroll_bar.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence_userpresence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\userpresence\userpresence_user_presence.h">
+      <Filter>Header Files\user\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\fontopus.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\fontopus_login.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\fontopus_simple_ui.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\simple_ui_style.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
     <ClInclude Include="graphics\graphics_window_graphics.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
@@ -441,156 +375,213 @@
     <ClInclude Include="filesystem\file\file_edit_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\os\cross.h">
+      <Filter>Header Files\base\os</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_base.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\os\os.h">
+      <Filter>Header Files\base\os</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_change_event.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\os\cross\cross.h">
+      <Filter>Header Files\base\os\cross</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_client.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\os\cross\windows\windows.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_database.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\os\cross\windows\windows_user.h">
+      <Filter>Header Files\base\os\cross\windows</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_definition.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\os\ansios\ansios.h">
+      <Filter>Header Files\base\os\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_field_definition.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\os\ansios\ansios_multithreading.h">
+      <Filter>Header Files\base\os\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_id.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\node\node.h">
+      <Filter>Header Files\base\node</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_key.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\node\android\android.h">
+      <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_selection.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\node\android\android1.h">
+      <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_selection_item.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\node\android\android_copydesk.h">
+      <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_server.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\node\android\android_factory_exchange.h">
+      <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_set.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\node\android\android_implementation.h">
+      <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_stringhelper.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\node\android\android_window_draw.h">
+      <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_template.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\node\android\android_interaction_impl.h">
+      <Filter>Header Files\base\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="database\database\database_update_hint.h">
-      <Filter>Header Files\database\database</Filter>
+    <ClInclude Include="base\node\android\android_message_queue.h">
+      <Filter>Header Files\base\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\node\ansios\ansios.h">
+      <Filter>Header Files\base\node\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="base\message\message_user.h">
+      <Filter>Header Files\base\message</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_application.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_core_copydesk.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_platform_interface.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_print_job.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_session.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_simple_app.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_static_start.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_system.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_system_str.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base\base_template.h">
+      <Filter>Header Files\base\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_policy\base_c.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_policy\base_cpp.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_policy\base_policy.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_policy\base_policy_objc.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_policy\base_policy_objcpp.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="base\base_policy\base_policy_winrt.h">
+      <Filter>Header Files\base\base_policy</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin_composer.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin_container_launcher.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin_host.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\hotplugin\hotplugin_plugin.h">
+      <Filter>Header Files\base\hotplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_plugin.h">
+      <Filter>Header Files\base\install</Filter>
+    </ClInclude>
+    <ClInclude Include="base\install\install_starter_start.h">
+      <Filter>Header Files\base\install</Filter>
     </ClInclude>
     <ClInclude Include="database\database\database_user_interaction.h">
       <Filter>Header Files\database\database</Filter>
     </ClInclude>
-    <ClInclude Include="database\sqlite\sqlite.h">
-      <Filter>Header Files\database\sqlite</Filter>
+    <ClInclude Include="base\os\metrowin\ca_os.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="database\sqlite\sqlite_base.h">
-      <Filter>Header Files\database\sqlite</Filter>
+    <ClInclude Include="base\os\metrowin\metrowin.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="database\sqlite\sqlite_set.h">
-      <Filter>Header Files\database\sqlite</Filter>
+    <ClInclude Include="base\os\metrowin\metrowin_file_watcher.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_departament.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="base\os\metrowin\metrowin_file_winrt.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_value.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="base\os\metrowin\metrowin_gdi_winrt.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\data_simple_item.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="base\os\metrowin\metrowin_internal.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\data_tree.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="base\os\metrowin\metrowin_process.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\data_tree_item.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="base\os\metrowin\metrowin_simple_hold_handle.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\metrowin\metrowin_file_watcher.h">
-      <Filter>Header Files\axis\os\metrowin</Filter>
+    <ClInclude Include="base\os\metrowin\metrowin_simple_ui.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\metrowin\metrowin_file_winrt.h">
-      <Filter>Header Files\axis\os\metrowin</Filter>
+    <ClInclude Include="base\os\metrowin\metrowin_sockets.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\metrowin\metrowin_gdi_winrt.h">
-      <Filter>Header Files\axis\os\metrowin</Filter>
+    <ClInclude Include="base\os\metrowin\metrowin_window_impl.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\metrowin\metrowin_internal.h">
-      <Filter>Header Files\axis\os\metrowin</Filter>
+    <ClInclude Include="base\node\metrowin\metrowin.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\metrowin\metrowin_process.h">
-      <Filter>Header Files\axis\os\metrowin</Filter>
+    <ClInclude Include="base\node\metrowin\metrowin_copydesk.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\metrowin\metrowin_simple_hold_handle.h">
-      <Filter>Header Files\axis\os\metrowin</Filter>
+    <ClInclude Include="base\node\metrowin\metrowin_directx.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\metrowin\metrowin_simple_ui.h">
-      <Filter>Header Files\axis\os\metrowin</Filter>
+    <ClInclude Include="base\node\metrowin\metrowin_directx_application.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\metrowin\metrowin_sockets.h">
-      <Filter>Header Files\axis\os\metrowin</Filter>
+    <ClInclude Include="base\node\metrowin\metrowin_factory_exchange.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\metrowin\metrowin_user_impl.h">
-      <Filter>Header Files\axis\os\metrowin</Filter>
+    <ClInclude Include="base\node\metrowin\metrowin_interaction_impl.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\metrowin\metrowin_window_impl.h">
-      <Filter>Header Files\axis\os\metrowin</Filter>
+    <ClInclude Include="base\node\metrowin\metrowin_internal.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
+    <ClInclude Include="base\node\metrowin\metrowin_window_draw.h">
+      <Filter>Header Files\base\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_copydesk.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
+    <ClInclude Include="base\node\windows\windows_message_queue.h">
+      <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_directx.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_directx_application.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_factory_exchange.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_interaction_impl.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_internal.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_window_draw.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\os\metrowin\metrowin.h">
-      <Filter>Header Files\axis\os\metrowin</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_scroll_control.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_message_queue.h">
-      <Filter>Header Files\axis\node</Filter>
+    <ClInclude Include="base\os\metrowin\metrowin_user_impl.h">
+      <Filter>Header Files\base\os\metrowin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axis\axis\axis.inl">
-      <Filter>Header Files\axis\axis</Filter>
-    </None>
-    <None Include="axis\axis\axis_system_xml.inl">
-      <Filter>Header Files\axis\axis</Filter>
-    </None>
     <None Include="user\user.inl">
       <Filter>Header Files\user</Filter>
     </None>
-    <None Include="axis.def">
+    <None Include="base\base\base.inl">
+      <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base\base\base_system_xml.inl">
+      <Filter>Header Files\base\base</Filter>
+    </None>
+    <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
@@ -598,8 +589,8 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="framework_c.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="user\_user.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui\simple_ui_edit_box.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
@@ -623,6 +614,9 @@
       <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\aaa_want_to_remove_user_buffer.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_control.cpp">
@@ -667,6 +661,9 @@
     <ClCompile Include="user\user\user_keyboard.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\aaa_want_to_remove_user_keyboard_focus.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\user\user_keyboard_layout.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -677,6 +674,9 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_message.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\aaa_want_to_remove_user_mouse_focus.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_document.cpp">
@@ -706,13 +706,16 @@
     <ClCompile Include="user\user\user_scroll_bar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_scroll_control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\user\user_scroll_view.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_server.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_str_context.cpp">
+    <ClCompile Include="user\user\aaa_want_to_remove_user_text_interface.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_user.cpp">
@@ -751,171 +754,138 @@
     <ClCompile Include="user\simple\simple_scroll_bar.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
+    <ClCompile Include="user\userpresence\userpresence_userpresence.cpp">
+      <Filter>Source Files\user\userpresence</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
+      <Filter>Source Files\user\userpresence</Filter>
+    </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus.cpp">
+      <Filter>Source Files\user\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus_login.cpp">
+      <Filter>Source Files\user\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus_simple_ui.cpp">
+      <Filter>Source Files\user\fontopus</Filter>
+    </ClCompile>
     <ClCompile Include="graphics\graphics_window_graphics.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_application.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\base\base_application.cpp">
+      <Filter>Source Files\base\base</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_base.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\base\base_core_copydesk.cpp">
+      <Filter>Source Files\base\base</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_client.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\base\base_print_job.cpp">
+      <Filter>Source Files\base\base</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_definition.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\base\base_session.cpp">
+      <Filter>Source Files\base\base</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_event_change.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\base\base_static_start.cpp">
+      <Filter>Source Files\base\base</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_field_definition.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\base\base_system.cpp">
+      <Filter>Source Files\base\base</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_id.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\base\base.cpp">
+      <Filter>Source Files\base\base</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_key.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\message\message.cpp">
+      <Filter>Source Files\base\message</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_selection.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\message\message_user.cpp">
+      <Filter>Source Files\base\message</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_selection_item.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\node\node.cpp">
+      <Filter>Source Files\base\node</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_server.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\hotplugin\hotplugin.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_set.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\hotplugin\hotplugin_composer.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_stringhelper.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_update_hint.cpp">
-      <Filter>Source Files\database\database</Filter>
+    <ClCompile Include="base\hotplugin\hotplugin_host.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
+      <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_plugin_bare_paint_veri_discreet.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\install_starter_start.cpp">
+      <Filter>Source Files\base\install</Filter>
     </ClCompile>
     <ClCompile Include="database\database\database_user_interaction.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
-    <ClCompile Include="database\sqlite\sqlite_base.cpp">
-      <Filter>Source Files\database\sqlite</Filter>
+    <ClCompile Include="base\node\metrowin\metrowin_copydesk.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="database\sqlite\sqlite_set.cpp">
-      <Filter>Source Files\database\sqlite</Filter>
+    <ClCompile Include="base\node\metrowin\metrowin_directx.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\cross\metrowin\cross_metrowin_user.cpp">
-      <Filter>Source Files\axis\os\cross\metrowin</Filter>
+    <ClCompile Include="base\node\metrowin\metrowin_directx_application.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_print_job.cpp">
-      <Filter>Source Files\axis\axis</Filter>
+    <ClCompile Include="base\node\metrowin\metrowin_factory_exchange.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_static_start.cpp">
-      <Filter>Source Files\axis\axis</Filter>
+    <ClCompile Include="base\node\metrowin\metrowin_interaction_impl.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis.cpp">
-      <Filter>Source Files\axis\axis</Filter>
+    <ClCompile Include="base\node\metrowin\metrowin_window_draw.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_application.cpp">
-      <Filter>Source Files\axis\axis</Filter>
+    <ClCompile Include="base\os\metrowin\metrowin.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_core_copydesk.cpp">
-      <Filter>Source Files\axis\axis</Filter>
+    <ClCompile Include="base\os\metrowin\metrowin_message_loop.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_session.cpp">
-      <Filter>Source Files\axis\axis</Filter>
+    <ClCompile Include="base\os\metrowin\metrowin_multithreading.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis\axis_system.cpp">
-      <Filter>Source Files\axis\axis</Filter>
+    <ClCompile Include="base\os\metrowin\metrowin_process.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\message\message_user.cpp">
-      <Filter>Source Files\axis\message</Filter>
+    <ClCompile Include="base\os\metrowin\metrowin_simple_app.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\axis_policy\axis_c.c">
-      <Filter>Source Files\axis\axis_policy</Filter>
+    <ClCompile Include="base\os\metrowin\metrowin_user.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\node.cpp">
-      <Filter>Source Files\axis\node</Filter>
+    <ClCompile Include="base\os\metrowin\metrowin_windowing.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
     </ClCompile>
-    <ClCompile Include="axis\compress\bzip_stream.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\gzip_stream.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_value.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_simple_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data_tree_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_copydesk.cpp">
-      <Filter>Source Files\axis\node\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_directx.cpp">
-      <Filter>Source Files\axis\node\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_directx_application.cpp">
-      <Filter>Source Files\axis\node\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_factory_exchange.cpp">
-      <Filter>Source Files\axis\node\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_interaction_impl.cpp">
-      <Filter>Source Files\axis\node\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_window_draw.cpp">
-      <Filter>Source Files\axis\node\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\metrowin\metrowin.cpp">
-      <Filter>Source Files\axis\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\metrowin\metrowin_message_loop.cpp">
-      <Filter>Source Files\axis\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\metrowin\metrowin_process.cpp">
-      <Filter>Source Files\axis\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\metrowin\metrowin_simple_app.cpp">
-      <Filter>Source Files\axis\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\metrowin\metrowin_user.cpp">
-      <Filter>Source Files\axis\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\user_scroll_control.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\metrowin\metrowin_multithreading.cpp">
-      <Filter>Source Files\axis\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\metrowin\metrowin_windowing.cpp">
-      <Filter>Source Files\axis\os\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_message_queue.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
+    <ClCompile Include="base\node\windows\windows_message_queue.cpp">
+      <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="axis.rc">
+    <ResourceCompile Include="base.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>

@@ -40,6 +40,7 @@ namespace metrowin
       
 
       bool m_bInitialized;
+      bool m_bInit;
 
       directx_base(::aura::application * papp);
 
@@ -48,6 +49,7 @@ namespace metrowin
          return m_pauraapp;
       }
    
+      virtual bool defer_init();
 
       virtual void Initialize(Windows::UI::Core::CoreWindow^ window, float dpi);
       virtual void HandleDeviceLost();
@@ -87,6 +89,7 @@ namespace metrowin
       Windows::Foundation::Size                       m_renderTargetSize;
       Windows::Foundation::Rect                       m_windowBounds;
       float                                           m_dpi;
+      float                                           m_dpiIni;
       bool                                            m_windowSizeChangeInProgress;
 
 
@@ -107,4 +110,4 @@ namespace metrowin
 
 
 
-CLASS_DECL_AXIS mutex & draw2d_direct2_mutex();
+//CLASS_DECL_BASE mutex & draw2d_direct2_mutex();

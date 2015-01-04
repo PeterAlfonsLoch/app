@@ -27,14 +27,14 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#include "framework.h"
+//#include "framework.h"
 #ifdef _WIN32
 #else
-#include <errno.h>
-#include <netdb.h>
-#include <fcntl.h>
+//#include <errno.h>
+//#include <netdb.h>
+//#include <fcntl.h>
 #endif
-//#include <ctype.h>
+////#include <ctype.h>
 
 
 namespace sockets

@@ -74,6 +74,13 @@ namespace user
    class frame_window;
    class place_holder;
 
+#if defined(METROWIN) || defined(APPLE_IOS)
+
+   class native_window_initialize;
+
+#endif
+
+
 } // namespace user
 
 using window_sp = sp(::user::interaction_impl);
@@ -327,8 +334,8 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 
 #endif
 
-CLASS_DECL_BASE void __trace_message(const char * lpszPrefix,::signal_details * pobj);
-CLASS_DECL_BASE void __trace_message(const char * lpszPrefix,LPMESSAGE lpmsg);
+//CLASS_DECL_BASE void __trace_message(const char * lpszPrefix,::signal_details * pobj);
+//CLASS_DECL_BASE void __trace_message(const char * lpszPrefix,LPMESSAGE lpmsg);
 
 
 //#include "base/base/base/base_command_target.h"

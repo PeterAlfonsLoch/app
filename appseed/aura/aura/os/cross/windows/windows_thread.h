@@ -79,26 +79,26 @@ CLASS_DECL_AURA void WINAPI TlsShutdown();
 #if defined(METROWIN) && defined(__cplusplus_winrt)
 
 
-interface IDWriteFactory;
-interface ID2D1Factory1;
-interface ID3D11Device;
-interface ID3D11DeviceContext;
-interface ID3D11Device1;
-interface IDXGIDevice;
-
-CLASS_DECL_AURA IDWriteFactory * TlsGetWriteFactory();
-CLASS_DECL_AURA ID2D1Factory1 * GetD2D1Factory1();
-CLASS_DECL_AURA ID3D11Device * TlsGetD3D11Device();
-CLASS_DECL_AURA ID3D11DeviceContext * TlsGetD3D11DeviceContext();
-CLASS_DECL_AURA ID3D11Device1 * TlsGetD3D11Device1();
-CLASS_DECL_AURA IDXGIDevice * TlsGetDXGIDevice();
-
-#define TLS_WRITE_FACTORY     12
-#define TLS_D2D1_FACTORY1     13
-#define TLS_d3_1              14
-#define TLS_d3_2              15
-#define TLS_d3_3              16
-#define TLS_d3_4              17
+//interface IDWriteFactory;
+//interface ID2D1Factory1;
+//interface ID3D11Device;
+//interface ID3D11DeviceContext;
+//interface ID3D11Device1;
+//interface IDXGIDevice;
+//
+//CLASS_DECL_AURA IDWriteFactory * TlsGetWriteFactory();
+//CLASS_DECL_AURA ID2D1Factory1 * GetD2D1Factory1();
+//CLASS_DECL_AURA ID3D11Device * TlsGetD3D11Device();
+//CLASS_DECL_AURA ID3D11DeviceContext * TlsGetD3D11DeviceContext();
+//CLASS_DECL_AURA ID3D11Device1 * TlsGetD3D11Device1();
+//CLASS_DECL_AURA IDXGIDevice * TlsGetDXGIDevice();
+//
+//#define TLS_WRITE_FACTORY     12
+//#define TLS_D2D1_FACTORY1     13
+//#define TLS_d3_1              14
+//#define TLS_d3_2              15
+//#define TLS_d3_3              16
+//#define TLS_d3_4              17
 
 #elif !defined(WINDOWS)
 

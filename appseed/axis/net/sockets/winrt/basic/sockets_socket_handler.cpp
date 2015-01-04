@@ -27,9 +27,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#include "framework.h"
-//#include <stdlib.h>
-//#include <errno.h>
+//#include "framework.h"
+////#include <stdlib.h>
+////#include <errno.h>
 
 namespace sockets
 {
@@ -407,9 +407,9 @@ namespace sockets
       resolv_socket *resolv = new resolv_socket(*this, p, host, port);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      ::net::address local("127.0.0.1", m_resolver_port);
+      ::net::address addressLocal("127.0.0.1", m_resolver_port);
       //Session.sockets().net().convert(local, "127.0.0.1");
-      if (!resolv -> open(local))
+      if(!resolv -> open(addressLocal))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
       }
@@ -426,8 +426,8 @@ namespace sockets
       resolv_socket *resolv = new resolv_socket(*this, p, host, port, true);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      ::net::address local("127.0.0.1", m_resolver_port);
-      if (!resolv -> open(local))
+      ::net::address addressLocal("127.0.0.1",m_resolver_port);
+      if(!resolv -> open(addressLocal))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
       }
@@ -444,8 +444,8 @@ namespace sockets
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
 //      ipaddr_t local;
-      ::net::address local("127.0.0.1", m_resolver_port);
-      if (!resolv -> open(local))
+      ::net::address addressLocal("127.0.0.1",m_resolver_port);
+      if(!resolv -> open(addressLocal))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
       }
@@ -462,8 +462,8 @@ namespace sockets
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       //ipaddr_t local;
-      ::net::address local("127.0.0.1", m_resolver_port);
-      if (!resolv -> open(local))
+      ::net::address addressLocal("127.0.0.1",m_resolver_port);
+      if(!resolv -> open(addressLocal))
       {
          log(resolv, "Resolve", -1, "Can't connect to local resolve server", ::aura::log::level_fatal);
       }

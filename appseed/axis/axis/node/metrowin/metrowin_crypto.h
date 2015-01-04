@@ -5,7 +5,7 @@ namespace metrowin
 {
 
 
-   class CLASS_DECL_BASE crypto :
+   class CLASS_DECL_AXIS crypto :
       virtual public ::crypto::crypto
    {
    public:

@@ -4,15 +4,13 @@
 // Windows Desktop Thread Local Storage for Draw2d Direct2d plugin
 
 
-#ifdef WINDOWSEX
-
-
 
    Microsoft::WRL::ComPtr<IDWriteFactory> g_pwritefactory;
    Microsoft::WRL::ComPtr<ID2D1Factory1> g_pd2factory;
    Microsoft::WRL::ComPtr<ID2D1Device> g_pd2device;
    Microsoft::WRL::ComPtr<ID2D1DeviceContext> g_pd2devicecontext;
    Microsoft::WRL::ComPtr<ID3D11DeviceContext> g_pd3devicecontext;
+   Microsoft::WRL::ComPtr<ID3D11DeviceContext1> g_pd3devicecontext1;
    Microsoft::WRL::ComPtr<ID3D11Device> g_pd3device;
    Microsoft::WRL::ComPtr<ID3D11Device1> g_pd3device1;
    Microsoft::WRL::ComPtr<IDXGIDevice> g_pdxgidevice;
@@ -77,6 +75,9 @@ void factory_exchange::draw2d_direct2d_initialize()
       ::draw2d_direct2d::throw_if_failed(
          context.As(&g_pd3devicecontext)
          );
+      ::draw2d_direct2d::throw_if_failed(
+         context.As(&g_pd3devicecontext1)
+         );
 
       // Get the underlying DXGI device of the Direct3D device.
       ::draw2d_direct2d::throw_if_failed(
@@ -109,10 +110,10 @@ void factory_exchange::draw2d_direct2d_initialize()
 #define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
 #define single_threaded D2D1_FACTORY_TYPE_MULTI_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
 
-CLASS_DECL_DRAW2D_DIRECT2D IDWriteFactory * TlsGetWriteFactory()
+CLASS_DECL_DRAW2D_DIRECT2D IDWriteFactory * TlsGetWriteFactory(bool bCreate)
 {
 
-   if(g_pwritefactory != NULL)
+   if(g_pwritefactory != NULL || !bCreate)
       return g_pwritefactory.Get();
 
    HRESULT hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), &g_pwritefactory);
@@ -125,11 +126,11 @@ CLASS_DECL_DRAW2D_DIRECT2D IDWriteFactory * TlsGetWriteFactory()
 }
 
 
-ID2D1Factory1 * GetD2D1Factory1()
+ID2D1Factory1 * GetD2D1Factory1(bool bCreate)
 {
 
 
-   if(g_pd2factory != NULL)
+   if(g_pd2factory != NULL || !bCreate)
       return g_pd2factory.Get();
 
    d2d1_fax_options options;
@@ -160,6 +161,13 @@ ID3D11DeviceContext * TlsGetD3D11DeviceContext()
 
 }
 
+ID3D11DeviceContext1 * TlsGetD3D11DeviceContext1()
+{
+
+   return g_pd3devicecontext1.Get();
+
+}
+
 ID3D11Device1 * TlsGetD3D11Device1()
 {
 
@@ -173,7 +181,19 @@ IDXGIDevice * TlsGetDXGIDevice()
    return g_pdxgidevice.Get();
 
 }
+ID2D1DeviceContext * TlsGetD2D1DeviceContext()
+{
 
+   return g_pd2devicecontext.Get();
+
+}
+
+ID2D1Device * TlsGetD2D1Device()
+{
+
+   return g_pd2device.Get();
+
+}
 
 CLASS_DECL_DRAW2D_DIRECT2D float point_dpi(float points)
 {
@@ -230,10 +250,6 @@ CLASS_DECL_DRAW2D_DIRECT2D float x_dpi(float x)
    return x / dpiX;
 
 }
-
-
-
-#endif
 
 
 

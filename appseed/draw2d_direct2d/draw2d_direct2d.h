@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/aura/aura.h"
+#include "axis/axis/axis.h"
 #include "aura/graphics/graphics.h"
 
 #undef new
@@ -49,9 +49,9 @@ namespace draw2d_direct2d
 
 
 
-#ifdef WINDOWSEX
+//#ifdef WINDOWSEX
 #include "draw2d_direct2d_win_tls.h"
-#endif
+//#endif
 
 
 #include "draw2d_direct2d_factory_exchange.h"

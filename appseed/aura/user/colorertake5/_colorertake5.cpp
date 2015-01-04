@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/user/colorertake5/colorertake5.h"
 
 
 // Thank you (casey) Thank you Mummi Thank you Carlos. user colorertake5 _amalgamation... Visual Studio 2015 Preview seems to need it (too long filename or extension).

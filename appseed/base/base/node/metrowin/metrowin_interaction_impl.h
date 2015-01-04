@@ -5,13 +5,13 @@ namespace metrowin
 {
 
 
-   CLASS_DECL_AURA LRESULT CALLBACK __send_message_hook(int, WPARAM, LPARAM);
-   //CLASS_DECL_AURA void _gen::StandardSubclass(oswindow);
-   CLASS_DECL_AURA LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
-   CLASS_DECL_AURA LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+   CLASS_DECL_BASE LRESULT CALLBACK __send_message_hook(int, WPARAM, LPARAM);
+   //CLASS_DECL_BASE void _gen::StandardSubclass(oswindow);
+   CLASS_DECL_BASE LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
+   CLASS_DECL_BASE LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
 
-   class CLASS_DECL_AXIS interaction_impl : 
+   class CLASS_DECL_BASE interaction_impl : 
       virtual public ::user::interaction_impl
    {
    public:
@@ -110,7 +110,7 @@ namespace metrowin
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          ::user::interaction * pParentWnd, id id,
-         ::create_context * pContext = NULL);
+         ::create * pContext = NULL);
 
       // advanced creation (allows access to extended styles)
       virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
@@ -479,7 +479,7 @@ namespace metrowin
       //    bool OnHelpInfo(HELPINFO* lpHelpInfo);
       void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
       void OnKillFocus(::user::interaction_impl * pNewWnd);
-      LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
+      LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::aura::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
       void OnMove(int x, int y);
       DECL_GEN_SIGNAL(_001OnPaint);
@@ -561,8 +561,8 @@ namespace metrowin
          void OnTimer(uint_ptr nIDEvent);
 
       // Initialization message handler member functions
-      void OnInitMenu(::user::menu* pMenu);
-      void OnInitMenuPopup(::user::menu* pPopupMenu, UINT nIndex, bool bSysMenu);
+      void OnInitMenu(::aura::menu* pMenu);
+      void OnInitMenuPopup(::aura::menu* pPopupMenu, UINT nIndex, bool bSysMenu);
 
       // Clipboard message handler member functions
       void OnAskCbFormatName(__in UINT nMaxCount, __out_ecount_z(nMaxCount) char * lpszString);
@@ -676,10 +676,10 @@ namespace metrowin
 
 
       // implementation of message dispatch/hooking
-      CLASS_DECL_AURA friend LRESULT CALLBACK __send_message_hook(int, WPARAM, LPARAM);
-      //CLASS_DECL_AURA friend void _gen::StandardSubclass(oswindow);
-      CLASS_DECL_AURA friend LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
-      CLASS_DECL_AURA friend LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+      CLASS_DECL_BASE friend LRESULT CALLBACK __send_message_hook(int, WPARAM, LPARAM);
+      //CLASS_DECL_BASE friend void _gen::StandardSubclass(oswindow);
+      CLASS_DECL_BASE friend LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
+      CLASS_DECL_BASE friend LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
       // standard message implementation
       LRESULT OnNTCtlColor(WPARAM wParam, LPARAM lParam);

@@ -867,9 +867,6 @@
     <ClInclude Include="filesystem\file\file_stream_binder.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="net\net_email_departament.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
     <ClInclude Include="net\usernet\usernet.h">
       <Filter>Header Files\net\usernet</Filter>
     </ClInclude>
@@ -1411,72 +1408,6 @@
     <ClCompile Include="user\wndfrm\frame\wndfrm_frame_work_set_listener_array.cpp">
       <Filter>Source Files\user\wndfrm\frame</Filter>
     </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_database.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_dataset.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_db_server.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_file_set.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_im_post.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_long_set.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_manager.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_mysql_database.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_mysql_result.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_record_row.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_server.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_service.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_session.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_set.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_simpledb.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_socket.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_socket_thread.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_stra_set.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_str_set.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_table.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_veiev_post.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
     <ClCompile Include="database\databaseuser\database_key_list_data.cpp">
       <Filter>Source Files\database\databaseuser</Filter>
     </ClCompile>
@@ -1678,9 +1609,6 @@
     <ClCompile Include="filesystem\filehandler\filehandler_item.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="net\net_email_departament.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
     <ClCompile Include="net\hi5\hi5_twit.cpp">
       <Filter>Source Files\net\hi5</Filter>
     </ClCompile>
@@ -1768,14 +1696,29 @@
     <ClCompile Include="filesystem\file\file_html_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_base.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="database\simpledb\simpledb_result.cpp">
-      <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
     <ClCompile Include="core\os\metrowin\metrowin_main.cpp">
       <Filter>Source Files\core\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="core\core\_core.cpp">
+      <Filter>Source Files\core\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\plugin\_plugin.cpp">
+      <Filter>Source Files\core\plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="database\simpledb\simpledb_file_system_size.cpp">
+      <Filter>Source Files\database\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filehandler\_filehandler.cpp">
+      <Filter>Source Files\filesystem\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\_filemanager.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="user\_user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\userfs\_userfs.cpp">
+      <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

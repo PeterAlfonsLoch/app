@@ -6,6 +6,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 #include "framework.h"
+#include "base/user/user.h"
 
 
 extern CLASS_DECL_THREAD HTHREAD currentThread;
@@ -1051,7 +1052,7 @@ extern CLASS_DECL_THREAD HTHREAD currentThread;
 //}
 
 
-CLASS_DECL_AXIS WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
+CLASS_DECL_BASE WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
    HTHREAD  h = oswindow->m_pui->m_pauraapp->get_os_handle();

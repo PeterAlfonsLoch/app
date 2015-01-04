@@ -420,7 +420,7 @@ WINBOOL IsWindow(oswindow oswindow)
 
 //BEGIN_EXTERN_C
 //
-//CLASS_DECL_AURA
+//CLASS_DECL_BASE
 //HANDLE
 //WINAPI
 //CreateMutex(
@@ -432,13 +432,13 @@ WINBOOL IsWindow(oswindow oswindow)
 //   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
 //}
 //
-//CLASS_DECL_AURA char* getenv (const char* name)
+//CLASS_DECL_BASE char* getenv (const char* name)
 //{
 //   return "";
 //}
 //END_EXTERN_C
 //
-//CLASS_DECL_AURA
+//CLASS_DECL_BASE
 //HANDLE
 //WINAPI
 //CreateMutexW(
@@ -451,7 +451,7 @@ WINBOOL IsWindow(oswindow oswindow)
 //}
 
 
-bool __node_axis_pre_init()
+bool __node_base_pre_init()
 {
 
    return true;
@@ -459,7 +459,7 @@ bool __node_axis_pre_init()
 }
 
 
-bool __node_axis_pos_init()
+bool __node_base_pos_init()
 {
 
    return true;
@@ -467,7 +467,7 @@ bool __node_axis_pos_init()
 }
 
 
-bool __node_axis_pre_term()
+bool __node_base_pre_term()
 {
 
    return true;
@@ -475,11 +475,14 @@ bool __node_axis_pre_term()
 }
 
 
-bool __node_axis_pos_term()
+bool __node_base_pos_term()
 {
 
    return true;
 
 }
+
+
+
 
 

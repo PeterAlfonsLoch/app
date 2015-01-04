@@ -65,10 +65,10 @@ namespace draw2d_direct2d
       void SetIconMask(::visual::icon * picon, int32_t cx, int32_t cy);
 
 
-#if defined(WINDOWSEX)
+//#if defined(WINDOWSEX)
       virtual bool update_window(::aura::draw_interface * pwnd,signal_details * pobj);
       //virtual bool print_window(window * pwnd, signal_details * pobj);
-#endif
+//#endif
 
 
       //bool color_blend(COLORREF cr, BYTE bAlpha);
