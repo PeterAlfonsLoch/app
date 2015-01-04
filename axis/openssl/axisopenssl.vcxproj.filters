@@ -1673,33 +1673,6 @@
     <ClCompile Include="crypto\pem\pvkfmt.c">
       <Filter>Source Files\crypto\pem</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\pkcs7\bio_pk7.c">
-      <Filter>Source Files\crypto\pkcs7</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\pkcs7\pk7_asn1.c">
-      <Filter>Source Files\crypto\pkcs7</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\pkcs7\pk7_attr.c">
-      <Filter>Source Files\crypto\pkcs7</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\pkcs7\pk7_dgst.c">
-      <Filter>Source Files\crypto\pkcs7</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\pkcs7\pk7_doit.c">
-      <Filter>Source Files\crypto\pkcs7</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\pkcs7\pk7_enc.c">
-      <Filter>Source Files\crypto\pkcs7</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\pkcs7\pk7_lib.c">
-      <Filter>Source Files\crypto\pkcs7</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\pkcs7\pk7_mime.c">
-      <Filter>Source Files\crypto\pkcs7</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\pkcs7\pk7_smime.c">
-      <Filter>Source Files\crypto\pkcs7</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\pkcs7\pkcs7err.c">
       <Filter>Source Files\crypto\pkcs7</Filter>
     </ClCompile>
@@ -2527,6 +2500,39 @@
     </ClCompile>
     <ClCompile Include="crypto\pkcs12\_p12.c">
       <Filter>Source Files\crypto\pkcs12</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\pkcs7\bio_pk7.c">
+      <Filter>Source Files\crypto\pkcs7</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\pkcs7\pk7_asn1.c">
+      <Filter>Source Files\crypto\pkcs7</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\pkcs7\pk7_attr.c">
+      <Filter>Source Files\crypto\pkcs7</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\pkcs7\pk7_dgst.c">
+      <Filter>Source Files\crypto\pkcs7</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\pkcs7\pk7_doit.c">
+      <Filter>Source Files\crypto\pkcs7</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\pkcs7\pk7_enc.c">
+      <Filter>Source Files\crypto\pkcs7</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\pkcs7\pk7_lib.c">
+      <Filter>Source Files\crypto\pkcs7</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\pkcs7\pk7_mime.c">
+      <Filter>Source Files\crypto\pkcs7</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\pkcs7\pk7_smime.c">
+      <Filter>Source Files\crypto\pkcs7</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\x509\_x509.c">
+      <Filter>Source Files\crypto\x509</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\x509v3\_x509v3.c">
+      <Filter>Source Files\crypto\x509v3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
