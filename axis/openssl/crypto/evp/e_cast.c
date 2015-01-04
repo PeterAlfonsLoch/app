@@ -73,7 +73,6 @@ typedef struct
 	CAST_KEY ks;
 	} EVP_CAST_KEY;
 
-
 #undef data
 #define data(ctx)	EVP_C_DATA(EVP_CAST_KEY,ctx)
 
