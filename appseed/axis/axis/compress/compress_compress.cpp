@@ -10,7 +10,9 @@ namespace axis
 
    bool compress::ungz(::file::output_stream & ostreamUncompressed, const char * lpcszGzFileCompressed)
    {
+
       int32_t fileUn = ansi_open(lpcszGzFileCompressed, ansi_file_flag(::file::type_binary | ::file::mode_read));
+
       if (fileUn == -1)
       {
          TRACE("ungz wopen error %s", lpcszGzFileCompressed);
