@@ -63,7 +63,7 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(ProjectDir)../../..;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);src;$(ProjectDir)../../include;$(ProjectDir)../pixman/pixman;$(ProjectDir)../freetype/include;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>__STDC__;HAVE_CONFIG_H;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>-Wno-typedef-redefinition -Wno-enum-conversion -Wno-unused-function -Wno-unused-variable -Wno-tautological-constant-out-of-range-compare %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Wno-typedef-redefinition -Wno-enum-conversion -Wno-unused-function -Wno-unused-variable -Wno-tautological-constant-out-of-range-compare -Wno-parentheses-equality %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -189,31 +189,9 @@
     <ClCompile Include="src\cairo-unicode.c" />
     <ClCompile Include="src\cairo-user-font.c" />
     <ClCompile Include="src\cairo-version.c" />
-    <ClCompile Include="src\cairo-vg-surface.c" />
-    <ClCompile Include="src\cairo-wgl-context.c" />
     <ClCompile Include="src\cairo-wideint.c" />
-    <ClCompile Include="src\cairo-xcb-connection-core.c" />
-    <ClCompile Include="src\cairo-xcb-connection-render.c" />
-    <ClCompile Include="src\cairo-xcb-connection-shm.c" />
-    <ClCompile Include="src\cairo-xcb-connection.c" />
-    <ClCompile Include="src\cairo-xcb-screen.c" />
-    <ClCompile Include="src\cairo-xcb-shm.c" />
-    <ClCompile Include="src\cairo-xcb-surface-core.c" />
-    <ClCompile Include="src\cairo-xcb-surface-render.c" />
-    <ClCompile Include="src\cairo-xcb-surface.c" />
-    <ClCompile Include="src\cairo-xlib-core-compositor.c" />
-    <ClCompile Include="src\cairo-xlib-display.c" />
-    <ClCompile Include="src\cairo-xlib-fallback-compositor.c" />
-    <ClCompile Include="src\cairo-xlib-render-compositor.c" />
-    <ClCompile Include="src\cairo-xlib-screen.c" />
-    <ClCompile Include="src\cairo-xlib-source.c" />
-    <ClCompile Include="src\cairo-xlib-surface-shm.c" />
-    <ClCompile Include="src\cairo-xlib-surface.c" />
-    <ClCompile Include="src\cairo-xlib-visual.c" />
-    <ClCompile Include="src\cairo-xlib-xcb-surface.c" />
     <ClCompile Include="src\cairo-xml-surface.c" />
     <ClCompile Include="src\cairo.c" />
-    <ClCompile Include="src\check-has-hidden-symbols.c" />
     <ClCompile Include="src\test-base-compositor-surface.c" />
     <ClCompile Include="src\test-compositor-surface.c" />
     <ClCompile Include="src\test-null-compositor-surface.c" />

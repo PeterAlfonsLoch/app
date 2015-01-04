@@ -361,79 +361,13 @@
     <ClCompile Include="src\cairo-version.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cairo-vg-surface.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-wgl-context.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cairo-wideint.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xcb-connection-core.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xcb-connection-render.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xcb-connection-shm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xcb-connection.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xcb-screen.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xcb-shm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xcb-surface-core.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xcb-surface-render.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xcb-surface.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xlib-core-compositor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xlib-display.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xlib-fallback-compositor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xlib-render-compositor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xlib-screen.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xlib-source.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xlib-surface-shm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xlib-surface.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xlib-visual.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cairo-xlib-xcb-surface.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cairo-xml-surface.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cairo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\check-has-hidden-symbols.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\test-base-compositor-surface.c">
