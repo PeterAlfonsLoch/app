@@ -2522,6 +2522,12 @@
     <ClCompile Include="crypto\rsa\_rsa.c">
       <Filter>Source Files\crypto\rsa</Filter>
     </ClCompile>
+    <ClCompile Include="crypto\pkcs7\_p7.c">
+      <Filter>Source Files\crypto\pkcs7</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\pkcs12\_p12.c">
+      <Filter>Source Files\crypto\pkcs12</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ssl\tls1.h">
