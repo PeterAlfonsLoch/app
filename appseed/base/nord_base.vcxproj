@@ -65,7 +65,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>c++11</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
-      <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts -Wno-unused-private-field %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts -Wno-unused-private-field -Wno-mismatched-tags %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <LibraryDependencies>m;log;android</LibraryDependencies>
@@ -86,7 +86,6 @@
     <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_host.cpp" />
     <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp" />
-    <ClCompile Include="base\hotplugin\hotplugin_windows.cpp" />
     <ClCompile Include="base\install\install_plugin.cpp" />
     <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp" />
     <ClCompile Include="base\install\install_plugin_bare_paint_full_screen.cpp" />
@@ -105,12 +104,6 @@
     <ClCompile Include="base\node\android\android_util.cpp" />
     <ClCompile Include="base\node\android\android_window_draw.cpp" />
     <ClCompile Include="base\node\node.cpp" />
-    <ClCompile Include="base\node\windows\windows_copydesk.cpp" />
-    <ClCompile Include="base\node\windows\windows_factory_exchange.cpp" />
-    <ClCompile Include="base\node\windows\windows_interaction_impl.cpp" />
-    <ClCompile Include="base\node\windows\windows_message_queue.cpp" />
-    <ClCompile Include="base\node\windows\windows_print_job.cpp" />
-    <ClCompile Include="base\node\windows\windows_window_draw.cpp" />
     <ClCompile Include="base\os\android\android.cpp" />
     <ClCompile Include="base\os\android\android_message_loop.cpp" />
     <ClCompile Include="base\os\android\android_multithreading.cpp" />
@@ -125,12 +118,6 @@
     <ClCompile Include="base\os\ansios\ansios_file_std.cpp" />
     <ClCompile Include="base\os\ansios\ansios_multithreading.cpp" />
     <ClCompile Include="base\os\cross\metrowin\cross_metrowin_user.cpp" />
-    <ClCompile Include="base\os\windows\windows.cpp" />
-    <ClCompile Include="base\os\windows\windows_dll.cpp" />
-    <ClCompile Include="base\os\windows\windows_gdi.cpp" />
-    <ClCompile Include="base\os\windows\windows_simple_app.cpp" />
-    <ClCompile Include="base\os\windows\windows_trace_message.cpp" />
-    <ClCompile Include="base\os\windows\windows_window_gdi.cpp" />
     <ClCompile Include="database\database\database_user_interaction.cpp" />
     <ClCompile Include="filesystem\file\file_edit_buffer.cpp" />
     <ClCompile Include="framework.cpp" />

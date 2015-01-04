@@ -88,7 +88,7 @@ extern "C" void CharGuessDestroy(charguess_det p)
 void _debug_charguess()
 {
 
-   uint32_t uiCodePage = charguess("\"Carlos é brasileiro\" está escrito em um código de página latino?")();
+   //uint32_t uiCodePage = charguess("\"Carlos é brasileiro\" está escrito em um código de página latino?")();
 
 }
 

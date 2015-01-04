@@ -65,6 +65,9 @@
       <PreprocessorDefinitions>__STDC__;HAVE_CONFIG_H;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-typedef-redefinition -Wno-enum-conversion -Wno-unused-function -Wno-unused-variable -Wno-tautological-constant-out-of-range-compare -Wno-parentheses-equality %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
+    <Link>
+      <LibraryDependencies>m;log;android</LibraryDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
   </ItemDefinitionGroup>
@@ -344,6 +347,12 @@
     </ProjectReference>
     <ProjectReference Include="..\pixman\nord_axispixman.vcxproj">
       <Project>{005c309d-5880-4431-a65b-f04f6a6895b3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\png\nord_axispng.vcxproj">
+      <Project>{cd2a80bb-5b55-45fd-932d-404d2d76729b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\zlib\nord_axiszlib.vcxproj">
+      <Project>{032bd6dd-0da1-4a1f-9d36-6512b4127f7a}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
