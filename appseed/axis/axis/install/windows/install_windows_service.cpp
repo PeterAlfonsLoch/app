@@ -1,9 +1,9 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 #ifdef WINDOWSEX
 
-#include <WinSvc.h>
+//#include <WinSvc.h>
 
 
 int32_t stop_service()

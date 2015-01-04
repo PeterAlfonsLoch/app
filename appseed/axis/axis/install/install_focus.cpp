@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 focus * g_pfocus = NULL;

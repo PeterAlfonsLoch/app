@@ -1,7 +1,7 @@
-#include "framework.h"
-#include "android.h"
-#include <sys/stat.h>
-#include <ctype.h>
+//#include "framework.h"
+//#include "android.h"
+//#include <sys/stat.h>
+//#include <ctype.h>
 
 
 struct PROCESS_INFO_t

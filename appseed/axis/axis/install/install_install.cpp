@@ -1,7 +1,7 @@
-#include "framework.h"
+//#include "framework.h"
 
 #if defined(LINUX) || defined(WINDOWS)
-#include <omp.h>
+//#include <omp.h>
 #else
 int omp_get_thread_num()
 {
@@ -11,7 +11,7 @@ int omp_get_thread_num()
 
 #if defined(LINUX)
 
-#include <unistd.h>
+//#include <unistd.h>
 
 #endif
 

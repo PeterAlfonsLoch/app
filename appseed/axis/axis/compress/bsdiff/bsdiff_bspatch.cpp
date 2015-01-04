@@ -23,10 +23,10 @@
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
 */
-#include "framework.h"
-#include <stdarg.h>
-#include "axis/bzip2/bzlib.h"
-#include "libbsdiff.h"
+//#include"framework.h"
+//#include<stdarg.h>
+//#include"axis/bzip2/bzlib.h"
+//#include"libbsdiff.h"
 
 
 int err(int i, const char* str, ...)

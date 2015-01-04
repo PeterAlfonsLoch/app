@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 //This is hiragana 2-char sequence table, the number in each cell represents its frequency category

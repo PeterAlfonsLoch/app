@@ -1,3 +1,5 @@
+#pragma once
+
 /*
 	libcharguess	-	Guess the encoding/charset of a string
     Copyright (C) 2003  Stephane Corbe <noubi@users.sourceforge.net>

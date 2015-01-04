@@ -66,6 +66,8 @@
       <CppLanguageStandard>c++11</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts -Wno-unused-private-field -Wno-mismatched-tags %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <LibraryDependencies>m;log;android</LibraryDependencies>

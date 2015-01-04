@@ -64,6 +64,8 @@
       <AdditionalIncludeDirectories>$(ProjectDir);pixman;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ANDROID;_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-unused-const-variable -Wno-tautological-constant-out-of-range-compare -Wno-unused-function %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <LibraryDependencies>log;android;c;m</LibraryDependencies>

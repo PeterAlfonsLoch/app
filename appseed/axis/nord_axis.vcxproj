@@ -67,6 +67,8 @@
       <CppLanguageStandard>c++11</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts -Wno-unused-private-field -Wno-deprecated-register %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <LibraryDependencies>m;log;android</LibraryDependencies>
@@ -80,55 +82,12 @@
     <ClCompile Include="axis\axis\axis_session.cpp" />
     <ClCompile Include="axis\axis\axis_static_start.cpp" />
     <ClCompile Include="axis\axis\axis_system.cpp" />
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp" />
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp" />
-    <ClCompile Include="axis\compress\bzip_stream.cpp" />
-    <ClCompile Include="axis\compress\compress_compress.cpp" />
-    <ClCompile Include="axis\compress\gzip_stream.cpp" />
-    <ClCompile Include="axis\compress\zip\zip_api.cpp" />
-    <ClCompile Include="axis\compress\zip\zip_file.cpp" />
-    <ClCompile Include="axis\compress\zip\zip_in_file.cpp" />
-    <ClCompile Include="axis\compress\zip\zip_ioapi.cpp" />
-    <ClCompile Include="axis\compress\zip\zip_memory_buffer.cpp" />
-    <ClCompile Include="axis\compress\zip\zip_unzip.cpp" />
-    <ClCompile Include="axis\compress\zip\zip_util.cpp" />
-    <ClCompile Include="axis\compress\zip\zip_zip.cpp" />
+    <ClCompile Include="axis\compress\_compress.cpp" />
     <ClCompile Include="axis\crypto\crypto_crypto.cpp" />
-    <ClCompile Include="axis\fontopus\fontopus.cpp" />
-    <ClCompile Include="axis\fontopus\fontopus_authentication_map.cpp" />
-    <ClCompile Include="axis\fontopus\fontopus_contact_list.cpp" />
-    <ClCompile Include="axis\fontopus\fontopus_fontopus.cpp" />
-    <ClCompile Include="axis\fontopus\fontopus_licensing.cpp" />
-    <ClCompile Include="axis\fontopus\fontopus_user.cpp" />
-    <ClCompile Include="axis\fontopus\fontopus_usera.cpp" />
-    <ClCompile Include="axis\fontopus\fontopus_user_authentication.cpp" />
-    <ClCompile Include="axis\fontopus\fontopus_user_set.cpp" />
-    <ClCompile Include="axis\fontopus\fontopus_validate.cpp" />
-    <ClCompile Include="axis\geoip\geoip.cpp" />
-    <ClCompile Include="axis\geoip\geoip_city.cpp" />
-    <ClCompile Include="axis\geoip\geoip_region_name.cpp" />
-    <ClCompile Include="axis\geoip\geoip_time_zone.cpp" />
-    <ClCompile Include="axis\geoip\geoip_update.cpp" />
-    <ClCompile Include="axis\install\install.cpp" />
-    <ClCompile Include="axis\install\install_boot.cpp" />
-    <ClCompile Include="axis\install\install_bz.cpp" />
-    <ClCompile Include="axis\install\install_canvas.cpp" />
-    <ClCompile Include="axis\install\install_focus.cpp" />
-    <ClCompile Include="axis\install\install_install.cpp" />
-    <ClCompile Include="axis\install\install_installer.cpp" />
-    <ClCompile Include="axis\install\install_small_bell.cpp" />
-    <ClCompile Include="axis\install\install_trace.cpp" />
-    <ClCompile Include="axis\install\windows\install_windows_boot.cpp" />
-    <ClCompile Include="axis\install\windows\install_windows_service.cpp" />
-    <ClCompile Include="axis\install\windows\install_windows_win.cpp" />
-    <ClCompile Include="axis\node\android\android1.cpp" />
-    <ClCompile Include="axis\node\android\android_crypto.cpp" />
-    <ClCompile Include="axis\node\android\android_dir.cpp" />
-    <ClCompile Include="axis\node\android\android_factory_exchange.cpp" />
-    <ClCompile Include="axis\node\android\android_file_set.cpp" />
-    <ClCompile Include="axis\node\android\android_file_system.cpp" />
-    <ClCompile Include="axis\node\android\android_ip_enum.cpp" />
-    <ClCompile Include="axis\node\android\android_port_forward.cpp" />
+    <ClCompile Include="axis\fontopus\_fontopus.cpp" />
+    <ClCompile Include="axis\geoip\_geoip.cpp" />
+    <ClCompile Include="axis\install\_install.cpp" />
+    <ClCompile Include="axis\node\android\_android_node.cpp" />
     <ClCompile Include="axis\os\android\android.cpp" />
     <ClCompile Include="axis\os\ansios\ansios_crypt.cpp" />
     <ClCompile Include="database\database\_database.cpp" />
@@ -139,33 +98,9 @@
     <ClCompile Include="filesystem\file\file_dir_application.cpp" />
     <ClCompile Include="filesystem\file\file_dir_system.cpp" />
     <ClCompile Include="filesystem\file\file_system.cpp" />
-    <ClCompile Include="filesystem\fs\fs_data.cpp" />
-    <ClCompile Include="filesystem\fs\fs_fs.cpp" />
-    <ClCompile Include="filesystem\fs\fs_ifs.cpp" />
-    <ClCompile Include="filesystem\fs\fs_ifs_file.cpp" />
-    <ClCompile Include="filesystem\fs\fs_item.cpp" />
-    <ClCompile Include="filesystem\fs\fs_item_array.cpp" />
-    <ClCompile Include="filesystem\fs\fs_link.cpp" />
-    <ClCompile Include="filesystem\fs\fs_native_fs.cpp" />
-    <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp" />
-    <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp" />
-    <ClCompile Include="filesystem\fs\fs_set.cpp" />
+    <ClCompile Include="filesystem\fs\_fs.cpp" />
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="graphics\visual\visual_api.cpp" />
-    <ClCompile Include="graphics\visual\visual_buffered_graphics.cpp" />
-    <ClCompile Include="graphics\visual\visual_dib.cpp" />
-    <ClCompile Include="graphics\visual\visual_fastblur.cpp" />
-    <ClCompile Include="graphics\visual\visual_font.cpp" />
-    <ClCompile Include="graphics\visual\visual_font_central.cpp" />
-    <ClCompile Include="graphics\visual\visual_FreeImageFileProc.cpp" />
-    <ClCompile Include="graphics\visual\visual_glyph.cpp" />
-    <ClCompile Include="graphics\visual\visual_glyph_set.cpp" />
-    <ClCompile Include="graphics\visual\visual_graphics_extension.cpp" />
-    <ClCompile Include="graphics\visual\visual_image_list.cpp" />
-    <ClCompile Include="graphics\visual\visual_imaging.cpp" />
-    <ClCompile Include="graphics\visual\visual_rgb_quad_array.cpp" />
-    <ClCompile Include="graphics\visual\visual_visual.cpp" />
-    <ClCompile Include="graphics\visual\visual_water_routine.cpp" />
+    <ClCompile Include="graphics\visual\_visual.cpp" />
     <ClCompile Include="net\sockets\bsd\_bsd.cpp" />
     <ClCompile Include="net\sockets\_sockets.cpp" />
     <ClCompile Include="net\_net.cpp" />
@@ -207,7 +142,6 @@
     <ClInclude Include="axis\compress\zip\Util.h" />
     <ClInclude Include="axis\compress\zip\zip.h" />
     <ClInclude Include="axis\compress\zip\zipImpl.h" />
-    <ClInclude Include="axis\compress\zip\zip_internal.h" />
     <ClInclude Include="axis\crypto\crypto.h" />
     <ClInclude Include="axis\crypto\crypto_crypto.h" />
     <ClInclude Include="axis\fontopus\fontopus.h" />

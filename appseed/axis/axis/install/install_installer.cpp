@@ -1,23 +1,23 @@
-#include "framework.h" // from "axis/net/net_sockets.h"
-#include "axis/net/net_sockets.h"
-#include "axis/compress/compress.h"
+//#include "framework.h" // from "axis/net/net_sockets.h"
+//#include "axis/net/net_sockets.h"
+//#include "axis/compress/compress.h"
 
 
 #if defined(WINDOWS) || defined(LINUX)
-#include <omp.h>
+//#include <omp.h>
 #else
 extern int omp_get_thread_num();
 #endif
 
 
 #ifdef WINDOWS
-#include <WinInet.h>
-#include <Winternl.h>
+//#include <WinInet.h>
+//#include <Winternl.h>
 #endif
 
 #ifdef APPLEOS
-#include <sys/param.h>
-#include <mach-o/dyld.h>
+//#include <sys/param.h>
+//#include <mach-o/dyld.h>
 #endif
 
 

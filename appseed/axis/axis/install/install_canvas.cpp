@@ -1,9 +1,9 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 
 
-#include <math.h>
+//#include <math.h>
 
 
 namespace install

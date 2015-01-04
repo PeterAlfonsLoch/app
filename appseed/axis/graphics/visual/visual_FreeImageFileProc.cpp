@@ -1,7 +1,7 @@
-#include "framework.h"
+//#include "framework.h"
 #define _WINDOWS_
-#include "freeimage/Source/FreeImage.h"
-#include "visual_FreeImageFileProc.h"
+//#include "freeimage/Source/FreeImage.h"
+//#include "visual_FreeImageFileProc.h"
 
 /*uint32_t ___ReadProc    (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {

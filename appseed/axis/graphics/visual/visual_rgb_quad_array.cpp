@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 rgb_quad_array::rgb_quad_array()

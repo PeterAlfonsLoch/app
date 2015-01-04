@@ -67,6 +67,9 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>c++11</CppLanguageStandard>
       <AdditionalOptions>-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder -Wno-comment -Wno-uninitialized -Wno-unused-variable -Wno-return-type  -Wno-unused-function -Wno-self-assign -Wno-unused-value -Wno-char-subscripts -Wno-unused-private-field %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <LibraryDependencies>m;log;android</LibraryDependencies>
@@ -75,35 +78,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cpp\big5Prober.cpp" />
     <ClCompile Include="cpp\charDistribution.cpp" />
-    <ClCompile Include="cpp\charguess.cpp" />
-    <ClCompile Include="cpp\EscCharsetProber.cpp" />
-    <ClCompile Include="cpp\EscSM.cpp" />
-    <ClCompile Include="cpp\EUCJPProber.cpp" />
-    <ClCompile Include="cpp\EUCKRProber.cpp" />
-    <ClCompile Include="cpp\EUCTWProber.cpp" />
-    <ClCompile Include="cpp\GB2312Prober.cpp" />
-    <ClCompile Include="cpp\jpCntx.cpp" />
-    <ClCompile Include="cpp\LangBulgarianModel.cpp" />
-    <ClCompile Include="cpp\LangCyrillicModel.cpp" />
-    <ClCompile Include="cpp\LangGreekModel.cpp" />
-    <ClCompile Include="cpp\LangHungarianModel.cpp" />
-    <ClCompile Include="cpp\LangThaiModel.cpp" />
-    <ClCompile Include="cpp\Latin1Prober.cpp" />
-    <ClCompile Include="cpp\MBCSGroupProber.cpp" />
-    <ClCompile Include="cpp\MBCSSM.cpp" />
-    <ClCompile Include="cpp\SBCharsetProber.cpp" />
-    <ClCompile Include="cpp\SBCSGroupProber.cpp" />
-    <ClCompile Include="cpp\SJISProber.cpp" />
-    <ClCompile Include="cpp\universal.cpp" />
-    <ClCompile Include="cpp\UTF8Prober.cpp" />
-    <ClCompile Include="framework\framework.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x86'">Create</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="cpp\_.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\charguess.h" />

@@ -1,9 +1,9 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 #if defined(WINDOWS)
 
-#include <mmsystem.h>
+//#include <mmsystem.h>
 
 #define ID_MP3_SMALL_BELL			40000
 

@@ -1,7 +1,7 @@
-#include "framework.h"
-#include "axis/zlib/zlib.h"
-#include "axis/zlib/zutil.h"
-#include "gzip_stream.h"
+//#include"framework.h"
+//#include"axis/zlib/zlib.h"
+//#include"axis/zlib/zutil.h"
+//#include"gzip_stream.h"
 
 
 //#define ALLOC(size) malloc(size)

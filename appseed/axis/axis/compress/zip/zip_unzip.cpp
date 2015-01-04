@@ -33,10 +33,10 @@ woven in by Terry Thorsen 1/2003.
   file (appnote.txt) is distributed with the PKZIP program (even in the
   version without encryption capabilities).
  */
-#include "framework.h"
+//#include"framework.h"
 
 
-#include "unzip.h"
+//#include"unzip.h"
 
 
 #ifndef local
@@ -139,7 +139,7 @@ typedef struct
 
 
 #ifndef NOUNCRYPT
-#include "crypt.h"
+//#include"crypt.h"
 #endif
 
 /* ===========================================================================

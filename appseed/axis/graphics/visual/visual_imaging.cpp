@@ -1,14 +1,14 @@
-#include "framework.h"
+//#include "framework.h"
 #ifdef AXIS_FREEIMAGE
-#include "freeimage/Source/FreeImage.h"
-#include "visual_FreeImageFileProc.h"
+//#include "freeimage/Source/FreeImage.h"
+//#include "visual_FreeImageFileProc.h"
 #endif
 #ifdef WINDOWSEX
 
 #undef new
 #define min MIN
 #define max MAX
-#include <gdiplus.h>
+//#include <gdiplus.h>
 #undef min
 #undef max
 #define new AURA_NEW
@@ -17,8 +17,8 @@
 //void fastblur(::draw2d::dib * pimg, int32_t radius);
 
 #elif defined(METROWIN)
-#include <wincodec.h>
-#include <Shcore.h>
+//#include <wincodec.h>
+//#include <Shcore.h>
 
 #endif
 

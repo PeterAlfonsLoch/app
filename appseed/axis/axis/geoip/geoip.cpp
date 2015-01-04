@@ -1,30 +1,30 @@
-#include "framework.h"
-#include "net/net_sockets.h"
-#include "geoip.h"
+//#include"framework.h"
+//#include"net/net_sockets.h"
+//#include"geoip.h"
 
 #ifdef WINDOWS
 
-#include <Winsock2.h>
+//#include<Winsock2.h>
 
 #endif
 
-#include <sys/stat.h>
+//#include<sys/stat.h>
 
-static geoipv6_t IPV6_NULL;
+//static geoipv6_t IPV6_NULL;
 
 
 #define GEOIPDATADIR "/core/geoip"
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
-#include <sys/mman.h>
+//#include<sys/mman.h>
 
 #endif
 
 #if defined(APPLEOS)
 
-#include <arpa/inet.h>
-#include <sys/time.h>
+//#include<arpa/inet.h>
+//#include<sys/time.h>
 
 #endif
 

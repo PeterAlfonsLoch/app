@@ -1,27 +1,11 @@
-#include "framework.h"
-#ifndef METROWIN
-#ifdef WINDOWS
-#define min MIN
-#define max MAX
-#undef new
-#include <gdiplus.h>
-#undef min
-#undef max
-int GetEncoderClsid(const WCHAR* format,CLSID* pClsid);
-#elif defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-#include "freeimage/Source/FreeImage.h"
-#ifndef AXIS_FREEIMAGE
-#define AXIS_FREEIMAGE
-#endif
-#endif
-#endif
+//#include "framework.h"
 
 
 
-//#include "ft2build.h"
+////#include "ft2build.h"
 
 
-//#include FT_FREETYPE_H
+////#include FT_FREETYPE_H
 
 
 namespace visual

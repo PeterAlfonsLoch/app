@@ -1,7 +1,7 @@
-#include "framework.h"
+//#include "framework.h"
 
 #ifndef METROWIN
-#include "freeimage/Source/FreeImage.h"
+//#include "freeimage/Source/FreeImage.h"
 #endif
 
 image_list::image_list(::aura::application * papp) :

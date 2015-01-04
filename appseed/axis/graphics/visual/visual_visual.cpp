@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 /*
 namespace visual
@@ -25,7 +25,7 @@ namespace visual
 } // visual
 
 
-#include "framework.h"
+//#include "framework.h"
 
 */
 

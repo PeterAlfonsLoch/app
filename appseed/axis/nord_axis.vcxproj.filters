@@ -13,39 +13,6 @@
     <ClCompile Include="programming\javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\programming\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_link.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_data.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_fs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_ifs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_ifs_file.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_item.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_item_array.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_native_fs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_remote_native_file.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_remote_native_fs.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\fs\fs_set.cpp">
-      <Filter>Source Files\filesystem\fs</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_application.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -58,90 +25,6 @@
     <ClCompile Include="filesystem\file\file_system.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\visual\visual_api.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_buffered_graphics.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_dib.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_fastblur.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_font.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_font_central.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_FreeImageFileProc.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_glyph.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_glyph_set.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_graphics_extension.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_image_list.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_imaging.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_rgb_quad_array.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_visual.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\visual_water_routine.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bzip_stream.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\gzip_stream.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\compress_compress.cpp">
-      <Filter>Source Files\axis\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_api.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_file.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_in_file.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_ioapi.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_memory_buffer.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_unzip.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_util.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\zip\zip_zip.cpp">
-      <Filter>Source Files\axis\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\compress\bsdiff\bsdiff_bspatch.cpp">
-      <Filter>Source Files\axis\compress\bsdiff</Filter>
-    </ClCompile>
     <ClCompile Include="axis\crypto\crypto_crypto.cpp">
       <Filter>Source Files\axis\crypto</Filter>
     </ClCompile>
@@ -150,42 +33,6 @@
     </ClCompile>
     <ClCompile Include="axis\os\ansios\ansios_crypt.cpp">
       <Filter>Source Files\axis\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_boot.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_bz.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_canvas.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_focus.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_install.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_installer.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_small_bell.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\install_trace.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_boot.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_service.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_win.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\axis\axis.cpp">
       <Filter>Source Files\axis\axis</Filter>
@@ -201,75 +48,6 @@
     </ClCompile>
     <ClCompile Include="axis\axis\axis_system.cpp">
       <Filter>Source Files\axis\axis</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip_city.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip_region_name.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip_time_zone.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\geoip\geoip_update.cpp">
-      <Filter>Source Files\axis\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android1.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_crypto.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_dir.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_factory_exchange.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_set.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_system.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_ip_enum.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_port_forward.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_authentication_map.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_contact_list.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_fontopus.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_licensing.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_user.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_usera.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_user_authentication.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_user_set.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\fontopus\fontopus_validate.cpp">
-      <Filter>Source Files\axis\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="primitive\data\data_simple_item.cpp">
       <Filter>Source Files\primitive\data</Filter>
@@ -306,6 +84,27 @@
     </ClCompile>
     <ClCompile Include="net\_net.cpp">
       <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\compress\_compress.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\_fontopus.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\_geoip.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\_install.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\android\_android_node.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\_fs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\_visual.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1106,9 +905,6 @@
     </ClInclude>
     <ClInclude Include="database\sqlitedb\sqlitedb_set.h">
       <Filter>Header Files\database\sqlitedb</Filter>
-    </ClInclude>
-    <ClInclude Include="axis\compress\zip\zip_internal.h">
-      <Filter>Source Files\axis\compress\zip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

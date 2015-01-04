@@ -1,9 +1,9 @@
-#include "framework.h"
-#include "net/net_sockets.h"
-#include "android.h"
+//#include "framework.h"
+//#include "net/net_sockets.h"
+//#include "android.h"
 
 
-#include <unistd.h>
+//#include <unistd.h>
 
 /*
   Example code to obtain IP and MAC for all available interfaces on Linux.
@@ -15,11 +15,11 @@ http://www.doctort.org/adam/
 
 
 #define __USE_MISC
-#include <sys/ioctl.h>
-#include <net/if.h>
-#include <netinet/in.h>
-#include <stdio.h>
-#include <arpa/inet.h>
+//#include <sys/ioctl.h>
+//#include <net/if.h>
+//#include <netinet/in.h>
+//#include <stdio.h>
+//#include <arpa/inet.h>
 
 namespace android
 {

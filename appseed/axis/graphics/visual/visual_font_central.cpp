@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 font_central::font_central(::aura::application * papp) :
    element(papp),

@@ -1,8 +1,8 @@
-#include "framework.h"
-#include "android.h"
+//#include "framework.h"
+//#include "android.h"
 
 
-#include <unistd.h>
+//#include <unistd.h>
 
 
 namespace android
