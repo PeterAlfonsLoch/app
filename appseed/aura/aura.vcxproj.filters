@@ -3487,6 +3487,9 @@
     <ClCompile Include="user\colorertake5\_colorertake5.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
     </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_ansi_file.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
