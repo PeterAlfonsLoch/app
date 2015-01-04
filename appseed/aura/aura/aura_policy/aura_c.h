@@ -87,11 +87,11 @@ CLASS_DECL_AURA int_bool freerdp_authenticate(freerdp * instance, char** usernam
 # define O_BINARY 0
 #endif
 
-CLASS_DECL_AURA int32_t my_open(const char * psz,int32_t i);
-CLASS_DECL_AURA FILE * my_fopen(const char * psz,const char * pszMode);
-CLASS_DECL_AURA int my_file_flag(int iFlag);
-CLASS_DECL_AURA void my_get_errno(int32_t * perrno);
-CLASS_DECL_AURA void my_unlink(const char * psz);
+CLASS_DECL_AURA int32_t ansi_open(const char * psz,int32_t i);
+CLASS_DECL_AURA FILE * ansi_fopen(const char * psz,const char * pszMode);
+CLASS_DECL_AURA int ansi_file_flag(int iFlag);
+CLASS_DECL_AURA void ansi_get_errno(int32_t * perrno);
+CLASS_DECL_AURA void ansi_unlink(const char * psz);
 
 END_EXTERN_C
 

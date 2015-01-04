@@ -111,7 +111,7 @@ namespace user
 
    class place_holder;
 
-#if defined METROWIN && defined(__cplusplus_winrt)
+#if defined METROWIN
 
    class CLASS_DECL_BASE native_window_initialize
    {
@@ -119,7 +119,7 @@ namespace user
 
 
       Agile<Windows::UI::Core::CoreWindow> window;
-      ::base::system_window ^ pwindow;
+      ::axis::system_window ^ pwindow;
 
 
    };

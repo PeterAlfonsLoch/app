@@ -442,19 +442,19 @@ BEGIN_EXTERN_C
 
 
 
-int32_t my_open(const char * psz,int32_t i)
+int32_t ansi_open(const char * psz,int32_t i)
 {
 
    return open(psz,i);
 
 }
 
-void my_get_errno(int32_t * perrno)
+void ansi_get_errno(int32_t * perrno)
 {
    *perrno = errno;
 }
 
-FILE * my_fopen(const char * psz,const char * pszMode)
+FILE * ansi_fopen(const char * psz,const char * pszMode)
 {
 
    return fopen(psz,pszMode);
@@ -462,7 +462,7 @@ FILE * my_fopen(const char * psz,const char * pszMode)
 }
 
 
-int my_file_flag(int iFlag)
+int ansi_file_flag(int iFlag)
 {
 
    int i = 0;
@@ -503,7 +503,7 @@ int my_file_flag(int iFlag)
 }
 
 
-void my_unlink(const char * psz)
+void ansi_unlink(const char * psz)
 {
 
    unlink(psz);
