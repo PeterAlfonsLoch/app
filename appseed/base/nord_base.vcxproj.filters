@@ -148,6 +148,12 @@
     <ClCompile Include="database\database\database_user_interaction.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
+    <ClCompile Include="base\os\android\android_vsnord_native_app_glue.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\android\android_window_anative.cpp">
+      <Filter>Source Files\base\os\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -384,12 +390,6 @@
     <ClInclude Include="base\os\android\android.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\windows\windows.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\os\windows\windows_window_gdi.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\cross\cross.h">
       <Filter>Header Files\base\os\cross</Filter>
     </ClInclude>
@@ -540,6 +540,15 @@
     <ClInclude Include="database\database\database_user_interaction.h">
       <Filter>Header Files\database\database</Filter>
     </ClInclude>
+    <ClInclude Include="base\os\android\android_vsnord_native_app_glue.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\linux\linux_window_cairo.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\android\android_window_anative.h">
+      <Filter>Header Files\base\os\android</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -580,9 +589,6 @@
     </Filter>
     <Filter Include="Header Files\base\os\android">
       <UniqueIdentifier>{c2a7994b-01e4-4ebb-86ab-3e63a9929ff2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\base\os\windows">
-      <UniqueIdentifier>{c6b65e71-dad9-4273-a0d1-c1a88e4170e3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\base\os\cross">
       <UniqueIdentifier>{89326f68-a83d-418f-8462-b6b1a3b810b4}</UniqueIdentifier>

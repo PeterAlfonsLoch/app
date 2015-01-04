@@ -109,7 +109,9 @@
     <ClCompile Include="base\os\android\android_multithreading.cpp" />
     <ClCompile Include="base\os\android\android_simple_app.cpp" />
     <ClCompile Include="base\os\android\android_trace_message.cpp" />
+    <ClCompile Include="base\os\android\android_vsnord_native_app_glue.cpp" />
     <ClCompile Include="base\os\android\android_windowing.cpp" />
+    <ClCompile Include="base\os\android\android_window_anative.cpp" />
     <ClCompile Include="base\os\android\android_window_android.cpp" />
     <ClCompile Include="base\os\android\android_win_base.cpp" />
     <ClCompile Include="base\os\ansios\ansios_cross_win.cpp" />
@@ -170,7 +172,9 @@
     <ClInclude Include="base\node\windows\windows_print_job.h" />
     <ClInclude Include="base\node\windows\windows_window_draw.h" />
     <ClInclude Include="base\os\android\android.h" />
+    <ClInclude Include="base\os\android\android_vsnord_native_app_glue.h" />
     <ClInclude Include="base\os\android\android_windowing.h" />
+    <ClInclude Include="base\os\android\android_window_anative.h" />
     <ClInclude Include="base\os\android\android_window_android.h" />
     <ClInclude Include="base\os\ansios\ansios.h" />
     <ClInclude Include="base\os\ansios\ansios_multithreading.h" />
@@ -178,9 +182,8 @@
     <ClInclude Include="base\os\cross\cross.h" />
     <ClInclude Include="base\os\cross\windows\windows.h" />
     <ClInclude Include="base\os\cross\windows\windows_user.h" />
+    <ClInclude Include="base\os\linux\linux_window_cairo.h" />
     <ClInclude Include="base\os\os.h" />
-    <ClInclude Include="base\os\windows\windows.h" />
-    <ClInclude Include="base\os\windows\windows_window_gdi.h" />
     <ClInclude Include="database\database\database_user_interaction.h" />
     <ClInclude Include="filesystem\file\file_edit_buffer.h" />
     <ClInclude Include="framework.h" />

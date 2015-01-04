@@ -741,9 +741,6 @@
     <ClInclude Include="axis\os\android\android_window_android.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\os\android\android_window_impl.h">
-      <Filter>Header Files\axis\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="axis\os\android\android_android.h">
       <Filter>Header Files\axis\os\android</Filter>
     </ClInclude>

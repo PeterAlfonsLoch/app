@@ -33,6 +33,17 @@ namespace base
 
       };
 
+#elif defined(VSNORD)
+
+      class os_data
+      {
+      public:
+
+         sp(::user::interaction)                      m_pui;
+
+
+      };
+
 #else
 
       class os_data;

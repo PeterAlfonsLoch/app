@@ -3,6 +3,8 @@
 #include "base/os/windows/windows_window_gdi.h"
 #elif defined (LINUX)
 #include "base/os/linux/linux_window_xlib.h"
+#elif defined (VSNORD)
+#include "base/os/android/android_window_anative.h"
 #elif defined (ANDROID)
 #include "base/os/android/android_window_android.h"
 #endif
@@ -59,6 +61,10 @@ void window_graphics::update_window(window_graphics * & pdata, oswindow interact
 #elif defined(LINUX)
 
          pdata = new window_xlib();
+
+#elif defined(VSNORD)
+
+         pdata = new window_android_anative();
 
 #elif defined(ANDROID)
 

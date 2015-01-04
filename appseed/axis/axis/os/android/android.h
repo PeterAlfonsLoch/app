@@ -1,5 +1,9 @@
 #pragma once
 
+
+#include "aura/os/android/android.h"
+
+
 //#include <unistd.h>
 #include <stdint.h>
 #include <asm/byteorder.h>
@@ -21,3 +25,4 @@ double rint(double x);
 
 
 END_EXTERN_C
+

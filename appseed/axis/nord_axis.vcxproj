@@ -262,7 +262,6 @@
     <ClInclude Include="axis\os\android\android_internal.h" />
     <ClInclude Include="axis\os\android\android_process.h" />
     <ClInclude Include="axis\os\android\android_window_android.h" />
-    <ClInclude Include="axis\os\android\android_window_impl.h" />
     <ClInclude Include="axis\os\ansios\ansios.h" />
     <ClInclude Include="axis\os\os.h" />
     <ClInclude Include="axis\os\windows\windows.h" />

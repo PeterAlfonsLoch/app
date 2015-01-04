@@ -1,9 +1,16 @@
 #pragma once
 
 
+#include "axis/os/android/android.h"
+
+
 #include <wchar.h>
 
+#ifdef VSNORD
 
+#include "android_vsnord_native_app_glue.h"
+
+#endif // VSNORD
 //#include "android_graphics.h"
 
 
