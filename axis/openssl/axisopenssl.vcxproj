@@ -7465,6 +7465,7 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="crypto\rsa\rsa_x931.c" />
+    <ClCompile Include="crypto\rsa\_rsa.c" />
     <ClCompile Include="crypto\seed\seed.c" />
     <ClCompile Include="crypto\seed\seed_cbc.c" />
     <ClCompile Include="crypto\seed\seed_cfb.c" />

@@ -2519,6 +2519,9 @@
     <ClCompile Include="crypto\evp\_evp.c">
       <Filter>Source Files\crypto\evp</Filter>
     </ClCompile>
+    <ClCompile Include="crypto\rsa\_rsa.c">
+      <Filter>Source Files\crypto\rsa</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ssl\tls1.h">
