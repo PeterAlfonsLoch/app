@@ -4,6 +4,9 @@
 #include "windows/_windows_node.cpp"
 #elif defined(METROWIN)
 #include "metrowin/_metrowin_node.cpp"
+#elif defined(ANDROID)
+#include "android/_android_node.cpp"
+#include "ansios/_ansios_node.cpp"
 #endif
 
 

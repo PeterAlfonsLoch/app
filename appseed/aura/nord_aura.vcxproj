@@ -82,16 +82,6 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="aura\os\cross\ansios\ansios_datetime.cpp" />
-    <ClCompile Include="aura\os\cross\metrowin\cross_metrowin_user.cpp" />
-    <ClCompile Include="aura\os\cross\windows\cross_windows_crt.cpp" />
-    <ClCompile Include="aura\os\cross\windows\cross_windows_datetime.cpp" />
-    <ClCompile Include="aura\os\cross\windows\cross_windows_error.cpp" />
-    <ClCompile Include="aura\os\cross\windows\cross_windows_locale.cpp" />
-    <ClCompile Include="aura\os\cross\windows\cross_windows_shared_memory.cpp" />
-    <ClCompile Include="aura\os\cross\windows\cross_windows_threading.cpp" />
-    <ClCompile Include="aura\os\cross\windows\cross_windows_user.cpp" />
-    <ClCompile Include="aura\os\cross\windows\cross_windows_windows.cpp" />
     <ClCompile Include="aura\_aura_aura.cpp" />
     <ClCompile Include="filesystem\file\_file.cpp" />
     <ClCompile Include="framework.cpp" />

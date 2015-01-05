@@ -471,7 +471,7 @@ should not have done so since it was not documented.
 //
 //
 //#if !defined(_CRT_PORTABLE) && !defined(LINUX)
-//#define _CrtDbgBreak() __debugbreak()
+#define _CrtDbgBreak() debug_break()
 //#else
 //CLASS_DECL_AURA void DECL_C _CrtDbgBreak();
 //#endif

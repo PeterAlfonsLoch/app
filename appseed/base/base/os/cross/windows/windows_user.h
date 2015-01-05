@@ -3,7 +3,7 @@
 
 CLASS_DECL_BASE WINBOOL GetCursorPos(LPPOINT lpptCursor);
 
-#define HWND_MESSAGE     ((HWND)-3)
+#define HWND_MESSAGE     ((oswindow)-3)
 
 #define PostMessage  PostMessageW
 

@@ -22,6 +22,10 @@
 #include "cross/windows/cross_windows_user.cpp"
 #include "metrowin/_metrowin_os.cpp"
 #include "windows/windows_ansi_file.cpp"
+#elif defined(ANDROID)
+#include "cross/windows/_cross_windows.cpp"
+#include "android/_android_os.cpp"
+#include "ansios/_ansios_os.cpp"
 #endif
 
 #ifdef ENABLE_BINRELOC

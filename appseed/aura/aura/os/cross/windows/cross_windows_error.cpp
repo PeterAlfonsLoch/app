@@ -45,7 +45,7 @@
 # include <unistd.h>
 #endif
 
-/*//#include "config.h"
+//#include "config.h"
 //#include "wine/port.h"
 //#include <stdarg.h>
 

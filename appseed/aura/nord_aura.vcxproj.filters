@@ -25,36 +25,6 @@
     <ClCompile Include="graphics\visual\visual_icon.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\cross\metrowin\cross_metrowin_user.cpp">
-      <Filter>Source Files\aura\os\cross\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_windows.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_crt.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_error.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_locale.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_shared_memory.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_threading.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_datetime.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\cross\windows\cross_windows_user.cpp">
-      <Filter>Source Files\aura\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\os\cross\ansios\ansios_datetime.cpp">
-      <Filter>Source Files\aura\os\cross\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\_primitive.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
@@ -2068,6 +2038,9 @@
     </Filter>
     <Filter Include="Source Files\aura\process">
       <UniqueIdentifier>{1bbaa91c-f135-409b-9860-10a905dd1614}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\node\NewFilter1">
+      <UniqueIdentifier>{43a75fc7-446b-453a-89d2-66b5f5ac3f23}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
