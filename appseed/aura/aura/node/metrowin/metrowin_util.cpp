@@ -1,6 +1,6 @@
-#include "framework.h"
-#include "metrowin.h"
-#include <malloc.h>
+//#include "framework.h"
+//#include "metrowin.h"
+//#include <malloc.h>
 
 
 // interesting function

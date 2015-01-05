@@ -1,6 +1,6 @@
-#include "framework.h"
-#include "metrowin.h"
-#include "dde.h"
+//#include "framework.h"
+//#include "metrowin.h"
+//#include "dde.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -51,29 +51,8 @@
     <ClInclude Include="framework\framework.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cpp\big5Prober.cpp" />
     <ClCompile Include="cpp\charDistribution.cpp" />
-    <ClCompile Include="cpp\charguess.cpp" />
-    <ClCompile Include="cpp\EscCharsetProber.cpp" />
-    <ClCompile Include="cpp\EscSM.cpp" />
-    <ClCompile Include="cpp\EUCJPProber.cpp" />
-    <ClCompile Include="cpp\EUCKRProber.cpp" />
-    <ClCompile Include="cpp\EUCTWProber.cpp" />
-    <ClCompile Include="cpp\GB2312Prober.cpp" />
-    <ClCompile Include="cpp\jpCntx.cpp" />
-    <ClCompile Include="cpp\LangBulgarianModel.cpp" />
-    <ClCompile Include="cpp\LangCyrillicModel.cpp" />
-    <ClCompile Include="cpp\LangGreekModel.cpp" />
-    <ClCompile Include="cpp\LangHungarianModel.cpp" />
-    <ClCompile Include="cpp\LangThaiModel.cpp" />
-    <ClCompile Include="cpp\Latin1Prober.cpp" />
-    <ClCompile Include="cpp\MBCSGroupProber.cpp" />
-    <ClCompile Include="cpp\MBCSSM.cpp" />
-    <ClCompile Include="cpp\SBCharsetProber.cpp" />
-    <ClCompile Include="cpp\SBCSGroupProber.cpp" />
-    <ClCompile Include="cpp\SJISProber.cpp" />
-    <ClCompile Include="cpp\universal.cpp" />
-    <ClCompile Include="cpp\UTF8Prober.cpp" />
+    <ClCompile Include="cpp\_.cpp" />
     <ClCompile Include="framework\framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
     </ClCompile>

@@ -41,12 +41,12 @@ as well as the definitions (usually placed in the .cpp files) of the functions.
 
 To get the declarations only, include it as you would any .h file, for example:
 
-#include "VistaTools.cxx"
+//#include "VistaTools.cxx"
 
 To get both the declarations and definitions, define IMPLEMENT_VISTA_TOOLS before including the file:
 
 #define IMPLEMENT_VISTA_TOOLS
-#include "VistaTools.cxx"
+//#include "VistaTools.cxx"
 
 (The above should be done once and only once per project).
 
@@ -95,8 +95,8 @@ MODIFICATIONS:
       The first release.
 */
 
-#include "framework.h"
-#include "metrowin.h"
+//#include "framework.h"
+//#include "metrowin.h"
 
 #ifdef IMPLEMENT_VISTA_TOOLS
 

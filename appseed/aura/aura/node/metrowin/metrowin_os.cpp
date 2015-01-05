@@ -1,12 +1,12 @@
-#include "framework.h"
-#include "metrowin.h"
+//#include "framework.h"
+//#include "metrowin.h"
 
 
 #undef USERNAME_LENGTH // mysql one
 
 
-#include <Wtsapi32.h>
-#include <Psapi.h>
+//#include <Wtsapi32.h>
+//#include <Psapi.h>
 
 
 namespace metrowin

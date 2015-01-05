@@ -5,16 +5,16 @@
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-#include "framework.h"
-#include "metrowin.h"
-#include "metrowin_metrowin.h"
+//#include "framework.h"
+//#include "metrowin.h"
+//#include "metrowin_metrowin.h"
 
 #undef System
 
-#include <assert.h>
-//#include <vector>
-//#include <set>
-//#include <map>
+//#include <assert.h>
+////#include <vector>
+////#include <set>
+////#include <map>
 
 //using namespace std;
 //using namespace Platform;

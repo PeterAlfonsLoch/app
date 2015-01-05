@@ -1,5 +1,5 @@
-#include "framework.h"
-#include <io.h>
+//#include "framework.h"
+//#include <io.h>
 
 
 
@@ -679,8 +679,8 @@ struct PROCESS_INFO_t
 
 #if !defined(LINUX) && !defined(MACOS) && !defined(METROWIN) && !defined(ANDROID)
 
-#include <Tlhelp32.h>
-#include <Psapi.h>
+//#include <Tlhelp32.h>
+//#include <Psapi.h>
 
 
 void EnumerateLoadedModules(string& csPath,OF_CALLBACK CallBackProc,uint_ptr pUserContext);
@@ -1358,8 +1358,8 @@ int_bool file_delete_dup(const char * lpszFileName)
 
 // 08/20/05 (mv)
 
-#include "framework.h"
-#include "metrowin.h"
+//#include "framework.h"
+//#include "metrowin.h"
 
 //_flag values (not the ones used by the normal CRT
 

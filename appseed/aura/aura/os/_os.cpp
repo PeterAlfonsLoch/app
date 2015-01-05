@@ -13,7 +13,18 @@
 #include "cross/ansios/ansios_datetime.cpp"
 #include "cross/metrowin/cross_metrowin_user.cpp"
 #include "windows/_windows_os.cpp"
+#elif defined(METROWIN)
+#include "cross/ansios/ansios_datetime.cpp"
+#include "cross/metrowin/cross_metrowin_user.cpp"
+#include "cross/windows/windows_internals.h"
+#include "cross/windows/cross_windows_datetime.cpp"
+#include "cross/windows/cross_windows_threading.cpp"
+#include "cross/windows/cross_windows_user.cpp"
+#include "metrowin/_metrowin_os.cpp"
+#include "windows/windows_ansi_file.cpp"
 #endif
 
 
+#ifndef METROWIN
 #include "os_binreloc.cpp"
+#endif

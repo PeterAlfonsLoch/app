@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 #undef WINAXISAPI
 #define WINAXISAPI CLASS_DECL_AURA

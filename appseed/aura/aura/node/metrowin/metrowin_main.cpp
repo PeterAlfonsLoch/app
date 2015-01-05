@@ -1,6 +1,6 @@
-#include "framework.h"
-#include "metrowin.h"
-#include "sal.h"
+//#include "framework.h"
+//#include "metrowin.h"
+//#include "sal.h"
 
 
 CLASS_DECL_AURA int ca2_main();

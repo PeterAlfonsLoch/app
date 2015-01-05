@@ -1,7 +1,7 @@
-#include "framework.h"
-#include "metrowin.h"
-#include <Shellapi.h>
-#include <string.h>
+//#include "framework.h"
+//#include "metrowin.h"
+//#include <Shellapi.h>
+//#include <string.h>
 
 #ifdef WINDOWSEX
 

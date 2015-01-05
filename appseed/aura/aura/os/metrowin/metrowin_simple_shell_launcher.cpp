@@ -1,9 +1,9 @@
-#include "framework.h"
-#include "metrowin.h"
+//#include "framework.h"
+//#include "metrowin.h"
 
 #ifndef METROWIN
 
-#include <Shellapi.h>
+//#include <Shellapi.h>
 
 
 void simple_shell_launcher::execute()

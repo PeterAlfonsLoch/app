@@ -1,7 +1,7 @@
-#include "framework.h"
-#include "metrowin.h"
-#include <process.h>    // for _beginthreadex and _endthreadex
-#include <ddeml.h>  // for MSGF_DDEMGR
+//#include "framework.h"
+//#include "metrowin.h"
+//#include <process.h>    // for _beginthreadex and _endthreadex
+//#include <ddeml.h>  // for MSGF_DDEMGR
 
 namespace metrowin
 {

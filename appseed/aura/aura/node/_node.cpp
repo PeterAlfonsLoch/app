@@ -2,6 +2,8 @@
 
 #ifdef WINDOWSEX
 #include "windows/_windows_node.cpp"
+#elif defined(METROWIN)
+#include "metrowin/_metrowin_node.cpp"
 #endif
 
 

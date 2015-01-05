@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "metrowin.h"
+//#include "framework.h"
+//#include "metrowin.h"
 
 
 string get_error_message(DWORD dwError)

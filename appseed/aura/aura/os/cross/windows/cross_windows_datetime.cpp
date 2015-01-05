@@ -23,11 +23,11 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#include "framework.h"
+//#include "framework.h"
 
 
 #if !defined(WINDOWS)
-#include <sys/time.h>
+//#include <sys/time.h>
 
 #endif
 
@@ -35,7 +35,7 @@
 #define STATUS_SUCCESS 0
 #define STATUS_PRIVILEGE_NOT_HELD        ((NTSTATUS) 0xC0000061)
 #endif
-#include <time.h>
+//#include <time.h>
 
 #define server_start_time 0
 
@@ -78,11 +78,11 @@ LONG TIME_GetBias(void);
 //#define STATUS_PRIVILEGE_NOT_HELD 1
 //#endif
 
-#include "windows_internals.h"
+//#include "windows_internals.h"
 //#define CLASS_DECL_AURA
-//#include "ca/ca/ca_verisimple_string.h"
-//#include "ca/ca/ca_mutex.h"
-//#include "ca/ca/ca_synch_lock.h"
+////#include "ca/ca/ca_verisimple_string.h"
+////#include "ca/ca/ca_mutex.h"
+////#include "ca/ca/ca_synch_lock.h"
 
 
 
@@ -99,12 +99,12 @@ struct timeval
 //#endif
 
 
-//#include "nodeapp/operational_system/cross/win/win.h"
-//#include "nodeapp/operational_system/cross/win/win_def.h"
-//#include "winternl.h"
-//#include "wine/unicode.h"
-//#include "wine/debug.h"
-//#include "ntdll_misc.h"
+////#include "nodeapp/operational_system/cross/win/win.h"
+////#include "nodeapp/operational_system/cross/win/win_def.h"
+////#include "winternl.h"
+////#include "wine/unicode.h"
+////#include "wine/debug.h"
+////#include "ntdll_misc.h"
 
 //WINE_DEFAULT_DEBUG_CHANNEL(ntdll);
 

@@ -19,7 +19,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
-#include "framework.h"
+//#include "framework.h"
 /*
 #define NONAMELESSUNION
 #define NONAMELESSSTRUCT
@@ -28,16 +28,16 @@
 #define HAVE_SETTIMEOFDAY
 //#define WIN32_NO_STATUS
 #define __WINESRC__
-#include "os_cross_windows_internals.h"
-#include "c/c/verisimple_string.h"
-#include "c/c/mutex.h"
-#include "c/c/single_lock.h"
-#include <stdarg.h>
-//#include <stdlib.h>
-//#include <errno.h>
-//#include <string.h>
-//#include <limits.h>
-//#include <time.h>
+//#include "os_cross_windows_internals.h"
+//#include "c/c/verisimple_string.h"
+//#include "c/c/mutex.h"
+//#include "c/c/single_lock.h"
+//#include <stdarg.h>
+////#include <stdlib.h>
+////#include <errno.h>
+////#include <string.h>
+////#include <limits.h>
+////#include <time.h>
 #ifdef HAVE_SYS_TIME_H
 # include <sys/time.h>
 #endif
@@ -45,16 +45,16 @@
 # include <unistd.h>
 #endif
 
-/*#include "config.h"
-#include "wine/port.h"
-#include <stdarg.h>
+/*//#include "config.h"
+//#include "wine/port.h"
+//#include <stdarg.h>
 
-#include "ntstatus.h"
+//#include "ntstatus.h"
 #define WIN32_NO_STATUS
-#include "windef.h"
-#include "winternl.h"
-#include "winerror.h"
-#include "wine/debug.h"*/
+//#include "windef.h"
+//#include "winternl.h"
+//#include "winerror.h"
+//#include "wine/debug.h"*/
 
 //WINE_DEFAULT_DEBUG_CHANNEL(ntdll);
 
