@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "aura/node/android/android.h"
+
 string get_error_message(DWORD dwError);
 
 ::aura::application *     win_instantiate_application(::aura::application * pappSystem, const char * pszId);
@@ -82,7 +84,6 @@ string get_error_message(DWORD dwError);
 int32_t CLASS_DECL_AXIS __android_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_AXIS void vfxThrowFileException(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 //#include "android_internal.h"

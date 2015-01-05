@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "axis/node/android/android.h"
+
+
 string get_error_message(DWORD dwError);
 
 ::aura::application *     win_instantiate_application(::aura::application * pappSystem, const char * pszId);
@@ -9,22 +12,22 @@ string get_error_message(DWORD dwError);
 // explicit initialization for general purpose classes
 
 //CLASS_DECL_BASE BOOL AfxInitialize(BOOL bDLL = FALSE, DWORD dwVersion = _MFC_VER);
-CLASS_DECL_BASE WINBOOL AfxInitialize(WINBOOL bDLL = FALSE,DWORD dwVersion = 0);
+//CLASS_DECL_BASE WINBOOL AfxInitialize(WINBOOL bDLL = FALSE,DWORD dwVersion = 0);
 
 /////////////////////////////////////////////////////////////////////////////
 // stop on a specific primitive::memory request
 
 // Debugger hook on specified allocation request - Obsolete
-CLASS_DECL_BASE void AfxSetAllocStop(LONG lRequestNumber);
+//CLASS_DECL_BASE void AfxSetAllocStop(LONG lRequestNumber);
 
 // Return TRUE if primitive::memory is sane or print out what is wrong
-CLASS_DECL_BASE WINBOOL AfxCheckMemory();
+//CLASS_DECL_BASE WINBOOL AfxCheckMemory();
 
 // Return TRUE if valid primitive::memory block of nBytes
-CLASS_DECL_BASE WINBOOL AfxIsMemoryBlock(const void * p,UINT nBytes,
-   LONG* plRequestNumber = NULL);
+//CLASS_DECL_BASE WINBOOL AfxIsMemoryBlock(const void * p,UINT nBytes,
+  // LONG* plRequestNumber = NULL);
 
-CLASS_DECL_BASE void AfxResetMsgCache();
+//CLASS_DECL_BASE void AfxResetMsgCache();
 
 
 #include "android1.h"
@@ -76,7 +79,7 @@ WINBOOL GetMessage(
 int32_t CLASS_DECL_BASE __android_main(int32_t argc, char * argv[]);
 
 
-CLASS_DECL_BASE void vfxThrowFileException(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
+//CLASS_DECL_BASE void vfxThrowFileException(::aura::application * papp, int32_t cause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 //#include "android_internal.h"

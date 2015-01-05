@@ -1,47 +1,47 @@
 #pragma once
 
 
-namespace android
-{
+//namespace android
+//{
+//
+//
+//   class thread;
+//
+//   class android
+//   {
+//
+//      int32_t function();
+//
+//   };
+//
+//
+//
+//} // namespace android
 
 
-   class thread;
 
-   class android
-   {
-
-      int32_t function();
-
-   };
-
-
-
-} // namespace android
-
-
-
-struct CLASS_DECL_BASE __exception_link
-{
-
-
-   __exception_link * m_pLinkPrev;
-
-   __exception_link();
-
-   ~__exception_link() 
-   {
-
-   }
-
-
-};
-
-struct CLASS_DECL_BASE __EXCEPTION_CONTEXT
-{
-
-   __exception_link* m_pLinkTop;
-
-};
+//struct CLASS_DECL_BASE __exception_link
+//{
+//
+//
+//   __exception_link * m_pLinkPrev;
+//
+//   __exception_link();
+//
+//   ~__exception_link() 
+//   {
+//
+//   }
+//
+//
+//};
+//
+//struct CLASS_DECL_BASE __EXCEPTION_CONTEXT
+//{
+//
+//   __exception_link* m_pLinkTop;
+//
+//};
 
 //void CLASS_DECL_BASE __abort();
 //

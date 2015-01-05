@@ -1,19 +1,19 @@
 //#include "framework.h"
 
-#if defined(LINUX) || defined(WINDOWS)
-//#include <omp.h>
-#else
-int omp_get_thread_num()
-{
-   return 0;
-}
-#endif
-
-#if defined(LINUX)
-
-//#include <unistd.h>
-
-#endif
+//#if defined(LINUX) || defined(WINDOWS)
+////#include <omp.h>
+//#else
+//int omp_get_thread_num()
+//{
+//   return 0;
+//}
+//#endif
+//
+//#if defined(LINUX)
+//
+////#include <unistd.h>
+//
+//#endif
 
 namespace install
 {
