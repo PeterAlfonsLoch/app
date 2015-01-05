@@ -23,14 +23,14 @@
  * Author: Soren Sandmann <sandmann@redhat.com>
  */
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include<config.h>
 #endif
 
 #undef PIXMAN_DISABLE_DEPRECATED
 
-#include "pixman-private.h"
+#include"pixman-private.h"
 
-#include <stdlib.h>
+#include<stdlib.h>
 
 typedef pixman_box16_t		box_type_t;
 typedef pixman_region16_data_t	region_data_type_t;
@@ -46,7 +46,7 @@ typedef struct {
 #define PIXMAN_REGION_MAX INT16_MAX
 #define PIXMAN_REGION_MIN INT16_MIN
 
-#include "pixman-region.c"
+#include"pixman-region.c"
 
 /* This function exists only to make it possible to preserve the X ABI -
  * it should go away at first opportunity.

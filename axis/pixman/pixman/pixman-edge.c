@@ -21,13 +21,13 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include<config.h>
 #endif
 
-#include <string.h>
+#include<string.h>
 
-#include "pixman-private.h"
-#include "pixman-accessor.h"
+#include"pixman-private.h"
+#include"pixman-accessor.h"
 
 /*
  * Step across a small sample grid gap
@@ -93,7 +93,7 @@
         WRITE (image, __ap, PUT_4 (__o, __ao, __a | (0 - ((__a) >> 4)))); \
     }
 
-#include "pixman-edge-imp.h"
+#include"pixman-edge-imp.h"
 
 #undef ADD_ALPHA
 #undef STEP_ALPHA
@@ -109,7 +109,7 @@
 #define N_BITS 1
 #define RASTERIZE_EDGES rasterize_edges_1
 
-#include "pixman-edge-imp.h"
+#include"pixman-edge-imp.h"
 
 #undef RASTERIZE_EDGES
 #undef N_BITS

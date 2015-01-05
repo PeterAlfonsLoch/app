@@ -27,17 +27,17 @@
  * Based on work by Owen Taylor and Søren Sandmann
  */
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include<config.h>
 #endif
 
 /* PSHUFD is slow on a lot of old processors, and new processors have SSSE3 */
 #define PSHUFD_IS_FAST 0
 
-#include <xmmintrin.h> /* for _mm_shuffle_pi16 and _MM_SHUFFLE */
-#include <emmintrin.h> /* for SSE2 intrinsics */
-#include "pixman-private.h"
-#include "pixman-combine32.h"
-#include "pixman-inlines.h"
+#include<xmmintrin.h> /* for _mm_shuffle_pi16 and _MM_SHUFFLE */
+#include<emmintrin.h> /* for SSE2 intrinsics */
+#include"pixman-private.h"
+#include"pixman-combine32.h"
+#include"pixman-inlines.h"
 
 static __m128i mask_0080;
 static __m128i mask_00ff;

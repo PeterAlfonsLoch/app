@@ -22,9 +22,9 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+//#include<config.h>
 #endif
-#include "pixman-private.h"
+//#include"pixman-private.h"
 
 static uint32_t
 color_to_uint32 (const pixman_color_t *color)

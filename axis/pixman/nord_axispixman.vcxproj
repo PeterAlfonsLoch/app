@@ -79,37 +79,15 @@
   <ItemGroup>
     <ClCompile Include="pixman\pixman-access-accessors.c" />
     <ClCompile Include="pixman\pixman-access.c" />
-    <ClCompile Include="pixman\pixman-arm.c" />
-    <ClCompile Include="pixman\pixman-bits-image.c" />
     <ClCompile Include="pixman\pixman-combine-float.c" />
     <ClCompile Include="pixman\pixman-combine32.c" />
-    <ClCompile Include="pixman\pixman-conical-gradient.c" />
     <ClCompile Include="pixman\pixman-edge-accessors.c" />
     <ClCompile Include="pixman\pixman-edge.c" />
-    <ClCompile Include="pixman\pixman-fast-path.c" />
-    <ClCompile Include="pixman\pixman-filter.c" />
-    <ClCompile Include="pixman\pixman-general.c" />
-    <ClCompile Include="pixman\pixman-glyph.c" />
-    <ClCompile Include="pixman\pixman-gradient-walker.c" />
-    <ClCompile Include="pixman\pixman-image.c" />
-    <ClCompile Include="pixman\pixman-implementation.c" />
-    <ClCompile Include="pixman\pixman-linear-gradient.c" />
-    <ClCompile Include="pixman\pixman-matrix.c" />
-    <ClCompile Include="pixman\pixman-mips.c" />
-    <ClCompile Include="pixman\pixman-mmx.c" />
-    <ClCompile Include="pixman\pixman-noop.c" />
-    <ClCompile Include="pixman\pixman-ppc.c" />
-    <ClCompile Include="pixman\pixman-radial-gradient.c" />
     <ClCompile Include="pixman\pixman-region16.c" />
     <ClCompile Include="pixman\pixman-region32.c" />
-    <ClCompile Include="pixman\pixman-solid-fill.c" />
     <ClCompile Include="pixman\pixman-sse2.c" />
     <ClCompile Include="pixman\pixman-ssse3.c" />
-    <ClCompile Include="pixman\pixman-timer.c" />
-    <ClCompile Include="pixman\pixman-trap.c" />
-    <ClCompile Include="pixman\pixman-utils.c" />
-    <ClCompile Include="pixman\pixman-x86.c" />
-    <ClCompile Include="pixman\pixman.c" />
+    <ClCompile Include="pixman\_pixman.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />

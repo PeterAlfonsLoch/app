@@ -20,15 +20,15 @@
  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+//#include<config.h>
 #endif
 
-#include "pixman-private.h"
+//#include"pixman-private.h"
 
 #if defined(USE_MIPS_DSPR2) || defined(USE_LOONGSON_MMI)
 
-#include <string.h>
-#include <stdlib.h>
+//#include<string.h>
+//#include<stdlib.h>
 
 static pixman_bool_t
 have_feature (const char *search_string)

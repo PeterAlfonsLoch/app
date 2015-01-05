@@ -26,16 +26,16 @@
  * SOFTWARE.
  */
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+//#include<config.h>
 #endif
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "pixman-private.h"
+//#include<stdlib.h>
+//#include<string.h>
+//#include<math.h>
+//#include<limits.h>
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<string.h>
+//#include"pixman-private.h"
 
 static void
 general_iter_init (pixman_iter_t *iter, const pixman_iter_info_t *info)

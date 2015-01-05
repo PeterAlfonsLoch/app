@@ -1,4 +1,18 @@
 #include "framework.h"
+#if defined(LINUX) || defined(ANDROID)
+
+#include <pthread.h>
+
+#endif
+#ifdef LINUX
+#include <execinfo.h>
+#include <cxxabi.h>
+#include <unistd.h>
+#elif defined(APPLEOS)
+#include <execinfo.h>
+#elif defined(ANDROID) 
+#include <unistd.h>
+#endif
 
 //O volume na unidade Z ‚ eco
 // O N£mero de S‚rie do Volume ‚ 4A91-94E4

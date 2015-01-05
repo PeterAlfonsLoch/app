@@ -775,5 +775,5 @@ br_dirname (const char *path)
 
 #endif /* __BINRELOC_C__ */
 
-
+#undef NULL
 #define NULL 0

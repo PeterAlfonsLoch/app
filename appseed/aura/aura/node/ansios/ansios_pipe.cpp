@@ -1,10 +1,10 @@
-#include "framework.h"
-#include "ansios.h"
+//#include "framework.h"
+//#include "ansios.h"
 
 
 #if defined(LINUX) || defined(ANDROID)
-#include <fcntl.h>
-#include <unistd.h>
+//#include <fcntl.h>
+//#include <unistd.h>
 #endif
 
 

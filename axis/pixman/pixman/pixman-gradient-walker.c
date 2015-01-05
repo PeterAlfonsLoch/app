@@ -24,9 +24,9 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+//#include<config.h>
 #endif
-#include "pixman-private.h"
+//#include"pixman-private.h"
 
 void
 _pixman_gradient_walker_init (pixman_gradient_walker_t *walker,

@@ -24,13 +24,13 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+//#include<config.h>
 #endif
-#include <string.h>
-#include <stdlib.h>
-#include "pixman-private.h"
-#include "pixman-combine32.h"
-#include "pixman-inlines.h"
+//#include<string.h>
+//#include<stdlib.h>
+//#include"pixman-private.h"
+//#include"pixman-combine32.h"
+//#include"pixman-inlines.h"
 
 static force_inline uint32_t
 fetch_24 (uint8_t *a)

@@ -25,12 +25,12 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+//#include<config.h>
 #endif
 
-#include <math.h>
-#include <string.h>
-#include "pixman-private.h"
+//#include<math.h>
+//#include<string.h>
+//#include"pixman-private.h"
 
 #define F(x)    pixman_int_to_fixed (x)
 

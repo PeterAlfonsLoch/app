@@ -1,16 +1,16 @@
-#include "framework.h"
-#include "android.h"
+//#include "framework.h"
+//#include "android.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <dlfcn.h>
-#include <link.h>
-#include <ctype.h>
+//#include <fcntl.h>
+//#include <unistd.h>
+//#include <dlfcn.h>
+//#include <link.h>
+//#include <ctype.h>
 
-#include <sys/stat.h>
+//#include <sys/stat.h>
 
 //#elif defined(MACOS)
-//#include <dlfcn.h>
+////#include <dlfcn.h>
 //#endif
 
 //__STATIC inline bool IsDirSep(WCHAR ch)

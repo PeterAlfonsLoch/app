@@ -1,13 +1,13 @@
-#include "framework.h"
-#include <sys/stat.h>
+//#include "framework.h"
+//#include <sys/stat.h>
 //Copy file using mmap()
-#include <fcntl.h>
-#include <sys/mman.h>
-#include <unistd.h>
+//#include <fcntl.h>
+//#include <sys/mman.h>
+//#include <unistd.h>
 #define PACKAGE "mmap"
-#include <wchar.h>
-#include <fcntl.h>
-#include <sys/stat.h>
+//#include <wchar.h>
+//#include <fcntl.h>
+//#include <sys/stat.h>
 
 
 //void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);

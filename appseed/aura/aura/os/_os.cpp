@@ -24,6 +24,10 @@
 #include "windows/windows_ansi_file.cpp"
 #endif
 
+#ifdef ENABLE_BINRELOC
+#include <sys/stat.h>
+#include <unistd.h>
+#endif /* ENABLE_BINRELOC */
 
 #ifndef METROWIN
 #include "os_binreloc.cpp"

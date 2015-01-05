@@ -1,7 +1,7 @@
-#include "framework.h"
-#include "android.h"
+//#include "framework.h"
+//#include "android.h"
 
-#include <fcntl.h>
+//#include <fcntl.h>
 
 namespace android
 {

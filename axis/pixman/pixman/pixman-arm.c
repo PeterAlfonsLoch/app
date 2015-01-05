@@ -20,10 +20,10 @@
  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+//#include<config.h>
 #endif
 
-#include "pixman-private.h"
+//#include"pixman-private.h"
 
 typedef enum
 {
@@ -39,7 +39,7 @@ typedef enum
 #if defined(_MSC_VER)
 
 /* Needed for EXCEPTION_ILLEGAL_INSTRUCTION */
-#include <windows.h>
+//#include<windows.h>
 
 extern int pixman_msvc_try_arm_neon_op ();
 extern int pixman_msvc_try_arm_simd_op ();
@@ -72,7 +72,7 @@ detect_cpu_features (void)
 
 #elif defined(__APPLE__) && defined(TARGET_OS_IPHONE) /* iOS */
 
-#include "TargetConditionals.h"
+//#include"TargetConditionals.h"
 
 static arm_cpu_features_t
 detect_cpu_features (void)
@@ -96,7 +96,7 @@ detect_cpu_features (void)
 
 #elif defined(__ANDROID__) || defined(ANDROID) /* Android */
 
-#include <cpu-features.h>
+//#include<cpu-features.h>
 
 static arm_cpu_features_t
 detect_cpu_features (void)
@@ -125,13 +125,13 @@ detect_cpu_features (void)
 
 #elif defined (__linux__) /* linux ELF */
 
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/mman.h>
-#include <fcntl.h>
-#include <string.h>
-#include <elf.h>
+//#include<unistd.h>
+//#include<sys/types.h>
+//#include<sys/stat.h>
+//#include<sys/mman.h>
+//#include<fcntl.h>
+//#include<string.h>
+//#include<elf.h>
 
 static arm_cpu_features_t
 detect_cpu_features (void)

@@ -1,8 +1,8 @@
-#include "framework.h"
-#include "android.h"
-#include <dlfcn.h>
-#include <link.h>
-#include <pthread.h>
+//#include "framework.h"
+//#include "android.h"
+//#include <dlfcn.h>
+//#include <link.h>
+//#include <pthread.h>
 
 
 namespace android

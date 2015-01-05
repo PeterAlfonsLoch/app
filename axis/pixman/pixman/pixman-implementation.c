@@ -22,10 +22,10 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+//#include<config.h>
 #endif
-#include <stdlib.h>
-#include "pixman-private.h"
+//#include<stdlib.h>
+//#include"pixman-private.h"
 
 pixman_implementation_t *
 _pixman_implementation_create (pixman_implementation_t *fallback,

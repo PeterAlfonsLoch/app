@@ -1,23 +1,23 @@
-#include "framework.h"
-#include "ansios.h"
+//#include "framework.h"
+//#include "ansios.h"
 
 
 #if defined(ANDROID)
-#include <sys/wait.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <stdlib.h>
+//#include <sys/wait.h>
+//#include <unistd.h>
+//#include <pthread.h>
+//#include <stdlib.h>
 #elif defined(LINUX)
-#include <sys/wait.h>
-#include <unistd.h>
-#include <spawn.h>
+//#include <sys/wait.h>
+//#include <unistd.h>
+//#include <spawn.h>
 extern char **environ;
 #elif defined(APPLEOS)
-#include <sys/wait.h>
-#include <unistd.h>
-#include <spawn.h>
-#include <pthread.h>
-#include <stdlib.h>
+//#include <sys/wait.h>
+//#include <unistd.h>
+//#include <spawn.h>
+//#include <pthread.h>
+//#include <stdlib.h>
 extern char * const * environ;
 #endif
 

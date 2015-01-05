@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "android.h"
+//#include "framework.h"
+//#include "android.h"
 
 /***
 *int32_t _validdrive( unsigned drive ) -

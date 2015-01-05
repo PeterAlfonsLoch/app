@@ -1,10 +1,10 @@
-#include "framework.h"
+//#include "framework.h"
 
 
-#include <sys/mman.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
+//#include <sys/mman.h>
+//#include <sys/stat.h>
+//#include <fcntl.h>
+//#include <unistd.h>
 
 
 void local_memory_map::construct()

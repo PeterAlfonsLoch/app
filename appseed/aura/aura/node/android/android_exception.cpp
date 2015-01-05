@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "android1.h"
+//#include "framework.h"
+//#include "android1.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // __EXCEPTION_CONTEXT (thread global state)

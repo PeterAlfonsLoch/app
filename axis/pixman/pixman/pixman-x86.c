@@ -20,10 +20,10 @@
  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+//#include<config.h>
 #endif
 
-#include "pixman-private.h"
+//#include"pixman-private.h"
 
 #if defined(USE_X86_MMX) || defined (USE_SSE2) || defined (USE_SSSE3)
 
@@ -45,7 +45,7 @@ typedef enum
 
 #ifdef HAVE_GETISAX
 
-#include <sys/auxv.h>
+//#include<sys/auxv.h>
 
 static cpu_features_t
 detect_cpu_features (void)

@@ -30,19 +30,19 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+//#include<config.h>
 #endif
 
 #if defined USE_X86_MMX || defined USE_ARM_IWMMXT || defined USE_LOONGSON_MMI
 
 #ifdef USE_LOONGSON_MMI
-#include <loongson-mmintrin.h>
+//#include<loongson-mmintrin.h>
 #else
-#include <mmintrin.h>
+//#include<mmintrin.h>
 #endif
-#include "pixman-private.h"
-#include "pixman-combine32.h"
-#include "pixman-inlines.h"
+//#include"pixman-private.h"
+//#include"pixman-combine32.h"
+//#include"pixman-inlines.h"
 
 #ifdef VERBOSE
 #define CHECKPOINT() error_f ("at %s %d\n", __FUNCTION__, __LINE__)

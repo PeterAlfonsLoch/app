@@ -25,11 +25,11 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+//#include<config.h>
 #endif
-#include "pixman-private.h"
+//#include"pixman-private.h"
 
-#include <stdlib.h>
+//#include<stdlib.h>
 
 typedef struct glyph_metrics_t glyph_metrics_t;
 typedef struct glyph_t glyph_t;
