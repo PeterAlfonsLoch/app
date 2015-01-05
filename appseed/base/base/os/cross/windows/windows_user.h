@@ -1,9 +1,9 @@
 #pragma once
 
 
-//WINBOOL GetCursorPos(LPPOINT lpptCursor);
+CLASS_DECL_BASE WINBOOL GetCursorPos(LPPOINT lpptCursor);
 
-//#define HWND_MESSAGE ((::oswindow_data *) (int_ptr) 1)
+#define HWND_MESSAGE     ((HWND)-3)
 
 #define PostMessage  PostMessageW
 
