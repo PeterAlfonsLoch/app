@@ -471,7 +471,9 @@ should not have done so since it was not documented.
 //
 //
 //#if !defined(_CRT_PORTABLE) && !defined(LINUX)
+#ifndef WINDOWSEX
 #define _CrtDbgBreak() debug_break()
+#endif
 //#else
 //CLASS_DECL_AURA void DECL_C _CrtDbgBreak();
 //#endif
