@@ -40,6 +40,7 @@ namespace base
       public:
 
          sp(::user::interaction)                      m_pui;
+         oswindow                                     m_oswindow;
 
 
       };
