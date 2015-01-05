@@ -1654,5 +1654,23 @@
     <ClCompile Include="..\..\axis\openssl\crypto\whrlpool\wp_dgst.c">
       <Filter>Source Files\axis\crypto</Filter>
     </ClCompile>
+    <ClCompile Include="axis\compress\_compress.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\_fontopus.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\_geoip.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\_install.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\_fs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\_visual.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

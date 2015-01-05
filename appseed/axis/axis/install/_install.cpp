@@ -2,6 +2,20 @@
 #include "axis/net/net_sockets.h"
 #include "axis/compress/compress.h"
 
+#if defined(LINUX) || defined(WINDOWS)
+#include <omp.h>
+#else
+int omp_get_thread_num()
+{
+   return 0;
+}
+#endif
+
+#if defined(LINUX)
+
+#include <unistd.h>
+
+#endif
 
 //O volume na unidade C n∆o tem nome.
  //O N£mero de SÇrie do Volume Ç 72AC-5E14

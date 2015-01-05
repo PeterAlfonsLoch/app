@@ -1,5 +1,27 @@
 #include "framework.h"
 #include <math.h>
+#ifdef AXIS_FREEIMAGE
+#include "freeimage/Source/FreeImage.h"
+#include "visual_FreeImageFileProc.h"
+#endif
+#ifdef WINDOWSEX
+
+#undef new
+#define min MIN
+#define max MAX
+#include <gdiplus.h>
+#undef min
+#undef max
+#define new AURA_NEW
+
+
+//void fastblur(::draw2d::dib * pimg, int32_t radius);
+
+#elif defined(METROWIN)
+#include <wincodec.h>
+#include <Shcore.h>
+
+#endif
 
 #ifndef METROWIN
 #ifdef WINDOWS
@@ -18,6 +40,7 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
 #endif
 #endif
 
+
 //O volume na unidade C n∆o tem nome.
  //O N£mero de SÇrie do Volume Ç 72AC-5E14
 
@@ -29,7 +52,9 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
 #include "visual_fastblur.cpp"
 #include "visual_font.cpp"
 #include "visual_font_central.cpp"
+#if !defined(METROWIN)
 #include "visual_FreeImageFileProc.cpp"
+#endif
 #include "visual_glyph.cpp"
 #include "visual_glyph_set.cpp"
 #include "visual_graphics_extension.cpp"
