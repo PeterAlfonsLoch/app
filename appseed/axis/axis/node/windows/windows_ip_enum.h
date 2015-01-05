@@ -1,3 +1,5 @@
+#pragma once
+
 /*
 Module : IPENUM.H
 Purpose: Interface for an core API class wrapper for IP address enumeration

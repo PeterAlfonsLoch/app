@@ -4046,34 +4046,6 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="crypto\bn\bn_add.c" />
-    <ClCompile Include="crypto\bn\bn_asm.c" />
-    <ClCompile Include="crypto\bn\bn_blind.c" />
-    <ClCompile Include="crypto\bn\bn_const.c" />
-    <ClCompile Include="crypto\bn\bn_ctx.c" />
-    <ClCompile Include="crypto\bn\bn_depr.c" />
-    <ClCompile Include="crypto\bn\bn_div.c" />
-    <ClCompile Include="crypto\bn\bn_err.c" />
-    <ClCompile Include="crypto\bn\bn_exp.c" />
-    <ClCompile Include="crypto\bn\bn_exp2.c" />
-    <ClCompile Include="crypto\bn\bn_gcd.c" />
-    <ClCompile Include="crypto\bn\bn_gf2m.c" />
-    <ClCompile Include="crypto\bn\bn_kron.c" />
-    <ClCompile Include="crypto\bn\bn_lib.c" />
-    <ClCompile Include="crypto\bn\bn_mod.c" />
-    <ClCompile Include="crypto\bn\bn_mont.c" />
-    <ClCompile Include="crypto\bn\bn_mpi.c" />
-    <ClCompile Include="crypto\bn\bn_mul.c" />
-    <ClCompile Include="crypto\bn\bn_nist.c" />
-    <ClCompile Include="crypto\bn\bn_prime.c" />
-    <ClCompile Include="crypto\bn\bn_print.c" />
-    <ClCompile Include="crypto\bn\bn_rand.c" />
-    <ClCompile Include="crypto\bn\bn_recp.c" />
-    <ClCompile Include="crypto\bn\bn_shift.c" />
-    <ClCompile Include="crypto\bn\bn_sqr.c" />
-    <ClCompile Include="crypto\bn\bn_sqrt.c" />
-    <ClCompile Include="crypto\bn\bn_word.c" />
-    <ClCompile Include="crypto\bn\bn_x931p.c" />
     <ClCompile Include="crypto\bn\divtest.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>

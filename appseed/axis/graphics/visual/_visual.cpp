@@ -52,7 +52,7 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
 #include "visual_fastblur.cpp"
 #include "visual_font.cpp"
 #include "visual_font_central.cpp"
-#if !defined(METROWIN)
+#if !defined(METROWIN) && !defined(WINDOWSEX)
 #include "visual_FreeImageFileProc.cpp"
 #endif
 #include "visual_glyph.cpp"

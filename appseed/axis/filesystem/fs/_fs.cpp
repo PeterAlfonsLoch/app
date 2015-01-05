@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "axis/net/net_sockets.h"
+#ifdef WINDOWSEX
+#include "aura/node/windows/windows.h"
+#endif
 
 
 //O volume na unidade C n∆o tem nome.

@@ -1,7 +1,10 @@
 #include "framework.h"
 #include "axis/net/net_sockets.h"
 #include "axis/compress/compress.h"
+#if defined(WINDOWS)
 
+#include <mmsystem.h>
+#endif
 #if defined(LINUX) || defined(WINDOWS)
 #include <omp.h>
 #else
@@ -15,6 +18,23 @@ int omp_get_thread_num()
 
 #include <unistd.h>
 
+#endif
+
+#if defined(WINDOWS) || defined(LINUX)
+#include <omp.h>
+#else
+extern int omp_get_thread_num();
+#endif
+
+
+#ifdef WINDOWS
+#include <WinInet.h>
+#include <Winternl.h>
+#endif
+
+#ifdef APPLEOS
+#include <sys/param.h>
+#include <mach-o/dyld.h>
 #endif
 
 //O volume na unidade C n∆o tem nome.

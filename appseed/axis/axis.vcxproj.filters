@@ -1447,12 +1447,6 @@
     <ClCompile Include="filesystem\fs\fs_link.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_dll.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_simple_app.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\windows\windows_dir.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
@@ -1497,9 +1491,6 @@
     </ClCompile>
     <ClCompile Include="axis\node\android\android_crypto.cpp">
       <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_base_crypto.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_dib.cpp">
       <Filter>Source Files\graphics\visual</Filter>
@@ -1614,9 +1605,6 @@
     </ClCompile>
     <ClCompile Include="axis\fontopus\fontopus_user_authentication.cpp">
       <Filter>Source Files\axis\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_os.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\compress\bsdiff\bsdiff_bsdiff.cpp">
       <Filter>Source Files\axis\compress\bsdiff</Filter>
@@ -1789,11 +1777,44 @@
     <ClCompile Include="net\sockets\_sockets.cpp">
       <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
+    <ClCompile Include="axis\compress\_compress.cpp">
+      <Filter>Source Files\axis\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\fontopus\_fontopus.cpp">
+      <Filter>Source Files\axis\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\_geoip.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\install\_install.cpp">
+      <Filter>Source Files\axis\install</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\windows\_windows_os.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\windows\windows_base_crypto.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\windows\windows_dll.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\windows\windows_os.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\windows\windows_simple_app.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\windows\_windows_node.cpp">
+      <Filter>Source Files\axis\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\_fs.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\_visual.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>
