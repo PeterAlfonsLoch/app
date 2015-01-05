@@ -1,5 +1,5 @@
-#include "framework.h"
-#include <Shellapi.h>
+//#include "framework.h"
+//#include <Shellapi.h>
 
 
 void simple_shell_launcher::execute()

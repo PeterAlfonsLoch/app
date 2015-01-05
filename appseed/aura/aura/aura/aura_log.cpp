@@ -1,9 +1,9 @@
-#include "framework.h"
-#include <stdarg.h>
+//#include "framework.h"
+//#include <stdarg.h>
 
 #if defined(LINUX) || defined(ANDROID)
-#include <sys/types.h>
-#include <unistd.h>
+//#include <sys/types.h>
+//#include <unistd.h>
 #endif
 
 namespace aura

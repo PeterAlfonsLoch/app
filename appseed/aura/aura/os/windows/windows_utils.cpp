@@ -1,9 +1,9 @@
-#include "framework.h"
-#include <Winsvc.h>
+//#include "framework.h"
+//#include <Winsvc.h>
 
-const LPCTSTR DRV_DOS_NAME = _T("\\\\.\\ListFileDrv");
-const LPCTSTR DRV_NAME = _T("ListOpenedFileDrv");
-const LPCTSTR DRV_FILE_NAME = _T("ListOpenedFileDrv.sys");
+//const LPCTSTR DRV_DOS_NAME = _T("\\\\.\\ListFileDrv");
+//const LPCTSTR DRV_NAME = _T("ListOpenedFileDrv");
+//const LPCTSTR DRV_FILE_NAME = _T("ListOpenedFileDrv.sys");
 
 // Function resolves the fosedevice name to drive name
 bool GetDrive( LPCTSTR pszDosName, string& csDrive, bool bDriveLetterOnly )

@@ -1,5 +1,10 @@
 #include "framework.h"
 
+#ifdef WINDOWSEX
+#include "windows/_windows_node.cpp"
+#endif
+
+
 
 static oswindow g_oswindowSplash = NULL;
 

@@ -5,7 +5,7 @@
 //
 //
 
-#include "framework.h"
+//#include "framework.h"
 
 void init_draw2d_direct2_mutex();
 
@@ -79,13 +79,13 @@ extern mutex * g_pmutexThreadHandleLock;
 /*
 #if defined(APPLEOS)
 
-#include "aura/os/macos/macos_window_impl.h"
+//#include "aura/os/macos/macos_window_impl.h"
 
 extern oswindow_dataptra * g_poswindowdataptra;
 
 #elif defined(APPLE_IOS)
 
-#include "aura/os/ios/ios_window_impl.h"
+//#include "aura/os/ios/ios_window_impl.h"
 
 extern oswindow_dataptra * g_poswindowdataptra;
 

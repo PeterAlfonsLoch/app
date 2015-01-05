@@ -1,10 +1,10 @@
-#include "framework.h"
-#include "windows.h"
+//#include "framework.h"
+//#include "windows.h"
 
 
-#include <errno.h>
-#include <io.h>
-#include <fcntl.h>
+//#include <errno.h>
+//#include <io.h>
+//#include <fcntl.h>
 
 
 namespace windows

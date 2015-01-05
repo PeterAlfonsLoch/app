@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 exit_exception::exit_exception(::aura::application * papp, const char * pszMessage) :

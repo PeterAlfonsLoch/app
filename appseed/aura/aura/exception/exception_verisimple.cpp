@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 verisimple_exception::verisimple_exception(const string & strMessage):

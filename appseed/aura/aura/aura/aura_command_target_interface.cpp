@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 bool command_target_interface::_001SendCommand(id id)

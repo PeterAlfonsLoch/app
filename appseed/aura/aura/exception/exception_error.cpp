@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 error_exception::error_exception(::aura::application * papp, const char * pszError) :

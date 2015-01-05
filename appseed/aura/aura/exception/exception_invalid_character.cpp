@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 invalid_character::invalid_character(::aura::application * papp, const char * pszMessage) :

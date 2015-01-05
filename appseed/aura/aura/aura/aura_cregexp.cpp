@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 SMatch *SMatchHash::setItem(string name, SMatch &smatch)

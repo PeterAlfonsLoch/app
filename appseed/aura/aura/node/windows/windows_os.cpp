@@ -1,12 +1,12 @@
-#include "framework.h"
-#include "windows.h"
-#include "aura/graphics/draw2d/draw2d.h"
+//#include "framework.h"
+//#include "windows.h"
+//#include "aura/graphics/draw2d/draw2d.h"
 
 
 
-#include <Wtsapi32.h>
-#include <Psapi.h>
-#include <WinCred.h>
+//#include <Wtsapi32.h>
+//#include <Psapi.h>
+//#include <WinCred.h>
 
 CLASS_DECL_AURA HBITMAP get_icon_hbitmap(HICON hICON);
 

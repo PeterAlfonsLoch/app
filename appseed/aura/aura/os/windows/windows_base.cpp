@@ -1,15 +1,15 @@
-#include "framework.h"
-#include "aura/node/windows/windows.h"
-#include "windows.h"
-#include <VersionHelpers.h>
+//#include "framework.h"
+//#include "aura/node/windows/windows.h"
+//#include "windows.h"
+//#include <VersionHelpers.h>
 #undef new
 #define min MIN
 #define max MAX
-#include <gdiplus.h>
+//#include <gdiplus.h>
 #undef min
 #undef max
 #define new AURA_NEW
-#include <ddeml.h>
+//#include <ddeml.h>
 
 void __term_threading();
 void __term_windowing();

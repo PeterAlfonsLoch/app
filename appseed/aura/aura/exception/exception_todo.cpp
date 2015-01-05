@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 todo::todo(::aura::application * papp, const char * pszTip) :

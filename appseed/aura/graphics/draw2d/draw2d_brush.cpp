@@ -1,7 +1,7 @@
-#include "framework.h"
-#include "draw2d_fwd.h"
-#include "draw2d_object.h"
-#include "draw2d_brush.h"
+//#include "framework.h"
+//#include "draw2d_fwd.h"
+//#include "draw2d_object.h"
+//#include "draw2d_brush.h"
 
 
 namespace draw2d

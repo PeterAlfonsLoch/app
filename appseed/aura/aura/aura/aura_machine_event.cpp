@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 //#ifndef CA2_SPA
 //#define PATH_SEPARATOR "\\"

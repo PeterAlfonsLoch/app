@@ -4189,6 +4189,7 @@ ml64 /Zi /Fo"$(IntDir)rc4md5.o" /c /Fl"$(IntDir)rc4md5.lst" "$(ProjectDir)crypto
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="crypto\bn\_bn.c" />
     <ClCompile Include="crypto\buffer\buffer.c" />
     <ClCompile Include="crypto\buffer\buf_err.c" />
     <ClCompile Include="crypto\buffer\buf_str.c" />

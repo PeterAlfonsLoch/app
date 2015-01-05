@@ -2,9 +2,9 @@
 //   Location : http://www.luc.ac.be/~ef00/ebgfx
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
-#include "framework.h"
-#include "draw2d.h"
-#include <math.h>
+//#include "framework.h"
+//#include "draw2d.h"
+//#include <math.h>
 
 byte byte_clip(double d);
 

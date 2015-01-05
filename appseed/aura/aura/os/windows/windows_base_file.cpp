@@ -1,7 +1,7 @@
-#include "framework.h"
-#include <share.h>
-#include <io.h>
-#include <fcntl.h>
+//#include "framework.h"
+//#include <share.h>
+//#include <io.h>
+//#include <fcntl.h>
 
 
 BEGIN_EXTERN_C
@@ -507,8 +507,8 @@ struct PROCESS_INFO_t
 
 #if !defined(LINUX) && !defined(MACOS) && !defined(METROWIN) && !defined(ANDROID)
 
-#include <Tlhelp32.h>
-#include <Psapi.h>
+//#include <Tlhelp32.h>
+//#include <Psapi.h>
 
 
 void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pUserContext );

@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 extern CLASS_DECL_AURA bool (WINAPI * g_pfnChangeWindowMessageFilter)(
     _In_ UINT message,

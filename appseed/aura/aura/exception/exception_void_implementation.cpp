@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 void_implementation_exception::void_implementation_exception(::aura::application * papp, const char * pszTip) : 

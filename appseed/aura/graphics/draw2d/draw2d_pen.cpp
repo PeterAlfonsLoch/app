@@ -1,6 +1,6 @@
-#include "framework.h"
-#include "draw2d_object.h"
-#include "draw2d_pen.h"
+//#include "framework.h"
+//#include "draw2d_object.h"
+//#include "draw2d_pen.h"
 
 
 namespace draw2d

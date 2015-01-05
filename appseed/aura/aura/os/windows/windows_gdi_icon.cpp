@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "aura/graphics/graphics.h"
+//#include "framework.h"
+//#include "aura/graphics/graphics.h"
 
 
 // http://stackoverflow.com/questions/7375003/how-to-convert-hicon-to-hbitmap-in-vc

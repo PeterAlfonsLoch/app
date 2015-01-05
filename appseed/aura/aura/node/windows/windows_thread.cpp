@@ -1,6 +1,6 @@
-#include "framework.h"
-#include "windows.h"
-#include <ddeml.h>  // for MSGF_DDEMGR
+//#include "framework.h"
+//#include "windows.h"
+//#include <ddeml.h>  // for MSGF_DDEMGR
 
 
 __declspec(thread) HHOOK t_hHookOldMsgFilter = NULL;

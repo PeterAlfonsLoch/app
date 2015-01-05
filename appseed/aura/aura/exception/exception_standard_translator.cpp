@@ -14,11 +14,11 @@ about the suitability of this software for any purpose.
 It is provided "as is" without express or implied warranty.
 
 */
-#include "framework.h"
+//#include "framework.h"
 
 #if defined(LINUX) || defined(ANDROID)
 
-#include <pthread.h>
+//#include <pthread.h>
 
 #endif
 
@@ -26,7 +26,7 @@ It is provided "as is" without express or implied warranty.
 
 
 #ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
-#include <signal.h>
+//#include <signal.h>
 #define SIG(psig) ((::exception::sig_companion *) psig)
 #endif
 

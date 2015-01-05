@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 interface_only_exception::interface_only_exception(::aura::application * papp, const char * pszTip) : 

@@ -1,17 +1,17 @@
-#include "framework.h" // previously aura/user/user.h
-#include "aura/user/colorertake5/colorertake5.h"
+//#include "framework.h" // previously aura/user/user.h
+//#include "aura/user/colorertake5/colorertake5.h"
 
 #if defined(LINUX) || defined(ANDROID)
 
-#include <fcntl.h>
-#include <unistd.h>
+//#include <fcntl.h>
+//#include <unistd.h>
 
 
-#include <link.h>
+//#include <link.h>
 
-#include <dlfcn.h>
-#include <ctype.h>
-#include <sys/stat.h>
+//#include <dlfcn.h>
+//#include <ctype.h>
+//#include <sys/stat.h>
 #endif
 
 void dappy(const char * psz);

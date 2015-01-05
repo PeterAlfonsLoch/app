@@ -3,9 +3,9 @@
 Igor Pavlov
 Public domain */
 // from 7-zip on 2010-12-19
-#include "framework.h"
+//#include "framework.h"
 
-//#include "Alloc.h"
+////#include "Alloc.h"
 
 /* #define _SZ_ALLOC_DEBUG */
 

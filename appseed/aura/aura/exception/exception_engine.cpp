@@ -15,16 +15,16 @@ It is provided "as is" without express or implied warranty.
 
 */
 
-#include "framework.h"
+//#include "framework.h"
 
 #ifdef LINUX
-#include <execinfo.h>
-#include <cxxabi.h>
-#include <unistd.h>
+//#include <execinfo.h>
+//#include <cxxabi.h>
+//#include <unistd.h>
 #elif defined(APPLEOS)
-#include <execinfo.h>
+//#include <execinfo.h>
 #elif defined(ANDROID) 
-#include <unistd.h>
+//#include <unistd.h>
 #endif
 
 
@@ -41,7 +41,7 @@ It is provided "as is" without express or implied warranty.
 #define USED_CONTEXT_FLAGS CONTEXT_FULL
 #ifdef WINDOWSEX
 
-#include <tlhelp32.h>
+//#include <tlhelp32.h>
 
 #pragma comment (lib, "dbghelp")
 

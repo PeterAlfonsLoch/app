@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 simple_exception::simple_exception(::aura::application * papp) :

@@ -11,11 +11,11 @@
 //
 // Copyright (ca) 2003 Song Ho Ahn
 //////////////////////////////////////////////////////////////////////////////
-#include "framework.h"
+//#include "framework.h"
 
 
 #if defined(LINUX) || defined(APPLEOS)
-#include <sys/time.h>
+//#include <sys/time.h>
 #endif
 
 

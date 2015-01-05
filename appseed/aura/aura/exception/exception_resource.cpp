@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 resource_exception::resource_exception(::aura::application * papp) :

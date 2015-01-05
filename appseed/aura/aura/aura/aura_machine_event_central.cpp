@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 machine_event_central::machine_event_central(::aura::application * papp) :

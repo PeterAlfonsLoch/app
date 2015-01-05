@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 #if defined(LINUX)
@@ -6,9 +6,9 @@
 #undef _GNU_SOURCE
 #endif
 #define _GNU_SOURCE
-#include <link.h>
+//#include <link.h>
 #elif defined(APPLEOS)
-#include <dlfcn.h>
+//#include <dlfcn.h>
 #endif
 
 

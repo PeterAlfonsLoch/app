@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 last_error_exception::last_error_exception(::aura::application * papp) :

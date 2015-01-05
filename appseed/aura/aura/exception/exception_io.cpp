@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 io_exception::io_exception(::aura::application * papp) :

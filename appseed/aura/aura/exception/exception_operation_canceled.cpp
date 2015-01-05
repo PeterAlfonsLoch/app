@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 operation_canceled_exception::operation_canceled_exception(::aura::application * papp) :

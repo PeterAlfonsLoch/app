@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 
 not_licensed::not_licensed(::aura::application * papp, const char * pszRealm, const char * pszUrl) :

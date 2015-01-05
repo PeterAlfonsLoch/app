@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "draw2d_object.h"
+//#include "framework.h"
+//#include "draw2d_object.h"
 
 
 namespace draw2d
