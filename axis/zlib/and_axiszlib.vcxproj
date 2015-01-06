@@ -77,7 +77,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>axiszlib2</RootNamespace>
+    <RootNamespace>axiszlib</RootNamespace>
+    <ProjectName>axiszlib</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
