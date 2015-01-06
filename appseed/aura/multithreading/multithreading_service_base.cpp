@@ -316,7 +316,7 @@ void WINAPI service_base::ServiceHandler(DWORD control)
 bool service_base::get_run()
 {
 
-   return !m_bStopping && ::os_thread::get_run();
+   return !m_bStopping && ::hthread::get_run();
 
 }
 
@@ -327,10 +327,10 @@ void service_base::call_server()
 
    m_bStopping = false;
 
-   os_thread * posthreadNew = NULL;
+   HTHREAD posthreadNew = NULL;
 
-   if(::os_thread::get() == NULL)
-      ::os_thread::set(posthreadNew = new ::os_thread(NULL, NULL));
+   if(::hthread::get() == NULL)
+      ::hthread::set(posthreadNew = new ::hthread(NULL, NULL));
 
 
    ::set_thread(m_pauraapp);
@@ -342,7 +342,7 @@ void service_base::call_server()
    {
 
       delete posthreadNew;
-      ::os_thread::set(NULL);
+      ::hthread::set(NULL);
 
    }
 

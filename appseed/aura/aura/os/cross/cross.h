@@ -38,6 +38,11 @@ typedef struct oswindow_data * oswindow;
 
 #ifndef WINDOWSEX
 
+#ifdef LINUX
+#undef inline
+#define inline inline
+#endif
+
 #include "windows/windows.h"
 
 #endif

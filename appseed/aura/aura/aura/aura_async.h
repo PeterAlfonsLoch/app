@@ -161,7 +161,7 @@ namespace async
 
    template < class T >
    class CLASS_DECL_AURA task :
-      public thread_layer
+      public hthread
    {
    public:
 
@@ -246,7 +246,7 @@ namespace async
       virtual T * wait(uint32_t dwMillis = INFINITE)
       {
 
-         ::thread_layer::wait_thread(dwMillis);
+         ::hthread::wait_thread(dwMillis);
 
          return m_presult;
 

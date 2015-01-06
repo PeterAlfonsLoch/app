@@ -95,7 +95,7 @@ int display_lines(const stringa & stra, const string & strTitle)
 }
 
 
-int_bool MessageBoxA(oswindow interaction_impl, const char * psz, const char * pszTitle, uint32_t uiFlags)
+int_bool MessageBoxW(oswindow interaction_impl, const wchar_t * pwsz, const wchar_t * pwszTitle, uint32_t uiFlags)
 {
 
    stringa straSep;
@@ -107,9 +107,9 @@ int_bool MessageBoxA(oswindow interaction_impl, const char * psz, const char * p
 
    stringa stra;
 
-   stra.add_smallest_tokens(psz, straSep);
+   stra.add_smallest_tokens(string(pwsz), straSep);
 
-   return display_lines(stra, pszTitle);
+   return display_lines(stra, string(pwszTitle));
 
 }
 

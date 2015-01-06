@@ -111,9 +111,9 @@ bool aura_init()
 
    ::multithreading::init_multithreading();
 
-   ::os_thread::s_pmutex = new mutex();
+   ::hthread::s_pmutex = new mutex();
 
-   ::os_thread::s_pptra = new ptr_array <  os_thread >();
+   ::hthread::s_pptra = new ptr_array <  hthread >();
 
 
    if(!__node_aura_pos_init())

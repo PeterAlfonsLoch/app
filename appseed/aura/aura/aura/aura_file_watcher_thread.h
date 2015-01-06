@@ -7,14 +7,14 @@ namespace file_watcher
 
    class CLASS_DECL_AURA thread :
       public file_watcher,
-      public thread_layer
+      public hthread
    {
    public:
 
-         
+
       virtual int32_t run();
 
-         
+
    };
 
 

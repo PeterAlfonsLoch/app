@@ -82,7 +82,7 @@ CLASS_DECL_AURA MESSAGE * __get_current_message();
 
 
 CLASS_DECL_AURA sp(::aura::application)  __get_app();
-CLASS_DECL_AURA sp(::user::interaction) __get_main_window();
+CLASS_DECL_AURA sp(::aura::interaction) __get_main_window();
 //CLASS_DECL_AURA HINSTANCE CLASS_DECL_AURA System.m_hInstance;
 CLASS_DECL_AURA const char * __get_app_name();
 
@@ -174,7 +174,7 @@ CLASS_DECL_AURA MESSAGE * __get_current_message();
 
 
 CLASS_DECL_AURA sp(::aura::application)  __get_app();
-CLASS_DECL_AURA sp(::user::interaction) __get_main_window();
+CLASS_DECL_AURA sp(::aura::interaction) __get_main_window();
 //CLASS_DECL_AURA HINSTANCE CLASS_DECL_AURA System.m_hInstance;
 CLASS_DECL_AURA const char * __get_app_name();
 

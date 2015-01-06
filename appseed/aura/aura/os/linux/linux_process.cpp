@@ -1,7 +1,7 @@
-#include "framework.h"
+//#include "framework.h"
 
-#include <signal.h>
-#include <unistd.h>
+//#include <signal.h>
+//#include <unistd.h>
 
 
 CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDll)
@@ -18,7 +18,7 @@ CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, co
 
 
 
-extern thread_pointer < os_thread > t_posthread;
+extern thread_pointer < hthread > t_hthread;
 
 
 int32_t create_process(const char * _cmd_line, int32_t * pprocessId)

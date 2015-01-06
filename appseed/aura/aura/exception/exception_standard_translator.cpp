@@ -158,9 +158,9 @@ namespace exception
    }
 
 #endif
-   
+
 #ifdef APPLEOS
-   
+
    void InstallUncaughtExceptionHandler();
 
 #endif
@@ -183,7 +183,7 @@ namespace exception
          //PreventSetUnhandledExceptionFilter();
          //EnforceFilter(true);
 #else
-         
+
 #ifdef APPLEOS
          void InstallUncaughtExceptionHandler();
 #endif
@@ -498,34 +498,34 @@ void standard_exception::siginfofree(void * psiginfo)
 }
 
 
-uint32_t         standard_exception::code() const         
+uint32_t         standard_exception::code() const
 {
 
-   return ((siginfo_t *)m_psiginfo)->si_code; 
+   return ((siginfo_t *)m_psiginfo)->si_code;
 
 }
 
 
-void *               standard_exception::address() const  
+void *               standard_exception::address() const
 {
 
-   return ((siginfo_t *)m_psiginfo)->si_addr; 
+   return ((siginfo_t *)m_psiginfo)->si_addr;
 
 }
 
 
-const void *    standard_exception::info() const    
+const void *    standard_exception::info() const
 {
 
-   return m_psiginfo; 
+   return m_psiginfo;
 
 }
 
 
-const char *         standard_exception::name() const    
+const char *         standard_exception::name() const
 {
 
-   //return ::exception::translator::name(code()); 
+   //return ::exception::translator::name(code());
    return "";
 
 }
@@ -534,7 +534,7 @@ const char *         standard_exception::name() const
 const char *         standard_exception::description() const
 {
 
-   //return ::exception::translator::description(code()); 
+   //return ::exception::translator::description(code());
    return "";
 
 }
@@ -543,10 +543,10 @@ const char *         standard_exception::description() const
 #ifndef ANDROID
 
 
-const ucontext_t *   standard_exception::context() const;  
+const ucontext_t *   standard_exception::context() const
 {
 
-   return &m_ucontext; 
+   return &m_ucontext;
 
 }
 

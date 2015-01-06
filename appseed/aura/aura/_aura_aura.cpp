@@ -1,4 +1,9 @@
 #include "framework.h"
+#include <stdarg.h>
+
+#if defined(LINUX) || defined(APPLEOS)
+#include <sys/time.h>
+#endif
 
 #include "aura/_aura_aura_aura.cpp"
 #include "exception/_exception.cpp"

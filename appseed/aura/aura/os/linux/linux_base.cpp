@@ -1,7 +1,7 @@
-#include "framework.h"
+//#include "framework.h"
 
-extern thread_pointer < os_thread > t_posthread;
-extern thread_pointer < os_thread > currentThread;
+//extern thread_pointer < os_thread > t_posthread;
+extern thread_pointer < hthread > t_hthread;
 
 CLASS_DECL_AURA bool __node_aura_pre_init()
 {
@@ -14,11 +14,11 @@ CLASS_DECL_AURA bool __node_aura_pre_init()
 CLASS_DECL_AURA bool __node_aura_pos_init()
 {
 
-   t_posthread = new os_thread(NULL, NULL);
+   t_hthread = new hthread();
 
-   currentThread = t_posthread;
+    //t_hthread-
 
-   t_posthread->m_bRun = true;
+   t_hthread->m_bRun = true;
 
    return TRUE;
 
@@ -28,13 +28,13 @@ CLASS_DECL_AURA bool __node_aura_pos_init()
 CLASS_DECL_AURA bool __node_aura_pre_term()
 {
 
-   if(t_posthread != NULL)
+   if(t_hthread != NULL)
    {
 
       try
       {
 
-         delete t_posthread;
+         delete t_hthread;
 
       }
       catch(...)
@@ -42,11 +42,11 @@ CLASS_DECL_AURA bool __node_aura_pre_term()
 
       }
 
-      t_posthread = NULL;
+      t_hthread = NULL;
 
    }
 
-   os_thread::stop_all((1984 + 1977) * 49);
+   hthread::stop_all((1984 + 1977) * 49);
 
 //   finalize_primitive_trace();
 

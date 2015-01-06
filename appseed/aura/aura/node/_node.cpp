@@ -7,6 +7,9 @@
 #elif defined(ANDROID)
 #include "android/_android_node.cpp"
 #include "ansios/_ansios_node.cpp"
+#elif defined(LINUX)
+#include "linux/_linux_node.cpp"
+#include "ansios/_ansios_node.cpp"
 #endif
 
 

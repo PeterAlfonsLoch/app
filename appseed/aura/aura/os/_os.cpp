@@ -26,6 +26,11 @@
 #include "cross/windows/_cross_windows.cpp"
 #include "android/_android_os.cpp"
 #include "ansios/_ansios_os.cpp"
+#elif defined(LINUX)
+#include "cross/windows/_cross_windows.cpp"
+#include "linux/_linux_os.cpp"
+#include "ansios/_ansios_os.cpp"
+#include "x11/x11_windowing.cpp"
 #endif
 
 #ifdef ENABLE_BINRELOC

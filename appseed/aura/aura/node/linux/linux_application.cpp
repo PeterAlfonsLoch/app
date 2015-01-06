@@ -35,13 +35,13 @@ namespace linux
    }
 
 
-   ::user::document * application::_001OpenDocumentFile(var varFile)
-   {
-
-      return m_pimpl->_001OpenDocumentFile(varFile);
-
-   }
-
+//   ::aura::document * application::_001opendocumentfile(var varfile)
+//   {
+//
+//      return m_pimpl->_001opendocumentfile(varfile);
+//
+//   }
+//
 
    void application::_001EnableShellOpen()
    {
@@ -216,7 +216,7 @@ namespace linux
 
 
    // Advanced: access to GetMainWnd()
-   sp(::user::interaction) application::GetMainWnd()
+   sp(::aura::interaction) application::GetMainWnd()
    {
       return ::win::thread::GetMainWnd();
    }
@@ -259,12 +259,12 @@ namespace linux
 
    }
 
-   ::user::interaction * application::window_from_os_data(void * pdata)
+   ::aura::interaction * application::window_from_os_data(void * pdata)
    {
       return NULL;
    }
 
-   ::user::interaction * application::window_from_os_data_permanent(void * pdata)
+   ::aura::interaction * application::window_from_os_data_permanent(void * pdata)
    {
       return NULL;
    }
@@ -306,13 +306,13 @@ namespace linux
       DWORD dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
       ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
       if( dwRet == 0 || dwRet == _MAX_PATH )
-         throw user_exception();*/
+         throw aura_exception();*/
 
       /*
       LPTSTR lpszExt = ::PathFindExtension(szBuff);
       ASSERT(lpszExt != NULL);
       if( lpszExt == NULL )
-         throw user_exception();
+         throw aura_exception();
 
       ASSERT(*lpszExt == '.');
       *lpszExt = 0;       // no suffix
@@ -328,7 +328,7 @@ namespace linux
    }
 
 
-   ::user::interaction * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+   ::aura::interaction * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
 
       return NULL;
@@ -336,7 +336,7 @@ namespace linux
    }
 
 
-   ::user::interaction *  application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+   ::aura::interaction *  application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
    {
 
       return NULL;

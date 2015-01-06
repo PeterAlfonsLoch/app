@@ -21,12 +21,12 @@
 
 	James Wynn james@jameswynn.com
 */
-#include "framework.h"
+//#include "framework.h"
 
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <sys/inotify.h>
-#include <unistd.h>
+//#include <sys/stat.h>
+//#include <fcntl.h>
+//#include <sys/inotify.h>
+//#include <unistd.h>
 
 #define BUFF_SIZE ((sizeof(struct inotify_event)+FILENAME_MAX)*1024)
 

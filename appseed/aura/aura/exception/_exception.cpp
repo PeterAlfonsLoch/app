@@ -14,6 +14,23 @@
 #include <unistd.h>
 #endif
 
+
+#if defined(LINUX) || defined(ANDROID)
+
+#include <pthread.h>
+
+#endif
+
+
+
+
+#ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
+#include <signal.h>
+#define SIG(psig) ((::exception::sig_companion *) psig)
+#endif
+
+
+
 //O volume na unidade Z ‚ eco
 // O N£mero de S‚rie do Volume ‚ 4A91-94E4
 //

@@ -216,8 +216,8 @@ typedef ptr_array < void > ThreadLocalData;
 
 thread_pointer < ThreadLocalData > currentThreadData;
 thread_int_ptr < DWORD > currentThreadId;
-thread_pointer < hthread > currentThread;
-thread_pointer < os_thread > t_posthread;
+//thread_pointer < HTHREAD > currentThread;
+thread_pointer < hthread > t_hthread;
 
 
 raw_array<DWORD> * freeTlsIndices = NULL;
@@ -382,8 +382,8 @@ DWORD DwThreadId()
 
 static DWORD nextTlsIndex = 0;
 
-mutex * os_thread::s_pmutex = NULL;
-ptr_array <  os_thread > * os_thread::s_pptra = NULL;
+mutex * hthread::s_pmutex = NULL;
+ptr_array <  hthread > * hthread::s_pptra = NULL;
 
 
 // Converts a Win32 thread priority to WinRT format.
@@ -399,14 +399,13 @@ int32_t GetWorkItemPriority(int32_t nPriority)
 
 
 // Helper shared between CreateThread and ResumeThread.
-os_thread * StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,HTHREAD hthread,int32_t nPriority,SIZE_T cbStack)
+HTHREAD StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,HTHREAD hthread,int32_t nPriority,SIZE_T cbStack)
 {
 
-   os_thread * pthread = new os_thread(pfn,pv);
 
-   pthread->m_hthread = hthread;
+   //pthread->m_hthread = hthread;
 
-   hthread->m_posthread = pthread;
+   //hthread->m_posthread = pthread;
 
    pthread_t & thread = *(pthread_t*) pthread->m_pthread;
 
@@ -433,7 +432,7 @@ os_thread * StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,HTHREAD hthread,int
 
    pthread_attr_setdetachstate(&threadAttr,PTHREAD_CREATE_DETACHED); // Set thread to detached state. No need for pthread_join
 
-   pthread_create(&thread,&threadAttr,&os_thread_thread_proc,(LPVOID)pthread); // Create the thread
+   pthread_create(&thread,&threadAttr,&hthread::thread_proc,(LPVOID)pthread); // Create the thread
 
    return pthread;
 
@@ -884,10 +883,35 @@ int32_t WINAPI GetThreadPriority(HTHREAD  hthread)
 
 
 
-
-
-os_thread::os_thread(uint32_t(* pfn)(void *),void * pv)
+void hthread::wait()
 {
+
+   m_pevent->wait();
+
+}
+
+
+hthread::htread(uint32_t(* pfn)(void *),void * pv)
+{
+//htread
+{
+   m_pevent = new event(NULL, false, true);
+
+   m_pthread = NULL;
+
+  }
+
+//thread_layer::thread_layer()
+{
+
+   m_iSleepiness     = 49;
+   m_iResult         = 0;
+   m_hthread         = NULL;
+   m_nId             = 0;
+   m_bRun            = true;
+
+}
+
 
    m_pfn    = pfn;
    m_pv     = pv;
@@ -901,9 +925,8 @@ os_thread::os_thread(uint32_t(* pfn)(void *),void * pv)
 }
 
 
-os_thread::~os_thread()
+hthread::~hthread()
 {
-
    synch_lock ml(&*s_pmutex);
 
    for(index i = s_pptra->get_count() - 1; i >= 0; i--)
@@ -917,6 +940,19 @@ os_thread::~os_thread()
       }
 
    }
+//htread
+{
+
+delete m_pevent;
+}
+
+}
+
+
+void hthread::begin()
+{
+
+   m_hthread = create_thread(NULL, 0, &::thread_layer::proc, this, 0, &m_nId);
 
 }
 

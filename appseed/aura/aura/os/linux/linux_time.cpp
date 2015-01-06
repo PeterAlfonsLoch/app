@@ -1,5 +1,5 @@
-#include "framework.h"
-#include <sys/time.h>
+//#include "framework.h"
+//#include <sys/time.h>
 
 
 inline DWORD GetTickCount()

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA os_thread :
+class CLASS_DECL_AURA hthread :
    virtual public object
 {
 public:
@@ -12,6 +12,11 @@ public:
    bool                                   m_bRun;
    HTHREAD                                m_hthread;
    string                                 m_strDebug;
+   int32_t              m_iSleepiness;
+   int32_t              m_iResult;
+//   HTHREAD              m_hthread;
+   UINT                 m_nId;
+//   bool                 m_bRun;
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
 
@@ -20,11 +25,11 @@ public:
 #endif
 
    static mutex *                  s_pmutex;
-   static ptr_array <  os_thread > *  s_pptra;
+   static ptr_array <  hthread > *  s_pptra;
 
 
-   os_thread(uint32_t ( * pfn)(void *), void * pv);
-   virtual ~os_thread();
+   hthread(uint32_t ( * pfn)(void *) = NULL, void * pv = NULL);
+   virtual ~hthread();
 
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
@@ -37,37 +42,7 @@ public:
 
 #endif
 
-   uint32_t run();
-
-   static os_thread * get();
-   static void set(os_thread * posthread);
-
-   static bool get_run();
-
-   static void stop_all(uint32_t millisMaxWait);
-
-};
-
-
-CLASS_DECL_AURA HTHREAD start_thread(uint32_t (*)(void *), void * pv, int32_t iPriority = 0);
-
-CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (*)(void *), void * pv, uint32_t uiFlags, uint32_t * puiId);
-
-
-class CLASS_DECL_AURA thread_layer
-{
-public:
-
-
-   int32_t              m_iSleepiness;
-   int32_t              m_iResult;
-   HTHREAD              m_hthread;
-   UINT                 m_nId;
-   bool                 m_bRun;
-
-
-   thread_layer();
-   virtual ~thread_layer();
+   //uint32_t run();
 
 
    void begin();
@@ -80,9 +55,49 @@ public:
 
    virtual void wait_thread(uint32_t dwMillis = INFINITE);
 
+    static HTHREAD get();
+    static void set(HTHREAD hthread);
+    static bool get_run();
+    static void stop_all(uint32_t millisMaxWait);
+
+
 };
 
 
+CLASS_DECL_AURA HTHREAD start_thread(uint32_t (*)(void *), void * pv, int32_t iPriority = 0);
+
+CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (*)(void *), void * pv, uint32_t uiFlags, uint32_t * puiId);
+
+
+//class CLASS_DECL_AURA thread_layer
+//{
+//public:
+//
+//
+//   int32_t              m_iSleepiness;
+//   int32_t              m_iResult;
+//   HTHREAD              m_hthread;
+//   UINT                 m_nId;
+//   bool                 m_bRun;
+//
+//
+//   thread_layer();
+//   virtual ~thread_layer();
+//
+//
+//   void begin();
+//
+//
+//   static uint32_t proc(void * lp);
+//
+//   virtual int32_t run();
+//   virtual bool on_idle();
+//
+//   virtual void wait_thread(uint32_t dwMillis = INFINITE);
+//
+//};
+//
+//
 
 
 CLASS_DECL_AURA DWORD get_current_thread_id();

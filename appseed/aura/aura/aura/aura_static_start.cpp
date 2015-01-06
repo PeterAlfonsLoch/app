@@ -184,9 +184,9 @@ namespace aura
 
          g_pmutexTlsData = new mutex;
 
-         os_thread::s_pmutex = new mutex();
+         hthread::s_pmutex = new mutex();
 
-         os_thread::s_pptra = new ptr_array <  os_thread > ();
+         hthread::s_pptra = new ptr_array <  hthread > ();
 
 #endif // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
@@ -304,13 +304,13 @@ namespace aura
 
 #if defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
-         delete os_thread::s_pptra;
+         delete hthread::s_pptra;
 
-         os_thread::s_pptra = NULL;
+         hthread::s_pptra = NULL;
 
-         delete os_thread::s_pmutex;
+         delete hthread::s_pmutex;
 
-         os_thread::s_pmutex = NULL;
+         hthread::s_pmutex = NULL;
 
          delete g_pmutexTlsData;
 

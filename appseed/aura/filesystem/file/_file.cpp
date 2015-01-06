@@ -23,11 +23,14 @@
 
 #ifdef LINUX
 #include <link.h>
+
 #elif defined(APPLEOS)
 #include <dlfcn.h>
 #include <mach-o/dyld.h>
+
 #endif
 
+#include <stdarg.h>
 
 
 #ifdef WINDOWSEX
