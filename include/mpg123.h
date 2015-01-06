@@ -7,8 +7,13 @@
 #ifndef MPG123_MSVC_H
 #define MPG123_MSVC_H
 
+//#ifndef __MANGLE_H
+//
+#include "nodeapp/operational_system/inttypes.h"
+//
+//#endif
 
-#include "axis/axis/axis/axis.h"
+#define ssize_t intptr_t
 
 #include <tchar.h>
 #include <stdlib.h>

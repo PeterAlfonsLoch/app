@@ -8,6 +8,8 @@
 #ifndef MPG123_LIB_H
 #define MPG123_LIB_H
 
+
+
 /** \file mpg123.h The header file for the libmpg123 MPEG Audio decoder */
 
 /* A macro to check at compile time which set of API functions to expect.
