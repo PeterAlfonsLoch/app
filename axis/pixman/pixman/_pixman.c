@@ -60,7 +60,9 @@
 #include "pixman-timer.c"
 #include "pixman-trap.c"
 #include "pixman-utils.c"
-//#include "pixman-vmx.c"
+#ifdef ALTIVEC
+#include "pixman-vmx.c"
+#endif
 #include "pixman-x86.c"
 #include "pixman.c"
 //2015-01-04  19:55                 0 _pixman.c"

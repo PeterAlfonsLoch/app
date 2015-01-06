@@ -2238,12 +2238,21 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="base\hotplugin\hotplugin_composer.cpp" />
-    <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp" />
-    <ClCompile Include="base\hotplugin\hotplugin_host.cpp" />
-    <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp" />
+    <ClCompile Include="base\hotplugin\hotplugin_composer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_container_launcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_host.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base\hotplugin\hotplugin_plugin.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin_windows.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="base\install\install_plugin.cpp" />
     <ClCompile Include="base\install\install_plugin_bare_paint_discreet.cpp" />
