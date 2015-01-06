@@ -51,23 +51,8 @@
     <Filter Include="Source Files\base\os">
       <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\base\os\cross">
-      <UniqueIdentifier>{f22e1b28-50e1-41b7-ab05-fbf12e97db6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\os\cross\metrowin">
-      <UniqueIdentifier>{e16bae98-9b4b-4f16-8aea-c1eeeb80d1d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\os\cross\windows">
-      <UniqueIdentifier>{c2c59a3f-bfe4-4a34-af7d-9cbdd458db15}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\os\android">
-      <UniqueIdentifier>{58b6201f-03a2-4896-ae5a-477d9ea6a138}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\base\os\windows">
       <UniqueIdentifier>{a9fa6c5c-4118-45a3-a636-0a71e98bcdb4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\os\ansios">
-      <UniqueIdentifier>{68334ac9-3045-461a-9922-b6f49f0a803d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\base\base">
       <UniqueIdentifier>{b15f9423-6971-4587-b04f-ca13192a9bcf}</UniqueIdentifier>
@@ -86,9 +71,6 @@
     </Filter>
     <Filter Include="Source Files\base\node\windows">
       <UniqueIdentifier>{bf60306d-2d73-4340-8890-4402c6ebccab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\base\node\android">
-      <UniqueIdentifier>{8e87a155-a76c-44a0-8114-25921d3dd914}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\base\node\ansios">
       <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
@@ -586,33 +568,6 @@
     <ClCompile Include="base\base\base.cpp">
       <Filter>Source Files\base\base</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\android\android.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_message_loop.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_win_base.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_window_android.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_cross_win.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_cross_win_file.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_cross_windows_user.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_file_std.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\ansios\ansios_multithreading.cpp">
-      <Filter>Source Files\base\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -703,9 +658,6 @@
     <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\cross\metrowin\cross_metrowin_user.cpp">
-      <Filter>Source Files\base\os\cross\metrowin</Filter>
-    </ClCompile>
     <ClCompile Include="base\node\windows\windows_copydesk.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
@@ -721,44 +673,11 @@
     <ClCompile Include="user\simple_ui\simple_ui_interaction.cpp">
       <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\node.cpp">
-      <Filter>Source Files\base\node</Filter>
-    </ClCompile>
     <ClCompile Include="base\message\message_user.cpp">
       <Filter>Source Files\base\message</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_windowing.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_copydesk.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_factory_exchange.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_trace.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_util.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_window_draw.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android1.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android2.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_android.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_multithreading.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\os\android\android_windowing.cpp">
-      <Filter>Source Files\base\os\android</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_interaction_base.cpp">
       <Filter>Source Files\user\user</Filter>
@@ -841,17 +760,8 @@
     <ClCompile Include="base\message\message.cpp">
       <Filter>Source Files\base\message</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\android\android_trace_message.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="base\os\windows\windows_trace_message.cpp">
       <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_interaction_impl.cpp">
-      <Filter>Source Files\base\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\android\android_message_queue.cpp">
-      <Filter>Source Files\base\node\android</Filter>
     </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
@@ -922,14 +832,35 @@
     <ClCompile Include="database\database\database_user_interaction.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\android\android_simple_app.cpp">
-      <Filter>Source Files\base\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="user\_user.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="base\hotplugin\_hotplugin.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\base\_base_base_base.cpp">
+      <Filter>Source Files\base\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\install\_install.cpp">
+      <Filter>Source Files\base\install</Filter>
+    </ClCompile>
+    <ClCompile Include="base\message\_message.cpp">
+      <Filter>Source Files\base\message</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\_node.cpp">
+      <Filter>Source Files\base\node</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\windows\_windows_node.cpp">
+      <Filter>Source Files\base\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\_windows_os.cpp">
+      <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\_os.cpp">
+      <Filter>Source Files\base\os</Filter>
+    </ClCompile>
+    <ClCompile Include="base\_base_base.cpp">
+      <Filter>Source Files\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

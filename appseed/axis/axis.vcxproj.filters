@@ -201,14 +201,8 @@
     <Filter Include="Source Files\axis\os">
       <UniqueIdentifier>{245e3241-db5a-4886-814d-9434580575d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\os\android">
-      <UniqueIdentifier>{58b6201f-03a2-4896-ae5a-477d9ea6a138}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\axis\os\windows">
       <UniqueIdentifier>{a9fa6c5c-4118-45a3-a636-0a71e98bcdb4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\os\ansios">
-      <UniqueIdentifier>{68334ac9-3045-461a-9922-b6f49f0a803d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\install">
       <UniqueIdentifier>{3199e756-cf18-4f55-8ef4-e1ef783b0fda}</UniqueIdentifier>
@@ -227,9 +221,6 @@
     </Filter>
     <Filter Include="Source Files\axis\node\windows">
       <UniqueIdentifier>{bf60306d-2d73-4340-8890-4402c6ebccab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node\android">
-      <UniqueIdentifier>{8e87a155-a76c-44a0-8114-25921d3dd914}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\node\ansios">
       <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
@@ -1423,9 +1414,6 @@
     <ClCompile Include="net\http\http_status.cpp">
       <Filter>Source Files\net\http</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\android\android.cpp">
-      <Filter>Source Files\axis\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="axis\geoip\geoip.cpp">
       <Filter>Source Files\axis\geoip</Filter>
     </ClCompile>
@@ -1465,32 +1453,8 @@
     <ClCompile Include="axis\node\windows\windows_port_forward.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_dir.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_factory_exchange.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_set.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_system.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_ip_enum.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_port_forward.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android1.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\windows\windows_crypto.cpp">
       <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\android\android_crypto.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\visual_dib.cpp">
       <Filter>Source Files\graphics\visual</Filter>
@@ -1638,9 +1602,6 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\ansios\ansios_crypt.cpp">
-      <Filter>Source Files\axis\os\ansios</Filter>
     </ClCompile>
     <ClCompile Include="database\database\database_application.cpp">
       <Filter>Source Files\database\database</Filter>
@@ -1813,11 +1774,23 @@
     <ClCompile Include="graphics\visual\_visual.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
+    <ClCompile Include="axis\axis\_axis_axis_axis.cpp">
+      <Filter>Source Files\axis\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\_axis_axis.cpp">
+      <Filter>Source Files\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\crypto\_crypto.cpp">
+      <Filter>Source Files\axis\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\os\_os.cpp">
+      <Filter>Source Files\axis\os</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\node\_node.cpp">
+      <Filter>Source Files\axis\node</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

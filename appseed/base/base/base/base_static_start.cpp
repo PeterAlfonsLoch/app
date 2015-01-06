@@ -1,19 +1,19 @@
 //
 //  axis_static_start
 //
-#include "framework.h" // from "axis/user/user.h"
-#include "base/user/user.h"
+//#include "framework.h" // from "axis/user/user.h"
+//#include "base/user/user.h"
 
 
 #if defined(APPLEOS)
 
-#include "axis/os/macos/macos_window_impl.h"
+//#include "axis/os/macos/macos_window_impl.h"
 
 extern oswindow_dataptra * g_poswindowdataptra;
 
 #elif defined(APPLE_IOS)
 
-#include "axis/os/ios/ios_window_impl.h"
+//#include "axis/os/ios/ios_window_impl.h"
 
 extern oswindow_dataptra * g_poswindowdataptra;
 

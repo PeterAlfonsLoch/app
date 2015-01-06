@@ -349,29 +349,30 @@ Opened:
          //for(i = 0; i < iSize; i++)
          //{
 
-         mmr = xaudio2::translate(m_psourcevoice->Stop());
+         mmr = xaudio::translate(m_psourcevoice->Stop());
 
-         for(i = 0; i < iSize; i++)
-         {
+         //for(i = 0; i < iSize; i++)
+         //{
 
-            delete m_bufferptra[i];
+         //   delete m_bufferptra[i];
 
-         }
+         //}
 
 
          m_psourcevoice->DestroyVoice();
 
          m_psourcevoice = nullptr;
 
-         m_bufferptra.remove_all();
+         //m_bufferptra.remove_all();
 
 
-         if (m_pvoice != nullptr)
+         if(m_pvoice != nullptr)
          {
 
-         //}
+         }
+         
 
-         //;mmr = xaudio::translate(waveOutClose(m_hwaveout));
+         //mmr = xaudio::translate(waveOutClose(m_hwaveout));
 
          //m_hwaveout = NULL;
 
@@ -478,7 +479,7 @@ Opened:
          // to zero. All pending playback buffers are marked as done and
          // returned to the application.
 
-         m_mmr = xaudio2::translate(m_psourcevoice->Stop());
+         m_mmr = xaudio::translate(m_psourcevoice->Stop());
 
          ASSERT(m_mmr == ::multimedia::result_success);
 
@@ -489,17 +490,6 @@ Opened:
 
          return m_mmr;
 
-      }
-
-      void wave_out::OnBufferEnd(void * pBufferContext)
-      { 
-
-         ::multimedia::audio::wave_buffer::buffer * pbuffer = (::multimedia::audio::wave_buffer::buffer *)pBufferContext;
-
-         int32_t iBuffer = (int32_t)pbuffer->m_iIndex;
-
-         wave_out_out_buffer_done(iBuffer);
-      
       }
 
       ::multimedia::e_result wave_out::wave_out_start(const imedia::position & position)
@@ -678,6 +668,17 @@ Opened:
       }
 
 
+      void wave_out::wave_out_run_step()
+      {
+
+         int iPlay =  -1;
+
+
+      }
+
+
+
+
       //
       // Callback handlers, only implement the buffer events for maintaining play state
       //
@@ -687,20 +688,30 @@ Opened:
       void wave_out::OnVoiceProcessingPassEnd()
       {
       }
-      void wave_out::OnStreamEnd()
+      
+      void wave_out::OnBufferStart(void* pBufferContext)
       {
+         
+         ::multimedia::audio::wave_buffer::buffer * pbuffer = (::multimedia::audio::wave_buffer::buffer *)pBufferContext;
+
+         //pbuffer->m_bIsPlaying =  true;
+
       }
-      void wave_out::OnBufferStart(void* bufferContext)
+      
+      void wave_out::OnBufferEnd(void* pBufferContext)
       {
-         buffer * pbuffer = (buffer *)bufferContext;
-         pbuffer->m_bIsPlaying =  true;
+         ::multimedia::audio::wave_buffer::buffer * pbuffer = (::multimedia::audio::wave_buffer::buffer *)pBufferContext;
+
+         //pbuffer->m_bIsPlaying = false;
+
+         int32_t iBuffer = (int32_t)pbuffer->m_iIndex;
+
+         wave_out_out_buffer_done(iBuffer);
+
+
       }
-      void wave_out::OnBufferEnd(void* bufferContext)
-      {
-         buffer * pbuffer = (buffer *)bufferContext;
-         pbuffer->m_bIsPlaying = false;
-         OnMultimediaDone(pbuffer->m_iBuffer);
-      }
+
+
       void wave_out::OnLoopEnd(void* /*bufferContext*/)
       {
       }

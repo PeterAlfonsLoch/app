@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "nodeapp/appseed/multimedia_xaudio/multimedia_xaudio.h"
+#include "app/appseed/multimedia_xaudio/multimedia_xaudio.h"
 
 
 

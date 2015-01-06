@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="basis|Android">
-      <Configuration>basis</Configuration>
-      <Platform>Android</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="basis|Win32">
       <Configuration>basis</Configuration>
       <Platform>Win32</Platform>
@@ -12,10 +8,6 @@
     <ProjectConfiguration Include="basis|x64">
       <Configuration>basis</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="codeanalysis|Android">
-      <Configuration>codeanalysis</Configuration>
-      <Platform>Android</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="codeanalysis|Win32">
       <Configuration>codeanalysis</Configuration>
@@ -25,10 +17,6 @@
       <Configuration>codeanalysis</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="memdleak|Android">
-      <Configuration>memdleak</Configuration>
-      <Platform>Android</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="memdleak|Win32">
       <Configuration>memdleak</Configuration>
       <Platform>Win32</Platform>
@@ -36,10 +24,6 @@
     <ProjectConfiguration Include="memdleak|x64">
       <Configuration>memdleak</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="no_precompiled_header|Android">
-      <Configuration>no_precompiled_header</Configuration>
-      <Platform>Android</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="no_precompiled_header|Win32">
       <Configuration>no_precompiled_header</Configuration>
@@ -49,10 +33,6 @@
       <Configuration>no_precompiled_header</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="profiler|Android">
-      <Configuration>profiler</Configuration>
-      <Platform>Android</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="profiler|Win32">
       <Configuration>profiler</Configuration>
       <Platform>Win32</Platform>
@@ -61,10 +41,6 @@
       <Configuration>profiler</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="stage|Android">
-      <Configuration>stage</Configuration>
-      <Platform>Android</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="stage|Win32">
       <Configuration>stage</Configuration>
       <Platform>Win32</Platform>
@@ -72,10 +48,6 @@
     <ProjectConfiguration Include="stage|x64">
       <Configuration>stage</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="static_basis|Android">
-      <Configuration>static_basis</Configuration>
-      <Platform>Android</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -108,55 +80,15 @@
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>MultiByte</CharacterSet>
-    <AndroidStlType>gnustl_static</AndroidStlType>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>MultiByte</CharacterSet>
-    <AndroidStlType>gnustl_dynamic</AndroidStlType>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>arm-linux-androideabi-4.6</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>MultiByte</CharacterSet>
-    <AndroidStlType>gnustl_dynamic</AndroidStlType>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>arm-linux-androideabi-4.7</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>MultiByte</CharacterSet>
-    <AndroidStlType>gnustl_dynamic</AndroidStlType>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>MultiByte</CharacterSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>MultiByte</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -216,35 +148,11 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
   </ImportGroup>
@@ -322,50 +230,6 @@
     <GenerateManifest>false</GenerateManifest>
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
-    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
-    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
-    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
-    <TargetName>lib$(ProjectName)</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
-    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
-    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
-    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
-    <TargetName>lib$(ProjectName)</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
-    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
-    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
-    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
-    <TargetName>lib$(ProjectName)</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(AndroidIncludeDir);$(AndroidStlIncludeDir);</IncludePath>
-    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>$(AndroidLibDir);$(AndroidStlLibPath);</LibraryPath>
-    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
-    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(ProjectName)\</IntDir>
-    <TargetName>lib$(ProjectName)</TargetName>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
     <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
@@ -377,22 +241,11 @@
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
-    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
-    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
-    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
     <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">
-    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <OutDir>$(SolutionDir)..\..\..\stage\x64\</OutDir>
@@ -750,266 +603,6 @@
       </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../..;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);src;$(ProjectDir)../../include;$(ProjectDir)../pixman/pixman;$(ProjectDir)../freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAsManaged>false</CompileAsManaged>
-      <StringPooling>false</StringPooling>
-      <ExceptionHandling>false</ExceptionHandling>
-      <RuntimeLibrary>
-      </RuntimeLibrary>
-      <FunctionLevelLinking>
-      </FunctionLevelLinking>
-      <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
-      <BasicRuntimeChecks>
-      </BasicRuntimeChecks>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>
-      </FloatingPointModel>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>-Wnarrowing</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <MinimalRebuild>false</MinimalRebuild>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <GccExceptionHandling>false</GccExceptionHandling>
-      <CppStandard>CppStandard11</CppStandard>
-      <ConversionNull>NoConversionNull</ConversionNull>
-      <Attributes>NoAttributes</Attributes>
-      <Permissive>Yes</Permissive>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <OptimizationLevel>O0</OptimizationLevel>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <EntryPointSymbol>
-      </EntryPointSymbol>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
-      <AndroidSystemLibs>c;m;log;gcc;aura;aurasqlite;axisbzip2;axiszlib;axisfreetype;axispixman;axispng</AndroidSystemLibs>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <Manifest>
-      <AdditionalManifestFiles>
-      </AdditionalManifestFiles>
-    </Manifest>
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
-    <ProjectReference>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_DEBUG;_AXIS_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/base3/openssl;$(SolutionDir)../../../app/base/openssl/crypto2;$(SolutionDir)../../../app/base/openssl/ssl2;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/asn1;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/evp;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/krb5;$(SolutionDir)../../../app/appseed/base/base/openssl/crypto/modes;$(SolutionDir)../../../app/appseed/base/base/openssl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAsManaged>false</CompileAsManaged>
-      <StringPooling>false</StringPooling>
-      <ExceptionHandling>false</ExceptionHandling>
-      <RuntimeLibrary>
-      </RuntimeLibrary>
-      <FunctionLevelLinking>
-      </FunctionLevelLinking>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
-      <BasicRuntimeChecks>
-      </BasicRuntimeChecks>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>
-      </FloatingPointModel>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>-Wnarrowing -std=c++11</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <MinimalRebuild>false</MinimalRebuild>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <GccExceptionHandling>true</GccExceptionHandling>
-      <CppStandard>CppStandard11</CppStandard>
-      <ConversionNull>NoConversionNull</ConversionNull>
-      <Attributes>NoAttributes</Attributes>
-      <Permissive>Yes</Permissive>
-      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <EntryPointSymbol>
-      </EntryPointSymbol>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <Manifest>
-      <AdditionalManifestFiles>
-      </AdditionalManifestFiles>
-    </Manifest>
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
-    <ProjectReference>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">
-    <Midl>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MkTypLibCompatible>true</MkTypLibCompatible>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
-      <HeaderFileName>
-      </HeaderFileName>
-    </Midl>
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);src;$(ProjectDir)../../include;$(ProjectDir)../pixman/pixman;$(ProjectDir)../freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>
-      </PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level3</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>Default</CompileAs>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <CompileAsManaged>false</CompileAsManaged>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <GccExceptionHandling>true</GccExceptionHandling>
-      <AdditionalOptions>-Wnarrowing</AdditionalOptions>
-      <CppStandard>Default</CppStandard>
-      <ConversionNull>Default</ConversionNull>
-      <Attributes>NoAttributes</Attributes>
-      <Permissive>Default</Permissive>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-    </ResourceCompile>
-    <Link>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <RandomizedBaseAddress>true</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <FixedBaseAddress>false</FixedBaseAddress>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
-      <AndroidSystemLibs>m;log;gcc;base;basefreetype;basepixman;basefreeimage</AndroidSystemLibs>
-      <ModuleDefinitionFile>basecairo.def</ModuleDefinitionFile>
-      <AdditionalOptions>-Wl,-z,defs</AdditionalOptions>
-    </Link>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
-    <ProjectReference>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">
-    <Midl>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MkTypLibCompatible>true</MkTypLibCompatible>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
-      <HeaderFileName>
-      </HeaderFileName>
-    </Midl>
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);src;$(ProjectDir)../../include;$(ProjectDir)../pixman/pixman;$(ProjectDir)../freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>
-      </PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level3</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>Default</CompileAs>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <CompileAsManaged>false</CompileAsManaged>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <GccExceptionHandling>true</GccExceptionHandling>
-      <AdditionalOptions>-Wno-attributes</AdditionalOptions>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-    </ResourceCompile>
-    <Link>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <RandomizedBaseAddress>true</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <FixedBaseAddress>false</FixedBaseAddress>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\stage\$(PlatformName)\</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
-      <AndroidSystemLibs>c;m;log;gcc;;_c;_ca2zlib;_ca2freetype;_ca2pixman;_ca2freeimage</AndroidSystemLibs>
-      <ModuleDefinitionFile>basecairo.def</ModuleDefinitionFile>
-    </Link>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
-    <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
-    <ProjectReference>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">
     <Midl>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1069,60 +662,6 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>Msimg32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>basecairo.def</ModuleDefinitionFile>
-    </Link>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">
-    <Midl>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MkTypLibCompatible>true</MkTypLibCompatible>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
-      <HeaderFileName>
-      </HeaderFileName>
-    </Midl>
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);src;$(ProjectDir)../../include;$(ProjectDir)../pixman/pixman;$(ProjectDir)../freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINDOWSEX;WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>
-      </PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <ObjectFileName>$(IntDir)</ObjectFileName>
-      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level3</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>Default</CompileAs>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <CompileAsManaged>false</CompileAsManaged>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-    </ResourceCompile>
-    <Link>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <RandomizedBaseAddress>true</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <FixedBaseAddress>false</FixedBaseAddress>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>basecairo.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
@@ -1200,59 +739,6 @@
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-    </Link>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">
-    <Midl>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MkTypLibCompatible>true</MkTypLibCompatible>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
-      <HeaderFileName>
-      </HeaderFileName>
-    </Midl>
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);src;$(ProjectDir)../../include;$(ProjectDir)../pixman/pixman;$(ProjectDir)../freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINDOWSEX;WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>
-      </PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <ObjectFileName>$(IntDir)</ObjectFileName>
-      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level3</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAs>Default</CompileAs>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <CompileAsManaged>false</CompileAsManaged>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-    </ResourceCompile>
-    <Link>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <RandomizedBaseAddress>true</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <FixedBaseAddress>false</FixedBaseAddress>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <Profile>true</Profile>
-      <ModuleDefinitionFile>basecairo.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -1877,7 +1363,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-cogl-gradient.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -1898,7 +1383,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-cogl-surface.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -1919,7 +1403,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-cogl-utils.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -1940,7 +1423,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-color.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2026,7 +1508,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-egl-context.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2040,7 +1521,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-cairoerror.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2134,7 +1614,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gl-device.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2148,7 +1627,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gl-dispatch.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2162,7 +1640,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gl-glyphs.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2176,7 +1653,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gl-gradient.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2190,7 +1666,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gl-info.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2204,7 +1679,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gl-msaa-compositor.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2218,7 +1692,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gl-operand.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2232,7 +1705,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gl-shaders.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2246,7 +1718,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gl-source.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2260,7 +1731,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gl-spans-compositor.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2274,7 +1744,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gl-surface.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2288,7 +1757,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gl-traps-compositor.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2302,7 +1770,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-glx-context.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2316,7 +1783,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-gstate.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2466,7 +1932,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-output-stream.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -2984,7 +2449,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-wgl-context.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -2998,7 +2462,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-wideint.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -3020,7 +2483,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xcb-connection-render.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3034,7 +2496,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xcb-connection-shm.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3048,7 +2509,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xcb-connection.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3062,7 +2522,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xcb-screen.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3076,7 +2535,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xcb-shm.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3090,7 +2548,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xcb-surface-core.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3104,7 +2561,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xcb-surface-render.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3118,7 +2574,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xcb-surface.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3132,7 +2587,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xlib-core-compositor.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3146,7 +2600,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xlib-display.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3160,7 +2613,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xlib-fallback-compositor.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3174,7 +2626,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xlib-render-compositor.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3188,7 +2639,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xlib-screen.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3202,7 +2652,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xlib-source.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3216,7 +2665,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xlib-surface-shm.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3230,7 +2678,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xlib-surface.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3244,7 +2691,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xlib-visual.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3258,7 +2704,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xlib-xcb-surface.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -3272,7 +2717,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\cairo-xml-surface.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -3302,7 +2746,6 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\test-base-compositor-surface.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Use</PrecompiledHeader>
@@ -3336,30 +2779,14 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)cairo.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-debug.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-device.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-display-surface.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-font.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-gdi-compositor.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-printing-surface.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-surface.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="src\win32\cairo-win32-system.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="src\win32\cairo-win32-debug.c" />
+    <ClCompile Include="src\win32\cairo-win32-device.c" />
+    <ClCompile Include="src\win32\cairo-win32-display-surface.c" />
+    <ClCompile Include="src\win32\cairo-win32-font.c" />
+    <ClCompile Include="src\win32\cairo-win32-gdi-compositor.c" />
+    <ClCompile Include="src\win32\cairo-win32-printing-surface.c" />
+    <ClCompile Include="src\win32\cairo-win32-surface.c" />
+    <ClCompile Include="src\win32\cairo-win32-system.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />

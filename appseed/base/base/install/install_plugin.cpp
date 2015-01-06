@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "base/user/user.h"
+//#include "framework.h"
+//#include "base/user/user.h"
 
 
 
@@ -8,7 +8,7 @@
 #if defined(WINDOWS)
 #define min MIN
 #define max MAX
-#include <gdiplus.h>
+//#include <gdiplus.h>
 #undef min
 #undef max
 #endif
@@ -25,7 +25,7 @@
 
 
 #ifdef WINDOWS
-#include <process.h>
+//#include <process.h>
 #endif
 
 #ifdef WINDOWS

@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "base/user/user.h"
+//#include "framework.h"
+//#include "base/user/user.h"
 
 
 #undef new
@@ -7,16 +7,16 @@
 
 
 #ifdef LINUX
-#include "axis/os/linux/linux_cross_win_gdi_internal.h"
+//#include "axis/os/linux/linux_cross_win_gdi_internal.h"
 #elif defined(ANDROID)
-//#include "axis/os/android/android_cross_win_gdi_internal.h"
+////#include "axis/os/android/android_cross_win_gdi_internal.h"
 #endif
 
 
 #ifdef WINDOWSEX
 #define min MIN
 #define max MAX
-#include <gdiplus.h>
+//#include <gdiplus.h>
 #undef min
 #undef max
 #endif

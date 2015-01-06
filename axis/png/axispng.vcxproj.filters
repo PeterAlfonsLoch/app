@@ -92,4 +92,9 @@
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="axispng.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

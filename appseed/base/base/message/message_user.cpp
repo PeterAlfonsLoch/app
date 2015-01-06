@@ -1,12 +1,12 @@
-#include "framework.h" // from "base/user/user.h"
-#include "base/user/user.h"
+//#include "framework.h" // from "base/user/user.h"
+//#include "base/user/user.h"
 
 
 
 #if defined(LINUX)
 // Ubuntu apt-get install libx11-dev
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
+//#include <X11/Xlib.h>
+//#include <X11/Xutil.h>
 
 #endif
 

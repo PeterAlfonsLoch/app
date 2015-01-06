@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 
 #undef new
 
@@ -8,7 +8,7 @@
 
 #ifndef METROWIN
 
-#include <gdiplus.h>
+//#include <gdiplus.h>
 
 using namespace Gdiplus;
 

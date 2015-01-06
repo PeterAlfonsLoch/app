@@ -119,9 +119,6 @@
     <ClInclude Include="graphics\html2.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="html_application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="userhtml\userhtml.h">
       <Filter>Header Files\userhtml</Filter>
     </ClInclude>
@@ -248,6 +245,9 @@
     <ClInclude Include="html\html.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
+    <ClInclude Include="html_application_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -291,9 +291,6 @@
     </ClCompile>
     <ClCompile Include="graphics\html_value.cpp">
       <Filter>Source Files\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html_application.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="userhtml\userhtml_child_frame.cpp">
       <Filter>Source Files\userhtml</Filter>
@@ -405,6 +402,9 @@
     </ClCompile>
     <ClCompile Include="graphics\elemental\html_elemental_text.cpp">
       <Filter>Source Files\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="html_application_interface.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
-#include "framework.h" // from "base/user/user.h"
-#include "base/user/user.h"
-#include "windows.h"
+//#include "framework.h" // from "base/user/user.h"
+//#include "base/user/user.h"
+//#include "windows.h"
 
 
 extern void _001DeferPaintLayeredWindowBackground(oswindow oswindow,::draw2d::graphics * pdc);

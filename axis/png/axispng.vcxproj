@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="basis|Android">
-      <Configuration>basis</Configuration>
-      <Platform>Android</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="basis|Win32">
       <Configuration>basis</Configuration>
       <Platform>Win32</Platform>
@@ -12,10 +8,6 @@
     <ProjectConfiguration Include="basis|x64">
       <Configuration>basis</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="codeanalysis|Android">
-      <Configuration>codeanalysis</Configuration>
-      <Platform>Android</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="codeanalysis|Win32">
       <Configuration>codeanalysis</Configuration>
@@ -25,10 +17,6 @@
       <Configuration>codeanalysis</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="memdleak|Android">
-      <Configuration>memdleak</Configuration>
-      <Platform>Android</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="memdleak|Win32">
       <Configuration>memdleak</Configuration>
       <Platform>Win32</Platform>
@@ -36,10 +24,6 @@
     <ProjectConfiguration Include="memdleak|x64">
       <Configuration>memdleak</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="no_precompiled_header|Android">
-      <Configuration>no_precompiled_header</Configuration>
-      <Platform>Android</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="no_precompiled_header|Win32">
       <Configuration>no_precompiled_header</Configuration>
@@ -49,10 +33,6 @@
       <Configuration>no_precompiled_header</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="profiler|Android">
-      <Configuration>profiler</Configuration>
-      <Platform>Android</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="profiler|Win32">
       <Configuration>profiler</Configuration>
       <Platform>Win32</Platform>
@@ -61,10 +41,6 @@
       <Configuration>profiler</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="stage|Android">
-      <Configuration>stage</Configuration>
-      <Platform>Android</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="stage|Win32">
       <Configuration>stage</Configuration>
       <Platform>Win32</Platform>
@@ -72,10 +48,6 @@
     <ProjectConfiguration Include="stage|x64">
       <Configuration>stage</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="static_basis|Android">
-      <Configuration>static_basis</Configuration>
-      <Platform>Android</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="static_basis|Win32">
       <Configuration>static_basis</Configuration>
@@ -108,20 +80,6 @@
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <CLRSupport>false</CLRSupport>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <CLRSupport>false</CLRSupport>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -143,13 +101,6 @@
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <CLRSupport>false</CLRSupport>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -158,13 +109,6 @@
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <CLRSupport>false</CLRSupport>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CLRSupport>false</CLRSupport>
@@ -185,13 +129,6 @@
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <CLRSupport>false</CLRSupport>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -206,13 +143,6 @@
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <CLRSupport>false</CLRSupport>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -221,13 +151,6 @@
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <CLRSupport>false</CLRSupport>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CLRSupport>false</CLRSupport>
@@ -250,12 +173,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -265,16 +182,10 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" Label="PropertySheets">
@@ -283,25 +194,16 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'" Label="PropertySheets">
@@ -331,26 +233,6 @@
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
-    <GenerateManifest>false</GenerateManifest>
-    <EmbedManifest>false</EmbedManifest>
-    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
-    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
-    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
-    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">
-    <GenerateManifest>false</GenerateManifest>
-    <EmbedManifest>false</EmbedManifest>
-    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
-    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
-    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
-    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -384,16 +266,6 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">
-    <GenerateManifest>false</GenerateManifest>
-    <EmbedManifest>false</EmbedManifest>
-    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
-    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
-    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
-    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
@@ -416,16 +288,6 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'">
-    <GenerateManifest>false</GenerateManifest>
-    <EmbedManifest>false</EmbedManifest>
-    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
-    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
-    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
-    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
@@ -447,16 +309,6 @@
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">
-    <GenerateManifest>false</GenerateManifest>
-    <EmbedManifest>false</EmbedManifest>
-    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
-    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
-    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
-    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -482,18 +334,6 @@
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">
-    <GenerateManifest>false</GenerateManifest>
-    <EmbedManifest>false</EmbedManifest>
-    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
-    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
-    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
-    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
@@ -517,16 +357,6 @@
     <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
     <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
     <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">
-    <GenerateManifest>false</GenerateManifest>
-    <EmbedManifest>false</EmbedManifest>
-    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
-    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
-    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
-    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
-    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
-    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -597,122 +427,6 @@
     </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAsManaged>false</CompileAsManaged>
-      <StringPooling>false</StringPooling>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <MinimalRebuild>false</MinimalRebuild>
-      <PrecompiledHeaderFile>pngpriv.h</PrecompiledHeaderFile>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <SDLCheck>true</SDLCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
-      <CreateHotpatchableImage>false</CreateHotpatchableImage>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <EntryPointSymbol>
-      </EntryPointSymbol>
-      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <FixedBaseAddress>false</FixedBaseAddress>
-      <ShowProgress>NotSet</ShowProgress>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <Manifest>
-      <AdditionalManifestFiles>
-      </AdditionalManifestFiles>
-    </Manifest>
-    <Xdcmake>
-      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
-    </Xdcmake>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAsManaged>false</CompileAsManaged>
-      <StringPooling>false</StringPooling>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <MinimalRebuild>false</MinimalRebuild>
-      <PrecompiledHeaderFile>pngpriv.h</PrecompiledHeaderFile>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <SDLCheck>true</SDLCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
-      <CreateHotpatchableImage>false</CreateHotpatchableImage>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <EntryPointSymbol>
-      </EntryPointSymbol>
-      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <FixedBaseAddress>false</FixedBaseAddress>
-      <ShowProgress>NotSet</ShowProgress>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <Manifest>
-      <AdditionalManifestFiles>
-      </AdditionalManifestFiles>
-    </Manifest>
-    <Xdcmake>
-      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
-    </Xdcmake>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -944,64 +658,6 @@
       <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAsManaged>false</CompileAsManaged>
-      <StringPooling>false</StringPooling>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <MinimalRebuild>false</MinimalRebuild>
-      <PrecompiledHeaderFile>pngpriv.h</PrecompiledHeaderFile>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <SDLCheck>true</SDLCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
-      <CreateHotpatchableImage>false</CreateHotpatchableImage>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <EntryPointSymbol>
-      </EntryPointSymbol>
-      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <FixedBaseAddress>false</FixedBaseAddress>
-      <ShowProgress>NotSet</ShowProgress>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <Manifest>
-      <AdditionalManifestFiles>
-      </AdditionalManifestFiles>
-    </Manifest>
-    <Xdcmake>
-      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
-    </Xdcmake>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -1061,69 +717,6 @@
     </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Full</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAsManaged>false</CompileAsManaged>
-      <StringPooling>true</StringPooling>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>true</OpenMPSupport>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <MinimalRebuild>false</MinimalRebuild>
-      <PrecompiledHeaderFile>pngpriv.h</PrecompiledHeaderFile>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <SDLCheck>
-      </SDLCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
-      <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <EntryPointSymbol>
-      </EntryPointSymbol>
-      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <FixedBaseAddress>false</FixedBaseAddress>
-      <ShowProgress>NotSet</ShowProgress>
-      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <SubSystem>Windows</SubSystem>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <Manifest>
-      <AdditionalManifestFiles>
-      </AdditionalManifestFiles>
-    </Manifest>
-    <Xdcmake>
-      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
-    </Xdcmake>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1301,58 +894,6 @@
       </AdditionalManifestFiles>
     </Manifest>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>MEMDLEAK;_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAsManaged>false</CompileAsManaged>
-      <StringPooling>false</StringPooling>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
-      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <MinimalRebuild>false</MinimalRebuild>
-      <PrecompiledHeaderFile>pngpriv.h</PrecompiledHeaderFile>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <SDLCheck>true</SDLCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib</AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <EntryPointSymbol>
-      </EntryPointSymbol>
-      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <FixedBaseAddress>false</FixedBaseAddress>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <Manifest>
-      <AdditionalManifestFiles>
-      </AdditionalManifestFiles>
-    </Manifest>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -1406,56 +947,6 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAsManaged>false</CompileAsManaged>
-      <StringPooling>false</StringPooling>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
-      <EnablePREfast>true</EnablePREfast>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <SDLCheck>true</SDLCheck>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <FixedBaseAddress>false</FixedBaseAddress>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <Manifest>
-      <AdditionalManifestFiles>
-      </AdditionalManifestFiles>
-    </Manifest>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Android'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -1608,59 +1099,6 @@
       </AdditionalManifestFiles>
     </Manifest>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CA2_MATH_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <CompileAsManaged>false</CompileAsManaged>
-      <StringPooling>false</StringPooling>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <SDLCheck>
-      </SDLCheck>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
-      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <Profile>true</Profile>
-      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <FixedBaseAddress>false</FixedBaseAddress>
-    </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <Manifest>
-      <AdditionalManifestFiles>
-      </AdditionalManifestFiles>
-    </Manifest>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -1727,32 +1165,23 @@
     <ClCompile Include="Source\FreeImage\PluginPNG.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Android'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\LibPNG\png.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\LibPNG\pngerror.c" />
@@ -1776,6 +1205,9 @@
     </ProjectReference>
     <ProjectReference Include="..\freeimage\axisfreeimage.vcxproj" />
     <ProjectReference Include="..\zlib\axiszlib.vcxproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axispng.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

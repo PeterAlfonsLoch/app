@@ -5,8 +5,8 @@ namespace html
 {
 
 
-   class CLASS_DECL_HTML application :
-      virtual public ::core::application
+   class CLASS_DECL_HTML application_interface :
+      virtual public ::aura::application_interface
    {
    public:
 
@@ -20,8 +20,8 @@ namespace html
 
       class ::core::patch                          m_patch;*/
 
-      application(::aura::application * papp = NULL);
-      virtual ~application();
+      application_interface();
+      virtual ~application_interface();
 
 
       virtual void construct(const char * pszAppId);
@@ -56,8 +56,8 @@ namespace html
 
 
       DECL_GEN_SIGNAL(on_application_signal);
-      void assert_valid() const;
-      void dump(dump_context & context) const;
+      //void assert_valid() const;
+      //void dump(dump_context & context) const;
 
 
    };

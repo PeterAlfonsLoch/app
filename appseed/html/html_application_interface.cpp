@@ -8,35 +8,34 @@ namespace html
 {
 
 
-   application::application(::aura::application * papp):
-      ::element(papp)
+   application_interface::application_interface()
    {
 
-      m_psignal->connect(this,&application::on_application_signal);
+      m_pauraapp->m_psignal->connect(this,&application_interface::on_application_signal);
 
    }
 
 
-   application::~application()
+   application_interface::~application_interface()
    {
-
-   }
-
-
-
-   void application::construct(const char * pszAppId)
-   {
-
-      ::core::application::construct(pszAppId);
-
-      ::base::application::construct(pszAppId);
 
    }
 
 
 
+   void application_interface::construct(const char * pszAppId)
+   {
 
-   bool application::is_system()
+      //::core::application::construct(pszAppId);
+
+      //::base::application::construct(pszAppId);
+
+   }
+
+
+
+
+   bool application_interface::is_system()
    {
 
       return false;
@@ -47,25 +46,25 @@ namespace html
 
 
 
-   void application::assert_valid() const
-   {
+//   void application_interface::assert_valid() const
+//   {
+//
+////     ::core:: application_interface::assert_valid();
+//      //::database::server::assert_valid();
+//
+//   }
+//
+//
+//   void application_interface::dump(dump_context & context) const
+//   {
+//
+//      //::core::application_interface::dump(context);
+//      //::database::server::dump(context);
+//
+//   }
+//
 
-     ::core:: application::assert_valid();
-      //::database::server::assert_valid();
-
-   }
-
-
-   void application::dump(dump_context & context) const
-   {
-
-      ::core::application::dump(context);
-      //::database::server::dump(context);
-
-   }
-
-
-   void application::on_application_signal(signal_details * pobj)
+   void application_interface::on_application_signal(signal_details * pobj)
    {
       
       SCAST_PTR(::aura::application_signal_details,psignal,pobj);
@@ -84,7 +83,7 @@ namespace html
             return;
          }
 
-         m_pauraapp->m_pcoresystem->m_phtml->construct(this);
+         m_pauraapp->m_pcoresystem->m_phtml->construct(m_pauraapp);
 
       }
       else if(psignal->m_esignal == ::aura::application_signal_initialize1)
@@ -133,10 +132,10 @@ namespace html
    }
 
 
-   ::html::html * application::create_html()
+   ::html::html * application_interface::create_html()
    {
 
-      return canew(::html::html(this));
+      return canew(::html::html(m_pauraapp));
 
    }
 
@@ -148,27 +147,27 @@ namespace html
 
 
 
-uint32_t _thread_proc_start_core_system_main(void * p);
+//uint32_t _thread_proc_start_core_system_main(void * p);
 
 
 
-uint32_t _thread_proc_start_core_system_main(void * p)
-{
+//uint32_t _thread_proc_start_core_system_main(void * p)
+//{
+//
+//   ::base::applicationce * psystem = (::base::application_interface *)p;
+//
+//   ::core::application_interface * pplanesystem = dynamic_cast < ::core::application_interface * > (psystem);
+//
+//   ::set_thread(psystem);
+//
+//   return pplanesystem->::core::application_interface::main();
+//
+//}
+//
 
-   ::base::application * psystem = (::base::application *)p;
-
-   ::core::application * pplanesystem = dynamic_cast < ::core::application * > (psystem);
-
-   ::set_thread(psystem);
-
-   return pplanesystem->::core::application::main();
-
-}
-
-
-CLASS_DECL_HTML void __start_core_system_main(::base::application * psystem)
-{
-
-   ::create_thread(NULL,0,&_thread_proc_start_core_system_main,(LPVOID)psystem,0,0);
-
-}
+//CLASS_DECL_HTML void __start_core_system_main(::base::application_interface * psystem)
+//{
+//
+//   ::create_thread(NULL,0,&_thread_proc_start_core_system_main,(LPVOID)psystem,0,0);
+//
+//}

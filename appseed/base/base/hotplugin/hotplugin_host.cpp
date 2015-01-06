@@ -1,10 +1,10 @@
-#include "framework.h"
-#include "base/user/user.h"
+//#include "framework.h"
+//#include "base/user/user.h"
 #undef new
 #ifdef WINDOWS
 #define min MIN
 #define max MAX
-#include <gdiplus.h>
+//#include <gdiplus.h>
 #undef min
 #undef max
 #endif
