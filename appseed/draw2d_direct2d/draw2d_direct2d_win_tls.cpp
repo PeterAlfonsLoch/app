@@ -100,7 +100,7 @@ void factory_exchange::draw2d_direct2d_initialize()
       ID2D1DeviceContext * pdevicecontext = g_pd2devicecontext.Get();
 
       System.m_pdevicecontext    = pdevicecontext;
-      System.m_pmutexDc          = new mutex(get_app());
+      //System.m_pmutexDc          = new mutex(get_app());
 
 
 }

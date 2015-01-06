@@ -1596,7 +1596,7 @@ namespace axis
    bool application::system_add_app_install(const char * pszId)
    {
 
-      synch_lock sl(System.m_spmutexSystemAppData);
+      synch_lock sl(&System.m_mutexSystemAppData);
 
       string strId(pszId);
       string strSystemLocale = System.m_strLocale;

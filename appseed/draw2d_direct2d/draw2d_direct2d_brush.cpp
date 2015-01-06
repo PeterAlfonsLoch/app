@@ -106,6 +106,10 @@ namespace draw2d_direct2d
 
       synch_lock sl(&draw2d_direct2_mutex());
 
+
+      if(pgraphics->m_prendertarget == NULL)
+         return NULL;
+
       if(m_etype == type_solid)
       {
 
@@ -125,6 +129,7 @@ namespace draw2d_direct2d
             ca.r = argb_get_r_value(m_cr) / 255.0f;
             ca.g = argb_get_g_value(m_cr) / 255.0f;
             ca.b = argb_get_b_value(m_cr) / 255.0f;
+
 
             pgraphics->m_prendertarget->CreateSolidColorBrush(ca, &((brush *) this)->m_psolidbrush);
 

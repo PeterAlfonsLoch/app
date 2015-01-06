@@ -11,10 +11,11 @@ namespace draw2d_direct2d
    public:
 
 
-      Microsoft::WRL::ComPtr<ID2D1Device>              m_pdevice;
-      Microsoft::WRL::ComPtr<ID2D1RenderTarget>        m_prendertarget;
-      Microsoft::WRL::ComPtr<ID2D1DeviceContext>       m_pdevicecontext;
-      Microsoft::WRL::ComPtr<ID2D1BitmapRenderTarget>  m_pbitmaprendertarget;
+      Microsoft::WRL::ComPtr<ID2D1Device>                m_pdevice;
+      Microsoft::WRL::ComPtr<ID2D1RenderTarget>          m_prendertarget;
+      Microsoft::WRL::ComPtr<ID2D1DeviceContext>         m_pdevicecontext;
+      Microsoft::WRL::ComPtr<ID2D1BitmapRenderTarget>    m_pbitmaprendertarget;
+      Microsoft::WRL::ComPtr<ID2D1DCRenderTarget>        m_pdcrendertarget;
 
       IDXGIAdapter *                   m_padapter;
       IDXGIFactory2 *                  m_pfactory2;
@@ -33,6 +34,8 @@ namespace draw2d_direct2d
 
       // advanced use and implementation
       bool                             m_bPrinting;
+
+      HDC                              m_hdcAttach;
 
       enum e_data
       {
@@ -481,6 +484,8 @@ namespace draw2d_direct2d
       virtual bool attach(void * pdata);
       virtual void * detach();
 
+      virtual bool Attach(HDC hdc);
+      virtual HDC Detach();
 
 //      virtual Gdiplus::FillMode direct2d_get_fill_mode();
 

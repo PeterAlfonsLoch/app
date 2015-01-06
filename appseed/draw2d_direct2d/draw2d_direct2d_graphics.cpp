@@ -15,6 +15,9 @@ namespace draw2d_direct2d
       ::draw2d::graphics(papp)
    {
 
+
+      m_hdcAttach = NULL;
+
 //      &draw2d_direct2_mutex() = &draw2d_direct2_mutex();
 
       m_sppen.alloc(allocer());
@@ -1300,7 +1303,7 @@ namespace draw2d_direct2d
          if(pgraphicsSrc == NULL)
             return FALSE;
 
-         if(&pgraphicsSrc->get_current_bitmap() == NULL)
+         if(pgraphicsSrc->get_current_bitmap() == NULL)
             return FALSE;
 
          if(pgraphicsSrc->get_current_bitmap()->get_os_data() == NULL)
@@ -3073,6 +3076,9 @@ namespace draw2d_direct2d
    ::draw2d::brush* graphics::SelectObject(::draw2d::brush* pBrush)
    {
 
+      if(pBrush == NULL)
+         return NULL;
+
       m_spbrush = pBrush;
 
       if((::draw2d_direct2d::graphics *) m_spbrush->get_os_data_ex(::draw2d_direct2d::object::data_graphics) != this)
@@ -4538,6 +4544,65 @@ namespace draw2d_direct2d
 
    }
 
+#ifdef WINDOWSEX
+
+   bool graphics::Attach(HDC hdc)
+   {
+
+      HWND hwnd = ::WindowFromDC(hdc);
+
+      if(hwnd == NULL)
+         return false;
+
+      ::rect rectClient;
+
+      ::GetClientRect(hwnd, rectClient);
+
+      // Create a DC render target.
+      D2D1_RENDER_TARGET_PROPERTIES props = D2D1::RenderTargetProperties(
+         D2D1_RENDER_TARGET_TYPE_DEFAULT,
+         D2D1::PixelFormat(
+         DXGI_FORMAT_B8G8R8A8_UNORM,
+         D2D1_ALPHA_MODE_IGNORE),
+         0,
+         0,
+         D2D1_RENDER_TARGET_USAGE_NONE,
+         D2D1_FEATURE_LEVEL_DEFAULT
+         );
+
+      HRESULT hr = GetD2D1Factory1()->CreateDCRenderTarget(&props,&m_pdcrendertarget);
+
+      if(FAILED(hr))
+         return false;
+
+      hr = m_pdcrendertarget->BindDC(m_hdcAttach, rectClient);
+
+      m_pdcrendertarget.As(&m_prendertarget);
+
+      m_hdcAttach = hdc;
+
+
+
+      return true;
+
+   }
+
+   HDC graphics::Detach()
+   {
+      if(m_hdcAttach == NULL)
+         return NULL;
+
+      //hr = m_pdcrendertarget->BindDC(m_hdcAttach,rectClient);
+
+      HDC hdc = m_hdcAttach;
+
+      m_hdcAttach = NULL;
+
+      return hdc;
+   }
+
+#endif
+
    /*
    Gdiplus::Font * graphics::direct2d_font()
    {
@@ -4647,7 +4712,7 @@ namespace draw2d_direct2d
    bool graphics::destroy()
    {
 
-      single_lock sl(System.m_pmutexDc, true);
+      single_lock sl(&System.m_mutexDc, true);
 
       if(m_player != NULL)
       {

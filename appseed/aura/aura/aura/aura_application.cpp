@@ -2745,7 +2745,7 @@ namespace aura
 
       strPath.replace("::","/");
 
-      synch_lock sl(System.m_spmutexUserAppData);
+      synch_lock sl(&System.m_mutexUserAppData);
 
       {
 
@@ -2786,7 +2786,7 @@ namespace aura
 
       strPath.replace("::","/");
 
-      synch_lock sl(System.m_spmutexUserAppData);
+      synch_lock sl(&System.m_mutexUserAppData);
 
       {
 

@@ -1041,6 +1041,10 @@ namespace draw2d
 
    void dib::BitBlt(int cxParam, int cyParam, dib *pdib,int32_t op)
    {
+      map();
+
+      pdib->map();
+
       if(op == 1 && m_size == pdib->m_size && pdib->m_iScan == m_iScan) // op == 1 indicates can ignore cxParam and cyParam and perform full memcpy
       {
          

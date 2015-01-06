@@ -2,8 +2,12 @@
 //#include "draw2d.h"
 //#include <math.h>
 
+
+
 namespace draw2d
 {
+
+   static double g_dPi = atan(1.0) * 4.0;
 
 
    path::string_path::string_path()
@@ -128,7 +132,7 @@ namespace draw2d
 
 
 
-   bool path::add_arc(const RECT & rect, int32_t iStart, int32_t iAngle)
+   bool path::add_arc(const RECT & rect, double dStart, double dAngle)
    {
 
       if(width(rect) <= 0 || height(rect) <= 0)
@@ -143,8 +147,8 @@ namespace draw2d
       e->u.m_arc.m_yCenter     = ((double) rect.bottom + (double) rect.top) / 2.0;
       e->u.m_arc.m_dRadiusX    = (double) rect.right - e->u.m_arc.m_xCenter;
       e->u.m_arc.m_dRadiusY    = (double) rect.bottom - e->u.m_arc.m_yCenter;
-      e->u.m_arc.m_dAngle1     = iStart * 3.1415 / 180.0;
-      e->u.m_arc.m_dAngle2     = e->u.m_arc.m_dAngle1 + iAngle * 3.1415 / 180.0;
+      e->u.m_arc.m_dAngle1     = dStart * g_dPi / 180.0;
+      e->u.m_arc.m_dAngle2     = e->u.m_arc.m_dAngle1 + dAngle * g_dPi / 180.0;
 
       m_elementa.add(e);
 
@@ -841,6 +845,7 @@ namespace draw2d
    {
 
       ::rect r;
+      ::rect r2;
 
       {
 
@@ -849,18 +854,18 @@ namespace draw2d
          r.right = lpcrect->left + height(lpcrect);
          r.bottom = lpcrect->bottom;
 
-         add_arc(r,0,360);
+         add_arc(r,-90,180);
 
       }
 
       {
 
-         r.left = lpcrect->left + height(lpcrect) / 2;
-         r.top = lpcrect->top;
-         r.right = lpcrect->right - height(lpcrect) / 2;
-         r.bottom = lpcrect->bottom;
+         r2.left = lpcrect->left + height(lpcrect) / 2;
+         r2.top = lpcrect->top;
+         r2.right = lpcrect->right - height(lpcrect) / 2;
+         r2.bottom = lpcrect->bottom;
 
-         add_rect(r);
+         add_line(r2.right, r2.top);
 
       }
 
@@ -871,7 +876,13 @@ namespace draw2d
          r.left = lpcrect->right - height(lpcrect);
          r.bottom = lpcrect->bottom;
 
-         add_arc(r,0,360);
+         add_arc(r,90,180);
+
+      }
+
+      {
+
+         add_line(r2.left,r2.bottom);
 
       }
 

@@ -2545,8 +2545,8 @@ namespace user
 
       single_lock slDisplay(mutex_display(),true);
 
-      if(m_spdib->get_data() == NULL || m_spdibBuffer->get_data() == NULL)
-         return;
+      //if(m_spdib->get_data() == NULL || m_spdibBuffer->get_data() == NULL)
+        // return;
 
       m_spdib->BitBlt(rectWindow.width(), rectWindow.height(), m_spdibBuffer, 1);
 

@@ -89,6 +89,7 @@ private:
 
 namespace draw2d_direct2d
 {
+   static double g_dPi = atan(1.0) * 4.0;
 
 
    graphics_path::graphics_path(::aura::application * papp) :
@@ -149,19 +150,34 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics_path::internal_add_arc(const RECT & rect, int iStart, int iAngle)
+   bool graphics_path::internal_add_arc(const RECT & rect, double dStart, double dEnd)
    {
 
       D2D1_POINT_2F pt;
 
       D2D1_ARC_SEGMENT arcseg;
 
-      internal_get_arc(pt, arcseg, rect, iStart, iAngle);
+      internal_get_arc(pt, arcseg, rect, dStart, dEnd);
 
       if(!internal_prepare(pt))
          return false;
 
       m_psink->AddArc(arcseg);
+
+      return true;
+
+   }
+   bool graphics_path::internal_add_rect(int x,int y, int cx, int cy)
+   {
+
+
+
+      internal_add_line(x,y);
+      internal_add_line(x + cx,y);
+      internal_add_line(x + cx,y + cy);
+      internal_add_line(x,y + cy);
+      internal_add_line(x,y);
+
 
       return true;
 
@@ -284,26 +300,26 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics_path::internal_get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, const RECT & rect, int iStart, int iAngle)
+   bool graphics_path::internal_get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, const RECT & rect, double dStart, double dEnd)
    {
 
-      float pi = 3.1415927f;
+      double pi = g_dPi;
 
       D2D1_POINT_2F ptCenter;
 
-      ptCenter.x = ((FLOAT) rect.left + (FLOAT) rect.right) / 2.0f;
-      ptCenter.y = ((FLOAT) rect.top + (FLOAT) rect.bottom) / 2.0f;
+      ptCenter.x = ((double) rect.left + (double) rect.right) / 2.0f;
+      ptCenter.y = ((double) rect.top + (double) rect.bottom) / 2.0f;
 
-      float rx = (FLOAT) rect.right    - ptCenter.x;
-      float ry = (FLOAT) rect.bottom   - ptCenter.y;
+      double rx = (double) rect.right    - ptCenter.x;
+      double ry = (double) rect.bottom   - ptCenter.y;
 
-      pt.x = ptCenter.x + cos(iStart * pi / 180.0f) * rx;
-      pt.y = ptCenter.y - sin(iStart * pi / 180.0f) * ry;
+      pt.x = ptCenter.x + cos(dStart * pi / 180.0) * rx;
+      pt.y = ptCenter.y - sin(dStart * pi / 180.0) * ry;
 
-      arcseg.point.x = ptCenter.x + cos((iStart + iAngle) * pi / 180.0f) * rx;
-      arcseg.point.y = ptCenter.y + sin((iStart + iAngle) * pi / 180.0f) * ry;
+      arcseg.point.x = ptCenter.x + cos((dEnd) * pi / 180.0) * rx;
+      arcseg.point.y = ptCenter.y - sin((dEnd) * pi / 180.0) * ry;
 
-      if(iAngle > 0)
+      if(dEnd - dStart > 0)
       {
          arcseg.sweepDirection = D2D1_SWEEP_DIRECTION_CLOCKWISE;
       }
@@ -312,7 +328,7 @@ namespace draw2d_direct2d
          arcseg.sweepDirection = D2D1_SWEEP_DIRECTION_COUNTER_CLOCKWISE;
       }
 
-      if(abs(iAngle) < 180)
+      if(abs(dEnd - dStart) < 180.0)
       {
          arcseg.arcSize = D2D1_ARC_SIZE_SMALL;
       }
@@ -321,7 +337,7 @@ namespace draw2d_direct2d
          arcseg.arcSize = D2D1_ARC_SIZE_LARGE;
       }
 
-      arcseg.rotationAngle = (FLOAT) abs(iAngle);
+      arcseg.rotationAngle = abs(dEnd-dStart);
 
       arcseg.size.width    = rx;
 
@@ -429,6 +445,9 @@ namespace draw2d_direct2d
       case ::draw2d::path::element::type_line:
          set(e.u.m_line);
          break;
+      case ::draw2d::path::element::type_rect:
+         set(e.u.m_rect);
+         break;
       case ::draw2d::path::element::type_string:
          set(pdc,e.m_stringpath);
          break;
@@ -454,7 +473,7 @@ namespace draw2d_direct2d
       rect.top       = (LONG) (arc.m_yCenter - arc.m_dRadiusY);
       rect.bottom    = (LONG) (arc.m_yCenter + arc.m_dRadiusY);
 
-      return internal_add_arc(rect, (int) arc.m_dAngle1, (int) arc.m_dAngle2);
+      return internal_add_arc(rect,arc.m_dAngle1 * 180.0 / g_dPi,arc.m_dAngle2 * 180.0 / g_dPi);
 
    }
 
@@ -471,6 +490,13 @@ namespace draw2d_direct2d
    {
 
       return internal_add_line((int) line.m_x, (int) line.m_y);
+
+   }
+
+   bool graphics_path::set(const ::draw2d::path::rect & r)
+   {
+
+      return internal_add_rect((int)r.m_x,(int)r.m_y,(int)r.m_cx,(int)r.m_cy);
 
    }
 

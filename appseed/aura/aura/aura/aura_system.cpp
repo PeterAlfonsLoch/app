@@ -26,7 +26,9 @@ namespace aura
 
 
    system::system(::aura::application * papp) :
-      m_process(this)
+      m_process(this),
+      m_mutexUserAppData(this,false,"Local\\ca2.UserAppData"),
+      m_mutexSystemAppData(this, false,"Local\\ca2.SystemAppData")
    {
 
       m_bAdvancedGUI = true;
@@ -145,11 +147,8 @@ namespace aura
       if(!m_pxml->initialize())
          throw simple_exception(this,"failed to construct system m_pxml->initialize()");
 
-      m_spmutexUserAppData = canew(mutex(get_app(),false,"Local\\ca2.UserAppData"));
 
-      m_spmutexSystemAppData = canew(mutex(get_app(),false,"Local\\ca2.SystemAppData"));
-
-      m_spmutexFactory = canew(mutex(get_app()));
+//      m_spmutexFactory = canew(mutex(get_app()));
 
       m_bGudoNetCache = true;
 
@@ -568,7 +567,7 @@ namespace aura
 
       {
 
-         synch_lock sl(m_spmutexFactory);
+         synch_lock sl(&m_mutexFactory);
 
          m_typemap.remove_all();
 
@@ -793,7 +792,7 @@ namespace aura
    sp(type) & system::get_type_info(const ::std_type_info & info)
    {
 
-      synch_lock sl(m_spmutexFactory);
+      synch_lock sl(&m_mutexFactory);
 
 #ifdef WINDOWS
       sp(type) & typeinfo = m_typemap[info.raw_name()];

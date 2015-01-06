@@ -400,15 +400,15 @@ namespace axis
 
 
 
-      {
+      //{
 
-         synch_lock sl(m_spmutexFactory);
+      //   synch_lock sl(&m_mutexFactory);
 
-         m_typemap.remove_all();
+      //   m_typemap.remove_all();
 
-         m_typemap.release();
+      //   m_typemap.release();
 
-      }
+      //}
 
 
 
@@ -432,6 +432,17 @@ namespace axis
          delete m_peengine;
 
          m_peengine = NULL;
+
+      }
+
+      try
+      {
+
+         ::aura::system::exit_instance();
+
+      }
+      catch(...)
+      {
 
       }
 

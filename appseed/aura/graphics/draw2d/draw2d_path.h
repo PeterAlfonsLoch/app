@@ -154,7 +154,7 @@ namespace draw2d
       //virtual bool has_current_point();
       //virtual point current_point();
 
-      virtual bool add_arc(const RECT & rect, int32_t iStart, int32_t iAngle);
+      virtual bool add_arc(const RECT & rect,double iStart,double iAngle);
 
       using ::draw2d::object::add_line;
       virtual bool add_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2);

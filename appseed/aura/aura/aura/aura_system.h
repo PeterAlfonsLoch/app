@@ -52,19 +52,19 @@ namespace aura
 #ifdef WINDOWS
       float                                        m_dpi;
       ID2D1DeviceContext *                         m_pdevicecontext;
-      sp(mutex)                                    m_pmutexDc;
+      mutex                                        m_mutexDc;
 #endif
 
       void *                                       m_ftlibrary;
 
 
 
-      sp(mutex)                                    m_spmutexUserAppData;
-      sp(mutex)                                    m_spmutexSystemAppData;
+      mutex                                        m_mutexUserAppData;
+      mutex                                        m_mutexSystemAppData;
 
 
 
-      sp(mutex)                                    m_spmutexFactory;
+      mutex                                        m_mutexFactory;
 
 
       bool                                         m_bMatterFromHttpCache;
@@ -173,7 +173,7 @@ namespace aura
       sp(::type) & get_type_info(const class id & idType)
       {
 
-         synch_lock sl(m_spmutexFactory);
+         synch_lock sl(&m_mutexFactory);
 
          return m_typemap[idType];
 
