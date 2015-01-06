@@ -73,6 +73,10 @@
       <Configuration>stage</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="static_basis|Android">
+      <Configuration>static_basis</Configuration>
+      <Platform>Android</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B5B26A30-A18D-4DC2-BACE-48C2DE33CD75}</ProjectGuid>
