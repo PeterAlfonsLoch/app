@@ -5233,6 +5233,9 @@ synch_lock ml(m_spmutex);
       case ::draw2d::path::element::type_move:
          set(e.u.m_move);
          break;
+      case ::draw2d::path::element::type_rect:
+         set(e.u.m_rect);
+         break;
       case ::draw2d::path::element::type_end:
          {
 
@@ -5270,6 +5273,7 @@ synch_lock ml(m_spmutex);
 
    }
 
+
    bool graphics::set(const ::draw2d_cairo::path::line & l)
    {
 synch_lock ml(m_spmutex);
@@ -5285,6 +5289,17 @@ synch_lock ml(m_spmutex);
          cairo_line_to(m_pdc, l.m_x + 0.5, l.m_y + 0.5);
 
       }
+
+      return true;
+
+   }
+
+
+   bool graphics::set(const ::draw2d_cairo::path::rect & r)
+   {
+      synch_lock ml(m_spmutex);
+
+      cairo_rectangle(m_pdc,r.m_x, r.m_y, r.m_cx, r.m_cy);
 
       return true;
 

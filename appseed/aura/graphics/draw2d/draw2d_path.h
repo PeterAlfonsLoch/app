@@ -147,6 +147,8 @@ namespace draw2d
       virtual bool begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode);
       virtual bool end_figure(bool bClose);
 
+      virtual bool add_arc_label(LPCRECT lpcrect);
+
 
       //virtual bool is_empty();
       //virtual bool has_current_point();

@@ -837,6 +837,48 @@ namespace draw2d
 
    }
 
+   bool path::add_arc_label(LPCRECT lpcrect)
+   {
+
+      ::rect r;
+
+      {
+
+         r.left = lpcrect->left;
+         r.top = lpcrect->top;
+         r.right = lpcrect->left + height(lpcrect);
+         r.bottom = lpcrect->bottom;
+
+         add_arc(r,0,360);
+
+      }
+
+      {
+
+         r.left = lpcrect->left + height(lpcrect) / 2;
+         r.top = lpcrect->top;
+         r.right = lpcrect->right - height(lpcrect) / 2;
+         r.bottom = lpcrect->bottom;
+
+         add_rect(r);
+
+      }
+
+      {
+
+         r.right = lpcrect->right;
+         r.top = lpcrect->top;
+         r.left = lpcrect->right - height(lpcrect);
+         r.bottom = lpcrect->bottom;
+
+         add_arc(r,0,360);
+
+      }
+
+      return true;
+
+   }
+
 
 } // namespace draw2d
 
