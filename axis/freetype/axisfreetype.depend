@@ -389,7 +389,7 @@
 	<ft2build.h>
 	"axis/bzip2/bzlib.h"
 
-1418510667 /ca2/app/axis/bzip2/bzlib.h
+1420372926 /ca2/app/axis/bzip2/bzlib.h
 	<stdio.h>
 	<windows.h>
 
@@ -1127,9 +1127,9 @@
 1418510538 /ca2/app/axis/freetype/src/sfnt/ttpost.h
 	<ft2build.h>
 
-1418510538 /ca2/app/axis/freetype/src/sfnt/pngshim.c
+1420372915 /ca2/app/axis/freetype/src/sfnt/pngshim.c
 	<ft2build.h>
-	"freeimage/Source/LibPNG/png.h"
+	"png/Source/LibPNG/png.h"
 	"pngshim.h"
 	"sferrors.h"
 
@@ -1407,4 +1407,17 @@
 	<ft2build.h>
 
 1418510534 /ca2/app/axis/freetype/src/winfonts/fnterrs.h
+
+1420372917 /ca2/app/axis/png/Source/LibPNG/png.h
+	"pnglibconf.h"
+	"pngconf.h"
+
+1420372917 /ca2/app/axis/png/Source/LibPNG/pnglibconf.h
+
+1420372917 /ca2/app/axis/png/Source/LibPNG/pngconf.h
+	<limits.h>
+	<stddef.h>
+	<stdio.h>
+	<setjmp.h>
+	<time.h>
 

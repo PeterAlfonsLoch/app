@@ -21,9 +21,9 @@
 
 #endif
 
-#if defined(APPLEOS)
+#if defined(APPLEOS) || defined(LINUX)
 
-//#include<arpa/inet.h>
+#include<arpa/inet.h>
 //#include<sys/time.h>
 
 #endif

@@ -18,7 +18,7 @@ CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, co
 
 
 
-extern thread_pointer < hthread > t_hthread;
+//extern thread_pointer < hthread > t_hthread;
 
 
 int32_t create_process(const char * _cmd_line, int32_t * pprocessId)

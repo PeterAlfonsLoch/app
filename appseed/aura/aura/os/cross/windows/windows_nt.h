@@ -20,6 +20,11 @@
 
 #pragma once
 
+#ifndef CROSS_WINDOWS_NT_H
+#define CROSS_WINDOWS_NT_H
+
+
+
 
 
 #include "windows_base_tsd.h"
@@ -2477,14 +2482,14 @@ typedef struct _NT_TIB
 struct _TEB;
 
 #if defined(__i386__) && defined(__GNUC__) && ((__GNUC__ > 3) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 2)))
-static FORCEINLINE struct _TEB * WINAPI NtCurrentTeb(void)
+static inline struct _TEB * WINAPI NtCurrentTeb(void)
 {
     struct _TEB *teb;
     __asm__(".byte 0x64\n\tmovl (0x18),%0" : "=r" (teb));
     return teb;
 }
 #elif defined(__i386__) && defined(_MSC_VER)
-inline struct _TEB * WINAPI NtCurrentTeb(void)
+static inline struct _TEB * WINAPI NtCurrentTeb(void)
 {
   struct _TEB *teb;
   __asm mov eax, fs:[0x18];
@@ -2492,14 +2497,14 @@ inline struct _TEB * WINAPI NtCurrentTeb(void)
   return teb;
 }
 #elif defined(__x86_64__) && defined(__GNUC__)
-inline struct _TEB * WINAPI NtCurrentTeb(void)
+static inline struct _TEB * WINAPI NtCurrentTeb(void)
 {
     struct _TEB *teb;
     __asm__(".byte 0x65\n\tmovq (0x30),%0" : "=r" (teb));
     return teb;
 }
 #elif defined(__x86_64__) && defined (_MSC_VER)
-inline struct _TEB * WINAPI NtCurrentTeb(void)
+static inline struct _TEB * WINAPI NtCurrentTeb(void)
 {
   struct _TEB *teb;
   __asm mov rax, gs:[0x30];
@@ -2508,14 +2513,14 @@ inline struct _TEB * WINAPI NtCurrentTeb(void)
 }
 #elif defined(LINUX)
 #if defined(__x86_64__)
-inline struct _TEB * WINAPI NtCurrentTeb(void)
+static inline struct _TEB * WINAPI NtCurrentTeb(void)
 {
     struct _TEB *teb;
     __asm__(".byte 0x65\n\tmovq (0x30),%0" : "=r" (teb));
     return teb;
 }
 #else
-inline struct _TEB * WINAPI NtCurrentTeb(void)
+static inline struct _TEB * WINAPI NtCurrentTeb(void)
 {
     struct _TEB *teb;
     __asm__(".byte 0x64\n\tmovl (0x18),%0" : "=r" (teb));
@@ -5680,3 +5685,4 @@ NTSYSAPI WINBOOLEAN NTAPI RtlGetProductInfo(DWORD,DWORD,DWORD,DWORD,PDWORD);
 }
 #endif
 
+#endif // CROSS_WINDOWS_NT_H

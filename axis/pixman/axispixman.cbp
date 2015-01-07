@@ -70,6 +70,9 @@
 			<Add directory="../../../../stage/x86" />
 		</Linker>
 		<Unit filename="config.h" />
+		<Unit filename="pixman/_pixman.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="pixman/loongson-mmintrin.h" />
 		<Unit filename="pixman/pixman-access-accessors.c">
 			<Option compilerVar="CC" />
@@ -81,12 +84,6 @@
 		<Unit filename="pixman/pixman-arm-common.h" />
 		<Unit filename="pixman/pixman-arm-neon-asm.h" />
 		<Unit filename="pixman/pixman-arm-simd-asm.h" />
-		<Unit filename="pixman/pixman-arm.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-bits-image.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman/pixman-combine-float.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -95,9 +92,6 @@
 		</Unit>
 		<Unit filename="pixman/pixman-combine32.h" />
 		<Unit filename="pixman/pixman-compiler.h" />
-		<Unit filename="pixman/pixman-conical-gradient.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman/pixman-edge-accessors.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -105,80 +99,20 @@
 		<Unit filename="pixman/pixman-edge.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="pixman/pixman-fast-path.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-filter.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-general.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-glyph.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-gradient-walker.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-image.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-implementation.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman/pixman-inlines.h" />
-		<Unit filename="pixman/pixman-linear-gradient.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-matrix.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman/pixman-mips-dspr2-asm.h" />
 		<Unit filename="pixman/pixman-mips-dspr2.h" />
-		<Unit filename="pixman/pixman-mips.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-mmx.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-noop.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-ppc.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman/pixman-private.h" />
-		<Unit filename="pixman/pixman-radial-gradient.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman/pixman-region16.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="pixman/pixman-region32.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="pixman/pixman-solid-fill.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman/pixman-sse2.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="pixman/pixman-timer.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-trap.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman-utils.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman/pixman-version.h" />
-		<Unit filename="pixman/pixman-x86.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="pixman/pixman.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="pixman/pixman.h" />
 		<Extensions>
 			<code_completion />

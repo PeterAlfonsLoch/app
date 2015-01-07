@@ -59,6 +59,7 @@
 			<Add directory="lib" />
 			<Add directory="windows/include" />
 			<Add directory="include" />
+			<Add directory="../../../app" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />

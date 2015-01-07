@@ -3,6 +3,8 @@
 // from 7-zip on 2012-12-23, dawn
 #pragma once
 
+#ifndef AURA_CPU_ARCHITECTURE_H
+#define AURA_CPU_ARCHITECTURE_H
 
 /*
 MY_CPU_LE means that CPU is LITTLE ENDIAN.
@@ -145,14 +147,12 @@ CLASS_DECL_AURA int32_t CPU_Is_InOrder();
 CLASS_DECL_AURA int32_t CPU_Is_Aes_Supported();
 
 
-
-
-inline uint16_t __swap16gen(uint16_t x)
+static inline uint16_t __swap16gen(uint16_t x)
 {
     return (((x) & 0xff) << 8) |(((x) & 0xff00) >> 8);
 }
 
-inline uint32_t __swap32gen(uint32_t x)
+static inline uint32_t __swap32gen(uint32_t x)
 {
     return (((x) & 0xff) << 24 |
     ((x) & 0xff00) << 8 | ((x) & 0xff0000) >> 8 |
@@ -262,3 +262,6 @@ inline uint32_t __swap32gen(uint32_t x)
 
 
 #endif
+
+
+#endif // AURA_CPU_ARCHITECTURE_H

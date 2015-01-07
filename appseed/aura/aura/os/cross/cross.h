@@ -42,7 +42,7 @@ typedef struct oswindow_data * oswindow;
 
 #ifdef LINUX
 #undef inline
-#define inline inline
+//#define inline inline
 #endif
 
 #include "windows/windows.h"

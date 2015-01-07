@@ -1,5 +1,10 @@
 #pragma once
 
+#if defined(LINUX)
+
+#include <netinet/in.h>
+
+#endif
 
 CLASS_DECL_AXIS int_bool from_string(in6_addr & addr,const string & str);
 template < >

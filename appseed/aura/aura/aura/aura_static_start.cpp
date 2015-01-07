@@ -52,13 +52,13 @@ extern mutex * g_pmutexUiDestroyed;
 
 #if defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
-extern mutex * g_pmutexThreadIdHandleLock;
+//extern mutex * g_pmutexThreadIdHandleLock;
 
-extern mutex * g_pmutexThreadIdLock;
+//extern mutex * g_pmutexThreadIdLock;
 
 #if !defined(METROWIN)
 
-extern mutex * g_pmutexPendingThreadsLock;
+//extern mutex * g_pmutexPendingThreadsLock;
 
 #endif
 
@@ -70,7 +70,7 @@ extern mutex * g_pmutexTlsData;
 
 extern mutex * g_pmutexTz;
 
-extern map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > * g_ppendingThreads;
+//extern map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > * g_ppendingThreads;
 
 extern mutex * g_pmutexThreadHandleLock;
 
@@ -180,13 +180,13 @@ namespace aura
 
 #if defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
-         g_pmutexThreadIdHandleLock = new mutex;
+//         g_pmutexThreadIdHandleLock = new mutex;
 
-         g_pmutexThreadIdLock = new mutex;
+  //       g_pmutexThreadIdLock = new mutex;
 
 #ifndef METROWIN
 
-         g_pmutexPendingThreadsLock = new mutex;
+    //     g_pmutexPendingThreadsLock = new mutex;
 
 #endif
 
@@ -202,9 +202,9 @@ namespace aura
 
          g_pmutexTz = new mutex();
 
-         g_ppendingThreads = new map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo >();
+//         g_ppendingThreads = new map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo >();
 
-         g_pmutexThreadHandleLock = new mutex;
+//         g_pmutexThreadHandleLock = new mutex;
 
 #endif // defined(LINUX) || defined(APPLEOS)
 
@@ -296,13 +296,13 @@ namespace aura
 
 #if defined(LINUX) || defined(APPLEOS)
 
-         delete g_pmutexThreadHandleLock;
+//         delete g_pmutexThreadHandleLock;
 
-         g_pmutexThreadHandleLock = NULL;
+  //       g_pmutexThreadHandleLock = NULL;
 
-         delete g_ppendingThreads;
+//         delete g_ppendingThreads;
 
-         g_ppendingThreads = NULL;
+  //       g_ppendingThreads = NULL;
 
          delete g_pmutexTz;
 
@@ -326,19 +326,19 @@ namespace aura
 
 #ifndef METROWIN
 
-         delete g_pmutexPendingThreadsLock;
+//         delete g_pmutexPendingThreadsLock;
 
-         g_pmutexPendingThreadsLock = NULL;
+  //       g_pmutexPendingThreadsLock = NULL;
 
 #endif
 
-         delete g_pmutexThreadIdHandleLock;
+    //     delete g_pmutexThreadIdHandleLock;
 
-         g_pmutexThreadIdHandleLock = NULL;
+      //   g_pmutexThreadIdHandleLock = NULL;
 
-         delete g_pmutexThreadIdLock;
+        // delete g_pmutexThreadIdLock;
 
-         g_pmutexThreadIdLock = NULL;
+         //g_pmutexThreadIdLock = NULL;
 
 #endif  // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 

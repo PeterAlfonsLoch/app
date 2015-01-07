@@ -132,14 +132,12 @@
 		<Unit filename="Source/FreeImage/PluginHDR.cpp" />
 		<Unit filename="Source/FreeImage/PluginICO.cpp" />
 		<Unit filename="Source/FreeImage/PluginIFF.cpp" />
-		<Unit filename="Source/FreeImage/PluginJPEG.cpp" />
 		<Unit filename="Source/FreeImage/PluginKOALA.cpp" />
 		<Unit filename="Source/FreeImage/PluginMNG.cpp" />
 		<Unit filename="Source/FreeImage/PluginPCD.cpp" />
 		<Unit filename="Source/FreeImage/PluginPCX.cpp" />
 		<Unit filename="Source/FreeImage/PluginPFM.cpp" />
 		<Unit filename="Source/FreeImage/PluginPICT.cpp" />
-		<Unit filename="Source/FreeImage/PluginPNG.cpp" />
 		<Unit filename="Source/FreeImage/PluginPNM.cpp" />
 		<Unit filename="Source/FreeImage/PluginPSD.cpp" />
 		<Unit filename="Source/FreeImage/PluginRAS.cpp" />
@@ -165,7 +163,6 @@
 		<Unit filename="Source/FreeImageToolkit/Display.cpp" />
 		<Unit filename="Source/FreeImageToolkit/Filters.h" />
 		<Unit filename="Source/FreeImageToolkit/Flip.cpp" />
-		<Unit filename="Source/FreeImageToolkit/JPEGTransform.cpp" />
 		<Unit filename="Source/FreeImageToolkit/MultigridPoissonSolver.cpp" />
 		<Unit filename="Source/FreeImageToolkit/Rescale.cpp" />
 		<Unit filename="Source/FreeImageToolkit/Resize.cpp" />
@@ -176,263 +173,15 @@
 		<Unit filename="Source/LibJPEG/LibJPEG.2008.vcxproj" />
 		<Unit filename="Source/LibJPEG/LibJPEG.2008.vcxproj.filters" />
 		<Unit filename="Source/LibJPEG/README" />
-		<Unit filename="Source/LibJPEG/cderror.h" />
-		<Unit filename="Source/LibJPEG/cdjpeg.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/cdjpeg.h" />
 		<Unit filename="Source/LibJPEG/change.log" />
 		<Unit filename="Source/LibJPEG/coderules.txt" />
 		<Unit filename="Source/LibJPEG/filelist.txt" />
 		<Unit filename="Source/LibJPEG/install.txt" />
-		<Unit filename="Source/LibJPEG/jaricom.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jcapimin.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jcapistd.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jcarith.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jccoefct.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jccolor.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jcdctmgr.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jchuff.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jcinit.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jcmainct.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jcmarker.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jcmaster.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jcomapi.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jconfig.h" />
 		<Unit filename="Source/LibJPEG/jconfig.txt" />
-		<Unit filename="Source/LibJPEG/jcparam.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jcprepct.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jcsample.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jctrans.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdapimin.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdapistd.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdarith.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdatadst.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdatasrc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdcoefct.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdcolor.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdct.h" />
-		<Unit filename="Source/LibJPEG/jddctmgr.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdhuff.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdinput.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdmainct.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdmarker.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdmaster.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdmerge.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdpostct.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdsample.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jdtrans.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jerror.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jerror.h" />
-		<Unit filename="Source/LibJPEG/jfdctflt.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jfdctfst.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jfdctint.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jidctflt.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jidctfst.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jidctint.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jinclude.h" />
-		<Unit filename="Source/LibJPEG/jmemansi.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jmemmgr.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jmemsys.h" />
-		<Unit filename="Source/LibJPEG/jmorecfg.h" />
-		<Unit filename="Source/LibJPEG/jpegint.h" />
-		<Unit filename="Source/LibJPEG/jpeglib.h" />
-		<Unit filename="Source/LibJPEG/jquant1.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jquant2.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jutils.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/jversion.h" />
 		<Unit filename="Source/LibJPEG/libjpeg.txt" />
-		<Unit filename="Source/LibJPEG/rdbmp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/rdcolmap.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/rdgif.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/rdppm.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/rdrle.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/rdswitch.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/rdtarga.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/LibJPEG/structure.txt" />
-		<Unit filename="Source/LibJPEG/transupp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/transupp.h" />
 		<Unit filename="Source/LibJPEG/usage.txt" />
 		<Unit filename="Source/LibJPEG/wizard.txt" />
-		<Unit filename="Source/LibJPEG/wrbmp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/wrgif.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/wrppm.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/wrrle.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibJPEG/wrtarga.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/png.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/png.h" />
-		<Unit filename="Source/LibPNG/pngconf.h" />
-		<Unit filename="Source/LibPNG/pngdebug.h" />
-		<Unit filename="Source/LibPNG/pngerror.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngget.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pnginfo.h" />
-		<Unit filename="Source/LibPNG/pnglibconf.h" />
-		<Unit filename="Source/LibPNG/pngmem.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngpread.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngpriv.h">
-			<Option compilerVar="CC" />
-			<Option compile="1" />
-			<Option weight="0" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngread.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngrio.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngrtran.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngrutil.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngset.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngstruct.h" />
-		<Unit filename="Source/LibPNG/pngtrans.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngwio.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngwrite.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngwtran.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Source/LibPNG/pngwutil.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Source/Metadata/Exif.cpp" />
 		<Unit filename="Source/Metadata/FIRational.cpp" />
 		<Unit filename="Source/Metadata/FIRational.h" />

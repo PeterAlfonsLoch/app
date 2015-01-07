@@ -75,6 +75,7 @@ bool axis_init()
    if(!__node_axis_pos_init())
       return false;*/
 
+
 #ifdef BASE_FREEIMAGE
    try
    {

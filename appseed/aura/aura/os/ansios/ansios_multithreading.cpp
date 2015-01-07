@@ -649,7 +649,7 @@ int_bool WINAPI TlsFree(DWORD dwTlsIndex)
    while(pos != NULL)
    {
 
-      int iThreadId;
+      int_ptr iThreadId;
 
       ThreadLocalData * pdata;
 
@@ -1221,15 +1221,15 @@ restart:
    ml.unlock();
 
 #if defined(LINUX) // || defined(ANDROID)
-   if(hthread != NULL && hthread->m_pthread != NULL)
+   if(::get_thread() != NULL)
    {
 
-      if(!hthread->m_pthread->get_run())
+      if(!::get_thread()->get_run())
          return FALSE;
 
-      hthread->m_pthread->step_timer();
+      ::get_thread()->step_timer();
 
-      if(!hthread->m_pthread->get_run())
+      if(!::get_thread()->get_run())
          return FALSE;
 
    }

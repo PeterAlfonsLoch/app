@@ -4,6 +4,11 @@
  //O N£mero de S‚rie do Volume ‚ 4A91-94E4
 
  //Pasta de Z:\ca2\app\appseed\axis\axis\axis
+#ifdef LINUX
+
+#include "freeimage/Source/FreeImage.h"
+
+#endif
 
 #include "axis.cpp"
 #include "axis_application.cpp"

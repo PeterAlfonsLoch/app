@@ -65,15 +65,10 @@
 			<Add directory="../../nodeapp/linux/include" />
 			<Add directory="../../.." />
 			<Add directory="../base" />
-			<Add directory="base/openssl" />
-			<Add directory="base/openssl/crypto" />
-			<Add directory="base/openssl/ssl" />
-			<Add directory="base/openssl/crypto/asn1" />
-			<Add directory="base/openssl/crypto/evp" />
-			<Add directory="base/openssl/crypto/modes" />
-			<Add directory="base/openssl/include" />
 			<Add directory="../../../nodeapp/thirdparty/include" />
 			<Add directory="../pixman/pixman" />
+			<Add directory="../../appseed/aura" />
+			<Add directory="../../appseed" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -83,10 +78,12 @@
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
 			<Add option="-lXext" />
+			<Add option="-laura" />
 			<Add option="-laxisfreeimage" />
 			<Add option="-laxisfreetype" />
 			<Add option="-laxiszlib" />
 			<Add option="-laxispixman" />
+			<Add option="-laxispng" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
