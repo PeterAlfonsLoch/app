@@ -52,6 +52,7 @@
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
 			<Add option="-DBASE_FREEIMAGE" />
+			<Add directory="../axis" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="framework" />
@@ -60,7 +61,6 @@
 			<Add directory="../.." />
 			<Add directory="../../.." />
 			<Add directory="../../appseed" />
-			<Add directory="../axis" />
 			<Add directory="../../axis" />
 			<Add directory="../aura" />
 		</Compiler>
@@ -83,7 +83,6 @@
 			<Add option="-fopenmp" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
-		<Unit filename="axis.rc" />
 		<Unit filename="axis/_axis_axis.cpp" />
 		<Unit filename="axis/axis/_axis_axis_axis.cpp" />
 		<Unit filename="axis/axis/axis.h" />
@@ -137,7 +136,6 @@
 		<Unit filename="axis/geoip/geoip_update.h" />
 		<Unit filename="axis/geoip/global.h" />
 		<Unit filename="axis/install/install.h" />
-		<Unit filename="axis/install/install.rc" />
 		<Unit filename="axis/install/install_canvas.h" />
 		<Unit filename="axis/install/install_cube_run.h" />
 		<Unit filename="axis/install/install_focus.h" />
@@ -547,7 +545,6 @@
 		<Unit filename="programming/javascript/javascript.h" />
 		<Unit filename="programming/javascript/javascript_functions.cpp" />
 		<Unit filename="programming/javascript/javascript_functions.h" />
-		<Unit filename="programming/javascript/javascript_script.cpp" />
 		<Unit filename="programming/javascript/javascript_tinyjs.h" />
 		<Unit filename="programming/javascript/javascript_tinyjs_functions.cpp" />
 		<Unit filename="programming/javascript/javascript_tinyjs_functions.h" />
