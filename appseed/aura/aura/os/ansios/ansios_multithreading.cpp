@@ -1511,6 +1511,8 @@ namespace multithreading
 bool on_init_thread()
 {
 
+   attach_thread_input_to_main_thread();
+
    if(!__os_init_thread())
       return false;
 

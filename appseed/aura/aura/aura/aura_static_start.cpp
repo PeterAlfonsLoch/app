@@ -172,9 +172,9 @@ namespace aura
 
 #if defined(WINDOWSEX)
 
-         os_thread::s_pmutex = new mutex();
+         //os_thread::s_pmutex = new mutex();
 
-         os_thread::s_pptra = new ptr_array <  os_thread > ();
+         //os_thread::s_pptra = new ptr_array <  os_thread > ();
 
 #endif
 

@@ -46,200 +46,200 @@ void thread_data::set(void * p)
 
 
 
-mutex * os_thread::s_pmutex = NULL;
-ptr_array <  os_thread > * os_thread::s_pptra = NULL;
-__declspec(thread) os_thread * t_posthread = NULL;
-
-os_thread::os_thread(uint32_t(* pfn)(void *),void * pv)
-{
-
-   m_pfn    = pfn;
-   m_pv     = pv;
-   m_bRun   = true;
-   m_hthread = NULL;
-
-
-
-   synch_lock ml(&*s_pmutex);
-
-   s_pptra->add(this);
-
-}
-
-
-os_thread::~os_thread()
-{
-
-   synch_lock ml(&*s_pmutex);
-
-   for(index i = s_pptra->get_count() - 1; i >= 0; i--)
-   {
-
-      if(s_pptra->element_at(i) == this)
-      {
-
-         s_pptra->remove_at(i);
-
-      }
-
-   }
-
-
-   if(m_hthread != NULL)
-   {
-
-      ::CloseHandle(m_hthread);
-
-   }
-
-
-
-}
-
-
-os_thread * os_thread::get()
-{
-
-   return t_posthread;
-
-}
-
-void os_thread::set(os_thread * posthread)
-{
-
-   t_posthread = posthread;
-
-}
-
-bool os_thread::get_run()
-{
-
-   return get()->m_bRun;
-
-}
-
-void os_thread::stop_all(uint32_t millisMaxWait)
-{
-
-   millisMaxWait = millisMaxWait;
-
-   uint32_t start = get_tick_count();
-
-   while(get_tick_count() - start < millisMaxWait)
-   {
-
-      {
-
-         synch_lock ml(&*s_pmutex);
-
-         for(int i = 0; i < s_pptra->get_count(); i++)
-         {
-
-            s_pptra->element_at(i)->m_bRun = false;
-
-         }
-
-         if(s_pptra->get_count() <= 0)
-         {
-
-            break;
-
-         }
-
-      }
-
-      Sleep(184);
-
-   }
-
-
-}
-
-unsigned int WINAPI hthread::thread_proc(void * lpparameter)
-{
-
-   os_thread * posthread = (os_thread *)lpparameter;
-
-   uint32_t uiRet = -1;
-
-   try
-   {
-
-      keep_threading_count keepthreadingcount;
-
-      t_posthread = posthread;
-
-      uiRet = posthread->run();
-
-      t_posthread = NULL;
-
-   }
-   catch(...)
-   {
-   }
-
-   posthread->release();
-
-   // allow C-runtime to cleanup, and exit the thread
-   try
-   {
-      _endthreadex(uiRet);
-   }
-   catch(...)
-   {
-   }
-
-   return uiRet;
-
-}
-
-
-uint32_t os_thread::run()
-{
-
-   
-   if(!on_init_thread())
-   {
-      
-      return 34;
-
-   }
-
-
-   //Gdiplus::GdiplusStartupInput     * pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
-   //Gdiplus::GdiplusStartupOutput    * pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
-   //DWORD_PTR gdiplusToken                                      = NULL;
-   //DWORD_PTR gdiplusHookToken                                  = NULL;
-
-   //Gdiplus::Status statusStartup = GdiplusStartup(&gdiplusToken,pgdiplusStartupInput,pgdiplusStartupOutput);
-
-   //if(statusStartup != Gdiplus::Ok)
-   //{
-
-     // return -1;
-
-   //}
-
-   attach_thread_input_to_main_thread();
-
-   uint32_t dwRet = 0xffffffff;
-
-   try
-   {
-
-      dwRet = m_pfn(m_pv);
-
-   }
-   catch(...)
-   {
-   }
-
-   on_term_thread();
-
-
-   return dwRet;
-
-}
+//mutex * os_thread::s_pmutex = NULL;
+//ptr_array <  os_thread > * os_thread::s_pptra = NULL;
+//__declspec(thread) os_thread * t_posthread = NULL;
+
+//os_thread::os_thread(uint32_t(* pfn)(void *),void * pv)
+//{
+//
+//   m_pfn    = pfn;
+//   m_pv     = pv;
+//   m_bRun   = true;
+//   m_hthread = NULL;
+//
+//
+//
+//   synch_lock ml(&*s_pmutex);
+//
+//   s_pptra->add(this);
+//
+//}
+//
+//
+//os_thread::~os_thread()
+//{
+//
+//   synch_lock ml(&*s_pmutex);
+//
+//   for(index i = s_pptra->get_count() - 1; i >= 0; i--)
+//   {
+//
+//      if(s_pptra->element_at(i) == this)
+//      {
+//
+//         s_pptra->remove_at(i);
+//
+//      }
+//
+//   }
+//
+//
+//   if(m_hthread != NULL)
+//   {
+//
+//      ::CloseHandle(m_hthread);
+//
+//   }
+//
+//
+//
+//}
+//
+//
+//os_thread * os_thread::get()
+//{
+//
+//   return t_posthread;
+//
+//}
+//
+//void os_thread::set(os_thread * posthread)
+//{
+//
+//   t_posthread = posthread;
+//
+//}
+//
+//bool os_thread::get_run()
+//{
+//
+//   return get()->m_bRun;
+//
+//}
+//
+//void os_thread::stop_all(uint32_t millisMaxWait)
+//{
+//
+//   millisMaxWait = millisMaxWait;
+//
+//   uint32_t start = get_tick_count();
+//
+//   while(get_tick_count() - start < millisMaxWait)
+//   {
+//
+//      {
+//
+//         synch_lock ml(&*s_pmutex);
+//
+//         for(int i = 0; i < s_pptra->get_count(); i++)
+//         {
+//
+//            s_pptra->element_at(i)->m_bRun = false;
+//
+//         }
+//
+//         if(s_pptra->get_count() <= 0)
+//         {
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//      Sleep(184);
+//
+//   }
+//
+//
+//}
+//
+//unsigned int WINAPI hthread::thread_proc(void * lpparameter)
+//{
+//
+//   os_thread * posthread = (os_thread *)lpparameter;
+//
+//   uint32_t uiRet = -1;
+//
+//   try
+//   {
+//
+//      keep_threading_count keepthreadingcount;
+//
+//      t_posthread = posthread;
+//
+//      uiRet = posthread->run();
+//
+//      t_posthread = NULL;
+//
+//   }
+//   catch(...)
+//   {
+//   }
+//
+//   posthread->release();
+//
+//   // allow C-runtime to cleanup, and exit the thread
+//   try
+//   {
+//      _endthreadex(uiRet);
+//   }
+//   catch(...)
+//   {
+//   }
+//
+//   return uiRet;
+//
+//}
+//
+
+//uint32_t os_thread::run()
+//{
+//
+//   
+//   if(!on_init_thread())
+//   {
+//      
+//      return 34;
+//
+//   }
+//
+//
+//   //Gdiplus::GdiplusStartupInput     * pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
+//   //Gdiplus::GdiplusStartupOutput    * pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
+//   //DWORD_PTR gdiplusToken                                      = NULL;
+//   //DWORD_PTR gdiplusHookToken                                  = NULL;
+//
+//   //Gdiplus::Status statusStartup = GdiplusStartup(&gdiplusToken,pgdiplusStartupInput,pgdiplusStartupOutput);
+//
+//   //if(statusStartup != Gdiplus::Ok)
+//   //{
+//
+//     // return -1;
+//
+//   //}
+//
+//   attach_thread_input_to_main_thread();
+//
+//   uint32_t dwRet = 0xffffffff;
+//
+//   try
+//   {
+//
+//      dwRet = m_pfn(m_pv);
+//
+//   }
+//   catch(...)
+//   {
+//   }
+//
+//   on_term_thread();
+//
+//
+//   return dwRet;
+//
+//}
 
 
 HANDLE start_thread(uint32_t(* pfn)(void *),void * pv,int32_t iPriority)
@@ -571,6 +571,8 @@ int32_t get_os_class_scheduling_priority(int32_t nPriority)
 
 bool on_init_thread()
 {
+
+   attach_thread_input_to_main_thread();
 
    if(!__os_init_thread())
    {

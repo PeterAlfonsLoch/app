@@ -421,7 +421,27 @@ struct create_thread_data
    {
       create_thread_data * pdata = (create_thread_data *)p;
 
-      return pdata->m_pfn(pdata->m_pv);
+      if(!on_init_thread())
+      {
+
+         return -34;
+
+      }
+
+      int32_t iRet = pdata->m_pfn(pdata->m_pv);
+
+      try
+      {
+
+         on_term_thread();
+
+      }
+      catch(...)
+      {
+      }
+
+
+      return iRet;
 
    }
 

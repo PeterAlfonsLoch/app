@@ -41,7 +41,7 @@
 // ----------------------------------------------------------
 
 #include "axis/zlib/zlib.h"
-//#include "../LibPNG/png.h"
+#include "../LibPNG/png.h"
 
 // ----------------------------------------------------------
 
@@ -961,3 +961,70 @@ InitPNG(Plugin *plugin, int format_id) {
 	plugin->supports_icc_profiles_proc = SupportsICCProfiles;
 	plugin->supports_no_pixels_proc = SupportsNoPixels;
 }
+
+
+
+IStream * pstream = SHCreateMemStream(memfile.get_data(),memfile.get_size());
+
+try
+{
+
+   Gdiplus::Bitmap * pbitmap = Gdiplus::Bitmap::FromStream(pstream);
+
+   try
+   {
+
+      int cx = pbitmap->GetWidth();
+
+      int cy = pbitmap->GetHeight();
+
+      if(!pdib->create(cx,cy))
+         return false;
+
+      Gdiplus::BitmapData* bitmapData = new Gdiplus::BitmapData;
+
+      Gdiplus::Rect rect(0,0,cx,cy);
+
+      pbitmap->LockBits(&rect,Gdiplus::ImageLockModeRead,PixelFormat32bppARGB,bitmapData);
+
+      try
+      {
+
+         //printf("The stride is %d.\n\n",bitmapData->Stride);
+
+         // Display the hexadecimal value of each pixel in the 5x3 rectangle.
+         byte* pixels = (byte*)bitmapData->Scan0;
+
+         if(bitmapData->Stride == bitmapData->Width * 4)
+         {
+
+            memcpy(pdib->m_pcolorref,pixels,bitmapData->Height*bitmapData->Width * 4);
+
+         }
+         else
+         {
+            for(int row = 0; row < bitmapData->Height; ++row)
+            {
+
+               memcpy(&pdib->m_pcolorref[row * bitmapData->Stride / 4],&pixels[row * bitmapData->Stride],bitmapData->Stride);
+
+            }
+         }
+
+      }
+      catch(...)
+      {
+      }
+
+      pbitmap->UnlockBits(bitmapData);
+   }
+   catch(...)
+   {
+   }
+
+   delete pbitmap;
+}
+catch(...)
+{
+}
+pstream->Release();
