@@ -5,8 +5,8 @@
 //#include <unistd.h>
 
 
-extern thread_pointer < os_thread > t_posthread;
-extern thread_pointer < hthread > currentThread;
+//extern thread_pointer < os_thread > t_posthread;
+//extern thread_pointer < hthread > currentThread;
 
 
 int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
@@ -135,9 +135,9 @@ CLASS_DECL_AURA DWORD call_sync(
 CLASS_DECL_AURA bool main_initialize()
 {
 
-   t_posthread = new os_thread(NULL,NULL);
+//   t_posthread = new os_thread(NULL,NULL);
 
-   t_posthread->m_bRun = true;
+   //t_posthread->m_bRun = true;
 
    return true;
 
@@ -147,25 +147,25 @@ CLASS_DECL_AURA bool main_initialize()
 CLASS_DECL_AURA bool main_finalize()
 {
 
-   if(t_posthread != NULL)
-   {
+   //if(t_posthread != NULL)
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         delete t_posthread;
+   //      delete t_posthread;
 
-      }
-      catch(...)
-      {
+   //   }
+   //   catch(...)
+   //   {
 
-      }
+   //   }
 
-      t_posthread = NULL;
+   //   t_posthread = NULL;
 
-   }
+   //}
 
-   os_thread::stop_all((5000) * 49);
+//   os_thread::stop_all((5000) * 49);
 
    //finalize_primitive_trace();
 

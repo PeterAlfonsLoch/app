@@ -43,7 +43,7 @@ public:
     message_array ma;
     manual_reset_event m_eventNewMessage;
     HTHREAD m_hthread;
-    uint32_t m_uiId;
+    //uint32_t m_uiId;
 
 
     mq();
@@ -77,18 +77,18 @@ CLASS_DECL_AURA UINT GetCurrentThreadId();
 
 // Stored data for CREATE_SUSPENDED and ResumeThread.
 
-struct PendingThreadInfo {
-    DWORD(WINAPI * lpStartAddress)(LPVOID);
-    LPVOID lpParameter;
-    HTHREAD m_hthread;
-    event * suspensionEvent;
-    int32_t nPriority;
-    int32_t cbStack;
-
-    PendingThreadInfo() {
-    }
-
-};
+//struct PendingThreadInfo {
+//    DWORD(WINAPI * lpStartAddress)(LPVOID);
+//    LPVOID lpParameter;
+//    HTHREAD m_hthread;
+//    event * suspensionEvent;
+//    int32_t nPriority;
+//    int32_t cbStack;
+//
+//    PendingThreadInfo() {
+//    }
+//
+//};
 
 
 #endif // AXIS_ANSIOS_THREAD_H

@@ -80,7 +80,7 @@
 #include "aura_mktime.cpp"
 #include "aura_muldiv64.cpp"
 #include "aura_net.cpp"
-#if !defined(WINDOWS) && !defined(LINUX)
+#if !defined(WINDOWS) && !defined(LINUX) && !defined(ANDROID)
 #include "aura_new.cpp"
 #endif
 #include "aura_platform_interface.cpp"

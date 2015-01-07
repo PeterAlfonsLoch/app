@@ -14,7 +14,9 @@ class event;
 
 #endif
 
-typedef struct hthread * HTHREAD;
+#include <pthread.h>
+
+typedef pthread_t HTHREAD;
 
 struct oswindow_data;
 

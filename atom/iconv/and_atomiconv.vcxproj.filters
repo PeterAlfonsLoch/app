@@ -711,6 +711,9 @@
     <ClInclude Include="libcharset\include\localcharset.h">
       <Filter>Header Files\libcharset\include</Filter>
     </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lib\relocatable.c">

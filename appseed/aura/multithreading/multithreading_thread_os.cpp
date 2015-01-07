@@ -431,6 +431,7 @@ struct create_thread_data
 
 CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStack,uint32_t(*pfn)(void *),void * pv,uint32_t uiFlags,uint32_t * puiId)
 {
+
 #ifdef WINDOWS
    
    DWORD dwId = 0;
@@ -456,6 +457,39 @@ CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStac
    return hthread;
 #else
 
+   pthread_t thread;
+
+   pthread_attr_t threadAttr;
+
+   pthread_attr_init(&threadAttr);
+
+   if(cbStack > 0)
+   {
+
+      pthread_attr_setstacksize(&threadAttr,120 * 1024); // Set the stack size of the thread
+
+   }
+
+   //int iPolicy;
+
+   //sched_param schedparam; // scheduling priority
+
+   //thread_get_os_priority(&iPolicy,&schedparam,nPriority);
+
+   //pthread_attr_setschedpolicy(&threadAttr,iPolicy);
+
+   //pthread_attr_setschedparam(&threadAttr,&schedparam);
+
+   pthread_attr_setdetachstate(&threadAttr,PTHREAD_CREATE_DETACHED); // Set thread to detached state. No need for pthread_join
+
+   pthread_create(&thread,&threadAttr,&create_thread_data::os_thread_proc,(LPVOID)new create_thread_data(pfn,pv)); // Create the thread
+
+   return thread;
+
+
 #endif
 }
+
+
+
 

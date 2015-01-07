@@ -59,7 +59,7 @@ void thread_impl::CommonConstruct()
 
    m_bDupHandle = false;
 
-   m_hthread = NULL;
+   m_hthread = (HTHREAD) NULL;
    m_uiThread = 0;
 
    m_evFinish.SetEvent();
@@ -69,7 +69,7 @@ void thread_impl::CommonConstruct()
    m_nDisablePumpCount  = 0;
 
 
-   m_hthread = NULL;
+   //m_hthread = NULL;
 
 
 
@@ -252,7 +252,7 @@ bool thread_impl::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epri
 
    DWORD dwCreateFlags = dwCreateFlagsParam;
 
-   ENSURE(m_hthread == NULL);
+   ENSURE(m_hthread == (HTHREAD) NULL);
 
    sp(::thread_startup) pstartup = canew(::thread_startup(get_app()));
 
@@ -270,7 +270,7 @@ bool thread_impl::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epri
 
    m_hthread = (HTHREAD)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags,&m_uiThread);
 
-   if(m_hthread == NULL)
+   if(m_hthread == (HTHREAD) NULL)
    {
       try
       {
@@ -778,7 +778,7 @@ bool thread_impl::post_message(::aura::interaction * pui,UINT uiMessage,WPARAM w
 bool thread_impl::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
 {
 
-   if(m_hthread == NULL)
+   if(m_hthread == (HTHREAD) NULL)
       return false;
 
    return ::PostThreadMessage(m_uiThread,message,wParam,lParam) != FALSE;
@@ -1113,7 +1113,7 @@ void thread_impl::step_timer()
 thread_impl::operator HTHREAD() const
 {
 
-   return this == NULL ? NULL : m_hthread;
+   return this == NULL ? (HTHREAD) NULL : m_hthread;
 
 }
 

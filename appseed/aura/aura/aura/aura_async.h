@@ -246,7 +246,7 @@ namespace async
       virtual T * wait(uint32_t dwMillis = INFINITE)
       {
 
-         ::hthread::wait_thread(dwMillis);
+         ::get_thread()->wait(millis(dwMillis));
 
          return m_presult;
 

@@ -394,7 +394,7 @@ typedef HANDLE HTHREAD;
 
 #else
 
-typedef hthread * HTHREAD;
+typedef pthread_t HTHREAD;
 
 #endif
 

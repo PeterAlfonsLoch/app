@@ -3382,9 +3382,6 @@
     <ClCompile Include="aura\os\android\android_base.cpp">
       <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
-    <ClCompile Include="android_MessageBoxA.cpp">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\ansios\ansios_message_loop.cpp">
       <Filter>Source Files\aura\os\ansios</Filter>
     </ClCompile>
@@ -3519,6 +3516,21 @@
     </ClCompile>
     <ClCompile Include="aura\node\_node.cpp">
       <Filter>Source Files\aura\node</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\android\_android_node.cpp">
+      <Filter>Source Files\aura\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\android\_android_os.cpp">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\ansios\_ansios_node.cpp">
+      <Filter>Source Files\aura\node\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_thread_os.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\_ansios_os.cpp">
+      <Filter>Source Files\aura\os\ansios</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

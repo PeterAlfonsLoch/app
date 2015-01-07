@@ -51,7 +51,38 @@
     <OutDir>$(SolutionDir)..\..\..\stage\$(PlatformName)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app;$(ProjectDir);$(ProjectDir)libcharset/include</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app;$(ProjectDir);$(ProjectDir)libcharset/include</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app;$(ProjectDir);$(ProjectDir)libcharset/include</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Android'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app;$(ProjectDir);$(ProjectDir)libcharset/include</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app;$(ProjectDir);$(ProjectDir)libcharset/include</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Android'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app;$(ProjectDir);$(ProjectDir)libcharset/include</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="config.h" />
     <ClInclude Include="include\iconv.h" />
     <ClInclude Include="libcharset\include\localcharset.h" />
     <ClInclude Include="lib\aliases.h" />
