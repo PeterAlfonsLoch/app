@@ -582,7 +582,7 @@ namespace aura
 #ifdef METROWIN
 //      m_pdevicecontext = nullptr;
 
-      m_pmutexDc.release();
+//      m_pmutexDc.release();
 #endif
 
 

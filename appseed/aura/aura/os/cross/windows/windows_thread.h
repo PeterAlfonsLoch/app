@@ -50,8 +50,8 @@ CLASS_DECL_AURA int_bool WINAPI tls_free(DWORD dwTlsIndex);
 CLASS_DECL_AURA LPVOID WINAPI tls_get_value(DWORD dwTlsIndex);
 CLASS_DECL_AURA int_bool WINAPI tls_set_value(DWORD dwTlsIndex, LPVOID lpTlsValue);
 CLASS_DECL_AURA void WINAPI tls_shutdown();
-CLASS_DECL_AURA int_bool WINAPI __SetThreadPriority(HTHREAD hThread,int32_t nPriority);
-CLASS_DECL_AURA int32_t WINAPI __GetThreadPriority(HTHREAD hThread);
+//CLASS_DECL_AURA int_bool WINAPI __SetThreadPriority(HTHREAD hThread,int32_t nPriority);
+//CLASS_DECL_AURA int32_t WINAPI __GetThreadPriority(HTHREAD hThread);
 
 #else
 

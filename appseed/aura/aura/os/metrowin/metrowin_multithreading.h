@@ -48,7 +48,7 @@ CLASS_DECL_AURA WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, 
 
 #define PeekMessage PeekMessageW
 
-CLASS_DECL_AURA DWORD WINAPI get_thread_id(HTHREAD Thread);
+//CLASS_DECL_AURA DWORD WINAPI get_thread_id(HTHREAD Thread);
 
 #define PostThreadMessage  PostThreadMessageW
 
@@ -56,7 +56,7 @@ CLASS_DECL_AURA WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPAR
 
 CLASS_DECL_AURA void WINAPI TlsShutdown();
 
-CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread);
+//CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread);
 
 
 #ifdef __cplusplus
@@ -64,7 +64,7 @@ CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread);
 class mq;
 
 CLASS_DECL_AURA mq * get_mq();
-CLASS_DECL_AURA mq * get_mq(HTHREAD hthread);
+CLASS_DECL_AURA mq * get_mq(int iThreadId);
 
 
 #endif

@@ -802,9 +802,6 @@
     <ClCompile Include="base\message\message_user.cpp">
       <Filter>Source Files\base\message</Filter>
     </ClCompile>
-    <ClCompile Include="base\node\node.cpp">
-      <Filter>Source Files\base\node</Filter>
-    </ClCompile>
     <ClCompile Include="base\hotplugin\hotplugin.cpp">
       <Filter>Source Files\base\hotplugin</Filter>
     </ClCompile>
@@ -885,6 +882,21 @@
     </ClCompile>
     <ClCompile Include="base\os\metrowin\metrowin_trace_message.cpp">
       <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\_base_base.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\_node.cpp">
+      <Filter>Source Files\base\node</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\metrowin\_metrowin_os.cpp">
+      <Filter>Source Files\base\os\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\_os.cpp">
+      <Filter>Source Files\base\os</Filter>
+    </ClCompile>
+    <ClCompile Include="base\node\metrowin\_metrowin_node.cpp">
+      <Filter>Source Files\base\node\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

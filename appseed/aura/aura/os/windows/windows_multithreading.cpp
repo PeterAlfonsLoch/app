@@ -155,7 +155,7 @@ void os_thread::stop_all(uint32_t millisMaxWait)
 
 }
 
-unsigned int WINAPI os_thread::thread_proc(void * lpparameter)
+unsigned int WINAPI hthread::thread_proc(void * lpparameter)
 {
 
    os_thread * posthread = (os_thread *)lpparameter;
@@ -286,54 +286,54 @@ thread_layer::~thread_layer()
 }
 
 
-int32_t thread_layer::run()
-{
+//int32_t thread_layer::run()
+//{
+//
+//   MSG msg;
+//
+//   while(m_bRun)
+//   {
+//
+//      if(m_bRun && !PeekMessage(&msg,NULL,0,0xffffffffu,TRUE))
+//      {
+//
+//         if(m_bRun && !on_idle())
+//         {
+//
+//            Sleep(m_iSleepiness);
+//
+//         }
+//
+//
+//         continue;
+//
+//      }
+//
+//      if(msg.message == WM_QUIT)
+//         break;
+//
+//      TranslateMessage(&msg);
+//      DispatchMessage(&msg);
+//
+//   }
+//
+//   return m_iResult;
+//
+//}
 
-   MSG msg;
+//bool thread_layer::on_idle()
+//{
+//
+//   return false;
+//
+//}
 
-   while(m_bRun)
-   {
-
-      if(m_bRun && !PeekMessage(&msg,NULL,0,0xffffffffu,TRUE))
-      {
-
-         if(m_bRun && !on_idle())
-         {
-
-            Sleep(m_iSleepiness);
-
-         }
-
-
-         continue;
-
-      }
-
-      if(msg.message == WM_QUIT)
-         break;
-
-      TranslateMessage(&msg);
-      DispatchMessage(&msg);
-
-   }
-
-   return m_iResult;
-
-}
-
-bool thread_layer::on_idle()
-{
-
-   return false;
-
-}
-
-void thread_layer::wait_thread(uint32_t dwMillis)
-{
-
-   ::WaitForSingleObject(m_hthread,dwMillis);
-
-}
+//void thread_layer::wait_thread(uint32_t dwMillis)
+//{
+//
+//   ::WaitForSingleObject(m_hthread,dwMillis);
+//
+//}
 
 static HANDLE g_hMainThread = NULL;
 static UINT g_uiMainThread = -1;
@@ -384,14 +384,14 @@ void attach_thread_input_to_main_thread(bool bAttach)
 }
 
 
-uint32_t thread_layer::proc(void * lp)
-{
-
-   thread_layer * player   = (thread_layer *)lp;
-
-   return player->run();
-
-}
+//uint32_t thread_layer::proc(void * lp)
+//{
+//
+//   thread_layer * player   = (thread_layer *)lp;
+//
+//   return player->run();
+//
+//}
 
 
 namespace multithreading
@@ -666,5 +666,23 @@ bool __os_term_thread()
    }
 
    return true;
+
+}
+
+
+void _on_os_hthread_end()
+{
+
+   // allow C-runtime to cleanup, and exit the thread
+   try
+   {
+
+      _endthreadex(uiRet);
+
+   }
+   catch(...)
+   {
+
+   }
 
 }

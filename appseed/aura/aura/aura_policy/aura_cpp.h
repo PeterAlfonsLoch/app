@@ -388,7 +388,7 @@ namespace draw2d
 class random_access_iterator { public: };
 
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
 typedef HANDLE HTHREAD;
 

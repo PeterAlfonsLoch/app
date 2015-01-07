@@ -161,7 +161,7 @@ namespace async
 
    template < class T >
    class CLASS_DECL_AURA task :
-      public hthread
+      public ::thread
    {
    public:
 

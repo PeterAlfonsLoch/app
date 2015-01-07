@@ -4,8 +4,9 @@
 //#include <VersionHelpers.h>
 
 
-extern CLASS_DECL_THREAD os_thread * t_posthread;
-extern CLASS_DECL_THREAD HTHREAD currentThread;
+//extern CLASS_DECL_THREAD os_thread * t_posthread;
+//extern CLASS_DECL_THREAD HTHREAD currentThread;
+//extern thread_pointer < HTHREAD > t_phthread;
 
 /*
 String ^ rtstr(const char * psz)
@@ -233,11 +234,11 @@ int_bool main_initialize()
    }
    */
 
-   t_posthread = new os_thread(NULL, NULL);
+   //t_phthread = new hthread();
 
-   t_posthread->m_bRun = true;
+   //t_phthread->m_bRun = true;
 
-   currentThread = new hthread();
+   //currentThread = new hthread();
 
 
    return TRUE;

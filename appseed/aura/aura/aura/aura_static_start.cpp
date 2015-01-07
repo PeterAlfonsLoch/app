@@ -56,7 +56,11 @@ extern mutex * g_pmutexThreadIdHandleLock;
 
 extern mutex * g_pmutexThreadIdLock;
 
+#if !defined(METROWIN)
+
 extern mutex * g_pmutexPendingThreadsLock;
+
+#endif
 
 extern mutex * g_pmutexTlsData;
 
@@ -180,13 +184,17 @@ namespace aura
 
          g_pmutexThreadIdLock = new mutex;
 
+#ifndef METROWIN
+
          g_pmutexPendingThreadsLock = new mutex;
+
+#endif
 
          g_pmutexTlsData = new mutex;
 
-         hthread::s_pmutex = new mutex();
+         //hthread::s_pmutex = new mutex();
 
-         hthread::s_pptra = new ptr_array <  hthread > ();
+         //hthread::s_pptra = new ptr_array <  hthread > ();
 
 #endif // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
@@ -304,21 +312,25 @@ namespace aura
 
 #if defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
-         delete hthread::s_pptra;
+         //delete hthread::s_pptra;
 
-         hthread::s_pptra = NULL;
+         //hthread::s_pptra = NULL;
 
-         delete hthread::s_pmutex;
+         //delete hthread::s_pmutex;
 
-         hthread::s_pmutex = NULL;
+         //hthread::s_pmutex = NULL;
 
          delete g_pmutexTlsData;
 
          g_pmutexTlsData = NULL;
 
+#ifndef METROWIN
+
          delete g_pmutexPendingThreadsLock;
 
          g_pmutexPendingThreadsLock = NULL;
+
+#endif
 
          delete g_pmutexThreadIdHandleLock;
 

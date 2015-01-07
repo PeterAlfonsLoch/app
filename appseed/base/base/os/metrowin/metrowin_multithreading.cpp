@@ -5,17 +5,17 @@
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-#include "framework.h"
-#include "base/user/user.h"
+//#include "framework.h"
+//#include "base/user/user.h"
 
 
 extern CLASS_DECL_THREAD HTHREAD currentThread;
 //#undef System
 //
-//#include <assert.h>
-////#include <vector>
-////#include <set>
-////#include <map>
+////#include <assert.h>
+//////#include <vector>
+//////#include <set>
+//////#include <map>
 //
 ////using namespace std;
 //using namespace Platform;
@@ -790,34 +790,34 @@ extern CLASS_DECL_THREAD HTHREAD currentThread;
 //
 //HTHREAD g_hMainThread = NULL;
 //UINT g_uiMainThread = -1;
-//
+////
 //void set_main_thread(HTHREAD hThread)
 //{
-//
-//   //   MSG msg;
-//
-//   throw "todo"; // PeekMessage function used to create message queue Windows Desktop
-//
-//   //PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
-//
+////
+////   //   MSG msg;
+////
+////   throw "todo"; // PeekMessage function used to create message queue Windows Desktop
+////
+////   //PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
+////
 //   g_hMainThread = hThread;
 //
 //}
-//
+////
 //void set_main_thread_id(UINT uiThread)
 //{
 //
-//   //   MSG msg;
-//
-//   throw "todo"; // PeekMessage function used to create message queue Windows Desktop
-//
-//   //PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
+////   //   MSG msg;
+////
+////   throw "todo"; // PeekMessage function used to create message queue Windows Desktop
+////
+////   //PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
 //
 //   g_uiMainThread = uiThread;
 //
 //}
-//
-//
+////
+////
 //HTHREAD get_main_thread()
 //{
 //   return g_hMainThread;
@@ -1055,13 +1055,9 @@ extern CLASS_DECL_THREAD HTHREAD currentThread;
 CLASS_DECL_BASE WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
-   HTHREAD  h = oswindow->m_pui->m_pauraapp->get_os_handle();
+   int iThreadId = oswindow->m_pui->m_pauraapp->get_os_int();
 
-   if(h == NULL)
-      return FALSE;
-
-
-   mq * pmq = get_mq(h);
+   mq * pmq = get_mq(iThreadId);
 
    if(pmq == NULL)
       return FALSE;

@@ -2,6 +2,8 @@
 
 extern int __abi___threading_model;
 
+extern void _on_aura_thread_attach();
+extern void _on_aura_thread_detach();
 
 #ifdef METROWIN
 [MTAThread]
@@ -51,6 +53,17 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
       ::OutputDebugStringW(L"::ca2:: metrowin.dll :: terminating!\n");
 
    }
+   else if(dwReason == DLL_THREAD_ATTACH)
+   {
+      //_on_aura_thread_attach();
+      
+   }
+   else if(dwReason == DLL_THREAD_DETACH)
+   {
+      //_on_aura_thread_detach();
+   }
+
+
 
    return 1;   // ok
 

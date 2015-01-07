@@ -2,7 +2,7 @@
 
 
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
 typedef HANDLE HTHREAD;
 

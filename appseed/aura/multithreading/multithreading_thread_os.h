@@ -1,67 +1,69 @@
 #pragma once
 
 
-class CLASS_DECL_AURA hthread :
-   virtual public object
-{
-public:
-
-
-   uint32_t (*                            m_pfn)(void *);
-   LPVOID                                 m_pv;
-   bool                                   m_bRun;
-   HTHREAD                                m_hthread;
-   string                                 m_strDebug;
-   int32_t              m_iSleepiness;
-   int32_t              m_iResult;
-//   HTHREAD              m_hthread;
-   UINT                 m_nId;
-//   bool                 m_bRun;
-
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
-
-   void *                                 m_pthread;
-
-#endif
-
-   static mutex *                  s_pmutex;
-   static ptr_array <  hthread > *  s_pptra;
-
-
-   hthread(uint32_t ( * pfn)(void *) = NULL, void * pv = NULL);
-   virtual ~hthread();
-
-
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
-   //static void * thread_proc(void * pparam);
-
-#else
-
-   static unsigned int WINAPI thread_proc(void * pparam);
-
-#endif
-
-   //uint32_t run();
-
-
-   void begin();
-
-
-   static uint32_t proc(void * lp);
-
-   virtual int32_t run();
-   virtual bool on_idle();
-
-   virtual void wait_thread(uint32_t dwMillis = INFINITE);
-
-    static HTHREAD get();
-    static void set(HTHREAD hthread);
-    static bool get_run();
-    static void stop_all(uint32_t millisMaxWait);
-
-
-};
+//struct CLASS_DECL_AURA hthread :
+//   virtual public object
+//{
+//public:
+//
+//
+//   uint32_t (*                            m_pfn)(void *);
+//   LPVOID                                 m_pv;
+//   bool                                   m_bRun;
+//   //HTHREAD                              m_hthread;
+//   string                                 m_strDebug;
+//   int32_t                                m_iSleepiness;
+//   int32_t                                m_iResult;
+//   //HTHREAD                              m_hthread;
+//   UINT                                   m_nId;
+//   //bool                                 m_bRun;
+//   event *                                m_pevent;
+//   ::thread *                             m_pthread;
+//
+//#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
+//
+//   void *                                 m_pthread;
+//
+//#endif
+//
+//   static mutex *                  s_pmutex;
+//   static ptr_array <  hthread > *  s_pptra;
+//
+//
+//   hthread(uint32_t ( * pfn)(void *) = NULL, void * pv = NULL);
+//   virtual ~hthread();
+//
+//
+//#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+//
+//   static void * thread_proc(void * pparam);
+//
+//#else
+//
+//   static DWORD WINAPI thread_proc(void * pparam);
+//
+//#endif
+//
+//   //uint32_t run();
+//
+//
+//   virtual bool begin(LPSECURITY_ATTRIBUTES lpsa = NULL,uint32_t cbStack = 0,uint32_t uiFlags = 0,uint32_t * lpuiId = NULL,uint32_t(* pfn)(void *) = NULL,void * pv = NULL);
+//
+//
+//   static uint32_t proc(void * lp);
+//
+//   virtual int32_t run();
+//   virtual bool on_idle();
+//
+//   virtual void wait_thread(uint32_t dwMillis = INFINITE);
+//
+//   static HTHREAD get();
+//   static void set(HTHREAD hthread);
+//   static bool get_run();
+//   static void stop_all(uint32_t millisMaxWait);
+//
+//
+//};
 
 
 CLASS_DECL_AURA HTHREAD start_thread(uint32_t (*)(void *), void * pv, int32_t iPriority = 0);
@@ -208,7 +210,7 @@ namespace multithreading
 
    CLASS_DECL_AURA uint32_t __on_thread_finally(thread * pthread);
 
-   CLASS_DECL_AURA extern comparable_array < HTHREAD > * s_phaThread;
+   CLASS_DECL_AURA extern int_ptr_array * s_piaThread;
    CLASS_DECL_AURA extern ptr_array < thread > * s_pthreadptra;
    CLASS_DECL_AURA extern mutex * s_pmutex;
 

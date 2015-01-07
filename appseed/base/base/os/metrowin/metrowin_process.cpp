@@ -1,6 +1,6 @@
-#include "framework.h"
-#include <Shellapi.h>
-#include <string.h>
+//#include "framework.h"
+//#include <Shellapi.h>
+//#include <string.h>
 
 #ifdef WINDOWSEX
 

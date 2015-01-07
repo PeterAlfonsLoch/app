@@ -672,7 +672,7 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 
    single_lock sl(::multithreading::s_pmutex);
 
-   for(index i = ::multithreading::s_phaThread->get_size(); i >= 0; i--)
+   for(index i = ::multithreading::s_piaThread->get_size(); i >= 0; i--)
    {
 
       bOk = true;
@@ -680,7 +680,7 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
       try
       {
 
-         if(::PostThreadMessage(::GetThreadId(::multithreading::s_phaThread->element_at(i)),message,wparam,lparam))
+         if(::PostThreadMessage(::multithreading::s_piaThread->element_at(i),message,wparam,lparam))
          {
 
          }
@@ -1546,15 +1546,15 @@ bool thread_impl::pump_message()
 bool thread_impl::set_thread_priority(int32_t priority)
 {
 
-#ifdef METROWIN
-
-   return ::__SetThreadPriority(m_hthread, priority) != 0;
-
-#else
+//#ifdef METROWIN
+//
+//   return ::__SetThreadPriority(m_hthread, priority) != 0;
+//
+//#else
 
    return ::SetThreadPriority(m_hthread,priority) != 0;
 
-#endif
+//#endif
 
 }
 
@@ -1562,15 +1562,15 @@ bool thread_impl::set_thread_priority(int32_t priority)
 int32_t thread_impl::get_thread_priority()
 {
 
-#ifdef METROWIN
-
-   return ::__GetThreadPriority(m_hthread);
-
-#else
+//#ifdef METROWIN
+//
+//   return ::__GetThreadPriority(m_hthread);
+//
+//#else
 
    return ::GetThreadPriority(m_hthread);
 
-#endif
+//#endif
 
 }
 

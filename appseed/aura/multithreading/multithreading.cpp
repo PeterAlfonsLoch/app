@@ -5,7 +5,7 @@ namespace multithreading
 {
 
 
-   CLASS_DECL_AURA comparable_array < HTHREAD > * s_phaThread = NULL;
+   CLASS_DECL_AURA int_ptr_array * s_piaThread = NULL;
    CLASS_DECL_AURA ptr_array < thread > * s_pthreadptra = NULL;
    CLASS_DECL_AURA mutex * s_pmutex = NULL;
 
@@ -13,7 +13,7 @@ namespace multithreading
    CLASS_DECL_AURA void init_multithreading()
    {
       s_pmutex = new mutex(NULL);
-      s_phaThread = new comparable_array < HTHREAD >;
+      s_piaThread = new int_ptr_array;
       s_pthreadptra = new ptr_array < thread >;
 
       __node_init_multithreading();
@@ -29,8 +29,8 @@ namespace multithreading
       delete s_pthreadptra;
       s_pthreadptra = NULL;
 
-      delete s_phaThread;
-      s_phaThread = NULL;
+      delete s_piaThread;
+      s_piaThread = NULL;
 
       delete s_pmutex;
       s_pmutex = NULL;
@@ -46,7 +46,7 @@ namespace multithreading
 
       __init_thread();
 
-      s_phaThread->add((HTHREAD) pthread->m_pthreadimpl->get_os_data());
+      s_piaThread->add(pthread->m_pthreadimpl->get_os_int());
 
       s_pthreadptra->add(pthread);
 
@@ -58,7 +58,7 @@ namespace multithreading
 
       synch_lock sl(s_pmutex);
 
-      s_phaThread->remove((HTHREAD)pthread->m_pthreadimpl->get_os_data());
+      s_piaThread->remove(pthread->m_pthreadimpl->get_os_int());
 
       s_pthreadptra->remove(pthread);
 

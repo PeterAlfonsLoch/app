@@ -2,7 +2,6 @@
 #include "base/user/user.h"
 #include "metrowin.h"
 
-
 namespace metrowin
 {
 

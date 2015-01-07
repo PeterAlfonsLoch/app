@@ -1,9 +1,11 @@
-#include "framework.h"
-#include <winternl.h>
+//#include "framework.h"
+//#include <winternl.h>
 
 
-extern CLASS_DECL_THREAD os_thread * t_posthread;
-extern CLASS_DECL_THREAD HTHREAD currentThread;
+//extern CLASS_DECL_THREAD os_thread * t_posthread;
+//extern CLASS_DECL_THREAD HTHREAD currentThread;
+
+//extern thread_pointer < hthread > t_pthread;
 
 /*
 String ^ rtstr(const char * psz)

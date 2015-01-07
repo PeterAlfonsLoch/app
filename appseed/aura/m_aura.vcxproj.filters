@@ -238,6 +238,9 @@
     <Filter Include="Source Files\aura\os\windows">
       <UniqueIdentifier>{bb043c05-9ef0-4a8e-808f-7250ecd38265}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\os\NewFilter1">
+      <UniqueIdentifier>{a84b5e4d-5191-487e-90c6-f313d819d210}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -3286,9 +3289,6 @@
     <ClCompile Include="aura\aura\aura_assert_running_task.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\ansios\ansios_message_loop.cpp">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\metrowin\metrowin_local_memory_map.cpp">
       <Filter>Source Files\aura\os\metrowin</Filter>
     </ClCompile>
@@ -3390,6 +3390,15 @@
     </ClCompile>
     <ClCompile Include="aura\node\_node.cpp">
       <Filter>Source Files\aura\node</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_message_loop.cpp">
+      <Filter>Source Files\aura\os\ansios</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\ansios\ansios_multithreading.cpp">
+      <Filter>Source Files\aura\os\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_thread_os.cpp">
+      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

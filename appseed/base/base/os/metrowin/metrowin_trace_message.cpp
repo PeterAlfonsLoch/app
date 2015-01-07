@@ -1,5 +1,5 @@
-#include "framework.h"
-#include "metrowin.h"
+//#include "framework.h"
+//#include "metrowin.h"
 
 /////////////////////////////////////////////////////////////////////////////
 void __trace_message(const char * lpszPrefix,signal_details * pobj)

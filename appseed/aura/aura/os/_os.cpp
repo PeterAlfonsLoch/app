@@ -14,6 +14,7 @@
 #include "cross/metrowin/cross_metrowin_user.cpp"
 #include "windows/_windows_os.cpp"
 #elif defined(METROWIN)
+#include "ansios/ansios_message_loop.cpp"
 #include "cross/ansios/ansios_datetime.cpp"
 #include "cross/metrowin/cross_metrowin_user.cpp"
 #include "cross/windows/windows_internals.h"

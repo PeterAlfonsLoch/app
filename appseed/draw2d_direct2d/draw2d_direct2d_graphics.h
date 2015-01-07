@@ -484,8 +484,10 @@ namespace draw2d_direct2d
       virtual bool attach(void * pdata);
       virtual void * detach();
 
+#ifdef WINDOWSEX
       virtual bool Attach(HDC hdc);
       virtual HDC Detach();
+#endif
 
 //      virtual Gdiplus::FillMode direct2d_get_fill_mode();
 

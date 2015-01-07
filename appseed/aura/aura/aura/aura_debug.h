@@ -471,7 +471,7 @@ should not have done so since it was not documented.
 //
 //
 //#if !defined(_CRT_PORTABLE) && !defined(LINUX)
-#ifndef WINDOWSEX
+#if !defined(WINDOWSEX) && !defined(METROWIN)
 #define _CrtDbgBreak() debug_break()
 #endif
 //#else

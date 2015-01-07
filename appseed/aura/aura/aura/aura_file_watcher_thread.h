@@ -7,7 +7,7 @@ namespace file_watcher
 
    class CLASS_DECL_AURA thread :
       public file_watcher,
-      public hthread
+      public ::thread
    {
    public:
 

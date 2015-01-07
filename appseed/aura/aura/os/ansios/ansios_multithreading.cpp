@@ -210,14 +210,14 @@ CLASS_DECL_AURA DWORD get_current_thread_id()
 
 
 
-typedef ptr_array < void > ThreadLocalData;
+//typedef ptr_array < void > ThreadLocalData;
 
 
 
 thread_pointer < ThreadLocalData > currentThreadData;
 thread_int_ptr < DWORD > currentThreadId;
 //thread_pointer < HTHREAD > currentThread;
-thread_pointer < hthread > t_hthread;
+thread_pointer < hthread > t_phthread;
 
 
 raw_array<DWORD> * freeTlsIndices = NULL;
@@ -353,31 +353,31 @@ map < HTHREAD,HTHREAD,HTHREAD,HTHREAD > & thread_handle_map()
 
 }
 
-map < DWORD,DWORD,HTHREAD,HTHREAD > & thread_id_handle_map()
-{
+//map < DWORD,DWORD,HTHREAD,HTHREAD > & thread_id_handle_map()
+//{
+//
+//   return *s_pmapDwordHthread;
+//
+//}
 
-   return *s_pmapDwordHthread;
 
-}
+//map < HTHREAD,HTHREAD,DWORD,DWORD > & thread_id_map()
+//{
+//
+//   return *s_pmapHthreadDword;
+//
+//}
 
-
-map < HTHREAD,HTHREAD,DWORD,DWORD > & thread_id_map()
-{
-
-   return *s_pmapHthreadDword;
-
-}
-
-DWORD DwThreadId()
-{
-   static DWORD g_dw_thread_id = 0;
-
-   if(g_dw_thread_id <= 0)
-      g_dw_thread_id = 1;
-
-   return g_dw_thread_id++;
-}
-
+//DWORD DwThreadId()
+//{
+//   static DWORD g_dw_thread_id = 0;
+//
+//   if(g_dw_thread_id <= 0)
+//      g_dw_thread_id = 1;
+//
+//   return g_dw_thread_id++;
+//}
+//
 
 
 static DWORD nextTlsIndex = 0;
@@ -440,103 +440,103 @@ HTHREAD StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,HTHREAD hthread,int32_t
 
 
 
-HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes,uint_ptr cbStack,LPTHREAD_START_ROUTINE lpStartAddress,LPVOID lpParameter,uint32_t dwCreationFlags,uint32_t * lpdwThreadId)
-{
-   // Validate parameters.
-   //   assert(unusedThreadAttributes == nullptr);
-   //   assert(unusedStackSize == 0);
-   //assert((dwCreationFlags & ~CREATE_SUSPENDED) == 0);
-   //assert(unusedThreadId == nullptr);
-
-   // Create a handle that will be signalled when the thread has completed
-   HTHREAD threadHandle = new hthread();
-
-   if(threadHandle == NULL)
-      return NULL;
-
-
-   synch_lock mlThreadId(g_pmutexThreadIdLock);
-
-   thread_id_map().set_at(threadHandle,DwThreadId());
-
-   if(lpdwThreadId != NULL)
-   {
-      *lpdwThreadId = thread_id_map()[threadHandle];
-   }
-
-
-
-   synch_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
-
-   thread_id_handle_map().set_at(thread_id_map()[threadHandle],threadHandle);
-
-   mlThreadIdHandle.unlock();
-
-   mlThreadId.unlock();
-
-   // Make a copy of the handle for internal use. This is necessary because
-   // the caller is responsible for closing the handle returned by CreateThread,
-   // and they may do that before or after the thread has finished running.
-   /*HANDLE completionEvent;
-
-   if (!DuplicateHandle(GetCurrentProcess(), threadHandle, GetCurrentProcess(), &completionEvent, 0, false, DUPLICATE_SAME_ACCESS))
-   {
-   CloseHandle(threadHandle);
-   return nullptr;
-   }*/
-
-   //   synch_lock mlThreadHandle(threadHandleLock);
-
-   // thread_handle_map().set_at(completionEvent, threadHandle);
-
-   //mlThreadHandle.unlock();
-
-   PendingThreadInfo info;
-
-   ZERO(info);
-
-   try
-   {
-      if(dwCreationFlags & CREATE_SUSPENDED)
-      {
-         // Store info about a suspended thread.
-
-         info.lpStartAddress     = lpStartAddress;
-         info.lpParameter        = lpParameter;
-         info.m_hthread    = threadHandle;
-         info.suspensionEvent    = new event(get_thread_app(),false,true);
-         info.nPriority = 0;
-
-         synch_lock lock(g_pmutexPendingThreadsLock);
-
-         pendingThreads()[threadHandle] = info;
-
-         //::WaitForSingleObjectEx(info.suspensionEvent, INFINITE, FALSE);
-      }
-      else
-      {
-         // Start the thread immediately.
-         StartThread(lpStartAddress,lpParameter,threadHandle,0,cbStack);
-      }
-
-      return threadHandle;
-   }
-   catch(...)
-   {
-      // Clean up if thread creation fails.
-      threadHandle->m_pevent->set_event();
-      delete threadHandle;
-
-      if(info.suspensionEvent)
-      {
-         info.suspensionEvent->set_event();
-         delete info.suspensionEvent;
-      }
-
-
-      return NULL;
-   }
-}
+//HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes,uint_ptr cbStack,LPTHREAD_START_ROUTINE lpStartAddress,LPVOID lpParameter,uint32_t dwCreationFlags,uint32_t * lpdwThreadId)
+//{
+//   // Validate parameters.
+//   //   assert(unusedThreadAttributes == nullptr);
+//   //   assert(unusedStackSize == 0);
+//   //assert((dwCreationFlags & ~CREATE_SUSPENDED) == 0);
+//   //assert(unusedThreadId == nullptr);
+//
+//   // Create a handle that will be signalled when the thread has completed
+//   HTHREAD threadHandle = new hthread();
+//
+//   if(threadHandle == NULL)
+//      return NULL;
+//
+//
+//   synch_lock mlThreadId(g_pmutexThreadIdLock);
+//
+//   thread_id_map().set_at(threadHandle,DwThreadId());
+//
+//   if(lpdwThreadId != NULL)
+//   {
+//      *lpdwThreadId = thread_id_map()[threadHandle];
+//   }
+//
+//
+//
+//   synch_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
+//
+//   thread_id_handle_map().set_at(thread_id_map()[threadHandle],threadHandle);
+//
+//   mlThreadIdHandle.unlock();
+//
+//   mlThreadId.unlock();
+//
+//   // Make a copy of the handle for internal use. This is necessary because
+//   // the caller is responsible for closing the handle returned by CreateThread,
+//   // and they may do that before or after the thread has finished running.
+//   /*HANDLE completionEvent;
+//
+//   if (!DuplicateHandle(GetCurrentProcess(), threadHandle, GetCurrentProcess(), &completionEvent, 0, false, DUPLICATE_SAME_ACCESS))
+//   {
+//   CloseHandle(threadHandle);
+//   return nullptr;
+//   }*/
+//
+//   //   synch_lock mlThreadHandle(threadHandleLock);
+//
+//   // thread_handle_map().set_at(completionEvent, threadHandle);
+//
+//   //mlThreadHandle.unlock();
+//
+//   PendingThreadInfo info;
+//
+//   ZERO(info);
+//
+//   try
+//   {
+//      if(dwCreationFlags & CREATE_SUSPENDED)
+//      {
+//         // Store info about a suspended thread.
+//
+//         info.lpStartAddress     = lpStartAddress;
+//         info.lpParameter        = lpParameter;
+//         info.m_hthread    = threadHandle;
+//         info.suspensionEvent    = new event(get_thread_app(),false,true);
+//         info.nPriority = 0;
+//
+//         synch_lock lock(g_pmutexPendingThreadsLock);
+//
+//         pendingThreads()[threadHandle] = info;
+//
+//         //::WaitForSingleObjectEx(info.suspensionEvent, INFINITE, FALSE);
+//      }
+//      else
+//      {
+//         // Start the thread immediately.
+//         StartThread(lpStartAddress,lpParameter,threadHandle,0,cbStack);
+//      }
+//
+//      return threadHandle;
+//   }
+//   catch(...)
+//   {
+//      // Clean up if thread creation fails.
+//      threadHandle->m_pevent->set_event();
+//      delete threadHandle;
+//
+//      if(info.suspensionEvent)
+//      {
+//         info.suspensionEvent->set_event();
+//         delete info.suspensionEvent;
+//      }
+//
+//
+//      return NULL;
+//   }
+//}
 
 
 DWORD WINAPI ResumeThread(HTHREAD hThread)
@@ -891,38 +891,6 @@ void hthread::wait()
 }
 
 
-hthread::htread(uint32_t(* pfn)(void *),void * pv)
-{
-//htread
-{
-   m_pevent = new event(NULL, false, true);
-
-   m_pthread = NULL;
-
-  }
-
-//thread_layer::thread_layer()
-{
-
-   m_iSleepiness     = 49;
-   m_iResult         = 0;
-   m_hthread         = NULL;
-   m_nId             = 0;
-   m_bRun            = true;
-
-}
-
-
-   m_pfn    = pfn;
-   m_pv     = pv;
-   m_bRun   = true;
-
-
-   synch_lock ml(&*s_pmutex);
-
-   s_pptra->add(this);
-
-}
 
 
 hthread::~hthread()
@@ -1368,32 +1336,32 @@ CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread)
 
 }
 
-CLASS_DECL_AURA HTHREAD  WINAPI get_thread_handle(DWORD dw)
+//CLASS_DECL_AURA HTHREAD  WINAPI get_thread_handle(DWORD dw)
+//{
+//
+//   synch_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
+//
+//   map < DWORD,DWORD,HTHREAD,HTHREAD >::pair * p = thread_id_handle_map().PLookup(dw);
+//
+//   if(p == NULL)
+//      return NULL;
+//
+//
+//   return p->m_element2;
+//
+//}
+
+
+CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(DWORD iThreadId,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
 
-   synch_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
+   //HTHREAD h = ::get_thread_handle(idThread);
 
-   map < DWORD,DWORD,HTHREAD,HTHREAD >::pair * p = thread_id_handle_map().PLookup(dw);
-
-   if(p == NULL)
-      return NULL;
+   //if(h == NULL)
+   //   return FALSE;
 
 
-   return p->m_element2;
-
-}
-
-
-CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(DWORD idThread,UINT Msg,WPARAM wParam,LPARAM lParam)
-{
-
-   HTHREAD h = ::get_thread_handle(idThread);
-
-   if(h == NULL)
-      return FALSE;
-
-
-   mq * pmq = get_mq(h);
+   mq * pmq = get_mq(iThreadId);
 
    if(pmq == NULL)
       return FALSE;

@@ -273,30 +273,30 @@ public:
 
 
 // Stored data for CREATE_SUSPENDED and ResumeThread.
-struct PendingThreadInfo
-{
-
-
-   uint32_t (*       m_pfn)(void *);
-   void *            m_pv;
-   event *           m_peventCompletion;
-   event *           m_peventSuspension;
-   HTHREAD           m_hthread;
-   int               m_iPriority;
-
-
-   PendingThreadInfo()
-   {
-
-      m_peventSuspension = NULL;
-      m_peventCompletion = NULL;
-
-   }
-
-
-};
-
-
+//struct PendingThreadInfo
+//{
+//
+//
+//   LPTHREAD_START_ROUTINE       m_pfn;
+//   void *            m_pv;
+//   event *           m_peventCompletion;
+//   event *           m_peventSuspension;
+//   HTHREAD           m_hthread;
+//   int               m_iPriority;
+//
+//
+//   PendingThreadInfo()
+//   {
+//
+//      m_peventSuspension = NULL;
+//      m_peventCompletion = NULL;
+//
+//   }
+//
+//
+//};
+//
+//
 //CLASS_DECL_AURA IDWriteFactory * TlsGetWriteFactory();
 //
 //CLASS_DECL_AURA ID2D1Factory1 * GetD2D1Factory1();

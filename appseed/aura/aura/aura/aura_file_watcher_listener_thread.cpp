@@ -8,7 +8,7 @@ namespace file_watcher
    id listener_thread::add_file_watch(const char * directory, bool bRecursive)
    {
 
-      if(m_hthread == NULL)
+      if(::get_thread() == NULL)
          begin();
 
       op * pop = new op;
@@ -24,7 +24,7 @@ namespace file_watcher
          Sleep(100);
       }
 
-      PostThreadMessage(m_nId, WM_USER + 123, 0, (lparam) pop);
+      post_thread_message(WM_USER + 123, 0, (lparam) pop);
 
       pop->m_event.wait();
       

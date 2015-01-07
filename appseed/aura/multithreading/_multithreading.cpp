@@ -33,6 +33,7 @@
 #include "multithreading_sync_object.cpp"
 #include "multithreading_thread.cpp"
 #include "multithreading_thread_impl.cpp"
+#include "multithreading_thread_os.cpp"
 #include "multithreading_waitable.cpp"
 #include "multithreading_wait_result.cpp"
 //2014-12-17  12:39             3.463 multithreading.cpp"
