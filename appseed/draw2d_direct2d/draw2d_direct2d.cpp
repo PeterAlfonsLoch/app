@@ -228,16 +228,6 @@ CustomTextRenderer::CustomTextRenderer(
    pOutlineBrush_(pOutlineBrush),
    pFillBrush_(pFillBrush)
 {
-   pD2DFactory_->AddRef();
-//   pRT_->AddRef();
-   if(pOutlineBrush_ != NULL)
-   {
-      pOutlineBrush_->AddRef();
-   }
-   if(pFillBrush_ != NULL)
-   {
-      pFillBrush_->AddRef();
-   }
 }
 
 /******************************************************************
@@ -250,14 +240,15 @@ CustomTextRenderer::CustomTextRenderer(
 
 CustomTextRenderer::~CustomTextRenderer()
 {
-   if(pOutlineBrush_ != NULL)
-   {
-      pOutlineBrush_->Release();
-   }
-   if(pFillBrush_ != NULL)
-   {
-      pFillBrush_->Release();
-   }
+   //pD2DFactory_->Release();
+   //if(pOutlineBrush_ != NULL)
+   //{
+   //   pOutlineBrush_->Release();
+   //}
+   //if(pFillBrush_ != NULL)
+   //{
+   //   pFillBrush_->Release();
+   //}
 }
 
 /******************************************************************
@@ -329,7 +320,7 @@ IFACEMETHODIMP CustomTextRenderer::DrawGlyphRun(
       );
 
    // Create the transformed geometry
-   ID2D1TransformedGeometry* pTransformedGeometry = NULL;
+   Microsoft::WRL::ComPtr<ID2D1TransformedGeometry> pTransformedGeometry;
    if(SUCCEEDED(hr))
    {
       hr = pD2DFactory_->CreateTransformedGeometry(
@@ -343,8 +334,8 @@ IFACEMETHODIMP CustomTextRenderer::DrawGlyphRun(
    if(pOutlineBrush_ != NULL)
    {
       pRT_->DrawGeometry(
-         pTransformedGeometry,
-         pOutlineBrush_
+         pTransformedGeometry.Get(),
+         pOutlineBrush_.Get()
          );
    }
 
@@ -352,11 +343,11 @@ IFACEMETHODIMP CustomTextRenderer::DrawGlyphRun(
    {
       // Fill in the glyph run
       pRT_->FillGeometry(
-         pTransformedGeometry,
-         pFillBrush_
+         pTransformedGeometry.Get(),
+         pFillBrush_.Get()
          );
    }
-   pTransformedGeometry->Release();
+   //pTransformedGeometry->Release();
 
    return hr;
 }
@@ -516,27 +507,10 @@ IFACEMETHODIMP CustomTextRenderer::DrawInlineObject(
    return E_NOTIMPL;
 }
 
-/******************************************************************
-*                                                                 *
-*  CustomTextRenderer::AddRef                                     *
-*                                                                 *
-*  Increments the ref count                                       *
-*                                                                 *
-******************************************************************/
-
 IFACEMETHODIMP_(unsigned long) CustomTextRenderer::AddRef()
 {
    return InterlockedIncrement(&cRefCount_);
 }
-
-/******************************************************************
-*                                                                 *
-*  CustomTextRenderer::Release                                    *
-*                                                                 *
-*  Decrements the ref count and deletes the instance if the ref   *
-*  count becomes 0                                                *
-*                                                                 *
-******************************************************************/
 
 IFACEMETHODIMP_(unsigned long) CustomTextRenderer::Release()
 {

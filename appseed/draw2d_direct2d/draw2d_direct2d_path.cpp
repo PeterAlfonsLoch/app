@@ -2,93 +2,9 @@
 #include <math.h>
 
 
-#define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
-#define single_threaded D2D1_FACTORY_TYPE_SINGLE_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
-
-struct PathTextDrawingContext
-{
-   ID2D1GeometrySink* psink;
-};
-
-class PathTextRenderer: public IDWriteTextRenderer
-{
-public:
-   static void CreatePathTextRenderer(
-      FLOAT pixelsPerDip,
-      _Outptr_ PathTextRenderer **textRenderer
-      );
-
-   PathTextRenderer(
-      FLOAT pixelsPerDip
-      );
-
-   STDMETHOD(DrawGlyphRun)(
-      _In_opt_ void* clientDrawingContext,
-      FLOAT baselineOriginX,
-      FLOAT baselineOriginY,
-      DWRITE_MEASURING_MODE measuringMode,
-      _In_ DWRITE_GLYPH_RUN const* glyphRun,
-      _In_ DWRITE_GLYPH_RUN_DESCRIPTION const* glyphRunDescription,
-      _In_opt_ IUnknown* clientDrawingEffect
-      ) override;
-
-   STDMETHOD(DrawUnderline)(
-      _In_opt_ void* clientDrawingContext,
-      FLOAT baselineOriginX,
-      FLOAT baselineOriginY,
-      _In_ DWRITE_UNDERLINE const* underline,
-      _In_opt_ IUnknown* clientDrawingEffect
-      ) override;
-
-   STDMETHOD(DrawStrikethrough)(
-      _In_opt_ void* clientDrawingContext,
-      FLOAT baselineOriginX,
-      FLOAT baselineOriginY,
-      _In_ DWRITE_STRIKETHROUGH const* strikethrough,
-      _In_opt_ IUnknown* clientDrawingEffect
-      ) override;
-
-   STDMETHOD(DrawInlineObject)(
-      _In_opt_ void* clientDrawingContext,
-      FLOAT originX,
-      FLOAT originY,
-      IDWriteInlineObject* inlineObject,
-      BOOL isSideways,
-      BOOL isRightToLeft,
-      _In_opt_ IUnknown* clientDrawingEffect
-      ) override;
-
-   STDMETHOD(IsPixelSnappingDisabled)(
-      _In_opt_ void* clientDrawingContext,
-      _Out_ BOOL* isDisabled
-      ) override;
-
-   STDMETHOD(GetCurrentTransform)(
-      _In_opt_ void* clientDrawingContext,
-      _Out_ DWRITE_MATRIX* transform
-      ) override;
-
-   STDMETHOD(GetPixelsPerDip)(
-      _In_opt_ void* clientDrawingContext,
-      _Out_ FLOAT* pixelsPerDip
-      ) override;
-
-   STDMETHOD(QueryInterface)(
-      REFIID riid,
-      _Outptr_ void** object
-      ) override;
-
-   STDMETHOD_(ULONG,AddRef)() override;
-
-   STDMETHOD_(ULONG,Release)() override;
-
-private:
-   FLOAT m_pixelsPerDip;   // Number of pixels per DIP.
-   UINT m_ref;             // Reference count for AddRef and Release.
-};
-
 namespace draw2d_direct2d
 {
+
    static double g_dPi = atan(1.0) * 4.0;
 
 
@@ -103,6 +19,7 @@ namespace draw2d_direct2d
    graphics_path::~graphics_path() 
    {
 
+      destroy();
 
    }
 
@@ -206,14 +123,12 @@ namespace draw2d_direct2d
       pfactory->CreateTextLayout(szOutline,szOutline.length(),(IDWriteTextFormat *)spfont.cast <font>()->get_os_font(pdc),1024 * 1024,1024 * 1024,&textLayout);
 
 
-      Microsoft::WRL::ComPtr<PathTextRenderer>                       textRenderer;
+      Microsoft::WRL::ComPtr<IDWriteTextRenderer>                       textRenderer;
 
-      PathTextRenderer::CreatePathTextRenderer(System.m_dpi, &textRenderer);
+      CreatePathTextRenderer(System.m_dpi, &textRenderer);
 
-      PathTextDrawingContext context;
-      context.psink = m_psink.Get();
 
-      textLayout->Draw(&context, textRenderer.Get(), 0, 0);
+      textLayout->Draw(this, textRenderer.Get(), 0, 0);
 
 
       return true;
@@ -403,20 +318,9 @@ namespace draw2d_direct2d
    bool graphics_path::destroy()
    {
 
-      if(m_psink != NULL)
-      {
+      m_psink = nullptr;
 
-         m_psink = nullptr;
-
-
-      }
-
-      if(m_ppath != NULL)
-      {
-
-         m_ppath = nullptr;
-
-      }
+      m_ppath = nullptr;
 
       return true;
    
@@ -512,6 +416,83 @@ namespace draw2d_direct2d
 
 
 
+#define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
+#define single_threaded D2D1_FACTORY_TYPE_SINGLE_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
+
+
+class PathTextRenderer: public IDWriteTextRenderer
+{
+public:
+
+   PathTextRenderer(
+      FLOAT pixelsPerDip
+      );
+
+   STDMETHOD(DrawGlyphRun)(
+      _In_opt_ void* clientDrawingContext,
+      FLOAT baselineOriginX,
+      FLOAT baselineOriginY,
+      DWRITE_MEASURING_MODE measuringMode,
+      _In_ DWRITE_GLYPH_RUN const* glyphRun,
+      _In_ DWRITE_GLYPH_RUN_DESCRIPTION const* glyphRunDescription,
+      _In_opt_ IUnknown* clientDrawingEffect
+      ) override;
+
+   STDMETHOD(DrawUnderline)(
+      _In_opt_ void* clientDrawingContext,
+      FLOAT baselineOriginX,
+      FLOAT baselineOriginY,
+      _In_ DWRITE_UNDERLINE const* underline,
+      _In_opt_ IUnknown* clientDrawingEffect
+      ) override;
+
+   STDMETHOD(DrawStrikethrough)(
+      _In_opt_ void* clientDrawingContext,
+      FLOAT baselineOriginX,
+      FLOAT baselineOriginY,
+      _In_ DWRITE_STRIKETHROUGH const* strikethrough,
+      _In_opt_ IUnknown* clientDrawingEffect
+      ) override;
+
+   STDMETHOD(DrawInlineObject)(
+      _In_opt_ void* clientDrawingContext,
+      FLOAT originX,
+      FLOAT originY,
+      IDWriteInlineObject* inlineObject,
+      BOOL isSideways,
+      BOOL isRightToLeft,
+      _In_opt_ IUnknown* clientDrawingEffect
+      ) override;
+
+   STDMETHOD(IsPixelSnappingDisabled)(
+      _In_opt_ void* clientDrawingContext,
+      _Out_ BOOL* isDisabled
+      ) override;
+
+   STDMETHOD(GetCurrentTransform)(
+      _In_opt_ void* clientDrawingContext,
+      _Out_ DWRITE_MATRIX* transform
+      ) override;
+
+   STDMETHOD(GetPixelsPerDip)(
+      _In_opt_ void* clientDrawingContext,
+      _Out_ FLOAT* pixelsPerDip
+      ) override;
+
+   STDMETHOD(QueryInterface)(
+      REFIID riid,
+      _Outptr_ void** object
+      ) override;
+
+   STDMETHOD_(ULONG,AddRef)() override;
+
+   STDMETHOD_(ULONG,Release)() override;
+
+private:
+   LONG cRefCount_;
+   FLOAT m_pixelsPerDip;   // Number of pixels per DIP.
+   UINT m_ref;           
+};
 
 
 
@@ -532,23 +513,6 @@ const DWRITE_MATRIX identityTransform =
    0,0
 };
 
-//
-// Public creation method for PathTextRenderer. This method
-// creates a new PathTextRenderer and calls its AddRef method
-// in good COM style.
-//
-void PathTextRenderer::CreatePathTextRenderer(
-   FLOAT pixelsPerDip,
-   _Outptr_ PathTextRenderer **textRenderer
-   )
-{
-   *textRenderer = nullptr;
-
-   PathTextRenderer *newRenderer = new PathTextRenderer(pixelsPerDip);
-   newRenderer->AddRef();
-   *textRenderer = newRenderer;
-   newRenderer = nullptr;
-}
 
 PathTextRenderer::PathTextRenderer(FLOAT pixelsPerDip):
 m_pixelsPerDip(pixelsPerDip),
@@ -582,7 +546,7 @@ HRESULT PathTextRenderer::DrawGlyphRun(
       return S_OK;
    }
 
-   PathTextDrawingContext* dc = static_cast<PathTextDrawingContext*>(clientDrawingContext);
+   ::draw2d_direct2d::graphics_path * dc = static_cast<::draw2d_direct2d::graphics_path*>(clientDrawingContext);
 
    HRESULT hr = glyphRun->fontFace->GetGlyphRunOutline(
       glyphRun->fontEmSize,
@@ -592,7 +556,7 @@ HRESULT PathTextRenderer::DrawGlyphRun(
       glyphRun->glyphCount,
       glyphRun->isSideways,
       glyphRun->bidiLevel % 2,
-      dc->psink
+      dc->m_psink.Get()
       );
 
    return hr;
@@ -683,21 +647,36 @@ HRESULT PathTextRenderer::QueryInterface(
 
 ULONG PathTextRenderer::AddRef()
 {
-   m_ref++;
-
-   return m_ref;
+   return InterlockedIncrement(&cRefCount_);
 }
 
 ULONG PathTextRenderer::Release()
 {
-   m_ref--;
-
-   if(m_ref == 0)
+   unsigned long newCount = InterlockedDecrement(&cRefCount_);
+   if(newCount == 0)
    {
       delete this;
       return 0;
    }
 
-   return m_ref;
+   return newCount;
 }
 
+
+
+
+
+
+namespace draw2d_direct2d
+{
+   void graphics_path::CreatePathTextRenderer(FLOAT pixelsPerDip, IDWriteTextRenderer **textRenderer)
+   {
+      *textRenderer = nullptr;
+
+      PathTextRenderer *newRenderer = new PathTextRenderer(pixelsPerDip);
+      newRenderer->AddRef();
+      *textRenderer = newRenderer;
+      newRenderer = nullptr;
+   }
+
+} // namespace draw2d_direct2d

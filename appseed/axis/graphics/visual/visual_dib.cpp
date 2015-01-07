@@ -74,7 +74,6 @@ namespace visual
 
       bool bOk = false;
 
-#ifdef AXIS_FREEIMAGE
       bool b8 = false;
       bool b24 = false;
       int iFreeImageSave = 0;
@@ -167,87 +166,6 @@ namespace visual
       FreeImage_Unload(pfi7);
 
 
-#else
-      IStream* pstream = SHCreateMemStream(NULL, NULL);
-
-      Gdiplus::EncoderParameters encoderParameters;
-
-      CLSID encoderClsid;
-      bool b8 = false;
-      bool b24 = false;
-      int iFreeImageSave = 0;
-      ULONG quality;
-      switch(psaveimage->m_eformat)
-      {
-      case ::visual::image::format_png:
-         GetEncoderClsid(L"image/png",&encoderClsid);
-         break;
-      case ::visual::image::format_bmp:
-         GetEncoderClsid(L"image/bmp",&encoderClsid);
-         break;
-      case ::visual::image::format_gif:
-         b8 = true;
-         GetEncoderClsid(L"image/gif",&encoderClsid);
-         break;
-      case ::visual::image::format_jpeg:
-         b24 = true;
-         GetEncoderClsid(L"image/jpeg",&encoderClsid);
-         encoderParameters.Count = 1;
-         encoderParameters.Parameter[0].Guid = Gdiplus::EncoderQuality;
-         encoderParameters.Parameter[0].Type = Gdiplus::EncoderParameterValueTypeLong;
-         encoderParameters.Parameter[0].NumberOfValues = 1;
-         quality = psaveimage->m_iQuality;
-         encoderParameters.Parameter[0].Value = &quality;
-         break;
-      default:
-         return false;
-      }
-
-      Gdiplus::Bitmap * pbitmap = new Gdiplus::Bitmap(m_p->m_size.cx,m_p->m_size.cy,m_p->m_iScan,PixelFormat32bppARGB,(BYTE *)m_p->m_pcolorref);
-
-      if(psaveimage->m_eformat == ::visual::image::format_jpeg)
-      {
-         pbitmap->Save(pstream,&encoderClsid,&encoderParameters);
-      }
-      else
-      {
-         pbitmap->Save(pstream,&encoderClsid,NULL);
-      }
-
-      ::primitive::memory mem;
-      STATSTG stg;
-      ZERO(stg);
-      pstream->Stat(&stg,STATFLAG_NONAME);
-      mem.allocate(stg.cbSize.QuadPart);
-      LARGE_INTEGER l;
-      l.QuadPart = 0;
-      pstream->Seek(l,STREAM_SEEK_SET,NULL);
-
-      ULONG ulPos = 0;
-      ULONG ulRead;
-      ULONG ul;
-      do
-      {
-
-         ulRead = 0;
-
-         ul = stg.cbSize.QuadPart - ulPos;
-
-         pstream->Read(&mem.get_data()[ulPos],ul,&ulRead);
-
-         ulPos+=ulRead;
-
-      } while(ulRead > 0 && stg.cbSize.QuadPart - ulPos > 0);
-
-      pfile->write(mem.get_data(),ulPos);
-
-      delete pbitmap;
-
-      pstream->Release();
-
-
-
-#endif
 
       return bOk != FALSE;
 
@@ -265,14 +183,12 @@ namespace visual
    }
 
 
-#ifdef AXIS_FREEIMAGE
    bool dib_sp::from(class draw2d::graphics * pgraphics,struct FIBITMAP * pfi,bool bUnload)
    {
 
       return Sys(m_p->m_pauraapp).visual().imaging().from(m_p,pgraphics,pfi,bUnload);
 
    }
-#endif
 
 } // namespace visual
 
@@ -351,42 +267,4 @@ CLASS_DECL_AXIS void draw_freetype_bitmap(::draw2d::dib * m_p,int32_t dx,int32_t
 }
 
 #endif
-
-#ifdef WINDOWSEX
-
-
-int GetEncoderClsid(const WCHAR* format,CLSID* pClsid)
-{
-   UINT  num = 0;          // number of image encoders
-   UINT  size = 0;         // size of the image encoder array in bytes
-
-   Gdiplus::ImageCodecInfo* pImageCodecInfo = NULL;
-
-   Gdiplus::GetImageEncodersSize(&num,&size);
-   if(size == 0)
-      return -1;  // Failure
-
-   pImageCodecInfo = (Gdiplus::ImageCodecInfo*)(malloc(size));
-   if(pImageCodecInfo == NULL)
-      return -1;  // Failure
-
-   GetImageEncoders(num,size,pImageCodecInfo);
-
-   for(UINT j = 0; j < num; ++j)
-   {
-      if(wcscmp(pImageCodecInfo[j].MimeType,format) == 0)
-      {
-         *pClsid = pImageCodecInfo[j].Clsid;
-         free(pImageCodecInfo);
-         return j;  // Success
-      }
-   }
-
-   free(pImageCodecInfo);
-   return -1;  // Failure
-}
-
-
-#endif
-
 

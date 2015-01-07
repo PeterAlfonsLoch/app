@@ -37,7 +37,7 @@ namespace draw2d_direct2d
 
       virtual void dump(dump_context & dumpcontext) const;
 
-      virtual bool destroy();
+      bool destroy();
 
 
    };

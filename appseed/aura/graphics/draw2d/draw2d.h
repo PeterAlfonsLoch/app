@@ -5,7 +5,13 @@
 #include "draw2d_const.h"
 
 
+namespace draw2d
+{
 
+   CLASS_DECL_AURA void copy_colorref(int cx,int cy,COLORREF * pcolorrefDst,int iStrideDst,COLORREF * pcolorrefSrc,int iStrideSrc);
+
+
+} // namespace draw2d
 
 #if defined(CUBE)
 

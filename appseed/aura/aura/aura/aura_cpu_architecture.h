@@ -147,12 +147,14 @@ CLASS_DECL_AURA int32_t CPU_Is_InOrder();
 CLASS_DECL_AURA int32_t CPU_Is_Aes_Supported();
 
 
-static inline uint16_t __swap16gen(uint16_t x)
+
+
+static_inline uint16_t __swap16gen(uint16_t x)
 {
     return (((x) & 0xff) << 8) |(((x) & 0xff00) >> 8);
 }
 
-static inline uint32_t __swap32gen(uint32_t x)
+static_inline uint32_t __swap32gen(uint32_t x)
 {
     return (((x) & 0xff) << 24 |
     ((x) & 0xff00) << 8 | ((x) & 0xff0000) >> 8 |

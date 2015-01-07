@@ -3404,6 +3404,9 @@ namespace user
       if(m_bLockWindowUpdate)
          return;
 
+      if(m_pimpl == NULL)
+         return;
+
       m_pimpl->_001UpdateScreen();
 
    }

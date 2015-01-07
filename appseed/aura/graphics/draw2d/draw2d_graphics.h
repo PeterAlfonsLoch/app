@@ -678,6 +678,8 @@ namespace draw2d
 
 #endif
 
+      virtual void debug();
+
 
    };
 

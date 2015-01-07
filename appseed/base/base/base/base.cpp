@@ -79,7 +79,7 @@ CLASS_DECL_BASE int_bool defer_base_term()
 bool base_init()
 {
 
-   if(!defer_aura_init())
+   if(!defer_axis_init())
       return false;
 
    ::base::static_start::init();
@@ -112,7 +112,7 @@ bool base_term()
 
    ::base::static_start::term();
 
-   defer_aura_term();
+   defer_axis_term();
 
    return true;
 

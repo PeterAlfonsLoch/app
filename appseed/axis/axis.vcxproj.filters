@@ -1789,11 +1789,11 @@
     <ClCompile Include="axis\node\_node.cpp">
       <Filter>Source Files\axis\node</Filter>
     </ClCompile>
+    <ClCompile Include="axis\os\windows\windows.cpp">
+      <Filter>Source Files\axis\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

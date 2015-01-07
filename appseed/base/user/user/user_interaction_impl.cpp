@@ -25,10 +25,18 @@ namespace user
    interaction_impl::~interaction_impl()
    {
 
-      if(m_pgraphics != NULL)
       {
 
-         delete m_pgraphics;
+         synch_lock sl(mutex_display());
+
+         m_spdib.release();
+
+         if(m_pgraphics != NULL)
+         {
+
+            delete m_pgraphics;
+
+         }
 
       }
 
@@ -2477,6 +2485,7 @@ namespace user
    }
 
 
+#define HARD_DEBUG 0
    void interaction_impl::_001UpdateBuffer()
    {
 
@@ -2543,6 +2552,7 @@ namespace user
 
       _001Print(pgraphics);
 
+
       single_lock slDisplay(mutex_display(),true);
 
       //if(m_spdib->get_data() == NULL || m_spdibBuffer->get_data() == NULL)
@@ -2551,6 +2561,21 @@ namespace user
       m_spdib->BitBlt(rectWindow.width(), rectWindow.height(), m_spdibBuffer, 1);
 
       m_spdib->m_bReduced = false;
+
+#if HARD_DEBUG
+
+      m_spdib->Destroy();
+
+      m_spdibBuffer->Destroy();
+
+      ::draw2d::graphics_sp g(allocer());
+
+      g->debug();
+
+      m_size.cx = 0;
+      m_size.cy = 0;
+
+#endif
       
       //       ::rect rectClient;
       

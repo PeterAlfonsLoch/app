@@ -8,6 +8,7 @@
 #include "windows_dll.cpp"
 #include "windows_os.cpp"
 #include "windows_simple_app.cpp"
+#include "windows.cpp"
 //2015-01-05  13:05                 0 _windows_os.cpp"
 //               5 arquivo(s)          9.891 bytes
 //               0 pasta(s)   32.759.701.504 bytes dispon¡veis

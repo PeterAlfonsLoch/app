@@ -1,6 +1,12 @@
 #include "framework.h"
 #include <math.h>
 
+#include "freeimage/Source/FreeImage.h"
+#include "graphics/visual/visual_FreeImageFileProc.h"
+
+
+
+
 #ifdef WINDOWSEX
 
 #undef new
@@ -9,6 +15,7 @@
 #include <gdiplus.h>
 #undef min
 #undef max
+int GetEncoderClsid(const WCHAR* format,CLSID* pClsid);
 #define new AURA_NEW
 
 
@@ -33,9 +40,7 @@
 #include "visual_fastblur.cpp"
 #include "visual_font.cpp"
 #include "visual_font_central.cpp"
-#ifdef
 #include "visual_FreeImageFileProc.cpp"
-#endif
 #include "visual_glyph.cpp"
 #include "visual_glyph_set.cpp"
 #include "visual_graphics_extension.cpp"

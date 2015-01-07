@@ -11,7 +11,7 @@ namespace draw2d_direct2d
    public:
 
 
-      ID2D1Geometry *            m_pgeometry;
+      Microsoft::WRL::ComPtr<ID2D1Geometry>            m_pgeometry;
 
 
       region(::aura::application * papp);
@@ -56,6 +56,7 @@ namespace draw2d_direct2d
       ID2D1Geometry * get_poly_polygon();
       ID2D1Geometry * get_combine();
 
+      bool destroy();
 
    };
 

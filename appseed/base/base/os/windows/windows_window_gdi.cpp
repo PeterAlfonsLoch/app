@@ -163,7 +163,7 @@ void window_gdi::update_window(COLORREF * pcolorref,const RECT & rect,int cxPara
    try
    {
 
-      copy_colorref(cxParam, cyParam,m_pcolorref,pcolorref,iStride);
+      ::draw2d::copy_colorref(cxParam, cyParam,m_pcolorref,scan, pcolorref,iStride);
 
    }
    catch (...)

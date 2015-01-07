@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//#include "freeimage/Source/FreeImage.h"
+#include "freeimage/Source/FreeImage.h"
 
 
 
@@ -19,15 +19,27 @@ CLASS_DECL_AXIS int get_axis_init()
 CLASS_DECL_AXIS int_bool defer_axis_init()
 {
 
+
+   if(!defer_aura_init())
+      return false;
+
    g_iBaseRefCount++;
 
    if(g_iBaseRefCount > 1)
       return TRUE;
 
-   if(!axis_init())
-      return FALSE;
+   ::axis::static_start::init();
 
-   return TRUE;
+   if(!__node_axis_pre_init())
+      return false;
+
+   if(!axis_init())
+      return false;
+
+   if(!__node_axis_pos_init())
+      return false;
+
+   return true;
 
 }
 
@@ -40,7 +52,15 @@ CLASS_DECL_AXIS int_bool defer_axis_term()
    if(g_iBaseRefCount >= 1)
       return TRUE;
 
+   __node_axis_pre_term();
+
    axis_term();
+
+   __node_axis_pos_term();
+
+   ::axis::static_start::term();
+
+   defer_aura_term();
 
    return TRUE;
 
@@ -76,7 +96,6 @@ bool axis_init()
       return false;*/
 
 
-#ifdef BASE_FREEIMAGE
    try
    {
 
@@ -92,7 +111,6 @@ bool axis_init()
 
    }
 
-#endif
 
    return true;
 
@@ -101,7 +119,6 @@ bool axis_init()
 
 bool axis_term()
 {
-#ifdef BASE_FREEIMAGE
    try
    {
 
@@ -112,7 +129,6 @@ bool axis_term()
    {
 
    }
-#endif
 
    /*__wait_threading_count(::millis((5000) * 8));
 

@@ -5,6 +5,11 @@
 #define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
 #define single_threaded D2D1_FACTORY_TYPE_SINGLE_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
 
+#ifdef WINDOWSEX
+
+void my_debug();
+
+#endif
 
 namespace draw2d_direct2d
 {
@@ -22,9 +27,6 @@ namespace draw2d_direct2d
 
       m_sppen.alloc(allocer());
 
-      m_player    = NULL;
-
-      m_ppathgeometryClip     = NULL;
 
       m_iType     = 0;
 
@@ -42,6 +44,13 @@ namespace draw2d_direct2d
       m_ppath           = NULL;
       m_ppathPaint      = NULL;
       m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;*/
+
+   }
+
+   graphics::~graphics()
+   {
+
+      destroy();
 
    }
 
@@ -65,48 +74,6 @@ namespace draw2d_direct2d
       dumpcontext << "\n";
    }
 
-
-   graphics::~graphics()
-   {
-
-      synch_lock ml(&draw2d_direct2_mutex());
-
-      if(m_prendertarget != NULL)
-      {
-
-         destroy();
-
-      }
-      /*      HDC hdc = Detach();
-
-      if(hdc != NULL)
-      {
-      bool bDeleted = ::DeleteDC(hdc) != FALSE;
-      if(!bDeleted)
-      {
-      TRACE("Failed to delete GDI device context");
-      }
-      }
-
-      if(m_prendertarget != NULL)
-      {
-      delete m_prendertarget;
-      m_prendertarget = NULL;
-      }
-
-      if(m_ppath != NULL)
-      {
-      delete m_ppath;
-      m_ppath = NULL;
-      }
-
-      if(m_ppathPaint != NULL)
-      {
-      delete m_ppathPaint;
-      m_ppathPaint = NULL;
-      }
-      */
-   }
 
 
 
@@ -4712,21 +4679,18 @@ namespace draw2d_direct2d
    bool graphics::destroy()
    {
 
+      synch_lock ml(&draw2d_direct2_mutex());
+
       single_lock sl(&System.m_mutexDc, true);
 
       if(m_player != NULL)
       {
          m_prendertarget->PopLayer();
-         m_player->Release();
-         m_player = NULL;
+         m_player = nullptr;
       }
 
-      if(m_ppathgeometryClip != NULL)
-      {
-         m_ppathgeometryClip->Release();
-         m_ppathgeometryClip = NULL;
-      }
-
+      m_ppathgeometryClip = nullptr;
+ 
       m_prendertarget = nullptr;
    
       m_pdevice = nullptr;
@@ -4936,6 +4900,14 @@ namespace draw2d_direct2d
       
    }
 
+   void graphics::debug()
+   {
+
+#ifdef WINDOWSEX
+      my_debug();
+#endif
+
+   }
 
 } // namespace draw2d_direct2d
 

@@ -117,10 +117,10 @@ public:
 
 private:
    unsigned long cRefCount_;
-   ID2D1Factory* pD2DFactory_;
+   Microsoft::WRL::ComPtr<ID2D1Factory>pD2DFactory_;
    Microsoft::WRL::ComPtr<ID2D1RenderTarget>        pRT_;
-   ID2D1Brush* pOutlineBrush_;
-   ID2D1Brush* pFillBrush_;
+   Microsoft::WRL::ComPtr<ID2D1Brush> pOutlineBrush_;
+   Microsoft::WRL::ComPtr<ID2D1Brush> pFillBrush_;
 };
 
 

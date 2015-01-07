@@ -9,7 +9,6 @@ namespace draw2d_direct2d
       element(papp)
    { 
       
-      m_pgeometry = NULL;
       m_bUpdated = false;
       
    }
@@ -17,11 +16,7 @@ namespace draw2d_direct2d
    region::~region()
    {
       
-      if(m_pgeometry != NULL)
-      {
-         m_pgeometry->Release();
-         m_pgeometry = NULL;
-      }
+      destroy();
       
    }
 
@@ -165,7 +160,7 @@ namespace draw2d_direct2d
    
       ((region *) this)->defer_update();
 
-      return (ID2D1Geometry *) m_pgeometry;
+      return (ID2D1Geometry *) m_pgeometry.Get();
 
    }
 
@@ -180,18 +175,8 @@ namespace draw2d_direct2d
          if(m_pgeometry != NULL)
          {
 
-            try
-            {
-            
-               m_pgeometry->Release();
 
-            }
-            catch(...)
-            {
-
-            }
-
-            m_pgeometry = NULL;
+            m_pgeometry = nullptr;
 
          }
 
@@ -399,6 +384,16 @@ namespace draw2d_direct2d
       }
 
       return ppathgeometry;
+
+   }
+
+
+   bool region::destroy()
+   {
+
+      m_pgeometry = nullptr;
+
+      return true;
 
    }
 

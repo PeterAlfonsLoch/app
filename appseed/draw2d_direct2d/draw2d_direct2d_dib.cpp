@@ -2776,8 +2776,6 @@ namespace draw2d_direct2d
 
       pgraphicsDst->m_spbitmap->attach(pbitmap->m_pbitmap.Get());
 
-      //METROWIN_BITMAP(pgraphics->m_bitmap.m_p)->m_pbitmap->AddRef();
-
       D2D1_POINT_2U p;
 
       p.x = 0;

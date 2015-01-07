@@ -1,8 +1,6 @@
 //#include "framework.h"
-#ifdef AXIS_FREEIMAGE
 //#include "freeimage/Source/FreeImage.h"
 //#include "visual_FreeImageFileProc.h"
-#endif
 #ifdef WINDOWSEX
 
 #undef new
@@ -81,8 +79,6 @@ imaging::~imaging()
 
 
 
-
-#ifdef AXIS_FREEIMAGE
 
 FIBITMAP * imaging::LoadImageFile(var varFile,::aura::application * papp)
 {
@@ -498,7 +494,6 @@ FIBITMAP * imaging::LoadImageFile(::file::buffer_sp  pfile)
 
 }
 
-#endif
 
 /*FIBITMAP * imaging::LoadImageFile(CArchive & ar)
 {
@@ -614,7 +609,6 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    if(memfile.get_size() <= 0)
       return false;
-#ifdef AXIS_FREEIMAGE
 
    FIBITMAP * pfi = LoadImageFile(&memfile);
 
@@ -629,156 +623,6 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       return false;
 
    return true;
-#elif defined(METROWIN)
-
-   HRESULT hr = S_OK;
-
-   IWICImagingFactory * pfactory = NULL;
-
-   hr = CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pfactory));
-
-   if(FAILED(hr))
-   {
-
-      return false;
-
-   }
-
-   IWICBitmapDecoder * pdecoder = NULL;
-
-   IStream * pstream = NULL;
-
-   Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new Windows::Storage::Streams::InMemoryRandomAccessStream();
-
-   ::wait(randomAccessStream->WriteAsync(memfile.get_memory()->get_os_buffer()));
-
-   ::CreateStreamOverRandomAccessStream(randomAccessStream,IID_PPV_ARGS(&pstream));
-
-   hr = pfactory->CreateDecoderFromStream(pstream,NULL,WICDecodeMetadataCacheOnDemand,&pdecoder);
-
-   IWICBitmapFrameDecode *pframe = NULL;
-
-   if(SUCCEEDED(hr))
-   {
-
-      hr = pdecoder->GetFrame(0,&pframe);
-
-   }
-
-   IWICFormatConverter * pbitmap = NULL;
-
-   if(SUCCEEDED(hr))
-   {
-
-      hr = pfactory->CreateFormatConverter(&pbitmap);
-
-   }
-
-   if(SUCCEEDED(hr))
-   {
-
-      hr = pbitmap->Initialize(pframe, GUID_WICPixelFormat32bppPBGRA, WICBitmapDitherTypeNone, NULL, 0.f, WICBitmapPaletteTypeCustom);
-   }
-
-   //Step 4: Create render target and D2D bitmap from IWICBitmapSource
-   UINT w=0;
-   UINT h=0;
-   if(SUCCEEDED(hr))
-   {
-      hr = pbitmap->GetSize(&w,&h);
-   }
-
-   if(SUCCEEDED(hr))
-   {
-
-      if(pdib->create(w,h))
-      {
-       
-         hr = pbitmap->CopyPixels(NULL,w * 4,w * h * 4,(BYTE *)pdib->get_data());
-
-      }
-
-   }
-   
-   SafeRelease(pbitmap);
-   SafeRelease(pstream);
-   SafeRelease(pdecoder);
-   SafeRelease(pframe);
-   SafeRelease(pfactory);
-
-   return SUCCEEDED(hr) && pdib->area() > 0;
-
-#else
-
-   IStream * pstream = SHCreateMemStream(memfile.get_data(),memfile.get_size());
-
-   try
-   {
-
-      Gdiplus::Bitmap * pbitmap = Gdiplus::Bitmap::FromStream(pstream);
-
-      try
-      {
-
-         int cx = pbitmap->GetWidth();
-
-         int cy = pbitmap->GetHeight();
-
-         if(!pdib->create(cx,cy))
-            return false;
-
-         Gdiplus::BitmapData* bitmapData = new Gdiplus::BitmapData;
-
-         Gdiplus::Rect rect(0,0,cx,cy);
-
-         pbitmap->LockBits(&rect,Gdiplus::ImageLockModeRead,PixelFormat32bppARGB,bitmapData);
-
-         try
-         {
-
-            //printf("The stride is %d.\n\n",bitmapData->Stride);
-
-            // Display the hexadecimal value of each pixel in the 5x3 rectangle.
-            byte* pixels = (byte*)bitmapData->Scan0;
-
-            if(bitmapData->Stride == bitmapData->Width * 4)
-            {
-               
-               memcpy(pdib->m_pcolorref,pixels,bitmapData->Height*bitmapData->Width *4);
-
-            }
-            else
-            {
-               for(int row = 0; row < bitmapData->Height; ++row)
-               {
-
-                  memcpy(&pdib->m_pcolorref[row * bitmapData->Stride / 4],&pixels[row * bitmapData->Stride],bitmapData->Stride);
-
-               }
-            }
-
-         }
-         catch(...)
-         {
-         }
-
-         pbitmap->UnlockBits(bitmapData);
-      }
-      catch(...)
-      {
-      }
-
-      delete pbitmap;
-   }
-   catch(...)
-   {
-   }
-   pstream->Release();
-
-   return true;
-
-
-#endif
 
 
 }

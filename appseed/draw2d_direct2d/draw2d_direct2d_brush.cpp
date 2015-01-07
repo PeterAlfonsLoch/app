@@ -13,6 +13,9 @@ namespace draw2d_direct2d
 
    brush::~brush()
    { 
+
+      destroy();
+
    }
 
 

@@ -4171,7 +4171,9 @@ namespace draw2d
       
    }
    
-
+   void graphics::debug()
+   {
+   }
 
 } // namespace draw2d
 

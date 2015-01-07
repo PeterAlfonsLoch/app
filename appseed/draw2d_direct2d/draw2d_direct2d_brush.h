@@ -37,7 +37,7 @@ namespace draw2d_direct2d
       //bool CreateSysColorBrush(int nIndex);
 
 
-      virtual bool destroy();
+      bool destroy();
 
       virtual void dump(dump_context & dumpcontext) const;
    };

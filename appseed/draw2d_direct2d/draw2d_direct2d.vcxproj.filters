@@ -62,6 +62,9 @@
     <ClCompile Include="framework\framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="my_debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="draw2d_direct2d.h">

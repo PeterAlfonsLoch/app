@@ -17,12 +17,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\FreeImage\PluginPNG.cpp">
+    <ClCompile Include="Source\FreeImage\PluginWICPNG.cpp">
       <Filter>Source Files\Plugins</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axispng.def">
+    <None Include="axiswicpng.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

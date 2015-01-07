@@ -11,6 +11,13 @@ namespace draw2d_direct2d
    {
    public:
 
+      //struct PathTextDrawingContext
+      //{
+
+      //   graphics_path * m_pthis;
+      //   ID2D1GeometrySink* psink;
+      //};
+
 
       Microsoft::WRL::ComPtr<ID2D1PathGeometry>        m_ppath;
       Microsoft::WRL::ComPtr<ID2D1GeometrySink>        m_psink;
@@ -53,7 +60,7 @@ namespace draw2d_direct2d
       ID2D1PathGeometry * get_os_path(::draw2d_direct2d::graphics * pdc);
 
       virtual bool create();
-      virtual bool destroy();
+      bool destroy();
       bool set(::draw2d_direct2d::graphics * pdc,const ::draw2d::path::element & e);
       bool set(const ::draw2d::path::arc & arc);
       bool set(const ::draw2d::path::move & move);
@@ -61,6 +68,7 @@ namespace draw2d_direct2d
       bool set(const ::draw2d::path::rect & rect);
       bool set(::draw2d_direct2d::graphics * pdc,const ::draw2d::path::string_path & path);
 
+      static void CreatePathTextRenderer(FLOAT pixelsPerDip,IDWriteTextRenderer **textRenderer);
 
 
    };

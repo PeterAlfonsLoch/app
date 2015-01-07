@@ -242,48 +242,48 @@ void thread_data::set(void * p)
 //}
 
 
-HANDLE start_thread(uint32_t(* pfn)(void *),void * pv,int32_t iPriority)
-{
+//HANDLE start_thread(uint32_t(* pfn)(void *),void * pv,int32_t iPriority)
+//{
+//
+//   UNREFERENCED_PARAMETER(iPriority);
+//
+//   return create_thread(NULL,0,pfn,pv,0,NULL);
+//
+//}
 
-   UNREFERENCED_PARAMETER(iPriority);
-
-   return create_thread(NULL,0,pfn,pv,0,NULL);
-
-}
-
-HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStack,uint32_t(* pfn)(void *),void * pv,uint32_t f,uint32_t * lpui)
-{
-
-   sp(os_thread) posthread = canew(os_thread(pfn,pv));
-
-   posthread->add_ref();
-
-   static int s_i = 0;
-
-   s_i++;
-
-   posthread->m_strDebug.Format("index = %d",s_i);
-
-   posthread->m_hthread = (HTHREAD)_beginthreadex(lpsa,(unsigned int)cbStack,&::os_thread::thread_proc,(void *)posthread,f | CREATE_SUSPENDED,lpui);
-
-   if(!(f & CREATE_SUSPENDED))
-   {
-
-      ::ResumeThread(posthread->m_hthread);
-
-   }
-
-   return posthread->m_hthread;
-
-}
-
-
-
-thread_layer::~thread_layer()
-{
+//HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStack,uint32_t(* pfn)(void *),void * pv,uint32_t f,uint32_t * lpui)
+//{
+//
+//   sp(os_thread) posthread = canew(os_thread(pfn,pv));
+//
+//   posthread->add_ref();
+//
+//   static int s_i = 0;
+//
+//   s_i++;
+//
+//   posthread->m_strDebug.Format("index = %d",s_i);
+//
+//   posthread->m_hthread = (HTHREAD)_beginthreadex(lpsa,(unsigned int)cbStack,&::os_thread::thread_proc,(void *)new,f | CREATE_SUSPENDED,lpui);
+//
+//   if(!(f & CREATE_SUSPENDED))
+//   {
+//
+//      ::ResumeThread(posthread->m_hthread);
+//
+//   }
+//
+//   return posthread->m_hthread;
+//
+//}
 
 
-}
+
+//thread_layer::~thread_layer()
+//{
+//
+//
+//}
 
 
 //int32_t thread_layer::run()
@@ -672,19 +672,19 @@ bool __os_term_thread()
 }
 
 
-void _on_os_hthread_end()
-{
-
-   // allow C-runtime to cleanup, and exit the thread
-   try
-   {
-
-      _endthreadex(uiRet);
-
-   }
-   catch(...)
-   {
-
-   }
-
-}
+//void _on_os_hthread_end(int iRet)
+//{
+//
+//   // allow C-runtime to cleanup, and exit the thread
+//   try
+//   {
+//
+//      _endthreadex(iRet);
+//
+//   }
+//   catch(...)
+//   {
+//
+//   }
+//
+//}

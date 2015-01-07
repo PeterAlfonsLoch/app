@@ -1,109 +1,5 @@
 #include "framework.h"
 
-HRESULT RenderPatternToCommandList(ID2D1RenderTarget * pgraphics, D2D1_COLOR_F *pcr)
-{
-
-   HRESULT hr;
-
-   pgraphics->BeginDraw();
-
-   pgraphics->Clear(pcr);
-
-   ID2D1SolidColorBrush * pbr = NULL;
-
-   //hr = pgraphics->CreateSolidColorBrush(*pcr, &pbr);
-
-   //pgraphics->DrawRectangle(D2D1::RectF(0.f, 0.f, 256.f, 256.f), pbr, 0.f);
-
-   //pbr->Release();
-
-   hr = pgraphics->EndDraw();
-
-   return hr;
-
-}
-
-HRESULT
-CreatePatternBrush(
-     __in ID2D1DeviceContext *pDeviceContext,
-     D2D1_COLOR_F * pcr,
-     __deref_out ID2D1ImageBrush **ppImageBrush
-     )
-{
-
-   HRESULT hrEndDraw = pDeviceContext->EndDraw();
-
-    HRESULT hr = S_OK;
-    ID2D1Image *pOldTarget = NULL;
-    pDeviceContext->GetTarget(&pOldTarget);
-
-    ID2D1CommandList *pCommandList = NULL;
-    hr = pDeviceContext->CreateCommandList(&pCommandList);
-     
-    if (SUCCEEDED(hr))
-    {   
-        pDeviceContext->SetTarget(pCommandList);
-        hr = RenderPatternToCommandList(pDeviceContext, pcr);
-    }
-
-    pDeviceContext->SetTarget(pOldTarget);
-
-    ID2D1ImageBrush *pImageBrush = NULL;
-
-    if(SUCCEEDED(hr))
-    {
-       hr = pCommandList->Close();
-    }
-
-    if (SUCCEEDED(hr))
-    {        
-
-        D2D1_IMAGE_BRUSH_PROPERTIES props;
-
-        props.sourceRectangle.left = 0.f;
-        props.sourceRectangle.top = 0.f;
-        props.sourceRectangle.right = 256.f;
-        props.sourceRectangle.bottom = 256.f;
-
-        props.extendModeX = D2D1_EXTEND_MODE_WRAP;
-        props.extendModeY = D2D1_EXTEND_MODE_WRAP;
-
-        props.interpolationMode = D2D1_INTERPOLATION_MODE_NEAREST_NEIGHBOR;
-
-        hr = pDeviceContext->CreateImageBrush(
-                 pCommandList, &props, NULL, &pImageBrush);
-    }
-    
-    // Fill a rectangle with the image brush.
-    /*if (SUCCEEDED(hr))
-    {
-        pDeviceContext->FillRectangle(
-            D2D1::RectF(0, 0, 100, 100), pImageBrush);
-    }*/
-
-    //pImageBrush->Release();
-    pCommandList->Release();
-    //pOldTarget->Release();
-
-    if(hrEndDraw == S_OK)
-    {
-       pDeviceContext->BeginDraw();
-    }
-
-    if(SUCCEEDED(hr))
-    {
-
-       *ppImageBrush = pImageBrush;
-
-    }
-    else
-    {
-
-       *ppImageBrush = NULL;
-    }
-
-    return hr;
-}
 
 namespace draw2d_direct2d
 {
@@ -120,6 +16,9 @@ namespace draw2d_direct2d
 
    pen::~pen()
    { 
+
+      destroy();
+
    }
 
 
@@ -482,19 +381,111 @@ namespace draw2d_direct2d
    bool pen::destroy()
    {
       
-      if(m_pimagebrush != NULL)
-      {
-         try
-         {
-            m_pimagebrush = nullptr;
-         }
-         catch(...)
-         {
-         }
-      }
+      m_pimagebrush = nullptr;
 
       return true;
 
+   }
+
+
+   HRESULT pen::s_RenderPatternToCommandList(ID2D1RenderTarget * pgraphics,D2D1_COLOR_F *pcr)
+   {
+
+      HRESULT hr;
+
+      pgraphics->BeginDraw();
+
+      pgraphics->Clear(pcr);
+
+      ID2D1SolidColorBrush * pbr = NULL;
+
+      //hr = pgraphics->CreateSolidColorBrush(*pcr, &pbr);
+
+      //pgraphics->DrawRectangle(D2D1::RectF(0.f, 0.f, 256.f, 256.f), pbr, 0.f);
+
+      //pbr->Release();
+
+      hr = pgraphics->EndDraw();
+
+      return hr;
+
+   }
+
+   HRESULT pen::s_CreatePatternBrush(ID2D1DeviceContext *pDeviceContext, D2D1_COLOR_F * pcr, ID2D1ImageBrush **ppImageBrush)
+   {
+
+      HRESULT hrEndDraw = pDeviceContext->EndDraw();
+
+      HRESULT hr = S_OK;
+      ID2D1Image *pOldTarget = NULL;
+      pDeviceContext->GetTarget(&pOldTarget);
+
+      ID2D1CommandList *pCommandList = NULL;
+      hr = pDeviceContext->CreateCommandList(&pCommandList);
+
+      if(SUCCEEDED(hr))
+      {
+         pDeviceContext->SetTarget(pCommandList);
+         hr = s_RenderPatternToCommandList(pDeviceContext,pcr);
+      }
+
+      pDeviceContext->SetTarget(pOldTarget);
+
+      ID2D1ImageBrush *pImageBrush = NULL;
+
+      if(SUCCEEDED(hr))
+      {
+         hr = pCommandList->Close();
+      }
+
+      if(SUCCEEDED(hr))
+      {
+
+         D2D1_IMAGE_BRUSH_PROPERTIES props;
+
+         props.sourceRectangle.left = 0.f;
+         props.sourceRectangle.top = 0.f;
+         props.sourceRectangle.right = 256.f;
+         props.sourceRectangle.bottom = 256.f;
+
+         props.extendModeX = D2D1_EXTEND_MODE_WRAP;
+         props.extendModeY = D2D1_EXTEND_MODE_WRAP;
+
+         props.interpolationMode = D2D1_INTERPOLATION_MODE_NEAREST_NEIGHBOR;
+
+         hr = pDeviceContext->CreateImageBrush(
+            pCommandList,&props,NULL,&pImageBrush);
+      }
+
+      // Fill a rectangle with the image brush.
+      /*if (SUCCEEDED(hr))
+      {
+      pDeviceContext->FillRectangle(
+      D2D1::RectF(0, 0, 100, 100), pImageBrush);
+      }*/
+
+      //pImageBrush->Release();
+      pCommandList->Release();
+      pOldTarget->Release();
+
+      if(hrEndDraw == S_OK)
+      {
+         pDeviceContext->BeginDraw();
+      }
+
+      if(SUCCEEDED(hr))
+      {
+
+         *ppImageBrush = pImageBrush;
+
+      }
+      else
+      {
+
+         *ppImageBrush = NULL;
+      }
+
+      return hr;
    }
 
 } // namespace draw2d_direct2d

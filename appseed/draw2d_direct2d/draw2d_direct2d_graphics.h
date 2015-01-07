@@ -17,10 +17,10 @@ namespace draw2d_direct2d
       Microsoft::WRL::ComPtr<ID2D1BitmapRenderTarget>    m_pbitmaprendertarget;
       Microsoft::WRL::ComPtr<ID2D1DCRenderTarget>        m_pdcrendertarget;
 
-      IDXGIAdapter *                   m_padapter;
-      IDXGIFactory2 *                  m_pfactory2;
-      ID2D1Layer *                     m_player;
-      ID2D1PathGeometry *              m_ppathgeometryClip;
+      Microsoft::WRL::ComPtr<IDXGIAdapter>               m_padapter;
+      Microsoft::WRL::ComPtr<IDXGIFactory2>              m_pfactory2;
+      Microsoft::WRL::ComPtr<ID2D1Layer>                 m_player;
+      Microsoft::WRL::ComPtr<ID2D1PathGeometry>          m_ppathgeometryClip;
 
       int                              m_iType;
 
@@ -494,7 +494,7 @@ namespace draw2d_direct2d
       bool blur(bool bExpand, double dRadius, const RECT & lpcrect);
 
 
-      virtual bool destroy();
+      bool destroy();
 
       IDWriteTextFormat * get_os_font(::draw2d::font * pfont) const;
       ID2D1Brush * get_os_brush(::draw2d::brush * pbrush) const;
@@ -504,7 +504,7 @@ namespace draw2d_direct2d
 
       virtual bool flush();
 
-
+      virtual void debug();
    //protected:
       // used for implementation of non-virtual SelectObject calls
       //static ::draw2d::object* SelectGdiObject(application * papp, HDC hDC, HGDIOBJ h);

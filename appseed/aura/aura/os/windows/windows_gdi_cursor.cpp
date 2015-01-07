@@ -41,24 +41,26 @@ HBITMAP CreateAlphaBitmapV5(::draw2d::dib * pdib)
    hdc = GetDC(NULL);
 
    // Create the DIB section with an alpha channel.
-   hBitmap = CreateDIBSection(hdc,(BITMAPINFO *)&bi,DIB_RGB_COLORS,
-      (void **)&lpBits,NULL,(DWORD)0);
+   hBitmap = CreateDIBSection(hdc,(BITMAPINFO *)&bi,DIB_RGB_COLORS,(void **)&lpBits,NULL,(DWORD)0);
 
-   hMemDC = CreateCompatibleDC(hdc);
+   //hMemDC = CreateCompatibleDC(hdc);
    ReleaseDC(NULL,hdc);
 
    // Draw something on the DIB section.
-   hOldBitmap = (HBITMAP)SelectObject(hMemDC,hBitmap);
-   PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
-   SetTextColor(hMemDC,RGB(0,0,0));
-   SetBkMode(hMemDC,TRANSPARENT);
-   TextOut(hMemDC,0,9,"rgba",4);
-   SelectObject(hMemDC,hOldBitmap);
-   DeleteDC(hMemDC);
+   //hOldBitmap = (HBITMAP)SelectObject(hMemDC,hBitmap);
+   //PatBlt(hMemDC,0,0,dwWidth,dwHeight,WHITENESS);
+   //SetTextColor(hMemDC,RGB(0,0,0));
+   //SetBkMode(hMemDC,TRANSPARENT);
+   //TextOut(hMemDC,0,9,"rgba",4);
+   //SelectObject(hMemDC,hOldBitmap);
+   //DeleteDC(hMemDC);
 
    // Set the alpha values for each pixel in the cursor so that
    // the complete cursor is semi-transparent.
-   memcpy(lpBits,pdib->m_pcolorref,(size_t)(sizeof(COLORREF)* pdib->area()));
+
+   int iStrideDst = dwWidth * sizeof(COLORREF);
+   
+   ::draw2d::copy_colorref(pdib->m_size.cx,pdib->m_size.cy,(COLORREF *)lpBits,iStrideDst, pdib->m_pcolorref,pdib->m_iScan);
 
    return hBitmap;
 
