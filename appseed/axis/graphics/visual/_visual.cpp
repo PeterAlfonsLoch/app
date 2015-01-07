@@ -1,9 +1,6 @@
 #include "framework.h"
 #include <math.h>
-#ifdef AXIS_FREEIMAGE
-#include "freeimage/Source/FreeImage.h"
-#include "visual_FreeImageFileProc.h"
-#endif
+
 #ifdef WINDOWSEX
 
 #undef new
@@ -23,22 +20,6 @@
 
 #endif
 
-#ifndef METROWIN
-#ifdef WINDOWS
-#define min MIN
-#define max MAX
-#undef new
-#include <gdiplus.h>
-#undef min
-#undef max
-int GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
-#elif defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-#include "freeimage/Source/FreeImage.h"
-#ifndef AXIS_FREEIMAGE
-#define AXIS_FREEIMAGE
-#endif
-#endif
-#endif
 
 
 //O volume na unidade C n∆o tem nome.
@@ -52,7 +33,7 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
 #include "visual_fastblur.cpp"
 #include "visual_font.cpp"
 #include "visual_font_central.cpp"
-#if !defined(METROWIN) && !defined(WINDOWSEX)
+#ifdef
 #include "visual_FreeImageFileProc.cpp"
 #endif
 #include "visual_glyph.cpp"

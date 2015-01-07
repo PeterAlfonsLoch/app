@@ -21,6 +21,34 @@
 #endif
 
 
+#ifndef METROWIN
+
+#ifdef WINDOWS
+#define min MIN
+#define max MAX
+#undef new
+#include <gdiplus.h>
+#undef min
+#undef max
+int GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
+#elif defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+
+#include "freeimage/Source/FreeImage.h"
+#include "graphics/visual/visual_FreeImageFileProc.h"
+
+#ifndef AXIS_FREEIMAGE
+#define AXIS_FREEIMAGE
+#endif // ndef(AXIS_FREEIMAGE)
+
+#endif // !WINDOWS && (def(LINUX) || def(APPLEOS) || def(AND))
+
+#endif // ndef(METROWIN)
+
+
+
+
+
+
 #include "axis/axis/os/os.h"
 
 //#include "axis_number.h"
