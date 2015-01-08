@@ -59,8 +59,8 @@ namespace user
    void interaction_base::_001RedrawWindow()
    {
 
-      if(System.get_twf() != NULL)
-         return;
+      //if(!m_bMayProDevian && GetParent() == NULL)
+        // return;
 
       if(!IsWindow())
       {
