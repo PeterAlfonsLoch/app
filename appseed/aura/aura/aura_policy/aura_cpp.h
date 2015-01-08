@@ -934,7 +934,13 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 #include "aura/aura/process/process.h"
 
+#include "aura/filesystem/filesystem/filesystem_system.h"
 
+#include "aura/filesystem/filesystem/filesystem_dir_system.h"
+
+#include "aura/filesystem/filesystem/filesystem_application.h"
+
+#include "aura/filesystem/filesystem/filesystem_dir_application.h"
 
 #include "aura/aura/aura/aura_core_os.h"
 
@@ -943,7 +949,6 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/aura/aura/aura_system_str.h"
 
 #include "aura/os/os_process.h"
-
 
 
 

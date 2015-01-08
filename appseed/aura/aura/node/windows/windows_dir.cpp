@@ -1261,25 +1261,97 @@ namespace windows
       return is_inside(time(), pszPath, papp);
    }
 
+
    bool dir::is_inside(const char * pszDir, const char * pszPath, ::aura::application * papp)
    {
+      
       return ::str::begins_ci(pszDir, pszPath);
+
    }
 
+   
    bool dir::has_subdir(::aura::application * papp, const char * pszDir)
    {
+      
       file_find file_find;
+
       bool bWorking;
+
       bWorking = file_find.FindFile(path(pszDir, "*.*"));
+
       while(bWorking)
       {
+         
          bWorking = file_find.FindNextFileA();
+
          if(file_find.IsDirectory() && !file_find.IsDots())
          {
+
             return true;
+
          }
+
       }
+
       return false;
+
    }
 
+
 } // namespace windows
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

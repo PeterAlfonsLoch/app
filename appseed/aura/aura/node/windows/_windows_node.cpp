@@ -17,9 +17,11 @@
 
 #include "windows.cpp"
 #include "windows_application.cpp"
+#include "windows_dir.cpp"
 #include "windows_factory_exchange.cpp"
 #include "windows_file.cpp"
 #include "windows_file_find.cpp"
+#include "windows_file_system.cpp"
 #include "windows_folder_watch.cpp"
 //#include "windows_handle.cpp"
 #include "windows_os.cpp"

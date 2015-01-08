@@ -94,6 +94,8 @@ namespace aura
       ::url::departament *                         m_purldepartament;
       ::axis::compress *                           m_pcompress;
 
+      ::file::system_sp                            m_spfile;
+      ::file::dir::system_sp                       m_spdir;
 
 
       system(::aura::application * papp);

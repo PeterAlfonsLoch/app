@@ -1,16 +1,16 @@
 #include "framework.h"
 
-#ifndef METROWIN
-#include <openssl/ssl.h>
-#endif
-
-#include <openssl/md5.h>
-#include <openssl/whrlpool.h>
-
-#ifndef WINDOWS
-#include <sys/stat.h>
-//#include <ctype.h>
-#endif
+//#ifndef METROWIN
+//#include <openssl/ssl.h>
+//#endif
+//
+//#include <openssl/md5.h>
+//#include <openssl/whrlpool.h>
+//
+//#ifndef WINDOWS
+//#include <sys/stat.h>
+////#include <ctype.h>
+//#endif
 
 //CLASS_DECL_AXIS void NESSIEinit(struct NESSIEstruct * const structpointer);
 //CLASS_DECL_AXIS void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
@@ -1658,19 +1658,11 @@ restart:
    }
 
 
-   FILETIME file::Win32GetLastWriteTime(const string & strFilename)
+   bool system::get_last_write_time(FILETIME * pfiletime,const string & strFilename)
    {
 
-      throw interface_only_exception();
-      FILETIME LastWriteTime ={};
+      throw interface_only_exception(get_app());
 
-      WIN32_FILE_ATTRIBUTE_DATA Data;
-      if(GetFileAttributesEx(Filename,GetFileExInfoStandard,&Data))
-      {
-         LastWriteTime = Data.ftLastWriteTime;
-      }
-
-      return(LastWriteTime);
    }
 
 

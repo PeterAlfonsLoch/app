@@ -17,8 +17,6 @@ namespace axis
       sp(class ::datetime::departament)            m_pdatetime;
 
 
-      ::file::system_sp                            m_spfile;
-      ::file::dir::system_sp                       m_spdir;
       ::http::system                               m_httpsystem;
       
 

@@ -5,13 +5,13 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS system :
+   class CLASS_DECL_AURA system :
       public object
    {
    public:
 
 
-      class CLASS_DECL_AXIS path :
+      class CLASS_DECL_AURA path :
          virtual public ::object
       {
       public:
@@ -136,17 +136,6 @@ namespace file
 
 //      path & path36();
 
-      void dtf(const char * pszFile, const char * pszDir, ::aura::application * papp);
-      void dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::aura::application * papp);
-      void ftd(const char * pszDir, const char * pszFile, ::aura::application * papp);
-
-
-      // 'n' (natural) terminated ascii number, example: 245765487n
-      void write_n_number(::file::buffer_sp  pfile,MD5_CTX * pctx,int64_t iNumber);
-      void read_n_number(::file::buffer_sp  pfile,MD5_CTX * pctx,int64_t & iNumber);
-
-      void write_gen_string(::file::buffer_sp  pfile,MD5_CTX * pctx,string & str);
-      void read_gen_string(::file::buffer_sp  pfile,MD5_CTX * pctx,string & str);
 
 
       void is_valid_fileset(const char * pszFile, ::aura::application * papp);
@@ -155,7 +144,7 @@ namespace file
 
       virtual bool resolve_link(string & strTarget,const char * pszSource,sp(::aura::interaction) puiMessageParentOptional = NULL);
 
-
+      virtual bool get_last_write_time(FILETIME * pfiletime,const string & strFilename);
 
    protected:
 

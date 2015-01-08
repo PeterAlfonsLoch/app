@@ -16,7 +16,7 @@ namespace file
 {
 
 
-   class CLASS_DECL_AXIS path :
+   class CLASS_DECL_AURA path :
       virtual public ::object
 
    {
@@ -29,14 +29,14 @@ namespace file
    {
 
 
-      class CLASS_DECL_AXIS system :
+      class CLASS_DECL_AURA system :
          virtual public ::object
       {
       public:
 
 
 
-         class CLASS_DECL_AXIS is_dir
+         class CLASS_DECL_AURA is_dir
          {
          public:
 
@@ -49,7 +49,7 @@ namespace file
          };
 
 
-         class CLASS_DECL_AXIS is_dir_map :
+         class CLASS_DECL_AURA is_dir_map :
             virtual public string_map < is_dir >
          {
          public:

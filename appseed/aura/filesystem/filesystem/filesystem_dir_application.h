@@ -11,7 +11,7 @@ namespace file
    namespace dir
    {
 
-      class CLASS_DECL_AXIS application :
+      class CLASS_DECL_AURA application:
          virtual public ::object
       {
       public:

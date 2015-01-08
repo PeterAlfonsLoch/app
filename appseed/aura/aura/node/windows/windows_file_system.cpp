@@ -134,7 +134,110 @@ namespace windows
    }
 
 
+   // from win32_handmade (casey) : Thank you, Casey Muratori!! From Seattle (sitou) to Curitiba, 8 de novembro de 205
+
+
+   bool file_system::get_last_write_time(FILETIME * pfiletime,const string & strFilename)
+   {
+
+      WIN32_FILE_ATTRIBUTE_DATA data;
+
+      ZERO(data);
+
+      if(!GetFileAttributesExW(wstring(strFilename),GetFileExInfoStandard,&data))
+      {
+
+         return false;
+
+      }
+
+      *pfiletime = data.ftLastWriteTime;
+
+      return true;
+
+   }
+
+
 } // namespace windows
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

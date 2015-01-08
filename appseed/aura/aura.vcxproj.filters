@@ -129,9 +129,6 @@
     <Filter Include="Source Files\aura\message">
       <UniqueIdentifier>{b9bf68d4-d81e-4040-a63c-b2b470c06acd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\aura\node\android">
-      <UniqueIdentifier>{8e87a155-a76c-44a0-8114-25921d3dd914}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\aura\node\ansios">
       <UniqueIdentifier>{a082445c-e80b-4002-8250-1fd29ecad1d1}</UniqueIdentifier>
     </Filter>
@@ -192,17 +189,11 @@
     <Filter Include="Header Files\aura\os">
       <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\os\android">
-      <UniqueIdentifier>{1d998585-d816-43da-8e2f-dd16e84dde53}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\aura\os\windows">
       <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\aura\os\cross">
       <UniqueIdentifier>{e9b106f1-4ddd-4521-b7c1-6461c701be4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\cross\windows">
-      <UniqueIdentifier>{105dbf8b-8b00-4530-b1fa-ac561338c12e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\aura\os\cross\ansios">
       <UniqueIdentifier>{1ed12af4-cb60-48aa-9d69-eaae021eebd9}</UniqueIdentifier>
@@ -215,9 +206,6 @@
     </Filter>
     <Filter Include="Header Files\aura\node\windows">
       <UniqueIdentifier>{8a9f35dd-3924-4dfe-bc44-6a823f0200b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\node\android">
-      <UniqueIdentifier>{7e1d30ab-0995-45f2-b0b9-64e3a5d68c5a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\aura\node\ansios">
       <UniqueIdentifier>{69195050-6ed5-49b9-b26e-60f94ca26561}</UniqueIdentifier>
@@ -251,6 +239,12 @@
     </Filter>
     <Filter Include="Header Files\primitive\data">
       <UniqueIdentifier>{a96fca9e-248b-448a-b0bd-dee53b174b85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\filesystem">
+      <UniqueIdentifier>{b9deaaa1-4b3b-4453-a028-8c6f0dbba4e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filesystem\filesystem">
+      <UniqueIdentifier>{a1c58f3a-f4e9-4de5-a300-cf9b6065e04b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1001,9 +995,6 @@
     <ClInclude Include="aura\os\cross\cross.h">
       <Filter>Header Files\aura\os\cross</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\android\android.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="aura\exception\exception.h">
       <Filter>Header Files\aura\exception</Filter>
     </ClInclude>
@@ -1376,81 +1367,6 @@
     <ClInclude Include="primitive\primitive_relation_set.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\android\android_cross_win_file.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\android_cross_win_gdi.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\android_cross_win_gdi_internal.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\android_file.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\android_file_watcher.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\android_graphics.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\android_internal.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\android_process.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\android_android.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_crt.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_defs.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_error.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_file.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_gdi.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_guid_def.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_internals.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_ole_automation.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_shared_memory.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_thread.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_thread_impl.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_time.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_types.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_user.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_winnt.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
     <ClInclude Include="aura\os\ansios\ansios.h">
       <Filter>Header Files\aura\os\ansios</Filter>
     </ClInclude>
@@ -1615,51 +1531,6 @@
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_synch_index_ptr_array.h">
       <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\e.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_base.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_base_tsd.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_common_controls.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_crtdefs.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_errno.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_mmeapi.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_mmsystem.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_nls.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_nt.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_ntstatus.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_poppack.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_pshpack2.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_pshpack4.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_pshpack8.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_folder_watch.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -1880,39 +1751,6 @@
     <ClInclude Include="aura\process\process.h">
       <Filter>Header Files\aura\process</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\android\android.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_application.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_factory_exchange.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_file.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_implementation.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_internal.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_os.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_shell.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_stdio_file.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android_thread.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android1.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="aura\exception\exception_cancel.h">
       <Filter>Header Files\aura\exception</Filter>
     </ClInclude>
@@ -2108,9 +1946,6 @@
     <ClInclude Include="aura\aura\aura_command_msg.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\android\aaa_want_to_remove_android_window_impl.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="aura\os\cross\ansios\ansios_file.h">
       <Filter>Header Files\aura\os\cross\ansios</Filter>
     </ClInclude>
@@ -2119,6 +1954,24 @@
     </ClInclude>
     <ClInclude Include="aura\aura\aura_str_context.h">
       <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_application.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_application.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\windows\windows_dir.h">
+      <Filter>Header Files\aura\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\windows\windows_file_system.h">
+      <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3097,53 +2950,8 @@
     <ClCompile Include="multithreading\multithreading.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="aura\node\android\android_application.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_dumpinit.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_error.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_exception.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_factory_exchange.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_file.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_main.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_os.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_shell.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_stdio_file.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_thread.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_trace.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_util.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android1.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="aura\node\ansios\ansios_thread_impl.cpp">
       <Filter>Source Files\aura\node\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\node\android\android_android.cpp">
-      <Filter>Source Files\aura\node\android</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\ansios\ansios_base_file.cpp">
       <Filter>Source Files\aura\os\ansios</Filter>
@@ -3519,6 +3327,24 @@
     </ClCompile>
     <ClCompile Include="aura\node\_node.cpp">
       <Filter>Source Files\aura\node</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_application.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_dir_application.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_dir_system.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_system.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\windows\windows_dir.cpp">
+      <Filter>Source Files\aura\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\windows\windows_file_system.cpp">
+      <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
