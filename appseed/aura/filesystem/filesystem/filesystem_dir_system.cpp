@@ -431,22 +431,18 @@ namespace file
       }
 
 
-      void system::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+      bool system::ls_pattern(::aura::application * papp,const char * lpcsz,const char * pszPattern,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
       {
-         UNREFERENCED_PARAMETER(pszPattern);
 
-         throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
+         return false;
 
       }
 
-      void system::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+      bool system::ls(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
       {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(pstraPath);
-         UNREFERENCED_PARAMETER(pstraTitle);
-         UNREFERENCED_PARAMETER(pbaIsDir);
-         UNREFERENCED_PARAMETER(piaSize);
-         throw interface_only_exception(get_app(), "this is an interface");
+         
+         return false;
+
       }
 
       
@@ -454,25 +450,24 @@ namespace file
       {
          
          return false;
-      
-         //throw interface_only_exception(get_app(),"this is an interface");
 
       }
 
 
-      void system::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+      bool system::rls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
       {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(pstraPath);
-         UNREFERENCED_PARAMETER(pstraTitle);
-         UNREFERENCED_PARAMETER(pstraRelative);
-         throw interface_only_exception(get_app(), "this is an interface");
+
+         return false;
+         
       }
 
-      void system::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      bool system::ls_dir(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
       {
-         throw interface_only_exception(get_app(),"this is an interface");
+         
+         return false;
+
       }
+
 
       bool system::has_subdir(::aura::application * papp, const char * lpcsz)
       {
@@ -480,13 +475,14 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      void system::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      
+      bool system::ls_file(::aura::application * papp,const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
       {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(pstraPath);
-         UNREFERENCED_PARAMETER(pstraTitle);
-         throw interface_only_exception(get_app(), "this is an interface");
+         
+         return false;
+
       }
+
 
       bool system::is_or_definitively_not(bool & bIs, const char * lpcszPath, ::aura::application * papp)
       {

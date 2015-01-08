@@ -200,15 +200,30 @@ namespace windows
       free(lpszAlloc);
    }
 
-   void dir::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+
+   bool dir::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
-      if(::file::dir::system::is(lpcsz, papp)) // if axis class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
+      
+      if(::file::dir::system::ls_pattern(papp, lpcsz, pszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize))
       {
-         return ::file::dir::system::ls_pattern(papp, lpcsz, pszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
+
+         return true;
+
       }
+
       file_find file_find;
+      
       bool bWorking;
+      
       bWorking = file_find.FindFile(System.dir().path(lpcsz, pszPattern));
+
+      if(!bWorking)
+      {
+         return false;
+
+      }
+
+
       while(bWorking)
       {
          bWorking = file_find.FindNextFileA();
@@ -232,6 +247,9 @@ namespace windows
             }
          }
       }
+      
+      return true;
+
    }
 
    
@@ -245,6 +263,15 @@ namespace windows
 
    bool dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
+
+      if(::file::dir::system::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative, pbaIsDir, piaSize, eextract))
+      {
+
+         return true;
+
+      }
+
+
       stringa straDir;
       ls_dir(papp, lpcsz, &straDir);
       for(int32_t i = 0; i < straDir.get_count(); i++)
@@ -324,11 +351,31 @@ namespace windows
       }
    }
 
-   void dir::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+
+   bool dir::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
    {
+
+
+      if(::file::dir::system::rls_dir(papp,lpcsz,pstraPath,pstraTitle, pstraRelative))
+      {
+
+         return true;
+
+      }
+
       file_find file_find;
+
       bool bWorking;
+
       bWorking = file_find.FindFile(System.dir().path(lpcsz, "*.*"));
+
+      if(!bWorking)
+      {
+
+         return false;
+
+      }
+
       while(bWorking)
       {
          bWorking = file_find.FindNextFileA();
@@ -364,19 +411,32 @@ namespace windows
             }
          }
       }
+
+      return true;
+
    }
 
-   void dir::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   bool dir::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
+
+      if(::file::dir::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
+      {
+
+         return true;
+
+      }
       
       file_find file_find;
       bool bWorking;
       bWorking = file_find.FindFile(System.dir().path(lpcsz, "*.*"));
+      
       if(!bWorking)
       {
-         ::file::dir::system::ls_dir(papp, lpcsz, pstraPath, pstraTitle);
-         return;
+         
+         return false;
+
       }
+
       while(bWorking)
       {
          bWorking = file_find.FindNextFileA();
@@ -392,22 +452,34 @@ namespace windows
             }
          }
       }
+
+      return true;
+
    }
 
-   void dir::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+
+   bool dir::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
 
 
-      if(::file::dir::system::is(lpcsz,papp)) // if axis class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
+      if(::file::dir::system::ls_pattern(papp,lpcsz,"*.*",pstraPath,pstraTitle))
       {
 
-         return ::file::dir::system::ls_pattern(papp,lpcsz,"*.*", pstraPath,pstraTitle);
+         return true;
 
       }
 
       file_find file_find;
       bool bWorking;
       bWorking = file_find.FindFile(System.dir().path(lpcsz, "*.*"));
+
+      if(!bWorking)
+      {
+
+         return false;
+
+      }
+
       while(bWorking)
       {
          bWorking = file_find.FindNextFileA();
@@ -423,12 +495,19 @@ namespace windows
             }
          }
       }
+
+      return true;
+
    }
 
-   void dir::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+
+   bool dir::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
+
       return ls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pbaIsDir, piaSize);
+
    }
+
 
    bool dir::is(const char * lpcszPath, ::aura::application * papp)
    {

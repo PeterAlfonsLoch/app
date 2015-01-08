@@ -394,9 +394,11 @@ namespace file
       }
 
 
-      void system::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+      bool system::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
       {
+         
          UNREFERENCED_PARAMETER(pszPattern);
+
          if(::str::begins_ci(lpcsz, "http://") || ::str::begins_ci(lpcsz, "https://"))
          {
 
@@ -411,26 +413,27 @@ namespace file
 
             }
 
-            return;
+            return true;
 
          }
+
          if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_ci(".zip:",lpcsz) >= 0))
          {
-            m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
-            return;
+
+            return m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
+
          }
-         throw not_implemented(get_app(), "is really a directory or compressed directory/file??");
+         
+         return false;
 
       }
 
-      void system::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+
+      bool system::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
       {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(pstraPath);
-         UNREFERENCED_PARAMETER(pstraTitle);
-         UNREFERENCED_PARAMETER(pbaIsDir);
-         UNREFERENCED_PARAMETER(piaSize);
-         throw interface_only_exception(get_app(), "this is an interface");
+         
+         return false;
+
       }
 
       
@@ -449,41 +452,37 @@ namespace file
       }
 
 
-      void system::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+      bool system::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
       {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(pstraPath);
-         UNREFERENCED_PARAMETER(pstraTitle);
-         UNREFERENCED_PARAMETER(pstraRelative);
-         throw interface_only_exception(get_app(), "this is an interface");
+         
+         return false;
+
       }
 
-      void system::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+
+      bool system::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
+
          if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::ends_ci(lpcsz,".zip") || ::str::find_ci(".zip:",lpcsz) >= 0))
          {
-            m_pziputil->ls_dir(papp, lpcsz, pstraPath, pstraTitle);
-            return;
+            
+            return m_pziputil->ls_dir(papp, lpcsz, pstraPath, pstraTitle);
+
          }
-         else
-         {
-            return;
-         }
+
+         return false;
+
+
       }
 
-      //bool system::has_subdir(::aura::application * papp, const char * lpcsz)
-      //{
-      //   UNREFERENCED_PARAMETER(lpcsz);
-      //   throw interface_only_exception(get_app(), "this is an interface");
-      //}
-
-      void system::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      
+      bool system::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(pstraPath);
-         UNREFERENCED_PARAMETER(pstraTitle);
-         throw interface_only_exception(get_app(), "this is an interface");
+
+         return false;
+       
       }
+
 
       bool system::is_or_definitively_not(bool & bIs, const char * lpcszPath, ::aura::application * papp)
       {
