@@ -287,7 +287,7 @@ namespace install
 
       virtual int32_t ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch);
 
-      virtual void on_set_scalar(int_scalar_source * psource, e_scalar escalar, int64_t iValue);
+      virtual void on_set_scalar(int_scalar_source * psource,e_scalar escalar,int64_t iValue,int iFlags);
 
    };
 

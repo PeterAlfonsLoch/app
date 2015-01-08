@@ -108,7 +108,7 @@ namespace user
 
       UpdatePosition();
 
-      m_scalarVelocity = CalcScalar();
+      m_pscalarVelocity->set_rate(CalcScalar(),scalar_set);
 
    }
 
@@ -143,7 +143,7 @@ namespace user
    double elastic_slider::CalcScalar()
    {
       uint32_t dwTime = ::get_tick_count();
-      if(dwTime - m_dwLastTime < 300)
+      if(dwTime - m_dwLastTime < 30)
          return m_daScalar.GetMean();
       CalcTension();
       double dScalar;
@@ -165,21 +165,21 @@ namespace user
       return m_daScalar.GetMean(); // Low Pass Filter
    }
 
-   void elastic_slider::SetStreamingVelocityMode(double_scalar & scalarVelocity, double_scalar & scalarPosition)
+   void elastic_slider::SetStreamingVelocityMode(scalar_base * pscalarVelocity,scalar_base * pscalarPosition)
    {
       
       m_escalar = scalar_streaming_velocity;
 
-      m_scalarVelocity = scalarVelocity;
+      m_pscalarVelocity = pscalarVelocity;
       
-      m_scalarPosition = scalarPosition;
+      m_pscalarPosition = pscalarPosition;
       
    }
 
    void elastic_slider::UpdatePosition()
    {
 
-      SetSliderPos(m_scalarPosition.rate(0.0));
+      SetSliderPos(m_pscalarPosition->get_rate(0.0));
 
    }
 
@@ -211,11 +211,11 @@ namespace user
       rect rect;
       GetSliderRect(rect);
 
-      pdc->Draw3dRect(rect, RGB(255, 255, 255), RGB(255, 255, 255));
+      pdc->Draw3dRect(rect,ARGB(128,255,255,255),ARGB(128,255,255,255));
       rect.deflate(1, 1);
-      pdc->Draw3dRect(rect, RGB(255, 255, 0), RGB(255, 255, 0));
+      pdc->Draw3dRect(rect,ARGB(128,255,255,0),ARGB(128,255,255,0));
       rect.deflate(1, 1);
-      pdc->Draw3dRect(rect, RGB(255, 255, 255), RGB(255, 255, 255));
+      pdc->Draw3dRect(rect,ARGB(128,255,255,255),ARGB(128,255,255,255));
       if(m_bSlide)
       {
          pdc->MoveTo(rect.center());

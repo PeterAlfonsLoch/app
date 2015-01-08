@@ -378,7 +378,7 @@ namespace sockets
       m_pfile = NULL;
    }
 
-   void http_client_socket::on_set_scalar(e_scalar escalar, int64_t iValue)
+   void http_client_socket::on_set_scalar(e_scalar escalar,int64_t iValue,int iFlags)
    {
 
       if (escalar == scalar_download_size)
@@ -390,7 +390,7 @@ namespace sockets
       else
       {
 
-         return ::int_scalar_source::on_set_scalar(escalar, iValue);
+         return ::int_scalar_source::on_set_scalar(escalar, iValue, iFlags);
 
       }
 

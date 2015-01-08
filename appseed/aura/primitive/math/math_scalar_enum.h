@@ -4,6 +4,8 @@
 enum e_scalar
 {
 
+
+
    scalar_none,
    scalar_default,
    scalar_download_size,
@@ -19,6 +21,14 @@ enum e_scalar
    scalar_position,
    scalar_key_shift
 
+
 };
 
 
+enum e_scalar_flags
+{
+   // flags;
+   scalar_set        = 0x0000001,
+   scalar_slide      = 0x0000002
+
+};

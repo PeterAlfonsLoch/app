@@ -9,7 +9,7 @@
 namespace str
 {
 
-
+   CLASS_DECL_AURA extern e_err g_eerr = err_none;
 
 
    const char trailingBytesForUTF8[256] = {
@@ -1427,21 +1427,52 @@ namespace str
 
    const char * utf8_inc(const char * psz)
    {
+      
+      clear_err();
+
       char len =  1 + ::str::trailingBytesForUTF8[(uchar) *psz];
       if(len == 0)      return psz;
-      if(*psz++ == 0)   throw invalid_character(get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)
+      {
+         set_err(err_invalid_utf8_character);
+         return NULL;
+      }
       if(len == 1)      return psz;
-      if(*psz++ == 0)   throw invalid_character(get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)
+      {
+         set_err(err_invalid_utf8_character);
+         return NULL;
+      }
       if(len == 2)      return psz;
-      if(*psz++ == 0)   throw invalid_character(get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)
+      {
+         set_err(err_invalid_utf8_character);
+         return NULL;
+      }
       if(len == 3)      return psz;
-      if(*psz++ == 0)   throw invalid_character(get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)
+      {
+         set_err(err_invalid_utf8_character);
+         return NULL;
+      }
       if(len == 4)      return psz;
-      if(*psz++ == 0)   throw invalid_character(get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)
+      {
+         set_err(err_invalid_utf8_character);
+         return NULL;
+      }
       if(len == 5)      return psz;
-      if(*psz++ == 0)   throw invalid_character(get_thread_app(), "invalid utf8 character");
+      if(*psz++ == 0)
+      {
+         set_err(err_invalid_utf8_character);
+         return NULL;
+      }
       if(len == 6)      return psz;
-      throw invalid_character(get_thread_app(), "invalid utf8 character");
+
+      {
+         set_err(err_invalid_utf8_character);
+         return NULL;
+      }
    }
 
 

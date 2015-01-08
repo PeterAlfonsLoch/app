@@ -332,6 +332,8 @@ namespace user
          if(pcontrol != NULL)
          {
             pdrawitem->m_rectClient = pdrawitem->m_rectSubItem;
+            pdrawitem->m_rectWindow = pdrawitem->m_rectClient;
+            ClientToScreen(pdrawitem->m_rectWindow);
             control_keep controlkeep(this, pdrawitem->m_iItem, pdrawitem->m_iSubItem);
             pcontrol->_003CallCustomDraw(pdrawitem->m_pgraphics, pdrawitem);
          }
@@ -519,8 +521,23 @@ namespace user
       }
       rect rectControl;
       draw_list_item item(this);
+
       item.m_iDisplayItem = m_iItemHover;
       item.m_iItem = DisplayToStrict(m_iItemHover);
+
+      if(m_bGroup)
+      {
+         item.m_iGroupTopIndex = 0;
+         //            int32_t igroup;
+         for(item.m_iGroup = 0; item.m_iGroup < m_nGroupCount; item.m_iGroup++)
+         {
+            item.m_iGroupCount = _001GetGroupItemCount(item.m_iGroup);
+            if(item.m_iItem >= item.m_iGroupTopIndex && item.m_iItem < (item.m_iGroupTopIndex + item.m_iGroupCount))
+               break;
+         }
+      }
+
+
       item.m_iSubItem = pcontrol->descriptor().m_iSubItem;
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;

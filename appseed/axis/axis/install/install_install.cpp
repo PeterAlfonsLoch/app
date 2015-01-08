@@ -1197,7 +1197,7 @@ namespace install
    }
 
 
-   void install::on_set_scalar(e_scalar escalar, int64_t iValue)
+   void install::on_set_scalar(e_scalar escalar,int64_t iValue,int iFlags)
    {
 
       if (escalar == scalar_app_install_progress)
@@ -1221,7 +1221,7 @@ namespace install
       else
       {
 
-         return ::int_scalar_source::on_set_scalar(escalar, iValue);
+         return ::int_scalar_source::on_set_scalar(escalar,iValue,iFlags);
 
       }
 

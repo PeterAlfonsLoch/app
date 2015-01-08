@@ -761,10 +761,17 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics * pgraphics)
    {
 
+      /*point ptOrg =  pgraphics->GetViewportOrg();*/
+
       try
       {
 
-         set_viewport_org(pgraphics);
+         if(!is_custom_draw())
+         {
+
+            set_viewport_org(pgraphics);
+
+         }
 
          pgraphics->m_dFontFactor = 1.0;
 
@@ -801,10 +808,23 @@ namespace user
 
             bool bFirst = true;
 
-            while(pui != NULL)
+            //while(pui != NULL)
             {
 
-               pui->GetWindowRect(rectClient);
+               ::aura::draw_context * pdrawcontext = pgraphics->::core::simple_chain < ::aura::draw_context >::get_last();
+
+               rect rectClient;
+
+               if(pdrawcontext != NULL)
+               {
+
+                  rectClient     = pdrawcontext->m_rectWindow;
+
+               }
+               else
+               {
+                  pui->GetWindowRect(rectClient);
+               }
 
                ScreenToClient(rectClient);
 
@@ -820,7 +840,7 @@ namespace user
 
 //                  pgraphics->SelectClipRgn(rgnClip);
 
-                  break;
+                  //;//                  break;
 
                }
                else
@@ -856,9 +876,13 @@ namespace user
       catch(...)
       {
 
+//         pgraphics->SetViewportOrg(ptOrg);
+
          throw simple_exception(::get_thread_app(), "no more a window");
 
       }
+
+      //pgraphics->SetViewportOrg(ptOrg);
 
    }
 
@@ -882,7 +906,7 @@ namespace user
 
             interaction * pui = ptraChild[i];
 
-            if(pui->m_bVisible)
+            if(pui->m_bVisible && !pui->is_custom_draw())
             {
 
                pui->_000OnDraw(pdc);
@@ -1007,15 +1031,29 @@ namespace user
    void interaction::draw_control_background(::draw2d::graphics *pdc)
    {
 
+      ::aura::draw_context * pdrawcontext = pdc->::core::simple_chain < ::aura::draw_context >::get_last();
+
+      rect rectClient;
+
+      if(pdrawcontext != NULL)
+      {
+       
+         rectClient     = pdrawcontext->m_rectClient;
+
+      }
+      else
+      {
+
+         GetClientRect(rectClient);
+
+      }
+
       if(_001IsBackgroundBypass())
       {
       }
       else if(_001IsTranslucent())
       {
 
-         rect rectClient;
-
-         GetClientRect(rectClient);
 
          pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -1029,10 +1067,6 @@ namespace user
       else
       {
 
-         rect rectClient;
-
-         GetClientRect(rectClient);
-
          pdc->set_alpha_mode(::draw2d::alpha_mode_set);
 
          COLORREF cr = ARGB(255,255,255,255);
@@ -1044,6 +1078,13 @@ namespace user
          pdc->FillSolidRect(rectClient,cr);
 
       }
+
+   }
+
+   bool interaction::is_custom_draw()
+   {
+
+      return false;
 
    }
 

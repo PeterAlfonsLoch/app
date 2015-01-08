@@ -61,7 +61,7 @@ namespace user
       else if(m_estyle == style_list)
       {
 
-         _001OnDrawPush(pdc);
+         _001OnDrawList(pdc);
 
       }
       else if(m_estyle == style_bitmap)
@@ -1070,6 +1070,13 @@ namespace user
    {
    }
 
+
+   bool button::is_custom_draw()
+   {
+
+      return m_estyle == style_list;
+
+   }
 
 
 

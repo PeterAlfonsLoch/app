@@ -319,6 +319,7 @@ namespace user
 #include "core/user/menu/user_menu_list_window.h"
 #include "core/user/menu/user_menu_list_view.h"
 
+#include "user_slider.h"
 #include "user_step_slider.h"
 #include "user_elastic_slider.h"
 

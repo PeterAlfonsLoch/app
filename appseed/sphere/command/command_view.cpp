@@ -93,7 +93,7 @@ namespace command
    }
 
 
-   void view::on_update(sp(::aura::impact) pSender, LPARAM lHint, ::object* phint)
+   void view::on_update(::aura::impact * pSender, LPARAM lHint, ::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);

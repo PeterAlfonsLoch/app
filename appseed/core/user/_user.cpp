@@ -84,6 +84,7 @@
 #include "user/user_orto_button.cpp"
 #include "user/user_shell.cpp"
 #include "user/user_single_document_template.cpp"
+#include "user/user_slider.cpp"
 #include "user/user_split_bar.cpp"
 #include "user/user_split_layout.cpp"
 #include "user/user_split_view.cpp"

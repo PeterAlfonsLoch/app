@@ -59,6 +59,9 @@ namespace user
    void interaction_base::_001RedrawWindow()
    {
 
+      if(System.get_twf() != NULL)
+         return;
+
       if(!IsWindow())
       {
 

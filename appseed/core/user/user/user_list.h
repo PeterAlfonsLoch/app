@@ -683,6 +683,8 @@ namespace user
 
       virtual void _001OnInitialize();
 
+      virtual void _001OnInitialUpdate(signal_details * pobj);
+
       void _001AddColumn(list_column & pcolumn);
 
       void _001GetGroupRect(draw_list_item * pitem);

@@ -339,7 +339,7 @@ namespace aura
       virtual bool check_exclusive();
       virtual bool release_exclusive();
 
-      virtual void on_set_scalar(e_scalar escalar,int64_t iValue);
+      virtual void on_set_scalar(e_scalar escalar,int64_t iValue,int iFlags);
       virtual void get_scalar_minimum(e_scalar escalar,int64_t & i);
       virtual void get_scalar(e_scalar escalar,int64_t & i);
       virtual void get_scalar_maximum(e_scalar escalar,int64_t & i);

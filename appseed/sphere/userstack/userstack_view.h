@@ -70,7 +70,7 @@ namespace userstack
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool pre_create_window(::user::create_struct& cs);
       virtual void OnDraw(::draw2d::graphics * pgraphics);
-      virtual void on_update(sp(::aura::impact) pSender, LPARAM lHint, ::object* pHint);
+      virtual void on_update(::aura::impact * pSender, LPARAM lHint, ::object* pHint);
 
       ::aura::document * get_document();
 

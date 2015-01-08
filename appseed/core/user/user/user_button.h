@@ -82,6 +82,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual void _002OnDraw(::draw2d::graphics * pdc);
 
+      virtual bool is_custom_draw();
 
       virtual void _001SetCheck(check::e_check check, ::action::context actioncontext);
       virtual check::e_check _001GetCheck();

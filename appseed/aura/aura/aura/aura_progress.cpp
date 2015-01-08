@@ -38,7 +38,7 @@ void int_progress::trace_progress()
    if (m_plistener != NULL)
    {
 
-      m_plistener->on_progress(m_dProgressStart + (m_dProgressEnd - m_dProgressStart) * m_scalar.rate());
+      m_plistener->on_progress(m_dProgressStart + (m_dProgressEnd - m_dProgressStart) * m_scalar.get_rate());
 
    }
 
@@ -55,7 +55,7 @@ void int_progress::progress_step()
 
 
 
-void int_progress::on_set_scalar(int_scalar_source * psource, e_scalar escalar, int64_t iValue)
+void int_progress::on_set_scalar(int_scalar_source * psource,e_scalar escalar,int64_t iValue,int iFlags)
 {
 
    if (m_scalar.m_psource == psource)

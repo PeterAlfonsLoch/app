@@ -13,7 +13,7 @@ public:
 
 
 class CLASS_DECL_AURA int_progress :
-   virtual public int_scalar_source::listener
+   virtual public int_scalar_listener
 {
 public:
 
@@ -33,7 +33,7 @@ public:
 
    virtual void progress_step();
 
-   virtual void on_set_scalar(int_scalar_source * psource, e_scalar escalar, int64_t iValue);
+   virtual void on_set_scalar(int_scalar_source * psource,e_scalar escalar,int64_t iValue,int iFlags);
 
    int_scalar & operator ()(){ return m_scalar;  }
 

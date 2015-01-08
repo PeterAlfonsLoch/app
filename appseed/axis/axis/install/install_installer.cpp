@@ -4150,7 +4150,7 @@ RetryBuildNumber:
 
    }
 
-   void installer::on_set_scalar(int_scalar_source * psource, e_scalar escalar, int64_t iValue)
+   void installer::on_set_scalar(int_scalar_source * psource,e_scalar escalar,int64_t iValue,int iFlags)
    {
       if (escalar == scalar_download_size)
       {

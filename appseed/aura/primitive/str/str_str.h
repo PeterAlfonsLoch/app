@@ -32,11 +32,23 @@ extern const char trailingBytesForUTF8[256];
 namespace str
 {
 
+
+
    enum e_pad
    {
       pad_left,
       pad_right
    };
+
+   enum e_err
+   {
+      err_none,
+      err_invalid_utf8_character
+   };
+
+
+   CLASS_DECL_AURA extern e_err g_eerr;
+
 
    void CLASS_DECL_AURA increment_digit_letter(string & str);
    int32_t  CLASS_DECL_AURA compare(const char * psz1, const char * psz2);
@@ -125,6 +137,9 @@ namespace str
 
    FORCEINLINE  const char * __utf8_inc(const char * psz) { return psz + 1 + trailingBytesForUTF8[(uchar) *psz]; }
 
+   static_inline e_err           err() { return g_eerr; }
+   static_inline void            set_err(e_err eerr){ g_eerr = eerr; }
+   static_inline void            clear_err() { g_eerr = err_none; }
 
    CLASS_DECL_AURA  const char *   utf8_inc(const char * psz);
    CLASS_DECL_AURA  const char *   utf8_inc_slide(strsize * pslide, const char * psz);

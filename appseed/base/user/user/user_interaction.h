@@ -316,6 +316,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics *pdc);
       virtual void draw_control_background(::draw2d::graphics *pdc);
 
+      virtual bool is_custom_draw();
 
       virtual id GetDlgCtrlId() const;
       virtual id SetDlgCtrlId(class id id);

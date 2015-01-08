@@ -1,20 +1,58 @@
 #pragma once
 
+template < typename SCALAR >
+static_inline string get_default_scalar_format()
+{
+   return "";
+}
 
 
-class CLASS_DECL_AURA double_scalar_source :
+template <  >
+static_inline string get_default_scalar_format < double >()
+{
+   return "%d";
+}
+
+template <  >
+static_inline string get_default_scalar_format < int64_t >()
+{
+   return "%lli";
+}
+
+namespace str
+{
+
+   template < typename FORMATABLE >
+   static_inline string format(const string & strFormat, const FORMATABLE & f)
+   {
+
+      string str;
+
+      str.Format(strFormat,f);
+
+      return str;
+
+   }
+
+
+} // namespace str
+
+
+
+template < typename SCALAR >
+class scalar_source :
    virtual public object
 {
 public:
 
 
-   class CLASS_DECL_AURA listener :
+   class listener :
       virtual public object
    {
    public:
 
 
-      virtual void on_set_scalar(double_scalar_source * psource, e_scalar escalar, double d);
+      virtual void on_set_scalar(scalar_source * psource,e_scalar escalar,SCALAR d,int iFlags);
 
 
    };
@@ -22,133 +60,471 @@ public:
 
    listener *        m_plistener;
 
-   double_scalar_source();
+   scalar_source();
 
 
-   bool set_scalar(e_scalar escalar, double d, bool bForce = false);
-   bool constrain_scalar(e_scalar escalar, double & d);
-   double get_rate(e_scalar escalar, double dDefault = 0.0);
-   bool constrain(e_scalar escalar, double & d);
-   bool contains(e_scalar escalar, double d);
+   bool set_scalar(e_scalar escalar,SCALAR d,bool bForce = false,int iFlags = scalar_none);
+   bool constrain_scalar(e_scalar escalar,SCALAR & d);
+   void increment_scalar(e_scalar  escalar,SCALAR iIncrement);
+   double get_rate(e_scalar escalar,double dDefault = 0.0);
+   bool set_rate(e_scalar escalar,double dValue,int iFlags);
+   bool constrain(e_scalar escalar,SCALAR & d);
+   bool contains(e_scalar escalar,SCALAR d);
 
 
-   virtual void on_set_scalar(e_scalar escalar, double d);
-   virtual void get_scalar_minimum(e_scalar escalar, double & d);
-   virtual void get_scalar(e_scalar escalar, double & d);
-   virtual void get_scalar_maximum(e_scalar escalar, double & d);
+
+   virtual void on_set_scalar(e_scalar escalar,SCALAR d,int iFlags);
+   virtual void get_scalar_minimum(e_scalar escalar,SCALAR & d);
+   virtual void get_scalar(e_scalar escalar,SCALAR & d);
+   virtual void get_scalar_maximum(e_scalar escalar,SCALAR & d);
 
 };
 
 
-class CLASS_DECL_AURA int_scalar_source :
-   virtual public object
+
+
+class CLASS_DECL_AURA scalar_base
 {
 public:
 
+   
+   string            m_strFormat;
 
-   class CLASS_DECL_AURA listener :
-      virtual public object
+
+   virtual double get_rate(double dDefault = 0.0);
+
+   virtual bool set_rate(double dRate, int iFlags);
+
+   string Format(const string & strFormat);
+
+   string to_string() { return Format(m_strFormat); }
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+template < typename SCALAR >
+class  scalar :
+   virtual public scalar_base
+{
+public:
+
+   
+   scalar(scalar_source < SCALAR > * psource = NULL,e_scalar escalar = scalar_none,const string & strFormat = ::get_default_scalar_format< SCALAR>());
+
+   
+   scalar_source < SCALAR > *    m_psource;
+   e_scalar                      m_escalar;
+
+   void set(SCALAR dValue);
+   SCALAR get();
+
+   virtual double get_rate(double dDefault = 0.0);
+   virtual bool set_rate(double dRate,int iFlags);
+
+
+   SCALAR maximum();
+   SCALAR minimum();
+
+
+   bool is_null() const { return m_psource == NULL || m_escalar == scalar_none; }
+   bool is_setl() const { return !is_null(); }
+
+
+   operator SCALAR () { return get(); }
+
+   scalar & operator = (SCALAR dValue) { set(dValue); return *this; }
+
+   virtual string Format(const string & strFormat);
+
+   void increment(SCALAR iValue = ::numeric_info<SCALAR>::unitary()) { set(get() + iValue); }
+   void decrement(SCALAR iValue = ::numeric_info<SCALAR>::unitary()) { set(get() - iValue); }
+
+   scalar & operator ++(int) { increment(); return *this; }
+   scalar & operator --(int) { decrement(); return *this; }
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+template < typename SCALAR >
+void scalar_source < SCALAR > ::listener::on_set_scalar(scalar_source * psource,e_scalar escalar,SCALAR iValue,int iFlags)
+{
+
+   UNREFERENCED_PARAMETER(psource);
+   UNREFERENCED_PARAMETER(escalar);
+   UNREFERENCED_PARAMETER(iValue);
+   UNREFERENCED_PARAMETER(iFlags);
+
+}
+
+template < typename SCALAR >
+scalar_source < SCALAR > ::scalar_source()
+{
+
+   m_plistener = NULL;
+
+}
+
+template < typename SCALAR >
+bool scalar_source < SCALAR > ::set_scalar(e_scalar escalar,SCALAR iValue,bool bForce,int iFlags)
+{
+
+   if(!bForce)
    {
-   public:
+      if(!contains(escalar,iValue))
+         return false;
+   }
 
+   on_set_scalar(escalar,iValue,iFlags);
 
-      virtual void on_set_scalar(int_scalar_source * psource, e_scalar escalar, int64_t i);
+   if(m_plistener != NULL)
+   {
 
+      m_plistener->on_set_scalar(this,escalar,iValue,iFlags);
 
-   };
+   }
 
+   return true;
 
-   listener *        m_plistener;
-
-
-   int_scalar_source();
-
-
-   bool set_scalar(e_scalar escalar, int64_t iValue, bool bForce = false);
-   bool constrain_scalar(e_scalar escalar, int64_t & iValue);
-   void increment_scalar(e_scalar  escalar, int64_t iIncrement);
-   double get_rate(e_scalar escalar, double dDefault = 0.0);
-   bool constrain(e_scalar escalar, int64_t & i);
-   bool contains(e_scalar escalar, int64_t i);
-
-
-   virtual void on_set_scalar(e_scalar escalar, int64_t iValue);
-   virtual void get_scalar_minimum(e_scalar escalar, int64_t & i);
-   virtual void get_scalar(e_scalar escalar, int64_t & i);
-   virtual void get_scalar_maximum(e_scalar escalar, int64_t & i);
-
-};
-
-
-
-class CLASS_DECL_AURA double_scalar
+}
+template < typename SCALAR >
+bool scalar_source < SCALAR > ::constrain_scalar(e_scalar escalar,SCALAR & iValue)
 {
-public:
 
-   
-   double_scalar();
-   double_scalar(double_scalar_source * psource, e_scalar escalar);
+   bool bConstrain;
 
-   
-   double_scalar_source *     m_psource;
-   e_scalar                   m_escalar;
+   if((bConstrain = constrain(escalar,iValue)))
+   {
 
-   void set(double dValue);
-   double get();
-   double rate(double dDefault = 0.0);
+      SCALAR i = 0;
 
-   double maximum();
-   double minimum();
+      get_scalar(escalar,i);
 
+      if(iValue == i)
+         return true;
 
-   bool is_null() const { return m_psource == NULL || m_escalar == scalar_none; }
-   bool is_setl() const { return !is_null(); }
+   }
 
+   bool bSet = set_scalar(escalar,iValue);
 
-   operator double () { return get(); }
+   return bConstrain && bSet;
 
-   double_scalar & operator = (double dValue) { set(dValue); return *this; }
-
-
-
-};
-
-
-
-class CLASS_DECL_AURA int_scalar
+}
+template < typename SCALAR >
+void scalar_source < SCALAR > ::increment_scalar(e_scalar escalar,SCALAR iIncrement)
 {
-public:
+
+   SCALAR i = 0;
+
+   get_scalar(escalar,i);
+
+   set_scalar(escalar,i + iIncrement);
+
+}
+template < typename SCALAR >
+bool scalar_source < SCALAR > ::contains(e_scalar escalar,SCALAR iValue)
+{
+
+   SCALAR iMin = 0;
+
+   get_scalar_minimum(escalar,iMin);
+
+   if(iValue < iMin)
+      return false;
+
+   SCALAR iMax = 0;
+
+   get_scalar_maximum(escalar,iMax);
+
+   if(iValue > iMax)
+      return false;
+
+   return true;
+
+}
+
+template < typename SCALAR >
+bool scalar_source < SCALAR > ::constrain(e_scalar escalar,SCALAR & iValue)
+{
+
+   SCALAR iMin = 0;
+
+   get_scalar_minimum(escalar,iMin);
+
+   if(iValue < iMin)
+   {
+
+      iValue = iMin;
+
+      return true;
+
+   }
+
+   SCALAR iMax = 0;
+
+   get_scalar_maximum(escalar,iMax);
+
+   if(iValue > iMax)
+   {
+
+      iValue = iMax;
+
+      return true;
+
+   }
+
+   return false;
+
+}
 
 
-   int_scalar();
-   int_scalar(int_scalar_source * psource, e_scalar escalar);
+template < typename SCALAR >
+void scalar_source < SCALAR > ::on_set_scalar(e_scalar escalar,SCALAR iValue,int iFlags)
+{
+
+   UNREFERENCED_PARAMETER(escalar);
+
+   UNREFERENCED_PARAMETER(iValue);
+
+   UNREFERENCED_PARAMETER(iFlags);
+
+   // does nothing by default.
+
+}
+template < typename SCALAR >
+void scalar_source < SCALAR > ::get_scalar_minimum(e_scalar escalar,SCALAR & i)
+{
+
+   UNREFERENCED_PARAMETER(escalar);
+
+   i = 0; // by default
+
+}
+template < typename SCALAR >
+void scalar_source < SCALAR > ::get_scalar(e_scalar escalar,SCALAR & i)
+{
+
+   UNREFERENCED_PARAMETER(escalar);
+
+   i = 1; // by default
+
+}
+template < typename SCALAR >
+void scalar_source < SCALAR > ::get_scalar_maximum(e_scalar escalar,SCALAR & i)
+{
+
+   UNREFERENCED_PARAMETER(escalar);
+
+   i = 1; // by default
+
+}
+template < typename SCALAR >
+double scalar_source < SCALAR > ::get_rate(e_scalar escalar,double dDefault)
+{
+
+   SCALAR iMax = 0;
+
+   get_scalar_maximum(escalar,iMax);
+
+   SCALAR iMin = 0;
+
+   get_scalar_minimum(escalar,iMin);
+
+   SCALAR iDenominator = iMax - iMin;
+
+   if(iDenominator == 0)
+      return dDefault;
+
+   SCALAR iVal = 0;
+
+   get_scalar(escalar,iVal);
+
+   SCALAR iNumerator = iVal - iMin;
+
+   return (double)iNumerator / (double)iDenominator; // aproximate value along iDenominator and iNumerator evaluation
+
+}
+
+template < typename SCALAR >
+bool scalar_source < SCALAR > ::set_rate(e_scalar escalar,double dValue,int iFlags)
+{
+
+   if(dValue < 0.0)
+      return false;
+
+   if(dValue > 1.0)
+      return false;
+
+   SCALAR iMax = 0;
+
+   get_scalar_maximum(escalar,iMax);
+
+   SCALAR iMin = 0;
+
+   get_scalar_minimum(escalar,iMin);
+
+   SCALAR iDenominator = iMax - iMin;
+
+   on_set_scalar(escalar,dValue * iDenominator + iMin,iFlags);
+
+   return true;
+
+}
 
 
-   int_scalar_source *        m_psource;
-   e_scalar                   m_escalar;
+
+template < typename SCALAR >
+scalar < SCALAR > ::scalar(scalar_source<SCALAR> * psource,e_scalar escalar,const string & strFormat)
+{
+
+   m_psource = psource;
+   m_escalar = escalar;
+   m_strFormat = strFormat;
+
+}
+
+template < typename SCALAR >
+void scalar < SCALAR > ::set(SCALAR iValue)
+{
+
+   if(m_psource == NULL || m_escalar == scalar_none)
+      return;
+
+   m_psource->set_scalar(m_escalar,iValue);
+
+}
+
+template < typename SCALAR >
+SCALAR scalar < SCALAR > ::get()
+{
+
+   if(m_psource == NULL || m_escalar == scalar_none)
+      return 0;
+
+   SCALAR i = 0;
+
+   m_psource->get_scalar(m_escalar,i);
+
+   return i;
+
+}
+
+template < typename SCALAR >
+double scalar < SCALAR > ::get_rate(double dDefault)
+{
+
+   if(m_psource == NULL || m_escalar == scalar_none)
+      return dDefault;
+
+   return m_psource->get_rate(m_escalar,dDefault);
+
+}
+
+template < typename SCALAR >
+bool scalar < SCALAR > ::set_rate(double dValue,int iFlags)
+{
+
+   if(m_psource == NULL || m_escalar == scalar_none)
+      return false;
+
+   return m_psource->set_rate(m_escalar,dValue,iFlags);
+
+}
+
+template < typename SCALAR >
+SCALAR scalar < SCALAR > ::minimum()
+{
+
+   if(is_null())
+      return 0;
+
+   SCALAR i = 0;
+
+   m_psource->get_scalar_minimum(m_escalar,i);
+
+   return i;
+
+}
+
+
+template < typename SCALAR >
+SCALAR scalar < SCALAR > ::maximum()
+{
+
+   if(is_null())
+      return 0;
+
+   SCALAR i = 0;
+
+   m_psource->get_scalar_maximum(m_escalar,i);
+
+   return i;
+
+}
 
 
 
-   void set(int64_t iValue);
-   int64_t get();
-   void increment(int64_t iValue = 1) { set(get() + iValue); }
-   void decrement(int64_t iValue = 1) { set(get() - iValue); }
-   double rate(double dDefault = 0.0);
 
-   int64_t maximum();
-   int64_t minimum();
+template < typename SCALAR >
+string scalar < SCALAR > ::Format(const string & strFormat)
+{
+
+   return ::str::format(strFormat,get());
+
+}
 
 
-   bool is_null() const { return m_psource == NULL || m_escalar == scalar_none; }
-   bool is_setl() const { return !is_null(); }
 
-   operator int64_t () { return get();  }
 
-   int_scalar & operator = (int64_t iValue) { set(iValue); return *this; }
+using double_scalar_source = scalar_source < double >;
+using int_scalar_source  = scalar_source < int64_t >;
 
-   int_scalar & operator ++(int) { increment(); return *this; }
-   int_scalar & operator --(int) { decrement(); return *this; }
+using double_scalar_listener = scalar_source < double >::listener;
+using int_scalar_listener  = scalar_source < int64_t >::listener;
 
-};
+
+using double_scalar = scalar < double >;
+using int_scalar  = scalar < int64_t >;
+
 
 

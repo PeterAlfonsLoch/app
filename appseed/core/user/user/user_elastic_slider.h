@@ -13,8 +13,8 @@ namespace user
 
 
 
-      double_scalar  m_scalarVelocity;
-      double_scalar  m_scalarPosition;
+      scalar_base *  m_pscalarVelocity;
+      scalar_base *  m_pscalarPosition;
 
       e_scalar       m_escalar;
 
@@ -44,7 +44,7 @@ namespace user
 
 
 
-      void SetStreamingVelocityMode(double_scalar & scalarVelocity, double_scalar & scalarPosition);
+      void SetStreamingVelocityMode(scalar_base * pscalarVelocity, scalar_base * pscalarPosition);
 
 
       void UpdatePosition();

@@ -81,6 +81,7 @@ namespace aura
 
       ::draw2d::graphics *    m_pgraphics;
       rect                    m_rectClient;
+      rect                    m_rectWindow;
       bool                    m_bListItemHover;
       bool                    m_bListSubItemHover;
       bool                    m_bListItemSelected;

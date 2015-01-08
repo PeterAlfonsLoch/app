@@ -531,7 +531,7 @@ namespace user
       ::draw2d::font * pfont;
       if(pdrawitem->m_bListItemHover)
       {
-         System.visual().imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, RGB(255, 255, 255), 128);
+         pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, ARGB(128, 255, 255, 255));
          pfont = _001GetFontHover();
       }
       else
@@ -559,7 +559,10 @@ namespace user
          else
          {
             COLORREF crTranslucid = RGB(0, 0, 0);
-            System.visual().imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, crTranslucid, 127);
+            ::rect r = pdrawitem->m_rectItem;
+            r.right++;
+            r.bottom++;
+            System.visual().imaging().color_blend(pdrawitem->m_pgraphics, r, crTranslucid, 127);
          }
       }
 
@@ -970,6 +973,16 @@ namespace user
 
    void list::_001OnInitialize()
    {
+
+   }
+
+   
+   void list::_001OnInitialUpdate(signal_details * pobj)
+   {
+      
+      scroll_view::_001OnInitialUpdate(pobj);
+
+      //_001UpdateColumns();
 
    }
 
@@ -1737,7 +1750,7 @@ namespace user
                if(pdrawitem->m_iItemRectItem < 0)
                {
                   pdrawitem->m_rectItem.left    = m_iLateralGroupWidth;
-                  pdrawitem->m_rectItem.right   = m_iItemWidth;
+                  pdrawitem->m_rectItem.right   = pdrawitem->m_rectItem.left + m_iItemWidth;
                   pdrawitem->m_iItemRectItem = 0;
                   pdrawitem->m_rectItem.top  = 0;
                   if(m_bHeaderCtrl)

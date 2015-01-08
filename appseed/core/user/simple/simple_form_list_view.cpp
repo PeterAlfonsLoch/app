@@ -47,3 +47,9 @@ bool simple_form_list_view::pre_create_window(::user::create_struct& cs)
    return ::aura::impact::pre_create_window(cs);
 }
 
+void simple_form_list_view::_001OnInitialUpdate(signal_details * pobj)
+{
+
+   ::user::form_list::_001OnInitialUpdate(pobj);
+
+}
