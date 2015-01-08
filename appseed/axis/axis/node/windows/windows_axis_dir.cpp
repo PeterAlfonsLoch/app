@@ -296,11 +296,21 @@ namespace windows
       ::windows::dir::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative);
    }
 
+   
    void dir::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
       
-      ::windows::dir::ls_dir(papp,lpcsz,pstraPath,pstraTitle);
+      if(::file::dir::axis::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
+      {
+
+         return true;
+
+      }
+
+      return ::windows::dir::ls_dir(papp,lpcsz,pstraPath,pstraTitle);
+      
    }
+
 
    void dir::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {

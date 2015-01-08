@@ -136,12 +136,12 @@ namespace file
       }
 
 
-      void application::ls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+      bool application::ls_pattern(const char * lpcsz,const char * lpcszPattern,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_pattern(m_pauraapp, lpcsz, lpcszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
       }
 
-      void application::ls(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+      bool application::ls(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,bool_array * pbaIsDir,int64_array * piaSize)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->ls(m_pauraapp, lpcsz, pstraPath, pstraTitle, pbaIsDir, piaSize);
       }
@@ -156,12 +156,12 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spdir.m_p->rls(m_pauraapp, lpcsz, pstraPath, pstraTitle, pstraRelative);
       }
 
-      void application::rls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+      bool application::rls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->rls_dir(m_pauraapp, lpcsz, pstraPath, pstraTitle, pstraRelative);
       }
 
-      void application::ls_dir(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      bool application::ls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_dir(m_pauraapp, lpcsz, pstraPath, pstraTitle);
       }
@@ -171,7 +171,7 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spdir.m_p->has_subdir(m_pauraapp, lpcsz);
       }
 
-      void application::ls_file(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+      bool application::ls_file(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->ls_file(m_pauraapp, lpcsz, pstraPath, pstraTitle);
       }

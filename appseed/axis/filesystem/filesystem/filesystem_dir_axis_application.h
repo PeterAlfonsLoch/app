@@ -56,24 +56,30 @@ namespace file
             virtual string userprograms(const char * pszRelativePath = NULL,const char * lpcsz2 = NULL);
 
 
-            virtual void  ls_pattern(const char * lpcsz,const char * lpcszPattern,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
-            virtual void  ls(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
+            virtual bool  ls_pattern(const char * lpcsz,const char * lpcszPattern,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
+            virtual bool  ls(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
             virtual bool  rls_pattern(const char * lpcsz,const char * lpcszPattern,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL,bool_array * pbaIsDir = NULL,int64_array * piaSize = NULL);
             virtual bool  rls(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
-            virtual void  rls_dir(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
-            virtual void  ls_dir(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
-            virtual bool  has_subdir(const char * lpcsz);
-            virtual void  ls_file(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
+            virtual bool  rls_dir(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
+            virtual bool  ls_dir(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
+            virtual bool  ls_file(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
+
+
             virtual bool  is(const char * lpcsz);
             virtual bool  is(const string & str);
             virtual bool  is(const var & var);
             virtual bool  is_inside(const char * lpcszDir,const char * lpcszPath);
             virtual bool  is_inside_time(const char * lpcsz);
+            virtual bool  has_subdir(const char * lpcsz);
+
+
             virtual void  root_ones(stringa & straPath,stringa & straTitle);
             virtual bool  mk(const char * lpcsz);
             virtual bool  rm(const char * psz,bool bRecursive = true);
 
+
             virtual string pathfind(const char * pszEnv,const char * pszTopic,const char * pszMode);
+
 
          };
 
