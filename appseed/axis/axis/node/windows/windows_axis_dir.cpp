@@ -265,39 +265,68 @@ namespace windows
    //   free(lpszAlloc);
    //}
 
-   void dir::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+   
+   bool dir::ls_pattern(::aura::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
-      if(::file::dir::axis::system::is(lpcsz, papp)) // if axis class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
+      
+      if(::file::dir::axis::system::ls_pattern(papp,lpcsz,pszPattern,pstraPath,pstraTitle,pbaIsDir,piaSize))
       {
-         return ::file::dir::axis::system::ls_pattern(papp, lpcsz, pszPattern, pstraPath, pstraTitle, pbaIsDir, piaSize);
+
+         return true;
+         
       }
+
       return ::windows::dir::ls_pattern(papp,lpcsz,pszPattern,pstraPath,pstraTitle,pbaIsDir,piaSize);
+
    }
+
 
    bool dir::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
    {
       
-      return rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
+      if(::file::dir::axis::system::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
+      {
+
+         return true;
+
+      }
+
+      return ::windows::dir::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract);
 
    }
+
 
    bool dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
 
-      if(::windows::dir::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract))
+      if(::file::dir::axis::system::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract))
+      {
+
          return true;
 
-      return ::file::dir::axis::system::rls(papp, lpcsz, pstraPath, pstraTitle, pstraRelative, eextract == extract_all ? extract_all : extract_none);
+      }
+
+      return ::windows::dir::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract);
 
    }
 
-   void dir::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+
+   bool dir::rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
    {
-      ::windows::dir::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative);
+
+      if(::file::dir::axis::system::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative))
+      {
+
+         return true;
+
+      }
+
+      return ::windows::dir::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative);
+
    }
 
    
-   void dir::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   bool dir::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
       
       if(::file::dir::axis::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
@@ -312,14 +341,13 @@ namespace windows
    }
 
 
-   void dir::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   bool dir::ls_file(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
 
-
-      if(::file::dir::axis::system::is(lpcsz,papp)) // if axis class "already" "says" it is a dir, let it handle it: may be not a operational system dir, e.g., zip or compressed directory...
+      if(::file::dir::axis::system::ls_file(papp,lpcsz,pstraPath,pstraTitle))
       {
 
-         return ::file::dir::axis::system::ls_pattern(papp,lpcsz,"*.*", pstraPath,pstraTitle);
+         return true;
 
       }
 
@@ -327,10 +355,21 @@ namespace windows
 
    }
 
-   void dir::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
+
+   bool dir::ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, bool_array * pbaIsDir, int64_array * piaSize)
    {
-      return ls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pbaIsDir, piaSize);
+
+      if(::file::dir::axis::system::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize))
+      {
+
+         return true;
+
+      }
+
+      return ::windows::dir::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize);
+
    }
+
 
    bool dir::is(const char * lpcszPath, ::aura::application * papp)
    {
