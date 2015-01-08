@@ -15,7 +15,7 @@ namespace zip
 
    }
 
-   void Util::ls(::aura::application * papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+   bool Util::ls(::aura::application * papp, const char * lpszFileName, bool bRecursive, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
       string strZip;
       string strRemain;
@@ -33,13 +33,16 @@ namespace zip
          strLastZip = strZip.Left(strZip.reverse_find(".zip:") + strlen(".zip"));
       }
       else
-         return;
+      {
+         return false;
+
+      }
 
       InFile infile(papp);
 
       if(!infile.unzip_open(strZip, 0))
       {
-         return;
+         return false;
       }
 
       unzFile pf = infile.get_zip_file()->m_pfUnzip;
@@ -112,14 +115,18 @@ namespace zip
             }
          }
       }
+
+      return true;
+
    }
 
-   void Util::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
+   bool Util::ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
    {
       stringa straPath;
       stringa straTitle;
       bool_array baIsDir;
-      ls(papp, lpcsz, false, &straPath, &straTitle, NULL, &baIsDir);
+      if(!ls(papp,lpcsz,false,&straPath,&straTitle,NULL,&baIsDir))
+         return false;
 
       string strPath;
 
@@ -143,6 +150,7 @@ namespace zip
          }
 
       }
+      return true;
 
    }
 

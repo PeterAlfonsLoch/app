@@ -1672,9 +1672,9 @@ namespace aura
    {
 
 #if defined(WINDOWS)
-      g_pf1 = (void *) (uint_ptr) ::str::to_uint64(file_as_string("C:\\ca2\\config\\system\\pf1.txt"));
+      g_pf1 = (void *) (uint_ptr) ::str::to_uint64(file().as_string("C:\\ca2\\config\\system\\pf1.txt"));
 #else
-      g_pf1 = (void *) (uint_ptr) ::str::to_uint64(file_as_string("/ca2/pf1.txt"));
+      g_pf1 = (void *) (uint_ptr) ::str::to_uint64(file().as_string("/ca2/pf1.txt"));
 #endif
 
 
@@ -1704,12 +1704,12 @@ namespace aura
 
       string strSchemaSystem;
 
-      string strPath = System.dir_appdata("langstyle_settings.xml");
+      string strPath = System.dir().appdata("langstyle_settings.xml");
 
-      if(file_exists(strPath))
+      if(file().exists(strPath))
       {
 
-         string strSystem = file_as_string(strPath);
+         string strSystem = file().as_string(strPath);
 
          ::xml::document docSystem(get_app());
 
@@ -2749,7 +2749,7 @@ namespace aura
 
       {
 
-         ::file::binary_buffer_sp file = file_get_file(Application.dir_userappdata(strPath),::file::mode_read);
+         ::file::binary_buffer_sp file = file_get_file(Application.dir().userappdata(strPath),::file::mode_read);
 
          if(file.is_null())
          {
@@ -2790,7 +2790,7 @@ namespace aura
 
       {
 
-         ::file::binary_buffer_sp file = file_get_file(Application.dir_userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
+         ::file::binary_buffer_sp file = file_get_file(Application.dir().userappdata(strPath),::file::mode_write | ::file::mode_create | ::file::defer_create_directory);
 
          if(file.is_null())
          {
@@ -2861,215 +2861,215 @@ namespace aura
    //}
 
 
-   void application::dir_matter_ls_file(const string & str,stringa & stra)
-   {
+   //void application::dir_matter_ls_file(const string & str,stringa & stra)
+   //{
 
-      ::exception::throw_not_implemented(get_app());
+   //   ::exception::throw_not_implemented(get_app());
 
-   }
+   //}
 
 
-   string application::file_as_string(var varFile)
-   {
+   //string application::file().as_string(var varFile)
+   //{
 
-      return ::file_as_string_dup(varFile.get_string());
+   //   return ::file_as_string_dup(varFile.get_string());
 
-   }
+   //}
 
 
-   string application::file_as_string(var varFile,var & varQuery)
-   {
+   //string application::file().as_string(var varFile,var & varQuery)
+   //{
 
-      return file_as_string(varFile);
+   //   return file().as_string(varFile);
 
-   }
+   //}
 
 
-   string application::matter_as_string(const char * pszMatter,const char * pszMatter2)
-   {
+   //string application::matter_as_string(const char * pszMatter,const char * pszMatter2)
+   //{
 
-      var varQuery;
+   //   var varQuery;
 
-      varQuery["disable_ca2_sessid"] = true;
+   //   varQuery["disable_ca2_sessid"] = true;
 
-      return file_as_string(dir_matter(pszMatter,pszMatter2),varQuery);
+   //   return file().as_string(dir().matter(pszMatter,pszMatter2),varQuery);
 
-   }
+   //}
 
-   string application::dir_matter(const char * pszMatter,const char * pszMatter2)
-   {
+   //string application::dir().matter(const char * pszMatter,const char * pszMatter2)
+   //{
 
-      return dir_matter(pszMatter,pszMatter2);
+   //   return dir().matter(pszMatter,pszMatter2);
 
-   }
+   //}
 
-   bool application::is_inside_time_dir(const char * pszPath)
-   {
-      throw not_implemented(this);
-      return false;
-   }
+   //bool application::is_inside_time_dir(const char * pszPath)
+   //{
+   //   throw not_implemented(this);
+   //   return false;
+   //}
 
-   bool application::file_is_read_only(const char * pszPath)
-   {
-      throw not_implemented(this);
-      return false;
-   }
+   //bool application::file_is_read_only(const char * pszPath)
+   //{
+   //   throw not_implemented(this);
+   //   return false;
+   //}
 
 
-   bool application::file_exists(const char * pszPath)
-   {
+   //bool application::file_exists(const char * pszPath)
+   //{
 
-      return ::file_exists_dup(pszPath) != FALSE;
+   //   return ::file_exists_dup(pszPath) != FALSE;
 
-   }
+   //}
 
 
-   bool application::file_is_equal_path(const char * pszPath1,const char * pszPath2)
-   {
+   //bool application::file_is_equal_path(const char * pszPath1,const char * pszPath2)
+   //{
 
-      return ::file_is_equal_path_dup(pszPath1,pszPath2) != FALSE;
+   //   return ::file_is_equal_path_dup(pszPath1,pszPath2) != FALSE;
 
-   }
+   //}
 
 
-   bool application::dir_is(const char * psz)
-   {
+   //bool application::dir().id(const char * psz)
+   //{
 
-      return ::dir::is(psz);
+   //   return ::dir::is(psz);
 
-   }
+   //}
 
 
-   bool application::file_del(const char * psz)
-   {
+   //bool application::file_del(const char * psz)
+   //{
 
-      return file_delete_dup(psz) != FALSE;
+   //   return file_delete_dup(psz) != FALSE;
 
-   }
+   //}
 
-   string application::file_extension(const char * pszPath)
-   {
+   //string application::file_extension(const char * pszPath)
+   //{
 
-      return ::file_extension_dup(pszPath);
+   //   return ::file_extension_dup(pszPath);
 
-   }
+   //}
 
 
-   string application::dir_userappdata(const char * lpcsz,const char * lpcsz2)
-   {
+   //string application::dir_userappdata(const char * lpcsz,const char * lpcsz2)
+   //{
 
-      throw not_implemented(this);
+   //   throw not_implemented(this);
 
-   }
+   //}
 
-   string application::dir_appdata(const char * lpcsz,const char * lpcsz2)
-   {
+   //string application::dir_appdata(const char * lpcsz,const char * lpcsz2)
+   //{
 
-      throw not_implemented(this);
+   //   throw not_implemented(this);
 
-   }
+   //}
 
 
-   string application::dir_simple_path(const string & str1,const string & str2)
-   {
+   //string application::dir_simple_path(const string & str1,const string & str2)
+   //{
 
-      return dir_path(str1,str2);
+   //   return dir_path(str1,str2);
 
-   }
+   //}
 
 
-   string application::dir_path(const char * psz1,const char * psz2,const char * psz3)
-   {
+   //string application::dir_path(const char * psz1,const char * psz2,const char * psz3)
+   //{
 
-      return ::dir::path(psz1,psz2,psz3);
+   //   return ::dir::path(psz1,psz2,psz3);
 
-   }
+   //}
 
 
-   string application::dir_element(const char * psz)
-   {
+   //string application::dir_element(const char * psz)
+   //{
 
-      return ::dir::path(::dir::element(),psz);
+   //   return ::dir::path(::dir::element(),psz);
 
-   }
+   //}
 
-   string application::dir_ca2module(const char * psz)
-   {
+   //string application::dir_ca2module(const char * psz)
+   //{
 
-      return ::dir::path(::dir::get_ca2_module_folder(),psz);
+   //   return ::dir::path(::dir::get_ca2_module_folder(),psz);
 
-   }
+   //}
 
-   string application::dir_name(const char * psz)
-   {
+   //string application::dir_name(const char * psz)
+   //{
 
-      return ::dir::name(psz);
+   //   return ::dir::name(psz);
 
-   }
+   //}
 
 
-   void application::dir_ls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
-   {
+   //void application::dir_ls_dir(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle)
+   //{
 
-      ::exception::throw_not_implemented(get_app());
+   //   ::exception::throw_not_implemented(get_app());
 
-   }
+   //}
 
 
-   void application::dir_rls(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
-   {
+   //void application::dir_rls(const char * lpcsz,stringa * pstraPath,stringa * pstraTitle,stringa * pstraRelative)
+   //{
 
-      ::exception::throw_not_implemented(get_app());
+   //   ::exception::throw_not_implemented(get_app());
 
-   }
+   //}
 
 
-   bool application::dir_mk(const char * psz)
-   {
+   //bool application::dir_mk(const char * psz)
+   //{
 
-      return ::dir::mk(psz);
+   //   return ::dir::mk(psz);
 
-   }
+   //}
 
 
-   string application::file_title(const char * psz)
-   {
+   //string application::file_title(const char * psz)
+   //{
 
-      return ::file_title_dup(psz);
+   //   return ::file_title_dup(psz);
 
-   }
+   //}
 
 
-   string application::file_name(const char * psz)
-   {
+   //string application::file().name_(const char * psz)
+   //{
 
-      return ::file_name_dup(psz);
+   //   return ::file_name_dup(psz);
 
-   }
+   //}
 
-#ifdef APPLEOS
+//#ifdef APPLEOS
+//
+//   string application::dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
+//   {
+//
+//      ::exception::throw_interface_only(get_app());
+//
+//      return "";
+//
+//   }
+//
+//#endif
+//
 
-   string application::dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
-   {
+   //string application::file_time_square()
+   //{
 
-      ::exception::throw_interface_only(get_app());
+   //   //return get_temp_file_name_template(
+   //   ::exception::throw_interface_only(get_app());
 
-      return "";
+   //   return "";
 
-   }
-
-#endif
-
-
-   string application::file_time_square()
-   {
-
-      //return get_temp_file_name_template(
-      ::exception::throw_interface_only(get_app());
-
-      return "";
-
-   }
+   //}
 
 
    string application::http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
@@ -3362,7 +3362,7 @@ namespace aura
    string application::get_locale_schema_dir()
    {
 
-      return dir_simple_path(get_locale(),get_schema());
+      return System.dir().simple_path(get_locale(),get_schema());
 
    }
 
@@ -3373,13 +3373,13 @@ namespace aura
       if(strLocale.is_empty())
       {
 
-         return dir_simple_path(get_locale(),get_schema());
+         return System.dir().simple_path(get_locale(),get_schema());
 
       }
       else
       {
 
-         return dir_simple_path(strLocale,get_schema());
+         return System.dir().simple_path(strLocale,get_schema());
 
       }
 
@@ -3395,13 +3395,13 @@ namespace aura
          if(strSchema.is_empty())
          {
 
-            return dir_simple_path(get_locale(),get_schema());
+            return System.dir().simple_path(get_locale(),get_schema());
 
          }
          else
          {
 
-            return dir_simple_path(get_locale(),strSchema);
+            return System.dir().simple_path(get_locale(),strSchema);
 
          }
 
@@ -3412,13 +3412,13 @@ namespace aura
          if(strSchema.is_empty())
          {
 
-            return dir_simple_path(strLocale,get_schema());
+            return System.dir().simple_path(strLocale,get_schema());
 
          }
          else
          {
 
-            return dir_simple_path(strLocale,strSchema);
+            return System.dir().simple_path(strLocale,strSchema);
 
          }
 

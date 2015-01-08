@@ -35,6 +35,10 @@ namespace axis
       m_pdatetime = new class ::datetime::departament(this);
 
 
+      factory().creatable_small < ::file::axis::application >(System.type_info < ::file::application > ());
+      factory().creatable_small < ::file::dir::axis::application >(System.type_info < ::file::dir::application >());
+
+
    }
 
 

@@ -156,8 +156,7 @@ namespace windows
       get_all_processes(dwa);
       for(int32_t i = 0; i < dwa.get_count(); i++)
       {
-         if(Application.file_title(get_process_path(dwa[i]))
-            .CompareNoCase(pszName) == 0)
+         if(System.file().title_(get_process_path(dwa[i])).CompareNoCase(pszName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -331,10 +330,10 @@ namespace windows
          {
 
             keyPlugin.SetValue("Description", "core plugin for NPAPI");
-            keyPlugin.SetValue("Path", System.dir_ca2module("npca2.dll"));
+            keyPlugin.SetValue("Path", System.dir().ca2module("npca2.dll"));
             keyPlugin.SetValue("ProductName", "core plugin for NPAPI");
             keyPlugin.SetValue("Vendor", "core Desenvolvimento de Software Ltda.");
-            keyPlugin.SetValue("Version", Application.file_as_string(System.dir_element("appdata/x86/ca2_build.txt")));
+            keyPlugin.SetValue("Version", Application.file().as_string(System.dir().element("appdata/x86/ca2_build.txt")));
 
             registry::Key keyApplicationCa2;
 
@@ -1016,7 +1015,7 @@ namespace windows
 
       strExe += ".exe";
 
-      string strCalling = System.dir_path(Sys(papp).m_strModuleFolder, strExe) + " : service";
+      string strCalling = System.dir().path(Sys(papp).m_strModuleFolder, strExe) + " : service";
 
       if(System.directrix()->m_varTopicQuery.has_property("no_remote_simpledb"))
       {

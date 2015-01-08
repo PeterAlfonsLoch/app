@@ -50,7 +50,7 @@ namespace colorertake5
 
             if (logLocation.has_char())
             {
-               string str = Application.file_as_string(logLocation);
+               string str = Application.file().as_string(logLocation);
                colorer_logger_set_target(str);
             }
             if (fileErrorHandler == NULL)
@@ -109,7 +109,7 @@ namespace colorertake5
 
    string ParserFactory::searchPath()
    {
-      return Application.dir_matter("colorer.zip:catalog.xml");
+      return Application.dir().matter("colorer.zip:catalog.xml");
    };
 
    ParserFactory::ParserFactory(::aura::application * papp) :
@@ -178,7 +178,7 @@ namespace colorertake5
          string path;
          if(file_path_is_relative_dup(relPath))
          {
-            path = Application.dir_path(Application.dir_name(catalogPath), relPath);
+            path = System.dir().sibling(catalogPath, relPath);
             string path2del = path;
             ::str::begins_eat(path, "file://");
             ::str::begins_eat(path, "file:/");
@@ -188,20 +188,20 @@ namespace colorertake5
          {
             path = relPath;
          }
-         if(Application.dir_is(path))
+         if(Application.dir().is(path))
          {
             //if(path == "v:\\ca2os\\basis\\app\\appmatter\\main\\_std\\_std\\colorer\\hrc\\auto")
             {
                // debug_break();
             }
             stringa straPath;
-            Application.dir_rls(path, &straPath);
+            Application.dir().rls(path, &straPath);
             ::file::binary_buffer_sp spfile(allocer());
             for(int32_t i = 0; i < straPath.get_count(); i++)
             {
-               if(!Application.dir_is(straPath[i]))
+               if(!Application.dir().is(straPath[i]))
                {
-                  string str = Application.file_as_string(straPath[i]);
+                  string str = Application.file().as_string(straPath[i]);
                   try
                   {
                      hrcParser->loadSource(straPath[i], str);
@@ -217,7 +217,7 @@ namespace colorertake5
          }
          else
          {
-            string strSource = Application.file_as_string(path);
+            string strSource = Application.file().as_string(path);
             if(strSource.has_char())
             {
                try
@@ -271,7 +271,7 @@ namespace colorertake5
 
       StyledHRDMapper *mapper = new StyledHRDMapper(get_app());
 
-      string strDir = Application.dir_name(this->catalogPath);
+      string strDir = System.dir().name(this->catalogPath);
 
       for(int32_t idx = 0; idx < hrdLocV->get_size(); idx++)
       {
@@ -283,7 +283,7 @@ namespace colorertake5
 
                string strPath;
 
-               strPath = Application.dir_path(strDir, hrdLocV->element_at(idx));
+               strPath = System.dir().path(strDir, hrdLocV->element_at(idx));
 
                ::file::byte_input_stream spfile(Application.file_get_file(strPath, ::file::mode_read | ::file::type_binary));
 

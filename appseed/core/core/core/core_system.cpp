@@ -299,7 +299,7 @@ namespace core
       if(directrix()->m_varTopicQuery.has_property("install"))
          return true;
 
-      ::file::binary_buffer_sp file = Session.m_file.get_file(System.dir().appdata("applibcache.bin"),::file::type_binary | ::file::mode_read);
+      ::file::binary_buffer_sp file = Session.m_spfile->get_file(System.dir().appdata("applibcache.bin"),::file::type_binary | ::file::mode_read);
 
       if(file.is_null())
          return false;
@@ -364,7 +364,7 @@ namespace core
       try
       {
 
-         file = Session.m_file.get_file(System.dir().appdata("applibcache.bin"),::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
+         file = Session.file().get_file(System.dir().appdata("applibcache.bin"),::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
 
       }
       catch(::exception::base &)

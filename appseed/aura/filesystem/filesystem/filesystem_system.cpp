@@ -67,7 +67,8 @@ namespace file
       stringa stra;
       get_ascendants_name(lpcsz, stra);
       string str;
-      bool bUrl = System.url().is_url(lpcsz);
+//      bool bUrl = System.url().is_url(lpcsz);
+      bool bUrl = false;
 #if defined(LINUX) || defined(APPLEOS)
       bool bLinux = true;
       str += "/";
@@ -142,49 +143,12 @@ namespace file
    bool system::exists(const string & strPath, var * pvarQuery, ::aura::application * papp)
    {
 
-      if (::str::begins_ci_iws(strPath, "uifs://"))
-      {
-         return AppUser(papp).m_pifs->file_exists(strPath);
-      }
-
-      if (::str::begins_ci_iws(strPath, "http://") || ::str::begins_ci_iws(strPath, "https://"))
-      {
-
-         property_set set(papp);
-
-/*         if(papp->m_paxissession != NULL)
-         {
-
-            set["user"] = papp->m_paxissession->safe_get_user();
-
-         }*/
-
-         return App(papp).http().exists(strPath, pvarQuery, set);
-
-      }
 
 
-      if (::get_thread() != NULL && ::get_thread()->m_bZipIsDir)
-      {
-
-         strsize iFind = ::str::find_ci(".zip:", strPath);
-
-         zip::Util ziputil;
-
-         if (iFind >= 0)
-         {
-
-            if (!exists(strPath.Mid(0, iFind + 4), papp))
-               return false;
-
-            return ziputil.exists(papp, strPath);
-
-         }
 
 
-      }
 
-      if (!papp->m_paxissystem->dir().name_is(strPath, papp))
+      if (!papp->m_paurasystem->dir().name_is(strPath, papp))
          return false;
 
 #ifdef WINDOWS
@@ -232,21 +196,7 @@ namespace file
    var system::length(const string & strPath, var * pvarQuery, ::aura::application * papp)
    {
 
-      if (::str::begins_ci(strPath, "http://") || ::str::begins_ci(strPath, "https://"))
-      {
 
-         property_set set(papp);
-
-         return Application.http().length(strPath, set);
-
-      }
-
-      if (::str::begins_ci(strPath, "uifs://"))
-      {
-
-         return AppUser(papp).m_pifs->file_length(strPath);
-
-      }
 
       var varRet;
 
@@ -439,18 +389,7 @@ restart:
       else
       {
          string strFilePath(varFile);
-         if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_ci(".zip:",strFilePath) >= 0))
-         {
-            if(!exists(strFilePath, papp))
-               return "";
-            ::file::memory_buffer memfile(papp, &storage);
-            zip::InFile infile(get_app());
-            if(!infile.unzip_open(strFilePath, 0))
-               return "";
-            if(!infile.dump(&memfile))
-               return "";
-         }
-         else if(::str::begins_eat_ci(strFilePath, "file:///"))
+         if(::str::begins_eat_ci(strFilePath, "file:///"))
          {
             if(!exists(strFilePath, papp))
                return "";
@@ -461,35 +400,6 @@ restart:
             if(!exists(strFilePath, papp))
                return "";
             as_memory(strFilePath, storage, papp);
-         }
-         else if(::str::begins_ci(strFilePath, "http://")
-            || ::str::begins_ci(strFilePath, "https://"))
-         {
-            if(!exists(strFilePath, &varQuery, papp))
-               return "";
-
-            ::url_domain domain;
-
-            domain.create(System.url().get_server(strFilePath));
-
-            if(domain.m_strRadix == "ca2" && strFilePath.contains("/matter/"))
-            {
-               try
-               {
-                  ::file::byte_input_stream is(App(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
-                  is >> storage;
-               }
-               catch(...)
-               {
-               }
-            }
-            else
-            {
-               varQuery["user"] = &AppUser(papp);
-
-               App(papp).http().get(strFilePath, storage, varQuery.propset());
-
-            }
          }
          else
          {
@@ -546,18 +456,7 @@ restart:
 
          strPath.trim("\"'");
 
-         if((::str::begins(strPath, "http://") || ::str::begins(strPath, "https://")))
-         {
-
-            property_set set(get_app());
-
-            set["user"] = &AppUser(papp);
-
-            App(papp).http().get(strPath, mem, set);
-
-            return;
-
-         }
+         
 
       }
 
@@ -692,9 +591,15 @@ restart:
       return m_path;
    }
 
-   system::system()
+   system::system(::aura::application * papp) :
+      element(papp)
    {
       m_path.m_pfile = this;
+
+   }
+
+   system::~system()
+   {
 
    }
 
@@ -795,174 +700,9 @@ restart:
 
    void system::copy(const char * pszNew, const char * psz, bool bFailIfExists, e_extract eextract, ::aura::application * papp)
    {
-      if(bFailIfExists)
-      {
-         if(exists(pszNew, papp))
-            throw "Failed to copy file";
-      }
-      if(System.dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
-      {
-         stringa straPath;
-         System.dir().rls(papp, psz, &straPath);
-         string strDst;
-         string strSrc;
-         string strDirSrc(psz);
-         string strDirDst(pszNew);
-         if(::get_thread()->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
-         {
-            strDirSrc += ":";
-         }
-         for(int32_t i = 0; i < straPath.get_size(); i++)
-         {
-            strSrc = straPath[i];
-            strDst = strSrc;
-            ::str::begins_eat_ci(strDst, strDirSrc);
-            strDst = System.dir().path(strDirDst, strDst);
-            if(System.dir().is(strSrc, papp))
-            {
-               if((eextract == extract_first || eextract == extract_none) && (::str::ends_ci(psz, ".zip")))
-               {
-               }
-               else
-               {
-                  System.dir().mk(strDst, papp);
-               }
-            }
-            else
-            {
-               if(!System.dir().is(System.dir().name(strDst), papp))
-               {
-                  System.dir().mk(System.dir().name(strDst), papp);
-               }
-               copy(strDst, strSrc, bFailIfExists, eextract == extract_all ? extract_all : extract_none, papp);
-            }
-         }
-      }
-      else
-      {
+      throw interface_only_exception(get_app());
 
-         string strNew;
-
-         if(System.dir().is(pszNew, papp))
-         {
-            strNew = System.dir().path(pszNew, name_(psz));
-         }
-         else
-         {
-            strNew = pszNew;
-         }
-
-         ::file::buffer_sp ofile;
-         ofile = App(papp).file().get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory | ::file::share_deny_write);
-         if(ofile.is_null())
-         {
-            string strError;
-            strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file", psz, pszNew, bFailIfExists);
-            throw strError;
-         }
-
-         ::file::buffer_sp ifile;
-         ifile = App(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::share_deny_none);
-         if(ifile.is_null())
-         {
-            string strError;
-            strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file", psz, pszNew, bFailIfExists);
-            throw strError;
-         }
-
-         ::file::output_stream ostream(ofile);
-
-         ::file::input_stream istream(ifile);
-
-         System.compress().null(ostream, istream);
-
-
-
-         bool bOutputFail = false;
-         bool bInputFail = false;
-         bool bStatusFail = false;
-         ::file::file_status st;
-
-         try
-         {
-
-            ifile->GetStatus(st);
-
-         }
-         catch(...)
-         {
-
-            bStatusFail = true;
-            TRACE("During copy, failed to get status from input file \"%s\" bFailIfExists=%d", psz, bFailIfExists);
-         }
-
-         if(!bStatusFail)
-         {
-            try
-            {
-
-               ifile->GetStatus(st);
-
-            }
-            catch(...)
-            {
-
-               bStatusFail = true;
-               TRACE("During copy, failed to set status to output file \"%s\" bFailIfExists=%d", pszNew, bFailIfExists);
-
-            }
-
-         }
-
-         try
-         {
-            ofile->flush();
-         }
-         catch(...)
-         {
-         }
-
-         try
-         {
-            ofile->close();
-         }
-         catch(...)
-         {
-            bOutputFail = true;
-         }
-
-         try
-         {
-            ifile->close();
-         }
-         catch(...)
-         {
-            bInputFail = true;
-         }
-
-         if(bInputFail)
-         {
-            if(bOutputFail)
-            {
-               string strError;
-               strError.Format("During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d", psz, pszNew, bFailIfExists);
-               throw strError;
-            }
-            else
-            {
-               string strError;
-               strError.Format("During copy, failed to close input file \"%s\" bFailIfExists=%d", psz, bFailIfExists);
-               throw strError;
-            }
-         }
-         else if(bOutputFail)
-         {
-            string strError;
-            strError.Format("During copy, failed to close output file \"%s\" bFailIfExists=%d", pszNew, bFailIfExists);
-            throw strError;
-         }
-
-      }
+      return;
 
    }
 
@@ -1343,7 +1083,7 @@ restart:
          string strOld = System.file().name_(psz);
       }
       ::exception::throw_not_implemented(get_app());
-      //if(!System.file_as_string().move(psz, pszNew))
+      //if(!System.file().as_string().move(psz, pszNew))
       {
          property_set propertyset;
          System.message_box("err\\::fontopus::user\\system\\could_not_rename_file.xml", propertyset);
@@ -1354,42 +1094,12 @@ restart:
 
    string system::md5(const char * psz)
    {
+      throw interface_only_exception(get_app());
 
-      ::file::binary_buffer_sp spfile(allocer());
-
-      try
-      {
-         if(!spfile->open(psz, ::file::type_binary | ::file::mode_read | ::file::share_deny_none))
-            return "";
-      }
-      catch(::file::exception &)
-      {
-         return "";
-      }
-
-
-      int32_t iBufSize = 1024 * 256;
-
-      primitive::memory buf;
-
-      buf.allocate(1024 * 256);
-
-      MD5_CTX ctx;
-
-      MD5_Init(&ctx);
-
-      int32_t iRead;
-
-      while((iRead = (int32_t) spfile->read(buf, iBufSize)) > 0)
-      {
-
-         MD5_Update(&ctx, buf.get_data(), iRead);
-
-      }
-
-      return ::to_string(ctx);
+      return "";
 
    }
+
 
 
    void system::dtf(const char * pszFile, const char * pszDir, ::aura::application * papp)
@@ -1403,214 +1113,28 @@ restart:
    void system::dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::aura::application * papp)
    {
 
-      ::file::binary_buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_create | ::file::mode_write  | ::file::type_binary);
-
-      if(spfile.is_null())
-         throw "failed";
-
-      string strVersion;
-
-      strVersion = "fileset v1";
-
-      MD5_CTX ctx;
-
-      write_gen_string(spfile, NULL, strVersion);
-
-      ::file::binary_buffer_sp file2(allocer());
-
-      ::primitive::memory_size iBufSize = 1024 * 1024;
-
-      ::primitive::memory_size uiRead;
-
-      primitive::memory buf;
-
-      buf.allocate(iBufSize);
-
-      string strMd5 = "01234567012345670123456701234567";
-
-      uint64_t iPos;
-
-      for(int32_t i = 0; i < stra.get_size(); i++)
-      {
-         if(::str::ends_ci(stra[i], ".zip"))
-         {
-         }
-         else if(System.dir().is(stra[i], get_app()))
-            continue;
-         write_n_number(spfile, NULL, 1);
-         iPos = spfile->get_position();
-         write_gen_string(spfile, NULL, strMd5);
-         MD5_Init(&ctx);
-         write_gen_string(spfile, &ctx, straRelative[i]);
-         if(!file2->open(stra[i], ::file::mode_read | ::file::type_binary))
-            throw "failed";
-         write_n_number(spfile, &ctx, (int32_t) file2->get_length());
-         while((uiRead = file2->read(buf, iBufSize)) > 0)
-         {
-            spfile->write(buf, uiRead);
-            MD5_Update(&ctx, buf, uiRead);
-         }
-         spfile->seek(iPos, ::file::seek_begin);
-         strMd5 = ::to_string(ctx);
-         write_gen_string(spfile, NULL, strMd5);
-         spfile->seek_to_end();
-
-      }
-      write_n_number(spfile, NULL, 2);
-   }
-
-   void system::ftd(const char * pszDir, const char * pszFile, ::aura::application * papp)
-   {
-      string strVersion;
-      ::file::binary_buffer_sp spfile = App(papp).file().get_file(pszFile, ::file::mode_read  | ::file::type_binary);
-      if(spfile.is_null())
-         throw "failed";
-      read_gen_string(spfile, NULL, strVersion);
-      int64_t n;
-      string strRelative;
-      string strMd5;
-      string strMd5New;
-      int32_t iBufSize = 1024 * 1024;
-      primitive::memory buf;
-      buf.allocate(iBufSize);
-      int64_t iLen;
-      MD5_CTX ctx;
-      ::file::binary_buffer_sp file2(allocer());
-      ::primitive::memory_size uiRead;
-      if(strVersion == "fileset v1")
-      {
-         while(true)
-         {
-            read_n_number(spfile, NULL, n);
-            if(n == 2)
-               break;
-            read_gen_string(spfile, NULL, strMd5);
-            MD5_Init(&ctx);
-            read_gen_string(spfile, &ctx, strRelative);
-            string strPath = System.dir().path(pszDir, strRelative);
-            App(papp).dir().mk(System.dir().name(strPath));
-            if(!file2->open(strPath, ::file::mode_create | ::file::type_binary | ::file::mode_write))
-               throw "failed";
-            read_n_number(spfile, &ctx, iLen);
-            while(iLen > 0)
-            {
-               uiRead = spfile->read(buf, (UINT)  (MIN(iBufSize, iLen )));
-               if(uiRead == 0)
-                  break;
-               file2->write(buf, uiRead);
-               MD5_Update(&ctx, buf,uiRead);
-               iLen -= uiRead;
-            }
-            file2->close();
-            strMd5New = ::to_string(ctx);
-            if(strMd5 != strMd5New)
-               throw "failed";
-         }
-      }
-   }
-
-   void system::write_n_number(::file::buffer_sp  pfile, MD5_CTX * pctx, int64_t iNumber)
-   {
-
-      string str;
-
-      str.Format("%I64dn", iNumber);
-
-      pfile->write((const char *) str, str.get_length());
-
-      if(pctx != NULL)
-      {
-
-         MD5_Update(pctx,(const char *) str, (int32_t) str.get_length());
-
-      }
+      throw interface_only_exception(get_app());
 
    }
 
-   void system::read_n_number(::file::buffer_sp  pfile, MD5_CTX * pctx, int64_t & iNumber)
+   void system::ftd(const char * pszDir,const char * pszFile,::aura::application * papp)
    {
+   
+      throw interface_only_exception(get_app());
 
-      uint64_t uiRead;
-
-      string str;
-
-      char ch;
-
-      while((uiRead = pfile->read(&ch, 1)) == 1)
-      {
-
-         if(ch >= '0' && ch <= '9')
-            str += ch;
-         else
-            break;
-
-         if(pctx != NULL)
-         {
-            MD5_Update(pctx, &ch,1);
-         }
-
-      }
-
-      if(ch != 'n')
-         throw "failed";
-
-      if(pctx != NULL)
-      {
-         MD5_Update(pctx,&ch,1);
-      }
-
-      iNumber = ::str::to_int64(str);
-
-   }
-
-   void system::write_gen_string(::file::buffer_sp  pfile, MD5_CTX * pctx, string & str)
-   {
-      ::count iLen = str.get_length();
-      write_n_number(pfile, pctx, iLen);
-      pfile->write((const char *) str, str.get_length());
-      if(pctx != NULL)
-      {
-         MD5_Update(pctx,(const char *)str,(int32_t)str.get_length());
-      }
-   }
-
-   void system::read_gen_string(::file::buffer_sp  pfile, MD5_CTX * pctx, string & str)
-   {
-      int64_t iLen;
-      read_n_number(pfile, pctx, iLen);
-      LPSTR lpsz = str.GetBufferSetLength((strsize) (iLen + 1));
-      pfile->read(lpsz, (primitive::memory_size) iLen);
-      if(pctx != NULL)
-      {
-         int64_t iProcessed = 0;
-         while(iLen - iProcessed > 0)
-         {
-            int32_t iProcess = (int32_t) MIN(1024 * 1024, iLen - iProcessed);
-            MD5_Update(pctx,&lpsz[iProcessed],iProcess);
-            iProcessed += iProcess;
-         }
-      }
-      lpsz[iLen] = '\0';
-      str.ReleaseBuffer();
    }
 
 
    bool system::resolve_link(string & strTarget,const char * pszSource,sp(::aura::interaction) puiMessageParentOptional)
    {
 
-#ifdef WINDOWSEX
-
-      return vfxResolveShortcut(strTarget,pszSource,puiMessageParentOptional);
-
-#else
-
-      throw todo(get_app());
+      throw interface_only_exception(get_app());
 
       return false;
 
-#endif
-
    }
+
+
    string system::nessie(const char * psz)
    {
 
@@ -1632,28 +1156,7 @@ restart:
    string system::nessie(::file::buffer_sp  pfile)
    {
 
-      ::primitive::memory mem(get_app());
-
-      mem.allocate(1024 * 256);
-
-      WHIRLPOOL_CTX ns;
-
-      WHIRLPOOL_Init(&ns);
-
-      file_size iRead;
-
-      while((iRead = pfile->read(mem.get_data(),mem.get_size())) > 0)
-      {
-
-         WHIRLPOOL_Update(&ns,mem.get_data(),iRead);
-
-      }
-
-      unsigned char digest[WHIRLPOOL_DIGEST_LENGTH];
-
-      WHIRLPOOL_Final(digest,&ns);
-
-      return ::hex::lower_from(digest,WHIRLPOOL_DIGEST_LENGTH);
+      throw interface_only_exception(get_app());
 
    }
 

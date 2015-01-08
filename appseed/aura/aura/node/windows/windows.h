@@ -19,7 +19,8 @@ CLASS_DECL_AURA void __throw_last_cleanup();
 CLASS_DECL_AURA void __try_cleanup();
 
 
-
+#include "windows_dir.h"
+#include "windows_file_system.h"
 
 #include "windows_folder_watch.h"
 #include "windows_factory_exchange.h"

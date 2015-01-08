@@ -1,16 +1,16 @@
 #include "framework.h"
 
-//#ifndef METROWIN
-//#include <openssl/ssl.h>
-//#endif
-//
-//#include <openssl/md5.h>
-//#include <openssl/whrlpool.h>
-//
-//#ifndef WINDOWS
-//#include <sys/stat.h>
-////#include <ctype.h>
-//#endif
+#ifndef METROWIN
+#include <openssl/ssl.h>
+#endif
+
+#include <openssl/md5.h>
+#include <openssl/whrlpool.h>
+
+#ifndef WINDOWS
+#include <sys/stat.h>
+//#include <ctype.h>
+#endif
 
 //CLASS_DECL_AXIS void NESSIEinit(struct NESSIEstruct * const structpointer);
 //CLASS_DECL_AXIS void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
@@ -26,41 +26,22 @@
 namespace file
 {
 
-
-   bool system::path::is_equal(const char * lpszFilPathA, const char * lpszFilPathB)
-   {
-      string stra(lpszFilPathA);
-      string wstrb(lpszFilPathB);
-
-      //   ::str::international::ACPToUnicode(stra, lpszFilPathA);
-      //   ::str::international::ACPToUnicode(wstrb, lpszFilPathB);
-      if(stra == wstrb)
-         return true;
-
-      /*if(_GetShortPathName(stra, lpszFilPathA) == 0)
-      return false;
-      if(_GetShortPathName(wstrb, lpszFilPathB) == 0)
-      return false;*/
-      return stra == wstrb;
-
-   }
-
-
-   bool system::path::eat_end_level(string & str, int32_t iLevelCount, const char * lpSeparator)
+   namespace axis
    {
 
-      return ::dir::eat_end_level(str, iLevelCount, lpSeparator);
+      system::system(::aura::application * papp) :
+         element(papp),
+         ::file::system(papp)
+      {
+         m_path.m_pfile = this;
 
-   }
+      }
 
 
-   bool system::path::is_relative(const char * psz)
-   {
+      system::~system()
+      {
 
-      return file_path_is_relative_dup(psz) != FALSE;
-
-   }
-
+      }
 
    void system::get_ascendants_path(const char * lpcsz, stringa & straParam)
    {
@@ -679,24 +660,19 @@ restart:
       return true;
    }
 
-   void system::path::split(stringa & stra, const char * lpcszPath)
-   {
-      stringa straSeparator;
-      straSeparator.add("\\");
-      straSeparator.add("/");
-      stra.add_smallest_tokens(lpcszPath, straSeparator, FALSE);
-   }
+   //void system::path::split(stringa & stra, const char * lpcszPath)
+   //{
+   //   stringa straSeparator;
+   //   straSeparator.add("\\");
+   //   straSeparator.add("/");
+   //   stra.add_smallest_tokens(lpcszPath, straSeparator, FALSE);
+   //}
 
-   class system::path & system::path()
-   {
-      return m_path;
-   }
+   //class system::path & system::path()
+   //{
+   //   return m_path;
+   //}
 
-   system::system()
-   {
-      m_path.m_pfile = this;
-
-   }
 
    string system::title_(const char * path)
    {
@@ -1334,23 +1310,23 @@ restart:
 
 
 
-   bool system::path::rename(const char *pszNew, const char *psz, ::aura::application * papp)
-   {
-      string strDir = System.dir().name(psz);
-      string strDirNew = System.dir().name(pszNew);
-      if(strDir == strDirNew)
-      {
-         string strOld = System.file().name_(psz);
-      }
-      ::exception::throw_not_implemented(get_app());
-      //if(!System.file_as_string().move(psz, pszNew))
-      {
-         property_set propertyset;
-         System.message_box("err\\::fontopus::user\\system\\could_not_rename_file.xml", propertyset);
-         return false;
-      }
-      return true;
-   }
+   //bool system::path::rename(const char *pszNew, const char *psz, ::aura::application * papp)
+   //{
+   //   string strDir = System.dir().name(psz);
+   //   string strDirNew = System.dir().name(pszNew);
+   //   if(strDir == strDirNew)
+   //   {
+   //      string strOld = System.file().name_(psz);
+   //   }
+   //   ::exception::throw_not_implemented(get_app());
+   //   //if(!System.file_as_string().move(psz, pszNew))
+   //   {
+   //      property_set propertyset;
+   //      System.message_box("err\\::fontopus::user\\system\\could_not_rename_file.xml", propertyset);
+   //      return false;
+   //   }
+   //   return true;
+   //}
 
    string system::md5(const char * psz)
    {
@@ -1391,14 +1367,6 @@ restart:
 
    }
 
-
-   void system::dtf(const char * pszFile, const char * pszDir, ::aura::application * papp)
-   {
-      stringa stra;
-      stringa straRelative;
-      System.dir().rls(papp, pszDir, &stra, NULL, &straRelative);
-      dtf(pszFile, stra, straRelative, papp);
-   }
 
    void system::dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::aura::application * papp)
    {
@@ -1509,7 +1477,7 @@ restart:
       }
    }
 
-   void system::write_n_number(::file::buffer_sp  pfile, MD5_CTX * pctx, int64_t iNumber)
+   void system::write_n_number(::file::stream_buffer *  pfile, MD5_CTX * pctx, int64_t iNumber)
    {
 
       string str;
@@ -1527,7 +1495,7 @@ restart:
 
    }
 
-   void system::read_n_number(::file::buffer_sp  pfile, MD5_CTX * pctx, int64_t & iNumber)
+   void system::read_n_number(::file::stream_buffer *  pfile,MD5_CTX * pctx,int64_t & iNumber)
    {
 
       uint64_t uiRead;
@@ -1563,7 +1531,7 @@ restart:
 
    }
 
-   void system::write_gen_string(::file::buffer_sp  pfile, MD5_CTX * pctx, string & str)
+   void system::write_gen_string(::file::stream_buffer *  pfile,MD5_CTX * pctx,string & str)
    {
       ::count iLen = str.get_length();
       write_n_number(pfile, pctx, iLen);
@@ -1574,7 +1542,7 @@ restart:
       }
    }
 
-   void system::read_gen_string(::file::buffer_sp  pfile, MD5_CTX * pctx, string & str)
+   void system::read_gen_string(::file::stream_buffer * pfile,MD5_CTX * pctx,string & str)
    {
       int64_t iLen;
       read_n_number(pfile, pctx, iLen);
@@ -1658,13 +1626,15 @@ restart:
    }
 
 
-   bool system::get_last_write_time(FILETIME * pfiletime,const string & strFilename)
-   {
+   //bool system::get_last_write_time(FILETIME * pfiletime,const string & strFilename)
+   //{
 
-      throw interface_only_exception(get_app());
+   //   throw interface_only_exception(get_app());
 
-   }
+   //}
 
+
+   } // namespace axis
 
 
 } // namespace file

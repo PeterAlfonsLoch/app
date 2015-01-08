@@ -133,6 +133,9 @@ namespace aura
       factory().default_cloneable_large < ::primitive::memory >();
       factory().default_cloneable_large < int_array >();
 
+      factory().creatable_small < ::file::application >();
+      factory().creatable_small < ::file::dir::application >();
+
       __node_aura_factory_exchange(this);
 
       thread::s_bAllocReady = true;
@@ -1217,7 +1220,7 @@ namespace aura
 
          free(pszCurDir);
          
-         strModuleFileName = Application.dir_path(strCurDir,"libbase.dylib");
+         strModuleFileName = System.dir().path(strCurDir,"libbase.dylib");
 
          if(Application.file_exists(strModuleFileName))
          {
@@ -1225,7 +1228,7 @@ namespace aura
             goto finishedCa2Module;
          }
 
-         strModuleFileName = Application.dir_path(m_strModuleFolder,"libbase.dylib");
+         strModuleFileName = System.dir().path(m_strModuleFolder,"libbase.dylib");
 
          if(Application.file_exists(strModuleFileName))
          {
@@ -1237,7 +1240,7 @@ namespace aura
 
          if(Application.file_exists(strModuleFileName))
          {
-//            m_strCa2ModuleFolder = Application.dir_name(strModuleFileName);
+//            m_strCa2ModuleFolder = System.dir().name(strModuleFileName);
             goto finishedCa2Module;
          }
 
@@ -1301,7 +1304,7 @@ namespace aura
    string system::get_module_title()
    {
 
-      return file_title(get_module_file_path());
+      return file().title_(get_module_file_path());
 
    }
 
@@ -1309,7 +1312,7 @@ namespace aura
    string system::get_module_name()
    {
 
-      return file_name(get_module_file_path());
+      return file().name_(get_module_file_path());
 
    }
 

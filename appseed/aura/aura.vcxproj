@@ -2646,6 +2646,8 @@
     <ClInclude Include="multithreading\multithreading_thread_impl.h" />
     <ClInclude Include="multithreading\service\service_plain_service.h" />
     <ClInclude Include="multithreading\service\service_thread_pool.h" />
+    <ClInclude Include="net\net.h" />
+    <ClInclude Include="net\net_url.h" />
     <ClInclude Include="primitive\api\api.h" />
     <ClInclude Include="primitive\api\api_rotate.h" />
     <ClInclude Include="primitive\collection\collection.h" />
@@ -3447,6 +3449,7 @@
     <ClCompile Include="graphics\visual\visual_icon.cpp" />
     <ClCompile Include="multithreading\service\service_plain_service.cpp" />
     <ClCompile Include="multithreading\_multithreading.cpp" />
+    <ClCompile Include="net\net_url.cpp" />
     <ClCompile Include="primitive\collection\collection_array_base.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>

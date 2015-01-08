@@ -5,25 +5,12 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AXIS path :
-      virtual public ::file::path
-   {
-   public:
 
-
-      path(::aura::application * papp);
-      virtual bool  is_equal(const char * lpszFilPathA, const char * lpszFilPathB);
-
-
-   };
-
-
-   class CLASS_DECL_AXIS dir :
+   class CLASS_DECL_AURA dir:
       virtual public ::file::dir::system
    {
    public:
 
-      class path        m_path;
       string            m_strTimeFolder;
       string            m_strNetSeedFolder;
 
@@ -45,8 +32,8 @@ namespace windows
       virtual string relpath(const char * lpcszSource, const char * lpcszRelative, const char * lpcsz2 = NULL);
       virtual void  ls_pattern(::aura::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL);
       virtual void  ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL);
-      virtual void  rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL, e_extract eextract = extract_first);
-      virtual void  rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, e_extract eextract = extract_first);
+      virtual bool  rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL, e_extract eextract = extract_first);
+      virtual bool  rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, e_extract eextract = extract_first);
       virtual void  rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
       virtual void  ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
       virtual bool  has_subdir(::aura::application * papp, const char * lpcsz);

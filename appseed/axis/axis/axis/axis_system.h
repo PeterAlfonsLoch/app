@@ -51,8 +51,6 @@ namespace axis
       //::url::departament                           & url()     { return m_urldepartament; }
 
       inline class ::http::system                  & http()    { return m_httpsystem; }
-      inline ::file::system                        & file()    { return *m_spfile; }
-      inline ::file::dir::system                   & dir()     { return *m_spdir; }
       
       class ::crypto::crypto                       & crypto();
       ::install::install                           & install() { return *m_spinstall; }

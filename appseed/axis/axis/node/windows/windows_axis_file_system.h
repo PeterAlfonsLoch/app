@@ -11,7 +11,8 @@ namespace windows
 
 
       class file_system:
-         virtual public ::windows::file_system
+         virtual public ::windows::file_system,
+         virtual public ::file::axis::system
       {
       public:
 

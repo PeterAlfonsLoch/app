@@ -7,7 +7,8 @@ namespace windows
 
 
    file_system::file_system(::aura::application * papp) :
-      element(papp)
+      element(papp),
+      ::file::system(papp)
    {
 
    }

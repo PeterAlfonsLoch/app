@@ -7,9 +7,6 @@ namespace url
 {
 
 
-   bool CLASS_DECL_AXIS is_url(const char * pszCandidate, const char ** ppszRequest = NULL);
-
-
    class CLASS_DECL_AXIS departament :
       virtual public ::aura::departament
    {

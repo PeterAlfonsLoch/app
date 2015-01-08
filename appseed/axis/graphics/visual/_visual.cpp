@@ -15,7 +15,6 @@
 #include <gdiplus.h>
 #undef min
 #undef max
-int GetEncoderClsid(const WCHAR* format,CLSID* pClsid);
 #define new AURA_NEW
 
 

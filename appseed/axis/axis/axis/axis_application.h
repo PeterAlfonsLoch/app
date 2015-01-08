@@ -28,8 +28,6 @@ namespace axis
 
 
       ::http::application                             m_http;
-      ::file::dir::application                        m_dir;
-      ::file::application                             m_file;
 
       ::simpledb::simpledb                            m_simpledb;
       sp(::database::server)                          m_spdataserver;
@@ -64,8 +62,6 @@ namespace axis
 
 
       inline class ::http::application &        http()         { return m_http; }
-      inline class ::file::dir::application &   dir()          { return m_dir; }
-      inline class ::file::application &        file()         { return m_file; }
 
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb; }
 

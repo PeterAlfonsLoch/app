@@ -6,8 +6,16 @@ namespace file
 {
 
 
-   application::application()
+   application::application(::aura::application * papp) :
+      element(papp)
    {
+
+   }
+
+
+   application::~application()
+   {
+
    }
 
    void application::copy(const char * pszNew, const char * pszOld, bool bFailIfExists, e_extract eextract)
@@ -33,13 +41,6 @@ namespace file
    bool application::exists(const char * pszPath)
    {
 
-      if(::str::begins_ci(pszPath, "uifs://"))
-      {
-         
-         return AppUser(m_pauraapp).m_pifs->file_exists(pszPath);
-
-      }
-
       return m_pauraapp->m_paurasystem->m_spfile->exists(pszPath, m_pauraapp);
 
    }
@@ -47,12 +48,6 @@ namespace file
 
    bool application::exists(const string & strPath)
    {
-
-      if(::str::begins_ci_iws(strPath, "uifs://"))
-      {
-         ::fontopus::user & user = AppUser(m_pauraapp);
-         return user.m_pifs->file_exists(strPath);
-      }
 
       return m_pauraapp->m_paurasystem->m_spfile->exists(strPath, m_pauraapp);
 
@@ -63,10 +58,6 @@ namespace file
 
       const string & strPath = var.get_string();
 
-      if(::str::begins_ci_iws(strPath, "uifs://"))
-      {
-         return AppUser(m_pauraapp).m_pifs->file_exists(strPath);
-      }
 
       return m_pauraapp->m_paurasystem->m_spfile->exists(strPath, m_pauraapp);
 
@@ -76,13 +67,6 @@ namespace file
    var application::length(const char * pszPath)
    {
 
-      if (::str::begins_ci(pszPath, "uifs://"))
-      {
-
-         return AppUser(m_pauraapp).m_pifs->file_length(pszPath);
-
-      }
-
       return m_pauraapp->m_paurasystem->m_spfile->length(pszPath, m_pauraapp);
 
    }
@@ -91,12 +75,6 @@ namespace file
    var application::length(const string & strPath)
    {
 
-      if (::str::begins_ci_iws(strPath, "uifs://"))
-      {
-
-         return AppUser(m_pauraapp).m_pifs->file_length(strPath);
-
-      }
 
       return m_pauraapp->m_paurasystem->m_spfile->length(strPath, m_pauraapp);
 
@@ -106,16 +84,7 @@ namespace file
    var application::length(const var & var)
    {
 
-      const string & strPath = var.get_string();
-
-      if (::str::begins_ci_iws(strPath, "uifs://"))
-      {
-
-         return AppUser(m_pauraapp).m_pifs->file_length(strPath);
-
-      }
-
-      return m_pauraapp->m_paurasystem->m_spfile->length(strPath, m_pauraapp);
+      return m_pauraapp->m_paurasystem->m_spfile->length(var.get_string(), m_pauraapp);
 
    }
 
@@ -202,33 +171,6 @@ namespace file
    }
 
 
-   void application::dtf(const char * pszFile,const char * pszDir)
-   {
-      return m_pauraapp->m_paurasystem->m_spfile->dtf(pszFile,pszDir,m_pauraapp);
-   }
-
-   void application::dtf(const char * pszFile,stringa & stra,stringa & straRelative)
-   {
-      return m_pauraapp->m_paurasystem->m_spfile->dtf(pszFile,stra,straRelative, m_pauraapp);
-   }
-
-   void application::ftd(const char * pszDir,const char * pszFile)
-   {
-      return m_pauraapp->m_paurasystem->m_spfile->ftd(pszDir,pszFile,m_pauraapp);
-   }
-
-
-   bool application::crypto_set(var varFile,const char * pszData,const char * pszSalt)
-   {
-      // attention: operation on System crypto
-      return m_pauraapp->m_paxissystem->m_spcrypto->file_set(varFile, pszData, pszSalt, m_pauraapp);
-   }
-
-   bool application::crypto_get(var varFile,string & str,const char * pszSalt)
-   {
-      // attention: operation on System crypto
-      return m_pauraapp->m_paxissystem->m_spcrypto->file_get(varFile,str,pszSalt,m_pauraapp);
-   }
 
    ::file::buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
@@ -324,228 +266,10 @@ namespace file
          */
 
       }
-      else if(::str::begins(strPath, "http://") || ::str::begins(strPath, "https://"))
-      {
-
-         ::url_domain domain;
-
-         domain.create(System.url().get_server(strPath));
-
-         if(domain.m_strRadix == "ca2" && ::str::begins(System.url().get_object(strPath), "/matter/"))
-         {
-
-            string strFile(strPath);
-
-            if(::str::ends(strPath, "en_us_international.xml"))
-            {
-               TRACE("Debug Here");
-            }
-
-            if(::str::ends(strPath, "text_select.xml"))
-            {
-               TRACE("Debug Here");
-            }
-
-            if(::str::ends(strPath, "arialuni.ttf"))
-            {
-               TRACE("Debug Here : arialuni.ttf");
-            }
-
-#ifdef WINDOWS
-            strFile.replace("://", "_\\");
-#else
-             strFile.replace("://", "_/");
-#endif
-            strFile = System.dir().appdata("cache/" + strFile);
-
-            strFile = strFile + ".local_copy";
-
-            single_lock sl(&System.http().m_mutexDownload, true);
-
-            if (Application.file().exists(strFile) && !(System.http().m_straDownloading.contains(strPath) || System.http().m_straExists.contains(strPath)))
-            {
-
-               sl.unlock();
-
-               spfile = Application.alloc(System.type_info < ::file::binary_buffer > ());
-
-               try
-               {
-
-                  if(spfile->open(strFile, nOpenFlags))
-                  {
-                     TRACE("from_exist_cache:\"" + strPath + "\"");
-                     return spfile;
-
-                  }
-               }
-               catch(...)
-               {
-
-               }
-
-               try
-               {
-
-                  spfile.release();
-
-               }
-               catch(...)
-               {
-               }
-
-            }
-
-
-            var varQuery;
-
-            varQuery["raw_http"] = true;
-
-            property_set set(get_app());
-
-            set["raw_http"] = true;
-
-//            bool bOk = true;
-
-            sl.lock();
-
-            while (System.http().m_straDownloading.contains(strPath) || System.http().m_straExists.contains(strPath))
-            {
-               sl.unlock();
-               Sleep(100);
-               sl.lock();
-            }
-
-            if (!Sys(m_pauraapp).http().m_straDownloading.contains(strPath) && Sess(m_pauraapp).m_http.exists(strPath, &varQuery, set))
-            {
-
-               System.http().m_straDownloading.add(strPath);
-
-               sl.unlock();
-
-               spfile = new ::sockets::http_buffer(get_app());
-
-               if(!spfile->open(strPath, nOpenFlags))
-               {
-                  sl.lock();
-
-                  System.http().m_straDownloading.remove(strPath);
-
-                  sl.unlock();
-
-                  spfile.release();
-
-               }
-               else
-               {
-
-                  try
-                  {
-
-                     ::file::input_stream is(spfile);
-
-                     System.file().output(m_pauraapp, strFile, &System.compress(), &::axis::compress::null, is);
-
-                  }
-                  catch (...)
-                  {
-                  }
-
-                  sl.lock();
-
-                  System.http().m_straDownloading.remove(strPath);
-
-                  sl.unlock();
-
-                  spfile->seek_to_begin();
-
-               }
-
-            }
-
-
-         }
-         else
-         {
-
-            spfile = new ::sockets::http_buffer(get_app());
-
-            if(!spfile->open(strPath, nOpenFlags))
-            {
-
-               spfile.release();
-
-            }
-
-         }
-
-      }
-      else if(::str::begins(strPath, "ifs://") || ::str::begins(strPath, "uifs://"))
-      {
-
-         if(&AppUser(m_pauraapp) == NULL)
-         {
-
-            spfile = NULL;
-
-         }
-         else
-         {
-
-            spfile = AppUser(m_pauraapp).m_pifs->get_file(varFile, nOpenFlags);
-
-         }
-
-      }
-/* xxx      else if(::str::begins(strPath, "fs://"))
-      {
-
-         if(&Session == NULL)
-         {
-
-            spfile = NULL;
-
-         }
-         else
-         {
-
-            spfile = Session.m_prfs->get_file(varFile, nOpenFlags);
-
-         }
-
-      } */
       else if(::str::begins_eat_ci(strPath, "matter://"))
       {
 
-         sp(::aura::application) papp;
-
-         if(System.url().get_server("matter://" + strPath) == m_pauraapp->m_strAppName)
-         {
-
-            strPath = System.url().get_object("matter://" + strPath).Mid(1);
-
-            spfile = Application.alloc(System.type_info < ::file::binary_buffer > ());
-
-            if(!spfile->open(App(m_pauraapp).dir().matter(strPath), nOpenFlags))
-            {
-
-               spfile.release();
-
-            }
-
-         }
-         else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(m_pauraapp).m_strAppName.has_char())
-         {
-
-            spfile = App(papp).file().get_file("matter://" + strPath, nOpenFlags);
-
-         }
-         else
-         {
-
-            spfile = get_file(App(m_pauraapp).dir().matter(strPath), nOpenFlags);
-
-         }
+          spfile = get_file(App(m_pauraapp).dir().matter(strPath), nOpenFlags);
 
       }
       else
@@ -593,9 +317,85 @@ namespace file
    }
    */
 
+   void application::dtf(const char * pszFile,const char * pszDir)
+   {
+
+      return m_pauraapp->m_paurasystem->m_spfile->dtf(pszFile,pszDir,m_pauraapp);
+
+   }
 
 
-} // namespace core
+   void application::dtf(const char * pszFile,stringa & stra,stringa & straRelative)
+   {
+
+      return m_pauraapp->m_paurasystem->m_spfile->dtf(pszFile,stra,straRelative,m_pauraapp);
+
+   }
+
+
+   void application::ftd(const char * pszDir,const char * pszFile)
+   {
+
+      return m_pauraapp->m_paurasystem->m_spfile->ftd(pszDir,pszFile,m_pauraapp);
+
+   }
+
+
+   bool application::crypto_set(var varFile,const char * pszData,const char * pszSalt)
+   {
+
+      throw interface_only_exception(get_app());
+
+      return false;
+
+   }
+   
+   
+   bool application::crypto_get(var varFile,string & str,const char * pszSalt)
+   {
+
+      throw interface_only_exception(get_app());
+
+      return false;
+
+   }
+
+
+
+} // namespace file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

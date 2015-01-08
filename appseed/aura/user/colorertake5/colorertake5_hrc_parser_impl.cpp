@@ -55,7 +55,7 @@ namespace colorertake5
       }
       thisType->inputSourceLoading = true;
 
-      thisType->m_strSource = Application.file_as_string(thisType->m_strSourceLocation);
+      thisType->m_strSource = Application.file().as_string(thisType->m_strSourceLocation);
 
       try
       {
@@ -263,12 +263,9 @@ namespace colorertake5
                }
                continue;
             };
-            type->m_strSourceLocation =
-               Application.dir_path(
-               Application.dir_name(m_strCurrentSourceLocation),
-               locationLink);
+            type->m_strSourceLocation = System.dir().sibling(m_strCurrentSourceLocation, locationLink);
             /*type->m_strSource =
-            Application.file_as_string(
+            Application.file().as_string(
             type->m_strSourceLocation);*/
 
          };

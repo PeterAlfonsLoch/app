@@ -8,18 +8,11 @@ namespace windows
 
    dir::dir(::aura::application * papp) :
       ::element(papp),
-      ::file::dir::system(papp),
-      m_path(papp)
+      ::file::dir::system(papp)
    {
       
 
    }
-
-   path::path(::aura::application * papp) :
-      element(papp)
-   {
-   }
-
 
    inline bool myspace(char ch)
    {
@@ -182,59 +175,6 @@ namespace windows
       }
    }
 
-   bool path::is_equal(const char * lpszPath1, const char * lpszPath2)
-   {
-      // use case insensitive compare as a starter
-      if (lstrcmpi(lpszPath1, lpszPath2) != 0)
-      return FALSE;
-
-      // on non-DBCS systems, we are done
-      if (!GetSystemMetrics(SM_DBCSENABLED))
-      return TRUE;
-
-      // on DBCS systems, the file name may not actually be the same
-      // in particular, the file system is case sensitive with respect to
-      // "full width" roman characters.
-      // (ie. fullwidth-R is different from fullwidth-r).
-      int32_t nLen = lstrlen(lpszPath1);
-      if (nLen != lstrlen(lpszPath2))
-      return FALSE;
-      ASSERT(nLen < _MAX_PATH);
-
-      // need to get both CT_CTYPE1 and CT_CTYPE3 for each filename
-      LCID lcid = GetThreadLocale();
-      WORD aCharType11[_MAX_PATH];
-      VERIFY(GetStringTypeEx(lcid, CT_CTYPE1, lpszPath1, -1, aCharType11));
-      WORD aCharType13[_MAX_PATH];
-      VERIFY(GetStringTypeEx(lcid, CT_CTYPE3, lpszPath1, -1, aCharType13));
-      WORD aCharType21[_MAX_PATH];
-      VERIFY(GetStringTypeEx(lcid, CT_CTYPE1, lpszPath2, -1, aCharType21));
-      #ifdef DEBUG
-      WORD aCharType23[_MAX_PATH];
-      VERIFY(GetStringTypeEx(lcid, CT_CTYPE3, lpszPath2, -1, aCharType23));
-      #endif
-
-      // for every C3_FULLWIDTH character, make sure it has same C1 value
-      int32_t i = 0;
-      for (const char * lpsz = lpszPath1; *lpsz != 0; lpsz = _tcsinc(lpsz))
-      {
-      // check for C3_FULLWIDTH characters only
-      if (aCharType13[i] & C3_FULLWIDTH)
-      {
-      #ifdef DEBUG
-      ASSERT(aCharType23[i] & C3_FULLWIDTH); // should always match!
-      #endif
-
-      // if CT_CTYPE1 is different then file system considers these
-      // file names different.
-      if (aCharType11[i] != aCharType21[i])
-      return FALSE;
-      }
-      ++i; // look at next character type
-      }
-      return TRUE; // otherwise file name is truly the same
-   }
-
    void dir::root_ones(stringa & straPath, stringa & straTitle, ::aura::application * papp)
    {
       DWORD dwSize = ::GetLogicalDriveStrings(0, NULL);
@@ -294,12 +234,16 @@ namespace windows
       }
    }
 
-   void dir::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
+   
+   bool dir::rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
    {
-      rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
+
+      return rls_pattern(papp, lpcsz, "*.*", pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract);
+
    }
 
-   void dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
+
+   bool dir::rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize, e_extract eextract)
    {
       stringa straDir;
       ls_dir(papp, lpcsz, &straDir);
@@ -370,10 +314,13 @@ namespace windows
                }*/
             }
          }
+         
+         return true;
+
       }
       else
       {
-         ::file::dir::system::rls(papp, lpcsz, pstraPath, pstraTitle, pstraRelative, eextract == extract_all ? extract_all : extract_none);
+         return ::file::dir::system::rls(papp, lpcsz, pstraPath, pstraTitle, pstraRelative, eextract == extract_all ? extract_all : extract_none);
       }
    }
 
@@ -633,23 +580,7 @@ namespace windows
          return true;
       }
       
-      strsize iFind = ::str::find_ci(".zip:", str);
 
-      if(::get_thread() != NULL && ::get_thread()->m_bZipIsDir && iFind >= 0 && iFind < iLast)
-      {
-         bool bHasSubFolder;
-         if(m_isdirmap.lookup(str, bHasSubFolder, uiLastError))
-         {
-            if(!bHasSubFolder)
-            {
-               ::SetLastError(uiLastError);
-            }
-            return bHasSubFolder;
-         }
-         bHasSubFolder = m_pziputil->HasSubFolder(papp, str);
-         m_isdirmap.set(str.Left(iLast + 1), bHasSubFolder, bHasSubFolder ? 0 : ::GetLastError());
-         return bHasSubFolder;
-      }
 
 
       wstring wstrPath;

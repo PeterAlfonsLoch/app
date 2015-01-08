@@ -139,6 +139,8 @@ namespace aura
       inline ::url::departament                    & url() { return *m_purldepartament; } // only usable from base.dll and dependants
       inline class ::axis::compress                & compress() { return *m_pcompress; } // only usable from base.dll and dependants
 
+      inline ::file::system                        & file()    { return *m_spfile; }
+      inline ::file::dir::system                   & dir()     { return *m_spdir; }
 
 
       virtual void on_allocation_error(::aura::application * papp,sp(type) & info);

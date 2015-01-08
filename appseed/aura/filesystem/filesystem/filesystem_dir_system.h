@@ -72,10 +72,11 @@ namespace file
          };
 
 
-         zip::Util *       m_pziputil;
+         //zip::Util *       m_pziputil;
          is_dir_map        m_isdirmap;
          mutex             m_mutex;
          string            m_strApiCc;
+         path              m_path;
 
 
          system(::aura::application * papp);
@@ -84,6 +85,12 @@ namespace file
 
          virtual class ::file::path & path();
 
+
+         virtual string sibling(const string & strPath,const string & strRelative,bool bUrl);
+         virtual string sibling(const string & strPath,const string & strRelative,const string & str2,bool bUrl);
+         
+         virtual string sibling(const string & strFolder,const string & strRelative);
+         virtual string sibling(const string & strFolder,const string & strRelative,const string & str2);
 
          virtual string path(const string & strFolder, const string & strRelative, bool bUrl);
          virtual string path(const string & strFolder, const string & strRelative, const string & str2, bool bUrl);
@@ -104,8 +111,8 @@ namespace file
          virtual string relpath(const char * lpcszSource, const char * lpcszRelative, const char * lpcsz2 = NULL);
          virtual void  ls_pattern(::aura::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL);
          virtual void  ls(::aura::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL);
-         virtual void  rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL, e_extract eextract = extract_first);
-         virtual void  rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, e_extract eextract = extract_first);
+         virtual bool  rls_pattern(::aura::application * papp, const char * lpcsz, const char * lpcszPattern, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, bool_array * pbaIsDir = NULL, int64_array * piaSize = NULL, e_extract eextract = extract_first);
+         virtual bool  rls(::aura::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL, e_extract eextract = extract_first);
          virtual void  rls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL, stringa * pstraRelative = NULL);
          virtual void  ls_dir(::aura::application * papp, const char * lpcsz, stringa * pstraPath = NULL, stringa * pstraTitle = NULL);
          virtual bool  has_subdir(::aura::application * papp, const char * lpcsz);
@@ -203,6 +210,7 @@ namespace file
          virtual string get_api_cc();
 
       };
+
 
       typedef smart_pointer < system > system_sp;
 

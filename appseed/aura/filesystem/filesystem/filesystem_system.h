@@ -6,9 +6,11 @@ namespace file
 
 
    class CLASS_DECL_AURA system :
-      public object
+      virtual public object
    {
    public:
+
+
 
 
       class CLASS_DECL_AURA path :
@@ -28,8 +30,12 @@ namespace file
 
       };
 
+      class system::path m_path;
 
-      system();
+
+
+      system(::aura::application * papp);
+      virtual ~system();
 
       path & path();
 
@@ -146,9 +152,12 @@ namespace file
 
       virtual bool get_last_write_time(FILETIME * pfiletime,const string & strFilename);
 
-   protected:
+      virtual void dtf(const char * pszFile,const char * pszDir,::aura::application * papp);
 
-      class system::path m_path;
+      virtual void dtf(const char * pszFile,stringa & stra,stringa & straRelative,::aura::application * papp);
+
+      virtual void ftd(const char * pszDir,const char * pszFile,::aura::application * papp);
+
 
    };
 

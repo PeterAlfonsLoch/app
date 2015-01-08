@@ -102,9 +102,6 @@ namespace windows
       virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
 
 
-      virtual bool get_last_write_time(FILETIME * pfiletime, const string & strFilename);
-
-
    };
 
 

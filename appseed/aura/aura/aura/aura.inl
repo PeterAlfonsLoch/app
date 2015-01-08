@@ -261,7 +261,7 @@ namespace xml
 //   bool system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,const char *),const char * lpszSource)
 //   {
 //
-//      System.dir().mk(Application.dir_name(pszOutput),papp);
+//      System.dir().mk(System.dir().name(pszOutput),papp);
 //
 //      ::file::binary_buffer_sp fileOut = papp->m_paurasession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
 //
@@ -279,7 +279,7 @@ namespace xml
 //   bool system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::output_stream &,::file::input_stream &),const char * lpszInput)
 //   {
 //
-//      System.dir().mk(Application.dir_name(pszOutput),papp);
+//      System.dir().mk(System.dir().name(pszOutput),papp);
 //
 //      ::file::binary_buffer_sp fileOut = papp->m_paurasession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
 //

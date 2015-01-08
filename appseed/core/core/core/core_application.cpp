@@ -3816,7 +3816,7 @@ namespace core
       try
       {
 
-         return Session.m_file.get_file(varFile,nOpenFlags);
+         return Session.m_spfile->get_file(varFile,nOpenFlags);
 
       }
       catch(::file::exception & e)

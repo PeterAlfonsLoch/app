@@ -1425,7 +1425,7 @@ namespace install
 
             string strFile = straFile[iFile];
 
-            string strDownload = System.dir().path(System.dir().name(strPath),strFile);
+            string strDownload = System.dir().sibling(strPath,strFile);
 
             straDownload.add(strDownload);
 
@@ -1520,7 +1520,7 @@ namespace install
 
                string strFile = straFile[iFile];
 
-               string strDownload = System.dir().path(System.dir().name(strPath),strFile);
+               string strDownload = System.dir().sibling(strPath,strFile);
 
                if(pinstaller != NULL)
                {

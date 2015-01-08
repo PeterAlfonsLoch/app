@@ -55,8 +55,6 @@ namespace axis
 //      m_pcoreapp                 = NULL;
 
       
-      m_dir.set_app(this);
-      m_file.set_app(this);
       m_http.set_app(this);
 
 
@@ -1926,6 +1924,10 @@ namespace axis
 
       m_bBaseProcessInitialize = true;
       m_bBaseProcessInitializeResult = false;
+
+
+      m_spdir.alloc(allocer());
+      m_spfile.alloc(allocer());
 
 
       if(!::aura::application::process_initialize())

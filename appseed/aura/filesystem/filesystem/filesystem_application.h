@@ -6,12 +6,13 @@ namespace file
 
 
    class CLASS_DECL_AURA application:
-      public object
+      virtual public object
    {
    public:
 
 
-      application();
+      application(::aura::application * papp);
+      virtual ~application();
 
 
       virtual void copy(const char * pszNew, const char * psz, bool bFailIfExists = false, e_extract eextract = extract_first);
@@ -72,6 +73,9 @@ namespace file
 
 
    };
+
+
+   typedef smart_pointer < application > application_sp;
 
 
 } // namespace axis

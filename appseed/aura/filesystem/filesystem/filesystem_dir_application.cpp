@@ -17,7 +17,8 @@ namespace file
    {
 
 
-      application::application()
+      application::application(::aura::application * papp) :
+         element(papp)
       {
       }
 
@@ -75,38 +76,7 @@ namespace file
 
          string strPath = m_pauraapp->m_paurasystem->m_spdir->matter(get_app(), lpcsz, lpcsz2, bDir);
 
-         if(strPath.begins_ci("http://") || strPath.begins_ci("https://"))
-         {
-            string strFileExists = strPath;
-            strFileExists.replace(":", "_");
-            strFileExists = m_pauraapp->m_paurasystem->m_spdir->appdata("cache/" + strFileExists + ".exists_question");
-            strFileExists.replace("\\\\", "\\", 2);
-            string strFile = strPath;
-            strFile.replace(":", "_");
-            strFile = m_pauraapp->m_paurasystem->m_spdir->appdata("cache/" + strFile + ".local_copy");
-            strFile.replace("\\\\", "\\", 2);
-            if(Application.file().exists(strFileExists))
-            {
-               if(Application.file().as_string(strFileExists) == "yes")
-                  return strFile;
-               else
-                  return "";
-            }
-            if (System.file().output(get_app(), strFile, &System.compress(), &::axis::compress::null, strPath))
-            {
-               Application.file().put_contents(strFileExists, "yes");
-               return strFile;
-            }
-            else
-            {
-               Application.file().put_contents(strFileExists, "no");
-               return "";
-            }
-         }
-         else
-         {
-            return strPath;
-         }
+         return strPath;
 
       }
 
@@ -176,12 +146,12 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spdir.m_p->ls(m_pauraapp, lpcsz, pstraPath, pstraTitle, pbaIsDir, piaSize);
       }
 
-      void application::rls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize)
+      bool application::rls_pattern(const char * lpcsz, const char * lpcszPattern, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, bool_array * pbaIsDir, int64_array * piaSize)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->rls_pattern(m_pauraapp, lpcsz, lpcszPattern, pstraPath, pstraTitle, pstraRelative, pbaIsDir, piaSize);
       }
 
-      void application::rls(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
+      bool application::rls(const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative)
       {
          return m_pauraapp->m_paurasystem->m_spdir.m_p->rls(m_pauraapp, lpcsz, pstraPath, pstraTitle, pstraRelative);
       }

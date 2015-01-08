@@ -868,6 +868,14 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 #include "aura/aura/aura/aura_savings.h"
 
+#include "aura/net/net.h"
+
+#include "aura/filesystem/filesystem/filesystem_application.h"
+
+#include "aura/filesystem/filesystem/filesystem_dir_application.h"
+
+
+
 
 #include "aura/aura/aura/aura_application_interface.h"
 #include "aura/aura/aura/aura_application.h"
@@ -937,10 +945,6 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/filesystem/filesystem/filesystem_system.h"
 
 #include "aura/filesystem/filesystem/filesystem_dir_system.h"
-
-#include "aura/filesystem/filesystem/filesystem_application.h"
-
-#include "aura/filesystem/filesystem/filesystem_dir_application.h"
 
 #include "aura/aura/aura/aura_core_os.h"
 

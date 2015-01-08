@@ -76,6 +76,11 @@ namespace aura
       string_table                                    m_stringtable;
       string_table                                    m_stringtableStd;
 
+
+      ::file::dir::application_sp                     m_spdir;
+      ::file::application_sp                          m_spfile;
+
+
       application();
       virtual ~application();
 
@@ -108,6 +113,10 @@ namespace aura
       bool load_cached_string_by_id(string & str,id id,const string & pszFallbackValue,bool bLoadStringTable);
       void load_string_table(const string & pszApp,const string & pszId);
 
+
+
+      inline class ::file::dir::application &   dir()          { return *m_spdir; }
+      inline class ::file::application &        file()         { return *m_spfile; }
 
 
       virtual bool is_system();
@@ -364,35 +373,35 @@ namespace aura
       virtual bool set_main_init_data(::aura::main_init_data * pdata);
 
 
-      virtual void dir_matter_ls_file(const string & str,stringa & stra);
-      virtual string matter_as_string(const char * pszMatter,const char * pszMatter2 = NULL);
-      virtual string file_as_string(var varFile);
-      virtual string file_as_string(var varFile,var & varQuery);
-      virtual string dir_matter(const char * pszMatter,const char * pszMatter2 = NULL);
-      virtual bool is_inside_time_dir(const char * pszPath);
-      virtual bool file_is_read_only(const char * pszPath);
-      virtual bool file_exists(const char * pszPath);
-      virtual bool file_is_equal_path(const char * pszPath1,const char * pszPath2);
-      virtual bool dir_is(const char * psz);
-      virtual bool file_del(const char * psz);
-      virtual string file_extension(const char * pszPath);
-      virtual string dir_path(const char * psz1,const char * psz2,const char * psz3 = NULL);
-      virtual string dir_element(const char * psz = NULL);
-      virtual string dir_ca2module(const char * psz = NULL);
-      virtual string dir_name(const char * psz);
-      virtual void  dir_ls_dir(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
-      virtual void  dir_rls(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
-      virtual bool dir_mk(const char * psz);
-      virtual string file_title(const char * psz);
-      virtual string file_name(const char * psz);
-      virtual string file_time_square();
-      virtual string dir_userappdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
-      virtual string dir_appdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
-      virtual string dir_simple_path(const string & str1,const string & str2);
+      //virtual void dir_matter_ls_file(const string & str,stringa & stra);
+      //virtual string matter_as_string(const char * pszMatter,const char * pszMatter2 = NULL);
+      //virtual string file().as_string(var varFile);
+      //virtual string file().as_string(var varFile,var & varQuery);
+      //virtual string dir().matter(const char * pszMatter,const char * pszMatter2 = NULL);
+      //virtual bool is_inside_time_dir(const char * pszPath);
+      //virtual bool file_is_read_only(const char * pszPath);
+      //virtual bool file_exists(const char * pszPath);
+      //virtual bool file_is_equal_path(const char * pszPath1,const char * pszPath2);
+      //virtual bool dir().id(const char * psz);
+      //virtual bool file_del(const char * psz);
+      //virtual string file_extension(const char * pszPath);
+      //virtual string dir_path(const char * psz1,const char * psz2,const char * psz3 = NULL);
+      //virtual string dir_element(const char * psz = NULL);
+      //virtual string dir_ca2module(const char * psz = NULL);
+      //virtual string dir_name(const char * psz);
+      //virtual void  dir_ls_dir(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL);
+      //virtual void  dir_rls(const char * lpcsz,stringa * pstraPath = NULL,stringa * pstraTitle = NULL,stringa * pstraRelative = NULL);
+      //virtual bool dir_mk(const char * psz);
+      //virtual string file_title(const char * psz);
+      //virtual string file().name_(const char * psz);
+      //virtual string file_time_square();
+      //virtual string dir_userappdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
+      //virtual string dir_appdata(const char * lpcsz = NULL,const char * lpcsz2 = NULL);
+      //virtual string dir_simple_path(const string & str1,const string & str2);
 
-#ifdef APPLEOS
-      virtual CLASS_DECL_AURA string dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
-#endif
+//#ifdef APPLEOS
+//      virtual CLASS_DECL_AURA string dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
+//#endif
 
       virtual ::file::buffer_sp file_get_file(var varFile,uint32_t uiFlags);
 
