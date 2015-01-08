@@ -1658,6 +1658,22 @@ restart:
    }
 
 
+   FILETIME file::Win32GetLastWriteTime(const string & strFilename)
+   {
+
+      throw interface_only_exception();
+      FILETIME LastWriteTime ={};
+
+      WIN32_FILE_ATTRIBUTE_DATA Data;
+      if(GetFileAttributesEx(Filename,GetFileExInfoStandard,&Data))
+      {
+         LastWriteTime = Data.ftLastWriteTime;
+      }
+
+      return(LastWriteTime);
+   }
+
+
 
 } // namespace file
 
