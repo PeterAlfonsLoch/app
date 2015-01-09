@@ -772,7 +772,7 @@ namespace crypto
       for(int32_t i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - WHIRLPOOL_DIGEST_LENGTH; i++)
       {
          string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
-         strHash = nessie(strStepSalt + strHash);
+         strHash = nessie(strStepSalt + strHash).lowered();
       }
       return strSalt + strHash;
    }
@@ -785,7 +785,7 @@ namespace crypto
       for (int32_t i = 0; i < iMaxOrder; i++)
       {
          string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
-         strHash = nessie(strStepSalt + strHash);
+         strHash = nessie(strStepSalt + strHash).lowered();
       }
       return strSalt + strHash;
    }
