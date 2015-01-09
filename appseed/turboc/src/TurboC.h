@@ -1,5 +1,3 @@
-#pragma once
-
 /*
   TurboC, a library for porting Borland Turbo C to GNU gcc.
   Copyright 2002 Ronald S. Burkey
@@ -51,11 +49,12 @@
   able to just abridge conio.h, alloc.h, etc., but in fact I didn't even look
   at them.
 */
+#pragma once
+
 
 #ifndef _INCLUDED_TURBOC_H
 #define _INCLUDED_TURBOC_H
 
-#include "camilox_insertions.h"
 
 // Note that all system headers required by *any* TurboC header (even those
 // included *after* this one) need to be included before integer datatypes
@@ -628,7 +627,6 @@ extern gint TcVideoMode;
 extern const int TcUnicodeMappings[256];
 #endif // TURBOC_VARIABLES_C
 
-
-#include "camilox_posts.h"
+#include "turboc_insertions.h"
 
 #endif // _INCLUDED_TURBO_H

@@ -927,7 +927,6 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClInclude Include="turboc_application.h" />
     <ClInclude Include="turboc_context.h" />
     <ClInclude Include="turboc_insertions.h" />
-    <ClInclude Include="turboc_posts.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

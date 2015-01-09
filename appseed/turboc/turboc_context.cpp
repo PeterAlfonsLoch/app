@@ -23,7 +23,7 @@ namespace turboc
 
    }
 
-   void context::erase()
+   void context::werase()
    {
 
       if(!gok())
@@ -32,6 +32,11 @@ namespace turboc
 
       m_dib->Fill(0,0,0,0);
 
+
+   }
+
+   void context::wrefresh()
+   {
 
    }
 
