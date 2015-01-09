@@ -11,9 +11,10 @@ namespace file_watcher
    {
    public:
 
-      
-      thread(::aura::application * papp);
 
+      bool file_watcher_initialize_thread(::aura::application * papp);
+
+      
       virtual int32_t run();
 
 

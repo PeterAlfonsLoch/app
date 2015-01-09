@@ -4,9 +4,14 @@
 namespace file_watcher
 {
 
-   listener_thread::listener_thread(::aura::application * papp) :
-      thread(papp)
+   bool listener_thread::file_watcher_initialize_listener_thread(::aura::application * papp)
    {
+
+      if(!file_watcher_initialize_thread(papp))
+         return false;
+
+      return true;
+
    }
 
 
@@ -14,7 +19,11 @@ namespace file_watcher
    {
 
       if(get_os_data() == NULL)
+      {
+
          begin();
+
+      }
 
       op * pop = new op;
 

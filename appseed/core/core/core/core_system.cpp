@@ -88,7 +88,7 @@ namespace core
          m_bProcessInitialize       = false;
          m_bProcessInitializeResult = false;
 
-         m_puserstr                 = NULL;
+         //m_puserstr                 = NULL;
 
          m_pparserfactory           = NULL;
 
@@ -234,6 +234,8 @@ namespace core
       if(!::core::application::initialize())
          return false;
 
+
+
       return true;
    }
 
@@ -241,6 +243,7 @@ namespace core
 
    bool system::initialize1()
    {
+
 
       if(!directrix()->m_varTopicQuery.has_property("install")
          && !directrix()->m_varTopicQuery.has_property("uninstall"))
@@ -263,6 +266,8 @@ namespace core
       if(!::core::application::initialize1())
          return false;
 
+      if(!::base::system::initialize1())
+         return false;
 
       //if(Session.fontopus()->create_system_user("system") == NULL)
       // return false;

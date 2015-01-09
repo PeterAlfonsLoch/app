@@ -20,12 +20,12 @@ namespace dynamic_source
 
    script_compiler::script_compiler(::aura::application * papp) :
       element(papp),
-      ::file_watcher::thread(papp),
-      ::file_watcher::listener_thread(papp),
       m_memfileLibError(papp),
       m_mutexLibrary(papp),
       m_libraryLib(papp)
    {
+
+      file_watcher_initialize_listener_thread(papp);
 
 #if defined(MEMDLEAK)
 
@@ -886,7 +886,7 @@ namespace dynamic_source
    {
 
       m_filewatchid           = add_file_watch(m_pmanager->m_strNetseedDsCa2Path, true);
-      m_filewatchidFribox     = add_file_watch("Z:\\fribox\\ds\\", true);
+      //m_filewatchidFribox     = add_file_watch("Z:\\fribox\\ds\\", true);
 
    }
 

@@ -5,9 +5,18 @@ namespace file_watcher
 {
 
 
-   thread::thread(::aura::application * papp) :
-      ::thread(papp)
+   bool thread::file_watcher_initialize_thread(::aura::application * papp)
    {
+
+      set_app(papp);
+
+      m_pthreadimpl.alloc(allocer());
+
+      if(m_pthreadimpl.is_null())
+         return false;
+
+      return true;
+
    }
 
    int32_t thread::run()

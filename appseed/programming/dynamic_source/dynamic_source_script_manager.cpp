@@ -146,7 +146,7 @@ namespace dynamic_source
 
          pwatch->add_file_watch( m_strNetseedDsCa2Path, true);
 
-         pwatch->begin();
+         //pwatch->begin();
 
       }
 
@@ -162,7 +162,7 @@ namespace dynamic_source
             clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch(get_app());
             pwatch->m_pmanager = this;
             pwatch->add_file_watch(straPath[i], true);
-            pwatch->begin();
+            //pwatch->begin();
          }
       }
 #endif
@@ -540,11 +540,12 @@ namespace dynamic_source
    }
 
 
-   script_manager::clear_include_matches_folder_watch::clear_include_matches_folder_watch(::aura::application * papp):
-      element(papp),
-      ::file_watcher::thread(papp),
-      ::file_watcher::listener_thread(papp)
+   script_manager::clear_include_matches_folder_watch::clear_include_matches_folder_watch(::aura::application * papp)
    {
+
+      if(!file_watcher_initialize_listener_thread(papp))
+         throw resource_exception(papp);
+
    }
 
    void script_manager::clear_include_matches_folder_watch::handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action eaction)

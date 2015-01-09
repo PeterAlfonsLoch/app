@@ -26,7 +26,7 @@ namespace file_watcher
 
       };
 
-      listener_thread(::aura::application * papp);
+      bool file_watcher_initialize_listener_thread(::aura::application * papp);
 
       id add_file_watch(const char * directory, bool bRecursive);
 

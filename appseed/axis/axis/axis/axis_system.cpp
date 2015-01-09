@@ -20,6 +20,8 @@ namespace axis
       m_emaildepartament(this)
    {
 
+      m_puserstr                 = NULL;
+
       m_purldepartament = new url::departament(this);
 
       m_paxissystem = this;
