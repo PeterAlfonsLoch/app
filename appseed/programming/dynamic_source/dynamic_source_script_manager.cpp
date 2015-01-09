@@ -140,7 +140,7 @@ namespace dynamic_source
 
       {
 
-         clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
+         clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch(get_app());
 
          pwatch->m_pmanager = this;
 
@@ -159,7 +159,7 @@ namespace dynamic_source
       {
          if(::str::begins_ci(straTitle[i], "net-"))
          {
-            clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
+            clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch(get_app());
             pwatch->m_pmanager = this;
             pwatch->add_file_watch(straPath[i], true);
             pwatch->begin();
@@ -539,6 +539,13 @@ namespace dynamic_source
       m_mapIncludeExpandMd5[strPath] = strMd5;
    }
 
+
+   script_manager::clear_include_matches_folder_watch::clear_include_matches_folder_watch(::aura::application * papp):
+      element(papp),
+      ::file_watcher::thread(papp),
+      ::file_watcher::listener_thread(papp)
+   {
+   }
 
    void script_manager::clear_include_matches_folder_watch::handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action eaction)
    {

@@ -35,7 +35,7 @@ namespace dynamic_source
 
       
       class CLASS_DECL_PROGRAMMING clear_include_matches_folder_watch :
-         public ::file_watcher::listener_thread
+         virtual public ::file_watcher::listener_thread
       
       {
       public:
@@ -43,6 +43,7 @@ namespace dynamic_source
          
          sp(script_manager)   m_pmanager;
          
+         clear_include_matches_folder_watch(::aura::application * papp);
          
          virtual void handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action eaction);
         
