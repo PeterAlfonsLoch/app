@@ -41,6 +41,15 @@
     <ClInclude Include="TurboC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="camilox_insertions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="turboc_application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="camilox_posts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="XXXaspectratio..cpp">
@@ -326,6 +335,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_graphXXXmem..cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_camilox_insertions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="turboc_application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

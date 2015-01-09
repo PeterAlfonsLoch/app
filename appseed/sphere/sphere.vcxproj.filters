@@ -45,6 +45,12 @@
     <Filter Include="Header Files\sphere">
       <UniqueIdentifier>{666e0916-0160-4438-a992-5d6286a5a8df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\console">
+      <UniqueIdentifier>{09ae3d02-9025-4b86-bb92-2f387fe06fa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\console">
+      <UniqueIdentifier>{9d61e0ed-7d0c-4d0e-9855-d62d4566646e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="command\command.h">
@@ -155,6 +161,24 @@
     <ClInclude Include="calculator\calculator_view.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
+    <ClInclude Include="console\console_prompt.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_application.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt_document.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt_frame.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt_impact.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="calculator\calculator_application.cpp">
@@ -246,6 +270,21 @@
     </ClCompile>
     <ClCompile Include="asphere\asphere_asphere.cpp">
       <Filter>Source Files\asphere</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_application.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt_document.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt_frame.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt_impact.cpp">
+      <Filter>Source Files\console</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

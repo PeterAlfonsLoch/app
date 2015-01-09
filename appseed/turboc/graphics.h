@@ -443,7 +443,7 @@ struct TcImageBuffer
 {
   gushort Width;
   gushort Height;
-  Pixmap Handle;
+  ::visual::dib_sp  Handle;
 };
 #endif // WITH_X
 

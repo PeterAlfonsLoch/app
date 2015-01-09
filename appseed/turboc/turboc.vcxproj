@@ -61,7 +61,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9A024F46-D783-4691-B4D8-26ECB0FF3FC6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>axisturboc</RootNamespace>
+    <RootNamespace>turboc</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -331,7 +331,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WITH_X;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__APP_TURBOC_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -901,10 +901,15 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ProjectReference Include="..\..\appseed\core\core.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\sphere\sphere.vcxproj">
+      <Project>{441f5cf8-7ce3-4f6f-a2e4-35351f0de150}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alloc.h" />
     <ClInclude Include="bios.h" />
+    <ClInclude Include="camilox_insertions.h" />
+    <ClInclude Include="camilox_posts.h" />
     <ClInclude Include="conio.h" />
     <ClInclude Include="Console-8.h" />
     <ClInclude Include="dir.h" />
@@ -913,6 +918,7 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClInclude Include="graphics.h" />
     <ClInclude Include="io.h" />
     <ClInclude Include="TurboC.h" />
+    <ClInclude Include="turboc_application.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="arc..cpp" />
@@ -1002,12 +1008,14 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClCompile Include="textmode..cpp" />
     <ClCompile Include="textwidth..cpp" />
     <ClCompile Include="TurboCVariables..cpp" />
+    <ClCompile Include="turboc_application.cpp" />
     <ClCompile Include="TurboTrap..cpp" />
     <ClCompile Include="TurboX..cpp" />
     <ClCompile Include="wherex..cpp" />
     <ClCompile Include="wherey..cpp" />
     <ClCompile Include="window..cpp" />
     <ClCompile Include="XXXaspectratio..cpp" />
+    <ClCompile Include="_camilox_insertions.cpp" />
     <ClCompile Include="_graphXXXmem..cpp" />
     <ClCompile Include="_setcursortype..cpp" />
   </ItemGroup>

@@ -53,7 +53,7 @@
 #ifndef _INCLUDED_TURBOC_H
 #define _INCLUDED_TURBOC_H
 
-#include "core/core/core/core.h"
+#include "camilox_insertions.h"
 
 // Note that all system headers required by *any* TurboC header (even those
 // included *after* this one) need to be included before integer datatypes
@@ -80,11 +80,11 @@
 #ifdef WITH_X
 //#include <X11/Xlib.h>
 //#include <X11/Xutil.h>
-#include "x11layer.h"
+//#include "x11layer.h"
 
 #endif
 #include <sys/stat.h>		// Needed by dir.h.
-#include <pthread.h>
+//#include <pthread.h>
 // (Igor Bujna) --------------------------------------------------------------
 #ifdef __DJGPP__
 // If anyone knows how to easily solve the following problem, it would be 
@@ -93,7 +93,7 @@
 #include <dos.h>
 #include <bios.h>
 #endif // __DJGPP__
-#include <sys/ioctl.h>
+//#include <sys/ioctl.h>
 #ifdef __linux__
 #ifndef PPRSTATUS
 // Unfortunately, there's nothing within ppdev.h itself to prevent it from
@@ -196,21 +196,21 @@ strcmpTurbo (const char *s1, const char *s2)
 #define strcmp strcmpTurbo
 #endif // strcmp
 
-#ifdef strcasecmp
-static inline int16_t
-strcmpi (const char *s1, const char *s2)
-{
-  return (strcasecmp (s1, s2));
-}
-static inline int16_t
-stricmp (const char *s1, const char *s2)
-{
-  return (strcasecmp (s1, s2));
-}
-#else // strcasecmp
-#define strcmpi strcasecmp
-#define stricmp strcasecmp
-#endif // strcasecmp
+//#ifdef strcasecmp
+//static inline int16_t
+//strcmpi (const char *s1, const char *s2)
+//{
+//  return (strcasecmp (s1, s2));
+//}
+//static inline int16_t
+//stricmp (const char *s1, const char *s2)
+//{
+//  return (strcasecmp (s1, s2));
+//}
+//#else // strcasecmp
+//#define strcmpi strcasecmp
+//#define stricmp strcasecmp
+//#endif // strcasecmp
 
 #ifdef strncmp
 static inline int16_t
@@ -287,7 +287,7 @@ __BEGIN_DECLS
 // My custom version of "free".
 extern void freeTurbo (void *object);
 #ifdef WITH_X
-extern int AssociatePixmap (void *object, Pixmap handle);
+extern int AssociatePixmap (void *object, ::draw2d::dib * handle);
 #endif
 
 // Stuff involved in gracefully exiting the program.
@@ -625,5 +625,8 @@ const int TcUnicodeMappings[256] = {
 extern gint TcVideoMode;
 extern const int TcUnicodeMappings[256];
 #endif // TURBOC_VARIABLES_C
+
+
+#include "camilox_pos_insertions.h"
 
 #endif // _INCLUDED_TURBO_H

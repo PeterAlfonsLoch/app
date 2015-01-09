@@ -1755,6 +1755,12 @@
     <ClInclude Include="command\command_pane_view_update_hint.h" />
     <ClInclude Include="command\command_primary_view.h" />
     <ClInclude Include="command\command_view.h" />
+    <ClInclude Include="console\console_prompt_document.h" />
+    <ClInclude Include="console\console_prompt_frame.h" />
+    <ClInclude Include="console\console.h" />
+    <ClInclude Include="console\console_application.h" />
+    <ClInclude Include="console\console_prompt.h" />
+    <ClInclude Include="console\console_prompt_impact.h" />
     <ClInclude Include="filehandler\filehandler.h" />
     <ClInclude Include="filehandler\filehandler_application.h" />
     <ClInclude Include="filehandler\filehandler_document.h" />
@@ -1787,6 +1793,11 @@
     <ClCompile Include="command\command_pane_view_update_hint.cpp" />
     <ClCompile Include="command\command_primary_view.cpp" />
     <ClCompile Include="command\command_view.cpp" />
+    <ClCompile Include="console\console_prompt_document.cpp" />
+    <ClCompile Include="console\console_prompt_frame.cpp" />
+    <ClCompile Include="console\console_application.cpp" />
+    <ClCompile Include="console\console_prompt.cpp" />
+    <ClCompile Include="console\console_prompt_impact.cpp" />
     <ClCompile Include="filehandler\filehandler_application.cpp" />
     <ClCompile Include="filehandler\filehandler_document.cpp" />
     <ClCompile Include="filehandler\filehandler_frame.cpp" />

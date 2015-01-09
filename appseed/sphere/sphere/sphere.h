@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "app/appseed/sphere/userstack/userstack.h"
+#include "app/appseed/sphere/console/console.h"
 
 
 #include "sphere_application.h"
