@@ -6,8 +6,8 @@ namespace file_watcher
 
 
    class CLASS_DECL_AURA listener_thread :
-      public thread,
-      public file_watch_listener
+      virtual public thread,
+      virtual public file_watch_listener
    {
    public:
 
@@ -26,6 +26,7 @@ namespace file_watcher
 
       };
 
+      listener_thread(::aura::application * papp);
 
       id add_file_watch(const char * directory, bool bRecursive);
 

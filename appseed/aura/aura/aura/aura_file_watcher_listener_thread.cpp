@@ -4,11 +4,17 @@
 namespace file_watcher
 {
 
+   listener_thread::listener_thread(::aura::application * papp) :
+      element(papp),
+      ::thread(papp)
+   {
+   }
+
 
    id listener_thread::add_file_watch(const char * directory, bool bRecursive)
    {
 
-      if(::get_thread() == NULL)
+      if(get_os_data() == NULL)
          begin();
 
       op * pop = new op;

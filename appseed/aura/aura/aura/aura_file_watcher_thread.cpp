@@ -5,6 +5,12 @@ namespace file_watcher
 {
 
 
+   thread::thread(::aura::application * papp) :
+      element(papp),
+      ::thread(papp)
+   {
+   }
+
    int32_t thread::run()
    {
 
