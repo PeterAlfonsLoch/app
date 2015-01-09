@@ -28,8 +28,14 @@
 void
 clreol (void)
 {
-  if (!ConioInitialized)
-    textmode (LASTMODE);
-  wclrtoeol (CurrentWindow);
-  wrefresh (CurrentWindow);
+  //if (!ConioInitialized)
+  //  textmode (LASTMODE);
+  //wclrtoeol (CurrentWindow);
+  //wrefresh (CurrentWindow);
 }
+
+
+//clreol clears all characters from the curso
+//position to the end of the line within th
+//current text window, without moving th
+//cursor

@@ -30,12 +30,12 @@ int
 cputs (const char *str)
 {
   int ReturnValue = 0;
-  if (!ConioInitialized)
-    textmode (LASTMODE);
-  ConioRefreshOkay = 0;
-  for (; *str; str++)
-    putch (ReturnValue = *str);
-  ConioRefreshOkay = 1;
-  wrefresh (CurrentWindow);
+  //if (!ConioInitialized)
+  //  textmode (LASTMODE);
+  //ConioRefreshOkay = 0;
+  //for (; *str; str++)
+  //  putch (ReturnValue = *str);
+  //ConioRefreshOkay = 1;
+  //wrefresh (CurrentWindow);
   return (ReturnValue);
 }

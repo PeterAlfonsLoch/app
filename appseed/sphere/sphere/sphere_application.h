@@ -6,7 +6,7 @@ namespace sphere
 
 
    class CLASS_DECL_sphere application : 
-      public ::userstack::application
+      public ::console::application
    {
    public:
       

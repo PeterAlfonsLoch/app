@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "src/turboc.h"
+//#include "src/turboc.h"
 
 
 namespace turboc
@@ -8,8 +8,10 @@ namespace turboc
 
    context::context(::aura::application * papp):
       element(papp),
-      m_dib(allocer())
+      m_dib(allocer()),
+      m_diba(papp)
    {
+      m_diba.set_size(16);
    }
 
    context::~context()
@@ -39,5 +41,15 @@ namespace turboc
    {
 
    }
+
+   void context::defer_synch()
+   {
+      if(m_iActivePage == m_iVisualPage)
+      {
+         m_dib.copy(m_diba[m_iActivePage]);
+      }
+
+   }
+
 
 } // namespace turboc

@@ -52,21 +52,23 @@ clearviewport (void)
   int Mode;
   Mode = TcWritemode;
   setwritemode (COPY_PUT);
-  XSetForeground (TcDisplay, TcGc, TcXbackground.pixel);
-  // Now do the actual drawing.
-  XLockDisplay (TcDisplay);
-  XFillRectangle (TcDisplay, TcPixmaps[TcActivePage], TcGc, TcViewLeft,
-		  TcViewTop, TcViewRight - TcViewLeft + 1,
-		  TcViewBottom - TcViewTop + 1);
-  if (TcActivePage == TcVisualPage)
-    {
-      XFillRectangle (TcDisplay, TcWindow, TcGc, TcViewLeft,
-		      TcViewTop, TcViewRight - TcViewLeft + 1,
-		      TcViewBottom - TcViewTop + 1);
-      XSync (TcDisplay, False);
-    }
-  XUnlockDisplay (TcDisplay);
-  XSetForeground (TcDisplay, TcGc, TcXforeground.pixel);
+  tc().adib().Fill(0,0,0,0);
+  tc().defer_synch();
+  //XSetForeground (TcDisplay, TcGc, TcXbackground.pixel);
+  //// Now do the actual drawing.
+  //XLockDisplay (TcDisplay);
+  //XFillRectangle (TcDisplay, TcPixmaps[TcActivePage], TcGc, TcViewLeft,
+		//  TcViewTop, TcViewRight - TcViewLeft + 1,
+		//  TcViewBottom - TcViewTop + 1);
+  //if (TcActivePage == TcVisualPage)
+  //  {
+  //    XFillRectangle (TcDisplay, TcWindow, TcGc, TcViewLeft,
+		//      TcViewTop, TcViewRight - TcViewLeft + 1,
+		//      TcViewBottom - TcViewTop + 1);
+  //    XSync (TcDisplay, False);
+  //  }
+  //XUnlockDisplay (TcDisplay);
+  //XSetForeground (TcDisplay, TcGc, TcXforeground.pixel);
   setwritemode (Mode);
 }
 

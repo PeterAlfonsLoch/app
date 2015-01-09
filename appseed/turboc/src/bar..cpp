@@ -53,18 +53,21 @@ bar (int x1, int y1, int x2, int y2)
   // Convert to viewport coordinates.
   x1 += TcViewLeft;
   y1 += TcViewTop;
-  XLockDisplay (TcDisplay);
-  XSetFillStyle (TcDisplay, TcGc, FillTiled);
-  XSetTile (TcDisplay, TcGc, TcTile);
+  //  XLockDisplay(TcDisplay);
+  //XSetFillStyle (TcDisplay, TcGc, FillTiled);
+  //XSetTile (TcDisplay, TcGc, TcTile);
   // Now do the actual drawing.
-  XFillRectangle (TcDisplay, TcPixmaps[TcActivePage], TcGc, x1, y1, i, j);
-  if (TcActivePage == TcVisualPage)
-    {
-      XFillRectangle (TcDisplay, TcWindow, TcGc, x1, y1, i, j);
-      XSync (TcDisplay, False);
-    }
-  XSetFillStyle (TcDisplay, TcGc, FillSolid);
-  XUnlockDisplay (TcDisplay);
+  //XFillRectangle (TcDisplay, TcPixmaps[TcActivePage], TcGc, x1, y1, i, j);
+  TcPixmaps[TcActivePage]->get_graphics()->FillSolidRect(x1,y1,i,j,ARGB(128,255,255,255));
+  tc().defer_synch();
+//  if (TcActivePage == TcVisualPage)
+  //  {
+//      XFillRectangle (TcDisplay, TcWindow, TcGc, x1, y1, i, j);
+  //    XSync (TcDisplay, False);
+    //   tc().defer_synch();
+    //}
+  //XSetFillStyle (TcDisplay, TcGc, FillSolid);
+  //XUnlockDisplay (TcDisplay);
 }
 
 //----------------------------------------------------------------------------

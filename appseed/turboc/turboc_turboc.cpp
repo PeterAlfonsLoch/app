@@ -1,18 +1,18 @@
 #include "framework.h"
-#include "src/turboc.h"
+//#include "src/turboc.h"
 
 
 int16_t getch()
 {
 
-   return get_console_application().console_prompt()->getch();
+   return get_console_application().console_prompt().getch();
 
 }
 
 void getch(int16_t c)
 {
 
-   return get_console_application().console_prompt()->ungetch();
+   return get_console_application().console_prompt().ungetch(c);
 
 }
 
@@ -20,11 +20,10 @@ void getch(int16_t c)
 CLASS_DECL_TURBOC ::turboc::context & get_turboc_context()
 {
 
-
-
    return *get_turboc_application().m_pcontext;
 
 }
+
 
 CLASS_DECL_TURBOC ::turboc::application & get_turboc_application()
 {

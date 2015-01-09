@@ -914,8 +914,6 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClInclude Include="framework.h" />
     <ClInclude Include="src\alloc.h" />
     <ClInclude Include="src\bios.h" />
-    <ClInclude Include="src\camilox_insertions.h" />
-    <ClInclude Include="src\camilox_posts.h" />
     <ClInclude Include="src\conio.h" />
     <ClInclude Include="src\Console-8.h" />
     <ClInclude Include="src\dir.h" />
@@ -926,7 +924,9 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClInclude Include="src\TurboC.h" />
     <ClInclude Include="turboc_application.h" />
     <ClInclude Include="turboc_context.h" />
-    <ClInclude Include="turboc_insertions.h" />
+    <ClInclude Include="turboc_pos.h" />
+    <ClInclude Include="turboc_pre.h" />
+    <ClInclude Include="turboc_private.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

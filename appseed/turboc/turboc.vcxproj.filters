@@ -29,12 +29,6 @@
     <ClInclude Include="src\bios.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
-    <ClInclude Include="src\camilox_insertions.h">
-      <Filter>Header Files\src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\camilox_posts.h">
-      <Filter>Header Files\src</Filter>
-    </ClInclude>
     <ClInclude Include="src\conio.h">
       <Filter>Header Files\src</Filter>
     </ClInclude>
@@ -62,7 +56,13 @@
     <ClInclude Include="turboc_context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="turboc_insertions.h">
+    <ClInclude Include="turboc_pos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="turboc_pre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="turboc_private.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

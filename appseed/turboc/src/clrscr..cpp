@@ -28,9 +28,9 @@
 void
 clrscr (void)
 {
-  if (!ConioInitialized)
-    textmode (LASTMODE);
-  werase (CurrentWindow);
-  wrefresh (CurrentWindow);
-  gotoxy (1, 1);
+  //if (!ConioInitialized)
+  //  textmode (LASTMODE);
+  //werase (CurrentWindow);
+  //wrefresh (CurrentWindow);
+  //gotoxy (1, 1);
 }

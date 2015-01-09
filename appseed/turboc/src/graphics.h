@@ -626,7 +626,7 @@ Pixmap TcTile;
 extern volatile int TcGraphicsInitialized;
 extern int TcCurrentGraphMode, TcGraphResult;
 extern int TcXresolution, TcYresolution, TcPageCount, TcPaletteNum;
-extern int TcDriver, TcVisualPage, TcActivePage;
+//extern int TcDriver, TcVisualPage, TcActivePage;
 extern int TcForegroundColor, TcBackgroundColor, TcDriver;
 extern int TcViewLeft, TcViewTop, TcViewRight, TcViewBottom, TcViewClip;
 extern int Tcx, Tcy, TcViewMaxx, TcViewMaxy;
@@ -676,6 +676,11 @@ extern char TcUserFillPattern[8];
 #define TcXforeground TurboC_CTX.Xforeground()
 #define TcXbackground TurboC_CTX.Xbackground()
 #define TcTile TurboC_CTX.Tile()
+
+#define TcDriver TurboC_CTX.m_iDriver
+#define TcVisualPage TurboC_CTX.m_iVisualPage
+#define TcActivePage TurboC_CTX.m_iActivePage
+//,TcVisualPage,TcActivePage;
 //extern Window TcWindow;
 //extern Pixmap TcPixmaps[16];
 //extern gint TcScreen;
