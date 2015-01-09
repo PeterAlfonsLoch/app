@@ -911,20 +911,21 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="alloc.h" />
-    <ClInclude Include="bios.h" />
-    <ClInclude Include="camilox_insertions.h" />
-    <ClInclude Include="camilox_posts.h" />
-    <ClInclude Include="conio.h" />
-    <ClInclude Include="Console-8.h" />
-    <ClInclude Include="dir.h" />
-    <ClInclude Include="dos.h" />
-    <ClInclude Include="fnkeys.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="graphics.h" />
-    <ClInclude Include="io.h" />
-    <ClInclude Include="turboc.h" />
+    <ClInclude Include="src\alloc.h" />
+    <ClInclude Include="src\bios.h" />
+    <ClInclude Include="src\camilox_insertions.h" />
+    <ClInclude Include="src\camilox_posts.h" />
+    <ClInclude Include="src\conio.h" />
+    <ClInclude Include="src\Console-8.h" />
+    <ClInclude Include="src\dir.h" />
+    <ClInclude Include="src\dos.h" />
+    <ClInclude Include="src\fnkeys.h" />
+    <ClInclude Include="src\graphics.h" />
+    <ClInclude Include="src\io.h" />
+    <ClInclude Include="src\TurboC.h" />
     <ClInclude Include="turboc_application.h" />
+    <ClInclude Include="turboc_context.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

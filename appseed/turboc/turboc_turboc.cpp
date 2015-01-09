@@ -1,8 +1,10 @@
-#include "TurboC.h"
+#include "framework.h"
+#include "src/turboc.h"
+
 
 int16_t getch()
 {
-   
+
    return get_console_application().console_prompt()->getch();
 
 }
@@ -60,37 +62,3 @@ CLASS_DECL_TURBOC ::console::application & get_console_application()
 }
 
 
-namespace turboc
-{
-
-
-   context::context(::aura::application * papp):
-      element(papp),
-      m_dib(allocer());
-   {
-   }
-
-   context::~context()
-   {
-   }
-
-   bool context::gok()
-   {
-
-      return m_dib->area() > 0;
-
-   }
-
-   void context::erase()
-   {
-
-      if(!gok())
-         return;
-
-
-      m_dib->Fill(0,0,0,0);
-
-
-   }
-
-} // namespace turboc

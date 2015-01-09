@@ -12,48 +12,54 @@
     <Filter Include="Source Files\src">
       <UniqueIdentifier>{9bcc661c-e8c8-4d43-b5eb-ea0c37af4ab9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\src">
+      <UniqueIdentifier>{77742698-6c16-4a2d-9cbf-c53ebe03bf82}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="alloc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bios.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="conio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Console-8.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dir.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fnkeys.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="io.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camilox_insertions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="turboc_application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camilox_posts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="turboc.h">
+    <ClInclude Include="src\alloc.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bios.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\camilox_insertions.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\camilox_posts.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\conio.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Console-8.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dir.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dos.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fnkeys.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\io.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TurboC.h">
+      <Filter>Header Files\src</Filter>
+    </ClInclude>
+    <ClInclude Include="turboc_context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
