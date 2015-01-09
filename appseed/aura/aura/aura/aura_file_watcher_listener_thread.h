@@ -6,8 +6,8 @@ namespace file_watcher
 
 
    class CLASS_DECL_AURA listener_thread :
-      virtual public thread,
-      virtual public file_watch_listener
+      public thread,
+      public file_watch_listener
    {
    public:
 

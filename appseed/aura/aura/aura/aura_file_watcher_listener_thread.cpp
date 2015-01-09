@@ -5,8 +5,6 @@ namespace file_watcher
 {
 
    listener_thread::listener_thread(::aura::application * papp) :
-      element(papp),
-      ::thread(papp),
       thread(papp)
    {
    }
