@@ -242,18 +242,18 @@ __END_DECLS
 //--------------------------------------------------------------------------
 // Variables.
 #ifdef TURBOC_VARIABLES_C
-int directvideo = 1, _directvideo = 1, _wscroll = 1;
-char TcKeybuf[TC_KEYBUF_SIZE];
-gint TcKeybufStart = 0, TcKeybufSize = 0;
-pthread_mutex_t TcMutex = PTHREAD_MUTEX_INITIALIZER;
-int ConioInitialized = 0;	// Becomes 1 after initialization.
-struct text_info CurrentAttributes;
-// CurrentWindow is NULL prior to initialization.  After initialization,
-// it begins as the ncurses stdscr.  After the window function is used, it
-// becomes something else.
-WINDOW *CurrentWindow = NULL;
-int ColorPairsUsed;
-int ConioRefreshOkay = 1;
+//int directvideo = 1, _directvideo = 1, _wscroll = 1;
+//char TcKeybuf[TC_KEYBUF_SIZE];
+//gint TcKeybufStart = 0, TcKeybufSize = 0;
+//pthread_mutex_t TcMutex = PTHREAD_MUTEX_INITIALIZER;
+//int ConioInitialized = 0;	// Becomes 1 after initialization.
+//struct text_info CurrentAttributes;
+//// CurrentWindow is NULL prior to initialization.  After initialization,
+//// it begins as the ncurses stdscr.  After the window function is used, it
+//// becomes something else.
+//WINDOW *CurrentWindow = NULL;
+//int ColorPairsUsed;
+//int ConioRefreshOkay = 1;
 #else // TURBOC_VARIABLES_C
 extern int directvideo, _directvideo, _wscroll;
 extern char TcKeybuf[TC_KEYBUF_SIZE];

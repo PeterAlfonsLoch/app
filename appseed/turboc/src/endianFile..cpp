@@ -23,8 +23,8 @@
   Mod history:	03/04/02 RSB	Created.
 */
 
-#include <stdio.h>
-#include "TurboC.h"
+//#include <stdio.h>
+//#include "TurboC.h"
 
 //-------------------------------------------------------------------------
 // The reading functions.  All return 0 on success.

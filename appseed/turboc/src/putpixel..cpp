@@ -26,31 +26,31 @@
 
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
 void
 putpixel (int x, int y, int color)
 {
-  int OldColor;
-  OldColor = TcForegroundColor;
-  if (color != OldColor)
-    setcolor (color);
-  // Convert to viewport coordinates.
-  x += TcViewLeft;
-  y += TcViewTop;
-  // Now do the actual drawing.
-  XLockDisplay (TcDisplay);
-  XDrawPoint (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y);
-  if (TcActivePage == TcVisualPage)
-    {
-      XDrawPoint (TcDisplay, TcWindow, TcGc, x, y);
-      XSync (TcDisplay, False);
-    }
-  XUnlockDisplay (TcDisplay);
-  if (color != OldColor)
-    setcolor (OldColor);
+  //int OldColor;
+  //OldColor = TcForegroundColor;
+  //if (color != OldColor)
+  //  setcolor (color);
+  //// Convert to viewport coordinates.
+  //x += TcViewLeft;
+  //y += TcViewTop;
+  //// Now do the actual drawing.
+  //XLockDisplay (TcDisplay);
+  //XDrawPoint (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y);
+  //if (TcActivePage == TcVisualPage)
+  //  {
+  //    XDrawPoint (TcDisplay, TcWindow, TcGc, x, y);
+  //    XSync (TcDisplay, False);
+  //  }
+  //XUnlockDisplay (TcDisplay);
+  //if (color != OldColor)
+  //  setcolor (OldColor);
 }
 
 #endif // WITH_X

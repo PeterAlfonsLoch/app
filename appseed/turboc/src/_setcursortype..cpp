@@ -23,25 +23,25 @@
   Mod history:	03/23/02 RSB	Created.
 */
 
-#include "conio.h"
+//#include "conio.h"
 
 //------------------------------------------------------------------------------------
 
 void
 _setcursortype (int cur_t)
 {
-  switch (cur_t)
-    {
-    case _NOCURSOR:
-      curs_set (0);
-      break;
-    case _NORMALCURSOR:
-      curs_set (1);
-      break;
-    case _SOLIDCURSOR:
-      curs_set (2);
-      break;
-    default:
-      break;
-    }
+  //switch (cur_t)
+  //  {
+  //  case _NOCURSOR:
+  //    curs_set (0);
+  //    break;
+  //  case _NORMALCURSOR:
+  //    curs_set (1);
+  //    break;
+  //  case _SOLIDCURSOR:
+  //    curs_set (2);
+  //    break;
+  //  default:
+  //    break;
+  //  }
 }

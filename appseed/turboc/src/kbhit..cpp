@@ -25,9 +25,9 @@
 				keyboard input from the graphics window.
 */
 
-#include <pthread.h>
-#include "graphics.h"
-#include "conio.h"
+//#include <pthread.h>
+//#include "graphics.h"
+//#include "conio.h"
 
 //-----------------------------------------------------------------------
 // Secondary FIFO, for keyboard stuff from graphics window.
@@ -37,17 +37,17 @@ int
 TcAddKeybuf (char c)
 {
   int RetVal = 1, i;
-  pthread_mutex_lock (&TcMutex);
-  if (TcKeybufSize < TC_KEYBUF_SIZE)
-    {
-      RetVal = 0;
-      i = TcKeybufStart + TcKeybufSize;
-      if (i >= TC_KEYBUF_SIZE)
-	i -= TC_KEYBUF_SIZE;
-      TcKeybuf[i] = c;
-      TcKeybufSize++;
-    }
-  pthread_mutex_unlock (&TcMutex);
+ // pthread_mutex_lock (&TcMutex);
+ // if (TcKeybufSize < TC_KEYBUF_SIZE)
+ //   {
+ //     RetVal = 0;
+ //     i = TcKeybufStart + TcKeybufSize;
+ //     if (i >= TC_KEYBUF_SIZE)
+	//i -= TC_KEYBUF_SIZE;
+ //     TcKeybuf[i] = c;
+ //     TcKeybufSize++;
+ //   }
+ // pthread_mutex_unlock (&TcMutex);
   return (RetVal);
 }
 
@@ -56,17 +56,17 @@ int
 TcExtractKeybuf (char *c)
 {
   int RetVal = 1;
-  pthread_mutex_lock (&TcMutex);
-  if (TcKeybufSize > 0)
-    {
-      RetVal = 0;
-      *c = TcKeybuf[TcKeybufStart];
-      TcKeybufSize--;
-      TcKeybufStart++;
-      if (TcKeybufStart >= TC_KEYBUF_SIZE)
-	TcKeybufStart = 0;
-    }
-  pthread_mutex_unlock (&TcMutex);
+ // pthread_mutex_lock (&TcMutex);
+ // if (TcKeybufSize > 0)
+ //   {
+ //     RetVal = 0;
+ //     *c = TcKeybuf[TcKeybufStart];
+ //     TcKeybufSize--;
+ //     TcKeybufStart++;
+ //     if (TcKeybufStart >= TC_KEYBUF_SIZE)
+	//TcKeybufStart = 0;
+ //   }
+ // pthread_mutex_unlock (&TcMutex);
   return (RetVal);
 }
 
@@ -74,20 +74,20 @@ TcExtractKeybuf (char *c)
 int
 kbhit (void)
 {
-  if (TcGraphicsInitialized)
-    {
-      if (TcKeybufSize > 0)
-	return (1);
-    }
-  if (ConioInitialized)
-    {
-      int KeyCode;
-      KeyCode = getchNcurses ();
-      if (KeyCode != ERR)
-	{
-	  ungetchNcurses (KeyCode);
-	  return (1);
-	}
-    }
+ // if (TcGraphicsInitialized)
+ //   {
+ //     if (TcKeybufSize > 0)
+	//return (1);
+ //   }
+ // if (ConioInitialized)
+ //   {
+ //     int KeyCode;
+ //     KeyCode = getchNcurses ();
+ //     if (KeyCode != ERR)
+	//{
+	//  ungetchNcurses (KeyCode);
+	//  return (1);
+	//}
+ //   }
   return (0);
 }

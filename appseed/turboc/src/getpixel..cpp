@@ -26,53 +26,82 @@
 
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
 unsigned
 getpixel (int x, int y)
 {
-  gint i, maxi, ClosestS, s;
-  XColor Color;
-  unsigned RetVal = 0;
-  XImage *Image;
-  // Convert to viewport coordinates.
-  x += TcViewLeft;
-  y += TcViewTop;
-  // Now do the interrogating.
-  XLockDisplay (TcDisplay);
-  Image = XGetImage (TcDisplay, TcPixmaps[TcVisualPage], x, y, 1, 1, 
-  		     ~0L, XYPixmap);
-  if (Image != NULL)
-    {
-      Color.pixel = XGetPixel (Image, 0, 0);
-      XDestroyImage (Image);  
-      // Look up the rgb components of the raw pixel we've read back.
-      XQueryColor (TcDisplay, TcColormap, &Color);
-      XUnlockDisplay (TcDisplay);
-      // Find the closest-match color in our current palette.  Since the
-      // colors in our palette are generally so far apart from each other,
-      // we can save a lot of execution time by using a taxi-cab metric
-      // rather than a Euclidean metric.
-      ClosestS = 1000000;
-      maxi = getmaxcolor ();
-      for (i = 0; i <= maxi; i++)
-        {
-	  s = abs (Color.red - TcColors[i].r) + abs (Color.green - TcColors[i].g)
-	      + abs (Color.blue - TcColors[i].b);
-	  if (s < ClosestS)
-	    {
-	      RetVal = i;
-	      ClosestS = s;
-	    } 
-	  if (s == 0)
-	    break;   
-	}
-    }		     
-  else  
-    XUnlockDisplay (TcDisplay);
-  return (RetVal);  
+    unsigned RetVal = 0;
+   COLORREF cr = TcPixmaps[TcVisualPage]->GetPixel(x,y);
+
+    gint i, maxi, ClosestS, s;
+
+    int r = argb_get_r_value(cr);
+    int g = argb_get_g_value(cr);
+    int b = argb_get_b_value(cr);
+
+        ClosestS = 1000000;
+        maxi = getmaxcolor ();
+        for (i = 0; i <= maxi; i++)
+          {
+     s = abs (r - TcColors[i].r) + abs (g - TcColors[i].g)
+         + abs (b - TcColors[i].b);
+     if (s < ClosestS)
+       {
+         RetVal = i;
+         ClosestS = s;
+       } 
+     if (s == 0)
+       break;   
+   }
+
+
+        return (RetVal);  
+
+
+
+ // gint i, maxi, ClosestS, s;
+ // XColor Color;
+ // unsigned RetVal = 0;
+ // XImage *Image;
+ // // Convert to viewport coordinates.
+ // x += TcViewLeft;
+ // y += TcViewTop;
+ // // Now do the interrogating.
+ // XLockDisplay (TcDisplay);
+ // Image = XGetImage (TcDisplay, TcPixmaps[TcVisualPage], x, y, 1, 1, 
+ // 		     ~0L, XYPixmap);
+ // if (Image != NULL)
+ //   {
+ //     Color.pixel = XGetPixel (Image, 0, 0);
+ //     XDestroyImage (Image);  
+ //     // Look up the rgb components of the raw pixel we've read back.
+ //     XQueryColor (TcDisplay, TcColormap, &Color);
+ //     XUnlockDisplay (TcDisplay);
+ //     // Find the closest-match color in our current palette.  Since the
+ //     // colors in our palette are generally so far apart from each other,
+ //     // we can save a lot of execution time by using a taxi-cab metric
+ //     // rather than a Euclidean metric.
+ //     ClosestS = 1000000;
+ //     maxi = getmaxcolor ();
+ //     for (i = 0; i <= maxi; i++)
+ //       {
+	//  s = abs (Color.red - TcColors[i].r) + abs (Color.green - TcColors[i].g)
+	//      + abs (Color.blue - TcColors[i].b);
+	//  if (s < ClosestS)
+	//    {
+	//      RetVal = i;
+	//      ClosestS = s;
+	//    } 
+	//  if (s == 0)
+	//    break;   
+	//}
+ //   }		     
+ // else  
+ //   XUnlockDisplay (TcDisplay);
+ // return (RetVal);  
 }
 
 #endif // WITH_X

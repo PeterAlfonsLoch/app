@@ -26,7 +26,7 @@
 
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
@@ -39,14 +39,14 @@ line (int x1, int y1, int x2, int y2)
   y1 += TcViewTop;
   y2 += TcViewTop;
   // Now do the actual drawing.
-  XLockDisplay (TcDisplay);
-  XDrawLine (TcDisplay, TcPixmaps[TcActivePage], TcGc, x1, y1, x2, y2);
-  if (TcActivePage == TcVisualPage)
-    {
-      XDrawLine (TcDisplay, TcWindow, TcGc, x1, y1, x2, y2);
-      XSync (TcDisplay, False);
-    }
-  XUnlockDisplay (TcDisplay);
+  //XLockDisplay (TcDisplay);
+  //XDrawLine (TcDisplay, TcPixmaps[TcActivePage], TcGc, x1, y1, x2, y2);
+  //if (TcActivePage == TcVisualPage)
+  //  {
+  //    XDrawLine (TcDisplay, TcWindow, TcGc, x1, y1, x2, y2);
+  //    XSync (TcDisplay, False);
+  //  }
+  //XUnlockDisplay (TcDisplay);
 }
 
 //----------------------------------------------------------------------------

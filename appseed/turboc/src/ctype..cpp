@@ -23,7 +23,7 @@
   Mod history:	03/02/02 RSB	Created.
 */
 
-#include <ctype.h>
+//#include <ctype.h>
 
 int
 isupperTurbo (int c)

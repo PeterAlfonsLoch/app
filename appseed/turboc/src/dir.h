@@ -28,7 +28,7 @@
 #define _INCLUDED_DIR_H
 
 //#include <sys/cdefs.h>
-#include <glob.h>
+//#include <glob.h>
 #include "TurboC.h"
 
 //----------------------------------------------------------------------------
@@ -51,7 +51,7 @@ struct ffblk
   long ff_fsize;
   char ff_name[FILENAME_MAX + 1];	// Size 13 in Turbo C 2.x.
   // Stuff not in Turbo, used for the emulation.
-  glob_t *GlobPtr;
+  //glob_t *GlobPtr;
   gint OnFile;
   int DesiredAttributes;
 };

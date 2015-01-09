@@ -26,32 +26,32 @@
 
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
 void
 fillellipse (int x, int y, int xradius, int yradius)
 {
-  // Convert to viewport coordinates.
-  x += TcViewLeft - xradius;
-  y += TcViewTop - yradius;
-  xradius *= 2;
-  yradius *= 2;
-  // Now do the actual drawing.
-  XLockDisplay (TcDisplay);
-  XSetFillStyle (TcDisplay, TcGc, FillTiled);
-  XSetTile (TcDisplay, TcGc, TcTile);
-  XFillArc (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y, xradius, yradius,
-	    0, 360 * 64);
-  if (TcActivePage == TcVisualPage)
-    {
-      XFillArc (TcDisplay, TcWindow, TcGc, x, y, xradius, yradius,
-		0, 360 * 64);
-      XSync (TcDisplay, False);
-    }
-  XSetFillStyle (TcDisplay, TcGc, FillSolid);
-  XUnlockDisplay (TcDisplay);
+  //// Convert to viewport coordinates.
+  //x += TcViewLeft - xradius;
+  //y += TcViewTop - yradius;
+  //xradius *= 2;
+  //yradius *= 2;
+  //// Now do the actual drawing.
+  //XLockDisplay (TcDisplay);
+  //XSetFillStyle (TcDisplay, TcGc, FillTiled);
+  //XSetTile (TcDisplay, TcGc, TcTile);
+  //XFillArc (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y, xradius, yradius,
+	 //   0, 360 * 64);
+  //if (TcActivePage == TcVisualPage)
+  //  {
+  //    XFillArc (TcDisplay, TcWindow, TcGc, x, y, xradius, yradius,
+		//0, 360 * 64);
+  //    XSync (TcDisplay, False);
+  //  }
+  //XSetFillStyle (TcDisplay, TcGc, FillSolid);
+  //XUnlockDisplay (TcDisplay);
 }
 
 

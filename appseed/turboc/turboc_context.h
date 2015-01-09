@@ -19,6 +19,8 @@ namespace turboc
       int m_iActivePage;
       int m_iVisualPage;
 
+      array <RgbStruct > m_rgbset;
+
 
 
       context(::aura::application * papp);
@@ -36,6 +38,9 @@ namespace turboc
       ::draw2d::graphics & ag() { return *adib().get_graphics(); }
 
       spa(::draw2d::dib) & Pixmaps() { return m_diba; }
+      array <RgbStruct > & Colors() { return m_rgbset; }
+
+      void resize(int x,int y);
 
    };
 

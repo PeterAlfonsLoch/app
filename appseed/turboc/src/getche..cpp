@@ -24,8 +24,8 @@
   		03/02/02 RSB	Added actual code.
 */
 
-#include <ctype.h>
-#include "conio.h"
+//#include <ctype.h>
+//#include "conio.h"
 
 int
 getche (void)

@@ -27,10 +27,10 @@
 			      implemented.
 		08/28/10 RSB  Eliminated some compiler warnings.
 */
-#include "framework.h"
+//#include "framework.h"
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
@@ -41,7 +41,7 @@ textwidth (char * textstring)
   if (TcTextFont == DEFAULT_FONT)
     return (8 * strlen (textstring) * TcTextCharsize);
   // Handle the stroke fonts here.
-#warning Stroke fonts not implemented yet. Ignore warnings about textwidth.
+//#warning Stroke fonts not implemented yet. Ignore warnings about textwidth.
   return (0);
 }
 
@@ -54,7 +54,7 @@ textheight (char * textstring)
   if (TcTextFont == DEFAULT_FONT)
     return (8 * TcTextCharsize);
   // Handle the stroke fonts here.
-#warning Stroke fonts not implemented yet. Ignore warnings about textheight.
+//#warning Stroke fonts not implemented yet. Ignore warnings about textheight.
   return (0);
 }
 

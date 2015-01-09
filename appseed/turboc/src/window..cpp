@@ -22,8 +22,8 @@
   Purpose:	A Turbo C conio function.
   Mod history:	01/31/02 RSB	Created.
 */
-#include "framework.h"
-#include "conio.h"
+//#include "framework.h"
+//#include "conio.h"
 
 void
 window (int left, int top, int right, int bottom)
@@ -36,37 +36,37 @@ window (int left, int top, int right, int bottom)
     return;
   if (top < 1 || bottom > CurrentAttributes.screenheight)
     return;
-  if (CurrentWindow != stdscr)
-    {
-      wrefresh (CurrentWindow);
-      copywin (CurrentWindow, stdscr, 0, 0, CurrentAttributes.wintop - 1,
-	       CurrentAttributes.winleft - 1,
-	       CurrentAttributes.winbottom - 1,
-	       CurrentAttributes.winright - 1, 0);
-      refresh ();
-      delwin (CurrentWindow);
-      refresh ();
-      CurrentWindow = stdscr;
-    }
-  else
-    refresh ();
+  //if (CurrentWindow != stdscr)
+  //  {
+  //    wrefresh (CurrentWindow);
+  //    copywin (CurrentWindow, stdscr, 0, 0, CurrentAttributes.wintop - 1,
+	 //      CurrentAttributes.winleft - 1,
+	 //      CurrentAttributes.winbottom - 1,
+	 //      CurrentAttributes.winright - 1, 0);
+  //    refresh ();
+  //    delwin (CurrentWindow);
+  //    refresh ();
+  //    CurrentWindow = stdscr;
+  //  }
+  //else
+  //  refresh ();
   CurrentAttributes.winleft = left;
   CurrentAttributes.winright = right;
   CurrentAttributes.wintop = top;
   CurrentAttributes.winbottom = bottom;
   CurrentAttributes.curx = 1;
   CurrentAttributes.cury = 1;
-  if (left > 1 || top > 1 || right < CurrentAttributes.screenwidth ||
-      bottom < CurrentAttributes.screenheight)
-    {
-      CurrentWindow =
-	newwin (bottom - top + 1, right - left + 1, top - 1, left - 1);
-      copywin (stdscr, CurrentWindow, CurrentAttributes.wintop - 1,
-	       CurrentAttributes.winleft - 1, 0, 0,
-	       CurrentAttributes.winbottom - CurrentAttributes.wintop,
-	       CurrentAttributes.winright - CurrentAttributes.winleft, 0);
-    }
-  wrefresh (CurrentWindow);
-  scrollok (stdscr, FALSE);
-  scrollok (CurrentWindow, TRUE);
+ // if (left > 1 || top > 1 || right < CurrentAttributes.screenwidth ||
+ //     bottom < CurrentAttributes.screenheight)
+ //   {
+ //     CurrentWindow =
+	//newwin (bottom - top + 1, right - left + 1, top - 1, left - 1);
+ //     copywin (stdscr, CurrentWindow, CurrentAttributes.wintop - 1,
+	//       CurrentAttributes.winleft - 1, 0, 0,
+	//       CurrentAttributes.winbottom - CurrentAttributes.wintop,
+	//       CurrentAttributes.winright - CurrentAttributes.winleft, 0);
+ //   }
+ // wrefresh (CurrentWindow);
+ // scrollok (stdscr, FALSE);
+ // scrollok (CurrentWindow, TRUE);
 }

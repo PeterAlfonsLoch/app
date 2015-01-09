@@ -23,22 +23,22 @@
   Mod history:	01/31/02 RSB	Created.
 */
 
-#include "conio.h"
+//#include "conio.h"
 
 //----------------------------------------------------------------------
 
 void
 gotoxy (int x, int y)
 {
-  if (!ConioInitialized)
-    textmode (LASTMODE);
-  if (x < CurrentAttributes.winleft || x > CurrentAttributes.winright)
-    return;
-  if (y < CurrentAttributes.wintop || y > CurrentAttributes.winbottom)
-    return;
-  CurrentAttributes.curx = x - CurrentAttributes.winleft + 1;
-  CurrentAttributes.cury = y - CurrentAttributes.wintop + 1;
-  wmove (CurrentWindow, CurrentAttributes.cury - 1,
-	 CurrentAttributes.curx - 1);
-  wrefresh (CurrentWindow);
+  //if (!ConioInitialized)
+  //  textmode (LASTMODE);
+  //if (x < CurrentAttributes.winleft || x > CurrentAttributes.winright)
+  //  return;
+  //if (y < CurrentAttributes.wintop || y > CurrentAttributes.winbottom)
+  //  return;
+  //CurrentAttributes.curx = x - CurrentAttributes.winleft + 1;
+  //CurrentAttributes.cury = y - CurrentAttributes.wintop + 1;
+  //wmove (CurrentWindow, CurrentAttributes.cury - 1,
+	 //CurrentAttributes.curx - 1);
+  //wrefresh (CurrentWindow);
 }

@@ -23,8 +23,20 @@
   Mod history:	01/31/02 RSB	Created.
   		03/02/02 RSB	Made sizes of colors explicit.
 */
-#include "framework.h"
-#include "conio.h"
+//#include "framework.h"
+//#include "conio.h"
+
+#define COLOR_BLACK ARGB(255, 0, 0, 0)
+#define COLOR_BLUE  ARGB(255, 0, 0, 255)
+#define COLOR_GREEN ARGB(255, 0, 255, 0)
+#define COLOR_CYAN ARGB(255, 0, 255, 255)
+#define COLOR_RED ARGB(255, 255, 0, 0)
+#define COLOR_MAGENTA ARGB(255, 255, 0, 255)
+#define COLOR_YELLOW ARGB(255, 255, 255, 0)
+#define COLOR_WHITE ARGB(255, 255, 25, 255)
+#define A_NORMAL 0
+#define A_BOLD 1
+#define A_BLINK 2
 
 // Translates conio foreground/background colors to ncurses colors.
 const int32_t ForegroundColors[16] = {
@@ -57,36 +69,37 @@ static int LastNewattr = -1;
 int32_t
 TranslateTurboColor (int newattr)
 {
-  int32_t i, Mask = 0;
-  int16_t dFore, dBack, Fore, Back;
-  if (LastNewattr == newattr)
-    return (LastTranslated);
-  LastNewattr = newattr;
-  dFore = ForegroundColors[newattr & 0x0f];
-  dBack = BackgroundColors[(newattr >> 4) & 0x07];
-  Mask =
-    ForegroundFlags[newattr & 0x0f] | BackgroundFlags[(newattr >> 4) & 0x0f];
-  for (i = 0; i < ColorPairsUsed; i++)
-    {
-      pair_content (i, &Fore, &Back);
-      if (Fore == dFore && Back == dBack)
-	break;
-    }
-  if (i == ColorPairsUsed)
-    {
-      if (ColorPairsUsed < COLOR_PAIRS)
-	{
-	  init_pair (i, dFore, dBack);
-	  ColorPairsUsed++;
-	}
-      else
-	{
-	  i = 0;
-	  Mask = A_NORMAL;
-	}
-    }
-  LastTranslated = (Mask | COLOR_PAIR (i));
-  return (LastTranslated);
+ // int32_t i, Mask = 0;
+ // int16_t dFore, dBack, Fore, Back;
+ // if (LastNewattr == newattr)
+ //   return (LastTranslated);
+ // LastNewattr = newattr;
+ // dFore = ForegroundColors[newattr & 0x0f];
+ // dBack = BackgroundColors[(newattr >> 4) & 0x07];
+ // Mask =
+ //   ForegroundFlags[newattr & 0x0f] | BackgroundFlags[(newattr >> 4) & 0x0f];
+ // for (i = 0; i < ColorPairsUsed; i++)
+ //   {
+ //     pair_content (i, &Fore, &Back);
+ //     if (Fore == dFore && Back == dBack)
+	//break;
+ //   }
+ // if (i == ColorPairsUsed)
+ //   {
+ //     if (ColorPairsUsed < COLOR_PAIRS)
+	//{
+	//  init_pair (i, dFore, dBack);
+	//  ColorPairsUsed++;
+	//}
+ //     else
+	//{
+	//  i = 0;
+	//  Mask = A_NORMAL;
+	//}
+ //   }
+ // LastTranslated = (Mask | COLOR_PAIR (i));
+ // return (LastTranslated);
+   return 0;
 }
 
 //-------------------------------------------------------------------------
@@ -114,6 +127,6 @@ textattr (int newattr)
   // (if possible) when the foreground/background combination we want hasn't
   // been defined yet.
   NcursesAttr = TranslateTurboColor (CurrentAttributes.attribute);
-  wattrset (CurrentWindow, NcursesAttr);
-  wbkgdset (CurrentWindow, NcursesAttr | ' ');
+  //wattrset (CurrentWindow, NcursesAttr);
+  //wbkgdset (CurrentWindow, NcursesAttr | ' ');
 }

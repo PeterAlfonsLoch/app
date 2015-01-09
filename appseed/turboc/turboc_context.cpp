@@ -12,6 +12,7 @@ namespace turboc
       m_diba(papp)
    {
       m_diba.set_size(16);
+      m_rgbset.set_size(256);
    }
 
    context::~context()
@@ -48,6 +49,18 @@ namespace turboc
       {
          m_dib.copy(m_diba[m_iActivePage]);
       }
+
+   }
+
+#define forall(a) for(decltype(a)::BASE_TYPE item : a)
+
+   void context::resize(int x,int y)
+   {
+
+      m_dib->create(x,y);
+
+      forall(m_diba)
+         item->create(x,y);
 
    }
 

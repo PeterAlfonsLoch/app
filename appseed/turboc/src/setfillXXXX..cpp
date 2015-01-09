@@ -25,10 +25,10 @@
   		05/21/02 RSB	Corrected pattern arrays to correspond
 				more closely to Turbo C patterns.
 */
-#include "framework.h"
+//#include "framework.h"
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 // This function creates an 8x8 tile for use by X, from an 8-character
@@ -55,7 +55,7 @@ RawTile (char *pattern)
 	  for (j = 0; j < 8; j++)
 	    {
 	      if (Match == (k & 0x80))
-		XDrawPoint (TcDisplay, TcTile, TcGc, j, i);
+		//XDrawPoint (TcDisplay, TcTile, TcGc, j, i);
 	      k = k << 1;
 	    }
 	}

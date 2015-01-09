@@ -26,41 +26,41 @@
 				supported by setwritemode, but needed for
 				putimage.
 */
-#include "framework.h"
+//#include "framework.h"
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
 void
 setwritemode (int mode)
 {
-  XGCValues Values;
-  switch (mode)
-    {
-    case COPY_PUT:
-      Values.function = GXcopy;
-      break;
-    case XOR_PUT:
-      Values.function = GXxor;
-      break;
-    case OR_PUT:
-      Values.function = GXor;
-      break;
-    case AND_PUT:
-      Values.function = GXand;
-      break;
-    case NOT_PUT:
-      Values.function = GXinvert;
-      break;
-    default:
-      return;
-    }
-  TcWritemode = mode;
-  XLockDisplay (TcDisplay);
-  XChangeGC (TcDisplay, TcGc, GCFunction, &Values);
-  XUnlockDisplay (TcDisplay);
+  //XGCValues Values;
+  //switch (mode)
+  //  {
+  //  case COPY_PUT:
+  //    Values.function = GXcopy;
+  //    break;
+  //  case XOR_PUT:
+  //    Values.function = GXxor;
+  //    break;
+  //  case OR_PUT:
+  //    Values.function = GXor;
+  //    break;
+  //  case AND_PUT:
+  //    Values.function = GXand;
+  //    break;
+  //  case NOT_PUT:
+  //    Values.function = GXinvert;
+  //    break;
+  //  default:
+  //    return;
+  //  }
+  //TcWritemode = mode;
+  //XLockDisplay (TcDisplay);
+  //XChangeGC (TcDisplay, TcGc, GCFunction, &Values);
+  //XUnlockDisplay (TcDisplay);
 }
 
 #endif // WITH_X

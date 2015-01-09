@@ -382,15 +382,15 @@ enum font_names
 #define CLOSE_DOT_FILL 11
 #define USER_FILL 12
 
-//----------------------------------------------------------------------------
-// Data types.
-
-// A little toy of my own.
-typedef struct
-{
-  gint r, g, b;
-}
-RgbStruct;
+////----------------------------------------------------------------------------
+//// Data types.
+//
+//// A little toy of my own.
+//typedef struct
+//{
+//  gint r, g, b;
+//}
+//RgbStruct;
 
 // The following are all datatypes defined by true Turbo C.
 
@@ -443,7 +443,7 @@ struct TcImageBuffer
 {
   gushort Width;
   gushort Height;
-  ::visual::dib_sp  Handle;
+  Pixmap Handle;
 };
 #endif // WITH_X
 
@@ -566,62 +566,6 @@ __END_DECLS
 //--------------------------------------------------------------------------
 // Variables.
 #ifdef TURBOC_VARIABLES_C
-volatile int TcGraphicsInitialized = 0;
-int TcCurrentGraphMode, TcGraphResult = grOk;
-int TcXresolution, TcYresolution, TcPageCount, TcPaletteNum;
-int TcDriver, TcVisualPage = 0, TcActivePage = 0;
-int TcForegroundColor, TcBackgroundColor, TcDriver;
-int TcViewLeft, TcViewTop, TcViewRight, TcViewBottom, TcViewClip;
-int Tcx, Tcy, TcViewMaxx, TcViewMaxy;
-int TcLastArcX = 0, TcLastArcY = 0, TcLastStangle = 0;
-int TcLastEndangle = 0, TcLastRadius = 0;
-int TcWritemode = 0, TcTextHoriz = 0, TcTextVert = 0;
-struct linesettingstype TcLinestyle = { SOLID_LINE, 0xffff, NORM_WIDTH };
-RgbStruct TcColors[256];
-const RgbStruct TcColors2[2] = { XBLACK, XWHITE };
-const RgbStruct TcColorsC0[4] = { XBLACK, XLIGHTGREEN, XLIGHTRED, XYELLOW };
-const RgbStruct TcColorsC1[4] = { XBLACK, XLIGHTCYAN, XLIGHTMAGENTA, XWHITE };
-const RgbStruct TcColorsC2[4] = { XBLACK, XGREEN, XRED, XBROWN };
-const RgbStruct TcColorsC3[4] = { XBLACK, XCYAN, XMAGENTA, XLIGHTGRAY };
-const RgbStruct TcColors4[4] = { XBLACK, XDARKGRAY, XLIGHTGRAY, XWHITE };
-const RgbStruct TcColors16[16] = {
-  XBLACK, XBLUE, XGREEN, XCYAN, XRED, XMAGENTA, XBROWN, XLIGHTGRAY,
-  XDARKGRAY, XLIGHTBLUE, XLIGHTGREEN, XLIGHTCYAN, XLIGHTRED, XLIGHTMAGENTA,
-  XYELLOW, XWHITE
-};
-const struct palettetype TcDefaultPalette2 = { 2, {BLACK, WHITE} };
-const struct palettetype TcDefaultPaletteC0 =
-  { 4, {BLACK, LIGHTGREEN, LIGHTRED, YELLOW} };
-const struct palettetype TcDefaultPaletteC1 =
-  { 4, {BLACK, LIGHTCYAN, LIGHTMAGENTA, WHITE} };
-const struct palettetype TcDefaultPaletteC2 =
-  { 4, {BLACK, GREEN, RED, BROWN} };
-const struct palettetype TcDefaultPaletteC3 =
-  { 4, {BLACK, CYAN, MAGENTA, LIGHTGRAY} };
-const struct palettetype TcDefaultPalette4 =
-  { 4, {BLACK, DARKGRAY, LIGHTGRAY, WHITE} };
-const struct palettetype TcDefaultPalette16 = {
-  16,
-  {BLACK, BLUE, GREEN, CYAN, RED, MAGENTA, BROWN, LIGHTGRAY,
-   DARKGRAY, LIGHTBLUE, LIGHTGREEN, LIGHTCYAN, LIGHTRED, LIGHTMAGENTA,
-   YELLOW, WHITE}
-};
-struct palettetype TcCurrentPalette;
-int TcTextFont, TcTextDirection, TcTextCharsize;
-int TcTextMultX, TcTextDivX, TcTextMultY, TcTextDivY;
-int TcFillStyle = SOLID_FILL, TcFillColor = 1;
-char TcUserFillPattern[8] = { 255, 255, 255, 255, 255, 255, 255, 255 };
-#ifdef WITH_X
-//struct TcPixmapPoolRecord TcPixmapPool[MAX_TCIMAGEBUFS] = { { 0 } };
-Display *TcDisplay;
-Window TcWindow;
-Pixmap TcPixmaps[16];
-gint TcScreen;
-GC TcGc;
-Colormap TcColormap;
-XColor TcXforeground, TcXbackground;
-Pixmap TcTile;
-#endif // WITH_X
 #else // TURBOC_VARIABLES_C
 extern volatile int TcGraphicsInitialized;
 extern int TcCurrentGraphMode, TcGraphResult;

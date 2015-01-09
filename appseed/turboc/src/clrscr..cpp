@@ -23,7 +23,7 @@
   Mod history:	01/31/02 RSB	Created.
 */
 
-#include "conio.h"
+//#include "conio.h"
 
 void
 clrscr (void)

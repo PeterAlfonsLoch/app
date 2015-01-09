@@ -31,15 +31,15 @@
 
 #ifdef WITH_X
 
-#include <pthread.h>
-#include <sys/types.h>
-#include <signal.h>
-static pthread_t ExposerThread;
-static int ThreadsInitialized = 0;
-static void *ExposerFunction (void *);
+//#include <pthread.h>
+//#include <sys/types.h>
+//#include <signal.h>
+//static pthread_t ExposerThread;
+//static int ThreadsInitialized = 0;
+//static void *ExposerFunction (void *);
 
-#include "graphics.h"
-#include "conio.h"
+//#include "graphics.h"
+//#include "conio.h"
 
 //----------------------------------------------------------------------------
 
@@ -63,15 +63,15 @@ setgraphmode (int mode)
 extern void
 initgraph (int *graphdriver, int *graphmode, char *pathtodriver)
 {
-  XSizeHints *SizeHints;
+//  XSizeHints *SizeHints;
   int i, Xres, Yres, Pcnt, Pal;
   gulong White, Black;
-  Atom wm_delete_window;
-  if (!ThreadsInitialized)
-    {
-      XInitThreads ();
-      ThreadsInitialized = 1;
-    }
+  //Atom wm_delete_window;
+  //if (!ThreadsInitialized)
+  //  {
+  //    XInitThreads ();
+  //    ThreadsInitialized = 1;
+  //  }
   if (TcGraphicsInitialized)
     closegraph ();
   // An alternate display name might allow the program to be run remotely.  
@@ -80,13 +80,13 @@ initgraph (int *graphdriver, int *graphmode, char *pathtodriver)
   // this.  If/when I figure this out, I'll fix it up.
   if (*graphdriver == 0)
     detectgraph (graphdriver, graphmode);
-  TcDisplay = XOpenDisplay (NULL);
-  if (TcDisplay == NULL)
-    {
-      TcGraphResult = *graphdriver = grNotDetected;
-      return;
-    }
-  TcScreen = DefaultScreen (TcDisplay);
+  //TcDisplay = XOpenDisplay (NULL);
+  //if (TcDisplay == NULL)
+  //  {
+  //    TcGraphResult = *graphdriver = grNotDetected;
+  //    return;
+  //  }
+  //TcScreen = DefaultScreen (TcDisplay);
   switch ((*graphmode) % TCX)
     {
     case TC_X_320:
@@ -108,9 +108,10 @@ initgraph (int *graphdriver, int *graphmode, char *pathtodriver)
       Xres = 1280;
       break;
     default:
-      XCloseDisplay (TcDisplay);
-      TcGraphResult = *graphdriver = grInvalidMode;
-      return;
+      //XCloseDisplay (TcDisplay);
+      //TcGraphResult = *graphdriver = grInvalidMode;
+       Xres = 1280;
+       break;
     }
   switch ((*graphmode / TCX) % TCY)
     {
@@ -139,10 +140,11 @@ initgraph (int *graphdriver, int *graphmode, char *pathtodriver)
       Yres = 1024;
       break;
     default:
-      XCloseDisplay (TcDisplay);
-      TcGraphResult = *graphdriver = grInvalidMode;
-      return;
-    }
+      //XCloseDisplay (TcDisplay);
+      //TcGraphResult = *graphdriver = grInvalidMode;
+       Yres = 1024;
+       break;
+  }
   switch ((*graphmode / TCXY) % TCG)
     {
     case TC_PG_1:
@@ -155,79 +157,82 @@ initgraph (int *graphdriver, int *graphmode, char *pathtodriver)
       Pcnt = 4;
       break;
     default:
-      XCloseDisplay (TcDisplay);
-      TcGraphResult = *graphdriver = grInvalidMode;
-      return;
+      //XCloseDisplay (TcDisplay);
+      //TcGraphResult = *graphdriver = grInvalidMode;
+      Pcnt = 4;
+      break;
     }
-  White = WhitePixel (TcDisplay, TcScreen);
-  Black = BlackPixel (TcDisplay, TcScreen);
-  SizeHints = XAllocSizeHints ();
-  SizeHints->flags = PMinSize | PMaxSize | PBaseSize;
-  SizeHints->min_width = Xres;
-  SizeHints->max_width = Xres;
-  SizeHints->base_width = Xres;
-  SizeHints->min_height = Yres;
-  SizeHints->max_height = Yres;
-  SizeHints->base_height = Yres;
-  TcWindow = XCreateSimpleWindow (TcDisplay,
-				  DefaultRootWindow (TcDisplay),
-				  0, 0, Xres, Yres, 0, White, Black);
-  // Beg the window manager not to allow the window to be resized.                                
-  XSetNormalHints (TcDisplay, TcWindow, SizeHints);
-  // Tell the window manager we don't want the graphics window 
-  // arbitrarily closed on us -- we want a signal instead.
-  wm_delete_window = XInternAtom (TcDisplay, "WM_DELETE_WINDOW", False);
-  XSetWMProtocols (TcDisplay, TcWindow, &wm_delete_window, 1);
-  TcGc = XCreateGC (TcDisplay, TcWindow, 0, 0);
-  XSetArcMode (TcDisplay, TcGc, ArcPieSlice);
-  XSetForeground (TcDisplay, TcGc, Black);
-  for (i = 0; i < Pcnt; i++)
-    {
-      TcPixmaps[i] = XCreatePixmap (TcDisplay,
-				    DefaultRootWindow (TcDisplay),
-				    Xres, Yres,
-				    DefaultDepth (TcDisplay, TcScreen));
-      XFillRectangle (TcDisplay, TcPixmaps[i], TcGc, 0, 0, Xres, Yres);
-    }
-  XFree (SizeHints);
-  // Save what minimal info we need about the palette.
-  Pal = (*graphmode / TCXYG) % TCP;
-  // Set up the default colors in the palette.  
-  if (TcDefaultColors (Pal))
-    {
-      for (i = 0; i < Pcnt; i++)
-	XFreePixmap (TcDisplay, TcPixmaps[i]);
-      XDestroyWindow (TcDisplay, TcWindow);
-      XFreeGC (TcDisplay, TcGc);
-      XCloseDisplay (TcDisplay);
-      TcGraphResult = *graphdriver = grInvalidMode;
-      return;
-    }
-  TcColormap = DefaultColormap (TcDisplay, TcScreen);
-  XMapWindow (TcDisplay, TcWindow);
-  XSync (TcDisplay, False);
-  TcDriver = *graphdriver;
-  TcCurrentGraphMode = *graphmode;
-  TcXresolution = Xres;
-  TcYresolution = Yres;
-  TcPageCount = Pcnt;
-  TcVisualPage = TcActivePage = 0;
-  TcPaletteNum = Pal;
-  TcBackgroundColor = 0;
-  TcTile = XCreatePixmap (TcDisplay,
-			  DefaultRootWindow (TcDisplay),
-			  8, 8, DefaultDepth (TcDisplay, TcScreen));
-  TcGraphDefaults ();			  
-  TcGraphicsInitialized = 1;
-  if (ThreadsInitialized == 1)
-    {
-      ThreadsInitialized = 2;
-      if (pthread_create (&ExposerThread, NULL, ExposerFunction, NULL))
-	{
-	  TcGraphResult = *graphdriver = grNoLoadMem;
-	  return;
-	}
-    }
+  //White = WhitePixel (TcDisplay, TcScreen);
+  //Black = BlackPixel (TcDisplay, TcScreen);
+  //SizeHints = XAllocSizeHints ();
+  //SizeHints->flags = PMinSize | PMaxSize | PBaseSize;
+  //SizeHints->min_width = Xres;
+  //SizeHints->max_width = Xres;
+  //SizeHints->base_width = Xres;
+  //SizeHints->min_height = Yres;
+  //SizeHints->max_height = Yres;
+  //SizeHints->base_height = Yres;
+  //TcWindow = XCreateSimpleWindow (TcDisplay,
+		//		  DefaultRootWindow (TcDisplay),
+		//		  0, 0, Xres, Yres, 0, White, Black);
+
+  tc().resize(Xres, Yres);
+ // // Beg the window manager not to allow the window to be resized.                                
+ // XSetNormalHints (TcDisplay, TcWindow, SizeHints);
+ // // Tell the window manager we don't want the graphics window 
+ // // arbitrarily closed on us -- we want a signal instead.
+ // wm_delete_window = XInternAtom (TcDisplay, "WM_DELETE_WINDOW", False);
+ // XSetWMProtocols (TcDisplay, TcWindow, &wm_delete_window, 1);
+ // TcGc = XCreateGC (TcDisplay, TcWindow, 0, 0);
+ // XSetArcMode (TcDisplay, TcGc, ArcPieSlice);
+ // XSetForeground (TcDisplay, TcGc, Black);
+ // for (i = 0; i < Pcnt; i++)
+ //   {
+ //     TcPixmaps[i] = XCreatePixmap (TcDisplay,
+	//			    DefaultRootWindow (TcDisplay),
+	//			    Xres, Yres,
+	//			    DefaultDepth (TcDisplay, TcScreen));
+ //     XFillRectangle (TcDisplay, TcPixmaps[i], TcGc, 0, 0, Xres, Yres);
+ //   }
+ // XFree (SizeHints);
+ // // Save what minimal info we need about the palette.
+ // Pal = (*graphmode / TCXYG) % TCP;
+ // // Set up the default colors in the palette.  
+ // if (TcDefaultColors (Pal))
+ //   {
+ //     for (i = 0; i < Pcnt; i++)
+	//XFreePixmap (TcDisplay, TcPixmaps[i]);
+ //     XDestroyWindow (TcDisplay, TcWindow);
+ //     XFreeGC (TcDisplay, TcGc);
+ //     XCloseDisplay (TcDisplay);
+ //     TcGraphResult = *graphdriver = grInvalidMode;
+ //     return;
+ //   }
+ // TcColormap = DefaultColormap (TcDisplay, TcScreen);
+ // XMapWindow (TcDisplay, TcWindow);
+ // XSync (TcDisplay, False);
+ // TcDriver = *graphdriver;
+ // TcCurrentGraphMode = *graphmode;
+ // TcXresolution = Xres;
+ // TcYresolution = Yres;
+ // TcPageCount = Pcnt;
+ // TcVisualPage = TcActivePage = 0;
+ // TcPaletteNum = Pal;
+ // TcBackgroundColor = 0;
+ // TcTile = XCreatePixmap (TcDisplay,
+	//		  DefaultRootWindow (TcDisplay),
+	//		  8, 8, DefaultDepth (TcDisplay, TcScreen));
+ // TcGraphDefaults ();			  
+ // TcGraphicsInitialized = 1;
+ // if (ThreadsInitialized == 1)
+ //   {
+ //     ThreadsInitialized = 2;
+ //     if (pthread_create (&ExposerThread, NULL, ExposerFunction, NULL))
+	//{
+	//  TcGraphResult = *graphdriver = grNoLoadMem;
+	//  return;
+	//}
+ //   }
 }
 
 //-----------------------------------------------------------------
@@ -237,72 +242,72 @@ int volatile TcShutdownGraphics = 0;
 static void *
 ExposerFunction (void *DummyArg)
 {
-  KeySym Key;
-  char Text[32];
-  XEvent Event;
-  int i, j;
-  XSelectInput (TcDisplay, TcWindow,
-		ExposureMask | KeyPressMask | SubstructureNotifyMask);
-  while (1)
-    {
-      // When the main thread wants to turn off graphics mode, it 
-      // sets TcShutdownGraphics to 1 and waits until it turns
-      // back to 0 before proceeding.
-      if (TcShutdownGraphics)
-	{
-	  ThreadsInitialized = 0;
-	  TcShutdownGraphics = 0;
-	  TcGraphicsInitialized = 0;
-	  return (NULL);
-	}
-      XLockDisplay (TcDisplay);
-      if (XCheckWindowEvent
-	  (TcDisplay, TcWindow, ExposureMask | KeyPressMask |
-	   SubstructureNotifyMask, &Event))
-	switch (Event.type)
-	  {
-	  case Expose:
-	    // Come here after something moves in front of our window
-	    // so that we need to redraw it.
-	    XCopyArea (TcDisplay, TcPixmaps[TcVisualPage], TcWindow,
-		       TcGc, Event.xexpose.x, Event.xexpose.y,
-		       Event.xexpose.width, Event.xexpose.height,
-		       Event.xexpose.x, Event.xexpose.y);
-	    break;
-	  case KeyPress:
-	    // This needs to be fixed up some to accomodate things
-	    // like arrows and function keys, but it works okay for 
-	    // regular keys as-is.
-	    i = XLookupString (&Event.xkey, Text, sizeof (Text), &Key, NULL);
-	    for (j = 0; j < i; j++)
-	      TcAddKeybuf (Text[j]);
-	    break;
-	  case NoExpose:
-	    break;
-	  case ClientMessage:
-	    // Come here if the user tries to manually close the graphics
-	    // window.  We allow the programmer to decide what to do
-	    // about it.  The callback function TurboX can be provided
-	    // by the programmer, but we also provide a default version that
-	    // just returns 1.  A return value of 0 means to continue 
-	    // executing, while a non-zero value means to close down the 
-	    // program.
-	    if (TurboX (0))
-	      {
-		XUnlockDisplay (TcDisplay);
-		//closegraph ();
-		//kill (0, SIGTERM);
-		ThreadsInitialized = 0;
-		TcGraphicsInitialized = 0;
-		//return (NULL);
-		exit (2);
-	      }
-	    break;
-	  default:
-	    break;
-	  }
-      XUnlockDisplay (TcDisplay);
-    }
+ // KeySym Key;
+ // char Text[32];
+ // XEvent Event;
+ // int i, j;
+ // XSelectInput (TcDisplay, TcWindow,
+	//	ExposureMask | KeyPressMask | SubstructureNotifyMask);
+ // while (1)
+ //   {
+ //     // When the main thread wants to turn off graphics mode, it 
+ //     // sets TcShutdownGraphics to 1 and waits until it turns
+ //     // back to 0 before proceeding.
+ //     if (TcShutdownGraphics)
+	//{
+	//  ThreadsInitialized = 0;
+	//  TcShutdownGraphics = 0;
+	//  TcGraphicsInitialized = 0;
+	//  return (NULL);
+	//}
+ //     XLockDisplay (TcDisplay);
+ //     if (XCheckWindowEvent
+	//  (TcDisplay, TcWindow, ExposureMask | KeyPressMask |
+	//   SubstructureNotifyMask, &Event))
+	//switch (Event.type)
+	//  {
+	//  case Expose:
+	//    // Come here after something moves in front of our window
+	//    // so that we need to redraw it.
+	//    XCopyArea (TcDisplay, TcPixmaps[TcVisualPage], TcWindow,
+	//	       TcGc, Event.xexpose.x, Event.xexpose.y,
+	//	       Event.xexpose.width, Event.xexpose.height,
+	//	       Event.xexpose.x, Event.xexpose.y);
+	//    break;
+	//  case KeyPress:
+	//    // This needs to be fixed up some to accomodate things
+	//    // like arrows and function keys, but it works okay for 
+	//    // regular keys as-is.
+	//    i = XLookupString (&Event.xkey, Text, sizeof (Text), &Key, NULL);
+	//    for (j = 0; j < i; j++)
+	//      TcAddKeybuf (Text[j]);
+	//    break;
+	//  case NoExpose:
+	//    break;
+	//  case ClientMessage:
+	//    // Come here if the user tries to manually close the graphics
+	//    // window.  We allow the programmer to decide what to do
+	//    // about it.  The callback function TurboX can be provided
+	//    // by the programmer, but we also provide a default version that
+	//    // just returns 1.  A return value of 0 means to continue 
+	//    // executing, while a non-zero value means to close down the 
+	//    // program.
+	//    if (TurboX (0))
+	//      {
+	//	XUnlockDisplay (TcDisplay);
+	//	//closegraph ();
+	//	//kill (0, SIGTERM);
+	//	ThreadsInitialized = 0;
+	//	TcGraphicsInitialized = 0;
+	//	//return (NULL);
+	//	exit (2);
+	//      }
+	//    break;
+	//  default:
+	//    break;
+	//  }
+ //     XUnlockDisplay (TcDisplay);
+ //   }
 }
 
 #endif // WITH_X

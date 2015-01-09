@@ -40,13 +40,13 @@
 				automatic integer-type redefinitions.  
 				Hopefully fixed here.
 */
-#include "framework.h"
-//#include <termios.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <sys/ioctl.h>
+//#include "framework.h"
+////#include <termios.h>
+//#include <stdlib.h>
+//#include <signal.h>
+//#include <sys/ioctl.h>
 
-#include "conio.h"
+//#include "conio.h"
 
 char BypassResizeXterm = 0;
 static uint32_t LastMode = C80;
@@ -288,7 +288,7 @@ InitializeTranslatedChar (void)
   TranslatedChar[(int) '\t'] = '\t';
   TranslatedChar[(int) '\r'] = '\r';
   TranslatedChar[(int) '\n'] = '\n';
-  TranslatedChar[(int) 0x10] = ACS_RARROW;
+ /* TranslatedChar[(int) 0x10] = ACS_RARROW;
   TranslatedChar[(int) 0x11] = ACS_LARROW;
   TranslatedChar[(int) 0x18] = ACS_UARROW;
   TranslatedChar[(int) 0x19] = ACS_DARROW;
@@ -347,7 +347,7 @@ InitializeTranslatedChar (void)
   TranslatedChar[(int) 0xf2] = ACS_GEQUAL;
   TranslatedChar[(int) 0xf3] = ACS_LEQUAL;
   TranslatedChar[(int) 0xf8] = ACS_DEGREE;
-  TranslatedChar[(int) 0xf9] = ACS_BULLET;
+  TranslatedChar[(int) 0xf9] = ACS_BULLET;*/
 #ifndef DoNotFixIntegers
 #define short int16_t
 #define int int16_t
@@ -363,93 +363,93 @@ textmode (int newmode)
 {
   int32_t Rows, Columns;
   // Parse the current and desired modes.
-  if (ConioInitialized)
-    {
-      if (CurrentWindow != NULL)
-	{
-	  if (CurrentWindow != stdscr)
-	    delwin (CurrentWindow);
-	  CurrentWindow = NULL;
-	}
-      endwin ();
-      // Reset the terminal type.
-      //system ("reset");
-      ConioInitialized = 0;
-    }
-  if (newmode == EXITMODE)
-    {
-      return;
-    }
-  if (newmode == LASTMODE)
-    newmode = LastMode;
-  if (0xffff == (newmode & 0xffff))
-    {
-      Rows = 0xff & (newmode >> 24);
-      Columns = 0xff & (newmode >> 16);
-    }
-  else
-    {
-      if (newmode < 0 || newmode >= NUM_VIDEO_MODES)
-	newmode = C80;
-      Rows = VideoModes[newmode].Rows;
-      Columns = VideoModes[newmode].Columns;
-    }
-
-#ifdef OBSOLETE_TERM_RESIZE
-  if (NULL == getenv ("TERM") || 0 != strcasecmp ("xterm", getenv ("TERM")))
-    BypassResizeXterm = 1;
-  if (BypassResizeXterm == 0)
-    {
-      char s[32];
-      // The following resizes the physical console, but it only works on
-      // xterm (not on KDE Konsole, for example).  If xterm is not being 
-      // run it causes a fairly chunky delay until it times out.
-      sprintf (s, "xtermset -geometry %dx%d", Columns, Rows);
-      system (s);
-    }
-#else // OBSOLETE_TERM_RESIZE
-  RawResizeTurboC (Rows, Columns);
-#endif // OBSOLETE_TERM_RESIZE
-
-  // ncurses initialization.
-  //sprintf (s, "LINES=%d", Rows);
-  //putenv (s);
-  //sprintf (s, "COLUMNS=%d", Columns);
-  //putenv (s);
-  //use_env (TRUE);
-  //system ("tset pcmw");
-  initscr ();
-  start_color ();
-  //resizeterm (Rows, Columns);
-  nodelay (stdscr, TRUE);
-  scrollok (stdscr, TRUE);
-  // cbreak (); 
-  raw ();
-  noecho ();
-  nonl ();
-  intrflush (stdscr, FALSE);
-  keypad (stdscr, TRUE);
-  wresize (stdscr, Rows, Columns);
-  // Initialize the translation table.
-  if (TranslatedChar[(int) ' '] == 0)
-    InitializeTranslatedChar ();
-
-  // conio initialization.
-  CurrentAttributes.currmode = LastMode = newmode;
-  CurrentAttributes.winleft = CurrentAttributes.curx = 1;
-  CurrentAttributes.winright = CurrentAttributes.screenwidth = Columns;
-  CurrentAttributes.wintop = CurrentAttributes.cury = 1;
-  CurrentAttributes.winbottom = CurrentAttributes.screenheight = Rows;
-  CurrentAttributes.attribute = CurrentAttributes.normattr = WHITE;
-  clear ();
-
-  CurrentWindow = stdscr;
-  ColorPairsUsed = 1;
-  ConioInitialized = 1;
-  window (CurrentAttributes.winleft, CurrentAttributes.wintop,
-  	  CurrentAttributes.winbottom, CurrentAttributes.winright);
-  TurboTrap ();
-#ifdef SIGWINCH
-  signal (SIGWINCH, ResizeTurboC);
-#endif // SIGWINCH
+//  if (ConioInitialized)
+//    {
+//      if (CurrentWindow != NULL)
+//	{
+//	  if (CurrentWindow != stdscr)
+//	    delwin (CurrentWindow);
+//	  CurrentWindow = NULL;
+//	}
+//      endwin ();
+//      // Reset the terminal type.
+//      //system ("reset");
+//      ConioInitialized = 0;
+//    }
+//  if (newmode == EXITMODE)
+//    {
+//      return;
+//    }
+//  if (newmode == LASTMODE)
+//    newmode = LastMode;
+//  if (0xffff == (newmode & 0xffff))
+//    {
+//      Rows = 0xff & (newmode >> 24);
+//      Columns = 0xff & (newmode >> 16);
+//    }
+//  else
+//    {
+//      if (newmode < 0 || newmode >= NUM_VIDEO_MODES)
+//	newmode = C80;
+//      Rows = VideoModes[newmode].Rows;
+//      Columns = VideoModes[newmode].Columns;
+//    }
+//
+//#ifdef OBSOLETE_TERM_RESIZE
+//  if (NULL == getenv ("TERM") || 0 != strcasecmp ("xterm", getenv ("TERM")))
+//    BypassResizeXterm = 1;
+//  if (BypassResizeXterm == 0)
+//    {
+//      char s[32];
+//      // The following resizes the physical console, but it only works on
+//      // xterm (not on KDE Konsole, for example).  If xterm is not being 
+//      // run it causes a fairly chunky delay until it times out.
+//      sprintf (s, "xtermset -geometry %dx%d", Columns, Rows);
+//      system (s);
+//    }
+//#else // OBSOLETE_TERM_RESIZE
+//  RawResizeTurboC (Rows, Columns);
+//#endif // OBSOLETE_TERM_RESIZE
+//
+//  // ncurses initialization.
+//  //sprintf (s, "LINES=%d", Rows);
+//  //putenv (s);
+//  //sprintf (s, "COLUMNS=%d", Columns);
+//  //putenv (s);
+//  //use_env (TRUE);
+//  //system ("tset pcmw");
+//  initscr ();
+//  start_color ();
+//  //resizeterm (Rows, Columns);
+//  nodelay (stdscr, TRUE);
+//  scrollok (stdscr, TRUE);
+//  // cbreak (); 
+//  raw ();
+//  noecho ();
+//  nonl ();
+//  intrflush (stdscr, FALSE);
+//  keypad (stdscr, TRUE);
+//  wresize (stdscr, Rows, Columns);
+//  // Initialize the translation table.
+//  if (TranslatedChar[(int) ' '] == 0)
+//    InitializeTranslatedChar ();
+//
+//  // conio initialization.
+//  CurrentAttributes.currmode = LastMode = newmode;
+//  CurrentAttributes.winleft = CurrentAttributes.curx = 1;
+//  CurrentAttributes.winright = CurrentAttributes.screenwidth = Columns;
+//  CurrentAttributes.wintop = CurrentAttributes.cury = 1;
+//  CurrentAttributes.winbottom = CurrentAttributes.screenheight = Rows;
+//  CurrentAttributes.attribute = CurrentAttributes.normattr = WHITE;
+//  clear ();
+//
+//  CurrentWindow = stdscr;
+//  ColorPairsUsed = 1;
+//  ConioInitialized = 1;
+//  window (CurrentAttributes.winleft, CurrentAttributes.wintop,
+//  	  CurrentAttributes.winbottom, CurrentAttributes.winright);
+//  TurboTrap ();
+//#ifdef SIGWINCH
+//  signal (SIGWINCH, ResizeTurboC);
+//#endif // SIGWINCH
 }

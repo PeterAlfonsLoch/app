@@ -28,7 +28,7 @@
 				maximum string length.
 */
 
-#include "conio.h"
+//#include "conio.h"
 
 // This global variable exists to allow the cgets code (which echoes
 // to the screen) to be used for getpass (which does not).  0 is the

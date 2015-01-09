@@ -37,8 +37,8 @@
   ... but, it works imperfectly at best.  X doesn't seem to generate the
   same messages on all systems, and there are other difficulties.  *Sigh!*
 */
-#include "framework.h"
-#include "TurboC.h"
+//#include "framework.h"
+//#include "TurboC.h"
 
 //-----------------------------------------------------------------------
 // The input parameter, Forced, is interpreted as follows:

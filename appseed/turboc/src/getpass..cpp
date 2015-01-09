@@ -23,7 +23,7 @@
   Mod history:	03/21/02 RSB	Created.
 */
 
-#include "conio.h"
+//#include "conio.h"
 
 char *
 getpass (const char *prompt)

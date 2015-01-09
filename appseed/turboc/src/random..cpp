@@ -27,16 +27,16 @@
 				#else.
 */
 
-#include <stdlib.h>
-#include <time.h>
-#if defined(linux)
-#include <stdint.h>
-#elif defined(__FreeBSD__) || defined(__APPLE__)
-#include <inttypes.h>
-#else
-#error Need header file for integer datatypes.
-#endif
-//#include "TurboC.h"                   Must *not* include this.
+//#include <stdlib.h>
+//#include <time.h>
+//#if defined(linux)
+////#include <stdint.h>
+//#elif defined(__FreeBSD__) || defined(__APPLE__)
+////#include <inttypes.h>
+//#else
+//#error Need header file for integer datatypes.
+//#endif
+////#include "TurboC.h"                   Must *not* include this.
 
 //------------------------------------------------------------------------
 // The Turbo C function is supposed to return a random number between
@@ -49,12 +49,12 @@
 int16_t
 randomTurbo (int16_t num)
 {
-  return (random () % num);
+  return (rand () % num);
 }
 
 void
 randomize (void)
 {
-  long t;
-  srand (time (&t));
+  //long t;
+  srand (time (NULL));
 }

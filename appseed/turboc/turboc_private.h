@@ -1,5 +1,7 @@
 #pragma once
 
+#define Pixmap ::draw2d::dib *
+
 
 CLASS_DECL_TURBOC int getch();
 CLASS_DECL_TURBOC void ungetch(int c);

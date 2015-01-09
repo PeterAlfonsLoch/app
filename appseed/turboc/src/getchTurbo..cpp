@@ -32,9 +32,9 @@
 				getting input from the graphics window.						
 */
 
-#include <stdio.h>
-#include "conio.h"
-#include "fnkeys.h"
+//#include <stdio.h>
+//#include "conio.h"
+//#include "fnkeys.h"
 
 //-----------------------------------------------------------------------
 // ncurses returns various special keys as codes in the range 0x100-0x1ff.
@@ -153,8 +153,8 @@ getchTurbo (void)
 	KeyCode = c;
       if (KeyLog != NULL)
 	fwrite (&KeyCode, sizeof (KeyCode), 1, KeyLog);
-      if (KeyCode == KEY_RESIZE)
-	continue;
+ //     if (KeyCode == KEY_RESIZE)
+	//continue;
       KeypadDigit (&KeyCode);
       // Trap escape sequences. 
       if (KeyCode == '\x1b')

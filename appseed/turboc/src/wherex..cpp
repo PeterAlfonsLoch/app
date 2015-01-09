@@ -22,8 +22,8 @@
   Purpose:	A Turbo C conio function.
   Mod history:	01/31/02 RSB	Created.
 */
-#include "framework.h"
-#include "conio.h"
+//#include "framework.h"
+//#include "conio.h"
 
 int
 wherex (void)

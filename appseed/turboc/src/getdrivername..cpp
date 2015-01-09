@@ -23,7 +23,7 @@
   Mod history:	05/21/02 RSB	Created.
 */
 
-#include "graphics.h"
+//#include "graphics.h"
 
 static const char *DriverNames[11] = {
   NULL, "CGA", "CGA", "EGAVGA", "EGAVGA", "EGAVGA",

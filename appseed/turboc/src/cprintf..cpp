@@ -23,8 +23,8 @@
   Mod history:	02/02/02 RSB	Created.
 */
 
-#include <stdarg.h>
-#include "conio.h"
+//#include <stdarg.h>
+//#include "conio.h"
 
 static char StringBuffer[1024];
 

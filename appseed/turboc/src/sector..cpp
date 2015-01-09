@@ -23,11 +23,11 @@
   		for porting to *nix.
   Mod history:	05/27/02 RSB	Split off from arc.c.
 */
-#include "framework.h"
+//#include "framework.h"
 #ifdef WITH_X
 
-#include <math.h>
-#include "graphics.h"
+//#include <math.h>
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
@@ -47,39 +47,39 @@ sector (int x, int y, int stangle, int endangle, int xradius, int yradius)
   xdiam = xradius * 2;
   ydiam = yradius * 2;
   // Now do the actual drawing.
-  XLockDisplay (TcDisplay);
-  XSetFillStyle (TcDisplay, TcGc, FillTiled);
-  XSetTile (TcDisplay, TcGc, TcTile);
-  XFillArc (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y, xdiam, ydiam,
-	    stangle * 64, (endangle - stangle) * 64);
-  XDrawArc (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y, xdiam, ydiam,
-	    stangle * 64, (endangle - stangle) * 64);
-  if (stangle != endangle)
-    {
-      StartX = CenterX + xradius * cos (stangle * RADIANS_PER_DEGREE);
-      StartY = CenterY - yradius * sin (stangle * RADIANS_PER_DEGREE);
-      EndX = CenterX + xradius * cos (endangle * RADIANS_PER_DEGREE);
-      EndY = CenterY - yradius * sin (endangle * RADIANS_PER_DEGREE);
-      XDrawLine (TcDisplay, TcPixmaps[TcActivePage], TcGc, CenterX, CenterY, StartX, StartY);
-      XDrawLine (TcDisplay, TcPixmaps[TcActivePage], TcGc, CenterX, CenterY, EndX, EndY);
-    }	    
-  if (TcActivePage == TcVisualPage)
-    {
-      XFillArc (TcDisplay, TcWindow, TcGc, x, y, xdiam, ydiam,
-		stangle * 64, (endangle - stangle) * 64);
-      XDrawArc (TcDisplay, TcWindow, TcGc, x, y, xdiam, ydiam,
-		stangle * 64, (endangle - stangle) * 64);
-      if (stangle != endangle)
-	{
-	  XDrawLine (TcDisplay, TcWindow, TcGc, CenterX, CenterY, StartX, StartY);
-	  XDrawLine (TcDisplay, TcWindow, TcGc, CenterX, CenterY, EndX, EndY);
-	}	    
-     XSync (TcDisplay, False);
-    }
-  XSetFillStyle (TcDisplay, TcGc, FillSolid);
-  XUnlockDisplay (TcDisplay);
-  if (Settings.linestyle != SOLID_LINE || Settings.thickness != NORM_WIDTH)
-    setlinestyle (Settings.linestyle, Settings.upattern, Settings.thickness);
+ // XLockDisplay (TcDisplay);
+ // XSetFillStyle (TcDisplay, TcGc, FillTiled);
+ // XSetTile (TcDisplay, TcGc, TcTile);
+ // XFillArc (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y, xdiam, ydiam,
+	//    stangle * 64, (endangle - stangle) * 64);
+ // XDrawArc (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y, xdiam, ydiam,
+	//    stangle * 64, (endangle - stangle) * 64);
+ // if (stangle != endangle)
+ //   {
+ //     StartX = CenterX + xradius * cos (stangle * RADIANS_PER_DEGREE);
+ //     StartY = CenterY - yradius * sin (stangle * RADIANS_PER_DEGREE);
+ //     EndX = CenterX + xradius * cos (endangle * RADIANS_PER_DEGREE);
+ //     EndY = CenterY - yradius * sin (endangle * RADIANS_PER_DEGREE);
+ //     XDrawLine (TcDisplay, TcPixmaps[TcActivePage], TcGc, CenterX, CenterY, StartX, StartY);
+ //     XDrawLine (TcDisplay, TcPixmaps[TcActivePage], TcGc, CenterX, CenterY, EndX, EndY);
+ //   }	    
+ // if (TcActivePage == TcVisualPage)
+ //   {
+ //     XFillArc (TcDisplay, TcWindow, TcGc, x, y, xdiam, ydiam,
+	//	stangle * 64, (endangle - stangle) * 64);
+ //     XDrawArc (TcDisplay, TcWindow, TcGc, x, y, xdiam, ydiam,
+	//	stangle * 64, (endangle - stangle) * 64);
+ //     if (stangle != endangle)
+	//{
+	//  XDrawLine (TcDisplay, TcWindow, TcGc, CenterX, CenterY, StartX, StartY);
+	//  XDrawLine (TcDisplay, TcWindow, TcGc, CenterX, CenterY, EndX, EndY);
+	//}	    
+ //    XSync (TcDisplay, False);
+ //   }
+ // XSetFillStyle (TcDisplay, TcGc, FillSolid);
+ // XUnlockDisplay (TcDisplay);
+ // if (Settings.linestyle != SOLID_LINE || Settings.thickness != NORM_WIDTH)
+ //   setlinestyle (Settings.linestyle, Settings.upattern, Settings.thickness);
 }
 
 #endif // WITH_X

@@ -27,7 +27,7 @@
 
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 // We make the graphics screen this (integer) percentage of the full
 // screen size, or less.
@@ -38,54 +38,54 @@
 void
 detectgraph (int *graphdriver, int *graphmode)
 {
-  gint ScreenWidth, ScreenHeight;
-  ScreenWidth = 800;
-  ScreenHeight = 600;
-  if (TcGraphicsInitialized)
-    {
-      ScreenWidth = XDisplayWidth (TcDisplay, TcScreen);
-      ScreenHeight = XDisplayHeight (TcDisplay, TcScreen);
-    }
-  else
-    {
-      TcDisplay = XOpenDisplay (NULL);
-      if (TcDisplay != NULL)
-	{
-	  TcScreen = DefaultScreen (TcDisplay);
-	  ScreenWidth = XDisplayWidth (TcDisplay, TcScreen);
-	  ScreenHeight = XDisplayHeight (TcDisplay, TcScreen);
-	  XCloseDisplay (TcDisplay);
-	}
-    }
-  ScreenWidth = (SHRINK_PERCENT * ScreenWidth + 50) / 100;
-  ScreenHeight = (SHRINK_PERCENT * ScreenHeight + 50) / 100;
-  // Now find the "best" mode that fits.  Of course, what's "best" depends
-  // on your criteria ...
-  if (ScreenWidth >= 1024 && ScreenHeight >= 768)
+ // gint ScreenWidth, ScreenHeight;
+ // ScreenWidth = 800;
+ // ScreenHeight = 600;
+ // if (TcGraphicsInitialized)
+ //   {
+ //     ScreenWidth = XDisplayWidth (TcDisplay, TcScreen);
+ //     ScreenHeight = XDisplayHeight (TcDisplay, TcScreen);
+ //   }
+ // else
+ //   {
+ //     TcDisplay = XOpenDisplay (NULL);
+ //     if (TcDisplay != NULL)
+	//{
+	//  TcScreen = DefaultScreen (TcDisplay);
+	//  ScreenWidth = XDisplayWidth (TcDisplay, TcScreen);
+	//  ScreenHeight = XDisplayHeight (TcDisplay, TcScreen);
+	//  XCloseDisplay (TcDisplay);
+	//}
+ //   }
+ // ScreenWidth = (SHRINK_PERCENT * ScreenWidth + 50) / 100;
+ // ScreenHeight = (SHRINK_PERCENT * ScreenHeight + 50) / 100;
+ // // Now find the "best" mode that fits.  Of course, what's "best" depends
+ // // on your criteria ...
+ // if (ScreenWidth >= 1024 && ScreenHeight >= 768)
     {
       *graphdriver = IBM8514;
       *graphmode = IBM8514HI;
     }
-  else if (ScreenWidth >= 640 && ScreenHeight >= 480)
-    {
-      *graphdriver = IBM8514;
-      *graphmode = IBM8514LO;
-    }
-  else if (ScreenWidth >= 640 && ScreenHeight >= 350)
-    {
-      *graphdriver = VGA;
-      *graphmode = VGAMED;
-    }
-  else if (ScreenWidth >= 640 && ScreenHeight >= 200)
-    {
-      *graphdriver = EGA;
-      *graphmode = EGALO;
-    }
-  else
-    {
-      *graphdriver = CGA;
-      *graphmode = CGAC0;
-    }
+  //else if (ScreenWidth >= 640 && ScreenHeight >= 480)
+  //  {
+  //    *graphdriver = IBM8514;
+  //    *graphmode = IBM8514LO;
+  //  }
+  //else if (ScreenWidth >= 640 && ScreenHeight >= 350)
+  //  {
+  //    *graphdriver = VGA;
+  //    *graphmode = VGAMED;
+  //  }
+  //else if (ScreenWidth >= 640 && ScreenHeight >= 200)
+  //  {
+  //    *graphdriver = EGA;
+  //    *graphmode = EGALO;
+  //  }
+  //else
+  //  {
+  //    *graphdriver = CGA;
+  //    *graphmode = CGAC0;
+  //  }
 }
 
 #endif // WITH_X

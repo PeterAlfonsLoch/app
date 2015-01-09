@@ -23,8 +23,8 @@
   Mod history:	05/19/02 RSB	Created.
 */
 
-#include <sys/times.h>
-#include "dos.h"
+//#include <sys/times.h>
+//#include "dos.h"
 
 static int clockInitialized = 0;
 static clock_t InitialTime;
@@ -34,9 +34,10 @@ static clock_t InitialTime;
 clock_t
 clockTurbo (void)
 {
-  struct tms Buf;
+//  struct tms Buf;
   clock_t t;
-  t = times (&Buf);
+  //t = times (&Buf);
+  t = ::get_tick_count();
   if (!clockInitialized)
     {
       InitialTime = t;
@@ -50,8 +51,10 @@ clockTurbo (void)
 void
 delay (guint milliseconds)
 {
-  struct tms Buf;
-  clock_t EndTime;
-  EndTime = times (&Buf) + (milliseconds * 1LL * CLK_TCK) / 1000LL;
-  while (times (&Buf) < EndTime);
+  //struct tms Buf;
+  //clock_t EndTime;
+  //EndTime = times (&Buf) + (milliseconds * 1LL * CLK_TCK) / 1000LL;
+  //EndTime = get_tick_count() milliseconds;
+  //while (times (&Buf) < EndTime);
+   Sleep(milliseconds);
 }

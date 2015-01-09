@@ -23,10 +23,10 @@
   		for porting to *nix.
   Mod history:	05/04/02 RSB	Created.
 */
-#include "framework.h"
+//#include "framework.h"
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 

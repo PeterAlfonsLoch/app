@@ -22,12 +22,12 @@
   Purpose:	TurboC library setup for trapping SIGTERM/SIGKILL.
   Mod history:	05/21/02 RSB	Created.
 */
-#include "framework.h"
-#include "framework.h"
-#include <sys/types.h>
-#include <signal.h>
-#include "conio.h"
-//#include "graphics.h"
+//#include "framework.h"
+//#include "framework.h"
+//#include <sys/types.h>
+//#include <signal.h>
+//#include "conio.h"
+////#include "graphics.h"
 
 //--------------------------------------------------------------------
 // This function is activated when a KILL or TERM signal is received.

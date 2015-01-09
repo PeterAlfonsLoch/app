@@ -23,44 +23,44 @@
   		for porting to *nix.
   Mod history:	05/08/02 RSB	Created.
 */
-#include "framework.h"
+//#include "framework.h"
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
 void
 setviewport (int left, int top, int right, int bottom, int clip)
 {
-  XRectangle Rectangle;
-  if (left < 0 || right > TcXresolution - 1 || left >= right ||
-      top < 0 || bottom > TcYresolution - 1 || top >= bottom)
-    {
-      TcGraphResult = grError;
-      return;
-    }
-  TcViewLeft = left;
-  TcViewTop = top;
-  TcViewRight = right;
-  TcViewBottom = bottom;
-  TcViewMaxx = right - left;
-  TcViewMaxy = bottom - top;
-  TcViewClip = clip;
-  Tcx = Tcy = 0;
-  // Account for clipping.  Fortunately, this can be done entirely
-  // within X, by setting the clipping region within the graphics
-  // context.
-  if (clip)
-    {
-      Rectangle.x = left;
-      Rectangle.y = top;
-      Rectangle.width = TcViewMaxx + 1;
-      Rectangle.height = TcViewMaxy + 1;
-      XSetClipRectangles (TcDisplay, TcGc, 0, 0, &Rectangle, 1, Unsorted);
-    }
-  else
-    XSetClipMask (TcDisplay, TcGc, None);
+  //XRectangle Rectangle;
+  //if (left < 0 || right > TcXresolution - 1 || left >= right ||
+  //    top < 0 || bottom > TcYresolution - 1 || top >= bottom)
+  //  {
+  //    TcGraphResult = grError;
+  //    return;
+  //  }
+  //TcViewLeft = left;
+  //TcViewTop = top;
+  //TcViewRight = right;
+  //TcViewBottom = bottom;
+  //TcViewMaxx = right - left;
+  //TcViewMaxy = bottom - top;
+  //TcViewClip = clip;
+  //Tcx = Tcy = 0;
+  //// Account for clipping.  Fortunately, this can be done entirely
+  //// within X, by setting the clipping region within the graphics
+  //// context.
+  //if (clip)
+  //  {
+  //    Rectangle.x = left;
+  //    Rectangle.y = top;
+  //    Rectangle.width = TcViewMaxx + 1;
+  //    Rectangle.height = TcViewMaxy + 1;
+  //    XSetClipRectangles (TcDisplay, TcGc, 0, 0, &Rectangle, 1, Unsorted);
+  //  }
+  //else
+  //  XSetClipMask (TcDisplay, TcGc, None);
 }
 
 #endif // WITH_X

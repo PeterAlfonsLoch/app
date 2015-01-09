@@ -28,48 +28,48 @@
 		03/23/02 RSB	Added _wscroll.				
 */
 
-#include "conio.h"
+//#include "conio.h"
 
 //------------------------------------------------------------------------------------
 
 int
 putch (int c)
 {
-  if (!ConioInitialized)
-    textmode (LASTMODE);
-  if (c == '\n')
-    {
-      if (CurrentAttributes.cury + CurrentAttributes.wintop ==
-	  CurrentAttributes.winbottom + 1)
-	{
-	  if (_wscroll)
-	    scroll (CurrentWindow);
-	  wclrtoeol (CurrentWindow);
-	}
-      else
-	wmove (CurrentWindow, CurrentAttributes.cury,
-	       CurrentAttributes.curx - 1);
-    }
-  else
-    {
-      extern gint TranslatedChar[256];
-      if (c < 0 || c > 255)
-	return (EOF);
-      if (_wscroll == 0)
-	{
-	  scrollok (CurrentWindow, FALSE);
-	  mvwaddch (CurrentWindow, CurrentAttributes.cury - 1,
-		    CurrentAttributes.curx - 1, TranslatedChar[c]);
-	  scrollok (CurrentWindow, TRUE);
-	}
-      else
-	mvwaddch (CurrentWindow, CurrentAttributes.cury - 1,
-		  CurrentAttributes.curx - 1, TranslatedChar[c]);
-    }
-  if (ConioRefreshOkay)
-    wrefresh (CurrentWindow);
-  getyx (CurrentWindow, CurrentAttributes.cury, CurrentAttributes.curx);
-  CurrentAttributes.curx++;
-  CurrentAttributes.cury++;
+ // if (!ConioInitialized)
+ //   textmode (LASTMODE);
+ // if (c == '\n')
+ //   {
+ //     if (CurrentAttributes.cury + CurrentAttributes.wintop ==
+	//  CurrentAttributes.winbottom + 1)
+	//{
+	//  if (_wscroll)
+	//    scroll (CurrentWindow);
+	//  wclrtoeol (CurrentWindow);
+	//}
+ //     else
+	//wmove (CurrentWindow, CurrentAttributes.cury,
+	//       CurrentAttributes.curx - 1);
+ //   }
+ // else
+ //   {
+ //     extern gint TranslatedChar[256];
+ //     if (c < 0 || c > 255)
+	//return (EOF);
+ //     if (_wscroll == 0)
+	//{
+	//  scrollok (CurrentWindow, FALSE);
+	//  mvwaddch (CurrentWindow, CurrentAttributes.cury - 1,
+	//	    CurrentAttributes.curx - 1, TranslatedChar[c]);
+	//  scrollok (CurrentWindow, TRUE);
+	//}
+ //     else
+	//mvwaddch (CurrentWindow, CurrentAttributes.cury - 1,
+	//	  CurrentAttributes.curx - 1, TranslatedChar[c]);
+ //   }
+ // if (ConioRefreshOkay)
+ //   wrefresh (CurrentWindow);
+ // getyx (CurrentWindow, CurrentAttributes.cury, CurrentAttributes.curx);
+ // CurrentAttributes.curx++;
+ // CurrentAttributes.cury++;
   return (c);
 }

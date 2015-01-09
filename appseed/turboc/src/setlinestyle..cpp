@@ -23,10 +23,10 @@
   		for porting to *nix.
   Mod history:	05/10/02 RSB	Created.
 */
-#include "framework.h"
+//#include "framework.h"
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
@@ -37,85 +37,85 @@ setlinestyle (int linestyle, unsigned upattern, int thickness)
   unsigned OrigUpattern;
   char dash_list[18];
   OrigUpattern = upattern;
-  switch (linestyle)
-    {
-    case SOLID_LINE:
-      line_style = LineSolid;
-      break;
-    case DOTTED_LINE:
-      line_style = LineOnOffDash;
-      n = 2;
-      dash_offset = 0;
-      dash_list[0] = thickness;
-      dash_list[1] = thickness * 3;
-      break;
-    case CENTER_LINE:
-      line_style = LineOnOffDash;
-      n = 4;
-      dash_offset = 0;
-      dash_list[0] = 6 * thickness;
-      dash_list[1] = 3 * thickness;
-      dash_list[2] = 3 * thickness;
-      dash_list[3] = 3 * thickness;
-      break;
-    case DASHED_LINE:
-      line_style = LineOnOffDash;
-      n = 2;
-      dash_offset = 0;
-      dash_list[0] = 5 * thickness;
-      dash_list[1] = 3 * thickness;
-      break;
-    case USERBIT_LINE:
-      line_style = LineOnOffDash;
-      dash_offset = 0;
-      if (upattern == 0)
-	{
-	  n = 2;
-	  dash_list[0] = 1;
-	  dash_list[1] = 7;
-	}
-      else
-	{
-	  while (0 == (upattern & 0x8000))
-	    upattern = upattern << 1;
-	  n = 0;
-	  i = ((upattern & 0x8000) == 0);
-	  if (i)
-	    {
-	      dash_list[0] = 0;
-	      n++;
-	    }
-	  dash_list[n] = 0;
-	  for (j = 0; j < 16; j++, upattern = upattern << 1)
-	    {
-	      k = ((upattern & 0x8000) == 0);
-	      if (i == k)
-		dash_list[n]++;
-	      else
-		{
-		  i = k;
-		  n++;
-		  dash_list[n] = 1;
-		}
-	    }
-	  n++;
-	  if ((n & 1) != 0)
-	    dash_list[n++] = 1;
-	}
-      break;
-    default:
-      TcGraphResult = grError;
-      return;
-    }
-  TcLinestyle.linestyle = linestyle;
-  TcLinestyle.upattern = OrigUpattern;
-  TcLinestyle.thickness = thickness;
-  XLockDisplay (TcDisplay);
-  XSetLineAttributes (TcDisplay, TcGc, thickness, line_style, CapRound,
-		      JoinRound);
-  if (line_style == LineOnOffDash)
-    XSetDashes (TcDisplay, TcGc, dash_offset, dash_list, n);
-  XUnlockDisplay (TcDisplay);
+ // switch (linestyle)
+ //   {
+ //   case SOLID_LINE:
+ //     line_style = LineSolid;
+ //     break;
+ //   case DOTTED_LINE:
+ //     line_style = LineOnOffDash;
+ //     n = 2;
+ //     dash_offset = 0;
+ //     dash_list[0] = thickness;
+ //     dash_list[1] = thickness * 3;
+ //     break;
+ //   case CENTER_LINE:
+ //     line_style = LineOnOffDash;
+ //     n = 4;
+ //     dash_offset = 0;
+ //     dash_list[0] = 6 * thickness;
+ //     dash_list[1] = 3 * thickness;
+ //     dash_list[2] = 3 * thickness;
+ //     dash_list[3] = 3 * thickness;
+ //     break;
+ //   case DASHED_LINE:
+ //     line_style = LineOnOffDash;
+ //     n = 2;
+ //     dash_offset = 0;
+ //     dash_list[0] = 5 * thickness;
+ //     dash_list[1] = 3 * thickness;
+ //     break;
+ //   case USERBIT_LINE:
+ //     line_style = LineOnOffDash;
+ //     dash_offset = 0;
+ //     if (upattern == 0)
+	//{
+	//  n = 2;
+	//  dash_list[0] = 1;
+	//  dash_list[1] = 7;
+	//}
+ //     else
+	//{
+	//  while (0 == (upattern & 0x8000))
+	//    upattern = upattern << 1;
+	//  n = 0;
+	//  i = ((upattern & 0x8000) == 0);
+	//  if (i)
+	//    {
+	//      dash_list[0] = 0;
+	//      n++;
+	//    }
+	//  dash_list[n] = 0;
+	//  for (j = 0; j < 16; j++, upattern = upattern << 1)
+	//    {
+	//      k = ((upattern & 0x8000) == 0);
+	//      if (i == k)
+	//	dash_list[n]++;
+	//      else
+	//	{
+	//	  i = k;
+	//	  n++;
+	//	  dash_list[n] = 1;
+	//	}
+	//    }
+	//  n++;
+	//  if ((n & 1) != 0)
+	//    dash_list[n++] = 1;
+	//}
+ //     break;
+ //   default:
+ //     TcGraphResult = grError;
+ //     return;
+ //   }
+ // TcLinestyle.linestyle = linestyle;
+ // TcLinestyle.upattern = OrigUpattern;
+ // TcLinestyle.thickness = thickness;
+ // XLockDisplay (TcDisplay);
+ // XSetLineAttributes (TcDisplay, TcGc, thickness, line_style, CapRound,
+	//	      JoinRound);
+ // if (line_style == LineOnOffDash)
+ //   XSetDashes (TcDisplay, TcGc, dash_offset, dash_list, n);
+ // XUnlockDisplay (TcDisplay);
 }
 
 //---------------------------------------------------------------------------

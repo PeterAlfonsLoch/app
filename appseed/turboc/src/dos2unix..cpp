@@ -46,17 +46,17 @@
 #ifdef __linux__
 // The following apparent constants are macros containing casts that will
 // fail if TurboC's automatic integer-type translation is used.
-#include <sys/ioctl.h>
-#include <linux/ppdev.h>
+//#include <sys/ioctl.h>
+//#include <linux/ppdev.h>
 int pprstatus = PPRSTATUS;
 int pprelease = PPRELEASE;
 int ppclaim = PPCLAIM;
 int ppwdata = PPWDATA;
 int ppfcontrol = PPFCONTROL;
 #endif // __linux__
-#include "io.h"
-#include "dos.h"
-#include "bios.h"
+//#include "io.h"
+//#include "dos.h"
+//#include "bios.h"
 
 #ifndef ESC_KEY
 #define ESC_KEY		27

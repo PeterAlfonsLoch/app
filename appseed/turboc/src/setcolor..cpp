@@ -23,60 +23,60 @@
   		for porting to *nix.
   Mod history:	05/04/02 RSB	Created.
 */
-#include "framework.h"
+//#include "framework.h"
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
 extern void
 setcolor (int color)
 {
-  XColor Color;
-  if (color < 0)
-    {
-    Error:
-      TcGraphResult = grError;
-      return;
-    }
-  Color.pixel = 0;
-  Color.flags = DoRed | DoGreen | DoBlue;
-  Color.pad = 0;
-  switch (TcPaletteNum)
-    {
-    case TC_PAL_2:
-      if (color != 1)
-	goto Error;
-      break;
-    case TC_PAL_4:
-    case TC_PAL_C0:
-    case TC_PAL_C1:
-    case TC_PAL_C2:
-    case TC_PAL_C3:
-      if (color > 3)
-	goto Error;
-      break;
-    case TC_PAL_16:
-      if (color > 15)
-	goto Error;
-      break;
-    case TC_PAL_256:
-      if (color > 255)
-	goto Error;
-      break;
-    default:
-      goto Error;
-    }
-  Color.red = TcColors[color].r;
-  Color.green = TcColors[color].g;
-  Color.blue = TcColors[color].b;
-  XLockDisplay (TcDisplay);
-  XAllocColor (TcDisplay, TcColormap, &Color);
-  TcForegroundColor = color;
-  TcXforeground = Color;
-  XSetForeground (TcDisplay, TcGc, Color.pixel);
-  XUnlockDisplay (TcDisplay);
+ // XColor Color;
+ // if (color < 0)
+ //   {
+ //   Error:
+ //     TcGraphResult = grError;
+ //     return;
+ //   }
+ // Color.pixel = 0;
+ // Color.flags = DoRed | DoGreen | DoBlue;
+ // Color.pad = 0;
+ // switch (TcPaletteNum)
+ //   {
+ //   case TC_PAL_2:
+ //     if (color != 1)
+	//goto Error;
+ //     break;
+ //   case TC_PAL_4:
+ //   case TC_PAL_C0:
+ //   case TC_PAL_C1:
+ //   case TC_PAL_C2:
+ //   case TC_PAL_C3:
+ //     if (color > 3)
+	//goto Error;
+ //     break;
+ //   case TC_PAL_16:
+ //     if (color > 15)
+	//goto Error;
+ //     break;
+ //   case TC_PAL_256:
+ //     if (color > 255)
+	//goto Error;
+ //     break;
+ //   default:
+ //     goto Error;
+ //   }
+ // Color.red = TcColors[color].r;
+ // Color.green = TcColors[color].g;
+ // Color.blue = TcColors[color].b;
+ // XLockDisplay (TcDisplay);
+ // XAllocColor (TcDisplay, TcColormap, &Color);
+ // TcForegroundColor = color;
+ // TcXforeground = Color;
+ // XSetForeground (TcDisplay, TcGc, Color.pixel);
+ // XUnlockDisplay (TcDisplay);
 }
 
 //----------------------------------------------------------------

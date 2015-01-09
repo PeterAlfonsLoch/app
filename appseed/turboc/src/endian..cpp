@@ -35,7 +35,7 @@
   processor isn't little-endian).
 */
 
-#include "TurboC.h"
+//#include "TurboC.h"
 #define na ((uint8_t *) n)
 
 //----------------------------------------------------------------------------

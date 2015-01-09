@@ -30,79 +30,79 @@
 				function instead.
 */
 
-#include "conio.h"
+//#include "conio.h"
 
 //------------------------------------------------------------------------
 
 int
 puttext (int left, int top, int right, int bottom, void *source)
 {
-  chtype ch;
-  int32_t TranslateTurboColor (int newattr);
-  uint8_t *TurboData;
-  int32_t NcursesAttr;
-  int Row, Col, i, j;
-  gint Char;
-  int ReturnValue = 0;
-  int sminrow, smincol, height_1, width_1;
-  WINDOW *TempWin = NULL;
-  if (!ConioInitialized)
-    textmode (LASTMODE);
-  if (left > right || top > bottom)
-    goto Error;
-  if (left < 1 || right > CurrentAttributes.screenwidth)
-    goto Error;
-  if (top < 1 || bottom > CurrentAttributes.screenheight)
-    goto Error;
-  sminrow = top - 1;
-  smincol = left - 1;
-  height_1 = bottom - top;
-  width_1 = right - left;
-  if (CurrentWindow != stdscr)
-    {
-      copywin (CurrentWindow, stdscr, 0, 0, CurrentAttributes.wintop - 1,
-	       CurrentAttributes.winleft - 1,
-	       CurrentAttributes.winbottom - 1,
-	       CurrentAttributes.winright - 1, 0);
-      refresh ();
-    }
-  // Create temporary storage for the data. We can't directly use the
-  // buffer provided by the calling code, because it's not the right
-  // size.  
-  TempWin = newpad (height_1 + 1, width_1 + 1);
-  if (TempWin == NULL)
-    goto Error;
-  // Now we have all of the data, but we must translate it from the 
-  // form provided by ncurses to the form needed in Turbo C.  
-  TurboData = (int8_t *) source;
-  for (Row = top, i = 0; Row <= bottom; Row++, i++)
-    for (Col = left, j = 0; Col <= right; Col++, j++)
-      {
-	extern gint TranslatedChar[256];
-	// What Turbo C character/color/attribute is at this position?
-	Char = TranslatedChar[*TurboData++];
-	NcursesAttr = TranslateTurboColor (*TurboData++);
-	//TempWin->_line[i].text[j] = Char | NcursesAttr;
-	ch = Char | NcursesAttr;
-	mvwaddchnstr (TempWin, i, j, &ch, 1);
-      }
-  // Now write actual data to the screen.    
-  if (OK != copywin (TempWin, stdscr, 0, 0, sminrow, smincol,
-		     sminrow + height_1, smincol + width_1, 0))
-    goto Error;
-  refresh ();
-  // Also, update the current window.
-  if (CurrentWindow != stdscr)
-    {
-      copywin (stdscr, CurrentWindow, CurrentAttributes.wintop - 1,
-	       CurrentAttributes.winleft - 1, 0, 0,
-	       CurrentAttributes.winbottom - CurrentAttributes.wintop,
-	       CurrentAttributes.winright - CurrentAttributes.winleft, 0);
-      wrefresh (CurrentWindow);
-    }
-  ReturnValue = 1;
-Error:
-  if (NULL != TempWin)
-    delwin (TempWin);
+     int ReturnValue = 0;
+   //  chtype ch;
+//  int32_t TranslateTurboColor (int newattr);
+//  uint8_t *TurboData;
+//  int32_t NcursesAttr;
+//  int Row, Col, i, j;
+//  gint Char;
+//  int sminrow, smincol, height_1, width_1;
+//  WINDOW *TempWin = NULL;
+//  if (!ConioInitialized)
+//    textmode (LASTMODE);
+//  if (left > right || top > bottom)
+//    goto Error;
+//  if (left < 1 || right > CurrentAttributes.screenwidth)
+//    goto Error;
+//  if (top < 1 || bottom > CurrentAttributes.screenheight)
+//    goto Error;
+//  sminrow = top - 1;
+//  smincol = left - 1;
+//  height_1 = bottom - top;
+//  width_1 = right - left;
+//  if (CurrentWindow != stdscr)
+//    {
+//      copywin (CurrentWindow, stdscr, 0, 0, CurrentAttributes.wintop - 1,
+//	       CurrentAttributes.winleft - 1,
+//	       CurrentAttributes.winbottom - 1,
+//	       CurrentAttributes.winright - 1, 0);
+//      refresh ();
+//    }
+//  // Create temporary storage for the data. We can't directly use the
+//  // buffer provided by the calling code, because it's not the right
+//  // size.  
+//  TempWin = newpad (height_1 + 1, width_1 + 1);
+//  if (TempWin == NULL)
+//    goto Error;
+//  // Now we have all of the data, but we must translate it from the 
+//  // form provided by ncurses to the form needed in Turbo C.  
+//  TurboData = (int8_t *) source;
+//  for (Row = top, i = 0; Row <= bottom; Row++, i++)
+//    for (Col = left, j = 0; Col <= right; Col++, j++)
+//      {
+//	extern gint TranslatedChar[256];
+//	// What Turbo C character/color/attribute is at this position?
+//	Char = TranslatedChar[*TurboData++];
+//	NcursesAttr = TranslateTurboColor (*TurboData++);
+//	//TempWin->_line[i].text[j] = Char | NcursesAttr;
+//	ch = Char | NcursesAttr;
+//	mvwaddchnstr (TempWin, i, j, &ch, 1);
+//      }
+//  // Now write actual data to the screen.    
+//  if (OK != copywin (TempWin, stdscr, 0, 0, sminrow, smincol,
+//		     sminrow + height_1, smincol + width_1, 0))
+//    goto Error;
+//  refresh ();
+//  // Also, update the current window.
+//  if (CurrentWindow != stdscr)
+//    {
+//      copywin (stdscr, CurrentWindow, CurrentAttributes.wintop - 1,
+//	       CurrentAttributes.winleft - 1, 0, 0,
+//	       CurrentAttributes.winbottom - CurrentAttributes.wintop,
+//	       CurrentAttributes.winright - CurrentAttributes.winleft, 0);
+//      wrefresh (CurrentWindow);
+//    }
+//  ReturnValue = 1;
+//Error:
+//  if (NULL != TempWin)
+//    delwin (TempWin);
   return (ReturnValue);
 }

@@ -26,9 +26,9 @@
 		in gcc libraries.
   Mod history:	01/27/02 RSB	Created.
 */
-#include "framework.h"
-#include <ctype.h>
-#include "TurboC.h"
+//#include "framework.h"
+//#include <ctype.h>
+//#include "TurboC.h"
 
 char *
 strupr (char *s)

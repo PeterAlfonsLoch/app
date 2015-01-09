@@ -27,35 +27,35 @@
 
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
 void
 ellipse (int x, int y, int stangle, int endangle, int xradius, int yradius)
 {
-  struct linesettingstype Settings;
-  getlinesettings (&Settings);
-  if (Settings.linestyle != SOLID_LINE || Settings.thickness != NORM_WIDTH)
-    setlinestyle (SOLID_LINE, 0, TcLinestyle.thickness);
-  // Convert to viewport coordinates.
-  x += TcViewLeft - xradius;
-  y += TcViewTop - yradius;
-  xradius *= 2;
-  yradius *= 2;
-  // Now do the actual drawing.
-  XLockDisplay (TcDisplay);
-  XDrawArc (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y, xradius, yradius,
-	    stangle * 64, (endangle - stangle) * 64);
-  if (TcActivePage == TcVisualPage)
-    {
-      XDrawArc (TcDisplay, TcWindow, TcGc, x, y, xradius, yradius,
-		stangle * 64, (endangle - stangle) * 64);
-      XSync (TcDisplay, False);
-    }
-  XUnlockDisplay (TcDisplay);
-  if (Settings.linestyle != SOLID_LINE || Settings.thickness != NORM_WIDTH)
-    setlinestyle (Settings.linestyle, Settings.upattern, Settings.thickness);
+  //struct linesettingstype Settings;
+  //getlinesettings (&Settings);
+  //if (Settings.linestyle != SOLID_LINE || Settings.thickness != NORM_WIDTH)
+  //  setlinestyle (SOLID_LINE, 0, TcLinestyle.thickness);
+  //// Convert to viewport coordinates.
+  //x += TcViewLeft - xradius;
+  //y += TcViewTop - yradius;
+  //xradius *= 2;
+  //yradius *= 2;
+  //// Now do the actual drawing.
+  //XLockDisplay (TcDisplay);
+  //XDrawArc (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y, xradius, yradius,
+	 //   stangle * 64, (endangle - stangle) * 64);
+  //if (TcActivePage == TcVisualPage)
+  //  {
+  //    XDrawArc (TcDisplay, TcWindow, TcGc, x, y, xradius, yradius,
+		//stangle * 64, (endangle - stangle) * 64);
+  //    XSync (TcDisplay, False);
+  //  }
+  //XUnlockDisplay (TcDisplay);
+  //if (Settings.linestyle != SOLID_LINE || Settings.thickness != NORM_WIDTH)
+  //  setlinestyle (Settings.linestyle, Settings.upattern, Settings.thickness);
 }
 
 #endif // WITH_X

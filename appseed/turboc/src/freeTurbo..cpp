@@ -50,7 +50,7 @@
   created by getimage.
 */
 
-#include "graphics.h"
+//#include "graphics.h"
 
 #ifdef WITH_X
 
@@ -61,7 +61,8 @@
 struct PixmappedBlock
 {
   void *Object;			// Pointer created by malloc/calloc.
-  Pixmap Pix;			// The Pixmap's handle.
+//  Pixmap Pix;			// The Pixmap's handle.
+  ::draw2d::dib * Pix;
   struct PixmappedBlock *Next;
 };
 static struct PixmappedBlock *PixmappedRoot = NULL;
@@ -76,7 +77,7 @@ static struct PixmappedBlock *PixmappedRoot = NULL;
 extern int
 AssociatePixmap (void *object, Pixmap handle)
 {
-  struct PixmappedBlock *Block, *LastBlock;
+  struct PixmappedBlock *Block, *LastBlock = NULL;
   // If the list is empty, just add the new block.
   if (PixmappedRoot == NULL)
     {
@@ -101,7 +102,8 @@ AssociatePixmap (void *object, Pixmap handle)
 	    // The block *is* already defined, but is associated with
 	    // a different Pixmap.  So free the old Pixmap and associate
 	    // a new one!
-	    XFreePixmap (TcDisplay, Block->Pix);
+//	    XFreePixmap (TcDisplay, Block->Pix);
+        release(Block->Pix);
 	    Block->Pix = handle;
 	  }
 	return (0);
@@ -125,7 +127,7 @@ AssociatePixmap (void *object, Pixmap handle)
 extern void
 freeTurbo (void *object)
 {
-  struct PixmappedBlock *Block, *LastBlock;
+  struct PixmappedBlock *Block, *LastBlock = NULL;
   // We can free the regular memory right away, because we don't actually
   // use it for anything below; we're only interested in its pointer.
   freeUnix (object);
@@ -137,7 +139,8 @@ freeTurbo (void *object)
        LastBlock = Block, Block = Block->Next)
     if (Block->Object == object)
       {
-	XFreePixmap (TcDisplay, Block->Pix);
+	//XFreePixmap (TcDisplay, Block->Pix);
+         release(Block->Pix);
 	if (Block == PixmappedRoot)
 	  PixmappedRoot = Block->Next;
 	else

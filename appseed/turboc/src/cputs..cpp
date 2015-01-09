@@ -24,7 +24,7 @@
   		03/24/02 RSB	Added delay of refresh.
 */
 
-#include "conio.h"
+//#include "conio.h"
 
 int
 cputs (const char *str)

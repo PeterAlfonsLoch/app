@@ -59,7 +59,7 @@
 
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
@@ -80,10 +80,14 @@ getimage (int left, int top, int right, int bottom, void *bitmap)
   int Left, Top, Right, Bottom, Clip;
   Buffer->Width = right - left + 1;
   Buffer->Height = bottom - top + 1;
-  Handle = XCreatePixmap (TcDisplay,
-			  DefaultRootWindow (TcDisplay),
-			  Buffer->Width, Buffer->Height,
-			  DefaultDepth (TcDisplay, TcScreen));
+  //Handle = XCreatePixmap (TcDisplay,
+		//	  DefaultRootWindow (TcDisplay),
+		//	  Buffer->Width, Buffer->Height,
+		//	  DefaultDepth (TcDisplay, TcScreen));
+
+  Handle = dynamic_cast < ::draw2d::dib*>(App(tc().get_app()).alloc(Sys(tc().get_app()).type_info<::draw2d::dib>()));
+
+  Handle->create(Buffer->Width,Buffer->Height);
   AssociatePixmap (bitmap, Handle);
   Buffer->Handle = Handle;
   OldWritemode = TcWritemode;
@@ -108,11 +112,12 @@ getimage (int left, int top, int right, int bottom, void *bitmap)
   Clip = TcViewClip;
   setviewport (0, 0, TcXresolution - 1, TcYresolution - 1, 0);
   // Now do the actual drawing.
-  XLockDisplay (TcDisplay);
-  XCopyArea (TcDisplay, TcWindow, Buffer->Handle,
-	     TcGc, left, top, Buffer->Width, Buffer->Height, 0, 0);
-  XSync (TcDisplay, False);
-  XUnlockDisplay (TcDisplay);
+  Buffer->Handle->from(tc().m_dib);
+  //XLockDisplay (TcDisplay);
+  //XCopyArea (TcDisplay, TcWindow, Buffer->Handle,
+	 //    TcGc, left, top, Buffer->Width, Buffer->Height, 0, 0);
+  //XSync (TcDisplay, False);
+  //XUnlockDisplay (TcDisplay);
   setviewport (Left, Top, Right, Bottom, Clip);
   if (OldWritemode != TcWritemode)
     setwritemode (OldWritemode);
@@ -139,13 +144,16 @@ putimage (int left, int top, void *bitmap, int op)
   Clip = TcViewClip;
   setviewport (0, 0, TcXresolution - 1, TcYresolution - 1, 0);
   // Now do the actual drawing.
-  XLockDisplay (TcDisplay);
-  XCopyArea (TcDisplay, Buffer->Handle, TcPixmaps[TcVisualPage],
-	     TcGc, 0, 0, Buffer->Width, Buffer->Height, left, top);
-  XCopyArea (TcDisplay, Buffer->Handle, TcWindow,
-	     TcGc, 0, 0, Buffer->Width, Buffer->Height, left, top);
-  XSync (TcDisplay, False);
-  XUnlockDisplay (TcDisplay);
+  //XLockDisplay (TcDisplay);
+  //XCopyArea (TcDisplay, Buffer->Handle, TcPixmaps[TcVisualPage],
+	 //    TcGc, 0, 0, Buffer->Width, Buffer->Height, left, top);
+  //XCopyArea (TcDisplay, Buffer->Handle, TcWindow,
+	 //    TcGc, 0, 0, Buffer->Width, Buffer->Height, left, top);
+  //XSync (TcDisplay, False);
+  //XUnlockDisplay (TcDisplay);
+
+  TcPixmaps[TcVisualPage]->from(Buffer->Handle);
+  tc().m_dib->from(Buffer->Handle);
   setviewport (Left, Top, Right, Bottom, Clip);
   if (OldWritemode != TcWritemode)
     setwritemode (OldWritemode);

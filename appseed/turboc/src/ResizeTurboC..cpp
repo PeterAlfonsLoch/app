@@ -28,17 +28,17 @@
 												
 */
 
-//#include <termios.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <sys/ioctl.h>
+////#include <termios.h>
+//#include <stdlib.h>
+//#include <signal.h>
+//#include <sys/ioctl.h>
 
 // If TIOCGWINSZ is a macro containing a cast (as it is in FreeBSD, but not
 // in Linux), we can't allow it to be directly used in the code after the
 // integer types have been redefined.
-static unsigned long tiocgwinsz = TIOCGWINSZ;
+//static unsigned long tiocgwinsz = TIOCGWINSZ;
 
-#include "conio.h"
+//#include "conio.h"
 
 extern char BypassResizeXterm;
 

@@ -1,6 +1,15 @@
 #include "framework.h"
+
 #include "turboc.h"
 #include "turboc_private.h"
+#include "graphics.h"
+#include "dos.h"
+#include "io.h"
+//#include "dos.h"
+#include "bios.h"
+#include "dir.h"
+#include "conio.h"
+#include "fnkeys.h"
 
 
 //O volume na unidade Z ‚ eco
@@ -75,7 +84,7 @@
 #include "rectangle..cpp"
 #include "registerbgidriver..cpp"
 #include "registerbgifont..cpp"
-#include "ResizeTurboC..cpp"
+//#include "ResizeTurboC..cpp"
 #include "sector..cpp"
 #include "setbkcolor..cpp"
 #include "setcolor..cpp"

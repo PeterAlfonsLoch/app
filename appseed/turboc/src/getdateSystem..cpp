@@ -29,12 +29,15 @@
 
 #define _XOPEN_SOURCE
 #define _XOPEN_SOURCE_EXTENDED
-#include <time.h>
+//#include <time.h>
 
 struct tm *
 getdateSystem (const char *d)
 {
-#warning If warning messages about getdate appear, ignore them.
-  return (getdate (d));
+//#warning If warning messages about getdate appear, ignore them.
+  //return (getdate (d));
+//   return getdate(NULL);
+   //return strtime(d);
+   return localtime(NULL);
 }
 

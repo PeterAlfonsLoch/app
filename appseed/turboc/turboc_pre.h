@@ -1,6 +1,7 @@
 #pragma once
 
-
+#include <math.h>
+#include <time.h>
 #ifdef __APP_TURBOC_LIBRARY
 #define CLASS_DECL_TURBOC  CLASS_DECL_EXPORT
 #else
@@ -28,3 +29,15 @@ namespace turboc
 typedef int gint;
 #define __BEGIN_DECLS
 #define __END_DECLS
+
+
+
+//----------------------------------------------------------------------------
+// Data types.
+
+// A little toy of my own.
+typedef struct
+{
+   gint r,g,b;
+}
+RgbStruct;

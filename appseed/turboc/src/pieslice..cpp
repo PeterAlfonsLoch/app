@@ -26,7 +26,7 @@
 
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
@@ -38,19 +38,19 @@ pieslice (int x, int y, int stangle, int endangle, int radius)
   y += TcViewTop - radius;
   radius *= 2;
   // Now do the actual drawing.
-  XLockDisplay (TcDisplay);
-  XSetFillStyle (TcDisplay, TcGc, FillTiled);
-  XSetTile (TcDisplay, TcGc, TcTile);
-  XFillArc (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y, radius, radius,
-	    stangle * 64, (endangle - stangle) * 64);
-  if (TcActivePage == TcVisualPage)
-    {
-      XFillArc (TcDisplay, TcWindow, TcGc, x, y, radius, radius,
-		stangle * 64, (endangle - stangle) * 64);
-      XSync (TcDisplay, False);
-    }
-  XSetFillStyle (TcDisplay, TcGc, FillSolid);
-  XUnlockDisplay (TcDisplay);
+  //XLockDisplay (TcDisplay);
+  //XSetFillStyle (TcDisplay, TcGc, FillTiled);
+  //XSetTile (TcDisplay, TcGc, TcTile);
+  //XFillArc (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y, radius, radius,
+	 //   stangle * 64, (endangle - stangle) * 64);
+  //if (TcActivePage == TcVisualPage)
+  //  {
+  //    XFillArc (TcDisplay, TcWindow, TcGc, x, y, radius, radius,
+		//stangle * 64, (endangle - stangle) * 64);
+  //    XSync (TcDisplay, False);
+  //  }
+  //XSetFillStyle (TcDisplay, TcGc, FillSolid);
+  //XUnlockDisplay (TcDisplay);
 }
 
 #endif // WITH_X

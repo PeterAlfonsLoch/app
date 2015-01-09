@@ -24,13 +24,13 @@
   		03/21/02 RSB	Added actual code.
 */
 
-#include "conio.h"
+//#include "conio.h"
 
 void
 insline (void)
 {
-  if (!ConioInitialized)
-    textmode (LASTMODE);
-  winsertln (CurrentWindow);
-  wrefresh (CurrentWindow);
+  //if (!ConioInitialized)
+  //  textmode (LASTMODE);
+  //winsertln (CurrentWindow);
+  //wrefresh (CurrentWindow);
 }

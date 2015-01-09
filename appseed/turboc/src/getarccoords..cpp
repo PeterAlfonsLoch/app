@@ -26,8 +26,8 @@
 
 #ifdef WITH_X
 
-#include <math.h>
-#include "graphics.h"
+//#include <math.h>
+//#include "graphics.h"
 
 //---------------------------------------------------------------------------
 

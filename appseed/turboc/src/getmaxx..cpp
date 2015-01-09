@@ -36,7 +36,7 @@
 
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 // This is just a quick and dirty version that doesn't account for viewports

@@ -26,7 +26,7 @@
 
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 static const char *ErrorMessages[] = {
   "No error",

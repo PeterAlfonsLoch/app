@@ -26,7 +26,7 @@
 
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
@@ -50,32 +50,32 @@ drawpoly (int numpoints, int *polypoints)
 void
 drawpoly (int numpoints, int *polypoints)
 {
-  int i;
-  XPoint *Points;
-  Points = malloc (numpoints * sizeof (XPoint));
-  if (Points == NULL)
-    {
-      TcGraphResult = grNoScanMem;
-      return;
-    }
-  // Convert to viewport coordinates.
-  for (i = 0; i < numpoints; i++)
-    {
-      Points[i].x = TcViewLeft + *polypoints++;
-      Points[i].y = TcViewTop + *polypoints++;
-    }
-  // Now do the actual drawing.
-  XLockDisplay (TcDisplay);
-  XDrawLines (TcDisplay, TcPixmaps[TcActivePage], TcGc, Points, numpoints,
-	      CoordModeOrigin);
-  if (TcActivePage == TcVisualPage)
-    {
-      XDrawLines (TcDisplay, TcWindow, TcGc, Points, numpoints,
-		  CoordModeOrigin);
-      XSync (TcDisplay, False);
-    }
-  XUnlockDisplay (TcDisplay);
-  free (Points);
+  //int i;
+  //XPoint *Points;
+  //Points = malloc (numpoints * sizeof (XPoint));
+  //if (Points == NULL)
+  //  {
+  //    TcGraphResult = grNoScanMem;
+  //    return;
+  //  }
+  //// Convert to viewport coordinates.
+  //for (i = 0; i < numpoints; i++)
+  //  {
+  //    Points[i].x = TcViewLeft + *polypoints++;
+  //    Points[i].y = TcViewTop + *polypoints++;
+  //  }
+  //// Now do the actual drawing.
+  //XLockDisplay (TcDisplay);
+  //XDrawLines (TcDisplay, TcPixmaps[TcActivePage], TcGc, Points, numpoints,
+	 //     CoordModeOrigin);
+  //if (TcActivePage == TcVisualPage)
+  //  {
+  //    XDrawLines (TcDisplay, TcWindow, TcGc, Points, numpoints,
+		//  CoordModeOrigin);
+  //    XSync (TcDisplay, False);
+  //  }
+  //XUnlockDisplay (TcDisplay);
+  //free (Points);
 }
 
 #endif // 0
@@ -85,39 +85,39 @@ drawpoly (int numpoints, int *polypoints)
 void
 fillpoly (int numpoints, int *polypoints)
 {
-  int i;
-  XPoint *Points;
-  Points = malloc (numpoints * sizeof (XPoint));
-  if (Points == NULL)
-    {
-      TcGraphResult = grNoScanMem;
-      return;
-    }
-  // Convert to viewport coordinates.
-  for (i = 0; i < numpoints; i++)
-    {
-      Points[i].x = TcViewLeft + *polypoints++;
-      Points[i].y = TcViewTop + *polypoints++;
-    }
-  // Now do the actual drawing.
-  XLockDisplay (TcDisplay);
-  XSetFillStyle (TcDisplay, TcGc, FillTiled);
-  XSetTile (TcDisplay, TcGc, TcTile);
-  XFillPolygon (TcDisplay, TcPixmaps[TcActivePage], TcGc, Points,
-		numpoints, Complex, CoordModeOrigin);
-  XDrawLines (TcDisplay, TcPixmaps[TcActivePage], TcGc, Points,
-	      numpoints, CoordModeOrigin);
-  if (TcActivePage == TcVisualPage)
-    {
-      XFillPolygon (TcDisplay, TcWindow, TcGc, Points,
-		    numpoints, Complex, CoordModeOrigin);
-      XDrawLines (TcDisplay, TcWindow, TcGc, Points,
-		  numpoints, CoordModeOrigin);
-      XSync (TcDisplay, False);
-    }
-  XSetFillStyle (TcDisplay, TcGc, FillSolid);
-  XUnlockDisplay (TcDisplay);
-  free (Points);
+  //int i;
+  //XPoint *Points;
+  //Points = malloc (numpoints * sizeof (XPoint));
+  //if (Points == NULL)
+  //  {
+  //    TcGraphResult = grNoScanMem;
+  //    return;
+  //  }
+  //// Convert to viewport coordinates.
+  //for (i = 0; i < numpoints; i++)
+  //  {
+  //    Points[i].x = TcViewLeft + *polypoints++;
+  //    Points[i].y = TcViewTop + *polypoints++;
+  //  }
+  //// Now do the actual drawing.
+  //XLockDisplay (TcDisplay);
+  //XSetFillStyle (TcDisplay, TcGc, FillTiled);
+  //XSetTile (TcDisplay, TcGc, TcTile);
+  //XFillPolygon (TcDisplay, TcPixmaps[TcActivePage], TcGc, Points,
+		//numpoints, Complex, CoordModeOrigin);
+  //XDrawLines (TcDisplay, TcPixmaps[TcActivePage], TcGc, Points,
+	 //     numpoints, CoordModeOrigin);
+  //if (TcActivePage == TcVisualPage)
+  //  {
+  //    XFillPolygon (TcDisplay, TcWindow, TcGc, Points,
+		//    numpoints, Complex, CoordModeOrigin);
+  //    XDrawLines (TcDisplay, TcWindow, TcGc, Points,
+		//  numpoints, CoordModeOrigin);
+  //    XSync (TcDisplay, False);
+  //  }
+  //XSetFillStyle (TcDisplay, TcGc, FillSolid);
+  //XUnlockDisplay (TcDisplay);
+  //free (Points);
 }
 
 #endif // WITH_X

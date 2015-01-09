@@ -26,19 +26,19 @@
   constant TURBOC_VARIABLES_C which is used either to set them as extern
   or not.  The only file in which they aren't extern is this one.
 */
-#include "framework.h"
+//#include "framework.h"
 #define TURBOC_VARIABLES_C
 
 // All of the TurboC library header files follow.  Not all of them have
 // global variables defined within them, but just in case ...
-#include "TurboC.h"
-#include "fnkeys.h"
-#include "alloc.h"
-#include "dir.h"
-#include "dos.h"
-#include "io.h"
+//#include "TurboC.h"
+//#include "fnkeys.h"
+//#include "alloc.h"
+//#include "dir.h"
+//#include "dos.h"
+//#include "io.h"
 #ifdef WITH_X
-#include "graphics.h"
+//#include "graphics.h"
 #endif
 // conio.h has to be last in the list.
-#include "conio.h"
+//#include "conio.h"

@@ -23,10 +23,10 @@
   		for porting to *nix.
   Mod history:	05/08/02 RSB	Created.
 */
-#include "framework.h"
+//#include "framework.h"
 #ifdef WITH_X
 
-#include "graphics.h"
+//#include "graphics.h"
 
 //----------------------------------------------------------------------------
 
@@ -48,14 +48,14 @@ setvisualpage (int page)
   setviewport (0, 0, TcXresolution - 1, TcYresolution - 1, 0);
   TcVisualPage = page;
   // Now do the actual drawing.
-  XLockDisplay (TcDisplay);
-  XCopyArea (TcDisplay, TcPixmaps[TcVisualPage], TcWindow,
-	     TcGc, 0, 0, TcXresolution, TcYresolution, 0, 0);
-  XSync (TcDisplay, False);
-  XUnlockDisplay (TcDisplay);
-  setviewport (Left, Top, Right, Bottom, Clip);
-  if (OldWritemode != TcWritemode)
-    setwritemode (OldWritemode);
+  //XLockDisplay (TcDisplay);
+  //XCopyArea (TcDisplay, TcPixmaps[TcVisualPage], TcWindow,
+	 //    TcGc, 0, 0, TcXresolution, TcYresolution, 0, 0);
+  //XSync (TcDisplay, False);
+  //XUnlockDisplay (TcDisplay);
+  //setviewport (Left, Top, Right, Bottom, Clip);
+  //if (OldWritemode != TcWritemode)
+  //  setwritemode (OldWritemode);
 }
 
 //----------------------------------------------------------------------------

@@ -374,4 +374,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="turboc.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
