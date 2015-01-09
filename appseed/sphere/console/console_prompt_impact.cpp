@@ -61,7 +61,7 @@ namespace console
 
       m_dwLastCaret = ::get_tick_count();
 
-      string str = Session.user().keyboard().process_key(pkey->m_ekey);
+      string str = Session.user()->keyboard().process_key(pkey->m_ekey);
 
       if(str.has_char())
       {
@@ -83,11 +83,14 @@ namespace console
 
    }
 
+   
    void prompt_impact::_001OnKeyUp(::signal_details * pobj)
    {
 
-      UNREFERENCE_PARAMETER(pobj);
+      UNREFERENCED_PARAMETER(pobj);
+
    }
+
 
    int prompt_impact::getch()
    {
@@ -104,22 +107,31 @@ namespace console
       return m_iNewCh;
    }
 
+   int prompt_impact::ungetch(int c)
+   {
 
-   int prompt_impact::_001OnDraw(::draw2d::graphics * pgraphics)
+      return 0;
+       
+   }
+
+
+   void prompt_impact::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       DWORD dwAlpha = 184;
 
       bool bCaretOn = ((::get_tick_count() - m_dwLastCaret) % m_dwCaretPeriod) < (m_dwCaretPeriod / 2);
 
-      GetClientRect(rect);
+      ::rect rectClient;
+
+      GetClientRect(rectClient);
 
       pgraphics->FillSolidRect(rectClient,ARGB(dwAlpha,255,255,255));
 
       for(int i = 0; i < m_strCommand.length(); i++)
       {
 
-         pgraphics->TextOut(m_size.cx *i, 0,m_strCommand.Mid(i,1));
+         pgraphics->TextOut(m_sizeChar.cx *i, 0,m_strCommand.Mid(i,1));
 
       }
 

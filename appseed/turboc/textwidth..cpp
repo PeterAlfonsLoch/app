@@ -27,7 +27,7 @@
 			      implemented.
 		08/28/10 RSB  Eliminated some compiler warnings.
 */
-
+#include "framework.h"
 #ifdef WITH_X
 
 #include "graphics.h"

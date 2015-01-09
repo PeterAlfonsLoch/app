@@ -45,9 +45,32 @@ public:
 
 } ;
 
+template < class T >
+class int_to_smart_pointer:
+   virtual public int_ptr_map < smart_pointer < T >,const smart_pointer < T > & >
+{
+public:
+
+
+   int_to_smart_pointer(::aura::application * papp = NULL,::count nBlockSize = 10):
+      element(papp),
+      int_ptr_map < smart_pointer < T >,const smart_pointer < T > & >(papp,nBlockSize)
+   {
+
+   }
+
+
+   virtual ~int_to_smart_pointer()
+   {
+   }
+
+
+} ;
+
 
 #define mapsp(TYPE, ARG_TYPE, SPTYPE) map_to_smart_pointer < TYPE, ARG_TYPE, SPTYPE >
 #define strsp(SPTYPE) string_to_smart_pointer < SPTYPE >
+#define isp(SPTYPE) int_to_smart_pointer < SPTYPE >
 #define idsp(SPTYPE) mapsp(id, id, SPTYPE)
 
 

@@ -1,8 +1,96 @@
 #include "TurboC.h"
 
-int getch()
+int16_t getch()
 {
    
-   return App(::get_thread_app()).consoleprompt()->getch();
+   return get_console_application().console_prompt()->getch();
 
 }
+
+void getch(int16_t c)
+{
+
+   return get_console_application().console_prompt()->ungetch();
+
+}
+
+
+CLASS_DECL_TURBOC ::turboc::context & get_turboc_context()
+{
+
+
+
+   return *get_turboc_application().m_pcontext;
+
+}
+
+CLASS_DECL_TURBOC ::turboc::application & get_turboc_application()
+{
+
+   ::aura::application * pauraapp = ::get_thread_app();
+
+   // Thread accessing turboc application should have been created with a ::turboc::application derived class
+   ASSERT(pauraapp != NULL);
+
+   ::turboc::application * papp = dynamic_cast <::turboc::application *> (pauraapp);
+
+   // Thread accessing turboc application should have been created with a ::turboc::application derived class
+   ASSERT(papp != NULL);
+
+   return *papp;
+
+}
+
+
+CLASS_DECL_TURBOC ::console::application & get_console_application()
+{
+
+   ::aura::application * pauraapp = ::get_thread_app();
+
+   // Thread accessing console application should have been created with a ::console::application derived class
+   ASSERT(pauraapp != NULL);
+
+   ::console::application * papp = dynamic_cast <::console::application *> (pauraapp);
+
+   // Thread accessing console application should have been created with a ::console::application derived class
+   ASSERT(papp != NULL);
+
+   return *papp;
+
+}
+
+
+namespace turboc
+{
+
+
+   context::context(::aura::application * papp):
+      element(papp),
+      m_dib(allocer());
+   {
+   }
+
+   context::~context()
+   {
+   }
+
+   bool context::gok()
+   {
+
+      return m_dib->area() > 0;
+
+   }
+
+   void context::erase()
+   {
+
+      if(!gok())
+         return;
+
+
+      m_dib->Fill(0,0,0,0);
+
+
+   }
+
+} // namespace turboc

@@ -656,14 +656,34 @@ extern int TcFillStyle, TcFillColor;
 extern char TcUserFillPattern[8];
 #ifdef WITH_X
 //extern struct TcPixmapPoolRecord TcPixmapPool[MAX_TCIMAGEBUFS];
-extern Display *TcDisplay;
-extern Window TcWindow;
-extern Pixmap TcPixmaps[16];
-extern gint TcScreen;
-extern GC TcGc;
-extern Colormap TcColormap;
-extern XColor TcXforeground, TcXbackground;
-extern Pixmap TcTile;
+//extern Display *TcDisplay;
+//extern Window TcWindow;
+//extern Pixmap TcPixmaps[16];
+//extern gint TcScreen;
+//extern GC TcGc;
+//extern Colormap TcColormap;
+//extern XColor TcXforeground, TcXbackground;
+//extern Pixmap TcTile;
+
+#define TurboC_CTX (::get_turboc_context())
+
+#define TcDisplay TurboC_CTX.Display()
+#define TcWindow TurboC_CTX.Window()
+#define TcPixmaps TurboC_CTX.Pixmaps()
+#define TcScreen TurboC_CTX.Screen()
+#define TcGc TurboC_CTX.Gc()
+#define TcColormap TurboC_CTX.Colormap()
+#define TcXforeground TurboC_CTX.Xforeground()
+#define TcXbackground TurboC_CTX.Xbackground()
+#define TcTile TurboC_CTX.Tile()
+//extern Window TcWindow;
+//extern Pixmap TcPixmaps[16];
+//extern gint TcScreen;
+//extern GC TcGc;
+//extern Colormap TcColormap;
+//extern XColor TcXforeground, TcXbackground;
+//extern Pixmap TcTile;
+
 #endif // WITH_X
 #endif // TURBOC_VARIABLES_C
 

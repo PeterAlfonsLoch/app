@@ -22,7 +22,8 @@
   Purpose:	TurboC library setup for trapping SIGTERM/SIGKILL.
   Mod history:	05/21/02 RSB	Created.
 */
-
+#include "framework.h"
+#include "framework.h"
 #include <sys/types.h>
 #include <signal.h>
 #include "conio.h"
@@ -45,9 +46,14 @@ ExitTurboC (gint Code)
 
 //---------------------------------------------------------------------
 
+//void
+//TurboTrap (void)
+//{
+//  signal (SIGKILL, ExitTurboC);
+//  signal (SIGTERM, ExitTurboC);
+//}
 void
 TurboTrap (void)
 {
-  signal (SIGKILL, ExitTurboC);
-  signal (SIGTERM, ExitTurboC);
+   throw exit_exception(get_thread_app());
 }

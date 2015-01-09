@@ -31,12 +31,12 @@ namespace console
    prompt_impact & prompt::impact(bool bShow)
    {
 
-      prompt_impact & i = *m_pdoctemplate->get_document()->get_type_view < prompt_impact >();
+      prompt_impact & i = *m_pdoctemplate->get_document()->get_typed_view < prompt_impact >();
 
       if(bShow)
       {
          
-         i->GetTopLevel()->WfiRestore();
+         i.GetTopLevel()->WfiRestore();
 
       }
          
@@ -44,6 +44,19 @@ namespace console
 
    }
 
+   int prompt::getch()
+   {
+
+      return impact().getch();
+
+   }
+
+   void prompt::ungetch(int c)
+   {
+
+      impact().ungetch(c);
+
+   }
 
 } // namespace console
 

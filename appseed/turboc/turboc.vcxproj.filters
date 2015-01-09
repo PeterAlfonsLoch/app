@@ -38,9 +38,6 @@
     <ClInclude Include="io.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TurboC.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="camilox_insertions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -48,6 +45,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="camilox_posts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="turboc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -349,6 +349,8 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>true</OpenMPSupport>
+      <ForcedIncludeFiles>framework.h</ForcedIncludeFiles>
+      <DisableSpecificWarnings>4018</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -915,9 +917,10 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClInclude Include="dir.h" />
     <ClInclude Include="dos.h" />
     <ClInclude Include="fnkeys.h" />
+    <ClInclude Include="framework.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="io.h" />
-    <ClInclude Include="TurboC.h" />
+    <ClInclude Include="turboc.h" />
     <ClInclude Include="turboc_application.h" />
   </ItemGroup>
   <ItemGroup>

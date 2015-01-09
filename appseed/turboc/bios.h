@@ -31,7 +31,7 @@
 #ifndef _INCLUDED_BIOS_H
 #define _INCLUDED_BIOS_H
 
-#include <sys/cdefs.h>
+//#include <sys/cdefs.h>
 #include "TurboC.h"
 
 __BEGIN_DECLS

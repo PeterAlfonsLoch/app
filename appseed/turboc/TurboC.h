@@ -1,3 +1,5 @@
+#pragma once
+
 /*
   TurboC, a library for porting Borland Turbo C to GNU gcc.
   Copyright 2002 Ronald S. Burkey
@@ -58,7 +60,7 @@
 // Note that all system headers required by *any* TurboC header (even those
 // included *after* this one) need to be included before integer datatypes
 // are redefined.
-//#include <sys/cdefs.h>
+////#include <sys/cdefs.h>
 //#include <ncurses.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -294,12 +296,12 @@ extern int AssociatePixmap (void *object, ::draw2d::dib * handle);
 void TurboTrap (void);
 int TurboX (int);
 
-// From string.h.
-extern char *strupr (char *);
-extern char *strlwr (char *);
+//// From string.h.
+//extern char *strupr (char *);
+//extern char *strlwr (char *);
 
 // From stdio.h
-extern gint fcloseall (void);
+//extern gint fcloseall (void);
 
 // Wrappers for ctype.h macros.
 extern int isupperTurbo (int c);
@@ -627,6 +629,6 @@ extern const int TcUnicodeMappings[256];
 #endif // TURBOC_VARIABLES_C
 
 
-#include "camilox_pos_insertions.h"
+#include "camilox_posts.h"
 
 #endif // _INCLUDED_TURBO_H

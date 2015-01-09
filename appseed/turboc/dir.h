@@ -27,7 +27,7 @@
 #ifndef _INCLUDED_DIR_H
 #define _INCLUDED_DIR_H
 
-#include <sys/cdefs.h>
+//#include <sys/cdefs.h>
 #include <glob.h>
 #include "TurboC.h"
 

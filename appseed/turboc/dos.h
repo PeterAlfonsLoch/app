@@ -33,7 +33,7 @@
 #ifndef _INCLUDED_DOS_H
 #define _INCLUDED_DOS_H
 
-#include <sys/cdefs.h>
+//#include <sys/cdefs.h>
 #include <time.h>
 #include "TurboC.h"
 

@@ -25,7 +25,7 @@
   		05/21/02 RSB	Corrected pattern arrays to correspond
 				more closely to Turbo C patterns.
 */
-
+#include "framework.h"
 #ifdef WITH_X
 
 #include "graphics.h"

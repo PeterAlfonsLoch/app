@@ -23,7 +23,7 @@
   		for porting to *nix.
   Mod history:	04/29/02 RSB	Created.
 */
-
+#include "framework.h"
 #ifdef WITH_X
 
 #include "graphics.h"
@@ -48,15 +48,15 @@ closegraph (void)
 	    XFreePixmap (TcDisplay, TcPixmapPool[i].Region);
 	  }
 #endif // 0
-      XFreePixmap (TcDisplay, TcTile);
-      XFreeGC (TcDisplay, TcGc);
-      XUnmapWindow (TcDisplay, TcWindow);
-      XUnmapWindow (TcDisplay, DefaultRootWindow (TcDisplay));
-      XDestroyWindow (TcDisplay, TcWindow);
-      for (i = 0; i < TcPageCount; i++)
-	XFreePixmap (TcDisplay, TcPixmaps[i]);
-      XFreeColormap (TcDisplay, TcColormap);
-      XCloseDisplay (TcDisplay);
+ //     XFreePixmap (TcDisplay, TcTile);
+ //     XFreeGC (TcDisplay, TcGc);
+ //     XUnmapWindow (TcDisplay, TcWindow);
+ //     XUnmapWindow (TcDisplay, DefaultRootWindow (TcDisplay));
+ //     XDestroyWindow (TcDisplay, TcWindow);
+ //     for (i = 0; i < TcPageCount; i++)
+	//XFreePixmap (TcDisplay, TcPixmaps[i]);
+ //     XFreeColormap (TcDisplay, TcColormap);
+ //     XCloseDisplay (TcDisplay);
       TcGraphicsInitialized = 0;
     }
 }

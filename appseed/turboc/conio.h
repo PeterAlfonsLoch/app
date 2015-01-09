@@ -45,7 +45,7 @@
 #ifndef _INCLUDED_CONIO_H
 #define _INCLUDED_CONIO_H
 
-//#include <sys/cdefs.h>
+////#include <sys/cdefs.h>
 #include "TurboC.h"
 #include "graphics.h"
 
@@ -258,10 +258,10 @@ int ConioRefreshOkay = 1;
 extern int directvideo, _directvideo, _wscroll;
 extern char TcKeybuf[TC_KEYBUF_SIZE];
 extern gint TcKeybufStart, TcKeybufSize;
-extern pthread_mutex_t TcMutex;
+//extern pthread_mutex_t TcMutex;
 extern int ConioInitialized;
 extern struct text_info CurrentAttributes;
-extern WINDOW *CurrentWindow;
+//extern WINDOW *CurrentWindow;
 extern int ColorPairsUsed;
 extern int ConioRefreshOkay;
 #endif // TURBOC_VARIABLES_C

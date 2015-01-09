@@ -33,6 +33,7 @@ namespace console
 
 
       virtual int getch();
+      virtual int ungetch(int c);
 
 
       virtual bool keyboard_focus_is_focusable();
@@ -40,6 +41,8 @@ namespace console
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(_001OnKeyUp);
+
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
 
    };

@@ -21,6 +21,7 @@ namespace console
       
 
       int getch();
+      void ungetch(int c);
 
 
    };

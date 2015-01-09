@@ -30,7 +30,7 @@
 #ifndef _INCLUDED_IO_H
 #define _INCLUDED_IO_H
 
-#include <sys/cdefs.h>
+//#include <sys/cdefs.h>
 #include "TurboC.h"
 
 //----------------------------------------------------------------------------
