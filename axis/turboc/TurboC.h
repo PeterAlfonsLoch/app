@@ -53,31 +53,35 @@
 #ifndef _INCLUDED_TURBOC_H
 #define _INCLUDED_TURBOC_H
 
+#include "core/core/core/core.h"
+
 // Note that all system headers required by *any* TurboC header (even those
 // included *after* this one) need to be included before integer datatypes
 // are redefined.
-#include <sys/cdefs.h>
-#include <ncurses.h>
+//#include <sys/cdefs.h>
+//#include <ncurses.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 #include <time.h>
 #include <fcntl.h>
-#include <unistd.h>
+//#include <unistd.h>
 #include <signal.h>
-#if defined(linux)
-#include <endian.h>
-#include <stdint.h>
-#elif defined(__FreeBSD__) || defined(__APPLE__)
-#include <machine/endian.h>
-#include <inttypes.h>
-#else
-#error Need header files for endian type and integer datatypes.
-#endif
+//#if defined(linux)
+//#include <endian.h>
+//#include <stdint.h>
+//#elif defined(__FreeBSD__) || defined(__APPLE__)
+//#include <machine/endian.h>
+//#include <inttypes.h>
+//#else
+////#error Need header files for endian type and integer datatypes.
+//#endif
 #ifdef WITH_X
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
+//#include <X11/Xlib.h>
+//#include <X11/Xutil.h>
+#include "x11layer.h"
+
 #endif
 #include <sys/stat.h>		// Needed by dir.h.
 #include <pthread.h>

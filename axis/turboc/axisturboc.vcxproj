@@ -59,9 +59,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}</ProjectGuid>
+    <ProjectGuid>{9A024F46-D783-4691-B4D8-26ECB0FF3FC6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>axiszlib2</RootNamespace>
+    <RootNamespace>axisturboc</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -331,9 +331,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;ZLIB_DLL;ASMV;ASMINF;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WITH_X;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../../app/include;$(ProjectDir)../../..;$(ProjectDir)../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)..;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
@@ -889,50 +889,127 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="adler32.c" />
-    <ClCompile Include="compress.c" />
-    <ClCompile Include="contrib\masmx64\inffas8664.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='codeanalysis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='no_precompiled_header|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="crc32.c" />
-    <ClCompile Include="deflate.c" />
-    <ClCompile Include="gzclose.c" />
-    <ClCompile Include="gzlib.c" />
-    <ClCompile Include="gzread.c" />
-    <ClCompile Include="gzwrite.c" />
-    <ClCompile Include="infback.c" />
-    <ClCompile Include="inffast.c" />
-    <ClCompile Include="inflate.c" />
-    <ClCompile Include="inftrees.c" />
-    <ClCompile Include="trees.c" />
-    <ClCompile Include="uncompr.c" />
-    <ClCompile Include="zutil.c" />
+    <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
+      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
+      <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\appseed\base\base.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\appseed\core\core.vcxproj">
+      <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="crc32.h" />
-    <ClInclude Include="deflate.h" />
-    <ClInclude Include="gzguts.h" />
-    <ClInclude Include="inffast.h" />
-    <ClInclude Include="inffixed.h" />
-    <ClInclude Include="inflate.h" />
-    <ClInclude Include="inftrees.h" />
-    <ClInclude Include="trees.h" />
-    <ClInclude Include="zconf.h" />
-    <ClInclude Include="zlib.h" />
-    <ClInclude Include="zutil.h" />
+    <ClInclude Include="alloc.h" />
+    <ClInclude Include="bios.h" />
+    <ClInclude Include="conio.h" />
+    <ClInclude Include="Console-8.h" />
+    <ClInclude Include="dir.h" />
+    <ClInclude Include="dos.h" />
+    <ClInclude Include="fnkeys.h" />
+    <ClInclude Include="graphics.h" />
+    <ClInclude Include="io.h" />
+    <ClInclude Include="TurboC.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="axiszlib.def" />
-    <None Include="contrib\masmx64\gvmat64.asm" />
-    <None Include="contrib\masmx64\inffasx64.asm" />
-    <None Include="contrib\masmx86\inffas32.asm" />
-    <None Include="contrib\masmx86\match686.asm" />
+    <ClCompile Include="arc..cpp" />
+    <ClCompile Include="bar..cpp" />
+    <ClCompile Include="cgets..cpp" />
+    <ClCompile Include="circle..cpp" />
+    <ClCompile Include="clearXXXX..cpp" />
+    <ClCompile Include="closegraph..cpp" />
+    <ClCompile Include="clreol..cpp" />
+    <ClCompile Include="clrscr..cpp" />
+    <ClCompile Include="ConioResizeCallback..cpp" />
+    <ClCompile Include="cprintf..cpp" />
+    <ClCompile Include="cputs..cpp" />
+    <ClCompile Include="ctype..cpp" />
+    <ClCompile Include="delay..cpp" />
+    <ClCompile Include="delline..cpp" />
+    <ClCompile Include="detectgraph..cpp" />
+    <ClCompile Include="dos2unix..cpp" />
+    <ClCompile Include="drawpoly..cpp" />
+    <ClCompile Include="ellipse..cpp" />
+    <ClCompile Include="endian..cpp" />
+    <ClCompile Include="endianFile..cpp" />
+    <ClCompile Include="fillellipse..cpp" />
+    <ClCompile Include="findfirst..cpp" />
+    <ClCompile Include="freeTurbo..cpp" />
+    <ClCompile Include="getarccoords..cpp" />
+    <ClCompile Include="getche..cpp" />
+    <ClCompile Include="getchTurbo..cpp" />
+    <ClCompile Include="getdateSystem..cpp" />
+    <ClCompile Include="getdrivername..cpp" />
+    <ClCompile Include="getftime..cpp" />
+    <ClCompile Include="getgraphmode..cpp" />
+    <ClCompile Include="getimage..cpp" />
+    <ClCompile Include="getmaxcolor..cpp" />
+    <ClCompile Include="getmaxmode..cpp" />
+    <ClCompile Include="getmaxx..cpp" />
+    <ClCompile Include="getmodename..cpp" />
+    <ClCompile Include="getmoderange..cpp" />
+    <ClCompile Include="getpalette..cpp" />
+    <ClCompile Include="getpass..cpp" />
+    <ClCompile Include="getpixel..cpp" />
+    <ClCompile Include="gettext..cpp" />
+    <ClCompile Include="gettextinfo..cpp" />
+    <ClCompile Include="gettextsettings..cpp" />
+    <ClCompile Include="gettime..cpp" />
+    <ClCompile Include="getviewsettings..cpp" />
+    <ClCompile Include="gotoxy..cpp" />
+    <ClCompile Include="graphdefaults..cpp" />
+    <ClCompile Include="grapherrormsg..cpp" />
+    <ClCompile Include="graphresult..cpp" />
+    <ClCompile Include="highvideo..cpp" />
+    <ClCompile Include="initgraph..cpp" />
+    <ClCompile Include="insline..cpp" />
+    <ClCompile Include="installuserdriver..cpp" />
+    <ClCompile Include="installuserfont..cpp" />
+    <ClCompile Include="kbhit..cpp" />
+    <ClCompile Include="line..cpp" />
+    <ClCompile Include="lowvideo..cpp" />
+    <ClCompile Include="movetext..cpp" />
+    <ClCompile Include="normvideo..cpp" />
+    <ClCompile Include="outtextxy..cpp" />
+    <ClCompile Include="pieslice..cpp" />
+    <ClCompile Include="putch..cpp" />
+    <ClCompile Include="putpixel..cpp" />
+    <ClCompile Include="puttext..cpp" />
+    <ClCompile Include="random..cpp" />
+    <ClCompile Include="rectangle..cpp" />
+    <ClCompile Include="registerbgidriver..cpp" />
+    <ClCompile Include="registerbgifont..cpp" />
+    <ClCompile Include="sector..cpp" />
+    <ClCompile Include="setbkcolor..cpp" />
+    <ClCompile Include="setcolor..cpp" />
+    <ClCompile Include="setfillXXXX..cpp" />
+    <ClCompile Include="setgraphbufsize..cpp" />
+    <ClCompile Include="setlinestyle..cpp" />
+    <ClCompile Include="setpalette..cpp" />
+    <ClCompile Include="setrgbpalette..cpp" />
+    <ClCompile Include="settextstyle..cpp" />
+    <ClCompile Include="setviewport..cpp" />
+    <ClCompile Include="setwritemode..cpp" />
+    <ClCompile Include="setXXXXpage..cpp" />
+    <ClCompile Include="strlwr..cpp" />
+    <ClCompile Include="strupr..cpp" />
+    <ClCompile Include="textattr..cpp" />
+    <ClCompile Include="textbackground..cpp" />
+    <ClCompile Include="textcolor..cpp" />
+    <ClCompile Include="textmode..cpp" />
+    <ClCompile Include="textwidth..cpp" />
+    <ClCompile Include="TurboCVariables..cpp" />
+    <ClCompile Include="TurboTrap..cpp" />
+    <ClCompile Include="TurboX..cpp" />
+    <ClCompile Include="wherex..cpp" />
+    <ClCompile Include="wherey..cpp" />
+    <ClCompile Include="window..cpp" />
+    <ClCompile Include="XXXaspectratio..cpp" />
+    <ClCompile Include="_graphXXXmem..cpp" />
+    <ClCompile Include="_setcursortype..cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
