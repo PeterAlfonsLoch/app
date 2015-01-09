@@ -350,67 +350,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_operation_view.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="database\simpledb\db_long_set.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\db_server.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\db_set.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\db_str_set.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\db_stra_set.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
     <ClInclude Include="database\simpledb\DBFileSystemSize.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\file_set.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\im_post.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_base.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_manager.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_record.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_server.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_service.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_session.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_set.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_simpledb.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_socket.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_socket_thread.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_table.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\veiev_post.h">
       <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_wait_message_dialog.h">
@@ -937,12 +877,6 @@
     </ClInclude>
     <ClInclude Include="core\core\core.h">
       <Filter>Header Files\core\core</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_database.h">
-      <Filter>Header Files\database\simpledb</Filter>
-    </ClInclude>
-    <ClInclude Include="database\simpledb\simpledb_result.h">
-      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="core\core\core_platform.h">
       <Filter>Header Files\core\core</Filter>

@@ -1637,26 +1637,26 @@ copy Source\FreeImage.h Dist
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\charguess.h" />
-    <ClInclude Include="include\big5Prober.h" />
-    <ClInclude Include="include\charDistribution.h" />
-    <ClInclude Include="include\charsetProber.h" />
-    <ClInclude Include="include\codingStateMachine.h" />
-    <ClInclude Include="include\config.h" />
-    <ClInclude Include="include\EscCharsetProber.h" />
-    <ClInclude Include="include\EUCJPProber.h" />
-    <ClInclude Include="include\EUCKRProber.h" />
-    <ClInclude Include="include\EUCTWProber.h" />
-    <ClInclude Include="include\GB2312Prober.h" />
-    <ClInclude Include="include\jpCntx.h" />
-    <ClInclude Include="include\Latin1Prober.h" />
-    <ClInclude Include="include\MBCSGroupProber.h" />
-    <ClInclude Include="include\pkgInt.h" />
-    <ClInclude Include="include\SBCharsetProber.h" />
-    <ClInclude Include="include\SBCSGroupProber.h" />
-    <ClInclude Include="include\SJISProber.h" />
-    <ClInclude Include="include\types.h" />
-    <ClInclude Include="include\universal.h" />
-    <ClInclude Include="include\UTF8Prober.h" />
+    <ClInclude Include="cpp\big5Prober.h" />
+    <ClInclude Include="cpp\charDistribution.h" />
+    <ClInclude Include="cpp\charsetProber.h" />
+    <ClInclude Include="cpp\codingStateMachine.h" />
+    <ClInclude Include="cpp\config.h" />
+    <ClInclude Include="cpp\EscCharsetProber.h" />
+    <ClInclude Include="cpp\EUCJPProber.h" />
+    <ClInclude Include="cpp\EUCKRProber.h" />
+    <ClInclude Include="cpp\EUCTWProber.h" />
+    <ClInclude Include="cpp\GB2312Prober.h" />
+    <ClInclude Include="cpp\jpCntx.h" />
+    <ClInclude Include="cpp\Latin1Prober.h" />
+    <ClInclude Include="cpp\MBCSGroupProber.h" />
+    <ClInclude Include="cpp\pkgInt.h" />
+    <ClInclude Include="cpp\SBCharsetProber.h" />
+    <ClInclude Include="cpp\SBCSGroupProber.h" />
+    <ClInclude Include="cpp\SJISProber.h" />
+    <ClInclude Include="cpp\types.h" />
+    <ClInclude Include="cpp\universal.h" />
+    <ClInclude Include="cpp\UTF8Prober.h" />
     <ClInclude Include="framework\framework.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
