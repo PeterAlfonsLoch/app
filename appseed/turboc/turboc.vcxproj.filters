@@ -62,6 +62,12 @@
     <ClInclude Include="turboc_context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="turboc_insertions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="turboc_posts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="turboc_application.cpp">
