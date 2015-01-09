@@ -197,11 +197,13 @@ namespace user
 
       get_slider_rect(rect);
 
-      pdc->Draw3dRect(rect,ARGB(220,255,255,255),ARGB(220,255,255,255));
+      pdc->Draw3dRect(rect,ARGB(220,84 + 23,77+23,184+ 23),ARGB(220,84,77,184));
       rect.deflate(1,1);
-      pdc->Draw3dRect(rect,ARGB(220,255,255,0),ARGB(220,255,255,0));
+      pdc->Draw3dRect(rect,ARGB(220,177 -13- 49,184 -13- 49,200 - 49),ARGB(220,177-49 - 49,184-49 - 49,200-49));
       rect.deflate(1,1);
-      pdc->Draw3dRect(rect,ARGB(220,255,255,255),ARGB(220,255,255,255));
+      pdc->Draw3dRect(rect,ARGB(220,84+23,77+23,184+23),ARGB(220,84,77,184));
+      rect.deflate(1,1);
+      pdc->FillSolidRect(rect,ARGB(128,84 + 49,77 + 49,184 + 49));
       //if(m_bSlide)
       //{
       //   pdc->MoveTo(rect.center());

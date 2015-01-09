@@ -12,7 +12,7 @@
 #include "sha/sha1dgst.c"
 #include "sha/sha256.c"
 #include "sha/sha512.c"
-#if !defined(WIN32) && !defined(__x86_64__)
+#if !defined(WIN32) || !defined(_M_AMD64)
 #include "whrlpool/wp_block.c"
 #endif
 #include "whrlpool/wp_dgst.c"

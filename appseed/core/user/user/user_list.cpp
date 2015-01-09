@@ -560,8 +560,7 @@ namespace user
          {
             COLORREF crTranslucid = RGB(0, 0, 0);
             ::rect r = pdrawitem->m_rectItem;
-            r.right++;
-            r.bottom++;
+            r.inflate(8,0,8,-1);
             System.visual().imaging().color_blend(pdrawitem->m_pgraphics, r, crTranslucid, 127);
          }
       }
@@ -618,7 +617,7 @@ namespace user
          ::draw2d::pen_sp penHighlight(allocer());
          ::draw2d::pen * ppenHighlight = _001GetPenHighlight();
          class rect rectHighlight(pdrawitem->m_rectItem);
-         rectHighlight.deflate(2, 2);
+         rectHighlight.inflate(8, 0, 8, -1);
          pdrawitem->m_pgraphics->SelectObject(ppenHighlight);
          pdrawitem->m_pgraphics->DrawRectangle(rectHighlight);
       }
