@@ -1,7 +1,9 @@
 #include "framework.h"
 
+
 namespace turboc
 {
+
 
    application::application()
    {

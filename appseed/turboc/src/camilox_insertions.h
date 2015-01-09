@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include "sphere/sphere.h"
 
 #ifdef __APP_TURBOC_LIBRARY
 #define CLASS_DECL_TURBOC  CLASS_DECL_EXPORT
@@ -51,7 +50,8 @@ public:
 
    bool gok();
 
-   void erase();
+   void werase();
+   void wrefresh();
 
 };
 
