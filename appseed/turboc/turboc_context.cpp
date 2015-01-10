@@ -13,6 +13,8 @@ namespace turboc
    {
       m_diba.set_size(16);
       m_rgbset.set_size(256);
+
+
    }
 
    context::~context()
@@ -60,7 +62,10 @@ namespace turboc
       m_dib->create(x,y);
 
       forall(m_diba)
+      {
+         item.alloc(allocer());
          item->create(x,y);
+      }
 
    }
 

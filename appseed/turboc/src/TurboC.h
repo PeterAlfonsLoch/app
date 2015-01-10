@@ -55,7 +55,7 @@
 #include "sphere/sphere.h"
 
 
-#include "turboc_pre.h"
+#include "turboc/turboc_pre.h"
 
 // Note that all system headers required by *any* TurboC header (even those
 // included *after* this one) need to be included before integer datatypes
@@ -287,9 +287,9 @@ freeUnix (void *object)
 
 __BEGIN_DECLS
 // My custom version of "free".
-extern void freeTurbo (void *object);
+CLASS_DECL_TURBOC void freeTurbo (void *object);
 #ifdef WITH_X
-extern int AssociatePixmap (void *object, ::draw2d::dib * handle);
+CLASS_DECL_TURBOC int AssociatePixmap (void *object, ::draw2d::dib * handle);
 #endif
 
 // Stuff involved in gracefully exiting the program.
@@ -297,45 +297,45 @@ void TurboTrap (void);
 int TurboX (int);
 
 //// From string.h.
-//extern char *strupr (char *);
-//extern char *strlwr (char *);
+//CLASS_DECL_TURBOC char *strupr (char *);
+//CLASS_DECL_TURBOC char *strlwr (char *);
 
 // From stdio.h
-//extern gint fcloseall (void);
+//CLASS_DECL_TURBOC gint fcloseall (void);
 
 // Wrappers for ctype.h macros.
-extern int isupperTurbo (int c);
-extern int islowerTurbo (int c);
-extern int isalphaTurbo (int c);
-extern int isdigitTurbo (int c);
-extern int isxdigitTurbo (int c);
-extern int isspaceTurbo (int c);
-extern int isprintTurbo (int c);
-extern int isgraphTurbo (int c);
-extern int iscntrlTurbo (int c);
-extern int ispunctTurbo (int c);
-extern int isalnumTurbo (int c);
+CLASS_DECL_TURBOC int isupperTurbo (int c);
+CLASS_DECL_TURBOC int islowerTurbo (int c);
+CLASS_DECL_TURBOC int isalphaTurbo (int c);
+CLASS_DECL_TURBOC int isdigitTurbo (int c);
+CLASS_DECL_TURBOC int isxdigitTurbo (int c);
+CLASS_DECL_TURBOC int isspaceTurbo (int c);
+CLASS_DECL_TURBOC int isprintTurbo (int c);
+CLASS_DECL_TURBOC int isgraphTurbo (int c);
+CLASS_DECL_TURBOC int iscntrlTurbo (int c);
+CLASS_DECL_TURBOC int ispunctTurbo (int c);
+CLASS_DECL_TURBOC int isalnumTurbo (int c);
 
 #define random(n) randomTurbo(n)
-extern int16_t randomTurbo (int16_t num);
-extern void randomize (void);
-extern clock_t clockTurbo (void);
+CLASS_DECL_TURBOC int16_t randomTurbo (int16_t num);
+CLASS_DECL_TURBOC void randomize (void);
+CLASS_DECL_TURBOC clock_t clockTurbo (void);
 
 // Endian conversion functions.
-extern void FixLittle16 (uint16_t *);
-extern void FixLittle32 (uint32_t *);
-extern void FixBig16 (uint16_t *);
-extern void FixBig32 (uint32_t *);
+CLASS_DECL_TURBOC void FixLittle16 (uint16_t *);
+CLASS_DECL_TURBOC void FixLittle32 (uint32_t *);
+CLASS_DECL_TURBOC void FixBig16 (uint16_t *);
+CLASS_DECL_TURBOC void FixBig32 (uint32_t *);
 
 // Endian file read/write functions.
-extern int ReadLittle16 (FILE * fp, uint16_t * Value);
-extern int ReadBig16 (FILE * fp, uint16_t * Value);
-extern int ReadLittle32 (FILE * fp, uint32_t * Value);
-extern int ReadBig32 (FILE * fp, uint32_t * Value);
-extern int WriteLittle16 (FILE * fp, uint16_t Value);
-extern int WriteBig16 (FILE * fp, uint16_t Value);
-extern int WriteLittle32 (FILE * fp, uint32_t Value);
-extern int WriteBig32 (FILE * fp, uint32_t Value);
+CLASS_DECL_TURBOC int ReadLittle16 (FILE * fp, uint16_t * Value);
+CLASS_DECL_TURBOC int ReadBig16 (FILE * fp, uint16_t * Value);
+CLASS_DECL_TURBOC int ReadLittle32 (FILE * fp, uint32_t * Value);
+CLASS_DECL_TURBOC int ReadBig32 (FILE * fp, uint32_t * Value);
+CLASS_DECL_TURBOC int WriteLittle16 (FILE * fp, uint16_t Value);
+CLASS_DECL_TURBOC int WriteBig16 (FILE * fp, uint16_t Value);
+CLASS_DECL_TURBOC int WriteLittle32 (FILE * fp, uint32_t Value);
+CLASS_DECL_TURBOC int WriteBig32 (FILE * fp, uint32_t Value);
 
 __END_DECLS
 //--------------------------------------------------------------------------
@@ -347,5 +347,5 @@ extern const int TcUnicodeMappings[256];
 #endif // TURBOC_VARIABLES_C
 
 
-#include "turboc_pos.h"
+#include "turboc/turboc_pos.h"
 

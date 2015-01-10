@@ -65,6 +65,12 @@
     <ClInclude Include="turboc_private.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="turboc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="turboc_main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="turboc_application.cpp">
@@ -372,6 +378,12 @@
     </ClCompile>
     <ClCompile Include="turboc_turboc.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="turboc_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\floodfill.cpp">
+      <Filter>Source Files\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -63,9 +63,9 @@ __BEGIN_DECLS
 #ifndef __MINGW32__
 #define mkdir(filename) mkdir(filename,0755)
 #endif
-int findfirst (const char *pathname, struct ffblk *fblk, int attrib);
-int findnext (struct ffblk *fblk);
-void findlast (struct ffblk *fblk);
+CLASS_DECL_TURBOC int findfirst(const char *pathname,struct ffblk *fblk,int attrib);
+CLASS_DECL_TURBOC int findnext(struct ffblk *fblk);
+CLASS_DECL_TURBOC void findlast(struct ffblk *fblk);
 
 __END_DECLS
 //--------------------------------------------------------------------------

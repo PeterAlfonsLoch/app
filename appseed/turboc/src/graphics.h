@@ -453,114 +453,114 @@ struct TcImageBuffer
 __BEGIN_DECLS
   
 //
-extern void arc (int x, int y, int stangle, int endangle, int radius);
-extern void bar (int left, int top, int right, int bottom);
-extern void bar3d (int left, int top, int right, int bottom,
+CLASS_DECL_TURBOC void arc (int x, int y, int stangle, int endangle, int radius);
+CLASS_DECL_TURBOC void bar (int left, int top, int right, int bottom);
+CLASS_DECL_TURBOC void bar3d (int left, int top, int right, int bottom,
 		   int depth, int topflag);
-extern void circle (int x, int y, int radius);
-extern void cleardevice (void);
-extern void clearviewport (void);
-extern void closegraph (void);
-extern void detectgraph (int *graphdriver, int *graphmode);
-extern void drawpoly (int numpoints, int *polypoints);
-extern void ellipse (int x, int y, int stangle, int endangle,
+CLASS_DECL_TURBOC void circle (int x, int y, int radius);
+CLASS_DECL_TURBOC void cleardevice (void);
+CLASS_DECL_TURBOC void clearviewport (void);
+CLASS_DECL_TURBOC void closegraph (void);
+CLASS_DECL_TURBOC void detectgraph (int *graphdriver, int *graphmode);
+CLASS_DECL_TURBOC void drawpoly (int numpoints, int *polypoints);
+CLASS_DECL_TURBOC void ellipse (int x, int y, int stangle, int endangle,
 		     int xradius, int yradius);
-extern void fillellipse (int x, int y, int xradius, int yradius);
-extern void fillpoly (int numpoints, int *polypoints);
-extern void floodfill (int x, int y, int border);
-extern void getarccoords (struct arccoordstype *arccoords);
-extern void getaspectratio (int *xasp, int *yasp);
-extern int getbkcolor (void);
-extern int getcolor (void);
-extern const struct palettetype *getdefaultpalette (void);
-extern const char *getdrivername (void);
-extern void getfillpattern (char *pattern);
-extern void getfillsettings (struct fillsettingstype *fillinfo);
-extern int getgraphmode (void);
-extern void getimage (int left, int top, int right, int bottom, void *bitmap);
-//extern void freeimage (void *bitmap);
-extern void getlinesettings (struct linesettingstype *lineinfo);
-extern int getmaxcolor (void);
-extern int getmaxmode (void);
+CLASS_DECL_TURBOC void fillellipse (int x, int y, int xradius, int yradius);
+CLASS_DECL_TURBOC void fillpoly (int numpoints, int *polypoints);
+CLASS_DECL_TURBOC void floodfill (int x, int y, int border);
+CLASS_DECL_TURBOC void getarccoords (struct arccoordstype *arccoords);
+CLASS_DECL_TURBOC void getaspectratio (int *xasp, int *yasp);
+CLASS_DECL_TURBOC int getbkcolor (void);
+CLASS_DECL_TURBOC int getcolor (void);
+CLASS_DECL_TURBOC const struct palettetype *getdefaultpalette (void);
+CLASS_DECL_TURBOC const char *getdrivername (void);
+CLASS_DECL_TURBOC void getfillpattern (char *pattern);
+CLASS_DECL_TURBOC void getfillsettings (struct fillsettingstype *fillinfo);
+CLASS_DECL_TURBOC int getgraphmode (void);
+CLASS_DECL_TURBOC void getimage (int left, int top, int right, int bottom, void *bitmap);
+//CLASS_DECL_TURBOC void freeimage (void *bitmap);
+CLASS_DECL_TURBOC void getlinesettings (struct linesettingstype *lineinfo);
+CLASS_DECL_TURBOC int getmaxcolor (void);
+CLASS_DECL_TURBOC int getmaxmode (void);
 #ifdef getmaxx
 #undef getmaxx
 #endif
-extern int turboc_getmaxx (void);
+CLASS_DECL_TURBOC int turboc_getmaxx (void);
 #define getmaxx() turboc_getmaxx()
 #ifdef getmaxy
 #undef getmaxy
 #endif
-extern int turboc_getmaxy (void);
+CLASS_DECL_TURBOC int turboc_getmaxy (void);
 #define getmaxy() turboc_getmaxy()
-extern char *getmodename (int mode_number);
-extern void getmoderange (int graphdriver, int *lomode, int *himode);
-extern unsigned getpixel (int x, int y);
-extern void getpalette (struct palettetype *palette);
-extern int getpalettesize (void);
-extern void gettextsettings (struct textsettingstype *texttypeinfo);
-extern void getviewsettings (struct viewporttype *viewport);
-extern int getx (void);
-extern int gety (void);
-extern void graphdefaults (void);
-extern void TcGraphDefaults (void);
-extern int TcDefaultColors (int Pal);
-extern char *grapherrormsg (int errorcode);
-extern void _graphfreemem (void *ptr, unsigned size);
-extern void *_graphgetmem (unsigned size);
-extern int graphresult (void);
-extern unsigned imagesize (int left, int top, int right, int bottom);
-extern void initgraph (int *graphdriver, int *graphmode, char *pathtodriver);
-extern int installuserdriver (char *name, int (*detect) (void));
-extern int installuserfont (char *name);
-extern void line (int x1, int y1, int x2, int y2);
-extern void linerel (int dx, int dy);
-extern void lineto (int x, int y);
-extern void moverel (int dx, int dy);
-extern void moveto (int x, int y);
-extern void outtext (char *textstring);
-extern void outtextxy (int x, int y, char *textstring);
-extern void pieslice (int x, int y, int stangle, int endangle, int radius);
-extern void putimage (int left, int top, void *bitmap, int op);
-extern void putpixel (int x, int y, int color);
-extern void rectangle (int left, int top, int right, int bottom);
-extern int registerbgidriver (void (*driver) (void));
-extern int registerbgifont (void (*font) (void));
-extern void restorecrtmode (void);
-extern void sector (int X, int Y, int StAngle, int EndAngle,
+CLASS_DECL_TURBOC char *getmodename (int mode_number);
+CLASS_DECL_TURBOC void getmoderange (int graphdriver, int *lomode, int *himode);
+CLASS_DECL_TURBOC unsigned getpixel (int x, int y);
+CLASS_DECL_TURBOC void getpalette (struct palettetype *palette);
+CLASS_DECL_TURBOC int getpalettesize (void);
+CLASS_DECL_TURBOC void gettextsettings (struct textsettingstype *texttypeinfo);
+CLASS_DECL_TURBOC void getviewsettings (struct viewporttype *viewport);
+CLASS_DECL_TURBOC int getx (void);
+CLASS_DECL_TURBOC int gety (void);
+CLASS_DECL_TURBOC void graphdefaults (void);
+CLASS_DECL_TURBOC void TcGraphDefaults (void);
+CLASS_DECL_TURBOC int TcDefaultColors (int Pal);
+CLASS_DECL_TURBOC char *grapherrormsg (int errorcode);
+CLASS_DECL_TURBOC void _graphfreemem (void *ptr, unsigned size);
+CLASS_DECL_TURBOC void *_graphgetmem (unsigned size);
+CLASS_DECL_TURBOC int graphresult (void);
+CLASS_DECL_TURBOC unsigned imagesize (int left, int top, int right, int bottom);
+CLASS_DECL_TURBOC void initgraph (int *graphdriver, int *graphmode, char *pathtodriver);
+CLASS_DECL_TURBOC int installuserdriver (char *name, int (*detect) (void));
+CLASS_DECL_TURBOC int installuserfont (char *name);
+CLASS_DECL_TURBOC void line (int x1, int y1, int x2, int y2);
+CLASS_DECL_TURBOC void linerel (int dx, int dy);
+CLASS_DECL_TURBOC void lineto (int x, int y);
+CLASS_DECL_TURBOC void moverel (int dx, int dy);
+CLASS_DECL_TURBOC void moveto (int x, int y);
+CLASS_DECL_TURBOC void outtext (char *textstring);
+CLASS_DECL_TURBOC void outtextxy (int x, int y, char *textstring);
+CLASS_DECL_TURBOC void pieslice (int x, int y, int stangle, int endangle, int radius);
+CLASS_DECL_TURBOC void putimage (int left, int top, void *bitmap, int op);
+CLASS_DECL_TURBOC void putpixel (int x, int y, int color);
+CLASS_DECL_TURBOC void rectangle (int left, int top, int right, int bottom);
+CLASS_DECL_TURBOC int registerbgidriver (void (*driver) (void));
+CLASS_DECL_TURBOC int registerbgifont (void (*font) (void));
+CLASS_DECL_TURBOC void restorecrtmode (void);
+CLASS_DECL_TURBOC void sector (int X, int Y, int StAngle, int EndAngle,
 		    int XRadius, int YRadius);
-extern void setactivepage (int page);
-extern void setallpalette (struct palettetype *palette);
-extern void setaspectratio (int xasp, int yasp);
-extern void setbkcolor (int color);
-extern void setcolor (int color);
-extern void setfillpattern (char *upattern, int color);
-extern void setfillstyle (int pattern, int color);
-extern unsigned setgraphbufsize (unsigned bufsize);
-extern void setgraphmode (int mode);
-extern void setlinestyle (int linestyle, unsigned upattern, int thickness);
-extern void setpalette (int colornum, int color);
-extern void setrgbpalette (int colornum, int red, int green, int blue);
-extern void settextjustify (int horiz, int vert);
-extern void settextstyle (int font, int direction, int charsize);
-extern void setusercharsize (int multx, int divx, int multy, int divy);
-extern void setviewport (int left, int top, int right, int bottom, int clip);
-extern void setvisualpage (int page);
-extern void setwritemode (int mode);
-extern int textheight (char *textstring);
-extern int textwidth (char *textstring);
+CLASS_DECL_TURBOC void setactivepage (int page);
+CLASS_DECL_TURBOC void setallpalette (struct palettetype *palette);
+CLASS_DECL_TURBOC void setaspectratio (int xasp, int yasp);
+CLASS_DECL_TURBOC void setbkcolor (int color);
+CLASS_DECL_TURBOC void setcolor (int color);
+CLASS_DECL_TURBOC void setfillpattern (char *upattern, int color);
+CLASS_DECL_TURBOC void setfillstyle (int pattern, int color);
+CLASS_DECL_TURBOC unsigned setgraphbufsize (unsigned bufsize);
+CLASS_DECL_TURBOC void setgraphmode (int mode);
+CLASS_DECL_TURBOC void setlinestyle (int linestyle, unsigned upattern, int thickness);
+CLASS_DECL_TURBOC void setpalette (int colornum, int color);
+CLASS_DECL_TURBOC void setrgbpalette (int colornum, int red, int green, int blue);
+CLASS_DECL_TURBOC void settextjustify (int horiz, int vert);
+CLASS_DECL_TURBOC void settextstyle (int font, int direction, int charsize);
+CLASS_DECL_TURBOC void setusercharsize (int multx, int divx, int multy, int divy);
+CLASS_DECL_TURBOC void setviewport (int left, int top, int right, int bottom, int clip);
+CLASS_DECL_TURBOC void setvisualpage (int page);
+CLASS_DECL_TURBOC void setwritemode (int mode);
+CLASS_DECL_TURBOC int textheight (char *textstring);
+CLASS_DECL_TURBOC int textwidth (char *textstring);
 
 // Non-user-callable functions.  Really, just names for use as function
 // parameters in the registerbgidriver and registerbgifont functions.
-extern void CGA_driver (void);
-extern void EGAVGA_driver (void);
-extern void IBM8514_driver (void);
-extern void Herc_driver (void);
-extern void ATT_driver (void);
-extern void PC3270_driver (void);
-extern void triplex_font (void);
-extern void small_font (void);
-extern void sansserif_font (void);
-extern void gothic_font (void);
+CLASS_DECL_TURBOC void CGA_driver (void);
+CLASS_DECL_TURBOC void EGAVGA_driver (void);
+CLASS_DECL_TURBOC void IBM8514_driver (void);
+CLASS_DECL_TURBOC void Herc_driver (void);
+CLASS_DECL_TURBOC void ATT_driver (void);
+CLASS_DECL_TURBOC void PC3270_driver (void);
+CLASS_DECL_TURBOC void triplex_font (void);
+CLASS_DECL_TURBOC void small_font (void);
+CLASS_DECL_TURBOC void sansserif_font (void);
+CLASS_DECL_TURBOC void gothic_font (void);
 
 __END_DECLS
 //--------------------------------------------------------------------------

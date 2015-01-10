@@ -47,6 +47,10 @@ ellipse (int x, int y, int stangle, int endangle, int xradius, int yradius)
   //XLockDisplay (TcDisplay);
   //XDrawArc (TcDisplay, TcPixmaps[TcActivePage], TcGc, x, y, xradius, yradius,
 	 //   stangle * 64, (endangle - stangle) * 64);
+
+   tc().ag().Arc(x,y,xradius * 2,yradius * 2,stangle,endangle);
+   tc().defer_synch();
+
   //if (TcActivePage == TcVisualPage)
   //  {
   //    XDrawArc (TcDisplay, TcWindow, TcGc, x, y, xradius, yradius,

@@ -30,4 +30,26 @@ namespace turboc
    }
 
 
+   bool application::start_main(PFN_MAIN pfnMain)
+   {
+
+      if(m_pmain != NULL)
+      {
+
+         return false;
+
+      }
+
+      m_pmain = new ::turboc::main(this);
+
+      m_pmain->m_pfnMain = pfnMain;
+
+      m_pmain->begin();
+
+
+      return true;
+
+   }
+
+
 } // namespace turboc

@@ -19,11 +19,15 @@ namespace turboc
 
       context     * m_pcontext;
 
+      ::turboc::main        * m_pmain;
+
       application();
       virtual ~application();
 
 
       virtual bool initialize_instance();
+
+      bool start_main(PFN_MAIN pfnMain);
 
 
    };

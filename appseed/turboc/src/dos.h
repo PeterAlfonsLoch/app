@@ -64,8 +64,8 @@ struct time
 __BEGIN_DECLS 
 
 //
-extern void gettime (struct time *timep);
-extern void delay (guint gettime);
+CLASS_DECL_TURBOC void gettime (struct time *timep);
+CLASS_DECL_TURBOC void delay (guint gettime);
 
 __END_DECLS
 //--------------------------------------------------------------------------
@@ -109,15 +109,15 @@ struct time
 extern struct date date_null;
 extern struct time time_null;
 
-__BEGIN_DECLS extern time_t dostounix (struct date *d, struct time *t);
-extern void unixtodos (time_t the_time, struct date *d, struct time *t);
-extern void unixdos_time (time_t the_time, struct time *t);
-extern void unixdos_date (time_t the_time, struct date *d);
-extern void gettime_d (struct time *t);
+__BEGIN_DECLS CLASS_DECL_TURBOC time_t dostounix (struct date *d, struct time *t);
+CLASS_DECL_TURBOC void unixtodos (time_t the_time, struct date *d, struct time *t);
+CLASS_DECL_TURBOC void unixdos_time (time_t the_time, struct time *t);
+CLASS_DECL_TURBOC void unixdos_date (time_t the_time, struct date *d);
+CLASS_DECL_TURBOC void gettime_d (struct time *t);
 // RSB:  The following originally was suffixed by "_d".
 #define getdate(d) getdateTurbo (d)
-extern void getdateTurbo (struct date *d);
-extern struct tm* getdateSystem (const char *d);
+CLASS_DECL_TURBOC void getdateTurbo (struct date *d);
+CLASS_DECL_TURBOC struct tm* getdateSystem (const char *d);
 
 __END_DECLS
 #define SECONDS_PER_DAY	86400L	/* the number of seconds in one day */

@@ -158,26 +158,26 @@ __BEGIN_DECLS
 // function is optional in Turbo C, but must be used in all cases for us
 // because otherwise we can't guarantee that the necessary initialization
 // of ncurses has occurred.
-extern void textattr (int newattr);
-extern void textbackground (int newcolor);
-extern void textcolor (int newcolor);
-extern void lowvideo (void);
-extern void highvideo (void);
-extern void normvideo (void);
-extern void gettextinfo (struct text_info *r);
-extern int wherex (void);
-extern int wherey (void);
-extern void gotoxy (int x, int y);
-extern void window (int left, int top, int right, int bottom);
-extern void clreol (void);
-extern void clrscr (void);
-extern void textmode (int newmode);
-extern int putch (int c);
-extern int getche (void);
-extern int cputs (const char *str);
-extern int cprintf (const char *format, ...);
-extern void delline (void);
-extern void insline (void);
+CLASS_DECL_TURBOC void textattr (int newattr);
+CLASS_DECL_TURBOC void textbackground (int newcolor);
+CLASS_DECL_TURBOC void textcolor (int newcolor);
+CLASS_DECL_TURBOC void lowvideo (void);
+CLASS_DECL_TURBOC void highvideo (void);
+CLASS_DECL_TURBOC void normvideo (void);
+CLASS_DECL_TURBOC void gettextinfo (struct text_info *r);
+CLASS_DECL_TURBOC int wherex (void);
+CLASS_DECL_TURBOC int wherey (void);
+CLASS_DECL_TURBOC void gotoxy (int x, int y);
+CLASS_DECL_TURBOC void window (int left, int top, int right, int bottom);
+CLASS_DECL_TURBOC void clreol (void);
+CLASS_DECL_TURBOC void clrscr (void);
+CLASS_DECL_TURBOC void textmode (int newmode);
+CLASS_DECL_TURBOC int putch (int c);
+CLASS_DECL_TURBOC int getche (void);
+CLASS_DECL_TURBOC int cputs (const char *str);
+CLASS_DECL_TURBOC int cprintf (const char *format, ...);
+CLASS_DECL_TURBOC void delline (void);
+CLASS_DECL_TURBOC void insline (void);
 
 // The following is used to access the internationalization library's gettext
 // (presumably with #include <libintl.h>).
@@ -190,16 +190,16 @@ gettextIntl (const char *msgid) {
   return (gettext (msgid)); 
 }
 // The following is used to access the TurboC-library's gettext.
-extern int gettextTurboC (int left, int top, int right, int bottom, void *destin);
+CLASS_DECL_TURBOC int gettextTurboC (int left, int top, int right, int bottom, void *destin);
 #define gettext gettextTurboC
 
-extern int puttext (int left, int top, int right, int bottom, void *destin);
-extern int movetext (int left, int top, int right, int bottom, int dleft,
+CLASS_DECL_TURBOC int puttext (int left, int top, int right, int bottom, void *destin);
+CLASS_DECL_TURBOC int movetext (int left, int top, int right, int bottom, int dleft,
 		     int dtop);
-extern int kbhit (void);
-extern char *cgets (char *s);
-extern char *getpass (const char *prompt);
-extern void _setcursortype (int cur_t);
+CLASS_DECL_TURBOC int kbhit (void);
+CLASS_DECL_TURBOC char *cgets (char *s);
+CLASS_DECL_TURBOC char *getpass (const char *prompt);
+CLASS_DECL_TURBOC void _setcursortype (int cur_t);
 
 // Implementing getch/ungetch is a little tricky, since functions of the same
 // names, but slightly different behavior, are available in ncurses.  We
@@ -212,7 +212,7 @@ getchNcurses (void)
 {
   return (getch ());
 }
-extern int getchTurbo (void);
+CLASS_DECL_TURBOC int getchTurbo (void);
 #ifdef getch
 #undef getch
 #endif
@@ -222,17 +222,17 @@ ungetchNcurses (int c)
 {
   ungetch (c);
 }
-extern int ungetchTurbo (int c);
+CLASS_DECL_TURBOC int ungetchTurbo (int c);
 #ifdef ungetch
 #undef ungetch
 #endif
 #define ungetch ungetchTurbo
 
 // Signal-handling stuff.
-//extern void ExitTurboC (gint);
-extern void ResizeTurboC (gint);
-extern void RawResizeTurboC (gint Rows, gint Columns);
-extern void ConioResizeCallback (void);
+//CLASS_DECL_TURBOC void ExitTurboC (gint);
+CLASS_DECL_TURBOC void ResizeTurboC (gint);
+CLASS_DECL_TURBOC void RawResizeTurboC (gint Rows, gint Columns);
+CLASS_DECL_TURBOC void ConioResizeCallback (void);
 
 // Graphics-window keyboard buffer.
 int TcAddKeybuf (char c);

@@ -213,10 +213,10 @@ initgraph (int *graphdriver, int *graphmode, char *pathtodriver)
  // XSync (TcDisplay, False);
  // TcDriver = *graphdriver;
  // TcCurrentGraphMode = *graphmode;
- // TcXresolution = Xres;
- // TcYresolution = Yres;
+  TcXresolution = Xres;
+  TcYresolution = Yres;
  // TcPageCount = Pcnt;
- // TcVisualPage = TcActivePage = 0;
+  TcVisualPage = TcActivePage = 0;
  // TcPaletteNum = Pal;
  // TcBackgroundColor = 0;
  // TcTile = XCreatePixmap (TcDisplay,

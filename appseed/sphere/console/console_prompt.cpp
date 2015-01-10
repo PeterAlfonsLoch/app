@@ -23,13 +23,20 @@ namespace console
 
       m_pdoctemplate = pdoctemplate;
 
-      m_pdoctemplate->open_document_file(NULL,false);
+      
 
    }
 
 
    prompt_impact & prompt::impact(bool bShow)
    {
+
+      if(m_pdoctemplate->get_document() == NULL)
+      {
+         
+         m_pdoctemplate->open_document_file(NULL,false);
+
+      }
 
       prompt_impact & i = *m_pdoctemplate->get_document()->get_typed_view < prompt_impact >();
 

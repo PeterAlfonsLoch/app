@@ -39,6 +39,7 @@
 #include "endianFile..cpp"
 #include "fillellipse..cpp"
 #include "findfirst..cpp"
+#include "floodfill.cpp"
 #include "freeTurbo..cpp"
 #include "getarccoords..cpp"
 #include "getche..cpp"

@@ -17,6 +17,9 @@ namespace console
    bool application::initialize_instance()
    {
 
+      System.factory().creatable_small < console::prompt_document >();
+      System.factory().creatable_small < console::prompt_frame >();
+      System.factory().creatable_small < console::prompt_impact >();
 
       if(!::asphere::application::initialize_instance())
          return false;
