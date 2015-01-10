@@ -216,7 +216,8 @@ initgraph (int *graphdriver, int *graphmode, char *pathtodriver)
   TcXresolution = Xres;
   TcYresolution = Yres;
  // TcPageCount = Pcnt;
-  TcVisualPage = TcActivePage = 0;
+  TcVisualPage = 0;
+     TcActivePage = 0;
  // TcPaletteNum = Pal;
  // TcBackgroundColor = 0;
  // TcTile = XCreatePixmap (TcDisplay,
