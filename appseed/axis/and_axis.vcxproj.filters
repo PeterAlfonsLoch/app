@@ -108,9 +108,6 @@
     <Filter Include="Header Files\filesystem\fs">
       <UniqueIdentifier>{ac8dd5af-8993-4120-b887-6a1e4eaaa29d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\filesystem\file">
-      <UniqueIdentifier>{3a2d58e0-3564-457f-ad53-2b26fdc8b2f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\axis\crypto">
       <UniqueIdentifier>{827d6b98-e29f-4ba3-9835-3a7b78877deb}</UniqueIdentifier>
     </Filter>
@@ -119,9 +116,6 @@
     </Filter>
     <Filter Include="Source Files\filesystem\fs">
       <UniqueIdentifier>{b19eccb3-0ff3-4b9c-b6de-ab7724054f1c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\filesystem\file">
-      <UniqueIdentifier>{7164038b-3f76-4ce1-96d5-cc885cbf7871}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\net\mail">
       <UniqueIdentifier>{18e5190d-031e-4ad6-a338-9a3c09365a81}</UniqueIdentifier>
@@ -204,17 +198,11 @@
     <Filter Include="Source Files\axis\os\android">
       <UniqueIdentifier>{58b6201f-03a2-4896-ae5a-477d9ea6a138}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\axis\os\windows">
-      <UniqueIdentifier>{a9fa6c5c-4118-45a3-a636-0a71e98bcdb4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\axis\os\ansios">
       <UniqueIdentifier>{68334ac9-3045-461a-9922-b6f49f0a803d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\install">
       <UniqueIdentifier>{3199e756-cf18-4f55-8ef4-e1ef783b0fda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\install\windows">
-      <UniqueIdentifier>{754bf363-6d72-4e59-a58c-2692948bf105}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\axis">
       <UniqueIdentifier>{b15f9423-6971-4587-b04f-ca13192a9bcf}</UniqueIdentifier>
@@ -224,9 +212,6 @@
     </Filter>
     <Filter Include="Source Files\axis\node">
       <UniqueIdentifier>{57540175-8b21-49ef-a8b9-0ccf5f3f4a56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\axis\node\windows">
-      <UniqueIdentifier>{bf60306d-2d73-4340-8890-4402c6ebccab}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\axis\node\android">
       <UniqueIdentifier>{8e87a155-a76c-44a0-8114-25921d3dd914}</UniqueIdentifier>
@@ -287,9 +272,6 @@
     </Filter>
     <Filter Include="Source Files\database\sqlitedb">
       <UniqueIdentifier>{8bcc8a4b-3d30-4fa2-959d-aa62d9eec869}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\file\NewFilter1">
-      <UniqueIdentifier>{bd156e53-bffb-46e2-bf2b-a37ced8ac946}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -589,18 +571,6 @@
     </ClInclude>
     <ClInclude Include="axis\compress\compress_compress.h">
       <Filter>Header Files\axis\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_application.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dir_application.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_dir_system.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_system.h">
-      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="axis\crypto\crypto.h">
       <Filter>Header Files\axis\crypto</Filter>
@@ -1312,18 +1282,6 @@
     <ClCompile Include="axis\compress\zip\zip_zip.cpp">
       <Filter>Source Files\axis\compress\zip</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_application.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir_application.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_dir_system.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_system.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\fs\fs_data.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
@@ -1374,15 +1332,6 @@
     </ClCompile>
     <ClCompile Include="net\mail\mail_simple_pop3.cpp">
       <Filter>Source Files\net\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_boot.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_service.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\install\windows\install_windows_win.cpp">
-      <Filter>Source Files\axis\install\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\install\install.cpp">
       <Filter>Source Files\axis\install</Filter>
@@ -1447,24 +1396,6 @@
     <ClCompile Include="filesystem\fs\fs_link.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_dir.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_factory_exchange.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_file_set.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_file_system.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_ip_enum.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_port_forward.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\android\android_dir.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
@@ -1485,9 +1416,6 @@
     </ClCompile>
     <ClCompile Include="axis\node\android\android1.cpp">
       <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\windows_crypto.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\android\android_crypto.cpp">
       <Filter>Source Files\axis\node\android</Filter>
@@ -1789,35 +1717,17 @@
     <ClCompile Include="axis\install\_install.cpp">
       <Filter>Source Files\axis\install</Filter>
     </ClCompile>
-    <ClCompile Include="axis\os\windows\_windows_os.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_base_crypto.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_dll.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_os.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\os\windows\windows_simple_app.cpp">
-      <Filter>Source Files\axis\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\windows\_windows_node.cpp">
-      <Filter>Source Files\axis\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\fs\_fs.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\_visual.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
+    <ClCompile Include="axis\_axis_axis.cpp">
+      <Filter>Source Files\axis</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="base.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="base.def">
       <Filter>Source Files</Filter>
     </None>

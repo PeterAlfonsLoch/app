@@ -39,4 +39,4 @@
 
 CLASS_DECL_AURA int GetEncoderClsid(const WCHAR* format,CLSID* pClsid);
 
-#endif;
+#endif

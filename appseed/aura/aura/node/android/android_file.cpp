@@ -92,7 +92,7 @@ namespace android
 
       if(nOpenFlags & ::file::defer_create_directory)
       {
-         Application.dir_mk(Application.dir_name(lpszFileName));
+         Application.dir().mk(System.dir().name(lpszFileName));
       }
 
       m_iFile = (UINT)hFileNull;
@@ -541,7 +541,7 @@ namespace android
 
       ::file::file_status status;
       GetStatus(status);
-      return System.file_name(status.m_strFullName);
+      return System.file().name_(status.m_strFullName);
    }
 
    string file::GetFileTitle() const
@@ -550,7 +550,7 @@ namespace android
 
       ::file::file_status status;
       GetStatus(status);
-      return System.file_title(status.m_strFullName);
+      return System.file().title_(status.m_strFullName);
    }
 
    string file::GetFilePath() const

@@ -9,7 +9,7 @@
 namespace str
 {
 
-   CLASS_DECL_AURA extern e_err g_eerr = err_none;
+   CLASS_DECL_AURA e_err g_eerr = err_none;
 
 
    const char trailingBytesForUTF8[256] = {
