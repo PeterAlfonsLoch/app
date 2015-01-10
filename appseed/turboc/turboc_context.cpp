@@ -59,12 +59,22 @@ namespace turboc
    void context::resize(int x,int y)
    {
 
+      if(x <= 0 || y <= 0)
+         return;
+
       m_dib->create(x,y);
+
+      m_dib->Fill(0,0,0,0);
 
       forall(m_diba)
       {
+         
          item.alloc(allocer());
+         
          item->create(x,y);
+         
+         item->Fill(0,0,0,0);
+
       }
 
    }
