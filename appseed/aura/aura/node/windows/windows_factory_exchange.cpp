@@ -14,6 +14,11 @@ namespace aura
          element(papp)
       {
 
+
+         // axis will put things in the axis, (at least in this case... :-)
+         System.factory().creatable_small    < ::windows::file_system   >(System.type_info < ::file::system              >(),1);
+         System.factory().creatable_small    < ::windows::dir           >(System.type_info < ::file::dir::system         >(),1);
+
          System.factory().cloneable_large    < ::windows::stdio_file         >(System.type_info < ::file::text_buffer         >());
          System.factory().cloneable_large    < ::windows::file               >(System.type_info < ::file::binary_buffer       >(),true);
          System.factory().creatable          < ::windows::application        >(System.type_info < ::aura::application         >(),1);
