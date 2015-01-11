@@ -41,7 +41,7 @@
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>arm-linux-androideabi-4.8</PlatformToolset>
     <AndroidStlType>gnustl_static</AndroidStlType>
-    <AndroidAPILevel>android-9</AndroidAPILevel>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
     <AndroidArch>armv5te</AndroidArch>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Android'" Label="Configuration">
